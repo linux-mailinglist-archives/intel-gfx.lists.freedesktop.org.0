@@ -2,34 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5ED305E2E
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 15:24:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EF33305E31
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 15:25:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 719026E5C1;
-	Wed, 27 Jan 2021 14:24:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B4C76E7DD;
+	Wed, 27 Jan 2021 14:25:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB1D6E5C1
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 14:24:41 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23715187-1500050 for multiple; Wed, 27 Jan 2021 14:24:35 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AF9C36E5CF;
+ Wed, 27 Jan 2021 14:25:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A9DB6A00E6;
+ Wed, 27 Jan 2021 14:25:33 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <bab1b4e7-7487-a057-3514-c26e3afc9350@linux.intel.com>
-References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
- <20210125140136.10494-18-chris@chris-wilson.co.uk>
- <bab1b4e7-7487-a057-3514-c26e3afc9350@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jan 2021 14:24:37 +0000
-Message-ID: <161175747708.2943.12362944581195566531@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 18/41] drm/i915: Move tasklet from execlists
- to sched
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 27 Jan 2021 14:25:33 -0000
+Message-ID: <161175753369.11908.10545111700484056400@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210127090608.16925-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210127090608.16925-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Prefer_local_execution=5Fmask_for_determing_viable_?=
+ =?utf-8?q?engines?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,267 +39,223 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0060424961=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-27 14:10:55)
-> 
-> + Matt to check on how this fits with GuC. This patch and a few before 
-> it in this series.
-> 
-> The split between physical and scheduling engine (i915_sched_engine) 
-> makes sense to me. Gut feeling says it should work for GuC as well, in 
-> principle.
-> 
-> A small comment or two below:
-> 
-> On 25/01/2021 14:01, Chris Wilson wrote:
-> > Move the scheduling tasklists out of the execlists backend into the
-> > per-engine scheduling bookkeeping.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_engine.h        | 14 ----
-> >   drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 11 ++--
-> >   drivers/gpu/drm/i915/gt/intel_engine_types.h  |  5 --
-> >   .../drm/i915/gt/intel_execlists_submission.c  | 65 +++++++++----------
-> >   drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  2 +-
-> >   drivers/gpu/drm/i915/gt/selftest_execlists.c  | 16 ++---
-> >   drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  2 +-
-> >   drivers/gpu/drm/i915/gt/selftest_lrc.c        |  6 +-
-> >   drivers/gpu/drm/i915/gt/selftest_reset.c      |  2 +-
-> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 18 ++---
-> >   drivers/gpu/drm/i915/i915_scheduler.c         | 14 ++--
-> >   drivers/gpu/drm/i915/i915_scheduler.h         | 20 ++++++
-> >   drivers/gpu/drm/i915/i915_scheduler_types.h   |  6 ++
-> >   .../gpu/drm/i915/selftests/i915_scheduler.c   | 16 ++---
-> >   14 files changed, 99 insertions(+), 98 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> > index 20974415e7d8..801ae54cf60d 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> > @@ -122,20 +122,6 @@ execlists_active(const struct intel_engine_execlists *execlists)
-> >       return active;
-> >   }
-> >   
-> > -static inline void
-> > -execlists_active_lock_bh(struct intel_engine_execlists *execlists)
-> > -{
-> > -     local_bh_disable(); /* prevent local softirq and lock recursion */
-> > -     tasklet_lock(&execlists->tasklet);
-> > -}
-> > -
-> > -static inline void
-> > -execlists_active_unlock_bh(struct intel_engine_execlists *execlists)
-> > -{
-> > -     tasklet_unlock(&execlists->tasklet);
-> > -     local_bh_enable(); /* restore softirq, and kick ksoftirqd! */
-> > -}
-> > -
-> >   static inline u32
-> >   intel_read_status_page(const struct intel_engine_cs *engine, int reg)
-> >   {
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > index ef225da35399..cdd07aeada05 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > @@ -902,7 +902,6 @@ int intel_engines_init(struct intel_gt *gt)
-> >   void intel_engine_cleanup_common(struct intel_engine_cs *engine)
-> >   {
-> >       i915_sched_fini_engine(&engine->active);
-> > -     tasklet_kill(&engine->execlists.tasklet); /* flush the callback */
-> >   
-> >       intel_breadcrumbs_free(engine->breadcrumbs);
-> >   
-> > @@ -1187,7 +1186,7 @@ static bool ring_is_idle(struct intel_engine_cs *engine)
-> >   
-> >   void __intel_engine_flush_submission(struct intel_engine_cs *engine, bool sync)
-> >   {
-> > -     struct tasklet_struct *t = &engine->execlists.tasklet;
-> > +     struct tasklet_struct *t = &engine->active.tasklet;
-> >   
-> >       if (!t->func)
-> >               return;
-> > @@ -1454,8 +1453,8 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
-> >   
-> >               drm_printf(m, "\tExeclist tasklet queued? %s (%s), preempt? %s, timeslice? %s\n",
-> >                          yesno(test_bit(TASKLET_STATE_SCHED,
-> > -                                       &engine->execlists.tasklet.state)),
-> > -                        enableddisabled(!atomic_read(&engine->execlists.tasklet.count)),
-> > +                                       &engine->active.tasklet.state)),
-> > +                        enableddisabled(!atomic_read(&engine->active.tasklet.count)),
-> >                          repr_timer(&engine->execlists.preempt),
-> >                          repr_timer(&engine->execlists.timer));
-> >   
-> > @@ -1479,7 +1478,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
-> >                                  idx, hws[idx * 2], hws[idx * 2 + 1]);
-> >               }
-> >   
-> > -             execlists_active_lock_bh(execlists);
-> > +             i915_sched_lock_bh(&engine->active);
-> >               rcu_read_lock();
-> >               for (port = execlists->active; (rq = *port); port++) {
-> >                       char hdr[160];
-> > @@ -1510,7 +1509,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
-> >                       i915_request_show(m, rq, hdr, 0);
-> >               }
-> >               rcu_read_unlock();
-> > -             execlists_active_unlock_bh(execlists);
-> > +             i915_sched_unlock_bh(&engine->active);
-> >       } else if (INTEL_GEN(dev_priv) > 6) {
-> >               drm_printf(m, "\tPP_DIR_BASE: 0x%08x\n",
-> >                          ENGINE_READ(engine, RING_PP_DIR_BASE));
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > index c46d70b7e484..76d561c2c6aa 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > @@ -138,11 +138,6 @@ struct st_preempt_hang {
-> >    * driver and the hardware state for execlist mode of submission.
-> >    */
-> >   struct intel_engine_execlists {
-> > -     /**
-> > -      * @tasklet: softirq tasklet for bottom handler
-> > -      */
-> > -     struct tasklet_struct tasklet;
-> > -
-> >       /**
-> >        * @timer: kick the current context if its timeslice expires
-> >        */
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > index 756ac388a4a8..1103c8a00af1 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > @@ -513,7 +513,7 @@ static void kick_siblings(struct i915_request *rq, struct intel_context *ce)
-> >               resubmit_virtual_request(rq, ve);
-> >   
-> >       if (READ_ONCE(ve->request))
-> > -             tasklet_hi_schedule(&ve->base.execlists.tasklet);
-> > +             i915_sched_kick(&ve->base.active);
-> 
-> i915_sched_ or i915_sched_engine_ ?
+--===============0060424961==
+Content-Type: multipart/alternative;
+ boundary="===============3542484717499972763=="
 
-struct i915_request *
-__i915_sched_rewind_requests(struct i915_sched_engine *engine);
-void __i915_sched_defer_request(struct i915_sched_engine *engine,
-                                struct i915_request *request);
+--===============3542484717499972763==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-bool __i915_sched_suspend_request(struct i915_sched_engine *engine,
-                                  struct i915_request *rq);
-void __i915_sched_resume_request(struct i915_sched_engine *engine,
-                                 struct i915_request *request);
+== Series Details ==
 
-bool i915_sched_suspend_request(struct i915_sched_engine *engine,
-                                struct i915_request *request);
-void i915_sched_resume_request(struct i915_sched_engine *engine,
-                               struct i915_request *rq);
+Series: drm/i915/gt: Prefer local execution_mask for determing viable engines
+URL   : https://patchwork.freedesktop.org/series/86342/
+State : success
 
-static inline bool i915_sched_is_idle(const struct i915_sched_engine *se)
-{
-        return i915_priolist_is_empty(&se->queue);
-}
+== Summary ==
 
-static inline bool
-i915_sched_is_last_request(const struct i915_sched_engine *se,
-                           const struct i915_request *rq)
-{
-        return list_is_last_rcu(&rq->sched.link, &se->requests);
-}
+CI Bug Log - changes from CI_DRM_9687 -> Patchwork_19516
+====================================================
 
-and a few more. I know it should be object_action, but I wanted to avoid
-all that typing. [I'm not even sure if i915_sched_engine is best name
-for aligning with the guc's requirement of a single scheduling entity.
-And then the drm_sched uses entity which roughly aligns with
-i915_sched_engine.] Also I have a patch to replace rq->engine with
-rq->sched.engine, and that looks like a good step forward (with a just
-small caveat of we will have to move the breadcrumbs again, I think a
-intel_context.breadcrumbs pointer).
+Summary
+-------
 
-Anyway, since this was the primary means I was interacting with the
-scheduler from execlists/ringscheduler, I wanted conciseness that
-avoided all the tautology of engines from within engines.
+  **SUCCESS**
 
-> >   }
-> >   
-> >   static void __execlists_schedule_out(struct i915_request * const rq,
-> > @@ -679,10 +679,9 @@ trace_ports(const struct intel_engine_execlists *execlists,
-> >                    dump_port(p1, sizeof(p1), ", ", ports[1]));
-> >   }
-> >   
-> > -static bool
-> > -reset_in_progress(const struct intel_engine_execlists *execlists)
-> > +static bool reset_in_progress(const struct intel_engine_cs *engine)
-> >   {
-> > -     return unlikely(!__tasklet_is_enabled(&execlists->tasklet));
-> > +     return unlikely(!__tasklet_is_enabled(&engine->active.tasklet));
-> >   }
-> >   
-> >   static __maybe_unused noinline bool
-> > @@ -699,7 +698,7 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
-> >       trace_ports(execlists, msg, execlists->pending);
-> >   
-> >       /* We may be messing around with the lists during reset, lalala */
-> > -     if (reset_in_progress(execlists))
-> > +     if (reset_in_progress(engine))
-> >               return true;
-> >   
-> >       if (!execlists->pending[0]) {
-> > @@ -1084,7 +1083,7 @@ static void start_timeslice(struct intel_engine_cs *engine)
-> >                        * its timeslice, so recheck.
-> >                        */
-> >                       if (!timer_pending(&el->timer))
-> > -                             tasklet_hi_schedule(&el->tasklet);
-> > +                             i915_sched_kick(&engine->active);
-> >                       return;
-> >               }
-> >   
-> > @@ -1664,8 +1663,8 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
-> >        * access. Either we are inside the tasklet, or the tasklet is disabled
-> >        * and we assume that is only inside the reset paths and so serialised.
-> >        */
-> > -     GEM_BUG_ON(!tasklet_is_locked(&execlists->tasklet) &&
-> > -                !reset_in_progress(execlists));
-> > +     GEM_BUG_ON(!tasklet_is_locked(&engine->active.tasklet) &&
-> > +                !reset_in_progress(engine));
-> >       GEM_BUG_ON(!intel_engine_in_execlists_submission_mode(engine));
-> >   
-> >       /*
-> > @@ -2077,13 +2076,13 @@ static noinline void execlists_reset(struct intel_engine_cs *engine)
-> >       ENGINE_TRACE(engine, "reset for %s\n", msg);
-> >   
-> >       /* Mark this tasklet as disabled to avoid waiting for it to complete */
-> > -     tasklet_disable_nosync(&engine->execlists.tasklet);
-> > +     tasklet_disable_nosync(&engine->active.tasklet);
-> >   
-> >       ring_set_paused(engine, 1); /* Freeze the current request in place */
-> >       execlists_capture(engine);
-> >       intel_engine_reset(engine, msg);
-> >   
-> > -     tasklet_enable(&engine->execlists.tasklet);
-> > +     tasklet_enable(&engine->active.tasklet);
-> 
-> Maybe all access to the tasklet from the backend should go via 
-> i915_sched_ helpers to complete the separation?
+  No regressions found.
 
-This is running inside the tasklet, so could be excused for being tightly
-coupled with the tasklet.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/index.html
 
-Since we now have the tasklet itself passed to the tasklet callback (new
-tasklet API), a simple way to hide the coupling would be to pass that
-local.
+Known issues
+------------
 
-> And with some generic 
-> naming in case we don't want to trumpet it is a tasklet but instead some 
-> higher level concept. Like schedule_enable/disable I don't know.. 
-> Depends also how this plugs in the GuC.
+  Here are the changes found in Patchwork_19516 that come from known issues:
 
-Which would suggest to me to avoid too generic naming, as the namespace
-is already crowded as we start coupling in with guc actions.
--Chris
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#2411] / [i915#402])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-glk-dsi:         [PASS][3] -> [INCOMPLETE][4] ([i915#2895])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-glk-dsi/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-glk-dsi/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-kbl-7500u:       [PASS][5] -> [DMESG-FAIL][6] ([i915#165])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([i915#402])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-icl-u2:          [FAIL][9] ([i915#1161] / [i915#262]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_vgem@basic-gtt:
+    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@prime_vgem@basic-gtt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-tgl-y/igt@prime_vgem@basic-gtt.html
+
+  
+  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#2895]: https://gitlab.freedesktop.org/drm/intel/issues/2895
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (45 -> 38)
+------------------------------
+
+  Missing    (7): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9687 -> Patchwork_19516
+
+  CI-20190529: 20190529
+  CI_DRM_9687: 7b5229b02338bfb24c3db4e76abb328d1e9cf8f1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5974: a85398dcae50930c0e27548cf8c9575ad0bf69d1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19516: f44073b31909dda007cf8c510eebdff04b9da8fe @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f44073b31909 drm/i915/gt: Prefer local execution_mask for determing viable engines
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/index.html
+
+--===============3542484717499972763==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Prefer local execution_mask for determing viable engines</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86342/">https://patchwork.freedesktop.org/series/86342/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9687 -&gt; Patchwork_19516</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19516 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-glk-dsi/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-glk-dsi/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2895">i915#2895</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-gtt:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@prime_vgem@basic-gtt.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19516/fi-tgl-y/igt@prime_vgem@basic-gtt.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 38)</h2>
+<p>Missing    (7): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9687 -&gt; Patchwork_19516</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9687: 7b5229b02338bfb24c3db4e76abb328d1e9cf8f1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5974: a85398dcae50930c0e27548cf8c9575ad0bf69d1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19516: f44073b31909dda007cf8c510eebdff04b9da8fe @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f44073b31909 drm/i915/gt: Prefer local execution_mask for determing viable engines</p>
+
+</body>
+</html>
+
+--===============3542484717499972763==--
+
+--===============0060424961==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0060424961==--
