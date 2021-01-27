@@ -1,31 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 790C5305EE1
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 15:59:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BE28305F19
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 16:08:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7E7D89D67;
-	Wed, 27 Jan 2021 14:59:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E219C6E5BB;
+	Wed, 27 Jan 2021 15:08:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 94A1E89D67;
- Wed, 27 Jan 2021 14:59:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8E387A47EB;
- Wed, 27 Jan 2021 14:59:40 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91E3B6E2D1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 15:08:33 +0000 (UTC)
+IronPort-SDR: CpDwUvAcZCx8P0KIZwYlFWHSnGZ2IKCqeHt/WU1VErfFBhgXUYVDGtH8t/bDp+IrQlvQICSAj6
+ g3pO6bdSnT0Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="167754191"
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="167754191"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 07:07:39 -0800
+IronPort-SDR: N/XRn8e3pS4Eu8589kdH5DF6vPEQBgzkZgvOdSZpwWrugfPnIY35baZ7Gs2/H56mVU5OwA99t3
+ RHx4L8HjMAaA==
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="388341961"
+Received: from tdo2-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.72.224])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 07:07:37 -0800
+Date: Wed, 27 Jan 2021 07:07:33 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <20210127150733.ntbtt2vrhw5aqpxx@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20210127041159.136409-1-aditya.swarup@intel.com>
+ <20210127041159.136409-3-aditya.swarup@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Date: Wed, 27 Jan 2021 14:59:40 -0000
-Message-ID: <161175958057.11913.17330309789004140737@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210127100051.30595-1-anshuman.gupta@intel.com>
-In-Reply-To: <20210127100051.30595-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_mst_streams_type1_capability_check?=
+Content-Disposition: inline
+In-Reply-To: <20210127041159.136409-3-aditya.swarup@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/9] drm/i915/adl_s: MCHBAR memory info
+ registers are moved
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,232 +50,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0635698684=="
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0635698684==
-Content-Type: multipart/alternative;
- boundary="===============8613685704335385189=="
+On Tue, Jan 26, 2021 at 08:11:52PM -0800, Aditya Swarup wrote:
+>From: Caz Yokoyama <caz.yokoyama@intel.com>
+>
+>The crwebview indicates on ADL-S that some of our MCHBAR
+>registers have moved from their traditional 0x50XX offsets to
+>new locations. The meaning and bit layout of the registers
+>remain same.
+>
+>v2: Simplify logic to a single if else chain and fix indents.(Lucas)
+>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Cc: Jani Nikula <jani.nikula@intel.com>
+>Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>Cc: Imre Deak <imre.deak@intel.com>
+>Cc: Matt Roper <matthew.d.roper@intel.com>
+>Signed-off-by: Caz Yokoyama <caz.yokoyama@intel.com>
+>Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+>---
+> drivers/gpu/drm/i915/i915_reg.h   |  5 +++++
+> drivers/gpu/drm/i915/intel_dram.c | 24 ++++++++++++++++++------
+> 2 files changed, 23 insertions(+), 6 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_r=
+eg.h
+>index aa872446337b..3031897239a0 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -10916,6 +10916,8 @@ enum skl_power_gate {
+> #define  SKL_DRAM_DDR_TYPE_LPDDR3		(2 << 0)
+> #define  SKL_DRAM_DDR_TYPE_LPDDR4		(3 << 0)
+>
+>+#define ADLS_MAD_INTER_CHANNEL_0_0_0_MCHBAR _MMIO(MCHBAR_MIRROR_BASE_SNB =
++ 0x6048)
+>+
+> #define SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB=
+ + 0x500C)
+> #define SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB=
+ + 0x5010)
+> #define  SKL_DRAM_S_SHIFT			16
+>@@ -10943,6 +10945,9 @@ enum skl_power_gate {
+> #define  CNL_DRAM_RANK_3			(0x2 << 9)
+> #define  CNL_DRAM_RANK_4			(0x3 << 9)
+>
+>+#define ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
+6054)
+>+#define ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
+6058)
+>+
+> /*
+>  * Please see hsw_read_dcomp() and hsw_write_dcomp() before using this re=
+gister,
+>  * since on HSW we can't write to it using intel_uncore_write.
+>diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/inte=
+l_dram.c
+>index 4754296a250e..84f84e118531 100644
+>--- a/drivers/gpu/drm/i915/intel_dram.c
+>+++ b/drivers/gpu/drm/i915/intel_dram.c
+>@@ -181,17 +181,24 @@ skl_dram_get_channels_info(struct drm_i915_private *=
+i915)
+> {
+> 	struct dram_info *dram_info =3D &i915->dram_info;
+> 	struct dram_channel_info ch0 =3D {}, ch1 =3D {};
+>+	i915_reg_t ch0_reg, ch1_reg;
+> 	u32 val;
+> 	int ret;
+>
+>-	val =3D intel_uncore_read(&i915->uncore,
+>-				SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
+>+	if (IS_ALDERLAKE_S(i915)) {
+>+		ch0_reg =3D ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR;
+>+		ch1_reg =3D ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR;
+>+	} else {
+>+		ch0_reg =3D ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR;
+>+		ch1_reg =3D ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR;
 
---===============8613685704335385189==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+I commented on the wrong version of the patch, but the bug is still
+here. And this patch conflict with Jose's patch.
 
-== Series Details ==
-
-Series: drm/i915/hdcp: mst streams type1 capability check
-URL   : https://patchwork.freedesktop.org/series/86345/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9687 -> Patchwork_19517
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19517 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +26 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-7500u:       [PASS][5] -> [DMESG-WARN][6] ([i915#2605])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-u2:          [FAIL][8] ([i915#1161] / [i915#262]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@prime_vgem@basic-gtt:
-    - fi-tgl-y:           [DMESG-WARN][10] ([i915#402]) -> [PASS][11] +2 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (45 -> 39)
-------------------------------
-
-  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9687 -> Patchwork_19517
-
-  CI-20190529: 20190529
-  CI_DRM_9687: 7b5229b02338bfb24c3db4e76abb328d1e9cf8f1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5974: a85398dcae50930c0e27548cf8c9575ad0bf69d1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19517: ea0ed47d998c3704ead35b0a755a640fe6ca4616 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ea0ed47d998c drm/i915/hdcp: mst streams type1 capability check
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/index.html
-
---===============8613685704335385189==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: mst streams type1 capability check</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86345/">https://patchwork.freedesktop.org/series/86345/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9687 -&gt; Patchwork_19517</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19517 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-gtt:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9687/fi-tgl-y/igt@prime_vgem@basic-gtt.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19517/fi-tgl-y/igt@prime_vgem@basic-gtt.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 39)</h2>
-<p>Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9687 -&gt; Patchwork_19517</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9687: 7b5229b02338bfb24c3db4e76abb328d1e9cf8f1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5974: a85398dcae50930c0e27548cf8c9575ad0bf69d1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19517: ea0ed47d998c3704ead35b0a755a640fe6ca4616 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>ea0ed47d998c drm/i915/hdcp: mst streams type1 capability check</p>
-
-</body>
-</html>
-
---===============8613685704335385189==--
-
---===============0635698684==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Lucas De Marchi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0635698684==--
