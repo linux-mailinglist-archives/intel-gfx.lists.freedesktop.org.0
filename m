@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F0DC30508D
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 05:14:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D4C8305091
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 05:15:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 586376E507;
-	Wed, 27 Jan 2021 04:14:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77DD16E509;
+	Wed, 27 Jan 2021 04:15:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 166696E507
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 04:14:39 +0000 (UTC)
-IronPort-SDR: BeOj/M9TguF5O7/F9xhdm5CCX4u6ijxEgb83iiILnOAaVjT0BzddU9dO+HUPgRGdGvS2XERDm3
- poTyx0GWLQVg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="198813695"
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="198813695"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B8686E509
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 04:15:28 +0000 (UTC)
+IronPort-SDR: c3939dVZ6HB1lzwKushHqGBwtUyi3NHacWxZkHrKO4r7cafkls5hvPyPLfsuKJom3y0jxrdjeL
+ m1r1GcoNiMYg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="198813745"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="198813745"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 20:14:38 -0800
-IronPort-SDR: HczOK5BjaonqnKym4jQNGttBJaZxwkdCHANHIv44gxx1Lc4ZO56EfUvphS4dmT7qBZDbfbkXC4
- Zck2Wu816sow==
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="429956777"
+ 26 Jan 2021 20:15:27 -0800
+IronPort-SDR: H6OIqAyONvN7FN9qymUmbHqs9bwmBXyzoq8Exg/fd3ihEpJUNO8HDTfb804uGJkNFeoKDCAwFa
+ ouZwvn2J301Q==
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="429956952"
 Received: from njcaminx-mobl.amr.corp.intel.com (HELO [10.251.9.202])
  ([10.251.9.202])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 20:14:38 -0800
+ 26 Jan 2021 20:15:26 -0800
 To: intel-gfx@lists.freedesktop.org
 References: <20210127041159.136409-1-aditya.swarup@intel.com>
- <20210127041159.136409-4-aditya.swarup@intel.com>
+ <20210127041159.136409-7-aditya.swarup@intel.com>
 From: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <b5c4326c-2e11-0688-1ab5-4542a1b39bba@intel.com>
-Date: Tue, 26 Jan 2021 20:14:38 -0800
+Message-ID: <67340c5a-273a-ecb3-0850-501c6f249be0@intel.com>
+Date: Tue, 26 Jan 2021 20:15:26 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210127041159.136409-4-aditya.swarup@intel.com>
+In-Reply-To: <20210127041159.136409-7-aditya.swarup@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915/adl_s: Add power wells
+Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915/adl_s: Load DMC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,24 +50,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 1/26/21 8:11 PM, Aditya Swarup wrote:
-> From: Lucas De Marchi <lucas.demarchi@intel.com>
+> From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 > 
-> TGL power wells can be re-used for ADL-S with the exception of the fake
-> power well for TC_COLD, just like DG-1.
+> Load DMC on ADL_S v2.01. This is the first offcial
+> release of DMC for ADL_S.
 > 
-> Bspec: 53597
-> 
+> Cc: Jani Nikula <jani.nikula@intel.com>
 > Cc: Imre Deak <imre.deak@intel.com>
 > Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 > Cc: Aditya Swarup <aditya.swarup@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 > Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
 
 Reviewed-by: Aditya Swarup <aditya.swarup@intel.com>
@@ -75,22 +76,37 @@ Reviewed-by: Aditya Swarup <aditya.swarup@intel.com>
 Aditya
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_csr.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 708f0b7e0990..cccfd45a67cf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -4689,7 +4689,7 @@ int intel_power_domains_init(struct drm_i915_private *dev_priv)
->  	 * The enabling order will be from lower to higher indexed wells,
->  	 * the disabling order is reversed.
+> diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
+> index 67dc64df78a5..db9f219c4b5a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_csr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_csr.c
+> @@ -40,6 +40,10 @@
+>  
+>  #define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
+>  
+> +#define ADLS_CSR_PATH			"i915/adls_dmc_ver2_01.bin"
+> +#define ADLS_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
+> +MODULE_FIRMWARE(ADLS_CSR_PATH);
+> +
+>  #define DG1_CSR_PATH			"i915/dg1_dmc_ver2_02.bin"
+>  #define DG1_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
+>  MODULE_FIRMWARE(DG1_CSR_PATH);
+> @@ -689,7 +693,11 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
 >  	 */
+>  	intel_csr_runtime_pm_get(dev_priv);
+>  
 > -	if (IS_DG1(dev_priv)) {
-> +	if (IS_ALDERLAKE_S(dev_priv) || IS_DG1(dev_priv)) {
->  		err = set_power_wells_mask(power_domains, tgl_power_wells,
->  					   BIT_ULL(TGL_DISP_PW_TC_COLD_OFF));
->  	} else if (IS_ROCKETLAKE(dev_priv)) {
+> +	if (IS_ALDERLAKE_S(dev_priv)) {
+> +		csr->fw_path = ADLS_CSR_PATH;
+> +		csr->required_version = ADLS_CSR_VERSION_REQUIRED;
+> +		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
+> +	} else if (IS_DG1(dev_priv)) {
+>  		csr->fw_path = DG1_CSR_PATH;
+>  		csr->required_version = DG1_CSR_VERSION_REQUIRED;
+>  		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
 > 
 
 _______________________________________________
