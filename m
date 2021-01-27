@@ -1,41 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EC1B305F8E
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 16:28:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9092305F90
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 16:28:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C2FD6E838;
-	Wed, 27 Jan 2021 15:28:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F0106E837;
+	Wed, 27 Jan 2021 15:28:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E014D6E838
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 15:28:04 +0000 (UTC)
-IronPort-SDR: 6AT3COEKQCW1eVzjJXbwzYQ6nHmuznc+KRg26HiOhlv09ghuHtVBLMTGlSLvPpoUB+wi57aUdQ
- 33FcpwzqS24g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="159256443"
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="159256443"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 07:28:04 -0800
-IronPort-SDR: 2WlcjOrJlILtA2f5S5aFu2BGfPlFiS0yPtrZjFKiRHAHiE2Cy7vQfT8iwLacv+9ow7j+5MAD2f
- 11bN8kQbU2sw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="362464935"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga008.fm.intel.com with ESMTP; 27 Jan 2021 07:28:03 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id D5EFB5C1FAA; Wed, 27 Jan 2021 17:28:02 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56F316E837
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 15:28:26 +0000 (UTC)
+IronPort-SDR: PWHsgsdwnzIIZCfA1FD9Mupe+wajhlChg/hdNzuGLegrmU8+XbXhxdE0whc7g38cJxGIg4semS
+ gZ76iGUT9jKw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="244161221"
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="244161221"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 07:28:25 -0800
+IronPort-SDR: rNmi8YDo7V7dfDB+BriA7FcL02aUp7ublphpHzR1UIwVfaCHgqoMfKHCJu5S3ztKJiPVYLiCbD
+ EJJP7n+EXbnw==
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="388359174"
+Received: from aohana-mobl1.ger.corp.intel.com (HELO [10.214.230.73])
+ ([10.214.230.73])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 07:28:23 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210127140435.25191-1-chris@chris-wilson.co.uk>
-References: <20210127140435.25191-1-chris@chris-wilson.co.uk>
-Date: Wed, 27 Jan 2021 17:28:02 +0200
-Message-ID: <87lfcev1q5.fsf@gaia.fi.intel.com>
+References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
+ <20210125140136.10494-21-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <3c007546-ac60-0c1f-3763-95d00be592c7@linux.intel.com>
+Date: Wed, 27 Jan 2021 15:28:20 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Drop active.lock around active
- request read inside execlists
+In-Reply-To: <20210125140136.10494-21-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 21/41] drm/i915: Wrap cmpxchg64 with
+ try_cmpxchg64() helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,49 +52,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
+Cc: thomas.hellstrom@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> As we find the active request for capturing upon a hang, we know that the
-> lists are stable as we are inside the execlists tasklet, the only path
-> that can modify those lists. As such, we do not need to disable irqs and
-> take the active lock for a simple read of the current request.
->
-> Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+On 25/01/2021 14:01, Chris Wilson wrote:
+> Wrap cmpxchg64 with a try_cmpxchg()-esque helper. Hiding the old-value
+> dance in the helper allows for cleaner code.
+> 
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
 > ---
->  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index b5f2459cac2c..e20ab2eab3a8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -2262,13 +2262,11 @@ static void execlists_capture(struct intel_engine_cs *engine)
->  	if (!cap)
->  		return;
->  
-> -	spin_lock_irq(&engine->active.lock);
->  	cap->rq = active_context(engine, active_ccid(engine));
->  	if (cap->rq) {
->  		cap->rq = active_request(cap->rq->context->timeline, cap->rq);
->  		cap->rq = i915_request_get_rcu(cap->rq);
->  	}
-> -	spin_unlock_irq(&engine->active.lock);
->  	if (!cap->rq)
->  		goto err_free;
->  
-> -- 
-> 2.20.1
+>   drivers/gpu/drm/i915/i915_utils.h | 32 +++++++++++++++++++++++++++++++
+>   1 file changed, 32 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+> index abd4dcd9f79c..95ead6bb1ba6 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
+> @@ -461,4 +461,36 @@ static inline bool timer_expired(const struct timer_list *t)
+>    */
+>   #define IS_ACTIVE(config) ((config) != 0)
+>   
+> +#ifndef try_cmpxchg64
+> +#if IS_ENABLED(CONFIG_64BIT)
+> +#define try_cmpxchg64(_ptr, _pold, _new) try_cmpxchg(_ptr, _pold, _new)
+> +#else
+> +#define try_cmpxchg64(_ptr, _pold, _new)				\
+> +({									\
+> +	__typeof__(_ptr) _old = (__typeof__(_ptr))(_pold);		\
+> +	__typeof__(*(_ptr)) __old = *_old;				\
+> +	__typeof__(*(_ptr)) __cur = cmpxchg64(_ptr, __old, _new);	\
+> +	bool success = __cur == __old;					\
+> +	if (unlikely(!success))						\
+> +		*_old = __cur;						\
+> +	likely(success);						\
+> +})
+> +#endif
+> +#endif
+> +
+> +#ifndef xchg64
+> +#if IS_ENABLED(CONFIG_64BIT)
+> +#define xchg64(_ptr, _new) xchg(_ptr, _new)
+> +#else
+> +#define xchg64(_ptr, _new)						\
+> +({									\
+> +	__typeof__(_ptr) __ptr = (_ptr);				\
+> +	__typeof__(*(_ptr)) __old = *__ptr;				\
+> +	while (!try_cmpxchg64(__ptr, &__old, (_new)))			\
+> +		;							\
+> +	__old;								\
+> +})
+> +#endif
+> +#endif
+> +
+>   #endif /* !__I915_UTILS_H */
+> 
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
