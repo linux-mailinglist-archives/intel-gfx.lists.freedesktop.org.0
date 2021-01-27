@@ -1,35 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 907AC305E63
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 15:35:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29708305E6C
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 15:35:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71DAA6E802;
-	Wed, 27 Jan 2021 14:35:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 865EC6E826;
+	Wed, 27 Jan 2021 14:35:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 694616E802
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 14:35:08 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23715318-1500050 for multiple; Wed, 27 Jan 2021 14:35:01 +0000
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 771E06E826
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 14:35:33 +0000 (UTC)
+IronPort-SDR: JDCJdMhwTm0rdAj7RQeAa9hQeeoMxt/HlE2hTZoaJYHEKF7OCYk8+CB11+kXe6Jze5V0rJptNQ
+ K99NB9xEdOrg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="179293145"
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="179293145"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 06:35:33 -0800
+IronPort-SDR: pjTspNCz+Ra7zrVrFJ7wlC75yoPzyu+hBvVBDgbq71zX9DqFggotQg5nh9ly0rUDLzNMtStm6H
+ 958KLk0DHqiw==
+X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="578161045"
+Received: from tdo2-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.72.224])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 06:35:31 -0800
+Date: Wed, 27 Jan 2021 06:35:27 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20210127143527.jxefl4ecocq5wg6x@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20210120151611.132591-1-jose.souza@intel.com>
+ <20210120183151.jpfuda4htxs5qkxq@ldmartin-desk1>
+ <5168c1572a7c106313f7c47194cae267835b32af.camel@intel.com>
+ <20210120185245.2eqa42nmbm6yzeki@ldmartin-desk1>
+ <cacd45fdcd81167d28a8367a014869cc5175fe0b.camel@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <41a8c76f-d3aa-539d-1742-faa32c05d397@linux.intel.com>
-References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
- <20210125140136.10494-19-chris@chris-wilson.co.uk>
- <41a8c76f-d3aa-539d-1742-faa32c05d397@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jan 2021 14:35:03 +0000
-Message-ID: <161175810370.2943.17339901262632285916@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 19/41] drm/i915/gt: Show scheduler queues
- when dumping state
+Content-Disposition: inline
+In-Reply-To: <cacd45fdcd81167d28a8367a014869cc5175fe0b.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Nuke not needed members of
+ dram_info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,81 +53,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-27 14:13:11)
-> 
-> On 25/01/2021 14:01, Chris Wilson wrote:
-> > Move the scheduler pretty printer from out of the execlists state to
-> > match its more common location.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 34 +++++++++++++----------
-> >   1 file changed, 19 insertions(+), 15 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > index cdd07aeada05..2f9a8960144b 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > @@ -1443,20 +1443,15 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
-> >   
-> >       if (intel_engine_in_guc_submission_mode(engine)) {
-> >               /* nothing to print yet */
-> > -     } else if (HAS_EXECLISTS(dev_priv)) {
-> > -             struct i915_request * const *port, *rq;
-> >               const u32 *hws =
-> >                       &engine->status_page.addr[I915_HWS_CSB_BUF0_INDEX];
-> >               const u8 num_entries = execlists->csb_size;
-> >               unsigned int idx;
-> >               u8 read, write;
-> >   
-> > -             drm_printf(m, "\tExeclist tasklet queued? %s (%s), preempt? %s, timeslice? %s\n",
-> > -                        yesno(test_bit(TASKLET_STATE_SCHED,
-> > -                                       &engine->active.tasklet.state)),
-> > -                        enableddisabled(!atomic_read(&engine->active.tasklet.count)),
-> > -                        repr_timer(&engine->execlists.preempt),
-> > -                        repr_timer(&engine->execlists.timer));
-> > +             drm_printf(m, "\tExeclists preempt? %s, timeslice? %s\n",
-> > +                        repr_timer(&execlists->preempt),
-> > +                        repr_timer(&execlists->timer));
-> >   
-> >               read = execlists->csb_head;
-> >               write = READ_ONCE(*execlists->csb_write);
-> > @@ -1477,6 +1472,22 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
-> >                       drm_printf(m, "\tExeclist CSB[%d]: 0x%08x, context: %d\n",
-> >                                  idx, hws[idx * 2], hws[idx * 2 + 1]);
-> >               }
-> > +     } else if (INTEL_GEN(dev_priv) > 6) {
-> > +             drm_printf(m, "\tPP_DIR_BASE: 0x%08x\n",
-> > +                        ENGINE_READ(engine, RING_PP_DIR_BASE));
-> > +             drm_printf(m, "\tPP_DIR_BASE_READ: 0x%08x\n",
-> > +                        ENGINE_READ(engine, RING_PP_DIR_BASE_READ));
-> > +             drm_printf(m, "\tPP_DIR_DCLV: 0x%08x\n",
-> > +                        ENGINE_READ(engine, RING_PP_DIR_DCLV));
-> > +     }
-> > +
-> > +     if (engine->active.tasklet.func) {
-> > +             struct i915_request * const *port, *rq;
-> > +
-> > +             drm_printf(m, "\tTasklet queued? %s (%s)\n",
-> > +                        yesno(test_bit(TASKLET_STATE_SCHED,
-> > +                                       &engine->active.tasklet.state)),
-> > +                        enableddisabled(!atomic_read(&engine->active.tasklet.count)));
-> 
-> Or have i915_sched_print_state() exported? Again it will depend on how 
-> clean split will be possible.
+On Wed, Jan 20, 2021 at 07:29:37PM +0000, Jose Souza wrote:
+>On Wed, 2021-01-20 at 10:52 -0800, Lucas De Marchi wrote:
+>> On Wed, Jan 20, 2021 at 10:42:46AM -0800, Jose Souza wrote:
+>> > On Wed, 2021-01-20 at 10:31 -0800, Lucas De Marchi wrote:
+>> > > On Wed, Jan 20, 2021 at 07:16:08AM -0800, Jose Souza wrote:
+>> > > > Valid, ranks and bandwidth_kbps are set into dram_info but are not
+>> > > > used anywhere else so nuking it.
+>> > > >
+>> > > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+>> > > > ---
+>> > > > drivers/gpu/drm/i915/i915_drv.c   |  4 +--
+>> > > > drivers/gpu/drm/i915/i915_drv.h   |  3 --
+>> > > > drivers/gpu/drm/i915/intel_dram.c | 47 +++++++--------------------=
+----
+>> > > > 3 files changed, 12 insertions(+), 42 deletions(-)
+>> > > >
+>> > > > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i91=
+5/i915_drv.c
+>> > > > index f5666b44ea9d..a1cc60de99f0 100644
+>> > > > --- a/drivers/gpu/drm/i915/i915_drv.c
+>> > > > +++ b/drivers/gpu/drm/i915/i915_drv.c
+>> > > > @@ -609,8 +609,8 @@ static int i915_driver_hw_probe(struct drm_i91=
+5_private *dev_priv)
+>> > > >
+>> > > > 	intel_opregion_setup(dev_priv);
+>> > > > 	/*
+>> > > > -	 * Fill the dram structure to get the system raw bandwidth and
+>> > > > -	 * dram info. This will be used for memory latency calculation.
+>> > > > +	 * Fill the dram structure to get the system dram info. This wil=
+l be
+>> > > > +	 * used for memory latency calculation.
+>> > > > 	 */
+>> > > > 	intel_dram_detect(dev_priv);
+>> > > >
+>> > > > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i91=
+5/i915_drv.h
+>> > > > index 8376cff5ba86..250e92910fa1 100644
+>> > > > --- a/drivers/gpu/drm/i915/i915_drv.h
+>> > > > +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> > > > @@ -1134,11 +1134,8 @@ struct drm_i915_private {
+>> > > > 	} wm;
+>> > > >
+>> > > > 	struct dram_info {
+>> > > > -		bool valid;
+>> > > > 		bool is_16gb_dimm;
+>> > > > 		u8 num_channels;
+>> > > > -		u8 ranks;
+>> > > > -		u32 bandwidth_kbps;
+>> > > > 		bool symmetric_memory;
+>> > > > 		enum intel_dram_type {
+>> > > > 			INTEL_DRAM_UNKNOWN,
+>> > > > diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i=
+915/intel_dram.c
+>> > > > index 4754296a250e..694fbd8c9cd4 100644
+>> > > > --- a/drivers/gpu/drm/i915/intel_dram.c
+>> > > > +++ b/drivers/gpu/drm/i915/intel_dram.c
+>> > > > @@ -201,17 +201,7 @@ skl_dram_get_channels_info(struct drm_i915_pr=
+ivate *i915)
+>> > > > 		return -EINVAL;
+>> > > > 	}
+>> > > >
+>> > > > -	/*
+>> > > > -	 * If any of the channel is single rank channel, worst case outp=
+ut
+>> > > > -	 * will be same as if single rank memory, so consider single rank
+>> > > > -	 * memory.
+>> > > > -	 */
+>> > > > -	if (ch0.ranks =3D=3D 1 || ch1.ranks =3D=3D 1)
+>> > > > -		dram_info->ranks =3D 1;
+>> > > > -	else
+>> > > > -		dram_info->ranks =3D max(ch0.ranks, ch1.ranks);
+>> > > > -
+>> > > > -	if (dram_info->ranks =3D=3D 0) {
+>> > > > +	if (ch0.ranks =3D=3D 0 && ch1.ranks =3D=3D 0) {
+>> > >
+>> > > previously if any of them were !=3D 0, we would not fall here.
+>> >
+>> > This is the same behavior.
+>>
+>> indeed, I misread the condition
+>>
+>> >
+>> > >
+>> > >
+>> > > > 		drm_info(&i915->drm, "couldn't get memory rank information\n");
+>> > > > 		return -EINVAL;
+>> > > > 	}
+>> > > > @@ -269,16 +259,12 @@ skl_get_dram_info(struct drm_i915_private *i=
+915)
+>> > > > 	mem_freq_khz =3D DIV_ROUND_UP((val & SKL_REQ_DATA_MASK) *
+>> > > > 				    SKL_MEMORY_FREQ_MULTIPLIER_HZ, 1000);
+>> > > >
+>> > > > -	dram_info->bandwidth_kbps =3D dram_info->num_channels *
+>> > > > -		mem_freq_khz * 8;
+>> > > > -
+>> > > > -	if (dram_info->bandwidth_kbps =3D=3D 0) {
+>> > > > +	if (dram_info->num_channels * mem_freq_khz =3D=3D 0) {
+>> > > > 		drm_info(&i915->drm,
+>> > > > 			 "Couldn't get system memory bandwidth\n");
+>> > > > 		return -EINVAL;
+>> > > > 	}
+>> > > >
+>> > > > -	dram_info->valid =3D true;
+>> > > > 	return 0;
+>> > > > }
+>> > > >
+>> > > > @@ -365,7 +351,7 @@ static int bxt_get_dram_info(struct drm_i915_p=
+rivate *i915)
+>> > > > 	struct dram_info *dram_info =3D &i915->dram_info;
+>> > > > 	u32 dram_channels;
+>> > > > 	u32 mem_freq_khz, val;
+>> > > > -	u8 num_active_channels;
+>> > > > +	u8 num_active_channels, valid_ranks =3D 0;
+>> > > > 	int i;
+>> > > >
+>> > > > 	val =3D intel_uncore_read(&i915->uncore, BXT_P_CR_MC_BIOS_REQ_0_0=
+_0);
+>> > > > @@ -375,10 +361,7 @@ static int bxt_get_dram_info(struct drm_i915_=
+private *i915)
+>> > > > 	dram_channels =3D val & BXT_DRAM_CHANNEL_ACTIVE_MASK;
+>> > > > 	num_active_channels =3D hweight32(dram_channels);
+>> > > >
+>> > > > -	/* Each active bit represents 4-byte channel */
+>> > > > -	dram_info->bandwidth_kbps =3D (mem_freq_khz * num_active_channel=
+s * 4);
+>> > > > -
+>> > > > -	if (dram_info->bandwidth_kbps =3D=3D 0) {
+>> > > > +	if (mem_freq_khz * num_active_channels =3D=3D 0) {
+>> > >
+>> > > maybe better to replace with a local var?
+>> > >
+>> > > 	bandwidth_kbps =3D mem_freq_khz * num_active_channels;
+>> > >
+>> > > and then check it where needed.
+>> >
+>> > The only place it is used is in this if to return -EINVAL, same for th=
+e SKL function.
+>> > The multiplication fits under the 80 col limit so don't see why add a =
+local var.
+>>
+>> ok... maybe `if (!mem_freq_khz || !num_active_channels)` then?
+>
+>That works too but I still prefer keep it as close as possible from the pr=
+evious check.
 
-Not quite, unfortunately this is not dumping generic state but the
-backend bookkeeping for execlists/ringscheduler. Common for that pair,
-not so common with the guc.
 
-I guess I oversold it.
--Chris
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+>
+>>
+>>
+>> LUcas De Marchi
+>>
+>> >
+>> > >
+>> > > Lucas De Marchi
+>> > >
+>> > > > 		drm_info(&i915->drm,
+>> > > > 			 "Couldn't get system memory bandwidth\n");
+>> > > > 		return -EINVAL;
+>> > > > @@ -410,27 +393,18 @@ static int bxt_get_dram_info(struct drm_i915=
+_private *i915)
+>> > > > 			    dimm.size, dimm.width, dimm.ranks,
+>> > > > 			    intel_dram_type_str(type));
+>> > > >
+>> > > > -		/*
+>> > > > -		 * If any of the channel is single rank channel,
+>> > > > -		 * worst case output will be same as if single rank
+>> > > > -		 * memory, so consider single rank memory.
+>> > > > -		 */
+>> > > > -		if (dram_info->ranks =3D=3D 0)
+>> > > > -			dram_info->ranks =3D dimm.ranks;
+>> > > > -		else if (dimm.ranks =3D=3D 1)
+>> > > > -			dram_info->ranks =3D 1;
+>> > > > +		if (valid_ranks =3D=3D 0)
+>> > > > +			valid_ranks =3D dimm.ranks;
+>> > > >
+>> > > > 		if (type !=3D INTEL_DRAM_UNKNOWN)
+>> > > > 			dram_info->type =3D type;
+>> > > > 	}
+>> > > >
+>> > > > -	if (dram_info->type =3D=3D INTEL_DRAM_UNKNOWN || dram_info->rank=
+s =3D=3D 0) {
+>> > > > +	if (dram_info->type =3D=3D INTEL_DRAM_UNKNOWN || valid_ranks =3D=
+=3D 0) {
+>> > > > 		drm_info(&i915->drm, "couldn't get memory information\n");
+>> > > > 		return -EINVAL;
+>> > > > 	}
+>> > > >
+>> > > > -	dram_info->valid =3D true;
+>> > > > -
+>> > > > 	return 0;
+>> > > > }
+>> > > >
+>> > > > @@ -456,11 +430,10 @@ void intel_dram_detect(struct drm_i915_priva=
+te *i915)
+>> > > > 	if (ret)
+>> > > > 		return;
+>> > > >
+>> > > > -	drm_dbg_kms(&i915->drm, "DRAM bandwidth: %u kBps, channels: %u\n=
+",
+>> > > > -		    dram_info->bandwidth_kbps, dram_info->num_channels);
+>> > > > +	drm_dbg_kms(&i915->drm, "DRAM channels: %u\n", dram_info->num_ch=
+annels);
+>> > > >
+>> > > > -	drm_dbg_kms(&i915->drm, "DRAM ranks: %u, 16Gb DIMMs: %s\n",
+>> > > > -		    dram_info->ranks, yesno(dram_info->is_16gb_dimm));
+>> > > > +	drm_dbg_kms(&i915->drm, "DRAM 16Gb DIMMs: %s\n",
+>> > > > +		    yesno(dram_info->is_16gb_dimm));
+>> > > > }
+>> > > >
+>> > > > static u32 gen9_edram_size_mb(struct drm_i915_private *i915, u32 c=
+ap)
+>> > > > --
+>> > > > 2.30.0
+>> > > >
+>> > > > _______________________________________________
+>> > > > Intel-gfx mailing list
+>> > > > Intel-gfx@lists.freedesktop.org
+>> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>> >
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
