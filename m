@@ -1,40 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 930F6305BF6
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 13:48:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E28B2305C18
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 13:53:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BA1C6E5C6;
-	Wed, 27 Jan 2021 12:48:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 327C26E7D1;
+	Wed, 27 Jan 2021 12:53:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B49426E5C6
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 12:48:23 +0000 (UTC)
-IronPort-SDR: DsjgoG605fBRAVyeQGJehnIvJxLXzpYR808zITqJ5RyZmcJ2Gfkfo0i97hPlpfdwDVlnhjcfEp
- hn38Oti5RrVQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="244138318"
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="244138318"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 04:48:23 -0800
-IronPort-SDR: 6pmeN+fmlo1CvJ82kBo7Te+mxRDWyzJM5LuzjRYLXzUKT7WGKizUqiDX6TZ34vh2JEGSqRzBqj
- m517ui2TgaxQ==
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="388293699"
-Received: from gladkina-mobl.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.19.195])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 04:48:22 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jan 2021 12:48:09 +0000
-Message-Id: <20210127124809.384080-8-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210127124809.384080-1-matthew.auld@intel.com>
-References: <20210127124809.384080-1-matthew.auld@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D16F6E7D1;
+ Wed, 27 Jan 2021 12:53:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23714177-1500050 for multiple; Wed, 27 Jan 2021 12:52:53 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 8/8] drm/i915: allocate cmd ring in lmem
+In-Reply-To: <20210127124135.11750-2-tzimmermann@suse.de>
+References: <20210127124135.11750-1-tzimmermann@suse.de>
+ <20210127124135.11750-2-tzimmermann@suse.de>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@linux.ie, daniel@ffwll.ch,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com
+Date: Wed, 27 Jan 2021 12:52:55 +0000
+Message-ID: <161175197533.2943.2162038120755672032@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH v5 1/5] drm/i915: Remove references to
+ struct drm_device.pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,33 +41,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTWljaGVsIFRoaWVycnkgPG1pY2hlbC50aGllcnJ5QGludGVsLmNvbT4KClByZWZlciBh
-bGxvY2F0aW5nIHRoZSBjbWQgcmluZyBmcm9tIExNRU0gb24gZGdmeC4KClNpZ25lZC1vZmYtYnk6
-IE1pY2hlbCBUaGllcnJ5IDxtaWNoZWwudGhpZXJyeUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6
-IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IENocmlz
-IFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L2ludGVsX3JpbmcuYyB8IDUgKysrLS0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlv
-bnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvaW50ZWxfcmluZy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmluZy5jCmlu
-ZGV4IDI5Yzg3YjNjMjNiYy4uYWVlMGE3N2M3N2UwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9ndC9pbnRlbF9yaW5nLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfcmluZy5jCkBAIC0zLDYgKzMsNyBAQAogICogQ29weXJpZ2h0IMKpIDIwMTkgSW50ZWwgQ29y
-cG9yYXRpb24KICAqLwogCisjaW5jbHVkZSAiZ2VtL2k5MTVfZ2VtX2xtZW0uaCIKICNpbmNsdWRl
-ICJnZW0vaTkxNV9nZW1fb2JqZWN0LmgiCiAKICNpbmNsdWRlICJpOTE1X2Rydi5oIgpAQCAtMTA4
-LDggKzEwOSw4IEBAIHN0YXRpYyBzdHJ1Y3QgaTkxNV92bWEgKmNyZWF0ZV9yaW5nX3ZtYShzdHJ1
-Y3QgaTkxNV9nZ3R0ICpnZ3R0LCBpbnQgc2l6ZSkKIAlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVj
-dCAqb2JqOwogCXN0cnVjdCBpOTE1X3ZtYSAqdm1hOwogCi0Jb2JqID0gRVJSX1BUUigtRU5PREVW
-KTsKLQlpZiAoaTkxNV9nZ3R0X2hhc19hcGVydHVyZShnZ3R0KSkKKwlvYmogPSBpOTE1X2dlbV9v
-YmplY3RfY3JlYXRlX2xtZW0oaTkxNSwgc2l6ZSwgSTkxNV9CT19BTExPQ19WT0xBVElMRSk7CisJ
-aWYgKElTX0VSUihvYmopICYmIGk5MTVfZ2d0dF9oYXNfYXBlcnR1cmUoZ2d0dCkpCiAJCW9iaiA9
-IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfc3RvbGVuKGk5MTUsIHNpemUpOwogCWlmIChJU19FUlIo
-b2JqKSkKIAkJb2JqID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9pbnRlcm5hbChpOTE1LCBzaXpl
-KTsKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+Quoting Thomas Zimmermann (2021-01-27 12:41:31)
+> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> index 0188f877cab2..2a07a008de2e 100644
+> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> @@ -146,7 +146,6 @@ struct drm_i915_private *mock_gem_device(void)
+>         }
+>  
+>         pci_set_drvdata(pdev, i915);
+> -       i915->drm.pdev = pdev;
+
+Strictly this removal is still too early. Though it's a mock device and
+we shouldn't be touching the pci_dev that often, semantically those
+accesses are not removed until later.
+
+>  
+>         dev_pm_domain_set(&pdev->dev, &pm_domain);
+>         pm_runtime_enable(&pdev->dev);
+> diff --git a/drivers/gpu/drm/i915/selftests/mock_gtt.c b/drivers/gpu/drm/i915/selftests/mock_gtt.c
+> index 7270fc8ca801..5c7ae40bba63 100644
+> --- a/drivers/gpu/drm/i915/selftests/mock_gtt.c
+> +++ b/drivers/gpu/drm/i915/selftests/mock_gtt.c
+> @@ -74,7 +74,7 @@ struct i915_ppgtt *mock_ppgtt(struct drm_i915_private *i915, const char *name)
+>         ppgtt->vm.i915 = i915;
+>         ppgtt->vm.total = round_down(U64_MAX, PAGE_SIZE);
+>         ppgtt->vm.file = ERR_PTR(-ENODEV);
+> -       ppgtt->vm.dma = &i915->drm.pdev->dev;
+> +       ppgtt->vm.dma = i915->drm.dev;
+
+We can remove this shorthand later.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
