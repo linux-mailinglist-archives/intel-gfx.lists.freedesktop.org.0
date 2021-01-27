@@ -2,42 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 359CD305E45
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 15:29:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 907AC305E63
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 15:35:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2006E323;
-	Wed, 27 Jan 2021 14:29:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71DAA6E802;
+	Wed, 27 Jan 2021 14:35:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8E6A6E323
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 14:29:35 +0000 (UTC)
-IronPort-SDR: RzLgmpCqf8kBNsqgYTXwbMCMqo2y56hSa37Qa3/QybM7+bEw9K++wDm1rNB7T0JadmPqGuHfUE
- 5n8ZN6NTwDqA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="176563473"
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="176563473"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 06:29:35 -0800
-IronPort-SDR: OfSF6PpYOLoq035yuBkJSeaFbyN2ObuJHEwpiG4zfLtZhT088jedLPZ3BuZsKKY9mqBKTs2nAS
- XB1MR2s9qmiw==
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="388326028"
-Received: from tdo2-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.212.72.224])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 06:29:32 -0800
-Date: Wed, 27 Jan 2021 06:29:29 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20210127142929.7uq5kewj5umvhfnu@ldmartin-desk1>
-X-Patchwork-Hint: comment
-References: <20201205010844.361880-1-aditya.swarup@intel.com>
- <20201205010844.361880-18-aditya.swarup@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 694616E802
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 14:35:08 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23715318-1500050 for multiple; Wed, 27 Jan 2021 14:35:01 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201205010844.361880-18-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 17/22] drm/i915/adl_s: MCHBAR memory info
- registers are moved
+In-Reply-To: <41a8c76f-d3aa-539d-1742-faa32c05d397@linux.intel.com>
+References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
+ <20210125140136.10494-19-chris@chris-wilson.co.uk>
+ <41a8c76f-d3aa-539d-1742-faa32c05d397@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Wed, 27 Jan 2021 14:35:03 +0000
+Message-ID: <161175810370.2943.17339901262632285916@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 19/41] drm/i915/gt: Show scheduler queues
+ when dumping state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,95 +42,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Cc: thomas.hellstrom@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 04, 2020 at 05:08:39PM -0800, Aditya Swarup wrote:
->From: Caz Yokoyama <caz.yokoyama@intel.com>
->
->The crwebview indicates on ADL-S that some of our MCHBAR
->registers have moved from their traditional 0x50XX offsets to
->new locations. The meaning and bit layout of the registers
->remain same.
->
->v2: Simplify logic to a single if else chain and fix indents.(Lucas)
->
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Jani Nikula <jani.nikula@intel.com>
->Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->Cc: Imre Deak <imre.deak@intel.com>
->Cc: Matt Roper <matthew.d.roper@intel.com>
->Signed-off-by: Caz Yokoyama <caz.yokoyama@intel.com>
->Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
->---
-> drivers/gpu/drm/i915/i915_reg.h   |  5 +++++
-> drivers/gpu/drm/i915/intel_dram.c | 23 +++++++++++++++++------
-> 2 files changed, 22 insertions(+), 6 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_r=
-eg.h
->index ce4ef7fa4000..55e186293fbb 100644
->--- a/drivers/gpu/drm/i915/i915_reg.h
->+++ b/drivers/gpu/drm/i915/i915_reg.h
->@@ -10865,6 +10865,8 @@ enum skl_power_gate {
-> #define  SKL_DRAM_DDR_TYPE_LPDDR3		(2 << 0)
-> #define  SKL_DRAM_DDR_TYPE_LPDDR4		(3 << 0)
->
->+#define ADLS_MAD_INTER_CHANNEL_0_0_0_MCHBAR _MMIO(MCHBAR_MIRROR_BASE_SNB =
-+ 0x6048)
->+
-> #define SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB=
- + 0x500C)
-> #define SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SNB=
- + 0x5010)
-> #define  SKL_DRAM_S_SHIFT			16
->@@ -10892,6 +10894,9 @@ enum skl_power_gate {
-> #define  CNL_DRAM_RANK_3			(0x2 << 9)
-> #define  CNL_DRAM_RANK_4			(0x3 << 9)
->
->+#define ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
-6054)
->+#define ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
-6058)
->+
-> /*
->  * Please see hsw_read_dcomp() and hsw_write_dcomp() before using this re=
-gister,
->  * since on HSW we can't write to it using intel_uncore_write.
->diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/inte=
-l_dram.c
->index 4754296a250e..fc9942139ccc 100644
->--- a/drivers/gpu/drm/i915/intel_dram.c
->+++ b/drivers/gpu/drm/i915/intel_dram.c
->@@ -181,17 +181,24 @@ skl_dram_get_channels_info(struct drm_i915_private *=
-i915)
-> {
-> 	struct dram_info *dram_info =3D &i915->dram_info;
-> 	struct dram_channel_info ch0 =3D {}, ch1 =3D {};
->+	i915_reg_t ch0_reg, ch1_reg;
-> 	u32 val;
-> 	int ret;
->
->-	val =3D intel_uncore_read(&i915->uncore,
->-				SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
->+	if (IS_ALDERLAKE_S(i915)) {
->+		ch0_reg =3D ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR;
->+		ch1_reg =3D ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR;
->+	} else {
->+		ch0_reg =3D ADLS_MAD_DIMM_CH0_0_0_0_MCHBAR;
->+		ch1_reg =3D ADLS_MAD_DIMM_CH1_0_0_0_MCHBAR;
+Quoting Tvrtko Ursulin (2021-01-27 14:13:11)
+> 
+> On 25/01/2021 14:01, Chris Wilson wrote:
+> > Move the scheduler pretty printer from out of the execlists state to
+> > match its more common location.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_engine_cs.c | 34 +++++++++++++----------
+> >   1 file changed, 19 insertions(+), 15 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > index cdd07aeada05..2f9a8960144b 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > @@ -1443,20 +1443,15 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+> >   
+> >       if (intel_engine_in_guc_submission_mode(engine)) {
+> >               /* nothing to print yet */
+> > -     } else if (HAS_EXECLISTS(dev_priv)) {
+> > -             struct i915_request * const *port, *rq;
+> >               const u32 *hws =
+> >                       &engine->status_page.addr[I915_HWS_CSB_BUF0_INDEX];
+> >               const u8 num_entries = execlists->csb_size;
+> >               unsigned int idx;
+> >               u8 read, write;
+> >   
+> > -             drm_printf(m, "\tExeclist tasklet queued? %s (%s), preempt? %s, timeslice? %s\n",
+> > -                        yesno(test_bit(TASKLET_STATE_SCHED,
+> > -                                       &engine->active.tasklet.state)),
+> > -                        enableddisabled(!atomic_read(&engine->active.tasklet.count)),
+> > -                        repr_timer(&engine->execlists.preempt),
+> > -                        repr_timer(&engine->execlists.timer));
+> > +             drm_printf(m, "\tExeclists preempt? %s, timeslice? %s\n",
+> > +                        repr_timer(&execlists->preempt),
+> > +                        repr_timer(&execlists->timer));
+> >   
+> >               read = execlists->csb_head;
+> >               write = READ_ONCE(*execlists->csb_write);
+> > @@ -1477,6 +1472,22 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+> >                       drm_printf(m, "\tExeclist CSB[%d]: 0x%08x, context: %d\n",
+> >                                  idx, hws[idx * 2], hws[idx * 2 + 1]);
+> >               }
+> > +     } else if (INTEL_GEN(dev_priv) > 6) {
+> > +             drm_printf(m, "\tPP_DIR_BASE: 0x%08x\n",
+> > +                        ENGINE_READ(engine, RING_PP_DIR_BASE));
+> > +             drm_printf(m, "\tPP_DIR_BASE_READ: 0x%08x\n",
+> > +                        ENGINE_READ(engine, RING_PP_DIR_BASE_READ));
+> > +             drm_printf(m, "\tPP_DIR_DCLV: 0x%08x\n",
+> > +                        ENGINE_READ(engine, RING_PP_DIR_DCLV));
+> > +     }
+> > +
+> > +     if (engine->active.tasklet.func) {
+> > +             struct i915_request * const *port, *rq;
+> > +
+> > +             drm_printf(m, "\tTasklet queued? %s (%s)\n",
+> > +                        yesno(test_bit(TASKLET_STATE_SCHED,
+> > +                                       &engine->active.tasklet.state)),
+> > +                        enableddisabled(!atomic_read(&engine->active.tasklet.count)));
+> 
+> Or have i915_sched_print_state() exported? Again it will depend on how 
+> clean split will be possible.
 
-this is not right and breaks all the other platforms.
+Not quite, unfortunately this is not dumping generic state but the
+backend bookkeeping for execlists/ringscheduler. Common for that pair,
+not so common with the guc.
 
-Also this patch conflicts with
-https://patchwork.freedesktop.org/series/86092/
-and general direction that we should get these values from pcode rather
-than keep changing the offset we use to avoid MCHBAR.
-
-Lucas De Marchi
+I guess I oversold it.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
