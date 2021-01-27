@@ -1,43 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 444BA304D59
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 00:33:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25FA7304D64
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 01:10:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F3886E455;
-	Tue, 26 Jan 2021 23:33:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 412916E454;
+	Wed, 27 Jan 2021 00:10:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C24A6E455
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 Jan 2021 23:33:22 +0000 (UTC)
-IronPort-SDR: 4fVYpNHPNBc+LkAcHgeGxXo6MY1XDYUfqZZUjSSR2Vae2cdIW+tgmDNdEb+JwWST76kxpMajiT
- 5DAIDIJb+dRA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="167659509"
-X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="167659509"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 15:33:21 -0800
-IronPort-SDR: XHEU0+27ZVw2ZkaJo2Bb3G8tMZdzmAtc4kfBkd9V7sJnMyQFEcOvLQvKGxt2o/SGAtsftPrfsx
- QddzX7QzP4Bg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,377,1602572400"; d="scan'208";a="410328047"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 26 Jan 2021 15:33:19 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 27 Jan 2021 01:33:18 +0200
-Date: Wed, 27 Jan 2021 01:33:18 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <YBCmvqDno7sJm7dU@intel.com>
-References: <20210126185224.32340-1-manasi.d.navare@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 101BB895C1;
+ Wed, 27 Jan 2021 00:10:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 09004AA916;
+ Wed, 27 Jan 2021 00:10:39 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210126185224.32340-1-manasi.d.navare@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/vrr: Skip the VRR HW state
- readout on DSI transcoder
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 27 Jan 2021 00:10:39 -0000
+Message-ID: <161170623900.11911.639696889691351570@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210126232138.30167-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210126232138.30167-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Teach_the_i915=5Fdependency_to_use_a_double-lock?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,57 +38,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============0179664689=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 26, 2021 at 10:52:24AM -0800, Manasi Navare wrote:
-> DSI transcoder does not support VRR and hence skip the HW state
-> readout if its a DSI transcoder.
-> =
+--===============0179664689==
+Content-Type: multipart/alternative;
+ boundary="===============2315808308029634855=="
 
-> Fixes: c7f0f4372b30 ("drm/i915/display: Add HW state readout for VRR")
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+--===============2315808308029634855==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> =
+Series: drm/i915: Teach the i915_dependency to use a double-lock
+URL   : https://patchwork.freedesktop.org/series/86317/
+State : success
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 65240fa074cc..aea8c5b3a7fd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8978,7 +8978,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *=
-crtc,
->  		intel_get_transcoder_timings(crtc, pipe_config);
->  	}
->  =
+== Summary ==
 
-> -	if (HAS_VRR(dev_priv))
-> +	if (HAS_VRR(dev_priv) && !transcoder_is_dsi(pipe_config->cpu_transcoder=
-))
->  		intel_vrr_get_config(crtc, pipe_config);
->  =
+CI Bug Log - changes from CI_DRM_9685 -> Patchwork_19510
+====================================================
 
->  	intel_get_pipe_src_size(crtc, pipe_config);
-> -- =
+Summary
+-------
 
-> 2.19.1
+  **SUCCESS**
 
--- =
+  No regressions found.
 
-Ville Syrj=E4l=E4
-Intel
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19510 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-gfx0:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][2] -> [INCOMPLETE][3] ([i915#2940])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9685/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9685/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][6] ([i915#1436])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-bsw-nick/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +2 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9685/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-n3050:       [DMESG-FAIL][9] -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9685/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Missing    (4): fi-jsl-1 fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9685 -> Patchwork_19510
+
+  CI-20190529: 20190529
+  CI_DRM_9685: e183766462e67962d64faca5108dc6b55f6bc88b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5973: 7ae3d0d68e6bf4c5e404c87b570773d1b3173d47 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19510: 26d12ec829139128002f00b30f564adcf709c9ed @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+26d12ec82913 drm/i915: Teach the i915_dependency to use a double-lock
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/index.html
+
+--===============2315808308029634855==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Teach the i915_dependency to use a double-lock</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86317/">https://patchwork.freedesktop.org/series/86317/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9685 -&gt; Patchwork_19510</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19510 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9685/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_two_bos:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9685/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9685/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9685/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19510/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Missing    (4): fi-jsl-1 fi-ilk-m540 fi-bsw-cyan fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9685 -&gt; Patchwork_19510</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9685: e183766462e67962d64faca5108dc6b55f6bc88b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5973: 7ae3d0d68e6bf4c5e404c87b570773d1b3173d47 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19510: 26d12ec829139128002f00b30f564adcf709c9ed @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>26d12ec82913 drm/i915: Teach the i915_dependency to use a double-lock</p>
+
+</body>
+</html>
+
+--===============2315808308029634855==--
+
+--===============0179664689==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0179664689==--
