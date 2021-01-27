@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF3530537C
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 07:51:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A2430537D
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 07:51:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C6A66E580;
-	Wed, 27 Jan 2021 06:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35AD96E581;
+	Wed, 27 Jan 2021 06:51:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AD0D6E57E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84D4B6E581
  for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 06:50:59 +0000 (UTC)
-IronPort-SDR: BsgFF1b2f/3ZEIQoL60tUiivYGOUTLYk9NEIdIHDFPq7gBfpjy+nszk4AHGONZwUDmguSMqpF3
- 1YiDXhDnFbEg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="241555746"
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="241555746"
+IronPort-SDR: AMo/JR0sqXN30HLjyxILtwUCjVhR8ux0423JiSQLNXMj/qBYjYacSmaS5rg7NozbGCaORVZFiP
+ OGitXgLOMM5g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="241555749"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="241555749"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 22:50:58 -0800
-IronPort-SDR: 6ExH7GIMoSvPJmKohT1JYb1Lg+NdV2l0jW/cTMltwpDK4+MSBAJzHkDwADiHcK4HhqgAgqav2q
- wURqVip3648w==
+ 26 Jan 2021 22:50:59 -0800
+IronPort-SDR: C1lKsIyeadcEhjJ0MwNZqvnWI1oQVNRMnrLnJfS40OBJ0Tv807iqy3NpUY/CEr3kGR8WxpvqYx
+ 0s4vW2/1XrxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="573175108"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="573175112"
 Received: from jhli-desk1.jf.intel.com ([10.54.74.156])
- by orsmga005.jf.intel.com with ESMTP; 26 Jan 2021 22:50:58 -0800
+ by orsmga005.jf.intel.com with ESMTP; 26 Jan 2021 22:50:59 -0800
 From: Juston Li <juston.li@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 22:50:33 -0800
-Message-Id: <20210127065034.2501119-3-juston.li@intel.com>
+Date: Tue, 26 Jan 2021 22:50:34 -0800
+Message-Id: <20210127065034.2501119-4-juston.li@intel.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210127065034.2501119-1-juston.li@intel.com>
 References: <20210127065034.2501119-1-juston.li@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 3/4] drm/i915/hdcp: read RxInfo once when
- reading Send_Pairing_Info
+Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915/hdcp: disable the QSES check
+ for HDCP2.2 over MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,117 +53,75 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Previously when reading Send_Pairing_Info, RxInfo by itself was read
-once to retrieve the DEVICE_COUNT and then a second time when reading
-the RepeaterAuth_Send_ReceiverID_List which contains RxInfo.
+Like the patch to disable QSES for HDCP 1.4 over MST
+https://patchwork.freedesktop.org/patch/415297/ the HDCP2.2 spec
+doesn't require QSES as well and we've seen QSES not supported on a
+couple HDCP2.2 docks so far (Dell WD19 and Lenovo LDC-G2)
 
-On a couple HDCP 2.2 docks, this second read attempt on RxInfo fails
-due to no Ack response. This behavior doesn't seem to be defined but
-regardless we can fix it by reading RxInfo once and storing it before
-reading the rest of RepeaterAuth_Send_ReceiverID_List once we know the
-size.
-
-Modify get_receiver_id_list_size() to read and store RxInfo in the
-message buffer and also parse DEVICE_COUNT so we know the size of
-RepeaterAuth_Send_ReceiverID_List.
-
-Afterwards, retrieve the rest of the message at the offset for
-seq_num_V.
-
-Changes in v2:
-- remove unnecessary moving of drm_i915_private from patch 1
+Remove it for now until we get a better idea of how widely supported
+QSES is and how to support it optionally.
 
 Signed-off-by: Juston Li <juston.li@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 29 ++++++++++----------
- include/drm/drm_dp_helper.h                  |  2 +-
- 2 files changed, 16 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 31 +-------------------
+ 1 file changed, 1 insertion(+), 30 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index d1397af97f69..cd183944bc5a 100644
+index cd183944bc5a..5e9d0d8f7f84 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -475,11 +475,10 @@ int intel_dp_hdcp2_write_msg(struct intel_digital_port *dig_port,
+@@ -699,30 +699,6 @@ intel_dp_mst_hdcp_stream_encryption(struct intel_connector *connector,
+ 	return 0;
  }
  
- static
--ssize_t get_receiver_id_list_size(struct intel_digital_port *dig_port)
-+ssize_t get_receiver_id_list_rx_info(struct intel_digital_port *dig_port, u32 *dev_cnt, u8 *byte)
- {
--	u8 rx_info[HDCP_2_2_RXINFO_LEN];
--	u32 dev_cnt;
- 	ssize_t ret;
-+	u8 *rx_info = byte;
- 
- 	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
- 			       DP_HDCP_2_2_REG_RXINFO_OFFSET,
-@@ -487,15 +486,11 @@ ssize_t get_receiver_id_list_size(struct intel_digital_port *dig_port)
- 	if (ret != HDCP_2_2_RXINFO_LEN)
- 		return ret >= 0 ? -EIO : ret;
- 
--	dev_cnt = (HDCP_2_2_DEV_COUNT_HI(rx_info[0]) << 4 |
-+	*dev_cnt = (HDCP_2_2_DEV_COUNT_HI(rx_info[0]) << 4 |
- 		   HDCP_2_2_DEV_COUNT_LO(rx_info[1]));
- 
--	if (dev_cnt > HDCP_2_2_MAX_DEVICE_COUNT)
--		dev_cnt = HDCP_2_2_MAX_DEVICE_COUNT;
+-static bool intel_dp_mst_get_qses_status(struct intel_digital_port *dig_port,
+-					 struct intel_connector *connector)
+-{
+-	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+-	struct drm_dp_query_stream_enc_status_ack_reply reply;
+-	struct intel_dp *intel_dp = &dig_port->dp;
+-	int ret;
 -
--	ret = sizeof(struct hdcp2_rep_send_receiverid_list) -
--		HDCP_2_2_RECEIVER_IDS_MAX_LEN +
--		(dev_cnt * HDCP_2_2_RECEIVER_ID_LEN);
-+	if (*dev_cnt > HDCP_2_2_MAX_DEVICE_COUNT)
-+		*dev_cnt = HDCP_2_2_MAX_DEVICE_COUNT;
- 
- 	return ret;
+-	ret = drm_dp_send_query_stream_enc_status(&intel_dp->mst_mgr,
+-						  connector->port, &reply);
+-	if (ret) {
+-		drm_dbg_kms(&i915->drm,
+-			    "[%s:%d] failed QSES ret=%d\n",
+-			    connector->base.name, connector->base.base.id, ret);
+-		return false;
+-	}
+-
+-	drm_dbg_kms(&i915->drm, "[%s:%d] QSES stream auth: %d stream enc: %d\n",
+-		    connector->base.name, connector->base.base.id,
+-		    reply.auth_completed, reply.encryption_enabled);
+-
+-	return reply.auth_completed && reply.encryption_enabled;
+-}
+-
+ static int
+ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
+ 				     bool enable)
+@@ -758,11 +734,6 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
+ 	return 0;
  }
-@@ -511,6 +506,7 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
- 	u8 *byte = buf;
- 	ssize_t ret, bytes_to_recv, len;
- 	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
-+	u32 dev_cnt;
  
- 	hdcp2_msg_data = get_hdcp2_dp_msg_data(msg_id);
- 	if (!hdcp2_msg_data)
-@@ -523,17 +519,22 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
- 
- 	hdcp->cp_irq_count_cached = atomic_read(&hdcp->cp_irq_count);
- 
-+	/* DP adaptation msgs has no msg_id */
-+	byte++;
-+
- 	if (msg_id == HDCP_2_2_REP_SEND_RECVID_LIST) {
--		ret = get_receiver_id_list_size(dig_port);
-+		ret = get_receiver_id_list_rx_info(dig_port, &dev_cnt, byte);
- 		if (ret < 0)
+-/*
+- * DP v2.0 I.3.3 ignore the stream signature L' in QSES reply msg reply.
+- * I.3.5 MST source device may use a QSES msg to query downstream status
+- * for a particular stream.
+- */
+ static
+ int intel_dp_mst_hdcp2_check_link(struct intel_digital_port *dig_port,
+ 				  struct intel_connector *connector)
+@@ -782,7 +753,7 @@ int intel_dp_mst_hdcp2_check_link(struct intel_digital_port *dig_port,
  			return ret;
- 
--		size = ret;
-+		byte += ret;
-+		size = sizeof(struct hdcp2_rep_send_receiverid_list) -
-+		HDCP_2_2_RXINFO_LEN - HDCP_2_2_RECEIVER_IDS_MAX_LEN +
-+		(dev_cnt * HDCP_2_2_RECEIVER_ID_LEN);
  	}
--	bytes_to_recv = size - 1;
  
- 	/* DP adaptation msgs has no msg_id */
--	byte++;
-+	bytes_to_recv = size - 1;
+-	return intel_dp_mst_get_qses_status(dig_port, connector) ? 0 : -EINVAL;
++	return 0;
+ }
  
- 	while (bytes_to_recv) {
- 		len = bytes_to_recv > DP_AUX_MAX_PAYLOAD_BYTES ?
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index edffd1dcca3e..3b42392394ba 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -1388,7 +1388,7 @@ enum drm_dp_phy {
- #define DP_HDCP_2_2_LC_INIT_OFFSET		DP_HDCP_2_2_REG_RN_OFFSET
- #define DP_HDCP_2_2_LC_SEND_LPRIME_OFFSET	DP_HDCP_2_2_REG_LPRIME_OFFSET
- #define DP_HDCP_2_2_SKE_SEND_EKS_OFFSET		DP_HDCP_2_2_REG_EDKEY_KS_OFFSET
--#define DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET	DP_HDCP_2_2_REG_RXINFO_OFFSET
-+#define DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET	DP_HDCP_2_2_REG_SEQ_NUM_V_OFFSET
- #define DP_HDCP_2_2_REP_SEND_ACK_OFFSET		DP_HDCP_2_2_REG_V_OFFSET
- #define DP_HDCP_2_2_REP_STREAM_MANAGE_OFFSET	DP_HDCP_2_2_REG_SEQ_NUM_M_OFFSET
- #define DP_HDCP_2_2_REP_STREAM_READY_OFFSET	DP_HDCP_2_2_REG_MPRIME_OFFSET
+ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
 -- 
 2.29.2
 
