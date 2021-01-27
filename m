@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D9193051E5
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 06:22:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC94930521C
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 06:28:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9379A89B55;
-	Wed, 27 Jan 2021 05:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1AEE6E52D;
+	Wed, 27 Jan 2021 05:28:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C73FB89B55
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 05:22:09 +0000 (UTC)
-IronPort-SDR: xDuiUdN76bjk1POxh6kp24BvrNLfp2qhaItOXY/v8p5ViDji2Ig8qfOLLQVigpT0ekz9/CuC57
- +m8NSJM2C2rg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="241547775"
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="241547775"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 21:22:09 -0800
-IronPort-SDR: S2F6bBC0HXnKnYIAMKee/8oIITSeajV4JDACnWlzRAG7UNZIVeQsKVIYrXtybFN81aSAy8C0Wf
- Y/tAuK8Gq2EQ==
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="393961101"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A39F6E52D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 05:27:59 +0000 (UTC)
+IronPort-SDR: VtmtTbk1zVM5NCJC3YG5+JSstEoTm0oXYYonjyIynm3TP0Ft1Z9A7ZAnM/rA0N8UuT8SuIjEHt
+ rA07FAHt9PaA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="167115961"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="167115961"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 21:27:58 -0800
+IronPort-SDR: /kmSw0E2AfRJHBPZsAGEhBkd+YjIklAUo+cnh5u8iV9JGyQpX+b1IXSvAgqKQbqJ5TQ7Oh/IOg
+ r8J/SkdgVeVQ==
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="429971569"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 21:22:08 -0800
-Date: Tue, 26 Jan 2021 21:22:07 -0800
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 21:27:58 -0800
+Date: Tue, 26 Jan 2021 21:27:56 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20210127052207.GL787460@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20210127052756.GM787460@mdroper-desk1.amr.corp.intel.com>
 References: <20210127041159.136409-1-aditya.swarup@intel.com>
- <20210127041159.136409-9-aditya.swarup@intel.com>
+ <20210127041159.136409-10-aditya.swarup@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210127041159.136409-9-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 8/9] drm/i915/adl_s: Add display WAs for
+In-Reply-To: <20210127041159.136409-10-aditya.swarup@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915/adl_s: Add GT and CTX WAs for
  ADL-S
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,11 +56,17 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 26, 2021 at 08:11:58PM -0800, Aditya Swarup wrote:
-> - Extend permanent driver WA Wa_1409767108, Wa_14010685332
->   and Wa_14011294188 to adl-s.
-> - Extend permanent driver WA Wa_1606054188 to adl-s.
-> - Add Wa_14011765242 for adl-s A0 stepping.
+On Tue, Jan 26, 2021 at 08:11:59PM -0800, Aditya Swarup wrote:
+> - Extend Wa_1606931601 and Wa_1409804808 to ADL-S.
+> - Extend Wa_14010919138 and Wa_14010229206 to ADL-S (Madhumitha)
+> - Extend Wa_22010271021 to ADLS (cyokoyam)
+> =
+
+> v2:
+> - Extend Wa_1409804808 and remove unnecessary branching/redundant
+>   adls workaround placeholder functions.
+> - Split WAs properly based on previous platforms and applicable ADLS
+>   WA.
 > =
 
 > Cc: Jani Nikula <jani.nikula@intel.com>
@@ -68,91 +74,118 @@ On Tue, Jan 26, 2021 at 08:11:58PM -0800, Aditya Swarup wrote:
 > Cc: Imre Deak <imre.deak@intel.com>
 > Cc: Matt Roper <matthew.d.roper@intel.com>
 > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Madhumitha Tolakanahalli Pradeep <madhumitha.tolakanahalli=
+.pradeep@intel.com>
 > Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+
+Matches the current WA database.
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 7 ++++---
->  drivers/gpu/drm/i915/display/intel_sprite.c        | 4 ++--
->  drivers/gpu/drm/i915/intel_device_info.c           | 6 +++++-
->  3 files changed, 11 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 34 +++++++++++++--------
+>  1 file changed, 21 insertions(+), 13 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index cccfd45a67cf..e17b1ca356c3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -5339,9 +5339,10 @@ static void tgl_bw_buddy_init(struct drm_i915_priv=
-ate *dev_priv)
->  	unsigned long abox_mask =3D INTEL_INFO(dev_priv)->abox_mask;
->  	int config, i;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
+m/i915/gt/intel_workarounds.c
+> index 71d1c19c868b..3b4a7da60f0b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -729,7 +729,8 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *en=
+gine,
 >  =
 
-> -	if (IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
-> +	if (IS_ALDERLAKE_S(dev_priv) ||
-> +	    IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
->  	    IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B0))
-> -		/* Wa_1409767108:tgl,dg1 */
-> +		/* Wa_1409767108:tgl,dg1,adl-s */
->  		table =3D wa_1409767108_buddy_page_masks;
->  	else
->  		table =3D tgl_buddy_page_masks;
-> @@ -5379,7 +5380,7 @@ static void icl_display_core_init(struct drm_i915_p=
-rivate *dev_priv,
->  =
-
->  	gen9_set_dc_state(dev_priv, DC_STATE_DISABLE);
->  =
-
-> -	/* Wa_14011294188:ehl,jsl,tgl,rkl */
-> +	/* Wa_14011294188:ehl,jsl,tgl,rkl,adl-s */
->  	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_JSP &&
->  	    INTEL_PCH_TYPE(dev_priv) < PCH_DG1)
->  		intel_de_rmw(dev_priv, SOUTH_DSPCLK_GATE_D, 0,
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
-m/i915/display/intel_sprite.c
-> index 68cea5ca251c..a7077babd31c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -2418,8 +2418,8 @@ static int skl_plane_check_fb(const struct intel_cr=
-tc_state *crtc_state,
->  		return -EINVAL;
+>  	if (IS_DG1(i915))
+>  		dg1_ctx_workarounds_init(engine, wal);
+> -	else if (IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915))
+> +	else if (IS_ALDERLAKE_S(i915) || IS_ROCKETLAKE(i915) ||
+> +		 IS_TIGERLAKE(i915))
+>  		tgl_ctx_workarounds_init(engine, wal);
+>  	else if (IS_GEN(i915, 12))
+>  		gen12_ctx_workarounds_init(engine, wal);
+> @@ -1639,45 +1640,45 @@ rcs_engine_wa_init(struct intel_engine_cs *engine=
+, struct i915_wa_list *wal)
+>  			    GEN7_DISABLE_SAMPLER_PREFETCH);
 >  	}
 >  =
 
-> -	/* Wa_1606054188:tgl */
-> -	if (IS_TIGERLAKE(dev_priv) &&
-> +	/* Wa_1606054188:tgl,adl-s */
-> +	if ((IS_ALDERLAKE_S(dev_priv) || IS_TIGERLAKE(dev_priv)) &&
->  	    plane_state->ckey.flags & I915_SET_COLORKEY_SOURCE &&
->  	    intel_format_is_p01x(fb->format->format)) {
->  		drm_dbg_kms(&dev_priv->drm,
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
-915/intel_device_info.c
-> index 85d6883745d8..92ad3e7d1f6f 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -250,7 +250,11 @@ void intel_device_info_runtime_init(struct drm_i915_=
-private *dev_priv)
->  	struct intel_runtime_info *runtime =3D RUNTIME_INFO(dev_priv);
->  	enum pipe pipe;
+> -	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+> -		/* Wa_1606931601:tgl,rkl,dg1 */
+> +	if (IS_ALDERLAKE_S(i915) || IS_DG1(i915) ||
+> +	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+> +		/* Wa_1606931601:tgl,rkl,dg1,adl-s */
+>  		wa_masked_en(wal, GEN7_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ);
 >  =
 
-> -	if (INTEL_GEN(dev_priv) >=3D 10) {
-> +	/* Wa_14011765242: adl-s A0 */
-> +	if (IS_ADLS_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0))
+>  		/*
+>  		 * Wa_1407928979:tgl A*
+>  		 * Wa_18011464164:tgl[B0+],dg1[B0+]
+>  		 * Wa_22010931296:tgl[B0+],dg1[B0+]
+> -		 * Wa_14010919138:rkl, dg1
+> +		 * Wa_14010919138:rkl,dg1,adl-s
+>  		 */
+>  		wa_write_or(wal, GEN7_FF_THREAD_MODE,
+>  			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
+>  =
 
-I think this workaround is also needed on A1 stepping now and should
-only be removed on A2.
+>  		/*
+>  		 * Wa_1606700617:tgl,dg1
+> -		 * Wa_22010271021:tgl,rkl,dg1
+> +		 * Wa_22010271021:tgl,rkl,dg1, adl-s
+>  		 */
+>  		wa_masked_en(wal,
+>  			     GEN9_CS_DEBUG_MODE1,
+>  			     FF_DOP_CLOCK_GATE_DISABLE);
+> -
+> -		/* Wa_1406941453:tgl,rkl,dg1 */
+> -		wa_masked_en(wal,
+> -			     GEN10_SAMPLER_MODE,
+> -			     ENABLE_SMALLPL);
+>  	}
+>  =
 
+> -	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
+> +	if (IS_ALDERLAKE_S(i915) || IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_=
+A0) ||
+>  	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+> -		/* Wa_1409804808:tgl,rkl,dg1[a0] */
+> +		/* Wa_1409804808:tgl,rkl,dg1[a0],adl-s */
+>  		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
+>  			     GEN12_PUSH_CONST_DEREF_HOLD_DIS);
+>  =
 
-Matt
+>  		/*
+>  		 * Wa_1409085225:tgl
+> -		 * Wa_14010229206:tgl,rkl,dg1[a0]
+> +		 * Wa_14010229206:tgl,rkl,dg1[a0],adl-s
+>  		 */
+>  		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+> +	}
+> +
+>  =
 
-> +		for_each_pipe(dev_priv, pipe)
-> +			runtime->num_scalers[pipe] =3D 0;
-> +	else if (INTEL_GEN(dev_priv) >=3D 10) {
->  		for_each_pipe(dev_priv, pipe)
->  			runtime->num_scalers[pipe] =3D 2;
->  	} else if (IS_GEN(dev_priv, 9)) {
+> +	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
+> +	    IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+>  		/*
+>  		 * Wa_1607030317:tgl
+>  		 * Wa_1607186500:tgl
+> @@ -1694,6 +1695,13 @@ rcs_engine_wa_init(struct intel_engine_cs *engine,=
+ struct i915_wa_list *wal)
+>  			     GEN8_RC_SEMA_IDLE_MSG_DISABLE);
+>  	}
+>  =
+
+> +	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) || IS_TIGERLAKE(i915)) {
+> +		/* Wa_1406941453:tgl,rkl,dg1 */
+> +		wa_masked_en(wal,
+> +			     GEN10_SAMPLER_MODE,
+> +			     ENABLE_SMALLPL);
+> +	}
+> +
+>  	if (IS_GEN(i915, 11)) {
+>  		/* This is not an Wa. Enable for better image quality */
+>  		wa_masked_en(wal,
 > -- =
 
 > 2.27.0
