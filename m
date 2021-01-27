@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3386630614C
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 17:53:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDBBF306187
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 18:05:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DCA26E85D;
-	Wed, 27 Jan 2021 16:53:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 498D56E86C;
+	Wed, 27 Jan 2021 17:05:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F20216E85A
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 16:52:59 +0000 (UTC)
-IronPort-SDR: qQskJlvqDpUV4v56Hfm2Aj0zmcRvjFw2Kpo9viZn8pau6uQxyhneqy8RIDpuRLLqiLziceV1/b
- DU9MMPQDFwnA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="180176964"
-X-IronPort-AV: E=Sophos;i="5.79,380,1602572400"; d="scan'208";a="180176964"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 08:52:59 -0800
-IronPort-SDR: sLG4S7M1OTsIq3u4s6GnTb3Ven6+pfbNnCNMSnIUNyrSQ07qILtStko2+QqThBumKl+mxcdRdO
- 1yoJ3pVY0ezQ==
-X-IronPort-AV: E=Sophos;i="5.79,380,1602572400"; d="scan'208";a="578211842"
-Received: from reynol4x-mobl.amr.corp.intel.com (HELO josouza-mobl2.intel.com)
- ([10.255.78.69])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 08:52:58 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Jan 2021 08:54:02 -0800
-Message-Id: <20210127165402.117829-4-jose.souza@intel.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210127165402.117829-1-jose.souza@intel.com>
-References: <20210127165402.117829-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0196D6E866;
+ Wed, 27 Jan 2021 17:05:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F0006A00CC;
+ Wed, 27 Jan 2021 17:05:49 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915: Rename is_16gb_dimm to
- wm_lv_0_adjust_needed
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juston Li" <juston.li@intel.com>
+Date: Wed, 27 Jan 2021 17:05:49 -0000
+Message-ID: <161176714995.11913.4397186177419418151@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210127065034.2501119-1-juston.li@intel.com>
+In-Reply-To: <20210127065034.2501119-1-juston.li@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/4=5D_drm/i915/hdcp=3A_Disable_the_Q?=
+ =?utf-8?q?SES_check_for_HDCP_1=2E4_over_MST?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,69 +39,223 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1234514531=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXMgaXQgbm93IGl0IGlzIGFsd2F5cyByZXF1aXJlZCBmb3IgR0VOMTIrIHRoZSBpc18xNmdiX2Rp
-bW0gbmFtZQpkbyBub3QgbWFrZSBzZW5zZSBmb3IgR0VOMTIrLgoKdjI6Ci0gVXBkYXRlZCBjb21t
-ZW50IG9uIHRvcCBvZiAiZHJhbV9pbmZvLT53bV9sdl8wX2FkanVzdF9uZWVkZWQgPQohSVNfR0VO
-OV9MUChpOTE1KTsiCgpSZXZpZXdlZC1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNo
-aUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uu
-c291emFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICB8
-ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcmFtLmMgfCAxNSArKysrKysrLS0t
-LS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgICB8ICAyICstCiAzIGZpbGVz
-IGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfZHJ2LmgKaW5kZXggODAyMjdkNDdiNWNiLi5mNjg0MTQ3MjkwY2IgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9kcnYuaApAQCAtMTEyOCw3ICsxMTI4LDcgQEAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-ewogCX0gd207CiAKIAlzdHJ1Y3QgZHJhbV9pbmZvIHsKLQkJYm9vbCBpc18xNmdiX2RpbW07CisJ
-CWJvb2wgd21fbHZfMF9hZGp1c3RfbmVlZGVkOwogCQl1OCBudW1fY2hhbm5lbHM7CiAJCWJvb2wg
-c3ltbWV0cmljX21lbW9yeTsKIAkJZW51bSBpbnRlbF9kcmFtX3R5cGUgewpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHJhbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfZHJhbS5jCmluZGV4IDZjZTU2ZWVkYWYxMi4uNmExM2NmMzlkYTk5IDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcmFtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaW50ZWxfZHJhbS5jCkBAIC0yMDcsNyArMjA3LDcgQEAgc2tsX2RyYW1fZ2V0X2NoYW5u
-ZWxzX2luZm8oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCiAJCXJldHVybiAtRUlOVkFM
-OwogCX0KIAotCWRyYW1faW5mby0+aXNfMTZnYl9kaW1tID0gY2gwLmlzXzE2Z2JfZGltbSB8fCBj
-aDEuaXNfMTZnYl9kaW1tOworCWRyYW1faW5mby0+d21fbHZfMF9hZGp1c3RfbmVlZGVkID0gY2gw
-LmlzXzE2Z2JfZGltbSB8fCBjaDEuaXNfMTZnYl9kaW1tOwogCiAJZHJhbV9pbmZvLT5zeW1tZXRy
-aWNfbWVtb3J5ID0gaW50ZWxfaXNfZHJhbV9zeW1tZXRyaWMoJmNoMCwgJmNoMSk7CiAKQEAgLTQ3
-OSw3ICs0NzksNyBAQCBzdGF0aWMgaW50IGdlbjExX2dldF9kcmFtX2luZm8oc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUgKmk5MTUpCiBzdGF0aWMgaW50IGdlbjEyX2dldF9kcmFtX2luZm8oc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCiB7CiAJLyogQWx3YXlzIG5lZWRlZCBmb3IgR0VOMTIr
-ICovCi0JaTkxNS0+ZHJhbV9pbmZvLmlzXzE2Z2JfZGltbSA9IHRydWU7CisJaTkxNS0+ZHJhbV9p
-bmZvLndtX2x2XzBfYWRqdXN0X25lZWRlZCA9IHRydWU7CiAKIAlyZXR1cm4gaWNsX3Bjb2RlX3Jl
-YWRfbWVtX2dsb2JhbF9pbmZvKGk5MTUpOwogfQpAQCAtNDkwLDExICs0OTAsMTAgQEAgaW50IGlu
-dGVsX2RyYW1fZGV0ZWN0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQogCWludCByZXQ7
-CiAKIAkvKgotCSAqIEFzc3VtZSAxNkdiIERJTU1zIGFyZSBwcmVzZW50IHVudGlsIHByb3ZlbiBv
-dGhlcndpc2UuCi0JICogVGhpcyBpcyBvbmx5IHVzZWQgZm9yIHRoZSBsZXZlbCAwIHdhdGVybWFy
-ayBsYXRlbmN5Ci0JICogdy9hIHdoaWNoIGRvZXMgbm90IGFwcGx5IHRvIGJ4dC9nbGsuCisJICog
-QXNzdW1lIGxldmVsIDAgd2F0ZXJtYXJrIGxhdGVuY3kgYWRqdXN0bWVudCBpcyBuZWVkZWQgdW50
-aWwgcHJvdmVuCisJICogb3RoZXJ3aXNlLCB0aGlzIHcvYSBpcyBub3QgbmVlZGVkIGJ5IGJ4dC9n
-bGsuCiAJICovCi0JZHJhbV9pbmZvLT5pc18xNmdiX2RpbW0gPSAhSVNfR0VOOV9MUChpOTE1KTsK
-KwlkcmFtX2luZm8tPndtX2x2XzBfYWRqdXN0X25lZWRlZCA9ICFJU19HRU45X0xQKGk5MTUpOwog
-CiAJaWYgKElOVEVMX0dFTihpOTE1KSA8IDkgfHwgIUhBU19ESVNQTEFZKGk5MTUpKQogCQlyZXR1
-cm4gMDsKQEAgLTUxNSw4ICs1MTQsOCBAQCBpbnQgaW50ZWxfZHJhbV9kZXRlY3Qoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmk5MTUpCiAKIAlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiRFJBTSBj
-aGFubmVsczogJXVcbiIsIGRyYW1faW5mby0+bnVtX2NoYW5uZWxzKTsKIAotCWRybV9kYmdfa21z
-KCZpOTE1LT5kcm0sICJEUkFNIDE2R2IgRElNTXM6ICVzXG4iLAotCQkgICAgeWVzbm8oZHJhbV9p
-bmZvLT5pc18xNmdiX2RpbW0pKTsKKwlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiV2F0ZXJtYXJr
-IGxldmVsIDAgYWRqdXN0bWVudCBuZWVkZWQ6ICVzXG4iLAorCQkgICAgeWVzbm8oZHJhbV9pbmZv
-LT53bV9sdl8wX2FkanVzdF9uZWVkZWQpKTsKIAogCXJldHVybiAwOwogfQpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX3BtLmMKaW5kZXggNmU5Njc4YmQwNTk3Li5jNThlNTA3NzU5MGQgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfcG0uYwpAQCAtMjkzMCw3ICsyOTMwLDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfcmVhZF93
-bV9sYXRlbmN5KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAkJICogYW55IHVu
-ZGVycnVuLiBJZiBub3QgYWJsZSB0byBnZXQgRGltbSBpbmZvIGFzc3VtZSAxNkdCIGRpbW0KIAkJ
-ICogdG8gYXZvaWQgYW55IHVuZGVycnVuLgogCQkgKi8KLQkJaWYgKGRldl9wcml2LT5kcmFtX2lu
-Zm8uaXNfMTZnYl9kaW1tKQorCQlpZiAoZGV2X3ByaXYtPmRyYW1faW5mby53bV9sdl8wX2FkanVz
-dF9uZWVkZWQpCiAJCQl3bVswXSArPSAxOwogCiAJfSBlbHNlIGlmIChJU19IQVNXRUxMKGRldl9w
-cml2KSB8fCBJU19CUk9BRFdFTEwoZGV2X3ByaXYpKSB7Ci0tIAoyLjMwLjAKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
-c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+--===============1234514531==
+Content-Type: multipart/alternative;
+ boundary="===============3464132945372178295=="
+
+--===============3464132945372178295==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [v2,1/4] drm/i915/hdcp: Disable the QSES check for HDCP 1.4 over MST
+URL   : https://patchwork.freedesktop.org/series/86325/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9686 -> Patchwork_19513
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_19513 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_19513, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19513:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-bxt-dsi/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/fi-bxt-dsi/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19513 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  * igt@runner@aborted:
+    - fi-bxt-dsi:         NOTRUN -> [FAIL][5] ([i915#2426])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/fi-bxt-dsi/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_create@basic:
+    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-tgl-y/igt@gem_exec_create@basic.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/fi-tgl-y/igt@gem_exec_create@basic.html
+
+  
+  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-2 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9686 -> Patchwork_19513
+
+  CI-20190529: 20190529
+  CI_DRM_9686: 8de0436dc0e777bbd5490d56134a838da4c19121 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5973: 7ae3d0d68e6bf4c5e404c87b570773d1b3173d47 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19513: cf90167ec8d878cf7739b728e49fd65c5203ac32 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+cf90167ec8d8 drm/i915/hdcp: disable the QSES check for HDCP2.2 over MST
+0f5367aacba6 drm/i915/hdcp: read RxInfo once when reading Send_Pairing_Info
+c03a6673e642 drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()
+69e116124dea drm/i915/hdcp: Disable the QSES check for HDCP 1.4 over MST
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/index.html
+
+--===============3464132945372178295==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/4] drm/i915/hdcp: Disable the QSES check for HDCP 1.4 over MST</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86325/">https://patchwork.freedesktop.org/series/86325/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9686 -&gt; Patchwork_19513</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_19513 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_19513, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19513:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-bxt-dsi/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/fi-bxt-dsi/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19513 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_exec_create@basic:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9686/fi-tgl-y/igt@gem_exec_create@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19513/fi-tgl-y/igt@gem_exec_create@basic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 39)</h2>
+<p>Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan bat-jsl-2 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9686 -&gt; Patchwork_19513</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9686: 8de0436dc0e777bbd5490d56134a838da4c19121 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5973: 7ae3d0d68e6bf4c5e404c87b570773d1b3173d47 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19513: cf90167ec8d878cf7739b728e49fd65c5203ac32 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>cf90167ec8d8 drm/i915/hdcp: disable the QSES check for HDCP2.2 over MST<br />
+0f5367aacba6 drm/i915/hdcp: read RxInfo once when reading Send_Pairing_Info<br />
+c03a6673e642 drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()<br />
+69e116124dea drm/i915/hdcp: Disable the QSES check for HDCP 1.4 over MST</p>
+
+</body>
+</html>
+
+--===============3464132945372178295==--
+
+--===============1234514531==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1234514531==--
