@@ -2,39 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C82CB305086
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 05:12:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F0DC30508D
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 05:14:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1276C6E506;
-	Wed, 27 Jan 2021 04:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 586376E507;
+	Wed, 27 Jan 2021 04:14:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2585F6E4F9
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 04:12:34 +0000 (UTC)
-IronPort-SDR: t/j7Cd+q5kvuAfyszpKIy0duorvE7hPjEeBm/KcPWzXPx6oWkH1GhO1p9pRRn4QN3exXzczfOs
- u6BCL9pEWlug==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="167110826"
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="167110826"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 20:12:33 -0800
-IronPort-SDR: OkTELtasEN0m1MqH65yTqzWvfCOiZ/T+q8cGb/f13jSr8IbLdBsd7Z4a3/SmyJxIQT/7MMVAaY
- tC8Pu/tELnuQ==
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="473006411"
-Received: from njcaminx-mobl.amr.corp.intel.com (HELO
- aswarup-mobl.amr.corp.intel.com) ([10.251.9.202])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 20:12:33 -0800
-From: Aditya Swarup <aditya.swarup@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 166696E507
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 04:14:39 +0000 (UTC)
+IronPort-SDR: BeOj/M9TguF5O7/F9xhdm5CCX4u6ijxEgb83iiILnOAaVjT0BzddU9dO+HUPgRGdGvS2XERDm3
+ poTyx0GWLQVg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="198813695"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="198813695"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 20:14:38 -0800
+IronPort-SDR: HczOK5BjaonqnKym4jQNGttBJaZxwkdCHANHIv44gxx1Lc4ZO56EfUvphS4dmT7qBZDbfbkXC4
+ Zck2Wu816sow==
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="429956777"
+Received: from njcaminx-mobl.amr.corp.intel.com (HELO [10.251.9.202])
+ ([10.251.9.202])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 20:14:38 -0800
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 Jan 2021 20:11:59 -0800
-Message-Id: <20210127041159.136409-10-aditya.swarup@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210127041159.136409-1-aditya.swarup@intel.com>
 References: <20210127041159.136409-1-aditya.swarup@intel.com>
+ <20210127041159.136409-4-aditya.swarup@intel.com>
+From: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <b5c4326c-2e11-0688-1ab5-4542a1b39bba@intel.com>
+Date: Tue, 26 Jan 2021 20:14:38 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 9/9] drm/i915/adl_s: Add GT and CTX WAs for ADL-S
+In-Reply-To: <20210127041159.136409-4-aditya.swarup@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915/adl_s: Add power wells
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,78 +50,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-LSBFeHRlbmQgV2FfMTYwNjkzMTYwMSBhbmQgV2FfMTQwOTgwNDgwOCB0byBBREwtUy4KLSBFeHRl
-bmQgV2FfMTQwMTA5MTkxMzggYW5kIFdhXzE0MDEwMjI5MjA2IHRvIEFETC1TIChNYWRodW1pdGhh
-KQotIEV4dGVuZCBXYV8yMjAxMDI3MTAyMSB0byBBRExTIChjeW9rb3lhbSkKCnYyOgotIEV4dGVu
-ZCBXYV8xNDA5ODA0ODA4IGFuZCByZW1vdmUgdW5uZWNlc3NhcnkgYnJhbmNoaW5nL3JlZHVuZGFu
-dAogIGFkbHMgd29ya2Fyb3VuZCBwbGFjZWhvbGRlciBmdW5jdGlvbnMuCi0gU3BsaXQgV0FzIHBy
-b3Blcmx5IGJhc2VkIG9uIHByZXZpb3VzIHBsYXRmb3JtcyBhbmQgYXBwbGljYWJsZSBBRExTCiAg
-V0EuCgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KQ2M6IFZpbGxlIFN5
-cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBJbXJlIERlYWsgPGlt
-cmUuZGVha0BpbnRlbC5jb20+CkNjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwu
-Y29tPgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+ClNpZ25l
-ZC1vZmYtYnk6IE1hZGh1bWl0aGEgVG9sYWthbmFoYWxsaSBQcmFkZWVwIDxtYWRodW1pdGhhLnRv
-bGFrYW5haGFsbGkucHJhZGVlcEBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEFkaXR5YSBTd2Fy
-dXAgPGFkaXR5YS5zd2FydXBAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX3dvcmthcm91bmRzLmMgfCAzNCArKysrKysrKysrKysrLS0tLS0tLS0KIDEgZmlsZSBj
-aGFuZ2VkLCAyMSBpbnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwppbmRleCA3MWQxYzE5Yzg2OGIuLjNiNGE3
-ZGE2MGYwYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fy
-b3VuZHMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5j
-CkBAIC03MjksNyArNzI5LDggQEAgX19pbnRlbF9lbmdpbmVfaW5pdF9jdHhfd2Eoc3RydWN0IGlu
-dGVsX2VuZ2luZV9jcyAqZW5naW5lLAogCiAJaWYgKElTX0RHMShpOTE1KSkKIAkJZGcxX2N0eF93
-b3JrYXJvdW5kc19pbml0KGVuZ2luZSwgd2FsKTsKLQllbHNlIGlmIChJU19ST0NLRVRMQUtFKGk5
-MTUpIHx8IElTX1RJR0VSTEFLRShpOTE1KSkKKwllbHNlIGlmIChJU19BTERFUkxBS0VfUyhpOTE1
-KSB8fCBJU19ST0NLRVRMQUtFKGk5MTUpIHx8CisJCSBJU19USUdFUkxBS0UoaTkxNSkpCiAJCXRn
-bF9jdHhfd29ya2Fyb3VuZHNfaW5pdChlbmdpbmUsIHdhbCk7CiAJZWxzZSBpZiAoSVNfR0VOKGk5
-MTUsIDEyKSkKIAkJZ2VuMTJfY3R4X3dvcmthcm91bmRzX2luaXQoZW5naW5lLCB3YWwpOwpAQCAt
-MTYzOSw0NSArMTY0MCw0NSBAQCByY3NfZW5naW5lX3dhX2luaXQoc3RydWN0IGludGVsX2VuZ2lu
-ZV9jcyAqZW5naW5lLCBzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWwpCiAJCQkgICAgR0VON19ESVNB
-QkxFX1NBTVBMRVJfUFJFRkVUQ0gpOwogCX0KIAotCWlmIChJU19ERzEoaTkxNSkgfHwgSVNfUk9D
-S0VUTEFLRShpOTE1KSB8fCBJU19USUdFUkxBS0UoaTkxNSkpIHsKLQkJLyogV2FfMTYwNjkzMTYw
-MTp0Z2wscmtsLGRnMSAqLworCWlmIChJU19BTERFUkxBS0VfUyhpOTE1KSB8fCBJU19ERzEoaTkx
-NSkgfHwKKwkgICAgSVNfUk9DS0VUTEFLRShpOTE1KSB8fCBJU19USUdFUkxBS0UoaTkxNSkpIHsK
-KwkJLyogV2FfMTYwNjkzMTYwMTp0Z2wscmtsLGRnMSxhZGwtcyAqLwogCQl3YV9tYXNrZWRfZW4o
-d2FsLCBHRU43X1JPV19DSElDS0VOMiwgR0VOMTJfRElTQUJMRV9FQVJMWV9SRUFEKTsKIAogCQkv
-KgogCQkgKiBXYV8xNDA3OTI4OTc5OnRnbCBBKgogCQkgKiBXYV8xODAxMTQ2NDE2NDp0Z2xbQjAr
-XSxkZzFbQjArXQogCQkgKiBXYV8yMjAxMDkzMTI5Njp0Z2xbQjArXSxkZzFbQjArXQotCQkgKiBX
-YV8xNDAxMDkxOTEzODpya2wsIGRnMQorCQkgKiBXYV8xNDAxMDkxOTEzODpya2wsZGcxLGFkbC1z
-CiAJCSAqLwogCQl3YV93cml0ZV9vcih3YWwsIEdFTjdfRkZfVEhSRUFEX01PREUsCiAJCQkgICAg
-R0VOMTJfRkZfVEVTU0VMQVRJT05fRE9QX0dBVEVfRElTQUJMRSk7CiAKIAkJLyoKIAkJICogV2Ff
-MTYwNjcwMDYxNzp0Z2wsZGcxCi0JCSAqIFdhXzIyMDEwMjcxMDIxOnRnbCxya2wsZGcxCisJCSAq
-IFdhXzIyMDEwMjcxMDIxOnRnbCxya2wsZGcxLCBhZGwtcwogCQkgKi8KIAkJd2FfbWFza2VkX2Vu
-KHdhbCwKIAkJCSAgICAgR0VOOV9DU19ERUJVR19NT0RFMSwKIAkJCSAgICAgRkZfRE9QX0NMT0NL
-X0dBVEVfRElTQUJMRSk7Ci0KLQkJLyogV2FfMTQwNjk0MTQ1Mzp0Z2wscmtsLGRnMSAqLwotCQl3
-YV9tYXNrZWRfZW4od2FsLAotCQkJICAgICBHRU4xMF9TQU1QTEVSX01PREUsCi0JCQkgICAgIEVO
-QUJMRV9TTUFMTFBMKTsKIAl9CiAKLQlpZiAoSVNfREcxX1JFVklEKGk5MTUsIERHMV9SRVZJRF9B
-MCwgREcxX1JFVklEX0EwKSB8fAorCWlmIChJU19BTERFUkxBS0VfUyhpOTE1KSB8fCBJU19ERzFf
-UkVWSUQoaTkxNSwgREcxX1JFVklEX0EwLCBERzFfUkVWSURfQTApIHx8CiAJICAgIElTX1JPQ0tF
-VExBS0UoaTkxNSkgfHwgSVNfVElHRVJMQUtFKGk5MTUpKSB7Ci0JCS8qIFdhXzE0MDk4MDQ4MDg6
-dGdsLHJrbCxkZzFbYTBdICovCisJCS8qIFdhXzE0MDk4MDQ4MDg6dGdsLHJrbCxkZzFbYTBdLGFk
-bC1zICovCiAJCXdhX21hc2tlZF9lbih3YWwsIEdFTjdfUk9XX0NISUNLRU4yLAogCQkJICAgICBH
-RU4xMl9QVVNIX0NPTlNUX0RFUkVGX0hPTERfRElTKTsKIAogCQkvKgogCQkgKiBXYV8xNDA5MDg1
-MjI1OnRnbAotCQkgKiBXYV8xNDAxMDIyOTIwNjp0Z2wscmtsLGRnMVthMF0KKwkJICogV2FfMTQw
-MTAyMjkyMDY6dGdsLHJrbCxkZzFbYTBdLGFkbC1zCiAJCSAqLwogCQl3YV9tYXNrZWRfZW4od2Fs
-LCBHRU45X1JPV19DSElDS0VONCwgR0VOMTJfRElTQUJMRV9URExfUFVTSCk7CisJfQorCiAKKwlp
-ZiAoSVNfREcxX1JFVklEKGk5MTUsIERHMV9SRVZJRF9BMCwgREcxX1JFVklEX0EwKSB8fAorCSAg
-ICBJU19ST0NLRVRMQUtFKGk5MTUpIHx8IElTX1RJR0VSTEFLRShpOTE1KSkgewogCQkvKgogCQkg
-KiBXYV8xNjA3MDMwMzE3OnRnbAogCQkgKiBXYV8xNjA3MTg2NTAwOnRnbApAQCAtMTY5NCw2ICsx
-Njk1LDEzIEBAIHJjc19lbmdpbmVfd2FfaW5pdChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdp
-bmUsIHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCkKIAkJCSAgICAgR0VOOF9SQ19TRU1BX0lETEVf
-TVNHX0RJU0FCTEUpOwogCX0KIAorCWlmIChJU19ERzEoaTkxNSkgfHwgSVNfUk9DS0VUTEFLRShp
-OTE1KSB8fCBJU19USUdFUkxBS0UoaTkxNSkpIHsKKwkJLyogV2FfMTQwNjk0MTQ1Mzp0Z2wscmts
-LGRnMSAqLworCQl3YV9tYXNrZWRfZW4od2FsLAorCQkJICAgICBHRU4xMF9TQU1QTEVSX01PREUs
-CisJCQkgICAgIEVOQUJMRV9TTUFMTFBMKTsKKwl9CisKIAlpZiAoSVNfR0VOKGk5MTUsIDExKSkg
-ewogCQkvKiBUaGlzIGlzIG5vdCBhbiBXYS4gRW5hYmxlIGZvciBiZXR0ZXIgaW1hZ2UgcXVhbGl0
-eSAqLwogCQl3YV9tYXNrZWRfZW4od2FsLAotLSAKMi4yNy4wCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On 1/26/21 8:11 PM, Aditya Swarup wrote:
+> From: Lucas De Marchi <lucas.demarchi@intel.com>
+> 
+> TGL power wells can be re-used for ADL-S with the exception of the fake
+> power well for TC_COLD, just like DG-1.
+> 
+> Bspec: 53597
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Aditya Swarup <aditya.swarup@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+
+Reviewed-by: Aditya Swarup <aditya.swarup@intel.com>
+
+Aditya
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 708f0b7e0990..cccfd45a67cf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -4689,7 +4689,7 @@ int intel_power_domains_init(struct drm_i915_private *dev_priv)
+>  	 * The enabling order will be from lower to higher indexed wells,
+>  	 * the disabling order is reversed.
+>  	 */
+> -	if (IS_DG1(dev_priv)) {
+> +	if (IS_ALDERLAKE_S(dev_priv) || IS_DG1(dev_priv)) {
+>  		err = set_power_wells_mask(power_domains, tgl_power_wells,
+>  					   BIT_ULL(TGL_DISP_PW_TC_COLD_OFF));
+>  	} else if (IS_ROCKETLAKE(dev_priv)) {
+> 
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
