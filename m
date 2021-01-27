@@ -1,41 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9BB5305222
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 06:32:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D81A30537A
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 07:51:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FF6A6E52F;
-	Wed, 27 Jan 2021 05:32:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1D5E6E578;
+	Wed, 27 Jan 2021 06:50:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EDA56E52F
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 05:32:44 +0000 (UTC)
-IronPort-SDR: FVijrGQ2yzJawqm0KYgdFV3OKp5sOmXMG6eCcidyRNr1b6+Cc5ogx6WiyNmaRLXg+pnf5YS7bA
- ZrWcWhU6xgDA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="180164611"
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="180164611"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 21:32:44 -0800
-IronPort-SDR: ThJZSKafXMwnHpUlE8FSGD7taZLpNXfvfsYyOuTj5CP5uliIBfjRGkvE9XlzjelIWSjxpLYf+G
- jFvg8ZrsnvoQ==
-X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="369361314"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2021 21:32:43 -0800
-Date: Tue, 26 Jan 2021 21:32:42 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20210127053242.GN787460@mdroper-desk1.amr.corp.intel.com>
-References: <20210127041159.136409-1-aditya.swarup@intel.com>
- <20210127041159.136409-4-aditya.swarup@intel.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42D946E578
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 06:50:57 +0000 (UTC)
+IronPort-SDR: GQyEc+3PTLdd/xnDou/K5na26KGQhhpSHSLXgmBlo+CqdgklNZ7Bkr6KsSokvjaRT73StZmuJt
+ AynBuKH67XBA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="241555730"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="241555730"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2021 22:50:56 -0800
+IronPort-SDR: IHIfejJTaiICoFR5CA9psfkeXeyeQNHXpw5I8A8aaQrGvWyi4B1xTPUV/nWqP4UmkKgEmfnnTW
+ k++YfBBiXSvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="573175074"
+Received: from jhli-desk1.jf.intel.com ([10.54.74.156])
+ by orsmga005.jf.intel.com with ESMTP; 26 Jan 2021 22:50:55 -0800
+From: Juston Li <juston.li@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 26 Jan 2021 22:50:31 -0800
+Message-Id: <20210127065034.2501119-1-juston.li@intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210127041159.136409-4-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/9] drm/i915/adl_s: Add power wells
+Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915/hdcp: Disable the QSES check
+ for HDCP 1.4 over MST
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,58 +45,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, seanpaul@chromium.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 26, 2021 at 08:11:53PM -0800, Aditya Swarup wrote:
-> From: Lucas De Marchi <lucas.demarchi@intel.com>
-> 
-> TGL power wells can be re-used for ADL-S with the exception of the fake
-> power well for TC_COLD, just like DG-1.
-> 
-> Bspec: 53597
+From: Sean Paul <seanpaul@chromium.org>
 
-I think the bspec reference should actually be page 49231.  But aside
-from that,
+The HDCP 1.4 spec does not require the QUERY_STREAM_ENCRYPTION_STATUS
+check, it was always a nice-to-have. After deploying this across various
+devices, we've determined that some MST bridge chips do not properly
+support this call for HDCP 1.4 (namely Synaptics and Realtek).
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+I had considered creating a quirk for this, but I think it's more
+prudent to just disable the check entirely since I don't have an idea
+how widespread support is.
 
-> 
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Aditya Swarup <aditya.swarup@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 708f0b7e0990..cccfd45a67cf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -4689,7 +4689,7 @@ int intel_power_domains_init(struct drm_i915_private *dev_priv)
->  	 * The enabling order will be from lower to higher indexed wells,
->  	 * the disabling order is reversed.
->  	 */
-> -	if (IS_DG1(dev_priv)) {
-> +	if (IS_ALDERLAKE_S(dev_priv) || IS_DG1(dev_priv)) {
->  		err = set_power_wells_mask(power_domains, tgl_power_wells,
->  					   BIT_ULL(TGL_DISP_PW_TC_COLD_OFF));
->  	} else if (IS_ROCKETLAKE(dev_priv)) {
-> -- 
-> 2.27.0
-> 
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
+Link: https://patchwork.freedesktop.org/patch/msgid/20210106223909.34476-1-sean@poorly.run #v1
 
+Changes in v2:
+-Rebased on -tip
+---
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index f372e25edab4..4dba5bb15af5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -722,16 +722,6 @@ static bool intel_dp_mst_get_qses_status(struct intel_digital_port *dig_port,
+ 	return reply.auth_completed && reply.encryption_enabled;
+ }
+ 
+-static
+-bool intel_dp_mst_hdcp_check_link(struct intel_digital_port *dig_port,
+-				  struct intel_connector *connector)
+-{
+-	if (!intel_dp_hdcp_check_link(dig_port, connector))
+-		return false;
+-
+-	return intel_dp_mst_get_qses_status(dig_port, connector);
+-}
+-
+ static int
+ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
+ 				     bool enable)
+@@ -805,7 +795,7 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
+ 	.read_v_prime_part = intel_dp_hdcp_read_v_prime_part,
+ 	.toggle_signalling = intel_dp_hdcp_toggle_signalling,
+ 	.stream_encryption = intel_dp_mst_hdcp_stream_encryption,
+-	.check_link = intel_dp_mst_hdcp_check_link,
++	.check_link = intel_dp_hdcp_check_link,
+ 	.hdcp_capable = intel_dp_hdcp_capable,
+ 	.write_2_2_msg = intel_dp_hdcp2_write_msg,
+ 	.read_2_2_msg = intel_dp_hdcp2_read_msg,
 -- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+2.29.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
