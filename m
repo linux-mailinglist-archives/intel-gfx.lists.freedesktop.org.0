@@ -2,41 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADCD1305F3F
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 16:16:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30E9F305F51
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 16:18:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C4756E7EA;
-	Wed, 27 Jan 2021 15:16:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 870B86E2D8;
+	Wed, 27 Jan 2021 15:18:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D22576E7EA
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 15:16:05 +0000 (UTC)
-IronPort-SDR: ZZqo/Ynw9Y9WBWu297lDpQL6Qpkbb+5Y7JAKnMr2AuL9eH4kBYSnBqiZoK4tRkNTncWD/JZVEB
- /vqVo9PqTI4Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="159856945"
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="159856945"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 07:16:05 -0800
-IronPort-SDR: XWeBa3rv4roEgk951J6MimebUaMw/DQfeSaA0bx8B/p2B4mR0yb3VNdRBsNcVBqWu6gEE9NxOW
- l0K+q7N+iIaQ==
-X-IronPort-AV: E=Sophos;i="5.79,379,1602572400"; d="scan'208";a="573298737"
-Received: from tdo2-mobl.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.212.72.224])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 07:16:03 -0800
-Date: Wed, 27 Jan 2021 07:15:59 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20210127151559.tte3434cmxnlm3bz@ldmartin-desk1>
-X-Patchwork-Hint: comment
-References: <20210127041159.136409-1-aditya.swarup@intel.com>
- <20210127041159.136409-7-aditya.swarup@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 379BA6E2D8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 15:18:11 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23715766-1500050 for multiple; Wed, 27 Jan 2021 15:17:59 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210127041159.136409-7-aditya.swarup@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915/adl_s: Load DMC
+In-Reply-To: <CO1PR11MB5075034ACD67B3DD27311637F6BB9@CO1PR11MB5075.namprd11.prod.outlook.com>
+References: <20201130124855.319226-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <160674128376.8815.15501065474758980770@build.alporthouse.com>
+ <SN6PR11MB342108C9577A99EF4D3BBC87DFF50@SN6PR11MB3421.namprd11.prod.outlook.com>
+ <160674847963.9850.14014681039747149826@build.alporthouse.com>
+ <SN6PR11MB34210126D6425BBDD80F6258DFF20@SN6PR11MB3421.namprd11.prod.outlook.com>
+ <SN6PR11MB342113B3B07EFA7D7E6656AADFF20@SN6PR11MB3421.namprd11.prod.outlook.com>
+ <DM6PR11MB3355DDA42F41463D267737AEEEF10@DM6PR11MB3355.namprd11.prod.outlook.com>
+ <160707557006.6805.9985083009767030866@build.alporthouse.com>
+ <CO1PR11MB5075034ACD67B3DD27311637F6BB9@CO1PR11MB5075.namprd11.prod.outlook.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: "Pandey, Hariom" <hariom.pandey@intel.com>
+Date: Wed, 27 Jan 2021 15:18:01 +0000
+Message-ID: <161176068198.2943.12987783906560421660@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/rkl: Remove require_force_probe
+ protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,73 +47,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: "Naramasetti, LaxminarayanaX" <laxminarayanax.naramasetti@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 26, 2021 at 08:11:56PM -0800, Aditya Swarup wrote:
->From: Anusha Srivatsa <anusha.srivatsa@intel.com>
->
->Load DMC on ADL_S v2.01. This is the first offcial
->release of DMC for ADL_S.
->
->Cc: Jani Nikula <jani.nikula@intel.com>
->Cc: Imre Deak <imre.deak@intel.com>
->Cc: Matt Roper <matthew.d.roper@intel.com>
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Aditya Swarup <aditya.swarup@intel.com>
->Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
->Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_csr.c | 10 +++++++++-
-> 1 file changed, 9 insertions(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
->index 67dc64df78a5..db9f219c4b5a 100644
->--- a/drivers/gpu/drm/i915/display/intel_csr.c
->+++ b/drivers/gpu/drm/i915/display/intel_csr.c
->@@ -40,6 +40,10 @@
->
-> #define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
->
->+#define ADLS_CSR_PATH			"i915/adls_dmc_ver2_01.bin"
+Quoting Pandey, Hariom (2021-01-27 15:10:53)
+> Hi Chris,
+> 
+> (i) To your concern on the GPU dying issue gitlab#2743 --> this issue has been resolved and not observed in last 3 runs --> The gitlab had been updated with the pass results and closed.
+> (ii) RocketLate platform has been setup in Public CI with the name " fi-rkl-11500t" --> https://intel-gfx-ci.01.org/tree/drm-tip/bat-all.html? --> This link shows last few Pass runs.
+> 
+> With the above progress, please confirm if you are fine to merge/accept this patch of RKL force probe flag removal.
 
-Anusha, did you send this firmware to linux-firmware repo? I don't see
-it there.
+Now that we have some visibility in CI, those of us without rkl (who
+_just_ see the bug reports) can all build up some confidence. From the
+CI, it's looking good, but you want to wait for a few idle [full] runs to
+get a true feel of the overall health.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915
-
-
-Lucas De Marchi
-
->+#define ADLS_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
->+MODULE_FIRMWARE(ADLS_CSR_PATH);
->+
-> #define DG1_CSR_PATH			"i915/dg1_dmc_ver2_02.bin"
-> #define DG1_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
-> MODULE_FIRMWARE(DG1_CSR_PATH);
->@@ -689,7 +693,11 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
-> 	 */
-> 	intel_csr_runtime_pm_get(dev_priv);
->
->-	if (IS_DG1(dev_priv)) {
->+	if (IS_ALDERLAKE_S(dev_priv)) {
->+		csr->fw_path = ADLS_CSR_PATH;
->+		csr->required_version = ADLS_CSR_VERSION_REQUIRED;
->+		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
->+	} else if (IS_DG1(dev_priv)) {
-> 		csr->fw_path = DG1_CSR_PATH;
-> 		csr->required_version = DG1_CSR_VERSION_REQUIRED;
-> 		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
->-- 
->2.27.0
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+So if people are happy that the scary forcewake error was truly a one off
+and doesn't need any follow up, then I see nothing stopping us from
+declaring ourselves in good shape -- barring a disastrous idle run.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
