@@ -1,31 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C1A1305552
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 09:13:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D889E3055ED
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Jan 2021 09:39:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F4446E5A9;
-	Wed, 27 Jan 2021 08:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD0626E215;
+	Wed, 27 Jan 2021 08:39:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 493296E55E;
- Wed, 27 Jan 2021 08:13:11 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id D15E2B928;
- Wed, 27 Jan 2021 08:13:09 +0000 (UTC)
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <YBEco1Vxeny8U/ca@linux-uq9g>
-Message-ID: <0ba98a80-ec44-222c-1474-54f2688ca8eb@suse.de>
-Date: Wed, 27 Jan 2021 09:13:08 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54A8D6E7D0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Jan 2021 08:39:08 +0000 (UTC)
+IronPort-SDR: Qng2mLx1zAoye1jGLTYYNh6+2qwvJLcdCbEXqnmi9cn2nIz0cugjT2DIiQd+GgQIeMC/3o6Xyb
+ 7TMaLkebdRYA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9876"; a="244114790"
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="244114790"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 00:39:07 -0800
+IronPort-SDR: lC4r7lSi49LzRXvsKC92NhejqOj1xTWnAsGWyTVPzqmO51JIQIqred0O2xwpH2dWaoegIYaZGn
+ ByAnL0LaRlYA==
+X-IronPort-AV: E=Sophos;i="5.79,378,1602572400"; d="scan'208";a="362346460"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2021 00:39:05 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 27 Jan 2021 13:54:35 +0530
+Message-Id: <20210127082437.31339-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <YBEco1Vxeny8U/ca@linux-uq9g>
-Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
+Subject: [Intel-gfx] [PATCH 0/2] HDCP 2.2 DP errata
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,140 +44,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dim-tools@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1294581727=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1294581727==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="tiBa6YdDPLplnm2VD29WSHV3E1My87bAS"
+HDCP DP 2.2 errata is part of HDCP DP 2.3 specs
+as well. 
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---tiBa6YdDPLplnm2VD29WSHV3E1My87bAS
-Content-Type: multipart/mixed; boundary="YbQt9yZ84ps5lqA60pE6r0AWohSMM5K5i";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <0ba98a80-ec44-222c-1474-54f2688ca8eb@suse.de>
-Subject: Re: [PULL] drm-misc-fixes
-References: <YBEco1Vxeny8U/ca@linux-uq9g>
-In-Reply-To: <YBEco1Vxeny8U/ca@linux-uq9g>
+Anshuman Gupta (2):
+  drm/i915/hdcp: Add DP HDCP2.2 timeout to read entire msg
+  drm/hdcp: DP HDCP2.2 errata LC_Send_L_Prime=16
 
---YbQt9yZ84ps5lqA60pE6r0AWohSMM5K5i
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 56 +++++++++++++-------
+ include/drm/drm_hdcp.h                       |  5 +-
+ 2 files changed, 41 insertions(+), 20 deletions(-)
 
-
-
-Am 27.01.21 um 08:56 schrieb Thomas Zimmermann:
-> Hi Dave and Daniel,
->=20
-> here are the 2 fixes from this week's drm-misc-next.
-
-drm-misc-fixes
-
-Grr! I had this typo last week already.
-
->=20
-> Best regards
-> Thomas
->=20
-> drm-misc-fixes-2021-01-27:
->=20
->   * drm/vc4: Fix LBM size calculation; Fix high resolutions for hvs5
-> The following changes since commit a37eef63bc9e16e06361b539e528058146af=
-80ab:
->=20
->    drm/syncobj: Fix use-after-free (2021-01-20 10:28:39 +0100)
->=20
-> are available in the Git repository at:
->=20
->    git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-=
-01-27
->=20
-> for you to fetch changes up to f6b57101a6b31277a4bde1d8028c46e898bd2ff2=
-:
->=20
->    drm/vc4: Correct POS1_SCL for hvs5 (2021-01-25 11:53:44 +0100)
->=20
-> ----------------------------------------------------------------
-> Short summary of fixes pull (less than what git shortlog provides):
->=20
->   * drm/vc4: Fix LBM size calculation; Fix high resolutions for hvs5
->=20
-> ----------------------------------------------------------------
-> Dom Cobley (2):
->        drm/vc4: Correct lbm size and calculation
->        drm/vc4: Correct POS1_SCL for hvs5
->=20
->   drivers/gpu/drm/vc4/vc4_hvs.c   |  8 ++++----
->   drivers/gpu/drm/vc4/vc4_plane.c | 11 ++++++++---
->   2 files changed, 12 insertions(+), 7 deletions(-)
->=20
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-> (HRB 36809, AG N=C3=BCrnberg)
-> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---YbQt9yZ84ps5lqA60pE6r0AWohSMM5K5i--
-
---tiBa6YdDPLplnm2VD29WSHV3E1My87bAS
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmARIJQFAwAAAAAACgkQlh/E3EQov+A2
-qxAAtR5qii0/w0xyFdEgYhpVxNaylnvy5Qwbj376gm5qi+VFVglce3rEYwzW66MVWRdYTLiGj/0l
-JWuBLc/C+o0RfySPJI9vXC05DW3iGzLtL5xGgoXrp7n/1blyzTQrOuxT8HGPGYb8bATxYWALrFjz
-bLFkD0B+DP5pGm89ldNHGiIx/aoO9ppTZS79mZirruMiTHQzuXniiiWSaFNYtVFwfQDtGdPCtUb7
-byEmzVZS8RH01h34ABAlr3xWGXybEafDc9wAUKzuX67v7SGFjuet2saC88SE9/daXLWUQ6j/9VIX
-Sa1ewhurW4WYP2mu4SBvtj1uvU563BncI+PU7vgo3/b2Q3Xa6a8PFbCaHzMnLuG1XbpLZsTpzmyT
-BPmXoUtyRt9M6Vnq1raM++z+9wgNLfZlpW+K8ihao4GlT0uO+kyJfDPdy465Xr8xZReNLiwcfTj/
-chSLQ36yOwoW9GwIfEVhKBJYvSAVUg9oBo68BhG6yj+03g4LiR7/C110VMhQTPxRqpcggRrYfj5E
-0aeHOjf9q6oF8ZQCQpt7TdxM+OcR63gYK8ty7ObYv5v0tfigyZdz9TRnR4nEcXcn4WxhYfAwlH9S
-SigSCcxOi2m1SCzNRkiXsWUCZgjOXLC6tm0tECU5i9gJyScTLqqkB5koKm0UxWGs/ZDqhyp/sC60
-KQc=
-=BQ/x
------END PGP SIGNATURE-----
-
---tiBa6YdDPLplnm2VD29WSHV3E1My87bAS--
-
---===============1294581727==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1294581727==--
