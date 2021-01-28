@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 245D230709C
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 09:08:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 791AA30722C
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 10:00:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA776E489;
-	Thu, 28 Jan 2021 08:08:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6BD6E946;
+	Thu, 28 Jan 2021 09:00:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4B0AC6E489;
- Thu, 28 Jan 2021 08:08:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45FB2A882F;
- Thu, 28 Jan 2021 08:08:20 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3822F6E946
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jan 2021 09:00:52 +0000 (UTC)
+IronPort-SDR: N4/SowwvFO6Fdi9H8IxNFaX9/NwxOnVWiaFoGFXS2lLB6zZYR+mUBHqgaeVw5vtFL89+leeMWt
+ 5RxkMMb3SzNQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="199033697"
+X-IronPort-AV: E=Sophos;i="5.79,381,1602572400"; d="scan'208";a="199033697"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2021 01:00:51 -0800
+IronPort-SDR: FTZCcSOYzHdD26Owyj04QwlkErjBZcoe0e22sc8cWQmqh0izW7eFYzKnWQ8wYDEoH81QIcqiV3
+ frBzc9a3+TPw==
+X-IronPort-AV: E=Sophos;i="5.79,381,1602572400"; d="scan'208";a="362786169"
+Received: from nkaspi-mobl.ger.corp.intel.com (HELO [10.214.246.60])
+ ([10.214.246.60])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2021 01:00:50 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210127090608.16925-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <98cfaefe-16b4-4b34-62d8-abf2ff559396@linux.intel.com>
+Date: Thu, 28 Jan 2021 09:00:46 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Thu, 28 Jan 2021 08:08:20 -0000
-Message-ID: <161182130028.13617.10183219968938336295@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210128074209.16986-1-anshuman.gupta@intel.com>
-In-Reply-To: <20210128074209.16986-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?isable_the_QSES_check_for_HDCP2=2E2_over_MST?=
+In-Reply-To: <20210127090608.16925-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Prefer local execution_mask
+ for determing viable engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,35 +51,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: disable the QSES check for HDCP2.2 over MST
-URL   : https://patchwork.freedesktop.org/series/86375/
-State : failure
+On 27/01/2021 09:06, Chris Wilson wrote:
+> In gen8_emit_flush_xcs, we have to look at all the engines the request
+> may execute on, and emit an aux-invalidate for each. Currently, we
+> handle the virtual engine by looking at its engine mask, but that is
+> copied and refined as the request->execution_mask. If we prefer the
+> local mask, this is one fewer rq->engine pointer chasing we have to
+> eliminate later when we remove rq->engine.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/gt/gen8_engine_cs.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> index 07ba524da90b..cac80af7ad1c 100644
+> --- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+> @@ -277,7 +277,7 @@ int gen12_emit_flush_xcs(struct i915_request *rq, u32 mode)
+>   	if (mode & EMIT_INVALIDATE)
+>   		cmd += 2;
+>   	if (mode & EMIT_INVALIDATE)
+> -		aux_inv = rq->engine->mask & ~BIT(BCS0);
+> +		aux_inv = rq->execution_mask & ~BIT(BCS0);
+>   	if (aux_inv)
+>   		cmd += 2 * hweight8(aux_inv) + 2;
+>   
+> 
 
-== Summary ==
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Applying: drm/i915/hdcp: disable the QSES check for HDCP2.2 over MST
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 drm/i915/hdcp: disable the QSES check for HDCP2.2 over MST
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Regards,
 
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
