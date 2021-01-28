@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 908F9307EA4
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 20:24:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2ECC307EA2
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 20:24:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A943D6E9D6;
-	Thu, 28 Jan 2021 19:24:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C34AA6E9CF;
+	Thu, 28 Jan 2021 19:24:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A4F26E9CF
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jan 2021 19:24:39 +0000 (UTC)
-IronPort-SDR: dr7vQxstkgLDMQ/U6XhCveaP207kB+2zI4gOfbi8jyuFez13vvMdiycvtoIVkD2NsNs0RfQQRi
- 5qkLFjklhDzQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9878"; a="244384035"
-X-IronPort-AV: E=Sophos;i="5.79,383,1602572400"; d="scan'208";a="244384035"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0D266E9D3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jan 2021 19:24:38 +0000 (UTC)
+IronPort-SDR: GuyCoxwQe9uDQ0HW1mz7NztbnTA1KUs+4/dxvm5E2nBAxEBIFjXxtFUIy7c2EnOH3QKfuBcc28
+ eI1caLPEeC1w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9878"; a="244384034"
+X-IronPort-AV: E=Sophos;i="5.79,383,1602572400"; d="scan'208";a="244384034"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jan 2021 11:24:37 -0800
-IronPort-SDR: RlNdEe7qkiXf7h4NtK3uP9G2FJHQMGvpAckOHj4EF0HCuu0YjA1xyFuhruryu7lldbTXq6pVgF
- TeiMIBE8R7HA==
-X-IronPort-AV: E=Sophos;i="5.79,383,1602572400"; d="scan'208";a="411110158"
+IronPort-SDR: p7hNvpQf1CsjgVsaU+1xYKY4cZS9bMg1rASSULZ2+WVRDHT7DwzRu8tszm+gII6mqZWE3K+I8g
+ i7PCdzdohH3A==
+X-IronPort-AV: E=Sophos;i="5.79,383,1602572400"; d="scan'208";a="411110155"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jan 2021 11:24:37 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Jan 2021 11:24:00 -0800
-Message-Id: <20210128192413.1715802-6-matthew.d.roper@intel.com>
+Date: Thu, 28 Jan 2021 11:24:01 -0800
+Message-Id: <20210128192413.1715802-7-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210128192413.1715802-1-matthew.d.roper@intel.com>
 References: <20210128192413.1715802-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 05/18] drm/i915/display13: Support 128k plane
- stride
+Subject: [Intel-gfx] [PATCH 06/18] drm/i915/display13: Only enable legacy
+ gamma for now
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,68 +47,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogSnVoYS1QZWtrYSBIZWlra2lsw6QgPGp1aGEtcGVra2EuaGVpa2tpbGFAaW50ZWwuY29t
-PgoKRGlzcGxheTEzIHN1cHBvcnRzIHBsYW5lIHN0cmlkZXMgdXAgdG8gMTI4S0IuCgpDYzogVmFu
-ZGl0YSBLdWxrYXJuaSA8dmFuZGl0YS5rdWxrYXJuaUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6
-IEp1aGEtUGVra2EgSGVpa2tpbMOkIDxqdWhhLXBla2thLmhlaWtraWxhQGludGVsLmNvbT4KU2ln
-bmVkLW9mZi1ieTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8ICA2ICsrKystCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jICB8IDI0ICsrKysrKysr
-KysrKysrKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAg
-ICB8ICAyICsrCiAzIGZpbGVzIGNoYW5nZWQsIDI5IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25z
-KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRl
-eCBkMDEzYjBmYWIxMjguLmY1NjIzN2FhYTdiNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKQEAgLTgzOTYsNyArODM5NiwxMSBAQCBza2xfZ2V0X2lu
-aXRpYWxfcGxhbmVfY29uZmlnKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjLAogCiAJdmFsID0gaW50
-ZWxfZGVfcmVhZChkZXZfcHJpdiwgUExBTkVfU1RSSURFKHBpcGUsIHBsYW5lX2lkKSk7CiAJc3Ry
-aWRlX211bHQgPSBza2xfcGxhbmVfc3RyaWRlX211bHQoZmIsIDAsIERSTV9NT0RFX1JPVEFURV8w
-KTsKLQlmYi0+cGl0Y2hlc1swXSA9ICh2YWwgJiAweDNmZikgKiBzdHJpZGVfbXVsdDsKKworCWlm
-IChIQVNfRElTUExBWTEzKGRldl9wcml2KSkKKwkJZmItPnBpdGNoZXNbMF0gPSAodmFsICYgUExB
-TkVfU1RSSURFX01BU0tfRDEzKSAqIHN0cmlkZV9tdWx0OworCWVsc2UKKwkJZmItPnBpdGNoZXNb
-MF0gPSAodmFsICYgUExBTkVfU1RSSURFX01BU0spICogc3RyaWRlX211bHQ7CiAKIAlhbGlnbmVk
-X2hlaWdodCA9IGludGVsX2ZiX2FsaWduX2hlaWdodChmYiwgMCwgZmItPmhlaWdodCk7CiAKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jCmluZGV4IDgxYmI1ZWIx
-Y2QxNS4uYzg1OGJhNmRjMDI2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX3Nwcml0ZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfc3ByaXRlLmMKQEAgLTU3MiwxNyArNTcyLDM3IEBAIHNrbF9wbGFuZV9tYXhfc3RyaWRlKHN0
-cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmUsCiAJCSAgICAgdTMyIHBpeGVsX2Zvcm1hdCwgdTY0IG1v
-ZGlmaWVyLAogCQkgICAgIHVuc2lnbmVkIGludCByb3RhdGlvbikKIHsKKwlzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUocGxhbmUtPmJhc2UuZGV2KTsKIAljb25zdCBzdHJ1
-Y3QgZHJtX2Zvcm1hdF9pbmZvICppbmZvID0gZHJtX2Zvcm1hdF9pbmZvKHBpeGVsX2Zvcm1hdCk7
-CiAJaW50IGNwcCA9IGluZm8tPmNwcFswXTsKKwlpbnQgbWF4X2hvcml6b250YWxfcGl4ZWxzID0g
-ODE5MjsKKwlpbnQgbWF4X3N0cmlkZV9ieXRlczsKKworCWlmIChIQVNfRElTUExBWTEzKGk5MTUp
-KSB7CisJCS8qCisJCSAqIFRoZSBzdHJpZGUgaW4gYnl0ZXMgbXVzdCBub3QgZXhjZWVkIG9mIHRo
-ZSBzaXplCisJCSAqIG9mIDEyOEsgYnl0ZXMuIEZvciBwaXhlbCBmb3JtYXRzIG9mIDY0YnBwIHdp
-bGwgYWxsb3cKKwkJICogZm9yIGEgMTZLIHBpeGVsIHN1cmZhY2UuCisJCSAqLworCQltYXhfc3Ry
-aWRlX2J5dGVzID0gMTMxMDcyOworCQlpZiAoY3BwID09IDgpCisJCQltYXhfaG9yaXpvbnRhbF9w
-aXhlbHMgPSAxNjM4NDsKKwl9IGVsc2UgeworCQkvKgorCQkgKiAiVGhlIHN0cmlkZSBpbiBieXRl
-cyBtdXN0IG5vdCBleGNlZWQgdGhlCisJCSAqIG9mIHRoZSBzaXplIG9mIDhLIHBpeGVscyBhbmQg
-MzJLIGJ5dGVzLiIKKwkJICovCisJCW1heF9zdHJpZGVfYnl0ZXMgPSAzMjc2ODsKKwl9CiAKIAkv
-KgogCSAqICJUaGUgc3RyaWRlIGluIGJ5dGVzIG11c3Qgbm90IGV4Y2VlZCB0aGUKIAkgKiBvZiB0
-aGUgc2l6ZSBvZiA4SyBwaXhlbHMgYW5kIDMySyBieXRlcy4iCiAJICovCiAJaWYgKGRybV9yb3Rh
-dGlvbl85MF9vcl8yNzAocm90YXRpb24pKQotCQlyZXR1cm4gbWluKDgxOTIsIDMyNzY4IC8gY3Bw
-KTsKKwkJcmV0dXJuIG1pbihtYXhfaG9yaXpvbnRhbF9waXhlbHMsIG1heF9zdHJpZGVfYnl0ZXMg
-LyBjcHApOwogCWVsc2UKLQkJcmV0dXJuIG1pbig4MTkyICogY3BwLCAzMjc2OCk7CisJCXJldHVy
-biBtaW4obWF4X2hvcml6b250YWxfcGl4ZWxzICogY3BwLCBtYXhfc3RyaWRlX2J5dGVzKTsKIH0K
-IAogc3RhdGljIHZvaWQKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVn
-LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCmluZGV4IGE1NzU5M2Y3ZDdiMS4u
-OWRmYTRkNzExZDZmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKQEAgLTcxOTgsNiArNzE5OCw4
-IEBAIGVudW0gewogCV9QSVBFKHBpcGUsIF9QTEFORV9TVFJJREVfM19BLCBfUExBTkVfU1RSSURF
-XzNfQikKICNkZWZpbmUgUExBTkVfU1RSSURFKHBpcGUsIHBsYW5lKQlcCiAJX01NSU9fUExBTkUo
-cGxhbmUsIF9QTEFORV9TVFJJREVfMShwaXBlKSwgX1BMQU5FX1NUUklERV8yKHBpcGUpKQorI2Rl
-ZmluZSBQTEFORV9TVFJJREVfTUFTSyBSRUdfR0VOTUFTSygxMCwgMCkKKyNkZWZpbmUgUExBTkVf
-U1RSSURFX01BU0tfRDEzIFJFR19HRU5NQVNLKDExLCAwKQogCiAjZGVmaW5lIF9QTEFORV9QT1Nf
-MV9CCQkJCTB4NzExOGMKICNkZWZpbmUgX1BMQU5FX1BPU18yX0IJCQkJMHg3MTI4YwotLSAKMi4y
-NS40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
-bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+The multi-segment gamma used on past platforms is gone and replaced by a
+logarithmic LUT.  Until logarithmic LUT is enabled, let's just turn off
+uapi color management (aside from legacy gamma) since it doesn't really
+make sense to expose the full degamma and CTM when we only have limited
+legacy gamma support to go with them.  Note that the hardware
+programming of the degamma and CTM is unchanged except that the degamma
+table now has 128 entries instead of just 33.
+
+The output CSC used implicitly for RGB->YUV conversions is also
+unchanged and will continue to function as expected.
+
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/i915_pci.c | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index e5e10484bf8d..fb28f3b24dd8 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -945,7 +945,18 @@ static const struct intel_device_info adl_s_info = {
+ 		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),			\
+ 	.ddb_size = 4096,						\
+ 	.mbus_size = 2048,						\
+-	.num_supported_dbuf_slices = 4,
++	.num_supported_dbuf_slices = 4,					\
++	/*								\
++	 * FIXME: Just enable legacy gamma (and no degamma/csc) until	\
++	 * logarithmic LUT is implemented.				\
++	 *								\
++	 * LEGACY_LUT_LENGTH = 256 entries				\
++	 *								\
++	 * Note that once logarithmic LUT is enabled and we re-enable	\
++	 * real color management, degamma_lut_size here should be set	\
++	 * to 128.							\
++	 */								\
++	.color = { .degamma_lut_size = 0, .gamma_lut_size = 256 }
+ 
+ #undef GEN
+ #undef PLATFORM
+-- 
+2.25.4
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
