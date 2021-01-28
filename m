@@ -1,45 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED6A8306D13
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 06:43:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D078306D1D
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 06:53:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBF486E8D8;
-	Thu, 28 Jan 2021 05:43:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3641A6E8D1;
+	Thu, 28 Jan 2021 05:53:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7B086E8D8
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jan 2021 05:43:34 +0000 (UTC)
-IronPort-SDR: 6oLg09ADJbkTo4JE6lGQs04LTd5JjgoCGQQIf2CcLvrSpIWbmTw8f5gGKqij5kdPCvqYrzuBX+
- xQjgQGa3bIfA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9877"; a="244264148"
-X-IronPort-AV: E=Sophos;i="5.79,381,1602572400"; d="scan'208";a="244264148"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 21:43:33 -0800
-IronPort-SDR: d2hz31aqktBJbHhhhuX3Z09/4IUto9L1wiqVdaLmHw7MZWrqHec577VflrN6sVIVNV52ZkQ8k9
- gcQfo9V/TexA==
-X-IronPort-AV: E=Sophos;i="5.79,381,1602572400"; d="scan'208";a="362727279"
-Received: from kamathas-mobl1.amr.corp.intel.com (HELO [10.251.24.125])
- ([10.251.24.125])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2021 21:43:33 -0800
-To: Matt Roper <matthew.d.roper@intel.com>
-References: <20210127041159.136409-1-aditya.swarup@intel.com>
- <20210127041159.136409-9-aditya.swarup@intel.com>
- <20210127052207.GL787460@mdroper-desk1.amr.corp.intel.com>
-From: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <7bb0e05b-20ab-9cd4-9010-6ad1b120b459@intel.com>
-Date: Wed, 27 Jan 2021 21:43:28 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4087B6E8CA;
+ Thu, 28 Jan 2021 05:53:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3B03EA00CC;
+ Thu, 28 Jan 2021 05:53:28 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210127052207.GL787460@mdroper-desk1.amr.corp.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 8/9] drm/i915/adl_s: Add display WAs for
- ADL-S
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Aditya Swarup" <aditya.swarup@intel.com>
+Date: Thu, 28 Jan 2021 05:53:28 -0000
+Message-ID: <161181320821.13618.13209522120215623602@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210128053024.23540-1-aditya.swarup@intel.com>
+In-Reply-To: <20210128053024.23540-1-aditya.swarup@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Final_set_of_patches_for_ADLS_enabling_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,81 +38,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMS8yNi8yMSA5OjIyIFBNLCBNYXR0IFJvcGVyIHdyb3RlOgo+IE9uIFR1ZSwgSmFuIDI2LCAy
-MDIxIGF0IDA4OjExOjU4UE0gLTA4MDAsIEFkaXR5YSBTd2FydXAgd3JvdGU6Cj4+IC0gRXh0ZW5k
-IHBlcm1hbmVudCBkcml2ZXIgV0EgV2FfMTQwOTc2NzEwOCwgV2FfMTQwMTA2ODUzMzIKPj4gICBh
-bmQgV2FfMTQwMTEyOTQxODggdG8gYWRsLXMuCj4+IC0gRXh0ZW5kIHBlcm1hbmVudCBkcml2ZXIg
-V0EgV2FfMTYwNjA1NDE4OCB0byBhZGwtcy4KPj4gLSBBZGQgV2FfMTQwMTE3NjUyNDIgZm9yIGFk
-bC1zIEEwIHN0ZXBwaW5nLgo+Pgo+PiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVs
-LmNvbT4KPj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5j
-b20+Cj4+IENjOiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+Cj4+IENjOiBNYXR0IFJv
-cGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgo+PiBDYzogTHVjYXMgRGUgTWFyY2hpIDxs
-dWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+Cj4+IFNpZ25lZC1vZmYtYnk6IEFkaXR5YSBTd2FydXAg
-PGFkaXR5YS5zd2FydXBAaW50ZWwuY29tPgo+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jIHwgNyArKysrLS0tCj4+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jICAgICAgICB8IDQgKystLQo+PiAgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYyAgICAgICAgICAgfCA2ICsrKysr
-LQo+PiAgMyBmaWxlcyBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQo+
-Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5X3Bvd2VyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-cG93ZXIuYwo+PiBpbmRleCBjY2NmZDQ1YTY3Y2YuLmUxN2IxY2EzNTZjMyAxMDA2NDQKPj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMKPj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMK
-Pj4gQEAgLTUzMzksOSArNTMzOSwxMCBAQCBzdGF0aWMgdm9pZCB0Z2xfYndfYnVkZHlfaW5pdChz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4+ICAJdW5zaWduZWQgbG9uZyBhYm94
-X21hc2sgPSBJTlRFTF9JTkZPKGRldl9wcml2KS0+YWJveF9tYXNrOwo+PiAgCWludCBjb25maWcs
-IGk7Cj4+ICAKPj4gLQlpZiAoSVNfREcxX1JFVklEKGRldl9wcml2LCBERzFfUkVWSURfQTAsIERH
-MV9SRVZJRF9BMCkgfHwKPj4gKwlpZiAoSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpIHx8Cj4+ICsJ
-ICAgIElTX0RHMV9SRVZJRChkZXZfcHJpdiwgREcxX1JFVklEX0EwLCBERzFfUkVWSURfQTApIHx8
-Cj4+ICAJICAgIElTX1RHTF9ESVNQX1NURVBQSU5HKGRldl9wcml2LCBTVEVQX0EwLCBTVEVQX0Iw
-KSkKPj4gLQkJLyogV2FfMTQwOTc2NzEwODp0Z2wsZGcxICovCj4+ICsJCS8qIFdhXzE0MDk3Njcx
-MDg6dGdsLGRnMSxhZGwtcyAqLwo+PiAgCQl0YWJsZSA9IHdhXzE0MDk3NjcxMDhfYnVkZHlfcGFn
-ZV9tYXNrczsKPj4gIAllbHNlCj4+ICAJCXRhYmxlID0gdGdsX2J1ZGR5X3BhZ2VfbWFza3M7Cj4+
-IEBAIC01Mzc5LDcgKzUzODAsNyBAQCBzdGF0aWMgdm9pZCBpY2xfZGlzcGxheV9jb3JlX2luaXQo
-c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAo+PiAgCj4+ICAJZ2VuOV9zZXRfZGNf
-c3RhdGUoZGV2X3ByaXYsIERDX1NUQVRFX0RJU0FCTEUpOwo+PiAgCj4+IC0JLyogV2FfMTQwMTEy
-OTQxODg6ZWhsLGpzbCx0Z2wscmtsICovCj4+ICsJLyogV2FfMTQwMTEyOTQxODg6ZWhsLGpzbCx0
-Z2wscmtsLGFkbC1zICovCj4+ICAJaWYgKElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA+PSBQQ0hf
-SlNQICYmCj4+ICAJICAgIElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA8IFBDSF9ERzEpCj4+ICAJ
-CWludGVsX2RlX3JtdyhkZXZfcHJpdiwgU09VVEhfRFNQQ0xLX0dBVEVfRCwgMCwKPj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jCj4+IGluZGV4IDY4Y2VhNWNh
-MjUxYy4uYTcwNzdiYWJkMzFjIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX3Nwcml0ZS5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfc3ByaXRlLmMKPj4gQEAgLTI0MTgsOCArMjQxOCw4IEBAIHN0YXRpYyBpbnQgc2ts
-X3BsYW5lX2NoZWNrX2ZiKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRl
-LAo+PiAgCQlyZXR1cm4gLUVJTlZBTDsKPj4gIAl9Cj4+ICAKPj4gLQkvKiBXYV8xNjA2MDU0MTg4
-OnRnbCAqLwo+PiAtCWlmIChJU19USUdFUkxBS0UoZGV2X3ByaXYpICYmCj4+ICsJLyogV2FfMTYw
-NjA1NDE4ODp0Z2wsYWRsLXMgKi8KPj4gKwlpZiAoKElTX0FMREVSTEFLRV9TKGRldl9wcml2KSB8
-fCBJU19USUdFUkxBS0UoZGV2X3ByaXYpKSAmJgo+PiAgCSAgICBwbGFuZV9zdGF0ZS0+Y2tleS5m
-bGFncyAmIEk5MTVfU0VUX0NPTE9SS0VZX1NPVVJDRSAmJgo+PiAgCSAgICBpbnRlbF9mb3JtYXRf
-aXNfcDAxeChmYi0+Zm9ybWF0LT5mb3JtYXQpKSB7Cj4+ICAJCWRybV9kYmdfa21zKCZkZXZfcHJp
-di0+ZHJtLAo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNl
-X2luZm8uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMKPj4gaW5k
-ZXggODVkNjg4Mzc0NWQ4Li45MmFkM2U3ZDFmNmYgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfZGV2aWNlX2luZm8uYwo+PiBAQCAtMjUwLDcgKzI1MCwxMSBAQCB2b2lkIGludGVs
-X2RldmljZV9pbmZvX3J1bnRpbWVfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYpCj4+ICAJc3RydWN0IGludGVsX3J1bnRpbWVfaW5mbyAqcnVudGltZSA9IFJVTlRJTUVfSU5G
-TyhkZXZfcHJpdik7Cj4+ICAJZW51bSBwaXBlIHBpcGU7Cj4+ICAKPj4gLQlpZiAoSU5URUxfR0VO
-KGRldl9wcml2KSA+PSAxMCkgewo+PiArCS8qIFdhXzE0MDExNzY1MjQyOiBhZGwtcyBBMCAqLwo+
-PiArCWlmIChJU19BRExTX0RJU1BfU1RFUFBJTkcoZGV2X3ByaXYsIFNURVBfQTAsIFNURVBfQTAp
-KQo+IAo+IEkgdGhpbmsgdGhpcyB3b3JrYXJvdW5kIGlzIGFsc28gbmVlZGVkIG9uIEExIHN0ZXBw
-aW5nIG5vdyBhbmQgc2hvdWxkCj4gb25seSBiZSByZW1vdmVkIG9uIEEyLgoKVGhlcmUgaXMgbm8g
-QTEgc3RlcHBpbmcgZm9yIEFETFMuIFdlIGRpcmVjdGx5IGhhdmUgc3RlcHBpbmcgQTIgYWZ0ZXIg
-QTAuIEJ1dCBJIGhhdmUgbWFkZSB0aGUgY2hhbmdlCnRoYXQgeW91IGhhdmUgc3VnZ2VzdGVkIGlu
-IHJldjIuCgpBZGl0eWEKCj4gCj4gCj4gTWF0dAo+IAo+PiArCQlmb3JfZWFjaF9waXBlKGRldl9w
-cml2LCBwaXBlKQo+PiArCQkJcnVudGltZS0+bnVtX3NjYWxlcnNbcGlwZV0gPSAwOwo+PiArCWVs
-c2UgaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTApIHsKPj4gIAkJZm9yX2VhY2hfcGlwZShk
-ZXZfcHJpdiwgcGlwZSkKPj4gIAkJCXJ1bnRpbWUtPm51bV9zY2FsZXJzW3BpcGVdID0gMjsKPj4g
-IAl9IGVsc2UgaWYgKElTX0dFTihkZXZfcHJpdiwgOSkpIHsKPj4gLS0gCj4+IDIuMjcuMAo+Pgo+
-IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: Final set of patches for ADLS enabling (rev2)
+URL   : https://patchwork.freedesktop.org/series/86322/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+36f14b084aab drm/i915/adl_s: Update PHY_MISC programming
+8cede37510f4 drm/i915/adl_s: MCHBAR memory info registers are moved
+83ca04828dec drm/i915/adl_s: Add power wells
+2344dadc51da drm/i915/adl_s: Re-use TGL GuC/HuC firmware
+cd49856755a6 drm/i915/display: Add HAS_D12_PLANE_MINIMIZATION
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#45: FILE: drivers/gpu/drm/i915/i915_drv.h:1788:
++#define HAS_D12_PLANE_MINIMIZATION(dev_priv) (IS_ROCKETLAKE(dev_priv) || \
++					      IS_ALDERLAKE_S(dev_priv))
+
+total: 0 errors, 0 warnings, 1 checks, 33 lines checked
+804019e4857d drm/i915/adl_s: Load DMC
+9d4007d2b51b drm/i915/adl_s: Update memory bandwidth parameters
+-:48: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#48: FILE: drivers/gpu/drm/i915/display/intel_bw.c:324:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 23 lines checked
+28a8fca6f022 drm/i915/adl_s: Add display WAs for ADL-S
+234b877a1668 drm/i915/adl_s: Add GT and CTX WAs for ADL-S
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
