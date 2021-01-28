@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22212308093
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 22:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 469453080FD
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 23:14:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0032E6E233;
-	Thu, 28 Jan 2021 21:32:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0BEA6E08E;
+	Thu, 28 Jan 2021 22:14:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93CF76E233;
- Thu, 28 Jan 2021 21:32:02 +0000 (UTC)
-IronPort-SDR: kZZ9E57usMswk6VJIA07hHCXKyuCMnLbLoV/iNhMA8djaP/bHHEX2tEnQdT1qflRJxpPumsHIZ
- lFyDDVC0YtVQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9878"; a="167986396"
-X-IronPort-AV: E=Sophos;i="5.79,383,1602572400"; d="scan'208";a="167986396"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2021 13:31:59 -0800
-IronPort-SDR: F1qmP3FadG4ExjHRxrzmiHPn53kImCacNZAZ+ZvnNcbTFICNA/bBC0RjkphZgKLcAOBxamjUhP
- 48ub7SqwNifA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,383,1602572400"; d="scan'208";a="411145119"
-Received: from jhli-desk1.jf.intel.com ([10.54.74.156])
- by FMSMGA003.fm.intel.com with ESMTP; 28 Jan 2021 13:31:59 -0800
-From: Juston Li <juston.li@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu, 28 Jan 2021 13:31:46 -0800
-Message-Id: <20210128213146.2503925-2-juston.li@intel.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210128213146.2503925-1-juston.li@intel.com>
-References: <20210128213146.2503925-1-juston.li@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 07F736E08E;
+ Thu, 28 Jan 2021 22:14:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 02650A882F;
+ Thu, 28 Jan 2021 22:14:37 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915/hdcp: read RxInfo once when
- reading Send_Pairing_Info
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juston Li" <juston.li@intel.com>
+Date: Thu, 28 Jan 2021 22:14:37 -0000
+Message-ID: <161187207798.13618.7260872462214015631@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210128213146.2503925-1-juston.li@intel.com>
+In-Reply-To: <20210128213146.2503925-1-juston.li@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv3=2C1/2=5D_drm/i915/hdcp=3A_update_cp=5Fi?=
+ =?utf-8?q?rq=5Fcount=5Fcached_in_intel=5Fdp=5Fhdcp2=5Fread=5Fmsg=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,131 +39,211 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: seanpaul@chromium.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0521840658=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Previously when reading Send_Pairing_Info, RxInfo by itself was read
-once to retrieve the DEVICE_COUNT and then a second time when reading
-the RepeaterAuth_Send_ReceiverID_List which contains RxInfo.
+--===============0521840658==
+Content-Type: multipart/alternative;
+ boundary="===============3116422904464242845=="
 
-On a couple HDCP 2.2 docks, this second read attempt on RxInfo fails
-due to no Ack response. This behavior doesn't seem to be defined but
-regardless we can fix it by reading RxInfo once and storing it before
-reading the rest of RepeaterAuth_Send_ReceiverID_List once we know the
-size.
+--===============3116422904464242845==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Modify get_receiver_id_list_size() to read and store RxInfo in the
-message buffer and also parse DEVICE_COUNT so we know the size of
-RepeaterAuth_Send_ReceiverID_List.
+== Series Details ==
 
-Afterwards, retrieve the rest of the message at the offset for
-seq_num_V.
+Series: series starting with [v3,1/2] drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()
+URL   : https://patchwork.freedesktop.org/series/86424/
+State : success
 
-Changes in v3:
-- remove comment
+== Summary ==
 
-Changes in v2:
-- remove unnecessary moving of drm_i915_private from patch 1
+CI Bug Log - changes from CI_DRM_9696 -> Patchwork_19534
+====================================================
 
-Signed-off-by: Juston Li <juston.li@intel.com>
-Acked-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 30 ++++++++++----------
- include/drm/drm_dp_helper.h                  |  2 +-
- 2 files changed, 16 insertions(+), 16 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-index d1397af97f69..3c04576681b9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-@@ -475,11 +475,10 @@ int intel_dp_hdcp2_write_msg(struct intel_digital_port *dig_port,
- }
- 
- static
--ssize_t get_receiver_id_list_size(struct intel_digital_port *dig_port)
-+ssize_t get_receiver_id_list_rx_info(struct intel_digital_port *dig_port, u32 *dev_cnt, u8 *byte)
- {
--	u8 rx_info[HDCP_2_2_RXINFO_LEN];
--	u32 dev_cnt;
- 	ssize_t ret;
-+	u8 *rx_info = byte;
- 
- 	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
- 			       DP_HDCP_2_2_REG_RXINFO_OFFSET,
-@@ -487,15 +486,11 @@ ssize_t get_receiver_id_list_size(struct intel_digital_port *dig_port)
- 	if (ret != HDCP_2_2_RXINFO_LEN)
- 		return ret >= 0 ? -EIO : ret;
- 
--	dev_cnt = (HDCP_2_2_DEV_COUNT_HI(rx_info[0]) << 4 |
-+	*dev_cnt = (HDCP_2_2_DEV_COUNT_HI(rx_info[0]) << 4 |
- 		   HDCP_2_2_DEV_COUNT_LO(rx_info[1]));
- 
--	if (dev_cnt > HDCP_2_2_MAX_DEVICE_COUNT)
--		dev_cnt = HDCP_2_2_MAX_DEVICE_COUNT;
--
--	ret = sizeof(struct hdcp2_rep_send_receiverid_list) -
--		HDCP_2_2_RECEIVER_IDS_MAX_LEN +
--		(dev_cnt * HDCP_2_2_RECEIVER_ID_LEN);
-+	if (*dev_cnt > HDCP_2_2_MAX_DEVICE_COUNT)
-+		*dev_cnt = HDCP_2_2_MAX_DEVICE_COUNT;
- 
- 	return ret;
- }
-@@ -511,6 +506,7 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
- 	u8 *byte = buf;
- 	ssize_t ret, bytes_to_recv, len;
- 	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
-+	u32 dev_cnt;
- 
- 	hdcp2_msg_data = get_hdcp2_dp_msg_data(msg_id);
- 	if (!hdcp2_msg_data)
-@@ -523,17 +519,21 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
- 
- 	hdcp->cp_irq_count_cached = atomic_read(&hdcp->cp_irq_count);
- 
-+	/* DP adaptation msgs has no msg_id */
-+	byte++;
-+
- 	if (msg_id == HDCP_2_2_REP_SEND_RECVID_LIST) {
--		ret = get_receiver_id_list_size(dig_port);
-+		ret = get_receiver_id_list_rx_info(dig_port, &dev_cnt, byte);
- 		if (ret < 0)
- 			return ret;
- 
--		size = ret;
-+		byte += ret;
-+		size = sizeof(struct hdcp2_rep_send_receiverid_list) -
-+		HDCP_2_2_RXINFO_LEN - HDCP_2_2_RECEIVER_IDS_MAX_LEN +
-+		(dev_cnt * HDCP_2_2_RECEIVER_ID_LEN);
- 	}
--	bytes_to_recv = size - 1;
- 
--	/* DP adaptation msgs has no msg_id */
--	byte++;
-+	bytes_to_recv = size - 1;
- 
- 	while (bytes_to_recv) {
- 		len = bytes_to_recv > DP_AUX_MAX_PAYLOAD_BYTES ?
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index edffd1dcca3e..3b42392394ba 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -1388,7 +1388,7 @@ enum drm_dp_phy {
- #define DP_HDCP_2_2_LC_INIT_OFFSET		DP_HDCP_2_2_REG_RN_OFFSET
- #define DP_HDCP_2_2_LC_SEND_LPRIME_OFFSET	DP_HDCP_2_2_REG_LPRIME_OFFSET
- #define DP_HDCP_2_2_SKE_SEND_EKS_OFFSET		DP_HDCP_2_2_REG_EDKEY_KS_OFFSET
--#define DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET	DP_HDCP_2_2_REG_RXINFO_OFFSET
-+#define DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET	DP_HDCP_2_2_REG_SEQ_NUM_V_OFFSET
- #define DP_HDCP_2_2_REP_SEND_ACK_OFFSET		DP_HDCP_2_2_REG_V_OFFSET
- #define DP_HDCP_2_2_REP_STREAM_MANAGE_OFFSET	DP_HDCP_2_2_REG_SEQ_NUM_M_OFFSET
- #define DP_HDCP_2_2_REP_STREAM_READY_OFFSET	DP_HDCP_2_2_REG_MPRIME_OFFSET
--- 
-2.29.2
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19534 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [PASS][2] -> [DMESG-WARN][3] ([i915#402]) +2 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9696/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-FAIL][5] ([i915#2601])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9696/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [INCOMPLETE][6] ([i915#2940]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9696/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:
+    - fi-tgl-y:           [DMESG-WARN][8] ([i915#402]) -> [PASS][9] +2 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9696/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9696 -> Patchwork_19534
+
+  CI-20190529: 20190529
+  CI_DRM_9696: 9fee71c4c03d8101401b895315a97f970036c6a0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5977: 0b6967520b15e73773eace7937ed8c17ba411bc0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19534: f7a01e50b5f5e0f475825d4cda20541d4db36e5c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f7a01e50b5f5 drm/i915/hdcp: read RxInfo once when reading Send_Pairing_Info
+70e5f3b9f8ad drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/index.html
+
+--===============3116422904464242845==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86424/">https://patchwork.freedesktop.org/series/86424/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9696 -&gt; Patchwork_19534</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19534 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9696/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9696/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2601">i915#2601</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9696/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9696/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19534/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 39)</h2>
+<p>Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9696 -&gt; Patchwork_19534</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9696: 9fee71c4c03d8101401b895315a97f970036c6a0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5977: 0b6967520b15e73773eace7937ed8c17ba411bc0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19534: f7a01e50b5f5e0f475825d4cda20541d4db36e5c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f7a01e50b5f5 drm/i915/hdcp: read RxInfo once when reading Send_Pairing_Info<br />
+70e5f3b9f8ad drm/i915/hdcp: update cp_irq_count_cached in intel_dp_hdcp2_read_msg()</p>
+
+</body>
+</html>
+
+--===============3116422904464242845==--
+
+--===============0521840658==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0521840658==--
