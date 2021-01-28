@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE63A307E6E
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 19:52:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BBD6307E97
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 20:14:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FE5E6E212;
-	Thu, 28 Jan 2021 18:52:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7026E219;
+	Thu, 28 Jan 2021 19:13:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 949A16E210;
- Thu, 28 Jan 2021 18:52:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8ED20A00E6;
- Thu, 28 Jan 2021 18:52:40 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03A186E219
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jan 2021 19:13:55 +0000 (UTC)
+IronPort-SDR: WoL7rxzElMGcoJQKBTFgGw/rFrruXw7tBSYWv6q3+oVe2uUeg18aEq6om6jp8R9VGDComtuK+M
+ 38KoRntwUuFg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9878"; a="176788524"
+X-IronPort-AV: E=Sophos;i="5.79,383,1602572400"; d="scan'208";a="176788524"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2021 11:13:54 -0800
+IronPort-SDR: Z/oT6w/4/Bm63kzNjh7tu4rQpNZzER6jUsMVXXYlwuBSyh3IwP4IAzpC4XRm7IGxPi/XKXflNy
+ kOIDfCxJHYcg==
+X-IronPort-AV: E=Sophos;i="5.79,383,1602572400"; d="scan'208";a="388963507"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2021 11:13:53 -0800
+Date: Thu, 28 Jan 2021 21:13:49 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20210128191349.GE142820@ideak-desk.fi.intel.com>
+References: <20210127181909.128094-1-imre.deak@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Souza, Jose" <jose.souza@intel.com>
-Date: Thu, 28 Jan 2021 18:52:40 -0000
-Message-ID: <161185996058.13617.7356241622678401396@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210128164312.91160-1-jose.souza@intel.com>
-In-Reply-To: <20210128164312.91160-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915=3A_Nuke_not_needed_me?=
- =?utf-8?q?mbers_of_dram=5Finfo?=
+Content-Disposition: inline
+In-Reply-To: <20210127181909.128094-1-imre.deak@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable runtime power management
+ during shutdown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,159 +49,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0818557221=="
+Reply-To: imre.deak@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0818557221==
-Content-Type: multipart/alternative;
- boundary="===============1039843515874741277=="
+On Wed, Jan 27, 2021 at 08:19:09PM +0200, Imre Deak wrote:
+> At least on some TGL platforms PUNIT wants to access some display HW
+> registers, but it doesn't handle display power managment (disabling DC
+> states as required) and so this register access will lead to a hang. To
+> prevent this disable runtime power management for poweroff and reboot.
+> 
+> Reported-and-tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
---===============1039843515874741277==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Chris or Ville, could you ack if you see no problem with this?
 
-== Series Details ==
-
-Series: series starting with [CI,1/3] drm/i915: Nuke not needed members of dram_info
-URL   : https://patchwork.freedesktop.org/series/86404/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9695 -> Patchwork_19531
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19531/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19531 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@read:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9695/fi-tgl-y/igt@fbdev@read.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19531/fi-tgl-y/igt@fbdev@read.html
-
-  
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9695 -> Patchwork_19531
-
-  CI-20190529: 20190529
-  CI_DRM_9695: 67e514b158700703fcaaed71c3fb1eea8b2e645c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5977: 0b6967520b15e73773eace7937ed8c17ba411bc0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19531: 8e4dd2f243e2cc51d43e6b67f2a9d6d2ce5c45a3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8e4dd2f243e2 drm/i915: Rename is_16gb_dimm to wm_lv_0_adjust_needed
-287b939f58f6 drm/i915/gen11+: Only load DRAM information from pcode
-0373afb0d1b9 drm/i915: Nuke not needed members of dram_info
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19531/index.html
-
---===============1039843515874741277==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm/i915: Nuke not needed members of dram_info</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86404/">https://patchwork.freedesktop.org/series/86404/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19531/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19531/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9695 -&gt; Patchwork_19531</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19531/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19531 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@fbdev@read:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9695/fi-tgl-y/igt@fbdev@read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19531/fi-tgl-y/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9695 -&gt; Patchwork_19531</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9695: 67e514b158700703fcaaed71c3fb1eea8b2e645c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5977: 0b6967520b15e73773eace7937ed8c17ba411bc0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19531: 8e4dd2f243e2cc51d43e6b67f2a9d6d2ce5c45a3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8e4dd2f243e2 drm/i915: Rename is_16gb_dimm to wm_lv_0_adjust_needed<br />
-287b939f58f6 drm/i915/gen11+: Only load DRAM information from pcode<br />
-0373afb0d1b9 drm/i915: Nuke not needed members of dram_info</p>
-
-</body>
-</html>
-
---===============1039843515874741277==--
-
---===============0818557221==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> ---
+>  drivers/gpu/drm/i915/i915_drv.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index 0037b81d991e..6f83cca8e27b 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -1054,6 +1054,8 @@ static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
+>  void i915_driver_shutdown(struct drm_i915_private *i915)
+>  {
+>  	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+> +	intel_runtime_pm_disable(&i915->runtime_pm);
+> +	intel_power_domains_disable(i915);
+>  
+>  	i915_gem_suspend(i915);
+>  
+> @@ -1069,7 +1071,10 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+>  	intel_suspend_encoders(i915);
+>  	intel_shutdown_encoders(i915);
+>  
+> +	intel_power_domains_driver_remove(i915);
+>  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+> +
+> +	intel_runtime_pm_driver_release(&i915->runtime_pm);
+>  }
+>  
+>  static bool suspend_to_idle(struct drm_i915_private *dev_priv)
+> -- 
+> 2.25.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0818557221==--
