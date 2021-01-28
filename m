@@ -1,35 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B332E307AAE
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 17:26:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB7D3307B26
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Jan 2021 17:41:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17EBA6E98B;
-	Thu, 28 Jan 2021 16:26:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B88CD6E983;
+	Thu, 28 Jan 2021 16:41:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29CFC6E98B
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Jan 2021 16:26:17 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23728205-1500050 for multiple; Thu, 28 Jan 2021 16:26:15 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 479E66E22C;
+ Thu, 28 Jan 2021 16:41:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1F2BDA8169;
+ Thu, 28 Jan 2021 16:41:10 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <7537d75b-3292-05aa-1ef2-b65aca4d3d73@linux.intel.com>
-References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
- <20210125140136.10494-20-chris@chris-wilson.co.uk>
- <7537d75b-3292-05aa-1ef2-b65aca4d3d73@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Jan 2021 16:26:13 +0000
-Message-ID: <161185117340.2943.10174190803342821813@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 20/41] drm/i915: Replace priolist rbtree
- with a skiplist
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 28 Jan 2021 16:41:10 -0000
+Message-ID: <161185207009.13618.7218631250233819930@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210128155948.13678-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210128155948.13678-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/5=5D_drm/i915=3A_Skip_vswing_programming?=
+ =?utf-8?q?_for_TBT?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,229 +39,250 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1450424091=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-28 15:56:19)
-> On 25/01/2021 14:01, Chris Wilson wrote:
-> > diff --git a/drivers/gpu/drm/i915/i915_priolist_types.h b/drivers/gpu/drm/i915/i915_priolist_types.h
-> > index bc2fa84f98a8..1200c3df6a4a 100644
-> > --- a/drivers/gpu/drm/i915/i915_priolist_types.h
-> > +++ b/drivers/gpu/drm/i915/i915_priolist_types.h
-> > @@ -38,10 +38,36 @@ enum {
-> >   #define I915_PRIORITY_UNPREEMPTABLE INT_MAX
-> >   #define I915_PRIORITY_BARRIER (I915_PRIORITY_UNPREEMPTABLE - 1)
-> >   
-> > +#ifdef CONFIG_64BIT
-> > +#define I915_PRIOLIST_HEIGHT 12
-> > +#else
-> > +#define I915_PRIOLIST_HEIGHT 11
-> > +#endif
-> 
-> I did not get this. On one hand I could think pointers are larger on 
-> 64-bit so go for fewer levels, if size was a concern. But on the other 
-> hand 32-bit is less important these days, definitely much less as a 
-> performance platform. So going for less memory use => worse performance 
-> on a less important platform, which typically could be more memory 
-> constrained? Not sure I see it as that important either way to be 
-> distinctive but a comment would satisfy me.
+--===============1450424091==
+Content-Type: multipart/alternative;
+ boundary="===============8245076888372108824=="
 
-Just aligned to the cacheline. The struct is 128B on 64b and 64B on 32b.
-On 64B, we will scale to around 16 million requests in flight and 4
-million on 32b. Which should be enough.
+--===============8245076888372108824==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If we shrunk 64b to a 64B node, we would only scale to 256 requests
-which limit we definitely will exceed.
+== Series Details ==
 
-> >   struct i915_priolist {
-> >       struct list_head requests;
-> 
-> What would be on this list? Request can only be on one at a time, so I 
-> was thinking these nodes would have pointers to list of that priority, 
-> rather than lists themselves. Assuming there can be multiple nodes of 
-> the same priority in the 2d hierarcy. Possibly I don't understand the 
-> layout.
+Series: series starting with [1/5] drm/i915: Skip vswing programming for TBT
+URL   : https://patchwork.freedesktop.org/series/86402/
+State : failure
 
-A request is only on one list (queue, active, hold). But we may still
-have more than one request at the same deadline, though that will likely
-be limited to priority-inheritance and timeslice deferrals.
+== Summary ==
 
-Since we would need pointer to the request, we could only reclaim a
-single pointer here, which is not enough to warrant reducing the overall
-node size. And while there is at least one user of request->sched.link,
-the list maintenance will still be incurred. Using request->sched.link
-remains a convenient interface.
+CI Bug Log - changes from CI_DRM_9694 -> Patchwork_19529
+====================================================
 
-> 
-> > -     struct rb_node node;
-> >       int priority;
-> > +
-> > +     int level;
-> > +     struct i915_priolist *next[I915_PRIOLIST_HEIGHT];
-> 
-> Does every node need maximum height or you could allocated depending on 
-> current height?
+Summary
+-------
 
-Every slab allocation here is a power of 2, so there are only a few
-different options that are worthwhile (on 64b the only other choice is
-[4], unless you want to go larger to [28]). It did not feel like enough
-benefit to justify the extra code.
+  **FAILURE**
 
-> > -static void assert_priolists(struct i915_sched_engine * const se)
-> > -{
-> > -     struct rb_node *rb;
-> > -     long last_prio;
-> > -
-> > -     if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-> > -             return;
-> > -
-> > -     GEM_BUG_ON(rb_first_cached(&se->queue) !=
-> > -                rb_first(&se->queue.rb_root));
-> > -
-> > -     last_prio = INT_MAX;
-> > -     for (rb = rb_first_cached(&se->queue); rb; rb = rb_next(rb)) {
-> > -             const struct i915_priolist *p = to_priolist(rb);
-> > -
-> > -             GEM_BUG_ON(p->priority > last_prio);
-> > -             last_prio = p->priority;
-> > -     }
-> > +     root->prng = next_pseudo_random32(root->prng);
-> > +     return  __ffs(root->prng) / 2;
-> 
-> Where is the relationship to I915_PRIOLIST_HEIGHT? Feels root->prng % 
-> I915_PRIOLIST_HEIGHT would be more obvious here unless I am terribly 
-> mistaken. Or at least put a comment saying why the hack.
+  Serious unknown changes coming with Patchwork_19529 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_19529, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-HEIGHT is the maximum possible for our struct. skiplists only want to
-increment the height of the tree one step at a time. So we choose a level
-with decreasing probability, and then limit that to the maximum height of
-the current tree + 1, clamped to HEIGHT.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/index.html
 
-You might notice that unlike traditional skiplists, this uses a
-probability of 0.25 for each additional level. A neat trick discovered by
-Con Kolivas (I haven't found it mentioned elsewhere) as the cost of the
-extra level (using P=.5) is the same as the extra chain length with
-P=.25. So you can scale to higher number of requests by packing more
-requests into each level.
+Possible new issues
+-------------------
 
-So that is split between randomly choosing a level and then working out
-the height of the node.
+  Here are the unknown changes that may have been introduced in Patchwork_19529:
 
-> >   static struct list_head *
-> >   lookup_priolist(struct intel_engine_cs *engine, int prio)
-> >   {
-> > +     struct i915_priolist *update[I915_PRIOLIST_HEIGHT];
-> >       struct i915_sched_engine * const se = &engine->active;
-> > -     struct i915_priolist *p;
-> > -     struct rb_node **parent, *rb;
-> > -     bool first = true;
-> > -
-> > -     lockdep_assert_held(&engine->active.lock);
-> > -     assert_priolists(se);
-> > +     struct i915_priolist_root *root = &se->queue;
-> > +     struct i915_priolist *pl, *tmp;
-> > +     int lvl;
-> >   
-> > +     lockdep_assert_held(&se->lock);
-> >       if (unlikely(se->no_priolist))
-> >               prio = I915_PRIORITY_NORMAL;
-> >   
-> > +     for_each_priolist(pl, root) { /* recycle any empty elements before us */
-> > +             if (pl->priority >= prio || !list_empty(&pl->requests))
-> > +                     break;
-> > +
-> > +             i915_priolist_advance(root, pl);
-> > +     }
-> > +
-> >   find_priolist:
-> > -     /* most positive priority is scheduled first, equal priorities fifo */
-> > -     rb = NULL;
-> > -     parent = &se->queue.rb_root.rb_node;
-> > -     while (*parent) {
-> > -             rb = *parent;
-> > -             p = to_priolist(rb);
-> > -             if (prio > p->priority) {
-> > -                     parent = &rb->rb_left;
-> > -             } else if (prio < p->priority) {
-> > -                     parent = &rb->rb_right;
-> > -                     first = false;
-> > -             } else {
-> > -                     return &p->requests;
-> > -             }
-> > +     pl = &root->sentinel;
-> > +     lvl = pl->level;
-> > +     while (lvl >= 0) {
-> > +             while (tmp = pl->next[lvl], tmp->priority >= prio)
-> > +                     pl = tmp;
-> > +             if (pl->priority == prio)
-> > +                     goto out;
-> > +             update[lvl--] = pl;
-> >       }
-> >   
-> >       if (prio == I915_PRIORITY_NORMAL) {
-> > -             p = &se->default_priolist;
-> > +             pl = &se->default_priolist;
-> > +     } else if (!pl_empty(&root->sentinel.requests)) {
-> > +             pl = pl_pop(&root->sentinel.requests);
-> >       } else {
-> > -             p = kmem_cache_alloc(global.slab_priorities, GFP_ATOMIC);
-> > +             pl = kmem_cache_alloc(global.slab_priorities, GFP_ATOMIC);
-> >               /* Convert an allocation failure to a priority bump */
-> > -             if (unlikely(!p)) {
-> > +             if (unlikely(!pl)) {
-> >                       prio = I915_PRIORITY_NORMAL; /* recurses just once */
-> >   
-> > -                     /* To maintain ordering with all rendering, after an
-> > +                     /*
-> > +                      * To maintain ordering with all rendering, after an
-> >                        * allocation failure we have to disable all scheduling.
-> >                        * Requests will then be executed in fifo, and schedule
-> >                        * will ensure that dependencies are emitted in fifo.
-> > @@ -260,18 +304,103 @@ lookup_priolist(struct intel_engine_cs *engine, int prio)
-> >               }
-> >       }
-> >   
-> > -     p->priority = prio;
-> > -     INIT_LIST_HEAD(&p->requests);
-> > +     pl->priority = prio;
-> > +     INIT_LIST_HEAD(&pl->requests);
-> >   
-> > -     rb_link_node(&p->node, rb, parent);
-> > -     rb_insert_color_cached(&p->node, &se->queue, first);
-> > +     lvl = random_level(root);
-> > +     if (lvl > root->sentinel.level) {
-> > +             if (root->sentinel.level < I915_PRIOLIST_HEIGHT - 1) {
-> > +                     lvl = ++root->sentinel.level;
-> 
-> root->sentinel.level is maximum currently populated height? So if 
-> random_level said insert at 4 but there are currently only 2 levels, 
-> height will grow by one only?
+### IGT changes ###
 
-Yes. The idea is keep the number of next[] as small as possible for the
-number of nodes in the tree. (Since the height of the tree is the
-constant overhead in list traversal.)
+#### Possible regressions ####
 
-> > +                     update[lvl] = &root->sentinel;
-> > +             } else {
-> > +                     lvl = I915_PRIOLIST_HEIGHT - 1;
-> 
-> But if maximum level already has been reached then this branch does not 
-> set anything to update[],
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
 
-at the next level.
+  
+Known issues
+------------
 
-> relying on the while loop earlier in the 
-> function has populated it? How should I think of the update array?
+  Here are the changes found in Patchwork_19529 that come from known issues:
 
-The update[] is the array of nodes just before the position we need to
-insert. So update[] needs only be the height of the tree at that time,
-and if we decide to grow the tree, update[height] will be the root node,
-as we will be the first in that level.
--Chris
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_linear_blits@basic:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-tgl-y/igt@gem_linear_blits@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-tgl-y/igt@gem_linear_blits@basic.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-FAIL][6] ([i915#2601])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ringfill@basic-all:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-tgl-y/igt@gem_ringfill@basic-all.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-tgl-y/igt@gem_ringfill@basic-all.html
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-7500u:       [DMESG-WARN][9] ([i915#2605]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-kbl-7500u/igt@i915_module_load@reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-kbl-7500u/igt@i915_module_load@reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
+  [i915#2601]: https://gitlab.freedesktop.org/drm/intel/issues/2601
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#2724]: https://gitlab.freedesktop.org/drm/intel/issues/2724
+  [i915#3014]: https://gitlab.freedesktop.org/drm/intel/issues/3014
+  [i915#3015]: https://gitlab.freedesktop.org/drm/intel/issues/3015
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9694 -> Patchwork_19529
+
+  CI-20190529: 20190529
+  CI_DRM_9694: 5f3b05c083d511d2d9e2b6a27eaec6a7cd1df842 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5976: 1d3b7bde430dd7ea946682d1df46a483b6a93272 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19529: 36dc93369a4c35ad575002de267bae94ec22154d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+36dc93369a4c drm/i915: Don't check tc_mode unless dealing with a TC PHY
+a0d3bbb9ac43 drm/i915: Move HDMI vswing programming to the right place
+eedf3240b968 drm/i915: Power up combo PHY lanes for for HDMI as well
+bd419ba25d70 drm/i915: Extract intel_ddi_power_up_lanes()
+d44689e35b85 drm/i915: Skip vswing programming for TBT
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/index.html
+
+--===============8245076888372108824==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/5] drm/i915: Skip vswing programming for TBT</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86402/">https://patchwork.freedesktop.org/series/86402/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9694 -&gt; Patchwork_19529</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_19529 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_19529, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19529:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19529 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_linear_blits@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-tgl-y/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-tgl-y/igt@gem_linear_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2601">i915#2601</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_ringfill@basic-all:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-tgl-y/igt@gem_ringfill@basic-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-tgl-y/igt@gem_ringfill@basic-all.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9694/fi-kbl-7500u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19529/fi-kbl-7500u/igt@i915_module_load@reload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 39)</h2>
+<p>Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9694 -&gt; Patchwork_19529</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9694: 5f3b05c083d511d2d9e2b6a27eaec6a7cd1df842 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5976: 1d3b7bde430dd7ea946682d1df46a483b6a93272 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19529: 36dc93369a4c35ad575002de267bae94ec22154d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>36dc93369a4c drm/i915: Don't check tc_mode unless dealing with a TC PHY<br />
+a0d3bbb9ac43 drm/i915: Move HDMI vswing programming to the right place<br />
+eedf3240b968 drm/i915: Power up combo PHY lanes for for HDMI as well<br />
+bd419ba25d70 drm/i915: Extract intel_ddi_power_up_lanes()<br />
+d44689e35b85 drm/i915: Skip vswing programming for TBT</p>
+
+</body>
+</html>
+
+--===============8245076888372108824==--
+
+--===============1450424091==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1450424091==--
