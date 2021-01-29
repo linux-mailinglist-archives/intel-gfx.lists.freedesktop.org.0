@@ -1,41 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C75B2308B56
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 18:23:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0366308B57
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 18:23:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBE1A6EB93;
-	Fri, 29 Jan 2021 17:22:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DB216EB94;
+	Fri, 29 Jan 2021 17:23:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD326EB93
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 17:22:57 +0000 (UTC)
-IronPort-SDR: 8wpQ8x9uLgu5+Ga07OmkthsmH1ffkUtrC5Em4VO4I5R0wllCgGJzVIrYLHoS3NHAJqq7b6m91R
- xMYLVLaE5yLQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="177892388"
-X-IronPort-AV: E=Sophos;i="5.79,386,1602572400"; d="scan'208";a="177892388"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2021 09:22:56 -0800
-IronPort-SDR: 3mbHJGLFsu5cBQODzyiHQvWJnz8CwdZLxOhctjJc7i1e4n4wRR2PiGXTtzAMWaXfuokKZkqkYp
- RLaGycIvE7Bw==
-X-IronPort-AV: E=Sophos;i="5.79,386,1602572400"; d="scan'208";a="365339613"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E109B6EB94
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 17:23:25 +0000 (UTC)
+IronPort-SDR: OEg+U5Ttejvo2yOqhOZrJ72ZuX/Dyg6/i2o0vfgCFta8ztItXsds0G5Kf43X5sEvNFqo4ZuZpW
+ vmwbSX+eDEEA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9879"; a="160227288"
+X-IronPort-AV: E=Sophos;i="5.79,386,1602572400"; d="scan'208";a="160227288"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2021 09:23:24 -0800
+IronPort-SDR: GO7Y3+5RdBjHWUBqa+nPhN8McZ8cZMRFCD6ebeUO6QrYWHfMQYUY8mG2DAlV32lpp2QyLvZA1j
+ ajuMIvTDGCCw==
+X-IronPort-AV: E=Sophos;i="5.79,386,1602572400"; d="scan'208";a="389388793"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2021 09:22:54 -0800
-Date: Fri, 29 Jan 2021 19:22:49 +0200
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2021 09:23:22 -0800
+Date: Fri, 29 Jan 2021 19:23:17 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210129172249.GD183052@ideak-desk.fi.intel.com>
+Message-ID: <20210129172317.GE183052@ideak-desk.fi.intel.com>
 References: <20210128155948.13678-1-ville.syrjala@linux.intel.com>
- <20210128155948.13678-4-ville.syrjala@linux.intel.com>
+ <20210128155948.13678-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210128155948.13678-4-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915: Move HDMI vswing programming
- to the right place
+In-Reply-To: <20210128155948.13678-5-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Don't check tc_mode unless
+ dealing with a TC PHY
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,99 +55,49 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 28, 2021 at 05:59:47PM +0200, Ville Syrjala wrote:
+On Thu, Jan 28, 2021 at 05:59:48PM +0200, Ville Syrjala wrote:
 > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > =
 
-> The documented programming sequence indicates the correct point
-> for the vswing programming is just before we enable the DDI.
-> Make it so.
+> We shouldn't really trust tc_mode on non-TC PHYs since we never
+> initialize it explicitly. So let's check for the PHY type first.
+> Fortunately TC_PORT_TBT_ALT happens to be zero so I don't think
+> there's an actual bug here, just a possibility for a future one
+> if someone rearranges the enum values.
 > =
 
 > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 30 ++++++++++++------------
->  1 file changed, 15 insertions(+), 15 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
 915/display/intel_ddi.c
-> index 8fbeb8c24efb..efcdf5499903 100644
+> index efcdf5499903..5bc5033a2dea 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3893,7 +3893,6 @@ static void intel_ddi_pre_enable_hdmi(struct intel_=
-atomic_state *state,
->  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
->  	struct intel_hdmi *intel_hdmi =3D &dig_port->hdmi;
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> -	int level =3D intel_ddi_hdmi_level(encoder, crtc_state);
+> @@ -3463,10 +3463,12 @@ icl_program_mg_dp_mode(struct intel_digital_port =
+*dig_port,
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(dig_port->base.base.dev);
+>  	enum tc_port tc_port =3D intel_port_to_tc(dev_priv, dig_port->base.port=
+);
+> +	enum phy phy =3D intel_port_to_phy(dev_priv, dig_port->base.port);
+>  	u32 ln0, ln1, pin_assignment;
+>  	u8 width;
 >  =
 
->  	intel_dp_dual_mode_set_tmds_output(intel_hdmi, true);
->  	intel_ddi_clk_select(encoder, crtc_state);
-> @@ -3904,20 +3903,6 @@ static void intel_ddi_pre_enable_hdmi(struct intel=
-_atomic_state *state,
+> -	if (dig_port->tc_mode =3D=3D TC_PORT_TBT_ALT)
+> +	if (!intel_phy_is_tc(dev_priv, phy) ||
+> +	    dig_port->tc_mode =3D=3D TC_PORT_TBT_ALT)
+>  		return;
 >  =
 
->  	icl_program_mg_dp_mode(dig_port, crtc_state);
->  =
-
-> -	if (INTEL_GEN(dev_priv) >=3D 12)
-> -		tgl_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else if (INTEL_GEN(dev_priv) =3D=3D 11)
-> -		icl_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else if (IS_CANNONLAKE(dev_priv))
-> -		cnl_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else if (IS_GEN9_LP(dev_priv))
-> -		bxt_ddi_vswing_sequence(encoder, crtc_state, level);
-> -	else
-> -		intel_prepare_hdmi_ddi_buffers(encoder, level);
-> -
-> -	if (IS_GEN9_BC(dev_priv))
-> -		skl_ddi_set_iboost(encoder, crtc_state, level);
-> -
->  	intel_ddi_enable_pipe_clock(encoder, crtc_state);
->  =
-
->  	dig_port->set_infoframes(encoder,
-> @@ -4293,6 +4278,7 @@ static void intel_enable_ddi_hdmi(struct intel_atom=
-ic_state *state,
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
->  	struct drm_connector *connector =3D conn_state->connector;
-> +	int level =3D intel_ddi_hdmi_level(encoder, crtc_state);
->  	enum port port =3D encoder->port;
->  =
-
->  	if (!intel_hdmi_handle_sink_scrambling(encoder, connector,
-> @@ -4302,6 +4288,20 @@ static void intel_enable_ddi_hdmi(struct intel_ato=
-mic_state *state,
->  			    "[CONNECTOR:%d:%s] Failed to configure sink scrambling/TMDS bit c=
-lock ratio\n",
->  			    connector->base.id, connector->name);
->  =
-
-> +	if (INTEL_GEN(dev_priv) >=3D 12)
-> +		tgl_ddi_vswing_sequence(encoder, crtc_state, level);
-> +	else if (INTEL_GEN(dev_priv) =3D=3D 11)
-> +		icl_ddi_vswing_sequence(encoder, crtc_state, level);
-> +	else if (IS_CANNONLAKE(dev_priv))
-> +		cnl_ddi_vswing_sequence(encoder, crtc_state, level);
-> +	else if (IS_GEN9_LP(dev_priv))
-> +		bxt_ddi_vswing_sequence(encoder, crtc_state, level);
-> +	else
-> +		intel_prepare_hdmi_ddi_buffers(encoder, level);
-
-It's not specified where to do this on HSW, but I assume it matches BDW:
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-> +
-> +	if (IS_GEN9_BC(dev_priv))
-> +		skl_ddi_set_iboost(encoder, crtc_state, level);
-> +
->  	/* Display WA #1143: skl,kbl,cfl */
->  	if (IS_GEN9_BC(dev_priv)) {
->  		/*
+>  	if (INTEL_GEN(dev_priv) >=3D 12) {
 > -- =
 
 > 2.26.2
