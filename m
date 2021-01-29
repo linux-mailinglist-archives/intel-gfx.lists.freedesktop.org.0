@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 294993086AE
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 08:46:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4872B3086CD
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 09:08:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78B416EA80;
-	Fri, 29 Jan 2021 07:45:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 977316EA83;
+	Fri, 29 Jan 2021 08:08:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34BAD6EA80
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 07:45:56 +0000 (UTC)
-IronPort-SDR: 2bV0gsALEFmIW3oWfKFn8nkyQyVScflUUIls1QtdHhCE8MrMfxjtkZBdfPiwf1WcLzBb9stwJI
- Bj+o4kdzzN8g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9878"; a="241905494"
-X-IronPort-AV: E=Sophos;i="5.79,384,1602572400"; d="scan'208";a="241905494"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2021 23:45:56 -0800
-IronPort-SDR: R6ketbj4fpPeZaaGmNP1uC4q5hCIq2Ksj2duIyorFsdFlUXx+Xc/0Fd5QaDFZ3+Nqet/q1KazJ
- xIHcSxcSnjrA==
-X-IronPort-AV: E=Sophos;i="5.79,384,1602572400"; d="scan'208";a="430895436"
-Received: from jjrevuel-mobl1.amr.corp.intel.com (HELO
- helsinki.ger.corp.intel.com) ([10.213.197.104])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2021 23:45:54 -0800
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Jan 2021 09:45:47 +0200
-Message-Id: <20210129074547.1721344-2-gwan-gyeong.mun@intel.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210129074547.1721344-1-gwan-gyeong.mun@intel.com>
-References: <20210129074547.1721344-1-gwan-gyeong.mun@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E51996EA83
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 08:08:01 +0000 (UTC)
+IronPort-SDR: uH9RgZ1t8Ky8XiqEIRDHd0NuZz4eijP2ZFNx9llcZ2KUsJBy8RJxvzu2YSa8P/CP7daTRDcvw1
+ Yemsxs+G46qg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9878"; a="179603761"
+X-IronPort-AV: E=Sophos;i="5.79,384,1602572400"; 
+ d="asc'?scan'208";a="179603761"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2021 00:08:01 -0800
+IronPort-SDR: yVTKzakdP97TDC0lm3l3VagqduesIIijqlFNTOIES9sQY4dSWzK/lQ/08HNCwC/Drgax0YU/ue
+ T5fN6cRvySjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,384,1602572400"; 
+ d="asc'?scan'208";a="409521674"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga002.fm.intel.com with ESMTP; 29 Jan 2021 00:08:00 -0800
+Date: Fri, 29 Jan 2021 15:52:59 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20210129075259.GU1538@zhen-hp.sh.intel.com>
+References: <20210129004933.29755-1-chris@chris-wilson.co.uk>
+ <20210129004933.29755-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v14 2/2] drm/i915/display: Support Multiple
- Transcoders' PSR status on debugfs
+In-Reply-To: <20210129004933.29755-2-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/gvt: Purge dev_priv->gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,49 +48,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0678343222=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW4gb3JkZXIgdG8gc3VwcG9ydCB0aGUgUFNSIHN0YXRlIG9mIGVhY2ggdHJhbnNjb2RlciwgaXQg
-YWRkcwppOTE1X3Bzcl9zdGF0dXMgdG8gc3ViLWRpcmVjdG9yeSBvZiBlYWNoIHRyYW5zY29kZXIu
-Cgp2MjogQ2hhbmdlIHVzaW5nIG9mIFN5bWJvbGljIHBlcm1pc3Npb25zICdTX0lSVUdPJyB0byB1
-c2luZyBvZiBvY3RhbAogICAgcGVybWlzc2lvbnMgJzA0NDQnCnY1OiBBZGRyZXNzZWQgSkphbmkg
-TmlrdWxhJ3MgcmV2aWV3IGNvbW1lbnRzCiAtIFJlbW92ZSBjaGVja2luZyBvZiBHZW4xMiBmb3Ig
-aTkxNV9wc3Jfc3RhdHVzLgogLSBBZGQgY2hlY2sgb2YgSEFTX1BTUigpCiAtIFJlbW92ZSBtZWFu
-aW5nbGVzcyBjaGVjayByb3V0aW5lLgoKU2lnbmVkLW9mZi1ieTogR3dhbi1neWVvbmcgTXVuIDxn
-d2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPgpDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
-ZS5zb3V6YUBpbnRlbC5jb20+CkNjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29t
-PgpDYzogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4KUmV2aWV3ZWQt
-Ynk6IEFuc2h1bWFuIEd1cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+Ci0tLQogLi4uL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jIHwgMTYgKysrKysrKysr
-KysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYwppbmRleCBi
-MWJkYTFmNWVmMTYuLmQ2ZTRhOTIzN2JkYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jCkBAIC0yMjExLDYgKzIyMTEsMTYg
-QEAgc3RhdGljIGludCBpOTE1X2hkY3Bfc2lua19jYXBhYmlsaXR5X3Nob3coc3RydWN0IHNlcV9m
-aWxlICptLCB2b2lkICpkYXRhKQogfQogREVGSU5FX1NIT1dfQVRUUklCVVRFKGk5MTVfaGRjcF9z
-aW5rX2NhcGFiaWxpdHkpOwogCitzdGF0aWMgaW50IGk5MTVfcHNyX3N0YXR1c19zaG93KHN0cnVj
-dCBzZXFfZmlsZSAqbSwgdm9pZCAqZGF0YSkKK3sKKwlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29u
-bmVjdG9yID0gbS0+cHJpdmF0ZTsKKwlzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwID0KKwkJaW50
-ZWxfYXR0YWNoZWRfZHAodG9faW50ZWxfY29ubmVjdG9yKGNvbm5lY3RvcikpOworCisJcmV0dXJu
-IGludGVsX3Bzcl9zdGF0dXMobSwgaW50ZWxfZHApOworfQorREVGSU5FX1NIT1dfQVRUUklCVVRF
-KGk5MTVfcHNyX3N0YXR1cyk7CisKICNkZWZpbmUgTFBTUF9DQVBBQkxFKENPTkQpIChDT05EID8g
-c2VxX3B1dHMobSwgIkxQU1A6IGNhcGFibGVcbiIpIDogXAogCQkJCXNlcV9wdXRzKG0sICJMUFNQ
-OiBpbmNhcGFibGVcbiIpKQogCkBAIC0yMzg2LDYgKzIzOTYsMTIgQEAgaW50IGludGVsX2Nvbm5l
-Y3Rvcl9kZWJ1Z2ZzX2FkZChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQogCQkJCSAg
-ICBjb25uZWN0b3IsICZpOTE1X3Bzcl9zaW5rX3N0YXR1c19mb3BzKTsKIAl9CiAKKwlpZiAoSEFT
-X1BTUihkZXZfcHJpdikgJiYKKwkgICAgY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9PSBEUk1f
-TU9ERV9DT05ORUNUT1JfZURQKSB7CisJCWRlYnVnZnNfY3JlYXRlX2ZpbGUoImk5MTVfcHNyX3N0
-YXR1cyIsIDA0NDQsIHJvb3QsCisJCQkJICAgIGNvbm5lY3RvciwgJmk5MTVfcHNyX3N0YXR1c19m
-b3BzKTsKKwl9CisKIAlpZiAoY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9PSBEUk1fTU9ERV9D
-T05ORUNUT1JfRGlzcGxheVBvcnQgfHwKIAkgICAgY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSA9
-PSBEUk1fTU9ERV9DT05ORUNUT1JfSERNSUEgfHwKIAkgICAgY29ubmVjdG9yLT5jb25uZWN0b3Jf
-dHlwZSA9PSBEUk1fTU9ERV9DT05ORUNUT1JfSERNSUIpIHsKLS0gCjIuMzAuMAoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+--===============0678343222==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="W5WqUoFLvi1M7tJE"
+Content-Disposition: inline
+
+
+--W5WqUoFLvi1M7tJE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2021.01.29 00:49:33 +0000, Chris Wilson wrote:
+> Use the right intel_gt stored as a backpointer in intel_vgpu.
+>=20
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+
+Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+
+I'll queue these two. Thanks!
+
+>  drivers/gpu/drm/i915/gvt/execlist.c  | 8 +++-----
+>  drivers/gpu/drm/i915/gvt/scheduler.c | 3 +--
+>  2 files changed, 4 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/gvt/execlist.c b/drivers/gpu/drm/i915/g=
+vt/execlist.c
+> index 158873f269b1..c8dcda6d4f0d 100644
+> --- a/drivers/gpu/drm/i915/gvt/execlist.c
+> +++ b/drivers/gpu/drm/i915/gvt/execlist.c
+> @@ -522,12 +522,11 @@ static void init_vgpu_execlist(struct intel_vgpu *v=
+gpu,
+>  static void clean_execlist(struct intel_vgpu *vgpu,
+>  			   intel_engine_mask_t engine_mask)
+>  {
+> -	struct drm_i915_private *dev_priv =3D vgpu->gvt->gt->i915;
+> -	struct intel_engine_cs *engine;
+>  	struct intel_vgpu_submission *s =3D &vgpu->submission;
+> +	struct intel_engine_cs *engine;
+>  	intel_engine_mask_t tmp;
+> =20
+> -	for_each_engine_masked(engine, &dev_priv->gt, engine_mask, tmp) {
+> +	for_each_engine_masked(engine, vgpu->gvt->gt, engine_mask, tmp) {
+>  		kfree(s->ring_scan_buffer[engine->id]);
+>  		s->ring_scan_buffer[engine->id] =3D NULL;
+>  		s->ring_scan_buffer_size[engine->id] =3D 0;
+> @@ -537,11 +536,10 @@ static void clean_execlist(struct intel_vgpu *vgpu,
+>  static void reset_execlist(struct intel_vgpu *vgpu,
+>  			   intel_engine_mask_t engine_mask)
+>  {
+> -	struct drm_i915_private *dev_priv =3D vgpu->gvt->gt->i915;
+>  	struct intel_engine_cs *engine;
+>  	intel_engine_mask_t tmp;
+> =20
+> -	for_each_engine_masked(engine, &dev_priv->gt, engine_mask, tmp)
+> +	for_each_engine_masked(engine, vgpu->gvt->gt, engine_mask, tmp)
+>  		init_vgpu_execlist(vgpu, engine);
+>  }
+> =20
+> diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/=
+gvt/scheduler.c
+> index 43f31c2eab14..a55ae50dbbe1 100644
+> --- a/drivers/gpu/drm/i915/gvt/scheduler.c
+> +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+> @@ -1015,13 +1015,12 @@ void intel_vgpu_clean_workloads(struct intel_vgpu=
+ *vgpu,
+>  				intel_engine_mask_t engine_mask)
+>  {
+>  	struct intel_vgpu_submission *s =3D &vgpu->submission;
+> -	struct drm_i915_private *dev_priv =3D vgpu->gvt->gt->i915;
+>  	struct intel_engine_cs *engine;
+>  	struct intel_vgpu_workload *pos, *n;
+>  	intel_engine_mask_t tmp;
+> =20
+>  	/* free the unsubmited workloads in the queues. */
+> -	for_each_engine_masked(engine, &dev_priv->gt, engine_mask, tmp) {
+> +	for_each_engine_masked(engine, vgpu->gvt->gt, engine_mask, tmp) {
+>  		list_for_each_entry_safe(pos, n,
+>  			&s->workload_q_head[engine->id], list) {
+>  			list_del_init(&pos->list);
+> --=20
+> 2.20.1
+>=20
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--W5WqUoFLvi1M7tJE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYBO+1QAKCRCxBBozTXgY
+J6PPAKCKciKxt47uq2uIFy8oFW1AOIzHiACeMBMAc6nlFrxeChzBDYJAyTfdgUo=
+=LOp5
+-----END PGP SIGNATURE-----
+
+--W5WqUoFLvi1M7tJE--
+
+--===============0678343222==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0678343222==--
