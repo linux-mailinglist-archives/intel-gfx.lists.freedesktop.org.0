@@ -1,34 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E24263087C7
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 11:26:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDAA33087CC
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 11:31:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4461C6EAC2;
-	Fri, 29 Jan 2021 10:26:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 338B16EAC5;
+	Fri, 29 Jan 2021 10:31:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 025086EAC2
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 10:26:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F15B6EAC8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 10:31:06 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23734584-1500050 for multiple; Fri, 29 Jan 2021 10:26:18 +0000
+ 23734644-1500050 for multiple; Fri, 29 Jan 2021 10:31:00 +0000
 MIME-Version: 1.0
-In-Reply-To: <dd2ca70a-a940-e475-6968-b63d28c8fd66@linux.intel.com>
+In-Reply-To: <20210128225604.GA20650@sdutt-i7>
 References: <20210125140136.10494-1-chris@chris-wilson.co.uk>
  <20210125140136.10494-20-chris@chris-wilson.co.uk>
- <7537d75b-3292-05aa-1ef2-b65aca4d3d73@linux.intel.com>
- <161185117340.2943.10174190803342821813@build.alporthouse.com>
- <dd2ca70a-a940-e475-6968-b63d28c8fd66@linux.intel.com>
+ <20210128225604.GA20650@sdutt-i7>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Jan 2021 10:26:17 +0000
-Message-ID: <161191597709.867.10401094679429655002@build.alporthouse.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Date: Fri, 29 Jan 2021 10:30:58 +0000
+Message-ID: <161191625882.867.12917284563227933093@build.alporthouse.com>
 User-Agent: alot/0.9
 Subject: Re: [Intel-gfx] [PATCH 20/41] drm/i915: Replace priolist rbtree
  with a skiplist
@@ -44,79 +41,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: thomas.hellstrom@intel.com
+Cc: intel-gfx@lists.freedesktop.org, thomas.hellstrom@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-29 09:37:27)
-> 
-> On 28/01/2021 16:26, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2021-01-28 15:56:19)
-> 
-> >>> -static void assert_priolists(struct i915_sched_engine * const se)
-> >>> -{
-> >>> -     struct rb_node *rb;
-> >>> -     long last_prio;
-> >>> -
-> >>> -     if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-> >>> -             return;
-> >>> -
-> >>> -     GEM_BUG_ON(rb_first_cached(&se->queue) !=
-> >>> -                rb_first(&se->queue.rb_root));
-> >>> -
-> >>> -     last_prio = INT_MAX;
-> >>> -     for (rb = rb_first_cached(&se->queue); rb; rb = rb_next(rb)) {
-> >>> -             const struct i915_priolist *p = to_priolist(rb);
-> >>> -
-> >>> -             GEM_BUG_ON(p->priority > last_prio);
-> >>> -             last_prio = p->priority;
-> >>> -     }
-> >>> +     root->prng = next_pseudo_random32(root->prng);
-> >>> +     return  __ffs(root->prng) / 2;
-> >>
-> >> Where is the relationship to I915_PRIOLIST_HEIGHT? Feels root->prng %
-> >> I915_PRIOLIST_HEIGHT would be more obvious here unless I am terribly
-> >> mistaken. Or at least put a comment saying why the hack.
+Quoting Matthew Brost (2021-01-28 22:56:04)
+> On Mon, Jan 25, 2021 at 02:01:15PM +0000, Chris Wilson wrote:
+> > Replace the priolist rbtree with a skiplist. The crucial difference is
+> > that walking and removing the first element of a skiplist is O(1), but
+> > O(lgN) for an rbtree, as we need to rebalance on remove. This is a
+> > hindrance for submission latency as it occurs between picking a request
+> > for the priolist and submitting it to hardware, as well effectively
+> > trippling the number of O(lgN) operations required under the irqoff lock.
+> > This is critical to reducing the latency jitter with multiple clients.
 > > 
-> > HEIGHT is the maximum possible for our struct. skiplists only want to
-> > increment the height of the tree one step at a time. So we choose a level
-> > with decreasing probability, and then limit that to the maximum height of
-> > the current tree + 1, clamped to HEIGHT.
+> > The downsides to skiplists are that lookup/insertion is only
+> > probablistically O(lgN) and there is a significant memory penalty to
+> > as each skip node is larger than the rbtree equivalent. Furthermore, we
+> > don't use dynamic arrays for the skiplist, so the allocation is fixed,
+> > and imposes an upper bound on the scalability wrt to the number of
+> > inflight requests.
 > > 
-> > You might notice that unlike traditional skiplists, this uses a
-> > probability of 0.25 for each additional level. A neat trick discovered by
-> > Con Kolivas (I haven't found it mentioned elsewhere) as the cost of the
-> > extra level (using P=.5) is the same as the extra chain length with
-> > P=.25. So you can scale to higher number of requests by packing more
-> > requests into each level.
-> > 
-> > So that is split between randomly choosing a level and then working out
-> > the height of the node.
 > 
-> Choosing levels with decreasing probability by the virtue of using ffs 
-> on a random number? Or because (BITS_PER_TYPE(u32) / 2) is greater than 
-> I915_PRIOLIST_HEIGHT?
+> This is a fun data structure but IMO might be overkill to maintain this
+> code in the i915. The UMDs have effectively agreed to use only 3 levels,
+> is O(lgN) where N == 3 really a big deal? With GuC submission we will
+> statically map all user levels into 3 buckets. If we are doing that, do
+> we even need a complex data structure? i.e. Could use just use can
+> array of linked lists?
 
-        /*
-         * Given a uniform distribution of random numbers over the u32, then
-         * the probability each bit is unset is P=0.5. The probability of a
-         * successive sequence of bits being unset is P(n) = 0.5^n [n > 0].
-         *   P(level:1) = 0.5
-         *   P(level:2) = 0.25
-         *   P(level:3) = 0.125
-         *   P(level:4) = 0.0625
-         *   ...
-         * So we can use ffs() on a good random number generator to pick our
-         * level. We divide by two to reduce the probability of choosing a
-         * level to .25, as the cost of descending a level is the same as
-         * following an extra link in the chain at that level (so we can
-         * pack more nodes into fewer levels without incurring extra cost,
-         * and allow scaling to higher volumes of requests without expanding
-         * the height of the skiplist).
-         */
-
+Because we need to scale the bst to handle a unqiue key per request with
+thousands of requests [this is not only about priorities]. And as you
+will see from the results, even with just a single priority in the system
+(so one entry in either the skiplist or rbtree), the skiplist is beating 
+the rbtree as measured by the lock hold time around insert/dequeue of
+requests. That surprised me.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
