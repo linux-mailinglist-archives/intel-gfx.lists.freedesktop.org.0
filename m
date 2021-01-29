@@ -2,34 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD912308791
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 10:53:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48F953087AE
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 11:09:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27B006EAAF;
-	Fri, 29 Jan 2021 09:53:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0DD56EAB8;
+	Fri, 29 Jan 2021 10:09:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 172AB6EAAF;
- Fri, 29 Jan 2021 09:53:01 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23734311-1500050 for multiple; Fri, 29 Jan 2021 09:52:59 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ED29D6EAB0;
+ Fri, 29 Jan 2021 10:09:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E5346A0BA8;
+ Fri, 29 Jan 2021 10:09:38 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <7b1ef598-71d0-e289-1288-a09d1b3ad977@linux.intel.com>
-References: <20210126130505.2938391-1-chris@chris-wilson.co.uk>
- <20210126130505.2938391-2-chris@chris-wilson.co.uk>
- <7b1ef598-71d0-e289-1288-a09d1b3ad977@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Jan 2021 09:52:57 +0000
-Message-ID: <161191397768.867.9069693179059780036@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH i-g-t 2/2] i915/sysfs_clients: Check that
- client ids are cyclic
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Fri, 29 Jan 2021 10:09:38 -0000
+Message-ID: <161191497890.15523.475603806251655275@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210129080043.24614-1-anshuman.gupta@intel.com>
+In-Reply-To: <20210129080043.24614-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/debugfs=3A_HDCP_capability_enc_NULL_check?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,185 +38,258 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1785569845=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-01-29 09:18:50)
-> 
-> 
-> On 26/01/2021 13:05, Chris Wilson wrote:
-> > The client id used is a cyclic allocator as that reduces the likelihood
-> > of userspace seeing the same id used again (and so confusing the new
-> > client as the old). Verify that each new client has an id greater than
-> > the last.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> > ---
-> >   tests/i915/sysfs_clients.c | 129 +++++++++++++++++++++++++++++++------
-> >   1 file changed, 108 insertions(+), 21 deletions(-)
-> > 
-> > diff --git a/tests/i915/sysfs_clients.c b/tests/i915/sysfs_clients.c
-> > index a3a1f81e1..d2c1ebc5f 100644
-> > --- a/tests/i915/sysfs_clients.c
-> > +++ b/tests/i915/sysfs_clients.c
-> > @@ -8,6 +8,7 @@
-> >   #include <errno.h>
-> >   #include <fcntl.h>
-> >   #include <inttypes.h>
-> > +#include <limits.h>
-> >   #include <math.h>
-> >   #include <sched.h>
-> >   #include <sys/socket.h>
-> > @@ -47,6 +48,8 @@
-> >   #define assert_within_epsilon(x, ref, tolerance) \
-> >       __assert_within_epsilon(x, ref, tolerance / 100., tolerance / 100.)
-> >   
-> > +#define BUFSZ 280
-> > +
-> >   #define MI_BATCH_BUFFER_START (0x31 << 23)
-> >   #define MI_BATCH_BUFFER_END (0xa << 23)
-> >   #define MI_ARB_CHECK (0x5 << 23)
-> > @@ -75,7 +78,7 @@ static void pidname(int i915, int clients)
-> >   {
-> >       struct dirent *de;
-> >       int sv[2], rv[2];
-> > -     char buf[280];
-> > +     char buf[BUFSZ];
-> >       int me = -1;
-> >       long count;
-> >       pid_t pid;
-> > @@ -180,7 +183,7 @@ static long count_clients(int clients)
-> >   {
-> >       struct dirent *de;
-> >       long count = 0;
-> > -     char buf[280];
-> > +     char buf[BUFSZ];
-> >       DIR *dir;
-> >   
-> >       dir = fdopendir(dup(clients));
-> > @@ -229,32 +232,113 @@ static void create(int i915, int clients)
-> >       igt_assert_eq(count_clients(clients), 1);
-> >   }
-> >   
-> > +static const char *find_client(int clients, pid_t pid, char *buf)
-> > +{
-> > +     DIR *dir = fdopendir(dup(clients));
-> > +
-> > +     /* Reading a dir as it changes does not appear to be stable, SEP */
-> > +     for (int pass = 0; pass < 2; pass++) {
-> > +             struct dirent *de;
-> > +
-> > +             rewinddir(dir);
-> > +             while ((de = readdir(dir))) {
-> > +                     if (!isdigit(de->d_name[0]))
-> > +                             continue;
-> > +
-> > +                     snprintf(buf, BUFSZ, "%s/pid", de->d_name);
-> > +                     igt_sysfs_read(clients, buf, buf, sizeof(buf));
-> > +                     if (atoi(buf) != pid)
-> > +                             continue;
-> > +
-> > +                     strncpy(buf, de->d_name, BUFSZ);
-> > +                     goto out;
-> > +             }
-> > +     }
-> > +     *buf = '\0';
-> > +out:
-> > +     closedir(dir);
-> > +     return buf;
-> > +}
-> > +
-> >   static int find_me(int clients, pid_t pid)
-> >   {
-> > -     struct dirent *de;
-> > -     char buf[280];
-> > -     int me = -1;
-> > -     DIR *dir;
-> > +     char buf[BUFSZ];
-> >   
-> > -     dir = fdopendir(dup(clients));
-> > -     igt_assert(dir);
-> > -     rewinddir(dir);
-> > +     return openat(clients,
-> > +                   find_client(clients, pid, buf),
-> > +                   O_DIRECTORY | O_RDONLY);
-> > +}
-> >   
-> > -     while ((de = readdir(dir))) {
-> > -             if (!isdigit(de->d_name[0]))
-> > -                     continue;
-> > +static int reopen_directory(int fd)
-> > +{
-> > +     char buf[BUFSZ];
-> > +     int dir;
-> >   
-> > -             snprintf(buf, sizeof(buf), "%s/pid", de->d_name);
-> > -             igt_sysfs_read(clients, buf, buf, sizeof(buf));
-> > -             if (atoi(buf) != pid)
-> > -                     continue;
-> > +     snprintf(buf, sizeof(buf), "/proc/self/fd/%d", fd);
-> > +     dir = open(buf, O_RDONLY);
-> 
-> Maybe O_DIRECTORY if it is open_directory.
-> 
-> > +     igt_assert_fd(dir);
-> >   
-> > -             me = openat(clients, de->d_name, O_DIRECTORY | O_RDONLY);
-> > -             break;
-> > +     return dir;
-> > +}
-> > +
-> > +static unsigned int my_id(int clients, pid_t pid)
-> > +{
-> > +     char buf[BUFSZ];
-> > +
-> > +     return atoi(find_client(clients, pid, buf));
-> > +}
-> > +
-> > +static unsigned int recycle_client(int i915, int clients)
-> > +{
-> > +     int device, client;
-> > +
-> > +     device = gem_reopen_driver(i915);
-> > +     client = my_id(clients, getpid());
-> > +     close(device);
-> > +
-> > +     return client;
-> > +}
-> > +
-> > +static void recycle(int i915, int clients)
-> > +{
-> > +     const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
-> > +
-> > +     /*
-> > +      * As we open and close clients, we do not expect to reuse old ids,
-> > +      * i.e. we use a cyclic ida. This reduces the likelihood of userspace
-> > +      * watchers becoming confused and mistaking the new client as a
-> > +      * continuation of the old.
-> > +      */
-> > +     igt_require(my_id(clients, getpid()) < INT_MAX / 2);
-> 
-> Hm this is a bit dodgy - it will cause "permanent" skips if running the 
-> test in a loop. Just for the client > last assert below? I guess it is 
-> hard to handle wrap with forked clients.
+--===============1785569845==
+Content-Type: multipart/alternative;
+ boundary="===============3040444357631075627=="
 
-It takes about a day to reach 2 billion ids on a fast machine. For CI, I
-think we are safe.
+--===============3040444357631075627==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-We could do the (int)(A - B) > 0 to handle the wrap, that would be more
-sensible.
+== Series Details ==
 
-[...]
+Series: drm/i915/debugfs: HDCP capability enc NULL check
+URL   : https://patchwork.freedesktop.org/series/86440/
+State : success
 
-> Okay better than nothing.
+== Summary ==
 
-But first we need to resolve the failure to find itself. :(
--Chris
+CI Bug Log - changes from CI_DRM_9698 -> Patchwork_19538
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19538 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@memory-alloc:
+    - fi-cml-u2:          NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@amdgpu/amd_basic@memory-alloc.html
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - fi-cml-u2:          NOTRUN -> [SKIP][2] ([i915#1208]) +1 similar issue
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@gem_exec_fence@basic-busy@bcs0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-cml-u2:          NOTRUN -> [SKIP][3] ([i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-cml-u2:          NOTRUN -> [SKIP][4] ([i915#1004]) +2 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-cml-u2:          NOTRUN -> [SKIP][5] ([fdo#109309]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-cml-u2:          NOTRUN -> [SKIP][6] ([fdo#109285])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-cml-u2:          NOTRUN -> [SKIP][7] ([fdo#109278] / [i915#533])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][8] -> [DMESG-WARN][9] ([i915#402]) +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9698/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [DMESG-WARN][10] ([i915#402]) -> [PASS][11] +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9698/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109309]: https://bugs.freedesktop.org/show_bug.cgi?id=109309
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1004]: https://gitlab.freedesktop.org/drm/intel/issues/1004
+  [i915#1208]: https://gitlab.freedesktop.org/drm/intel/issues/1208
+  [i915#1614]: https://gitlab.freedesktop.org/drm/intel/issues/1614
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Additional (2): fi-cml-u2 fi-cml-drallion 
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9698 -> Patchwork_19538
+
+  CI-20190529: 20190529
+  CI_DRM_9698: 4917e86d5a4ca50e451247a3607e0f1eb81eedba @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5978: e1e5b3fea2baafdae0160940ecb8bf0242703840 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19538: 830071064e9ecaa6b0a123e555b634e217d9135d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+830071064e9e drm/i915/debugfs: HDCP capability enc NULL check
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/index.html
+
+--===============3040444357631075627==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/debugfs: HDCP capability enc NULL check</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86440/">https://patchwork.freedesktop.org/series/86440/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9698 -&gt; Patchwork_19538</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19538 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@memory-alloc:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@amdgpu/amd_basic@memory-alloc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1208">i915#1208</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1004">i915#1004</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109309">fdo#109309</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-cml-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-cml-u2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9698/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_getparams_basic@basic-subslice-total:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9698/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19538/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Additional (2): fi-cml-u2 fi-cml-drallion <br />
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9698 -&gt; Patchwork_19538</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9698: 4917e86d5a4ca50e451247a3607e0f1eb81eedba @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5978: e1e5b3fea2baafdae0160940ecb8bf0242703840 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19538: 830071064e9ecaa6b0a123e555b634e217d9135d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>830071064e9e drm/i915/debugfs: HDCP capability enc NULL check</p>
+
+</body>
+</html>
+
+--===============3040444357631075627==--
+
+--===============1785569845==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1785569845==--
