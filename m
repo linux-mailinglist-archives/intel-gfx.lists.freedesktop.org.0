@@ -2,36 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D773086EC
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 09:16:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56044308735
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Jan 2021 10:05:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74D736EA9B;
-	Fri, 29 Jan 2021 08:16:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB1D06E463;
+	Fri, 29 Jan 2021 09:05:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CDD06EAAD
- for <intel-gfx@lists.freedesktop.org>; Fri, 29 Jan 2021 08:16:22 +0000 (UTC)
-IronPort-SDR: zYV04UxtVEJQHzN2S2w5sDWsU+MMabwnrOp4hm6H9jo9WLwbsqFSnyptMZ7GXCSY1UrJ8IkEWo
- r+sfXeLt6bpw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9878"; a="199228335"
-X-IronPort-AV: E=Sophos;i="5.79,384,1602572400"; d="scan'208";a="199228335"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2021 00:16:20 -0800
-IronPort-SDR: dVmckrITY7XILPdt9bvl0kUWa5/aDR2wODXC5rj3oDEjEGnpopFckA/63KC2kBccHNYwj8rGTQ
- SJLv/EELrILQ==
-X-IronPort-AV: E=Sophos;i="5.79,384,1602572400"; d="scan'208";a="352069918"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2021 00:16:19 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Jan 2021 13:30:43 +0530
-Message-Id: <20210129080043.24614-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8C9846E463;
+ Fri, 29 Jan 2021 09:05:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 86F42A47E9;
+ Fri, 29 Jan 2021 09:05:48 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability enc NULL check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Fri, 29 Jan 2021 09:05:48 -0000
+Message-ID: <161191114855.15523.9544961155815740918@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210129074547.1721344-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20210129074547.1721344-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv14=2C1/2=5D_drm/i915/display=3A_Su?=
+ =?utf-8?q?pport_PSR_Multiple_Instances?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +39,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DP-MST connector encoder initializes at modeset
-Adding a connector->encoder NULL check in order to
-avoid any NULL pointer dereference.
-intel_hdcp_enable() already handle this but debugfs
-can also invoke the intel_{hdcp,hdcp2_capable}.
-Handling it gracefully.
+== Series Details ==
 
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+Series: series starting with [v14,1/2] drm/i915/display: Support PSR Multiple Instances
+URL   : https://patchwork.freedesktop.org/series/86433/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index ae1371c36a32..58af323d189a 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -135,11 +135,16 @@ int intel_hdcp_read_valid_bksv(struct intel_digital_port *dig_port,
- /* Is HDCP1.4 capable on Platform and Sink */
- bool intel_hdcp_capable(struct intel_connector *connector)
- {
--	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-+	struct intel_digital_port *dig_port;
- 	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
- 	bool capable = false;
- 	u8 bksv[5];
- 
-+	if (!connector->encoder)
-+		return -ENODEV;
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+2beed3acee30 drm/i915/display: Support PSR Multiple Instances
+-:88: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#88: FILE: drivers/gpu/drm/i915/display/intel_display.h:420:
++#define for_each_intel_encoder_mask_can_psr(dev, intel_encoder, encoder_mask) \
++	list_for_each_entry((intel_encoder), &(dev)->mode_config.encoder_list, base.head) \
++		for_each_if(((encoder_mask) & drm_encoder_mask(&(intel_encoder)->base)) && \
++			    intel_encoder_can_psr(intel_encoder))
+
+-:88: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'intel_encoder' - possible side-effects?
+#88: FILE: drivers/gpu/drm/i915/display/intel_display.h:420:
++#define for_each_intel_encoder_mask_can_psr(dev, intel_encoder, encoder_mask) \
++	list_for_each_entry((intel_encoder), &(dev)->mode_config.encoder_list, base.head) \
++		for_each_if(((encoder_mask) & drm_encoder_mask(&(intel_encoder)->base)) && \
++			    intel_encoder_can_psr(intel_encoder))
+
+-:97: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#97: FILE: drivers/gpu/drm/i915/display/intel_display.h:429:
++#define for_each_intel_encoder_can_psr(dev, intel_encoder) \
++	for_each_intel_encoder((dev), (intel_encoder)) \
++		for_each_if(intel_encoder_can_psr(intel_encoder))
+
+-:97: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'intel_encoder' - possible side-effects?
+#97: FILE: drivers/gpu/drm/i915/display/intel_display.h:429:
++#define for_each_intel_encoder_can_psr(dev, intel_encoder) \
++	for_each_intel_encoder((dev), (intel_encoder)) \
++		for_each_if(intel_encoder_can_psr(intel_encoder))
+
+-:375: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'intel_dp' - possible side-effects?
+#375: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:1795:
++#define CAN_PSR(intel_dp)	(HAS_PSR(dp_to_i915(intel_dp)) && \
++				 (intel_dp)->psr.sink_support && \
++				 (intel_dp)->psr.source_support)
+
+-:1188: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#1188: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1230:
++					    crtc_state->uapi.encoder_mask) {
 +
-+	dig_port = intel_attached_dig_port(connector);
-+
- 	if (!shim)
- 		return capable;
- 
-@@ -156,11 +161,16 @@ bool intel_hdcp_capable(struct intel_connector *connector)
- /* Is HDCP2.2 capable on Platform and Sink */
- bool intel_hdcp2_capable(struct intel_connector *connector)
- {
--	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-+	struct intel_digital_port *dig_port;
- 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	bool capable = false;
- 
-+	if (!connector->encoder)
-+		return -ENODEV;
-+
-+	dig_port = intel_attached_dig_port(connector);
-+
- 	/* I915 support for HDCP2.2 */
- 	if (!hdcp->hdcp2_supported)
- 		return false;
--- 
-2.26.2
+
+-:1320: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1320: FILE: drivers/gpu/drm/i915/display/intel_psr.c:1523:
++		if (!intel_dp->psr.enabled ||
++		     (intel_dp->psr.enabled && intel_dp->psr.psr2_enabled)) {
+
+total: 2 errors, 0 warnings, 5 checks, 1731 lines checked
+84aa39bab08a drm/i915/display: Support Multiple Transcoders' PSR status on debugfs
+
 
 _______________________________________________
 Intel-gfx mailing list
