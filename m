@@ -2,31 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10A430A731
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 13:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF64630A7FB
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 13:50:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA4C6E49C;
-	Mon,  1 Feb 2021 12:07:16 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B75F96E3D0;
- Mon,  1 Feb 2021 12:07:14 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23760215-1500050 for multiple; Mon, 01 Feb 2021 12:07:10 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21A306E1B1;
+	Mon,  1 Feb 2021 12:50:43 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mblankhorst.nl (mblankhorst.nl
+ [IPv6:2a02:2308::216:3eff:fe92:dfa3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 480646E1B1
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 12:50:41 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  1 Feb 2021 13:50:37 +0100
+Message-Id: <20210201125037.1537079-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.30.0
+In-Reply-To: <20210128162612.927917-27-maarten.lankhorst@linux.intel.com>
+References: <20210128162612.927917-27-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210201115756.876351-1-tvrtko.ursulin@linux.intel.com>
-References: <20210201115756.876351-1-tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-Date: Mon, 01 Feb 2021 12:07:10 +0000
-Message-ID: <161218123064.27906.1183308463378840226@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH i-g-t] intel_gpu_top: Wrap interactive header
+Subject: [Intel-gfx] [PATCH] drm/i915: Make lrc_init_wa_ctx compatible with
+ ww locking, v3.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +35,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-02-01 11:57:56)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Slight improvement with regards to wrapping header components to fit
-> console width. If a single element is wider than max it can still
-> overflow but it should now work better for practical console widths.
-
-<----
-intel-gpu-top: Intel Kabylake (Gen9) @ /dev/dri/card0
- 900/ 949 MHz;   0% RC6;  6.97/18.42 W;        2 irqs/s
-      IMC reads:        6 MiB/s
-     IMC writes:        0 MiB/s
-
----->
-intel-gpu-top: Intel Kabylake (Gen9) @ /dev/dri/card0 -  903/ 954 MHz;   0% RC6
-    7.16/18.40 W;       14 irqs/s
-
-      IMC reads:       80 MiB/s
-     IMC writes:        0 MiB/s
-
-I thought it looked reasonably tidy, without adding any lines to the
-header.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+TWFrZSBjcmVhdGlvbiBzZXBhcmF0ZSBmcm9tIHBpbm5pbmcsIGluIG9yZGVyIHRvIHRha2UgdGhl
+IGxvY2sgb25seQpvbmNlLCBhbmQgcGluIHRoZSBtYXBwaW5nIHdpdGggdGhlIGxvY2sgaGVsZC4K
+CkNoYW5nZXMgc2luY2UgdjE6Ci0gUmViYXNlIG9uIHRvcCBvZiB1cHN0cmVhbSBjaGFuZ2VzLgpD
+aGFuZ2VzIHNpbmNlIHYyOgotIEZ1bGx5IGNsZWFyIHdhX2N0eCBvbiBlcnJvci4KClNpZ25lZC1v
+ZmYtYnk6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5j
+b20+ClJldmlld2VkLWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51
+eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMgfCA0
+OSArKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDM4IGluc2Vy
+dGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L2ludGVsX2xyYy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfbHJjLmMK
+aW5kZXggODUwOGI4ZDcwMWMxLi5hMmI5MTZkMjdhMzkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
+dGVsX2xyYy5jCkBAIC0xNDIxLDcgKzE0MjEsNyBAQCBnZW4xMF9pbml0X2luZGlyZWN0Y3R4X2Ji
+KHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSwgdTMyICpiYXRjaCkKIAogI2RlZmluZSBD
+VFhfV0FfQkJfU0laRSAoUEFHRV9TSVpFKQogCi1zdGF0aWMgaW50IGxyY19zZXR1cF93YV9jdHgo
+c3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQorc3RhdGljIGludCBscmNfY3JlYXRlX3dh
+X2N0eChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUpCiB7CiAJc3RydWN0IGRybV9pOTE1
+X2dlbV9vYmplY3QgKm9iajsKIAlzdHJ1Y3QgaTkxNV92bWEgKnZtYTsKQEAgLTE0MzcsMTAgKzE0
+MzcsNiBAQCBzdGF0aWMgaW50IGxyY19zZXR1cF93YV9jdHgoc3RydWN0IGludGVsX2VuZ2luZV9j
+cyAqZW5naW5lKQogCQlnb3RvIGVycjsKIAl9CiAKLQllcnIgPSBpOTE1X2dndHRfcGluKHZtYSwg
+TlVMTCwgMCwgUElOX0hJR0gpOwotCWlmIChlcnIpCi0JCWdvdG8gZXJyOwotCiAJZW5naW5lLT53
+YV9jdHgudm1hID0gdm1hOwogCXJldHVybiAwOwogCkBAIC0xNDUyLDkgKzE0NDgsNiBAQCBzdGF0
+aWMgaW50IGxyY19zZXR1cF93YV9jdHgoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQog
+dm9pZCBscmNfZmluaV93YV9jdHgoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQogewog
+CWk5MTVfdm1hX3VucGluX2FuZF9yZWxlYXNlKCZlbmdpbmUtPndhX2N0eC52bWEsIDApOwotCi0J
+LyogQ2FsbGVkIG9uIGVycm9yIHVud2luZCwgY2xlYXIgYWxsIGZsYWdzIHRvIHByZXZlbnQgZnVy
+dGhlciB1c2UgKi8KLQltZW1zZXQoJmVuZ2luZS0+d2FfY3R4LCAwLCBzaXplb2YoZW5naW5lLT53
+YV9jdHgpKTsKIH0KIAogdHlwZWRlZiB1MzIgKigqd2FfYmJfZnVuY190KShzdHJ1Y3QgaW50ZWxf
+ZW5naW5lX2NzICplbmdpbmUsIHUzMiAqYmF0Y2gpOwpAQCAtMTQ2Niw2ICsxNDU5LDcgQEAgdm9p
+ZCBscmNfaW5pdF93YV9jdHgoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQogCQkmd2Ff
+Y3R4LT5pbmRpcmVjdF9jdHgsICZ3YV9jdHgtPnBlcl9jdHgKIAl9OwogCXdhX2JiX2Z1bmNfdCB3
+YV9iYl9mbltBUlJBWV9TSVpFKHdhX2JiKV07CisJc3RydWN0IGk5MTVfZ2VtX3d3X2N0eCB3dzsK
+IAl2b2lkICpiYXRjaCwgKmJhdGNoX3B0cjsKIAl1bnNpZ25lZCBpbnQgaTsKIAlpbnQgZXJyOwpA
+QCAtMTQ5NCw3ICsxNDg4LDcgQEAgdm9pZCBscmNfaW5pdF93YV9jdHgoc3RydWN0IGludGVsX2Vu
+Z2luZV9jcyAqZW5naW5lKQogCQlyZXR1cm47CiAJfQogCi0JZXJyID0gbHJjX3NldHVwX3dhX2N0
+eChlbmdpbmUpOworCWVyciA9IGxyY19jcmVhdGVfd2FfY3R4KGVuZ2luZSk7CiAJaWYgKGVycikg
+ewogCQkvKgogCQkgKiBXZSBjb250aW51ZSBldmVuIGlmIHdlIGZhaWwgdG8gaW5pdGlhbGl6ZSBX
+QSBiYXRjaApAQCAtMTUwNyw3ICsxNTAxLDIyIEBAIHZvaWQgbHJjX2luaXRfd2FfY3R4KHN0cnVj
+dCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKIAkJcmV0dXJuOwogCX0KIAorCWlmICghZW5naW5l
+LT53YV9jdHgudm1hKQorCQlyZXR1cm47CisKKwlpOTE1X2dlbV93d19jdHhfaW5pdCgmd3csIHRy
+dWUpOworcmV0cnk6CisJZXJyID0gaTkxNV9nZW1fb2JqZWN0X2xvY2sod2FfY3R4LT52bWEtPm9i
+aiwgJnd3KTsKKwlpZiAoIWVycikKKwkJZXJyID0gaTkxNV9nZ3R0X3Bpbih3YV9jdHgtPnZtYSwg
+Jnd3LCAwLCBQSU5fSElHSCk7CisJaWYgKGVycikKKwkJZ290byBlcnI7CisKIAliYXRjaCA9IGk5
+MTVfZ2VtX29iamVjdF9waW5fbWFwKHdhX2N0eC0+dm1hLT5vYmosIEk5MTVfTUFQX1dCKTsKKwlp
+ZiAoSVNfRVJSKGJhdGNoKSkgeworCQllcnIgPSBQVFJfRVJSKGJhdGNoKTsKKwkJZ290byBlcnJf
+dW5waW47CisJfQogCiAJLyoKIAkgKiBFbWl0IHRoZSB0d28gd29ya2Fyb3VuZCBiYXRjaCBidWZm
+ZXJzLCByZWNvcmRpbmcgdGhlIG9mZnNldCBmcm9tIHRoZQpAQCAtMTUzMiw4ICsxNTQxLDI2IEBA
+IHZvaWQgbHJjX2luaXRfd2FfY3R4KHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKIAlf
+X2k5MTVfZ2VtX29iamVjdF9yZWxlYXNlX21hcCh3YV9jdHgtPnZtYS0+b2JqKTsKIAogCS8qIFZl
+cmlmeSB0aGF0IHdlIGNhbiBoYW5kbGUgZmFpbHVyZSB0byBzZXR1cCB0aGUgd2FfY3R4ICovCi0J
+aWYgKGVyciB8fCBpOTE1X2luamVjdF9wcm9iZV9lcnJvcihlbmdpbmUtPmk5MTUsIC1FTk9ERVYp
+KQotCQlscmNfZmluaV93YV9jdHgoZW5naW5lKTsKKwlpZiAoIWVycikKKwkJZXJyID0gaTkxNV9p
+bmplY3RfcHJvYmVfZXJyb3IoZW5naW5lLT5pOTE1LCAtRU5PREVWKTsKKworZXJyX3VucGluOgor
+CWlmIChlcnIpCisJCWk5MTVfdm1hX3VucGluKHdhX2N0eC0+dm1hKTsKK2VycjoKKwlpZiAoZXJy
+ID09IC1FREVBRExLKSB7CisJCWVyciA9IGk5MTVfZ2VtX3d3X2N0eF9iYWNrb2ZmKCZ3dyk7CisJ
+CWlmICghZXJyKQorCQkJZ290byByZXRyeTsKKwl9CisJaTkxNV9nZW1fd3dfY3R4X2ZpbmkoJnd3
+KTsKKworCWlmIChlcnIpIHsKKwkJaTkxNV92bWFfcHV0KGVuZ2luZS0+d2FfY3R4LnZtYSk7CisK
+KwkJLyogQ2xlYXIgYWxsIGZsYWdzIHRvIHByZXZlbnQgZnVydGhlciB1c2UgKi8KKwkJbWVtc2V0
+KHdhX2N0eCwgMCwgc2l6ZW9mKCp3YV9jdHgpKTsKKwl9CiB9CiAKIHN0YXRpYyB2b2lkIHN0X3J1
+bnRpbWVfdW5kZXJmbG93KHN0cnVjdCBpbnRlbF9jb250ZXh0X3N0YXRzICpzdGF0cywgczMyIGR0
+KQotLSAKMi4zMC4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
