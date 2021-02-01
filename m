@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECC0430B1A5
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 21:38:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6627330B1E2
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 22:08:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1CC76E87A;
-	Mon,  1 Feb 2021 20:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9353A6E880;
+	Mon,  1 Feb 2021 21:08:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0172F6E877;
- Mon,  1 Feb 2021 20:38:24 +0000 (UTC)
-IronPort-SDR: x7KvVZ888hgY5JW2mOcRTgAGmxDQyWDVDKArVIv+LDASOpQeRrjDzE0b2Fp18em0CVOuEFXqN/
- IklU2pg+x4NQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="265581888"
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="265581888"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 12:38:23 -0800
-IronPort-SDR: xnMSdeB+pnWgyAqAmJK6PqPQ+buWkqvkSZA3zBmOf8XQlBAcnDo3HBTpnYVt8Uc3eduSYDqRX9
- UKka4KWDwmnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="479243912"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 01 Feb 2021 12:38:19 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 01 Feb 2021 22:38:18 +0200
-Date: Mon, 1 Feb 2021 22:38:18 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Message-ID: <YBhmuiFZ4ZsQ7Y+Z@intel.com>
-References: <20201218103723.30844-1-ankit.k.nautiyal@intel.com>
- <20201218103723.30844-10-ankit.k.nautiyal@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B3A56E87F;
+ Mon,  1 Feb 2021 21:08:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0460EA9A42;
+ Mon,  1 Feb 2021 21:08:05 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201218103723.30844-10-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v7 09/15] drm/i915: Add support for starting
- FRL training for HDMI2.1 via PCON
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Mon, 01 Feb 2021 21:08:04 -0000
+Message-ID: <161221368498.18680.13867079761249145443@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Clean_up_the_DDI_clock_routing_mess?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,220 +38,273 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1658174151=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 18, 2020 at 04:07:17PM +0530, Ankit Nautiyal wrote:
-> This patch adds functions to start FRL training for an HDMI2.1 sink,
-> connected via a PCON as a DP branch device.
-> This patch also adds a new structure for storing frl training related
-> data, when FRL training is completed.
-> =
+--===============1658174151==
+Content-Type: multipart/alternative;
+ boundary="===============4121449862139782746=="
 
-> v2: As suggested by Uma Shankar:
-> -renamed couple of variables for better clarity
-> -tweaked the macros used for correct semantics for true/false
-> -fixed other styling issues.
-> =
+--===============4121449862139782746==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> v3: Completed the TODO for condition for going to FRL mode.
-> Modified the condition to determine the required FRL b/w
-> based only on the Pcon and Sink's max FRL values.
-> Moved the frl structure initialization to intel_dp_init_connector().
-> =
+== Series Details ==
 
-> v4: Fixed typo in initialization of frl structure.
-> =
+Series: drm/i915: Clean up the DDI clock routing mess
+URL   : https://patchwork.freedesktop.org/series/86544/
+State : success
 
-> v5: Always use FRL if its possible, instead of enabling only for
-> higher modes as done in v3.
-> =
+== Summary ==
 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com> (v2)
-> ---
->  .../drm/i915/display/intel_display_types.h    |   7 +
->  drivers/gpu/drm/i915/display/intel_dp.c       | 151 ++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
->  3 files changed, 160 insertions(+)
-<snip>
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 0596d6c24e73..43027a6d5e5e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3891,6 +3891,8 @@ static void intel_disable_dp(struct intel_atomic_st=
-ate *state,
->  	intel_edp_backlight_off(old_conn_state);
->  	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
->  	intel_edp_panel_off(intel_dp);
-> +	intel_dp->frl.is_trained =3D false;
-> +	intel_dp->frl.trained_rate_gbps =3D 0;
+CI Bug Log - changes from CI_DRM_9713 -> Patchwork_19556
+====================================================
 
-This stuff looks rather misplaced (or missing from elsewhere). This code
-doesn't even get executed on modern platforms.
+Summary
+-------
 
-<snip>
-> +static int intel_dp_pcon_start_frl_training(struct intel_dp *intel_dp)
-> +{
-> +#define PCON_EXTENDED_TRAIN_MODE (1 > 0)
-> +#define PCON_CONCURRENT_MODE (1 > 0)
-> +#define PCON_SEQUENTIAL_MODE !PCON_CONCURRENT_MODE
-> +#define PCON_NORMAL_TRAIN_MODE !PCON_EXTENDED_TRAIN_MODE
+  **SUCCESS**
 
-All of that looks like nonsense. What is it supposed to do?
+  No regressions found.
 
-> +#define TIMEOUT_FRL_READY_MS 500
-> +#define TIMEOUT_HDMI_LINK_ACTIVE_MS 1000
-> +
-> +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> +	int max_frl_bw, max_pcon_frl_bw, max_edid_frl_bw, ret;
-> +	u8 max_frl_bw_mask =3D 0, frl_trained_mask;
-> +	bool is_active;
-> +
-> +	ret =3D drm_dp_pcon_reset_frl_config(&intel_dp->aux);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	max_pcon_frl_bw =3D intel_dp->dfp.pcon_max_frl_bw;
-> +	drm_dbg(&i915->drm, "PCON max rate =3D %d Gbps\n", max_pcon_frl_bw);
-> +
-> +	max_edid_frl_bw =3D intel_dp_hdmi_sink_max_frl(intel_dp);
-> +	drm_dbg(&i915->drm, "Sink max rate from EDID =3D %d Gbps\n", max_edid_f=
-rl_bw);
-> +
-> +	max_frl_bw =3D min(max_edid_frl_bw, max_pcon_frl_bw);
-> +
-> +	if (max_frl_bw <=3D 0)
-> +		return -EINVAL;
-> +
-> +	ret =3D drm_dp_pcon_frl_prepare(&intel_dp->aux, false);
-> +	if (ret < 0)
-> +		return ret;
-> +	/* Wait for PCON to be FRL Ready */
-> +	wait_for(is_active =3D drm_dp_pcon_is_frl_ready(&intel_dp->aux) =3D=3D =
-true, TIMEOUT_FRL_READY_MS);
-> +
-> +	if (!is_active)
-> +		return -ETIMEDOUT;
-> +
-> +	max_frl_bw_mask =3D intel_dp_pcon_set_frl_mask(max_frl_bw);
-> +	ret =3D drm_dp_pcon_frl_configure_1(&intel_dp->aux, max_frl_bw, PCON_SE=
-QUENTIAL_MODE);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret =3D drm_dp_pcon_frl_configure_2(&intel_dp->aux, max_frl_bw_mask, PC=
-ON_NORMAL_TRAIN_MODE);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret =3D drm_dp_pcon_frl_enable(&intel_dp->aux);
-> +	if (ret < 0)
-> +		return ret;
-> +	/*
-> +	 * Wait for FRL to be completed
-> +	 * Check if the HDMI Link is up and active.
-> +	 */
-> +	wait_for(is_active =3D drm_dp_pcon_hdmi_link_active(&intel_dp->aux) =3D=
-=3D true, TIMEOUT_HDMI_LINK_ACTIVE_MS);
-> +
-> +	if (!is_active)
-> +		return -ETIMEDOUT;
-> +
-> +	/* Verify HDMI Link configuration shows FRL Mode */
-> +	if (DP_PCON_HDMI_MODE_FRL !=3D drm_dp_pcon_hdmi_link_mode(&intel_dp->au=
-x, &frl_trained_mask)) {
-> +		drm_dbg(&i915->drm, "HDMI couldn't be trained in FRL Mode\n");
-> +		return -EINVAL;
-> +	}
-> +	drm_dbg(&i915->drm, "MAX_FRL_MASK =3D %u, FRL_TRAINED_MASK =3D %u\n", m=
-ax_frl_bw_mask, frl_trained_mask);
-> +
-> +	intel_dp->frl.trained_rate_gbps =3D intel_dp_pcon_get_frl_mask(frl_trai=
-ned_mask);
-> +	intel_dp->frl.is_trained =3D true;
-> +	drm_dbg(&i915->drm, "FRL trained with : %d Gbps\n", intel_dp->frl.train=
-ed_rate_gbps);
-> +
-> +	return 0;
-> +}
-> +
-> +static bool intel_dp_is_hdmi_2_1_sink(struct intel_dp *intel_dp)
-> +{
-> +	if (drm_dp_is_branch(intel_dp->dpcd) &&
-> +	    intel_dp->has_hdmi_sink &&
-> +	    intel_dp_hdmi_sink_max_frl(intel_dp) > 0)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
-> +void intel_dp_check_frl_training(struct intel_dp *intel_dp)
-> +{
-> +	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
-> +
-> +	/* Always go for FRL training if supported */
-> +	if (!intel_dp_is_hdmi_2_1_sink(intel_dp) ||
-> +	    intel_dp->frl.is_trained)
-> +		return;
-> +
-> +	if (intel_dp_pcon_start_frl_training(intel_dp) < 0) {
-> +		int ret, mode;
-> +
-> +		drm_dbg(&dev_priv->drm, "Couldnt set FRL mode, continuing with TMDS mo=
-de\n");
-> +		ret =3D drm_dp_pcon_reset_frl_config(&intel_dp->aux);
-> +		mode =3D drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, NULL);
-> +
-> +		if (ret < 0 || mode !=3D DP_PCON_HDMI_MODE_TMDS)
-> +			drm_dbg(&dev_priv->drm, "Issue with PCON, cannot set TMDS mode\n");
-> +	} else {
-> +		drm_dbg(&dev_priv->drm, "FRL training Completed\n");
-> +	}
-> +}
-> +
->  static void
->  g4x_set_link_train(struct intel_dp *intel_dp,
->  		   const struct intel_crtc_state *crtc_state,
-> @@ -8210,6 +8358,9 @@ intel_dp_init_connector(struct intel_digital_port *=
-dig_port,
->  			       (temp & ~0xf) | 0xd);
->  	}
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/index.html
 
-> +	intel_dp->frl.is_trained =3D false;
-> +	intel_dp->frl.trained_rate_gbps =3D 0;
-> +
->  	return true;
->  =
+Known issues
+------------
 
->  fail:
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i9=
-15/display/intel_dp.h
-> index b871a09b6901..58b76a20459c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -144,4 +144,6 @@ bool intel_dp_initial_fastset_check(struct intel_enco=
-der *encoder,
->  void intel_dp_sync_state(struct intel_encoder *encoder,
->  			 const struct intel_crtc_state *crtc_state);
->  =
+  Here are the changes found in Patchwork_19556 that come from known issues:
 
-> +void intel_dp_check_frl_training(struct intel_dp *intel_dp);
-> +
->  #endif /* __INTEL_DP_H__ */
-> -- =
+### IGT changes ###
 
-> 2.17.1
+#### Issues hit ####
 
--- =
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#2411] / [i915#402])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [PASS][3] -> [DMESG-WARN][4] ([i915#2868])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8109u:       [DMESG-WARN][9] ([i915#203]) -> [PASS][10] +27 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cfl-8109u:       [DMESG-WARN][11] ([i915#1037]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_engines:
+    - fi-cfl-8109u:       [DMESG-WARN][13] -> [PASS][14] +4 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_selftest@live@gt_engines.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-cfl-8109u/igt@i915_selftest@live@gt_engines.html
+
+  * igt@i915_selftest@live@sanitycheck:
+    - fi-kbl-7500u:       [DMESG-WARN][15] ([i915#2605]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
+
+  
+  [i915#1037]: https://gitlab.freedesktop.org/drm/intel/issues/1037
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (45 -> 39)
+------------------------------
+
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9713 -> Patchwork_19556
+
+  CI-20190529: 20190529
+  CI_DRM_9713: cc7b6cbff2a0a75ad4fe84d055ee1a762f0ce64b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5984: ccfc101419c1e233f87ca509781c5f8e09a2f3ae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19556: a5c9c286cd254d7ea6cf92303ecd91b8918a7945 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a5c9c286cd25 drm/i915: Relocate icl_sanitize_encoder_pll_mapping()
+5f0caa42e34a drm/i915: Use .disable_clock() for pll sanitation
+7c936097f280 drm/i915: Split alds/rkl from icl_ddi_combo_{enable, disable}_clock()
+1f48cc5cbdb8 drm/i915: Extract _cnl_ddi_{enable, disable}_clock()
+fa3178994587 drm/i915: Sprinkle WARN(!pll) into icl/dg1 .clock_enable()
+acdaeff0d22f drm/i915: Sprinkle a few missing locks around shared DDI clock registers
+e9b82425593e drm/i915: Use intel_de_rmw() for DDI clock routing
+aa859cf415e0 drm/i915: Extract icl+ .{enable, disable}_clock() vfuncs
+d9f0d9ea2d01 drm/i915: Convert DG1 over to .{enable, disable}_clock()
+26c2a16ac8ae drm/i195: Extract cnl_ddi_{enable, disable}_clock()
+e75c39a95d43 drm/i915: Extract skl_ddi_{enable, disable}_clock()
+732fae08fafa drm/i915: Extract hsw_ddi_{enable, disable}_clock()
+896a544d3328 drm/i915: Introduce .{enable, disable}_clock() encoder vfuncs
+55c608204619 drm/i915: Extract icl_dpclka_cfgcr0_clk_sel*()
+83a4bb6e6220 drm/i915: Extract icl_dpclka_cfgcr0_reg()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/index.html
+
+--===============4121449862139782746==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Clean up the DDI clock routing mess</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86544/">https://patchwork.freedesktop.org/series/86544/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9713 -&gt; Patchwork_19556</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19556 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_two_bos:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/203">i915#203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a> +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1037">i915#1037</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_selftest@live@gt_engines.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-cfl-8109u/igt@i915_selftest@live@gt_engines.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19556/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 39)</h2>
+<p>Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9713 -&gt; Patchwork_19556</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9713: cc7b6cbff2a0a75ad4fe84d055ee1a762f0ce64b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5984: ccfc101419c1e233f87ca509781c5f8e09a2f3ae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19556: a5c9c286cd254d7ea6cf92303ecd91b8918a7945 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a5c9c286cd25 drm/i915: Relocate icl_sanitize_encoder_pll_mapping()<br />
+5f0caa42e34a drm/i915: Use .disable_clock() for pll sanitation<br />
+7c936097f280 drm/i915: Split alds/rkl from icl_ddi_combo_{enable, disable}<em>clock()<br />
+1f48cc5cbdb8 drm/i915: Extract _cnl_ddi</em>{enable, disable}<em>clock()<br />
+fa3178994587 drm/i915: Sprinkle WARN(!pll) into icl/dg1 .clock_enable()<br />
+acdaeff0d22f drm/i915: Sprinkle a few missing locks around shared DDI clock registers<br />
+e9b82425593e drm/i915: Use intel_de_rmw() for DDI clock routing<br />
+aa859cf415e0 drm/i915: Extract icl+ .{enable, disable}_clock() vfuncs<br />
+d9f0d9ea2d01 drm/i915: Convert DG1 over to .{enable, disable}_clock()<br />
+26c2a16ac8ae drm/i195: Extract cnl_ddi</em>{enable, disable}<em>clock()<br />
+e75c39a95d43 drm/i915: Extract skl_ddi</em>{enable, disable}<em>clock()<br />
+732fae08fafa drm/i915: Extract hsw_ddi</em>{enable, disable}_clock()<br />
+896a544d3328 drm/i915: Introduce .{enable, disable}_clock() encoder vfuncs<br />
+55c608204619 drm/i915: Extract icl_dpclka_cfgcr0_clk_sel*()<br />
+83a4bb6e6220 drm/i915: Extract icl_dpclka_cfgcr0_reg()</p>
+
+</body>
+</html>
+
+--===============4121449862139782746==--
+
+--===============1658174151==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1658174151==--
