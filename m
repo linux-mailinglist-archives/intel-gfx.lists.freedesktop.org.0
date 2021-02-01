@@ -1,30 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58CD30A4E4
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 11:05:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1803230A4E5
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 11:05:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 766C06E02E;
-	Mon,  1 Feb 2021 10:04:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 047F36E402;
+	Mon,  1 Feb 2021 10:05:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01A376E02E
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 10:04:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23758771-1500050 
- for multiple; Mon, 01 Feb 2021 10:04:48 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Feb 2021 10:04:48 +0000
-Message-Id: <20210201100448.9802-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E25A6E402;
+ Mon,  1 Feb 2021 10:05:28 +0000 (UTC)
+IronPort-SDR: WWQlQnWWJgGF5CpZclyfE0y8l2sJAi4uvzZB8JO/XzSBi8h3CKXqgv6NAp0yScWKoN2HxCBetT
+ 8I/X2qqt261g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9881"; a="159829416"
+X-IronPort-AV: E=Sophos;i="5.79,392,1602572400"; d="scan'208";a="159829416"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 02:05:25 -0800
+IronPort-SDR: obYTespNt6GN6pzq9OXm8aXGp8axKVoel2MJl+zOIayvNBwjK4SrWuuzmSuLPzlI69fg6MPmpY
+ IBB71Y+KQtvA==
+X-IronPort-AV: E=Sophos;i="5.79,392,1602572400"; d="scan'208";a="369795652"
+Received: from rmeir2x-mobl.ger.corp.intel.com (HELO [10.214.231.94])
+ ([10.214.231.94])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 02:05:24 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210201085358.3408367-1-chris@chris-wilson.co.uk>
+ <20210201093123.3481855-1-chris@chris-wilson.co.uk>
+ <59c9afb3-e4bd-b7f5-ffae-33f4e2077570@linux.intel.com>
+ <161217345998.27906.14665825103031101812@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <af8704f8-9626-a3c7-2f5d-701374d3fbb0@linux.intel.com>
+Date: Mon, 1 Feb 2021 10:05:21 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Use a single copy of the
- mocs table
+In-Reply-To: <161217345998.27906.14665825103031101812@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v2] intel_gpu_top: Hide
+ unused clients
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,127 +54,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of copying the whole table to each category (mocs, l3cc), use a
-single table with a pointer to it if the category is enabled.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_mocs.c | 32 +++++++++++++++++--------
- 1 file changed, 22 insertions(+), 10 deletions(-)
+On 01/02/2021 09:57, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2021-02-01 09:53:20)
+>>
+>> On 01/02/2021 09:31, Chris Wilson wrote:
+>>> Hide inactive clients by pressing 'i' (toggle in interactive mode).
+>>>
+>>> v2: Fix location of filter_idle.
+>>>
+>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>> ---
+>>>    tools/intel_gpu_top.c | 9 +++++++++
+>>>    1 file changed, 9 insertions(+)
+>>>
+>>> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+>>> index 60ff62d28..d88b6cc61 100644
+>>> --- a/tools/intel_gpu_top.c
+>>> +++ b/tools/intel_gpu_top.c
+>>> @@ -1595,6 +1595,7 @@ print_imc(struct engines *engines, double t, int lines, int con_w, int con_h)
+>>>    }
+>>>    
+>>>    static bool class_view;
+>>> +static bool filter_idle;
+>>>    
+>>>    static int
+>>>    print_engines_header(struct engines *engines, double t,
+>>> @@ -2115,6 +2116,9 @@ static void process_stdin(unsigned int timeout_us)
+>>>                case 'q':
+>>>                        stop_top = true;
+>>>                        break;
+>>> +             case 'i':
+>>> +                     filter_idle ^= true;
+>>> +                     break;
+>>>                case '1':
+>>>                        class_view ^= true;
+>>>                        break;
+>>> @@ -2323,9 +2327,14 @@ int main(int argc, char **argv)
+>>>    
+>>>                                for_each_client(clients, c, j) {
+>>>                                        assert(c->status != PROBE);
+>>> +
+>>>                                        if (c->status != ALIVE)
+>>>                                                break; /* Active clients are first in the array. */
+>>>    
+>>> +                                     /* Active clients before idle */
+>>> +                                     if (filter_idle && !c->total_runtime)
+>>> +                                             break;
+>>> +
+>>
+>> Break won't be correct for id sort. I don't see what did not work with
+>> v1? It should be effectively the same apart from the break.
+> 
+> We didn't the client to peek into.
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-index e6f6807487d4..44609d1c7780 100644
---- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-@@ -12,8 +12,9 @@
- #include "selftests/igt_spinner.h"
- 
- struct live_mocs {
--	struct drm_i915_mocs_table mocs;
--	struct drm_i915_mocs_table l3cc;
-+	struct drm_i915_mocs_table table;
-+	struct drm_i915_mocs_table *mocs;
-+	struct drm_i915_mocs_table *l3cc;
- 	struct i915_vma *scratch;
- 	void *vaddr;
- };
-@@ -58,21 +59,20 @@ static int request_add_spin(struct i915_request *rq, struct igt_spinner *spin)
- 
- static int live_mocs_init(struct live_mocs *arg, struct intel_gt *gt)
- {
--	struct drm_i915_mocs_table table;
- 	unsigned int flags;
- 	int err;
- 
- 	memset(arg, 0, sizeof(*arg));
- 
--	flags = get_mocs_settings(gt->i915, &table);
-+	flags = get_mocs_settings(gt->i915, &arg->table);
- 	if (!flags)
- 		return -EINVAL;
- 
- 	if (flags & HAS_RENDER_L3CC)
--		arg->l3cc = table;
-+		arg->l3cc = &arg->table;
- 
- 	if (flags & (HAS_GLOBAL_MOCS | HAS_ENGINE_MOCS))
--		arg->mocs = table;
-+		arg->mocs = &arg->table;
- 
- 	arg->scratch = __vm_create_scratch_for_read(&gt->ggtt->vm, PAGE_SIZE);
- 	if (IS_ERR(arg->scratch))
-@@ -130,6 +130,9 @@ static int read_mocs_table(struct i915_request *rq,
- {
- 	u32 addr;
- 
-+	if (!table)
-+		return 0;
-+
- 	if (HAS_GLOBAL_MOCS_REGISTERS(rq->engine->i915))
- 		addr = global_mocs_offset();
- 	else
-@@ -144,6 +147,9 @@ static int read_l3cc_table(struct i915_request *rq,
- {
- 	u32 addr = i915_mmio_reg_offset(GEN9_LNCFCMOCS(0));
- 
-+	if (!table)
-+		return 0;
-+
- 	return read_regs(rq, addr, (table->n_entries + 1) / 2, offset);
- }
- 
-@@ -154,6 +160,9 @@ static int check_mocs_table(struct intel_engine_cs *engine,
- 	unsigned int i;
- 	u32 expect;
- 
-+	if (!table)
-+		return 0;
-+
- 	for_each_mocs(expect, table, i) {
- 		if (**vaddr != expect) {
- 			pr_err("%s: Invalid MOCS[%d] entry, found %08x, expected %08x\n",
-@@ -185,6 +194,9 @@ static int check_l3cc_table(struct intel_engine_cs *engine,
- 	unsigned int i;
- 	u32 expect;
- 
-+	if (!table)
-+		return 0;
-+
- 	for_each_l3cc(expect, table, i) {
- 		if (!mcr_range(engine->i915, reg) && **vaddr != expect) {
- 			pr_err("%s: Invalid L3CC[%d] entry, found %08x, expected %08x\n",
-@@ -222,9 +234,9 @@ static int check_mocs_engine(struct live_mocs *arg,
- 	/* Read the mocs tables back using SRM */
- 	offset = i915_ggtt_offset(vma);
- 	if (!err)
--		err = read_mocs_table(rq, &arg->mocs, &offset);
-+		err = read_mocs_table(rq, arg->mocs, &offset);
- 	if (!err && ce->engine->class == RENDER_CLASS)
--		err = read_l3cc_table(rq, &arg->l3cc, &offset);
-+		err = read_l3cc_table(rq, arg->l3cc, &offset);
- 	offset -= i915_ggtt_offset(vma);
- 	GEM_BUG_ON(offset > PAGE_SIZE);
- 
-@@ -235,9 +247,9 @@ static int check_mocs_engine(struct live_mocs *arg,
- 	/* Compare the results against the expected tables */
- 	vaddr = arg->vaddr;
- 	if (!err)
--		err = check_mocs_table(ce->engine, &arg->mocs, &vaddr);
-+		err = check_mocs_table(ce->engine, arg->mocs, &vaddr);
- 	if (!err && ce->engine->class == RENDER_CLASS)
--		err = check_l3cc_table(ce->engine, &arg->l3cc, &vaddr);
-+		err = check_l3cc_table(ce->engine, arg->l3cc, &vaddr);
- 	if (err)
- 		return err;
- 
--- 
-2.20.1
+Ahaha did not spot you put the diff in wrong function. :)
+
+> Maybe you want to do v3 :)
+
+Sure.
+
+Regards,
+
+Tvrtko
 
 _______________________________________________
 Intel-gfx mailing list
