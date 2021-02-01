@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39CA730A3B6
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 09:58:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B356330A3AC
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 09:57:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9C096E504;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C8D66E4F3;
 	Mon,  1 Feb 2021 08:57:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4555E6E499
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 08:57:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73CB66E49A
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 08:57:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23757766-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23757767-1500050 
  for multiple; Mon, 01 Feb 2021 08:57:23 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Feb 2021 08:57:01 +0000
-Message-Id: <20210201085715.27435-43-chris@chris-wilson.co.uk>
+Date: Mon,  1 Feb 2021 08:57:02 +0000
+Message-Id: <20210201085715.27435-44-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210201085715.27435-1-chris@chris-wilson.co.uk>
 References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 43/57] drm/i915/gt: Delay taking irqoff for
- execlists submission
+Subject: [Intel-gfx] [PATCH 44/57] drm/i915/gt: Wrap
+ intel_timeline.has_initial_breadcrumb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,171 +45,116 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Before we take the irqsafe spinlock to dequeue requests and submit them
-to HW, first do the check whether we need to take any action (i.e.
-whether the HW is ready for some work, or if we need to preempt the
-currently executing context) without taking the lock. We will then
-likely skip taking the spinlock, and so reduce contention.
+In preparation for removing the has_initial_breadcrumb field, add a
+helper function for the existing callers.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- .../drm/i915/gt/intel_execlists_submission.c  | 88 ++++++++-----------
- 1 file changed, 39 insertions(+), 49 deletions(-)
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c        | 2 +-
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 4 ++--
+ drivers/gpu/drm/i915/gt/intel_timeline.c        | 6 +++---
+ drivers/gpu/drm/i915/gt/intel_timeline.h        | 6 ++++++
+ drivers/gpu/drm/i915/gt/selftest_timeline.c     | 5 +++--
+ 5 files changed, 15 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index e8f192984e88..d4ae65af7dc1 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -1014,24 +1014,6 @@ static void virtual_xfer_context(struct virtual_engine *ve,
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index 8791e03ebe61..d8763146e054 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -354,7 +354,7 @@ int gen8_emit_init_breadcrumb(struct i915_request *rq)
+ 	u32 *cs;
  
--static void defer_active(struct intel_engine_cs *engine)
--{
--	struct i915_request *rq;
--
--	rq = __i915_sched_rewind_requests(engine);
--	if (!rq)
--		return;
--
--	/*
--	 * We want to move the interrupted request to the back of
--	 * the round-robin list (i.e. its priority level), but
--	 * in doing so, we must then move all requests that were in
--	 * flight and were waiting for the interrupted request to
--	 * be run after it again.
--	 */
--	__i915_sched_defer_request(engine, rq);
--}
--
- static bool
- timeslice_yield(const struct intel_engine_execlists *el,
- 		const struct i915_request *rq)
-@@ -1312,8 +1294,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * and context switches) submission.
- 	 */
+ 	GEM_BUG_ON(i915_request_has_initial_breadcrumb(rq));
+-	if (!i915_request_timeline(rq)->has_initial_breadcrumb)
++	if (!intel_timeline_has_initial_breadcrumb(i915_request_timeline(rq)))
+ 		return 0;
  
--	spin_lock(&se->lock);
--
+ 	cs = intel_ring_begin(rq, 6);
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index a7d49ea71900..9d193acd260b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -908,7 +908,7 @@ static int ring_request_alloc(struct i915_request *request)
+ 	int ret;
+ 
+ 	GEM_BUG_ON(!intel_context_is_pinned(request->context));
+-	GEM_BUG_ON(i915_request_timeline(request)->has_initial_breadcrumb);
++	GEM_BUG_ON(intel_timeline_has_initial_breadcrumb(i915_request_timeline(request)));
+ 
  	/*
- 	 * If the queue is higher priority than the last
- 	 * request in the currently active context, submit afresh.
-@@ -1336,24 +1316,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				     rq_deadline(last),
- 				     rq_prio(last));
- 			record_preemption(execlists);
--
--			/*
--			 * Don't let the RING_HEAD advance past the breadcrumb
--			 * as we unwind (and until we resubmit) so that we do
--			 * not accidentally tell it to go backwards.
--			 */
--			ring_set_paused(engine, 1);
--
--			/*
--			 * Note that we have not stopped the GPU at this point,
--			 * so we are unwinding the incomplete requests as they
--			 * remain inflight and so by the time we do complete
--			 * the preemption, some of the unwound requests may
--			 * complete!
--			 */
--			__i915_sched_rewind_requests(engine);
--
--			last = NULL;
-+			last = (void *)1;
- 		} else if (timeslice_expired(engine, last)) {
- 			ENGINE_TRACE(engine,
- 				     "expired:%s last=%llx:%llu, deadline=%llu, now=%llu, yield?=%s\n",
-@@ -1380,8 +1343,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			 * same context again, grant it a full timeslice.
- 			 */
- 			cancel_timer(&execlists->timer);
--			ring_set_paused(engine, 1);
--			defer_active(engine);
- 
- 			/*
- 			 * Unlike for preemption, if we rewind and continue
-@@ -1396,7 +1357,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			 * normal save/restore will preserve state and allow
- 			 * us to later continue executing the same request.
- 			 */
--			last = NULL;
-+			last = (void *)3;
- 		} else {
- 			/*
- 			 * Otherwise if we already have a request pending
-@@ -1412,12 +1373,46 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				 * Even if ELSP[1] is occupied and not worthy
- 				 * of timeslices, our queue might be.
- 				 */
--				spin_unlock(&se->lock);
- 				return;
- 			}
- 		}
+ 	 * Flush enough space to reduce the likelihood of waiting after
+@@ -1229,7 +1229,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+ 		err = PTR_ERR(timeline);
+ 		goto err;
  	}
+-	GEM_BUG_ON(timeline->has_initial_breadcrumb);
++	GEM_BUG_ON(intel_timeline_has_initial_breadcrumb(timeline));
  
-+	local_irq_disable(); /* irq remains off until after ELSP write */
-+	spin_lock(&se->lock);
-+
-+	if ((unsigned long)last & 1) {
-+		bool defer = (unsigned long)last & 2;
-+
-+		/*
-+		 * Don't let the RING_HEAD advance past the breadcrumb
-+		 * as we unwind (and until we resubmit) so that we do
-+		 * not accidentally tell it to go backwards.
-+		 */
-+		ring_set_paused(engine, (unsigned long)last);
-+
-+		/*
-+		 * Note that we have not stopped the GPU at this point,
-+		 * so we are unwinding the incomplete requests as they
-+		 * remain inflight and so by the time we do complete
-+		 * the preemption, some of the unwound requests may
-+		 * complete!
-+		 */
-+		last = __i915_sched_rewind_requests(engine);
-+
-+		/*
-+		 * We want to move the interrupted request to the back of
-+		 * the round-robin list (i.e. its priority level), but
-+		 * in doing so, we must then move all requests that were in
-+		 * flight and were waiting for the interrupted request to
-+		 * be run after it again.
-+		 */
-+		if (last && defer)
-+			__i915_sched_defer_request(engine, last);
-+
-+		last = NULL;
-+	}
-+
- 	if (!RB_EMPTY_ROOT(&execlists->virtual.rb_root))
- 		virtual_requeue(engine, last);
+ 	err = intel_timeline_pin(timeline, NULL);
+ 	if (err)
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 491b8df174c2..1505dffbaba9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -444,14 +444,14 @@ void intel_timeline_exit(struct intel_timeline *tl)
+ static u32 timeline_advance(struct intel_timeline *tl)
+ {
+ 	GEM_BUG_ON(!atomic_read(&tl->pin_count));
+-	GEM_BUG_ON(tl->seqno & tl->has_initial_breadcrumb);
++	GEM_BUG_ON(tl->seqno & intel_timeline_has_initial_breadcrumb(tl));
  
-@@ -1533,13 +1528,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			i915_request_put(*port);
- 		*execlists->pending = NULL;
- 	}
--}
- 
--static void execlists_dequeue_irq(struct intel_engine_cs *engine)
--{
--	local_irq_disable(); /* Suspend interrupts across request submission */
--	execlists_dequeue(engine);
--	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
-+	local_irq_enable();
+-	return tl->seqno += 1 + tl->has_initial_breadcrumb;
++	return tl->seqno += 1 + intel_timeline_has_initial_breadcrumb(tl);
  }
  
- static void clear_ports(struct i915_request **ports, int count)
-@@ -2191,7 +2181,7 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
- 		execlists_reset(engine);
+ static void timeline_rollback(struct intel_timeline *tl)
+ {
+-	tl->seqno -= 1 + tl->has_initial_breadcrumb;
++	tl->seqno -= 1 + intel_timeline_has_initial_breadcrumb(tl);
+ }
  
- 	if (!engine->execlists.pending[0]) {
--		execlists_dequeue_irq(engine);
-+		execlists_dequeue(engine);
- 		start_timeslice(engine);
- 	}
+ static noinline int
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.h b/drivers/gpu/drm/i915/gt/intel_timeline.h
+index b1f81d947f8d..7d6218b55df6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.h
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.h
+@@ -42,6 +42,12 @@ static inline void intel_timeline_put(struct intel_timeline *timeline)
+ 	kref_put(&timeline->kref, __intel_timeline_free);
+ }
  
++static inline bool
++intel_timeline_has_initial_breadcrumb(const struct intel_timeline *tl)
++{
++	return tl->has_initial_breadcrumb;
++}
++
+ static inline int __intel_timeline_sync_set(struct intel_timeline *tl,
+ 					    u64 context, u32 seqno)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+index d283dce5b4ac..562a450d2832 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
++++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+@@ -665,7 +665,7 @@ static int live_hwsp_wrap(void *arg)
+ 	if (IS_ERR(tl))
+ 		return PTR_ERR(tl);
+ 
+-	if (!tl->has_initial_breadcrumb || !tl->hwsp_cacheline)
++	if (!intel_timeline_has_initial_breadcrumb(tl) || !tl->hwsp_cacheline)
+ 		goto out_free;
+ 
+ 	err = intel_timeline_pin(tl, NULL);
+@@ -1234,7 +1234,8 @@ static int live_hwsp_rollover_user(void *arg)
+ 			goto out;
+ 
+ 		tl = ce->timeline;
+-		if (!tl->has_initial_breadcrumb || !tl->hwsp_cacheline)
++		if (!intel_timeline_has_initial_breadcrumb(tl) ||
++		    !tl->hwsp_cacheline)
+ 			goto out;
+ 
+ 		timeline_rollback(tl);
 -- 
 2.20.1
 
