@@ -2,41 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2016F30AF6E
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 19:34:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE54930AFD4
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 19:55:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B5789F2E;
-	Mon,  1 Feb 2021 18:34:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 007116E85F;
+	Mon,  1 Feb 2021 18:55:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BDCD89F2E
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 18:34:30 +0000 (UTC)
-IronPort-SDR: jJKAi7GZiaQf6yh+k8MKbNQrOAZTP/zNK7iN/8BmWKiYgvlCAo699+MEZaEKnoxY8Ajad/AqbL
- UcH8x2YDWhVQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="177223894"
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="177223894"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 10:34:29 -0800
-IronPort-SDR: CiyHIs23AefDas5IP8dqC54skvzk6M6II84rpB2+woKCXvpl67qcU6PvwyGg+S87TdFv5D6Nub
- r6AVIsdOfvXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="358700785"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 01 Feb 2021 10:34:27 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 01 Feb 2021 20:34:26 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Feb 2021 20:33:43 +0200
-Message-Id: <20210201183343.15292-16-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B2186E85F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 18:55:41 +0000 (UTC)
+IronPort-SDR: Q41EM5/LNEnKxlCPKqrJff7yXRno84nvq1tmtfaRfSvtYjbI0BopBg2XQE7gdb+k5y9+6Gsswv
+ dSKSawRW1SbQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="168415772"
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="168415772"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 10:55:41 -0800
+IronPort-SDR: zI6egVN2WWCE3d9L6aTGzoyx9gP89BafCL7YAMYLwTtvrwjlaIMPOtwQLzE5ktnsJLZtceN75U
+ 3Dj+9h9VjAnw==
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="371656015"
+Received: from scewbso01.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.142.9])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 10:55:39 -0800
+Date: Mon, 1 Feb 2021 10:55:37 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20210201185537.lqaxxqlf3iimeuxh@ldmartin-desk1>
+X-Patchwork-Hint: comment
 References: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
+ <20210201183343.15292-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 15/15] drm/i915: Relocate
- icl_sanitize_encoder_pll_mapping()
+Content-Disposition: inline
+In-Reply-To: <20210201183343.15292-2-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 01/15] drm/i915: Extract
+ icl_dpclka_cfgcr0_reg()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,82 +50,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCk1v
-dmUgaWNsX3Nhbml0aXplX2VuY29kZXJfcGxsX21hcHBpbmcoKSBvdXQgZnJvbSB0aGUgbWlkZGxl
-Cm9mIHRoZSAue2VuYWJsZSxkaXNhYmxlfV9jbG9jaygpIGZ1bmN0aW9ucy4KClNpZ25lZC1vZmYt
-Ynk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDExMiArKysrKysrKysr
-Ky0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDU2IGluc2VydGlvbnMoKyksIDU2IGRlbGV0
-aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCmluZGV4IGE2
-MTlhZmRlMWFkMC4uOTVjNWM4ZWVhOTRhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RkaS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGRpLmMKQEAgLTMyNDUsNjIgKzMyNDUsNiBAQCBzdGF0aWMgdm9pZCBpY2xfZGRpX2Nv
-bWJvX2Rpc2FibGVfY2xvY2soc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIpCiAJCQkgICAg
-ICAgSUNMX0RQQ0xLQV9DRkdDUjBfRERJX0NMS19PRkYocGh5KSk7CiB9CiAKLXZvaWQgaWNsX3Nh
-bml0aXplX2VuY29kZXJfcGxsX21hcHBpbmcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIp
-Ci17Ci0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShlbmNvZGVy
-LT5iYXNlLmRldik7Ci0JdTMyIHBvcnRfbWFzazsKLQlib29sIGRkaV9jbGtfbmVlZGVkOwotCi0J
-LyoKLQkgKiBJbiBjYXNlIG9mIERQIE1TVCwgd2Ugc2FuaXRpemUgdGhlIHByaW1hcnkgZW5jb2Rl
-ciBvbmx5LCBub3QgdGhlCi0JICogdmlydHVhbCBvbmVzLgotCSAqLwotCWlmIChlbmNvZGVyLT50
-eXBlID09IElOVEVMX09VVFBVVF9EUF9NU1QpCi0JCXJldHVybjsKLQotCWlmICghZW5jb2Rlci0+
-YmFzZS5jcnRjICYmIGludGVsX2VuY29kZXJfaXNfZHAoZW5jb2RlcikpIHsKLQkJdTggcGlwZV9t
-YXNrOwotCQlib29sIGlzX21zdDsKLQotCQlpbnRlbF9kZGlfZ2V0X2VuY29kZXJfcGlwZXMoZW5j
-b2RlciwgJnBpcGVfbWFzaywgJmlzX21zdCk7Ci0JCS8qCi0JCSAqIEluIHRoZSB1bmxpa2VseSBj
-YXNlIHRoYXQgQklPUyBlbmFibGVzIERQIGluIE1TVCBtb2RlLCBqdXN0Ci0JCSAqIHdhcm4gc2lu
-Y2Ugb3VyIE1TVCBIVyByZWFkb3V0IGlzIGluY29tcGxldGUuCi0JCSAqLwotCQlpZiAoZHJtX1dB
-Uk5fT04oJmRldl9wcml2LT5kcm0sIGlzX21zdCkpCi0JCQlyZXR1cm47Ci0JfQotCi0JcG9ydF9t
-YXNrID0gQklUKGVuY29kZXItPnBvcnQpOwotCWRkaV9jbGtfbmVlZGVkID0gZW5jb2Rlci0+YmFz
-ZS5jcnRjOwotCi0JaWYgKGVuY29kZXItPnR5cGUgPT0gSU5URUxfT1VUUFVUX0RTSSkgewotCQlz
-dHJ1Y3QgaW50ZWxfZW5jb2RlciAqb3RoZXJfZW5jb2RlcjsKLQotCQlwb3J0X21hc2sgPSBpbnRl
-bF9kc2lfZW5jb2Rlcl9wb3J0cyhlbmNvZGVyKTsKLQkJLyoKLQkJICogU2FuaXR5IGNoZWNrIHRo
-YXQgd2UgaGF2ZW4ndCBpbmNvcnJlY3RseSByZWdpc3RlcmVkIGFub3RoZXIKLQkJICogZW5jb2Rl
-ciB1c2luZyBhbnkgb2YgdGhlIHBvcnRzIG9mIHRoaXMgRFNJIGVuY29kZXIuCi0JCSAqLwotCQlm
-b3JfZWFjaF9pbnRlbF9lbmNvZGVyKCZkZXZfcHJpdi0+ZHJtLCBvdGhlcl9lbmNvZGVyKSB7Ci0J
-CQlpZiAob3RoZXJfZW5jb2RlciA9PSBlbmNvZGVyKQotCQkJCWNvbnRpbnVlOwotCi0JCQlpZiAo
-ZHJtX1dBUk5fT04oJmRldl9wcml2LT5kcm0sCi0JCQkJCXBvcnRfbWFzayAmIEJJVChvdGhlcl9l
-bmNvZGVyLT5wb3J0KSkpCi0JCQkJcmV0dXJuOwotCQl9Ci0JCS8qCi0JCSAqIEZvciBEU0kgd2Ug
-a2VlcCB0aGUgZGRpIGNsb2NrcyBnYXRlZAotCQkgKiBleGNlcHQgZHVyaW5nIGVuYWJsZS9kaXNh
-YmxlIHNlcXVlbmNlLgotCQkgKi8KLQkJZGRpX2Nsa19uZWVkZWQgPSBmYWxzZTsKLQl9Ci0KLQlp
-ZiAoIWRkaV9jbGtfbmVlZGVkICYmIGVuY29kZXItPmRpc2FibGVfY2xvY2spCi0JCWVuY29kZXIt
-PmRpc2FibGVfY2xvY2soZW5jb2Rlcik7Ci19Ci0KIHN0YXRpYyB2b2lkIGpzbF9kZGlfdGNfZW5h
-YmxlX2Nsb2NrKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQkJCSAgICBjb25zdCBz
-dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIHsKQEAgLTM0NjEsNiArMzQwNSw2
-MiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfZGlzYWJsZV9jbG9jayhzdHJ1Y3QgaW50ZWxfZW5j
-b2RlciAqZW5jb2RlcikKIAkJZW5jb2Rlci0+ZGlzYWJsZV9jbG9jayhlbmNvZGVyKTsKIH0KIAor
-dm9pZCBpY2xfc2FuaXRpemVfZW5jb2Rlcl9wbGxfbWFwcGluZyhzdHJ1Y3QgaW50ZWxfZW5jb2Rl
-ciAqZW5jb2RlcikKK3sKKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19p
-OTE1KGVuY29kZXItPmJhc2UuZGV2KTsKKwl1MzIgcG9ydF9tYXNrOworCWJvb2wgZGRpX2Nsa19u
-ZWVkZWQ7CisKKwkvKgorCSAqIEluIGNhc2Ugb2YgRFAgTVNULCB3ZSBzYW5pdGl6ZSB0aGUgcHJp
-bWFyeSBlbmNvZGVyIG9ubHksIG5vdCB0aGUKKwkgKiB2aXJ0dWFsIG9uZXMuCisJICovCisJaWYg
-KGVuY29kZXItPnR5cGUgPT0gSU5URUxfT1VUUFVUX0RQX01TVCkKKwkJcmV0dXJuOworCisJaWYg
-KCFlbmNvZGVyLT5iYXNlLmNydGMgJiYgaW50ZWxfZW5jb2Rlcl9pc19kcChlbmNvZGVyKSkgewor
-CQl1OCBwaXBlX21hc2s7CisJCWJvb2wgaXNfbXN0OworCisJCWludGVsX2RkaV9nZXRfZW5jb2Rl
-cl9waXBlcyhlbmNvZGVyLCAmcGlwZV9tYXNrLCAmaXNfbXN0KTsKKwkJLyoKKwkJICogSW4gdGhl
-IHVubGlrZWx5IGNhc2UgdGhhdCBCSU9TIGVuYWJsZXMgRFAgaW4gTVNUIG1vZGUsIGp1c3QKKwkJ
-ICogd2FybiBzaW5jZSBvdXIgTVNUIEhXIHJlYWRvdXQgaXMgaW5jb21wbGV0ZS4KKwkJICovCisJ
-CWlmIChkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwgaXNfbXN0KSkKKwkJCXJldHVybjsKKwl9
-CisKKwlwb3J0X21hc2sgPSBCSVQoZW5jb2Rlci0+cG9ydCk7CisJZGRpX2Nsa19uZWVkZWQgPSBl
-bmNvZGVyLT5iYXNlLmNydGM7CisKKwlpZiAoZW5jb2Rlci0+dHlwZSA9PSBJTlRFTF9PVVRQVVRf
-RFNJKSB7CisJCXN0cnVjdCBpbnRlbF9lbmNvZGVyICpvdGhlcl9lbmNvZGVyOworCisJCXBvcnRf
-bWFzayA9IGludGVsX2RzaV9lbmNvZGVyX3BvcnRzKGVuY29kZXIpOworCQkvKgorCQkgKiBTYW5p
-dHkgY2hlY2sgdGhhdCB3ZSBoYXZlbid0IGluY29ycmVjdGx5IHJlZ2lzdGVyZWQgYW5vdGhlcgor
-CQkgKiBlbmNvZGVyIHVzaW5nIGFueSBvZiB0aGUgcG9ydHMgb2YgdGhpcyBEU0kgZW5jb2Rlci4K
-KwkJICovCisJCWZvcl9lYWNoX2ludGVsX2VuY29kZXIoJmRldl9wcml2LT5kcm0sIG90aGVyX2Vu
-Y29kZXIpIHsKKwkJCWlmIChvdGhlcl9lbmNvZGVyID09IGVuY29kZXIpCisJCQkJY29udGludWU7
-CisKKwkJCWlmIChkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwKKwkJCQkJcG9ydF9tYXNrICYg
-QklUKG90aGVyX2VuY29kZXItPnBvcnQpKSkKKwkJCQlyZXR1cm47CisJCX0KKwkJLyoKKwkJICog
-Rm9yIERTSSB3ZSBrZWVwIHRoZSBkZGkgY2xvY2tzIGdhdGVkCisJCSAqIGV4Y2VwdCBkdXJpbmcg
-ZW5hYmxlL2Rpc2FibGUgc2VxdWVuY2UuCisJCSAqLworCQlkZGlfY2xrX25lZWRlZCA9IGZhbHNl
-OworCX0KKworCWlmICghZGRpX2Nsa19uZWVkZWQgJiYgZW5jb2Rlci0+ZGlzYWJsZV9jbG9jaykK
-KwkJZW5jb2Rlci0+ZGlzYWJsZV9jbG9jayhlbmNvZGVyKTsKK30KKwogc3RhdGljIHZvaWQKIGlj
-bF9wcm9ncmFtX21nX2RwX21vZGUoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQs
-CiAJCSAgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKLS0g
-CjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, Feb 01, 2021 at 08:33:29PM +0200, Ville Syrj=E4l=E4 wrote:
+>From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>
+>Extract the code to determine the DPCLK_CFGCR register
+>to use.
+>
+>Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+
+>---
+> drivers/gpu/drm/i915/display/intel_ddi.c | 28 ++++++++++--------------
+> 1 file changed, 12 insertions(+), 16 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i9=
+15/display/intel_ddi.c
+>index 5bc5033a2dea..a3aeb1c2821c 100644
+>--- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>@@ -3127,6 +3127,15 @@ static u32 icl_dpclka_cfgcr0_clk_off(struct drm_i91=
+5_private *dev_priv,
+> 	return 0;
+> }
+>
+>+static i915_reg_t icl_dpclka_cfgcr0_reg(struct drm_i915_private *i915,
+>+					enum phy phy)
+>+{
+>+	if (IS_ALDERLAKE_S(i915))
+>+		return ADLS_DPCLKA_CFGCR(phy);
+>+	else
+>+		return ICL_DPCLKA_CFGCR0;
+>+}
+>+
+> static void dg1_map_plls_to_ports(struct intel_encoder *encoder,
+> 				  const struct intel_crtc_state *crtc_state)
+> {
+>@@ -3167,19 +3176,16 @@ static void icl_map_plls_to_ports(struct intel_enc=
+oder *encoder,
+> 	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> 	struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
+> 	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
+>+	i915_reg_t reg =3D icl_dpclka_cfgcr0_reg(dev_priv, phy);
+> 	u32 val, mask, sel;
+>-	i915_reg_t reg;
+>
+> 	if (IS_ALDERLAKE_S(dev_priv)) {
+>-		reg =3D ADLS_DPCLKA_CFGCR(phy);
+> 		mask =3D ADLS_DPCLKA_CFGCR_DDI_CLK_SEL_MASK(phy);
+> 		sel =3D ((pll->info->id) << ADLS_DPCLKA_CFGCR_DDI_SHIFT(phy));
+> 	} else if (IS_ROCKETLAKE(dev_priv)) {
+>-		reg =3D ICL_DPCLKA_CFGCR0;
+> 		mask =3D RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy);
+> 		sel =3D RKL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll->info->id, phy);
+> 	} else {
+>-		reg =3D ICL_DPCLKA_CFGCR0;
+> 		mask =3D ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy);
+> 		sel =3D ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll->info->id, phy);
+> 	}
+>@@ -3230,16 +3236,11 @@ static void icl_unmap_plls_to_ports(struct intel_e=
+ncoder *encoder)
+> {
+> 	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> 	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
+>+	i915_reg_t reg =3D icl_dpclka_cfgcr0_reg(dev_priv, phy);
+> 	u32 val;
+>-	i915_reg_t reg;
+>
+> 	mutex_lock(&dev_priv->dpll.lock);
+>
+>-	if (IS_ALDERLAKE_S(dev_priv))
+>-		reg =3D ADLS_DPCLKA_CFGCR(phy);
+>-	else
+>-		reg =3D ICL_DPCLKA_CFGCR0;
+>-
+> 	val =3D intel_de_read(dev_priv, reg);
+> 	val |=3D icl_dpclka_cfgcr0_clk_off(dev_priv, phy);
+>
+>@@ -3285,15 +3286,10 @@ static void icl_sanitize_port_clk_off(struct drm_i=
+915_private *dev_priv,
+> 	enum port port;
+> 	bool ddi_clk_off;
+> 	u32 val;
+>-	i915_reg_t reg;
+>
+> 	for_each_port_masked(port, port_mask) {
+> 		enum phy phy =3D intel_port_to_phy(dev_priv, port);
+>-
+>-		if (IS_ALDERLAKE_S(dev_priv))
+>-			reg =3D ADLS_DPCLKA_CFGCR(phy);
+>-		else
+>-			reg =3D ICL_DPCLKA_CFGCR0;
+>+		i915_reg_t reg =3D icl_dpclka_cfgcr0_reg(dev_priv, phy);
+>
+> 		val =3D intel_de_read(dev_priv, reg);
+> 		ddi_clk_off =3D val & icl_dpclka_cfgcr0_clk_off(dev_priv,
+>-- =
+
+>2.26.2
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
