@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30C1930B049
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 20:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6C4630B056
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 20:28:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94EA86E0BF;
-	Mon,  1 Feb 2021 19:22:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 189BA6EBA6;
+	Mon,  1 Feb 2021 19:28:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 118966E209
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 19:22:51 +0000 (UTC)
-IronPort-SDR: H00X0F94UeRZ79xMjoF3EQIOBooCni7vPvq1ndzXY/I0gFPSGgiW30c+5Xcyky1WtYupEEj3Mh
- 63S/MJxS76zQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="180883052"
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="180883052"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97DC16EB51
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 19:28:10 +0000 (UTC)
+IronPort-SDR: Idsd8WdxKVzdqZSncRVyBuFLg+0AwypO0VuToUJEmjmAZmyR/4jSdD/aQOh3S6gdQBW2+1oLAq
+ cRpmo2mec3uQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="179964100"
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="179964100"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 11:22:43 -0800
-IronPort-SDR: gNn58DAtUk7rVHsHS7Z8oqSjZinyR0lBwaxYLonRPG1GsDrmi61Sjtg7QKkhbLGHXlChU/oQ0H
- LR7HIewyJwcg==
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="575223681"
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 11:28:09 -0800
+IronPort-SDR: 1lxhsAFdtQnfw/fryJgedwkOyMCBhI+ISHuQ5PGsZJ7FbyctTD69HaWYEfbqGJT4015ROB7qHJ
+ ESIIdnDbGA4w==
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="575224620"
 Received: from scewbso01.amr.corp.intel.com (HELO ldmartin-desk1)
  ([10.209.142.9])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 11:22:42 -0800
-Date: Mon, 1 Feb 2021 11:22:39 -0800
+ 01 Feb 2021 11:28:08 -0800
+Date: Mon, 1 Feb 2021 11:28:05 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210201192239.aqdln6mbjveaqkub@ldmartin-desk1>
+Message-ID: <20210201192805.kt2fof4tliqmb673@ldmartin-desk1>
 X-Patchwork-Hint: comment
 References: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
- <20210201183343.15292-14-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210201183343.15292-14-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 13/15] drm/i915: Split alds/rkl from
- icl_ddi_combo_{enable, disable}_clock()
+In-Reply-To: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 00/15] drm/i915: Clean up the DDI clock
+ routing mess
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,174 +55,44 @@ Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 01, 2021 at 08:33:41PM +0200, Ville Syrj=E4l=E4 wrote:
+On Mon, Feb 01, 2021 at 08:33:28PM +0200, Ville Syrj=E4l=E4 wrote:
 >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 >
->Since .{enable,disable}_clock() are already vfuncs it's a bit silly to
->have if-ladders inside them. Just provide specialized version for adlp
->and rkl so we don't need any of that.
+>The DDI clock routing code has turned into proper spaghetti.
+>Attempt to clean it up by introducing some new vfuncs.
 
-s/alds/adl-s/
-
-s/adlp/adl-s/
-
-
->
->Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_ddi.c | 93 ++++++++++++++++--------
-> 1 file changed, 62 insertions(+), 31 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i9=
-15/display/intel_ddi.c
->index 1bd2aa86183d..bafb754d1b66 100644
->--- a/drivers/gpu/drm/i915/display/intel_ddi.c
->+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->@@ -3127,28 +3127,6 @@ static u32 icl_dpclka_cfgcr0_clk_off(struct drm_i91=
-5_private *dev_priv,
-> 	return 0;
-> }
->
->-static u32 icl_dpclka_cfgcr0_clk_sel(struct drm_i915_private *dev_priv,
->-				     enum intel_dpll_id id, enum phy phy)
-
-ok, but why do we even add them in this series if we are going to
-remove. Just makes it harder to review.
-
-For this end state:
-
+A few minors I replied in the series. The move back and forth from one
+approach to the other IMO makes it harder to review, but after looking
+that the complete set:
 
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
 
->-{
->-	if (IS_ALDERLAKE_S(dev_priv))
->-		return id << ADLS_DPCLKA_CFGCR_DDI_SHIFT(phy);
->-	else if (IS_ROCKETLAKE(dev_priv))
->-		return RKL_DPCLKA_CFGCR0_DDI_CLK_SEL(id, phy);
->-	else
->-		return ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(id, phy);
->-}
->-
->-static u32 icl_dpclka_cfgcr0_clk_sel_mask(struct drm_i915_private *dev_pr=
-iv,
->-					  enum phy phy)
->-{
->-	if (IS_ALDERLAKE_S(dev_priv))
->-		return ADLS_DPCLKA_CFGCR_DDI_CLK_SEL_MASK(phy);
->-	else if (IS_ROCKETLAKE(dev_priv))
->-		return RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy);
->-	else
->-		return ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy);
->-}
->-
-> static i915_reg_t icl_dpclka_cfgcr0_reg(struct drm_i915_private *i915,
-> 					enum phy phy)
-> {
->@@ -3184,6 +3162,56 @@ static void _cnl_ddi_disable_clock(struct drm_i915_=
-private *i915, i915_reg_t reg
-> 	mutex_unlock(&i915->dpll.lock);
-> }
 >
->+static void adls_ddi_enable_clock(struct intel_encoder *encoder,
->+				  const struct intel_crtc_state *crtc_state)
->+{
->+	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->+	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
->+	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
->+
->+	if (drm_WARN_ON(&dev_priv->drm, !pll))
->+		return;
->+
->+	_cnl_ddi_enable_clock(dev_priv, ADLS_DPCLKA_CFGCR(phy),
->+			      ADLS_DPCLKA_CFGCR_DDI_CLK_SEL_MASK(phy),
->+			      pll->info->id << ADLS_DPCLKA_CFGCR_DDI_SHIFT(phy),
->+			      ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
->+}
->+
->+static void adls_ddi_disable_clock(struct intel_encoder *encoder)
->+{
->+	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->+	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
->+
->+	_cnl_ddi_disable_clock(dev_priv, ADLS_DPCLKA_CFGCR(phy),
->+			       ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
->+}
->+
->+static void rkl_ddi_enable_clock(struct intel_encoder *encoder,
->+				 const struct intel_crtc_state *crtc_state)
->+{
->+	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->+	const struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
->+	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
->+
->+	if (drm_WARN_ON(&dev_priv->drm, !pll))
->+		return;
->+
->+	_cnl_ddi_enable_clock(dev_priv, ICL_DPCLKA_CFGCR0,
->+			      RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy),
->+			      RKL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll->info->id, phy),
->+			      RKL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
->+}
->+
->+static void rkl_ddi_disable_clock(struct intel_encoder *encoder)
->+{
->+	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->+	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
->+
->+	_cnl_ddi_disable_clock(dev_priv, ICL_DPCLKA_CFGCR0,
->+			       RKL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
->+}
->+
-> static void dg1_ddi_enable_clock(struct intel_encoder *encoder,
-> 				 const struct intel_crtc_state *crtc_state)
-> {
->@@ -3228,10 +3256,10 @@ static void icl_ddi_combo_enable_clock(struct inte=
-l_encoder *encoder,
-> 	if (drm_WARN_ON(&dev_priv->drm, !pll))
-> 		return;
+>Ville Syrj=E4l=E4 (15):
+>  drm/i915: Extract icl_dpclka_cfgcr0_reg()
+>  drm/i915: Extract icl_dpclka_cfgcr0_clk_sel*()
+>  drm/i915: Introduce .{enable,disable}_clock() encoder vfuncs
+>  drm/i915: Extract hsw_ddi_{enable,disable}_clock()
+>  drm/i915: Extract skl_ddi_{enable,disable}_clock()
+>  drm/i195: Extract cnl_ddi_{enable,disable}_clock()
+>  drm/i915: Convert DG1 over to .{enable,disable}_clock()
+>  drm/i915: Extract icl+ .{enable,disable}_clock() vfuncs
+>  drm/i915: Use intel_de_rmw() for DDI clock routing
+>  drm/i915: Sprinkle a few missing locks around shared DDI clock
+>    registers
+>  drm/i915: Sprinkle WARN(!pll) into icl/dg1 .clock_enable()
+>  drm/i915: Extract _cnl_ddi_{enable,disable}_clock()
+>  drm/i915: Split alds/rkl from icl_ddi_combo_{enable,disable}_clock()
+>  drm/i915: Use .disable_clock() for pll sanitation
+>  drm/i915: Relocate icl_sanitize_encoder_pll_mapping()
 >
->-	_cnl_ddi_enable_clock(dev_priv, icl_dpclka_cfgcr0_reg(dev_priv, phy),
->-			      icl_dpclka_cfgcr0_clk_sel_mask(dev_priv, phy),
->-			      icl_dpclka_cfgcr0_clk_sel(dev_priv, pll->info->id, phy),
->-			      icl_dpclka_cfgcr0_clk_off(dev_priv, phy));
->+	_cnl_ddi_enable_clock(dev_priv, ICL_DPCLKA_CFGCR0,
->+			      ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy),
->+			      ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll->info->id, phy),
->+			      ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
-> }
+> drivers/gpu/drm/i915/display/icl_dsi.c        |   1 +
+> drivers/gpu/drm/i915/display/intel_ddi.c      | 536 ++++++++++--------
+> .../drm/i915/display/intel_display_types.h    |   6 +
+> 3 files changed, 295 insertions(+), 248 deletions(-)
 >
-> static void icl_ddi_combo_disable_clock(struct intel_encoder *encoder)
->@@ -3239,8 +3267,8 @@ static void icl_ddi_combo_disable_clock(struct intel=
-_encoder *encoder)
-> 	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> 	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
->
->-	_cnl_ddi_disable_clock(dev_priv, icl_dpclka_cfgcr0_reg(dev_priv, phy),
->-			       icl_dpclka_cfgcr0_clk_off(dev_priv, phy));
->+	_cnl_ddi_disable_clock(dev_priv, ICL_DPCLKA_CFGCR0,
->+			       ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy));
-> }
->
-> static void dg1_sanitize_port_clk_off(struct drm_i915_private *dev_priv,
->@@ -5654,9 +5682,12 @@ void intel_ddi_init(struct drm_i915_private *dev_pr=
-iv, enum port port)
-> 	encoder->cloneable =3D 0;
-> 	encoder->pipe_mask =3D ~0;
->
->-	if (IS_ALDERLAKE_S(dev_priv) || IS_ROCKETLAKE(dev_priv)) {
->-		encoder->enable_clock =3D icl_ddi_combo_enable_clock;
->-		encoder->disable_clock =3D icl_ddi_combo_disable_clock;
->+	if (IS_ALDERLAKE_S(dev_priv)) {
->+		encoder->enable_clock =3D adls_ddi_enable_clock;
->+		encoder->disable_clock =3D adls_ddi_disable_clock;
->+	} else if (IS_ROCKETLAKE(dev_priv)) {
->+		encoder->enable_clock =3D rkl_ddi_enable_clock;
->+		encoder->disable_clock =3D rkl_ddi_disable_clock;
-> 	} else if (IS_DG1(dev_priv)) {
-> 		encoder->enable_clock =3D dg1_ddi_enable_clock;
-> 		encoder->disable_clock =3D dg1_ddi_disable_clock;
 >-- =
 
 >2.26.2
