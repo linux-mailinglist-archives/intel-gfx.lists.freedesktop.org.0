@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 551E430A3B8
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 09:58:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6D530A3B0
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 09:57:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D593B6E49A;
-	Mon,  1 Feb 2021 08:57:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 321606E505;
+	Mon,  1 Feb 2021 08:57:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E4636E48B
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 08:57:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A55636E4A5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 08:57:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23757783-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23757785-1500050 
  for multiple; Mon, 01 Feb 2021 08:57:25 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Feb 2021 08:57:10 +0000
-Message-Id: <20210201085715.27435-52-chris@chris-wilson.co.uk>
+Date: Mon,  1 Feb 2021 08:57:11 +0000
+Message-Id: <20210201085715.27435-53-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210201085715.27435-1-chris@chris-wilson.co.uk>
 References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 52/57] drm/i915/gt: Support creation of
- 'internal' rings
+Subject: [Intel-gfx] [PATCH 53/57] drm/i915/gt: Use client timeline address
+ for seqno writes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,267 +45,432 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To support legacy ring buffer scheduling, we want a virtual ringbuffer
-for each client. These rings are purely for holding the requests as they
-are being constructed on the CPU and never accessed by the GPU, so they
-should not be bound into the GGTT, and we can use plain old WB mapped
-pages.
-
-As they are not bound, we need to nerf a few assumptions that a rq->ring
-is in the GGTT.
+If we allow for per-client timelines, even with legacy ring submission,
+we open the door to a world full of possiblities [scheduling and
+semaphores].
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c       |  2 +-
- .../drm/i915/gt/intel_execlists_submission.c  |  2 +-
- drivers/gpu/drm/i915/gt/intel_ring.c          | 69 ++++++++++++-------
- drivers/gpu/drm/i915/gt/intel_ring.h          | 17 ++++-
- drivers/gpu/drm/i915/gt/intel_ring_types.h    |  2 +
- drivers/gpu/drm/i915/i915_scheduler.c         |  7 +-
- 6 files changed, 69 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/i915/gt/gen2_engine_cs.c      | 72 ++++++++++++++-
+ drivers/gpu/drm/i915/gt/gen2_engine_cs.h      |  5 +-
+ drivers/gpu/drm/i915/gt/gen6_engine_cs.c      | 89 +++++++++++++------
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      | 23 ++---
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 30 +++----
+ drivers/gpu/drm/i915/i915_request.h           | 13 +++
+ 6 files changed, 169 insertions(+), 63 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 57b6bde2b736..c7ab4ed92da4 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -258,7 +258,7 @@ int __intel_context_do_pin_ww(struct intel_context *ce,
- 		}
+diff --git a/drivers/gpu/drm/i915/gt/gen2_engine_cs.c b/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
+index b491a64919c8..b3fff7a955f2 100644
+--- a/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
+@@ -172,9 +172,77 @@ u32 *gen3_emit_breadcrumb(struct i915_request *rq, u32 *cs)
+ 	return __gen2_emit_breadcrumb(rq, cs, 16, 8);
+ }
  
- 		CE_TRACE(ce, "pin ring:{start:%08x, head:%04x, tail:%04x}\n",
--			 i915_ggtt_offset(ce->ring->vma),
-+			 intel_ring_address(ce->ring),
- 			 ce->ring->head, ce->ring->tail);
- 
- 		handoff = true;
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index d9b5b6c9eb5d..ac288b180574 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -3590,7 +3590,7 @@ static int print_ring(char *buf, int sz, struct i915_request *rq)
- 
- 		len = scnprintf(buf, sz,
- 				"ring:{start:%08x, hwsp:%08x, seqno:%08x, runtime:%llums}, ",
--				i915_ggtt_offset(rq->ring->vma),
-+				intel_ring_address(rq->ring),
- 				tl ? tl->ggtt_offset : 0,
- 				hwsp_seqno(rq),
- 				DIV_ROUND_CLOSEST_ULL(intel_context_get_total_runtime_ns(rq->context),
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-index aee0a77c77e0..521972c297a9 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -32,33 +32,42 @@ void __intel_ring_pin(struct intel_ring *ring)
- int intel_ring_pin(struct intel_ring *ring, struct i915_gem_ww_ctx *ww)
+-u32 *gen5_emit_breadcrumb(struct i915_request *rq, u32 *cs)
++static u32 *__gen4_emit_breadcrumb(struct i915_request *rq, u32 *cs,
++				   int flush, int post)
  {
- 	struct i915_vma *vma = ring->vma;
--	unsigned int flags;
- 	void *addr;
- 	int ret;
- 
- 	if (atomic_fetch_inc(&ring->pin_count))
- 		return 0;
- 
--	/* Ring wraparound at offset 0 sometimes hangs. No idea why. */
--	flags = PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
-+	if (!intel_ring_is_internal(ring)) {
-+		int type = i915_coherent_map_type(vma->vm->i915);
-+		unsigned int pin;
- 
--	if (i915_gem_object_is_stolen(vma->obj))
--		flags |= PIN_MAPPABLE;
--	else
--		flags |= PIN_HIGH;
-+		/* Ring wraparound at offset 0 sometimes hangs. No idea why. */
-+		pin |= PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
- 
--	ret = i915_ggtt_pin(vma, ww, 0, flags);
--	if (unlikely(ret))
--		goto err_unpin;
-+		if (i915_gem_object_is_stolen(vma->obj))
-+			pin |= PIN_MAPPABLE;
-+		else
-+			pin |= PIN_HIGH;
- 
--	if (i915_vma_is_map_and_fenceable(vma))
--		addr = (void __force *)i915_vma_pin_iomap(vma);
--	else
--		addr = i915_gem_object_pin_map(vma->obj,
--					       i915_coherent_map_type(vma->vm->i915));
--	if (IS_ERR(addr)) {
--		ret = PTR_ERR(addr);
--		goto err_ring;
-+		ret = i915_ggtt_pin(vma, ww, 0, pin);
-+		if (unlikely(ret))
-+			goto err_unpin;
+-	return __gen2_emit_breadcrumb(rq, cs, 8, 8);
++	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
++	u32 offset = __i915_request_hwsp_offset(rq);
 +
-+		if (i915_vma_is_map_and_fenceable(vma))
-+			addr = (void __force *)i915_vma_pin_iomap(vma);
-+		else
-+			addr = i915_gem_object_pin_map(vma->obj, type);
-+		if (IS_ERR(addr)) {
-+			ret = PTR_ERR(addr);
-+			goto err_ring;
++	GEM_BUG_ON(tl->mode == INTEL_TIMELINE_RELATIVE_CONTEXT);
++
++	*cs++ = MI_FLUSH;
++
++	while (flush--) {
++		*cs++ = MI_STORE_DWORD_INDEX;
++		*cs++ = I915_GEM_HWS_SCRATCH * sizeof(u32);
++		*cs++ = rq->fence.seqno;
++	}
++
++	if (intel_timeline_is_relative(tl)) {
++		offset = offset_in_page(offset);
++		while (post--) {
++			*cs++ = MI_STORE_DWORD_INDEX;
++			*cs++ = offset;
++			*cs++ = rq->fence.seqno;
++			*cs++ = MI_NOOP;
 +		}
 +	} else {
-+		addr = i915_gem_object_pin_map(vma->obj, I915_MAP_WB);
-+		if (IS_ERR(addr)) {
-+			ret = PTR_ERR(addr);
-+			goto err_ring;
++		while (post--) {
++			*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
++			*cs++ = 0;
++			*cs++ = offset;
++			*cs++ = rq->fence.seqno;
 +		}
++	}
++
++	*cs++ = MI_USER_INTERRUPT;
++
++	rq->tail = intel_ring_offset(rq, cs);
++	assert_ring_tail_valid(rq->ring, rq->tail);
++
++	return cs;
++}
++
++u32 *gen4_emit_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
++{
++	return __gen4_emit_breadcrumb(rq, cs, 8, 8);
++}
++
++int gen4_emit_init_breadcrumb_xcs(struct i915_request *rq)
++{
++	struct intel_timeline *tl = i915_request_timeline(rq);
++	u32 *cs;
++
++	GEM_BUG_ON(i915_request_has_initial_breadcrumb(rq));
++	if (!intel_timeline_has_initial_breadcrumb(tl))
++		return 0;
++
++	cs = intel_ring_begin(rq, 4);
++	if (IS_ERR(cs))
++		return PTR_ERR(cs);
++
++	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
++	*cs++ = 0;
++	*cs++ = __i915_request_hwsp_offset(rq);
++	*cs++ = rq->fence.seqno - 1;
++
++	intel_ring_advance(rq, cs);
++
++	/* Record the updated position of the request's payload */
++	rq->infix = intel_ring_offset(rq, cs);
++
++	__set_bit(I915_FENCE_FLAG_INITIAL_BREADCRUMB, &rq->fence.flags);
++	return 0;
+ }
+ 
+ /* Just userspace ABI convention to limit the wa batch bo to a resonable size */
+diff --git a/drivers/gpu/drm/i915/gt/gen2_engine_cs.h b/drivers/gpu/drm/i915/gt/gen2_engine_cs.h
+index a5cd64a65c9e..ba7567b15229 100644
+--- a/drivers/gpu/drm/i915/gt/gen2_engine_cs.h
++++ b/drivers/gpu/drm/i915/gt/gen2_engine_cs.h
+@@ -16,7 +16,10 @@ int gen4_emit_flush_rcs(struct i915_request *rq, u32 mode);
+ int gen4_emit_flush_vcs(struct i915_request *rq, u32 mode);
+ 
+ u32 *gen3_emit_breadcrumb(struct i915_request *rq, u32 *cs);
+-u32 *gen5_emit_breadcrumb(struct i915_request *rq, u32 *cs);
++u32 *gen4_emit_breadcrumb_xcs(struct i915_request *rq, u32 *cs);
++
++u32 *gen4_emit_breadcrumb_xcs(struct i915_request *rq, u32 *cs);
++int gen4_emit_init_breadcrumb_xcs(struct i915_request *rq);
+ 
+ int i830_emit_bb_start(struct i915_request *rq,
+ 		       u64 offset, u32 len,
+diff --git a/drivers/gpu/drm/i915/gt/gen6_engine_cs.c b/drivers/gpu/drm/i915/gt/gen6_engine_cs.c
+index 2f59dd3bdc18..14cab4c726ce 100644
+--- a/drivers/gpu/drm/i915/gt/gen6_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen6_engine_cs.c
+@@ -141,6 +141,12 @@ int gen6_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ 
+ u32 *gen6_emit_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ {
++	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
++	u32 offset = __i915_request_hwsp_offset(rq);
++	unsigned int flags;
++
++	GEM_BUG_ON(tl->mode == INTEL_TIMELINE_RELATIVE_CONTEXT);
++
+ 	/* First we do the gen6_emit_post_sync_nonzero_flush w/a */
+ 	*cs++ = GFX_OP_PIPE_CONTROL(4);
+ 	*cs++ = PIPE_CONTROL_CS_STALL | PIPE_CONTROL_STALL_AT_SCOREBOARD;
+@@ -154,15 +160,22 @@ u32 *gen6_emit_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ 		PIPE_CONTROL_GLOBAL_GTT;
+ 	*cs++ = 0;
+ 
+-	/* Finally we can flush and with it emit the breadcrumb */
+-	*cs++ = GFX_OP_PIPE_CONTROL(4);
+-	*cs++ = (PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
++	flags = (PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DC_FLUSH_ENABLE |
+ 		 PIPE_CONTROL_QW_WRITE |
+ 		 PIPE_CONTROL_CS_STALL);
+-	*cs++ = i915_request_active_timeline(rq)->ggtt_offset |
+-		PIPE_CONTROL_GLOBAL_GTT;
++	if (intel_timeline_is_relative(tl)) {
++		offset = offset_in_page(offset);
++		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
++	}
++	if (!intel_timeline_in_context(tl))
++		offset |= PIPE_CONTROL_GLOBAL_GTT;
++
++	/* Finally we can flush and with it emit the breadcrumb */
++	*cs++ = GFX_OP_PIPE_CONTROL(4);
++	*cs++ = flags;
++	*cs++ = offset;
+ 	*cs++ = rq->fence.seqno;
+ 
+ 	*cs++ = MI_USER_INTERRUPT;
+@@ -351,15 +364,28 @@ int gen7_emit_flush_rcs(struct i915_request *rq, u32 mode)
+ 
+ u32 *gen7_emit_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ {
+-	*cs++ = GFX_OP_PIPE_CONTROL(4);
+-	*cs++ = (PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
++	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
++	u32 offset = __i915_request_hwsp_offset(rq);
++	unsigned int flags;
++
++	GEM_BUG_ON(tl->mode == INTEL_TIMELINE_RELATIVE_CONTEXT);
++
++	flags = (PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DC_FLUSH_ENABLE |
+ 		 PIPE_CONTROL_FLUSH_ENABLE |
+ 		 PIPE_CONTROL_QW_WRITE |
+-		 PIPE_CONTROL_GLOBAL_GTT_IVB |
+ 		 PIPE_CONTROL_CS_STALL);
+-	*cs++ = i915_request_active_timeline(rq)->ggtt_offset;
++	if (intel_timeline_is_relative(tl)) {
++		offset = offset_in_page(offset);
++		flags |= PIPE_CONTROL_STORE_DATA_INDEX;
++	}
++	if (!intel_timeline_in_context(tl))
++		flags |= PIPE_CONTROL_GLOBAL_GTT_IVB;
++
++	*cs++ = GFX_OP_PIPE_CONTROL(4);
++	*cs++ = flags;
++	*cs++ = offset;
+ 	*cs++ = rq->fence.seqno;
+ 
+ 	*cs++ = MI_USER_INTERRUPT;
+@@ -373,11 +399,21 @@ u32 *gen7_emit_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ 
+ u32 *gen6_emit_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
+ {
+-	GEM_BUG_ON(i915_request_active_timeline(rq)->hwsp_ggtt != rq->engine->status_page.vma);
+-	GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
++	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
++	u32 offset = __i915_request_hwsp_offset(rq);
++	unsigned int flags = 0;
+ 
+-	*cs++ = MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_DW_STORE_INDEX;
+-	*cs++ = I915_GEM_HWS_SEQNO_ADDR | MI_FLUSH_DW_USE_GTT;
++	GEM_BUG_ON(tl->mode == INTEL_TIMELINE_RELATIVE_CONTEXT);
++
++	if (intel_timeline_is_relative(tl)) {
++		offset = offset_in_page(offset);
++		flags |= MI_FLUSH_DW_STORE_INDEX;
++	}
++	if (!intel_timeline_in_context(tl))
++		offset |= MI_FLUSH_DW_USE_GTT;
++
++	*cs++ = MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW | flags;
++	*cs++ = offset;
+ 	*cs++ = rq->fence.seqno;
+ 
+ 	*cs++ = MI_USER_INTERRUPT;
+@@ -391,28 +427,31 @@ u32 *gen6_emit_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
+ #define GEN7_XCS_WA 32
+ u32 *gen7_emit_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
+ {
++	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
++	u32 offset = __i915_request_hwsp_offset(rq);
++	u32 cmd = MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW;
+ 	int i;
+ 
+-	GEM_BUG_ON(i915_request_active_timeline(rq)->hwsp_ggtt != rq->engine->status_page.vma);
+-	GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
++	GEM_BUG_ON(tl->mode == INTEL_TIMELINE_RELATIVE_CONTEXT);
+ 
+-	*cs++ = MI_FLUSH_DW | MI_INVALIDATE_TLB |
+-		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_DW_STORE_INDEX;
+-	*cs++ = I915_GEM_HWS_SEQNO_ADDR | MI_FLUSH_DW_USE_GTT;
++	if (intel_timeline_is_relative(tl)) {
++		offset = offset_in_page(offset);
++		cmd |= MI_FLUSH_DW_STORE_INDEX;
++	}
++	if (!intel_timeline_in_context(tl))
++		offset |= MI_FLUSH_DW_USE_GTT;
++
++	*cs++ = cmd;
++	*cs++ = offset;
+ 	*cs++ = rq->fence.seqno;
+ 
+ 	for (i = 0; i < GEN7_XCS_WA; i++) {
+-		*cs++ = MI_STORE_DWORD_INDEX;
+-		*cs++ = I915_GEM_HWS_SEQNO_ADDR;
++		*cs++ = cmd;
++		*cs++ = offset;
+ 		*cs++ = rq->fence.seqno;
  	}
  
- 	i915_vma_make_unshrinkable(vma);
-@@ -99,19 +108,24 @@ void intel_ring_unpin(struct intel_ring *ring)
- 		i915_gem_object_unpin_map(vma->obj);
+-	*cs++ = MI_FLUSH_DW;
+-	*cs++ = 0;
+-	*cs++ = 0;
+-
+ 	*cs++ = MI_USER_INTERRUPT;
+-	*cs++ = MI_NOOP;
  
- 	i915_vma_make_purgeable(vma);
--	i915_vma_unpin(vma);
-+	if (!intel_ring_is_internal(ring))
-+		i915_vma_unpin(vma);
+ 	rq->tail = intel_ring_offset(rq, cs);
+ 	assert_ring_tail_valid(rq->ring, rq->tail);
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index 7fd843369b41..4a0d32584ef0 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -336,19 +336,6 @@ static u32 preempt_address(struct intel_engine_cs *engine)
+ 		I915_GEM_HWS_PREEMPT_ADDR);
  }
  
--static struct i915_vma *create_ring_vma(struct i915_ggtt *ggtt, int size)
-+static struct i915_vma *
-+create_ring_vma(struct i915_ggtt *ggtt, int size, unsigned int flags)
+-static u32 hwsp_offset(const struct i915_request *rq)
+-{
+-	const struct intel_timeline_cacheline *cl;
+-
+-	/* Before the request is executed, the timeline/cachline is fixed */
+-
+-	cl = rcu_dereference_protected(rq->hwsp_cacheline, 1);
+-	if (cl)
+-		return cl->ggtt_offset;
+-
+-	return rcu_dereference_protected(rq->timeline, 1)->ggtt_offset;
+-}
+-
+ int gen8_emit_init_breadcrumb(struct i915_request *rq)
  {
- 	struct i915_address_space *vm = &ggtt->vm;
- 	struct drm_i915_private *i915 = vm->i915;
- 	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
+ 	u32 *cs;
+@@ -362,7 +349,7 @@ int gen8_emit_init_breadcrumb(struct i915_request *rq)
+ 		return PTR_ERR(cs);
  
--	obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_VOLATILE);
--	if (IS_ERR(obj) && i915_ggtt_has_aperture(ggtt))
--		obj = i915_gem_object_create_stolen(i915, size);
-+	obj = ERR_PTR(-ENODEV);
-+	if (!(flags & INTEL_RING_CREATE_INTERNAL)) {
-+		obj = i915_gem_object_create_lmem(i915, size, I915_BO_ALLOC_VOLATILE);
-+		if (IS_ERR(obj) && i915_ggtt_has_aperture(ggtt))
-+			obj = i915_gem_object_create_stolen(i915, size);
-+	}
- 	if (IS_ERR(obj))
- 		obj = i915_gem_object_create_internal(i915, size);
- 	if (IS_ERR(obj))
-@@ -136,12 +150,14 @@ static struct i915_vma *create_ring_vma(struct i915_ggtt *ggtt, int size)
+ 	*cs++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
+-	*cs++ = hwsp_offset(rq);
++	*cs++ = __i915_request_hwsp_offset(rq);
+ 	*cs++ = 0;
+ 	*cs++ = rq->fence.seqno - 1;
+ 
+@@ -520,7 +507,7 @@ static u32 *emit_xcs_breadcrumb(struct i915_request *rq, u32 *cs)
+ {
+ 	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
+ 	unsigned int flags = MI_FLUSH_DW_OP_STOREDW;
+-	u32 offset = hwsp_offset(rq);
++	u32 offset = __i915_request_hwsp_offset(rq);
+ 
+ 	if (intel_timeline_is_relative(tl)) {
+ 		offset = offset_in_page(offset);
+@@ -542,7 +529,7 @@ u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ {
+ 	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
+ 	unsigned int flags = PIPE_CONTROL_FLUSH_ENABLE | PIPE_CONTROL_CS_STALL;
+-	u32 offset = hwsp_offset(rq);
++	u32 offset = __i915_request_hwsp_offset(rq);
+ 
+ 	if (intel_timeline_is_relative(tl)) {
+ 		offset = offset_in_page(offset);
+@@ -567,7 +554,7 @@ u32 *gen8_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ u32 *gen11_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ {
+ 	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
+-	u32 offset = hwsp_offset(rq);
++	u32 offset = __i915_request_hwsp_offset(rq);
+ 	unsigned int flags;
+ 
+ 	flags = (PIPE_CONTROL_CS_STALL |
+@@ -649,7 +636,7 @@ u32 *gen12_emit_fini_breadcrumb_xcs(struct i915_request *rq, u32 *cs)
+ u32 *gen12_emit_fini_breadcrumb_rcs(struct i915_request *rq, u32 *cs)
+ {
+ 	struct intel_timeline *tl = rcu_dereference_protected(rq->timeline, 1);
+-	u32 offset = hwsp_offset(rq);
++	u32 offset = __i915_request_hwsp_offset(rq);
+ 	unsigned int flags;
+ 
+ 	flags = (PIPE_CONTROL_CS_STALL |
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 9d193acd260b..ef80f47f468a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -1043,11 +1043,6 @@ static void setup_common(struct intel_engine_cs *engine)
+ 	 * equivalent to our next initial bread so we can elide
+ 	 * engine->emit_init_breadcrumb().
+ 	 */
+-	engine->emit_fini_breadcrumb = gen3_emit_breadcrumb;
+-	if (IS_GEN(i915, 5))
+-		engine->emit_fini_breadcrumb = gen5_emit_breadcrumb;
+-
+-	engine->set_default_submission = i9xx_set_default_submission;
+ 
+ 	if (INTEL_GEN(i915) >= 6)
+ 		engine->emit_bb_start = gen6_emit_bb_start;
+@@ -1057,6 +1052,17 @@ static void setup_common(struct intel_engine_cs *engine)
+ 		engine->emit_bb_start = i830_emit_bb_start;
+ 	else
+ 		engine->emit_bb_start = gen3_emit_bb_start;
++
++	if (INTEL_GEN(i915) >= 7)
++		engine->emit_fini_breadcrumb = gen7_emit_breadcrumb_xcs;
++	else if (INTEL_GEN(i915) >= 6)
++		engine->emit_fini_breadcrumb = gen6_emit_breadcrumb_xcs;
++	else if (INTEL_GEN(i915) >= 4)
++		engine->emit_fini_breadcrumb = gen4_emit_breadcrumb_xcs;
++	else
++		engine->emit_fini_breadcrumb = gen3_emit_breadcrumb;
++
++	engine->set_default_submission = i9xx_set_default_submission;
  }
  
- struct intel_ring *
--intel_engine_create_ring(struct intel_engine_cs *engine, int size)
-+intel_engine_create_ring(struct intel_engine_cs *engine, unsigned int size)
+ static void setup_rcs(struct intel_engine_cs *engine)
+@@ -1098,11 +1104,6 @@ static void setup_vcs(struct intel_engine_cs *engine)
+ 			engine->set_default_submission = gen6_bsd_set_default_submission;
+ 		engine->emit_flush = gen6_emit_flush_vcs;
+ 		engine->irq_enable_mask = GT_BSD_USER_INTERRUPT;
+-
+-		if (IS_GEN(i915, 6))
+-			engine->emit_fini_breadcrumb = gen6_emit_breadcrumb_xcs;
+-		else
+-			engine->emit_fini_breadcrumb = gen7_emit_breadcrumb_xcs;
+ 	} else {
+ 		engine->emit_flush = gen4_emit_flush_vcs;
+ 		if (IS_GEN(i915, 5))
+@@ -1116,13 +1117,10 @@ static void setup_bcs(struct intel_engine_cs *engine)
  {
  	struct drm_i915_private *i915 = engine->i915;
-+	unsigned int flags = size & GENMASK(11, 0);
- 	struct intel_ring *ring;
- 	struct i915_vma *vma;
  
-+	size ^= flags;
- 	GEM_BUG_ON(!is_power_of_2(size));
- 	GEM_BUG_ON(RING_CTL_SIZE(size) & ~RING_NR_PAGES);
- 
-@@ -150,8 +166,10 @@ intel_engine_create_ring(struct intel_engine_cs *engine, int size)
- 		return ERR_PTR(-ENOMEM);
- 
- 	kref_init(&ring->ref);
++	GEM_BUG_ON(INTEL_GEN(i915) < 6);
 +
- 	ring->size = size;
- 	ring->wrap = BITS_PER_TYPE(ring->size) - ilog2(size);
-+	ring->flags = flags;
- 
- 	/*
- 	 * Workaround an erratum on the i830 which causes a hang if
-@@ -164,11 +182,12 @@ intel_engine_create_ring(struct intel_engine_cs *engine, int size)
- 
- 	intel_ring_update_space(ring);
- 
--	vma = create_ring_vma(engine->gt->ggtt, size);
-+	vma = create_ring_vma(engine->gt->ggtt, size, flags);
- 	if (IS_ERR(vma)) {
- 		kfree(ring);
- 		return ERR_CAST(vma);
- 	}
-+
- 	ring->vma = vma;
- 
- 	return ring;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.h b/drivers/gpu/drm/i915/gt/intel_ring.h
-index dbf5f14a136f..89d79c22fe9e 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.h
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.h
-@@ -8,12 +8,14 @@
- 
- #include "i915_gem.h" /* GEM_BUG_ON */
- #include "i915_request.h"
-+#include "i915_vma.h"
- #include "intel_ring_types.h"
- 
- struct intel_engine_cs;
- 
- struct intel_ring *
--intel_engine_create_ring(struct intel_engine_cs *engine, int size);
-+intel_engine_create_ring(struct intel_engine_cs *engine, unsigned int size);
-+#define INTEL_RING_CREATE_INTERNAL BIT(0)
- 
- u32 *intel_ring_begin(struct i915_request *rq, unsigned int num_dwords);
- int intel_ring_cacheline_align(struct i915_request *rq);
-@@ -138,4 +140,17 @@ __intel_ring_space(unsigned int head, unsigned int tail, unsigned int size)
- 	return (head - tail - CACHELINE_BYTES) & (size - 1);
+ 	engine->emit_flush = gen6_emit_flush_xcs;
+ 	engine->irq_enable_mask = GT_BLT_USER_INTERRUPT;
+-
+-	if (IS_GEN(i915, 6))
+-		engine->emit_fini_breadcrumb = gen6_emit_breadcrumb_xcs;
+-	else
+-		engine->emit_fini_breadcrumb = gen7_emit_breadcrumb_xcs;
  }
  
-+static inline u32 intel_ring_address(const struct intel_ring *ring)
-+{
-+	if (ring->flags & INTEL_RING_CREATE_INTERNAL)
-+		return -1;
-+
-+	return i915_ggtt_offset(ring->vma);
-+}
-+
-+static inline bool intel_ring_is_internal(const struct intel_ring *ring)
-+{
-+	return ring->flags & INTEL_RING_CREATE_INTERNAL;
-+}
-+
- #endif /* INTEL_RING_H */
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_types.h b/drivers/gpu/drm/i915/gt/intel_ring_types.h
-index 49ccb76dda3b..3d091c699110 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_types.h
-@@ -46,6 +46,8 @@ struct intel_ring {
- 	u32 size;
- 	u32 wrap;
- 	u32 effective_size;
-+
-+	unsigned long flags;
- };
- 
- #endif /* INTEL_RING_TYPES_H */
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index 838fd26c5ac6..de9c187290cd 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -109,11 +109,14 @@ static void i915_sched_init_ipi(struct i915_sched_ipi *ipi)
- 	ipi->list = NULL;
+ static void setup_vecs(struct intel_engine_cs *engine)
+@@ -1135,8 +1133,6 @@ static void setup_vecs(struct intel_engine_cs *engine)
+ 	engine->irq_enable_mask = PM_VEBOX_USER_INTERRUPT;
+ 	engine->irq_enable = hsw_irq_enable_vecs;
+ 	engine->irq_disable = hsw_irq_disable_vecs;
+-
+-	engine->emit_fini_breadcrumb = gen7_emit_breadcrumb_xcs;
  }
  
--static bool match_ring(struct i915_request *rq)
-+static bool match_ring(const struct i915_request *rq)
+ static int gen7_ctx_switch_bb_setup(struct intel_engine_cs * const engine,
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index 7c29d33e7d51..62840206e3dd 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -624,6 +624,19 @@ i915_request_active_timeline(const struct i915_request *rq)
+ 					 lockdep_is_held(&i915_request_get_scheduler(rq)->lock));
+ }
+ 
++static inline u32 __i915_request_hwsp_offset(const struct i915_request *rq)
++{
++	const struct intel_timeline_cacheline *cl;
++
++	/* Before the request is executed, the timeline/cachline is fixed */
++
++	cl = rcu_dereference_protected(rq->hwsp_cacheline, 1);
++	if (cl)
++		return cl->ggtt_offset;
++
++	return rcu_dereference_protected(rq->timeline, 1)->ggtt_offset;
++}
++
+ static inline bool i915_request_use_scheduler(const struct i915_request *rq)
  {
- 	const struct intel_engine_cs *engine = rq->engine;
- 	const struct intel_ring *ring = rq->ring;
- 
-+	if (intel_ring_is_internal(ring))
-+		return true;
-+
- 	return ENGINE_READ(engine, RING_START) == i915_ggtt_offset(ring->vma);
- }
- 
-@@ -1655,7 +1658,7 @@ void i915_sched_show(struct drm_printer *m,
- 		i915_request_show(m, rq, "\t\tactive ", 0);
- 
- 		drm_printf(m, "\t\tring->start:  0x%08x\n",
--			   i915_ggtt_offset(rq->ring->vma));
-+			   intel_ring_address(rq->ring));
- 		drm_printf(m, "\t\tring->head:   0x%08x\n",
- 			   rq->ring->head);
- 		drm_printf(m, "\t\tring->tail:   0x%08x\n",
+ 	return i915_sched_is_active(i915_request_get_scheduler(rq));
 -- 
 2.20.1
 
