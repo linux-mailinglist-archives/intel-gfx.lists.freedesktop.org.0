@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7658130AFFD
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 20:04:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9722630B007
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 20:05:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB2E6E879;
-	Mon,  1 Feb 2021 19:04:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 081C36E9A9;
+	Mon,  1 Feb 2021 19:05:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 748CE6E876
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 19:04:45 +0000 (UTC)
-IronPort-SDR: 5lYu2H+yz6W3yPBTtzMrn9+LJw8gQYmswhpjVYzxw4kliOC8OzRgZ0ZqiTM/5EbqOjUAabu8nO
- 2E5h1BZ0tcDA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="167842571"
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="167842571"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 11:04:44 -0800
-IronPort-SDR: VN7ZPriXwaE/tnOXhXEW6+GYlBXsVPis2CL2maMTP4yqQ6Ocn4KNrWh4BxML9pYa7oPsC5ZDqR
- ayLxcmW+KKOw==
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="479202204"
-Received: from scewbso01.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.142.9])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 11:04:42 -0800
-Date: Mon, 1 Feb 2021 11:04:40 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210201190440.epy4osz7pe3otx7u@ldmartin-desk1>
-X-Patchwork-Hint: comment
-References: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
- <20210201183343.15292-4-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F28B16E87B;
+ Mon,  1 Feb 2021 19:05:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E35F7A363D;
+ Mon,  1 Feb 2021 19:05:36 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210201183343.15292-4-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 03/15] drm/i915: Introduce .{enable,
- disable}_clock() encoder vfuncs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 01 Feb 2021 19:05:36 -0000
+Message-ID: <161220633692.18682.60553709178241938@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210201164222.14455-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210201164222.14455-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Retire_unexpected_starting_state_error_dumping?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,156 +38,266 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============0126630358=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 01, 2021 at 08:33:31PM +0200, Ville Syrj=E4l=E4 wrote:
->From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->
->The current code dealing with the clock routing for DDI encoders
->is a maintenance nightmare. Let's start cleaning it up by allowing
->the encoder to provide vfuncs for enablign/disabling the clock.
->
->We leave them initially unimplemented, falling back to the old
->if-else approach.
->
->Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_ddi.c      | 29 +++++++++++++++----
-> .../drm/i915/display/intel_display_types.h    |  6 ++++
-> 2 files changed, 29 insertions(+), 6 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i9=
-15/display/intel_ddi.c
->index 23fbb9013e09..da8bb9a2de0b 100644
->--- a/drivers/gpu/drm/i915/display/intel_ddi.c
->+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->@@ -3464,6 +3464,23 @@ static void intel_ddi_clk_disable(struct intel_enco=
-der *encoder)
-> 	}
-> }
->
->+static void intel_ddi_enable_clock(struct intel_encoder *encoder,
->+				   const struct intel_crtc_state *crtc_state)
->+{
->+	if (encoder->enable_clock)
->+		encoder->enable_clock(encoder, crtc_state);
->+	else
->+		intel_ddi_clk_select(encoder, crtc_state);
->+}
->+
->+static void intel_ddi_disable_clock(struct intel_encoder *encoder)
->+{
->+	if (encoder->disable_clock)
->+		encoder->disable_clock(encoder);
->+	else
->+		intel_ddi_clk_disable(encoder);
+--===============0126630358==
+Content-Type: multipart/alternative;
+ boundary="===============0945427947240750588=="
 
-intel_ddi_disable_clock  vs  intel_ddi_clk_disable
+--===============0945427947240750588==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think the names here is very prone to mistake. Maybe we should come
-back with better names?  We could have renamed intel_ddi_clk_disable to
-__ddi_clk_disable in this patch, since we are going to remove the
-function once everything is converted.
+== Series Details ==
 
-Lucas De Marchi
+Series: drm/i915/gt: Retire unexpected starting state error dumping
+URL   : https://patchwork.freedesktop.org/series/86542/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9713 -> Patchwork_19555
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19555 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +26 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-kbl-7500u:       [PASS][6] -> [DMESG-WARN][7] ([i915#2868])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [DMESG-WARN][8] ([i915#402]) -> [PASS][9] +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-8109u:       [DMESG-WARN][10] ([i915#203]) -> [PASS][11] +27 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cfl-8109u:       [DMESG-WARN][12] ([i915#1037]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_engines:
+    - fi-cfl-8109u:       [DMESG-WARN][14] -> [PASS][15] +4 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_selftest@live@gt_engines.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-cfl-8109u/igt@i915_selftest@live@gt_engines.html
+
+  * igt@i915_selftest@live@sanitycheck:
+    - fi-kbl-7500u:       [DMESG-WARN][16] ([i915#2605]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1037]: https://gitlab.freedesktop.org/drm/intel/issues/1037
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
 
->+}
->+
-> static void
-> icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
-> 		       const struct intel_crtc_state *crtc_state)
->@@ -3708,7 +3725,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomi=
-c_state *state,
-> 	 * hsw_crtc_enable()->intel_enable_shared_dpll().  We need only
-> 	 * configure the PLL to port mapping here.
-> 	 */
->-	intel_ddi_clk_select(encoder, crtc_state);
->+	intel_ddi_enable_clock(encoder, crtc_state);
->
-> 	/* 5. If IO power is controlled through PWR_WELL_CTL, Enable IO Power */
-> 	if (!intel_phy_is_tc(dev_priv, phy) ||
->@@ -3829,7 +3846,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomi=
-c_state *state,
->
-> 	intel_pps_on(intel_dp);
->
->-	intel_ddi_clk_select(encoder, crtc_state);
->+	intel_ddi_enable_clock(encoder, crtc_state);
->
-> 	if (!intel_phy_is_tc(dev_priv, phy) ||
-> 	    dig_port->tc_mode !=3D TC_PORT_TBT_ALT) {
->@@ -3904,7 +3921,7 @@ static void intel_ddi_pre_enable_hdmi(struct intel_a=
-tomic_state *state,
-> 	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->
-> 	intel_dp_dual_mode_set_tmds_output(intel_hdmi, true);
->-	intel_ddi_clk_select(encoder, crtc_state);
->+	intel_ddi_enable_clock(encoder, crtc_state);
->
-> 	drm_WARN_ON(&dev_priv->drm, dig_port->ddi_io_wakeref);
-> 	dig_port->ddi_io_wakeref =3D intel_display_power_get(dev_priv,
->@@ -4056,7 +4073,7 @@ static void intel_ddi_post_disable_dp(struct intel_a=
-tomic_state *state,
-> 					dig_port->ddi_io_power_domain,
-> 					fetch_and_zero(&dig_port->ddi_io_wakeref));
->
->-	intel_ddi_clk_disable(encoder);
->+	intel_ddi_disable_clock(encoder);
-> }
->
-> static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
->@@ -4079,7 +4096,7 @@ static void intel_ddi_post_disable_hdmi(struct intel=
-_atomic_state *state,
-> 				dig_port->ddi_io_power_domain,
-> 				fetch_and_zero(&dig_port->ddi_io_wakeref));
->
->-	intel_ddi_clk_disable(encoder);
->+	intel_ddi_disable_clock(encoder);
->
-> 	intel_dp_dual_mode_set_tmds_output(intel_hdmi, false);
-> }
->@@ -4179,7 +4196,7 @@ void intel_ddi_fdi_post_disable(struct intel_atomic_=
-state *state,
-> 	intel_de_write(dev_priv, FDI_RX_CTL(PIPE_A), val);
->
-> 	intel_disable_ddi_buf(encoder, old_crtc_state);
->-	intel_ddi_clk_disable(encoder);
->+	intel_ddi_disable_clock(encoder);
->
-> 	val =3D intel_de_read(dev_priv, FDI_RX_MISC(PIPE_A));
-> 	val &=3D ~(FDI_RX_PWRDN_LANE1_MASK | FDI_RX_PWRDN_LANE0_MASK);
->diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/=
-gpu/drm/i915/display/intel_display_types.h
->index 39397748b4b0..085162616112 100644
->--- a/drivers/gpu/drm/i915/display/intel_display_types.h
->+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->@@ -219,6 +219,12 @@ struct intel_encoder {
-> 	 * encoders have been disabled and suspended.
-> 	 */
-> 	void (*shutdown)(struct intel_encoder *encoder);
->+	/*
->+	 * Enable/disable the clock to the port.
->+	 */
->+	void (*enable_clock)(struct intel_encoder *encoder,
->+			     const struct intel_crtc_state *crtc_state);
->+	void (*disable_clock)(struct intel_encoder *encoder);
-> 	enum hpd_pin hpd_pin;
-> 	enum intel_display_power_domain power_domain;
-> 	/* for communication with audio component; protected by av_mutex */
->-- =
+Participating hosts (45 -> 38)
+------------------------------
 
->2.26.2
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  Missing    (7): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9713 -> Patchwork_19555
+
+  CI-20190529: 20190529
+  CI_DRM_9713: cc7b6cbff2a0a75ad4fe84d055ee1a762f0ce64b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5984: ccfc101419c1e233f87ca509781c5f8e09a2f3ae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19555: 13b7cc34741b3e973eeea37debde9456b92bd482 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+13b7cc34741b drm/i915/gt: Retire unexpected starting state error dumping
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/index.html
+
+--===============0945427947240750588==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Retire unexpected starting state error dumping</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86542/">https://patchwork.freedesktop.org/series/86542/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9713 -&gt; Patchwork_19555</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19555 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/203">i915#203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a> +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1037">i915#1037</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_engines:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-cfl-8109u/igt@i915_selftest@live@gt_engines.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-cfl-8109u/igt@i915_selftest@live@gt_engines.html">PASS</a> +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9713/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19555/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 38)</h2>
+<p>Missing    (7): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9713 -&gt; Patchwork_19555</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9713: cc7b6cbff2a0a75ad4fe84d055ee1a762f0ce64b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5984: ccfc101419c1e233f87ca509781c5f8e09a2f3ae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19555: 13b7cc34741b3e973eeea37debde9456b92bd482 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>13b7cc34741b drm/i915/gt: Retire unexpected starting state error dumping</p>
+
+</body>
+</html>
+
+--===============0945427947240750588==--
+
+--===============0126630358==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0126630358==--
