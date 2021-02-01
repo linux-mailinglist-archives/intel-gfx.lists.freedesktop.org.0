@@ -2,41 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C4630B056
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 20:28:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B4430B063
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 20:31:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 189BA6EBA6;
-	Mon,  1 Feb 2021 19:28:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F344789864;
+	Mon,  1 Feb 2021 19:31:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97DC16EB51
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 19:28:10 +0000 (UTC)
-IronPort-SDR: Idsd8WdxKVzdqZSncRVyBuFLg+0AwypO0VuToUJEmjmAZmyR/4jSdD/aQOh3S6gdQBW2+1oLAq
- cRpmo2mec3uQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="179964100"
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="179964100"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 11:28:09 -0800
-IronPort-SDR: 1lxhsAFdtQnfw/fryJgedwkOyMCBhI+ISHuQ5PGsZJ7FbyctTD69HaWYEfbqGJT4015ROB7qHJ
- ESIIdnDbGA4w==
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="575224620"
-Received: from scewbso01.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.142.9])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 11:28:08 -0800
-Date: Mon, 1 Feb 2021 11:28:05 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210201192805.kt2fof4tliqmb673@ldmartin-desk1>
-X-Patchwork-Hint: comment
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3348897C8
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 19:31:53 +0000 (UTC)
+IronPort-SDR: B7xD+QENf8Of8r296WMQ7XAB8F9zEmdKV+T1TZzKSuZpCG4WKpcbpbi1mJiBHuavKJqS5tJ8h8
+ NdNJgbRamdnQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="180817655"
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="180817655"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 11:31:52 -0800
+IronPort-SDR: AdzfkyzP7eJj3pPCYTnaGm/RTJFSaG2Jxp/xeR0O9ez5z3uD6GDEzP8lw3soJGp/w4xUegxHqH
+ pgJAkmWj3ceQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="370077335"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 01 Feb 2021 11:31:50 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 01 Feb 2021 21:31:49 +0200
+Date: Mon, 1 Feb 2021 21:31:49 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <YBhXJYQquRL7kzT2@intel.com>
 References: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
+ <20210201183343.15292-14-ville.syrjala@linux.intel.com>
+ <20210201192239.aqdln6mbjveaqkub@ldmartin-desk1>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 00/15] drm/i915: Clean up the DDI clock
- routing mess
+In-Reply-To: <20210201192239.aqdln6mbjveaqkub@ldmartin-desk1>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 13/15] drm/i915: Split alds/rkl from
+ icl_ddi_combo_{enable, disable}_clock()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,57 +53,59 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 01, 2021 at 08:33:28PM +0200, Ville Syrj=E4l=E4 wrote:
->From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->
->The DDI clock routing code has turned into proper spaghetti.
->Attempt to clean it up by introducing some new vfuncs.
+On Mon, Feb 01, 2021 at 11:22:39AM -0800, Lucas De Marchi wrote:
+> On Mon, Feb 01, 2021 at 08:33:41PM +0200, Ville Syrj=E4l=E4 wrote:
+> >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >
+> >Since .{enable,disable}_clock() are already vfuncs it's a bit silly to
+> >have if-ladders inside them. Just provide specialized version for adlp
+> >and rkl so we don't need any of that.
+> =
 
-A few minors I replied in the series. The move back and forth from one
-approach to the other IMO makes it harder to review, but after looking
-that the complete set:
+> s/alds/adl-s/
+> =
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> s/adlp/adl-s/
+> =
 
-Lucas De Marchi
+> =
 
->
->Ville Syrj=E4l=E4 (15):
->  drm/i915: Extract icl_dpclka_cfgcr0_reg()
->  drm/i915: Extract icl_dpclka_cfgcr0_clk_sel*()
->  drm/i915: Introduce .{enable,disable}_clock() encoder vfuncs
->  drm/i915: Extract hsw_ddi_{enable,disable}_clock()
->  drm/i915: Extract skl_ddi_{enable,disable}_clock()
->  drm/i195: Extract cnl_ddi_{enable,disable}_clock()
->  drm/i915: Convert DG1 over to .{enable,disable}_clock()
->  drm/i915: Extract icl+ .{enable,disable}_clock() vfuncs
->  drm/i915: Use intel_de_rmw() for DDI clock routing
->  drm/i915: Sprinkle a few missing locks around shared DDI clock
->    registers
->  drm/i915: Sprinkle WARN(!pll) into icl/dg1 .clock_enable()
->  drm/i915: Extract _cnl_ddi_{enable,disable}_clock()
->  drm/i915: Split alds/rkl from icl_ddi_combo_{enable,disable}_clock()
->  drm/i915: Use .disable_clock() for pll sanitation
->  drm/i915: Relocate icl_sanitize_encoder_pll_mapping()
->
-> drivers/gpu/drm/i915/display/icl_dsi.c        |   1 +
-> drivers/gpu/drm/i915/display/intel_ddi.c      | 536 ++++++++++--------
-> .../drm/i915/display/intel_display_types.h    |   6 +
-> 3 files changed, 295 insertions(+), 248 deletions(-)
->
->-- =
+> >
+> >Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >---
+> > drivers/gpu/drm/i915/display/intel_ddi.c | 93 ++++++++++++++++--------
+> > 1 file changed, 62 insertions(+), 31 deletions(-)
+> >
+> >diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/=
+i915/display/intel_ddi.c
+> >index 1bd2aa86183d..bafb754d1b66 100644
+> >--- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> >+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >@@ -3127,28 +3127,6 @@ static u32 icl_dpclka_cfgcr0_clk_off(struct drm_i=
+915_private *dev_priv,
+> > 	return 0;
+> > }
+> >
+> >-static u32 icl_dpclka_cfgcr0_clk_sel(struct drm_i915_private *dev_priv,
+> >-				     enum intel_dpll_id id, enum phy phy)
+> =
 
->2.26.2
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> ok, but why do we even add them in this series if we are going to
+> remove. Just makes it harder to review.
+
+I had to increase the SNR before I could see what the code was
+trying to do. I guess I could now go back and drop the first
+two patches.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
