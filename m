@@ -1,43 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61FAD30B02C
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 20:15:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53E7A30B02D
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 20:16:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6A696E9E6;
-	Mon,  1 Feb 2021 19:15:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 959BD6E9F3;
+	Mon,  1 Feb 2021 19:16:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A97526E9E6
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 19:15:45 +0000 (UTC)
-IronPort-SDR: bT2WAq8+NBpuaKRzY/YVC+XgBcowR9j2lwkAxcX3bJiWlhyb4WuPBqWMQZJVriFWArzz58FLnJ
- ZuFXaDiutZ6w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="242256174"
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="242256174"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 11:15:44 -0800
-IronPort-SDR: W4Z197zJqe8vBhZZaCl+8MX6dqkEhJoz9H7qy+YJskvofH+I596XoNJ01ebd98DuBekRClG2Ig
- +QrVIdnTo9eQ==
-X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="575222394"
-Received: from scewbso01.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.142.9])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 11:15:43 -0800
-Date: Mon, 1 Feb 2021 11:15:41 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210201191541.ia6elqacegpskzoa@ldmartin-desk1>
-X-Patchwork-Hint: comment
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58B3B6E9F3
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 19:16:21 +0000 (UTC)
+IronPort-SDR: x0JYdeeXI5idC+6Sha1K4dAVYOBI0iRvAjz81YAvDM7M4zgicj1c+pNrqobepSn6eLw/5+AvsH
+ EQRm4azItLUg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="168419417"
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="168419417"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 11:16:20 -0800
+IronPort-SDR: wYN/Ul8T+cwErG9BeJZ7zQgErD2owqePmekE9mHBbfoj+QfJJcaMOk8o4LHNZaJ9AbL4zJNBRd
+ v5bcgEMyFTug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,393,1602572400"; d="scan'208";a="395716995"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 01 Feb 2021 11:16:18 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 01 Feb 2021 21:16:17 +0200
+Date: Mon, 1 Feb 2021 21:16:17 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <YBhTgYvNX3sp7KwU@intel.com>
 References: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
- <20210201183343.15292-12-ville.syrjala@linux.intel.com>
+ <20210201183343.15292-5-ville.syrjala@linux.intel.com>
+ <20210201190720.mhsuf7qyq3oemqbp@ldmartin-desk1>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210201183343.15292-12-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 11/15] drm/i915: Sprinkle WARN(!pll) into
- icl/dg1 .clock_enable()
+In-Reply-To: <20210201190720.mhsuf7qyq3oemqbp@ldmartin-desk1>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 04/15] drm/i915: Extract hsw_ddi_{enable,
+ disable}_clock()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,66 +53,69 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 01, 2021 at 08:33:39PM +0200, Ville Syrj=E4l=E4 wrote:
->From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->
->The other DDI .enable_clock() functions are trying to protect us
->against pll=3D=3DNULL. A bit tempted to throw out all the WARNs as
->just unnecessary noise, but I guess they might have some use
->when poking around the shared_dpll code (not sure it wouldn't
->oops elsewhere though). So let's unify it all and sprinkle in
->the missing WARNs for icl/dg1.
->
->Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+On Mon, Feb 01, 2021 at 11:07:20AM -0800, Lucas De Marchi wrote:
+> On Mon, Feb 01, 2021 at 08:33:32PM +0200, Ville Syrj=E4l=E4 wrote:
+> >From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >
+> >Yank out the HSW/BDW code from intel_ddi_clk_{select,disable}()
+> >and put it into the new encoder .{enable,disable}_clock() vfuncs.
+> >
+> >Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >---
+> > drivers/gpu/drm/i915/display/intel_ddi.c | 32 +++++++++++++++++++-----
+> > 1 file changed, 26 insertions(+), 6 deletions(-)
+> >
+> >diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/=
+i915/display/intel_ddi.c
+> >index da8bb9a2de0b..b46d7be1996b 100644
+> >--- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> >+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> >@@ -3433,9 +3433,6 @@ static void intel_ddi_clk_select(struct intel_enco=
+der *encoder,
+> >
+> > 		intel_de_write(dev_priv, DPLL_CTRL2, val);
+> >
+> >-	} else if (INTEL_GEN(dev_priv) < 9) {
+> >-		intel_de_write(dev_priv, PORT_CLK_SEL(port),
+> >-			       hsw_pll_to_ddi_pll_sel(pll));
+> > 	}
+> >
+> > 	mutex_unlock(&dev_priv->dpll.lock);
+> >@@ -3458,12 +3455,30 @@ static void intel_ddi_clk_disable(struct intel_e=
+ncoder *encoder)
+> > 	} else if (IS_GEN9_BC(dev_priv)) {
+> > 		intel_de_write(dev_priv, DPLL_CTRL2,
+> > 			       intel_de_read(dev_priv, DPLL_CTRL2) | DPLL_CTRL2_DDI_CLK_OFF(=
+port));
+> >-	} else if (INTEL_GEN(dev_priv) < 9) {
+> >-		intel_de_write(dev_priv, PORT_CLK_SEL(port),
+> >-			       PORT_CLK_SEL_NONE);
+> > 	}
+> > }
+> >
+> >+static void hsw_ddi_enable_clock(struct intel_encoder *encoder,
+> >+				 const struct intel_crtc_state *crtc_state)
+> >+{
+> >+	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> =
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> since we are adding this new function, better to use i915 rather than
+> dev_priv.
 
-Lucas De Marchi
+Hmm. Yeah, looks like we can do that in this case since
+PORT_CLK_SEL() doesn't depend on 'dev_priv'. I'm just too lazy
+to always check for that, and so I tend to do the rename only
+when there are no register accesses in the function.
 
->---
-> drivers/gpu/drm/i915/display/intel_ddi.c | 6 ++++++
-> 1 file changed, 6 insertions(+)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i9=
-15/display/intel_ddi.c
->index 93552f3c2c43..b4984bbd7817 100644
->--- a/drivers/gpu/drm/i915/display/intel_ddi.c
->+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->@@ -3165,6 +3165,9 @@ static void dg1_ddi_enable_clock(struct intel_encode=
-r *encoder,
-> 	struct intel_shared_dpll *pll =3D crtc_state->shared_dpll;
-> 	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
->
->+	if (drm_WARN_ON(&dev_priv->drm, !pll))
->+		return;
->+
-> 	/*
-> 	 * If we fail this, something went very wrong: first 2 PLLs should be
-> 	 * used by first 2 phys and last 2 PLLs by last phys
->@@ -3207,6 +3210,9 @@ static void icl_ddi_combo_enable_clock(struct intel_=
-encoder *encoder,
-> 	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
-> 	i915_reg_t reg =3D icl_dpclka_cfgcr0_reg(dev_priv, phy);
->
->+	if (drm_WARN_ON(&dev_priv->drm, !pll))
->+		return;
->+
-> 	mutex_lock(&dev_priv->dpll.lock);
->
-> 	/*
->-- =
+-- =
 
->2.26.2
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
