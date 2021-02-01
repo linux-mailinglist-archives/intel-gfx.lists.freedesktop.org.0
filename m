@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEFFB30A3B3
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 09:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C32FD30A419
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 10:12:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D1606E4E3;
-	Mon,  1 Feb 2021 08:57:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 312486E516;
+	Mon,  1 Feb 2021 09:12:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D4916E48B
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 08:57:32 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23757791-1500050 
- for multiple; Mon, 01 Feb 2021 08:57:26 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Feb 2021 08:57:15 +0000
-Message-Id: <20210201085715.27435-57-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210201085715.27435-1-chris@chris-wilson.co.uk>
-References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FE5E6E517
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 09:12:38 +0000 (UTC)
+IronPort-SDR: zgg+LEmQMaOEbprlKWjP4g9JJBpvToGSGv9qCzNXP1ieeNvf4Ev8MwnaBO1OlqusNOKJwuClVT
+ uZd802UU8P0Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9881"; a="199547906"
+X-IronPort-AV: E=Sophos;i="5.79,392,1602572400"; d="scan'208";a="199547906"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 01:12:38 -0800
+IronPort-SDR: SWqYAeCo4+lXemMaB1LZcXM4W+E3dwhN4IEQn9LmsFwUe7StRc/c5MYtM2TErT0xu3KeYRNvpE
+ 9odDrBFYRYVQ==
+X-IronPort-AV: E=Sophos;i="5.79,392,1602572400"; d="scan'208";a="369562740"
+Received: from rmeir2x-mobl.ger.corp.intel.com (HELO [10.214.231.94])
+ ([10.214.231.94])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 01:12:37 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210131031153.3399123-1-chris@chris-wilson.co.uk>
+ <20210201085358.3408367-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <41a68d1b-3074-a33f-2c43-1f4329310d5f@linux.intel.com>
+Date: Mon, 1 Feb 2021 09:12:34 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 57/57] drm/i915: Support secure dispatch on
- gen6/gen7
+In-Reply-To: <20210201085358.3408367-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] intel_gpu_top: Hide unused clients
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +51,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Re-enable secure dispatch for gen6/gen7, primarily to workaround the
-command parser and overly zealous command validation on Haswell. For
-example this prevents making accurate measurements using a journal for
-store results from the GPU without CPU intervention.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_drv.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 01/02/2021 08:53, Chris Wilson wrote:
+> Hide inactive clients by pressing 'i' (toggle in interactive mode).
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> ---
+>   tools/intel_gpu_top.c | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
+> index 60ff62d28..edf0dedac 100644
+> --- a/tools/intel_gpu_top.c
+> +++ b/tools/intel_gpu_top.c
+> @@ -1595,6 +1595,7 @@ print_imc(struct engines *engines, double t, int lines, int con_w, int con_h)
+>   }
+>   
+>   static bool class_view;
+> +static bool filter_idle;
+>   
+>   static int
+>   print_engines_header(struct engines *engines, double t,
+> @@ -1689,6 +1690,9 @@ print_engines_footer(struct engines *engines, double t,
+>   	pops->close_struct();
+>   
+>   	if (output_mode == INTERACTIVE) {
+> +		if (filter_idle && !c->total_runtime)
+> +			return;
+> +
+>   		if (lines++ < con_h)
+>   			printf("\n");
+>   	}
+> @@ -2115,6 +2119,9 @@ static void process_stdin(unsigned int timeout_us)
+>   		case 'q':
+>   			stop_top = true;
+>   			break;
+> +		case 'i':
+> +			filter_idle ^= true;
+> +			break;
+>   		case '1':
+>   			class_view ^= true;
+>   			break;
+> 
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 0e4d7998be53..54063d65d330 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1666,7 +1666,7 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
- #define HAS_LLC(dev_priv)	(INTEL_INFO(dev_priv)->has_llc)
- #define HAS_SNOOP(dev_priv)	(INTEL_INFO(dev_priv)->has_snoop)
- #define HAS_EDRAM(dev_priv)	((dev_priv)->edram_size_mb)
--#define HAS_SECURE_BATCHES(dev_priv) (INTEL_GEN(dev_priv) < 6)
-+#define HAS_SECURE_BATCHES(dev_priv) (INTEL_GEN(dev_priv) < 8)
- #define HAS_WT(dev_priv)	HAS_EDRAM(dev_priv)
- 
- #define HWS_NEEDS_PHYSICAL(dev_priv)	(INTEL_INFO(dev_priv)->hws_needs_physical)
--- 
-2.20.1
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
