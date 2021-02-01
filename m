@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8722630A96D
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 15:15:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C05C30A971
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 15:15:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA6146E5B9;
-	Mon,  1 Feb 2021 14:15:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0C8B6E5CA;
+	Mon,  1 Feb 2021 14:15:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 234576E5B0;
- Mon,  1 Feb 2021 14:15:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1610BA47E1;
- Mon,  1 Feb 2021 14:15:21 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 01 Feb 2021 14:15:21 -0000
-Message-ID: <161218892108.18677.3394671404653766009@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3F236E5BD
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 14:15:40 +0000 (UTC)
+IronPort-SDR: zT0zDTqHsM1gMWNBNxSDdA98devogHhpORP/T6K3JMNNJPFySexV3MCLA7zA2hKzYxJ2PGlGvk
+ cKhodt9sUZeQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9881"; a="242208908"
+X-IronPort-AV: E=Sophos;i="5.79,392,1602572400"; d="scan'208";a="242208908"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 06:15:40 -0800
+IronPort-SDR: Nkm9lOhVUI9HOVTLhrE/pWtDrIID39KNcQJjTfoSIwr0Rz7ju4yhjLbXS0HvKZo/XezhxwhLW1
+ ZoJxQsU09c9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,392,1602572400"; d="scan'208";a="358596770"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga006.jf.intel.com with ESMTP; 01 Feb 2021 06:15:39 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 8B7F25C1F81; Mon,  1 Feb 2021 16:15:34 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 In-Reply-To: <20210201085715.27435-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B01/57=5D_drm/i915/gt=3A_Restrict_the_GT?=
- =?utf-8?q?_clock_override_to_just_Icelake?=
+References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
+Date: Mon, 01 Feb 2021 16:15:34 +0200
+Message-ID: <87im7b27sp.fsf@gaia.fi.intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 01/57] drm/i915/gt: Restrict the GT clock
+ override to just Icelake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,28 +48,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Series: series starting with [01/57] drm/i915/gt: Restrict the GT clock override to just Icelake
-URL   : https://patchwork.freedesktop.org/series/86521/
-State : warning
+> It appears that Elkhart Lake uses the same clock for CTX_TIMESTAMP as
+> CS_TIMESTAMP, leaving Icelake as the odd one out.
 
-== Summary ==
+I am repeating myself: weird.
+...but true.
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3024
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+> index f8c79efb1a87..09b290fe0867 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
+> @@ -160,7 +160,7 @@ void intel_gt_init_clock_frequency(struct intel_gt *gt)
+>  		gt->clock_period_ns = intel_gt_clock_interval_to_ns(gt, 1);
+>  
+>  	/* Icelake appears to use another fixed frequency for CTX_TIMESTAMP */
+> -	if (IS_GEN(gt->i915, 11))
+> +	if (IS_ICELAKE(gt->i915))
+>  		gt->clock_period_ns = NSEC_PER_SEC / 13750000;
+>  
+>  	GT_TRACE(gt,
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
