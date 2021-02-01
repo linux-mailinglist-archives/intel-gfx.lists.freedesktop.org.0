@@ -1,64 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01DFF30A7FC
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 13:51:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0CF30A049
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 03:11:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5DF6E57E;
-	Mon,  1 Feb 2021 12:51:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFF416E3D8;
+	Mon,  1 Feb 2021 02:10:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com
- [IPv6:2607:f8b0:4864:20::d2b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EAC26E1B6;
- Mon,  1 Feb 2021 00:23:56 +0000 (UTC)
-Received: by mail-io1-xd2b.google.com with SMTP id h11so15556639ioh.11;
- Sun, 31 Jan 2021 16:23:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=j+6+ulDyi6U2H4iOXB1YcmGEFxqpm4cmiSLEvcnumSM=;
- b=s1g6LEQIF+dRC17p5+kv6440BGJWxhEMy5hCfpxzKTZM8FDxRyxZjUCyPgyDbOrLDW
- U5IUIU6xdJNPdQZRxUMCW1F6bGEAXaIUDUG3ShOpg0/JgZ4/T0lNkGZp86Tj9XNVNb72
- Rsod/lgNXYeNgeX45zAROu1OswZu1yn2DDKxmCpnBnKgffFDoMrXgxrhLnQPR3pN3FXY
- RW+8zoIEwNnmj47+3cmHMKcVGFUBWPH3IOPJorf18yhDEmE8wzQJTcZ+k1Xp3To+T+Pm
- 8rd+/Dre/88BjUu2Nifgn4nj2lowDigMcgsSQTXdjgpxF15X1jSucUAe4KYFamWCRnZj
- wpjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=j+6+ulDyi6U2H4iOXB1YcmGEFxqpm4cmiSLEvcnumSM=;
- b=TaBbzTVrOfJgbXNYdF4dT5E7w+d6/DeW3vtLZYYUTEYYPiukyIm/mzbvOMEky2dixY
- jsZOXdgoy2f/at+bFkFp+phi/OszcC8whUoi5yDLKxrgQE33oYufudy/sCI/O3dOVdhW
- p8ECA7XE9hvSsQ7Vnw2gXRBIGylXTH4ZSgVeqVxFX+wzqA3eIc5l1BZCLqULyOlJys2h
- jRpJbyGoquqVDB/PTWP6ITYOc4texMlT029VNklueKyPh5k74r8RoQHPlp/EsqiT7Coe
- DAk45QAbBPCbsTv4pZV1nPAfA+z+H5YckiYWCfPHcJcAKtt+KAPGohvG5diqs8xx9ypa
- FSkg==
-X-Gm-Message-State: AOAM530uxIoDhe5LmLEGpShAkodFmygsVRg2wtHvg6HQWJFScJ1M4wrU
- G6dgukS6juZEj02jbO9uzXg=
-X-Google-Smtp-Source: ABdhPJzgviUON/XVeRLneYaAH+MkQxXranKXNIXDdgdgEmilNO5S0tjJHKrvgcRM3w2tULg85ADxfQ==
-X-Received: by 2002:a5d:9710:: with SMTP id h16mr4362661iol.192.1612139035501; 
- Sun, 31 Jan 2021 16:23:55 -0800 (PST)
-Received: from llvm-development.us-central1-a.c.llvm-285123.internal
- (131.28.69.34.bc.googleusercontent.com. [34.69.28.131])
- by smtp.gmail.com with ESMTPSA id r1sm7874186iot.8.2021.01.31.16.23.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 31 Jan 2021 16:23:54 -0800 (PST)
-Date: Mon, 1 Feb 2021 00:23:53 +0000
-From: Vinicius Tinti <viniciustinti@gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <CALD9WKyonuPTPBzLHyLGd0V+w9SQavPdv0c_nBgLOyr6_5QnjQ@mail.gmail.com>
-References: <20210129181519.69963-1-viniciustinti@gmail.com>
- <161195375417.17568.2762721732398065240@build.alporthouse.com>
- <20210130123411.GB1822@llvm-development.us-central1-a.c.llvm-285123.internal>
- <161201071009.32035.9188382145053741268@build.alporthouse.com>
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23BE66E3D6;
+ Mon,  1 Feb 2021 02:10:54 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4DTWd85N7zz9srY;
+ Mon,  1 Feb 2021 13:10:51 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1612145452;
+ bh=RQMWa2ShLO0GqlUDQFlorzJ5Ee+a7zwuQBEVXVbMpbU=;
+ h=Date:From:To:Cc:Subject:From;
+ b=B/IUWZF1L+NrqoKf4xmPzapI2QMpOV2DmxWWAX1yEgydndyCf9ygtOvWxrWtMd9r7
+ fcoiTBDw8Ze8UIRL/AABX6Yxq1Y/kbC+SBptIvzd6epY28noY2eIt7k07P8vvxp2D0
+ x1VxvSOVLWful678yBsG5XK2S98cb2FRYyrf6m3qD37ngtmEmukm53TnreGwQiLGTV
+ cMh4+7Dk8brvf06RpzylB49uLM9sWPXaenw5xjNEVTjl5TF0bCjaD0SC7Pia1NVLz0
+ OLMP0mfDENyhr0IkDHctbwf3Qjv3NSIx3fwoGtB79MMz+ElRPrGxvqR/373wDK6zor
+ g6Ng3Ugp2YAGA==
+Date: Mon, 1 Feb 2021 13:10:50 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20210201131050.6ac8ea63@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <161201071009.32035.9188382145053741268@build.alporthouse.com>
-X-Mailman-Approved-At: Mon, 01 Feb 2021 12:51:29 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove unreachable code
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,75 +48,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nick Desaulniers <ndesaulniers@google.com>,
- linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com,
- dri-devel@lists.freedesktop.org, Nathan Chancellor <natechancellor@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0531466099=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Jan 30, 2021 at 9:45 AM Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Quoting Vinicius Tinti (2021-01-30 12:34:11)
-> > On Fri, Jan 29, 2021 at 08:55:54PM +0000, Chris Wilson wrote:
-> > > Quoting Vinicius Tinti (2021-01-29 18:15:19)
-> > > > By enabling -Wunreachable-code-aggressive on Clang the following code
-> > > > paths are unreachable.
-> > >
-> > > That code exists as commentary and, especially for sdvo, library
-> > > functions that we may need in future.
-> >
-> > I would argue that this code could be removed since it is in git history.
-> > It can be restored when needed.
-> >
-> > This will make the code cleaner.
->
-> It doesn't change the control flow, so no complexity argument. It
-> removes documentation from the code, so I have the opposite opinion.
+--===============0531466099==
+Content-Type: multipart/signed; boundary="Sig_/NK9oM7n=8nY/gN.b/KbjIo/";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-The last change in sdvo related to this function is from commit
-ce22c320b8ca ("drm/i915/sdvo: convert to encoder disable/enable"), which
-dates from 2012.
+--Sig_/NK9oM7n=8nY/gN.b/KbjIo/
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-It has not been used or changed for a long time. I think it could be
-converted to a block comment. This will preserve the documentation
-purpose. What do you think?
+Hi all,
 
-All this will avoid having "if (0)".
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
 
-> > > The ivb-gt1 case => as we now set the gt level for ivb, should we not
-> > > enable the optimisation for ivb unaffected by the w/a? Just no one has
-> > > taken the time to see if it causes a regression.
-> >
-> > I don't know. I just found out that the code is unreachable.
-> >
-> > > For error state, the question remains whether we should revert to
-> > > uncompressed data if the compressed stream is larger than the original.
-> >
-> > I don't know too.
-> >
-> > In this last two cases the code could be commented and the decisions
-> > and problems explained in the comment section.
->
-> They already are, that is the point.
+drivers/gpu/drm/v3d/v3d_sched.c:263:1: error: return type is an incomplete =
+type
+  263 | v3d_gpu_reset_for_timeout(struct v3d_dev *v3d, struct drm_sched_job=
+ *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: In function 'v3d_gpu_reset_for_timeout':
+drivers/gpu/drm/v3d/v3d_sched.c:289:9: error: 'return' with a value, in fun=
+ction returning void [-Werror=3Dreturn-type]
+  289 |  return DRM_GPU_SCHED_STAT_NOMINAL;
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:263:1: note: declared here
+  263 | v3d_gpu_reset_for_timeout(struct v3d_dev *v3d, struct drm_sched_job=
+ *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: At top level:
+drivers/gpu/drm/v3d/v3d_sched.c:298:1: error: return type is an incomplete =
+type
+  298 | v3d_cl_job_timedout(struct drm_sched_job *sched_job, enum v3d_queue=
+ q,
+      | ^~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: In function 'v3d_cl_job_timedout':
+drivers/gpu/drm/v3d/v3d_sched.c:309:10: error: 'return' with a value, in fu=
+nction returning void [-Werror=3Dreturn-type]
+  309 |   return DRM_GPU_SCHED_STAT_NOMINAL;
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:298:1: note: declared here
+  298 | v3d_cl_job_timedout(struct drm_sched_job *sched_job, enum v3d_queue=
+ q,
+      | ^~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: At top level:
+drivers/gpu/drm/v3d/v3d_sched.c:316:1: error: return type is an incomplete =
+type
+  316 | v3d_bin_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:325:1: error: return type is an incomplete =
+type
+  325 | v3d_render_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:334:1: error: return type is an incomplete =
+type
+  334 | v3d_generic_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:342:1: error: return type is an incomplete =
+type
+  342 | v3d_csd_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: In function 'v3d_csd_job_timedout':
+drivers/gpu/drm/v3d/v3d_sched.c:353:10: error: 'return' with a value, in fu=
+nction returning void [-Werror=3Dreturn-type]
+  353 |   return DRM_GPU_SCHED_STAT_NOMINAL;
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:342:1: note: declared here
+  342 | v3d_csd_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: At top level:
+drivers/gpu/drm/v3d/v3d_sched.c:362:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  362 |  .timedout_job =3D v3d_bin_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:362:18: note: (near initialization for 'v3d=
+_bin_sched_ops.timedout_job')
+drivers/gpu/drm/v3d/v3d_sched.c:369:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  369 |  .timedout_job =3D v3d_render_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:369:18: note: (near initialization for 'v3d=
+_render_sched_ops.timedout_job')
+drivers/gpu/drm/v3d/v3d_sched.c:376:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  376 |  .timedout_job =3D v3d_generic_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:376:18: note: (near initialization for 'v3d=
+_tfu_sched_ops.timedout_job')
+drivers/gpu/drm/v3d/v3d_sched.c:383:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  383 |  .timedout_job =3D v3d_csd_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:383:18: note: (near initialization for 'v3d=
+_csd_sched_ops.timedout_job')
+drivers/gpu/drm/v3d/v3d_sched.c:390:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  390 |  .timedout_job =3D v3d_generic_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:390:18: note: (near initialization for 'v3d=
+_cache_clean_sched_ops.timedout_job')
 
-I meant making them a block comment. For example:
+Caused by commit
 
-/*
- * Enabling HiZ Raw Stall Optimization, at this point, causes corruption.
- *
- * Calling wa_masked_dis with the arguments wal, CACHE_MODE_0_GEN7,
- * HIZ_RAW_STALL_OPT_DISABLE will cause an HiZ corruption on ivb:g1.
- */
+  a6a1f036c74e ("drm/scheduler: Job timeout handler returns status (v3)")
 
-/*
- * Should fallback to uncompressed if we increase size
- * (zstream->total_out > zstream->total_in) by returning -E2BIG?
- */
+I have used the drm-misc tree from next-20210129 for today.
 
-> -Chris
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/NK9oM7n=8nY/gN.b/KbjIo/
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmAXYyoACgkQAVBC80lX
+0GweCQf+LRzJrP4D4Ztpbsb41AJEP7tfUQiMq/HvEqijwOY7wknNHd383hNhM4uB
+MN/y8IL4wx+2rd4vPjmPJLkUKF0nhmSrvFK4jRE2CrLfLigqIwPzZfx4LShSlcQO
+VBZZLtegJjFuOMDsbWvMAe3Ackr9h9Hv5Yk4Z2Kxmcwvl4xU7B2pQt3zBi1FDs+K
+v/ix8xF5A5ap2niEp+3npz3Np2JMVCSaETeHTcEYl8jrqcFybCig4GIf0k9C6F31
+pX1WcEL8Atg1vE1wV/dqbAEnQIyhVpwfxrPnr4o1I+Gtp8LjtBtmWzTxdNBK2fAo
+2TcdWTo9Eh9WFDF4JP/COAFATUvlsQ==
+=GaHe
+-----END PGP SIGNATURE-----
+
+--Sig_/NK9oM7n=8nY/gN.b/KbjIo/--
+
+--===============0531466099==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0531466099==--
