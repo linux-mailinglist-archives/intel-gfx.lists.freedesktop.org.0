@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5905730A3D7
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 09:58:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0C630A3BE
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Feb 2021 09:58:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CA866E566;
-	Mon,  1 Feb 2021 08:57:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95D6F6E4A2;
+	Mon,  1 Feb 2021 08:57:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AFC46E4A1
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 08:57:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A66446E4A2
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Feb 2021 08:57:33 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23757726-1500050 
- for multiple; Mon, 01 Feb 2021 08:57:17 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23757727-1500050 
+ for multiple; Mon, 01 Feb 2021 08:57:18 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Feb 2021 08:56:31 +0000
-Message-Id: <20210201085715.27435-13-chris@chris-wilson.co.uk>
+Date: Mon,  1 Feb 2021 08:56:32 +0000
+Message-Id: <20210201085715.27435-14-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210201085715.27435-1-chris@chris-wilson.co.uk>
 References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 13/57] drm/i915/selftests: Force a rewind if at
- first we don't succeed
+Subject: [Intel-gfx] [PATCH 14/57] drm/i915: Improve DFS for priority
+ inheritance
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,60 +45,159 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-live_timeslice_rewind assumes a particular traversal and reordering
-after the first timeslice yield. However, the outcome can be either
-(A1, A2, B1) or (A1, B2, A2) depending on the path taken through the
-dependency graph. So if we do not get the outcome we need at first, give
-it a priority kick to force a rewind.
+The core of the scheduling algorithm is that we compute the topological
+order of the fence DAG. Knowing that we have a DAG, we should be able to
+use a DFS to compute the topological sort in linear time. However,
+during the conversion of the recursive algorithm into an iterative one,
+the memoization of how far we had progressed down a branch was
+forgotten. The result was that instead of running in linear time, it was
+running in geometric time and could easily run for a few hundred
+milliseconds given a wide enough graph, not the microseconds as required.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_execlists.c | 21 +++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_scheduler.c       | 58 ++++++++++++---------
+ drivers/gpu/drm/i915/i915_scheduler_types.h |  6 ++-
+ 2 files changed, 39 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-index 951e2bf867e1..68e1398704a4 100644
---- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-@@ -1107,6 +1107,7 @@ static int live_timeslice_rewind(void *arg)
- 		struct i915_request *rq[3] = {};
- 		struct intel_context *ce;
- 		unsigned long timeslice;
-+		unsigned long timeout;
- 		int i, err = 0;
- 		u32 *slot;
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index a56a812cbf29..cea5129560a5 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -242,6 +242,26 @@ void __i915_priolist_free(struct i915_priolist *p)
+ 	kmem_cache_free(global.slab_priorities, p);
+ }
  
-@@ -1173,11 +1174,29 @@ static int live_timeslice_rewind(void *arg)
- 
- 		/* ELSP[] = { { A:rq1, A:rq2 }, { B:rq1 } } */
- 		ENGINE_TRACE(engine, "forcing tasklet for rewind\n");
--		while (i915_request_is_active(rq[A2])) { /* semaphore yield! */
-+		i = 0;
-+		timeout = jiffies + HZ;
-+		while (i915_request_is_active(rq[A2]) &&
-+		       time_before(jiffies, timeout)) { /* semaphore yield! */
- 			/* Wait for the timeslice to kick in */
- 			del_timer(&engine->execlists.timer);
- 			tasklet_hi_schedule(&engine->execlists.tasklet);
- 			intel_engine_flush_submission(engine);
++static struct i915_request *
++stack_push(struct i915_request *rq,
++	   struct i915_request *prev,
++	   struct list_head *pos)
++{
++	prev->sched.dfs.pos = pos;
++	rq->sched.dfs.prev = prev;
++	return rq;
++}
 +
-+			/*
-+			 * Unfortunately this assumes that during the
-+			 * search of the wait tree it sees the requests
-+			 * in a particular order. That order is not
-+			 * strictly determined and it may pick either
-+			 * A2 or B1 to immediately follow A1.
-+			 *
-+			 * Break the tie with a set-priority. This defeats
-+			 * the goal of trying to cause a rewind with a
-+			 * timeslice, but alas, a rewind is better than
-+			 * none.
-+			 */
-+			if (i++)
-+				i915_request_set_priority(rq[B1], 1);
++static struct i915_request *
++stack_pop(struct i915_request *rq,
++	  struct list_head **pos)
++{
++	rq = rq->sched.dfs.prev;
++	if (rq)
++		*pos = rq->sched.dfs.pos;
++	return rq;
++}
++
+ static inline bool need_preempt(int prio, int active)
+ {
+ 	/*
+@@ -306,11 +326,10 @@ static void ipi_priority(struct i915_request *rq, int prio)
+ static void __i915_request_set_priority(struct i915_request *rq, int prio)
+ {
+ 	struct intel_engine_cs *engine = rq->engine;
+-	struct i915_request *rn;
++	struct list_head *pos = &rq->sched.signalers_list;
+ 	struct list_head *plist;
+-	LIST_HEAD(dfs);
+ 
+-	list_add(&rq->sched.dfs, &dfs);
++	plist = i915_sched_lookup_priolist(engine, prio);
+ 
+ 	/*
+ 	 * Recursively bump all dependent priorities to match the new request.
+@@ -330,40 +349,31 @@ static void __i915_request_set_priority(struct i915_request *rq, int prio)
+ 	 * end result is a topological list of requests in reverse order, the
+ 	 * last element in the list is the request we must execute first.
+ 	 */
+-	list_for_each_entry(rq, &dfs, sched.dfs) {
+-		struct i915_dependency *p;
+-
+-		/* Also release any children on this engine that are ready */
+-		GEM_BUG_ON(rq->engine != engine);
+-
+-		for_each_signaler(p, rq) {
++	rq->sched.dfs.prev = NULL;
++	do {
++		list_for_each_continue(pos, &rq->sched.signalers_list) {
++			struct i915_dependency *p =
++				list_entry(pos, typeof(*p), signal_link);
+ 			struct i915_request *s =
+ 				container_of(p->signaler, typeof(*s), sched);
+ 
+-			GEM_BUG_ON(s == rq);
+-
+ 			if (rq_prio(s) >= prio)
+ 				continue;
+ 
+ 			if (__i915_request_is_complete(s))
+ 				continue;
+ 
+-			if (s->engine != rq->engine) {
++			if (s->engine != engine) {
+ 				ipi_priority(s, prio);
+ 				continue;
+ 			}
+ 
+-			list_move_tail(&s->sched.dfs, &dfs);
++			/* Remember our position along this branch */
++			rq = stack_push(s, rq, pos);
++			pos = &rq->sched.signalers_list;
  		}
- 		/* -> ELSP[] = { { A:rq1 }, { B:rq1 } } */
- 		GEM_BUG_ON(!i915_request_is_active(rq[A1]));
+-	}
+ 
+-	plist = i915_sched_lookup_priolist(engine, prio);
+-
+-	/* Fifo and depth-first replacement ensure our deps execute first */
+-	list_for_each_entry_safe_reverse(rq, rn, &dfs, sched.dfs) {
+-		GEM_BUG_ON(rq->engine != engine);
+-
+-		INIT_LIST_HEAD(&rq->sched.dfs);
++		RQ_TRACE(rq, "set-priority:%d\n", prio);
+ 		WRITE_ONCE(rq->sched.attr.priority, prio);
+ 
+ 		/*
+@@ -377,12 +387,13 @@ static void __i915_request_set_priority(struct i915_request *rq, int prio)
+ 		if (!i915_request_is_ready(rq))
+ 			continue;
+ 
++		GEM_BUG_ON(rq->engine != engine);
+ 		if (i915_request_in_priority_queue(rq))
+ 			list_move_tail(&rq->sched.link, plist);
+ 
+ 		/* Defer (tasklet) submission until after all updates. */
+ 		kick_submission(engine, rq, prio);
+-	}
++	} while ((rq = stack_pop(rq, &pos)));
+ }
+ 
+ #define all_signalers_checked(p, rq) \
+@@ -456,7 +467,6 @@ void i915_sched_node_init(struct i915_sched_node *node)
+ 	INIT_LIST_HEAD(&node->signalers_list);
+ 	INIT_LIST_HEAD(&node->waiters_list);
+ 	INIT_LIST_HEAD(&node->link);
+-	INIT_LIST_HEAD(&node->dfs);
+ 
+ 	node->ipi_link = NULL;
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+index 2a5265d9aff1..28138c3fcc81 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler_types.h
++++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+@@ -69,7 +69,11 @@ struct i915_sched_node {
+ 	struct list_head signalers_list; /* those before us, we depend upon */
+ 	struct list_head waiters_list; /* those after us, they depend upon us */
+ 	struct list_head link; /* guarded by engine->active.lock */
+-	struct list_head dfs; /* guarded by engine->active.lock */
++	struct i915_sched_stack {
++		/* Branch memoization used during depth-first search */
++		struct i915_request *prev;
++		struct list_head *pos;
++	} dfs; /* guarded by engine->active.lock */
+ 	struct i915_sched_attr attr;
+ 	unsigned long flags;
+ #define I915_SCHED_HAS_EXTERNAL_CHAIN	BIT(0)
 -- 
 2.20.1
 
