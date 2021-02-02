@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 126C130C91A
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 19:11:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2C0930C9D6
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 19:33:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47D3C6E0AD;
-	Tue,  2 Feb 2021 18:11:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED81B6E207;
+	Tue,  2 Feb 2021 18:33:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 06F7F6E09F;
- Tue,  2 Feb 2021 18:11:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 00CB5A73C7;
- Tue,  2 Feb 2021 18:11:35 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C92186E213
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 18:33:13 +0000 (UTC)
+IronPort-SDR: LWhVQfYU5f45v14Twk0YjCZ1ffb0U+lXSXhPxnByLVj+eo8MZl9Udd/xKENqaT6tqdIOwYoQZe
+ EFRvZ0C8B9CQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="199836374"
+X-IronPort-AV: E=Sophos;i="5.79,396,1602572400"; d="scan'208";a="199836374"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2021 10:33:10 -0800
+IronPort-SDR: J2R9F6t/jqSsFK5dWJBnPn3YQ2iF4ESegI1gP7+dyaXo8scKOLoTv0rMyPn9A2ou5x/332SY9U
+ gon6ZQdysg8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,396,1602572400"; d="scan'208";a="370822243"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga008.fm.intel.com with ESMTP; 02 Feb 2021 10:33:09 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 511745C1F84; Tue,  2 Feb 2021 20:33:04 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210201085715.27435-5-chris@chris-wilson.co.uk>
+References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
+ <20210201085715.27435-5-chris@chris-wilson.co.uk>
+Date: Tue, 02 Feb 2021 20:33:04 +0200
+Message-ID: <87ft2euxpb.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 02 Feb 2021 18:11:35 -0000
-Message-ID: <161228949597.19548.12871584008655756194@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210202152957.9834-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210202152957.9834-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_notion_of_GEM_from_i915=5Fgem=5Fshrinker=5Ftain?=
- =?utf-8?q?ts=5Fmutex?=
+Subject: Re: [Intel-gfx] [PATCH 05/57] drm/i915: Take rcu_read_lock for
+ querying fence's driver/timeline names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,170 +49,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0732157578=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0732157578==
-Content-Type: multipart/alternative;
- boundary="===============0399717206485872977=="
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
---===============0399717206485872977==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> The name very often may be freed independently of the fence, with the
+> only protection being RCU. To be safe as we read the names, hold RCU.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-== Series Details ==
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Series: drm/i915: Remove notion of GEM from i915_gem_shrinker_taints_mutex
-URL   : https://patchwork.freedesktop.org/series/86586/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9718 -> Patchwork_19560
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19560/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19560 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_render_tiled_blits@basic:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9718/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19560/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_linear_blits@basic:
-    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9718/fi-tgl-y/igt@gem_linear_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19560/fi-tgl-y/igt@gem_linear_blits@basic.html
-
-  
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): fi-jsl-1 fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9718 -> Patchwork_19560
-
-  CI-20190529: 20190529
-  CI_DRM_9718: e123813e002aaa9a6a9d81b0294c93dd1edf9b4f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5988: 4581082c706498cc3afe20e89fc4836a3fc69105 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19560: 140989719221be8e72305c0020f8c3c18c8fc8cb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-140989719221 drm/i915: Remove notion of GEM from i915_gem_shrinker_taints_mutex
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19560/index.html
-
---===============0399717206485872977==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Remove notion of GEM from i915_gem_shrinker_taints_mutex</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86586/">https://patchwork.freedesktop.org/series/86586/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19560/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19560/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9718 -&gt; Patchwork_19560</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19560/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19560 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_render_tiled_blits@basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9718/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19560/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_linear_blits@basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9718/fi-tgl-y/igt@gem_linear_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19560/fi-tgl-y/igt@gem_linear_blits@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): fi-jsl-1 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9718 -&gt; Patchwork_19560</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9718: e123813e002aaa9a6a9d81b0294c93dd1edf9b4f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5988: 4581082c706498cc3afe20e89fc4836a3fc69105 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19560: 140989719221be8e72305c0020f8c3c18c8fc8cb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>140989719221 drm/i915: Remove notion of GEM from i915_gem_shrinker_taints_mutex</p>
-
-</body>
-</html>
-
---===============0399717206485872977==--
-
---===============0732157578==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> ---
+>  drivers/gpu/drm/i915/i915_sw_fence.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+> index 2744558f3050..dfabf291e5cd 100644
+> --- a/drivers/gpu/drm/i915/i915_sw_fence.c
+> +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
+> @@ -430,11 +430,13 @@ static void timer_i915_sw_fence_wake(struct timer_list *t)
+>  	if (!fence)
+>  		return;
+>  
+> +	rcu_read_lock();
+>  	pr_notice("Asynchronous wait on fence %s:%s:%llx timed out (hint:%ps)\n",
+>  		  cb->dma->ops->get_driver_name(cb->dma),
+>  		  cb->dma->ops->get_timeline_name(cb->dma),
+>  		  cb->dma->seqno,
+>  		  i915_sw_fence_debug_hint(fence));
+> +	rcu_read_unlock();
+>  
+>  	i915_sw_fence_set_error_once(fence, -ETIMEDOUT);
+>  	i915_sw_fence_complete(fence);
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0732157578==--
