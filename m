@@ -2,37 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B355830B8F7
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 08:54:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2103930B8F8
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 08:54:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 288FF6E8B6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C7446E8D2;
 	Tue,  2 Feb 2021 07:54:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 654D76E0E1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A4346E8B6
  for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 07:54:25 +0000 (UTC)
-IronPort-SDR: h8yQLXLjW1H6Ut983yqs6YnP5kHODD7nYemx7w3PFAvuFpsE5vUob2zsycGFHRXvf6edq/3Uld
- gWhpfIR5/eRQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="167920407"
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="167920407"
+IronPort-SDR: 2knNWxLJ8oi49EW6fiVulUcGQEu4hPknqzi01yZHeGJ1gkDp+s2kYMWjRTs7mHGVgbpI5PsszZ
+ hZaXRevaYCSg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="167920408"
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="167920408"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Feb 2021 23:54:24 -0800
-IronPort-SDR: MaoMUjxifs2NOQo3f29s25z6A3HTZJE/x8p6n18YEC71DrAXI7Q2hKwoTQkXkuATcN7hfCKD0D
- DRb3KmnDWoUg==
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="371858807"
+IronPort-SDR: 6+9dMSaa9ZGA3IPRQV7wEA1Ij1VA0Yk06CnSBfOxRAIS5pt5waH4YYEItoYh59JdnbkrdIS+oT
+ yCLYNj9l1MhA==
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="371858810"
 Received: from orsosgc001.ra.intel.com ([10.23.184.150])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Feb 2021 23:54:24 -0800
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  1 Feb 2021 23:54:15 -0800
-Message-Id: <20210202075417.28230-1-umesh.nerlige.ramappa@intel.com>
+Date: Mon,  1 Feb 2021 23:54:16 -0800
+Message-Id: <20210202075417.28230-2-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210202075417.28230-1-umesh.nerlige.ramappa@intel.com>
+References: <20210202075417.28230-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/3] i915/perf: Store a mask of valid OA formats
- for a platform
+Subject: [Intel-gfx] [PATCH 2/3] i915/perf: Move OA formats to single array
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,146 +51,92 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Validity of an OA format is checked by using a sparse array of formats
-per gen. Instead maintain a mask of supported formats for a platform in
-the perf object.
+Variations in OA formats in the different gens has led to creation of
+several sparse arrays to store the formats.
+
+Move oa formats into a single array and use format_mask to check for
+platform specific oa formats.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c       | 64 +++++++++++++++++++++++++-
- drivers/gpu/drm/i915/i915_perf_types.h | 16 +++++++
- 2 files changed, 79 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_perf.c | 19 ++-----------------
+ 1 file changed, 2 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 112ba5f2ce90..973577fcad58 100644
+index 973577fcad58..81300cd534aa 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -3524,6 +3524,19 @@ static u64 oa_exponent_to_ns(struct i915_perf *perf, int exponent)
- 					     2ULL << exponent);
- }
+@@ -302,7 +302,7 @@ static u32 i915_oa_max_sample_rate = 100000;
+  * code assumes all reports have a power-of-two size and ~(size - 1) can
+  * be used as a mask to align the OA tail pointer.
+  */
+-static const struct i915_oa_format hsw_oa_formats[I915_OA_FORMAT_MAX] = {
++static const struct i915_oa_format oa_formats[I915_OA_FORMAT_MAX] = {
+ 	[I915_OA_FORMAT_A13]	    = { 0, 64 },
+ 	[I915_OA_FORMAT_A29]	    = { 1, 128 },
+ 	[I915_OA_FORMAT_A13_B8_C8]  = { 2, 128 },
+@@ -311,17 +311,9 @@ static const struct i915_oa_format hsw_oa_formats[I915_OA_FORMAT_MAX] = {
+ 	[I915_OA_FORMAT_A45_B8_C8]  = { 5, 256 },
+ 	[I915_OA_FORMAT_B4_C8_A16]  = { 6, 128 },
+ 	[I915_OA_FORMAT_C4_B8]	    = { 7, 64 },
+-};
+-
+-static const struct i915_oa_format gen8_plus_oa_formats[I915_OA_FORMAT_MAX] = {
+ 	[I915_OA_FORMAT_A12]		    = { 0, 64 },
+ 	[I915_OA_FORMAT_A12_B8_C8]	    = { 2, 128 },
+ 	[I915_OA_FORMAT_A32u40_A4u32_B8_C8] = { 5, 256 },
+-	[I915_OA_FORMAT_C4_B8]		    = { 7, 64 },
+-};
+-
+-static const struct i915_oa_format gen12_oa_formats[I915_OA_FORMAT_MAX] = {
+-	[I915_OA_FORMAT_A32u40_A4u32_B8_C8] = { 5, 256 },
+ };
  
-+static __always_inline bool
-+oa_format_valid(struct i915_perf *perf, enum drm_i915_oa_format format)
-+{
-+	return !!(perf->format_mask[__format_index(format)] &
-+		  __format_bit(format));
-+}
-+
-+static __always_inline void
-+oa_format_add(struct i915_perf *perf, enum drm_i915_oa_format format)
-+{
-+	perf->format_mask[__format_index(format)] |= __format_bit(format);
-+}
-+
- /**
-  * read_properties_unlocked - validate + copy userspace stream open properties
-  * @perf: i915 perf instance
-@@ -3615,7 +3628,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
- 					  value);
- 				return -EINVAL;
+ #define SAMPLE_OA_REPORT      (1<<0)
+@@ -4334,6 +4326,7 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 
+ 	/* XXX const struct i915_perf_ops! */
+ 
++	perf->oa_formats = oa_formats;
+ 	if (IS_HASWELL(i915)) {
+ 		perf->ops.is_valid_b_counter_reg = gen7_is_valid_b_counter_addr;
+ 		perf->ops.is_valid_mux_reg = hsw_is_valid_mux_addr;
+@@ -4344,8 +4337,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 		perf->ops.oa_disable = gen7_oa_disable;
+ 		perf->ops.read = gen7_oa_read;
+ 		perf->ops.oa_hw_tail_read = gen7_oa_hw_tail_read;
+-
+-		perf->oa_formats = hsw_oa_formats;
+ 	} else if (HAS_LOGICAL_RING_CONTEXTS(i915)) {
+ 		/* Note: that although we could theoretically also support the
+ 		 * legacy ringbuffer mode on BDW (and earlier iterations of
+@@ -4356,8 +4347,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 		perf->ops.read = gen8_oa_read;
+ 
+ 		if (IS_GEN_RANGE(i915, 8, 9)) {
+-			perf->oa_formats = gen8_plus_oa_formats;
+-
+ 			perf->ops.is_valid_b_counter_reg =
+ 				gen7_is_valid_b_counter_addr;
+ 			perf->ops.is_valid_mux_reg =
+@@ -4388,8 +4377,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 				perf->gen8_valid_ctx_bit = BIT(16);
  			}
--			if (!perf->oa_formats[value].size) {
-+			if (!oa_format_valid(perf, value)) {
- 				DRM_DEBUG("Unsupported OA report format %llu\n",
- 					  value);
- 				return -EINVAL;
-@@ -4259,6 +4272,53 @@ static struct ctl_table dev_root[] = {
- 	{}
- };
- 
-+static void oa_init_supported_formats(struct i915_perf *perf)
-+{
-+	struct drm_i915_private *i915 = perf->i915;
-+	enum intel_platform platform = INTEL_INFO(i915)->platform;
-+
-+	switch (platform) {
-+	case INTEL_HASWELL:
-+		oa_format_add(perf, I915_OA_FORMAT_A13);
-+		oa_format_add(perf, I915_OA_FORMAT_A13);
-+		oa_format_add(perf, I915_OA_FORMAT_A29);
-+		oa_format_add(perf, I915_OA_FORMAT_A13_B8_C8);
-+		oa_format_add(perf, I915_OA_FORMAT_B4_C8);
-+		oa_format_add(perf, I915_OA_FORMAT_A45_B8_C8);
-+		oa_format_add(perf, I915_OA_FORMAT_B4_C8_A16);
-+		oa_format_add(perf, I915_OA_FORMAT_C4_B8);
-+		break;
-+
-+	case INTEL_BROADWELL:
-+	case INTEL_CHERRYVIEW:
-+	case INTEL_SKYLAKE:
-+	case INTEL_BROXTON:
-+	case INTEL_KABYLAKE:
-+	case INTEL_GEMINILAKE:
-+	case INTEL_COFFEELAKE:
-+	case INTEL_COMETLAKE:
-+	case INTEL_CANNONLAKE:
-+	case INTEL_ICELAKE:
-+	case INTEL_ELKHARTLAKE:
-+	case INTEL_JASPERLAKE:
-+		oa_format_add(perf, I915_OA_FORMAT_A12);
-+		oa_format_add(perf, I915_OA_FORMAT_A12_B8_C8);
-+		oa_format_add(perf, I915_OA_FORMAT_A32u40_A4u32_B8_C8);
-+		oa_format_add(perf, I915_OA_FORMAT_C4_B8);
-+		break;
-+
-+	case INTEL_TIGERLAKE:
-+	case INTEL_ROCKETLAKE:
-+	case INTEL_DG1:
-+	case INTEL_ALDERLAKE_S:
-+		oa_format_add(perf, I915_OA_FORMAT_A32u40_A4u32_B8_C8);
-+		break;
-+
-+	default:
-+		MISSING_CASE(platform);
-+	}
-+}
-+
- /**
-  * i915_perf_init - initialize i915-perf state on module bind
-  * @i915: i915 device instance
-@@ -4408,6 +4468,8 @@ void i915_perf_init(struct drm_i915_private *i915)
- 			     500 * 1000 /* 500us */);
- 
- 		perf->i915 = i915;
-+
-+		oa_init_supported_formats(perf);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
-index a36a455ae336..f81bcb533723 100644
---- a/drivers/gpu/drm/i915/i915_perf_types.h
-+++ b/drivers/gpu/drm/i915/i915_perf_types.h
-@@ -15,6 +15,7 @@
- #include <linux/types.h>
- #include <linux/uuid.h>
- #include <linux/wait.h>
-+#include <uapi/drm/i915_drm.h>
- 
- #include "gt/intel_sseu.h"
- #include "i915_reg.h"
-@@ -441,6 +442,21 @@ struct i915_perf {
- 	struct i915_oa_ops ops;
- 	const struct i915_oa_format *oa_formats;
- 
-+	/**
-+	 * Use a format mask to store the supported formats
-+	 * for a platform.
-+	 */
-+#define __fbits (BITS_PER_TYPE(u32))
-+#define __format_bit(__f) \
-+	BIT((__f) & (__fbits - 1))
-+
-+#define __format_index_shift (5)
-+#define __format_index(__f) \
-+	(((__f) & ~(__fbits - 1)) >> __format_index_shift)
-+
-+#define FORMAT_MASK_SIZE (((I915_OA_FORMAT_MAX - 1) / __fbits) + 1)
-+	u32 format_mask[FORMAT_MASK_SIZE];
-+
- 	atomic64_t noa_programming_delay;
- };
- 
+ 		} else if (IS_GEN_RANGE(i915, 10, 11)) {
+-			perf->oa_formats = gen8_plus_oa_formats;
+-
+ 			perf->ops.is_valid_b_counter_reg =
+ 				gen7_is_valid_b_counter_addr;
+ 			perf->ops.is_valid_mux_reg =
+@@ -4412,8 +4399,6 @@ void i915_perf_init(struct drm_i915_private *i915)
+ 			}
+ 			perf->gen8_valid_ctx_bit = BIT(16);
+ 		} else if (IS_GEN(i915, 12)) {
+-			perf->oa_formats = gen12_oa_formats;
+-
+ 			perf->ops.is_valid_b_counter_reg =
+ 				gen12_is_valid_b_counter_addr;
+ 			perf->ops.is_valid_mux_reg =
 -- 
 2.20.1
 
