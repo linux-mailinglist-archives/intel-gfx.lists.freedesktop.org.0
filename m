@@ -1,45 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00D8C30C0EB
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 15:11:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D63C630C178
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 15:26:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50B99892D4;
-	Tue,  2 Feb 2021 14:11:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8C6B89617;
+	Tue,  2 Feb 2021 14:26:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68C77892D4
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 14:11:51 +0000 (UTC)
-IronPort-SDR: H87F/1Kxqmgb0CjVmanv4Yx3rqkZkTETuqilfZ00pzdsV4Xy5lXtdJQlccEYpO+m8YFVNy0+tg
- 39r7xN1NXXyA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="168535454"
-X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="168535454"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38D5389617
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 14:26:13 +0000 (UTC)
+IronPort-SDR: 5crbv6LAl+TxdO4bE96mvVc55ImgYfgiewmzYrHA/E2zN7eeQU4zI0Qa53K7B54TIV5PUaZXog
+ vLV7jdMVybMQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="160025600"
+X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="160025600"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 06:11:50 -0800
-IronPort-SDR: awAGP9z2Mry3zc6UcdbryHA8uP2d5ROPwodqQqgkEpifNZM/s5v9SHt0jsLOWw2ibMrHLo9Esg
- Yz/eonyaUe/g==
-X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="432938332"
-Received: from irisshal-mobl1.ger.corp.intel.com (HELO [10.214.210.18])
- ([10.214.210.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2021 06:26:12 -0800
+IronPort-SDR: WqmjxWf6YQnm1etmbl+j+S4Z/dkgzPoB2omsOifP1DNOrYp3SLAI47iQ/A3ajuvjNPN49xAoDh
+ Pb+dBhrfCw6g==
+X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="432942176"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 06:11:49 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
- <20210201085715.27435-19-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <748db21e-335a-7f7d-16c7-50bc68e5b266@linux.intel.com>
-Date: Tue, 2 Feb 2021 14:10:48 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+ 02 Feb 2021 06:26:10 -0800
+Date: Tue, 2 Feb 2021 16:26:07 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20210202142607.GB494606@ideak-desk.fi.intel.com>
+References: <87lfcqobpl.fsf@intel.com>
+ <87ft2fgcu1.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210201085715.27435-19-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 19/57] drm/i915: Fix the iterative dfs for
- defering requests
+Content-Disposition: inline
+In-Reply-To: <87ft2fgcu1.fsf@intel.com>
+Subject: Re: [Intel-gfx] Fixes that failed to apply to v5.11-rc4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,121 +47,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-On 01/02/2021 08:56, Chris Wilson wrote:
-> The current implementation of walking the children of a deferred
-> requests lacks the backtracking required to reduce the dfs to linear.
-> Having pulled it from execlists into the common layer, we can reuse the
-> dfs code for priority inheritance.
+On Tue, Feb 02, 2021 at 09:15:18AM +0200, Jani Nikula wrote:
+> On Mon, 18 Jan 2021, Jani Nikula <jani.nikula@intel.com> wrote:
+> > The following commits have been marked as Cc: stable or fixing something
+> > in v5.11-rc4 or earlier, but failed to cherry-pick to
+> > drm-intel-fixes. Please see if they are worth backporting, and please do
+> > so if they are.
+> >
+> > Conflicts:
+> > dbe13ae1d6ab ("drm/i915/pmu: Don't grab wakeref when enabling events")
+> > 9bb36cf66091 ("drm/i915: Check for rq->hwsp validity after acquiring RCU lock")
+> > 5b4dc95cf7f5 ("drm/i915/gt: Prevent use of engine->wa_ctx after error")
+> > 6a3daee1b38e ("drm/i915/selftests: Fix some error codes")
+> > 67fba3f1c73b ("drm/i915/dp: Fix LTTPR vswing/pre-emp setting in non-transparent mode")
+> >
+> > Fails to build:
+> > 3170a21f7059 ("drm/i915: Only enable DFP 4:4:4->4:2:0 conversion when outputting YCbCr 4:4:4")
+> >
+> > BR,
+> > Jani.
 > 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   drivers/gpu/drm/i915/i915_scheduler.c | 56 +++++++++++++++++++--------
->   1 file changed, 40 insertions(+), 16 deletions(-)
+> Update.
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-> index bfd37ee801fd..694ca3a3b563 100644
-> --- a/drivers/gpu/drm/i915/i915_scheduler.c
-> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
-> @@ -466,8 +466,10 @@ void i915_request_set_priority(struct i915_request *rq, int prio)
->   void __i915_sched_defer_request(struct intel_engine_cs *engine,
->   				struct i915_request *rq)
->   {
-> -	struct list_head *pl;
-> -	LIST_HEAD(list);
-> +	struct list_head *pos = &rq->sched.waiters_list;
-> +	const int prio = rq_prio(rq);
-> +	struct i915_request *rn;
-> +	LIST_HEAD(dfs);
->   
->   	lockdep_assert_held(&engine->active.lock);
->   	GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags));
-> @@ -477,14 +479,11 @@ void __i915_sched_defer_request(struct intel_engine_cs *engine,
->   	 * to those that are waiting upon it. So we traverse its chain of
->   	 * waiters and move any that are earlier than the request to after it.
->   	 */
-> -	pl = lookup_priolist(engine, rq_prio(rq));
-> +	rq->sched.dfs.prev = NULL;
->   	do {
-> -		struct i915_dependency *p;
-> -
-> -		GEM_BUG_ON(i915_request_is_active(rq));
-> -		list_move_tail(&rq->sched.link, pl);
-> -
-> -		for_each_waiter(p, rq) {
-> +		list_for_each_continue(pos, &rq->sched.waiters_list) {
-> +			struct i915_dependency *p =
-> +				list_entry(pos, typeof(*p), wait_link);
->   			struct i915_request *w =
->   				container_of(p->waiter, typeof(*w), sched);
->   
-> @@ -500,19 +499,44 @@ void __i915_sched_defer_request(struct intel_engine_cs *engine,
->   				   __i915_request_has_started(w) &&
->   				   !__i915_request_is_complete(rq));
->   
-> -			if (!i915_request_is_ready(w))
-> +			if (!i915_request_in_priority_queue(w))
->   				continue;
->   
-> -			if (rq_prio(w) < rq_prio(rq))
-> +			/*
-> +			 * We also need to reorder within the same priority.
-> +			 *
-> +			 * This is unlike priority-inheritance, where if the
-> +			 * signaler already has a higher priority [earlier
-> +			 * deadline] than us, we can ignore as it will be
-> +			 * scheduled first. If a waiter already has the
-> +			 * same priority, we still have to push it to the end
-> +			 * of the list. This unfortunately means we cannot
-> +			 * use the rq_deadline() itself as a 'visited' bit.
+> Conflicts:
+> 5b4dc95cf7f5 ("drm/i915/gt: Prevent use of engine->wa_ctx after error")
+> 6a3daee1b38e ("drm/i915/selftests: Fix some error codes")
+> 67fba3f1c73b ("drm/i915/dp: Fix LTTPR vswing/pre-emp setting in non-transparent mode")
 
-rq_deadline only appears later but never mind.
+This depends on
+  1c6e527d6947 ("rm/i915/dp: Move intel_dp_set_signal_levels() to intel_dp_link_training.c")
 
-> +			 */
-> +			if (rq_prio(w) < prio)
->   				continue;
->   
-> -			GEM_BUG_ON(rq_prio(w) > rq_prio(rq));
-> -			GEM_BUG_ON(i915_request_is_active(w));
-> -			list_move_tail(&w->sched.link, &list);
-> +			GEM_BUG_ON(rq_prio(w) != prio);
-> +
-> +			/* Remember our position along this branch */
-> +			rq = stack_push(w, rq, pos);
-> +			pos = &rq->sched.waiters_list;
->   		}
->   
-> -		rq = list_first_entry_or_null(&list, typeof(*rq), sched.link);
-> -	} while (rq);
-> +		/* Note list is reversed for waiters wrt signal hierarchy */
-> +		GEM_BUG_ON(rq->engine != engine);
-> +		GEM_BUG_ON(!i915_request_in_priority_queue(rq));
-> +		list_move(&rq->sched.link, &dfs);
-> +
-> +		/* Track our visit, and prevent duplicate processing */
-> +		clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
-> +	} while ((rq = stack_pop(rq, &pos)));
-> +
-> +	pos = lookup_priolist(engine, prio);
-> +	list_for_each_entry_safe(rq, rn, &dfs, sched.link) {
-> +		set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
-> +		list_add_tail(&rq->sched.link, pos);
-> +	}
->   }
->   
->   static void queue_request(struct intel_engine_cs *engine,
+> 699390f7f026 ("drm/i915: Fix the PHY compliance test vs. hotplug mishap")
+> e7004ea4f5f5 ("drm/i915/gt: Close race between enable_breadcrumbs and cancel_breadcrumbs")
+> fed387572040 ("drm/i915/display: Prevent double YUV range correction on HDR planes")
 > 
+> Fails to build:
+> 0713eb979d2c ("drm/i915: Disable atomics in L3 for gen9")
+> f8abfda84841 ("drm/i915: Fix the MST PBN divider calculation")
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+and this one depends on
+  a321fc2b4e60 ("rm/dp/mst: Export drm_dp_get_vc_payload_bw()")
 
-Regards,
-
-Tvrtko
+> 
+> BR,
+> Jani.
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
