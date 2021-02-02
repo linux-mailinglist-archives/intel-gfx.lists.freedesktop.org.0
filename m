@@ -1,47 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FE8730B79E
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 07:05:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 442BB30B7E1
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 07:31:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFE426E8CD;
-	Tue,  2 Feb 2021 06:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3062489D99;
+	Tue,  2 Feb 2021 06:31:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC9D06E8CD
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 06:05:46 +0000 (UTC)
-IronPort-SDR: IoeRhuUcjTwaGjo4md7z++62iwL4Iws64SKN1wT5VPyLB+Y5bJct7XPMS5fKI+OsfY04SP7Nmo
- XFIreaX8o5dg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="265635565"
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="265635565"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 22:05:46 -0800
-IronPort-SDR: XqY5eeVW45dRtaztsRNUfp6AJ19ESbeTwcKaySjJZrNyNKZK+Bp0++tDJSHeOs5b1DKTpJVpbI
- 3JsTvvYC04gQ==
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="391303529"
-Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.215.121.82])
- ([10.215.121.82])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 22:05:44 -0800
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210201183343.15292-1-ville.syrjala@linux.intel.com>
- <161221033182.18680.6990863242267144359@emeril.freedesktop.org>
- <YBhl02N9b8V3fMmo@intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <eddedcd6-0f67-f15d-b941-e58e9150590b@intel.com>
-Date: Tue, 2 Feb 2021 11:35:37 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 448A989D99
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 06:31:53 +0000 (UTC)
+IronPort-SDR: CD9w9+83wU7kYePn+rIY/zSsgxtqel232atd1KhgTf5TC69YRT9s4Jsl5jbDyD0uiXYqLWuKc6
+ AEGrUuh/JepQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="160570969"
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="160570969"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 22:31:52 -0800
+IronPort-SDR: 7p+Y8KK6igUCjJVByLqgJBxGhFTFfCU2mUWyxV3q3zIz4UmHCru773jTREmZXU+JZIjwvBp3VE
+ L1xsiKwdpqtQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="370379734"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 01 Feb 2021 22:31:49 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 02 Feb 2021 08:31:48 +0200
+Date: Tue, 2 Feb 2021 08:31:48 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Surendrakumar Upadhyay,
+ TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Message-ID: <YBjx1O/3jeFcRPDw@intel.com>
+References: <20210127100830.162292-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <YBH0FJolpTwO+BJG@intel.com>
+ <SN6PR11MB3421882AC3045B652D2CBDC4DFB59@SN6PR11MB3421.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <YBhl02N9b8V3fMmo@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Clean_up_the_DDI_clock_routing_mess?=
+Content-Disposition: inline
+In-Reply-To: <SN6PR11MB3421882AC3045B652D2CBDC4DFB59@SN6PR11MB3421.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gen9bc: Handle TGP PCH during
+ suspend/resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,48 +53,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Pandey, Hariom" <hariom.pandey@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDIvMi8yMDIxIDI6MDQgQU0sIFZpbGxlIFN5cmrDpGzDpCB3cm90ZToKPiBPbiBNb24sIEZl
-YiAwMSwgMjAyMSBhdCAwODoxMjoxMVBNIC0wMDAwLCBQYXRjaHdvcmsgd3JvdGU6Cj4+ID09IFNl
-cmllcyBEZXRhaWxzID09Cj4+Cj4+IFNlcmllczogZHJtL2k5MTU6IENsZWFuIHVwIHRoZSBEREkg
-Y2xvY2sgcm91dGluZyBtZXNzCj4+IFVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0
-b3Aub3JnL3Nlcmllcy84NjU0NC8KPj4gU3RhdGUgOiBmYWlsdXJlCj4+Cj4+ID09IFN1bW1hcnkg
-PT0KPj4KPj4gQ0kgQnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9EUk1fOTcxMyAtPiBQYXRjaHdv
-cmtfMTk1NTYKPj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PQo+Pgo+PiBTdW1tYXJ5Cj4+IC0tLS0tLS0KPj4KPj4gICAgKipGQUlMVVJFKioKPj4K
-Pj4gICAgU2VyaW91cyB1bmtub3duIGNoYW5nZXMgY29taW5nIHdpdGggUGF0Y2h3b3JrXzE5NTU2
-IGFic29sdXRlbHkgbmVlZCB0byBiZQo+PiAgICB2ZXJpZmllZCBtYW51YWxseS4KPj4gICAgCj4+
-ICAgIElmIHlvdSB0aGluayB0aGUgcmVwb3J0ZWQgY2hhbmdlcyBoYXZlIG5vdGhpbmcgdG8gZG8g
-d2l0aCB0aGUgY2hhbmdlcwo+PiAgICBpbnRyb2R1Y2VkIGluIFBhdGNod29ya18xOTU1NiwgcGxl
-YXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93IHRoZW0KPj4gICAgdG8gZG9jdW1lbnQg
-dGhpcyBuZXcgZmFpbHVyZSBtb2RlLCB3aGljaCB3aWxsIHJlZHVjZSBmYWxzZSBwb3NpdGl2ZXMg
-aW4gQ0kuCj4+Cj4+ICAgIEV4dGVybmFsIFVSTDogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
-L3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTk1NTYvaW5kZXguaHRtbAo+Pgo+PiBQb3NzaWJsZSBu
-ZXcgaXNzdWVzCj4+IC0tLS0tLS0tLS0tLS0tLS0tLS0KPj4KPj4gICAgSGVyZSBhcmUgdGhlIHVu
-a25vd24gY2hhbmdlcyB0aGF0IG1heSBoYXZlIGJlZW4gaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtf
-MTk1NTY6Cj4+Cj4+ICMjIyBJR1QgY2hhbmdlcyAjIyMKPj4KPj4gIyMjIyBQb3NzaWJsZSByZWdy
-ZXNzaW9ucyAjIyMjCj4+Cj4+ICAgICogaWd0QGttc19jaGFtZWxpdW1AY29tbW9uLWhwZC1hZnRl
-ci1zdXNwZW5kOgo+PiAgICAgIC0gZmktaWNsLXUyOiAgICAgICAgICBbUEFTU11bMV0gLT4gW0RN
-RVNHLVdBUk5dWzJdCj4+ICAgICBbMV06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVl
-L2RybS10aXAvQ0lfRFJNXzk3MTMvZmktaWNsLXUyL2lndEBrbXNfY2hhbWVsaXVtQGNvbW1vbi1o
-cGQtYWZ0ZXItc3VzcGVuZC5odG1sCj4+ICAgICBbMl06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
-Lm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE5NTU2L2ZpLWljbC11Mi9pZ3RAa21zX2NoYW1l
-bGl1bUBjb21tb24taHBkLWFmdGVyLXN1c3BlbmQuaHRtbAo+IDwzPiBbMTUzLjY5MTc3NF0gaTkx
-NSAwMDAwOjAwOjAyLjA6IFtkcm1dICpFUlJPUiogRmFpbGVkIHRvIHJlYWQgRFBDRCByZWdpc3Rl
-ciAweDkyCj4KPiBTZWVtcyB0byBiZQo+IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9k
-cm0vaW50ZWwvLS9pc3N1ZXMvMjg2OAo+IGV4Y2VwdCBub3QgeWV0IHRyYWNrZWQgZm9yIGljbC4K
-Pgo+IFRoYXQgcmVnaXN0ZXIgc2VlbXMgdG8gYmUgcmVsYXRlZCB0byB0aGUgSERNSSAyLjEgUENP
-TiBzdHVmZi4KClllcyB5b3UgYXJlIHJpZ2h0LiBJIHNlZW1lZCB0byBoYXZlIG1pc3NlZCBhIGNo
-ZWNrIGZvciByZWFkaW5nIHRoaXMgb25seSAKZm9yIERQQ0QgcmV2Pj0xLjQuCgpJJ2xsIGJlIHNl
-bmRpbmcgcGF0Y2ggdG8gZml4IHRoaXMgdG8gaW50ZWwtZ2Z4LgoKSSBoYXZlIGFscmVhZHkgc2Vu
-dCBhIHBhdGNoIHRvIGludGVsLXRyeWJvdCB0byB2ZXJpZnkgdGhpcy4KCmh0dHBzOi8vcGF0Y2h3
-b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC80MTgxMzcvP3Nlcmllcz04NjU1MSZyZXY9MQoKVGhh
-bmtzICYgUmVnYXJkcywKCkFua2l0Cgo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+On Tue, Feb 02, 2021 at 05:52:28AM +0000, Surendrakumar Upadhyay, Tejaskuma=
+rX wrote:
+> =
+
+> =
+
+> > -----Original Message-----
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Sent: 28 January 2021 04:46
+> > To: Surendrakumar Upadhyay, TejaskumarX
+> > <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Pandey, Hariom
+> > <hariom.pandey@intel.com>; Roper, Matthew D
+> > <matthew.d.roper@intel.com>
+> > Subject: Re: [Intel-gfx] [PATCH] drm/i915/gen9bc: Handle TGP PCH during
+> > suspend/resume
+> > =
+
+> > On Wed, Jan 27, 2021 at 03:38:30PM +0530, Tejas Upadhyay wrote:
+> > > For Legacy S3 suspend/resume GEN9 BC needs to enable and setup TGP
+> > > PCH.
+> > >
+> > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > Signed-off-by: Tejas Upadhyay
+> > > <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/i915_irq.c | 36
+> > > ++++++++++++++++++++++++---------
+> > >  1 file changed, 27 insertions(+), 9 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/i915_irq.c
+> > > b/drivers/gpu/drm/i915/i915_irq.c index a31980f69120..6dcefc3e24ac
+> > > 100644
+> > > --- a/drivers/gpu/drm/i915/i915_irq.c
+> > > +++ b/drivers/gpu/drm/i915/i915_irq.c
+> > > @@ -3026,8 +3026,20 @@ static void gen8_irq_reset(struct
+> > drm_i915_private *dev_priv)
+> > >  	GEN3_IRQ_RESET(uncore, GEN8_DE_MISC_);
+> > >  	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
+> > >
+> > > -	if (HAS_PCH_SPLIT(dev_priv))
+> > > +	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+> > > +		GEN3_IRQ_RESET(uncore, SDE);
+> > > +	else if (HAS_PCH_SPLIT(dev_priv))
+> > >  		ibx_irq_reset(dev_priv);
+> > > +
+> > > +	/* Wa_14010685332:cnp/cmp,tgp,adp */
+> > > +	if (INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_CNP ||
+> > > +	    (INTEL_PCH_TYPE(dev_priv) >=3D PCH_TGP &&
+> > > +	    INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
+> > > +		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> > > +				 SBCLK_RUN_REFCLK_DIS,
+> > SBCLK_RUN_REFCLK_DIS);
+> > > +		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> > > +				 SBCLK_RUN_REFCLK_DIS, 0);
+> > > +	}
+> > =
+
+> > Time to refactor instead of copypasta.
+> Do you expect below? :
+> =
+
+> If ((INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_TGP) {
+> 	intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> 				 SBCLK_RUN_REFCLK_DIS,
+> SBCLK_RUN_REFCLK_DIS);
+> 		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> 				 SBCLK_RUN_REFCLK_DIS, 0);
+> }
+
+I expect a new function instead of copy pasting this whole thing
+into multiple places.
+
+That said even the current code doesn't make any sense to me.
+Take for instance this part:
+        if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+	                GEN3_IRQ_RESET(uncore, SDE);
+What is that PCH type check doing there? What weird PCH
+type are we supposed to have that doesn't need this?
+
+Also the Wa_14010685332 part looks a bit odd. Is it
+correct that icp doesn't need that, but cnp and tgp
+both do somehow? Can we even have cnp on icl+?
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
