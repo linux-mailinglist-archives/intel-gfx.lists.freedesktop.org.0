@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D28EE30BA2D
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 09:46:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F22F30BA4E
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 09:50:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0846E905;
-	Tue,  2 Feb 2021 08:46:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 054216E90E;
+	Tue,  2 Feb 2021 08:50:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BFF76E905
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 08:45:58 +0000 (UTC)
-IronPort-SDR: BsvKYm2tGx64EBnYwbg8Zke/icbuNMnQ07CtabfotBY+egjkeIwHHATC3QswX+SV5Pdg/6ynMM
- ysUpd03U5U9Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="168499476"
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="168499476"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 00:45:56 -0800
-IronPort-SDR: V2JznHOitxUrYzRhKPMUbtJAG/Jyg6X//2Ir9dge94y54P7pDeiMU0DN8Bam/Dgdg2F/TOIzB8
- +2ckCO8y8TlQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="432801861"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 02 Feb 2021 00:45:54 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 02 Feb 2021 10:45:53 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Date: Tue,  2 Feb 2021 10:45:53 +0200
-Message-Id: <20210202084553.30691-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <87ft2fgcu1.fsf@intel.com>
-References: <87ft2fgcu1.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 64B746E8F0;
+ Tue,  2 Feb 2021 08:50:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5DFB9AA0EA;
+ Tue,  2 Feb 2021 08:50:51 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH -fixes] drm/i915/display: Prevent double YUV
- range correction on HDR planes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andres Calderon Jaramillo" <andrescj@google.com>
+Date: Tue, 02 Feb 2021 08:50:51 -0000
+Message-ID: <161225585135.19549.4058651891522309824@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <87ft2fgcu1.fsf@intel.com>
+In-Reply-To: <87ft2fgcu1.fsf@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/display=3A_Prevent_double_YUV_range_correction_on_HDR_p?=
+ =?utf-8?q?lanes_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,109 +39,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQW5kcmVzIENhbGRlcm9uIEphcmFtaWxsbyA8YW5kcmVzY2pAY2hyb21pdW0ub3JnPgoK
-UHJldmVudCB0aGUgSUNMIEhEUiBwbGFuZSBwaXBlbGluZSBmcm9tIHBlcmZvcm1pbmcgWVVWIGNv
-bG9yIHJhbmdlCmNvcnJlY3Rpb24gdHdpY2Ugd2hlbiB0aGUgaW5wdXQgaXMgaW4gbGltaXRlZCBy
-YW5nZS4gVGhpcyBpcyBkb25lIGJ5CnJlbW92aW5nIHRoZSBsaW1pdGVkLXJhbmdlIGNvZGUgZnJv
-bSBpY2xfcHJvZ3JhbV9pbnB1dF9jc2MoKS4KCkJlZm9yZSB0aGlzIHBhdGNoIHRoZSBmb2xsb3dp
-bmcgY291bGQgaGFwcGVuOiB1c2VyIHNwYWNlIGdpdmVzIHVzIGEgWVVWCmJ1ZmZlciBpbiBsaW1p
-dGVkIHJhbmdlOyBwZXIgdGhlIHBpcGVsaW5lIGluIFsxXSwgdGhlIHBsYW5lIHdvdWxkIGZpcnN0
-CmdvIHRocm91Z2ggYSAiWVVWIFJhbmdlIGNvcnJlY3QiIHN0YWdlIHRoYXQgZXhwYW5kcyB0aGUg
-cmFuZ2U7IHRoZSBwbGFuZQp3b3VsZCB0aGVuIGdvIHRocm91Z2ggdGhlICJJbnB1dCBDU0MiIHN0
-YWdlIHdoaWNoIHdvdWxkIGFsc28gZXhwYW5kIHRoZQpyYW5nZSBiZWNhdXNlIGljbF9wcm9ncmFt
-X2lucHV0X2NzYygpIHdvdWxkIHVzZSBhIG1hdHJpeCBhbmQgYW4gb2Zmc2V0CnRoYXQgYXNzdW1l
-IGxpbWl0ZWQtcmFuZ2UgaW5wdXQ7IHRoaXMgd291bGQgdWx0aW1hdGVseSBjYXVzZSBkYXJrIGFu
-ZApsaWdodCBjb2xvcnMgdG8gYXBwZWFyIGRhcmtlciBhbmQgbGlnaHRlciB0aGFuIHRoZXkgc2hv
-dWxkIHJlc3BlY3RpdmVseS4KClRoaXMgaXMgYW4gaXNzdWUgYmVjYXVzZSBpZiBhIGJ1ZmZlciBz
-d2l0Y2hlcyBiZXR3ZWVuIGJlaW5nIHNjYW5uZWQgb3V0CmFuZCBiZWluZyBjb21wb3NpdGVkIHdp
-dGggdGhlIEdQVSwgdGhlIHVzZXIgd2lsbCBzZWUgYSBjb2xvciBkaWZmZXJlbmNlLgpJZiB0aGlz
-IHN3aXRjaGluZyBoYXBwZW5zIHF1aWNrbHkgYW5kIGZyZXF1ZW50bHksIHRoZSB1c2VyIHdpbGwg
-cGVyY2VpdmUKdGhpcyBhcyBhIGZsaWNrZXJpbmcuCgpbMV0gaHR0cHM6Ly8wMS5vcmcvc2l0ZXMv
-ZGVmYXVsdC9maWxlcy9kb2N1bWVudGF0aW9uL2ludGVsLWdmeC1wcm0tb3NyYy1pY2xscC12b2wx
-Mi1kaXNwbGF5ZW5naW5lXzAucGRmI3BhZ2U9MjgxCgpDYzogc3RhYmxlQHZnZXIua2VybmVsLm9y
-ZwpTaWduZWQtb2ZmLWJ5OiBBbmRyZXMgQ2FsZGVyb24gSmFyYW1pbGxvIDxhbmRyZXNjakBjaHJv
-bWl1bS5vcmc+ClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+Ckxpbms6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9w
-YXRjaC9tc2dpZC8yMDIwMTIxNTIyNDIxOS4zODk2MjU2LTEtYW5kcmVzY2pAZ29vZ2xlLmNvbQoo
-Y2hlcnJ5IHBpY2tlZCBmcm9tIGNvbW1pdCBmZWQzODc1NzIwNDBlODRlYWQ1Mzg1MmE3ODIwZTMw
-YTMwZTUxNWQwKQotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5jIHwgIDIgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYyAg
-fCA2NSArKystLS0tLS0tLS0tLS0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25z
-KCspLCA1NSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGlzcGxheS5jCmluZGV4IDUzYTAwY2YzZmEzMi4uMzkzOTYyNDhmMzg4IDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtNDgwNyw2ICs0ODA3
-LDggQEAgdTMyIGdsa19wbGFuZV9jb2xvcl9jdGwoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3Rh
-dGUgKmNydGNfc3RhdGUsCiAJCQlwbGFuZV9jb2xvcl9jdGwgfD0gUExBTkVfQ09MT1JfWVVWX1JB
-TkdFX0NPUlJFQ1RJT05fRElTQUJMRTsKIAl9IGVsc2UgaWYgKGZiLT5mb3JtYXQtPmlzX3l1dikg
-ewogCQlwbGFuZV9jb2xvcl9jdGwgfD0gUExBTkVfQ09MT1JfSU5QVVRfQ1NDX0VOQUJMRTsKKwkJ
-aWYgKHBsYW5lX3N0YXRlLT5ody5jb2xvcl9yYW5nZSA9PSBEUk1fQ09MT1JfWUNCQ1JfRlVMTF9S
-QU5HRSkKKwkJCXBsYW5lX2NvbG9yX2N0bCB8PSBQTEFORV9DT0xPUl9ZVVZfUkFOR0VfQ09SUkVD
-VElPTl9ESVNBQkxFOwogCX0KIAogCXJldHVybiBwbGFuZV9jb2xvcl9jdGw7CmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYwppbmRleCAwMTlhMmQ2ZDgwN2EuLjNk
-YTI1NDRmYTFjMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9zcHJpdGUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0
-ZS5jCkBAIC02MTgsMTMgKzYxOCwxOSBAQCBza2xfcHJvZ3JhbV9zY2FsZXIoc3RydWN0IGludGVs
-X3BsYW5lICpwbGFuZSwKIAogLyogUHJlb2Zmc2V0IHZhbHVlcyBmb3IgWVVWIHRvIFJHQiBDb252
-ZXJzaW9uICovCiAjZGVmaW5lIFBSRU9GRl9ZVVZfVE9fUkdCX0hJCQkweDE4MDAKLSNkZWZpbmUg
-UFJFT0ZGX1lVVl9UT19SR0JfTUUJCTB4MUYwMAorI2RlZmluZSBQUkVPRkZfWVVWX1RPX1JHQl9N
-RQkJMHgwMDAwCiAjZGVmaW5lIFBSRU9GRl9ZVVZfVE9fUkdCX0xPCQkweDE4MDAKIAogI2RlZmlu
-ZSAgUk9GRih4KSAgICAgICAgICAoKCh4KSAmIDB4ZmZmZikgPDwgMTYpCiAjZGVmaW5lICBHT0ZG
-KHgpICAgICAgICAgICgoKHgpICYgMHhmZmZmKSA8PCAwKQogI2RlZmluZSAgQk9GRih4KSAgICAg
-ICAgICAoKCh4KSAmIDB4ZmZmZikgPDwgMTYpCiAKKy8qCisgKiBQcm9ncmFtcyB0aGUgaW5wdXQg
-Y29sb3Igc3BhY2UgY29udmVyc2lvbiBzdGFnZSBmb3IgSUNMIEhEUiBwbGFuZXMuCisgKiBOb3Rl
-IHRoYXQgaXQgaXMgYXNzdW1lZCB0aGF0IHRoaXMgc3RhZ2UgYWx3YXlzIGhhcHBlbnMgYWZ0ZXIg
-WVVWCisgKiByYW5nZSBjb3JyZWN0aW9uLiBUaHVzLCB0aGUgaW5wdXQgdG8gdGhpcyBzdGFnZSBp
-cyBhc3N1bWVkIHRvIGJlCisgKiBpbiBmdWxsLXJhbmdlIFlDYkNyLgorICovCiBzdGF0aWMgdm9p
-ZAogaWNsX3Byb2dyYW1faW5wdXRfY3NjKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmUsCiAJCSAg
-ICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLApAQCAtNjcyLDUy
-ICs2NzgsNyBAQCBpY2xfcHJvZ3JhbV9pbnB1dF9jc2Moc3RydWN0IGludGVsX3BsYW5lICpwbGFu
-ZSwKIAkJCTB4MCwgMHg3ODAwLCAweDdGMTAsCiAJCX0sCiAJfTsKLQotCS8qIE1hdHJpeCBmb3Ig
-TGltaXRlZCBSYW5nZSB0byBGdWxsIFJhbmdlIENvbnZlcnNpb24gKi8KLQlzdGF0aWMgY29uc3Qg
-dTE2IGlucHV0X2NzY19tYXRyaXhfbHJbXVs5XSA9IHsKLQkJLyoKLQkJICogQlQuNjAxIExpbXRl
-ZCByYW5nZSBZQ2JDciAtPiBmdWxsIHJhbmdlIFJHQgotCQkgKiBUaGUgbWF0cml4IHJlcXVpcmVk
-IGlzIDoKLQkJICogWzEuMTY0Mzg0LCAwLjAwMCwgMS41OTYwMjcsCi0JCSAqICAxLjE2NDM4NCwg
-LTAuMzkxNzUsIC0wLjgxMjgxMywKLQkJICogIDEuMTY0Mzg0LCAyLjAxNzIzMiwgMC4wMDAwXQot
-CQkgKi8KLQkJW0RSTV9DT0xPUl9ZQ0JDUl9CVDYwMV0gPSB7Ci0JCQkweDdDQzgsIDB4Nzk1MCwg
-MHgwLAotCQkJMHg4RDAwLCAweDc5NTAsIDB4OUM4OCwKLQkJCTB4MCwgMHg3OTUwLCAweDY4MTAs
-Ci0JCX0sCi0JCS8qCi0JCSAqIEJULjcwOSBMaW1pdGVkIHJhbmdlIFlDYkNyIC0+IGZ1bGwgcmFu
-Z2UgUkdCCi0JCSAqIFRoZSBtYXRyaXggcmVxdWlyZWQgaXMgOgotCQkgKiBbMS4xNjQzODQsIDAu
-MDAwLCAxLjc5Mjc0MSwKLQkJICogIDEuMTY0Mzg0LCAtMC4yMTMyNDksIC0wLjUzMjkwOSwKLQkJ
-ICogIDEuMTY0Mzg0LCAyLjExMjQwMiwgMC4wMDAwXQotCQkgKi8KLQkJW0RSTV9DT0xPUl9ZQ0JD
-Ul9CVDcwOV0gPSB7Ci0JCQkweDdFNTgsIDB4Nzk1MCwgMHgwLAotCQkJMHg4ODg4LCAweDc5NTAs
-IDB4QURBOCwKLQkJCTB4MCwgMHg3OTUwLCAgMHg2ODcwLAotCQl9LAotCQkvKgotCQkgKiBCVC4y
-MDIwIExpbWl0ZWQgcmFuZ2UgWUNiQ3IgLT4gZnVsbCByYW5nZSBSR0IKLQkJICogVGhlIG1hdHJp
-eCByZXF1aXJlZCBpcyA6Ci0JCSAqIFsxLjE2NCwgMC4wMDAsIDEuNjc4LAotCQkgKiAgMS4xNjQs
-IC0wLjE4NzMsIC0wLjY1MDQsCi0JCSAqICAxLjE2NCwgMi4xNDE3LCAwLjAwMDBdCi0JCSAqLwot
-CQlbRFJNX0NPTE9SX1lDQkNSX0JUMjAyMF0gPSB7Ci0JCQkweDdENzAsIDB4Nzk1MCwgMHgwLAot
-CQkJMHg4QTY4LCAweDc5NTAsIDB4QUMwMCwKLQkJCTB4MCwgMHg3OTUwLCAweDY4OTAsCi0JCX0s
-Ci0JfTsKLQljb25zdCB1MTYgKmNzYzsKLQotCWlmIChwbGFuZV9zdGF0ZS0+aHcuY29sb3JfcmFu
-Z2UgPT0gRFJNX0NPTE9SX1lDQkNSX0ZVTExfUkFOR0UpCi0JCWNzYyA9IGlucHV0X2NzY19tYXRy
-aXhbcGxhbmVfc3RhdGUtPmh3LmNvbG9yX2VuY29kaW5nXTsKLQllbHNlCi0JCWNzYyA9IGlucHV0
-X2NzY19tYXRyaXhfbHJbcGxhbmVfc3RhdGUtPmh3LmNvbG9yX2VuY29kaW5nXTsKKwljb25zdCB1
-MTYgKmNzYyA9IGlucHV0X2NzY19tYXRyaXhbcGxhbmVfc3RhdGUtPmh3LmNvbG9yX2VuY29kaW5n
-XTsKIAogCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQTEFORV9JTlBVVF9DU0NfQ09FRkYo
-cGlwZSwgcGxhbmVfaWQsIDApLAogCQkJICBST0ZGKGNzY1swXSkgfCBHT0ZGKGNzY1sxXSkpOwpA
-QCAtNzM0LDE0ICs2OTUsOCBAQCBpY2xfcHJvZ3JhbV9pbnB1dF9jc2Moc3RydWN0IGludGVsX3Bs
-YW5lICpwbGFuZSwKIAogCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQTEFORV9JTlBVVF9D
-U0NfUFJFT0ZGKHBpcGUsIHBsYW5lX2lkLCAwKSwKIAkJCSAgUFJFT0ZGX1lVVl9UT19SR0JfSEkp
-OwotCWlmIChwbGFuZV9zdGF0ZS0+aHcuY29sb3JfcmFuZ2UgPT0gRFJNX0NPTE9SX1lDQkNSX0ZV
-TExfUkFOR0UpCi0JCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LAotCQkJCSAgUExBTkVfSU5Q
-VVRfQ1NDX1BSRU9GRihwaXBlLCBwbGFuZV9pZCwgMSksCi0JCQkJICAwKTsKLQllbHNlCi0JCWlu
-dGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LAotCQkJCSAgUExBTkVfSU5QVVRfQ1NDX1BSRU9GRihw
-aXBlLCBwbGFuZV9pZCwgMSksCi0JCQkJICBQUkVPRkZfWVVWX1RPX1JHQl9NRSk7CisJaW50ZWxf
-ZGVfd3JpdGVfZncoZGV2X3ByaXYsIFBMQU5FX0lOUFVUX0NTQ19QUkVPRkYocGlwZSwgcGxhbmVf
-aWQsIDEpLAorCQkJICBQUkVPRkZfWVVWX1RPX1JHQl9NRSk7CiAJaW50ZWxfZGVfd3JpdGVfZnco
-ZGV2X3ByaXYsIFBMQU5FX0lOUFVUX0NTQ19QUkVPRkYocGlwZSwgcGxhbmVfaWQsIDIpLAogCQkJ
-ICBQUkVPRkZfWVVWX1RPX1JHQl9MTyk7CiAJaW50ZWxfZGVfd3JpdGVfZncoZGV2X3ByaXYsCi0t
-IAoyLjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915/display: Prevent double YUV range correction on HDR planes (rev3)
+URL   : https://patchwork.freedesktop.org/series/84966/
+State : failure
+
+== Summary ==
+
+Applying: drm/i915/display: Prevent double YUV range correction on HDR planes
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_display.c
+M	drivers/gpu/drm/i915/display/intel_sprite.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_sprite.c
+Auto-merging drivers/gpu/drm/i915/display/intel_display.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_display.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915/display: Prevent double YUV range correction on HDR planes
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
