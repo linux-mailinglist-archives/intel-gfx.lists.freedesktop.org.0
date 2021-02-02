@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C8BD30CE8E
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 23:12:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 491A630CE8D
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 23:12:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 448EF6E81E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66BC86E9AD;
 	Tue,  2 Feb 2021 22:12:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09A3C6E9A8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDA7C6E81E
  for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 22:12:41 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23777550-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23777551-1500050 
  for <intel-gfx@lists.freedesktop.org>; Tue, 02 Feb 2021 22:12:32 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  2 Feb 2021 22:12:22 +0000
-Message-Id: <20210202221233.28223-2-chris@chris-wilson.co.uk>
+Date: Tue,  2 Feb 2021 22:12:23 +0000
+Message-Id: <20210202221233.28223-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210202221233.28223-1-chris@chris-wilson.co.uk>
 References: <20210202221233.28223-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 02/13] drm/i915/gt: Move engine setup out of
- set_default_submission
+Subject: [Intel-gfx] [CI 03/13] drm/i915/gt: Move submission_method into
+ intel_gt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,184 +44,253 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we no longer switch back and forth between guc and execlists,
-we no longer need to restore the backend's vfunc and can leave them set
-after initialisation. The only catch is that we lose the submission on
-wedging and still need to reset the submit_request vfunc on unwedging.
+Since we setup the submission method for the engines once, it is easy to
+assign an enum and use that instead of probing into the backends.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- .../drm/i915/gt/intel_execlists_submission.c  | 46 ++++++++---------
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  4 --
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 50 ++++++++-----------
- 3 files changed, 44 insertions(+), 56 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine.h               |  8 +++++++-
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c            | 12 ++++++++----
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.c |  8 --------
+ drivers/gpu/drm/i915/gt/intel_execlists_submission.h |  3 ---
+ drivers/gpu/drm/i915/gt/intel_gt_types.h             |  7 +++++++
+ drivers/gpu/drm/i915/gt/intel_reset.c                |  7 +++----
+ drivers/gpu/drm/i915/gt/selftest_execlists.c         |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_ring_submission.c   |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c    |  5 -----
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h    |  1 -
+ drivers/gpu/drm/i915/i915_perf.c                     | 10 +++++-----
+ 11 files changed, 32 insertions(+), 33 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index 47ee8578e511..8d9184920c51 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -13,8 +13,9 @@
+ #include "i915_reg.h"
+ #include "i915_request.h"
+ #include "i915_selftest.h"
+-#include "gt/intel_timeline.h"
+ #include "intel_engine_types.h"
++#include "intel_gt_types.h"
++#include "intel_timeline.h"
+ #include "intel_workarounds.h"
+ 
+ struct drm_printer;
+@@ -262,6 +263,11 @@ void intel_engine_init_active(struct intel_engine_cs *engine,
+ #define ENGINE_MOCK	1
+ #define ENGINE_VIRTUAL	2
+ 
++static inline bool intel_engine_uses_guc(const struct intel_engine_cs *engine)
++{
++	return engine->gt->submission_method >= INTEL_SUBMISSION_GUC;
++}
++
+ static inline bool
+ intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 56fb9cece71b..dab8d734e272 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -891,12 +891,16 @@ int intel_engines_init(struct intel_gt *gt)
+ 	enum intel_engine_id id;
+ 	int err;
+ 
+-	if (intel_uc_uses_guc_submission(&gt->uc))
++	if (intel_uc_uses_guc_submission(&gt->uc)) {
++		gt->submission_method = INTEL_SUBMISSION_GUC;
+ 		setup = intel_guc_submission_setup;
+-	else if (HAS_EXECLISTS(gt->i915))
++	} else if (HAS_EXECLISTS(gt->i915)) {
++		gt->submission_method = INTEL_SUBMISSION_ELSP;
+ 		setup = intel_execlists_submission_setup;
+-	else
++	} else {
++		gt->submission_method = INTEL_SUBMISSION_RING;
+ 		setup = intel_ring_submission_setup;
++	}
+ 
+ 	for_each_engine(engine, gt, id) {
+ 		err = engine_setup_common(engine);
+@@ -1467,7 +1471,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 		drm_printf(m, "\tIPEHR: 0x%08x\n", ENGINE_READ(engine, IPEHR));
+ 	}
+ 
+-	if (intel_engine_in_guc_submission_mode(engine)) {
++	if (intel_engine_uses_guc(engine)) {
+ 		/* nothing to print yet */
+ 	} else if (HAS_EXECLISTS(dev_priv)) {
+ 		struct i915_request * const *port, *rq;
 diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index b8bd3d48b345..c98fdeb94dba 100644
+index c98fdeb94dba..8dc52cc43f27 100644
 --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -3069,29 +3069,6 @@ static void execlists_set_default_submission(struct intel_engine_cs *engine)
- 	engine->submit_request = execlists_submit_request;
- 	engine->schedule = i915_schedule;
- 	engine->execlists.tasklet.callback = execlists_submission_tasklet;
+@@ -1757,7 +1757,6 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
+ 	 */
+ 	GEM_BUG_ON(!tasklet_is_locked(&execlists->tasklet) &&
+ 		   !reset_in_progress(execlists));
+-	GEM_BUG_ON(!intel_engine_in_execlists_submission_mode(engine));
+ 
+ 	/*
+ 	 * Note that csb_write, csb_status may be either in HWSP or mmio.
+@@ -3877,13 +3876,6 @@ void intel_execlists_show_requests(struct intel_engine_cs *engine,
+ 	spin_unlock_irqrestore(&engine->active.lock, flags);
+ }
+ 
+-bool
+-intel_engine_in_execlists_submission_mode(const struct intel_engine_cs *engine)
+-{
+-	return engine->set_default_submission ==
+-	       execlists_set_default_submission;
+-}
 -
--	engine->reset.prepare = execlists_reset_prepare;
--	engine->reset.rewind = execlists_reset_rewind;
--	engine->reset.cancel = execlists_reset_cancel;
--	engine->reset.finish = execlists_reset_finish;
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+ #include "selftest_execlists.c"
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.h b/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+index a8fd7adefd82..f7bd3fccfee8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+@@ -41,7 +41,4 @@ int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
+ 				     const struct intel_engine_cs *master,
+ 				     const struct intel_engine_cs *sibling);
+ 
+-bool
+-intel_engine_in_execlists_submission_mode(const struct intel_engine_cs *engine);
 -
--	engine->park = execlists_park;
--	engine->unpark = NULL;
--
--	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
--	if (!intel_vgpu_active(engine->i915)) {
--		engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
--		if (can_preempt(engine)) {
--			engine->flags |= I915_ENGINE_HAS_PREEMPTION;
--			if (IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
--				engine->flags |= I915_ENGINE_HAS_TIMESLICES;
--		}
--	}
--
--	if (intel_engine_has_preemption(engine))
--		engine->emit_bb_start = gen8_emit_bb_start;
+ #endif /* __INTEL_EXECLISTS_SUBMISSION_H__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+index 91d20daca536..626af37c7790 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
+@@ -29,6 +29,12 @@ struct i915_ggtt;
+ struct intel_engine_cs;
+ struct intel_uncore;
+ 
++enum intel_submission_method {
++	INTEL_SUBMISSION_RING,
++	INTEL_SUBMISSION_ELSP,
++	INTEL_SUBMISSION_GUC,
++};
++
+ struct intel_gt {
+ 	struct drm_i915_private *i915;
+ 	struct intel_uncore *uncore;
+@@ -108,6 +114,7 @@ struct intel_gt {
+ 	struct intel_engine_cs *engine[I915_NUM_ENGINES];
+ 	struct intel_engine_cs *engine_class[MAX_ENGINE_CLASS + 1]
+ 					    [MAX_ENGINE_INSTANCE + 1];
++	enum intel_submission_method submission_method;
+ 
+ 	/*
+ 	 * Default address space (either GGTT or ppGTT depending on arch).
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 7638fb2a45f4..bf5b9f303a68 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1113,7 +1113,6 @@ static int intel_gt_reset_engine(struct intel_engine_cs *engine)
+ int __intel_engine_reset_bh(struct intel_engine_cs *engine, const char *msg)
+ {
+ 	struct intel_gt *gt = engine->gt;
+-	bool uses_guc = intel_engine_in_guc_submission_mode(engine);
+ 	int ret;
+ 
+ 	ENGINE_TRACE(engine, "flags=%lx\n", gt->reset.flags);
+@@ -1129,10 +1128,10 @@ int __intel_engine_reset_bh(struct intel_engine_cs *engine, const char *msg)
+ 			   "Resetting %s for %s\n", engine->name, msg);
+ 	atomic_inc(&engine->i915->gpu_error.reset_engine_count[engine->uabi_class]);
+ 
+-	if (!uses_guc)
+-		ret = intel_gt_reset_engine(engine);
 -	else
--		engine->emit_bb_start = gen8_emit_bb_start_noarb;
- }
- 
- static void execlists_shutdown(struct intel_engine_cs *engine)
-@@ -3122,6 +3099,14 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
- 	engine->cops = &execlists_context_ops;
- 	engine->request_alloc = execlists_request_alloc;
- 
-+	engine->reset.prepare = execlists_reset_prepare;
-+	engine->reset.rewind = execlists_reset_rewind;
-+	engine->reset.cancel = execlists_reset_cancel;
-+	engine->reset.finish = execlists_reset_finish;
-+
-+	engine->park = execlists_park;
-+	engine->unpark = NULL;
-+
- 	engine->emit_flush = gen8_emit_flush_xcs;
- 	engine->emit_init_breadcrumb = gen8_emit_init_breadcrumb;
- 	engine->emit_fini_breadcrumb = gen8_emit_fini_breadcrumb_xcs;
-@@ -3142,6 +3127,21 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
- 		 * until a more refined solution exists.
- 		 */
- 	}
-+
-+	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
-+	if (!intel_vgpu_active(engine->i915)) {
-+		engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
-+		if (can_preempt(engine)) {
-+			engine->flags |= I915_ENGINE_HAS_PREEMPTION;
-+			if (IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
-+				engine->flags |= I915_ENGINE_HAS_TIMESLICES;
-+		}
-+	}
-+
-+	if (intel_engine_has_preemption(engine))
-+		engine->emit_bb_start = gen8_emit_bb_start;
++	if (intel_engine_uses_guc(engine))
+ 		ret = intel_guc_reset_engine(&engine->gt->uc.guc, engine);
 +	else
-+		engine->emit_bb_start = gen8_emit_bb_start_noarb;
- }
++		ret = intel_gt_reset_engine(engine);
+ 	if (ret) {
+ 		/* If we fail here, we expect to fallback to a global reset */
+ 		ENGINE_TRACE(engine, "Failed to reset, err: %d\n", ret);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+index 5d7fac383add..9304a35384aa 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
++++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+@@ -4715,7 +4715,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_virtual_reset),
+ 	};
  
- static void logical_ring_default_irqs(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 9c2c605d7a92..3cb2ce503544 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -969,14 +969,10 @@ static void gen6_bsd_submit_request(struct i915_request *request)
- static void i9xx_set_default_submission(struct intel_engine_cs *engine)
- {
- 	engine->submit_request = i9xx_submit_request;
--
--	engine->park = NULL;
--	engine->unpark = NULL;
- }
+-	if (!HAS_EXECLISTS(i915))
++	if (i915->gt.submission_method != INTEL_SUBMISSION_ELSP)
+ 		return 0;
  
- static void gen6_bsd_set_default_submission(struct intel_engine_cs *engine)
- {
--	i9xx_set_default_submission(engine);
- 	engine->submit_request = gen6_bsd_submit_request;
- }
+ 	if (intel_gt_is_wedged(&i915->gt))
+diff --git a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
+index 3350e7c995bc..6cd9f6bc240c 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
+@@ -291,7 +291,7 @@ int intel_ring_submission_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_ctx_switch_wa),
+ 	};
  
+-	if (HAS_EXECLISTS(i915))
++	if (i915->gt.submission_method > INTEL_SUBMISSION_RING)
+ 		return 0;
+ 
+ 	return intel_gt_live_subtests(tests, &i915->gt);
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 92688a9b6717..f72faa0b8339 100644
+index f72faa0b8339..17b551a0c89f 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -608,35 +608,6 @@ static int guc_resume(struct intel_engine_cs *engine)
- static void guc_set_default_submission(struct intel_engine_cs *engine)
+@@ -745,8 +745,3 @@ void intel_guc_submission_init_early(struct intel_guc *guc)
  {
- 	engine->submit_request = guc_submit_request;
--	engine->schedule = i915_schedule;
--	engine->execlists.tasklet.callback = guc_submission_tasklet;
--
--	engine->reset.prepare = guc_reset_prepare;
--	engine->reset.rewind = guc_reset_rewind;
--	engine->reset.cancel = guc_reset_cancel;
--	engine->reset.finish = guc_reset_finish;
--
--	engine->flags |= I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
--	engine->flags |= I915_ENGINE_HAS_PREEMPTION;
--
--	/*
--	 * TODO: GuC supports timeslicing and semaphores as well, but they're
--	 * handled by the firmware so some minor tweaks are required before
--	 * enabling.
--	 *
--	 * engine->flags |= I915_ENGINE_HAS_TIMESLICES;
--	 * engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
--	 */
--
--	engine->emit_bb_start = gen8_emit_bb_start;
--
--	/*
--	 * For the breadcrumb irq to work we need the interrupts to stay
--	 * enabled. However, on all platforms on which we'll have support for
--	 * GuC submission we don't allow disabling the interrupts at runtime, so
--	 * we're always safe with the current flow.
--	 */
--	GEM_BUG_ON(engine->irq_enable || engine->irq_disable);
+ 	guc->submission_selected = __guc_submission_selected(guc);
  }
+-
+-bool intel_engine_in_guc_submission_mode(const struct intel_engine_cs *engine)
+-{
+-	return engine->set_default_submission == guc_set_default_submission;
+-}
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+index 5f7b9e6347d0..3f7005018939 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
+@@ -20,7 +20,6 @@ void intel_guc_submission_fini(struct intel_guc *guc);
+ int intel_guc_preempt_work_create(struct intel_guc *guc);
+ void intel_guc_preempt_work_destroy(struct intel_guc *guc);
+ int intel_guc_submission_setup(struct intel_engine_cs *engine);
+-bool intel_engine_in_guc_submission_mode(const struct intel_engine_cs *engine);
  
- static void guc_release(struct intel_engine_cs *engine)
-@@ -658,6 +629,13 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
- 	engine->cops = &guc_context_ops;
- 	engine->request_alloc = guc_request_alloc;
+ static inline bool intel_guc_submission_is_supported(struct intel_guc *guc)
+ {
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 112ba5f2ce90..89665e14ab01 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -1273,11 +1273,7 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+ 	case 8:
+ 	case 9:
+ 	case 10:
+-		if (intel_engine_in_execlists_submission_mode(ce->engine)) {
+-			stream->specific_ctx_id_mask =
+-				(1U << GEN8_CTX_ID_WIDTH) - 1;
+-			stream->specific_ctx_id = stream->specific_ctx_id_mask;
+-		} else {
++		if (intel_engine_uses_guc(ce->engine)) {
+ 			/*
+ 			 * When using GuC, the context descriptor we write in
+ 			 * i915 is read by GuC and rewritten before it's
+@@ -1296,6 +1292,10 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+ 			 */
+ 			stream->specific_ctx_id_mask =
+ 				(1U << (GEN8_CTX_ID_WIDTH - 1)) - 1;
++		} else {
++			stream->specific_ctx_id_mask =
++				(1U << GEN8_CTX_ID_WIDTH) - 1;
++			stream->specific_ctx_id = stream->specific_ctx_id_mask;
+ 		}
+ 		break;
  
-+	engine->schedule = i915_schedule;
-+
-+	engine->reset.prepare = guc_reset_prepare;
-+	engine->reset.rewind = guc_reset_rewind;
-+	engine->reset.cancel = guc_reset_cancel;
-+	engine->reset.finish = guc_reset_finish;
-+
- 	engine->emit_flush = gen8_emit_flush_xcs;
- 	engine->emit_init_breadcrumb = gen8_emit_init_breadcrumb;
- 	engine->emit_fini_breadcrumb = gen8_emit_fini_breadcrumb_xcs;
-@@ -666,6 +644,20 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
- 		engine->emit_flush = gen12_emit_flush_xcs;
- 	}
- 	engine->set_default_submission = guc_set_default_submission;
-+
-+	engine->flags |= I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
-+	engine->flags |= I915_ENGINE_HAS_PREEMPTION;
-+
-+	/*
-+	 * TODO: GuC supports timeslicing and semaphores as well, but they're
-+	 * handled by the firmware so some minor tweaks are required before
-+	 * enabling.
-+	 *
-+	 * engine->flags |= I915_ENGINE_HAS_TIMESLICES;
-+	 * engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
-+	 */
-+
-+	engine->emit_bb_start = gen8_emit_bb_start;
- }
- 
- static void rcs_submission_override(struct intel_engine_cs *engine)
 -- 
 2.20.1
 
