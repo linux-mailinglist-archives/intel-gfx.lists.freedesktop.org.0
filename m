@@ -2,42 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BF3930BFA2
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 14:38:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D8C30C0EB
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 15:11:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD15A6E49B;
-	Tue,  2 Feb 2021 13:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B99892D4;
+	Tue,  2 Feb 2021 14:11:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C74016E49B
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 13:38:13 +0000 (UTC)
-IronPort-SDR: vaHFa3fQdzY5MVzpPCJj+KBVstCGLdPZFUZ1hLTnjhh+9Pui+4GfMvlN/hHpHe9IVMZdPtybKe
- 6WRg9OPO7N2Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="160019193"
-X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="160019193"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 05:38:13 -0800
-IronPort-SDR: Ou3dRtp5cFb0KvAcNeS5WD4cm7Us7ojBcd60YrtO+sUxtRgXuMhOGC04Z51/XjID1EKzla/7KG
- dPR19iIe2ohw==
-X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="370662531"
-Received: from kalebaul-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.20.206])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 05:38:11 -0800
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68C77892D4
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 14:11:51 +0000 (UTC)
+IronPort-SDR: H87F/1Kxqmgb0CjVmanv4Yx3rqkZkTETuqilfZ00pzdsV4Xy5lXtdJQlccEYpO+m8YFVNy0+tg
+ 39r7xN1NXXyA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="168535454"
+X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="168535454"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2021 06:11:50 -0800
+IronPort-SDR: awAGP9z2Mry3zc6UcdbryHA8uP2d5ROPwodqQqgkEpifNZM/s5v9SHt0jsLOWw2ibMrHLo9Esg
+ Yz/eonyaUe/g==
+X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="432938332"
+Received: from irisshal-mobl1.ger.corp.intel.com (HELO [10.214.210.18])
+ ([10.214.210.18])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2021 06:11:49 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
+ <20210201085715.27435-19-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <748db21e-335a-7f7d-16c7-50bc68e5b266@linux.intel.com>
+Date: Tue, 2 Feb 2021 14:10:48 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <87a6smhg3y.fsf@intel.com>
-References: <20210202025620.2212559-1-lucas.demarchi@intel.com>
- <87a6smhg3y.fsf@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Message-ID: <161227308792.83654.2918952307102893240@jlahtine-mobl.ger.corp.intel.com>
-User-Agent: alot/0.8.1
-Date: Tue, 02 Feb 2021 15:38:08 +0200
-Subject: Re: [Intel-gfx] [PULL] topic/adl-s-enabling into drm-intel-next
+In-Reply-To: <20210201085715.27435-19-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 19/57] drm/i915: Fix the iterative dfs for
+ defering requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,97 +52,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBKYW5pIE5pa3VsYSAoMjAyMS0wMi0wMiAxMzoxOToxMykKPiBPbiBNb24sIDAxIEZl
-YiAyMDIxLCBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4gd3JvdGU6
-Cj4gPiBIaSBSb2RyaWdvL0phbmksCj4gPgo+ID4gSGVyZSBhcmUgdGhlIGNoYW5nZXMgdG8gYWRk
-IGJhc2ljIEFsZGVyIExha2UgUyBzdXBwb3J0IGluIHRoZSBkcml2ZXIsIHdpdGgKPiA+IHBhdGNo
-ZXMgdG91Y2hpbmcgYm90aCBnZW5lcmljIHBhcnRzLCBndCBhbmQgZGlzcGxheS4gUmVtYWluaW5n
-IGNoYW5nZXMgZG9uJ3QKPiA+IG5lZWQgYSB0b3BpYyBicmFuY2ggYW55bW9yZSBhbmQgY2FuIGJl
-IGFwcGxpZWQgaW5kaXZpZHVhbGx5IHRvIGVhY2ggYnJhbmNoLgo+IAo+IFRoYW5rcywgcHVsbGVk
-IHRvIGRybS1pbnRlbC1uZXh0LCBhbmQgSm9vbmFzIHB1bGxlZCB0byBkcm0taW50ZWwtZ3QtbmV4
-dAo+IHRvby4KCkkgcHVsbGVkIHRoaXMgZXhhY3Qgc2FtZSB0YWcgZm9yIGNsYXJpdHkuCgpXZSBo
-YWQgdHdvIHRhZ3MgcG9pbnRpbmcgYXQgdGhlIGV4YWN0bHkgc2FtZSBjb21taXQgYW5kIHRoZSBv
-dGhlciB3YXMKbWlzc2luZyB0aGUgdGFnIGRlc2NyaXB0aW9uLiBGb3IgZnV0dXJlIHJlZmVyZW5j
-ZSBvbmUgcHVsbCByZXF1ZXN0CmRpcmVjdGVkIGF0IG11bHRpcGxlIHRyZWVzIHNob3VsZCBiZSBm
-aW5lLgoKUmVnYXJkcywgSm9vbmFzCgo+IEJSLAo+IEphbmkuCj4gCj4gCj4gPgo+ID4gdGhhbmtz
-Cj4gPiBMdWNhcyBEZSBNYXJjaGkKPiA+Cj4gPiAqKioKPiA+Cj4gPiB0b3BpYy9hZGwtcy1lbmFi
-bGluZy0yMDIxLTAyLTAxLTE6Cj4gPgo+ID4gRHJpdmVyIENoYW5nZXM6Cj4gPiAgIC0gQWRkIGJh
-c2ljIHN1cHBvcnQgZm9yIEFsZGVyIExha2UgUywgdG8gYmUgc2hhcmVkIGJldHdlZW4KPiA+ICAg
-ICBkcm0taW50ZWwtbmV4dCBhbmQgZHJtLWludGVsLWd0LW5leHQKPiA+Cj4gPiBUaGUgZm9sbG93
-aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0IGZiNWNmY2FhMmVmYmI0YzcxYWJiMWRmYmM4ZjRkYTcy
-N2UwYmZkODk6Cj4gPgo+ID4gICBNZXJnZSB0YWcgJ2RybS1pbnRlbC1ndC1uZXh0LTIwMjEtMDEt
-MTQnIG9mIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2RybS9kcm0taW50ZWwgaW50byBk
-cm0tbmV4dCAoMjAyMS0wMS0xNSAxNTowMzozNiArMTAwMCkKPiA+Cj4gPiBhcmUgYXZhaWxhYmxl
-IGluIHRoZSBHaXQgcmVwb3NpdG9yeSBhdDoKPiA+Cj4gPiAgIGdpdDovL2Fub25naXQuZnJlZWRl
-c2t0b3Aub3JnL2RybS9kcm0taW50ZWwgdGFncy90b3BpYy9hZGwtcy1lbmFibGluZy0yMDIxLTAy
-LTAxLTEKPiA+Cj4gPiBmb3IgeW91IHRvIGZldGNoIGNoYW5nZXMgdXAgdG8gNDA0MzI3N2FkMThm
-YzdjYjlhNzlkMGQwNDMwNjNmYjVmNDJhNmYwNjoKPiA+Cj4gPiAgIGRybS9pOTE1L2FkbF9zOiBB
-ZGQgR1QgYW5kIENUWCBXQXMgZm9yIEFETC1TICgyMDIxLTAyLTAxIDA3OjU5OjExIC0wODAwKQo+
-ID4KPiA+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0KPiA+IERyaXZlciBDaGFuZ2VzOgo+ID4gICAtIEFkZCBiYXNpYyBzdXBw
-b3J0IGZvciBBbGRlciBMYWtlIFMsIHRvIGJlIHNoYXJlZCBiZXR3ZWVuCj4gPiAgICAgZHJtLWlu
-dGVsLW5leHQgYW5kIGRybS1pbnRlbC1ndC1uZXh0Cj4gPgo+ID4gLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ID4gQWRpdHlh
-IFN3YXJ1cCAoOCk6Cj4gPiAgICAgICBkcm0vaTkxNS90Z2w6IFVzZSBUR0wgc3RlcHBpbmcgaW5m
-byBmb3IgYXBwbHlpbmcgV0FzCj4gPiAgICAgICBkcm0vaTkxNS9hZGxfczogQ29uZmlndXJlIERQ
-TEwgZm9yIEFETC1TCj4gPiAgICAgICBkcm0vaTkxNS9hZGxfczogQ29uZmlndXJlIFBvcnQgY2xv
-Y2sgcmVnaXN0ZXJzIGZvciBBREwtUwo+ID4gICAgICAgZHJtL2k5MTUvYWRsX3M6IEluaXRpYWxp
-emUgZGlzcGxheSBmb3IgQURMLVMKPiA+ICAgICAgIGRybS9pOTE1L2FkbF9zOiBBZGQgYWRsLXMg
-ZGRjIHBpbiBtYXBwaW5nCj4gPiAgICAgICBkcm0vaTkxNS9hZGxfczogQWRkIHZidCBwb3J0IGFu
-ZCBhdXggY2hhbm5lbCBzZXR0aW5ncyBmb3IgYWRscwo+ID4gICAgICAgZHJtL2k5MTUvYWRsX3M6
-IEFkZCBkaXNwbGF5IFdBcyBmb3IgQURMLVMKPiA+ICAgICAgIGRybS9pOTE1L2FkbF9zOiBBZGQg
-R1QgYW5kIENUWCBXQXMgZm9yIEFETC1TCj4gPgo+ID4gQW51c2hhIFNyaXZhdHNhICg0KToKPiA+
-ICAgICAgIGRybS9pOTE1L2FkbF9zOiBBZGQgUENIIHN1cHBvcnQKPiA+ICAgICAgIGRybS9pOTE1
-L2FkbF9zOiBBZGQgSW50ZXJydXB0IFN1cHBvcnQKPiA+ICAgICAgIGRybS9pOTE1L2FkbF9zOiBB
-ZGQgUEhZcyBmb3IgQWxkZXJsYWtlIFMKPiA+ICAgICAgIGRybS9pOTE1L2FkbF9zOiBMb2FkIERN
-Qwo+ID4KPiA+IENheiBZb2tveWFtYSAoMik6Cj4gPiAgICAgICBkcm0vaTkxNS9hZGxfczogQWRk
-IEFETC1TIHBsYXRmb3JtIGluZm8gYW5kIFBDSSBpZHMKPiA+ICAgICAgIHg4Ni9ncHU6IEFkZCBB
-bGRlcmxha2UtUyBzdG9sZW4gbWVtb3J5IHN1cHBvcnQKPiA+Cj4gPiBKb3PDqSBSb2JlcnRvIGRl
-IFNvdXphICgxKToKPiA+ICAgICAgIGRybS9pOTE1L2Rpc3BsYXk6IEFkZCBIQVNfRDEyX1BMQU5F
-X01JTklNSVpBVElPTgo+ID4KPiA+IEx1Y2FzIERlIE1hcmNoaSAoMSk6Cj4gPiAgICAgICBkcm0v
-aTkxNS9hZGxfczogQWRkIHBvd2VyIHdlbGxzCj4gPgo+ID4gTWF0dCBSb3BlciAoMyk6Cj4gPiAg
-ICAgICBkcm0vaTkxNS9hZGxfczogVXBkYXRlIGNvbWJvIFBIWSBtYXN0ZXIvc2xhdmUgcmVsYXRp
-b25zaGlwcwo+ID4gICAgICAgZHJtL2k5MTUvYWRsX3M6IFVwZGF0ZSBQSFlfTUlTQyBwcm9ncmFt
-bWluZwo+ID4gICAgICAgZHJtL2k5MTUvYWRsX3M6IFJlLXVzZSBUR0wgR3VDL0h1QyBmaXJtd2Fy
-ZQo+ID4KPiA+IFRlamFzIFVwYWRoeWF5ICgxKToKPiA+ICAgICAgIGRybS9pOTE1L2FkbF9zOiBV
-cGRhdGUgbWVtb3J5IGJhbmR3aWR0aCBwYXJhbWV0ZXJzCj4gPgo+ID4gIGFyY2gveDg2L2tlcm5l
-bC9lYXJseS1xdWlya3MuYyAgICAgICAgICAgICAgICAgICAgIHwgIDEgKwo+ID4gIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jICAgICAgICAgIHwgNzAgKysrKysrKysr
-KysrKysrLS0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYyAg
-ICAgICAgICAgIHwgMTAgKystCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9jb21ib19waHkuYyAgICAgfCAyMyArKysrKy0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9jc3IuYyAgICAgICAgICAgfCAxMCArKy0KPiA+ICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICAgICAgICB8IDYyICsrKysrKysrKysrLS0t
-LS0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgICAg
-ICAgfCAzMSArKysrKystLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Rpc3BsYXlfcG93ZXIuYyB8IDExICstLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZHBsbF9tZ3IuYyAgICAgIHwgMzggKysrKysrKystLQo+ID4gIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jICAgICAgICAgIHwgMjAgKysrKystCj4gPiAg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyAgICAgICAgICAgfCAgNCAr
-LQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgICAgICAg
-IHwgIDggKy0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92YnRfZGVm
-cy5oICAgICAgfCAgNCArKwo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmth
-cm91bmRzLmMgICAgICAgIHwgNjggKysrKysrKysrKystLS0tLS0tCj4gPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWNfZncuYyAgICAgICAgICAgfCAgNCArLQo+ID4gIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgICAgICAgICAgIHwgODAgKysrKysr
-KysrKysrKystLS0tLS0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgICAg
-ICAgICAgICAgICAgICAgIHwgIDUgKy0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Bj
-aS5jICAgICAgICAgICAgICAgICAgICB8IDEzICsrKysKPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X3JlZy5oICAgICAgICAgICAgICAgICAgICB8IDUwICsrKysrKysrKysrKy0tCj4gPiAg
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYyAgICAgICAgICAgfCAgOSAr
-Ky0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oICAgICAgICAg
-ICB8ICAxICsKPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wY2guYyAgICAgICAgICAg
-ICAgICAgICB8ICA4ICsrLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5oICAg
-ICAgICAgICAgICAgICAgIHwgIDMgKwo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Bt
-LmMgICAgICAgICAgICAgICAgICAgIHwgIDIgKy0KPiA+ICBpbmNsdWRlL2RybS9pOTE1X3BjaWlk
-cy5oICAgICAgICAgICAgICAgICAgICAgICAgICB8IDExICsrKwo+ID4gIDI1IGZpbGVzIGNoYW5n
-ZWQsIDQxNyBpbnNlcnRpb25zKCspLCAxMjkgZGVsZXRpb25zKC0pCj4gCj4gLS0gCj4gSmFuaSBO
-aWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+On 01/02/2021 08:56, Chris Wilson wrote:
+> The current implementation of walking the children of a deferred
+> requests lacks the backtracking required to reduce the dfs to linear.
+> Having pulled it from execlists into the common layer, we can reuse the
+> dfs code for priority inheritance.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/i915_scheduler.c | 56 +++++++++++++++++++--------
+>   1 file changed, 40 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+> index bfd37ee801fd..694ca3a3b563 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler.c
+> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
+> @@ -466,8 +466,10 @@ void i915_request_set_priority(struct i915_request *rq, int prio)
+>   void __i915_sched_defer_request(struct intel_engine_cs *engine,
+>   				struct i915_request *rq)
+>   {
+> -	struct list_head *pl;
+> -	LIST_HEAD(list);
+> +	struct list_head *pos = &rq->sched.waiters_list;
+> +	const int prio = rq_prio(rq);
+> +	struct i915_request *rn;
+> +	LIST_HEAD(dfs);
+>   
+>   	lockdep_assert_held(&engine->active.lock);
+>   	GEM_BUG_ON(!test_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags));
+> @@ -477,14 +479,11 @@ void __i915_sched_defer_request(struct intel_engine_cs *engine,
+>   	 * to those that are waiting upon it. So we traverse its chain of
+>   	 * waiters and move any that are earlier than the request to after it.
+>   	 */
+> -	pl = lookup_priolist(engine, rq_prio(rq));
+> +	rq->sched.dfs.prev = NULL;
+>   	do {
+> -		struct i915_dependency *p;
+> -
+> -		GEM_BUG_ON(i915_request_is_active(rq));
+> -		list_move_tail(&rq->sched.link, pl);
+> -
+> -		for_each_waiter(p, rq) {
+> +		list_for_each_continue(pos, &rq->sched.waiters_list) {
+> +			struct i915_dependency *p =
+> +				list_entry(pos, typeof(*p), wait_link);
+>   			struct i915_request *w =
+>   				container_of(p->waiter, typeof(*w), sched);
+>   
+> @@ -500,19 +499,44 @@ void __i915_sched_defer_request(struct intel_engine_cs *engine,
+>   				   __i915_request_has_started(w) &&
+>   				   !__i915_request_is_complete(rq));
+>   
+> -			if (!i915_request_is_ready(w))
+> +			if (!i915_request_in_priority_queue(w))
+>   				continue;
+>   
+> -			if (rq_prio(w) < rq_prio(rq))
+> +			/*
+> +			 * We also need to reorder within the same priority.
+> +			 *
+> +			 * This is unlike priority-inheritance, where if the
+> +			 * signaler already has a higher priority [earlier
+> +			 * deadline] than us, we can ignore as it will be
+> +			 * scheduled first. If a waiter already has the
+> +			 * same priority, we still have to push it to the end
+> +			 * of the list. This unfortunately means we cannot
+> +			 * use the rq_deadline() itself as a 'visited' bit.
+
+rq_deadline only appears later but never mind.
+
+> +			 */
+> +			if (rq_prio(w) < prio)
+>   				continue;
+>   
+> -			GEM_BUG_ON(rq_prio(w) > rq_prio(rq));
+> -			GEM_BUG_ON(i915_request_is_active(w));
+> -			list_move_tail(&w->sched.link, &list);
+> +			GEM_BUG_ON(rq_prio(w) != prio);
+> +
+> +			/* Remember our position along this branch */
+> +			rq = stack_push(w, rq, pos);
+> +			pos = &rq->sched.waiters_list;
+>   		}
+>   
+> -		rq = list_first_entry_or_null(&list, typeof(*rq), sched.link);
+> -	} while (rq);
+> +		/* Note list is reversed for waiters wrt signal hierarchy */
+> +		GEM_BUG_ON(rq->engine != engine);
+> +		GEM_BUG_ON(!i915_request_in_priority_queue(rq));
+> +		list_move(&rq->sched.link, &dfs);
+> +
+> +		/* Track our visit, and prevent duplicate processing */
+> +		clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> +	} while ((rq = stack_pop(rq, &pos)));
+> +
+> +	pos = lookup_priolist(engine, prio);
+> +	list_for_each_entry_safe(rq, rn, &dfs, sched.link) {
+> +		set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> +		list_add_tail(&rq->sched.link, pos);
+> +	}
+>   }
+>   
+>   static void queue_request(struct intel_engine_cs *engine,
+> 
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
