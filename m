@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66CAE30C51D
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 17:14:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6556F30C51E
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 17:15:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDFD66E95B;
-	Tue,  2 Feb 2021 16:14:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B33286E951;
+	Tue,  2 Feb 2021 16:15:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19ECA6E95B
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 16:14:24 +0000 (UTC)
-IronPort-SDR: 3PJT4VhI/2AJejSHSfWbyaAgU7qHPZb8Vwc3ynvVRpPEsbYuTyRGq42o75RuGHr9zAYFWGUvXm
- HSrZfNkv7IXA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="265712348"
-X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="265712348"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 08:14:11 -0800
-IronPort-SDR: PKpA0Qduo2Gzy4hp98onCw4ktoae+C37eipd5WTLUtK4xdQ0PA16tqb4/zXshYtJBalJAUJqUT
- i88ORTMjIUBQ==
-X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="391540508"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 08:14:06 -0800
-Date: Tue, 2 Feb 2021 18:14:00 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Surendrakumar Upadhyay,
- TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>, 
- Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20210202161400.GB578899@ideak-desk.fi.intel.com>
-References: <20210127100830.162292-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <YBH0FJolpTwO+BJG@intel.com>
- <SN6PR11MB3421882AC3045B652D2CBDC4DFB59@SN6PR11MB3421.namprd11.prod.outlook.com>
- <YBjx1O/3jeFcRPDw@intel.com> <YBj7TmOwNCqwits7@intel.com>
- <SN6PR11MB3421EAB14C44008CE72F09E6DFB59@SN6PR11MB3421.namprd11.prod.outlook.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B06DE6E951
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 16:15:20 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23774432-1500050 
+ for multiple; Tue, 02 Feb 2021 16:15:07 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  2 Feb 2021 16:15:07 +0000
+Message-Id: <20210202161507.25361-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210202151445.20002-3-chris@chris-wilson.co.uk>
+References: <20210202151445.20002-3-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <SN6PR11MB3421EAB14C44008CE72F09E6DFB59@SN6PR11MB3421.namprd11.prod.outlook.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gen9bc: Handle TGP PCH during
- suspend/resume
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Move CS interrupt handler to
+ the backend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,147 +39,442 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Pandey, Hariom" <hariom.pandey@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 02, 2021 at 08:59:20AM +0000, Surendrakumar Upadhyay, Tejaskuma=
-rX wrote:
-> =
+The different submission backends each have their own preferred
+behaviour and interrupt setup. Let each handle their own interrupts.
 
-> =
+This becomes more useful later as we to extract the use of auxiliary
+state in the interrupt handler that is backend specific.
 
-> > -----Original Message-----
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Sent: 02 February 2021 12:42
-> > To: Surendrakumar Upadhyay, TejaskumarX
-> > <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Pandey, Hariom
-> > <hariom.pandey@intel.com>
-> > Subject: Re: [Intel-gfx] [PATCH] drm/i915/gen9bc: Handle TGP PCH during
-> > suspend/resume
-> > =
+v2: An overabundance of caution is always justified; put a barrier on
+updating the irq handler so that we know that the next interrupt will
+be redirected towards ourselves.
 
-> > On Tue, Feb 02, 2021 at 08:31:48AM +0200, Ville Syrj=E4l=E4 wrote:
-> > > On Tue, Feb 02, 2021 at 05:52:28AM +0000, Surendrakumar Upadhyay,
-> > TejaskumarX wrote:
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > Sent: 28 January 2021 04:46
-> > > > > To: Surendrakumar Upadhyay, TejaskumarX
-> > > > > <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> > > > > Cc: intel-gfx@lists.freedesktop.org; Pandey, Hariom
-> > > > > <hariom.pandey@intel.com>; Roper, Matthew D
-> > > > > <matthew.d.roper@intel.com>
-> > > > > Subject: Re: [Intel-gfx] [PATCH] drm/i915/gen9bc: Handle TGP PCH
-> > > > > during suspend/resume
-> > > > >
-> > > > > On Wed, Jan 27, 2021 at 03:38:30PM +0530, Tejas Upadhyay wrote:
-> > > > > > For Legacy S3 suspend/resume GEN9 BC needs to enable and setup
-> > > > > > TGP PCH.
-> > > > > >
-> > > > > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > > > > Signed-off-by: Tejas Upadhyay
-> > > > > > <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/i915/i915_irq.c | 36
-> > > > > > ++++++++++++++++++++++++---------
-> > > > > >  1 file changed, 27 insertions(+), 9 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/i915/i915_irq.c
-> > > > > > b/drivers/gpu/drm/i915/i915_irq.c index
-> > > > > > a31980f69120..6dcefc3e24ac
-> > > > > > 100644
-> > > > > > --- a/drivers/gpu/drm/i915/i915_irq.c
-> > > > > > +++ b/drivers/gpu/drm/i915/i915_irq.c
-> > > > > > @@ -3026,8 +3026,20 @@ static void gen8_irq_reset(struct drm_i9=
-15_private *dev_priv)
-> > > > > >  	GEN3_IRQ_RESET(uncore, GEN8_DE_MISC_);
-> > > > > >  	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
-> > > > > >
-> > > > > > -	if (HAS_PCH_SPLIT(dev_priv))
-> > > > > > +	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
-> > > > > > +		GEN3_IRQ_RESET(uncore, SDE);
-> > > > > > +	else if (HAS_PCH_SPLIT(dev_priv))
-> > > > > >  		ibx_irq_reset(dev_priv);
-> > > > > > +
-> > > > > > +	/* Wa_14010685332:cnp/cmp,tgp,adp */
-> > > > > > +	if (INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_CNP ||
-> > > > > > +	    (INTEL_PCH_TYPE(dev_priv) >=3D PCH_TGP &&
-> > > > > > +	    INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
-> > > > > > +		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
-> > > > > > +				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
-> > > > > > +		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
-> > > > > > +				 SBCLK_RUN_REFCLK_DIS, 0);
-> > > > > > +	}
-> > > > >
-> > > > > Time to refactor instead of copypasta.
-> > > > Do you expect below? :
-> > > >
-> > > > If ((INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_TGP) {
-> > > > 	intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
-> > > > 				 SBCLK_RUN_REFCLK_DIS,
-> > > > SBCLK_RUN_REFCLK_DIS);
-> > > > 		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
-> > > > 				 SBCLK_RUN_REFCLK_DIS, 0);
-> > > > }
-> > >
-> > > I expect a new function instead of copy pasting this whole thing into
-> > > multiple places.
-> > >
-> > > That said even the current code doesn't make any sense to me.
-> > > Take for instance this part:
-> > >         if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
-> > > 	                GEN3_IRQ_RESET(uncore, SDE); What is that PCH type
-> > > check doing there? What weird PCH type are we supposed to have that
-> > > doesn't need this?
-> > >
-> > > Also the Wa_14010685332 part looks a bit odd. Is it correct that icp
-> > > doesn't need that, but cnp and tgp both do somehow? Can we even have
-> > > cnp on icl+?
-> > =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  7 ++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  | 14 +---
+ .../drm/i915/gt/intel_execlists_submission.c  | 40 +++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        | 82 ++++++-------------
+ drivers/gpu/drm/i915/gt/intel_gt_irq.h        | 22 +++++
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |  7 ++
+ drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 10 ++-
+ drivers/gpu/drm/i915/i915_irq.c               |  8 +-
+ 9 files changed, 118 insertions(+), 74 deletions(-)
 
-> > Hmm. Looking at it a bit more, that w/a seems to have something to do w=
-ith
-> > suspend/resume, so seems rather misplaced in irq_reset(). Should probab=
-ly
-> > just move the whole thing into a more appropriate place.
-> > =
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index c7d17f8767a1..e06ae4ae1710 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -255,6 +255,11 @@ static void intel_engine_sanitize_mmio(struct intel_engine_cs *engine)
+ 	intel_engine_set_hwsp_writemask(engine, ~0u);
+ }
+ 
++static void nop_irq_handler(struct intel_engine_cs *engine, u32 iir)
++{
++	GEM_DEBUG_WARN_ON(iir);
++}
++
+ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ {
+ 	const struct engine_info *info = &intel_engines[id];
+@@ -292,6 +297,8 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	engine->hw_id = info->hw_id;
+ 	engine->guc_id = MAKE_GUC_ID(info->class, info->instance);
+ 
++	engine->irq_handler = nop_irq_handler;
++
+ 	engine->class = info->class;
+ 	engine->instance = info->instance;
+ 	__sprint_engine_name(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 9d59de5c559a..7fd035d45263 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -402,6 +402,7 @@ struct intel_engine_cs {
+ 	u32		irq_enable_mask; /* bitmask to enable ring interrupt */
+ 	void		(*irq_enable)(struct intel_engine_cs *engine);
+ 	void		(*irq_disable)(struct intel_engine_cs *engine);
++	void		(*irq_handler)(struct intel_engine_cs *engine, u32 iir);
+ 
+ 	void		(*sanitize)(struct intel_engine_cs *engine);
+ 	int		(*resume)(struct intel_engine_cs *engine);
+@@ -481,10 +482,9 @@ struct intel_engine_cs {
+ #define I915_ENGINE_HAS_PREEMPTION   BIT(2)
+ #define I915_ENGINE_HAS_SEMAPHORES   BIT(3)
+ #define I915_ENGINE_HAS_TIMESLICES   BIT(4)
+-#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(5)
+-#define I915_ENGINE_IS_VIRTUAL       BIT(6)
+-#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(7)
+-#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(8)
++#define I915_ENGINE_IS_VIRTUAL       BIT(5)
++#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(6)
++#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(7)
+ 	unsigned int flags;
+ 
+ 	/*
+@@ -588,12 +588,6 @@ intel_engine_has_timeslices(const struct intel_engine_cs *engine)
+ 	return engine->flags & I915_ENGINE_HAS_TIMESLICES;
+ }
+ 
+-static inline bool
+-intel_engine_needs_breadcrumb_tasklet(const struct intel_engine_cs *engine)
+-{
+-	return engine->flags & I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
+-}
+-
+ static inline bool
+ intel_engine_is_virtual(const struct intel_engine_cs *engine)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 4ddd2099a931..05846f97f1af 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -2394,6 +2394,45 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
+ 	rcu_read_unlock();
+ }
+ 
++static void execlists_irq_handler(struct intel_engine_cs *engine, u32 iir)
++{
++	bool tasklet = false;
++
++	if (unlikely(iir & GT_CS_MASTER_ERROR_INTERRUPT)) {
++		u32 eir;
++
++		/* Upper 16b are the enabling mask, rsvd for internal errors */
++		eir = ENGINE_READ(engine, RING_EIR) & GENMASK(15, 0);
++		ENGINE_TRACE(engine, "CS error: %x\n", eir);
++
++		/* Disable the error interrupt until after the reset */
++		if (likely(eir)) {
++			ENGINE_WRITE(engine, RING_EMR, ~0u);
++			ENGINE_WRITE(engine, RING_EIR, eir);
++			WRITE_ONCE(engine->execlists.error_interrupt, eir);
++			tasklet = true;
++		}
++	}
++
++	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
++		WRITE_ONCE(engine->execlists.yield,
++			   ENGINE_READ_FW(engine, RING_EXECLIST_STATUS_HI));
++		ENGINE_TRACE(engine, "semaphore yield: %08x\n",
++			     engine->execlists.yield);
++		if (del_timer(&engine->execlists.timer))
++			tasklet = true;
++	}
++
++	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
++		tasklet = true;
++
++	if (iir & GT_RENDER_USER_INTERRUPT)
++		intel_engine_signal_breadcrumbs(engine);
++
++	if (tasklet)
++		tasklet_hi_schedule(&engine->execlists.tasklet);
++}
++
+ static void __execlists_kick(struct intel_engine_execlists *execlists)
+ {
+ 	/* Kick the tasklet for some interrupt coalescing and reset handling */
+@@ -3146,6 +3185,7 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+ 		 * until a more refined solution exists.
+ 		 */
+ 	}
++	intel_engine_set_irq_handler(engine, execlists_irq_handler);
+ 
+ 	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
+ 	if (!intel_vgpu_active(engine->i915)) {
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+index 9fc6c912a4e5..f5aa31ae8f6c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+@@ -20,48 +20,6 @@ static void guc_irq_handler(struct intel_guc *guc, u16 iir)
+ 		intel_guc_to_host_event_handler(guc);
+ }
+ 
+-static void
+-cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
+-{
+-	bool tasklet = false;
+-
+-	if (unlikely(iir & GT_CS_MASTER_ERROR_INTERRUPT)) {
+-		u32 eir;
+-
+-		/* Upper 16b are the enabling mask, rsvd for internal errors */
+-		eir = ENGINE_READ(engine, RING_EIR) & GENMASK(15, 0);
+-		ENGINE_TRACE(engine, "CS error: %x\n", eir);
+-
+-		/* Disable the error interrupt until after the reset */
+-		if (likely(eir)) {
+-			ENGINE_WRITE(engine, RING_EMR, ~0u);
+-			ENGINE_WRITE(engine, RING_EIR, eir);
+-			WRITE_ONCE(engine->execlists.error_interrupt, eir);
+-			tasklet = true;
+-		}
+-	}
+-
+-	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
+-		WRITE_ONCE(engine->execlists.yield,
+-			   ENGINE_READ_FW(engine, RING_EXECLIST_STATUS_HI));
+-		ENGINE_TRACE(engine, "semaphore yield: %08x\n",
+-			     engine->execlists.yield);
+-		if (del_timer(&engine->execlists.timer))
+-			tasklet = true;
+-	}
+-
+-	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
+-		tasklet = true;
+-
+-	if (iir & GT_RENDER_USER_INTERRUPT) {
+-		intel_engine_signal_breadcrumbs(engine);
+-		tasklet |= intel_engine_needs_breadcrumb_tasklet(engine);
+-	}
+-
+-	if (tasklet)
+-		tasklet_hi_schedule(&engine->execlists.tasklet);
+-}
+-
+ static u32
+ gen11_gt_engine_identity(struct intel_gt *gt,
+ 			 const unsigned int bank, const unsigned int bit)
+@@ -122,7 +80,7 @@ gen11_engine_irq_handler(struct intel_gt *gt, const u8 class,
+ 		engine = NULL;
+ 
+ 	if (likely(engine))
+-		return cs_irq_handler(engine, iir);
++		return intel_engine_cs_irq(engine, iir);
+ 
+ 	WARN_ONCE(1, "unhandled engine interrupt class=0x%x, instance=0x%x\n",
+ 		  class, instance);
+@@ -275,9 +233,12 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
+ void gen5_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
+ {
+ 	if (gt_iir & GT_RENDER_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[RENDER_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[RENDER_CLASS][0],
++				    gt_iir);
++
+ 	if (gt_iir & ILK_BSD_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[VIDEO_DECODE_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[VIDEO_DECODE_CLASS][0],
++				    gt_iir);
+ }
+ 
+ static void gen7_parity_error_irq_handler(struct intel_gt *gt, u32 iir)
+@@ -301,11 +262,16 @@ static void gen7_parity_error_irq_handler(struct intel_gt *gt, u32 iir)
+ void gen6_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
+ {
+ 	if (gt_iir & GT_RENDER_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[RENDER_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[RENDER_CLASS][0],
++				    gt_iir);
++
+ 	if (gt_iir & GT_BSD_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[VIDEO_DECODE_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[VIDEO_DECODE_CLASS][0],
++				    gt_iir);
++
+ 	if (gt_iir & GT_BLT_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[COPY_ENGINE_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[COPY_ENGINE_CLASS][0],
++				    gt_iir);
+ 
+ 	if (gt_iir & (GT_BLT_CS_ERROR_INTERRUPT |
+ 		      GT_BSD_CS_ERROR_INTERRUPT |
+@@ -324,10 +290,10 @@ void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl)
+ 	if (master_ctl & (GEN8_GT_RCS_IRQ | GEN8_GT_BCS_IRQ)) {
+ 		iir = raw_reg_read(regs, GEN8_GT_IIR(0));
+ 		if (likely(iir)) {
+-			cs_irq_handler(gt->engine_class[RENDER_CLASS][0],
+-				       iir >> GEN8_RCS_IRQ_SHIFT);
+-			cs_irq_handler(gt->engine_class[COPY_ENGINE_CLASS][0],
+-				       iir >> GEN8_BCS_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[RENDER_CLASS][0],
++					    iir >> GEN8_RCS_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[COPY_ENGINE_CLASS][0],
++					    iir >> GEN8_BCS_IRQ_SHIFT);
+ 			raw_reg_write(regs, GEN8_GT_IIR(0), iir);
+ 		}
+ 	}
+@@ -335,10 +301,10 @@ void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl)
+ 	if (master_ctl & (GEN8_GT_VCS0_IRQ | GEN8_GT_VCS1_IRQ)) {
+ 		iir = raw_reg_read(regs, GEN8_GT_IIR(1));
+ 		if (likely(iir)) {
+-			cs_irq_handler(gt->engine_class[VIDEO_DECODE_CLASS][0],
+-				       iir >> GEN8_VCS0_IRQ_SHIFT);
+-			cs_irq_handler(gt->engine_class[VIDEO_DECODE_CLASS][1],
+-				       iir >> GEN8_VCS1_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[VIDEO_DECODE_CLASS][0],
++					    iir >> GEN8_VCS0_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[VIDEO_DECODE_CLASS][1],
++					    iir >> GEN8_VCS1_IRQ_SHIFT);
+ 			raw_reg_write(regs, GEN8_GT_IIR(1), iir);
+ 		}
+ 	}
+@@ -346,8 +312,8 @@ void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl)
+ 	if (master_ctl & GEN8_GT_VECS_IRQ) {
+ 		iir = raw_reg_read(regs, GEN8_GT_IIR(3));
+ 		if (likely(iir)) {
+-			cs_irq_handler(gt->engine_class[VIDEO_ENHANCEMENT_CLASS][0],
+-				       iir >> GEN8_VECS_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[VIDEO_ENHANCEMENT_CLASS][0],
++					    iir >> GEN8_VECS_IRQ_SHIFT);
+ 			raw_reg_write(regs, GEN8_GT_IIR(3), iir);
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.h b/drivers/gpu/drm/i915/gt/intel_gt_irq.h
+index f667e976fb2b..894efd471e93 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_irq.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.h
+@@ -8,6 +8,8 @@
+ 
+ #include <linux/types.h>
+ 
++#include "intel_engine_types.h"
++
+ struct intel_gt;
+ 
+ #define GEN8_GT_IRQS (GEN8_GT_RCS_IRQ | \
+@@ -39,4 +41,24 @@ void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl);
+ void gen8_gt_irq_reset(struct intel_gt *gt);
+ void gen8_gt_irq_postinstall(struct intel_gt *gt);
+ 
++static inline void intel_engine_cs_irq(struct intel_engine_cs *engine, u32 iir)
++{
++	engine->irq_handler(engine, iir);
++}
++
++static inline void
++intel_engine_set_irq_handler(struct intel_engine_cs *engine,
++			     void (*fn)(struct intel_engine_cs *engine,
++					u32 iir))
++{
++	/*
++	 * As the interrupt is live as allocate and setup the engines,
++	 * err on the side of caution and apply barriers to updating
++	 * the irq handler callback, so that we assured that before
++	 * we do use the engine, we will receive interrupts to ourselves.
++	 */
++	smp_store_mb(engine->irq_handler, fn);
++}
++
++
+ #endif /* INTEL_GT_IRQ_H */
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 3cb2ce503544..3673f61c0813 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -997,10 +997,17 @@ static void ring_release(struct intel_engine_cs *engine)
+ 	intel_timeline_put(engine->legacy.timeline);
+ }
+ 
++static void irq_handler(struct intel_engine_cs *engine, u32 iir)
++{
++	intel_engine_signal_breadcrumbs(engine);
++}
++
+ static void setup_irq(struct intel_engine_cs *engine)
+ {
+ 	struct drm_i915_private *i915 = engine->i915;
+ 
++	intel_engine_set_irq_handler(engine, irq_handler);
++
+ 	if (INTEL_GEN(i915) >= 6) {
+ 		engine->irq_enable = gen6_irq_enable;
+ 		engine->irq_disable = gen6_irq_disable;
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 405d814e9040..4ba6a33f65cf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1774,7 +1774,7 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
+ 		return;
+ 
+ 	if (pm_iir & PM_VEBOX_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine[VECS0]);
++		intel_engine_cs_irq(gt->engine[VECS0], pm_iir);
+ 
+ 	if (pm_iir & PM_VEBOX_CS_ERROR_INTERRUPT)
+ 		DRM_DEBUG("Command parser error, pm_iir 0x%08x\n", pm_iir);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 17b551a0c89f..838e12b42009 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -264,6 +264,14 @@ static void guc_submission_tasklet(struct tasklet_struct *t)
+ 	spin_unlock_irqrestore(&engine->active.lock, flags);
+ }
+ 
++static void cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
++{
++	if (iir & GT_RENDER_USER_INTERRUPT) {
++		intel_engine_signal_breadcrumbs(engine);
++		tasklet_hi_schedule(&engine->execlists.tasklet);
++	}
++}
++
+ static void guc_reset_prepare(struct intel_engine_cs *engine)
+ {
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+@@ -645,7 +653,6 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+ 	}
+ 	engine->set_default_submission = guc_set_default_submission;
+ 
+-	engine->flags |= I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
+ 	engine->flags |= I915_ENGINE_HAS_PREEMPTION;
+ 
+ 	/*
+@@ -681,6 +688,7 @@ static void rcs_submission_override(struct intel_engine_cs *engine)
+ static inline void guc_default_irqs(struct intel_engine_cs *engine)
+ {
+ 	engine->irq_keep_mask = GT_RENDER_USER_INTERRUPT;
++	intel_engine_set_irq_handler(engine, cs_irq_handler);
+ }
+ 
+ int intel_guc_submission_setup(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 9d47da8ec86d..37a48402adc1 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -3954,7 +3954,7 @@ static irqreturn_t i8xx_irq_handler(int irq, void *arg)
+ 		intel_uncore_write16(&dev_priv->uncore, GEN2_IIR, iir);
+ 
+ 		if (iir & I915_USER_INTERRUPT)
+-			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
++			intel_engine_cs_irq(dev_priv->gt.engine[RCS0], iir);
+ 
+ 		if (iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i8xx_error_irq_handler(dev_priv, eir, eir_stuck);
+@@ -4062,7 +4062,7 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
+ 		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, iir);
+ 
+ 		if (iir & I915_USER_INTERRUPT)
+-			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
++			intel_engine_cs_irq(dev_priv->gt.engine[RCS0], iir);
+ 
+ 		if (iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
+@@ -4207,10 +4207,10 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
+ 		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, iir);
+ 
+ 		if (iir & I915_USER_INTERRUPT)
+-			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
++			intel_engine_cs_irq(dev_priv->gt.engine[RCS0], iir);
+ 
+ 		if (iir & I915_BSD_USER_INTERRUPT)
+-			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[VCS0]);
++			intel_engine_cs_irq(dev_priv->gt.engine[VCS0], iir);
+ 
+ 		if (iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
+-- 
+2.20.1
 
-> GEN11+ needs these checks in irq_reset(). Please check irq_reset for
-> GEN11. Now that customer like dell are expecting TGP PCH with gen9bc
-> platforms, I have done similar PCH checking in irq_reset() for gen9bc.
-> You mean these checks are at wrong place for GEN11 irq_reset() as
-> well? Or you want one function doing these checks and calling it
-> everywhere!
-
-BSpec says about this WA for both ICL and TGL:
-"""
-Display driver should set and clear register offset 0xC2000 bit #7 as
-last step in programming south display registers in preparation for
-entering S0ix state, or set 0xC2000 bit #7 on S0ix entry and clear it on
-S0ix exit.
-
-"""
-
-This means to me the WA is only relevant for S0ix and we can implement
-it by setting/clearing 0xC2000 bit #7 right before entering/right after
-exiting S0ix. This is done atm on PCH_ICP..PCH_MCC in
-intel_display_power_suspend_late()/intel_display_power_resume_early(),
-so I'd move the WA for all platforms there.
-
-I assume the current code in irq_reset() was the first alternative to
-implement the WA, but it wasn't enough. Not sure why, maybe there is a
-south display register access after irq_reset() during suspend. Adding
-Anshuman for an idea on that.
-
---Imre
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
