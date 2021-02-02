@@ -2,45 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB6FC30B801
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 07:48:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A2330B86D
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 08:12:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0C666E8CB;
-	Tue,  2 Feb 2021 06:48:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20B2B6E8D0;
+	Tue,  2 Feb 2021 07:12:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FA136E8CB;
- Tue,  2 Feb 2021 06:48:03 +0000 (UTC)
-IronPort-SDR: 4fCk3SJGI6XGlSWHAYhyF9tE73VRczEoOVdCAv57nZb05Pg0gLZDyPkyenVkdJDsDqqa6SHY2W
- tc02+iYAs6Qg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="199721257"
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="199721257"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2021 22:48:00 -0800
-IronPort-SDR: EfB3u2sxR7vqBvRdKxhFtCwklQTPrYYF2oLNuuE/inaIFDaheZUOT3shUHaKH5eEbmKfhh/2dD
- bEEBSz18oRmg==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1FA589DC0
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 07:12:18 +0000 (UTC)
+IronPort-SDR: epnnQsqxNaUcB21g66PFmZ3YbMXaBCvpbQkyLmdeSoelskD4ym3j3zNVb8fiMBoLB2BnN4tv3C
+ 5UYUyWZ4sg3w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="160575366"
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="160575366"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2021 23:12:18 -0800
+IronPort-SDR: Ez+nNpX5LU6zJ+JvqVCp/Wb9MWXLxbRbEbxGJfaDJi/mwHfc9QOPh5wQg2aP60ffzRr9QtB7zk
+ k5zcqZWtrexw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="391315352"
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="370393157"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 01 Feb 2021 22:47:52 -0800
+ by fmsmga008.fm.intel.com with SMTP; 01 Feb 2021 23:12:16 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 02 Feb 2021 08:47:49 +0200
-Date: Tue, 2 Feb 2021 08:47:49 +0200
+ Tue, 02 Feb 2021 09:12:14 +0200
+Date: Tue, 2 Feb 2021 09:12:14 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <YBj1ld2KYjiZ/WAJ@intel.com>
-References: <20201218103723.30844-1-ankit.k.nautiyal@intel.com>
- <20201218103723.30844-10-ankit.k.nautiyal@intel.com>
- <YBhmuiFZ4ZsQ7Y+Z@intel.com>
- <9bd995b9-2020-3a1c-0e82-a823cfd06806@intel.com>
+To: "Surendrakumar Upadhyay,
+ TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Message-ID: <YBj7TmOwNCqwits7@intel.com>
+References: <20210127100830.162292-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
+ <YBH0FJolpTwO+BJG@intel.com>
+ <SN6PR11MB3421882AC3045B652D2CBDC4DFB59@SN6PR11MB3421.namprd11.prod.outlook.com>
+ <YBjx1O/3jeFcRPDw@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <9bd995b9-2020-3a1c-0e82-a823cfd06806@intel.com>
+In-Reply-To: <YBjx1O/3jeFcRPDw@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v7 09/15] drm/i915: Add support for starting
- FRL training for HDMI2.1 via PCON
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gen9bc: Handle TGP PCH during
+ suspend/resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,134 +54,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Pandey, Hariom" <hariom.pandey@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 02, 2021 at 12:09:47PM +0530, Nautiyal, Ankit K wrote:
-> Hi Ville,
+On Tue, Feb 02, 2021 at 08:31:48AM +0200, Ville Syrj=E4l=E4 wrote:
+> On Tue, Feb 02, 2021 at 05:52:28AM +0000, Surendrakumar Upadhyay, Tejasku=
+marX wrote:
+> > =
+
+> > =
+
+> > > -----Original Message-----
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Sent: 28 January 2021 04:46
+> > > To: Surendrakumar Upadhyay, TejaskumarX
+> > > <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org; Pandey, Hariom
+> > > <hariom.pandey@intel.com>; Roper, Matthew D
+> > > <matthew.d.roper@intel.com>
+> > > Subject: Re: [Intel-gfx] [PATCH] drm/i915/gen9bc: Handle TGP PCH duri=
+ng
+> > > suspend/resume
+> > > =
+
+> > > On Wed, Jan 27, 2021 at 03:38:30PM +0530, Tejas Upadhyay wrote:
+> > > > For Legacy S3 suspend/resume GEN9 BC needs to enable and setup TGP
+> > > > PCH.
+> > > >
+> > > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > > Signed-off-by: Tejas Upadhyay
+> > > > <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/i915_irq.c | 36
+> > > > ++++++++++++++++++++++++---------
+> > > >  1 file changed, 27 insertions(+), 9 deletions(-)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/i915_irq.c
+> > > > b/drivers/gpu/drm/i915/i915_irq.c index a31980f69120..6dcefc3e24ac
+> > > > 100644
+> > > > --- a/drivers/gpu/drm/i915/i915_irq.c
+> > > > +++ b/drivers/gpu/drm/i915/i915_irq.c
+> > > > @@ -3026,8 +3026,20 @@ static void gen8_irq_reset(struct
+> > > drm_i915_private *dev_priv)
+> > > >  	GEN3_IRQ_RESET(uncore, GEN8_DE_MISC_);
+> > > >  	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
+> > > >
+> > > > -	if (HAS_PCH_SPLIT(dev_priv))
+> > > > +	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+> > > > +		GEN3_IRQ_RESET(uncore, SDE);
+> > > > +	else if (HAS_PCH_SPLIT(dev_priv))
+> > > >  		ibx_irq_reset(dev_priv);
+> > > > +
+> > > > +	/* Wa_14010685332:cnp/cmp,tgp,adp */
+> > > > +	if (INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_CNP ||
+> > > > +	    (INTEL_PCH_TYPE(dev_priv) >=3D PCH_TGP &&
+> > > > +	    INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
+> > > > +		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> > > > +				 SBCLK_RUN_REFCLK_DIS,
+> > > SBCLK_RUN_REFCLK_DIS);
+> > > > +		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> > > > +				 SBCLK_RUN_REFCLK_DIS, 0);
+> > > > +	}
+> > > =
+
+> > > Time to refactor instead of copypasta.
+> > Do you expect below? :
+> > =
+
+> > If ((INTEL_PCH_TYPE(dev_priv) =3D=3D PCH_TGP) {
+> > 	intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> > 				 SBCLK_RUN_REFCLK_DIS,
+> > SBCLK_RUN_REFCLK_DIS);
+> > 		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> > 				 SBCLK_RUN_REFCLK_DIS, 0);
+> > }
 > =
 
-> Please find my responses inline.
+> I expect a new function instead of copy pasting this whole thing
+> into multiple places.
 > =
 
-> On 2/2/2021 2:08 AM, Ville Syrj=E4l=E4 wrote:
-> > On Fri, Dec 18, 2020 at 04:07:17PM +0530, Ankit Nautiyal wrote:
-> >> This patch adds functions to start FRL training for an HDMI2.1 sink,
-> >> connected via a PCON as a DP branch device.
-> >> This patch also adds a new structure for storing frl training related
-> >> data, when FRL training is completed.
-> >>
-> >> v2: As suggested by Uma Shankar:
-> >> -renamed couple of variables for better clarity
-> >> -tweaked the macros used for correct semantics for true/false
-> >> -fixed other styling issues.
-> >>
-> >> v3: Completed the TODO for condition for going to FRL mode.
-> >> Modified the condition to determine the required FRL b/w
-> >> based only on the Pcon and Sink's max FRL values.
-> >> Moved the frl structure initialization to intel_dp_init_connector().
-> >>
-> >> v4: Fixed typo in initialization of frl structure.
-> >>
-> >> v5: Always use FRL if its possible, instead of enabling only for
-> >> higher modes as done in v3.
-> >>
-> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >> Reviewed-by: Uma Shankar <uma.shankar@intel.com> (v2)
-> >> ---
-> >>   .../drm/i915/display/intel_display_types.h    |   7 +
-> >>   drivers/gpu/drm/i915/display/intel_dp.c       | 151 ++++++++++++++++=
-++
-> >>   drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
-> >>   3 files changed, 160 insertions(+)
-> > <snip>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm=
-/i915/display/intel_dp.c
-> >> index 0596d6c24e73..43027a6d5e5e 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> @@ -3891,6 +3891,8 @@ static void intel_disable_dp(struct intel_atomic=
-_state *state,
-> >>   	intel_edp_backlight_off(old_conn_state);
-> >>   	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
-> >>   	intel_edp_panel_off(intel_dp);
-> >> +	intel_dp->frl.is_trained =3D false;
-> >> +	intel_dp->frl.trained_rate_gbps =3D 0;
-> > This stuff looks rather misplaced (or missing from elsewhere). This code
-> > doesn't even get executed on modern platforms.
+> That said even the current code doesn't make any sense to me.
+> Take for instance this part:
+>         if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_ICP)
+> 	                GEN3_IRQ_RESET(uncore, SDE);
+> What is that PCH type check doing there? What weird PCH
+> type are we supposed to have that doesn't need this?
 > =
 
-> I think these two lines should have been added to =
+> Also the Wa_14010685332 part looks a bit odd. Is it
+> correct that icp doesn't need that, but cnp and tgp
+> both do somehow? Can we even have cnp on icl+?
 
-> intel_ddi_post_disable_dp() for TGL+
-> =
-
-> My intention was to reset these before disabling DP. In hindsight, since =
-
-> we are initializing (resetting) these in dp_init_connector, this doesnt =
-
-> seem to be required.
-> =
-
-> I will send a patch to remove these two lines from here.
-> =
-
-> =
-
-> >
-> > <snip>
-> >> +static int intel_dp_pcon_start_frl_training(struct intel_dp *intel_dp)
-> >> +{
-> >> +#define PCON_EXTENDED_TRAIN_MODE (1 > 0)
-> >> +#define PCON_CONCURRENT_MODE (1 > 0)
-> >> +#define PCON_SEQUENTIAL_MODE !PCON_CONCURRENT_MODE
-> >> +#define PCON_NORMAL_TRAIN_MODE !PCON_EXTENDED_TRAIN_MODE
-> > All of that looks like nonsense. What is it supposed to do?
-> =
-
-> When asking an HDMI2.1 PCON to initiate FRL training there are 2 options:
-> =
-
-> Sequential/Concurrent mode: Sequential mode attempts the FRL training =
-
-> after DP Link training is completed. Concurrent mode tries to do the FRL =
-
-> training, during DP link training.
-> =
-
-> Normal train Mode/ Extended mode: Normal train mode, PCON FW trains FRL =
-
-> from Max to min BW, set by source in BW Mask. It aborts on first =
-
-> successful training. In Extended mode, PCON FW trains for all BW set by =
-
-> source in BW mask.
-> =
-
-> For Concurrent and Extended mode we need to set some extra bits in PCON =
-
-> FRL config DPCDs
-> =
-
-> The intention was to go with sequential and Normal training mode, so no =
-
-> need to set above bits.
-> =
-
-> Do you think, some documentation will make this clear?
-
-I'm asking why does the code do
-
-#define PCON_EXTENDED_TRAIN_MODE true
-#define PCON_CONCURRENT_MODE true
-#define PCON_SEQUENTIAL_MODE false
-#define PCON_NORMAL_TRAIN_MODE false
-
-but in a very convoluted way?
+Hmm. Looking at it a bit more, that w/a seems to have something to do
+with suspend/resume, so seems rather misplaced in irq_reset(). Should
+probably just move the whole thing into a more appropriate place.
 
 -- =
 
