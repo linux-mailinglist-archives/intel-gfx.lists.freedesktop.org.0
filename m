@@ -1,42 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30C1A30BF02
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 14:06:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A005430BF09
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 14:08:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B54DA6E1A5;
-	Tue,  2 Feb 2021 13:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BAE56E17A;
+	Tue,  2 Feb 2021 13:08:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88CFA6E128;
- Tue,  2 Feb 2021 13:06:36 +0000 (UTC)
-IronPort-SDR: 2yOmFB3+rQzkjjanrj13V1PLlWxyZkptZXhE4m9qnqW36C8iTlcyrCVe33ca6Nr4Prvol5+rHC
- C1vovEqtRqiQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="160614612"
-X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="160614612"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 05:06:28 -0800
-IronPort-SDR: CwygyQfovBWhBWnsFwL8nvmTmTDt3mhxjEYnWqQLzPGDMPr+rgp+mLowuYyv7WEpqqa1LtFGU7
- w3KDUwORfUZQ==
-X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="391456560"
-Received: from amishuti-mobl.ccr.corp.intel.com (HELO localhost)
- ([10.249.46.139])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 05:06:24 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, airlied@linux.ie, daniel@ffwll.ch,
- joonas.lahtinen@linux.intel.com, chris@chris-wilson.co.uk
-In-Reply-To: <20210128133127.2311-1-tzimmermann@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210128133127.2311-1-tzimmermann@suse.de>
-Date: Tue, 02 Feb 2021 15:06:21 +0200
-Message-ID: <87v9bafwky.fsf@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5FE96E17A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 13:08:23 +0000 (UTC)
+IronPort-SDR: tyEcNwhmYxiysIxeKCK4v0KIFixgbn9139pniHcg8BShZhMpTI2nT9p43AwGn2BjUBeXxipWpz
+ t+0kjZLpenBw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="180925140"
+X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="180925140"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2021 05:08:21 -0800
+IronPort-SDR: CPuGbTpkNWoD4ujhTARU/jnsMRdj5LO8XOvL78IJ5kNUrvq2qd/UpUs/E/Nu4mAQmIAY6E4g9j
+ 2pat1I9mm/1A==
+X-IronPort-AV: E=Sophos;i="5.79,395,1602572400"; d="scan'208";a="432917390"
+Received: from irisshal-mobl1.ger.corp.intel.com (HELO [10.214.210.18])
+ ([10.214.210.18])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2021 05:08:19 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
+ <20210201085715.27435-16-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <054426ca-daaf-827d-f833-f402691bdad4@linux.intel.com>
+Date: Tue, 2 Feb 2021 13:08:16 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v6 0/5] drm: Move struct drm_device.pdev to
- legacy
+In-Reply-To: <20210201085715.27435-16-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 16/57] drm/i915: Extract request rewinding
+ from execlists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,126 +52,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 28 Jan 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> V6 of the patchset fixes i915/selftests to do the assigment of pdev
-> in a later patch. This was forgotten in v5.
->
-> The pdev field in struct drm_device points to a PCI device structure and
-> goes back to UMS-only days when all DRM drivers were for PCI devices.
-> Meanwhile we also support USB, SPI and platform devices. Each of those
-> uses the generic device stored in struct drm_device.dev.
->
-> To reduce duplication and remove the special case of PCI, this patchset
-> converts all modesetting drivers from pdev to dev and makes pdev a field
-> for legacy UMS drivers.
->
-> For PCI devices, the pointer in struct drm_device.dev can be upcasted to
-> struct pci_device; or tested for PCI with dev_is_pci(). In several places
-> the code can use the dev field directly.
->
-> After converting all drivers and the DRM core, the pdev fields becomes
-> only relevant for legacy drivers. In a later patchset, we may want to
-> convert these as well and remove pdev entirely.
 
-Pushed patches 1-3 to topic branch topic/drm-device-pdev, and merged it
-to drm-intel-next [1]. Joonas will merge it to drm-intel-gt-next. Let's
-sort out patches 4-5 after the merge window.
+On 01/02/2021 08:56, Chris Wilson wrote:
+> In the process of preparing to reuse the request submission logic for
+> other backends, lift it out of the execlists backend.
+> 
+> While this operates on the common structs, we do have a bit of backend
+> knowledge, which is harmless for !lrc but still unsightly.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_engine.h        |  3 -
+>   .../drm/i915/gt/intel_execlists_submission.c  | 58 ++-----------------
+>   drivers/gpu/drm/i915/gt/intel_lrc_reg.h       |  3 +
+>   drivers/gpu/drm/i915/gt/selftest_execlists.c  |  2 +-
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  3 +-
+>   drivers/gpu/drm/i915/i915_scheduler.c         | 44 ++++++++++++++
+>   drivers/gpu/drm/i915/i915_scheduler.h         |  3 +
+>   7 files changed, 56 insertions(+), 60 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index 8d9184920c51..cc2df80eb449 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -137,9 +137,6 @@ execlists_active_unlock_bh(struct intel_engine_execlists *execlists)
+>   	local_bh_enable(); /* restore softirq, and kick ksoftirqd! */
+>   }
+>   
+> -struct i915_request *
+> -execlists_unwind_incomplete_requests(struct intel_engine_execlists *execlists);
+> -
+>   static inline u32
+>   intel_read_status_page(const struct intel_engine_cs *engine, int reg)
+>   {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 51044387a8a2..b6dea80da533 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -359,56 +359,6 @@ assert_priority_queue(const struct i915_request *prev,
+>   	return rq_prio(prev) >= rq_prio(next);
+>   }
+>   
+> -static struct i915_request *
+> -__unwind_incomplete_requests(struct intel_engine_cs *engine)
+> -{
+> -	struct i915_request *rq, *rn, *active = NULL;
+> -	struct list_head *pl;
+> -	int prio = I915_PRIORITY_INVALID;
+> -
+> -	lockdep_assert_held(&engine->active.lock);
+> -
+> -	list_for_each_entry_safe_reverse(rq, rn,
+> -					 &engine->active.requests,
+> -					 sched.link) {
+> -		if (__i915_request_is_complete(rq)) {
+> -			list_del_init(&rq->sched.link);
+> -			continue;
+> -		}
+> -
+> -		__i915_request_unsubmit(rq);
+> -
+> -		GEM_BUG_ON(rq_prio(rq) == I915_PRIORITY_INVALID);
+> -		if (rq_prio(rq) != prio) {
+> -			prio = rq_prio(rq);
+> -			pl = i915_sched_lookup_priolist(engine, prio);
+> -		}
+> -		GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+> -
+> -		list_move(&rq->sched.link, pl);
+> -		set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> -
+> -		/* Check in case we rollback so far we wrap [size/2] */
+> -		if (intel_ring_direction(rq->ring,
+> -					 rq->tail,
+> -					 rq->ring->tail + 8) > 0)
+> -			rq->context->lrc.desc |= CTX_DESC_FORCE_RESTORE;
+> -
+> -		active = rq;
+> -	}
+> -
+> -	return active;
+> -}
+> -
+> -struct i915_request *
+> -execlists_unwind_incomplete_requests(struct intel_engine_execlists *execlists)
+> -{
+> -	struct intel_engine_cs *engine =
+> -		container_of(execlists, typeof(*engine), execlists);
+> -
+> -	return __unwind_incomplete_requests(engine);
+> -}
+> -
+>   static void
+>   execlists_context_status_change(struct i915_request *rq, unsigned long status)
+>   {
+> @@ -1080,7 +1030,7 @@ static void defer_active(struct intel_engine_cs *engine)
+>   {
+>   	struct i915_request *rq;
+>   
+> -	rq = __unwind_incomplete_requests(engine);
+> +	rq = __i915_sched_rewind_requests(engine);
+>   	if (!rq)
+>   		return;
+>   
+> @@ -1292,7 +1242,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+>   			 * the preemption, some of the unwound requests may
+>   			 * complete!
+>   			 */
+> -			__unwind_incomplete_requests(engine);
+> +			__i915_sched_rewind_requests(engine);
+>   
+>   			last = NULL;
+>   		} else if (timeslice_expired(engine, last)) {
+> @@ -2287,7 +2237,7 @@ static void execlists_capture(struct intel_engine_cs *engine)
+>   	 * which we return it to the queue for signaling.
+>   	 *
+>   	 * By removing them from the execlists queue, we also remove the
+> -	 * requests from being processed by __unwind_incomplete_requests()
+> +	 * requests from being processed by __intel_engine_rewind_requests()
+>   	 * during the intel_engine_reset(), and so they will *not* be replayed
+>   	 * afterwards.
+>   	 *
+> @@ -2878,7 +2828,7 @@ static void execlists_reset_rewind(struct intel_engine_cs *engine, bool stalled)
+>   	/* Push back any incomplete requests for replay after the reset. */
+>   	rcu_read_lock();
+>   	spin_lock_irqsave(&engine->active.lock, flags);
+> -	__unwind_incomplete_requests(engine);
+> +	__i915_sched_rewind_requests(engine);
+>   	spin_unlock_irqrestore(&engine->active.lock, flags);
+>   	rcu_read_unlock();
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+> index 41e5350a7a05..364656bedec7 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+> @@ -92,4 +92,7 @@
+>   /* in Gen12 ID 0x7FF is reserved to indicate idle */
+>   #define GEN12_MAX_CONTEXT_HW_ID	(GEN11_MAX_CONTEXT_HW_ID - 1)
+>   
+> +#define CTX_DESC_RELOAD_PD BIT_ULL(1)
+> +#define CTX_DESC_FORCE_RESTORE BIT_ULL(2)
+> +
+>   #endif /* _INTEL_LRC_REG_H_ */
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> index 68e1398704a4..73340a96548f 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> @@ -4601,7 +4601,7 @@ static int reset_virtual_engine(struct intel_gt *gt,
+>   
+>   	/* Fake a preemption event; failed of course */
+>   	spin_lock_irq(&engine->active.lock);
+> -	__unwind_incomplete_requests(engine);
+> +	__i915_sched_rewind_requests(engine);
+>   	spin_unlock_irq(&engine->active.lock);
+>   	GEM_BUG_ON(rq->engine != engine);
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index dc33e5751776..aecede4f0943 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -306,14 +306,13 @@ static void guc_reset_state(struct intel_context *ce,
+>   
+>   static void guc_reset_rewind(struct intel_engine_cs *engine, bool stalled)
+>   {
+> -	struct intel_engine_execlists * const execlists = &engine->execlists;
+>   	struct i915_request *rq;
+>   	unsigned long flags;
+>   
+>   	spin_lock_irqsave(&engine->active.lock, flags);
+>   
+>   	/* Push back any incomplete requests for replay after the reset. */
+> -	rq = execlists_unwind_incomplete_requests(execlists);
+> +	rq = __i915_sched_rewind_requests(engine);
+>   	if (!rq)
+>   		goto out_unlock;
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+> index 5e99f9779309..9fcfbf303ce0 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler.c
+> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
+> @@ -6,6 +6,9 @@
+>   
+>   #include <linux/mutex.h>
+>   
+> +#include "gt/intel_ring.h"
+> +#include "gt/intel_lrc_reg.h"
+> +
+>   #include "i915_drv.h"
+>   #include "i915_globals.h"
+>   #include "i915_request.h"
+> @@ -542,6 +545,47 @@ void i915_request_enqueue(struct i915_request *rq)
+>   		tasklet_hi_schedule(&engine->execlists.tasklet);
+>   }
+>   
+> +struct i915_request *
+> +__i915_sched_rewind_requests(struct intel_engine_cs *engine)
+> +{
+> +	struct i915_request *rq, *rn, *active = NULL;
+> +	struct list_head *pl;
+> +	int prio = I915_PRIORITY_INVALID;
+> +
+> +	lockdep_assert_held(&engine->active.lock);
+> +
+> +	list_for_each_entry_safe_reverse(rq, rn,
+> +					 &engine->active.requests,
+> +					 sched.link) {
+> +		if (__i915_request_is_complete(rq)) {
+> +			list_del_init(&rq->sched.link);
+> +			continue;
+> +		}
+> +
+> +		__i915_request_unsubmit(rq);
+> +
+> +		GEM_BUG_ON(rq_prio(rq) == I915_PRIORITY_INVALID);
+> +		if (rq_prio(rq) != prio) {
+> +			prio = rq_prio(rq);
+> +			pl = i915_sched_lookup_priolist(engine, prio);
+> +		}
+> +		GEM_BUG_ON(RB_EMPTY_ROOT(&engine->execlists.queue.rb_root));
+> +
+> +		list_move(&rq->sched.link, pl);
+> +		set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> +
+> +		/* Check in case we rollback so far we wrap [size/2] */
+> +		if (intel_ring_direction(rq->ring,
+> +					 rq->tail,
+> +					 rq->ring->tail + 8) > 0)
+> +			rq->context->lrc.desc |= CTX_DESC_FORCE_RESTORE;
+> +
+> +		active = rq;
+> +	}
+> +
+> +	return active;
+> +}
+> +
+>   void i915_sched_node_init(struct i915_sched_node *node)
+>   {
+>   	spin_lock_init(&node->lock);
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+> index 89d998f226e0..d3984f65b3a6 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler.h
+> +++ b/drivers/gpu/drm/i915/i915_scheduler.h
+> @@ -42,6 +42,9 @@ void i915_request_set_priority(struct i915_request *request, int prio);
+>   
+>   void i915_request_enqueue(struct i915_request *request);
+>   
+> +struct i915_request *
+> +__i915_sched_rewind_requests(struct intel_engine_cs *engine);
+> +
+>   struct list_head *
+>   i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio);
+>   
+> 
 
-Thanks for the patches.
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-BR,
-Jani.
+Regards,
 
-
-[1] http://lore.kernel.org/r/87y2g6fxxv.fsf@intel.com
-
-
-
->
-> v6:
-> 	* also remove assignment in i915/selftests in later patch (Chris)
-> v5:
-> 	* remove assignment in later patch (Chris)
-> v4:
-> 	* merged several patches
-> 	* moved core changes into separate patch
-> 	* vmwgfx build fix
-> v3:
-> 	* merged several patches
-> 	* fix one pdev reference in nouveau (Jeremy)
-> 	* rebases
-> v2:
-> 	* move whitespace fixes into separate patches (Alex, Sam)
-> 	* move i915 gt/ and gvt/ changes into separate patches (Joonas)
->
-> Thomas Zimmermann (5):
->   drm/i915: Remove references to struct drm_device.pdev
->   drm/i915/gt: Remove references to struct drm_device.pdev
->   drm/i915/gvt: Remove references to struct drm_device.pdev
->   drm/i915: Don't assign to struct drm_device.pdev
->   drm: Move struct drm_device.pdev to legacy section
->
->  drivers/gpu/drm/i915/display/intel_bios.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c    | 14 ++++++-------
->  drivers/gpu/drm/i915/display/intel_csr.c      |  2 +-
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |  2 +-
->  drivers/gpu/drm/i915/display/intel_fbdev.c    |  2 +-
->  drivers/gpu/drm/i915/display/intel_gmbus.c    |  2 +-
->  .../gpu/drm/i915/display/intel_lpe_audio.c    |  5 +++--
->  drivers/gpu/drm/i915/display/intel_opregion.c |  6 +++---
->  drivers/gpu/drm/i915/display/intel_overlay.c  |  2 +-
->  drivers/gpu/drm/i915/display/intel_panel.c    |  4 ++--
->  drivers/gpu/drm/i915/display/intel_quirks.c   |  2 +-
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |  2 +-
->  drivers/gpu/drm/i915/display/intel_vga.c      |  8 ++++----
->  drivers/gpu/drm/i915/gem/i915_gem_phys.c      |  6 +++---
->  drivers/gpu/drm/i915/gem/i915_gem_shmem.c     |  2 +-
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
->  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 10 +++++-----
->  drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  2 +-
->  drivers/gpu/drm/i915/gt/intel_rc6.c           |  4 ++--
->  drivers/gpu/drm/i915/gt/intel_region_lmem.c   |  8 ++++----
->  drivers/gpu/drm/i915/gt/intel_reset.c         |  6 +++---
->  drivers/gpu/drm/i915/gvt/cfg_space.c          |  5 +++--
->  drivers/gpu/drm/i915/gvt/firmware.c           | 10 +++++-----
->  drivers/gpu/drm/i915/gvt/gtt.c                | 12 +++++------
->  drivers/gpu/drm/i915/gvt/gvt.c                |  6 +++---
->  drivers/gpu/drm/i915/gvt/kvmgt.c              |  4 ++--
->  drivers/gpu/drm/i915/i915_debugfs.c           |  2 +-
->  drivers/gpu/drm/i915/i915_drv.c               | 20 +++++++++----------
->  drivers/gpu/drm/i915/i915_drv.h               |  2 +-
->  drivers/gpu/drm/i915/i915_gem_gtt.c           |  5 ++---
->  drivers/gpu/drm/i915/i915_getparam.c          |  5 +++--
->  drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
->  drivers/gpu/drm/i915/i915_irq.c               |  6 +++---
->  drivers/gpu/drm/i915/i915_pmu.c               |  2 +-
->  drivers/gpu/drm/i915/i915_suspend.c           |  4 ++--
->  drivers/gpu/drm/i915/i915_switcheroo.c        |  4 ++--
->  drivers/gpu/drm/i915/i915_vgpu.c              |  2 +-
->  drivers/gpu/drm/i915/intel_device_info.c      |  2 +-
->  drivers/gpu/drm/i915/intel_runtime_pm.c       |  2 +-
->  drivers/gpu/drm/i915/intel_uncore.c           |  4 ++--
->  .../gpu/drm/i915/selftests/mock_gem_device.c  |  1 -
->  drivers/gpu/drm/i915/selftests/mock_gtt.c     |  2 +-
->  include/drm/drm_device.h                      |  6 +++---
->  43 files changed, 100 insertions(+), 101 deletions(-)
->
->
-> base-commit: 3836b7fdfad40e2bac5dc882332f42bed6942cf4
-> prerequisite-patch-id: c2b2f08f0eccc9f5df0c0da49fa1d36267deb11d
-> --
-> 2.30.0
->
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
