@@ -1,30 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E64230CDD8
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 22:20:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D8630CDE3
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 22:24:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85E286E9A0;
-	Tue,  2 Feb 2021 21:20:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5481F6E9A3;
+	Tue,  2 Feb 2021 21:24:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D3D56E9A0
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 21:20:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 487866E9A3
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 21:24:20 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23777334-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 02 Feb 2021 21:20:29 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  2 Feb 2021 21:20:30 +0000
-Message-Id: <20210202212030.29015-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23777347-1500050 for multiple; Tue, 02 Feb 2021 21:24:15 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] Oops with "ALSA: jack: implement software jack
- injection via debugfs"
+In-Reply-To: <161230047545.28247.13315008950874636165@build.alporthouse.com>
+References: <20210202151445.20002-1-chris@chris-wilson.co.uk>
+ <20210202151445.20002-8-chris@chris-wilson.co.uk>
+ <2097da50-efe4-1b23-67b5-9a43a70198c9@linux.intel.com>
+ <161228783372.1150.6556483629376691686@build.alporthouse.com>
+ <161230047545.28247.13315008950874636165@build.alporthouse.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Tue, 02 Feb 2021 21:24:16 +0000
+Message-ID: <161230105652.29124.10262513252353794695@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [CI 08/14] drm/i915/selftests: Force a rewind if at
+ first we don't succeed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,67 +49,24 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Takashi Iwai <tiwai@suse.de>
+Quoting Chris Wilson (2021-02-02 21:14:35)
+> Quoting Chris Wilson (2021-02-02 17:43:53)
+> > Let's see how horrible it is to cycle elements on defer. (Curse the
+> > irqlock pollution.)
+> 
+> While that did work. I do not have a good idea on how to do list
+> rotation on an RCU list. I can see that it must require a pair of
+> synchronize_rcu, and that spells disaster (at least for handling it
+> inline).
+> 
+> Another way might be to randomize the deadlines along each branch to the
+> tree... Except we don't have deadlines at this point and we can't so
+> freely change the priorities.
 
-On Tue, 02 Feb 2021 17:30:36 +0100,
-Chris Wilson wrote:
->
-> commit 2d670ea2bd53 ("ALSA: jack: implement software jack injection via
-> debugfs") is causing issues for our CI as we see a use-after-free on
-> module unload (on all machines):
->
-> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9715/fi-skl-6700k2/pstore0-1612277467_Oops_1.txt
-
-Could you try the patch below?  The unload test was completely
-forgotten.
-
-thanks,
-
-Takashi
-
--- 8< --
-From: Takashi Iwai <tiwai@suse.de>
-Subject: [PATCH] ALSA: core: Fix the debugfs removal at snd_card_free()
-
-The debugfs_remove() call should have been done at the right place
-before the card object gets freed.
-
-Fixes: 2d670ea2bd53 ("ALSA: jack: implement software jack injection via debugfs")
-Signed-off-by: Takashi Iwai <tiwai@suse.de>
----
- sound/core/init.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
-
-diff --git a/sound/core/init.c b/sound/core/init.c
-index d4e78b176793..84b573e9c1f9 100644
---- a/sound/core/init.c
-+++ b/sound/core/init.c
-@@ -487,6 +487,10 @@ static int snd_card_do_free(struct snd_card *card)
- 		dev_warn(card->dev, "unable to free card info\n");
- 		/* Not fatal error */
- 	}
-+#ifdef CONFIG_SND_DEBUG
-+	debugfs_remove(card->debugfs_root);
-+	card->debugfs_root = NULL;
-+#endif
- 	if (card->release_completion)
- 		complete(card->release_completion);
- 	kfree(card);
-@@ -537,11 +541,6 @@ int snd_card_free(struct snd_card *card)
- 	/* wait, until all devices are ready for the free operation */
- 	wait_for_completion(&released);
- 
--#ifdef CONFIG_SND_DEBUG
--	debugfs_remove(card->debugfs_root);
--	card->debugfs_root = NULL;
--#endif
--
- 	return 0;
- }
- EXPORT_SYMBOL(snd_card_free);
--- 
-2.20.1
-
+Speaking of which, this is 'fixed' by the deadlines as there we will
+reorder ELSP as the test expects. (Which is why I didn't notice this for
+so long.)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
