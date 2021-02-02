@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF15930C341
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 16:15:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3867D30C338
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 16:15:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7977E6E940;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E9386E93F;
 	Tue,  2 Feb 2021 15:14:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00B3A6E930
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B43356E92B
  for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 15:14:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23773716-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23773717-1500050 
  for <intel-gfx@lists.freedesktop.org>; Tue, 02 Feb 2021 15:14:45 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  2 Feb 2021 15:14:38 +0000
-Message-Id: <20210202151445.20002-7-chris@chris-wilson.co.uk>
+Date: Tue,  2 Feb 2021 15:14:39 +0000
+Message-Id: <20210202151445.20002-8-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210202151445.20002-1-chris@chris-wilson.co.uk>
 References: <20210202151445.20002-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 07/14] drm/i915/selftests: Exercise priority
- inheritance around an engine loop
+Subject: [Intel-gfx] [CI 08/14] drm/i915/selftests: Force a rewind if at
+ first we don't succeed
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,261 +44,60 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Exercise rescheduling priority inheritance around a sequence of requests
-that wrap around all the engines.
+live_timeslice_rewind assumes a particular traversal and reordering
+after the first timeslice yield. However, the outcome can be either
+(A1, A2, B1) or (A1, B2, A2) depending on the path taken through the
+dependency graph. So if we do not get the outcome we need at first, give
+it a priority kick to force a rewind.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/selftests/i915_scheduler.c   | 225 ++++++++++++++++++
- 1 file changed, 225 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_execlists.c | 21 +++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_scheduler.c b/drivers/gpu/drm/i915/selftests/i915_scheduler.c
-index d095fab2ccec..acc666f755d7 100644
---- a/drivers/gpu/drm/i915/selftests/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_scheduler.c
-@@ -7,6 +7,7 @@
+diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+index 951e2bf867e1..68e1398704a4 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
++++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+@@ -1107,6 +1107,7 @@ static int live_timeslice_rewind(void *arg)
+ 		struct i915_request *rq[3] = {};
+ 		struct intel_context *ce;
+ 		unsigned long timeslice;
++		unsigned long timeout;
+ 		int i, err = 0;
+ 		u32 *slot;
  
- #include "gt/intel_context.h"
- #include "gt/intel_gpu_commands.h"
-+#include "gt/intel_ring.h"
- #include "gt/selftest_engine_heartbeat.h"
- #include "selftests/igt_spinner.h"
- #include "selftests/i915_random.h"
-@@ -504,10 +505,234 @@ static int igt_priority_chains(void *arg)
- 	return igt_schedule_chains(arg, igt_priority);
- }
+@@ -1173,11 +1174,29 @@ static int live_timeslice_rewind(void *arg)
  
-+static struct i915_request *
-+__write_timestamp(struct intel_engine_cs *engine,
-+		  struct drm_i915_gem_object *obj,
-+		  int slot,
-+		  struct i915_request *prev)
-+{
-+	struct i915_request *rq = ERR_PTR(-EINVAL);
-+	bool use_64b = INTEL_GEN(engine->i915) >= 8;
-+	struct intel_context *ce;
-+	struct i915_vma *vma;
-+	int err = 0;
-+	u32 *cs;
+ 		/* ELSP[] = { { A:rq1, A:rq2 }, { B:rq1 } } */
+ 		ENGINE_TRACE(engine, "forcing tasklet for rewind\n");
+-		while (i915_request_is_active(rq[A2])) { /* semaphore yield! */
++		i = 0;
++		timeout = jiffies + HZ;
++		while (i915_request_is_active(rq[A2]) &&
++		       time_before(jiffies, timeout)) { /* semaphore yield! */
+ 			/* Wait for the timeslice to kick in */
+ 			del_timer(&engine->execlists.timer);
+ 			tasklet_hi_schedule(&engine->execlists.tasklet);
+ 			intel_engine_flush_submission(engine);
 +
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce))
-+		return ERR_CAST(ce);
-+
-+	vma = i915_vma_instance(obj, ce->vm, NULL);
-+	if (IS_ERR(vma)) {
-+		err = PTR_ERR(vma);
-+		goto out_ce;
-+	}
-+
-+	err = i915_vma_pin(vma, 0, 0, PIN_USER);
-+	if (err)
-+		goto out_ce;
-+
-+	rq = intel_context_create_request(ce);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out_unpin;
-+	}
-+
-+	i915_vma_lock(vma);
-+	err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-+	i915_vma_unlock(vma);
-+	if (err)
-+		goto out_request;
-+
-+	if (prev) {
-+		err = i915_request_await_dma_fence(rq, &prev->fence);
-+		if (err)
-+			goto out_request;
-+	}
-+
-+	if (engine->emit_init_breadcrumb) {
-+		err = engine->emit_init_breadcrumb(rq);
-+		if (err)
-+			goto out_request;
-+	}
-+
-+	cs = intel_ring_begin(rq, 4);
-+	if (IS_ERR(cs)) {
-+		err = PTR_ERR(cs);
-+		goto out_request;
-+	}
-+
-+	*cs++ = MI_STORE_REGISTER_MEM + use_64b;
-+	*cs++ = i915_mmio_reg_offset(RING_TIMESTAMP(engine->mmio_base));
-+	*cs++ = lower_32_bits(vma->node.start) + sizeof(u32) * slot;
-+	*cs++ = upper_32_bits(vma->node.start);
-+	intel_ring_advance(rq, cs);
-+
-+	i915_request_get(rq);
-+out_request:
-+	i915_request_add(rq);
-+out_unpin:
-+	i915_vma_unpin(vma);
-+out_ce:
-+	intel_context_put(ce);
-+	i915_request_put(prev);
-+	return err ? ERR_PTR(err) : rq;
-+}
-+
-+static struct i915_request *create_spinner(struct drm_i915_private *i915,
-+					   struct igt_spinner *spin)
-+{
-+	struct intel_engine_cs *engine;
-+
-+	for_each_uabi_engine(engine, i915) {
-+		struct intel_context *ce;
-+		struct i915_request *rq;
-+
-+		if (igt_spinner_init(spin, engine->gt))
-+			return ERR_PTR(-ENOMEM);
-+
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce))
-+			return ERR_CAST(ce);
-+
-+		rq = igt_spinner_create_request(spin, ce, MI_NOOP);
-+		intel_context_put(ce);
-+		if (rq == ERR_PTR(-ENODEV))
-+			continue;
-+		if (IS_ERR(rq))
-+			return rq;
-+
-+		i915_request_get(rq);
-+		i915_request_add(rq);
-+		return rq;
-+	}
-+
-+	return ERR_PTR(-ENODEV);
-+}
-+
-+static bool has_timestamp(const struct drm_i915_private *i915)
-+{
-+	return INTEL_GEN(i915) >= 7;
-+}
-+
-+static int __igt_schedule_cycle(struct drm_i915_private *i915,
-+				bool (*fn)(struct i915_request *rq,
-+					   unsigned long v, unsigned long e))
-+{
-+	struct intel_engine_cs *engine;
-+	struct drm_i915_gem_object *obj;
-+	struct igt_spinner spin;
-+	struct i915_request *rq;
-+	unsigned long count, n;
-+	u32 *time, last;
-+	int err;
-+
-+	/*
-+	 * Queue a bunch of ordered requests (each waiting on the previous)
-+	 * around the engines a couple of times. Each request will write
-+	 * the timestamp it executes at into the scratch, with the expectation
-+	 * that the timestamp will be in our desired execution order.
-+	 */
-+
-+	if (!i915->caps.scheduler || !has_timestamp(i915))
-+		return 0;
-+
-+	obj = i915_gem_object_create_internal(i915, SZ_64K);
-+	if (IS_ERR(obj))
-+		return PTR_ERR(obj);
-+
-+	time = i915_gem_object_pin_map(obj, I915_MAP_WC);
-+	if (IS_ERR(time)) {
-+		err = PTR_ERR(time);
-+		goto out_obj;
-+	}
-+
-+	rq = create_spinner(i915, &spin);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto out_obj;
-+	}
-+
-+	err = 0;
-+	count = 0;
-+	for_each_uabi_engine(engine, i915) {
-+		if (!intel_engine_has_scheduler(engine))
-+			continue;
-+
-+		rq = __write_timestamp(engine, obj, count, rq);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		count++;
-+	}
-+	for_each_uabi_engine(engine, i915) {
-+		if (!intel_engine_has_scheduler(engine))
-+			continue;
-+
-+		rq = __write_timestamp(engine, obj, count, rq);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		count++;
-+	}
-+	GEM_BUG_ON(count * sizeof(u32) > obj->base.size);
-+	if (err || !count)
-+		goto out_spin;
-+
-+	fn(rq, count + 1, count);
-+	igt_spinner_end(&spin);
-+
-+	if (i915_request_wait(rq, 0, HZ / 2) < 0) {
-+		err = -ETIME;
-+		goto out_request;
-+	}
-+
-+	last = time[0];
-+	for (n = 1; n < count; n++) {
-+		if (i915_seqno_passed(last, time[n])) {
-+			pr_err("Timestamp[%lu] %x before previous %x\n",
-+			       n, time[n], last);
-+			err = -EINVAL;
-+			break;
-+		}
-+		last = time[n];
-+	}
-+
-+out_request:
-+	i915_request_put(rq);
-+out_spin:
-+	igt_spinner_fini(&spin);
-+out_obj:
-+	i915_gem_object_put(obj);
-+	return err;
-+}
-+
-+static bool noop(struct i915_request *rq, unsigned long v, unsigned long e)
-+{
-+	return true;
-+}
-+
-+static int igt_schedule_cycle(void *arg)
-+{
-+	return __igt_schedule_cycle(arg, noop);
-+}
-+
-+static int igt_priority_cycle(void *arg)
-+{
-+	return __igt_schedule_cycle(arg, igt_priority);
-+}
-+
- int i915_scheduler_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(igt_priority_chains),
-+
-+		SUBTEST(igt_schedule_cycle),
-+		SUBTEST(igt_priority_cycle),
- 	};
- 
- 	return i915_subtests(tests, i915);
++			/*
++			 * Unfortunately this assumes that during the
++			 * search of the wait tree it sees the requests
++			 * in a particular order. That order is not
++			 * strictly determined and it may pick either
++			 * A2 or B1 to immediately follow A1.
++			 *
++			 * Break the tie with a set-priority. This defeats
++			 * the goal of trying to cause a rewind with a
++			 * timeslice, but alas, a rewind is better than
++			 * none.
++			 */
++			if (i++)
++				i915_request_set_priority(rq[B1], 1);
+ 		}
+ 		/* -> ELSP[] = { { A:rq1 }, { B:rq1 } } */
+ 		GEM_BUG_ON(!i915_request_is_active(rq[A1]));
 -- 
 2.20.1
 
