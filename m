@@ -2,34 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00CA30BE07
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 13:18:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E91530BE49
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 13:36:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05AC66E1F6;
-	Tue,  2 Feb 2021 12:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD3AE6E152;
+	Tue,  2 Feb 2021 12:36:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11B2B6E128
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 12:18:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23771024-1500050 for multiple; Tue, 02 Feb 2021 12:18:24 +0000
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C9506E115;
+ Tue,  2 Feb 2021 12:36:39 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 16C54AF72;
+ Tue,  2 Feb 2021 12:36:38 +0000 (UTC)
+Date: Tue, 2 Feb 2021 13:36:35 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YBlHU4sc/5GHpXpg@linux-uq9g>
 MIME-Version: 1.0
-In-Reply-To: <b0c69c35-dc28-87bd-feed-917a92a50299@linux.intel.com>
-References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
- <20210201085715.27435-8-chris@chris-wilson.co.uk>
- <b0c69c35-dc28-87bd-feed-917a92a50299@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Tue, 02 Feb 2021 12:18:24 +0000
-Message-ID: <161226830492.1150.2039712629900482846@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 08/57] drm/i915/gt: Move submission_method
- into intel_gt
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,48 +35,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-02-02 12:03:02)
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> > index 5d7fac383add..9304a35384aa 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> > @@ -4715,7 +4715,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
-> >               SUBTEST(live_virtual_reset),
-> >       };
-> >   
-> > -     if (!HAS_EXECLISTS(i915))
-> > +     if (i915->gt.submission_method != INTEL_SUBMISSION_ELSP)
-> >               return 0;
-> >   
-> >       if (intel_gt_is_wedged(&i915->gt))
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
-> > index 3350e7c995bc..6cd9f6bc240c 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_ring_submission.c
-> > @@ -291,7 +291,7 @@ int intel_ring_submission_live_selftests(struct drm_i915_private *i915)
-> >               SUBTEST(live_ctx_switch_wa),
-> >       };
-> >   
-> > -     if (HAS_EXECLISTS(i915))
-> > +     if (i915->gt.submission_method > INTEL_SUBMISSION_RING)
-> 
-> Not sure the above two hunks in selftests are an improvement, not seeing 
-> how using enum ordering is better than a feature check.
+Hi Dave and Daniel,
 
-Wait 40 patches.
+here's this week's PR for drm-misc-fixes. There are 3 patches for the
+bridge code and one for TTM.
 
-> Mechanics looks fine. I'd prefer the selftests to remain as is but not 
-> mandatory.
+Best regards
+Thomas
 
-The execlists tests are not suitable as-is for the guc. And they are in
-the habit of breaking the test to hide impedance mismatches with the
-guc.
--Chris
+drm-misc-fixes-2021-02-02:
+ * drm/bridge/lontium-lt9611uxc: EDID fixes; Don't handle hotplug
+   events in IRQ handler
+ * drm/ttm: Use _GFP_NOWARN for huge pages
+The following changes since commit f6b57101a6b31277a4bde1d8028c46e898bd2ff2:
+
+  drm/vc4: Correct POS1_SCL for hvs5 (2021-01-25 11:53:44 +0100)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-02-02
+
+for you to fetch changes up to 2b1b3e544f65f40df5eef99753e460a127910479:
+
+  drm/ttm: Use __GFP_NOWARN for huge pages in ttm_pool_alloc_page (2021-01-=
+28 13:01:52 +0100)
+
+----------------------------------------------------------------
+ * drm/bridge/lontium-lt9611uxc: EDID fixes; Don't handle hotplug
+   events in IRQ handler
+ * drm/ttm: Use _GFP_NOWARN for huge pages
+
+----------------------------------------------------------------
+Dmitry Baryshkov (3):
+      drm/bridge/lontium-lt9611uxc: fix waiting for EDID to become available
+      drm/bridge/lontium-lt9611uxc: fix get_edid return code
+      drm/bridge/lontium-lt9611uxc: move HPD notification out of IRQ handler
+
+Michel D=E4nzer (1):
+      drm/ttm: Use __GFP_NOWARN for huge pages in ttm_pool_alloc_page
+
+ drivers/gpu/drm/bridge/lontium-lt9611uxc.c | 57 +++++++++++++++++++++++---=
+----
+ drivers/gpu/drm/ttm/ttm_pool.c             |  2 +-
+ 2 files changed, 46 insertions(+), 13 deletions(-)
+
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+(HRB 36809, AG N=FCrnberg)
+Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
