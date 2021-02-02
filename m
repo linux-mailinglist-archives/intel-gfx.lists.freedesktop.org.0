@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0ACC30BB82
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 10:55:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A828D30BC42
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Feb 2021 11:43:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 832416E919;
-	Tue,  2 Feb 2021 09:55:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69A7C89B83;
+	Tue,  2 Feb 2021 10:43:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C5126E919
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 09:55:08 +0000 (UTC)
-IronPort-SDR: lzFMUO1g986ZimH3hNa3FbCm3HxEEmSigtOpvMHPvJa2lIG02pIgdz9f/ygu4U/JB+od+XR+hK
- tTlnCPmswVFg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="177319900"
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="177319900"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2021 01:55:07 -0800
-IronPort-SDR: 310NsKVm1Cd3Lm6CkSPjE663E3OhFkTkGtD+qYO7qwLhu5x+s6KWzudkWwk1C2Z8hezM7HMxIu
- uhkV/ES3MrTg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="356245713"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga003.jf.intel.com with ESMTP; 02 Feb 2021 01:55:06 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id CF5715C100E; Tue,  2 Feb 2021 11:55:00 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210201085715.27435-4-chris@chris-wilson.co.uk>
-References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
- <20210201085715.27435-4-chris@chris-wilson.co.uk>
-Date: Tue, 02 Feb 2021 11:55:00 +0200
-Message-ID: <87im7avlor.fsf@gaia.fi.intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F2BC89B83
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Feb 2021 10:43:42 +0000 (UTC)
+IronPort-SDR: PORnQbyLJHhuN/g6KqABifgfiztymdIUQv3p689F3cwY2XY7S9TadywoPeS7jRejPpq+sqvSJn
+ xLcnBujOD2Jw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9882"; a="265665548"
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="265665548"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2021 02:43:41 -0800
+IronPort-SDR: iEs8LOqBIedaONBo+CMqG70fu08S/dL6oS8sfABUTnNeiSmM8a2bbD5yF9N3NCresTDgoxGEdA
+ uIn3XFQOpldA==
+X-IronPort-AV: E=Sophos;i="5.79,394,1602572400"; d="scan'208";a="391406396"
+Received: from amishuti-mobl.ccr.corp.intel.com (HELO localhost)
+ ([10.249.46.139])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2021 02:43:39 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+In-Reply-To: <20210202084553.30691-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <87ft2fgcu1.fsf@intel.com>
+ <20210202084553.30691-1-ville.syrjala@linux.intel.com>
+Date: Tue, 02 Feb 2021 12:43:37 +0200
+Message-ID: <87czxihhra.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 04/57] drm/i915: Protect against request
- freeing during cancellation on wedging
+Subject: Re: [Intel-gfx] [PATCH -fixes] drm/i915/display: Prevent double YUV
+ range correction on HDR planes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,195 +49,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> As soon as we mark a request as completed, it may be retired. So when
-> cancelling a request and marking it complete, make sure we first keep a
-> reference to the request.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> ---
->  .../drm/i915/gt/intel_execlists_submission.c  | 19 +++++++++++--------
->  drivers/gpu/drm/i915/gt/intel_reset.c         | 15 ++++++---------
->  .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
->  drivers/gpu/drm/i915/gt/mock_engine.c         |  8 +++++---
->  drivers/gpu/drm/i915/i915_request.c           |  9 +++++++--
->  drivers/gpu/drm/i915/i915_request.h           |  2 +-
->  6 files changed, 31 insertions(+), 24 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index e7593df6777d..45a8ac152b88 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -2976,7 +2976,7 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
->  
->  	/* Mark all executing requests as skipped. */
->  	list_for_each_entry(rq, &engine->active.requests, sched.link)
-> -		i915_request_mark_eio(rq);
-> +		i915_request_put(i915_request_mark_eio(rq));
->  	intel_engine_signal_breadcrumbs(engine);
->  
->  	/* Flush the queued requests to the timeline list (for retiring). */
-> @@ -2984,8 +2984,10 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
->  		struct i915_priolist *p = to_priolist(rb);
->  
->  		priolist_for_each_request_consume(rq, rn, p) {
-> -			i915_request_mark_eio(rq);
-> -			__i915_request_submit(rq);
-> +			if (i915_request_mark_eio(rq)) {
-> +				__i915_request_submit(rq);
-> +				i915_request_put(rq);
-> +			}
->  		}
->  
->  		rb_erase_cached(&p->node, &execlists->queue);
-> @@ -2994,7 +2996,7 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
->  
->  	/* On-hold requests will be flushed to timeline upon their release */
->  	list_for_each_entry(rq, &engine->active.hold, sched.link)
-> -		i915_request_mark_eio(rq);
-> +		i915_request_put(i915_request_mark_eio(rq));
->  
->  	/* Cancel all attached virtual engines */
->  	while ((rb = rb_first_cached(&execlists->virtual))) {
-> @@ -3007,10 +3009,11 @@ static void execlists_reset_cancel(struct intel_engine_cs *engine)
->  		spin_lock(&ve->base.active.lock);
->  		rq = fetch_and_zero(&ve->request);
->  		if (rq) {
-> -			i915_request_mark_eio(rq);
-> -
-> -			rq->engine = engine;
-> -			__i915_request_submit(rq);
-> +			if (i915_request_mark_eio(rq)) {
-> +				rq->engine = engine;
-> +				__i915_request_submit(rq);
-> +				i915_request_put(rq);
-> +			}
->  			i915_request_put(rq);
->  
->  			ve->base.execlists.queue_priority_hint = INT_MIN;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 107430e1e864..a82c4d7b23bc 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -786,18 +786,15 @@ static void reset_finish(struct intel_gt *gt, intel_engine_mask_t awake)
->  
->  static void nop_submit_request(struct i915_request *request)
->  {
-> -	struct intel_engine_cs *engine = request->engine;
-> -	unsigned long flags;
-> -
->  	RQ_TRACE(request, "-EIO\n");
-> -	i915_request_set_error_once(request, -EIO);
->  
-> -	spin_lock_irqsave(&engine->active.lock, flags);
-> -	__i915_request_submit(request);
-> -	i915_request_mark_complete(request);
-> -	spin_unlock_irqrestore(&engine->active.lock, flags);
-> +	request = i915_request_mark_eio(request);
-> +	if (request) {
-> +		i915_request_submit(request);
-> +		intel_engine_signal_breadcrumbs(request->engine);
->  
-> -	intel_engine_signal_breadcrumbs(engine);
-> +		i915_request_put(request);
-> +	}
->  }
->  
->  static void __intel_gt_set_wedged(struct intel_gt *gt)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> index 8b7cc637c432..9c2c605d7a92 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-> @@ -400,7 +400,7 @@ static void reset_cancel(struct intel_engine_cs *engine)
->  
->  	/* Mark all submitted requests as skipped. */
->  	list_for_each_entry(request, &engine->active.requests, sched.link)
-> -		i915_request_mark_eio(request);
-> +		i915_request_put(i915_request_mark_eio(request));
->  	intel_engine_signal_breadcrumbs(engine);
->  
->  	/* Remaining _unready_ requests will be nop'ed when submitted */
-> diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-> index df7c1b1acc32..cf1269e74998 100644
-> --- a/drivers/gpu/drm/i915/gt/mock_engine.c
-> +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-> @@ -239,13 +239,15 @@ static void mock_reset_cancel(struct intel_engine_cs *engine)
->  
->  	/* Mark all submitted requests as skipped. */
->  	list_for_each_entry(rq, &engine->active.requests, sched.link)
-> -		i915_request_mark_eio(rq);
-> +		i915_request_put(i915_request_mark_eio(rq));
->  	intel_engine_signal_breadcrumbs(engine);
->  
->  	/* Cancel and submit all pending requests. */
->  	list_for_each_entry(rq, &mock->hw_queue, mock.link) {
-> -		i915_request_mark_eio(rq);
-> -		__i915_request_submit(rq);
-> +		if (i915_request_mark_eio(rq)) {
-> +			__i915_request_submit(rq);
-> +			i915_request_put(rq);
-> +		}
->  	}
->  	INIT_LIST_HEAD(&mock->hw_queue);
->  
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index d66981b083cd..a336d6c40d8b 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -514,15 +514,20 @@ void i915_request_set_error_once(struct i915_request *rq, int error)
->  	} while (!try_cmpxchg(&rq->fence.error, &old, error));
->  }
->  
-> -void i915_request_mark_eio(struct i915_request *rq)
-> +struct i915_request *i915_request_mark_eio(struct i915_request *rq)
->  {
->  	if (__i915_request_is_complete(rq))
-> -		return;
-> +		return NULL;
->  
->  	GEM_BUG_ON(i915_request_signaled(rq));
->  
-> +	/* As soon as the request is completed, it may be retired */
-> +	rq = i915_request_get(rq);
-> +
->  	i915_request_set_error_once(rq, -EIO);
->  	i915_request_mark_complete(rq);
-> +
-> +	return rq;
->  }
->  
->  bool __i915_request_submit(struct i915_request *request)
-> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-> index 1bfe214a47e9..c0bd4cb8786a 100644
-> --- a/drivers/gpu/drm/i915/i915_request.h
-> +++ b/drivers/gpu/drm/i915/i915_request.h
-> @@ -311,7 +311,7 @@ i915_request_create(struct intel_context *ce);
->  
->  void __i915_request_skip(struct i915_request *rq);
->  void i915_request_set_error_once(struct i915_request *rq, int error);
-> -void i915_request_mark_eio(struct i915_request *rq);
-> +struct i915_request *i915_request_mark_eio(struct i915_request *rq);
->  
->  struct i915_request *__i915_request_commit(struct i915_request *request);
->  void __i915_request_queue(struct i915_request *rq,
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAwMiBGZWIgMjAyMSwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IEFuZHJlcyBDYWxkZXJvbiBKYXJhbWlsbG8gPGFuZHJl
+c2NqQGNocm9taXVtLm9yZz4KPgo+IFByZXZlbnQgdGhlIElDTCBIRFIgcGxhbmUgcGlwZWxpbmUg
+ZnJvbSBwZXJmb3JtaW5nIFlVViBjb2xvciByYW5nZQo+IGNvcnJlY3Rpb24gdHdpY2Ugd2hlbiB0
+aGUgaW5wdXQgaXMgaW4gbGltaXRlZCByYW5nZS4gVGhpcyBpcyBkb25lIGJ5Cj4gcmVtb3Zpbmcg
+dGhlIGxpbWl0ZWQtcmFuZ2UgY29kZSBmcm9tIGljbF9wcm9ncmFtX2lucHV0X2NzYygpLgo+Cj4g
+QmVmb3JlIHRoaXMgcGF0Y2ggdGhlIGZvbGxvd2luZyBjb3VsZCBoYXBwZW46IHVzZXIgc3BhY2Ug
+Z2l2ZXMgdXMgYSBZVVYKPiBidWZmZXIgaW4gbGltaXRlZCByYW5nZTsgcGVyIHRoZSBwaXBlbGlu
+ZSBpbiBbMV0sIHRoZSBwbGFuZSB3b3VsZCBmaXJzdAo+IGdvIHRocm91Z2ggYSAiWVVWIFJhbmdl
+IGNvcnJlY3QiIHN0YWdlIHRoYXQgZXhwYW5kcyB0aGUgcmFuZ2U7IHRoZSBwbGFuZQo+IHdvdWxk
+IHRoZW4gZ28gdGhyb3VnaCB0aGUgIklucHV0IENTQyIgc3RhZ2Ugd2hpY2ggd291bGQgYWxzbyBl
+eHBhbmQgdGhlCj4gcmFuZ2UgYmVjYXVzZSBpY2xfcHJvZ3JhbV9pbnB1dF9jc2MoKSB3b3VsZCB1
+c2UgYSBtYXRyaXggYW5kIGFuIG9mZnNldAo+IHRoYXQgYXNzdW1lIGxpbWl0ZWQtcmFuZ2UgaW5w
+dXQ7IHRoaXMgd291bGQgdWx0aW1hdGVseSBjYXVzZSBkYXJrIGFuZAo+IGxpZ2h0IGNvbG9ycyB0
+byBhcHBlYXIgZGFya2VyIGFuZCBsaWdodGVyIHRoYW4gdGhleSBzaG91bGQgcmVzcGVjdGl2ZWx5
+Lgo+Cj4gVGhpcyBpcyBhbiBpc3N1ZSBiZWNhdXNlIGlmIGEgYnVmZmVyIHN3aXRjaGVzIGJldHdl
+ZW4gYmVpbmcgc2Nhbm5lZCBvdXQKPiBhbmQgYmVpbmcgY29tcG9zaXRlZCB3aXRoIHRoZSBHUFUs
+IHRoZSB1c2VyIHdpbGwgc2VlIGEgY29sb3IgZGlmZmVyZW5jZS4KPiBJZiB0aGlzIHN3aXRjaGlu
+ZyBoYXBwZW5zIHF1aWNrbHkgYW5kIGZyZXF1ZW50bHksIHRoZSB1c2VyIHdpbGwgcGVyY2VpdmUK
+PiB0aGlzIGFzIGEgZmxpY2tlcmluZy4KPgo+IFsxXSBodHRwczovLzAxLm9yZy9zaXRlcy9kZWZh
+dWx0L2ZpbGVzL2RvY3VtZW50YXRpb24vaW50ZWwtZ2Z4LXBybS1vc3JjLWljbGxwLXZvbDEyLWRp
+c3BsYXllbmdpbmVfMC5wZGYjcGFnZT0yODEKPgo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3Jn
+Cj4gU2lnbmVkLW9mZi1ieTogQW5kcmVzIENhbGRlcm9uIEphcmFtaWxsbyA8YW5kcmVzY2pAY2hy
+b21pdW0ub3JnPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+Cj4gTGluazogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
+b3JnL3BhdGNoL21zZ2lkLzIwMjAxMjE1MjI0MjE5LjM4OTYyNTYtMS1hbmRyZXNjakBnb29nbGUu
+Y29tCj4gKGNoZXJyeSBwaWNrZWQgZnJvbSBjb21taXQgZmVkMzg3NTcyMDQwZTg0ZWFkNTM4NTJh
+NzgyMGUzMGEzMGU1MTVkMCkKClRoYW5rcywgcHVzaGVkIHRvIGRybS1pbnRlbC1maXhlcy4KCkJS
+LApKYW5pLgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
+bGF5LmMgfCAgMiArCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRl
+LmMgIHwgNjUgKysrLS0tLS0tLS0tLS0tLS0tLS0KPiAgMiBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNl
+cnRpb25zKCspLCA1NSBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gaW5kZXggNTNhMDBjZjNmYTMyLi4zOTM5NjI0OGYzODgg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+
+IEBAIC00ODA3LDYgKzQ4MDcsOCBAQCB1MzIgZ2xrX3BsYW5lX2NvbG9yX2N0bChjb25zdCBzdHJ1
+Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPiAgCQkJcGxhbmVfY29sb3JfY3RsIHw9
+IFBMQU5FX0NPTE9SX1lVVl9SQU5HRV9DT1JSRUNUSU9OX0RJU0FCTEU7Cj4gIAl9IGVsc2UgaWYg
+KGZiLT5mb3JtYXQtPmlzX3l1dikgewo+ICAJCXBsYW5lX2NvbG9yX2N0bCB8PSBQTEFORV9DT0xP
+Ul9JTlBVVF9DU0NfRU5BQkxFOwo+ICsJCWlmIChwbGFuZV9zdGF0ZS0+aHcuY29sb3JfcmFuZ2Ug
+PT0gRFJNX0NPTE9SX1lDQkNSX0ZVTExfUkFOR0UpCj4gKwkJCXBsYW5lX2NvbG9yX2N0bCB8PSBQ
+TEFORV9DT0xPUl9ZVVZfUkFOR0VfQ09SUkVDVElPTl9ESVNBQkxFOwo+ICAJfQo+ICAKPiAgCXJl
+dHVybiBwbGFuZV9jb2xvcl9jdGw7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX3Nwcml0ZS5jCj4gaW5kZXggMDE5YTJkNmQ4MDdhLi4zZGEyNTQ0ZmExYzAgMTAwNjQ0Cj4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYwo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMKPiBAQCAtNjE4LDEz
+ICs2MTgsMTkgQEAgc2tsX3Byb2dyYW1fc2NhbGVyKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmUs
+Cj4gIAo+ICAvKiBQcmVvZmZzZXQgdmFsdWVzIGZvciBZVVYgdG8gUkdCIENvbnZlcnNpb24gKi8K
+PiAgI2RlZmluZSBQUkVPRkZfWVVWX1RPX1JHQl9ISQkJMHgxODAwCj4gLSNkZWZpbmUgUFJFT0ZG
+X1lVVl9UT19SR0JfTUUJCTB4MUYwMAo+ICsjZGVmaW5lIFBSRU9GRl9ZVVZfVE9fUkdCX01FCQkw
+eDAwMDAKPiAgI2RlZmluZSBQUkVPRkZfWVVWX1RPX1JHQl9MTwkJMHgxODAwCj4gIAo+ICAjZGVm
+aW5lICBST0ZGKHgpICAgICAgICAgICgoKHgpICYgMHhmZmZmKSA8PCAxNikKPiAgI2RlZmluZSAg
+R09GRih4KSAgICAgICAgICAoKCh4KSAmIDB4ZmZmZikgPDwgMCkKPiAgI2RlZmluZSAgQk9GRih4
+KSAgICAgICAgICAoKCh4KSAmIDB4ZmZmZikgPDwgMTYpCj4gIAo+ICsvKgo+ICsgKiBQcm9ncmFt
+cyB0aGUgaW5wdXQgY29sb3Igc3BhY2UgY29udmVyc2lvbiBzdGFnZSBmb3IgSUNMIEhEUiBwbGFu
+ZXMuCj4gKyAqIE5vdGUgdGhhdCBpdCBpcyBhc3N1bWVkIHRoYXQgdGhpcyBzdGFnZSBhbHdheXMg
+aGFwcGVucyBhZnRlciBZVVYKPiArICogcmFuZ2UgY29ycmVjdGlvbi4gVGh1cywgdGhlIGlucHV0
+IHRvIHRoaXMgc3RhZ2UgaXMgYXNzdW1lZCB0byBiZQo+ICsgKiBpbiBmdWxsLXJhbmdlIFlDYkNy
+Lgo+ICsgKi8KPiAgc3RhdGljIHZvaWQKPiAgaWNsX3Byb2dyYW1faW5wdXRfY3NjKHN0cnVjdCBp
+bnRlbF9wbGFuZSAqcGxhbmUsCj4gIAkJICAgICAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3Rh
+dGUgKmNydGNfc3RhdGUsCj4gQEAgLTY3Miw1MiArNjc4LDcgQEAgaWNsX3Byb2dyYW1faW5wdXRf
+Y3NjKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmUsCj4gIAkJCTB4MCwgMHg3ODAwLCAweDdGMTAs
+Cj4gIAkJfSwKPiAgCX07Cj4gLQo+IC0JLyogTWF0cml4IGZvciBMaW1pdGVkIFJhbmdlIHRvIEZ1
+bGwgUmFuZ2UgQ29udmVyc2lvbiAqLwo+IC0Jc3RhdGljIGNvbnN0IHUxNiBpbnB1dF9jc2NfbWF0
+cml4X2xyW11bOV0gPSB7Cj4gLQkJLyoKPiAtCQkgKiBCVC42MDEgTGltdGVkIHJhbmdlIFlDYkNy
+IC0+IGZ1bGwgcmFuZ2UgUkdCCj4gLQkJICogVGhlIG1hdHJpeCByZXF1aXJlZCBpcyA6Cj4gLQkJ
+ICogWzEuMTY0Mzg0LCAwLjAwMCwgMS41OTYwMjcsCj4gLQkJICogIDEuMTY0Mzg0LCAtMC4zOTE3
+NSwgLTAuODEyODEzLAo+IC0JCSAqICAxLjE2NDM4NCwgMi4wMTcyMzIsIDAuMDAwMF0KPiAtCQkg
+Ki8KPiAtCQlbRFJNX0NPTE9SX1lDQkNSX0JUNjAxXSA9IHsKPiAtCQkJMHg3Q0M4LCAweDc5NTAs
+IDB4MCwKPiAtCQkJMHg4RDAwLCAweDc5NTAsIDB4OUM4OCwKPiAtCQkJMHgwLCAweDc5NTAsIDB4
+NjgxMCwKPiAtCQl9LAo+IC0JCS8qCj4gLQkJICogQlQuNzA5IExpbWl0ZWQgcmFuZ2UgWUNiQ3Ig
+LT4gZnVsbCByYW5nZSBSR0IKPiAtCQkgKiBUaGUgbWF0cml4IHJlcXVpcmVkIGlzIDoKPiAtCQkg
+KiBbMS4xNjQzODQsIDAuMDAwLCAxLjc5Mjc0MSwKPiAtCQkgKiAgMS4xNjQzODQsIC0wLjIxMzI0
+OSwgLTAuNTMyOTA5LAo+IC0JCSAqICAxLjE2NDM4NCwgMi4xMTI0MDIsIDAuMDAwMF0KPiAtCQkg
+Ki8KPiAtCQlbRFJNX0NPTE9SX1lDQkNSX0JUNzA5XSA9IHsKPiAtCQkJMHg3RTU4LCAweDc5NTAs
+IDB4MCwKPiAtCQkJMHg4ODg4LCAweDc5NTAsIDB4QURBOCwKPiAtCQkJMHgwLCAweDc5NTAsICAw
+eDY4NzAsCj4gLQkJfSwKPiAtCQkvKgo+IC0JCSAqIEJULjIwMjAgTGltaXRlZCByYW5nZSBZQ2JD
+ciAtPiBmdWxsIHJhbmdlIFJHQgo+IC0JCSAqIFRoZSBtYXRyaXggcmVxdWlyZWQgaXMgOgo+IC0J
+CSAqIFsxLjE2NCwgMC4wMDAsIDEuNjc4LAo+IC0JCSAqICAxLjE2NCwgLTAuMTg3MywgLTAuNjUw
+NCwKPiAtCQkgKiAgMS4xNjQsIDIuMTQxNywgMC4wMDAwXQo+IC0JCSAqLwo+IC0JCVtEUk1fQ09M
+T1JfWUNCQ1JfQlQyMDIwXSA9IHsKPiAtCQkJMHg3RDcwLCAweDc5NTAsIDB4MCwKPiAtCQkJMHg4
+QTY4LCAweDc5NTAsIDB4QUMwMCwKPiAtCQkJMHgwLCAweDc5NTAsIDB4Njg5MCwKPiAtCQl9LAo+
+IC0JfTsKPiAtCWNvbnN0IHUxNiAqY3NjOwo+IC0KPiAtCWlmIChwbGFuZV9zdGF0ZS0+aHcuY29s
+b3JfcmFuZ2UgPT0gRFJNX0NPTE9SX1lDQkNSX0ZVTExfUkFOR0UpCj4gLQkJY3NjID0gaW5wdXRf
+Y3NjX21hdHJpeFtwbGFuZV9zdGF0ZS0+aHcuY29sb3JfZW5jb2RpbmddOwo+IC0JZWxzZQo+IC0J
+CWNzYyA9IGlucHV0X2NzY19tYXRyaXhfbHJbcGxhbmVfc3RhdGUtPmh3LmNvbG9yX2VuY29kaW5n
+XTsKPiArCWNvbnN0IHUxNiAqY3NjID0gaW5wdXRfY3NjX21hdHJpeFtwbGFuZV9zdGF0ZS0+aHcu
+Y29sb3JfZW5jb2RpbmddOwo+ICAKPiAgCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQTEFO
+RV9JTlBVVF9DU0NfQ09FRkYocGlwZSwgcGxhbmVfaWQsIDApLAo+ICAJCQkgIFJPRkYoY3NjWzBd
+KSB8IEdPRkYoY3NjWzFdKSk7Cj4gQEAgLTczNCwxNCArNjk1LDggQEAgaWNsX3Byb2dyYW1faW5w
+dXRfY3NjKHN0cnVjdCBpbnRlbF9wbGFuZSAqcGxhbmUsCj4gIAo+ICAJaW50ZWxfZGVfd3JpdGVf
+ZncoZGV2X3ByaXYsIFBMQU5FX0lOUFVUX0NTQ19QUkVPRkYocGlwZSwgcGxhbmVfaWQsIDApLAo+
+ICAJCQkgIFBSRU9GRl9ZVVZfVE9fUkdCX0hJKTsKPiAtCWlmIChwbGFuZV9zdGF0ZS0+aHcuY29s
+b3JfcmFuZ2UgPT0gRFJNX0NPTE9SX1lDQkNSX0ZVTExfUkFOR0UpCj4gLQkJaW50ZWxfZGVfd3Jp
+dGVfZncoZGV2X3ByaXYsCj4gLQkJCQkgIFBMQU5FX0lOUFVUX0NTQ19QUkVPRkYocGlwZSwgcGxh
+bmVfaWQsIDEpLAo+IC0JCQkJICAwKTsKPiAtCWVsc2UKPiAtCQlpbnRlbF9kZV93cml0ZV9mdyhk
+ZXZfcHJpdiwKPiAtCQkJCSAgUExBTkVfSU5QVVRfQ1NDX1BSRU9GRihwaXBlLCBwbGFuZV9pZCwg
+MSksCj4gLQkJCQkgIFBSRU9GRl9ZVVZfVE9fUkdCX01FKTsKPiArCWludGVsX2RlX3dyaXRlX2Z3
+KGRldl9wcml2LCBQTEFORV9JTlBVVF9DU0NfUFJFT0ZGKHBpcGUsIHBsYW5lX2lkLCAxKSwKPiAr
+CQkJICBQUkVPRkZfWVVWX1RPX1JHQl9NRSk7Cj4gIAlpbnRlbF9kZV93cml0ZV9mdyhkZXZfcHJp
+diwgUExBTkVfSU5QVVRfQ1NDX1BSRU9GRihwaXBlLCBwbGFuZV9pZCwgMiksCj4gIAkJCSAgUFJF
+T0ZGX1lVVl9UT19SR0JfTE8pOwo+ICAJaW50ZWxfZGVfd3JpdGVfZncoZGV2X3ByaXYsCgotLSAK
+SmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
