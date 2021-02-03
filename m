@@ -2,57 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13A7230E290
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 19:33:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA2A330E302
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 20:03:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39DF26E970;
-	Wed,  3 Feb 2021 18:33:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6D206EB2E;
+	Wed,  3 Feb 2021 19:03:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com
- [IPv6:2607:f8b0:4864:20::729])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 936536E970
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 18:33:01 +0000 (UTC)
-Received: by mail-qk1-x729.google.com with SMTP id a7so647343qkb.13
- for <intel-gfx@lists.freedesktop.org>; Wed, 03 Feb 2021 10:33:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=xTWB0/yvwq6Ofk82hSfh9I5kl9DnD9//wjw9naPDLKo=;
- b=DJmBMmBYZmjnZm7WGgdSme2mAA+2GvGSc1TCvQweiFWwDV0m9GtUitojkza3Ooo5C4
- 2IUhCE42Q8kbL4u/ilAHTc6tBQi7WRPVQ4ApH0b49hegNxajFJUxOTRneddcBXt7UC7R
- dTln3ZQLsq4rp5106YWVEpArxnDDXnDReQe/fXZlAHR2MKcQG5r3t+38dKAGiE7duG6X
- Oi8dFlkkzzak1ZvUmDGZQWLr7o8rji+b8lgjB9X6HoosUh1+Si7TBAeQJSGhbOOo6N2n
- TC3yyxnMAl6pVFiFGPRIZQo4iSwvCBrxmX0MzsLROcDSEnjTgQ3WfPTFhfD/PVgsovdW
- KXcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=xTWB0/yvwq6Ofk82hSfh9I5kl9DnD9//wjw9naPDLKo=;
- b=epttb91UXAZifSfc+6vAF1vb7c2idDhOUc0YObF9O287YLhVeKBTBF3Tb5eFTJUj6J
- 7GcYuByTkPBNHXMCBqy8Edaw6zk3UVEewUFM1mwtAoGRPaTw6IhaG9KUXgMT5D/aDtCH
- icPKJc6I3Y/I9gyk2CNTZNZDMCH01iHCDFhxIiNDXIwwcjQENLPDXhw/PwDoTRCiUrYi
- ZkmEDP2QzF3jsv5q9mmuI0+dvRbpxVjpY1YgjnvixIHNn7VDLBFKESaX5uMfPcuR8dl9
- owOqQqJyograe8+8Iz/klfoXLVWbNo/Zaw0VgQ6Fy7Gmq1bPDLT/ZQ6C9V0LZzKi++Jg
- rmMQ==
-X-Gm-Message-State: AOAM5302jC3UCHD6YmL64LTkTKLy/8ktQvUw3Lw1ok+zTi/tURZMlA8E
- qpXMwv3DABWI3pjxdvpM4RGTkQH+xGYlomfG+aQ=
-X-Google-Smtp-Source: ABdhPJzBarLHXpNqW9G9DBD++9yQqGCDRtT9/zCNhQBGbHTJN2Elo/G/Lp9QswFgcnzCz4u22qOOuHNUoFvQcaHABww=
-X-Received: by 2002:a37:418d:: with SMTP id o135mr3858265qka.426.1612377180727; 
- Wed, 03 Feb 2021 10:33:00 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F0EE96EB2E;
+ Wed,  3 Feb 2021 19:03:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EB097A0BA8;
+ Wed,  3 Feb 2021 19:03:49 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210203152333.511453-1-matthew.auld@intel.com>
- <20210203152333.511453-3-matthew.auld@intel.com>
- <9a947b5a0cea4072b2e8371c3c17249b@intel.com>
- <CAM0jSHNdRHCTOGfZqmFKgWBb0bfcCnj+O1Rhtm-whbw6EiafbA@mail.gmail.com>
- <d4b238215f224814b63508d6a49400da@intel.com>
-In-Reply-To: <d4b238215f224814b63508d6a49400da@intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 3 Feb 2021 18:32:34 +0000
-Message-ID: <CAM0jSHM7eW16wZxpnMEDX0V4WnXJAhAFrwCgthA5AAovzJAbVw@mail.gmail.com>
-To: "Tang, CQ" <cq.tang@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/i915/gtt/dg1: add PTE_LM
- plumbing for GGTT
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Wed, 03 Feb 2021 19:03:49 -0000
+Message-ID: <161237902993.945.9392037038859785819@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210203171231.551338-1-matthew.auld@intel.com>
+In-Reply-To: <20210203171231.551338-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv4=2C1/3=5D_drm/i915=3A_Distinction_of_mem?=
+ =?utf-8?q?ory_regions?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,202 +39,248 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Auld,
- Matthew" <matthew.auld@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0392380543=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 3 Feb 2021 at 18:01, Tang, CQ <cq.tang@intel.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Matthew Auld <matthew.william.auld@gmail.com>
-> > Sent: Wednesday, February 3, 2021 9:03 AM
-> > To: Tang, CQ <cq.tang@intel.com>
-> > Cc: Auld, Matthew <matthew.auld@intel.com>; intel-
-> > gfx@lists.freedesktop.org; Chris Wilson <chris@chris-wilson.co.uk>
-> > Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/i915/gtt/dg1: add PTE_LM
-> > plumbing for GGTT
-> >
-> > On Wed, 3 Feb 2021 at 16:51, Tang, CQ <cq.tang@intel.com> wrote:
-> > >
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
-> > > > Of Matthew Auld
-> > > > Sent: Wednesday, February 3, 2021 7:24 AM
-> > > > To: intel-gfx@lists.freedesktop.org
-> > > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > Subject: [Intel-gfx] [PATCH v3 3/3] drm/i915/gtt/dg1: add PTE_LM
-> > > > plumbing for GGTT
-> > > >
-> > > > For the PTEs we get an LM bit, to signal whether the page resides in
-> > > > SMEM or LMEM.
-> > > >
-> > > > Based on a patch from Michel Thierry.
-> > > >
-> > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > > > Signed-off-by: Daniele Ceraolo Spurio
-> > > > <daniele.ceraolospurio@intel.com>
-> > > > Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/gt/intel_ggtt.c | 24 +++++++++++++++++++-----
-> > > > drivers/gpu/drm/i915/gt/intel_gtt.h  |  4 +++-
-> > > >  2 files changed, 22 insertions(+), 6 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > > > b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > > > index fc399ac16eda..b0b8ded834f0 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > > > @@ -10,6 +10,8 @@
-> > > >
-> > > >  #include <drm/i915_drm.h>
-> > > >
-> > > > +#include "gem/i915_gem_lmem.h"
-> > > > +
-> > > >  #include "intel_gt.h"
-> > > >  #include "i915_drv.h"
-> > > >  #include "i915_scatterlist.h"
-> > > > @@ -189,7 +191,12 @@ static u64 gen8_ggtt_pte_encode(dma_addr_t
-> > addr,
-> > > >                               enum i915_cache_level level,
-> > > >                               u32 flags)  {
-> > > > -     return addr | _PAGE_PRESENT;
-> > > > +     gen8_pte_t pte = addr | _PAGE_PRESENT;
-> > > > +
-> > > > +     if (flags & PTE_LM)
-> > > > +             pte |= GEN12_GGTT_PTE_LM;
-> > > > +
-> > > > +     return pte;
-> > > >  }
-> > > >
-> > > >  static void gen8_set_pte(void __iomem *addr, gen8_pte_t pte) @@
-> > > > -201,13
-> > > > +208,13 @@ static void gen8_ggtt_insert_page(struct
-> > > > +i915_address_space
-> > > > *vm,
-> > > >                                 dma_addr_t addr,
-> > > >                                 u64 offset,
-> > > >                                 enum i915_cache_level level,
-> > > > -                               u32 unused)
-> > > > +                               u32 flags)
-> > > >  {
-> > > >       struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
-> > > >       gen8_pte_t __iomem *pte =
-> > > >               (gen8_pte_t __iomem *)ggtt->gsm + offset /
-> > > > I915_GTT_PAGE_SIZE;
-> > > >
-> > > > -     gen8_set_pte(pte, gen8_ggtt_pte_encode(addr, level, 0));
-> > > > +     gen8_set_pte(pte, gen8_ggtt_pte_encode(addr, level, flags));
-> > > >
-> > > >       ggtt->invalidate(ggtt);
-> > > >  }
-> > > > @@ -217,7 +224,7 @@ static void gen8_ggtt_insert_entries(struct
-> > > > i915_address_space *vm,
-> > > >                                    enum i915_cache_level level,
-> > > >                                    u32 flags)  {
-> > > > -     const gen8_pte_t pte_encode = gen8_ggtt_pte_encode(0, level, 0);
-> > > > +     const gen8_pte_t pte_encode = gen8_ggtt_pte_encode(0, level,
-> > > > flags);
-> > > >       struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
-> > > >       gen8_pte_t __iomem *gte;
-> > > >       gen8_pte_t __iomem *end;
-> > > > @@ -459,6 +466,8 @@ static void ggtt_bind_vma(struct
-> > > > i915_address_space *vm,
-> > > >       pte_flags = 0;
-> > > >       if (i915_gem_object_is_readonly(obj))
-> > > >               pte_flags |= PTE_READ_ONLY;
-> > > > +     if (i915_gem_object_is_lmem(obj))
-> > > > +             pte_flags |= PTE_LM;
-> > > >
-> > > >       vm->insert_entries(vm, vma, cache_level, pte_flags);
-> > > >       vma->page_sizes.gtt = I915_GTT_PAGE_SIZE; @@ -794,6 +803,7 @@
-> > > > static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
-> > > >       struct drm_i915_private *i915 = ggtt->vm.i915;
-> > > >       struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-> > > >       phys_addr_t phys_addr;
-> > > > +     u32 pte_flags;
-> > > >       int ret;
-> > > >
-> > > >       /* For Modern GENs the PTEs and register space are split in
-> > > > the BAR */ @@ -823,9 +833,13 @@ static int ggtt_probe_common(struct
-> > > > i915_ggtt *ggtt, u64 size)
-> > > >               return ret;
-> > > >       }
-> > > >
-> > > > +     pte_flags = 0;
-> > > > +     if (i915_gem_object_is_lmem(ggtt->vm.scratch[0]))
-> > > > +             pte_flags |= PTE_LM;
-> > > > +
-> > > >       ggtt->vm.scratch[0]->encode =
-> > > >               ggtt->vm.pte_encode(px_dma(ggtt->vm.scratch[0]),
-> > > > -                                 I915_CACHE_NONE, 0);
-> > > > +                                 I915_CACHE_NONE, pte_flags);
-> > > >
-> > > >       return 0;
-> > > >  }
-> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > > > b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > > > index 0eef625dd787..24b5808df16d 100644
-> > > > --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > > > +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > > > @@ -85,7 +85,9 @@ typedef u64 gen8_pte_t;
-> > > >  #define BYT_PTE_SNOOPED_BY_CPU_CACHES        REG_BIT(2)
-> > > >  #define BYT_PTE_WRITEABLE            REG_BIT(1)
-> > > >
-> > > > -#define GEN12_PPGTT_PTE_LM BIT_ULL(11)
-> > > > +#define GEN12_PPGTT_PTE_LM   BIT_ULL(11)
-> > > > +
-> > > > +#define GEN12_GGTT_PTE_LM    BIT_ULL(1)
-> > >
-> > > Where does the Bspec say bit-1 is for LMEM?
-> >
-> > Bspec: 45015 <- GGTT
-> > Bspec: 45040 <- ppGTT
->
-> I looked both document, I don't see bit-1 is used as DM indicator, it is R/W bit. I also see bit-11 is ignored.
-> The only place I see bit-11 as DM is Bspec 53521
+--===============0392380543==
+Content-Type: multipart/alternative;
+ boundary="===============7148925998991126581=="
 
-I see bit-1 as "Local Memory" in 45015, and bit-11 as "Local Memory"
-in 45040. Also there is no R/W bit for the GGTT on DG1, so not sure
-what version of the spec you are looking at. Just to be clear there
-are two different bits here, one for the ppGTT and one for the GGTT,
-they both have different layouts for their respective PTEs.
+--===============7148925998991126581==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Bspec: 53521 is not applicable to DG1.
+== Series Details ==
 
->
-> --CQ
->
->
-> >
-> > I'll update the commit messages.
-> >
-> > >
-> > > --CQ
-> > >
-> > > >
-> > > >  /*
-> > > >   * Cacheability Control is a 4-bit value. The low three bits are
-> > > > stored in bits
-> > > > --
-> > > > 2.26.2
-> > > >
-> > > > _______________________________________________
-> > > > Intel-gfx mailing list
-> > > > Intel-gfx@lists.freedesktop.org
-> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Series: series starting with [v4,1/3] drm/i915: Distinction of memory regions
+URL   : https://patchwork.freedesktop.org/series/86658/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9725 -> Patchwork_19577
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19577:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-rkl-11500t}:    [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-rkl-11500t/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-rkl-11500t/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19577 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-gfx0:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-tgl-y/igt@gem_tiled_blits@basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-tgl-y/igt@gem_tiled_blits@basic.html
+
+  * igt@i915_selftest@live@blt:
+    - fi-hsw-4770:        [PASS][6] -> [DMESG-FAIL][7] ([i915#1409])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-hsw-4770/igt@i915_selftest@live@blt.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-hsw-4770/igt@i915_selftest@live@blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ringfill@basic-all:
+    - fi-tgl-y:           [DMESG-WARN][8] ([i915#402]) -> [PASS][9] +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-tgl-y/igt@gem_ringfill@basic-all.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-tgl-y/igt@gem_ringfill@basic-all.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [INCOMPLETE][10] ([i915#2940]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1409]: https://gitlab.freedesktop.org/drm/intel/issues/1409
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (45 -> 38)
+------------------------------
+
+  Missing    (7): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9725 -> Patchwork_19577
+
+  CI-20190529: 20190529
+  CI_DRM_9725: 4f97ebbb265a06654e2cc76a0e0115cc00bb6c91 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5989: 57a96840fd5aa7ec48c2f84b30e0420f84ec7386 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19577: edcc71bf4ff1b50c498680694f8cd4c2e1e59a3f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+edcc71bf4ff1 drm/i915/gtt/dg1: add PTE_LM plumbing for GGTT
+489836c71de1 drm/i915/gtt/dg1: add PTE_LM plumbing for ppGTT
+0dc2562108ec drm/i915: Distinction of memory regions
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/index.html
+
+--===============7148925998991126581==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v4,1/3] drm/i915: Distinction of memory regions</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86658/">https://patchwork.freedesktop.org/series/86658/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9725 -&gt; Patchwork_19577</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19577:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-rkl-11500t/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-rkl-11500t/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19577 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-tgl-y/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-tgl-y/igt@gem_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@blt:</p>
+<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-hsw-4770/igt@i915_selftest@live@blt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-hsw-4770/igt@i915_selftest@live@blt.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1409">i915#1409</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_ringfill@basic-all:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-tgl-y/igt@gem_ringfill@basic-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-tgl-y/igt@gem_ringfill@basic-all.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19577/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 38)</h2>
+<p>Missing    (7): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9725 -&gt; Patchwork_19577</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9725: 4f97ebbb265a06654e2cc76a0e0115cc00bb6c91 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5989: 57a96840fd5aa7ec48c2f84b30e0420f84ec7386 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19577: edcc71bf4ff1b50c498680694f8cd4c2e1e59a3f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>edcc71bf4ff1 drm/i915/gtt/dg1: add PTE_LM plumbing for GGTT<br />
+489836c71de1 drm/i915/gtt/dg1: add PTE_LM plumbing for ppGTT<br />
+0dc2562108ec drm/i915: Distinction of memory regions</p>
+
+</body>
+</html>
+
+--===============7148925998991126581==--
+
+--===============0392380543==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0392380543==--
