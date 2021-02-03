@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45C330E006
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 17:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D343E30E013
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 17:53:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10A5D6EB09;
-	Wed,  3 Feb 2021 16:51:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBFCD6EB4E;
+	Wed,  3 Feb 2021 16:53:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 244706EB09
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 16:51:27 +0000 (UTC)
-IronPort-SDR: 9CTp/jY7V/TozvyhxNmirmueI6Qo48mlvbx2Rgp1IkF7mPrctOf0IaMyEk7jA5H20otdHf5lU6
- t1baf3AahzDg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="181216293"
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="181216293"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 08:51:24 -0800
-IronPort-SDR: ocwLWdx2xaYhr2dyzSSlhSz28mD2cO3Iw/40QdU7eAtgAY47Wmx/X9fc7pTelNTGc35tcQopZb
- svgzfpYPh9vA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="414573835"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
- by fmsmga002.fm.intel.com with ESMTP; 03 Feb 2021 08:51:23 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 3 Feb 2021 16:51:22 +0000
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2106.002;
- Wed, 3 Feb 2021 08:51:21 -0800
-From: "Tang, CQ" <cq.tang@intel.com>
-To: "Auld, Matthew" <matthew.auld@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 3/3] drm/i915/gtt/dg1: add PTE_LM plumbing
- for GGTT
-Thread-Index: AQHW+kC1aB4dKezT2ESM0+ZtUMe3fKpGpMXA
-Date: Wed, 3 Feb 2021 16:51:20 +0000
-Message-ID: <9a947b5a0cea4072b2e8371c3c17249b@intel.com>
-References: <20210203152333.511453-1-matthew.auld@intel.com>
- <20210203152333.511453-3-matthew.auld@intel.com>
-In-Reply-To: <20210203152333.511453-3-matthew.auld@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.1.200.100]
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 867FC6EB34
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 16:53:02 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23778154-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 03 Feb 2021 16:52:57 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  3 Feb 2021 16:52:51 +0000
+Message-Id: <20210203165259.13087-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/i915/gtt/dg1: add PTE_LM
- plumbing for GGTT
+Subject: [Intel-gfx] [CI 1/9] drm/i915: Replace engine->schedule() with a
+ known request operation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,156 +37,615 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Looking to the future, we want to set the scheduling attributes
+explicitly and so replace the generic engine->schedule() with the more
+direct i915_request_set_priority()
 
+What it loses in removing the 'schedule' name from the function, it
+gains in having an explicit entry point with a stated goal.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Matthew Auld
-> Sent: Wednesday, February 3, 2021 7:24 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Subject: [Intel-gfx] [PATCH v3 3/3] drm/i915/gtt/dg1: add PTE_LM plumbing
-> for GGTT
-> 
-> For the PTEs we get an LM bit, to signal whether the page resides in SMEM or
-> LMEM.
-> 
-> Based on a patch from Michel Thierry.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/intel_ggtt.c | 24 +++++++++++++++++++-----
-> drivers/gpu/drm/i915/gt/intel_gtt.h  |  4 +++-
->  2 files changed, 22 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index fc399ac16eda..b0b8ded834f0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -10,6 +10,8 @@
-> 
->  #include <drm/i915_drm.h>
-> 
-> +#include "gem/i915_gem_lmem.h"
-> +
->  #include "intel_gt.h"
->  #include "i915_drv.h"
->  #include "i915_scatterlist.h"
-> @@ -189,7 +191,12 @@ static u64 gen8_ggtt_pte_encode(dma_addr_t addr,
->  				enum i915_cache_level level,
->  				u32 flags)
->  {
-> -	return addr | _PAGE_PRESENT;
-> +	gen8_pte_t pte = addr | _PAGE_PRESENT;
-> +
-> +	if (flags & PTE_LM)
-> +		pte |= GEN12_GGTT_PTE_LM;
-> +
-> +	return pte;
->  }
-> 
->  static void gen8_set_pte(void __iomem *addr, gen8_pte_t pte) @@ -201,13
-> +208,13 @@ static void gen8_ggtt_insert_page(struct i915_address_space
-> *vm,
->  				  dma_addr_t addr,
->  				  u64 offset,
->  				  enum i915_cache_level level,
-> -				  u32 unused)
-> +				  u32 flags)
->  {
->  	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
->  	gen8_pte_t __iomem *pte =
->  		(gen8_pte_t __iomem *)ggtt->gsm + offset /
-> I915_GTT_PAGE_SIZE;
-> 
-> -	gen8_set_pte(pte, gen8_ggtt_pte_encode(addr, level, 0));
-> +	gen8_set_pte(pte, gen8_ggtt_pte_encode(addr, level, flags));
-> 
->  	ggtt->invalidate(ggtt);
->  }
-> @@ -217,7 +224,7 @@ static void gen8_ggtt_insert_entries(struct
-> i915_address_space *vm,
->  				     enum i915_cache_level level,
->  				     u32 flags)
->  {
-> -	const gen8_pte_t pte_encode = gen8_ggtt_pte_encode(0, level, 0);
-> +	const gen8_pte_t pte_encode = gen8_ggtt_pte_encode(0, level,
-> flags);
->  	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
->  	gen8_pte_t __iomem *gte;
->  	gen8_pte_t __iomem *end;
-> @@ -459,6 +466,8 @@ static void ggtt_bind_vma(struct i915_address_space
-> *vm,
->  	pte_flags = 0;
->  	if (i915_gem_object_is_readonly(obj))
->  		pte_flags |= PTE_READ_ONLY;
-> +	if (i915_gem_object_is_lmem(obj))
-> +		pte_flags |= PTE_LM;
-> 
->  	vm->insert_entries(vm, vma, cache_level, pte_flags);
->  	vma->page_sizes.gtt = I915_GTT_PAGE_SIZE; @@ -794,6 +803,7 @@
-> static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
->  	struct drm_i915_private *i915 = ggtt->vm.i915;
->  	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
->  	phys_addr_t phys_addr;
-> +	u32 pte_flags;
->  	int ret;
-> 
->  	/* For Modern GENs the PTEs and register space are split in the BAR
-> */ @@ -823,9 +833,13 @@ static int ggtt_probe_common(struct i915_ggtt
-> *ggtt, u64 size)
->  		return ret;
->  	}
-> 
-> +	pte_flags = 0;
-> +	if (i915_gem_object_is_lmem(ggtt->vm.scratch[0]))
-> +		pte_flags |= PTE_LM;
-> +
->  	ggtt->vm.scratch[0]->encode =
->  		ggtt->vm.pte_encode(px_dma(ggtt->vm.scratch[0]),
-> -				    I915_CACHE_NONE, 0);
-> +				    I915_CACHE_NONE, pte_flags);
-> 
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> index 0eef625dd787..24b5808df16d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> @@ -85,7 +85,9 @@ typedef u64 gen8_pte_t;
->  #define BYT_PTE_SNOOPED_BY_CPU_CACHES	REG_BIT(2)
->  #define BYT_PTE_WRITEABLE		REG_BIT(1)
-> 
-> -#define GEN12_PPGTT_PTE_LM BIT_ULL(11)
-> +#define GEN12_PPGTT_PTE_LM	BIT_ULL(11)
-> +
-> +#define GEN12_GGTT_PTE_LM	BIT_ULL(1)
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c  |  5 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  5 ++-
+ drivers/gpu/drm/i915/gem/i915_gem_wait.c      | 29 +++++-----------
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  3 --
+ .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  4 +--
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  | 27 ++++++++-------
+ drivers/gpu/drm/i915/gt/intel_engine_user.c   |  2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |  3 +-
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  | 33 +++++--------------
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  | 11 +++----
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  3 +-
+ drivers/gpu/drm/i915/i915_request.c           | 10 +++---
+ drivers/gpu/drm/i915/i915_request.h           |  5 +++
+ drivers/gpu/drm/i915/i915_scheduler.c         | 15 +++++----
+ drivers/gpu/drm/i915/i915_scheduler.h         |  3 +-
+ 15 files changed, 64 insertions(+), 94 deletions(-)
 
-Where does the Bspec say bit-1 is for LMEM?
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index d8f10589e09e..aca964f7ba72 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -13662,7 +13662,6 @@ int
+ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 		       struct drm_plane_state *_new_plane_state)
+ {
+-	struct i915_sched_attr attr = { .priority = I915_PRIORITY_DISPLAY };
+ 	struct intel_plane *plane = to_intel_plane(_plane);
+ 	struct intel_plane_state *new_plane_state =
+ 		to_intel_plane_state(_new_plane_state);
+@@ -13703,7 +13702,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 
+ 	if (new_plane_state->uapi.fence) { /* explicit fencing */
+ 		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
+-					     &attr);
++					     I915_PRIORITY_DISPLAY);
+ 		ret = i915_sw_fence_await_dma_fence(&state->commit_ready,
+ 						    new_plane_state->uapi.fence,
+ 						    i915_fence_timeout(dev_priv),
+@@ -13725,7 +13724,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	if (ret)
+ 		return ret;
+ 
+-	i915_gem_object_wait_priority(obj, 0, &attr);
++	i915_gem_object_wait_priority(obj, 0, I915_PRIORITY_DISPLAY);
+ 	i915_gem_object_flush_frontbuffer(obj, ORIGIN_DIRTYFB);
+ 
+ 	if (!new_plane_state->uapi.fence) { /* implicit fencing */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 35a8d90f14f1..366d23afbb1a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -549,15 +549,14 @@ static inline void __start_cpu_write(struct drm_i915_gem_object *obj)
+ 		obj->cache_dirty = true;
+ }
+ 
+-void i915_gem_fence_wait_priority(struct dma_fence *fence,
+-				  const struct i915_sched_attr *attr);
++void i915_gem_fence_wait_priority(struct dma_fence *fence, int prio);
+ 
+ int i915_gem_object_wait(struct drm_i915_gem_object *obj,
+ 			 unsigned int flags,
+ 			 long timeout);
+ int i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
+ 				  unsigned int flags,
+-				  const struct i915_sched_attr *attr);
++				  int prio);
+ 
+ void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
+ 					 enum fb_op_origin origin);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_wait.c b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+index 4b9856d5ba14..d79bf16083bd 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_wait.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_wait.c
+@@ -91,22 +91,12 @@ i915_gem_object_wait_reservation(struct dma_resv *resv,
+ 	return timeout;
+ }
+ 
+-static void fence_set_priority(struct dma_fence *fence,
+-			       const struct i915_sched_attr *attr)
++static void fence_set_priority(struct dma_fence *fence, int prio)
+ {
+-	struct i915_request *rq;
+-	struct intel_engine_cs *engine;
+-
+ 	if (dma_fence_is_signaled(fence) || !dma_fence_is_i915(fence))
+ 		return;
+ 
+-	rq = to_request(fence);
+-	engine = rq->engine;
+-
+-	rcu_read_lock(); /* RCU serialisation for set-wedged protection */
+-	if (engine->schedule)
+-		engine->schedule(rq, attr);
+-	rcu_read_unlock();
++	i915_request_set_priority(to_request(fence), prio);
+ }
+ 
+ static inline bool __dma_fence_is_chain(const struct dma_fence *fence)
+@@ -114,8 +104,7 @@ static inline bool __dma_fence_is_chain(const struct dma_fence *fence)
+ 	return fence->ops == &dma_fence_chain_ops;
+ }
+ 
+-void i915_gem_fence_wait_priority(struct dma_fence *fence,
+-				  const struct i915_sched_attr *attr)
++void i915_gem_fence_wait_priority(struct dma_fence *fence, int prio)
+ {
+ 	if (dma_fence_is_signaled(fence))
+ 		return;
+@@ -128,19 +117,19 @@ void i915_gem_fence_wait_priority(struct dma_fence *fence,
+ 		int i;
+ 
+ 		for (i = 0; i < array->num_fences; i++)
+-			fence_set_priority(array->fences[i], attr);
++			fence_set_priority(array->fences[i], prio);
+ 	} else if (__dma_fence_is_chain(fence)) {
+ 		struct dma_fence *iter;
+ 
+ 		/* The chain is ordered; if we boost the last, we boost all */
+ 		dma_fence_chain_for_each(iter, fence) {
+ 			fence_set_priority(to_dma_fence_chain(iter)->fence,
+-					   attr);
++					   prio);
+ 			break;
+ 		}
+ 		dma_fence_put(iter);
+ 	} else {
+-		fence_set_priority(fence, attr);
++		fence_set_priority(fence, prio);
+ 	}
+ 
+ 	local_bh_enable(); /* kick the tasklets if queues were reprioritised */
+@@ -149,7 +138,7 @@ void i915_gem_fence_wait_priority(struct dma_fence *fence,
+ int
+ i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
+ 			      unsigned int flags,
+-			      const struct i915_sched_attr *attr)
++			      int prio)
+ {
+ 	struct dma_fence *excl;
+ 
+@@ -164,7 +153,7 @@ i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
+ 			return ret;
+ 
+ 		for (i = 0; i < count; i++) {
+-			i915_gem_fence_wait_priority(shared[i], attr);
++			i915_gem_fence_wait_priority(shared[i], prio);
+ 			dma_fence_put(shared[i]);
+ 		}
+ 
+@@ -174,7 +163,7 @@ i915_gem_object_wait_priority(struct drm_i915_gem_object *obj,
+ 	}
+ 
+ 	if (excl) {
+-		i915_gem_fence_wait_priority(excl, attr);
++		i915_gem_fence_wait_priority(excl, prio);
+ 		dma_fence_put(excl);
+ 	}
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 90f2b2d207ac..d65f75cb5476 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -326,9 +326,6 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	if (engine->context_size)
+ 		DRIVER_CAPS(i915)->has_logical_contexts = true;
+ 
+-	/* Nothing to do here, execute in order of dependencies */
+-	engine->schedule = NULL;
+-
+ 	ewma__engine_latency_init(&engine->latency);
+ 
+ 	ATOMIC_INIT_NOTIFIER_HEAD(&engine->context_status_notifier);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+index 778bcae5ef2c..0b026cde9f09 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
+@@ -114,7 +114,7 @@ static void heartbeat(struct work_struct *wrk)
+ 			 * but all other contexts, including the kernel
+ 			 * context are stuck waiting for the signal.
+ 			 */
+-		} else if (engine->schedule &&
++		} else if (intel_engine_has_scheduler(engine) &&
+ 			   rq->sched.attr.priority < I915_PRIORITY_BARRIER) {
+ 			/*
+ 			 * Gradually raise the priority of the heartbeat to
+@@ -129,7 +129,7 @@ static void heartbeat(struct work_struct *wrk)
+ 				attr.priority = I915_PRIORITY_BARRIER;
+ 
+ 			local_bh_disable();
+-			engine->schedule(rq, &attr);
++			i915_request_set_priority(rq, attr.priority);
+ 			local_bh_enable();
+ 		} else {
+ 			if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index c9974de2dd00..7cc5f4ca3f56 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -454,14 +454,6 @@ struct intel_engine_cs {
+ 	void            (*bond_execute)(struct i915_request *rq,
+ 					struct dma_fence *signal);
+ 
+-	/*
+-	 * Call when the priority on a request has changed and it and its
+-	 * dependencies may need rescheduling. Note the request itself may
+-	 * not be ready to run!
+-	 */
+-	void		(*schedule)(struct i915_request *request,
+-				    const struct i915_sched_attr *attr);
+-
+ 	void		(*release)(struct intel_engine_cs *engine);
+ 
+ 	struct intel_engine_execlists execlists;
+@@ -479,12 +471,13 @@ struct intel_engine_cs {
+ 
+ #define I915_ENGINE_USING_CMD_PARSER BIT(0)
+ #define I915_ENGINE_SUPPORTS_STATS   BIT(1)
+-#define I915_ENGINE_HAS_PREEMPTION   BIT(2)
+-#define I915_ENGINE_HAS_SEMAPHORES   BIT(3)
+-#define I915_ENGINE_HAS_TIMESLICES   BIT(4)
+-#define I915_ENGINE_IS_VIRTUAL       BIT(5)
+-#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(6)
+-#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(7)
++#define I915_ENGINE_HAS_SCHEDULER    BIT(2)
++#define I915_ENGINE_HAS_PREEMPTION   BIT(3)
++#define I915_ENGINE_HAS_SEMAPHORES   BIT(4)
++#define I915_ENGINE_HAS_TIMESLICES   BIT(5)
++#define I915_ENGINE_IS_VIRTUAL       BIT(6)
++#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(7)
++#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(8)
+ 	unsigned int flags;
+ 
+ 	/*
+@@ -567,6 +560,12 @@ intel_engine_supports_stats(const struct intel_engine_cs *engine)
+ 	return engine->flags & I915_ENGINE_SUPPORTS_STATS;
+ }
+ 
++static inline bool
++intel_engine_has_scheduler(const struct intel_engine_cs *engine)
++{
++	return engine->flags & I915_ENGINE_HAS_SCHEDULER;
++}
++
+ static inline bool
+ intel_engine_has_preemption(const struct intel_engine_cs *engine)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+index 1cbd84eb24e4..64eccdf32a22 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+@@ -107,7 +107,7 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
+ 	for_each_uabi_engine(engine, i915) { /* all engines must agree! */
+ 		int i;
+ 
+-		if (engine->schedule)
++		if (intel_engine_has_scheduler(engine))
+ 			enabled |= (I915_SCHEDULER_CAP_ENABLED |
+ 				    I915_SCHEDULER_CAP_PRIORITY);
+ 		else
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 554eaaa268a7..f95a35383f48 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -3106,7 +3106,6 @@ static bool can_preempt(struct intel_engine_cs *engine)
+ static void execlists_set_default_submission(struct intel_engine_cs *engine)
+ {
+ 	engine->submit_request = execlists_submit_request;
+-	engine->schedule = i915_schedule;
+ 	engine->execlists.tasklet.callback = execlists_submission_tasklet;
+ }
+ 
+@@ -3168,6 +3167,7 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+ 	}
+ 	intel_engine_set_irq_handler(engine, execlists_irq_handler);
+ 
++	engine->flags |= I915_ENGINE_HAS_SCHEDULER;
+ 	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
+ 	if (!intel_vgpu_active(engine->i915)) {
+ 		engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
+@@ -3680,7 +3680,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+ 	ve->base.cops = &virtual_context_ops;
+ 	ve->base.request_alloc = execlists_request_alloc;
+ 
+-	ve->base.schedule = i915_schedule;
+ 	ve->base.submit_request = virtual_submit_request;
+ 	ve->base.bond_execute = virtual_bond_execute;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+index 9304a35384aa..951e2bf867e1 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
++++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+@@ -268,12 +268,8 @@ static int live_unlite_restore(struct intel_gt *gt, int prio)
+ 		i915_request_put(rq[0]);
+ 
+ 		if (prio) {
+-			struct i915_sched_attr attr = {
+-				.priority = prio,
+-			};
+-
+ 			/* Alternatively preempt the spinner with ce[1] */
+-			engine->schedule(rq[1], &attr);
++			i915_request_set_priority(rq[1], prio);
+ 		}
+ 
+ 		/* And switch back to ce[0] for good measure */
+@@ -873,9 +869,6 @@ release_queue(struct intel_engine_cs *engine,
+ 	      struct i915_vma *vma,
+ 	      int idx, int prio)
+ {
+-	struct i915_sched_attr attr = {
+-		.priority = prio,
+-	};
+ 	struct i915_request *rq;
+ 	u32 *cs;
+ 
+@@ -900,7 +893,7 @@ release_queue(struct intel_engine_cs *engine,
+ 	i915_request_add(rq);
+ 
+ 	local_bh_disable();
+-	engine->schedule(rq, &attr);
++	i915_request_set_priority(rq, prio);
+ 	local_bh_enable(); /* kick tasklet */
+ 
+ 	i915_request_put(rq);
+@@ -1310,7 +1303,6 @@ static int live_timeslice_queue(void *arg)
+ 		goto err_pin;
+ 
+ 	for_each_engine(engine, gt, id) {
+-		struct i915_sched_attr attr = { .priority = I915_PRIORITY_MAX };
+ 		struct i915_request *rq, *nop;
+ 
+ 		if (!intel_engine_has_preemption(engine))
+@@ -1325,7 +1317,7 @@ static int live_timeslice_queue(void *arg)
+ 			err = PTR_ERR(rq);
+ 			goto err_heartbeat;
+ 		}
+-		engine->schedule(rq, &attr);
++		i915_request_set_priority(rq, I915_PRIORITY_MAX);
+ 		err = wait_for_submit(engine, rq, HZ / 2);
+ 		if (err) {
+ 			pr_err("%s: Timed out trying to submit semaphores\n",
+@@ -1806,7 +1798,6 @@ static int live_late_preempt(void *arg)
+ 	struct i915_gem_context *ctx_hi, *ctx_lo;
+ 	struct igt_spinner spin_hi, spin_lo;
+ 	struct intel_engine_cs *engine;
+-	struct i915_sched_attr attr = {};
+ 	enum intel_engine_id id;
+ 	int err = -ENOMEM;
+ 
+@@ -1866,8 +1857,7 @@ static int live_late_preempt(void *arg)
+ 			goto err_wedged;
+ 		}
+ 
+-		attr.priority = I915_PRIORITY_MAX;
+-		engine->schedule(rq, &attr);
++		i915_request_set_priority(rq, I915_PRIORITY_MAX);
+ 
+ 		if (!igt_wait_for_spinner(&spin_hi, rq)) {
+ 			pr_err("High priority context failed to preempt the low priority context\n");
+@@ -2412,7 +2402,6 @@ static int live_preempt_cancel(void *arg)
+ 
+ static int live_suppress_self_preempt(void *arg)
+ {
+-	struct i915_sched_attr attr = { .priority = I915_PRIORITY_MAX };
+ 	struct intel_gt *gt = arg;
+ 	struct intel_engine_cs *engine;
+ 	struct preempt_client a, b;
+@@ -2480,7 +2469,7 @@ static int live_suppress_self_preempt(void *arg)
+ 			i915_request_add(rq_b);
+ 
+ 			GEM_BUG_ON(i915_request_completed(rq_a));
+-			engine->schedule(rq_a, &attr);
++			i915_request_set_priority(rq_a, I915_PRIORITY_MAX);
+ 			igt_spinner_end(&a.spin);
+ 
+ 			if (!igt_wait_for_spinner(&b.spin, rq_b)) {
+@@ -2545,7 +2534,6 @@ static int live_chain_preempt(void *arg)
+ 		goto err_client_hi;
+ 
+ 	for_each_engine(engine, gt, id) {
+-		struct i915_sched_attr attr = { .priority = I915_PRIORITY_MAX };
+ 		struct igt_live_test t;
+ 		struct i915_request *rq;
+ 		int ring_size, count, i;
+@@ -2612,7 +2600,7 @@ static int live_chain_preempt(void *arg)
+ 
+ 			i915_request_get(rq);
+ 			i915_request_add(rq);
+-			engine->schedule(rq, &attr);
++			i915_request_set_priority(rq, I915_PRIORITY_MAX);
+ 
+ 			igt_spinner_end(&hi.spin);
+ 			if (i915_request_wait(rq, 0, HZ / 5) < 0) {
+@@ -2964,14 +2952,12 @@ static int live_preempt_gang(void *arg)
+ 			return -EIO;
+ 
+ 		do {
+-			struct i915_sched_attr attr = { .priority = prio++ };
+-
+ 			err = create_gang(engine, &rq);
+ 			if (err)
+ 				break;
+ 
+ 			/* Submit each spinner at increasing priority */
+-			engine->schedule(rq, &attr);
++			i915_request_set_priority(rq, prio++);
+ 		} while (prio <= I915_PRIORITY_MAX &&
+ 			 !__igt_timeout(end_time, NULL));
+ 		pr_debug("%s: Preempt chain of %d requests\n",
+@@ -3192,9 +3178,6 @@ static int preempt_user(struct intel_engine_cs *engine,
+ 			struct i915_vma *global,
+ 			int id)
+ {
+-	struct i915_sched_attr attr = {
+-		.priority = I915_PRIORITY_MAX
+-	};
+ 	struct i915_request *rq;
+ 	int err = 0;
+ 	u32 *cs;
+@@ -3219,7 +3202,7 @@ static int preempt_user(struct intel_engine_cs *engine,
+ 	i915_request_get(rq);
+ 	i915_request_add(rq);
+ 
+-	engine->schedule(rq, &attr);
++	i915_request_set_priority(rq, I915_PRIORITY_MAX);
+ 
+ 	if (i915_request_wait(rq, 0, HZ / 2) < 0)
+ 		err = -ETIME;
+diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+index d6ce4075602c..8cad102922e7 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
++++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+@@ -858,12 +858,11 @@ static int active_engine(void *data)
+ 		rq[idx] = i915_request_get(new);
+ 		i915_request_add(new);
+ 
+-		if (engine->schedule && arg->flags & TEST_PRIORITY) {
+-			struct i915_sched_attr attr = {
+-				.priority =
+-					i915_prandom_u32_max_state(512, &prng),
+-			};
+-			engine->schedule(rq[idx], &attr);
++		if (intel_engine_has_scheduler(engine) &&
++		    arg->flags & TEST_PRIORITY) {
++			int prio = i915_prandom_u32_max_state(512, &prng);
++
++			i915_request_set_priority(rq[idx], prio);
+ 		}
+ 
+ 		err = active_request_put(old);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 335719f17490..2f5c39091d49 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -638,8 +638,6 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+ 	engine->cops = &guc_context_ops;
+ 	engine->request_alloc = guc_request_alloc;
+ 
+-	engine->schedule = i915_schedule;
+-
+ 	engine->reset.prepare = guc_reset_prepare;
+ 	engine->reset.rewind = guc_reset_rewind;
+ 	engine->reset.cancel = guc_reset_cancel;
+@@ -654,6 +652,7 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+ 	}
+ 	engine->set_default_submission = guc_set_default_submission;
+ 
++	engine->flags |= I915_ENGINE_HAS_SCHEDULER;
+ 	engine->flags |= I915_ENGINE_HAS_PREEMPTION;
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index a336d6c40d8b..916e74fbab6c 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -1223,7 +1223,7 @@ __i915_request_await_execution(struct i915_request *to,
+ 	}
+ 
+ 	/* Couple the dependency tree for PI on this exposed to->fence */
+-	if (to->engine->schedule) {
++	if (i915_request_use_scheduler(to)) {
+ 		err = i915_sched_node_add_dependency(&to->sched,
+ 						     &from->sched,
+ 						     I915_DEPENDENCY_WEAK);
+@@ -1364,7 +1364,7 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
+ 		return 0;
+ 	}
+ 
+-	if (to->engine->schedule) {
++	if (i915_request_use_scheduler(to)) {
+ 		ret = i915_sched_node_add_dependency(&to->sched,
+ 						     &from->sched,
+ 						     I915_DEPENDENCY_EXTERNAL);
+@@ -1551,7 +1551,7 @@ __i915_request_add_to_timeline(struct i915_request *rq)
+ 			__i915_sw_fence_await_dma_fence(&rq->submit,
+ 							&prev->fence,
+ 							&rq->dmaq);
+-		if (rq->engine->schedule)
++		if (i915_request_use_scheduler(rq))
+ 			__i915_sched_node_add_dependency(&rq->sched,
+ 							 &prev->sched,
+ 							 &rq->dep,
+@@ -1623,8 +1623,8 @@ void __i915_request_queue(struct i915_request *rq,
+ 	 * decide whether to preempt the entire chain so that it is ready to
+ 	 * run at the earliest possible convenience.
+ 	 */
+-	if (attr && rq->engine->schedule)
+-		rq->engine->schedule(rq, attr);
++	if (attr)
++		i915_request_set_priority(rq, attr->priority);
+ 
+ 	local_bh_disable();
+ 	__i915_request_queue_bh(rq);
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index c0bd4cb8786a..9ce074ffc1dd 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -616,4 +616,9 @@ i915_request_active_timeline(const struct i915_request *rq)
+ 					 lockdep_is_held(&rq->engine->active.lock));
+ }
+ 
++static inline bool i915_request_use_scheduler(const struct i915_request *rq)
++{
++	return intel_engine_has_scheduler(rq->engine);
++}
++
+ #endif /* I915_REQUEST_H */
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 85d18037a915..84a55df88687 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -227,10 +227,8 @@ static void kick_submission(struct intel_engine_cs *engine,
+ 	rcu_read_unlock();
+ }
+ 
+-static void __i915_schedule(struct i915_sched_node *node,
+-			    const struct i915_sched_attr *attr)
++static void __i915_schedule(struct i915_sched_node *node, int prio)
+ {
+-	const int prio = max(attr->priority, node->attr.priority);
+ 	struct intel_engine_cs *engine;
+ 	struct i915_dependency *dep, *p;
+ 	struct i915_dependency stack;
+@@ -244,6 +242,8 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 	if (node_signaled(node))
+ 		return;
+ 
++	prio = max(prio, node->attr.priority);
++
+ 	stack.signaler = node;
+ 	list_add(&stack.dfs_link, &dfs);
+ 
+@@ -297,7 +297,7 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 	 */
+ 	if (node->attr.priority == I915_PRIORITY_INVALID) {
+ 		GEM_BUG_ON(!list_empty(&node->link));
+-		node->attr = *attr;
++		node->attr.priority = prio;
+ 
+ 		if (stack.dfs_link.next == stack.dfs_link.prev)
+ 			return;
+@@ -352,10 +352,13 @@ static void __i915_schedule(struct i915_sched_node *node,
+ 	spin_unlock(&engine->active.lock);
+ }
+ 
+-void i915_schedule(struct i915_request *rq, const struct i915_sched_attr *attr)
++void i915_request_set_priority(struct i915_request *rq, int prio)
+ {
++	if (!i915_request_use_scheduler(rq))
++		return;
++
+ 	spin_lock_irq(&schedule_lock);
+-	__i915_schedule(&rq->sched, attr);
++	__i915_schedule(&rq->sched, prio);
+ 	spin_unlock_irq(&schedule_lock);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.h b/drivers/gpu/drm/i915/i915_scheduler.h
+index 8c5ed6fe0994..a045be784c67 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.h
++++ b/drivers/gpu/drm/i915/i915_scheduler.h
+@@ -35,8 +35,7 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
+ 
+ void i915_sched_node_retire(struct i915_sched_node *node);
+ 
+-void i915_schedule(struct i915_request *request,
+-		   const struct i915_sched_attr *attr);
++void i915_request_set_priority(struct i915_request *request, int prio);
+ 
+ struct list_head *
+ i915_sched_lookup_priolist(struct intel_engine_cs *engine, int prio);
+-- 
+2.20.1
 
---CQ
-
-> 
->  /*
->   * Cacheability Control is a 4-bit value. The low three bits are stored in bits
-> --
-> 2.26.2
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
