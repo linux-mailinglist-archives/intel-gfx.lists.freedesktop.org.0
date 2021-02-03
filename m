@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE8F530D493
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 09:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A32A30D4AD
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 09:11:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 192546E9CE;
-	Wed,  3 Feb 2021 08:04:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BF266E9D1;
+	Wed,  3 Feb 2021 08:11:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4B04F6E9CD;
- Wed,  3 Feb 2021 08:04:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 458C1A00E6;
- Wed,  3 Feb 2021 08:04:21 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6B716E9CF
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 08:11:30 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23779819-1500050 
+ for multiple; Wed, 03 Feb 2021 08:11:16 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  3 Feb 2021 08:11:16 +0000
+Message-Id: <20210203081116.2650-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210203065350.24476-3-chris@chris-wilson.co.uk>
+References: <20210203065350.24476-3-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 03 Feb 2021 08:04:21 -0000
-Message-ID: <161233946127.943.7976873167361791315@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210203065350.24476-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210203065350.24476-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915/gt=3A_Move_engine_set?=
- =?utf-8?q?up_out_of_set=5Fdefault=5Fsubmission?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Move CS interrupt handler to the
+ backend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,292 +39,471 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2038210758=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2038210758==
-Content-Type: multipart/alternative;
- boundary="===============6459498090417159994=="
+The different submission backends each have their own preferred
+behaviour and interrupt setup. Let each handle their own interrupts.
 
---===============6459498090417159994==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This becomes more useful later as we to extract the use of auxiliary
+state in the interrupt handler that is backend specific.
 
-== Series Details ==
+v2: An overabundance of caution is always justified; put a barrier on
+updating the irq handler so that we know that the next interrupt will
+be redirected towards ourselves.
 
-Series: series starting with [CI,1/3] drm/i915/gt: Move engine setup out of set_default_submission
-URL   : https://patchwork.freedesktop.org/series/86603/
-State : failure
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  7 ++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  | 14 +---
+ .../drm/i915/gt/intel_execlists_submission.c  | 41 ++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        | 82 ++++++-------------
+ drivers/gpu/drm/i915/gt/intel_gt_irq.h        | 23 ++++++
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |  8 ++
+ drivers/gpu/drm/i915/gt/intel_rps.c           |  2 +-
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 ++-
+ drivers/gpu/drm/i915/i915_irq.c               | 10 ++-
+ 9 files changed, 124 insertions(+), 74 deletions(-)
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9720 -> Patchwork_19567
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19567 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19567, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19567:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_parallel@engines@contexts:
-    - fi-byt-j1900:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-byt-j1900/igt@gem_exec_parallel@engines@contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-byt-j1900/igt@gem_exec_parallel@engines@contexts.html
-    - fi-ivb-3770:        [PASS][3] -> [FAIL][4] +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-ivb-3770/igt@gem_exec_parallel@engines@contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-ivb-3770/igt@gem_exec_parallel@engines@contexts.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19567 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@coherency:
-    - fi-hsw-4770:        [PASS][5] -> [INCOMPLETE][6] ([i915#1729])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-hsw-4770/igt@i915_selftest@live@coherency.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-hsw-4770/igt@i915_selftest@live@coherency.html
-    - fi-ivb-3770:        [PASS][7] -> [INCOMPLETE][8] ([i915#1729])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-ivb-3770/igt@i915_selftest@live@coherency.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-ivb-3770/igt@i915_selftest@live@coherency.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [PASS][9] -> [INCOMPLETE][10] ([i915#2782] / [i915#926])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-n3050:       [PASS][11] -> [DMESG-FAIL][12] ([i915#2927])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [PASS][13] -> [DMESG-WARN][14] ([i915#402]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  * igt@runner@aborted:
-    - fi-icl-y:           NOTRUN -> [FAIL][15] ([i915#2295] / [i915#2724])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-icl-y/igt@runner@aborted.html
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][16] ([i915#1436])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-bsw-n3050/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_vgem@basic-gtt:
-    - fi-tgl-y:           [DMESG-WARN][17] ([i915#402]) -> [PASS][18] +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1729]: https://gitlab.freedesktop.org/drm/intel/issues/1729
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
-  [i915#2724]: https://gitlab.freedesktop.org/drm/intel/issues/2724
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#926]: https://gitlab.freedesktop.org/drm/intel/issues/926
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
-
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): fi-jsl-1 fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9720 -> Patchwork_19567
-
-  CI-20190529: 20190529
-  CI_DRM_9720: 23c0f4460024782c5043dabab4b2966831e4c887 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5988: 4581082c706498cc3afe20e89fc4836a3fc69105 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19567: 56f65e0f085863cd80136de398314be08c37fdc5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-56f65e0f0858 drm/i915/gt: Move CS interrupt handler to the backend
-e6dae7cfb111 drm/i915/gt: Move submission_method into intel_gt
-28ff2ac4ae49 drm/i915/gt: Move engine setup out of set_default_submission
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/index.html
-
---===============6459498090417159994==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm/i915/gt: Move engine setup out of set_default_submission</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86603/">https://patchwork.freedesktop.org/series/86603/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9720 -&gt; Patchwork_19567</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19567 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19567, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19567:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_exec_parallel@engines@contexts:</p>
-<ul>
-<li>
-<p>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-byt-j1900/igt@gem_exec_parallel@engines@contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-byt-j1900/igt@gem_exec_parallel@engines@contexts.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-ivb-3770/igt@gem_exec_parallel@engines@contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-ivb-3770/igt@gem_exec_parallel@engines@contexts.html">FAIL</a> +2 similar issues</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19567 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@coherency:</p>
-<ul>
-<li>
-<p>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-hsw-4770/igt@i915_selftest@live@coherency.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-hsw-4770/igt@i915_selftest@live@coherency.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1729">i915#1729</a>)</p>
-</li>
-<li>
-<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-ivb-3770/igt@i915_selftest@live@coherency.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-ivb-3770/igt@i915_selftest@live@coherency.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1729">i915#1729</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-icl-y/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-icl-y/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/926">i915#926</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-icl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2724">i915#2724</a>)</p>
-</li>
-<li>
-<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_vgem@basic-gtt:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9720/fi-tgl-y/igt@prime_vgem@basic-gtt.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19567/fi-tgl-y/igt@prime_vgem@basic-gtt.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): fi-jsl-1 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9720 -&gt; Patchwork_19567</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9720: 23c0f4460024782c5043dabab4b2966831e4c887 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5988: 4581082c706498cc3afe20e89fc4836a3fc69105 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19567: 56f65e0f085863cd80136de398314be08c37fdc5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>56f65e0f0858 drm/i915/gt: Move CS interrupt handler to the backend<br />
-e6dae7cfb111 drm/i915/gt: Move submission_method into intel_gt<br />
-28ff2ac4ae49 drm/i915/gt: Move engine setup out of set_default_submission</p>
-
-</body>
-</html>
-
---===============6459498090417159994==--
-
---===============2038210758==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index dab8d734e272..13ef5725ef51 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -255,6 +255,11 @@ static void intel_engine_sanitize_mmio(struct intel_engine_cs *engine)
+ 	intel_engine_set_hwsp_writemask(engine, ~0u);
+ }
+ 
++static void nop_irq_handler(struct intel_engine_cs *engine, u16 iir)
++{
++	GEM_DEBUG_WARN_ON(iir);
++}
++
+ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ {
+ 	const struct engine_info *info = &intel_engines[id];
+@@ -292,6 +297,8 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	engine->hw_id = info->hw_id;
+ 	engine->guc_id = MAKE_GUC_ID(info->class, info->instance);
+ 
++	engine->irq_handler = nop_irq_handler;
++
+ 	engine->class = info->class;
+ 	engine->instance = info->instance;
+ 	__sprint_engine_name(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 9d59de5c559a..c9974de2dd00 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -402,6 +402,7 @@ struct intel_engine_cs {
+ 	u32		irq_enable_mask; /* bitmask to enable ring interrupt */
+ 	void		(*irq_enable)(struct intel_engine_cs *engine);
+ 	void		(*irq_disable)(struct intel_engine_cs *engine);
++	void		(*irq_handler)(struct intel_engine_cs *engine, u16 iir);
+ 
+ 	void		(*sanitize)(struct intel_engine_cs *engine);
+ 	int		(*resume)(struct intel_engine_cs *engine);
+@@ -481,10 +482,9 @@ struct intel_engine_cs {
+ #define I915_ENGINE_HAS_PREEMPTION   BIT(2)
+ #define I915_ENGINE_HAS_SEMAPHORES   BIT(3)
+ #define I915_ENGINE_HAS_TIMESLICES   BIT(4)
+-#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(5)
+-#define I915_ENGINE_IS_VIRTUAL       BIT(6)
+-#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(7)
+-#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(8)
++#define I915_ENGINE_IS_VIRTUAL       BIT(5)
++#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(6)
++#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(7)
+ 	unsigned int flags;
+ 
+ 	/*
+@@ -588,12 +588,6 @@ intel_engine_has_timeslices(const struct intel_engine_cs *engine)
+ 	return engine->flags & I915_ENGINE_HAS_TIMESLICES;
+ }
+ 
+-static inline bool
+-intel_engine_needs_breadcrumb_tasklet(const struct intel_engine_cs *engine)
+-{
+-	return engine->flags & I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
+-}
+-
+ static inline bool
+ intel_engine_is_virtual(const struct intel_engine_cs *engine)
+ {
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 8dc52cc43f27..554eaaa268a7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -118,6 +118,7 @@
+ #include "intel_engine_stats.h"
+ #include "intel_execlists_submission.h"
+ #include "intel_gt.h"
++#include "intel_gt_irq.h"
+ #include "intel_gt_pm.h"
+ #include "intel_gt_requests.h"
+ #include "intel_lrc.h"
+@@ -2394,6 +2395,45 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
+ 	rcu_read_unlock();
+ }
+ 
++static void execlists_irq_handler(struct intel_engine_cs *engine, u16 iir)
++{
++	bool tasklet = false;
++
++	if (unlikely(iir & GT_CS_MASTER_ERROR_INTERRUPT)) {
++		u32 eir;
++
++		/* Upper 16b are the enabling mask, rsvd for internal errors */
++		eir = ENGINE_READ(engine, RING_EIR) & GENMASK(15, 0);
++		ENGINE_TRACE(engine, "CS error: %x\n", eir);
++
++		/* Disable the error interrupt until after the reset */
++		if (likely(eir)) {
++			ENGINE_WRITE(engine, RING_EMR, ~0u);
++			ENGINE_WRITE(engine, RING_EIR, eir);
++			WRITE_ONCE(engine->execlists.error_interrupt, eir);
++			tasklet = true;
++		}
++	}
++
++	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
++		WRITE_ONCE(engine->execlists.yield,
++			   ENGINE_READ_FW(engine, RING_EXECLIST_STATUS_HI));
++		ENGINE_TRACE(engine, "semaphore yield: %08x\n",
++			     engine->execlists.yield);
++		if (del_timer(&engine->execlists.timer))
++			tasklet = true;
++	}
++
++	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
++		tasklet = true;
++
++	if (iir & GT_RENDER_USER_INTERRUPT)
++		intel_engine_signal_breadcrumbs(engine);
++
++	if (tasklet)
++		tasklet_hi_schedule(&engine->execlists.tasklet);
++}
++
+ static void __execlists_kick(struct intel_engine_execlists *execlists)
+ {
+ 	/* Kick the tasklet for some interrupt coalescing and reset handling */
+@@ -3126,6 +3166,7 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+ 		 * until a more refined solution exists.
+ 		 */
+ 	}
++	intel_engine_set_irq_handler(engine, execlists_irq_handler);
+ 
+ 	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
+ 	if (!intel_vgpu_active(engine->i915)) {
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+index 9fc6c912a4e5..d29126c458ba 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+@@ -20,48 +20,6 @@ static void guc_irq_handler(struct intel_guc *guc, u16 iir)
+ 		intel_guc_to_host_event_handler(guc);
+ }
+ 
+-static void
+-cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
+-{
+-	bool tasklet = false;
+-
+-	if (unlikely(iir & GT_CS_MASTER_ERROR_INTERRUPT)) {
+-		u32 eir;
+-
+-		/* Upper 16b are the enabling mask, rsvd for internal errors */
+-		eir = ENGINE_READ(engine, RING_EIR) & GENMASK(15, 0);
+-		ENGINE_TRACE(engine, "CS error: %x\n", eir);
+-
+-		/* Disable the error interrupt until after the reset */
+-		if (likely(eir)) {
+-			ENGINE_WRITE(engine, RING_EMR, ~0u);
+-			ENGINE_WRITE(engine, RING_EIR, eir);
+-			WRITE_ONCE(engine->execlists.error_interrupt, eir);
+-			tasklet = true;
+-		}
+-	}
+-
+-	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
+-		WRITE_ONCE(engine->execlists.yield,
+-			   ENGINE_READ_FW(engine, RING_EXECLIST_STATUS_HI));
+-		ENGINE_TRACE(engine, "semaphore yield: %08x\n",
+-			     engine->execlists.yield);
+-		if (del_timer(&engine->execlists.timer))
+-			tasklet = true;
+-	}
+-
+-	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
+-		tasklet = true;
+-
+-	if (iir & GT_RENDER_USER_INTERRUPT) {
+-		intel_engine_signal_breadcrumbs(engine);
+-		tasklet |= intel_engine_needs_breadcrumb_tasklet(engine);
+-	}
+-
+-	if (tasklet)
+-		tasklet_hi_schedule(&engine->execlists.tasklet);
+-}
+-
+ static u32
+ gen11_gt_engine_identity(struct intel_gt *gt,
+ 			 const unsigned int bank, const unsigned int bit)
+@@ -122,7 +80,7 @@ gen11_engine_irq_handler(struct intel_gt *gt, const u8 class,
+ 		engine = NULL;
+ 
+ 	if (likely(engine))
+-		return cs_irq_handler(engine, iir);
++		return intel_engine_cs_irq(engine, iir);
+ 
+ 	WARN_ONCE(1, "unhandled engine interrupt class=0x%x, instance=0x%x\n",
+ 		  class, instance);
+@@ -275,9 +233,12 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
+ void gen5_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
+ {
+ 	if (gt_iir & GT_RENDER_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[RENDER_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[RENDER_CLASS][0],
++				    gt_iir);
++
+ 	if (gt_iir & ILK_BSD_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[VIDEO_DECODE_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[VIDEO_DECODE_CLASS][0],
++				    gt_iir);
+ }
+ 
+ static void gen7_parity_error_irq_handler(struct intel_gt *gt, u32 iir)
+@@ -301,11 +262,16 @@ static void gen7_parity_error_irq_handler(struct intel_gt *gt, u32 iir)
+ void gen6_gt_irq_handler(struct intel_gt *gt, u32 gt_iir)
+ {
+ 	if (gt_iir & GT_RENDER_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[RENDER_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[RENDER_CLASS][0],
++				    gt_iir);
++
+ 	if (gt_iir & GT_BSD_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[VIDEO_DECODE_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[VIDEO_DECODE_CLASS][0],
++				    gt_iir >> 12);
++
+ 	if (gt_iir & GT_BLT_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine_class[COPY_ENGINE_CLASS][0]);
++		intel_engine_cs_irq(gt->engine_class[COPY_ENGINE_CLASS][0],
++				    gt_iir >> 22);
+ 
+ 	if (gt_iir & (GT_BLT_CS_ERROR_INTERRUPT |
+ 		      GT_BSD_CS_ERROR_INTERRUPT |
+@@ -324,10 +290,10 @@ void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl)
+ 	if (master_ctl & (GEN8_GT_RCS_IRQ | GEN8_GT_BCS_IRQ)) {
+ 		iir = raw_reg_read(regs, GEN8_GT_IIR(0));
+ 		if (likely(iir)) {
+-			cs_irq_handler(gt->engine_class[RENDER_CLASS][0],
+-				       iir >> GEN8_RCS_IRQ_SHIFT);
+-			cs_irq_handler(gt->engine_class[COPY_ENGINE_CLASS][0],
+-				       iir >> GEN8_BCS_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[RENDER_CLASS][0],
++					    iir >> GEN8_RCS_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[COPY_ENGINE_CLASS][0],
++					    iir >> GEN8_BCS_IRQ_SHIFT);
+ 			raw_reg_write(regs, GEN8_GT_IIR(0), iir);
+ 		}
+ 	}
+@@ -335,10 +301,10 @@ void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl)
+ 	if (master_ctl & (GEN8_GT_VCS0_IRQ | GEN8_GT_VCS1_IRQ)) {
+ 		iir = raw_reg_read(regs, GEN8_GT_IIR(1));
+ 		if (likely(iir)) {
+-			cs_irq_handler(gt->engine_class[VIDEO_DECODE_CLASS][0],
+-				       iir >> GEN8_VCS0_IRQ_SHIFT);
+-			cs_irq_handler(gt->engine_class[VIDEO_DECODE_CLASS][1],
+-				       iir >> GEN8_VCS1_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[VIDEO_DECODE_CLASS][0],
++					    iir >> GEN8_VCS0_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[VIDEO_DECODE_CLASS][1],
++					    iir >> GEN8_VCS1_IRQ_SHIFT);
+ 			raw_reg_write(regs, GEN8_GT_IIR(1), iir);
+ 		}
+ 	}
+@@ -346,8 +312,8 @@ void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl)
+ 	if (master_ctl & GEN8_GT_VECS_IRQ) {
+ 		iir = raw_reg_read(regs, GEN8_GT_IIR(3));
+ 		if (likely(iir)) {
+-			cs_irq_handler(gt->engine_class[VIDEO_ENHANCEMENT_CLASS][0],
+-				       iir >> GEN8_VECS_IRQ_SHIFT);
++			intel_engine_cs_irq(gt->engine_class[VIDEO_ENHANCEMENT_CLASS][0],
++					    iir >> GEN8_VECS_IRQ_SHIFT);
+ 			raw_reg_write(regs, GEN8_GT_IIR(3), iir);
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.h b/drivers/gpu/drm/i915/gt/intel_gt_irq.h
+index f667e976fb2b..41cad38668c5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_irq.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.h
+@@ -8,6 +8,8 @@
+ 
+ #include <linux/types.h>
+ 
++#include "intel_engine_types.h"
++
+ struct intel_gt;
+ 
+ #define GEN8_GT_IRQS (GEN8_GT_RCS_IRQ | \
+@@ -39,4 +41,25 @@ void gen8_gt_irq_handler(struct intel_gt *gt, u32 master_ctl);
+ void gen8_gt_irq_reset(struct intel_gt *gt);
+ void gen8_gt_irq_postinstall(struct intel_gt *gt);
+ 
++static inline void intel_engine_cs_irq(struct intel_engine_cs *engine, u16 iir)
++{
++	if (iir)
++		engine->irq_handler(engine, iir);
++}
++
++static inline void
++intel_engine_set_irq_handler(struct intel_engine_cs *engine,
++			     void (*fn)(struct intel_engine_cs *engine,
++					u16 iir))
++{
++	/*
++	 * As the interrupt is live as allocate and setup the engines,
++	 * err on the side of caution and apply barriers to updating
++	 * the irq handler callback. This assures that when we do use
++	 * the engine, we will receive interrupts only to ourselves,
++	 * and not lose any.
++	 */
++	smp_store_mb(engine->irq_handler, fn);
++}
++
+ #endif /* INTEL_GT_IRQ_H */
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 3cb2ce503544..aa9cfb4dcbca 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -12,6 +12,7 @@
+ #include "intel_breadcrumbs.h"
+ #include "intel_context.h"
+ #include "intel_gt.h"
++#include "intel_gt_irq.h"
+ #include "intel_reset.h"
+ #include "intel_ring.h"
+ #include "shmem_utils.h"
+@@ -997,10 +998,17 @@ static void ring_release(struct intel_engine_cs *engine)
+ 	intel_timeline_put(engine->legacy.timeline);
+ }
+ 
++static void irq_handler(struct intel_engine_cs *engine, u16 iir)
++{
++	intel_engine_signal_breadcrumbs(engine);
++}
++
+ static void setup_irq(struct intel_engine_cs *engine)
+ {
+ 	struct drm_i915_private *i915 = engine->i915;
+ 
++	intel_engine_set_irq_handler(engine, irq_handler);
++
+ 	if (INTEL_GEN(i915) >= 6) {
+ 		engine->irq_enable = gen6_irq_enable;
+ 		engine->irq_disable = gen6_irq_disable;
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 405d814e9040..97cab1b99871 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1774,7 +1774,7 @@ void gen6_rps_irq_handler(struct intel_rps *rps, u32 pm_iir)
+ 		return;
+ 
+ 	if (pm_iir & PM_VEBOX_USER_INTERRUPT)
+-		intel_engine_signal_breadcrumbs(gt->engine[VECS0]);
++		intel_engine_cs_irq(gt->engine[VECS0], pm_iir >> 10);
+ 
+ 	if (pm_iir & PM_VEBOX_CS_ERROR_INTERRUPT)
+ 		DRM_DEBUG("Command parser error, pm_iir 0x%08x\n", pm_iir);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 17b551a0c89f..335719f17490 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -11,6 +11,7 @@
+ #include "gt/intel_context.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_gt.h"
++#include "gt/intel_gt_irq.h"
+ #include "gt/intel_gt_pm.h"
+ #include "gt/intel_lrc.h"
+ #include "gt/intel_mocs.h"
+@@ -264,6 +265,14 @@ static void guc_submission_tasklet(struct tasklet_struct *t)
+ 	spin_unlock_irqrestore(&engine->active.lock, flags);
+ }
+ 
++static void cs_irq_handler(struct intel_engine_cs *engine, u16 iir)
++{
++	if (iir & GT_RENDER_USER_INTERRUPT) {
++		intel_engine_signal_breadcrumbs(engine);
++		tasklet_hi_schedule(&engine->execlists.tasklet);
++	}
++}
++
+ static void guc_reset_prepare(struct intel_engine_cs *engine)
+ {
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+@@ -645,7 +654,6 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+ 	}
+ 	engine->set_default_submission = guc_set_default_submission;
+ 
+-	engine->flags |= I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
+ 	engine->flags |= I915_ENGINE_HAS_PREEMPTION;
+ 
+ 	/*
+@@ -681,6 +689,7 @@ static void rcs_submission_override(struct intel_engine_cs *engine)
+ static inline void guc_default_irqs(struct intel_engine_cs *engine)
+ {
+ 	engine->irq_keep_mask = GT_RENDER_USER_INTERRUPT;
++	intel_engine_set_irq_handler(engine, cs_irq_handler);
+ }
+ 
+ int intel_guc_submission_setup(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 9d47da8ec86d..0ff3f64c4bb5 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -3954,7 +3954,7 @@ static irqreturn_t i8xx_irq_handler(int irq, void *arg)
+ 		intel_uncore_write16(&dev_priv->uncore, GEN2_IIR, iir);
+ 
+ 		if (iir & I915_USER_INTERRUPT)
+-			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
++			intel_engine_cs_irq(dev_priv->gt.engine[RCS0], iir);
+ 
+ 		if (iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i8xx_error_irq_handler(dev_priv, eir, eir_stuck);
+@@ -4062,7 +4062,7 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
+ 		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, iir);
+ 
+ 		if (iir & I915_USER_INTERRUPT)
+-			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
++			intel_engine_cs_irq(dev_priv->gt.engine[RCS0], iir);
+ 
+ 		if (iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
+@@ -4207,10 +4207,12 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
+ 		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, iir);
+ 
+ 		if (iir & I915_USER_INTERRUPT)
+-			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
++			intel_engine_cs_irq(dev_priv->gt.engine[RCS0],
++					    iir);
+ 
+ 		if (iir & I915_BSD_USER_INTERRUPT)
+-			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[VCS0]);
++			intel_engine_cs_irq(dev_priv->gt.engine[VCS0],
++					    iir >> 25);
+ 
+ 		if (iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2038210758==--
