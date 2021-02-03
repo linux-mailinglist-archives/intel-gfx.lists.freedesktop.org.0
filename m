@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32CC030DE5D
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 16:38:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B1C130DE5E
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 16:40:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77907898BC;
-	Wed,  3 Feb 2021 15:38:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D672C6EB1E;
+	Wed,  3 Feb 2021 15:40:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 77998898BC;
- Wed,  3 Feb 2021 15:38:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 72885AAA91;
- Wed,  3 Feb 2021 15:38:17 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A6DC6EB1E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 15:40:00 +0000 (UTC)
+IronPort-SDR: 7mdtPXpu7tviHl1ibebhFfpYfCVT9PdrWy3IaJdCWzSrsj+1Phbx5wyd3DLn6dUfJSW98xU9j7
+ +MevqVpkl3RA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="200019991"
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="200019991"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 07:39:59 -0800
+IronPort-SDR: ResFNo7cQHdUtzftjsMelIY0cUiQVl8eFrcxQOaKiOKf0vtZ8AHRY1jOSNdfDRfIuGKmGrAodO
+ Q0TScvLbOtMw==
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="392486499"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 07:39:57 -0800
+Date: Wed, 3 Feb 2021 17:39:52 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20210203153952.GB598493@ideak-desk.fi.intel.com>
+References: <20210127181909.128094-1-imre.deak@intel.com>
+ <20210128191349.GE142820@ideak-desk.fi.intel.com>
+ <YBqLlRYq00BEP/4i@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anand Moon" <anandx.ram.moon@intel.com>
-Date: Wed, 03 Feb 2021 15:38:17 -0000
-Message-ID: <161236669744.943.9345992901614921188@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210203091029.2089-1-anandx.ram.moon@intel.com>
-In-Reply-To: <20210203091029.2089-1-anandx.ram.moon@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/adl=5Fs=3A_ADL-S_platform_Update_PCI_ids_for_Mobile_BGA?=
+Content-Disposition: inline
+In-Reply-To: <YBqLlRYq00BEP/4i@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable runtime power management
+ during shutdown
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,170 +49,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0607462554=="
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0607462554==
-Content-Type: multipart/alternative;
- boundary="===============3945724923389361232=="
+On Wed, Feb 03, 2021 at 01:40:05PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Thu, Jan 28, 2021 at 09:13:49PM +0200, Imre Deak wrote:
+> > On Wed, Jan 27, 2021 at 08:19:09PM +0200, Imre Deak wrote:
+> > > At least on some TGL platforms PUNIT wants to access some display HW
+> > > registers, but it doesn't handle display power managment (disabling DC
+> > > states as required) and so this register access will lead to a hang. =
+To
+> > > prevent this disable runtime power management for poweroff and reboot.
+> > > =
 
---===============3945724923389361232==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> > > Reported-and-tested-by: Khaled Almahallawy <khaled.almahallawy@intel.=
+com>
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > =
 
-== Series Details ==
+> > Chris or Ville, could you ack if you see no problem with this?
+> =
 
-Series: drm/i915/adl_s: ADL-S platform Update PCI ids for Mobile BGA
-URL   : https://patchwork.freedesktop.org/series/86627/
-State : success
+> Looks consistent enough with the other paths.
+> =
 
-== Summary ==
+> I guess we're now powering on pretty much everything before
+> reboot shutdown due to the INIT domain?
 
-CI Bug Log - changes from CI_DRM_9725 -> Patchwork_19571
-====================================================
+Yes all, except for GLK+ DDI_IO and ICL+ AUX since the enabling of those
+has a restriction wrt. other modeset sequence steps.
 
-Summary
--------
+> Hopefully no harm in that.
 
-  **SUCCESS**
+The only requirement is to disable DC states and all/most power wells
+should be eventually removed from the INIT domain. For now I wanted to
+get this sequence closer to the module reload one. I can add a code
+comment about these details.
 
-  No regressions found.
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19571/index.html
+> > > ---
+> > >  drivers/gpu/drm/i915/i915_drv.c | 5 +++++
+> > >  1 file changed, 5 insertions(+)
+> > > =
 
-Known issues
-------------
+> > > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i=
+915_drv.c
+> > > index 0037b81d991e..6f83cca8e27b 100644
+> > > --- a/drivers/gpu/drm/i915/i915_drv.c
+> > > +++ b/drivers/gpu/drm/i915/i915_drv.c
+> > > @@ -1054,6 +1054,8 @@ static void intel_shutdown_encoders(struct drm_=
+i915_private *dev_priv)
+> > >  void i915_driver_shutdown(struct drm_i915_private *i915)
+> > >  {
+> > >  	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+> > > +	intel_runtime_pm_disable(&i915->runtime_pm);
+> > > +	intel_power_domains_disable(i915);
+> > >  =
 
-  Here are the changes found in Patchwork_19571 that come from known issues:
+> > >  	i915_gem_suspend(i915);
+> > >  =
 
-### IGT changes ###
+> > > @@ -1069,7 +1071,10 @@ void i915_driver_shutdown(struct drm_i915_priv=
+ate *i915)
+> > >  	intel_suspend_encoders(i915);
+> > >  	intel_shutdown_encoders(i915);
+> > >  =
 
-#### Issues hit ####
+> > > +	intel_power_domains_driver_remove(i915);
+> > >  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+> > > +
+> > > +	intel_runtime_pm_driver_release(&i915->runtime_pm);
+> > >  }
+> > >  =
 
-  * igt@amdgpu/amd_cs_nop@sync-gfx0:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19571/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+> > >  static bool suspend_to_idle(struct drm_i915_private *dev_priv)
+> > > -- =
 
-  
-#### Possible fixes ####
+> > > 2.25.1
+> > > =
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [INCOMPLETE][2] ([i915#2940]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19571/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+> -- =
 
-
-Participating hosts (45 -> 38)
-------------------------------
-
-  Missing    (7): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9725 -> Patchwork_19571
-
-  CI-20190529: 20190529
-  CI_DRM_9725: 4f97ebbb265a06654e2cc76a0e0115cc00bb6c91 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5989: 57a96840fd5aa7ec48c2f84b30e0420f84ec7386 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19571: 0922647f268c98e918f730f43e7095dc62749f5b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0922647f268c drm/i915/adl_s: ADL-S platform Update PCI ids for Mobile BGA
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19571/index.html
-
---===============3945724923389361232==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/adl_s: ADL-S platform Update PCI ids for Mobile BGA</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86627/">https://patchwork.freedesktop.org/series/86627/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19571/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19571/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9725 -&gt; Patchwork_19571</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19571/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19571 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@amdgpu/amd_cs_nop@sync-gfx0:<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19571/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19571/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 38)</h2>
-<p>Missing    (7): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9725 -&gt; Patchwork_19571</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9725: 4f97ebbb265a06654e2cc76a0e0115cc00bb6c91 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5989: 57a96840fd5aa7ec48c2f84b30e0420f84ec7386 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19571: 0922647f268c98e918f730f43e7095dc62749f5b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0922647f268c drm/i915/adl_s: ADL-S platform Update PCI ids for Mobile BGA</p>
-
-</body>
-</html>
-
---===============3945724923389361232==--
-
---===============0607462554==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0607462554==--
