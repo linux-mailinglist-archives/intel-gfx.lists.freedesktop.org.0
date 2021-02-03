@@ -1,47 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBDB330DAB5
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 14:12:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 301D830DAE8
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 14:20:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15E0589C13;
-	Wed,  3 Feb 2021 13:12:13 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9750B89C13;
- Wed,  3 Feb 2021 13:12:12 +0000 (UTC)
-IronPort-SDR: DMP+IqnjbF1FFN+48wxpLZMZTJqdBqQ/16BK5FqI6sHzkheo/ZLEpT+xyQbJ4ImL8VNMpKwf7l
- mjTShD4ekf+Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="242547954"
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="242547954"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 247C86EAC7;
+	Wed,  3 Feb 2021 13:20:30 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E915F6EA98
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 13:20:28 +0000 (UTC)
+IronPort-SDR: N6vXPLKFQ2qjUufM+32osslrqtW+f2v0+cN+kDHEkkwLfDMlWOfOxt6L/6g9aaaujZAhgX6LP+
+ JPtHjyKsS2hg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="180264019"
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="180264019"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 05:12:10 -0800
-IronPort-SDR: /xUN6hv+tPrHpn67t58rms+pVkz5e7K/q83Xp7q3N7pYZQTc2wRDzuhlYvwEB3AKlH6bxwiMdC
- r1cqEgdRS37g==
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="392432996"
-Received: from eransege-mobl.ger.corp.intel.com (HELO [10.214.208.106])
- ([10.214.208.106])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 05:20:28 -0800
+IronPort-SDR: Lm17S7Izdc/rq+emvmtAZG9Ef3KoQwNtM+8T3Ae1/YymuxJc7iju2kBT2h78rWENITdGomLP/q
+ SAgA16S9UAlA==
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="392435417"
+Received: from jconneax-mobl.amr.corp.intel.com (HELO localhost)
+ ([10.252.21.179])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 05:12:08 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
-References: <20210201115756.876351-1-tvrtko.ursulin@linux.intel.com>
- <161218123064.27906.1183308463378840226@build.alporthouse.com>
- <c947cfbc-bb9d-02c4-5b97-ca76d252e778@linux.intel.com>
- <161235004418.6538.3517367090743505584@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <c3f9a058-307b-3fee-526b-a17a871f8fb3@linux.intel.com>
-Date: Wed, 3 Feb 2021 13:12:05 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+ 03 Feb 2021 05:20:26 -0800
 MIME-Version: 1.0
-In-Reply-To: <161235004418.6538.3517367090743505584@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] intel_gpu_top: Wrap
- interactive header
+In-Reply-To: <20210203121119.481146-1-matthew.auld@intel.com>
+References: <20210203121119.481146-1-matthew.auld@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <161235842339.15744.14184562382251401217@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Wed, 03 Feb 2021 15:20:23 +0200
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915: Distinction of memory regions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,64 +48,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 03/02/2021 11:00, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2021-02-03 10:31:04)
->>
->> On 01/02/2021 12:07, Chris Wilson wrote:
->>> Quoting Tvrtko Ursulin (2021-02-01 11:57:56)
->>>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>>>
->>>> Slight improvement with regards to wrapping header components to fit
->>>> console width. If a single element is wider than max it can still
->>>> overflow but it should now work better for practical console widths.
->>>
->>> <----
->>> intel-gpu-top: Intel Kabylake (Gen9) @ /dev/dri/card0
->>>    900/ 949 MHz;   0% RC6;  6.97/18.42 W;        2 irqs/s
->>>         IMC reads:        6 MiB/s
->>>        IMC writes:        0 MiB/s
->>>
->>> ---->
->>> intel-gpu-top: Intel Kabylake (Gen9) @ /dev/dri/card0 -  903/ 954 MHz;   0% RC6
->>>       7.16/18.40 W;       14 irqs/s
->>>
->>>         IMC reads:       80 MiB/s
->>>        IMC writes:        0 MiB/s
->>>
->>> I thought it looked reasonably tidy, without adding any lines to the
->>> header.
->>
->> Or on a wider terminal:
->> <----
->> intel-gpu-top: Intel Skylake (Gen9) @ /dev/dri/card0
->>      0/   0 MHz; 100% RC6;  0.00/ 1.29 W;        0 irqs/s
->>         IMC reads:      138 MiB/s
->>        IMC writes:        6 MiB/s
->> --->
->> intel-gpu-top: Intel Skylake (Gen9) @ /dev/dri/card0 -    0/   0 MHz; 100% RC6;  0.00/ 0.00 W;        0 irqs/s
->>
->>         IMC reads:       77 MiB/s
->>        IMC writes:        4 MiB/s
->>
->>
->> So a "fight" between 80 chars vs 120 (or so). :) It may be a bit of an over-engineered solution but I don't like the wrap on a wide terminal, plus I like an extra blank line.
-> 
-> But the memory counters are visually similar to the
-> frequency/rc6/power/interrupts...
-
-But I broke my layout by accident when rebasing client stats... ;D
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBNYXR0aGV3IEF1bGQgKDIwMjEtMDItMDMgMTQ6MTE6MTYpCj4gRnJvbTogWmJpZ25p
+ZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+Cj4gCj4gSW4g
+cHJlcGFyYXRpb24gZm9yIFhlIEhQIG11bHRpLXRpbGUgYXJjaGl0ZWN0dXJlIHdpdGggbXVsdGlw
+bGUgbWVtb3J5Cj4gcmVnaW9ucywgd2UgbmVlZCB0byBiZSBhYmxlIGRpZmZlcmVudGlhdGUgbXVs
+dGlwbGUgaW5zdGFuY2VzIG9mIGRldmljZQo+IGxvY2FsLW1lbW9yeS4KCldvdWxkIGJlIGdvb2Qg
+dG8gY29tbWVudCBoZXJlIG9uIHdoZXJlIHRoaXMgbmFtZSBpcyB1c2VkLCBhbmQgYnJpZWZseQpl
+eHBsYWluIHdoeSBpdCdzIG5vdCBBUEkgY2hhbmdlLgoKUmVnYXJkcywgSm9vbmFzCgo+IFNpZ25l
+ZC1vZmYtYnk6IFpiaWduaWV3IEtlbXBjennFhHNraSA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50
+ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVs
+LmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3QuYyAgICAgICAg
+ICB8IDIgKysKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVnaW9uX2xtZW0uYyB8
+IDIgLS0KPiAgMiBmaWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0p
+Cj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0LmMgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndC5jCj4gaW5kZXggMzVmZjY4YWRhNGYxLi5j
+YTc2ZjkzYmMwM2QgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxf
+Z3QuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0LmMKPiBAQCAtNjgs
+NiArNjgsOCBAQCBpbnQgaW50ZWxfZ3RfcHJvYmVfbG1lbShzdHJ1Y3QgaW50ZWxfZ3QgKmd0KQo+
+ICAgICAgICAgbWVtLT50eXBlID0gSU5URUxfTUVNT1JZX0xPQ0FMOwo+ICAgICAgICAgbWVtLT5p
+bnN0YW5jZSA9IDA7Cj4gIAo+ICsgICAgICAgaW50ZWxfbWVtb3J5X3JlZ2lvbl9zZXRfbmFtZSht
+ZW0sICJsb2NhbCV1IiwgbWVtLT5pbnN0YW5jZSk7Cj4gKwo+ICAgICAgICAgR0VNX0JVR19PTigh
+SEFTX1JFR0lPTihpOTE1LCBpZCkpOwo+ICAgICAgICAgR0VNX0JVR19PTihpOTE1LT5tbS5yZWdp
+b25zW2lkXSk7Cj4gICAgICAgICBpOTE1LT5tbS5yZWdpb25zW2lkXSA9IG1lbTsKPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVnaW9uX2xtZW0uYyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JlZ2lvbl9sbWVtLmMKPiBpbmRleCA4YzQ5OGU5NmIw
+MWQuLmJlNmYyYzhmNTE4NCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
+bnRlbF9yZWdpb25fbG1lbS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxf
+cmVnaW9uX2xtZW0uYwo+IEBAIC05MCw4ICs5MCw2IEBAIHJlZ2lvbl9sbWVtX2luaXQoc3RydWN0
+IGludGVsX21lbW9yeV9yZWdpb24gKm1lbSkKPiAgICAgICAgIGlmIChyZXQpCj4gICAgICAgICAg
+ICAgICAgIGlvX21hcHBpbmdfZmluaSgmbWVtLT5pb21hcCk7Cj4gIAo+IC0gICAgICAgaW50ZWxf
+bWVtb3J5X3JlZ2lvbl9zZXRfbmFtZShtZW0sICJsb2NhbCIpOwo+IC0KPiAgICAgICAgIHJldHVy
+biByZXQ7Cj4gIH0KPiAgCj4gLS0gCj4gMi4yNi4yCj4gCj4gX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeAo=
