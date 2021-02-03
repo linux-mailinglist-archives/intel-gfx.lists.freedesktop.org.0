@@ -2,37 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA2330D991
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 13:12:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B5DE30D98F
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 13:12:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E557E89DA7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93CC589D89;
 	Wed,  3 Feb 2021 12:12:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C7589D89
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76CB789D8D
  for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 12:12:06 +0000 (UTC)
-IronPort-SDR: JKSCaPSEVvatGqvA2462YRDrG/z0+wQWy0G3OlHptBoDRopb61AXKQQQZIv1qTC/1jWnmTzsmA
- 3gDCqEq8j46g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="160196286"
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="160196286"
+IronPort-SDR: Ny1QGA+DtOR67Eeu3DYhQtcaXQBt7QTcWBQUq0Q3WMNIpnxlFrmXyAYBMWmMKOl43YOhi37hmq
+ FaXoUTOFqbnw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="160196288"
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="160196288"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 04:12:03 -0800
-IronPort-SDR: U/91DQJTY+KRcmjG5iVcGfnrDrrh/Vhw63OeDDRfvBF4zg6lt6SBIukY2b5vdbofTKRMhjg7lj
- Tl7tQRSfgxug==
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="372359024"
+ 03 Feb 2021 04:12:04 -0800
+IronPort-SDR: m4rO5vcTBhRdl/hSjK5a9pVDTBUVTkWNDc+SwlTnh6q3yoPKeyrbaUH6oV0ZTeLi5ROuPn2mLu
+ vWIwlsD5/tig==
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="372359045"
 Received: from mcampone-mobl1.ger.corp.intel.com (HELO
  mwauld-desk1.ger.corp.intel.com) ([10.252.21.36])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 04:12:01 -0800
+ 03 Feb 2021 04:12:03 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  3 Feb 2021 12:11:16 +0000
-Message-Id: <20210203121119.481146-1-matthew.auld@intel.com>
+Date: Wed,  3 Feb 2021 12:11:17 +0000
+Message-Id: <20210203121119.481146-2-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210203121119.481146-1-matthew.auld@intel.com>
+References: <20210203121119.481146-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Distinction of memory regions
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/gtt/dg1: add PTE_LM plumbing for
+ ppGTT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,36 +48,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5j
-b20+CgpJbiBwcmVwYXJhdGlvbiBmb3IgWGUgSFAgbXVsdGktdGlsZSBhcmNoaXRlY3R1cmUgd2l0
-aCBtdWx0aXBsZSBtZW1vcnkKcmVnaW9ucywgd2UgbmVlZCB0byBiZSBhYmxlIGRpZmZlcmVudGlh
-dGUgbXVsdGlwbGUgaW5zdGFuY2VzIG9mIGRldmljZQpsb2NhbC1tZW1vcnkuCgpTaWduZWQtb2Zm
-LWJ5OiBaYmlnbmlldyBLZW1wY3p5xYRza2kgPHpiaWduaWV3LmtlbXBjenluc2tpQGludGVsLmNv
-bT4KU2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgot
-LS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0LmMgICAgICAgICAgfCAyICsrCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yZWdpb25fbG1lbS5jIHwgMiAtLQogMiBmaWxl
-cyBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3QuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L2ludGVsX2d0LmMKaW5kZXggMzVmZjY4YWRhNGYxLi5jYTc2ZjkzYmMwM2QgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0LmMKKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ3QvaW50ZWxfZ3QuYwpAQCAtNjgsNiArNjgsOCBAQCBpbnQgaW50ZWxfZ3RfcHJv
-YmVfbG1lbShzdHJ1Y3QgaW50ZWxfZ3QgKmd0KQogCW1lbS0+dHlwZSA9IElOVEVMX01FTU9SWV9M
-T0NBTDsKIAltZW0tPmluc3RhbmNlID0gMDsKIAorCWludGVsX21lbW9yeV9yZWdpb25fc2V0X25h
-bWUobWVtLCAibG9jYWwldSIsIG1lbS0+aW5zdGFuY2UpOworCiAJR0VNX0JVR19PTighSEFTX1JF
-R0lPTihpOTE1LCBpZCkpOwogCUdFTV9CVUdfT04oaTkxNS0+bW0ucmVnaW9uc1tpZF0pOwogCWk5
-MTUtPm1tLnJlZ2lvbnNbaWRdID0gbWVtOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3QvaW50ZWxfcmVnaW9uX2xtZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X3JlZ2lvbl9sbWVtLmMKaW5kZXggOGM0OThlOTZiMDFkLi5iZTZmMmM4ZjUxODQgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3JlZ2lvbl9sbWVtLmMKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVnaW9uX2xtZW0uYwpAQCAtOTAsOCArOTAsNiBA
-QCByZWdpb25fbG1lbV9pbml0KHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICptZW0pCiAJaWYg
-KHJldCkKIAkJaW9fbWFwcGluZ19maW5pKCZtZW0tPmlvbWFwKTsKIAotCWludGVsX21lbW9yeV9y
-ZWdpb25fc2V0X25hbWUobWVtLCAibG9jYWwiKTsKLQogCXJldHVybiByZXQ7CiB9CiAKLS0gCjIu
-MjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
-ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+For the PTEs we get an LM bit, to signal whether the page resides in
+SMEM or LMEM.
+
+v2: just use gen8_pte_encode for dg1
+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+---
+ drivers/gpu/drm/i915/gt/gen8_ppgtt.c  | 11 ++++++++++-
+ drivers/gpu/drm/i915/gt/intel_gtt.h   |  3 +++
+ drivers/gpu/drm/i915/gt/intel_ppgtt.c |  3 +++
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+index 03a9d4396373..4048b0b50147 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/log2.h>
+ 
++#include "gem/i915_gem_lmem.h"
+ #include "gen8_ppgtt.h"
+ #include "i915_scatterlist.h"
+ #include "i915_trace.h"
+@@ -35,6 +36,9 @@ static u64 gen8_pte_encode(dma_addr_t addr,
+ 	if (unlikely(flags & PTE_READ_ONLY))
+ 		pte &= ~_PAGE_RW;
+ 
++	if (flags & PTE_LM)
++		pte |= GEN12_PPGTT_PTE_LM;
++
+ 	switch (level) {
+ 	case I915_CACHE_NONE:
+ 		pte |= PPAT_UNCACHED;
+@@ -558,6 +562,7 @@ static void gen8_ppgtt_insert(struct i915_address_space *vm,
+ 
+ static int gen8_init_scratch(struct i915_address_space *vm)
+ {
++	u32 pte_flags;
+ 	int ret;
+ 	int i;
+ 
+@@ -581,9 +586,13 @@ static int gen8_init_scratch(struct i915_address_space *vm)
+ 	if (ret)
+ 		return ret;
+ 
++	pte_flags = vm->has_read_only;
++	if (i915_gem_object_is_lmem(vm->scratch[0]))
++		pte_flags |= PTE_LM;
++
+ 	vm->scratch[0]->encode =
+ 		gen8_pte_encode(px_dma(vm->scratch[0]),
+-				I915_CACHE_LLC, vm->has_read_only);
++				I915_CACHE_LLC, pte_flags);
+ 
+ 	for (i = 1; i <= vm->top; i++) {
+ 		struct drm_i915_gem_object *obj;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index 29c10fde8ce3..4a1d9b5cc75b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -85,6 +85,8 @@ typedef u64 gen8_pte_t;
+ #define BYT_PTE_SNOOPED_BY_CPU_CACHES	REG_BIT(2)
+ #define BYT_PTE_WRITEABLE		REG_BIT(1)
+ 
++#define GEN12_PPGTT_PTE_LM (1 << 11)
++
+ /*
+  * Cacheability Control is a 4-bit value. The low three bits are stored in bits
+  * 3:1 of the PTE, while the fourth bit is stored in bit 11 of the PTE.
+@@ -264,6 +266,7 @@ struct i915_address_space {
+ 			  enum i915_cache_level level,
+ 			  u32 flags); /* Create a valid PTE */
+ #define PTE_READ_ONLY	BIT(0)
++#define PTE_LM		BIT(1)
+ 
+ 	void (*allocate_va_range)(struct i915_address_space *vm,
+ 				  struct i915_vm_pt_stash *stash,
+diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+index 3f940ae27028..80580d00f97d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
+@@ -7,6 +7,7 @@
+ 
+ #include "i915_trace.h"
+ #include "intel_gtt.h"
++#include "gem/i915_gem_lmem.h"
+ #include "gen6_ppgtt.h"
+ #include "gen8_ppgtt.h"
+ 
+@@ -192,6 +193,8 @@ void ppgtt_bind_vma(struct i915_address_space *vm,
+ 	pte_flags = 0;
+ 	if (i915_gem_object_is_readonly(vma->obj))
+ 		pte_flags |= PTE_READ_ONLY;
++	if (i915_gem_object_is_lmem(vma->obj))
++		pte_flags |= PTE_LM;
+ 
+ 	vm->insert_entries(vm, vma, cache_level, pte_flags);
+ 	wmb();
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
