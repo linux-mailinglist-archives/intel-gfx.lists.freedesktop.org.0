@@ -1,35 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC21B30D822
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 12:08:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABA0F30D84D
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 12:18:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE4C46EA5A;
-	Wed,  3 Feb 2021 11:08:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E932A6EA66;
+	Wed,  3 Feb 2021 11:18:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9AC36EA56;
- Wed,  3 Feb 2021 11:08:07 +0000 (UTC)
-Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
- by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <colin.king@canonical.com>)
- id 1l7G0x-0006X9-LX; Wed, 03 Feb 2021 11:08:03 +0000
-From: Colin King <colin.king@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Date: Wed,  3 Feb 2021 11:08:03 +0000
-Message-Id: <20210203110803.17894-1-colin.king@canonical.com>
-X-Mailer: git-send-email 2.29.2
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFC026EA64
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 11:18:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23782022-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 03 Feb 2021 11:18:04 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  3 Feb 2021 11:17:55 +0000
+Message-Id: <20210203111806.7311-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH][next] drm/i915/display: fix spelling mistake
- "Couldnt" -> "Couldn't"
+Subject: [Intel-gfx] [CI 01/12] drm/i915/gt: Move engine setup out of
+ set_default_submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,36 +37,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Colin Ian King <colin.king@canonical.com>
+Now that we no longer switch back and forth between guc and execlists,
+we no longer need to restore the backend's vfunc and can leave them set
+after initialisation. The only catch is that we lose the submission on
+wedging and still need to reset the submit_request vfunc on unwedging.
 
-There is a spelling mistake in a drm_dbg message. Fix it.
-
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../drm/i915/gt/intel_execlists_submission.c  | 46 ++++++++---------
+ .../gpu/drm/i915/gt/intel_ring_submission.c   |  4 --
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 50 ++++++++-----------
+ 3 files changed, 44 insertions(+), 56 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 8c12d5375607..a338720cee2e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2650,7 +2650,7 @@ void intel_dp_check_frl_training(struct intel_dp *intel_dp)
- 	if (intel_dp_pcon_start_frl_training(intel_dp) < 0) {
- 		int ret, mode;
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index b8bd3d48b345..c98fdeb94dba 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -3069,29 +3069,6 @@ static void execlists_set_default_submission(struct intel_engine_cs *engine)
+ 	engine->submit_request = execlists_submit_request;
+ 	engine->schedule = i915_schedule;
+ 	engine->execlists.tasklet.callback = execlists_submission_tasklet;
+-
+-	engine->reset.prepare = execlists_reset_prepare;
+-	engine->reset.rewind = execlists_reset_rewind;
+-	engine->reset.cancel = execlists_reset_cancel;
+-	engine->reset.finish = execlists_reset_finish;
+-
+-	engine->park = execlists_park;
+-	engine->unpark = NULL;
+-
+-	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
+-	if (!intel_vgpu_active(engine->i915)) {
+-		engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
+-		if (can_preempt(engine)) {
+-			engine->flags |= I915_ENGINE_HAS_PREEMPTION;
+-			if (IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
+-				engine->flags |= I915_ENGINE_HAS_TIMESLICES;
+-		}
+-	}
+-
+-	if (intel_engine_has_preemption(engine))
+-		engine->emit_bb_start = gen8_emit_bb_start;
+-	else
+-		engine->emit_bb_start = gen8_emit_bb_start_noarb;
+ }
  
--		drm_dbg(&dev_priv->drm, "Couldnt set FRL mode, continuing with TMDS mode\n");
-+		drm_dbg(&dev_priv->drm, "Couldn't set FRL mode, continuing with TMDS mode\n");
- 		ret = drm_dp_pcon_reset_frl_config(&intel_dp->aux);
- 		mode = drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, NULL);
+ static void execlists_shutdown(struct intel_engine_cs *engine)
+@@ -3122,6 +3099,14 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+ 	engine->cops = &execlists_context_ops;
+ 	engine->request_alloc = execlists_request_alloc;
  
++	engine->reset.prepare = execlists_reset_prepare;
++	engine->reset.rewind = execlists_reset_rewind;
++	engine->reset.cancel = execlists_reset_cancel;
++	engine->reset.finish = execlists_reset_finish;
++
++	engine->park = execlists_park;
++	engine->unpark = NULL;
++
+ 	engine->emit_flush = gen8_emit_flush_xcs;
+ 	engine->emit_init_breadcrumb = gen8_emit_init_breadcrumb;
+ 	engine->emit_fini_breadcrumb = gen8_emit_fini_breadcrumb_xcs;
+@@ -3142,6 +3127,21 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+ 		 * until a more refined solution exists.
+ 		 */
+ 	}
++
++	engine->flags |= I915_ENGINE_SUPPORTS_STATS;
++	if (!intel_vgpu_active(engine->i915)) {
++		engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
++		if (can_preempt(engine)) {
++			engine->flags |= I915_ENGINE_HAS_PREEMPTION;
++			if (IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
++				engine->flags |= I915_ENGINE_HAS_TIMESLICES;
++		}
++	}
++
++	if (intel_engine_has_preemption(engine))
++		engine->emit_bb_start = gen8_emit_bb_start;
++	else
++		engine->emit_bb_start = gen8_emit_bb_start_noarb;
+ }
+ 
+ static void logical_ring_default_irqs(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 9c2c605d7a92..3cb2ce503544 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -969,14 +969,10 @@ static void gen6_bsd_submit_request(struct i915_request *request)
+ static void i9xx_set_default_submission(struct intel_engine_cs *engine)
+ {
+ 	engine->submit_request = i9xx_submit_request;
+-
+-	engine->park = NULL;
+-	engine->unpark = NULL;
+ }
+ 
+ static void gen6_bsd_set_default_submission(struct intel_engine_cs *engine)
+ {
+-	i9xx_set_default_submission(engine);
+ 	engine->submit_request = gen6_bsd_submit_request;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+index 92688a9b6717..f72faa0b8339 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+@@ -608,35 +608,6 @@ static int guc_resume(struct intel_engine_cs *engine)
+ static void guc_set_default_submission(struct intel_engine_cs *engine)
+ {
+ 	engine->submit_request = guc_submit_request;
+-	engine->schedule = i915_schedule;
+-	engine->execlists.tasklet.callback = guc_submission_tasklet;
+-
+-	engine->reset.prepare = guc_reset_prepare;
+-	engine->reset.rewind = guc_reset_rewind;
+-	engine->reset.cancel = guc_reset_cancel;
+-	engine->reset.finish = guc_reset_finish;
+-
+-	engine->flags |= I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
+-	engine->flags |= I915_ENGINE_HAS_PREEMPTION;
+-
+-	/*
+-	 * TODO: GuC supports timeslicing and semaphores as well, but they're
+-	 * handled by the firmware so some minor tweaks are required before
+-	 * enabling.
+-	 *
+-	 * engine->flags |= I915_ENGINE_HAS_TIMESLICES;
+-	 * engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
+-	 */
+-
+-	engine->emit_bb_start = gen8_emit_bb_start;
+-
+-	/*
+-	 * For the breadcrumb irq to work we need the interrupts to stay
+-	 * enabled. However, on all platforms on which we'll have support for
+-	 * GuC submission we don't allow disabling the interrupts at runtime, so
+-	 * we're always safe with the current flow.
+-	 */
+-	GEM_BUG_ON(engine->irq_enable || engine->irq_disable);
+ }
+ 
+ static void guc_release(struct intel_engine_cs *engine)
+@@ -658,6 +629,13 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+ 	engine->cops = &guc_context_ops;
+ 	engine->request_alloc = guc_request_alloc;
+ 
++	engine->schedule = i915_schedule;
++
++	engine->reset.prepare = guc_reset_prepare;
++	engine->reset.rewind = guc_reset_rewind;
++	engine->reset.cancel = guc_reset_cancel;
++	engine->reset.finish = guc_reset_finish;
++
+ 	engine->emit_flush = gen8_emit_flush_xcs;
+ 	engine->emit_init_breadcrumb = gen8_emit_init_breadcrumb;
+ 	engine->emit_fini_breadcrumb = gen8_emit_fini_breadcrumb_xcs;
+@@ -666,6 +644,20 @@ static void guc_default_vfuncs(struct intel_engine_cs *engine)
+ 		engine->emit_flush = gen12_emit_flush_xcs;
+ 	}
+ 	engine->set_default_submission = guc_set_default_submission;
++
++	engine->flags |= I915_ENGINE_NEEDS_BREADCRUMB_TASKLET;
++	engine->flags |= I915_ENGINE_HAS_PREEMPTION;
++
++	/*
++	 * TODO: GuC supports timeslicing and semaphores as well, but they're
++	 * handled by the firmware so some minor tweaks are required before
++	 * enabling.
++	 *
++	 * engine->flags |= I915_ENGINE_HAS_TIMESLICES;
++	 * engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
++	 */
++
++	engine->emit_bb_start = gen8_emit_bb_start;
+ }
+ 
+ static void rcs_submission_override(struct intel_engine_cs *engine)
 -- 
-2.29.2
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
