@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0943D30E458
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 21:56:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE7DC30E472
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 21:59:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3EF56EBC4;
-	Wed,  3 Feb 2021 20:56:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 604E36EBED;
+	Wed,  3 Feb 2021 20:59:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 23E726EBB5;
- Wed,  3 Feb 2021 20:56:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1C265A73C9;
- Wed,  3 Feb 2021 20:56:30 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFB916EBAA;
+ Wed,  3 Feb 2021 20:58:58 +0000 (UTC)
+IronPort-SDR: YSOx2IZE5cQCnZhiZMFUD17zzQwzt12fTle+z8/iljR5yyKtTPezSyMYAaBqI72H8iyucCIqzv
+ JyOH9cglITQA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="178554859"
+X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; d="scan'208";a="178554859"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 12:58:58 -0800
+IronPort-SDR: uWcB2u+EkIwBClPCB/8HQ49mwuegg0MK4/KA5M5KKxtTnlILGU5zCuDG68benIX6DwQqof5ajd
+ UmkrmYpXtpwA==
+X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; d="scan'208";a="392640894"
+Received: from hgannu-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.212.103.232])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 12:58:56 -0800
+Date: Wed, 3 Feb 2021 15:58:54 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20210203205854.GA302863@intel.com>
+References: <20210126001031.881048-1-lyude@redhat.com>
+ <20210126001031.881048-5-lyude@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Wed, 03 Feb 2021 20:56:30 -0000
-Message-ID: <161238579008.945.16699957000665830775@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210203093044.30532-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210203093044.30532-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Reject_446-480MHz_HDMI_clock_on_GLK?=
+Content-Disposition: inline
+In-Reply-To: <20210126001031.881048-5-lyude@redhat.com>
+Subject: Re: [Intel-gfx] [RFC v2 4/5] drm/dp: Extract i915's eDP backlight
+ code into DRM helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,1177 +49,834 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0887676592=="
+Cc: greg.depoire@gmail.com, Jani Nikula <jani.nikula@intel.com>,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
+ David Airlie <airlied@linux.ie>, Sean Paul <seanpaul@chromium.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Aaron Ma <aaron.ma@canonical.com>,
+ Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0887676592==
-Content-Type: multipart/alternative;
- boundary="===============8474891459764032857=="
-
---===============8474891459764032857==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Reject 446-480MHz HDMI clock on GLK
-URL   : https://patchwork.freedesktop.org/series/86631/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9725_full -> Patchwork_19572_full
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19572_full:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@sysfs_clients@recycle-many}:
-    - shard-apl:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl3/igt@sysfs_clients@recycle-many.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl4/igt@sysfs_clients@recycle-many.html
-    - shard-skl:          [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl2/igt@sysfs_clients@recycle-many.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl6/igt@sysfs_clients@recycle-many.html
-    - shard-tglb:         [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-tglb2/igt@sysfs_clients@recycle-many.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb1/igt@sysfs_clients@recycle-many.html
-    - shard-snb:          [PASS][7] -> [FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-snb5/igt@sysfs_clients@recycle-many.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-snb2/igt@sysfs_clients@recycle-many.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19572_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@api_intel_bb@render-ccs:
-    - shard-glk:          [PASS][9] -> [INCOMPLETE][10] ([i915#2405] / [i915#2499])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-glk7/igt@api_intel_bb@render-ccs.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-glk6/igt@api_intel_bb@render-ccs.html
-
-  * igt@feature_discovery@display-2x:
-    - shard-tglb:         NOTRUN -> [SKIP][11] ([i915#1839])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@feature_discovery@display-2x.html
-
-  * igt@gem_ctx_param@set-priority-not-supported:
-    - shard-iclb:         NOTRUN -> [SKIP][12] ([fdo#109314])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@gem_ctx_param@set-priority-not-supported.html
-
-  * igt@gem_ctx_persistence@close-replace-race:
-    - shard-glk:          [PASS][13] -> [TIMEOUT][14] ([i915#2918])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-glk9/igt@gem_ctx_persistence@close-replace-race.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-glk4/igt@gem_ctx_persistence@close-replace-race.html
-
-  * igt@gem_exec_fair@basic-pace@vcs1:
-    - shard-iclb:         NOTRUN -> [FAIL][15] ([i915#2842]) +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@gem_exec_fair@basic-pace@vcs1.html
-
-  * igt@gem_exec_fair@basic-pace@vecs0:
-    - shard-glk:          [PASS][16] -> [FAIL][17] ([i915#2842]) +3 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-glk6/igt@gem_exec_fair@basic-pace@vecs0.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-glk2/igt@gem_exec_fair@basic-pace@vecs0.html
-
-  * igt@gem_exec_params@no-vebox:
-    - shard-tglb:         NOTRUN -> [SKIP][18] ([fdo#109283])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@gem_exec_params@no-vebox.html
-
-  * igt@gem_exec_schedule@u-fairslice@vecs0:
-    - shard-kbl:          [PASS][19] -> [DMESG-WARN][20] ([i915#1610] / [i915#2803])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl6/igt@gem_exec_schedule@u-fairslice@vecs0.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl1/igt@gem_exec_schedule@u-fairslice@vecs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - shard-tglb:         [PASS][21] -> [SKIP][22] ([i915#2190])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-tglb5/igt@gem_huc_copy@huc-copy.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb6/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_render_copy@y-tiled-ccs-to-y-tiled-mc-ccs:
-    - shard-iclb:         NOTRUN -> [SKIP][23] ([i915#768]) +2 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@gem_render_copy@y-tiled-ccs-to-y-tiled-mc-ccs.html
-
-  * igt@gem_userptr_blits@input-checking:
-    - shard-kbl:          NOTRUN -> [DMESG-WARN][24] ([i915#3002])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl2/igt@gem_userptr_blits@input-checking.html
-
-  * igt@gem_userptr_blits@process-exit-mmap-busy@uc:
-    - shard-kbl:          NOTRUN -> [SKIP][25] ([fdo#109271] / [i915#1699]) +3 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@gem_userptr_blits@process-exit-mmap-busy@uc.html
-    - shard-skl:          NOTRUN -> [SKIP][26] ([fdo#109271] / [i915#1699]) +3 similar issues
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@gem_userptr_blits@process-exit-mmap-busy@uc.html
-
-  * igt@gem_userptr_blits@vma-merge:
-    - shard-apl:          NOTRUN -> [INCOMPLETE][27] ([i915#2502] / [i915#2667])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl7/igt@gem_userptr_blits@vma-merge.html
-
-  * igt@gen3_render_mixed_blits:
-    - shard-tglb:         NOTRUN -> [SKIP][28] ([fdo#109289])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@gen3_render_mixed_blits.html
-
-  * igt@gen9_exec_parse@bb-large:
-    - shard-iclb:         NOTRUN -> [SKIP][29] ([i915#2527])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@gen9_exec_parse@bb-large.html
-
-  * igt@gen9_exec_parse@bb-start-far:
-    - shard-iclb:         NOTRUN -> [SKIP][30] ([fdo#112306]) +1 similar issue
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@gen9_exec_parse@bb-start-far.html
-
-  * igt@gen9_exec_parse@bb-start-param:
-    - shard-tglb:         NOTRUN -> [SKIP][31] ([fdo#112306]) +2 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@gen9_exec_parse@bb-start-param.html
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-iclb:         [PASS][32] -> [FAIL][33] ([i915#454])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb6/igt@i915_pm_dc@dc6-psr.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb6/igt@i915_pm_dc@dc6-psr.html
-
-  * igt@i915_pm_rpm@dpms-non-lpsp:
-    - shard-iclb:         NOTRUN -> [SKIP][34] ([fdo#110892])
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@i915_pm_rpm@dpms-non-lpsp.html
-
-  * igt@kms_big_fb@linear-64bpp-rotate-90:
-    - shard-iclb:         NOTRUN -> [SKIP][35] ([fdo#110725] / [fdo#111614])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_big_fb@linear-64bpp-rotate-90.html
-
-  * igt@kms_big_fb@x-tiled-16bpp-rotate-90:
-    - shard-tglb:         NOTRUN -> [SKIP][36] ([fdo#111614])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_big_fb@x-tiled-16bpp-rotate-90.html
-
-  * igt@kms_big_fb@yf-tiled-32bpp-rotate-90:
-    - shard-tglb:         NOTRUN -> [SKIP][37] ([fdo#111615])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@kms_big_fb@yf-tiled-32bpp-rotate-90.html
-
-  * igt@kms_big_fb@yf-tiled-8bpp-rotate-180:
-    - shard-iclb:         NOTRUN -> [SKIP][38] ([fdo#110723])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_big_fb@yf-tiled-8bpp-rotate-180.html
-
-  * igt@kms_ccs@pipe-c-crc-primary-basic:
-    - shard-skl:          NOTRUN -> [SKIP][39] ([fdo#109271] / [fdo#111304])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl6/igt@kms_ccs@pipe-c-crc-primary-basic.html
-
-  * igt@kms_chamelium@dp-edid-change-during-suspend:
-    - shard-apl:          NOTRUN -> [SKIP][40] ([fdo#109271] / [fdo#111827]) +7 similar issues
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl3/igt@kms_chamelium@dp-edid-change-during-suspend.html
-
-  * igt@kms_chamelium@dp-hpd-storm:
-    - shard-iclb:         NOTRUN -> [SKIP][41] ([fdo#109284] / [fdo#111827]) +6 similar issues
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_chamelium@dp-hpd-storm.html
-
-  * igt@kms_color@pipe-b-degamma:
-    - shard-tglb:         NOTRUN -> [FAIL][42] ([i915#1149])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_color@pipe-b-degamma.html
-
-  * igt@kms_color@pipe-c-ctm-0-25:
-    - shard-iclb:         NOTRUN -> [FAIL][43] ([i915#1149] / [i915#315])
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_color@pipe-c-ctm-0-25.html
-
-  * igt@kms_color@pipe-d-ctm-0-25:
-    - shard-iclb:         NOTRUN -> [SKIP][44] ([fdo#109278] / [i915#1149]) +1 similar issue
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_color@pipe-d-ctm-0-25.html
-
-  * igt@kms_color_chamelium@pipe-b-ctm-0-25:
-    - shard-kbl:          NOTRUN -> [SKIP][45] ([fdo#109271] / [fdo#111827]) +5 similar issues
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_color_chamelium@pipe-b-ctm-0-25.html
-    - shard-skl:          NOTRUN -> [SKIP][46] ([fdo#109271] / [fdo#111827]) +9 similar issues
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_color_chamelium@pipe-b-ctm-0-25.html
-
-  * igt@kms_color_chamelium@pipe-d-ctm-limited-range:
-    - shard-iclb:         NOTRUN -> [SKIP][47] ([fdo#109278] / [fdo#109284] / [fdo#111827])
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_color_chamelium@pipe-d-ctm-limited-range.html
-
-  * igt@kms_color_chamelium@pipe-d-ctm-red-to-blue:
-    - shard-tglb:         NOTRUN -> [SKIP][48] ([fdo#109284] / [fdo#111827]) +6 similar issues
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_color_chamelium@pipe-d-ctm-red-to-blue.html
-
-  * igt@kms_content_protection@atomic-dpms:
-    - shard-kbl:          NOTRUN -> [TIMEOUT][49] ([i915#1319]) +1 similar issue
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl2/igt@kms_content_protection@atomic-dpms.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x170-onscreen:
-    - shard-tglb:         NOTRUN -> [SKIP][50] ([fdo#109279]) +1 similar issue
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@kms_cursor_crc@pipe-a-cursor-512x170-onscreen.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x512-sliding:
-    - shard-iclb:         NOTRUN -> [SKIP][51] ([fdo#109278] / [fdo#109279]) +1 similar issue
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_cursor_crc@pipe-a-cursor-512x512-sliding.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-128x128-random:
-    - shard-skl:          [PASS][52] -> [FAIL][53] ([i915#54]) +4 similar issues
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-128x128-random.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-128x128-random.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x21-random:
-    - shard-skl:          NOTRUN -> [FAIL][54] ([i915#54]) +1 similar issue
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html
-
-  * igt@kms_cursor_crc@pipe-d-cursor-256x256-onscreen:
-    - shard-kbl:          NOTRUN -> [SKIP][55] ([fdo#109271]) +65 similar issues
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_cursor_crc@pipe-d-cursor-256x256-onscreen.html
-
-  * igt@kms_cursor_edge_walk@pipe-d-128x128-top-edge:
-    - shard-iclb:         NOTRUN -> [SKIP][56] ([fdo#109278]) +18 similar issues
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_cursor_edge_walk@pipe-d-128x128-top-edge.html
-
-  * igt@kms_cursor_legacy@cursora-vs-flipb-varying-size:
-    - shard-iclb:         NOTRUN -> [SKIP][57] ([fdo#109274] / [fdo#109278]) +1 similar issue
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_cursor_legacy@cursora-vs-flipb-varying-size.html
-
-  * igt@kms_dp_dsc@basic-dsc-enable-dp:
-    - shard-iclb:         NOTRUN -> [SKIP][58] ([fdo#109349])
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_dp_dsc@basic-dsc-enable-dp.html
-
-  * igt@kms_flip@2x-flip-vs-wf_vblank-interruptible:
-    - shard-iclb:         NOTRUN -> [SKIP][59] ([fdo#109274]) +1 similar issue
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_flip@2x-flip-vs-wf_vblank-interruptible.html
-
-  * igt@kms_flip@plain-flip-fb-recreate@a-edp1:
-    - shard-skl:          [PASS][60] -> [FAIL][61] ([i915#2122])
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl2/igt@kms_flip@plain-flip-fb-recreate@a-edp1.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl1/igt@kms_flip@plain-flip-fb-recreate@a-edp1.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytileccs:
-    - shard-kbl:          NOTRUN -> [FAIL][62] ([i915#2641]) +1 similar issue
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl2/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytileccs.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs:
-    - shard-kbl:          NOTRUN -> [SKIP][63] ([fdo#109271] / [i915#2672])
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs.html
-
-  * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile:
-    - shard-skl:          NOTRUN -> [FAIL][64] ([i915#2628])
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-kbl:          [PASS][65] -> [DMESG-WARN][66] ([i915#180]) +2 similar issues
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-shrfb-draw-mmap-cpu:
-    - shard-skl:          NOTRUN -> [SKIP][67] ([fdo#109271]) +102 similar issues
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl1/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-shrfb-draw-mmap-cpu.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-indfb-fliptrack:
-    - shard-tglb:         NOTRUN -> [SKIP][68] ([fdo#111825]) +21 similar issues
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_frontbuffer_tracking@fbcpsr-2p-indfb-fliptrack.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-shrfb-pgflip-blt:
-    - shard-iclb:         NOTRUN -> [SKIP][69] ([fdo#109280]) +22 similar issues
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-shrfb-pgflip-blt.html
-
-  * igt@kms_hdr@bpc-switch-dpms:
-    - shard-skl:          [PASS][70] -> [FAIL][71] ([i915#1188])
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl8/igt@kms_hdr@bpc-switch-dpms.html
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_hdr@bpc-switch-dpms.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          NOTRUN -> [FAIL][72] ([i915#1188])
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl4/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_pipe_b_c_ivb@disable-pipe-b-enable-pipe-c:
-    - shard-iclb:         NOTRUN -> [SKIP][73] ([fdo#109289]) +2 similar issues
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_pipe_b_c_ivb@disable-pipe-b-enable-pipe-c.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d:
-    - shard-skl:          NOTRUN -> [SKIP][74] ([fdo#109271] / [i915#533]) +2 similar issues
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d.html
-    - shard-kbl:          NOTRUN -> [SKIP][75] ([fdo#109271] / [i915#533]) +1 similar issue
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-alpha-7efc:
-    - shard-apl:          NOTRUN -> [FAIL][76] ([fdo#108145] / [i915#265]) +1 similar issue
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl2/igt@kms_plane_alpha_blend@pipe-a-alpha-7efc.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-alpha-7efc:
-    - shard-skl:          NOTRUN -> [FAIL][77] ([fdo#108145] / [i915#265]) +1 similar issue
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl6/igt@kms_plane_alpha_blend@pipe-b-alpha-7efc.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-alpha-transparent-fb:
-    - shard-apl:          NOTRUN -> [FAIL][78] ([i915#265])
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl7/igt@kms_plane_alpha_blend@pipe-b-alpha-transparent-fb.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [PASS][79] -> [FAIL][80] ([fdo#108145] / [i915#265]) +1 similar issue
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-max:
-    - shard-kbl:          NOTRUN -> [FAIL][81] ([fdo#108145] / [i915#265])
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-max.html
-
-  * igt@kms_plane_cursor@pipe-d-viewport-size-128:
-    - shard-apl:          NOTRUN -> [SKIP][82] ([fdo#109271]) +90 similar issues
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl2/igt@kms_plane_cursor@pipe-d-viewport-size-128.html
-
-  * igt@kms_plane_multiple@atomic-pipe-d-tiling-yf:
-    - shard-tglb:         NOTRUN -> [SKIP][83] ([fdo#112054])
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb5/igt@kms_plane_multiple@atomic-pipe-d-tiling-yf.html
-
-  * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1:
-    - shard-tglb:         NOTRUN -> [SKIP][84] ([i915#2920])
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1.html
-
-  * igt@kms_psr2_sf@plane-move-sf-dmg-area-0:
-    - shard-kbl:          NOTRUN -> [SKIP][85] ([fdo#109271] / [i915#658]) +1 similar issue
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_psr2_sf@plane-move-sf-dmg-area-0.html
-
-  * igt@kms_psr2_sf@plane-move-sf-dmg-area-2:
-    - shard-apl:          NOTRUN -> [SKIP][86] ([fdo#109271] / [i915#658]) +2 similar issues
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl2/igt@kms_psr2_sf@plane-move-sf-dmg-area-2.html
-
-  * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-3:
-    - shard-iclb:         NOTRUN -> [SKIP][87] ([i915#658])
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-3.html
-
-  * igt@kms_psr2_su@frontbuffer:
-    - shard-skl:          NOTRUN -> [SKIP][88] ([fdo#109271] / [i915#658]) +2 similar issues
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_psr2_su@frontbuffer.html
-
-  * igt@kms_psr@psr2_cursor_render:
-    - shard-iclb:         [PASS][89] -> [SKIP][90] ([fdo#109441]) +1 similar issue
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb3/igt@kms_psr@psr2_cursor_render.html
-
-  * igt@kms_psr@psr2_sprite_plane_move:
-    - shard-iclb:         NOTRUN -> [SKIP][91] ([fdo#109441]) +1 similar issue
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_psr@psr2_sprite_plane_move.html
-
-  * igt@kms_vrr@flip-basic:
-    - shard-iclb:         NOTRUN -> [SKIP][92] ([fdo#109502])
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_vrr@flip-basic.html
-
-  * igt@kms_writeback@writeback-invalid-parameters:
-    - shard-apl:          NOTRUN -> [SKIP][93] ([fdo#109271] / [i915#2437])
-   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl3/igt@kms_writeback@writeback-invalid-parameters.html
-
-  * igt@kms_writeback@writeback-pixel-formats:
-    - shard-kbl:          NOTRUN -> [SKIP][94] ([fdo#109271] / [i915#2437])
-   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_writeback@writeback-pixel-formats.html
-
-  * igt@nouveau_crc@pipe-a-source-rg:
-    - shard-iclb:         NOTRUN -> [SKIP][95] ([i915#2530]) +3 similar issues
-   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@nouveau_crc@pipe-a-source-rg.html
-
-  * igt@nouveau_crc@pipe-d-ctx-flip-skip-current-frame:
-    - shard-tglb:         NOTRUN -> [SKIP][96] ([i915#2530])
-   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@nouveau_crc@pipe-d-ctx-flip-skip-current-frame.html
-
-  * igt@perf@blocking:
-    - shard-skl:          [PASS][97] -> [FAIL][98] ([i915#1542])
-   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl6/igt@perf@blocking.html
-   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl2/igt@perf@blocking.html
-
-  * igt@prime_nv_api@i915_nv_reimport_twice_check_flink_name:
-    - shard-iclb:         NOTRUN -> [SKIP][99] ([fdo#109291]) +1 similar issue
-   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@prime_nv_api@i915_nv_reimport_twice_check_flink_name.html
-
-  * igt@prime_udl:
-    - shard-tglb:         NOTRUN -> [SKIP][100] ([fdo#109291]) +1 similar issue
-   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@prime_udl.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_exec@basic-close-race:
-    - shard-iclb:         [INCOMPLETE][101] ([i915#1895]) -> [PASS][102]
-   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb4/igt@gem_ctx_exec@basic-close-race.html
-   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@gem_ctx_exec@basic-close-race.html
-
-  * igt@gem_ctx_isolation@preservation-s3@rcs0:
-    - shard-apl:          [INCOMPLETE][103] ([i915#1630]) -> [PASS][104]
-   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl7/igt@gem_ctx_isolation@preservation-s3@rcs0.html
-   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl7/igt@gem_ctx_isolation@preservation-s3@rcs0.html
-
-  * {igt@gem_ctx_persistence@many-contexts}:
-    - shard-iclb:         [INCOMPLETE][105] -> [PASS][106]
-   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb6/igt@gem_ctx_persistence@many-contexts.html
-   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@gem_ctx_persistence@many-contexts.html
-
-  * igt@gem_exec_fair@basic-none@vcs0:
-    - shard-kbl:          [FAIL][107] ([i915#2842]) -> [PASS][108] +3 similar issues
-   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl2/igt@gem_exec_fair@basic-none@vcs0.html
-   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@gem_exec_fair@basic-none@vcs0.html
-
-  * igt@gem_exec_fair@basic-none@vecs0:
-    - shard-apl:          [FAIL][109] ([i915#2842]) -> [PASS][110]
-   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl7/igt@gem_exec_fair@basic-none@vecs0.html
-   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl3/igt@gem_exec_fair@basic-none@vecs0.html
-
-  * igt@gem_exec_fair@basic-pace@bcs0:
-    - shard-iclb:         [FAIL][111] ([i915#2842]) -> [PASS][112]
-   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb5/igt@gem_exec_fair@basic-pace@bcs0.html
-   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@gem_exec_fair@basic-pace@bcs0.html
-
-  * igt@gem_exec_fair@basic-throttle@rcs0:
-    - shard-glk:          [FAIL][113] ([i915#2842]) -> [PASS][114] +1 similar issue
-   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-glk2/igt@gem_exec_fair@basic-throttle@rcs0.html
-   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-glk2/igt@gem_exec_fair@basic-throttle@rcs0.html
-
-  * igt@gem_exec_schedule@u-fairslice@rcs0:
-    - shard-kbl:          [DMESG-WARN][115] ([i915#1610] / [i915#2803]) -> [PASS][116]
-   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl6/igt@gem_exec_schedule@u-fairslice@rcs0.html
-   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl1/igt@gem_exec_schedule@u-fairslice@rcs0.html
-    - shard-tglb:         [DMESG-WARN][117] ([i915#2803]) -> [PASS][118]
-   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-tglb6/igt@gem_exec_schedule@u-fairslice@rcs0.html
-   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@gem_exec_schedule@u-fairslice@rcs0.html
-
-  * igt@gem_workarounds@suspend-resume-context:
-    - shard-apl:          [DMESG-WARN][119] ([i915#180]) -> [PASS][120] +3 similar issues
-   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl2/igt@gem_workarounds@suspend-resume-context.html
-   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl4/igt@gem_workarounds@suspend-resume-context.html
-
-  * igt@i915_pm_rpm@basic-rte:
-    - shard-tglb:         [INCOMPLETE][121] -> [PASS][122]
-   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-tglb8/igt@i915_pm_rpm@basic-rte.html
-   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x128-random:
-    - shard-skl:          [FAIL][123] ([i915#54]) -> [PASS][124] +4 similar issues
-   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl2/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html
-   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl6/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html
-
-  * igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1:
-    - shard-skl:          [FAIL][125] ([i915#2122]) -> [PASS][126] +2 similar issues
-   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl4/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html
-   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl8/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html
-
-  * igt@kms_frontbuffer_tracking@psr-suspend:
-    - shard-iclb:         [INCOMPLETE][127] ([i915#1185] / [i915#123]) -> [PASS][128]
-   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb3/igt@kms_frontbuffer_tracking@psr-suspend.html
-   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_frontbuffer_tracking@psr-suspend.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c:
-    - shard-kbl:          [DMESG-WARN][129] ([i915#180]) -> [PASS][130] +2 similar issues
-   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:
-    - shard-apl:          [DMESG-WARN][131] ([i915#180] / [i915#533]) -> [PASS][132]
-   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl3/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl3/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
-
-  * igt@kms_psr@psr2_primary_mmap_cpu:
-    - shard-iclb:         [SKIP][133] ([fdo#109441]) -> [PASS][134] +2 similar issues
-   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb8/igt@kms_psr@psr2_primary_mmap_cpu.html
-   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
-
-  * igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend:
-    - shard-skl:          [INCOMPLETE][135] ([i915#198]) -> [PASS][136]
-   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl1/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html
-   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html
-
-  * igt@perf@polling-parameterized:
-    - shard-iclb:         [FAIL][137] ([i915#1542]) -> [PASS][138]
-   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb5/igt@perf@polling-parameterized.html
-   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb2/igt@perf@polling-parameterized.html
-
-  * {igt@sysfs_clients@recycle}:
-    - shard-hsw:          [FAIL][139] ([i915#3028]) -> [PASS][140]
-   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-hsw4/igt@sysfs_clients@recycle.html
-   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-hsw4/igt@sysfs_clients@
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/index.html
-
---===============8474891459764032857==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Reject 446-480MHz HDMI clock on GLK</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86631/">https://patchwork.freedesktop.org/series/86631/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9725_full -&gt; Patchwork_19572_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19572_full:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>{igt@sysfs_clients@recycle-many}:</p>
-<ul>
-<li>
-<p>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl3/igt@sysfs_clients@recycle-many.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl4/igt@sysfs_clients@recycle-many.html">FAIL</a></p>
-</li>
-<li>
-<p>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl2/igt@sysfs_clients@recycle-many.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl6/igt@sysfs_clients@recycle-many.html">FAIL</a></p>
-</li>
-<li>
-<p>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-tglb2/igt@sysfs_clients@recycle-many.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb1/igt@sysfs_clients@recycle-many.html">FAIL</a></p>
-</li>
-<li>
-<p>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-snb5/igt@sysfs_clients@recycle-many.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-snb2/igt@sysfs_clients@recycle-many.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19572_full that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@api_intel_bb@render-ccs:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-glk7/igt@api_intel_bb@render-ccs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-glk6/igt@api_intel_bb@render-ccs.html">INCOMPLETE</a> ([i915#2405] / [i915#2499])</li>
-</ul>
-</li>
-<li>
-<p>igt@feature_discovery@display-2x:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@feature_discovery@display-2x.html">SKIP</a> ([i915#1839])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_param@set-priority-not-supported:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@gem_ctx_param@set-priority-not-supported.html">SKIP</a> ([fdo#109314])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_persistence@close-replace-race:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-glk9/igt@gem_ctx_persistence@close-replace-race.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-glk4/igt@gem_ctx_persistence@close-replace-race.html">TIMEOUT</a> ([i915#2918])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@vcs1:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@gem_exec_fair@basic-pace@vcs1.html">FAIL</a> ([i915#2842]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@vecs0:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-glk6/igt@gem_exec_fair@basic-pace@vecs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-glk2/igt@gem_exec_fair@basic-pace@vecs0.html">FAIL</a> ([i915#2842]) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_params@no-vebox:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@gem_exec_params@no-vebox.html">SKIP</a> ([fdo#109283])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_schedule@u-fairslice@vecs0:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl6/igt@gem_exec_schedule@u-fairslice@vecs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl1/igt@gem_exec_schedule@u-fairslice@vecs0.html">DMESG-WARN</a> ([i915#1610] / [i915#2803])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-tglb5/igt@gem_huc_copy@huc-copy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb6/igt@gem_huc_copy@huc-copy.html">SKIP</a> ([i915#2190])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_copy@y-tiled-ccs-to-y-tiled-mc-ccs:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@gem_render_copy@y-tiled-ccs-to-y-tiled-mc-ccs.html">SKIP</a> ([i915#768]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@input-checking:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl2/igt@gem_userptr_blits@input-checking.html">DMESG-WARN</a> ([i915#3002])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@process-exit-mmap-busy@uc:</p>
-<ul>
-<li>
-<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@gem_userptr_blits@process-exit-mmap-busy@uc.html">SKIP</a> ([fdo#109271] / [i915#1699]) +3 similar issues</p>
-</li>
-<li>
-<p>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@gem_userptr_blits@process-exit-mmap-busy@uc.html">SKIP</a> ([fdo#109271] / [i915#1699]) +3 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@vma-merge:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl7/igt@gem_userptr_blits@vma-merge.html">INCOMPLETE</a> ([i915#2502] / [i915#2667])</li>
-</ul>
-</li>
-<li>
-<p>igt@gen3_render_mixed_blits:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@gen3_render_mixed_blits.html">SKIP</a> ([fdo#109289])</li>
-</ul>
-</li>
-<li>
-<p>igt@gen9_exec_parse@bb-large:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@gen9_exec_parse@bb-large.html">SKIP</a> ([i915#2527])</li>
-</ul>
-</li>
-<li>
-<p>igt@gen9_exec_parse@bb-start-far:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@gen9_exec_parse@bb-start-far.html">SKIP</a> ([fdo#112306]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gen9_exec_parse@bb-start-param:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@gen9_exec_parse@bb-start-param.html">SKIP</a> ([fdo#112306]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_dc@dc6-psr:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb6/igt@i915_pm_dc@dc6-psr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb6/igt@i915_pm_dc@dc6-psr.html">FAIL</a> ([i915#454])</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@dpms-non-lpsp:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@i915_pm_rpm@dpms-non-lpsp.html">SKIP</a> ([fdo#110892])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@linear-64bpp-rotate-90:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_big_fb@linear-64bpp-rotate-90.html">SKIP</a> ([fdo#110725] / [fdo#111614])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@x-tiled-16bpp-rotate-90:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_big_fb@x-tiled-16bpp-rotate-90.html">SKIP</a> ([fdo#111614])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-32bpp-rotate-90:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@kms_big_fb@yf-tiled-32bpp-rotate-90.html">SKIP</a> ([fdo#111615])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-8bpp-rotate-180:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_big_fb@yf-tiled-8bpp-rotate-180.html">SKIP</a> ([fdo#110723])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@pipe-c-crc-primary-basic:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl6/igt@kms_ccs@pipe-c-crc-primary-basic.html">SKIP</a> ([fdo#109271] / [fdo#111304])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-edid-change-during-suspend:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl3/igt@kms_chamelium@dp-edid-change-during-suspend.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +7 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-storm:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_chamelium@dp-hpd-storm.html">SKIP</a> ([fdo#109284] / [fdo#111827]) +6 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color@pipe-b-degamma:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_color@pipe-b-degamma.html">FAIL</a> ([i915#1149])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color@pipe-c-ctm-0-25:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_color@pipe-c-ctm-0-25.html">FAIL</a> ([i915#1149] / [i915#315])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color@pipe-d-ctm-0-25:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_color@pipe-d-ctm-0-25.html">SKIP</a> ([fdo#109278] / [i915#1149]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-b-ctm-0-25:</p>
-<ul>
-<li>
-<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_color_chamelium@pipe-b-ctm-0-25.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +5 similar issues</p>
-</li>
-<li>
-<p>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_color_chamelium@pipe-b-ctm-0-25.html">SKIP</a> ([fdo#109271] / [fdo#111827]) +9 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-d-ctm-limited-range:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_color_chamelium@pipe-d-ctm-limited-range.html">SKIP</a> ([fdo#109278] / [fdo#109284] / [fdo#111827])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-d-ctm-red-to-blue:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_color_chamelium@pipe-d-ctm-red-to-blue.html">SKIP</a> ([fdo#109284] / [fdo#111827]) +6 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_content_protection@atomic-dpms:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl2/igt@kms_content_protection@atomic-dpms.html">TIMEOUT</a> ([i915#1319]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-a-cursor-512x170-onscreen:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@kms_cursor_crc@pipe-a-cursor-512x170-onscreen.html">SKIP</a> ([fdo#109279]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-a-cursor-512x512-sliding:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_cursor_crc@pipe-a-cursor-512x512-sliding.html">SKIP</a> ([fdo#109278] / [fdo#109279]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-c-cursor-128x128-random:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-128x128-random.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-128x128-random.html">FAIL</a> ([i915#54]) +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-c-cursor-64x21-random:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html">FAIL</a> ([i915#54]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-d-cursor-256x256-onscreen:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_cursor_crc@pipe-d-cursor-256x256-onscreen.html">SKIP</a> ([fdo#109271]) +65 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_edge_walk@pipe-d-128x128-top-edge:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_cursor_edge_walk@pipe-d-128x128-top-edge.html">SKIP</a> ([fdo#109278]) +18 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursora-vs-flipb-varying-size:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_cursor_legacy@cursora-vs-flipb-varying-size.html">SKIP</a> ([fdo#109274] / [fdo#109278]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dp_dsc@basic-dsc-enable-dp:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_dp_dsc@basic-dsc-enable-dp.html">SKIP</a> ([fdo#109349])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-flip-vs-wf_vblank-interruptible:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_flip@2x-flip-vs-wf_vblank-interruptible.html">SKIP</a> ([fdo#109274]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate@a-edp1:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl2/igt@kms_flip@plain-flip-fb-recreate@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl1/igt@kms_flip@plain-flip-fb-recreate@a-edp1.html">FAIL</a> ([i915#2122])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytileccs:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl2/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytileccs.html">FAIL</a> ([i915#2641]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs.html">SKIP</a> ([fdo#109271] / [i915#2672])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-16bpp-ytile.html">FAIL</a> ([i915#2628])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-suspend:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_frontbuffer_tracking@fbc-suspend.html">DMESG-WARN</a> ([i915#180]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-shrfb-draw-mmap-cpu:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl1/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-pri-shrfb-draw-mmap-cpu.html">SKIP</a> ([fdo#109271]) +102 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-indfb-fliptrack:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_frontbuffer_tracking@fbcpsr-2p-indfb-fliptrack.html">SKIP</a> ([fdo#111825]) +21 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-shrfb-pgflip-blt:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-shrfb-pgflip-blt.html">SKIP</a> ([fdo#109280]) +22 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch-dpms:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl8/igt@kms_hdr@bpc-switch-dpms.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_hdr@bpc-switch-dpms.html">FAIL</a> ([i915#1188])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch-suspend:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl4/igt@kms_hdr@bpc-switch-suspend.html">FAIL</a> ([i915#1188])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_b_c_ivb@disable-pipe-b-enable-pipe-c:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_pipe_b_c_ivb@disable-pipe-b-enable-pipe-c.html">SKIP</a> ([fdo#109289]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d:</p>
-<ul>
-<li>
-<p>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d.html">SKIP</a> ([fdo#109271] / [i915#533]) +2 similar issues</p>
-</li>
-<li>
-<p>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-d.html">SKIP</a> ([fdo#109271] / [i915#533]) +1 similar issue</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-a-alpha-7efc:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl2/igt@kms_plane_alpha_blend@pipe-a-alpha-7efc.html">FAIL</a> ([fdo#108145] / [i915#265]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-b-alpha-7efc:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl6/igt@kms_plane_alpha_blend@pipe-b-alpha-7efc.html">FAIL</a> ([fdo#108145] / [i915#265]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-b-alpha-transparent-fb:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl7/igt@kms_plane_alpha_blend@pipe-b-alpha-transparent-fb.html">FAIL</a> ([i915#265])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html">FAIL</a> ([fdo#108145] / [i915#265]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-c-constant-alpha-max:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-max.html">FAIL</a> ([fdo#108145] / [i915#265])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_cursor@pipe-d-viewport-size-128:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl2/igt@kms_plane_cursor@pipe-d-viewport-size-128.html">SKIP</a> ([fdo#109271]) +90 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_multiple@atomic-pipe-d-tiling-yf:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb5/igt@kms_plane_multiple@atomic-pipe-d-tiling-yf.html">SKIP</a> ([fdo#112054])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1.html">SKIP</a> ([i915#2920])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@plane-move-sf-dmg-area-0:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_psr2_sf@plane-move-sf-dmg-area-0.html">SKIP</a> ([fdo#109271] / [i915#658]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@plane-move-sf-dmg-area-2:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl2/igt@kms_psr2_sf@plane-move-sf-dmg-area-2.html">SKIP</a> ([fdo#109271] / [i915#658]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-3:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-3.html">SKIP</a> ([i915#658])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_su@frontbuffer:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_psr2_su@frontbuffer.html">SKIP</a> ([fdo#109271] / [i915#658]) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_cursor_render:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb2/igt@kms_psr@psr2_cursor_render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb3/igt@kms_psr@psr2_cursor_render.html">SKIP</a> ([fdo#109441]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_sprite_plane_move:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_psr@psr2_sprite_plane_move.html">SKIP</a> ([fdo#109441]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vrr@flip-basic:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@kms_vrr@flip-basic.html">SKIP</a> ([fdo#109502])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_writeback@writeback-invalid-parameters:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl3/igt@kms_writeback@writeback-invalid-parameters.html">SKIP</a> ([fdo#109271] / [i915#2437])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_writeback@writeback-pixel-formats:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_writeback@writeback-pixel-formats.html">SKIP</a> ([fdo#109271] / [i915#2437])</li>
-</ul>
-</li>
-<li>
-<p>igt@nouveau_crc@pipe-a-source-rg:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@nouveau_crc@pipe-a-source-rg.html">SKIP</a> ([i915#2530]) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@nouveau_crc@pipe-d-ctx-flip-skip-current-frame:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@nouveau_crc@pipe-d-ctx-flip-skip-current-frame.html">SKIP</a> ([i915#2530])</li>
-</ul>
-</li>
-<li>
-<p>igt@perf@blocking:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl6/igt@perf@blocking.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl2/igt@perf@blocking.html">FAIL</a> ([i915#1542])</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_nv_api@i915_nv_reimport_twice_check_flink_name:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@prime_nv_api@i915_nv_reimport_twice_check_flink_name.html">SKIP</a> ([fdo#109291]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_udl:</p>
-<ul>
-<li>shard-tglb:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@prime_udl.html">SKIP</a> ([fdo#109291]) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_exec@basic-close-race:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb4/igt@gem_ctx_exec@basic-close-race.html">INCOMPLETE</a> ([i915#1895]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@gem_ctx_exec@basic-close-race.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_isolation@preservation-s3@rcs0:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl7/igt@gem_ctx_isolation@preservation-s3@rcs0.html">INCOMPLETE</a> ([i915#1630]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl7/igt@gem_ctx_isolation@preservation-s3@rcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@gem_ctx_persistence@many-contexts}:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb6/igt@gem_ctx_persistence@many-contexts.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@gem_ctx_persistence@many-contexts.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none@vcs0:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl2/igt@gem_exec_fair@basic-none@vcs0.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@gem_exec_fair@basic-none@vcs0.html">PASS</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none@vecs0:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl7/igt@gem_exec_fair@basic-none@vecs0.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl3/igt@gem_exec_fair@basic-none@vecs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@bcs0:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb5/igt@gem_exec_fair@basic-pace@bcs0.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb4/igt@gem_exec_fair@basic-pace@bcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-throttle@rcs0:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-glk2/igt@gem_exec_fair@basic-throttle@rcs0.html">FAIL</a> ([i915#2842]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-glk2/igt@gem_exec_fair@basic-throttle@rcs0.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_schedule@u-fairslice@rcs0:</p>
-<ul>
-<li>
-<p>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl6/igt@gem_exec_schedule@u-fairslice@rcs0.html">DMESG-WARN</a> ([i915#1610] / [i915#2803]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl1/igt@gem_exec_schedule@u-fairslice@rcs0.html">PASS</a></p>
-</li>
-<li>
-<p>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-tglb6/igt@gem_exec_schedule@u-fairslice@rcs0.html">DMESG-WARN</a> ([i915#2803]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb8/igt@gem_exec_schedule@u-fairslice@rcs0.html">PASS</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_workarounds@suspend-resume-context:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl2/igt@gem_workarounds@suspend-resume-context.html">DMESG-WARN</a> ([i915#180]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl4/igt@gem_workarounds@suspend-resume-context.html">PASS</a> +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@basic-rte:</p>
-<ul>
-<li>shard-tglb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-tglb8/igt@i915_pm_rpm@basic-rte.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-tglb2/igt@i915_pm_rpm@basic-rte.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-b-cursor-128x128-random:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl2/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html">FAIL</a> ([i915#54]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl6/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html">PASS</a> +4 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl4/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html">FAIL</a> ([i915#2122]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl8/igt@kms_flip@plain-flip-fb-recreate-interruptible@b-edp1.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-suspend:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb3/igt@kms_frontbuffer_tracking@psr-suspend.html">INCOMPLETE</a> ([i915#1185] / [i915#123]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb1/igt@kms_frontbuffer_tracking@psr-suspend.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c:</p>
-<ul>
-<li>shard-kbl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-kbl2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html">DMESG-WARN</a> ([i915#180]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-kbl6/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:</p>
-<ul>
-<li>shard-apl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-apl3/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html">DMESG-WARN</a> ([i915#180] / [i915#533]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-apl3/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_primary_mmap_cpu:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb8/igt@kms_psr@psr2_primary_mmap_cpu.html">SKIP</a> ([fdo#109441]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend:</p>
-<ul>
-<li>shard-skl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-skl1/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html">INCOMPLETE</a> ([i915#198]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-skl10/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@perf@polling-parameterized:</p>
-<ul>
-<li>shard-iclb:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-iclb5/igt@perf@polling-parameterized.html">FAIL</a> ([i915#1542]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-iclb2/igt@perf@polling-parameterized.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@sysfs_clients@recycle}:</p>
-<ul>
-<li>shard-hsw:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9725/shard-hsw4/igt@sysfs_clients@recycle.html">FAIL</a> ([i915#3028]) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19572/shard-hsw4/igt@sysfs_clients@">PASS</a></li>
-</ul>
-</li>
-</ul>
-
-</body>
-</html>
-
---===============8474891459764032857==--
-
---===============0887676592==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On Mon, Jan 25, 2021 at 07:10:30PM -0500, Lyude Paul wrote:
+> Since we're about to implement eDP backlight support in nouveau using the
+> standard protocol from VESA, we might as well just take the code that's
+> already written for this and move it into a set of shared DRM helpers.
+> 
+> Note that these helpers are intended to handle DPCD related backlight
+> control bits such as setting the brightness level over AUX, probing the
+> backlight's TCON, enabling/disabling the backlight over AUX if supported,
+> etc. Any PWM-related portions of backlight control are explicitly left up
+> to the driver, as these will vary from platform to platform.
+> 
+> The only exception to this is the calculation of the PWM frequency
+> pre-divider value. This is because the only platform-specific information
+> required for this is the PWM frequency of the panel, which the driver is
+> expected to provide if available. The actual algorithm for calculating this
+> value is standard and is defined in the eDP specification from VESA.
+> 
+> Note that these helpers do not yet implement the full range of features
+> the VESA backlight interface provides, and only provide the following
+> functionality (all of which was already present in i915's DPCD backlight
+> support):
+
+This is definitely a good move.
+
+Also the functions are well defined and well documented.
+
+I noticed it wouldn't be straightforward, but I was wondering if it is possible to make the change in 2 steps (at least):
+1. modify i915 code in place to match new functions
+2. move to drm adding the documentation, proper returns etc....
+
+I couldn't get a good sense of the changes around DPCD mode for instance.
+
+> 
+> * Basic control of brightness levels
+> * Basic probing of backlight capabilities
+> * Helpers for enabling and disabling the backlight
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: greg.depoire@gmail.com
+> ---
+>  drivers/gpu/drm/drm_dp_helper.c               | 332 ++++++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |   3 +-
+>  .../drm/i915/display/intel_dp_aux_backlight.c | 288 ++-------------
+>  include/drm/drm_dp_helper.h                   |  48 +++
+>  4 files changed, 413 insertions(+), 258 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+> index eedbb48815b7..04cb2b6970a8 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -3082,3 +3082,335 @@ int drm_dp_pcon_convert_rgb_to_ycbcr(struct drm_dp_aux *aux, u8 color_spc)
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(drm_dp_pcon_convert_rgb_to_ycbcr);
+> +
+> +/**
+> + * drm_edp_backlight_set_level() - Set the backlight level of an eDP panel via AUX
+> + * @aux: The DP AUX channel to use
+> + * @bl: Backlight capability info from drm_edp_backlight_init()
+> + * @level: The brightness level to set
+> + *
+> + * Sets the brightness level of an eDP panel's backlight. Note that the panel's backlight must
+> + * already have been enabled by the driver by calling drm_edp_backlight_enable().
+> + *
+> + * Returns: %0 on success, negative error code on failure
+> + */
+> +int drm_edp_backlight_set_level(struct drm_dp_aux *aux, const struct drm_edp_backlight_info *bl,
+> +				u16 level)
+> +{
+> +	int ret;
+> +	u8 buf[2] = { 0 };
+> +
+> +	if (bl->lsb_reg_used) {
+> +		buf[0] = (level & 0xFF00) >> 8;
+> +		buf[1] = (level & 0x00FF);
+> +	} else {
+> +		buf[0] = level;
+> +	}
+> +
+> +	ret = drm_dp_dpcd_write(aux, DP_EDP_BACKLIGHT_BRIGHTNESS_MSB, buf, sizeof(buf));
+> +	if (ret != sizeof(buf)) {
+> +		DRM_ERROR("%s: Failed to write aux backlight level: %d\n", aux->name, ret);
+> +		return ret < 0 ? ret : -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_edp_backlight_set_level);
+> +
+> +static int
+> +drm_edp_backlight_set_enable(struct drm_dp_aux *aux, const struct drm_edp_backlight_info *bl,
+> +			     bool enable)
+> +{
+> +	int ret;
+> +	u8 buf;
+> +
+> +	/* The panel uses something other then DPCD for enabling it's backlight */
+> +	if (!bl->aux_enable)
+> +		return 0;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_EDP_DISPLAY_CONTROL_REGISTER, &buf);
+> +	if (ret != 1) {
+> +		DRM_ERROR("%s: Failed to read eDP display control register: %d\n", aux->name, ret);
+> +		return ret < 0 ? ret : -EIO;
+> +	}
+> +	if (enable)
+> +		buf |= DP_EDP_BACKLIGHT_ENABLE;
+> +	else
+> +		buf &= ~DP_EDP_BACKLIGHT_ENABLE;
+> +
+> +	ret = drm_dp_dpcd_writeb(aux, DP_EDP_DISPLAY_CONTROL_REGISTER, buf);
+> +	if (ret != 1) {
+> +		DRM_ERROR("%s: Failed to write eDP display control register: %d\n", aux->name, ret);
+> +		return ret < 0 ? ret : -EIO;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * drm_edp_backlight_enable() - Enable an eDP panel's backlight using DPCD
+> + * @aux: The DP AUX channel to use
+> + * @bl: Backlight capability info from drm_edp_backlight_init()
+> + * @level: The initial backlight level to set via AUX, if there is one
+> + *
+> + * This function handles enabling DPCD backlight controls on a panel over DPCD, while additionally
+> + * restoring any important backlight state such as the given backlight level, the brightness byte
+> + * count, backlight frequency, etc.
+> + *
+> + * Note that certain panels, while supporting brightness level controls over DPCD, may not support
+> + * having their backlights enabled via the standard %DP_EDP_DISPLAY_CONTROL_REGISTER. On such panels
+> + * &drm_edp_backlight_info.aux_enable will be set to %false, this function will skip the step of
+> + * programming the %DP_EDP_DISPLAY_CONTROL_REGISTER, and the driver must perform the required
+> + * implementation specific step for enabling the backlight after calling this function.
+> + *
+> + * Returns: %0 on success, negative error code on failure.
+> + */
+> +int drm_edp_backlight_enable(struct drm_dp_aux *aux, const struct drm_edp_backlight_info *bl,
+> +			     const u16 level)
+> +{
+> +	int ret;
+> +	u8 dpcd_buf, new_dpcd_buf;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER, &dpcd_buf);
+> +	if (ret != 1) {
+> +		DRM_DEBUG_KMS("%s: Failed to read backlight mode: %d\n", aux->name, ret);
+> +		return ret < 0 ? ret : -EIO;
+> +	}
+> +
+> +	new_dpcd_buf = dpcd_buf;
+> +
+> +	if ((dpcd_buf & DP_EDP_BACKLIGHT_CONTROL_MODE_MASK) != DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+> +		new_dpcd_buf &= ~DP_EDP_BACKLIGHT_CONTROL_MODE_MASK;
+> +		new_dpcd_buf |= DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
+> +
+> +		ret = drm_dp_dpcd_writeb(aux, DP_EDP_PWMGEN_BIT_COUNT, bl->pwmgen_bit_count);
+> +		if (ret != 1)
+> +			DRM_DEBUG_KMS("%s: Failed to write aux pwmgen bit count: %d\n",
+> +				      aux->name, ret);
+> +	}
+> +
+> +	if (bl->pwm_freq_pre_divider) {
+> +		ret = drm_dp_dpcd_writeb(aux, DP_EDP_BACKLIGHT_FREQ_SET, bl->pwm_freq_pre_divider);
+> +		if (ret != 1)
+> +			DRM_DEBUG_KMS("%s: Failed to write aux backlight frequency: %d\n",
+> +				      aux->name, ret);
+> +		else
+> +			new_dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
+> +	}
+> +
+> +	if (new_dpcd_buf != dpcd_buf) {
+> +		ret = drm_dp_dpcd_writeb(aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER, new_dpcd_buf);
+> +		if (ret != 1) {
+> +			DRM_DEBUG_KMS("%s: Failed to write aux backlight mode: %d\n",
+> +				      aux->name, ret);
+> +			return ret < 0 ? ret : -EIO;
+> +		}
+> +	}
+> +
+> +	ret = drm_edp_backlight_set_level(aux, bl, level);
+> +	if (ret < 0)
+> +		return ret;
+> +	ret = drm_edp_backlight_set_enable(aux, bl, true);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_edp_backlight_enable);
+> +
+> +/**
+> + * drm_edp_backlight_disable() - Disable an eDP backlight using DPCD, if supported
+> + * @aux: The DP AUX channel to use
+> + * @bl: Backlight capability info from drm_edp_backlight_init()
+> + *
+> + * This function handles disabling DPCD backlight controls on a panel over AUX. Note that some
+> + * panels have backlights that are enabled/disabled by other means, despite having their brightness
+> + * values controlled through DPCD. On such panels &drm_edp_backlight_info.aux_enable will be set to
+> + * %false, this function will become a no-op (and we will skip updating
+> + * %DP_EDP_DISPLAY_CONTROL_REGISTER), and the driver must take care to perform it's own
+> + * implementation specific step for disabling the backlight.
+> + *
+> + * Returns: %0 on success or no-op, negative error code on failure.
+> + */
+> +int drm_edp_backlight_disable(struct drm_dp_aux *aux, const struct drm_edp_backlight_info *bl)
+> +{
+> +	int ret;
+> +
+> +	ret = drm_edp_backlight_set_enable(aux, bl, false);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_edp_backlight_disable);
+> +
+> +static inline int
+> +drm_edp_backlight_probe_max(struct drm_dp_aux *aux, struct drm_edp_backlight_info *bl,
+> +			    u16 driver_pwm_freq_hz, const u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE])
+> +{
+> +	int fxp, fxp_min, fxp_max, fxp_actual, f = 1;
+> +	int ret;
+> +	u8 pn, pn_min, pn_max;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_EDP_PWMGEN_BIT_COUNT, &pn);
+> +	if (ret != 1) {
+> +		DRM_DEBUG_KMS("%s: Failed to read pwmgen bit count cap: %d\n", aux->name, ret);
+> +		return -ENODEV;
+> +	}
+> +
+> +	pn &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> +	bl->max = (1 << pn) - 1;
+> +	if (!driver_pwm_freq_hz)
+> +		return 0;
+> +
+> +	/*
+> +	 * Set PWM Frequency divider to match desired frequency provided by the driver.
+> +	 * The PWM Frequency is calculated as 27Mhz / (F x P).
+> +	 * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
+> +	 *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
+> +	 * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
+> +	 *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
+> +	 */
+> +
+> +	/* Find desired value of (F x P)
+> +	 * Note that, if F x P is out of supported range, the maximum value or minimum value will
+> +	 * applied automatically. So no need to check that.
+> +	 */
+> +	fxp = DIV_ROUND_CLOSEST(1000 * DP_EDP_BACKLIGHT_FREQ_BASE_KHZ, driver_pwm_freq_hz);
+> +
+> +	/* Use highest possible value of Pn for more granularity of brightness adjustment while
+> +	 * satifying the conditions below.
+> +	 * - Pn is in the range of Pn_min and Pn_max
+> +	 * - F is in the range of 1 and 255
+> +	 * - FxP is within 25% of desired value.
+> +	 *   Note: 25% is arbitrary value and may need some tweak.
+> +	 */
+> +	ret = drm_dp_dpcd_readb(aux, DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN, &pn_min);
+> +	if (ret != 1) {
+> +		DRM_DEBUG_KMS("%s: Failed to read pwmgen bit count cap min: %d\n", aux->name, ret);
+> +		return 0;
+> +	}
+> +	ret = drm_dp_dpcd_readb(aux, DP_EDP_PWMGEN_BIT_COUNT_CAP_MAX, &pn_max);
+> +	if (ret != 1) {
+> +		DRM_DEBUG_KMS("%s: Failed to read pwmgen bit count cap max: %d\n", aux->name, ret);
+> +		return 0;
+> +	}
+> +	pn_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> +	pn_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> +
+> +	/* Ensure frequency is within 25% of desired value */
+> +	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
+> +	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
+> +	if (fxp_min < (1 << pn_min) || (255 << pn_max) < fxp_max) {
+> +		DRM_DEBUG_KMS("%s: Driver defined backlight frequency (%d) out of range\n",
+> +			      aux->name, driver_pwm_freq_hz);
+> +		return 0;
+> +	}
+> +
+> +	for (pn = pn_max; pn >= pn_min; pn--) {
+> +		f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
+> +		fxp_actual = f << pn;
+> +		if (fxp_min <= fxp_actual && fxp_actual <= fxp_max)
+> +			break;
+> +	}
+> +
+> +	ret = drm_dp_dpcd_writeb(aux, DP_EDP_PWMGEN_BIT_COUNT, pn);
+> +	if (ret != 1) {
+> +		DRM_DEBUG_KMS("%s: Failed to write aux pwmgen bit count: %d\n", aux->name, ret);
+> +		return 0;
+> +	}
+> +	bl->pwmgen_bit_count = pn;
+> +	bl->max = (1 << pn) - 1;
+> +
+> +	if (edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP) {
+> +		bl->pwm_freq_pre_divider = f;
+> +		DRM_DEBUG_KMS("%s: Using backlight frequency from driver (%dHz)\n",
+> +			      aux->name, driver_pwm_freq_hz);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static inline int
+> +drm_edp_backlight_probe_level(struct drm_dp_aux *aux, struct drm_edp_backlight_info *bl,
+> +			      u8 *current_mode)
+> +{
+> +	int ret;
+> +	u8 buf[2];
+> +	u8 mode_reg;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER, &mode_reg);
+> +	if (ret != 1) {
+> +		DRM_DEBUG_KMS("%s: Failed to read backlight mode: %d\n", aux->name, ret);
+> +		return ret < 0 ? ret : -EIO;
+> +	}
+> +
+> +	*current_mode = (mode_reg & DP_EDP_BACKLIGHT_CONTROL_MODE_MASK);
+> +	if (*current_mode == DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+> +		int size = 1 + bl->lsb_reg_used;
+> +
+> +		ret = drm_dp_dpcd_read(aux, DP_EDP_BACKLIGHT_BRIGHTNESS_MSB, buf, size);
+> +		if (ret != size) {
+> +			DRM_DEBUG_KMS("%s: Failed to read backlight level: %d\n", aux->name, ret);
+> +			return ret < 0 ? ret : -EIO;
+> +		}
+> +
+> +		if (bl->lsb_reg_used)
+> +			return (buf[0] << 8) | buf[1];
+> +		else
+> +			return buf[0];
+> +	}
+> +
+> +	/*
+> +	 * If we're not in DPCD control mode yet, the programmed brightness value is meaningless and
+> +	 * the driver should assume max brightness
+> +	 */
+> +	return bl->max;
+> +}
+> +
+> +/**
+> + * drm_edp_backlight_init() - Probe a display panel's TCON using the standard VESA eDP backlight
+> + * interface.
+> + * @aux: The DP aux device to use for probing
+> + * @bl: The &drm_edp_backlight_info struct to fill out with information on the backlight
+> + * @driver_pwm_freq_hz: Optional PWM frequency from the driver in hz
+> + * @edp_dpcd: A cached copy of the eDP DPCD
+> + * @current_level: Where to store the probed brightness level
+> + * @current_mode: Where to store the currently set backlight control mode
+> + *
+> + * Initializes a &drm_edp_backlight_info struct by probing @aux for it's backlight capabilities,
+> + * along with also probing the current and maximum supported brightness levels.
+> + *
+> + * If @driver_pwm_freq_hz is non-zero, this will be used as the backlight frequency. Otherwise, the
+> + * default frequency from the panel is used.
+> + *
+> + * Returns: %0 on success, negative error code on failure.
+> + */
+> +int
+> +drm_edp_backlight_init(struct drm_dp_aux *aux, struct drm_edp_backlight_info *bl,
+> +		       u16 driver_pwm_freq_hz, const u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE],
+> +		       u16 *current_level, u8 *current_mode)
+> +{
+> +	int ret;
+> +
+> +	if (edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP)
+> +		bl->aux_enable = true;
+> +	if (edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_BYTE_COUNT)
+> +		bl->lsb_reg_used = true;
+> +
+> +	ret = drm_edp_backlight_probe_max(aux, bl, driver_pwm_freq_hz, edp_dpcd);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = drm_edp_backlight_probe_level(aux, bl, current_mode);
+> +	if (ret < 0)
+> +		return ret;
+> +	*current_level = ret;
+> +
+> +	DRM_DEBUG_KMS("%s: Found backlight level=%d/%d pwm_freq_pre_divider=%d mode=%x\n",
+> +		      aux->name, *current_level, bl->max, bl->pwm_freq_pre_divider, *current_mode);
+> +	DRM_DEBUG_KMS("%s: Backlight caps: pwmgen_bit_count=%d lsb_reg_used=%d aux_enable=%d\n",
+> +		      aux->name, bl->pwmgen_bit_count, bl->lsb_reg_used, bl->aux_enable);
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_edp_backlight_init);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 8450ab8fb245..2af208f1b467 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -263,8 +263,7 @@ struct intel_panel {
+>  		/* DPCD backlight */
+>  		union {
+>  			struct {
+> -				u8 pwmgen_bit_count;
+> -				u8 pwm_freq_pre_divider;
+> +				struct drm_edp_backlight_info info;
+>  			} vesa;
+>  			struct {
+>  				bool sdr_uses_aux;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index 62294967f430..1ae14bc9e3fe 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -268,109 +268,19 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
+>  }
+>  
+>  /* VESA backlight callbacks */
+> -static void set_vesa_backlight_enable(struct intel_dp *intel_dp, bool enable)
+> -{
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> -	u8 reg_val = 0;
+> -
+> -	/* Early return when display use other mechanism to enable backlight. */
+> -	if (!(intel_dp->edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP))
+> -		return;
+> -
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_EDP_DISPLAY_CONTROL_REGISTER,
+> -			      &reg_val) < 0) {
+> -		drm_dbg_kms(&i915->drm, "Failed to read DPCD register 0x%x\n",
+> -			    DP_EDP_DISPLAY_CONTROL_REGISTER);
+> -		return;
+> -	}
+> -	if (enable)
+> -		reg_val |= DP_EDP_BACKLIGHT_ENABLE;
+> -	else
+> -		reg_val &= ~(DP_EDP_BACKLIGHT_ENABLE);
+> -
+> -	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_EDP_DISPLAY_CONTROL_REGISTER,
+> -			       reg_val) != 1) {
+> -		drm_dbg_kms(&i915->drm, "Failed to %s aux backlight\n",
+> -			    enable ? "enable" : "disable");
+> -	}
+> -}
+> -
+> -static bool intel_dp_aux_vesa_backlight_dpcd_mode(struct intel_connector *connector)
+> -{
+> -	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> -	u8 mode_reg;
+> -
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> -			      DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
+> -			      &mode_reg) != 1) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "Failed to read the DPCD register 0x%x\n",
+> -			    DP_EDP_BACKLIGHT_MODE_SET_REGISTER);
+> -		return false;
+> -	}
+> -
+> -	return (mode_reg & DP_EDP_BACKLIGHT_CONTROL_MODE_MASK) ==
+> -	       DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
+> -}
+> -
+> -/*
+> - * Read the current backlight value from DPCD register(s) based
+> - * on if 8-bit(MSB) or 16-bit(MSB and LSB) values are supported
+> - */
+>  static u32 intel_dp_aux_vesa_get_backlight(struct intel_connector *connector, enum pipe unused)
+>  {
+> -	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> -	u8 read_val[2] = { 0x0 };
+> -	u16 level = 0;
+> -
+> -	/*
+> -	 * If we're not in DPCD control mode yet, the programmed brightness
+> -	 * value is meaningless and we should assume max brightness
+> -	 */
+> -	if (!intel_dp_aux_vesa_backlight_dpcd_mode(connector))
+> -		return connector->panel.backlight.max;
+> -
+> -	if (drm_dp_dpcd_read(&intel_dp->aux, DP_EDP_BACKLIGHT_BRIGHTNESS_MSB,
+> -			     &read_val, sizeof(read_val)) < 0) {
+> -		drm_dbg_kms(&i915->drm, "Failed to read DPCD register 0x%x\n",
+> -			    DP_EDP_BACKLIGHT_BRIGHTNESS_MSB);
+> -		return 0;
+> -	}
+> -	level = read_val[0];
+> -	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_BYTE_COUNT)
+> -		level = (read_val[0] << 8 | read_val[1]);
+> -
+> -	return level;
+> +	return connector->panel.backlight.level;
+>  }
+>  
+> -/*
+> - * Sends the current backlight level over the aux channel, checking if its using
+> - * 8-bit or 16 bit value (MSB and LSB)
+> - */
+>  static void
+> -intel_dp_aux_vesa_set_backlight(const struct drm_connector_state *conn_state,
+> -				u32 level)
+> +intel_dp_aux_vesa_set_backlight(const struct drm_connector_state *conn_state, u32 level)
+>  {
+>  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> -	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> -	u8 vals[2] = { 0x0 };
+> -
+> -	vals[0] = level;
+> +	struct intel_panel *panel = &connector->panel;
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+>  
+> -	/* Write the MSB and/or LSB */
+> -	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_BYTE_COUNT) {
+> -		vals[0] = (level & 0xFF00) >> 8;
+> -		vals[1] = (level & 0xFF);
+> -	}
+> -	if (drm_dp_dpcd_write(&intel_dp->aux, DP_EDP_BACKLIGHT_BRIGHTNESS_MSB,
+> -			      vals, sizeof(vals)) < 0) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "Failed to write aux backlight level\n");
+> -		return;
+> -	}
+> +	drm_edp_backlight_set_level(&intel_dp->aux, &panel->backlight.edp.vesa.info, level);
+>  }
+>  
+>  static void
+> @@ -378,176 +288,46 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
+>  				   const struct drm_connector_state *conn_state, u32 level)
+>  {
+>  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> -	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> -	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u8 dpcd_buf, new_dpcd_buf, edp_backlight_mode;
+> -	u8 pwmgen_bit_count = panel->backlight.edp.vesa.pwmgen_bit_count;
+> -
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> -			DP_EDP_BACKLIGHT_MODE_SET_REGISTER, &dpcd_buf) != 1) {
+> -		drm_dbg_kms(&i915->drm, "Failed to read DPCD register 0x%x\n",
+> -			    DP_EDP_BACKLIGHT_MODE_SET_REGISTER);
+> -		return;
+> -	}
+> -
+> -	new_dpcd_buf = dpcd_buf;
+> -	edp_backlight_mode = dpcd_buf & DP_EDP_BACKLIGHT_CONTROL_MODE_MASK;
+> -
+> -	switch (edp_backlight_mode) {
+> -	case DP_EDP_BACKLIGHT_CONTROL_MODE_PWM:
+> -	case DP_EDP_BACKLIGHT_CONTROL_MODE_PRESET:
+> -	case DP_EDP_BACKLIGHT_CONTROL_MODE_PRODUCT:
+> -		new_dpcd_buf &= ~DP_EDP_BACKLIGHT_CONTROL_MODE_MASK;
+> -		new_dpcd_buf |= DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
+> -
+> -		if (drm_dp_dpcd_writeb(&intel_dp->aux,
+> -				       DP_EDP_PWMGEN_BIT_COUNT,
+> -				       pwmgen_bit_count) < 0)
+> -			drm_dbg_kms(&i915->drm,
+> -				    "Failed to write aux pwmgen bit count\n");
+> -
+> -		break;
+> -
+> -	/* Do nothing when it is already DPCD mode */
+> -	case DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD:
+> -	default:
+> -		break;
+> -	}
+> -
+> -	if (panel->backlight.edp.vesa.pwm_freq_pre_divider) {
+> -		if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_EDP_BACKLIGHT_FREQ_SET,
+> -				       panel->backlight.edp.vesa.pwm_freq_pre_divider) == 1)
+> -			new_dpcd_buf |= DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
+> -		else
+> -			drm_dbg_kms(&i915->drm, "Failed to write aux backlight frequency\n");
+> -	}
+> -
+> -	if (new_dpcd_buf != dpcd_buf) {
+> -		if (drm_dp_dpcd_writeb(&intel_dp->aux,
+> -			DP_EDP_BACKLIGHT_MODE_SET_REGISTER, new_dpcd_buf) < 0) {
+> -			drm_dbg_kms(&i915->drm,
+> -				    "Failed to write aux backlight mode\n");
+> -		}
+> -	}
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+>  
+> -	intel_dp_aux_vesa_set_backlight(conn_state, level);
+> -	set_vesa_backlight_enable(intel_dp, true);
+> +	drm_edp_backlight_enable(&intel_dp->aux, &panel->backlight.edp.vesa.info, level);
+>  }
+>  
+>  static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state *old_conn_state,
+>  						u32 level)
+>  {
+> -	set_vesa_backlight_enable(enc_to_intel_dp(to_intel_encoder(old_conn_state->best_encoder)),
+> -				  false);
+> -}
+> -
+> -/*
+> - * Compute PWM frequency divider value based off the frequency provided to us by the vbt.
+> - * The PWM Frequency is calculated as 27Mhz / (F x P).
+> - * - Where F = PWM Frequency Pre-Divider value programmed by field 7:0 of the
+> - *             EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
+> - * - Where P = 2^Pn, where Pn is the value programmed by field 4:0 of the
+> - *             EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
+> - */
+> -static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connector *connector)
+> -{
+> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> -	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> +	struct intel_connector *connector = to_intel_connector(old_conn_state->connector);
+>  	struct intel_panel *panel = &connector->panel;
+> -	u32 max_backlight = 0;
+> -	int freq, fxp, fxp_min, fxp_max, fxp_actual, f = 1;
+> -	u8 pn, pn_min, pn_max;
+> -
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT, &pn) == 1) {
+> -		pn &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> -		max_backlight = (1 << pn) - 1;
+> -	}
+> -
+> -	/* Find desired value of (F x P)
+> -	 * Note that, if F x P is out of supported range, the maximum value or
+> -	 * minimum value will applied automatically. So no need to check that.
+> -	 */
+> -	freq = i915->vbt.backlight.pwm_freq_hz;
+> -	drm_dbg_kms(&i915->drm, "VBT defined backlight frequency %u Hz\n",
+> -		    freq);
+> -	if (!freq) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "Use panel default backlight frequency\n");
+> -		return max_backlight;
+> -	}
+> -
+> -	fxp = DIV_ROUND_CLOSEST(KHz(DP_EDP_BACKLIGHT_FREQ_BASE_KHZ), freq);
+> -
+> -	/* Use highest possible value of Pn for more granularity of brightness
+> -	 * adjustment while satifying the conditions below.
+> -	 * - Pn is in the range of Pn_min and Pn_max
+> -	 * - F is in the range of 1 and 255
+> -	 * - FxP is within 25% of desired value.
+> -	 *   Note: 25% is arbitrary value and may need some tweak.
+> -	 */
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> -			      DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN, &pn_min) != 1) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "Failed to read pwmgen bit count cap min\n");
+> -		return max_backlight;
+> -	}
+> -	if (drm_dp_dpcd_readb(&intel_dp->aux,
+> -			      DP_EDP_PWMGEN_BIT_COUNT_CAP_MAX, &pn_max) != 1) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "Failed to read pwmgen bit count cap max\n");
+> -		return max_backlight;
+> -	}
+> -	pn_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> -	pn_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
+> -
+> -	/* Ensure frequency is within 25% of desired value */
+> -	fxp_min = DIV_ROUND_CLOSEST(fxp * 3, 4);
+> -	fxp_max = DIV_ROUND_CLOSEST(fxp * 5, 4);
+> -
+> -	if (fxp_min < (1 << pn_min) || (255 << pn_max) < fxp_max) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "VBT defined backlight frequency out of range\n");
+> -		return max_backlight;
+> -	}
+> -
+> -	for (pn = pn_max; pn >= pn_min; pn--) {
+> -		f = clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255);
+> -		fxp_actual = f << pn;
+> -		if (fxp_min <= fxp_actual && fxp_actual <= fxp_max)
+> -			break;
+> -	}
+> -
+> -	drm_dbg_kms(&i915->drm, "Using eDP pwmgen bit count of %d\n", pn);
+> -	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+> -			       DP_EDP_PWMGEN_BIT_COUNT, pn) < 0) {
+> -		drm_dbg_kms(&i915->drm,
+> -			    "Failed to write aux pwmgen bit count\n");
+> -		return max_backlight;
+> -	}
+> -
+> -	panel->backlight.edp.vesa.pwmgen_bit_count = pn;
+> -	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
+> -		panel->backlight.edp.vesa.pwm_freq_pre_divider = f;
+> -
+> -	max_backlight = (1 << pn) - 1;
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+>  
+> -	return max_backlight;
+> +	drm_edp_backlight_disable(&intel_dp->aux, &panel->backlight.edp.vesa.info);
+>  }
+>  
+> -static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
+> -					     enum pipe pipe)
+> +static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector, enum pipe pipe)
+>  {
+>  	struct intel_panel *panel = &connector->panel;
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	u16 current_level;
+> +	u8 current_mode;
+> +	int ret;
+>  
+> -	panel->backlight.max = intel_dp_aux_vesa_calc_max_backlight(connector);
+> -	if (!panel->backlight.max)
+> -		return -ENODEV;
+> +	ret = drm_edp_backlight_init(&intel_dp->aux, &panel->backlight.edp.vesa.info,
+> +				     i915->vbt.backlight.pwm_freq_hz, intel_dp->edp_dpcd,
+> +				     &current_level, &current_mode);
+> +	if (ret < 0)
+> +		return ret;
+>  
+> +	panel->backlight.max = panel->backlight.edp.vesa.info.max;
+>  	panel->backlight.min = 0;
+> -	panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector, pipe);
+> -	panel->backlight.enabled = intel_dp_aux_vesa_backlight_dpcd_mode(connector) &&
+> -				   panel->backlight.level != 0;
+> +	if (current_mode == DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+> +		panel->backlight.level = current_level;
+> +		panel->backlight.enabled = panel->backlight.level != 0;
+> +	} else {
+> +		panel->backlight.level = panel->backlight.max;
+> +		panel->backlight.enabled = false;
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -558,16 +338,12 @@ intel_dp_aux_supports_vesa_backlight(struct intel_connector *connector)
+>  	struct intel_dp *intel_dp = intel_attached_dp(connector);
+>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>  
+> -	/* Check the eDP Display control capabilities registers to determine if
+> -	 * the panel can support backlight control over the aux channel.
+> -	 *
+> -	 * TODO: We currently only support AUX only backlight configurations, not backlights which
+> +	/* TODO: We currently only support AUX only backlight configurations, not backlights which
+>  	 * require a mix of PWM and AUX controls to work. In the mean time, these machines typically
+>  	 * work just fine using normal PWM controls anyway.
+>  	 */
+> -	if (intel_dp->edp_dpcd[1] & DP_EDP_TCON_BACKLIGHT_ADJUSTMENT_CAP &&
+> -	    (intel_dp->edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP) &&
+> -	    (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP)) {
+> +	if ((intel_dp->edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP) &&
+> +	    drm_edp_backlight_supported(intel_dp->edp_dpcd)) {
+>  		drm_dbg_kms(&i915->drm, "AUX Backlight Control Supported!\n");
+>  		return true;
+>  	}
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index edffd1dcca3e..1eca0b42fc45 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1790,6 +1790,24 @@ drm_dp_sink_can_do_video_without_timing_msa(const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+>  		DP_MSA_TIMING_PAR_IGNORED;
+>  }
+>  
+> +/**
+> + * drm_edp_backlight_supported() - Check an eDP DPCD for VESA backlight support
+> + * @edp_dpcd: The DPCD to check
+> + *
+> + * Note that currently this function will return %false for panels which support various DPCD
+> + * backlight features but which require the brightness be set through PWM, and don't support setting
+> + * the brightness level via the DPCD. This is a TODO.
+> + *
+> + * Returns: %True if @edp_dpcd indicates that VESA backlight controls are supported, %false
+> + * otherwise
+> + */
+> +static inline bool
+> +drm_edp_backlight_supported(const u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE])
+> +{
+> +	return (edp_dpcd[1] & DP_EDP_TCON_BACKLIGHT_ADJUSTMENT_CAP) &&
+> +		(edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP);
+> +}
+> +
+>  /*
+>   * DisplayPort AUX channel
+>   */
+> @@ -2089,6 +2107,36 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, enum drm_dp_quirk quirk)
+>  	return desc->quirks & BIT(quirk);
+>  }
+>  
+> +/**
+> + * struct drm_edp_backlight_info - Probed eDP backlight info struct
+> + * @pwmgen_bit_count: The pwmgen bit count
+> + * @pwm_freq_pre_divider: The PWM frequency pre-divider value being used for this backlight, if any
+> + * @max: The maximum backlight level that may be set
+> + * @lsb_reg_used: Do we also write values to the DP_EDP_BACKLIGHT_BRIGHTNESS_LSB register?
+> + * @aux_enable: Does the panel support the AUX enable cap?
+> + *
+> + * This structure contains various data about an eDP backlight, which can be populated by using
+> + * drm_edp_backlight_init().
+> + */
+> +struct drm_edp_backlight_info {
+> +	u8 pwmgen_bit_count;
+> +	u8 pwm_freq_pre_divider;
+> +	u16 max;
+> +
+> +	bool lsb_reg_used : 1;
+> +	bool aux_enable : 1;
+> +};
+> +
+> +int
+> +drm_edp_backlight_init(struct drm_dp_aux *aux, struct drm_edp_backlight_info *bl,
+> +		       u16 driver_pwm_freq_hz, const u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE],
+> +		       u16 *current_level, u8 *current_mode);
+> +int drm_edp_backlight_set_level(struct drm_dp_aux *aux, const struct drm_edp_backlight_info *bl,
+> +				u16 level);
+> +int drm_edp_backlight_enable(struct drm_dp_aux *aux, const struct drm_edp_backlight_info *bl,
+> +			     u16 level);
+> +int drm_edp_backlight_disable(struct drm_dp_aux *aux, const struct drm_edp_backlight_info *bl);
+> +
+>  #ifdef CONFIG_DRM_DP_CEC
+>  void drm_dp_cec_irq(struct drm_dp_aux *aux);
+>  void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
+> -- 
+> 2.29.2
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0887676592==--
