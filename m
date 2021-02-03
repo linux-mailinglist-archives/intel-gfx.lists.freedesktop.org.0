@@ -2,31 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD1F630DD68
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 16:00:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BF6230DE02
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 16:24:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD5B56EB11;
-	Wed,  3 Feb 2021 15:00:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A5E76EB03;
+	Wed,  3 Feb 2021 15:24:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E84A96EB11
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 15:00:19 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23776870-1500050 
- for multiple; Wed, 03 Feb 2021 15:00:11 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE6656EB03
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 15:24:19 +0000 (UTC)
+IronPort-SDR: Vnu46JuGhI11LrLR6Mn+s9QtME0qRk3O6VYtrf/Z6jbpQnGYB2RUnJ2QWic+y3YJRR3OG9jEPW
+ FOmfB7Zqn3Cw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="160222531"
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="160222531"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 07:24:19 -0800
+IronPort-SDR: 6odc6pqWCKiggcmsFk0DFEqsSxyf6MoACys+FpjgY/xkrcVU1a0Q41WIuVRogN3P/TTFdZu6TR
+ c3bj/v673Azg==
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="371515758"
+Received: from mcampone-mobl1.ger.corp.intel.com (HELO
+ mwauld-desk1.ger.corp.intel.com) ([10.252.21.36])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 07:24:18 -0800
+From: Matthew Auld <matthew.auld@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  3 Feb 2021 15:00:12 +0000
-Message-Id: <20210203150012.11322-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210203124740.9354-1-chris@chris-wilson.co.uk>
-References: <20210203124740.9354-1-chris@chris-wilson.co.uk>
+Date: Wed,  3 Feb 2021 15:23:31 +0000
+Message-Id: <20210203152333.511453-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915: Prevent waiting inside ring
- construction for critical sections
+Subject: [Intel-gfx] [PATCH v3 1/3] drm/i915: Distinction of memory regions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,259 +46,44 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From some contexts, we may not be allowed to wait during request
-construction. For example, in the powermanagement handler that should
-never block (as the engine was idle) and the driver would be crippled if
-we did. Similarly, the user may request that the execbuf does not block,
-and so would prefer to handle an EWOULDBLOCK error instead. In both
-cases we need to propagate the flag to various blocking wait points, the
-first and usually hit is intel_ring::wait_for_space().
-
-Testcase: igt/gem_ctx_ringsize/spin
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 20 +++++++++++--
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  7 ++++-
- drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 +-
- drivers/gpu/drm/i915/gt/intel_ring.c          | 19 +++++++------
- drivers/gpu/drm/i915/i915_request.c           |  8 +++---
- drivers/gpu/drm/i915/i915_request.h           | 28 +++++++++++++++++--
- 6 files changed, 64 insertions(+), 20 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index fe170186dd42..d2dc9f093119 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1256,6 +1256,20 @@ static int reloc_move_to_gpu(struct i915_request *rq, struct i915_vma *vma)
- 	return err;
- }
- 
-+static struct i915_request *
-+eb_request_create(struct i915_execbuffer *eb, struct intel_context *ce)
-+{
-+	gfp_t gfp = GFP_KERNEL | __GFP_NOWARN;
-+	unsigned long flags= 0;
-+
-+	if (eb->file->filp->f_flags & O_NONBLOCK) {
-+		flags = BIT(I915_FENCE_FLAG_NOWAIT);
-+		gfp |= __GFP_RETRY_MAYFAIL;
-+	}
-+
-+	return __i915_request_create(ce, flags, gfp);
-+}
-+
- static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 			     struct intel_engine_cs *engine,
- 			     struct i915_vma *vma,
-@@ -1301,7 +1315,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 		goto err_unmap;
- 
- 	if (engine == eb->context->engine) {
--		rq = i915_request_create(eb->context);
-+		rq = eb_request_create(eb, eb->context);
- 	} else {
- 		struct intel_context *ce = eb->reloc_context;
- 
-@@ -1321,7 +1335,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 		if (err)
- 			goto err_unpin;
- 
--		rq = i915_request_create(ce);
-+		rq = eb_request_create(eb, ce);
- 		intel_context_unpin(ce);
- 	}
- 	if (IS_ERR(rq)) {
-@@ -3283,7 +3297,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	GEM_BUG_ON(eb.reloc_cache.rq);
- 
- 	/* Allocate a request for this batch buffer nice and early. */
--	eb.request = i915_request_create(eb.context);
-+	eb.request = eb_request_create(&eb, eb.context);
- 	if (IS_ERR(eb.request)) {
- 		err = PTR_ERR(eb.request);
- 		goto err_vma;
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 778bcae5ef2c..12b58ba5bcd8 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -40,9 +40,14 @@ static struct i915_request *
- heartbeat_create(struct intel_context *ce, gfp_t gfp)
- {
- 	struct i915_request *rq;
-+	unsigned long flags;
-+
-+	flags = 0;
-+	if ((gfp & __GFP_RECLAIM) == 0)
-+		flags = BIT(I915_FENCE_FLAG_NOWAIT);
- 
- 	intel_context_enter(ce);
--	rq = __i915_request_create(ce, gfp);
-+	rq = __i915_request_create_locked(ce, flags, gfp);
- 	intel_context_exit(ce);
- 
- 	return rq;
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-index 6372d7826bc9..d9bed542136a 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-@@ -200,7 +200,7 @@ static bool switch_to_kernel_context(struct intel_engine_cs *engine)
- 	flags = __timeline_mark_lock(ce);
- 	GEM_BUG_ON(atomic_read(&ce->timeline->active_count) < 0);
- 
--	rq = __i915_request_create(ce, GFP_NOWAIT);
-+	rq = __i915_request_create_locked(ce, BIT(I915_FENCE_FLAG_NOWAIT), GFP_NOWAIT);
- 	if (IS_ERR(rq))
- 		/* Context switch failed, hope for the best! Maybe reset? */
- 		goto out_unlock;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-index aee0a77c77e0..9f149fdc8416 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -184,9 +184,10 @@ void intel_ring_free(struct kref *ref)
- 
- static noinline int
- wait_for_space(struct intel_ring *ring,
--	       struct intel_timeline *tl,
-+	       struct i915_request *rq,
- 	       unsigned int bytes)
- {
-+	struct intel_timeline *tl = i915_request_timeline(rq);
- 	struct i915_request *target;
- 	long timeout;
- 
-@@ -207,11 +208,13 @@ wait_for_space(struct intel_ring *ring,
- 	if (GEM_WARN_ON(&target->link == &tl->requests))
- 		return -ENOSPC;
- 
--	timeout = i915_request_wait(target,
--				    I915_WAIT_INTERRUPTIBLE,
--				    MAX_SCHEDULE_TIMEOUT);
--	if (timeout < 0)
--		return timeout;
-+	timeout = MAX_SCHEDULE_TIMEOUT;
-+	if (i915_request_nowait(rq))
-+		timeout = 0;
-+
-+	timeout = i915_request_wait(target, I915_WAIT_INTERRUPTIBLE, timeout);
-+	if (unlikely(timeout < 0))
-+		return i915_request_nowait(rq) ? -EWOULDBLOCK : timeout;
- 
- 	i915_request_retire_upto(target);
- 
-@@ -271,9 +274,7 @@ u32 *intel_ring_begin(struct i915_request *rq, unsigned int num_dwords)
- 		 */
- 		GEM_BUG_ON(!rq->reserved_space);
- 
--		ret = wait_for_space(ring,
--				     i915_request_timeline(rq),
--				     total_bytes);
-+		ret = wait_for_space(ring, rq, total_bytes);
- 		if (unlikely(ret))
- 			return ERR_PTR(ret);
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index a336d6c40d8b..04ca4fe54633 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -799,7 +799,7 @@ static void __i915_request_ctor(void *arg)
- }
- 
- struct i915_request *
--__i915_request_create(struct intel_context *ce, gfp_t gfp)
-+__i915_request_create_locked(struct intel_context *ce, unsigned long flags, gfp_t gfp)
- {
- 	struct intel_timeline *tl = ce->timeline;
- 	struct i915_request *rq;
-@@ -856,7 +856,7 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
- 	rq->execution_mask = ce->engine->mask;
- 
- 	kref_init(&rq->fence.refcount);
--	rq->fence.flags = 0;
-+	rq->fence.flags = flags;
- 	rq->fence.error = 0;
- 	INIT_LIST_HEAD(&rq->fence.cb_list);
- 
-@@ -934,7 +934,7 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
- }
- 
- struct i915_request *
--i915_request_create(struct intel_context *ce)
-+__i915_request_create(struct intel_context *ce, unsigned long flags, gfp_t gfp)
- {
- 	struct i915_request *rq;
- 	struct intel_timeline *tl;
-@@ -949,7 +949,7 @@ i915_request_create(struct intel_context *ce)
- 		i915_request_retire(rq);
- 
- 	intel_context_enter(ce);
--	rq = __i915_request_create(ce, GFP_KERNEL);
-+	rq = __i915_request_create_locked(ce, flags, gfp);
- 	intel_context_exit(ce); /* active reference transferred to request */
- 	if (IS_ERR(rq))
- 		goto err_unlock;
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index c0bd4cb8786a..43230037f469 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -137,6 +137,18 @@ enum {
- 	 * the GPU. Here we track such boost requests on a per-request basis.
- 	 */
- 	I915_FENCE_FLAG_BOOST,
-+
-+	/*
-+	 * I915_FENCE_FLAG_NOWAIT - avoid waits while constructing the request
-+	 *
-+	 * We may wish to construct a request from some contexts where
-+	 * we do not want to wait, and sometimes the client would prefer
-+	 * to have a nonblocking interface. We may have to wait in a few place
-+	 * during request construction (e.g. waiting for space in the
-+	 * ringbuffer), this flag allows us to opt out of those waits and
-+	 * return -EAGAIN instead.
-+	 */
-+	I915_FENCE_FLAG_NOWAIT,
- };
- 
- /**
-@@ -305,9 +317,16 @@ static inline bool dma_fence_is_i915(const struct dma_fence *fence)
- struct kmem_cache *i915_request_slab_cache(void);
- 
- struct i915_request * __must_check
--__i915_request_create(struct intel_context *ce, gfp_t gfp);
-+__i915_request_create_locked(struct intel_context *ce,
-+			     unsigned long flags, gfp_t gfp);
- struct i915_request * __must_check
--i915_request_create(struct intel_context *ce);
-+__i915_request_create(struct intel_context *ce,
-+		      unsigned long flags, gfp_t gfp);
-+static inline struct i915_request *
-+i915_request_create(struct intel_context *ce)
-+{
-+	return __i915_request_create(ce, 0, GFP_KERNEL);
-+}
- 
- void __i915_request_skip(struct i915_request *rq);
- void i915_request_set_error_once(struct i915_request *rq, int error);
-@@ -558,6 +577,11 @@ static inline void i915_request_mark_complete(struct i915_request *rq)
- 		   (u32 *)&rq->fence.seqno);
- }
- 
-+static inline bool i915_request_nowait(const struct i915_request *rq)
-+{
-+	return test_bit(I915_FENCE_FLAG_NOWAIT, &rq->fence.flags);
-+}
-+
- static inline bool i915_request_has_waitboost(const struct i915_request *rq)
- {
- 	return test_bit(I915_FENCE_FLAG_BOOST, &rq->fence.flags);
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5j
+b20+CgpJbiBwcmVwYXJhdGlvbiBmb3IgWGUgSFAgbXVsdGktdGlsZSBhcmNoaXRlY3R1cmUgd2l0
+aCBtdWx0aXBsZSBtZW1vcnkKcmVnaW9ucywgd2UgbmVlZCB0byBiZSBhYmxlIGRpZmZlcmVudGlh
+dGUgbXVsdGlwbGUgaW5zdGFuY2VzIG9mIGRldmljZQpsb2NhbC1tZW1vcnkuCgpOb3RlIHRoYXQg
+dGhlIHJlZ2lvbiBuYW1lIGlzIGp1c3QgdG8gZ2l2ZSBpdCBhIGh1bWFuIGZyaWVuZGx5CmlkZW50
+aWZpZXIsIGluc3RlYWQgb2YgdXNpbmcgY2xhc3MvaW5zdGFuY2Ugd2hpY2ggYWxzbyB1bmlxdWVs
+eQppZGVudGlmaWVzIHRoZSByZWdpb24uIFNvIGZhciB0aGUgcmVnaW9uIG5hbWUgaXMgb25seSBm
+b3Igb3VyIG93bgppbnRlcm5hbCBkZWJ1Z2dpbmcgaW4gdGhlIGtlcm5lbChsaWtlIGluIHRoZSBz
+ZWxmdGVzdHMpLCBvciBkZWJ1Z2ZzCndoaWNoIHByaW50cyB0aGUgbGlzdCBvZiByZWdpb25zLCBp
+bmNsdWRpbmcgdGhlIHJlZ2lvbnMgbmFtZS4KCnYyOiBhZGQgY29tbWVudGFyeSBmb3Igb3VyIGN1
+cnJlbnQgcmVnaW9uIG5hbWUgdXNlCgpTaWduZWQtb2ZmLWJ5OiBaYmlnbmlldyBLZW1wY3p5xYRz
+a2kgPHpiaWduaWV3LmtlbXBjenluc2tpQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWF0dGhl
+dyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogQ2hyaXMgV2lsc29u
+IDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
+aW50ZWxfZ3QuYyAgICAgICAgICB8IDIgKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
+X3JlZ2lvbl9sbWVtLmMgfCAyIC0tCiAyIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwg
+MiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
+bF9ndC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3QuYwppbmRleCAzNWZmNjhh
+ZGE0ZjEuLmNhNzZmOTNiYzAzZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
+aW50ZWxfZ3QuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndC5jCkBAIC02
+OCw2ICs2OCw4IEBAIGludCBpbnRlbF9ndF9wcm9iZV9sbWVtKHN0cnVjdCBpbnRlbF9ndCAqZ3Qp
+CiAJbWVtLT50eXBlID0gSU5URUxfTUVNT1JZX0xPQ0FMOwogCW1lbS0+aW5zdGFuY2UgPSAwOwog
+CisJaW50ZWxfbWVtb3J5X3JlZ2lvbl9zZXRfbmFtZShtZW0sICJsb2NhbCV1IiwgbWVtLT5pbnN0
+YW5jZSk7CisKIAlHRU1fQlVHX09OKCFIQVNfUkVHSU9OKGk5MTUsIGlkKSk7CiAJR0VNX0JVR19P
+TihpOTE1LT5tbS5yZWdpb25zW2lkXSk7CiAJaTkxNS0+bW0ucmVnaW9uc1tpZF0gPSBtZW07CmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yZWdpb25fbG1lbS5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVnaW9uX2xtZW0uYwppbmRleCA4YzQ5OGU5
+NmIwMWQuLmJlNmYyYzhmNTE4NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
+aW50ZWxfcmVnaW9uX2xtZW0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9y
+ZWdpb25fbG1lbS5jCkBAIC05MCw4ICs5MCw2IEBAIHJlZ2lvbl9sbWVtX2luaXQoc3RydWN0IGlu
+dGVsX21lbW9yeV9yZWdpb24gKm1lbSkKIAlpZiAocmV0KQogCQlpb19tYXBwaW5nX2ZpbmkoJm1l
+bS0+aW9tYXApOwogCi0JaW50ZWxfbWVtb3J5X3JlZ2lvbl9zZXRfbmFtZShtZW0sICJsb2NhbCIp
+OwotCiAJcmV0dXJuIHJldDsKIH0KIAotLSAKMi4yNi4yCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
