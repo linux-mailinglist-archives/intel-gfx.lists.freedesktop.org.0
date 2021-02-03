@@ -1,33 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2482C30D80E
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 12:03:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC21B30D822
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 12:08:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 835D96EA53;
-	Wed,  3 Feb 2021 11:03:30 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D97A6EA53;
- Wed,  3 Feb 2021 11:03:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23781852-1500050 for multiple; Wed, 03 Feb 2021 11:03:23 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE4C46EA5A;
+	Wed,  3 Feb 2021 11:08:08 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9AC36EA56;
+ Wed,  3 Feb 2021 11:08:07 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1l7G0x-0006X9-LX; Wed, 03 Feb 2021 11:08:03 +0000
+From: Colin King <colin.king@canonical.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Date: Wed,  3 Feb 2021 11:08:03 +0000
+Message-Id: <20210203110803.17894-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20210203102601.895197-1-tvrtko.ursulin@linux.intel.com>
-References: <20210203102601.895197-1-tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-Date: Wed, 03 Feb 2021 11:03:24 +0000
-Message-ID: <161235020467.6538.5402506407450939609@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] intel_gpu_top: Always sort
- the clients array after update
+Subject: [Intel-gfx] [PATCH][next] drm/i915/display: fix spelling mistake
+ "Couldnt" -> "Couldn't"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,26 +42,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-02-03 10:26:01)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Walking the client "list" makes assumptions about the order of active and
-> free slots which means we need to sort the array after every update.
-> 
-> Patch is mostly just code movement with the only functional difference of
-> eliminating two subsequent scans with no sort in between This closes a
-> very short window there list iteration could get confused if sysfs clients
-> would change rapidly and unfavourably during tool startup.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+From: Colin Ian King <colin.king@canonical.com>
+
+There is a spelling mistake in a drm_dbg message. Fix it.
+
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 8c12d5375607..a338720cee2e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2650,7 +2650,7 @@ void intel_dp_check_frl_training(struct intel_dp *intel_dp)
+ 	if (intel_dp_pcon_start_frl_training(intel_dp) < 0) {
+ 		int ret, mode;
+ 
+-		drm_dbg(&dev_priv->drm, "Couldnt set FRL mode, continuing with TMDS mode\n");
++		drm_dbg(&dev_priv->drm, "Couldn't set FRL mode, continuing with TMDS mode\n");
+ 		ret = drm_dp_pcon_reset_frl_config(&intel_dp->aux);
+ 		mode = drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, NULL);
+ 
+-- 
+2.29.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
