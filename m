@@ -2,45 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4CC30D6E0
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 10:59:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 512B330D725
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 11:14:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBEC6EA42;
-	Wed,  3 Feb 2021 09:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A4EC6E188;
+	Wed,  3 Feb 2021 10:14:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3C846EA3F;
- Wed,  3 Feb 2021 09:59:21 +0000 (UTC)
-IronPort-SDR: NK6+KBbGi1l+Ez6lOIzaMPtTvut7NklTEHoXk0wemLVI0IEV0unO97jiWccBfiovlKLvNLBkcr
- /1bkHlJP7kDA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="242527545"
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="242527545"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB976E188
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 10:14:11 +0000 (UTC)
+IronPort-SDR: bkTkklbhXm+XOCrZGD141sTyMnD4VRlWj5FjKDjVToo1QDJ+RLrIPk2+1eyWW+q6nSVMYlUhfp
+ PxY45tOd69YQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9883"; a="242529595"
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="242529595"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 01:59:20 -0800
-IronPort-SDR: NG5291++Cy2sMhSE2A0mYKI6OjVjRQ5A4gDkciiNYzDqWzZK0bV3BH4IDj8W535b+z8uS/K21f
- 3hj0Ex324kQw==
-X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="392362970"
-Received: from mkrygin-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.54.163])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 01:59:17 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
-In-Reply-To: <20210203070241.657dfd46@canb.auug.org.au>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210203070241.657dfd46@canb.auug.org.au>
-Date: Wed, 03 Feb 2021 11:59:14 +0200
-Message-ID: <87lfc5fp59.fsf@intel.com>
+ 03 Feb 2021 02:14:10 -0800
+IronPort-SDR: 04IIkg+D5CE92EfzzfLIM/Jt/rzqRiXBhH27UjD/HCcNIay032WBglAJvRNnf8puIBflUJEE9a
+ MTqfznQ4CAyg==
+X-IronPort-AV: E=Sophos;i="5.79,398,1602572400"; d="scan'208";a="414095047"
+Received: from mashke2x-mobl1.ger.corp.intel.com ([10.214.223.78])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 02:14:08 -0800
+Message-ID: <6e8fd8ee65224c043f8eafc17a0b50d95b136d8f.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Date: Wed, 03 Feb 2021 11:14:05 +0100
+In-Reply-To: <20210202154318.19246-2-chris@chris-wilson.co.uk>
+References: <20210202154318.19246-1-chris@chris-wilson.co.uk>
+ <20210202154318.19246-2-chris@chris-wilson.co.uk>
+User-Agent: Evolution 3.38.2 (3.38.2-1.fc33) 
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] linux-next: Signed-off-by missing for commit in the
- drm-intel-fixes tree
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Lift marking a lock as used
+ to utils
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,34 +48,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 03 Feb 2021, Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-> Hi all,
->
-> Commit
->
->   44c5bd08518c ("*** HAX FOR CI *** Revert "rtc: mc146818: Detect and handle broken RTCs"")
->
-> is missing a Signed-off-by from its author and committer.
->
-> Reverts are commits as well.
-
-It's a hack on top of the tree to unblock CI results, and will be
-dropped before sending the pull request.
-
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIFR1ZSwgMjAyMS0wMi0wMiBhdCAxNTo0MyArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+
+IEFmdGVyIGNhbGxpbmcgbG9ja19zZXRfc3ViY2xhc3MoKSB0aGUgbG9jayBfbXVzdF8gYmUgdXNl
+ZCwgb3IgZWxzZQo+IGxvY2tkZXAncyBpbnRlcm5hbCBucl91c2VkX2xvY2tzIGJlY29tZXMgdW5i
+YWxhbmNlZC4gRXh0cmFjdCB0aGUKPiBsaXR0bGUKPiB1dGlsaXR5IGZ1bmN0aW9uIHRvIGk5MTVf
+dXRpbHMuYwo+IAo+IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2ls
+c29uLmNvLnVrPgo+IENjOiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51
+eC5pbnRlbC5jb20+Cj4gLS0tClJldmlld2VkLWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFz
+LmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
