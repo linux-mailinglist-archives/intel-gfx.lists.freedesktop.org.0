@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F73030DD56
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 15:55:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD1F630DD68
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Feb 2021 16:00:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8AE96EB12;
-	Wed,  3 Feb 2021 14:55:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD5B56EB11;
+	Wed,  3 Feb 2021 15:00:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CB986EB12
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 14:55:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E84A96EB11
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Feb 2021 15:00:19 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23776808-1500050 
- for multiple; Wed, 03 Feb 2021 14:55:44 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23776870-1500050 
+ for multiple; Wed, 03 Feb 2021 15:00:11 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  3 Feb 2021 14:55:45 +0000
-Message-Id: <20210203145545.30201-1-chris@chris-wilson.co.uk>
+Date: Wed,  3 Feb 2021 15:00:12 +0000
+Message-Id: <20210203150012.11322-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210203124740.9354-1-chris@chris-wilson.co.uk>
 References: <20210203124740.9354-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Prevent waiting inside ring
+Subject: [Intel-gfx] [PATCH v3] drm/i915: Prevent waiting inside ring
  construction for critical sections
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,53 +56,66 @@ first and usually hit is intel_ring::wait_for_space().
 Testcase: igt/gem_ctx_ringsize/spin
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 13 +++++++--
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 20 +++++++++++--
  .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |  7 ++++-
  drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 +-
  drivers/gpu/drm/i915/gt/intel_ring.c          | 19 +++++++------
  drivers/gpu/drm/i915/i915_request.c           |  8 +++---
  drivers/gpu/drm/i915/i915_request.h           | 28 +++++++++++++++++--
- 6 files changed, 58 insertions(+), 19 deletions(-)
+ 6 files changed, 64 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index fe170186dd42..03d5fac24a72 100644
+index fe170186dd42..d2dc9f093119 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1265,6 +1265,8 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 	struct intel_gt_buffer_pool_node *pool = eb->reloc_pool;
- 	struct i915_request *rq;
- 	struct i915_vma *batch;
-+	unsigned long flags;
-+	gfp_t gfp;
- 	u32 *cmd;
- 	int err;
+@@ -1256,6 +1256,20 @@ static int reloc_move_to_gpu(struct i915_request *rq, struct i915_vma *vma)
+ 	return err;
+ }
  
-@@ -1300,8 +1302,15 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 	if (err)
- 		goto err_unmap;
- 
-+	flags = 0;
-+	gfp = GFP_KERNEL | __GFP_NOWARN;
++static struct i915_request *
++eb_request_create(struct i915_execbuffer *eb, struct intel_context *ce)
++{
++	gfp_t gfp = GFP_KERNEL | __GFP_NOWARN;
++	unsigned long flags= 0;
++
 +	if (eb->file->filp->f_flags & O_NONBLOCK) {
 +		flags = BIT(I915_FENCE_FLAG_NOWAIT);
 +		gfp |= __GFP_RETRY_MAYFAIL;
 +	}
 +
++	return __i915_request_create(ce, flags, gfp);
++}
++
+ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ 			     struct intel_engine_cs *engine,
+ 			     struct i915_vma *vma,
+@@ -1301,7 +1315,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ 		goto err_unmap;
+ 
  	if (engine == eb->context->engine) {
 -		rq = i915_request_create(eb->context);
-+		rq = __i915_request_create(eb->context, flags, gfp);
++		rq = eb_request_create(eb, eb->context);
  	} else {
  		struct intel_context *ce = eb->reloc_context;
  
-@@ -1321,7 +1330,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+@@ -1321,7 +1335,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
  		if (err)
  			goto err_unpin;
  
 -		rq = i915_request_create(ce);
-+		rq = __i915_request_create(ce, flags, gfp);
++		rq = eb_request_create(eb, ce);
  		intel_context_unpin(ce);
  	}
  	if (IS_ERR(rq)) {
+@@ -3283,7 +3297,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	GEM_BUG_ON(eb.reloc_cache.rq);
+ 
+ 	/* Allocate a request for this batch buffer nice and early. */
+-	eb.request = i915_request_create(eb.context);
++	eb.request = eb_request_create(&eb, eb.context);
+ 	if (IS_ERR(eb.request)) {
+ 		err = PTR_ERR(eb.request);
+ 		goto err_vma;
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
 index 778bcae5ef2c..12b58ba5bcd8 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
