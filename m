@@ -2,38 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D1EF30F652
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 16:32:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB39F30F654
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 16:34:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABBFF6EDB4;
-	Thu,  4 Feb 2021 15:32:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07E296EDF3;
+	Thu,  4 Feb 2021 15:34:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95D1D6EDB4
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 15:32:43 +0000 (UTC)
-IronPort-SDR: 3aIzhYon+GBLGXy7MjShPcScDck/+wIazIK2CnOflp1aGEsDv47RKGiPliXxRP1Td9xH9ZY6di
- EbkecKr1/mlw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="161017283"
-X-IronPort-AV: E=Sophos;i="5.79,401,1602572400"; d="scan'208";a="161017283"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A75336EDF3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 15:34:09 +0000 (UTC)
+IronPort-SDR: NvGQ3nb3szwIZqxPzNLdMA0n2S14uT2nwtEZQRed+SnNOfvhkq208x61RA8fytWHWG2B0yrQ0q
+ R2PGONoLuSwQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="161017518"
+X-IronPort-AV: E=Sophos;i="5.79,401,1602572400"; d="scan'208";a="161017518"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2021 07:32:41 -0800
-IronPort-SDR: 8cC2fHtkF7oE8vLhHYxbbmr5iXIja6Hr0Gu0K9l7ipWq66r9QX9TMCatn0KIHGJfFqZK7OKuqK
- x99ZuhHMQo1g==
-X-IronPort-AV: E=Sophos;i="5.79,401,1602572400"; d="scan'208";a="483276047"
-Received: from gkpatel-mobl1.amr.corp.intel.com (HELO josouza-mobl2.intel.com)
- ([10.255.79.143])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2021 07:32:39 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Feb 2021 07:33:57 -0800
-Message-Id: <20210204153357.39681-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.30.0
+ 04 Feb 2021 07:34:08 -0800
+IronPort-SDR: 51R2sZ8dioe+A+zkOH/OMAo9OzvApHZ7BnCKPh1XxmLrn7dd4teFvFd3L7WlM/AjV3aqfBBbTa
+ 6R6juU1xEVPA==
+X-IronPort-AV: E=Sophos;i="5.79,401,1602572400"; d="scan'208";a="393231874"
+Received: from acanalx-mobl.ger.corp.intel.com (HELO [10.249.32.114])
+ ([10.249.32.114])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 07:34:07 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
+ <20210201085715.27435-34-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <d7f972a8-f033-86de-30cf-ce1c9f39ee88@linux.intel.com>
+Date: Thu, 4 Feb 2021 15:34:05 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Make psr_safest_params and
- enable_psr2_sel_fetch parameters read only
+In-Reply-To: <20210201085715.27435-34-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 34/57] drm/i915: Move preempt-reset flag to
+ the scheduler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,31 +52,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QnkgbWlzdGFrZSB0aG9zZSAyIHBhcmFtZXRlcnMgd2VyZSBkZWZpbmVkIGFzIHJlYWQgYW5kIHdy
-aXRlIGluIHRoZQouaCBmaWxlIHdoaWxlIGluIHRoZSAuYyBmaWxlIGl0IGlzIHJlYWQgb25seS4K
-VGhlIGludGVudGlvbiBoZXJlIHdhcyB0byBiZSByZWFkIG9ubHkgdG8gYXZvaWQgdGhlIG5lZWQg
-b2YgYWRkaXRpb25hbApoYW5kbGluZy4KCkNjOiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25n
-Lm11bkBpbnRlbC5jb20+CkNjOiBQZXRyaSBMYXR2YWxhIDxwZXRyaS5sYXR2YWxhQGludGVsLmNv
-bT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRl
-bC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wYXJhbXMuaCB8IDQgKystLQog
-MSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5oIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9wYXJhbXMuaAppbmRleCBmMDMxOTY2YWY1YjcuLjQ4ZjQ3ZTQ0ZTg0OCAxMDA2
-NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wYXJhbXMuaAorKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5oCkBAIC01NCw4ICs1NCw4IEBAIHN0cnVjdCBkcm1f
-cHJpbnRlcjsKIAlwYXJhbShpbnQsIGVuYWJsZV9kYywgLTEsIDA0MDApIFwKIAlwYXJhbShpbnQs
-IGVuYWJsZV9mYmMsIC0xLCAwNjAwKSBcCiAJcGFyYW0oaW50LCBlbmFibGVfcHNyLCAtMSwgMDYw
-MCkgXAotCXBhcmFtKGJvb2wsIHBzcl9zYWZlc3RfcGFyYW1zLCBmYWxzZSwgMDYwMCkgXAotCXBh
-cmFtKGJvb2wsIGVuYWJsZV9wc3IyX3NlbF9mZXRjaCwgZmFsc2UsIDA2MDApIFwKKwlwYXJhbShi
-b29sLCBwc3Jfc2FmZXN0X3BhcmFtcywgZmFsc2UsIDA0MDApIFwKKwlwYXJhbShib29sLCBlbmFi
-bGVfcHNyMl9zZWxfZmV0Y2gsIGZhbHNlLCAwNDAwKSBcCiAJcGFyYW0oaW50LCBkaXNhYmxlX3Bv
-d2VyX3dlbGwsIC0xLCAwNDAwKSBcCiAJcGFyYW0oaW50LCBlbmFibGVfaXBzLCAxLCAwNjAwKSBc
-CiAJcGFyYW0oaW50LCBpbnZlcnRfYnJpZ2h0bmVzcywgMCwgMDYwMCkgXAotLSAKMi4zMC4wCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+On 01/02/2021 08:56, Chris Wilson wrote:
+> While the HW may support preemption, whether or not the scheduler
+> enforces preemption by forcibly resetting the current context is
+> ultimately up to the scheduler.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_engine.h               | 7 ++-----
+>   drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 5 ++++-
+>   drivers/gpu/drm/i915/i915_scheduler_types.h          | 9 +++++++++
+>   3 files changed, 15 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> index db5419ba1dc8..33a29623571d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> @@ -244,12 +244,9 @@ static inline bool intel_engine_uses_guc(const struct intel_engine_cs *engine)
+>   }
+>   
+>   static inline bool
+> -intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
+> +intel_engine_has_preempt_reset(struct intel_engine_cs *engine)
+>   {
+> -	if (!IS_ACTIVE(CONFIG_DRM_I915_PREEMPT_TIMEOUT))
+> -		return false;
+> -
+> -	return intel_engine_has_preemption(engine);
+> +	return i915_sched_has_preempt_reset(intel_engine_get_scheduler(engine));
+>   }
+>   
+>   static inline bool
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 9245499d2082..7ec33bd73d95 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -2931,9 +2931,12 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
+>   		__set_bit(I915_SCHED_HAS_TIMESLICES_BIT,
+>   			  &engine->sched.flags);
+>   
+> -	if (intel_engine_has_preemption(engine))
+> +	if (intel_engine_has_preemption(engine)) {
+>   		__set_bit(I915_SCHED_USE_BUSYWAIT_BIT,
+>   			  &engine->sched.flags);
+> +		__set_bit(I915_SCHED_HAS_PREEMPT_RESET_BIT,
+> +			  &engine->sched.flags);
+> +	}
+>   }
+>   
+>   static void logical_ring_default_irqs(struct intel_engine_cs *engine)
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+> index 37475024c0de..7271a0259a56 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler_types.h
+> +++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+> @@ -20,6 +20,7 @@ struct i915_request;
+>   enum {
+>   	I915_SCHED_ACTIVE_BIT = 0,
+>   	I915_SCHED_HAS_TIMESLICES_BIT,
+> +	I915_SCHED_HAS_PREEMPT_RESET_BIT,
+>   	I915_SCHED_NEEDS_BREADCRUMB_BIT,
+>   	I915_SCHED_USE_BUSYWAIT_BIT,
+>   };
+> @@ -207,4 +208,12 @@ static inline bool i915_sched_use_busywait(const struct i915_sched *se)
+>   	return test_bit(I915_SCHED_USE_BUSYWAIT_BIT, &se->flags);
+>   }
+>   
+> +static inline bool i915_sched_has_preempt_reset(const struct i915_sched *se)
+> +{
+> +	if (!IS_ACTIVE(CONFIG_DRM_I915_PREEMPT_TIMEOUT))
+> +		return false;
+> +
+> +	return test_bit(I915_SCHED_HAS_PREEMPT_RESET_BIT, &se->flags);
+> +}
+> +
+>   #endif /* _I915_SCHEDULER_TYPES_H_ */
+> 
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
