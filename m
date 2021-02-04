@@ -1,52 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52D1E30EA1A
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 03:23:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF4530EAB9
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 04:12:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3A1F6EC67;
-	Thu,  4 Feb 2021 02:23:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B22A96EC6C;
+	Thu,  4 Feb 2021 03:12:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 744046EC67;
- Thu,  4 Feb 2021 02:23:25 +0000 (UTC)
-IronPort-SDR: cvG+C6Dc4ljkPGeNQhPTuHi7bas0C3o5bP/mBtFT33/nuXLrLBOW318u+FI4R23HPY3CcNF2Q1
- UCsZidmt6Zjw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="168838379"
-X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; d="scan'208";a="168838379"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 18:23:19 -0800
-IronPort-SDR: I5L7JiA1/4mnuXvq+OYr/SLAeoTIT6G+9UEo3mB9Byt001+vatOWy0vV2BCYWSPm0qzBYABx4c
- zQLk4lwJJDpA==
-X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; d="scan'208";a="372724889"
-Received: from brianwel-mobl1.amr.corp.intel.com (HELO [10.213.190.63])
- ([10.213.190.63])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 18:23:18 -0800
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@linux.ie>, Eero Tamminen <eero.t.tamminen@intel.com>,
- Kenny Ho <Kenny.Ho@amd.com>, Tejun Heo <tj@kernel.org>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- amd-gfx@lists.freedesktop.org, cgroups@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-References: <20210126214626.16260-1-brian.welty@intel.com>
- <20210126214626.16260-8-brian.welty@intel.com>
- <161235875541.15744.14541970842808007912@jlahtine-mobl.ger.corp.intel.com>
-From: Brian Welty <brian.welty@intel.com>
-Message-ID: <90e4b657-d5d6-e985-4cda-628c74dbac30@intel.com>
-Date: Wed, 3 Feb 2021 18:23:17 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4CC6A6EC6C;
+ Thu,  4 Feb 2021 03:12:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3EE6CA47E1;
+ Thu,  4 Feb 2021 03:12:53 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <161235875541.15744.14541970842808007912@jlahtine-mobl.ger.corp.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 7/9] drmcg: Add initial support for
- tracking gpu time usage
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 04 Feb 2021 03:12:53 -0000
+Message-ID: <161240837323.4502.5764603819238411799@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/vblank=3A_Avoid_storing_a_timestamp_for_the_same_frame_twice?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,173 +38,256 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0213518403=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0213518403==
+Content-Type: multipart/alternative;
+ boundary="===============3104718978716040119=="
 
-On 2/3/2021 5:25 AM, Joonas Lahtinen wrote:
-> Quoting Brian Welty (2021-01-26 23:46:24)
->> Single control below is added to DRM cgroup controller in order to track
->> user execution time for GPU devices.  It is up to device drivers to
->> charge execution time to the cgroup via drm_cgroup_try_charge().
->>
->>   sched.runtime
->>       Read-only value, displays current user execution time for each DRM
->>       device. The expectation is that this is incremented by DRM device
->>       driver's scheduler upon user context completion or context switch.
->>       Units of time are in microseconds for consistency with cpu.stats.
-> 
-> Were not we also planning for a percentage style budgeting?
+--===============3104718978716040119==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yes, that's right.  Above is to report accumlated time usage.
-I can include controls for time sharing in next submission.
-But not using percentage.
-Relative time share can be implemented with weights as described in cgroups
-documentation for resource distribution models.
-This was also the prior feedback from Tejun [1], and so will look very much
-like the existing cpu.weight or io.weight.
+== Series Details ==
 
-> 
-> Capping the maximum runtime is definitely useful, but in order to
-> configure a system for peaceful co-existence of two or more workloads we
-> must also impose a limit on how big portion of the instantaneous
-> capacity can be used.
+Series: drm/vblank: Avoid storing a timestamp for the same frame twice
+URL   : https://patchwork.freedesktop.org/series/86672/
+State : success
 
-Agreed.  This is also included with CPU and IO controls (cpu.max and io.max),
-so we should also plan to have the same.
+== Summary ==
 
--Brian
+CI Bug Log - changes from CI_DRM_9727 -> Patchwork_19581
+====================================================
 
-[1]  https://lists.freedesktop.org/archives/dri-devel/2020-April/262141.html
+Summary
+-------
 
-> 
-> Regards, Joonas
-> 
->> Signed-off-by: Brian Welty <brian.welty@intel.com>
->> ---
->>  Documentation/admin-guide/cgroup-v2.rst |  9 +++++++++
->>  include/drm/drm_cgroup.h                |  2 ++
->>  include/linux/cgroup_drm.h              |  2 ++
->>  kernel/cgroup/drm.c                     | 20 ++++++++++++++++++++
->>  4 files changed, 33 insertions(+)
->>
->> diff --git a/Documentation/admin-guide/cgroup-v2.rst b/Documentation/admin-guide/cgroup-v2.rst
->> index ccc25f03a898..f1d0f333a49e 100644
->> --- a/Documentation/admin-guide/cgroup-v2.rst
->> +++ b/Documentation/admin-guide/cgroup-v2.rst
->> @@ -2205,6 +2205,15 @@ thresholds are hit, this would then allow the DRM device driver to invoke
->>  some equivalent to OOM-killer or forced memory eviction for the device
->>  backed memory in order to attempt to free additional space.
->>  
->> +The below set of control files are for time accounting of DRM devices. Units
->> +of time are in microseconds.
->> +
->> +  sched.runtime
->> +        Read-only value, displays current user execution time for each DRM
->> +        device. The expectation is that this is incremented by DRM device
->> +        driver's scheduler upon user context completion or context switch.
->> +
->> +
->>  Misc
->>  ----
->>  
->> diff --git a/include/drm/drm_cgroup.h b/include/drm/drm_cgroup.h
->> index 9ba0e372eeee..315dab8a93b8 100644
->> --- a/include/drm/drm_cgroup.h
->> +++ b/include/drm/drm_cgroup.h
->> @@ -22,6 +22,7 @@ enum drmcg_res_type {
->>         DRMCG_TYPE_MEM_CURRENT,
->>         DRMCG_TYPE_MEM_MAX,
->>         DRMCG_TYPE_MEM_TOTAL,
->> +       DRMCG_TYPE_SCHED_RUNTIME,
->>         __DRMCG_TYPE_LAST,
->>  };
->>  
->> @@ -79,5 +80,6 @@ void drm_cgroup_uncharge(struct drmcg *drmcg,struct drm_device *dev,
->>                          enum drmcg_res_type type, u64 usage)
->>  {
->>  }
->> +
->>  #endif /* CONFIG_CGROUP_DRM */
->>  #endif /* __DRM_CGROUP_H__ */
->> diff --git a/include/linux/cgroup_drm.h b/include/linux/cgroup_drm.h
->> index 3570636473cf..0fafa663321e 100644
->> --- a/include/linux/cgroup_drm.h
->> +++ b/include/linux/cgroup_drm.h
->> @@ -19,6 +19,8 @@
->>   */
->>  struct drmcg_device_resource {
->>         struct page_counter memory;
->> +       seqlock_t sched_lock;
->> +       u64 exec_runtime;
->>  };
->>  
->>  /**
->> diff --git a/kernel/cgroup/drm.c b/kernel/cgroup/drm.c
->> index 08e75eb67593..64e9d0dbe8c8 100644
->> --- a/kernel/cgroup/drm.c
->> +++ b/kernel/cgroup/drm.c
->> @@ -81,6 +81,7 @@ static inline int init_drmcg_single(struct drmcg *drmcg, struct drm_device *dev)
->>         /* set defaults here */
->>         page_counter_init(&ddr->memory,
->>                           parent_ddr ? &parent_ddr->memory : NULL);
->> +       seqlock_init(&ddr->sched_lock);
->>         drmcg->dev_resources[minor] = ddr;
->>  
->>         return 0;
->> @@ -287,6 +288,10 @@ static int drmcg_seq_show_fn(int id, void *ptr, void *data)
->>                 seq_printf(sf, "%d:%d %llu\n", DRM_MAJOR, minor->index,
->>                            minor->dev->drmcg_props.memory_total);
->>                 break;
->> +       case DRMCG_TYPE_SCHED_RUNTIME:
->> +               seq_printf(sf, "%d:%d %llu\n", DRM_MAJOR, minor->index,
->> +                          ktime_to_us(ddr->exec_runtime));
->> +               break;
->>         default:
->>                 seq_printf(sf, "%d:%d\n", DRM_MAJOR, minor->index);
->>                 break;
->> @@ -384,6 +389,12 @@ struct cftype files[] = {
->>                 .private = DRMCG_TYPE_MEM_TOTAL,
->>                 .flags = CFTYPE_ONLY_ON_ROOT,
->>         },
->> +       {
->> +               .name = "sched.runtime",
->> +               .seq_show = drmcg_seq_show,
->> +               .private = DRMCG_TYPE_SCHED_RUNTIME,
->> +               .flags = CFTYPE_NOT_ON_ROOT,
->> +       },
->>         { }     /* terminate */
->>  };
->>  
->> @@ -440,6 +451,10 @@ EXPORT_SYMBOL(drmcg_device_early_init);
->>   * choose to enact some form of memory reclaim, but the exact behavior is left
->>   * to the DRM device driver to define.
->>   *
->> + * For @res type of DRMCG_TYPE_SCHED_RUNTIME:
->> + * For GPU time accounting, add @usage amount of GPU time to @drmcg for
->> + * the given device.
->> + *
->>   * Returns 0 on success.  Otherwise, an error code is returned.
->>   */
->>  int drm_cgroup_try_charge(struct drmcg *drmcg, struct drm_device *dev,
->> @@ -466,6 +481,11 @@ int drm_cgroup_try_charge(struct drmcg *drmcg, struct drm_device *dev,
->>                         err = 0;
->>                 }
->>                 break;
->> +       case DRMCG_TYPE_SCHED_RUNTIME:
->> +               write_seqlock(&res->sched_lock);
->> +               res->exec_runtime = ktime_add(res->exec_runtime, usage);
->> +               write_sequnlock(&res->sched_lock);
->> +               break;
->>         default:
->>                 err = -EINVAL;
->>                 break;
->> -- 
->> 2.20.1
->>
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19581 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-tgl-y/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_cs_nop@sync-compute0:
+    - fi-kbl-r:           NOTRUN -> [SKIP][2] ([fdo#109271]) +20 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-r/igt@amdgpu/amd_cs_nop@sync-compute0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-kbl-r:           NOTRUN -> [SKIP][3] ([fdo#109271] / [i915#2190])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-r/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-kbl-r:           NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-r/igt@kms_chamelium@hdmi-edid-read.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-kbl-r:           NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#533])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-r/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][6] -> [DMESG-WARN][7] ([i915#402]) +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9727/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@read:
+    - fi-tgl-y:           [DMESG-WARN][8] ([i915#402]) -> [PASS][9] +2 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9727/fi-tgl-y/igt@fbdev@read.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-tgl-y/igt@fbdev@read.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [DMESG-WARN][10] ([i915#2411] / [i915#402]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9727/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][12] ([i915#1372]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9727/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Additional (1): fi-kbl-r 
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9727 -> Patchwork_19581
+
+  CI-20190529: 20190529
+  CI_DRM_9727: f707269365babf0b562f0f623ca36b37d7e0391a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5989: 57a96840fd5aa7ec48c2f84b30e0420f84ec7386 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19581: 568e8428683fcad977ed3ab589c0c69de8abefe8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+568e8428683f drm/vblank: Avoid storing a timestamp for the same frame twice
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/index.html
+
+--===============3104718978716040119==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/vblank: Avoid storing a timestamp for the same frame twice</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86672/">https://patchwork.freedesktop.org/series/86672/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9727 -&gt; Patchwork_19581</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19581 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-tgl-y/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-compute0:</p>
+<ul>
+<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-r/igt@amdgpu/amd_cs_nop@sync-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +20 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-r/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-r/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-r/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_two_bos:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9727/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@read:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9727/fi-tgl-y/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-tgl-y/igt@fbdev@read.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9727/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9727/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19581/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 39)</h2>
+<p>Additional (1): fi-kbl-r <br />
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9727 -&gt; Patchwork_19581</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9727: f707269365babf0b562f0f623ca36b37d7e0391a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5989: 57a96840fd5aa7ec48c2f84b30e0420f84ec7386 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19581: 568e8428683fcad977ed3ab589c0c69de8abefe8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>568e8428683f drm/vblank: Avoid storing a timestamp for the same frame twice</p>
+
+</body>
+</html>
+
+--===============3104718978716040119==--
+
+--===============0213518403==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0213518403==--
