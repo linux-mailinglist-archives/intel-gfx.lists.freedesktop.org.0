@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B46C310027
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 23:40:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E0C9310049
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 23:45:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF70A6EE86;
-	Thu,  4 Feb 2021 22:40:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03F1C6EE89;
+	Thu,  4 Feb 2021 22:45:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E8BE56EE86;
- Thu,  4 Feb 2021 22:40:03 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E1386EE87;
+ Thu,  4 Feb 2021 22:45:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D9555A0091;
- Thu,  4 Feb 2021 22:40:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1F10AAAA91;
+ Thu,  4 Feb 2021 22:45:35 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Thu, 04 Feb 2021 22:40:03 -0000
-Message-ID: <161247840386.4502.12387072726773767125@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 04 Feb 2021 22:45:35 -0000
+Message-ID: <161247873510.4503.15301064550786287246@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210204181048.24202-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210204181048.24202-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Clean_up_the_DDI_clock_routing_mess_=28rev2=29?=
+References: <cover.1612467466.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1612467466.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_refactor_intel=5Fdisplay=2Ec_+_a_bit_more?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,244 +40,268 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1434591709=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1434591709==
-Content-Type: multipart/alternative;
- boundary="===============5258755228760348690=="
-
---===============5258755228760348690==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Clean up the DDI clock routing mess (rev2)
-URL   : https://patchwork.freedesktop.org/series/86544/
-State : success
+Series: drm/i915: refactor intel_display.c + a bit more
+URL   : https://patchwork.freedesktop.org/series/86723/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9732 -> Patchwork_19593
-====================================================
+$ dim checkpatch origin/drm-tip
+124144996ca6 drm/i915: refactor ddi translations into a separate file (v2)
+-:1525: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1525: 
+new file mode 100644
 
-Summary
--------
+-:1793: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1793: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:264:
++
++
 
-  **SUCCESS**
+-:2279: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2279: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:750:
++		return bdw_ddi_translations_edp;
++	} else {
 
-  No regressions found.
+-:2296: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2296: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:767:
++		return skl_u_ddi_translations_dp;
++	} else {
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/index.html
+-:2317: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2317: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:788:
++		return kbl_u_ddi_translations_dp;
++	} else {
 
-Known issues
-------------
+-:2341: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2341: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:812:
++			return skl_u_ddi_translations_edp;
++		} else {
 
-  Here are the changes found in Patchwork_19593 that come from known issues:
+-:2364: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2364: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:835:
++		return skl_y_ddi_translations_hdmi;
++	} else {
 
-### IGT changes ###
+-:2519: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2519: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:990:
++		return cnl_ddi_translations_hdmi_1_05V;
++	} else {
 
-#### Issues hit ####
+-:2541: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2541: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1012:
++		return cnl_ddi_translations_dp_1_05V;
++	} else {
 
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+-:2564: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2564: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1035:
++			return cnl_ddi_translations_edp_1_05V;
++		} else {
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][2] -> [INCOMPLETE][3] ([i915#2940])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+-:2658: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2658: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1129:
++		return icl_mg_phy_ddi_translations_hbr2_hbr3;
++	} else {
 
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+-:2750: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2750: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1221:
++			return jsl_combo_phy_ddi_translations_edp_hbr2;
++		} else {
 
-  * igt@runner@aborted:
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][6] ([i915#1436] / [i915#2722])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-bsw-n3050/igt@runner@aborted.html
+-:2795: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2795: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1266:
++			return tgl_uy_combo_phy_ddi_translations_dp_hbr2;
++		} else {
 
-  
-#### Possible fixes ####
+-:2803: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2803: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1274:
++			return rkl_combo_phy_ddi_translations_dp_hbr;
++		} else {
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [INCOMPLETE][7] ([i915#2940]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+-:2862: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2862: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1333:
++		return tgl_dkl_phy_dp_ddi_trans_hbr2;
++	} else {
 
-  * igt@prime_vgem@basic-read:
-    - fi-tgl-y:           [DMESG-WARN][9] ([i915#402]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-tgl-y/igt@prime_vgem@basic-read.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-tgl-y/igt@prime_vgem@basic-read.html
+total: 0 errors, 14 warnings, 1 checks, 2980 lines checked
+dac5399f8947 drm/i915: migrate hsw fdi code to new file.
+-:293: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
+#293: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:583:
++		       FDI_RX_PWRDN_LANE1_VAL(2) | FDI_RX_PWRDN_LANE0_VAL(2) | FDI_RX_TP1_TO_TP2_48 | FDI_RX_FDI_DELAY_90);
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+-:301: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#301: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:591:
++	udelay(220);
 
+-:313: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#313: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:603:
++	 * testing each value twice. */
 
-Participating hosts (43 -> 38)
-------------------------------
+-:325: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#325: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:615:
++		 * port reversal bit */
 
-  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-byt-j1900 fi-bsw-cyan fi-bdw-samus 
+-:327: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#327: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:617:
++			       DDI_BUF_CTL_ENABLE | ((crtc_state->fdi_lanes - 1) << 1) | DDI_BUF_TRANS_SELECT(i / 2));
 
+-:330: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#330: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:620:
++		udelay(600);
 
-Build changes
--------------
+-:341: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#341: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:631:
++		udelay(30);
 
-  * Linux: CI_DRM_9732 -> Patchwork_19593
+total: 0 errors, 4 warnings, 3 checks, 376 lines checked
+73371d0509a6 drm/i915: migrate skl planes code new file (v5)
+-:2762: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#2762: 
+new file mode 100644
 
-  CI-20190529: 20190529
-  CI_DRM_9732: adb75f6f105d29ef75c1c8547db6259cad2092df @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5991: a2d9c45fca85918ecf47761205555aade64b9220 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19593: 3042cc386f808b0fbaab79f4a1dc54f0f03d947b @ git://anongit.freedesktop.org/gfx-ci/linux
+-:3237: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#3237: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:471:
++
++
 
+-:3808: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#3808: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:1042:
++				  (plane_state->color_plane[1].y << 16) | plane_state->color_plane[1].x);
 
-== Linux commits ==
+-:4115: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#4115: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:1349:
++
++
 
-3042cc386f80 drm/i915: s/dev_priv/i915/ for the remainder of DDI clock routing
-68c071acd87d drm/i915: Relocate icl_sanitize_encoder_pll_mapping()
-43bdf3bff434 drm/i915: Use .disable_clock() for pll sanitation
-ad2ff2024cda drm/i915: Split adl-s/rkl from icl_ddi_combo_{enable, disable}_clock()
-2c2cbb342e26 drm/i915: Extract _cnl_ddi_{enable, disable}_clock()
-da8fa7f178d4 drm/i915: Sprinkle WARN(!pll) into icl/dg1 .clock_enable()
-955b034d57a3 drm/i915: Sprinkle a few missing locks around shared DDI clock registers
-05feedf13562 drm/i915: Use intel_de_rmw() for DDI clock routing
-6556f08b6691 drm/i915: Extract icl+ .{enable, disable}_clock() vfuncs
-818ed01c5517 drm/i915: Convert DG1 over to .{enable, disable}_clock()
-ff375afcdf02 drm/i195: Extract cnl_ddi_{enable, disable}_clock()
-370fdbea29e2 drm/i915: Extract skl_ddi_{enable, disable}_clock()
-104612889762 drm/i915: Extract hsw_ddi_{enable, disable}_clock()
-7a9a433648ec drm/i915: Introduce .{enable, disable}_clock() encoder vfuncs
+-:4503: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#4503: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:1737:
++		return skl_planar_formats;
++	} else {
 
-== Logs ==
+-:4516: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#4516: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:1750:
++		return glk_planar_formats;
++	} else {
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/index.html
+-:4532: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#4532: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:1766:
++		return icl_sdr_y_plane_formats;
++	} else {
 
---===============5258755228760348690==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:4875: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#4875: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:2109:
++		drm_plane_create_scaling_filter_property(&plane->base,
++						BIT(DRM_SCALING_FILTER_DEFAULT) |
 
+total: 0 errors, 5 warnings, 3 checks, 4957 lines checked
+d60dcb2389b8 drm/i915: move pipe update code into crtc. (v2)
+-:251: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#251: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:545:
++	 * while ... */
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 514 lines checked
+ed9e74d3ed1e drm/i915: split fb scalable checks into g4x and skl versions
+10dd41f58e61 drm/i915: move is_ccs_modifier to an inline
+95df1ee5c668 drm/i915: migrate pll enable/disable code to intel_dpll.[ch]
+-:640: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#640: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1399:
++	udelay(150);
 
+-:658: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#658: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1417:
++		udelay(150); /* wait for warmup */
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Clean up the DDI clock routing mess (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86544/">https://patchwork.freedesktop.org/series/86544/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+-:699: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#699: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1458:
++	udelay(150);
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/index.html</a></td></tr>
+-:724: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#724: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1483:
++
++
 
-</table>
+-:808: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#808: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1567:
++		       pipe_config->dpll_hw_state.dpll & ~(DPLL_VCO_ENABLE | DPLL_EXT_BUFFER_ENABLE_VLV));
 
+-:861: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#861: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1620:
++		vlv_dpio_write(dev_priv, pipe, VLV_PLL_DW10(pipe),
++				 0x009f0003);
 
-    <h1>CI Bug Log - changes from CI_DRM_9732 -&gt; Patchwork_19593</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19593 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_two_bos:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-tgl-y/igt@prime_vgem@basic-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19593/fi-tgl-y/igt@prime_vgem@basic-read.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-jsl-1 fi-ilk-m540 fi-byt-j1900 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9732 -&gt; Patchwork_19593</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9732: adb75f6f105d29ef75c1c8547db6259cad2092df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5991: a2d9c45fca85918ecf47761205555aade64b9220 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19593: 3042cc386f808b0fbaab79f4a1dc54f0f03d947b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3042cc386f80 drm/i915: s/dev_priv/i915/ for the remainder of DDI clock routing<br />
-68c071acd87d drm/i915: Relocate icl_sanitize_encoder_pll_mapping()<br />
-43bdf3bff434 drm/i915: Use .disable_clock() for pll sanitation<br />
-ad2ff2024cda drm/i915: Split adl-s/rkl from icl_ddi_combo_{enable, disable}<em>clock()<br />
-2c2cbb342e26 drm/i915: Extract _cnl_ddi</em>{enable, disable}<em>clock()<br />
-da8fa7f178d4 drm/i915: Sprinkle WARN(!pll) into icl/dg1 .clock_enable()<br />
-955b034d57a3 drm/i915: Sprinkle a few missing locks around shared DDI clock registers<br />
-05feedf13562 drm/i915: Use intel_de_rmw() for DDI clock routing<br />
-6556f08b6691 drm/i915: Extract icl+ .{enable, disable}_clock() vfuncs<br />
-818ed01c5517 drm/i915: Convert DG1 over to .{enable, disable}_clock()<br />
-ff375afcdf02 drm/i195: Extract cnl_ddi</em>{enable, disable}<em>clock()<br />
-370fdbea29e2 drm/i915: Extract skl_ddi</em>{enable, disable}<em>clock()<br />
-104612889762 drm/i915: Extract hsw_ddi</em>{enable, disable}_clock()<br />
-7a9a433648ec drm/i915: Introduce .{enable, disable}_clock() encoder vfuncs</p>
+-:864: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#864: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1623:
++		vlv_dpio_write(dev_priv, pipe, VLV_PLL_DW10(pipe),
++				 0x00d0000f);
 
-</body>
-</html>
+-:870: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#870: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1629:
++			vlv_dpio_write(dev_priv, pipe, VLV_PLL_DW5(pipe),
++					 0x0df40000);
 
---===============5258755228760348690==--
+-:873: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#873: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1632:
++			vlv_dpio_write(dev_priv, pipe, VLV_PLL_DW5(pipe),
++					 0x0df70000);
 
---===============1434591709==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-:878: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#878: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1637:
++			vlv_dpio_write(dev_priv, pipe, VLV_PLL_DW5(pipe),
++					 0x0df70000);
+
+-:881: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#881: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1640:
++			vlv_dpio_write(dev_priv, pipe, VLV_PLL_DW5(pipe),
++					 0x0df40000);
+
+-:929: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#929: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1688:
++	vlv_dpio_write(dev_priv, pipe, CHV_CMN_DW13(port),
++			5 << DPIO_CHV_S1_DIV_SHIFT |
+
+-:939: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#939: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1698:
++	vlv_dpio_write(dev_priv, pipe, CHV_PLL_DW1(port),
++			DPIO_CHV_M1_DIV_BY_2 |
+
+-:994: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#994: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1753:
++	vlv_dpio_write(dev_priv, pipe, CHV_CMN_DW14(port),
++			vlv_dpio_read(dev_priv, pipe, CHV_CMN_DW14(port)) |
+
+-:1098: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1098: FILE: drivers/gpu/drm/i915/display/intel_dpll.c:1857:
++
++
+
+total: 0 errors, 1 warnings, 14 checks, 1110 lines checked
+44f33f127d85 drm/i915: migrate i9xx plane get config
+c29fac301e62 drm/i915: refactor skylake scaler code into new file.
+-:641: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#641: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 1131 lines checked
+b222155f3f4e drm/i915: move ddi pll state get to dpll mgr
+-:268: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#268: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4685:
++	clk_sel = intel_de_read(dev_priv, DG1_DPCLKA_CFGCR0(phy)) & DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy);
+
+-:369: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#369: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4786:
++static void bxt_get_ddi_pll(struct drm_i915_private *dev_priv,
++				enum port port,
+
+total: 0 errors, 1 warnings, 1 checks, 463 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1434591709==--
