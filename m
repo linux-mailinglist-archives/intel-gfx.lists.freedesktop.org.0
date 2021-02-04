@@ -1,34 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6811530F729
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 17:05:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7E4E30F745
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 17:11:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC0B66E0D2;
-	Thu,  4 Feb 2021 16:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E7CC6E0AF;
+	Thu,  4 Feb 2021 16:11:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54CD46E0D2
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 16:05:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D49A56E0AF
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 16:11:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.69.177; 
 Received: from localhost (unverified [78.156.69.177]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23788700-1500050 for multiple; Thu, 04 Feb 2021 16:05:53 +0000
+ 23788772-1500050 for multiple; Thu, 04 Feb 2021 16:11:37 +0000
 MIME-Version: 1.0
-In-Reply-To: <cdbd3495-6bb5-65b1-833c-0b5aa4e5be4b@linux.intel.com>
+In-Reply-To: <f46141bd-5ec2-5b7a-5ab0-e6ce0b5baec8@linux.intel.com>
 References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
- <20210201085715.27435-29-chris@chris-wilson.co.uk>
- <cdbd3495-6bb5-65b1-833c-0b5aa4e5be4b@linux.intel.com>
+ <20210201085715.27435-30-chris@chris-wilson.co.uk>
+ <f46141bd-5ec2-5b7a-5ab0-e6ce0b5baec8@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Date: Thu, 04 Feb 2021 16:05:52 +0000
-Message-ID: <161245475235.3075.1909522034995264924@build.alporthouse.com>
+Date: Thu, 04 Feb 2021 16:11:35 +0000
+Message-ID: <161245509589.3075.11559724927083884362@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 29/57] drm/i915: Move scheduler flags
+Subject: Re: [Intel-gfx] [PATCH 30/57] drm/i915: Move timeslicing flag to
+ scheduler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,130 +47,57 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-02-04 15:14:20)
+Quoting Tvrtko Ursulin (2021-02-04 15:18:31)
 > 
 > On 01/02/2021 08:56, Chris Wilson wrote:
-> > Start extracting the scheduling flags from the engine. We begin with its
-> > own existence.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_engine.h        |  6 ++++++
-> >   drivers/gpu/drm/i915/gt/intel_engine_types.h  | 21 +++++++------------
-> >   .../drm/i915/gt/intel_execlists_submission.c  |  6 +++++-
-> >   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  2 +-
-> >   drivers/gpu/drm/i915/i915_request.h           |  2 +-
-> >   drivers/gpu/drm/i915/i915_scheduler.c         |  2 +-
-> >   drivers/gpu/drm/i915/i915_scheduler_types.h   | 10 +++++++++
-> >   7 files changed, 31 insertions(+), 18 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> > index c530839627bb..4f0163457aed 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> > @@ -261,6 +261,12 @@ intel_engine_has_heartbeat(const struct intel_engine_cs *engine)
-> >       return READ_ONCE(engine->props.heartbeat_interval_ms);
-> >   }
-> >   
-> > +static inline bool
-> > +intel_engine_has_scheduler(struct intel_engine_cs *engine)
-> > +{
-> > +     return i915_sched_is_active(intel_engine_get_scheduler(engine));
-> > +}
-> > +
-> >   static inline void
-> >   intel_engine_kick_scheduler(struct intel_engine_cs *engine)
-> >   {
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > index 6b0bde292916..a3024a0de1de 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > @@ -440,14 +440,13 @@ struct intel_engine_cs {
-> >   
-> >   #define I915_ENGINE_USING_CMD_PARSER BIT(0)
-> >   #define I915_ENGINE_SUPPORTS_STATS   BIT(1)
-> > -#define I915_ENGINE_HAS_SCHEDULER    BIT(2)
-> > -#define I915_ENGINE_HAS_PREEMPTION   BIT(3)
-> > -#define I915_ENGINE_HAS_SEMAPHORES   BIT(4)
-> > -#define I915_ENGINE_HAS_TIMESLICES   BIT(5)
-> > -#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(6)
-> > -#define I915_ENGINE_IS_VIRTUAL       BIT(7)
-> > -#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(8)
-> > -#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(9)
-> > +#define I915_ENGINE_HAS_PREEMPTION   BIT(2)
-> > +#define I915_ENGINE_HAS_SEMAPHORES   BIT(3)
-> > +#define I915_ENGINE_HAS_TIMESLICES   BIT(4)
-> > +#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(5)
-> > +#define I915_ENGINE_IS_VIRTUAL       BIT(6)
-> > +#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(7)
-> > +#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(8)
-> >       unsigned int flags;
-> >   
-> >       /*
-> > @@ -530,12 +529,6 @@ intel_engine_supports_stats(const struct intel_engine_cs *engine)
-> >       return engine->flags & I915_ENGINE_SUPPORTS_STATS;
-> >   }
-> >   
-> > -static inline bool
-> > -intel_engine_has_scheduler(const struct intel_engine_cs *engine)
-> > -{
-> > -     return engine->flags & I915_ENGINE_HAS_SCHEDULER;
-> > -}
-> > -
-> >   static inline bool
-> >   intel_engine_has_preemption(const struct intel_engine_cs *engine)
-> >   {
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > index b1007e560527..3217cb4369ad 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> > @@ -2913,7 +2913,6 @@ logical_ring_default_vfuncs(struct intel_engine_cs *engine)
-> >                */
-> >       }
-> >   
-> > -     engine->flags |= I915_ENGINE_HAS_SCHEDULER;
-> >       engine->flags |= I915_ENGINE_SUPPORTS_STATS;
-> >       if (!intel_vgpu_active(engine->i915)) {
-> >               engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
-> > @@ -2981,6 +2980,7 @@ int intel_execlists_submission_setup(struct intel_engine_cs *engine)
-> >       engine->sched.is_executing = execlists_is_executing;
-> >       engine->sched.show = execlists_show;
-> >       tasklet_setup(&engine->sched.tasklet, execlists_submission_tasklet);
-> > +     __set_bit(I915_SCHED_ACTIVE_BIT, &engine->sched.flags);
+> > Whether a scheduler chooses to implement timeslicing is up to it, and
+> > not an underlying property of the HW engine. The scheduler does depend
+> > on the HW supporting preemption.
 > 
-> This feels a bit dodgy - does is stay like this, with the engine setting 
-> up both the tasklet and setting the bit directly? Could we say that 
-> setting a tasklet via a helper could turn on the bit?
+> Therefore, continuing on the comment I made in the previous patch, if we 
+> had a helper with which engine would request scheduling (setting the 
+> tasklet), if it passed in a pointer to itself, scheduler would then be 
+> able to inspect if the engine supports preemption and so set its own 
+> internal flag. Makes sense? It would require something like:
 
-Bare with me for a few more patches. I didn't like it either. I guess I
-should move that chunk earlier so we don't have the eyesore and rightful
-questions over my sanity.
+Actually not keen on pushing the inspection into the core scheduler and
+would rather have the backend turn it on for itself. Because it's not
+just about the engine supporting preemption, it's about whether or not
+the backend wants to bother implement timeslicing itself.
 
-> > +static inline bool i915_sched_is_active(const struct i915_sched *se)
-> > +{
-> > +     return test_bit(I915_SCHED_ACTIVE_BIT, &se->flags);
-> > +}
-> 
-> What do you have in mind for the distinction between "has scheduler" and 
-> "scheduler is active"?
+If we skip to the end, it looks like this for execlists:
 
-By the end, we use the i915_scheduler for everything, including legacy
-ringbuffer submission for which the i915_scheduler does nothing, as it
-cannot support execution reordering.
+        i915_sched_init(&el->sched, i915->drm.dev,
+                        engine->name, engine->mask,
+                        &execlists_ops, engine);
 
-So there's a scheduler behind every i915_request, but we don't always
-need to add all the dependency tracking. So for "is_active" I was
-thinking along the lines of an active scheduler that supports reordering.
+        if (IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION) &&
+            intel_engine_has_preemption(engine))
+                __set_bit(I915_SCHED_TIMESLICE_BIT, &el->sched.flags);
 
-But i915_request_has_active_scheduler() and
-intel_engine_has_active_scheduler() is something of a mouthful, when the
-the inactive scheduler doesn't count for much and can be quietly
-ignored.
+        if (intel_engine_has_preemption(engine)) {
+                __set_bit(I915_SCHED_BUSYWAIT_BIT, &el->sched.flags);
+                __set_bit(I915_SCHED_PREEMPT_RESET_BIT, &el->sched.flags);
+        }
 
-I'll try and summarise the distinction for the inlines. I've tried to
-describe the differences for the scheduling modes elsewhere (when they
-eyesore is removed). If I introduce the scheduling modes here instead of
-a pure ACTIVE_BIT, that should be a better story.
+with the virtual scheduler:
+
+        ve->base.sched =
+                i915_sched_create(ve->base.i915->drm.dev,
+                                  ve->base.name,
+                                  ve->base.mask,
+                                  &virtual_ops, ve);
+        if (!ve->base.sched) {
+                err = -ENOMEM;
+                goto err_put;
+        }
+
+        ve->base.sched->flags |= sched; /* override submission method */
+
+I think the virtual scheduler suggests that we can't rely on the
+scheduler core to dtrt by itself. And if you are still awake by the time
+we get to this point, how to avoid ve->base.sched->flags |= sched are
+welcome.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
