@@ -2,40 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB87930E9F6
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 03:09:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52D1E30EA1A
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 03:23:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 188E26EC66;
-	Thu,  4 Feb 2021 02:08:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3A1F6EC67;
+	Thu,  4 Feb 2021 02:23:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C95BF6EC66
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 02:08:57 +0000 (UTC)
-IronPort-SDR: CSqx2KY1bn9YzkoAydH0sweZCrHozHpm1Xo0AmVaS+xD5DOvNxd3R5iqbgv9vvsY7LrvVof+Ei
- 2bXRu0wOiKgA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="177649099"
-X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; d="scan'208";a="177649099"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 18:08:55 -0800
-IronPort-SDR: 78aJ6O/z3f5zIi4vFc4KbnuxoufMh2sfxnZWv8OEcBKXrI8BjwUI0JQPOaXqCJsdQXUCleiLd1
- t0X5jiHPwUXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; d="scan'208";a="414613466"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 03 Feb 2021 18:08:53 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 04 Feb 2021 04:08:51 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Feb 2021 04:08:46 +0200
-Message-Id: <20210204020846.2094-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210204020846.2094-1-ville.syrjala@linux.intel.com>
-References: <20210204020846.2094-1-ville.syrjala@linux.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 744046EC67;
+ Thu,  4 Feb 2021 02:23:25 +0000 (UTC)
+IronPort-SDR: cvG+C6Dc4ljkPGeNQhPTuHi7bas0C3o5bP/mBtFT33/nuXLrLBOW318u+FI4R23HPY3CcNF2Q1
+ UCsZidmt6Zjw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="168838379"
+X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; d="scan'208";a="168838379"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 18:23:19 -0800
+IronPort-SDR: I5L7JiA1/4mnuXvq+OYr/SLAeoTIT6G+9UEo3mB9Byt001+vatOWy0vV2BCYWSPm0qzBYABx4c
+ zQLk4lwJJDpA==
+X-IronPort-AV: E=Sophos;i="5.79,399,1602572400"; d="scan'208";a="372724889"
+Received: from brianwel-mobl1.amr.corp.intel.com (HELO [10.213.190.63])
+ ([10.213.190.63])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2021 18:23:18 -0800
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@linux.ie>, Eero Tamminen <eero.t.tamminen@intel.com>,
+ Kenny Ho <Kenny.Ho@amd.com>, Tejun Heo <tj@kernel.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ amd-gfx@lists.freedesktop.org, cgroups@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20210126214626.16260-1-brian.welty@intel.com>
+ <20210126214626.16260-8-brian.welty@intel.com>
+ <161235875541.15744.14541970842808007912@jlahtine-mobl.ger.corp.intel.com>
+From: Brian Welty <brian.welty@intel.com>
+Message-ID: <90e4b657-d5d6-e985-4cda-628c74dbac30@intel.com>
+Date: Wed, 3 Feb 2021 18:23:17 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Use intel_hdmi_port_clock() more
+In-Reply-To: <161235875541.15744.14541970842808007912@jlahtine-mobl.ger.corp.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC PATCH 7/9] drmcg: Add initial support for
+ tracking gpu time usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,52 +59,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClJl
-cGxhY2UgdGhlIGhhbmQgcm9sbGVkIGludGVsX2hkbWlfcG9ydF9jbG9jaygpIHN0dWZmCndpdGgg
-dGhlIHJlYWwgdGhpbmcuCgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfaGRtaS5jIHwgMjcgKysrKysrKysrKysrLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2Vk
-LCAxNCBpbnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCmluZGV4IDY2ZTFhYzM4ODdjNi4uNDU3YTE2Yzg4MDNhIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYworKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYwpAQCAtMjIyOSw2ICsy
-MjI5LDE2IEBAIGhkbWlfcG9ydF9jbG9ja192YWxpZChzdHJ1Y3QgaW50ZWxfaGRtaSAqaGRtaSwK
-IAlyZXR1cm4gTU9ERV9PSzsKIH0KIAorc3RhdGljIGludCBpbnRlbF9oZG1pX3BvcnRfY2xvY2so
-aW50IGNsb2NrLCBpbnQgYnBjKQoreworCS8qCisJICogTmVlZCB0byBhZGp1c3QgdGhlIHBvcnQg
-bGluayBieToKKwkgKiAgMS41eCBmb3IgMTJicGMKKwkgKiAgMS4yNXggZm9yIDEwYnBjCisJICov
-CisJcmV0dXJuIGNsb2NrICogYnBjIC8gODsKK30KKwogc3RhdGljIGVudW0gZHJtX21vZGVfc3Rh
-dHVzCiBpbnRlbF9oZG1pX21vZGVfdmFsaWQoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3Rv
-ciwKIAkJICAgICAgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGUpCkBAIC0yMjYwLDE3ICsy
-MjcwLDE4IEBAIGludGVsX2hkbWlfbW9kZV92YWxpZChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29u
-bmVjdG9yLAogCQljbG9jayAvPSAyOwogCiAJLyogY2hlY2sgaWYgd2UgY2FuIGRvIDhicGMgKi8K
-LQlzdGF0dXMgPSBoZG1pX3BvcnRfY2xvY2tfdmFsaWQoaGRtaSwgY2xvY2ssIHRydWUsIGhhc19o
-ZG1pX3NpbmspOworCXN0YXR1cyA9IGhkbWlfcG9ydF9jbG9ja192YWxpZChoZG1pLCBpbnRlbF9o
-ZG1pX3BvcnRfY2xvY2soY2xvY2ssIDgpLAorCQkJCSAgICAgICB0cnVlLCBoYXNfaGRtaV9zaW5r
-KTsKIAogCWlmIChoYXNfaGRtaV9zaW5rKSB7CiAJCS8qIGlmIHdlIGNhbid0IGRvIDhicGMgd2Ug
-bWF5IHN0aWxsIGJlIGFibGUgdG8gZG8gMTJicGMgKi8KIAkJaWYgKHN0YXR1cyAhPSBNT0RFX09L
-ICYmICFIQVNfR01DSChkZXZfcHJpdikpCi0JCQlzdGF0dXMgPSBoZG1pX3BvcnRfY2xvY2tfdmFs
-aWQoaGRtaSwgY2xvY2sgKiAzIC8gMiwKKwkJCXN0YXR1cyA9IGhkbWlfcG9ydF9jbG9ja192YWxp
-ZChoZG1pLCBpbnRlbF9oZG1pX3BvcnRfY2xvY2soY2xvY2ssIDEyKSwKIAkJCQkJCSAgICAgICB0
-cnVlLCBoYXNfaGRtaV9zaW5rKTsKIAogCQkvKiBpZiB3ZSBjYW4ndCBkbyA4LDEyYnBjIHdlIG1h
-eSBzdGlsbCBiZSBhYmxlIHRvIGRvIDEwYnBjICovCiAJCWlmIChzdGF0dXMgIT0gTU9ERV9PSyAm
-JiBJTlRFTF9HRU4oZGV2X3ByaXYpID49IDExKQotCQkJc3RhdHVzID0gaGRtaV9wb3J0X2Nsb2Nr
-X3ZhbGlkKGhkbWksIGNsb2NrICogNSAvIDQsCisJCQlzdGF0dXMgPSBoZG1pX3BvcnRfY2xvY2tf
-dmFsaWQoaGRtaSwgaW50ZWxfaGRtaV9wb3J0X2Nsb2NrKGNsb2NrLCAxMCksCiAJCQkJCQkgICAg
-ICAgdHJ1ZSwgaGFzX2hkbWlfc2luayk7CiAJfQogCWlmIChzdGF0dXMgIT0gTU9ERV9PSykKQEAg
-LTIzNzgsMTYgKzIzODksNiBAQCBpbnRlbF9oZG1pX3ljYmNyNDIwX2NvbmZpZyhzdHJ1Y3QgaW50
-ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKIAlyZXR1cm4gaW50ZWxfcGNoX3BhbmVsX2ZpdHRp
-bmcoY3J0Y19zdGF0ZSwgY29ubl9zdGF0ZSk7CiB9CiAKLXN0YXRpYyBpbnQgaW50ZWxfaGRtaV9w
-b3J0X2Nsb2NrKGludCBjbG9jaywgaW50IGJwYykKLXsKLQkvKgotCSAqIE5lZWQgdG8gYWRqdXN0
-IHRoZSBwb3J0IGxpbmsgYnk6Ci0JICogIDEuNXggZm9yIDEyYnBjCi0JICogIDEuMjV4IGZvciAx
-MGJwYwotCSAqLwotCXJldHVybiBjbG9jayAqIGJwYyAvIDg7Ci19Ci0KIHN0YXRpYyBpbnQgaW50
-ZWxfaGRtaV9jb21wdXRlX2JwYyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJCQkg
-IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCQkJCSAgaW50IGNsb2NrKQot
-LSAKMi4yNi4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+On 2/3/2021 5:25 AM, Joonas Lahtinen wrote:
+> Quoting Brian Welty (2021-01-26 23:46:24)
+>> Single control below is added to DRM cgroup controller in order to track
+>> user execution time for GPU devices.  It is up to device drivers to
+>> charge execution time to the cgroup via drm_cgroup_try_charge().
+>>
+>>   sched.runtime
+>>       Read-only value, displays current user execution time for each DRM
+>>       device. The expectation is that this is incremented by DRM device
+>>       driver's scheduler upon user context completion or context switch.
+>>       Units of time are in microseconds for consistency with cpu.stats.
+> 
+> Were not we also planning for a percentage style budgeting?
+
+Yes, that's right.  Above is to report accumlated time usage.
+I can include controls for time sharing in next submission.
+But not using percentage.
+Relative time share can be implemented with weights as described in cgroups
+documentation for resource distribution models.
+This was also the prior feedback from Tejun [1], and so will look very much
+like the existing cpu.weight or io.weight.
+
+> 
+> Capping the maximum runtime is definitely useful, but in order to
+> configure a system for peaceful co-existence of two or more workloads we
+> must also impose a limit on how big portion of the instantaneous
+> capacity can be used.
+
+Agreed.  This is also included with CPU and IO controls (cpu.max and io.max),
+so we should also plan to have the same.
+
+-Brian
+
+[1]  https://lists.freedesktop.org/archives/dri-devel/2020-April/262141.html
+
+> 
+> Regards, Joonas
+> 
+>> Signed-off-by: Brian Welty <brian.welty@intel.com>
+>> ---
+>>  Documentation/admin-guide/cgroup-v2.rst |  9 +++++++++
+>>  include/drm/drm_cgroup.h                |  2 ++
+>>  include/linux/cgroup_drm.h              |  2 ++
+>>  kernel/cgroup/drm.c                     | 20 ++++++++++++++++++++
+>>  4 files changed, 33 insertions(+)
+>>
+>> diff --git a/Documentation/admin-guide/cgroup-v2.rst b/Documentation/admin-guide/cgroup-v2.rst
+>> index ccc25f03a898..f1d0f333a49e 100644
+>> --- a/Documentation/admin-guide/cgroup-v2.rst
+>> +++ b/Documentation/admin-guide/cgroup-v2.rst
+>> @@ -2205,6 +2205,15 @@ thresholds are hit, this would then allow the DRM device driver to invoke
+>>  some equivalent to OOM-killer or forced memory eviction for the device
+>>  backed memory in order to attempt to free additional space.
+>>  
+>> +The below set of control files are for time accounting of DRM devices. Units
+>> +of time are in microseconds.
+>> +
+>> +  sched.runtime
+>> +        Read-only value, displays current user execution time for each DRM
+>> +        device. The expectation is that this is incremented by DRM device
+>> +        driver's scheduler upon user context completion or context switch.
+>> +
+>> +
+>>  Misc
+>>  ----
+>>  
+>> diff --git a/include/drm/drm_cgroup.h b/include/drm/drm_cgroup.h
+>> index 9ba0e372eeee..315dab8a93b8 100644
+>> --- a/include/drm/drm_cgroup.h
+>> +++ b/include/drm/drm_cgroup.h
+>> @@ -22,6 +22,7 @@ enum drmcg_res_type {
+>>         DRMCG_TYPE_MEM_CURRENT,
+>>         DRMCG_TYPE_MEM_MAX,
+>>         DRMCG_TYPE_MEM_TOTAL,
+>> +       DRMCG_TYPE_SCHED_RUNTIME,
+>>         __DRMCG_TYPE_LAST,
+>>  };
+>>  
+>> @@ -79,5 +80,6 @@ void drm_cgroup_uncharge(struct drmcg *drmcg,struct drm_device *dev,
+>>                          enum drmcg_res_type type, u64 usage)
+>>  {
+>>  }
+>> +
+>>  #endif /* CONFIG_CGROUP_DRM */
+>>  #endif /* __DRM_CGROUP_H__ */
+>> diff --git a/include/linux/cgroup_drm.h b/include/linux/cgroup_drm.h
+>> index 3570636473cf..0fafa663321e 100644
+>> --- a/include/linux/cgroup_drm.h
+>> +++ b/include/linux/cgroup_drm.h
+>> @@ -19,6 +19,8 @@
+>>   */
+>>  struct drmcg_device_resource {
+>>         struct page_counter memory;
+>> +       seqlock_t sched_lock;
+>> +       u64 exec_runtime;
+>>  };
+>>  
+>>  /**
+>> diff --git a/kernel/cgroup/drm.c b/kernel/cgroup/drm.c
+>> index 08e75eb67593..64e9d0dbe8c8 100644
+>> --- a/kernel/cgroup/drm.c
+>> +++ b/kernel/cgroup/drm.c
+>> @@ -81,6 +81,7 @@ static inline int init_drmcg_single(struct drmcg *drmcg, struct drm_device *dev)
+>>         /* set defaults here */
+>>         page_counter_init(&ddr->memory,
+>>                           parent_ddr ? &parent_ddr->memory : NULL);
+>> +       seqlock_init(&ddr->sched_lock);
+>>         drmcg->dev_resources[minor] = ddr;
+>>  
+>>         return 0;
+>> @@ -287,6 +288,10 @@ static int drmcg_seq_show_fn(int id, void *ptr, void *data)
+>>                 seq_printf(sf, "%d:%d %llu\n", DRM_MAJOR, minor->index,
+>>                            minor->dev->drmcg_props.memory_total);
+>>                 break;
+>> +       case DRMCG_TYPE_SCHED_RUNTIME:
+>> +               seq_printf(sf, "%d:%d %llu\n", DRM_MAJOR, minor->index,
+>> +                          ktime_to_us(ddr->exec_runtime));
+>> +               break;
+>>         default:
+>>                 seq_printf(sf, "%d:%d\n", DRM_MAJOR, minor->index);
+>>                 break;
+>> @@ -384,6 +389,12 @@ struct cftype files[] = {
+>>                 .private = DRMCG_TYPE_MEM_TOTAL,
+>>                 .flags = CFTYPE_ONLY_ON_ROOT,
+>>         },
+>> +       {
+>> +               .name = "sched.runtime",
+>> +               .seq_show = drmcg_seq_show,
+>> +               .private = DRMCG_TYPE_SCHED_RUNTIME,
+>> +               .flags = CFTYPE_NOT_ON_ROOT,
+>> +       },
+>>         { }     /* terminate */
+>>  };
+>>  
+>> @@ -440,6 +451,10 @@ EXPORT_SYMBOL(drmcg_device_early_init);
+>>   * choose to enact some form of memory reclaim, but the exact behavior is left
+>>   * to the DRM device driver to define.
+>>   *
+>> + * For @res type of DRMCG_TYPE_SCHED_RUNTIME:
+>> + * For GPU time accounting, add @usage amount of GPU time to @drmcg for
+>> + * the given device.
+>> + *
+>>   * Returns 0 on success.  Otherwise, an error code is returned.
+>>   */
+>>  int drm_cgroup_try_charge(struct drmcg *drmcg, struct drm_device *dev,
+>> @@ -466,6 +481,11 @@ int drm_cgroup_try_charge(struct drmcg *drmcg, struct drm_device *dev,
+>>                         err = 0;
+>>                 }
+>>                 break;
+>> +       case DRMCG_TYPE_SCHED_RUNTIME:
+>> +               write_seqlock(&res->sched_lock);
+>> +               res->exec_runtime = ktime_add(res->exec_runtime, usage);
+>> +               write_sequnlock(&res->sched_lock);
+>> +               break;
+>>         default:
+>>                 err = -EINVAL;
+>>                 break;
+>> -- 
+>> 2.20.1
+>>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
