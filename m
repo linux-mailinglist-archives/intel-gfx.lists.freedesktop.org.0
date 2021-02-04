@@ -2,39 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F7E630ECC5
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 07:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12BBA30ED75
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 08:36:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92F246ECDD;
-	Thu,  4 Feb 2021 06:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27DAC6ECE5;
+	Thu,  4 Feb 2021 07:36:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1C5A6ECDC;
- Thu,  4 Feb 2021 06:58:42 +0000 (UTC)
-IronPort-SDR: ndNzaPh9rqJx6kQjqjZ1ZaHsXfS4kXAA2yFYmq33L6bI5XmI5m4mBxrLwqSyuTV8qZX6o6D3Yf
- p0VHOpYDOlLg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="160942391"
-X-IronPort-AV: E=Sophos;i="5.79,400,1602572400"; d="scan'208";a="160942391"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2021 22:58:42 -0800
-IronPort-SDR: gpnxIvrqSFg5jTsqxqriIOlhkjYjBK1KhhocfUEwiHMPWE3kXW0FDSAyVh2i594CHnrWWQmTIm
- QQoNbG/PeAWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.79,400,1602572400"; d="scan'208";a="483088290"
-Received: from linux-akn.iind.intel.com ([10.223.34.148])
- by fmsmga001.fm.intel.com with ESMTP; 03 Feb 2021 22:58:40 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Feb 2021 12:18:42 +0530
-Message-Id: <20210204064842.11595-4-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210204064842.11595-1-ankit.k.nautiyal@intel.com>
-References: <20210204064842.11595-1-ankit.k.nautiyal@intel.com>
+X-Greylist: delayed 375 seconds by postgrey-1.36 at gabe;
+ Thu, 04 Feb 2021 07:36:10 UTC
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D82226ECE5;
+ Thu,  4 Feb 2021 07:36:10 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id DD16068AFE; Thu,  4 Feb 2021 08:29:47 +0100 (CET)
+Date: Thu, 4 Feb 2021 08:29:47 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Dongli Zhang <dongli.zhang@oracle.com>
+Message-ID: <20210204072947.GA29812@lst.de>
+References: <20210203233709.19819-1-dongli.zhang@oracle.com>
+ <20210203233709.19819-3-dongli.zhang@oracle.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] i915/display: Remove FRL related code from
- disable DP sequence for older platforms
+Content-Disposition: inline
+In-Reply-To: <20210203233709.19819-3-dongli.zhang@oracle.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PATCH RFC v1 2/6] swiotlb: convert variables to
+ arrays
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,36 +40,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: ulf.hansson@linaro.org, airlied@linux.ie, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ bhelgaas@google.com, paulus@samba.org, hpa@zytor.com, hch@lst.de,
+ m.szyprowski@samsung.com, sstabellini@kernel.org, adrian.hunter@intel.com,
+ mpe@ellerman.id.au, x86@kernel.org, joe.jin@oracle.com, mingo@kernel.org,
+ peterz@infradead.org, mingo@redhat.com, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ matthew.auld@intel.com, thomas.lendacky@amd.com, konrad.wilk@oracle.com,
+ intel-gfx@lists.freedesktop.org, bp@alien8.de, nouveau@lists.freedesktop.org,
+ Claire Chang <tientzu@chromium.org>, boris.ostrovsky@oracle.com,
+ chris@chris-wilson.co.uk, jgross@suse.com, tsbogend@alpha.franken.de,
+ robin.murphy@arm.com, linux-mmc@vger.kernel.org, linux-mips@vger.kernel.org,
+ iommu@lists.linux-foundation.org, tglx@linutronix.de, bauerman@linux.ibm.com,
+ akpm@linux-foundation.org, linuxppc-dev@lists.ozlabs.org, rppt@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove code for resetting frl related members from intel_disable_dp, as
-this is not applicable for older platforms.
+On Wed, Feb 03, 2021 at 03:37:05PM -0800, Dongli Zhang wrote:
+> This patch converts several swiotlb related variables to arrays, in
+> order to maintain stat/status for different swiotlb buffers. Here are
+> variables involved:
+> 
+> - io_tlb_start and io_tlb_end
+> - io_tlb_nslabs and io_tlb_used
+> - io_tlb_list
+> - io_tlb_index
+> - max_segment
+> - io_tlb_orig_addr
+> - no_iotlb_memory
+> 
+> There is no functional change and this is to prepare to enable 64-bit
+> swiotlb.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 1962d6dd8641..9d94bdf5f517 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2387,8 +2387,6 @@ static void intel_disable_dp(struct intel_atomic_state *state,
- 	intel_edp_backlight_off(old_conn_state);
- 	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
- 	intel_pps_off(intel_dp);
--	intel_dp->frl.is_trained = false;
--	intel_dp->frl.trained_rate_gbps = 0;
- }
- 
- static void g4x_disable_dp(struct intel_atomic_state *state,
--- 
-2.29.2
-
+Claire Chang (on Cc) already posted a patch like this a month ago,
+which looks much better because it actually uses a struct instead
+of all the random variables. 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
