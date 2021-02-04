@@ -2,36 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D362B30F2D4
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 13:06:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAB1130F2D7
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 13:08:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29CD26EBC4;
-	Thu,  4 Feb 2021 12:06:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EAF46E9F5;
+	Thu,  4 Feb 2021 12:08:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 682686EBC4;
- Thu,  4 Feb 2021 12:06:15 +0000 (UTC)
-IronPort-SDR: 3pX9FgXNwiBOuxk2AX23vyiNUyuex/FTcRRkGSR8hbLyq9gEluHAWkyTCifV4qacBfktv55g+I
- g1Ilis/DpV7A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="200215713"
-X-IronPort-AV: E=Sophos;i="5.79,400,1602572400"; d="scan'208";a="200215713"
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0D126E9F5
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 12:08:19 +0000 (UTC)
+IronPort-SDR: zOnrWRvnN24BqQ6AkmV5KMn4w4yICRcMxVFZFSFDnUqKdkbgI0oUb7pSlBR5Bysslct0ccKAAp
+ YOORjwPQk2Zw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9884"; a="177720718"
+X-IronPort-AV: E=Sophos;i="5.79,400,1602572400"; d="scan'208";a="177720718"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2021 04:06:12 -0800
-IronPort-SDR: 97I7eKlRyO+S1VIz0X8LP0QHh5JK8wiTp1PVAIwvqsqqYwVSPWVJl1PNH2ScmKujXGWicWqIyt
- YQV8dZFvvdAg==
-X-IronPort-AV: E=Sophos;i="5.79,400,1602572400"; d="scan'208";a="393132096"
-Received: from dbmayer-mobl.ger.corp.intel.com (HELO localhost) ([10.252.53.1])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 04:08:18 -0800
+IronPort-SDR: 8HgN3mu443IPcpkj+zQW9KpgR3/gM3LQLCjLB8uBCxGb2qoH0eEO6KixCRIIAnUbkRBRqeEZ6R
+ BYizplFD+LoA==
+X-IronPort-AV: E=Sophos;i="5.79,400,1602572400"; d="scan'208";a="393132807"
+Received: from acanalx-mobl.ger.corp.intel.com (HELO [10.249.32.114])
+ ([10.249.32.114])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2021 04:06:07 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 04 Feb 2021 14:06:04 +0200
-Message-ID: <87bld0f36b.fsf@intel.com>
+ 04 Feb 2021 04:08:17 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210201085715.27435-1-chris@chris-wilson.co.uk>
+ <20210201085715.27435-20-chris@chris-wilson.co.uk>
+ <45740fad-297d-03e7-7de4-3a171376c0c2@linux.intel.com>
+ <161243750979.1383.2504816924204435385@build.alporthouse.com>
+ <161243981120.4856.4115126682547775710@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <1e6d0ce0-5325-72a6-ec79-fc667d60126f@linux.intel.com>
+Date: Thu, 4 Feb 2021 12:08:15 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+In-Reply-To: <161243981120.4856.4115126682547775710@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 20/57] drm/i915: Wrap access to
+ intel_engine.active
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,76 +55,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CkhpIERhdmUgJiBEYW5pZWwgLQoKVGhlcmUncyBhIGJpdCBtb3JlIGhlcmUgdGhhbiBJJ2QgZ2Vu
-ZXJhbGx5IGxpa2UgYXQgdGhpcyBzdGFnZSwgaG93ZXZlcgptYW55IG9mIHRoZW0gYXJlIGNjOiBz
-dGFibGUgYW55d2F5LCBhbmQgSSd2ZSBvcHRlZCB0byBpbmNsdWRlIGEgY291cGxlCm9mIGV4dHJh
-IGJhY2twb3J0cyB0byBhbGxvdyB0aGUgYWN0dWFsIGZpeGVzIHRvIGFwcGx5IHdpdGhvdXQgY29u
-ZmxpY3RzCmluc3RlYWQgb2YgbW9kaWZ5aW5nIHRoZSBmaXhlcy4KCkhvcGVmdWxseSB0aGluZ3Mg
-d2lsbCBjYWxtIGRvd24gbm93LCBmaW5nZXJzIGNyb3NzZWQuCgoKZHJtLWludGVsLWZpeGVzLTIw
-MjEtMDItMDQ6CmRybS9pOTE1IGZpeGVzIGZvciB2NS4xMS1yYzc6Ci0gU2tpcCB2c3dpbmcgcHJv
-Z3JhbW1pbmcgZm9yIFRCVAotIFBvd2VyIHVwIGNvbWJvIFBIWSBsYW5lcyBmb3IgSERNSQotIEZp
-eCBkb3VibGUgWVVWIHJhbmdlIGNvcnJlY3Rpb24gb24gSERSIHBsYW5lcwotIEZpeCB0aGUgTVNU
-IFBCTiBkaXZpZGVyIGNhbGN1bGF0aW9uCi0gRml4IExUVFBSIHZzd2luZy9wcmUtZW1wIHNldHRp
-bmcgaW4gbm9uLXRyYW5zcGFyZW50IG1vZGUKLSBNb3ZlIHRoZSBicmVhZGNydW1iIHRvIHRoZSBz
-aWduYWxlciBpZiBjb21wbGV0ZWQgdXBvbiBjYW5jZWwKLSBDbG9zZSByYWNlIGJldHdlZW4gZW5h
-YmxlX2JyZWFkY3J1bWJzIGFuZCBjYW5jZWxfYnJlYWRjcnVtYnMKLSBEcm9wIGxydSBidW1waW5n
-IG9uIGRpc3BsYXkgdW5waW5uaW5nCgpCUiwKSmFuaS4KClRoZSBmb2xsb3dpbmcgY2hhbmdlcyBz
-aW5jZSBjb21taXQgMTA0OGJhODNmYjFjMDBjZDI0MTcyZTIzZTgyNjM5NzJmNmI1ZDlhYzoKCiAg
-TGludXggNS4xMS1yYzYgKDIwMjEtMDEtMzEgMTM6NTA6MDkgLTA4MDApCgphcmUgYXZhaWxhYmxl
-IGluIHRoZSBHaXQgcmVwb3NpdG9yeSBhdDoKCiAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5v
-cmcvZHJtL2RybS1pbnRlbCB0YWdzL2RybS1pbnRlbC1maXhlcy0yMDIxLTAyLTA0Cgpmb3IgeW91
-IHRvIGZldGNoIGNoYW5nZXMgdXAgdG8gODhlYmUxZjU3MmUyODRlY2ZlMDg4NjQ4ZTBhZTkzODAz
-YTc1YTQ1OToKCiAgZHJtL2k5MTUvZHA6IEZpeCBMVFRQUiB2c3dpbmcvcHJlLWVtcCBzZXR0aW5n
-IGluIG5vbi10cmFuc3BhcmVudCBtb2RlICgyMDIxLTAyLTAyIDE3OjMxOjM3ICswMjAwKQoKLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLQpkcm0vaTkxNSBmaXhlcyBmb3IgdjUuMTEtcmM3OgotIFNraXAgdnN3aW5nIHByb2dyYW1t
-aW5nIGZvciBUQlQKLSBQb3dlciB1cCBjb21ibyBQSFkgbGFuZXMgZm9yIEhETUkKLSBGaXggZG91
-YmxlIFlVViByYW5nZSBjb3JyZWN0aW9uIG9uIEhEUiBwbGFuZXMKLSBGaXggdGhlIE1TVCBQQk4g
-ZGl2aWRlciBjYWxjdWxhdGlvbgotIEZpeCBMVFRQUiB2c3dpbmcvcHJlLWVtcCBzZXR0aW5nIGlu
-IG5vbi10cmFuc3BhcmVudCBtb2RlCi0gTW92ZSB0aGUgYnJlYWRjcnVtYiB0byB0aGUgc2lnbmFs
-ZXIgaWYgY29tcGxldGVkIHVwb24gY2FuY2VsCi0gQ2xvc2UgcmFjZSBiZXR3ZWVuIGVuYWJsZV9i
-cmVhZGNydW1icyBhbmQgY2FuY2VsX2JyZWFkY3J1bWJzCi0gRHJvcCBscnUgYnVtcGluZyBvbiBk
-aXNwbGF5IHVucGlubmluZwoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpBbmRyZXMgQ2FsZGVyb24gSmFyYW1pbGxvICgxKToK
-ICAgICAgZHJtL2k5MTUvZGlzcGxheTogUHJldmVudCBkb3VibGUgWVVWIHJhbmdlIGNvcnJlY3Rp
-b24gb24gSERSIHBsYW5lcwoKQ2hyaXMgV2lsc29uICgzKToKICAgICAgZHJtL2k5MTUvZ3Q6IE1v
-dmUgdGhlIGJyZWFkY3J1bWIgdG8gdGhlIHNpZ25hbGVyIGlmIGNvbXBsZXRlZCB1cG9uIGNhbmNl
-bAogICAgICBkcm0vaTkxNS9ndDogQ2xvc2UgcmFjZSBiZXR3ZWVuIGVuYWJsZV9icmVhZGNydW1i
-cyBhbmQgY2FuY2VsX2JyZWFkY3J1bWJzCiAgICAgIGRybS9pOTE1L2dlbTogRHJvcCBscnUgYnVt
-cGluZyBvbiBkaXNwbGF5IHVucGlubmluZwoKSW1yZSBEZWFrICg0KToKICAgICAgZHJtL2RwL21z
-dDogRXhwb3J0IGRybV9kcF9nZXRfdmNfcGF5bG9hZF9idygpCiAgICAgIGRybS9pOTE1OiBGaXgg
-dGhlIE1TVCBQQk4gZGl2aWRlciBjYWxjdWxhdGlvbgogICAgICBkcm0vaTkxNS9kcDogTW92ZSBp
-bnRlbF9kcF9zZXRfc2lnbmFsX2xldmVscygpIHRvIGludGVsX2RwX2xpbmtfdHJhaW5pbmcuYwog
-ICAgICBkcm0vaTkxNS9kcDogRml4IExUVFBSIHZzd2luZy9wcmUtZW1wIHNldHRpbmcgaW4gbm9u
-LXRyYW5zcGFyZW50IG1vZGUKClZpbGxlIFN5cmrDpGzDpCAoMyk6CiAgICAgIGRybS9pOTE1OiBT
-a2lwIHZzd2luZyBwcm9ncmFtbWluZyBmb3IgVEJUCiAgICAgIGRybS9pOTE1OiBFeHRyYWN0IGlu
-dGVsX2RkaV9wb3dlcl91cF9sYW5lcygpCiAgICAgIGRybS9pOTE1OiBQb3dlciB1cCBjb21ibyBQ
-SFkgbGFuZXMgZm9yIGZvciBIRE1JIGFzIHdlbGwKCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21z
-dF90b3BvbG9neS5jICAgICAgICAgICAgICB8IDI0ICsrKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICAgICAgICB8IDQzICsrKysrKysrLS0tLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAgICAgICB8ICA5ICsr
-LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICAgICAgICAgICAgfCAy
-MCArLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmggICAgICAg
-ICAgICB8ICAzIC0KIC4uLi9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWlu
-aW5nLmMgIHwgMjUgKysrKysrKystCiAuLi4vZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBf
-bGlua190cmFpbmluZy5oICB8ICAzICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZHBfbXN0LmMgICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfb3ZlcmxheS5jICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfc3ByaXRlLmMgICAgICAgIHwgNjUgKysrKy0tLS0tLS0tLS0tLS0tLS0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2RvbWFpbi5jICAgICAgICAgfCA0NSAtLS0t
-LS0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaCAg
-ICAgICAgIHwgIDEgLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfYnJlYWRjcnVtYnMu
-YyAgICAgICAgfCA0NyArKysrKysrKystLS0tLS0tCiBpbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hl
-bHBlci5oICAgICAgICAgICAgICAgICAgICB8ICAxICsKIDE0IGZpbGVzIGNoYW5nZWQsIDExOCBp
-bnNlcnRpb25zKCspLCAxNzYgZGVsZXRpb25zKC0pCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9w
-ZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngK
+
+On 04/02/2021 11:56, Chris Wilson wrote:
+> Quoting Chris Wilson (2021-02-04 11:18:29)
+>> Quoting Tvrtko Ursulin (2021-02-04 11:07:07)
+>>>
+>>>
+>>> On 01/02/2021 08:56, Chris Wilson wrote:
+>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>>>> index b56e321ef003..280d84c4e4b7 100644
+>>>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>>>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>>>> @@ -293,6 +293,7 @@ static int virtual_prio(const struct intel_engine_execlists *el)
+>>>>    static bool need_preempt(const struct intel_engine_cs *engine,
+>>>>                         const struct i915_request *rq)
+>>>>    {
+>>>> +     const struct i915_sched *se = &engine->active;
+>>>
+>>> There's only two instances in this patch which do not use
+>>> intel_engine_get_scheduler. Intended?
+>>
+>> They were the ones I earmarked for being replaced by the scheduler
+>> object being passed down. Having down that I can do the replacement here
+>> and remove the conflicts with the final result later.
+> 
+> The catch here was the const. We can't make the getter take a const*
+> at this point, so I left it as &engine->active to not have to remove the
+> constness.
+
+It's fine, I'm mostly interested in the goodness of the end result.
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
