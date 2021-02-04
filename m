@@ -2,43 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10B6530FE6D
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 21:35:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A97A30FE6E
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 21:35:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB9A66E120;
-	Thu,  4 Feb 2021 20:35:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5A86E145;
+	Thu,  4 Feb 2021 20:35:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A985A6E120
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 20:35:22 +0000 (UTC)
-IronPort-SDR: Nd3N6WTWaQNBrdVYjsmXSS0rKfYrO6q7KpvQpldNIZJ7nGRQd5TkbhwURcNjGvyN20JnO9vW9n
- YfT5oMgWKWpA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="200318247"
-X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="200318247"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2021 12:35:22 -0800
-IronPort-SDR: wDKlM7hLbKRjQK9kx0jHZAzbCZrpYlZJv0u1Cmc8Fmq3aD4nvhPlMjX5Uyh5hnMrHHSZIE62U7
- ElIBPr1vRu6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="483700696"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 04 Feb 2021 12:35:19 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 04 Feb 2021 22:35:18 +0200
-Date: Thu, 4 Feb 2021 22:35:18 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YBxahr/DGQKmWxS1@intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA796E145
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 20:35:32 +0000 (UTC)
+IronPort-SDR: 9RDzV50K+3KLT4X2q8jDrKNYSw3BPgkdKTKy0DIV+qDaYVNaE0qRSrLIY1aFiX/kkcmlMCT5Ih
+ NBaburoBotsA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="169002786"
+X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="169002786"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 12:35:31 -0800
+IronPort-SDR: hDCx0KaLV1S2weiIeRLDgQ00blxQ4C73HbQCa0az81RhvLBmxbIMZ7L1seMZpNt24RsvkaHeXI
+ 3YrnX3/iPpYw==
+X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="393368663"
+Received: from dbmayer-mobl.ger.corp.intel.com (HELO localhost) ([10.252.53.1])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 12:35:29 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YBxY6VV00sNJ/rqR@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1612467466.git.jani.nikula@intel.com>
- <926cbdfc0bf4bc0ac7dee1b330dc1176dc50f391.1612467466.git.jani.nikula@intel.com>
+ <b84e4d31c02dc9722522b003958ffbe12837e58b.1612467466.git.jani.nikula@intel.com>
+ <YBxY6VV00sNJ/rqR@intel.com>
+Date: Thu, 04 Feb 2021 22:35:26 +0200
+Message-ID: <87zh0jefld.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <926cbdfc0bf4bc0ac7dee1b330dc1176dc50f391.1612467466.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v11 09/10] drm/i915: refactor skylake scaler
- code into new file.
+Subject: Re: [Intel-gfx] [PATCH v11 03/10] drm/i915: migrate skl planes code
+ new file (v5)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,45 +49,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
+ Dan Carpenter <dan.carpenter@oracle.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 04, 2021 at 09:43:26PM +0200, Jani Nikula wrote:
->  static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-
-Missed all the skl_pfit*().
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
-m/i915/display/intel_sprite.c
-> index 46fcb5b9983f..4cbdb8fd4bb1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -138,68 +138,6 @@ int intel_plane_check_src_coordinates(struct intel_p=
-lane_state *plane_state)
->  	return 0;
->  }
->  =
-
-> -void
-> -skl_program_scaler(struct intel_plane *plane,
-> -		   const struct intel_crtc_state *crtc_state,
-> -		   const struct intel_plane_state *plane_state)
-
-If we move this we should rename it to skl_program_plane_scaler() or
-something along those lines. Ideally I'd like to have a single
-function that works for both pipe and plane scaling but that might
-require some actual thought so not going to be a trivial rename/move.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAwNCBGZWIgMjAyMSwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gVGh1LCBGZWIgMDQsIDIwMjEgYXQgMDk6NDM6MjBQTSAr
+MDIwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IC11bnNpZ25lZCBpbnQKPj4gLWludGVsX3BsYW5l
+X2ZlbmNlX3lfb2Zmc2V0KGNvbnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3Rh
+dGUpCj4+IC17Cj4+IC0JaW50IHggPSAwLCB5ID0gMDsKPj4gLQo+PiAtCWludGVsX3BsYW5lX2Fk
+anVzdF9hbGlnbmVkX29mZnNldCgmeCwgJnksIHBsYW5lX3N0YXRlLCAwLAo+PiAtCQkJCQkgIHBs
+YW5lX3N0YXRlLT5jb2xvcl9wbGFuZVswXS5vZmZzZXQsIDApOwo+PiAtCj4+IC0JcmV0dXJuIHk7
+Cj4+IC19Cj4KPiBUaGlzIHVucmVsYXRlZCBjb2RlIG1vdGlvbiBpcyBzdGlsbCBoZXJlLCBtZXNz
+aW5nIHVwIHRoZSBkaWZmLgoKUmlnaHQuIEkgd2Fzbid0IGxvb2tpbmcgdG8gaW1wcm92ZSBhbnl0
+aGluZywgSSBqdXN0IHdhbnRlZCB0byByZWJhc2UgYW5kCmdldCB0ZXN0IHJlc3VsdHMuCgpCUiwK
+SmFuaS4KCj4KPiA8c25pcD4KPj4gIH0KPj4gIAo+PiAtdm9pZCBza2xfc2NhbGVyX2Rpc2FibGUo
+Y29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlKQo+PiAtewo+PiAt
+CXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhvbGRfY3J0Y19zdGF0ZS0+
+dWFwaS5jcnRjKTsKPj4gLQlpbnQgaTsKPj4gLQo+PiAtCWZvciAoaSA9IDA7IGkgPCBjcnRjLT5u
+dW1fc2NhbGVyczsgaSsrKQo+PiAtCQlza2xfZGV0YWNoX3NjYWxlcihjcnRjLCBpKTsKPj4gLX0K
+Pgo+IGRpdHRvCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENl
+bnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
+bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
