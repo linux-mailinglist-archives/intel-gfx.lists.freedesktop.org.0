@@ -2,56 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598F830FDFF
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 21:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 954D630FE03
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 21:22:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A02A96EE68;
-	Thu,  4 Feb 2021 20:21:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0A036E0C6;
+	Thu,  4 Feb 2021 20:22:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB8106EE68
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 20:21:09 +0000 (UTC)
-IronPort-SDR: MKuLbVOQYi+iZX4fo8AXiHp1V6t6JNxsbkxrL+fwLhTFm05wSWhNWdutAZser7yn+P1qzq9tFe
- bHnuo6i8x10g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="178760756"
-X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="178760756"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2021 12:21:09 -0800
-IronPort-SDR: NI5TIEfU/zUTaA6DfjXiAy79FizPS2Po18Sg3HKx/egl4keC5DswnT4ABIHpiQwbpV4ar+xqx8
- UJglp+aDDA3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="393352550"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP; 04 Feb 2021 12:21:08 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 4 Feb 2021 12:21:08 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 4 Feb 2021 12:21:08 -0800
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.002;
- Thu, 4 Feb 2021 12:21:08 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915/display: Remove PSR2 on JSL and EHL
-Thread-Index: AQHW+x8qk431NohpP0qY5BGhPOJLFapI9s6A
-Date: Thu, 4 Feb 2021 20:21:08 +0000
-Message-ID: <36155ec2b35643b5885010292e389874fd42a90d.camel@intel.com>
-References: <20210204175830.97857-1-jose.souza@intel.com>
-In-Reply-To: <20210204175830.97857-1-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-ID: <2F8EE3BBFF937240B19954B3780F3003@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BC1006E029;
+ Thu,  4 Feb 2021 20:22:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B972CA363B;
+ Thu,  4 Feb 2021 20:22:14 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Remove PSR2 on JSL and EHL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dongli Zhang" <dongli.zhang@oracle.com>
+Date: Thu, 04 Feb 2021 20:22:14 -0000
+Message-ID: <161247013475.4502.1861718340694750644@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210203233709.19819-1-dongli.zhang@oracle.com>
+In-Reply-To: <20210203233709.19819-1-dongli.zhang@oracle.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc3dp?=
+ =?utf-8?q?otlb=3A_64-bit_DMA_buffer?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,38 +38,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Dea, Edmund J" <edmund.j.dea@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0604971059=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIxLTAyLTA0IGF0IDA5OjU4IC0wODAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBGcm9tOiBFZG11bmQgRGVhIDxlZG11bmQuai5kZWFAaW50ZWwuY29tPg0KPiAN
-Cj4gV2hpbGUgSlNMIGFuZCBFSEwgZURQIHRyYW5zY29kZXIgc3VwcG9ydHMgUFNSMiwgdGhlIHBo
-eSBvZiB0aGlzDQo+IHBsYXRmb3JtcyBvbmx5IHN1cHBvcnRzIGVEUCAxLjMsIHNvIHJlbW92aW5n
-IFBTUjIgc3VwcG9ydCBhcyB0aGlzDQo+IGZlYXR1cmUgd2FzIGFkZGVkIGluIGVEUCAxLjQuDQoN
-Ckp1c3Qgc2VudCBhIHBhdGNoIGZyb20gRWRtdW5kIHdpdGggYSBtaW5vciBjb21taXQgbWVzc2Fn
-ZSB0d2Vha3MsIHNvIEkgZ3Vlc3MgbXkgcnZiIGlzIHZhbGlkIGlmIG5vdCBwbGVhc2UgbGV0IG1l
-IGtub3cuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXph
-QGludGVsLmNvbT4NCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogRWRtdW5kIERlYSA8ZWRtdW5kLmou
-ZGVhQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8
-am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfcHNyLmMgfCA2ICsrKysrKw0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA2IGluc2Vy
-dGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3Bzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0K
-PiBpbmRleCAyYzM2NWI3NzhmNzQuLmNjY2I4YWZmNDMzNiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC03MTgsNiArNzE4LDEyIEBAIHN0YXRp
-YyBib29sIGludGVsX3BzcjJfY29uZmlnX3ZhbGlkKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAs
-DQo+IMKgCWlmICghZGV2X3ByaXYtPnBzci5zaW5rX3BzcjJfc3VwcG9ydCkNCj4gwqAJCXJldHVy
-biBmYWxzZTsNCj4gwqANCj4gDQo+IA0KPiANCj4gKwkvKiBKU0wgYW5kIEVITCBvbmx5IHN1cHBv
-cnRzIGVEUCAxLjMgKi8NCj4gKwlpZiAoSVNfSlNMX0VITChkZXZfcHJpdikpIHsNCj4gKwkJZHJt
-X2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJQU1IyIG5vdCBzdXBwb3J0ZWQgYnkgcGh5XG4iKTsN
-Cj4gKwkJcmV0dXJuIGZhbHNlOw0KPiArCX0NCj4gKw0KPiDCoAlpZiAoIXRyYW5zY29kZXJfaGFz
-X3BzcjIoZGV2X3ByaXYsIGNydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyKSkgew0KPiDCoAkJZHJt
-X2RiZ19rbXMoJmRldl9wcml2LT5kcm0sDQo+IMKgCQkJICAgICJQU1IyIG5vdCBzdXBwb3J0ZWQg
-aW4gdHJhbnNjb2RlciAlc1xuIiwNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4Cg==
+--===============0604971059==
+Content-Type: multipart/alternative;
+ boundary="===============8892547854276500798=="
+
+--===============8892547854276500798==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: swiotlb: 64-bit DMA buffer
+URL   : https://patchwork.freedesktop.org/series/86700/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9732 -> Patchwork_19589
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19589 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][2] -> [DMESG-WARN][3] ([i915#402]) +1 similar issue
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [INCOMPLETE][4] ([i915#2940]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +2 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-tgl-y/igt@prime_vgem@basic-read.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/fi-tgl-y/igt@prime_vgem@basic-read.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Missing    (4): fi-jsl-1 fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9732 -> Patchwork_19589
+
+  CI-20190529: 20190529
+  CI_DRM_9732: adb75f6f105d29ef75c1c8547db6259cad2092df @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5991: a2d9c45fca85918ecf47761205555aade64b9220 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19589: 3a347e83afb9bd9f979e0b457114cbfaa2399154 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3a347e83afb9 xen-swiotlb: enable 64-bit xen-swiotlb
+30d8a3cce117 xen-swiotlb: convert variables to arrays
+eb9848ac2c6c swiotlb: enable 64-bit swiotlb
+7fe9ad150961 swiotlb: introduce swiotlb_get_type() to calculate swiotlb buffer type
+50f74bc8af02 swiotlb: convert variables to arrays
+e188296818db swiotlb: define new enumerated type
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/index.html
+
+--===============8892547854276500798==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>swiotlb: 64-bit DMA buffer</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86700/">https://patchwork.freedesktop.org/series/86700/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9732 -&gt; Patchwork_19589</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19589 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9732/fi-tgl-y/igt@prime_vgem@basic-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19589/fi-tgl-y/igt@prime_vgem@basic-read.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Missing    (4): fi-jsl-1 fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9732 -&gt; Patchwork_19589</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9732: adb75f6f105d29ef75c1c8547db6259cad2092df @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5991: a2d9c45fca85918ecf47761205555aade64b9220 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19589: 3a347e83afb9bd9f979e0b457114cbfaa2399154 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>3a347e83afb9 xen-swiotlb: enable 64-bit xen-swiotlb<br />
+30d8a3cce117 xen-swiotlb: convert variables to arrays<br />
+eb9848ac2c6c swiotlb: enable 64-bit swiotlb<br />
+7fe9ad150961 swiotlb: introduce swiotlb_get_type() to calculate swiotlb buffer type<br />
+50f74bc8af02 swiotlb: convert variables to arrays<br />
+e188296818db swiotlb: define new enumerated type</p>
+
+</body>
+</html>
+
+--===============8892547854276500798==--
+
+--===============0604971059==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0604971059==--
