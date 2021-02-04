@@ -1,38 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9665C30FDA7
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 21:05:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14C030FDFB
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 21:20:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6AF16EE64;
-	Thu,  4 Feb 2021 20:05:09 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A38916EE64
- for <Intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 20:05:08 +0000 (UTC)
-IronPort-SDR: KhwlaCtNoIzZfpRA9D8qs78mc670VrVJrp2tpCSyvUVKcVlC4YtPbnkeYfPKrQbIsus0GKz5oQ
- z6/BAv/hhseQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="181387642"
-X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="181387642"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2021 12:05:07 -0800
-IronPort-SDR: 0ELuXBnoKozkBNphQMIvD2Frm1xVfmcSqjY0nkP0lGQINBC1UYKVrKICxbyOKh5N3uGFph4NjH
- BkzElqzy0r4Q==
-X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="415301797"
-Received: from lndersh-mobl2.amr.corp.intel.com (HELO cataylo2-MOBL1.lan)
- ([10.212.10.154])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2021 12:05:06 -0800
-From: clinton.a.taylor@intel.com
-To: Intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Feb 2021 12:04:58 -0800
-Message-Id: <20210204200458.21875-1-clinton.a.taylor@intel.com>
-X-Mailer: git-send-email 2.29.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1A0B6EE67;
+	Thu,  4 Feb 2021 20:20:10 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com
+ [IPv6:2607:f8b0:4864:20::22f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77BC46EE66
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 20:20:09 +0000 (UTC)
+Received: by mail-oi1-x22f.google.com with SMTP id k142so5065755oib.7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 04 Feb 2021 12:20:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=wpgT6Yz8SEv8X0iAsr6guPodAvl5pFjIWmhOvi/hibA=;
+ b=Xpi3ivwmVLdqOvs1N6dWfJPh+KUCL6ESv/15EWzkk0SYh5UrDZbnAFeuQ0LjKLDPJ7
+ De9JuaYPvilTUPbN7e/X9v+MAUVlzWXjljZf3QA9W/YfZZpTGY/2YH7tJ7fp5LhhaJ1E
+ TecADaHNqVMOJ3iZ/L1xhrSQ2gaVbYy3ceflA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=wpgT6Yz8SEv8X0iAsr6guPodAvl5pFjIWmhOvi/hibA=;
+ b=e2RjBwhrtLbdnqYTL0QQxzVVlhK+NFXvDCdRmfukHw3GeB9UP6dIeU+twr+PKDOCjg
+ uNXDdpoTPeGkgPWmBIZ4M3Es6wG3YppT8Uph7zH4z5DXG8eqH2ugr+3ObocrFMOJXG2o
+ FtUNsqt8vahy3ZYOXf89lFcJeJOSLO03Q4OH3YnmjBMBvNZl1XGor4Mu+vqqXXZhjyxi
+ xyfh1O4FR5h+Qzx3XFLGxYjZO9sh32TAzGUEu1Oqszf3OrVpMcKpMlVxyTUVxfUjFU7w
+ OXLbI25Zb/TyIysn54H/P4bUQ7Ys6rpMhNHDJYQjZhWQvvbxTROMvg4iNx00DvfHtaE5
+ INGA==
+X-Gm-Message-State: AOAM533uPisblOu40YrMsakKqk1HsE03SqfvrZiLJQ1G4WDyu+EHqdJF
+ GB+SMpviy+LodatZbZz7T4Dh8gDafCgvAAhnk28nkg==
+X-Google-Smtp-Source: ABdhPJx/eLdhIzXnP9kqJ04S5q7V3UVm0UNcMndwh3kT46QCp6BCgQGHr/UZJ84rtpMCXuoIRTD3gtusKXypuS6WNDw=
+X-Received: by 2002:aca:4ac5:: with SMTP id x188mr845032oia.14.1612470008816; 
+ Thu, 04 Feb 2021 12:20:08 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: support ddr5 mem types
+References: <20210203211948.2529297-1-daniel.vetter@ffwll.ch>
+ <20210204161339.GX4718@ziepe.ca>
+ <CAKMK7uEZvEEQXQeM=t-7uZEvga2GMhctp=WQgeSetG0GKTRsHA@mail.gmail.com>
+ <20210204183808.GY4718@ziepe.ca>
+ <CAKMK7uFBzF00zTzAE5b7PJFUfmxp5ExbSQxfcOfd_P6dPm7k9A@mail.gmail.com>
+ <20210204200918.GA4718@ziepe.ca>
+In-Reply-To: <20210204200918.GA4718@ziepe.ca>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Thu, 4 Feb 2021 21:19:57 +0100
+Message-ID: <CAKMK7uEU_TJEUF2go6WRuVn+=-DSD5kRw1beJhC_1Y4HTXbYVQ@mail.gmail.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [Intel-gfx] [PATCH] RFC: dma-buf: Require VM_SPECIAL vma for
+ mmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,50 +63,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Wilcox <willy@infradead.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ John Stultz <john.stultz@linaro.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Suren Baghdasaryan <surenb@google.com>, Sumit Semwal <sumit.semwal@linaro.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQ2xpbnQgVGF5bG9yIDxjbGludG9uLmEudGF5bG9yQGludGVsLmNvbT4KCkFkZCBERFI1
-IGFuZCBMUEREUjUgcmV0dXJuIHZhbHVlcyBmcm9tIHB1bml0IGZ3LgoKQlNQRUM6IDU0MDIzCkNj
-OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgpDYzogSm9zw6kgUm9iZXJ0
-byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IENsaW50IFRh
-eWxvciA8Y2xpbnRvbi5hLnRheWxvckBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9idy5jIHwgMTIgKysrKysrKysrKystCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X2Rydi5oICAgICAgICAgfCAgNCArKystCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-bnRlbF9kcmFtLmMgICAgICAgfCAgNiArKysrKysKIDMgZmlsZXMgY2hhbmdlZCwgMjAgaW5zZXJ0
-aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2J3LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2J3LmMKaW5kZXggYmE5ZTcxMzU4NWU3Li5kMTIyYjk5NjU1MzIgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2J3LmMKQEAgLTc4LDcgKzc4LDE3IEBAIHN0YXRpYyBpbnQgaWNs
-X2dldF9xZ3ZfcG9pbnRzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAlxaS0+
-bnVtX3BvaW50cyA9IGRyYW1faW5mby0+bnVtX3Fndl9wb2ludHM7CiAKIAlpZiAoSVNfR0VOKGRl
-dl9wcml2LCAxMikpCi0JCXFpLT50X2JsID0gZGV2X3ByaXYtPmRyYW1faW5mby50eXBlID09IElO
-VEVMX0RSQU1fRERSNCA/IDQgOiAxNjsKKwkJc3dpdGNoIChkcmFtX2luZm8tPnR5cGUpIHsKKwkJ
-Y2FzZSBJTlRFTF9EUkFNX0REUjQ6CisJCQlxaS0+dF9ibCA9IDQ7CisJCQlicmVhazsKKwkJY2Fz
-ZSBJTlRFTF9EUkFNX0REUjU6CisJCQlxaS0+dF9ibCA9IDg7CisJCQlicmVhazsKKwkJZGVmYXVs
-dDoKKwkJCXFpLT50X2JsID0gMTY7CisJCQlicmVhazsKKwkJfQogCWVsc2UgaWYgKElTX0dFTihk
-ZXZfcHJpdiwgMTEpKQogCQlxaS0+dF9ibCA9IGRldl9wcml2LT5kcmFtX2luZm8udHlwZSA9PSBJ
-TlRFTF9EUkFNX0REUjQgPyA0IDogODsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKaW5kZXggYTJm
-ZDdlNTAzOWIzLi44MDgzYTUwOTA4YmYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaApAQCAtMTEz
-Niw3ICsxMTM2LDkgQEAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgewogCQkJSU5URUxfRFJBTV9E
-RFIzLAogCQkJSU5URUxfRFJBTV9ERFI0LAogCQkJSU5URUxfRFJBTV9MUEREUjMsCi0JCQlJTlRF
-TF9EUkFNX0xQRERSNAorCQkJSU5URUxfRFJBTV9MUEREUjQsCisJCQlJTlRFTF9EUkFNX0REUjUs
-CisJCQlJTlRFTF9EUkFNX0xQRERSNSwKIAkJfSB0eXBlOwogCQl1OCBudW1fcWd2X3BvaW50czsK
-IAl9IGRyYW1faW5mbzsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Ry
-YW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RyYW0uYwppbmRleCA3M2QyNTZmYzY4
-MzAuLjFlNTNjMDE3YzMwZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
-ZHJhbS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RyYW0uYwpAQCAtNDI3LDYg
-KzQyNywxMiBAQCBzdGF0aWMgaW50IGljbF9wY29kZV9yZWFkX21lbV9nbG9iYWxfaW5mbyhzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJCWNhc2UgMDoKIAkJCWRyYW1faW5mby0+
-dHlwZSA9IElOVEVMX0RSQU1fRERSNDsKIAkJCWJyZWFrOworCQljYXNlIDE6CisJCQlkcmFtX2lu
-Zm8tPnR5cGUgPSBJTlRFTF9EUkFNX0REUjU7CisJCQlicmVhazsKKwkJY2FzZSAyOgorCQkJZHJh
-bV9pbmZvLT50eXBlID0gSU5URUxfRFJBTV9MUEREUjU7CisJCQlicmVhazsKIAkJY2FzZSAzOgog
-CQkJZHJhbV9pbmZvLT50eXBlID0gSU5URUxfRFJBTV9MUEREUjQ7CiAJCQlicmVhazsKLS0gCjIu
-MjkuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
-ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Thu, Feb 4, 2021 at 9:09 PM Jason Gunthorpe <jgg@ziepe.ca> wrote:
+>
+> On Thu, Feb 04, 2021 at 08:59:59PM +0100, Daniel Vetter wrote:
+>
+> > So I think just checking for VM_PFNMAP after the vma is set up should
+> > be enough to guarantee we'll only have pte_special ptes in there,
+> > ever. But I'm not sure, this stuff all isn't really documented much
+> > and the code is sometimes a maze (to me at least).
+>
+> Yes, that makes sense. VM_PFNMAP and !VM_MIXEDMAP seems like the right
+> check after the VMA is populated
+>
+> But how do you stuff special pfns into a VMA outside the fault
+> handler?
+
+Many drivers we have don't have dynamic buffer management (kinda
+overkill for a few framebuffers on a display-only IP block), so the
+just remap_pfn_range on ->mmap, and don't have a fault handler at all.
+
+Or I'm not understanding what you're asking?
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
