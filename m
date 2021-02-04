@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF64530F06E
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 11:22:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77BFC30F105
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 11:39:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 996156E03F;
-	Thu,  4 Feb 2021 10:22:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC8B46E042;
+	Thu,  4 Feb 2021 10:39:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 71F6A6ED13;
- Thu,  4 Feb 2021 10:22:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6B566AADD0;
- Thu,  4 Feb 2021 10:22:40 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 912A96E042
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 10:39:46 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.69.177; 
+Received: from build.alporthouse.com (unverified [78.156.69.177]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23784811-1500050 
+ for multiple; Thu, 04 Feb 2021 10:39:40 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  4 Feb 2021 10:39:37 +0000
+Message-Id: <20210204103938.2068-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 04 Feb 2021 10:22:40 -0000
-Message-ID: <161243416043.4501.16928167103286736079@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210204100341.10211-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210204100341.10211-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/selftests=3A_Restor?=
- =?utf-8?q?e_previous_heartbeat_interval?=
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/selftests: Restore previous
+ heartbeat interval
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,34 +37,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Use the defaults we store on the engine when resetting the heartbeat as
+we may have had to adjust it from the config value during initialisation.
 
-Series: series starting with [1/2] drm/i915/selftests: Restore previous heartbeat interval
-URL   : https://patchwork.freedesktop.org/series/86687/
-State : warning
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gt/selftest_engine_heartbeat.c    | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-cb34222291bf drm/i915/selftests: Restore previous heartbeat interval
--:34: ERROR:CODE_INDENT: code indent should use tabs where possible
-#34: FILE: drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c:206:
-+^I       ^Imax(3 * TIMEOUT_COMPLETION, jiffies_to_usecs(6));$
-
--:34: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#34: FILE: drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c:206:
-+^I       ^Imax(3 * TIMEOUT_COMPLETION, jiffies_to_usecs(6));$
-
-total: 1 errors, 1 warnings, 0 checks, 53 lines checked
-91fea4e951c9 drm/i915/gt: Ratelimit heartbeat completion probing
-
+diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
+index b0bae6676140..b2c369317bf1 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
+@@ -11,6 +11,12 @@
+ #include "i915_selftest.h"
+ #include "selftest_engine_heartbeat.h"
+ 
++static void reset_heartbeat(struct intel_engine_cs *engine)
++{
++	intel_engine_set_heartbeat(engine,
++				   engine->defaults.heartbeat_interval_ms);
++}
++
+ static int timeline_sync(struct intel_timeline *tl)
+ {
+ 	struct dma_fence *fence;
+@@ -269,7 +275,7 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
+ 		err = -EINVAL;
+ 	}
+ 
+-	intel_engine_set_heartbeat(engine, CONFIG_DRM_I915_HEARTBEAT_INTERVAL);
++	reset_heartbeat(engine);
+ err_pm:
+ 	intel_engine_pm_put(engine);
+ 	intel_context_put(ce);
+@@ -284,7 +290,7 @@ static int live_heartbeat_fast(void *arg)
+ 	int err = 0;
+ 
+ 	/* Check that the heartbeat ticks at the desired rate. */
+-	if (!CONFIG_DRM_I915_HEARTBEAT_INTERVAL)
++	if (!IS_ACTIVE(CONFIG_DRM_I915_HEARTBEAT_INTERVAL))
+ 		return 0;
+ 
+ 	for_each_engine(engine, gt, id) {
+@@ -332,7 +338,7 @@ static int __live_heartbeat_off(struct intel_engine_cs *engine)
+ 	}
+ 
+ err_beat:
+-	intel_engine_set_heartbeat(engine, CONFIG_DRM_I915_HEARTBEAT_INTERVAL);
++	reset_heartbeat(engine);
+ err_pm:
+ 	intel_engine_pm_put(engine);
+ 	return err;
+@@ -346,7 +352,7 @@ static int live_heartbeat_off(void *arg)
+ 	int err = 0;
+ 
+ 	/* Check that we can turn off heartbeat and not interrupt VIP */
+-	if (!CONFIG_DRM_I915_HEARTBEAT_INTERVAL)
++	if (!IS_ACTIVE(CONFIG_DRM_I915_HEARTBEAT_INTERVAL))
+ 		return 0;
+ 
+ 	for_each_engine(engine, gt, id) {
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
