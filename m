@@ -2,55 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B14C030FDFB
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 21:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 598F830FDFF
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Feb 2021 21:21:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1A0B6EE67;
-	Thu,  4 Feb 2021 20:20:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A02A96EE68;
+	Thu,  4 Feb 2021 20:21:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com
- [IPv6:2607:f8b0:4864:20::22f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77BC46EE66
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 20:20:09 +0000 (UTC)
-Received: by mail-oi1-x22f.google.com with SMTP id k142so5065755oib.7
- for <intel-gfx@lists.freedesktop.org>; Thu, 04 Feb 2021 12:20:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=wpgT6Yz8SEv8X0iAsr6guPodAvl5pFjIWmhOvi/hibA=;
- b=Xpi3ivwmVLdqOvs1N6dWfJPh+KUCL6ESv/15EWzkk0SYh5UrDZbnAFeuQ0LjKLDPJ7
- De9JuaYPvilTUPbN7e/X9v+MAUVlzWXjljZf3QA9W/YfZZpTGY/2YH7tJ7fp5LhhaJ1E
- TecADaHNqVMOJ3iZ/L1xhrSQ2gaVbYy3ceflA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=wpgT6Yz8SEv8X0iAsr6guPodAvl5pFjIWmhOvi/hibA=;
- b=e2RjBwhrtLbdnqYTL0QQxzVVlhK+NFXvDCdRmfukHw3GeB9UP6dIeU+twr+PKDOCjg
- uNXDdpoTPeGkgPWmBIZ4M3Es6wG3YppT8Uph7zH4z5DXG8eqH2ugr+3ObocrFMOJXG2o
- FtUNsqt8vahy3ZYOXf89lFcJeJOSLO03Q4OH3YnmjBMBvNZl1XGor4Mu+vqqXXZhjyxi
- xyfh1O4FR5h+Qzx3XFLGxYjZO9sh32TAzGUEu1Oqszf3OrVpMcKpMlVxyTUVxfUjFU7w
- OXLbI25Zb/TyIysn54H/P4bUQ7Ys6rpMhNHDJYQjZhWQvvbxTROMvg4iNx00DvfHtaE5
- INGA==
-X-Gm-Message-State: AOAM533uPisblOu40YrMsakKqk1HsE03SqfvrZiLJQ1G4WDyu+EHqdJF
- GB+SMpviy+LodatZbZz7T4Dh8gDafCgvAAhnk28nkg==
-X-Google-Smtp-Source: ABdhPJx/eLdhIzXnP9kqJ04S5q7V3UVm0UNcMndwh3kT46QCp6BCgQGHr/UZJ84rtpMCXuoIRTD3gtusKXypuS6WNDw=
-X-Received: by 2002:aca:4ac5:: with SMTP id x188mr845032oia.14.1612470008816; 
- Thu, 04 Feb 2021 12:20:08 -0800 (PST)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB8106EE68
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Feb 2021 20:21:09 +0000 (UTC)
+IronPort-SDR: MKuLbVOQYi+iZX4fo8AXiHp1V6t6JNxsbkxrL+fwLhTFm05wSWhNWdutAZser7yn+P1qzq9tFe
+ bHnuo6i8x10g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="178760756"
+X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="178760756"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 12:21:09 -0800
+IronPort-SDR: NI5TIEfU/zUTaA6DfjXiAy79FizPS2Po18Sg3HKx/egl4keC5DswnT4ABIHpiQwbpV4ar+xqx8
+ UJglp+aDDA3g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="393352550"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga008.jf.intel.com with ESMTP; 04 Feb 2021 12:21:08 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Thu, 4 Feb 2021 12:21:08 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Thu, 4 Feb 2021 12:21:08 -0800
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.002;
+ Thu, 4 Feb 2021 12:21:08 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915/display: Remove PSR2 on JSL and EHL
+Thread-Index: AQHW+x8qk431NohpP0qY5BGhPOJLFapI9s6A
+Date: Thu, 4 Feb 2021 20:21:08 +0000
+Message-ID: <36155ec2b35643b5885010292e389874fd42a90d.camel@intel.com>
+References: <20210204175830.97857-1-jose.souza@intel.com>
+In-Reply-To: <20210204175830.97857-1-jose.souza@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <2F8EE3BBFF937240B19954B3780F3003@intel.com>
 MIME-Version: 1.0
-References: <20210203211948.2529297-1-daniel.vetter@ffwll.ch>
- <20210204161339.GX4718@ziepe.ca>
- <CAKMK7uEZvEEQXQeM=t-7uZEvga2GMhctp=WQgeSetG0GKTRsHA@mail.gmail.com>
- <20210204183808.GY4718@ziepe.ca>
- <CAKMK7uFBzF00zTzAE5b7PJFUfmxp5ExbSQxfcOfd_P6dPm7k9A@mail.gmail.com>
- <20210204200918.GA4718@ziepe.ca>
-In-Reply-To: <20210204200918.GA4718@ziepe.ca>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Thu, 4 Feb 2021 21:19:57 +0100
-Message-ID: <CAKMK7uEU_TJEUF2go6WRuVn+=-DSD5kRw1beJhC_1Y4HTXbYVQ@mail.gmail.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [Intel-gfx] [PATCH] RFC: dma-buf: Require VM_SPECIAL vma for
- mmap
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Remove PSR2 on JSL and EHL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +64,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Wilcox <willy@infradead.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- John Stultz <john.stultz@linaro.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Dea, Edmund J" <edmund.j.dea@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 4, 2021 at 9:09 PM Jason Gunthorpe <jgg@ziepe.ca> wrote:
->
-> On Thu, Feb 04, 2021 at 08:59:59PM +0100, Daniel Vetter wrote:
->
-> > So I think just checking for VM_PFNMAP after the vma is set up should
-> > be enough to guarantee we'll only have pte_special ptes in there,
-> > ever. But I'm not sure, this stuff all isn't really documented much
-> > and the code is sometimes a maze (to me at least).
->
-> Yes, that makes sense. VM_PFNMAP and !VM_MIXEDMAP seems like the right
-> check after the VMA is populated
->
-> But how do you stuff special pfns into a VMA outside the fault
-> handler?
-
-Many drivers we have don't have dynamic buffer management (kinda
-overkill for a few framebuffers on a display-only IP block), so the
-just remap_pfn_range on ->mmap, and don't have a fault handler at all.
-
-Or I'm not understanding what you're asking?
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIxLTAyLTA0IGF0IDA5OjU4IC0wODAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
+IHdyb3RlOg0KPiBGcm9tOiBFZG11bmQgRGVhIDxlZG11bmQuai5kZWFAaW50ZWwuY29tPg0KPiAN
+Cj4gV2hpbGUgSlNMIGFuZCBFSEwgZURQIHRyYW5zY29kZXIgc3VwcG9ydHMgUFNSMiwgdGhlIHBo
+eSBvZiB0aGlzDQo+IHBsYXRmb3JtcyBvbmx5IHN1cHBvcnRzIGVEUCAxLjMsIHNvIHJlbW92aW5n
+IFBTUjIgc3VwcG9ydCBhcyB0aGlzDQo+IGZlYXR1cmUgd2FzIGFkZGVkIGluIGVEUCAxLjQuDQoN
+Ckp1c3Qgc2VudCBhIHBhdGNoIGZyb20gRWRtdW5kIHdpdGggYSBtaW5vciBjb21taXQgbWVzc2Fn
+ZSB0d2Vha3MsIHNvIEkgZ3Vlc3MgbXkgcnZiIGlzIHZhbGlkIGlmIG5vdCBwbGVhc2UgbGV0IG1l
+IGtub3cuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXph
+QGludGVsLmNvbT4NCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogRWRtdW5kIERlYSA8ZWRtdW5kLmou
+ZGVhQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8
+am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfcHNyLmMgfCA2ICsrKysrKw0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA2IGluc2Vy
+dGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX3Bzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0K
+PiBpbmRleCAyYzM2NWI3NzhmNzQuLmNjY2I4YWZmNDMzNiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC03MTgsNiArNzE4LDEyIEBAIHN0YXRp
+YyBib29sIGludGVsX3BzcjJfY29uZmlnX3ZhbGlkKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAs
+DQo+IMKgCWlmICghZGV2X3ByaXYtPnBzci5zaW5rX3BzcjJfc3VwcG9ydCkNCj4gwqAJCXJldHVy
+biBmYWxzZTsNCj4gwqANCj4gDQo+IA0KPiANCj4gKwkvKiBKU0wgYW5kIEVITCBvbmx5IHN1cHBv
+cnRzIGVEUCAxLjMgKi8NCj4gKwlpZiAoSVNfSlNMX0VITChkZXZfcHJpdikpIHsNCj4gKwkJZHJt
+X2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJQU1IyIG5vdCBzdXBwb3J0ZWQgYnkgcGh5XG4iKTsN
+Cj4gKwkJcmV0dXJuIGZhbHNlOw0KPiArCX0NCj4gKw0KPiDCoAlpZiAoIXRyYW5zY29kZXJfaGFz
+X3BzcjIoZGV2X3ByaXYsIGNydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyKSkgew0KPiDCoAkJZHJt
+X2RiZ19rbXMoJmRldl9wcml2LT5kcm0sDQo+IMKgCQkJICAgICJQU1IyIG5vdCBzdXBwb3J0ZWQg
+aW4gdHJhbnNjb2RlciAlc1xuIiwNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
