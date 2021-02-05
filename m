@@ -2,45 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 537BD31121C
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 21:18:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86648311245
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 21:23:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BDE06F4C8;
-	Fri,  5 Feb 2021 20:18:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D96486F4C6;
+	Fri,  5 Feb 2021 20:23:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC496F4BE;
- Fri,  5 Feb 2021 20:18:18 +0000 (UTC)
-IronPort-SDR: 94pXTp3t9V2/9f138RvJqMMASwzjtulNhFBs0fZS9KpzV9jjQsH5ceaiwL+oww5han6Q1tXaI+
- 68+tBuYmHjRA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9886"; a="169158729"
-X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="169158729"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D9C36F4C6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 20:23:26 +0000 (UTC)
+IronPort-SDR: B2JDl6wszAQB0y7luw23aKIVqSQWoDzSJ2T2H10HKUVeoIkgmSt89p8xNQWV/0Q0y0l5iRvqKT
+ wLclD5foRfKw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9886"; a="180708593"
+X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="180708593"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2021 12:18:17 -0800
-IronPort-SDR: RHKaEntJ0e15lMChnEZXWaCA3DmCYyowIXjJx3IYqenDU2c7Zto4gvlNjWznXQTLGEVs3UO/gp
- QsrJg5ogUQQg==
-X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="434588117"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2021 12:18:17 -0800
-Date: Fri, 5 Feb 2021 12:22:32 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20210205202232.GA969@labuser-Z97X-UD5H>
-References: <20210204064842.11595-1-ankit.k.nautiyal@intel.com>
- <20210204064842.11595-2-ankit.k.nautiyal@intel.com>
- <YB2jT9p3N8Py6KUU@intel.com>
- <20210205200741.GA911@labuser-Z97X-UD5H>
- <YB2lWCmdkj8P7sCM@intel.com>
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2021 12:23:25 -0800
+IronPort-SDR: qCNAdYCu6CfqNNZbz7+4Wosp97+EQMYHWIjIKM/dsIMayQRPZrbhMU8xRGn1bEfpYhLE/Wq7zf
+ DWKnHZAXgSkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="434589318"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga001.jf.intel.com with SMTP; 05 Feb 2021 12:23:23 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 05 Feb 2021 22:23:22 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  5 Feb 2021 22:23:22 +0200
+Message-Id: <20210205202322.27608-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YB2lWCmdkj8P7sCM@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/3] i915/display/intel_dp: Read PCON DSC
- ENC caps only for DPCD rev >= 1.4
+Subject: [Intel-gfx] [PATCH] drm/i915: Nuke INTEL_OUTPUT_FORMAT_INVALID
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,102 +46,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 05, 2021 at 10:06:48PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Fri, Feb 05, 2021 at 12:07:41PM -0800, Navare, Manasi wrote:
-> > On Fri, Feb 05, 2021 at 09:58:07PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > On Thu, Feb 04, 2021 at 12:18:40PM +0530, Ankit Nautiyal wrote:
-> > > > DP-HDMI2.1 PCON has DSC encoder caps defined in registers 0x92-0x9E.
-> > > > Do not read the registers if DPCD rev < 1.4.
-> > > > =
-
-> > > > Fixes: https://gitlab.freedesktop.org/drm/intel/-/issues/2868
-> > > > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_dp.c | 4 +++-
-> > > >  1 file changed, 3 insertions(+), 1 deletion(-)
-> > > > =
-
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/=
-drm/i915/display/intel_dp.c
-> > > > index 8c12d5375607..2b83f0f433a2 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > @@ -2489,9 +2489,11 @@ static void intel_dp_get_pcon_dsc_cap(struct=
- intel_dp *intel_dp)
-> > > >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> > > >  =
-
-> > > >  	/* Clear the cached register set to avoid using stale values */
-> > > > -
-> > > >  	memset(intel_dp->pcon_dsc_dpcd, 0, sizeof(intel_dp->pcon_dsc_dpcd=
-));
-> > > >  =
-
-> > > > +	if (intel_dp->dpcd[DP_DPCD_REV] < 0x14)
-> > > > +		return;
-> > > > +
-> > > =
-
-> > > Can't check the spec, but makes sense that this stuff is only valid
-> > > for recent DCPD revisions.
-> > > =
-
-> > > Acked-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
-
-> > Yes checked the DP 1.4 spec and this is correct
-> =
-
-> I didn't think this is in the DP spec, but rather some special extra
-> spec which I do not have.
-
-Yes I meant just double checked that the DSC support itself from DP 1.4 and=
- hence
-makes sense that the PCON DSC regs also from >=3D 1.4
-
-Manasi
-
-> =
-
-> > =
-
-> > Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-> > =
-
-> > Manasi
-> > =
-
-> > > =
-
-> > > >  	if (drm_dp_dpcd_read(&intel_dp->aux, DP_PCON_DSC_ENCODER,
-> > > >  			     intel_dp->pcon_dsc_dpcd,
-> > > >  			     sizeof(intel_dp->pcon_dsc_dpcd)) < 0)
-> > > > -- =
-
-> > > > 2.29.2
-> > > =
-
-> > > -- =
-
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldl
+IHRlbmQgdG8gdXNlIG91dHB1dF9mb3JtYXQhPVJHQiBhcyBhIHNob3J0aGFuZCBmb3IgWUNiQ3Is
+IGJ1dAp0aGlzIGZhaWxzIGlmIHdlIGhhdmUgYSBkaXNhYmxlZCBjcnRjIHdoZXJlIG91dHB1dF9m
+b3JtYXQ9PUlOVkFMSUQuCldlJ3JlIG5vdyBnZXR0aW5nIHNvbWUgZmFpbCBmcm9tIGludGVsX2Nv
+bG9yX2NoZWNrKCkgd2hlbiB3ZSBoYXZlOgogaHcuZW5hYmxlPT1mYWxzZQogaHcuY3RtIT1OVUxM
+CiBvdXRwdXRfZm9ybWF0PT1JTlZBTElECgpMZXQncyBhdm9pZCB0aGF0IGJ5IHRocm93aW5nIElO
+VEVMX09VVFBVVF9GT1JNQVRfSU5WQUxJRCB0byB0aGUKZHVtcHN0ZXIsIGFuZCB0aHVzIGV2ZXJ5
+dGhpbmcgZGVmYXVsdHMgdG8gUkdCIHdoZW4gdGhlIGNydGMKaXMgZGlzYWJsZWQuCgpUaGlzIGRv
+ZXMgYmVnIHRoZSBkZWVwZXIgcXVlc3Rpb24gb2YgaG93IG11Y2ggb2YgdGhlIHN0YXRlCnNob3Vs
+ZCB3ZSBpbiBmYWN0IGJlIHZhbGlkYXRpbmcgd2hlbiBody91YXBpLmVuYWJsZT09ZmFsc2UuCkFu
+ZCBzaG91bGQgd2UgZXZlbiBiZSBkb2luZyB0aGUgdWFwaS0+aHcgY29weSB3aGVuCnVhcGkuZW5h
+YmxlPT1mYWxzZT8gU28gZmFyIEkndmUgbm90IGJlZW4gYWJsZSB0byBjb21lIHVwIHdpdGgKc2F0
+aXNmYWN0b3J5IGFuc3dlcnMgZm9yIG15c2VsZiwgc28gSSdtIHB1dHRpbmcgaXQgb2ZmIGZvciB0
+aGUKbW9tZW50LgoKQ2M6IExlZSBTaGF3biBDIDxzaGF3bi5jLmxlZUBpbnRlbC5jb20+CkZpeGVz
+OiAwYWE1YzM4MzVjOGEgKCJkcm0vaTkxNTogc3VwcG9ydCB0d28gQ1NDIG1vZHVsZSBvbiBnZW4x
+MSBhbmQgbGF0ZXIiKQpDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0v
+aW50ZWwvLS9pc3N1ZXMvMjk2NApTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
+LnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfY3J0Yy5jICAgICAgICAgIHwgMSAtCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2Rpc3BsYXkuYyAgICAgICB8IDMgKy0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCB8IDEgLQogMyBmaWxlcyBjaGFuZ2VkLCAxIGlu
+c2VydGlvbigrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2NydGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfY3J0Yy5jCmluZGV4IDU3YjBhM2ViZTkwOC4uOGU3N2NhN2RkZjExIDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NydGMuYworKysgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NydGMuYwpAQCAtMTA5LDcgKzEwOSw2IEBAIHZv
+aWQgaW50ZWxfY3J0Y19zdGF0ZV9yZXNldChzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19z
+dGF0ZSwKIAljcnRjX3N0YXRlLT5jcHVfdHJhbnNjb2RlciA9IElOVkFMSURfVFJBTlNDT0RFUjsK
+IAljcnRjX3N0YXRlLT5tYXN0ZXJfdHJhbnNjb2RlciA9IElOVkFMSURfVFJBTlNDT0RFUjsKIAlj
+cnRjX3N0YXRlLT5oc3dfd29ya2Fyb3VuZF9waXBlID0gSU5WQUxJRF9QSVBFOwotCWNydGNfc3Rh
+dGUtPm91dHB1dF9mb3JtYXQgPSBJTlRFTF9PVVRQVVRfRk9STUFUX0lOVkFMSUQ7CiAJY3J0Y19z
+dGF0ZS0+c2NhbGVyX3N0YXRlLnNjYWxlcl9pZCA9IC0xOwogCWNydGNfc3RhdGUtPm1zdF9tYXN0
+ZXJfdHJhbnNjb2RlciA9IElOVkFMSURfVFJBTlNDT0RFUjsKIH0KZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggOTJjMTRmM2YwYWJmLi40NmQwMDkz
+MTg3ZjggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
+CkBAIC0xMDIyMCw3ICsxMDIyMCw2IEBAIHN0YXRpYyB2b2lkIHNucHJpbnRmX291dHB1dF90eXBl
+cyhjaGFyICpidWYsIHNpemVfdCBsZW4sCiB9CiAKIHN0YXRpYyBjb25zdCBjaGFyICogY29uc3Qg
+b3V0cHV0X2Zvcm1hdF9zdHJbXSA9IHsKLQlbSU5URUxfT1VUUFVUX0ZPUk1BVF9JTlZBTElEXSA9
+ICJJbnZhbGlkIiwKIAlbSU5URUxfT1VUUFVUX0ZPUk1BVF9SR0JdID0gIlJHQiIsCiAJW0lOVEVM
+X09VVFBVVF9GT1JNQVRfWUNCQ1I0MjBdID0gIllDQkNSNDoyOjAiLAogCVtJTlRFTF9PVVRQVVRf
+Rk9STUFUX1lDQkNSNDQ0XSA9ICJZQ0JDUjQ6NDo0IiwKQEAgLTEwMjI5LDcgKzEwMjI4LDcgQEAg
+c3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCBvdXRwdXRfZm9ybWF0X3N0cltdID0gewogc3RhdGlj
+IGNvbnN0IGNoYXIgKm91dHB1dF9mb3JtYXRzKGVudW0gaW50ZWxfb3V0cHV0X2Zvcm1hdCBmb3Jt
+YXQpCiB7CiAJaWYgKGZvcm1hdCA+PSBBUlJBWV9TSVpFKG91dHB1dF9mb3JtYXRfc3RyKSkKLQkJ
+Zm9ybWF0ID0gSU5URUxfT1VUUFVUX0ZPUk1BVF9JTlZBTElEOworCQlyZXR1cm4gImludmFsaWQi
+OwogCXJldHVybiBvdXRwdXRfZm9ybWF0X3N0cltmb3JtYXRdOwogfQogCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCmluZGV4IDMwN2Zm
+NGI3NzFmNC4uYjNhYzM5ZmVhNmYwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaApAQCAtODMwLDcgKzgzMCw2IEBAIHN0cnVjdCBp
+bnRlbF9jcnRjX3dtX3N0YXRlIHsKIH07CiAKIGVudW0gaW50ZWxfb3V0cHV0X2Zvcm1hdCB7Ci0J
+SU5URUxfT1VUUFVUX0ZPUk1BVF9JTlZBTElELAogCUlOVEVMX09VVFBVVF9GT1JNQVRfUkdCLAog
+CUlOVEVMX09VVFBVVF9GT1JNQVRfWUNCQ1I0MjAsCiAJSU5URUxfT1VUUFVUX0ZPUk1BVF9ZQ0JD
+UjQ0NCwKLS0gCjIuMjYuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4Cg==
