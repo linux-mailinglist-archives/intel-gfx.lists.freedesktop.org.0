@@ -2,123 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4383F31062F
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 09:05:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A00B4310670
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 09:16:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45A5D6F3F9;
-	Fri,  5 Feb 2021 08:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08DBD6F3FA;
+	Fri,  5 Feb 2021 08:16:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2059.outbound.protection.outlook.com [40.107.243.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 093ED6F3F9;
- Fri,  5 Feb 2021 08:05:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ccsR30c9mh806hq8iyhQmzLpFd52rqzlis6Ca9CX3qI8D5YGejerO8k3MZsNm/QIGq+kjWWHwnLsKZY/RH0b+cAn+jW24QZ7clPM0QAq28h3OD9BzAgkyy/0feOmrg8FzT3qmpRUZr6jNQBjyuDtKjz1BvwYRFOT35EUPK7s41nEsTWP+1oC/XrcwDb4NdJHdLdERn3M3cEe89kzMcHb65z0aYGSGQS9xhYTmKC358j8UNNDpulZSp+Gu2Vq247wsEkPT1TgVzBFdVY2cXxwmw6r8tSOiFN27LnfvsJEPm5ay52VJjUcm1OeIC5AAL8ZYu/BucX9P+eR7/G5he5EIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JoJ/xwtY1C7gUbACDNAwK09L3m6Tafnh79HAKAyDpk4=;
- b=gj2LBeF6r26wipSOtFogSn5QU03RyEW95TWEYc9e4+WhB0sJHg0qr1DNZF98a9yCWNcyLa9pGc3AO3zRpxVecqm9/sA/+DbPyOk+dWPB9MO47bQRT3jEFoqEuLYRSaqebnaSe1K+XBqltSpD3Z5MBYZiLJ8ISv3nVe5EU/BFtPyBcCw0kBL18MV30tq8CH2H8BUqucEyqMJDEDTVz8a0jUDcLq7jF9ZvW6KecJTP573oB8cBy2txYmwwO3EmSmyLNsuHYFZwgDB8r0c+R6TwlblC642IGpi4NGE4FjQqKvDP/5TqtEVRzmy/7Uef5zbYL2/qRKAl27GmjQI/bvrNJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JoJ/xwtY1C7gUbACDNAwK09L3m6Tafnh79HAKAyDpk4=;
- b=IKdjN6P2IX4mYC5rqZECs+PGckLiBaLkVrN/ew1610aQt2jKux1A0WF/zD11X1e4EecTgT2Uv/V+tNl3NQO2h8TkERTTQnD2TwsmQTiy6uRVg2w4b9Jf6afeDWvM/u9MCgROu4kn9tg+NnCL6+TtWH5Arcemween+8H6AoQC5UY=
-Authentication-Results: lists.linaro.org; dkim=none (message not signed)
- header.d=none;lists.linaro.org; dmarc=none action=none header.from=amd.com;
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
- by MN2PR12MB4343.namprd12.prod.outlook.com (2603:10b6:208:26f::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.17; Fri, 5 Feb
- 2021 08:05:43 +0000
-Received: from MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::c1ff:dcf1:9536:a1f2]) by MN2PR12MB3775.namprd12.prod.outlook.com
- ([fe80::c1ff:dcf1:9536:a1f2%2]) with mapi id 15.20.3825.023; Fri, 5 Feb 2021
- 08:05:42 +0000
-To: Jason Gunthorpe <jgg@ziepe.ca>, Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20210203211948.2529297-1-daniel.vetter@ffwll.ch>
- <20210204161339.GX4718@ziepe.ca>
- <CAKMK7uEZvEEQXQeM=t-7uZEvga2GMhctp=WQgeSetG0GKTRsHA@mail.gmail.com>
- <20210204183808.GY4718@ziepe.ca>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <8e1de27f-9200-8748-730e-4bd7b94444b3@amd.com>
-Date: Fri, 5 Feb 2021 09:05:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <20210204183808.GY4718@ziepe.ca>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEC436F3FA
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 08:16:34 +0000 (UTC)
+IronPort-SDR: 1NVlL8zlEw8YIgVShraqhgzvImgVRMizJmMIV7EVhqmCFVQE85z8GBH/f9jJSRrDrBoVxFZdL8
+ nh68Qo9gIRvw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="177894230"
+X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; d="scan'208";a="177894230"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2021 00:16:33 -0800
+IronPort-SDR: WkM2h5DEecFv2S/O+N1AwdQWQPUd8RQ4xZrHzGP1Gn9dt2LGe3E5POPBpuTreSvnyqhSyjnGvx
+ fNpfETsmd1Sg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; d="scan'208";a="393757095"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by orsmga008.jf.intel.com with ESMTP; 05 Feb 2021 00:16:33 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 5 Feb 2021 08:16:31 +0000
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
+ Fri, 5 Feb 2021 13:46:30 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability enc NULL
+ check
+Thread-Index: AQHW9hcHLYgShgUN5UGRp1lepj4wC6pH/piAgAFBdcA=
+Date: Fri, 5 Feb 2021 08:16:30 +0000
+Message-ID: <aa661df54d8847d0926e8edf61710fcf@intel.com>
+References: <20210129080043.24614-1-anshuman.gupta@intel.com>
+ <20210204182809.GC750296@ideak-desk.fi.intel.com>
+In-Reply-To: <20210204182809.GC750296@ideak-desk.fi.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-ClientProxiedBy: AM0PR01CA0171.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:aa::40) To MN2PR12MB3775.namprd12.prod.outlook.com
- (2603:10b6:208:159::19)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- AM0PR01CA0171.eurprd01.prod.exchangelabs.com (2603:10a6:208:aa::40) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.19 via Frontend
- Transport; Fri, 5 Feb 2021 08:05:40 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 674b2bbf-eb18-451b-44e5-08d8c9acd558
-X-MS-TrafficTypeDiagnostic: MN2PR12MB4343:
-X-Microsoft-Antispam-PRVS: <MN2PR12MB4343C9CC268A548D920D843983B29@MN2PR12MB4343.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zQ3wn6xDeOuwF7aSqdlAZbOZ/suqZ8EyzRujaFTWmAb8PzyLJrk1p+1peJfU+BZ8gNUWe0NhaEg1trajLJeczSXon4twESE8Y5AGhgMZpWd2HzjX0Jtjep5ANqsgPT9pPC2Kxf1UPsETyljyHpmC8PW4qhZv2wv6nLUVsT5od5MUwylTxWsbN6HhSAq68Aol2gjrmvNq5gGX7tFZ/l76d+CfX1CR95A/0EBkLQkzOtsx2m2l12fjKvLU7S7HLNyY4AQzJslkZwSbuSPWh/z0BRv8FEbqYwEvuazHA59i1GPL4HIwN5yPnmSY90Li7WJY7ZTmhNFhURcl9X0yqcyPevnTZ7A9PCxLL8bwywUoaMXQhQszoTdK+2qAAelbMSMWXHwR8LDNvtT9132cw1SHca8ichf9ns4zrNzHyL2KIrMG4fL0U/XLfv3qkpn5BgIDDIsr1xhWoU4IaQoUJ8twr0ocAzYUKRvnajrVKC5wvnZmZbATYCR44wrNon0Ewqnv9zqyPmWxIQE+ecz7SvaraRqfPPXaZ+JO2ymnChczaYsQdXHtBacYcE93Y0X17875c6W06DALGpXi4XTYWO3RqQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(366004)(396003)(136003)(39860400002)(346002)(186003)(6666004)(2906002)(86362001)(16526019)(6486002)(7416002)(2616005)(31696002)(31686004)(83380400001)(8676002)(53546011)(8936002)(36756003)(478600001)(66556008)(316002)(5660300002)(54906003)(110136005)(52116002)(66946007)(66476007)(4326008)(43740500002);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?TjNUWksvTDdTVnhPY3RqM3p5dXdubEFKQklGMUZDU2JlcFdELzI0REx5OEVa?=
- =?utf-8?B?Z2krNENUYmcyeUc1WHptOGJiYkVIWVJZSkFJNGFQdUpOSVlUb01pbGdGY2ZP?=
- =?utf-8?B?TkJsOU1ubjhyQUsveG5ORng4NXh6MGJmLzAyL0JFUlpkYzNwR2EzRktxanRq?=
- =?utf-8?B?S1FEZEdGckNwTkF6SVdXT2ZpZlNoTmEzSmdkTldYTTRLSGo4YVdjNWk1Y1gy?=
- =?utf-8?B?QzhqczViZ2oveTlpV05McDJSbUdlTnkrZHpkYUNIcG5TS2htbjJsU2JUWmpy?=
- =?utf-8?B?SlhCVFRFWVY3T2NvM2pheUE5YlEzY29CS1hra1BtTHBPQlZsR3k0cUgyTTIv?=
- =?utf-8?B?N25PUTZZenZFWkRmc3hYSUVULzhoN2FIdFFrS29odkdqeEZFd3kvcDZTbWsw?=
- =?utf-8?B?NVcrNjdNYmFidTNpWENpY0dZRDd2MWRyUzFkWllkK3JRMGFBVzhYUnB6ZitB?=
- =?utf-8?B?blFqN3lHVUVqT0RxZVFxd0pLb3l5ckZSZlZ4T0pEeVBuTkgyaU5uZlA0L0pK?=
- =?utf-8?B?QVp3WFNuaWF4WUowNkQ0K2ZtTUIyejhCeGxrVGwrREFtTDlKUnBUYXdUZ0xq?=
- =?utf-8?B?RlR1MlBzTTVYcDNCanN1eEFKR1NRR0JVRXpGYTJsUytQZDlZYTNiWEpOT3ZC?=
- =?utf-8?B?Sy9YMlloMmJ3Y1RVMzdnQ1dQeHRiOGQ5cmhKRWZvSi9CZFFvaEV0UkZuZkJr?=
- =?utf-8?B?U2tmTzlrT3VvUlQvL3c1a0Y5enhuTXF0czYxUDFCTVlGZjJrc25VK1RCQXl6?=
- =?utf-8?B?Mms0azRHM2hGV0luQk43cURHdnhBUXlaakpSM01QL1AzSXczb3NtNGdYSURI?=
- =?utf-8?B?dDIrYnVzRXdiWkJNWDhWK1UwSjZvMXVmZS9NRXBBaEFhckg5eTZBRWVmdVJi?=
- =?utf-8?B?cmMvMTVmdDdSQVc4M0l3cW9QaXhDeGVXZ3dpRWxGbkEzK3JmWnBqeTZ3eEl5?=
- =?utf-8?B?UmFRVDMxRUhSSWJvWTlibHhyTjlkQ0EyUWNyUUcyVDV0ZWFVSnJ2S2V3QmEz?=
- =?utf-8?B?ckhQajNiNkVBUlVYakhRNHVCeWFGRFFiU3doY1dtb3VFZlJCNWZMRmpoeHdS?=
- =?utf-8?B?Y3VxTC9kenk1b2xlSERjZkErVGdLSHFZUmZKV256cWNWcWZPWlFrak5OdlFv?=
- =?utf-8?B?NllrVFB6UVU3ZHJzT1lvZG9kRFVhb2hYYjg2bElXanRtMHFObWJBam1iL016?=
- =?utf-8?B?cktYOURSVGRYTGtzcU1HV0JsdVowRXMyc1I2TTNhK3pDVzY0L1NqSktWZURV?=
- =?utf-8?B?MGRySmluUjFLb3pnUko0aHNPYmlsOW01czdaNzRmcXdzSE8zeWd5VjIxaVRH?=
- =?utf-8?B?UlhVdjVJUkw1cVlWRG92WlFGemlGN0xXQzZ4b0R4Y3ZleVFJMkhnbnN1UEJz?=
- =?utf-8?B?OWMvV1pXN0cyK2h6VlRDZm9EUUprRHh6dkdWZExrOWxCVlF0UVlMYXdhSkpp?=
- =?utf-8?B?cHN1RUhINk1SS0kyTDd0bVlVK1NBZlFrZUxERG93OFVSZ2swQ25xbkJCdFRU?=
- =?utf-8?B?SUJGRVlNWjE2dEV2Z0FYejR6dzNnOFVKQ2hhMml6a0ZSeHNsNWNRb1JCRDNZ?=
- =?utf-8?B?OHN2SUpOUGxiMlhrZHY2dklacFI5REs1QUFEUXgyTm9vcGRkeWVMRkJiVkU5?=
- =?utf-8?B?ci95UjByUVZ0MkFTbldma3ordTM1eklYTHRyMjc2VjNNNDJvNkdEc0ZkYXBH?=
- =?utf-8?B?dWNHTHplWEdQVTY2UnM2VEtXMG8rREh4UW5wRWgwSXg0STBFVWlRUWx0Y09P?=
- =?utf-8?B?MjdhWi9kUUduK212SHE3c0h4VDRyTGtTTGdzRXNJR0dBdTRwMzVIODJOVmlq?=
- =?utf-8?B?M3lOc0p1UEFjV0JJUHpzZ1YxZ2RlUk44QWd2ZWxYREh5UlBkczRzWXA0d1Nw?=
- =?utf-8?Q?WRW44iI6PkeF9?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 674b2bbf-eb18-451b-44e5-08d8c9acd558
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2021 08:05:42.8732 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vbdRAz0bszEhKM6J5A8SwXAT3ZKejnozVxX8mn3G8AB1OSqRVrPShYh2McvwImBg
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4343
-Subject: Re: [Intel-gfx] [PATCH] RFC: dma-buf: Require VM_SPECIAL vma for
- mmap
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability enc NULL
+ check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,70 +65,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Wilcox <willy@infradead.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- John Stultz <john.stultz@linaro.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 04.02.21 um 19:38 schrieb Jason Gunthorpe:
-> On Thu, Feb 04, 2021 at 06:16:27PM +0100, Daniel Vetter wrote:
->> On Thu, Feb 4, 2021 at 5:13 PM Jason Gunthorpe <jgg@ziepe.ca> wrote:
->>> On Wed, Feb 03, 2021 at 10:19:48PM +0100, Daniel Vetter wrote:
->>>> tldr; DMA buffers aren't normal memory, expecting that you can use
->>>> them like that (like calling get_user_pages works, or that they're
->>>> accounting like any other normal memory) cannot be guaranteed.
->>>>
->>>> Since some userspace only runs on integrated devices, where all
->>>> buffers are actually all resident system memory, there's a huge
->>>> temptation to assume that a struct page is always present and useable
->>>> like for any more pagecache backed mmap. This has the potential to
->>>> result in a uapi nightmare.
->>>>
->>>> To stop this gap require that DMA buffer mmaps are VM_SPECIAL, which
->>>> blocks get_user_pages and all the other struct page based
->>>> infrastructure for everyone. In spirit this is the uapi counterpart to
->>>> the kernel-internal CONFIG_DMABUF_DEBUG.
->>> Fast gup needs the special flag set on the PTE as well.. Feels weird
->>> to have a special VMA without also having special PTEs?
->> There's kinda no convenient & cheap way to check for the pte_special
->> flag. This here should at least catch accidental misuse, people
->> building their own ptes we can't stop. Maybe we should exclude
->> VM_MIXEDMAP to catch vm_insert_page in one of these.
->>
->> Hm looking at code I think we need to require VM_PFNMAP here to stop
->> vm_insert_page. And looking at the various functions, that seems to be
->> required (and I guess VM_IO is more for really funky architectures
->> where io-space is somewhere else?). I guess I should check for
->> VM_PFNMAP instead of VM_SPECIAL?
-> Well, you said the goal was to block GUP usage, that won't happen
-> without the PTE special flag, at least on x86
 
-When is that special flag being set?
 
-> So, really, what you are saying is all dmabuf users should always use
-> vmf_insert_pfn_prot() or something similar - and never insert_page/etc?
+> -----Original Message-----
+> From: Imre Deak <imre.deak@intel.com>
+> Sent: Thursday, February 4, 2021 11:58 PM
+> To: Gupta, Anshuman <anshuman.gupta@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability enc NULL
+> check
+> 
+> On Fri, Jan 29, 2021 at 01:30:43PM +0530, Anshuman Gupta wrote:
+> > DP-MST connector encoder initializes at modeset Adding a
+> > connector->encoder NULL check in order to avoid any NULL pointer
+> > dereference.
+> > intel_hdcp_enable() already handle this but debugfs can also invoke
+> > the intel_{hdcp,hdcp2_capable}.
+> > Handling it gracefully.
+> >
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c | 14 ++++++++++++--
+> >  1 file changed, 12 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > index ae1371c36a32..58af323d189a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > @@ -135,11 +135,16 @@ int intel_hdcp_read_valid_bksv(struct
+> > intel_digital_port *dig_port,
+> >  /* Is HDCP1.4 capable on Platform and Sink */  bool
+> > intel_hdcp_capable(struct intel_connector *connector)  {
+> > -	struct intel_digital_port *dig_port =
+> intel_attached_dig_port(connector);
+> > +	struct intel_digital_port *dig_port;
+> >  	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
+> >  	bool capable = false;
+> >  	u8 bksv[5];
+> >
+> > +	if (!connector->encoder)
+> > +		return -ENODEV;
+> 
+> I assume this is needed when called from i915_hdcp_sink_capability debugfs
+> entry. That one is lacking the locking for the connector, but is that entry really
+> needed? We print the same info already from the i915_display_info entry which
+> has the proper locking and encoder check.
+Historically HDCP capability added to i915_display_info later to debug CI machine as i915_display_info available as CI logs.
+Now the plans i915_display_info  should only show the monitor capability.
+and i915_hdcp_sink_capability will check both sink and platform capability.
 
-Exactly, yes.
-
-Christian.
-
-> It might make sense to check the vma flags in all the insert paths, eg
-> vm_insert_page() can't work with VMAs that should not have struct
-> pages in them (eg VM_SPECIAl, VM_PFNMAP, !VM_MIXEMAP if I understand
-> it right)
->
-> At least as some VM debug option
->
-> Jason
-
+Thanks,
+Anshuman Gupta.
+> 
+> > +
+> > +	dig_port = intel_attached_dig_port(connector);
+> > +
+> >  	if (!shim)
+> >  		return capable;
+> >
+> > @@ -156,11 +161,16 @@ bool intel_hdcp_capable(struct intel_connector
+> > *connector)
+> >  /* Is HDCP2.2 capable on Platform and Sink */  bool
+> > intel_hdcp2_capable(struct intel_connector *connector)  {
+> > -	struct intel_digital_port *dig_port =
+> intel_attached_dig_port(connector);
+> > +	struct intel_digital_port *dig_port;
+> >  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> >  	struct intel_hdcp *hdcp = &connector->hdcp;
+> >  	bool capable = false;
+> >
+> > +	if (!connector->encoder)
+> > +		return -ENODEV;
+> > +
+> > +	dig_port = intel_attached_dig_port(connector);
+> > +
+> >  	/* I915 support for HDCP2.2 */
+> >  	if (!hdcp->hdcp2_supported)
+> >  		return false;
+> > --
+> > 2.26.2
+> >
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
