@@ -1,61 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89039310D5A
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 16:46:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64D67310D81
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 16:58:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3C346F476;
-	Fri,  5 Feb 2021 15:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E126F6F47D;
+	Fri,  5 Feb 2021 15:58:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99D0D6F473
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 15:46:31 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id c12so8172012wrc.7
- for <intel-gfx@lists.freedesktop.org>; Fri, 05 Feb 2021 07:46:31 -0800 (PST)
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 993F66F47C
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 15:58:36 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id u14so8261538wri.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 05 Feb 2021 07:58:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=u7/SEuxGGSvFM5z0jDsJr4RJEXZQqJFQ1pl7RdrOS98=;
- b=Z/eoqfWBxwZ/W2rEqpKdTLi2fo3bgkS/h1YY3EKe6gCPQ3n5bjVH4v+HLxNhtb2R1y
- g+8+1Y2T5RGYjNLVBqntdJJ+un1ajfX9as+XycVTsnv99ZVhVlAqCb5IgQVokK9a4kyN
- x3w4YwZPsXEdF712drA8fTHLKh+969eg5fxIM=
+ :content-disposition:in-reply-to;
+ bh=rK3MsyMoEulHKJ/zMGt+yFnGJfCMJt45GtoaiFHKLNM=;
+ b=HlEoQlKL1WMDSW/dbWjebJvJeGoJqsOQNhOLH4KskcJ5ovqAWNRjqWx656HUnurYzY
+ aJCQw3map2w36uUARjhYDpsXUTl+Fiypla/lOshrYTbx0CWRBEw4k6fE3sirWBwbU1bU
+ yOQtGYKrnGaYqJwBMYgt89UvBpBixm2MXH2dE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=u7/SEuxGGSvFM5z0jDsJr4RJEXZQqJFQ1pl7RdrOS98=;
- b=IQkLrmFKl1d/k9f8x4yJP8i8EdF4tZlr9I55LxYs2SiSft6hwf6/F2v5zITqgE1VRL
- rUELCpaueY2aPVIgqGlBdR8VHUmuE+sDeIN6snOnetub+LEZ6m5Ui4Al+sKdjbt9iFmm
- uEzdgwcoMUG5KWNsdZKcTKRMPhzh6G+bKHsIXgYtaztdo3cHHQ8jDjakegfZMuVnoYlu
- kIn9/u0y+SPcpuSWIAmm7gmApQQH8d0FeyVMXLeyOEcHKyo24cZgbigJmimo8IKzPDa8
- HKywbp/aAR7/UGeWW5UfuzKEn794mQGteapaf8CTbK78c+CjIdpGgm0qHSyvfOHzljNm
- AKBg==
-X-Gm-Message-State: AOAM532ipH3JysQiNxs0qkA6HRyw3PdWw5A9iyTzmhrf4JCB5NhOCoF2
- GDtdxd57T+AgadyH71uKVzrGxA==
-X-Google-Smtp-Source: ABdhPJz1uu37n/Ve0IhcDHT+Qsa7AZj2hRN+Msh59y87I6TiAg+GOL/u5CF2lNYUekYTivYeYqoZEg==
-X-Received: by 2002:a05:6000:8c:: with SMTP id
- m12mr5726096wrx.101.1612539990351; 
- Fri, 05 Feb 2021 07:46:30 -0800 (PST)
+ :mime-version:content-disposition:in-reply-to;
+ bh=rK3MsyMoEulHKJ/zMGt+yFnGJfCMJt45GtoaiFHKLNM=;
+ b=hPcFVLDE2QhBHZX5rVqZivP9K0/74TE8NzpCV7JaJW1eCHYLg/XYsBrR80WPh4WLwm
+ 232O76Iy5DI6Q+gOco6tjaHlp9PICfywp6RVk9OB5e+DoHoE2bEl277EeH5ajuYnVsOl
+ 9QFaEpGem5NP1IlfJ+2yBLCNM9NxasadcnkMZBkmOg+wQ+lO9znK76PWUjtKmyJ7CFwB
+ Dr2x76mTk9Tqp6YPXyT+O9R2QMHltZPGnoBKgQCaw7sjGbgf9r8RhfXu18e8x1+W58ru
+ XsbgzXBlR2rH+Qjd1T6GXqKfbEkobct/Q5HFGlMtiEWVpHDnW2ssz0fYetSFA9TY9KXC
+ x9ow==
+X-Gm-Message-State: AOAM5317aM8iLqDd3nbiyiHbS390aUEcGUnanG2OKQbOSPzXC22saGf+
+ W8C0dLXqYyYLEXxTxn+BKNwMCA==
+X-Google-Smtp-Source: ABdhPJw5mK5eU3ZApKRmHlpqbA/vwgJF48hPWYROVF7p+9T6lqAPcoiKSI0gDJJNGSaig1R/RxbCXA==
+X-Received: by 2002:a05:6000:1201:: with SMTP id
+ e1mr5814548wrx.112.1612540715258; 
+ Fri, 05 Feb 2021 07:58:35 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q9sm10386588wme.18.2021.02.05.07.46.29
+ by smtp.gmail.com with ESMTPSA id f7sm11827960wre.78.2021.02.05.07.58.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 05 Feb 2021 07:46:29 -0800 (PST)
-Date: Fri, 5 Feb 2021 16:46:27 +0100
+ Fri, 05 Feb 2021 07:58:34 -0800 (PST)
+Date: Fri, 5 Feb 2021 16:58:32 +0100
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <YB1oU6asAR3ki4ZT@phenom.ffwll.local>
-References: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
- <YBwTgHwZwMr8PwMr@phenom.ffwll.local> <YBwY8DZnrPNXYvfy@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <YB1rKLGvpnFDom11@phenom.ffwll.local>
+References: <20210205130307.8294-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YBwY8DZnrPNXYvfy@intel.com>
+In-Reply-To: <20210205130307.8294-1-chris@chris-wilson.co.uk>
 X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm/vblank: Avoid storing a timestamp for
- the same frame twice
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Autoselect
+ CONFIG_CHECKPOINT_RESTORE for SYS_kcmp
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,163 +66,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 04, 2021 at 05:55:28PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Thu, Feb 04, 2021 at 04:32:16PM +0100, Daniel Vetter wrote:
-> > On Thu, Feb 04, 2021 at 04:04:00AM +0200, Ville Syrjala wrote:
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > =
+On Fri, Feb 05, 2021 at 01:03:07PM +0000, Chris Wilson wrote:
+> gallium (iris) depends on os_same_file_description() to disambiguate
+> screens and so avoid importing the same screen fd twice as two distinct
+> entities (that share all the kernel resources, so actions on screen
+> affect the other and would cause random faiure). As they depend on it,
+> so must we. os_same_file_description() uses SYS_kcmp to check the file
+> tables for the equivalent struct file, but SYS_kcmp is hidden behind
+> CONFIG_CHECKPOINT_RESTORE. As this is not default, we must select it for
+> ourselves to ensure that our userspace is fully supported.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3046
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-> > > drm_vblank_restore() exists because certain power saving states
-> > > can clobber the hardware frame counter. The way it does this is
-> > > by guesstimating how many frames were missed purely based on
-> > > the difference between the last stored timestamp vs. a newly
-> > > sampled timestamp.
-> > > =
+Hm shouldn't we crank this up to CONFIG_DRM?
 
-> > > If we should call this function before a full frame has
-> > > elapsed since we sampled the last timestamp we would end up
-> > > with a possibly slightly different timestamp value for the
-> > > same frame. Currently we will happily overwrite the already
-> > > stored timestamp for the frame with the new value. This
-> > > could cause userspace to observe two different timestamps
-> > > for the same frame (and the timestamp could even go
-> > > backwards depending on how much error we introduce when
-> > > correcting the timestamp based on the scanout position).
-> > > =
+Or embedded folks going to be unhappy about that? If so I guess we'd need
+to pull out just the SYS_kcmp part ...
 
-> > > To avoid that let's not update the stored timestamp unless we're
-> > > also incrementing the sequence counter. We do still want to update
-> > > vblank->last with the freshly sampled hw frame counter value so
-> > > that subsequent vblank irqs/queries can actually use the hw frame
-> > > counter to determine how many frames have elapsed.
-> > =
+Asking because I think Bas is also looking at this, and it's not great if
+we're building on this and then users end up with very subtly broken gl/vk
+stacks :-/
+-Daniel
 
-> > Hm I'm not getting the reason for why we store the updated hw vblank
-> > counter?
-> =
+> ---
+>  drivers/gpu/drm/i915/Kconfig | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 1e1cb245fca7..470a5214bd33 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -21,6 +21,7 @@ config DRM_I915
+>  	select ACPI_VIDEO if ACPI
+>  	select ACPI_BUTTON if ACPI
+>  	select SYNC_FILE
+> +	select CHECKPOINT_RESTORE # gallium depends on SYS_kcmp
+>  	select IOSF_MBI
+>  	select CRC32
+>  	select SND_HDA_I915 if SND_HDA_CORE
+> -- 
+> 2.20.1
+> 
 
-> Because next time a vblank irq happens the code will do:
-> diff =3D current_hw_counter - vblank->last
-> =
-
-> which won't work very well if vblank->last is garbage.
-> =
-
-> Updating vblank->last is pretty much why drm_vblank_restore()
-> exists at all.
-
-Oh sure, _restore has to update this, together with the timestamp.
-
-But your code adds such an update where we update the hw vblank counter,
-but not the timestamp, and that feels buggy. Either we're still in the
-same frame, and then we should story nothing. Or we advanced, and then we
-probably want a new timestampt for that frame too.
-
-Advancing the vblank counter and not advancing the timestamp sounds like a
-bug in our code.
-
-> > There's definitely a race when we grab the hw timestamp at a bad time
-> > (which can't happen for the irq handler, realistically), so maybe we
-> > should first adjust that to make sure we never store anything inconsist=
-ent
-> > in the vblank state?
-> =
-
-> Not sure what race you mean, or what inconsistent thing we store?
-
-For the drm_handle_vblank code we have some fudge so we don't compute
-something silly when the irq fires (like it often does) before
-top-of-frame. Ofc that fudge is inheritedly racy, if the irq is extremely
-delay (almost an entire frame) we'll get it wrong.
-
-In practice it doesn't matter.
-
-Now _restore can be called anytime, so we might end up in situations where
-the exact point where we jump to the next frame count, and the exact time
-where the hw counter jumps, don't lign up. And I think in that case funny
-things can happen, and I'm not sure your approach of "update hw counter
-but don't update timestamp" is the right way.
-
-I think if we instead ignore any update if our fudge-corrected timestamp
-is roughly the same, then we handle that race correctly and there's no
-jumping around.
-
-Cheers, Daniel
-
-> > And when we have that we should be able to pull the inc =3D=3D 0 check =
-out
-> > into _restore(), including comment. Which I think should be cleaner.
-> > =
-
-> > Or I'm totally off with why you want to store the hw vblank counter?
-> > =
-
-> > > =
-
-> > > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_vblank.c | 11 +++++++++++
-> > >  1 file changed, 11 insertions(+)
-> > > =
-
-> > > diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblan=
-k.c
-> > > index 893165eeddf3..e127a7db2088 100644
-> > > --- a/drivers/gpu/drm/drm_vblank.c
-> > > +++ b/drivers/gpu/drm/drm_vblank.c
-> > > @@ -176,6 +176,17 @@ static void store_vblank(struct drm_device *dev,=
- unsigned int pipe,
-> > >  =
-
-> > >  	vblank->last =3D last;
-> > >  =
-
-> > > +	/*
-> > > +	 * drm_vblank_restore() wants to always update
-> > > +	 * vblank->last since we can't trust the frame counter
-> > > +	 * across power saving states. But we don't want to alter
-> > > +	 * the stored timestamp for the same frame number since
-> > > +	 * that would cause userspace to potentially observe two
-> > > +	 * different timestamps for the same frame.
-> > > +	 */
-> > > +	if (vblank_count_inc =3D=3D 0)
-> > > +		return;
-> > > +
-> > >  	write_seqlock(&vblank->seqlock);
-> > >  	vblank->time =3D t_vblank;
-> > >  	atomic64_add(vblank_count_inc, &vblank->count);
-> > > -- =
-
-> > > 2.26.2
-> > > =
-
-> > =
-
-> > -- =
-
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-
--- =
-
+-- 
 Daniel Vetter
 Software Engineer, Intel Corporation
 http://blog.ffwll.ch
