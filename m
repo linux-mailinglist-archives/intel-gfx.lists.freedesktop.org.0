@@ -1,51 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B28403112D5
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 21:53:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFC93112EC
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 21:58:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 275666E2C8;
-	Fri,  5 Feb 2021 20:53:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02FF36EA8E;
+	Fri,  5 Feb 2021 20:58:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
- [IPv6:2607:f8b0:4864:20::333])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 382206E2C8
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 20:53:52 +0000 (UTC)
-Received: by mail-ot1-x333.google.com with SMTP id d7so5935061otq.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 05 Feb 2021 12:53:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=5PRi5FG8/+JWu+jWzUkXoHnN4JWoS4p+oSPjz4dHX4E=;
- b=OASnDCXTrffqrxPZSX+X2BoOBJSJeWYxtAIhsNCtVNhz5gMXxmVx/jYGnsUN9nnJuN
- vhfjMJNVrRb2wgVEK4+xSY1vgWYsPum4Jw0tHUrjZI6XNfx7htArAF/NC/hE/qfZg0zE
- Q6EogytHRY9X2yLHj2BIhrsaED0mM8FE6XIoc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=5PRi5FG8/+JWu+jWzUkXoHnN4JWoS4p+oSPjz4dHX4E=;
- b=GhSu3DiFXqYg11Dij0Lk1U1jouBjFbMCS/1BKmBznqzZ5mQQM9lL1fEbZPOe1dJ43k
- j0j6ZX+sJBrB/HI4AXB/ieWFQ0oIhaAV6qKZvdgK7fjhPNROpSL7nEkytp46AhGhqfx7
- 6WlT9N7GRHRyOoRNFPlzkdOruJw8xLwwl/9pSjMLPB45A/ps8oD+ftkdFoKgr+PdjO7g
- DL292Gu+CdaXoEUQZ02fnK3aRFE9C99zJ2P3n8IOMU44tapuP9DxpVOw4kgFuHLPADHT
- meoaGI2tb3mF0hrd2skyV9jTJGJjcJB0FbbTtQZxl8cxv8wYH4o/Qe0Q5h/t68/zg6nC
- b0MA==
-X-Gm-Message-State: AOAM533rb7rPQU0ZvL55LiDbqqMapDMerCcC7hxNfSm/emV8TIRG4xKs
- DUeT019vdpzT/cqEbHD6gg192Hle4vAP69h2sB5Lwg==
-X-Google-Smtp-Source: ABdhPJzg/0sRpmAYdxePGbdJtZika7yemD79/03eRrmz2fmH3+4sjo2UBY/XCbjTjR0SqL2Ey0KOyRS9uFFIs7Vpmkg=
-X-Received: by 2002:a9d:b85:: with SMTP id 5mr4848871oth.281.1612558431545;
- Fri, 05 Feb 2021 12:53:51 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5E7E56EA8E;
+ Fri,  5 Feb 2021 20:58:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 58535A00E6;
+ Fri,  5 Feb 2021 20:58:12 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
- <202102051030.1AF01772D@keescook>
-In-Reply-To: <202102051030.1AF01772D@keescook>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Fri, 5 Feb 2021 21:53:40 +0100
-Message-ID: <CAKMK7uHnOA9CuRxcKkcqG8duOw_3dZobkThcV7Q_swMXVoLCkQ@mail.gmail.com>
-To: Kees Cook <keescook@chromium.org>, "airlied@gmail.com" <airlied@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] kernel: Expose SYS_kcmp by default
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 05 Feb 2021 20:58:12 -0000
+Message-ID: <161255869235.1863.9625823694376731650@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1612536383.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1612536383.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_refactor_intel=5Fdisplay=2Ec_+_a_bit_more_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,140 +38,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Will Drewry <wad@chromium.org>, Jann Horn <jannh@google.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Andy Lutomirski <luto@amacapital.net>,
- Andrew Morton <akpm@linux-foundation.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0865906088=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 5, 2021 at 7:37 PM Kees Cook <keescook@chromium.org> wrote:
->
-> On Fri, Feb 05, 2021 at 04:37:52PM +0000, Chris Wilson wrote:
-> > Userspace has discovered the functionality offered by SYS_kcmp and has
-> > started to depend upon it. In particular, Mesa uses SYS_kcmp for
-> > os_same_file_description() in order to identify when two fd (e.g. device
-> > or dmabuf) point to the same struct file. Since they depend on it for
-> > core functionality, lift SYS_kcmp out of the non-default
-> > CONFIG_CHECKPOINT_RESTORE into the selectable syscall category.
-> >
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Kees Cook <keescook@chromium.org>
-> > Cc: Andy Lutomirski <luto@amacapital.net>
-> > Cc: Will Drewry <wad@chromium.org>
-> > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > Cc: Dave Airlie <airlied@gmail.com>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: Lucas Stach <l.stach@pengutronix.de>
-> > ---
-> >  init/Kconfig                                  | 11 +++++++++++
-> >  kernel/Makefile                               |  2 +-
-> >  tools/testing/selftests/seccomp/seccomp_bpf.c |  2 +-
-> >  3 files changed, 13 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/init/Kconfig b/init/Kconfig
-> > index b77c60f8b963..f62fca13ac5b 100644
-> > --- a/init/Kconfig
-> > +++ b/init/Kconfig
-> > @@ -1194,6 +1194,7 @@ endif # NAMESPACES
-> >  config CHECKPOINT_RESTORE
-> >       bool "Checkpoint/restore support"
-> >       select PROC_CHILDREN
-> > +     select KCMP
-> >       default n
-> >       help
-> >         Enables additional kernel features in a sake of checkpoint/restore.
-> > @@ -1737,6 +1738,16 @@ config ARCH_HAS_MEMBARRIER_CALLBACKS
-> >  config ARCH_HAS_MEMBARRIER_SYNC_CORE
-> >       bool
-> >
-> > +config KCMP
-> > +     bool "Enable kcmp() system call" if EXPERT
-> > +     default y
->
-> I would expect this to be not default-y, especially if
-> CHECKPOINT_RESTORE does a "select" on it.
->
-> This is a really powerful syscall, but it is bounded by ptrace access
-> controls, and uses pointer address obfuscation, so it may be okay to
-> expose this. As it is, at least Ubuntu already has
-> CONFIG_CHECKPOINT_RESTORE, so really, there's probably not much
-> difference on exposure.
->
-> So, if you drop the "default y", I'm fine with this.
+--===============0865906088==
+Content-Type: multipart/alternative;
+ boundary="===============6675949681354944048=="
 
-It was maybe stupid, but our userspace started relying on fd
-comaprison through sys_kcomp. So for better or worse, if you want to
-run the mesa3d gl/vk stacks, you need this. Was maybe not the brighest
-ideas, but since enough distros had this enabled by defaults, it
-wasn't really discovered, and now we're shipping this everywhere.
+--===============6675949681354944048==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ofc we can leave the default n, but the select if CONFIG_DRM is
-unfortunately needed I think. For that part:
+== Series Details ==
 
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Series: drm/i915: refactor intel_display.c + a bit more (rev2)
+URL   : https://patchwork.freedesktop.org/series/86723/
+State : success
 
-Also adding Dave Airlie for his take.
--Daniel
+== Summary ==
 
->
-> -Kees
->
-> > +     help
-> > +       Enable the file descriptor comparison system call. It provides
-> > +       user-space with the ability to compare two fd to see if they
-> > +       point to the same file, and check other attributes.
-> > +
-> > +       If unsure, say Y.
-> > +
-> >  config RSEQ
-> >       bool "Enable rseq() system call" if EXPERT
-> >       default y
-> > diff --git a/kernel/Makefile b/kernel/Makefile
-> > index aa7368c7eabf..320f1f3941b7 100644
-> > --- a/kernel/Makefile
-> > +++ b/kernel/Makefile
-> > @@ -51,7 +51,7 @@ obj-y += livepatch/
-> >  obj-y += dma/
-> >  obj-y += entry/
-> >
-> > -obj-$(CONFIG_CHECKPOINT_RESTORE) += kcmp.o
-> > +obj-$(CONFIG_KCMP) += kcmp.o
-> >  obj-$(CONFIG_FREEZER) += freezer.o
-> >  obj-$(CONFIG_PROFILING) += profile.o
-> >  obj-$(CONFIG_STACKTRACE) += stacktrace.o
-> > diff --git a/tools/testing/selftests/seccomp/seccomp_bpf.c b/tools/testing/selftests/seccomp/seccomp_bpf.c
-> > index 26c72f2b61b1..1b6c7d33c4ff 100644
-> > --- a/tools/testing/selftests/seccomp/seccomp_bpf.c
-> > +++ b/tools/testing/selftests/seccomp/seccomp_bpf.c
-> > @@ -315,7 +315,7 @@ TEST(kcmp)
-> >       ret = __filecmp(getpid(), getpid(), 1, 1);
-> >       EXPECT_EQ(ret, 0);
-> >       if (ret != 0 && errno == ENOSYS)
-> > -             SKIP(return, "Kernel does not support kcmp() (missing CONFIG_CHECKPOINT_RESTORE?)");
-> > +             SKIP(return, "Kernel does not support kcmp() (missing CONFIG_KCMP?)");
-> >  }
-> >
-> >  TEST(mode_strict_support)
-> > --
-> > 2.20.1
-> >
->
-> --
-> Kees Cook
+CI Bug Log - changes from CI_DRM_9740 -> Patchwork_19608
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19608 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([i915#2128])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2128]: https://gitlab.freedesktop.org/drm/intel/issues/2128
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
 
+Participating hosts (43 -> 38)
+------------------------------
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  Additional (1): fi-byt-j1900 
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9740 -> Patchwork_19608
+
+  CI-20190529: 20190529
+  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19608: f08f7fd56aa6493d50ebafcdec37cdce548189fb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f08f7fd56aa6 drm/i915: move ddi pll state get to dpll mgr
+a69fe8588de2 drm/i915: refactor skylake scaler code into new file.
+2758eb6d6841 drm/i915: migrate i9xx plane get config
+f98c7886db90 drm/i915: migrate pll enable/disable code to intel_dpll.[ch]
+839eee02c59c drm/i915: move is_ccs_modifier to an inline
+4e167ec1a05f drm/i915: split fb scalable checks into g4x and skl versions
+bb3d788424ca drm/i915: move pipe update code into crtc. (v2)
+2685c66ddd72 drm/i915: migrate skl planes code new file (v5)
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/index.html
+
+--===============6675949681354944048==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: refactor intel_display.c + a bit more (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86723/">https://patchwork.freedesktop.org/series/86723/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9740 -&gt; Patchwork_19608</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19608 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-edid-read:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2128">i915#2128</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@prime_self_import@basic-with_one_bo_two_files:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19608/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Additional (1): fi-byt-j1900 <br />
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9740 -&gt; Patchwork_19608</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19608: f08f7fd56aa6493d50ebafcdec37cdce548189fb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f08f7fd56aa6 drm/i915: move ddi pll state get to dpll mgr<br />
+a69fe8588de2 drm/i915: refactor skylake scaler code into new file.<br />
+2758eb6d6841 drm/i915: migrate i9xx plane get config<br />
+f98c7886db90 drm/i915: migrate pll enable/disable code to intel_dpll.[ch]<br />
+839eee02c59c drm/i915: move is_ccs_modifier to an inline<br />
+4e167ec1a05f drm/i915: split fb scalable checks into g4x and skl versions<br />
+bb3d788424ca drm/i915: move pipe update code into crtc. (v2)<br />
+2685c66ddd72 drm/i915: migrate skl planes code new file (v5)</p>
+
+</body>
+</html>
+
+--===============6675949681354944048==--
+
+--===============0865906088==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0865906088==--
