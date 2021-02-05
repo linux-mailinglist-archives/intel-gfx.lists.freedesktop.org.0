@@ -1,41 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FC0E310DBA
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 17:18:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F248310DD1
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 17:24:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17ED26F484;
-	Fri,  5 Feb 2021 16:18:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F0C6F48F;
+	Fri,  5 Feb 2021 16:24:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE1836F484
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 16:18:49 +0000 (UTC)
-Received: from gallifrey.ext.pengutronix.de
- ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <l.stach@pengutronix.de>)
- id 1l83oi-00056A-OL; Fri, 05 Feb 2021 17:18:44 +0100
-Message-ID: <b01fefdd8b6fa7c8f1f863daf18a25b32f6ac29c.camel@pengutronix.de>
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Daniel Vetter <daniel@ffwll.ch>, Chris Wilson
- <chris@chris-wilson.co.uk>,  Dave Airlie <airlied@gmail.com>
-Date: Fri, 05 Feb 2021 17:18:42 +0100
-In-Reply-To: <YB1rUCQoa+wCEh1o@phenom.ffwll.local>
-References: <20210205130307.8294-1-chris@chris-wilson.co.uk>
- <YB1rKLGvpnFDom11@phenom.ffwll.local> <YB1rUCQoa+wCEh1o@phenom.ffwll.local>
-User-Agent: Evolution 3.38.3 (3.38.3-1.fc33) 
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24AC56F48A;
+ Fri,  5 Feb 2021 16:24:34 +0000 (UTC)
+IronPort-SDR: DXAxoGgV2l5GiLH1dko6afEE6Pirg9D8bSH7VNIQkC73nCxfQWXoyHZ9455ivwZFBznq7PL5hh
+ KPm+Ok5z07sQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="266282902"
+X-IronPort-AV: E=Sophos;i="5.81,155,1610438400"; d="scan'208";a="266282902"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2021 08:24:14 -0800
+IronPort-SDR: bI0nw/KwwUEF24qpnez7ITCL07rXAd7T8YWSNcXd0OVEcpDJU2PFU7+yA+gcMPQAfPoNxWyE7/
+ Bwr2CZ1KkJrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,155,1610438400"; d="scan'208";a="397538013"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 05 Feb 2021 08:24:09 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 05 Feb 2021 18:24:08 +0200
+Date: Fri, 5 Feb 2021 18:24:08 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <YB1xKG317Zp7NogO@intel.com>
+References: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
+ <YBwTgHwZwMr8PwMr@phenom.ffwll.local> <YBwY8DZnrPNXYvfy@intel.com>
+ <YB1oU6asAR3ki4ZT@phenom.ffwll.local>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Autoselect
- CONFIG_CHECKPOINT_RESTORE for SYS_kcmp
+Content-Disposition: inline
+In-Reply-To: <YB1oU6asAR3ki4ZT@phenom.ffwll.local>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/vblank: Avoid storing a timestamp for
+ the same frame twice
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,56 +52,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QW0gRnJlaXRhZywgZGVtIDA1LjAyLjIwMjEgdW0gMTY6NTkgKzAxMDAgc2NocmllYiBEYW5pZWwg
-VmV0dGVyOgo+IE9uIEZyaSwgRmViIDA1LCAyMDIxIGF0IDA0OjU4OjMyUE0gKzAxMDAsIERhbmll
-bCBWZXR0ZXIgd3JvdGU6Cj4gPiBPbiBGcmksIEZlYiAwNSwgMjAyMSBhdCAwMTowMzowN1BNICsw
-MDAwLCBDaHJpcyBXaWxzb24gd3JvdGU6Cj4gPiA+IGdhbGxpdW0gKGlyaXMpIGRlcGVuZHMgb24g
-b3Nfc2FtZV9maWxlX2Rlc2NyaXB0aW9uKCkgdG8gZGlzYW1iaWd1YXRlCj4gPiA+IHNjcmVlbnMg
-YW5kIHNvIGF2b2lkIGltcG9ydGluZyB0aGUgc2FtZSBzY3JlZW4gZmQgdHdpY2UgYXMgdHdvIGRp
-c3RpbmN0Cj4gPiA+IGVudGl0aWVzICh0aGF0IHNoYXJlIGFsbCB0aGUga2VybmVsIHJlc291cmNl
-cywgc28gYWN0aW9ucyBvbiBzY3JlZW4KPiA+ID4gYWZmZWN0IHRoZSBvdGhlciBhbmQgd291bGQg
-Y2F1c2UgcmFuZG9tIGZhaXVyZSkuIEFzIHRoZXkgZGVwZW5kIG9uIGl0LAo+ID4gPiBzbyBtdXN0
-IHdlLiBvc19zYW1lX2ZpbGVfZGVzY3JpcHRpb24oKSB1c2VzIFNZU19rY21wIHRvIGNoZWNrIHRo
-ZSBmaWxlCj4gPiA+IHRhYmxlcyBmb3IgdGhlIGVxdWl2YWxlbnQgc3RydWN0IGZpbGUsIGJ1dCBT
-WVNfa2NtcCBpcyBoaWRkZW4gYmVoaW5kCj4gPiA+IENPTkZJR19DSEVDS1BPSU5UX1JFU1RPUkUu
-IEFzIHRoaXMgaXMgbm90IGRlZmF1bHQsIHdlIG11c3Qgc2VsZWN0IGl0IGZvcgo+ID4gPiBvdXJz
-ZWx2ZXMgdG8gZW5zdXJlIHRoYXQgb3VyIHVzZXJzcGFjZSBpcyBmdWxseSBzdXBwb3J0ZWQuCj4g
-PiA+IAo+ID4gPiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50
-ZWwvLS9pc3N1ZXMvMzA0Ngo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlz
-QGNocmlzLXdpbHNvbi5jby51az4KPiA+ID4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBp
-bnRlbC5jb20+Cj4gPiA+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNo
-Pgo+ID4gCj4gPiBIbSBzaG91bGRuJ3Qgd2UgY3JhbmsgdGhpcyB1cCB0byBDT05GSUdfRFJNPwo+
-ID4gCj4gPiBPciBlbWJlZGRlZCBmb2xrcyBnb2luZyB0byBiZSB1bmhhcHB5IGFib3V0IHRoYXQ/
-IElmIHNvIEkgZ3Vlc3Mgd2UnZCBuZWVkCj4gPiB0byBwdWxsIG91dCBqdXN0IHRoZSBTWVNfa2Nt
-cCBwYXJ0IC4uLgo+ID4gCj4gPiBBc2tpbmcgYmVjYXVzZSBJIHRoaW5rIEJhcyBpcyBhbHNvIGxv
-b2tpbmcgYXQgdGhpcywgYW5kIGl0J3Mgbm90IGdyZWF0IGlmCj4gPiB3ZSdyZSBidWlsZGluZyBv
-biB0aGlzIGFuZCB0aGVuIHVzZXJzIGVuZCB1cCB3aXRoIHZlcnkgc3VidGx5IGJyb2tlbiBnbC92
-awo+ID4gc3RhY2tzIDotLwoKYW1kZ3B1IGdhbGxpdW0gd2luc3lzIHNlZW1zIHRvIGFsc28gcmVx
-dWlyZSB0aGlzLCBzbyBzZWxlY3RpbmcgaXQgZnJvbQpoaWdoZXIgdXAgaW4gdGhlIEtjb25maWcg
-dHJlZSBtYWtlcyBzZW5zZSBhbmQgSSBkb24ndCB0aGluayBlbWJlZGRlZAp3b3VsZCBiZSBtYXNz
-aXZlbHkgdW5oYXBweSBhYm91dCB0aGlzLiBIb3dldmVyIGtjbXAgc2VlbXMgdG8gYmUgdXNlZnVs
-Cm9uIGl0cyBvd24gYW5kIHB1bGxpbmcgaXQgb3V0IG9mIENIRUNLUE9JTlRfUkVTVE9SRSBzb3Vu
-ZHMgbGlrZSB0aGUKcmlnaHQgdGhpbmcgdG8gZG8uCgpSZWdhcmRzLApMdWNhcwoKPiAKPiA+IC1E
-YW5pZWwKPiA+IAo+ID4gPiAtLS0KPiA+ID4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9LY29uZmln
-IHwgMSArCj4gPiA+IMKgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCj4gPiA+IAo+ID4g
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvS2NvbmZpZyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L0tjb25maWcKPiA+ID4gaW5kZXggMWUxY2IyNDVmY2E3Li40NzBhNTIxNGJkMzMg
-MTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L0tjb25maWcKPiA+ID4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvS2NvbmZpZwo+ID4gPiBAQCAtMjEsNiArMjEsNyBAQCBj
-b25maWcgRFJNX0k5MTUKPiA+ID4gwqAJc2VsZWN0IEFDUElfVklERU8gaWYgQUNQSQo+ID4gPiDC
-oAlzZWxlY3QgQUNQSV9CVVRUT04gaWYgQUNQSQo+ID4gPiDCoAlzZWxlY3QgU1lOQ19GSUxFCj4g
-PiA+ICsJc2VsZWN0IENIRUNLUE9JTlRfUkVTVE9SRSAjIGdhbGxpdW0gZGVwZW5kcyBvbiBTWVNf
-a2NtcAo+ID4gPiDCoAlzZWxlY3QgSU9TRl9NQkkKPiA+ID4gwqAJc2VsZWN0IENSQzMyCj4gPiA+
-IMKgCXNlbGVjdCBTTkRfSERBX0k5MTUgaWYgU05EX0hEQV9DT1JFCj4gPiA+IC0tIAo+ID4gPiAy
-LjIwLjEKPiA+ID4gCj4gPiAKPiA+IC0tIAo+ID4gRGFuaWVsIFZldHRlcgo+ID4gU29mdHdhcmUg
-RW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCj4gPiBodHRwOi8vYmxvZy5mZndsbC5jaAo+IAoK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, Feb 05, 2021 at 04:46:27PM +0100, Daniel Vetter wrote:
+> On Thu, Feb 04, 2021 at 05:55:28PM +0200, Ville Syrj=E4l=E4 wrote:
+> > On Thu, Feb 04, 2021 at 04:32:16PM +0100, Daniel Vetter wrote:
+> > > On Thu, Feb 04, 2021 at 04:04:00AM +0200, Ville Syrjala wrote:
+> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > =
+
+> > > > drm_vblank_restore() exists because certain power saving states
+> > > > can clobber the hardware frame counter. The way it does this is
+> > > > by guesstimating how many frames were missed purely based on
+> > > > the difference between the last stored timestamp vs. a newly
+> > > > sampled timestamp.
+> > > > =
+
+> > > > If we should call this function before a full frame has
+> > > > elapsed since we sampled the last timestamp we would end up
+> > > > with a possibly slightly different timestamp value for the
+> > > > same frame. Currently we will happily overwrite the already
+> > > > stored timestamp for the frame with the new value. This
+> > > > could cause userspace to observe two different timestamps
+> > > > for the same frame (and the timestamp could even go
+> > > > backwards depending on how much error we introduce when
+> > > > correcting the timestamp based on the scanout position).
+> > > > =
+
+> > > > To avoid that let's not update the stored timestamp unless we're
+> > > > also incrementing the sequence counter. We do still want to update
+> > > > vblank->last with the freshly sampled hw frame counter value so
+> > > > that subsequent vblank irqs/queries can actually use the hw frame
+> > > > counter to determine how many frames have elapsed.
+> > > =
+
+> > > Hm I'm not getting the reason for why we store the updated hw vblank
+> > > counter?
+> > =
+
+> > Because next time a vblank irq happens the code will do:
+> > diff =3D current_hw_counter - vblank->last
+> > =
+
+> > which won't work very well if vblank->last is garbage.
+> > =
+
+> > Updating vblank->last is pretty much why drm_vblank_restore()
+> > exists at all.
+> =
+
+> Oh sure, _restore has to update this, together with the timestamp.
+> =
+
+> But your code adds such an update where we update the hw vblank counter,
+> but not the timestamp, and that feels buggy. Either we're still in the
+> same frame, and then we should story nothing. Or we advanced, and then we
+> probably want a new timestampt for that frame too.
+
+Even if we're still in the same frame the hw frame counter may already
+have been reset due to the power well having been turned off. That is
+what I'm trying to fix here.
+
+Now I suppose that's fairly unlikely, at least with PSR which probably
+does impose some extra delays before the power gets yanked. But at least
+theoretically possible.
+
+> =
+
+> Advancing the vblank counter and not advancing the timestamp sounds like a
+> bug in our code.
+
+We're not advancing the vblank counter. We're storing a new
+timestamp for a vblank counter value which already had a timestamp.
+
+> =
+
+> > > There's definitely a race when we grab the hw timestamp at a bad time
+> > > (which can't happen for the irq handler, realistically), so maybe we
+> > > should first adjust that to make sure we never store anything inconsi=
+stent
+> > > in the vblank state?
+> > =
+
+> > Not sure what race you mean, or what inconsistent thing we store?
+> =
+
+> For the drm_handle_vblank code we have some fudge so we don't compute
+> something silly when the irq fires (like it often does) before
+> top-of-frame. Ofc that fudge is inheritedly racy, if the irq is extremely
+> delay (almost an entire frame) we'll get it wrong.
+
+Sorry, still no idea what fudge you mean.
+
+> =
+
+> In practice it doesn't matter.
+> =
+
+> Now _restore can be called anytime, so we might end up in situations where
+> the exact point where we jump to the next frame count, and the exact time
+> where the hw counter jumps, don't lign up. And I think in that case funny
+> things can happen, and I'm not sure your approach of "update hw counter
+> but don't update timestamp" is the right way.
+> =
+
+> I think if we instead ignore any update if our fudge-corrected timestamp
+> is roughly the same, then we handle that race correctly and there's no
+> jumping around.
+
+We can't just not update vblank->last, assuming the theory holds
+that the power well may turn off even if the last vblank timestamp
+was sampled less than a full frame ago.
+
+That will cause the next diff=3Dcurrent_hw_counter-vblank->last to
+generate total garbage and then the vblank seq number will jump
+to some random value. Which is exactly the main problem
+drm_vblank_restore() is trying to prevent.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
