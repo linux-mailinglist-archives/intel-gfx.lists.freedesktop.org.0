@@ -2,31 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70773310536
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 07:52:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA3933105CB
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 08:26:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D43DF6E1BD;
-	Fri,  5 Feb 2021 06:52:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FEB36EE00;
+	Fri,  5 Feb 2021 07:26:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A0B436E1BD;
- Fri,  5 Feb 2021 06:52:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9A67DA882F;
- Fri,  5 Feb 2021 06:52:39 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12D696EE00
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 07:26:15 +0000 (UTC)
+IronPort-SDR: 7QCWAWgVjHhs99dVUyJbZoeaekNvJZNbQR89O9pSR5FRMGCpSxK9ixOWH7nTCtcQowfrxarWM0
+ x2h37NsRCyGw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="177886112"
+X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; d="scan'208";a="177886112"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 23:26:13 -0800
+IronPort-SDR: uJ0CFvBWdi8xgzmQpG0xHnvWSW8m1PcAvdvwfLNRuBN7tmxG8tywHm2n6tyZk+dcIFupubpEDH
+ xb2874NJ4qQw==
+X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; d="scan'208";a="393738866"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 23:26:10 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  5 Feb 2021 12:40:44 +0530
+Message-Id: <20210205071044.865-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Khaled Almahallawy" <khaled.almahallawy@intel.com>
-Date: Fri, 05 Feb 2021 06:52:39 -0000
-Message-ID: <161250795960.1863.1660281948833235963@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210205064531.3158292-1-khaled.almahallawy@intel.com>
-In-Reply-To: <20210205064531.3158292-1-khaled.almahallawy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Add_link_rate_and_lane_count_to_i915=5Fdisplay?=
- =?utf-8?q?=5Finfo?=
+Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: Show connector hdcp capability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +44,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Show only connector hdcp capability in i915_display_info
+instead of platform and sink.
 
-Series: drm/i915: Add link rate and lane count to i915_display_info
-URL   : https://patchwork.freedesktop.org/series/86738/
-State : warning
+There are some platforms which don't support HDCP 2.2
+yet, those are not HDCP 2.2 capable but those platform
+should show up the connector capability in i915_display_info.
 
-== Summary ==
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-$ dim checkpatch origin/drm-tip
-affe26105adb drm/i915: Add link rate and lane count to i915_display_info
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-Link rate and lane count information are more easier and faster to check in i915_display_info
-
-total: 0 errors, 1 warnings, 0 checks, 12 lines checked
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index d62b18d5ecd8..8a028f943da5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -605,6 +605,7 @@ static void intel_panel_info(struct seq_file *m, struct intel_panel *panel)
+ static void intel_hdcp_info(struct seq_file *m,
+ 			    struct intel_connector *intel_connector)
+ {
++	struct intel_digital_port *dig_port = intel_attached_dig_port(intel_connector);
+ 	bool hdcp_cap, hdcp2_cap;
+ 
+ 	if (!intel_connector->hdcp.shim) {
+@@ -613,7 +614,8 @@ static void intel_hdcp_info(struct seq_file *m,
+ 	}
+ 
+ 	hdcp_cap = intel_hdcp_capable(intel_connector);
+-	hdcp2_cap = intel_hdcp2_capable(intel_connector);
++	/* Sink's capability for HDCP2.2 */
++	intel_connector->hdcp.shim->hdcp_2_2_capable(dig_port, &hdcp2_cap);
+ 
+ 	if (hdcp_cap)
+ 		seq_puts(m, "HDCP1.4 ");
+-- 
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
