@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61ED23105C1
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 08:22:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67548310608
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 08:46:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43ABA6E9A7;
-	Fri,  5 Feb 2021 07:22:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B973B6F3F5;
+	Fri,  5 Feb 2021 07:46:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 053EF6E9A5;
- Fri,  5 Feb 2021 07:22:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F2B1BA47DB;
- Fri,  5 Feb 2021 07:22:02 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0BA66F3F5;
+ Fri,  5 Feb 2021 07:46:19 +0000 (UTC)
+IronPort-SDR: I0qhXyG7zy4XFcs07CO6qrgxC/Wr6wDteVcQmRpEpxwOO6gXb/fj3dkwhXg1/yObNTW3KqavfC
+ MnxoRL7pUhHg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="178835318"
+X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; 
+ d="asc'?scan'208";a="178835318"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 23:46:17 -0800
+IronPort-SDR: OBKu+uYwQTXEqTJCl9d2oVlGngcsGJ2+XbVqdiqVnhOwhCtRZ330o1ggoB0xUSC7Af7xmWovuE
+ rMOBHNQxymhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; 
+ d="asc'?scan'208";a="434317673"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by orsmga001.jf.intel.com with ESMTP; 04 Feb 2021 23:46:14 -0800
+Date: Fri, 5 Feb 2021 15:30:57 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Message-ID: <20210205073057.GR2043@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Khaled Almahallawy" <khaled.almahallawy@intel.com>
-Date: Fri, 05 Feb 2021 07:22:02 -0000
-Message-ID: <161250972296.1864.4206113577842737336@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210205064531.3158292-1-khaled.almahallawy@intel.com>
-In-Reply-To: <20210205064531.3158292-1-khaled.almahallawy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_link_rate_and_lane_count_to_i915=5Fdisplay=5Finfo?=
+Subject: [Intel-gfx] [PULL] gvt-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,208 +47,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1183733933=="
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============1132736968=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1183733933==
-Content-Type: multipart/alternative;
- boundary="===============4398411654411849228=="
 
---===============4398411654411849228==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Add link rate and lane count to i915_display_info
-URL   : https://patchwork.freedesktop.org/series/86738/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9735 -> Patchwork_19600
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19600 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-kbl-7500u:       [PASS][1] -> [DMESG-WARN][2] ([i915#2605])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-#### Possible fixes ####
-
-  * igt@fbdev@write:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-tgl-y/igt@fbdev@write.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-tgl-y/igt@fbdev@write.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-cfl-8700k:       [DMESG-FAIL][7] ([i915#2291] / [i915#541]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-cfl-8700k/igt@i915_selftest@live@gt_heartbeat.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-cfl-8700k/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - {fi-ehl-1}:         [DMESG-FAIL][9] -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-ehl-1/igt@i915_selftest@live@late_gt_pm.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-ehl-1/igt@i915_selftest@live@late_gt_pm.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+--===============1132736968==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="sXc4Kmr5FA7axrvy"
+Content-Disposition: inline
 
 
-Participating hosts (42 -> 38)
-------------------------------
-
-  Missing    (4): fi-jsl-1 fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9735 -> Patchwork_19600
-
-  CI-20190529: 20190529
-  CI_DRM_9735: 186ea69ad1d026d004fbd64457fb576ab86556eb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5991: a2d9c45fca85918ecf47761205555aade64b9220 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19600: affe26105adb63ca89125b501edad1ec70ea43a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+--sXc4Kmr5FA7axrvy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
 
-== Linux commits ==
+Hi,
 
-affe26105adb drm/i915: Add link rate and lane count to i915_display_info
+Here's more gvt next changes including ww locking fix from Zhi, and
+replace to use i915 engine default state for GVT cmd parser init.
+Those have all been verified without regression. Details below.
 
-== Logs ==
+Thanks.
+--
+The following changes since commit 69b4b99842201bc24c98ba66b922d8879e190483:
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/index.html
+  drm/i915/gvt: Add missing forward decl of intel_vgpu for HDRTEST (2021-01-21 15:51:21 +0200)
 
---===============4398411654411849228==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+are available in the Git repository at:
 
+  https://github.com/intel/gvt-linux tags/gvt-gt-next-2020-02-05
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+for you to fetch changes up to e156285b120feaac6207e6bd3fa31d9ae8ffd80d:
 
+  drm/i915/gvt: Purge dev_priv->gt (2021-02-05 15:28:36 +0800)
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Add link rate and lane count to i915_display_info</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86738/">https://patchwork.freedesktop.org/series/86738/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+----------------------------------------------------------------
+gvt-gt-next-2020-02-05
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/index.html</a></td></tr>
+- GVT object ww locking fix (Zhi)
+- One smatch fix for uninitialized return value (Dan)
+- Use i915 engine's default state for GVT cmd parser init (Chris)
+- Purge dev_priv->gt (Chris)
 
-</table>
+----------------------------------------------------------------
+Chris Wilson (2):
+      drm/i915/gvt: Parse default state to update reg whitelist
+      drm/i915/gvt: Purge dev_priv->gt
 
+Dan Carpenter (1):
+      drm/i915/gvt: fix uninitialized return in intel_gvt_update_reg_whitelist()
 
-    <h1>CI Bug Log - changes from CI_DRM_9735 -&gt; Patchwork_19600</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19600 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@sanitycheck:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-tgl-y/igt@fbdev@write.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-tgl-y/igt@fbdev@write.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-cfl-8700k/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-cfl-8700k/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>{fi-ehl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9735/fi-ehl-1/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19600/fi-ehl-1/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Missing    (4): fi-jsl-1 fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9735 -&gt; Patchwork_19600</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9735: 186ea69ad1d026d004fbd64457fb576ab86556eb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5991: a2d9c45fca85918ecf47761205555aade64b9220 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19600: affe26105adb63ca89125b501edad1ec70ea43a2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>affe26105adb drm/i915: Add link rate and lane count to i915_display_info</p>
+Zhenyu Wang (1):
+      Merge tag 'drm-intel-gt-next-2021-01-21-1' into gvt-gt-next
 
-</body>
-</html>
+Zhi Wang (1):
+      drm/i915/gvt: Introduce per object locking in GVT scheduler.
 
---===============4398411654411849228==--
+ drivers/gpu/drm/i915/gvt/cmd_parser.c | 92 ++++++++---------------------------
+ drivers/gpu/drm/i915/gvt/execlist.c   |  8 ++-
+ drivers/gpu/drm/i915/gvt/scheduler.c  | 52 +++++++++++++++-----
+ 3 files changed, 64 insertions(+), 88 deletions(-)
 
---===============1183733933==
+--sXc4Kmr5FA7axrvy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYBz0LAAKCRCxBBozTXgY
+J+QIAJ4scfM9tGtCzYbNW0yeIkdhBs31qQCfSB98/hB0s8OAAxZIwc1ZyX3VX84=
+=YBxy
+-----END PGP SIGNATURE-----
+
+--sXc4Kmr5FA7axrvy--
+
+--===============1132736968==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -250,4 +137,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1183733933==--
+--===============1132736968==--
