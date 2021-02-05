@@ -2,30 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D1C331124F
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 21:24:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51961311267
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 21:26:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 994E86F4C9;
-	Fri,  5 Feb 2021 20:23:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B35346F4CA;
+	Fri,  5 Feb 2021 20:26:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 620D96F4C7;
- Fri,  5 Feb 2021 20:23:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5CAD0AA0EA;
- Fri,  5 Feb 2021 20:23:57 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8CA26F4CA
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 20:26:37 +0000 (UTC)
+IronPort-SDR: rmFhgl3WZ+VGbJqbaG6Qgbj5zSj+gxEP2xd9LLDJHvSBFcocHlhKqqy0hWj39VV53tnTOLGYXG
+ PkgoMc7fl7Aw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9886"; a="161239061"
+X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="161239061"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2021 12:26:37 -0800
+IronPort-SDR: 5AX3ONGgF4y4mQ/5wh3K6655DzpLB6/JNW9h7LmVtqoDzoALtnQ8PQw3K2GbjcJs2jjDv8lPyL
+ mzBFNkmbzlmQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="484450587"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga001.fm.intel.com with SMTP; 05 Feb 2021 12:26:34 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 05 Feb 2021 22:26:33 +0200
+Date: Fri, 5 Feb 2021 22:26:33 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lee Shawn C <shawn.c.lee@intel.com>
+Message-ID: <YB2p+Xa8PkFQT1L8@intel.com>
+References: <20210201150228.10001-1-shawn.c.lee@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 05 Feb 2021 20:23:57 -0000
-Message-ID: <161255663737.1864.16567152986381275387@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210205104905.31414-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210205104905.31414-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Ratelimit_heartbeat_completion_probing_=28rev7=29?=
+Content-Disposition: inline
+In-Reply-To: <20210201150228.10001-1-shawn.c.lee@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/vbt: update DP max link rate table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,208 +49,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0946308523=="
+Cc: Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org,
+ William Tseng <william.tseng@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0946308523==
-Content-Type: multipart/alternative;
- boundary="===============0231524479932041629=="
+On Mon, Feb 01, 2021 at 11:02:28PM +0800, Lee Shawn C wrote:
+> According to Bspec #20124, max link rate table for DP was updated
+> at BDB version 230. Max link rate can support upto UHBR.
+> =
 
---===============0231524479932041629==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> After migrate to BDB v230, the definition for LBR, HBR2 and HBR3
+> were changed. For backward compatibility. If BDB version was
+> from 216 to 229. Driver have to follow original rule to configure
+> DP max link rate value from VBT.
+> =
 
-== Series Details ==
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+> Cc: William Tseng <william.tseng@intel.com>
+> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 24 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 14 +++++++----
+>  2 files changed, 32 insertions(+), 6 deletions(-)
+> =
 
-Series: drm/i915/gt: Ratelimit heartbeat completion probing (rev7)
-URL   : https://patchwork.freedesktop.org/series/86665/
-State : success
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 04337ac6f8c4..be1f732e6550 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -1876,7 +1876,15 @@ static void parse_ddi_port(struct drm_i915_private=
+ *dev_priv,
+>  	/* DP max link rate for CNL+ */
+>  	if (bdb_version >=3D 216) {
+>  		switch (child->dp_max_link_rate) {
+> -		default:
+> +		case VBT_DP_MAX_LINK_RATE_UHBR20:
+> +			info->dp_max_link_rate =3D 2000000;
+> +			break;
+> +		case VBT_DP_MAX_LINK_RATE_UHBR13P5:
+> +			info->dp_max_link_rate =3D 1350000;
+> +			break;
+> +		case VBT_DP_MAX_LINK_RATE_UHBR10:
+> +			info->dp_max_link_rate =3D 1000000;
+> +			break;
+>  		case VBT_DP_MAX_LINK_RATE_HBR3:
+>  			info->dp_max_link_rate =3D 810000;
+>  			break;
+> @@ -1889,7 +1897,21 @@ static void parse_ddi_port(struct drm_i915_private=
+ *dev_priv,
+>  		case VBT_DP_MAX_LINK_RATE_LBR:
+>  			info->dp_max_link_rate =3D 162000;
+>  			break;
+> +		case VBT_DP_MAX_LINK_RATE_DEFAULT:
+> +		default:
+> +			info->dp_max_link_rate =3D 0;
+> +			break;
+> +		}
+> +
+> +		if (bdb_version < 230) {
+> +			if (child->dp_max_link_rate =3D=3D VBT_DP_MAX_LINK_RATE_DEFAULT)
+> +				info->dp_max_link_rate =3D 810000;
+> +			else if (child->dp_max_link_rate =3D=3D VBT_DP_MAX_LINK_RATE_LBR)
+> +				info->dp_max_link_rate =3D 540000;
+> +			else if (child->dp_max_link_rate =3D=3D VBT_DP_MAX_LINK_RATE_HBR2)
+> +				info->dp_max_link_rate =3D 162000;
+>  		}
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9740 -> Patchwork_19607
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19607 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#2411] / [i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Additional (1): fi-byt-j1900 
-  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+I would split this into two separate functions, one does the new
+mapping, the other the old mapping. =
 
 
-Build changes
--------------
+> +
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "VBT DP max link rate for port %c: %d\n",
+>  			    port_name(port), info->dp_max_link_rate);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
+drm/i915/display/intel_vbt_defs.h
+> index 6d10fa037751..578a54b33f32 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -343,10 +343,14 @@ enum vbt_gmbus_ddi {
+>  #define DP_AUX_H 0x80
+>  #define DP_AUX_I 0x90
+>  =
 
-  * Linux: CI_DRM_9740 -> Patchwork_19607
+> -#define VBT_DP_MAX_LINK_RATE_HBR3	0
+> -#define VBT_DP_MAX_LINK_RATE_HBR2	1
+> +#define VBT_DP_MAX_LINK_RATE_DEFAULT	0
+> +#define VBT_DP_MAX_LINK_RATE_LBR	1
+>  #define VBT_DP_MAX_LINK_RATE_HBR	2
+> -#define VBT_DP_MAX_LINK_RATE_LBR	3
+> +#define VBT_DP_MAX_LINK_RATE_HBR2	3
+> +#define VBT_DP_MAX_LINK_RATE_HBR3	4
+> +#define VBT_DP_MAX_LINK_RATE_UHBR10	5
+> +#define VBT_DP_MAX_LINK_RATE_UHBR13P5	6
+> +#define VBT_DP_MAX_LINK_RATE_UHBR20	7
 
-  CI-20190529: 20190529
-  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19607: 4f05cc2083694c58b54d71fd79bed6ef83180f05 @ git://anongit.freedesktop.org/gfx-ci/linux
+And we should keep both old and new names for these.
 
+Sadly I can't right now check the spec since it no longer has the
+old stuff apparently, and the VBT section got moved around so the
+history no longer shows anything either :( I'll have to pull the whole
+thing down I guess so I can double check against the old version.
 
-== Linux commits ==
+>  =
 
-4f05cc208369 drm/i915/gt: Ratelimit heartbeat completion probing
+>  /*
+>   * The child device config, aka the display device data structure, provi=
+des a
+> @@ -445,8 +449,8 @@ struct child_device_config {
+>  	u16 dp_gpio_pin_num;					/* 195 */
+>  	u8 dp_iboost_level:4;					/* 196 */
+>  	u8 hdmi_iboost_level:4;					/* 196 */
+> -	u8 dp_max_link_rate:2;					/* 216 CNL+ */
+> -	u8 dp_max_link_rate_reserved:6;				/* 216 */
+> +	u8 dp_max_link_rate:3;					/* 230 */
+> +	u8 dp_max_link_rate_reserved:5;				/* 230 */
+>  } __packed;
+>  =
 
-== Logs ==
+>  struct bdb_general_definitions {
+> -- =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/index.html
+> 2.17.1
 
---===============0231524479932041629==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-- =
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Ratelimit heartbeat completion probing (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86665/">https://patchwork.freedesktop.org/series/86665/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9740 -&gt; Patchwork_19607</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19607 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_one_bo_two_files:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19607/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Additional (1): fi-byt-j1900 <br />
-  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9740 -&gt; Patchwork_19607</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19607: 4f05cc2083694c58b54d71fd79bed6ef83180f05 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4f05cc208369 drm/i915/gt: Ratelimit heartbeat completion probing</p>
-
-</body>
-</html>
-
---===============0231524479932041629==--
-
---===============0946308523==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0946308523==--
