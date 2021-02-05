@@ -2,31 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB77311394
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 22:32:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09BF83113C4
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 22:46:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9C776F4DE;
-	Fri,  5 Feb 2021 21:32:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 614D76F4DF;
+	Fri,  5 Feb 2021 21:46:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 119AA6F4DC;
- Fri,  5 Feb 2021 21:32:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0ADB0A47DB;
- Fri,  5 Feb 2021 21:32:37 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95E146F4DF
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 21:46:38 +0000 (UTC)
+IronPort-SDR: 4RToKNabwUkpmsXkdWBKOhf0ogPat79V/l+fHxrKY2duHC7ORv3KC5HtevBisDsNed6kVlv6dZ
+ uRkea3Wsinqw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9886"; a="168611965"
+X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="168611965"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2021 13:46:37 -0800
+IronPort-SDR: UowALzNDwGswTr+Bzz85JNo682X4ROkoH13UnPMoC4AQhMtPVvhXIrPObXrBI7mpGgpROLkDSe
+ K1iJ1856I7rQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="397616495"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 05 Feb 2021 13:46:35 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 05 Feb 2021 23:46:34 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  5 Feb 2021 23:46:19 +0200
+Message-Id: <20210205214634.19341-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Fri, 05 Feb 2021 21:32:37 -0000
-Message-ID: <161256075701.1862.13270353550342454415@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210205155931.198122-1-jose.souza@intel.com>
-In-Reply-To: <20210205155931.198122-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Allow_PSR2_selective_fetch_to_be_enabled_at_ru?=
- =?utf-8?q?n-time?=
+Subject: [Intel-gfx] [PATCH v3 00/15] drm/i915: Clean up the DDI clock
+ routing mess
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,196 +47,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1341537537=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1341537537==
-Content-Type: multipart/alternative;
- boundary="===============3353198736158890639=="
-
---===============3353198736158890639==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/display: Allow PSR2 selective fetch to be enabled at run-time
-URL   : https://patchwork.freedesktop.org/series/86773/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9740 -> Patchwork_19609
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19609 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ringfill@basic-all:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_ringfill@basic-all.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-tgl-y/igt@gem_ringfill@basic-all.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Additional (1): fi-byt-j1900 
-  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9740 -> Patchwork_19609
-
-  CI-20190529: 20190529
-  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19609: 0a3f51f0aa083f72e8e2d5dfc910c3fd89ce64d1 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0a3f51f0aa08 drm/i915/display: Allow PSR2 selective fetch to be enabled at run-time
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html
-
---===============3353198736158890639==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Allow PSR2 selective fetch to be enabled at run-time</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86773/">https://patchwork.freedesktop.org/series/86773/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9740 -&gt; Patchwork_19609</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19609 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_ringfill@basic-all:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_ringfill@basic-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-tgl-y/igt@gem_ringfill@basic-all.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Additional (1): fi-byt-j1900 <br />
-  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9740 -&gt; Patchwork_19609</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19609: 0a3f51f0aa083f72e8e2d5dfc910c3fd89ce64d1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0a3f51f0aa08 drm/i915/display: Allow PSR2 selective fetch to be enabled at run-time</p>
-
-</body>
-</html>
-
---===============3353198736158890639==--
-
---===============1341537537==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1341537537==--
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClNv
+cnJ5IGZvciBzcGFtbWluZyB0aGUgc2FtZSBzZXJpZXMgYWdhaW4gYW5kIGFnYWluLgp2MiBzdGls
+bCBoYWQgc29tZSBpc3N1ZXMgYXJvdW5kIEZESSwgYW5kIHRvIGZpeCB0aG9zZQpJIGhhZCB0byBz
+dGljayBhIGZyZXNoIHBhdGNoIHRvIHRoZSBzdGFydCBvZiB0aGUgc2VyaWVzLgpIb3BlZnVsbHkg
+aXQncyBub3cgc29saWQuCgpJIGhhdmUgYSBmZXcgbW9yZSBwYXRjaGVzIGFscmVhZHkgY29va2Vk
+IHVwIG9uIHRvcCB0bwpjbGVhbiB1cCB0aGUgcmVhZG91dCBzaWRlIHRvby4gQnV0IEknbSBnb2lu
+ZyB0byB0cnkKbGFuZCB0aGlzIHBhcnQgZmlyc3QuCgpWaWxsZSBTeXJqw6Rsw6QgKDE1KToKICBk
+cm0vaTkxNTogVXNlIGludGVsX2RkaV9jbGtfc2VsZWN0KCkgZm9yIEZESQogIGRybS9pOTE1OiBJ
+bnRyb2R1Y2UgLntlbmFibGUsZGlzYWJsZX1fY2xvY2soKSBlbmNvZGVyIHZmdW5jcwogIGRybS9p
+OTE1OiBFeHRyYWN0IGhzd19kZGlfe2VuYWJsZSxkaXNhYmxlfV9jbG9jaygpCiAgZHJtL2k5MTU6
+IEV4dHJhY3Qgc2tsX2RkaV97ZW5hYmxlLGRpc2FibGV9X2Nsb2NrKCkKICBkcm0vaTE5NTogRXh0
+cmFjdCBjbmxfZGRpX3tlbmFibGUsZGlzYWJsZX1fY2xvY2soKQogIGRybS9pOTE1OiBDb252ZXJ0
+IERHMSBvdmVyIHRvIC57ZW5hYmxlLGRpc2FibGV9X2Nsb2NrKCkKICBkcm0vaTkxNTogRXh0cmFj
+dCBpY2wrIC57ZW5hYmxlLGRpc2FibGV9X2Nsb2NrKCkgdmZ1bmNzCiAgZHJtL2k5MTU6IFVzZSBp
+bnRlbF9kZV9ybXcoKSBmb3IgRERJIGNsb2NrIHJvdXRpbmcKICBkcm0vaTkxNTogU3ByaW5rbGUg
+YSBmZXcgbWlzc2luZyBsb2NrcyBhcm91bmQgc2hhcmVkIERESSBjbG9jawogICAgcmVnaXN0ZXJz
+CiAgZHJtL2k5MTU6IFNwcmlua2xlIFdBUk4oIXBsbCkgaW50byBpY2wvZGcxIC5jbG9ja19lbmFi
+bGUoKQogIGRybS9pOTE1OiBFeHRyYWN0IF9jbmxfZGRpX3tlbmFibGUsZGlzYWJsZX1fY2xvY2so
+KQogIGRybS9pOTE1OiBTcGxpdCBhZGwtcy9ya2wgZnJvbSBpY2xfZGRpX2NvbWJvX3tlbmFibGUs
+ZGlzYWJsZX1fY2xvY2soKQogIGRybS9pOTE1OiBVc2UgLmRpc2FibGVfY2xvY2soKSBmb3IgcGxs
+IHNhbml0YXRpb24KICBkcm0vaTkxNTogUmVsb2NhdGUgaWNsX3Nhbml0aXplX2VuY29kZXJfcGxs
+X21hcHBpbmcoKQogIGRybS9pOTE1OiBzL2Rldl9wcml2L2k5MTUvIGZvciB0aGUgcmVtYWluZGVy
+IG9mIERESSBjbG9jayByb3V0aW5nCgogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pY2xf
+ZHNpLmMgICAgICAgIHwgICAxICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+Y3J0LmMgICAgICB8ICAgMiArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rk
+aS5jICAgICAgfCA1NzggKysrKysrKysrKy0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2RkaS5oICAgICAgfCAgIDYgKy0KIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXlfdHlwZXMuaCAgICB8ICAgNiArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2ZkaS5jICAgICAgfCAgIDcgKy0KIDYgZmlsZXMgY2hhbmdlZCwgMzI2IGluc2Vy
+dGlvbnMoKyksIDI3NCBkZWxldGlvbnMoLSkKCi0tIAoyLjI2LjIKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
