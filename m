@@ -2,29 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09FEC310144
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 01:04:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27B943101AC
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 01:34:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B4036E150;
-	Fri,  5 Feb 2021 00:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04BBD6EF21;
+	Fri,  5 Feb 2021 00:34:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB6F46E150
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 00:04:49 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23792181-1500050 
- for multiple; Fri, 05 Feb 2021 00:04:39 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 626866EF21
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 00:34:04 +0000 (UTC)
+IronPort-SDR: 04yy0is383A8T0PVLlv+Hjz4qnMqJgwaSXhzLtgaNRP7Ls/TIc8CZNA1O9ts/s8r3KjdsR+PI8
+ a0sYsYbmdHpg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="245425187"
+X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="245425187"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 16:33:45 -0800
+IronPort-SDR: EMwaW5vtOVIPH70MqPDwewp2bu0GL1aaeJo1g0zbCAoVskfHPk+YdkJv1OcaWM4xizD0KZqruO
+ Le9RXd9VmaJw==
+X-IronPort-AV: E=Sophos;i="5.81,153,1610438400"; d="scan'208";a="415409183"
+Received: from amgarris-mobl.amr.corp.intel.com (HELO
+ sghuge-mobl1.amr.corp.intel.com) ([10.212.114.36])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2021 16:33:43 -0800
+From: Sagar Ghuge <sagar.ghuge@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Feb 2021 00:04:37 +0000
-Message-Id: <20210205000437.16079-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Date: Thu,  4 Feb 2021 16:33:10 -0800
+Message-Id: <20210205003310.282664-1-sagar.ghuge@intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftest: Synchronise with the GPU
- timestamp
+Subject: [Intel-gfx] [PATCH] drm/i915/icl,
+ tgl: whitelist COMMON_SLICE_CHICKEN3 register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,41 +46,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Wait for the GPU to wake up from the semaphore before measuring the
-time, so that we coordinate the sampling on both the CPU and GPU for
-more accurate comparisons.
+Adding this register to whitelist will allow UMD to toggle State Cache
+Perf fix disable chicken bit.
 
-Reported-by: Bruce Chang <yu.bruce.chang@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: CQ Tang <cq.tang@intel.com>
+   "If this bit is enabled, RCC uses BTP+BTI as address tag in its state
+   cache instead of BTI only"
+
+which will lead to dropping unnecessary render target flushes and stall
+on scoreboard.
+
+Bspec: 11333
+Bspec: 45829
+
+Signed-off-by: Sagar Ghuge <sagar.ghuge@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-index 3ce8cb3329f3..007a7c790778 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-@@ -111,8 +111,10 @@ static int __measure_timestamps(struct intel_context *ce,
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 53f7838bd3c4..318302475c28 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1473,6 +1473,9 @@ static void icl_whitelist_build(struct intel_engine_cs *engine)
+ 		/* WaEnableStateCacheRedirectToCS:icl */
+ 		whitelist_reg(w, GEN9_SLICE_COMMON_ECO_CHICKEN1);
  
- 	/* Run the request for a 100us, sampling timestamps before/after */
- 	preempt_disable();
--	*dt = local_clock();
- 	write_semaphore(&sema[2], 0);
-+	while (READ_ONCE(sema[1]) == 0) /* wait for the gpu to catch up */
-+		cpu_relax();
-+	*dt = local_clock();
- 	udelay(100);
- 	*dt = local_clock() - *dt;
- 	write_semaphore(&sema[2], 1);
++		/* WaAllowToDisableStateCachePerfFixFromUMD:icl */
++		whitelist_reg(w, GEN11_COMMON_SLICE_CHICKEN3);
++
+ 		/*
+ 		 * WaAllowPMDepthAndInvocationCountAccessFromUMD:icl
+ 		 *
+@@ -1533,6 +1536,9 @@ static void tgl_whitelist_build(struct intel_engine_cs *engine)
+ 		/* Wa_1808121037:tgl */
+ 		whitelist_reg(w, GEN7_COMMON_SLICE_CHICKEN1);
+ 
++		/* WaAllowToDisableStateCachePerfFixFromUMD:tgl */
++		whitelist_reg(w, GEN11_COMMON_SLICE_CHICKEN3);
++
+ 		/* Wa_1806527549:tgl */
+ 		whitelist_reg(w, HIZ_CHICKEN);
+ 		break;
 -- 
-2.20.1
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
