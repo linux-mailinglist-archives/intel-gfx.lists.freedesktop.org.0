@@ -2,59 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2525B310AED
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 13:12:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 955C2310B2E
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 13:39:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B9086E283;
-	Fri,  5 Feb 2021 12:12:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1624A89CB9;
+	Fri,  5 Feb 2021 12:39:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7EF26E161
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 12:12:37 +0000 (UTC)
-IronPort-SDR: fq1Nw0aAYueP3t0cDwvfxnt3S57/VIfLczeEABA76EoO60FmZATyrJT1NZxwofhrFQC/f6Fg8i
- 0u3ViiHHAifQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9885"; a="169100543"
-X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; d="scan'208";a="169100543"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2021 04:12:36 -0800
-IronPort-SDR: ky4ZnAvvXozs/WzUxpEuXUSXAfuM7QQq8za4DJHfbxMR9gSn1gzsi2EdgulYa3wZgNId2SQNSq
- nt9pu0fYwILg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,154,1610438400"; d="scan'208";a="393835214"
-Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
- by orsmga008.jf.intel.com with ESMTP; 05 Feb 2021 04:12:35 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 5 Feb 2021 12:12:34 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
- Fri, 5 Feb 2021 17:42:32 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability enc NULL
- check
-Thread-Index: AQHW9hcHLYgShgUN5UGRp1lepj4wC6pH/piAgAFBdcD//+XIgIAAXgjA
-Date: Fri, 5 Feb 2021 12:12:32 +0000
-Message-ID: <aabf782fb5f44932ac7e314ae727b119@intel.com>
-References: <20210129080043.24614-1-anshuman.gupta@intel.com>
- <20210204182809.GC750296@ideak-desk.fi.intel.com>
- <aa661df54d8847d0926e8edf61710fcf@intel.com>
- <20210205120451.GA921144@ideak-desk.fi.intel.com>
-In-Reply-To: <20210205120451.GA921144@ideak-desk.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0643A89249;
+ Fri,  5 Feb 2021 12:39:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F20FEA73C9;
+ Fri,  5 Feb 2021 12:39:26 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability enc NULL
- check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 05 Feb 2021 12:39:26 -0000
+Message-ID: <161252876695.1864.11139760579845504507@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210205102026.806699-1-matthew.auld@intel.com>
+In-Reply-To: <20210205102026.806699-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/2=5D_drm/i915=3A_cleanup_the_region?=
+ =?utf-8?q?_class/instance_encoding?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,119 +39,251 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0573366606=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0573366606==
+Content-Type: multipart/alternative;
+ boundary="===============7608291728923962818=="
+
+--===============7608291728923962818==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [v2,1/2] drm/i915: cleanup the region class/instance encoding
+URL   : https://patchwork.freedesktop.org/series/86753/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9737 -> Patchwork_19602
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19602:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - {fi-cml-drallion}:  NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-cml-drallion/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19602 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [PASS][2] -> [DMESG-WARN][3] ([i915#402]) +2 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  * igt@i915_selftest@live@sanitycheck:
+    - fi-kbl-7500u:       [PASS][4] -> [DMESG-WARN][5] ([i915#2605])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [FAIL][6] ([i915#1888]) -> [PASS][7] +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+    - fi-tgl-y:           [DMESG-WARN][8] ([i915#2411] / [i915#402]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][10] ([i915#402]) -> [PASS][11] +2 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1208]: https://gitlab.freedesktop.org/drm/intel/issues/1208
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#2546]: https://gitlab.freedesktop.org/drm/intel/issues/2546
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
 
-> -----Original Message-----
-> From: Imre Deak <imre.deak@intel.com>
-> Sent: Friday, February 5, 2021 5:35 PM
-> To: Gupta, Anshuman <anshuman.gupta@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability enc NULL
-> check
-> 
-> On Fri, Feb 05, 2021 at 10:16:30AM +0200, Gupta, Anshuman wrote:
-> > > -----Original Message-----
-> > > From: Imre Deak <imre.deak@intel.com>
-> > > Sent: Thursday, February 4, 2021 11:58 PM
-> > > To: Gupta, Anshuman <anshuman.gupta@intel.com>
-> > > Cc: intel-gfx@lists.freedesktop.org
-> > > Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability
-> > > enc NULL check
-> > >
-> > > On Fri, Jan 29, 2021 at 01:30:43PM +0530, Anshuman Gupta wrote:
-> > > > DP-MST connector encoder initializes at modeset Adding a
-> > > > connector->encoder NULL check in order to avoid any NULL pointer
-> > > > dereference.
-> > > > intel_hdcp_enable() already handle this but debugfs can also
-> > > > invoke the intel_{hdcp,hdcp2_capable}.
-> > > > Handling it gracefully.
-> > > >
-> > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_hdcp.c | 14 ++++++++++++--
-> > > >  1 file changed, 12 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > > b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > > index ae1371c36a32..58af323d189a 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > > @@ -135,11 +135,16 @@ int intel_hdcp_read_valid_bksv(struct
-> > > > intel_digital_port *dig_port,
-> > > >  /* Is HDCP1.4 capable on Platform and Sink */  bool
-> > > > intel_hdcp_capable(struct intel_connector *connector)  {
-> > > > -	struct intel_digital_port *dig_port =
-> > > intel_attached_dig_port(connector);
-> > > > +	struct intel_digital_port *dig_port;
-> > > >  	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
-> > > >  	bool capable = false;
-> > > >  	u8 bksv[5];
-> > > >
-> > > > +	if (!connector->encoder)
-> > > > +		return -ENODEV;
-> > >
-> > > I assume this is needed when called from i915_hdcp_sink_capability
-> > > debugfs entry. That one is lacking the locking for the connector,
-> > > but is that entry really needed? We print the same info already from
-> > > the i915_display_info entry which has the proper locking and encoder
-> > > check.
-> >
-> > Historically HDCP capability added to i915_display_info later to debug
-> > CI machine as i915_display_info available as CI logs.  Now the plans
-> > i915_display_info  should only show the monitor capability.  and
-> > i915_hdcp_sink_capability will check both sink and platform
-> > capability.
-> 
-> Ok, in any case the encoder NULL check and the required locking should be done
-> in i915_hdcp_sink_capability_show().
-Thanks Imre for review I will send a v2 patch.
-Thanks,
-Anshuman Gupta.
-> 
-> >
-> > Thanks,
-> > Anshuman Gupta.
-> > >
-> > > > +
-> > > > +	dig_port = intel_attached_dig_port(connector);
-> > > > +
-> > > >  	if (!shim)
-> > > >  		return capable;
-> > > >
-> > > > @@ -156,11 +161,16 @@ bool intel_hdcp_capable(struct
-> > > > intel_connector
-> > > > *connector)
-> > > >  /* Is HDCP2.2 capable on Platform and Sink */  bool
-> > > > intel_hdcp2_capable(struct intel_connector *connector)  {
-> > > > -	struct intel_digital_port *dig_port =
-> > > intel_attached_dig_port(connector);
-> > > > +	struct intel_digital_port *dig_port;
-> > > >  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> > > >  	struct intel_hdcp *hdcp = &connector->hdcp;
-> > > >  	bool capable = false;
-> > > >
-> > > > +	if (!connector->encoder)
-> > > > +		return -ENODEV;
-> > > > +
-> > > > +	dig_port = intel_attached_dig_port(connector);
-> > > > +
-> > > >  	/* I915 support for HDCP2.2 */
-> > > >  	if (!hdcp->hdcp2_supported)
-> > > >  		return false;
-> > > > --
-> > > > 2.26.2
-> > > >
-> > > > _______________________________________________
-> > > > Intel-gfx mailing list
-> > > > Intel-gfx@lists.freedesktop.org
-> > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Participating hosts (43 -> 39)
+------------------------------
+
+  Additional (1): fi-cml-drallion 
+  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-bsw-cyan fi-icl-u2 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9737 -> Patchwork_19602
+
+  CI-20190529: 20190529
+  CI_DRM_9737: 8fef45d7241af38b7d68a8ad3b11ce8ab38b4491 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5992: b781a32b06a0173a71b4e1ac30d18dd7164a67c4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19602: 7a3060c7aa80ea8ca38046a1b831d4b30934420c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7a3060c7aa80 drm/i915: give stolen system memory its own class
+1e8f99e1a917 drm/i915: cleanup the region class/instance encoding
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/index.html
+
+--===============7608291728923962818==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915: cleanup the region class/instance encoding</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86753/">https://patchwork.freedesktop.org/series/86753/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9737 -&gt; Patchwork_19602</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19602:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:<ul>
+<li>{fi-cml-drallion}:  NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-cml-drallion/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19602 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> +1 similar issue</p>
+</li>
+<li>
+<p>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9737/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19602/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Additional (1): fi-cml-drallion <br />
+  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-bsw-cyan fi-icl-u2 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9737 -&gt; Patchwork_19602</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9737: 8fef45d7241af38b7d68a8ad3b11ce8ab38b4491 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5992: b781a32b06a0173a71b4e1ac30d18dd7164a67c4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19602: 7a3060c7aa80ea8ca38046a1b831d4b30934420c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>7a3060c7aa80 drm/i915: give stolen system memory its own class<br />
+1e8f99e1a917 drm/i915: cleanup the region class/instance encoding</p>
+
+</body>
+</html>
+
+--===============7608291728923962818==--
+
+--===============0573366606==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0573366606==--
