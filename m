@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ADAB310C8A
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 15:23:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F9E310C98
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 15:32:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D808D6F432;
-	Fri,  5 Feb 2021 14:23:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 057136F44D;
+	Fri,  5 Feb 2021 14:32:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDFF36F432
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 14:23:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D66836F44D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 14:32:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.69.177; 
 Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23798801-1500050 
- for multiple; Fri, 05 Feb 2021 14:22:56 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23798900-1500050 
+ for multiple; Fri, 05 Feb 2021 14:32:21 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Feb 2021 14:22:55 +0000
-Message-Id: <20210205142255.17571-1-chris@chris-wilson.co.uk>
+Date: Fri,  5 Feb 2021 14:32:20 +0000
+Message-Id: <20210205143220.18148-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210205104905.31414-1-chris@chris-wilson.co.uk>
 References: <20210205104905.31414-1-chris@chris-wilson.co.uk>
@@ -71,12 +71,12 @@ Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
  .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 93 +++++++++++++++++--
  drivers/gpu/drm/i915/gt/intel_engine_types.h  |  1 +
- .../drm/i915/gt/selftest_engine_heartbeat.c   | 62 ++++++-------
+ .../drm/i915/gt/selftest_engine_heartbeat.c   | 65 ++++++-------
  drivers/gpu/drm/i915/gt/selftest_execlists.c  |  5 +-
- 4 files changed, 116 insertions(+), 45 deletions(-)
+ 4 files changed, 119 insertions(+), 45 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 93741a65924a..9089689c84eb 100644
+index 93741a65924a..01d8a04f77b6 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
 +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
 @@ -20,6 +20,18 @@
@@ -220,9 +220,9 @@ index 93741a65924a..9089689c84eb 100644
  {
 -	if (cancel_delayed_work(&engine->heartbeat.work))
 -		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
-+       	/* completion may rearm work */
++	/* completion may rearm work */
 +	while (cancel_delayed_work(&engine->heartbeat.work))
-+		untrack_heartbeat(engine);
++		;
 +	untrack_heartbeat(engine);
  }
  
@@ -240,10 +240,10 @@ index 7159f9575e65..4956594c8b93 100644
  	} heartbeat;
  
 diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-index b2c369317bf1..d97294e7c204 100644
+index b2c369317bf1..812c4a168b01 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-@@ -202,18 +202,13 @@ static int cmp_u32(const void *_a, const void *_b)
+@@ -202,47 +202,44 @@ static int cmp_u32(const void *_a, const void *_b)
  
  static int __live_heartbeat_fast(struct intel_engine_cs *engine)
  {
@@ -265,9 +265,13 @@ index b2c369317bf1..d97294e7c204 100644
  	intel_engine_pm_get(engine);
  
  	err = intel_engine_set_heartbeat(engine, 1);
-@@ -221,28 +216,27 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
+ 	if (err)
  		goto err_pm;
  
++	flush_delayed_work(&engine->heartbeat.work);
++	while (engine->heartbeat.systole)
++		intel_engine_park_heartbeat(engine);
++
  	for (i = 0; i < ARRAY_SIZE(times); i++) {
 -		do {
 -			/* Manufacture a tick */
@@ -286,8 +290,7 @@ index b2c369317bf1..d97294e7c204 100644
 -				err = -EINVAL;
 -				goto err_pm;
 -			}
-+		intel_engine_park_heartbeat(engine);
-+		GEM_BUG_ON(engine->heartbeat.systole);
++		GEM_BUG_ON(READ_ONCE(engine->heartbeat.systole));
  
 -			rcu_read_lock();
 -			rq = READ_ONCE(engine->heartbeat.systole);
@@ -312,7 +315,7 @@ index b2c369317bf1..d97294e7c204 100644
  		t0 = ktime_get();
  		while (rq == READ_ONCE(engine->heartbeat.systole))
  			yield(); /* work is on the local cpu! */
-@@ -275,10 +269,10 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
+@@ -275,10 +272,10 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
  		err = -EINVAL;
  	}
  
@@ -324,7 +327,7 @@ index b2c369317bf1..d97294e7c204 100644
  	return err;
  }
  
-@@ -308,20 +302,16 @@ static int __live_heartbeat_off(struct intel_engine_cs *engine)
+@@ -308,20 +305,16 @@ static int __live_heartbeat_off(struct intel_engine_cs *engine)
  
  	intel_engine_pm_get(engine);
  
