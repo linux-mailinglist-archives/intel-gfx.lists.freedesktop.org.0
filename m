@@ -2,44 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACF4031128E
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 21:36:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B28403112D5
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 21:53:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 104706F4CB;
-	Fri,  5 Feb 2021 20:36:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 275666E2C8;
+	Fri,  5 Feb 2021 20:53:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD7C16F4CB
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 20:36:21 +0000 (UTC)
-IronPort-SDR: 5wK+e40yIic5/4nLsDC6SoPIzcVrGj87k9Cs2zpyl30IuAeicXnghJDFmDUyPzkgCf3xXTvKNX
- zfefsvAH4VHg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9886"; a="180709895"
-X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="180709895"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2021 12:36:21 -0800
-IronPort-SDR: lFja7Hw6okzVc3wa6UP7kGtY87Y01gHdTrFZuUDmdhS+61m1Jgf/AxrYv4ldtx538OZ/XcHVkP
- bcjuc7bWZ0Fg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="373510191"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 05 Feb 2021 12:36:18 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Feb 2021 22:36:17 +0200
-Date: Fri, 5 Feb 2021 22:36:17 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YB2sQX8VgJ9MH8lh@intel.com>
-References: <cover.1612536383.git.jani.nikula@intel.com>
- <7a9463a87517fc5cbb5d4cbf395531b7fc0713d0.1612536383.git.jani.nikula@intel.com>
- <YB1fmmHXYdg/A8iK@intel.com>
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
+ [IPv6:2607:f8b0:4864:20::333])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 382206E2C8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 20:53:52 +0000 (UTC)
+Received: by mail-ot1-x333.google.com with SMTP id d7so5935061otq.6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 05 Feb 2021 12:53:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=5PRi5FG8/+JWu+jWzUkXoHnN4JWoS4p+oSPjz4dHX4E=;
+ b=OASnDCXTrffqrxPZSX+X2BoOBJSJeWYxtAIhsNCtVNhz5gMXxmVx/jYGnsUN9nnJuN
+ vhfjMJNVrRb2wgVEK4+xSY1vgWYsPum4Jw0tHUrjZI6XNfx7htArAF/NC/hE/qfZg0zE
+ Q6EogytHRY9X2yLHj2BIhrsaED0mM8FE6XIoc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=5PRi5FG8/+JWu+jWzUkXoHnN4JWoS4p+oSPjz4dHX4E=;
+ b=GhSu3DiFXqYg11Dij0Lk1U1jouBjFbMCS/1BKmBznqzZ5mQQM9lL1fEbZPOe1dJ43k
+ j0j6ZX+sJBrB/HI4AXB/ieWFQ0oIhaAV6qKZvdgK7fjhPNROpSL7nEkytp46AhGhqfx7
+ 6WlT9N7GRHRyOoRNFPlzkdOruJw8xLwwl/9pSjMLPB45A/ps8oD+ftkdFoKgr+PdjO7g
+ DL292Gu+CdaXoEUQZ02fnK3aRFE9C99zJ2P3n8IOMU44tapuP9DxpVOw4kgFuHLPADHT
+ meoaGI2tb3mF0hrd2skyV9jTJGJjcJB0FbbTtQZxl8cxv8wYH4o/Qe0Q5h/t68/zg6nC
+ b0MA==
+X-Gm-Message-State: AOAM533rb7rPQU0ZvL55LiDbqqMapDMerCcC7hxNfSm/emV8TIRG4xKs
+ DUeT019vdpzT/cqEbHD6gg192Hle4vAP69h2sB5Lwg==
+X-Google-Smtp-Source: ABdhPJzg/0sRpmAYdxePGbdJtZika7yemD79/03eRrmz2fmH3+4sjo2UBY/XCbjTjR0SqL2Ey0KOyRS9uFFIs7Vpmkg=
+X-Received: by 2002:a9d:b85:: with SMTP id 5mr4848871oth.281.1612558431545;
+ Fri, 05 Feb 2021 12:53:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YB1fmmHXYdg/A8iK@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v12 8/8] drm/i915: move ddi pll state get to
- dpll mgr
+References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
+ <202102051030.1AF01772D@keescook>
+In-Reply-To: <202102051030.1AF01772D@keescook>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Fri, 5 Feb 2021 21:53:40 +0100
+Message-ID: <CAKMK7uHnOA9CuRxcKkcqG8duOw_3dZobkThcV7Q_swMXVoLCkQ@mail.gmail.com>
+To: Kees Cook <keescook@chromium.org>, "airlied@gmail.com" <airlied@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH] kernel: Expose SYS_kcmp by default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,73 +58,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Will Drewry <wad@chromium.org>, Jann Horn <jannh@google.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Andy Lutomirski <luto@amacapital.net>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 05, 2021 at 05:09:14PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Fri, Feb 05, 2021 at 04:48:43PM +0200, Jani Nikula wrote:
-> > From: Dave Airlie <airlied@redhat.com>
-> > =
-
-> > This just migrates the hsw+ code to a better place.
-> > =
-
-> > Signed-off-by: Dave Airlie <airlied@redhat.com>
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Fri, Feb 5, 2021 at 7:37 PM Kees Cook <keescook@chromium.org> wrote:
+>
+> On Fri, Feb 05, 2021 at 04:37:52PM +0000, Chris Wilson wrote:
+> > Userspace has discovered the functionality offered by SYS_kcmp and has
+> > started to depend upon it. In particular, Mesa uses SYS_kcmp for
+> > os_same_file_description() in order to identify when two fd (e.g. device
+> > or dmabuf) point to the same struct file. Since they depend on it for
+> > core functionality, lift SYS_kcmp out of the non-default
+> > CONFIG_CHECKPOINT_RESTORE into the selectable syscall category.
+> >
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Kees Cook <keescook@chromium.org>
+> > Cc: Andy Lutomirski <luto@amacapital.net>
+> > Cc: Will Drewry <wad@chromium.org>
+> > Cc: Andrew Morton <akpm@linux-foundation.org>
+> > Cc: Dave Airlie <airlied@gmail.com>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: Lucas Stach <l.stach@pengutronix.de>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c  | 219 +----------------
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 223 ++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   2 +
-> >  3 files changed, 226 insertions(+), 218 deletions(-)
-> > =
+> >  init/Kconfig                                  | 11 +++++++++++
+> >  kernel/Makefile                               |  2 +-
+> >  tools/testing/selftests/seccomp/seccomp_bpf.c |  2 +-
+> >  3 files changed, 13 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/init/Kconfig b/init/Kconfig
+> > index b77c60f8b963..f62fca13ac5b 100644
+> > --- a/init/Kconfig
+> > +++ b/init/Kconfig
+> > @@ -1194,6 +1194,7 @@ endif # NAMESPACES
+> >  config CHECKPOINT_RESTORE
+> >       bool "Checkpoint/restore support"
+> >       select PROC_CHILDREN
+> > +     select KCMP
+> >       default n
+> >       help
+> >         Enables additional kernel features in a sake of checkpoint/restore.
+> > @@ -1737,6 +1738,16 @@ config ARCH_HAS_MEMBARRIER_CALLBACKS
+> >  config ARCH_HAS_MEMBARRIER_SYNC_CORE
+> >       bool
+> >
+> > +config KCMP
+> > +     bool "Enable kcmp() system call" if EXPERT
+> > +     default y
+>
+> I would expect this to be not default-y, especially if
+> CHECKPOINT_RESTORE does a "select" on it.
+>
+> This is a really powerful syscall, but it is bounded by ptrace access
+> controls, and uses pointer address obfuscation, so it may be okay to
+> expose this. As it is, at least Ubuntu already has
+> CONFIG_CHECKPOINT_RESTORE, so really, there's probably not much
+> difference on exposure.
+>
+> So, if you drop the "default y", I'm fine with this.
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index beed08c00b6c..f7c1f036d38f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -6520,212 +6520,6 @@ static bool ilk_get_pipe_config(struct intel_cr=
-tc *crtc,
-> >  	return ret;
+It was maybe stupid, but our userspace started relying on fd
+comaprison through sys_kcomp. So for better or worse, if you want to
+run the mesa3d gl/vk stacks, you need this. Was maybe not the brighest
+ideas, but since enough distros had this enabled by defaults, it
+wasn't really discovered, and now we're shipping this everywhere.
+
+Ofc we can leave the default n, but the select if CONFIG_DRM is
+unfortunately needed I think. For that part:
+
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+Also adding Dave Airlie for his take.
+-Daniel
+
+>
+> -Kees
+>
+> > +     help
+> > +       Enable the file descriptor comparison system call. It provides
+> > +       user-space with the ability to compare two fd to see if they
+> > +       point to the same file, and check other attributes.
+> > +
+> > +       If unsure, say Y.
+> > +
+> >  config RSEQ
+> >       bool "Enable rseq() system call" if EXPERT
+> >       default y
+> > diff --git a/kernel/Makefile b/kernel/Makefile
+> > index aa7368c7eabf..320f1f3941b7 100644
+> > --- a/kernel/Makefile
+> > +++ b/kernel/Makefile
+> > @@ -51,7 +51,7 @@ obj-y += livepatch/
+> >  obj-y += dma/
+> >  obj-y += entry/
+> >
+> > -obj-$(CONFIG_CHECKPOINT_RESTORE) += kcmp.o
+> > +obj-$(CONFIG_KCMP) += kcmp.o
+> >  obj-$(CONFIG_FREEZER) += freezer.o
+> >  obj-$(CONFIG_PROFILING) += profile.o
+> >  obj-$(CONFIG_STACKTRACE) += stacktrace.o
+> > diff --git a/tools/testing/selftests/seccomp/seccomp_bpf.c b/tools/testing/selftests/seccomp/seccomp_bpf.c
+> > index 26c72f2b61b1..1b6c7d33c4ff 100644
+> > --- a/tools/testing/selftests/seccomp/seccomp_bpf.c
+> > +++ b/tools/testing/selftests/seccomp/seccomp_bpf.c
+> > @@ -315,7 +315,7 @@ TEST(kcmp)
+> >       ret = __filecmp(getpid(), getpid(), 1, 1);
+> >       EXPECT_EQ(ret, 0);
+> >       if (ret != 0 && errno == ENOSYS)
+> > -             SKIP(return, "Kernel does not support kcmp() (missing CONFIG_CHECKPOINT_RESTORE?)");
+> > +             SKIP(return, "Kernel does not support kcmp() (missing CONFIG_KCMP?)");
 > >  }
-> >  =
+> >
+> >  TEST(mode_strict_support)
+> > --
+> > 2.20.1
+> >
+>
+> --
+> Kees Cook
 
-> > -static void dg1_get_ddi_pll(struct drm_i915_private *dev_priv, enum po=
-rt port,
-> > -			    struct intel_crtc_state *pipe_config)
-> > -{
-> > -	enum icl_port_dpll_id port_dpll_id =3D ICL_PORT_DPLL_DEFAULT;
-> > -	enum phy phy =3D intel_port_to_phy(dev_priv, port);
-> > -	struct icl_port_dpll *port_dpll;
-> > -	struct intel_shared_dpll *pll;
-> > -	enum intel_dpll_id id;
-> > -	bool pll_active;
-> > -	u32 clk_sel;
-> > -
-> > -	clk_sel =3D intel_de_read(dev_priv, DG1_DPCLKA_CFGCR0(phy)) & DG1_DPC=
-LKA_CFGCR0_DDI_CLK_SEL_MASK(phy);
-> > -	id =3D DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_DPLL_MAP(clk_sel, phy);
-> =
 
-> Hmm. Since this mostly about DPCLKA_CFGCR/PORT_CLK_SEL/etc.
-> I think intel_ddi.c would the more approriate place, especially
-> when considering my recent DDI clock routing refactoring.
-> I guess we could even consider intel_ddi_clock.c or
-> somesuch to stuff all of it into. Now I'm also tempted
-> to turn this stuff into vfuncs as well, to partner up
-> with the new encoder->{enable,disable}_clock().
 
-Temptation turned into code. I think I have a decent way forward
-with this idea on top of my other refactorings, so I'd just drop
-this patch.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
