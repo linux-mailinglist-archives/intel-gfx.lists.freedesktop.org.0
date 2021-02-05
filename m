@@ -1,34 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDEF3311382
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 22:29:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB77311394
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 22:32:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 788A86E086;
-	Fri,  5 Feb 2021 21:29:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9C776F4DE;
+	Fri,  5 Feb 2021 21:32:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C606D88E34;
- Fri,  5 Feb 2021 21:29:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23803014-1500050 for multiple; Fri, 05 Feb 2021 21:28:53 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 119AA6F4DC;
+ Fri,  5 Feb 2021 21:32:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0ADB0A47DB;
+ Fri,  5 Feb 2021 21:32:37 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <202102051319.E5D8B4528D@keescook>
-References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
- <20210205210610.29837-1-chris@chris-wilson.co.uk>
- <161255976138.12021.9385501710085642237@build.alporthouse.com>
- <202102051319.E5D8B4528D@keescook>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Kees Cook <keescook@chromium.org>
-Date: Fri, 05 Feb 2021 21:28:52 +0000
-Message-ID: <161256053234.12021.17815864250035077266@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH v2] kernel: Expose SYS_kcmp by default
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Fri, 05 Feb 2021 21:32:37 -0000
+Message-ID: <161256075701.1862.13270353550342454415@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210205155931.198122-1-jose.souza@intel.com>
+In-Reply-To: <20210205155931.198122-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Allow_PSR2_selective_fetch_to_be_enabled_at_ru?=
+ =?utf-8?q?n-time?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,40 +39,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Will Drewry <wad@chromium.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Andy Lutomirski <luto@amacapital.net>,
- Andrew Morton <akpm@linux-foundation.org>,
- Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1341537537=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Kees Cook (2021-02-05 21:20:33)
-> On Fri, Feb 05, 2021 at 09:16:01PM +0000, Chris Wilson wrote:
-> > The subject should of course be changed, as it is no longer being
-> > enabled by default.
-> 
-> "default n" is redundant.
+--===============1341537537==
+Content-Type: multipart/alternative;
+ boundary="===============3353198736158890639=="
 
-I thought being explicit would be preferred. There are a few other
-default n, so at least it's not the odd-one-out!
+--===============3353198736158890639==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> I thought Daniel said CONFIG_DRM needed to
-> "select" it too, though?
+== Series Details ==
 
-Yes. We will need to select it for any DRM driver so that the Vulkan/GL
-stacks can rely on having SYS_kcmp. That deserves to be handled and
-explain within drm/Kconfig, and as they are already shipping with calls
-to SYS_kcmp we may have to ask for a stable backport.
+Series: drm/i915/display: Allow PSR2 selective fetch to be enabled at run-time
+URL   : https://patchwork.freedesktop.org/series/86773/
+State : success
 
-> Otherwise, yeah, this looks good. Was the
-> export due to the 0-day bot failure reports?
+== Summary ==
 
-Yes.
--Chris
+CI Bug Log - changes from CI_DRM_9740 -> Patchwork_19609
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19609 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ringfill@basic-all:
+    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_ringfill@basic-all.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-tgl-y/igt@gem_ringfill@basic-all.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (43 -> 38)
+------------------------------
+
+  Additional (1): fi-byt-j1900 
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9740 -> Patchwork_19609
+
+  CI-20190529: 20190529
+  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19609: 0a3f51f0aa083f72e8e2d5dfc910c3fd89ce64d1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0a3f51f0aa08 drm/i915/display: Allow PSR2 selective fetch to be enabled at run-time
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html
+
+--===============3353198736158890639==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Allow PSR2 selective fetch to be enabled at run-time</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86773/">https://patchwork.freedesktop.org/series/86773/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9740 -&gt; Patchwork_19609</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19609 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_ringfill@basic-all:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@gem_ringfill@basic-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19609/fi-tgl-y/igt@gem_ringfill@basic-all.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Additional (1): fi-byt-j1900 <br />
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9740 -&gt; Patchwork_19609</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19609: 0a3f51f0aa083f72e8e2d5dfc910c3fd89ce64d1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>0a3f51f0aa08 drm/i915/display: Allow PSR2 selective fetch to be enabled at run-time</p>
+
+</body>
+</html>
+
+--===============3353198736158890639==--
+
+--===============1341537537==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1341537537==--
