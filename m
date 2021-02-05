@@ -1,42 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D9C3113D5
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 22:47:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7AF93113D6
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 22:47:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93D716F4F1;
-	Fri,  5 Feb 2021 21:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26A496F4F3;
+	Fri,  5 Feb 2021 21:47:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9BF56F4F3
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 21:47:44 +0000 (UTC)
-IronPort-SDR: J/uEC+NthmsgY7bWkYQIZfu05O44y6CRmShEUMZK61rUnbVQ8Aioy3FEzSDaS7aeSYJAkSmZ3S
- 0jk92WXADuFA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9886"; a="180716627"
-X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="180716627"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2021 13:47:39 -0800
-IronPort-SDR: ZWk+IRuwIvjRQyuxRI9vbS6CCht8zUX3OoCUxL/PaFftI+fYAAUSA4nTpLLDl4ZLws77L64/JF
- GrzNTiU/uIuw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,156,1610438400"; d="scan'208";a="484474681"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 05 Feb 2021 13:47:37 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 05 Feb 2021 23:47:33 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  5 Feb 2021 23:46:34 +0200
-Message-Id: <20210205214634.19341-16-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210205214634.19341-1-ville.syrjala@linux.intel.com>
-References: <20210205214634.19341-1-ville.syrjala@linux.intel.com>
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
+ [IPv6:2a00:1450:4864:20::531])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 315AC6F4F3
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Feb 2021 21:47:53 +0000 (UTC)
+Received: by mail-ed1-x531.google.com with SMTP id z22so10583271edb.9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 05 Feb 2021 13:47:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=rasmusvillemoes.dk; s=google;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=5pnuSpNEKdmcoBjj2QdJNC7CgKySzqePnnhN0iJ74KE=;
+ b=CazZD3gaSDfOEUuMFkR/IQY8QFmfUv80CHWEbco/8E0oftbEwwOIJ3fjX/atsGd7wj
+ evBDAPwAJv0WyagdvYzl42paXlsjQMsJ/RGozF1eefiPC5SzIh4WIwOVjh4BY5hIiGBz
+ N62/fb3kVV42RVbaHipmcM3KLdUFhQxMvqvNw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=5pnuSpNEKdmcoBjj2QdJNC7CgKySzqePnnhN0iJ74KE=;
+ b=XX1sUiUG5+ADOyvzUOvjUYxLcklfMyAGl+ULkb2yNlFe0VzoAS3V1KGiWEA9Z4OAi9
+ FI6PiedVpswlB9thXtpfnka687pEBWxdIheA4TSvjjmiqZaBH9gIQCzrDz35Ckzj9vpr
+ 7x/GH8YvT7vmI1EkPuKULQ0Ngl/y/emJftLmkzRjRot5nSeQ8TN6UEJP5L5z6VLPtamX
+ w4JbCuMC/Zakbi/BSWEX6AEO26GBwP+qKg4ekiSIuNQ0VAZiYUNgcGvDVsuX/+uVpjK8
+ r+NQ0rKUD6B/gUdVtO9J2SX4FKKxWKwQqg57Qch3l0D28rQwKe0l6/a8prCPiGxplMED
+ +e6Q==
+X-Gm-Message-State: AOAM533HVoH95crcRAn+Kfu/nLRSBD9ckQ0Kj5JpMFAfTPtFOidgL2uE
+ +cVRg0dn8jMf9F02TMDgKeKiIQ==
+X-Google-Smtp-Source: ABdhPJzF+ubix/uZD3BGg6fAO3117ri17tLNIaKGiQba39MM+mUoaHvFRc/aLbJESW7rmz+oz9Wt1w==
+X-Received: by 2002:a05:6402:10ce:: with SMTP id
+ p14mr5530673edu.261.1612561672579; 
+ Fri, 05 Feb 2021 13:47:52 -0800 (PST)
+Received: from [192.168.1.149] (5.186.115.188.cgn.fibianet.dk. [5.186.115.188])
+ by smtp.gmail.com with ESMTPSA id y11sm4515813ejd.72.2021.02.05.13.47.49
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 05 Feb 2021 13:47:52 -0800 (PST)
+To: Chris Wilson <chris@chris-wilson.co.uk>, linux-kernel@vger.kernel.org
+References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
+ <20210205210610.29837-1-chris@chris-wilson.co.uk>
+From: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Message-ID: <e929c01a-8659-170c-d95a-b1d0dee628bc@rasmusvillemoes.dk>
+Date: Fri, 5 Feb 2021 22:47:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 15/15] drm/i915: s/dev_priv/i915/ for the
- remainder of DDI clock routing
+In-Reply-To: <20210205210610.29837-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] kernel: Expose SYS_kcmp by default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,99 +69,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Will Drewry <wad@chromium.org>, Kees Cook <keescook@chromium.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andy Lutomirski <luto@amacapital.net>,
+ Cyrill Gorcunov <gorcunov@gmail.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkNv
-bnZlcnQgdGhlIHJlbWFpbmluZyAnZGV2X3ByaXYncyB0byAnaTkxNSdzIGluIHRoZSBEREkKY2xv
-Y2sgcm91dGluZyBmdW5jdGlvbnMuCgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNo
-aUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
-YUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kZGkuYyB8IDM4ICsrKysrKysrKysrKy0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDE5
-IGluc2VydGlvbnMoKyksIDE5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RkaS5jCmluZGV4IGQ0Yjk0MTAxMTBmZC4uMGYwZTY4Yzk5NTg5IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKQEAgLTE2NTksMjMgKzE2NTksMjMg
-QEAgc3RhdGljIHZvaWQgcmtsX2RkaV9kaXNhYmxlX2Nsb2NrKHN0cnVjdCBpbnRlbF9lbmNvZGVy
-ICplbmNvZGVyKQogc3RhdGljIHZvaWQgZGcxX2RkaV9lbmFibGVfY2xvY2soc3RydWN0IGludGVs
-X2VuY29kZXIgKmVuY29kZXIsCiAJCQkJIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpj
-cnRjX3N0YXRlKQogewotCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5
-MTUoZW5jb2Rlci0+YmFzZS5kZXYpOworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0g
-dG9faTkxNShlbmNvZGVyLT5iYXNlLmRldik7CiAJY29uc3Qgc3RydWN0IGludGVsX3NoYXJlZF9k
-cGxsICpwbGwgPSBjcnRjX3N0YXRlLT5zaGFyZWRfZHBsbDsKLQllbnVtIHBoeSBwaHkgPSBpbnRl
-bF9wb3J0X3RvX3BoeShkZXZfcHJpdiwgZW5jb2Rlci0+cG9ydCk7CisJZW51bSBwaHkgcGh5ID0g
-aW50ZWxfcG9ydF90b19waHkoaTkxNSwgZW5jb2Rlci0+cG9ydCk7CiAKLQlpZiAoZHJtX1dBUk5f
-T04oJmRldl9wcml2LT5kcm0sICFwbGwpKQorCWlmIChkcm1fV0FSTl9PTigmaTkxNS0+ZHJtLCAh
-cGxsKSkKIAkJcmV0dXJuOwogCiAJLyoKIAkgKiBJZiB3ZSBmYWlsIHRoaXMsIHNvbWV0aGluZyB3
-ZW50IHZlcnkgd3Jvbmc6IGZpcnN0IDIgUExMcyBzaG91bGQgYmUKIAkgKiB1c2VkIGJ5IGZpcnN0
-IDIgcGh5cyBhbmQgbGFzdCAyIFBMTHMgYnkgbGFzdCBwaHlzCiAJICovCi0JaWYgKGRybV9XQVJO
-X09OKCZkZXZfcHJpdi0+ZHJtLAorCWlmIChkcm1fV0FSTl9PTigmaTkxNS0+ZHJtLAogCQkJKHBs
-bC0+aW5mby0+aWQgPCBEUExMX0lEX0RHMV9EUExMMiAmJiBwaHkgPj0gUEhZX0MpIHx8CiAJCQko
-cGxsLT5pbmZvLT5pZCA+PSBEUExMX0lEX0RHMV9EUExMMiAmJiBwaHkgPCBQSFlfQykpKQogCQly
-ZXR1cm47CiAKLQlfY25sX2RkaV9lbmFibGVfY2xvY2soZGV2X3ByaXYsIERHMV9EUENMS0FfQ0ZH
-Q1IwKHBoeSksCisJX2NubF9kZGlfZW5hYmxlX2Nsb2NrKGk5MTUsIERHMV9EUENMS0FfQ0ZHQ1Iw
-KHBoeSksCiAJCQkgICAgICBERzFfRFBDTEtBX0NGR0NSMF9ERElfQ0xLX1NFTF9NQVNLKHBoeSks
-CiAJCQkgICAgICBERzFfRFBDTEtBX0NGR0NSMF9ERElfQ0xLX1NFTChwbGwtPmluZm8tPmlkLCBw
-aHkpLAogCQkJICAgICAgREcxX0RQQ0xLQV9DRkdDUjBfRERJX0NMS19PRkYocGh5KSk7CkBAIC0x
-NjgzLDI0ICsxNjgzLDI0IEBAIHN0YXRpYyB2b2lkIGRnMV9kZGlfZW5hYmxlX2Nsb2NrKHN0cnVj
-dCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCiBzdGF0aWMgdm9pZCBkZzFfZGRpX2Rpc2FibGVf
-Y2xvY2soc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIpCiB7Ci0Jc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShlbmNvZGVyLT5iYXNlLmRldik7Ci0JZW51bSBw
-aHkgcGh5ID0gaW50ZWxfcG9ydF90b19waHkoZGV2X3ByaXYsIGVuY29kZXItPnBvcnQpOworCXN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gdG9faTkxNShlbmNvZGVyLT5iYXNlLmRldik7
-CisJZW51bSBwaHkgcGh5ID0gaW50ZWxfcG9ydF90b19waHkoaTkxNSwgZW5jb2Rlci0+cG9ydCk7
-CiAKLQlfY25sX2RkaV9kaXNhYmxlX2Nsb2NrKGRldl9wcml2LCBERzFfRFBDTEtBX0NGR0NSMChw
-aHkpLAorCV9jbmxfZGRpX2Rpc2FibGVfY2xvY2soaTkxNSwgREcxX0RQQ0xLQV9DRkdDUjAocGh5
-KSwKIAkJCSAgICAgICBERzFfRFBDTEtBX0NGR0NSMF9ERElfQ0xLX09GRihwaHkpKTsKIH0KIAog
-c3RhdGljIHZvaWQgaWNsX2RkaV9jb21ib19lbmFibGVfY2xvY2soc3RydWN0IGludGVsX2VuY29k
-ZXIgKmVuY29kZXIsCiAJCQkJICAgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpj
-cnRjX3N0YXRlKQogewotCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5
-MTUoZW5jb2Rlci0+YmFzZS5kZXYpOworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0g
-dG9faTkxNShlbmNvZGVyLT5iYXNlLmRldik7CiAJY29uc3Qgc3RydWN0IGludGVsX3NoYXJlZF9k
-cGxsICpwbGwgPSBjcnRjX3N0YXRlLT5zaGFyZWRfZHBsbDsKLQllbnVtIHBoeSBwaHkgPSBpbnRl
-bF9wb3J0X3RvX3BoeShkZXZfcHJpdiwgZW5jb2Rlci0+cG9ydCk7CisJZW51bSBwaHkgcGh5ID0g
-aW50ZWxfcG9ydF90b19waHkoaTkxNSwgZW5jb2Rlci0+cG9ydCk7CiAKLQlpZiAoZHJtX1dBUk5f
-T04oJmRldl9wcml2LT5kcm0sICFwbGwpKQorCWlmIChkcm1fV0FSTl9PTigmaTkxNS0+ZHJtLCAh
-cGxsKSkKIAkJcmV0dXJuOwogCi0JX2NubF9kZGlfZW5hYmxlX2Nsb2NrKGRldl9wcml2LCBJQ0xf
-RFBDTEtBX0NGR0NSMCwKKwlfY25sX2RkaV9lbmFibGVfY2xvY2soaTkxNSwgSUNMX0RQQ0xLQV9D
-RkdDUjAsCiAJCQkgICAgICBJQ0xfRFBDTEtBX0NGR0NSMF9ERElfQ0xLX1NFTF9NQVNLKHBoeSks
-CiAJCQkgICAgICBJQ0xfRFBDTEtBX0NGR0NSMF9ERElfQ0xLX1NFTChwbGwtPmluZm8tPmlkLCBw
-aHkpLAogCQkJICAgICAgSUNMX0RQQ0xLQV9DRkdDUjBfRERJX0NMS19PRkYocGh5KSk7CkBAIC0x
-NzA4LDEwICsxNzA4LDEwIEBAIHN0YXRpYyB2b2lkIGljbF9kZGlfY29tYm9fZW5hYmxlX2Nsb2Nr
-KHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCiBzdGF0aWMgdm9pZCBpY2xfZGRpX2Nv
-bWJvX2Rpc2FibGVfY2xvY2soc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIpCiB7Ci0Jc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShlbmNvZGVyLT5iYXNlLmRl
-dik7Ci0JZW51bSBwaHkgcGh5ID0gaW50ZWxfcG9ydF90b19waHkoZGV2X3ByaXYsIGVuY29kZXIt
-PnBvcnQpOworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gdG9faTkxNShlbmNvZGVy
-LT5iYXNlLmRldik7CisJZW51bSBwaHkgcGh5ID0gaW50ZWxfcG9ydF90b19waHkoaTkxNSwgZW5j
-b2Rlci0+cG9ydCk7CiAKLQlfY25sX2RkaV9kaXNhYmxlX2Nsb2NrKGRldl9wcml2LCBJQ0xfRFBD
-TEtBX0NGR0NSMCwKKwlfY25sX2RkaV9kaXNhYmxlX2Nsb2NrKGk5MTUsIElDTF9EUENMS0FfQ0ZH
-Q1IwLAogCQkJICAgICAgIElDTF9EUENMS0FfQ0ZHQ1IwX0RESV9DTEtfT0ZGKHBoeSkpOwogfQog
-CkBAIC0xODc3LDcgKzE4NzcsNyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfZGlzYWJsZV9jbG9j
-ayhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKIAogdm9pZCBpY2xfc2FuaXRpemVfZW5j
-b2Rlcl9wbGxfbWFwcGluZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKIHsKLQlzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGVuY29kZXItPmJhc2UuZGV2
-KTsKKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoZW5jb2Rlci0+YmFz
-ZS5kZXYpOwogCXUzMiBwb3J0X21hc2s7CiAJYm9vbCBkZGlfY2xrX25lZWRlZDsKIApAQCAtMTg5
-Nyw3ICsxODk3LDcgQEAgdm9pZCBpY2xfc2FuaXRpemVfZW5jb2Rlcl9wbGxfbWFwcGluZyhzdHJ1
-Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKIAkJICogSW4gdGhlIHVubGlrZWx5IGNhc2UgdGhh
-dCBCSU9TIGVuYWJsZXMgRFAgaW4gTVNUIG1vZGUsIGp1c3QKIAkJICogd2FybiBzaW5jZSBvdXIg
-TVNUIEhXIHJlYWRvdXQgaXMgaW5jb21wbGV0ZS4KIAkJICovCi0JCWlmIChkcm1fV0FSTl9PTigm
-ZGV2X3ByaXYtPmRybSwgaXNfbXN0KSkKKwkJaWYgKGRybV9XQVJOX09OKCZpOTE1LT5kcm0sIGlz
-X21zdCkpCiAJCQlyZXR1cm47CiAJfQogCkBAIC0xOTEyLDExICsxOTEyLDExIEBAIHZvaWQgaWNs
-X3Nhbml0aXplX2VuY29kZXJfcGxsX21hcHBpbmcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29k
-ZXIpCiAJCSAqIFNhbml0eSBjaGVjayB0aGF0IHdlIGhhdmVuJ3QgaW5jb3JyZWN0bHkgcmVnaXN0
-ZXJlZCBhbm90aGVyCiAJCSAqIGVuY29kZXIgdXNpbmcgYW55IG9mIHRoZSBwb3J0cyBvZiB0aGlz
-IERTSSBlbmNvZGVyLgogCQkgKi8KLQkJZm9yX2VhY2hfaW50ZWxfZW5jb2RlcigmZGV2X3ByaXYt
-PmRybSwgb3RoZXJfZW5jb2RlcikgeworCQlmb3JfZWFjaF9pbnRlbF9lbmNvZGVyKCZpOTE1LT5k
-cm0sIG90aGVyX2VuY29kZXIpIHsKIAkJCWlmIChvdGhlcl9lbmNvZGVyID09IGVuY29kZXIpCiAJ
-CQkJY29udGludWU7CiAKLQkJCWlmIChkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwKKwkJCWlm
-IChkcm1fV0FSTl9PTigmaTkxNS0+ZHJtLAogCQkJCQlwb3J0X21hc2sgJiBCSVQob3RoZXJfZW5j
-b2Rlci0+cG9ydCkpKQogCQkJCXJldHVybjsKIAkJfQotLSAKMi4yNi4yCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On 05/02/2021 22.06, Chris Wilson wrote:
+> Userspace has discovered the functionality offered by SYS_kcmp and has
+> started to depend upon it. In particular, Mesa uses SYS_kcmp for
+> os_same_file_description() in order to identify when two fd (e.g. device
+> or dmabuf) point to the same struct file. Since they depend on it for
+> core functionality, lift SYS_kcmp out of the non-default
+> CONFIG_CHECKPOINT_RESTORE into the selectable syscall category.
+> 
+> Note that some distributions such as Ubuntu are already enabling
+> CHECKPOINT_RESTORE in their configs and so, by extension, SYS_kcmp.
+> 
+
+Looks a lot like
+https://lore.kernel.org/lkml/20200710075632.14661-1-linux@rasmusvillemoes.dk/.
+So FWIW, ack from me.
+
+cc += Cyrill.
+
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/3046
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Kees Cook <keescook@chromium.org>
+> Cc: Andy Lutomirski <luto@amacapital.net>
+> Cc: Will Drewry <wad@chromium.org>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch> # DRM depends on SYS_kcmp
+> 
+> ---
+> v2:
+>   - Default n.
+>   - Borrrow help message from man kcmp.
+>   - Export get_epoll_tfile_raw_ptr() for CONFIG_KCMP
+> ---
+>  fs/eventpoll.c                                |  4 ++--
+>  include/linux/eventpoll.h                     |  2 +-
+>  init/Kconfig                                  | 12 ++++++++++++
+>  kernel/Makefile                               |  2 +-
+>  tools/testing/selftests/seccomp/seccomp_bpf.c |  2 +-
+>  5 files changed, 17 insertions(+), 5 deletions(-)
+> 
+> diff --git a/fs/eventpoll.c b/fs/eventpoll.c
+> index a829af074eb5..3196474cbe24 100644
+> --- a/fs/eventpoll.c
+> +++ b/fs/eventpoll.c
+> @@ -979,7 +979,7 @@ static struct epitem *ep_find(struct eventpoll *ep, struct file *file, int fd)
+>  	return epir;
+>  }
+>  
+> -#ifdef CONFIG_CHECKPOINT_RESTORE
+> +#ifdef CONFIG_KCMP
+>  static struct epitem *ep_find_tfd(struct eventpoll *ep, int tfd, unsigned long toff)
+>  {
+>  	struct rb_node *rbp;
+> @@ -1021,7 +1021,7 @@ struct file *get_epoll_tfile_raw_ptr(struct file *file, int tfd,
+>  
+>  	return file_raw;
+>  }
+> -#endif /* CONFIG_CHECKPOINT_RESTORE */
+> +#endif /* CONFIG_KCMP */
+>  
+>  /**
+>   * Adds a new entry to the tail of the list in a lockless way, i.e.
+> diff --git a/include/linux/eventpoll.h b/include/linux/eventpoll.h
+> index 0350393465d4..593322c946e6 100644
+> --- a/include/linux/eventpoll.h
+> +++ b/include/linux/eventpoll.h
+> @@ -18,7 +18,7 @@ struct file;
+>  
+>  #ifdef CONFIG_EPOLL
+>  
+> -#ifdef CONFIG_CHECKPOINT_RESTORE
+> +#ifdef CONFIG_KCMP
+>  struct file *get_epoll_tfile_raw_ptr(struct file *file, int tfd, unsigned long toff);
+>  #endif
+>  
+> diff --git a/init/Kconfig b/init/Kconfig
+> index b77c60f8b963..1b75141bc18b 100644
+> --- a/init/Kconfig
+> +++ b/init/Kconfig
+> @@ -1194,6 +1194,7 @@ endif # NAMESPACES
+>  config CHECKPOINT_RESTORE
+>  	bool "Checkpoint/restore support"
+>  	select PROC_CHILDREN
+> +	select KCMP
+>  	default n
+>  	help
+>  	  Enables additional kernel features in a sake of checkpoint/restore.
+> @@ -1737,6 +1738,17 @@ config ARCH_HAS_MEMBARRIER_CALLBACKS
+>  config ARCH_HAS_MEMBARRIER_SYNC_CORE
+>  	bool
+>  
+> +config KCMP
+> +	bool "Enable kcmp() system call" if EXPERT
+> +	default n
+> +	help
+> +	  Enable the kernel resource comparison system call. It provides
+> +	  user-space with the ability to compare two processes to see if they
+> +	  share a common resource, such as a file descriptor or even virtual
+> +	  memory space.
+> +
+> +	  If unsure, say N.
+> +
+>  config RSEQ
+>  	bool "Enable rseq() system call" if EXPERT
+>  	default y
+> diff --git a/kernel/Makefile b/kernel/Makefile
+> index aa7368c7eabf..320f1f3941b7 100644
+> --- a/kernel/Makefile
+> +++ b/kernel/Makefile
+> @@ -51,7 +51,7 @@ obj-y += livepatch/
+>  obj-y += dma/
+>  obj-y += entry/
+>  
+> -obj-$(CONFIG_CHECKPOINT_RESTORE) += kcmp.o
+> +obj-$(CONFIG_KCMP) += kcmp.o
+>  obj-$(CONFIG_FREEZER) += freezer.o
+>  obj-$(CONFIG_PROFILING) += profile.o
+>  obj-$(CONFIG_STACKTRACE) += stacktrace.o
+> diff --git a/tools/testing/selftests/seccomp/seccomp_bpf.c b/tools/testing/selftests/seccomp/seccomp_bpf.c
+> index 26c72f2b61b1..1b6c7d33c4ff 100644
+> --- a/tools/testing/selftests/seccomp/seccomp_bpf.c
+> +++ b/tools/testing/selftests/seccomp/seccomp_bpf.c
+> @@ -315,7 +315,7 @@ TEST(kcmp)
+>  	ret = __filecmp(getpid(), getpid(), 1, 1);
+>  	EXPECT_EQ(ret, 0);
+>  	if (ret != 0 && errno == ENOSYS)
+> -		SKIP(return, "Kernel does not support kcmp() (missing CONFIG_CHECKPOINT_RESTORE?)");
+> +		SKIP(return, "Kernel does not support kcmp() (missing CONFIG_KCMP?)");
+>  }
+>  
+>  TEST(mode_strict_support)
+> 
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
