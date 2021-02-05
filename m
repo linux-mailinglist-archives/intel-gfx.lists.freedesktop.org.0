@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED48B3109CD
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 12:07:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44EE73109FF
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Feb 2021 12:14:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 203D56F404;
-	Fri,  5 Feb 2021 11:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 790626F40E;
+	Fri,  5 Feb 2021 11:14:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com
- [IPv6:2607:f8b0:4864:20::102d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0774F6F404;
- Fri,  5 Feb 2021 11:07:16 +0000 (UTC)
-Received: by mail-pj1-x102d.google.com with SMTP id l18so3583323pji.3;
- Fri, 05 Feb 2021 03:07:16 -0800 (PST)
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
+ [IPv6:2a00:1450:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B3D76F40D;
+ Fri,  5 Feb 2021 11:14:34 +0000 (UTC)
+Received: by mail-lj1-x22d.google.com with SMTP id l12so7296069ljc.3;
+ Fri, 05 Feb 2021 03:14:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
  :cc:content-transfer-encoding;
- bh=nhU2mG//9BiHxfOHGEyX4R2P+B0rQePtnOzA7WvugBo=;
- b=ub0craqaAfA6SIaKFIUTQyc3gR/X3+ZokWLMxMtEG1CfDLWoaojnksd8bgR8Ukar8F
- KsVdeZfDqPwQ7QEMhlGkSw85OYOb/0qP1uDeqAjCLGnpHZnRYVfyVAPDZ8Qzwz07xVL+
- DQJLm1UNrypr0leMTBsZWJeq1jEU1fnHIGF2WqDiAYwAu8wmZ3TtfnSh8HzP8YdMYims
- +vxV6mFZfzkRzvuMydO91vbvlPKSpXMs+MA2XcsyozcA/n+eYTyxI/ZXf2WMTdcRgMto
- 2aduFMoJMbUhlpxJGSvTPGggnAMvwIIRzHrjym+zP54h/N1DoM60dx85ucVKNQOFf3qN
- Q7rw==
+ bh=jodvZXZJV/ktuYkXeYXaYKMnlFJkJCqmkyDrOT8X24s=;
+ b=ZN+zXLUn5VPc3YjkaZtNDZEFmrBZTl3+BFCRaLRH2MBCUPMr4kH2YiWrUebhenNPdS
+ lMglSCGlmEXkjJded4JC3sTkfCoP9oKgjrsU2yfKZHzAdNov5+A7Eh3EbFjT9hnVQy11
+ vsg8TPoRC+2CU9oDe1WjYHyHzCgf2Qb8XP6d+Q9iFB0fD5VOB3d/9Nt0S8R0lfHOZOjx
+ 2wR4pij7Vao99UWQ7HGadIRtuwMzy+de7kazaiOgaD7XfsuvO3MeHDEGh0hrSFhq63wy
+ B4yBuk5Gx+Jg9xZexvyq/qM9n4bxTAjylQt4279jGPAy/U3azN8q77P0bFLm/ZznTZjJ
+ ENUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc:content-transfer-encoding;
- bh=nhU2mG//9BiHxfOHGEyX4R2P+B0rQePtnOzA7WvugBo=;
- b=lL1dHu/gJCHmjuj7Vjcru+MJY1Oh74YFlAFlEEHwYpt5CIdRi/0UNv4LZTHMq2Kg2Z
- rjkq7YJslFvHk0Xc4FleiwcNQ66RfNN+f5mjspXPkk9i3cX1WQzma31+50McQGzwXb/4
- PTkVN1zyLK6uY6r+JboprZTIlvZFsRj3YKVrO0yI0Vgut/ZNvH/hXoNaCEJCpoNSmKpD
- 9Nc2ajQu8ZvSEJjDEeAE3BvUcTsSkMzlB4cj5aFw7Coxxl06wIz8OKcPiB9SwB2A+aFC
- ZlpNhNyV/jKBoeKvc+yti+Jqz7jsDd1etGjVQN+wuG1iw51Rm+ZfUXsNF52tBU+SA2Ce
- nwHw==
-X-Gm-Message-State: AOAM5309F1T0qEKFPX1uUDVSVmsymnXw7RXGKhuswMoKFXTcKuF+99ZM
- CXcZhbzYQUHMOXu7W0YCWxY+UML3PvqcngB9FyVi8NvoTX9gqg==
-X-Google-Smtp-Source: ABdhPJzIsiRDxMPtSxoHGSTBvJJCZvHfnres8cQ9vFRuI2omv6Pg/k51VMnFe3zrd/k0F4m0rL+DRnYivOm/mvw5i68=
-X-Received: by 2002:a17:902:b190:b029:df:fff2:c345 with SMTP id
- s16-20020a170902b190b02900dffff2c345mr3486428plr.17.1612523235627; Fri, 05
- Feb 2021 03:07:15 -0800 (PST)
+ bh=jodvZXZJV/ktuYkXeYXaYKMnlFJkJCqmkyDrOT8X24s=;
+ b=N8YLyWDuBAdr0RW5B4OxgAUjXjZKWm1E16X4Msc5NJZ6vKpFV9uR+aA6Uc4k3xKMxZ
+ IMmY96P5pFwKxKDp68TuIVfno4DYoCLT3IaXG69PYfrW10/0uBMusY5u2IxIaZOVTPP0
+ enOL/PiDAsLn0sOBdGpvaZmT1opVnHttQGdScScSaAHoc82xuMtW7FuQochaTzj3nFhi
+ NTAHB1nIKhudBMvKDFWxbwkYGJ16q/t4jXb+ej7MH8UWyFjyg7XcIse5kqfQMKG6pboA
+ 5VC43pyVLpcFzle/+u+9X2tWAfkaBQzZhEvOjn1clWYk4BOkFuyZ4ITcundtYvclR1On
+ nwyw==
+X-Gm-Message-State: AOAM532FacHqF/bf6t/yd2QmP/j8+FavJnWnFAo7NMkZtRo4XLJqPhVV
+ 9Yr7ArzediGohV+0OGYlT8EZJoETp+T7MmCzneU=
+X-Google-Smtp-Source: ABdhPJxiIcmAg+6rvfRXrVJAwTv++V3HK7scgangGoU/StB/uTu2dCddy1o1UCYxLpfbZBSmMzcu//AII6B9tr1Cd5o=
+X-Received: by 2002:a2e:a201:: with SMTP id h1mr2411016ljm.130.1612523672809; 
+ Fri, 05 Feb 2021 03:14:32 -0800 (PST)
 MIME-Version: 1.0
 References: <20210204155846.5aef94a8@canb.auug.org.au>
  <CAHp75Vct=jSQxu187hwz4Wrc_xRKiTmKFt_bgT-m-z=iW31drg@mail.gmail.com>
-In-Reply-To: <CAHp75Vct=jSQxu187hwz4Wrc_xRKiTmKFt_bgT-m-z=iW31drg@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Fri, 5 Feb 2021 13:06:59 +0200
-Message-ID: <CAHp75Vc_xJFpUECZenOYEyJ6YDzfDFmJe9cTeGh0x-c_fKQPHw@mail.gmail.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>
+ <CAHp75Vc_xJFpUECZenOYEyJ6YDzfDFmJe9cTeGh0x-c_fKQPHw@mail.gmail.com>
+In-Reply-To: <CAHp75Vc_xJFpUECZenOYEyJ6YDzfDFmJe9cTeGh0x-c_fKQPHw@mail.gmail.com>
+From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+Date: Fri, 5 Feb 2021 12:14:21 +0100
+Message-ID: <CAMeQTsYK5GoL=VNB0CPrGi0Y-804N1q24dkii20OuV8=ckhmuA@mail.gmail.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
 Subject: Re: [Intel-gfx] linux-next: manual merge of the drivers-x86 tree
  with the drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -64,7 +64,8 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Gross <mark.gross@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, Mark Gross <mark.gross@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics <intel-gfx@lists.freedesktop.org>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  DRI <dri-devel@lists.freedesktop.org>,
@@ -76,17 +77,19 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 4, 2021 at 11:04 AM Andy Shevchenko
+On Fri, Feb 5, 2021 at 12:07 PM Andy Shevchenko
 <andy.shevchenko@gmail.com> wrote:
->> Today's linux-next merge of the drivers-x86 tree got a conflict in:
 >
-> Thanks. I already asked Patrik yesterday day if DRM missed to pull an immutable tag I provided. I think they can pull and resolve conflicts themselves. Alternatively it would be easy to resolve by Linus by removing Kconfig lines along with mentioned files,
+> On Thu, Feb 4, 2021 at 11:04 AM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> >> Today's linux-next merge of the drivers-x86 tree got a conflict in:
+> >
+> > Thanks. I already asked Patrik yesterday day if DRM missed to pull an immutable tag I provided. I think they can pull and resolve conflicts themselves. Alternatively it would be easy to resolve by Linus by removing Kconfig lines along with mentioned files,
+>
+> Patrik, I have sent a PR again, so you may consider pulling it, thanks!
 
-Patrik, I have sent a PR again, so you may consider pulling it, thanks!
-
--- 
-With Best Regards,
-Andy Shevchenko
+Daniel, is this something you can pull into drm or ask one of the
+drm-misc maintainers to do?
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
