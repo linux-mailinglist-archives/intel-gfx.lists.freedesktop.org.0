@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB9F931174B
-	for <lists+intel-gfx@lfdr.de>; Sat,  6 Feb 2021 00:45:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23FD031176B
+	for <lists+intel-gfx@lfdr.de>; Sat,  6 Feb 2021 00:49:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5AF46F521;
-	Fri,  5 Feb 2021 23:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8283C6F404;
+	Fri,  5 Feb 2021 23:49:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EAAC76F521;
- Fri,  5 Feb 2021 23:45:34 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6B0A96F404;
+ Fri,  5 Feb 2021 23:49:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E5C96AADD0;
- Fri,  5 Feb 2021 23:45:34 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 63BE2A00E6;
+ Fri,  5 Feb 2021 23:49:22 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 05 Feb 2021 23:45:34 -0000
-Message-ID: <161256873493.1861.8981397250405918470@emeril.freedesktop.org>
+Date: Fri, 05 Feb 2021 23:49:22 -0000
+Message-ID: <161256896237.1863.15863875242012832202@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210205202322.27608-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210205202322.27608-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Nuke_INTEL=5FOUTPUT=5FFORMAT=5FINVALID?=
+References: <20210205214634.19341-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210205214634.19341-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Clean_up_the_DDI_clock_routing_mess_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,182 +40,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0212938887=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0212938887==
-Content-Type: multipart/alternative;
- boundary="===============1486670181902204679=="
-
---===============1486670181902204679==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Nuke INTEL_OUTPUT_FORMAT_INVALID
-URL   : https://patchwork.freedesktop.org/series/86782/
-State : success
+Series: drm/i915: Clean up the DDI clock routing mess (rev3)
+URL   : https://patchwork.freedesktop.org/series/86544/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9740 -> Patchwork_19612
-====================================================
+$ dim checkpatch origin/drm-tip
+fb756117b976 drm/i915: Use intel_ddi_clk_select() for FDI
+714543e726a1 drm/i915: Introduce .{enable, disable}_clock() encoder vfuncs
+9d4d81c6506a drm/i915: Extract hsw_ddi_{enable, disable}_clock()
+ee8eea416db2 drm/i915: Extract skl_ddi_{enable, disable}_clock()
+00e920f321c9 drm/i195: Extract cnl_ddi_{enable, disable}_clock()
+77273dccc0c5 drm/i915: Convert DG1 over to .{enable, disable}_clock()
+2d0451ebdcae drm/i915: Extract icl+ .{enable, disable}_clock() vfuncs
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+   and ICL_DPCLKA_CFGCR0_TC_CLK_OFF part form icl_{map,unmap}_plls_to_ports()
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 232 lines checked
+37115fc6c61d drm/i915: Use intel_de_rmw() for DDI clock routing
+9b04986ef8f2 drm/i915: Sprinkle a few missing locks around shared DDI clock registers
+f987335252b3 drm/i915: Sprinkle WARN(!pll) into icl/dg1 .clock_enable()
+89983fc4363a drm/i915: Extract _cnl_ddi_{enable, disable}_clock()
+ecafbcddb924 drm/i915: Split adl-s/rkl from icl_ddi_combo_{enable, disable}_clock()
+47f613addb9d drm/i915: Use .disable_clock() for pll sanitation
+649993c52249 drm/i915: Relocate icl_sanitize_encoder_pll_mapping()
+418fa1f5fb93 drm/i915: s/dev_priv/i915/ for the remainder of DDI clock routing
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19612 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([i915#1372])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (43 -> 37)
-------------------------------
-
-  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9740 -> Patchwork_19612
-
-  CI-20190529: 20190529
-  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19612: e56cfddfefbcd620929a70777759227a688e8450 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e56cfddfefbc drm/i915: Nuke INTEL_OUTPUT_FORMAT_INVALID
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/index.html
-
---===============1486670181902204679==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Nuke INTEL_OUTPUT_FORMAT_INVALID</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86782/">https://patchwork.freedesktop.org/series/86782/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9740 -&gt; Patchwork_19612</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19612 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_one_bo_two_files:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9740/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19612/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 37)</h2>
-<p>Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9740 -&gt; Patchwork_19612</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9740: d0d6b3dabc3c5f35990abedf7361eb27f7123f4d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5993: b1225ec25d5671a985c5bb48739111d2e8a723cf @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19612: e56cfddfefbcd620929a70777759227a688e8450 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e56cfddfefbc drm/i915: Nuke INTEL_OUTPUT_FORMAT_INVALID</p>
-
-</body>
-</html>
-
---===============1486670181902204679==--
-
---===============0212938887==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0212938887==--
