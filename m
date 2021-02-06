@@ -1,42 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40D0A312EFA
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:29:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E893312F28
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:37:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 891566E85C;
-	Mon,  8 Feb 2021 10:29:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B1ED88E57;
+	Mon,  8 Feb 2021 10:37:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D74226E85C
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 10:29:53 +0000 (UTC)
-IronPort-SDR: WqU546jV/IacKI28uleUQXQrPkGb6P8TF72jcMiD5TKagVmzwp1QwAyB6ijbQs60rdNjafTqUr
- AWzVV7ExHqwQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9888"; a="160846171"
-X-IronPort-AV: E=Sophos;i="5.81,161,1610438400"; d="scan'208";a="160846171"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2021 02:29:51 -0800
-IronPort-SDR: 8CJJj93bvPoBGfsi/7y7XTksy3HgB/r5XAxcN06lBE0pQfxWxKFaWA3N0LXnNA4Ya16HEjsYZV
- K6tIZVUIk2Rg==
-X-IronPort-AV: E=Sophos;i="5.81,161,1610438400"; d="scan'208";a="395333511"
-Received: from abodrova-mobl1.ccr.corp.intel.com (HELO localhost)
- ([10.252.34.91])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2021 02:29:48 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210208055554.24357-1-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210208055554.24357-1-ankit.k.nautiyal@intel.com>
-Date: Mon, 08 Feb 2021 12:29:46 +0200
-Message-ID: <87lfbyett1.fsf@intel.com>
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com
+ [IPv6:2a00:1450:4864:20::234])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D478D6E428;
+ Sat,  6 Feb 2021 12:47:36 +0000 (UTC)
+Received: by mail-lj1-x234.google.com with SMTP id y14so10524902ljn.8;
+ Sat, 06 Feb 2021 04:47:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=/z7HFF3L/qI3FvkGB7cDrmovm/gwu9it6WOSqPW1Scg=;
+ b=rpVOK/Rd+ASx3prdTxZHrUJZejSp7hH4U8F7NpDj9T5UkUTPfSAASfTEOxSvGSCoY4
+ HAU8U6PIh5eBMnpifru+4ktXo6U8dhLr4UntJQ+Ty8GyA5Ce3Ftxb+rvAetptvq4EDIn
+ 8AOGuBQL81nhWUHgmGLt1LnIKeQ2FlQRd0OIRvYnIzqOXgr/j2M+fbrqgXZf6KkBwidZ
+ ctYs4eMAXL7yN6Ey08jKnrbsjr22NoxCy8H04JrgYTRb75C8MIm62RMViPdm/tW4w/MS
+ RS5dxTOqm+ZSFNyGgSuQdx+xF4ihXBlXqan6m3EqBziSfQ2sg9TtNvpw+Bt+N5qS8gJa
+ D9Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=/z7HFF3L/qI3FvkGB7cDrmovm/gwu9it6WOSqPW1Scg=;
+ b=st/Rc8oJ35Kot96ILQ9z+KvssK0aVxNZ5kWm9H49RQkhKmDNkqhFSINLLxG+gdfStl
+ 1uexCAfYJjpg27tHnyV52f6LJS3iFyQLVtItrVgvj4AuxERST6uzoFvIf5UdcC2WP/sI
+ b6nIwiIE8LbaTrF3g6sNrIqSdrjbUFOEMw9XyfM5STExPbgF2OjzOjpHYyqMeenPcQvo
+ Xeb5FkBbyN1UEe2fhSJusnvfAyMR9PkmpbhqeK0+Dmy7OcBH36bT/2a6+60p2sAZT9eV
+ IkvrCZAv4qzi5zQ06ygMgd8MUkcee2SE2EF9omWOtlwhot1on6GEDAF60Z8PEAzW46Qp
+ aCUw==
+X-Gm-Message-State: AOAM531ux+xoNWov6P2XF5/f/uhEDsz5eKTUMM40SRF2rEd8bhEDVzwz
+ H7dmyVNFMXP5DztZwEIowZ4=
+X-Google-Smtp-Source: ABdhPJyO0e3Ypvqx5DBPT8VEOqHxfnsDG3RyNFOa/SOLmE4YPmAafx82BiTBU3OQjif04/Fyljtz4g==
+X-Received: by 2002:a2e:580b:: with SMTP id m11mr5605637ljb.426.1612615655093; 
+ Sat, 06 Feb 2021 04:47:35 -0800 (PST)
+Received: from grain.localdomain ([5.18.103.226])
+ by smtp.gmail.com with ESMTPSA id q63sm1300622ljq.35.2021.02.06.04.47.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 06 Feb 2021 04:47:33 -0800 (PST)
+Received: by grain.localdomain (Postfix, from userid 1000)
+ id 5F21056011E; Sat,  6 Feb 2021 15:47:32 +0300 (MSK)
+Date: Sat, 6 Feb 2021 15:47:32 +0300
+From: Cyrill Gorcunov <gorcunov@gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20210206124732.GK2172@grain>
+References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
+ <20210205220012.1983-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] i915: Fix HAS_LSPCON macro for platforms
- between GEN9 and GEN10
+Content-Disposition: inline
+In-Reply-To: <20210205220012.1983-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.14.6 (2020-07-11)
+X-Mailman-Approved-At: Mon, 08 Feb 2021 10:37:25 +0000
+Subject: Re: [Intel-gfx] [PATCH v3] kcmp: Support selection of SYS_kcmp
+ without CHECKPOINT_RESTORE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,44 +72,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Will Drewry <wad@chromium.org>, Kees Cook <keescook@chromium.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Andy Lutomirski <luto@amacapital.net>,
+ stable@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
+ Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-Subject prefix: drm/i915:
-
-On Mon, 08 Feb 2021, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Legacy LSPCON chip from MCA and Parade is only used for platforms
-> between GEN9 and GEN10. Fixing the HAS_LSPCON macro to reflect the same.
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-
-I cringe at the VBT having the bit set anyway, but
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/i915_drv.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 4fc9a8691873..fd04fc434ca6 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1763,7 +1763,7 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
->  
->  #define HAS_GMCH(dev_priv) (INTEL_INFO(dev_priv)->display.has_gmch)
->  
-> -#define HAS_LSPCON(dev_priv) (INTEL_GEN(dev_priv) >= 9)
-> +#define HAS_LSPCON(dev_priv) (IS_GEN_RANGE(dev_priv, 9, 10))
->  
->  /* DPF == dynamic parity feature */
->  #define HAS_L3_DPF(dev_priv) (INTEL_INFO(dev_priv)->has_l3_dpf)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+On Fri, Feb 05, 2021 at 10:00:12PM +0000, Chris Wilson wrote:
+> Userspace has discovered the functionality offered by SYS_kcmp and has
+> started to depend upon it. In particular, Mesa uses SYS_kcmp for
+> os_same_file_description() in order to identify when two fd (e.g. device
+> or dmabuf) point to the same struct file. Since they depend on it for
+> core functionality, lift SYS_kcmp out of the non-default
+> CONFIG_CHECKPOINT_RESTORE into the selectable syscall category.
+> 
+...
+Reviewed-by: Cyrill Gorcunov <gorcunov@gmail.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
