@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3DC311D2E
-	for <lists+intel-gfx@lfdr.de>; Sat,  6 Feb 2021 13:49:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E918311D33
+	for <lists+intel-gfx@lfdr.de>; Sat,  6 Feb 2021 13:52:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 129BF6E428;
-	Sat,  6 Feb 2021 12:49:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8588A6E3D0;
+	Sat,  6 Feb 2021 12:52:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB5A6E428
- for <intel-gfx@lists.freedesktop.org>; Sat,  6 Feb 2021 12:49:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECD9A6E3D0
+ for <intel-gfx@lists.freedesktop.org>; Sat,  6 Feb 2021 12:52:55 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.69.177; 
 Received: from localhost (unverified [78.156.69.177]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23807615-1500050 for multiple; Sat, 06 Feb 2021 12:49:09 +0000
+ 23807632-1500050 for multiple; Sat, 06 Feb 2021 12:52:52 +0000
 MIME-Version: 1.0
-In-Reply-To: <20210206020925.36729-5-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20210206020925.36729-7-daniele.ceraolospurio@intel.com>
 References: <20210206020925.36729-1-daniele.ceraolospurio@intel.com>
- <20210206020925.36729-5-daniele.ceraolospurio@intel.com>
+ <20210206020925.36729-7-daniele.ceraolospurio@intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  intel-gfx@lists.freedesktop.org
-Date: Sat, 06 Feb 2021 12:49:08 +0000
-Message-ID: <161261574883.12021.14204541939246584332@build.alporthouse.com>
+Date: Sat, 06 Feb 2021 12:52:51 +0000
+Message-ID: <161261597177.12021.15644054945552543429@build.alporthouse.com>
 User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [RFC 04/14] drm/i915/pxp: allocate a vcs context
- for pxp usage
+Subject: Re: [Intel-gfx] [RFC 06/14] drm/i915/pxp: Implement funcs to create
+ the TEE channel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,216 +41,192 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Huang@freedesktop.org, "Huang, Sean Z" <sean.z.huang@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniele Ceraolo Spurio (2021-02-06 02:09:15)
-> The context is required to send the session termination commands to the
-> VCS, which will be implemented in a follow-up patch. We can also use the
-> presence of the context as a check of pxp initialization completion.
+Quoting Daniele Ceraolo Spurio (2021-02-06 02:09:17)
+> From: "Huang, Sean Z" <sean.z.huang@intel.com>
 > 
+> Implement the funcs to create the TEE channel, so kernel can
+> send the TEE commands directly to TEE for creating the arbitrary
+> (default) session.
+> 
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 > ---
->  drivers/gpu/drm/i915/Makefile              |  4 ++
->  drivers/gpu/drm/i915/gt/intel_gt.c         |  5 ++
->  drivers/gpu/drm/i915/gt/intel_gt_types.h   |  3 ++
->  drivers/gpu/drm/i915/pxp/intel_pxp.c       | 61 ++++++++++++++++++++++
->  drivers/gpu/drm/i915/pxp/intel_pxp.h       | 35 +++++++++++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_types.h | 15 ++++++
->  6 files changed, 123 insertions(+)
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+>  drivers/gpu/drm/i915/Makefile            |  3 +-
+>  drivers/gpu/drm/i915/i915_drv.c          |  1 +
+>  drivers/gpu/drm/i915/i915_drv.h          |  6 ++
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c     | 10 +++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c | 86 ++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.h | 14 ++++
+>  6 files changed, 119 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
 > 
 > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index ce01634d4ea7..e2677e8c03e8 100644
+> index e2677e8c03e8..f0ba95a2e4fc 100644
 > --- a/drivers/gpu/drm/i915/Makefile
 > +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -268,6 +268,10 @@ i915-y += \
+> @@ -270,7 +270,8 @@ i915-y += i915_perf.o
 >  
->  i915-y += i915_perf.o
+>  # Protected execution platform (PXP) support
+>  i915-$(CONFIG_DRM_I915_PXP) += \
+> -       pxp/intel_pxp.o
+> +       pxp/intel_pxp.o \
+> +       pxp/intel_pxp_tee.o
 >  
-> +# Protected execution platform (PXP) support
-> +i915-$(CONFIG_DRM_I915_PXP) += \
-> +       pxp/intel_pxp.o
-> +
 >  # Post-mortem debug and GPU hang state capture
 >  i915-$(CONFIG_DRM_I915_CAPTURE_ERROR) += i915_gpu_error.o
->  i915-$(CONFIG_DRM_I915_SELFTEST) += \
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index ca76f93bc03d..daf61db620d6 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -20,6 +20,7 @@
->  #include "intel_uncore.h"
->  #include "intel_pm.h"
->  #include "shmem_utils.h"
-> +#include "pxp/intel_pxp.h"
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index 41eea02a9285..d1344eb6c849 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -325,6 +325,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+>         mutex_init(&dev_priv->wm.wm_mutex);
+>         mutex_init(&dev_priv->pps_mutex);
+>         mutex_init(&dev_priv->hdcp_comp_mutex);
+> +       mutex_init(&dev_priv->pxp_tee_comp_mutex);
 >  
->  void intel_gt_init_early(struct intel_gt *gt, struct drm_i915_private *i915)
->  {
-> @@ -624,6 +625,8 @@ int intel_gt_init(struct intel_gt *gt)
->         if (err)
->                 goto err_gt;
+>         i915_memcpy_init_early(dev_priv);
+>         intel_runtime_pm_init_early(&dev_priv->runtime_pm);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index fe1ff025f961..779eb38add40 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1205,6 +1205,12 @@ struct drm_i915_private {
+>         /* Mutex to protect the above hdcp component related values. */
+>         struct mutex hdcp_comp_mutex;
 >  
-> +       intel_pxp_init(&gt->pxp);
+> +       struct i915_pxp_comp_master *pxp_tee_master;
+> +       bool pxp_tee_comp_added;
 > +
->         goto out_fw;
->  err_gt:
->         __intel_gt_disable(gt);
-> @@ -658,6 +661,8 @@ void intel_gt_driver_unregister(struct intel_gt *gt)
->  
->         intel_rps_driver_unregister(&gt->rps);
->  
-> +       intel_pxp_fini(&gt->pxp);
+> +       /* Mutex to protect the above pxp_tee component related values. */
+> +       struct mutex pxp_tee_comp_mutex;
 > +
+>         I915_SELFTEST_DECLARE(struct i915_selftest_stash selftest;)
+>  
 >         /*
->          * Upon unregistering the device to prevent any new users, cancel
->          * all in-flight requests so that we can quickly unbind the active
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_types.h b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> index 626af37c7790..324d267eee15 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_types.h
-> @@ -23,6 +23,7 @@
->  #include "intel_rc6_types.h"
->  #include "intel_rps_types.h"
->  #include "intel_wakeref.h"
-> +#include "pxp/intel_pxp_types.h"
->  
->  struct drm_i915_private;
->  struct i915_ggtt;
-> @@ -145,6 +146,8 @@ struct intel_gt {
->                 /* Slice/subslice/EU info */
->                 struct sseu_dev_info sseu;
->         } info;
-> +
-> +       struct intel_pxp pxp;
->  };
->  
->  enum intel_gt_scratch_field {
 > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> new file mode 100644
-> index 000000000000..4ddc8a71a3e7
-> --- /dev/null
+> index 950daee5b907..3f3eeadb7931 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
 > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> @@ -0,0 +1,61 @@
+> @@ -3,6 +3,7 @@
+>   * Copyright(c) 2020 Intel Corporation.
+>   */
+>  #include "intel_pxp.h"
+> +#include "intel_pxp_tee.h"
+>  #include "gt/intel_context.h"
+>  #include "i915_drv.h"
+>  
+> @@ -67,10 +68,16 @@ void intel_pxp_init(struct intel_pxp *pxp)
+>         if (ret)
+>                 goto out_kcr;
+>  
+> +       ret = intel_pxp_tee_component_init(pxp);
+> +       if (ret)
+> +               goto out_context;
+> +
+>         drm_info(&gt->i915->drm, "Protected Xe Path (PXP) protected content support initialized\n");
+>  
+>         return;
+>  
+> +out_context:
+> +       destroy_vcs_context(pxp);
+>  out_kcr:
+>         kcr_pxp_disable(gt);
+>  }
+> @@ -82,7 +89,10 @@ void intel_pxp_fini(struct intel_pxp *pxp)
+>         if (!intel_pxp_is_enabled(pxp))
+>                 return;
+>  
+> +       intel_pxp_tee_component_fini(pxp);
+> +
+>         destroy_vcs_context(pxp);
+>  
+>         kcr_pxp_disable(gt);
+> +
+>  }
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> new file mode 100644
+> index 000000000000..1d2b8c346161
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> @@ -0,0 +1,86 @@
 > +// SPDX-License-Identifier: MIT
 > +/*
 > + * Copyright(c) 2020 Intel Corporation.
 > + */
-> +#include "intel_pxp.h"
-> +#include "gt/intel_context.h"
+> +
+> +#include <linux/component.h>
+> +#include "drm/i915_pxp_tee_interface.h"
+> +#include "drm/i915_component.h"
 > +#include "i915_drv.h"
+> +#include "intel_pxp.h"
+> +#include "intel_pxp_tee.h"
 > +
-> +static int create_vcs_context(struct intel_pxp *pxp)
+> +/**
+> + * i915_pxp_tee_component_bind - bind funciton to pass the function pointers to pxp_tee
+> + * @i915_kdev: pointer to i915 kernel device
+> + * @tee_kdev: pointer to tee kernel device
+> + * @data: pointer to pxp_tee_master containing the function pointers
+> + *
+> + * This bind function is called during the system boot or resume from system sleep.
+> + *
+> + * Return: return 0 if successful.
+> + */
+> +static int i915_pxp_tee_component_bind(struct device *i915_kdev,
+> +                                      struct device *tee_kdev, void *data)
 > +{
-> +       struct intel_gt *gt = pxp_to_gt(pxp);
-> +       struct intel_context *ce = NULL;
-> +       int i;
+> +       struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
 > +
-> +       /*
-> +        * Find the first VCS engine present. We're guaranteed there is one
-> +        * if we're in this function due to the check in has_pxp
-> +        */
-> +       for (i = 0; i < I915_MAX_VCS && !ce; i++)
-> +               if (HAS_ENGINE(gt, _VCS(i)))
-> +                       ce = intel_context_create(gt->engine[_VCS(i)]);
-
-Just wondering if
-
-struct intel_engine_cs **vcs_engines = gt->engine_class[CLASS_VIDEO_DECODE];
-
-for (i = 0; i < ARRAY_SIZE(gt->engine_class[CLASS_VIDEO_DECODE]); i++) {
-	if (!vcs_engines[i])
-		continue;
-
-	ce = intel_context_create(vcs_engines[i]);
-	break;
-}
-
-is a better iterator as it only checks one place of truth about whether
-or not the engine exists.
-
-for_each_engine_class(engine, gt, class, i)
-
-A couple of places could use that.
-
-> +       if (IS_ERR(ce)) {
-> +               drm_err(&gt->i915->drm, "failed to create VCS ctx for PXP\n");
-> +               return PTR_ERR(ce);
-
-Is the lack of this feature enough to prevent module loading? Surely
-userspace will notice and report the lack of the feature?
-
-> +       }
-> +
-> +       pxp->ce = ce;
-
-Is protected context then implicitly tried to one engine? i.e.
-userspace has to use the same engine as we control invalidation?
-Otherwise, everytime we use pxp->ce we must impose barriers across all
-gt->vcs.
-
+> +       mutex_lock(&i915->pxp_tee_comp_mutex);
+> +       i915->pxp_tee_master = (struct i915_pxp_comp_master *)data;
+> +       i915->pxp_tee_master->tee_dev = tee_kdev;
+> +       mutex_unlock(&i915->pxp_tee_comp_mutex);
 > +
 > +       return 0;
 > +}
 > +
-> +static void destroy_vcs_context(struct intel_pxp *pxp)
+> +static void i915_pxp_tee_component_unbind(struct device *i915_kdev,
+> +                                         struct device *tee_kdev, void *data)
 > +{
-> +       intel_context_put(fetch_and_zero(&pxp->ce));
+> +       struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
+> +
+> +       mutex_lock(&i915->pxp_tee_comp_mutex);
+> +       i915->pxp_tee_master = NULL;
+> +       mutex_unlock(&i915->pxp_tee_comp_mutex);
 > +}
 > +
-> +void intel_pxp_init(struct intel_pxp *pxp)
+> +static const struct component_ops i915_pxp_tee_component_ops = {
+> +       .bind   = i915_pxp_tee_component_bind,
+> +       .unbind = i915_pxp_tee_component_unbind,
+> +};
+> +
+> +int intel_pxp_tee_component_init(struct intel_pxp *pxp)
 > +{
-> +       struct intel_gt *gt = pxp_to_gt(pxp);
 > +       int ret;
+> +       struct intel_gt *gt = pxp_to_gt(pxp);
+> +       struct drm_i915_private *i915 = gt->i915;
 > +
-> +       if (!HAS_PXP(gt->i915))
-> +               return;
+> +       ret = component_add_typed(i915->drm.dev, &i915_pxp_tee_component_ops,
+> +                                 I915_COMPONENT_PXP);
+> +       if (ret < 0) {
+> +               drm_err(&i915->drm, "Failed to add PXP component (%d)\n", ret);
+> +               return ret;
+> +       }
 > +
-> +       ret = create_vcs_context(pxp);
-> +       if (ret)
-> +               return;
-> +
-> +       drm_info(&gt->i915->drm, "Protected Xe Path (PXP) protected content support initialized\n");
-> +
-> +       return;
-> +}
-> +
-> +void intel_pxp_fini(struct intel_pxp *pxp)
-> +{
-> +       if (!intel_pxp_is_enabled(pxp))
-> +               return;
-> +
-> +       destroy_vcs_context(pxp);
-> +}
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> new file mode 100644
-> index 000000000000..e2acd06402cd
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> @@ -0,0 +1,35 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
-> + */
-> +
-> +#ifndef __INTEL_PXP_H__
-> +#define __INTEL_PXP_H__
-> +
-> +#include "gt/intel_gt_types.h"
-> +#include "intel_pxp_types.h"
-> +
-> +static inline struct intel_gt *pxp_to_gt(struct intel_pxp *pxp)
-> +{
-> +       return container_of(pxp, struct intel_gt, pxp);
-> +}
-> +
-> +static inline bool intel_pxp_is_enabled(struct intel_pxp *pxp)
+> +       mutex_lock(&i915->pxp_tee_comp_mutex);
+> +       i915->pxp_tee_comp_added = true;
+> +       mutex_unlock(&i915->pxp_tee_comp_mutex);
 
-const struct intel_pxp *pxp
+i915->pxp_tee_comp_added is used for no other reason than for
+uncertainty in the init/fini flow. There is no uncertainty.
+There is no reason to pollute drm_i915_private, for if there was a
+second pxp device within one i915, it would not work as is.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
