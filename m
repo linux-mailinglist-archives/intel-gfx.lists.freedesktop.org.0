@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CF57312579
-	for <lists+intel-gfx@lfdr.de>; Sun,  7 Feb 2021 16:45:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A7531259D
+	for <lists+intel-gfx@lfdr.de>; Sun,  7 Feb 2021 16:56:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72BFD6E183;
-	Sun,  7 Feb 2021 15:45:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E4296E12C;
+	Sun,  7 Feb 2021 15:56:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DF1346E12C;
- Sun,  7 Feb 2021 15:45:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D330CA7DFC;
- Sun,  7 Feb 2021 15:45:35 +0000 (UTC)
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3FE9887DE;
+ Sun,  7 Feb 2021 15:56:10 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id 3732F68B02; Sun,  7 Feb 2021 16:56:02 +0100 (CET)
+Date: Sun, 7 Feb 2021 16:56:01 +0100
+From: Christoph Hellwig <hch@lst.de>
+To: Dongli Zhang <dongli.zhang@oracle.com>
+Message-ID: <20210207155601.GA25111@lst.de>
+References: <20210203233709.19819-1-dongli.zhang@oracle.com>
+ <20210203233709.19819-6-dongli.zhang@oracle.com>
+ <20210204084023.GA32328@lst.de>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 07 Feb 2021 15:45:35 -0000
-Message-ID: <161271273582.30295.9447105504174531715@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210207150351.19482-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210207150351.19482-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BCI=2C1/4=5D_drm/i915=3A_Move_submit=5Frequ?=
- =?utf-8?q?est_to_i915=5Fsched=5Fengine?=
+Content-Disposition: inline
+In-Reply-To: <20210204084023.GA32328@lst.de>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] [PATCH RFC v1 5/6] xen-swiotlb: convert variables
+ to arrays
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,200 +39,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0068725023=="
+Cc: ulf.hansson@linaro.org, airlied@linux.ie, benh@kernel.crashing.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ bhelgaas@google.com, paulus@samba.org, hpa@zytor.com, hch@lst.de,
+ m.szyprowski@samsung.com, sstabellini@kernel.org, adrian.hunter@intel.com,
+ mpe@ellerman.id.au, x86@kernel.org, joe.jin@oracle.com, mingo@kernel.org,
+ peterz@infradead.org, mingo@redhat.com, bskeggs@redhat.com,
+ linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
+ matthew.auld@intel.com, thomas.lendacky@amd.com, konrad.wilk@oracle.com,
+ intel-gfx@lists.freedesktop.org, bp@alien8.de, nouveau@lists.freedesktop.org,
+ boris.ostrovsky@oracle.com, chris@chris-wilson.co.uk, jgross@suse.com,
+ tsbogend@alpha.franken.de, robin.murphy@arm.com, linux-mmc@vger.kernel.org,
+ linux-mips@vger.kernel.org, iommu@lists.linux-foundation.org,
+ tglx@linutronix.de, bauerman@linux.ibm.com, akpm@linux-foundation.org,
+ linuxppc-dev@lists.ozlabs.org, rppt@kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0068725023==
-Content-Type: multipart/alternative;
- boundary="===============7592639507517812409=="
+On Thu, Feb 04, 2021 at 09:40:23AM +0100, Christoph Hellwig wrote:
+> So one thing that has been on my mind for a while:  I'd really like
+> to kill the separate dma ops in Xen swiotlb.  If we compare xen-swiotlb
+> to swiotlb the main difference seems to be:
+> 
+>  - additional reasons to bounce I/O vs the plain DMA capable
+>  - the possibility to do a hypercall on arm/arm64
+>  - an extra translation layer before doing the phys_to_dma and vice
+>    versa
+>  - an special memory allocator
+> 
+> I wonder if inbetween a few jump labels or other no overhead enablement
+> options and possibly better use of the dma_range_map we could kill
+> off most of swiotlb-xen instead of maintaining all this code duplication?
 
---===============7592639507517812409==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+So I looked at this a bit more.
 
-== Series Details ==
+For x86 with XENFEAT_auto_translated_physmap (how common is that?)
+pfn_to_gfn is a nop, so plain phys_to_dma/dma_to_phys do work as-is.
 
-Series: series starting with [CI,1/4] drm/i915: Move submit_request to i915_sched_engine
-URL   : https://patchwork.freedesktop.org/series/86822/
-State : success
+xen_arch_need_swiotlb always returns true for x86, and
+range_straddles_page_boundary should never be true for the
+XENFEAT_auto_translated_physmap case.
 
-== Summary ==
+So as far as I can tell the mapping fast path for the
+XENFEAT_auto_translated_physmap can be trivially reused from swiotlb.
 
-CI Bug Log - changes from CI_DRM_9743 -> Patchwork_19623
-====================================================
+That leaves us with the next more complicated case, x86 or fully cache
+coherent arm{,64} without XENFEAT_auto_translated_physmap.  In that case
+we need to patch in a phys_to_dma/dma_to_phys that performs the MFN
+lookup, which could be done using alternatives or jump labels.
+I think if that is done right we should also be able to let that cover
+the foreign pages in is_xen_swiotlb_buffer/is_swiotlb_buffer, but
+in that worst case that would need another alternative / jump label.
 
-Summary
--------
+For non-coherent arm{,64} we'd also need to use alternatives or jump
+labels to for the cache maintainance ops, but that isn't a hard problem
+either.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19623 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +22 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9743/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_tiled_blits@basic:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9743/fi-tgl-y/igt@gem_tiled_blits@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/fi-tgl-y/igt@gem_tiled_blits@basic.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 38)
-------------------------------
-
-  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9743 -> Patchwork_19623
-
-  CI-20190529: 20190529
-  CI_DRM_9743: 9781d6be4363dd76f7e42e6249a67a6af43f40b7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5997: 2f27f54d9fae945a4b7cffc7d7370abb7a41caf2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19623: 9da368f0928b8eed572fd1d69e0b689c43aa193c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-9da368f0928b drm/i915: Wrap i915_request_use_semaphores()
-f89a52a6bf2f drm/i915: Show execlists queues when dumping state
-90cb79f67175 drm/i915: Move finding the current active request to the scheduler
-40ff776943d9 drm/i915: Move submit_request to i915_sched_engine
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/index.html
-
---===============7592639507517812409==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/4] drm/i915: Move submit_request to i915_sched_engine</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86822/">https://patchwork.freedesktop.org/series/86822/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9743 -&gt; Patchwork_19623</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19623 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9743/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_tiled_blits@basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9743/fi-tgl-y/igt@gem_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19623/fi-tgl-y/igt@gem_tiled_blits@basic.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 38)</h2>
-<p>Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9743 -&gt; Patchwork_19623</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9743: 9781d6be4363dd76f7e42e6249a67a6af43f40b7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5997: 2f27f54d9fae945a4b7cffc7d7370abb7a41caf2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19623: 9da368f0928b8eed572fd1d69e0b689c43aa193c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>9da368f0928b drm/i915: Wrap i915_request_use_semaphores()<br />
-f89a52a6bf2f drm/i915: Show execlists queues when dumping state<br />
-90cb79f67175 drm/i915: Move finding the current active request to the scheduler<br />
-40ff776943d9 drm/i915: Move submit_request to i915_sched_engine</p>
-
-</body>
-</html>
-
---===============7592639507517812409==--
-
---===============0068725023==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0068725023==--
