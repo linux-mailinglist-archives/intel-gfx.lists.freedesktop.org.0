@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EA9B312F93
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:53:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0958E312F94
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:53:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0096E87D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74EA46E87E;
 	Mon,  8 Feb 2021 10:53:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 760EC6E873
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 10:52:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FF656E86F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 10:52:57 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.69.177; 
 Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23809212-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23809213-1500050 
  for multiple; Mon, 08 Feb 2021 10:52:42 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Feb 2021 10:52:10 +0000
-Message-Id: <20210208105236.28498-5-chris@chris-wilson.co.uk>
+Date: Mon,  8 Feb 2021 10:52:11 +0000
+Message-Id: <20210208105236.28498-6-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210208105236.28498-1-chris@chris-wilson.co.uk>
 References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 05/31] drm/i915/gt: Declare when we enabled
- timeslicing
+Subject: [Intel-gfx] [PATCH 06/31] drm/i915: Move busywaiting control to the
+ scheduler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,44 +45,146 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Let userspace know if they can trust timeslicing by including it as part
-of the I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
+Busy-waiting is used for preempt-to-busy by schedulers, if they so
+choose. Since it is not a property of the engine, but that of the
+submission backend, move the flag from out of the engine to
+i915_sched_engine.
 
-v2: Only declare timeslicing if we can safely preempt userspace.
-
-Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_user.c | 1 +
- include/uapi/drm/i915_drm.h                 | 1 +
- 2 files changed, 2 insertions(+)
+ drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |  4 ++--
+ .../drm/i915/gt/intel_execlists_submission.c  |  5 ++++-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        | 19 +++++++++++++------
+ drivers/gpu/drm/i915/i915_request.h           |  5 +++++
+ drivers/gpu/drm/i915/i915_scheduler_types.h   |  6 ++++++
+ 5 files changed, 30 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-index 3d3cdc080c32..3fab439ba22b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-@@ -102,6 +102,7 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
- #define MAP(x, y) { I915_SCHED_##x, ilog2(I915_SCHEDULER_CAP_##y) }
- 		MAP(ACTIVE_BIT, ENABLED),
- 		MAP(PRIORITY_BIT, PRIORITY),
-+		MAP(TIMESLICE_BIT, TIMESLICING),
- #undef MAP
- 	};
- 	struct intel_engine_cs *engine;
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 1987e2ea79a3..cda0f391d965 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -524,6 +524,7 @@ typedef struct drm_i915_irq_wait {
- #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
- #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
- #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
-+#define   I915_SCHEDULER_CAP_TIMESLICING	(1ul << 5)
+diff --git a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+index cac80af7ad1c..8791e03ebe61 100644
+--- a/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/gen8_engine_cs.c
+@@ -507,7 +507,7 @@ gen8_emit_fini_breadcrumb_tail(struct i915_request *rq, u32 *cs)
+ 	*cs++ = MI_USER_INTERRUPT;
  
- #define I915_PARAM_HUC_STATUS		 42
+ 	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+-	if (intel_engine_has_semaphores(rq->engine))
++	if (i915_request_use_busywait(rq))
+ 		cs = emit_preempt_busywait(rq, cs);
  
+ 	rq->tail = intel_ring_offset(rq, cs);
+@@ -599,7 +599,7 @@ gen12_emit_fini_breadcrumb_tail(struct i915_request *rq, u32 *cs)
+ 	*cs++ = MI_USER_INTERRUPT;
+ 
+ 	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+-	if (intel_engine_has_semaphores(rq->engine))
++	if (i915_request_use_busywait(rq))
+ 		cs = gen12_emit_preempt_busywait(rq, cs);
+ 
+ 	rq->tail = intel_ring_offset(rq, cs);
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index aa1816d28def..0a93386ad15f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -306,7 +306,7 @@ static bool need_preempt(const struct intel_engine_cs *engine,
+ 	const struct i915_sched *se = &engine->sched;
+ 	int last_prio;
+ 
+-	if (!intel_engine_has_semaphores(engine))
++	if (!i915_sched_use_busywait(se))
+ 		return false;
+ 
+ 	/*
+@@ -2963,6 +2963,9 @@ static void init_execlists(struct intel_engine_cs *engine)
+ 	    intel_engine_has_preemption(engine))
+ 		__set_bit(I915_SCHED_TIMESLICE_BIT, &engine->sched.flags);
+ 
++	if (intel_engine_has_preemption(engine))
++		__set_bit(I915_SCHED_BUSYWAIT_BIT, &engine->sched.flags);
++
+ 	timer_setup(&engine->execlists.timer, execlists_timeslice, 0);
+ 	timer_setup(&engine->execlists.preempt, execlists_preempt, 0);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 279091e41b41..6d73add47109 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -679,9 +679,11 @@ static int live_lrc_gpr(void *arg)
+ 		if (err)
+ 			goto err;
+ 
+-		err = __live_lrc_gpr(engine, scratch, true);
+-		if (err)
+-			goto err;
++		if (intel_engine_has_preemption(engine)) {
++			err = __live_lrc_gpr(engine, scratch, true);
++			if (err)
++				goto err;
++		}
+ 
+ err:
+ 		st_engine_heartbeat_enable(engine);
+@@ -859,9 +861,11 @@ static int live_lrc_timestamp(void *arg)
+ 			if (err)
+ 				break;
+ 
+-			err = __lrc_timestamp(&data, true);
+-			if (err)
+-				break;
++			if (intel_engine_has_preemption(data.engine)) {
++				err = __lrc_timestamp(&data, true);
++				if (err)
++					break;
++			}
+ 		}
+ 
+ err:
+@@ -1508,6 +1512,9 @@ static int live_lrc_isolation(void *arg)
+ 		    skip_isolation(engine))
+ 			continue;
+ 
++		if (!intel_engine_has_preemption(engine))
++			continue;
++
+ 		intel_engine_pm_get(engine);
+ 		for (i = 0; i < ARRAY_SIZE(poison); i++) {
+ 			int result;
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index dde868e9ee5f..843e6a873148 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -651,4 +651,9 @@ static inline bool i915_request_use_semaphores(const struct i915_request *rq)
+ 	return intel_engine_has_semaphores(rq->engine);
+ }
+ 
++static inline bool i915_request_use_busywait(const struct i915_request *rq)
++{
++	return i915_sched_use_busywait(i915_request_get_scheduler(rq));
++}
++
+ #endif /* I915_REQUEST_H */
+diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+index 3c94378def52..3aaf5b40b801 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler_types.h
++++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+@@ -23,6 +23,7 @@ enum {
+ 	I915_SCHED_ACTIVE_BIT, /* can reorder the request flow */
+ 	I915_SCHED_PRIORITY_BIT, /* priority sorting of queue */
+ 	I915_SCHED_TIMESLICE_BIT, /* multitasking for long workloads */
++	I915_SCHED_BUSYWAIT_BIT, /* preempt-to-busy */
+ };
+ 
+ /**
+@@ -250,4 +251,9 @@ static inline bool i915_sched_has_timeslices(const struct i915_sched *se)
+ 	return test_bit(I915_SCHED_TIMESLICE_BIT, &se->flags);
+ }
+ 
++static inline bool i915_sched_use_busywait(const struct i915_sched *se)
++{
++	return test_bit(I915_SCHED_BUSYWAIT_BIT, &se->flags);
++}
++
+ #endif /* _I915_SCHEDULER_TYPES_H_ */
 -- 
 2.20.1
 
