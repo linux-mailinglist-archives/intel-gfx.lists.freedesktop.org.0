@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D2E3313845
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 16:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46E43313850
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 16:43:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B832C6E90E;
-	Mon,  8 Feb 2021 15:43:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9950E6E90D;
+	Mon,  8 Feb 2021 15:43:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A2EC6E90E
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 15:43:09 +0000 (UTC)
-IronPort-SDR: 9MGH49pxTJOwVnQgMtPvHvV6UGq4uncLB4Z2cMeX57Y7rycqO8YG/ngz1l5nv8VH038CgN04tY
- Rn838OtMGcJw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9889"; a="169413416"
-X-IronPort-AV: E=Sophos;i="5.81,162,1610438400"; d="scan'208";a="169413416"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2021 07:43:08 -0800
-IronPort-SDR: sn3QyS2oGRgab5jNjl5mVjEEpyCbJ1Ey0l7Lj085o0M04fKNxN1GkhJ/hFvNcQntluWFbLR1fy
- hfLr62MkvGfA==
-X-IronPort-AV: E=Sophos;i="5.81,162,1610438400"; d="scan'208";a="395482465"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2021 07:43:06 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Feb 2021 17:43:03 +0200
-Message-Id: <20210208154303.6839-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 483486E1B3;
+ Mon,  8 Feb 2021 15:43:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 423E2A882E;
+ Mon,  8 Feb 2021 15:43:22 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl+: Make sure TypeC FIA is powered
- up when initializing it
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 08 Feb 2021 15:43:22 -0000
+Message-ID: <161279900226.27712.14184206842626128132@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210208105236.28498-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/31=5D_drm/i915/gt=3A_Ratelimit_h?=
+ =?utf-8?q?eartbeat_completion_probing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,71 +39,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Paul Menzel <pmenzel@molgen.mpg.de>, stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhlIFR5cGVDIEZJQSBjYW4gYmUgcG93ZXJlZCBkb3duIGlmIHRoZSBUQy1DT0xEIHBvd2VyIHN0
-YXRlIGlzIGFsbG93ZWQsCnNvIGJsb2NrIHRoZSBUQy1DT0xEIHN0YXRlIHdoZW4gaW5pdGlhbGl6
-aW5nIHRoZSBGSUEuCgpOb3RlIHRoYXQgdGhpcyBpc24ndCBuZWVkZWQgb24gSUNMIHdoZXJlIHRo
-ZSBGSUEgaXMgbmV2ZXIgbW9kdWxhciBhbmQKd2hpY2ggaGFzIG5vIGdlbmVyaWMgd2F5IHRvIGJs
-b2NrIFRDLUNPTEQgKGV4Y2VwdCBmb3IgcGxhdGZvcm1zIHdpdGggYQpsZWdhY3kgVHlwZUMgcG9y
-dCBhbmQgb24gdGhvc2UgdG9vIG9ubHkgdmlhIHRoZXNlIGxlZ2FjeSBwb3J0cywgbm90IHZpYQph
-IERQLWFsdC9UQlQgcG9ydCkuCgpDYzogPHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc+ICMgdjUuMTAr
-CkNjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KUmVwb3J0
-ZWQtYnk6IFBhdWwgTWVuemVsIDxwbWVuemVsQG1vbGdlbi5tcGcuZGU+CkNsb3NlczogaHR0cHM6
-Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8zMDI3ClNpZ25lZC1v
-ZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMgfCA2NyArKysrKysrKysrKysrKy0tLS0tLS0tLS0t
-CiAxIGZpbGUgY2hhbmdlZCwgMzcgaW5zZXJ0aW9ucygrKSwgMzAgZGVsZXRpb25zKC0pCgpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jCmluZGV4IDI3ZGMyZGFkNjgwOWMuLjJj
-ZWZjMTM1MzVhMGYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfdGMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMKQEAg
-LTIzLDM2ICsyMyw2IEBAIHN0YXRpYyBjb25zdCBjaGFyICp0Y19wb3J0X21vZGVfbmFtZShlbnVt
-IHRjX3BvcnRfbW9kZSBtb2RlKQogCXJldHVybiBuYW1lc1ttb2RlXTsKIH0KIAotc3RhdGljIHZv
-aWQKLXRjX3BvcnRfbG9hZF9maWFfcGFyYW1zKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
-LAotCQkJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpCi17Ci0JZW51bSBwb3J0
-IHBvcnQgPSBkaWdfcG9ydC0+YmFzZS5wb3J0OwotCWVudW0gdGNfcG9ydCB0Y19wb3J0ID0gaW50
-ZWxfcG9ydF90b190YyhpOTE1LCBwb3J0KTsKLQl1MzIgbW9kdWxhcl9maWE7Ci0KLQlpZiAoSU5U
-RUxfSU5GTyhpOTE1KS0+ZGlzcGxheS5oYXNfbW9kdWxhcl9maWEpIHsKLQkJbW9kdWxhcl9maWEg
-PSBpbnRlbF91bmNvcmVfcmVhZCgmaTkxNS0+dW5jb3JlLAotCQkJCQkJUE9SVF9UWF9ERkxFWERQ
-U1AoRklBMSkpOwotCQlkcm1fV0FSTl9PTigmaTkxNS0+ZHJtLCBtb2R1bGFyX2ZpYSA9PSAweGZm
-ZmZmZmZmKTsKLQkJbW9kdWxhcl9maWEgJj0gTU9EVUxBUl9GSUFfTUFTSzsKLQl9IGVsc2Ugewot
-CQltb2R1bGFyX2ZpYSA9IDA7Ci0JfQotCi0JLyoKLQkgKiBFYWNoIE1vZHVsYXIgRklBIGluc3Rh
-bmNlIGhvdXNlcyAyIFRDIHBvcnRzLiBJbiBTT0MgdGhhdCBoYXMgbW9yZQotCSAqIHRoYW4gdHdv
-IFRDIHBvcnRzLCB0aGVyZSBhcmUgbXVsdGlwbGUgaW5zdGFuY2VzIG9mIE1vZHVsYXIgRklBLgot
-CSAqLwotCWlmIChtb2R1bGFyX2ZpYSkgewotCQlkaWdfcG9ydC0+dGNfcGh5X2ZpYSA9IHRjX3Bv
-cnQgLyAyOwotCQlkaWdfcG9ydC0+dGNfcGh5X2ZpYV9pZHggPSB0Y19wb3J0ICUgMjsKLQl9IGVs
-c2UgewotCQlkaWdfcG9ydC0+dGNfcGh5X2ZpYSA9IEZJQTE7Ci0JCWRpZ19wb3J0LT50Y19waHlf
-ZmlhX2lkeCA9IHRjX3BvcnQ7Ci0JfQotfQotCiBzdGF0aWMgZW51bSBpbnRlbF9kaXNwbGF5X3Bv
-d2VyX2RvbWFpbgogdGNfY29sZF9nZXRfcG93ZXJfZG9tYWluKHN0cnVjdCBpbnRlbF9kaWdpdGFs
-X3BvcnQgKmRpZ19wb3J0KQogewpAQCAtNjQ2LDYgKzYxNiw0MyBAQCB2b2lkIGludGVsX3RjX3Bv
-cnRfcHV0X2xpbmsoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpCiAJbXV0ZXhf
-dW5sb2NrKCZkaWdfcG9ydC0+dGNfbG9jayk7CiB9CiAKK3N0YXRpYyBib29sCit0Y19oYXNfbW9k
-dWxhcl9maWEoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsIHN0cnVjdCBpbnRlbF9kaWdp
-dGFsX3BvcnQgKmRpZ19wb3J0KQoreworCWludGVsX3dha2VyZWZfdCB3YWtlcmVmOworCXUzMiB2
-YWw7CisKKwlpZiAoIUlOVEVMX0lORk8oaTkxNSktPmRpc3BsYXkuaGFzX21vZHVsYXJfZmlhKQor
-CQlyZXR1cm4gZmFsc2U7CisKKwl3YWtlcmVmID0gdGNfY29sZF9ibG9jayhkaWdfcG9ydCk7CisJ
-dmFsID0gaW50ZWxfdW5jb3JlX3JlYWQoJmk5MTUtPnVuY29yZSwgUE9SVF9UWF9ERkxFWERQU1Ao
-RklBMSkpOworCXRjX2NvbGRfdW5ibG9jayhkaWdfcG9ydCwgd2FrZXJlZik7CisKKwlkcm1fV0FS
-Tl9PTigmaTkxNS0+ZHJtLCB2YWwgPT0gMHhmZmZmZmZmZik7CisKKwlyZXR1cm4gdmFsICYgTU9E
-VUxBUl9GSUFfTUFTSzsKK30KKworc3RhdGljIHZvaWQKK3RjX3BvcnRfbG9hZF9maWFfcGFyYW1z
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LCBzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0
-ICpkaWdfcG9ydCkKK3sKKwllbnVtIHBvcnQgcG9ydCA9IGRpZ19wb3J0LT5iYXNlLnBvcnQ7CisJ
-ZW51bSB0Y19wb3J0IHRjX3BvcnQgPSBpbnRlbF9wb3J0X3RvX3RjKGk5MTUsIHBvcnQpOworCisJ
-LyoKKwkgKiBFYWNoIE1vZHVsYXIgRklBIGluc3RhbmNlIGhvdXNlcyAyIFRDIHBvcnRzLiBJbiBT
-T0MgdGhhdCBoYXMgbW9yZQorCSAqIHRoYW4gdHdvIFRDIHBvcnRzLCB0aGVyZSBhcmUgbXVsdGlw
-bGUgaW5zdGFuY2VzIG9mIE1vZHVsYXIgRklBLgorCSAqLworCWlmICh0Y19oYXNfbW9kdWxhcl9m
-aWEoaTkxNSwgZGlnX3BvcnQpKSB7CisJCWRpZ19wb3J0LT50Y19waHlfZmlhID0gdGNfcG9ydCAv
-IDI7CisJCWRpZ19wb3J0LT50Y19waHlfZmlhX2lkeCA9IHRjX3BvcnQgJSAyOworCX0gZWxzZSB7
-CisJCWRpZ19wb3J0LT50Y19waHlfZmlhID0gRklBMTsKKwkJZGlnX3BvcnQtPnRjX3BoeV9maWFf
-aWR4ID0gdGNfcG9ydDsKKwl9Cit9CisKIHZvaWQgaW50ZWxfdGNfcG9ydF9pbml0KHN0cnVjdCBp
-bnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LCBib29sIGlzX2xlZ2FjeSkKIHsKIAlzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoZGlnX3BvcnQtPmJhc2UuYmFzZS5kZXYp
-OwotLSAKMi4yNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+== Series Details ==
+
+Series: series starting with [01/31] drm/i915/gt: Ratelimit heartbeat completion probing
+URL   : https://patchwork.freedesktop.org/series/86841/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+206aa3c9677c drm/i915/gt: Ratelimit heartbeat completion probing
+2494ed145240 drm/i915: Move context revocation to scheduler
+3dbe5f872455 drm/i915: Introduce the scheduling mode
+5b350d2836cf drm/i915: Move timeslicing flag to scheduler
+4ab52e53c2c0 drm/i915/gt: Declare when we enabled timeslicing
+-:15: WARNING:BAD_SIGN_OFF: Duplicate signature
+#15: 
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+483235989602 drm/i915: Move busywaiting control to the scheduler
+7a092999c7b2 drm/i915: Move preempt-reset flag to the scheduler
+b5a1080e1523 drm/i915: Fix the iterative dfs for defering requests
+029c20aa2d56 drm/i915: Replace priolist rbtree with a skiplist
+-:439: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p' - possible side-effects?
+#439: FILE: drivers/gpu/drm/i915/i915_priolist_types.h:98:
++#define for_each_priolist(p, root) \
++	for ((p) = (root)->sentinel.next[0]; \
++	     (p) != &(root)->sentinel; \
++	     (p) = (p)->next[0])
+
+-:439: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'root' - possible side-effects?
+#439: FILE: drivers/gpu/drm/i915/i915_priolist_types.h:98:
++#define for_each_priolist(p, root) \
++	for ((p) = (root)->sentinel.next[0]; \
++	     (p) != &(root)->sentinel; \
++	     (p) = (p)->next[0])
+
+-:906: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'se' - possible side-effects?
+#906: FILE: drivers/gpu/drm/i915/i915_scheduler.h:167:
++#define i915_sched_dequeue(se, pl, rq, rn) \
++	for ((pl) = (se)->queue.sentinel.next[0]; \
++	     (pl) != &(se)->queue.sentinel; \
++	     (pl) = __i915_sched_dequeue_next(se)) \
++		priolist_for_each_request_safe(rq, rn, pl)
+
+-:906: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pl' - possible side-effects?
+#906: FILE: drivers/gpu/drm/i915/i915_scheduler.h:167:
++#define i915_sched_dequeue(se, pl, rq, rn) \
++	for ((pl) = (se)->queue.sentinel.next[0]; \
++	     (pl) != &(se)->queue.sentinel; \
++	     (pl) = __i915_sched_dequeue_next(se)) \
++		priolist_for_each_request_safe(rq, rn, pl)
+
+-:952: WARNING:LINE_SPACING: Missing a blank line after declarations
+#952: FILE: drivers/gpu/drm/i915/selftests/i915_scheduler.c:19:
++	struct i915_priolist *pl = &root.sentinel;
++	IGT_TIMEOUT(end_time);
+
+total: 0 errors, 1 warnings, 4 checks, 904 lines checked
+dbfb352bf7b0 drm/i915: Fair low-latency scheduling
+9a611ddd1f7a drm/i915/gt: Specify a deadline for the heartbeat
+022c4065c1a9 drm/i915: Extend the priority boosting for the display with a deadline
+d8b43dca33f0 drm/i915/gt: Support virtual engine queues
+27f940af2d22 drm/i915: Move saturated workload detection back to the context
+-:29: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#29: 
+References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
+
+-:29: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")'
+#29: 
+References: 44d89409a12e ("drm/i915: Make the semaphore saturation mask global")
+
+total: 1 errors, 1 warnings, 0 checks, 78 lines checked
+4109a26f879f drm/i915: Bump default timeslicing quantum to 5ms
+2091c45fb062 drm/i915/gt: Delay taking irqoff for execlists submission
+8b8ee05f1953 drm/i915/gt: Convert the legacy ring submission to use the scheduling interface
+b8c672225e3d drm/i915/gt: Wrap intel_timeline.has_initial_breadcrumb
+186491248d9b drm/i915/gt: Track timeline GGTT offset separately from subpage offset
+cbdded299ad1 drm/i915/gt: Add timeline "mode"
+75d076c67057 drm/i915/gt: Use indices for writing into relative timelines
+b755887ce2eb drm/i915/selftests: Exercise relative timeline modes
+3510121480a9 drm/i915/gt: Use ppHWSP for unshared non-semaphore related timelines
+1f38aec71c0a Restore "drm/i915: drop engine_pin/unpin_breadcrumbs_irq"
+681705c8f00d drm/i915/gt: Support creation of 'internal' rings
+a1edb8d6fe76 drm/i915/gt: Use client timeline address for seqno writes
+d11da5d6110b drm/i915/gt: Infrastructure for ring scheduling
+-:79: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#79: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 844 lines checked
+282aad02df82 drm/i915/gt: Implement ring scheduler for gen4-7
+-:70: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#70: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:221:
++				*cs++ = i915_mmio_reg_offset(
+
+-:72: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#72: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:223:
++				*cs++ = _MASKED_BIT_ENABLE(
+
+-:107: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#107: FILE: drivers/gpu/drm/i915/gt/intel_ring_scheduler.c:258:
++				*cs++ = _MASKED_BIT_DISABLE(
+
+total: 0 errors, 0 warnings, 3 checks, 585 lines checked
+ce6065610e18 drm/i915/gt: Enable ring scheduling for gen5-7
+-:32: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#32: 
+References: 0f46832fab77 ("drm/i915: Mask USER interrupts on gen6 (until required)")
+
+-:32: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0f46832fab77 ("drm/i915: Mask USER interrupts on gen6 (until required)")'
+#32: 
+References: 0f46832fab77 ("drm/i915: Mask USER interrupts on gen6 (until required)")
+
+total: 1 errors, 1 warnings, 0 checks, 45 lines checked
+8412a0fc0ad0 drm/i915: Support secure dispatch on gen6/gen7
+c652a65f34ac drm/i915/gt: Limit C-states while waiting for requests
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
