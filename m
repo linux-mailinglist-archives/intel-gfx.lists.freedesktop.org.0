@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E891312F84
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:53:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 836EF312F90
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:53:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F26F26E864;
-	Mon,  8 Feb 2021 10:52:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70CB36E87A;
+	Mon,  8 Feb 2021 10:53:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A56F6E1A3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D25E6E86D
  for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 10:52:56 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.69.177; 
 Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23809214-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23809215-1500050 
  for multiple; Mon, 08 Feb 2021 10:52:42 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Feb 2021 10:52:12 +0000
-Message-Id: <20210208105236.28498-7-chris@chris-wilson.co.uk>
+Date: Mon,  8 Feb 2021 10:52:13 +0000
+Message-Id: <20210208105236.28498-8-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210208105236.28498-1-chris@chris-wilson.co.uk>
 References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 07/31] drm/i915: Move preempt-reset flag to the
- scheduler
+Subject: [Intel-gfx] [PATCH 08/31] drm/i915: Fix the iterative dfs for
+ defering requests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,97 +45,106 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While the HW may support preemption, whether or not the scheduler
-enforces preemption by forcibly resetting the current context is
-ultimately up to the scheduler.
+The current implementation of walking the children of a deferred
+requests lacks the backtracking required to reduce the dfs to linear.
+Having pulled it from execlists into the common layer, we can reuse the
+dfs code for priority inheritance.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine.h               | 7 ++-----
- drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c     | 4 ++--
- drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 4 +++-
- drivers/gpu/drm/i915/i915_scheduler_types.h          | 9 +++++++++
- 4 files changed, 16 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/i915_scheduler.c | 56 +++++++++++++++++++--------
+ 1 file changed, 40 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-index 5d3bcbfe8f6e..e4f390bba009 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-@@ -244,12 +244,9 @@ static inline bool intel_engine_uses_guc(const struct intel_engine_cs *engine)
- }
- 
- static inline bool
--intel_engine_has_preempt_reset(const struct intel_engine_cs *engine)
-+intel_engine_has_preempt_reset(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index a42d8b5bf1f9..312e1538d001 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -565,9 +565,11 @@ void i915_request_set_priority(struct i915_request *rq, int prio)
+ void __i915_sched_defer_request(struct intel_engine_cs *engine,
+ 				struct i915_request *rq)
  {
--	if (!IS_ACTIVE(CONFIG_DRM_I915_PREEMPT_TIMEOUT))
--		return false;
++	struct list_head *pos = &rq->sched.waiters_list;
+ 	struct i915_sched *se = intel_engine_get_scheduler(engine);
+-	struct list_head *pl;
+-	LIST_HEAD(list);
++	const int prio = rq_prio(rq);
++	struct i915_request *rn;
++	LIST_HEAD(dfs);
+ 
+ 	SCHED_TRACE(se, "defer request " RQ_FMT "\n", RQ_ARG(rq));
+ 
+@@ -579,14 +581,11 @@ void __i915_sched_defer_request(struct intel_engine_cs *engine,
+ 	 * to those that are waiting upon it. So we traverse its chain of
+ 	 * waiters and move any that are earlier than the request to after it.
+ 	 */
+-	pl = lookup_priolist(se, rq_prio(rq));
++	rq->sched.dfs.prev = NULL;
+ 	do {
+-		struct i915_dependency *p;
 -
--	return intel_engine_has_preemption(engine);
-+	return i915_sched_has_preempt_reset(intel_engine_get_scheduler(engine));
- }
+-		GEM_BUG_ON(i915_request_is_active(rq));
+-		list_move_tail(&rq->sched.link, pl);
+-
+-		for_each_waiter(p, rq) {
++		list_for_each_continue(pos, &rq->sched.waiters_list) {
++			struct i915_dependency *p =
++				list_entry(pos, typeof(*p), wait_link);
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
- static inline bool
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 209a477af412..5ed263f36f93 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -22,11 +22,11 @@
+@@ -602,19 +601,44 @@ void __i915_sched_defer_request(struct intel_engine_cs *engine,
+ 				   __i915_request_has_started(w) &&
+ 				   !__i915_request_is_complete(rq));
  
- #define HEARTBEAT_COMPLETION 50u /* milliseconds */
+-			if (!i915_request_is_ready(w))
++			if (!i915_request_in_priority_queue(w))
+ 				continue;
  
--static long completion_timeout(const struct intel_engine_cs *engine)
-+static long completion_timeout(struct intel_engine_cs *engine)
- {
- 	long timeout = HEARTBEAT_COMPLETION;
+-			if (rq_prio(w) < rq_prio(rq))
++			/*
++			 * We also need to reorder within the same priority.
++			 *
++			 * This is unlike priority-inheritance, where if the
++			 * signaler already has a higher priority [earlier
++			 * deadline] than us, we can ignore as it will be
++			 * scheduled first. If a waiter already has the
++			 * same priority, we still have to push it to the end
++			 * of the list. This unfortunately means we cannot
++			 * use the rq_deadline() itself as a 'visited' bit.
++			 */
++			if (rq_prio(w) < prio)
+ 				continue;
  
--	if (intel_engine_has_preempt_reset(engine))
-+	if (i915_sched_has_preempt_reset(intel_engine_get_scheduler(engine)))
- 		timeout += READ_ONCE(engine->props.preempt_timeout_ms);
+-			GEM_BUG_ON(rq_prio(w) > rq_prio(rq));
+-			GEM_BUG_ON(i915_request_is_active(w));
+-			list_move_tail(&w->sched.link, &list);
++			GEM_BUG_ON(rq_prio(w) != prio);
++
++			/* Remember our position along this branch */
++			rq = stack_push(w, rq, pos);
++			pos = &rq->sched.waiters_list;
+ 		}
  
- 	return msecs_to_jiffies(timeout);
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 0a93386ad15f..78fda9b4f626 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -2963,8 +2963,10 @@ static void init_execlists(struct intel_engine_cs *engine)
- 	    intel_engine_has_preemption(engine))
- 		__set_bit(I915_SCHED_TIMESLICE_BIT, &engine->sched.flags);
- 
--	if (intel_engine_has_preemption(engine))
-+	if (intel_engine_has_preemption(engine)) {
- 		__set_bit(I915_SCHED_BUSYWAIT_BIT, &engine->sched.flags);
-+		__set_bit(I915_SCHED_PREEMPT_RESET_BIT, &engine->sched.flags);
+-		rq = list_first_entry_or_null(&list, typeof(*rq), sched.link);
+-	} while (rq);
++		/* Note list is reversed for waiters wrt signal hierarchy */
++		GEM_BUG_ON(rq->engine != engine);
++		GEM_BUG_ON(!i915_request_in_priority_queue(rq));
++		list_move(&rq->sched.link, &dfs);
++
++		/* Track our visit, and prevent duplicate processing */
++		clear_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++	} while ((rq = stack_pop(rq, &pos)));
++
++	pos = lookup_priolist(se, prio);
++	list_for_each_entry_safe(rq, rn, &dfs, sched.link) {
++		set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
++		list_add_tail(&rq->sched.link, pos);
 +	}
- 
- 	timer_setup(&engine->execlists.timer, execlists_timeslice, 0);
- 	timer_setup(&engine->execlists.preempt, execlists_preempt, 0);
-diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
-index 3aaf5b40b801..5ca2dc1b4fb5 100644
---- a/drivers/gpu/drm/i915/i915_scheduler_types.h
-+++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
-@@ -23,6 +23,7 @@ enum {
- 	I915_SCHED_ACTIVE_BIT, /* can reorder the request flow */
- 	I915_SCHED_PRIORITY_BIT, /* priority sorting of queue */
- 	I915_SCHED_TIMESLICE_BIT, /* multitasking for long workloads */
-+	I915_SCHED_PREEMPT_RESET_BIT, /* reset if preemption times out */
- 	I915_SCHED_BUSYWAIT_BIT, /* preempt-to-busy */
- };
- 
-@@ -256,4 +257,12 @@ static inline bool i915_sched_use_busywait(const struct i915_sched *se)
- 	return test_bit(I915_SCHED_BUSYWAIT_BIT, &se->flags);
  }
  
-+static inline bool i915_sched_has_preempt_reset(const struct i915_sched *se)
-+{
-+	if (!IS_ACTIVE(CONFIG_DRM_I915_PREEMPT_TIMEOUT))
-+		return false;
-+
-+	return test_bit(I915_SCHED_PREEMPT_RESET_BIT, &se->flags);
-+}
-+
- #endif /* _I915_SCHEDULER_TYPES_H_ */
+ static void queue_request(struct i915_sched *se, struct i915_request *rq)
 -- 
 2.20.1
 
