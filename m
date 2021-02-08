@@ -1,39 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FFFA31300F
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 12:05:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BE14313042
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 12:11:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E23796E3F7;
-	Mon,  8 Feb 2021 11:05:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8ACED89A92;
+	Mon,  8 Feb 2021 11:11:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD01E6E3F7
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 11:05:55 +0000 (UTC)
-IronPort-SDR: otQuD1BcgaluAiKQxsM5vRoatrHKWYknmuf6uiA+ST1SJIf0L/K2nBlbwnKOCukujfmTJerZQT
- C1jgpJMEPGKg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9888"; a="181840914"
-X-IronPort-AV: E=Sophos;i="5.81,161,1610438400"; d="scan'208";a="181840914"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2021 03:05:52 -0800
-IronPort-SDR: IVJO18z5iOpiCE6lHpxwPkKBqk+pGd/9ss6tUv/SPu69+s0KvqvAB+bt4BfXf8iPI8rrYUzkUe
- zEdW6mqGuvNg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,161,1610438400"; d="scan'208";a="585633314"
-Received: from linux-akn.iind.intel.com ([10.223.34.148])
- by fmsmga005.fm.intel.com with ESMTP; 08 Feb 2021 03:05:50 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Feb 2021 16:26:02 +0530
-Message-Id: <20210208105602.25151-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210208104338.25023-1-ankit.k.nautiyal@intel.com>
-References: <20210208104338.25023-1-ankit.k.nautiyal@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26E6F89057
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 11:11:49 +0000 (UTC)
+IronPort-SDR: hc2AKtETubt2qyVFSwAES90IRTLnwQL7TiGkWqJ1FEIQdQlw1Ypi8pOeMdFwfRlhYDPa7/dVwM
+ Ieiq8XYlnATQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9888"; a="160850487"
+X-IronPort-AV: E=Sophos;i="5.81,161,1610438400"; d="scan'208";a="160850487"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2021 03:11:47 -0800
+IronPort-SDR: BAqlyonuvIggVHkpLTvJBEooZ8LdU8yeVKtjGZfVei+tvrLfHprqWYZEc0u4TOnAEl/OZx1ph8
+ C6C0nR+6RV3A==
+X-IronPort-AV: E=Sophos;i="5.81,161,1610438400"; d="scan'208";a="395346140"
+Received: from abodrova-mobl1.ccr.corp.intel.com (HELO localhost)
+ ([10.252.34.91])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2021 03:11:45 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <87lfbyett1.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210208055554.24357-1-ankit.k.nautiyal@intel.com>
+ <87lfbyett1.fsf@intel.com>
+Date: Mon, 08 Feb 2021 13:11:42 +0200
+Message-ID: <87h7mmerv5.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix HAS_LSPCON macro for platforms
+Subject: Re: [Intel-gfx] [PATCH] i915: Fix HAS_LSPCON macro for platforms
  between GEN9 and GEN10
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,33 +55,45 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Legacy LSPCON chip from MCA and Parade is only used for platforms
-between GEN9 and GEN10. Fixing the HAS_LSPCON macro to reflect the same.
+On Mon, 08 Feb 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> Subject prefix: drm/i915:
+>
+> On Mon, 08 Feb 2021, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+>> Legacy LSPCON chip from MCA and Parade is only used for platforms
+>> between GEN9 and GEN10. Fixing the HAS_LSPCON macro to reflect the same.
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>
+> I cringe at the VBT having the bit set anyway, but
+>
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-v2: Added the missing 'drm/' to subject (Jani N).
+And pushed, thanks for the patch. Fixed the subject while applying.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 4fc9a8691873..fd04fc434ca6 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1763,7 +1763,7 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
- 
- #define HAS_GMCH(dev_priv) (INTEL_INFO(dev_priv)->display.has_gmch)
- 
--#define HAS_LSPCON(dev_priv) (INTEL_GEN(dev_priv) >= 9)
-+#define HAS_LSPCON(dev_priv) (IS_GEN_RANGE(dev_priv, 9, 10))
- 
- /* DPF == dynamic parity feature */
- #define HAS_L3_DPF(dev_priv) (INTEL_INFO(dev_priv)->has_l3_dpf)
+>
+>> ---
+>>  drivers/gpu/drm/i915/i915_drv.h | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>> index 4fc9a8691873..fd04fc434ca6 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -1763,7 +1763,7 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
+>>  
+>>  #define HAS_GMCH(dev_priv) (INTEL_INFO(dev_priv)->display.has_gmch)
+>>  
+>> -#define HAS_LSPCON(dev_priv) (INTEL_GEN(dev_priv) >= 9)
+>> +#define HAS_LSPCON(dev_priv) (IS_GEN_RANGE(dev_priv, 9, 10))
+>>  
+>>  /* DPF == dynamic parity feature */
+>>  #define HAS_L3_DPF(dev_priv) (INTEL_INFO(dev_priv)->has_l3_dpf)
+
 -- 
-2.29.2
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
