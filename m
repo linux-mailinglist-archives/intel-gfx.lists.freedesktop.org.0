@@ -1,31 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D45C313914
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 17:17:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDC77313922
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 17:19:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 701226E91B;
-	Mon,  8 Feb 2021 16:17:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5764E6E93D;
+	Mon,  8 Feb 2021 16:19:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1658C6E91B;
- Mon,  8 Feb 2021 16:17:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 10BF1A47E1;
- Mon,  8 Feb 2021 16:17:47 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA4576E93D
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 16:19:22 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.69.177; 
+Received: from localhost (unverified [78.156.69.177]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23813078-1500050 for multiple; Mon, 08 Feb 2021 16:19:18 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yu Zhang" <yu.c.zhang@linux.intel.com>
-Date: Mon, 08 Feb 2021 16:17:47 -0000
-Message-ID: <161280106704.27711.9742658737154816663@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210208185210.6002-1-yu.c.zhang@linux.intel.com>
-In-Reply-To: <20210208185210.6002-1-yu.c.zhang@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gvt/kvmgt=3A_Fix_the_build_failure_in_kvmgt=2E?=
+In-Reply-To: <9a15139e-14e0-f7cd-0afe-08e7dd7aac2c@linux.intel.com>
+References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
+ <20210208105236.28498-9-chris@chris-wilson.co.uk>
+ <9a15139e-14e0-f7cd-0afe-08e7dd7aac2c@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Mon, 08 Feb 2021 16:19:18 +0000
+Message-ID: <161280115888.9448.15201223948689283252@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 09/31] drm/i915: Replace priolist rbtree
+ with a skiplist
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,30 +42,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Tvrtko Ursulin (2021-02-08 15:23:17)
+> 
+> On 08/02/2021 10:52, Chris Wilson wrote:
+> >   static struct list_head *
+> >   lookup_priolist(struct i915_sched *se, int prio)
+> >   {
+> > -     struct i915_priolist *p;
+> > -     struct rb_node **parent, *rb;
+> > -     bool first = true;
+> > +     struct i915_priolist *update[I915_PRIOLIST_HEIGHT];
+> > +     struct i915_priolist_root *const root = &se->queue;
+> > +     struct i915_priolist *pl, *tmp;
+> > +     int lvl;
+> >   
+> >       lockdep_assert_held(&se->lock);
+> > -     assert_priolists(se);
+> > -
+> >       if (unlikely(se->no_priolist))
+> >               prio = I915_PRIORITY_NORMAL;
+> >   
+> > +     for_each_priolist(pl, root) { /* recycle any empty elements before us */
+> > +             if (pl->priority <= prio || !list_empty(&pl->requests))
+> > +                     break;
+> 
+> This less part of the less-or-equal condition keeps confusing me as a 
+> break criteria. If premise is cleaning up, why break on first smaller 
+> prio? Would the idea be to prune all empty lists up to, not including, 
+> the lookup prio?
 
-Series: drm/i915/gvt/kvmgt: Fix the build failure in kvmgt.
-URL   : https://patchwork.freedesktop.org/series/86845/
-State : warning
+Just parcelling up the work. If we tidy up all the unused nodes before
+us, we insert ourselves at the head of the tree, and all the cheap
+checks to see if this is the first request, or to find the first
+request are happy.
 
-== Summary ==
+It's not expected to find anything unused with the tweaks to tidy up
+empty elements as we move between i915_priolist.requests, but it seems
+sensible to keep as then it should be just checking the first
+i915_priolist and breaking out.
 
-$ dim checkpatch origin/drm-tip
-a0e31f3d4bbc drm/i915/gvt/kvmgt: Fix the build failure in kvmgt.
--:6: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '531810caa9f4', maybe rebased or not pulled?
-#6: 
-Previously, commit 531810caa9f4 ("KVM: x86/mmu: Use
+> > -void __i915_priolist_free(struct i915_priolist *p)
+> > +static void __remove_priolist(struct i915_sched *se, struct list_head *plist)
+> >   {
+> > -     kmem_cache_free(global.slab_priorities, p);
+> > +     struct i915_priolist_root *root = &se->queue;
+> > +     struct i915_priolist *pl, *tmp;
+> > +     struct i915_priolist *old =
+> > +             container_of(plist, struct i915_priolist, requests);
+> > +     int prio = old->priority;
+> > +     int lvl;
+> > +
+> > +     lockdep_assert_held(&se->lock);
+> > +     GEM_BUG_ON(!list_empty(plist));
+> > +
+> > +     pl = &root->sentinel;
+> > +     lvl = pl->level;
+> > +     GEM_BUG_ON(lvl < 0);
+> > +
+> > +     if (prio != I915_PRIORITY_NORMAL)
+> > +             pl_push(old, &pl->requests);
+> > +
+> > +     do {
+> > +             while (tmp = pl->next[lvl], tmp->priority > prio)
+> > +                     pl = tmp;
+> > +             if (lvl <= old->level) {
+> > +                     pl->next[lvl] = old->next[lvl];
+> > +                     if (pl == &root->sentinel && old->next[lvl] == pl) {
+> > +                             GEM_BUG_ON(pl->level != lvl);
+> > +                             pl->level--;
+> > +                     }
+> > +             }
+> > +     } while (--lvl >= 0);
+> > +     GEM_BUG_ON(tmp != old);
+> > +}
 
-total: 0 errors, 1 warnings, 0 checks, 48 lines checked
+> > +struct i915_priolist *__i915_sched_dequeue_next(struct i915_sched *se)
+> > +{
+> > +     struct i915_priolist * const s = &se->queue.sentinel;
+> > +     struct i915_priolist *pl = s->next[0];
+> > +     int lvl;
+> > +
+> > +     GEM_BUG_ON(!list_empty(&pl->requests));
+> > +     GEM_BUG_ON(pl == s);
+> > +
+> > +     /* Keep pl->next[0] valid for for_each_priolist iteration */
+> > +     if (pl->priority != I915_PRIORITY_NORMAL)
+> > +             pl_push(pl, &s->requests);
+> > +
+> > +     lvl = pl->level;
+> > +     GEM_BUG_ON(lvl < 0);
+> > +     do {
+> > +             s->next[lvl] = pl->next[lvl];
+> > +             if (pl->next[lvl] == s) {
+> > +                     GEM_BUG_ON(s->level != lvl);
+> > +                     s->level--;
+> > +             }
+> > +     } while (--lvl >= 0);
+> > +
+> > +     return pl->next[0];
+> >   }
+> 
+> If both __i915_sched_dequeue_next and __remove_priolist are removing an 
+> empty list from the hieararchy, why can't they shared some code?
 
-
+The __remove_priolist does the general search and remove, whereas
+dequeue_next is trying to keep O(1) remove-from-head. dequeue_next is
+meant to be called many, many more times than __remove_priolist.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
