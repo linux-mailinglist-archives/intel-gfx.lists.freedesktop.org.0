@@ -2,40 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C16A313283
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 13:40:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE563132B0
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 13:46:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEFFA6E8A4;
-	Mon,  8 Feb 2021 12:39:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19F1F6E8C3;
+	Mon,  8 Feb 2021 12:46:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82AA66E8A4;
- Mon,  8 Feb 2021 12:39:57 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4DZ5Fj5ZHzz9sWb;
- Mon,  8 Feb 2021 23:39:53 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1612787994;
- bh=Vj40pNH27cPPWhxImfXvQCPBcljRNPthB+e2t72DD+o=;
- h=Date:From:To:Cc:Subject:From;
- b=gOmRDRWLTmivtcAjwIxzHoL/C0mqnJVysPatAJX7MkbU2//3wiUHf5mEpzcA3MzXl
- KMAS9HX6o3PSNl7rpc8+rO14f5QXZ1BvpFO6A4wWEp2nCZoiWzZcrj7Jm/1hJTV+Zc
- HkiVGkfwA2ONvPp2UHMpBcA//KzUNU/NpevbmvMP6wwhHKfFDnI79LkWMbygGN6fF4
- U0biVDkBxHxkx4Vy/yjihy8G796riKC0XpcfHFrc6MzoN/y7stRLT1OMFsYWIqIr+8
- Lz66dMbm777vWimxDtV1NEvV0t5OeadLZUC0YyBZzTIXddwoM9Y1Bdo5YerxBJT+Q4
- fPqywQuFn7XmQ==
-Date: Mon, 8 Feb 2021 23:39:51 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Message-ID: <20210208233951.2b438d99@canb.auug.org.au>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAF346E8C3
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 12:46:23 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.69.177; 
+Received: from localhost (unverified [78.156.69.177]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23810686-1500050 for multiple; Mon, 08 Feb 2021 12:46:19 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: build warning after merge of the drm-misc
- tree
+In-Reply-To: <cf5be530-1425-17b4-9710-0732e0269180@linux.intel.com>
+References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
+ <20210208105236.28498-9-chris@chris-wilson.co.uk>
+ <cf5be530-1425-17b4-9710-0732e0269180@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Mon, 08 Feb 2021 12:46:18 +0000
+Message-ID: <161278837896.9448.6851136817080350809@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 09/31] drm/i915: Replace priolist rbtree
+ with a skiplist
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,64 +42,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============1517262626=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1517262626==
-Content-Type: multipart/signed; boundary="Sig_/1RGkhcRKW4jkWv=8QwCD5wP";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Quoting Tvrtko Ursulin (2021-02-08 12:29:14)
+> 
+> On 08/02/2021 10:52, Chris Wilson wrote:
+> > +static void remove_from_priolist(struct i915_sched *se,
+> > +                              struct i915_request *rq,
+> > +                              struct list_head *list,
+> > +                              bool tail)
+> > +{
+> > +     struct list_head *prev = rq->sched.link.prev;
+> 
+> This depends on rq being at the head of it's list?
 
---Sig_/1RGkhcRKW4jkWv=8QwCD5wP
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Not depends. We are testing if the list is singular, that is by removing
+this request from the i915_priolist.requests that list becomes empty,
+and so the i915_priolist can be removed from the skiplist.
 
-Hi all,
+> > +
+> > +     GEM_BUG_ON(!i915_request_in_priority_queue(rq));
+> > +
+> > +     __list_del_entry(&rq->sched.link);
+> > +     if (tail)
+> > +             list_add_tail(&rq->sched.link, list);
+> > +     else
+> > +             list_add(&rq->sched.link, list);
+> 
+> So it is more move than remove(_from_priolist) ?
 
-After merging the drm-misc tree, today's linux-next build (htmldocs)
-produced this warning:
+Yes, we can quite happily just keep the list_move(), except we then end
+up with lots of empty levels. At first I thought the walk through those
+(during dequeue) would be cheaper than removing. The max lock holdtime
+strongly favours the removal as we move requests around (which will
+happen in dribs-and-drabs) over doing a bulk remove at dequeue.
 
-include/drm/gpu_scheduler.h:304: warning: Function parameter or member '_sc=
-ore' not described in 'drm_gpu_scheduler'
+> > +     /* If we just removed the last element in the old plist, delete it */
+> > +     if (list_empty(prev))
+> > +             __remove_priolist(se, prev);
+> > +}
+> > +
+> > +struct i915_priolist *__i915_sched_dequeue_next(struct i915_sched *se)
+> > +{
+> > +     struct i915_priolist * const s = &se->queue.sentinel;
+> > +     struct i915_priolist *pl = s->next[0];
+> > +     int lvl;
+> > +
+> > +     GEM_BUG_ON(!list_empty(&pl->requests));
+> 
+> Lost as to why pl->requests has to be empty at this point. Considering:
+> 
+> +#define i915_sched_dequeue(se, pl, rq, rn) \
+> +       for ((pl) = (se)->queue.sentinel.next[0]; \
+> +            (pl) != &(se)->queue.sentinel; \
+> +            (pl) = __i915_sched_dequeue_next(se)) \
+> +               priolist_for_each_request_safe(rq, rn, pl)
+> +
+> 
+> I also don't understand what it would de-queue. Whole priolist woth of 
+> requests at a time? But it can't be empty to dequeue something. And who 
+> puts any unconsumed requests back on somewhere in this case.
 
-Introduced by commit
+It's a double for-loop. I think the flattening of the logic is worth it.
 
-  f2f12eb9c32b ("drm/scheduler: provide scheduler score externally")
+During dequeue, we always move the very first request onto the next list
+(i.e. i915_sched.active). Then when we have finished with all the
+requests in one priority level, we move onto the next i915_priolist
+(calling __i915_sched_dequeue_next).
 
---=20
-Cheers,
-Stephen Rothwell
+So in __i915_sched_dequeue_next, we are always dealing with an empty
+i915_priolist and want to advance the start of the skiplist to the next.
 
---Sig_/1RGkhcRKW4jkWv=8QwCD5wP
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmAhMRcACgkQAVBC80lX
-0GzfxQgAg0msFiUtp0qMNFgOCSJ1KO/yXtAsPEhvu0uXIE/78WXKImTU7SFRQbIT
-pQwPF03oxeMqqN59o0VDXgpV7iM7o8PUa9u/a/ICK9+7z6z0t+PzPIeyeIwiCF2i
-SKjYhJvjX2hvAvwYfuhG/AVYQQh/+nIzdeCiJquRzDBPt3oy53kMbUh1zd4TWeZw
-IadDuJAUFLqMcYjL13HaKdIDCYwg9/8JeIGwRvEFAlXCpQjxpeCbrB5wSO7RU7A3
-3xfnX2MooI5hdlmZXlSW9JFWMJGfnNFpmwUcg05ZVPWmyihsyjwsEeQqh0VYiowJ
-6kc8+ewqdYkEOn8+eOdeC/0Ve3lNKA==
-=uovO
------END PGP SIGNATURE-----
-
---Sig_/1RGkhcRKW4jkWv=8QwCD5wP--
-
---===============1517262626==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+I was thinking that in order to hide the double for-loop, we could
+handle the non-empty i915_priolist case causing it to break out of the
+outer loop. So we could get rid of the goto done.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1517262626==--
