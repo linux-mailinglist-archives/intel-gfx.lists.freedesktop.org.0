@@ -2,30 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA5FF312DF2
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 10:52:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09337312E0B
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 10:56:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD5096E846;
-	Mon,  8 Feb 2021 09:52:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DACB06E84D;
+	Mon,  8 Feb 2021 09:56:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 67BDC6E846;
- Mon,  8 Feb 2021 09:52:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5EA37A7DFB;
- Mon,  8 Feb 2021 09:52:02 +0000 (UTC)
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
+ [IPv6:2a00:1450:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFA006E84E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 09:56:40 +0000 (UTC)
+Received: by mail-wm1-x336.google.com with SMTP id i9so12669423wmq.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 08 Feb 2021 01:56:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=WU4s5R0HTP1DIK8DBaOyVqmmf4CfXOwlpD1a/2Dy1j8=;
+ b=F5G+LyHbhh8sWZJsFVZUUvtSfKWw2DFw0sSAHSx1pVsjiH/KY4EPuP66QrvXcArW7S
+ Zdo9dNglO+l44ji0L5alsqVwXMtVk5wUl9DGkOzDuWin5IN3jmkisKEepn2UXoYBCpRx
+ V7N5y71L4hrOocxkIrSPh0w+Szkboi2xtQ1U8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=WU4s5R0HTP1DIK8DBaOyVqmmf4CfXOwlpD1a/2Dy1j8=;
+ b=gdt5PCVY+mEv5zE8VW/2wnVCBT65hxkaanga0E0L9Wqpr2ptxzZ0GGFEIOjDklkoW1
+ jK6sBO+2fTrX0rNut0Oub1xCQWLekgJgitBV+FPhUx5W9S2W8l044Ka2JM0KrNSO78vO
+ 5ZKqB25bU4PD25EMk3jR8Rv7XMRvDcpzpHGPIj87p//AuycDaB8cNM3tgvsiGZJ8jRvM
+ OTz4weXKiR5Pi6bVyAngbUEcwEbaQbJd/gOEAfZP3yxt8gIYtXqSjcyV9PSR5Lqrph4i
+ uYLeONzZNkzg5YeWOgVZGTMwkNEh5iCG7C1SBh2DmxJR2Y6mQ3asiYw537oi4uXnj+3L
+ aNlQ==
+X-Gm-Message-State: AOAM533WmkMaNgfKYcD3KgfHuwb5wDqhLW9U7N0ZF7c1MYQUQcenrNM8
+ arbllr6h25mCOMdgCJ0uuBR+Bg==
+X-Google-Smtp-Source: ABdhPJyHVvyRQ4I+Cn6WP7NCHc1M4psVl0anuPgPkhUf0XueZmXVELZtwZ5Tk65bKH2L9vIsWplsnw==
+X-Received: by 2002:a1c:e043:: with SMTP id x64mr10677341wmg.75.1612778199432; 
+ Mon, 08 Feb 2021 01:56:39 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id m24sm19830894wmi.24.2021.02.08.01.56.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 08 Feb 2021 01:56:38 -0800 (PST)
+Date: Mon, 8 Feb 2021 10:56:36 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <YCEK1AWP5DarlMIt@phenom.ffwll.local>
+References: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
+ <YBwTgHwZwMr8PwMr@phenom.ffwll.local> <YBwY8DZnrPNXYvfy@intel.com>
+ <YB1oU6asAR3ki4ZT@phenom.ffwll.local> <YB1xKG317Zp7NogO@intel.com>
+ <YB22V+n2bdIWrH2m@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Fred Gao" <fred.gao@intel.com>
-Date: Mon, 08 Feb 2021 09:52:02 -0000
-Message-ID: <161277792236.27713.7020756467383151596@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20201202171249.17083-1-fred.gao@intel.com>
-In-Reply-To: <20201202171249.17083-1-fred.gao@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgdmZp?=
- =?utf-8?q?o/pci=3A_Add_support_for_opregion_v2=2E0+_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <YB22V+n2bdIWrH2m@intel.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/vblank: Avoid storing a timestamp for
+ the same frame twice
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,239 +69,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1161372009=="
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1161372009==
-Content-Type: multipart/alternative;
- boundary="===============0690981762947402483=="
+On Fri, Feb 05, 2021 at 11:19:19PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Fri, Feb 05, 2021 at 06:24:08PM +0200, Ville Syrj=E4l=E4 wrote:
+> > On Fri, Feb 05, 2021 at 04:46:27PM +0100, Daniel Vetter wrote:
+> > > On Thu, Feb 04, 2021 at 05:55:28PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > > On Thu, Feb 04, 2021 at 04:32:16PM +0100, Daniel Vetter wrote:
+> > > > > On Thu, Feb 04, 2021 at 04:04:00AM +0200, Ville Syrjala wrote:
+> > > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > =
 
---===============0690981762947402483==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> > > > > > drm_vblank_restore() exists because certain power saving states
+> > > > > > can clobber the hardware frame counter. The way it does this is
+> > > > > > by guesstimating how many frames were missed purely based on
+> > > > > > the difference between the last stored timestamp vs. a newly
+> > > > > > sampled timestamp.
+> > > > > > =
 
-== Series Details ==
+> > > > > > If we should call this function before a full frame has
+> > > > > > elapsed since we sampled the last timestamp we would end up
+> > > > > > with a possibly slightly different timestamp value for the
+> > > > > > same frame. Currently we will happily overwrite the already
+> > > > > > stored timestamp for the frame with the new value. This
+> > > > > > could cause userspace to observe two different timestamps
+> > > > > > for the same frame (and the timestamp could even go
+> > > > > > backwards depending on how much error we introduce when
+> > > > > > correcting the timestamp based on the scanout position).
+> > > > > > =
 
-Series: vfio/pci: Add support for opregion v2.0+ (rev3)
-URL   : https://patchwork.freedesktop.org/series/84494/
-State : success
+> > > > > > To avoid that let's not update the stored timestamp unless we're
+> > > > > > also incrementing the sequence counter. We do still want to upd=
+ate
+> > > > > > vblank->last with the freshly sampled hw frame counter value so
+> > > > > > that subsequent vblank irqs/queries can actually use the hw fra=
+me
+> > > > > > counter to determine how many frames have elapsed.
+> > > > > =
 
-== Summary ==
+> > > > > Hm I'm not getting the reason for why we store the updated hw vbl=
+ank
+> > > > > counter?
+> > > > =
 
-CI Bug Log - changes from CI_DRM_9745 -> Patchwork_19625
-====================================================
+> > > > Because next time a vblank irq happens the code will do:
+> > > > diff =3D current_hw_counter - vblank->last
+> > > > =
 
-Summary
--------
+> > > > which won't work very well if vblank->last is garbage.
+> > > > =
 
-  **SUCCESS**
+> > > > Updating vblank->last is pretty much why drm_vblank_restore()
+> > > > exists at all.
+> > > =
 
-  No regressions found.
+> > > Oh sure, _restore has to update this, together with the timestamp.
+> > > =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/index.html
+> > > But your code adds such an update where we update the hw vblank count=
+er,
+> > > but not the timestamp, and that feels buggy. Either we're still in the
+> > > same frame, and then we should story nothing. Or we advanced, and the=
+n we
+> > > probably want a new timestampt for that frame too.
+> > =
 
-Known issues
-------------
+> > Even if we're still in the same frame the hw frame counter may already
+> > have been reset due to the power well having been turned off. That is
+> > what I'm trying to fix here.
+> > =
 
-  Here are the changes found in Patchwork_19625 that come from known issues:
+> > Now I suppose that's fairly unlikely, at least with PSR which probably
+> > does impose some extra delays before the power gets yanked. But at least
+> > theoretically possible.
+> =
 
-### IGT changes ###
+> Pondering about this a bit further. I think the fact that the current
+> code takes the round-to-closest approach I used for the vblank handler
+> is perhaps a bit bad. It could push the seq counter forward if we're
+> past the halfway point of a frame. I think that rounding behaviour
+> makes sense for the irq since those tick steadily and so allowing a bit
+> of error either way seems correct to me. Perhaps round-down might be
+> the better option for _restore(). Not quites sure, need more thinking
+> probably.
 
-#### Issues hit ####
+Yes this is the rounding I'm worried about.
 
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +22 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+But your point above that the hw might reset the counter again is also
+valid. I'm assuming what you're worried about is that we first do a
+_restore (and the hw vblank counter hasn't been trashed yet), and then in
+the same frame we do another restore, but now the hw frame counter has
+been trashe, and we need to update it?
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][3] ([i915#2283])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+> Another idea that came to me now is that maybe we should actually just
+> check if the current hw frame counter value looks sane, as in something
+> like:
+> =
 
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +1 similar issue
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+> diff_hw_counter =3D current_hw_counter-stored_hw_counter
+> diff_ts =3D (current_ts-stored_ts)/framedur
+> =
 
-  
-#### Possible fixes ####
+> if (diff_hw_counter ~=3D diff_ts)
+> 	diff =3D diff_hw_counter;
+> else
+> 	diff =3D diff_ts;
+> =
 
-  * igt@i915_selftest@live@client:
-    - fi-glk-dsi:         [DMESG-FAIL][6] ([i915#3047]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-glk-dsi/igt@i915_selftest@live@client.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-glk-dsi/igt@i915_selftest@live@client.html
+> and if they seem to match then just keep trusting the hw counter.
+> So only if there's a significant difference would we disregard
+> the diff of the hw counter and instead use the diff based on the
+> timestamps. Not sure what "significant" is though; One frame, two
+> frames?
 
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-nick:        [DMESG-FAIL][8] ([i915#2927]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+Hm, another idea: The only point where we can trust the entire hw counter
++ timestamp sampling is when the irq happens. Because then we know the
+driver will have properly corrected for any hw oddities (like hw counter
+flipping not at top-of-frame, like the core expects).
 
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-7500u:       [FAIL][10] ([i915#2128]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+So what if _restore always goes back to the last such trusted hw counter
+for computing the frame counter diff and all that stuff? That way if we
+have a bunch of _restore with incosisten hw vblank counter, we will a)
+only take the last one (fixes the bug you're trying to fix) b) still use
+the same last trusted baseline for computations (addresses the race I'm
+seeing).
 
-  * igt@vgem_basic@create:
-    - fi-tgl-y:           [DMESG-WARN][12] ([i915#402]) -> [PASS][13] +1 similar issue
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-tgl-y/igt@vgem_basic@create.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-tgl-y/igt@vgem_basic@create.html
+Or does this not work?
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2128]: https://gitlab.freedesktop.org/drm/intel/issues/2128
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+It does complicate the code a bit, because we'd need to store the
+count/timestamp information from _restore outside of the usual vblank ts
+array. But I think that addresses everything.
+-Daniel
+-- =
 
-
-Participating hosts (44 -> 38)
-------------------------------
-
-  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9745 -> Patchwork_19625
-
-  CI-20190529: 20190529
-  CI_DRM_9745: ef43e66b8c7bc46d8be9c1177c23583f535c5f0f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5997: 2f27f54d9fae945a4b7cffc7d7370abb7a41caf2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19625: cdc32418f054a07d7c46b3f1dc1d59504f0c952b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-cdc32418f054 vfio/pci: Add support for opregion v2.1+
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/index.html
-
---===============0690981762947402483==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>vfio/pci: Add support for opregion v2.0+ (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84494/">https://patchwork.freedesktop.org/series/84494/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9745 -&gt; Patchwork_19625</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19625 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@client:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2128">i915#2128</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@vgem_basic@create:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9745/fi-tgl-y/igt@vgem_basic@create.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19625/fi-tgl-y/igt@vgem_basic@create.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 38)</h2>
-<p>Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9745 -&gt; Patchwork_19625</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9745: ef43e66b8c7bc46d8be9c1177c23583f535c5f0f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5997: 2f27f54d9fae945a4b7cffc7d7370abb7a41caf2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19625: cdc32418f054a07d7c46b3f1dc1d59504f0c952b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>cdc32418f054 vfio/pci: Add support for opregion v2.1+</p>
-
-</body>
-</html>
-
---===============0690981762947402483==--
-
---===============1161372009==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1161372009==--
