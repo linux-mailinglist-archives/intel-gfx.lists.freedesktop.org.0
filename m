@@ -1,46 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71C13132FC
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 14:11:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38115313304
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 14:13:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30093893AB;
-	Mon,  8 Feb 2021 13:11:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC826E8C8;
+	Mon,  8 Feb 2021 13:13:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
- by gabe.freedesktop.org (Postfix) with ESMTP id 127B189175;
- Mon,  8 Feb 2021 13:11:50 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id 3112A2A6046;
- Mon,  8 Feb 2021 14:11:49 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id gl-1-ceqpwv5; Mon,  8 Feb 2021 14:11:48 +0100 (CET)
-Received: from thor (24.99.2.85.dynamic.wline.res.cust.swisscom.ch
- [85.2.99.24])
- by netline-mail3.netline.ch (Postfix) with ESMTPSA id 963742A6042;
- Mon,  8 Feb 2021 14:11:48 +0100 (CET)
-Received: from [::1] by thor with esmtp (Exim 4.94)
- (envelope-from <michel@daenzer.net>)
- id 1l96KR-001pkU-U7; Mon, 08 Feb 2021 14:11:47 +0100
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-To: Daniel Vetter <daniel@ffwll.ch>, Kees Cook <keescook@chromium.org>,
- "airlied@gmail.com" <airlied@gmail.com>
-References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
- <202102051030.1AF01772D@keescook>
- <CAKMK7uHnOA9CuRxcKkcqG8duOw_3dZobkThcV7Q_swMXVoLCkQ@mail.gmail.com>
- <5a940e13-8996-e9e5-251e-a9af294a39ff@daenzer.net>
-Message-ID: <9e5de17c-9912-18b3-1e2e-8d6672818504@daenzer.net>
-Date: Mon, 8 Feb 2021 14:11:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BFC06E8CC
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 13:13:20 +0000 (UTC)
+IronPort-SDR: rwNwJBWcaAryWWxhk232+ySZ+qY3aJ4882ve1gGNsuPNghXR8+zWbhn5WWr25g1FInqMJvm/bb
+ WblCBZd9nQig==
+X-IronPort-AV: E=McAfee;i="6000,8403,9888"; a="160862639"
+X-IronPort-AV: E=Sophos;i="5.81,162,1610438400"; d="scan'208";a="160862639"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2021 05:13:15 -0800
+IronPort-SDR: 4Bnerf5OxGxPNTd8Qp9QsGN1Opef1yw5Cd1Rec9yFFTaayMU04TSaLsEicqRNguaTqNxCxpckc
+ nG1Jyrtt2ITw==
+X-IronPort-AV: E=Sophos;i="5.81,162,1610438400"; d="scan'208";a="358784937"
+Received: from anveshag-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.209.119.193])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2021 05:13:12 -0800
+Date: Mon, 8 Feb 2021 08:13:12 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20210208131312.GE4798@intel.com>
+References: <20210206020925.36729-1-daniele.ceraolospurio@intel.com>
+ <20210206020925.36729-3-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <5a940e13-8996-e9e5-251e-a9af294a39ff@daenzer.net>
-Content-Language: en-CA
-Subject: Re: [Intel-gfx] [PATCH] kernel: Expose SYS_kcmp by default
+Content-Disposition: inline
+In-Reply-To: <20210206020925.36729-3-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [RFC 02/14] mei: pxp: export pavp client to me
+ client bus
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,84 +49,372 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Will Drewry <wad@chromium.org>, Jann Horn <jannh@google.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Andy Lutomirski <luto@amacapital.net>,
- Andrew Morton <akpm@linux-foundation.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, Tomas Winkler <tomas.winkler@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMS0wMi0wOCAxMjo0OSBwLm0uLCBNaWNoZWwgRMOkbnplciB3cm90ZToKPiBPbiAyMDIx
-LTAyLTA1IDk6NTMgcC5tLiwgRGFuaWVsIFZldHRlciB3cm90ZToKPj4gT24gRnJpLCBGZWIgNSwg
-MjAyMSBhdCA3OjM3IFBNIEtlZXMgQ29vayA8a2Vlc2Nvb2tAY2hyb21pdW0ub3JnPiB3cm90ZToK
-Pj4+Cj4+PiBPbiBGcmksIEZlYiAwNSwgMjAyMSBhdCAwNDozNzo1MlBNICswMDAwLCBDaHJpcyBX
-aWxzb24gd3JvdGU6Cj4+Pj4gVXNlcnNwYWNlIGhhcyBkaXNjb3ZlcmVkIHRoZSBmdW5jdGlvbmFs
-aXR5IG9mZmVyZWQgYnkgU1lTX2tjbXAgYW5kIGhhcwo+Pj4+IHN0YXJ0ZWQgdG8gZGVwZW5kIHVw
-b24gaXQuIEluIHBhcnRpY3VsYXIsIE1lc2EgdXNlcyBTWVNfa2NtcCBmb3IKPj4+PiBvc19zYW1l
-X2ZpbGVfZGVzY3JpcHRpb24oKSBpbiBvcmRlciB0byBpZGVudGlmeSB3aGVuIHR3byBmZCAoZS5n
-LiAKPj4+PiBkZXZpY2UKPj4+PiBvciBkbWFidWYpIHBvaW50IHRvIHRoZSBzYW1lIHN0cnVjdCBm
-aWxlLiBTaW5jZSB0aGV5IGRlcGVuZCBvbiBpdCBmb3IKPj4+PiBjb3JlIGZ1bmN0aW9uYWxpdHks
-IGxpZnQgU1lTX2tjbXAgb3V0IG9mIHRoZSBub24tZGVmYXVsdAo+Pj4+IENPTkZJR19DSEVDS1BP
-SU5UX1JFU1RPUkUgaW50byB0aGUgc2VsZWN0YWJsZSBzeXNjYWxsIGNhdGVnb3J5Lgo+Pj4+Cj4+
-Pj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+
-Cj4+Pj4gQ2M6IEtlZXMgQ29vayA8a2Vlc2Nvb2tAY2hyb21pdW0ub3JnPgo+Pj4+IENjOiBBbmR5
-IEx1dG9taXJza2kgPGx1dG9AYW1hY2FwaXRhbC5uZXQ+Cj4+Pj4gQ2M6IFdpbGwgRHJld3J5IDx3
-YWRAY2hyb21pdW0ub3JnPgo+Pj4+IENjOiBBbmRyZXcgTW9ydG9uIDxha3BtQGxpbnV4LWZvdW5k
-YXRpb24ub3JnPgo+Pj4+IENjOiBEYXZlIEFpcmxpZSA8YWlybGllZEBnbWFpbC5jb20+Cj4+Pj4g
-Q2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPj4+PiBDYzogTHVjYXMgU3RhY2gg
-PGwuc3RhY2hAcGVuZ3V0cm9uaXguZGU+Cj4+Pj4gLS0tCj4+Pj4gwqAgaW5pdC9LY29uZmlnwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHwgMTEgKysrKysrKysrKysKPj4+PiDCoCBrZXJuZWwvTWFrZWZpbGXCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIg
-Ky0KPj4+PiDCoCB0b29scy90ZXN0aW5nL3NlbGZ0ZXN0cy9zZWNjb21wL3NlY2NvbXBfYnBmLmMg
-fMKgIDIgKy0KPj4+PiDCoCAzIGZpbGVzIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKyksIDIgZGVs
-ZXRpb25zKC0pCj4+Pj4KPj4+PiBkaWZmIC0tZ2l0IGEvaW5pdC9LY29uZmlnIGIvaW5pdC9LY29u
-ZmlnCj4+Pj4gaW5kZXggYjc3YzYwZjhiOTYzLi5mNjJmY2ExM2FjNWIgMTAwNjQ0Cj4+Pj4gLS0t
-IGEvaW5pdC9LY29uZmlnCj4+Pj4gKysrIGIvaW5pdC9LY29uZmlnCj4+Pj4gQEAgLTExOTQsNiAr
-MTE5NCw3IEBAIGVuZGlmICMgTkFNRVNQQUNFUwo+Pj4+IMKgIGNvbmZpZyBDSEVDS1BPSU5UX1JF
-U1RPUkUKPj4+PiDCoMKgwqDCoMKgwqAgYm9vbCAiQ2hlY2twb2ludC9yZXN0b3JlIHN1cHBvcnQi
-Cj4+Pj4gwqDCoMKgwqDCoMKgIHNlbGVjdCBQUk9DX0NISUxEUkVOCj4+Pj4gK8KgwqDCoMKgIHNl
-bGVjdCBLQ01QCj4+Pj4gwqDCoMKgwqDCoMKgIGRlZmF1bHQgbgo+Pj4+IMKgwqDCoMKgwqDCoCBo
-ZWxwCj4+Pj4gwqDCoMKgwqDCoMKgwqDCoCBFbmFibGVzIGFkZGl0aW9uYWwga2VybmVsIGZlYXR1
-cmVzIGluIGEgc2FrZSBvZiAKPj4+PiBjaGVja3BvaW50L3Jlc3RvcmUuCj4+Pj4gQEAgLTE3Mzcs
-NiArMTczOCwxNiBAQCBjb25maWcgQVJDSF9IQVNfTUVNQkFSUklFUl9DQUxMQkFDS1MKPj4+PiDC
-oCBjb25maWcgQVJDSF9IQVNfTUVNQkFSUklFUl9TWU5DX0NPUkUKPj4+PiDCoMKgwqDCoMKgwqAg
-Ym9vbAo+Pj4+Cj4+Pj4gK2NvbmZpZyBLQ01QCj4+Pj4gK8KgwqDCoMKgIGJvb2wgIkVuYWJsZSBr
-Y21wKCkgc3lzdGVtIGNhbGwiIGlmIEVYUEVSVAo+Pj4+ICvCoMKgwqDCoCBkZWZhdWx0IHkKPj4+
-Cj4+PiBJIHdvdWxkIGV4cGVjdCB0aGlzIHRvIGJlIG5vdCBkZWZhdWx0LXksIGVzcGVjaWFsbHkg
-aWYKPj4+IENIRUNLUE9JTlRfUkVTVE9SRSBkb2VzIGEgInNlbGVjdCIgb24gaXQuCj4+Pgo+Pj4g
-VGhpcyBpcyBhIHJlYWxseSBwb3dlcmZ1bCBzeXNjYWxsLCBidXQgaXQgaXMgYm91bmRlZCBieSBw
-dHJhY2UgYWNjZXNzCj4+PiBjb250cm9scywgYW5kIHVzZXMgcG9pbnRlciBhZGRyZXNzIG9iZnVz
-Y2F0aW9uLCBzbyBpdCBtYXkgYmUgb2theSB0bwo+Pj4gZXhwb3NlIHRoaXMuIEFzIGl0IGlzLCBh
-dCBsZWFzdCBVYnVudHUgYWxyZWFkeSBoYXMKPj4+IENPTkZJR19DSEVDS1BPSU5UX1JFU1RPUkUs
-IHNvIHJlYWxseSwgdGhlcmUncyBwcm9iYWJseSBub3QgbXVjaAo+Pj4gZGlmZmVyZW5jZSBvbiBl
-eHBvc3VyZS4KPj4+Cj4+PiBTbywgaWYgeW91IGRyb3AgdGhlICJkZWZhdWx0IHkiLCBJJ20gZmlu
-ZSB3aXRoIHRoaXMuCj4+Cj4+IEl0IHdhcyBtYXliZSBzdHVwaWQsIGJ1dCBvdXIgdXNlcnNwYWNl
-IHN0YXJ0ZWQgcmVseWluZyBvbiBmZAo+PiBjb21hcHJpc29uIHRocm91Z2ggc3lzX2tjb21wLiBT
-byBmb3IgYmV0dGVyIG9yIHdvcnNlLCBpZiB5b3Ugd2FudCB0bwo+PiBydW4gdGhlIG1lc2EzZCBn
-bC92ayBzdGFja3MsIHlvdSBuZWVkIHRoaXMuCj4gCj4gVGhhdCdzIG92ZXJzdGF0aW5nIHRoaW5n
-cyBzb21ld2hhdC4gVGhlIHZhc3QgbWFqb3JpdHkgb2YgYXBwbGljYXRpb25zIAo+IHdpbGwgd29y
-ayBmaW5lIHJlZ2FyZGxlc3MgKGFzIHRoZXkgZGlkIGJlZm9yZSBNZXNhIHN0YXJ0ZWQgdXNpbmcg
-dGhpcyAKPiBmdW5jdGlvbmFsaXR5KS4gT25seSBzb21lIHNwZWNpYWwgb25lcyB3aWxsIHJ1biBp
-bnRvIGlzc3VlcywgYmVjYXVzZSB0aGUgCj4gdXNlci1zcGFjZSBkcml2ZXJzIGluY29ycmVjdGx5
-IGFzc3VtZSB0d28gZmlsZSBkZXNjcmlwdG9ycyByZWZlcmVuY2UgCj4gZGlmZmVyZW50IGRlc2Ny
-aXB0aW9ucy4KPiAKPiAKPj4gV2FzIG1heWJlIG5vdCB0aGUgYnJpZ2hlc3QgaWRlYXMsIGJ1dCBz
-aW5jZSBlbm91Z2ggZGlzdHJvcyBoYWQgdGhpcwo+PiBlbmFibGVkIGJ5IGRlZmF1bHRzLAo+IAo+
-IFJpZ2h0LCB0aGF0IChhbmQgdGhlIGFib3ZlKSBpcyB3aHkgSSBjb25zaWRlcmVkIGl0IGZhaXIg
-Z2FtZSB0byB1c2UuIAo+IFdoYXQgc2hvdWxkIEkgaGF2ZSBkb25lIGluc3RlYWQ/IChUQkggSSB3
-YXMgc3VycHJpc2VkIHRoYXQgdGhpcyAKPiBmdW5jdGlvbmFsaXR5IGlzbid0IGdlbmVyYWxseSBh
-dmFpbGFibGUpCgpJbiB0aGF0IHNwaXJpdCwgYW4gYWx0ZXJuYXRpdmUgbWlnaHQgYmUgdG8gbWFr
-ZSBLQ01QX0ZJTEUgYXZhaWxhYmxlIAp1bmNvbmRpdGlvbmFsbHksIGFuZCB0aGUgcmVzdCBvZiBT
-WVNfa2NtcCBvbmx5IHdpdGggQ0hFQ0tQT0lOVF9SRVNUT1JFIAphcyBiZWZvcmUuIChPciBtYXli
-ZSBvdGhlciBwYXJ0cyBvZiBTWVNfa2NtcCBhcmUgZ2VuZXJhbGx5IHVzZWZ1bCBhcyB3ZWxsPykK
-CgotLSAKRWFydGhsaW5nIE1pY2hlbCBEw6RuemVyICAgICAgICAgICAgICAgfCAgICAgICAgICAg
-ICAgIGh0dHBzOi8vcmVkaGF0LmNvbQpMaWJyZSBzb2Z0d2FyZSBlbnRodXNpYXN0ICAgICAgICAg
-ICAgIHwgICAgICAgICAgICAgTWVzYSBhbmQgWCBkZXZlbG9wZXIKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Fri, Feb 05, 2021 at 06:09:13PM -0800, Daniele Ceraolo Spurio wrote:
+> From: Vitaly Lubart <vitaly.lubart@intel.com>
+> =
+
+> Export PAVP client to work with i915_cp driver,
+
+s/i915_cp driver/i915's pxp
+
+iirc i915_cp was an experiment to have the pxp as a
+separated MFD driver.
+
+> for binding it uses kernel component framework.
+> =
+
+> Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
+> Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+> ---
+>  drivers/misc/mei/Kconfig       |   2 +
+>  drivers/misc/mei/Makefile      |   1 +
+>  drivers/misc/mei/pxp/Kconfig   |  13 ++
+>  drivers/misc/mei/pxp/Makefile  |   7 +
+>  drivers/misc/mei/pxp/mei_pxp.c | 230 +++++++++++++++++++++++++++++++++
+>  drivers/misc/mei/pxp/mei_pxp.h |  18 +++
+>  6 files changed, 271 insertions(+)
+>  create mode 100644 drivers/misc/mei/pxp/Kconfig
+>  create mode 100644 drivers/misc/mei/pxp/Makefile
+>  create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
+>  create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
+> =
+
+> diff --git a/drivers/misc/mei/Kconfig b/drivers/misc/mei/Kconfig
+> index f5fd5b786607..0e0bcd0da852 100644
+> --- a/drivers/misc/mei/Kconfig
+> +++ b/drivers/misc/mei/Kconfig
+> @@ -47,3 +47,5 @@ config INTEL_MEI_TXE
+>  	  Intel Bay Trail
+>  =
+
+>  source "drivers/misc/mei/hdcp/Kconfig"
+> +source "drivers/misc/mei/pxp/Kconfig"
+> +
+> diff --git a/drivers/misc/mei/Makefile b/drivers/misc/mei/Makefile
+> index f1c76f7ee804..d8e5165917f2 100644
+> --- a/drivers/misc/mei/Makefile
+> +++ b/drivers/misc/mei/Makefile
+> @@ -26,3 +26,4 @@ mei-$(CONFIG_EVENT_TRACING) +=3D mei-trace.o
+>  CFLAGS_mei-trace.o =3D -I$(src)
+>  =
+
+>  obj-$(CONFIG_INTEL_MEI_HDCP) +=3D hdcp/
+> +obj-$(CONFIG_INTEL_MEI_PXP) +=3D pxp/
+> diff --git a/drivers/misc/mei/pxp/Kconfig b/drivers/misc/mei/pxp/Kconfig
+> new file mode 100644
+> index 000000000000..4029b96afc04
+> --- /dev/null
+> +++ b/drivers/misc/mei/pxp/Kconfig
+> @@ -0,0 +1,13 @@
+> +
+> +# SPDX-License-Identifier: GPL-2.0
+> +# Copyright (c) 2020, Intel Corporation. All rights reserved.
+> +#
+> +config INTEL_MEI_PXP
+> +	tristate "Intel PXP services of ME Interface"
+> +	select INTEL_MEI_ME
+> +	depends on DRM_I915
+> +	help
+> +	  MEI Support for PXP Services on Intel platforms.
+> +
+> +	  Enables the ME FW services required for PXP support through
+> +	  I915 display driver of Intel.
+> diff --git a/drivers/misc/mei/pxp/Makefile b/drivers/misc/mei/pxp/Makefile
+> new file mode 100644
+> index 000000000000..0329950d5794
+> --- /dev/null
+> +++ b/drivers/misc/mei/pxp/Makefile
+> @@ -0,0 +1,7 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +#
+> +# Copyright (c) 2020, Intel Corporation. All rights reserved.
+> +#
+> +# Makefile - PXP client driver for Intel MEI Bus Driver.
+> +
+> +obj-$(CONFIG_INTEL_MEI_PXP) +=3D mei_pxp.o
+> diff --git a/drivers/misc/mei/pxp/mei_pxp.c b/drivers/misc/mei/pxp/mei_px=
+p.c
+> new file mode 100644
+> index 000000000000..bd31fce1e6ba
+> --- /dev/null
+> +++ b/drivers/misc/mei/pxp/mei_pxp.c
+> @@ -0,0 +1,230 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright =A9 2020 Intel Corporation
+> + */
+> +
+> +/**
+> + * DOC: MEI_PXP Client Driver
+> + *
+> + * The mei_pxp driver acts as a translation layer between PXP
+> + * protocol  implementer (I915) and ME FW by translating PXP
+> + * negotiation messages to ME FW command payloads and vice versa.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/slab.h>
+> +#include <linux/uuid.h>
+> +#include <linux/mei_cl_bus.h>
+> +#include <linux/component.h>
+> +#include <drm/drm_connector.h>
+> +#include <drm/i915_component.h>
+> +#include <drm/i915_pxp_tee_interface.h>
+> +
+> +#include "mei_pxp.h"
+> +
+> +/**
+> + * mei_pxp_send_message() - Sends a PXP message to ME FW.
+> + * @dev: device corresponding to the mei_cl_device
+> + * @message: a message buffer to send
+> + * @size: size of the message
+> + * Return: 0 on Success, <0 on Failure
+> + */
+> +static int
+> +mei_pxp_send_message(struct device *dev, const void *message, size_t siz=
+e)
+> +{
+> +	struct mei_cl_device *cldev;
+> +	ssize_t byte;
+> +
+> +	if (!dev || !message)
+> +		return -EINVAL;
+> +
+> +	cldev =3D to_mei_cl_device(dev);
+> +
+> +	/* temporary drop const qualifier till the API is fixed */
+> +	byte =3D mei_cldev_send(cldev, (u8 *)message, size);
+> +	if (byte < 0) {
+> +		dev_dbg(dev, "mei_cldev_send failed. %zd\n", byte);
+> +		return byte;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * mei_pxp_receive_message() - Receives a PXP message from ME FW.
+> + * @dev: device corresponding to the mei_cl_device
+> + * @buffer: a message buffer to contain the received message
+> + * @size: size of the buffer
+> + * Return: bytes sent on Success, <0 on Failure
+> + */
+> +static int
+> +mei_pxp_receive_message(struct device *dev, void *buffer, size_t size)
+> +{
+> +	struct mei_cl_device *cldev;
+> +	ssize_t byte;
+> +
+> +	if (!dev || !buffer)
+> +		return -EINVAL;
+> +
+> +	cldev =3D to_mei_cl_device(dev);
+> +
+> +	byte =3D mei_cldev_recv(cldev, buffer, size);
+> +	if (byte < 0) {
+> +		dev_dbg(dev, "mei_cldev_recv failed. %zd\n", byte);
+> +		return byte;
+> +	}
+> +
+> +	return byte;
+> +}
+> +
+> +static const struct i915_pxp_component_ops mei_pxp_ops =3D {
+> +	.owner =3D THIS_MODULE,
+> +	.send =3D mei_pxp_send_message,
+> +	.recv =3D mei_pxp_receive_message,
+> +};
+> +
+> +static int mei_component_master_bind(struct device *dev)
+> +{
+> +	struct mei_cl_device *cldev =3D to_mei_cl_device(dev);
+> +	struct i915_pxp_comp_master *comp_master =3D mei_cldev_get_drvdata(clde=
+v);
+> +	int ret;
+> +
+> +	dev_dbg(dev, "%s\n", __func__);
+> +	comp_master->ops =3D &mei_pxp_ops;
+> +	comp_master->tee_dev =3D dev;
+> +	ret =3D component_bind_all(dev, comp_master);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static void mei_component_master_unbind(struct device *dev)
+> +{
+> +	struct mei_cl_device *cldev =3D to_mei_cl_device(dev);
+> +	struct i915_pxp_comp_master *comp_master =3D mei_cldev_get_drvdata(clde=
+v);
+> +
+> +	dev_dbg(dev, "%s\n", __func__);
+> +	component_unbind_all(dev, comp_master);
+> +}
+> +
+> +static const struct component_master_ops mei_component_master_ops =3D {
+> +	.bind =3D mei_component_master_bind,
+> +	.unbind =3D mei_component_master_unbind,
+> +};
+> +
+> +/**
+> + * mei_pxp_component_match - compare function for matching mei pxp.
+> + *
+> + *    The function checks if the driver is i915, the subcomponent is PXP
+> + *    and the grand parent of pxp and the parent of i915 are the same
+> + *    PCH device.
+> + *
+> + * @dev: master device
+> + * @subcomponent: subcomponent to match (I915_COMPONENT_PXP)
+> + * @data: compare data (mei pxp device)
+> + *
+> + * Return:
+> + * * 1 - if components match
+> + * * 0 - otherwise
+> + */
+> +static int mei_pxp_component_match(struct device *dev, int subcomponent,
+> +				   void *data)
+> +{
+> +	struct device *base =3D data;
+> +
+> +	if (subcomponent !=3D I915_COMPONENT_PXP)
+> +		return 0;
+> +
+> +	if (strcmp(dev->driver->name, "i915") =3D=3D 0) {
+> +		base =3D base->parent;
+> +		if (!base)
+> +			return 0;
+> +
+> +		base =3D base->parent;
+> +		dev =3D dev->parent;
+> +		return (base && dev && dev =3D=3D base);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int mei_pxp_probe(struct mei_cl_device *cldev,
+> +			 const struct mei_cl_device_id *id)
+> +{
+> +	struct i915_pxp_comp_master *comp_master;
+> +	struct component_match *master_match;
+> +	int ret;
+> +
+> +	ret =3D mei_cldev_enable(cldev);
+> +	if (ret < 0) {
+> +		dev_err(&cldev->dev, "mei_cldev_enable Failed. %d\n", ret);
+> +		goto enable_err_exit;
+> +	}
+> +
+> +	comp_master =3D kzalloc(sizeof(*comp_master), GFP_KERNEL);
+> +	if (!comp_master) {
+> +		ret =3D -ENOMEM;
+> +		goto err_exit;
+> +	}
+> +
+> +	master_match =3D NULL;
+> +	component_match_add_typed(&cldev->dev, &master_match,
+> +				  mei_pxp_component_match, &cldev->dev);
+> +	if (IS_ERR_OR_NULL(master_match)) {
+> +		ret =3D -ENOMEM;
+> +		goto err_exit;
+> +	}
+> +
+> +	mei_cldev_set_drvdata(cldev, comp_master);
+> +	ret =3D component_master_add_with_match(&cldev->dev,
+> +					      &mei_component_master_ops,
+> +					      master_match);
+> +	if (ret < 0) {
+> +		dev_err(&cldev->dev, "Master comp add failed %d\n", ret);
+> +		goto err_exit;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_exit:
+> +	mei_cldev_set_drvdata(cldev, NULL);
+> +	kfree(comp_master);
+> +	mei_cldev_disable(cldev);
+> +enable_err_exit:
+> +	return ret;
+> +}
+> +
+> +static int mei_pxp_remove(struct mei_cl_device *cldev)
+> +{
+> +	struct i915_pxp_comp_master *comp_master =3D mei_cldev_get_drvdata(clde=
+v);
+> +
+> +	component_master_del(&cldev->dev, &mei_component_master_ops);
+> +	kfree(comp_master);
+> +	mei_cldev_set_drvdata(cldev, NULL);
+> +
+> +	return mei_cldev_disable(cldev);
+> +}
+> +
+> +/* fbf6fcf1-96cf-4e2e-a6a6-1bab8cbe36b1 : PAVP GUID*/
+> +#define MEI_GUID_PXP GUID_INIT(0xfbf6fcf1, 0x96cf, 0x4e2e, 0xA6, \
+> +			       0xa6, 0x1b, 0xab, 0x8c, 0xbe, 0x36, 0xb1)
+> +
+> +static struct mei_cl_device_id mei_pxp_tbl[] =3D {
+> +	{ .uuid =3D MEI_GUID_PXP, .version =3D MEI_CL_VERSION_ANY },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(mei, mei_pxp_tbl);
+> +
+> +static struct mei_cl_driver mei_pxp_driver =3D {
+> +	.id_table =3D mei_pxp_tbl,
+> +	.name =3D KBUILD_MODNAME,
+> +	.probe =3D mei_pxp_probe,
+> +	.remove	=3D mei_pxp_remove,
+> +};
+> +
+> +module_mei_cl_driver(mei_pxp_driver);
+> +
+> +MODULE_AUTHOR("Intel Corporation");
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("MEI PXP");
+> diff --git a/drivers/misc/mei/pxp/mei_pxp.h b/drivers/misc/mei/pxp/mei_px=
+p.h
+> new file mode 100644
+> index 000000000000..e7b15373fefd
+> --- /dev/null
+> +++ b/drivers/misc/mei/pxp/mei_pxp.h
+> @@ -0,0 +1,18 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright =A9 2020 Intel Corporation
+> + *
+> + * Authors:
+> + * Vitaly Lubart <vitaly.lubart@intel.com>
+> + */
+> +
+> +#ifndef __MEI_PXP_H__
+> +#define __MEI_PXP_H__
+> +
+> +/* me_pxp_status: Enumeration of all PXP Status Codes */
+> +enum me_pxp_status {
+> +	ME_PXP_STATUS_SUCCESS			=3D 0x0000,
+> +
+> +};
+> +
+> +#endif /* __MEI_PXP_H__ */
+> -- =
+
+> 2.29.2
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
