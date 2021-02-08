@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82C33312F8C
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:53:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 242DD312F87
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:53:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76F696E86B;
-	Mon,  8 Feb 2021 10:53:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEB976E1A3;
+	Mon,  8 Feb 2021 10:52:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F25306E874
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 10:52:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 462AA6E86B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 10:52:56 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.69.177; 
 Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23809223-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23809224-1500050 
  for multiple; Mon, 08 Feb 2021 10:52:44 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Feb 2021 10:52:21 +0000
-Message-Id: <20210208105236.28498-16-chris@chris-wilson.co.uk>
+Date: Mon,  8 Feb 2021 10:52:22 +0000
+Message-Id: <20210208105236.28498-17-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210208105236.28498-1-chris@chris-wilson.co.uk>
 References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 16/31] drm/i915/gt: Delay taking irqoff for
- execlists submission
+Subject: [Intel-gfx] [PATCH 17/31] drm/i915/gt: Convert the legacy ring
+ submission to use the scheduling interface
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,171 +45,267 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Before we take the irqsafe spinlock to dequeue requests and submit them
-to HW, first do the check whether we need to take any action (i.e.
-whether the HW is ready for some work, or if we need to preempt the
-currently executing context) without taking the lock. We will then
-likely skip taking the spinlock, and so reduce contention.
+Adapt the old legacy ring submission to use a passthrough tasklet so
+that we can plug it into the scheduler.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../drm/i915/gt/intel_execlists_submission.c  | 88 ++++++++-----------
- 1 file changed, 39 insertions(+), 49 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |   1 +
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 167 +++++++++++-------
+ 2 files changed, 107 insertions(+), 61 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 083204baedf9..b7d28d09c9c1 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -1016,24 +1016,6 @@ static void virtual_xfer_context(struct virtual_engine *ve,
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 416bb07c4ab7..9f14631b8132 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -431,6 +431,7 @@ struct intel_engine_cs {
+ #define I915_ENGINE_IS_VIRTUAL       BIT(4)
+ #define I915_ENGINE_HAS_RELATIVE_MMIO BIT(5)
+ #define I915_ENGINE_REQUIRES_CMD_PARSER BIT(6)
++#define I915_ENGINE_NEEDS_WA_TAIL_WRITE BIT(7)
+ 	unsigned int flags;
  
--static void defer_active(struct intel_engine_cs *engine)
--{
--	struct i915_request *rq;
--
--	rq = __i915_sched_rewind_requests(engine);
--	if (!rq)
--		return;
--
--	/*
--	 * We want to move the interrupted request to the back of
--	 * the round-robin list (i.e. its priority level), but
--	 * in doing so, we must then move all requests that were in
--	 * flight and were waiting for the interrupted request to
--	 * be run after it again.
--	 */
--	__i915_sched_defer_request(engine, rq);
--}
--
- static bool
- timeslice_yield(const struct intel_engine_execlists *el,
- 		const struct i915_request *rq)
-@@ -1315,8 +1297,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * and context switches) submission.
- 	 */
- 
--	spin_lock(&se->lock);
--
  	/*
- 	 * If the queue is higher priority than the last
- 	 * request in the currently active context, submit afresh.
-@@ -1339,24 +1319,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				     rq_deadline(last),
- 				     rq_prio(last));
- 			record_preemption(execlists);
--
--			/*
--			 * Don't let the RING_HEAD advance past the breadcrumb
--			 * as we unwind (and until we resubmit) so that we do
--			 * not accidentally tell it to go backwards.
--			 */
--			ring_set_paused(engine, 1);
--
--			/*
--			 * Note that we have not stopped the GPU at this point,
--			 * so we are unwinding the incomplete requests as they
--			 * remain inflight and so by the time we do complete
--			 * the preemption, some of the unwound requests may
--			 * complete!
--			 */
--			__i915_sched_rewind_requests(engine);
--
--			last = NULL;
-+			last = (void *)1;
- 		} else if (timeslice_expired(engine, last)) {
- 			ENGINE_TRACE(engine,
- 				     "expired:%s last=%llx:%llu, deadline=%llu, now=%llu, yield?=%s\n",
-@@ -1383,8 +1346,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			 * same context again, grant it a full timeslice.
- 			 */
- 			cancel_timer(&execlists->timer);
--			ring_set_paused(engine, 1);
--			defer_active(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 282089d64789..47f05e7a4e8c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -308,6 +308,8 @@ static void reset_prepare(struct intel_engine_cs *engine)
+ 	 * FIXME: Wa for more modern gens needs to be validated
+ 	 */
+ 	ENGINE_TRACE(engine, "\n");
++
++	i915_sched_disable_tasklet(intel_engine_get_scheduler(engine));
+ 	intel_engine_stop_cs(engine);
  
- 			/*
- 			 * Unlike for preemption, if we rewind and continue
-@@ -1399,7 +1360,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			 * normal save/restore will preserve state and allow
- 			 * us to later continue executing the same request.
- 			 */
--			last = NULL;
-+			last = (void *)3;
- 		} else {
- 			/*
- 			 * Otherwise if we already have a request pending
-@@ -1415,12 +1376,46 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				 * Even if ELSP[1] is occupied and not worthy
- 				 * of timeslices, our queue might be.
- 				 */
--				spin_unlock(&se->lock);
- 				return;
- 			}
- 		}
- 	}
+ 	/* G45 ring initialization often fails to reset head to zero */
+@@ -394,6 +396,7 @@ static void reset_rewind(struct intel_engine_cs *engine, bool stalled)
  
-+	local_irq_disable(); /* irq remains off until after ELSP write */
-+	spin_lock(&se->lock);
-+
-+	if ((unsigned long)last & 1) {
-+		bool defer = (unsigned long)last & 2;
-+
-+		/*
-+		 * Don't let the RING_HEAD advance past the breadcrumb
-+		 * as we unwind (and until we resubmit) so that we do
-+		 * not accidentally tell it to go backwards.
-+		 */
-+		ring_set_paused(engine, (unsigned long)last);
-+
-+		/*
-+		 * Note that we have not stopped the GPU at this point,
-+		 * so we are unwinding the incomplete requests as they
-+		 * remain inflight and so by the time we do complete
-+		 * the preemption, some of the unwound requests may
-+		 * complete!
-+		 */
-+		last = __i915_sched_rewind_requests(engine);
-+
-+		/*
-+		 * We want to move the interrupted request to the back of
-+		 * the round-robin list (i.e. its priority level), but
-+		 * in doing so, we must then move all requests that were in
-+		 * flight and were waiting for the interrupted request to
-+		 * be run after it again.
-+		 */
-+		if (last && defer)
-+			__i915_sched_defer_request(engine, last);
-+
-+		last = NULL;
-+	}
-+
- 	if (!RB_EMPTY_ROOT(&execlists->virtual.rb_root))
- 		virtual_requeue(engine, last);
- 
-@@ -1529,13 +1524,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			i915_request_put(*port);
- 		*execlists->pending = NULL;
- 	}
--}
- 
--static void execlists_dequeue_irq(struct intel_engine_cs *engine)
--{
--	local_irq_disable(); /* Suspend interrupts across request submission */
--	execlists_dequeue(engine);
--	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
-+	local_irq_enable();
+ static void reset_finish(struct intel_engine_cs *engine)
+ {
++	i915_sched_enable_tasklet(intel_engine_get_scheduler(engine));
  }
  
- static void clear_ports(struct i915_request **ports, int count)
-@@ -2187,7 +2177,7 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
- 		execlists_reset(engine);
+ static void reset_cancel(struct intel_engine_cs *engine)
+@@ -402,22 +405,12 @@ static void reset_cancel(struct intel_engine_cs *engine)
+ 	unsigned long flags;
  
- 	if (!engine->execlists.pending[0]) {
--		execlists_dequeue_irq(engine);
-+		execlists_dequeue(engine);
- 		start_timeslice(engine);
+ 	spin_lock_irqsave(&se->lock, flags);
+-
+ 	__i915_sched_cancel_queue(se);
+-
+ 	spin_unlock_irqrestore(&se->lock, flags);
++
+ 	intel_engine_signal_breadcrumbs(engine);
+ }
+ 
+-static void i9xx_submit_request(struct i915_request *request)
+-{
+-	i915_request_submit(request);
+-	wmb(); /* paranoid flush writes out of the WCB before mmio */
+-
+-	ENGINE_WRITE(request->engine, RING_TAIL,
+-		     intel_ring_set_tail(request->ring, request->tail));
+-}
+-
+ static void __ring_context_fini(struct intel_context *ce)
+ {
+ 	i915_vma_put(ce->state);
+@@ -929,52 +922,9 @@ static int ring_request_alloc(struct i915_request *request)
+ 	return 0;
+ }
+ 
+-static void gen6_bsd_submit_request(struct i915_request *request)
++static void set_default_submission(struct intel_engine_cs *engine)
+ {
+-	struct intel_uncore *uncore = request->engine->uncore;
+-
+-	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+-
+-       /* Every tail move must follow the sequence below */
+-
+-	/* Disable notification that the ring is IDLE. The GT
+-	 * will then assume that it is busy and bring it out of rc6.
+-	 */
+-	intel_uncore_write_fw(uncore, GEN6_BSD_SLEEP_PSMI_CONTROL,
+-			      _MASKED_BIT_ENABLE(GEN6_BSD_SLEEP_MSG_DISABLE));
+-
+-	/* Clear the context id. Here be magic! */
+-	intel_uncore_write64_fw(uncore, GEN6_BSD_RNCID, 0x0);
+-
+-	/* Wait for the ring not to be idle, i.e. for it to wake up. */
+-	if (__intel_wait_for_register_fw(uncore,
+-					 GEN6_BSD_SLEEP_PSMI_CONTROL,
+-					 GEN6_BSD_SLEEP_INDICATOR,
+-					 0,
+-					 1000, 0, NULL))
+-		drm_err(&uncore->i915->drm,
+-			"timed out waiting for the BSD ring to wake up\n");
+-
+-	/* Now that the ring is fully powered up, update the tail */
+-	i9xx_submit_request(request);
+-
+-	/* Let the ring send IDLE messages to the GT again,
+-	 * and so let it sleep to conserve power when idle.
+-	 */
+-	intel_uncore_write_fw(uncore, GEN6_BSD_SLEEP_PSMI_CONTROL,
+-			      _MASKED_BIT_DISABLE(GEN6_BSD_SLEEP_MSG_DISABLE));
+-
+-	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
+-}
+-
+-static void i9xx_set_default_submission(struct intel_engine_cs *engine)
+-{
+-	engine->sched.submit_request = i9xx_submit_request;
+-}
+-
+-static void gen6_bsd_set_default_submission(struct intel_engine_cs *engine)
+-{
+-	engine->sched.submit_request = gen6_bsd_submit_request;
++	engine->sched.submit_request = i915_request_enqueue;
+ }
+ 
+ static void ring_release(struct intel_engine_cs *engine)
+@@ -1053,8 +1003,6 @@ static void setup_common(struct intel_engine_cs *engine)
+ 	if (IS_GEN(i915, 5))
+ 		engine->emit_fini_breadcrumb = gen5_emit_breadcrumb;
+ 
+-	engine->set_default_submission = i9xx_set_default_submission;
+-
+ 	if (INTEL_GEN(i915) >= 6)
+ 		engine->emit_bb_start = gen6_emit_bb_start;
+ 	else if (INTEL_GEN(i915) >= 4)
+@@ -1063,6 +1011,8 @@ static void setup_common(struct intel_engine_cs *engine)
+ 		engine->emit_bb_start = i830_emit_bb_start;
+ 	else
+ 		engine->emit_bb_start = gen3_emit_bb_start;
++
++	engine->set_default_submission = set_default_submission;
+ }
+ 
+ static void setup_rcs(struct intel_engine_cs *engine)
+@@ -1099,9 +1049,8 @@ static void setup_vcs(struct intel_engine_cs *engine)
+ 	struct drm_i915_private *i915 = engine->i915;
+ 
+ 	if (INTEL_GEN(i915) >= 6) {
+-		/* gen6 bsd needs a special wa for tail updates */
+-		if (IS_GEN(i915, 6))
+-			engine->set_default_submission = gen6_bsd_set_default_submission;
++		if (IS_GEN(engine->i915, 6))
++			engine->flags |= I915_ENGINE_NEEDS_WA_TAIL_WRITE;
+ 		engine->emit_flush = gen6_emit_flush_vcs;
+ 		engine->irq_enable_mask = GT_BSD_USER_INTERRUPT;
+ 
+@@ -1203,6 +1152,98 @@ static int gen7_ctx_switch_bb_init(struct intel_engine_cs *engine)
+ 	return err;
+ }
+ 
++static void __write_tail(struct intel_engine_cs *engine,
++			 struct i915_request *rq)
++{
++	ENGINE_WRITE(engine, RING_TAIL,
++		     intel_ring_set_tail(rq->ring, rq->tail));
++}
++
++static void wa_write_tail(struct intel_engine_cs *engine,
++			  struct i915_request *rq)
++{
++	struct intel_uncore *uncore = engine->uncore;
++
++	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
++
++       /* Every tail move must follow the sequence below */
++
++	/* Disable notification that the ring is IDLE. The GT
++	 * will then assume that it is busy and bring it out of rc6.
++	 */
++	intel_uncore_write_fw(uncore, GEN6_BSD_SLEEP_PSMI_CONTROL,
++			      _MASKED_BIT_ENABLE(GEN6_BSD_SLEEP_MSG_DISABLE));
++
++	/* Clear the context id. Here be magic! */
++	intel_uncore_write64_fw(uncore, GEN6_BSD_RNCID, 0x0);
++
++	/* Wait for the ring not to be idle, i.e. for it to wake up. */
++	if (__intel_wait_for_register_fw(uncore,
++					 GEN6_BSD_SLEEP_PSMI_CONTROL,
++					 GEN6_BSD_SLEEP_INDICATOR,
++					 0,
++					 1000, 0, NULL))
++		drm_err(&uncore->i915->drm,
++			"timed out waiting for the BSD ring to wake up\n");
++
++	/* Now that the ring is fully powered up, update the tail */
++	__write_tail(engine, rq);
++
++	/* Let the ring send IDLE messages to the GT again,
++	 * and so let it sleep to conserve power when idle.
++	 */
++	intel_uncore_write_fw(uncore, GEN6_BSD_SLEEP_PSMI_CONTROL,
++			      _MASKED_BIT_DISABLE(GEN6_BSD_SLEEP_MSG_DISABLE));
++
++	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
++}
++
++static void write_tail(struct intel_engine_cs *engine,
++		       struct i915_request *rq)
++{
++	wmb(); /* paranoid flush writes out of the WCB before mmio */
++
++	if (engine->flags & I915_ENGINE_NEEDS_WA_TAIL_WRITE)
++		wa_write_tail(engine, rq);
++	else
++		__write_tail(engine, rq);
++}
++
++static void passthrough_tasklet(struct tasklet_struct *t)
++{
++	struct i915_sched *se = from_tasklet(se, t, tasklet);
++	struct intel_engine_cs *engine =
++		container_of(se, typeof(*engine), sched);
++	struct i915_request *last = NULL;
++	struct i915_request *rq, *rn;
++	struct i915_priolist *pl;
++
++	if (i915_sched_is_idle(se))
++		return;
++
++	local_irq_disable();
++
++	spin_lock(&se->lock);
++	i915_sched_dequeue(se, pl, rq, rn) {
++		__i915_request_submit(rq);
++		last = rq;
++	}
++	spin_unlock(&se->lock);
++
++	if (last)
++		write_tail(engine, last);
++
++	local_irq_enable();
++}
++
++static int init_sched(struct intel_engine_cs *engine)
++{
++	tasklet_setup(&engine->sched.tasklet, passthrough_tasklet);
++	i915_sched_select_mode(&engine->sched, I915_SCHED_MODE_NONE);
++
++	return 0;
++}
++
+ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+ {
+ 	struct intel_timeline *timeline;
+@@ -1229,6 +1270,10 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+ 		return -ENODEV;
  	}
  
++	err = init_sched(engine);
++	if (err)
++		goto err;
++
+ 	timeline = intel_timeline_create_from_engine(engine,
+ 						     I915_GEM_HWS_SEQNO_ADDR);
+ 	if (IS_ERR(timeline)) {
 -- 
 2.20.1
 
