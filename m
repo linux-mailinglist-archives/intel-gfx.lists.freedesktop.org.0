@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA2D4312F8F
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:53:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 649CA312F9A
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Feb 2021 11:53:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8CED6E86D;
-	Mon,  8 Feb 2021 10:53:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2C536E881;
+	Mon,  8 Feb 2021 10:53:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 772CD6E86B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 960706E86D
  for <intel-gfx@lists.freedesktop.org>; Mon,  8 Feb 2021 10:52:57 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.69.177; 
 Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23809208-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23809209-1500050 
  for multiple; Mon, 08 Feb 2021 10:52:41 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  8 Feb 2021 10:52:06 +0000
-Message-Id: <20210208105236.28498-1-chris@chris-wilson.co.uk>
+Date: Mon,  8 Feb 2021 10:52:07 +0000
+Message-Id: <20210208105236.28498-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210208105236.28498-1-chris@chris-wilson.co.uk>
+References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/31] drm/i915/gt: Ratelimit heartbeat
- completion probing
+Subject: [Intel-gfx] [PATCH 02/31] drm/i915: Move context revocation to
+ scheduler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,342 +45,300 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The heartbeat runs through a few phases that we expect to complete
-within a certain number of heartbeat intervals. First we must submit the
-heartbeat to the queue, and if the queue is occupied it may take a
-couple of intervals before the heartbeat preempts the workload and is
-submitted to HW. Once running on HW, completion is not instantaneous as
-it may have to first reset the current workload before it itself runs
-through the empty request and signals completion. As such, we know that
-the heartbeat must take at least the preempt reset timeout and before we
-have had a chance to reset the engine, we do not want to issue a global
-reset ourselves (simply so that we only try to do one reset at a time
-and not confuse ourselves by resetting twice and hitting an innocent.)
+Centralise the means by which to remove a context from execution to the
+scheduler, allowing the backends to specialise as necessary. Note that
+without backend support, we can simplify the procedure to forcibly reset
+the HW to remove the context.
 
-So by taking into consideration that once running the request must take
-a finite amount of time, we can delay the final completion check to
-accommodate that and avoid checking too early (before we've had a chance
-to handle any engine resets required).
-
-v2: Attach a callback to flush the work immediately upon the heartbeat
-completion and insert the delay before the next.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2853
-Suggested-by: CQ Tang <cq.tang@intel.com>
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 95 ++++++++++++++++---
- drivers/gpu/drm/i915/gt/intel_engine_types.h  |  1 +
- .../drm/i915/gt/selftest_engine_heartbeat.c   | 65 ++++++-------
- drivers/gpu/drm/i915/gt/selftest_execlists.c  |  5 +-
- 4 files changed, 117 insertions(+), 49 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 117 +-----------------
+ .../drm/i915/gt/intel_execlists_submission.c  |  47 +++++++
+ drivers/gpu/drm/i915/i915_scheduler.c         |  20 +++
+ drivers/gpu/drm/i915/i915_scheduler_types.h   |   5 +
+ 4 files changed, 75 insertions(+), 114 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 0b062fad1837..209a477af412 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -20,6 +20,18 @@
-  * issue a reset -- in the hope that restores progress.
-  */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index ca37d93ef5e7..be75f861db67 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -382,104 +382,9 @@ __context_engines_static(const struct i915_gem_context *ctx)
+ 	return rcu_dereference_protected(ctx->engines, true);
+ }
  
-+#define HEARTBEAT_COMPLETION 50u /* milliseconds */
-+
-+static long completion_timeout(const struct intel_engine_cs *engine)
-+{
-+	long timeout = HEARTBEAT_COMPLETION;
-+
-+	if (intel_engine_has_preempt_reset(engine))
-+		timeout += READ_ONCE(engine->props.preempt_timeout_ms);
-+
-+	return msecs_to_jiffies(timeout);
-+}
-+
- static bool next_heartbeat(struct intel_engine_cs *engine)
+-static void __reset_context(struct i915_gem_context *ctx,
+-			    struct intel_engine_cs *engine)
+-{
+-	intel_gt_handle_error(engine->gt, engine->mask, 0,
+-			      "context closure in %s", ctx->name);
+-}
+-
+-static bool __cancel_engine(struct intel_engine_cs *engine)
+-{
+-	/*
+-	 * Send a "high priority pulse" down the engine to cause the
+-	 * current request to be momentarily preempted. (If it fails to
+-	 * be preempted, it will be reset). As we have marked our context
+-	 * as banned, any incomplete request, including any running, will
+-	 * be skipped following the preemption.
+-	 *
+-	 * If there is no hangchecking (one of the reasons why we try to
+-	 * cancel the context) and no forced preemption, there may be no
+-	 * means by which we reset the GPU and evict the persistent hog.
+-	 * Ergo if we are unable to inject a preemptive pulse that can
+-	 * kill the banned context, we fallback to doing a local reset
+-	 * instead.
+-	 */
+-	return intel_engine_pulse(engine) == 0;
+-}
+-
+-static bool
+-__active_engine(struct i915_request *rq, struct intel_engine_cs **active)
+-{
+-	struct intel_engine_cs *engine, *locked;
+-	bool ret = false;
+-
+-	/*
+-	 * Serialise with __i915_request_submit() so that it sees
+-	 * is-banned?, or we know the request is already inflight.
+-	 *
+-	 * Note that rq->engine is unstable, and so we double
+-	 * check that we have acquired the lock on the final engine.
+-	 */
+-	locked = READ_ONCE(rq->engine);
+-	spin_lock_irq(&locked->sched.lock);
+-	while (unlikely(locked != (engine = READ_ONCE(rq->engine)))) {
+-		spin_unlock(&locked->sched.lock);
+-		locked = engine;
+-		spin_lock(&locked->sched.lock);
+-	}
+-
+-	if (i915_request_is_active(rq)) {
+-		if (!__i915_request_is_complete(rq))
+-			*active = locked;
+-		ret = true;
+-	}
+-
+-	spin_unlock_irq(&locked->sched.lock);
+-
+-	return ret;
+-}
+-
+-static struct intel_engine_cs *active_engine(struct intel_context *ce)
+-{
+-	struct intel_engine_cs *engine = NULL;
+-	struct i915_request *rq;
+-
+-	if (intel_context_has_inflight(ce))
+-		return intel_context_inflight(ce);
+-
+-	if (!ce->timeline)
+-		return NULL;
+-
+-	/*
+-	 * rq->link is only SLAB_TYPESAFE_BY_RCU, we need to hold a reference
+-	 * to the request to prevent it being transferred to a new timeline
+-	 * (and onto a new timeline->requests list).
+-	 */
+-	rcu_read_lock();
+-	list_for_each_entry_reverse(rq, &ce->timeline->requests, link) {
+-		bool found;
+-
+-		/* timeline is already completed upto this point? */
+-		if (!i915_request_get_rcu(rq))
+-			break;
+-
+-		/* Check with the backend if the request is inflight */
+-		found = true;
+-		if (likely(rcu_access_pointer(rq->timeline) == ce->timeline))
+-			found = __active_engine(rq, &engine);
+-
+-		i915_request_put(rq);
+-		if (found)
+-			break;
+-	}
+-	rcu_read_unlock();
+-
+-	return engine;
+-}
+-
+ static void kill_engines(struct i915_gem_engines *engines, bool ban)
  {
- 	long delay;
-@@ -29,6 +41,26 @@ static bool next_heartbeat(struct intel_engine_cs *engine)
- 		return false;
++	const int error = ban ? -EIO : -EAGAIN;
+ 	struct i915_gem_engines_iter it;
+ 	struct intel_context *ce;
  
- 	delay = msecs_to_jiffies_timeout(delay);
-+
-+	/*
-+	 * Once we submit a heartbeat to the HW, we know that it will take
-+	 * at least a certain amount of time to complete. On a hanging system
-+	 * it will first have to wait for the preempt reset timeout, and
-+	 * then it will take some time for the reset to resume with the
-+	 * heartbeat and for it to complete. So once we have submitted the
-+	 * heartbeat to HW, we can wait a while longer before declaring the
-+	 * engine stuck and forcing a reset ourselves. If we do a reset
-+	 * and the engine is also doing a reset, it is possible that we
-+	 * reset the engine twice, harming an innocent.
-+	 *
-+	 * Before we have sumitted the heartbeat, we do not want to change
-+	 * the interval as we to promote the heartbeat and trigger preemption
-+	 * in a deterministic time frame.
-+	 */
-+	if (engine->heartbeat.systole &&
-+	    i915_request_is_active(engine->heartbeat.systole))
-+		delay = max(delay, completion_timeout(engine));
-+
- 	if (delay >= HZ)
- 		delay = round_jiffies_up_relative(delay);
- 	mod_delayed_work(system_highpri_wq, &engine->heartbeat.work, delay + 1);
-@@ -48,12 +80,49 @@ heartbeat_create(struct intel_context *ce, gfp_t gfp)
+@@ -491,28 +396,12 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
+ 	 * engines on which there are incomplete requests.
+ 	 */
+ 	for_each_gem_engine(ce, engines, it) {
+-		struct intel_engine_cs *engine;
++		struct i915_sched *se = intel_engine_get_scheduler(ce->engine);
+ 
+ 		if (ban && intel_context_set_banned(ce))
+ 			continue;
+ 
+-		/*
+-		 * Check the current active state of this context; if we
+-		 * are currently executing on the GPU we need to evict
+-		 * ourselves. On the other hand, if we haven't yet been
+-		 * submitted to the GPU or if everything is complete,
+-		 * we have nothing to do.
+-		 */
+-		engine = active_engine(ce);
+-
+-		/* First attempt to gracefully cancel the context */
+-		if (engine && !__cancel_engine(engine) && ban)
+-			/*
+-			 * If we are unable to send a preemptive pulse to bump
+-			 * the context from the GPU, we have to resort to a full
+-			 * reset. We hope the collateral damage is worth it.
+-			 */
+-			__reset_context(engines->ctx, engine);
++		se->revoke_context(ce, ban ? engines->ctx->name : NULL, error);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 85ff5fe861b4..e51112302fb8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -114,6 +114,7 @@
+ #include "gen8_engine_cs.h"
+ #include "intel_breadcrumbs.h"
+ #include "intel_context.h"
++#include "intel_engine_heartbeat.h"
+ #include "intel_engine_pm.h"
+ #include "intel_engine_stats.h"
+ #include "intel_execlists_submission.h"
+@@ -2774,6 +2775,50 @@ execlists_active_request(const struct i915_sched *se)
  	return rq;
  }
  
-+static void defibrillator(struct dma_fence *f, struct dma_fence_cb *cb)
++static bool __cancel_engine(struct intel_engine_cs *engine)
 +{
-+	struct intel_engine_cs *engine =
-+		container_of(cb, typeof(*engine), heartbeat.cb);
-+
-+	if (READ_ONCE(engine->heartbeat.systole))
-+		mod_delayed_work(system_highpri_wq, &engine->heartbeat.work, 0);
++	/*
++	 * Send a "high priority pulse" down the engine to cause the
++	 * current request to be momentarily preempted. (If it fails to
++	 * be preempted, it will be reset). As we have marked our context
++	 * as banned, any incomplete request, including any running, will
++	 * be skipped following the preemption.
++	 *
++	 * If there is no hangchecking (one of the reasons why we try to
++	 * cancel the context) and no forced preemption, there may be no
++	 * means by which we reset the GPU and evict the persistent hog.
++	 * Ergo if we are unable to inject a preemptive pulse that can
++	 * kill the banned context, we fallback to doing a local reset
++	 * instead.
++	 */
++	return intel_engine_pulse(engine) == 0;
 +}
 +
 +static void
-+untrack_heartbeat(struct intel_engine_cs *engine)
++execlists_revoke_context(struct intel_context *ce, const char *force, int error)
 +{
-+	struct i915_request *rq;
++	struct intel_engine_cs *engine;
 +
-+	rq = fetch_and_zero(&engine->heartbeat.systole);
-+	if (!rq)
-+		return;
++	/*
++	 * Check the current active state of this context; if we
++	 * are currently executing on the GPU we need to evict
++	 * ourselves. On the other hand, if we haven't yet been
++	 * submitted to the GPU or if everything is complete,
++	 * we have nothing to do.
++	 */
++	engine = intel_context_inflight(ce);
 +
-+	ENGINE_TRACE(engine, "heartbeat " RQ_FMT "completed\n", RQ_ARG(rq));
++	/* First attempt to gracefully cancel the context */
++	if (engine && !__cancel_engine(engine) && force)
++		/*
++		 * If we are unable to send a preemptive pulse to bump
++		 * the context from the GPU, we have to resort to a full
++		 * reset. We hope the collateral damage is worth it.
++		 */
++		intel_gt_handle_error(engine->gt, engine->mask, 0,
++				      "context revoked from %s", force);
++}
 +
-+	dma_fence_remove_callback(&rq->fence, &engine->heartbeat.cb);
-+	i915_request_put(rq);
+ static bool can_preempt(struct intel_engine_cs *engine)
+ {
+ 	if (INTEL_GEN(engine->i915) > 8)
+@@ -2911,6 +2956,7 @@ static void init_execlists(struct intel_engine_cs *engine)
+ 	u32 base = engine->mmio_base;
+ 
+ 	engine->sched.active_request = execlists_active_request;
++	engine->sched.revoke_context = execlists_revoke_context;
+ 	engine->sched.show = execlists_show;
+ 	tasklet_setup(&engine->sched.tasklet, execlists_submission_tasklet);
+ 
+@@ -3454,6 +3500,7 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+ 			ENGINE_VIRTUAL);
+ 
+ 	ve->base.sched.submit_request = virtual_submit_request;
++	ve->base.sched.revoke_context = execlists_revoke_context;
+ 	tasklet_setup(&ve->base.sched.tasklet, virtual_submission_tasklet);
+ 
+ 	virtual_engine_initial_hint(ve);
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index a8fb787278e6..7855601a4958 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -135,6 +135,25 @@ i915_sched_default_active_request(const struct i915_sched *se)
+ 	return active;
+ }
+ 
++static bool context_active(struct intel_context *ce)
++{
++	return i915_active_fence_isset(&ce->timeline->last_request);
 +}
 +
 +static void
-+track_heartbeat(struct intel_engine_cs *engine, struct i915_request *rq)
++i915_sched_default_revoke_context(struct intel_context *ce,
++				  const char *force,
++				  int error)
 +{
-+	ENGINE_TRACE(engine, "heartbeat " RQ_FMT "started\n", RQ_ARG(rq));
-+
-+	dma_fence_add_callback(&rq->fence,
-+			       &engine->heartbeat.cb,
-+			       defibrillator);
-+	engine->heartbeat.systole = i915_request_get(rq);
-+	if (!next_heartbeat(engine))
-+		untrack_heartbeat(engine);
++	/*
++	 * Without backend support, we cannot remove the context from the
++	 * HW gracefully. All we can do is force a reset, as a last resort.
++	 */
++	if (force && context_active(ce))
++		intel_gt_handle_error(ce->engine->gt, ce->engine->mask, 0,
++				      "context revoked from %s", force);
 +}
 +
- static void idle_pulse(struct intel_engine_cs *engine, struct i915_request *rq)
- {
- 	engine->wakeref_serial = READ_ONCE(engine->serial) + 1;
- 	i915_request_add_active_barriers(rq);
- 	if (!engine->heartbeat.systole && intel_engine_has_heartbeat(engine))
--		engine->heartbeat.systole = i915_request_get(rq);
-+		track_heartbeat(engine, rq);
+ void i915_sched_init(struct i915_sched *se,
+ 		     struct device *dev,
+ 		     const char *name,
+@@ -158,6 +177,7 @@ void i915_sched_init(struct i915_sched *se,
+ 
+ 	se->submit_request = i915_request_enqueue;
+ 	se->active_request = i915_sched_default_active_request;
++	se->revoke_context = i915_sched_default_revoke_context;
  }
  
- static void heartbeat_commit(struct i915_request *rq,
-@@ -106,13 +175,8 @@ static void heartbeat(struct work_struct *wrk)
- 	intel_engine_flush_scheduler(engine);
+ void i915_sched_park(struct i915_sched *se)
+diff --git a/drivers/gpu/drm/i915/i915_scheduler_types.h b/drivers/gpu/drm/i915/i915_scheduler_types.h
+index a8502c94d7c5..84232a07163f 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler_types.h
++++ b/drivers/gpu/drm/i915/i915_scheduler_types.h
+@@ -15,6 +15,7 @@
  
- 	rq = engine->heartbeat.systole;
--	if (rq && i915_request_completed(rq)) {
--		ENGINE_TRACE(engine,
--			     "heartbeat " RQ_FMT "completed\n",
--			     RQ_ARG(rq));
--		i915_request_put(rq);
--		engine->heartbeat.systole = NULL;
--	}
-+	if (rq && i915_request_completed(rq))
-+		untrack_heartbeat(engine);
+ struct drm_printer;
+ struct i915_request;
++struct intel_context;
  
- 	if (!intel_engine_pm_get_if_awake(engine))
- 		return;
-@@ -180,6 +244,11 @@ static void heartbeat(struct work_struct *wrk)
- 		goto out;
- 	}
+ /**
+  * struct i915_sched - funnels requests towards hardware
+@@ -40,6 +41,10 @@ struct i915_sched {
  
-+	/* Just completed one heartbeat, wait a tick before the next */
-+	if (rq)
-+		goto out;
+ 	struct i915_request *(*active_request)(const struct i915_sched *se);
+ 
++	void (*revoke_context)(struct intel_context *ce,
++			       const char *whom,
++			       int error);
 +
-+	/* The engine is parking. We can rest until the next user */
- 	serial = READ_ONCE(engine->serial);
- 	if (engine->wakeref_serial == serial)
- 		goto out;
-@@ -198,14 +267,14 @@ static void heartbeat(struct work_struct *wrk)
- 	if (IS_ERR(rq))
- 		goto unlock;
- 
--	ENGINE_TRACE(engine, "heartbeat " RQ_FMT "started\n", RQ_ARG(rq));
- 	heartbeat_commit(rq, &attr);
- 
- unlock:
- 	mutex_unlock(&ce->timeline->mutex);
- out:
-+	intel_engine_flush_scheduler(engine);
- 	if (!engine->i915->params.enable_hangcheck || !next_heartbeat(engine))
--		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
-+		untrack_heartbeat(engine);
- 	intel_engine_pm_put(engine);
- }
- 
-@@ -219,8 +288,10 @@ void intel_engine_unpark_heartbeat(struct intel_engine_cs *engine)
- 
- void intel_engine_park_heartbeat(struct intel_engine_cs *engine)
- {
--	if (cancel_delayed_work(&engine->heartbeat.work))
--		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
-+	/* completion may rearm work */
-+	while (cancel_delayed_work(&engine->heartbeat.work))
-+		;
-+	untrack_heartbeat(engine);
- }
- 
- void intel_engine_init_heartbeat(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 7efa6290cc3e..d27a44070cb1 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -322,6 +322,7 @@ struct intel_engine_cs {
- 	struct {
- 		struct delayed_work work;
- 		struct i915_request *systole;
-+		struct dma_fence_cb cb;
- 		unsigned long blocked;
- 	} heartbeat;
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-index b2c369317bf1..812c4a168b01 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-@@ -202,47 +202,44 @@ static int cmp_u32(const void *_a, const void *_b)
- 
- static int __live_heartbeat_fast(struct intel_engine_cs *engine)
- {
--	const unsigned int error_threshold = max(20000u, jiffies_to_usecs(6));
--	struct intel_context *ce;
--	struct i915_request *rq;
--	ktime_t t0, t1;
-+	const unsigned int error_threshold =
-+		max(3 * HEARTBEAT_COMPLETION * 1000, jiffies_to_usecs(6));
-+	struct intel_context *ce = engine->kernel_context;
- 	u32 times[5];
- 	int err;
- 	int i;
- 
--	ce = intel_context_create(engine);
--	if (IS_ERR(ce))
--		return PTR_ERR(ce);
--
- 	intel_engine_pm_get(engine);
- 
- 	err = intel_engine_set_heartbeat(engine, 1);
- 	if (err)
- 		goto err_pm;
- 
-+	flush_delayed_work(&engine->heartbeat.work);
-+	while (engine->heartbeat.systole)
-+		intel_engine_park_heartbeat(engine);
-+
- 	for (i = 0; i < ARRAY_SIZE(times); i++) {
--		do {
--			/* Manufacture a tick */
--			intel_engine_park_heartbeat(engine);
--			GEM_BUG_ON(engine->heartbeat.systole);
--			engine->serial++; /*  pretend we are not idle! */
--			intel_engine_unpark_heartbeat(engine);
-+		struct i915_sched_attr attr = { .priority = I915_PRIORITY_MIN };
-+		struct i915_request *rq;
-+		ktime_t t0, t1;
- 
--			flush_delayed_work(&engine->heartbeat.work);
--			if (!delayed_work_pending(&engine->heartbeat.work)) {
--				pr_err("%s: heartbeat %d did not start\n",
--				       engine->name, i);
--				err = -EINVAL;
--				goto err_pm;
--			}
-+		GEM_BUG_ON(READ_ONCE(engine->heartbeat.systole));
- 
--			rcu_read_lock();
--			rq = READ_ONCE(engine->heartbeat.systole);
--			if (rq)
--				rq = i915_request_get_rcu(rq);
--			rcu_read_unlock();
--		} while (!rq);
-+		/* Manufacture a tick */
-+		mutex_lock(&ce->timeline->mutex);
-+		rq = heartbeat_create(ce, GFP_KERNEL);
-+		if (!IS_ERR(rq)) {
-+			i915_request_get(rq);
-+			heartbeat_commit(rq, &attr);
-+		}
-+		mutex_unlock(&ce->timeline->mutex);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto err_reset;
-+		}
- 
-+		/* Time how long before the heartbeat monitor checks */
- 		t0 = ktime_get();
- 		while (rq == READ_ONCE(engine->heartbeat.systole))
- 			yield(); /* work is on the local cpu! */
-@@ -275,10 +272,10 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
- 		err = -EINVAL;
- 	}
- 
-+err_reset:
- 	reset_heartbeat(engine);
- err_pm:
- 	intel_engine_pm_put(engine);
--	intel_context_put(ce);
- 	return err;
- }
- 
-@@ -308,20 +305,16 @@ static int __live_heartbeat_off(struct intel_engine_cs *engine)
- 
- 	intel_engine_pm_get(engine);
- 
-+	/* Kick once, so that we change an active heartbeat */
- 	engine->serial++;
--	flush_delayed_work(&engine->heartbeat.work);
--	if (!delayed_work_pending(&engine->heartbeat.work)) {
--		pr_err("%s: heartbeat not running\n",
--		       engine->name);
--		err = -EINVAL;
--		goto err_pm;
--	}
-+	intel_engine_unpark_heartbeat(engine);
- 
- 	err = intel_engine_set_heartbeat(engine, 0);
- 	if (err)
- 		goto err_pm;
- 
--	engine->serial++;
-+	/* The next heartbeat work should cancel the heartbeat */
-+	engine->serial++; /* pretend the engine is still active */
- 	flush_delayed_work(&engine->heartbeat.work);
- 	if (delayed_work_pending(&engine->heartbeat.work)) {
- 		pr_err("%s: heartbeat still running\n",
-diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-index f625c29023ea..04ded3a2d491 100644
---- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-@@ -2325,13 +2325,16 @@ static int __cancel_fail(struct live_preempt_cancel *arg)
- 	del_timer_sync(&engine->execlists.preempt);
- 	intel_engine_flush_scheduler(engine);
- 
-+	engine->props.preempt_timeout_ms = 0;
- 	cancel_reset_timeout(engine);
- 
--	/* after failure, require heartbeats to reset device */
-+	/* after failure, require fast heartbeats to reset device */
- 	intel_engine_set_heartbeat(engine, 1);
- 	err = wait_for_reset(engine, rq, HZ / 2);
- 	intel_engine_set_heartbeat(engine,
- 				   engine->defaults.heartbeat_interval_ms);
-+
-+	engine->props.preempt_timeout_ms = engine->defaults.preempt_timeout_ms;
- 	if (err) {
- 		pr_err("Cancelled inflight0 request did not reset\n");
- 		goto out;
+ 	void (*show)(struct drm_printer *m,
+ 		     struct i915_sched *se,
+ 		     void (*show_request)(struct drm_printer *m,
 -- 
 2.20.1
 
