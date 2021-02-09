@@ -1,34 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F35D314BA3
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 10:33:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF941314BB7
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 10:37:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA1C989C59;
-	Tue,  9 Feb 2021 09:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 296396EAA8;
+	Tue,  9 Feb 2021 09:37:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A656E89C59
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 09:33:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23819370-1500050 for multiple; Tue, 09 Feb 2021 09:33:10 +0000
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 719986EAA8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 09:37:24 +0000 (UTC)
+IronPort-SDR: Sur8VrRzAZLRDr1YtM2tWQDHxKNkSj5MUo4byvbMPs6PWcDZpXkHpcO/frZmsCOCHxfpWdzPCi
+ p/Cn+735bf4g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9889"; a="266688601"
+X-IronPort-AV: E=Sophos;i="5.81,164,1610438400"; d="scan'208";a="266688601"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 01:37:24 -0800
+IronPort-SDR: K4p38r1B2XhycYP26zCj00elMBMbzgQEiBSrDC1OThlkvbUhjBUqHWcvWS7NGM9LOCHh75hG9B
+ kcCnTrep7u1g==
+X-IronPort-AV: E=Sophos;i="5.81,164,1610438400"; d="scan'208";a="396047770"
+Received: from gmaoz-mobl.ger.corp.intel.com (HELO [10.249.82.228])
+ ([10.249.82.228])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 01:37:22 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
+ <20210208105236.28498-10-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <9073d73f-d6ff-ae3a-0944-e62a6d190e2f@linux.intel.com>
+Date: Tue, 9 Feb 2021 09:37:19 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <20210209021918.16234-2-ville.syrjala@linux.intel.com>
-References: <20210209021918.16234-1-ville.syrjala@linux.intel.com>
- <20210209021918.16234-2-ville.syrjala@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Tue, 09 Feb 2021 09:33:11 +0000
-Message-ID: <161286319138.7943.3229337601047523963@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Fix overlay frontbuffer
- tracking
+In-Reply-To: <20210208105236.28498-10-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 10/31] drm/i915: Fair low-latency scheduling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,73 +51,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIxLTAyLTA5IDAyOjE5OjE3KQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gV2UgZG9uJ3Qg
-aGF2ZSBhIHBlcnNpc3RlbnQgZmIgaG9sZGluZyBhIHJlZmVyZW5jZSB0byB0aGUgZnJvbnRidWZm
-ZXIKPiBvYmplY3QsIHNvIGV2ZXJ5IHRpbWUgd2UgZG8gdGhlIGdldCtwdXQgd2UgdGhyb3cgdGhl
-IGZyb250YnVmZmVyIG9iamVjdAo+IGltbWVkaWF0ZWx5IGF3YXkuIEFuZCBzbyB0aGUgbmV4dCB0
-aW1lIGFyb3VuZCB3ZSBnZXQgYSBwcmlzdGluZQo+IGZyb250YnVmZmVyIG9iamVjdCB3aXRoIGJp
-dHM9PTAgZXZlbiBmb3IgdGhlIG9sZCB2bWEuIFRoaXMgY29uZnVzZXMKPiB0aGUgZnJvbnRidWZm
-ZXIgdHJhY2tpbmcgY29kZSB3aGljaCB1bmRlcnN0YW5kYWJseSBleHBlY3RzIHRoZSBvbGQKPiBm
-cm9udGJ1ZmZlciB0byBoYXZlIHRoZSBvdmVybGF5J3MgYml0IHNldC4KPiAKPiBGaXggdGhpcyBi
-eSBoYW5naW5nIG9uIHRvIHRoZSBmcm9udGJ1ZmZlciByZWZlcmVuY2UgdW50aWwgdGhlIG5leHQK
-PiBmbGlwLiBBbmQganVzdCB0byBtYWtlIHRoaXMgYSBiaXQgbW9yZSBjbGVhciBsZXQncyB0cmFj
-ayB0aGUgZnJvbnRidWZmZXIKPiBleHBsaWNpdGx5IGluc3RlYWQgb2YganVzdCBncmFiYmluZyBp
-dCB2aWEgdGhlIG9sZCB2bWEuCj4gCj4gQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzog
-Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IEpvb25hcyBMYWh0
-aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbT4KPiBDbG9zZXM6IGh0dHBzOi8v
-Z2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvMTEzNgo+IEZpeGVzOiBk
-YTQyMTA0ZjU4OWQgKCJkcm0vaTkxNTogSG9sZCByZWZlcmVuY2UgdG8gaW50ZWxfZnJvbnRidWZm
-ZXIgYXMgd2UgdHJhY2sgYWN0aXZpdHkiKQoKTWF5YmUgbW9yZSBhcHJvcG9zLCBzYW1lIGtlcm5l
-bCB0aG91Z2gKRml4ZXM6IDhlN2NiMTc5OWI0ZiAoImRybS9pOTE1OiBFeHRyYWN0IGludGVsX2Zy
-b250YnVmZmVyIGFjdGl2ZSB0cmFja2luZyIpCgpPaywgc28gdGhpcyBkZWZpbml0ZWx5IHVzZWQg
-dG8gYmUgc3dhcHBpbmcgYmV0d2VlbiB0aGUKb2JqLT5mcm9udGJ1ZmZlcl9iaXRzIGFuZCBzbyB1
-c2VkIHRvIGhhdmUgYSBwZXJzaXN0ZW50IHJlZmVyZW5jZS4KS2VlcGluZyB0aGUgZnJvbnRidWZm
-ZXIgdHJhY2tpbmcgd2l0aCB0aGUgb3ZlcmxheSBtYWtlcyBldmVuIG1vcmUgc2Vuc2UuCgo+IFNp
-Z25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5j
-b20+ClJldmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4K
-Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ZlcmxheS5jIHwg
-MTcgKysrKysrKystLS0tLS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwg
-OSBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9vdmVybGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X292ZXJsYXkuYwo+IGluZGV4IDljMDExM2YxNWI1OC4uZWY4ZjQ0ZjVlNzUxIDEwMDY0NAo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ZlcmxheS5jCj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vdmVybGF5LmMKPiBAQCAtMTgzLDYg
-KzE4Myw3IEBAIHN0cnVjdCBpbnRlbF9vdmVybGF5IHsKPiAgICAgICAgIHN0cnVjdCBpbnRlbF9j
-cnRjICpjcnRjOwo+ICAgICAgICAgc3RydWN0IGk5MTVfdm1hICp2bWE7Cj4gICAgICAgICBzdHJ1
-Y3QgaTkxNV92bWEgKm9sZF92bWE7Cj4gKyAgICAgICBzdHJ1Y3QgaW50ZWxfZnJvbnRidWZmZXIg
-KmZyb250YnVmZmVyOwo+ICAgICAgICAgYm9vbCBhY3RpdmU7Cj4gICAgICAgICBib29sIHBmaXRf
-YWN0aXZlOwo+ICAgICAgICAgdTMyIHBmaXRfdnNjYWxlX3JhdGlvOyAvKiBzaGlmdGVkLXBvaW50
-IG51bWJlciwgKDE8PDEyKSA9PSAxLjAgKi8KPiBAQCAtMjgzLDIxICsyODQsMTkgQEAgc3RhdGlj
-IHZvaWQgaW50ZWxfb3ZlcmxheV9mbGlwX3ByZXBhcmUoc3RydWN0IGludGVsX292ZXJsYXkgKm92
-ZXJsYXksCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0IGk5
-MTVfdm1hICp2bWEpCj4gIHsKPiAgICAgICAgIGVudW0gcGlwZSBwaXBlID0gb3ZlcmxheS0+Y3J0
-Yy0+cGlwZTsKPiAtICAgICAgIHN0cnVjdCBpbnRlbF9mcm9udGJ1ZmZlciAqZnJvbSA9IE5VTEws
-ICp0byA9IE5VTEw7Cj4gKyAgICAgICBzdHJ1Y3QgaW50ZWxfZnJvbnRidWZmZXIgKmZyb250YnVm
-ZmVyID0gTlVMTDsKPiAgCj4gICAgICAgICBkcm1fV0FSTl9PTigmb3ZlcmxheS0+aTkxNS0+ZHJt
-LCBvdmVybGF5LT5vbGRfdm1hKTsKPiAgCj4gLSAgICAgICBpZiAob3ZlcmxheS0+dm1hKQo+IC0g
-ICAgICAgICAgICAgICBmcm9tID0gaW50ZWxfZnJvbnRidWZmZXJfZ2V0KG92ZXJsYXktPnZtYS0+
-b2JqKTsKPiAgICAgICAgIGlmICh2bWEpCj4gLSAgICAgICAgICAgICAgIHRvID0gaW50ZWxfZnJv
-bnRidWZmZXJfZ2V0KHZtYS0+b2JqKTsKPiArICAgICAgICAgICAgICAgZnJvbnRidWZmZXIgPSBp
-bnRlbF9mcm9udGJ1ZmZlcl9nZXQodm1hLT5vYmopOwo+ICAKPiAtICAgICAgIGludGVsX2Zyb250
-YnVmZmVyX3RyYWNrKGZyb20sIHRvLCBJTlRFTF9GUk9OVEJVRkZFUl9PVkVSTEFZKHBpcGUpKTsK
-PiArICAgICAgIGludGVsX2Zyb250YnVmZmVyX3RyYWNrKG92ZXJsYXktPmZyb250YnVmZmVyLCBm
-cm9udGJ1ZmZlciwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIElOVEVMX0ZST05U
-QlVGRkVSX09WRVJMQVkocGlwZSkpOwo+ICAKPiAtICAgICAgIGlmICh0bykKPiAtICAgICAgICAg
-ICAgICAgaW50ZWxfZnJvbnRidWZmZXJfcHV0KHRvKTsKPiAtICAgICAgIGlmIChmcm9tKQo+IC0g
-ICAgICAgICAgICAgICBpbnRlbF9mcm9udGJ1ZmZlcl9wdXQoZnJvbSk7Cj4gKyAgICAgICBpZiAo
-b3ZlcmxheS0+ZnJvbnRidWZmZXIpCj4gKyAgICAgICAgICAgICAgIGludGVsX2Zyb250YnVmZmVy
-X3B1dChvdmVybGF5LT5mcm9udGJ1ZmZlcik7Cj4gKyAgICAgICBvdmVybGF5LT5mcm9udGJ1ZmZl
-ciA9IGZyb250YnVmZmVyOwoKQW5kIHRoaXMgd2lsbCBkcm9wIHRoZSByZWYgb24gb3ZlcmxheS0+
-ZnJvbnRidWZmZXIgYXMgd2UgZmxpcCB0byBOVUxMIG9uCnNodXRkb3duLgoKTm93IGlmIG9ubHkg
-c29tZW9uZSBzdGlsbCBoYWQgdGhlIGNvZGUgdG8gZXhwb3NlIHNwcml0ZXMgaW5zdGVhZCBvZgpv
-dmVybGF5cy4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+
+On 08/02/2021 10:52, Chris Wilson wrote:
+
+> diff --git a/drivers/gpu/drm/i915/Kconfig.profile b/drivers/gpu/drm/i915/Kconfig.profile
+> index 35bbe2b80596..f1d009906f71 100644
+> --- a/drivers/gpu/drm/i915/Kconfig.profile
+> +++ b/drivers/gpu/drm/i915/Kconfig.profile
+> @@ -1,3 +1,65 @@
+> +choice
+> +	prompt "Preferred scheduler"
+> +	default DRM_I915_SCHED_VIRTUAL_DEADLINE
+> +	help
+> +	  Select the preferred method to decide the order of execution.
+> +
+> +	  The scheduler is used for two purposes. First to defer unready
+> +	  jobs to not block execution of independent ready clients, so
+> +	  preventing GPU stalls while work waits for other tasks. The second
+> +	  purpose is to decide which task to run next, as well as decide
+> +	  if that task should preempt the currently running task, or if
+> +	  the current task has exceeded its allotment of GPU time and should
+> +	  be replaced.
+> +
+> +	config DRM_I915_SCHED_FIFO
+> +	bool "FIFO"
+> +	help
+> +	  No task reordering, tasks are executed in order of readiness.
+> +	  First in, first out.
+> +
+> +	  Unready tasks do not block execution of other, independent clients.
+> +	  A client will not be scheduled for execution until all of its
+> +	  prerequisite work has completed.
+> +
+> +	  This disables the scheduler and puts it into a pass-through mode.
+> +
+> +	config DRM_I915_SCHED_PRIORITY
+> +	bool "Priority"
+> +	help
+> +	  Strict priority ordering, equal priority tasks are executed
+> +	  in order of readiness. Clients are liable to starve other clients,
+> +	  causing uneven execution and excess task latency. High priority
+> +	  clients will preempt lower priority clients and will run
+> +	  uninterrupted.
+> +
+> +	  Note that interactive desktops will implicitly perform priority
+> +	  boosting to minimise frame jitter.
+> +
+> +	config DRM_I915_SCHED_VIRTUAL_DEADLINE
+> +	bool "Virtual Deadline"
+> +	help
+> +	  A fair scheduler based on MuQSS with priority-hinting.
+> +
+> +	  When a task is ready for execution, it is given a quota (from the
+> +	  engine's timeslice) and a virtual deadline. The virtual deadline is
+> +	  derived from the current time and the timeslice scaled by the
+> +	  task's priority. Higher priority tasks are given an earlier
+> +	  deadline and receive a large portion of the execution bandwidth.
+> +
+> +	  Requests are then executed in order of deadline completion.
+> +	  Requests with earlier deadlines and higher priority than currently
+> +	  executing on the engine will preempt the active task.
+> +
+> +endchoice
+> +
+> +config DRM_I915_SCHED
+> +	int
+> +	default 2 if DRM_I915_SCHED_VIRTUAL_DEADLINE
+> +	default 1 if DRM_I915_SCHED_PRIORITY
+> +	default 0 if DRM_I915_SCHED_FIFO
+> +	default -1
+
+Default -1 would mean it would ask the user and not default to deadline?
+
+Implementation wise it is very neat how you did it so there is basically 
+very little cost for the compiled out options. And code maintenance cost 
+to support multiple options is pretty trivial as well.
+
+Only cost I can see is potential bug reports if "wrong" scheduler was 
+picked by someone. What do you envisage, or who, would be the use cases 
+for not going with deadline? (I think deadline should be default.)
+
+Then there is a question of how these kconfig will interact, or at least 
+what their semantics would be, considering the GuC.
+
+I think we can modify the kconfig blurb to say they only apply to 
+execlists platforms, once we get a GuC scheduling platform upstream. And 
+fudge some sched mode bits for sysfs reporting in that case.
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
