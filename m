@@ -2,44 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BFBA314CEB
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 11:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D7B314D09
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 11:31:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 610F86EAC2;
-	Tue,  9 Feb 2021 10:27:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F77C6EADA;
+	Tue,  9 Feb 2021 10:31:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11AED6EAC2
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 10:27:17 +0000 (UTC)
-IronPort-SDR: y8qHKI832n0vG7/ShmlQUiZsuK40GYMA5iOLumDf092FE/r/QWCSIVUQEnZ7bkMYT8mTMSp4GQ
- TmJJWdTJFXtg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9889"; a="266693842"
-X-IronPort-AV: E=Sophos;i="5.81,164,1610438400"; d="scan'208";a="266693842"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2021 02:27:16 -0800
-IronPort-SDR: I1z0SabwPGvXb2krN8bwK6oiQQC0ktLONu35Hh68cQCuCtfEuDZQmhoNj5HCDZf62w56Aa72e0
- CfeKQuobny+w==
-X-IronPort-AV: E=Sophos;i="5.81,164,1610438400"; d="scan'208";a="396062735"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2021 02:27:15 -0800
-Date: Tue, 9 Feb 2021 12:27:11 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>, g@ideak-desk.fi.intel.com
-Message-ID: <20210209102711.GA18480@ideak-desk.fi.intel.com>
-References: <20210129080043.24614-1-anshuman.gupta@intel.com>
- <20210204182809.GC750296@ideak-desk.fi.intel.com>
- <aa661df54d8847d0926e8edf61710fcf@intel.com>
- <20210205120451.GA921144@ideak-desk.fi.intel.com>
- <aabf782fb5f44932ac7e314ae727b119@intel.com>
- <1c3fa41298ad4534afd0eee40ed6e4c6@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 692E06EADA
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 10:31:37 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.69.177; 
+Received: from localhost (unverified [78.156.69.177]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 23820179-1500050 for multiple; Tue, 09 Feb 2021 10:31:32 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1c3fa41298ad4534afd0eee40ed6e4c6@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability enc NULL
- check
+In-Reply-To: <9073d73f-d6ff-ae3a-0944-e62a6d190e2f@linux.intel.com>
+References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
+ <20210208105236.28498-10-chris@chris-wilson.co.uk>
+ <9073d73f-d6ff-ae3a-0944-e62a6d190e2f@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Tue, 09 Feb 2021 10:31:33 +0000
+Message-ID: <161286669315.7943.8584320401849289041@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH 10/31] drm/i915: Fair low-latency scheduling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,55 +41,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 09, 2021 at 07:39:17AM +0200, Gupta, Anshuman wrote:
-> > > > > > [...]
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > > > > b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > > > > index ae1371c36a32..58af323d189a 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > > > > @@ -135,11 +135,16 @@ int intel_hdcp_read_valid_bksv(struct intel_digital_port *dig_port,
-> > > > > >  /* Is HDCP1.4 capable on Platform and Sink */
-> > > > > > bool intel_hdcp_capable(struct intel_connector *connector)  {
-> > > > > > -	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> > > > > > +	struct intel_digital_port *dig_port;
-> > > > > >  	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
-> > > > > >  	bool capable = false;
-> > > > > >  	u8 bksv[5];
-> > > > > >
-> > > > > > +	if (!connector->encoder)
-> > > > > > +		return -ENODEV;
-> > > > >
-> > > > > I assume this is needed when called from i915_hdcp_sink_capability
-> > > > > debugfs entry. That one is lacking the locking for the connector,
-> > > > > but is that entry really needed? We print the same info already
-> > > > > from the i915_display_info entry which has the proper locking and
-> > > > > encoder check.
-> > > >
-> > > > Historically HDCP capability added to i915_display_info later to
-> > > > debug CI machine as i915_display_info available as CI logs.  Now the
-> > > > plans i915_display_info  should only show the monitor capability.
-> > > > and i915_hdcp_sink_capability will check both sink and platform
-> > > > capability.
-> > >
-> > > Ok, in any case the encoder NULL check and the required locking should
-> > > be done in i915_hdcp_sink_capability_show().
->
-> Need one input, AFAIU we do require
-> drm_modeset_lock(&dev_priv->drm.mode_config.connection_mutex, NULL)
-> lock in i915_hdcp_sink_capability ?
+Quoting Tvrtko Ursulin (2021-02-09 09:37:19)
+> 
+> On 08/02/2021 10:52, Chris Wilson wrote:
+> 
+> > diff --git a/drivers/gpu/drm/i915/Kconfig.profile b/drivers/gpu/drm/i915/Kconfig.profile
+> > index 35bbe2b80596..f1d009906f71 100644
+> > --- a/drivers/gpu/drm/i915/Kconfig.profile
+> > +++ b/drivers/gpu/drm/i915/Kconfig.profile
+> > @@ -1,3 +1,65 @@
+> > +choice
+> > +     prompt "Preferred scheduler"
+> > +     default DRM_I915_SCHED_VIRTUAL_DEADLINE
+> > +     help
+> > +       Select the preferred method to decide the order of execution.
+> > +
+> > +       The scheduler is used for two purposes. First to defer unready
+> > +       jobs to not block execution of independent ready clients, so
+> > +       preventing GPU stalls while work waits for other tasks. The second
+> > +       purpose is to decide which task to run next, as well as decide
+> > +       if that task should preempt the currently running task, or if
+> > +       the current task has exceeded its allotment of GPU time and should
+> > +       be replaced.
+> > +
+> > +     config DRM_I915_SCHED_FIFO
+> > +     bool "FIFO"
+> > +     help
+> > +       No task reordering, tasks are executed in order of readiness.
+> > +       First in, first out.
+> > +
+> > +       Unready tasks do not block execution of other, independent clients.
+> > +       A client will not be scheduled for execution until all of its
+> > +       prerequisite work has completed.
+> > +
+> > +       This disables the scheduler and puts it into a pass-through mode.
+> > +
+> > +     config DRM_I915_SCHED_PRIORITY
+> > +     bool "Priority"
+> > +     help
+> > +       Strict priority ordering, equal priority tasks are executed
+> > +       in order of readiness. Clients are liable to starve other clients,
+> > +       causing uneven execution and excess task latency. High priority
+> > +       clients will preempt lower priority clients and will run
+> > +       uninterrupted.
+> > +
+> > +       Note that interactive desktops will implicitly perform priority
+> > +       boosting to minimise frame jitter.
+> > +
+> > +     config DRM_I915_SCHED_VIRTUAL_DEADLINE
+> > +     bool "Virtual Deadline"
+> > +     help
+> > +       A fair scheduler based on MuQSS with priority-hinting.
+> > +
+> > +       When a task is ready for execution, it is given a quota (from the
+> > +       engine's timeslice) and a virtual deadline. The virtual deadline is
+> > +       derived from the current time and the timeslice scaled by the
+> > +       task's priority. Higher priority tasks are given an earlier
+> > +       deadline and receive a large portion of the execution bandwidth.
+> > +
+> > +       Requests are then executed in order of deadline completion.
+> > +       Requests with earlier deadlines and higher priority than currently
+> > +       executing on the engine will preempt the active task.
+> > +
+> > +endchoice
+> > +
+> > +config DRM_I915_SCHED
+> > +     int
+> > +     default 2 if DRM_I915_SCHED_VIRTUAL_DEADLINE
+> > +     default 1 if DRM_I915_SCHED_PRIORITY
+> > +     default 0 if DRM_I915_SCHED_FIFO
+> > +     default -1
+> 
+> Default -1 would mean it would ask the user and not default to deadline?
 
-Yes, and there's also drm_modeset_lock_single_interruptible() that could
-be used.
+CONFIG_DRM_I915_SCHED is unnamed, it is never itself presented to the
+user. The choice is, and that ends up setting one of the 3 values, which
+is then mapped to an integer value by DRM_I915_SCHED. That was done to
+give the hierarchy to the policies which resulted in the cascade of
+supporting fifo as a subset of priorites and priorities as a subset of
+deadlines. Which also ties nicely into the different backends being able
+to select different scheduling levels for themselves (no scheduling at
+all for legacy ringbuffer and mock, deadlines for execlists/ringscheduler,
+and fifo for guc).
 
---Imre
+> Implementation wise it is very neat how you did it so there is basically 
+> very little cost for the compiled out options. And code maintenance cost 
+> to support multiple options is pretty trivial as well.
+> 
+> Only cost I can see is potential bug reports if "wrong" scheduler was 
+> picked by someone. What do you envisage, or who, would be the use cases 
+> for not going with deadline? (I think deadline should be default.)
+
+The first thing I did with it was compare none/priority/deadlines with
+wsim and ift, that's what I would expect most to try as well (replace
+wsim with their favourite benchmark). For instance, it was reassuring
+that timeslicing just worked, even without priorities. Beyond testing, it
+is a gesture to putting policy back into the hands of the user, though
+to truly do that we would make it a sysfs attribute.
+
+That found a couple of bugs to make sure i915_sched_defer_request
+degraded back into sorting by priorities (or not). And suggested maybe
+we should try harder to avoid semaphores without the more adaptable
+scheduling modes.
+
+As for feedback in bugs, the choice should be included with the engine
+state dump.
+
+> Then there is a question of how these kconfig will interact, or at least 
+> what their semantics would be, considering the GuC.
+
+Hence the weasel word of "preferred". This config is the maximum
+scheduling level, if the backend does not provide for request reordering
+at all (e.g. the ringbuffer), then the user wishing to use a different
+scheduler is out of luck. Also being a module level parameter, different
+devices within the system may support different schedulers, and yet we
+still want them to interact. Which poses a very real risk of priority
+inversion across the boundaries. That I do not have an answer for, just
+the intention to write tests to demonstrate the issue.
+
+> I think we can modify the kconfig blurb to say they only apply to 
+> execlists platforms, once we get a GuC scheduling platform upstream. And 
+> fudge some sched mode bits for sysfs reporting in that case.
+
+Aye, we will need some fudging for the GuC as it presents a very limited
+interface and probably merits some unique caps.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
