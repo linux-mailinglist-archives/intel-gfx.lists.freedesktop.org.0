@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 475DC31458E
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 02:23:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C579E31461A
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 03:19:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99F656E2C8;
-	Tue,  9 Feb 2021 01:23:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE8276EA6F;
+	Tue,  9 Feb 2021 02:19:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8266389DA7;
- Tue,  9 Feb 2021 01:23:46 +0000 (UTC)
-IronPort-SDR: y0AbROcGA4lWJuinDmR12d18pW85/Y4l29SbLrH8MV8owYD1lhVJesOgkiQHawvPvVEMVKaxTv
- 8xveFMbz7oEA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9889"; a="178300637"
-X-IronPort-AV: E=Sophos;i="5.81,163,1610438400"; 
- d="asc'?scan'208";a="178300637"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2021 17:23:45 -0800
-IronPort-SDR: y+jeXAsnNmZV6FvzVTPdNbgBq1SCupULaKJuXGMmiokZpuvDu8VVocQPqeiT6RBQ1tBYk2t0eg
- VQzWsvQWIXIg==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 379CE6EA6F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 02:19:22 +0000 (UTC)
+IronPort-SDR: XYddJEnY8sMSCvO8fjRtnRx4bpNqu2rBqjoRQRVMRfa1t1oYNHfyggnObx3fqQa52SkxgLmc08
+ UHeBU5+5xqFg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9889"; a="181959955"
+X-IronPort-AV: E=Sophos;i="5.81,163,1610438400"; d="scan'208";a="181959955"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2021 18:19:21 -0800
+IronPort-SDR: 4wck9G+iSgDZa4t3MtaIzEdicJCtFU9KnViv0Jij5Bn2TQepWP7/tiMigkRjDcRMY3y85hv759
+ sBO3Ks3YS1GA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,163,1610438400"; 
- d="asc'?scan'208";a="398603670"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by orsmga007.jf.intel.com with ESMTP; 08 Feb 2021 17:23:42 -0800
-Date: Tue, 9 Feb 2021 09:08:17 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Yu Zhang <yu.c.zhang@linux.intel.com>
-Message-ID: <20210209010817.GC2043@zhen-hp.sh.intel.com>
-References: <20210208185210.6002-1-yu.c.zhang@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.81,163,1610438400"; d="scan'208";a="378382755"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 08 Feb 2021 18:19:19 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 09 Feb 2021 04:19:18 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  9 Feb 2021 04:19:16 +0200
+Message-Id: <20210209021918.16234-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20210208185210.6002-1-yu.c.zhang@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt/kvmgt: Fix the build failure
- in kvmgt.
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Disallow plane x+w>stride on ilk+
+ with X-tiling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,134 +47,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: kvm@vger.kernel.org, airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0377525578=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0377525578==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="f61P+fpdnY2FZS1u"
-Content-Disposition: inline
-
-
---f61P+fpdnY2FZS1u
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2021.02.09 02:52:10 +0800, Yu Zhang wrote:
-> Previously, commit 531810caa9f4 ("KVM: x86/mmu: Use
-> an rwlock for the x86 MMU") replaced KVM's mmu_lock
-> with type rwlock_t. This will cause a build failure
-> in kvmgt, which uses the same lock when trying to add/
-> remove some GFNs to/from the page tracker. Fix it with
-> write_lock/unlocks in kvmgt.
-
-Thanks for the fix! I saw Paolo has already carried one
-in -next, so we are fine.
-
->=20
-> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> Signed-off-by: Yu Zhang <yu.c.zhang@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gvt/kvmgt.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/=
-kvmgt.c
-> index 60f1a386dd06..b4348256ae95 100644
-> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-> @@ -1703,7 +1703,7 @@ static int kvmgt_page_track_add(unsigned long handl=
-e, u64 gfn)
->  		return -EINVAL;
->  	}
-> =20
-> -	spin_lock(&kvm->mmu_lock);
-> +	write_lock(&kvm->mmu_lock);
-> =20
->  	if (kvmgt_gfn_is_write_protected(info, gfn))
->  		goto out;
-> @@ -1712,7 +1712,7 @@ static int kvmgt_page_track_add(unsigned long handl=
-e, u64 gfn)
->  	kvmgt_protect_table_add(info, gfn);
-> =20
->  out:
-> -	spin_unlock(&kvm->mmu_lock);
-> +	write_unlock(&kvm->mmu_lock);
->  	srcu_read_unlock(&kvm->srcu, idx);
->  	return 0;
->  }
-> @@ -1737,7 +1737,7 @@ static int kvmgt_page_track_remove(unsigned long ha=
-ndle, u64 gfn)
->  		return -EINVAL;
->  	}
-> =20
-> -	spin_lock(&kvm->mmu_lock);
-> +	write_lock(&kvm->mmu_lock);
-> =20
->  	if (!kvmgt_gfn_is_write_protected(info, gfn))
->  		goto out;
-> @@ -1746,7 +1746,7 @@ static int kvmgt_page_track_remove(unsigned long ha=
-ndle, u64 gfn)
->  	kvmgt_protect_table_del(info, gfn);
-> =20
->  out:
-> -	spin_unlock(&kvm->mmu_lock);
-> +	write_unlock(&kvm->mmu_lock);
->  	srcu_read_unlock(&kvm->srcu, idx);
->  	return 0;
->  }
-> @@ -1772,7 +1772,7 @@ static void kvmgt_page_track_flush_slot(struct kvm =
-*kvm,
->  	struct kvmgt_guest_info *info =3D container_of(node,
->  					struct kvmgt_guest_info, track_node);
-> =20
-> -	spin_lock(&kvm->mmu_lock);
-> +	write_lock(&kvm->mmu_lock);
->  	for (i =3D 0; i < slot->npages; i++) {
->  		gfn =3D slot->base_gfn + i;
->  		if (kvmgt_gfn_is_write_protected(info, gfn)) {
-> @@ -1781,7 +1781,7 @@ static void kvmgt_page_track_flush_slot(struct kvm =
-*kvm,
->  			kvmgt_protect_table_del(info, gfn);
->  		}
->  	}
-> -	spin_unlock(&kvm->mmu_lock);
-> +	write_unlock(&kvm->mmu_lock);
->  }
-> =20
->  static bool __kvmgt_vgpu_exist(struct intel_vgpu *vgpu, struct kvm *kvm)
-> --=20
-> 2.17.1
->=20
-
---f61P+fpdnY2FZS1u
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYCHggQAKCRCxBBozTXgY
-J4FcAJsFxkXndfIuWXcRxMohV8DLfSmIbwCeNihYVZJrpZ/nzUK+LJJnAinbtbE=
-=YD2h
------END PGP SIGNATURE-----
-
---f61P+fpdnY2FZS1u--
-
---===============0377525578==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0377525578==--
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCmls
+aysgcGxhbmVzIGdldCBub3RhYmx5IHVuaGFwcHkgd2hlbiB0aGUgcGxhbmUgeCt3IGV4Y2VlZHMK
+dGhlIHN0cmlkZS4gVGhpcyB3YXNuJ3QgYSBwcm9ibGVtIHByZXZpb3VzbHkgYmVjYXVzZSB3ZQph
+bHdheXMgYWxpZ25lZCBTVVJGIHRvIHRoZSBjbG9zZXN0IHRpbGUgYm91bmRhcnkgc28gdGhlCngg
+b2Zmc2V0IG5ldmVyIGdvdCBwYXJ0aWN1bGFybHkgbGFyZ2UuIEJ1dCBub3cgd2l0aCBhc3luYwpm
+bGlwcyB3ZSBoYXZlIHRvIGFsaWduIHRvIDI1NktpQiBpbnN0ZWFkIGFuZCB0aHVzIHRoaXMKYmVj
+b21lcyBhIHJlYWwgaXNzdWUuCgpPbiBpbGsvc25iL2l2YiBpdCBsb29rcyBsaWtlIHRoZSBhY2Nl
+c3NlcyBqdXN0IGp1c3Qgd3JhcAplYXJseSB0byB0aGUgbmV4dCB0aWxlIHJvdyB3aGVuIHNjYW5v
+dXQgZ29lcyBwYXN0IHRoZQpTVVJGK24qc3RyaWRlIGJvdW5kYXJ5LCBoc3cvYmR3IHN1ZmZlciBt
+b3JlIGhlYXZpbHkgYW5kCnN0YXJ0IHRvIHVuZGVycnVuIGNvbnN0YW50bHkuIGk5NjUvZzR4IGFw
+cGVhciB0byBiZSBpbW11bmUuCnZsdi9jaHYgSSd2ZSBub3QgeWV0IGNoZWNrZWQuCgpMZXQncyBi
+b3Jyb3cgYW5vdGhlciB0cmljayBmcm9tIHRoZSBza2wrIGNvZGUgYW5kIHNlYXJjaApiYWNrd2Fy
+ZHMgZm9yIGEgYmV0dGVyIFNVUkYgb2Zmc2V0IGluIHRoZSBob3BlcyBvZiBnZXR0aW5nIHRoZQp4
+IG9mZnNldCBiZWxvdyB0aGUgbGltaXQuIElJUkMgd2hlbiBJIHJhbiBpbnRvIGEgc2ltaWxhciBp
+c3N1ZQpvbiBza2wgeWVhcnMgYWdvIGl0IHdhcyBjYXVzaW5nIHRoZSBoYXJkd2FyZSB0byBmYWxs
+IG92ZXIKcHJldHR5IGhhcmQgYXMgd2VsbC4KCkFuZCBsZXQncyBiZSBjb25zaXN0ZW50IGFuZCBp
+bmNsdWRlIGk5NjUvZzR4IGluIHRoZSBjaGVjawphcyB3ZWxsLCBqdXN0IGluIGNhc2UgSSBqdXN0
+IGdvdCBzdXBlciBsdWNreSBzb21laG93IHdoZW4KSSB3YXNuJ3QgYWJsZSB0byByZXByb2R1Y2Ug
+dGhlIGlzc3VlLiBOb3QgdGhhdCBpdCByZWFsbHkKbWF0dGVycyBzaW5jZSB3ZSBzdGlsbCB1c2Ug
+NGsgU1VSRiBhbGlnbm1lbnQgZm9yIGk5NjUvZzR4CmFueXdheS4KCkZpeGVzOiA2ZWRlNmIwNjE2
+YjIgKCJkcm0vaTkxNTogSW1wbGVtZW50IGFzeW5jIGZsaXBzIGZvciB2bHYvY2h2IikKRml4ZXM6
+IDRiYjE4MDU0YWRjNCAoImRybS9pOTE1OiBJbXBsZW1lbnQgYXN5bmMgZmxpcCBmb3IgaWxrL3Nu
+YiIpCkZpeGVzOiAyYTYzNmUyNDBjNzcgKCJkcm0vaTkxNTogSW1wbGVtZW50IGFzeW5jIGZsaXAg
+Zm9yIGl2Yi9oc3ciKQpGaXhlczogY2RhMTk1ZjEzYWJkICgiZHJtL2k5MTU6IEltcGxlbWVudCBh
+c3luYyBmbGlwcyBmb3IgYmR3IikKU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2k5eHhfcGxhbmUuYyB8IDI3ICsrKysrKysrKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hh
+bmdlZCwgMjcgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaTl4eF9wbGFuZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pOXh4
+X3BsYW5lLmMKaW5kZXggMDUyM2UyYzc5ZDE2Li44YTUyYmVhZWQyZGEgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaTl4eF9wbGFuZS5jCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaTl4eF9wbGFuZS5jCkBAIC0yNTUsNiArMjU1LDMzIEBAIGludCBp
+OXh4X2NoZWNrX3BsYW5lX3N1cmZhY2Uoc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9z
+dGF0ZSkKIAllbHNlCiAJCW9mZnNldCA9IDA7CiAKKwkvKgorCSAqIFdoZW4gdXNpbmcgYW4gWC10
+aWxlZCBzdXJmYWNlIHRoZSBwbGFuZSBzdGFydHMgdG8KKwkgKiBtaXNiZWhhdmUgaWYgdGhlIHgg
+b2Zmc2V0ICsgd2lkdGggZXhjZWVkcyB0aGUgc3RyaWRlLgorCSAqIGhzdy9iZHc6IHVuZGVycnVu
+IGdhbG9yZQorCSAqIGlsay9zbmIvaXZiOiB3cmFwIHRvIHRoZSBuZXh0IHRpbGUgcm93IG1pZCBz
+Y2Fub3V0CisJICogaTk2NS9nNHg6IHNvIGZhciBhcHBlYXIgaW1tdW5lIHRvIHRoaXMKKwkgKiB2
+bHYvY2h2OiBUT0RPIGNoZWNrCisJICoKKwkgKiBMaW5lYXIgc3VyZmFjZXMgc2VlbSB0byB3b3Jr
+IGp1c3QgZmluZSwgZXZlbiBvbiBoc3cvYmR3CisJICogZGVzcGl0ZSB0aGVtIG5vdCB1c2luZyB0
+aGUgbGluZWFyIG9mZnNldCBhbnltb3JlLgorCSAqLworCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYp
+ID49IDQgJiYgZmItPm1vZGlmaWVyID09IEk5MTVfRk9STUFUX01PRF9YX1RJTEVEKSB7CisJCXUz
+MiBhbGlnbm1lbnQgPSBpbnRlbF9zdXJmX2FsaWdubWVudChmYiwgMCk7CisJCWludCBjcHAgPSBm
+Yi0+Zm9ybWF0LT5jcHBbMF07CisKKwkJd2hpbGUgKChzcmNfeCArIHNyY193KSAqIGNwcCA+IHBs
+YW5lX3N0YXRlLT5jb2xvcl9wbGFuZVswXS5zdHJpZGUpIHsKKwkJCWlmIChvZmZzZXQgPT0gMCkg
+eworCQkJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLAorCQkJCQkgICAgIlVuYWJsZSB0byBm
+aW5kIHN1aXRhYmxlIGRpc3BsYXkgc3VyZmFjZSBvZmZzZXQgZHVlIHRvIFgtdGlsaW5nXG4iKTsK
+KwkJCQlyZXR1cm4gLUVJTlZBTDsKKwkJCX0KKworCQkJb2Zmc2V0ID0gaW50ZWxfcGxhbmVfYWRq
+dXN0X2FsaWduZWRfb2Zmc2V0KCZzcmNfeCwgJnNyY195LCBwbGFuZV9zdGF0ZSwgMCwKKwkJCQkJ
+CQkJICAgb2Zmc2V0LCBvZmZzZXQgLSBhbGlnbm1lbnQpOworCQl9CisJfQorCiAJLyoKIAkgKiBQ
+dXQgdGhlIGZpbmFsIGNvb3JkaW5hdGVzIGJhY2sgc28gdGhhdCB0aGUgc3JjCiAJICogY29vcmRp
+bmF0ZSBjaGVja3Mgd2lsbCBzZWUgdGhlIHJpZ2h0IHZhbHVlcy4KLS0gCjIuMjYuMgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
