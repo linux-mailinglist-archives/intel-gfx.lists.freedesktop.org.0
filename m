@@ -2,43 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9C8B3152F7
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 16:41:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1400315378
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 17:11:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DAED6EB6B;
-	Tue,  9 Feb 2021 15:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 932A16EABC;
+	Tue,  9 Feb 2021 16:11:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF3D66EB6B;
- Tue,  9 Feb 2021 15:40:59 +0000 (UTC)
-IronPort-SDR: e1VQHsphkaq9n7WaTCYTsMYD5fWMAdiXpqnD3NBBZ26YxyJ0BgrPZM77DedHPZ/mByVdiemK7a
- wJhEeDZktfsA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9889"; a="178389567"
-X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="178389567"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2021 07:40:58 -0800
-IronPort-SDR: a1JBpr0wiA+fMOaAOukbxzhgKKsN++I9MUUuxIMXnReyirJuAc7LSw9JvnJnO0VAi9orI4H/XC
- 21WRva5CdBDQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="375000200"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 09 Feb 2021 07:40:55 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 09 Feb 2021 17:40:54 +0200
-Date: Tue, 9 Feb 2021 17:40:54 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <YCKtBiWR1yEww9YM@intel.com>
-References: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
- <YCJe+dVzmREc25Jw@phenom.ffwll.local>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42EFA6EABC
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 16:11:12 +0000 (UTC)
+IronPort-SDR: HkRAp410gmgEOsaf1oPLVsj6TgiyIC9Cn1mrJR2x2rVF7chqvJsNrpMlChX55xyhvLrThQ2vy0
+ 5K+MrMeYR88g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="169585575"
+X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="169585575"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 08:11:10 -0800
+IronPort-SDR: WMck4M0K5H8YjsxCXlz0buIzaVinXwqhYtU5oTRItrCLKgJpTR04aS0ua0eM/1qxo/oXBgHyOZ
+ Y28WPqkcVUJw==
+X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="396216736"
+Received: from gmaoz-mobl.ger.corp.intel.com (HELO [10.249.82.228])
+ ([10.249.82.228])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 08:11:08 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
+ <20210208105236.28498-9-chris@chris-wilson.co.uk>
+ <9a15139e-14e0-f7cd-0afe-08e7dd7aac2c@linux.intel.com>
+ <161280115888.9448.15201223948689283252@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <8bd4198a-907d-88c0-6714-86917515e83d@linux.intel.com>
+Date: Tue, 9 Feb 2021 16:11:04 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YCJe+dVzmREc25Jw@phenom.ffwll.local>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/vblank: Avoid storing a timestamp for
- the same frame twice
+In-Reply-To: <161280115888.9448.15201223948689283252@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 09/31] drm/i915: Replace priolist rbtree
+ with a skiplist
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,123 +54,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 09, 2021 at 11:07:53AM +0100, Daniel Vetter wrote:
-> On Thu, Feb 04, 2021 at 04:04:00AM +0200, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
 
-> > drm_vblank_restore() exists because certain power saving states
-> > can clobber the hardware frame counter. The way it does this is
-> > by guesstimating how many frames were missed purely based on
-> > the difference between the last stored timestamp vs. a newly
-> > sampled timestamp.
-> > =
+On 08/02/2021 16:19, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2021-02-08 15:23:17)
+>>
+>> On 08/02/2021 10:52, Chris Wilson wrote:
+>>>    static struct list_head *
+>>>    lookup_priolist(struct i915_sched *se, int prio)
+>>>    {
+>>> -     struct i915_priolist *p;
+>>> -     struct rb_node **parent, *rb;
+>>> -     bool first = true;
+>>> +     struct i915_priolist *update[I915_PRIOLIST_HEIGHT];
+>>> +     struct i915_priolist_root *const root = &se->queue;
+>>> +     struct i915_priolist *pl, *tmp;
+>>> +     int lvl;
+>>>    
+>>>        lockdep_assert_held(&se->lock);
+>>> -     assert_priolists(se);
+>>> -
+>>>        if (unlikely(se->no_priolist))
+>>>                prio = I915_PRIORITY_NORMAL;
+>>>    
+>>> +     for_each_priolist(pl, root) { /* recycle any empty elements before us */
+>>> +             if (pl->priority <= prio || !list_empty(&pl->requests))
+>>> +                     break;
+>>
+>> This less part of the less-or-equal condition keeps confusing me as a
+>> break criteria. If premise is cleaning up, why break on first smaller
+>> prio? Would the idea be to prune all empty lists up to, not including,
+>> the lookup prio?
+> 
+> Just parcelling up the work. If we tidy up all the unused nodes before
+> us, we insert ourselves at the head of the tree, and all the cheap
+> checks to see if this is the first request, or to find the first
+> request are happy.
+> 
+> It's not expected to find anything unused with the tweaks to tidy up
+> empty elements as we move between i915_priolist.requests, but it seems
+> sensible to keep as then it should be just checking the first
+> i915_priolist and breaking out.
 
-> > If we should call this function before a full frame has
-> > elapsed since we sampled the last timestamp we would end up
-> > with a possibly slightly different timestamp value for the
-> > same frame. Currently we will happily overwrite the already
-> > stored timestamp for the frame with the new value. This
-> > could cause userspace to observe two different timestamps
-> > for the same frame (and the timestamp could even go
-> > backwards depending on how much error we introduce when
-> > correcting the timestamp based on the scanout position).
-> > =
+It's fine, for some reason I missed the order is descending. Probably 
+thinking about deadlines already. Need to see how that works there then. 
+But a comment indicating the order would be cool.
 
-> > To avoid that let's not update the stored timestamp unless we're
-> > also incrementing the sequence counter. We do still want to update
-> > vblank->last with the freshly sampled hw frame counter value so
-> > that subsequent vblank irqs/queries can actually use the hw frame
-> > counter to determine how many frames have elapsed.
-> > =
+>>> -void __i915_priolist_free(struct i915_priolist *p)
+>>> +static void __remove_priolist(struct i915_sched *se, struct list_head *plist)
+>>>    {
+>>> -     kmem_cache_free(global.slab_priorities, p);
+>>> +     struct i915_priolist_root *root = &se->queue;
+>>> +     struct i915_priolist *pl, *tmp;
+>>> +     struct i915_priolist *old =
+>>> +             container_of(plist, struct i915_priolist, requests);
+>>> +     int prio = old->priority;
+>>> +     int lvl;
+>>> +
+>>> +     lockdep_assert_held(&se->lock);
+>>> +     GEM_BUG_ON(!list_empty(plist));
+>>> +
+>>> +     pl = &root->sentinel;
+>>> +     lvl = pl->level;
+>>> +     GEM_BUG_ON(lvl < 0);
+>>> +
+>>> +     if (prio != I915_PRIORITY_NORMAL)
+>>> +             pl_push(old, &pl->requests);
+>>> +
+>>> +     do {
+>>> +             while (tmp = pl->next[lvl], tmp->priority > prio)
+>>> +                     pl = tmp;
 
-> > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+Ah okay, this is needed because the list is singly linked. I suggest a 
+comment.
 
-> Ok, top-posting because lol I got confused. I mixed up the guesstimation
-> work we do for when we don't have a vblank counter with the precise vblank
-> timestamp stuff.
-> =
+Doubly linked would not be interesting?
 
-> I think it'd still be good to maybe lock down/document a bit better the
-> requirements for drm_crtc_vblank_restore, but I convinced myself now that
-> your patch looks correct.
-> =
+>>> +             if (lvl <= old->level) {
+>>> +                     pl->next[lvl] = old->next[lvl];
+>>> +                     if (pl == &root->sentinel && old->next[lvl] == pl) {
+>>> +                             GEM_BUG_ON(pl->level != lvl);
+>>> +                             pl->level--;
+>>> +                     }
+>>> +             }
+>>> +     } while (--lvl >= 0);
+>>> +     GEM_BUG_ON(tmp != old);
+>>> +}
+> 
+>>> +struct i915_priolist *__i915_sched_dequeue_next(struct i915_sched *se)
+>>> +{
+>>> +     struct i915_priolist * const s = &se->queue.sentinel;
+>>> +     struct i915_priolist *pl = s->next[0];
+>>> +     int lvl;
+>>> +
+>>> +     GEM_BUG_ON(!list_empty(&pl->requests));
+>>> +     GEM_BUG_ON(pl == s);
+>>> +
+>>> +     /* Keep pl->next[0] valid for for_each_priolist iteration */
+>>> +     if (pl->priority != I915_PRIORITY_NORMAL)
+>>> +             pl_push(pl, &s->requests);
+>>> +
+>>> +     lvl = pl->level;
+>>> +     GEM_BUG_ON(lvl < 0);
+>>> +     do {
+>>> +             s->next[lvl] = pl->next[lvl];
+>>> +             if (pl->next[lvl] == s) {
+>>> +                     GEM_BUG_ON(s->level != lvl);
+>>> +                     s->level--;
+>>> +             }
+>>> +     } while (--lvl >= 0);
+>>> +
+>>> +     return pl->next[0];
+>>>    }
+>>
+>> If both __i915_sched_dequeue_next and __remove_priolist are removing an
+>> empty list from the hieararchy, why can't they shared some code?
+> 
+> The __remove_priolist does the general search and remove, whereas
+> dequeue_next is trying to keep O(1) remove-from-head. dequeue_next is
+> meant to be called many, many more times than __remove_priolist.
 
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Ok.
 
-Ta.
+Regards,
 
-Though I wonder if we should just do something like this instead:
--       store_vblank(dev, pipe, diff, t_vblank, cur_vblank);
-+       vblank->last =3D (cur_vblank - diff) & max_vblank_count;
-
-to make it entirely obvious that this exists only to fix up
-the stored hw counter value?
-
-Would also avoid the problem the original patch tries to fix
-because we'd simply never store a new timestamp here.
-
-> =
-
-> > ---
-> >  drivers/gpu/drm/drm_vblank.c | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > =
-
-> > diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-> > index 893165eeddf3..e127a7db2088 100644
-> > --- a/drivers/gpu/drm/drm_vblank.c
-> > +++ b/drivers/gpu/drm/drm_vblank.c
-> > @@ -176,6 +176,17 @@ static void store_vblank(struct drm_device *dev, u=
-nsigned int pipe,
-> >  =
-
-> >  	vblank->last =3D last;
-> >  =
-
-> > +	/*
-> > +	 * drm_vblank_restore() wants to always update
-> > +	 * vblank->last since we can't trust the frame counter
-> > +	 * across power saving states. But we don't want to alter
-> > +	 * the stored timestamp for the same frame number since
-> > +	 * that would cause userspace to potentially observe two
-> > +	 * different timestamps for the same frame.
-> > +	 */
-> > +	if (vblank_count_inc =3D=3D 0)
-> > +		return;
-> > +
-> >  	write_seqlock(&vblank->seqlock);
-> >  	vblank->time =3D t_vblank;
-> >  	atomic64_add(vblank_count_inc, &vblank->count);
-> > -- =
-
-> > 2.26.2
-> > =
-
-> =
-
-> -- =
-
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
