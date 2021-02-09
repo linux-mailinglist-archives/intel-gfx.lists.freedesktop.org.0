@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A433631520C
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 15:52:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E012315237
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 15:59:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE3746E0CC;
-	Tue,  9 Feb 2021 14:52:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB1E06EB5A;
+	Tue,  9 Feb 2021 14:59:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 126A66E0CC;
- Tue,  9 Feb 2021 14:51:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 766DA6EB08;
+ Tue,  9 Feb 2021 14:59:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 08DE2A47E8;
- Tue,  9 Feb 2021 14:51:59 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 70135A9932;
+ Tue,  9 Feb 2021 14:59:12 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Colin King" <colin.king@canonical.com>
-Date: Tue, 09 Feb 2021 14:51:59 -0000
-Message-ID: <161288231903.28235.9625619113852837835@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 09 Feb 2021 14:59:12 -0000
+Message-ID: <161288275243.28236.430539688140057239@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210209114848.444859-1-colin.king@canonical.com>
-In-Reply-To: <20210209114848.444859-1-colin.king@canonical.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_fix_spelling_mistake_=22Couldnt=22_-=3E_=22Cou?=
- =?utf-8?b?bGRuJ3QiIChyZXYyKQ==?=
+References: <20210209120027.229700-1-matthew.auld@intel.com>
+In-Reply-To: <20210209120027.229700-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv2=2C1/4=5D_drm/i915=3A_Create_stol?=
+ =?utf-8?q?en_memory_region_from_local_memory?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,84 +41,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1070487177=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1070487177==
-Content-Type: multipart/alternative;
- boundary="===============8313585468761007884=="
-
---===============8313585468761007884==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: fix spelling mistake "Couldnt" -> "Couldn't" (rev2)
-URL   : https://patchwork.freedesktop.org/series/86637/
-State : failure
+Series: series starting with [v2,1/4] drm/i915: Create stolen memory region from local memory
+URL   : https://patchwork.freedesktop.org/series/86895/
+State : warning
 
 == Summary ==
 
-Applying: drm/i915/display: Fix spelling mistake "Couldnt" -> "Couldn't"
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_dp.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_dp.c
-No changes -- Patch already applied.
+$ dim checkpatch origin/drm-tip
+e8b34b3c94ee drm/i915: Create stolen memory region from local memory
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+      as stolen-local or stolen-system based on this value won't work. Split
 
+total: 0 errors, 1 warnings, 0 checks, 202 lines checked
+30478535a4b4 drm/i915/stolen: treat stolen local as normal local memory
+f1fe786eeec6 drm/i915/stolen: enforce the min_page_size contract
+0dffdf690010 drm/i915/stolen: pass the allocation flags
 
-
---===============8313585468761007884==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: fix spelling mistake &quot;Couldnt&quot; -&gt; &quot;Couldn&#39;t&quot; (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86637/">https://patchwork.freedesktop.org/series/86637/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-</table>
-
-
-    <p>Applying: drm/i915/display: Fix spelling mistake "Couldnt" -&gt; "Couldn't"<br />
-Using index info to reconstruct a base tree...<br />
-M   drivers/gpu/drm/i915/display/intel_dp.c<br />
-Falling back to patching base and 3-way merge...<br />
-Auto-merging drivers/gpu/drm/i915/display/intel_dp.c<br />
-No changes -- Patch already applied.</p>
-
-</body>
-</html>
-
---===============8313585468761007884==--
-
---===============1070487177==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1070487177==--
