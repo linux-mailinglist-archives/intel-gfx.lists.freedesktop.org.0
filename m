@@ -1,55 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27968314CAA
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 11:15:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BFBA314CEB
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 11:27:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66B2D6EABD;
-	Tue,  9 Feb 2021 10:15:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 610F86EAC2;
+	Tue,  9 Feb 2021 10:27:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C6146EABD
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 10:15:31 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id 190so2546391wmz.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 09 Feb 2021 02:15:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=+t2qfqYwBPduaMFSL0mQ9g24Z3UBoLu9uILpa+jiK5I=;
- b=kONOr12btORYEC/KZvwreyl9qPMWdrBc1WgjTbx613+RXItRRH7rJe/iD6YUR6guxQ
- lxV+6p+v+MjJZZD5zMjfS8e1IJVLi8eDHlE7u7nT9UO8ns3UeklMTOBPaehrplvUXY7X
- 7mAnUS0y/TKy2czupGMtN6gMxZeTnc8SzAMwk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=+t2qfqYwBPduaMFSL0mQ9g24Z3UBoLu9uILpa+jiK5I=;
- b=VE9J7PXnnplbxZBHfOSguKBBx6hN2wfztMsHG0cP+bIdmqg9UPVMJNfQLMjffatJqw
- Bqi9VfkrA4SZGNELNW1FFhHV609zvsDWI5Pad9/uB2EJhfMjfagGWcvDDRknpD4ub9jD
- /1UukUaStdbOQ+tnRAVlodjeUJVdM8ZejQJ/3AvW4q5wYGoVUJymM4QSYdrCPQQsnxe2
- 3yOipeUPo8ODxH/GOzIW5U/gVInY0XW3SXD3YiahrrIcdSCpy9DBnCUGtq7XxZCUj8Db
- mRTkiAxb83Mjp/PFRUdMz7B1MBUVPh/W6StGnxVuIZPeQLZfdKydfZa8ADsIC4P4PXC+
- 4sKg==
-X-Gm-Message-State: AOAM530wyPMXDKNZFoqP/c+WpHbZLtebiKvalZznRQ37lDNplE9RA1Mr
- cheqVJEzUbNq27j247z4jgCTYw==
-X-Google-Smtp-Source: ABdhPJwtXdgun71HKK/LPw0y2lZP1i4QNMgEJ/nr6c4XyYeuuSOsKuCq3K6ergANYCRsVMJuPqHq5Q==
-X-Received: by 2002:a7b:c04c:: with SMTP id u12mr2746466wmc.185.1612865729738; 
- Tue, 09 Feb 2021 02:15:29 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id j39sm9530484wrj.21.2021.02.09.02.15.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Feb 2021 02:15:29 -0800 (PST)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue,  9 Feb 2021 11:15:23 +0100
-Message-Id: <20210209101523.2954281-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.30.0
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11AED6EAC2
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 10:27:17 +0000 (UTC)
+IronPort-SDR: y8qHKI832n0vG7/ShmlQUiZsuK40GYMA5iOLumDf092FE/r/QWCSIVUQEnZ7bkMYT8mTMSp4GQ
+ TmJJWdTJFXtg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9889"; a="266693842"
+X-IronPort-AV: E=Sophos;i="5.81,164,1610438400"; d="scan'208";a="266693842"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 02:27:16 -0800
+IronPort-SDR: I1z0SabwPGvXb2krN8bwK6oiQQC0ktLONu35Hh68cQCuCtfEuDZQmhoNj5HCDZf62w56Aa72e0
+ CfeKQuobny+w==
+X-IronPort-AV: E=Sophos;i="5.81,164,1610438400"; d="scan'208";a="396062735"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 02:27:15 -0800
+Date: Tue, 9 Feb 2021 12:27:11 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>, g@ideak-desk.fi.intel.com
+Message-ID: <20210209102711.GA18480@ideak-desk.fi.intel.com>
+References: <20210129080043.24614-1-anshuman.gupta@intel.com>
+ <20210204182809.GC750296@ideak-desk.fi.intel.com>
+ <aa661df54d8847d0926e8edf61710fcf@intel.com>
+ <20210205120451.GA921144@ideak-desk.fi.intel.com>
+ <aabf782fb5f44932ac7e314ae727b119@intel.com>
+ <1c3fa41298ad4534afd0eee40ed6e4c6@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/vblank: Document drm_crtc_vblank_restore
- constraints
+Content-Disposition: inline
+In-Reply-To: <1c3fa41298ad4534afd0eee40ed6e4c6@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: HDCP capability enc NULL
+ check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,97 +52,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I got real badly confused when trying to review a fix from Ville for
-this. Let's try to document better what's required for this, and check
-the minimal settings at runtime - we can't check ofc that there's
-indeed no races in the driver callback.
+On Tue, Feb 09, 2021 at 07:39:17AM +0200, Gupta, Anshuman wrote:
+> > > > > > [...]
+> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > > > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > > > index ae1371c36a32..58af323d189a 100644
+> > > > > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > > > @@ -135,11 +135,16 @@ int intel_hdcp_read_valid_bksv(struct intel_digital_port *dig_port,
+> > > > > >  /* Is HDCP1.4 capable on Platform and Sink */
+> > > > > > bool intel_hdcp_capable(struct intel_connector *connector)  {
+> > > > > > -	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> > > > > > +	struct intel_digital_port *dig_port;
+> > > > > >  	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
+> > > > > >  	bool capable = false;
+> > > > > >  	u8 bksv[5];
+> > > > > >
+> > > > > > +	if (!connector->encoder)
+> > > > > > +		return -ENODEV;
+> > > > >
+> > > > > I assume this is needed when called from i915_hdcp_sink_capability
+> > > > > debugfs entry. That one is lacking the locking for the connector,
+> > > > > but is that entry really needed? We print the same info already
+> > > > > from the i915_display_info entry which has the proper locking and
+> > > > > encoder check.
+> > > >
+> > > > Historically HDCP capability added to i915_display_info later to
+> > > > debug CI machine as i915_display_info available as CI logs.  Now the
+> > > > plans i915_display_info  should only show the monitor capability.
+> > > > and i915_hdcp_sink_capability will check both sink and platform
+> > > > capability.
+> > >
+> > > Ok, in any case the encoder NULL check and the required locking should
+> > > be done in i915_hdcp_sink_capability_show().
+>
+> Need one input, AFAIU we do require
+> drm_modeset_lock(&dev_priv->drm.mode_config.connection_mutex, NULL)
+> lock in i915_hdcp_sink_capability ?
 
-Also noticed that the drm_vblank_restore version is unused, so lets
-unexport that while at it.
+Yes, and there's also drm_modeset_lock_single_interruptible() that could
+be used.
 
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/drm_vblank.c | 25 ++++++++++---------------
- include/drm/drm_vblank.h     |  1 -
- 2 files changed, 10 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index c914b14cfb43..05f4d4c078fd 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1471,20 +1471,7 @@ void drm_crtc_vblank_on(struct drm_crtc *crtc)
- }
- EXPORT_SYMBOL(drm_crtc_vblank_on);
- 
--/**
-- * drm_vblank_restore - estimate missed vblanks and update vblank count.
-- * @dev: DRM device
-- * @pipe: CRTC index
-- *
-- * Power manamement features can cause frame counter resets between vblank
-- * disable and enable. Drivers can use this function in their
-- * &drm_crtc_funcs.enable_vblank implementation to estimate missed vblanks since
-- * the last &drm_crtc_funcs.disable_vblank using timestamps and update the
-- * vblank counter.
-- *
-- * This function is the legacy version of drm_crtc_vblank_restore().
-- */
--void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
-+static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
- {
- 	ktime_t t_vblank;
- 	struct drm_vblank_crtc *vblank;
-@@ -1520,7 +1507,6 @@ void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
- 		    diff, diff_ns, framedur_ns, cur_vblank - vblank->last);
- 	store_vblank(dev, pipe, diff, t_vblank, cur_vblank);
- }
--EXPORT_SYMBOL(drm_vblank_restore);
- 
- /**
-  * drm_crtc_vblank_restore - estimate missed vblanks and update vblank count.
-@@ -1531,9 +1517,18 @@ EXPORT_SYMBOL(drm_vblank_restore);
-  * &drm_crtc_funcs.enable_vblank implementation to estimate missed vblanks since
-  * the last &drm_crtc_funcs.disable_vblank using timestamps and update the
-  * vblank counter.
-+ *
-+ * Note that drivers must have race-free high-precision timestamping support,
-+ * i.e.  &drm_crtc_funcs.get_vblank_timestamp must be hooked up and
-+ * &drm_driver.vblank_disable_immediate must be set to indicate the
-+ * time-stamping functions are race-free against vblank hardware counter
-+ * increments.
-  */
- void drm_crtc_vblank_restore(struct drm_crtc *crtc)
- {
-+	WARN_ON_ONCE(!crtc->funcs->get_vblank_timestamp);
-+	WARN_ON_ONCE(!crtc->dev->vblank_disable_immediate);
-+
- 	drm_vblank_restore(crtc->dev, drm_crtc_index(crtc));
- }
- EXPORT_SYMBOL(drm_crtc_vblank_restore);
-diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-index dd125f8c766c..733a3e2d1d10 100644
---- a/include/drm/drm_vblank.h
-+++ b/include/drm/drm_vblank.h
-@@ -247,7 +247,6 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc);
- void drm_crtc_vblank_reset(struct drm_crtc *crtc);
- void drm_crtc_vblank_on(struct drm_crtc *crtc);
- u64 drm_crtc_accurate_vblank_count(struct drm_crtc *crtc);
--void drm_vblank_restore(struct drm_device *dev, unsigned int pipe);
- void drm_crtc_vblank_restore(struct drm_crtc *crtc);
- 
- void drm_calc_timestamping_constants(struct drm_crtc *crtc,
--- 
-2.30.0
-
+--Imre
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
