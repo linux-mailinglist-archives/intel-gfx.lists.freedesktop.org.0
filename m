@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E550B3152D1
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 16:28:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A1E03152E3
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 16:36:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E489D6E0A8;
-	Tue,  9 Feb 2021 15:28:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C95B06EB5E;
+	Tue,  9 Feb 2021 15:36:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 160286E0A8;
- Tue,  9 Feb 2021 15:28:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0DBA9A8836;
- Tue,  9 Feb 2021 15:28:41 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA91E6EB67;
+ Tue,  9 Feb 2021 15:36:10 +0000 (UTC)
+IronPort-SDR: 29RSp6vMIdQaKblOVPbCQ7bkzPpMjDWsNF39QoXomQI+cADV/EJ9Mn83BMXqkOuBJsBKUh2csk
+ 9lNPueD3YQ5w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9889"; a="179339839"
+X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="179339839"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 07:36:10 -0800
+IronPort-SDR: Sea8NHAhGA9jZbHTingLKer22K0lsSEL5F8qjZEtJ6c0R3HRMAIUn6WpXgVP95rUBTp+0IBmqQ
+ +anFK+cXiDbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="488186228"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga001.fm.intel.com with SMTP; 09 Feb 2021 07:36:08 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 09 Feb 2021 17:36:07 +0200
+Date: Tue, 9 Feb 2021 17:36:07 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YCKr50cudEYgAiiF@intel.com>
+References: <20210209101523.2954281-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Tue, 09 Feb 2021 15:28:41 -0000
-Message-ID: <161288452102.28236.15160193696771041150@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210209120027.229700-1-matthew.auld@intel.com>
-In-Reply-To: <20210209120027.229700-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/4=5D_drm/i915=3A_Create_stolen_memo?=
- =?utf-8?q?ry_region_from_local_memory?=
+Content-Disposition: inline
+In-Reply-To: <20210209101523.2954281-1-daniel.vetter@ffwll.ch>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/vblank: Document
+ drm_crtc_vblank_restore constraints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,235 +50,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1557524209=="
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1557524209==
-Content-Type: multipart/alternative;
- boundary="===============3648619991965682593=="
+On Tue, Feb 09, 2021 at 11:15:23AM +0100, Daniel Vetter wrote:
+> I got real badly confused when trying to review a fix from Ville for
+> this. Let's try to document better what's required for this, and check
+> the minimal settings at runtime - we can't check ofc that there's
+> indeed no races in the driver callback.
+> =
 
---===============3648619991965682593==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Also noticed that the drm_vblank_restore version is unused, so lets
+> unexport that while at it.
+> =
 
-== Series Details ==
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/drm_vblank.c | 25 ++++++++++---------------
+>  include/drm/drm_vblank.h     |  1 -
+>  2 files changed, 10 insertions(+), 16 deletions(-)
+> =
 
-Series: series starting with [v2,1/4] drm/i915: Create stolen memory region from local memory
-URL   : https://patchwork.freedesktop.org/series/86895/
-State : success
+> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+> index c914b14cfb43..05f4d4c078fd 100644
+> --- a/drivers/gpu/drm/drm_vblank.c
+> +++ b/drivers/gpu/drm/drm_vblank.c
+> @@ -1471,20 +1471,7 @@ void drm_crtc_vblank_on(struct drm_crtc *crtc)
+>  }
+>  EXPORT_SYMBOL(drm_crtc_vblank_on);
+>  =
 
-== Summary ==
+> -/**
+> - * drm_vblank_restore - estimate missed vblanks and update vblank count.
+> - * @dev: DRM device
+> - * @pipe: CRTC index
+> - *
+> - * Power manamement features can cause frame counter resets between vbla=
+nk
+> - * disable and enable. Drivers can use this function in their
+> - * &drm_crtc_funcs.enable_vblank implementation to estimate missed vblan=
+ks since
+> - * the last &drm_crtc_funcs.disable_vblank using timestamps and update t=
+he
+> - * vblank counter.
+> - *
+> - * This function is the legacy version of drm_crtc_vblank_restore().
+> - */
+> -void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
+> +static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
+>  {
+>  	ktime_t t_vblank;
+>  	struct drm_vblank_crtc *vblank;
+> @@ -1520,7 +1507,6 @@ void drm_vblank_restore(struct drm_device *dev, uns=
+igned int pipe)
+>  		    diff, diff_ns, framedur_ns, cur_vblank - vblank->last);
+>  	store_vblank(dev, pipe, diff, t_vblank, cur_vblank);
+>  }
+> -EXPORT_SYMBOL(drm_vblank_restore);
+>  =
 
-CI Bug Log - changes from CI_DRM_9750 -> Patchwork_19641
-====================================================
+>  /**
+>   * drm_crtc_vblank_restore - estimate missed vblanks and update vblank c=
+ount.
+> @@ -1531,9 +1517,18 @@ EXPORT_SYMBOL(drm_vblank_restore);
+>   * &drm_crtc_funcs.enable_vblank implementation to estimate missed vblan=
+ks since
+>   * the last &drm_crtc_funcs.disable_vblank using timestamps and update t=
+he
+>   * vblank counter.
+> + *
+> + * Note that drivers must have race-free high-precision timestamping sup=
+port,
+> + * i.e.  &drm_crtc_funcs.get_vblank_timestamp must be hooked up and
+> + * &drm_driver.vblank_disable_immediate must be set to indicate the
+> + * time-stamping functions are race-free against vblank hardware counter
+> + * increments.
 
-Summary
--------
+Looks good. Might prevent someone from shooting themselves in
+the foot.
 
-  **SUCCESS**
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-  No regressions found.
+>   */
+>  void drm_crtc_vblank_restore(struct drm_crtc *crtc)
+>  {
+> +	WARN_ON_ONCE(!crtc->funcs->get_vblank_timestamp);
+> +	WARN_ON_ONCE(!crtc->dev->vblank_disable_immediate);
+> +
+>  	drm_vblank_restore(crtc->dev, drm_crtc_index(crtc));
+>  }
+>  EXPORT_SYMBOL(drm_crtc_vblank_restore);
+> diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
+> index dd125f8c766c..733a3e2d1d10 100644
+> --- a/include/drm/drm_vblank.h
+> +++ b/include/drm/drm_vblank.h
+> @@ -247,7 +247,6 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc);
+>  void drm_crtc_vblank_reset(struct drm_crtc *crtc);
+>  void drm_crtc_vblank_on(struct drm_crtc *crtc);
+>  u64 drm_crtc_accurate_vblank_count(struct drm_crtc *crtc);
+> -void drm_vblank_restore(struct drm_device *dev, unsigned int pipe);
+>  void drm_crtc_vblank_restore(struct drm_crtc *crtc);
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/index.html
+>  void drm_calc_timestamping_constants(struct drm_crtc *crtc,
+> -- =
 
-Known issues
-------------
+> 2.30.0
 
-  Here are the changes found in Patchwork_19641 that come from known issues:
+-- =
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +22 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-kbl-7500u:       [PASS][2] -> [DMESG-WARN][3] ([i915#2605])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html
-    - fi-bdw-5557u:       NOTRUN -> [WARN][4] ([i915#2283])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([i915#1372])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([i915#402])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-y:           [DMESG-WARN][9] ([i915#2411] / [i915#402]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12] +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9750 -> Patchwork_19641
-
-  CI-20190529: 20190529
-  CI_DRM_9750: 8ab525b5fa9cbe46bde6340351e84a501c64fd47 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5999: 2982c998a9cb79095611fba018d5df3eec5eab88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19641: 0dffdf690010564b2273c27eaea2e7786d7f6bcb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0dffdf690010 drm/i915/stolen: pass the allocation flags
-f1fe786eeec6 drm/i915/stolen: enforce the min_page_size contract
-30478535a4b4 drm/i915/stolen: treat stolen local as normal local memory
-e8b34b3c94ee drm/i915: Create stolen memory region from local memory
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/index.html
-
---===============3648619991965682593==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/4] drm/i915: Create stolen memory region from local memory</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86895/">https://patchwork.freedesktop.org/series/86895/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9750 -&gt; Patchwork_19641</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19641 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +22 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>
-<p>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-kbl-7500u/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_two_bos:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9750/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19641/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9750 -&gt; Patchwork_19641</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9750: 8ab525b5fa9cbe46bde6340351e84a501c64fd47 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5999: 2982c998a9cb79095611fba018d5df3eec5eab88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19641: 0dffdf690010564b2273c27eaea2e7786d7f6bcb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>0dffdf690010 drm/i915/stolen: pass the allocation flags<br />
-f1fe786eeec6 drm/i915/stolen: enforce the min_page_size contract<br />
-30478535a4b4 drm/i915/stolen: treat stolen local as normal local memory<br />
-e8b34b3c94ee drm/i915: Create stolen memory region from local memory</p>
-
-</body>
-</html>
-
---===============3648619991965682593==--
-
---===============1557524209==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1557524209==--
