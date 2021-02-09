@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A087731461C
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 03:19:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D17603146A2
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 03:51:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 501FF6EA78;
-	Tue,  9 Feb 2021 02:19:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5E086EA80;
+	Tue,  9 Feb 2021 02:51:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1478F6EA78
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 02:19:27 +0000 (UTC)
-IronPort-SDR: m0OmsexRAqaIzX3sjhEh+Zmy5gUGOTgkLooz2ZOo4s+bFrUUJz+Jv9r5bPZp0qU6X0qVAIxPE0
- NRbuE5lQlNow==
-X-IronPort-AV: E=McAfee;i="6000,8403,9889"; a="181036570"
-X-IronPort-AV: E=Sophos;i="5.81,163,1610438400"; d="scan'208";a="181036570"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Feb 2021 18:19:27 -0800
-IronPort-SDR: hcV6QV51Xa1T++9a/uWzwDUA/h6ygqVkEIGq5KjY7OWupTYUhb8vqRixSz5i8MEgAND2Vc/0dh
- ujdXgL6fxrTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,163,1610438400"; d="scan'208";a="435893131"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 08 Feb 2021 18:19:25 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 09 Feb 2021 04:19:24 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  9 Feb 2021 04:19:18 +0200
-Message-Id: <20210209021918.16234-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210209021918.16234-1-ville.syrjala@linux.intel.com>
-References: <20210209021918.16234-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C8B326EA80;
+ Tue,  9 Feb 2021 02:51:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C12F3A363D;
+ Tue,  9 Feb 2021 02:51:18 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Warn when releasing a frontbuffer
- while in use
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Tue, 09 Feb 2021 02:51:18 -0000
+Message-ID: <161283907876.28238.6786372572316421138@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210209021918.16234-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210209021918.16234-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915=3A_Disallow_plane_x?=
+ =?utf-8?q?+w=3Estride_on_ilk+_with_X-tiling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,26 +39,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkxl
-dCdzIHNjcmVhbSBpZiB3ZSBhcmUgYWJvdXQgdG8gcmVsZWFzZSBhIGZyb250YnVmZmVyIHdoaWNo
-CmlzIHN0aWxsIGluIHVzZS4KClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9mcm9udGJ1ZmZlci5jIHwgMiArKwogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9u
-cygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZnJv
-bnRidWZmZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZnJvbnRidWZm
-ZXIuYwppbmRleCA3YjM4ZWVlOTk4MGYuLjZmYzY5NjViNjEzMyAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mcm9udGJ1ZmZlci5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZnJvbnRidWZmZXIuYwpAQCAtMjI0LDYgKzIyNCw4
-IEBAIHN0YXRpYyB2b2lkIGZyb250YnVmZmVyX3JlbGVhc2Uoc3RydWN0IGtyZWYgKnJlZikKIAlz
-dHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqID0gZnJvbnQtPm9iajsKIAlzdHJ1Y3QgaTkx
-NV92bWEgKnZtYTsKIAorCWRybV9XQVJOX09OKG9iai0+YmFzZS5kZXYsIGF0b21pY19yZWFkKCZm
-cm9udC0+Yml0cykpOworCiAJc3Bpbl9sb2NrKCZvYmotPnZtYS5sb2NrKTsKIAlmb3JfZWFjaF9n
-Z3R0X3ZtYSh2bWEsIG9iaikgewogCQlpOTE1X3ZtYV9jbGVhcl9zY2Fub3V0KHZtYSk7Ci0tIAoy
-LjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: series starting with [1/3] drm/i915: Disallow plane x+w>stride on ilk+ with X-tiling
+URL   : https://patchwork.freedesktop.org/series/86882/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+d3049184b718 drm/i915: Disallow plane x+w>stride on ilk+ with X-tiling
+-:16: WARNING:REPEATED_WORD: Possible repeated word: 'just'
+#16: 
+On ilk/snb/ivb it looks like the accesses just just wrap
+
+total: 0 errors, 1 warnings, 0 checks, 33 lines checked
+16380d000219 drm/i915: Fix overlay frontbuffer tracking
+17d615fa2b9d drm/i915: Warn when releasing a frontbuffer while in use
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
