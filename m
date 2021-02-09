@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8DC93155AC
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 19:13:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1A533155BE
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 19:20:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A3B76EB92;
-	Tue,  9 Feb 2021 18:13:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 264B26EB97;
+	Tue,  9 Feb 2021 18:20:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86B256EB93
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 18:13:28 +0000 (UTC)
-IronPort-SDR: ZyTXOnE7yuLrCI/PZFcJX/xVK+XmHjaQSFwI/U3a1CkFXt6FvbjXHgD9My1/qps5xJLTGirWKG
- B7L/mRugH4dg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="201014110"
-X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="201014110"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2021 10:13:27 -0800
-IronPort-SDR: p6U4SN4OuS5zR0MNn+paCTJ1eSBtyyqAEDnMIVfq8XzQbAU+pdvuU4F2rameZcTQCMX+P48TaO
- ubBSE8safSag==
-X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="396324723"
-Received: from rmahmood-mobl1.amr.corp.intel.com (HELO
- josouza-mobl2.intel.com) ([10.254.190.123])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2021 10:13:25 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  9 Feb 2021 10:14:39 -0800
-Message-Id: <20210209181439.215104-4-jose.souza@intel.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210209181439.215104-1-jose.souza@intel.com>
-References: <20210209181439.215104-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CA05E6EB90;
+ Tue,  9 Feb 2021 18:20:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C2ED7A41FB;
+ Tue,  9 Feb 2021 18:20:52 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/display: Set source_support even
- if panel do not support PSR
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Tue, 09 Feb 2021 18:20:52 -0000
+Message-ID: <161289485277.28237.11997110534578058377@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210209174238.153278-1-jose.souza@intel.com>
+In-Reply-To: <20210209174238.153278-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Add_DDR5_and_LPDDR5_BW_buddy_page_entries?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,29 +38,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0951513468=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyB3aWxsIHNldCB0aGUgcmlnaHQgdmFsdWUgb2Ygc291cmNlX3N1cHBvcnQgd2hlbiB0aGUg
-cG9ydAplbmNvZGVyL3BvcnQgc3VwcG9ydHMgUFNSIGJ1dCBzaW5rIGRvbid0LgoKVGhpcyBjaGFu
-Z2Ugd2lsbCBhbHNvIGJlIG5lZWRlZCBpbiBmdXR1cmUgZm9yIHBhbmVsIHJlcGxheSBhcyBwc3IK
-c3RydWN0IG5lZWRzIHRvIGJlIGluaXRpYWxpemVkIGV2ZW4gaWYgZGlzY29ubmVjdGVkIG9yIGN1
-cnJlbnQgc2luawpkb24ndCBzdXBwb3J0IFBTUi4KCkNjOiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4t
-Z3llb25nLm11bkBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291
-emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfcHNyLmMgfCAzIC0tLQogMSBmaWxlIGNoYW5nZWQsIDMgZGVsZXRpb25zKC0pCgpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKaW5kZXggZTAxMTFiNDcwNTcw
-Li42YjNlMjEyMDE2MWUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfcHNyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3Iu
-YwpAQCAtMTgzNyw5ICsxODM3LDYgQEAgdm9pZCBpbnRlbF9wc3JfaW5pdChzdHJ1Y3QgaW50ZWxf
-ZHAgKmludGVsX2RwKQogCWlmICghSEFTX1BTUihkZXZfcHJpdikpCiAJCXJldHVybjsKIAotCWlm
-ICghaW50ZWxfZHAtPnBzci5zaW5rX3N1cHBvcnQpCi0JCXJldHVybjsKLQogCS8qCiAJICogSFNX
-IHNwZWMgZXhwbGljaXRseSBzYXlzIFBTUiBpcyB0aWVkIHRvIHBvcnQgQS4KIAkgKiBCRFcrIHBs
-YXRmb3JtcyBoYXZlIGEgaW5zdGFuY2Ugb2YgUFNSIHJlZ2lzdGVycyBwZXIgdHJhbnNjb2RlciBi
-dXQKLS0gCjIuMzAuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+--===============0951513468==
+Content-Type: multipart/alternative;
+ boundary="===============1969701028635967218=="
+
+--===============1969701028635967218==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/display: Add DDR5 and LPDDR5 BW buddy page entries
+URL   : https://patchwork.freedesktop.org/series/86908/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9752 -> Patchwork_19643
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19643 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@memory-alloc:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-tgl-y/igt@amdgpu/amd_basic@memory-alloc.html
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +26 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][3] ([i915#2283])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +2 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9752/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@vgem_basic@dmabuf-fence-before:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9752/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 38)
+------------------------------
+
+  Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9752 -> Patchwork_19643
+
+  CI-20190529: 20190529
+  CI_DRM_9752: a99b75af1722e15bade7f41dca4227bc907561aa @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5999: 2982c998a9cb79095611fba018d5df3eec5eab88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19643: e4bad3c4ea5816aff10e8e1b76e9a0db3e232eee @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e4bad3c4ea58 drm/i915/display: Add DDR5 and LPDDR5 BW buddy page entries
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/index.html
+
+--===============1969701028635967218==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add DDR5 and LPDDR5 BW buddy page entries</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86908/">https://patchwork.freedesktop.org/series/86908/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9752 -&gt; Patchwork_19643</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19643 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@memory-alloc:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-tgl-y/igt@amdgpu/amd_basic@memory-alloc.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_getparams_basic@basic-subslice-total:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9752/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@vgem_basic@dmabuf-fence-before:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9752/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19643/fi-tgl-y/igt@vgem_basic@dmabuf-fence-before.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 38)</h2>
+<p>Missing    (6): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9752 -&gt; Patchwork_19643</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9752: a99b75af1722e15bade7f41dca4227bc907561aa @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_5999: 2982c998a9cb79095611fba018d5df3eec5eab88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19643: e4bad3c4ea5816aff10e8e1b76e9a0db3e232eee @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>e4bad3c4ea58 drm/i915/display: Add DDR5 and LPDDR5 BW buddy page entries</p>
+
+</body>
+</html>
+
+--===============1969701028635967218==--
+
+--===============0951513468==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0951513468==--
