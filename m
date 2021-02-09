@@ -2,83 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760F331575D
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 21:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FEBA3157B0
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 21:28:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF2076E0C8;
-	Tue,  9 Feb 2021 20:04:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B3646E9A8;
+	Tue,  9 Feb 2021 20:28:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCD8D6E0C8
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 20:04:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1612901071;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=lJwT5cy9MQQ16bhO97V8KGmJA97taQaP5mAXCaEs+I8=;
- b=iN6/mgrWWDl6gVdU08gA57QfAvzccxyAu6auplbtCpcjru0XRB3NWnQ6CwQcJU8dgHMZM4
- 6GMWN4aaRPj9uxcIhjSHnyM4p//0IUig4s/66t+YSidA/qUP8FfaZfxny/csEaLMyujx1J
- Er2L58pu7br+AhqPyLazkvSDwe5GSYg=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-397-3Hdph_VINBWLEuVFGscn2Q-1; Tue, 09 Feb 2021 15:04:28 -0500
-X-MC-Unique: 3Hdph_VINBWLEuVFGscn2Q-1
-Received: by mail-qk1-f199.google.com with SMTP id s4so16744169qkj.18
- for <intel-gfx@lists.freedesktop.org>; Tue, 09 Feb 2021 12:04:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=lJwT5cy9MQQ16bhO97V8KGmJA97taQaP5mAXCaEs+I8=;
- b=Z53onUcVMlZKtuVCl4vP2Sa8o/3bJU3s5IVOnk3Wa5fl0xnLc3VXziQpWd2iYM+j7G
- iLgt2uT9kKFct1txOIJBQHCJwtwwzj0ca9IJB1emTKWwVv7djLqQwLtNZMgwzN0oaqXA
- Bsxi3+zFhDkcO9YsiOxxcY2MbWgvqktgUiull/TYYBmP0USxCiwzDbtsF8qDWvI5BScV
- JQumQtruOssQZN401eWkkfrdoaA4PidwH3MFw8mLw29BAiMLIIf9qrea/uyS0SgLEvyi
- OgUKVmMAcAbxQ6xcGpLRNP+fds+0+gAGQNdShPom7mnBz57BMhgv/nqjC38ELVVQNhVh
- Myow==
-X-Gm-Message-State: AOAM531W1gIJDJzO5X1i77VpX3Wr3jW05xPbtBCtSlAEKigl3U8CJp6E
- 8cIePUyRQcYthnj3fZ4xIGFCHneRVWMRe5W43MLOGYIeZJy0bvFEDVyH85almG+IZ51yvmTT7DY
- 43mPt5Qr2grsNcKkAA/S+SELAieTn
-X-Received: by 2002:a37:9581:: with SMTP id
- x123mr23477064qkd.439.1612901068231; 
- Tue, 09 Feb 2021 12:04:28 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwzzJQXMVvzW4AZqIUPuofreox99NYGgb1l+QagsSaOdF5NzqOQwvOWu4jgw7u9wcc6aqPB9g==
-X-Received: by 2002:a37:9581:: with SMTP id
- x123mr23477040qkd.439.1612901068010; 
- Tue, 09 Feb 2021 12:04:28 -0800 (PST)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id w38sm12228294qth.79.2021.02.09.12.04.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 09 Feb 2021 12:04:27 -0800 (PST)
-Message-ID: <028439db4dce2eb73f9d796c221b6f8923f90f5f.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: imre.deak@intel.com, "Surendrakumar Upadhyay, TejaskumarX"
- <tejaskumarx.surendrakumar.upadhyay@intel.com>, Anshuman Gupta
- <anshuman.gupta@intel.com>
-Date: Tue, 09 Feb 2021 15:04:26 -0500
-In-Reply-To: <20210202161400.GB578899@ideak-desk.fi.intel.com>
-References: <20210127100830.162292-1-tejaskumarx.surendrakumar.upadhyay@intel.com>
- <YBH0FJolpTwO+BJG@intel.com>
- <SN6PR11MB3421882AC3045B652D2CBDC4DFB59@SN6PR11MB3421.namprd11.prod.outlook.com>
- <YBjx1O/3jeFcRPDw@intel.com> <YBj7TmOwNCqwits7@intel.com>
- <SN6PR11MB3421EAB14C44008CE72F09E6DFB59@SN6PR11MB3421.namprd11.prod.outlook.com>
- <20210202161400.GB578899@ideak-desk.fi.intel.com>
-Organization: Red Hat
-User-Agent: Evolution 3.38.3 (3.38.3-1.fc33)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C97F6E9A8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 20:28:13 +0000 (UTC)
+IronPort-SDR: 62Y2rjC0l7pB6d/9sJwvhmOmHXpOKLSfV23joNS0nBkWy4iPHv6lmBXpg68mEGXnd+5cy8BD4Q
+ WcUfHuSPMPIQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="161104906"
+X-IronPort-AV: E=Sophos;i="5.81,166,1610438400"; d="scan'208";a="161104906"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 12:28:09 -0800
+IronPort-SDR: cK9UJt0B4ivK86VgO0CvpqyVOPsQXLC1AM9csjkYjsbi35tQr0ltrKRfC/tnrY0UBsjR6jrDHL
+ IezH/RQqI7BA==
+X-IronPort-AV: E=Sophos;i="5.81,166,1610438400"; d="scan'208";a="419945942"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 12:28:09 -0800
+Date: Tue, 9 Feb 2021 12:28:07 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20210209202807.GN2690983@mdroper-desk1.amr.corp.intel.com>
+References: <20210209174238.153278-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gen9bc: Handle TGP PCH during
- suspend/resume
+Content-Disposition: inline
+In-Reply-To: <20210209174238.153278-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Add DDR5 and LPDDR5 BW
+ buddy page entries
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,61 +48,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Pandey, Hariom" <hariom.pandey@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-..snip.. (comments down below)
+On Tue, Feb 09, 2021 at 09:42:38AM -0800, Jos=E9 Roberto de Souza wrote:
+> Set the right BW buddy page mask for new memory types.
+> =
 
-On Tue, 2021-02-02 at 18:14 +0200, Imre Deak wrote:
-> 
-> BSpec says about this WA for both ICL and TGL:
-> """
-> Display driver should set and clear register offset 0xC2000 bit #7 as
-> last step in programming south display registers in preparation for
-> entering S0ix state, or set 0xC2000 bit #7 on S0ix entry and clear it on
-> S0ix exit.
-> 
-> """
-> 
-> This means to me the WA is only relevant for S0ix and we can implement
-> it by setting/clearing 0xC2000 bit #7 right before entering/right after
-> exiting S0ix. This is done atm on PCH_ICP..PCH_MCC in
-> intel_display_power_suspend_late()/intel_display_power_resume_early(),
-> so I'd move the WA for all platforms there.
-> 
-> I assume the current code in irq_reset() was the first alternative to
-> implement the WA, but it wasn't enough. Not sure why, maybe there is a
-> south display register access after irq_reset() during suspend. Adding
-> Anshuman for an idea on that.
-> 
+> BSpec: 49218
+> Cc: Clint Taylor <clinton.a.taylor@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-Poking Anshuman here, is there any update on this? I'm looking to push these
-patches forward as some of Red Hat's hardware partners are very eager for this
-to get upstream asap as we're running out of time from our end. If you can
-answer this, I can handle respinning this patch as needed.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> --Imre
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_power.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> =
 
--- 
-Sincerely,
-   Lyude Paul (she/her)
-   Software Engineer at Red Hat
-   
-Note: I deal with a lot of emails and have a lot of bugs on my plate. If you've
-asked me a question, are waiting for a review/merge on a patch, etc. and I
-haven't responded in a while, please feel free to send me another email to check
-on my status. I don't bite!
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index e17b1ca356c3..f00c1750febd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -5317,17 +5317,25 @@ struct buddy_page_mask {
+>  =
 
+>  static const struct buddy_page_mask tgl_buddy_page_masks[] =3D {
+>  	{ .num_channels =3D 1, .type =3D INTEL_DRAM_DDR4,   .page_mask =3D 0xF =
+},
+> +	{ .num_channels =3D 1, .type =3D INTEL_DRAM_DDR5,	.page_mask =3D 0xF },
+>  	{ .num_channels =3D 2, .type =3D INTEL_DRAM_LPDDR4, .page_mask =3D 0x1C=
+ },
+> +	{ .num_channels =3D 2, .type =3D INTEL_DRAM_LPDDR5, .page_mask =3D 0x1C=
+ },
+>  	{ .num_channels =3D 2, .type =3D INTEL_DRAM_DDR4,   .page_mask =3D 0x1F=
+ },
+> +	{ .num_channels =3D 2, .type =3D INTEL_DRAM_DDR5,   .page_mask =3D 0x1E=
+ },
+>  	{ .num_channels =3D 4, .type =3D INTEL_DRAM_LPDDR4, .page_mask =3D 0x38=
+ },
+> +	{ .num_channels =3D 4, .type =3D INTEL_DRAM_LPDDR5, .page_mask =3D 0x38=
+ },
+>  	{}
+>  };
+>  =
+
+>  static const struct buddy_page_mask wa_1409767108_buddy_page_masks[] =3D=
+ {
+>  	{ .num_channels =3D 1, .type =3D INTEL_DRAM_LPDDR4, .page_mask =3D 0x1 =
+},
+>  	{ .num_channels =3D 1, .type =3D INTEL_DRAM_DDR4,   .page_mask =3D 0x1 =
+},
+> +	{ .num_channels =3D 1, .type =3D INTEL_DRAM_DDR5,   .page_mask =3D 0x1 =
+},
+> +	{ .num_channels =3D 1, .type =3D INTEL_DRAM_LPDDR5, .page_mask =3D 0x1 =
+},
+>  	{ .num_channels =3D 2, .type =3D INTEL_DRAM_LPDDR4, .page_mask =3D 0x3 =
+},
+>  	{ .num_channels =3D 2, .type =3D INTEL_DRAM_DDR4,   .page_mask =3D 0x3 =
+},
+> +	{ .num_channels =3D 2, .type =3D INTEL_DRAM_DDR5,   .page_mask =3D 0x3 =
+},
+> +	{ .num_channels =3D 2, .type =3D INTEL_DRAM_LPDDR5, .page_mask =3D 0x3 =
+},
+>  	{}
+>  };
+>  =
+
+> -- =
+
+> 2.30.0
+> =
+
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
