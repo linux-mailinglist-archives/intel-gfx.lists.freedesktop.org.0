@@ -2,46 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1400315378
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 17:11:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4320331541D
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Feb 2021 17:44:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 932A16EABC;
-	Tue,  9 Feb 2021 16:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5756EB7D;
+	Tue,  9 Feb 2021 16:44:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42EFA6EABC
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 16:11:12 +0000 (UTC)
-IronPort-SDR: HkRAp410gmgEOsaf1oPLVsj6TgiyIC9Cn1mrJR2x2rVF7chqvJsNrpMlChX55xyhvLrThQ2vy0
- 5K+MrMeYR88g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="169585575"
-X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="169585575"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2021 08:11:10 -0800
-IronPort-SDR: WMck4M0K5H8YjsxCXlz0buIzaVinXwqhYtU5oTRItrCLKgJpTR04aS0ua0eM/1qxo/oXBgHyOZ
- Y28WPqkcVUJw==
-X-IronPort-AV: E=Sophos;i="5.81,165,1610438400"; d="scan'208";a="396216736"
-Received: from gmaoz-mobl.ger.corp.intel.com (HELO [10.249.82.228])
- ([10.249.82.228])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2021 08:11:08 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210208105236.28498-1-chris@chris-wilson.co.uk>
- <20210208105236.28498-9-chris@chris-wilson.co.uk>
- <9a15139e-14e0-f7cd-0afe-08e7dd7aac2c@linux.intel.com>
- <161280115888.9448.15201223948689283252@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <8bd4198a-907d-88c0-6714-86917515e83d@linux.intel.com>
-Date: Tue, 9 Feb 2021 16:11:04 +0000
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34F866EB7D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 16:44:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1612889042;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=jXgigGlEWwXeuHFBknU4UpbbHCCiPYOX7SCmGJAz80k=;
+ b=NzkksmDrSwYKrv2kH/OCHqNOfH5Knikx2lXeqZ2GiLBir/KG92KNc11iHtSuTJAbSoiaHi
+ Py77oWSkzjRgLY5qx/RyKChncgA49PD6xniIaWkDBpOsffH7Oq6ENGqnGE5nsRkIuTYbcS
+ tDWxhxDacq4fqS0QqJj99lhKefUcpWM=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-139-JC5FbY2jOR6n4Skj6Kz-aQ-1; Tue, 09 Feb 2021 11:44:00 -0500
+X-MC-Unique: JC5FbY2jOR6n4Skj6Kz-aQ-1
+Received: by mail-ed1-f70.google.com with SMTP id w23so18550683edr.15
+ for <intel-gfx@lists.freedesktop.org>; Tue, 09 Feb 2021 08:44:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=jXgigGlEWwXeuHFBknU4UpbbHCCiPYOX7SCmGJAz80k=;
+ b=WvQrmEqwAptmcT1dBYfu4wQJeDZ/gRLoG7ShkekjfH+qnD3X7PdbkQEcAYdLbM8qMs
+ wFJWQqgwFbLP/unSUjpSdXz9JFJFc0kpqkrB8vkIDN2mNLdLc64Kzy1poQ1eVRD5f3YO
+ nMV0yKugs3SJ8XlJmTK7Lm1+9IeEKR2AkLBk8kyTNX8Y477i33vyBukgiE2oRejvvsBa
+ O8LNQzKOCWDyea1JT4GlVmH+PfLllX9EhKvF2cEANKwrvrXVQK0CX5+o3UT+cqavUURy
+ 9yV2rOMu9IHdZZHZQe/hBQvnNR1fQWkzu2YEbpFE3h0DwOUZTNmR9bFMgztsDZ8y80S0
+ vKuA==
+X-Gm-Message-State: AOAM532MPKBlclEYXjIL5sgis44a9Kgw7hC4kYIZm2Yp5I0HjK1dWSRc
+ NXE/pyqgHQyUDHJmrKE+UWEBzTH2QK2FRYrIbvhJh0XCwQLQ0pv3EZZyHtskWlBIVUWsOcVzT+3
+ ns/qA2tsDoPDV0j4OtZrlFHDEpXf3
+X-Received: by 2002:a17:906:1be9:: with SMTP id
+ t9mr22841981ejg.527.1612889039628; 
+ Tue, 09 Feb 2021 08:43:59 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz80em6MoRBiFwcDp4DrFzeg9eZXV4029nWQZ0qYr/6kTtG6eLyGrOybSwxBTQaYCk0Vcn1EQ==
+X-Received: by 2002:a17:906:1be9:: with SMTP id
+ t9mr22841954ejg.527.1612889039340; 
+ Tue, 09 Feb 2021 08:43:59 -0800 (PST)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id z19sm5135435edr.69.2021.02.09.08.43.58
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 09 Feb 2021 08:43:58 -0800 (PST)
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org
+References: <fe6040b5-72a0-9882-439e-ea7fc0b3935d@redhat.com>
+ <161282685855.9448.10484374241892252440@build.alporthouse.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20c3d11d-75f6-ad82-1100-3015ff463406@redhat.com>
+Date: Tue, 9 Feb 2021 17:43:58 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-In-Reply-To: <161280115888.9448.15201223948689283252@build.alporthouse.com>
+In-Reply-To: <161282685855.9448.10484374241892252440@build.alporthouse.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 09/31] drm/i915: Replace priolist rbtree
- with a skiplist
+Subject: Re: [Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation
+ is causing gfx issues
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,135 +88,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi,
 
-On 08/02/2021 16:19, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2021-02-08 15:23:17)
+On 2/9/21 12:27 AM, Chris Wilson wrote:
+> Quoting Hans de Goede (2021-02-08 20:38:58)
+>> Hi All,
 >>
->> On 08/02/2021 10:52, Chris Wilson wrote:
->>>    static struct list_head *
->>>    lookup_priolist(struct i915_sched *se, int prio)
->>>    {
->>> -     struct i915_priolist *p;
->>> -     struct rb_node **parent, *rb;
->>> -     bool first = true;
->>> +     struct i915_priolist *update[I915_PRIOLIST_HEIGHT];
->>> +     struct i915_priolist_root *const root = &se->queue;
->>> +     struct i915_priolist *pl, *tmp;
->>> +     int lvl;
->>>    
->>>        lockdep_assert_held(&se->lock);
->>> -     assert_priolists(se);
->>> -
->>>        if (unlikely(se->no_priolist))
->>>                prio = I915_PRIORITY_NORMAL;
->>>    
->>> +     for_each_priolist(pl, root) { /* recycle any empty elements before us */
->>> +             if (pl->priority <= prio || !list_empty(&pl->requests))
->>> +                     break;
->>
->> This less part of the less-or-equal condition keeps confusing me as a
->> break criteria. If premise is cleaning up, why break on first smaller
->> prio? Would the idea be to prune all empty lists up to, not including,
->> the lookup prio?
+>> We (Fedora) have been receiving reports from multiple users about gfx issues / glitches
+>> stating with 5.10.9. All reporters are users of Ivy Bridge / Haswell iGPUs and all
+>> reporters report that adding i915.mitigations=off to the cmdline fixes things, see:
 > 
-> Just parcelling up the work. If we tidy up all the unused nodes before
-> us, we insert ourselves at the head of the tree, and all the cheap
-> checks to see if this is the first request, or to find the first
-> request are happy.
-> 
-> It's not expected to find anything unused with the tweaks to tidy up
-> empty elements as we move between i915_priolist.requests, but it seems
-> sensible to keep as then it should be just checking the first
-> i915_priolist and breaking out.
+> I tried to reproduce this on the w/e on hsw-gt1, to no avail; and piglit
+> did not report any differences with and without mitigations. I have yet
+> to test other platforms. So I don't yet have an alternative. Though note
+> that v5.11 and v5.12 will behave similarly, so we need to urgently find
+> a fix for Linus's tree anyway.
 
-It's fine, for some reason I missed the order is descending. Probably 
-thinking about deadlines already. Need to see how that works there then. 
-But a comment indicating the order would be cool.
+Note I've gone ahead and prepared a test kernel for the Fedora bug reports
+with the following 3 commits reverted from 5.10.y :
 
->>> -void __i915_priolist_free(struct i915_priolist *p)
->>> +static void __remove_priolist(struct i915_sched *se, struct list_head *plist)
->>>    {
->>> -     kmem_cache_free(global.slab_priorities, p);
->>> +     struct i915_priolist_root *root = &se->queue;
->>> +     struct i915_priolist *pl, *tmp;
->>> +     struct i915_priolist *old =
->>> +             container_of(plist, struct i915_priolist, requests);
->>> +     int prio = old->priority;
->>> +     int lvl;
->>> +
->>> +     lockdep_assert_held(&se->lock);
->>> +     GEM_BUG_ON(!list_empty(plist));
->>> +
->>> +     pl = &root->sentinel;
->>> +     lvl = pl->level;
->>> +     GEM_BUG_ON(lvl < 0);
->>> +
->>> +     if (prio != I915_PRIORITY_NORMAL)
->>> +             pl_push(old, &pl->requests);
->>> +
->>> +     do {
->>> +             while (tmp = pl->next[lvl], tmp->priority > prio)
->>> +                     pl = tmp;
+520d05a77b2866eb ("drm/i915/gt: Clear CACHE_MODE prior to clearing residuals")
+ecca0c675bdecebd ("drm/i915/gt: Restore clear-residual mitigations for Ivybridge, Baytrail")
+48b8c6689efa7cd6 ("drm/i915/gt: Limit VFE threads based on GT")
+(Note this are the 5.10.y hashes)
 
-Ah okay, this is needed because the list is singly linked. I suggest a 
-comment.
+I know going this route is not ideal but it might be best for 5.10.y for now.
 
-Doubly linked would not be interesting?
-
->>> +             if (lvl <= old->level) {
->>> +                     pl->next[lvl] = old->next[lvl];
->>> +                     if (pl == &root->sentinel && old->next[lvl] == pl) {
->>> +                             GEM_BUG_ON(pl->level != lvl);
->>> +                             pl->level--;
->>> +                     }
->>> +             }
->>> +     } while (--lvl >= 0);
->>> +     GEM_BUG_ON(tmp != old);
->>> +}
-> 
->>> +struct i915_priolist *__i915_sched_dequeue_next(struct i915_sched *se)
->>> +{
->>> +     struct i915_priolist * const s = &se->queue.sentinel;
->>> +     struct i915_priolist *pl = s->next[0];
->>> +     int lvl;
->>> +
->>> +     GEM_BUG_ON(!list_empty(&pl->requests));
->>> +     GEM_BUG_ON(pl == s);
->>> +
->>> +     /* Keep pl->next[0] valid for for_each_priolist iteration */
->>> +     if (pl->priority != I915_PRIORITY_NORMAL)
->>> +             pl_push(pl, &s->requests);
->>> +
->>> +     lvl = pl->level;
->>> +     GEM_BUG_ON(lvl < 0);
->>> +     do {
->>> +             s->next[lvl] = pl->next[lvl];
->>> +             if (pl->next[lvl] == s) {
->>> +                     GEM_BUG_ON(s->level != lvl);
->>> +                     s->level--;
->>> +             }
->>> +     } while (--lvl >= 0);
->>> +
->>> +     return pl->next[0];
->>>    }
->>
->> If both __i915_sched_dequeue_next and __remove_priolist are removing an
->> empty list from the hieararchy, why can't they shared some code?
-> 
-> The __remove_priolist does the general search and remove, whereas
-> dequeue_next is trying to keep O(1) remove-from-head. dequeue_next is
-> meant to be called many, many more times than __remove_priolist.
-
-Ok.
+I will let you know if reverting these 3 actually helps once I hear back
+from the reporters of the issue.
 
 Regards,
 
-Tvrtko
+Hans
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
