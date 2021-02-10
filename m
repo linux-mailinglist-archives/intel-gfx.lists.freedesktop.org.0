@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9665B3173E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 00:06:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DBB31743B
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 00:21:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A482D8929F;
-	Wed, 10 Feb 2021 23:06:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 044476ED29;
+	Wed, 10 Feb 2021 23:20:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A9DB36E0B6;
- Wed, 10 Feb 2021 23:06:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A3BC0A7DFC;
- Wed, 10 Feb 2021 23:06:51 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D84E06ED27;
+ Wed, 10 Feb 2021 23:20:56 +0000 (UTC)
+IronPort-SDR: 53glRNp3DlUm2lP8tnQw4Teere7KrwgYeVaB+qgVb58IfmHk7fX+h4vHN391sj0NpwqMYpdjFH
+ XJgy3eUrRJZA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="178658911"
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="178658911"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 15:20:56 -0800
+IronPort-SDR: Y5PYA4JRB2InB0sblvukPFgV5cTDDdjt6N12agAAxY38dvLF/Gl/yuSpEKENLHVTej9GggSyRh
+ T4BoY+/ojqbg==
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="436859448"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 15:20:56 -0800
+Date: Wed, 10 Feb 2021 15:26:00 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20210210232600.GA5116@labuser-Z97X-UD5H>
+References: <20210210001401.463-1-manasi.d.navare@intel.com>
+ <YCPcrusmPxj0iGxz@phenom.ffwll.local>
+ <vpyQ2PWoypdzSDLBjlqvQW_zi3sOkPdCOWS_MuxLId4i5HFb3ulnEWkVreU1mEYxcN9bKIB0iV_TpgMBEDaREA7bhZVUFVkTaA5d1DJHhLI=@emersion.fr>
+ <YCP2l7PDMTE2a0Eh@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 10 Feb 2021 23:06:51 -0000
-Message-ID: <161299841164.28743.11351712916924191128@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210210221955.10025-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210210221955.10025-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?series_starting_with_=5B1/6=5D_drm/i915/gt=3A_Sanitize_GPU_duri?=
- =?utf-8?q?ng_prepare-to-suspend?=
+Content-Disposition: inline
+In-Reply-To: <YCP2l7PDMTE2a0Eh@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] Revert "drm/atomic: document and enforce
+ rules around "spurious" EBUSY"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,64 +52,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Simon Ser <contact@emersion.fr>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Feb 10, 2021 at 05:07:03PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Wed, Feb 10, 2021 at 01:38:45PM +0000, Simon Ser wrote:
+> > On Wednesday, February 10th, 2021 at 2:16 PM, Daniel Vetter <daniel@ffw=
+ll.ch> wrote:
+> > =
 
-Series: series starting with [1/6] drm/i915/gt: Sanitize GPU during prepare-to-suspend
-URL   : https://patchwork.freedesktop.org/series/86962/
-State : warning
+> > > On Tue, Feb 09, 2021 at 04:14:01PM -0800, Manasi Navare wrote:
+> > >
+> > > > These additional checks added to avoid EBUSY give unnecessary WARN_=
+ON
+> > > > in case of big joiner used in i915 in which case even if the modeset
+> > > > is requested on a single pipe, internally another consecutive
+> > > > pipe is stolen and used to drive half of the transcoder timings.
+> > > > So in this case it is expected that requested crtc and affected crt=
+cs
+> > > > do not match. Hence the added WARN ON becomes irrelevant.
+> > =
 
-== Summary ==
+> > The WARN_ON only happens if allow_modeset =3D=3D false. If allow_modese=
+t =3D=3D true,
+> > then the driver is allowed to steal an unrelated pipe.
+> > =
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1323:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1442:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1496:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+> > Maybe i915 is stealing a pipe without allow_modeset?
+> =
 
+> No. All page flips etc. will have to get split up internally
+> between multiple crtcs.
+> =
 
+> So I think there's basically three options:
+> a) massive rewrite of i915 to bypass even more of drm_atomic stuff
+> b) allow i915 to silence that warning, which opens up the question
+>    whether the warn is doing any good if it can just be bypassed
+> c) nuke the warning entirely
+> =
+
+> a) is not going to happen, and it would any way allow i915 to
+> do things any which way it wants without tripping the warn,
+> rendering the warn entirely toothless.
+> =
+
+> Hmm. Maybe there is a d) which would be to ignore all crtcs
+> that are not logically enabled in the warn? Not sure if that
+> could allow something to slit through that people want it to
+> catch?
+
+So as per the offline IRC discussions,
+- We can check for crtc_state->enable and only use the enabled crtcs
+in the affected crtc calculation. And this enable would only
+be set when modeset is done. So in case of bigjoiner no modeset on Pipe A,
+even if Pipe B is stolen, since no modeset and because that pipe doesnt
+get enabled the affected crtcs would still be 0x1.
+
+This should solve the problem. =
+
+Ville, Danvet - I will make this change?
+
+Manasi
+
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
