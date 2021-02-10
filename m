@@ -2,55 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0392D3167B5
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 14:16:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B0D3316828
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 14:39:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 310926EC8B;
-	Wed, 10 Feb 2021 13:16:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FA9D6E079;
+	Wed, 10 Feb 2021 13:39:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F2336EC8B
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 13:16:34 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id m13so2445843wro.12
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 05:16:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=1UsD0YQq8BXrBVlSyYQfOlW5dQ+OGtniw4usrBTNPn8=;
- b=J8Q/NoEub8AfQpnESREJRauWcLGbTA0LyaBXZMsKRsx/KdDlDAbv69BUieot5/ygjv
- F/1D/OPKy0hmcM3ys2791n71LUgzZvwQtgF9VuYiNalXtBvOKzHexErGjk4tfONYWS6F
- eY0Tb8u6rXXc30fIQugW+T9SIltN/QfGZ/1GA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=1UsD0YQq8BXrBVlSyYQfOlW5dQ+OGtniw4usrBTNPn8=;
- b=SydHf47MUmCCJpXRKQssyHIoh3DCfJ8sXFXfQAi0ACC0iV/w6QycAgeLr3mFoGPZWG
- O+I9Qs/BThdD+RNOdyloaM9fY88y0dnQ00Lm9ckcnKTdMvZCyA2fXIPLeqtpGqhJyPq+
- AlzbMJyhWYSh1MaYjTSvsAa6nL7YN8K2yQ6NkptlS/95+hvclf4eS+8SP0kwQPwudjmZ
- YnoF5jFXXZ2FIgAM0Xudggat8N3os/ByIhEOHzfUcHxpwbc95+lMU3b9nCnoclmBCnJ3
- IiLwg8p5ZgDeyGsXJ5nMTp+v3h8ZujtG1YHQFfPkBnC71j0qgy6EGCFQcgzT2KkaP/ie
- kKPg==
-X-Gm-Message-State: AOAM533zZnbnOvbR3P+CTNR/WEp0J2K8RzqTB8iy+pUT3ok3mNeN4W5U
- 1HNZUDuCZBAvHayntNlrxAieSg==
-X-Google-Smtp-Source: ABdhPJyQ2g8cLyQ9blwIwLYpe7LjuwbjxbBbDhOE9uu7HsGwwA0kISsFLaHgxe/xfDRw9TnBUPWDJA==
-X-Received: by 2002:adf:b749:: with SMTP id n9mr3562143wre.267.1612962993015; 
- Wed, 10 Feb 2021 05:16:33 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id y11sm2963977wrh.16.2021.02.10.05.16.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 10 Feb 2021 05:16:32 -0800 (PST)
-Date: Wed, 10 Feb 2021 14:16:30 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <YCPcrusmPxj0iGxz@phenom.ffwll.local>
+Received: from mail-41103.protonmail.ch (mail-41103.protonmail.ch
+ [185.70.41.103])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D59B36E2C0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 13:39:05 +0000 (UTC)
+Received: from mail-02.mail-europe.com (mail-02.mail-europe.com
+ [51.89.119.103])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits))
+ (No client certificate requested)
+ by mail-41103.protonmail.ch (Postfix) with ESMTPS id 04C00200043B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 13:39:04 +0000 (UTC)
+Authentication-Results: mail-41103.protonmail.ch;
+ dkim=pass (2048-bit key) header.d=emersion.fr header.i=@emersion.fr
+ header.b="jj+6ttuV"
+Date: Wed, 10 Feb 2021 13:38:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail3; t=1612964338;
+ bh=KXrzTlP6PgiuyJmaWvQDi11Oh2GB1xK04B3bvmGLmWY=;
+ h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+ b=jj+6ttuViw3KYXNZ4zf4iwVrmc2yvDFL/g9ytF8q9ntElJJYPPWA0MaPGpTx9DBfa
+ u1PqbndshcE4SgPw/LKpmMau+xMRPZ9Upw29cUDcmKQ1oUa65AEBpcXS6p7EgUSfFn
+ NsWnk4wQLjC3C5w8/57dKh7s/0P3TFokvWmxcfE3zCZ/K+auT3neWHUJanrrHJaxrL
+ nqdj6fGI6gikfMXDOvauqhShs1aBm2NVdmWpUR1//pLGHk+99Rc9J9d3J3xy5kQ93A
+ qVMoXanCxwh0u90iVB8bibV5xFPGV5k3gtP4q+nKWB1UWOBj3bDk0MVzr5ybnr3mKI
+ qApyhwKM7/0nA==
+To: Daniel Vetter <daniel@ffwll.ch>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <vpyQ2PWoypdzSDLBjlqvQW_zi3sOkPdCOWS_MuxLId4i5HFb3ulnEWkVreU1mEYxcN9bKIB0iV_TpgMBEDaREA7bhZVUFVkTaA5d1DJHhLI=@emersion.fr>
+In-Reply-To: <YCPcrusmPxj0iGxz@phenom.ffwll.local>
 References: <20210210001401.463-1-manasi.d.navare@intel.com>
+ <YCPcrusmPxj0iGxz@phenom.ffwll.local>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210210001401.463-1-manasi.d.navare@intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
 Subject: Re: [Intel-gfx] [PATCH] Revert "drm/atomic: document and enforce
  rules around "spurious" EBUSY"
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,6 +60,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Simon Ser <contact@emersion.fr>
 Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
@@ -72,109 +68,27 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 09, 2021 at 04:14:01PM -0800, Manasi Navare wrote:
-> This reverts commit fb6473a48b635c55d04eb94e579eede52ef39550.
-> 
-> These additional checks added to avoid EBUSY give unnecessary WARN_ON
-> in case of big joiner used in i915 in which case even if the modeset
-> is requested on a single pipe, internally another consecutive
-> pipe is stolen and used to drive half of the transcoder timings.
-> So in this case it is expected that requested crtc and affected crtcs
-> do not match. Hence the added WARN ON becomes irrelevant.
-> But there is no easy solution to get the bigjoiner information
-> here at drm level. So for now revert this until we work out
-> a better solution.
-> 
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Daniel Vetter <daniel.vetter@intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+On Wednesday, February 10th, 2021 at 2:16 PM, Daniel Vetter <daniel@ffwll.ch> wrote:
 
-Nope. We can maybe rework this so that i915 can do stuff under the hood,
-but wrt uapi this was the thing we discussed with compositors. Without
-such a guarantee atomic is defacto broken from a compositor pov.
+> On Tue, Feb 09, 2021 at 04:14:01PM -0800, Manasi Navare wrote:
+>
+> > These additional checks added to avoid EBUSY give unnecessary WARN_ON
+> > in case of big joiner used in i915 in which case even if the modeset
+> > is requested on a single pipe, internally another consecutive
+> > pipe is stolen and used to drive half of the transcoder timings.
+> > So in this case it is expected that requested crtc and affected crtcs
+> > do not match. Hence the added WARN ON becomes irrelevant.
 
-This WARN_ON is not unecessary, compositor people really do not want the
-kernel to throw around spurious EBUSY they have no visibility into.
+The WARN_ON only happens if allow_modeset == false. If allow_modeset == true,
+then the driver is allowed to steal an unrelated pipe.
 
-Please also cc all the compositor people from my original patch if you
-change anything in this area.
--Daniel
+Maybe i915 is stealing a pipe without allow_modeset?
 
+> Nope. We can maybe rework this so that i915 can do stuff under the hood,
+> but wrt uapi this was the thing we discussed with compositors. Without
+> such a guarantee atomic is defacto broken from a compositor pov.
 
-> ---
->  drivers/gpu/drm/drm_atomic.c | 29 -----------------------------
->  1 file changed, 29 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index b1efa9322be2..48b2262d69f6 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -320,10 +320,6 @@ EXPORT_SYMBOL(__drm_atomic_state_free);
->   * needed. It will also grab the relevant CRTC lock to make sure that the state
->   * is consistent.
->   *
-> - * WARNING: Drivers may only add new CRTC states to a @state if
-> - * drm_atomic_state.allow_modeset is set, or if it's a driver-internal commit
-> - * not created by userspace through an IOCTL call.
-> - *
->   * Returns:
->   *
->   * Either the allocated state or the error code encoded into the pointer. When
-> @@ -1306,15 +1302,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
->  	struct drm_crtc_state *new_crtc_state;
->  	struct drm_connector *conn;
->  	struct drm_connector_state *conn_state;
-> -	unsigned requested_crtc = 0;
-> -	unsigned affected_crtc = 0;
->  	int i, ret = 0;
->  
->  	DRM_DEBUG_ATOMIC("checking %p\n", state);
->  
-> -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> -		requested_crtc |= drm_crtc_mask(crtc);
-> -
->  	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
->  		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
->  		if (ret) {
-> @@ -1362,26 +1353,6 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
->  		}
->  	}
->  
-> -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> -		affected_crtc |= drm_crtc_mask(crtc);
-> -
-> -	/*
-> -	 * For commits that allow modesets drivers can add other CRTCs to the
-> -	 * atomic commit, e.g. when they need to reallocate global resources.
-> -	 * This can cause spurious EBUSY, which robs compositors of a very
-> -	 * effective sanity check for their drawing loop. Therefor only allow
-> -	 * drivers to add unrelated CRTC states for modeset commits.
-> -	 *
-> -	 * FIXME: Should add affected_crtc mask to the ATOMIC IOCTL as an output
-> -	 * so compositors know what's going on.
-> -	 */
-> -	if (affected_crtc != requested_crtc) {
-> -		DRM_DEBUG_ATOMIC("driver added CRTC to commit: requested 0x%x, affected 0x%0x\n",
-> -				 requested_crtc, affected_crtc);
-> -		WARN(!state->allow_modeset, "adding CRTC not allowed without modesets: requested 0x%x, affected 0x%0x\n",
-> -		     requested_crtc, affected_crtc);
-> -	}
-> -
->  	return 0;
->  }
->  EXPORT_SYMBOL(drm_atomic_check_only);
-> -- 
-> 2.19.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Agreed.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
