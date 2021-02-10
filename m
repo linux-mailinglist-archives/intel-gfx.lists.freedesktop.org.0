@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 183EB3169BD
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 16:07:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65647316B1B
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 17:24:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87D0A6E091;
-	Wed, 10 Feb 2021 15:07:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB8A56ECAF;
+	Wed, 10 Feb 2021 16:24:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCC656E091;
- Wed, 10 Feb 2021 15:07:09 +0000 (UTC)
-IronPort-SDR: xykI7wxxrFWbTRnT9GXfA6O+X44fltOjcPVdzs5YFU+pHMjZyP/j4G84vS2uPO34mPtGvq6HWw
- rvkp5Vu3aLyg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="201195804"
-X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="201195804"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2021 07:07:08 -0800
-IronPort-SDR: l4fw1WnfZ0KvRg9vyUl0wY5BiSDtGb/FqiHmH4Zd5GHO4QY4bGsCucpwXvGb1DSbX2CK8JInU2
- xZfC1ML+2kMw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="362174452"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 10 Feb 2021 07:07:04 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 10 Feb 2021 17:07:03 +0200
-Date: Wed, 10 Feb 2021 17:07:03 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Simon Ser <contact@emersion.fr>
-Message-ID: <YCP2l7PDMTE2a0Eh@intel.com>
-References: <20210210001401.463-1-manasi.d.navare@intel.com>
- <YCPcrusmPxj0iGxz@phenom.ffwll.local>
- <vpyQ2PWoypdzSDLBjlqvQW_zi3sOkPdCOWS_MuxLId4i5HFb3ulnEWkVreU1mEYxcN9bKIB0iV_TpgMBEDaREA7bhZVUFVkTaA5d1DJHhLI=@emersion.fr>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46FC46ECAE;
+ Wed, 10 Feb 2021 16:24:18 +0000 (UTC)
+IronPort-SDR: H8yMpIieU2p7XzfQ2jH3dXnOEpZevMuJXeORFqBu0MqFDNBD3YnKnoMzkMTGTfbkfL0jN4+oZx
+ upVBAS0zglmg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="179545781"
+X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="179545781"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 08:24:17 -0800
+IronPort-SDR: wQgi5rluJWOBsUZxP8xYweKhxeacPW9tp3GQi0ISOZnP7YD4XplB8/xoZ3dimr3kwFkFJzc0bk
+ z29igeMS1tRA==
+X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="421104356"
+Received: from ienunogu-mobl1.amr.corp.intel.com (HELO [10.254.96.230])
+ ([10.254.96.230])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 08:24:17 -0800
+To: Anand Moon <anandx.ram.moon@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+References: <20210210115441.6703-1-anandx.ram.moon@intel.com>
+From: Aditya Swarup <aditya.swarup@intel.com>
+Message-ID: <1d8a1fa5-0d74-abd7-983f-b597c4307bd5@intel.com>
+Date: Wed, 10 Feb 2021 08:24:09 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <vpyQ2PWoypdzSDLBjlqvQW_zi3sOkPdCOWS_MuxLId4i5HFb3ulnEWkVreU1mEYxcN9bKIB0iV_TpgMBEDaREA7bhZVUFVkTaA5d1DJHhLI=@emersion.fr>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] Revert "drm/atomic: document and enforce
- rules around "spurious" EBUSY"
+In-Reply-To: <20210210115441.6703-1-anandx.ram.moon@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl_s: Add gmbus pin mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,57 +52,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 10, 2021 at 01:38:45PM +0000, Simon Ser wrote:
-> On Wednesday, February 10th, 2021 at 2:16 PM, Daniel Vetter <daniel@ffwll=
-.ch> wrote:
-> =
+On 2/10/21 3:54 AM, Anand Moon wrote:
+> Add table to map the GMBUS pin pairs to GPIO registers and port to DDC
+> mapping for ADL_S as per below Bspec.
 
-> > On Tue, Feb 09, 2021 at 04:14:01PM -0800, Manasi Navare wrote:
-> >
-> > > These additional checks added to avoid EBUSY give unnecessary WARN_ON
-> > > in case of big joiner used in i915 in which case even if the modeset
-> > > is requested on a single pipe, internally another consecutive
-> > > pipe is stolen and used to drive half of the transcoder timings.
-> > > So in this case it is expected that requested crtc and affected crtcs
-> > > do not match. Hence the added WARN ON becomes irrelevant.
-> =
+Has this patch been tested on an ADLS system? Upstream CI AFAIK doesn't have
+support for ADL-S. Also comments below..
 
-> The WARN_ON only happens if allow_modeset =3D=3D false. If allow_modeset =
-=3D=3D true,
-> then the driver is allowed to steal an unrelated pipe.
-> =
+> 
+> Bspec:20124, 53597.
+> 
+> Cc: Aditya Swarup <aditya.swarup@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Signed-off-by: Anand Moon <anandx.ram.moon@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_gmbus.c | 16 ++++++++++++++--
+>  1 file changed, 14 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> index 0c952e1d720e..58b8e42d4f90 100644
+> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> @@ -52,6 +52,14 @@ static const struct gmbus_pin gmbus_pins[] = {
+>  	[GMBUS_PIN_DPD] = { "dpd", GPIOF },
+>  };
+>  
+> +static const struct gmbus_pin gmbus_pins_adls[] = {
+> +	[GMBUS_PIN_1_BXT] = { "edp", GPIOA },
 
-> Maybe i915 is stealing a pipe without allow_modeset?
+I am pretty sure that GMBUS_PIN_1_BXT should map to GPIOB(1) and not GPIOA(0) like what we have for ICP.
 
-No. All page flips etc. will have to get split up internally
-between multiple crtcs.
+> +	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIOD },
+> +	[GMBUS_PIN_10_TC2_ICP] = { "tc2", GPIOE },
+> +	[GMBUS_PIN_11_TC3_ICP] = { "tc3", GPIOF },
+> +	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIOG },
+> +};
+> +
+>  static const struct gmbus_pin gmbus_pins_bdw[] = {
+>  	[GMBUS_PIN_VGADDC] = { "vga", GPIOA },
+>  	[GMBUS_PIN_DPC] = { "dpc", GPIOD },
+> @@ -101,7 +109,9 @@ static const struct gmbus_pin gmbus_pins_dg1[] = {
+>  static const struct gmbus_pin *get_gmbus_pin(struct drm_i915_private *dev_priv,
+>  					     unsigned int pin)
+>  {
+> -	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
+> +	if (INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
 
-So I think there's basically three options:
-a) massive rewrite of i915 to bypass even more of drm_atomic stuff
-b) allow i915 to silence that warning, which opens up the question
-   whether the warn is doing any good if it can just be bypassed
-c) nuke the warning entirely
+This check should be converted to IS_ALDERLAKE_S(dev_priv) instead of PCH check for PCH_ADP.
+Unfortunately, we are reusing PCH_ADP for ADLS and ADLP which have different mappings but the same ADP PCH.
+This will break ADLP. 
 
-a) is not going to happen, and it would any way allow i915 to
-do things any which way it wants without tripping the warn,
-rendering the warn entirely toothless.
+The PCH_ADP check for ADLS in intel_bios.c will also be changed in the ADLP patches
+that are going to be submitted upstream.
 
-Hmm. Maybe there is a d) which would be to ignore all crtcs
-that are not logically enabled in the warn? Not sure if that
-could allow something to slit through that people want it to
-catch?
+So might as well do the correct thing now and change this to IS_ALDERLAKE_S(dev_priv).
 
--- =
+> +		return &gmbus_pins_adls[pin];
+> +	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
+>  		return &gmbus_pins_dg1[pin];
+>  	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+>  		return &gmbus_pins_icp[pin];
+> @@ -122,7 +132,9 @@ bool intel_gmbus_is_valid_pin(struct drm_i915_private *dev_priv,
+>  {
+>  	unsigned int size;
+>  
+> -	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
+> +	if (INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
 
-Ville Syrj=E4l=E4
-Intel
+See comment above. Change to IS_ALDERLAKE_S(dev_priv)
+
+Aditya Swarup
+
+> +		size = ARRAY_SIZE(gmbus_pins_adls);
+> +	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
+>  		size = ARRAY_SIZE(gmbus_pins_dg1);
+>  	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+>  		size = ARRAY_SIZE(gmbus_pins_icp);
+> 
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
