@@ -1,31 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0EA317330
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 23:20:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B6B317348
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 23:24:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC4D96ED0A;
-	Wed, 10 Feb 2021 22:20:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A2636ED12;
+	Wed, 10 Feb 2021 22:24:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5763F6E087
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 22:20:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23839049-1500050 
- for multiple; Wed, 10 Feb 2021 22:19:54 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Feb 2021 22:19:55 +0000
-Message-Id: <20210210221955.10025-6-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210210221955.10025-1-chris@chris-wilson.co.uk>
-References: <20210210221955.10025-1-chris@chris-wilson.co.uk>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1A696ED12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 22:24:31 +0000 (UTC)
+IronPort-SDR: nWj6OJNYaglfxS8VkKPOCCPQpKNc/rZ4dat2MwD7uo6C+CESl+ddduIk+Tu1Br0Nt1YIaCD7OR
+ rsaLIndZBn0Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="169287841"
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="169287841"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 14:24:30 -0800
+IronPort-SDR: KXDJRPaxpA7KjBKEMtzgPA/G++zeRmbFiaUbwYXYnlrQ1KF74klHFooknBNANUH3WwRRII2quD
+ PRUcXtPtP93g==
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="421226429"
+Received: from sganes2-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.30.225])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 14:24:30 -0800
+Date: Wed, 10 Feb 2021 14:24:29 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20210210222429.pnqihigewlearcza@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20210128192413.1715802-1-matthew.d.roper@intel.com>
+ <20210128192413.1715802-18-matthew.d.roper@intel.com>
+ <87h7n0hu9p.fsf@intel.com>
+ <161191892944.12947.12934684852512611563@build.alporthouse.com>
+ <87eei4hrz7.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915: Remove unused debug functions
+Content-Disposition: inline
+In-Reply-To: <87eei4hrz7.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 17/18] drm/i915/display13: Add rc_qp_table
+ for rcparams calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,62 +53,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Remove or hide unused debug functions from clang, or else it moans.
+On Fri, Jan 29, 2021 at 02:01:32PM +0200, Jani Nikula wrote:
+>On Fri, 29 Jan 2021, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>> Quoting Jani Nikula (2021-01-29 11:12:02)
+>>> On Thu, 28 Jan 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
+>>> > From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>>> >
+>>> > Add the qp table for 444 formats, for 8bpc, 10bpc and 12bpc, as given=
+ by
+>>> > the VESA C model for DSC 1.1
+>>> >
+>>> > Cc: Manasi Navare <manasi.d.navare@intel.com>
+>>> > Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>>> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>>> > ---
+>>> >  .../gpu/drm/i915/display/intel_qp_tables.h    | 294 ++++++++++++++++=
+++
+>>> >  drivers/gpu/drm/i915/display/intel_vdsc.c     |  22 +-
+>>> >  2 files changed, 315 insertions(+), 1 deletion(-)
+>>> >  create mode 100644 drivers/gpu/drm/i915/display/intel_qp_tables.h
+>>> >
+>>> > diff --git a/drivers/gpu/drm/i915/display/intel_qp_tables.h b/drivers=
+/gpu/drm/i915/display/intel_qp_tables.h
+>>> > new file mode 100644
+>>> > index 000000000000..13694d5220d4
+>>> > --- /dev/null
+>>> > +++ b/drivers/gpu/drm/i915/display/intel_qp_tables.h
+>>> > @@ -0,0 +1,294 @@
+>>> > +/* SPDX-License-Identifier: MIT */
+>>> > +/*
+>>> > + * Copyright =A9 2019 Intel Corporation
+>>> > + */
+>>> > +
+>>>
+>>> The include guard is missing.
+>>
+>> Should we even be putting large tables into a header?
+>>
+>> Would this be better as a .c?
+>
+>Agreed.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_sw_fence.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ugh... that huge table on a header and even marked as __maybe_unused is
+very ugly. We should really not do that.
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index dfabf291e5cd..566bc48e5b0c 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -49,10 +49,12 @@ static inline void debug_fence_init(struct i915_sw_fence *fence)
- 	debug_object_init(fence, &i915_sw_fence_debug_descr);
- }
- 
-+#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- static inline void debug_fence_init_onstack(struct i915_sw_fence *fence)
- {
- 	debug_object_init_on_stack(fence, &i915_sw_fence_debug_descr);
- }
-+#endif
- 
- static inline void debug_fence_activate(struct i915_sw_fence *fence)
- {
-@@ -92,9 +94,11 @@ static inline void debug_fence_init(struct i915_sw_fence *fence)
- {
- }
- 
-+#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- static inline void debug_fence_init_onstack(struct i915_sw_fence *fence)
- {
- }
-+#endif
- 
- static inline void debug_fence_activate(struct i915_sw_fence *fence)
- {
-@@ -113,10 +117,6 @@ static inline void debug_fence_destroy(struct i915_sw_fence *fence)
- {
- }
- 
--static inline void debug_fence_free(struct i915_sw_fence *fence)
--{
--}
--
- static inline void debug_fence_assert(struct i915_sw_fence *fence)
- {
- }
--- 
-2.20.1
+Lucas De Marchi
 
+>
+>BR,
+>Jani.
+>
+>-- =
+
+>Jani Nikula, Intel Open Source Graphics Center
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
