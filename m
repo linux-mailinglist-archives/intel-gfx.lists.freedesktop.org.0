@@ -2,36 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93D1E31641F
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 11:45:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0F3F316440
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 11:50:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6177E6E20B;
-	Wed, 10 Feb 2021 10:45:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A65146EC4B;
+	Wed, 10 Feb 2021 10:50:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 740126E20B;
- Wed, 10 Feb 2021 10:45:10 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23831758-1500050 for multiple; Wed, 10 Feb 2021 10:45:04 +0000
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0CB86EC4B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 10:50:08 +0000 (UTC)
+IronPort-SDR: /qKY/xtSj2AhNRVfaDzlwNard0klSynq+GQWqVE88m1akWlMKZj9n+fSv6BMB0K7oi6J0bHCHD
+ of57Dz/bT63g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="181276575"
+X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="181276575"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 02:50:07 -0800
+IronPort-SDR: 7Oi8aAiJ9wR18C95iHrs60ybySC4KwJNutVJ+JdqcJrX6bTrUUr2QYeJ1l8mw2dn+PbTJWITK9
+ 12OX6PYlMmwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="488718138"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga001.fm.intel.com with ESMTP; 10 Feb 2021 02:50:06 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 6C8A45C1F81; Wed, 10 Feb 2021 12:49:55 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210210102238.28779-1-chris@chris-wilson.co.uk>
+References: <20210210102238.28779-1-chris@chris-wilson.co.uk>
+Date: Wed, 10 Feb 2021 12:49:55 +0200
+Message-ID: <87eehorycs.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210210075929.5357-1-anandx.ram.moon@intel.com>
-References: <20210210075929.5357-1-anandx.ram.moon@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Anand Moon <anandx.ram.moon@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Feb 2021 10:45:06 +0000
-Message-ID: <161295390650.6673.18431407043692596805@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Add a check for object size
- for corner cases
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Check for scratch page
+ scribbling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,21 +48,362 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Anand Moon <anandx.ram.moon@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Anand Moon (2021-02-10 07:59:29)
-> Add check for object size to return appropriate error -E2BIG or -EINVAL
-> to avoid WARM_ON and sucessfull return for some testcase.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-No. You miss the point of having those warnings. We need to inspect the
-code to remove the last remaining "int pagenum", and then we can remove
-the GEM_WARN_ON((sz) >> PAGE_SHIFT > INT_MAX). These are not emitted for
-users, only for us to motivate us into finally fixing the code.
--Chris
+> Periodically check, for example when idling and upon closing user
+> contexts, whether or not some client has written into unallocated PTE in
+> their ppGTT.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  .../drm/i915/gem/selftests/i915_gem_context.c | 19 +++++++--
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 31 +-------------
+>  drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  4 ++
+>  drivers/gpu/drm/i915/gt/intel_gtt.c           | 42 +++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_gtt.h           |  1 +
+>  drivers/gpu/drm/i915/i915_scheduler.c         | 33 +--------------
+>  drivers/gpu/drm/i915/i915_utils.c             | 29 +++++++++++++
+>  drivers/gpu/drm/i915/i915_utils.h             |  3 ++
+>  8 files changed, 98 insertions(+), 64 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+> index df949320f2b5..b0c349a46e6a 100644
+> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+> @@ -1737,7 +1737,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+>  	return err;
+>  }
+>  
+> -static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
+> +static int check_ctx_scratch(struct i915_gem_context *ctx, u32 *out)
+>  {
+>  	struct i915_address_space *vm;
+>  	struct page *page;
+> @@ -1770,6 +1770,17 @@ static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
+>  	return err;
+>  }
+>  
+> +static void reset_ctx_scratch(struct i915_gem_context *ctx, u32 value)
+> +{
+> +	struct i915_address_space *vm = ctx_vm(ctx);
+> +	struct page *page = __px_page(vm->scratch[0]);
+> +	u32 *vaddr;
+> +
+> +	vaddr = kmap(page);
+> +	memset32(vaddr, value, PAGE_SIZE / sizeof(value));
+> +	kunmap(page);
+> +}
+> +
+>  static int igt_vm_isolation(void *arg)
+>  {
+>  	struct drm_i915_private *i915 = arg;
+> @@ -1816,11 +1827,11 @@ static int igt_vm_isolation(void *arg)
+>  		goto out_file;
+>  
+>  	/* Read the initial state of the scratch page */
+> -	err = check_scratch_page(ctx_a, &expected);
+> +	err = check_ctx_scratch(ctx_a, &expected);
+>  	if (err)
+>  		goto out_file;
+>  
+> -	err = check_scratch_page(ctx_b, &expected);
+> +	err = check_ctx_scratch(ctx_b, &expected);
+>  	if (err)
+>  		goto out_file;
+>  
+> @@ -1876,6 +1887,8 @@ static int igt_vm_isolation(void *arg)
+>  		count, num_engines);
+>  
+>  out_file:
+> +	/* As we deliberately write into scratch, cover up our tracks */
+> +	reset_ctx_scratch(ctx_a, expected);
+>  	if (igt_live_test_end(&t))
+>  		err = -EIO;
+>  	fput(file);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 577ebd4a324f..8443794df3ee 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -1265,35 +1265,6 @@ bool intel_engine_can_store_dword(struct intel_engine_cs *engine)
+>  	}
+>  }
+>  
+> -static void hexdump(struct drm_printer *m, const void *buf, size_t len)
+> -{
+> -	const size_t rowsize = 8 * sizeof(u32);
+> -	const void *prev = NULL;
+> -	bool skip = false;
+> -	size_t pos;
+> -
+> -	for (pos = 0; pos < len; pos += rowsize) {
+> -		char line[128];
+> -
+> -		if (prev && !memcmp(prev, buf + pos, rowsize)) {
+> -			if (!skip) {
+> -				drm_printf(m, "*\n");
+> -				skip = true;
+> -			}
+> -			continue;
+> -		}
+> -
+> -		WARN_ON_ONCE(hex_dump_to_buffer(buf + pos, len - pos,
+> -						rowsize, sizeof(u32),
+> -						line, sizeof(line),
+> -						false) >= sizeof(line));
+> -		drm_printf(m, "[%04zx] %s\n", pos, line);
+> -
+> -		prev = buf + pos;
+> -		skip = false;
+> -	}
+> -}
+> -
+>  static void intel_engine_print_registers(struct intel_engine_cs *engine,
+>  					 struct drm_printer *m)
+>  {
+> @@ -1450,7 +1421,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+>  	}
+>  
+>  	drm_printf(m, "HWSP:\n");
+> -	hexdump(m, engine->status_page.addr, PAGE_SIZE);
+> +	i915_hexdump(m, engine->status_page.addr, PAGE_SIZE);
+>  
+>  	drm_printf(m, "Idle? %s\n", yesno(intel_engine_is_idle(engine)));
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> index 0bd303d2823e..38375a006a99 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+> @@ -11,6 +11,7 @@
+>  #include "intel_context.h"
+>  #include "intel_engine_pm.h"
+>  #include "intel_gt.h"
+> +#include "intel_gtt.h"
+>  #include "intel_gt_clock_utils.h"
+>  #include "intel_gt_pm.h"
+>  #include "intel_gt_requests.h"
+> @@ -100,6 +101,9 @@ static int __gt_park(struct intel_wakeref *wf)
+>  	runtime_end(gt);
+>  	intel_gt_park_requests(gt);
+>  
+> +	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+> +		check_scratch_page(gt->vm);
+> +
+>  	i915_vma_parked(gt);
+>  	i915_pmu_gt_parked(i915);
+>  	intel_rps_park(&gt->rps);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> index d34770ae4c9a..5ac9eb4a3a92 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> @@ -158,10 +158,49 @@ static void poison_scratch_page(struct drm_i915_gem_object *scratch)
+>  
+>  		vaddr = kmap(page);
+>  		memset(vaddr, val, PAGE_SIZE);
+> +		set_page_dirty(page); /* keep the poisoned contents */
+
+Should we use locked version in here?
+
+-Mika
+
+>  		kunmap(page);
+>  	}
+>  }
+>  
+> +void check_scratch_page(const struct i915_address_space *vm)
+> +{
+> +	struct drm_i915_gem_object *scratch;
+> +	struct sgt_iter sgt;
+> +	struct page *page;
+> +	void *vaddr;
+> +	u8 val;
+> +
+> +	scratch = vm->scratch[0];
+> +	if (!scratch || !i915_gem_object_has_struct_page(scratch))
+> +		return;
+> +
+> +	val = 0;
+> +	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+> +		val = POISON_FREE;
+> +
+> +	for_each_sgt_page(page, sgt, scratch->mm.pages) {
+> +		vaddr = kmap(page);
+> +		drm_clflush_virt_range(vaddr, PAGE_SIZE);
+> +		if (memchr_inv(vaddr, val, PAGE_SIZE)) {
+> +			struct drm_printer p = drm_err_printer(__func__);
+> +
+> +			drm_err(&vm->i915->drm,
+> +				"%s scratch page overwitten!\n",
+> +				i915_is_ggtt(vm) ? "Global" : "Per-process");
+> +			i915_hexdump(&p, vaddr, PAGE_SIZE);
+> +			vaddr = NULL;
+> +		}
+> +		kunmap(page);
+> +		if (!vaddr)
+> +			break;
+> +	}
+> +
+> +	/* Restore the poison, so fresh errors will be detected */
+> +	if (!vaddr)
+> +		poison_scratch_page(scratch);
+> +}
+> +
+>  int setup_scratch_page(struct i915_address_space *vm)
+>  {
+>  	unsigned long size;
+> @@ -229,6 +268,9 @@ void free_scratch(struct i915_address_space *vm)
+>  {
+>  	int i;
+>  
+> +	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+> +		check_scratch_page(vm);
+> +
+>  	for (i = 0; i <= vm->top; i++)
+>  		i915_gem_object_put(vm->scratch[i]);
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+> index 24b5808df16d..a5b312c6485a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+> @@ -519,6 +519,7 @@ fill_page_dma(struct drm_i915_gem_object *p, const u64 val, unsigned int count);
+>  } while (0)
+>  
+>  int setup_scratch_page(struct i915_address_space *vm);
+> +void check_scratch_page(const struct i915_address_space *vm);
+>  void free_scratch(struct i915_address_space *vm);
+>  
+>  struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz);
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+> index a8fb787278e6..7241f85c9967 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler.c
+> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
+> @@ -1095,35 +1095,6 @@ void i915_request_show_with_schedule(struct drm_printer *m,
+>  	rcu_read_unlock();
+>  }
+>  
+> -static void hexdump(struct drm_printer *m, const void *buf, size_t len)
+> -{
+> -	const size_t rowsize = 8 * sizeof(u32);
+> -	const void *prev = NULL;
+> -	bool skip = false;
+> -	size_t pos;
+> -
+> -	for (pos = 0; pos < len; pos += rowsize) {
+> -		char line[128];
+> -
+> -		if (prev && !memcmp(prev, buf + pos, rowsize)) {
+> -			if (!skip) {
+> -				drm_printf(m, "*\n");
+> -				skip = true;
+> -			}
+> -			continue;
+> -		}
+> -
+> -		WARN_ON_ONCE(hex_dump_to_buffer(buf + pos, len - pos,
+> -						rowsize, sizeof(u32),
+> -						line, sizeof(line),
+> -						false) >= sizeof(line));
+> -		drm_printf(m, "[%04zx] %s\n", pos, line);
+> -
+> -		prev = buf + pos;
+> -		skip = false;
+> -	}
+> -}
+> -
+>  static void
+>  print_request_ring(struct drm_printer *m, const struct i915_request *rq)
+>  {
+> @@ -1153,7 +1124,7 @@ print_request_ring(struct drm_printer *m, const struct i915_request *rq)
+>  		}
+>  		memcpy(ring + len, vaddr + head, size - len);
+>  
+> -		hexdump(m, ring, size);
+> +		i915_hexdump(m, ring, size);
+>  		kfree(ring);
+>  	}
+>  }
+> @@ -1195,7 +1166,7 @@ void i915_sched_show(struct drm_printer *m,
+>  
+>  		if (rq->context->lrc_reg_state) {
+>  			drm_printf(m, "Logical Ring Context:\n");
+> -			hexdump(m, rq->context->lrc_reg_state, PAGE_SIZE);
+> +			i915_hexdump(m, rq->context->lrc_reg_state, PAGE_SIZE);
+>  		}
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
+> index 894de60833ec..432ad0926586 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.c
+> +++ b/drivers/gpu/drm/i915/i915_utils.c
+> @@ -49,6 +49,35 @@ __i915_printk(struct drm_i915_private *dev_priv, const char *level,
+>  	}
+>  }
+>  
+> +void i915_hexdump(struct drm_printer *m, const void *buf, size_t len)
+> +{
+> +	const size_t rowsize = 8 * sizeof(u32);
+> +	const void *prev = NULL;
+> +	bool skip = false;
+> +	size_t pos;
+> +
+> +	for (pos = 0; pos < len; pos += rowsize) {
+> +		char line[128];
+> +
+> +		if (prev && !memcmp(prev, buf + pos, rowsize)) {
+> +			if (!skip) {
+> +				drm_printf(m, "*\n");
+> +				skip = true;
+> +			}
+> +			continue;
+> +		}
+> +
+> +		WARN_ON_ONCE(hex_dump_to_buffer(buf + pos, len - pos,
+> +						rowsize, sizeof(u32),
+> +						line, sizeof(line),
+> +						false) >= sizeof(line));
+> +		drm_printf(m, "[%04zx] %s\n", pos, line);
+> +
+> +		prev = buf + pos;
+> +		skip = false;
+> +	}
+> +}
+> +
+>  void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint)
+>  {
+>  	__i915_printk(i915, KERN_NOTICE, "CI tainted:%#x by %pS\n",
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+> index 4618fe8aacb5..c82461d6ae71 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
+> @@ -32,6 +32,7 @@
+>  #include <linux/workqueue.h>
+>  
+>  struct drm_i915_private;
+> +struct drm_printer;
+>  struct timer_list;
+>  
+>  #define FDO_BUG_URL "https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs"
+> @@ -82,6 +83,8 @@ bool i915_error_injected(void);
+>  	__i915_printk(i915, i915_error_injected() ? KERN_DEBUG : KERN_ERR, \
+>  		      fmt, ##__VA_ARGS__)
+>  
+> +void i915_hexdump(struct drm_printer *m, const void *buf, size_t len);
+> +
+>  #if defined(GCC_VERSION) && GCC_VERSION >= 70000
+>  #define add_overflows_t(T, A, B) \
+>  	__builtin_add_overflow_p((A), (B), (T)0)
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
