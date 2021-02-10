@@ -2,44 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2944F316BC3
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 17:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 379B7316DDC
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 19:06:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47FDB6E1D2;
-	Wed, 10 Feb 2021 16:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCEB76ECBF;
+	Wed, 10 Feb 2021 18:06:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 607526E1D2
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 16:52:29 +0000 (UTC)
-IronPort-SDR: neOZX3vchV0jXT8xoEzhZ+3wJFboolYZgH65J9LeHkAZQO95t3QxDDNWDzMgPC6IK0uL9bfxB8
- EuWMlxHIqn5g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="266949604"
-X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="266949604"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2021 08:52:02 -0800
-IronPort-SDR: VHfp+dBwzTNi3pt1hpJSny6ROXhGG/e8bWsrs6s3kWE2aWjkv0tCU2fZG8z6Jb1bA9A8o53w9N
- B6MnojfLUCeQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="380204454"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 10 Feb 2021 08:51:59 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 10 Feb 2021 18:51:58 +0200
-Date: Wed, 10 Feb 2021 18:51:58 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "20210201150228.10001-1-shawn.c.lee@intel.com"
- <20210201150228.10001-1-shawn.c.lee@intel.com>
-Message-ID: <YCQPLmUTGxjXFybM@intel.com>
-References: <20210201150228.10001-1-shawn.c.lee@intel.com>
- <YB2p+Xa8PkFQT1L8@intel.com>
- <BY5PR11MB4307E25E1688D66A7B6028BBA38F9@BY5PR11MB4307.namprd11.prod.outlook.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C62056ECBD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 18:06:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1612980379;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=jYi+k7DEhVHx5f9l8WnnMKISfctNrL5GP+pVovkhzyE=;
+ b=CWGRh963AEQW+6bWXHYXTMKmOc59VJ4/jqxzZDAeXvN0d059q334LM8MDLovjoc+kej1PL
+ tx1DwGp8dHxyXrpLHyKsByhcww2aIrleBKQcS4RTecBKUiIV3NvoAtWAChjV6mu9LdOfCy
+ D5wpqKpg/8Ez0lOhe8Td981JnUuEC7c=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-309-46CFFFKQNj6gFpnEUF6KwQ-1; Wed, 10 Feb 2021 13:03:07 -0500
+X-MC-Unique: 46CFFFKQNj6gFpnEUF6KwQ-1
+Received: by mail-qt1-f198.google.com with SMTP id w92so2163048qte.20
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 10:03:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
+ :in-reply-to:references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=jYi+k7DEhVHx5f9l8WnnMKISfctNrL5GP+pVovkhzyE=;
+ b=PwHZCyJo+aeo7gmunfdL89t0Dq6repJrprKZxtwPpfv7lKx9Ip9sx9IVhx/ZMhZYuA
+ PsJpFbMHPj0WvSmpnWZN5OUiH6CLj8ClgwSwMOuMEo62RufUGRX5Q3eY0LbXW4oPVIjo
+ /lK52Zn+pzceWQuEatUva6O6cnDMSao0NvZlsfEunG6H5j3Qd3BmriMUmwzVzXoAgGIK
+ V5nnE71vvIg2rjiXO0+vAatLo9ulz8DK4WMnwSq5abhCmpP1m1fHDM3yt8nPHvNYMaut
+ Jy4b9FONxy+pYkLnQGIuiv5723jb20Z7yzj8gjxMErqvMtM6vtRFtmNeOBdV7EFlSo1N
+ 1iBw==
+X-Gm-Message-State: AOAM530qv9Lllp4Ma2/yG6Qejed71lWqkZckadOJBiPsf7I5rCG7L6LJ
+ cQW0yz+hvTHkEblaCWVXTbUBC9schoRPRgWaxZuw/GQkMVekVfjgywF+SjpjYnpraorv5PDUQQQ
+ thQfU6kYTN7v20MvpmAvp/UGd5bCj
+X-Received: by 2002:a0c:c583:: with SMTP id a3mr4141008qvj.15.1612980186834;
+ Wed, 10 Feb 2021 10:03:06 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzzAYXxVyBX4lvJYvwtH9+mLstAEOqw2KxHkGhO7wbCieB1wFxJQPnwDRv4Ua5PpuMX+0picQ==
+X-Received: by 2002:a0c:c583:: with SMTP id a3mr4140988qvj.15.1612980186584;
+ Wed, 10 Feb 2021 10:03:06 -0800 (PST)
+Received: from Whitewolf.lyude.net
+ (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id o24sm1819958qtt.36.2021.02.10.10.03.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 Feb 2021 10:03:06 -0800 (PST)
+Message-ID: <d8606a5519a777c6531accdd8406b17a1dac3c66.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Date: Wed, 10 Feb 2021 13:03:05 -0500
+In-Reply-To: <20210210083338.100068-1-khaled.almahallawy@intel.com>
+References: <20210210083338.100068-1-khaled.almahallawy@intel.com>
+Organization: Red Hat
+User-Agent: Evolution 3.38.3 (3.38.3-1.fc33)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <BY5PR11MB4307E25E1688D66A7B6028BBA38F9@BY5PR11MB4307.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/vbt: update DP max link rate table
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [RFC PATCH 1/2] drm/dp: Make number of AUX retries
+ configurable by display drivers.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,116 +83,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Tseng,
- William" <william.tseng@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: lyude@redhat.com
+Cc: seanpaul@chromium.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 08, 2021 at 01:31:57PM +0000, Lee, Shawn C wrote:
-> On Fri, Feb 05, 2021, at 8:26 p.m, Ville Syrj=E4l=E4 wrote:
-> >On Mon, Feb 01, 2021 at 11:02:28PM +0800, Lee Shawn C wrote:
-> >> According to Bspec #20124, max link rate table for DP was updated at =
-
-> >> BDB version 230. Max link rate can support upto UHBR.
-> >> =
-
-> >> After migrate to BDB v230, the definition for LBR, HBR2 and HBR3 were =
-
-> >> changed. For backward compatibility. If BDB version was from 216 to =
-
-> >> 229. Driver have to follow original rule to configure DP max link rate =
-
-> >> value from VBT.
-> >> =
-
-> >> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> >> Cc: Imre Deak <imre.deak@intel.com>
-> >> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> >> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> >> Cc: William Tseng <william.tseng@intel.com>
-> >> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_bios.c     | 24 ++++++++++++++++++-
-> >>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 14 +++++++----
-> >>  2 files changed, 32 insertions(+), 6 deletions(-)
-> >> =
-
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c =
-
-> >> b/drivers/gpu/drm/i915/display/intel_bios.c
-> >> index 04337ac6f8c4..be1f732e6550 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> >> @@ -1876,7 +1876,15 @@ static void parse_ddi_port(struct drm_i915_priv=
-ate *dev_priv,
-> >>  	/* DP max link rate for CNL+ */
-> >>  	if (bdb_version >=3D 216) {
-> >>  		switch (child->dp_max_link_rate) {
-> >> -		default:
-> >> +		case VBT_DP_MAX_LINK_RATE_UHBR20:
-> >> +			info->dp_max_link_rate =3D 2000000;
-> >> +			break;
-> >> +		case VBT_DP_MAX_LINK_RATE_UHBR13P5:
-> >> +			info->dp_max_link_rate =3D 1350000;
-> >> +			break;
-> >> +		case VBT_DP_MAX_LINK_RATE_UHBR10:
-> >> +			info->dp_max_link_rate =3D 1000000;
-> >> +			break;
-> >>  		case VBT_DP_MAX_LINK_RATE_HBR3:
-> >>  			info->dp_max_link_rate =3D 810000;
-> >>  			break;
-> >> @@ -1889,7 +1897,21 @@ static void parse_ddi_port(struct drm_i915_priv=
-ate *dev_priv,
-> >>  		case VBT_DP_MAX_LINK_RATE_LBR:
-> >>  			info->dp_max_link_rate =3D 162000;
-> >>  			break;
-> >> +		case VBT_DP_MAX_LINK_RATE_DEFAULT:
-> >> +		default:
-> >> +			info->dp_max_link_rate =3D 0;
-> >> +			break;
-> >> +		}
-> >> +
-> >> +		if (bdb_version < 230) {
-> >> +			if (child->dp_max_link_rate =3D=3D VBT_DP_MAX_LINK_RATE_DEFAULT)
-> >> +				info->dp_max_link_rate =3D 810000;
-> >> +			else if (child->dp_max_link_rate =3D=3D VBT_DP_MAX_LINK_RATE_LBR)
-> >> +				info->dp_max_link_rate =3D 540000;
-> >> +			else if (child->dp_max_link_rate =3D=3D VBT_DP_MAX_LINK_RATE_HBR2)
-> >> +				info->dp_max_link_rate =3D 162000;
-> >>  		}
-> >
-> >I would split this into two separate functions, one does the new mapping=
-, the other the old mapping. =
-
-> >
-> =
-
-> I will split this into two separate functions in patch v2.
-
-Actually looking through the VBT history this seems to have been
-retroactively changed for already rev 216+ to follow the new
-definitions. And naturally no actual explanation given. So it's
-the same old VBT=3D=3Dsnafu as always.
-
-I guess the real question is whether any machines migth have shipped
-that depened on the old defitions? Unless someone manages to
-find that out I think we might just have to change this to follow
-only the new style and hope we don't regress a lot of machines.
-
-I was a bit hopeful that this might have fixed [1], but looks
-like that just has this set to 0 which doesn't give us the desired
-2.7Gbps with either the old or new definition :(
-
-[1] https://gitlab.freedesktop.org/drm/intel/-/issues/3034
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIxLTAyLTEwIGF0IDAwOjMzIC0wODAwLCBLaGFsZWQgQWxtYWhhbGxhd3kgd3Jv
+dGU6Cj4gVGhlIG51bWJlciBvZiBBVVggcmV0cmllcyBzcGVjaWZpZWQgaW4gdGhlIERQIHNwZWNz
+IGlzIDcuIEN1cnJlbnRseSwgdG8gbWFrZQo+IERlbGwgNGsgbW9uaXRvcnMgaGFwcGllciwgdGhl
+IG51bWJlciBvZiByZXRyaWVzIGFyZSAzMi4KPiBpOTE1IGFsc28gcmV0cmllcyA1IHRpbWVzIChp
+bnRlbF9kcF9hdXhfeGZlcikgd2hpY2ggbWVhbnMgaW4gdGhlIGNhc2Ugb2YgQVVYCj4gdGltZW91
+dCB3ZSBhY3R1YWxseSByZXRyaWVzIDMyICogNSA9IDE2MCB0aW1lcy4KCklzIHRoZXJlIGFueSBn
+b29kIHJlYXNvbiBmb3IgaTkxNSB0byBhY3R1YWxseSBiZSBkb2luZyByZXRyaWVzIGl0c2VsZj8g
+SXQgc2VlbXMKbGlrZSBhbiBlYXNpZXIgc29sdXRpb24gaGVyZSBtaWdodCBqdXN0IHRvIGJlIHRv
+IGZpeCBpOTE1IHNvIGl0IGRvZXNuJ3QgcmV0cnksCmFuZCBqdXN0IHJlbHkgb24gRFJNIHRvIGRv
+IHRoZSByZXRyaWVzIGFzIGFwcHJvcHJpYXRlLgoKVGhhdCBiZWluZyBzYWlkIHRob3VnaCwgSSdt
+IG9wZW4gdG8gdGhpcyBpZiB0aGVyZSBpcyBhIGxlZ2l0aW1hdGUgcmVhc29uIGZvcgppOTE1IHRv
+IGJlIGhhbmRsaW5nIHJldHJpZXMgb24gaXRzIG93bgoKPiAKPiBTbyBtYWtpbmcgdGhlIG51bWJl
+ciBvZiBhdXggcmV0aXJlcyBhIHZhcmlhYmxlIHRvIGFsbG93IGZvciBmaW5lIHR1bmluZyBhbmQK
+PiBvcHRpbWl6YXRpb24gb2YgYXV4IHRpbWluZy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBLaGFsZWQg
+QWxtYWhhbGxhd3kgPGtoYWxlZC5hbG1haGFsbGF3eUBpbnRlbC5jb20+Cj4gLS0tCj4gwqBkcml2
+ZXJzL2dwdS9kcm0vZHJtX2RwX2hlbHBlci5jIHwgMTAgKysrLS0tLS0tLQo+IMKgaW5jbHVkZS9k
+cm0vZHJtX2RwX2hlbHBlci5owqDCoMKgwqAgfMKgIDEgKwo+IMKgMiBmaWxlcyBjaGFuZ2VkLCA0
+IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9kcm1fZHBfaGVscGVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2hlbHBlci5j
+Cj4gaW5kZXggZWVkYmI0ODgxNWI3Li44ZmRmNTdiNGEwNmMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2RybV9kcF9oZWxwZXIuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBf
+aGVscGVyLmMKPiBAQCAtMjQ5LDEzICsyNDksNyBAQCBzdGF0aWMgaW50IGRybV9kcF9kcGNkX2Fj
+Y2VzcyhzdHJ1Y3QgZHJtX2RwX2F1eCAqYXV4LCB1OAo+IHJlcXVlc3QsCj4gwqAKPiDCoMKgwqDC
+oMKgwqDCoMKgbXV0ZXhfbG9jaygmYXV4LT5od19tdXRleCk7Cj4gwqAKPiAtwqDCoMKgwqDCoMKg
+wqAvKgo+IC3CoMKgwqDCoMKgwqDCoCAqIFRoZSBzcGVjaWZpY2F0aW9uIGRvZXNuJ3QgZ2l2ZSBh
+bnkgcmVjb21tZW5kYXRpb24gb24gaG93IG9mdGVuIHRvCj4gLcKgwqDCoMKgwqDCoMKgICogcmV0
+cnkgbmF0aXZlIHRyYW5zYWN0aW9ucy4gV2UgdXNlZCB0byByZXRyeSA3IHRpbWVzIGxpa2UgZm9y
+Cj4gLcKgwqDCoMKgwqDCoMKgICogYXV4IGkyYyB0cmFuc2FjdGlvbnMgYnV0IHJlYWwgd29ybGQg
+ZGV2aWNlcyB0aGlzIHdhc24ndAo+IC3CoMKgwqDCoMKgwqDCoCAqIHN1ZmZpY2llbnQsIGJ1bXAg
+dG8gMzIgd2hpY2ggbWFrZXMgRGVsbCA0ayBtb25pdG9ycyBoYXBwaWVyLgo+IC3CoMKgwqDCoMKg
+wqDCoCAqLwo+IC3CoMKgwqDCoMKgwqDCoGZvciAocmV0cnkgPSAwOyByZXRyeSA8IDMyOyByZXRy
+eSsrKSB7Cj4gK8KgwqDCoMKgwqDCoMKgZm9yIChyZXRyeSA9IDA7IHJldHJ5IDwgYXV4LT5udW1f
+cmV0cmllczsgcmV0cnkrKykgewo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYg
+KHJldCAhPSAwICYmIHJldCAhPSAtRVRJTUVET1VUKSB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdXNsZWVwX3JhbmdlKEFVWF9SRVRSWV9JTlRFUlZB
+TCwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgQVVYX1JFVFJZX0lOVEVSVkFMICsgMTAwKTsKPiBAQCAtMTc0
+NCw2ICsxNzM4LDggQEAgdm9pZCBkcm1fZHBfYXV4X2luaXQoc3RydWN0IGRybV9kcF9hdXggKmF1
+eCkKPiDCoMKgwqDCoMKgwqDCoMKgYXV4LT5kZGMucmV0cmllcyA9IDM7Cj4gwqAKPiDCoMKgwqDC
+oMKgwqDCoMKgYXV4LT5kZGMubG9ja19vcHMgPSAmZHJtX2RwX2kyY19sb2NrX29wczsKPiArwqDC
+oMKgwqDCoMKgwqAvKlN0aWxsIG1ha2luZyB0aGUgRGVsbCA0ayBtb25pdG9ycyBoYXBwaWVyKi8K
+PiArwqDCoMKgwqDCoMKgwqBhdXgtPm51bV9yZXRyaWVzID0gMzI7Cj4gwqB9Cj4gwqBFWFBPUlRf
+U1lNQk9MKGRybV9kcF9hdXhfaW5pdCk7Cj4gwqAKPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0v
+ZHJtX2RwX2hlbHBlci5oIGIvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oCj4gaW5kZXggZWRm
+ZmQxZGNjYTNlLi4xNmNiZmM4ZjVlNjYgMTAwNjQ0Cj4gLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2Rw
+X2hlbHBlci5oCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oCj4gQEAgLTE4NzYs
+NiArMTg3Niw3IEBAIHN0cnVjdCBkcm1fZHBfYXV4IHsKPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0
+IG11dGV4IGh3X211dGV4Owo+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3Qgd29ya19zdHJ1Y3QgY3Jj
+X3dvcms7Cj4gwqDCoMKgwqDCoMKgwqDCoHU4IGNyY19jb3VudDsKPiArwqDCoMKgwqDCoMKgwqBp
+bnQgbnVtX3JldHJpZXM7Cj4gwqDCoMKgwqDCoMKgwqDCoHNzaXplX3QgKCp0cmFuc2Zlcikoc3Ry
+dWN0IGRybV9kcF9hdXggKmF1eCwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IGRybV9kcF9hdXhfbXNnICptc2cpOwo+IMKgwqDC
+oMKgwqDCoMKgwqAvKioKCi0tIApTaW5jZXJlbHksCiAgIEx5dWRlIFBhdWwgKHNoZS9oZXIpCiAg
+IFNvZnR3YXJlIEVuZ2luZWVyIGF0IFJlZCBIYXQKICAgCk5vdGU6IEkgZGVhbCB3aXRoIGEgbG90
+IG9mIGVtYWlscyBhbmQgaGF2ZSBhIGxvdCBvZiBidWdzIG9uIG15IHBsYXRlLiBJZiB5b3UndmUK
+YXNrZWQgbWUgYSBxdWVzdGlvbiwgYXJlIHdhaXRpbmcgZm9yIGEgcmV2aWV3L21lcmdlIG9uIGEg
+cGF0Y2gsIGV0Yy4gYW5kIEkKaGF2ZW4ndCByZXNwb25kZWQgaW4gYSB3aGlsZSwgcGxlYXNlIGZl
+ZWwgZnJlZSB0byBzZW5kIG1lIGFub3RoZXIgZW1haWwgdG8gY2hlY2sKb24gbXkgc3RhdHVzLiBJ
+IGRvbid0IGJpdGUhCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
