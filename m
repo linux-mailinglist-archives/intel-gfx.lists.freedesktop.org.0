@@ -2,27 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29EFD3168B1
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 15:08:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC51531692D
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 15:31:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B82BD6E29D;
-	Wed, 10 Feb 2021 14:08:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B0FE6EC91;
+	Wed, 10 Feb 2021 14:31:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F31976E05C;
- Wed, 10 Feb 2021 14:08:46 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 57145B066;
- Wed, 10 Feb 2021 14:08:45 +0000 (UTC)
-Date: Wed, 10 Feb 2021 15:08:42 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YCPo6g3gDxD3P//h@linux-uq9g>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D940C6EC89;
+ Wed, 10 Feb 2021 14:31:07 +0000 (UTC)
+IronPort-SDR: +UFi6S+kiyhzRiaMI5zWTekYSFh425l94NdZOaqEkYUbJX+O28tCeYMSLO+9G2EoRcbspkLnYM
+ TbFl4VL5piuQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="266919387"
+X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="266919387"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 06:31:07 -0800
+IronPort-SDR: iokoZIAq5W+IsiPfGY0fW94n0g4TrEXc4wSF8e5IDWFjF0IZb6ZkO1c5yyZCXpUkztDKNPTE2o
+ 0h/LtnmMMKkA==
+X-IronPort-AV: E=Sophos;i="5.81,168,1610438400"; d="scan'208";a="380123320"
+Received: from bartoszo-mobl1.ger.corp.intel.com (HELO [10.252.56.156])
+ ([10.252.56.156])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 06:31:05 -0800
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+References: <20210210141138.11a6ad09@canb.auug.org.au>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <670f6c7e-1f71-ffce-f9dd-07c7f6164c22@linux.intel.com>
+Date: Wed, 10 Feb 2021 15:31:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+In-Reply-To: <20210210141138.11a6ad09@canb.auug.org.au>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] linux-next: build failure after merge of the
+ drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,81 +53,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Daniel,
+Op 2021-02-10 om 04:11 schreef Stephen Rothwell:
+> Hi all,
+>
+> After merging the drm-misc tree, today's linux-next build (x86_64
+> allmodconfig) failed like this:
+>
+> drivers/gpu/drm/v3d/v3d_sched.c:263:1: error: return type is an incomplete type
+>   263 | v3d_gpu_reset_for_timeout(struct v3d_dev *v3d, struct drm_sched_job *sched_job)
+>       | ^~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c: In function 'v3d_gpu_reset_for_timeout':
+> drivers/gpu/drm/v3d/v3d_sched.c:289:9: error: 'return' with a value, in function returning void [-Werror=return-type]
+>   289 |  return DRM_GPU_SCHED_STAT_NOMINAL;
+>       |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:263:1: note: declared here
+>   263 | v3d_gpu_reset_for_timeout(struct v3d_dev *v3d, struct drm_sched_job *sched_job)
+>       | ^~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c: At top level:
+> drivers/gpu/drm/v3d/v3d_sched.c:298:1: error: return type is an incomplete type
+>   298 | v3d_cl_job_timedout(struct drm_sched_job *sched_job, enum v3d_queue q,
+>       | ^~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c: In function 'v3d_cl_job_timedout':
+> drivers/gpu/drm/v3d/v3d_sched.c:309:10: error: 'return' with a value, in function returning void [-Werror=return-type]
+>   309 |   return DRM_GPU_SCHED_STAT_NOMINAL;
+>       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:298:1: note: declared here
+>   298 | v3d_cl_job_timedout(struct drm_sched_job *sched_job, enum v3d_queue q,
+>       | ^~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c: At top level:
+> drivers/gpu/drm/v3d/v3d_sched.c:316:1: error: return type is an incomplete type
+>   316 | v3d_bin_job_timedout(struct drm_sched_job *sched_job)
+>       | ^~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:325:1: error: return type is an incomplete type
+>   325 | v3d_render_job_timedout(struct drm_sched_job *sched_job)
+>       | ^~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:334:1: error: return type is an incomplete type
+>   334 | v3d_generic_job_timedout(struct drm_sched_job *sched_job)
+>       | ^~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:342:1: error: return type is an incomplete type
+>   342 | v3d_csd_job_timedout(struct drm_sched_job *sched_job)
+>       | ^~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c: In function 'v3d_csd_job_timedout':
+> drivers/gpu/drm/v3d/v3d_sched.c:353:10: error: 'return' with a value, in function returning void [-Werror=return-type]
+>   353 |   return DRM_GPU_SCHED_STAT_NOMINAL;
+>       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:342:1: note: declared here
+>   342 | v3d_csd_job_timedout(struct drm_sched_job *sched_job)
+>       | ^~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c: At top level:
+> drivers/gpu/drm/v3d/v3d_sched.c:362:18: error: initialization of 'enum drm_gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type 'void (*)(struct drm_sched_job *)' [-Werror=incompatible-pointer-types]
+>   362 |  .timedout_job = v3d_bin_job_timedout,
+>       |                  ^~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:362:18: note: (near initialization for 'v3d_bin_sched_ops.timedout_job')
+> drivers/gpu/drm/v3d/v3d_sched.c:369:18: error: initialization of 'enum drm_gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type 'void (*)(struct drm_sched_job *)' [-Werror=incompatible-pointer-types]
+>   369 |  .timedout_job = v3d_render_job_timedout,
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:369:18: note: (near initialization for 'v3d_render_sched_ops.timedout_job')
+> drivers/gpu/drm/v3d/v3d_sched.c:376:18: error: initialization of 'enum drm_gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type 'void (*)(struct drm_sched_job *)' [-Werror=incompatible-pointer-types]
+>   376 |  .timedout_job = v3d_generic_job_timedout,
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:376:18: note: (near initialization for 'v3d_tfu_sched_ops.timedout_job')
+> drivers/gpu/drm/v3d/v3d_sched.c:383:18: error: initialization of 'enum drm_gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type 'void (*)(struct drm_sched_job *)' [-Werror=incompatible-pointer-types]
+>   383 |  .timedout_job = v3d_csd_job_timedout,
+>       |                  ^~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:383:18: note: (near initialization for 'v3d_csd_sched_ops.timedout_job')
+> drivers/gpu/drm/v3d/v3d_sched.c:390:18: error: initialization of 'enum drm_gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type 'void (*)(struct drm_sched_job *)' [-Werror=incompatible-pointer-types]
+>   390 |  .timedout_job = v3d_generic_job_timedout,
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+> drivers/gpu/drm/v3d/v3d_sched.c:390:18: note: (near initialization for 'v3d_cache_clean_sched_ops.timedout_job')
+>
+> Caused by commit
+>
+>   c10983e14e8f ("drm/scheduler: Job timeout handler returns status (v3)")
+>
+> I have used the drm-misc tree from next-20210209 for today.
+>
+Hey,
 
-here's this week's PR for drm-misc-fixes. There's a buffer overflow in vc4
-and a memory leak in xlnx. The rest appear to be mere bug fixes.
+I reverted the commit in drm-misc-next-fixes. It should be good now. :)
 
-Best regards
-Thomas
+I must have accidentally cherry picked it when grabbing all fixes.
 
-drm-misc-fixes-2021-02-10:
- * dp_mst: Don't report un-attached ports as connected
- * sun4i: tcon1 sync polarity fix; Always set HDMI clock rate; Fix
-          H6 HDMI PHY config; Fix H6 max frequency
- * vc4: Fix buffer overflow
- * xlnx: Fix memory leak
-The following changes since commit 2b1b3e544f65f40df5eef99753e460a127910479:
+~Maarten
 
-  drm/ttm: Use __GFP_NOWARN for huge pages in ttm_pool_alloc_page (2021-01-=
-28 13:01:52 +0100)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021-02-10
-
-for you to fetch changes up to 1926a0508d8947cf081280d85ff035300dc71da7:
-
-  drm/sun4i: dw-hdmi: Fix max. frequency for H6 (2021-02-10 11:20:38 +0100)
-
-----------------------------------------------------------------
- * dp_mst: Don't report un-attached ports as connected
- * sun4i: tcon1 sync polarity fix; Always set HDMI clock rate; Fix
-          H6 HDMI PHY config; Fix H6 max frequency
- * vc4: Fix buffer overflow
- * xlnx: Fix memory leak
-
-----------------------------------------------------------------
-Imre Deak (1):
-      drm/dp_mst: Don't report ports connected if nothing is attached to th=
-em
-
-Jernej Skrabec (4):
-      drm/sun4i: tcon: set sync polarity for tcon1 channel
-      drm/sun4i: dw-hdmi: always set clock rate
-      drm/sun4i: Fix H6 HDMI PHY configuration
-      drm/sun4i: dw-hdmi: Fix max. frequency for H6
-
-Maxime Ripard (1):
-      drm/vc4: hvs: Fix buffer overflow with the dlist handling
-
-Quanyang Wang (1):
-      drm/xlnx: fix kmemleak by sending vblank_event in atomic_disable
-
- drivers/gpu/drm/drm_dp_mst_topology.c  |  1 +
- drivers/gpu/drm/sun4i/sun4i_tcon.c     | 25 +++++++++++++++++++++++++
- drivers/gpu/drm/sun4i/sun4i_tcon.h     |  6 ++++++
- drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c  | 10 +++-------
- drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h  |  1 -
- drivers/gpu/drm/sun4i/sun8i_hdmi_phy.c | 26 +++++++++-----------------
- drivers/gpu/drm/vc4/vc4_plane.c        | 18 ++++++++++++++----
- drivers/gpu/drm/xlnx/zynqmp_disp.c     | 15 +++++++--------
- 8 files changed, 65 insertions(+), 37 deletions(-)
-
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-(HRB 36809, AG N=FCrnberg)
-Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
