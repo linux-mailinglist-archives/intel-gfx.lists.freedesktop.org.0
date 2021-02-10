@@ -2,30 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04A01316795
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 14:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0392D3167B5
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 14:16:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA466EC7F;
-	Wed, 10 Feb 2021 13:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 310926EC8B;
+	Wed, 10 Feb 2021 13:16:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BB3A16EC78;
- Wed, 10 Feb 2021 13:11:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B3E09A7DFC;
- Wed, 10 Feb 2021 13:11:30 +0000 (UTC)
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F2336EC8B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 13:16:34 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id m13so2445843wro.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 05:16:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=1UsD0YQq8BXrBVlSyYQfOlW5dQ+OGtniw4usrBTNPn8=;
+ b=J8Q/NoEub8AfQpnESREJRauWcLGbTA0LyaBXZMsKRsx/KdDlDAbv69BUieot5/ygjv
+ F/1D/OPKy0hmcM3ys2791n71LUgzZvwQtgF9VuYiNalXtBvOKzHexErGjk4tfONYWS6F
+ eY0Tb8u6rXXc30fIQugW+T9SIltN/QfGZ/1GA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=1UsD0YQq8BXrBVlSyYQfOlW5dQ+OGtniw4usrBTNPn8=;
+ b=SydHf47MUmCCJpXRKQssyHIoh3DCfJ8sXFXfQAi0ACC0iV/w6QycAgeLr3mFoGPZWG
+ O+I9Qs/BThdD+RNOdyloaM9fY88y0dnQ00Lm9ckcnKTdMvZCyA2fXIPLeqtpGqhJyPq+
+ AlzbMJyhWYSh1MaYjTSvsAa6nL7YN8K2yQ6NkptlS/95+hvclf4eS+8SP0kwQPwudjmZ
+ YnoF5jFXXZ2FIgAM0Xudggat8N3os/ByIhEOHzfUcHxpwbc95+lMU3b9nCnoclmBCnJ3
+ IiLwg8p5ZgDeyGsXJ5nMTp+v3h8ZujtG1YHQFfPkBnC71j0qgy6EGCFQcgzT2KkaP/ie
+ kKPg==
+X-Gm-Message-State: AOAM533zZnbnOvbR3P+CTNR/WEp0J2K8RzqTB8iy+pUT3ok3mNeN4W5U
+ 1HNZUDuCZBAvHayntNlrxAieSg==
+X-Google-Smtp-Source: ABdhPJyQ2g8cLyQ9blwIwLYpe7LjuwbjxbBbDhOE9uu7HsGwwA0kISsFLaHgxe/xfDRw9TnBUPWDJA==
+X-Received: by 2002:adf:b749:: with SMTP id n9mr3562143wre.267.1612962993015; 
+ Wed, 10 Feb 2021 05:16:33 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id y11sm2963977wrh.16.2021.02.10.05.16.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 Feb 2021 05:16:32 -0800 (PST)
+Date: Wed, 10 Feb 2021 14:16:30 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Manasi Navare <manasi.d.navare@intel.com>
+Message-ID: <YCPcrusmPxj0iGxz@phenom.ffwll.local>
+References: <20210210001401.463-1-manasi.d.navare@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anand Moon" <anandx.ram.moon@intel.com>
-Date: Wed, 10 Feb 2021 13:11:30 -0000
-Message-ID: <161296269073.28741.18317123837806795173@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210210115441.6703-1-anandx.ram.moon@intel.com>
-In-Reply-To: <20210210115441.6703-1-anandx.ram.moon@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/adl=5Fs=3A_Add_gmbus_pin_mapping?=
+Content-Disposition: inline
+In-Reply-To: <20210210001401.463-1-manasi.d.navare@intel.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH] Revert "drm/atomic: document and enforce
+ rules around "spurious" EBUSY"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,170 +65,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0613116561=="
+Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0613116561==
-Content-Type: multipart/alternative;
- boundary="===============1354169744233788709=="
+On Tue, Feb 09, 2021 at 04:14:01PM -0800, Manasi Navare wrote:
+> This reverts commit fb6473a48b635c55d04eb94e579eede52ef39550.
+> 
+> These additional checks added to avoid EBUSY give unnecessary WARN_ON
+> in case of big joiner used in i915 in which case even if the modeset
+> is requested on a single pipe, internally another consecutive
+> pipe is stolen and used to drive half of the transcoder timings.
+> So in this case it is expected that requested crtc and affected crtcs
+> do not match. Hence the added WARN ON becomes irrelevant.
+> But there is no easy solution to get the bigjoiner information
+> here at drm level. So for now revert this until we work out
+> a better solution.
+> 
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
 
---===============1354169744233788709==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Nope. We can maybe rework this so that i915 can do stuff under the hood,
+but wrt uapi this was the thing we discussed with compositors. Without
+such a guarantee atomic is defacto broken from a compositor pov.
 
-== Series Details ==
+This WARN_ON is not unecessary, compositor people really do not want the
+kernel to throw around spurious EBUSY they have no visibility into.
 
-Series: drm/i915/adl_s: Add gmbus pin mapping
-URL   : https://patchwork.freedesktop.org/series/86944/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9757 -> Patchwork_19652
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19652 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-y:           [DMESG-WARN][1] ([i915#2411] / [i915#402]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9757/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@client:
-    - fi-glk-dsi:         [DMESG-FAIL][3] ([i915#3047]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9757/fi-glk-dsi/igt@i915_selftest@live@client.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/fi-glk-dsi/igt@i915_selftest@live@client.html
-
-  
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+Please also cc all the compositor people from my original patch if you
+change anything in this area.
+-Daniel
 
 
-Participating hosts (44 -> 39)
-------------------------------
+> ---
+>  drivers/gpu/drm/drm_atomic.c | 29 -----------------------------
+>  1 file changed, 29 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index b1efa9322be2..48b2262d69f6 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -320,10 +320,6 @@ EXPORT_SYMBOL(__drm_atomic_state_free);
+>   * needed. It will also grab the relevant CRTC lock to make sure that the state
+>   * is consistent.
+>   *
+> - * WARNING: Drivers may only add new CRTC states to a @state if
+> - * drm_atomic_state.allow_modeset is set, or if it's a driver-internal commit
+> - * not created by userspace through an IOCTL call.
+> - *
+>   * Returns:
+>   *
+>   * Either the allocated state or the error code encoded into the pointer. When
+> @@ -1306,15 +1302,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  	struct drm_crtc_state *new_crtc_state;
+>  	struct drm_connector *conn;
+>  	struct drm_connector_state *conn_state;
+> -	unsigned requested_crtc = 0;
+> -	unsigned affected_crtc = 0;
+>  	int i, ret = 0;
+>  
+>  	DRM_DEBUG_ATOMIC("checking %p\n", state);
+>  
+> -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
+> -		requested_crtc |= drm_crtc_mask(crtc);
+> -
+>  	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
+>  		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
+>  		if (ret) {
+> @@ -1362,26 +1353,6 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+>  		}
+>  	}
+>  
+> -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
+> -		affected_crtc |= drm_crtc_mask(crtc);
+> -
+> -	/*
+> -	 * For commits that allow modesets drivers can add other CRTCs to the
+> -	 * atomic commit, e.g. when they need to reallocate global resources.
+> -	 * This can cause spurious EBUSY, which robs compositors of a very
+> -	 * effective sanity check for their drawing loop. Therefor only allow
+> -	 * drivers to add unrelated CRTC states for modeset commits.
+> -	 *
+> -	 * FIXME: Should add affected_crtc mask to the ATOMIC IOCTL as an output
+> -	 * so compositors know what's going on.
+> -	 */
+> -	if (affected_crtc != requested_crtc) {
+> -		DRM_DEBUG_ATOMIC("driver added CRTC to commit: requested 0x%x, affected 0x%0x\n",
+> -				 requested_crtc, affected_crtc);
+> -		WARN(!state->allow_modeset, "adding CRTC not allowed without modesets: requested 0x%x, affected 0x%0x\n",
+> -		     requested_crtc, affected_crtc);
+> -	}
+> -
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL(drm_atomic_check_only);
+> -- 
+> 2.19.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9757 -> Patchwork_19652
-
-  CI-20190529: 20190529
-  CI_DRM_9757: fbcc37cd0591950c13a233a364342d873539d12f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6000: 72fcf1364781a401374dcff43b00db8e722cd47b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19652: ce88e6504d0f01c482977ec879466d00e4636265 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ce88e6504d0f drm/i915/adl_s: Add gmbus pin mapping
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html
-
---===============1354169744233788709==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/adl_s: Add gmbus pin mapping</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86944/">https://patchwork.freedesktop.org/series/86944/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9757 -&gt; Patchwork_19652</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19652 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9757/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@client:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9757/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9757 -&gt; Patchwork_19652</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9757: fbcc37cd0591950c13a233a364342d873539d12f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6000: 72fcf1364781a401374dcff43b00db8e722cd47b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19652: ce88e6504d0f01c482977ec879466d00e4636265 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>ce88e6504d0f drm/i915/adl_s: Add gmbus pin mapping</p>
-
-</body>
-</html>
-
---===============1354169744233788709==--
-
---===============0613116561==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0613116561==--
