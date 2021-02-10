@@ -1,36 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439743159E0
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 00:11:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1055315AA2
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 01:09:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E6F26EC00;
-	Tue,  9 Feb 2021 23:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 508FE6EC0A;
+	Wed, 10 Feb 2021 00:09:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8287F6EC00
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Feb 2021 23:11:02 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23827327-1500050 for multiple; Tue, 09 Feb 2021 23:07:34 +0000
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B99C66EC07;
+ Wed, 10 Feb 2021 00:09:10 +0000 (UTC)
+IronPort-SDR: XMMzzlQgpEhK0qi7cWCnefzCPkU7TAbMnFd9lGw/+OZVUDPD3FQur1JlPyt2r6YiexDE481JYi
+ XW+WdcEJjhDw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="182050938"
+X-IronPort-AV: E=Sophos;i="5.81,166,1610438400"; d="scan'208";a="182050938"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Feb 2021 16:09:09 -0800
+IronPort-SDR: MLRc+tr1JlmUnE3lKjRDQyQ0NIud27SCcLL1Ih/IsbpqtRJHH2GT+fna1puTZV6rZeeRUVq8Da
+ GjCYwbotMdTg==
+X-IronPort-AV: E=Sophos;i="5.81,166,1610438400"; d="scan'208";a="379542277"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA;
+ 09 Feb 2021 16:09:07 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue,  9 Feb 2021 16:14:01 -0800
+Message-Id: <20210210001401.463-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-In-Reply-To: <f1070486-891a-8ec0-0390-b9aeb03178ce@redhat.com>
-References: <fe6040b5-72a0-9882-439e-ea7fc0b3935d@redhat.com>
- <161282685855.9448.10484374241892252440@build.alporthouse.com>
- <f1070486-891a-8ec0-0390-b9aeb03178ce@redhat.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Hans de Goede <hdegoede@redhat.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org
-Date: Tue, 09 Feb 2021 23:07:36 +0000
-Message-ID: <161291205642.6673.10994709665368036431@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation
- is causing gfx issues
+Subject: [Intel-gfx] [PATCH] Revert "drm/atomic: document and enforce rules
+ around "spurious" EBUSY"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,49 +46,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Hans de Goede (2021-02-09 11:46:46)
-> Hi,
-> 
-> On 2/9/21 12:27 AM, Chris Wilson wrote:
-> > Quoting Hans de Goede (2021-02-08 20:38:58)
-> >> Hi All,
-> >>
-> >> We (Fedora) have been receiving reports from multiple users about gfx issues / glitches
-> >> stating with 5.10.9. All reporters are users of Ivy Bridge / Haswell iGPUs and all
-> >> reporters report that adding i915.mitigations=off to the cmdline fixes things, see:
-> > 
-> > I tried to reproduce this on the w/e on hsw-gt1, to no avail; and piglit
-> > did not report any differences with and without mitigations. I have yet
-> > to test other platforms. So I don't yet have an alternative.
-> 
-> Note the original / first reporter of:
-> 
-> https://bugzilla.redhat.com/show_bug.cgi?id=1925346
-> 
-> Is using hsw-gt2, so it seems that the problem is not just the enabling of
-> the mitigations on ivy-bridge / bay-trail but that there actually is
-> a regression on devices where the WA worked fine before...
+This reverts commit fb6473a48b635c55d04eb94e579eede52ef39550.
 
-There have been 3 crashes uploaded related to v5.10.9, and in all 3
-cases the ACTHD has been in the first page. This strongly suggests that
-the w/a is scribbling over address 0. And there's then a very good
-chance that
+These additional checks added to avoid EBUSY give unnecessary WARN_ON
+in case of big joiner used in i915 in which case even if the modeset
+is requested on a single pipe, internally another consecutive
+pipe is stolen and used to drive half of the transcoder timings.
+So in this case it is expected that requested crtc and affected crtcs
+do not match. Hence the added WARN ON becomes irrelevant.
+But there is no easy solution to get the bigjoiner information
+here at drm level. So for now revert this until we work out
+a better solution.
 
-commit 29d35b73ead4e41aa0d1a954c9bfbdce659ec5d6
-Author: Chris Wilson <chris@chris-wilson.co.uk>
-Date:   Mon Jan 25 12:50:33 2021 +0000
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+---
+ drivers/gpu/drm/drm_atomic.c | 29 -----------------------------
+ 1 file changed, 29 deletions(-)
 
-    drm/i915/gt: Always try to reserve GGTT address 0x0
-    
-    commit 489140b5ba2e7cc4b853c29e0591895ddb462a82 upstream.
+diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+index b1efa9322be2..48b2262d69f6 100644
+--- a/drivers/gpu/drm/drm_atomic.c
++++ b/drivers/gpu/drm/drm_atomic.c
+@@ -320,10 +320,6 @@ EXPORT_SYMBOL(__drm_atomic_state_free);
+  * needed. It will also grab the relevant CRTC lock to make sure that the state
+  * is consistent.
+  *
+- * WARNING: Drivers may only add new CRTC states to a @state if
+- * drm_atomic_state.allow_modeset is set, or if it's a driver-internal commit
+- * not created by userspace through an IOCTL call.
+- *
+  * Returns:
+  *
+  * Either the allocated state or the error code encoded into the pointer. When
+@@ -1306,15 +1302,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+ 	struct drm_crtc_state *new_crtc_state;
+ 	struct drm_connector *conn;
+ 	struct drm_connector_state *conn_state;
+-	unsigned requested_crtc = 0;
+-	unsigned affected_crtc = 0;
+ 	int i, ret = 0;
+ 
+ 	DRM_DEBUG_ATOMIC("checking %p\n", state);
+ 
+-	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
+-		requested_crtc |= drm_crtc_mask(crtc);
+-
+ 	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
+ 		ret = drm_atomic_plane_check(old_plane_state, new_plane_state);
+ 		if (ret) {
+@@ -1362,26 +1353,6 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
+ 		}
+ 	}
+ 
+-	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
+-		affected_crtc |= drm_crtc_mask(crtc);
+-
+-	/*
+-	 * For commits that allow modesets drivers can add other CRTCs to the
+-	 * atomic commit, e.g. when they need to reallocate global resources.
+-	 * This can cause spurious EBUSY, which robs compositors of a very
+-	 * effective sanity check for their drawing loop. Therefor only allow
+-	 * drivers to add unrelated CRTC states for modeset commits.
+-	 *
+-	 * FIXME: Should add affected_crtc mask to the ATOMIC IOCTL as an output
+-	 * so compositors know what's going on.
+-	 */
+-	if (affected_crtc != requested_crtc) {
+-		DRM_DEBUG_ATOMIC("driver added CRTC to commit: requested 0x%x, affected 0x%0x\n",
+-				 requested_crtc, affected_crtc);
+-		WARN(!state->allow_modeset, "adding CRTC not allowed without modesets: requested 0x%x, affected 0x%0x\n",
+-		     requested_crtc, affected_crtc);
+-	}
+-
+ 	return 0;
+ }
+ EXPORT_SYMBOL(drm_atomic_check_only);
+-- 
+2.19.1
 
-in v5.10.14 is sufficient to hide the issue.
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
