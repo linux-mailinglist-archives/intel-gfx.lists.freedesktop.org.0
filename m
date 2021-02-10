@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87BAD315CD1
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 03:05:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1BC7315DBD
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 04:11:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1E9A6EC1D;
-	Wed, 10 Feb 2021 02:05:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A51E76E14F;
+	Wed, 10 Feb 2021 03:11:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 124016E157;
- Wed, 10 Feb 2021 02:05:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 01F78A9932;
- Wed, 10 Feb 2021 02:05:01 +0000 (UTC)
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19E3A6E114;
+ Wed, 10 Feb 2021 03:11:44 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Db4Y90HD5z9sB4;
+ Wed, 10 Feb 2021 14:11:39 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1612926702;
+ bh=eAbbv1c4473lc/U2iVCN8pX8dVi4lHGQNHEtlCAMwAk=;
+ h=Date:From:To:Cc:Subject:From;
+ b=dcpWlTYZSobEHLhKLput+sRfS+UXNTa7KFrR/rGVzA/n8T2qBQJQ/79XmjhZEKb2W
+ zCUuQUXv7yWRckVi1GNl0lJd9JgeqsxaPw+qXkJCrP7txXuYWgtx89vEZcied/8RNw
+ KXyzIUA1I6GeS7N4DIZHSANgC7vtWSNmMaTOwsMPebrOi304u2s8TTl5DQpga0LSH+
+ goTG3GGGLyO0TPubSdqhBJMGH/oUv3TZr86HA63hUfqUsxpMPqas4wZnhi5xjzee+b
+ 1+y73C4Qz9muXLIi+P030lRrNofbyNTnvJWZ+J3jfYPJWACPVsR9HEOEVhDjh/qi57
+ MyiRfuzCHeaHw==
+Date: Wed, 10 Feb 2021 14:11:38 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20210210141138.11a6ad09@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Wed, 10 Feb 2021 02:05:01 -0000
-Message-ID: <161292270197.28740.8448446749857447436@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210210001401.463-1-manasi.d.navare@intel.com>
-In-Reply-To: <20210210001401.463-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmV2?=
- =?utf-8?q?ert_=22drm/atomic=3A_document_and_enforce_rules_around_=22spuri?=
- =?utf-8?q?ous=22_EBUSY=22?=
+Subject: [Intel-gfx] linux-next: build failure after merge of the drm-misc
+ tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,191 +48,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1119693075=="
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Luben Tuikov <luben.tuikov@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1617458797=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1119693075==
-Content-Type: multipart/alternative;
- boundary="===============1367831547009052596=="
+--===============1617458797==
+Content-Type: multipart/signed; boundary="Sig_/yMIn+23mpOqpJVxRcPfp7s0";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
---===============1367831547009052596==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/yMIn+23mpOqpJVxRcPfp7s0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: Revert "drm/atomic: document and enforce rules around "spurious" EBUSY"
-URL   : https://patchwork.freedesktop.org/series/86927/
-State : success
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
 
-== Summary ==
+drivers/gpu/drm/v3d/v3d_sched.c:263:1: error: return type is an incomplete =
+type
+  263 | v3d_gpu_reset_for_timeout(struct v3d_dev *v3d, struct drm_sched_job=
+ *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: In function 'v3d_gpu_reset_for_timeout':
+drivers/gpu/drm/v3d/v3d_sched.c:289:9: error: 'return' with a value, in fun=
+ction returning void [-Werror=3Dreturn-type]
+  289 |  return DRM_GPU_SCHED_STAT_NOMINAL;
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:263:1: note: declared here
+  263 | v3d_gpu_reset_for_timeout(struct v3d_dev *v3d, struct drm_sched_job=
+ *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: At top level:
+drivers/gpu/drm/v3d/v3d_sched.c:298:1: error: return type is an incomplete =
+type
+  298 | v3d_cl_job_timedout(struct drm_sched_job *sched_job, enum v3d_queue=
+ q,
+      | ^~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: In function 'v3d_cl_job_timedout':
+drivers/gpu/drm/v3d/v3d_sched.c:309:10: error: 'return' with a value, in fu=
+nction returning void [-Werror=3Dreturn-type]
+  309 |   return DRM_GPU_SCHED_STAT_NOMINAL;
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:298:1: note: declared here
+  298 | v3d_cl_job_timedout(struct drm_sched_job *sched_job, enum v3d_queue=
+ q,
+      | ^~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: At top level:
+drivers/gpu/drm/v3d/v3d_sched.c:316:1: error: return type is an incomplete =
+type
+  316 | v3d_bin_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:325:1: error: return type is an incomplete =
+type
+  325 | v3d_render_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:334:1: error: return type is an incomplete =
+type
+  334 | v3d_generic_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:342:1: error: return type is an incomplete =
+type
+  342 | v3d_csd_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: In function 'v3d_csd_job_timedout':
+drivers/gpu/drm/v3d/v3d_sched.c:353:10: error: 'return' with a value, in fu=
+nction returning void [-Werror=3Dreturn-type]
+  353 |   return DRM_GPU_SCHED_STAT_NOMINAL;
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:342:1: note: declared here
+  342 | v3d_csd_job_timedout(struct drm_sched_job *sched_job)
+      | ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c: At top level:
+drivers/gpu/drm/v3d/v3d_sched.c:362:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  362 |  .timedout_job =3D v3d_bin_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:362:18: note: (near initialization for 'v3d=
+_bin_sched_ops.timedout_job')
+drivers/gpu/drm/v3d/v3d_sched.c:369:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  369 |  .timedout_job =3D v3d_render_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:369:18: note: (near initialization for 'v3d=
+_render_sched_ops.timedout_job')
+drivers/gpu/drm/v3d/v3d_sched.c:376:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  376 |  .timedout_job =3D v3d_generic_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:376:18: note: (near initialization for 'v3d=
+_tfu_sched_ops.timedout_job')
+drivers/gpu/drm/v3d/v3d_sched.c:383:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  383 |  .timedout_job =3D v3d_csd_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:383:18: note: (near initialization for 'v3d=
+_csd_sched_ops.timedout_job')
+drivers/gpu/drm/v3d/v3d_sched.c:390:18: error: initialization of 'enum drm_=
+gpu_sched_stat (*)(struct drm_sched_job *)' from incompatible pointer type =
+'void (*)(struct drm_sched_job *)' [-Werror=3Dincompatible-pointer-types]
+  390 |  .timedout_job =3D v3d_generic_job_timedout,
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~
+drivers/gpu/drm/v3d/v3d_sched.c:390:18: note: (near initialization for 'v3d=
+_cache_clean_sched_ops.timedout_job')
 
-CI Bug Log - changes from CI_DRM_9754 -> Patchwork_19647
-====================================================
+Caused by commit
 
-Summary
--------
+  c10983e14e8f ("drm/scheduler: Job timeout handler returns status (v3)")
 
-  **SUCCESS**
+I have used the drm-misc tree from next-20210209 for today.
 
-  No regressions found.
+--=20
+Cheers,
+Stephen Rothwell
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/index.html
+--Sig_/yMIn+23mpOqpJVxRcPfp7s0
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-Known issues
-------------
+-----BEGIN PGP SIGNATURE-----
 
-  Here are the changes found in Patchwork_19647 that come from known issues:
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmAjTuoACgkQAVBC80lX
+0GzGLAf/d/58uMidoc4JmHnMyZCbt7HY3jpGVAKuh0UnM4qOq+vkKLg/owG+EGe3
+4zZycTr+XR091TCvbo7kEsozJzJ/h341hNcl43tQK2oWdVGpylXxZ8ot4ijJvs6k
+A/Lgiqc1mU8kRd2ox9ugSOl9iZGE4Dn3s8Uk7BVelsYeXaz5tGPHuKh/4aTgQiK2
+o/loR3kqI/acoAvJg6Gccu2mazld4v7qRPflmbRMTs4nvIoKSItkhP09t2SiTRXH
+51Xl1SFhUsFJmXiLl+mkNYe2nlkSCW7qGU/YCpn9AUTCGVBcJN4Zb37TjlBWfCk4
+JYLjBbGC4rQr0Q1zlVhsLc41lEJZtQ==
+=PUsP
+-----END PGP SIGNATURE-----
 
-### IGT changes ###
+--Sig_/yMIn+23mpOqpJVxRcPfp7s0--
 
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9754/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-kbl-7500u:       [PASS][3] -> [DMESG-WARN][4] ([i915#2605])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9754/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9754/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [FAIL][7] ([i915#2203] / [i915#579]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9754/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (43 -> 38)
-------------------------------
-
-  Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9754 -> Patchwork_19647
-
-  CI-20190529: 20190529
-  CI_DRM_9754: 115d43f1936b9d5da493e4ab324fada8938be783 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5999: 2982c998a9cb79095611fba018d5df3eec5eab88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19647: 064f0782a30808570873507b3086843c2b561329 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-064f0782a308 Revert "drm/atomic: document and enforce rules around "spurious" EBUSY"
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/index.html
-
---===============1367831547009052596==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Revert &quot;drm/atomic: document and enforce rules around &quot;spurious&quot; EBUSY&quot;</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86927/">https://patchwork.freedesktop.org/series/86927/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9754 -&gt; Patchwork_19647</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19647 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9754/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@sanitycheck:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9754/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/fi-kbl-7500u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@bad-flink:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9754/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9754/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19647/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 38)</h2>
-<p>Missing    (5): fi-jsl-1 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9754 -&gt; Patchwork_19647</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9754: 115d43f1936b9d5da493e4ab324fada8938be783 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_5999: 2982c998a9cb79095611fba018d5df3eec5eab88 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19647: 064f0782a30808570873507b3086843c2b561329 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>064f0782a308 Revert "drm/atomic: document and enforce rules around "spurious" EBUSY"</p>
-
-</body>
-</html>
-
---===============1367831547009052596==--
-
---===============1119693075==
+--===============1617458797==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -234,4 +199,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1119693075==--
+--===============1617458797==--
