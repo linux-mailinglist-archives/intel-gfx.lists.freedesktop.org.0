@@ -1,144 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F146331637A
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 11:16:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DDD23163A6
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 11:22:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00F606E9A3;
-	Wed, 10 Feb 2021 10:16:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1B486EB54;
+	Wed, 10 Feb 2021 10:22:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81BA86E1BE;
- Wed, 10 Feb 2021 10:16:19 +0000 (UTC)
-IronPort-SDR: XA1VhAYH4ED15OMdnGFFuyS6UeZh2Xxjq0lfQSkwB93rqKXizX21wLPJKa3d+9T2jFPps15Eas
- sZfEZCOjn2XA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9890"; a="179490834"
-X-IronPort-AV: E=Sophos;i="5.81,167,1610438400"; d="scan'208";a="179490834"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2021 02:16:19 -0800
-IronPort-SDR: VQT0qvvm571fIofvlR/bP7wu9YB6Nk668M/nWpRC6Gw6bSWjFQPNRS7fLuqq1r7DdK1nUQx/Ml
- 4n7+RmZhbeWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,167,1610438400"; d="scan'208";a="578370037"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga005.jf.intel.com with ESMTP; 10 Feb 2021 02:16:18 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 10 Feb 2021 02:16:18 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
- via Frontend Transport; Wed, 10 Feb 2021 02:16:18 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.174)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Wed, 10 Feb 2021 02:16:17 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JTK/RKDh8p2jZ2XdF50IDHl0V3MS0a5QQDbZgoB3bC6smAGWQpTKr0Dsyr46AxZ7uMDvAkhyGqm//s/YW6k4u2jmVzSjf4ZGXVYCBW+xIjY+T57SgEydhaxmdRhwpltapw6Thne0osiAbJx8c833EqeZ56sgj2GH0Zlh9m+nHxEVrAaOfn6zifWCPaxz7pF3HOtK/Cab+PDhjT4phJOUuFXIVOGKOPbN71auQxDwdnKS7LpGoGg4ikiZZbQq4iPgWTB4nIq77ylMg60WhFI6ULbEkjbIXmJ+uEEq/j2rsvNG0TBfLDNCKCPNDnys+ZzOzvXbrUmk/vGWP5w2xk7RIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b2YbYIY6sbAwMOpssbBKZ7kw2HzEg/6VwD5gkxC8MLw=;
- b=V3PDqebFXjxYY5BSMN91EIjnIS2RgEWQAFjES4i47mmZ+3jQgBXNOwvP89qKyIRprHDDDuei8zGt25KQo0arGREDUR5RA0Bf677595HYa3IYyGNN1ZlVyuUW4eL7i3fXTT4Mr9rP2m9omLjjy9j2TrlN8+xGoKJ//gkYEkCtKoMRE4n1T4BJHYqoQtoBGFQaWmrU97/biVCUxvECQ/e/oJJQJHC1hbMuUcBz7Yr7jQ6ig5bug25NAKvr3wyMc6zFG0ZvQt6aGmbXPKF4Ix2S8U+FrQkG5aTg/jkc+MzcIf1U/BRyVNJ0tFNvd/3KXZFDbQtkq5oEP5k6x/RljKcmgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b2YbYIY6sbAwMOpssbBKZ7kw2HzEg/6VwD5gkxC8MLw=;
- b=g6/zgWIBQ9VVGOVX1HTfN8QHGOcqUJOwhxBzkhDZRElChtq+/vG9h7TnKSuL+qCR4LdBQqLzkkil02dbHOB2RgHDn41cD9zm54qo8l/wjtqwJRhnXTw+trvwBtWs6lA7pHnOkRqwRoEcMzq346jdJ1nTPYY7umyGSYZRgnFEMvw=
-Received: from MW3PR11MB4620.namprd11.prod.outlook.com (2603:10b6:303:54::14)
- by MW3PR11MB4553.namprd11.prod.outlook.com (2603:10b6:303:2c::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3825.29; Wed, 10 Feb
- 2021 10:16:16 +0000
-Received: from MW3PR11MB4620.namprd11.prod.outlook.com
- ([fe80::94eb:c915:5a57:e7bc]) by MW3PR11MB4620.namprd11.prod.outlook.com
- ([fe80::94eb:c915:5a57:e7bc%6]) with mapi id 15.20.3846.026; Wed, 10 Feb 2021
- 10:16:16 +0000
-From: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>
-To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>
-Thread-Topic: [RFC PATCH 1/2] drm/dp: Make number of AUX retries configurable
- by display drivers.
-Thread-Index: AQHW/4cpKxF7JQIDHUqjHvmYD8/ADqpRFfUAgAAWhwA=
-Date: Wed, 10 Feb 2021 10:16:15 +0000
-Message-ID: <a24dffd636a8999fd2eeedb04ceb813906d711e3.camel@intel.com>
-References: <20210210083338.100068-1-khaled.almahallawy@intel.com>
- <9c290abd-7770-e386-76a4-c821ab33752b@suse.de>
-In-Reply-To: <9c290abd-7770-e386-76a4-c821ab33752b@suse.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.freedesktop.org; dkim=none (message not signed)
- header.d=none; lists.freedesktop.org;
- dmarc=none action=none header.from=intel.com;
-x-originating-ip: [134.134.136.215]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bb14ea83-acd8-4a00-8dab-08d8cdace6a9
-x-ms-traffictypediagnostic: MW3PR11MB4553:
-x-microsoft-antispam-prvs: <MW3PR11MB45539E36C6EFDB2B9E2CB91A898D9@MW3PR11MB4553.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: IDEdK5M4m5MV1/0JraQuHkkCXO8/Y9WO94doPsXL+dk+Rmyq9N/EfDXxj6crdoOkkYSFVOasaKmMazwW99dBR1PmRPt8aRJIUa/pnWq5huMwmNwo2nXtY+s3zo/PTIt/2FmIfNUjFcQFNwJyocy1ogHmVAojXjkKB8PAHw9qgWKd8z4vU6dNa12yIZ/RWXWmbcFSIyE6Xy58SFd3WZuoL6nUetsHVLrL3M0xo9IoY6uA6tCT8n2w1GC9HMEPKVc6hVi2u1VFI6dle9++8ifacXXuy/119Z3Im+p2CN4OHAYagSNkeCfQZfe+RYJqXYtlhTiAbu9jj1r+5hYgDm5XlW5tnKfNlNFMDdB2bIgXLBgqfvrKzTwhQgxAQIW1aJ46mCdqMgFUWHTmKCqPrqpspOORCQLAqGrriFcPTviAxczlMCdElLbMxR9dHcmCIT0LxxFmX3PQcvmru+PIma6Jwi4SokjRS/mxsT3Vw4+csZMKdm4BvZvVnKncD8WWc1fg136eVGoGvtuX7eJTmLo6iQ==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW3PR11MB4620.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(39860400002)(346002)(376002)(366004)(136003)(396003)(316002)(6486002)(2906002)(66476007)(71200400001)(6506007)(6512007)(478600001)(66446008)(66946007)(86362001)(83380400001)(8676002)(110136005)(26005)(2616005)(36756003)(66556008)(4326008)(8936002)(76116006)(64756008)(5660300002)(186003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?utf-8?B?Z1Ewd3pqZSt0YW5VellVNktyaWdvMUpBK3JobDU2Ujh4MlY0aXlmU3VEV1FJ?=
- =?utf-8?B?UWZ5c2pBMGZ3YkhZUVEvOGlzTWYybloxZUh2c1FaTEgrOHF1VnFOU2N6d0VM?=
- =?utf-8?B?UmVuYzlTeXFKSW05UnVGbDVxYnVaT0hWSVhRVTZXTmVNVzdudStGVm5lRkVG?=
- =?utf-8?B?Mk03Z09BK0poUXdmK21qcHlRczRGTktjc0NCSlV5OHB6SDg2WkZYYnNKc3g5?=
- =?utf-8?B?S2RNNXh5NWlyWlhTT0VpTWNhU3NObGkyeVd4NmczUzB5aFY4cTQ3WFBoVUk3?=
- =?utf-8?B?ZlJnL3dKNlplRzBKTDAwUFQ3ZHpoRDFYVmxqQUhFRlZTc3hINHFOVWpTK0Mx?=
- =?utf-8?B?Zlh4QThCT1IrMGx3TXdlbm10Q1lDWEphNWFoNGd0Mm53SlE2WE9lelhUcis2?=
- =?utf-8?B?VlhWVy9oeGM4NjhwMlk1Z1l6cXBCRURSeVEyNWRqQzdoa3M4MldTQUloS0hz?=
- =?utf-8?B?anZ3T1hRSWViWHZaeWRPRDRWRVluNW9aWjdHc1VQV0FjY0w5TEd0Q1dCN01N?=
- =?utf-8?B?VDhnTE5jNlpQdm1Yd25nZ0VOL0JVUGR0Rmg4TGhYODZxaE5uQmt5aGFCVWxw?=
- =?utf-8?B?ZWpBQlRvT0J1TEppQjV4SnUzRTNWZFQxeFRldlkxR0Z5WW1BVlRYa2JscDFR?=
- =?utf-8?B?VkFWKzR3cEtXWExRb1orTjdNcUtlLyt3Ui8yTnI1elRqaVJqWG53cnQrellB?=
- =?utf-8?B?WU9ZZlgwcFlXNHhJV3dMQWhTMFlndzRURyt6Tm9aRW9rTWxpeUVJTzRZRG9D?=
- =?utf-8?B?OXpnRG9WNG1zQ0dGdVdpaUJ5WFdhR3c3SGhlcWRLdXpVajlDUlE3cm5zRHRY?=
- =?utf-8?B?QXpwUGVPbkw0bmg2OGQrempxZ091VkJybmNqUWRDbjJWMVZ0WjhvRHY2cTNG?=
- =?utf-8?B?WDFHSituQjdDL3JId1ZLUGNRY1hZVXNjMitKZi81cE9BWXhwb09FZXFGRkYw?=
- =?utf-8?B?NllqeCsyelNwK0tqT1l0N0J1Q1Evc1dqeTJEaWJKSlJoWVVrcWZxZC8zblpD?=
- =?utf-8?B?T2RxZWNMY3R5U0VBSjE5WXhrZjNyKzB5OHhObGFUdElXNURNZ2dLb3FxVjNr?=
- =?utf-8?B?SHVSMTl6dDN1S0RobjZRcFV6VVRHcEpVUU5jZXhxNlpROGJNSklmSFlrSEVp?=
- =?utf-8?B?SnVxcHZXZ2RSVnF2dUt5RG1pVS9TVnZISGNXWkdsb1NWUlIwOFF1a0ZIZWg4?=
- =?utf-8?B?RXF5Mk5MMWp5RlIvb1BJNDVrMVl6Z0hRMnBXaFR6T2VYTFBWMTZNYTRzNmM5?=
- =?utf-8?B?MXhnWkE2VFM4bUZHektUYzR5WkhhdFdpcTJTS3h2UXdQWnRHYWRuN25WN3RT?=
- =?utf-8?B?TGNLSk00MG5VM0wxQTdzM0hSRlE1QmJybzlDR1ZpUmk0MTh6WW5QQ3BTNXpQ?=
- =?utf-8?B?WnN1VURrb25pQ2hYZmQ3RXZJRUtZcUlVdHZYUkhEUERsWUZPSk9JMjgwa3lr?=
- =?utf-8?B?Nlowanl4ZWVQdzd0eHJiV1d5aHpBeGdKemlIclZjN1pibmIrcHpQN2d4VnMy?=
- =?utf-8?B?UkFyKzFlbElMb0ttQy9ZN2cyamZNT3VBNWtObUxYN3VOQU92UlViL1I5Zi9h?=
- =?utf-8?B?VGJsalNjQVdEOFVDV291bmpVMHVHTVhON3BYVDQrR3pXWWJFbDl4Q0dEcCt3?=
- =?utf-8?B?dnJRQ2tBc3pVaUFTSXh1MnNKWlVZLzFDcWRRT3pUTE9tQ21Gd1lqQ1FSVlBS?=
- =?utf-8?B?amJmTGIzUitreU53eksxSGI3QkZkRlJRSjdwcEx2Z2JMdlg1Y3BzSmVmUHZ4?=
- =?utf-8?B?eSt5YnVJNjZEeEZrUXFsYjlUY0htVFQ5LzEzd2YrQWc0S2xWc3Z6R1Z5dWtC?=
- =?utf-8?B?MXNzYXhBWFpYNndWUzJadz09?=
-x-ms-exchange-transport-forked: True
-Content-ID: <85DEC8E77FA8B14F8C9C6EA0CCB46846@namprd11.prod.outlook.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 308046EB54
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 10:22:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.69.177; 
+Received: from build.alporthouse.com (unverified [78.156.69.177]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23831060-1500050 
+ for multiple; Wed, 10 Feb 2021 10:22:36 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 10 Feb 2021 10:22:37 +0000
+Message-Id: <20210210102238.28779-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW3PR11MB4620.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb14ea83-acd8-4a00-8dab-08d8cdace6a9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2021 10:16:15.9322 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1wkHxUpm328wKJTEjNo+8XP7OqNUNfRh4mhQA4dCgGoETtmP6fjctD9yl+B3ot9niWbT3fgKeV8OsnKN9XB0r29wmfcpTIfo/eAwk+tg8rk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4553
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [RFC PATCH 1/2] drm/dp: Make number of AUX retries
- configurable by display drivers.
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Check for scratch page scribbling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,107 +36,351 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "seanpaul@chromium.org" <seanpaul@chromium.org>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2021-02-10 at 09:55 +0100, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 10.02.21 um 09:33 schrieb Khaled Almahallawy:
-> > The number of AUX retries specified in the DP specs is 7.
-> > Currently, to make Dell 4k monitors happier, the number of retries
-> > are 32.
-> > i915 also retries 5 times (intel_dp_aux_xfer) which means in the
-> > case of AUX timeout we actually retries 32 * 5 = 160 times.
-> > 
-> > So making the number of aux retires a variable to allow for fine
-> > tuning and optimization of aux timing.
-> > 
-> > Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
-> > ---
-> >   drivers/gpu/drm/drm_dp_helper.c | 10 +++-------
-> >   include/drm/drm_dp_helper.h     |  1 +
-> >   2 files changed, 4 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_dp_helper.c
-> > b/drivers/gpu/drm/drm_dp_helper.c
-> > index eedbb48815b7..8fdf57b4a06c 100644
-> > --- a/drivers/gpu/drm/drm_dp_helper.c
-> > +++ b/drivers/gpu/drm/drm_dp_helper.c
-> > @@ -249,13 +249,7 @@ static int drm_dp_dpcd_access(struct
-> > drm_dp_aux *aux, u8 request,
-> >   
-> >   	mutex_lock(&aux->hw_mutex);
-> >   
-> > -	/*
-> > -	 * The specification doesn't give any recommendation on how
-> > often to
-> > -	 * retry native transactions. We used to retry 7 times like for
-> > -	 * aux i2c transactions but real world devices this wasn't
-> > -	 * sufficient, bump to 32 which makes Dell 4k monitors happier.
-> > -	 */
-> > -	for (retry = 0; retry < 32; retry++) {
-> > +	for (retry = 0; retry < aux->num_retries; retry++) {
-> >   		if (ret != 0 && ret != -ETIMEDOUT) {
-> >   			usleep_range(AUX_RETRY_INTERVAL,
-> >   				     AUX_RETRY_INTERVAL + 100);
-> > @@ -1744,6 +1738,8 @@ void drm_dp_aux_init(struct drm_dp_aux *aux)
-> >   	aux->ddc.retries = 3;
-> >   
-> >   	aux->ddc.lock_ops = &drm_dp_i2c_lock_ops;
-> > +	/*Still making the Dell 4k monitors happier*/
-> 
-> The original comment was helpful; this one isn't.
+Periodically check, for example when idling and upon closing user
+contexts, whether or not some client has written into unallocated PTE in
+their ppGTT.
 
-Noted and I apologize for the comment. Was just copy/past original
-comment. 
-> 
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../drm/i915/gem/selftests/i915_gem_context.c | 19 +++++++--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 31 +-------------
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  4 ++
+ drivers/gpu/drm/i915/gt/intel_gtt.c           | 42 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |  1 +
+ drivers/gpu/drm/i915/i915_scheduler.c         | 33 +--------------
+ drivers/gpu/drm/i915/i915_utils.c             | 29 +++++++++++++
+ drivers/gpu/drm/i915/i915_utils.h             |  3 ++
+ 8 files changed, 98 insertions(+), 64 deletions(-)
 
-> Besides that, what problem does this patchset address? Too much
-> probing? 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index df949320f2b5..b0c349a46e6a 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -1737,7 +1737,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 	return err;
+ }
+ 
+-static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
++static int check_ctx_scratch(struct i915_gem_context *ctx, u32 *out)
+ {
+ 	struct i915_address_space *vm;
+ 	struct page *page;
+@@ -1770,6 +1770,17 @@ static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
+ 	return err;
+ }
+ 
++static void reset_ctx_scratch(struct i915_gem_context *ctx, u32 value)
++{
++	struct i915_address_space *vm = ctx_vm(ctx);
++	struct page *page = __px_page(vm->scratch[0]);
++	u32 *vaddr;
++
++	vaddr = kmap(page);
++	memset32(vaddr, value, PAGE_SIZE / sizeof(value));
++	kunmap(page);
++}
++
+ static int igt_vm_isolation(void *arg)
+ {
+ 	struct drm_i915_private *i915 = arg;
+@@ -1816,11 +1827,11 @@ static int igt_vm_isolation(void *arg)
+ 		goto out_file;
+ 
+ 	/* Read the initial state of the scratch page */
+-	err = check_scratch_page(ctx_a, &expected);
++	err = check_ctx_scratch(ctx_a, &expected);
+ 	if (err)
+ 		goto out_file;
+ 
+-	err = check_scratch_page(ctx_b, &expected);
++	err = check_ctx_scratch(ctx_b, &expected);
+ 	if (err)
+ 		goto out_file;
+ 
+@@ -1876,6 +1887,8 @@ static int igt_vm_isolation(void *arg)
+ 		count, num_engines);
+ 
+ out_file:
++	/* As we deliberately write into scratch, cover up our tracks */
++	reset_ctx_scratch(ctx_a, expected);
+ 	if (igt_live_test_end(&t))
+ 		err = -EIO;
+ 	fput(file);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 577ebd4a324f..8443794df3ee 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1265,35 +1265,6 @@ bool intel_engine_can_store_dword(struct intel_engine_cs *engine)
+ 	}
+ }
+ 
+-static void hexdump(struct drm_printer *m, const void *buf, size_t len)
+-{
+-	const size_t rowsize = 8 * sizeof(u32);
+-	const void *prev = NULL;
+-	bool skip = false;
+-	size_t pos;
+-
+-	for (pos = 0; pos < len; pos += rowsize) {
+-		char line[128];
+-
+-		if (prev && !memcmp(prev, buf + pos, rowsize)) {
+-			if (!skip) {
+-				drm_printf(m, "*\n");
+-				skip = true;
+-			}
+-			continue;
+-		}
+-
+-		WARN_ON_ONCE(hex_dump_to_buffer(buf + pos, len - pos,
+-						rowsize, sizeof(u32),
+-						line, sizeof(line),
+-						false) >= sizeof(line));
+-		drm_printf(m, "[%04zx] %s\n", pos, line);
+-
+-		prev = buf + pos;
+-		skip = false;
+-	}
+-}
+-
+ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 					 struct drm_printer *m)
+ {
+@@ -1450,7 +1421,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
+ 	}
+ 
+ 	drm_printf(m, "HWSP:\n");
+-	hexdump(m, engine->status_page.addr, PAGE_SIZE);
++	i915_hexdump(m, engine->status_page.addr, PAGE_SIZE);
+ 
+ 	drm_printf(m, "Idle? %s\n", yesno(intel_engine_is_idle(engine)));
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index 0bd303d2823e..38375a006a99 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -11,6 +11,7 @@
+ #include "intel_context.h"
+ #include "intel_engine_pm.h"
+ #include "intel_gt.h"
++#include "intel_gtt.h"
+ #include "intel_gt_clock_utils.h"
+ #include "intel_gt_pm.h"
+ #include "intel_gt_requests.h"
+@@ -100,6 +101,9 @@ static int __gt_park(struct intel_wakeref *wf)
+ 	runtime_end(gt);
+ 	intel_gt_park_requests(gt);
+ 
++	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		check_scratch_page(gt->vm);
++
+ 	i915_vma_parked(gt);
+ 	i915_pmu_gt_parked(i915);
+ 	intel_rps_park(&gt->rps);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
+index d34770ae4c9a..5ac9eb4a3a92 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+@@ -158,10 +158,49 @@ static void poison_scratch_page(struct drm_i915_gem_object *scratch)
+ 
+ 		vaddr = kmap(page);
+ 		memset(vaddr, val, PAGE_SIZE);
++		set_page_dirty(page); /* keep the poisoned contents */
+ 		kunmap(page);
+ 	}
+ }
+ 
++void check_scratch_page(const struct i915_address_space *vm)
++{
++	struct drm_i915_gem_object *scratch;
++	struct sgt_iter sgt;
++	struct page *page;
++	void *vaddr;
++	u8 val;
++
++	scratch = vm->scratch[0];
++	if (!scratch || !i915_gem_object_has_struct_page(scratch))
++		return;
++
++	val = 0;
++	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		val = POISON_FREE;
++
++	for_each_sgt_page(page, sgt, scratch->mm.pages) {
++		vaddr = kmap(page);
++		drm_clflush_virt_range(vaddr, PAGE_SIZE);
++		if (memchr_inv(vaddr, val, PAGE_SIZE)) {
++			struct drm_printer p = drm_err_printer(__func__);
++
++			drm_err(&vm->i915->drm,
++				"%s scratch page overwitten!\n",
++				i915_is_ggtt(vm) ? "Global" : "Per-process");
++			i915_hexdump(&p, vaddr, PAGE_SIZE);
++			vaddr = NULL;
++		}
++		kunmap(page);
++		if (!vaddr)
++			break;
++	}
++
++	/* Restore the poison, so fresh errors will be detected */
++	if (!vaddr)
++		poison_scratch_page(scratch);
++}
++
+ int setup_scratch_page(struct i915_address_space *vm)
+ {
+ 	unsigned long size;
+@@ -229,6 +268,9 @@ void free_scratch(struct i915_address_space *vm)
+ {
+ 	int i;
+ 
++	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		check_scratch_page(vm);
++
+ 	for (i = 0; i <= vm->top; i++)
+ 		i915_gem_object_put(vm->scratch[i]);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index 24b5808df16d..a5b312c6485a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -519,6 +519,7 @@ fill_page_dma(struct drm_i915_gem_object *p, const u64 val, unsigned int count);
+ } while (0)
+ 
+ int setup_scratch_page(struct i915_address_space *vm);
++void check_scratch_page(const struct i915_address_space *vm);
+ void free_scratch(struct i915_address_space *vm);
+ 
+ struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz);
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index a8fb787278e6..7241f85c9967 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -1095,35 +1095,6 @@ void i915_request_show_with_schedule(struct drm_printer *m,
+ 	rcu_read_unlock();
+ }
+ 
+-static void hexdump(struct drm_printer *m, const void *buf, size_t len)
+-{
+-	const size_t rowsize = 8 * sizeof(u32);
+-	const void *prev = NULL;
+-	bool skip = false;
+-	size_t pos;
+-
+-	for (pos = 0; pos < len; pos += rowsize) {
+-		char line[128];
+-
+-		if (prev && !memcmp(prev, buf + pos, rowsize)) {
+-			if (!skip) {
+-				drm_printf(m, "*\n");
+-				skip = true;
+-			}
+-			continue;
+-		}
+-
+-		WARN_ON_ONCE(hex_dump_to_buffer(buf + pos, len - pos,
+-						rowsize, sizeof(u32),
+-						line, sizeof(line),
+-						false) >= sizeof(line));
+-		drm_printf(m, "[%04zx] %s\n", pos, line);
+-
+-		prev = buf + pos;
+-		skip = false;
+-	}
+-}
+-
+ static void
+ print_request_ring(struct drm_printer *m, const struct i915_request *rq)
+ {
+@@ -1153,7 +1124,7 @@ print_request_ring(struct drm_printer *m, const struct i915_request *rq)
+ 		}
+ 		memcpy(ring + len, vaddr + head, size - len);
+ 
+-		hexdump(m, ring, size);
++		i915_hexdump(m, ring, size);
+ 		kfree(ring);
+ 	}
+ }
+@@ -1195,7 +1166,7 @@ void i915_sched_show(struct drm_printer *m,
+ 
+ 		if (rq->context->lrc_reg_state) {
+ 			drm_printf(m, "Logical Ring Context:\n");
+-			hexdump(m, rq->context->lrc_reg_state, PAGE_SIZE);
++			i915_hexdump(m, rq->context->lrc_reg_state, PAGE_SIZE);
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/i915_utils.c b/drivers/gpu/drm/i915/i915_utils.c
+index 894de60833ec..432ad0926586 100644
+--- a/drivers/gpu/drm/i915/i915_utils.c
++++ b/drivers/gpu/drm/i915/i915_utils.c
+@@ -49,6 +49,35 @@ __i915_printk(struct drm_i915_private *dev_priv, const char *level,
+ 	}
+ }
+ 
++void i915_hexdump(struct drm_printer *m, const void *buf, size_t len)
++{
++	const size_t rowsize = 8 * sizeof(u32);
++	const void *prev = NULL;
++	bool skip = false;
++	size_t pos;
++
++	for (pos = 0; pos < len; pos += rowsize) {
++		char line[128];
++
++		if (prev && !memcmp(prev, buf + pos, rowsize)) {
++			if (!skip) {
++				drm_printf(m, "*\n");
++				skip = true;
++			}
++			continue;
++		}
++
++		WARN_ON_ONCE(hex_dump_to_buffer(buf + pos, len - pos,
++						rowsize, sizeof(u32),
++						line, sizeof(line),
++						false) >= sizeof(line));
++		drm_printf(m, "[%04zx] %s\n", pos, line);
++
++		prev = buf + pos;
++		skip = false;
++	}
++}
++
+ void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint)
+ {
+ 	__i915_printk(i915, KERN_NOTICE, "CI tainted:%#x by %pS\n",
+diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+index 4618fe8aacb5..c82461d6ae71 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -32,6 +32,7 @@
+ #include <linux/workqueue.h>
+ 
+ struct drm_i915_private;
++struct drm_printer;
+ struct timer_list;
+ 
+ #define FDO_BUG_URL "https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs"
+@@ -82,6 +83,8 @@ bool i915_error_injected(void);
+ 	__i915_printk(i915, i915_error_injected() ? KERN_DEBUG : KERN_ERR, \
+ 		      fmt, ##__VA_ARGS__)
+ 
++void i915_hexdump(struct drm_printer *m, const void *buf, size_t len);
++
+ #if defined(GCC_VERSION) && GCC_VERSION >= 70000
+ #define add_overflows_t(T, A, B) \
+ 	__builtin_add_overflow_p((A), (B), (T)0)
+-- 
+2.20.1
 
-The problem mainly with disconnect. When disconnecting, AUX read will
-fail because of timing out. The 32 retries cause the disconnect flow
-especially for Type-C/TBT Docks with MST hubs taking a long time.
-Just trying to reduce this disconnect time. In addition as I noted,
-i915 does retry in addition to retries by this function. 
-
-Currently this function retry for 4 AUX situations:
-AUX_NAK, AUX_DEFER, I/O error reported by driver and AUX timeout.
-
-> If I connect a Dell monitor to an Intel card, how often does it have
-> to 
-> probe?
-
-I guess it depends on how you connect (direct, behind MST hub, behind DOCK with MST). But I believe the most time consuming is the disconnect flow. 
-
-Thanks
-Khaled
-> 
-> Best regards
-> Thomas
-> 
-> > +	aux->num_retries = 32;
-> >   }
-> >   EXPORT_SYMBOL(drm_dp_aux_init);
-> >   
-> > diff --git a/include/drm/drm_dp_helper.h
-> > b/include/drm/drm_dp_helper.h
-> > index edffd1dcca3e..16cbfc8f5e66 100644
-> > --- a/include/drm/drm_dp_helper.h
-> > +++ b/include/drm/drm_dp_helper.h
-> > @@ -1876,6 +1876,7 @@ struct drm_dp_aux {
-> >   	struct mutex hw_mutex;
-> >   	struct work_struct crc_work;
-> >   	u8 crc_count;
-> > +	int num_retries;
-> >   	ssize_t (*transfer)(struct drm_dp_aux *aux,
-> >   			    struct drm_dp_aux_msg *msg);
-> >   	/**
-> > 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
