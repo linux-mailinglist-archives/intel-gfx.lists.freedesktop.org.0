@@ -1,38 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEB0B316718
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 13:50:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A01316795
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Feb 2021 14:11:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EBC76E06B;
-	Wed, 10 Feb 2021 12:50:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA466EC7F;
+	Wed, 10 Feb 2021 13:11:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 738416E06B
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Feb 2021 12:49:59 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23833492-1500050 for multiple; Wed, 10 Feb 2021 12:48:30 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BB3A16EC78;
+ Wed, 10 Feb 2021 13:11:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B3E09A7DFC;
+ Wed, 10 Feb 2021 13:11:30 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <02fd493c-957f-890d-d0ad-ebd4119f55f2@redhat.com>
-References: <fe6040b5-72a0-9882-439e-ea7fc0b3935d@redhat.com>
- <161282685855.9448.10484374241892252440@build.alporthouse.com>
- <f1070486-891a-8ec0-0390-b9aeb03178ce@redhat.com>
- <161291205642.6673.10994709665368036431@build.alporthouse.com>
- <02fd493c-957f-890d-d0ad-ebd4119f55f2@redhat.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Hans de Goede <hdegoede@redhat.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org
-Date: Wed, 10 Feb 2021 12:48:32 +0000
-Message-ID: <161296131275.7731.862746142230006325@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation
- is causing gfx issues
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anand Moon" <anandx.ram.moon@intel.com>
+Date: Wed, 10 Feb 2021 13:11:30 -0000
+Message-ID: <161296269073.28741.18317123837806795173@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210210115441.6703-1-anandx.ram.moon@intel.com>
+In-Reply-To: <20210210115441.6703-1-anandx.ram.moon@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/adl=5Fs=3A_Add_gmbus_pin_mapping?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,69 +38,170 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0613116561=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Hans de Goede (2021-02-10 10:37:19)
-> Hi,
-> 
-> On 2/10/21 12:07 AM, Chris Wilson wrote:
-> > Quoting Hans de Goede (2021-02-09 11:46:46)
-> >> Hi,
-> >>
-> >> On 2/9/21 12:27 AM, Chris Wilson wrote:
-> >>> Quoting Hans de Goede (2021-02-08 20:38:58)
-> >>>> Hi All,
-> >>>>
-> >>>> We (Fedora) have been receiving reports from multiple users about gfx issues / glitches
-> >>>> stating with 5.10.9. All reporters are users of Ivy Bridge / Haswell iGPUs and all
-> >>>> reporters report that adding i915.mitigations=off to the cmdline fixes things, see:
-> >>>
-> >>> I tried to reproduce this on the w/e on hsw-gt1, to no avail; and piglit
-> >>> did not report any differences with and without mitigations. I have yet
-> >>> to test other platforms. So I don't yet have an alternative.
-> >>
-> >> Note the original / first reporter of:
-> >>
-> >> https://bugzilla.redhat.com/show_bug.cgi?id=1925346
-> >>
-> >> Is using hsw-gt2, so it seems that the problem is not just the enabling of
-> >> the mitigations on ivy-bridge / bay-trail but that there actually is
-> >> a regression on devices where the WA worked fine before...
-> > 
-> > There have been 3 crashes uploaded related to v5.10.9, and in all 3
-> > cases the ACTHD has been in the first page. This strongly suggests that
-> > the w/a is scribbling over address 0. And there's then a very good
-> > chance that
-> > 
-> > commit 29d35b73ead4e41aa0d1a954c9bfbdce659ec5d6
-> > Author: Chris Wilson <chris@chris-wilson.co.uk>
-> > Date:   Mon Jan 25 12:50:33 2021 +0000
-> > 
-> >     drm/i915/gt: Always try to reserve GGTT address 0x0
-> >     
-> >     commit 489140b5ba2e7cc4b853c29e0591895ddb462a82 upstream.
-> > 
-> > in v5.10.14 is sufficient to hide the issue.
-> 
-> That one actually is already in v5.10.13 and the various reportes of these
-> issues have already tested 5.10.13. They did mention that it took longer
-> to reproduce with 5.10.13 then with 5.10.10, but that could also be due to:
-> 
-> "drm/i915/gt: Clear CACHE_MODE prior to clearing residuals"
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?h=linux-5.10.y&id=520d05a77b2866eb4cb9e548e1d8c8abcfe60ec5
+--===============0613116561==
+Content-Type: multipart/alternative;
+ boundary="===============1354169744233788709=="
 
-Started looking for scratch page overwrites, and found this little gem:
-https://patchwork.freedesktop.org/patch/420436/?series=86947&rev=1
+--===============1354169744233788709==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Looks promising wrt the cause of overwriting random addresses -- and
-I hope that is the explanation for the glitches/hangs. I have a hsw gt2
-with gnome shell, piglit is happy, but I suspect it is all due to
-placement and so will only occur at random.
--Chris
+== Series Details ==
+
+Series: drm/i915/adl_s: Add gmbus pin mapping
+URL   : https://patchwork.freedesktop.org/series/86944/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9757 -> Patchwork_19652
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19652 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [DMESG-WARN][1] ([i915#2411] / [i915#402]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9757/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@client:
+    - fi-glk-dsi:         [DMESG-FAIL][3] ([i915#3047]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9757/fi-glk-dsi/igt@i915_selftest@live@client.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/fi-glk-dsi/igt@i915_selftest@live@client.html
+
+  
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9757 -> Patchwork_19652
+
+  CI-20190529: 20190529
+  CI_DRM_9757: fbcc37cd0591950c13a233a364342d873539d12f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6000: 72fcf1364781a401374dcff43b00db8e722cd47b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19652: ce88e6504d0f01c482977ec879466d00e4636265 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ce88e6504d0f drm/i915/adl_s: Add gmbus pin mapping
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html
+
+--===============1354169744233788709==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/adl_s: Add gmbus pin mapping</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86944/">https://patchwork.freedesktop.org/series/86944/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9757 -&gt; Patchwork_19652</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19652 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9757/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9757/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19652/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 39)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-apl-guc fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9757 -&gt; Patchwork_19652</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9757: fbcc37cd0591950c13a233a364342d873539d12f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6000: 72fcf1364781a401374dcff43b00db8e722cd47b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19652: ce88e6504d0f01c482977ec879466d00e4636265 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>ce88e6504d0f drm/i915/adl_s: Add gmbus pin mapping</p>
+
+</body>
+</html>
+
+--===============1354169744233788709==--
+
+--===============0613116561==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0613116561==--
