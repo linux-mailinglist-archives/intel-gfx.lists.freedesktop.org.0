@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC6553194D7
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 22:06:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E507731957D
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 23:02:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 866866E14F;
-	Thu, 11 Feb 2021 21:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 923476EE68;
+	Thu, 11 Feb 2021 22:02:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 902756E14F
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 21:06:33 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23843304-1500050 
- for multiple; Thu, 11 Feb 2021 21:06:20 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Feb 2021 21:06:19 +0000
-Message-Id: <20210211210619.27865-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210205104905.31414-1-chris@chris-wilson.co.uk>
-References: <20210205104905.31414-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 496476EB9C;
+ Thu, 11 Feb 2021 22:02:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 425D6A47DB;
+ Thu, 11 Feb 2021 22:02:19 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4] drm/i915/gt: Ratelimit heartbeat completion
- probing
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 11 Feb 2021 22:02:19 -0000
+Message-ID: <161308093924.27071.16634883891669085093@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210205104905.31414-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210205104905.31414-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Ratelimit_heartbeat_completion_probing_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,435 +38,315 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0647463613=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The heartbeat runs through a few phases that we expect to complete
-within a certain number of heartbeat intervals. First we must submit the
-heartbeat to the queue, and if the queue is occupied it may take a
-couple of intervals before the heartbeat preempts the workload and is
-submitted to HW. Once running on HW, completion is not instantaneous as
-it may have to first reset the current workload before it itself runs
-through the empty request and signals completion. As such, we know that
-the heartbeat must take at least the preempt reset timeout and before we
-have had a chance to reset the engine, we do not want to issue a global
-reset ourselves (simply so that we only try to do one reset at a time
-and not confuse ourselves by resetting twice and hitting an innocent.)
+--===============0647463613==
+Content-Type: multipart/alternative;
+ boundary="===============4549054719031786275=="
 
-So by taking into consideration that once running the request must take
-a finite amount of time, we can delay the final completion check to
-accommodate that and avoid checking too early (before we've had a chance
-to handle any engine resets required).
+--===============4549054719031786275==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Attach a callback to flush the work immediately upon the heartbeat
-completion and insert the delay before the next.
+== Series Details ==
 
-v3: Now with more tracking for selftests and detection of
-false/unexpected hang reports.
+Series: drm/i915/gt: Ratelimit heartbeat completion probing (rev9)
+URL   : https://patchwork.freedesktop.org/series/86665/
+State : failure
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2853
-Suggested-by: CQ Tang <cq.tang@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 107 +++++++++++++++---
- drivers/gpu/drm/i915/gt/intel_engine_types.h  |   8 ++
- .../drm/i915/gt/selftest_engine_heartbeat.c   |  93 +++++++++------
- drivers/gpu/drm/i915/gt/selftest_execlists.c  |   5 +-
- 4 files changed, 163 insertions(+), 50 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 0b062fad1837..351f58def216 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -20,6 +20,18 @@
-  * issue a reset -- in the hope that restores progress.
-  */
- 
-+#define HEARTBEAT_COMPLETION 50u /* milliseconds */
-+
-+static long completion_timeout(const struct intel_engine_cs *engine)
-+{
-+	long timeout = HEARTBEAT_COMPLETION;
-+
-+	if (intel_engine_has_preempt_reset(engine))
-+		timeout += READ_ONCE(engine->props.preempt_timeout_ms);
-+
-+	return msecs_to_jiffies(timeout);
-+}
-+
- static bool next_heartbeat(struct intel_engine_cs *engine)
- {
- 	long delay;
-@@ -29,6 +41,26 @@ static bool next_heartbeat(struct intel_engine_cs *engine)
- 		return false;
- 
- 	delay = msecs_to_jiffies_timeout(delay);
-+
-+	/*
-+	 * Once we submit a heartbeat to the HW, we know that it will take
-+	 * at least a certain amount of time to complete. On a hanging system
-+	 * it will first have to wait for the preempt reset timeout, and
-+	 * then it will take some time for the reset to resume with the
-+	 * heartbeat and for it to complete. So once we have submitted the
-+	 * heartbeat to HW, we can wait a while longer before declaring the
-+	 * engine stuck and forcing a reset ourselves. If we do a reset
-+	 * and the engine is also doing a reset, it is possible that we
-+	 * reset the engine twice, harming an innocent.
-+	 *
-+	 * Before we have sumitted the heartbeat, we do not want to change
-+	 * the interval as we want to promote the heartbeat and trigger
-+	 * preemption in a deterministic time frame.
-+	 */
-+	if (engine->heartbeat.systole &&
-+	    i915_request_is_active(engine->heartbeat.systole))
-+		delay = max(delay, completion_timeout(engine));
-+
- 	if (delay >= HZ)
- 		delay = round_jiffies_up_relative(delay);
- 	mod_delayed_work(system_highpri_wq, &engine->heartbeat.work, delay + 1);
-@@ -48,12 +80,51 @@ heartbeat_create(struct intel_context *ce, gfp_t gfp)
- 	return rq;
- }
- 
-+static void defibrillator(struct dma_fence *f, struct dma_fence_cb *cb)
-+{
-+	struct intel_engine_cs *engine =
-+		container_of(cb, typeof(*engine), heartbeat.cb);
-+
-+	if (READ_ONCE(engine->heartbeat.systole))
-+		mod_delayed_work(system_highpri_wq, &engine->heartbeat.work, 0);
-+}
-+
-+static void
-+untrack_heartbeat(struct intel_engine_cs *engine)
-+{
-+	struct i915_request *rq;
-+
-+	rq = fetch_and_zero(&engine->heartbeat.systole);
-+	if (!rq)
-+		return;
-+
-+	ENGINE_TRACE(engine, "heartbeat " RQ_FMT "completed\n", RQ_ARG(rq));
-+	I915_SELFTEST_ONLY(engine->heartbeat.completed++);
-+
-+	dma_fence_remove_callback(&rq->fence, &engine->heartbeat.cb);
-+	i915_request_put(rq);
-+}
-+
-+static void
-+track_heartbeat(struct intel_engine_cs *engine, struct i915_request *rq)
-+{
-+	ENGINE_TRACE(engine, "heartbeat " RQ_FMT "started\n", RQ_ARG(rq));
-+	I915_SELFTEST_ONLY(engine->heartbeat.submitted++);
-+
-+	dma_fence_add_callback(&rq->fence,
-+			       &engine->heartbeat.cb,
-+			       defibrillator);
-+	engine->heartbeat.systole = i915_request_get(rq);
-+	if (!next_heartbeat(engine))
-+		untrack_heartbeat(engine);
-+}
-+
- static void idle_pulse(struct intel_engine_cs *engine, struct i915_request *rq)
- {
- 	engine->wakeref_serial = READ_ONCE(engine->serial) + 1;
- 	i915_request_add_active_barriers(rq);
- 	if (!engine->heartbeat.systole && intel_engine_has_heartbeat(engine))
--		engine->heartbeat.systole = i915_request_get(rq);
-+		track_heartbeat(engine, rq);
- }
- 
- static void heartbeat_commit(struct i915_request *rq,
-@@ -106,13 +177,8 @@ static void heartbeat(struct work_struct *wrk)
- 	intel_engine_flush_scheduler(engine);
- 
- 	rq = engine->heartbeat.systole;
--	if (rq && i915_request_completed(rq)) {
--		ENGINE_TRACE(engine,
--			     "heartbeat " RQ_FMT "completed\n",
--			     RQ_ARG(rq));
--		i915_request_put(rq);
--		engine->heartbeat.systole = NULL;
--	}
-+	if (rq && i915_request_completed(rq))
-+		untrack_heartbeat(engine);
- 
- 	if (!intel_engine_pm_get_if_awake(engine))
- 		return;
-@@ -120,9 +186,14 @@ static void heartbeat(struct work_struct *wrk)
- 	if (intel_gt_is_wedged(engine->gt))
- 		goto out;
- 
-+	I915_SELFTEST_ONLY(engine->heartbeat.ticks++);
-+
- 	if (engine->heartbeat.systole) {
- 		long delay = READ_ONCE(engine->props.heartbeat_interval_ms);
- 
-+		if (i915_request_is_active(engine->heartbeat.systole))
-+			delay += completion_timeout(engine);
-+
- 		/* Safeguard against too-fast worker invocations */
- 		if (!time_after(jiffies,
- 				rq->emitted_jiffies + msecs_to_jiffies(delay)))
-@@ -152,8 +223,10 @@ static void heartbeat(struct work_struct *wrk)
- 			attr.priority = 0;
- 			if (rq->sched.attr.priority >= attr.priority)
- 				attr.priority = I915_PRIORITY_HEARTBEAT;
--			if (rq->sched.attr.priority >= attr.priority)
-+			if (rq->sched.attr.priority >= attr.priority) {
-+				I915_SELFTEST_ONLY(engine->heartbeat.barrier++);
- 				attr.priority = I915_PRIORITY_BARRIER;
-+			}
- 
- 			ENGINE_TRACE(engine,
- 				     "bumping heartbeat " RQ_FMT " prio:%d\n",
-@@ -166,6 +239,7 @@ static void heartbeat(struct work_struct *wrk)
- 			ENGINE_TRACE(engine,
- 				     "heartbeat " RQ_FMT " stuck\n",
- 				     RQ_ARG(rq));
-+			I915_SELFTEST_ONLY(engine->heartbeat.reset++);
- 
- 			if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
- 				show_heartbeat(rq, engine);
-@@ -180,6 +254,11 @@ static void heartbeat(struct work_struct *wrk)
- 		goto out;
- 	}
- 
-+	/* Just completed one heartbeat, wait a tick before the next */
-+	if (rq)
-+		goto out;
-+
-+	/* The engine is parking. We can rest until the next user */
- 	serial = READ_ONCE(engine->serial);
- 	if (engine->wakeref_serial == serial)
- 		goto out;
-@@ -198,14 +277,14 @@ static void heartbeat(struct work_struct *wrk)
- 	if (IS_ERR(rq))
- 		goto unlock;
- 
--	ENGINE_TRACE(engine, "heartbeat " RQ_FMT "started\n", RQ_ARG(rq));
- 	heartbeat_commit(rq, &attr);
- 
- unlock:
- 	mutex_unlock(&ce->timeline->mutex);
- out:
-+	intel_engine_flush_scheduler(engine);
- 	if (!engine->i915->params.enable_hangcheck || !next_heartbeat(engine))
--		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
-+		untrack_heartbeat(engine);
- 	intel_engine_pm_put(engine);
- }
- 
-@@ -219,8 +298,10 @@ void intel_engine_unpark_heartbeat(struct intel_engine_cs *engine)
- 
- void intel_engine_park_heartbeat(struct intel_engine_cs *engine)
- {
--	if (cancel_delayed_work(&engine->heartbeat.work))
--		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
-+	/* completion may rearm work */
-+	while (cancel_delayed_work(&engine->heartbeat.work))
-+		;
-+	untrack_heartbeat(engine);
- }
- 
- void intel_engine_init_heartbeat(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 7efa6290cc3e..5ad8d26e2fa0 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -322,7 +322,15 @@ struct intel_engine_cs {
- 	struct {
- 		struct delayed_work work;
- 		struct i915_request *systole;
-+		struct dma_fence_cb cb;
- 		unsigned long blocked;
-+		I915_SELFTEST_DECLARE(struct {
-+			unsigned long submitted;
-+			unsigned long completed;
-+			unsigned long barrier;
-+			unsigned long reset;
-+			unsigned long ticks;
-+		};)
- 	} heartbeat;
- 
- 	unsigned long serial;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-index b2c369317bf1..b74459561fda 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-@@ -202,47 +202,58 @@ static int cmp_u32(const void *_a, const void *_b)
- 
- static int __live_heartbeat_fast(struct intel_engine_cs *engine)
- {
--	const unsigned int error_threshold = max(20000u, jiffies_to_usecs(6));
--	struct intel_context *ce;
--	struct i915_request *rq;
--	ktime_t t0, t1;
-+	const unsigned int error_threshold =
-+		max_t(unsigned int,
-+		      3 * completion_timeout(engine) * 1000,
-+		      jiffies_to_usecs(6));
-+	struct intel_context *ce = engine->kernel_context;
-+	unsigned long resets;
- 	u32 times[5];
- 	int err;
- 	int i;
- 
--	ce = intel_context_create(engine);
--	if (IS_ERR(ce))
--		return PTR_ERR(ce);
--
- 	intel_engine_pm_get(engine);
- 
- 	err = intel_engine_set_heartbeat(engine, 1);
- 	if (err)
- 		goto err_pm;
- 
-+	flush_delayed_work(&engine->heartbeat.work);
-+	while (engine->heartbeat.systole)
-+		intel_engine_park_heartbeat(engine);
-+
-+	resets = engine->heartbeat.reset;
- 	for (i = 0; i < ARRAY_SIZE(times); i++) {
--		do {
--			/* Manufacture a tick */
--			intel_engine_park_heartbeat(engine);
--			GEM_BUG_ON(engine->heartbeat.systole);
--			engine->serial++; /*  pretend we are not idle! */
--			intel_engine_unpark_heartbeat(engine);
-+		struct i915_sched_attr attr = { .priority = I915_PRIORITY_MIN };
-+		unsigned long submits = engine->heartbeat.submitted;
-+		unsigned long completed = engine->heartbeat.completed;
-+		struct i915_request *rq;
-+		ktime_t t0, t1;
- 
--			flush_delayed_work(&engine->heartbeat.work);
--			if (!delayed_work_pending(&engine->heartbeat.work)) {
--				pr_err("%s: heartbeat %d did not start\n",
--				       engine->name, i);
--				err = -EINVAL;
--				goto err_pm;
--			}
-+		GEM_BUG_ON(READ_ONCE(engine->heartbeat.systole));
- 
--			rcu_read_lock();
--			rq = READ_ONCE(engine->heartbeat.systole);
--			if (rq)
--				rq = i915_request_get_rcu(rq);
--			rcu_read_unlock();
--		} while (!rq);
-+		/* Manufacture a tick */
-+		mutex_lock(&ce->timeline->mutex);
-+		rq = heartbeat_create(ce, GFP_KERNEL);
-+		if (!IS_ERR(rq)) {
-+			i915_request_get(rq);
-+			heartbeat_commit(rq, &attr);
-+		}
-+		mutex_unlock(&ce->timeline->mutex);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto err_reset;
-+		}
- 
-+		if (engine->heartbeat.submitted != submits + 1) {
-+			GEM_TRACE_ERR("Heartbeat was not tracked!\n");
-+			GEM_TRACE_DUMP();
-+			i915_request_put(rq);
-+			err = -EIO;
-+			goto err_reset;
-+		}
-+
-+		/* Time how long before the heartbeat monitor checks */
- 		t0 = ktime_get();
- 		while (rq == READ_ONCE(engine->heartbeat.systole))
- 			yield(); /* work is on the local cpu! */
-@@ -250,6 +261,20 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
- 
- 		i915_request_put(rq);
- 		times[i] = ktime_us_delta(t1, t0);
-+
-+		if (engine->heartbeat.reset != resets) {
-+			GEM_TRACE_ERR("False reset from a fast heartbeat!\n");
-+			GEM_TRACE_DUMP();
-+			err = -EIO;
-+			goto err_reset;
-+		}
-+
-+		if (engine->heartbeat.completed != completed + 1) {
-+			GEM_TRACE_ERR("Completed heartbeat was not recorded!\n");
-+			GEM_TRACE_DUMP();
-+			err = -EIO;
-+			goto err_reset;
-+		}
- 	}
- 
- 	sort(times, ARRAY_SIZE(times), sizeof(times[0]), cmp_u32, NULL);
-@@ -275,10 +300,10 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
- 		err = -EINVAL;
- 	}
- 
-+err_reset:
- 	reset_heartbeat(engine);
- err_pm:
- 	intel_engine_pm_put(engine);
--	intel_context_put(ce);
- 	return err;
- }
- 
-@@ -308,20 +333,16 @@ static int __live_heartbeat_off(struct intel_engine_cs *engine)
- 
- 	intel_engine_pm_get(engine);
- 
-+	/* Kick once, so that we change an active heartbeat */
- 	engine->serial++;
--	flush_delayed_work(&engine->heartbeat.work);
--	if (!delayed_work_pending(&engine->heartbeat.work)) {
--		pr_err("%s: heartbeat not running\n",
--		       engine->name);
--		err = -EINVAL;
--		goto err_pm;
--	}
-+	intel_engine_unpark_heartbeat(engine);
- 
- 	err = intel_engine_set_heartbeat(engine, 0);
- 	if (err)
- 		goto err_pm;
- 
--	engine->serial++;
-+	/* The next heartbeat work should cancel the heartbeat */
-+	engine->serial++; /* pretend the engine is still active */
- 	flush_delayed_work(&engine->heartbeat.work);
- 	if (delayed_work_pending(&engine->heartbeat.work)) {
- 		pr_err("%s: heartbeat still running\n",
-diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-index 5c8a6ccdf024..660240550097 100644
---- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-@@ -2325,13 +2325,16 @@ static int __cancel_fail(struct live_preempt_cancel *arg)
- 	del_timer_sync(&engine->execlists.preempt);
- 	intel_engine_flush_scheduler(engine);
- 
-+	engine->props.preempt_timeout_ms = 0;
- 	cancel_reset_timeout(engine);
- 
--	/* after failure, require heartbeats to reset device */
-+	/* after failure, require fast heartbeats to reset device */
- 	intel_engine_set_heartbeat(engine, 1);
- 	err = wait_for_reset(engine, rq, HZ / 2);
- 	intel_engine_set_heartbeat(engine,
- 				   engine->defaults.heartbeat_interval_ms);
-+
-+	engine->props.preempt_timeout_ms = engine->defaults.preempt_timeout_ms;
- 	if (err) {
- 		pr_err("Cancelled inflight0 request did not reset\n");
- 		goto out;
--- 
-2.20.1
+CI Bug Log - changes from CI_DRM_9764 -> Patchwork_19666
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_19666 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_19666, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19666:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-cfl-8109u:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html
+    - fi-bxt-dsi:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
+    - fi-cml-s:           [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-cml-s/igt@i915_selftest@live@gt_heartbeat.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-cml-s/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19666 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-gfx0:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][7] ([fdo#109271]) +17 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-snb-2600:        [PASS][8] -> [INCOMPLETE][9] ([i915#2782])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-snb-2600/igt@i915_selftest@live@gt_heartbeat.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-snb-2600/igt@i915_selftest@live@gt_heartbeat.html
+    - fi-ivb-3770:        [PASS][10] -> [INCOMPLETE][11] ([i915#2782])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-ivb-3770/igt@i915_selftest@live@gt_heartbeat.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-ivb-3770/igt@i915_selftest@live@gt_heartbeat.html
+    - fi-icl-y:           [PASS][12] -> [INCOMPLETE][13] ([i915#2782])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-icl-y/igt@i915_selftest@live@gt_heartbeat.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-icl-y/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [PASS][14] -> [FAIL][15] ([i915#1372])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][16] -> [DMESG-WARN][17] ([i915#402]) +1 similar issue
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  * igt@runner@aborted:
+    - fi-cfl-8109u:       NOTRUN -> [FAIL][18] ([i915#2295])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-cfl-8109u/igt@runner@aborted.html
+    - fi-snb-2600:        NOTRUN -> [FAIL][19] ([i915#698])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-snb-2600/igt@runner@aborted.html
+    - fi-bxt-dsi:         NOTRUN -> [FAIL][20] ([i915#2295])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-bxt-dsi/igt@runner@aborted.html
+    - fi-icl-y:           NOTRUN -> [FAIL][21] ([i915#2295] / [i915#2724])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-icl-y/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [INCOMPLETE][22] ([i915#2940]) -> [PASS][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][24] ([i915#402]) -> [PASS][25] +1 similar issue
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
+  [i915#2724]: https://gitlab.freedesktop.org/drm/intel/issues/2724
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#698]: https://gitlab.freedesktop.org/drm/intel/issues/698
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9764 -> Patchwork_19666
+
+  CI-20190529: 20190529
+  CI_DRM_9764: ecd8de40423fd2824e7f4b29c081912e4b79720e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19666: fdd529d2d7f8b819498bb16ccf4bcc59de1a391d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fdd529d2d7f8 drm/i915/gt: Ratelimit heartbeat completion probing
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/index.html
+
+--===============4549054719031786275==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Ratelimit heartbeat completion probing (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86665/">https://patchwork.freedesktop.org/series/86665/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9764 -&gt; Patchwork_19666</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_19666 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_19666, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19666:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>
+<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-cfl-8109u/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a></p>
+</li>
+<li>
+<p>fi-bxt-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a></p>
+</li>
+<li>
+<p>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-cml-s/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-cml-s/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19666 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>
+<p>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-snb-2600/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-snb-2600/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</p>
+</li>
+<li>
+<p>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-ivb-3770/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-ivb-3770/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</p>
+</li>
+<li>
+<p>fi-icl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-icl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-icl-y/igt@i915_selftest@live@gt_heartbeat.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_two_bos:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</p>
+</li>
+<li>
+<p>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-snb-2600/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/698">i915#698</a>)</p>
+</li>
+<li>
+<p>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-bxt-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a>)</p>
+</li>
+<li>
+<p>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-icl-y/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2295">i915#2295</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2724">i915#2724</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9764/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19666/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 39)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9764 -&gt; Patchwork_19666</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9764: ecd8de40423fd2824e7f4b29c081912e4b79720e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19666: fdd529d2d7f8b819498bb16ccf4bcc59de1a391d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>fdd529d2d7f8 drm/i915/gt: Ratelimit heartbeat completion probing</p>
+
+</body>
+</html>
+
+--===============4549054719031786275==--
+
+--===============0647463613==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0647463613==--
