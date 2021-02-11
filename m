@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78D98318C51
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 14:44:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F0F8318C5E
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 14:48:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 101BB6E426;
-	Thu, 11 Feb 2021 13:44:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D96A6E42F;
+	Thu, 11 Feb 2021 13:48:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AF9D46E1B1;
- Thu, 11 Feb 2021 13:44:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 96F9F6E42A;
+ Thu, 11 Feb 2021 13:48:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A68A8A66C9;
- Thu, 11 Feb 2021 13:44:46 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9414FA47E1;
+ Thu, 11 Feb 2021 13:48:26 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 11 Feb 2021 13:44:46 -0000
-Message-ID: <161305108664.27071.11220527321785668577@emeril.freedesktop.org>
+Date: Thu, 11 Feb 2021 13:48:26 -0000
+Message-ID: <161305130660.27068.7388604519254095025@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210211112403.7891-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210211112403.7891-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Defer_object_allocation_from_GGTT_probe_to_GGTT_init?=
+References: <20210211113848.16341-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210211113848.16341-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_lib=3A_Add_a_YAML_emitter_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,265 +40,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0104908081=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0104908081==
-Content-Type: multipart/alternative;
- boundary="===============0007280361888256348=="
-
---===============0007280361888256348==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Defer object allocation from GGTT probe to GGTT init
-URL   : https://patchwork.freedesktop.org/series/86985/
-State : failure
+Series: lib: Add a YAML emitter (rev2)
+URL   : https://patchwork.freedesktop.org/series/73433/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_9761 -> Patchwork_19661
-====================================================
+$ dim checkpatch origin/drm-tip
+d7299d4b320b lib: Add a YAML emitter
+-:19: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#19: 
+new file mode 100644
 
-Summary
--------
+-:494: WARNING:CONFIG_DESCRIPTION: please write a paragraph that describes the config symbol fully
+#494: FILE: lib/Kconfig:673:
++config TEST_YAML
 
-  **FAILURE**
+-:687: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'str' - possible side-effects?
+#687: FILE: lib/yaml/yaml-emitter.c:25:
++#define STRING_INIT(str, len) { (str), (str) + (len), (str) }
 
-  Serious unknown changes coming with Patchwork_19661 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19661, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:689: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'str' - possible side-effects?
+#689: FILE: lib/yaml/yaml-emitter.c:27:
++#define YAML_STRING(name, str) \
++	struct yaml_string name = STRING_INIT(str, strlen(str))
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/index.html
+-:696: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
+#696: FILE: lib/yaml/yaml-emitter.c:34:
++#define IS_ALPHA_AT(s, offset)						\
++	(isalnum((s).pos[offset]) ||					\
++	 (s).pos[offset] == '_' ||					\
++	 (s).pos[offset] == '-')
 
-Possible new issues
--------------------
+-:696: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset' - possible side-effects?
+#696: FILE: lib/yaml/yaml-emitter.c:34:
++#define IS_ALPHA_AT(s, offset)						\
++	(isalnum((s).pos[offset]) ||					\
++	 (s).pos[offset] == '_' ||					\
++	 (s).pos[offset] == '-')
 
-  Here are the unknown changes that may have been introduced in Patchwork_19661:
+-:711: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
+#711: FILE: lib/yaml/yaml-emitter.c:49:
++#define IS_BOM_AT(s, offset)						\
++	(CHECK_AT((s), '\xEF', (offset) + 0) &&				\
++	 CHECK_AT((s), '\xBB', (offset) + 1) &&				\
++	 CHECK_AT((s), '\xBF', (offset) + 2))  /* BOM (#xFEFF) */
 
-### CI changes ###
+-:711: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset' - possible side-effects?
+#711: FILE: lib/yaml/yaml-emitter.c:49:
++#define IS_BOM_AT(s, offset)						\
++	(CHECK_AT((s), '\xEF', (offset) + 0) &&				\
++	 CHECK_AT((s), '\xBB', (offset) + 1) &&				\
++	 CHECK_AT((s), '\xBF', (offset) + 2))  /* BOM (#xFEFF) */
 
-#### Possible regressions ####
+-:723: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
+#723: FILE: lib/yaml/yaml-emitter.c:61:
++#define IS_BLANK_AT(s, offset)						\
++	(IS_SPACE_AT((s), (offset)) || IS_TAB_AT((s), (offset)))
 
-  * boot:
-    - fi-pnv-d510:        [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-pnv-d510/boot.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-pnv-d510/boot.html
-    - fi-ilk-650:         [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-ilk-650/boot.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-ilk-650/boot.html
-    - fi-elk-e7500:       [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-elk-e7500/boot.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-elk-e7500/boot.html
+-:723: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset' - possible side-effects?
+#723: FILE: lib/yaml/yaml-emitter.c:61:
++#define IS_BLANK_AT(s, offset)						\
++	(IS_SPACE_AT((s), (offset)) || IS_TAB_AT((s), (offset)))
 
-  
-Known issues
-------------
+-:727: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
+#727: FILE: lib/yaml/yaml-emitter.c:65:
++#define IS_BREAK_AT(s, offset)						\
++	(CHECK_AT((s), '\r', (offset)) || /* CR (#xD)*/			\
++	 CHECK_AT((s), '\n', (offset)) || /* LF (#xA) */		\
++	 (CHECK_AT((s), '\xC2', (offset)) &&				\
++	  CHECK_AT((s), '\x85', (offset) + 1)) || /* NEL (#x85) */	\
++	 (CHECK_AT((s), '\xE2', (offset)) &&				\
++	  CHECK_AT((s), '\x80', (offset) + 1) &&			\
++	  CHECK_AT((s), '\xA8', (offset) + 2)) ||   /* LS (#x2028) */	\
++	 (CHECK_AT((s), '\xE2', (offset)) &&				\
++	  CHECK_AT((s), '\x80', (offset) + 1) &&			\
++	    CHECK_AT((s), '\xA9', (offset) + 2)))  /* PS (#x2029) */
 
-  Here are the changes found in Patchwork_19661 that come from known issues:
+-:727: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset' - possible side-effects?
+#727: FILE: lib/yaml/yaml-emitter.c:65:
++#define IS_BREAK_AT(s, offset)						\
++	(CHECK_AT((s), '\r', (offset)) || /* CR (#xD)*/			\
++	 CHECK_AT((s), '\n', (offset)) || /* LF (#xA) */		\
++	 (CHECK_AT((s), '\xC2', (offset)) &&				\
++	  CHECK_AT((s), '\x85', (offset) + 1)) || /* NEL (#x85) */	\
++	 (CHECK_AT((s), '\xE2', (offset)) &&				\
++	  CHECK_AT((s), '\x80', (offset) + 1) &&			\
++	  CHECK_AT((s), '\xA8', (offset) + 2)) ||   /* LS (#x2028) */	\
++	 (CHECK_AT((s), '\xE2', (offset)) &&				\
++	  CHECK_AT((s), '\x80', (offset) + 1) &&			\
++	    CHECK_AT((s), '\xA9', (offset) + 2)))  /* PS (#x2029) */
 
-### IGT changes ###
+-:740: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
+#740: FILE: lib/yaml/yaml-emitter.c:78:
++#define IS_CRLF_AT(s, offset)						\
++	(CHECK_AT((s), '\r', (offset)) && CHECK_AT((s), '\n', (offset) + 1))
 
-#### Issues hit ####
+-:740: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset' - possible side-effects?
+#740: FILE: lib/yaml/yaml-emitter.c:78:
++#define IS_CRLF_AT(s, offset)						\
++	(CHECK_AT((s), '\r', (offset)) && CHECK_AT((s), '\n', (offset) + 1))
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-byt-j1900:       [PASS][7] -> [INCOMPLETE][8] ([i915#142] / [i915#2405])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+-:744: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
+#744: FILE: lib/yaml/yaml-emitter.c:82:
++#define IS_BREAKZ_AT(s, offset)						\
++	(IS_BREAK_AT((s), (offset)) || IS_Z_AT((s), (offset)))
 
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-n3050:       [PASS][9] -> [INCOMPLETE][10] ([i915#2940])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+-:744: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset' - possible side-effects?
+#744: FILE: lib/yaml/yaml-emitter.c:82:
++#define IS_BREAKZ_AT(s, offset)						\
++	(IS_BREAK_AT((s), (offset)) || IS_Z_AT((s), (offset)))
 
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([i915#402]) +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+-:748: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
+#748: FILE: lib/yaml/yaml-emitter.c:86:
++#define IS_SPACEZ_AT(s, offset)						\
++	(IS_SPACE_AT((s), (offset)) || IS_BREAKZ_AT((s), (offset)))
 
-  * igt@runner@aborted:
-    - fi-byt-j1900:       NOTRUN -> [FAIL][13] ([i915#1814] / [i915#2505])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-byt-j1900/igt@runner@aborted.html
-    - fi-bsw-n3050:       NOTRUN -> [FAIL][14] ([i915#1436])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-bsw-n3050/igt@runner@aborted.html
+-:748: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset' - possible side-effects?
+#748: FILE: lib/yaml/yaml-emitter.c:86:
++#define IS_SPACEZ_AT(s, offset)						\
++	(IS_SPACE_AT((s), (offset)) || IS_BREAKZ_AT((s), (offset)))
 
-  
-#### Possible fixes ####
+-:752: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
+#752: FILE: lib/yaml/yaml-emitter.c:90:
++#define IS_BLANKZ_AT(s, offset)						\
++	(IS_BLANK_AT((s), (offset)) || IS_BREAKZ_AT((s), (offset)))
 
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [DMESG-WARN][15] ([i915#402]) -> [PASS][16] +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+-:752: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'offset' - possible side-effects?
+#752: FILE: lib/yaml/yaml-emitter.c:90:
++#define IS_BLANKZ_AT(s, offset)						\
++	(IS_BLANK_AT((s), (offset)) || IS_BREAKZ_AT((s), (offset)))
 
-  
-  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
-  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
-  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+-:770: CHECK:MACRO_ARG_REUSE: Macro argument reuse 's' - possible side-effects?
+#770: FILE: lib/yaml/yaml-emitter.c:108:
++#define ADVANCE(s)	((s).pos += utf8_width((&s)))
 
+-:774: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'stack' - possible side-effects?
+#774: FILE: lib/yaml/yaml-emitter.c:112:
++#define EMPTY(context, stack) ((stack).start == (stack).top)
 
-Participating hosts (44 -> 39)
-------------------------------
+-:776: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'stack' - possible side-effects?
+#776: FILE: lib/yaml/yaml-emitter.c:114:
++#define PUSH(context, stack, value)					\
++	(((stack).top != (stack).end ||					\
++	  !yaml_stack_extend((void **)&(stack).start,			\
++			     (void **)&(stack).top, (void **)&(stack).end)) ? \
++	 (*((stack).top++) = value, 0) :				\
++	 ((context)->errno = -ENOMEM))
 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-skl-guc fi-bsw-cyan fi-bdw-samus 
+-:2160: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#2160: FILE: lib/yaml/yaml-emitter.c:1498:
++		BUG();
 
+-:2843: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#2843: FILE: lib/yaml/yaml-emitter.c:2181:
++		return emit_node(emitter, event, 0, 0, 1, 1);
++	} else {
 
-Build changes
--------------
+-:2944: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#2944: FILE: lib/yaml/yaml-emitter.c:2282:
++		BUG();
 
-  * Linux: CI_DRM_9761 -> Patchwork_19661
+-:3017: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'stack' - possible side-effects?
+#3017: FILE: lib/yaml/yaml-emitter.c:2355:
++#define STACK_INIT(context, stack)                                     \
++	(((stack).start = kmalloc(INITIAL_STACK_SIZE * sizeof(*(stack). start),\
++				  gfp)) ?			\
++	((stack).top = (stack).start,					\
++	(stack).end = (stack).start + INITIAL_STACK_SIZE,		\
++	1) : 0)
 
-  CI-20190529: 20190529
-  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19661: 7c94d0d360710a164eb1deedb16a9f484d9502fc @ git://anongit.freedesktop.org/gfx-ci/linux
+-:3178: WARNING:CONSTANT_COMPARISON: Comparisons should place the constant on the right side of the test
+#3178: FILE: lib/yaml/yaml-emitter.c:2516:
++	emitter->best_indent = (1 < indent && indent < 10) ? indent : 2;
 
+-:3468: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
+#3468: FILE: lib/yaml/yaml-events.c:115:
++#if 0
 
-== Linux commits ==
+-:3509: WARNING:IF_0: Consider removing the code enclosed by this #if 0 and its #endif
+#3509: FILE: lib/yaml/yaml-events.c:156:
++#if 0
 
-7c94d0d36071 drm/i915: Defer object allocation from GGTT probe to GGTT init
+total: 0 errors, 8 warnings, 22 checks, 3935 lines checked
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/index.html
-
---===============0007280361888256348==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Defer object allocation from GGTT probe to GGTT init</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86985/">https://patchwork.freedesktop.org/series/86985/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9761 -&gt; Patchwork_19661</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19661 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19661, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19661:</p>
-<h3>CI changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>boot:</p>
-<ul>
-<li>
-<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-pnv-d510/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-pnv-d510/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-ilk-650/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-ilk-650/boot.html">FAIL</a></p>
-</li>
-<li>
-<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-elk-e7500/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-elk-e7500/boot.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19661 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-byt-j1900/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</p>
-</li>
-<li>
-<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-bsw-n3050/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_two_bos:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19661/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-skl-guc fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9761 -&gt; Patchwork_19661</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19661: 7c94d0d360710a164eb1deedb16a9f484d9502fc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7c94d0d36071 drm/i915: Defer object allocation from GGTT probe to GGTT init</p>
-
-</body>
-</html>
-
---===============0007280361888256348==--
-
---===============0104908081==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0104908081==--
