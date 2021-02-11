@@ -2,62 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF70C318F0F
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 16:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFFC0318F56
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 17:03:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B0B589152;
-	Thu, 11 Feb 2021 15:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4610D6E45C;
+	Thu, 11 Feb 2021 16:03:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
- [IPv6:2a00:1450:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AE426E1A5
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 15:46:51 +0000 (UTC)
-Received: by mail-wr1-x42d.google.com with SMTP id m13so4583202wro.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 07:46:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=nY+6J3Lni5j32PA6qgM3UZvNti0mgSQgms4QX/hsfpg=;
- b=ZoK+kJT8UEeR5WBOwzfboAjYZGKMSRkCgEqLf8V+XqLENr1KRRYoXEWGqn2rKUJ9Jb
- p4xvP2y16cdoZQrPXJMV4RfzTFOIpmEA5b0NS1sEL375AzHpKRgpfUAgSnJZpuDWlUNe
- mjOBRTYiXIl59MJBSDWUEtfVMycvlBL3gv44k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=nY+6J3Lni5j32PA6qgM3UZvNti0mgSQgms4QX/hsfpg=;
- b=Fg17XoXtLfPFgU2p4dNnit0JbBhVI8Sfs/ABgzKPzmNEehZbVcWt81021fKX27py/u
- At2BFtE2IZAD3BEG6LyT2NSmxLEQD36LeC9u56caOJZwB0JEo2eOwXzEJqrPa9l7ohBU
- FKAoztZE9LYBX38ZxT/bUJ2PzKsWkCZ+iFp3/GrvizAvfbrgyAyg1cBFyLmYlEYSqTIA
- E3DmnHcUHWWbsZ6Uub92nPNk7MtRqNKTKRzLvKXWrBHfC7jRsuRUu42IlPuMFUi25vvh
- 6Y7UV09N7n86KeUl5nB0xl+L3BOUv1T4fc2iGfM9ee+d8kda6hK2dWNAPMOMe+0iMuHX
- h9hg==
-X-Gm-Message-State: AOAM533RohCNDHdlanJ8SbP+GPYmLf56kaO5NkrvYI1iCgZ9dZZjreJ4
- am0SKC3H64I+KKyEErhOiK2qQw==
-X-Google-Smtp-Source: ABdhPJwTHDWFdU70sq9QR0Crcp/1jwyZPvx3z1eP8dF7+S7zuGrVUs46bq28oxFYZ0Y4gzjNeOQ/nA==
-X-Received: by 2002:adf:efc9:: with SMTP id i9mr5747842wrp.177.1613058410023; 
- Thu, 11 Feb 2021 07:46:50 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s6sm10464461wmh.2.2021.02.11.07.46.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Feb 2021 07:46:49 -0800 (PST)
-Date: Thu, 11 Feb 2021 16:46:47 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <YCVRZ0j21uovLJOV@phenom.ffwll.local>
-References: <20210210001401.463-1-manasi.d.navare@intel.com>
- <YCPcrusmPxj0iGxz@phenom.ffwll.local>
- <vpyQ2PWoypdzSDLBjlqvQW_zi3sOkPdCOWS_MuxLId4i5HFb3ulnEWkVreU1mEYxcN9bKIB0iV_TpgMBEDaREA7bhZVUFVkTaA5d1DJHhLI=@emersion.fr>
- <YCP2l7PDMTE2a0Eh@intel.com>
- <20210210232600.GA5116@labuser-Z97X-UD5H>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B4CC36E45C;
+ Thu, 11 Feb 2021 16:03:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AD4F8A0118;
+ Thu, 11 Feb 2021 16:03:26 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210210232600.GA5116@labuser-Z97X-UD5H>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH] Revert "drm/atomic: document and enforce
- rules around "spurious" EBUSY"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 11 Feb 2021 16:03:26 -0000
+Message-ID: <161305940670.27071.10458219037692743111@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1613054234.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1613054234.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/edp=3A_enable_eDP_Multi-SST_Operation_=28MSO=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,102 +38,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0353875238=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 10, 2021 at 03:26:00PM -0800, Navare, Manasi wrote:
-> On Wed, Feb 10, 2021 at 05:07:03PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Feb 10, 2021 at 01:38:45PM +0000, Simon Ser wrote:
-> > > On Wednesday, February 10th, 2021 at 2:16 PM, Daniel Vetter <daniel@f=
-fwll.ch> wrote:
-> > > =
+--===============0353875238==
+Content-Type: multipart/alternative;
+ boundary="===============9179934667031591657=="
 
-> > > > On Tue, Feb 09, 2021 at 04:14:01PM -0800, Manasi Navare wrote:
-> > > >
-> > > > > These additional checks added to avoid EBUSY give unnecessary WAR=
-N_ON
-> > > > > in case of big joiner used in i915 in which case even if the mode=
-set
-> > > > > is requested on a single pipe, internally another consecutive
-> > > > > pipe is stolen and used to drive half of the transcoder timings.
-> > > > > So in this case it is expected that requested crtc and affected c=
-rtcs
-> > > > > do not match. Hence the added WARN ON becomes irrelevant.
-> > > =
+--===============9179934667031591657==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > > The WARN_ON only happens if allow_modeset =3D=3D false. If allow_mode=
-set =3D=3D true,
-> > > then the driver is allowed to steal an unrelated pipe.
-> > > =
+== Series Details ==
 
-> > > Maybe i915 is stealing a pipe without allow_modeset?
-> > =
+Series: drm/i915/edp: enable eDP Multi-SST Operation (MSO)
+URL   : https://patchwork.freedesktop.org/series/86992/
+State : success
 
-> > No. All page flips etc. will have to get split up internally
-> > between multiple crtcs.
-> > =
+== Summary ==
 
-> > So I think there's basically three options:
-> > a) massive rewrite of i915 to bypass even more of drm_atomic stuff
-> > b) allow i915 to silence that warning, which opens up the question
-> >    whether the warn is doing any good if it can just be bypassed
-> > c) nuke the warning entirely
-> > =
+CI Bug Log - changes from CI_DRM_9761 -> Patchwork_19665
+====================================================
 
-> > a) is not going to happen, and it would any way allow i915 to
-> > do things any which way it wants without tripping the warn,
-> > rendering the warn entirely toothless.
-> > =
+Summary
+-------
 
-> > Hmm. Maybe there is a d) which would be to ignore all crtcs
-> > that are not logically enabled in the warn? Not sure if that
-> > could allow something to slit through that people want it to
-> > catch?
+  **SUCCESS**
 
-Yeah it's option d), because the warning is meant to catch funny uapi that
-compositors don't want to deal with. So if this bigjoiner stuff in i915 is
-_really_ fully transparent, then it's ok.
+  No regressions found.
 
-And excluding completely disabled CRTC from this check makes imo sense,
-since userspace
-- is not allowed to issue an atomic flip on these (it's off)
-- is required to set allow_modeset to enable (at which point i915 can
-  internally move CRTC assignments around however it feels like and it's
-  all fine). Once that fully modeset is done we'd again be in sync with
-  userspace's understanding of what's going on.
-- hence there cannot be a spurious EBUSY to userspace
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/index.html
 
-I think what this needs is a big comment in the code explaining why we can
-afford to not check this.
+Known issues
+------------
 
-> So as per the offline IRC discussions,
-> - We can check for crtc_state->enable and only use the enabled crtcs
-> in the affected crtc calculation. And this enable would only
-> be set when modeset is done. So in case of bigjoiner no modeset on Pipe A,
-> even if Pipe B is stolen, since no modeset and because that pipe doesnt
-> get enabled the affected crtcs would still be 0x1.
-> =
+  Here are the changes found in Patchwork_19665 that come from known issues:
 
-> This should solve the problem. =
+### IGT changes ###
 
-> Ville, Danvet - I will make this change?
+#### Issues hit ####
 
-I think you volunteered :-)
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
 
-Pls Cc: all the people involved in the original patch discussion, so that
-they can ack the change too.
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-tgl-y/igt@gem_mmap_gtt@basic.html
 
-Cheers, Daniel
--- =
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-7500u:       [PASS][5] -> [DMESG-WARN][6] ([i915#2605])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html
 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-icl-u2:          [PASS][7] -> [FAIL][8] ([i915#1161] / [i915#262])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [DMESG-WARN][9] ([i915#402]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 38)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-skl-guc fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9761 -> Patchwork_19665
+
+  CI-20190529: 20190529
+  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19665: 0d0699a630feae8c87f2e42f3528f136da1b9f7f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0d0699a630fe drm/i915/edp: enable eDP MSO during link training
+9c308043182f drm/i915/edp: modify fixed and downclock modes for MSO
+cd771f8260ba drm/i915/mso: add splitter state check
+2301619c19c5 drm/i915/mso: add splitter state readout for platforms that support it
+3bcb25a97d79 drm/i915/reg: add stream splitter configuration definitions
+bc496e99316f drm/i915/edp: read sink MSO configuration for eDP 1.4+
+091e39294413 drm/i915/edp: always add fixed mode to probed modes in ->get_modes()
+dbf512a91559 drm/i915/edp: reject modes with dimensions other than fixed mode
+f8c60f212290 drm/dp: add MSO related DPCD registers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/index.html
+
+--===============9179934667031591657==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/edp: enable eDP Multi-SST Operation (MSO)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86992/">https://patchwork.freedesktop.org/series/86992/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9761 -&gt; Patchwork_19665</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19665 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@prime_self_import@basic-with_two_bos:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19665/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 38)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-skl-guc fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9761 -&gt; Patchwork_19665</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19665: 0d0699a630feae8c87f2e42f3528f136da1b9f7f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>0d0699a630fe drm/i915/edp: enable eDP MSO during link training<br />
+9c308043182f drm/i915/edp: modify fixed and downclock modes for MSO<br />
+cd771f8260ba drm/i915/mso: add splitter state check<br />
+2301619c19c5 drm/i915/mso: add splitter state readout for platforms that support it<br />
+3bcb25a97d79 drm/i915/reg: add stream splitter configuration definitions<br />
+bc496e99316f drm/i915/edp: read sink MSO configuration for eDP 1.4+<br />
+091e39294413 drm/i915/edp: always add fixed mode to probed modes in -&gt;get_modes()<br />
+dbf512a91559 drm/i915/edp: reject modes with dimensions other than fixed mode<br />
+f8c60f212290 drm/dp: add MSO related DPCD registers</p>
+
+</body>
+</html>
+
+--===============9179934667031591657==--
+
+--===============0353875238==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0353875238==--
