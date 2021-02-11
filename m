@@ -2,29 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11E5131894A
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 12:24:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09CE53188F2
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 12:08:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F0A56EE03;
-	Thu, 11 Feb 2021 11:24:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D61B6E42C;
+	Thu, 11 Feb 2021 11:08:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E7C46EE03
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 11:24:19 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23837184-1500050 
- for multiple; Thu, 11 Feb 2021 11:24:05 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BF746E42C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 11:08:28 +0000 (UTC)
+IronPort-SDR: W1uJW78/OMY/6hJr9f6DNH9jIf1Xr/l5vgkSxiRv2fz0rhQH94+fsHgeBLne33eA3cn4TGoY6y
+ QafniK3vQMvg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="243715730"
+X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="243715730"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2021 03:08:26 -0800
+IronPort-SDR: D0+vnOGAVlR76ua+Dh9CjOlPDe1ZojxhlYr0xs/PSaAPPq/O0wkqo+S+mKh6NZud31vZ+F69w8
+ 5Ft2fDHc/x/g==
+X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="380559161"
+Received: from linux-desktop.iind.intel.com ([10.223.34.178])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2021 03:08:22 -0800
+From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Feb 2021 11:24:03 +0000
-Message-Id: <20210211112403.7891-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Date: Thu, 11 Feb 2021 17:12:09 +0530
+Message-Id: <20210211114209.23866-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Defer object allocation from GGTT
- probe to GGTT init
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Handle lane polarity for DDI
+ port
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,96 +45,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rather than try and allocate objects as we perform our early HW probes,
-defer the allocation for GGTT objects (such as the scratch page) to later
-in the initialisation.
+Lane Reversal is required for some of the DDI ports. This information
+is populated in VBT and driver should read the same and set the
+polarity while enabling the port. This patch handles the same.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
+It helps fix a display blankout issue on DP ports on certain
+platforms.
+
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 38 +++++++++++-----------------
- 1 file changed, 15 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_bios.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_ddi.c  |  3 +++
+ 3 files changed, 22 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index b0b8ded834f0..23c7eb462b2f 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -78,19 +78,29 @@ static int ggtt_init_hw(struct i915_ggtt *ggtt)
-  */
- int i915_ggtt_init_hw(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 7118530a1c38..dd51413e7f45 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2674,6 +2674,23 @@ intel_bios_is_lspcon_present(const struct drm_i915_private *i915,
+ 	return HAS_LSPCON(i915) && child && child->lspcon;
+ }
+ 
++/**
++ * intel_bios_is_lane_reversal_needed - if lane reversal needed on port
++ * @i915:       i915 device instance
++ * @port:       port to check
++ *
++ * Return true if port requires lane reversal
++ */
++bool
++intel_bios_is_lane_reversal_needed(const struct drm_i915_private *i915,
++				   enum port port)
++{
++	const struct child_device_config *child =
++		i915->vbt.ddi_port_info[port].child;
++
++	return child && child->lane_reversal;
++}
++
+ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *dev_priv,
+ 				   enum port port)
  {
-+	struct i915_ggtt *ggtt = &i915->ggtt;
-+	u32 pte_flags;
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
+index e29e79faa01b..f25190ecfe97 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.h
++++ b/drivers/gpu/drm/i915/display/intel_bios.h
+@@ -241,6 +241,8 @@ bool intel_bios_is_port_hpd_inverted(const struct drm_i915_private *i915,
+ 				     enum port port);
+ bool intel_bios_is_lspcon_present(const struct drm_i915_private *i915,
+ 				  enum port port);
++bool intel_bios_is_lane_reversal_needed(const struct drm_i915_private *i915,
++					enum port port);
+ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_private *dev_priv, enum port port);
+ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
+ 			       struct intel_crtc_state *crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 3c4003605f93..2d6906f6995f 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4082,6 +4082,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+ 			intel_de_read(dev_priv, DDI_BUF_CTL(port))
+ 			& (DDI_BUF_PORT_REVERSAL | DDI_A_4_LANES);
  
-+	ret = setup_scratch_page(&ggtt->vm);
-+	if (ret)
-+		return ret;
++	if (intel_bios_is_lane_reversal_needed(dev_priv, port))
++		dig_port->saved_port_bits |= DDI_BUF_PORT_REVERSAL;
 +
-+	pte_flags = 0;
-+	if (i915_gem_object_is_lmem(ggtt->vm.scratch[0]))
-+		pte_flags |= PTE_LM;
-+
-+	ggtt->vm.scratch[0]->encode =
-+		ggtt->vm.pte_encode(px_dma(ggtt->vm.scratch[0]),
-+				    I915_CACHE_NONE, 0);
-+
- 	/*
- 	 * Note that we use page colouring to enforce a guard page at the
- 	 * end of the address space. This is required as the CS may prefetch
- 	 * beyond the end of the batch buffer, across the page boundary,
- 	 * and beyond the end of the GTT if we do not provide a guard.
- 	 */
--	ret = ggtt_init_hw(&i915->ggtt);
--	if (ret)
--		return ret;
--
--	return 0;
-+	return ggtt_init_hw(ggtt);
- }
- 
- /*
-@@ -803,8 +813,6 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
- 	struct drm_i915_private *i915 = ggtt->vm.i915;
- 	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	phys_addr_t phys_addr;
--	u32 pte_flags;
--	int ret;
- 
- 	/* For Modern GENs the PTEs and register space are split in the BAR */
- 	phys_addr = pci_resource_start(pdev, 0) + pci_resource_len(pdev, 0) / 2;
-@@ -825,22 +833,6 @@ static int ggtt_probe_common(struct i915_ggtt *ggtt, u64 size)
- 		return -ENOMEM;
- 	}
- 
--	ret = setup_scratch_page(&ggtt->vm);
--	if (ret) {
--		drm_err(&i915->drm, "Scratch setup failed\n");
--		/* iounmap will also get called at remove, but meh */
--		iounmap(ggtt->gsm);
--		return ret;
--	}
--
--	pte_flags = 0;
--	if (i915_gem_object_is_lmem(ggtt->vm.scratch[0]))
--		pte_flags |= PTE_LM;
--
--	ggtt->vm.scratch[0]->encode =
--		ggtt->vm.pte_encode(px_dma(ggtt->vm.scratch[0]),
--				    I915_CACHE_NONE, pte_flags);
--
- 	return 0;
- }
- 
+ 	dig_port->dp.output_reg = INVALID_MMIO_REG;
+ 	dig_port->max_lanes = intel_ddi_max_lanes(dig_port);
+ 	dig_port->aux_ch = intel_bios_port_aux_ch(dev_priv, port);
 -- 
-2.20.1
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
