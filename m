@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDAC33174EB
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 01:03:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A94D4317501
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 01:10:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BDDC6E0D7;
-	Thu, 11 Feb 2021 00:03:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C264C6ED7D;
+	Thu, 11 Feb 2021 00:10:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 081526E0D7
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 00:03:12 +0000 (UTC)
-IronPort-SDR: PQ4sUjdArE9TePY4S/5wpaT/vQx0uZ13vTpwjLGYeIDMKpXpapKTzCRwykeZnzstyrWJAtlcbL
- 79LvnL3kvl1Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="267013028"
-X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="267013028"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D46266ED7D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 00:10:49 +0000 (UTC)
+IronPort-SDR: UiWVVTZulrl0nlGJUKUOsCReGJJUjObxMqPa8GLBDVdcamqYWVxPUJ6RS5FQt4Ifg8gxyaLF3M
+ ONLC9WrKXntg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="267013860"
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="267013860"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2021 16:03:12 -0800
-IronPort-SDR: nmo1xcq3IO/qjWvmRgSDK89TKmSac0UG+E6dpoUEUd05TT8Mhz7VOg5BQowe9Eh7HKftGbCLCe
- iSUgBBDwjKIQ==
-X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="414267916"
+ 10 Feb 2021 16:10:49 -0800
+IronPort-SDR: 76iHMAbdnjtNmnt+a4Dq/dgp6frDJlvgPBJZZAkstUIfL7XPqINxfTD3gXpQ9NYhKqOPV2dZdk
+ BWXW09CyMqrQ==
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="578616244"
 Received: from sganes2-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
  ([10.212.30.225])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2021 16:03:09 -0800
-Date: Wed, 10 Feb 2021 16:03:09 -0800
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 16:10:48 -0800
+Date: Wed, 10 Feb 2021 16:10:47 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210211000309.aurwh4uyqpy5u23m@ldmartin-desk1>
+Message-ID: <20210211001047.4cutfumgnw32jkrm@ldmartin-desk1>
 X-Patchwork-Hint: comment
 References: <20210128192413.1715802-1-matthew.d.roper@intel.com>
- <20210128192413.1715802-2-matthew.d.roper@intel.com>
+ <20210128192413.1715802-3-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210128192413.1715802-2-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 01/18] drm/i915/display13: add Display13
- characteristics
+In-Reply-To: <20210128192413.1715802-3-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 02/18] drm/i915/display13: Handle proper AUX
+ interrupt bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,80 +56,65 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 28, 2021 at 11:23:56AM -0800, Matt Roper wrote:
->Let's start preparing for upcoming platforms that will use a Display13
->design.
+On Thu, Jan 28, 2021 at 11:23:57AM -0800, Matt Roper wrote:
+>Display13 has new AUX interrupt bits for DDI-D and DDI-E.
 >
+>Bspec: 50064
+>Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
 >Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 >---
-> drivers/gpu/drm/i915/i915_drv.h          |  1 +
-> drivers/gpu/drm/i915/i915_pci.c          | 11 +++++++++++
-> drivers/gpu/drm/i915/intel_device_info.h |  2 ++
-> 3 files changed, 14 insertions(+)
+> drivers/gpu/drm/i915/i915_irq.c | 12 +++++++++++-
+> drivers/gpu/drm/i915/i915_reg.h |  2 ++
+> 2 files changed, 13 insertions(+), 1 deletion(-)
 >
->diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->index 9713ab963122..1c0fdbf800ac 100644
->--- a/drivers/gpu/drm/i915/i915_drv.h
->+++ b/drivers/gpu/drm/i915/i915_drv.h
->@@ -1778,6 +1778,7 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
-> #define INTEL_NUM_PIPES(dev_priv) (hweight8(INTEL_INFO(dev_priv)->pipe_mask))
+>diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+>index 06937a2d2714..1bced71470a5 100644
+>--- a/drivers/gpu/drm/i915/i915_irq.c
+>+++ b/drivers/gpu/drm/i915/i915_irq.c
+>@@ -2251,7 +2251,17 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
+> {
+> 	u32 mask;
 >
-> #define HAS_DISPLAY(dev_priv) (INTEL_INFO(dev_priv)->pipe_mask != 0)
->+#define HAS_DISPLAY13(dev_priv) (INTEL_INFO(dev_priv)->has_display13)
->
-> #define HAS_VRR(i915)	(INTEL_GEN(i915) >= 12)
->
->diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
->index 6cff7cf0f17b..e5e10484bf8d 100644
->--- a/drivers/gpu/drm/i915/i915_pci.c
->+++ b/drivers/gpu/drm/i915/i915_pci.c
->@@ -936,6 +936,17 @@ static const struct intel_device_info adl_s_info = {
-> 	.dma_mask_size = 46,
-> };
->
->+#define DISPLAY13_FEATURES \
->+	.has_display13 = 1,						\
->+	.display.has_psr_hw_tracking = 0,				\
->+	.abox_mask = GENMASK(1, 0),					\
->+	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
->+	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |	\
->+		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),			\
->+	.ddb_size = 4096,						\
->+	.mbus_size = 2048,						\
->+	.num_supported_dbuf_slices = 4,
->+
-> #undef GEN
-> #undef PLATFORM
->
->diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
->index e6ca1023ffcf..ba44c2c10ad8 100644
->--- a/drivers/gpu/drm/i915/intel_device_info.h
->+++ b/drivers/gpu/drm/i915/intel_device_info.h
->@@ -116,6 +116,7 @@ enum intel_ppgtt_type {
-> 	func(is_dgfx); \
-> 	/* Keep has_* in alphabetical order */ \
-> 	func(has_64bit_reloc); \
->+	func(has_display13); \
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (HAS_DISPLAY13(dev_priv))
+>+		return TGL_DE_PORT_AUX_DDIA |
+>+			TGL_DE_PORT_AUX_DDIB |
+>+			TGL_DE_PORT_AUX_DDIC |
+>+			D13_DE_PORT_AUX_DDID |
+>+			D13_DE_PORT_AUX_DDIE |
+>+			TGL_DE_PORT_AUX_USBC1 |
+>+			TGL_DE_PORT_AUX_USBC2 |
+>+			TGL_DE_PORT_AUX_USBC3 |
+>+			TGL_DE_PORT_AUX_USBC4;
+>+	else if (INTEL_GEN(dev_priv) >= 12)
+> 		return TGL_DE_PORT_AUX_DDIA |
+> 			TGL_DE_PORT_AUX_DDIB |
+> 			TGL_DE_PORT_AUX_DDIC |
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>index 3031897239a0..10fd0e3af2d4 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -7858,6 +7858,8 @@ enum {
+> #define  TGL_DE_PORT_AUX_USBC3		(1 << 10)
+> #define  TGL_DE_PORT_AUX_USBC2		(1 << 9)
+> #define  TGL_DE_PORT_AUX_USBC1		(1 << 8)
+>+#define  D13_DE_PORT_AUX_DDIE		(1 << 13)
+>+#define  D13_DE_PORT_AUX_DDID		(1 << 12)
 
-shouldn't this be inside display struct?
+maybe this is a gray area, but the rule here is to define following the
+bit order, regardless of the meaning of the bit.
 
-> 	func(gpu_reset_clobbers_display); \
-> 	func(has_reset_engine); \
-> 	func(has_fpga_dbg); \
->@@ -193,6 +194,7 @@ struct intel_device_info {
-> 	} display;
->
-> 	u16 ddb_size; /* in blocks */
->+	u16 mbus_size; /* total ddb size on one mbus */
+in gen8_de_port_aux_mask() I guess it's fine to leave it in the logical
+order, but here it would be good not to create exceptions.
 
-this is unused and afaics never will. It'd be better if if this is
-introduced only together with the feature.
+while at it, we could also add another commit to convert the surrounding
+code to REG_BIT()
 
 Lucas De Marchi
 
-> 	u8 num_supported_dbuf_slices; /* number of DBuf slices */
->
-> 	/* Register offsets for the various display pipes and transcoders */
+> #define  TGL_DE_PORT_AUX_DDIC		(1 << 2)
+> #define  TGL_DE_PORT_AUX_DDIB		(1 << 1)
+> #define  TGL_DE_PORT_AUX_DDIA		(1 << 0)
 >-- 
 >2.25.4
 >
