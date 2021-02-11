@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A7DB3182E0
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 02:05:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A21AE3182F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 02:17:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A2346EDA7;
-	Thu, 11 Feb 2021 01:05:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F6296EDBA;
+	Thu, 11 Feb 2021 01:17:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B054D6EDA7
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 01:05:40 +0000 (UTC)
-IronPort-SDR: v83Z1delUAGNaTIZgIVmsvt163g33z7BLrsmCwH/UfB3cZtBpZwfnY4Y/z0yvqWtx1Qz97CTIt
- FHmlREkvCAjg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="243665479"
-X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="243665479"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2021 17:05:39 -0800
-IronPort-SDR: hNiGbQB1dT8UhWldR6LSWR9rsXT1eZ9GjZpfvC0LtdtXNUnSDBPhhzi7MfYwdyGQbNifEb9ZeE
- ltPG8Mcp7O8w==
-X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="588148368"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D00DE6EDAA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 01:17:08 +0000 (UTC)
+IronPort-SDR: VnfQ+gz98tEQMIuNtYLYyiVpgrx2Q3u0iwlpvKh01+N3ktT6lE3D2ZA+DFXzLIDrBojNnI2SZP
+ JcQzkV0ZQsAQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="181404565"
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="181404565"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 17:17:07 -0800
+IronPort-SDR: 6fY2yq7HFWGaPzENmo/yopCMaFoR3rzr7vTmyj6/hVu8C9QVaYgxO82GXW/yf1QHOr3Z5Xj0Ls
+ ROBCyrgIRjbw==
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="586797898"
 Received: from sganes2-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
  ([10.212.30.225])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2021 17:05:39 -0800
-Date: Wed, 10 Feb 2021 17:05:38 -0800
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 17:17:07 -0800
+Date: Wed, 10 Feb 2021 17:17:03 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210211010538.2cwqdwhlnak5wco2@ldmartin-desk1>
+Message-ID: <20210211011703.we73bn5elntcupiq@ldmartin-desk1>
 X-Patchwork-Hint: comment
 References: <20210128192413.1715802-1-matthew.d.roper@intel.com>
- <20210128192413.1715802-5-matthew.d.roper@intel.com>
+ <20210128192413.1715802-6-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210128192413.1715802-5-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 04/18] drm/i915/display13: Define plane
- capabilities
+In-Reply-To: <20210128192413.1715802-6-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 05/18] drm/i915/display13: Support 128k
+ plane stride
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,104 +50,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org,
+ Juha-Pekka =?utf-8?B?SGVpa2tpbMOk?= <juha-pekka.heikkila@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 28, 2021 at 11:23:59AM -0800, Matt Roper wrote:
->Display13's plane support is identical to RKL --- 5 universal + 1 cursor
->with NV12 UV support on planes 1-3 and NV12 Y support on planes 4-5.
+On Thu, Jan 28, 2021 at 11:24:00AM -0800, Matt Roper wrote:
+>From: Juha-Pekka Heikkil=E4 <juha-pekka.heikkila@intel.com>
 >
->Bspec: 53657
->Bspec: 49251
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Display13 supports plane strides up to 128KB.
+>
+>Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>Signed-off-by: Juha-Pekka Heikkil=E4 <juha-pekka.heikkila@intel.com>
 >Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 >---
-> drivers/gpu/drm/i915/display/intel_sprite.c | 16 ++++++++++++----
-> drivers/gpu/drm/i915/i915_irq.c             |  2 +-
-> drivers/gpu/drm/i915/intel_device_info.c    |  2 +-
-> 3 files changed, 14 insertions(+), 6 deletions(-)
+> drivers/gpu/drm/i915/display/intel_display.c |  6 ++++-
+> drivers/gpu/drm/i915/display/intel_sprite.c  | 24 ++++++++++++++++++--
+> drivers/gpu/drm/i915/i915_reg.h              |  2 ++
+> 3 files changed, 29 insertions(+), 3 deletions(-)
 >
->diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
->index ec931a08ff28..81bb5eb1cd15 100644
+>diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/dr=
+m/i915/display/intel_display.c
+>index d013b0fab128..f56237aaa7b5 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display.c
+>@@ -8396,7 +8396,11 @@ skl_get_initial_plane_config(struct intel_crtc *crt=
+c,
+>
+> 	val =3D intel_de_read(dev_priv, PLANE_STRIDE(pipe, plane_id));
+> 	stride_mult =3D skl_plane_stride_mult(fb, 0, DRM_MODE_ROTATE_0);
+>-	fb->pitches[0] =3D (val & 0x3ff) * stride_mult;
+>+
+>+	if (HAS_DISPLAY13(dev_priv))
+>+		fb->pitches[0] =3D (val & PLANE_STRIDE_MASK_D13) * stride_mult;
+>+	else
+>+		fb->pitches[0] =3D (val & PLANE_STRIDE_MASK) * stride_mult;
+>
+> 	aligned_height =3D intel_fb_align_height(fb, 0, fb->height);
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm=
+/i915/display/intel_sprite.c
+>index 81bb5eb1cd15..c858ba6dc026 100644
 >--- a/drivers/gpu/drm/i915/display/intel_sprite.c
 >+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
->@@ -382,7 +382,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
->
-> static u8 icl_nv12_y_plane_mask(struct drm_i915_private *i915)
+>@@ -572,17 +572,37 @@ skl_plane_max_stride(struct intel_plane *plane,
+> 		     u32 pixel_format, u64 modifier,
+> 		     unsigned int rotation)
 > {
->-	if (HAS_D12_PLANE_MINIMIZATION(i915))
->+	if (HAS_DISPLAY13(i915) || HAS_D12_PLANE_MINIMIZATION(i915))
-> 		return BIT(PLANE_SPRITE2) | BIT(PLANE_SPRITE3);
-> 	else
-> 		return BIT(PLANE_SPRITE4) | BIT(PLANE_SPRITE5);
->@@ -2322,6 +2322,11 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
-> 	}
->
-> 	if (drm_rotation_90_or_270(rotation)) {
->+		if (HAS_DISPLAY13(dev_priv)) {
->+			DRM_DEBUG_KMS("90/270 rotation not supported on this platform\n");
->+			return -EINVAL;
->+		}
+>+	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
+> 	const struct drm_format_info *info =3D drm_format_info(pixel_format);
+> 	int cpp =3D info->cpp[0];
+>+	int max_horizontal_pixels =3D 8192;
+>+	int max_stride_bytes;
 >+
+>+	if (HAS_DISPLAY13(i915)) {
+>+		/*
+>+		 * The stride in bytes must not exceed of the size
+>+		 * of 128K bytes. For pixel formats of 64bpp will allow
+>+		 * for a 16K pixel surface.
+>+		 */
+>+		max_stride_bytes =3D 131072;
+>+		if (cpp =3D=3D 8)
+>+			max_horizontal_pixels =3D 16384;
 
-these are already forbidden in skl_universal_plane_create(), I don't
-think we need the additional check here, do we?
+missing here:
 
-with that removed or explained
+	else
+		max_horizontal_pixels =3D 65536;
+
+
+Also, we are starting to overcomplicate skl_plane_max_stride().
+Time to start setting plane->max_stride based on the platform?
+Although this could be done after landing this patch. With the fix
+above:
+
 
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Lucas De Marchi
 
-> 		if (fb->modifier != I915_FORMAT_MOD_Y_TILED &&
-> 		    fb->modifier != I915_FORMAT_MOD_Yf_TILED) {
-> 			drm_dbg_kms(&dev_priv->drm,
->@@ -3338,9 +3343,12 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
-> 	if (ret)
-> 		goto fail;
+>+	} else {
+>+		/*
+>+		 * "The stride in bytes must not exceed the
+>+		 * of the size of 8K pixels and 32K bytes."
+>+		 */
+>+		max_stride_bytes =3D 32768;
+>+	}
 >
->-	supported_rotations =
->-		DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 |
->-		DRM_MODE_ROTATE_180 | DRM_MODE_ROTATE_270;
->+	if (HAS_DISPLAY13(dev_priv))
->+		supported_rotations = DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180;
->+	else
->+		supported_rotations =
->+			DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 |
->+			DRM_MODE_ROTATE_180 | DRM_MODE_ROTATE_270;
+> 	/*
+> 	 * "The stride in bytes must not exceed the
+> 	 * of the size of 8K pixels and 32K bytes."
+> 	 */
+> 	if (drm_rotation_90_or_270(rotation))
+>-		return min(8192, 32768 / cpp);
+>+		return min(max_horizontal_pixels, max_stride_bytes / cpp);
+> 	else
+>-		return min(8192 * cpp, 32768);
+>+		return min(max_horizontal_pixels * cpp, max_stride_bytes);
+> }
 >
-> 	if (INTEL_GEN(dev_priv) >= 10)
-> 		supported_rotations |= DRM_MODE_REFLECT_X;
->diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
->index 407b42706a14..bb4fad71c429 100644
->--- a/drivers/gpu/drm/i915/i915_irq.c
->+++ b/drivers/gpu/drm/i915/i915_irq.c
->@@ -2290,7 +2290,7 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
+> static void
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_r=
+eg.h
+>index a57593f7d7b1..9dfa4d711d6f 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -7198,6 +7198,8 @@ enum {
+> 	_PIPE(pipe, _PLANE_STRIDE_3_A, _PLANE_STRIDE_3_B)
+> #define PLANE_STRIDE(pipe, plane)	\
+> 	_MMIO_PLANE(plane, _PLANE_STRIDE_1(pipe), _PLANE_STRIDE_2(pipe))
+>+#define PLANE_STRIDE_MASK REG_GENMASK(10, 0)
+>+#define PLANE_STRIDE_MASK_D13 REG_GENMASK(11, 0)
 >
-> static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
-> {
->-	if (HAS_D12_PLANE_MINIMIZATION(dev_priv))
->+	if (HAS_DISPLAY13(dev_priv) || HAS_D12_PLANE_MINIMIZATION(dev_priv))
-> 		return RKL_DE_PIPE_IRQ_FAULT_ERRORS;
-> 	else if (INTEL_GEN(dev_priv) >= 11)
-> 		return GEN11_DE_PIPE_IRQ_FAULT_ERRORS;
->diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
->index 92ad3e7d1f6f..200d4eceaa4e 100644
->--- a/drivers/gpu/drm/i915/intel_device_info.c
->+++ b/drivers/gpu/drm/i915/intel_device_info.c
->@@ -265,7 +265,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
->
-> 	BUILD_BUG_ON(BITS_PER_TYPE(intel_engine_mask_t) < I915_NUM_ENGINES);
->
->-	if (HAS_D12_PLANE_MINIMIZATION(dev_priv))
->+	if (HAS_DISPLAY13(dev_priv) || HAS_D12_PLANE_MINIMIZATION(dev_priv))
-> 		for_each_pipe(dev_priv, pipe)
-> 			runtime->num_sprites[pipe] = 4;
-> 	else if (INTEL_GEN(dev_priv) >= 11)
->-- 
+> #define _PLANE_POS_1_B				0x7118c
+> #define _PLANE_POS_2_B				0x7128c
+>-- =
+
 >2.25.4
 >
 >_______________________________________________
