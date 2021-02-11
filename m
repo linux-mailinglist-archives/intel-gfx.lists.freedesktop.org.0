@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED8A8318A5B
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 13:24:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C978E318A5C
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 13:25:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDC906EE0C;
-	Thu, 11 Feb 2021 12:24:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3938D6EE0D;
+	Thu, 11 Feb 2021 12:25:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B62186EE0C
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 12:24:50 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23838049-1500050 
- for multiple; Thu, 11 Feb 2021 12:24:40 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Feb 2021 12:24:38 +0000
-Message-Id: <20210211122438.29738-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210205104905.31414-1-chris@chris-wilson.co.uk>
-References: <20210205104905.31414-1-chris@chris-wilson.co.uk>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 361C76EE0D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 12:25:55 +0000 (UTC)
+IronPort-SDR: PTqqQW2b9tZ6oeOfPqMG2YStCGJJeUeYd5dzgBau7g0CnEDzW1M8cQrhQn9iAeRyU3qvcjLlqd
+ a3ZN3mdG68EQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="246296737"
+X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="246296737"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2021 04:25:50 -0800
+IronPort-SDR: FVVSO9f3D/VSKwqFCc1Tvt58CWaqg2rbIeBAsccP1PUTD9qD7tRu6ehZ1uuUe3EevB5RksB0cC
+ hJSAzddCY0wQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="397236171"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 11 Feb 2021 04:25:47 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 11 Feb 2021 14:25:47 +0200
+Date: Thu, 11 Feb 2021 14:25:47 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <YCUiSx3qpFE9uGhl@intel.com>
+References: <20210128192413.1715802-1-matthew.d.roper@intel.com>
+ <20210128192413.1715802-4-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: Ratelimit heartbeat completion
- probing
+Content-Disposition: inline
+In-Reply-To: <20210128192413.1715802-4-matthew.d.roper@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 03/18] drm/i915/display13: Enhanced pipe
+ underrun reporting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,427 +51,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The heartbeat runs through a few phases that we expect to complete
-within a certain number of heartbeat intervals. First we must submit the
-heartbeat to the queue, and if the queue is occupied it may take a
-couple of intervals before the heartbeat preempts the workload and is
-submitted to HW. Once running on HW, completion is not instantaneous as
-it may have to first reset the current workload before it itself runs
-through the empty request and signals completion. As such, we know that
-the heartbeat must take at least the preempt reset timeout and before we
-have had a chance to reset the engine, we do not want to issue a global
-reset ourselves (simply so that we only try to do one reset at a time
-and not confuse ourselves by resetting twice and hitting an innocent.)
+On Thu, Jan 28, 2021 at 11:23:58AM -0800, Matt Roper wrote:
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 10fd0e3af2d4..a57593f7d7b1 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -6039,14 +6039,18 @@ enum {
+>  #define   PIPECONF_DITHER_TYPE_ST2 (2 << 2)
+>  #define   PIPECONF_DITHER_TYPE_TEMP (3 << 2)
+>  #define _PIPEASTAT		0x70024
+> +#define _PIPEASTAT_ICL		0x70058
 
-So by taking into consideration that once running the request must take
-a finite amount of time, we can delay the final completion check to
-accommodate that and avoid checking too early (before we've had a chance
-to handle any engine resets required).
+PIPESTAT is a gmch thing. This is not that for sure.
 
-v2: Attach a callback to flush the work immediately upon the heartbeat
-completion and insert the delay before the next.
+>  #define   PIPE_FIFO_UNDERRUN_STATUS		(1UL << 31)
+>  #define   SPRITE1_FLIP_DONE_INT_EN_VLV		(1UL << 30)
+>  #define   PIPE_CRC_ERROR_ENABLE			(1UL << 29)
+>  #define   PIPE_CRC_DONE_ENABLE			(1UL << 28)
+> +#define   PIPE_STAT_SOFT_UNDERRUN_D13		(1UL << 28)
+>  #define   PERF_COUNTER2_INTERRUPT_EN		(1UL << 27)
+>  #define   PIPE_GMBUS_EVENT_ENABLE		(1UL << 27)
+> +#define   PIPE_STAT_HARD_UNDERRUN_D13		(1UL << 27)
+>  #define   PLANE_FLIP_DONE_INT_EN_VLV		(1UL << 26)
+>  #define   PIPE_HOTPLUG_INTERRUPT_ENABLE		(1UL << 26)
+> +#define   PIPE_STAT_PORT_UNDERRUN_D13		(1UL << 26)
+>  #define   PIPE_VSYNC_INTERRUPT_ENABLE		(1UL << 25)
+>  #define   PIPE_DISPLAY_LINE_COMPARE_ENABLE	(1UL << 24)
+>  #define   PIPE_DPST_EVENT_ENABLE		(1UL << 23)
+> @@ -6111,6 +6115,7 @@ enum {
+>  #define PIPEFRAME(pipe)		_MMIO_PIPE2(pipe, _PIPEAFRAMEHIGH)
+>  #define PIPEFRAMEPIXEL(pipe)	_MMIO_PIPE2(pipe, _PIPEAFRAMEPIXEL)
+>  #define PIPESTAT(pipe)		_MMIO_PIPE2(pipe, _PIPEASTAT)
+> +#define ICL_PIPESTAT(pipe)	_MMIO_PIPE2(pipe, _PIPEASTAT_ICL)
+>  =
 
-v3: Now with more tracking for selftests and detection of
-false/unexpected hang reports.
+>  #define  _PIPEAGCMAX           0x70010
+>  #define  _PIPEBGCMAX           0x71010
+> @@ -7789,6 +7794,8 @@ enum {
+>  #define  GEN8_PIPE_FIFO_UNDERRUN	(1 << 31)
+>  #define  GEN8_PIPE_CDCLK_CRC_ERROR	(1 << 29)
+>  #define  GEN8_PIPE_CDCLK_CRC_DONE	(1 << 28)
+> +#define  D13_PIPE_SOFT_UNDERRUN		(1 << 22)
+> +#define  D13_PIPE_HARD_UNDERRUN		(1 << 21)
+>  #define  GEN8_PIPE_CURSOR_FAULT		(1 << 10)
+>  #define  GEN8_PIPE_SPRITE_FAULT		(1 << 9)
+>  #define  GEN8_PIPE_PRIMARY_FAULT	(1 << 8)
+> -- =
 
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2853
-Suggested-by: CQ Tang <cq.tang@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- .../gpu/drm/i915/gt/intel_engine_heartbeat.c  | 104 +++++++++++++++---
- drivers/gpu/drm/i915/gt/intel_engine_types.h  |   8 ++
- .../drm/i915/gt/selftest_engine_heartbeat.c   |  92 ++++++++++------
- drivers/gpu/drm/i915/gt/selftest_execlists.c  |   5 +-
- 4 files changed, 159 insertions(+), 50 deletions(-)
+> 2.25.4
+> =
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-index 0b062fad1837..71aa02995417 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-@@ -20,6 +20,18 @@
-  * issue a reset -- in the hope that restores progress.
-  */
- 
-+#define HEARTBEAT_COMPLETION 50u /* milliseconds */
-+
-+static long completion_timeout(const struct intel_engine_cs *engine)
-+{
-+	long timeout = HEARTBEAT_COMPLETION;
-+
-+	if (intel_engine_has_preempt_reset(engine))
-+		timeout += READ_ONCE(engine->props.preempt_timeout_ms);
-+
-+	return msecs_to_jiffies(timeout);
-+}
-+
- static bool next_heartbeat(struct intel_engine_cs *engine)
- {
- 	long delay;
-@@ -29,6 +41,26 @@ static bool next_heartbeat(struct intel_engine_cs *engine)
- 		return false;
- 
- 	delay = msecs_to_jiffies_timeout(delay);
-+
-+	/*
-+	 * Once we submit a heartbeat to the HW, we know that it will take
-+	 * at least a certain amount of time to complete. On a hanging system
-+	 * it will first have to wait for the preempt reset timeout, and
-+	 * then it will take some time for the reset to resume with the
-+	 * heartbeat and for it to complete. So once we have submitted the
-+	 * heartbeat to HW, we can wait a while longer before declaring the
-+	 * engine stuck and forcing a reset ourselves. If we do a reset
-+	 * and the engine is also doing a reset, it is possible that we
-+	 * reset the engine twice, harming an innocent.
-+	 *
-+	 * Before we have sumitted the heartbeat, we do not want to change
-+	 * the interval as we want to promote the heartbeat and trigger
-+	 * preemption in a deterministic time frame.
-+	 */
-+	if (engine->heartbeat.systole &&
-+	    i915_request_is_active(engine->heartbeat.systole))
-+		delay = max(delay, completion_timeout(engine));
-+
- 	if (delay >= HZ)
- 		delay = round_jiffies_up_relative(delay);
- 	mod_delayed_work(system_highpri_wq, &engine->heartbeat.work, delay + 1);
-@@ -48,12 +80,51 @@ heartbeat_create(struct intel_context *ce, gfp_t gfp)
- 	return rq;
- }
- 
-+static void defibrillator(struct dma_fence *f, struct dma_fence_cb *cb)
-+{
-+	struct intel_engine_cs *engine =
-+		container_of(cb, typeof(*engine), heartbeat.cb);
-+
-+	if (READ_ONCE(engine->heartbeat.systole))
-+		mod_delayed_work(system_highpri_wq, &engine->heartbeat.work, 0);
-+}
-+
-+static void
-+untrack_heartbeat(struct intel_engine_cs *engine)
-+{
-+	struct i915_request *rq;
-+
-+	rq = fetch_and_zero(&engine->heartbeat.systole);
-+	if (!rq)
-+		return;
-+
-+	ENGINE_TRACE(engine, "heartbeat " RQ_FMT "completed\n", RQ_ARG(rq));
-+	I915_SELFTEST_ONLY(engine->heartbeat.completed++);
-+
-+	dma_fence_remove_callback(&rq->fence, &engine->heartbeat.cb);
-+	i915_request_put(rq);
-+}
-+
-+static void
-+track_heartbeat(struct intel_engine_cs *engine, struct i915_request *rq)
-+{
-+	ENGINE_TRACE(engine, "heartbeat " RQ_FMT "started\n", RQ_ARG(rq));
-+	I915_SELFTEST_ONLY(engine->heartbeat.submitted++);
-+
-+	dma_fence_add_callback(&rq->fence,
-+			       &engine->heartbeat.cb,
-+			       defibrillator);
-+	engine->heartbeat.systole = i915_request_get(rq);
-+	if (!next_heartbeat(engine))
-+		untrack_heartbeat(engine);
-+}
-+
- static void idle_pulse(struct intel_engine_cs *engine, struct i915_request *rq)
- {
- 	engine->wakeref_serial = READ_ONCE(engine->serial) + 1;
- 	i915_request_add_active_barriers(rq);
- 	if (!engine->heartbeat.systole && intel_engine_has_heartbeat(engine))
--		engine->heartbeat.systole = i915_request_get(rq);
-+		track_heartbeat(engine, rq);
- }
- 
- static void heartbeat_commit(struct i915_request *rq,
-@@ -106,13 +177,8 @@ static void heartbeat(struct work_struct *wrk)
- 	intel_engine_flush_scheduler(engine);
- 
- 	rq = engine->heartbeat.systole;
--	if (rq && i915_request_completed(rq)) {
--		ENGINE_TRACE(engine,
--			     "heartbeat " RQ_FMT "completed\n",
--			     RQ_ARG(rq));
--		i915_request_put(rq);
--		engine->heartbeat.systole = NULL;
--	}
-+	if (rq && i915_request_completed(rq))
-+		untrack_heartbeat(engine);
- 
- 	if (!intel_engine_pm_get_if_awake(engine))
- 		return;
-@@ -120,6 +186,8 @@ static void heartbeat(struct work_struct *wrk)
- 	if (intel_gt_is_wedged(engine->gt))
- 		goto out;
- 
-+	I915_SELFTEST_ONLY(engine->heartbeat.ticks++);
-+
- 	if (engine->heartbeat.systole) {
- 		long delay = READ_ONCE(engine->props.heartbeat_interval_ms);
- 
-@@ -152,8 +220,10 @@ static void heartbeat(struct work_struct *wrk)
- 			attr.priority = 0;
- 			if (rq->sched.attr.priority >= attr.priority)
- 				attr.priority = I915_PRIORITY_HEARTBEAT;
--			if (rq->sched.attr.priority >= attr.priority)
-+			if (rq->sched.attr.priority >= attr.priority) {
-+				I915_SELFTEST_ONLY(engine->heartbeat.barrier++);
- 				attr.priority = I915_PRIORITY_BARRIER;
-+			}
- 
- 			ENGINE_TRACE(engine,
- 				     "bumping heartbeat " RQ_FMT " prio:%d\n",
-@@ -166,6 +236,7 @@ static void heartbeat(struct work_struct *wrk)
- 			ENGINE_TRACE(engine,
- 				     "heartbeat " RQ_FMT " stuck\n",
- 				     RQ_ARG(rq));
-+			I915_SELFTEST_ONLY(engine->heartbeat.reset++);
- 
- 			if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
- 				show_heartbeat(rq, engine);
-@@ -180,6 +251,11 @@ static void heartbeat(struct work_struct *wrk)
- 		goto out;
- 	}
- 
-+	/* Just completed one heartbeat, wait a tick before the next */
-+	if (rq)
-+		goto out;
-+
-+	/* The engine is parking. We can rest until the next user */
- 	serial = READ_ONCE(engine->serial);
- 	if (engine->wakeref_serial == serial)
- 		goto out;
-@@ -198,14 +274,14 @@ static void heartbeat(struct work_struct *wrk)
- 	if (IS_ERR(rq))
- 		goto unlock;
- 
--	ENGINE_TRACE(engine, "heartbeat " RQ_FMT "started\n", RQ_ARG(rq));
- 	heartbeat_commit(rq, &attr);
- 
- unlock:
- 	mutex_unlock(&ce->timeline->mutex);
- out:
-+	intel_engine_flush_scheduler(engine);
- 	if (!engine->i915->params.enable_hangcheck || !next_heartbeat(engine))
--		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
-+		untrack_heartbeat(engine);
- 	intel_engine_pm_put(engine);
- }
- 
-@@ -219,8 +295,10 @@ void intel_engine_unpark_heartbeat(struct intel_engine_cs *engine)
- 
- void intel_engine_park_heartbeat(struct intel_engine_cs *engine)
- {
--	if (cancel_delayed_work(&engine->heartbeat.work))
--		i915_request_put(fetch_and_zero(&engine->heartbeat.systole));
-+	/* completion may rearm work */
-+	while (cancel_delayed_work(&engine->heartbeat.work))
-+		;
-+	untrack_heartbeat(engine);
- }
- 
- void intel_engine_init_heartbeat(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 7efa6290cc3e..5ad8d26e2fa0 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -322,7 +322,15 @@ struct intel_engine_cs {
- 	struct {
- 		struct delayed_work work;
- 		struct i915_request *systole;
-+		struct dma_fence_cb cb;
- 		unsigned long blocked;
-+		I915_SELFTEST_DECLARE(struct {
-+			unsigned long submitted;
-+			unsigned long completed;
-+			unsigned long barrier;
-+			unsigned long reset;
-+			unsigned long ticks;
-+		};)
- 	} heartbeat;
- 
- 	unsigned long serial;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-index b2c369317bf1..3784b1852eac 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
-@@ -202,47 +202,57 @@ static int cmp_u32(const void *_a, const void *_b)
- 
- static int __live_heartbeat_fast(struct intel_engine_cs *engine)
- {
--	const unsigned int error_threshold = max(20000u, jiffies_to_usecs(6));
--	struct intel_context *ce;
--	struct i915_request *rq;
--	ktime_t t0, t1;
-+	const unsigned int error_threshold =
-+		max_t(unsigned int,
-+		      3 * completion_timeout(engine) * 1000,
-+		      jiffies_to_usecs(6));
-+	struct intel_context *ce = engine->kernel_context;
-+	unsigned long resets;
- 	u32 times[5];
- 	int err;
- 	int i;
- 
--	ce = intel_context_create(engine);
--	if (IS_ERR(ce))
--		return PTR_ERR(ce);
--
- 	intel_engine_pm_get(engine);
- 
- 	err = intel_engine_set_heartbeat(engine, 1);
- 	if (err)
- 		goto err_pm;
- 
-+	flush_delayed_work(&engine->heartbeat.work);
-+	while (engine->heartbeat.systole)
-+		intel_engine_park_heartbeat(engine);
-+
-+	resets = engine->heartbeat.reset;
- 	for (i = 0; i < ARRAY_SIZE(times); i++) {
--		do {
--			/* Manufacture a tick */
--			intel_engine_park_heartbeat(engine);
--			GEM_BUG_ON(engine->heartbeat.systole);
--			engine->serial++; /*  pretend we are not idle! */
--			intel_engine_unpark_heartbeat(engine);
-+		struct i915_sched_attr attr = { .priority = I915_PRIORITY_MIN };
-+		unsigned long submits = engine->heartbeat.submitted;
-+		unsigned long completed = engine->heartbeat.completed;
-+		struct i915_request *rq;
-+		ktime_t t0, t1;
- 
--			flush_delayed_work(&engine->heartbeat.work);
--			if (!delayed_work_pending(&engine->heartbeat.work)) {
--				pr_err("%s: heartbeat %d did not start\n",
--				       engine->name, i);
--				err = -EINVAL;
--				goto err_pm;
--			}
-+		GEM_BUG_ON(READ_ONCE(engine->heartbeat.systole));
- 
--			rcu_read_lock();
--			rq = READ_ONCE(engine->heartbeat.systole);
--			if (rq)
--				rq = i915_request_get_rcu(rq);
--			rcu_read_unlock();
--		} while (!rq);
-+		/* Manufacture a tick */
-+		mutex_lock(&ce->timeline->mutex);
-+		rq = heartbeat_create(ce, GFP_KERNEL);
-+		if (!IS_ERR(rq)) {
-+			i915_request_get(rq);
-+			heartbeat_commit(rq, &attr);
-+		}
-+		mutex_unlock(&ce->timeline->mutex);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			goto err_reset;
-+		}
- 
-+		if (engine->heartbeat.submitted != submits + 1) {
-+			GEM_TRACE_ERR("Heartbeat was not tracked!\n");
-+			GEM_TRACE_DUMP();
-+			err = -EIO;
-+			goto err_reset;
-+		}
-+
-+		/* Time how long before the heartbeat monitor checks */
- 		t0 = ktime_get();
- 		while (rq == READ_ONCE(engine->heartbeat.systole))
- 			yield(); /* work is on the local cpu! */
-@@ -250,6 +260,20 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
- 
- 		i915_request_put(rq);
- 		times[i] = ktime_us_delta(t1, t0);
-+
-+		if (engine->heartbeat.reset != resets) {
-+			GEM_TRACE_ERR("False reset from a fast heartbeat!\n");
-+			GEM_TRACE_DUMP();
-+			err = -EIO;
-+			goto err_reset;
-+		}
-+
-+		if (engine->heartbeat.completed != completed + 1) {
-+			GEM_TRACE_ERR("Completed heartbeat was not recorded!\n");
-+			GEM_TRACE_DUMP();
-+			err = -EIO;
-+			goto err_reset;
-+		}
- 	}
- 
- 	sort(times, ARRAY_SIZE(times), sizeof(times[0]), cmp_u32, NULL);
-@@ -275,10 +299,10 @@ static int __live_heartbeat_fast(struct intel_engine_cs *engine)
- 		err = -EINVAL;
- 	}
- 
-+err_reset:
- 	reset_heartbeat(engine);
- err_pm:
- 	intel_engine_pm_put(engine);
--	intel_context_put(ce);
- 	return err;
- }
- 
-@@ -308,20 +332,16 @@ static int __live_heartbeat_off(struct intel_engine_cs *engine)
- 
- 	intel_engine_pm_get(engine);
- 
-+	/* Kick once, so that we change an active heartbeat */
- 	engine->serial++;
--	flush_delayed_work(&engine->heartbeat.work);
--	if (!delayed_work_pending(&engine->heartbeat.work)) {
--		pr_err("%s: heartbeat not running\n",
--		       engine->name);
--		err = -EINVAL;
--		goto err_pm;
--	}
-+	intel_engine_unpark_heartbeat(engine);
- 
- 	err = intel_engine_set_heartbeat(engine, 0);
- 	if (err)
- 		goto err_pm;
- 
--	engine->serial++;
-+	/* The next heartbeat work should cancel the heartbeat */
-+	engine->serial++; /* pretend the engine is still active */
- 	flush_delayed_work(&engine->heartbeat.work);
- 	if (delayed_work_pending(&engine->heartbeat.work)) {
- 		pr_err("%s: heartbeat still running\n",
-diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-index f625c29023ea..04ded3a2d491 100644
---- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-@@ -2325,13 +2325,16 @@ static int __cancel_fail(struct live_preempt_cancel *arg)
- 	del_timer_sync(&engine->execlists.preempt);
- 	intel_engine_flush_scheduler(engine);
- 
-+	engine->props.preempt_timeout_ms = 0;
- 	cancel_reset_timeout(engine);
- 
--	/* after failure, require heartbeats to reset device */
-+	/* after failure, require fast heartbeats to reset device */
- 	intel_engine_set_heartbeat(engine, 1);
- 	err = wait_for_reset(engine, rq, HZ / 2);
- 	intel_engine_set_heartbeat(engine,
- 				   engine->defaults.heartbeat_interval_ms);
-+
-+	engine->props.preempt_timeout_ms = engine->defaults.preempt_timeout_ms;
- 	if (err) {
- 		pr_err("Cancelled inflight0 request did not reset\n");
- 		goto out;
--- 
-2.20.1
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
