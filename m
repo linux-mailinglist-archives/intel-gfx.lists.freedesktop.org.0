@@ -1,38 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05F3E3174E2
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 01:01:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDAC33174EB
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 01:03:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 097806E0C4;
-	Thu, 11 Feb 2021 00:01:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BDDC6E0D7;
+	Thu, 11 Feb 2021 00:03:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE6D6E0C4
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 00:01:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23839460-1500050 for multiple; Thu, 11 Feb 2021 00:00:53 +0000
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 081526E0D7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 00:03:12 +0000 (UTC)
+IronPort-SDR: PQ4sUjdArE9TePY4S/5wpaT/vQx0uZ13vTpwjLGYeIDMKpXpapKTzCRwykeZnzstyrWJAtlcbL
+ 79LvnL3kvl1Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="267013028"
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="267013028"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 16:03:12 -0800
+IronPort-SDR: nmo1xcq3IO/qjWvmRgSDK89TKmSac0UG+E6dpoUEUd05TT8Mhz7VOg5BQowe9Eh7HKftGbCLCe
+ iSUgBBDwjKIQ==
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="414267916"
+Received: from sganes2-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.30.225])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 16:03:09 -0800
+Date: Wed, 10 Feb 2021 16:03:09 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210211000309.aurwh4uyqpy5u23m@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20210128192413.1715802-1-matthew.d.roper@intel.com>
+ <20210128192413.1715802-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <02fd493c-957f-890d-d0ad-ebd4119f55f2@redhat.com>
-References: <fe6040b5-72a0-9882-439e-ea7fc0b3935d@redhat.com>
- <161282685855.9448.10484374241892252440@build.alporthouse.com>
- <f1070486-891a-8ec0-0390-b9aeb03178ce@redhat.com>
- <161291205642.6673.10994709665368036431@build.alporthouse.com>
- <02fd493c-957f-890d-d0ad-ebd4119f55f2@redhat.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Hans de Goede <hdegoede@redhat.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org
-Date: Thu, 11 Feb 2021 00:00:56 +0000
-Message-ID: <161300165634.11384.9846101188071670868@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation
- is causing gfx issues
+Content-Disposition: inline
+In-Reply-To: <20210128192413.1715802-2-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 01/18] drm/i915/display13: add Display13
+ characteristics
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,71 +50,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Hans de Goede (2021-02-10 10:37:19)
-> Hi,
-> 
-> On 2/10/21 12:07 AM, Chris Wilson wrote:
-> > Quoting Hans de Goede (2021-02-09 11:46:46)
-> >> Hi,
-> >>
-> >> On 2/9/21 12:27 AM, Chris Wilson wrote:
-> >>> Quoting Hans de Goede (2021-02-08 20:38:58)
-> >>>> Hi All,
-> >>>>
-> >>>> We (Fedora) have been receiving reports from multiple users about gfx issues / glitches
-> >>>> stating with 5.10.9. All reporters are users of Ivy Bridge / Haswell iGPUs and all
-> >>>> reporters report that adding i915.mitigations=off to the cmdline fixes things, see:
-> >>>
-> >>> I tried to reproduce this on the w/e on hsw-gt1, to no avail; and piglit
-> >>> did not report any differences with and without mitigations. I have yet
-> >>> to test other platforms. So I don't yet have an alternative.
-> >>
-> >> Note the original / first reporter of:
-> >>
-> >> https://bugzilla.redhat.com/show_bug.cgi?id=1925346
-> >>
-> >> Is using hsw-gt2, so it seems that the problem is not just the enabling of
-> >> the mitigations on ivy-bridge / bay-trail but that there actually is
-> >> a regression on devices where the WA worked fine before...
-> > 
-> > There have been 3 crashes uploaded related to v5.10.9, and in all 3
-> > cases the ACTHD has been in the first page. This strongly suggests that
-> > the w/a is scribbling over address 0. And there's then a very good
-> > chance that
-> > 
-> > commit 29d35b73ead4e41aa0d1a954c9bfbdce659ec5d6
-> > Author: Chris Wilson <chris@chris-wilson.co.uk>
-> > Date:   Mon Jan 25 12:50:33 2021 +0000
-> > 
-> >     drm/i915/gt: Always try to reserve GGTT address 0x0
-> >     
-> >     commit 489140b5ba2e7cc4b853c29e0591895ddb462a82 upstream.
-> > 
-> > in v5.10.14 is sufficient to hide the issue.
-> 
-> That one actually is already in v5.10.13 and the various reportes of these
-> issues have already tested 5.10.13. They did mention that it took longer
-> to reproduce with 5.10.13 then with 5.10.10, but that could also be due to:
-> 
-> "drm/i915/gt: Clear CACHE_MODE prior to clearing residuals"
-> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?h=linux-5.10.y&id=520d05a77b2866eb4cb9e548e1d8c8abcfe60ec5
+On Thu, Jan 28, 2021 at 11:23:56AM -0800, Matt Roper wrote:
+>Let's start preparing for upcoming platforms that will use a Display13
+>design.
+>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>---
+> drivers/gpu/drm/i915/i915_drv.h          |  1 +
+> drivers/gpu/drm/i915/i915_pci.c          | 11 +++++++++++
+> drivers/gpu/drm/i915/intel_device_info.h |  2 ++
+> 3 files changed, 14 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>index 9713ab963122..1c0fdbf800ac 100644
+>--- a/drivers/gpu/drm/i915/i915_drv.h
+>+++ b/drivers/gpu/drm/i915/i915_drv.h
+>@@ -1778,6 +1778,7 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
+> #define INTEL_NUM_PIPES(dev_priv) (hweight8(INTEL_INFO(dev_priv)->pipe_mask))
+>
+> #define HAS_DISPLAY(dev_priv) (INTEL_INFO(dev_priv)->pipe_mask != 0)
+>+#define HAS_DISPLAY13(dev_priv) (INTEL_INFO(dev_priv)->has_display13)
+>
+> #define HAS_VRR(i915)	(INTEL_GEN(i915) >= 12)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+>index 6cff7cf0f17b..e5e10484bf8d 100644
+>--- a/drivers/gpu/drm/i915/i915_pci.c
+>+++ b/drivers/gpu/drm/i915/i915_pci.c
+>@@ -936,6 +936,17 @@ static const struct intel_device_info adl_s_info = {
+> 	.dma_mask_size = 46,
+> };
+>
+>+#define DISPLAY13_FEATURES \
+>+	.has_display13 = 1,						\
+>+	.display.has_psr_hw_tracking = 0,				\
+>+	.abox_mask = GENMASK(1, 0),					\
+>+	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D), \
+>+	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |	\
+>+		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),			\
+>+	.ddb_size = 4096,						\
+>+	.mbus_size = 2048,						\
+>+	.num_supported_dbuf_slices = 4,
+>+
+> #undef GEN
+> #undef PLATFORM
+>
+>diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+>index e6ca1023ffcf..ba44c2c10ad8 100644
+>--- a/drivers/gpu/drm/i915/intel_device_info.h
+>+++ b/drivers/gpu/drm/i915/intel_device_info.h
+>@@ -116,6 +116,7 @@ enum intel_ppgtt_type {
+> 	func(is_dgfx); \
+> 	/* Keep has_* in alphabetical order */ \
+> 	func(has_64bit_reloc); \
+>+	func(has_display13); \
 
-There's also another pair of pipecontrols required for that:
+shouldn't this be inside display struct?
 
-d30bbd62b1bf ("drm/i915/gt: Flush before changing register state")
+> 	func(gpu_reset_clobbers_display); \
+> 	func(has_reset_engine); \
+> 	func(has_fpga_dbg); \
+>@@ -193,6 +194,7 @@ struct intel_device_info {
+> 	} display;
+>
+> 	u16 ddb_size; /* in blocks */
+>+	u16 mbus_size; /* total ddb size on one mbus */
 
-which didn't get picked up for stable.
+this is unused and afaics never will. It'd be better if if this is
+introduced only together with the feature.
 
-https://intel-gfx-ci.01.org/tree/linux-stable/index-alt.html?
+Lucas De Marchi
 
-shows that we are still missing a couple of fixes for the w/a, at least
-compare to BAT on drm-tip.
--Chris
+> 	u8 num_supported_dbuf_slices; /* number of DBuf slices */
+>
+> 	/* Register offsets for the various display pipes and transcoders */
+>-- 
+>2.25.4
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
