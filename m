@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B758C3182A1
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 01:28:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7831C3182A8
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 01:31:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 320CA6EA65;
-	Thu, 11 Feb 2021 00:28:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E6278936E;
+	Thu, 11 Feb 2021 00:31:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DCC686E1F6;
- Thu, 11 Feb 2021 00:28:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D4A13A0118;
- Thu, 11 Feb 2021 00:28:26 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B86F4891DA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 00:31:52 +0000 (UTC)
+IronPort-SDR: ZGb7nrQ3+0UBJswif6Sf0IsaxbBQEAcvPzape7/N10v5HYhfU1FnykEckhMoach2jTfio+uyU5
+ jAE+/dEbclfw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="169300775"
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="169300775"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 16:31:51 -0800
+IronPort-SDR: An3eL2OQm3Xcyn3hGFEvLIW4fgrmvd8oTBgYw9iOdpBMxd1ec16nFbbd1MxT8eMim4mf6LNwsz
+ 9CTdrXQLGmAQ==
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="380369592"
+Received: from sganes2-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.30.225])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 16:31:50 -0800
+Date: Wed, 10 Feb 2021 16:31:50 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210211003150.kzhc35ytqdtueh5l@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20210128192413.1715802-1-matthew.d.roper@intel.com>
+ <20210128192413.1715802-4-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 11 Feb 2021 00:28:26 -0000
-Message-ID: <161300330683.27070.957574591877277378@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210210233946.7602-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20210210233946.7602-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Refine_VT-d_scanout_workaround?=
+Content-Disposition: inline
+In-Reply-To: <20210128192413.1715802-4-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 03/18] drm/i915/display13: Enhanced pipe
+ underrun reporting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,196 +50,217 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0698986377=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0698986377==
-Content-Type: multipart/alternative;
- boundary="===============5125462157804735375=="
+On Thu, Jan 28, 2021 at 11:23:58AM -0800, Matt Roper wrote:
+>Display13 brings enhanced underrun recovery:  the hardware can somewhat
+>mitigate underruns by using an interpolated replacement pixel (soft
+>underrun) or the previous pixel (hard underrun).  Furthermore, underruns
+>can now be caused downstream by the port, even if the pipe itself is
+>operating properly.  The interrupt register gives us extra bits to
+>determine hard/soft underruns and whether the underrun was caused by the
+>port, so let's pass the iir down to the underrun handler and print some
+>more descriptive errors on Display13 platforms.
+>
+>The context of the underrun is also available via PIPE_STATUS, but since
+>we have the same information in the IIR we don't have a need to read
+>from there.  PIPE_STATUS might be useful in debugfs in the future
+>though.
 
---===============5125462157804735375==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+is this comment outdated? See below...
 
-== Series Details ==
+>
+>Bspec: 50335
+>Bspec: 50366
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>---
+> .../drm/i915/display/intel_fifo_underrun.c    | 55 ++++++++++++++++++-
+> drivers/gpu/drm/i915/i915_irq.c               | 14 ++++-
+> drivers/gpu/drm/i915/i915_reg.h               |  7 +++
+> 3 files changed, 73 insertions(+), 3 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+>index 813a4f7033e1..6c377f0fc1b3 100644
+>--- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+>+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+>@@ -359,6 +359,39 @@ bool intel_set_pch_fifo_underrun_reporting(struct drm_i915_private *dev_priv,
+> 	return old;
+> }
+>
+>+static u32
+>+underrun_pipestat_mask(struct drm_i915_private *dev_priv)
+>+{
+>+	u32 mask = PIPE_FIFO_UNDERRUN_STATUS;
+>+
+>+	if (HAS_DISPLAY13(dev_priv))
+>+		mask |= PIPE_STAT_SOFT_UNDERRUN_D13 |
+>+			PIPE_STAT_HARD_UNDERRUN_D13 |
+>+			PIPE_STAT_PORT_UNDERRUN_D13;
+>+
+>+	return mask;
+>+}
+>+
+>+static const char *
+>+pipe_underrun_reason(u32 pipestat_underruns)
+>+{
+>+	if (pipestat_underruns & PIPE_STAT_SOFT_UNDERRUN_D13)
+>+		/*
+>+		 * Hardware used replacement/interpolated pixels at
+>+		 * underrun locations.
+>+		 */
+>+		return "soft";
+>+	else if (pipestat_underruns & PIPE_STAT_HARD_UNDERRUN_D13)
+>+		/*
+>+		 * Hardware used previous pixel value at underrun
+>+		 * locations.
+>+		 */
+>+		return "hard";
+>+	else
+>+		/* Old platform or no extra soft/hard bit set */
+>+		return "FIFO";
+>+}
+>+
+> /**
+>  * intel_cpu_fifo_underrun_irq_handler - handle CPU fifo underrun interrupt
+>  * @dev_priv: i915 device instance
+>@@ -372,6 +405,7 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
+> 					 enum pipe pipe)
+> {
+> 	struct intel_crtc *crtc = intel_get_crtc_for_pipe(dev_priv, pipe);
+>+	u32 underruns = 0;
+>
+> 	/* We may be called too early in init, thanks BIOS! */
+> 	if (crtc == NULL)
+>@@ -382,10 +416,27 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i915_private *dev_priv,
+> 	    crtc->cpu_fifo_underrun_disabled)
+> 		return;
+>
+>+	/*
+>+	 * On Display13, we can find out whether an underrun is soft/hard from
+>+	 * either the iir or PIPE_STAT, but we can only determine if underruns
+>+	 * were due to downstream port logic from PIPE_STAT.
+>+	 */
 
-Series: drm/i915: Refine VT-d scanout workaround
-URL   : https://patchwork.freedesktop.org/series/86967/
-State : success
+so... we are actually reading PIPE_STAT somce we want to report if it's
+from downstream port.
 
-== Summary ==
+>+	underruns = intel_uncore_read(&dev_priv->uncore, ICL_PIPESTAT(pipe)) &
+>+		underrun_pipestat_mask(dev_priv);
+>+	intel_uncore_write(&dev_priv->uncore, ICL_PIPESTAT(pipe), underruns);
 
-CI Bug Log - changes from CI_DRM_9761 -> Patchwork_19656
-====================================================
+maybe I'm missing something, but this doesn't look right to me.  We
+unconditionally read/write ICL_PIPESTAT(pipe), even if it's not
+display13.  Also, the `underruns = 0` initialization is just being
+overwritten here.
 
-Summary
--------
+intel_cpu_fifo_underrun_irq_handler() is called by very old gens as
+well.
 
-  **SUCCESS**
+Lucas De Marchi
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19656 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-glk-dsi:         [PASS][1] -> [DMESG-WARN][2] ([i915#2943])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_tiled_blits@basic:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_tiled_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/fi-tgl-y/igt@gem_tiled_blits@basic.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-kbl-7500u:       [PASS][5] -> [DMESG-WARN][6] ([i915#165])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-
-  
-  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
-  [i915#2943]: https://gitlab.freedesktop.org/drm/intel/issues/2943
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9761 -> Patchwork_19656
-
-  CI-20190529: 20190529
-  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19656: cb230263531710c4a26ddcd496b272493ea49eda @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-cb2302635317 drm/i915: Refine VT-d scanout workaround
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/index.html
-
---===============5125462157804735375==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Refine VT-d scanout workaround</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86967/">https://patchwork.freedesktop.org/series/86967/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9761 -&gt; Patchwork_19656</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19656 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/fi-glk-dsi/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2943">i915#2943</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/fi-tgl-y/igt@gem_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-edid-read:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/fi-kbl-7500u/igt@kms_chamelium@dp-edid-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/165">i915#165</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_two_bos:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19656/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9761 -&gt; Patchwork_19656</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19656: cb230263531710c4a26ddcd496b272493ea49eda @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>cb2302635317 drm/i915: Refine VT-d scanout workaround</p>
-
-</body>
-</html>
-
---===============5125462157804735375==--
-
---===============0698986377==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>+
+> 	if (intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false)) {
+> 		trace_intel_cpu_fifo_underrun(dev_priv, pipe);
+>-		drm_err(&dev_priv->drm, "CPU pipe %c FIFO underrun\n",
+>-			pipe_name(pipe));
+>+
+>+		if (underruns & PIPE_STAT_PORT_UNDERRUN_D13)
+>+			/* Underrun was caused downstream from the pipes */
+>+			drm_err(&dev_priv->drm, "Port triggered a %s underrun on pipe %c\n",
+>+				pipe_underrun_reason(underruns),
+>+				pipe_name(pipe));
+>+		else
+>+			drm_err(&dev_priv->drm, "CPU pipe %c %s underrun\n",
+>+				pipe_name(pipe),
+>+				pipe_underrun_reason(underruns));
+> 	}
+>
+> 	intel_fbc_handle_fifo_underrun_irq(dev_priv);
+>diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+>index 1bced71470a5..407b42706a14 100644
+>--- a/drivers/gpu/drm/i915/i915_irq.c
+>+++ b/drivers/gpu/drm/i915/i915_irq.c
+>@@ -2389,6 +2389,18 @@ static void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+> 	intel_uncore_write(&dev_priv->uncore, DSI_INTR_IDENT_REG(port), tmp);
+> }
+>
+>+static u32
+>+underrun_iir_mask(struct drm_i915_private *dev_priv)
+>+{
+>+	u32 mask = GEN8_PIPE_FIFO_UNDERRUN;
+>+
+>+	if (HAS_DISPLAY13(dev_priv))
+>+		mask |= D13_PIPE_SOFT_UNDERRUN |
+>+			D13_PIPE_HARD_UNDERRUN;
+>+
+>+	return mask;
+>+}
+>+
+> static irqreturn_t
+> gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+> {
+>@@ -2497,7 +2509,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+> 		if (iir & GEN8_PIPE_CDCLK_CRC_DONE)
+> 			hsw_pipe_crc_irq_handler(dev_priv, pipe);
+>
+>-		if (iir & GEN8_PIPE_FIFO_UNDERRUN)
+>+		if (iir & underrun_iir_mask(dev_priv))
+> 			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
+>
+> 		fault_errors = iir & gen8_de_pipe_fault_mask(dev_priv);
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>index 10fd0e3af2d4..a57593f7d7b1 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -6039,14 +6039,18 @@ enum {
+> #define   PIPECONF_DITHER_TYPE_ST2 (2 << 2)
+> #define   PIPECONF_DITHER_TYPE_TEMP (3 << 2)
+> #define _PIPEASTAT		0x70024
+>+#define _PIPEASTAT_ICL		0x70058
+> #define   PIPE_FIFO_UNDERRUN_STATUS		(1UL << 31)
+> #define   SPRITE1_FLIP_DONE_INT_EN_VLV		(1UL << 30)
+> #define   PIPE_CRC_ERROR_ENABLE			(1UL << 29)
+> #define   PIPE_CRC_DONE_ENABLE			(1UL << 28)
+>+#define   PIPE_STAT_SOFT_UNDERRUN_D13		(1UL << 28)
+> #define   PERF_COUNTER2_INTERRUPT_EN		(1UL << 27)
+> #define   PIPE_GMBUS_EVENT_ENABLE		(1UL << 27)
+>+#define   PIPE_STAT_HARD_UNDERRUN_D13		(1UL << 27)
+> #define   PLANE_FLIP_DONE_INT_EN_VLV		(1UL << 26)
+> #define   PIPE_HOTPLUG_INTERRUPT_ENABLE		(1UL << 26)
+>+#define   PIPE_STAT_PORT_UNDERRUN_D13		(1UL << 26)
+> #define   PIPE_VSYNC_INTERRUPT_ENABLE		(1UL << 25)
+> #define   PIPE_DISPLAY_LINE_COMPARE_ENABLE	(1UL << 24)
+> #define   PIPE_DPST_EVENT_ENABLE		(1UL << 23)
+>@@ -6111,6 +6115,7 @@ enum {
+> #define PIPEFRAME(pipe)		_MMIO_PIPE2(pipe, _PIPEAFRAMEHIGH)
+> #define PIPEFRAMEPIXEL(pipe)	_MMIO_PIPE2(pipe, _PIPEAFRAMEPIXEL)
+> #define PIPESTAT(pipe)		_MMIO_PIPE2(pipe, _PIPEASTAT)
+>+#define ICL_PIPESTAT(pipe)	_MMIO_PIPE2(pipe, _PIPEASTAT_ICL)
+>
+> #define  _PIPEAGCMAX           0x70010
+> #define  _PIPEBGCMAX           0x71010
+>@@ -7789,6 +7794,8 @@ enum {
+> #define  GEN8_PIPE_FIFO_UNDERRUN	(1 << 31)
+> #define  GEN8_PIPE_CDCLK_CRC_ERROR	(1 << 29)
+> #define  GEN8_PIPE_CDCLK_CRC_DONE	(1 << 28)
+>+#define  D13_PIPE_SOFT_UNDERRUN		(1 << 22)
+>+#define  D13_PIPE_HARD_UNDERRUN		(1 << 21)
+> #define  GEN8_PIPE_CURSOR_FAULT		(1 << 10)
+> #define  GEN8_PIPE_SPRITE_FAULT		(1 << 9)
+> #define  GEN8_PIPE_PRIMARY_FAULT	(1 << 8)
+>-- 
+>2.25.4
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0698986377==--
