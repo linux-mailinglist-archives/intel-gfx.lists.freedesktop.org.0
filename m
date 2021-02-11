@@ -2,39 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F87F318D22
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 15:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52068318D1B
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 15:17:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A47F36E42D;
-	Thu, 11 Feb 2021 14:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3F216EE24;
+	Thu, 11 Feb 2021 14:17:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10A996E42D
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 14:20:20 +0000 (UTC)
-IronPort-SDR: 2JV96zaMxfdN1IsOVhTCOXLYoDrwLGRl70QCC+TYNAduzMwyjBhF0RmIKDGY1PbwHrQhA0Fscz
- fnrJRfxCuafQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="179687039"
-X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="179687039"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2021 06:20:19 -0800
-IronPort-SDR: dKj/YGd0UB1PeLti4wSt6g5cAJGyybV7aZS806uH0WJ6+jcg+4MdoyZuFmz6ZEXVw6D11a5B/n
- Cu5J64pwXfRg==
-X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="380682948"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2021 06:20:18 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Feb 2021 19:35:02 +0530
-Message-Id: <20210211140502.22786-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210129080043.24614-1-anshuman.gupta@intel.com>
-References: <20210129080043.24614-1-anshuman.gupta@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 810496E42D;
+ Thu, 11 Feb 2021 14:17:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7A2BBA41FB;
+ Thu, 11 Feb 2021 14:17:29 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/debugfs: HDCP capability enc NULL
- check
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 11 Feb 2021 14:17:29 -0000
+Message-ID: <161305304947.27068.8961095763907634494@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210211113848.16341-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210211113848.16341-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgbGli?=
+ =?utf-8?q?=3A_Add_a_YAML_emitter_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,67 +38,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0945214181=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DP-MST connector encoder initializes at modeset
-Adding a connector->encoder NULL check in order to
-avoid any NULL pointer dereference.
-intel_hdcp_enable() already handle this but debugfs
-can also invoke the intel_{hdcp,hdcp2_capable}.
-Handling it gracefully.
+--===============0945214181==
+Content-Type: multipart/alternative;
+ boundary="===============9058734215198211804=="
 
-v2:
-- Use necessary lock and NULL check in
-  i915_hdcp_sink_capability_show. [Imre]
+--===============9058734215198211804==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- .../drm/i915/display/intel_display_debugfs.c    | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index d6e4a9237bda..8af663b84314 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -2198,16 +2198,27 @@ DEFINE_SHOW_ATTRIBUTE(i915_panel);
- static int i915_hdcp_sink_capability_show(struct seq_file *m, void *data)
- {
- 	struct drm_connector *connector = m->private;
-+	struct drm_i915_private *i915 = to_i915(connector->dev);
- 	struct intel_connector *intel_connector = to_intel_connector(connector);
-+	int ret;
- 
--	if (connector->status != connector_status_connected)
--		return -ENODEV;
-+	ret = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
-+	if (ret)
-+		return ret;
-+
-+	if (!connector->encoder || connector->status != connector_status_connected) {
-+		ret = -ENODEV;
-+		goto out;
-+	}
- 
- 	seq_printf(m, "%s:%d HDCP version: ", connector->name,
- 		   connector->base.id);
- 	intel_hdcp_info(m, intel_connector);
- 
--	return 0;
-+out:
-+	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
-+
-+	return ret;
- }
- DEFINE_SHOW_ATTRIBUTE(i915_hdcp_sink_capability);
- 
--- 
-2.26.2
+Series: lib: Add a YAML emitter (rev2)
+URL   : https://patchwork.freedesktop.org/series/73433/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9761 -> Patchwork_19662
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19662 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#2411] / [i915#402])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_sync@basic-all:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_sync@basic-all.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/fi-tgl-y/igt@gem_sync@basic-all.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_render_tiled_blits@basic:
+    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
+
+  
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 38)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-skl-guc fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9761 -> Patchwork_19662
+
+  CI-20190529: 20190529
+  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19662: d7299d4b320b3af7e82806e526dc81d5a4f738d7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d7299d4b320b lib: Add a YAML emitter
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/index.html
+
+--===============9058734215198211804==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>lib: Add a YAML emitter (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/73433/">https://patchwork.freedesktop.org/series/73433/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9761 -&gt; Patchwork_19662</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19662 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_sync@basic-all:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_sync@basic-all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/fi-tgl-y/igt@gem_sync@basic-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_render_tiled_blits@basic:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19662/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 38)</h2>
+<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-skl-guc fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9761 -&gt; Patchwork_19662</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19662: d7299d4b320b3af7e82806e526dc81d5a4f738d7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>d7299d4b320b lib: Add a YAML emitter</p>
+
+</body>
+</html>
+
+--===============9058734215198211804==--
+
+--===============0945214181==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0945214181==--
