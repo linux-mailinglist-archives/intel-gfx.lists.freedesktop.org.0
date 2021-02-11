@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35773318A7D
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 13:29:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 763E0318A9D
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 13:34:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A526D6EE14;
-	Thu, 11 Feb 2021 12:29:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 800FF6EE21;
+	Thu, 11 Feb 2021 12:34:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DBAD6EE14;
- Thu, 11 Feb 2021 12:29:50 +0000 (UTC)
-IronPort-SDR: /+3PBbrvnGaMwmNqqAEcyvB6EHbVnWcw8xggE0LwjKzBwzNPXb0nDNDKpBctnRtohks7JcvbBt
- QsTcJ+NS+Sqw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="243723833"
-X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="243723833"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2021 04:29:44 -0800
-IronPort-SDR: H7yP2PQM+TPM+jXUHDzPz3WlLEenm2FLducWiHjmKtVmp6v6Z0BxoGILePPq/H+xK0rCZr8NZ+
- HxGyZJTO8tvw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="437098951"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 11 Feb 2021 04:29:39 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 Feb 2021 14:29:39 +0200
-Date: Thu, 11 Feb 2021 14:29:39 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <YCUjM1QwEexccF2x@intel.com>
-References: <20210128192413.1715802-1-matthew.d.roper@intel.com>
- <20210128192413.1715802-19-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 52EA06EE1F;
+ Thu, 11 Feb 2021 12:34:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4A198A00FD;
+ Thu, 11 Feb 2021 12:34:31 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210128192413.1715802-19-matthew.d.roper@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 18/18] drm/i915/display13: Enabling
- dithering after the CC1 pipe
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Date: Thu, 11 Feb 2021 12:34:31 -0000
+Message-ID: <161304687127.27068.604072854711297053@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210211114209.23866-1-uma.shankar@intel.com>
+In-Reply-To: <20210211114209.23866-1-uma.shankar@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Handle_lane_polarity_for_DDI_port?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,155 +38,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Nischal Varide <nischal.varide@intel.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1654041856=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 28, 2021 at 11:24:13AM -0800, Matt Roper wrote:
-> From: Nischal Varide <nischal.varide@intel.com>
-> =
+--===============1654041856==
+Content-Type: multipart/alternative;
+ boundary="===============4748644406215393283=="
 
-> If the panel is 12bpc then Dithering is not enabled in the Legacy
-> dithering block , instead its Enabled after the C1 CC1 pipe post
-> color space conversion.For a 6bpc pannel Dithering is enabled in
-> Legacy block.
+--===============4748644406215393283==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Dithering is probably going to require a whole uapi bikeshed.
-Not sure we can just enable it unilaterally.
+== Series Details ==
 
-Ccing dri-devel, and Mario who had issues with dithering in the
-past...
+Series: drm/i915/display: Handle lane polarity for DDI port
+URL   : https://patchwork.freedesktop.org/series/86983/
+State : success
 
-> =
+== Summary ==
 
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Signed-off-by: Nischal Varide <nischal.varide@intel.com>
-> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_color.c   | 16 ++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_display.c |  9 ++++++++-
->  drivers/gpu/drm/i915/i915_reg.h              |  3 ++-
->  3 files changed, 26 insertions(+), 2 deletions(-)
-> =
+CI Bug Log - changes from CI_DRM_9761 -> Patchwork_19659
+====================================================
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm=
-/i915/display/intel_color.c
-> index ff7dcb7088bf..9a0572bbc5db 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -1604,6 +1604,20 @@ static u32 icl_csc_mode(const struct intel_crtc_st=
-ate *crtc_state)
->  	return csc_mode;
->  }
->  =
+Summary
+-------
 
-> +static u32 dither_after_cc1_12bpc(const struct intel_crtc_state *crtc_st=
-ate)
-> +{
-> +	u32 gamma_mode =3D crtc_state->gamma_mode;
-> +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
-> +
-> +	if (HAS_DISPLAY13(i915)) {
-> +		if (!crtc_state->dither_force_disable &&
-> +		    (crtc_state->pipe_bpp =3D=3D 36))
-> +			gamma_mode |=3D GAMMA_MODE_DITHER_AFTER_CC1;
-> +	}
-> +
-> +	return gamma_mode;
-> +}
-> +
->  static int icl_color_check(struct intel_crtc_state *crtc_state)
->  {
->  	int ret;
-> @@ -1614,6 +1628,8 @@ static int icl_color_check(struct intel_crtc_state =
-*crtc_state)
->  =
+  **SUCCESS**
 
->  	crtc_state->gamma_mode =3D icl_gamma_mode(crtc_state);
->  =
+  No regressions found.
 
-> +	crtc_state->gamma_mode =3D dither_after_cc1_12bpc(crtc_state);
-> +
->  	crtc_state->csc_mode =3D icl_csc_mode(crtc_state);
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/index.html
 
->  	crtc_state->preload_luts =3D intel_can_preload_luts(crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 4dc4b1be0809..e3dbcd956fc6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8098,9 +8098,15 @@ static void bdw_set_pipemisc(const struct intel_cr=
-tc_state *crtc_state)
->  		break;
->  	}
->  =
+Known issues
+------------
 
-> -	if (crtc_state->dither)
-> +	/*
-> +	 * If 12bpc panel then, Enables dithering after the CC1 pipe
-> +	 * post color space conversion and not here
-> +	 */
-> +
-> +	if (crtc_state->dither && (crtc_state->pipe_bpp !=3D 36))
->  		val |=3D PIPEMISC_DITHER_ENABLE | PIPEMISC_DITHER_TYPE_SP;
->  =
+  Here are the changes found in Patchwork_19659 that come from known issues:
 
-> +
->  	if (crtc_state->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420 ||
->  	    crtc_state->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR444)
->  		val |=3D PIPEMISC_OUTPUT_COLORSPACE_YUV;
-> @@ -10760,6 +10766,7 @@ intel_modeset_pipe_config(struct intel_atomic_sta=
-te *state,
->  	 */
->  	pipe_config->dither =3D (pipe_config->pipe_bpp =3D=3D 6*3) &&
->  		!pipe_config->dither_force_disable;
-> +
->  	drm_dbg_kms(&i915->drm,
->  		    "hw max bpp: %i, pipe bpp: %i, dithering: %i\n",
->  		    base_bpp, pipe_config->pipe_bpp, pipe_config->dither);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 128b835c0adb..27f25214a839 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6132,7 +6132,7 @@ enum {
->  #define   PIPEMISC_DITHER_8_BPC		(0 << 5)
->  #define   PIPEMISC_DITHER_10_BPC	(1 << 5)
->  #define   PIPEMISC_DITHER_6_BPC		(2 << 5)
-> -#define   PIPEMISC_DITHER_12_BPC	(3 << 5)
-> +#define   PIPEMISC_DITHER_12_BPC	(4 << 5)
->  #define   PIPEMISC_DITHER_ENABLE	(1 << 4)
->  #define   PIPEMISC_DITHER_TYPE_MASK	(3 << 2)
->  #define   PIPEMISC_DITHER_TYPE_SP	(0 << 2)
-> @@ -7668,6 +7668,7 @@ enum {
->  #define  GAMMA_MODE_MODE_12BIT	(2 << 0)
->  #define  GAMMA_MODE_MODE_SPLIT	(3 << 0) /* ivb-bdw */
->  #define  GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED	(3 << 0) /* icl + */
-> +#define  GAMMA_MODE_DITHER_AFTER_CC1 (1 << 26)
->  =
+### IGT changes ###
 
->  /* DMC/CSR */
->  #define CSR_PROGRAM(i)		_MMIO(0x80000 + (i) * 4)
-> -- =
+#### Issues hit ####
 
-> 2.25.4
-> =
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#2411] / [i915#402])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  * igt@gem_linear_blits@basic:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_linear_blits@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/fi-tgl-y/igt@gem_linear_blits@basic.html
 
--- =
+  * igt@i915_selftest@live@client:
+    - fi-glk-dsi:         [PASS][5] -> [DMESG-FAIL][6] ([i915#3047])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-glk-dsi/igt@i915_selftest@live@client.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/fi-glk-dsi/igt@i915_selftest@live@client.html
 
-Ville Syrj=E4l=E4
-Intel
+  
+#### Possible fixes ####
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1208]: https://gitlab.freedesktop.org/drm/intel/issues/1208
+  [i915#1614]: https://gitlab.freedesktop.org/drm/intel/issues/1614
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Additional (1): fi-cml-drallion 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-skl-guc fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9761 -> Patchwork_19659
+
+  CI-20190529: 20190529
+  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19659: d8671dfbf189d73707c4c4f515995af9bd3b70a7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d8671dfbf189 drm/i915/display: Handle lane polarity for DDI port
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/index.html
+
+--===============4748644406215393283==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Handle lane polarity for DDI port</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86983/">https://patchwork.freedesktop.org/series/86983/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9761 -&gt; Patchwork_19659</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19659 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_linear_blits@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/fi-tgl-y/igt@gem_linear_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@prime_self_import@basic-with_two_bos:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9761/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19659/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Additional (1): fi-cml-drallion <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-skl-guc fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9761 -&gt; Patchwork_19659</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9761: fc52fc2a7332bd301f802ca3a0444a8fb9fe4f7f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6001: d0d6f5e14ef181c93e4b503b05d9c18fa480e09d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19659: d8671dfbf189d73707c4c4f515995af9bd3b70a7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>d8671dfbf189 drm/i915/display: Handle lane polarity for DDI port</p>
+
+</body>
+</html>
+
+--===============4748644406215393283==--
+
+--===============1654041856==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1654041856==--
