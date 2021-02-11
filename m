@@ -1,49 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC62318981
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 12:34:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B18318982
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 12:34:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 183566E0ED;
-	Thu, 11 Feb 2021 11:34:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 348B16EE05;
+	Thu, 11 Feb 2021 11:34:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BC626E0ED
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 11:34:10 +0000 (UTC)
-IronPort-SDR: eYIN5Ola+PFq242iX32OF/c3wX6MXAKW1Ju9R1lQROqqeDh16RlCMG6zlMrOps7HJST8SLR3fd
- H3CzbhqyyCMQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="161370372"
-X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="161370372"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2021 03:34:07 -0800
-IronPort-SDR: LB6RSdTUebG7DFHxCUpwylOYM8ZXYS96u0KkNJPmijigpQ0MUfOiWtSbcBCNqnCJcadSXGeaoV
- my9g9eFEDJTg==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AF0A6EE05
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 11:34:26 +0000 (UTC)
+IronPort-SDR: CPe5H3X5/dN/N6q4bOMvjz2AhbbODthHxj15w6YMBL30r4aEt90ZQw94KvCyjEEhhKUOUmKRSJ
+ /vZgugqnOaaQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="267067541"
+X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="267067541"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2021 03:34:21 -0800
+IronPort-SDR: hWbNbB1847jcWZtkyt+iNnca2sql5ETGegHo4pUnJ/hIBYY9cP4Vy4HMPLW4S6H8I8zlD3vGlm
+ CFlME3ZyIY6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="588775345"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
- by fmsmga005.fm.intel.com with ESMTP; 11 Feb 2021 03:34:07 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.81,170,1610438400"; d="scan'208";a="422053914"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by FMSMGA003.fm.intel.com with ESMTP; 11 Feb 2021 03:34:21 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 11 Feb 2021 03:34:06 -0800
+ 15.1.2106.2; Thu, 11 Feb 2021 03:34:21 -0800
 Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 11 Feb 2021 03:34:05 -0800
+ 15.1.2106.2; Thu, 11 Feb 2021 03:34:20 -0800
 Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
  IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2106.002;
- Thu, 11 Feb 2021 11:34:04 +0000
+ Thu, 11 Feb 2021 11:34:18 +0000
 From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
 To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "Souza, Jose" <jose.souza@intel.com>
 Thread-Topic: [PATCH 1/4] drm/i915/display: Rename
  for_each_intel_encoder.*_can_psr to for_each_intel_encoder.*_with_psr
-Thread-Index: AQHW/w9B6r4PTzyHs0KXVLD9MFOsF6pS1bQA
-Date: Thu, 11 Feb 2021 11:34:03 +0000
-Message-ID: <c669e34decfdf4165b0128d9e24c3176179f0c24.camel@intel.com>
+Thread-Index: AQHW/w9B6r4PTzyHs0KXVLD9MFOsF6pS1caA
+Date: Thu, 11 Feb 2021 11:34:18 +0000
+Message-ID: <3ec94e62af22675620dcf3d0b622958f6a1078b3.camel@intel.com>
 References: <20210209181439.215104-1-jose.souza@intel.com>
 In-Reply-To: <20210209181439.215104-1-jose.souza@intel.com>
 Accept-Language: en-US
@@ -51,7 +51,7 @@ Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [163.33.253.164]
-Content-ID: <E3FD9193EA565443A7C4454DEB376590@intel.com>
+Content-ID: <0A1777BBA756054F847BF0E7483F8C61@intel.com>
 MIME-Version: 1.0
 Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/display: Rename
  for_each_intel_encoder.*_can_psr to for_each_intel_encoder.*_with_psr
