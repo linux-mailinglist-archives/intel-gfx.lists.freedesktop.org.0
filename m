@@ -1,143 +1,137 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 363C2318476
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 06:07:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D4B1318490
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Feb 2021 06:22:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD5AE6E471;
-	Thu, 11 Feb 2021 05:07:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB9336E441;
+	Thu, 11 Feb 2021 05:22:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D76C6E055;
- Thu, 11 Feb 2021 05:07:29 +0000 (UTC)
-IronPort-SDR: vZT/RrLpAeQ+j3eMrrrC59eBU0+9Nv7Fg8TfSuCiN/Tl7ayANHLOFLaktl2xb8ov59aahZelEe
- 2E68GDkUHSOA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="161339171"
-X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="161339171"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2021 21:07:28 -0800
-IronPort-SDR: IdPNw3tY69jmd6VWDR+6I0i9Gjf8V6yk12JsQQzLzalA9/TX05ltAbMFXnuGlrod9KutKmGoJN
- xxDOr5HZTIjQ==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 653BD6E441
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Feb 2021 05:22:20 +0000 (UTC)
+IronPort-SDR: /DGZeUqRuZzsV7N/J2Z1AeIqHCN9EP3xc5sjD4oJiynIVRwveoN13xfFIfmZu00MsHkSB3y0ad
+ /VsTATWZIGPw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9891"; a="181420940"
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="181420940"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2021 21:22:19 -0800
+IronPort-SDR: MVYmIz+DGoiIb85tnoCphdSobJq1WSYM5/rfvy186IpPjPLsihR7EYcDIKEm1iOh2fl4NqLX1V
+ kpOzUumdTo3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="397095717"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
- by orsmga008.jf.intel.com with ESMTP; 10 Feb 2021 21:07:28 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.81,169,1610438400"; d="scan'208";a="420779588"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by FMSMGA003.fm.intel.com with ESMTP; 10 Feb 2021 21:22:19 -0800
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 10 Feb 2021 21:07:27 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2106.2; Wed, 10 Feb 2021 21:22:18 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
- via Frontend Transport; Wed, 10 Feb 2021 21:07:27 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ via Frontend Transport; Wed, 10 Feb 2021 21:22:18 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.170)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2106.2; Wed, 10 Feb 2021 21:07:27 -0800
+ 15.1.2106.2; Wed, 10 Feb 2021 21:22:08 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SVkGTLop27WFoo2Q2Ug08M6hfarNIm72O+HpDU/4anukotrkr/nlUB9e+uh2IlabJtLv+H5egbonsw+EpNjxaSeZMXnd9dFrjAvolhq+83OhOrUX9z3ShonDMKAJiGspFvEEzQxZVazfBLd5ShA08LbQlH6eOu0GdtscQf2n3eDX+5rqV5ckFNvcMfUZwarJF2JRdUzM91l0RgdtdrZ9JQBacAUWP0TunmeIwDNm75akiibO1XwEgdNk1ysN8UlBLVONczgsPTHWqScFzr3yaR1z/JQi40620Hm4VHV62BgZDLTHbzFVUePxmNo6QQ8QrJzGuiEs3CELnMfyg8rmgg==
+ b=gl/q10INmyUYsJR2KAMSn46AttUU3+wxWuh+Pxsfi+2dKpotzNW6RxNuaGramSRkjyEn6098Nk3/HzbJz1rgyTARn2omSnO2jp+NquLx2sNwCoeSLO82ReKqlp3gMOhckopz3gJKFg8M+0i+pMziLIC9VEq3u2vE7owvtzfRul5xYisbaT2S5KIWksAMuRsvNlqrLvrADRelYW4KvJz/ketOM5pdva6zq46gCKvx3mp9baUnrP4GE3tf1o+LONT/1aADm5zDmIEZoeZ8OYKQfqWUDcuZsFmt4bTvXeQcRFAnAFrxgfU37bUj3W55ZHHYcqa8beuptVMIsOBMuoNXPQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3FFQqsuzP64peBGxf2ymJpY1GAccQ6TSJEHwXETGRYQ=;
- b=eq1kiH38PqGOmUF7Zl3UntfHKXbS6TdUxCUwXQO4DZgNPLGmO3oQISPtCdpC0B7QKvlyTHkvBRBYD2Z9kspdwPXkhRiuSMr+t0CgQq6+GMA1Klq9/7DPk5Utllf7s6S9Ot2CmwcZqN8Agdd6rBsM2T9w9BgGxJXdn7WbHPFC/7UryvS9nPM9AEgvsIs9wbhqRhCuBvle670qBD7ISQsD3BDmTXKRNAZciLah+dBdoC5BdlMSoI69b97Mp9phYBQgxHM22UJXZQYROauwO4bFEJIJCXS8UblgKygmSkScLIHrcfY9fQuD7ifSkL9JwUAmdwegjVR5DTNF2iu1XQdkdw==
+ bh=znWdHUFNxCdlExbI+kKy8DQk5mNWt1FFMPaMkZFrfYA=;
+ b=Sk+E1iE5ikW/iXohtKsd/pYB0Oqeo3D/cbMq+jFJu5eGZGhjxNoiApzgwp+XoVZub+g19RCGXASO91uJoR3DyHiIA31wtBNL8JLAg44a0JSRHpzTfNYfToSdirJQ+sK5w8EAdI776o4rAhergxysspjQ0athppiP1iZ6ddL4M0LhskGwPbTY+vuzY3V4QXkbc3uLAYp7FDkka/leMUyKXIB7eDiY7LFTEm3RjP7YfBs8RTw+VnXij5eN4I0dRAsykU/6uyHCsw9EnLn886b5jJo+YnJ9L8zAWV9JCfcLPwKgW7fWOp3OEYJ41KHVoHnFsDfq+QiW6HIjpMpTS26NKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
  s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3FFQqsuzP64peBGxf2ymJpY1GAccQ6TSJEHwXETGRYQ=;
- b=qPWj1ZUpFHVay+oS/u6NTgTBaW5lkuaHz4hhpPBIttewzcJFImvJ6wr4BHRjyWqLAVPmDBIU6O24S9DO7Lr7YvG+qGO2dewuHxa9ODuWM5X/cTG7MPp+ZSvArfMoItKBZ7FwqzaPkGY2qRKwQAp5YiWzqP1nRWsl/zEEiXYmMPs=
-Received: from SA2PR11MB5068.namprd11.prod.outlook.com (2603:10b6:806:116::10)
- by SN6PR11MB3184.namprd11.prod.outlook.com (2603:10b6:805:bd::17)
+ bh=znWdHUFNxCdlExbI+kKy8DQk5mNWt1FFMPaMkZFrfYA=;
+ b=kop7ty9xk+WAZLajIyABHIzovl4OtgJ2bsmT8YiTdvkAzxWnzHkux7lJnPtfWxdesChfAY17S1zxHVbAhxaK2G5kEdpqZhu/D8P4Am/jWDrA+Zv9sFoF/1pkN8l3SbMozMl7K8Mwi367LDH1t0Hu7jdF77jWBWZvCrABQ7I4LaY=
+Received: from BY5PR11MB4307.namprd11.prod.outlook.com (2603:10b6:a03:1bd::27)
+ by BYAPR11MB3400.namprd11.prod.outlook.com (2603:10b6:a03:1a::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.25; Thu, 11 Feb
- 2021 05:07:16 +0000
-Received: from SA2PR11MB5068.namprd11.prod.outlook.com
- ([fe80::d9fb:7552:f19b:402b]) by SA2PR11MB5068.namprd11.prod.outlook.com
- ([fe80::d9fb:7552:f19b:402b%3]) with mapi id 15.20.3825.032; Thu, 11 Feb 2021
- 05:07:16 +0000
-From: "Ram Moon, AnandX" <anandx.ram.moon@intel.com>
-To: "Swarup, Aditya" <aditya.swarup@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>, "Auld, Matthew"
- <matthew.auld@intel.com>, "Surendrakumar Upadhyay, TejaskumarX"
- <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Thread-Topic: [PATCH] drm/i915/adl_s: Add gmbus pin mapping
-Thread-Index: AQHW/6NYzv5egIFjlE+7ubcZnwGZO6pRkwqAgADLiLA=
-Date: Thu, 11 Feb 2021 05:07:16 +0000
-Message-ID: <SA2PR11MB5068E455C10A33AE70A5D416AE8C9@SA2PR11MB5068.namprd11.prod.outlook.com>
-References: <20210210115441.6703-1-anandx.ram.moon@intel.com>
- <1d8a1fa5-0d74-abd7-983f-b597c4307bd5@intel.com>
-In-Reply-To: <1d8a1fa5-0d74-abd7-983f-b597c4307bd5@intel.com>
+ 2021 05:22:05 +0000
+Received: from BY5PR11MB4307.namprd11.prod.outlook.com
+ ([fe80::1cad:65dc:41f2:78bd]) by BY5PR11MB4307.namprd11.prod.outlook.com
+ ([fe80::1cad:65dc:41f2:78bd%6]) with mapi id 15.20.3846.029; Thu, 11 Feb 2021
+ 05:22:05 +0000
+From: "Lee, Shawn C" <shawn.c.lee@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/vbt: update DP max link rate table
+Thread-Index: AQHW+KqE5Kia5OBuEku8uLnVpdlKpKpKCQ2AgAQ9rlCAA2IGAIAAyQyA
+Date: Thu, 11 Feb 2021 05:22:05 +0000
+Message-ID: <BY5PR11MB430732026C34DCB710E62A8AA38C9@BY5PR11MB4307.namprd11.prod.outlook.com>
+References: <20210201150228.10001-1-shawn.c.lee@intel.com>
+ <YB2p+Xa8PkFQT1L8@intel.com>
+ <BY5PR11MB4307E25E1688D66A7B6028BBA38F9@BY5PR11MB4307.namprd11.prod.outlook.com>
+ <YCQPLmUTGxjXFybM@intel.com>
+In-Reply-To: <YCQPLmUTGxjXFybM@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: intel.com; dkim=none (message not signed)
- header.d=none;intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [183.83.139.121]
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+authentication-results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=intel.com;
+x-originating-ip: [118.167.0.30]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7f3537c9-5b12-49d1-559f-08d8ce4ae6c4
-x-ms-traffictypediagnostic: SN6PR11MB3184:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-office365-filtering-correlation-id: 91b7b63a-8d53-42cf-6d94-08d8ce4cf8bb
+x-ms-traffictypediagnostic: BYAPR11MB3400:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SN6PR11MB3184C532195C5A61AF9EFFE7AE8C9@SN6PR11MB3184.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-microsoft-antispam-prvs: <BYAPR11MB3400C63E564ECC4BF4B9290EA38C9@BYAPR11MB3400.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: O0ZR6BxFAZP3g+4mkxNZxyFkkNzAH5UUptZXGLbiUdTQsaHaVMcRz0lQHXMWyxjfoqYbmhRpeAoRLVI8xdGwGL/BKchUrSF5DG0Ly1fe5LkUkbISO03RxC8Dw8STfiRDu9/8q7gbLewjDgwZhfpAC6HsN8N4dRjf8TQLCoUM++vfaIz9UIfT5GwhNte+4xh3AxNn57X8uArKynFlLr+QkdX5iaofNuj3adyWfYNB7B7jjKovmtV7W7JSQainzLLEvW476hNSAObVI9bORPESXVVxqfJ8qAJCpQGtOktVQKuWDHiEYu7iTR+B6QP1Bp5RBW2jg3pHyTG/3vzzVskiMma/z00qp8fJy3KHHhxWfGLH+/zAcd/dcMgC3Stg5f+0e9oDgOFsOq0Pjr3SkhRkzrjVLHRwACEHfE0A3Hc4RiXQN9Vx1evV5TZGRO7kivYynMA2+oLmiR/+IAeL9vvS4I7ZbZA5a+UDazPOcbBUI0DIRU3ssMIqnKlPpRycBa0duw8zuLwPc9/cLpRtj/jw8NxNMS8mgEip0ejMpecE48qWWpVaT5MdI7aJFyy5RozL
+x-microsoft-antispam-message-info: 6zRelHZ8JVnkO4FF6q7EYSTJW0jgQNM5YpS6+NLbNqM3DW/Msh3EWr/RTYJOE8+HuCJdQ4mFxmYt2/EUIyKlLgWEok5XdGTtIKSX/O5wOMx9uXOrVVUJzK03zjnWA+5Ro/VXPz88+zKl0Q5QqC9o1dQkIPwUBFjBzmG8KPYYUCNRKJEbX0AdAALc3IvvJMJCBgBtqC8UuD6rt1dKXxbyeQwJOLDAxKTHeFXrdQ2OzbDT59NNO9m9s2AoFOgZfk4r7RDce8Gy9EcF361RdAnjfh1lw8Zc6ZG7wvGS2YeFa67605MlHzF22KhXGuFo3Ak0uZZZNBZFg2ihG3FmLTTX8lW7H7cxNGHmgJLVwChvFz1a74FPfsDv/9n/CxNR7oxwBTMFI69bWdhl6rNfyKOQLidQXCovl2+KuQl0bW4gl312BtDz4JrSzm3N8Uc+EGhjG3H57O21y7zCbbqOIldpt6gJgX+hTo+sosmpQkSFQalEPsxkKNgxjx3hkWrmVtxcii4H+goHiEMKlIHZFv/8AupmGAF+/oHygZTlKVrzxGLeCGdQDIcJHGbJsdPbAoWC
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA2PR11MB5068.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(136003)(39860400002)(396003)(346002)(366004)(376002)(450100002)(478600001)(66946007)(186003)(71200400001)(53546011)(83380400001)(86362001)(26005)(6506007)(7696005)(33656002)(8936002)(66556008)(6636002)(64756008)(66476007)(2906002)(76116006)(8676002)(66446008)(110136005)(316002)(55016002)(9686003)(921005)(52536014)(5660300002);
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB4307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(396003)(346002)(136003)(39860400002)(366004)(376002)(7696005)(5660300002)(26005)(86362001)(478600001)(186003)(966005)(9686003)(66946007)(8936002)(55016002)(316002)(15650500001)(8796002)(6506007)(52536014)(53546011)(71200400001)(8676002)(2906002)(4326008)(66574015)(66446008)(64756008)(66556008)(54906003)(66476007)(33656002)(76116006)(83380400001)(110136005);
  DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?utf-8?B?QVFHcVRtbDlPRmpwRkhUMUQycVNIK3B3VGs0NExBV2o5bkx2ZGkxWDJaaDN6?=
- =?utf-8?B?cnFaYXA1U1V0Y3ZtRUp2QU45OTdObmFnU0dVY3JSTFR6RkV2S243TUxWd1l2?=
- =?utf-8?B?QkUyVzJMN3h5NEZTVENOMjBHUHAyU1dVdmdPQ2lIZHRhV21QbmNhY3Z6SHY5?=
- =?utf-8?B?ZlgweGxQSWMxWDRZeC9vb0U2Q3ZtUnhaTWZhaWlKL3EvSFBlN1JnWW9ERGw2?=
- =?utf-8?B?dVhIcktyTUJVK3hLUkREbGJZNWYyN0N3OUdaM3BEZG9mT0dLMm1xVVYvK3V6?=
- =?utf-8?B?YXVMYVVhSVY3VXAxa2FqZVVQOWgxelhCZUpzeTI3UmNOVzFXMy9UTEVOYjJw?=
- =?utf-8?B?aWc3V2Y1TXhBQVh4ejRXVGNCMmEwT0Z2T2hXUnNJbzhWQXhrbGdHTmlVdGoz?=
- =?utf-8?B?cDA4OHk2VmFnWk5JVmFFQ1pXc3VOVXJOZ1lQbFU4YmdoRklFOU5LWXllSTJo?=
- =?utf-8?B?VjV1WUZmL0NhUW9PZjJJWTI2YVUzS0FFVVMrVzNKMldleno0S0VYSzkyd0R5?=
- =?utf-8?B?UE5wd1h0dFFXNWdtYXlFZFdJQVZ3czZ6TDBoMGNkdjR6SkZlY0JLQm4wMXEr?=
- =?utf-8?B?ZkxDRzkwTEZKaXlJa0lKcGFjaVN0cUo4a2s2Y1dPZDlzSytZRzFuKzdTZHpm?=
- =?utf-8?B?YmdxdTA4WUxVd3F6VG5iWnBGZ3hFVU5hekhaUGhQM1c2ZkR6L2xSb0lmZHBt?=
- =?utf-8?B?T256YS93TzJhV2E4dFlRN2FFYTY4OUlueHp4M21FSk9Dd0RpaS9DT0dsRkZE?=
- =?utf-8?B?enA4UzJTUzgzeW8zRzdIUEEzQWtHc1NTT1B5WEFQVTRGb3UxdERZSGxVaXV0?=
- =?utf-8?B?dndieFo3NFlYWFlFVFByNW5hNFkwM2NLUFhGNDk4Ylc5Ymw3bEppeEpUS3VK?=
- =?utf-8?B?alZ5MWpYb1hyL3E1L2lRT3VTakh2S0hlK2QzZTFTU3lOYmxoMGVadUgxQ2tO?=
- =?utf-8?B?cEtJek1jTFh6SGxBSmtTNFFqaDQyM3dTc2szU2h1aElDa21qMlRzdUZiSm1Y?=
- =?utf-8?B?TElGbTRzRkhlMWZ1cENxTlNUNFBZakpqTUV5a3hUQWk3Q2QvZGJHYkd6VlNl?=
- =?utf-8?B?WGxkNjd0UnVjVGFZL2pKSEV6Um1pRXkyQ3ByN0RFcGR1K0JUTnZtZjBLYUdl?=
- =?utf-8?B?U1ViaWNSRmJJa05hSmU5N0ZJakhYeUkyMU1ndmhqL1lsZW0yRlVQUHg5T3Q3?=
- =?utf-8?B?M2lMN3F3TjhjZm8zWXlLNkxNVFFGZlFyN2h3b0FOcFY0R0ZObFNRZU1xSnJz?=
- =?utf-8?B?Mlo3Zk5GT0hYUDNLaGtjWmovQU5VTENqdElGMERTS0pzMFhsbStBUDNkZWZy?=
- =?utf-8?B?LzlnemdJei9XdkFqTUREMjR0M1g5Y08yYjBaL1ViNmFzN241a0Z6U3UvTEdo?=
- =?utf-8?B?OFY5NVQrOCtLUlFzcW1MMldOZzRuNHh0ZXlIcGhNTktReUNLTVB5cjVMa1VU?=
- =?utf-8?B?NUNvQ3lmNHVGeGRDOGIzT1FNUm8vRVFUS1FUQ0padG9xREtOUTNTVVIycDdX?=
- =?utf-8?B?SGJkN3JHU3liT3dUOHNYVk5yL05aczlwdGorOUVSdG9DUWlnQkdPMURkNGdT?=
- =?utf-8?B?OHhPQko1eTdLVDBZbXhHQXRrcC9iRmZKbVI3N2UzOVhYUWRkVGNQUTNEWGtU?=
- =?utf-8?B?aWsxWHpvbmkzbDE1RGVxd0haN2VWTXJmTk5JVXBMQXUyaVhoYktsaStjM1Fk?=
- =?utf-8?B?c2ZJRGJZK202dWMyZXpZV1JBV240YWEzNEU4RTFKemdyM0dReVNGNWRvdUd1?=
- =?utf-8?Q?7g+BA4S1dydWbGHVhlxyFjhlGR7JWPevKafxmDm?=
+x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?twXvcaAzc76nK6yCN2woTJTpvDjFxBQkhgmltKIpmJy5sidrHf7ICEy/Ot?=
+ =?iso-8859-1?Q?0iyDKWZVGUdHGUwFUNMTiylr+S2Y6kCT2NeD3p+wOfZNkOMmDuJn22zpJI?=
+ =?iso-8859-1?Q?PtHm9gRgPwJvFWWhfPy5mTLbTNi6hNlXdfuFZ8fCMPd72TQRDqC/V2S4G1?=
+ =?iso-8859-1?Q?qPb37mHmXShojlF+9Lm8NHm4Ig2JDXxTSjR1krvrNoLkDSguhWp56te814?=
+ =?iso-8859-1?Q?QN80QYE6IR0gD3J5+nVJMUJvWGu7v7+Cwmjl9+0x15F6tNRIEt2QWkuv1W?=
+ =?iso-8859-1?Q?FEYSahbJIqurt2wLEBhMxMY4/PxBdwZmOMpG9JcHsde7sxZgscHrMtQvhQ?=
+ =?iso-8859-1?Q?JN/EIv2RGdZ1ixQ4/X7hrREgeu/BYrEsWJO5xtAfCkC1oS/npHc5VeAZqw?=
+ =?iso-8859-1?Q?BTIH3crtFalPLBSFOD/y2lDyRVyySMn5hrX3Js9JRUnRsyr3ru43aJ7jPI?=
+ =?iso-8859-1?Q?m1gS2/SUvG2xuJ9X3OGON0glPphwhD4SFvheOTbU1ho001ia++Gv/jxOLT?=
+ =?iso-8859-1?Q?ezBNHOz312E9mbNJ89FNuCuU8qVEHevj1whkNX+1snOEx0TRWZwLYnc9u6?=
+ =?iso-8859-1?Q?JEUsRJ5f4F+2uJRQNw6cntCuhaWy1Uaemxyu6SaTnEH+5WCnQm/38yQCP+?=
+ =?iso-8859-1?Q?ql9JiUvF91PM6Kxd3gFIL0g10kFxwczXNFkuJNDJgnNZC5MWzwE8aWbneV?=
+ =?iso-8859-1?Q?Yys9iiDvx3hGjbAbFeXuBBqZWAcfQ7I4WOBLRIZbDjeIVxEpnJsJdOKqvF?=
+ =?iso-8859-1?Q?6CbZXcAeLZNyuFE5FdOzGWvHd+J5w5DNDkJfl3QSSQzQrreXxhI7d0tD+Y?=
+ =?iso-8859-1?Q?UeqfuVfVMu+Zb+sa2p5+xui8S/Xv4dOUFfvDsQ7aoSQ4+ZJ1kUmHdQ6wjF?=
+ =?iso-8859-1?Q?w5XiUtEXtdi+XO+Mb2Gc3Y/VDwpmmFsylqy9qYuAW/g4TtEAKAf+ver59f?=
+ =?iso-8859-1?Q?B0Gu+gU8iTL4j6QtOBhXT2mdYAnBjQMjeUzwq9e5OGM+SpNuouw8FPr2u4?=
+ =?iso-8859-1?Q?h8aSM82A0eeGdIbgaTzFy/1m72OzxS1GbCsqjuCMc3RpRROZO7cER8VMGA?=
+ =?iso-8859-1?Q?USfVBFTfp1GvBhaP4vC8zCP6C1HFgCs9W19WPqTL+7/ScrhzAti7WN/SKz?=
+ =?iso-8859-1?Q?OGcPCTf0jP4PR7F71cHapIkssyz9wxQgLUmkAm9pSUkYMi1sgNpHJlu46t?=
+ =?iso-8859-1?Q?67r2vfGwG/vuht2TvEJlpZiIFUXUTUMYvpqLeIth7hMHhhz8Yy5Z1gJfny?=
+ =?iso-8859-1?Q?/ngK4j59mSfr5WLiEEvQcWbM8bznZiE/61ocMMwbRlysfCHlUY8GJnECSm?=
+ =?iso-8859-1?Q?5SWPBle+J8GYDXIY6HAiLTh62Ym2f4OwSLA9xCRZ5F4QJfU=3D?=
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB5068.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f3537c9-5b12-49d1-559f-08d8ce4ae6c4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Feb 2021 05:07:16.6029 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4307.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91b7b63a-8d53-42cf-6d94-08d8ce4cf8bb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Feb 2021 05:22:05.6865 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Pm3FZT+xc2g52M59bNgL6t27zZCmKfvpBGQML/6fFFADclqQjrhUqPjMMJGo77XDEZIby2NfDvHccYaUSlTwGFPudDoutpwFutNcB7ZAvkk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB3184
+X-MS-Exchange-CrossTenant-userprincipalname: By1sX+3NPUbXbgv5ZFemTzCjYbALCIYrXwUragtCZo1MCXtE70f4J3gUGCqlmIn/IyofZ7tOfxoxaNNLGXFZfw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3400
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/adl_s: Add gmbus pin mapping
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/vbt: update DP max link rate table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,113 +144,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: "20210201150228.10001-1-shawn.c.lee@intel.com"
+ <20210201150228.10001-1-shawn.c.lee@intel.com>
+Cc: "Chiou, Cooper" <cooper.chiou@intel.com>, "Tseng,
+ William" <william.tseng@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Aditya,
 
-Thanks for your review comments.
+On Wed, Feb 10, 2021 at 04:51 p.m, Ville Syrj=E4l=E4 wrote:
+>On Mon, Feb 08, 2021 at 01:31:57PM +0000, Lee, Shawn C wrote:
+>> On Fri, Feb 05, 2021, at 8:26 p.m, Ville Syrj=E4l=E4 wrote:
+>> >On Mon, Feb 01, 2021 at 11:02:28PM +0800, Lee Shawn C wrote:
+>> >> According to Bspec #20124, max link rate table for DP was updated =
 
------Original Message-----
-From: Aditya Swarup <aditya.swarup@intel.com> 
-Sent: Wednesday, February 10, 2021 9:54 PM
-To: Ram Moon, AnandX <anandx.ram.moon@intel.com>; intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; Roper, Matthew D <matthew.d.roper@intel.com>; Auld, Matthew <matthew.auld@intel.com>; Surendrakumar Upadhyay, TejaskumarX <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Subject: Re: [PATCH] drm/i915/adl_s: Add gmbus pin mapping
+>> >> at BDB version 230. Max link rate can support upto UHBR.
+>> >> =
 
-On 2/10/21 3:54 AM, Anand Moon wrote:
-> Add table to map the GMBUS pin pairs to GPIO registers and port to DDC 
-> mapping for ADL_S as per below Bspec.
+>> >> After migrate to BDB v230, the definition for LBR, HBR2 and HBR3 =
 
-Has this patch been tested on an ADLS system? Upstream CI AFAIK doesn't have support for ADL-S. Also comments below..
+>> >> were changed. For backward compatibility. If BDB version was from =
 
-Reason I send this patch so that I could get more review comments for this below changes.
-I have gone through the Bspec 20124 and I have debug this patch earlier,  
-so that the mapping with DDC pin is correctly mapped
-with respect to the configuration table in the Bspec, 
-but still we observe GMBUS i2c handshake failure. 
-How can we debug this further. 
+>> >> 216 to 229. Driver have to follow original rule to configure DP max =
 
-> 
-> Bspec:20124, 53597.
-> 
-> Cc: Aditya Swarup <aditya.swarup@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Anand Moon <anandx.ram.moon@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_gmbus.c | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c 
-> b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> index 0c952e1d720e..58b8e42d4f90 100644
-> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> @@ -52,6 +52,14 @@ static const struct gmbus_pin gmbus_pins[] = {
->  	[GMBUS_PIN_DPD] = { "dpd", GPIOF },
->  };
->  
-> +static const struct gmbus_pin gmbus_pins_adls[] = {
-> +	[GMBUS_PIN_1_BXT] = { "edp", GPIOA },
+>> >> link rate value from VBT.
+>> >> =
 
-I am pretty sure that GMBUS_PIN_1_BXT should map to GPIOB(1) and not GPIOA(0) like what we have for ICP.
+>> >> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+>> >> Cc: Imre Deak <imre.deak@intel.com>
+>> >> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> >> Cc: Cooper Chiou <cooper.chiou@intel.com>
+>> >> Cc: William Tseng <william.tseng@intel.com>
+>> >> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+>> >> ---
+>> >>  drivers/gpu/drm/i915/display/intel_bios.c     | 24 +++++++++++++++++=
++-
+>> >>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 14 +++++++----
+>> >>  2 files changed, 32 insertions(+), 6 deletions(-)
+>> >> =
 
-Ok, will update this in next version.
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
+>> >> b/drivers/gpu/drm/i915/display/intel_bios.c
+>> >> index 04337ac6f8c4..be1f732e6550 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> >> @@ -1876,7 +1876,15 @@ static void parse_ddi_port(struct drm_i915_pri=
+vate *dev_priv,
+>> >>  	/* DP max link rate for CNL+ */
+>> >>  	if (bdb_version >=3D 216) {
+>> >>  		switch (child->dp_max_link_rate) {
+>> >> -		default:
+>> >> +		case VBT_DP_MAX_LINK_RATE_UHBR20:
+>> >> +			info->dp_max_link_rate =3D 2000000;
+>> >> +			break;
+>> >> +		case VBT_DP_MAX_LINK_RATE_UHBR13P5:
+>> >> +			info->dp_max_link_rate =3D 1350000;
+>> >> +			break;
+>> >> +		case VBT_DP_MAX_LINK_RATE_UHBR10:
+>> >> +			info->dp_max_link_rate =3D 1000000;
+>> >> +			break;
+>> >>  		case VBT_DP_MAX_LINK_RATE_HBR3:
+>> >>  			info->dp_max_link_rate =3D 810000;
+>> >>  			break;
+>> >> @@ -1889,7 +1897,21 @@ static void parse_ddi_port(struct drm_i915_pri=
+vate *dev_priv,
+>> >>  		case VBT_DP_MAX_LINK_RATE_LBR:
+>> >>  			info->dp_max_link_rate =3D 162000;
+>> >>  			break;
+>> >> +		case VBT_DP_MAX_LINK_RATE_DEFAULT:
+>> >> +		default:
+>> >> +			info->dp_max_link_rate =3D 0;
+>> >> +			break;
+>> >> +		}
+>> >> +
+>> >> +		if (bdb_version < 230) {
+>> >> +			if (child->dp_max_link_rate =3D=3D VBT_DP_MAX_LINK_RATE_DEFAULT)
+>> >> +				info->dp_max_link_rate =3D 810000;
+>> >> +			else if (child->dp_max_link_rate =3D=3D VBT_DP_MAX_LINK_RATE_LBR)
+>> >> +				info->dp_max_link_rate =3D 540000;
+>> >> +			else if (child->dp_max_link_rate =3D=3D VBT_DP_MAX_LINK_RATE_HBR2)
+>> >> +				info->dp_max_link_rate =3D 162000;
+>> >>  		}
+>> >
+>> >I would split this into two separate functions, one does the new mappin=
+g, the other the old mapping. =
 
-> +	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIOD },
-> +	[GMBUS_PIN_10_TC2_ICP] = { "tc2", GPIOE },
-> +	[GMBUS_PIN_11_TC3_ICP] = { "tc3", GPIOF },
-> +	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIOG }, };
-> +
->  static const struct gmbus_pin gmbus_pins_bdw[] = {
->  	[GMBUS_PIN_VGADDC] = { "vga", GPIOA },
->  	[GMBUS_PIN_DPC] = { "dpc", GPIOD },
-> @@ -101,7 +109,9 @@ static const struct gmbus_pin gmbus_pins_dg1[] = {  
-> static const struct gmbus_pin *get_gmbus_pin(struct drm_i915_private *dev_priv,
->  					     unsigned int pin)
->  {
-> -	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
-> +	if (INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
+>> >
+>> =
 
-This check should be converted to IS_ALDERLAKE_S(dev_priv) instead of PCH check for PCH_ADP.
-Unfortunately, we are reusing PCH_ADP for ADLS and ADLP which have different mappings but the same ADP PCH.
-This will break ADLP. 
+>> I will split this into two separate functions in patch v2.
+>
+>Actually looking through the VBT history this seems to have been
+>retroactively changed for already rev 216+ to follow the new
+>definitions. And naturally no actual explanation given. So it's
+>the same old VBT=3D=3Dsnafu as always.
+>
+>I guess the real question is whether any machines migth have shipped
+>that depened on the old defitions? Unless someone manages to
+>find that out I think we might just have to change this to follow
+>only the new style and hope we don't regress a lot of machines.
+>
 
-The PCH_ADP check for ADLS in intel_bios.c will also be changed in the ADLP patches that are going to be submitted upstream.
+Agree that we should just have the change follow new definition.
+But as you mentioned, we are not sure any machines have shipped
+with the old definition. :(
 
-So might as well do the correct thing now and change this to IS_ALDERLAKE_S(dev_priv).
+In my opinion, we should follow the new style. If we got bug report,
+then we can consider to add some codes for backward compatible.
 
-Ok will update this in next version.
+>I was a bit hopeful that this might have fixed [1], but looks
+>like that just has this set to 0 which doesn't give us the desired
+>2.7Gbps with either the old or new definition :(
+>
+>[1] https://gitlab.freedesktop.org/drm/intel/-/issues/3034
+>
 
-> +		return &gmbus_pins_adls[pin];
-> +	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
->  		return &gmbus_pins_dg1[pin];
->  	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
->  		return &gmbus_pins_icp[pin];
-> @@ -122,7 +132,9 @@ bool intel_gmbus_is_valid_pin(struct 
-> drm_i915_private *dev_priv,  {
->  	unsigned int size;
->  
-> -	if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
-> +	if (INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
+Just like what you said. This change should not be able to give 2.7GHz
+on eDP port to help on this issue.
 
-See comment above. Change to IS_ALDERLAKE_S(dev_priv)
+This might not be a good idea. But how about to add this OUI into
+quirk list? Then driver can give bandwidth limitation for particular panel.
 
-Ok.
+[    2.422930] [drm:drm_dp_read_desc [drm_kms_helper]] AUX A/DDI A/PHY A: D=
+P sink: OUI 38-ec-11 dev-ID  HW-rev 0.0 SW-rev 0.0 quirks 0x0000
 
-Aditya Swarup
+Best regards,
+Shawn
 
-> +		size = ARRAY_SIZE(gmbus_pins_adls);
-> +	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_DG1)
->  		size = ARRAY_SIZE(gmbus_pins_dg1);
->  	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
->  		size = ARRAY_SIZE(gmbus_pins_icp);
-> 
-
-Thanks
--Anand
+>--
+>Ville Syrj=E4l=E4
+>Intel
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
