@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 182A331A70C
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 22:45:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67C0231A72E
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 22:59:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED9F86E7EA;
-	Fri, 12 Feb 2021 21:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B34B26E219;
+	Fri, 12 Feb 2021 21:59:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B4AFB6E7EA;
- Fri, 12 Feb 2021 21:45:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A58A0A0118;
- Fri, 12 Feb 2021 21:45:10 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 12 Feb 2021 21:45:10 -0000
-Message-ID: <161316631064.25822.3894758853994673199@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 822D46E219
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 21:59:27 +0000 (UTC)
+IronPort-SDR: DMFZCHpAxJCFKn2rTR68iKBndTzec4ZOU7S6gRq8+YcyBobblvKFHrD8kSOJL3IKhmUOBpAeqA
+ +uwmR3rhaNIw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9893"; a="170149856"
+X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="170149856"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2021 13:59:25 -0800
+IronPort-SDR: NEs8JjTqyDaNK5BHIMlkITm3mPnZB3uj2Uk6Hae6pop1seXxjXCzArcKjyBWy2pNqZnBdNDO4p
+ WswGcepAJmig==
+X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="416119454"
+Received: from aaramire-mobl2.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.212.210.126])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2021 13:59:25 -0800
+Date: Fri, 12 Feb 2021 13:59:25 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210212215925.3hhipkiqbznxi2xt@ldmartin-desk1>
+X-Patchwork-Hint: comment
 References: <20210212211925.3418280-1-matthew.d.roper@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
 In-Reply-To: <20210212211925.3418280-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/i915=3A_FPGA=5FDBG_is_display?=
- =?utf-8?q?-specific?=
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: FPGA_DBG is display-specific
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,51 +48,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvMl0g
-ZHJtL2k5MTU6IEZQR0FfREJHIGlzIGRpc3BsYXktc3BlY2lmaWMKVVJMICAgOiBodHRwczovL3Bh
-dGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzg3MDU0LwpTdGF0ZSA6IGZhaWx1cmUKCj09
-IFN1bW1hcnkgPT0KCkNBTEwgICAgc2NyaXB0cy9jaGVja3N5c2NhbGxzLnNoCiAgQ0FMTCAgICBz
-Y3JpcHRzL2F0b21pYy9jaGVjay1hdG9taWNzLnNoCiAgREVTQ0VORCAgb2JqdG9vbAogIENISyAg
-ICAgaW5jbHVkZS9nZW5lcmF0ZWQvY29tcGlsZS5oCiAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pbnRlbF91bmNvcmUubwpJbiBmaWxlIGluY2x1ZGVkIGZyb20gZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaW50ZWxfdW5jb3JlLmM6Mjc6CmRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3VuY29y
-ZS5jOiBJbiBmdW5jdGlvbiDigJhpbnRlbF91bmNvcmVfaW5pdF9tbWlv4oCZOgpkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2Rydi5oOjE2OTc6NjU6IGVycm9yOiDigJhjb25zdCBzdHJ1Y3QgaW50
-ZWxfZGV2aWNlX2luZm/igJkgaGFzIG5vIG1lbWJlciBuYW1lZCDigJhoYXNfZnBnYV9kYmfigJk7
-IGRpZCB5b3UgbWVhbiDigJhoYXNfZ3RfdWPigJk/CiAjZGVmaW5lIEhBU19GUEdBX0RCR19VTkNM
-QUlNRUQoZGV2X3ByaXYpIChJTlRFTF9JTkZPKGRldl9wcml2KS0+aGFzX2ZwZ2FfZGJnKQogICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIF5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF91bmNvcmUuYzoxOTM3
-OjY6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhIQVNfRlBHQV9EQkdfVU5DTEFJTUVE
-4oCZCiAgaWYgKEhBU19GUEdBX0RCR19VTkNMQUlNRUQoaTkxNSkpCiAgICAgIF5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn4KZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2ludGVsX3VuY29yZS5j
-OiBJbiBmdW5jdGlvbiDigJhsaXZlX2ZvcmNld2FrZV9kb21haW5z4oCZOgpkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X2Rydi5oOjE2OTc6NjU6IGVycm9yOiDigJhjb25zdCBzdHJ1Y3QgaW50ZWxf
-ZGV2aWNlX2luZm/igJkgaGFzIG5vIG1lbWJlciBuYW1lZCDigJhoYXNfZnBnYV9kYmfigJk7IGRp
-ZCB5b3UgbWVhbiDigJhoYXNfZ3RfdWPigJk/CiAjZGVmaW5lIEhBU19GUEdBX0RCR19VTkNMQUlN
-RUQoZGV2X3ByaXYpIChJTlRFTF9JTkZPKGRldl9wcml2KS0+aGFzX2ZwZ2FfZGJnKQogICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IF5+fn5+fn5+fn5+fgpkcml2ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaW50ZWxfdW5jb3Jl
-LmM6MjY1Ojc6IG5vdGU6IGluIGV4cGFuc2lvbiBvZiBtYWNybyDigJhIQVNfRlBHQV9EQkdfVU5D
-TEFJTUVE4oCZCiAgaWYgKCFIQVNfRlBHQV9EQkdfVU5DTEFJTUVEKGd0LT5pOTE1KSAmJgogICAg
-ICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjI3OTogcmVj
-aXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3VuY29yZS5vJyBmYWls
-ZWQKbWFrZVs0XTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF91bmNvcmUub10gRXJy
-b3IgMQpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NjogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZl
-cnMvZ3B1L2RybS9pOTE1JyBmYWlsZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dwdS9kcm0vaTkx
-NV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQ5NjogcmVjaXBlIGZvciB0YXJnZXQg
-J2RyaXZlcnMvZ3B1L2RybScgZmFpbGVkCm1ha2VbMl06ICoqKiBbZHJpdmVycy9ncHUvZHJtXSBF
-cnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDk2OiByZWNpcGUgZm9yIHRhcmdldCAnZHJp
-dmVycy9ncHUnIGZhaWxlZAptYWtlWzFdOiAqKiogW2RyaXZlcnMvZ3B1XSBFcnJvciAyCk1ha2Vm
-aWxlOjE4MDA6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzJyBmYWlsZWQKbWFrZTogKioqIFtk
-cml2ZXJzXSBFcnJvciAyCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+On Fri, Feb 12, 2021 at 01:19:24PM -0800, Matt Roper wrote:
+>Although the bspec's description doesn't make it very clear, the
+>hardware architects have confirmed that the FPGA_DBG register that we
+>use to check for unclaimed MMIO accesses is display-specific and will
+>only properly flag unclaimed MMIO transactions for registers in the
+>display range.  If a platform doesn't have display, FPGA_DBG itself will
+>not be available and should not be checked.  Let's move the feature flag
+>into intel_device_info.display to more accurately reflect this.
+>
+>Given that we now know FPGA_DBG is display-specific, it could be argued
+>that we should only check it on out intel_de_*() functions.  However
+>let's not make that change right now; keeping the checks in all of the
+>existing locations still helps us catch cases where regular
+>intel_uncore_*() functions use bad MMIO offset math / base addresses and
+>accidentally wind up landing within an unused area within the display
+>MMIO range.  It will also help catch cases where userspace-initiated
+>MMIO (e.g., IGT's intel_reg tool) attempt to read bad offsets within the
+>display range.
+>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+
+>---
+> drivers/gpu/drm/i915/i915_pci.c          | 4 ++--
+> drivers/gpu/drm/i915/intel_device_info.h | 2 +-
+> 2 files changed, 3 insertions(+), 3 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+>index eff7155db2fd..a9f24f2bda33 100644
+>--- a/drivers/gpu/drm/i915/i915_pci.c
+>+++ b/drivers/gpu/drm/i915/i915_pci.c
+>@@ -538,7 +538,7 @@ static const struct intel_device_info vlv_info = {
+> 	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
+> 		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
+> 	.display.has_ddi = 1, \
+>-	.has_fpga_dbg = 1, \
+>+	.display.has_fpga_dbg = 1, \
+> 	.display.has_psr = 1, \
+> 	.display.has_psr_hw_tracking = 1, \
+> 	.display.has_dp_mst = 1, \
+>@@ -689,7 +689,7 @@ static const struct intel_device_info skl_gt4_info = {
+> 		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
+> 	.has_64bit_reloc = 1, \
+> 	.display.has_ddi = 1, \
+>-	.has_fpga_dbg = 1, \
+>+	.display.has_fpga_dbg = 1, \
+> 	.display.has_fbc = 1, \
+> 	.display.has_hdcp = 1, \
+> 	.display.has_psr = 1, \
+>diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+>index e6ca1023ffcf..d44f64b57b7a 100644
+>--- a/drivers/gpu/drm/i915/intel_device_info.h
+>+++ b/drivers/gpu/drm/i915/intel_device_info.h
+>@@ -118,7 +118,6 @@ enum intel_ppgtt_type {
+> 	func(has_64bit_reloc); \
+> 	func(gpu_reset_clobbers_display); \
+> 	func(has_reset_engine); \
+>-	func(has_fpga_dbg); \
+> 	func(has_global_mocs); \
+> 	func(has_gt_uc); \
+> 	func(has_l3_dpf); \
+>@@ -145,6 +144,7 @@ enum intel_ppgtt_type {
+> 	func(has_dsb); \
+> 	func(has_dsc); \
+> 	func(has_fbc); \
+>+	func(has_fpga_dbg); \
+> 	func(has_gmch); \
+> 	func(has_hdcp); \
+> 	func(has_hotplug); \
+>-- 
+>2.25.4
+>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
