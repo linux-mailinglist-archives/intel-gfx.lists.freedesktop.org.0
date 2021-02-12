@@ -1,42 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAB96319F51
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 14:04:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD82319F93
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 14:14:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E59BE6E0F4;
-	Fri, 12 Feb 2021 13:04:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CAAE6E5A2;
+	Fri, 12 Feb 2021 13:14:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC316E0F4
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 13:04:24 +0000 (UTC)
-IronPort-SDR: 25AB3JXvjjzJ9KSTvdHoGy7xAm74TVRdgQ0gbGqIfTe8kjaUuWPdJkd8XZ9k2QeqmctwPLtCVd
- DZ3gKYLdC4JA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9892"; a="181631471"
-X-IronPort-AV: E=Sophos;i="5.81,173,1610438400"; d="scan'208";a="181631471"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 05:04:23 -0800
-IronPort-SDR: xcqOkd/HDdhOaJygiAIO7bhd453XLrEPmCKyFKjKX+XqGr3R+cKczgcEENf0RXknJGOO7dWYis
- +435hIDzAslQ==
-X-IronPort-AV: E=Sophos;i="5.81,173,1610438400"; d="scan'208";a="397970249"
-Received: from mpetrica-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.54.176])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 05:04:21 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Saichandana S <saichandana.s@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210209133154.31115-1-saichandana.s@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210115130110.2650-1-saichandana.s@intel.com>
- <20210209133154.31115-1-saichandana.s@intel.com>
-Date: Fri, 12 Feb 2021 15:04:18 +0200
-Message-ID: <87czx5cu99.fsf@intel.com>
+X-Greylist: delayed 171342 seconds by postgrey-1.36 at gabe;
+ Fri, 12 Feb 2021 13:14:43 UTC
+Received: from mail2.protonmail.ch (mail2.protonmail.ch [185.70.40.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E4676E59D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 13:14:43 +0000 (UTC)
+Date: Fri, 12 Feb 2021 13:14:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail3; t=1613135680;
+ bh=3kzHPPEfw1Oh/I2MyZYvqJOoI3OUAOuTBbGYxZ6hJXU=;
+ h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+ b=QJUxtEvMZXp/osU9H8/N9GbtIb0yBNvkFGeCOL83GaSoAQ4Y5uzywHWQ5KupwWfZZ
+ dxXwtjq9n3nTzUsXXDQpC0e8gEpkSpIsFpQ+g+3LAMSPZmgku7VGXWKhBE9ICCCAdn
+ gGM4UJQ1XQmA4LCV0sNYK7v3dwHFEZOYYryZbtwmFdKey+Sb8bPuM5v/mJs0VMSt5q
+ SATj5yWIEkdvvnpW6dHFbUG3Qy9rcx6t3CLkgA8O6fUkpDg535qZLcMk2Tf4gh6Ysl
+ Pk4V0rUV5z6hgP8HNxDAh1AjvCHYnxiqIqgPy4H8+FjxNRaA+NQi++RR4j6vymslB8
+ 7mfCBayLxA0xA==
+To: Emil Velikov <emil.l.velikov@gmail.com>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <pIyZ-Jj7O2MYk1vKeyghnFmiFWk_5ZWm-Ze1gUqdDaXzImOVjVdjPh2uyHa-sxOPovRk1ApSKk_5zKBvOrzoSwXeXUu0LbZ75Q1D3gIK2Kk=@emersion.fr>
+In-Reply-To: <CACvgo52u1ASWXOuWuDwoXvbZhoq+RHn_GTxD5y9k+kO_dzmT7w@mail.gmail.com>
+References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
+ <20210205220012.1983-1-chris@chris-wilson.co.uk>
+ <CACvgo52u1ASWXOuWuDwoXvbZhoq+RHn_GTxD5y9k+kO_dzmT7w@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/debugfs : PCU PM_REQ and PM_RES
- registers
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
+Subject: Re: [Intel-gfx] [PATCH v3] kcmp: Support selection of SYS_kcmp
+ without CHECKPOINT_RESTORE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,115 +52,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: chris@chris-wilson.co.uk
+Reply-To: Simon Ser <contact@emersion.fr>
+Cc: Will Drewry <wad@chromium.org>, Kees Cook <keescook@chromium.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Cyrill Gorcunov <gorcunov@gmail.com>,
+ "# 3.13+" <stable@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
+ Andy Lutomirski <luto@amacapital.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 09 Feb 2021, Saichandana S <saichandana.s@intel.com> wrote:
-> This debugfs provides the display PM debug information like Time
-> to Next VBI and Time to Next Fill from Display Engine <-> PCU Mailbox.
+On Friday, February 12th, 2021 at 1:57 PM, Emil Velikov <emil.l.velikov@gmail.com> wrote:
 
-We still lack a rationale for this and the test design. In past review,
-I got the impression that a) you need the wakeref, but b) grabbing the
-wakeref messes up the test.
-
-What are you testing? What are you trying to achieve?
-
-BR,
-Jani.
-
-
-PS. You leak the wakeref and stay up indefinitely if csr isn't loaded.
-
+> On Fri, 5 Feb 2021 at 22:01, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> >
+> > Userspace has discovered the functionality offered by SYS_kcmp and has
+> > started to depend upon it. In particular, Mesa uses SYS_kcmp for
+> > os_same_file_description() in order to identify when two fd (e.g. device
+> > or dmabuf)
 >
-> V2:
-> Added a functional print to debugfs. [Jani Nikula]
+> As you rightfully point out, SYS_kcmp is a bit of a two edged sword.
+> While you mention the CONFIG issue, there is also a portability aspect
+> (mesa runs on more than just linux) and as well as sandbox filtering
+> of the extra syscall.
 >
-> V3:
-> Used separate variables to store the register values and also
-> used REG_GENMASK and REG_BIT for mask preparation. [Anshuman Gupta]
->
-> Removed reading of register contents. Replaced local variable with yesno().
-> Placed register macros separately, distinguishing from other
-> macros. [Jani Nikula]
->
-> V4 : Used i915 as local variable. [Anshuman Gupta, Jani Nikula]
->
-> V5 : Added wakeref to wakeup device. [Chris Wilson]
-> Signed-off-by: Saichandana S <saichandana.s@intel.com>
-> ---
->  .../drm/i915/display/intel_display_debugfs.c  | 24 +++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h               |  9 +++++++
->  2 files changed, 33 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index d6e4a9237bda..29aaa41fdeec 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -591,6 +591,29 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
->  	return 0;
->  }
->  
-> +static int i915_pcu_pm_req_res_info(struct seq_file *m, void *unused)
-> +{
-> +	struct drm_i915_private *i915 = node_to_i915(m->private);
-> +	struct intel_csr *csr = &i915->csr;
-> +	intel_wakeref_t wakeref;
-> +
-> +	if (!HAS_CSR(i915))
-> +		return -ENODEV;
-> +
-> +	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-> +	if (!csr->dmc_payload)
-> +		return 0;
+> Last time I looked, the latter was still an issue and mesa was using
+> SYS_kcmp to compare device node fds.
+> A far shorter and more portable solution is possible, so let me
+> prepare a Mesa patch.
 
-Leak.
+Comparing two DMA-BUFs can be done with their inode number, I think.
 
-> +	seq_printf(m, "Time to Next Fill : 0x%08x\n",
-> +		   intel_de_read(i915, PM_RSP_DBG_0) & PM_RESP_TTNF_MASK);
-> +	seq_printf(m, "Time to Next VBI : 0x%08x\n",
-> +		   (intel_de_read(i915, PM_RSP_DBG_0) & PM_RESP_TTNVBI_MASK) >> 16);
-> +	seq_printf(m, "Selective Exit Latency : 0x%08x\n",
-> +		   intel_de_read(i915, PM_RSP_DBG_1) & PM_RESP_SEL_EXIT_LATENCY_MASK);
-> +
-> +	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-> +	return 0;
-> +}
-> +
->  static void intel_seq_print_mode(struct seq_file *m, int tabs,
->  				 const struct drm_display_mode *mode)
->  {
-> @@ -2128,6 +2151,7 @@ static const struct drm_info_list intel_display_debugfs_list[] = {
->  	{"i915_edp_psr_status", i915_edp_psr_status, 0},
->  	{"i915_power_domain_info", i915_power_domain_info, 0},
->  	{"i915_dmc_info", i915_dmc_info, 0},
-> +	{"i915_pcu_pm_req_res_info", i915_pcu_pm_req_res_info, 0},
->  	{"i915_display_info", i915_display_info, 0},
->  	{"i915_shared_dplls_info", i915_shared_dplls_info, 0},
->  	{"i915_dp_mst_info", i915_dp_mst_info, 0},
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 224ad897af34..93d319bf80fd 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -12525,4 +12525,13 @@ enum skl_power_gate {
->  #define TGL_ROOT_DEVICE_SKU_ULX		0x2
->  #define TGL_ROOT_DEVICE_SKU_ULT		0x4
->  
-> +/*These registers are of functional registers for PM debug request and response registers*/
-> +#define PM_REQ_DBG_0				_MMIO(0x45284)
-> +#define PM_REQ_DBG_1				_MMIO(0x45288)
-> +#define PM_RSP_DBG_0				_MMIO(0x4528C)
-> +#define   PM_RESP_TTNF_MASK			REG_GENMASK(15, 0)
-> +#define   PM_RESP_TTNVBI_MASK			REG_GENMASK(31, 16)
-> +#define PM_RSP_DBG_1				_MMIO(0x45290)
-> +#define   PM_RESP_SEL_EXIT_LATENCY_MASK		REG_GENMASK(2, 0)
-> +
->  #endif /* _I915_REG_H_ */
+Comparing two device FDs is more subtle, because of GEM handle
+ref'counting. You sometimes really want to check whether two FDs are
+backed by the same file *description*. See [1] for details.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+[1]: https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/110
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
