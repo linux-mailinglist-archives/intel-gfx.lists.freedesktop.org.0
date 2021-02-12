@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2FB331A523
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 20:15:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1405231A53A
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 20:20:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 340C76E1F8;
-	Fri, 12 Feb 2021 19:15:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 025D96E7D3;
+	Fri, 12 Feb 2021 19:20:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A9696E1F8
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 19:15:07 +0000 (UTC)
-IronPort-SDR: b5354YHXvqfYSppHC4OICrXHVhILKWei1kVNcJ5xym35jFSWsDLU+IPn9s43WanG0l5ReMnUHD
- q4ClToHAw3fg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9893"; a="201614419"
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="201614419"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 11:15:02 -0800
-IronPort-SDR: TAoUtj6jPoUn0rFH+REwUy+45uixQA+wKOeq4UBV2qYLvYJDBqJqKcFtvQZK1RIte/1Zv8qk8I
- zIuBxHhjOnzA==
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="362926005"
-Received: from caeastla-mobl.amr.corp.intel.com (HELO [10.252.132.205])
- ([10.252.132.205])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 11:15:01 -0800
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD8F56E7D3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 19:20:14 +0000 (UTC)
+IronPort-SDR: kxvj0PqXNBfbTD1j3HQ8oIJ1E4HmL05Zvl0U6ROIJNHKel2Lxu6z9YTl8Tx8H8qM3ecOcc7s5E
+ kSh1wdCC9JuA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9893"; a="161606740"
+X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="161606740"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2021 11:20:14 -0800
+IronPort-SDR: H/tyJlbc7IWTaCzXJ4gIVAc7rchighHu3DOp+EOsUavXqRwjwcwC9rwceA7XgdMlfD2DflopFf
+ 9/Z+aZ4eRFmQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="381833208"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 12 Feb 2021 11:20:11 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 12 Feb 2021 21:20:11 +0200
+Date: Fri, 12 Feb 2021 21:20:11 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <YCbU65VC/YP4MRHf@intel.com>
 References: <20210212182201.155043-1-jose.souza@intel.com>
-From: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <3c35d2dc-f7da-c144-2adb-e7cbb1ffa756@intel.com>
-Date: Fri, 12 Feb 2021 11:15:01 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
 MIME-Version: 1.0
+Content-Disposition: inline
 In-Reply-To: <20210212182201.155043-1-jose.souza@intel.com>
-Content-Language: en-US
+X-Patchwork-Hint: comment
 Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display/adl_s: Fix
  dpclka_cfgcr0_clk_off mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -51,58 +50,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMi8xMi8yMSAxMDoyMSBBTSwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSB3cm90ZToKPiBUaGUg
-Y2ZnY3IwLzFfY2xrX29mZiBtYXBwaW5nIGlzIHdyb25nIGZvciBhZGwtcyB3aGF0IGNvdWxkIGNh
-dXNlCj4gdGhlIHdyb25nIGNsb2NrIGJlaW5nIGRpc2FibGVkIGFuZCBsZWF2aW5nIGEgbm90IG5l
-ZWRlZCBjbG9jawo+IHJ1bm5pbmcgY29uc3VtaW5nIG1vcmUgcG93ZXIgdGhhbiBuZWVkZWQuCj4g
-Cj4gQnNwZWM6IDUwMjg3Cj4gQnNwZWM6IDUzODEyCj4gQnNwZWM6IDUzNzIzCj4gRml4ZXM6IGQ2
-ZDJiYzk5NmU0NSAoImRybS9pOTE1L2FkbF9zOiBDb25maWd1cmUgUG9ydCBjbG9jayByZWdpc3Rl
-cnMgZm9yIEFETC1TIikKPiBDYzogQWRpdHlhIFN3YXJ1cCA8YWRpdHlhLnN3YXJ1cEBpbnRlbC5j
-b20+Cj4gQ2M6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgo+IENj
-OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6
-IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgoKQ2hhbmdlcyBs
-b29rIGNvcnJlY3QgdG8gbWUgYmFzZWQgb24gdGhlIHRhYmxlIGZyb20gQnNwZWM6IDUzNzIzIGFu
-ZCBpcyByZXF1aXJlZC4gTWlzdGFrZSBvbiBteSBwYXJ0IG9uCm1pc3NpbmcgdGhvc2UgY2hhbmdl
-cy4KClJldmlld2VkLWJ5OiBBZGl0eWEgU3dhcnVwIDxhZGl0eWEuc3dhcnVwQGludGVsLmNvbT4K
-Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgfCAgNCAr
-KystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgfCAxMiArKysr
-KysrKysrKysKPiAgMiBmaWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
-KC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCj4gaW5kZXgg
-MmQ2OTA2ZjY5OTVmLi43NjMxZTA4MDM0OWQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGRpLmMKPiBAQCAtMTU4NSw3ICsxNTg1LDkgQEAgaHN3X3NldF9zaWduYWxf
-bGV2ZWxzKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCj4gIHN0YXRpYyB1MzIgaWNsX2RwY2xr
-YV9jZmdjcjBfY2xrX29mZihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gIAkJ
-CQkgICAgIGVudW0gcGh5IHBoeSkKPiAgewo+IC0JaWYgKElTX1JPQ0tFVExBS0UoZGV2X3ByaXYp
-KSB7Cj4gKwlpZiAoSVNfQUxERVJMQUtFX1MoZGV2X3ByaXYpKSB7Cj4gKwkJcmV0dXJuIEFETFNf
-RFBDTEtBX0NGR0NSX0RESV9DTEtfT0ZGKHBoeSk7Cj4gKwl9IGVsc2UgaWYgKElTX1JPQ0tFVExB
-S0UoZGV2X3ByaXYpKSB7Cj4gIAkJcmV0dXJuIFJLTF9EUENMS0FfQ0ZHQ1IwX0RESV9DTEtfT0ZG
-KHBoeSk7Cj4gIAl9IGVsc2UgaWYgKGludGVsX3BoeV9pc19jb21ibyhkZXZfcHJpdiwgcGh5KSkg
-ewo+ICAJCXJldHVybiBJQ0xfRFBDTEtBX0NGR0NSMF9ERElfQ0xLX09GRihwaHkpOwo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9yZWcuaAo+IGluZGV4IDIyNGFkODk3YWYzNC4uN2M2OWI1MGNjYzVjIDEwMDY0
-NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4gQEAgLTEwNDE2LDYgKzEwNDE2LDE4IEBAIGVudW0g
-c2tsX3Bvd2VyX2dhdGUgewo+ICAJCQkJCQkJQURMU19EUENMS0FfRERJSl9TRUxfTUFTSywgXAo+
-ICAJCQkJCQkJQURMU19EUENMS0FfRERJS19TRUxfTUFTSykKPiAgCj4gKyNkZWZpbmUgX0FETFNf
-RFBDTEtBX0RESUFfQ0xLX09GRgkJCVJFR19CSVQoMTApCj4gKyNkZWZpbmUgX0FETFNfRFBDTEtB
-X0RESUJfQ0xLX09GRgkJCVJFR19CSVQoMTEpCj4gKyNkZWZpbmUgX0FETFNfRFBDTEtBX0RESUlf
-Q0xLX09GRgkJCVJFR19CSVQoMjQpCj4gKyNkZWZpbmUgX0FETFNfRFBDTEtBX0RESUpfQ0xLX09G
-RgkJCVJFR19CSVQoNCkKPiArI2RlZmluZSBfQURMU19EUENMS0FfRERJS19DTEtfT0ZGCQkJUkVH
-X0JJVCg1KQo+ICsjZGVmaW5lIEFETFNfRFBDTEtBX0NGR0NSX0RESV9DTEtfT0ZGKHBoeSkJCV9Q
-SUNLKChwaHkpLCBcCj4gKwkJCQkJCQkgICAgICBfQURMU19EUENMS0FfRERJQV9DTEtfT0ZGLCBc
-Cj4gKwkJCQkJCQkgICAgICBfQURMU19EUENMS0FfRERJQl9DTEtfT0ZGLCBcCj4gKwkJCQkJCQkg
-ICAgICBfQURMU19EUENMS0FfRERJSV9DTEtfT0ZGLCBcCj4gKwkJCQkJCQkgICAgICBfQURMU19E
-UENMS0FfRERJSl9DTEtfT0ZGLCBcCj4gKwkJCQkJCQkgICAgICBfQURMU19EUENMS0FfRERJS19D
-TEtfT0ZGKQo+ICsKPiAgLyogQ05MIFBMTCAqLwo+ICAjZGVmaW5lIERQTEwwX0VOQUJMRQkJMHg0
-NjAxMAo+ICAjZGVmaW5lIERQTEwxX0VOQUJMRQkJMHg0NjAxNAo+IAoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Fri, Feb 12, 2021 at 10:21:59AM -0800, Jos=E9 Roberto de Souza wrote:
+> The cfgcr0/1_clk_off mapping is wrong for adl-s what could cause
+> the wrong clock being disabled and leaving a not needed clock
+> running consuming more power than needed.
+> =
+
+> Bspec: 50287
+> Bspec: 53812
+> Bspec: 53723
+> Fixes: d6d2bc996e45 ("drm/i915/adl_s: Configure Port clock registers for =
+ADL-S")
+> Cc: Aditya Swarup <aditya.swarup@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c |  4 +++-
+>  drivers/gpu/drm/i915/i915_reg.h          | 12 ++++++++++++
+>  2 files changed, 15 insertions(+), 1 deletion(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 2d6906f6995f..7631e080349d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -1585,7 +1585,9 @@ hsw_set_signal_levels(struct intel_dp *intel_dp,
+>  static u32 icl_dpclka_cfgcr0_clk_off(struct drm_i915_private *dev_priv,
+>  				     enum phy phy)
+>  {
+> -	if (IS_ROCKETLAKE(dev_priv)) {
+> +	if (IS_ALDERLAKE_S(dev_priv)) {
+> +		return ADLS_DPCLKA_CFGCR_DDI_CLK_OFF(phy);
+> +	} else if (IS_ROCKETLAKE(dev_priv)) {
+>  		return RKL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
+>  	} else if (intel_phy_is_combo(dev_priv, phy)) {
+>  		return ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 224ad897af34..7c69b50ccc5c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -10416,6 +10416,18 @@ enum skl_power_gate {
+>  							ADLS_DPCLKA_DDIJ_SEL_MASK, \
+>  							ADLS_DPCLKA_DDIK_SEL_MASK)
+>  =
+
+> +#define _ADLS_DPCLKA_DDIA_CLK_OFF			REG_BIT(10)
+> +#define _ADLS_DPCLKA_DDIB_CLK_OFF			REG_BIT(11)
+> +#define _ADLS_DPCLKA_DDII_CLK_OFF			REG_BIT(24)
+> +#define _ADLS_DPCLKA_DDIJ_CLK_OFF			REG_BIT(4)
+> +#define _ADLS_DPCLKA_DDIK_CLK_OFF			REG_BIT(5)
+
+So shose are apparently split between the two registers. Why aren't
+we defining these so that it would be obvious which register they
+live in? This stuff is confusing enough with the hw folks churning
+the bits around randomly on every platform, so I don't think we
+should add to the confusion by obfuscating the bit defines. I do
+like that you named the bits, which isn't case for the other
+platforms. Would be nice to fix it all up actually.
+
+Hmm. However, this new defintion seem to match =
+
+ICL_DPCLKA_CFGCR0_DDI_CLK_OFF() 100%. So how can this be fixing
+something? Also ICL for sure can't have that many combo PHYs can
+it? We should nuke the extra stuff from the ICL defintion if it's
+no longer used.
+
+> +#define ADLS_DPCLKA_CFGCR_DDI_CLK_OFF(phy)		_PICK((phy), \
+> +							      _ADLS_DPCLKA_DDIA_CLK_OFF, \
+> +							      _ADLS_DPCLKA_DDIB_CLK_OFF, \
+> +							      _ADLS_DPCLKA_DDII_CLK_OFF, \
+> +							      _ADLS_DPCLKA_DDIJ_CLK_OFF, \
+> +							      _ADLS_DPCLKA_DDIK_CLK_OFF)
+> +
+>  /* CNL PLL */
+>  #define DPLL0_ENABLE		0x46010
+>  #define DPLL1_ENABLE		0x46014
+> -- =
+
+> 2.30.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
