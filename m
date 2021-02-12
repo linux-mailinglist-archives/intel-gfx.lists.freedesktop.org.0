@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C7F319C91
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 11:22:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F05F319C92
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 11:22:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B35806E58E;
-	Fri, 12 Feb 2021 10:22:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01A166E591;
+	Fri, 12 Feb 2021 10:22:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E8C46E58A
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 10:22:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 534126E591
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 10:22:43 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.69.177; 
 Received: from build.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23846944-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23846945-1500050 
  for multiple; Fri, 12 Feb 2021 10:22:25 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Feb 2021 10:22:23 +0000
-Message-Id: <20210212102224.31060-2-chris@chris-wilson.co.uk>
+Date: Fri, 12 Feb 2021 10:22:24 +0000
+Message-Id: <20210212102224.31060-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20210212102224.31060-1-chris@chris-wilson.co.uk>
 References: <20210212102224.31060-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915: Introduce guard pages to i915_vma
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Refine VT-d scanout workaround
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,173 +40,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Matthew Auld <matthew.auld@intel.com>,
  Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Introduce the concept of padding the i915_vma with guard pages before
-and aft. The major consequence is that all ordinary uses of i915_vma
-must use i915_vma_offset/i915_vma_size and not i915_vma.node.start/size
-directly, as the drm_mm_node will include the guard pages that surround
-our object.
-
-So in this patch, we look for all uses of i915_vma->node.start that
-instead need to include the guard offset and switch them to
-i915_vma_offset(), and in a few cases to i915_ggtt_offset(). Notable
-exceptions are the selftests, which expect exact behaviour.
-
-The biggest connundrum is how exactly to mix request a fixed address
-with guard pages, particular through the existing uABI. The user does
-not know about guard pages, so such must be transparent to the user, and
-so the execobj.offset must be that of the object itself excluding the
-guard. So a PIN_OFFSET_FIXED must then be exclusive of the guard pages.
-
-In the next patch, we start using guard pages for scanout objects. While
-these are limited to GGTT vma, on a few platforms these vma (or at least
-an alias of the vma) is shared with userspace, so we may leak the
-existence of such guards if we are not careful to ensure that the
-execobj.offset is transparent and excludes the guards. (On such platforms,
-without full-ppgtt, userspace has to use relocations so the presence of
-more untouchable regions within its GTT such be of no further issue.)
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c  | 12 ++++++++++--
- drivers/gpu/drm/i915/i915_vma.c       | 10 +++++++---
- drivers/gpu/drm/i915/i915_vma.h       |  8 ++++----
- drivers/gpu/drm/i915/i915_vma_types.h |  3 ++-
- 4 files changed, 23 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index c5803c434d33..6b326138e765 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -238,8 +238,12 @@ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
- 
- 	gte = (gen8_pte_t __iomem *)ggtt->gsm;
- 	gte += vma->node.start / I915_GTT_PAGE_SIZE;
--	end = gte + vma->node.size / I915_GTT_PAGE_SIZE;
- 
-+	end = gte + vma->guard / I915_GTT_PAGE_SIZE;
-+	while (gte < end)
-+		gen8_set_pte(gte++, vm->scratch[0]->encode);
-+
-+	end += (vma->node.size - vma->guard) / I915_GTT_PAGE_SIZE;
- 	for_each_sgt_daddr(addr, iter, vma->pages)
- 		gen8_set_pte(gte++, pte_encode | addr);
- 	GEM_BUG_ON(gte > end);
-@@ -289,8 +293,12 @@ static void gen6_ggtt_insert_entries(struct i915_address_space *vm,
- 
- 	gte = (gen6_pte_t __iomem *)ggtt->gsm;
- 	gte += vma->node.start / I915_GTT_PAGE_SIZE;
--	end = gte + vma->node.size / I915_GTT_PAGE_SIZE;
- 
-+	end = gte + vma->guard / I915_GTT_PAGE_SIZE;
-+	while (gte < end)
-+		gen8_set_pte(gte++, vm->scratch[0]->encode);
-+
-+	end += (vma->node.size - vma->guard) / I915_GTT_PAGE_SIZE;
- 	for_each_sgt_daddr(addr, iter, vma->pages)
- 		iowrite32(vm->pte_encode(addr, level, flags), gte++);
- 	GEM_BUG_ON(gte > end);
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 17fe455bd770..155f510b4cc6 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -623,7 +623,7 @@ bool i915_gem_valid_gtt_space(struct i915_vma *vma, unsigned long color)
- static int
- i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- {
--	unsigned long color;
-+	unsigned long color, guard;
- 	u64 start, end;
- 	int ret;
- 
-@@ -631,13 +631,16 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- 	GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
- 
- 	size = max(size, vma->size);
--	alignment = max(alignment, vma->display_alignment);
-+	alignment = max_t(typeof(alignment), alignment, vma->display_alignment);
- 	if (flags & PIN_MAPPABLE) {
- 		size = max_t(typeof(size), size, vma->fence_size);
- 		alignment = max_t(typeof(alignment),
- 				  alignment, vma->fence_alignment);
- 	}
- 
-+	guard = 0;
-+	size += 2 * guard;
-+
- 	GEM_BUG_ON(!IS_ALIGNED(size, I915_GTT_PAGE_SIZE));
- 	GEM_BUG_ON(!IS_ALIGNED(alignment, I915_GTT_MIN_ALIGNMENT));
- 	GEM_BUG_ON(!is_power_of_2(alignment));
-@@ -674,7 +677,7 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- 			return -EINVAL;
- 
- 		ret = i915_gem_gtt_reserve(vma->vm, &vma->node,
--					   size, offset, color,
-+					   size, offset - guard, color,
- 					   flags);
- 		if (ret)
- 			return ret;
-@@ -725,6 +728,7 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- 	GEM_BUG_ON(!i915_gem_valid_gtt_space(vma, color));
- 
- 	list_add_tail(&vma->vm_link, &vma->vm->bound_list);
-+	vma->guard = guard;
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 5049655a24c1..fddd2359b392 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -112,14 +112,14 @@ static inline bool i915_vma_is_closed(const struct i915_vma *vma)
- 
- static inline u64 i915_vma_size(const struct i915_vma *vma)
- {
--       GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
--       return vma->node.size;
-+	GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
-+	return vma->node.size - 2 * vma->guard;
- }
- 
- static inline u64 i915_vma_offset(const struct i915_vma *vma)
- {
--       GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
--       return vma->node.start;
-+	GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
-+	return vma->node.start + vma->guard;
- }
- 
- static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
-diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
-index f5cb848b7a7e..f2e4c61c889f 100644
---- a/drivers/gpu/drm/i915/i915_vma_types.h
-+++ b/drivers/gpu/drm/i915/i915_vma_types.h
-@@ -182,14 +182,15 @@ struct i915_vma {
- 	struct i915_fence_reg *fence;
- 
- 	u64 size;
--	u64 display_alignment;
- 	struct i915_page_sizes page_sizes;
- 
- 	/* mmap-offset associated with fencing for this vma */
- 	struct i915_mmap_offset	*mmo;
- 
-+	u32 guard;
- 	u32 fence_size;
- 	u32 fence_alignment;
-+	u32 display_alignment;
- 
- 	/**
- 	 * Count of the number of times this vma has been opened by different
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VlQtZCBtYXkgY2F1c2Ugb3ZlcmZldGNoIG9mIHRoZSBzY2Fub3V0IFBURSwgYm90aCBiZWZvcmUg
+YW5kIGFmdGVyIHRoZQp2bWEgKGRlcGVuZGluZyBvbiB0aGUgc2Nhbm91dCBvcmllbnRhdGlvbiku
+IGJzcGVjIHJlY29tbWVuZHMgdGhhdCB3ZQpwcm92aWRlIGEgdGlsZS1yb3cgaW4gZWl0aGVyIGRp
+cmVjdGlvbnMsIGFuZCBzdWdnZXN0cyB1c2luZyAxNjAgUFRFLAp3YXJuaW5nIHRoYXQgdGhlIGFj
+Y2Vzc2VzIHdpbGwgd3JhcCBhcm91bmQgdGhlIGVuZHMgb2YgdGhlIEdHVFQuCkN1cnJlbnRseSwg
+d2UgZmlsbCB0aGUgZW50aXJlIEdHVFQgd2l0aCBzY3JhdGNoIHBhZ2VzIHdoZW4gdXNpbmcgVlQt
+ZCB0bwphbHdheXMgZW5zdXJlIHRoZXJlIGFyZSB2YWxpZCBlbnRyaWVzIGFyb3VuZCBldmVyeSB2
+bWEsIGluY2x1ZGluZwpzY2Fub3V0LiBIb3dldmVyLCB3cml0aW5nIGV2ZXJ5IFBURSBpcyBzbG93
+IGFzIG9uIHJlY2VudCBkZXZpY2VzIHdlCnBlcmZvcm0gOE1pQiBvZiB1bmNhY2hlZCB3cml0ZXMs
+IGluY3VycmluZyBhbiBleHRyYSAxMDBtcyBkdXJpbmcgcmVzdW1lLgoKSWYgaW5zdGVhZCB3ZSBm
+b2N1cyBvbiBvbmx5IHB1dHRpbmcgZ3VhcmQgcGFnZXMgYXJvdW5kIHNjYW5vdXQsIHdlIGNhbgph
+dm9pZCB0b3VjaGluZyB0aGUgd2hvbGUgR0dUVC4gVG8gYXZvaWQgaGF2aW5nIHRvIGludHJvZHVj
+ZSBleHRyYSBub2Rlcwphcm91bmQgZWFjaCBzY2Fub3V0IHZtYSwgd2UgYWRqdXN0IHRoZSBzY2Fu
+b3V0IGRybV9tbV9ub2RlIHRvIGJlIHNtYWxsZXIKdGhhbiB0aGUgYWxsb2NhdGVkIHNwYWNlLCBh
+bmQgZml4dXAgdGhlIGV4dHJhIFBURSBkdXJpbmcgZG1hIGJpbmRpbmcuCgp2MjogTW92ZSB0aGUg
+Z3VhcmQgZnJvbSBtb2RpZnlpbmcgZHJtX21tX25vZGUuc3RhcnQgd2hpY2ggaXMgc3RpbGwgdXNl
+ZApieSB0aGUgZHJtX21tIGl0c2VsZiwgaW50byBhbiBhZGp1c3RtZW50IG9mIG5vZGUuc3RhcnQg
+YXQgdGhlIHBvaW50IG9mCnVzZS4KClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNA
+Y2hyaXMtd2lsc29uLmNvLnVrPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxp
+bnV4LmludGVsLmNvbT4KQ2M6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4K
+LS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9tYWluLmMgfCAgMyArKysK
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2dndHQuYyAgICAgICB8IDI1ICstLS0tLS0t
+LS0tLS0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtX2d0dC5oICAgICAg
+ICB8ICAxICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdm1hLmMgICAgICAgICAgICB8IDEw
+ICsrKysrKysrKwogNCBmaWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCAyNCBkZWxldGlv
+bnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9t
+YWluLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZG9tYWluLmMKaW5kZXgg
+MDQ3OGIwNjljMjAyLi45ZjJjY2MyNTVjYTEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2dlbS9pOTE1X2dlbV9kb21haW4uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
+aTkxNV9nZW1fZG9tYWluLmMKQEAgLTM0NSw2ICszNDUsOSBAQCBpOTE1X2dlbV9vYmplY3RfcGlu
+X3RvX2Rpc3BsYXlfcGxhbmUoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKIAlpZiAo
+cmV0KQogCQlnb3RvIGVycjsKIAorCWlmIChpbnRlbF9zY2Fub3V0X25lZWRzX3Z0ZF93YShpOTE1
+KSkKKwkJZmxhZ3MgfD0gUElOX1ZURDsKKwogCS8qCiAJICogQXMgdGhlIHVzZXIgbWF5IG1hcCB0
+aGUgYnVmZmVyIG9uY2UgcGlubmVkIGluIHRoZSBkaXNwbGF5IHBsYW5lCiAJICogKGUuZy4gbGli
+a21zIGZvciB0aGUgYm9vdHVwIHNwbGFzaCksIHdlIGhhdmUgdG8gZW5zdXJlIHRoYXQgd2UKZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2dndHQuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2d0L2ludGVsX2dndHQuYwppbmRleCA2YjMyNjEzOGU3NjUuLjI1MWI1MDg4
+NGQxYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ2d0dC5jCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2dndHQuYwpAQCAtMzE5LDI3ICszMTks
+NiBAQCBzdGF0aWMgdm9pZCBub3BfY2xlYXJfcmFuZ2Uoc3RydWN0IGk5MTVfYWRkcmVzc19zcGFj
+ZSAqdm0sCiB7CiB9CiAKLXN0YXRpYyB2b2lkIGdlbjhfZ2d0dF9jbGVhcl9yYW5nZShzdHJ1Y3Qg
+aTkxNV9hZGRyZXNzX3NwYWNlICp2bSwKLQkJCQkgIHU2NCBzdGFydCwgdTY0IGxlbmd0aCkKLXsK
+LQlzdHJ1Y3QgaTkxNV9nZ3R0ICpnZ3R0ID0gaTkxNV92bV90b19nZ3R0KHZtKTsKLQl1bnNpZ25l
+ZCBpbnQgZmlyc3RfZW50cnkgPSBzdGFydCAvIEk5MTVfR1RUX1BBR0VfU0laRTsKLQl1bnNpZ25l
+ZCBpbnQgbnVtX2VudHJpZXMgPSBsZW5ndGggLyBJOTE1X0dUVF9QQUdFX1NJWkU7Ci0JY29uc3Qg
+Z2VuOF9wdGVfdCBzY3JhdGNoX3B0ZSA9IHZtLT5zY3JhdGNoWzBdLT5lbmNvZGU7Ci0JZ2VuOF9w
+dGVfdCBfX2lvbWVtICpndHRfYmFzZSA9Ci0JCShnZW44X3B0ZV90IF9faW9tZW0gKilnZ3R0LT5n
+c20gKyBmaXJzdF9lbnRyeTsKLQljb25zdCBpbnQgbWF4X2VudHJpZXMgPSBnZ3R0X3RvdGFsX2Vu
+dHJpZXMoZ2d0dCkgLSBmaXJzdF9lbnRyeTsKLQlpbnQgaTsKLQotCWlmIChXQVJOKG51bV9lbnRy
+aWVzID4gbWF4X2VudHJpZXMsCi0JCSAiRmlyc3QgZW50cnkgPSAlZDsgTnVtIGVudHJpZXMgPSAl
+ZCAobWF4PSVkKVxuIiwKLQkJIGZpcnN0X2VudHJ5LCBudW1fZW50cmllcywgbWF4X2VudHJpZXMp
+KQotCQludW1fZW50cmllcyA9IG1heF9lbnRyaWVzOwotCi0JZm9yIChpID0gMDsgaSA8IG51bV9l
+bnRyaWVzOyBpKyspCi0JCWdlbjhfc2V0X3B0ZSgmZ3R0X2Jhc2VbaV0sIHNjcmF0Y2hfcHRlKTsK
+LX0KLQogc3RhdGljIHZvaWQgYnh0X3Z0ZF9nZ3R0X3dhKHN0cnVjdCBpOTE1X2FkZHJlc3Nfc3Bh
+Y2UgKnZtKQogewogCS8qCkBAIC05MDcsOCArODg2LDYgQEAgc3RhdGljIGludCBnZW44X2dtY2hf
+cHJvYmUoc3RydWN0IGk5MTVfZ2d0dCAqZ2d0dCkKIAlnZ3R0LT52bS5jbGVhbnVwID0gZ2VuNl9n
+bWNoX3JlbW92ZTsKIAlnZ3R0LT52bS5pbnNlcnRfcGFnZSA9IGdlbjhfZ2d0dF9pbnNlcnRfcGFn
+ZTsKIAlnZ3R0LT52bS5jbGVhcl9yYW5nZSA9IG5vcF9jbGVhcl9yYW5nZTsKLQlpZiAoaW50ZWxf
+c2Nhbm91dF9uZWVkc192dGRfd2EoaTkxNSkpCi0JCWdndHQtPnZtLmNsZWFyX3JhbmdlID0gZ2Vu
+OF9nZ3R0X2NsZWFyX3JhbmdlOwogCiAJZ2d0dC0+dm0uaW5zZXJ0X2VudHJpZXMgPSBnZW44X2dn
+dHRfaW5zZXJ0X2VudHJpZXM7CiAKQEAgLTEwNTQsNyArMTAzMSw3IEBAIHN0YXRpYyBpbnQgZ2Vu
+Nl9nbWNoX3Byb2JlKHN0cnVjdCBpOTE1X2dndHQgKmdndHQpCiAJZ2d0dC0+dm0uYWxsb2NfcHRf
+ZG1hID0gYWxsb2NfcHRfZG1hOwogCiAJZ2d0dC0+dm0uY2xlYXJfcmFuZ2UgPSBub3BfY2xlYXJf
+cmFuZ2U7Ci0JaWYgKCFIQVNfRlVMTF9QUEdUVChpOTE1KSB8fCBpbnRlbF9zY2Fub3V0X25lZWRz
+X3Z0ZF93YShpOTE1KSkKKwlpZiAoIUhBU19GVUxMX1BQR1RUKGk5MTUpKQogCQlnZ3R0LT52bS5j
+bGVhcl9yYW5nZSA9IGdlbjZfZ2d0dF9jbGVhcl9yYW5nZTsKIAlnZ3R0LT52bS5pbnNlcnRfcGFn
+ZSA9IGdlbjZfZ2d0dF9pbnNlcnRfcGFnZTsKIAlnZ3R0LT52bS5pbnNlcnRfZW50cmllcyA9IGdl
+bjZfZ2d0dF9pbnNlcnRfZW50cmllczsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2k5MTVfZ2VtX2d0dC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW1fZ3R0LmgKaW5k
+ZXggYzliMGVlNWUxZDIzLi44YTJkZmM3MTQ0Y2YgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZ2VtX2d0dC5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2Vt
+X2d0dC5oCkBAIC00MSw2ICs0MSw3IEBAIGludCBpOTE1X2dlbV9ndHRfaW5zZXJ0KHN0cnVjdCBp
+OTE1X2FkZHJlc3Nfc3BhY2UgKnZtLAogI2RlZmluZSBQSU5fSElHSAkJQklUX1VMTCg1KQogI2Rl
+ZmluZSBQSU5fT0ZGU0VUX0JJQVMJCUJJVF9VTEwoNikKICNkZWZpbmUgUElOX09GRlNFVF9GSVhF
+RAlCSVRfVUxMKDcpCisjZGVmaW5lIFBJTl9WVEQJCQlCSVRfVUxMKDgpCiAKICNkZWZpbmUgUElO
+X0dMT0JBTAkJQklUX1VMTCgxMCkgLyogSTkxNV9WTUFfR0xPQkFMX0JJTkQgKi8KICNkZWZpbmUg
+UElOX1VTRVIJCUJJVF9VTEwoMTEpIC8qIEk5MTVfVk1BX0xPQ0FMX0JJTkQgKi8KZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdm1hLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X3ZtYS5jCmluZGV4IDE1NWY1MTBiNGNjNi4uOTI5ZDJhMWEyMGI4IDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3ZtYS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfdm1hLmMKQEAgLTM4LDYgKzM4LDggQEAKICNpbmNsdWRlICJpOTE1X3RyYWNlLmgi
+CiAjaW5jbHVkZSAiaTkxNV92bWEuaCIKIAorI2RlZmluZSBWVERfR1VBUkQgcm91bmR1cF9wb3df
+b2ZfdHdvKDE2MCAqIFNaXzRLKSAvKiAxNjAgUFRFIHBhZGRpbmcgKi8KKwogc3RhdGljIHN0cnVj
+dCBpOTE1X2dsb2JhbF92bWEgewogCXN0cnVjdCBpOTE1X2dsb2JhbCBiYXNlOwogCXN0cnVjdCBr
+bWVtX2NhY2hlICpzbGFiX3ZtYXM7CkBAIC01NTIsNiArNTU0LDkgQEAgYm9vbCBpOTE1X3ZtYV9t
+aXNwbGFjZWQoY29uc3Qgc3RydWN0IGk5MTVfdm1hICp2bWEsCiAJICAgIGk5MTVfdm1hX29mZnNl
+dCh2bWEpICE9IChmbGFncyAmIFBJTl9PRkZTRVRfTUFTSykpCiAJCXJldHVybiB0cnVlOwogCisJ
+aWYgKGZsYWdzICYgUElOX1ZURCAmJiB2bWEtPmd1YXJkIDwgVlREX0dVQVJEKQorCQlyZXR1cm4g
+dHJ1ZTsKKwogCXJldHVybiBmYWxzZTsKIH0KIApAQCAtNjM4LDcgKzY0MywxMiBAQCBpOTE1X3Zt
+YV9pbnNlcnQoc3RydWN0IGk5MTVfdm1hICp2bWEsIHU2NCBzaXplLCB1NjQgYWxpZ25tZW50LCB1
+NjQgZmxhZ3MpCiAJCQkJICBhbGlnbm1lbnQsIHZtYS0+ZmVuY2VfYWxpZ25tZW50KTsKIAl9CiAK
+KwkvKiBWVC1kIHJlcXVpcmVzIHBhZGRpbmcgYmVmb3JlL2FmdGVyIHRoZSB2bWEgKi8KIAlndWFy
+ZCA9IDA7CisJaWYgKGZsYWdzICYgUElOX1ZURCkgeworCQlhbGlnbm1lbnQgPSBtYXhfdCh0eXBl
+b2YoYWxpZ25tZW50KSwgYWxpZ25tZW50LCBWVERfR1VBUkQpOworCQlndWFyZCA9IGFsaWdubWVu
+dDsKKwl9CiAJc2l6ZSArPSAyICogZ3VhcmQ7CiAKIAlHRU1fQlVHX09OKCFJU19BTElHTkVEKHNp
+emUsIEk5MTVfR1RUX1BBR0VfU0laRSkpOwotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
