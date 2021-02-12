@@ -1,45 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BD52319FBD
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 14:23:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83BFC31A000
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 14:44:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B37876E5B9;
-	Fri, 12 Feb 2021 13:23:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0F716E0A1;
+	Fri, 12 Feb 2021 13:44:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7026E5BF
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 13:23:19 +0000 (UTC)
-IronPort-SDR: FqDfET5nBT4cHxeXSZfxf4LqyA8xuvS2TE4/o4FMP7Hnu9bli/XwGAVUOu3E1MyWaoZW1paWta
- MtWPrSA2N8OQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9892"; a="181633067"
-X-IronPort-AV: E=Sophos;i="5.81,173,1610438400"; d="scan'208";a="181633067"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 05:23:19 -0800
-IronPort-SDR: kvOcwswu+8shz/SXuJdJQ+T7BGL0Ter6ravrTibauuCbVxb5LnE2PQOTk58VGHtQxkWGlQohlt
- Tbn0gVTVz59g==
-X-IronPort-AV: E=Sophos;i="5.81,173,1610438400"; d="scan'208";a="397976243"
-Received: from lszramuk-desk.ger.corp.intel.com (HELO [10.249.156.41])
- ([10.249.156.41])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 05:23:17 -0800
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210206020925.36729-1-daniele.ceraolospurio@intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <47b7ce5c-a758-90b3-ff65-7870d7205576@intel.com>
-Date: Fri, 12 Feb 2021 15:23:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com
+ [IPv6:2607:f8b0:4864:20::732])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 785936E0A1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 13:44:13 +0000 (UTC)
+Received: by mail-qk1-x732.google.com with SMTP id x14so8690577qkm.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 05:44:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=v94DCfvDl/aYnz2DMF6LLGNgZzeA09elZGXZyo4L7Pw=;
+ b=mc0E+Ae2ps/aCMGTseDhh67X5CN7rNFWRaicIzxHOCfbYL6sb3rRBcAHlyotJNpM+O
+ N2uwIL4LJzBOuhpXq70gcefwxCt/UO07KOrDafPzCOfXF2ZMS4twk3+GONtYxcw11ILW
+ sMqIkCLr0bFSiVKIwlYKSZA5Scdi0W8JIuysOLeovTYQfqm6eqC5XOdzlhWtfRvyRvj2
+ eebKh9XjPTDx1JFV8OXpjuQyhFQkViHbF53eGK+K6lvVoR2E84EtK4OIi999vGvmUY5+
+ TKu4MMTMt8F72tBAuNpyR34Z/En3J2VoyX6OivdnBG8YTk3bZhshrisCfJVodr4/fNBI
+ UYdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=v94DCfvDl/aYnz2DMF6LLGNgZzeA09elZGXZyo4L7Pw=;
+ b=O/JpPhYPFckQysET+xEShNQHWLP1KIR5/h2X53zE+otPeMA9ffP0XRPueOW5chWE5r
+ pSUh6G+WEWlrKQYOkPZjoCoV3ppcbM5DSIe9ibjhs9tlnkR50YkszSD50NT6sccbGVpx
+ bPav+pX2ZDUEX2JxbGSRt2C0HnMjS3+wDjRzI+VAIGMUUkC8cAoy3rbsH+l3CbHdWCZ3
+ 54UNJIqGL623iJBvKX3upuSarCHVmuccOQQ9H+fWoaGSMhcuoWypk3s+0XtfLgmvM6Km
+ YH4flqVQ8WSGcO2K+9XLnbQoZay+5rxhVxKdgY1dpVXO7R6VhurA+APG7LOpOQOxl/Al
+ Rqvw==
+X-Gm-Message-State: AOAM533ih3TPty1ILzu/ltlsI0B2fPmI5Wuxb8etRUUTiQ6hYx/K2H1R
+ ZNvI2GBgQlT+qR+EObBU2gzllqg+qji+uW/R9Zw=
+X-Google-Smtp-Source: ABdhPJxlP9DEOTkDs++NCyUeOkAGrqQ8PG476tsIjF3P2ALQpzFz/1C/jYk08tEnsTRyuNmOCvDe5RXMIsf1+oMOUlQ=
+X-Received: by 2002:a37:be86:: with SMTP id o128mr2559641qkf.481.1613137452497; 
+ Fri, 12 Feb 2021 05:44:12 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210206020925.36729-1-daniele.ceraolospurio@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC 00/14] Introduce Intel PXP
+References: <20210212102224.31060-1-chris@chris-wilson.co.uk>
+ <20210212102224.31060-2-chris@chris-wilson.co.uk>
+In-Reply-To: <20210212102224.31060-2-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 12 Feb 2021 13:43:46 +0000
+Message-ID: <CAM0jSHOtt2x03tZQh1HSYYnKHEqT2+ROa9ShL1M-hdunaT96RQ@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Introduce guard pages to
+ i915_vma
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,126 +62,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Gaurav Kumar <kumar.gaurav@intel.com>,
- Huang Sean Z <sean.z.huang@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I just gave a try to this new iteration and it's apparently failing to 
-enable PXP on a machine with this pciID : 0x9a68.
+On Fri, 12 Feb 2021 at 10:22, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Introduce the concept of padding the i915_vma with guard pages before
+> and aft. The major consequence is that all ordinary uses of i915_vma
+> must use i915_vma_offset/i915_vma_size and not i915_vma.node.start/size
+> directly, as the drm_mm_node will include the guard pages that surround
+> our object.
+>
+> So in this patch, we look for all uses of i915_vma->node.start that
+> instead need to include the guard offset and switch them to
+> i915_vma_offset(), and in a few cases to i915_ggtt_offset(). Notable
+> exceptions are the selftests, which expect exact behaviour.
+>
+> The biggest connundrum is how exactly to mix request a fixed address
+> with guard pages, particular through the existing uABI. The user does
+> not know about guard pages, so such must be transparent to the user, and
+> so the execobj.offset must be that of the object itself excluding the
+> guard. So a PIN_OFFSET_FIXED must then be exclusive of the guard pages.
+>
+> In the next patch, we start using guard pages for scanout objects. While
+> these are limited to GGTT vma, on a few platforms these vma (or at least
+> an alias of the vma) is shared with userspace, so we may leak the
+> existence of such guards if we are not careful to ensure that the
+> execobj.offset is transparent and excludes the guards. (On such platforms,
+> without full-ppgtt, userspace has to use relocations so the presence of
+> more untouchable regions within its GTT such be of no further issue.)
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c  | 12 ++++++++++--
+>  drivers/gpu/drm/i915/i915_vma.c       | 10 +++++++---
+>  drivers/gpu/drm/i915/i915_vma.h       |  8 ++++----
+>  drivers/gpu/drm/i915/i915_vma_types.h |  3 ++-
+>  4 files changed, 23 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index c5803c434d33..6b326138e765 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -238,8 +238,12 @@ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
+>
+>         gte = (gen8_pte_t __iomem *)ggtt->gsm;
+>         gte += vma->node.start / I915_GTT_PAGE_SIZE;
+> -       end = gte + vma->node.size / I915_GTT_PAGE_SIZE;
+>
+> +       end = gte + vma->guard / I915_GTT_PAGE_SIZE;
+> +       while (gte < end)
+> +               gen8_set_pte(gte++, vm->scratch[0]->encode);
+> +
+> +       end += (vma->node.size - vma->guard) / I915_GTT_PAGE_SIZE;
+>         for_each_sgt_daddr(addr, iter, vma->pages)
+>                 gen8_set_pte(gte++, pte_encode | addr);
+>         GEM_BUG_ON(gte > end);
+> @@ -289,8 +293,12 @@ static void gen6_ggtt_insert_entries(struct i915_address_space *vm,
+>
+>         gte = (gen6_pte_t __iomem *)ggtt->gsm;
+>         gte += vma->node.start / I915_GTT_PAGE_SIZE;
+> -       end = gte + vma->node.size / I915_GTT_PAGE_SIZE;
+>
+> +       end = gte + vma->guard / I915_GTT_PAGE_SIZE;
+> +       while (gte < end)
+> +               gen8_set_pte(gte++, vm->scratch[0]->encode);
+> +
+> +       end += (vma->node.size - vma->guard) / I915_GTT_PAGE_SIZE;
+>         for_each_sgt_daddr(addr, iter, vma->pages)
+>                 iowrite32(vm->pte_encode(addr, level, flags), gte++);
+>         GEM_BUG_ON(gte > end);
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 17fe455bd770..155f510b4cc6 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -623,7 +623,7 @@ bool i915_gem_valid_gtt_space(struct i915_vma *vma, unsigned long color)
+>  static int
+>  i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+>  {
+> -       unsigned long color;
+> +       unsigned long color, guard;
+>         u64 start, end;
+>         int ret;
+>
+> @@ -631,13 +631,16 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+>         GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
+>
+>         size = max(size, vma->size);
+> -       alignment = max(alignment, vma->display_alignment);
+> +       alignment = max_t(typeof(alignment), alignment, vma->display_alignment);
+>         if (flags & PIN_MAPPABLE) {
+>                 size = max_t(typeof(size), size, vma->fence_size);
+>                 alignment = max_t(typeof(alignment),
+>                                   alignment, vma->fence_alignment);
+>         }
+>
+> +       guard = 0;
+> +       size += 2 * guard;
+> +
+>         GEM_BUG_ON(!IS_ALIGNED(size, I915_GTT_PAGE_SIZE));
+>         GEM_BUG_ON(!IS_ALIGNED(alignment, I915_GTT_MIN_ALIGNMENT));
+>         GEM_BUG_ON(!is_power_of_2(alignment));
+> @@ -674,7 +677,7 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+>                         return -EINVAL;
 
--Lionel
+Should we bother adjusting the overflows checking to account for the
+padding? Also maybe check that offset >= guard?
 
-On 06/02/2021 04:09, Daniele Ceraolo Spurio wrote:
-> PXP (Protected Xe Path) is an i915 component, available on
-> GEN12+, that helps to establish the hardware protected session
-> and manage the status of the alive software session, as well
-> as its life cycle.
->
-> I'm taking over this series from Sean. I've significantly reworked the
-> code since his last revisioni [1], including a different patch split, so
-> I've reset the series revision count. I believe I've addressed most of
-> the pending comments, but please point out aything I've missed.
->
-> Still RFC for 2 reasons:
-> - mutex usage needs a bit more reworking
-> - very lightly tested
->
-> [1] https://patchwork.freedesktop.org/series/84620/
->
-> Cc: Huang Sean Z <sean.z.huang@intel.com>
-> Cc: Gaurav Kumar <kumar.gaurav@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->
-> Anshuman Gupta (1):
->    drm/i915/pxp: Add plane decryption support
->
-> Bommu Krishnaiah (2):
->    drm/i915/uapi: introduce drm_i915_gem_create_ext
->    drm/i915/pxp: User interface for Protected buffer
->
-> Daniele Ceraolo Spurio (5):
->    drm/i915/pxp: Define PXP component interface
->    drm/i915/pxp: define PXP device flag and kconfig
->    drm/i915/pxp: allocate a vcs context for pxp usage
->    drm/i915/pxp: set KCR reg init during the boot time
->    drm/i915/pxp: enable PXP for integrated Gen12
->
-> Huang, Sean Z (5):
->    drm/i915/pxp: Implement funcs to create the TEE channel
->    drm/i915/pxp: Create the arbitrary session after boot
->    drm/i915/pxp: Implement arb session teardown
->    drm/i915/pxp: Implement PXP irq handler
->    drm/i915/pxp: Enable PXP power management
->
-> Vitaly Lubart (1):
->    mei: pxp: export pavp client to me client bus
->
->   drivers/gpu/drm/i915/Kconfig                  |  11 +
->   drivers/gpu/drm/i915/Makefile                 |   9 +
->   drivers/gpu/drm/i915/display/intel_sprite.c   |  21 +-
->   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  34 +++
->   drivers/gpu/drm/i915/gem/i915_gem_context.h   |   6 +
->   .../gpu/drm/i915/gem/i915_gem_context_types.h |   1 +
->   drivers/gpu/drm/i915/gem/i915_gem_create.c    |  68 +++++-
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   9 +
->   .../gpu/drm/i915/gem/i915_gem_object_types.h  |   5 +
->   drivers/gpu/drm/i915/gt/intel_gt.c            |   5 +
->   drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   7 +
->   drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   6 +
->   drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
->   drivers/gpu/drm/i915/i915_drv.c               |   7 +-
->   drivers/gpu/drm/i915/i915_drv.h               |  10 +
->   drivers/gpu/drm/i915/i915_pci.c               |   2 +
->   drivers/gpu/drm/i915/i915_reg.h               |   2 +
->   drivers/gpu/drm/i915/intel_device_info.h      |   1 +
->   drivers/gpu/drm/i915/pxp/intel_pxp.c          | 107 ++++++++
->   drivers/gpu/drm/i915/pxp/intel_pxp.h          |  54 ++++
->   drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      | 227 +++++++++++++++++
->   drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h      |  15 ++
->   drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      | 147 +++++++++++
->   drivers/gpu/drm/i915/pxp/intel_pxp_irq.h      |  33 +++
->   drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  94 +++++++
->   drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |  36 +++
->   drivers/gpu/drm/i915/pxp/intel_pxp_session.c  | 123 ++++++++++
->   drivers/gpu/drm/i915/pxp/intel_pxp_session.h  |  17 ++
->   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 200 +++++++++++++++
->   drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |  17 ++
->   drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  29 +++
->   drivers/misc/mei/Kconfig                      |   2 +
->   drivers/misc/mei/Makefile                     |   1 +
->   drivers/misc/mei/pxp/Kconfig                  |  13 +
->   drivers/misc/mei/pxp/Makefile                 |   7 +
->   drivers/misc/mei/pxp/mei_pxp.c                | 230 ++++++++++++++++++
->   drivers/misc/mei/pxp/mei_pxp.h                |  18 ++
->   include/drm/i915_component.h                  |   1 +
->   include/drm/i915_pxp_tee_interface.h          |  45 ++++
->   include/uapi/drm/i915_drm.h                   |  70 ++++++
->   40 files changed, 1685 insertions(+), 8 deletions(-)
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.c
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.h
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
->   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_types.h
->   create mode 100644 drivers/misc/mei/pxp/Kconfig
->   create mode 100644 drivers/misc/mei/pxp/Makefile
->   create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
->   create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
->   create mode 100644 include/drm/i915_pxp_tee_interface.h
->
+        if (flags & PIN_OFFSET_FIXED) {
+                u64 offset = flags & PIN_OFFSET_MASK;
++
++               if (offset < guard)
++                       return -ENOSPC;
++
+                if (!IS_ALIGNED(offset, alignment) ||
+-                   range_overflows(offset, size, end))
++                   range_overflows(offset, size - 2 * guard, end))
+                        return -EINVAL;
 
+If the padding spills over the end, maybe it's ok, so long as the
+"real" range doesn't spill over, like if it needs to be placed within
+the mappable range. Otherwise maybe something like
+range_overflows(offset - guard, size - guard, end)?
+
+Also bumping the alignment constraint for the OFFSET_FIXED case does
+seem a little scary? Is it not possible to just add the required
+padding around both ends of the provided offset?
+
+>
+>                 ret = i915_gem_gtt_reserve(vma->vm, &vma->node,
+> -                                          size, offset, color,
+> +                                          size, offset - guard, color,
+>                                            flags);
+>                 if (ret)
+>                         return ret;
+> @@ -725,6 +728,7 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+>         GEM_BUG_ON(!i915_gem_valid_gtt_space(vma, color));
+>
+>         list_add_tail(&vma->vm_link, &vma->vm->bound_list);
+> +       vma->guard = guard;
+>
+>         return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+> index 5049655a24c1..fddd2359b392 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.h
+> +++ b/drivers/gpu/drm/i915/i915_vma.h
+> @@ -112,14 +112,14 @@ static inline bool i915_vma_is_closed(const struct i915_vma *vma)
+>
+>  static inline u64 i915_vma_size(const struct i915_vma *vma)
+>  {
+> -       GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+> -       return vma->node.size;
+> +       GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+> +       return vma->node.size - 2 * vma->guard;
+>  }
+>
+>  static inline u64 i915_vma_offset(const struct i915_vma *vma)
+>  {
+> -       GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+> -       return vma->node.start;
+> +       GEM_BUG_ON(!drm_mm_node_allocated(&vma->node));
+> +       return vma->node.start + vma->guard;
+>  }
+>
+>  static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
+> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
+> index f5cb848b7a7e..f2e4c61c889f 100644
+> --- a/drivers/gpu/drm/i915/i915_vma_types.h
+> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
+> @@ -182,14 +182,15 @@ struct i915_vma {
+>         struct i915_fence_reg *fence;
+>
+>         u64 size;
+> -       u64 display_alignment;
+>         struct i915_page_sizes page_sizes;
+>
+>         /* mmap-offset associated with fencing for this vma */
+>         struct i915_mmap_offset *mmo;
+>
+> +       u32 guard;
+>         u32 fence_size;
+>         u32 fence_alignment;
+> +       u32 display_alignment;
+>
+>         /**
+>          * Count of the number of times this vma has been opened by different
+> --
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
