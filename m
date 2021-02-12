@@ -2,37 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D5E431A0F2
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 15:56:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E78E31A0F9
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 15:58:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F39206E192;
-	Fri, 12 Feb 2021 14:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D155E6E5C3;
+	Fri, 12 Feb 2021 14:58:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 577C56E192
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 14:56:33 +0000 (UTC)
-IronPort-SDR: DctXkZ+1R4ihyAmX9ELKDKNcuNlnM8vJBF7Ei9uxj6CQilQ3uiUIKD4Qs/2vNna+4fKW/MdgkY
- Klsy1u01vdaw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9892"; a="182555815"
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="182555815"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 06:56:32 -0800
-IronPort-SDR: HVJ1G1loTqr5MqU88BcoUq5lJUOgtqzh+HZZPOBhEdCAqUM40ulInQja3LXISniBepPzGtBl86
- 19ixALlUasKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="376373941"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orsmga002.jf.intel.com with ESMTP; 12 Feb 2021 06:56:31 -0800
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Feb 2021 16:53:02 +0200
-Message-Id: <20210212145302.2461406-1-kai.vehmanen@linux.intel.com>
-X-Mailer: git-send-email 2.29.2
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com
+ [IPv6:2607:f8b0:4864:20::92b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F28E46E5C3;
+ Fri, 12 Feb 2021 14:58:08 +0000 (UTC)
+Received: by mail-ua1-x92b.google.com with SMTP id y35so2962789uad.5;
+ Fri, 12 Feb 2021 06:58:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=ollRFC1dRk48qyZB3r1X6Dwix3zEA2D3LO0PR6IcGC4=;
+ b=YZMaNCx4/n8h6vPSwmyteuD5Hyt8l1HBpFGN7Z24Srp3DEE9rsng6immJjA7wVf8f8
+ cJSnrG7TLWFBZnYI6fZz8I3aBixxCuQj/wkfxyCpb/0ocuw/9mn4+C4ZblbbfEeR63Qc
+ 7n0zkDRYH0LO1u2Q1R+UWY9olKKRtR487RG/cPJw4poziyClBCP949APU3sNMdraMRye
+ U5/Duo4M/SsUi4Pjq12gkrpYmQ58+LoFIG/XnOtrgkm6RSkBVPussXqPIxeU1Qgt6xI8
+ UfVlzDnQzdav97xlJDJ+sBabsoCv7QQ457CIu36HaREH3kAGEUP6JRplgKTdzbz7d5Pu
+ fCiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=ollRFC1dRk48qyZB3r1X6Dwix3zEA2D3LO0PR6IcGC4=;
+ b=EZZQw+yVO4UZ1CT0nz+w1FX3IKcxXcfGxpj07q6EbPXdsftqNeD+lNVmxkraHOiIky
+ xUc8tX4LCYEV99WLQ+FdQDp/MLPMudsc11YW33ale9jUTJvJGjVqUmp+/5BWgCMUqyYs
+ hc1VVlsiAjbjiqYd0Lvuhg8KIGkpgEylGyn5NBwnPcr0sZCrfYvRFobk9LgQcntO+fgQ
+ NbBuyrFqNm5A+QvkKx6sQhFgPE2IsgLe/N6ckQhDxjVe8hKkHat4ILO1TunYxHy3sAOC
+ Irj3IAavNbALcLHYtu0vRANghPqqpqkrgV/zUgI3o1HOjY6P0tEJq1mEx9RU/MgU+3Lz
+ C/Qw==
+X-Gm-Message-State: AOAM530WUB8WkouPdrlfaAWinqCFj9b6nNoLMnAYmmxY5X9gUJJR8mHh
+ QMOd7tM57JE2GEdZhWEpvppRwpWWWlGHrpO92QkOg4CeU4k=
+X-Google-Smtp-Source: ABdhPJw9VPvy2mmMl5sRZeUV2OsoIt9U0/s6Y5RROegQyAKwWEk6mLZP43nBIZVrxZEo8tpxZATgCNQNHEQX8bRFO4I=
+X-Received: by 2002:ab0:2619:: with SMTP id c25mr1419958uao.46.1613141888061; 
+ Fri, 12 Feb 2021 06:58:08 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] Revert "HAX sound: Disable probing snd_hda with
- DG1"
+References: <20210204121121.2660-1-chris@chris-wilson.co.uk>
+ <20210204121121.2660-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20210204121121.2660-3-chris@chris-wilson.co.uk>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Fri, 12 Feb 2021 14:57:56 +0000
+Message-ID: <CACvgo51auuU-AR5nPPo-7Q8Ho84cqOYXuTjgjGDzmPjXRtjZ0w@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [RFC 3/3] drm/i915/gt: Export device and
+ per-process runtimes via procfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,84 +63,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 3632610d38316bca9b0cd9d649ce3cefab58520a.
-
-DG1 has been supported in upstream since v5.10 with commit
-69b08bdfa818 ("ALSA: hda - add Intel DG1 PCI and HDMI ids").
-
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
----
- sound/hda/hdac_i915.c     | 23 -----------------------
- sound/pci/hda/hda_intel.c |  2 ++
- 2 files changed, 2 insertions(+), 23 deletions(-)
-
-diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
-index fbca4bf53a47..454474ac5716 100644
---- a/sound/hda/hdac_i915.c
-+++ b/sound/hda/hdac_i915.c
-@@ -128,26 +128,6 @@ static bool i915_gfx_present(void)
- 	return pci_dev_present(ids);
- }
- 
--static bool dg1_gfx_present(void)
--{
--	static const struct pci_device_id ids[] = {
--		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4905),
--		  .class = PCI_BASE_CLASS_DISPLAY << 16,
--		  .class_mask = 0xff << 16 },
--		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4906),
--		  .class = PCI_BASE_CLASS_DISPLAY << 16,
--		  .class_mask = 0xff << 16 },
--		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4907),
--		  .class = PCI_BASE_CLASS_DISPLAY << 16,
--		  .class_mask = 0xff << 16 },
--		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4908),
--		  .class = PCI_BASE_CLASS_DISPLAY << 16,
--		  .class_mask = 0xff << 16 },
--		{}
--	};
--	return pci_dev_present(ids);
--}
--
- /**
-  * snd_hdac_i915_init - Initialize i915 audio component
-  * @bus: HDA core bus
-@@ -168,9 +148,6 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
- 	if (!i915_gfx_present())
- 		return -ENODEV;
- 
--	if (dg1_gfx_present())
--		return -ENODEV;
--
- 	err = snd_hdac_acomp_init(bus, NULL,
- 				  i915_component_master_match,
- 				  sizeof(struct i915_audio_component) - sizeof(*acomp));
-diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
-index bdd5b01b0222..5a50d3a46445 100644
---- a/sound/pci/hda/hda_intel.c
-+++ b/sound/pci/hda/hda_intel.c
-@@ -2293,6 +2293,8 @@ static int azx_probe_continue(struct azx *chip)
- 			 * codecs can be on the same link.
- 			 */
- 			if (CONTROLLER_IN_GPU(pci)) {
-+				dev_err(chip->card->dev,
-+					"HSW/BDW HD-audio HDMI/DP requires binding with gfx driver\n");
- 				goto out_free;
- 			} else {
- 				/* don't bother any longer */
-
-base-commit: be9bde5a8b7b5cff58bd01c8ca094d571295c40b
--- 
-2.29.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGkgQ2hyaXMsCgpPbiBUaHUsIDQgRmViIDIwMjEgYXQgMTI6MTEsIENocmlzIFdpbHNvbiA8Y2hy
+aXNAY2hyaXMtd2lsc29uLmNvLnVrPiB3cm90ZToKPgo+IFJlZ2lzdGVyIHdpdGggL3Byb2MvZ3B1
+IHRvIHByb3ZpZGUgdGhlIGNsaWVudCBydW50aW1lcyBmb3IgZ2VuZXJpYwo+IHRvcC1saWtlIG92
+ZXJ2aWV3LCBlLmcuIGdub21lLXN5c3RlbS1tb25pdG9yIGNhbiB1c2UgdGhpcyBpbmZvcm1hdGlv
+biB0bwo+IHNob3cgdGhlIHBlci1wcm9jZXNzIG11bHRpLUdQVSB1c2FnZS4KPgpFeHBvc2luZyB0
+aGlzIGluZm9ybWF0aW9uIHRvIHVzZXJzcGFjZSBzb3VuZHMgZ3JlYXQgSU1ITyBhbmQgbGlrZSB0
+aGUKcHJvcG9zZWQgImNoYW5uZWxzIiBmb3IgdGhlIGRldmljZSBlbmdpbmVzLgpJZiBpdCB3ZXJl
+IG1lLCBJIHdvdWxkIGhhdmUgdGhlIGNoYW5uZWwgbmFtZXMgYSkgZXhwb3NlZCB0byB1c2Vyc3Bh
+Y2UKYW5kIGIpIGJlIGEgImZpeGVkIHNldCIuCgpXaGVyZWJ5IHdpdGggYSAiZml4ZWQgc2V0IiBJ
+IG1lYW4sIHdlIHNob3VsZCBoYXZlIHRoZXNlIGFraW4gdG8gdGhlCktNUyBVQVBJIHByb3BlcnRp
+ZXMsIHdoZXJlIHdlIGhhdmUgY29yZSBoZWxwZXJzIGV4cG9zaW5nIHByb3AgWC9ZIGFuZAp0aGVy
+ZSBzaG91bGQgYmUgbm8gZHJpdmVyIHNwZWNpZmljIG9uZXMuClRoaXMgd291bGQgYWxsb3cgZm9y
+IGNvbnNpc3RlbnQgYW5kIGRldGVybWluaXN0aWMgdXNlcnNwYWNlIGhhbmRsaW5nLApldmVuIGlm
+IHNvbWUgaGFyZHdhcmUvZHJpdmVycyBkbyBub3QgaGF2ZSBhbGwgZW5naW5lcyAtIHNheSBubyBj
+b3B5CmVuZ2luZS4KCgo+IC0tLSAvZGV2L251bGwKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9ndC9pbnRlbF9ndF9wcm9jLmMKPiBAQCAtMCwwICsxLDY2IEBACj4gKy8vIFNQRFgtTGljZW5z
+ZS1JZGVudGlmaWVyOiBNSVQKVGhhbmtzIGZvciBtYWtpbmcgdGhlc2UgYXZhaWxhYmxlIHVuZGVy
+IE1JVC4KCj4gKy8qCj4gKyAqIENvcHlyaWdodCDCqSAyMDIwIEludGVsIENvcnBvcmF0aW9uCgpN
+aWdodCB3YW50IHRvIG1ha2UgdGhpcyAyMDIxIGluIHRoZSBuZXh0IHJldmlzaW9uLgoKSFRICkVt
+aWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
