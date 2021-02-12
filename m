@@ -1,39 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8991331A76A
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 23:20:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B4231A85A
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 Feb 2021 00:30:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 393DC6E044;
-	Fri, 12 Feb 2021 22:20:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 009686E0F7;
+	Fri, 12 Feb 2021 23:30:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F32A6E044
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 22:20:56 +0000 (UTC)
-IronPort-SDR: /PVVaTOd8TAB0uUaniwIO/yTpkn+gYmD0+SvUVKgb/fnrbg7WTzNG1Mcco3HwCvYiZ2tj2xsWH
- TNo3qk3zJOLg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9893"; a="201637236"
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="201637236"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 14:20:54 -0800
-IronPort-SDR: 3MWJM8oWqoOdVc17ZzkCjZNzYNyfohz4FRAot0blOimFUvvoj9DMi7BFkNTxnKjQYx7yRZ15dI
- 9ptzNV6Po87g==
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="491289762"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 14:20:54 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Feb 2021 14:20:49 -0800
-Message-Id: <20210212222049.3516344-1-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210212211925.3418280-1-matthew.d.roper@intel.com>
-References: <20210212211925.3418280-1-matthew.d.roper@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8837C6E133;
+ Fri, 12 Feb 2021 23:30:46 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6CF78A47DB;
+ Fri, 12 Feb 2021 23:30:46 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915: FPGA_DBG is display-specific
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Date: Fri, 12 Feb 2021 23:30:46 -0000
+Message-ID: <161317264642.25821.1322987634452534708@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210212185053.1689716-1-lyude@redhat.com>
+In-Reply-To: <20210212185053.1689716-1-lyude@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gen9bc=3A_Handle_TGP_PCH_during_suspend/resume_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,101 +38,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1926617102=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Although the bspec's description doesn't make it very clear, the
-hardware architects have confirmed that the FPGA_DBG register that we
-use to check for unclaimed MMIO accesses is display-specific and will
-only properly flag unclaimed MMIO transactions for registers in the
-display range.  If a platform doesn't have display, FPGA_DBG itself will
-not be available and should not be checked.  Let's move the feature flag
-into intel_device_info.display to more accurately reflect this.
+--===============1926617102==
+Content-Type: multipart/alternative;
+ boundary="===============0321823943829063907=="
 
-Given that we now know FPGA_DBG is display-specific, it could be argued
-that we should only check it on out intel_de_*() functions.  However
-let's not make that change right now; keeping the checks in all of the
-existing locations still helps us catch cases where regular
-intel_uncore_*() functions use bad MMIO offset math / base addresses and
-accidentally wind up landing within an unused area within the display
-MMIO range.  It will also help catch cases where userspace-initiated
-MMIO (e.g., IGT's intel_reg tool) attempt to read bad offsets within the
-display range.
+--===============0321823943829063907==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2:  Add missing hunk with the update to the HAS_FPGA_DBG_UNCLAIMED
-     macro.  (CI)
+== Series Details ==
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.h          | 2 +-
- drivers/gpu/drm/i915/i915_pci.c          | 4 ++--
- drivers/gpu/drm/i915/intel_device_info.h | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+Series: drm/i915/gen9bc: Handle TGP PCH during suspend/resume (rev3)
+URL   : https://patchwork.freedesktop.org/series/86346/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 9f55b5e6d8c9..f8413b3b9da8 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1694,7 +1694,7 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
- #define HAS_DP_MST(dev_priv)	(INTEL_INFO(dev_priv)->display.has_dp_mst)
- 
- #define HAS_DDI(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_ddi)
--#define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->has_fpga_dbg)
-+#define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->display.has_fpga_dbg)
- #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
- #define HAS_PSR_HW_TRACKING(dev_priv) \
- 	(INTEL_INFO(dev_priv)->display.has_psr_hw_tracking)
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index eff7155db2fd..a9f24f2bda33 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -538,7 +538,7 @@ static const struct intel_device_info vlv_info = {
- 	.cpu_transcoder_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP), \
- 	.display.has_ddi = 1, \
--	.has_fpga_dbg = 1, \
-+	.display.has_fpga_dbg = 1, \
- 	.display.has_psr = 1, \
- 	.display.has_psr_hw_tracking = 1, \
- 	.display.has_dp_mst = 1, \
-@@ -689,7 +689,7 @@ static const struct intel_device_info skl_gt4_info = {
- 		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
- 	.has_64bit_reloc = 1, \
- 	.display.has_ddi = 1, \
--	.has_fpga_dbg = 1, \
-+	.display.has_fpga_dbg = 1, \
- 	.display.has_fbc = 1, \
- 	.display.has_hdcp = 1, \
- 	.display.has_psr = 1, \
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index e6ca1023ffcf..d44f64b57b7a 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -118,7 +118,6 @@ enum intel_ppgtt_type {
- 	func(has_64bit_reloc); \
- 	func(gpu_reset_clobbers_display); \
- 	func(has_reset_engine); \
--	func(has_fpga_dbg); \
- 	func(has_global_mocs); \
- 	func(has_gt_uc); \
- 	func(has_l3_dpf); \
-@@ -145,6 +144,7 @@ enum intel_ppgtt_type {
- 	func(has_dsb); \
- 	func(has_dsc); \
- 	func(has_fbc); \
-+	func(has_fpga_dbg); \
- 	func(has_gmch); \
- 	func(has_hdcp); \
- 	func(has_hotplug); \
--- 
-2.25.4
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9772 -> Patchwork_19675
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19675 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-soraka:      [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([i915#1372])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#2411] / [i915#402]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@client:
+    - fi-glk-dsi:         [DMESG-FAIL][9] ([i915#3047]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-glk-dsi/igt@i915_selftest@live@client.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-glk-dsi/igt@i915_selftest@live@client.html
+
+  * igt@prime_self_import@basic-with_one_bo:
+    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html
+
+  
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
+  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (45 -> 39)
+------------------------------
+
+  Missing    (6): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9772 -> Patchwork_19675
+
+  CI-20190529: 20190529
+  CI_DRM_9772: e1ed2a25853b41a3f1561a4388de3edfef206170 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19675: 6117b3e1da840d32ba6e08af8c07e830a5778602 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6117b3e1da84 drm/i915/gen9bc: Handle TGP PCH during suspend/resume
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/index.html
+
+--===============0321823943829063907==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gen9bc: Handle TGP PCH during suspend/resume (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86346/">https://patchwork.freedesktop.org/series/86346/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9772 -&gt; Patchwork_19675</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19675 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2411">i915#2411</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-tgl-y/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9772/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19675/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 39)</h2>
+<p>Missing    (6): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9772 -&gt; Patchwork_19675</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9772: e1ed2a25853b41a3f1561a4388de3edfef206170 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19675: 6117b3e1da840d32ba6e08af8c07e830a5778602 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>6117b3e1da84 drm/i915/gen9bc: Handle TGP PCH during suspend/resume</p>
+
+</body>
+</html>
+
+--===============0321823943829063907==--
+
+--===============1926617102==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1926617102==--
