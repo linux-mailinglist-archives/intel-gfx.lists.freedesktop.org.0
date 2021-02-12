@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE09231A098
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 15:29:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D5E431A0F2
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 15:56:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B53F6E194;
-	Fri, 12 Feb 2021 14:29:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F39206E192;
+	Fri, 12 Feb 2021 14:56:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CCB96E194;
- Fri, 12 Feb 2021 14:29:50 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from haswell.alporthouse.com (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 23850592-1500050 
- for multiple; Fri, 12 Feb 2021 14:29:43 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 577C56E192
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 14:56:33 +0000 (UTC)
+IronPort-SDR: DctXkZ+1R4ihyAmX9ELKDKNcuNlnM8vJBF7Ei9uxj6CQilQ3uiUIKD4Qs/2vNna+4fKW/MdgkY
+ Klsy1u01vdaw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9892"; a="182555815"
+X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="182555815"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2021 06:56:32 -0800
+IronPort-SDR: HVJ1G1loTqr5MqU88BcoUq5lJUOgtqzh+HZZPOBhEdCAqUM40ulInQja3LXISniBepPzGtBl86
+ 19ixALlUasKg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="376373941"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
+ by orsmga002.jf.intel.com with ESMTP; 12 Feb 2021 06:56:31 -0800
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Feb 2021 14:29:42 +0000
-Message-Id: <20210212142942.27603-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210212142926.27547-1-chris@chris-wilson.co.uk>
-References: <20210212142926.27547-1-chris@chris-wilson.co.uk>
+Date: Fri, 12 Feb 2021 16:53:02 +0200
+Message-Id: <20210212145302.2461406-1-kai.vehmanen@linux.intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_userptr_blts: Move readonly test
- into common block
+Subject: [Intel-gfx] [PATCH] Revert "HAX sound: Disable probing snd_hda with
+ DG1"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,46 +45,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: lucas.demarchi@intel.com, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since we only run test_readonly for a single sync-flag, place it in the
-common block.
+This reverts commit 3632610d38316bca9b0cd9d649ce3cefab58520a.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+DG1 has been supported in upstream since v5.10 with commit
+69b08bdfa818 ("ALSA: hda - add Intel DG1 PCI and HDMI ids").
+
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 ---
- tests/i915/gem_userptr_blits.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ sound/hda/hdac_i915.c     | 23 -----------------------
+ sound/pci/hda/hda_intel.c |  2 ++
+ 2 files changed, 2 insertions(+), 23 deletions(-)
 
-diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
-index 1bc2d3600..a4f137f93 100644
---- a/tests/i915/gem_userptr_blits.c
-+++ b/tests/i915/gem_userptr_blits.c
-@@ -2474,6 +2474,9 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
- 		igt_subtest("set-cache-level")
- 			test_set_caching(fd);
+diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
+index fbca4bf53a47..454474ac5716 100644
+--- a/sound/hda/hdac_i915.c
++++ b/sound/hda/hdac_i915.c
+@@ -128,26 +128,6 @@ static bool i915_gfx_present(void)
+ 	return pci_dev_present(ids);
+ }
  
-+		igt_subtest("readonly")
-+			test_readonly(fd);
-+
- 		igt_subtest("userfault")
- 			test_userfault(fd);
- 
-@@ -2515,9 +2518,6 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
- 		igt_subtest("dmabuf-unsync")
- 			test_dmabuf();
- 
--		igt_subtest("readonly-unsync")
--			test_readonly(fd);
+-static bool dg1_gfx_present(void)
+-{
+-	static const struct pci_device_id ids[] = {
+-		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4905),
+-		  .class = PCI_BASE_CLASS_DISPLAY << 16,
+-		  .class_mask = 0xff << 16 },
+-		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4906),
+-		  .class = PCI_BASE_CLASS_DISPLAY << 16,
+-		  .class_mask = 0xff << 16 },
+-		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4907),
+-		  .class = PCI_BASE_CLASS_DISPLAY << 16,
+-		  .class_mask = 0xff << 16 },
+-		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4908),
+-		  .class = PCI_BASE_CLASS_DISPLAY << 16,
+-		  .class_mask = 0xff << 16 },
+-		{}
+-	};
+-	return pci_dev_present(ids);
+-}
 -
- 		igt_describe("Examine mmap-offset mapping to read-only userptr");
- 		igt_subtest_with_dynamic("readonly-mmap-unsync")
- 			for_each_mmap_offset_type(fd, t)
+ /**
+  * snd_hdac_i915_init - Initialize i915 audio component
+  * @bus: HDA core bus
+@@ -168,9 +148,6 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
+ 	if (!i915_gfx_present())
+ 		return -ENODEV;
+ 
+-	if (dg1_gfx_present())
+-		return -ENODEV;
+-
+ 	err = snd_hdac_acomp_init(bus, NULL,
+ 				  i915_component_master_match,
+ 				  sizeof(struct i915_audio_component) - sizeof(*acomp));
+diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
+index bdd5b01b0222..5a50d3a46445 100644
+--- a/sound/pci/hda/hda_intel.c
++++ b/sound/pci/hda/hda_intel.c
+@@ -2293,6 +2293,8 @@ static int azx_probe_continue(struct azx *chip)
+ 			 * codecs can be on the same link.
+ 			 */
+ 			if (CONTROLLER_IN_GPU(pci)) {
++				dev_err(chip->card->dev,
++					"HSW/BDW HD-audio HDMI/DP requires binding with gfx driver\n");
+ 				goto out_free;
+ 			} else {
+ 				/* don't bother any longer */
+
+base-commit: be9bde5a8b7b5cff58bd01c8ca094d571295c40b
 -- 
-2.30.0
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
