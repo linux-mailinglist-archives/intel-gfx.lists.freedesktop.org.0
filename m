@@ -1,49 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98CA231A4BD
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 19:51:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9610C31A4DA
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 19:59:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 068996E221;
-	Fri, 12 Feb 2021 18:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94B436EEBA;
+	Fri, 12 Feb 2021 18:59:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88B7B6E0D0
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 18:51:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613155907;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=da6s7P7IlSNAeSqqosARqkvFvXSTPR626wK9BcIsjkc=;
- b=g5gp11Xe5c3qCU10JL/Shp1tejUEPB5AJmKiyYZjgzz+91P82DOQi36xgVHovyYnJYgsuS
- caImf3zD4nIPMtzX4GVmUch2Ps8dh4k3Rk8etDOrG6YGuDW5YDwkOH3Xn4SKupi0sHeRc5
- 5Gn0NFqVsN9Ch+hstbarOtZDoKKcjKc=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-477-GbPTAnNnMvyBcXdH5bgGQw-1; Fri, 12 Feb 2021 13:51:45 -0500
-X-MC-Unique: GbPTAnNnMvyBcXdH5bgGQw-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 148956EE20;
- Fri, 12 Feb 2021 18:51:43 +0000 (UTC)
-Received: from Whitewolf.redhat.com (ovpn-114-167.rdu2.redhat.com
- [10.10.114.167])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 3FDD75C3E0;
- Fri, 12 Feb 2021 18:51:41 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Feb 2021 13:50:53 -0500
-Message-Id: <20210212185053.1689716-1-lyude@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D6E916EEB9;
+ Fri, 12 Feb 2021 18:59:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D0786A0118;
+ Fri, 12 Feb 2021 18:59:45 +0000 (UTC)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gen9bc: Handle TGP PCH during
- suspend/resume
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Fri, 12 Feb 2021 18:59:45 -0000
+Message-ID: <161315638583.25822.15510209063979404239@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210212182201.155043-1-jose.souza@intel.com>
+In-Reply-To: <20210212182201.155043-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915/display/adl=5Fs=3A_Fix_dpc?=
+ =?utf-8?q?lka=5Fcfgcr0=5Fclk=5Foff_mapping?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,136 +39,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1725623179=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+--===============1725623179==
+Content-Type: multipart/alternative;
+ boundary="===============0682500401210284071=="
 
-For Legacy S3 suspend/resume GEN9 BC needs to enable and
-setup TGP PCH.
+--===============0682500401210284071==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2:
-* Move Wa_14010685332 into it's own function - vsyrjala
-* Add TODO comment about figuring out if we can move this workaround - imre
+== Series Details ==
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/i915/i915_irq.c | 53 ++++++++++++++++++++++-----------
- 1 file changed, 36 insertions(+), 17 deletions(-)
+Series: series starting with [1/3] drm/i915/display/adl_s: Fix dpclka_cfgcr0_clk_off mapping
+URL   : https://patchwork.freedesktop.org/series/87048/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 98145a7f28a4..7d912aa950ee 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -3040,6 +3040,19 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
- 	spin_unlock_irq(&dev_priv->irq_lock);
- }
- 
-+static void cnp_irq_post_reset(struct drm_i915_private *dev_priv)
-+{
-+	struct intel_uncore *uncore = &dev_priv->uncore;
-+
-+	/*
-+	 * Wa_14010685332:cnp/cmp,tgp,adp
-+	 * TODO: Figure out if this workaround can be applied in the s0ix suspend/resume handlers as
-+	 * on earlier platforms and whether the workaround is also needed for runtime suspend/resume
-+	 */
-+	intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
-+	intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
-+}
-+
- static void gen8_irq_reset(struct drm_i915_private *dev_priv)
- {
- 	struct intel_uncore *uncore = &dev_priv->uncore;
-@@ -3061,8 +3074,14 @@ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
- 	GEN3_IRQ_RESET(uncore, GEN8_DE_MISC_);
- 	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
- 
--	if (HAS_PCH_SPLIT(dev_priv))
-+	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-+		GEN3_IRQ_RESET(uncore, SDE);
-+	else if (HAS_PCH_SPLIT(dev_priv))
- 		ibx_irq_reset(dev_priv);
-+
-+	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
-+	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && INTEL_PCH_TYPE(dev_priv) < PCH_DG1))
-+		cnp_irq_post_reset(dev_priv);
- }
- 
- static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
-@@ -3104,15 +3123,9 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
- 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
- 		GEN3_IRQ_RESET(uncore, SDE);
- 
--	/* Wa_14010685332:cnp/cmp,tgp,adp */
- 	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
--	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP &&
--	     INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
--		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
--				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
--		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
--				 SBCLK_RUN_REFCLK_DIS, 0);
--	}
-+	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && INTEL_PCH_TYPE(dev_priv) < PCH_DG1))
-+		cnp_irq_post_reset(dev_priv);
- }
- 
- static void gen11_irq_reset(struct drm_i915_private *dev_priv)
-@@ -3474,6 +3487,9 @@ static void spt_hpd_irq_setup(struct drm_i915_private *dev_priv)
- 	ibx_display_interrupt_update(dev_priv, hotplug_irqs, enabled_irqs);
- 
- 	spt_hpd_detection_setup(dev_priv);
-+
-+	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-+		icp_hpd_irq_setup(dev_priv);
- }
- 
- static u32 ilk_hotplug_enables(struct drm_i915_private *i915,
-@@ -3764,9 +3780,19 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
- 	}
- }
- 
-+static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
-+{
-+	struct intel_uncore *uncore = &dev_priv->uncore;
-+	u32 mask = SDE_GMBUS_ICP;
-+
-+	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
-+}
-+
- static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
- {
--	if (HAS_PCH_SPLIT(dev_priv))
-+	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-+		icp_irq_postinstall(dev_priv);
-+	else if (HAS_PCH_SPLIT(dev_priv))
- 		ibx_irq_postinstall(dev_priv);
- 
- 	gen8_gt_irq_postinstall(&dev_priv->gt);
-@@ -3775,13 +3801,6 @@ static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
- 	gen8_master_intr_enable(dev_priv->uncore.regs);
- }
- 
--static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
--{
--	struct intel_uncore *uncore = &dev_priv->uncore;
--	u32 mask = SDE_GMBUS_ICP;
--
--	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
--}
- 
- static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
- {
--- 
-2.29.2
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9771 -> Patchwork_19672
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19672 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@cs-compute:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575]) +4 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-tgl-y/igt@amdgpu/amd_basic@cs-compute.html
+
+  * igt@amdgpu/amd_basic@userptr:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9771/fi-tgl-y/igt@prime_vgem@basic-read.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-tgl-y/igt@prime_vgem@basic-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [INCOMPLETE][5] ([i915#142] / [i915#2405]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9771/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +2 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9771/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
+  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (45 -> 40)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9771 -> Patchwork_19672
+
+  CI-20190529: 20190529
+  CI_DRM_9771: 1b095889c6780e40f6161bfb824b5e944fd69547 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19672: a6c0f3b65b649c2ce7910c3384ce168faa3bfd16 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a6c0f3b65b64 drm/i915: Fix plane watermark mismatches
+6766f32463c4 drm/i915: Remove dead code from skl_pipe_wm_get_hw_state()
+cc5ee23b6a3e drm/i915/display/adl_s: Fix dpclka_cfgcr0_clk_off mapping
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/index.html
+
+--===============0682500401210284071==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915/display/adl_s: Fix dpclka_cfgcr0_clk_off mapping</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87048/">https://patchwork.freedesktop.org/series/87048/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9771 -&gt; Patchwork_19672</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19672 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@cs-compute:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-tgl-y/igt@amdgpu/amd_basic@cs-compute.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +4 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@userptr:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9771/fi-tgl-y/igt@prime_vgem@basic-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-tgl-y/igt@prime_vgem@basic-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9771/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9771/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19672/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 40)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9771 -&gt; Patchwork_19672</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9771: 1b095889c6780e40f6161bfb824b5e944fd69547 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19672: a6c0f3b65b649c2ce7910c3384ce168faa3bfd16 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a6c0f3b65b64 drm/i915: Fix plane watermark mismatches<br />
+6766f32463c4 drm/i915: Remove dead code from skl_pipe_wm_get_hw_state()<br />
+cc5ee23b6a3e drm/i915/display/adl_s: Fix dpclka_cfgcr0_clk_off mapping</p>
+
+</body>
+</html>
+
+--===============0682500401210284071==--
+
+--===============1725623179==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1725623179==--
