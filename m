@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D6831A49C
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 19:34:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79F5931A49F
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Feb 2021 19:36:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95C9E6E1EE;
-	Fri, 12 Feb 2021 18:34:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3947A6EEB0;
+	Fri, 12 Feb 2021 18:36:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C854C6E1EE
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 18:34:01 +0000 (UTC)
-IronPort-SDR: dbqAYYe8aAFkNCVguHzM/7N8p1aZBI0wliHM7KinF5L1XisOOHZ0wOQ0PKq4Ed/n/wvD3anEhe
- Y6uKhhHLY1Vw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9893"; a="179900012"
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="179900012"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2021 10:33:57 -0800
-IronPort-SDR: SI3KHZvPI0n6T75fhjhvIAJcr70/anvZxX0C/TLQ/Fzh+teb73/EQH8Yy6FQVQ1tPyFSW/MH5n
- 4n52WvXLxrWQ==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01BD86EEB0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Feb 2021 18:36:00 +0000 (UTC)
+IronPort-SDR: vVEwRj6PfUaEETY7jV+ybJIErYZil1Q73CfEZikguhSJMBfMJxxp2qi8LpcHNrYl4PRt/RGect
+ 5w1sHLBx3fiw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9893"; a="182527699"
+X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="182527699"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2021 10:35:59 -0800
+IronPort-SDR: wZ/8CvZPOSlQSA/PIOSI3SWfyfZM+xLGaKVhDTO67ONxZDCmpR9y0+dBEtTUSja5LOwLuyLR5E
+ BDMSSF1oYwzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="381719434"
+X-IronPort-AV: E=Sophos;i="5.81,174,1610438400"; d="scan'208";a="398094631"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 12 Feb 2021 10:33:53 -0800
+ by orsmga008.jf.intel.com with SMTP; 12 Feb 2021 10:35:56 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Feb 2021 20:33:53 +0200
-Date: Fri, 12 Feb 2021 20:33:53 +0200
+ Fri, 12 Feb 2021 20:35:55 +0200
+Date: Fri, 12 Feb 2021 20:35:55 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <YCbKEbGMixV/P0kM@intel.com>
+Message-ID: <YCbKi3rpV3pWwkHw@intel.com>
 References: <20210212182201.155043-1-jose.souza@intel.com>
- <20210212182201.155043-2-jose.souza@intel.com>
+ <20210212182201.155043-3-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210212182201.155043-2-jose.souza@intel.com>
+In-Reply-To: <20210212182201.155043-3-jose.souza@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 2/3] drm/i915: Remove dead code from
- skl_pipe_wm_get_hw_state()
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Fix plane watermark mismatches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,39 +56,40 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 12, 2021 at 10:22:00AM -0800, Jos=E9 Roberto de Souza wrote:
-> There is nothing else to be executed after this if block.
+On Fri, Feb 12, 2021 at 10:22:01AM -0800, Jos=E9 Roberto de Souza wrote:
+> Found a system were firmware/BIOS left the plane_res_b and plane_res_l
+> set with non-zero values for disable planes.
+
+It pretty much happens always since the reset value is not zero.
+IIRC we made the state chcker pedantic enough to complain about
+that, so we need to clean it up.
+
+> As the planes are disabled i915 will not even try to sanitize it so
+> here returning earlier if both skl_wm_levels being compared are
+> disabled, if that is true no need to check the other fields as HW
+> will ignore it.
 > =
 
 > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-
-Looks like leftovers I forgot to clean up.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
 > ---
->  drivers/gpu/drm/i915/intel_pm.c | 3 ---
->  1 file changed, 3 deletions(-)
+>  drivers/gpu/drm/i915/intel_pm.c | 2 ++
+>  1 file changed, 2 insertions(+)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
 _pm.c
-> index 8c42fa51c0f6..8cc67f9c4e58 100644
+> index 8cc67f9c4e58..c630dc10c34b 100644
 > --- a/drivers/gpu/drm/i915/intel_pm.c
 > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -6182,9 +6182,6 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *cr=
-tc,
->  =
-
->  		skl_wm_level_from_reg_val(val, &wm->trans_wm);
->  	}
-> -
-> -	if (!crtc->active)
-> -		return;
->  }
->  =
-
->  void skl_wm_get_hw_state(struct drm_i915_private *dev_priv)
+> @@ -5633,6 +5633,8 @@ void skl_write_cursor_wm(struct intel_plane *plane,
+>  bool skl_wm_level_equals(const struct skl_wm_level *l1,
+>  			 const struct skl_wm_level *l2)
+>  {
+> +	if (l1->plane_en =3D=3D false && l2->plane_en =3D=3D false)
+> +		return true;
+>  	return l1->plane_en =3D=3D l2->plane_en &&
+>  		l1->ignore_lines =3D=3D l2->ignore_lines &&
+>  		l1->plane_res_l =3D=3D l2->plane_res_l &&
 > -- =
 
 > 2.30.1
