@@ -1,30 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F3A831AD6A
-	for <lists+intel-gfx@lfdr.de>; Sat, 13 Feb 2021 18:46:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3097031ADA7
+	for <lists+intel-gfx@lfdr.de>; Sat, 13 Feb 2021 20:05:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC6B16E85C;
-	Sat, 13 Feb 2021 17:46:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E92A6E170;
+	Sat, 13 Feb 2021 19:05:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 381 seconds by postgrey-1.36 at gabe;
- Sat, 13 Feb 2021 17:46:26 UTC
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD3376E85C
- for <intel-gfx@lists.freedesktop.org>; Sat, 13 Feb 2021 17:46:26 +0000 (UTC)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
- id A53E41C0B77; Sat, 13 Feb 2021 18:40:00 +0100 (CET)
-Date: Sat, 13 Feb 2021 18:40:00 +0100
-From: Pavel Machek <pavel@ucw.cz>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20210213174000.GA31409@duo.ucw.cz>
-References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51BB76E170
+ for <intel-gfx@lists.freedesktop.org>; Sat, 13 Feb 2021 19:05:30 +0000 (UTC)
+IronPort-SDR: JepmnYPN8LNEeWRivwx0/ynQg7YTGDSR33BZJiIIFCCFxdVsu0dgQNkRcBh7j6JtLDGNZ/ZLxS
+ l50BhAZ1KKTw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9894"; a="267387441"
+X-IronPort-AV: E=Sophos;i="5.81,176,1610438400"; d="scan'208";a="267387441"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2021 11:05:29 -0800
+IronPort-SDR: 4uqf/RgOQ7J59HoW2WpmW0F9UX6oyWhzHoe02TJMAfQbG5TKaZb/Qv99rd1g84RV5yLGdoRgeG
+ qwPMjTqfRc5w==
+X-IronPort-AV: E=Sophos;i="5.81,176,1610438400"; d="scan'208";a="423228675"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2021 11:05:29 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat, 13 Feb 2021 11:05:08 -0800
+Message-Id: <20210213190511.1017088-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20210205163752.11932-1-chris@chris-wilson.co.uk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] kernel: Expose SYS_kcmp by default
+Subject: [Intel-gfx] [PATCH 0/3] Simplify intel_setup_outputs()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,68 +44,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Will Drewry <wad@chromium.org>, Kees Cook <keescook@chromium.org>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Andy Lutomirski <luto@amacapital.net>,
- Andrew Morton <akpm@linux-foundation.org>,
- Lucas Stach <l.stach@pengutronix.de>
-Content-Type: multipart/mixed; boundary="===============1261030834=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+First and second patches should be straightforward. Third patch is a
+tentative simplification that may break things in the presence of broken
+VBTs, but I'm feeling confident.
 
---===============1261030834==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="yrj/dFKFPuw6o+aM"
-Content-Disposition: inline
+Lucas De Marchi (3):
+  drm/i915/display: move vbt check to intel_ddi_init()
+  drm/i915/display: remove FIXME comment for intended feature
+  drm/i915/display: remove strap checks from gen 9
 
+ drivers/gpu/drm/i915/display/intel_ddi.c     |  7 +++
+ drivers/gpu/drm/i915/display/intel_display.c | 54 ++++++--------------
+ 2 files changed, 23 insertions(+), 38 deletions(-)
 
---yrj/dFKFPuw6o+aM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi!
-
-> Userspace has discovered the functionality offered by SYS_kcmp and has
-> started to depend upon it. In particular, Mesa uses SYS_kcmp for
-> os_same_file_description() in order to identify when two fd (e.g. device
-> or dmabuf) point to the same struct file. Since they depend on it for
-> core functionality, lift SYS_kcmp out of the non-default
-> CONFIG_CHECKPOINT_RESTORE into the selectable syscall category.
-
-Is it good idea to enable everything because Mesa uses it for file
-descriptors?
-
-This is really interesting syscall...
-
-Best regards,
-								Pavel
-
---=20
-http://www.livejournal.com/~pavelmachek
-
---yrj/dFKFPuw6o+aM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYCgO8AAKCRAw5/Bqldv6
-8viIAJ4mzr9pSE2O/4OwUYOLcFI483BApQCgniMQxMn6hxhFTRfMPW42oJKV/iU=
-=X1NG
------END PGP SIGNATURE-----
-
---yrj/dFKFPuw6o+aM--
-
---===============1261030834==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1261030834==--
