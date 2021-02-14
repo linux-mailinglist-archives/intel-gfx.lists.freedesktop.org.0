@@ -2,87 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC22031B112
-	for <lists+intel-gfx@lfdr.de>; Sun, 14 Feb 2021 17:00:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A50431B311
+	for <lists+intel-gfx@lfdr.de>; Sun, 14 Feb 2021 23:39:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C14E89FD9;
-	Sun, 14 Feb 2021 16:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B6326E103;
+	Sun, 14 Feb 2021 22:39:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8FFE89FD9
- for <intel-gfx@lists.freedesktop.org>; Sun, 14 Feb 2021 16:00:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613318452;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=zJnCD65xbRWMUMjLE2t5rjUv7RyeHohz4SCngFSrsYU=;
- b=GdDR7NTthrWxCv1Q7KBs6OeyB7JKUXhX/4G55YrAVWyJ5DZvztYL0sru0Pzutv1D3jJ8/+
- vV4+Aq8Y9Op4dwtaTvOXvI4UbnZCrLGsejnB46CxAl5AyAAoGdAx4dqlbK6Q8pMCv8mm71
- nhNQOu91UkrkRDDwamVNr6AxhurpaLk=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-9-eh1gn8ggMH6dJF45y0uQYA-1; Sun, 14 Feb 2021 11:00:47 -0500
-X-MC-Unique: eh1gn8ggMH6dJF45y0uQYA-1
-Received: by mail-ej1-f72.google.com with SMTP id 7so3120199ejh.10
- for <intel-gfx@lists.freedesktop.org>; Sun, 14 Feb 2021 08:00:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:to:references:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=zJnCD65xbRWMUMjLE2t5rjUv7RyeHohz4SCngFSrsYU=;
- b=XvGY7uqCrsgP6Z/QxuSnJOdtV+qkRM1/szLzTbc5cIWDAX84qJ/8SiDPCOAAyBNGRu
- Dmy6sXexUOQjiivAVGGYWHqt5ch440NXWSwPCTngxhseXMgpPTyyYtRCDAqPnhMHLjTj
- NnYj0BF6N6FKrBQVb28lAxbzNYE5IApzD189eYEdYvQ8WloMnAShwLXOerAypyCV7VpT
- qqj+lR9tmWNf4hk9SOOLWs85ZY0Hf6bEJQAZE08mXm7jmzvoO/PxRrBM8pSZk5Rf0HWc
- 4k2ch4khSfi8DQ5XlkWh0tb1KxnLWXtm3hsiFD19pLDWVD9BRUFNhv1bTx1Ko1YxmvUB
- JcDQ==
-X-Gm-Message-State: AOAM532/W2/RCXGjXGosw2O4q9Wa0Swbc09GI+cl/5IU4X8NEszRrQqt
- viRmtchk6sLYKK+AFjZTzkUUO7IvJ9MN4mc3vCTG5PzB8CXWSoSZwbNqTgkmsdO94KD3Z22OCy6
- jdLFRhu8gpG7b10KIl3ooYOfYtm3v
-X-Received: by 2002:a17:906:33c5:: with SMTP id
- w5mr12025819eja.319.1613318446562; 
- Sun, 14 Feb 2021 08:00:46 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzDn4q+tUxPm+eyE2w8xwHUQPqEK3mZPRTE2swFRpEF2RA0C9I0NzGmfqVGZ8PDW0uSv2oWjg==
-X-Received: by 2002:a17:906:33c5:: with SMTP id
- w5mr12025801eja.319.1613318446337; 
- Sun, 14 Feb 2021 08:00:46 -0800 (PST)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id q13sm9482813ejy.20.2021.02.14.08.00.45
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 14 Feb 2021 08:00:45 -0800 (PST)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org
-References: <fe6040b5-72a0-9882-439e-ea7fc0b3935d@redhat.com>
- <161282685855.9448.10484374241892252440@build.alporthouse.com>
- <f1070486-891a-8ec0-0390-b9aeb03178ce@redhat.com>
- <161291205642.6673.10994709665368036431@build.alporthouse.com>
- <02fd493c-957f-890d-d0ad-ebd4119f55f2@redhat.com>
- <161296131275.7731.862746142230006325@build.alporthouse.com>
- <8f550b67-2c7c-c726-09d1-dc8842152974@redhat.com>
- <161304059194.7731.17263409378570191651@build.alporthouse.com>
- <e00f5813-37c6-52e7-4fd3-691be9d062d9@redhat.com>
-Message-ID: <96614fc1-c92d-1532-fd92-beb19e490075@redhat.com>
-Date: Sun, 14 Feb 2021 17:00:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71C146E103;
+ Sun, 14 Feb 2021 22:39:15 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Df2GP3p41z9rx8;
+ Mon, 15 Feb 2021 09:39:09 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1613342353;
+ bh=VMHVI12n/sYnj/11+gz6BWBErWtIiDEN9XaqwRspFDg=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=Q5UFaagv1VaKmBvQCvXt+ry3l6YMuxH1CffIWUubOAutw4CXE2ZhJdZpDWx0EGEb5
+ Texqy0X+K0clqEwC2oDzsCuLGHLiBcxrnaYDzWam7Q0zbg5OJgH4haeQG0Y1l/BnJC
+ TOpI0T5NxkLYYaOBSGhXMjMDu4Pxh6ah8JJit2SoIHVOvmLnkXEt/Q5ytuRIhPOLRK
+ qZ86Uk9l7Yu8iut7dxfHmp6Vx3uTM5e7+mpBrQlL3d8PIloxLA0N9DhUERpjz9DVH3
+ ak6nxqeZGLgiH5Pp9DPWP1K+NY5uedchMD9ahmdr+u09FSA3oHIfeT8vhWxT+AHaTg
+ Y2qJ0/FyXk0DQ==
+Date: Mon, 15 Feb 2021 09:39:08 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Hans de Goede <hdegoede@redhat.com>, Mark Gross <mark.gross@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Message-ID: <20210215093908.06e349bf@canb.auug.org.au>
+In-Reply-To: <20210204155846.5aef94a8@canb.auug.org.au>
+References: <20210204155846.5aef94a8@canb.auug.org.au>
 MIME-Version: 1.0
-In-Reply-To: <e00f5813-37c6-52e7-4fd3-691be9d062d9@redhat.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation
- is causing gfx issues
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drivers-x86 tree
+ with the drm-misc tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,102 +52,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: multipart/mixed; boundary="===============0338006423=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--===============0338006423==
+Content-Type: multipart/signed; boundary="Sig_/fcEgAKpFpYpY8sFQopChY8R";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-On 2/11/21 1:26 PM, Hans de Goede wrote:
-> Hi,
-> 
-> On 2/11/21 11:49 AM, Chris Wilson wrote:
->> Quoting Hans de Goede (2021-02-11 10:36:13)
->>> Hi,
->>>
->>> On 2/10/21 1:48 PM, Chris Wilson wrote:
->>>> Quoting Hans de Goede (2021-02-10 10:37:19)
->>>>> Hi,
->>>>>
->>>>> On 2/10/21 12:07 AM, Chris Wilson wrote:
->>>>>> Quoting Hans de Goede (2021-02-09 11:46:46)
->>>>>>> Hi,
->>>>>>>
->>>>>>> On 2/9/21 12:27 AM, Chris Wilson wrote:
->>>>>>>> Quoting Hans de Goede (2021-02-08 20:38:58)
->>>>>>>>> Hi All,
->>>>>>>>>
->>>>>>>>> We (Fedora) have been receiving reports from multiple users about gfx issues / glitches
->>>>>>>>> stating with 5.10.9. All reporters are users of Ivy Bridge / Haswell iGPUs and all
->>>>>>>>> reporters report that adding i915.mitigations=off to the cmdline fixes things, see:
->>>>>>>>
->>>>>>>> I tried to reproduce this on the w/e on hsw-gt1, to no avail; and piglit
->>>>>>>> did not report any differences with and without mitigations. I have yet
->>>>>>>> to test other platforms. So I don't yet have an alternative.
->>>>>>>
->>>>>>> Note the original / first reporter of:
->>>>>>>
->>>>>>> https://bugzilla.redhat.com/show_bug.cgi?id=1925346
->>>>>>>
->>>>>>> Is using hsw-gt2, so it seems that the problem is not just the enabling of
->>>>>>> the mitigations on ivy-bridge / bay-trail but that there actually is
->>>>>>> a regression on devices where the WA worked fine before...
->>>>>>
->>>>>> There have been 3 crashes uploaded related to v5.10.9, and in all 3
->>>>>> cases the ACTHD has been in the first page. This strongly suggests that
->>>>>> the w/a is scribbling over address 0. And there's then a very good
->>>>>> chance that
->>>>>>
->>>>>> commit 29d35b73ead4e41aa0d1a954c9bfbdce659ec5d6
->>>>>> Author: Chris Wilson <chris@chris-wilson.co.uk>
->>>>>> Date:   Mon Jan 25 12:50:33 2021 +0000
->>>>>>
->>>>>>     drm/i915/gt: Always try to reserve GGTT address 0x0
->>>>>>     
->>>>>>     commit 489140b5ba2e7cc4b853c29e0591895ddb462a82 upstream.
->>>>>>
->>>>>> in v5.10.14 is sufficient to hide the issue.
->>>>>
->>>>> That one actually is already in v5.10.13 and the various reportes of these
->>>>> issues have already tested 5.10.13. They did mention that it took longer
->>>>> to reproduce with 5.10.13 then with 5.10.10, but that could also be due to:
->>>>>
->>>>> "drm/i915/gt: Clear CACHE_MODE prior to clearing residuals"
->>>>> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?h=linux-5.10.y&id=520d05a77b2866eb4cb9e548e1d8c8abcfe60ec5
->>>>
->>>> Started looking for scratch page overwrites, and found this little gem:
->>>> https://patchwork.freedesktop.org/patch/420436/?series=86947&rev=1
->>>>
->>>> Looks promising wrt the cause of overwriting random addresses -- and
->>>> I hope that is the explanation for the glitches/hangs. I have a hsw gt2
->>>> with gnome shell, piglit is happy, but I suspect it is all due to
->>>> placement and so will only occur at random.
->>>
->>> If you can give me a list of commits to cherry-pick then I can prepare
->>> a Fedora 5.10.y kernel which those added for the group of Fedora users
->>> who are hitting this to test.
->>
->> e627d5923cae ("drm/i915/gt: One more flush for Baytrail clear residuals")
->> d30bbd62b1bf ("drm/i915/gt: Flush before changing register state")
->> 1914911f4aa0 ("drm/i915/gt: Correct surface base address for renderclear")
-> 
-> Thanks, the test-kernel is building now. I will let you know when I have
-> heard back from the Fedora users (this will likely take 1-2 days).
+--Sig_/fcEgAKpFpYpY8sFQopChY8R
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-I've heard back from 2 of the reporters who were seeing issues with 5.10.9+
+Hi all,
 
-And I'm happy to report 5.10.15 + the 3 commits mentioned above cherry-picked
-on top fixes the graphics glitches for them.
+On Thu, 4 Feb 2021 15:58:46 +1100 Stephen Rothwell <sfr@canb.auug.org.au> w=
+rote:
+>=20
+> Today's linux-next merge of the drivers-x86 tree got a conflict in:
+>=20
+>   drivers/gpu/drm/gma500/Kconfig
+>   drivers/gpu/drm/gma500/mdfld_device.c
+>   drivers/gpu/drm/gma500/mdfld_dsi_output.c
+>   drivers/gpu/drm/gma500/mdfld_output.c
+>   drivers/gpu/drm/gma500/tc35876x-dsi-lvds.c
+>=20
+> between commits:
+>=20
+>   b51035c200bd ("drm/gma500: Remove Medfield support")
 
-So if we can get these 3 commits into 5.10.y and 5.11.y then this should be
-resolved.
+Now
 
-Regards,
+  e1da811218d2 ("drm/gma500: Remove Medfield support")
 
-Hans
+>   837f23bb4b60 ("drm/gma500: Drop DRM_GMA3600 config option")
+
+Now
+
+  26499e0518a7 ("drm/gma500: Drop DRM_GMA3600 config option")
+
+>=20
+> from the drm-misc tree and commit:
+>=20
+>   bfc838f8598e ("drm/gma500: Convert to use new SCU IPC API")
+>   25ded39ad064 ("drm/gma500: Get rid of duplicate NULL checks")
+>=20
+> from the drivers-x86 tree.
+>=20
+> I fixed it up (the former removed the text that was updated by the
+> latter and removed the last 4 files) and can carry the fix as
+> necessary. This is now fixed as far as linux-next is concerned, but any
+> non trivial conflicts should be mentioned to your upstream maintainer
+> when your tree is submitted for merging.  You may also want to consider
+> cooperating with the maintainer of the conflicting tree to minimise any
+> particularly complex conflicts.
+
+With the merge window about to open, this is a reminder that this
+conflict still exists.
+
+The two drivers-x86 tree commits have also been merged into the pm tree.
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/fcEgAKpFpYpY8sFQopChY8R
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmAppowACgkQAVBC80lX
+0Gxl3wgAhhEyvRY4qiXMEtT4FpGLU1UyQNXQFRtdXb/dKQVXzZZCuqH3Gx5V18i/
+mcXC55FKpS2uPSBUdk37HTQTdrhtolvI2CN52jB3afpcVQgIt+g13WkPl1oYil9v
+NxvZsMn8RV1Hdy/9ROGxb5I3ASENJsCEpTwzByMU19C3udFB/PGTBSkanYoxuES+
+fsrBPbGw9/s6GQWsrC4opfCDE+gUdehkRambSJhWjbAS0MeWdOD6oaqLJp5bZm3A
+55AO0txPTZLKfbcW5l/sXCHJz3OUulfLNnih0LlZtvxtPJ8TDwzWmpP2uAeV0ZX0
+I/gYSyPFNwwlMmXbToELUic6I6BStA==
+=wY4n
+-----END PGP SIGNATURE-----
+
+--Sig_/fcEgAKpFpYpY8sFQopChY8R--
+
+--===============0338006423==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0338006423==--
