@@ -2,49 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A2331B4FA
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 06:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 099CF31B60E
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 09:56:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 490136E073;
-	Mon, 15 Feb 2021 05:14:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 818686E12D;
+	Mon, 15 Feb 2021 08:56:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
- [IPv6:2a00:1450:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 011B56E073
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 05:14:47 +0000 (UTC)
-Received: by mail-lf1-x135.google.com with SMTP id f1so8371294lfu.3
- for <intel-gfx@lists.freedesktop.org>; Sun, 14 Feb 2021 21:14:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=rTdi8e+JPAaBtMSfPqPaxTbLmbqnfHRiNDGBerHQh9Q=;
- b=RKohcov7btamZw389Qq5DgRX/6Lkl1qk6v46KP05uy2uHgDRbOC+lEN5ECS4bfWphB
- 13IefPGCE9O9CVTpQ2PFog3uQ7vq2SlfqUt0qSSP7QH5B9x8R8PNwjiKW3BLQ5D4scNt
- 96SEyUDRlz4XwWSzFCF3OUxjC6eKIh0gEFJIEXKEI/4vv5uLllFGYREwqNnQQL57l49a
- MX9Z/+MBhum8twjI0S3RWm3R1p+hTkn6QQR6FKGBvO1NesjdCZXZ/NgWLBVa0P1KniMx
- 15In24HM/YEeysruwf3UVb9MVyywm5aPncXy+Q3NX+WPY2xNaJu7v0l+OZJehQhKaJLw
- tJHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=rTdi8e+JPAaBtMSfPqPaxTbLmbqnfHRiNDGBerHQh9Q=;
- b=GmhkXVeuPRm47PwomYWyoRWesz7Q1UmxAVYISinjk2pI2WMspqArup/P0oxuycui2W
- KfF795v/UtZs4u43gClqdIfIIs0okYkWkWiB4B7uJWnMHx9rjAaEm5J/+YnMePw3xuY6
- KPeFqHe3tqcWwrQu4U1zYzFjThFj8uuINB/MwqB+6nCPCInOkjgr0UWN1AOaQvrSC2bQ
- oA1uPlDhH2ux4jGaBct1o2MRheSfS/Jj9fvWVW5p2UIvasyJxSx5jZgYJQugdSXGhJuU
- HURWF4qVjdAKdJDT16eK6e3x3XoqmKr08CqkwSgaUv/cI6+2IkOWZSslNamUvgPxjGd2
- O+HQ==
-X-Gm-Message-State: AOAM532jHILPRA7392OV1ZIej8/45bMktmcjdQPFYZoK2gJi271QUqMq
- XE/pFs10zQoi6RVzkSBedVe4U3vVHX7ep3BPogAjgthTirY=
-X-Google-Smtp-Source: ABdhPJzt+AWNXazkkq42O63DKFS1/U+FH85rxyN0J3otJvPg6wjuc6kDiVgmNZ6xSG+MnyXCT6ifWcUuoya+g/Utz08=
-X-Received: by 2002:ac2:5f0b:: with SMTP id 11mr7616375lfq.578.1613366086283; 
- Sun, 14 Feb 2021 21:14:46 -0800 (PST)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A53B6E116;
+ Mon, 15 Feb 2021 08:56:19 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 7EACAADE0;
+ Mon, 15 Feb 2021 08:56:17 +0000 (UTC)
+To: Chris Wilson <chris@chris-wilson.co.uk>, linux-kernel@vger.kernel.org
+References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
+ <20210205220012.1983-1-chris@chris-wilson.co.uk>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <f3b09921-df08-b4fc-bd3b-1aaf583bc9a8@suse.de>
+Date: Mon, 15 Feb 2021 09:56:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-From: Arun Pravin <arunpravin@gmail.com>
-Date: Mon, 15 Feb 2021 10:44:10 +0530
-Message-ID: <CAJ2hna7A6Eqk7DNUMm7-q9Y11uFR1bYivajgZYsxVBym09vi9w@mail.gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [Intel-gfx] vram management
+In-Reply-To: <20210205220012.1983-1-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH v3] kcmp: Support selection of SYS_kcmp
+ without CHECKPOINT_RESTORE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,37 +40,253 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1365102321=="
+Cc: Will Drewry <wad@chromium.org>, Kees Cook <keescook@chromium.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, dri-devel@lists.freedesktop.org,
+ Andy Lutomirski <luto@amacapital.net>, Cyrill Gorcunov <gorcunov@gmail.com>,
+ stable@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
+Content-Type: multipart/mixed; boundary="===============1880771553=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1365102321==
-Content-Type: multipart/alternative; boundary="00000000000077344c05bb59102b"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1880771553==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="StY4QkOf8VnBZ9PWJHOu8j2lZZxSHqhoO"
 
---00000000000077344c05bb59102b
-Content-Type: text/plain; charset="UTF-8"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--StY4QkOf8VnBZ9PWJHOu8j2lZZxSHqhoO
+Content-Type: multipart/mixed; boundary="DQ9J4BgxYOiXYYmKggX3lsPoJY3gULU7G";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Chris Wilson <chris@chris-wilson.co.uk>, linux-kernel@vger.kernel.org
+Cc: Will Drewry <wad@chromium.org>, Kees Cook <keescook@chromium.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel@lists.freedesktop.org, Andy Lutomirski <luto@amacapital.net>,
+ Cyrill Gorcunov <gorcunov@gmail.com>, stable@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>
+Message-ID: <f3b09921-df08-b4fc-bd3b-1aaf583bc9a8@suse.de>
+Subject: Re: [PATCH v3] kcmp: Support selection of SYS_kcmp without
+ CHECKPOINT_RESTORE
+References: <20210205163752.11932-1-chris@chris-wilson.co.uk>
+ <20210205220012.1983-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210205220012.1983-1-chris@chris-wilson.co.uk>
 
-Hi,
-
-I have a question on discrete card memory management, how Intel manages the
-VRAM memory, Intel gfx driver uses TTM and DRM MM framework for the
-discrete card vram memory management?
-
-Thanks,
-Arun
-
---00000000000077344c05bb59102b
-Content-Type: text/html; charset="UTF-8"
+--DQ9J4BgxYOiXYYmKggX3lsPoJY3gULU7G
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I have a question=C2=A0on discrete =
-card memory management, how Intel manages the VRAM memory, Intel gfx driver=
- uses TTM and DRM MM framework for the discrete card vram memory management=
-?</div><div><br></div><div>Thanks,</div><div>Arun</div></div>
+Hi
 
---00000000000077344c05bb59102b--
+Am 05.02.21 um 23:00 schrieb Chris Wilson:
+> Userspace has discovered the functionality offered by SYS_kcmp and has
+> started to depend upon it. In particular, Mesa uses SYS_kcmp for
+> os_same_file_description() in order to identify when two fd (e.g. devic=
+e
+> or dmabuf) point to the same struct file. Since they depend on it for
+> core functionality, lift SYS_kcmp out of the non-default
+> CONFIG_CHECKPOINT_RESTORE into the selectable syscall category.
+>=20
+> Rasmus Villemoes also pointed out that systemd uses SYS_kcmp to
+> deduplicate the per-service file descriptor store.
 
---===============1365102321==
+This helps a lot with transactional programming in userspace system=20
+code. So FWIW
+
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+>=20
+> Note that some distributions such as Ubuntu are already enabling
+> CHECKPOINT_RESTORE in their configs and so, by extension, SYS_kcmp.
+>=20
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/3046
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Kees Cook <keescook@chromium.org>
+> Cc: Andy Lutomirski <luto@amacapital.net>
+> Cc: Will Drewry <wad@chromium.org>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+> Cc: Cyrill Gorcunov <gorcunov@gmail.com>
+> Cc: stable@vger.kernel.org
+> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch> # DRM depends on kcmp
+> Acked-by: Rasmus Villemoes <linux@rasmusvillemoes.dk> # systemd uses kc=
+mp
+>=20
+> ---
+> v2:
+>    - Default n.
+>    - Borrrow help message from man kcmp.
+>    - Export get_epoll_tfile_raw_ptr() for CONFIG_KCMP
+> v3:
+>    - Select KCMP for CONFIG_DRM
+> ---
+>   drivers/gpu/drm/Kconfig                       |  3 +++
+>   fs/eventpoll.c                                |  4 ++--
+>   include/linux/eventpoll.h                     |  2 +-
+>   init/Kconfig                                  | 11 +++++++++++
+>   kernel/Makefile                               |  2 +-
+>   tools/testing/selftests/seccomp/seccomp_bpf.c |  2 +-
+>   6 files changed, 19 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index 0973f408d75f..af6c6d214d91 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -15,6 +15,9 @@ menuconfig DRM
+>   	select I2C_ALGOBIT
+>   	select DMA_SHARED_BUFFER
+>   	select SYNC_FILE
+> +# gallium uses SYS_kcmp for os_same_file_description() to de-duplicate=
+
+> +# device and dmabuf fd. Let's make sure that is available for our user=
+space.
+> +	select KCMP
+>   	help
+>   	  Kernel-level support for the Direct Rendering Infrastructure (DRI)=
+
+>   	  introduced in XFree86 4.0. If you say Y here, you need to select
+> diff --git a/fs/eventpoll.c b/fs/eventpoll.c
+> index a829af074eb5..3196474cbe24 100644
+> --- a/fs/eventpoll.c
+> +++ b/fs/eventpoll.c
+> @@ -979,7 +979,7 @@ static struct epitem *ep_find(struct eventpoll *ep,=
+ struct file *file, int fd)
+>   	return epir;
+>   }
+>  =20
+> -#ifdef CONFIG_CHECKPOINT_RESTORE
+> +#ifdef CONFIG_KCMP
+>   static struct epitem *ep_find_tfd(struct eventpoll *ep, int tfd, unsi=
+gned long toff)
+>   {
+>   	struct rb_node *rbp;
+> @@ -1021,7 +1021,7 @@ struct file *get_epoll_tfile_raw_ptr(struct file =
+*file, int tfd,
+>  =20
+>   	return file_raw;
+>   }
+> -#endif /* CONFIG_CHECKPOINT_RESTORE */
+> +#endif /* CONFIG_KCMP */
+>  =20
+>   /**
+>    * Adds a new entry to the tail of the list in a lockless way, i.e.
+> diff --git a/include/linux/eventpoll.h b/include/linux/eventpoll.h
+> index 0350393465d4..593322c946e6 100644
+> --- a/include/linux/eventpoll.h
+> +++ b/include/linux/eventpoll.h
+> @@ -18,7 +18,7 @@ struct file;
+>  =20
+>   #ifdef CONFIG_EPOLL
+>  =20
+> -#ifdef CONFIG_CHECKPOINT_RESTORE
+> +#ifdef CONFIG_KCMP
+>   struct file *get_epoll_tfile_raw_ptr(struct file *file, int tfd, unsi=
+gned long toff);
+>   #endif
+>  =20
+> diff --git a/init/Kconfig b/init/Kconfig
+> index b77c60f8b963..9cc7436b2f73 100644
+> --- a/init/Kconfig
+> +++ b/init/Kconfig
+> @@ -1194,6 +1194,7 @@ endif # NAMESPACES
+>   config CHECKPOINT_RESTORE
+>   	bool "Checkpoint/restore support"
+>   	select PROC_CHILDREN
+> +	select KCMP
+>   	default n
+>   	help
+>   	  Enables additional kernel features in a sake of checkpoint/restore=
+=2E
+> @@ -1737,6 +1738,16 @@ config ARCH_HAS_MEMBARRIER_CALLBACKS
+>   config ARCH_HAS_MEMBARRIER_SYNC_CORE
+>   	bool
+>  =20
+> +config KCMP
+> +	bool "Enable kcmp() system call" if EXPERT
+> +	help
+> +	  Enable the kernel resource comparison system call. It provides
+> +	  user-space with the ability to compare two processes to see if they=
+
+> +	  share a common resource, such as a file descriptor or even virtual
+> +	  memory space.
+> +
+> +	  If unsure, say N.
+> +
+>   config RSEQ
+>   	bool "Enable rseq() system call" if EXPERT
+>   	default y
+> diff --git a/kernel/Makefile b/kernel/Makefile
+> index aa7368c7eabf..320f1f3941b7 100644
+> --- a/kernel/Makefile
+> +++ b/kernel/Makefile
+> @@ -51,7 +51,7 @@ obj-y +=3D livepatch/
+>   obj-y +=3D dma/
+>   obj-y +=3D entry/
+>  =20
+> -obj-$(CONFIG_CHECKPOINT_RESTORE) +=3D kcmp.o
+> +obj-$(CONFIG_KCMP) +=3D kcmp.o
+>   obj-$(CONFIG_FREEZER) +=3D freezer.o
+>   obj-$(CONFIG_PROFILING) +=3D profile.o
+>   obj-$(CONFIG_STACKTRACE) +=3D stacktrace.o
+> diff --git a/tools/testing/selftests/seccomp/seccomp_bpf.c b/tools/test=
+ing/selftests/seccomp/seccomp_bpf.c
+> index 26c72f2b61b1..1b6c7d33c4ff 100644
+> --- a/tools/testing/selftests/seccomp/seccomp_bpf.c
+> +++ b/tools/testing/selftests/seccomp/seccomp_bpf.c
+> @@ -315,7 +315,7 @@ TEST(kcmp)
+>   	ret =3D __filecmp(getpid(), getpid(), 1, 1);
+>   	EXPECT_EQ(ret, 0);
+>   	if (ret !=3D 0 && errno =3D=3D ENOSYS)
+> -		SKIP(return, "Kernel does not support kcmp() (missing CONFIG_CHECKPO=
+INT_RESTORE?)");
+> +		SKIP(return, "Kernel does not support kcmp() (missing CONFIG_KCMP?)"=
+);
+>   }
+>  =20
+>   TEST(mode_strict_support)
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--DQ9J4BgxYOiXYYmKggX3lsPoJY3gULU7G--
+
+--StY4QkOf8VnBZ9PWJHOu8j2lZZxSHqhoO
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmAqNy4FAwAAAAAACgkQlh/E3EQov+D5
+zRAArRuP1f2kfckNRiTbiUHOWtnyMziX9iF0ptq+QvAII1SBqhTurNJAsJ7vkWFXtFKSzs6A7he4
+nzylEw83a7LJwNSn2rmxXM8sxZuUC+44arhPhEjangMbVgdiaiQZvcTSGmE3tks4FJIJdUQbEEkX
+1o+0ZOQwMSy0vy2iJ/Sv1SDxZgpLAhC/m6gTX+1KQFbSxPKGkQ8xOdI++zk341j00Rgf6E+GjQoD
+z5li+N6dfqmxPqSssx+q2ztzwYKfL9DMkzfwouIoYbI1Z9rtXjALaDVfu1LOYBCyvqsBF95xj00V
+lkAJ65L/3bPO4b/KS5g0QSB5VrM/z+efpDZfRZWo5jRCBYDXORZPVKe/ohlu8pNQ9cOnkyYHBw4v
+P4+xanjQJ7YgF2imNTR/DPMoCRZLc6tQd2+Xt0uYqLSN3Vc8BdoAipYDnsu2aHMBWYOP2GpUY95Z
+B5l5MBB/6acok9167jl0O3z4ON6rOcT4WnBPjJwkS+1pWI7FL72C3Y2UrmkssZN0P+bptw/wJJPY
+QrhU0+8Zi7TE1bwDR41Pg3Rg4md6pyNCdwC9TfwZS5ApsqfGpT0kWJmeXJ8NXWMVcrEhOILmbWuq
+KCCSZybSYuKwiSLPqSM/I/ozP1lUDNoltxTFNc2WjNgG/zL4qS4pZYgg7H3f4LdwETdBwtiEcfu2
+tsE=
+=kzOS
+-----END PGP SIGNATURE-----
+
+--StY4QkOf8VnBZ9PWJHOu8j2lZZxSHqhoO--
+
+--===============1880771553==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +297,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1365102321==--
+--===============1880771553==--
