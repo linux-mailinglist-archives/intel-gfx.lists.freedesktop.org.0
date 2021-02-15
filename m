@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29EEA31BF18
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 17:26:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DBE731BF31
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 17:30:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB546E8F6;
-	Mon, 15 Feb 2021 16:26:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 351E56E8ED;
+	Mon, 15 Feb 2021 16:30:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01BE56E8F6
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 16:26:54 +0000 (UTC)
-IronPort-SDR: vrEyjVSIYNFr3p/ztIV2FD9YfFys0JZTFaku9clDWMp1PmECbflMZbiEnJ7ZwD2qsSM0Wz41SZ
- wsDC580eFGxQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9896"; a="267565091"
-X-IronPort-AV: E=Sophos;i="5.81,181,1610438400"; d="scan'208";a="267565091"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2021 08:26:54 -0800
-IronPort-SDR: 8jNZhwtuMY8nzBsaA0PYUrj0tjgW16HCxc7HWS7aIdF2UGUnb3C+t+yS6wBWbWhprs+k4X+vAj
- pCjNqZVnGrNw==
-X-IronPort-AV: E=Sophos;i="5.81,181,1610438400"; d="scan'208";a="580222659"
-Received: from mishravi-mobl3.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.212.191.144])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2021 08:26:53 -0800
-Date: Mon, 15 Feb 2021 08:26:53 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20210215162653.sarercr3qcgo5hed@ldmartin-desk1>
-X-Patchwork-Hint: comment
-References: <20210213190511.1017088-1-lucas.demarchi@intel.com>
- <20210213190511.1017088-2-lucas.demarchi@intel.com>
- <874kidd3eh.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 114206E8ED;
+ Mon, 15 Feb 2021 16:30:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EE56BA7DFC;
+ Mon, 15 Feb 2021 16:30:00 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <874kidd3eh.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display: move vbt check to
- intel_ddi_init()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
+Date: Mon, 15 Feb 2021 16:30:00 -0000
+Message-ID: <161340660097.26464.414254578568422810@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv1=2C1/3=5D_string=3A_Consolidate_yesno=28?=
+ =?utf-8?q?=29_helpers_under_string=2Eh_hood?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,106 +39,237 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: multipart/mixed; boundary="===============0269621767=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 15, 2021 at 12:35:50PM +0200, Jani Nikula wrote:
->On Sat, 13 Feb 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On intel_ddi_init() we already check VBT if the port supports HDMI/DP
->> and bail out otherwise. Instad of checking if a single port is present
->> using VBT in intel_display.c, move the stronger check to
->> intel_ddi_init() and return early in case it's not supported.  There
->> would be no way intel_bios_* would report support for hdmi/dp if the
->> port isn't present so this should cause no regressions for other
->> platforms.
->
->Sorry, but this will regress machines that have no VBT.
+--===============0269621767==
+Content-Type: multipart/alternative;
+ boundary="===============8707729500833765318=="
 
-I missed that init_vbt_missing_defaults() also sets
-the supports_*.
+--===============8707729500833765318==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
->
->I've been thinking about creating fake child devices for that case to
->reduce the exceptions.
+== Series Details ==
 
-Adding a fake child would indeed be a good option. Are you going to
-implement that soon or should I?
+Series: series starting with [v1,1/3] string: Consolidate yesno() helpers under string.h hood
+URL   : https://patchwork.freedesktop.org/series/87096/
+State : success
 
-thanks
-Lucas De Marchi
+== Summary ==
 
->
->BR,
->Jani.
->
->
->
->>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_ddi.c     |  7 +++++++
->>  drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++--------
->>  2 files changed, 13 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index 3b97c0091812..1235be0ba5d1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -3972,6 +3972,13 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
->>  	bool init_hdmi, init_dp;
->>  	enum phy phy = intel_port_to_phy(dev_priv, port);
->>
->> +	if (!intel_bios_is_port_present(dev_priv, port)) {
->> +		drm_dbg_kms(&dev_priv->drm,
->> +			    "VBT says port %c is not present, respect it\n",
->> +			    port_name(port));
->> +		return;
->> +	}
->> +
->>  	/*
->>  	 * On platforms with HTI (aka HDPORT), if it's enabled at boot it may
->>  	 * have taken over some of the PHYs and made them unavailable to the
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 23ec68498800..7aaf7a29d493 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -11904,13 +11904,13 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->>  		intel_ddi_init(dev_priv, PORT_C);
->>  		intel_ddi_init(dev_priv, PORT_D);
->>  		intel_ddi_init(dev_priv, PORT_E);
->> +
->>  		/*
->> -		 * On some ICL SKUs port F is not present. No strap bits for
->> -		 * this, so rely on VBT.
->> -		 * Work around broken VBTs on SKUs known to have no port F.
->> +		 * On some ICL SKUs port F is not present, but broken VBTs mark
->> +		 * the port as present. Only try to initialize port F for the
->> +		 * SKUs that may actually have it.
->>  		 */
->> -		if (IS_ICL_WITH_PORT_F(dev_priv) &&
->> -		    intel_bios_is_port_present(dev_priv, PORT_F))
->> +		if (IS_ICL_WITH_PORT_F(dev_priv))
->>  			intel_ddi_init(dev_priv, PORT_F);
->>
->>  		icl_dsi_init(dev_priv);
->> @@ -11964,10 +11964,8 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->>  		/*
->>  		 * On SKL we don't have a way to detect DDI-E so we rely on VBT.
->>  		 */
->> -		if (IS_GEN9_BC(dev_priv) &&
->> -		    intel_bios_is_port_present(dev_priv, PORT_E))
->> +		if (IS_GEN9_BC(dev_priv))
->>  			intel_ddi_init(dev_priv, PORT_E);
->> -
->>  	} else if (HAS_PCH_SPLIT(dev_priv)) {
->>  		int found;
->
->-- 
->Jani Nikula, Intel Open Source Graphics Center
+CI Bug Log - changes from CI_DRM_9776 -> Patchwork_19680
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19680 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@userptr:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +34 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +2 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-tgl-u2:          [FAIL][8] ([i915#1888]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [INCOMPLETE][10] ([i915#142] / [i915#2405]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Additional (1): fi-snb-2600 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9776 -> Patchwork_19680
+
+  CI-20190529: 20190529
+  CI_DRM_9776: 1d63cb5a7f02df241021731ce1ed8de3e3379bef @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19680: bd1f4ebe13b4642e7cfa84a64712db975cec6e00 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bd1f4ebe13b4 string: Move enableddisabled() helper under string.h hood
+3affb778da50 string: Move onoff() helper under string.h hood
+1160da278ef5 string: Consolidate yesno() helpers under string.h hood
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/index.html
+
+--===============8707729500833765318==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v1,1/3] string: Consolidate yesno() helpers under string.h hood</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87096/">https://patchwork.freedesktop.org/series/87096/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9776 -&gt; Patchwork_19680</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19680 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@userptr:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +34 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_two_bos:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Additional (1): fi-snb-2600 <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9776 -&gt; Patchwork_19680</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9776: 1d63cb5a7f02df241021731ce1ed8de3e3379bef @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19680: bd1f4ebe13b4642e7cfa84a64712db975cec6e00 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>bd1f4ebe13b4 string: Move enableddisabled() helper under string.h hood<br />
+3affb778da50 string: Move onoff() helper under string.h hood<br />
+1160da278ef5 string: Consolidate yesno() helpers under string.h hood</p>
+
+</body>
+</html>
+
+--===============8707729500833765318==--
+
+--===============0269621767==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0269621767==--
