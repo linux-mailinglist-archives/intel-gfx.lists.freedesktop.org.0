@@ -1,45 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A8FE31BDE4
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 16:59:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21F5F31BDE8
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 17:00:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEBD06E8CD;
-	Mon, 15 Feb 2021 15:58:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5110C6E8D8;
+	Mon, 15 Feb 2021 16:00:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA8706E159;
- Mon, 15 Feb 2021 15:58:55 +0000 (UTC)
-IronPort-SDR: Bu7BN6u8Yl7XkpsIl11D0FAFzCb+qLBeLG8HbpWAOPmZv4YW9WjLRoExyeujy7W/QXw4WyNhJv
- SVTv7yeuYSbw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9896"; a="169843274"
-X-IronPort-AV: E=Sophos;i="5.81,181,1610438400"; d="scan'208";a="169843274"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2021 07:58:55 -0800
-IronPort-SDR: qUBcDnMNGWB44uoh1MTupZsdb45fxio3m0E/f9VI6r96twT5vE68fSmGs0x7S+Ia9ZGYH1KBSs
- erfQ6tr1Worg==
-X-IronPort-AV: E=Sophos;i="5.81,181,1610438400"; d="scan'208";a="580213026"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2021 07:58:50 -0800
-Received: from andy by smile with local (Exim 4.94)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1lBgGs-005GNG-Ra; Mon, 15 Feb 2021 17:58:46 +0200
-Date: Mon, 15 Feb 2021 17:58:46 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YCqaNnr7ynRydczE@smile.fi.intel.com>
-References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
- <87y2fpbdmp.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 02A936E8D5;
+ Mon, 15 Feb 2021 16:00:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EF188A41FB;
+ Mon, 15 Feb 2021 16:00:56 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87y2fpbdmp.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: Re: [Intel-gfx] [PATCH v1 1/3] string: Consolidate yesno() helpers
- under string.h hood
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
+Date: Mon, 15 Feb 2021 16:00:56 -0000
+Message-ID: <161340485694.26463.5414032788356742655@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv1=2C1/3=5D_string=3A_Consolidate_y?=
+ =?utf-8?q?esno=28=29_helpers_under_string=2Eh_hood?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,42 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Eryk Brol <eryk.brol@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Leo Li <sunpeng.li@amd.com>, netdev@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, David Airlie <airlied@linux.ie>,
- Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
- dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, Jakub Kicinski <kuba@kernel.org>,
- Mikita Lipski <mikita.lipski@amd.com>,
- Francis Laniel <laniel_francis@privacyrequired.com>,
- "David S. Miller" <davem@davemloft.net>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 15, 2021 at 04:37:50PM +0200, Jani Nikula wrote:
-> On Mon, 15 Feb 2021, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> > We have already few similar implementation and a lot of code that can benefit
-> > of the yesno() helper.  Consolidate yesno() helpers under string.h hood.
-> 
-> Good luck. I gave up after just four versions. [1]
+== Series Details ==
 
-Thanks for a pointer! I like your version, but here we also discussing a
-possibility to do something like %py[DOY]. It will consolidate all those RO or
-whatever sections inside one data structure.
+Series: series starting with [v1,1/3] string: Consolidate yesno() helpers under string.h hood
+URL   : https://patchwork.freedesktop.org/series/87096/
+State : warning
 
-> Acked-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> [1] http://lore.kernel.org/r/20191023131308.9420-1-jani.nikula@intel.com
+== Summary ==
 
+$ dim checkpatch origin/drm-tip
+1160da278ef5 string: Consolidate yesno() helpers under string.h hood
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#6: 
+We have already few similar implementation and a lot of code that can benefit
 
--- 
-With Best Regards,
-Andy Shevchenko
+total: 0 errors, 1 warnings, 0 checks, 69 lines checked
+3affb778da50 string: Move onoff() helper under string.h hood
+bd1f4ebe13b4 string: Move enableddisabled() helper under string.h hood
 
 
 _______________________________________________
