@@ -1,45 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E6E331BB04
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 15:27:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9271931BB3D
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 15:38:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09D9E89D83;
-	Mon, 15 Feb 2021 14:27:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E08B6E51D;
+	Mon, 15 Feb 2021 14:38:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64F1089D83
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 14:27:02 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 97D5364E34;
- Mon, 15 Feb 2021 14:27:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1613399222;
- bh=L+/M4x2+m8cxj1plrZ8P9EiC36nHhVnZLknz4WzX/d4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=MES3RZ80dlfBvawYM+lQ2cbKAOw7f6GHLrhv7MPejilWhHnDAO9z/s2eHbA3cp1fa
- Pj/YMA9kviAaXUOZ0e0NvjNfgCPaAxhoYgzozkOBWvPaZqM0+tlbOb+DhQAereluC9
- uzZHfk02ml8TrslLhNHGPaKXmHLgxvRJzD/QQSa0=
-Date: Mon, 15 Feb 2021 15:26:59 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <YCqEs8FaSBukRcaZ@kroah.com>
-References: <fe6040b5-72a0-9882-439e-ea7fc0b3935d@redhat.com>
- <161282685855.9448.10484374241892252440@build.alporthouse.com>
- <f1070486-891a-8ec0-0390-b9aeb03178ce@redhat.com>
- <161291205642.6673.10994709665368036431@build.alporthouse.com>
- <02fd493c-957f-890d-d0ad-ebd4119f55f2@redhat.com>
- <161296131275.7731.862746142230006325@build.alporthouse.com>
- <8f550b67-2c7c-c726-09d1-dc8842152974@redhat.com>
- <161304059194.7731.17263409378570191651@build.alporthouse.com>
- <e00f5813-37c6-52e7-4fd3-691be9d062d9@redhat.com>
- <96614fc1-c92d-1532-fd92-beb19e490075@redhat.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B15AE6E28A;
+ Mon, 15 Feb 2021 14:38:01 +0000 (UTC)
+IronPort-SDR: 13IZZUA3BJ9Jg4t9XHS9sFeRjkOG861cRbVHjhQDovy6Ww5uSDgMhEJYpTz/hdT4bIxB5HFs2J
+ 3rEze9yGYo5g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9895"; a="161832766"
+X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="161832766"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2021 06:38:00 -0800
+IronPort-SDR: 5G8UVXefhcghHCN5eZ/Jau7JxqKQnqEhDlAhzJFDDDqpdGCxOwiDwXnHQUq21bhQHRB6bO3MsA
+ uHOLp8d45o9Q==
+X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="399097442"
+Received: from martincl-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.34.223])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2021 06:37:53 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Mikita Lipski <mikita.lipski@amd.com>, Eryk Brol <eryk.brol@amd.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "David S. Miller" <davem@davemloft.net>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ netdev@vger.kernel.org
+In-Reply-To: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+Date: Mon, 15 Feb 2021 16:37:50 +0200
+Message-ID: <87y2fpbdmp.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <96614fc1-c92d-1532-fd92-beb19e490075@redhat.com>
-Subject: Re: [Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation
- is causing gfx issues
+Subject: Re: [Intel-gfx] [PATCH v1 1/3] string: Consolidate yesno() helpers
+ under string.h hood
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,103 +57,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Raju Rangoju <rajur@chelsio.com>, Leo Li <sunpeng.li@amd.com>,
+ David Airlie <airlied@linux.ie>, Jakub Kicinski <kuba@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 14, 2021 at 05:00:44PM +0100, Hans de Goede wrote:
-> Hi,
-> 
-> On 2/11/21 1:26 PM, Hans de Goede wrote:
-> > Hi,
-> > 
-> > On 2/11/21 11:49 AM, Chris Wilson wrote:
-> >> Quoting Hans de Goede (2021-02-11 10:36:13)
-> >>> Hi,
-> >>>
-> >>> On 2/10/21 1:48 PM, Chris Wilson wrote:
-> >>>> Quoting Hans de Goede (2021-02-10 10:37:19)
-> >>>>> Hi,
-> >>>>>
-> >>>>> On 2/10/21 12:07 AM, Chris Wilson wrote:
-> >>>>>> Quoting Hans de Goede (2021-02-09 11:46:46)
-> >>>>>>> Hi,
-> >>>>>>>
-> >>>>>>> On 2/9/21 12:27 AM, Chris Wilson wrote:
-> >>>>>>>> Quoting Hans de Goede (2021-02-08 20:38:58)
-> >>>>>>>>> Hi All,
-> >>>>>>>>>
-> >>>>>>>>> We (Fedora) have been receiving reports from multiple users about gfx issues / glitches
-> >>>>>>>>> stating with 5.10.9. All reporters are users of Ivy Bridge / Haswell iGPUs and all
-> >>>>>>>>> reporters report that adding i915.mitigations=off to the cmdline fixes things, see:
-> >>>>>>>>
-> >>>>>>>> I tried to reproduce this on the w/e on hsw-gt1, to no avail; and piglit
-> >>>>>>>> did not report any differences with and without mitigations. I have yet
-> >>>>>>>> to test other platforms. So I don't yet have an alternative.
-> >>>>>>>
-> >>>>>>> Note the original / first reporter of:
-> >>>>>>>
-> >>>>>>> https://bugzilla.redhat.com/show_bug.cgi?id=1925346
-> >>>>>>>
-> >>>>>>> Is using hsw-gt2, so it seems that the problem is not just the enabling of
-> >>>>>>> the mitigations on ivy-bridge / bay-trail but that there actually is
-> >>>>>>> a regression on devices where the WA worked fine before...
-> >>>>>>
-> >>>>>> There have been 3 crashes uploaded related to v5.10.9, and in all 3
-> >>>>>> cases the ACTHD has been in the first page. This strongly suggests that
-> >>>>>> the w/a is scribbling over address 0. And there's then a very good
-> >>>>>> chance that
-> >>>>>>
-> >>>>>> commit 29d35b73ead4e41aa0d1a954c9bfbdce659ec5d6
-> >>>>>> Author: Chris Wilson <chris@chris-wilson.co.uk>
-> >>>>>> Date:   Mon Jan 25 12:50:33 2021 +0000
-> >>>>>>
-> >>>>>>     drm/i915/gt: Always try to reserve GGTT address 0x0
-> >>>>>>     
-> >>>>>>     commit 489140b5ba2e7cc4b853c29e0591895ddb462a82 upstream.
-> >>>>>>
-> >>>>>> in v5.10.14 is sufficient to hide the issue.
-> >>>>>
-> >>>>> That one actually is already in v5.10.13 and the various reportes of these
-> >>>>> issues have already tested 5.10.13. They did mention that it took longer
-> >>>>> to reproduce with 5.10.13 then with 5.10.10, but that could also be due to:
-> >>>>>
-> >>>>> "drm/i915/gt: Clear CACHE_MODE prior to clearing residuals"
-> >>>>> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?h=linux-5.10.y&id=520d05a77b2866eb4cb9e548e1d8c8abcfe60ec5
-> >>>>
-> >>>> Started looking for scratch page overwrites, and found this little gem:
-> >>>> https://patchwork.freedesktop.org/patch/420436/?series=86947&rev=1
-> >>>>
-> >>>> Looks promising wrt the cause of overwriting random addresses -- and
-> >>>> I hope that is the explanation for the glitches/hangs. I have a hsw gt2
-> >>>> with gnome shell, piglit is happy, but I suspect it is all due to
-> >>>> placement and so will only occur at random.
-> >>>
-> >>> If you can give me a list of commits to cherry-pick then I can prepare
-> >>> a Fedora 5.10.y kernel which those added for the group of Fedora users
-> >>> who are hitting this to test.
-> >>
-> >> e627d5923cae ("drm/i915/gt: One more flush for Baytrail clear residuals")
-> >> d30bbd62b1bf ("drm/i915/gt: Flush before changing register state")
-> >> 1914911f4aa0 ("drm/i915/gt: Correct surface base address for renderclear")
-> > 
-> > Thanks, the test-kernel is building now. I will let you know when I have
-> > heard back from the Fedora users (this will likely take 1-2 days).
-> 
-> I've heard back from 2 of the reporters who were seeing issues with 5.10.9+
-> 
-> And I'm happy to report 5.10.15 + the 3 commits mentioned above cherry-picked
-> on top fixes the graphics glitches for them.
-> 
-> So if we can get these 3 commits into 5.10.y and 5.11.y then this should be
-> resolved.
+On Mon, 15 Feb 2021, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> We have already few similar implementation and a lot of code that can benefit
+> of the yesno() helper.  Consolidate yesno() helpers under string.h hood.
 
-Great!
+Good luck. I gave up after just four versions. [1]
 
-Hopefully these will show up in Linus's tree soon...
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+
+BR,
+Jani.
+
+
+[1] http://lore.kernel.org/r/20191023131308.9420-1-jani.nikula@intel.com
+
+
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  .../drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c    |  6 +-----
+>  drivers/gpu/drm/i915/i915_utils.h                    |  6 +-----
+>  drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c   | 12 +-----------
+>  include/linux/string.h                               |  5 +++++
+>  4 files changed, 8 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> index 360952129b6d..7fde4f90e513 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c
+> @@ -23,6 +23,7 @@
+>   *
+>   */
+>  
+> +#include <linux/string.h>
+>  #include <linux/uaccess.h>
+>  
+>  #include <drm/drm_debugfs.h>
+> @@ -49,11 +50,6 @@ struct dmub_debugfs_trace_entry {
+>  	uint32_t param1;
+>  };
+>  
+> -static inline const char *yesno(bool v)
+> -{
+> -	return v ? "yes" : "no";
+> -}
+> -
+>  /* parse_write_buffer_into_params - Helper function to parse debugfs write buffer into an array
+>   *
+>   * Function takes in attributes passed to debugfs write entry
+> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+> index abd4dcd9f79c..e6da5a951132 100644
+> --- a/drivers/gpu/drm/i915/i915_utils.h
+> +++ b/drivers/gpu/drm/i915/i915_utils.h
+> @@ -27,6 +27,7 @@
+>  
+>  #include <linux/list.h>
+>  #include <linux/overflow.h>
+> +#include <linux/string.h>
+>  #include <linux/sched.h>
+>  #include <linux/types.h>
+>  #include <linux/workqueue.h>
+> @@ -408,11 +409,6 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
+>  #define MBps(x) KBps(1000 * (x))
+>  #define GBps(x) ((u64)1000 * MBps((x)))
+>  
+> -static inline const char *yesno(bool v)
+> -{
+> -	return v ? "yes" : "no";
+> -}
+> -
+>  static inline const char *onoff(bool v)
+>  {
+>  	return v ? "on" : "off";
+> diff --git a/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c b/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> index 7d49fd4edc9e..c857d73abbd7 100644
+> --- a/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> +++ b/drivers/net/ethernet/chelsio/cxgb4/cxgb4_debugfs.c
+> @@ -34,6 +34,7 @@
+>  
+>  #include <linux/seq_file.h>
+>  #include <linux/debugfs.h>
+> +#include <linux/string.h>
+>  #include <linux/string_helpers.h>
+>  #include <linux/sort.h>
+>  #include <linux/ctype.h>
+> @@ -2015,17 +2016,6 @@ static const struct file_operations rss_debugfs_fops = {
+>  /* RSS Configuration.
+>   */
+>  
+> -/* Small utility function to return the strings "yes" or "no" if the supplied
+> - * argument is non-zero.
+> - */
+> -static const char *yesno(int x)
+> -{
+> -	static const char *yes = "yes";
+> -	static const char *no = "no";
+> -
+> -	return x ? yes : no;
+> -}
+> -
+>  static int rss_config_show(struct seq_file *seq, void *v)
+>  {
+>  	struct adapter *adapter = seq->private;
+> diff --git a/include/linux/string.h b/include/linux/string.h
+> index 9521d8cab18e..fd946a5e18c8 100644
+> --- a/include/linux/string.h
+> +++ b/include/linux/string.h
+> @@ -308,4 +308,9 @@ static __always_inline size_t str_has_prefix(const char *str, const char *prefix
+>  	return strncmp(str, prefix, len) == 0 ? len : 0;
+>  }
+>  
+> +static inline const char *yesno(bool yes)
+> +{
+> +	return yes ? "yes" : "no";
+> +}
+> +
+>  #endif /* _LINUX_STRING_H_ */
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
