@@ -1,40 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F27431B3A3
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 01:39:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C0231B4ED
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 06:13:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D67E6E8C3;
-	Mon, 15 Feb 2021 00:39:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2690489EA3;
+	Mon, 15 Feb 2021 05:13:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 360696E8C0;
- Mon, 15 Feb 2021 00:39:44 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4Df4xT22D4z9sCD;
- Mon, 15 Feb 2021 11:39:41 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1613349583;
- bh=uFXs6FazZwdmJJXEDY5BMxYgEb6dBY8CHEHbCc+nb8g=;
- h=Date:From:To:Cc:Subject:From;
- b=Yc31lJoiwdrZ3b8r9XLxGiC0W9oyIHxCk3e0XmiinlKyv6bgpxhlLrfQnIFWteiMD
- IIqp6hKnuZ1FVHBM+jnUFvgUDZebfItBriXn7Xt/cCNSf1K1kwokcGmMs0rfWqDH85
- mKdzeGbjX+DZa3vdQQQyG4A9Scu3+aa7Ek/+k3uU0eiocx86obE1SsgeSzG7IiGX9x
- ugd7btL3PZ1JJGlw8uO4Kj50oPjzgEOYtJbgaxrp5rrJxPJZ2w5XGPJHlYuNGqRgBh
- XNB1WOGXua57LsjPr9OhmR+7unJ3BnIQgXb5Qg3JNiD7vg6KS/1+HSbxIv3oZQKeB1
- 1Yj4xJBA1VbYA==
-Date: Mon, 15 Feb 2021 11:39:39 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: "Rafael J. Wysocki" <rjw@rjwysocki.net>, Hans de Goede
- <hdegoede@redhat.com>, Mark Gross <mark.gross@intel.com>
-Message-ID: <20210215113939.03e44e3c@canb.auug.org.au>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B0D789EA3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 05:13:11 +0000 (UTC)
+IronPort-SDR: sdJuqGVF4yWn1E87F4kGt1SBd/EfNQ9tjVyTdLK+BNCpmyGNUir9uKLlYaHNq9Pj3C8+lZMfrB
+ PvGb3Rnv4gog==
+X-IronPort-AV: E=McAfee;i="6000,8403,9895"; a="181843681"
+X-IronPort-AV: E=Sophos;i="5.81,179,1610438400"; d="scan'208";a="181843681"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2021 21:13:05 -0800
+IronPort-SDR: Qx7XIVLSnHCSer6oWcZ6nQMj8SSs68vxubf/WD0I5NEU0pvItmp4zz8p0TY2mRqiyKzmZZ0zuV
+ h/kOHAJ6XQ2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,179,1610438400"; d="scan'208";a="365573142"
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
+ by fmsmga007.fm.intel.com with ESMTP; 14 Feb 2021 21:13:04 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 15 Feb 2021 05:13:03 +0000
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
+ Mon, 15 Feb 2021 10:43:01 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "S, Saichandana"
+ <saichandana.s@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v5] drm/i915/debugfs : PCU PM_REQ and PM_RES registers
+Thread-Index: AQHW/uhBgCEveweni0qsehja2GKSc6pUJSAAgASKmiA=
+Date: Mon, 15 Feb 2021 05:13:01 +0000
+Message-ID: <cbc011fff2a149659a14f55cc9cec4af@intel.com>
+References: <20210115130110.2650-1-saichandana.s@intel.com>
+ <20210209133154.31115-1-saichandana.s@intel.com> <87czx5cu99.fsf@intel.com>
+In-Reply-To: <87czx5cu99.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: [Intel-gfx] linux-next: build warning after merge of the pm tree
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/debugfs : PCU PM_REQ and PM_RES
+ registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,84 +66,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Content-Type: multipart/mixed; boundary="===============1468308415=="
+Cc: "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1468308415==
-Content-Type: multipart/signed; boundary="Sig_/PDghjjOr9SVghXChJ=m6El4";
- protocol="application/pgp-signature"; micalg=pgp-sha256
 
---Sig_/PDghjjOr9SVghXChJ=m6El4
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+> -----Original Message-----
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Friday, February 12, 2021 6:34 PM
+> To: S, Saichandana <saichandana.s@intel.com>; intel-gfx@lists.freedesktop.org
+> Cc: chris@chris-wilson.co.uk; Gupta, Anshuman <anshuman.gupta@intel.com>
+> Subject: Re: [PATCH v5] drm/i915/debugfs : PCU PM_REQ and PM_RES registers
+> 
+> On Tue, 09 Feb 2021, Saichandana S <saichandana.s@intel.com> wrote:
+> > This debugfs provides the display PM debug information like Time to
+> > Next VBI and Time to Next Fill from Display Engine <-> PCU Mailbox.
+> 
+> We still lack a rationale for this and the test design. In past review, I got the
+> impression that a) you need the wakeref, but b) grabbing the wakeref messes up
+> the test.
+> 
+> What are you testing? What are you trying to achieve?
+Earlier the rational was to use this debugfs to expose "DC9 Ready" bit to igt along with other
+debug  attributes.
+ As Chris commented it is a bad design of test, "DC9 Ready" bit is dropped from this patch.
+Now this debugfs only serves the Display Engine to PCU mailbox debug attributes which can read
+while i915 is active. Usually these DE <-> PCU req and res debug attributes retrieve by external tools
+like jtag. 
+Now this debugs only provides value addition to decode some of these debug attributes and print.
+in readable format. 
 
-After merging the pm tree, today's linux-next build (x86_64 allmodconfig)
-produced this warning:
-
-In file included from drivers/gpu/drm/gma500/mdfld_output.c:28:
-arch/x86/include/asm/intel_scu_ipc.h:23:12: warning: 'struct module' declar=
-ed inside parameter list will not be visible outside of this definition or =
-declaration
-   23 |     struct module *owner);
-      |            ^~~~~~
-arch/x86/include/asm/intel_scu_ipc.h:33:17: warning: 'struct module' declar=
-ed inside parameter list will not be visible outside of this definition or =
-declaration
-   33 |          struct module *owner);
-      |                 ^~~~~~
-
-Introduced by commit
-
-  bfc838f8598e ("drm/gma500: Convert to use new SCU IPC API")
-
-OK, these will go away when the drm-misc tree removes this file in commit
-
-  e1da811218d2 ("drm/gma500: Remove Medfield support")
-
-So, if you don't want to see these warnings in Linus' build testing,
-you need to make sure that the drm-misc tree is merged before the pm
-tree (or the drivers-x86 tree).  Or you need to include module.h in
-mdfld_output.c before intel_scu_ipc.h (or in intel_scu_ipc.h itself).
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/PDghjjOr9SVghXChJ=m6El4
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmApwswACgkQAVBC80lX
-0Gx1PAgApAm7IJ91caUkHXOEEGcUtLHEugWxn52HSOHgE7cxWCbdbjiZs0rJMfk/
-J0miNgljVhx6JZ/MfpGuzdDLGeJjZu/zuqFf6V9ues4oXwS0FjSxWc28lJyGDcQL
-K2qgZQTFFnWtxP7Cr1sPAgzWR/IuJKttUNXkiAe+686+hOJwGRHN6s/bRKbyVWeN
-rYTXgpnuuKhJjUfaccsCtqZd4gqpgfg1e2zfvI/bVLJgrtmWzouu4D/U/pDH0s7C
-6HhHlct01UccTWFlxG+45pD+lSRtnxLl+4srJ1KLvBZmXD2Z4zvlTXEIKLkW0Wwm
-GkrCLriLDcDfP6zXcVpCkTnEgV5s5A==
-=nKkW
------END PGP SIGNATURE-----
-
---Sig_/PDghjjOr9SVghXChJ=m6El4--
-
---===============1468308415==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Br,     
+Anshuman Gupta.
+> 
+> BR,
+> Jani.
+> 
+> 
+> PS. You leak the wakeref and stay up indefinitely if csr isn't loaded.
+> 
+> >
+> > V2:
+> > Added a functional print to debugfs. [Jani Nikula]
+> >
+> > V3:
+> > Used separate variables to store the register values and also used
+> > REG_GENMASK and REG_BIT for mask preparation. [Anshuman Gupta]
+> >
+> > Removed reading of register contents. Replaced local variable with yesno().
+> > Placed register macros separately, distinguishing from other macros.
+> > [Jani Nikula]
+> >
+> > V4 : Used i915 as local variable. [Anshuman Gupta, Jani Nikula]
+> >
+> > V5 : Added wakeref to wakeup device. [Chris Wilson]
+> > Signed-off-by: Saichandana S <saichandana.s@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_debugfs.c  | 24 +++++++++++++++++++
+> >  drivers/gpu/drm/i915/i915_reg.h               |  9 +++++++
+> >  2 files changed, 33 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > index d6e4a9237bda..29aaa41fdeec 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > @@ -591,6 +591,29 @@ static int i915_dmc_info(struct seq_file *m, void
+> *unused)
+> >  	return 0;
+> >  }
+> >
+> > +static int i915_pcu_pm_req_res_info(struct seq_file *m, void *unused)
+> > +{
+> > +	struct drm_i915_private *i915 = node_to_i915(m->private);
+> > +	struct intel_csr *csr = &i915->csr;
+> > +	intel_wakeref_t wakeref;
+> > +
+> > +	if (!HAS_CSR(i915))
+> > +		return -ENODEV;
+> > +
+> > +	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+> > +	if (!csr->dmc_payload)
+> > +		return 0;
+> 
+> Leak.
+> 
+> > +	seq_printf(m, "Time to Next Fill : 0x%08x\n",
+> > +		   intel_de_read(i915, PM_RSP_DBG_0) &
+> PM_RESP_TTNF_MASK);
+> > +	seq_printf(m, "Time to Next VBI : 0x%08x\n",
+> > +		   (intel_de_read(i915, PM_RSP_DBG_0) &
+> PM_RESP_TTNVBI_MASK) >> 16);
+> > +	seq_printf(m, "Selective Exit Latency : 0x%08x\n",
+> > +		   intel_de_read(i915, PM_RSP_DBG_1) &
+> > +PM_RESP_SEL_EXIT_LATENCY_MASK);
+> > +
+> > +	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+> > +	return 0;
+> > +}
+> > +
+> >  static void intel_seq_print_mode(struct seq_file *m, int tabs,
+> >  				 const struct drm_display_mode *mode)  { @@
+> -2128,6 +2151,7 @@
+> > static const struct drm_info_list intel_display_debugfs_list[] = {
+> >  	{"i915_edp_psr_status", i915_edp_psr_status, 0},
+> >  	{"i915_power_domain_info", i915_power_domain_info, 0},
+> >  	{"i915_dmc_info", i915_dmc_info, 0},
+> > +	{"i915_pcu_pm_req_res_info", i915_pcu_pm_req_res_info, 0},
+> >  	{"i915_display_info", i915_display_info, 0},
+> >  	{"i915_shared_dplls_info", i915_shared_dplls_info, 0},
+> >  	{"i915_dp_mst_info", i915_dp_mst_info, 0}, diff --git
+> > a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> > index 224ad897af34..93d319bf80fd 100644
+> > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > @@ -12525,4 +12525,13 @@ enum skl_power_gate {
+> >  #define TGL_ROOT_DEVICE_SKU_ULX		0x2
+> >  #define TGL_ROOT_DEVICE_SKU_ULT		0x4
+> >
+> > +/*These registers are of functional registers for PM debug request and
+> response registers*/
+> > +#define PM_REQ_DBG_0				_MMIO(0x45284)
+> > +#define PM_REQ_DBG_1				_MMIO(0x45288)
+> > +#define PM_RSP_DBG_0				_MMIO(0x4528C)
+> > +#define   PM_RESP_TTNF_MASK			REG_GENMASK(15, 0)
+> > +#define   PM_RESP_TTNVBI_MASK			REG_GENMASK(31, 16)
+> > +#define PM_RSP_DBG_1				_MMIO(0x45290)
+> > +#define   PM_RESP_SEL_EXIT_LATENCY_MASK
+> 	REG_GENMASK(2, 0)
+> > +
+> >  #endif /* _I915_REG_H_ */
+> 
+> --
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1468308415==--
