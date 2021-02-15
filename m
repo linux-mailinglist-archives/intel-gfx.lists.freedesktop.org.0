@@ -2,58 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0C0231B4ED
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 06:13:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03A2331B4FA
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 06:14:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2690489EA3;
-	Mon, 15 Feb 2021 05:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 490136E073;
+	Mon, 15 Feb 2021 05:14:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B0D789EA3
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 05:13:11 +0000 (UTC)
-IronPort-SDR: sdJuqGVF4yWn1E87F4kGt1SBd/EfNQ9tjVyTdLK+BNCpmyGNUir9uKLlYaHNq9Pj3C8+lZMfrB
- PvGb3Rnv4gog==
-X-IronPort-AV: E=McAfee;i="6000,8403,9895"; a="181843681"
-X-IronPort-AV: E=Sophos;i="5.81,179,1610438400"; d="scan'208";a="181843681"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2021 21:13:05 -0800
-IronPort-SDR: Qx7XIVLSnHCSer6oWcZ6nQMj8SSs68vxubf/WD0I5NEU0pvItmp4zz8p0TY2mRqiyKzmZZ0zuV
- h/kOHAJ6XQ2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,179,1610438400"; d="scan'208";a="365573142"
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
- by fmsmga007.fm.intel.com with ESMTP; 14 Feb 2021 21:13:04 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 15 Feb 2021 05:13:03 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
- Mon, 15 Feb 2021 10:43:01 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "S, Saichandana"
- <saichandana.s@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v5] drm/i915/debugfs : PCU PM_REQ and PM_RES registers
-Thread-Index: AQHW/uhBgCEveweni0qsehja2GKSc6pUJSAAgASKmiA=
-Date: Mon, 15 Feb 2021 05:13:01 +0000
-Message-ID: <cbc011fff2a149659a14f55cc9cec4af@intel.com>
-References: <20210115130110.2650-1-saichandana.s@intel.com>
- <20210209133154.31115-1-saichandana.s@intel.com> <87czx5cu99.fsf@intel.com>
-In-Reply-To: <87czx5cu99.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com
+ [IPv6:2a00:1450:4864:20::135])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 011B56E073
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 05:14:47 +0000 (UTC)
+Received: by mail-lf1-x135.google.com with SMTP id f1so8371294lfu.3
+ for <intel-gfx@lists.freedesktop.org>; Sun, 14 Feb 2021 21:14:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=rTdi8e+JPAaBtMSfPqPaxTbLmbqnfHRiNDGBerHQh9Q=;
+ b=RKohcov7btamZw389Qq5DgRX/6Lkl1qk6v46KP05uy2uHgDRbOC+lEN5ECS4bfWphB
+ 13IefPGCE9O9CVTpQ2PFog3uQ7vq2SlfqUt0qSSP7QH5B9x8R8PNwjiKW3BLQ5D4scNt
+ 96SEyUDRlz4XwWSzFCF3OUxjC6eKIh0gEFJIEXKEI/4vv5uLllFGYREwqNnQQL57l49a
+ MX9Z/+MBhum8twjI0S3RWm3R1p+hTkn6QQR6FKGBvO1NesjdCZXZ/NgWLBVa0P1KniMx
+ 15In24HM/YEeysruwf3UVb9MVyywm5aPncXy+Q3NX+WPY2xNaJu7v0l+OZJehQhKaJLw
+ tJHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=rTdi8e+JPAaBtMSfPqPaxTbLmbqnfHRiNDGBerHQh9Q=;
+ b=GmhkXVeuPRm47PwomYWyoRWesz7Q1UmxAVYISinjk2pI2WMspqArup/P0oxuycui2W
+ KfF795v/UtZs4u43gClqdIfIIs0okYkWkWiB4B7uJWnMHx9rjAaEm5J/+YnMePw3xuY6
+ KPeFqHe3tqcWwrQu4U1zYzFjThFj8uuINB/MwqB+6nCPCInOkjgr0UWN1AOaQvrSC2bQ
+ oA1uPlDhH2ux4jGaBct1o2MRheSfS/Jj9fvWVW5p2UIvasyJxSx5jZgYJQugdSXGhJuU
+ HURWF4qVjdAKdJDT16eK6e3x3XoqmKr08CqkwSgaUv/cI6+2IkOWZSslNamUvgPxjGd2
+ O+HQ==
+X-Gm-Message-State: AOAM532jHILPRA7392OV1ZIej8/45bMktmcjdQPFYZoK2gJi271QUqMq
+ XE/pFs10zQoi6RVzkSBedVe4U3vVHX7ep3BPogAjgthTirY=
+X-Google-Smtp-Source: ABdhPJzt+AWNXazkkq42O63DKFS1/U+FH85rxyN0J3otJvPg6wjuc6kDiVgmNZ6xSG+MnyXCT6ifWcUuoya+g/Utz08=
+X-Received: by 2002:ac2:5f0b:: with SMTP id 11mr7616375lfq.578.1613366086283; 
+ Sun, 14 Feb 2021 21:14:46 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/debugfs : PCU PM_REQ and PM_RES
- registers
+From: Arun Pravin <arunpravin@gmail.com>
+Date: Mon, 15 Feb 2021 10:44:10 +0530
+Message-ID: <CAJ2hna7A6Eqk7DNUMm7-q9Y11uFR1bYivajgZYsxVBym09vi9w@mail.gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [Intel-gfx] vram management
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,143 +57,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1365102321=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1365102321==
+Content-Type: multipart/alternative; boundary="00000000000077344c05bb59102b"
 
+--00000000000077344c05bb59102b
+Content-Type: text/plain; charset="UTF-8"
 
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Friday, February 12, 2021 6:34 PM
-> To: S, Saichandana <saichandana.s@intel.com>; intel-gfx@lists.freedesktop.org
-> Cc: chris@chris-wilson.co.uk; Gupta, Anshuman <anshuman.gupta@intel.com>
-> Subject: Re: [PATCH v5] drm/i915/debugfs : PCU PM_REQ and PM_RES registers
-> 
-> On Tue, 09 Feb 2021, Saichandana S <saichandana.s@intel.com> wrote:
-> > This debugfs provides the display PM debug information like Time to
-> > Next VBI and Time to Next Fill from Display Engine <-> PCU Mailbox.
-> 
-> We still lack a rationale for this and the test design. In past review, I got the
-> impression that a) you need the wakeref, but b) grabbing the wakeref messes up
-> the test.
-> 
-> What are you testing? What are you trying to achieve?
-Earlier the rational was to use this debugfs to expose "DC9 Ready" bit to igt along with other
-debug  attributes.
- As Chris commented it is a bad design of test, "DC9 Ready" bit is dropped from this patch.
-Now this debugfs only serves the Display Engine to PCU mailbox debug attributes which can read
-while i915 is active. Usually these DE <-> PCU req and res debug attributes retrieve by external tools
-like jtag. 
-Now this debugs only provides value addition to decode some of these debug attributes and print.
-in readable format. 
+Hi,
 
-Br,     
-Anshuman Gupta.
-> 
-> BR,
-> Jani.
-> 
-> 
-> PS. You leak the wakeref and stay up indefinitely if csr isn't loaded.
-> 
-> >
-> > V2:
-> > Added a functional print to debugfs. [Jani Nikula]
-> >
-> > V3:
-> > Used separate variables to store the register values and also used
-> > REG_GENMASK and REG_BIT for mask preparation. [Anshuman Gupta]
-> >
-> > Removed reading of register contents. Replaced local variable with yesno().
-> > Placed register macros separately, distinguishing from other macros.
-> > [Jani Nikula]
-> >
-> > V4 : Used i915 as local variable. [Anshuman Gupta, Jani Nikula]
-> >
-> > V5 : Added wakeref to wakeup device. [Chris Wilson]
-> > Signed-off-by: Saichandana S <saichandana.s@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_display_debugfs.c  | 24 +++++++++++++++++++
-> >  drivers/gpu/drm/i915/i915_reg.h               |  9 +++++++
-> >  2 files changed, 33 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > index d6e4a9237bda..29aaa41fdeec 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > @@ -591,6 +591,29 @@ static int i915_dmc_info(struct seq_file *m, void
-> *unused)
-> >  	return 0;
-> >  }
-> >
-> > +static int i915_pcu_pm_req_res_info(struct seq_file *m, void *unused)
-> > +{
-> > +	struct drm_i915_private *i915 = node_to_i915(m->private);
-> > +	struct intel_csr *csr = &i915->csr;
-> > +	intel_wakeref_t wakeref;
-> > +
-> > +	if (!HAS_CSR(i915))
-> > +		return -ENODEV;
-> > +
-> > +	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-> > +	if (!csr->dmc_payload)
-> > +		return 0;
-> 
-> Leak.
-> 
-> > +	seq_printf(m, "Time to Next Fill : 0x%08x\n",
-> > +		   intel_de_read(i915, PM_RSP_DBG_0) &
-> PM_RESP_TTNF_MASK);
-> > +	seq_printf(m, "Time to Next VBI : 0x%08x\n",
-> > +		   (intel_de_read(i915, PM_RSP_DBG_0) &
-> PM_RESP_TTNVBI_MASK) >> 16);
-> > +	seq_printf(m, "Selective Exit Latency : 0x%08x\n",
-> > +		   intel_de_read(i915, PM_RSP_DBG_1) &
-> > +PM_RESP_SEL_EXIT_LATENCY_MASK);
-> > +
-> > +	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-> > +	return 0;
-> > +}
-> > +
-> >  static void intel_seq_print_mode(struct seq_file *m, int tabs,
-> >  				 const struct drm_display_mode *mode)  { @@
-> -2128,6 +2151,7 @@
-> > static const struct drm_info_list intel_display_debugfs_list[] = {
-> >  	{"i915_edp_psr_status", i915_edp_psr_status, 0},
-> >  	{"i915_power_domain_info", i915_power_domain_info, 0},
-> >  	{"i915_dmc_info", i915_dmc_info, 0},
-> > +	{"i915_pcu_pm_req_res_info", i915_pcu_pm_req_res_info, 0},
-> >  	{"i915_display_info", i915_display_info, 0},
-> >  	{"i915_shared_dplls_info", i915_shared_dplls_info, 0},
-> >  	{"i915_dp_mst_info", i915_dp_mst_info, 0}, diff --git
-> > a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> > index 224ad897af34..93d319bf80fd 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -12525,4 +12525,13 @@ enum skl_power_gate {
-> >  #define TGL_ROOT_DEVICE_SKU_ULX		0x2
-> >  #define TGL_ROOT_DEVICE_SKU_ULT		0x4
-> >
-> > +/*These registers are of functional registers for PM debug request and
-> response registers*/
-> > +#define PM_REQ_DBG_0				_MMIO(0x45284)
-> > +#define PM_REQ_DBG_1				_MMIO(0x45288)
-> > +#define PM_RSP_DBG_0				_MMIO(0x4528C)
-> > +#define   PM_RESP_TTNF_MASK			REG_GENMASK(15, 0)
-> > +#define   PM_RESP_TTNVBI_MASK			REG_GENMASK(31, 16)
-> > +#define PM_RSP_DBG_1				_MMIO(0x45290)
-> > +#define   PM_RESP_SEL_EXIT_LATENCY_MASK
-> 	REG_GENMASK(2, 0)
-> > +
-> >  #endif /* _I915_REG_H_ */
-> 
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+I have a question on discrete card memory management, how Intel manages the
+VRAM memory, Intel gfx driver uses TTM and DRM MM framework for the
+discrete card vram memory management?
+
+Thanks,
+Arun
+
+--00000000000077344c05bb59102b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I have a question=C2=A0on discrete =
+card memory management, how Intel manages the VRAM memory, Intel gfx driver=
+ uses TTM and DRM MM framework for the discrete card vram memory management=
+?</div><div><br></div><div>Thanks,</div><div>Arun</div></div>
+
+--00000000000077344c05bb59102b--
+
+--===============1365102321==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1365102321==--
