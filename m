@@ -2,70 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A8EC31BDE5
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 16:59:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A8FE31BDE4
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 16:59:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 346086E159;
-	Mon, 15 Feb 2021 15:59:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEBD06E8CD;
+	Mon, 15 Feb 2021 15:58:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA5076E8D2
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 15:58:59 +0000 (UTC)
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
- by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 11FFncPI096510;
- Mon, 15 Feb 2021 15:58:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
- bh=/jt2JJ/DfjR1OlH6tBCcf9qWPcgljJpwfUrXp0Yi6QM=;
- b=K2r544vBO+R3H89WELNzk4w1i2Zc0l96bmTB17uxZHNkGCDMbmGsrD9pSivrdBpq/8Dx
- 1TGU/msnf22lvAZ4SCNj6lAgrBjA/VUYQpGOxOSlBkU2DXtNsrYbs4i7vL60U+Iwvdm2
- 9bsNF+8G9LTrFy/LIElr0Ql+A6BEwNqVpW7cKJO2O8qH6dXfwvKC7qGNnt8kpKamuOkY
- b1m0wOQGlp6FTZ7VKemh0jJbEBImrmCeT7zw/Brue3Uv9/Z+lLeGvWjgtfoZX26Edb//
- lrOmL4eD6poTXkZOSYEo4DtB9HMBINJ3UVfzf6QNfmChPpfTvkHsfW2I48gx+8ESB5fs 8Q== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
- by aserp2120.oracle.com with ESMTP id 36pd9a3wya-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 15 Feb 2021 15:58:48 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
- by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 11FFnxJn009988;
- Mon, 15 Feb 2021 15:58:46 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
- by userp3030.oracle.com with ESMTP id 36prpvsfcx-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 15 Feb 2021 15:58:46 +0000
-Received: from abhmp0001.oracle.com (abhmp0001.oracle.com [141.146.116.7])
- by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 11FFwaIX003437;
- Mon, 15 Feb 2021 15:58:36 GMT
-Received: from mwanda (/102.36.221.92) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Mon, 15 Feb 2021 07:58:35 -0800
-Date: Mon, 15 Feb 2021 18:58:27 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <YCqaI95UW9L7Mg/L@mwanda>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA8706E159;
+ Mon, 15 Feb 2021 15:58:55 +0000 (UTC)
+IronPort-SDR: Bu7BN6u8Yl7XkpsIl11D0FAFzCb+qLBeLG8HbpWAOPmZv4YW9WjLRoExyeujy7W/QXw4WyNhJv
+ SVTv7yeuYSbw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9896"; a="169843274"
+X-IronPort-AV: E=Sophos;i="5.81,181,1610438400"; d="scan'208";a="169843274"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2021 07:58:55 -0800
+IronPort-SDR: qUBcDnMNGWB44uoh1MTupZsdb45fxio3m0E/f9VI6r96twT5vE68fSmGs0x7S+Ia9ZGYH1KBSs
+ erfQ6tr1Worg==
+X-IronPort-AV: E=Sophos;i="5.81,181,1610438400"; d="scan'208";a="580213026"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2021 07:58:50 -0800
+Received: from andy by smile with local (Exim 4.94)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1lBgGs-005GNG-Ra; Mon, 15 Feb 2021 17:58:46 +0200
+Date: Mon, 15 Feb 2021 17:58:46 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YCqaNnr7ynRydczE@smile.fi.intel.com>
+References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+ <87y2fpbdmp.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-X-Proofpoint-IMR: 1
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9896
- signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- mlxlogscore=999
- phishscore=0 adultscore=0 mlxscore=0 suspectscore=0 malwarescore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2102150125
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9896
- signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1011
- impostorscore=0
- mlxscore=0 phishscore=0 mlxlogscore=999 spamscore=0 bulkscore=0
- priorityscore=1501 malwarescore=0 suspectscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2102150125
-Subject: [Intel-gfx] [PATCH] drm/i915/selftest: Fix an error code in
- mock_context_barrier()
+In-Reply-To: <87y2fpbdmp.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: Re: [Intel-gfx] [PATCH v1 1/3] string: Consolidate yesno() helpers
+ under string.h hood
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,37 +52,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@intel.com>
+Cc: Eryk Brol <eryk.brol@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, netdev@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, Raju Rangoju <rajur@chelsio.com>,
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, David Airlie <airlied@linux.ie>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ dri-devel@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Jakub Kicinski <kuba@kernel.org>,
+ Mikita Lipski <mikita.lipski@amd.com>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the igt_request_alloc() call fails then this should return a
-negative error code, but currently it returns success.
+On Mon, Feb 15, 2021 at 04:37:50PM +0200, Jani Nikula wrote:
+> On Mon, 15 Feb 2021, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> > We have already few similar implementation and a lot of code that can benefit
+> > of the yesno() helper.  Consolidate yesno() helpers under string.h hood.
+> 
+> Good luck. I gave up after just four versions. [1]
 
-Fixes: 85fddf0b0027 ("drm/i915: Introduce a context barrier callback")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
- drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 1 +
- 1 file changed, 1 insertion(+)
+Thanks for a pointer! I like your version, but here we also discussing a
+possibility to do something like %py[DOY]. It will consolidate all those RO or
+whatever sections inside one data structure.
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index d3f87dc4eda3..c30b583522ca 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -1942,6 +1942,7 @@ static int mock_context_barrier(void *arg)
- 	rq = igt_request_alloc(ctx, i915->gt.engine[RCS0]);
- 	if (IS_ERR(rq)) {
- 		pr_err("Request allocation failed!\n");
-+		err = PTR_ERR(rq);
- 		goto out;
- 	}
- 	i915_request_add(rq);
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> [1] http://lore.kernel.org/r/20191023131308.9420-1-jani.nikula@intel.com
+
+
 -- 
-2.30.0
+With Best Regards,
+Andy Shevchenko
+
 
 _______________________________________________
 Intel-gfx mailing list
