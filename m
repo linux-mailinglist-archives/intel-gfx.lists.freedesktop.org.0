@@ -1,56 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 250C631B70E
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 11:25:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B95C231B738
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 11:36:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B45F6E190;
-	Mon, 15 Feb 2021 10:25:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13ED589DF9;
+	Mon, 15 Feb 2021 10:35:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com
- [IPv6:2607:f8b0:4864:20::435])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB116E17F;
- Mon, 15 Feb 2021 10:25:03 +0000 (UTC)
-Received: by mail-pf1-x435.google.com with SMTP id w18so3903069pfu.9;
- Mon, 15 Feb 2021 02:25:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=KM7TCDJh8gpTDG5Q8gExFbYPTexcOat3ZceHInBbrV8=;
- b=c3PzPRmaGCtdEsA8zdKsW1imgEwC/GclVJD5S986AFr6tm+OjUZ/TgYrymzD7eSCWf
- 7ZIgFWF0M4PE4EoyCLisGu2VnwRKe9Yys0w6tDOwmHGbDnHtU2rGxTYDIKomvYdjDsLM
- xkyDJj1MTkh44wTgqxx4Ghn1hZfPqFG06KEJ41Y8vBlBFM+1wXHVcWlTLbfDOEMzOivo
- Z/pawEs3DFuErC4RjEtWEhQirxX05LB6RELJshvrnotY1/YHOkT1V1YmYBpagRxE5YVp
- BAyK0sccTeP25aX54Q0RnrgdBohiisQU0dTpEg35oVFWSW37NQ4/5GT0sWcfs3gS03o3
- eXmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=KM7TCDJh8gpTDG5Q8gExFbYPTexcOat3ZceHInBbrV8=;
- b=gRllp3xrf9q0gI5nj+bYH7xlpfWmYqiVEugFULB3fVCBywKdQhMGBrbTVSRmSN5wjt
- 9GyU3So3/cYGATB+4IH39dhsNuElZGH1Lx0p5/m2vcKp82rzGbNBCvqXpRCrvPvKqu/1
- 5/r+PAmHUwiOSuViX1/w4NeQCqD5LG7sbI+AT/xNyASwayiT+eb5lWj8lTrbz0vQpFZM
- JuoFfk53RYTT3tTaBfLV/f1kjrmB7vJr/xBl6+OtQGvgY71BWDC0M7UO7KdPoTEuIqU1
- FXvmB/uajXscF1TwrwG1OjE6KoFZHjarMbKRlJK87GwJLEep+LmSUHK9Gu/vL6cvPKOv
- 2w2w==
-X-Gm-Message-State: AOAM531c43NCuXkrGt9H2hiX/okDQovVh2jwzkaJEzzRjFQaHwD9f9xH
- IBcMhG/riE7wXOkz/hhISUd+P+EWpThnPO/tEO8=
-X-Google-Smtp-Source: ABdhPJwKr8xtXgDkUwLSIEAkqcbUMWBE/NdHSN1a6AlWcRbzU7jBsVrPkdfP/Wrqrr1+7AhpnxNbVV17sjZSgU7O4r8=
-X-Received: by 2002:a62:ea08:0:b029:1ec:a029:c04a with SMTP id
- t8-20020a62ea080000b02901eca029c04amr3471105pfh.40.1613384703064; Mon, 15 Feb
- 2021 02:25:03 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 567F489DF9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 10:35:58 +0000 (UTC)
+IronPort-SDR: AeJMc0ym1fzq5oI+89d3JvptfeDLbHsZ6PkdwsGuaixYKS6oBrw6MTGmLQ2zefCSrt1xe2bhAO
+ mbK2NT715amQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9895"; a="201826079"
+X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="201826079"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2021 02:35:55 -0800
+IronPort-SDR: A6DryfeWspaZZKf+GFTKOP+RLJXN6R4rJWv9HX9XyMzroW4jhlga3PJ8lhjHQwTcKwHCjfMS6r
+ wTtNgV8KCOsA==
+X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="399015367"
+Received: from martincl-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.34.223])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2021 02:35:53 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210213190511.1017088-2-lucas.demarchi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210213190511.1017088-1-lucas.demarchi@intel.com>
+ <20210213190511.1017088-2-lucas.demarchi@intel.com>
+Date: Mon, 15 Feb 2021 12:35:50 +0200
+Message-ID: <874kidd3eh.fsf@intel.com>
 MIME-Version: 1.0
-References: <20210215113939.03e44e3c@canb.auug.org.au>
- <CAHp75Ve2TyPx4H=7E92tKZ=GV46Y0Vzi-NwGMLrGtiXv-Nv7gg@mail.gmail.com>
-In-Reply-To: <CAHp75Ve2TyPx4H=7E92tKZ=GV46Y0Vzi-NwGMLrGtiXv-Nv7gg@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 15 Feb 2021 12:24:47 +0200
-Message-ID: <CAHp75VfGL_NmkpYxFDGMf781VyYEsvWSkQSaw-qTX8ch_S8cPw@mail.gmail.com>
-To: Stephen Rothwell <sfr@canb.auug.org.au>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-Subject: Re: [Intel-gfx] linux-next: build warning after merge of the pm tree
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display: move vbt check to
+ intel_ddi_init()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,64 +49,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Gross <mark.gross@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- "Rafael J. Wysocki" <rjw@rjwysocki.net>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+Cc: Patrik (JFYI).
+On Sat, 13 Feb 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On intel_ddi_init() we already check VBT if the port supports HDMI/DP
+> and bail out otherwise. Instad of checking if a single port is present
+> using VBT in intel_display.c, move the stronger check to
+> intel_ddi_init() and return early in case it's not supported.  There
+> would be no way intel_bios_* would report support for hdmi/dp if the
+> port isn't present so this should cause no regressions for other
+> platforms.
 
-On Mon, Feb 15, 2021 at 12:23 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
->
-> On Mon, Feb 15, 2021 at 2:45 AM Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-> >
-> > Hi all,
-> >
-> > After merging the pm tree, today's linux-next build (x86_64 allmodconfig)
-> > produced this warning:
-> >
-> > In file included from drivers/gpu/drm/gma500/mdfld_output.c:28:
-> > arch/x86/include/asm/intel_scu_ipc.h:23:12: warning: 'struct module' declared inside parameter list will not be visible outside of this definition or declaration
-> >    23 |     struct module *owner);
-> >       |            ^~~~~~
-> > arch/x86/include/asm/intel_scu_ipc.h:33:17: warning: 'struct module' declared inside parameter list will not be visible outside of this definition or declaration
-> >    33 |          struct module *owner);
-> >       |                 ^~~~~~
-> >
-> > Introduced by commit
-> >
-> >   bfc838f8598e ("drm/gma500: Convert to use new SCU IPC API")
-> >
-> > OK, these will go away when the drm-misc tree removes this file in commit
-> >
-> >   e1da811218d2 ("drm/gma500: Remove Medfield support")
-> >
-> > So, if you don't want to see these warnings in Linus' build testing,
-> > you need to make sure that the drm-misc tree is merged before the pm
-> > tree (or the drivers-x86 tree).  Or you need to include module.h in
-> > mdfld_output.c before intel_scu_ipc.h (or in intel_scu_ipc.h itself).
->
-> Thanks for the report.
-> I guess the DRM tree should carry this burden, or they can merge the
-> immutable tag themselves.
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+Sorry, but this will regress machines that have no VBT.
+
+I've been thinking about creating fake child devices for that case to
+reduce the exceptions.
+
+BR,
+Jani.
 
 
+
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c     |  7 +++++++
+>  drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++--------
+>  2 files changed, 13 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 3b97c0091812..1235be0ba5d1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3972,6 +3972,13 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>  	bool init_hdmi, init_dp;
+>  	enum phy phy = intel_port_to_phy(dev_priv, port);
+>  
+> +	if (!intel_bios_is_port_present(dev_priv, port)) {
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "VBT says port %c is not present, respect it\n",
+> +			    port_name(port));
+> +		return;
+> +	}
+> +
+>  	/*
+>  	 * On platforms with HTI (aka HDPORT), if it's enabled at boot it may
+>  	 * have taken over some of the PHYs and made them unavailable to the
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 23ec68498800..7aaf7a29d493 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -11904,13 +11904,13 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  		intel_ddi_init(dev_priv, PORT_C);
+>  		intel_ddi_init(dev_priv, PORT_D);
+>  		intel_ddi_init(dev_priv, PORT_E);
+> +
+>  		/*
+> -		 * On some ICL SKUs port F is not present. No strap bits for
+> -		 * this, so rely on VBT.
+> -		 * Work around broken VBTs on SKUs known to have no port F.
+> +		 * On some ICL SKUs port F is not present, but broken VBTs mark
+> +		 * the port as present. Only try to initialize port F for the
+> +		 * SKUs that may actually have it.
+>  		 */
+> -		if (IS_ICL_WITH_PORT_F(dev_priv) &&
+> -		    intel_bios_is_port_present(dev_priv, PORT_F))
+> +		if (IS_ICL_WITH_PORT_F(dev_priv))
+>  			intel_ddi_init(dev_priv, PORT_F);
+>  
+>  		icl_dsi_init(dev_priv);
+> @@ -11964,10 +11964,8 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  		/*
+>  		 * On SKL we don't have a way to detect DDI-E so we rely on VBT.
+>  		 */
+> -		if (IS_GEN9_BC(dev_priv) &&
+> -		    intel_bios_is_port_present(dev_priv, PORT_E))
+> +		if (IS_GEN9_BC(dev_priv))
+>  			intel_ddi_init(dev_priv, PORT_E);
+> -
+>  	} else if (HAS_PCH_SPLIT(dev_priv)) {
+>  		int found;
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
