@@ -1,33 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2894F31BF7D
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 17:38:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A05BA31C0C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 18:38:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76EFD8901E;
-	Mon, 15 Feb 2021 16:38:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C561C6E15F;
+	Mon, 15 Feb 2021 17:38:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A674B8901E
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 16:38:00 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23873739-1500050 for multiple; Mon, 15 Feb 2021 16:36:00 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3988A6E048;
+ Mon, 15 Feb 2021 17:38:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 35FB6A47EA;
+ Mon, 15 Feb 2021 17:38:47 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <YCqaI95UW9L7Mg/L@mwanda>
-References: <YCqaI95UW9L7Mg/L@mwanda>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Dan Carpenter <dan.carpenter@oracle.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Date: Mon, 15 Feb 2021 16:35:59 +0000
-Message-ID: <161340695928.27357.16214431652573313934@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftest: Fix an error code in
- mock_context_barrier()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 15 Feb 2021 17:38:47 -0000
+Message-ID: <161341072721.26463.17874814437565802237@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210215155616.26330-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210215155616.26330-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Wrap_all_access_to_i915?=
+ =?utf-8?q?=5Fvma=2Enode=2Estart=7Csize?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,25 +39,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org, Thomas Hellström <thomas.hellstrom@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0815039025=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Dan Carpenter (2021-02-15 15:58:27)
-> If the igt_request_alloc() call fails then this should return a
-> negative error code, but currently it returns success.
-> 
-> Fixes: 85fddf0b0027 ("drm/i915: Introduce a context barrier callback")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+--===============0815039025==
+Content-Type: multipart/alternative;
+ boundary="===============7007440735874271122=="
 
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+--===============7007440735874271122==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Looks to be the only missing one in that file; smatch will no doubt find
-more.
--Chris
+== Series Details ==
+
+Series: series starting with [1/3] drm/i915: Wrap all access to i915_vma.node.start|size
+URL   : https://patchwork.freedesktop.org/series/87102/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9777 -> Patchwork_19681
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19681 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +34 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [PASS][4] -> [FAIL][5] ([i915#1161] / [i915#262])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-snb-2600:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_render_tiled_blits@basic:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1161]: https://gitlab.freedesktop.org/drm/intel/issues/1161
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Additional (1): fi-snb-2600 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-ehl-2 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9777 -> Patchwork_19681
+
+  CI-20190529: 20190529
+  CI_DRM_9777: 5fd19bfd239ec997f3bcac75d6af8c9340066b12 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19681: 9c3df91baf50b31410603beded019bc7ed2d37f3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9c3df91baf50 drm/i915: Refine VT-d scanout workaround
+0915f5c609a1 drm/i915: Introduce guard pages to i915_vma
+7c5ce7841d01 drm/i915: Wrap all access to i915_vma.node.start|size
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/index.html
+
+--===============7007440735874271122==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915: Wrap all access to i915_vma.node.start|size</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87102/">https://patchwork.freedesktop.org/series/87102/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9777 -&gt; Patchwork_19681</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19681 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +34 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1161">i915#1161</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_render_tiled_blits@basic:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19681/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 39)</h2>
+<p>Additional (1): fi-snb-2600 <br />
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-ehl-2 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9777 -&gt; Patchwork_19681</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9777: 5fd19bfd239ec997f3bcac75d6af8c9340066b12 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19681: 9c3df91baf50b31410603beded019bc7ed2d37f3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9c3df91baf50 drm/i915: Refine VT-d scanout workaround<br />
+0915f5c609a1 drm/i915: Introduce guard pages to i915_vma<br />
+7c5ce7841d01 drm/i915: Wrap all access to i915_vma.node.start|size</p>
+
+</body>
+</html>
+
+--===============7007440735874271122==--
+
+--===============0815039025==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0815039025==--
