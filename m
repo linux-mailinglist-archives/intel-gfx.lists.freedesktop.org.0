@@ -1,56 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 270DC31C125
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 19:07:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5F9731C134
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 19:13:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 405D089C93;
-	Mon, 15 Feb 2021 18:07:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 395E86E334;
+	Mon, 15 Feb 2021 18:13:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com
- [IPv6:2607:f8b0:4864:20::72c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AACA89C93
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 18:07:51 +0000 (UTC)
-Received: by mail-qk1-x72c.google.com with SMTP id h8so7161958qkk.6
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 10:07:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=1dShynOwpBLhTA2PPtO/qMOpTtdarYISwicXnE/Bl7A=;
- b=ZnSn6L4DBZGMGaMj1/ou5wOJbtt9rHmtmNztVe2d+LKLixYULnMQiMJtgaV/jjhA/z
- Oa0+2JmozKZm6Qm3FoAwIJ07coeWeF9AQLmBGN10Zg/Pt+YQeWoxRAnMgqa2cWfiZHys
- HdRmMav9o1Lnvhc4FEJNCKkKFJrDFCNcbKD4qwBre3hIbWpBsIfTNpfow27EFZoMXNxG
- yKymkY8CCTiuUfvV0+Wo3IpKj8kAa+/tpzGgNHYFqiRvIF7Q9xfIXGljvcl7BZCnVnZc
- 4j83R4bUVGAqRm/RB2UmFA8hggAf6sEA9J7PfR8JF6PsKllm0eSkkih4dpM/5vuLYx9D
- n/BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=1dShynOwpBLhTA2PPtO/qMOpTtdarYISwicXnE/Bl7A=;
- b=fxM27sMrdtjkwi3q/P/fPUrN5OXeypf7jNN81x2mX26ilZBrzNv9KLJ1z9Nc6KoYpA
- TiBdnM9mfJ+5JtGcdDBuOaLHmwU2S1IKBHlnQ33P3kMhC1m5953U6yxwB+JazFQqniZv
- s/Syv+mOMNRevylhruz8F3EL7bIft0Z0ah8Q1pZOsuHmBKSAyqmdjxlGap//ZNfhWDeI
- vC0aHDdX9kmFLk96C6XVrBojz7Vtzudfrktti5O2bbGDmbj05YyOHexAZ2bQiHDOySnG
- FubMHJ7li+M8nvBEaOrJjHvvSaWFAxZny+gIvQnFFOhMiEyQPiMxbmjKtqN9hrbxoejs
- 8CUg==
-X-Gm-Message-State: AOAM533MJL8StpI//QrRBDzKuFr8ij6vWleQVzurLR4sj5IixiG2crl1
- QEUx/GlyoAGB0BH3n7HX0jaCBQvtcB6nYHBlPR4=
-X-Google-Smtp-Source: ABdhPJzoKtn6a355RuFhSeSyrrP7lKcLIlPGaOsZ13FvhlOAeDo1GqRTnPQ1WcNpOC+QQmw2Mk1Y2TxsJKFo/FcFmHE=
-X-Received: by 2002:a05:620a:12f2:: with SMTP id
- f18mr16343661qkl.17.1613412470529; 
- Mon, 15 Feb 2021 10:07:50 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CDE1C6E0F3;
+ Mon, 15 Feb 2021 18:12:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C5B42A47E8;
+ Mon, 15 Feb 2021 18:12:59 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210215155616.26330-1-chris@chris-wilson.co.uk>
- <20210215155616.26330-3-chris@chris-wilson.co.uk>
-In-Reply-To: <20210215155616.26330-3-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 15 Feb 2021 18:07:24 +0000
-Message-ID: <CAM0jSHPm5gY1VTT256+59T0aTxNyF39qWmG1SoJPjRJCM0=Wkw@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Refine VT-d scanout workaround
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dan Carpenter" <dan.carpenter@oracle.com>
+Date: Mon, 15 Feb 2021 18:12:59 -0000
+Message-ID: <161341277978.26466.2550408676027056585@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <YCqaI95UW9L7Mg/L@mwanda>
+In-Reply-To: <YCqaI95UW9L7Mg/L@mwanda>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftest=3A_Fix_an_error_code_in_mock=5Fcontext=5Fbarrier?=
+ =?utf-8?b?KCk=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,40 +39,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1471935703=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAxNSBGZWIgMjAyMSBhdCAxNTo1NiwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13
-aWxzb24uY28udWs+IHdyb3RlOgo+Cj4gVlQtZCBtYXkgY2F1c2Ugb3ZlcmZldGNoIG9mIHRoZSBz
-Y2Fub3V0IFBURSwgYm90aCBiZWZvcmUgYW5kIGFmdGVyIHRoZQo+IHZtYSAoZGVwZW5kaW5nIG9u
-IHRoZSBzY2Fub3V0IG9yaWVudGF0aW9uKS4gYnNwZWMgcmVjb21tZW5kcyB0aGF0IHdlCj4gcHJv
-dmlkZSBhIHRpbGUtcm93IGluIGVpdGhlciBkaXJlY3Rpb25zLCBhbmQgc3VnZ2VzdHMgdXNpbmcg
-MTYwIFBURSwKPiB3YXJuaW5nIHRoYXQgdGhlIGFjY2Vzc2VzIHdpbGwgd3JhcCBhcm91bmQgdGhl
-IGVuZHMgb2YgdGhlIEdHVFQuCj4gQ3VycmVudGx5LCB3ZSBmaWxsIHRoZSBlbnRpcmUgR0dUVCB3
-aXRoIHNjcmF0Y2ggcGFnZXMgd2hlbiB1c2luZyBWVC1kIHRvCj4gYWx3YXlzIGVuc3VyZSB0aGVy
-ZSBhcmUgdmFsaWQgZW50cmllcyBhcm91bmQgZXZlcnkgdm1hLCBpbmNsdWRpbmcKPiBzY2Fub3V0
-LiBIb3dldmVyLCB3cml0aW5nIGV2ZXJ5IFBURSBpcyBzbG93IGFzIG9uIHJlY2VudCBkZXZpY2Vz
-IHdlCj4gcGVyZm9ybSA4TWlCIG9mIHVuY2FjaGVkIHdyaXRlcywgaW5jdXJyaW5nIGFuIGV4dHJh
-IDEwMG1zIGR1cmluZyByZXN1bWUuCj4KPiBJZiBpbnN0ZWFkIHdlIGZvY3VzIG9uIG9ubHkgcHV0
-dGluZyBndWFyZCBwYWdlcyBhcm91bmQgc2Nhbm91dCwgd2UgY2FuCj4gYXZvaWQgdG91Y2hpbmcg
-dGhlIHdob2xlIEdHVFQuIFRvIGF2b2lkIGhhdmluZyB0byBpbnRyb2R1Y2UgZXh0cmEgbm9kZXMK
-PiBhcm91bmQgZWFjaCBzY2Fub3V0IHZtYSwgd2UgYWRqdXN0IHRoZSBzY2Fub3V0IGRybV9tbV9u
-b2RlIHRvIGJlIHNtYWxsZXIKPiB0aGFuIHRoZSBhbGxvY2F0ZWQgc3BhY2UsIGFuZCBmaXh1cCB0
-aGUgZXh0cmEgUFRFIGR1cmluZyBkbWEgYmluZGluZy4KPgo+IHYyOiBNb3ZlIHRoZSBndWFyZCBm
-cm9tIG1vZGlmeWluZyBkcm1fbW1fbm9kZS5zdGFydCB3aGljaCBpcyBzdGlsbCB1c2VkCj4gYnkg
-dGhlIGRybV9tbSBpdHNlbGYsIGludG8gYW4gYWRqdXN0bWVudCBvZiBub2RlLnN0YXJ0IGF0IHRo
-ZSBwb2ludCBvZgo+IHVzZS4KPgo+IHYzOiBQYXNzIHRoZSByZXF1ZXN0ZWQgZ3VhcmQgcGFkZGlu
-ZyBmcm9tIHRoZSBjYWxsZXIsIHNvIHdlIGNhbiBkcm9wIHRoZQo+IFZULWQgdy9hIGtub3dsZWRn
-ZSBmcm9tIHRoZSBpOTE1X3ZtYSBhbGxvY2F0b3IuCj4KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBX
-aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2
-aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBDYzogTWF0dGhldyBBdWxkIDxtYXR0aGV3
-LmF1bGRAaW50ZWwuY29tPgo+IFJldmlld2VkLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVs
-ZEBpbnRlbC5jb20+ICMgdjIKCkxvb2tzIGdvb2QsClJldmlld2VkLWJ5OiBNYXR0aGV3IEF1bGQg
-PG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+--===============1471935703==
+Content-Type: multipart/alternative;
+ boundary="===============4616417174369978707=="
+
+--===============4616417174369978707==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/selftest: Fix an error code in mock_context_barrier()
+URL   : https://patchwork.freedesktop.org/series/87103/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9777 -> Patchwork_19682
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19682 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-7500u:       [PASS][1] -> [DMESG-WARN][2] ([i915#2605])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +34 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-snb-2600:        NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2295]: https://gitlab.freedesktop.org/drm/intel/issues/2295
+  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Additional (1): fi-snb-2600 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9777 -> Patchwork_19682
+
+  CI-20190529: 20190529
+  CI_DRM_9777: 5fd19bfd239ec997f3bcac75d6af8c9340066b12 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19682: fd24b8858481d689433b408aa6d0f270dec0e3b6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fd24b8858481 drm/i915/selftest: Fix an error code in mock_context_barrier()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/index.html
+
+--===============4616417174369978707==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/selftest: Fix an error code in mock_context_barrier()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87103/">https://patchwork.freedesktop.org/series/87103/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9777 -&gt; Patchwork_19682</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19682 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-kbl-7500u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +34 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@prime_self_import@basic-with_two_bos:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19682/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Additional (1): fi-snb-2600 <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9777 -&gt; Patchwork_19682</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9777: 5fd19bfd239ec997f3bcac75d6af8c9340066b12 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19682: fd24b8858481d689433b408aa6d0f270dec0e3b6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>fd24b8858481 drm/i915/selftest: Fix an error code in mock_context_barrier()</p>
+
+</body>
+</html>
+
+--===============4616417174369978707==--
+
+--===============1471935703==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1471935703==--
