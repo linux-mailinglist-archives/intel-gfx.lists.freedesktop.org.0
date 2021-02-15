@@ -2,31 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1194831C16C
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 19:21:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D8ED31C190
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 19:34:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9A1189F99;
-	Mon, 15 Feb 2021 18:21:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18A676E33F;
+	Mon, 15 Feb 2021 18:34:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 57CD7897F6;
- Mon, 15 Feb 2021 18:21:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 50673A8169;
- Mon, 15 Feb 2021 18:21:13 +0000 (UTC)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C0AA6E908;
+ Mon, 15 Feb 2021 18:34:19 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 0CFF6AD2B;
+ Mon, 15 Feb 2021 18:34:18 +0000 (UTC)
+To: lyude@redhat.com, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20210205234515.1216538-1-lyude@redhat.com>
+ <20210205234515.1216538-11-lyude@redhat.com>
+ <edfff017-ce20-86fb-19c7-46092d89b1e8@suse.de>
+ <055a9b6c92abb349127e48c02e12ad75a1df0211.camel@redhat.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <5a67ffa9-ad7f-3682-8d7d-a669e4d0d7c6@suse.de>
+Date: Mon, 15 Feb 2021 19:34:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
-Date: Mon, 15 Feb 2021 18:21:13 -0000
-Message-ID: <161341327329.26464.15843788251552232441@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
-In-Reply-To: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv1=2C1/3=5D_string=3A_Consolidate_yesno=28?=
- =?utf-8?q?=29_helpers_under_string=2Eh_hood?=
+In-Reply-To: <055a9b6c92abb349127e48c02e12ad75a1df0211.camel@redhat.com>
+Subject: Re: [Intel-gfx] [RFC v3 10/10] drm/dp: Extract i915's eDP backlight
+ code into DRM helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,1329 +43,1486 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1392645764=="
+Cc: greg.depoire@gmail.com, David Airlie <airlied@linux.ie>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>, Jani Nikula <jani.nikula@intel.com>,
+ Sean Paul <seanpaul@chromium.org>, Dave Airlie <airlied@redhat.com>
+Content-Type: multipart/mixed; boundary="===============2045320577=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1392645764==
-Content-Type: multipart/alternative;
- boundary="===============2223363429450691063=="
-
---===============2223363429450691063==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: series starting with [v1,1/3] string: Consolidate yesno() helpers under string.h hood
-URL   : https://patchwork.freedesktop.org/series/87096/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9776_full -> Patchwork_19680_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19680_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19680_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19680_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-wc:
-    - shard-tglb:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-tglb6/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-wc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-tglb6/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-wc.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19680_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_create@madvise:
-    - shard-glk:          [PASS][3] -> [DMESG-WARN][4] ([i915#118] / [i915#95])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-glk6/igt@gem_exec_create@madvise.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-glk3/igt@gem_exec_create@madvise.html
-
-  * igt@gem_exec_fair@basic-none@vcs1:
-    - shard-iclb:         NOTRUN -> [FAIL][5] ([i915#2842])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb4/igt@gem_exec_fair@basic-none@vcs1.html
-
-  * igt@gem_exec_fair@basic-pace-share@rcs0:
-    - shard-glk:          [PASS][6] -> [FAIL][7] ([i915#2842])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-glk5/igt@gem_exec_fair@basic-pace-share@rcs0.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-glk9/igt@gem_exec_fair@basic-pace-share@rcs0.html
-
-  * igt@gem_exec_reloc@basic-many-active@vcs1:
-    - shard-iclb:         NOTRUN -> [FAIL][8] ([i915#2389])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb4/igt@gem_exec_reloc@basic-many-active@vcs1.html
-
-  * igt@gem_softpin@noreloc-s3:
-    - shard-apl:          [PASS][9] -> [DMESG-WARN][10] ([i915#180]) +2 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl6/igt@gem_softpin@noreloc-s3.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl2/igt@gem_softpin@noreloc-s3.html
-
-  * igt@gem_userptr_blits@huge-split:
-    - shard-apl:          [PASS][11] -> [INCOMPLETE][12] ([i915#2502])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl4/igt@gem_userptr_blits@huge-split.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl6/igt@gem_userptr_blits@huge-split.html
-
-  * igt@gem_workarounds@suspend-resume-context:
-    - shard-skl:          [PASS][13] -> [INCOMPLETE][14] ([i915#198] / [i915#2295])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl6/igt@gem_workarounds@suspend-resume-context.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl10/igt@gem_workarounds@suspend-resume-context.html
-
-  * igt@gen3_mixed_blits:
-    - shard-kbl:          NOTRUN -> [SKIP][15] ([fdo#109271]) +17 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl4/igt@gen3_mixed_blits.html
-
-  * igt@gen7_exec_parse@cmd-crossing-page:
-    - shard-iclb:         NOTRUN -> [SKIP][16] ([fdo#109289])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@gen7_exec_parse@cmd-crossing-page.html
-
-  * igt@i915_pm_rpm@gem-execbuf-stress-pc8:
-    - shard-iclb:         NOTRUN -> [SKIP][17] ([fdo#109293] / [fdo#109506])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@i915_pm_rpm@gem-execbuf-stress-pc8.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - shard-hsw:          [PASS][18] -> [INCOMPLETE][19] ([i915#2782])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-hsw2/igt@i915_selftest@live@hangcheck.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-hsw2/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_big_fb@y-tiled-64bpp-rotate-270:
-    - shard-iclb:         NOTRUN -> [SKIP][20] ([fdo#110725] / [fdo#111614])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_big_fb@y-tiled-64bpp-rotate-270.html
-
-  * igt@kms_big_joiner@invalid-modeset:
-    - shard-apl:          NOTRUN -> [SKIP][21] ([fdo#109271] / [i915#2705])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl1/igt@kms_big_joiner@invalid-modeset.html
-
-  * igt@kms_chamelium@dp-hpd-enable-disable-mode:
-    - shard-skl:          NOTRUN -> [SKIP][22] ([fdo#109271] / [fdo#111827])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl4/igt@kms_chamelium@dp-hpd-enable-disable-mode.html
-
-  * igt@kms_color_chamelium@pipe-a-ctm-0-75:
-    - shard-kbl:          NOTRUN -> [SKIP][23] ([fdo#109271] / [fdo#111827]) +2 similar issues
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl4/igt@kms_color_chamelium@pipe-a-ctm-0-75.html
-
-  * igt@kms_color_chamelium@pipe-a-ctm-red-to-blue:
-    - shard-iclb:         NOTRUN -> [SKIP][24] ([fdo#109284] / [fdo#111827]) +2 similar issues
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_color_chamelium@pipe-a-ctm-red-to-blue.html
-
-  * igt@kms_color_chamelium@pipe-c-ctm-max:
-    - shard-apl:          NOTRUN -> [SKIP][25] ([fdo#109271] / [fdo#111827]) +3 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_color_chamelium@pipe-c-ctm-max.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-512x170-random:
-    - shard-iclb:         NOTRUN -> [SKIP][26] ([fdo#109278] / [fdo#109279]) +1 similar issue
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_cursor_crc@pipe-a-cursor-512x170-random.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding:
-    - shard-skl:          [PASS][27] -> [FAIL][28] ([i915#54]) +8 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl1/igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl7/igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding.html
-
-  * igt@kms_cursor_crc@pipe-d-cursor-256x85-onscreen:
-    - shard-iclb:         NOTRUN -> [SKIP][29] ([fdo#109278]) +2 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_cursor_crc@pipe-d-cursor-256x85-onscreen.html
-
-  * igt@kms_cursor_legacy@2x-long-cursor-vs-flip-legacy:
-    - shard-iclb:         NOTRUN -> [SKIP][30] ([fdo#109274] / [fdo#109278])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_cursor_legacy@2x-long-cursor-vs-flip-legacy.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-atomic:
-    - shard-skl:          NOTRUN -> [FAIL][31] ([i915#2346])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl3/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-atomic.html
-
-  * igt@kms_flip@2x-blocking-wf_vblank:
-    - shard-iclb:         NOTRUN -> [SKIP][32] ([fdo#109274]) +1 similar issue
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_flip@2x-blocking-wf_vblank.html
-
-  * igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@a-edp1:
-    - shard-skl:          [PASS][33] -> [DMESG-WARN][34] ([i915#1982])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl1/igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@a-edp1.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl5/igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@a-edp1.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1:
-    - shard-skl:          [PASS][35] -> [FAIL][36] ([i915#79])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl5/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl4/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1.html
-
-  * igt@kms_flip@flip-vs-suspend-interruptible@b-edp1:
-    - shard-skl:          [PASS][37] -> [INCOMPLETE][38] ([i915#198])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl6/igt@kms_flip@flip-vs-suspend-interruptible@b-edp1.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl8/igt@kms_flip@flip-vs-suspend-interruptible@b-edp1.html
-
-  * igt@kms_flip@plain-flip-fb-recreate-interruptible@c-edp1:
-    - shard-skl:          [PASS][39] -> [FAIL][40] ([i915#2122]) +1 similar issue
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl2/igt@kms_flip@plain-flip-fb-recreate-interruptible@c-edp1.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl7/igt@kms_flip@plain-flip-fb-recreate-interruptible@c-edp1.html
-
-  * igt@kms_flip@plain-flip-ts-check@a-hdmi-a1:
-    - shard-glk:          [PASS][41] -> [FAIL][42] ([i915#2122]) +1 similar issue
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-glk6/igt@kms_flip@plain-flip-ts-check@a-hdmi-a1.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-glk3/igt@kms_flip@plain-flip-ts-check@a-hdmi-a1.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile:
-    - shard-kbl:          NOTRUN -> [SKIP][43] ([fdo#109271] / [i915#2642])
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl4/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-gtt:
-    - shard-iclb:         NOTRUN -> [SKIP][44] ([fdo#109280]) +2 similar issues
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-gtt.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-blt:
-    - shard-skl:          NOTRUN -> [SKIP][45] ([fdo#109271]) +8 similar issues
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl9/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-blt.html
-
-  * igt@kms_frontbuffer_tracking@psr-rgb565-draw-pwrite:
-    - shard-apl:          NOTRUN -> [SKIP][46] ([fdo#109271]) +36 similar issues
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_frontbuffer_tracking@psr-rgb565-draw-pwrite.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-d-frame-sequence:
-    - shard-apl:          NOTRUN -> [SKIP][47] ([fdo#109271] / [i915#533])
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_pipe_crc_basic@read-crc-pipe-d-frame-sequence.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
-    - shard-skl:          [PASS][48] -> [FAIL][49] ([fdo#108145] / [i915#265])
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl4/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-alpha-7efc:
-    - shard-apl:          NOTRUN -> [FAIL][50] ([fdo#108145] / [i915#265])
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_plane_alpha_blend@pipe-c-alpha-7efc.html
-
-  * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1:
-    - shard-iclb:         NOTRUN -> [SKIP][51] ([i915#658])
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1.html
-
-  * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1:
-    - shard-apl:          NOTRUN -> [SKIP][52] ([fdo#109271] / [i915#658])
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1.html
-
-  * igt@kms_psr@psr2_primary_page_flip:
-    - shard-iclb:         [PASS][53] -> [SKIP][54] ([fdo#109441]) +2 similar issues
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb2/igt@kms_psr@psr2_primary_page_flip.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb6/igt@kms_psr@psr2_primary_page_flip.html
-
-  * igt@nouveau_crc@pipe-b-ctx-flip-detection:
-    - shard-iclb:         NOTRUN -> [SKIP][55] ([i915#2530])
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@nouveau_crc@pipe-b-ctx-flip-detection.html
-
-  * igt@perf@polling-parameterized:
-    - shard-glk:          [PASS][56] -> [FAIL][57] ([i915#1542])
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-glk9/igt@perf@polling-parameterized.html
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-glk6/igt@perf@polling-parameterized.html
-
-  * igt@prime_nv_api@nv_i915_import_twice_check_flink_name:
-    - shard-iclb:         NOTRUN -> [SKIP][58] ([fdo#109291])
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@prime_nv_api@nv_i915_import_twice_check_flink_name.html
-
-  * igt@sysfs_clients@recycle:
-    - shard-hsw:          [PASS][59] -> [FAIL][60] ([i915#3028])
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-hsw5/igt@sysfs_clients@recycle.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-hsw2/igt@sysfs_clients@recycle.html
-
-  * igt@sysfs_clients@sema-25@vecs0:
-    - shard-skl:          [PASS][61] -> [SKIP][62] ([fdo#109271])
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl9/igt@sysfs_clients@sema-25@vecs0.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl4/igt@sysfs_clients@sema-25@vecs0.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_persistence@close-replace-race:
-    - shard-kbl:          [TIMEOUT][63] ([i915#2918]) -> [PASS][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl3/igt@gem_ctx_persistence@close-replace-race.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl2/igt@gem_ctx_persistence@close-replace-race.html
-
-  * igt@gem_eio@unwedge-stress:
-    - shard-iclb:         [TIMEOUT][65] ([i915#1037] / [i915#2481]) -> [PASS][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb6/igt@gem_eio@unwedge-stress.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb8/igt@gem_eio@unwedge-stress.html
-
-  * igt@gem_exec_fair@basic-pace-share@rcs0:
-    - shard-iclb:         [FAIL][67] ([i915#2842]) -> [PASS][68]
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb6/igt@gem_exec_fair@basic-pace-share@rcs0.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb8/igt@gem_exec_fair@basic-pace-share@rcs0.html
-
-  * igt@gem_exec_fair@basic-pace@vcs0:
-    - shard-kbl:          [FAIL][69] ([i915#2842]) -> [PASS][70]
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl1/igt@gem_exec_fair@basic-pace@vcs0.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl6/igt@gem_exec_fair@basic-pace@vcs0.html
-
-  * igt@gem_exec_fair@basic-pace@vecs0:
-    - shard-tglb:         [FAIL][71] ([i915#2842]) -> [PASS][72]
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-tglb1/igt@gem_exec_fair@basic-pace@vecs0.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-tglb8/igt@gem_exec_fair@basic-pace@vecs0.html
-
-  * igt@gem_exec_fair@basic-throttle@rcs0:
-    - shard-glk:          [FAIL][73] ([i915#2842]) -> [PASS][74] +2 similar issues
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-glk1/igt@gem_exec_fair@basic-throttle@rcs0.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-glk1/igt@gem_exec_fair@basic-throttle@rcs0.html
-    - shard-iclb:         [FAIL][75] ([i915#2849]) -> [PASS][76]
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb2/igt@gem_exec_fair@basic-throttle@rcs0.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb4/igt@gem_exec_fair@basic-throttle@rcs0.html
-
-  * igt@gem_exec_reloc@basic-many-active@rcs0:
-    - shard-glk:          [FAIL][77] ([i915#2389]) -> [PASS][78]
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-glk2/igt@gem_exec_reloc@basic-many-active@rcs0.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-glk6/igt@gem_exec_reloc@basic-many-active@rcs0.html
-
-  * igt@gem_exec_schedule@u-fairslice-all:
-    - shard-iclb:         [DMESG-WARN][79] ([i915#2803]) -> [PASS][80]
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb4/igt@gem_exec_schedule@u-fairslice-all.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@gem_exec_schedule@u-fairslice-all.html
-
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-hsw:          [WARN][81] ([i915#1519]) -> [PASS][82] +1 similar issue
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-hsw5/igt@i915_pm_rc6_residency@rc6-idle.html
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-hsw4/igt@i915_pm_rc6_residency@rc6-idle.html
-
-  * igt@kms_async_flips@test-time-stamp:
-    - shard-tglb:         [FAIL][83] ([i915#2574]) -> [PASS][84]
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-tglb6/igt@kms_async_flips@test-time-stamp.html
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-tglb2/igt@kms_async_flips@test-time-stamp.html
-
-  * igt@kms_cursor_crc@pipe-b-cursor-128x128-random:
-    - shard-skl:          [FAIL][85] ([i915#54]) -> [PASS][86] +8 similar issues
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl1/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl7/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic:
-    - shard-tglb:         [FAIL][87] ([i915#2346]) -> [PASS][88]
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-tglb3/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-tglb2/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legacy:
-    - shard-skl:          [FAIL][89] ([i915#2346]) -> [PASS][90]
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl1/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legacy.html
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl7/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legacy.html
-
-  * igt@kms_fbcon_fbt@fbc-suspend:
-    - shard-kbl:          [INCOMPLETE][91] ([i915#155] / [i915#180] / [i915#636]) -> [PASS][92]
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl3/igt@kms_fbcon_fbt@fbc-suspend.html
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl4/igt@kms_fbcon_fbt@fbc-suspend.html
-
-  * igt@kms_flip@dpms-off-confusion-interruptible@a-edp1:
-    - shard-skl:          [DMESG-WARN][93] ([i915#1982]) -> [PASS][94]
-   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl9/igt@kms_flip@dpms-off-confusion-interruptible@a-edp1.html
-   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl4/igt@kms_flip@dpms-off-confusion-interruptible@a-edp1.html
-
-  * igt@kms_flip@flip-vs-absolute-wf_vblank@c-edp1:
-    - shard-skl:          [FAIL][95] ([i915#2122]) -> [PASS][96]
-   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl3/igt@kms_flip@flip-vs-absolute-wf_vblank@c-edp1.html
-   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl3/igt@kms_flip@flip-vs-absolute-wf_vblank@c-edp1.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@a-edp1:
-    - shard-tglb:         [FAIL][97] ([i915#2598]) -> [PASS][98]
-   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-tglb7/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-tglb3/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
-
-  * igt@kms_flip@flip-vs-suspend-interruptible@a-dp1:
-    - shard-apl:          [DMESG-WARN][99] ([i915#180]) -> [PASS][100] +1 similar issue
-   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl4/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [FAIL][101] ([i915#1188]) -> [PASS][102]
-   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl7/igt@kms_hdr@bpc-switch.html
-   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl5/igt@kms_hdr@bpc-switch.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [FAIL][103] ([fdo#108145] / [i915#265]) -> [PASS][104] +1 similar issue
-   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_psr@psr2_sprite_mmap_gtt:
-    - shard-iclb:         [SKIP][105] ([fdo#109441]) -> [PASS][106] +2 similar issues
-   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb6/igt@kms_psr@psr2_sprite_mmap_gtt.html
-   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_gtt.html
-
-  * igt@perf@blocking:
-    - shard-skl:          [FAIL][107] ([i915#1542]) -> [PASS][108]
-   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl9/igt@perf@blocking.html
-   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl7/igt@perf@blocking.html
-
-  * {igt@sysfs_clients@recycle-many}:
-    - shard-skl:          [FAIL][109] ([i915#3028]) -> [PASS][110]
-   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-skl2/igt@sysfs_clients@recycle-many.html
-   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl7/igt@sysfs_clients@recycle-many.html
-    - shard-tglb:         [FAIL][111] ([i915#3028]) -> [PASS][112]
-   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-tglb2/igt@sysfs_clients@recycle-many.html
-   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-tglb3/igt@sysfs_clients@recycle-many.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rc6_residency@rc6-fence:
-    - shard-iclb:         [WARN][113] ([i915#1804] / [i915#2684]) -> [WARN][114] ([i915#2684])
-   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb6/igt@i915_pm_rc6_residency@rc6-fence.html
-   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb2/igt@i915_pm_rc6_residency@rc6-fence.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - shard-tglb:         [DMESG-FAIL][115] ([i915#1759] / [i915#2291]) -> [DMESG-FAIL][116] ([i915#2291])
-   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-tglb5/igt@i915_selftest@live@gt_pm.html
-   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-tglb7/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_dp_dsc@basic-dsc-enable-edp:
-    - shard-iclb:         [DMESG-WARN][117] ([i915#1226]) -> [SKIP][118] ([fdo#109349])
-   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
-   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb6/igt@kms_dp_dsc@basic-dsc-enable-edp.html
-
-  * igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-4:
-    - shard-iclb:         [SKIP][119] ([i915#2920]) -> [SKIP][120] ([i915#658]) +1 similar issue
-   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb2/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-4.html
-   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb6/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-4.html
-
-  * igt@kms_psr2_sf@plane-move-sf-dmg-area-3:
-    - shard-iclb:         [SKIP][121] ([i915#658]) -> [SKIP][122] ([i915#2920])
-   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb6/igt@kms_psr2_sf@plane-move-sf-dmg-area-3.html
-   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb2/igt@kms_psr2_sf@plane-move-sf-dmg-area-3.html
-
-  * igt@runner@aborted:
-    - shard-kbl:          ([FAIL][123], [FAIL][124], [FAIL][125], [FAIL][126], [FAIL][127]) ([i915#2295] / [i915#3002] / [i915#92]) -> ([FAIL][128], [FAIL][129], [FAIL][130]) ([i915#2295] / [i915#3002])
-   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl3/igt@runner@aborted.html
-   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl3/igt@runner@aborted.html
-   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl3/igt@runner@aborted.html
-   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl4/igt@runner@aborted.html
-   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl1/igt@runner@aborted.html
-   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl2/igt@runner@aborted.html
-   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl4/igt@runner@aborted.html
-   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl2/igt@runner@aborted.html
-    - shard-iclb:         ([FAIL][131], [FAIL][132], [FAIL][133], [FAIL][134]) ([i915#2295] / [i915#2426] / [i915#2724] / [i915#3002]) -> ([FAIL][135], [FAIL][136], [FAIL][137]) ([i915#2295] / [i915#2724] / [i915#3002])
-   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb1/igt@runner@aborted.html
-   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb7/igt@runner@aborted.html
-   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb3/igt@runner@aborted.html
-   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb4/igt@runner@aborted.html
-   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb1/igt@runner@aborted.html
-   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb5/igt@runner@aborted.html
-   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb5/igt@runner@aborted.html
-    - shard-apl:          ([FAIL][138], [FAIL][139], [FAIL][140], [FAIL][141], [FAIL][142], [FAIL][143]) ([i915#1610] / [i915#2292] / [i915#2295] / [i915#3002]) -> ([FAIL][144], [FAIL][145], [FAIL][146], [FAIL][147], [FAIL][148]) ([fdo#109271] / [i915#1814] / [i915#2295] / [i915#3002])
-   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl2/igt@runner@aborted.html
-   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl7/igt@runner@aborted.html
-   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl3/igt@runner@aborted.html
-   [141]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl4/igt@runner@aborted.html
-   [142]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl4/igt@runner@aborted.html
-   [143]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl7/igt@runner@aborted.html
-   [144]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl3/igt@runner@aborted.html
-   [145]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl6/igt@runner@aborted.html
-   [146]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl2/igt@runner@aborted.html
-   [147]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl2/igt@runner@aborted.html
-   [148]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl3/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109274]: https://bugs.freedesktop.org/show_bug.cgi?id=109274
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109279]: https://bugs.freedesktop.org/show_bug.cgi?id=109279
-  [fdo#109280]: https://bugs.freedesktop.org/show_bug.cgi?id=109280
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
-  [fdo#109291]: https://bugs.freedesktop.org/show_bug.cgi?id=109291
-  [fdo#109293]: https://bugs.freedesktop.org/show_bug.cgi?id=109293
-  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109506]: https://bugs.freedesktop.org/show_bug.cgi?id=109506
-  [fdo#110725]: https://bugs.freedesktop.org/show_bug.cgi?id=110725
-  [fdo#111614]: https://bugs.freedesktop.org/show_bug.cgi?id=111614
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1037]: https://gitlab.freedesktop.org/drm/intel/issues/1037
-  [i915#118]: https://gitlab.freedesktop.org/drm/intel/issues/118
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1226]: https://gitlab.freedesktop.org/drm/intel/issues/1226
-  [i915#1519]: https://gitlab.freedesktop.org/drm/intel/issues/1519
-  [i915#1542]: https://gitlab.freedesktop.org/drm/intel/issues/1542
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#1759]: https://gitlab.freedesktop.o
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/index.html
-
---===============2223363429450691063==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============2045320577==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="WljjKDOOHX1q2wVRRvyv3yldHk7GaVSXm"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--WljjKDOOHX1q2wVRRvyv3yldHk7GaVSXm
+Content-Type: multipart/mixed; boundary="emWjQ3rBGNgK7wliVmGNAiffMImS2HWE6";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: lyude@redhat.com, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: greg.depoire@gmail.com, Jani Nikula <jani.nikula@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+ Manasi Navare <manasi.d.navare@intel.com>, David Airlie <airlied@linux.ie>,
+ Uma Shankar <uma.shankar@intel.com>, Sean Paul <seanpaul@chromium.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Dave Airlie <airlied@redhat.com>
+Message-ID: <5a67ffa9-ad7f-3682-8d7d-a669e4d0d7c6@suse.de>
+Subject: Re: [RFC v3 10/10] drm/dp: Extract i915's eDP backlight code into DRM
+ helpers
+References: <20210205234515.1216538-1-lyude@redhat.com>
+ <20210205234515.1216538-11-lyude@redhat.com>
+ <edfff017-ce20-86fb-19c7-46092d89b1e8@suse.de>
+ <055a9b6c92abb349127e48c02e12ad75a1df0211.camel@redhat.com>
+In-Reply-To: <055a9b6c92abb349127e48c02e12ad75a1df0211.camel@redhat.com>
+
+--emWjQ3rBGNgK7wliVmGNAiffMImS2HWE6
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
+Hi
 
-<!DOCTYPE html>
-<html xmlns=3D"http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id=3D"css-table-select" type=3D"text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Am 09.02.21 um 00:03 schrieb Lyude Paul:
+>>
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0buf[0] =3D level;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_write(=
+aux, DP_EDP_BACKLIGHT_BRIGHTNESS_MSB, buf,
+>>> sizeof(buf));
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D sizeof(buf)) =
+{
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_ERROR("%s: Failed to write aux backlight level: =
+%d\n",
+>>> aux->name, ret);
+>>
+>> Since you're adding this code, you should probably convert to drm_err(=
+)
+>> helpers as well. Here and elsewhere.
+>=20
+> this is next up on my todo list JFYI-I don't do it right now because th=
+ere isn't
+> actually any backpointer to the drm driver (and you can't just use the =
+parent of
+> the aux device, since that technically doesn't need to be the drm drive=
+r).
+>=20
+> I'd add it in this series, but that's going to involve updating functio=
+ns across
+> the tree like drm_dp_aux_init() so I'd like to do it in a different pat=
+ch series
+
+Ok, sure. Makes sense.
+
+Best regards
+Thomas
+
+>=20
+>>
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret < 0 ? ret : -EIO;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +}
+>>> +EXPORT_SYMBOL(drm_edp_backlight_set_level);
+>>> +
+>>> +static int
+>>> +drm_edp_backlight_set_enable(struct drm_dp_aux *aux, const struct
+>>> drm_edp_backlight_info *bl,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 bool enable)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 buf;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* The panel uses somethin=
+g other then DPCD for enabling it's
+>>> backlight */
+>>
+>> 'its'
+>>
+>> Best regards
+>> Thomas
+>>
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!bl->aux_enable)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+aux, DP_EDP_DISPLAY_CONTROL_REGISTER, &buf);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_ERROR("%s: Failed to read eDP display control re=
+gister:
+>>> %d\n", aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret < 0 ? ret : -EIO;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (enable)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0buf |=3D DP_EDP_BACKLIGHT_ENABLE;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0else
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0buf &=3D ~DP_EDP_BACKLIGHT_ENABLE;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb=
+(aux, DP_EDP_DISPLAY_CONTROL_REGISTER, buf);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_ERROR("%s: Failed to write eDP display control r=
+egister:
+>>> %d\n", aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret < 0 ? ret : -EIO;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +}
+>>> +
+>>> +/**
+>>> + * drm_edp_backlight_enable() - Enable an eDP panel's backlight usin=
+g DPCD
+>>> + * @aux: The DP AUX channel to use
+>>> + * @bl: Backlight capability info from drm_edp_backlight_init()
+>>> + * @level: The initial backlight level to set via AUX, if there is o=
+ne
+>>> + *
+>>> + * This function handles enabling DPCD backlight controls on a panel=
+ over
+>>> DPCD, while additionally
+>>> + * restoring any important backlight state such as the given backlig=
+ht
+>>> level, the brightness byte
+>>> + * count, backlight frequency, etc.
+>>> + *
+>>> + * Note that certain panels, while supporting brightness level contr=
+ols
+>>> over DPCD, may not support
+>>> + * having their backlights enabled via the standard
+>>> %DP_EDP_DISPLAY_CONTROL_REGISTER. On such panels
+>>> + * &drm_edp_backlight_info.aux_enable will be set to %false, this fu=
+nction
+>>> will skip the step of
+>>> + * programming the %DP_EDP_DISPLAY_CONTROL_REGISTER, and the driver =
+must
+>>> perform the required
+>>> + * implementation specific step for enabling the backlight after cal=
+ling
+>>> this function.
+>>> + *
+>>> + * Returns: %0 on success, negative error code on failure.
+>>> + */
+>>> +int drm_edp_backlight_enable(struct drm_dp_aux *aux, const struct
+>>> drm_edp_backlight_info *bl,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 const u16 level)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 dpcd_buf, new_dpcd_buf;=
+
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
+>>> &dpcd_buf);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Failed to read backlight mode: %d=
+\n",
+>>> aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret < 0 ? ret : -EIO;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0new_dpcd_buf =3D dpcd_buf;=
+
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if ((dpcd_buf & DP_EDP_BAC=
+KLIGHT_CONTROL_MODE_MASK) !=3D
+>>> DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0new_dpcd_buf &=3D ~DP_EDP_BACKLIGHT_CONTROL_MODE_MAS=
+K;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0new_dpcd_buf |=3D DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD=
+;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb(aux, DP_EDP_PWMGEN_BIT_CO=
+UNT, bl-
+>>>> pwmgen_bit_count);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DRM_=
+DEBUG_KMS("%s: Failed to write aux pwmgen bit
+>>> count: %d\n",
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (bl->pwm_freq_pre_divid=
+er) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb(aux, DP_EDP_BACKLIGHT_FRE=
+Q_SET, bl-
+>>>> pwm_freq_pre_divider);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DRM_=
+DEBUG_KMS("%s: Failed to write aux backlight
+>>> frequency: %d\n",
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0else
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0new_=
+dpcd_buf |=3D
+>>> DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (new_dpcd_buf !=3D dpcd=
+_buf) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb(aux,
+>>> DP_EDP_BACKLIGHT_MODE_SET_REGISTER, new_dpcd_buf);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DRM_=
+DEBUG_KMS("%s: Failed to write aux backlight
+>>> mode: %d\n",
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0retu=
+rn ret < 0 ? ret : -EIO;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0}
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_edp_backlight_=
+set_level(aux, bl, level);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret < 0)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_edp_backlight_=
+set_enable(aux, bl, true);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret < 0)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +}
+>>> +EXPORT_SYMBOL(drm_edp_backlight_enable);
+>>> +
+>>> +/**
+>>> + * drm_edp_backlight_disable() - Disable an eDP backlight using DPCD=
+, if
+>>> supported
+>>> + * @aux: The DP AUX channel to use
+>>> + * @bl: Backlight capability info from drm_edp_backlight_init()
+>>> + *
+>>> + * This function handles disabling DPCD backlight controls on a pane=
+l over
+>>> AUX. Note that some
+>>> + * panels have backlights that are enabled/disabled by other means, =
+despite
+>>> having their brightness
+>>> + * values controlled through DPCD. On such panels
+>>> &drm_edp_backlight_info.aux_enable will be set to
+>>> + * %false, this function will become a no-op (and we will skip updat=
+ing
+>>> + * %DP_EDP_DISPLAY_CONTROL_REGISTER), and the driver must take care =
+to
+>>> perform it's own
+>>> + * implementation specific step for disabling the backlight.
+>>> + *
+>>> + * Returns: %0 on success or no-op, negative error code on failure.
+>>> + */
+>>> +int drm_edp_backlight_disable(struct drm_dp_aux *aux, const struct
+>>> drm_edp_backlight_info *bl)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_edp_backlight_=
+set_enable(aux, bl, false);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret < 0)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +}
+>>> +EXPORT_SYMBOL(drm_edp_backlight_disable);
+>>> +
+>>> +static inline int
+>>> +drm_edp_backlight_probe_max(struct drm_dp_aux *aux, struct
+>>> drm_edp_backlight_info *bl,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 u16 driver_pwm_freq_hz, const u8
+>>> edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE])
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int fxp, fxp_min, fxp_max,=
+ fxp_actual, f =3D 1;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 pn, pn_min, pn_max;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+aux, DP_EDP_PWMGEN_BIT_COUNT, &pn);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Failed to read pwmgen bit count c=
+ap:
+>>> %d\n", aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return -ENODEV;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pn &=3D DP_EDP_PWMGEN_BIT_=
+COUNT_MASK;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bl->max =3D (1 << pn) - 1;=
+
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!driver_pwm_freq_hz)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Set PWM Frequency divid=
+er to match desired frequency provided by
+>>> the driver.
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * The PWM Frequency is ca=
+lculated as 27Mhz / (F x P).
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * - Where F =3D PWM Frequ=
+ency Pre-Divider value programmed by field
+>>> 7:0 of the
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 EDP_BACKLIGHT_FREQ_SET r=
+egister (DPCD Address 00728h)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * - Where P =3D 2^Pn, whe=
+re Pn is the value programmed by field 4:0
+>>> of the
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 EDP_PWMGEN_BIT_COUNT reg=
+ister (DPCD Address 00724h)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Find desired value of (=
+F x P)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Note that, if F x P is =
+out of supported range, the maximum value
+>>> or minimum value will
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * applied automatically. =
+So no need to check that.
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fxp =3D DIV_ROUND_CLOSEST(=
+1000 * DP_EDP_BACKLIGHT_FREQ_BASE_KHZ,
+>>> driver_pwm_freq_hz);
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Use highest possible va=
+lue of Pn for more granularity of
+>>> brightness adjustment while
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * satifying the condition=
+s below.
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * - Pn is in the range of=
+ Pn_min and Pn_max
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * - F is in the range of =
+1 and 255
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * - FxP is within 25% of =
+desired value.
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *=C2=A0=C2=A0 Note: 25% i=
+s arbitrary value and may need some tweak.
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+aux, DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN,
+>>> &pn_min);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Failed to read pwmgen bit count c=
+ap min:
+>>> %d\n", aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+aux, DP_EDP_PWMGEN_BIT_COUNT_CAP_MAX,
+>>> &pn_max);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Failed to read pwmgen bit count c=
+ap max:
+>>> %d\n", aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pn_min &=3D DP_EDP_PWMGEN_=
+BIT_COUNT_MASK;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pn_max &=3D DP_EDP_PWMGEN_=
+BIT_COUNT_MASK;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Ensure frequency is wit=
+hin 25% of desired value */
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fxp_min =3D DIV_ROUND_CLOS=
+EST(fxp * 3, 4);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fxp_max =3D DIV_ROUND_CLOS=
+EST(fxp * 5, 4);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (fxp_min < (1 << pn_min=
+) || (255 << pn_max) < fxp_max) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Driver defined backlight frequenc=
+y (%d)
+>>> out of range\n",
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 aux->name, driver_pwm_freq_hz);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0for (pn =3D pn_max; pn >=3D=
+ pn_min; pn--) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0f =3D clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255)=
+;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0fxp_actual =3D f << pn;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (fxp_min <=3D fxp_actual && fxp_actual <=3D fxp_m=
+ax)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0brea=
+k;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb=
+(aux, DP_EDP_PWMGEN_BIT_COUNT, pn);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Failed to write aux pwmgen bit co=
+unt:
+>>> %d\n", aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bl->pwmgen_bit_count =3D p=
+n;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bl->max =3D (1 << pn) - 1;=
+
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (edp_dpcd[2] & DP_EDP_B=
+ACKLIGHT_FREQ_AUX_SET_CAP) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0bl->pwm_freq_pre_divider =3D f;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Using backlight frequency from dr=
+iver
+>>> (%dHz)\n",
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 aux->name, driver_pwm_freq_hz);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +}
+>>> +
+>>> +static inline int
+>>> +drm_edp_backlight_probe_level(struct drm_dp_aux *aux, struct
+>>> drm_edp_backlight_info *bl,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 u8 *current_mode)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 buf[2];
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 mode_reg;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+aux, DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
+>>> &mode_reg);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Failed to read backlight mode: %d=
+\n",
+>>> aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret < 0 ? ret : -EIO;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0*current_mode =3D (mode_re=
+g & DP_EDP_BACKLIGHT_CONTROL_MODE_MASK);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (*current_mode =3D=3D D=
+P_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0int size =3D 1 + bl->lsb_reg_used;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_read(aux, DP_EDP_BACKLIGHT_BRIGH=
+TNESS_MSB,
+>>> buf, size);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (ret !=3D size) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DRM_=
+DEBUG_KMS("%s: Failed to read backlight level:
+>>> %d\n", aux->name, ret);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0retu=
+rn ret < 0 ? ret : -EIO;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (bl->lsb_reg_used)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0retu=
+rn (buf[0] << 8) | buf[1];
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0else
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0retu=
+rn buf[0];
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * If we're not in DPCD co=
+ntrol mode yet, the programmed brightness
+>>> value is meaningless and
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * the driver should assum=
+e max brightness
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return bl->max;
+>>> +}
+>>> +
+>>> +/**
+>>> + * drm_edp_backlight_init() - Probe a display panel's TCON using the=
+
+>>> standard VESA eDP backlight
+>>> + * interface.
+>>> + * @aux: The DP aux device to use for probing
+>>> + * @bl: The &drm_edp_backlight_info struct to fill out with informat=
+ion on
+>>> the backlight
+>>> + * @driver_pwm_freq_hz: Optional PWM frequency from the driver in hz=
+
+>>> + * @edp_dpcd: A cached copy of the eDP DPCD
+>>> + * @current_level: Where to store the probed brightness level
+>>> + * @current_mode: Where to store the currently set backlight control=
+ mode
+>>> + *
+>>> + * Initializes a &drm_edp_backlight_info struct by probing @aux for =
+it's
+>>> backlight capabilities,
+>>> + * along with also probing the current and maximum supported brightn=
+ess
+>>> levels.
+>>> + *
+>>> + * If @driver_pwm_freq_hz is non-zero, this will be used as the back=
+light
+>>> frequency. Otherwise, the
+>>> + * default frequency from the panel is used.
+>>> + *
+>>> + * Returns: %0 on success, negative error code on failure.
+>>> + */
+>>> +int
+>>> +drm_edp_backlight_init(struct drm_dp_aux *aux, struct
+>>> drm_edp_backlight_info *bl,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u16 driver_pwm_=
+freq_hz, const u8
+>>> edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE],
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u16 *current_le=
+vel, u8 *current_mode)
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (edp_dpcd[1] & DP_EDP_B=
+ACKLIGHT_AUX_ENABLE_CAP)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0bl->aux_enable =3D true;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (edp_dpcd[2] & DP_EDP_B=
+ACKLIGHT_BRIGHTNESS_BYTE_COUNT)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0bl->lsb_reg_used =3D true;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_edp_backlight_=
+probe_max(aux, bl, driver_pwm_freq_hz,
+>>> edp_dpcd);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret < 0)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_edp_backlight_=
+probe_level(aux, bl, current_mode);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret < 0)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0*current_level =3D ret;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Found b=
+acklight level=3D%d/%d
+>>> pwm_freq_pre_divider=3D%d mode=3D%x\n",
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 aux->name, *current_l=
+evel, bl->max, bl-
+>>>> pwm_freq_pre_divider, *current_mode);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DRM_DEBUG_KMS("%s: Backlig=
+ht caps: pwmgen_bit_count=3D%d
+>>> lsb_reg_used=3D%d aux_enable=3D%d\n",
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 aux->name, bl->pwmgen=
+_bit_count, bl->lsb_reg_used, bl-
+>>>> aux_enable);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> +}
+>>> +EXPORT_SYMBOL(drm_edp_backlight_init);
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> index 16824eb3ef93..03051ab75d30 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> @@ -263,10 +263,7 @@ struct intel_panel {
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0/* DPCD backlight */
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0union {
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+struct {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 pwmgen_bit_count;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 pwm_freq_pre_divider;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bool lsb_reg_used;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bool aux_enable;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_edp_backlight_info i=
+nfo;
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+} vesa;
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+struct {
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bool sdr_uses_aux;
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>> index 813f6c553156..286eb337448e 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>> @@ -270,114 +270,19 @@ intel_dp_aux_hdr_setup_backlight(struct
+>>> intel_connector *connector, enum pipe pi
+>>>  =C2=A0 }
+>>>   =20
+>>>  =C2=A0 /* VESA backlight callbacks */
+>>> -static bool intel_dp_aux_vesa_backlight_dpcd_mode(struct intel_conne=
+ctor
+>>> *connector)
+>>> -{
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *intel_dp =
+=3D intel_attached_dp(connector);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private *i=
+915 =3D dp_to_i915(intel_dp);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 mode_reg;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+&intel_dp->aux,
+>>> DP_EDP_BACKLIGHT_MODE_SET_REGISTER, &mode_reg);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to read backlight mo=
+de:
+>>> %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return false;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return (mode_reg & DP_EDP_=
+BACKLIGHT_CONTROL_MODE_MASK) =3D=3D
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
+>>> -}
+>>> -
+>>> -/*
+>>> - * Read the current backlight value from DPCD register(s) based
+>>> - * on if 8-bit(MSB) or 16-bit(MSB and LSB) values are supported
+>>> - */
+>>>  =C2=A0 static u32 intel_dp_aux_vesa_get_backlight(struct intel_conne=
+ctor
+>>> *connector, enum pipe unused)
+>>>  =C2=A0 {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *intel_dp =
+=3D intel_attached_dp(connector);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private *i=
+915 =3D dp_to_i915(intel_dp);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 read_val[2] =3D { 0x0 }=
+;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u16 level =3D 0;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * If we're not in DPCD co=
+ntrol mode yet, the programmed brightness
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * value is meaningless an=
+d we should assume max brightness
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!intel_dp_aux_vesa_bac=
+klight_dpcd_mode(connector))
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return connector->panel.backlight.max;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_read(&=
+intel_dp->aux,
+>>> DP_EDP_BACKLIGHT_BRIGHTNESS_MSB, &read_val,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sizeof(read_val));
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D sizeof(read_v=
+al)) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to read brightness l=
+evel:
+>>> %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (connector->panel.backl=
+ight.edp.vesa.lsb_reg_used)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0level =3D (read_val[0] << 8 | read_val[1]);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0else
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0level =3D read_val[0];
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return level;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return connector->panel.ba=
+cklight.level;
+>>>  =C2=A0 }
+>>>   =20
+>>> -/*
+>>> - * Sends the current backlight level over the aux channel, checking =
+if its
+>>> using
+>>> - * 8-bit or 16 bit value (MSB and LSB)
+>>> - */
+>>>  =C2=A0 static void
+>>> -intel_dp_aux_vesa_set_backlight(const struct drm_connector_state
+>>> *conn_state,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 level)
+>>> +intel_dp_aux_vesa_set_backlight(const struct drm_connector_state
+>>> *conn_state, u32 level)
+>>>  =C2=A0 {
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_connect=
+or *connector =3D to_intel_connector(conn_state-
+>>>> connector);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *intel_dp =
+=3D intel_attached_dp(connector);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private *i=
+915 =3D dp_to_i915(intel_dp);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 vals[2] =3D { 0x0 };
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Write the MSB and/or LS=
+B */
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (connector->panel.backl=
+ight.edp.vesa.lsb_reg_used) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0vals[0] =3D (level & 0xFF00) >> 8;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0vals[1] =3D (level & 0xFF);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0vals[0] =3D level;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_write(=
+&intel_dp->aux,
+>>> DP_EDP_BACKLIGHT_BRIGHTNESS_MSB, vals,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sizeof(vals));
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D sizeof(vals))=
+ {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to write aux backlig=
+ht
+>>> level: %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -}
+>>> -
+>>> -static void set_vesa_backlight_enable(struct intel_connector *connec=
+tor,
+>>> bool enable)
+>>> -{
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *intel_dp =
+=3D intel_attached_dp(connector);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private *i=
+915 =3D dp_to_i915(intel_dp);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 reg_val =3D 0;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Early return when displ=
+ay use other mechanism to enable
+>>> backlight. */
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!connector->panel.back=
+light.edp.vesa.aux_enable)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+&intel_dp->aux,
+>>> DP_EDP_DISPLAY_CONTROL_REGISTER, &reg_val);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to read eDP display =
+control
+>>> register: %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (enable)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0reg_val |=3D DP_EDP_BACKLIGHT_ENABLE;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0else
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0reg_val &=3D ~(DP_EDP_BACKLIGHT_ENABLE);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_panel *panel =
+=3D &connector->panel;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *intel_dp =
+=3D enc_to_intel_dp(connector->encoder);
+>>>   =20
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb=
+(&intel_dp->aux,
+>>> DP_EDP_DISPLAY_CONTROL_REGISTER, reg_val);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to %s aux backlight:=
+ %d\n",
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 enable ? "enable" : "disable", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_edp_backlight_set_leve=
+l(&intel_dp->aux, &panel-
+>>>> backlight.edp.vesa.info, level);
+>>>  =C2=A0 }
+>>>   =20
+>>>  =C2=A0 static void
+>>> @@ -385,170 +290,46 @@ intel_dp_aux_vesa_enable_backlight(const struc=
+t
+>>> intel_crtc_state *crtc_state,
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct=
+ drm_connector_state
+>>> *conn_state, u32 level)
+>>>  =C2=A0 {
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_connect=
+or *connector =3D to_intel_connector(conn_state-
+>>>> connector);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *intel_dp =
+=3D intel_attached_dp(connector);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private *i=
+915 =3D dp_to_i915(intel_dp);
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_panel *=
+panel =3D &connector->panel;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 dpcd_buf, new_dpcd_buf;=
+
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 pwmgen_bit_count =3D pa=
+nel->backlight.edp.vesa.pwmgen_bit_count;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+&intel_dp->aux,
+>>> DP_EDP_BACKLIGHT_MODE_SET_REGISTER, &dpcd_buf);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to read backlight mo=
+de:
+>>> %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0new_dpcd_buf =3D dpcd_buf;=
+
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if ((dpcd_buf & DP_EDP_BAC=
+KLIGHT_CONTROL_MODE_MASK) !=3D
+>>> DP_EDP_BACKLIGHT_CONTROL_MODE_MASK) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0new_dpcd_buf &=3D ~DP_EDP_BACKLIGHT_CONTROL_MODE_MAS=
+K;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0new_dpcd_buf |=3D DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD=
+;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb(&intel_dp->aux,
+>>> DP_EDP_PWMGEN_BIT_COUNT, pwmgen_bit_count);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_=
+dbg_kms(&i915->drm, "Failed to write aux pwmgen
+>>> bit count: %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (panel->backlight.edp.v=
+esa.pwm_freq_pre_divider) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb(&intel_dp->aux,
+>>> DP_EDP_BACKLIGHT_FREQ_SET,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 panel-
+>>>> backlight.edp.vesa.pwm_freq_pre_divider);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (ret =3D=3D 1)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0new_=
+dpcd_buf |=3D
+>>> DP_EDP_BACKLIGHT_FREQ_AUX_SET_ENABLE;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0else
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_=
+dbg_kms(&i915->drm, "Failed to write aux
+>>> backlight frequency: %d\n",
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (new_dpcd_buf !=3D dpcd=
+_buf) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb(&intel_dp->aux,
+>>> DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 new_dpcd_buf);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_=
+dbg_kms(&i915->drm, "Failed to write aux
+>>> backlight mode: %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *intel_dp =
+=3D enc_to_intel_dp(connector->encoder);
+>>>   =20
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_dp_aux_vesa_set_back=
+light(conn_state, level);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0set_vesa_backlight_enable(=
+connector, true);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_edp_backlight_enable(&=
+intel_dp->aux, &panel-
+>>>> backlight.edp.vesa.info, level);
+>>>  =C2=A0 }
+>>>   =20
+>>>  =C2=A0 static void intel_dp_aux_vesa_disable_backlight(const struct
+>>> drm_connector_state *old_conn_state,
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 =
+level)
+>>>  =C2=A0 {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0set_vesa_backlight_enable(=
+to_intel_connector(old_conn_state-
+>>>> connector), false);
+>>> -}
+>>> -
+>>> -/*
+>>> - * Compute PWM frequency divider value based off the frequency provi=
+ded to
+>>> us by the vbt.
+>>> - * The PWM Frequency is calculated as 27Mhz / (F x P).
+>>> - * - Where F =3D PWM Frequency Pre-Divider value programmed by field=
+ 7:0 of
+>>> the
+>>> - *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 EDP_BACKLIGHT_FREQ_SET register (DPCD Address 00728h)
+>>> - * - Where P =3D 2^Pn, where Pn is the value programmed by field 4:0=
+ of the
+>>> - *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 EDP_PWMGEN_BIT_COUNT register (DPCD Address 00724h)
+>>> - */
+>>> -static u32 intel_dp_aux_vesa_calc_max_backlight(struct intel_connect=
+or
+>>> *connector)
+>>> -{
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private *i=
+915 =3D to_i915(connector->base.dev);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *intel_dp =
+=3D intel_attached_dp(connector);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_connector *co=
+nnector =3D
+>>> to_intel_connector(old_conn_state->connector);
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_panel *=
+panel =3D &connector->panel;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 max_backlight =3D 0;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret, freq, fxp, fxp_mi=
+n, fxp_max, fxp_actual, f =3D 1;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 pn, pn_min, pn_max;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT,
+>>> &pn);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to read pwmgen bit c=
+ount
+>>> cap: %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return 0;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pn &=3D DP_EDP_PWMGEN_BIT_=
+COUNT_MASK;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0max_backlight =3D (1 << pn=
+) - 1;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Find desired value of (=
+F x P)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Note that, if F x P is =
+out of supported range, the maximum value
+>>> or
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * minimum value will appl=
+ied automatically. So no need to check
+>>> that.
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0freq =3D i915->vbt.backlig=
+ht.pwm_freq_hz;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "V=
+BT defined backlight frequency %u Hz\n",
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 freq);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!freq) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 "Use panel default backlight frequency\n");
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return max_backlight;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fxp =3D DIV_ROUND_CLOSEST(=
+KHz(DP_EDP_BACKLIGHT_FREQ_BASE_KHZ), freq);
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Use highest possible va=
+lue of Pn for more granularity of
+>>> brightness
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * adjustment while satify=
+ing the conditions below.
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * - Pn is in the range of=
+ Pn_min and Pn_max
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * - F is in the range of =
+1 and 255
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * - FxP is within 25% of =
+desired value.
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *=C2=A0=C2=A0 Note: 25% i=
+s arbitrary value and may need some tweak.
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+&intel_dp->aux,
+>>> DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN, &pn_min);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to read pwmgen bit c=
+ount cap
+>>> min: %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return max_backlight;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_readb(=
+&intel_dp->aux,
+>>> DP_EDP_PWMGEN_BIT_COUNT_CAP_MAX, &pn_max);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to read pwmgen bit c=
+ount cap
+>>> max: %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return max_backlight;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pn_min &=3D DP_EDP_PWMGEN_=
+BIT_COUNT_MASK;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pn_max &=3D DP_EDP_PWMGEN_=
+BIT_COUNT_MASK;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Ensure frequency is wit=
+hin 25% of desired value */
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fxp_min =3D DIV_ROUND_CLOS=
+EST(fxp * 3, 4);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0fxp_max =3D DIV_ROUND_CLOS=
+EST(fxp * 5, 4);
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (fxp_min < (1 << pn_min=
+) || (255 << pn_max) < fxp_max) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 "VBT defined backlight frequency out of
+>>> range\n");
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return max_backlight;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0for (pn =3D pn_max; pn >=3D=
+ pn_min; pn--) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0f =3D clamp(DIV_ROUND_CLOSEST(fxp, 1 << pn), 1, 255)=
+;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0fxp_actual =3D f << pn;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0if (fxp_min <=3D fxp_actual && fxp_actual <=3D fxp_m=
+ax)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0brea=
+k;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "U=
+sing eDP pwmgen bit count of %d\n", pn);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_dp_dpcd_writeb=
+(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT,
+>>> pn);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret !=3D 1) {
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "Failed to write aux pwmgen =
+bit
+>>> count: %d\n", ret);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return max_backlight;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0panel->backlight.edp.vesa.=
+pwmgen_bit_count =3D pn;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_dp->edp_dpcd[2] =
+& DP_EDP_BACKLIGHT_FREQ_AUX_SET_CAP)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0panel->backlight.edp.vesa.pwm_freq_pre_divider =3D f=
+;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0max_backlight =3D (1 << pn=
+) - 1;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *intel_dp =
+=3D enc_to_intel_dp(connector->encoder);
+>>>   =20
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return max_backlight;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_edp_backlight_disable(=
+&intel_dp->aux, &panel-
+>>>> backlight.edp.vesa.info);
+>>>  =C2=A0 }
+>>>   =20
+>>> -static int intel_dp_aux_vesa_setup_backlight(struct intel_connector
+>>> *connector,
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum pipe pipe)
+>>> +static int intel_dp_aux_vesa_setup_backlight(struct intel_connector
+>>> *connector, enum pipe pipe)
+>>>  =C2=A0 {
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *int=
+el_dp =3D intel_attached_dp(connector);
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_panel *=
+panel =3D &connector->panel;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_private *i=
+915 =3D dp_to_i915(intel_dp);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u16 current_level;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 current_mode;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int ret;
+>>>   =20
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_dp->edp_dpcd[1] =
+& DP_EDP_BACKLIGHT_AUX_ENABLE_CAP)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0panel->backlight.edp.vesa.aux_enable =3D true;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_dp->edp_dpcd[2] =
+& DP_EDP_BACKLIGHT_BRIGHTNESS_BYTE_COUNT)
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0panel->backlight.edp.vesa.lsb_reg_used =3D true;
+>>> -
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0panel->backlight.max =3D
+>>> intel_dp_aux_vesa_calc_max_backlight(connector);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!panel->backlight.max)=
+
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return -ENODEV;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_edp_backlight_=
+init(&intel_dp->aux, &panel-
+>>>> backlight.edp.vesa.info,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i915->=
+vbt.backlight.pwm_freq_hz,
+>>> intel_dp->edp_dpcd,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &curre=
+nt_level, &current_mode);
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret < 0)
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0return ret;
+>>>   =20
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0panel->backlight.max =3D p=
+anel->backlight.edp.vesa.info.max;
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0panel->backlight.min=
+ =3D 0;
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0panel->backlight.level =3D=
+ intel_dp_aux_vesa_get_backlight(connector,
+>>> pipe);
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0panel->backlight.enabled =3D=
+
+>>> intel_dp_aux_vesa_backlight_dpcd_mode(connector) &&
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 panel->backlight.l=
+evel !=3D 0;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (current_mode =3D=3D DP=
+_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0panel->backlight.level =3D current_level;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0panel->backlight.enabled =3D panel->backlight.level =
+!=3D 0;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0panel->backlight.level =3D panel->backlight.max;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0panel->backlight.enabled =3D false;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>>   =20
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>>>  =C2=A0 }
+>>> @@ -559,16 +340,12 @@ intel_dp_aux_supports_vesa_backlight(struct
+>>> intel_connector *connector)
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_dp *int=
+el_dp =3D intel_attached_dp(connector);
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_priv=
+ate *i915 =3D dp_to_i915(intel_dp);
+>>>   =20
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Check the eDP Display c=
+ontrol capabilities registers to determine
+>>> if
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * the panel can support b=
+acklight control over the aux channel.
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * TODO: We currently only=
+ support AUX only backlight
+>>> configurations, not backlights which
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* TODO: We currently only=
+ support AUX only backlight
+>>> configurations, not backlights which
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * require a mix of =
+PWM and AUX controls to work. In the mean time,
+>>> these machines typically
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * work just fine us=
+ing normal PWM controls anyway.
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_dp->edp_dpcd[1] =
+& DP_EDP_TCON_BACKLIGHT_ADJUSTMENT_CAP &&
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (intel_=
+dp->edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP) &&
+>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (intel_=
+dp->edp_dpcd[2] &
+>>> DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP)) {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if ((intel_dp->edp_dpcd[1]=
+ & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP) &&
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_edp=
+_backlight_supported(intel_dp->edp_dpcd)) {
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_dbg_kms(&i915->drm, "AUX Backlight Control=
+
+>>> Supported!\n");
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0return true;
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+>>> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.=
+h
+>>> index edffd1dcca3e..1eca0b42fc45 100644
+>>> --- a/include/drm/drm_dp_helper.h
+>>> +++ b/include/drm/drm_dp_helper.h
+>>> @@ -1790,6 +1790,24 @@ drm_dp_sink_can_do_video_without_timing_msa(co=
+nst u8
+>>> dpcd[DP_RECEIVER_CAP_SIZE])
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0DP_MSA_TIMING_PAR_IGNORED;
+>>>  =C2=A0 }
+>>>   =20
+>>> +/**
+>>> + * drm_edp_backlight_supported() - Check an eDP DPCD for VESA backli=
+ght
+>>> support
+>>> + * @edp_dpcd: The DPCD to check
+>>> + *
+>>> + * Note that currently this function will return %false for panels w=
+hich
+>>> support various DPCD
+>>> + * backlight features but which require the brightness be set throug=
+h PWM,
+>>> and don't support setting
+>>> + * the brightness level via the DPCD. This is a TODO.
+>>> + *
+>>> + * Returns: %True if @edp_dpcd indicates that VESA backlight control=
+s are
+>>> supported, %false
+>>> + * otherwise
+>>> + */
+>>> +static inline bool
+>>> +drm_edp_backlight_supported(const u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SI=
+ZE])
+>>> +{
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return (edp_dpcd[1] & DP_E=
+DP_TCON_BACKLIGHT_ADJUSTMENT_CAP) &&
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0(edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_C=
+AP);
+>>> +}
+>>> +
+>>>  =C2=A0 /*
+>>>  =C2=A0=C2=A0 * DisplayPort AUX channel
+>>>  =C2=A0=C2=A0 */
+>>> @@ -2089,6 +2107,36 @@ drm_dp_has_quirk(const struct drm_dp_desc *des=
+c, enum
+>>> drm_dp_quirk quirk)
+>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return desc->quirks =
+& BIT(quirk);
+>>>  =C2=A0 }
+>>>   =20
+>>> +/**
+>>> + * struct drm_edp_backlight_info - Probed eDP backlight info struct
+>>> + * @pwmgen_bit_count: The pwmgen bit count
+>>> + * @pwm_freq_pre_divider: The PWM frequency pre-divider value being =
+used
+>>> for this backlight, if any
+>>> + * @max: The maximum backlight level that may be set
+>>> + * @lsb_reg_used: Do we also write values to the
+>>> DP_EDP_BACKLIGHT_BRIGHTNESS_LSB register?
+>>> + * @aux_enable: Does the panel support the AUX enable cap?
+>>> + *
+>>> + * This structure contains various data about an eDP backlight, whic=
+h can
+>>> be populated by using
+>>> + * drm_edp_backlight_init().
+>>> + */
+>>> +struct drm_edp_backlight_info {
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 pwmgen_bit_count;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 pwm_freq_pre_divider;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u16 max;
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bool lsb_reg_used : 1;
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bool aux_enable : 1;
+>>> +};
+>>> +
+>>> +int
+>>> +drm_edp_backlight_init(struct drm_dp_aux *aux, struct
+>>> drm_edp_backlight_info *bl,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u16 driver_pwm_=
+freq_hz, const u8
+>>> edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE],
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u16 *current_le=
+vel, u8 *current_mode);
+>>> +int drm_edp_backlight_set_level(struct drm_dp_aux *aux, const struct=
+
+>>> drm_edp_backlight_info *bl,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u16 level);
+>>> +int drm_edp_backlight_enable(struct drm_dp_aux *aux, const struct
+>>> drm_edp_backlight_info *bl,
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 u16 level);
+>>> +int drm_edp_backlight_disable(struct drm_dp_aux *aux, const struct
+>>> drm_edp_backlight_info *bl);
+>>> +
+>>>  =C2=A0 #ifdef CONFIG_DRM_DP_CEC
+>>>  =C2=A0 void drm_dp_cec_irq(struct drm_dp_aux *aux);
+>>>  =C2=A0 void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
+>>>
+>>
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v1,1/3] string: Consol=
-idate yesno() helpers under string.h hood</td></tr>
-<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
-ries/87096/">https://patchwork.freedesktop.org/series/87096/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+--emWjQ3rBGNgK7wliVmGNAiffMImS2HWE6--
 
-    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_19680/index.html">https://intel-gfx-ci.01.org/tree/d=
-rm-tip/Patchwork_19680/index.html</a></td></tr>
+--WljjKDOOHX1q2wVRRvyv3yldHk7GaVSXm
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-</table>
+-----BEGIN PGP SIGNATURE-----
 
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmAqvqgFAwAAAAAACgkQlh/E3EQov+Bn
+txAAiX9UmAzgyUdy3QuB3duMRks6L0WFAPr4Menz6rf3IzcSsymztJFl7TFisCle/zu8RSVRGeIv
+ZOw3G9FgEP9x0wQ5QFAVwUXbomjpnWxHUChyWQgCtrDXj+/7fNu9DaY6M5tEG8youNKZ4ZEBAxQM
+Uaxh/7k9WqcDAM0kn6r8UtIpkfPA4dxFRmR/vFWpYXluQef4Cdbvif9uHRJF6JluddvSEkI0Tpo6
+x8PSPihiMXrgGpS4Spq6PcmBF0AB3FGzp1sg2a33xJI7kdyBbqnMJj+IVqNSXm95pWUoM+pKjGWZ
+ewcMH6uhW2O5JyNG1yRfr42jmCsJyk8nyr+1Hs+NGH6u9jClkJKTf5aUhHDLE9soY2yNqylMsFo0
+w0hAbLElIeuOnpET2YpDv29OENDamQVJrXq4bBtP+JFjkU6LnTGY+vnKgfRs+pYwamDZ2GnuSMb+
+NOtDreuYo3fwc0KOWhaiDci8+vZsO0UpxA6deuXxTAUIyoOw82HrnDsNIpBEea/EyASC8H0e7TiI
+I/H4AZ5HexxBIZpxB7FZAQ8XcTndNS4QBPjRfLyypP0heiiT/dQDNJ8PizXMvepPQPQww6pLh/RS
+RTGn+1ws/2OH0SzahvpUuOIL6So7Pzf4SgaRwA+x8C1djIMlrY+fA3TPBMcGWcLKpz3S2XPAV4wH
+iZ0=
+=8dJc
+-----END PGP SIGNATURE-----
 
-    <h1>CI Bug Log - changes from CI_DRM_9776_full -&gt; Patchwork_19680_fu=
-ll</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19680_full absolutely need=
- to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br=
- />
-  introduced in Patchwork_19680_full, please notify your bug team to allow =
-them<br />
-  to document this new failure mode, which will reduce false positives in C=
-I.</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_=
-19680_full:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-shrfb-draw-mmap-wc:<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-tglb6/igt@kms_frontbuffer_tracking@psr-1p-offscren-pri-s=
-hrfb-draw-mmap-wc.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.o=
-rg/tree/drm-tip/Patchwork_19680/shard-tglb6/igt@kms_frontbuffer_tracking@ps=
-r-1p-offscren-pri-shrfb-draw-mmap-wc.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19680_full that come from known =
-issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_create@madvise:</p>
-<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-glk6/igt@gem_exec_create@madvise.html">PASS</a> -&gt; <a=
- href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-glk=
-3/igt@gem_exec_create@madvise.html">DMESG-WARN</a> (<a href=3D"https://gitl=
-ab.freedesktop.org/drm/intel/issues/118">i915#118</a> / [i915#95])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-none@vcs1:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb4/igt@gem_exec_fair@basic-none@vcs1=
-.html">FAIL</a> ([i915#2842])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace-share@rcs0:</p>
-<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-glk5/igt@gem_exec_fair@basic-pace-share@rcs0.html">PASS<=
-/a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_196=
-80/shard-glk9/igt@gem_exec_fair@basic-pace-share@rcs0.html">FAIL</a> ([i915=
-#2842])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_reloc@basic-many-active@vcs1:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb4/igt@gem_exec_reloc@basic-many-act=
-ive@vcs1.html">FAIL</a> ([i915#2389])</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_softpin@noreloc-s3:</p>
-<ul>
-<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-apl6/igt@gem_softpin@noreloc-s3.html">PASS</a> -&gt; <a =
-href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl2=
-/igt@gem_softpin@noreloc-s3.html">DMESG-WARN</a> ([i915#180]) +2 similar is=
-sues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@huge-split:</p>
-<ul>
-<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-apl4/igt@gem_userptr_blits@huge-split.html">PASS</a> -&g=
-t; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shar=
-d-apl6/igt@gem_userptr_blits@huge-split.html">INCOMPLETE</a> ([i915#2502])<=
-/li>
-</ul>
-</li>
-<li>
-<p>igt@gem_workarounds@suspend-resume-context:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl6/igt@gem_workarounds@suspend-resume-context.html">PA=
-SS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
-19680/shard-skl10/igt@gem_workarounds@suspend-resume-context.html">INCOMPLE=
-TE</a> ([i915#198] / [i915#2295])</li>
-</ul>
-</li>
-<li>
-<p>igt@gen3_mixed_blits:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-kbl4/igt@gen3_mixed_blits.html">SKIP</a=
-> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109271">fdo#10=
-9271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gen7_exec_parse@cmd-crossing-page:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@gen7_exec_parse@cmd-crossing-=
-page.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?i=
-d=3D109289">fdo#109289</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@gem-execbuf-stress-pc8:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@i915_pm_rpm@gem-execbuf-stres=
-s-pc8.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?=
-id=3D109293">fdo#109293</a> / <a href=3D"https://bugs.freedesktop.org/show_=
-bug.cgi?id=3D109506">fdo#109506</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>shard-hsw:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-hsw2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&g=
-t; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shar=
-d-hsw2/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> ([i915#2782])<=
-/li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-64bpp-rotate-270:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_big_fb@y-tiled-64bpp-rota=
-te-270.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi=
-?id=3D110725">fdo#110725</a> / <a href=3D"https://bugs.freedesktop.org/show=
-_bug.cgi?id=3D111614">fdo#111614</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_joiner@invalid-modeset:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-apl1/igt@kms_big_joiner@invalid-modeset=
-.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D=
-109271">fdo#109271</a> / [i915#2705])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-enable-disable-mode:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-skl4/igt@kms_chamelium@dp-hpd-enable-di=
-sable-mode.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug=
-.cgi?id=3D109271">fdo#109271</a> / <a href=3D"https://bugs.freedesktop.org/=
-show_bug.cgi?id=3D111827">fdo#111827</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-a-ctm-0-75:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-kbl4/igt@kms_color_chamelium@pipe-a-ctm=
--0-75.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?=
-id=3D109271">fdo#109271</a> / <a href=3D"https://bugs.freedesktop.org/show_=
-bug.cgi?id=3D111827">fdo#111827</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-a-ctm-red-to-blue:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_color_chamelium@pipe-a-ct=
-m-red-to-blue.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_=
-bug.cgi?id=3D109284">fdo#109284</a> / <a href=3D"https://bugs.freedesktop.o=
-rg/show_bug.cgi?id=3D111827">fdo#111827</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_color_chamelium@pipe-c-ctm-max:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_color_chamelium@pipe-c-ctm=
--max.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?i=
-d=3D109271">fdo#109271</a> / <a href=3D"https://bugs.freedesktop.org/show_b=
-ug.cgi?id=3D111827">fdo#111827</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-a-cursor-512x170-random:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_cursor_crc@pipe-a-cursor-=
-512x170-random.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show=
-_bug.cgi?id=3D109278">fdo#109278</a> / <a href=3D"https://bugs.freedesktop.=
-org/show_bug.cgi?id=3D109279">fdo#109279</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl1/igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding.html=
-">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
-ork_19680/shard-skl7/igt@kms_cursor_crc@pipe-a-cursor-64x64-sliding.html">F=
-AIL</a> ([i915#54]) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-d-cursor-256x85-onscreen:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_cursor_crc@pipe-d-cursor-=
-256x85-onscreen.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/sho=
-w_bug.cgi?id=3D109278">fdo#109278</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@2x-long-cursor-vs-flip-legacy:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_cursor_legacy@2x-long-cur=
-sor-vs-flip-legacy.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/=
-show_bug.cgi?id=3D109274">fdo#109274</a> / <a href=3D"https://bugs.freedesk=
-top.org/show_bug.cgi?id=3D109278">fdo#109278</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-atomic:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-skl3/igt@kms_cursor_legacy@flip-vs-curs=
-or-busy-crc-atomic.html">FAIL</a> ([i915#2346])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-blocking-wf_vblank:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_flip@2x-blocking-wf_vblan=
-k.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=
-=3D109274">fdo#109274</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@a-edp1:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl1/igt@kms_flip@flip-vs-dpms-off-vs-modeset-interrupti=
-ble@a-edp1.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/Patchwork_19680/shard-skl5/igt@kms_flip@flip-vs-dpms-off-vs-modese=
-t-interruptible@a-edp1.html">DMESG-WARN</a> ([i915#1982])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@a-edp1:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl5/igt@kms_flip@flip-vs-expired-vblank-interruptible@a=
--edp1.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
-tip/Patchwork_19680/shard-skl4/igt@kms_flip@flip-vs-expired-vblank-interrup=
-tible@a-edp1.html">FAIL</a> ([i915#79])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend-interruptible@b-edp1:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl6/igt@kms_flip@flip-vs-suspend-interruptible@b-edp1.h=
-tml">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
-chwork_19680/shard-skl8/igt@kms_flip@flip-vs-suspend-interruptible@b-edp1.h=
-tml">INCOMPLETE</a> ([i915#198])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate-interruptible@c-edp1:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl2/igt@kms_flip@plain-flip-fb-recreate-interruptible@c=
--edp1.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
-tip/Patchwork_19680/shard-skl7/igt@kms_flip@plain-flip-fb-recreate-interrup=
-tible@c-edp1.html">FAIL</a> ([i915#2122]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-ts-check@a-hdmi-a1:</p>
-<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-glk6/igt@kms_flip@plain-flip-ts-check@a-hdmi-a1.html">PA=
-SS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
-19680/shard-glk3/igt@kms_flip@plain-flip-ts-check@a-hdmi-a1.html">FAIL</a> =
-([i915#2122]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile:</p>
-<ul>
-<li>shard-kbl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-kbl4/igt@kms_flip_scaled_crc@flip-32bpp=
--ytileccs-to-64bpp-ytile.html">SKIP</a> (<a href=3D"https://bugs.freedeskto=
-p.org/show_bug.cgi?id=3D109271">fdo#109271</a> / [i915#2642])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-gtt:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_frontbuffer_tracking@fbc-=
-2p-primscrn-pri-shrfb-draw-mmap-gtt.html">SKIP</a> (<a href=3D"https://bugs=
-.freedesktop.org/show_bug.cgi?id=3D109280">fdo#109280</a>) +2 similar issue=
-s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-pri-indfb-draw-blt:</p>
-<ul>
-<li>shard-skl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-skl9/igt@kms_frontbuffer_tracking@fbc-2=
-p-scndscrn-pri-indfb-draw-blt.html">SKIP</a> (<a href=3D"https://bugs.freed=
-esktop.org/show_bug.cgi?id=3D109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-rgb565-draw-pwrite:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_frontbuffer_tracking@psr-r=
-gb565-draw-pwrite.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/s=
-how_bug.cgi?id=3D109271">fdo#109271</a>) +36 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-d-frame-sequence:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_pipe_crc_basic@read-crc-pi=
-pe-d-frame-sequence.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org=
-/show_bug.cgi?id=3D109271">fdo#109271</a> / [i915#533])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl4/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min=
-.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
-atchwork_19680/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-m=
-in.html">FAIL</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=
-=3D108145">fdo#108145</a> / [i915#265])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-c-alpha-7efc:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_plane_alpha_blend@pipe-c-a=
-lpha-7efc.html">FAIL</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D108145">fdo#108145</a> / [i915#265])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-1:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@kms_psr2_sf@overlay-primary-u=
-pdate-sf-dmg-area-1.html">SKIP</a> ([i915#658])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-1:</p>
-<ul>
-<li>shard-apl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_psr2_sf@primary-plane-upda=
-te-sf-dmg-area-1.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.org/sh=
-ow_bug.cgi?id=3D109271">fdo#109271</a> / [i915#658])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_primary_page_flip:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb2/igt@kms_psr@psr2_primary_page_flip.html">PASS</a> =
--&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/s=
-hard-iclb6/igt@kms_psr@psr2_primary_page_flip.html">SKIP</a> (<a href=3D"ht=
-tps://bugs.freedesktop.org/show_bug.cgi?id=3D109441">fdo#109441</a>) +2 sim=
-ilar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@nouveau_crc@pipe-b-ctx-flip-detection:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@nouveau_crc@pipe-b-ctx-flip-d=
-etection.html">SKIP</a> ([i915#2530])</li>
-</ul>
-</li>
-<li>
-<p>igt@perf@polling-parameterized:</p>
-<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-glk9/igt@perf@polling-parameterized.html">PASS</a> -&gt;=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-=
-glk6/igt@perf@polling-parameterized.html">FAIL</a> (<a href=3D"https://gitl=
-ab.freedesktop.org/drm/intel/issues/1542">i915#1542</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_nv_api@nv_i915_import_twice_check_flink_name:</p>
-<ul>
-<li>shard-iclb:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-iclb3/igt@prime_nv_api@nv_i915_import_t=
-wice_check_flink_name.html">SKIP</a> (<a href=3D"https://bugs.freedesktop.o=
-rg/show_bug.cgi?id=3D109291">fdo#109291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@sysfs_clients@recycle:</p>
-<ul>
-<li>shard-hsw:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-hsw5/igt@sysfs_clients@recycle.html">PASS</a> -&gt; <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-hsw2/=
-igt@sysfs_clients@recycle.html">FAIL</a> ([i915#3028])</li>
-</ul>
-</li>
-<li>
-<p>igt@sysfs_clients@sema-25@vecs0:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl9/igt@sysfs_clients@sema-25@vecs0.html">PASS</a> -&gt=
-; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard=
--skl4/igt@sysfs_clients@sema-25@vecs0.html">SKIP</a> (<a href=3D"https://bu=
-gs.freedesktop.org/show_bug.cgi?id=3D109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_persistence@close-replace-race:</p>
-<ul>
-<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-kbl3/igt@gem_ctx_persistence@close-replace-race.html">TI=
-MEOUT</a> ([i915#2918]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/d=
-rm-tip/Patchwork_19680/shard-kbl2/igt@gem_ctx_persistence@close-replace-rac=
-e.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_eio@unwedge-stress:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb6/igt@gem_eio@unwedge-stress.html">TIMEOUT</a> (<a h=
-ref=3D"https://gitlab.freedesktop.org/drm/intel/issues/1037">i915#1037</a> =
-/ [i915#2481]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
-tchwork_19680/shard-iclb8/igt@gem_eio@unwedge-stress.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace-share@rcs0:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb6/igt@gem_exec_fair@basic-pace-share@rcs0.html">FAIL=
-</a> ([i915#2842]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
-p/Patchwork_19680/shard-iclb8/igt@gem_exec_fair@basic-pace-share@rcs0.html"=
->PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@vcs0:</p>
-<ul>
-<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-kbl1/igt@gem_exec_fair@basic-pace@vcs0.html">FAIL</a> ([=
-i915#2842]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patch=
-work_19680/shard-kbl6/igt@gem_exec_fair@basic-pace@vcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-pace@vecs0:</p>
-<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-tglb1/igt@gem_exec_fair@basic-pace@vecs0.html">FAIL</a> =
-([i915#2842]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
-chwork_19680/shard-tglb8/igt@gem_exec_fair@basic-pace@vecs0.html">PASS</a><=
-/li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fair@basic-throttle@rcs0:</p>
-<ul>
-<li>
-<p>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-CI_DRM_9776/shard-glk1/igt@gem_exec_fair@basic-throttle@rcs0.html">FAIL</a>=
- ([i915#2842]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
-tchwork_19680/shard-glk1/igt@gem_exec_fair@basic-throttle@rcs0.html">PASS</=
-a> +2 similar issues</p>
-</li>
-<li>
-<p>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-CI_DRM_9776/shard-iclb2/igt@gem_exec_fair@basic-throttle@rcs0.html">FAIL</a=
-> ([i915#2849]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
-atchwork_19680/shard-iclb4/igt@gem_exec_fair@basic-throttle@rcs0.html">PASS=
-</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_reloc@basic-many-active@rcs0:</p>
-<ul>
-<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-glk2/igt@gem_exec_reloc@basic-many-active@rcs0.html">FAI=
-L</a> ([i915#2389]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
-ip/Patchwork_19680/shard-glk6/igt@gem_exec_reloc@basic-many-active@rcs0.htm=
-l">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_schedule@u-fairslice-all:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb4/igt@gem_exec_schedule@u-fairslice-all.html">DMESG-=
-WARN</a> ([i915#2803]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/Patchwork_19680/shard-iclb3/igt@gem_exec_schedule@u-fairslice-all.htm=
-l">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rc6_residency@rc6-idle:</p>
-<ul>
-<li>shard-hsw:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-hsw5/igt@i915_pm_rc6_residency@rc6-idle.html">WARN</a> (=
-<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1519">i915#1519<=
-/a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19=
-680/shard-hsw4/igt@i915_pm_rc6_residency@rc6-idle.html">PASS</a> +1 similar=
- issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_async_flips@test-time-stamp:</p>
-<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-tglb6/igt@kms_async_flips@test-time-stamp.html">FAIL</a>=
- ([i915#2574]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
-tchwork_19680/shard-tglb2/igt@kms_async_flips@test-time-stamp.html">PASS</a=
-></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@pipe-b-cursor-128x128-random:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl1/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.htm=
-l">FAIL</a> ([i915#54]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/d=
-rm-tip/Patchwork_19680/shard-skl7/igt@kms_cursor_crc@pipe-b-cursor-128x128-=
-random.html">PASS</a> +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic:</p>
-<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-tglb3/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html">=
-FAIL</a> ([i915#2346]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/Patchwork_19680/shard-tglb2/igt@kms_cursor_legacy@flip-vs-cursor-atom=
-ic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legacy:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl1/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-legac=
-y.html">FAIL</a> ([i915#2346]) -&gt; <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19680/shard-skl7/igt@kms_cursor_legacy@flip-vs-curs=
-or-busy-crc-legacy.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_fbcon_fbt@fbc-suspend:</p>
-<ul>
-<li>shard-kbl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-kbl3/igt@kms_fbcon_fbt@fbc-suspend.html">INCOMPLETE</a> =
-(<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</=
-a> / [i915#180] / [i915#636]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_19680/shard-kbl4/igt@kms_fbcon_fbt@fbc-suspend.html"=
->PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-off-confusion-interruptible@a-edp1:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl9/igt@kms_flip@dpms-off-confusion-interruptible@a-edp=
-1.html">DMESG-WARN</a> ([i915#1982]) -&gt; <a href=3D"https://intel-gfx-ci.=
-01.org/tree/drm-tip/Patchwork_19680/shard-skl4/igt@kms_flip@dpms-off-confus=
-ion-interruptible@a-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-absolute-wf_vblank@c-edp1:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl3/igt@kms_flip@flip-vs-absolute-wf_vblank@c-edp1.html=
-">FAIL</a> ([i915#2122]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/=
-drm-tip/Patchwork_19680/shard-skl3/igt@kms_flip@flip-vs-absolute-wf_vblank@=
-c-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@a-edp1:</p>
-<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-tglb7/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">F=
-AIL</a> ([i915#2598]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
--tip/Patchwork_19680/shard-tglb3/igt@kms_flip@flip-vs-expired-vblank@a-edp1=
-.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend-interruptible@a-dp1:</p>
-<ul>
-<li>shard-apl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-apl4/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.ht=
-ml">DMESG-WARN</a> ([i915#180]) -&gt; <a href=3D"https://intel-gfx-ci.01.or=
-g/tree/drm-tip/Patchwork_19680/shard-apl7/igt@kms_flip@flip-vs-suspend-inte=
-rruptible@a-dp1.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@bpc-switch:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl7/igt@kms_hdr@bpc-switch.html">FAIL</a> (<a href=3D"h=
-ttps://gitlab.freedesktop.org/drm/intel/issues/1188">i915#1188</a>) -&gt; <=
-a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-sk=
-l5/igt@kms_hdr@bpc-switch.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html=
-">FAIL</a> (<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D10814=
-5">fdo#108145</a> / [i915#265]) -&gt; <a href=3D"https://intel-gfx-ci.01.or=
-g/tree/drm-tip/Patchwork_19680/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-=
-coverage-7efc.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr2_sprite_mmap_gtt:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb6/igt@kms_psr@psr2_sprite_mmap_gtt.html">SKIP</a> (<=
-a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109441">fdo#109441=
-</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1=
-9680/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_gtt.html">PASS</a> +2 similar=
- issues</li>
-</ul>
-</li>
-<li>
-<p>igt@perf@blocking:</p>
-<ul>
-<li>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-skl9/igt@perf@blocking.html">FAIL</a> (<a href=3D"https:=
-//gitlab.freedesktop.org/drm/intel/issues/1542">i915#1542</a>) -&gt; <a hre=
-f=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-skl7/ig=
-t@perf@blocking.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@sysfs_clients@recycle-many}:</p>
-<ul>
-<li>
-<p>shard-skl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-CI_DRM_9776/shard-skl2/igt@sysfs_clients@recycle-many.html">FAIL</a> ([i915=
-#3028]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
-_19680/shard-skl7/igt@sysfs_clients@recycle-many.html">PASS</a></p>
-</li>
-<li>
-<p>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
-CI_DRM_9776/shard-tglb2/igt@sysfs_clients@recycle-many.html">FAIL</a> ([i91=
-5#3028]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwor=
-k_19680/shard-tglb3/igt@sysfs_clients@recycle-many.html">PASS</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rc6_residency@rc6-fence:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb6/igt@i915_pm_rc6_residency@rc6-fence.html">WARN</a>=
- ([i915#1804] / [i915#2684]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/t=
-ree/drm-tip/Patchwork_19680/shard-iclb2/igt@i915_pm_rc6_residency@rc6-fence=
-.html">WARN</a> ([i915#2684])</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>shard-tglb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-tglb5/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> =
-(<a href=3D"https://gitlab.freedesktop.o">i915#1759</a> / [i915#2291]) -&gt=
-; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard=
--tglb7/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> ([i915#2291])</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dp_dsc@basic-dsc-enable-edp:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html">DMESG-WA=
-RN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1226">i9=
-15#1226</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
-hwork_19680/shard-iclb6/igt@kms_dp_dsc@basic-dsc-enable-edp.html">SKIP</a> =
-(<a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109349">fdo#1093=
-49</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-4:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb2/igt@kms_psr2_sf@overlay-plane-update-sf-dmg-area-4=
-.html">SKIP</a> ([i915#2920]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_19680/shard-iclb6/igt@kms_psr2_sf@overlay-plane-upda=
-te-sf-dmg-area-4.html">SKIP</a> ([i915#658]) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@plane-move-sf-dmg-area-3:</p>
-<ul>
-<li>shard-iclb:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb6/igt@kms_psr2_sf@plane-move-sf-dmg-area-3.html">SKI=
-P</a> ([i915#658]) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
-p/Patchwork_19680/shard-iclb2/igt@kms_psr2_sf@plane-move-sf-dmg-area-3.html=
-">SKIP</a> ([i915#2920])</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>shard-kbl:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-kbl3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl3/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_D=
-RM_9776/shard-kbl3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-kbl4/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_97=
-76/shard-kbl1/igt@runner@aborted.html">FAIL</a>) ([i915#2295] / [i915#3002]=
- / [i915#92]) -&gt; (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
-tchwork_19680/shard-kbl2/igt@runner@aborted.html">FAIL</a>, <a href=3D"http=
-s://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-kbl4/igt@runner@=
-aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/Patchwork_19680/shard-kbl2/igt@runner@aborted.html">FAIL</a>) ([i915#2295]=
- / [i915#3002])</p>
-</li>
-<li>
-<p>shard-iclb:         (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-iclb1/igt@runner@aborted.html">FAIL</a>, <a href=3D"http=
-s://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb7/igt@runner@abo=
-rted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI=
-_DRM_9776/shard-iclb3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:/=
-/intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-iclb4/igt@runner@aborte=
-d.html">FAIL</a>) ([i915#2295] / [i915#2426] / [i915#2724] / [i915#3002]) -=
-&gt; (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/s=
-hard-iclb1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-=
-ci.01.org/tree/drm-tip/Patchwork_19680/shard-iclb5/igt@runner@aborted.html"=
->FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19=
-680/shard-iclb5/igt@runner@aborted.html">FAIL</a>) ([i915#2295] / [i915#272=
-4] / [i915#3002])</p>
-</li>
-<li>
-<p>shard-apl:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
-/CI_DRM_9776/shard-apl2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl7/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_D=
-RM_9776/shard-apl3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl4/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_97=
-76/shard-apl4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-g=
-fx-ci.01.org/tree/drm-tip/CI_DRM_9776/shard-apl7/igt@runner@aborted.html">F=
-AIL</a>) (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/1610">=
-i915#1610</a> / [i915#2292] / [i915#2295] / [i915#3002]) -&gt; (<a href=3D"=
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl3/igt@run=
-ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
--tip/Patchwork_19680/shard-apl6/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl2/igt=
-@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
-/drm-tip/Patchwork_19680/shard-apl2/igt@runner@aborted.html">FAIL</a>, <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19680/shard-apl3/=
-igt@runner@aborted.html">FAIL</a>) (<a href=3D"https://bugs.freedesktop.org=
-/show_bug.cgi?id=3D109271">fdo#109271</a> / [i915#1814] / [i915#2295] / [i9=
-15#3002])</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when comput=
-ing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+--WljjKDOOHX1q2wVRRvyv3yldHk7GaVSXm--
 
-</body>
-</html>
-
---===============2223363429450691063==--
-
---===============1392645764==
+--===============2045320577==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1372,4 +1533,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1392645764==--
+--===============2045320577==--
