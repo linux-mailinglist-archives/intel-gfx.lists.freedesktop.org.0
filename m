@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6885A31BAE2
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 15:22:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E7D31BAE4
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Feb 2021 15:22:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70F7089E5A;
-	Mon, 15 Feb 2021 14:22:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8A4B89EAC;
+	Mon, 15 Feb 2021 14:22:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9371389B68;
- Mon, 15 Feb 2021 14:22:01 +0000 (UTC)
-IronPort-SDR: tv2xg4hqvB51dCGWjoHtZgT4Y2fOXHOonjyjFWrAJRH3Fhw0cAVdhLAPJ+Qpj9z3KP3pSYv2TA
- PAliv8X5/UTA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9895"; a="161830204"
-X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="161830204"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2021 06:22:01 -0800
-IronPort-SDR: w7T/z1VFVWlR/LW4CR4XGWtZyzYnMaNnMFakq3Y8b67+CXAnBwGE18k/9e0e2m6Uqf7mh9l0tJ
- pkdHwQWBtseg==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5516689EAC;
+ Mon, 15 Feb 2021 14:22:07 +0000 (UTC)
+IronPort-SDR: OHQNEM6hotWdAAvjJZWBqrRKaGCYxUkNwO517xwDP05GGg7ME+KyACsuQfW42s8BK/qEWl5fsH
+ UkGWLrcuGLQg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9895"; a="180134246"
+X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="180134246"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2021 06:22:06 -0800
+IronPort-SDR: gjS+uCy1RooYV8N9lYHIdqLJT2peNhOwkX157krPVoc1icBBrMwSRfcbzevRHxh9+vpd1sj8YJ
+ veRJtpYMOhPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="425485083"
+X-IronPort-AV: E=Sophos;i="5.81,180,1610438400"; d="scan'208";a="580191385"
 Received: from black.fi.intel.com ([10.237.72.28])
- by fmsmga002.fm.intel.com with ESMTP; 15 Feb 2021 06:21:55 -0800
+ by orsmga005.jf.intel.com with ESMTP; 15 Feb 2021 06:21:56 -0800
 Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 176711F1; Mon, 15 Feb 2021 16:21:55 +0200 (EET)
+ id 9E9A8220; Mon, 15 Feb 2021 16:21:55 +0200 (EET)
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  Mikita Lipski <mikita.lipski@amd.com>, Eryk Brol <eryk.brol@amd.com>,
@@ -37,14 +37,14 @@ To: Alex Deucher <alexander.deucher@amd.com>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  netdev@vger.kernel.org
-Date: Mon, 15 Feb 2021 16:21:36 +0200
-Message-Id: <20210215142137.64476-2-andriy.shevchenko@linux.intel.com>
+Date: Mon, 15 Feb 2021 16:21:37 +0200
+Message-Id: <20210215142137.64476-3-andriy.shevchenko@linux.intel.com>
 X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
 References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v1 2/3] string: Move onoff() helper under
- string.h hood
+Subject: [Intel-gfx] [PATCH v1 3/3] string: Move enableddisabled() helper
+ under string.h hood
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,7 +68,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 We have already an implementation and a lot of code that can benefit
-of the onoff() helper. Move it under string.h hood.
+of the enableddisabled() helper. Move it under string.h hood.
 
 Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 ---
@@ -77,32 +77,32 @@ Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
  2 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index e6da5a951132..d2ac357896d4 100644
+index d2ac357896d4..b05d72b4dd93 100644
 --- a/drivers/gpu/drm/i915/i915_utils.h
 +++ b/drivers/gpu/drm/i915/i915_utils.h
 @@ -409,11 +409,6 @@ wait_remaining_ms_from_jiffies(unsigned long timestamp_jiffies, int to_wait_ms)
  #define MBps(x) KBps(1000 * (x))
  #define GBps(x) ((u64)1000 * MBps((x)))
  
--static inline const char *onoff(bool v)
+-static inline const char *enableddisabled(bool v)
 -{
--	return v ? "on" : "off";
+-	return v ? "enabled" : "disabled";
 -}
 -
- static inline const char *enableddisabled(bool v)
+ void add_taint_for_CI(struct drm_i915_private *i915, unsigned int taint);
+ static inline void __add_taint_for_CI(unsigned int taint)
  {
- 	return v ? "enabled" : "disabled";
 diff --git a/include/linux/string.h b/include/linux/string.h
-index fd946a5e18c8..2a0589e945d9 100644
+index 2a0589e945d9..25f055aa4c31 100644
 --- a/include/linux/string.h
 +++ b/include/linux/string.h
-@@ -313,4 +313,9 @@ static inline const char *yesno(bool yes)
- 	return yes ? "yes" : "no";
+@@ -318,4 +318,9 @@ static inline const char *onoff(bool on)
+ 	return on ? "on" : "off";
  }
  
-+static inline const char *onoff(bool on)
++static inline const char *enableddisabled(bool enabled)
 +{
-+	return on ? "on" : "off";
++	return enabled ? "enabled" : "disabled";
 +}
 +
  #endif /* _LINUX_STRING_H_ */
