@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 341CD31D024
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 19:20:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67CFF31D025
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 19:20:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C20F6E486;
-	Tue, 16 Feb 2021 18:20:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C52DB6E487;
+	Tue, 16 Feb 2021 18:20:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCEF66E47B
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Feb 2021 18:20:16 +0000 (UTC)
-IronPort-SDR: ZJk6rsgBlIT6HdR1HYOwFuuoAh4SmAcZEF5ZDxw0g0SrruNlicZj6pyVQaYzCzy61JGVxbJ99w
- Efd8v4GVQ9LQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="183046191"
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="183046191"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBD2C6E487
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Feb 2021 18:20:19 +0000 (UTC)
+IronPort-SDR: 7KBIpGWhwHQcveSbkwYpjsKi6AcGMKonHhPt7bQMxrUkCh8SS6jJNs7ZZTrSrACWL/iha7vatm
+ p8KeI1VcwATw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="183046202"
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="183046202"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2021 10:20:16 -0800
-IronPort-SDR: YNQnl7WoJX4IbUBVXJaO1KyEfxdevgmwQ7obhlFNd5UgijBu0/6D1bP3rxkneQ4g3PqyM7XZmd
- 5QnJJQB03Veg==
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="399609286"
+ 16 Feb 2021 10:20:19 -0800
+IronPort-SDR: EJDvaIYhpYaOsjZ4Zo4lOXQNJuSKBX49wghtYeuI3k9XGC2OhUkGgmg9wbiJ6iX2P3pY/zpBh/
+ BxGieHQeqd5A==
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="399609303"
 Received: from twinkler-lnx.jer.intel.com ([10.12.91.138])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2021 10:20:13 -0800
+ 16 Feb 2021 10:20:16 -0800
 From: Tomas Winkler <tomas.winkler@intel.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>,
  Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Tue, 16 Feb 2021 20:19:24 +0200
-Message-Id: <20210216181925.650082-9-tomas.winkler@intel.com>
+Date: Tue, 16 Feb 2021 20:19:25 +0200
+Message-Id: <20210216181925.650082-10-tomas.winkler@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210216181925.650082-1-tomas.winkler@intel.com>
 References: <20210216181925.650082-1-tomas.winkler@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 8/9] drm/i915/spi: serialize spi access
+Subject: [Intel-gfx] [RFC PATCH 9/9] mtd: use refcount to prevent corruption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,151 +50,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexander Usyskin <alexander.usyskin@intel.com>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- linux-mtd@lists.infradead.org, Tomas Winkler <tomas.winkler@intel.com>,
+Cc: linux-mtd@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ Tomas Winkler <tomas.winkler@intel.com>,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
  Vitaly Lubart <vitaly.lubart@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The SPI regions cannot be accessed in parallel because for each
-region the region selector has to be set. Add a mutex to prevent
-parallel access.
+When underlying device is removed mtd core will crash
+in case user space is holding open handle.
+Need to use proper refcounting so device is release
+only when has no users.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
 ---
- drivers/gpu/drm/i915/spi/intel_spi_drv.c | 32 +++++++++++++++++++++---
- 1 file changed, 28 insertions(+), 4 deletions(-)
+ drivers/mtd/mtdcore.c   | 63 +++++++++++++++++++++++++----------------
+ drivers/mtd/mtdcore.h   |  1 +
+ drivers/mtd/mtdpart.c   | 13 +++++----
+ include/linux/mtd/mtd.h |  2 +-
+ 4 files changed, 47 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/spi/intel_spi_drv.c b/drivers/gpu/drm/i915/spi/intel_spi_drv.c
-index 1e8a40339e6d..9de49d00297d 100644
---- a/drivers/gpu/drm/i915/spi/intel_spi_drv.c
-+++ b/drivers/gpu/drm/i915/spi/intel_spi_drv.c
-@@ -20,6 +20,7 @@
+diff --git a/drivers/mtd/mtdcore.c b/drivers/mtd/mtdcore.c
+index 2d6423d89a17..a3dacc7104a9 100644
+--- a/drivers/mtd/mtdcore.c
++++ b/drivers/mtd/mtdcore.c
+@@ -93,9 +93,31 @@ static void mtd_release(struct device *dev)
+ 	dev_t index = MTD_DEVT(mtd->index);
  
- struct i915_spi {
- 	struct mtd_info mtd;
-+	struct mutex lock; /* region access lock */
- 	void __iomem *base;
- 	size_t size;
- 	unsigned int nregions;
-@@ -354,6 +355,7 @@ static int i915_spi_erase(struct mtd_info *mtd, struct erase_info *info)
- 	loff_t from;
- 	size_t len;
- 	size_t total_len;
-+	int ret = 0;
- 
- 	if (!mtd || !info)
- 		return -EINVAL;
-@@ -370,18 +372,23 @@ static int i915_spi_erase(struct mtd_info *mtd, struct erase_info *info)
- 	total_len = info->len;
- 	addr = info->addr;
- 
-+	if (!mutex_trylock(&spi->lock))
-+		return -EBUSY;
+ 	/* remove /dev/mtdXro node */
++	if (mtd_is_partition(mtd))
++		release_mtd_partition(mtd);
 +
- 	while (total_len > 0) {
- 		if (!IS_ALIGNED(addr, SZ_4K) || !IS_ALIGNED(total_len, SZ_4K)) {
- 			dev_err(&mtd->dev, "unaligned erase %llx %zx\n", addr, total_len);
- 			info->fail_addr = addr;
--			return -ERANGE;
-+			ret = -ERANGE;
-+			goto out;
- 		}
- 
- 		idx = spi_get_region(spi, addr);
- 		if (idx >= spi->nregions) {
- 			dev_err(&mtd->dev, "out of range");
- 			info->fail_addr = MTD_FAIL_ADDR_UNKNOWN;
--			return -ERANGE;
-+			ret = -ERANGE;
-+			goto out;
- 		}
- 
- 		from = addr - spi->regions[idx].offset;
-@@ -397,14 +404,17 @@ static int i915_spi_erase(struct mtd_info *mtd, struct erase_info *info)
- 		if (bytes < 0) {
- 			dev_dbg(&mtd->dev, "erase failed with %zd\n", bytes);
- 			info->fail_addr += spi->regions[idx].offset;
--			return bytes;
-+			ret = bytes;
-+			goto out;
- 		}
- 
- 		addr += len;
- 		total_len -= len;
- 	}
- 
--	return 0;
-+out:
-+	mutex_unlock(&spi->lock);
-+	return ret;
+ 	device_destroy(&mtd_class, index + 1);
  }
  
- static int i915_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
-@@ -440,14 +450,19 @@ static int i915_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
- 	if (len > spi->regions[idx].size - from)
- 		len = spi->regions[idx].size - from;
- 
-+	if (!mutex_trylock(&spi->lock))
-+		return -EBUSY;
++static void mtd_device_release(struct kref *kref)
++{
++	struct mtd_info *mtd = container_of(kref, struct mtd_info, refcnt);
 +
- 	ret = spi_read(spi, region, from, len, buf);
- 	if (ret < 0) {
- 		dev_dbg(&mtd->dev, "read failed with %zd\n", ret);
-+		mutex_unlock(&spi->lock);
- 		return ret;
++	pr_debug("%s %s\n", __func__, mtd->name);
++
++	if (mtd->nvmem) {
++		nvmem_unregister(mtd->nvmem);
++		mtd->nvmem = NULL;
++	}
++
++	idr_remove(&mtd_idr, mtd->index);
++	of_node_put(mtd_get_of_node(mtd));
++
++	device_unregister(&mtd->dev);
++
++	module_put(THIS_MODULE);
++}
++
+ static ssize_t mtd_type_show(struct device *dev,
+ 		struct device_attribute *attr, char *buf)
+ {
+@@ -619,7 +641,7 @@ int add_mtd_device(struct mtd_info *mtd)
  	}
  
- 	*retlen = ret;
+ 	mtd->index = i;
+-	mtd->usecount = 0;
++	kref_init(&mtd->refcnt);
  
-+	mutex_unlock(&spi->lock);
+ 	/* default value if not set by driver */
+ 	if (mtd->bitflip_threshold == 0)
+@@ -719,6 +741,8 @@ int del_mtd_device(struct mtd_info *mtd)
+ 	int ret;
+ 	struct mtd_notifier *not;
+ 
++	pr_debug("%s %s\n", __func__, mtd->name);
++
+ 	mutex_lock(&mtd_table_mutex);
+ 
+ 	debugfs_remove_recursive(mtd->dbg.dfs_dir);
+@@ -733,23 +757,8 @@ int del_mtd_device(struct mtd_info *mtd)
+ 	list_for_each_entry(not, &mtd_notifiers, list)
+ 		not->remove(mtd);
+ 
+-	if (mtd->usecount) {
+-		printk(KERN_NOTICE "Removing MTD device #%d (%s) with use count %d\n",
+-		       mtd->index, mtd->name, mtd->usecount);
+-		ret = -EBUSY;
+-	} else {
+-		/* Try to remove the NVMEM provider */
+-		if (mtd->nvmem)
+-			nvmem_unregister(mtd->nvmem);
+-
+-		device_unregister(&mtd->dev);
+-
+-		idr_remove(&mtd_idr, mtd->index);
+-		of_node_put(mtd_get_of_node(mtd));
+-
+-		module_put(THIS_MODULE);
+-		ret = 0;
+-	}
++	kref_put(&mtd->refcnt, mtd_device_release);
++	ret = 0;
+ 
+ out_error:
+ 	mutex_unlock(&mtd_table_mutex);
+@@ -984,20 +993,23 @@ int __get_mtd_device(struct mtd_info *mtd)
+ 	if (!try_module_get(master->owner))
+ 		return -ENODEV;
+ 
++	kref_get(&mtd->refcnt);
++	pr_debug("get mtd %s %d\n", mtd->name, kref_read(&mtd->refcnt));
++
+ 	if (master->_get_device) {
+ 		err = master->_get_device(mtd);
+ 
+ 		if (err) {
++			kref_put(&mtd->refcnt, mtd_device_release);
+ 			module_put(master->owner);
+ 			return err;
+ 		}
+ 	}
+ 
+-	master->usecount++;
+-
+ 	while (mtd->parent) {
+-		mtd->usecount++;
+ 		mtd = mtd->parent;
++		kref_get(&mtd->refcnt);
++		pr_debug("get mtd %s %d\n", mtd->name, kref_read(&mtd->refcnt));
+ 	}
+ 
+ 	return 0;
+@@ -1055,14 +1067,15 @@ void __put_mtd_device(struct mtd_info *mtd)
+ {
+ 	struct mtd_info *master = mtd_get_master(mtd);
+ 
++	kref_put(&mtd->refcnt, mtd_device_release);
++	pr_debug("put mtd %s %d\n", mtd->name, kref_read(&mtd->refcnt));
++
+ 	while (mtd->parent) {
+-		--mtd->usecount;
+-		BUG_ON(mtd->usecount < 0);
+ 		mtd = mtd->parent;
++		kref_put(&mtd->refcnt, mtd_device_release);
++		pr_debug("put mtd %s %d\n", mtd->name, kref_read(&mtd->refcnt));
+ 	}
+ 
+-	master->usecount--;
+-
+ 	if (master->_put_device)
+ 		master->_put_device(master);
+ 
+diff --git a/drivers/mtd/mtdcore.h b/drivers/mtd/mtdcore.h
+index b5eefeabf310..b014861a06a6 100644
+--- a/drivers/mtd/mtdcore.h
++++ b/drivers/mtd/mtdcore.h
+@@ -12,6 +12,7 @@ int __must_check add_mtd_device(struct mtd_info *mtd);
+ int del_mtd_device(struct mtd_info *mtd);
+ int add_mtd_partitions(struct mtd_info *, const struct mtd_partition *, int);
+ int del_mtd_partitions(struct mtd_info *);
++void release_mtd_partition(struct mtd_info *mtd);
+ 
+ struct mtd_partitions;
+ 
+diff --git a/drivers/mtd/mtdpart.c b/drivers/mtd/mtdpart.c
+index 12ca4f19cb14..6d70b5d0e663 100644
+--- a/drivers/mtd/mtdpart.c
++++ b/drivers/mtd/mtdpart.c
+@@ -27,10 +27,17 @@
+ 
+ static inline void free_partition(struct mtd_info *mtd)
+ {
++	pr_err("free_partition \"%s\"\n", mtd->name);
+ 	kfree(mtd->name);
+ 	kfree(mtd);
+ }
+ 
++void release_mtd_partition(struct mtd_info *mtd)
++{
++	list_del_init(&mtd->part.node);
++	free_partition(mtd);
++}
++
+ static struct mtd_info *allocate_partition(struct mtd_info *parent,
+ 					   const struct mtd_partition *part,
+ 					   int partno, uint64_t cur_offset)
+@@ -313,9 +320,6 @@ static int __mtd_del_partition(struct mtd_info *mtd)
+ 	if (err)
+ 		return err;
+ 
+-	list_del(&child->part.node);
+-	free_partition(mtd);
+-
  	return 0;
  }
  
-@@ -484,14 +499,19 @@ static int i915_spi_write(struct mtd_info *mtd, loff_t to, size_t len,
- 	if (len > spi->regions[idx].size - to)
- 		len = spi->regions[idx].size - to;
- 
-+	if (!mutex_trylock(&spi->lock))
-+		return -EBUSY;
-+
- 	ret = spi_write(spi, region, to, len, buf);
- 	if (ret < 0) {
- 		dev_dbg(&mtd->dev, "write failed with %zd\n", ret);
-+		mutex_unlock(&spi->lock);
- 		return ret;
+@@ -341,9 +345,6 @@ static int __del_mtd_partitions(struct mtd_info *mtd)
+ 			err = ret;
+ 			continue;
+ 		}
+-
+-		list_del(&child->part.node);
+-		free_partition(child);
  	}
  
- 	*retlen = ret;
+ 	return err;
+diff --git a/include/linux/mtd/mtd.h b/include/linux/mtd/mtd.h
+index 157357ec1441..1217c9d8d69d 100644
+--- a/include/linux/mtd/mtd.h
++++ b/include/linux/mtd/mtd.h
+@@ -373,7 +373,7 @@ struct mtd_info {
  
-+	mutex_unlock(&spi->lock);
- 	return 0;
- }
+ 	struct module *owner;
+ 	struct device dev;
+-	int usecount;
++	struct kref refcnt;
+ 	struct mtd_debug_info dbg;
+ 	struct nvmem_device *nvmem;
  
-@@ -505,6 +525,8 @@ static int i915_spi_init_mtd(struct i915_spi *spi, struct device *device,
- 
- 	dev_dbg(device, "registering with mtd\n");
- 
-+	mutex_init(&spi->lock);
-+
- 	spi->mtd.owner = THIS_MODULE;
- 	spi->mtd.dev.parent = device;
- 	spi->mtd.flags = MTD_CAP_NORFLASH | MTD_WRITEABLE;
-@@ -630,6 +652,8 @@ static int i915_spi_remove(struct platform_device *platdev)
- 
- 	mtd_device_unregister(&spi->mtd);
- 
-+	mutex_destroy(&spi->lock);
-+
- 	platform_set_drvdata(platdev, NULL);
- 
- 	return 0;
 -- 
 2.26.2
 
