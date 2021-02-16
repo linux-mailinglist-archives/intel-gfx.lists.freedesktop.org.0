@@ -2,34 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB5831CFA0
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 18:53:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 826FF31CFE1
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 19:08:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 023A489ECD;
-	Tue, 16 Feb 2021 17:53:11 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B760289ECD;
- Tue, 16 Feb 2021 17:53:08 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23883957-1500050 for multiple; Tue, 16 Feb 2021 17:53:06 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id C50D36E413;
+	Tue, 16 Feb 2021 18:08:34 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A15456E453;
+ Tue, 16 Feb 2021 18:08:31 +0000 (UTC)
+IronPort-SDR: LfS1afo7RqA9m5uAAa2NwKGuNUmp0RNbYlnbIT3Rv1r0oHRzyvl2XQhu0hFp8I91/vEOaKAbGC
+ RmbhA9Kc+sRQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="179464151"
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="179464151"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2021 10:08:30 -0800
+IronPort-SDR: 3QS4sXG1CdDRgtOryO4kxvRTp8CEtNV8Dy9NG8rrGQ9qAg9vStzQ79LQbYxSbCSvg3+uhPxQ91
+ x78m4i9OB6QA==
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="384643113"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2021 10:08:29 -0800
+Date: Tue, 16 Feb 2021 20:08:25 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20210216180825.GA420119@ideak-desk.fi.intel.com>
+References: <20210212185053.1689716-1-lyude@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <5a07f0c2-48c1-1605-e1f5-91d61a213f67@linux.intel.com>
-References: <20210216105050.309803-1-tvrtko.ursulin@linux.intel.com>
- <161347977326.8311.2289376711332554853@build.alporthouse.com>
- <5a07f0c2-48c1-1605-e1f5-91d61a213f67@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-Date: Tue, 16 Feb 2021 17:53:04 +0000
-Message-ID: <161349798460.8311.9805097556312646496@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915/perf_pmu: Subtest to
- measure sampling error for 100% busy
+Content-Disposition: inline
+In-Reply-To: <20210212185053.1689716-1-lyude@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gen9bc: Handle TGP PCH during
+ suspend/resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,104 +47,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2021-02-16 15:59:33)
-> 
-> On 16/02/2021 12:49, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2021-02-16 10:50:50)
-> >> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>
-> >> Test that periodic reads of engine busyness against a constant 100% load
-> >> are within the 5000ppm tolerance when comparing perf timestamp versus
-> >> counter values.
-> >>
-> >> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >> ---
-> >>   tests/i915/perf_pmu.c | 46 ++++++++++++++++++++++++++++++++++++++-----
-> >>   1 file changed, 41 insertions(+), 5 deletions(-)
-> >>
-> >> diff --git a/tests/i915/perf_pmu.c b/tests/i915/perf_pmu.c
-> >> index 50b5c82bc472..728312be5293 100644
-> >> --- a/tests/i915/perf_pmu.c
-> >> +++ b/tests/i915/perf_pmu.c
-> >> @@ -26,6 +26,7 @@
-> >>   #include <stdio.h>
-> >>   #include <string.h>
-> >>   #include <fcntl.h>
-> >> +#include <float.h>
-> >>   #include <inttypes.h>
-> >>   #include <errno.h>
-> >>   #include <signal.h>
-> >> @@ -46,6 +47,7 @@
-> >>   #include "igt_perf.h"
-> >>   #include "igt_sysfs.h"
-> >>   #include "igt_pm.h"
-> >> +#include "igt_stats.h"
-> >>   #include "sw_sync.h"
-> >>   
-> >>   IGT_TEST_DESCRIPTION("Test the i915 pmu perf interface");
-> >> @@ -278,8 +280,11 @@ static void end_spin(int fd, igt_spin_t *spin, unsigned int flags)
-> >>   static void
-> >>   single(int gem_fd, const struct intel_execution_engine2 *e, unsigned int flags)
-> >>   {
-> >> +       unsigned int loops = flags & FLAG_LONG ? 20 : 1;
-> >> +       double err_min = DBL_MAX, err_max = -DBL_MAX;
-> >>          unsigned long slept;
-> >>          igt_spin_t *spin;
-> >> +       igt_stats_t s;
-> >>          uint64_t val;
-> >>          int fd;
-> >>   
-> >> @@ -290,11 +295,40 @@ single(int gem_fd, const struct intel_execution_engine2 *e, unsigned int flags)
-> >>          else
-> >>                  spin = NULL;
-> >>   
-> >> -       val = pmu_read_single(fd);
-> >> -       slept = measured_usleep(batch_duration_ns / 1000);
-> >> -       if (flags & TEST_TRAILING_IDLE)
-> >> -               end_spin(gem_fd, spin, flags);
-> >> -       val = pmu_read_single(fd) - val;
-> >> +       igt_stats_init_with_size(&s, loops);
-> >> +
-> >> +       while (--loops) {
-> > 
-> > while (loops--)
-> > 
-> > /o\
-> 
-> Yeah.. At least I know the oddity is related to sampling. Since even on 
-> Haswell:
-> 
-> (perf_pmu:1591) DEBUG: time=500207720 busy=500037022 error=-341.25ppm
-> (perf_pmu:1591) DEBUG: time=500252520 busy=500033517 error=-437.78ppm
-> (perf_pmu:1591) DEBUG: time=500187490 busy=499999817 error=-375.21ppm
-> (perf_pmu:1591) DEBUG: time=500244871 busy=499999837 error=-489.83ppm
-> (perf_pmu:1591) DEBUG: time=500268670 busy=499999477 error=-538.10ppm
-> (perf_pmu:1591) DEBUG: time=500245246 busy=500000432 error=-489.39ppm
-> (perf_pmu:1591) DEBUG: time=500245735 busy=499999306 error=-492.62ppm
-> (perf_pmu:1591) DEBUG: time=500270045 busy=500001747 error=-536.31ppm
-> (perf_pmu:1591) DEBUG: time=500254286 busy=499998162 error=-511.99ppm
-> (perf_pmu:1591) DEBUG: time=500247790 busy=500000347 error=-494.64ppm
-> (perf_pmu:1591) DEBUG: time=500250261 busy=500000257 error=-499.76ppm
-> (perf_pmu:1591) DEBUG: time=500250005 busy=500008177 error=-483.41ppm
-> (perf_pmu:1591) DEBUG: time=500249065 busy=499991867 error=-514.14ppm
-> (perf_pmu:1591) DEBUG: time=500249725 busy=500000371 error=-498.46ppm
-> (perf_pmu:1591) DEBUG: time=500250335 busy=499999772 error=-500.88ppm
-> (perf_pmu:1591) DEBUG: time=500258691 busy=499999937 error=-517.24ppm
-> (perf_pmu:1591) DEBUG: time=500239980 busy=500001037 error=-477.66ppm
-> (perf_pmu:1591) DEBUG: time=500240791 busy=504999361 error=9512.56ppm
-> 
-> And this last one is way more than one sampling period. I'll be thinking 
-> about this in the background.
+Hi,
 
-One thing to add would be the cumulative error. It does feel like a
-corrective factor is applied to the sampling period.
--Chris
+thanks for respinning this patchset, some comments below.
+
+On Fri, Feb 12, 2021 at 01:50:53PM -0500, Lyude Paul wrote:
+> From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> 
+> For Legacy S3 suspend/resume GEN9 BC needs to enable and
+> setup TGP PCH.
+> 
+> v2:
+> * Move Wa_14010685332 into it's own function - vsyrjala
+> * Add TODO comment about figuring out if we can move this workaround - imre
+> 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c | 53 ++++++++++++++++++++++-----------
+>  1 file changed, 36 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index 98145a7f28a4..7d912aa950ee 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -3040,6 +3040,19 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
+>  	spin_unlock_irq(&dev_priv->irq_lock);
+>  }
+>  
+> +static void cnp_irq_post_reset(struct drm_i915_private *dev_priv)
+
+Maybe a better name is cnp_display_clock_wa.
+
+> +{
+> +	struct intel_uncore *uncore = &dev_priv->uncore;
+> +
+> +	/*
+> +	 * Wa_14010685332:cnp/cmp,tgp,adp
+
+Bspec says this WA applies ICL onwards and it's not PCH specific, for
+instance I haven't found the GEN9/CNP/CMP WA entries for it. Please also
+add a 'clarify platforms where this applies' todo item.
+
+> +	 * TODO: Figure out if this workaround can be applied in the s0ix suspend/resume handlers as
+> +	 * on earlier platforms and whether the workaround is also needed for runtime suspend/resume
+> +	 */
+> +	intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
+> +	intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
+> +}
+> +
+>  static void gen8_irq_reset(struct drm_i915_private *dev_priv)
+>  {
+>  	struct intel_uncore *uncore = &dev_priv->uncore;
+> @@ -3061,8 +3074,14 @@ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
+>  	GEN3_IRQ_RESET(uncore, GEN8_DE_MISC_);
+>  	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
+>  
+> -	if (HAS_PCH_SPLIT(dev_priv))
+> +	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+
+It was mentioned already earlier, why is this check necessary and can't we
+just call ibx_irq_reset() for all PCHs?
+
+> +		GEN3_IRQ_RESET(uncore, SDE);
+> +	else if (HAS_PCH_SPLIT(dev_priv))
+>  		ibx_irq_reset(dev_priv);
+> +
+> +	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
+> +	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && INTEL_PCH_TYPE(dev_priv) < PCH_DG1))
+
+The check could be also moved to the helper.
+
+> +		cnp_irq_post_reset(dev_priv);
+>  }
+>  
+>  static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+> @@ -3104,15 +3123,9 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+>  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+>  		GEN3_IRQ_RESET(uncore, SDE);
+>  
+> -	/* Wa_14010685332:cnp/cmp,tgp,adp */
+>  	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
+> -	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP &&
+> -	     INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
+> -		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> -				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
+> -		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+> -				 SBCLK_RUN_REFCLK_DIS, 0);
+> -	}
+> +	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && INTEL_PCH_TYPE(dev_priv) < PCH_DG1))
+> +		cnp_irq_post_reset(dev_priv);
+>  }
+>  
+>  static void gen11_irq_reset(struct drm_i915_private *dev_priv)
+> @@ -3474,6 +3487,9 @@ static void spt_hpd_irq_setup(struct drm_i915_private *dev_priv)
+>  	ibx_display_interrupt_update(dev_priv, hotplug_irqs, enabled_irqs);
+>  
+>  	spt_hpd_detection_setup(dev_priv);
+> +
+> +	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+> +		icp_hpd_irq_setup(dev_priv);
+
+This doesn't look correct, icp_hpd_irq_setup() redoes the interrupt
+setup done already earlier in this function and
+spt_hpd_detection_setup() is probably also not correct on ICP+. Looks
+like for ICP+ we need to call icp_hpd_irq_setup() instead of
+spt_hpd_irq_setup(), but haven't checked in detail.
+
+>  }
+>  
+>  static u32 ilk_hotplug_enables(struct drm_i915_private *i915,
+> @@ -3764,9 +3780,19 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+>  	}
+>  }
+>  
+> +static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
+> +{
+> +	struct intel_uncore *uncore = &dev_priv->uncore;
+> +	u32 mask = SDE_GMBUS_ICP;
+> +
+> +	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
+> +}
+> +
+>  static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
+>  {
+> -	if (HAS_PCH_SPLIT(dev_priv))
+> +	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+> +		icp_irq_postinstall(dev_priv);
+> +	else if (HAS_PCH_SPLIT(dev_priv))
+>  		ibx_irq_postinstall(dev_priv);
+>  
+>  	gen8_gt_irq_postinstall(&dev_priv->gt);
+> @@ -3775,13 +3801,6 @@ static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
+>  	gen8_master_intr_enable(dev_priv->uncore.regs);
+>  }
+>  
+> -static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
+> -{
+> -	struct intel_uncore *uncore = &dev_priv->uncore;
+> -	u32 mask = SDE_GMBUS_ICP;
+> -
+> -	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
+> -}
+>  
+>  static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
+>  {
+> -- 
+> 2.29.2
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
