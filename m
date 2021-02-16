@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B38131CA5E
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 13:08:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1BD531CA72
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 13:14:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E5126E02E;
-	Tue, 16 Feb 2021 12:07:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDD356E944;
+	Tue, 16 Feb 2021 12:14:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D89146E02E;
- Tue, 16 Feb 2021 12:07:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23880339-1500050 for multiple; Tue, 16 Feb 2021 12:07:53 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 79F4F6E943;
+ Tue, 16 Feb 2021 12:14:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 720E2A0118;
+ Tue, 16 Feb 2021 12:14:37 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <SA2PR11MB5068A706257864219AF6F727AE879@SA2PR11MB5068.namprd11.prod.outlook.com>
-References: <20210210075929.5357-1-anandx.ram.moon@intel.com>
- <161295390650.6673.18431407043692596805@build.alporthouse.com>
- <SA2PR11MB50685BFD01D8C6318437AD59AE889@SA2PR11MB5068.namprd11.prod.outlook.com>
- <161339279139.27357.6733884217281880617@build.alporthouse.com>
- <SA2PR11MB5068A706257864219AF6F727AE879@SA2PR11MB5068.namprd11.prod.outlook.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: "Auld, Matthew" <matthew.auld@intel.com>, "Ram Moon,
- AnandX" <anandx.ram.moon@intel.com>, "Surendrakumar Upadhyay,
- TejaskumarX" <tejaskumarx.surendrakumar.upadhyay@intel.com>, "Ursulin,
- Tvrtko" <tvrtko.ursulin@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Feb 2021 12:07:52 +0000
-Message-ID: <161347727279.8311.12908365328271939168@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Add a check for object size
- for corner cases
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chen Lin" <chen45464546@163.com>
+Date: Tue, 16 Feb 2021 12:14:37 -0000
+Message-ID: <161347767743.32285.4051189150405477384@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <1613388619-3276-1-git-send-email-chen45464546@163.com>
+In-Reply-To: <1613388619-3276-1-git-send-email-chen45464546@163.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Remove_unused_function_pointer_typedef_long=5Fpulse=5F?=
+ =?utf-8?q?detect=5Ffunc?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,63 +39,519 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1774886816=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Ram Moon, AnandX (2021-02-16 12:05:23)
-> Hi Chris,
-> 
-> -----Original Message-----
-> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Chris Wilson
-> Sent: Monday, February 15, 2021 6:10 PM
-> To: Auld, Matthew <matthew.auld@intel.com>; Ram Moon, AnandX <anandx.ram.moon@intel.com>; Surendrakumar Upadhyay, TejaskumarX <tejaskumarx.surendrakumar.upadhyay@intel.com>; Ursulin, Tvrtko <tvrtko.ursulin@intel.com>; Jani Nikula <jani.nikula@linux.intel.com>; dri-devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Add a check for object size for corner cases
-> 
-> Quoting Ram Moon, AnandX (2021-02-15 12:29:17)
-> > Hi Chris,
-> > 
-> > -----Original Message-----
-> > From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of 
-> > Chris Wilson
-> > Sent: Wednesday, February 10, 2021 4:15 PM
-> > To: Ram Moon, AnandX <anandx.ram.moon@intel.com>; Jani Nikula 
-> > <jani.nikula@linux.intel.com>; Auld, Matthew <matthew.auld@intel.com>; 
-> > Surendrakumar Upadhyay, TejaskumarX 
-> > <tejaskumarx.surendrakumar.upadhyay@intel.com>; Ursulin, Tvrtko 
-> > <tvrtko.ursulin@intel.com>; dri-devel@lists.freedesktop.org; 
-> > intel-gfx@lists.freedesktop.org
-> > Cc: Ram Moon, AnandX <anandx.ram.moon@intel.com>
-> > Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Add a check for object 
-> > size for corner cases
-> > 
-> > Quoting Anand Moon (2021-02-10 07:59:29)
-> > > Add check for object size to return appropriate error -E2BIG or 
-> > > -EINVAL to avoid WARM_ON and successful return for some testcase.
-> > 
-> > No. You miss the point of having those warnings. We need to inspect the code to remove the last remaining "int pagenum", and then we can remove the GEM_WARN_ON((sz) >> PAGE_SHIFT > INT_MAX). These are not emitted for users, only for us to motivate us into finally fixing the code.
-> > -Chris
-> > 
-> > Yes, I got your point these check are meant to catch up integer overflow.
-> > 
-> > I have check with the IGT testcase case  _gem_create_ and 
-> > _gem_userptr_blits_ which fails pass size *-1ull << 32*  left shift 
-> > and *0~* which leads to integer overflow ie  _negative_ size passed to create  i915_gem_create via ioctl  this leads to GM_WARN_ON.
-> > 
-> > Can we drop these testcase so that we don't break the kernel ?
-> 
-> The kernel rejects the ioctl with the expected errno. We leave a warning purely for the benefit of CI, only when compiled for debugging and not by default, so that we have a persistent reminder to do the code review.
-> What's broken?
-> -Chris
-> 
-> All though the testcase return with appropriate error we observe kernel taint see below.
+--===============1774886816==
+Content-Type: multipart/alternative;
+ boundary="===============2123904561825925200=="
 
-Which is an intentional taint added for CI so that we get a warning and
-a visible bug so that we can allocate resources to _fix_ the underlying
-problems in the code.
--Chris
+--===============2123904561825925200==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915: Remove unused function pointer typedef long_pulse_detect_func
+URL   : https://patchwork.freedesktop.org/series/87119/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9777 -> Patchwork_19684
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_9777 and Patchwork_19684:
+
+### New IGT tests (27) ###
+
+  * igt@gem_exec_fence@basic-await:
+    - Statuses : 2 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@gem_exec_fence@basic-await@bcs0:
+    - Statuses : 32 pass(s)
+    - Exec time: [0.06, 0.31] s
+
+  * igt@gem_exec_fence@basic-await@rcs0:
+    - Statuses : 35 pass(s)
+    - Exec time: [0.06, 0.34] s
+
+  * igt@gem_exec_fence@basic-await@vcs0:
+    - Statuses : 34 pass(s)
+    - Exec time: [0.06, 0.34] s
+
+  * igt@gem_exec_fence@basic-await@vcs1:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.08, 0.24] s
+
+  * igt@gem_exec_fence@basic-await@vecs0:
+    - Statuses : 30 pass(s)
+    - Exec time: [0.07, 0.34] s
+
+  * igt@gem_exec_fence@basic-busy:
+    - Statuses : 2 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@gem_exec_fence@basic-busy@bcs0:
+    - Statuses : 17 pass(s) 15 skip(s)
+    - Exec time: [0.0, 0.03] s
+
+  * igt@gem_exec_fence@basic-busy@rcs0:
+    - Statuses : 35 pass(s)
+    - Exec time: [0.01, 0.04] s
+
+  * igt@gem_exec_fence@basic-busy@vcs0:
+    - Statuses : 34 pass(s)
+    - Exec time: [0.01, 0.03] s
+
+  * igt@gem_exec_fence@basic-busy@vcs1:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.01, 0.02] s
+
+  * igt@gem_exec_fence@basic-busy@vecs0:
+    - Statuses : 30 pass(s)
+    - Exec time: [0.01, 0.03] s
+
+  * igt@gem_exec_fence@basic-wait:
+    - Statuses : 2 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@gem_exec_fence@basic-wait@bcs0:
+    - Statuses : 17 pass(s) 15 skip(s)
+    - Exec time: [0.0, 0.03] s
+
+  * igt@gem_exec_fence@basic-wait@rcs0:
+    - Statuses : 35 pass(s)
+    - Exec time: [0.01, 0.04] s
+
+  * igt@gem_exec_fence@basic-wait@vcs0:
+    - Statuses : 34 pass(s)
+    - Exec time: [0.01, 0.04] s
+
+  * igt@gem_exec_fence@basic-wait@vcs1:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.01, 0.03] s
+
+  * igt@gem_exec_fence@basic-wait@vecs0:
+    - Statuses : 30 pass(s)
+    - Exec time: [0.01, 0.04] s
+
+  * igt@gem_exec_fence@nb-await:
+    - Statuses : 2 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@gem_exec_fence@nb-await@bcs0:
+    - Statuses : 32 pass(s)
+    - Exec time: [0.05, 0.12] s
+
+  * igt@gem_exec_fence@nb-await@rcs0:
+    - Statuses : 35 pass(s)
+    - Exec time: [0.05, 0.13] s
+
+  * igt@gem_exec_fence@nb-await@vcs0:
+    - Statuses : 34 pass(s)
+    - Exec time: [0.05, 0.10] s
+
+  * igt@gem_exec_fence@nb-await@vcs1:
+    - Statuses : 7 pass(s)
+    - Exec time: [0.06, 0.10] s
+
+  * igt@gem_exec_fence@nb-await@vecs0:
+    - Statuses : 30 pass(s)
+    - Exec time: [0.05, 0.12] s
+
+  * igt@kms_busy@basic:
+    - Statuses : 3 skip(s)
+    - Exec time: [0.0] s
+
+  * igt@kms_busy@basic@flip:
+    - Statuses : 32 pass(s)
+    - Exec time: [0.39, 2.53] s
+
+  * igt@kms_busy@basic@modeset:
+    - Statuses : 30 pass(s) 2 skip(s)
+    - Exec time: [0.0, 5.41] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19684 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@i915_selftest@live@client:
+    - fi-glk-dsi:         [PASS][3] -> [DMESG-FAIL][4] ([i915#3047])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-glk-dsi/igt@i915_selftest@live@client.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-glk-dsi/igt@i915_selftest@live@client.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - fi-snb-2600:        NOTRUN -> [SKIP][5] ([fdo#109271]) +34 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-snb-2600:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Additional (1): fi-snb-2600 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9777 -> Patchwork_19684
+
+  CI-20190529: 20190529
+  CI_DRM_9777: 5fd19bfd239ec997f3bcac75d6af8c9340066b12 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19684: 8e231c6341ec85b9ed18ae18a80c1862181f1d8a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8e231c6341ec drm/i915: Remove unused function pointer typedef long_pulse_detect_func
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html
+
+--===============2123904561825925200==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Remove unused function pointer typedef long_pulse_detect_func</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87119/">https://patchwork.freedesktop.org/series/87119/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9777 -&gt; Patchwork_19684</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html</p>
+<h2>New tests</h2>
+<p>New tests have been introduced between CI_DRM_9777 and Patchwork_19684:</p>
+<h3>New IGT tests (27)</h3>
+<ul>
+<li>
+<p>igt@gem_exec_fence@basic-await:</p>
+<ul>
+<li>Statuses : 2 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-await@bcs0:</p>
+<ul>
+<li>Statuses : 32 pass(s)</li>
+<li>Exec time: [0.06, 0.31] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-await@rcs0:</p>
+<ul>
+<li>Statuses : 35 pass(s)</li>
+<li>Exec time: [0.06, 0.34] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-await@vcs0:</p>
+<ul>
+<li>Statuses : 34 pass(s)</li>
+<li>Exec time: [0.06, 0.34] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-await@vcs1:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [0.08, 0.24] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-await@vecs0:</p>
+<ul>
+<li>Statuses : 30 pass(s)</li>
+<li>Exec time: [0.07, 0.34] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy:</p>
+<ul>
+<li>Statuses : 2 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
+<ul>
+<li>Statuses : 17 pass(s) 15 skip(s)</li>
+<li>Exec time: [0.0, 0.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@rcs0:</p>
+<ul>
+<li>Statuses : 35 pass(s)</li>
+<li>Exec time: [0.01, 0.04] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@vcs0:</p>
+<ul>
+<li>Statuses : 34 pass(s)</li>
+<li>Exec time: [0.01, 0.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@vcs1:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [0.01, 0.02] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-busy@vecs0:</p>
+<ul>
+<li>Statuses : 30 pass(s)</li>
+<li>Exec time: [0.01, 0.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-wait:</p>
+<ul>
+<li>Statuses : 2 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-wait@bcs0:</p>
+<ul>
+<li>Statuses : 17 pass(s) 15 skip(s)</li>
+<li>Exec time: [0.0, 0.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-wait@rcs0:</p>
+<ul>
+<li>Statuses : 35 pass(s)</li>
+<li>Exec time: [0.01, 0.04] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-wait@vcs0:</p>
+<ul>
+<li>Statuses : 34 pass(s)</li>
+<li>Exec time: [0.01, 0.04] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-wait@vcs1:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [0.01, 0.03] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@basic-wait@vecs0:</p>
+<ul>
+<li>Statuses : 30 pass(s)</li>
+<li>Exec time: [0.01, 0.04] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@nb-await:</p>
+<ul>
+<li>Statuses : 2 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@nb-await@bcs0:</p>
+<ul>
+<li>Statuses : 32 pass(s)</li>
+<li>Exec time: [0.05, 0.12] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@nb-await@rcs0:</p>
+<ul>
+<li>Statuses : 35 pass(s)</li>
+<li>Exec time: [0.05, 0.13] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@nb-await@vcs0:</p>
+<ul>
+<li>Statuses : 34 pass(s)</li>
+<li>Exec time: [0.05, 0.10] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@nb-await@vcs1:</p>
+<ul>
+<li>Statuses : 7 pass(s)</li>
+<li>Exec time: [0.06, 0.10] s</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_fence@nb-await@vecs0:</p>
+<ul>
+<li>Statuses : 30 pass(s)</li>
+<li>Exec time: [0.05, 0.12] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic:</p>
+<ul>
+<li>Statuses : 3 skip(s)</li>
+<li>Exec time: [0.0] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>Statuses : 32 pass(s)</li>
+<li>Exec time: [0.39, 2.53] s</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>Statuses : 30 pass(s) 2 skip(s)</li>
+<li>Exec time: [0.0, 5.41] s</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19684 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +34 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@prime_self_import@basic-with_two_bos:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Additional (1): fi-snb-2600 <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9777 -&gt; Patchwork_19684</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9777: 5fd19bfd239ec997f3bcac75d6af8c9340066b12 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19684: 8e231c6341ec85b9ed18ae18a80c1862181f1d8a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8e231c6341ec drm/i915: Remove unused function pointer typedef long_pulse_detect_func</p>
+
+</body>
+</html>
+
+--===============2123904561825925200==--
+
+--===============1774886816==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1774886816==--
