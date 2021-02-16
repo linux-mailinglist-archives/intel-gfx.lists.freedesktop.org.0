@@ -2,31 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1BD531CA72
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 13:14:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9810631CA8E
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 13:34:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDD356E944;
-	Tue, 16 Feb 2021 12:14:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 866E26E14B;
+	Tue, 16 Feb 2021 12:34:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 79F4F6E943;
- Tue, 16 Feb 2021 12:14:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 720E2A0118;
- Tue, 16 Feb 2021 12:14:37 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E95D6E14B;
+ Tue, 16 Feb 2021 12:34:53 +0000 (UTC)
+IronPort-SDR: lRV6N+s6bgBJF0UkAehAPdHwr0RmsnltXaUJY3c0C/UVUH0Y4Nlo1yqeOKoXHp51nWG25bxkVB
+ KDYAZPxFsQ/g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9896"; a="202061447"
+X-IronPort-AV: E=Sophos;i="5.81,183,1610438400"; d="scan'208";a="202061447"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2021 04:34:52 -0800
+IronPort-SDR: +fWkh9qmwuRIHAdYg/Q5ZLUygdoyXBYiJ6iD8V9vHuWcgDsV1R3P0cCM08yu2RdTgT/eEy9FNZ
+ LE9SdGtCjXQQ==
+X-IronPort-AV: E=Sophos;i="5.81,183,1610438400"; d="scan'208";a="399486632"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2021 04:34:51 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Tue, 16 Feb 2021 14:34:48 +0200
+Message-Id: <20210216123448.410545-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chen Lin" <chen45464546@163.com>
-Date: Tue, 16 Feb 2021 12:14:37 -0000
-Message-ID: <161347767743.32285.4051189150405477384@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <1613388619-3276-1-git-send-email-chen45464546@163.com>
-In-Reply-To: <1613388619-3276-1-git-send-email-chen45464546@163.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Remove_unused_function_pointer_typedef_long=5Fpulse=5F?=
- =?utf-8?q?detect=5Ffunc?=
+Subject: [Intel-gfx] [PATCH] drm/dp_mst: Tune down the WARN modesetting a
+ port with full_pbn=0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,519 +45,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1774886816=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1774886816==
-Content-Type: multipart/alternative;
- boundary="===============2123904561825925200=="
-
---===============2123904561825925200==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Remove unused function pointer typedef long_pulse_detect_func
-URL   : https://patchwork.freedesktop.org/series/87119/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9777 -> Patchwork_19684
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_9777 and Patchwork_19684:
-
-### New IGT tests (27) ###
-
-  * igt@gem_exec_fence@basic-await:
-    - Statuses : 2 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@gem_exec_fence@basic-await@bcs0:
-    - Statuses : 32 pass(s)
-    - Exec time: [0.06, 0.31] s
-
-  * igt@gem_exec_fence@basic-await@rcs0:
-    - Statuses : 35 pass(s)
-    - Exec time: [0.06, 0.34] s
-
-  * igt@gem_exec_fence@basic-await@vcs0:
-    - Statuses : 34 pass(s)
-    - Exec time: [0.06, 0.34] s
-
-  * igt@gem_exec_fence@basic-await@vcs1:
-    - Statuses : 7 pass(s)
-    - Exec time: [0.08, 0.24] s
-
-  * igt@gem_exec_fence@basic-await@vecs0:
-    - Statuses : 30 pass(s)
-    - Exec time: [0.07, 0.34] s
-
-  * igt@gem_exec_fence@basic-busy:
-    - Statuses : 2 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - Statuses : 17 pass(s) 15 skip(s)
-    - Exec time: [0.0, 0.03] s
-
-  * igt@gem_exec_fence@basic-busy@rcs0:
-    - Statuses : 35 pass(s)
-    - Exec time: [0.01, 0.04] s
-
-  * igt@gem_exec_fence@basic-busy@vcs0:
-    - Statuses : 34 pass(s)
-    - Exec time: [0.01, 0.03] s
-
-  * igt@gem_exec_fence@basic-busy@vcs1:
-    - Statuses : 7 pass(s)
-    - Exec time: [0.01, 0.02] s
-
-  * igt@gem_exec_fence@basic-busy@vecs0:
-    - Statuses : 30 pass(s)
-    - Exec time: [0.01, 0.03] s
-
-  * igt@gem_exec_fence@basic-wait:
-    - Statuses : 2 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@gem_exec_fence@basic-wait@bcs0:
-    - Statuses : 17 pass(s) 15 skip(s)
-    - Exec time: [0.0, 0.03] s
-
-  * igt@gem_exec_fence@basic-wait@rcs0:
-    - Statuses : 35 pass(s)
-    - Exec time: [0.01, 0.04] s
-
-  * igt@gem_exec_fence@basic-wait@vcs0:
-    - Statuses : 34 pass(s)
-    - Exec time: [0.01, 0.04] s
-
-  * igt@gem_exec_fence@basic-wait@vcs1:
-    - Statuses : 7 pass(s)
-    - Exec time: [0.01, 0.03] s
-
-  * igt@gem_exec_fence@basic-wait@vecs0:
-    - Statuses : 30 pass(s)
-    - Exec time: [0.01, 0.04] s
-
-  * igt@gem_exec_fence@nb-await:
-    - Statuses : 2 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@gem_exec_fence@nb-await@bcs0:
-    - Statuses : 32 pass(s)
-    - Exec time: [0.05, 0.12] s
-
-  * igt@gem_exec_fence@nb-await@rcs0:
-    - Statuses : 35 pass(s)
-    - Exec time: [0.05, 0.13] s
-
-  * igt@gem_exec_fence@nb-await@vcs0:
-    - Statuses : 34 pass(s)
-    - Exec time: [0.05, 0.10] s
-
-  * igt@gem_exec_fence@nb-await@vcs1:
-    - Statuses : 7 pass(s)
-    - Exec time: [0.06, 0.10] s
-
-  * igt@gem_exec_fence@nb-await@vecs0:
-    - Statuses : 30 pass(s)
-    - Exec time: [0.05, 0.12] s
-
-  * igt@kms_busy@basic:
-    - Statuses : 3 skip(s)
-    - Exec time: [0.0] s
-
-  * igt@kms_busy@basic@flip:
-    - Statuses : 32 pass(s)
-    - Exec time: [0.39, 2.53] s
-
-  * igt@kms_busy@basic@modeset:
-    - Statuses : 30 pass(s) 2 skip(s)
-    - Exec time: [0.0, 5.41] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19684 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_selftest@live@client:
-    - fi-glk-dsi:         [PASS][3] -> [DMESG-FAIL][4] ([i915#3047])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-glk-dsi/igt@i915_selftest@live@client.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-glk-dsi/igt@i915_selftest@live@client.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-snb-2600:        NOTRUN -> [SKIP][5] ([fdo#109271]) +34 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-snb-2600:        NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [DMESG-WARN][7] ([i915#402]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Additional (1): fi-snb-2600 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9777 -> Patchwork_19684
-
-  CI-20190529: 20190529
-  CI_DRM_9777: 5fd19bfd239ec997f3bcac75d6af8c9340066b12 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19684: 8e231c6341ec85b9ed18ae18a80c1862181f1d8a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8e231c6341ec drm/i915: Remove unused function pointer typedef long_pulse_detect_func
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html
-
---===============2123904561825925200==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Remove unused function pointer typedef long_pulse_detect_func</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87119/">https://patchwork.freedesktop.org/series/87119/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9777 -&gt; Patchwork_19684</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/index.html</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_9777 and Patchwork_19684:</p>
-<h3>New IGT tests (27)</h3>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-await:</p>
-<ul>
-<li>Statuses : 2 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-await@bcs0:</p>
-<ul>
-<li>Statuses : 32 pass(s)</li>
-<li>Exec time: [0.06, 0.31] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-await@rcs0:</p>
-<ul>
-<li>Statuses : 35 pass(s)</li>
-<li>Exec time: [0.06, 0.34] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-await@vcs0:</p>
-<ul>
-<li>Statuses : 34 pass(s)</li>
-<li>Exec time: [0.06, 0.34] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-await@vcs1:</p>
-<ul>
-<li>Statuses : 7 pass(s)</li>
-<li>Exec time: [0.08, 0.24] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-await@vecs0:</p>
-<ul>
-<li>Statuses : 30 pass(s)</li>
-<li>Exec time: [0.07, 0.34] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy:</p>
-<ul>
-<li>Statuses : 2 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>Statuses : 17 pass(s) 15 skip(s)</li>
-<li>Exec time: [0.0, 0.03] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@rcs0:</p>
-<ul>
-<li>Statuses : 35 pass(s)</li>
-<li>Exec time: [0.01, 0.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@vcs0:</p>
-<ul>
-<li>Statuses : 34 pass(s)</li>
-<li>Exec time: [0.01, 0.03] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@vcs1:</p>
-<ul>
-<li>Statuses : 7 pass(s)</li>
-<li>Exec time: [0.01, 0.02] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@vecs0:</p>
-<ul>
-<li>Statuses : 30 pass(s)</li>
-<li>Exec time: [0.01, 0.03] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-wait:</p>
-<ul>
-<li>Statuses : 2 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-wait@bcs0:</p>
-<ul>
-<li>Statuses : 17 pass(s) 15 skip(s)</li>
-<li>Exec time: [0.0, 0.03] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-wait@rcs0:</p>
-<ul>
-<li>Statuses : 35 pass(s)</li>
-<li>Exec time: [0.01, 0.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-wait@vcs0:</p>
-<ul>
-<li>Statuses : 34 pass(s)</li>
-<li>Exec time: [0.01, 0.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-wait@vcs1:</p>
-<ul>
-<li>Statuses : 7 pass(s)</li>
-<li>Exec time: [0.01, 0.03] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-wait@vecs0:</p>
-<ul>
-<li>Statuses : 30 pass(s)</li>
-<li>Exec time: [0.01, 0.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await:</p>
-<ul>
-<li>Statuses : 2 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await@bcs0:</p>
-<ul>
-<li>Statuses : 32 pass(s)</li>
-<li>Exec time: [0.05, 0.12] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await@rcs0:</p>
-<ul>
-<li>Statuses : 35 pass(s)</li>
-<li>Exec time: [0.05, 0.13] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await@vcs0:</p>
-<ul>
-<li>Statuses : 34 pass(s)</li>
-<li>Exec time: [0.05, 0.10] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await@vcs1:</p>
-<ul>
-<li>Statuses : 7 pass(s)</li>
-<li>Exec time: [0.06, 0.10] s</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await@vecs0:</p>
-<ul>
-<li>Statuses : 30 pass(s)</li>
-<li>Exec time: [0.05, 0.12] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic:</p>
-<ul>
-<li>Statuses : 3 skip(s)</li>
-<li>Exec time: [0.0] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>Statuses : 32 pass(s)</li>
-<li>Exec time: [0.39, 2.53] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>Statuses : 30 pass(s) 2 skip(s)</li>
-<li>Exec time: [0.0, 5.41] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19684 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@client:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +34 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_two_bos:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9777/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19684/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Additional (1): fi-snb-2600 <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9777 -&gt; Patchwork_19684</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9777: 5fd19bfd239ec997f3bcac75d6af8c9340066b12 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6003: 627cc5353535d61fa33c5f7ff7e64f154c84f10a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19684: 8e231c6341ec85b9ed18ae18a80c1862181f1d8a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>8e231c6341ec drm/i915: Remove unused function pointer typedef long_pulse_detect_func</p>
-
-</body>
-</html>
-
---===============2123904561825925200==--
-
---===============1774886816==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+It's possible to modeset a connector/mst port that has a 0 full_pbn
+value: if the sink on the port deasserts its HPD and a branch device
+reports this via a CSN with the port's ddps=0 and pdt!=NONE the driver
+clears full_pbn, but the corresponding connector can be still
+modesetted.
+
+This happened on a DELL U2719D monitor as the branch device and an LG
+27UL650-W daisy-chained to it, the LG monitor generating a long HPD
+pulse (doing this for some reason always when waking up from some power
+saving state).
+
+Tune down the WARN about this scenario to a debug message.
+
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/1917
+Cc: Lyude Paul <lyude@redhat.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/drm_dp_mst_topology.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+index 0a54506c27738..dcaf4bf9b62f6 100644
+--- a/drivers/gpu/drm/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+@@ -5118,11 +5118,15 @@ drm_dp_mst_atomic_check_port_bw_limit(struct drm_dp_mst_port *port,
+ 		if (!found)
+ 			return 0;
+ 
+-		/* This should never happen, as it means we tried to
+-		 * set a mode before querying the full_pbn
++		/*
++		 * This could happen if the sink deasserted its HPD line, but
++		 * the branch device still reports it as attached (PDT != NONE).
+ 		 */
+-		if (WARN_ON(!port->full_pbn))
++		if (!port->full_pbn) {
++			drm_dbg_kms(port->mgr->dev, "[MSTB:%p] [MST PORT:%p] no BW available for the port\n",
++				    port->parent, port);
+ 			return -EINVAL;
++		}
+ 
+ 		pbn_used = vcpi->pbn;
+ 	} else {
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1774886816==--
