@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4196631C94C
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 12:04:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EDBC31C9EA
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 12:41:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43CAB89DA7;
-	Tue, 16 Feb 2021 11:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0136E94B;
+	Tue, 16 Feb 2021 11:41:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1001 seconds by postgrey-1.36 at gabe;
- Mon, 15 Feb 2021 11:49:12 UTC
-Received: from m12-13.163.com (m12-13.163.com [220.181.12.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7F4F6E10A
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Feb 2021 11:49:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id; bh=jqOKNqjixeHymtVGiT
- /YXCDtkOtiKO4vy73LiPAvZ6U=; b=e51yYAzJFzAmwdTbuQCyKxxzDg1nWOovZ8
- JSvx8dWFN75kxO/nbNE6DTdReeDO0DlmPu+2/7ttFlm28cSq8nDyllj1Qm7ohmsD
- BqiK54UknLBENQpyb2njUYr7e9cB8VGZG3UiiaU33TmreNzzh1AariSFHLyNY646
- Zc3ArneCM=
-Received: from localhost.localdomain (unknown [125.70.196.55])
- by smtp9 (Coremail) with SMTP id DcCowABHW3tdWypgPnp0fQ--.17946S2;
- Mon, 15 Feb 2021 19:30:46 +0800 (CST)
-From: Chen Lin <chen45464546@163.com>
-To: airlied@linux.ie,
-	daniel@ffwll.ch
-Date: Mon, 15 Feb 2021 19:30:19 +0800
-Message-Id: <1613388619-3276-1-git-send-email-chen45464546@163.com>
-X-Mailer: git-send-email 1.7.9.5
-X-CM-TRANSID: DcCowABHW3tdWypgPnp0fQ--.17946S2
-X-Coremail-Antispam: 1Uf129KBjvdXoWrZF4UCFy5CFy7CFW5ur4DJwb_yoW3Arg_Gr
- 1UZrZrWrWUZFsI9a43W398XFyYyr1Uuay8Z3WSvas3Jas2y3s0yrW2qFyUZFn7WFW7JF9I
- q3WDWFsYyrZrGjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0bTmDUUUUU==
-X-Originating-IP: [125.70.196.55]
-X-CM-SenderInfo: hfkh0kqvuwkkiuw6il2tof0z/1tbiygY6nlQHLJC4DQAAsy
-X-Mailman-Approved-At: Tue, 16 Feb 2021 11:04:13 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove unused function pointer
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23A196E94A;
+ Tue, 16 Feb 2021 11:40:58 +0000 (UTC)
+IronPort-SDR: qgfCvzlhRA87xJC5+Y7v/c1CTR5IsqiPc6Cr4WVPkza6tb2CG2+G6UqPsPWhfjDbqJRJikmt9p
+ 9VTwbM8WFhjA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9896"; a="170524845"
+X-IronPort-AV: E=Sophos;i="5.81,183,1610438400"; d="scan'208";a="170524845"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2021 03:40:57 -0800
+IronPort-SDR: 4kV5ifMdVY9iJrYATUkpZJGFsnJHi5+qO0IkY7IxM9P8arvHIg0VaVYfdir6wCj/cYIBdI+Pi9
+ LMsAkJsHniLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,183,1610438400"; d="scan'208";a="400964230"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 16 Feb 2021 03:40:54 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 16 Feb 2021 13:40:53 +0200
+Date: Tue, 16 Feb 2021 13:40:53 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chen Lin <chen45464546@163.com>
+Message-ID: <YCuvRTwGxocZULT1@intel.com>
+References: <1613388619-3276-1-git-send-email-chen45464546@163.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1613388619-3276-1-git-send-email-chen45464546@163.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove unused function pointer
  typedef long_pulse_detect_func
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -51,39 +50,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Chen Lin <chen.lin5@zte.com.cn>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Chen Lin <chen.lin5@zte.com.cn>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chen Lin <chen.lin5@zte.com.cn>
+On Mon, Feb 15, 2021 at 07:30:19PM +0800, Chen Lin wrote:
+> From: Chen Lin <chen.lin5@zte.com.cn>
+> =
 
-Remove the 'long_pulse_detect_func' typedef as it is not used.
+> Remove the 'long_pulse_detect_func' typedef as it is not used.
+> =
 
-Signed-off-by: Chen Lin <chen.lin5@zte.com.cn>
----
- drivers/gpu/drm/i915/i915_irq.c |    1 -
- 1 file changed, 1 deletion(-)
+> Signed-off-by: Chen Lin <chen.lin5@zte.com.cn>
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c |    1 -
+>  1 file changed, 1 deletion(-)
+> =
 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 6cdb052..c294ac6 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -78,7 +78,6 @@ static inline void pmu_irq_stats(struct drm_i915_private *i915,
- 	WRITE_ONCE(i915->pmu.irq_count, i915->pmu.irq_count + 1);
- }
- 
--typedef bool (*long_pulse_detect_func)(enum hpd_pin pin, u32 val);
- typedef u32 (*hotplug_enables_func)(struct drm_i915_private *i915,
- 				    enum hpd_pin pin);
- 
--- 
-1.7.9.5
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index 6cdb052..c294ac6 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -78,7 +78,6 @@ static inline void pmu_irq_stats(struct drm_i915_privat=
+e *i915,
+>  	WRITE_ONCE(i915->pmu.irq_count, i915->pmu.irq_count + 1);
+>  }
+>  =
 
+> -typedef bool (*long_pulse_detect_func)(enum hpd_pin pin, u32 val);
+>  typedef u32 (*hotplug_enables_func)(struct drm_i915_private *i915,
+>  				    enum hpd_pin pin);
 
+I thought we used in when passing it as an argument to
+intel_get_hpd_pins(), but looks like that's not the case.
+I guess we should unify this stuff by either removing both
+these typedefs and adjusting intel_hpd_hotplug_enables()
+accordingly, or we should use the typedef in intel_get_hpd_pins() as
+well.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
