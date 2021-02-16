@@ -1,39 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9120031CD6A
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 17:00:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1201631CD6C
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Feb 2021 17:01:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0A1E6E44D;
-	Tue, 16 Feb 2021 16:00:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62F8E6E969;
+	Tue, 16 Feb 2021 16:01:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61EEE6E44D
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Feb 2021 16:00:43 +0000 (UTC)
-IronPort-SDR: qSVYOTkXP3FGbU0k5aQAb87uxhxZOCgx7CC3SdbQ1knAO0XRZ1eVnxHtBrm9WOUV+T/4WIZTzZ
- OnsKTU6geszA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="170056655"
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="170056655"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2021 08:00:40 -0800
-IronPort-SDR: i9SSM8KgUtHuAtVyqlNfSkEni3T/FQFiFWB0GdqEmmfqK7R0pUQ0HJGbxHGlpWSFjuaY777iw8
- wuS+gNrQWn6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="364148065"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 16 Feb 2021 08:00:37 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 16 Feb 2021 18:00:35 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Feb 2021 18:00:35 +0200
-Message-Id: <20210216160035.4780-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CF7B46E961;
+ Tue, 16 Feb 2021 16:01:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C98C7A0BCB;
+ Tue, 16 Feb 2021 16:01:39 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Readout conn_state->max_bpc
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Tue, 16 Feb 2021 16:01:39 -0000
+Message-ID: <161349129982.32283.14308748126231406349@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210216123448.410545-1-imre.deak@intel.com>
+In-Reply-To: <20210216123448.410545-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/dp=5Fmst=3A_Tune_down_the_WARN_modesetting_a_port_with_full=5F?=
+ =?utf-8?q?pbn=3D0?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,60 +39,170 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1954063767=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClBv
-cHVsYXRlIGNvbm5fc3RhdGUtPm1heF9icGMgd2l0aCBzb21ldGhpbmcgc2Vuc2libGUgZnJvbSB0
-aGUgc3RhcnQuCk90aGVyd2lzZSBpdCdzIHBvc3NpYmxlIHRoYXQgd2UgZ2V0IHRvIGNvbXB1dGVf
-c2lua19waXBlX2JwcCgpIHdpdGgKbWF4X2JwYz09MC4KClRoZSBzcGVjaWZpYyBzY2VuYXJpbyBn
-b2VzIGFzIGZvbGxvd3M6CjEuIEluaXRpYWwgY29ubmVjdG9yIHN0YXRlIGFsbG9jYXRlZCB3aXRo
-IG1heF9icGM9PTAKMi4gVHJpZ2dlciBhIG1vZGVzZXQgb24gdGhlIGNydGMgZmVlZGluZyB0aGUg
-Y29ubmVjdG9yLCB3aXRob3V0CiAgIGFjdHVhbGx5IGFkZGluZyB0aGUgY29ubmVjdG9yIHRvIHRo
-ZSBjb21taXQKMy4gZHJtX2F0b21pY19jb25uZWN0b3JfY2hlY2soKSBpcyBza2lwcGVkIGJlY2F1
-c2UgdGhlCiAgIGNvbm5lY3RvciBoYXMgbm90IHlldCBiZWVuIGFkZGVkLCBoZW5jZSBjb25uX3N0
-YXRlLT5tYXhfYnBjCiAgIHJldGFpbnMgaXRzIGN1cnJlbnQgdmFsdWUKNC4gZHJtX2F0b21pY19o
-ZWxwZXJfY2hlY2tfbW9kZXNldCgpIC0+CiAgIGRybV9hdG9taWNfYWRkX2FmZmVjdGVkX2Nvbm5l
-Y3RvcnMoKSAtPiB0aGUgY29ubmVjdG9yCiAgIGlzIG5vdyBwYXJ0IG9mIHRoZSBjb21taXQKNS4g
-Y29tcHV0ZV9iYXNlbGluZV9waXBlX2JwcCgpIC0+IE1JU1NJTkdfQ0FTRShtYXhfYnBjPT0wKQoK
-Tm90ZSB0aGF0IHBpcGVfYnBwIGl0c2VsZiBtYXkgbm90IGJlIHBvcHVsYXRlZCBvbiBwcmUtZzR4
-IG1hY2hpbmVzLAppbiB3aGljaCBjYXNlIHdlIGp1c3QgZmFsbCBiYWNrIHRvIG1heF9icGM9PTgg
-YW5kIGxldCAuY29tcHV0ZV9jb25maWcoKQpsaW1pdCB0aGUgcmVzdWx0aW5nIHBpcGVfYnBwIGZ1
-cnRoZXIgaWYgbmVjZXNzYXJ5LgoKQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4K
-UmVwb3J0ZWQtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpTaWdu
-ZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMjQg
-KysrKysrKysrKysrKy0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCA4
-IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMKaW5kZXggMGRjNWNiMzY2NjdhLi40ZDYzZTY4YTVlYTIgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC03OTg3LDE5ICs3OTg3LDI3IEBA
-IHN0YXRpYyB2b2lkIGludGVsX21vZGVzZXRfdXBkYXRlX2Nvbm5lY3Rvcl9hdG9taWNfc3RhdGUo
-c3RydWN0IGRybV9kZXZpY2UgKmRldikKIAogCWRybV9jb25uZWN0b3JfbGlzdF9pdGVyX2JlZ2lu
-KGRldiwgJmNvbm5faXRlcik7CiAJZm9yX2VhY2hfaW50ZWxfY29ubmVjdG9yX2l0ZXIoY29ubmVj
-dG9yLCAmY29ubl9pdGVyKSB7Ci0JCWlmIChjb25uZWN0b3ItPmJhc2Uuc3RhdGUtPmNydGMpCisJ
-CXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlID0gY29ubmVjdG9yLT5iYXNl
-LnN0YXRlOworCQlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciA9CisJCQl0b19pbnRlbF9l
-bmNvZGVyKGNvbm5lY3Rvci0+YmFzZS5lbmNvZGVyKTsKKworCQlpZiAoY29ubl9zdGF0ZS0+Y3J0
-YykKIAkJCWRybV9jb25uZWN0b3JfcHV0KCZjb25uZWN0b3ItPmJhc2UpOwogCi0JCWlmIChjb25u
-ZWN0b3ItPmJhc2UuZW5jb2RlcikgewotCQkJY29ubmVjdG9yLT5iYXNlLnN0YXRlLT5iZXN0X2Vu
-Y29kZXIgPQotCQkJCWNvbm5lY3Rvci0+YmFzZS5lbmNvZGVyOwotCQkJY29ubmVjdG9yLT5iYXNl
-LnN0YXRlLT5jcnRjID0KLQkJCQljb25uZWN0b3ItPmJhc2UuZW5jb2Rlci0+Y3J0YzsKKwkJaWYg
-KGVuY29kZXIpIHsKKwkJCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0KKwkJCQl0b19pbnRlbF9j
-cnRjKGVuY29kZXItPmJhc2UuY3J0Yyk7CisJCQljb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
-ZSAqY3J0Y19zdGF0ZSA9CisJCQkJdG9faW50ZWxfY3J0Y19zdGF0ZShjcnRjLT5iYXNlLnN0YXRl
-KTsKKworCQkJY29ubl9zdGF0ZS0+YmVzdF9lbmNvZGVyID0gJmVuY29kZXItPmJhc2U7CisJCQlj
-b25uX3N0YXRlLT5jcnRjID0gJmNydGMtPmJhc2U7CisJCQljb25uX3N0YXRlLT5tYXhfYnBjID0g
-KGNydGNfc3RhdGUtPnBpcGVfYnBwID86IDI0KSAvIDM7CiAKIAkJCWRybV9jb25uZWN0b3JfZ2V0
-KCZjb25uZWN0b3ItPmJhc2UpOwogCQl9IGVsc2UgewotCQkJY29ubmVjdG9yLT5iYXNlLnN0YXRl
-LT5iZXN0X2VuY29kZXIgPSBOVUxMOwotCQkJY29ubmVjdG9yLT5iYXNlLnN0YXRlLT5jcnRjID0g
-TlVMTDsKKwkJCWNvbm5fc3RhdGUtPmJlc3RfZW5jb2RlciA9IE5VTEw7CisJCQljb25uX3N0YXRl
-LT5jcnRjID0gTlVMTDsKIAkJfQogCX0KIAlkcm1fY29ubmVjdG9yX2xpc3RfaXRlcl9lbmQoJmNv
-bm5faXRlcik7Ci0tIAoyLjI2LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+--===============1954063767==
+Content-Type: multipart/alternative;
+ boundary="===============4977874074758279345=="
+
+--===============4977874074758279345==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/dp_mst: Tune down the WARN modesetting a port with full_pbn=0
+URL   : https://patchwork.freedesktop.org/series/87123/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9779 -> Patchwork_19685
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19685/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19685 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_hangman@error-state-basic:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-tgl-y/igt@i915_hangman@error-state-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19685/fi-tgl-y/igt@i915_hangman@error-state-basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4] +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19685/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+
+  
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (45 -> 40)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9779 -> Patchwork_19685
+
+  CI-20190529: 20190529
+  CI_DRM_9779: 775dbe8d5e041442fcadf63894468a63582a87a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6004: fe9ac2aeffc1828c6d61763a611a44fbd450aa96 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19685: a84885e21626c39afbc7ae68e907c370ca6b163b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a84885e21626 drm/dp_mst: Tune down the WARN modesetting a port with full_pbn=0
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19685/index.html
+
+--===============4977874074758279345==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/dp_mst: Tune down the WARN modesetting a port with full_pbn=0</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87123/">https://patchwork.freedesktop.org/series/87123/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19685/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19685/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9779 -&gt; Patchwork_19685</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19685/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19685 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_hangman@error-state-basic:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-tgl-y/igt@i915_hangman@error-state-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19685/fi-tgl-y/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@prime_vgem@basic-fence-flip:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19685/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 40)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9779 -&gt; Patchwork_19685</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9779: 775dbe8d5e041442fcadf63894468a63582a87a2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6004: fe9ac2aeffc1828c6d61763a611a44fbd450aa96 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19685: a84885e21626c39afbc7ae68e907c370ca6b163b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a84885e21626 drm/dp_mst: Tune down the WARN modesetting a port with full_pbn=0</p>
+
+</body>
+</html>
+
+--===============4977874074758279345==--
+
+--===============1954063767==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1954063767==--
