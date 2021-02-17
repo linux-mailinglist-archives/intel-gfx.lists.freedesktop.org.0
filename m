@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50ED931D5F4
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 09:03:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F098631D638
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 09:07:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96AA86E4B6;
-	Wed, 17 Feb 2021 08:03:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDA8989C09;
+	Wed, 17 Feb 2021 08:07:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E09F6E4B6;
- Wed, 17 Feb 2021 08:03:05 +0000 (UTC)
-IronPort-SDR: zteTu2JRnFByD3JD8vL+tv2nahyL1NkRYIY2v/9Urp6RDYVWrWLMrjDBnzT6AAtX3qw5WKlRn4
- ZRXgOhL1OyOQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="180572843"
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="180572843"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 00:03:04 -0800
-IronPort-SDR: UKqGDNe3ApTc4vL9NDJJ2dXUkrXizsRjRUhmn+4+Zr1HRzoyiXtKzGvT6kS6z01wa8jMxRIjfs
- C8yAnitX75/Q==
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="439270368"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 00:03:00 -0800
-Date: Wed, 17 Feb 2021 10:02:57 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20210217080257.GB443835@ideak-desk.fi.intel.com>
-References: <20210217025337.1929015-1-lyude@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E8A489C09;
+ Wed, 17 Feb 2021 08:07:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 76287A882E;
+ Wed, 17 Feb 2021 08:07:23 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210217025337.1929015-1-lyude@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH v3 1/2] drm/i915/gen9bc: Handle TGP PCH
- during suspend/resume
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lee Shawn C" <shawn.c.lee@intel.com>
+Date: Wed, 17 Feb 2021 08:07:23 -0000
+Message-ID: <161354924345.24998.2753997076163503285@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210201150228.10001-1-shawn.c.lee@intel.com>
+In-Reply-To: <20210201150228.10001-1-shawn.c.lee@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/vbt=3A_update_DP_max_link_rate_table_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,146 +38,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- open list <linux-kernel@vger.kernel.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0443367280=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 16, 2021 at 09:53:36PM -0500, Lyude Paul wrote:
-> From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> 
-> For Legacy S3 suspend/resume GEN9 BC needs to enable and
-> setup TGP PCH.
-> 
-> v2:
-> * Move Wa_14010685332 into it's own function - vsyrjala
-> * Add TODO comment about figuring out if we can move this workaround - imre
-> v3:
-> * Rename cnp_irq_post_reset() to cnp_display_clock_wa()
-> * Add TODO item mentioning we need to clarify which platforms this
->   workaround applies to
-> * Just use ibx_irq_reset() in gen8_irq_reset(). This code should be
->   functionally equivalent on gen9 bc to the code v2 added
-> * Drop icp_hpd_irq_setup() call in spt_hpd_irq_setup(), this looks to be
->   more or less identical to spt_hpd_irq_setup() minus additionally enabling
->   one port. Will update i915 to use icp_hpd_irq_setup() for ICP in a
->   separate patch.
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/i915/i915_irq.c | 52 +++++++++++++++++++++------------
->  1 file changed, 33 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index 98145a7f28a4..f86b147f588f 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -3040,6 +3040,24 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
->  	spin_unlock_irq(&dev_priv->irq_lock);
->  }
->  
-> +static void cnp_display_clock_wa(struct drm_i915_private *dev_priv)
-> +{
-> +	struct intel_uncore *uncore = &dev_priv->uncore;
-> +
-> +	/*
-> +	 * Wa_14010685332:icl+
+--===============0443367280==
+Content-Type: multipart/alternative;
+ boundary="===============8850791404413493854=="
 
-For now let's keep this matching the code:
-	   Wa_14010685332:cnp/cmp,tgp,adp
+--===============8850791404413493854==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> +	 * TODO: Clarify which platforms this applies to
-> +	 * TODO: Figure out if this workaround can be applied in the s0ix suspend/resume handlers as
-> +	 * on earlier platforms and whether the workaround is also needed for runtime suspend/resume
-> +	 */
-> +	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
-> +	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
-> +		intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS,
-> +				 SBCLK_RUN_REFCLK_DIS);
-> +		intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
-> +	}
-> +}
-> +
->  static void gen8_irq_reset(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_uncore *uncore = &dev_priv->uncore;
-> @@ -3061,8 +3079,9 @@ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
->  	GEN3_IRQ_RESET(uncore, GEN8_DE_MISC_);
->  	GEN3_IRQ_RESET(uncore, GEN8_PCU_);
->  
-> -	if (HAS_PCH_SPLIT(dev_priv))
-> -		ibx_irq_reset(dev_priv);
-> +	ibx_irq_reset(dev_priv);
+== Series Details ==
 
-The above shouldn't be changed to account for !PCH platforms as well.
+Series: drm/i915/vbt: update DP max link rate table (rev2)
+URL   : https://patchwork.freedesktop.org/series/86539/
+State : success
 
-> +
-> +	cnp_display_clock_wa(dev_priv);
->  }
->  
->  static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
-> @@ -3104,15 +3123,7 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
->  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
->  		GEN3_IRQ_RESET(uncore, SDE);
->  
-> -	/* Wa_14010685332:cnp/cmp,tgp,adp */
-> -	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
-> -	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP &&
-> -	     INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
-> -		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
-> -				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
-> -		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
-> -				 SBCLK_RUN_REFCLK_DIS, 0);
-> -	}
-> +	cnp_display_clock_wa(dev_priv);
->  }
->  
->  static void gen11_irq_reset(struct drm_i915_private *dev_priv)
-> @@ -3764,9 +3775,19 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  	}
->  }
->  
-> +static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
-> +{
-> +	struct intel_uncore *uncore = &dev_priv->uncore;
-> +	u32 mask = SDE_GMBUS_ICP;
-> +
-> +	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
-> +}
-> +
->  static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
-> -	if (HAS_PCH_SPLIT(dev_priv))
-> +	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-> +		icp_irq_postinstall(dev_priv);
-> +	else if (HAS_PCH_SPLIT(dev_priv))
->  		ibx_irq_postinstall(dev_priv);
->  
->  	gen8_gt_irq_postinstall(&dev_priv->gt);
-> @@ -3775,13 +3796,6 @@ static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
->  	gen8_master_intr_enable(dev_priv->uncore.regs);
->  }
->  
-> -static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
-> -{
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> -	u32 mask = SDE_GMBUS_ICP;
-> -
-> -	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
-> -}
->  
->  static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
-> -- 
-> 2.29.2
-> 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9779 -> Patchwork_19690
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19690 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-7500u:       [PASS][3] -> [DMESG-WARN][4] ([i915#2605])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-kbl-7500u/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/fi-kbl-7500u/igt@i915_module_load@reload.html
+
+  
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+
+
+Participating hosts (45 -> 38)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus fi-hsw-gt1 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9779 -> Patchwork_19690
+
+  CI-20190529: 20190529
+  CI_DRM_9779: 775dbe8d5e041442fcadf63894468a63582a87a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6004: fe9ac2aeffc1828c6d61763a611a44fbd450aa96 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19690: 2d651f1c5f7723a9f7465230b6b70210b3a02e9c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2d651f1c5f77 drm/i915/vbt: update DP max link rate table
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html
+
+--===============8850791404413493854==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/vbt: update DP max link rate table (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86539/">https://patchwork.freedesktop.org/series/86539/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9779 -&gt; Patchwork_19690</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19690 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-kbl-7500u/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/fi-kbl-7500u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 38)</h2>
+<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus fi-hsw-gt1 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9779 -&gt; Patchwork_19690</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9779: 775dbe8d5e041442fcadf63894468a63582a87a2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6004: fe9ac2aeffc1828c6d61763a611a44fbd450aa96 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19690: 2d651f1c5f7723a9f7465230b6b70210b3a02e9c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>2d651f1c5f77 drm/i915/vbt: update DP max link rate table</p>
+
+</body>
+</html>
+
+--===============8850791404413493854==--
+
+--===============0443367280==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0443367280==--
