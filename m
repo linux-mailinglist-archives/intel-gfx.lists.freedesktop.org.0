@@ -2,39 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4F3B31D827
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 12:25:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CC9631D7C9
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 12:02:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E83EC6E4C5;
-	Wed, 17 Feb 2021 11:25:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14ABE6E4DE;
+	Wed, 17 Feb 2021 11:02:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 705876E993;
- Tue, 16 Feb 2021 21:30:31 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F211264D99;
- Tue, 16 Feb 2021 21:30:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1613511031;
- bh=uwBWkNHGck9kFBqA0+H8/eT9Jc5XAGfEFx3Kba3gL4k=;
- h=From:To:Cc:Subject:Date:From;
- b=Ru/chHN9ndSQZRU6kcPNpf0W0XEdZm3ESkkB7+Rme8xma3/EdjnB48g/YGdMRuH26
- j41sevdpq56S6D1FcUiqUe587rJeGLNYIRpBkq4hqxMWjaE9Nl1B+l8gqbJf5Dbv0Y
- X5Cf2Gi7bJ+i1AgZ8b3eEwH9ubV/XjpHQMoCQLmsGilr1moNIaV1RqMOQ9aL356hxi
- 0pjTYRxkZjXDSEi9ko3Lp3vor5250L1ucr7rx9ykXonMGZ3PI+0x62A99qUdTQ2rmA
- ypMWNh9Rtv/fIIaqI0hdt3a5ykleMBdQDvnHOFA1H0amz8tCtnF0fJldfMnmomP8oI
- qIzSMOFmaTXVw==
-From: Nathan Chancellor <nathan@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B12B66E0D5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 11:02:32 +0000 (UTC)
+IronPort-SDR: RROVixc3Ym2hJqo6FoJbkobJU7d//dNo6lHk2A6ALDgCeI/aVwa3+lHhBlTgqQPhGPZrTlem4i
+ fC6HkkbQOPBg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="170298848"
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="170298848"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 03:02:23 -0800
+IronPort-SDR: ndU67Uz7VyDRZElHJE3LBsbDJqlkKLcu6bTYZ1s2JZ6m9e8K5Tukk1Xe1t1p5Qyt6ocenwyRrA
+ bQEpp1sNaLWA==
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="399912624"
+Received: from mvalka-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.140])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 03:02:19 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Tomas Winkler <tomas.winkler@intel.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Tue, 16 Feb 2021 14:29:54 -0700
-Message-Id: <20210216212953.24458-1-nathan@kernel.org>
-X-Mailer: git-send-email 2.30.1
+In-Reply-To: <20210216181925.650082-1-tomas.winkler@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210216181925.650082-1-tomas.winkler@intel.com>
+Date: Wed, 17 Feb 2021 13:02:16 +0200
+Message-ID: <878s7narev.fsf@intel.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-X-Mailman-Approved-At: Wed, 17 Feb 2021 11:25:35 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Enable -Wuninitialized
+Subject: Re: [Intel-gfx] [RFC PATCH 0/9] drm/i915/spi: discrete graphics
+ internal spi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,54 +52,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arnd Bergmann <arnd@arndb.de>, intel-gfx@lists.freedesktop.org,
- Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>,
- clang-built-linux@googlegroups.com
+Cc: linux-mtd@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ Tomas Winkler <tomas.winkler@intel.com>,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
--Wunintialized was disabled in commit c5627461490e ("drm/i915: Disable
--Wuninitialized") because there were two warnings that were false
-positives. The first was due to DECLARE_WAIT_QUEUE_HEAD_ONSTACK, which
-was fixed in LLVM 9.0.0. The second was in busywait_stop, which was
-fixed in LLVM 10.0.0 (issue 415). The kernel's minimum version for LLVM
-is 10.0.1 so this warning can be safely enabled, where it has already
-caught a couple bugs.
+On Tue, 16 Feb 2021, Tomas Winkler <tomas.winkler@intel.com> wrote:
+> Intel discrete graphic devices have internal spi storage, that holds
+> firmware and oprom images. The spi device is exposed to the user space
+> via mtd framework to be accessed during manufacturing.
+> The device is hardware locked after manufacturing and only read access
+> is provided.
+>
+> The i915 plays role of a multi function device (mfd) and spi device
+> is exposed as its child device. i915_spi platform driver binds to 
+> this device.
+>
+> Because the graphic card may undergo reset at any time and basically hot
+> unplug all its child devices, this series also provides a fix to the mtd
+> framework to make the reset graceful.
+>
+> Tomas Winkler (9):
+>   drm/i915/spi: add spi device for discrete graphics
+>   drm/i915/spi: intel_spi_region map
+>   drm/i915/spi: add driver for on-die spi device
+>   drm/i915/spi: implement region enumeration
+>   drm/i915/spi: implement spi access functions
+>   drm/i915/spi: spi register with mtd
+>   drm/i915/spi: mtd: implement access handlers
+>   drm/i915/spi: serialize spi access
+>   mtd: use refcount to prevent corruption
+>
+>  drivers/gpu/drm/i915/Kconfig             |   3 +
+>  drivers/gpu/drm/i915/Makefile            |   6 +
+>  drivers/gpu/drm/i915/i915_drv.c          |   9 +
+>  drivers/gpu/drm/i915/i915_drv.h          |   4 +
+>  drivers/gpu/drm/i915/i915_reg.h          |   1 +
+>  drivers/gpu/drm/i915/spi/intel_spi.c     |  62 +++
+>  drivers/gpu/drm/i915/spi/intel_spi.h     |  24 +
 
-Link: https://github.com/ClangBuiltLinux/linux/issues/220
-Link: https://github.com/ClangBuiltLinux/linux/issues/415
-Link: https://github.com/ClangBuiltLinux/linux/issues/499
-Link: https://github.com/llvm/llvm-project/commit/2e040398f8d691cc378c1abb098824ff49f3f28f
-Link: https://github.com/llvm/llvm-project/commit/c667cdc850c2aa821ffeedbc08c24bc985c59edd
-Fixes: c5627461490e ("drm/i915: Disable -Wuninitialized")
-References: 2ea4a7ba9bf6 ("drm/i915/gt: Avoid uninitialized use of rpcurupei in frequency_show")
-References: 2034c2129bc4 ("drm/i915/display: Ensure that ret is always initialized in icl_combo_phy_verify_state")
-Reported-by: Arnd Bergmann <arnd@arndb.de>
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
----
- drivers/gpu/drm/i915/Makefile | 1 -
- 1 file changed, 1 deletion(-)
+I'm open to discussion, but after glancing through the series I've got a
+gut feeling spi/ subdir should be purely about the separate module, and
+the above two files should be in i915/ directory instead.
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 6d9e81ea67f4..60b60204004f 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -21,7 +21,6 @@ subdir-ccflags-y += $(call cc-disable-warning, unused-but-set-variable)
- subdir-ccflags-y += $(call cc-disable-warning, sign-compare)
- subdir-ccflags-y += $(call cc-disable-warning, sometimes-uninitialized)
- subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
--subdir-ccflags-y += $(call cc-disable-warning, uninitialized)
- subdir-ccflags-y += $(call cc-disable-warning, frame-address)
- subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
- 
+As it is, I think it's a bit confusing that spi/ is both about the spi
+kernel module and a singly .c file that's really part of
+i915.ko. Perhaps that messes up the conventional descending to subdirs
+in the kernel build too?
 
-base-commit: f40ddce88593482919761f74910f42f4b84c004b
+BR,
+Jani.
+
+>  drivers/gpu/drm/i915/spi/intel_spi_drv.c | 675 +++++++++++++++++++++++
+>  drivers/mtd/mtdcore.c                    |  63 ++-
+>  drivers/mtd/mtdcore.h                    |   1 +
+>  drivers/mtd/mtdpart.c                    |  13 +-
+>  include/linux/mtd/mtd.h                  |   2 +-
+>  12 files changed, 831 insertions(+), 32 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/spi/intel_spi.c
+>  create mode 100644 drivers/gpu/drm/i915/spi/intel_spi.h
+>  create mode 100644 drivers/gpu/drm/i915/spi/intel_spi_drv.c
+
 -- 
-2.30.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
