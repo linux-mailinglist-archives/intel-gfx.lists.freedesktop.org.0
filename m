@@ -1,41 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7F9C31DF19
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 19:28:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 149F731DF22
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 19:34:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42A836E5BB;
-	Wed, 17 Feb 2021 18:27:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C91A76E1F3;
+	Wed, 17 Feb 2021 18:34:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8059B6E5BB;
- Wed, 17 Feb 2021 18:27:58 +0000 (UTC)
-IronPort-SDR: Mbs4/YGs4gCMFDJyLgBxpHRDXZmhJ3zQJ1AaT21Sm6/5lFL2Z4QMi76rWQVMhAIowCz1FO4dj9
- iKglafC3X3NQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="202509624"
-X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="202509624"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 10:27:58 -0800
-IronPort-SDR: l67wVA0rwp9jRDOMJqK74CFXHgMsPPjBbUpNwcN920dqNzFHJ677cdRarX2qrEZshBFetg+oPV
- 9YmlbYkNiXcg==
-X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="400078128"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 10:27:56 -0800
-Date: Wed, 17 Feb 2021 20:27:53 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20210217182753.GA557342@ideak-desk.fi.intel.com>
-References: <20210216123448.410545-1-imre.deak@intel.com>
- <d070b8fa29ee357eae1943e7d3ede6c7b9a92a40.camel@redhat.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 478BC6E1F3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 18:34:02 +0000 (UTC)
+IronPort-SDR: R/0/2ED0L8gQXV6TqfEmgIMNIl+2KAdqcNhP3ahD8rE6sj0JJXAlZKShPqJ3TFzSd+PC2GGvf/
+ aP+ojBnWLBtA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="179773354"
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="179773354"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 10:34:01 -0800
+IronPort-SDR: Nf/vLJGW2tPZejivdgqKuERm/bHhUiP5QV+jM++9sVEyoaL8swPBrJZrBofUwBEppgL/c9FqgF
+ u8u+MN0vDQyw==
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="385294068"
+Received: from gfreude-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.209.147.126])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 10:34:00 -0800
+Date: Wed, 17 Feb 2021 13:33:59 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YC1hlyv3xMIrVDrN@intel.com>
+References: <20210216181925.650082-1-tomas.winkler@intel.com>
+ <87k0r7asmg.fsf@intel.com>
+ <062fec6f494b48fab840c64742fe767d@intel.com>
+ <875z2qbyw8.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <d070b8fa29ee357eae1943e7d3ede6c7b9a92a40.camel@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/dp_mst: Tune down the WARN modesetting
- a port with full_pbn=0
+In-Reply-To: <875z2qbyw8.fsf@intel.com>
+Subject: Re: [Intel-gfx] [RFC PATCH 0/9] drm/i915/spi: discrete graphics
+ internal spi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,101 +51,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Vignesh Raghavendra <vigneshr@ti.com>, Richard Weinberger <richard@nod.at>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
+ Alexander" <alexander.usyskin@intel.com>,
+ "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, "Winkler,
+ Tomas" <tomas.winkler@intel.com>, "Lubart, Vitaly" <vitaly.lubart@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 17, 2021 at 01:07:11PM -0500, Lyude Paul wrote:
-> On Tue, 2021-02-16 at 14:34 +0200, Imre Deak wrote:
-> > It's possible to modeset a connector/mst port that has a 0 full_pbn
-> > value: if the sink on the port deasserts its HPD and a branch device
-> > reports this via a CSN with the port's ddps=3D0 and pdt!=3DNONE the dri=
-ver
-> > clears full_pbn, but the corresponding connector can be still
-> > modesetted.
-> > =
+On Wed, Feb 17, 2021 at 03:35:19PM +0200, Jani Nikula wrote:
+> On Wed, 17 Feb 2021, "Winkler, Tomas" <tomas.winkler@intel.com> wrote:
+> >> 
+> >> On Tue, 16 Feb 2021, Tomas Winkler <tomas.winkler@intel.com> wrote:
+> >> > Intel discrete graphic devices have internal spi storage, that holds
+> >> > firmware and oprom images. The spi device is exposed to the user space
+> >> > via mtd framework to be accessed during manufacturing.
+> >> > The device is hardware locked after manufacturing and only read access
+> >> > is provided.
+> >> >
+> >> > The i915 plays role of a multi function device (mfd) and spi device is
+> >> > exposed as its child device. i915_spi platform driver binds to this
+> >> > device.
+> >> 
+> >> What's the plan wrt i915/spi maintainership?
+> >
+> > My suggestions is that this will be maintained by myself, as the major
+> > consumer is the manufacturing line.  It will be a separate section in
+> > MAINTAINERS file.
+> 
+> Works for me. Do you want to apply the patches directly to drm-intel, or
+> your own branch and send pull requests to i915 maintainers? Can also
+> start with the former, and move to the latter as needed.
+> 
+> Joonas, Rodrigo, thoughts?
 
-> > This happened on a DELL U2719D monitor as the branch device and an LG
-> > 27UL650-W daisy-chained to it, the LG monitor generating a long HPD
-> > pulse (doing this for some reason always when waking up from some power
-> > saving state).
-> > =
+No strong opinion here. But I believe the pull request flow makes sense.
 
-> > Tune down the WARN about this scenario to a debug message.
-> > =
-
-> > References: https://gitlab.freedesktop.org/drm/intel/-/issues/1917
-> > Cc: Lyude Paul <lyude@redhat.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> > =A0drivers/gpu/drm/drm_dp_mst_topology.c | 10 +++++++---
-> > =A01 file changed, 7 insertions(+), 3 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c
-> > b/drivers/gpu/drm/drm_dp_mst_topology.c
-> > index 0a54506c27738..dcaf4bf9b62f6 100644
-> > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> > @@ -5118,11 +5118,15 @@ drm_dp_mst_atomic_check_port_bw_limit(struct
-> > drm_dp_mst_port *port,
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0if (!found)
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0return 0;
-> > =A0
-> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0/* This should never happ=
-en, as it means we tried to
-> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * set a mode before quer=
-ying the full_pbn
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0/*
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * This could happen if t=
-he sink deasserted its HPD line, but
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * the branch device stil=
-l reports it as attached (PDT !=3D NONE).
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 */
-> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0if (WARN_ON(!port->full_p=
-bn))
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0if (!port->full_pbn) {
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0d=
-rm_dbg_kms(port->mgr->dev, "[MSTB:%p] [MST PORT:%p] no BW available for the=
- port\n",
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 port->parent, port);
-> =
-
-> Shouldn't this use the atomic debugging level? With that fixed, this is:
-> =
-
-> Reviewed-by: Lyude Paul <lyude@redhat.com>
-
-Thanks, yes mixed up the debug level, will fix that.
-
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0return -EINVAL;
-> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0}
-> > =A0
-> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0pbn_used =3D vcpi->pbn;
-> > =A0=A0=A0=A0=A0=A0=A0=A0} else {
-> =
-
-> -- =
-
-> Sincerely,
->    Lyude Paul (she/her)
->    Software Engineer at Red Hat
->    =
-
-> Note: I deal with a lot of emails and have a lot of bugs on my plate. If =
-you've
-> asked me a question, are waiting for a review/merge on a patch, etc. and I
-> haven't responded in a while, please feel free to send me another email t=
-o check
-> on my status. I don't bite!
-> =
-
+> 
+> BR,
+> Jani.
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
