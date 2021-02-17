@@ -2,64 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D76631D94E
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 13:23:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0CB731D957
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 13:24:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F0336E50C;
-	Wed, 17 Feb 2021 12:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40A486E0E4;
+	Wed, 17 Feb 2021 12:24:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5417689F8B
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 12:23:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B6C66E0E4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 12:24:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613564603;
+ s=mimecast20190719; t=1613564668;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding;
- bh=AVJPIPkmlrSWnsZH2BiQMvbHrZUzDihajpGoXkN453U=;
- b=YJxtPHCrM4a046rpV9FvCSXQzamgr9S23taS/OczHsnXHUWRC2F0iJHlWS5mPgdxS/01x3
- 9hJR7cC8uw9MYx92f1obDoQM3ZCbvNUWbWMuBANT6Wz597uDoYrzZFWoYHMa23/MV8rE97
- wPZsm6JKY7t285xSJbPLv7uPzqK47rs=
+ bh=erP6z4iS9l8jSM/k98u9owq5tUaRX8nsSTHFj5oxZ6o=;
+ b=Nl7ZvTltX3o9+FT5EBF8/J72pCAlfAGRNyCZK1aMNiqgz9SbmDos4ANN3nfxf3izxlXWZU
+ 4fNd2PBKkyaJLRWUiJkhFgRojYZn1tTkxATiMGEBqhl+uuyS7UYDnQhqqxWvWKgYGL9nuu
+ TJZeoi2A1Xjvbu4GYkgHGm97qcS1WPE=
 Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
  [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-543-RCzu6_etPnyIqfUh2W8sqg-1; Wed, 17 Feb 2021 07:23:19 -0500
-X-MC-Unique: RCzu6_etPnyIqfUh2W8sqg-1
-Received: by mail-ed1-f70.google.com with SMTP id y6so9913884edc.17
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 04:23:19 -0800 (PST)
+ us-mta-281-60cwoKVIPAKbJie6sntcZQ-1; Wed, 17 Feb 2021 07:24:26 -0500
+X-MC-Unique: 60cwoKVIPAKbJie6sntcZQ-1
+Received: by mail-ed1-f70.google.com with SMTP id p12so1188481edw.9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 04:24:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:to:from:subject:cc:message-id:date:user-agent
+ h=x-gm-message-state:from:subject:to:cc:message-id:date:user-agent
  :mime-version:content-language:content-transfer-encoding;
- bh=AVJPIPkmlrSWnsZH2BiQMvbHrZUzDihajpGoXkN453U=;
- b=NT0XBJ1o/2k99XbZ1UEOQ2x/XFCfhFkaUCTQfBebqeGmECHYeecw/sLnMZJV6Ki2e5
- i9xzDVBixB7MlFglkmZsyzouvgf5vX/yi3PQ4j3EPmJFCTF8egcA6cjnJrcn5iNAwPfI
- Yl7BHjtvdlCAjx+wGvA3vF+cwV8AI1uxt9nwqurY61V+W2pY0TbWIemeiMH2ULljL6Dw
- ndL2gO5mVVfRffgxALW2ix8OxzusEiTh5fEIzgyQMo83dyMqRuhb9ozC9sRc6606MmG5
- Le1dafaOv1UmY2PrjbTrkJ6Jk/hMyVMN8p8Ad6sBd/8R9rjbKrLCqAKM9vLrm8x3Jme+
- YuoQ==
-X-Gm-Message-State: AOAM5309LwMTtiFafrZJ4vuj/rxcb4xedqkZEWr2ixinnuGqywGpKjgn
- t8NALqDkZClMCT2JqHyUThf/dQxYCN3ZGFiLMd+wBbYTiYlEnkjo3im2DBQEff9rJ02wBJRr2cs
- KTVImUOA49OQuIsNWFfxuaE7IqysNLwd7XmwHbTVccjoyzPyoCuCjEur3u9HlbKMu+psd4/g25X
- B7gnR/
-X-Received: by 2002:a05:6402:4ce:: with SMTP id
- n14mr26107692edw.309.1613564598283; 
- Wed, 17 Feb 2021 04:23:18 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwYh+9E5Un2OUcn9FWWp0TcvvDPoMju7E3p5NulCEU/NJPqWmyEnWzMo8g6qr8XHkembB8LMA==
-X-Received: by 2002:a05:6402:4ce:: with SMTP id
- n14mr26107662edw.309.1613564597996; 
- Wed, 17 Feb 2021 04:23:17 -0800 (PST)
+ bh=erP6z4iS9l8jSM/k98u9owq5tUaRX8nsSTHFj5oxZ6o=;
+ b=Aec0y2xhWS5x1FTT/DgEDMLBXtlD82LZ/5Mtrpy8dR75GSc2WMGcasRdUrdkSff83g
+ s3BnW/Rr/LZB4RajWqro2hqN0aZaxkr/x134WuSVNeUqGzHnLBmJ6b6FaGoLzND97rI6
+ nrcCsT16BbWJR7AMzBJ+sDbmVWozNsiMPKSkLFUmXZbaHsJ9zpfkSqPEQOBNTMlkYeYc
+ Bmy8s6PdVUF1VN34wyKYnwgBN6/pQZpfeGGdGclgA4FAND1KEcVS2n9SA0bnBHq5j+sr
+ 52JBacL/wk4Xhtrk7DBjndBc+DyWrsuCF6gdqETUCBqK55o0lsfwKd2Qlff4O1lXbu3N
+ uCkQ==
+X-Gm-Message-State: AOAM53064c7XppDwd63Jb4hO/WKL++yjXwupaGEN+pc217whcZXKIl9t
+ j6WZ5EypmU6YNNNPsW0VTM/p9bymbJxyHpMtwtKv5j4PG1CZdqZfsjPJl9Q2lCgU8YYAttEa8ze
+ Z6nAV5I/o9PheldCR58JHzdbsGDUK
+X-Received: by 2002:a50:bf4a:: with SMTP id g10mr25521888edk.201.1613564665420; 
+ Wed, 17 Feb 2021 04:24:25 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJw6ILlMlSHB8/jRL5Kin9zyvYBoaGnDKwb+QWIVQn0IiMsAvp3wwtgmrNCbD9zJ2luu278xoQ==
+X-Received: by 2002:a50:bf4a:: with SMTP id g10mr25521882edk.201.1613564665261; 
+ Wed, 17 Feb 2021 04:24:25 -0800 (PST)
 Received: from x1.localdomain
  (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id x17sm1007131edd.76.2021.02.17.04.23.17
+ by smtp.gmail.com with ESMTPSA id n17sm810314ejx.77.2021.02.17.04.24.24
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 17 Feb 2021 04:23:17 -0800 (PST)
-To: Hans Verkuil <hverkuil@xs4all.nl>
+ Wed, 17 Feb 2021 04:24:24 -0800 (PST)
 From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <479013e1-606b-a890-0b2c-7814398bff7b@redhat.com>
-Date: Wed, 17 Feb 2021 13:23:16 +0100
+To: Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <91b0f6c8-79ca-d04f-1ae0-66bf954dd421@redhat.com>
+Date: Wed, 17 Feb 2021 13:24:24 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.0
 MIME-Version: 1.0
@@ -82,11 +79,14 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+
+<resend with the linux-media list added to the Cc>
 
 Hi Hans,
 
