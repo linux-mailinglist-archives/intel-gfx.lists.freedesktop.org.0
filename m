@@ -1,33 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B10331DE99
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 18:49:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33F3A31DEA6
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 18:54:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3679B6E9A8;
-	Wed, 17 Feb 2021 17:49:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 950296E9AA;
+	Wed, 17 Feb 2021 17:54:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F09416E9A7
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 17:49:40 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 23893879-1500050 for multiple; Wed, 17 Feb 2021 17:49:37 +0000
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC0206E9AA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 17:54:41 +0000 (UTC)
+IronPort-SDR: tF39SIAWfFzdkarxxYwtmRgR9OVwiglOhiSCMc1I13/qWqF6EgxN8XTrRFYbOyi2KWeClj95Dz
+ OIcaUsvSnO+A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="179759987"
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="179759987"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 09:54:41 -0800
+IronPort-SDR: MF6e/GVm52MO9d8ShzldxoyL77NT/gAGmzh7SJaxF5tbRCYtZ3uZ6PoccI8QlS/RRNDYAjxN1g
+ krBzDTzJIrKg==
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="439448039"
+Received: from dsdani-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.4.37])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 09:54:41 -0800
+Date: Wed, 17 Feb 2021 09:54:40 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20210217175440.vo7lunoy5sy74tmq@ldmartin-desk1>
+References: <cover.1613580193.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210217162050.13803-1-ville.syrjala@linux.intel.com>
-References: <20210217162050.13803-1-ville.syrjala@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Feb 2021 17:49:37 +0000
-Message-ID: <161358417706.15107.9792013223984899132@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Wait for scanout to stop when
- sanitizing planes
+Content-Disposition: inline
+In-Reply-To: <cover.1613580193.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 00/12] drm/i915/bios: vbt child device rework
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,34 +47,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIxLTAyLTE3IDE2OjIwOjUwKQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gV2hlbiB3ZSBz
-YW5pdGl6ZSBwbGFuZXMgbGV0J3Mgd2FpdCBmb3IgdGhlIHNjYW5vdXQgdG8gc3RvcAo+IGJlZm9y
-ZSB3ZSBsZXQgdGhlIHN1YnNlcXVlbnQgY29kZSB0ZWFyIGRvd24gdGhlIGdndHQgbWFwcGluZ3MK
-PiBhbmQgd2hhdG5vdC4gQ3VyZXMgYW4gdW5kZXJydW4gb24gbXkgaXZiIHdoZW4gSSBib290IHdp
-dGgKPiBWVC1kIGVuYWJsZWQgYW5kIHRoZSBCSU9TIGZiIGdldHMgdGhyb3duIG91dCBkdWUgdG8g
-c3RvbGVuCj4gYmVpbmcgY29uc2lkZXJlZCB1bnVzYWJsZSB3aXRoIFZULWQgYWN0aXZlLgo+IAo+
-IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
-bC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5jIHwgMSArCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQo+IAo+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gaW5kZXggYWNhZGUwMDRl
-OGIxLi4zZTJjMTkyZWM3MDggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXkuYwo+IEBAIC0yNDAzLDYgKzI0MDMsNyBAQCBzdGF0aWMgdm9pZCBpbnRl
-bF9wbGFuZV9kaXNhYmxlX25vYXRvbWljKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjLAo+ICAgICAg
-ICAgICAgICAgICBpbnRlbF9zZXRfY3B1X2ZpZm9fdW5kZXJydW5fcmVwb3J0aW5nKGRldl9wcml2
-LCBjcnRjLT5waXBlLCBmYWxzZSk7Cj4gIAo+ICAgICAgICAgaW50ZWxfZGlzYWJsZV9wbGFuZShw
-bGFuZSwgY3J0Y19zdGF0ZSk7Cj4gKyAgICAgICBpbnRlbF93YWl0X2Zvcl92YmxhbmsoZGV2X3By
-aXYsIGNydGMtPnBpcGUpOwoKSSBjb3VsZCBvbmx5IGZpbmQgcGF0aHMgaGVyZSBmcm9tIHNhbml0
-aXplLCBzbyBpdCBsb29rcyBzYWZlIGZyb20gdGhlCnByb3NwZWN0IG9mIGFkZGluZyByYW5kb20g
-ZGVsYXlzIHRvIHVzZXJzcGFjZS4KCk1ha2VzIHNlbnNlIHNvLApSZXZpZXdlZC1ieTogQ2hyaXMg
-V2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci1DaHJpcwpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Wed, Feb 17, 2021 at 07:03:30PM +0200, Jani Nikula wrote:
+>I see the parsing and caching of child device data into
+>i915->vbt.ddi_port_info[] slightly problematic. We keep adding data to
+>it, and it just duplicates information. Start moving towards a single
+>point of truth, and getting the information directly from the child
+>device data.
+>
+>One obstacle has been that init_vbt_missing_defaults() only initializes
+>ddi_port_info, without child devices. As the same problem arose in a
+>patch from Lucas, I thought it was time to start creating fake child
+>devices to unify the code.
+>
+>There are a bunch of cleanups and refactoring here. Patches 1-5 are
+>enough to fix Lucas' patch I think. Patch 10 does what Lucas was after,
+>just in a different way and as a byproduct of something else. The later
+
+humn... but we'd still need the patches in that series to cleanup
+the calls to intel_ddi_init() from intel_display.c. Or did I miss
+anything?
+
+I did a quick scan through the patches and left a few comments. Overall
+it looks good to me, but I need to dedicate a little more time to give a
+proper r-b. I will do soon if no one beats me to it.
+
+
+thanks
+Lucas De Marchi
+
+>patches in the series are more to show the direction, and seek
+>validation for that direction.
+>
+>Naming is also a question mark. All of these are a bit questionable:
+>intel_bios_encoder_data, devdata, intel_bios_encoder_supports_*, etc.
+>
+>BR,
+>Jani.
+>
+>
+>[1] http://patchwork.freedesktop.org/patch/msgid/20210213190511.1017088-2-=
+lucas.demarchi@intel.com
+>
+>
+>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>
+>
+>Jani Nikula (12):
+>  drm/i915/bios: mass convert dev_priv to i915
+>  drm/i915/bios: store bdb version in i915
+>  drm/i915/bios: limit default outputs by platform on missing VBT
+>  drm/i915/bios: limit default outputs to ports A through F
+>  drm/i915/bios: create fake child devices on missing VBT
+>  drm/i915/bios: rename display_device_data to intel_bios_encoder_data
+>  drm/i915/bios: add i915 backpointer to intel_bios_encoder_data
+>  drm/i915/vbt: add helper functions to check output support
+>  drm/i915/bios: save a higher level pointer in ddi_vbt_port_info[]
+>  drm/i915/bios: start using the intel_bios_encoder_data directly
+>  drm/i915/bios: start using intel_bios_encoder_data for Type-C USB and
+>    TBT
+>  drm/i915/bios: add intel_bios_encoder_data to encoder, use for iboost
+>
+> drivers/gpu/drm/i915/display/intel_bios.c     | 1021 +++++++++--------
+> drivers/gpu/drm/i915/display/intel_bios.h     |   17 +-
+> drivers/gpu/drm/i915/display/intel_ddi.c      |   28 +-
+> .../drm/i915/display/intel_display_types.h    |    3 +
+> drivers/gpu/drm/i915/i915_drv.h               |    9 +-
+> 5 files changed, 584 insertions(+), 494 deletions(-)
+>
+>-- =
+
+>2.20.1
+>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
