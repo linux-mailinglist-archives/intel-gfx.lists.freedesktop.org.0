@@ -2,78 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 216ED31E12C
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 22:19:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E6531E1C8
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 23:10:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C8046E9DF;
-	Wed, 17 Feb 2021 21:19:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D5CC6E7EA;
+	Wed, 17 Feb 2021 22:10:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 793356E7EC
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 21:19:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613596773;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xBMyArAKf4mpgQyvFkqw/42F48Y7NN6P7Dp+VCh0VH4=;
- b=Pxa8hxV2EbGOsN5LE9f1Ozzar9qzP//aH+go+JtO4JFJiclhJqwi88HxiV/+IULFKACbPK
- 45DtmJSW1NgTZzHnnK6DMHlqx8SNtPcTpclXTZ/YXrkPKBoLQR1KP+N26jCxaeyrh1XSOn
- d5FT9chJZlpE/h4ujLhE3ZRBJ5M8/2I=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-471-ITCmAvZUN1OGquW2Hv_PRw-1; Wed, 17 Feb 2021 16:19:31 -0500
-X-MC-Unique: ITCmAvZUN1OGquW2Hv_PRw-1
-Received: by mail-qk1-f198.google.com with SMTP id z19so11722223qki.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 13:19:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=xBMyArAKf4mpgQyvFkqw/42F48Y7NN6P7Dp+VCh0VH4=;
- b=NC5ktc0P799zyERMfM+wkr/THwK0paKAbbjTZaozikFYB8jLkZsHwxwDg0VVbluiFO
- IahIgietDyzyqE6VbxzFwLTirbyXm4WT9fyE0hUq2Yh4LVvfoh7yFeAk1bfFfgNTG7Tg
- JRT99DHh0ujBJ5+pejGnXoKMyhq1G5TF+Prb2hh332YfJ/JvKsVon54D8kLfV172yxC+
- A+Wyp+BfbwrD55EkszwftMW8gxf0BXnYiYnWXUghjeRO7FjmUcgpn1Ahue1IM+skszfj
- L5h7EQDD9Acrl5JmN40R7nLFXCbnhf9Zlr91QGRaKOGj+sIRJj3Fade1buVhqY4ki8J+
- LQVQ==
-X-Gm-Message-State: AOAM5318MGRCjbWNZo9emquTYOkm60FwNlXao4xDT9ewu59DxJvB0zj5
- EnrqtDXvuuLyawb95045tSsjG1v8ZZvMh/YTqDhmPK0auqxvKpfv7uYsukbSBrPE/idFWpGmx7p
- sgsMC6opbDhnAyrSOTye+x8W3ZUUL
-X-Received: by 2002:a05:620a:5e3:: with SMTP id
- z3mr1298128qkg.82.1613596771221; 
- Wed, 17 Feb 2021 13:19:31 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwPSYxeA8g2iE40CK7FvkDEZG3iHDG4i+DK7dA2OIu1Fj2bHEppjVJXZjSCy3KXYHo6ADRVaA==
-X-Received: by 2002:a05:620a:5e3:: with SMTP id
- z3mr1298100qkg.82.1613596770966; 
- Wed, 17 Feb 2021 13:19:30 -0800 (PST)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id 18sm1938054qtw.70.2021.02.17.13.19.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 17 Feb 2021 13:19:30 -0800 (PST)
-Message-ID: <a55af9a9f4454f07e34c984cc2ef0e31b38fcbf1.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: imre.deak@intel.com
-Date: Wed, 17 Feb 2021 16:19:29 -0500
-In-Reply-To: <20210217211802.GC558393@ideak-desk.fi.intel.com>
-References: <20210217025337.1929015-1-lyude@redhat.com>
- <20210217180016.1937401-1-lyude@redhat.com>
- <20210217211802.GC558393@ideak-desk.fi.intel.com>
-Organization: Red Hat
-User-Agent: Evolution 3.38.3 (3.38.3-1.fc33)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A502B6E7EA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 22:10:27 +0000 (UTC)
+IronPort-SDR: s7Rt6EPQLgztMm1ZXBlZBxqPk8GOOKdUJsbzi3y3HeHMRNGsOl/ts/hXSZSrkpIenMaPw1TATH
+ tfr9DR5owQhQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="244794729"
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="244794729"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 14:10:26 -0800
+IronPort-SDR: tWkGpIn14Uyv7fybx+y6vtDdZaY3sesPabUYamoxx43LgC6UJ5jGW5yhBDMGlm6Q5nxhXrEZHD
+ xbYqxc4UJ5pw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="401436642"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 17 Feb 2021 14:10:24 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 18 Feb 2021 00:10:23 +0200
+Date: Thu, 18 Feb 2021 00:10:23 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <YC2UT0fD9Iiecgz5@intel.com>
+References: <20210205202322.27608-1-ville.syrjala@linux.intel.com>
+ <3dd3591dad1839f9f0396e09a68e0a834743d901.camel@intel.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/gen9bc: Handle TGP PCH during
- suspend/resume
+Content-Disposition: inline
+In-Reply-To: <3dd3591dad1839f9f0396e09a68e0a834743d901.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Nuke INTEL_OUTPUT_FORMAT_INVALID
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,131 +50,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- open list <linux-kernel@vger.kernel.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTAyLTE3IGF0IDIzOjE4ICswMjAwLCBJbXJlIERlYWsgd3JvdGU6Cj4gT24g
-V2VkLCBGZWIgMTcsIDIwMjEgYXQgMDE6MDA6MTZQTSAtMDUwMCwgTHl1ZGUgUGF1bCB3cm90ZToK
-PiA+IEZyb206IFRlamFzIFVwYWRoeWF5IDx0ZWphc2t1bWFyeC5zdXJlbmRyYWt1bWFyLnVwYWRo
-eWF5QGludGVsLmNvbT4KPiA+IAo+ID4gRm9yIExlZ2FjeSBTMyBzdXNwZW5kL3Jlc3VtZSBHRU45
-IEJDIG5lZWRzIHRvIGVuYWJsZSBhbmQKPiA+IHNldHVwIFRHUCBQQ0guCj4gPiAKPiA+IHYyOgo+
-ID4gKiBNb3ZlIFdhXzE0MDEwNjg1MzMyIGludG8gaXQncyBvd24gZnVuY3Rpb24gLSB2c3lyamFs
-YQo+ID4gKiBBZGQgVE9ETyBjb21tZW50IGFib3V0IGZpZ3VyaW5nIG91dCBpZiB3ZSBjYW4gbW92
-ZSB0aGlzIHdvcmthcm91bmQgLSBpbXJlCj4gPiB2MzoKPiA+ICogUmVuYW1lIGNucF9pcnFfcG9z
-dF9yZXNldCgpIHRvIGNucF9kaXNwbGF5X2Nsb2NrX3dhKCkKPiA+ICogQWRkIFRPRE8gaXRlbSBt
-ZW50aW9uaW5nIHdlIG5lZWQgdG8gY2xhcmlmeSB3aGljaCBwbGF0Zm9ybXMgdGhpcwo+ID4gwqAg
-d29ya2Fyb3VuZCBhcHBsaWVzIHRvCj4gPiAqIEp1c3QgdXNlIGlieF9pcnFfcmVzZXQoKSBpbiBn
-ZW44X2lycV9yZXNldCgpLiBUaGlzIGNvZGUgc2hvdWxkIGJlCj4gPiDCoCBmdW5jdGlvbmFsbHkg
-ZXF1aXZhbGVudCBvbiBnZW45IGJjIHRvIHRoZSBjb2RlIHYyIGFkZGVkCj4gPiAqIERyb3AgaWNw
-X2hwZF9pcnFfc2V0dXAoKSBjYWxsIGluIHNwdF9ocGRfaXJxX3NldHVwKCksIHRoaXMgbG9va3Mg
-dG8gYmUKPiA+IMKgIG1vcmUgb3IgbGVzcyBpZGVudGljYWwgdG8gc3B0X2hwZF9pcnFfc2V0dXAo
-KSBtaW51cyBhZGRpdGlvbmFsbHkgZW5hYmxpbmcKPiA+IMKgIG9uZSBwb3J0LiBXaWxsIHVwZGF0
-ZSBpOTE1IHRvIHVzZSBpY3BfaHBkX2lycV9zZXR1cCgpIGZvciBJQ1AgaW4gYQo+ID4gwqAgc2Vw
-YXJhdGUgcGF0Y2guCj4gPiB2NDoKPiA+ICogUmV2ZXJ0IFdhXzE0MDEwNjg1MzMyIHN5c3RlbSBs
-aXN0IGluIGNvbW1lbnRzIHRvIGhvdyBpdCB3YXMgYmVmb3JlCj4gPiAqIEFkZCBiYWNrIEhBU19Q
-Q0hfU1BMSVQoKSBjaGVjayBiZWZvcmUgY2FsbGluZyBpYnhfaXJxX3Jlc2V0KCkKPiA+IAo+ID4g
-Q2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+Cj4gPiBTaWduZWQtb2Zm
-LWJ5OiBUZWphcyBVcGFkaHlheSA8dGVqYXNrdW1hcnguc3VyZW5kcmFrdW1hci51cGFkaHlheUBp
-bnRlbC5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29t
-Pgo+IAo+IFRoYW5rcywgbG9va3Mgb2sgdG8gbWU6Cj4gUmV2aWV3ZWQtYnk6IEltcmUgRGVhayA8
-aW1yZS5kZWFrQGludGVsLmNvbT4KPiAKPiBuaXQ6IGNucF9kaXNwbGF5X2Nsb2NrX2dhdGluZ193
-YSgpIHdvdWxkIGJlIGFuIGV2ZW4gYmV0dGVyIG5hbWUsIGNvdWxkCj4gYmUgcmVuYW1lZCB3aGls
-ZSBhcHBseWluZy4KClN1cmUgdGhpbmcuIEpGWUkgLSBJJ20gZ29pbmcgdG8gaG9sZCBvZmYgb24g
-cHVzaGluZyB0aGlzIHBhdGNoIHVudGlsIEkndmUgZ290CmNvbmZpcm1hdGlvbiBmcm9tIHRoZSBP
-RU1zIHRoaXMgaXMgZm9yIHRoYXQgdGhlc2UgcGF0Y2hlcyBzdGlsbCBmaXggdGhlaXIgaXNzdWVz
-CihzaW5jZSBJIHVuZm9ydHVuYXRlbHkgZG9uJ3QgaGF2ZSBhbnkgYWNjZXNzIHRvIHRoaXMgaGFy
-ZHdhcmUpLgoKPiAKPiA+IC0tLQo+ID4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5j
-IHwgNDkgKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLS0tLS0tCj4gPiDCoDEgZmlsZSBjaGFu
-Z2VkLCAzMiBpbnNlcnRpb25zKCspLCAxNyBkZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKPiA+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9pcnEuYwo+ID4gaW5kZXggOTgxNDVhN2YyOGE0Li45YjU2YThmODFlMWEgMTAw
-NjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gPiBAQCAtMzA0MCw2ICszMDQwLDI0IEBA
-IHN0YXRpYyB2b2lkIHZhbGxleXZpZXdfaXJxX3Jlc2V0KHN0cnVjdAo+ID4gZHJtX2k5MTVfcHJp
-dmF0ZSAqZGV2X3ByaXYpCj4gPiDCoMKgwqDCoMKgwqDCoMKgc3Bpbl91bmxvY2tfaXJxKCZkZXZf
-cHJpdi0+aXJxX2xvY2spOwo+ID4gwqB9Cj4gPiDCoAo+ID4gK3N0YXRpYyB2b2lkIGNucF9kaXNw
-bGF5X2Nsb2NrX3dhKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiA+ICt7Cj4g
-PiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgaW50ZWxfdW5jb3JlICp1bmNvcmUgPSAmZGV2X3ByaXYt
-PnVuY29yZTsKPiA+ICsKPiA+ICvCoMKgwqDCoMKgwqDCoC8qCj4gPiArwqDCoMKgwqDCoMKgwqAg
-KiBXYV8xNDAxMDY4NTMzMjpjbnAvY21wLHRncCxhZHAKPiA+ICvCoMKgwqDCoMKgwqDCoCAqIFRP
-RE86IENsYXJpZnkgd2hpY2ggcGxhdGZvcm1zIHRoaXMgYXBwbGllcyB0bwo+ID4gK8KgwqDCoMKg
-wqDCoMKgICogVE9ETzogRmlndXJlIG91dCBpZiB0aGlzIHdvcmthcm91bmQgY2FuIGJlIGFwcGxp
-ZWQgaW4gdGhlIHMwaXgKPiA+IHN1c3BlbmQvcmVzdW1lIGhhbmRsZXJzIGFzCj4gPiArwqDCoMKg
-wqDCoMKgwqAgKiBvbiBlYXJsaWVyIHBsYXRmb3JtcyBhbmQgd2hldGhlciB0aGUgd29ya2Fyb3Vu
-ZCBpcyBhbHNvIG5lZWRlZAo+ID4gZm9yIHJ1bnRpbWUgc3VzcGVuZC9yZXN1bWUKPiA+ICvCoMKg
-wqDCoMKgwqDCoCAqLwo+ID4gK8KgwqDCoMKgwqDCoMKgaWYgKElOVEVMX1BDSF9UWVBFKGRldl9w
-cml2KSA9PSBQQ0hfQ05QIHx8Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqAgKElOVEVMX1BDSF9U
-WVBFKGRldl9wcml2KSA+PSBQQ0hfVEdQICYmIElOVEVMX1BDSF9UWVBFKGRldl9wcml2KQo+ID4g
-PCBQQ0hfREcxKSkgewo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVsX3Vu
-Y29yZV9ybXcodW5jb3JlLCBTT1VUSF9DSElDS0VOMSwKPiA+IFNCQ0xLX1JVTl9SRUZDTEtfRElT
-LAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIFNCQ0xLX1JVTl9SRUZDTEtfRElTKTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBpbnRlbF91bmNvcmVfcm13KHVuY29yZSwgU09VVEhfQ0hJQ0tFTjEsCj4g
-PiBTQkNMS19SVU5fUkVGQ0xLX0RJUywgMCk7Cj4gPiArwqDCoMKgwqDCoMKgwqB9Cj4gPiArfQo+
-ID4gKwo+ID4gwqBzdGF0aWMgdm9pZCBnZW44X2lycV9yZXNldChzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqZGV2X3ByaXYpCj4gPiDCoHsKPiA+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgaW50ZWxf
-dW5jb3JlICp1bmNvcmUgPSAmZGV2X3ByaXYtPnVuY29yZTsKPiA+IEBAIC0zMDYzLDYgKzMwODEs
-OCBAQCBzdGF0aWMgdm9pZCBnZW44X2lycV9yZXNldChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZQo+
-ID4gKmRldl9wcml2KQo+ID4gwqAKPiA+IMKgwqDCoMKgwqDCoMKgwqBpZiAoSEFTX1BDSF9TUExJ
-VChkZXZfcHJpdikpCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlieF9pcnFf
-cmVzZXQoZGV2X3ByaXYpOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgY25wX2Rpc3BsYXlfY2xv
-Y2tfd2EoZGV2X3ByaXYpOwo+ID4gwqB9Cj4gPiDCoAo+ID4gwqBzdGF0aWMgdm9pZCBnZW4xMV9k
-aXNwbGF5X2lycV9yZXNldChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gPiBA
-QCAtMzEwNCwxNSArMzEyNCw3IEBAIHN0YXRpYyB2b2lkIGdlbjExX2Rpc3BsYXlfaXJxX3Jlc2V0
-KHN0cnVjdAo+ID4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gPiDCoMKgwqDCoMKgwqDC
-oMKgaWYgKElOVEVMX1BDSF9UWVBFKGRldl9wcml2KSA+PSBQQ0hfSUNQKQo+ID4gwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBHRU4zX0lSUV9SRVNFVCh1bmNvcmUsIFNERSk7Cj4gPiDC
-oAo+ID4gLcKgwqDCoMKgwqDCoMKgLyogV2FfMTQwMTA2ODUzMzI6Y25wL2NtcCx0Z3AsYWRwICov
-Cj4gPiAtwqDCoMKgwqDCoMKgwqBpZiAoSU5URUxfUENIX1RZUEUoZGV2X3ByaXYpID09IFBDSF9D
-TlAgfHwKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoCAoSU5URUxfUENIX1RZUEUoZGV2X3ByaXYp
-ID49IFBDSF9UR1AgJiYKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgIElOVEVMX1BDSF9UWVBF
-KGRldl9wcml2KSA8IFBDSF9ERzEpKSB7Cj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgaW50ZWxfdW5jb3JlX3Jtdyh1bmNvcmUsIFNPVVRIX0NISUNLRU4xLAo+ID4gLcKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFNC
-Q0xLX1JVTl9SRUZDTEtfRElTLAo+ID4gU0JDTEtfUlVOX1JFRkNMS19ESVMpOwo+ID4gLcKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGludGVsX3VuY29yZV9ybXcodW5jb3JlLCBTT1VUSF9D
-SElDS0VOMSwKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBTQkNMS19SVU5fUkVGQ0xLX0RJUywgMCk7Cj4gPiAtwqDCoMKg
-wqDCoMKgwqB9Cj4gPiArwqDCoMKgwqDCoMKgwqBjbnBfZGlzcGxheV9jbG9ja193YShkZXZfcHJp
-dik7Cj4gPiDCoH0KPiA+IMKgCj4gPiDCoHN0YXRpYyB2b2lkIGdlbjExX2lycV9yZXNldChzdHJ1
-Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gPiBAQCAtMzc2NCw5ICszNzc2LDE5IEBA
-IHN0YXRpYyB2b2lkIGdlbjhfZGVfaXJxX3Bvc3RpbnN0YWxsKHN0cnVjdAo+ID4gZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYpCj4gPiDCoMKgwqDCoMKgwqDCoMKgfQo+ID4gwqB9Cj4gPiDCoAo+
-ID4gK3N0YXRpYyB2b2lkIGljcF9pcnFfcG9zdGluc3RhbGwoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmRldl9wcml2KQo+ID4gK3sKPiA+ICvCoMKgwqDCoMKgwqDCoHN0cnVjdCBpbnRlbF91bmNv
-cmUgKnVuY29yZSA9ICZkZXZfcHJpdi0+dW5jb3JlOwo+ID4gK8KgwqDCoMKgwqDCoMKgdTMyIG1h
-c2sgPSBTREVfR01CVVNfSUNQOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgR0VOM19JUlFfSU5J
-VCh1bmNvcmUsIFNERSwgfm1hc2ssIDB4ZmZmZmZmZmYpOwo+ID4gK30KPiA+ICsKPiA+IMKgc3Rh
-dGljIHZvaWQgZ2VuOF9pcnFfcG9zdGluc3RhbGwoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
-dl9wcml2KQo+ID4gwqB7Cj4gPiAtwqDCoMKgwqDCoMKgwqBpZiAoSEFTX1BDSF9TUExJVChkZXZf
-cHJpdikpCj4gPiArwqDCoMKgwqDCoMKgwqBpZiAoSU5URUxfUENIX1RZUEUoZGV2X3ByaXYpID49
-IFBDSF9JQ1ApCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWNwX2lycV9wb3N0
-aW5zdGFsbChkZXZfcHJpdik7Cj4gPiArwqDCoMKgwqDCoMKgwqBlbHNlIGlmIChIQVNfUENIX1NQ
-TElUKGRldl9wcml2KSkKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWJ4X2ly
-cV9wb3N0aW5zdGFsbChkZXZfcHJpdik7Cj4gPiDCoAo+ID4gwqDCoMKgwqDCoMKgwqDCoGdlbjhf
-Z3RfaXJxX3Bvc3RpbnN0YWxsKCZkZXZfcHJpdi0+Z3QpOwo+ID4gQEAgLTM3NzUsMTMgKzM3OTcs
-NiBAQCBzdGF0aWMgdm9pZCBnZW44X2lycV9wb3N0aW5zdGFsbChzdHJ1Y3QKPiA+IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2KQo+ID4gwqDCoMKgwqDCoMKgwqDCoGdlbjhfbWFzdGVyX2ludHJf
-ZW5hYmxlKGRldl9wcml2LT51bmNvcmUucmVncyk7Cj4gPiDCoH0KPiA+IMKgCj4gPiAtc3RhdGlj
-IHZvaWQgaWNwX2lycV9wb3N0aW5zdGFsbChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYpCj4gPiAtewo+ID4gLcKgwqDCoMKgwqDCoMKgc3RydWN0IGludGVsX3VuY29yZSAqdW5jb3Jl
-ID0gJmRldl9wcml2LT51bmNvcmU7Cj4gPiAtwqDCoMKgwqDCoMKgwqB1MzIgbWFzayA9IFNERV9H
-TUJVU19JQ1A7Cj4gPiAtCj4gPiAtwqDCoMKgwqDCoMKgwqBHRU4zX0lSUV9JTklUKHVuY29yZSwg
-U0RFLCB+bWFzaywgMHhmZmZmZmZmZik7Cj4gPiAtfQo+ID4gwqAKPiA+IMKgc3RhdGljIHZvaWQg
-Z2VuMTFfaXJxX3Bvc3RpbnN0YWxsKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikK
-PiA+IMKgewo+ID4gLS0gCj4gPiAyLjI5LjIKPiA+IAo+IAoKLS0gClNpbmNlcmVseSwKICAgTHl1
-ZGUgUGF1bCAoc2hlL2hlcikKICAgU29mdHdhcmUgRW5naW5lZXIgYXQgUmVkIEhhdAogICAKTm90
-ZTogSSBkZWFsIHdpdGggYSBsb3Qgb2YgZW1haWxzIGFuZCBoYXZlIGEgbG90IG9mIGJ1Z3Mgb24g
-bXkgcGxhdGUuIElmIHlvdSd2ZQphc2tlZCBtZSBhIHF1ZXN0aW9uLCBhcmUgd2FpdGluZyBmb3Ig
-YSByZXZpZXcvbWVyZ2Ugb24gYSBwYXRjaCwgZXRjLiBhbmQgSQpoYXZlbid0IHJlc3BvbmRlZCBp
-biBhIHdoaWxlLCBwbGVhc2UgZmVlbCBmcmVlIHRvIHNlbmQgbWUgYW5vdGhlciBlbWFpbCB0byBj
-aGVjawpvbiBteSBzdGF0dXMuIEkgZG9uJ3QgYml0ZSEKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Feb 17, 2021 at 04:37:20PM +0000, Souza, Jose wrote:
+> On Fri, 2021-02-05 at 22:23 +0200, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
+
+> > We tend to use output_format!=3DRGB as a shorthand for YCbCr, but
+> > this fails if we have a disabled crtc where output_format=3D=3DINVALID.
+> > We're now getting some fail from intel_color_check() when we have:
+> > =A0hw.enable=3D=3Dfalse
+> > =A0hw.ctm!=3DNULL
+> > =A0output_format=3D=3DINVALID
+> > =
+
+> > Let's avoid that by throwing INTEL_OUTPUT_FORMAT_INVALID to the
+> > dumpster, and thus everything defaults to RGB when the crtc
+> > is disabled.
+> > =
+
+> > This does beg the deeper question of how much of the state
+> > should we in fact be validating when hw/uapi.enable=3D=3Dfalse.
+> > And should we even be doing the uapi->hw copy when
+> > uapi.enable=3D=3Dfalse? So far I've not been able to come up with
+> > satisfactory answers for myself, so I'm putting it off for the
+> > moment.
+> > =
+
+> > Cc: Lee Shawn C <shawn.c.lee@intel.com>
+> > Fixes: 0aa5c3835c8a ("drm/i915: support two CSC module on gen11 and lat=
+er")
+> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/2964
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> > =A0drivers/gpu/drm/i915/display/intel_crtc.c          | 1 -
+> > =A0drivers/gpu/drm/i915/display/intel_display.c       | 3 +--
+> > =A0drivers/gpu/drm/i915/display/intel_display_types.h | 1 -
+> > =A03 files changed, 1 insertion(+), 4 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/dr=
+m/i915/display/intel_crtc.c
+> > index 57b0a3ebe908..8e77ca7ddf11 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > @@ -109,7 +109,6 @@ void intel_crtc_state_reset(struct intel_crtc_state=
+ *crtc_state,
+
+void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
+                            struct intel_crtc *crtc)
+{
+        memset(crtc_state, 0, sizeof(*crtc_state));
+...
+
+> > =A0	crtc_state->cpu_transcoder =3D INVALID_TRANSCODER;
+> > =A0	crtc_state->master_transcoder =3D INVALID_TRANSCODER;
+> > =A0	crtc_state->hsw_workaround_pipe =3D INVALID_PIPE;
+> > -	crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_INVALID;
+> =
+
+> Missing set output_format to INTEL_OUTPUT_FORMAT_RGB, kmalloc() don't set=
+ memory allocated to zero and INTEL_OUTPUT_FORMAT_INVALID was the index 0 a=
+nd
+> we were setting it during intel_crtc_state_reset() so we should now set i=
+t to INTEL_OUTPUT_FORMAT_RGB.
+> https://www.kernel.org/doc/htmldocs/kernel-api/mm.html
+
+ie. we zero out the whole thing. The reason why the explicit assignment
+was here I suppose is that I had assumed INTEL_OUTPUT_FORMAT_INVALID=3D=3D-=
+1,
+which is the case for INVALID_TRANSCODER/PIPE/etc.
+
+> =
+
+> With that fixed:
+> =
+
+> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> =
+
+> > =A0	crtc_state->scaler_state.scaler_id =3D -1;
+> > =A0	crtc_state->mst_master_transcoder =3D INVALID_TRANSCODER;
+> > =A0}
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 92c14f3f0abf..46d0093187f8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -10220,7 +10220,6 @@ static void snprintf_output_types(char *buf, si=
+ze_t len,
+> > =A0}
+> > =A0
+> > =
+
+> > =
+
+> > =
+
+> > =A0static const char * const output_format_str[] =3D {
+> > -	[INTEL_OUTPUT_FORMAT_INVALID] =3D "Invalid",
+> > =A0	[INTEL_OUTPUT_FORMAT_RGB] =3D "RGB",
+> > =A0	[INTEL_OUTPUT_FORMAT_YCBCR420] =3D "YCBCR4:2:0",
+> > =A0	[INTEL_OUTPUT_FORMAT_YCBCR444] =3D "YCBCR4:4:4",
+> > @@ -10229,7 +10228,7 @@ static const char * const output_format_str[] =
+=3D {
+> > =A0static const char *output_formats(enum intel_output_format format)
+> > =A0{
+> > =A0	if (format >=3D ARRAY_SIZE(output_format_str))
+> > -		format =3D INTEL_OUTPUT_FORMAT_INVALID;
+> > +		return "invalid";
+> > =A0	return output_format_str[format];
+> > =A0}
+> > =A0
+> > =
+
+> > =
+
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drive=
+rs/gpu/drm/i915/display/intel_display_types.h
+> > index 307ff4b771f4..b3ac39fea6f0 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -830,7 +830,6 @@ struct intel_crtc_wm_state {
+> > =A0};
+> > =A0
+> > =
+
+> > =
+
+> > =
+
+> > =A0enum intel_output_format {
+> > -	INTEL_OUTPUT_FORMAT_INVALID,
+> > =A0	INTEL_OUTPUT_FORMAT_RGB,
+> > =A0	INTEL_OUTPUT_FORMAT_YCBCR420,
+> > =A0	INTEL_OUTPUT_FORMAT_YCBCR444,
+> =
+
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
