@@ -1,31 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F098631D638
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 09:07:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0713831D69F
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 09:35:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDA8989C09;
-	Wed, 17 Feb 2021 08:07:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3CAF89DFB;
+	Wed, 17 Feb 2021 08:35:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7E8A489C09;
- Wed, 17 Feb 2021 08:07:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 76287A882E;
- Wed, 17 Feb 2021 08:07:23 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EBC36E41D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 08:35:02 +0000 (UTC)
+IronPort-SDR: 5M4Dh14iyuVF0BQZCibEN7lIfqkdTsBwlOOvYLjJ1jKacMqba2jOU9KzuUpGRF9gNMhxDXPNeF
+ QEC4LRgnBHYw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="244606337"
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="244606337"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 00:34:58 -0800
+IronPort-SDR: Jaxev6McBRp0iHVvWXdQ2L9Uhpf8RgR0i5eTb8DmCQthkKVtqzIqF5Zam1jCGnLV3/8TdFWYpD
+ 2Q46IQUkW7Fw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="385035990"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga008.fm.intel.com with ESMTP; 17 Feb 2021 00:34:57 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 17 Feb 2021 00:34:56 -0800
+Received: from hasmsx602.ger.corp.intel.com (10.184.107.142) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 17 Feb 2021 00:34:55 -0800
+Received: from hasmsx602.ger.corp.intel.com ([10.184.107.142]) by
+ HASMSX602.ger.corp.intel.com ([10.184.107.142]) with mapi id 15.01.2106.002;
+ Wed, 17 Feb 2021 10:34:53 +0200
+From: "Winkler, Tomas" <tomas.winkler@intel.com>
+To: Richard Weinberger <richard.weinberger@gmail.com>
+Thread-Topic: [RFC PATCH 0/9] drm/i915/spi: discrete graphics internal spi
+Thread-Index: AQHXBJBTlGMG4b5GwU+w3NO1EU5QQapbRLqAgAC+HMA=
+Date: Wed, 17 Feb 2021 08:34:53 +0000
+Message-ID: <cb20e706d494458a8957252eeacfb1da@intel.com>
+References: <20210216181925.650082-1-tomas.winkler@intel.com>
+ <CAFLxGvwP5-O5DHQ07Fs_GnG12dsK24mer8LJfhz2z2UqW9e5cQ@mail.gmail.com>
+In-Reply-To: <CAFLxGvwP5-O5DHQ07Fs_GnG12dsK24mer8LJfhz2z2UqW9e5cQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.184.70.1]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Wed, 17 Feb 2021 08:07:23 -0000
-Message-ID: <161354924345.24998.2753997076163503285@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210201150228.10001-1-shawn.c.lee@intel.com>
-In-Reply-To: <20210201150228.10001-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/vbt=3A_update_DP_max_link_rate_table_=28rev2=29?=
+Subject: Re: [Intel-gfx] [RFC PATCH 0/9] drm/i915/spi: discrete graphics
+ internal spi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,169 +68,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0443367280=="
+Cc: Vignesh Raghavendra <vigneshr@ti.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
+ Alexander" <alexander.usyskin@intel.com>,
+ "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>, "Lubart,
+ Vitaly" <vitaly.lubart@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0443367280==
-Content-Type: multipart/alternative;
- boundary="===============8850791404413493854=="
 
---===============8850791404413493854==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> 
+> )On Tue, Feb 16, 2021 at 7:26 PM Tomas Winkler <tomas.winkler@intel.com>
+> wrote:
+> > Because the graphic card may undergo reset at any time and basically
+> > hot unplug all its child devices, this series also provides a fix to
+> > the mtd framework to make the reset graceful.
+> 
+> Well, just because MTD does not work as you expect, it is not broken. :-)
+I'm not saying it's broken by design it just didn't fit this use case. 
+> 
+> In your case i915_spi_remove() blindly removes the MTD, this is not allowed.
+> You may remove the MTD only if there are no more users.
 
-== Series Details ==
+I'm not sure it's good idea to stall the removal on user space.
+This is just asking for a deadlock as user space is not getting what it needs and may stall
+I think it's better the user space will fail gracefully the hw is not accessible in that stage anyway. 
+> 
+> The current model in MTD is that the driver is in charge of all life cycle
+> management.
+> Using ->_get_device() and ->_put_device() a driver can implement
+> refcounting and deny new users if the MTD is about to disappear.
 
-Series: drm/i915/vbt: update DP max link rate table (rev2)
-URL   : https://patchwork.freedesktop.org/series/86539/
-State : success
+Please note that this use case you are describing is still valid, I haven't removed _get_device() _put_device() handlers,
+You can still stall the removal of mtd, If this is not that way it's a bug
 
-== Summary ==
+> 
+> In the upcoming MUSE driver that mechanism is used too.
+> MUSE allows to implement a MTD in userspace. So the FUSE server can
+> disappear at
+> *any* time. Just like in your case. Even worse, it can be hostile.
+> In MUSE the MTD life time is tied to the FUSE connection object,
+> muse_mtd_get_device()
+> increments the FUSE connection refcount, and muse_mtd_put_device()
+> decrements it.
+> That means if the FUSE server disappears all of a sudden but the MTD still has
+> users, the MTD will stay. But in this state no new references are allowed and
+> all MTD operations of existing users will fail with -ENOTCONN (via FUSE).
+> As soon the last user is gone (can be userspace via /dev/mtd* or a in-kernel
+> user such as UBIFS), the MTD will be removed.
 
-CI Bug Log - changes from CI_DRM_9779 -> Patchwork_19690
-====================================================
+But in our case whole i915 is taken hostage, it cannot reset because of misbehaving user space.
 
-Summary
--------
+> For the full details, please see:
+> https://git.kernel.org/pub/scm/linux/kernel/git/rw/misc.git/tree/fs/fuse/m
+> use.c?h=muse_v3#n1034
+> 
+> Is in your case *really* not possible to do it that way?
 
-  **SUCCESS**
+Maybe it's possible but I don't think it's good to stall i915 removal. Also It's very easily to crash the kernel.
+I've posted a sniped to the mailing list that tried to do that, the kernel still has crashed. Can you looked at?
 
-  No regressions found.
+> On the other hand, your last patch moves some part of the life cycle
+> management into MTD core.
+> The MTD will stay as long it has users.
+> But that's only one part. The driver is still in charge to make sure that all
+> operations fail immediately and that no new users arrive.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html
+I think that case I would need to validate every HW access to make sure it's still valid.
 
-Known issues
-------------
+> If we want to do all in MTD core we'd have to do it like SCSI disks.
+> That means having devices states such as SDEV_RUNNING, SDEV_CANCEL,
+> SDEV_OFFLINE, ....
+> That way the MTD could be shutdown gracefully, first no new users are
+> allowed, then ongoing operations will be cancelled, next all operation will fail
+> with -EIO or such, then the device is being removed from sysfs and finally if
+> the last user is gone, the MTD can be removed.
 
-  Here are the changes found in Patchwork_19690 that come from known issues:
+Isn't that already that way? You cannot open new handler. That I would need more of your insights.
+> 
+> I'm not sure whether we want to take that path.
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][1] -> [FAIL][2] ([i915#1888])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-7500u:       [PASS][3] -> [DMESG-WARN][4] ([i915#2605])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-kbl-7500u/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/fi-kbl-7500u/igt@i915_module_load@reload.html
-
-  
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
-
-
-Participating hosts (45 -> 38)
-------------------------------
-
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus fi-hsw-gt1 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9779 -> Patchwork_19690
-
-  CI-20190529: 20190529
-  CI_DRM_9779: 775dbe8d5e041442fcadf63894468a63582a87a2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6004: fe9ac2aeffc1828c6d61763a611a44fbd450aa96 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19690: 2d651f1c5f7723a9f7465230b6b70210b3a02e9c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2d651f1c5f77 drm/i915/vbt: update DP max link rate table
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html
-
---===============8850791404413493854==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/vbt: update DP max link rate table (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86539/">https://patchwork.freedesktop.org/series/86539/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9779 -&gt; Patchwork_19690</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19690 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9779/fi-kbl-7500u/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19690/fi-kbl-7500u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 38)</h2>
-<p>Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus fi-hsw-gt1 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9779 -&gt; Patchwork_19690</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9779: 775dbe8d5e041442fcadf63894468a63582a87a2 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6004: fe9ac2aeffc1828c6d61763a611a44fbd450aa96 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19690: 2d651f1c5f7723a9f7465230b6b70210b3a02e9c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>2d651f1c5f77 drm/i915/vbt: update DP max link rate table</p>
-
-</body>
-</html>
-
---===============8850791404413493854==--
-
---===============0443367280==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Thanks
+Tomas
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0443367280==--
