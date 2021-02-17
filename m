@@ -1,40 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33F3A31DEA6
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 18:54:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D6031DEAF
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 19:00:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 950296E9AA;
-	Wed, 17 Feb 2021 17:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E62D6E9AD;
+	Wed, 17 Feb 2021 18:00:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC0206E9AA
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 17:54:41 +0000 (UTC)
-IronPort-SDR: tF39SIAWfFzdkarxxYwtmRgR9OVwiglOhiSCMc1I13/qWqF6EgxN8XTrRFYbOyi2KWeClj95Dz
- OIcaUsvSnO+A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="179759987"
-X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="179759987"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 09:54:41 -0800
-IronPort-SDR: MF6e/GVm52MO9d8ShzldxoyL77NT/gAGmzh7SJaxF5tbRCYtZ3uZ6PoccI8QlS/RRNDYAjxN1g
- krBzDTzJIrKg==
-X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="439448039"
-Received: from dsdani-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.4.37])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 09:54:41 -0800
-Date: Wed, 17 Feb 2021 09:54:40 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20210217175440.vo7lunoy5sy74tmq@ldmartin-desk1>
-References: <cover.1613580193.git.jani.nikula@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 326CA6E9AD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 18:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1613584841;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3Qe+teJ2nzDbYW+uGiWHaysdgcaJ0xIbuFYTMH9KlGA=;
+ b=irk2Pag8cDzse9h0vSwuqNxJIqAQYnb6wwiRPPBlTo7ibXUck3HizDEySWKcFP4NwmMZ92
+ jgHtp0KNU25HaZvPh2IeoprL4PKDIZNSdNygpOwKUMOWtPoIZMSIq95Pu2aXOnekz3bZbD
+ KslUJSzt/N7P7UCvzUQo15LXit4RiLQ=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-544-QFONGovwNWCfFy17PtYznw-1; Wed, 17 Feb 2021 13:00:39 -0500
+X-MC-Unique: QFONGovwNWCfFy17PtYznw-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
+ [10.5.11.12])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id CE8451009617;
+ Wed, 17 Feb 2021 18:00:37 +0000 (UTC)
+Received: from Whitewolf.redhat.com (ovpn-115-41.rdu2.redhat.com
+ [10.10.115.41])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id C957260C61;
+ Wed, 17 Feb 2021 18:00:34 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: intel-gfx@lists.freedesktop.org,
+	Imre Deak <imre.deak@intel.com>
+Date: Wed, 17 Feb 2021 13:00:16 -0500
+Message-Id: <20210217180016.1937401-1-lyude@redhat.com>
+In-Reply-To: <20210217025337.1929015-1-lyude@redhat.com>
+References: <20210217025337.1929015-1-lyude@redhat.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <cover.1613580193.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 00/12] drm/i915/bios: vbt child device rework
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+Subject: [Intel-gfx] [PATCH v4] drm/i915/gen9bc: Handle TGP PCH during
+ suspend/resume
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,85 +60,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Cc: David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 17, 2021 at 07:03:30PM +0200, Jani Nikula wrote:
->I see the parsing and caching of child device data into
->i915->vbt.ddi_port_info[] slightly problematic. We keep adding data to
->it, and it just duplicates information. Start moving towards a single
->point of truth, and getting the information directly from the child
->device data.
->
->One obstacle has been that init_vbt_missing_defaults() only initializes
->ddi_port_info, without child devices. As the same problem arose in a
->patch from Lucas, I thought it was time to start creating fake child
->devices to unify the code.
->
->There are a bunch of cleanups and refactoring here. Patches 1-5 are
->enough to fix Lucas' patch I think. Patch 10 does what Lucas was after,
->just in a different way and as a byproduct of something else. The later
+From: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
 
-humn... but we'd still need the patches in that series to cleanup
-the calls to intel_ddi_init() from intel_display.c. Or did I miss
-anything?
+For Legacy S3 suspend/resume GEN9 BC needs to enable and
+setup TGP PCH.
 
-I did a quick scan through the patches and left a few comments. Overall
-it looks good to me, but I need to dedicate a little more time to give a
-proper r-b. I will do soon if no one beats me to it.
+v2:
+* Move Wa_14010685332 into it's own function - vsyrjala
+* Add TODO comment about figuring out if we can move this workaround - imre
+v3:
+* Rename cnp_irq_post_reset() to cnp_display_clock_wa()
+* Add TODO item mentioning we need to clarify which platforms this
+  workaround applies to
+* Just use ibx_irq_reset() in gen8_irq_reset(). This code should be
+  functionally equivalent on gen9 bc to the code v2 added
+* Drop icp_hpd_irq_setup() call in spt_hpd_irq_setup(), this looks to be
+  more or less identical to spt_hpd_irq_setup() minus additionally enabling
+  one port. Will update i915 to use icp_hpd_irq_setup() for ICP in a
+  separate patch.
+v4:
+* Revert Wa_14010685332 system list in comments to how it was before
+* Add back HAS_PCH_SPLIT() check before calling ibx_irq_reset()
 
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Tejas Upadhyay <tejaskumarx.surendrakumar.upadhyay@intel.com>
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/i915/i915_irq.c | 49 +++++++++++++++++++++------------
+ 1 file changed, 32 insertions(+), 17 deletions(-)
 
-thanks
-Lucas De Marchi
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 98145a7f28a4..9b56a8f81e1a 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -3040,6 +3040,24 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ }
+ 
++static void cnp_display_clock_wa(struct drm_i915_private *dev_priv)
++{
++	struct intel_uncore *uncore = &dev_priv->uncore;
++
++	/*
++	 * Wa_14010685332:cnp/cmp,tgp,adp
++	 * TODO: Clarify which platforms this applies to
++	 * TODO: Figure out if this workaround can be applied in the s0ix suspend/resume handlers as
++	 * on earlier platforms and whether the workaround is also needed for runtime suspend/resume
++	 */
++	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
++	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
++		intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS,
++				 SBCLK_RUN_REFCLK_DIS);
++		intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
++	}
++}
++
+ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_uncore *uncore = &dev_priv->uncore;
+@@ -3063,6 +3081,8 @@ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
+ 
+ 	if (HAS_PCH_SPLIT(dev_priv))
+ 		ibx_irq_reset(dev_priv);
++
++	cnp_display_clock_wa(dev_priv);
+ }
+ 
+ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+@@ -3104,15 +3124,7 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+ 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+ 		GEN3_IRQ_RESET(uncore, SDE);
+ 
+-	/* Wa_14010685332:cnp/cmp,tgp,adp */
+-	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
+-	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP &&
+-	     INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
+-		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+-				 SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
+-		intel_uncore_rmw(uncore, SOUTH_CHICKEN1,
+-				 SBCLK_RUN_REFCLK_DIS, 0);
+-	}
++	cnp_display_clock_wa(dev_priv);
+ }
+ 
+ static void gen11_irq_reset(struct drm_i915_private *dev_priv)
+@@ -3764,9 +3776,19 @@ static void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+ 	}
+ }
+ 
++static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
++{
++	struct intel_uncore *uncore = &dev_priv->uncore;
++	u32 mask = SDE_GMBUS_ICP;
++
++	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
++}
++
+ static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
+ {
+-	if (HAS_PCH_SPLIT(dev_priv))
++	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
++		icp_irq_postinstall(dev_priv);
++	else if (HAS_PCH_SPLIT(dev_priv))
+ 		ibx_irq_postinstall(dev_priv);
+ 
+ 	gen8_gt_irq_postinstall(&dev_priv->gt);
+@@ -3775,13 +3797,6 @@ static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
+ 	gen8_master_intr_enable(dev_priv->uncore.regs);
+ }
+ 
+-static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
+-{
+-	struct intel_uncore *uncore = &dev_priv->uncore;
+-	u32 mask = SDE_GMBUS_ICP;
+-
+-	GEN3_IRQ_INIT(uncore, SDE, ~mask, 0xffffffff);
+-}
+ 
+ static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
+ {
+-- 
+2.29.2
 
->patches in the series are more to show the direction, and seek
->validation for that direction.
->
->Naming is also a question mark. All of these are a bit questionable:
->intel_bios_encoder_data, devdata, intel_bios_encoder_supports_*, etc.
->
->BR,
->Jani.
->
->
->[1] http://patchwork.freedesktop.org/patch/msgid/20210213190511.1017088-2-=
-lucas.demarchi@intel.com
->
->
->
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->
->
->Jani Nikula (12):
->  drm/i915/bios: mass convert dev_priv to i915
->  drm/i915/bios: store bdb version in i915
->  drm/i915/bios: limit default outputs by platform on missing VBT
->  drm/i915/bios: limit default outputs to ports A through F
->  drm/i915/bios: create fake child devices on missing VBT
->  drm/i915/bios: rename display_device_data to intel_bios_encoder_data
->  drm/i915/bios: add i915 backpointer to intel_bios_encoder_data
->  drm/i915/vbt: add helper functions to check output support
->  drm/i915/bios: save a higher level pointer in ddi_vbt_port_info[]
->  drm/i915/bios: start using the intel_bios_encoder_data directly
->  drm/i915/bios: start using intel_bios_encoder_data for Type-C USB and
->    TBT
->  drm/i915/bios: add intel_bios_encoder_data to encoder, use for iboost
->
-> drivers/gpu/drm/i915/display/intel_bios.c     | 1021 +++++++++--------
-> drivers/gpu/drm/i915/display/intel_bios.h     |   17 +-
-> drivers/gpu/drm/i915/display/intel_ddi.c      |   28 +-
-> .../drm/i915/display/intel_display_types.h    |    3 +
-> drivers/gpu/drm/i915/i915_drv.h               |    9 +-
-> 5 files changed, 584 insertions(+), 494 deletions(-)
->
->-- =
-
->2.20.1
->
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
