@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2A931DFA8
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 20:31:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D1D631DFB7
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 20:38:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20DE66E9C5;
-	Wed, 17 Feb 2021 19:31:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49E606E201;
+	Wed, 17 Feb 2021 19:38:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 461996E9C2;
- Wed, 17 Feb 2021 19:31:35 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3EA5CA0118;
- Wed, 17 Feb 2021 19:31:35 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4CD76E201
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 19:38:38 +0000 (UTC)
+IronPort-SDR: ATf3K2Fvc506W85VRsO6cT0MQAdOdPq4d/pZyom1OkpQECQXOCks62LvxSWBUewUuIax87EOWI
+ F1QFKxSBV4ww==
+X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="170432134"
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="170432134"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 11:38:33 -0800
+IronPort-SDR: DpMqqMveCVgcESwrtGCr3GT0gvH2d29D3/ET/J2u++VCNzCr9ECnPZnPJBNyZCiReel7EoyVw4
+ TA8ge1+rF82w==
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="400106098"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 11:38:32 -0800
+Date: Wed, 17 Feb 2021 21:38:28 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20210217193828.GB557342@ideak-desk.fi.intel.com>
+References: <20210217180245.202837-1-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Wed, 17 Feb 2021 19:31:35 -0000
-Message-ID: <161359029522.25000.3385594949393161571@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210217025337.1929015-1-lyude@redhat.com>
-In-Reply-To: <20210217025337.1929015-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv4=5D_drm/i915/gen9bc=3A_Handle_TGP_PCH_du?=
- =?utf-8?q?ring_suspend/resume_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20210217180245.202837-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Compute aux ch power
+ domain during DDI initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,219 +47,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0549127419=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0549127419==
-Content-Type: multipart/alternative;
- boundary="===============1162432079710317443=="
+On Wed, Feb 17, 2021 at 10:02:45AM -0800, Jos=E9 Roberto de Souza wrote:
+> Future platform will require a power domain that do not mach with aux
+> ch id, so here already preparing code for that by dropping the
+> functions that converts the aux ch to power domains and initializaing
+> aux_power_domain during intel_ddi_init().
+> =
 
---===============1162432079710317443==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  4 +-
+>  drivers/gpu/drm/i915/display/intel_display.c  | 58 ++-----------------
+>  drivers/gpu/drm/i915/display/intel_display.h  |  2 -
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  drivers/gpu/drm/i915/display/intel_tc.c       |  2 +-
+>  5 files changed, 10 insertions(+), 58 deletions(-)
+> =
 
-== Series Details ==
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index eeae78097a20..ec5c1f91aee9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4152,7 +4152,9 @@ void intel_ddi_init(struct drm_i915_private *dev_pr=
+iv, enum port port)
+>  =
 
-Series: series starting with [v4] drm/i915/gen9bc: Handle TGP PCH during suspend/resume (rev2)
-URL   : https://patchwork.freedesktop.org/series/87148/
-State : success
+>  	drm_WARN_ON(&dev_priv->drm, port > PORT_I);
+>  	dig_port->ddi_io_power_domain =3D POWER_DOMAIN_PORT_DDI_A_IO +
+> -					      port - PORT_A;
+> +					port - PORT_A;
+> +	dig_port->aux_power_domain =3D POWER_DOMAIN_AUX_A + dig_port->aux_ch -
+> +				     AUX_CH_A;
+>  =
 
-== Summary ==
+>  	if (init_dp) {
+>  		if (!intel_ddi_init_dp_connector(dig_port))
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index acade004e8b1..3581aa50034e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4235,61 +4235,11 @@ intel_aux_power_domain(struct intel_digital_port =
+*dig_port)
+>  	enum phy phy =3D intel_port_to_phy(dev_priv, dig_port->base.port);
+>  =
 
-CI Bug Log - changes from CI_DRM_9783 -> Patchwork_19697
-====================================================
+>  	if (intel_phy_is_tc(dev_priv, phy) &&
+> -	    dig_port->tc_mode =3D=3D TC_PORT_TBT_ALT) {
+> -		switch (dig_port->aux_ch) {
+> -		case AUX_CH_C:
+> -			return POWER_DOMAIN_AUX_C_TBT;
+> -		case AUX_CH_D:
+> -			return POWER_DOMAIN_AUX_D_TBT;
+> -		case AUX_CH_E:
+> -			return POWER_DOMAIN_AUX_E_TBT;
+> -		case AUX_CH_F:
+> -			return POWER_DOMAIN_AUX_F_TBT;
+> -		case AUX_CH_G:
+> -			return POWER_DOMAIN_AUX_G_TBT;
+> -		case AUX_CH_H:
+> -			return POWER_DOMAIN_AUX_H_TBT;
+> -		case AUX_CH_I:
+> -			return POWER_DOMAIN_AUX_I_TBT;
+> -		default:
+> -			MISSING_CASE(dig_port->aux_ch);
+> -			return POWER_DOMAIN_AUX_C_TBT;
+> -		}
+> -	}
+> -
+> -	return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
+> -}
+> +	    dig_port->tc_mode =3D=3D TC_PORT_TBT_ALT)
+> +		return POWER_DOMAIN_AUX_C_TBT + dig_port->aux_power_domain -
+> +		       POWER_DOMAIN_AUX_A;
+>  =
 
-Summary
--------
+> -/*
+> - * Converts aux_ch to power_domain without caring about TBT ports for th=
+at use
+> - * intel_aux_power_domain()
+> - */
+> -enum intel_display_power_domain
+> -intel_legacy_aux_to_power_domain(enum aux_ch aux_ch)
+> -{
+> -	switch (aux_ch) {
+> -	case AUX_CH_A:
+> -		return POWER_DOMAIN_AUX_A;
+> -	case AUX_CH_B:
+> -		return POWER_DOMAIN_AUX_B;
+> -	case AUX_CH_C:
+> -		return POWER_DOMAIN_AUX_C;
+> -	case AUX_CH_D:
+> -		return POWER_DOMAIN_AUX_D;
+> -	case AUX_CH_E:
+> -		return POWER_DOMAIN_AUX_E;
+> -	case AUX_CH_F:
+> -		return POWER_DOMAIN_AUX_F;
+> -	case AUX_CH_G:
+> -		return POWER_DOMAIN_AUX_G;
+> -	case AUX_CH_H:
+> -		return POWER_DOMAIN_AUX_H;
+> -	case AUX_CH_I:
+> -		return POWER_DOMAIN_AUX_I;
+> -	default:
+> -		MISSING_CASE(aux_ch);
+> -		return POWER_DOMAIN_AUX_A;
+> -	}
+> +	return dig_port->aux_power_domain;
+>  }
+>  =
 
-  **SUCCESS**
+>  static u64 get_crtc_power_domains(struct intel_crtc_state *crtc_state)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index 73b9d9c95d55..525ad555528f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -614,8 +614,6 @@ void hsw_disable_ips(const struct intel_crtc_state *c=
+rtc_state);
+>  enum intel_display_power_domain intel_port_to_power_domain(enum port por=
+t);
+>  enum intel_display_power_domain
+>  intel_aux_power_domain(struct intel_digital_port *dig_port);
+> -enum intel_display_power_domain
+> -intel_legacy_aux_to_power_domain(enum aux_ch aux_ch);
+>  void intel_crtc_arm_fifo_underrun(struct intel_crtc *crtc,
+>  				  struct intel_crtc_state *crtc_state);
+>  void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 07b7f5eae587..d527cb2ad070 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1589,6 +1589,8 @@ struct intel_digital_port {
+>  	/* Used for DP and ICL+ TypeC/DP and TypeC/HDMI ports. */
+>  	enum aux_ch aux_ch;
+>  	enum intel_display_power_domain ddi_io_power_domain;
+> +	/* Regular/legacy aux channel power domain */
+> +	enum intel_display_power_domain aux_power_domain;
 
-  No regressions found.
+What's the rational for storing it here? If there's a good one then I'd
+rather call this legacy_aux_power_domain and store the tbt aux domains
+here as well. It would also need to get initialized for dp encoders.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/index.html
+>  	intel_wakeref_t ddi_io_wakeref;
+>  	intel_wakeref_t aux_wakeref;
+>  	struct mutex tc_lock;	/* protects the TypeC port mode */
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
+15/display/intel_tc.c
+> index 2cefc13535a0..83080e15ad7a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -29,7 +29,7 @@ tc_cold_get_power_domain(struct intel_digital_port *dig=
+_port)
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>  =
 
-Known issues
-------------
+>  	if (INTEL_GEN(i915) =3D=3D 11)
+> -		return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
+> +		return dig_port->aux_power_domain;
+>  	else
+>  		return POWER_DOMAIN_TC_COLD_OFF;
+>  }
+> -- =
 
-  Here are the changes found in Patchwork_19697 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_render_tiled_blits@basic:
-    - fi-tgl-y:           NOTRUN -> [DMESG-WARN][1] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@gem_render_tiled_blits@basic.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-tgl-y:           NOTRUN -> [DMESG-FAIL][2] ([i915#2373])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-y:           NOTRUN -> [DMESG-FAIL][3] ([i915#1759])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-tgl-y:           NOTRUN -> [SKIP][4] ([fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-y:           NOTRUN -> [SKIP][5] ([fdo#109285])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@blt:
-    - fi-snb-2520m:       [DMESG-FAIL][6] -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9783/fi-snb-2520m/igt@i915_selftest@live@blt.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-snb-2520m/igt@i915_selftest@live@blt.html
-
-  
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1759]: https://gitlab.freedesktop.org/drm/intel/issues/1759
-  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Additional (1): fi-tgl-y 
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9783 -> Patchwork_19697
-
-  CI-20190529: 20190529
-  CI_DRM_9783: 498a1b2bfd0ecf4401c2f653a82e9ae2c80c9145 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6005: b69a3c463f0aec46b19c14ac24351d292cb11c08 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19697: 22a54b838f719c2be7f771d0f95c496b495a585c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-22a54b838f71 drm/i915/icp+: Use icp_hpd_irq_setup() instead of spt_hpd_irq_setup()
-85c3286dab00 drm/i915/gen9bc: Handle TGP PCH during suspend/resume
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/index.html
-
---===============1162432079710317443==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v4] drm/i915/gen9bc: Handle TGP PCH during suspend/resume (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87148/">https://patchwork.freedesktop.org/series/87148/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9783 -&gt; Patchwork_19697</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19697 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@gem_render_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2373">i915#2373</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1759">i915#1759</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@blt:<ul>
-<li>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9783/fi-snb-2520m/igt@i915_selftest@live@blt.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19697/fi-snb-2520m/igt@i915_selftest@live@blt.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Additional (1): fi-tgl-y <br />
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9783 -&gt; Patchwork_19697</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9783: 498a1b2bfd0ecf4401c2f653a82e9ae2c80c9145 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6005: b69a3c463f0aec46b19c14ac24351d292cb11c08 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19697: 22a54b838f719c2be7f771d0f95c496b495a585c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>22a54b838f71 drm/i915/icp+: Use icp_hpd_irq_setup() instead of spt_hpd_irq_setup()<br />
-85c3286dab00 drm/i915/gen9bc: Handle TGP PCH during suspend/resume</p>
-
-</body>
-</html>
-
---===============1162432079710317443==--
-
---===============0549127419==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> 2.30.1
+> =
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0549127419==--
