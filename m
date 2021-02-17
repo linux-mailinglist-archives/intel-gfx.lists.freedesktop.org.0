@@ -2,47 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94CD631D9BC
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 13:49:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A7D531D9B4
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 13:46:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7F826E4F4;
-	Wed, 17 Feb 2021 12:49:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 077826E08C;
+	Wed, 17 Feb 2021 12:46:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 428 seconds by postgrey-1.36 at gabe;
- Wed, 17 Feb 2021 12:49:00 UTC
-Received: from lb1-smtp-cloud8.xs4all.net (lb1-smtp-cloud8.xs4all.net
- [194.109.24.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CD9C6E4F4
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 12:49:00 +0000 (UTC)
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
- by smtp-cloud8.xs4all.net with ESMTPA
- id CM9KljF3hYbfZCM9NlpCak; Wed, 17 Feb 2021 13:41:50 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
- t=1613565710; bh=jMNufNdjrLzsPUqUinFZj/ht+Jb0NxZ/XBg60m8kUCA=;
- h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
- Subject;
- b=ojLgGalnnBCmFLrjG12ifcpdbLc8zQ3oSuat2T9FJDMKmd17b2Yki93vtDGkOQEvN
- RxQ5U+BWlc42UY8kfhO3/QrYmj0jr9gg6tG6nBQshuQvVOUFSA8BnUQIUm4ABHS0+j
- TrljBaWmvDxf5BpW1WOFiiIAa7MWD+erLdNqLW7iGKW6/o4cH8v8qGrDpJSJmFH0ql
- gkZw4MvbhUbYyE7JKHR1awbK7ad2SJHRTXKLToM6IwOSmVgVY/nYFsvLfCadEeD03c
- oRODv1P4Md5akBPbJhWHLsAoJwR5TEHe8tafRZuBH0++0UjLrmi76vbWgIDbDbeneF
- 0AHV1NdtEOMXQ==
-To: Hans de Goede <hdegoede@redhat.com>
-References: <91b0f6c8-79ca-d04f-1ae0-66bf954dd421@redhat.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <8d24dad6-cb2a-da91-bd38-887a7aa3282f@xs4all.nl>
-Date: Wed, 17 Feb 2021 13:41:46 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.7.0
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D89126E08C;
+ Wed, 17 Feb 2021 12:46:00 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1613565959; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=N00yAhsyZbw+Nel/sbxQYAWqciOhUzp9bz7wDMnc5es=;
+ b=X95Zya3LHME58OqF/fGOges5Ys2yN9XI9UOk1w4f4CQcA/Ji7pUuY5gTbuBmcaGxOAAlR0
+ VZlYkf6Brip0RW+RZIDnZtVwCKLZ31/SZOAFdyEPBkyMeDAlAl+SNdaLEKU6ksQT1aIM19
+ vTTytiQ0WWvTgFE3S2DIgxsEVdTyXiM=
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 4C233AF26;
+ Wed, 17 Feb 2021 12:45:59 +0000 (UTC)
+Date: Wed, 17 Feb 2021 13:45:58 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Message-ID: <YC0QBvv9HXr64ySf@alley>
+References: <20210215142137.64476-1-andriy.shevchenko@linux.intel.com>
+ <43456ba7-c372-84cc-4949-dcb817188e21@amd.com>
+ <CAHp75VfVXnqdVRAPQ36vZeD-ZMCjWmjA_-6T=jnOEVMne4bv0g@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <91b0f6c8-79ca-d04f-1ae0-66bf954dd421@redhat.com>
-Content-Language: en-US
-X-CMAE-Envelope: MS4xfLElcs5b0M81Mfdvb3J39zxVGtl6MH4k5XJmk7tHAJu/YHLzfZdOyeWzzzhi7b7L3DPhn5wmXIC+pQrInTiOf4Dp38J4OFPqTue1pcZ1d1RWyx3XrltE
- azfgd6KkqDFb+UQC22UWO+ZQE4dZCvUonh5W41GiBaezfpOpKRTjZLCncsMNNta4iAskipu5+drfbrxmzAuK5NehP86sJb5qToEv7QZ/34G5pYmcClfj50d+
- 9ZAeALcZCiu7H2HYGZaexhm24Wwz3W70297WzjjrRo0IWlx8pfO0KG5x2+tRYu9Q
-Subject: Re: [Intel-gfx] Issue with cec_register_adapter calling
- request_module() from an async context when called from intel_dp_detect
+Content-Disposition: inline
+In-Reply-To: <CAHp75VfVXnqdVRAPQ36vZeD-ZMCjWmjA_-6T=jnOEVMne4bv0g@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH v1 1/3] string: Consolidate yesno() helpers
+ under string.h hood
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,97 +49,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, Sean Young <sean@mess.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Francis Laniel <laniel_francis@privacyrequired.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ amd-gfx@lists.freedesktop.org, Jakub Kicinski <kuba@kernel.org>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Rahul Lakkireddy <rahul.lakkireddy@chelsio.com>,
+ Mikita Lipski <mikita.lipski@amd.com>, Eryk Brol <eryk.brol@amd.com>,
+ netdev <netdev@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Sergey Senozhatsky <sergey.senozhatsky@gmail.com>,
+ Raju Rangoju <rajur@chelsio.com>, Alex Deucher <alexander.deucher@amd.com>,
+ "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Hans,
+On Mon 2021-02-15 16:39:26, Andy Shevchenko wrote:
+> +Cc: Sakari and printk people
+> =
 
-On 17/02/2021 13:24, Hans de Goede wrote:
-> <resend with the linux-media list added to the Cc>
-> 
-> Hi Hans,
-> 
-> Fedora has a (opt-in) system to automatically collect backtraces from software
-> crashing on users systems.
-> 
-> This includes collecting kernel backtraces (including once triggered by
-> WARN macros) while looking a the top 10 of the most reported backtrace during the
-> last 2 weeks report from ABRT: https://retrace.fedoraproject.org/faf/problems/
-> 
-> I noticed the following backtrace:
-> https://retrace.fedoraproject.org/faf/problems/8150/
-> which has been reported 170000 times by Fedora users who have opted-in during the
-> last 14 days.
-> 
-> The issue here is that cec_register_adapter ends up calling request_module()
-> from an async context, triggering this warn in kernel/kmod.c __request_module():
-> 
->         /*
->          * We don't allow synchronous module loading from async.  Module
->          * init may invoke async_synchronize_full() which will end up
->          * waiting for this task which already is waiting for the module
->          * loading to complete, leading to a deadlock.
->          */
->         WARN_ON_ONCE(wait && current_is_async());
-> 
-> The call-path leading to this goes like this:
-> 
->  ? kvasprintf+0x6d/0xa0
->  ? kobject_set_name_vargs+0x6f/0x90
->  rc_map_get+0x30/0x60
+> On Mon, Feb 15, 2021 at 4:28 PM Christian K=F6nig
+> <christian.koenig@amd.com> wrote:
+> > Am 15.02.21 um 15:21 schrieb Andy Shevchenko:
+> > > We have already few similar implementation and a lot of code that can=
+ benefit
+> > > of the yesno() helper.  Consolidate yesno() helpers under string.h ho=
+od.
+> > >
+> > > Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> >
+> > Looks like a good idea to me, feel free to add an Acked-by: Christian
+> > K=F6nig <christian.koenig@amd.com> to the series.
+> =
 
-It's not CEC, it is rc_map_get that calls request_module() for rc-cec.ko.
+> Thanks.
+> =
 
-I've added Sean Young to the CC list.
+> > But looking at the use cases for this, wouldn't it make more sense to
+> > teach kprintf some new format modifier for this?
+> =
 
-Sean, is it possible to treat rc-cec as a built-in if MEDIA_CEC_RC is set?
+> As a next step? IIRC Sakari has at some point the series converted
+> yesno and Co. to something which I don't remember the details of.
+> =
 
-I think this issue is very specific to CEC. I would not expect to see this
-with any other rc keymap.
+> Guys, what do you think?
 
-Regards,
+Honestly, I think that yesno() is much easier to understand than %py.
+And %py[DOY] looks really scary. It has been suggested at
+https://lore.kernel.org/lkml/YCqaNnr7ynRydczE@smile.fi.intel.com/#t
 
-	Hans
+Yes, enabledisable() is hard to parse but it is still self-explaining
+and can be found easily by cscope. On the contrary, %pyD will likely
+print some python code and it is not clear if it would be compatible
+with v3. I am just kidding but you get the picture.
 
->  rc_register_device+0x108/0x510
->  cec_register_adapter+0x5c/0x280 [cec]
->  drm_dp_cec_set_edid+0x11e/0x178 [drm_kms_helper]
->  intel_dp_set_edid+0x8d/0xc0 [i915]
->  intel_dp_detect+0x188/0x5c0 [i915]
->  drm_helper_probe_single_connector_modes+0xc2/0x6d0 [drm_kms_helper]
->  ? krealloc+0x7b/0xb0
->  drm_client_modeset_probe+0x25b/0x1320 [drm]
->  ? kfree+0x1ea/0x200
->  ? sched_clock+0x5/0x10
->  ? sched_clock_cpu+0xc/0xa0
->  __drm_fb_helper_initial_config_and_unlock+0x37/0x470 [drm_kms_helper]
->  ? _cond_resched+0x16/0x40
->  intel_fbdev_initial_config+0x14/0x30 [i915]
->  async_run_entry_fn+0x39/0x160
-> 
-> So 2 questions:
-> 
-> 1. Can we get this fixed please ?
->    Related to this, what happens if we make this an async modprobe
->    (when running from async context) is that a problem, or is it fine
->    if the rc_map module gets loaded later ?
-> 
-> 2. If the answer to 1. is "tricky", "maybe" or some such then can we
-> look into a workaround here ? E.g. do we know in advance which module
-> is going to be requested (1), or does that depend on the EDID data ?
-> 
-> Regards,
-> 
-> Hans
-> 
-> 
-> 1) And can we thus do tricks with a softdep on it ?
-> 
-
+Best Regards,
+Petr
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
