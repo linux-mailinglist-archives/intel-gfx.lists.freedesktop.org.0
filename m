@@ -2,63 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6338E31DB04
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 14:57:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB7BE31DB73
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 15:27:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 625CA898E8;
-	Wed, 17 Feb 2021 13:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFED66E0A1;
+	Wed, 17 Feb 2021 14:27:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A4208937C
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 13:57:00 +0000 (UTC)
-IronPort-SDR: Y1+xDxuu+YY4QsX/pRguTq/B8cMSSmH0Q+zt3Lqb3XALBbCngkc9TtLkGC0YB7k7i0RBqRRiPY
- GnhS/XqhgHjA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="162330216"
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="162330216"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 05:57:00 -0800
-IronPort-SDR: DKgKrtDkr/nFkwXJ0kBzgY78+HaoCo/9ZgAQLEiJgUZoe27E6uiCoel8WPvJUmr3YaVxOCsW6P
- F8c8HrawnOfA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="426392650"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by FMSMGA003.fm.intel.com with ESMTP; 17 Feb 2021 05:56:59 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 17 Feb 2021 05:56:59 -0800
-Received: from hasmsx602.ger.corp.intel.com (10.184.107.142) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 17 Feb 2021 05:56:58 -0800
-Received: from hasmsx602.ger.corp.intel.com ([10.184.107.142]) by
- HASMSX602.ger.corp.intel.com ([10.184.107.142]) with mapi id 15.01.2106.002;
- Wed, 17 Feb 2021 15:56:56 +0200
-From: "Winkler, Tomas" <tomas.winkler@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, "Vignesh
- Raghavendra" <vigneshr@ti.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Thread-Topic: [RFC PATCH 0/9] drm/i915/spi: discrete graphics internal spi
-Thread-Index: AQHXBJBTlGMG4b5GwU+w3NO1EU5QQapcDgwAgAA/+BA=
-Date: Wed, 17 Feb 2021 13:56:56 +0000
-Message-ID: <c430158c27c5460ba13a989c6f9646d7@intel.com>
-References: <20210216181925.650082-1-tomas.winkler@intel.com>
- <878s7narev.fsf@intel.com>
-In-Reply-To: <878s7narev.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.184.70.1]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 81F9389C17;
+ Wed, 17 Feb 2021 14:27:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7A4EBA8169;
+ Wed, 17 Feb 2021 14:27:29 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH 0/9] drm/i915/spi: discrete graphics
- internal spi
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 17 Feb 2021 14:27:29 -0000
+Message-ID: <161357204946.25001.1196247267062920286@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210215155616.26330-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20210215155616.26330-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Wrap_all_access_to_i915?=
+ =?utf-8?b?X3ZtYS5ub2RlLnN0YXJ0fHNpemUgKHJldjMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,69 +39,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
- Alexander" <alexander.usyskin@intel.com>, "Lubart,
- Vitaly" <vitaly.lubart@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1966647230=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> 
-> On Tue, 16 Feb 2021, Tomas Winkler <tomas.winkler@intel.com> wrote:
-> > Intel discrete graphic devices have internal spi storage, that holds
-> > firmware and oprom images. The spi device is exposed to the user space
-> > via mtd framework to be accessed during manufacturing.
-> > The device is hardware locked after manufacturing and only read access
-> > is provided.
-> >
-> > The i915 plays role of a multi function device (mfd) and spi device is
-> > exposed as its child device. i915_spi platform driver binds to this
-> > device.
-> >
-> > Because the graphic card may undergo reset at any time and basically
-> > hot unplug all its child devices, this series also provides a fix to
-> > the mtd framework to make the reset graceful.
-> >
-> > Tomas Winkler (9):
-> >   drm/i915/spi: add spi device for discrete graphics
-> >   drm/i915/spi: intel_spi_region map
-> >   drm/i915/spi: add driver for on-die spi device
-> >   drm/i915/spi: implement region enumeration
-> >   drm/i915/spi: implement spi access functions
-> >   drm/i915/spi: spi register with mtd
-> >   drm/i915/spi: mtd: implement access handlers
-> >   drm/i915/spi: serialize spi access
-> >   mtd: use refcount to prevent corruption
-> >
-> >  drivers/gpu/drm/i915/Kconfig             |   3 +
-> >  drivers/gpu/drm/i915/Makefile            |   6 +
-> >  drivers/gpu/drm/i915/i915_drv.c          |   9 +
-> >  drivers/gpu/drm/i915/i915_drv.h          |   4 +
-> >  drivers/gpu/drm/i915/i915_reg.h          |   1 +
-> >  drivers/gpu/drm/i915/spi/intel_spi.c     |  62 +++
-> >  drivers/gpu/drm/i915/spi/intel_spi.h     |  24 +
-> 
-> I'm open to discussion, but after glancing through the series I've got a gut
-> feeling spi/ subdir should be purely about the separate module, and the
-> above two files should be in i915/ directory instead.
+--===============1966647230==
+Content-Type: multipart/alternative;
+ boundary="===============1698480312081038936=="
 
-Maybe, I don't have strong feelings about that, it is just a decision from which point you want to look at that.
-> 
-> As it is, I think it's a bit confusing that spi/ is both about the spi kernel module
-> and a singly .c file that's really part of i915.ko. Perhaps that messes up the
-> conventional descending to subdirs in the kernel build too?
+--===============1698480312081038936==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The intention was to make this capsulated from the file system point of view. 
-In general the spi driver could be somewhere in mtd directory, but it doesn't really fit exactly there either.
-I don't have a strong opinion about that, if you do I yield. 
+== Series Details ==
+
+Series: series starting with [1/3] drm/i915: Wrap all access to i915_vma.node.start|size (rev3)
+URL   : https://patchwork.freedesktop.org/series/87102/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9781 -> Patchwork_19693
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19693 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-7500u:       [PASS][1] -> [DMESG-WARN][2] ([i915#2605])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9781/fi-kbl-7500u/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/fi-kbl-7500u/igt@i915_module_load@reload.html
+
+  * igt@kms_addfb_basic@addfb25-bad-modifier:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9781/fi-tgl-y/igt@kms_addfb_basic@addfb25-bad-modifier.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/fi-tgl-y/igt@kms_addfb_basic@addfb25-bad-modifier.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9781/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  
+  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
 
-Thanks
-Tomas
+Participating hosts (43 -> 38)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9781 -> Patchwork_19693
+
+  CI-20190529: 20190529
+  CI_DRM_9781: fcfb6981006e381b8ee4a97152991a615161e003 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6005: b69a3c463f0aec46b19c14ac24351d292cb11c08 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19693: dde47dc31b1385bb12afd61f5b6a98bf49d53c4d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+dde47dc31b13 drm/i915: Refine VT-d scanout workaround
+a19a594007ea drm/i915: Introduce guard pages to i915_vma
+6e60f8692b68 drm/i915: Wrap all access to i915_vma.node.start|size
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/index.html
+
+--===============1698480312081038936==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915: Wrap all access to i915_vma.node.start|size (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87102/">https://patchwork.freedesktop.org/series/87102/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9781 -&gt; Patchwork_19693</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19693 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9781/fi-kbl-7500u/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/fi-kbl-7500u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-bad-modifier:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9781/fi-tgl-y/igt@kms_addfb_basic@addfb25-bad-modifier.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/fi-tgl-y/igt@kms_addfb_basic@addfb25-bad-modifier.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_getparams_basic@basic-subslice-total:<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9781/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19693/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 38)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9781 -&gt; Patchwork_19693</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9781: fcfb6981006e381b8ee4a97152991a615161e003 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6005: b69a3c463f0aec46b19c14ac24351d292cb11c08 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19693: dde47dc31b1385bb12afd61f5b6a98bf49d53c4d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>dde47dc31b13 drm/i915: Refine VT-d scanout workaround<br />
+a19a594007ea drm/i915: Introduce guard pages to i915_vma<br />
+6e60f8692b68 drm/i915: Wrap all access to i915_vma.node.start|size</p>
+
+</body>
+</html>
+
+--===============1698480312081038936==--
+
+--===============1966647230==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1966647230==--
