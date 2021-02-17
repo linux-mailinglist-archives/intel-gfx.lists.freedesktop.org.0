@@ -1,40 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D1D631DFB7
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 20:38:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC65D31DFD2
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 20:50:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49E606E201;
-	Wed, 17 Feb 2021 19:38:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 992376E7D7;
+	Wed, 17 Feb 2021 19:50:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4CD76E201
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 19:38:38 +0000 (UTC)
-IronPort-SDR: ATf3K2Fvc506W85VRsO6cT0MQAdOdPq4d/pZyom1OkpQECQXOCks62LvxSWBUewUuIax87EOWI
- F1QFKxSBV4ww==
-X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="170432134"
-X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="170432134"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92FFB6E4C1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 19:50:02 +0000 (UTC)
+IronPort-SDR: 8CDP3kMhGcP4BG8DPxG+iDl/5Ce2ZKFjdYjyLgDDGMmbkCkI9xSABretEP4qQy0zmW5DBF4o+v
+ noMmorLYGtOw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="244763514"
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="244763514"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 11:38:33 -0800
-IronPort-SDR: DpMqqMveCVgcESwrtGCr3GT0gvH2d29D3/ET/J2u++VCNzCr9ECnPZnPJBNyZCiReel7EoyVw4
- TA8ge1+rF82w==
-X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="400106098"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 11:50:01 -0800
+IronPort-SDR: GTfcs8vyhGpSg+fgykvbT/dksAlTNTnsA6SLWN1T1f9jpHWB9UAcrXstOz2Ov6WGRM8MiQtUv/
+ bxOkGrg6xglA==
+X-IronPort-AV: E=Sophos;i="5.81,185,1610438400"; d="scan'208";a="400110818"
+Received: from mvalka-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.140])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 11:38:32 -0800
-Date: Wed, 17 Feb 2021 21:38:28 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20210217193828.GB557342@ideak-desk.fi.intel.com>
-References: <20210217180245.202837-1-jose.souza@intel.com>
+ 17 Feb 2021 11:50:00 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <20210217172805.xjtrptege3qpbunn@ldmartin-desk1>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1613580193.git.jani.nikula@intel.com>
+ <bf2f1c9527e17310d69a818e09a7212df4ada347.1613580193.git.jani.nikula@intel.com>
+ <20210217172300.6uuie7js4a4cpqvl@ldmartin-desk1>
+ <20210217172805.xjtrptege3qpbunn@ldmartin-desk1>
+Date: Wed, 17 Feb 2021 21:49:57 +0200
+Message-ID: <87zh02a2ze.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210217180245.202837-1-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Compute aux ch power
- domain during DDI initialization
+Subject: Re: [Intel-gfx] [PATCH 04/12] drm/i915/bios: limit default outputs
+ to ports A through F
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,184 +51,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 17, 2021 at 10:02:45AM -0800, Jos=E9 Roberto de Souza wrote:
-> Future platform will require a power domain that do not mach with aux
-> ch id, so here already preparing code for that by dropping the
-> functions that converts the aux ch to power domains and initializaing
-> aux_power_domain during intel_ddi_init().
-> =
-
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      |  4 +-
->  drivers/gpu/drm/i915/display/intel_display.c  | 58 ++-----------------
->  drivers/gpu/drm/i915/display/intel_display.h  |  2 -
->  .../drm/i915/display/intel_display_types.h    |  2 +
->  drivers/gpu/drm/i915/display/intel_tc.c       |  2 +-
->  5 files changed, 10 insertions(+), 58 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index eeae78097a20..ec5c1f91aee9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4152,7 +4152,9 @@ void intel_ddi_init(struct drm_i915_private *dev_pr=
-iv, enum port port)
->  =
-
->  	drm_WARN_ON(&dev_priv->drm, port > PORT_I);
->  	dig_port->ddi_io_power_domain =3D POWER_DOMAIN_PORT_DDI_A_IO +
-> -					      port - PORT_A;
-> +					port - PORT_A;
-> +	dig_port->aux_power_domain =3D POWER_DOMAIN_AUX_A + dig_port->aux_ch -
-> +				     AUX_CH_A;
->  =
-
->  	if (init_dp) {
->  		if (!intel_ddi_init_dp_connector(dig_port))
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index acade004e8b1..3581aa50034e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4235,61 +4235,11 @@ intel_aux_power_domain(struct intel_digital_port =
-*dig_port)
->  	enum phy phy =3D intel_port_to_phy(dev_priv, dig_port->base.port);
->  =
-
->  	if (intel_phy_is_tc(dev_priv, phy) &&
-> -	    dig_port->tc_mode =3D=3D TC_PORT_TBT_ALT) {
-> -		switch (dig_port->aux_ch) {
-> -		case AUX_CH_C:
-> -			return POWER_DOMAIN_AUX_C_TBT;
-> -		case AUX_CH_D:
-> -			return POWER_DOMAIN_AUX_D_TBT;
-> -		case AUX_CH_E:
-> -			return POWER_DOMAIN_AUX_E_TBT;
-> -		case AUX_CH_F:
-> -			return POWER_DOMAIN_AUX_F_TBT;
-> -		case AUX_CH_G:
-> -			return POWER_DOMAIN_AUX_G_TBT;
-> -		case AUX_CH_H:
-> -			return POWER_DOMAIN_AUX_H_TBT;
-> -		case AUX_CH_I:
-> -			return POWER_DOMAIN_AUX_I_TBT;
-> -		default:
-> -			MISSING_CASE(dig_port->aux_ch);
-> -			return POWER_DOMAIN_AUX_C_TBT;
-> -		}
-> -	}
-> -
-> -	return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
-> -}
-> +	    dig_port->tc_mode =3D=3D TC_PORT_TBT_ALT)
-> +		return POWER_DOMAIN_AUX_C_TBT + dig_port->aux_power_domain -
-> +		       POWER_DOMAIN_AUX_A;
->  =
-
-> -/*
-> - * Converts aux_ch to power_domain without caring about TBT ports for th=
-at use
-> - * intel_aux_power_domain()
-> - */
-> -enum intel_display_power_domain
-> -intel_legacy_aux_to_power_domain(enum aux_ch aux_ch)
-> -{
-> -	switch (aux_ch) {
-> -	case AUX_CH_A:
-> -		return POWER_DOMAIN_AUX_A;
-> -	case AUX_CH_B:
-> -		return POWER_DOMAIN_AUX_B;
-> -	case AUX_CH_C:
-> -		return POWER_DOMAIN_AUX_C;
-> -	case AUX_CH_D:
-> -		return POWER_DOMAIN_AUX_D;
-> -	case AUX_CH_E:
-> -		return POWER_DOMAIN_AUX_E;
-> -	case AUX_CH_F:
-> -		return POWER_DOMAIN_AUX_F;
-> -	case AUX_CH_G:
-> -		return POWER_DOMAIN_AUX_G;
-> -	case AUX_CH_H:
-> -		return POWER_DOMAIN_AUX_H;
-> -	case AUX_CH_I:
-> -		return POWER_DOMAIN_AUX_I;
-> -	default:
-> -		MISSING_CASE(aux_ch);
-> -		return POWER_DOMAIN_AUX_A;
-> -	}
-> +	return dig_port->aux_power_domain;
->  }
->  =
-
->  static u64 get_crtc_power_domains(struct intel_crtc_state *crtc_state)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
-rm/i915/display/intel_display.h
-> index 73b9d9c95d55..525ad555528f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -614,8 +614,6 @@ void hsw_disable_ips(const struct intel_crtc_state *c=
-rtc_state);
->  enum intel_display_power_domain intel_port_to_power_domain(enum port por=
-t);
->  enum intel_display_power_domain
->  intel_aux_power_domain(struct intel_digital_port *dig_port);
-> -enum intel_display_power_domain
-> -intel_legacy_aux_to_power_domain(enum aux_ch aux_ch);
->  void intel_crtc_arm_fifo_underrun(struct intel_crtc *crtc,
->  				  struct intel_crtc_state *crtc_state);
->  void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 07b7f5eae587..d527cb2ad070 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1589,6 +1589,8 @@ struct intel_digital_port {
->  	/* Used for DP and ICL+ TypeC/DP and TypeC/HDMI ports. */
->  	enum aux_ch aux_ch;
->  	enum intel_display_power_domain ddi_io_power_domain;
-> +	/* Regular/legacy aux channel power domain */
-> +	enum intel_display_power_domain aux_power_domain;
-
-What's the rational for storing it here? If there's a good one then I'd
-rather call this legacy_aux_power_domain and store the tbt aux domains
-here as well. It would also need to get initialized for dp encoders.
-
->  	intel_wakeref_t ddi_io_wakeref;
->  	intel_wakeref_t aux_wakeref;
->  	struct mutex tc_lock;	/* protects the TypeC port mode */
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
-15/display/intel_tc.c
-> index 2cefc13535a0..83080e15ad7a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -29,7 +29,7 @@ tc_cold_get_power_domain(struct intel_digital_port *dig=
-_port)
->  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
->  =
-
->  	if (INTEL_GEN(i915) =3D=3D 11)
-> -		return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
-> +		return dig_port->aux_power_domain;
->  	else
->  		return POWER_DOMAIN_TC_COLD_OFF;
->  }
-> -- =
-
-> 2.30.1
-> =
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAxNyBGZWIgMjAyMSwgTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
+bC5jb20+IHdyb3RlOgo+IE9uIFdlZCwgRmViIDE3LCAyMDIxIGF0IDA5OjIzOjAwQU0gLTA4MDAs
+IEx1Y2FzIERlIE1hcmNoaSB3cm90ZToKPj5PbiBXZWQsIEZlYiAxNywgMjAyMSBhdCAwNzowMzoz
+NFBNICswMjAwLCBKYW5pIE5pa3VsYSB3cm90ZToKPj4+V2l0aCB0aGUgZGVmYXVsdHMgbGltaXRl
+ZCB0byBub24tVHlwZUMgcG9ydHMgaW4gY29tbWl0IDgyOGNjYjMxY2Y0MQo+Pj4oImRybS9pOTE1
+L2ljbDogQWRkIFR5cGVDIHBvcnRzIG9ubHkgaWYgVkJUIGlzIHByZXNlbnQiKSwgdGhpcyBzaG91
+bGQgYmUKPj4+YSBuby1vcCwgYnV0IGNsYXJpZmllcyB0aGUgY29kZSBhbmQgcHJlcGFyZXMgZm9y
+IHN1YnNlcXVlbnQgY2hhbmdlcy4KPj4+Cj4+PkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRl
+bWFyY2hpQGludGVsLmNvbT4KPj4+Q2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4+PlNpZ25lZC1vZmYtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3Vs
+YUBpbnRlbC5jb20+Cj4+Pi0tLQo+Pj5kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2Jpb3MuYyB8IDMgKystCj4+PjEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVs
+ZXRpb24oLSkKPj4+Cj4+PmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Jpb3MuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5j
+Cj4+PmluZGV4IGU5Y2IxNWFhMmY1YS4uYjlkOTkzMjRkNjZkIDEwMDY0NAo+Pj4tLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYwo+Pj4rKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYwo+Pj5AQCAtMjA1NywxMSArMjA1NywxMiBA
+QCBzdGF0aWMgdm9pZAo+Pj5pbml0X3ZidF9taXNzaW5nX2RlZmF1bHRzKHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICppOTE1KQo+Pj57Cj4+PgllbnVtIHBvcnQgcG9ydDsKPj4+KwlpbnQgcG9ydHMg
+PSBQT1JUX0EgfCBQT1JUX0IgfCBQT1JUX0MgfCBQT1JUX0QgfCBQT1JUX0UgfCBQT1JUX0Y7Cj4+
+Cj4+Cj4+SSdkIG5vdCBzcHJlYWQgdGhlIGtub3dsZWRnZSBvZiB3aGF0IHBvcnQgdXNlcyB0YyBw
+aHkgbGlrZSB0aGlzLgo+Pkl0J3MgcGFpbmZ1bCB0byBtYWludGFpbi4KClVtbSwgdGhpcyB3YXNu
+J3QgbWVhbnQgdG8gaGF2ZSBhbnl0aGluZyB0byBkbyB3aXRoIHRjLCByZWFsbHkuIEdyYW50ZWQs
+CnRoZSBjb21taXQgbWVzc2FnZSBpcyBtaXNsZWFkaW5nLgoKPgo+IGFsc28sIG5vdCBzdXJlIGhv
+dyB0aGlzIGNsYXJpZmllcyB0aGluZ3MgaWYgUE9SVF9UQzEgYWxpYXNlcyBQT1JUX0QsCj4gc28g
+SSdkIGp1c3QgZHJvcCB0aGlzIHBhdGNoCgpUaGUgcG9pbnQgaXMgdGhhdCBJJ2QgbGlrZSB0byBy
+ZWR1Y2UgdGhlIG51bWJlciBvZiBwb3J0cyBzZXQgdXAgYnkKZGVmYXVsdCwgcGVyaGFwcyBldmVu
+IGZ1cnRoZXIgdGhhbiB0aGlzLiBJdCdzIGEgYml0IHNpbGx5IHRvIGdlbmVyYXRlIDkKZHVtbXkg
+Y2hpbGQgZGV2aWNlcyBvbiBjZXJ0YWluIHBsYXRmb3JtcyB3aGVuIHRoZXJlJ3Mgbm8gVkJULgoK
+CkJSLApKYW5pLgoKPgo+IEx1Y2FzIERlIE1hcmNoaQo+Cj4+THVjYXMgRGUgTWFyY2hpCj4+Cj4+
+Pgo+Pj4JaWYgKCFIQVNfRERJKGk5MTUpICYmICFJU19DSEVSUllWSUVXKGk5MTUpKQo+Pj4JCXJl
+dHVybjsKPj4+Cj4+Pi0JZm9yX2VhY2hfcG9ydChwb3J0KSB7Cj4+PisJZm9yX2VhY2hfcG9ydF9t
+YXNrZWQocG9ydCwgcG9ydHMpIHsKPj4+CQlzdHJ1Y3QgZGRpX3ZidF9wb3J0X2luZm8gKmluZm8g
+PQo+Pj4JCQkmaTkxNS0+dmJ0LmRkaV9wb3J0X2luZm9bcG9ydF07Cj4+PgkJZW51bSBwaHkgcGh5
+ID0gaW50ZWxfcG9ydF90b19waHkoaTkxNSwgcG9ydCk7Cj4+Pi0tIAo+Pj4yLjIwLjEKPj4+Cj4g
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4CgotLSAK
+SmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
