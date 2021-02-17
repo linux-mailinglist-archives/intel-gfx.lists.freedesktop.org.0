@@ -2,30 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6207931DA56
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 14:25:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0115331DAAC
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 14:35:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A16316E54C;
-	Wed, 17 Feb 2021 13:25:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9F56E530;
+	Wed, 17 Feb 2021 13:35:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 25A0C6E54C;
- Wed, 17 Feb 2021 13:25:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 22869A0BCB;
- Wed, 17 Feb 2021 13:25:47 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26A5B6E530
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 13:35:26 +0000 (UTC)
+IronPort-SDR: TgyMLLE3o2GpyZ7WYPzABOirXPOr+HinuvrsmeFZss06LZES+VJRUA7M88dNYcoRxSNFpMaRHW
+ 2zsI88JPTDSw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="162326639"
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="162326639"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 05:35:25 -0800
+IronPort-SDR: E7KWUjU6pyOjNYF6HRxr6B+dxVyHroUbGhF3J5l8plQzlMsb3R99I7ELGnu3BC5EwFHt7QhBgj
+ 7Tej1d86EiqA==
+X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="385146056"
+Received: from mvalka-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.140])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2021 05:35:22 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Winkler\, Tomas" <tomas.winkler@intel.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi\,
+ Rodrigo" <rodrigo.vivi@intel.com>
+In-Reply-To: <062fec6f494b48fab840c64742fe767d@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210216181925.650082-1-tomas.winkler@intel.com>
+ <87k0r7asmg.fsf@intel.com> <062fec6f494b48fab840c64742fe767d@intel.com>
+Date: Wed, 17 Feb 2021 15:35:19 +0200
+Message-ID: <875z2qbyw8.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nathan Chancellor" <nathan@kernel.org>
-Date: Wed, 17 Feb 2021 13:25:47 -0000
-Message-ID: <161356834713.25000.8533637816586841014@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210216212953.24458-1-nathan@kernel.org>
-In-Reply-To: <20210216212953.24458-1-nathan@kernel.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915=3A_Enable_-Wuninitialized?=
+Subject: Re: [Intel-gfx] [RFC PATCH 0/9] drm/i915/spi: discrete graphics
+ internal spi
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,64 +53,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
+ Alexander" <alexander.usyskin@intel.com>, "Lubart,
+ Vitaly" <vitaly.lubart@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 17 Feb 2021, "Winkler, Tomas" <tomas.winkler@intel.com> wrote:
+>> 
+>> On Tue, 16 Feb 2021, Tomas Winkler <tomas.winkler@intel.com> wrote:
+>> > Intel discrete graphic devices have internal spi storage, that holds
+>> > firmware and oprom images. The spi device is exposed to the user space
+>> > via mtd framework to be accessed during manufacturing.
+>> > The device is hardware locked after manufacturing and only read access
+>> > is provided.
+>> >
+>> > The i915 plays role of a multi function device (mfd) and spi device is
+>> > exposed as its child device. i915_spi platform driver binds to this
+>> > device.
+>> 
+>> What's the plan wrt i915/spi maintainership?
+>
+> My suggestions is that this will be maintained by myself, as the major
+> consumer is the manufacturing line.  It will be a separate section in
+> MAINTAINERS file.
 
-Series: drm/i915: Enable -Wuninitialized
-URL   : https://patchwork.freedesktop.org/series/87153/
-State : warning
+Works for me. Do you want to apply the patches directly to drm-intel, or
+your own branch and send pull requests to i915 maintainers? Can also
+start with the former, and move to the latter as needed.
 
-== Summary ==
+Joonas, Rodrigo, thoughts?
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gt/intel_reset.c:1323:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1437:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1491:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+BR,
+Jani.
 
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
