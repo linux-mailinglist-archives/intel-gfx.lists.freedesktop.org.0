@@ -1,40 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 398BD31DD28
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 17:20:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91CDF31DD57
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Feb 2021 17:29:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD6296E55E;
-	Wed, 17 Feb 2021 16:20:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1C566E578;
+	Wed, 17 Feb 2021 16:29:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B0B36E55E
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 16:20:54 +0000 (UTC)
-IronPort-SDR: 4+ddJ3ePHyIyJH1gt2KEIUBTxGLfYyh6TK5F7ij5MxkyPgzLTvuM0+KOeuM4uZRTHS4P55OjEZ
- keoUX1sSowoQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9897"; a="183365927"
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="183365927"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2021 08:20:53 -0800
-IronPort-SDR: lzTZxl1orOPqICA5HBQyF+5igsxRSVbXEvra9iRaFmvRgDCZfbbw/6cXjMe4zRM401YaeRethZ
- wq/4pClkOKEw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,184,1610438400"; d="scan'208";a="439417142"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 17 Feb 2021 08:20:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 17 Feb 2021 18:20:50 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Feb 2021 18:20:50 +0200
-Message-Id: <20210217162050.13803-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from lb1-smtp-cloud8.xs4all.net (lb1-smtp-cloud8.xs4all.net
+ [194.109.24.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A09D46E578
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Feb 2021 16:29:51 +0000 (UTC)
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+ by smtp-cloud8.xs4all.net with ESMTPA
+ id CPhylkT4oYbfZCPi1lppNn; Wed, 17 Feb 2021 17:29:49 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+ t=1613579389; bh=iyPpSkzK0jTSeGGeUdL5nfY97T6qJMt8GIS+Inx+S28=;
+ h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+ Subject;
+ b=O7gWsspxLhUaoqLQ7vsk4E2n3sqOgr4y+9KN9qv1ad7G//kddij1whl1/rSKQoKfJ
+ WeBC2HTPE1LGEJwITvQf5/caFj7reFsSNITUPwh4lcQg0zSkImnY6D9OGlbZPm3wUY
+ RVO59Gf5uo9P8u5lJLwVqZJbArGD3YqU/BdTCneEaQmsmyBOicFreAbdPfwNJ/Ztoq
+ Jrhe5qPKEiIIPii8V2LfpEXA/GDhQHeIdJ7si7IIaCByKvPR3DJetANir8+uelfXhm
+ kZQ8yL1mXb40nBnkcSpF6/tTLQD+2PxGuwAQ02nwPHw1ll7GrqpZ2sY1miqP4i/I2d
+ yJg9E6gY8RccA==
+To: Sean Young <sean@mess.org>, Hans de Goede <hdegoede@redhat.com>
+References: <91b0f6c8-79ca-d04f-1ae0-66bf954dd421@redhat.com>
+ <8d24dad6-cb2a-da91-bd38-887a7aa3282f@xs4all.nl>
+ <20210217143223.GA28632@gofer.mess.org>
+ <1c081320-d040-12b7-fbd6-e6b8c03c2ae8@redhat.com>
+ <20210217151159.GA29680@gofer.mess.org>
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <876e34f6-c39b-8e97-7ebb-79ae2c356e53@xs4all.nl>
+Date: Wed, 17 Feb 2021 17:29:46 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.7.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Wait for scanout to stop when
- sanitizing planes
+In-Reply-To: <20210217151159.GA29680@gofer.mess.org>
+Content-Language: en-US
+X-CMAE-Envelope: MS4xfKp90XAofxO4yfMSVv5oenu7lcEjfFwyHtlOYS5bV/EpMyzMYgRsCIxFwbwtKJIbrFP8vcVGEszzW8cbgBoeZfR940e27msjWMfqdAevLPdi3ynGp8VT
+ snX8j9NsF5sd6TgejU7KPhqUWy/43uFsZFWT9flfocZQNeppzHxI3Gd2T6CA5uNzr/U/sLJYHz7GnDo5d7ZbvQY3NnMEZYy2pQeTBRsLAJbv9M+tJEzoRqHC
+ dMWuHttx6PetOtA8SvksUFdSygSXzCjrXpk45xG2/E9XiwXF3Bz1GPGrIvxrLf03
+Subject: Re: [Intel-gfx] Issue with cec_register_adapter calling
+ request_module() from an async context when called from intel_dp_detect
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,29 +57,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldo
-ZW4gd2Ugc2FuaXRpemUgcGxhbmVzIGxldCdzIHdhaXQgZm9yIHRoZSBzY2Fub3V0IHRvIHN0b3AK
-YmVmb3JlIHdlIGxldCB0aGUgc3Vic2VxdWVudCBjb2RlIHRlYXIgZG93biB0aGUgZ2d0dCBtYXBw
-aW5ncwphbmQgd2hhdG5vdC4gQ3VyZXMgYW4gdW5kZXJydW4gb24gbXkgaXZiIHdoZW4gSSBib290
-IHdpdGgKVlQtZCBlbmFibGVkIGFuZCB0aGUgQklPUyBmYiBnZXRzIHRocm93biBvdXQgZHVlIHRv
-IHN0b2xlbgpiZWluZyBjb25zaWRlcmVkIHVudXNhYmxlIHdpdGggVlQtZCBhY3RpdmUuCgpTaWdu
-ZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMSAr
-CiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IGFjYWRlMDA0ZThiMS4uM2UyYzE5MmVjNzA4
-IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-YworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAt
-MjQwMyw2ICsyNDAzLDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfcGxhbmVfZGlzYWJsZV9ub2F0b21p
-YyhzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywKIAkJaW50ZWxfc2V0X2NwdV9maWZvX3VuZGVycnVu
-X3JlcG9ydGluZyhkZXZfcHJpdiwgY3J0Yy0+cGlwZSwgZmFsc2UpOwogCiAJaW50ZWxfZGlzYWJs
-ZV9wbGFuZShwbGFuZSwgY3J0Y19zdGF0ZSk7CisJaW50ZWxfd2FpdF9mb3JfdmJsYW5rKGRldl9w
-cml2LCBjcnRjLT5waXBlKTsKIH0KIAogc3RhdGljIHZvaWQKLS0gCjIuMjYuMgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 17/02/2021 16:11, Sean Young wrote:
+> Hi,
+> 
+> On Wed, Feb 17, 2021 at 04:04:11PM +0100, Hans de Goede wrote:
+>> On 2/17/21 3:32 PM, Sean Young wrote:
+>>> On Wed, Feb 17, 2021 at 01:41:46PM +0100, Hans Verkuil wrote:
+>>>> Hi Hans,
+>>>>
+>>>> On 17/02/2021 13:24, Hans de Goede wrote:
+>>>>> <resend with the linux-media list added to the Cc>
+>>>>>
+>>>>> Hi Hans,
+>>>>>
+>>>>> Fedora has a (opt-in) system to automatically collect backtraces from software
+>>>>> crashing on users systems.
+>>>>>
+>>>>> This includes collecting kernel backtraces (including once triggered by
+>>>>> WARN macros) while looking a the top 10 of the most reported backtrace during the
+>>>>> last 2 weeks report from ABRT: https://retrace.fedoraproject.org/faf/problems/
+>>>>>
+>>>>> I noticed the following backtrace:
+>>>>> https://retrace.fedoraproject.org/faf/problems/8150/
+>>>>> which has been reported 170000 times by Fedora users who have opted-in during the
+>>>>> last 14 days.
+>>>>>
+>>>>> The issue here is that cec_register_adapter ends up calling request_module()
+>>>>> from an async context, triggering this warn in kernel/kmod.c __request_module():
+>>>>>
+>>>>>         /*
+>>>>>          * We don't allow synchronous module loading from async.  Module
+>>>>>          * init may invoke async_synchronize_full() which will end up
+>>>>>          * waiting for this task which already is waiting for the module
+>>>>>          * loading to complete, leading to a deadlock.
+>>>>>          */
+>>>>>         WARN_ON_ONCE(wait && current_is_async());
+>>>>>
+>>>>> The call-path leading to this goes like this:
+>>>>>
+>>>>>  ? kvasprintf+0x6d/0xa0
+>>>>>  ? kobject_set_name_vargs+0x6f/0x90
+>>>>>  rc_map_get+0x30/0x60
+>>>>
+>>>> It's not CEC, it is rc_map_get that calls request_module() for rc-cec.ko.
+>>>>
+>>>> I've added Sean Young to the CC list.
+>>>>
+>>>> Sean, is it possible to treat rc-cec as a built-in if MEDIA_CEC_RC is set?
+>>>>
+>>>> I think this issue is very specific to CEC. I would not expect to see this
+>>>> with any other rc keymap.
+>>>
+>>> So CEC creates an RC device with a keymap (cec keymap, of course) and then
+>>> the keymap needs to be loaded. We certainly don't want all keymaps as
+>>> builtins, that would be a waste.
+>>>
+>>> The cec keymap is scanned once to build a map from cec codes to linux
+>>> keycodes; making it builtin is not ideal, and makes the build system a
+>>> bit messy.
+>>>
+>>> I don't think we can load the keymap later, user space may start remapping
+>>> the keymap from udev.
+>>>
+>>> Possibly we could create the cec or rc device later but this could be a bit
+>>> messy.
+>>>
+>>> Could CEC specify:
+>>>
+>>> #if IS_ENABLED(CONFIG_MEDIA_CEC_RC)
+>>> MODULE_SOFTDEP("rc-cec")
+>>> #endif
+>>
+>> That would need to be:
+>>
+>> MODULE_SOFTDEP("pre: rc-cec")
+>>
+>> I see that the drm_kms_helper and i915 drivers both depend on the cec module already,
+>> so yes if that module will request for rc-cec to be loaded before it is loaded
+>> (and thus before i915 is loaded) then that should work around this.
+>>
+>> Assuming the user is using a module-loader which honors the softdep...
+>>
+>> Also this assumes that rc_map_get is smart enough to not call request_module()
+>> if the module is already loaded, is that the case ?
+> 
+> Yes, see rc_map_get().
+
+I tried this. It works if CONFIG_RC_CORE is set to m, but setting it to
+y resulted in the same problem. It looks like MODULE_SOFTDEP only works if rc_main
+is a module as well.
+
+It was a good idea, though :-)
+
+Regards,
+
+	Hans
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
