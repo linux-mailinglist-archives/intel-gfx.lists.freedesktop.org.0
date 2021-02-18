@@ -1,83 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F42431EB98
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Feb 2021 16:33:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A215731EBF1
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Feb 2021 17:03:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B26C56E843;
-	Thu, 18 Feb 2021 15:33:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47A2A6EA2E;
+	Thu, 18 Feb 2021 16:03:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 530716E843
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Feb 2021 15:33:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1613662424;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=cXwBu44Gt/59PVNAKPRiMaGm733nNFeT0v/3m+FoRdg=;
- b=MuyjFsgyqY0IiKS3ILGV0Vq6azPbfPIn2Q2hHV9xgqYg5NxtT9Xn16LczwVjLlovRqStW7
- vCkBkHZqDyJcBbVoiDMudafs9aBRbuNMXgSrTif18lI8yWulpZFYVgVzJO/jPVzSnffvA+
- Rp+I1/ypGsJ1+Yln/Zmcvg/aeMWtqRY=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-267-Ol5v7CBrP2-N09k5pDzSIA-1; Thu, 18 Feb 2021 10:33:40 -0500
-X-MC-Unique: Ol5v7CBrP2-N09k5pDzSIA-1
-Received: by mail-ej1-f70.google.com with SMTP id hx26so857673ejc.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Feb 2021 07:33:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=cXwBu44Gt/59PVNAKPRiMaGm733nNFeT0v/3m+FoRdg=;
- b=arxINRMn50klgp617nh8k3+HOGGi2zaBAVDiuBMILqf4clwsTkGXaUJkznsT4Z9Lv5
- fQ45BBA+0DwIdAstCc1bzyI6eE+QZ0Atdfg2Dubp2nU0G5JLMh13YafD9Nh8B0sSACY3
- uXDRb4PJwerriWSWVLHkZLJeCBbjgQrjzT9QArXrCVBMZlP0OCUaUm3hv2aDwx0Zhsil
- sUjYULSWMhNoc+PHvnCZm4+XAse0X+0CXOvmyA4fG/EWGDZa7OYFPlG1R4GHRxiB24RW
- Z6RohoXCpvokwmxvzIzmmEpEfceFPKQiRFykOdftJEff+m1mcNO58+lyn5HbHhHm80lu
- 8PEg==
-X-Gm-Message-State: AOAM532IJf/jvLtoykb8YyQpVXdFdg7nVDyd3seDh7jcIUktv9nuCqtF
- chH2GnCEfnjICyIBRjI3ptSOZdILGQVvHA33tsD8jWzsM0Ff5EEBNBK970m9fBzKZsAR6KB+ow/
- 5y3Vvhmo9Ip9PB9bl4WfeFQ5yv5vH
-X-Received: by 2002:a17:906:9455:: with SMTP id
- z21mr2783503ejx.174.1613662419124; 
- Thu, 18 Feb 2021 07:33:39 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJza1iW6RF5uJer+oZDReT/x4THRY7QezKMknIvzSC+EFxhJ1b4ijyCH4aH9pK5y4BF4X1efHQ==
-X-Received: by 2002:a17:906:9455:: with SMTP id
- z21mr2783490ejx.174.1613662418922; 
- Thu, 18 Feb 2021 07:33:38 -0800 (PST)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id e22sm3207946edj.54.2021.02.18.07.33.38
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 18 Feb 2021 07:33:38 -0800 (PST)
-To: Hans Verkuil <hverkuil@xs4all.nl>, Sean Young <sean@mess.org>
-References: <91b0f6c8-79ca-d04f-1ae0-66bf954dd421@redhat.com>
- <8d24dad6-cb2a-da91-bd38-887a7aa3282f@xs4all.nl>
- <20210217143223.GA28632@gofer.mess.org>
- <1c081320-d040-12b7-fbd6-e6b8c03c2ae8@redhat.com>
- <20210217151159.GA29680@gofer.mess.org>
- <876e34f6-c39b-8e97-7ebb-79ae2c356e53@xs4all.nl>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <3e3c983f-b3bc-fe94-9247-69c8d97754df@redhat.com>
-Date: Thu, 18 Feb 2021 16:33:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C31A6EA32;
+ Thu, 18 Feb 2021 16:03:11 +0000 (UTC)
+IronPort-SDR: k47qjrhTVfS//N5oCuyNE+NBPVgFA4mXdM+mZmuCXTl7CEhg8wzZilgjshaCx7XFSYTvepM/+S
+ O6Y6YoctWJEQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="183667229"
+X-IronPort-AV: E=Sophos;i="5.81,187,1610438400"; d="scan'208";a="183667229"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2021 08:03:09 -0800
+IronPort-SDR: INchL6Jz7WFlP13lm0OqRD3Wuta7Se/Rvl690BHn/wX0LWcdCNswhzgZY3baTBv9tFHEh5f3QS
+ xmOCQLrcj7Cg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,187,1610438400"; d="scan'208";a="400563729"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 18 Feb 2021 08:03:06 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 18 Feb 2021 18:03:05 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Thu, 18 Feb 2021 18:03:05 +0200
+Message-Id: <20210218160305.16711-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
+References: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <876e34f6-c39b-8e97-7ebb-79ae2c356e53@xs4all.nl>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] Issue with cec_register_adapter calling
- request_module() from an async context when called from intel_dp_detect
+Subject: [Intel-gfx] [PATCH v2] drm/vblank: Do not store a new vblank
+ timestamp in drm_vblank_restore()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,127 +49,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Linux Media Mailing List <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
-
-On 2/17/21 5:29 PM, Hans Verkuil wrote:
-> On 17/02/2021 16:11, Sean Young wrote:
->> Hi,
->>
->> On Wed, Feb 17, 2021 at 04:04:11PM +0100, Hans de Goede wrote:
->>> On 2/17/21 3:32 PM, Sean Young wrote:
->>>> On Wed, Feb 17, 2021 at 01:41:46PM +0100, Hans Verkuil wrote:
->>>>> Hi Hans,
->>>>>
->>>>> On 17/02/2021 13:24, Hans de Goede wrote:
->>>>>> <resend with the linux-media list added to the Cc>
->>>>>>
->>>>>> Hi Hans,
->>>>>>
->>>>>> Fedora has a (opt-in) system to automatically collect backtraces from software
->>>>>> crashing on users systems.
->>>>>>
->>>>>> This includes collecting kernel backtraces (including once triggered by
->>>>>> WARN macros) while looking a the top 10 of the most reported backtrace during the
->>>>>> last 2 weeks report from ABRT: https://retrace.fedoraproject.org/faf/problems/
->>>>>>
->>>>>> I noticed the following backtrace:
->>>>>> https://retrace.fedoraproject.org/faf/problems/8150/
->>>>>> which has been reported 170000 times by Fedora users who have opted-in during the
->>>>>> last 14 days.
->>>>>>
->>>>>> The issue here is that cec_register_adapter ends up calling request_module()
->>>>>> from an async context, triggering this warn in kernel/kmod.c __request_module():
->>>>>>
->>>>>>         /*
->>>>>>          * We don't allow synchronous module loading from async.  Module
->>>>>>          * init may invoke async_synchronize_full() which will end up
->>>>>>          * waiting for this task which already is waiting for the module
->>>>>>          * loading to complete, leading to a deadlock.
->>>>>>          */
->>>>>>         WARN_ON_ONCE(wait && current_is_async());
->>>>>>
->>>>>> The call-path leading to this goes like this:
->>>>>>
->>>>>>  ? kvasprintf+0x6d/0xa0
->>>>>>  ? kobject_set_name_vargs+0x6f/0x90
->>>>>>  rc_map_get+0x30/0x60
->>>>>
->>>>> It's not CEC, it is rc_map_get that calls request_module() for rc-cec.ko.
->>>>>
->>>>> I've added Sean Young to the CC list.
->>>>>
->>>>> Sean, is it possible to treat rc-cec as a built-in if MEDIA_CEC_RC is set?
->>>>>
->>>>> I think this issue is very specific to CEC. I would not expect to see this
->>>>> with any other rc keymap.
->>>>
->>>> So CEC creates an RC device with a keymap (cec keymap, of course) and then
->>>> the keymap needs to be loaded. We certainly don't want all keymaps as
->>>> builtins, that would be a waste.
->>>>
->>>> The cec keymap is scanned once to build a map from cec codes to linux
->>>> keycodes; making it builtin is not ideal, and makes the build system a
->>>> bit messy.
->>>>
->>>> I don't think we can load the keymap later, user space may start remapping
->>>> the keymap from udev.
->>>>
->>>> Possibly we could create the cec or rc device later but this could be a bit
->>>> messy.
->>>>
->>>> Could CEC specify:
->>>>
->>>> #if IS_ENABLED(CONFIG_MEDIA_CEC_RC)
->>>> MODULE_SOFTDEP("rc-cec")
->>>> #endif
->>>
->>> That would need to be:
->>>
->>> MODULE_SOFTDEP("pre: rc-cec")
->>>
->>> I see that the drm_kms_helper and i915 drivers both depend on the cec module already,
->>> so yes if that module will request for rc-cec to be loaded before it is loaded
->>> (and thus before i915 is loaded) then that should work around this.
->>>
->>> Assuming the user is using a module-loader which honors the softdep...
->>>
->>> Also this assumes that rc_map_get is smart enough to not call request_module()
->>> if the module is already loaded, is that the case ?
->>
->> Yes, see rc_map_get().
-> 
-> I tried this. It works if CONFIG_RC_CORE is set to m, but setting it to
-> y resulted in the same problem. It looks like MODULE_SOFTDEP only works if rc_main
-> is a module as well.
-
-Yeah that is a known limit of module softdeps, they only work inside modules ...
-
-Still, assuming there is no easy other fix, we could still use this somehow.
-
-I do see that at least Fedora actually has CONFIG_RC_CORE=y for some reason.
-
-I guess we could maybe add the softdep to the CONFIG_RC_MAP module or
-maybe to the module which contains the code enabled by CONFIG_DRM_DP_CEC ?
-
-At least Fedora has all drm stuff as modules and also has CONFIG_RC_MAP=m,
-
-I know this is not a real fix but a workaround to get rid of 170,000
-backtraces / 14 days being reported by (opted-in) systems running the
-Fedora generic kernel config would be welcome regardless of it being the
-"perfect" fix.
-
-Regards,
-
-Hans
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCmRy
+bV92YmxhbmtfcmVzdG9yZSgpIGV4aXN0cyBiZWNhdXNlIGNlcnRhaW4gcG93ZXIgc2F2aW5nIHN0
+YXRlcwpjYW4gY2xvYmJlciB0aGUgaGFyZHdhcmUgZnJhbWUgY291bnRlci4gVGhlIHdheSBpdCBk
+b2VzIHRoaXMgaXMKYnkgZ3Vlc3N0aW1hdGluZyBob3cgbWFueSBmcmFtZXMgd2VyZSBtaXNzZWQg
+cHVyZWx5IGJhc2VkIG9uCnRoZSBkaWZmZXJlbmNlIGJldHdlZW4gdGhlIGxhc3Qgc3RvcmVkIHRp
+bWVzdGFtcCB2cy4gYSBuZXdseQpzYW1wbGVkIHRpbWVzdGFtcC4KCklmIHdlIHNob3VsZCBjYWxs
+IHRoaXMgZnVuY3Rpb24gYmVmb3JlIGEgZnVsbCBmcmFtZSBoYXMKZWxhcHNlZCBzaW5jZSB3ZSBz
+YW1wbGVkIHRoZSBsYXN0IHRpbWVzdGFtcCB3ZSB3b3VsZCBlbmQgdXAKd2l0aCBhIHBvc3NpYmx5
+IHNsaWdodGx5IGRpZmZlcmVudCB0aW1lc3RhbXAgdmFsdWUgZm9yIHRoZQpzYW1lIGZyYW1lLiBD
+dXJyZW50bHkgd2Ugd2lsbCBoYXBwaWx5IG92ZXJ3cml0ZSB0aGUgYWxyZWFkeQpzdG9yZWQgdGlt
+ZXN0YW1wIGZvciB0aGUgZnJhbWUgd2l0aCB0aGUgbmV3IHZhbHVlLiBUaGlzCmNvdWxkIGNhdXNl
+IHVzZXJzcGFjZSB0byBvYnNlcnZlIHR3byBkaWZmZXJlbnQgdGltZXN0YW1wcwpmb3IgdGhlIHNh
+bWUgZnJhbWUgKGFuZCB0aGUgdGltZXN0YW1wIGNvdWxkIGV2ZW4gZ28KYmFja3dhcmRzIGRlcGVu
+ZGluZyBvbiBob3cgbXVjaCBlcnJvciB3ZSBpbnRyb2R1Y2Ugd2hlbgpjb3JyZWN0aW5nIHRoZSB0
+aW1lc3RhbXAgYmFzZWQgb24gdGhlIHNjYW5vdXQgcG9zaXRpb24pLgoKVG8gYXZvaWQgdGhhdCBs
+ZXQncyBub3QgdXBkYXRlIHRoZSBzdG9yZWQgdGltZXN0YW1wIGF0IGFsbCwKYW5kIGluc3RlYWQg
+d2UganVzdCBmaXggdXAgdGhlIGxhc3QgcmVjb3JkZWQgaHcgdmJsYW5rIGNvdW50ZXIKdmFsdWUg
+c3VjaCB0aGF0IHRoZSBhbHJlYWR5IHN0b3JlZCB0aW1lc3RhbXAvc2VxIG51bWJlciB3aWxsCm1h
+dGNoLiBUaHVzIHRoZSBuZXh0IHRpbWUgYSB2YmxhbmsgaXJxIGhhcHBlbnMgaXQgd2lsbCBjYWxj
+dWxhdGUKdGhlIGNvcnJlY3QgZGlmZiBiZXR3ZWVuIHRoZSBjdXJyZW50IGFuZCBzdG9yZWQgaHcg
+dmJsYW5rIGNvdW50ZXIKdmFsdWVzLgoKU2lkZW5vdGU6IEFub3RoZXIgcG9zc2libGUgaWRlYSB0
+aGF0IGNhbWUgdG8gbWluZCB3b3VsZCBiZSB0bwpkbyB0aGlzIGNvcnJlY3Rpb24gb25seSBpZiB0
+aGUgcG93ZXIgcmVhbGx5IHdhcyByZW1vdmVkIHNpbmNlCnRoZSBsYXN0IHRpbWUgd2Ugc2FtcGxl
+ZCB0aGUgaHcgZnJhbWUgY291bnRlci4gQnV0IHRvIGRvIHRoYXQKd2Ugd291bGQgbmVlZCBhIHJv
+YnVzdCB3YXkgdG8gZGV0ZWN0IHdoZW4gaXQgaGFzIG9jY3VycmVkLiBTb21lCnBvc3NpYmlsaXRp
+ZXMgY291bGQgaW52b2x2ZSBzb21lIGtpbmQgb2YgaGFyZGFyZSBwb3dlciB3ZWxsCnRyYW5zaXRp
+b24gY291bnRlciwgb3IgcG90ZW50aWFsbHkgd2UgY291bGQgc3RvcmUgYSBtYWdpYyB2YWx1ZQpp
+biBhIHNjcmF0Y2ggcmVnaXN0ZXIgdGhhdCBsaXZlcyBpbiB0aGUgc2FtZSBwb3dlciB3ZWxsLiBC
+dXQKSSdtIG5vdCBzdXJlIGVpdGhlciBvZiB0aG9zZSBleGlzdCwgc28gd291bGQgbmVlZCBhbiBh
+Y3R1YWwKaW52ZXN0aWdhdGlvbiB0byBmaW5kIG91dC4gQWxsIG9mIHRoYXQgaXMgdmVyeSBoYXJk
+d2FyZSBzcGVjaWZpYwpvZiBjb3Vyc2UsIHNvIHdvdWxkIGhhdmUgdG8gYmUgZG9uZSBpbiB0aGUg
+ZHJpdmVyIGNvZGUuCgpDYzogRGhpbmFrYXJhbiBQYW5kaXlhbiA8ZGhpbmFrYXJhbi5wYW5kaXlh
+bkBpbnRlbC5jb20+CkNjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+CkNj
+OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgpTaWduZWQtb2ZmLWJ5OiBW
+aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZl
+cnMvZ3B1L2RybS9kcm1fdmJsYW5rLmMgfCAzICsrLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0
+aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1f
+dmJsYW5rLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX3ZibGFuay5jCmluZGV4IDJiZDk4OTY4OGVh
+ZS4uMzQxN2UxYWM3OTE4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3ZibGFuay5j
+CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fdmJsYW5rLmMKQEAgLTE0NzgsNiArMTQ3OCw3IEBA
+IHN0YXRpYyB2b2lkIGRybV92YmxhbmtfcmVzdG9yZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1
+bnNpZ25lZCBpbnQgcGlwZSkKIAl1NjQgZGlmZl9uczsKIAl1MzIgY3VyX3ZibGFuaywgZGlmZiA9
+IDE7CiAJaW50IGNvdW50ID0gRFJNX1RJTUVTVEFNUF9NQVhSRVRSSUVTOworCXUzMiBtYXhfdmJs
+YW5rX2NvdW50ID0gZHJtX21heF92YmxhbmtfY291bnQoZGV2LCBwaXBlKTsKIAogCWlmIChkcm1f
+V0FSTl9PTihkZXYsIHBpcGUgPj0gZGV2LT5udW1fY3J0Y3MpKQogCQlyZXR1cm47CkBAIC0xNTA0
+LDcgKzE1MDUsNyBAQCBzdGF0aWMgdm9pZCBkcm1fdmJsYW5rX3Jlc3RvcmUoc3RydWN0IGRybV9k
+ZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHBpcGUpCiAJZHJtX2RiZ192YmwoZGV2LAogCQkgICAg
+Im1pc3NlZCAlZCB2YmxhbmtzIGluICVsbGQgbnMsIGZyYW1lIGR1cmF0aW9uPSVkIG5zLCBod19k
+aWZmPSVkXG4iLAogCQkgICAgZGlmZiwgZGlmZl9ucywgZnJhbWVkdXJfbnMsIGN1cl92Ymxhbmsg
+LSB2YmxhbmstPmxhc3QpOwotCXN0b3JlX3ZibGFuayhkZXYsIHBpcGUsIGRpZmYsIHRfdmJsYW5r
+LCBjdXJfdmJsYW5rKTsKKwl2YmxhbmstPmxhc3QgPSAoY3VyX3ZibGFuayAtIGRpZmYpICYgbWF4
+X3ZibGFua19jb3VudDsKIH0KIAogLyoqCi0tIAoyLjI2LjIKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
