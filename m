@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E6C31EFD3
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Feb 2021 20:29:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E465231F041
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Feb 2021 20:50:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23BB06E863;
-	Thu, 18 Feb 2021 19:29:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F89B6EA58;
+	Thu, 18 Feb 2021 19:50:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 09F996E862;
- Thu, 18 Feb 2021 19:29:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 02B7CA47EA;
- Thu, 18 Feb 2021 19:29:30 +0000 (UTC)
+Received: from gofer.mess.org (gofer.mess.org [IPv6:2a02:8011:d000:212::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FFAF6E849
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Feb 2021 16:38:36 +0000 (UTC)
+Received: by gofer.mess.org (Postfix, from userid 1000)
+ id A522CC6393; Thu, 18 Feb 2021 16:38:33 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mess.org; s=2020;
+ t=1613666313; bh=y0hbTtN+1Apb7h1OOsg2A72G+L+BIUNXQR5KSXaTIAY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=tbJERjJiXwastHt7/3QrYpJ5GObGydJcyrivSesGwwO05x9uv5pYbU4RQrmrHcksW
+ kahGD7wsISJxOhYtiSmY5Bk+gxFBb6epsNORmClJ9rglQ2jpae5yDYaAMni+wX94Z/
+ NGJ35NcmxN9xvgXj3cmdocpx4wBcwnji8cVw+MSbQ4yjTgjXRkMSHVo9H8Q9C1S0+P
+ aSjTckWqCwOFk4x7Q6yGawXT6mAaf5ApTWaq7mkbkpQIwt8uFi+JRK3N+wfQ4qUUWO
+ cFqYXASoMu+ClWxl2xndTTPYh2wq6ob6Q2dw0rmR6aWNtL6WyVc6dBawlwilTJwmSU
+ lZYZSRpCjMkIQ==
+Date: Thu, 18 Feb 2021 16:38:33 +0000
+From: Sean Young <sean@mess.org>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <20210218163833.GA15560@gofer.mess.org>
+References: <91b0f6c8-79ca-d04f-1ae0-66bf954dd421@redhat.com>
+ <8d24dad6-cb2a-da91-bd38-887a7aa3282f@xs4all.nl>
+ <20210217143223.GA28632@gofer.mess.org>
+ <1c081320-d040-12b7-fbd6-e6b8c03c2ae8@redhat.com>
+ <20210217151159.GA29680@gofer.mess.org>
+ <876e34f6-c39b-8e97-7ebb-79ae2c356e53@xs4all.nl>
+ <3e3c983f-b3bc-fe94-9247-69c8d97754df@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Thu, 18 Feb 2021 19:29:29 -0000
-Message-ID: <161367656998.23767.5607591186512775606@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/vblank=3A_Avoid_storing_a_timestamp_for_the_same_frame_twice_?=
- =?utf-8?b?KHJldjIp?=
+Content-Disposition: inline
+In-Reply-To: <3e3c983f-b3bc-fe94-9247-69c8d97754df@redhat.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Mailman-Approved-At: Thu, 18 Feb 2021 19:50:47 +0000
+Subject: Re: [Intel-gfx] Issue with cec_register_adapter calling
+ request_module() from an async context when called from intel_dp_detect
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,241 +53,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1274626395=="
+Cc: Hans Verkuil <hverkuil@xs4all.nl>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1274626395==
-Content-Type: multipart/alternative;
- boundary="===============2049990698862914803=="
+Hi Hans,
 
---===============2049990698862914803==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Feb 18, 2021 at 04:33:38PM +0100, Hans de Goede wrote:
+> On 2/17/21 5:29 PM, Hans Verkuil wrote:
+> > On 17/02/2021 16:11, Sean Young wrote:
+> >> Hi,
+> >>
+> >> On Wed, Feb 17, 2021 at 04:04:11PM +0100, Hans de Goede wrote:
+> >>> On 2/17/21 3:32 PM, Sean Young wrote:
+> >>>> On Wed, Feb 17, 2021 at 01:41:46PM +0100, Hans Verkuil wrote:
+> >>>>> Hi Hans,
+> >>>>>
+> >>>>> On 17/02/2021 13:24, Hans de Goede wrote:
+> >>>>>> <resend with the linux-media list added to the Cc>
+> >>>>>>
+> >>>>>> Hi Hans,
+> >>>>>>
+> >>>>>> Fedora has a (opt-in) system to automatically collect backtraces from software
+> >>>>>> crashing on users systems.
+> >>>>>>
+> >>>>>> This includes collecting kernel backtraces (including once triggered by
+> >>>>>> WARN macros) while looking a the top 10 of the most reported backtrace during the
+> >>>>>> last 2 weeks report from ABRT: https://retrace.fedoraproject.org/faf/problems/
+> >>>>>>
+> >>>>>> I noticed the following backtrace:
+> >>>>>> https://retrace.fedoraproject.org/faf/problems/8150/
+> >>>>>> which has been reported 170000 times by Fedora users who have opted-in during the
+> >>>>>> last 14 days.
+> >>>>>>
+> >>>>>> The issue here is that cec_register_adapter ends up calling request_module()
+> >>>>>> from an async context, triggering this warn in kernel/kmod.c __request_module():
+> >>>>>>
+> >>>>>>         /*
+> >>>>>>          * We don't allow synchronous module loading from async.  Module
+> >>>>>>          * init may invoke async_synchronize_full() which will end up
+> >>>>>>          * waiting for this task which already is waiting for the module
+> >>>>>>          * loading to complete, leading to a deadlock.
+> >>>>>>          */
+> >>>>>>         WARN_ON_ONCE(wait && current_is_async());
+> >>>>>>
+> >>>>>> The call-path leading to this goes like this:
+> >>>>>>
+> >>>>>>  ? kvasprintf+0x6d/0xa0
+> >>>>>>  ? kobject_set_name_vargs+0x6f/0x90
+> >>>>>>  rc_map_get+0x30/0x60
+> >>>>>
+> >>>>> It's not CEC, it is rc_map_get that calls request_module() for rc-cec.ko.
+> >>>>>
+> >>>>> I've added Sean Young to the CC list.
+> >>>>>
+> >>>>> Sean, is it possible to treat rc-cec as a built-in if MEDIA_CEC_RC is set?
+> >>>>>
+> >>>>> I think this issue is very specific to CEC. I would not expect to see this
+> >>>>> with any other rc keymap.
+> >>>>
+> >>>> So CEC creates an RC device with a keymap (cec keymap, of course) and then
+> >>>> the keymap needs to be loaded. We certainly don't want all keymaps as
+> >>>> builtins, that would be a waste.
+> >>>>
+> >>>> The cec keymap is scanned once to build a map from cec codes to linux
+> >>>> keycodes; making it builtin is not ideal, and makes the build system a
+> >>>> bit messy.
+> >>>>
+> >>>> I don't think we can load the keymap later, user space may start remapping
+> >>>> the keymap from udev.
+> >>>>
+> >>>> Possibly we could create the cec or rc device later but this could be a bit
+> >>>> messy.
+> >>>>
+> >>>> Could CEC specify:
+> >>>>
+> >>>> #if IS_ENABLED(CONFIG_MEDIA_CEC_RC)
+> >>>> MODULE_SOFTDEP("rc-cec")
+> >>>> #endif
+> >>>
+> >>> That would need to be:
+> >>>
+> >>> MODULE_SOFTDEP("pre: rc-cec")
+> >>>
+> >>> I see that the drm_kms_helper and i915 drivers both depend on the cec module already,
+> >>> so yes if that module will request for rc-cec to be loaded before it is loaded
+> >>> (and thus before i915 is loaded) then that should work around this.
+> >>>
+> >>> Assuming the user is using a module-loader which honors the softdep...
+> >>>
+> >>> Also this assumes that rc_map_get is smart enough to not call request_module()
+> >>> if the module is already loaded, is that the case ?
+> >>
+> >> Yes, see rc_map_get().
+> > 
+> > I tried this. It works if CONFIG_RC_CORE is set to m, but setting it to
+> > y resulted in the same problem. It looks like MODULE_SOFTDEP only works if rc_main
+> > is a module as well.
+> 
+> Yeah that is a known limit of module softdeps, they only work inside modules ...
 
-== Series Details ==
+Yes, I assume this is the problem.
 
-Series: drm/vblank: Avoid storing a timestamp for the same frame twice (rev2)
-URL   : https://patchwork.freedesktop.org/series/86672/
-State : success
+> Still, assuming there is no easy other fix, we could still use this somehow.
+> 
+> I do see that at least Fedora actually has CONFIG_RC_CORE=y for some reason.
 
-== Summary ==
+This is to make BPF IR decoding possible.
 
-CI Bug Log - changes from CI_DRM_9786 -> Patchwork_19701
-====================================================
+> I guess we could maybe add the softdep to the CONFIG_RC_MAP module or
+> maybe to the module which contains the code enabled by CONFIG_DRM_DP_CEC ?
+> 
+> At least Fedora has all drm stuff as modules and also has CONFIG_RC_MAP=m,
+> 
+> I know this is not a real fix but a workaround to get rid of 170,000
+> backtraces / 14 days being reported by (opted-in) systems running the
+> Fedora generic kernel config would be welcome regardless of it being the
+> "perfect" fix.
 
-Summary
--------
+Of course, I totally agree that a solution is needed.
 
-  **SUCCESS**
+How about:
 
-  No regressions found.
+ 1) Use MODULE_SOFTDEP("rc-cec"); 
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19701 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-compute0:
-    - fi-kbl-r:           NOTRUN -> [SKIP][1] ([fdo#109271]) +20 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-r/igt@amdgpu/amd_cs_nop@sync-compute0.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-cfl-8109u:       [PASS][2] -> [INCOMPLETE][3] ([i915#155])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9786/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-r:           NOTRUN -> [SKIP][4] ([fdo#109271] / [i915#2190])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-r/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_linear_blits@basic:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9786/fi-tgl-y/igt@gem_linear_blits@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-tgl-y/igt@gem_linear_blits@basic.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][7] -> [FAIL][8] ([i915#2203] / [i915#579])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9786/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-r:           NOTRUN -> [SKIP][9] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-r/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-r:           NOTRUN -> [SKIP][10] ([fdo#109271] / [i915#533])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-r/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12] +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9786/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (46 -> 39)
-------------------------------
-
-  Missing    (7): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-ehl-2 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9786 -> Patchwork_19701
-
-  CI-20190529: 20190529
-  CI_DRM_9786: 487d534b8912194d104e05b66e3a0303800300ff @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6008: 34ccd8e8c38587e7d46ec964d30d17863b166fda @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19701: b9e2377b1bd55114447c010cfd7f8b4302744afa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b9e2377b1bd5 drm/vblank: Do not store a new vblank timestamp in drm_vblank_restore()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/index.html
-
---===============2049990698862914803==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+ 2) If it's compiled as a module, rc-cec should be builtin
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/vblank: Avoid storing a timestamp for the same frame twice (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86672/">https://patchwork.freedesktop.org/series/86672/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9786 -&gt; Patchwork_19701</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19701 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-compute0:</p>
-<ul>
-<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-r/igt@amdgpu/amd_cs_nop@sync-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +20 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9786/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-r/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_linear_blits@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9786/fi-tgl-y/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-tgl-y/igt@gem_linear_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9786/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-r/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-kbl-r/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_mmap_gtt@basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9786/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19701/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (46 -&gt; 39)</h2>
-<p>Missing    (7): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-ehl-2 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9786 -&gt; Patchwork_19701</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9786: 487d534b8912194d104e05b66e3a0303800300ff @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6008: 34ccd8e8c38587e7d46ec964d30d17863b166fda @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19701: b9e2377b1bd55114447c010cfd7f8b4302744afa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>b9e2377b1bd5 drm/vblank: Do not store a new vblank timestamp in drm_vblank_restore()</p>
-
-</body>
-</html>
-
---===============2049990698862914803==--
-
---===============1274626395==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Sean
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1274626395==--
