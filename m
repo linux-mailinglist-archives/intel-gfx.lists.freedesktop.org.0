@@ -1,44 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6897031E781
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Feb 2021 09:35:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 503DC31E7B3
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Feb 2021 09:59:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B52E66EA02;
-	Thu, 18 Feb 2021 08:35:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 519D96E1A2;
+	Thu, 18 Feb 2021 08:59:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C97C16E9FE;
- Thu, 18 Feb 2021 08:35:17 +0000 (UTC)
-IronPort-SDR: 3WWmHqYTW59IHyHRSNwXt8pQJqTvE8LfjlOwQNUr/v8hpWF6xV9u8O2MmO68yBHFHuR8aze/PR
- eFsEwDQWMIVw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="183504705"
-X-IronPort-AV: E=Sophos;i="5.81,186,1610438400"; d="scan'208";a="183504705"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2021 00:35:15 -0800
-IronPort-SDR: uwBmf4yGcSmtx7h+yFIaOUYqETNcs87WxE3iddYstACQozLswauYt27Nd7xgxrensaeXIaOJgF
- PRAzgaJt9KCQ==
-X-IronPort-AV: E=Sophos;i="5.81,186,1610438400"; d="scan'208";a="400405752"
-Received: from cklinger-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.38.13])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2021 00:35:09 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: lyude@redhat.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <355ce12ec69a9b5f20b4a856a40c8abf413be5c0.camel@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210208233902.1289693-1-lyude@redhat.com>
- <20210208233902.1289693-11-lyude@redhat.com>
- <20210211041540.GI82362@intel.com>
- <355ce12ec69a9b5f20b4a856a40c8abf413be5c0.camel@redhat.com>
-Date: Thu, 18 Feb 2021 10:35:05 +0200
-Message-ID: <87mtw1ai4m.fsf@intel.com>
+Received: from lb2-smtp-cloud7.xs4all.net (lb2-smtp-cloud7.xs4all.net
+ [194.109.24.28])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 097FD6E1A2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Feb 2021 08:59:39 +0000 (UTC)
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+ by smtp-cloud7.xs4all.net with ESMTPA
+ id Cf9qlLWDL5126Cf9tlkxa5; Thu, 18 Feb 2021 09:59:37 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+ t=1613638777; bh=gtOCHoCFmxYBNbMPd14sed/V7TTiMapK02LTLG+7DS8=;
+ h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+ Subject;
+ b=DPBnumIukOgXUoZFUVYUa8kgYXkWu5k/ICBP6ZW1LxeJEuuV35s05lvkNIIwq+Rnx
+ 37A2uPaQRPxDtFX8ueQh0SF+1p9D8kB4E8Wa+E3FAFwBwJkCHTuYY8UuGttGpRIx2L
+ w6ckiqDQunkUWdUO2fMzZMbj42HWPk1iNrhOQe5oa2oZIWVJHnWM1x42Df3PbOjNQk
+ ujH0dSfzP1kgV8haPuFH9BLLt+HI3ibUhhxXOeTJ7scRsN4kfifc6Ph2B5wd0Dfchy
+ pQ6FdyxSg5OdjcBvrC/YFkehaqIn9fLfr/SfbMlbQY9ofqgUgsfMjJ4YGucWON3Aoj
+ UeMZeu45B2kJw==
+To: Sean Young <sean@mess.org>
+References: <91b0f6c8-79ca-d04f-1ae0-66bf954dd421@redhat.com>
+ <8d24dad6-cb2a-da91-bd38-887a7aa3282f@xs4all.nl>
+ <20210217143223.GA28632@gofer.mess.org>
+ <1c081320-d040-12b7-fbd6-e6b8c03c2ae8@redhat.com>
+ <20210217151159.GA29680@gofer.mess.org>
+ <876e34f6-c39b-8e97-7ebb-79ae2c356e53@xs4all.nl>
+ <20210218085214.GA9864@gofer.mess.org>
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <c7b500cd-552c-21b1-a5a3-b717c59bb2b4@xs4all.nl>
+Date: Thu, 18 Feb 2021 09:59:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.7.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC v4 10/11] drm/dp: Extract i915's eDP backlight
- code into DRM helpers
+In-Reply-To: <20210218085214.GA9864@gofer.mess.org>
+Content-Language: en-US
+X-CMAE-Envelope: MS4xfA3rpRmh8D3EACvBL4aVdBRaVINpwkNRT6ElYRsLUFtsTHct41Vx5YNLe28Q6ZQ1VFNo/539GN7+dgeegCvu9p9hQooAwK/AA/GpqxGQEZwyF/dHDJ8j
+ S7jUtap6plsfBEF9UXnOcKgRSI+V7y9Pi49xhixBQqNVgXjg0aDx8kxlgNJf3m5kaKx1NM5uIB1Ahq3ifK6OmH2Eamk9gdHCC5n0OUaycQm4aMcipG/jJ3eI
+ n0CbdlubbdLS+RUnUN1nQxbWLizxL3sNpMKqn54YoFHGHymokRvn0rRpsTiryXQ2
+Subject: Re: [Intel-gfx] Issue with cec_register_adapter calling
+ request_module() from an async context when called from intel_dp_detect
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,29 +59,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- greg.depoire@gmail.com, Sean Paul <seanpaul@chromium.org>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Dave Airlie <airlied@redhat.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Linux Media Mailing List <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 12 Feb 2021, Lyude Paul <lyude@redhat.com> wrote:
-> I think it wouldn't be a bad idea to just address this with a followup series
-> instead and use the old DRM_DEBUG_* macros in the mean time.
+On 18/02/2021 09:52, Sean Young wrote:
+> Hi,
+> 
+> On Wed, Feb 17, 2021 at 05:29:46PM +0100, Hans Verkuil wrote:
+>> On 17/02/2021 16:11, Sean Young wrote:
+>>> On Wed, Feb 17, 2021 at 04:04:11PM +0100, Hans de Goede wrote:
+>>>> On 2/17/21 3:32 PM, Sean Young wrote:
+>>>>> On Wed, Feb 17, 2021 at 01:41:46PM +0100, Hans Verkuil wrote:
+>>>>>> Hi Hans,
+>>>>>>
+>>>>>> On 17/02/2021 13:24, Hans de Goede wrote:
+>>>>>>> <resend with the linux-media list added to the Cc>
+>>>>>>>
+>>>>>>> Hi Hans,
+>>>>>>>
+>>>>>>> Fedora has a (opt-in) system to automatically collect backtraces from software
+>>>>>>> crashing on users systems.
+>>>>>>>
+>>>>>>> This includes collecting kernel backtraces (including once triggered by
+>>>>>>> WARN macros) while looking a the top 10 of the most reported backtrace during the
+>>>>>>> last 2 weeks report from ABRT: https://retrace.fedoraproject.org/faf/problems/
+>>>>>>>
+>>>>>>> I noticed the following backtrace:
+>>>>>>> https://retrace.fedoraproject.org/faf/problems/8150/
+>>>>>>> which has been reported 170000 times by Fedora users who have opted-in during the
+>>>>>>> last 14 days.
+>>>>>>>
+>>>>>>> The issue here is that cec_register_adapter ends up calling request_module()
+>>>>>>> from an async context, triggering this warn in kernel/kmod.c __request_module():
+>>>>>>>
+>>>>>>>         /*
+>>>>>>>          * We don't allow synchronous module loading from async.  Module
+>>>>>>>          * init may invoke async_synchronize_full() which will end up
+>>>>>>>          * waiting for this task which already is waiting for the module
+>>>>>>>          * loading to complete, leading to a deadlock.
+>>>>>>>          */
+>>>>>>>         WARN_ON_ONCE(wait && current_is_async());
+>>>>>>>
+>>>>>>> The call-path leading to this goes like this:
+>>>>>>>
+>>>>>>>  ? kvasprintf+0x6d/0xa0
+>>>>>>>  ? kobject_set_name_vargs+0x6f/0x90
+>>>>>>>  rc_map_get+0x30/0x60
+>>>>>>
+>>>>>> It's not CEC, it is rc_map_get that calls request_module() for rc-cec.ko.
+>>>>>>
+>>>>>> I've added Sean Young to the CC list.
+>>>>>>
+>>>>>> Sean, is it possible to treat rc-cec as a built-in if MEDIA_CEC_RC is set?
+>>>>>>
+>>>>>> I think this issue is very specific to CEC. I would not expect to see this
+>>>>>> with any other rc keymap.
+>>>>>
+>>>>> So CEC creates an RC device with a keymap (cec keymap, of course) and then
+>>>>> the keymap needs to be loaded. We certainly don't want all keymaps as
+>>>>> builtins, that would be a waste.
+>>>>>
+>>>>> The cec keymap is scanned once to build a map from cec codes to linux
+>>>>> keycodes; making it builtin is not ideal, and makes the build system a
+>>>>> bit messy.
+>>>>>
+>>>>> I don't think we can load the keymap later, user space may start remapping
+>>>>> the keymap from udev.
+>>>>>
+>>>>> Possibly we could create the cec or rc device later but this could be a bit
+>>>>> messy.
+>>>>>
+>>>>> Could CEC specify:
+>>>>>
+>>>>> #if IS_ENABLED(CONFIG_MEDIA_CEC_RC)
+>>>>> MODULE_SOFTDEP("rc-cec")
+>>>>> #endif
+>>>>
+>>>> That would need to be:
+>>>>
+>>>> MODULE_SOFTDEP("pre: rc-cec")
+>>>>
+>>>> I see that the drm_kms_helper and i915 drivers both depend on the cec module already,
+>>>> so yes if that module will request for rc-cec to be loaded before it is loaded
+>>>> (and thus before i915 is loaded) then that should work around this.
+>>>>
+>>>> Assuming the user is using a module-loader which honors the softdep...
+>>>>
+>>>> Also this assumes that rc_map_get is smart enough to not call request_module()
+>>>> if the module is already loaded, is that the case ?
+>>>
+>>> Yes, see rc_map_get().
+>>
+>> I tried this. It works if CONFIG_RC_CORE is set to m, but setting it to
+>> y resulted in the same problem. It looks like MODULE_SOFTDEP only works if rc_main
+>> is a module as well.
+> 
+> Hmm, I'm not quite sure what is happening here. How can I reproduce this
+> issue locally?
 
-aux->dev is there, could also use dev_dbg et al. in the mean time. They
-handle NULL dev gracefully too if the driver didn't set that.
+You need the right hardware for this, I'm afraid: this issue happens if you have
+a DisplayPort-to-HDMI adapter that supports CEC and CONFIG_DRM_DP_CEC is set to y.
 
-BR,
-Jani.
+In my case I have an Intel NUC with a USB-C to HDMI adapter from Club 3D (CAC-2504).
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+I can easily test patches for you.
+
+Regards,
+
+	Hans
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
