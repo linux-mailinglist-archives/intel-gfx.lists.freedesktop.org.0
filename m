@@ -1,31 +1,142 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D03CD31E963
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Feb 2021 12:59:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCEAE31E96F
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Feb 2021 13:01:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF7746E463;
-	Thu, 18 Feb 2021 11:59:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CA826E82C;
+	Thu, 18 Feb 2021 12:01:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D07D06E463;
- Thu, 18 Feb 2021 11:59:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C8553A8831;
- Thu, 18 Feb 2021 11:59:01 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lee Shawn C" <shawn.c.lee@intel.com>
-Date: Thu, 18 Feb 2021 11:59:01 -0000
-Message-ID: <161364954178.23765.15042655682878697537@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABE7E6E82F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Feb 2021 12:01:38 +0000 (UTC)
+IronPort-SDR: YQUHOYozVfr8azh+Nvkql7f76Lz7pkzvoRdhfjbMQzqDDmm1qCNvKa2Y3AFExix2YC7kP3SsB+
+ WlFVtcnkHv+Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9898"; a="183544355"
+X-IronPort-AV: E=Sophos;i="5.81,187,1610438400"; d="scan'208";a="183544355"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2021 04:01:37 -0800
+IronPort-SDR: TXBsEy4BlkrZEKYUsxYTZRdYoubFhtFNWLxO+0fWVs9ZkqouLt1t4umoNPg6ZgxVf5Bu1KkR4Q
+ OlM9dAzI8gDg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,187,1610438400"; d="scan'208";a="364803106"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga006.jf.intel.com with ESMTP; 18 Feb 2021 04:01:36 -0800
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Thu, 18 Feb 2021 04:01:36 -0800
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Thu, 18 Feb 2021 04:01:35 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
+ via Frontend Transport; Thu, 18 Feb 2021 04:01:35 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2106.2; Thu, 18 Feb 2021 04:01:34 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ubvsm5WCNovrAJz4BCfr0iiukqQD5QF6lfSpJUVHIUnRt8lbTJRvaLRWDo+j9Njps1esYggf/Ytw+TXePa6MPmOT1Li/VliAFdeP27dJKKKWQQIUSi/jAI+TdswH0sosu24VMhEzjC9QmnN0R6Z0JzMamIHsIbZvNPZoH2NXS5u1XlU3mYrk7zFCRGrF8c1bsNZ7kx0juoafJjn4Z4/cHD4TDe6ONzfBanC8jK5BdvHlA12xbFkZ4R5NpFFdsYcWjBHzKNp0ErVAoZjH5m7dI3G7rXmnV1A4zM9ID/YCDgDUZR9j8C1ntJ2Ao3gX6FYfZg+lB6fzaUGegOYuX7WmTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5Wya5WXOMPr+lo/y0VIO6eIcrgn4B3kPdZ4fgwE7C8s=;
+ b=fATNT8HNBy3cHHaSBQdxjPHBJuurzPxfmGWHXExQMHIiABNoJJu43Lw+IGHbOlevfosV8pJTW5uYx88aFqvttHMNMGxfC0lY04gdE3uMJ2BCjWkU79jo43EkiYVZ6xA/swzD6jmOyGf+ZIRAuocHyzHvzn5eKRf3R1tjxqYHEeMZbk8eg9SlTLY6ToLZldqeanwda3dGihrkvODzdPk+sUfGC+sN5ZFNyZeKrm8It3cN2NxEvCBfIRKEFkceOTuDq9tlqqC43ydJNP+yG5hGcSlmbdtD9oCksOvNI0euXMmv7xLWMCJjw1qGkLYfBaaLwn2P2p10V/JStkzWTuVvxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5Wya5WXOMPr+lo/y0VIO6eIcrgn4B3kPdZ4fgwE7C8s=;
+ b=GfMo/VXGDrpdrn2MzQy2fKIA65cVR4XZTJvWGRKODo8UYjinD71WVnOFD/s4IHxb0Ln5dBwl18ZuDFFT9wOIY6StSoy8V7ITG7fibB4NrqHWk6RAuhiBvmg3KeIRVpzmUzNrHQSIiMrlPm03ui1Yf/iKJxL7727lXfvHJ7v75gA=
+Received: from BY5PR11MB4307.namprd11.prod.outlook.com (2603:10b6:a03:1bd::27)
+ by BY5PR11MB3975.namprd11.prod.outlook.com (2603:10b6:a03:184::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3846.35; Thu, 18 Feb
+ 2021 12:01:31 +0000
+Received: from BY5PR11MB4307.namprd11.prod.outlook.com
+ ([fe80::1cad:65dc:41f2:78bd]) by BY5PR11MB4307.namprd11.prod.outlook.com
+ ([fe80::1cad:65dc:41f2:78bd%6]) with mapi id 15.20.3846.041; Thu, 18 Feb 2021
+ 12:01:31 +0000
+From: "Lee, Shawn C" <shawn.c.lee@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v3] drm/i915/vbt: update DP max link rate table
+Thread-Index: AQHXBUIvd4cZXfKzHUqlt7V/BCGWGapcfUyAgAFRpXA=
+Date: Thu, 18 Feb 2021 12:01:31 +0000
+Message-ID: <BY5PR11MB4307D5F206254B4BE422C40DA3859@BY5PR11MB4307.namprd11.prod.outlook.com>
 References: <20210201150228.10001-1-shawn.c.lee@intel.com>
-In-Reply-To: <20210201150228.10001-1-shawn.c.lee@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/vbt=3A_update_DP_max_link_rate_table_=28rev6=29?=
+ <20210217153935.8528-1-shawn.c.lee@intel.com> <YC06FU1sEIAgeaYo@intel.com>
+In-Reply-To: <YC06FU1sEIAgeaYo@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+authentication-results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=intel.com;
+x-originating-ip: [118.167.10.222]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6b6843e2-0894-4f8c-2f25-08d8d404ee5d
+x-ms-traffictypediagnostic: BY5PR11MB3975:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BY5PR11MB3975FA09A7DF0BBA5779092DA3859@BY5PR11MB3975.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 12PK6QAmmclKsCzJnV0ya+JJceY5z7KBtL98CQlX8Imo9aOpPtgrEKDdmakzSVMn2eczAQe5Ty1tBahrpuMAQSUogQtWuvc57vIR9dqWqTFwleiNbkPOhMBhiSpuch7qAadABQ9KFIXzJge1XD4wYZVLSg9JOTp9VUP+ufSX1GLK/vxf28i8qghQi+91X8dvWxnjhVNVPoRfn899KduCU6P/XWYgrb+OOdZ+Vzh205yFLUBw13+R/S/erHGuUfihLt5xvWwxIgMc/9Oaa3r1txychiN6vjF7a6Ha8W2VcZa5LNLd9Sq8AuDPP21gXnBkL8eg9KIyuJG67WSoxRx5+bHn+Nj/LaJ6xbTXiAn+y6OUqizmtwUiZ0SFfR7lO35SV2xO7tYABqwKpae7Jz/1DCSoeAyNBP7we5PxuOjp6V3boXgNb1B8qkYO3xxv9TuAZrGuZOfm90RqX53xmvM3OhWLJYA7ULlVUhaWD5zn4gVbth+P4N2AlfAZwp3Oo9cLgClpQKC6K5nQ8IU5zWBNsg==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB4307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(376002)(366004)(346002)(396003)(39860400002)(136003)(7696005)(66574015)(33656002)(86362001)(66446008)(66476007)(2906002)(8936002)(8676002)(54906003)(110136005)(316002)(71200400001)(478600001)(26005)(66946007)(55016002)(64756008)(66556008)(83380400001)(55236004)(6506007)(186003)(53546011)(4326008)(5660300002)(9686003)(15650500001)(76116006)(52536014)(8796002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?NzoQhRkDkHq70EjthLmUZUZwV4pTXYSOOi1fkdho4EzOatFLObh/7tt2My?=
+ =?iso-8859-1?Q?6x1GTQbae0K/n+CBvdXzLECfEHxd0gdJzoT5Qu9ms+kE9kGrp3w8xGopq5?=
+ =?iso-8859-1?Q?wVa45K6tDEdmKcqqdGQyaRPrzcJzMSkfwi4egCptVUMkznVMdlFWTQNd7i?=
+ =?iso-8859-1?Q?EH4zh1XDWWOroo6O60ObVdyDCzbr17kshnUv12ERFB3jZU5gDXoKfyejqG?=
+ =?iso-8859-1?Q?n4glAVCERvX9caLUB56KI485pdY5p7iGPb3x4ukojfaIkM5hQTDs9hX2XY?=
+ =?iso-8859-1?Q?GKcQ/bpGPRTTt1kS5+wA7hQNMwhcexARAjyuGrDrY8EPAHWZdm+Uzr8xRo?=
+ =?iso-8859-1?Q?uPdHpKnnQSlJxB0sIo/aGhzT392zw9O4KVlSB0zLp3/lxWXvZ1qBPJBv30?=
+ =?iso-8859-1?Q?1arbt/HBol/WHqnUEACvoMhJQHHYPKabkyf1dQNfS8v/6rS9eAnCg8vlDn?=
+ =?iso-8859-1?Q?y0l2UPe/8Dnj7yE2+k4adY2tpEswgMexSZF0WlzNf+AvY8eKL/fQdrzZA7?=
+ =?iso-8859-1?Q?PIGPvCm8UVafxKM4N2mlVaVDMqaL6rSLDlUkQMv+t/rIIab9QskCEWGu62?=
+ =?iso-8859-1?Q?aDMYKUqO7eXD882G+RSDX9cHqnOG4ozdXNCtF8pFb2rWva5Kw0Ayj6j96L?=
+ =?iso-8859-1?Q?3WB2lMzxSSc8uGdX5xCEzV7inLyErSH4DASGmWqKsddSCAAE4hULH9zZPV?=
+ =?iso-8859-1?Q?0PxBSMOxbht+lVgS7GoouNZDENPvNMxBeE+PcpNgg0Ioyu5Wyvw9XsxuRM?=
+ =?iso-8859-1?Q?wIJKPjXCv4raZijCz3rRenI89KEtpzrdVU7ujRF5F/pw5Mwl94bDk5FX9U?=
+ =?iso-8859-1?Q?mkR6/tO1gCK4+Ev3OniGQjekUlDRzj3IQ3219uMHjwiIBVj6PmUpERGgSJ?=
+ =?iso-8859-1?Q?jmKs/eLJ1JIL3jw2YirDg1IqSeGCG8cDwszpXlVr7tXorQe+DyRFNPgiA3?=
+ =?iso-8859-1?Q?BSUW0F1Xoyr/Ek1+2wYdez9bznFgeeYnM2O+WDfw95eAv11cvj25NdhboG?=
+ =?iso-8859-1?Q?Xvz0KBfsD15zwBuiUSYbiYhXusv/0Aiafvk1pfjIGPjD3oiSmuWHtcmVW9?=
+ =?iso-8859-1?Q?xuawUbk6wFIn5+sIOFLZMmVi/xg1QjNepBgvq1wXIUNgvOOZNUGOg3srEw?=
+ =?iso-8859-1?Q?2LVmzIadb6Rz9l96JFkpKrX5LxhQSovnq7TvsVzEQ9CvKcVYNQzzcM0V9g?=
+ =?iso-8859-1?Q?ihcKKqaqChwJpu2RTJUGHH+d1UfllwUjuRi5SuE+IHSaE7cNWrZbMGuNUS?=
+ =?iso-8859-1?Q?IbOT8cLIBYeFp+qR9HXhhIiEslskgYAOiO/St0XKKqkI0i6nJJPYRssQ3p?=
+ =?iso-8859-1?Q?D3qYmlHNtD8co0B1KJA9zdPepk2sM2nyv1kx6J1FkGyv3rKsl+beRNZU68?=
+ =?iso-8859-1?Q?nE4/Czoubk?=
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB4307.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b6843e2-0894-4f8c-2f25-08d8d404ee5d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Feb 2021 12:01:31.5568 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: veCXWKgBLDGONvQyiNfVbxFXePCVwxm+OLlJEXMI17/7n/8o7BwUqwywQaqHpK+5aBkWaTcQ+33CRORzE5KWkw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB3975
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/vbt: update DP max link rate
+ table
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,236 +149,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0932684747=="
+Reply-To: "20210217153935.8528-1-shawn.c.lee@intel.com"
+ <20210217153935.8528-1-shawn.c.lee@intel.com>
+Cc: "Chiou, Cooper" <cooper.chiou@intel.com>, "Tseng,
+ William" <william.tseng@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0932684747==
-Content-Type: multipart/alternative;
- boundary="===============7441977187621690217=="
+On Wed, Feb 17, 2021 at 3:45 p.m., Ville Syrj=E4l=E4 wrote:
+>On Wed, Feb 17, 2021 at 11:39:35PM +0800, Lee Shawn C wrote:
+>> According to Bspec #20124, max link rate table for DP was updated at =
 
---===============7441977187621690217==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+>> BDB version 230. Max link rate can support upto UHBR.
+>> =
 
-== Series Details ==
+>> After migrate to BDB v230, the definition for LBR, HBR2 and HBR3 were =
 
-Series: drm/i915/vbt: update DP max link rate table (rev6)
-URL   : https://patchwork.freedesktop.org/series/86539/
-State : success
+>> changed. For backward compatibility. If BDB version was from 216 to =
 
-== Summary ==
+>> 229. Driver have to follow original rule to configure DP max link rate =
 
-CI Bug Log - changes from CI_DRM_9783 -> Patchwork_19700
-====================================================
+>> value from VBT.
+>> =
 
-Summary
--------
+>> v2: split the mapping table to two for old and new BDB definition.
+>> v3: return link rate instead of assigning it.
+>> =
 
-  **SUCCESS**
+>> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>> Cc: Cooper Chiou <cooper.chiou@intel.com>
+>> Cc: William Tseng <william.tseng@intel.com>
+>> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_bios.c     | 78 +++++++++++++++----
+>>  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 23 ++++--
+>>  2 files changed, 80 insertions(+), 21 deletions(-)
+>> =
 
-  No regressions found.
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/index.html
+>> b/drivers/gpu/drm/i915/display/intel_bios.c
+>> index 7902d4c2673e..d8305c351b77 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> @@ -1759,6 +1759,64 @@ static enum port dvo_port_to_port(struct drm_i915=
+_private *dev_priv,
+>>  					  dvo_port);
+>>  }
+>>  =
 
-Known issues
-------------
+>> +static int parse_bdb_230_dp_max_link_rate(const int =
 
-  Here are the changes found in Patchwork_19700 that come from known issues:
+>> +vbt_max_link_rate) {
+>> +	int link_rate;
+>
+>That variable is rather pointless...
+>
+>> +
+>> +	switch (vbt_max_link_rate) {
+>> +	case BDB_230_VBT_DP_MAX_LINK_RATE_UHBR20:
+>> +		link_rate =3D 2000000;
+>> +		break;
+>
+>... when you can just 'return <rate>' here directly.
+>Would reduce the noise a bit as well since the break statements would vani=
+sh.
+>
 
-### IGT changes ###
+Update patch v4 and just return the value as you mentioned. =
 
-#### Issues hit ####
+Please help to review again.
 
-  * igt@i915_selftest@live@gt_lrc:
-    - fi-tgl-y:           NOTRUN -> [DMESG-FAIL][1] ([i915#2373])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@i915_selftest@live@gt_lrc.html
+BTW,  I'm sorry I press "test again" button two times and waste test machin=
+e resource.
 
-  * igt@i915_selftest@live@gt_pm:
-    - fi-tgl-y:           NOTRUN -> [DMESG-FAIL][2] ([i915#1759])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+Best regards,
+Shawn
 
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-tgl-y:           NOTRUN -> [SKIP][3] ([fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html
+>> +	case BDB_230_VBT_DP_MAX_LINK_RATE_UHBR13P5:
+>> +		link_rate =3D 1350000;
+>> +		break;
+>> +	case BDB_230_VBT_DP_MAX_LINK_RATE_UHBR10:
+>> +		link_rate =3D 1000000;
+>> +		break;
+>> +	case BDB_230_VBT_DP_MAX_LINK_RATE_HBR3:
+>> +		link_rate =3D 810000;
+>> +		break;
+>> +	case BDB_230_VBT_DP_MAX_LINK_RATE_HBR2:
+>> +		link_rate =3D 540000;
+>> +		break;
+>> +	case BDB_230_VBT_DP_MAX_LINK_RATE_HBR:
+>> +		link_rate =3D 270000;
+>> +		break;
+>> +	case BDB_230_VBT_DP_MAX_LINK_RATE_LBR:
+>> +		link_rate =3D 162000;
+>> +		break;
+>> +	case BDB_230_VBT_DP_MAX_LINK_RATE_DEF:
+>> +	default:
+>> +		link_rate =3D 0;
+>> +		break;
+>> +	}
+>> +
+>> +	return link_rate;
+>> +}
+>> +
+>> +static int parse_bdb_216_dp_max_link_rate(const int =
 
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-tgl-y:           NOTRUN -> [SKIP][4] ([fdo#109285])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html
+>> +vbt_max_link_rate) {
+>> +	int link_rate;
+>
+>Same here.
+>
+>With that changed this is
+>Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>
+>> +
+>> +	switch (vbt_max_link_rate) {
+>> +	default:
+>> +	case BDB_216_VBT_DP_MAX_LINK_RATE_HBR3:
+>> +		link_rate =3D 810000;
+>> +		break;
+>> +	case BDB_216_VBT_DP_MAX_LINK_RATE_HBR2:
+>> +		link_rate =3D 540000;
+>> +		break;
+>> +	case BDB_216_VBT_DP_MAX_LINK_RATE_HBR:
+>> +		link_rate =3D 270000;
+>> +		break;
+>> +	case BDB_216_VBT_DP_MAX_LINK_RATE_LBR:
+>> +		link_rate =3D 162000;
+>> +		break;
+>> +	}
+>> +
+>> +	return link_rate;
+>> +}
+>> +
+>>  static void parse_ddi_port(struct drm_i915_private *dev_priv,
+>>  			   struct display_device_data *devdata,
+>>  			   u8 bdb_version)
+>> @@ -1884,21 +1942,11 @@ static void parse_ddi_port(struct =
 
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           NOTRUN -> [DMESG-WARN][5] ([i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+>> drm_i915_private *dev_priv,
+>>  =
 
-  
-#### Possible fixes ####
+>>  	/* DP max link rate for CNL+ */
+>>  	if (bdb_version >=3D 216) {
+>> -		switch (child->dp_max_link_rate) {
+>> -		default:
+>> -		case VBT_DP_MAX_LINK_RATE_HBR3:
+>> -			info->dp_max_link_rate =3D 810000;
+>> -			break;
+>> -		case VBT_DP_MAX_LINK_RATE_HBR2:
+>> -			info->dp_max_link_rate =3D 540000;
+>> -			break;
+>> -		case VBT_DP_MAX_LINK_RATE_HBR:
+>> -			info->dp_max_link_rate =3D 270000;
+>> -			break;
+>> -		case VBT_DP_MAX_LINK_RATE_LBR:
+>> -			info->dp_max_link_rate =3D 162000;
+>> -			break;
+>> -		}
+>> +		if (bdb_version >=3D 230)
+>> +			info->dp_max_link_rate =3D parse_bdb_230_dp_max_link_rate(child->dp_=
+max_link_rate);
+>> +		else
+>> +			info->dp_max_link_rate =3D =
 
-  * igt@i915_selftest@live@blt:
-    - fi-snb-2520m:       [DMESG-FAIL][6] -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9783/fi-snb-2520m/igt@i915_selftest@live@blt.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-snb-2520m/igt@i915_selftest@live@blt.html
+>> +parse_bdb_216_dp_max_link_rate(child->dp_max_link_rate);
+>> +
+>>  		drm_dbg_kms(&dev_priv->drm,
+>>  			    "Port %c VBT DP max link rate: %d\n",
+>>  			    port_name(port), info->dp_max_link_rate); diff --git =
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+>> a/drivers/gpu/drm/i915/display/intel_vbt_defs.h =
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109289]: https://bugs.freedesktop.org/show_bug.cgi?id=109289
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1759]: https://gitlab.freedesktop.org/drm/intel/issues/1759
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
-  [i915#2582]: https://gitlab.freedesktop.org/drm/intel/issues/2582
-  [i915#3004]: https://gitlab.freedesktop.org/drm/intel/issues/3004
-  [i915#3005]: https://gitlab.freedesktop.org/drm/intel/issues/3005
-  [i915#3011]: https://gitlab.freedesktop.org/drm/intel/issues/3011
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3013]: https://gitlab.freedesktop.org/drm/intel/issues/3013
-  [i915#3014]: https://gitlab.freedesktop.org/drm/intel/issues/3014
-  [i915#3015]: https://gitlab.freedesktop.org/drm/intel/issues/3015
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+>> b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+>> index 6d10fa037751..0d80b04b34be 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+>> @@ -343,10 +343,21 @@ enum vbt_gmbus_ddi {  #define DP_AUX_H 0x80  =
 
+>> #define DP_AUX_I 0x90
+>>  =
 
-Participating hosts (42 -> 40)
-------------------------------
+>> -#define VBT_DP_MAX_LINK_RATE_HBR3	0
+>> -#define VBT_DP_MAX_LINK_RATE_HBR2	1
+>> -#define VBT_DP_MAX_LINK_RATE_HBR	2
+>> -#define VBT_DP_MAX_LINK_RATE_LBR	3
+>> +/* DP max link rate 216+ */
+>> +#define BDB_216_VBT_DP_MAX_LINK_RATE_HBR3	0
+>> +#define BDB_216_VBT_DP_MAX_LINK_RATE_HBR2	1
+>> +#define BDB_216_VBT_DP_MAX_LINK_RATE_HBR	2
+>> +#define BDB_216_VBT_DP_MAX_LINK_RATE_LBR	3
+>> +
+>> +/* DP max link rate 230+ */
+>> +#define BDB_230_VBT_DP_MAX_LINK_RATE_DEF	0
+>> +#define BDB_230_VBT_DP_MAX_LINK_RATE_LBR	1
+>> +#define BDB_230_VBT_DP_MAX_LINK_RATE_HBR	2
+>> +#define BDB_230_VBT_DP_MAX_LINK_RATE_HBR2	3
+>> +#define BDB_230_VBT_DP_MAX_LINK_RATE_HBR3	4
+>> +#define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR10	5
+>> +#define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR13P5	6
+>> +#define BDB_230_VBT_DP_MAX_LINK_RATE_UHBR20	7
+>>  =
 
-  Additional (2): fi-tgl-y fi-hsw-gt1 
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+>>  /*
+>>   * The child device config, aka the display device data structure, =
 
+>> provides a @@ -445,8 +456,8 @@ struct child_device_config {
+>>  	u16 dp_gpio_pin_num;					/* 195 */
+>>  	u8 dp_iboost_level:4;					/* 196 */
+>>  	u8 hdmi_iboost_level:4;					/* 196 */
+>> -	u8 dp_max_link_rate:2;					/* 216 CNL+ */
+>> -	u8 dp_max_link_rate_reserved:6;				/* 216 */
+>> +	u8 dp_max_link_rate:3;					/* 230 CNL+ */
+>> +	u8 dp_max_link_rate_reserved:5;				/* 230 */
+>>  } __packed;
+>>  =
 
-Build changes
--------------
-
-  * Linux: CI_DRM_9783 -> Patchwork_19700
-
-  CI-20190529: 20190529
-  CI_DRM_9783: 498a1b2bfd0ecf4401c2f653a82e9ae2c80c9145 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6005: b69a3c463f0aec46b19c14ac24351d292cb11c08 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19700: fa8c00f1e8a25472372da9c784892698352367ee @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fa8c00f1e8a2 drm/i915/vbt: update DP max link rate table
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/index.html
-
---===============7441977187621690217==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/vbt: update DP max link rate table (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86539/">https://patchwork.freedesktop.org/series/86539/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9783 -&gt; Patchwork_19700</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19700 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2373">i915#2373</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1759">i915#1759</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@blt:<ul>
-<li>fi-snb-2520m:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9783/fi-snb-2520m/igt@i915_selftest@live@blt.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19700/fi-snb-2520m/igt@i915_selftest@live@blt.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Additional (2): fi-tgl-y fi-hsw-gt1 <br />
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9783 -&gt; Patchwork_19700</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9783: 498a1b2bfd0ecf4401c2f653a82e9ae2c80c9145 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6005: b69a3c463f0aec46b19c14ac24351d292cb11c08 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19700: fa8c00f1e8a25472372da9c784892698352367ee @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fa8c00f1e8a2 drm/i915/vbt: update DP max link rate table</p>
-
-</body>
-</html>
-
---===============7441977187621690217==--
-
---===============0932684747==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>>  struct bdb_general_definitions {
+>> --
+>> 2.17.1
+>
+>--
+>Ville Syrj=E4l=E4
+>Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0932684747==--
