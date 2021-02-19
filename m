@@ -1,32 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C10D32016A
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Feb 2021 23:40:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D6432017E
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Feb 2021 23:59:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 243C16E0CC;
-	Fri, 19 Feb 2021 22:40:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 224B16E0F8;
+	Fri, 19 Feb 2021 22:59:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B0ED6E0CB;
- Fri, 19 Feb 2021 22:40:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 621F7A47E2;
- Fri, 19 Feb 2021 22:40:16 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD3876E0F8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Feb 2021 22:59:27 +0000 (UTC)
+IronPort-SDR: 9I7rCahDh9xZHm6fzTiqCj8nILphX9vgBknWdzKZOzLfHcDVcTrdP2r5SUvINvfSEyZiaLWzqZ
+ ZLzaQryNdNDQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9900"; a="180475582"
+X-IronPort-AV: E=Sophos;i="5.81,191,1610438400"; d="scan'208";a="180475582"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2021 14:59:27 -0800
+IronPort-SDR: AWDqcz5aNrLMlSfE/jADiJ87e1OB9HgLGeULywBPWsNAYDKLrsPZJ27RPCAOax6TNbUX9KSxBF
+ +5f4vN5edIyQ==
+X-IronPort-AV: E=Sophos;i="5.81,191,1610438400"; d="scan'208";a="591048457"
+Received: from anmitta2-mobl2.gar.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.128.21])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2021 14:59:26 -0800
+Date: Fri, 19 Feb 2021 14:59:26 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Winkler, Tomas" <tomas.winkler@intel.com>
+Message-ID: <20210219225926.ldwxla7b6bppx6dz@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20210216181925.650082-1-tomas.winkler@intel.com>
+ <20210216181925.650082-4-tomas.winkler@intel.com>
+ <87blcjarof.fsf@intel.com>
+ <b08989f480564bbea5ce187797e9e30b@intel.com>
+ <20210218094916.brm7j62if573xu5c@ldmartin-desk1>
+ <23876b68716b4c5085145b54029b90bc@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Fri, 19 Feb 2021 22:40:16 -0000
-Message-ID: <161377441637.703.9643932706529372864@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210219215326.2227596-1-lyude@redhat.com>
-In-Reply-To: <20210219215326.2227596-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Use_new_DRM_printk_funcs_=28like_drm=5Fdbg=5F*=28=29=29_in_?=
- =?utf-8?q?DP_helpers?=
+Content-Disposition: inline
+In-Reply-To: <23876b68716b4c5085145b54029b90bc@intel.com>
+Subject: Re: [Intel-gfx] [RFC PATCH 3/9] drm/i915/spi: add driver for on-die
+ spi device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,241 +54,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0274540102=="
+Cc: Vignesh Raghavendra <vigneshr@ti.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
+ Alexander" <alexander.usyskin@intel.com>,
+ "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>, "Lubart,
+ Vitaly" <vitaly.lubart@intel.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0274540102==
-Content-Type: multipart/alternative;
- boundary="===============1129451205807142451=="
+On Thu, Feb 18, 2021 at 10:06:08PM -0800, Winkler, Tomas wrote:
+>
+>>
+>> On Wed, Feb 17, 2021 at 08:58:12PM +0000, Winkler, Tomas wrote:
+>> >>
+>> >> On Tue, 16 Feb 2021, Tomas Winkler <tomas.winkler@intel.com> wrote:
+>> >> > Add the platform driver for i915 on-die spi device, exposed via mfd
+>> >> > framework.
+>> >> >
+>> >> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> >> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> >> > Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+>> >> > ---
+>> >> >  drivers/gpu/drm/i915/Kconfig             |   2 +
+>> >> >  drivers/gpu/drm/i915/Makefile            |   3 +
+>> >> >  drivers/gpu/drm/i915/spi/intel_spi_drv.c | 116
+>> >> > +++++++++++++++++++++++
+>> >> >  3 files changed, 121 insertions(+)  create mode 100644
+>> >> > drivers/gpu/drm/i915/spi/intel_spi_drv.c
+>> >> >
+>> >> > diff --git a/drivers/gpu/drm/i915/Kconfig
+>> >> > b/drivers/gpu/drm/i915/Kconfig index abcaa8da45ac..13c870e5878e
+>> >> > 100644
+>> >> > --- a/drivers/gpu/drm/i915/Kconfig
+>> >> > +++ b/drivers/gpu/drm/i915/Kconfig
+>> >> > @@ -27,6 +27,8 @@ config DRM_I915
+>> >> >  	select CEC_CORE if CEC_NOTIFIER
+>> >> >  	select VMAP_PFN
+>> >> >  	select MFD_CORE
+>> >> > +	select MTD
+>> >>
+>> >> Selecting MTD does not seem to be a popular thing to do, which is
+>> >> usually a clue it's probably the wrong thing to do.
+>> >Depends, if it is not selected you'll end with wrongly configured system.
+>>
+>> no. I believe the idea is that having a CONFIG_I915_SPI, you could do
+>>
+>> 	depends on MTD
+>>
+>> like the other drivers doing similar thing:
+>>
+>> 	git grep MTD -- ':(exclude)drivers/mtd' ':(exclude)arch/' '*Kconfig'
+> I know the pattern and it can be done, the issue is that mtd is used mostly in embedded systems so it is not selected by the desktop distros.
+>The intel spi both on PCH and in GFX takes this into different direction and usage.
 
---===============1129451205807142451==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+humn... but then we have a problem here. You're saying most of the
+people won't need it because it's used only for manufacturing*.
+And yet you want it to be force selected on everybody?  That
+doesn't sound like a good plan.
 
-== Series Details ==
-
-Series: drm: Use new DRM printk funcs (like drm_dbg_*()) in DP helpers
-URL   : https://patchwork.freedesktop.org/series/87242/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9790 -> Patchwork_19705
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19705 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@prime_self_import@basic-with_two_bos:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9790/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@blt:
-    - fi-snb-2600:        [DMESG-FAIL][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9790/fi-snb-2600/igt@i915_selftest@live@blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/fi-snb-2600/igt@i915_selftest@live@blt.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6] +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9790/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+Lucas De Marchi
 
 
-Participating hosts (46 -> 40)
-------------------------------
+* it may actually also be useful for kernel developers too, to dump its
+content and validate the parser, help debug other systems, etc.
 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-ehl-2 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9790 -> Patchwork_19705
-
-  CI-20190529: 20190529
-  CI_DRM_9790: 69dc278989ce4d39a40a29cc678bcf0072e016e0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6009: a4dccf189b34a55338feec9927dac57c467c4100 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19705: 1c0133c9bcf08dc840387bf0c004208062e852cd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1c0133c9bcf0 drm/dp_mst: Convert drm_dp_mst_topology.c to drm_err()/drm_dbg*()
-616d97c8c5fb drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using drm_err/drm_dbg_kms()
-b215e53e3ce2 drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_*()
-14a0b6c29fc7 drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()
-6fe319f1b8e8 drm/dp_dual_mode: Pass drm_device to drm_lspcon_(get|set)_mode()
-b610ae839ecd drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_get_tmds_output()
-cdcd6958912f drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_max_tmds_clock()
-92e948ca8cba drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_set_tmds_output()
-c7df16b9d24e drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()
-dec2312b34cc drm/dp: Always print aux channel name in logs
-6853812a6368 drm/dp: Pass drm_dp_aux to drm_dp*_link_train_channel_eq_delay()
-d1b3270dba59 drm/dp: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()
-815fe1b4dd16 drm/print: Fixup DRM_DEBUG_KMS_RATELIMITED()
-743613ba9017 drm/dp: Clarify DP AUX registration time
-886105588723 drm/dp: Rewrap drm_dp_aux_register()/drm_dp_aux_init() kdocs
-89eb0e9ca1fc drm/dp: Add backpointer to drm_device in drm_dp_aux
-011332737c0f drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late register/early unregister
-f6c80edbe8f6 drm/bridge/analogix/dp_core: Unregister DP AUX channel on error in analogix_dp_probe()
-3700184db2e5 drm/bridge/analogix/anx6345: Cleanup on errors in anx6345_bridge_attach()
-93ea935d7e82 drm/bridge/analogix/anx6345: Don't link encoder until after connector registration
-a791371e1b1f drm/bridge/analogix/anx6345: Add missing drm_dp_aux_unregister() call
-95ef631558ad drm/bridge/analogix/anx78xx: Cleanup on error in anx78xx_bridge_attach()
-331d6a7a89db drm/bridge/analogix/anx78xx: Setup encoder before registering connector
-b69f1f6665a8 drm/bridge/analogix/anx78xx: Add missing drm_dp_aux_unregister() call
-bd0cb165e99c drm/bridge/ti-sn65dsi86: (Un)register aux device on bridge attach/detach
-466a8724aac1 drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace
-4477471e11d3 drm/bridge/tc358767: Don't register DP AUX channel until bridge is attached
-76de8b506bb5 drm/tegra: Don't register DP AUX channels before connectors
-59ab34a09514 drm/dp: Fixup kernel docs for struct drm_dp_aux
-ce207403b6ba drm/dp: Rewrap kdocs for struct drm_dp_aux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/index.html
-
---===============1129451205807142451==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Use new DRM printk funcs (like drm_dbg_*()) in DP helpers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87242/">https://patchwork.freedesktop.org/series/87242/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9790 -&gt; Patchwork_19705</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19705 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_two_bos:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9790/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@blt:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9790/fi-snb-2600/igt@i915_selftest@live@blt.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/fi-snb-2600/igt@i915_selftest@live@blt.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9790/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19705/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (46 -&gt; 40)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-ehl-2 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9790 -&gt; Patchwork_19705</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9790: 69dc278989ce4d39a40a29cc678bcf0072e016e0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6009: a4dccf189b34a55338feec9927dac57c467c4100 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19705: 1c0133c9bcf08dc840387bf0c004208062e852cd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>1c0133c9bcf0 drm/dp_mst: Convert drm_dp_mst_topology.c to drm_err()/drm_dbg<em>()<br />
-616d97c8c5fb drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using drm_err/drm_dbg_kms()<br />
-b215e53e3ce2 drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_</em>()<br />
-14a0b6c29fc7 drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()<br />
-6fe319f1b8e8 drm/dp_dual_mode: Pass drm_device to drm_lspcon_(get|set)_mode()<br />
-b610ae839ecd drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_get_tmds_output()<br />
-cdcd6958912f drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_max_tmds_clock()<br />
-92e948ca8cba drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_set_tmds_output()<br />
-c7df16b9d24e drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()<br />
-dec2312b34cc drm/dp: Always print aux channel name in logs<br />
-6853812a6368 drm/dp: Pass drm_dp_aux to drm_dp*_link_train_channel_eq_delay()<br />
-d1b3270dba59 drm/dp: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()<br />
-815fe1b4dd16 drm/print: Fixup DRM_DEBUG_KMS_RATELIMITED()<br />
-743613ba9017 drm/dp: Clarify DP AUX registration time<br />
-886105588723 drm/dp: Rewrap drm_dp_aux_register()/drm_dp_aux_init() kdocs<br />
-89eb0e9ca1fc drm/dp: Add backpointer to drm_device in drm_dp_aux<br />
-011332737c0f drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late register/early unregister<br />
-f6c80edbe8f6 drm/bridge/analogix/dp_core: Unregister DP AUX channel on error in analogix_dp_probe()<br />
-3700184db2e5 drm/bridge/analogix/anx6345: Cleanup on errors in anx6345_bridge_attach()<br />
-93ea935d7e82 drm/bridge/analogix/anx6345: Don't link encoder until after connector registration<br />
-a791371e1b1f drm/bridge/analogix/anx6345: Add missing drm_dp_aux_unregister() call<br />
-95ef631558ad drm/bridge/analogix/anx78xx: Cleanup on error in anx78xx_bridge_attach()<br />
-331d6a7a89db drm/bridge/analogix/anx78xx: Setup encoder before registering connector<br />
-b69f1f6665a8 drm/bridge/analogix/anx78xx: Add missing drm_dp_aux_unregister() call<br />
-bd0cb165e99c drm/bridge/ti-sn65dsi86: (Un)register aux device on bridge attach/detach<br />
-466a8724aac1 drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace<br />
-4477471e11d3 drm/bridge/tc358767: Don't register DP AUX channel until bridge is attached<br />
-76de8b506bb5 drm/tegra: Don't register DP AUX channels before connectors<br />
-59ab34a09514 drm/dp: Fixup kernel docs for struct drm_dp_aux<br />
-ce207403b6ba drm/dp: Rewrap kdocs for struct drm_dp_aux</p>
-
-</body>
-</html>
-
---===============1129451205807142451==--
-
---===============0274540102==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+>Thanks
+>Tomas
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0274540102==--
