@@ -1,64 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E494B31F4F9
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Feb 2021 07:06:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 480E431F54D
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Feb 2021 08:13:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA4036E30D;
-	Fri, 19 Feb 2021 06:06:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0B006E8A1;
+	Fri, 19 Feb 2021 07:13:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2309B6E30D
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Feb 2021 06:06:13 +0000 (UTC)
-IronPort-SDR: W9zYnaRhPqzGaGi5aZtgrkzoQDkwO34GMZrnKHP0EsMYHG5I0P7ioPAP8YQECD31yMXKahGjCF
- /sxbowZrZlEg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9899"; a="245198615"
-X-IronPort-AV: E=Sophos;i="5.81,189,1610438400"; d="scan'208";a="245198615"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2A66E8A1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Feb 2021 07:13:11 +0000 (UTC)
+IronPort-SDR: 7ko2yHF7TY3O1VCZJb3R+QlP6TPqM46T+fdczM+gZsKlVtHu3EW7wgcMpz3PBHKG3FCOucjrkw
+ BALd5P7ZKsSA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9899"; a="163542487"
+X-IronPort-AV: E=Sophos;i="5.81,189,1610438400"; d="scan'208";a="163542487"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2021 22:06:12 -0800
-IronPort-SDR: llnJFfyEqocWfcNAMxYYZ5cN66L+Fpki96CW5085hOOAah9Q2j4iECLIdyBn62w5BWQAGjSeg8
- n5Iri5ePGS0g==
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2021 23:13:11 -0800
+IronPort-SDR: FVUMf48OX9g5A4MNhvH+tImg1c8Xm1EZKBfMFQTan18WQ1CpRwCJJDc06jx5kjTPMIwQAaZ64R
+ abIFcR/Gtrug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,189,1610438400"; d="scan'208";a="581571758"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga005.jf.intel.com with ESMTP; 18 Feb 2021 22:06:12 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 18 Feb 2021 22:06:11 -0800
-Received: from hasmsx602.ger.corp.intel.com (10.184.107.142) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 18 Feb 2021 22:06:10 -0800
-Received: from hasmsx602.ger.corp.intel.com ([10.184.107.142]) by
- HASMSX602.ger.corp.intel.com ([10.184.107.142]) with mapi id 15.01.2106.002;
- Fri, 19 Feb 2021 08:06:08 +0200
-From: "Winkler, Tomas" <tomas.winkler@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [Intel-gfx] [RFC PATCH 3/9] drm/i915/spi: add driver for on-die
- spi device
-Thread-Index: AQHXBJBcj4Goi4XIwEe9K9Ji08dc+apcDHIAgADGOPCAALlRAIAAJMVw
-Date: Fri, 19 Feb 2021 06:06:08 +0000
-Message-ID: <23876b68716b4c5085145b54029b90bc@intel.com>
-References: <20210216181925.650082-1-tomas.winkler@intel.com>
- <20210216181925.650082-4-tomas.winkler@intel.com> <87blcjarof.fsf@intel.com>
- <b08989f480564bbea5ce187797e9e30b@intel.com>
- <20210218094916.brm7j62if573xu5c@ldmartin-desk1>
-In-Reply-To: <20210218094916.brm7j62if573xu5c@ldmartin-desk1>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.22.254.132]
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH 3/9] drm/i915/spi: add driver for on-die
- spi device
+X-IronPort-AV: E=Sophos;i="5.81,189,1610438400"; d="scan'208";a="581585238"
+Received: from crazyhost.itwn.intel.com ([10.5.218.110])
+ by orsmga005.jf.intel.com with ESMTP; 18 Feb 2021 23:13:10 -0800
+From: Gary C Wang <gary.c.wang@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 19 Feb 2021 15:06:31 +0800
+Message-Id: <20210219070631.19853-1-gary.c.wang@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915: enhance legacy HPD disconnection flow
+ for 4K pipe compute in GLK
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,64 +44,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Vignesh
- Raghavendra <vigneshr@ti.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
- Alexander" <alexander.usyskin@intel.com>,
- "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>, "Lubart,
- Vitaly" <vitaly.lubart@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+HDMI PHY is not available to use when its HDMI disaply plug-in, and power-off
+then power-on as soon as getting a hotplug. In above cases where there's a HDMI
+connector physically connected but it can't be used by GLK with 4K pipe then blank
+screen (lacking of edid-update & mode-probing) then need return false, since the
+rest of the driver should pretty much treat the port as disconnected.
 
-> 
-> On Wed, Feb 17, 2021 at 08:58:12PM +0000, Winkler, Tomas wrote:
-> >>
-> >> On Tue, 16 Feb 2021, Tomas Winkler <tomas.winkler@intel.com> wrote:
-> >> > Add the platform driver for i915 on-die spi device, exposed via mfd
-> >> > framework.
-> >> >
-> >> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> > Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/Kconfig             |   2 +
-> >> >  drivers/gpu/drm/i915/Makefile            |   3 +
-> >> >  drivers/gpu/drm/i915/spi/intel_spi_drv.c | 116
-> >> > +++++++++++++++++++++++
-> >> >  3 files changed, 121 insertions(+)  create mode 100644
-> >> > drivers/gpu/drm/i915/spi/intel_spi_drv.c
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/Kconfig
-> >> > b/drivers/gpu/drm/i915/Kconfig index abcaa8da45ac..13c870e5878e
-> >> > 100644
-> >> > --- a/drivers/gpu/drm/i915/Kconfig
-> >> > +++ b/drivers/gpu/drm/i915/Kconfig
-> >> > @@ -27,6 +27,8 @@ config DRM_I915
-> >> >  	select CEC_CORE if CEC_NOTIFIER
-> >> >  	select VMAP_PFN
-> >> >  	select MFD_CORE
-> >> > +	select MTD
-> >>
-> >> Selecting MTD does not seem to be a popular thing to do, which is
-> >> usually a clue it's probably the wrong thing to do.
-> >Depends, if it is not selected you'll end with wrongly configured system.
-> 
-> no. I believe the idea is that having a CONFIG_I915_SPI, you could do
-> 
-> 	depends on MTD
-> 
-> like the other drivers doing similar thing:
-> 
-> 	git grep MTD -- ':(exclude)drivers/mtd' ':(exclude)arch/' '*Kconfig'
- I know the pattern and it can be done, the issue is that mtd is used mostly in embedded systems so it is not selected by the desktop distros.
-The intel spi both on PCH and in GFX takes this into different direction and usage.
+As previous result, handshaking through is required around connect and disconnect.
+Otherwise it would be in a inconsistent state as port is disconnected but with a
+valid HDMI type.
 
-Thanks
-Tomas
+Also setting it to return HDMI disconnect for any future calls to
+intel_digital_port_connected(), this way we don't need to check if port is marked
+as safe everytime.
+
+References: https://gitlab.freedesktop.org/drm/intel/-/issues/3092
+Test-steps: setup HDMI 4K@60Hz in GLK then to power monitor off then on to get display
+recovery correctly
+
+Tested-by: Gary C Wang <gary.c.wang@intel.com>
+Reviewed-by: Gordon Sylin <gordon.sylin@intel.com>
+Signed-off-by: Gary C Wang <gary.c.wang@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 7f384f259fc8..039cdbfe71a0 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2705,7 +2705,7 @@ intel_hdmi_detect(struct drm_connector *connector, bool force)
+ 
+ 	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_GMBUS);
+ 
+-	if (INTEL_GEN(dev_priv) >= 11 &&
++	if ((INTEL_GEN(dev_priv) >= 11 || IS_GEMINILAKE(dev_priv)) &&
+ 	    !intel_digital_port_connected(encoder))
+ 		goto out;
+ 
+-- 
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
