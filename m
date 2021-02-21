@@ -2,65 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D195D320689
-	for <lists+intel-gfx@lfdr.de>; Sat, 20 Feb 2021 18:56:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8213320840
+	for <lists+intel-gfx@lfdr.de>; Sun, 21 Feb 2021 05:18:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07E7C6E1E8;
-	Sat, 20 Feb 2021 17:56:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D2DE6E8F8;
+	Sun, 21 Feb 2021 04:18:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 790246E1E8
- for <intel-gfx@lists.freedesktop.org>; Sat, 20 Feb 2021 17:56:24 +0000 (UTC)
-IronPort-SDR: 5pigb859txssLZXmKW+F8wZ9WBbXS1o/CXZR8koq7iDHKmOJZrVPin/Us4yMrfWIoEEXy/pvZ/
- nyol0ocYjGgg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9901"; a="171245626"
-X-IronPort-AV: E=Sophos;i="5.81,193,1610438400"; d="scan'208";a="171245626"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2021 09:56:23 -0800
-IronPort-SDR: 64IZRj4XcA7JeOQeVSxnh7Paj02UWEJlMG/3ngHRO1a2fasVDRqaufgMEFGs19i7sNYxP7GocW
- Xo6XeN1L4gSA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,193,1610438400"; d="scan'208";a="387841258"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by fmsmga008.fm.intel.com with ESMTP; 20 Feb 2021 09:56:23 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Sat, 20 Feb 2021 09:56:22 -0800
-Received: from hasmsx602.ger.corp.intel.com (10.184.107.142) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Sat, 20 Feb 2021 09:56:21 -0800
-Received: from hasmsx602.ger.corp.intel.com ([10.184.107.142]) by
- HASMSX602.ger.corp.intel.com ([10.184.107.142]) with mapi id 15.01.2106.002;
- Sat, 20 Feb 2021 19:56:19 +0200
-From: "Winkler, Tomas" <tomas.winkler@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [Intel-gfx] [RFC PATCH 3/9] drm/i915/spi: add driver for on-die
- spi device
-Thread-Index: AQHXBJBcj4Goi4XIwEe9K9Ji08dc+apcDHIAgADGOPCAALlRAIAAJMVwgAJKVQCAAVwC4A==
-Date: Sat, 20 Feb 2021 17:56:19 +0000
-Message-ID: <6f49005359df46328226498724eecbcc@intel.com>
-References: <20210216181925.650082-1-tomas.winkler@intel.com>
- <20210216181925.650082-4-tomas.winkler@intel.com> <87blcjarof.fsf@intel.com>
- <b08989f480564bbea5ce187797e9e30b@intel.com>
- <20210218094916.brm7j62if573xu5c@ldmartin-desk1>
- <23876b68716b4c5085145b54029b90bc@intel.com>
- <20210219225926.ldwxla7b6bppx6dz@ldmartin-desk1>
-In-Reply-To: <20210219225926.ldwxla7b6bppx6dz@ldmartin-desk1>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.184.70.1]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 02F446E8F7;
+ Sun, 21 Feb 2021 04:18:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DD903A47EB;
+ Sun, 21 Feb 2021 04:18:29 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH 3/9] drm/i915/spi: add driver for on-die
- spi device
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Sun, 21 Feb 2021 04:18:29 -0000
+Message-ID: <161388110987.24231.14192881008121256844@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210204020400.29628-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/vblank=3A_Avoid_storing_a_timestamp_for_the_same_frame_twice_?=
+ =?utf-8?b?KHJldjMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,84 +39,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Vignesh
- Raghavendra <vigneshr@ti.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
- Alexander" <alexander.usyskin@intel.com>,
- "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>, "Lubart,
- Vitaly" <vitaly.lubart@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0029746237=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0029746237==
+Content-Type: multipart/alternative;
+ boundary="===============5347059404401431864=="
+
+--===============5347059404401431864==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/vblank: Avoid storing a timestamp for the same frame twice (rev3)
+URL   : https://patchwork.freedesktop.org/series/86672/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9791 -> Patchwork_19711
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19711 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_basic@userptr:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [INCOMPLETE][3] ([i915#142] / [i915#2405]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9791/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [INCOMPLETE][5] ([i915#2940]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9791/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1222]: https://gitlab.freedesktop.org/drm/intel/issues/1222
+  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
 
 
-> On Thu, Feb 18, 2021 at 10:06:08PM -0800, Winkler, Tomas wrote:
-> >
-> >>
-> >> On Wed, Feb 17, 2021 at 08:58:12PM +0000, Winkler, Tomas wrote:
-> >> >>
-> >> >> On Tue, 16 Feb 2021, Tomas Winkler <tomas.winkler@intel.com>
-> wrote:
-> >> >> > Add the platform driver for i915 on-die spi device, exposed via
-> >> >> > mfd framework.
-> >> >> >
-> >> >> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >> >> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> >> > Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-> >> >> > ---
-> >> >> >  drivers/gpu/drm/i915/Kconfig             |   2 +
-> >> >> >  drivers/gpu/drm/i915/Makefile            |   3 +
-> >> >> >  drivers/gpu/drm/i915/spi/intel_spi_drv.c | 116
-> >> >> > +++++++++++++++++++++++
-> >> >> >  3 files changed, 121 insertions(+)  create mode 100644
-> >> >> > drivers/gpu/drm/i915/spi/intel_spi_drv.c
-> >> >> >
-> >> >> > diff --git a/drivers/gpu/drm/i915/Kconfig
-> >> >> > b/drivers/gpu/drm/i915/Kconfig index abcaa8da45ac..13c870e5878e
-> >> >> > 100644
-> >> >> > --- a/drivers/gpu/drm/i915/Kconfig
-> >> >> > +++ b/drivers/gpu/drm/i915/Kconfig
-> >> >> > @@ -27,6 +27,8 @@ config DRM_I915
-> >> >> >  	select CEC_CORE if CEC_NOTIFIER
-> >> >> >  	select VMAP_PFN
-> >> >> >  	select MFD_CORE
-> >> >> > +	select MTD
-> >> >>
-> >> >> Selecting MTD does not seem to be a popular thing to do, which is
-> >> >> usually a clue it's probably the wrong thing to do.
-> >> >Depends, if it is not selected you'll end with wrongly configured system.
-> >>
-> >> no. I believe the idea is that having a CONFIG_I915_SPI, you could do
-> >>
-> >> 	depends on MTD
-> >>
-> >> like the other drivers doing similar thing:
-> >>
-> >> 	git grep MTD -- ':(exclude)drivers/mtd' ':(exclude)arch/' '*Kconfig'
-> > I know the pattern and it can be done, the issue is that mtd is used mostly
-> in embedded systems so it is not selected by the desktop distros.
-> >The intel spi both on PCH and in GFX takes this into different direction and
-> usage.
-> 
-> humn... but then we have a problem here. You're saying most of the people
-> won't need it because it's used only for manufacturing*.
-> And yet you want it to be force selected on everybody?  That doesn't sound
-> like a good plan.
-It depends, whether manufacturing is done on shipping OS or not, both approaches are in use.
-One approach for the first case can be that the distro prevent the module loading via modprobe.d 
-and it's forcefully loaded during manufacturing.  Still it should be compiled and signed.
-> 
-> Lucas De Marchi
-> 
-> 
-> * it may actually also be useful for kernel developers too, to dump its content
-> and validate the parser, help debug other systems, etc.
-True.
+Participating hosts (45 -> 40)
+------------------------------
+
+  Additional (1): fi-ehl-2 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9791 -> Patchwork_19711
+
+  CI-20190529: 20190529
+  CI_DRM_9791: c1991e1c98008d13d9773744a9f9da0884644917 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6009: a4dccf189b34a55338feec9927dac57c467c4100 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19711: 201c60e18cf69bd374d5c01f894d129ac7f1d170 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+201c60e18cf6 drm/vblank: Do not store a new vblank timestamp in drm_vblank_restore()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/index.html
+
+--===============5347059404401431864==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/vblank: Avoid storing a timestamp for the same frame twice (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/86672/">https://patchwork.freedesktop.org/series/86672/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9791 -&gt; Patchwork_19711</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19711 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@userptr:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/fi-byt-j1900/igt@amdgpu/amd_basic@userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9791/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9791/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19711/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 40)</h2>
+<p>Additional (1): fi-ehl-2 <br />
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9791 -&gt; Patchwork_19711</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9791: c1991e1c98008d13d9773744a9f9da0884644917 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6009: a4dccf189b34a55338feec9927dac57c467c4100 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19711: 201c60e18cf69bd374d5c01f894d129ac7f1d170 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>201c60e18cf6 drm/vblank: Do not store a new vblank timestamp in drm_vblank_restore()</p>
+
+</body>
+</html>
+
+--===============5347059404401431864==--
+
+--===============0029746237==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0029746237==--
