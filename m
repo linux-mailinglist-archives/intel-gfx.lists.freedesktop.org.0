@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB4032108A
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 06:50:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D7D8321092
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 06:57:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74D926E4B7;
-	Mon, 22 Feb 2021 05:50:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7BB789DE1;
+	Mon, 22 Feb 2021 05:57:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8657F6E4B7
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 05:50:08 +0000 (UTC)
-IronPort-SDR: g6bpt7nKnECYSpAyxWhTfCnxMQcI/0BSZNoi/u4hJa+uKf94BnJGJV5csh3FL6497eK6Ds0uYk
- bA4/dfWXOjXw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9902"; a="184400078"
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="184400078"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2021 21:50:07 -0800
-IronPort-SDR: zmHYPod7H0BGhvbvgEiMYlTmf4s8oPpdp3WGJk5UWDGu0CCd1F7y0zrwbbZ4oE//EmgabhfJsu
- jwBF+Dam4jMw==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98B1F89DE1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 05:57:07 +0000 (UTC)
+IronPort-SDR: VdKMx6IQ/d1kl/h9cbaMsLR62dZHb0C/bxl72sCS2QD/IlhZ2B373KnhMKximKWfA9YBMjNdIl
+ ZaqHJPTL4F0w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9902"; a="164178302"
+X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="164178302"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2021 21:57:07 -0800
+IronPort-SDR: 3Ycpc0WXYN3KZTrbLOGxQnNTKW+AcTMWaCly8by0KHY1I+8iKxBU4LFb3X4q8kCXs0PzgaomAh
+ VLJvIPaAyc1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="595832833"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
- by fmsmga005.fm.intel.com with ESMTP; 21 Feb 2021 21:50:07 -0800
+X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="441273193"
+Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
+ by orsmga001.jf.intel.com with ESMTP; 21 Feb 2021 21:57:05 -0800
 Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
+ irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 22 Feb 2021 05:50:05 +0000
+ 15.1.2106.2; Mon, 22 Feb 2021 05:57:03 +0000
 Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
  BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
- Mon, 22 Feb 2021 11:20:04 +0530
+ Mon, 22 Feb 2021 11:27:00 +0530
 From: "Shankar, Uma" <uma.shankar@intel.com>
 To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 3/9] drm/i915/edp: always add fixed mode
- to probed modes in ->get_modes()
-Thread-Index: AQHXAIW1BGbhcSY9wk+JVVUqmndUVKpjuVNA
-Date: Mon, 22 Feb 2021 05:50:04 +0000
-Message-ID: <227b96fb46eb4696968d5b6222f78b67@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v3 4/9] drm/i915/edp: read sink MSO
+ configuration for eDP 1.4+
+Thread-Index: AQHXAIW0Is+QbKfVf0ym/a0VoLnJ/6pjvL6Q
+Date: Mon, 22 Feb 2021 05:57:00 +0000
+Message-ID: <fbce25a5e730455d9e5b82197620f72f@intel.com>
 References: <cover.1613054234.git.jani.nikula@intel.com>
- <6979f123f3e4ed948333f1b181202bbced3c3e85.1613054234.git.jani.nikula@intel.com>
-In-Reply-To: <6979f123f3e4ed948333f1b181202bbced3c3e85.1613054234.git.jani.nikula@intel.com>
+ <24ef61574e5af12cd86d5b85afbfbd4ac2f9de25.1613054234.git.jani.nikula@intel.com>
+In-Reply-To: <24ef61574e5af12cd86d5b85afbfbd4ac2f9de25.1613054234.git.jani.nikula@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -52,8 +52,8 @@ dlp-reaction: no-action
 dlp-version: 11.5.1.3
 x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 3/9] drm/i915/edp: always add fixed mode
- to probed modes in ->get_modes()
+Subject: Re: [Intel-gfx] [PATCH v3 4/9] drm/i915/edp: read sink MSO
+ configuration for eDP 1.4+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,12 +80,19 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 > Sent: Thursday, February 11, 2021 8:22 PM
 > To: intel-gfx@lists.freedesktop.org
 > Cc: Nikula, Jani <jani.nikula@intel.com>; Varide, Nischal <nischal.varide@intel.com>
-> Subject: [Intel-gfx] [PATCH v3 3/9] drm/i915/edp: always add fixed mode to probed
-> modes in ->get_modes()
+> Subject: [Intel-gfx] [PATCH v3 4/9] drm/i915/edp: read sink MSO configuration for
+> eDP 1.4+
 > 
-> Unconditionally add fixed mode to probed modes even if EDID is present and has
-> modes. Prepare for cases where the fixed mode is not present in EDID (such as eDP
-> MSO).
+> Read and debug log the eDP sink MSO configuration. Do not actually do anything
+> with the information yet besides logging.
+> 
+> FIXME: The pixel overlap is present in DisplayID 2.0, but we don't have parsing for
+> that. Assume zero for now. We could also add quirks for non-zero pixel overlap
+> before DisplayID 2.0 parsing.
+> 
+> v3: Add placeholder for pixel overlap.
+> 
+> v2: Rename intel_dp_mso_init -> intel_edp_mso_init
 
 Looks Good to me.
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
@@ -93,68 +100,76 @@ Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 > Cc: Nischal Varide <nischal.varide@intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 16 +++++++++-------
->  1 file changed, 9 insertions(+), 7 deletions(-)
+>  .../drm/i915/display/intel_display_types.h    |  2 ++
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 33 +++++++++++++++++++
+>  2 files changed, 35 insertions(+)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index ebaa9d0ed376..71611b596c88 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1487,6 +1487,8 @@ struct intel_dp {
+>  	int max_link_lane_count;
+>  	/* Max rate for the current link */
+>  	int max_link_rate;
+> +	int mso_link_count;
+> +	int mso_pixel_overlap;
+>  	/* sink or branch descriptor */
+>  	struct drm_dp_desc desc;
+>  	struct drm_dp_aux aux;
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
 > b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 169b44c8ebbc..8d7ca03453e5 100644
+> index 8d7ca03453e5..48e65b9a967a 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5547,19 +5547,18 @@ static int intel_dp_get_modes(struct drm_connector
-> *connector)  {
->  	struct intel_connector *intel_connector = to_intel_connector(connector);
->  	struct edid *edid;
-> +	int num_modes = 0;
-> 
->  	edid = intel_connector->detect_edid;
->  	if (edid) {
-> -		int ret = intel_connector_update_modes(connector, edid);
-> +		num_modes = intel_connector_update_modes(connector, edid);
-> 
->  		if (intel_vrr_is_capable(connector))
->  			drm_connector_set_vrr_capable_property(connector,
->  							       true);
-> -		if (ret)
-> -			return ret;
+> @@ -3516,6 +3516,37 @@ static void intel_dp_get_dsc_sink_cap(struct intel_dp
+> *intel_dp)
 >  	}
-> 
-> -	/* if eDP has no EDID, fall back to fixed mode */
-> +	/* Also add fixed mode, which may or may not be present in EDID */
->  	if (intel_dp_is_edp(intel_attached_dp(intel_connector)) &&
->  	    intel_connector->panel.fixed_mode) {
->  		struct drm_display_mode *mode;
-> @@ -5568,10 +5567,13 @@ static int intel_dp_get_modes(struct drm_connector
-> *connector)
->  					  intel_connector->panel.fixed_mode);
->  		if (mode) {
->  			drm_mode_probed_add(connector, mode);
-> -			return 1;
-> +			num_modes++;
->  		}
->  	}
-> 
-> +	if (num_modes)
-> +		return num_modes;
-> +
->  	if (!edid) {
->  		struct intel_dp *intel_dp = intel_attached_dp(intel_connector);
->  		struct drm_display_mode *mode;
-> @@ -5581,11 +5583,11 @@ static int intel_dp_get_modes(struct drm_connector
-> *connector)
->  					      intel_dp->downstream_ports);
->  		if (mode) {
->  			drm_mode_probed_add(connector, mode);
-> -			return 1;
-> +			num_modes++;
->  		}
->  	}
-> 
-> -	return 0;
-> +	return num_modes;
 >  }
 > 
->  static int
+> +static void intel_edp_mso_init(struct intel_dp *intel_dp) {
+> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+> +	u8 mso;
+> +
+> +	if (intel_dp->edp_dpcd[0] < DP_EDP_14)
+> +		return;
+> +
+> +	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_EDP_MSO_LINK_CAPABILITIES,
+> &mso) != 1) {
+> +		drm_err(&i915->drm, "Failed to read MSO cap\n");
+> +		return;
+> +	}
+> +
+> +	/* Valid configurations are SST or MSO 2x1, 2x2, 4x1 */
+> +	mso &= DP_EDP_MSO_NUMBER_OF_LINKS_MASK;
+> +	if (mso % 2 || mso > drm_dp_max_lane_count(intel_dp->dpcd)) {
+> +		drm_err(&i915->drm, "Invalid MSO link count cap %u\n", mso);
+> +		mso = 0;
+> +	}
+> +
+> +	if (mso) {
+> +		drm_dbg_kms(&i915->drm, "Sink MSO %ux%u configuration\n",
+> +			    mso, drm_dp_max_lane_count(intel_dp->dpcd) / mso);
+> +		drm_err(&i915->drm, "No source MSO support, disabling\n");
+> +		mso = 0;
+> +	}
+> +
+> +	intel_dp->mso_link_count = mso;
+> +	intel_dp->mso_pixel_overlap = 0; /* FIXME: read from DisplayID v2.0 */
+> +}
+> +
+>  static bool
+>  intel_edp_init_dpcd(struct intel_dp *intel_dp)  { @@ -3599,6 +3630,8 @@
+> intel_edp_init_dpcd(struct intel_dp *intel_dp)
+>  	 */
+>  	intel_edp_init_source_oui(intel_dp, true);
+> 
+> +	intel_edp_mso_init(intel_dp);
+> +
+>  	return true;
+>  }
+> 
 > --
 > 2.20.1
 > 
