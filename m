@@ -1,61 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86BF43217EE
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 14:05:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035FE321983
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 14:58:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BCBD6E08C;
-	Mon, 22 Feb 2021 13:05:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 568176E4F4;
+	Mon, 22 Feb 2021 13:58:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com
- [IPv6:2607:f8b0:4864:20::830])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03F9C6E32F;
- Mon, 22 Feb 2021 08:20:30 +0000 (UTC)
-Received: by mail-qt1-x830.google.com with SMTP id a2so3106972qtw.12;
- Mon, 22 Feb 2021 00:20:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OEsue70XIPQEInMMkgGoF4UA9sanH7a374aFWEVWsoQ=;
- b=Dfuv3wSOf9TNSmJ+wDsYfVCQx8U0hJku/qx541DETfjJYSEr7hA95MwV1cLnCr4p9A
- ZKMNnf7KhPsUagyaP5yvxAZhGYXIAJGi4h74GRjKRr4uuNb6t1g2AYf8OwJFbm/ztFAo
- DxejTTl+a1GO2OF4hf6UnoefACroXkwkLSPtE3TpfghWy+DVW6MNXAbJP3W/TB1IKC+r
- CuzU4Ah1WHiZsIWsSt9nlfEhrayGfJROckKejkL3hcB7+rCaVwN1+H5LXQwh8C9G89eZ
- y8geH5u5QKlQg5E/dYg6Q/XJpKFSbJ2VChZTIaqHfdlj5K1gpIggx0KblPkY01JpCeJo
- 9gSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=OEsue70XIPQEInMMkgGoF4UA9sanH7a374aFWEVWsoQ=;
- b=WUfXlxSSG8+nuYWTSpCggXhz3+fXk00le+zA1tOsOxY2b3ia/95ipvqryCaIPJ5T66
- UtUnE09tjbGOQ0lTwko95Xxq22ZamUXDan4w0Y50ny94FqaggdIZ36dcllmZwXT2u5og
- SZdsj7PkjbDBOrxewIbdChqCkZc2ULrSMbt9E+Zk8CtR7uqPhSjy4VKLQUny6IAxI5nd
- yFrjqAPuwbbcCCCp2PKh4I7xbCs61etKUD3sGR2pNMnf115y64azUJlh1jPyzjjmS35i
- +09uK7315460sN2Sk0WU8gIGM4V7h89gVmyURPMOLDDIYUeJcCx6jo1Z/MjpPLmw5y1F
- EMFQ==
-X-Gm-Message-State: AOAM530nVwD44qjlqIRxXpO2Azun7VojrTPR6JtVLiyR+hyZkTolCJoH
- HsjDeHwBTpYm6xwifEC8Mgc=
-X-Google-Smtp-Source: ABdhPJw+6w74sHbYZbuUPQpqzjMte/UAu7Uu4isgDpuMj1BA2fUbg7ij1cTMu1Jdeg9pS8ny1lBxZA==
-X-Received: by 2002:ac8:37c8:: with SMTP id e8mr4003871qtc.29.1613982030073;
- Mon, 22 Feb 2021 00:20:30 -0800 (PST)
-Received: from localhost.localdomain ([143.244.44.214])
- by smtp.gmail.com with ESMTPSA id i13sm1074777qtv.95.2021.02.22.00.20.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Feb 2021 00:20:29 -0800 (PST)
-From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
-To: jani.nikula@linux.intel.com, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Mon, 22 Feb 2021 13:48:38 +0530
-Message-Id: <20210222081838.30328-1-unixbhaskar@gmail.com>
-X-Mailer: git-send-email 2.26.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AAD456E4F4;
+ Mon, 22 Feb 2021 13:57:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 818A2A41FB;
+ Mon, 22 Feb 2021 13:57:58 +0000 (UTC)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 22 Feb 2021 13:05:32 +0000
-Subject: [Intel-gfx] [PATCH] drivers: gnu: drm: i915: gvt: Fixed couple of
- spellings in the file gtt.c
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bhaskar Chowdhury" <unixbhaskar@gmail.com>
+Date: Mon, 22 Feb 2021 13:57:58 -0000
+Message-ID: <161400227849.19117.2590307457869331500@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210222081838.30328-1-unixbhaskar@gmail.com>
+In-Reply-To: <20210222081838.30328-1-unixbhaskar@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJp?=
+ =?utf-8?q?vers=3A_gnu=3A_drm=3A_i915=3A_gvt=3A_Fixed_couple_of_spellings_?=
+ =?utf-8?q?in_the_file_gtt=2Ec?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,40 +39,298 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rdunlap@infradead.org, Bhaskar Chowdhury <unixbhaskar@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1551743891=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1551743891==
+Content-Type: multipart/alternative;
+ boundary="===============6660819748964659762=="
 
-s/negtive/negative/
-s/possilbe/possible/
+--===============6660819748964659762==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
----
- drivers/gpu/drm/i915/gvt/gtt.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index 897c007ea96a..dc5834bf4de2 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.c
-+++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -1159,8 +1159,8 @@ static inline void ppgtt_generate_shadow_entry(struct intel_gvt_gtt_entry *se,
-  * @vgpu: target vgpu
-  * @entry: target pfn's gtt entry
-  *
-- * Return 1 if 2MB huge gtt shadowing is possilbe, 0 if miscondition,
-- * negtive if found err.
-+ * Return 1 if 2MB huge gtt shadowing is possible, 0 if miscondition,
-+ * negative if found err.
-  */
- static int is_2MB_gtt_possible(struct intel_vgpu *vgpu,
- 	struct intel_gvt_gtt_entry *entry)
---
-2.26.2
+Series: drivers: gnu: drm: i915: gvt: Fixed couple of spellings in the file gtt.c
+URL   : https://patchwork.freedesktop.org/series/87286/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9793 -> Patchwork_19715
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19715 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-gfx0:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [PASS][2] -> [FAIL][3] ([i915#1888])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][6] ([fdo#109271] / [i915#2190])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-byt-j1900:       [PASS][7] -> [INCOMPLETE][8] ([i915#142] / [i915#2405])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][9] -> [INCOMPLETE][10] ([i915#2940])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][11] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bxt-dsi/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][12] ([fdo#109271]) +27 similar issues
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bxt-dsi/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][13] ([fdo#109271] / [i915#533])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bxt-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][14] ([i915#1436])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bsw-nick/igt@runner@aborted.html
+    - fi-byt-j1900:       NOTRUN -> [FAIL][15] ([i915#1814] / [i915#2505])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-byt-j1900/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [INCOMPLETE][16] ([i915#2940]) -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][18] ([i915#402]) -> [PASS][19] +2 similar issues
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#142]: https://gitlab.freedesktop.org/drm/intel/issues/142
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1814]: https://gitlab.freedesktop.org/drm/intel/issues/1814
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2405]: https://gitlab.freedesktop.org/drm/intel/issues/2405
+  [i915#2505]: https://gitlab.freedesktop.org/drm/intel/issues/2505
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Additional (1): fi-bxt-dsi 
+  Missing    (3): fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9793 -> Patchwork_19715
+
+  CI-20190529: 20190529
+  CI_DRM_9793: 6c7aa00d5968abe675da4d933d6ec819fed58e69 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6010: e8fb87056cc4053dde25fe151df9ed3264adbf5a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19715: cb6bb690e37edad87de0ddbce6f71e148b625e0f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+cb6bb690e37e drivers: gnu: drm: i915: gvt: Fixed couple of spellings in the file gtt.c
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/index.html
+
+--===============6660819748964659762==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drivers: gnu: drm: i915: gvt: Fixed couple of spellings in the file gtt.c</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87286/">https://patchwork.freedesktop.org/series/87286/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9793 -&gt; Patchwork_19715</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19715 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_flink_basic@bad-flink:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-tgl-y/igt@gem_flink_basic@bad-flink.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-byt-j1900:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-byt-j1900/igt@i915_pm_rpm@module-reload.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/142">i915#142</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2405">i915#2405</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bxt-dsi/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bxt-dsi/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bxt-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</p>
+</li>
+<li>
+<p>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-byt-j1900/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1814">i915#1814</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2505">i915#2505</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19715/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Additional (1): fi-bxt-dsi <br />
+  Missing    (3): fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9793 -&gt; Patchwork_19715</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9793: 6c7aa00d5968abe675da4d933d6ec819fed58e69 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6010: e8fb87056cc4053dde25fe151df9ed3264adbf5a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19715: cb6bb690e37edad87de0ddbce6f71e148b625e0f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>cb6bb690e37e drivers: gnu: drm: i915: gvt: Fixed couple of spellings in the file gtt.c</p>
+
+</body>
+</html>
+
+--===============6660819748964659762==--
+
+--===============1551743891==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1551743891==--
