@@ -2,58 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECE7F321097
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 06:58:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FCC8321210
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 09:34:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D3636E900;
-	Mon, 22 Feb 2021 05:58:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86E9E6E4C7;
+	Mon, 22 Feb 2021 08:34:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09CBB6E900
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 05:58:57 +0000 (UTC)
-IronPort-SDR: FXCeM6VJSqr+NQeJa/h0sM6GPmAQWvJLSFSYXXdWoKv65BRNqmxJnJTk357IIrtxLUem5nnzx1
- fIle9VqZOiVg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9902"; a="269275656"
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="269275656"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2021 21:58:56 -0800
-IronPort-SDR: gNPdGXe4ck5OBR74F8TN+TZQPCB49+/KHcpO4kM45cUgtLLECZzWV/74DNkZkMUPHyjlAk4VJO
- DTQ3+IjjYzWw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="441273570"
-Received: from irsmsx602.ger.corp.intel.com ([163.33.146.8])
- by orsmga001.jf.intel.com with ESMTP; 21 Feb 2021 21:58:53 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 22 Feb 2021 05:58:51 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
- Mon, 22 Feb 2021 11:28:50 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 5/9] drm/i915/reg: add stream splitter
- configuration definitions
-Thread-Index: AQHXAIWePCTpKHQPv0aex82P5ioG0KpjvlZw
-Date: Mon, 22 Feb 2021 05:58:50 +0000
-Message-ID: <25a367036994445ea3d1c0f080f97656@intel.com>
-References: <cover.1613054234.git.jani.nikula@intel.com>
- <443ad1fbf908800ee4e09315cb6a7ba26c64d136.1613054234.git.jani.nikula@intel.com>
-In-Reply-To: <443ad1fbf908800ee4e09315cb6a7ba26c64d136.1613054234.git.jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from ozlabs.org (ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67F096E4BB;
+ Mon, 22 Feb 2021 08:34:07 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4Dkb7Z2mWSz9sRf;
+ Mon, 22 Feb 2021 19:34:02 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1613982844;
+ bh=oBVcSJQaoUWqCs4J+OvnO0YKmH7a7jV/4yZBhtbKFTs=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=fT6opzSgPrKLddFi3pWZrt+lhML/03n35pPDPevTKcLxSZ6ERibDJtwKuLxiDR95C
+ X9zKPK3ct6wDfR53M4JNFhPNO3YfElD+CWFv51WtW4E10EkS5hrV5OVtXRp887zW+x
+ SULdCblu46YJxBkGQfLNEk5UMestEAg51lzbxmNSVXruphcCT66pOgmpSCsTwLhLwh
+ Pnx2Ek3WiQHGVfVrlaDQHTJ0h0YqcbwYQ81//3RuQ/PshfVjcVeeotmgEKvW7xiuDE
+ 66WIgKRZS0Abtf9lwjQnKUBRLOw5nPCKBcIYgJlHbUWM5s3Yl3c3sY3QMOu+GABPNL
+ nyVz4W11g3e9A==
+Date: Mon, 22 Feb 2021 19:34:01 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: "Rafael J. Wysocki" <rjw@rjwysocki.net>, Hans de Goede
+ <hdegoede@redhat.com>, Mark Gross <mark.gross@intel.com>
+Message-ID: <20210222193401.524d0ab1@canb.auug.org.au>
+In-Reply-To: <20210215113939.03e44e3c@canb.auug.org.au>
+References: <20210215113939.03e44e3c@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 5/9] drm/i915/reg: add stream splitter
- configuration definitions
+Subject: Re: [Intel-gfx] linux-next: build warning after merge of the pm tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,59 +49,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Varide,
- Nischal" <nischal.varide@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ DRI <dri-devel@lists.freedesktop.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Content-Type: multipart/mixed; boundary="===============2014470499=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============2014470499==
+Content-Type: multipart/signed; boundary="Sig_/HRnmCbGVUGkfYU5co_9wRzC";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
+--Sig_/HRnmCbGVUGkfYU5co_9wRzC
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani Nikula
-> Sent: Thursday, February 11, 2021 8:22 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; Varide, Nischal <nischal.varide@intel.com>
-> Subject: [Intel-gfx] [PATCH v3 5/9] drm/i915/reg: add stream splitter configuration
-> definitions
-> 
-> The splitter configuration is required for eDP MSO.
+Hi all,
 
-Looks Good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+On Mon, 15 Feb 2021 11:39:39 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>
+> Hi all,
+>=20
+> After merging the pm tree, today's linux-next build (x86_64 allmodconfig)
+> produced this warning:
+>=20
+> In file included from drivers/gpu/drm/gma500/mdfld_output.c:28:
+> arch/x86/include/asm/intel_scu_ipc.h:23:12: warning: 'struct module' decl=
+ared inside parameter list will not be visible outside of this definition o=
+r declaration
+>    23 |     struct module *owner);
+>       |            ^~~~~~
+> arch/x86/include/asm/intel_scu_ipc.h:33:17: warning: 'struct module' decl=
+ared inside parameter list will not be visible outside of this definition o=
+r declaration
+>    33 |          struct module *owner);
+>       |                 ^~~~~~
+>=20
+> Introduced by commit
+>=20
+>   bfc838f8598e ("drm/gma500: Convert to use new SCU IPC API")
+>=20
+> OK, these will go away when the drm-misc tree removes this file in commit
+>=20
+>   e1da811218d2 ("drm/gma500: Remove Medfield support")
+>=20
+> So, if you don't want to see these warnings in Linus' build testing,
+> you need to make sure that the drm-misc tree is merged before the pm
+> tree (or the drivers-x86 tree).  Or you need to include module.h in
+> mdfld_output.c before intel_scu_ipc.h (or in intel_scu_ipc.h itself).
 
-> Bspec: 50174
-> Cc: Nischal Varide <nischal.varide@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_reg.h | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 224ad897af34..e5dd0203991b 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -11448,6 +11448,9 @@ enum skl_power_gate {
->  #define  BIG_JOINER_ENABLE			(1 << 29)
->  #define  MASTER_BIG_JOINER_ENABLE		(1 << 28)
->  #define  VGA_CENTERING_ENABLE			(1 << 27)
-> +#define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
-> +#define  SPLITTER_CONFIGURATION_2_SEGMENT
-> 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
-> +#define  SPLITTER_CONFIGURATION_4_SEGMENT
-> 	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
-> 
->  #define _ICL_PIPE_DSS_CTL2_PB			0x78204
->  #define _ICL_PIPE_DSS_CTL2_PC			0x78404
-> --
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+The above drm-misc commit is now in Linus' tree.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/HRnmCbGVUGkfYU5co_9wRzC
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmAzbHkACgkQAVBC80lX
+0Gy4CQgAoQmz+3H/Qw7wvjREpG+UBBhIWCAQgK+omgZaidj1LuLxL7ornq37qqPv
+3tzq5U2aiR00XmbMhqe11t3sbuMX7eMVM/qhtTRHOdzNzdbCXsCMjBvYhp2P01XD
+O2GdAi7fdYfAlFfIfp1UgUgNeQmt5EHyzIg/gbySj/QK7anVB9ejwWazWArncaId
+yrCcq0NTVkyhVdeYE1pjuTctnVx0CmGSm8J2uzkZyHmzojVLi4mvfXdRpjP2zJES
+ekG9G3DRDDq+18Fnskt0gcPN+DBBc3M9XEXSM23hnb3Dh4ixyhDFhptsQE+igJ39
+NBdLWVdxg/LoYSXsa4gynUUmhw6FXA==
+=xDeT
+-----END PGP SIGNATURE-----
+
+--Sig_/HRnmCbGVUGkfYU5co_9wRzC--
+
+--===============2014470499==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2014470499==--
