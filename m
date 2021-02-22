@@ -1,54 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D34643213B4
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 11:06:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A09073213F7
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 11:17:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F4CE6E937;
-	Mon, 22 Feb 2021 10:06:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B21F6E4BA;
+	Mon, 22 Feb 2021 10:17:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
- [IPv6:2a00:1450:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E52396E936
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 10:06:51 +0000 (UTC)
-Received: by mail-wm1-x336.google.com with SMTP id v62so13741021wmg.4
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 02:06:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=w7534on97qoCxOFebL6pBL3B9vTI8yBrF8g9T6cZAwE=;
- b=ku6IF1VdyLf02rbWq4jBRfho74k83VjYi/KZAHkdzZuPNaFyFZZvIahTwgGKLnevhv
- P7eFkxGfJxNeIVVRGfuFbW6j5ogJzzxOe1mxdWF/MXI4zdDi35ie7iEnxbCw9sqZFhdu
- GY4/sunyFOF+XMxq62fvbFbT39CHRbDasTrZk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=w7534on97qoCxOFebL6pBL3B9vTI8yBrF8g9T6cZAwE=;
- b=Kl6s30FUMQOnlI2bMDeQGedXbLmRS33F/TCj3hg0B3+sjdIsVv8Cq9mQvZSoUA71v8
- R0LgZGQfOSEUd9hTFAqD5elfuwlEf9MtljUxeE3NEfeT8dscmu1R9gQCBNbqH4ZD/bJc
- wFcvwXOWuyZpvT6+r6ZSy7Jn0X2Yu5nBFus+toxjuJU6Sdk4/eQ6ZVJOD0JrDD/FNxPi
- 4obWASCpaPcTzcDujo5QCatT1L0vRRiE77ZuHib8CufbGuZPV9sM/ORYD6+t+oUosMl4
- qY6rkPezzwKnnta6HRC7LiaP3Ugiwh7lVIO/emQUBdR0gGQtZt9QZoMcjO9a+2lBOLFN
- t3gg==
-X-Gm-Message-State: AOAM531HKC/0cvAxlOz3F9O7vhy4RqPFit/z2v6smxoZI8pRt2LYbGQc
- U2hl+9j0lIhZ0QYyEumeJI1DtA==
-X-Google-Smtp-Source: ABdhPJywt59k47vW7IA3ulT+kiIPyFpnZSYCg/EFt/CS/dgSQJT/mNLct4z9ktVbfmGxWnTsu3fb1A==
-X-Received: by 2002:a1c:9843:: with SMTP id a64mr19241254wme.44.1613988410454; 
- Mon, 22 Feb 2021 02:06:50 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id c9sm25672268wmb.33.2021.02.22.02.06.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Feb 2021 02:06:50 -0800 (PST)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Mon, 22 Feb 2021 11:06:43 +0100
-Message-Id: <20210222100643.400935-1-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.30.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95A4A6E4BA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 10:17:48 +0000 (UTC)
+IronPort-SDR: cjn/HcFoxPfbi+us6fOq42U1MGjZjgdbk39f6uIW2uxLNzUs2dqjMwAeiql2gj5RYtsPvQ+z5C
+ N4D5ZrPqFp4A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9902"; a="248453016"
+X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="248453016"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2021 02:17:47 -0800
+IronPort-SDR: Oq6ICk0zbZEtWqid/UJlM9O1X8FEWyJrrSZidZGHtZjDD5lLfFDr+bsZYprLZkNnJW1wokS9td
+ Yhu1gc5dUkYw==
+X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="402521300"
+Received: from reifs-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.145])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2021 02:17:44 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Winkler\, Tomas" <tomas.winkler@intel.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>,
+ Vignesh Raghavendra <vigneshr@ti.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi\,
+ Rodrigo" <rodrigo.vivi@intel.com>
+In-Reply-To: <9768d50298114d7daf9736f17c6ed009@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210216181925.650082-1-tomas.winkler@intel.com>
+ <20210216181925.650082-3-tomas.winkler@intel.com> <87eehfas5d.fsf@intel.com>
+ <9768d50298114d7daf9736f17c6ed009@intel.com>
+Date: Mon, 22 Feb 2021 12:17:40 +0200
+Message-ID: <87v9akfltn.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/compat: Clear bounce structures
+Subject: Re: [Intel-gfx] [RFC PATCH 2/9] drm/i915/spi: intel_spi_region map
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,85 +53,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- stable@vger.kernel.org, syzbot+620cf21140fc7e772a5d@syzkaller.appspotmail.com
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
+ Alexander" <alexander.usyskin@intel.com>, "Lubart,
+ Vitaly" <vitaly.lubart@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some of them have gaps, or fields we don't clear. Native ioctl code
-does full copies plus zero-extends on size mismatch, so nothing can
-leak. But compat is more hand-rolled so need to be careful.
+On Wed, 17 Feb 2021, "Winkler, Tomas" <tomas.winkler@intel.com> wrote:
+>> On Tue, 16 Feb 2021, Tomas Winkler <tomas.winkler@intel.com> wrote:
+>> > Add the dGFX spi region map and convey it via mfd cell platform data
+>> > to the spi child device.
+>> >
+>> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> > Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/spi/intel_spi.c | 9 +++++++++
+>> > drivers/gpu/drm/i915/spi/intel_spi.h | 5 +++++
+>> >  2 files changed, 14 insertions(+)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/spi/intel_spi.c
+>> > b/drivers/gpu/drm/i915/spi/intel_spi.c
+>> > index 07da7197bd5d..6f83f24f7208 100644
+>> > --- a/drivers/gpu/drm/i915/spi/intel_spi.c
+>> > +++ b/drivers/gpu/drm/i915/spi/intel_spi.c
+>> > @@ -14,11 +14,20 @@ static const struct resource spi_resources[] = {
+>> >  	DEFINE_RES_MEM_NAMED(GEN12_GUNIT_SPI_BASE, 0x80, "i915-
+>> spi-mmio"),
+>> > };
+>> >
+>> > +static const struct i915_spi_region regions[I915_SPI_REGIONS] = {
+>> > +	[0] = { .name = "DESCRIPTOR", },
+>> > +	[2] = { .name = "GSC", },
+>> > +	[11] = { .name = "OptionROM", },
+>> > +	[12] = { .name = "DAM", },
+>> > +};
+>> > +
+>> >  static const struct mfd_cell intel_spi_cell = {
+>> >  	.id = 2,
+>> >  	.name = "i915-spi",
+>> >  	.num_resources = ARRAY_SIZE(spi_resources),
+>> >  	.resources = spi_resources,
+>> > +	.platform_data = (void *)regions,
+>> > +	.pdata_size    = sizeof(regions),
+>> >  };
+>> >
+>> >  void intel_spi_init(struct intel_spi *spi, struct drm_i915_private
+>> > *dev_priv) diff --git a/drivers/gpu/drm/i915/spi/intel_spi.h
+>> > b/drivers/gpu/drm/i915/spi/intel_spi.h
+>> > index 276551fed993..6b5bf053f7d3 100644
+>> > --- a/drivers/gpu/drm/i915/spi/intel_spi.h
+>> > +++ b/drivers/gpu/drm/i915/spi/intel_spi.h
+>> > @@ -8,6 +8,11 @@
+>> >
+>> >  struct drm_i915_private;
+>> >
+>> > +#define I915_SPI_REGIONS 13
+>> > +struct i915_spi_region {
+>> > +	const char *name;
+>> > +};
+>> 
+>> Does this need to be exposed to the rest of i915? 
+> This part is between the device which is part of i915 and the driver.
+>>If we're trying to isolate
+>> spi/, I'd prefer it if this header was the only header included from the rest of
+>> i915, and contained the minimum required information.
+>
+>> As the driver has grown bigger, we've tried to minimize the interconnections
+>> between the modules, and it's slow going. Let's try to keep the new parts
+>> isolated.
+>>
+> So do you prefer we create another header or duplicate the structure definition? 
 
-None of these matter for performance, so just memset.
+I didn't see the struct being used in i915, or am I missing something?
 
-Also I didn't fix up the CONFIG_DRM_LEGACY or CONFIG_DRM_AGP ioctl, those
-are security holes anyway.
+Have a header that contains the interface exposed to the rest of i915,
+and another header with stuff internal to spi/?
 
-Reported-by: syzbot+620cf21140fc7e772a5d@syzkaller.appspotmail.com # vblank ioctl
-Cc: syzbot+620cf21140fc7e772a5d@syzkaller.appspotmail.com
-Cc: stable@vger.kernel.org
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/drm_ioc32.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/drm_ioc32.c b/drivers/gpu/drm/drm_ioc32.c
-index f86448ab1fe0..dc734d4828a1 100644
---- a/drivers/gpu/drm/drm_ioc32.c
-+++ b/drivers/gpu/drm/drm_ioc32.c
-@@ -99,6 +99,8 @@ static int compat_drm_version(struct file *file, unsigned int cmd,
- 	if (copy_from_user(&v32, (void __user *)arg, sizeof(v32)))
- 		return -EFAULT;
- 
-+	memset(&v, 0, sizeof(v));
-+
- 	v = (struct drm_version) {
- 		.name_len = v32.name_len,
- 		.name = compat_ptr(v32.name),
-@@ -137,6 +139,9 @@ static int compat_drm_getunique(struct file *file, unsigned int cmd,
- 
- 	if (copy_from_user(&uq32, (void __user *)arg, sizeof(uq32)))
- 		return -EFAULT;
-+
-+	memset(&uq, 0, sizeof(uq));
-+
- 	uq = (struct drm_unique){
- 		.unique_len = uq32.unique_len,
- 		.unique = compat_ptr(uq32.unique),
-@@ -265,6 +270,8 @@ static int compat_drm_getclient(struct file *file, unsigned int cmd,
- 	if (copy_from_user(&c32, argp, sizeof(c32)))
- 		return -EFAULT;
- 
-+	memset(&client, 0, sizeof(client));
-+
- 	client.idx = c32.idx;
- 
- 	err = drm_ioctl_kernel(file, drm_getclient, &client, 0);
-@@ -852,6 +859,8 @@ static int compat_drm_wait_vblank(struct file *file, unsigned int cmd,
- 	if (copy_from_user(&req32, argp, sizeof(req32)))
- 		return -EFAULT;
- 
-+	memset(&req, 0, sizeof(req));
-+
- 	req.request.type = req32.request.type;
- 	req.request.sequence = req32.request.sequence;
- 	req.request.signal = req32.request.signal;
-@@ -889,6 +898,8 @@ static int compat_drm_mode_addfb2(struct file *file, unsigned int cmd,
- 	struct drm_mode_fb_cmd2 req64;
- 	int err;
- 
-+	memset(&req64, 0, sizeof(req64));
-+
- 	if (copy_from_user(&req64, argp,
- 			   offsetof(drm_mode_fb_cmd232_t, modifier)))
- 		return -EFAULT;
+
+
+
 -- 
-2.30.0
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
