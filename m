@@ -2,58 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 884883213B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 11:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D34643213B4
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 11:06:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 353566E934;
-	Mon, 22 Feb 2021 10:06:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F4CE6E937;
+	Mon, 22 Feb 2021 10:06:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABC736E933
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 10:06:21 +0000 (UTC)
-IronPort-SDR: zcRFYF3hBlIAeM19cTvfklui0RCfUp9Z9Q+zBThhP9odYhnhnZFsABDjF/xe9+JpnIvyPKjfgi
- TfV2t1YhUpAw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9902"; a="180949119"
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="180949119"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2021 02:06:21 -0800
-IronPort-SDR: tNSbLApaK9G2rpQL0hwhoNP2274zo5SHotttGSud3Cuz2n0dcJnGzbKoRbRV92oU05bjQctep3
- HvMpZvSmeLXg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="595919922"
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
- by fmsmga005.fm.intel.com with ESMTP; 22 Feb 2021 02:06:20 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 22 Feb 2021 10:06:19 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
- Mon, 22 Feb 2021 15:36:17 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 9/9] drm/i915/edp: enable eDP MSO during
- link training
-Thread-Index: AQHXAIW2yjUV8ddHukSkIkcnYsmvyKpkA1Pg
-Date: Mon, 22 Feb 2021 10:06:17 +0000
-Message-ID: <245ff31384274438a4bf6a959f2670cd@intel.com>
-References: <cover.1613054234.git.jani.nikula@intel.com>
- <7a7cbe23a32d99e18dd7ff768b1e3a96c628a572.1613054234.git.jani.nikula@intel.com>
-In-Reply-To: <7a7cbe23a32d99e18dd7ff768b1e3a96c628a572.1613054234.git.jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
+ [IPv6:2a00:1450:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E52396E936
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 10:06:51 +0000 (UTC)
+Received: by mail-wm1-x336.google.com with SMTP id v62so13741021wmg.4
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 02:06:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=w7534on97qoCxOFebL6pBL3B9vTI8yBrF8g9T6cZAwE=;
+ b=ku6IF1VdyLf02rbWq4jBRfho74k83VjYi/KZAHkdzZuPNaFyFZZvIahTwgGKLnevhv
+ P7eFkxGfJxNeIVVRGfuFbW6j5ogJzzxOe1mxdWF/MXI4zdDi35ie7iEnxbCw9sqZFhdu
+ GY4/sunyFOF+XMxq62fvbFbT39CHRbDasTrZk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=w7534on97qoCxOFebL6pBL3B9vTI8yBrF8g9T6cZAwE=;
+ b=Kl6s30FUMQOnlI2bMDeQGedXbLmRS33F/TCj3hg0B3+sjdIsVv8Cq9mQvZSoUA71v8
+ R0LgZGQfOSEUd9hTFAqD5elfuwlEf9MtljUxeE3NEfeT8dscmu1R9gQCBNbqH4ZD/bJc
+ wFcvwXOWuyZpvT6+r6ZSy7Jn0X2Yu5nBFus+toxjuJU6Sdk4/eQ6ZVJOD0JrDD/FNxPi
+ 4obWASCpaPcTzcDujo5QCatT1L0vRRiE77ZuHib8CufbGuZPV9sM/ORYD6+t+oUosMl4
+ qY6rkPezzwKnnta6HRC7LiaP3Ugiwh7lVIO/emQUBdR0gGQtZt9QZoMcjO9a+2lBOLFN
+ t3gg==
+X-Gm-Message-State: AOAM531HKC/0cvAxlOz3F9O7vhy4RqPFit/z2v6smxoZI8pRt2LYbGQc
+ U2hl+9j0lIhZ0QYyEumeJI1DtA==
+X-Google-Smtp-Source: ABdhPJywt59k47vW7IA3ulT+kiIPyFpnZSYCg/EFt/CS/dgSQJT/mNLct4z9ktVbfmGxWnTsu3fb1A==
+X-Received: by 2002:a1c:9843:: with SMTP id a64mr19241254wme.44.1613988410454; 
+ Mon, 22 Feb 2021 02:06:50 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id c9sm25672268wmb.33.2021.02.22.02.06.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Feb 2021 02:06:50 -0800 (PST)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Mon, 22 Feb 2021 11:06:43 +0100
+Message-Id: <20210222100643.400935-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 9/9] drm/i915/edp: enable eDP MSO during
- link training
+Subject: [Intel-gfx] [PATCH] drm/compat: Clear bounce structures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,222 +61,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Varide,
- Nischal" <nischal.varide@intel.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable@vger.kernel.org, syzbot+620cf21140fc7e772a5d@syzkaller.appspotmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Some of them have gaps, or fields we don't clear. Native ioctl code
+does full copies plus zero-extends on size mismatch, so nothing can
+leak. But compat is more hand-rolled so need to be careful.
 
+None of these matter for performance, so just memset.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani Nikula
-> Sent: Thursday, February 11, 2021 8:22 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; Varide, Nischal <nischal.varide@intel.com>
-> Subject: [Intel-gfx] [PATCH v3 9/9] drm/i915/edp: enable eDP MSO during link
-> training
-> 
-> If the source and sink support MSO, enable it during link training.
-> 
-> v3: Adjust timings, refer to splitter
+Also I didn't fix up the CONFIG_DRM_LEGACY or CONFIG_DRM_AGP ioctl, those
+are security holes anyway.
 
-Changes Look Good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Reported-by: syzbot+620cf21140fc7e772a5d@syzkaller.appspotmail.com # vblank ioctl
+Cc: syzbot+620cf21140fc7e772a5d@syzkaller.appspotmail.com
+Cc: stable@vger.kernel.org
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+---
+ drivers/gpu/drm/drm_ioc32.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-> v2: Limit MSO to pipe A using ->pipe_mask
-> 
-> Cc: Nischal Varide <nischal.varide@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c     | 37 ++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_display.c | 13 +++++++
->  drivers/gpu/drm/i915/display/intel_dp.c      | 34 ++++++++++++++++--
->  3 files changed, 82 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index c9098297b6ac..5a8d1abd208a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2167,6 +2167,34 @@ static void intel_ddi_mso_get_config(struct
-> intel_encoder *encoder,
->  	pipe_config->splitter.pixel_overlap =
-> REG_FIELD_GET(OVERLAP_PIXELS_MASK, dss1);  }
-> 
-> +static void intel_ddi_mso_configure(const struct intel_crtc_state
-> +*crtc_state) {
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	enum pipe pipe = crtc->pipe;
-> +	u32 dss1 = 0;
-> +
-> +	if (!HAS_MSO(i915))
-> +		return;
-> +
-> +	if (crtc_state->splitter.enable) {
-> +		/* Splitter enable is supported for pipe A only. */
-> +		if (drm_WARN_ON(&i915->drm, pipe != PIPE_A))
-> +			return;
-> +
-> +		dss1 |= SPLITTER_ENABLE;
-> +		dss1 |= OVERLAP_PIXELS(crtc_state->splitter.pixel_overlap);
-> +		if (crtc_state->splitter.link_count == 2)
-> +			dss1 |= SPLITTER_CONFIGURATION_2_SEGMENT;
-> +		else
-> +			dss1 |= SPLITTER_CONFIGURATION_4_SEGMENT;
-> +	}
-> +
-> +	intel_de_rmw(i915, ICL_PIPE_DSS_CTL1(pipe),
-> +		     SPLITTER_ENABLE | SPLITTER_CONFIGURATION_MASK |
-> +		     OVERLAP_PIXELS_MASK, dss1);
-> +}
-> +
->  static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  				  struct intel_encoder *encoder,
->  				  const struct intel_crtc_state *crtc_state, @@ -
-> 2260,6 +2288,11 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state
-> *state,
->  	 */
->  	intel_ddi_power_up_lanes(encoder, crtc_state);
-> 
-> +	/*
-> +	 * 7.g Program CoG/MSO configuration bits in DSS_CTL1 if selected.
-> +	 */
-> +	intel_ddi_mso_configure(crtc_state);
-> +
->  	/*
->  	 * 7.g Configure and enable DDI_BUF_CTL
->  	 * 7.h Wait for DDI_BUF_CTL DDI Idle Status = 0b (Not Idle), timeout @@ -
-> 4143,6 +4176,10 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum
-> port port)
->  			goto err;
-> 
->  		dig_port->hpd_pulse = intel_dp_hpd_pulse;
-> +
-> +		/* Splitter enable for eDP MSO is supported for pipe A only. */
-> +		if (dig_port->dp.mso_link_count)
-> +			encoder->pipe_mask = BIT(PIPE_A);
->  	}
-> 
->  	/* In theory we don't need the encoder->type check, but leave it just in diff -
-> -git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> index 3059a07b8c36..06b7edbe1187 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4917,6 +4917,19 @@ static int intel_crtc_compute_config(struct intel_crtc
-> *crtc,
->  		pipe_config->pipe_src_w /= 2;
->  	}
-> 
-> +	if (pipe_config->splitter.enable) {
-> +		int n = pipe_config->splitter.link_count;
-> +		int overlap = pipe_config->splitter.pixel_overlap;
-> +
-> +		pipe_mode->crtc_hdisplay = (pipe_mode->crtc_hdisplay - overlap) *
-> n;
-> +		pipe_mode->crtc_hblank_start = (pipe_mode->crtc_hblank_start -
-> overlap) * n;
-> +		pipe_mode->crtc_hblank_end = (pipe_mode->crtc_hblank_end -
-> overlap) * n;
-> +		pipe_mode->crtc_hsync_start = (pipe_mode->crtc_hsync_start -
-> overlap) * n;
-> +		pipe_mode->crtc_hsync_end = (pipe_mode->crtc_hsync_end -
-> overlap) * n;
-> +		pipe_mode->crtc_htotal = (pipe_mode->crtc_htotal - overlap) * n;
-> +		pipe_mode->crtc_clock *= n;
-> +	}
-> +
->  	intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
-> 
->  	if (INTEL_GEN(dev_priv) < 4) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 5d5b16f70ed2..8f39da994d14 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1745,6 +1745,10 @@ intel_dp_drrs_compute_config(struct intel_dp *intel_dp,
->  			       intel_connector->panel.downclock_mode->clock,
->  			       pipe_config->port_clock, &pipe_config->dp_m2_n2,
->  			       constant_n, pipe_config->fec_enable);
-> +
-> +	/* FIXME: abstract this better */
-> +	if (pipe_config->splitter.enable)
-> +		pipe_config->dp_m2_n2.gmch_m *= pipe_config-
-> >splitter.link_count;
->  }
-> 
->  int
-> @@ -1819,6 +1823,26 @@ intel_dp_compute_config(struct intel_encoder
-> *encoder,
->  		output_bpp = intel_dp_output_bpp(pipe_config->output_format,
->  						 pipe_config->pipe_bpp);
-> 
-> +	if (intel_dp->mso_link_count) {
-> +		int n = intel_dp->mso_link_count;
-> +		int overlap = intel_dp->mso_pixel_overlap;
-> +
-> +		pipe_config->splitter.enable = true;
-> +		pipe_config->splitter.link_count = n;
-> +		pipe_config->splitter.pixel_overlap = overlap;
-> +
-> +		drm_dbg_kms(&dev_priv->drm, "MSO link count %d, pixel overlap
-> %d\n",
-> +			    n, overlap);
-> +
-> +		adjusted_mode->crtc_hdisplay = adjusted_mode->crtc_hdisplay / n
-> + overlap;
-> +		adjusted_mode->crtc_hblank_start = adjusted_mode-
-> >crtc_hblank_start / n + overlap;
-> +		adjusted_mode->crtc_hblank_end = adjusted_mode-
-> >crtc_hblank_end / n + overlap;
-> +		adjusted_mode->crtc_hsync_start = adjusted_mode-
-> >crtc_hsync_start / n + overlap;
-> +		adjusted_mode->crtc_hsync_end = adjusted_mode-
-> >crtc_hsync_end / n + overlap;
-> +		adjusted_mode->crtc_htotal = adjusted_mode->crtc_htotal / n +
-> overlap;
-> +		adjusted_mode->crtc_clock /= n;
-> +	}
-> +
->  	intel_link_compute_m_n(output_bpp,
->  			       pipe_config->lane_count,
->  			       adjusted_mode->crtc_clock,
-> @@ -1826,6 +1850,10 @@ intel_dp_compute_config(struct intel_encoder
-> *encoder,
->  			       &pipe_config->dp_m_n,
->  			       constant_n, pipe_config->fec_enable);
-> 
-> +	/* FIXME: abstract this better */
-> +	if (pipe_config->splitter.enable)
-> +		pipe_config->dp_m_n.gmch_m *= pipe_config->splitter.link_count;
-> +
->  	if (!HAS_DDI(dev_priv))
->  		intel_dp_set_clock(encoder, pipe_config);
-> 
-> @@ -3564,8 +3592,10 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
->  	if (mso) {
->  		drm_dbg_kms(&i915->drm, "Sink MSO %ux%u configuration\n",
->  			    mso, drm_dp_max_lane_count(intel_dp->dpcd) / mso);
-> -		drm_err(&i915->drm, "No source MSO support, disabling\n");
-> -		mso = 0;
-> +		if (!HAS_MSO(i915)) {
-> +			drm_err(&i915->drm, "No source MSO support,
-> disabling\n");
-> +			mso = 0;
-> +		}
->  	}
-> 
->  	intel_dp->mso_link_count = mso;
-> --
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+diff --git a/drivers/gpu/drm/drm_ioc32.c b/drivers/gpu/drm/drm_ioc32.c
+index f86448ab1fe0..dc734d4828a1 100644
+--- a/drivers/gpu/drm/drm_ioc32.c
++++ b/drivers/gpu/drm/drm_ioc32.c
+@@ -99,6 +99,8 @@ static int compat_drm_version(struct file *file, unsigned int cmd,
+ 	if (copy_from_user(&v32, (void __user *)arg, sizeof(v32)))
+ 		return -EFAULT;
+ 
++	memset(&v, 0, sizeof(v));
++
+ 	v = (struct drm_version) {
+ 		.name_len = v32.name_len,
+ 		.name = compat_ptr(v32.name),
+@@ -137,6 +139,9 @@ static int compat_drm_getunique(struct file *file, unsigned int cmd,
+ 
+ 	if (copy_from_user(&uq32, (void __user *)arg, sizeof(uq32)))
+ 		return -EFAULT;
++
++	memset(&uq, 0, sizeof(uq));
++
+ 	uq = (struct drm_unique){
+ 		.unique_len = uq32.unique_len,
+ 		.unique = compat_ptr(uq32.unique),
+@@ -265,6 +270,8 @@ static int compat_drm_getclient(struct file *file, unsigned int cmd,
+ 	if (copy_from_user(&c32, argp, sizeof(c32)))
+ 		return -EFAULT;
+ 
++	memset(&client, 0, sizeof(client));
++
+ 	client.idx = c32.idx;
+ 
+ 	err = drm_ioctl_kernel(file, drm_getclient, &client, 0);
+@@ -852,6 +859,8 @@ static int compat_drm_wait_vblank(struct file *file, unsigned int cmd,
+ 	if (copy_from_user(&req32, argp, sizeof(req32)))
+ 		return -EFAULT;
+ 
++	memset(&req, 0, sizeof(req));
++
+ 	req.request.type = req32.request.type;
+ 	req.request.sequence = req32.request.sequence;
+ 	req.request.signal = req32.request.signal;
+@@ -889,6 +898,8 @@ static int compat_drm_mode_addfb2(struct file *file, unsigned int cmd,
+ 	struct drm_mode_fb_cmd2 req64;
+ 	int err;
+ 
++	memset(&req64, 0, sizeof(req64));
++
+ 	if (copy_from_user(&req64, argp,
+ 			   offsetof(drm_mode_fb_cmd232_t, modifier)))
+ 		return -EFAULT;
+-- 
+2.30.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
