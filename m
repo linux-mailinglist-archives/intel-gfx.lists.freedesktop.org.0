@@ -2,39 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5EA321242
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 09:50:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08EEB3212BD
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 10:09:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B85EE6E90D;
-	Mon, 22 Feb 2021 08:50:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFD876E917;
+	Mon, 22 Feb 2021 09:09:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC0766E90D;
- Mon, 22 Feb 2021 08:50:00 +0000 (UTC)
-IronPort-SDR: PAVXewXeG+urEecljqmhQzpgdm0Fyso6vLgcx3jKqXCf7dPrvwJ+d3kIhKKR8+jO80Ea1+qV/v
- yM0kLdAQAiUg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9902"; a="245804727"
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; 
- d="asc'?scan'208";a="245804727"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2021 00:49:59 -0800
-IronPort-SDR: Gg6kJwXFfBdmKb9m8/N9IRw012Q6ji23HguZKYM72UM5xYB0oa3McLezwx6l2WkPifgxw9OIQ7
- CDWJyRXNmF0g==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EAB76E917
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 09:09:41 +0000 (UTC)
+IronPort-SDR: pvspLBYF/osPTccgIpwLGkvgVhx66pcaRTn+ICTfgr4stDNWsTfwDD5yL1JjkNtFilMMyBT9Gd
+ 565TbVlxzccA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9902"; a="269315162"
+X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="269315162"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2021 01:09:40 -0800
+IronPort-SDR: C6VZ2621fwSD91J6VJys/cb+3q+H63W9OI1ek8iGovpgW9sYomJSShNSCfAaVPbihZufJRAuNh
+ SVlJQUhFWrog==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; 
- d="asc'?scan'208";a="592519192"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by fmsmga006.fm.intel.com with ESMTP; 22 Feb 2021 00:49:57 -0800
-Date: Mon, 22 Feb 2021 16:34:02 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20210222083402.GD1551@zhen-hp.sh.intel.com>
+X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="379934199"
+Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
+ by orsmga002.jf.intel.com with ESMTP; 22 Feb 2021 01:09:39 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 22 Feb 2021 09:09:38 +0000
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
+ Mon, 22 Feb 2021 14:39:37 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v3 6/9] drm/i915/mso: add splitter state
+ readout for platforms that support it
+Thread-Index: AQHXAIWgS4v3OqO73U+mE3KHgjtWMKpjv5CA
+Date: Mon, 22 Feb 2021 09:09:36 +0000
+Message-ID: <485ac3466f8945afa89a79d4d979f0d1@intel.com>
+References: <cover.1613054234.git.jani.nikula@intel.com>
+ <6fb9f831672c951c00d92f1176bd42d3b0f30145.1613054234.git.jani.nikula@intel.com>
+In-Reply-To: <6fb9f831672c951c00d92f1176bd42d3b0f30145.1613054234.git.jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] gvt-next-fixes
+Subject: Re: [Intel-gfx] [PATCH v3 6/9] drm/i915/mso: add splitter state
+ readout for platforms that support it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,87 +66,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============0667116131=="
+Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Varide,
+ Nischal" <nischal.varide@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============0667116131==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="gj572EiMnwbLXET9"
-Content-Disposition: inline
 
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani Nikula
+> Sent: Thursday, February 11, 2021 8:22 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: Nikula, Jani <jani.nikula@intel.com>; Varide, Nischal <nischal.varide@intel.com>
+> Subject: [Intel-gfx] [PATCH v3 6/9] drm/i915/mso: add splitter state readout for
+> platforms that support it
+> 
+> Add splitter configuration to crtc state, and read it where supported. Also add
+> splitter state dumping. The stream splitter will be required for eDP MSO.
+> 
+> v3:
+> - Convert segment timings to full panel timings.
+> - Refer to splitter instead of mso in crtc state.
+> - Dump splitter state.
+> 
+> v2: Add warning for mso being enabled on pipes other than A.
+> 
+> Cc: Nischal Varide <nischal.varide@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 37 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_display.c  | 31 +++++++++++++++-
+>  .../drm/i915/display/intel_display_types.h    |  7 ++++
+>  drivers/gpu/drm/i915/i915_drv.h               |  2 +
+>  4 files changed, 75 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 3c4003605f93..c9098297b6ac 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2132,6 +2132,41 @@ static void intel_ddi_power_up_lanes(struct
+> intel_encoder *encoder,
+>  	}
+>  }
+> 
+> +static void intel_ddi_mso_get_config(struct intel_encoder *encoder,
+> +				     struct intel_crtc_state *pipe_config) {
+> +	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	enum pipe pipe = crtc->pipe;
+> +	u32 dss1;
+> +
+> +	if (!HAS_MSO(i915))
+> +		return;
+> +
+> +	dss1 = intel_de_read(i915, ICL_PIPE_DSS_CTL1(pipe));
+> +
+> +	pipe_config->splitter.enable = dss1 & SPLITTER_ENABLE;
+> +	if (!pipe_config->splitter.enable)
+> +		return;
+> +
+> +	/* Splitter enable is supported for pipe A only. */
+> +	if (drm_WARN_ON(&i915->drm, pipe != PIPE_A)) {
+> +		pipe_config->splitter.enable = false;
+> +		return;
+> +	}
+> +
+> +	switch (dss1 & SPLITTER_CONFIGURATION_MASK) {
+> +	case SPLITTER_CONFIGURATION_2_SEGMENT:
+> +		pipe_config->splitter.link_count = 2;
+> +		break;
+> +	case SPLITTER_CONFIGURATION_4_SEGMENT:
+> +		pipe_config->splitter.link_count = 4;
+> +		break;
 
---gj572EiMnwbLXET9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Should we have a default case as well just for sanity along with a WARN, since it's very
+unlikely that it gets hit.
 
+> +	}
+> +
+> +	pipe_config->splitter.pixel_overlap =
+> +REG_FIELD_GET(OVERLAP_PIXELS_MASK, dss1); }
+> +
+>  static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>  				  struct intel_encoder *encoder,
+>  				  const struct intel_crtc_state *crtc_state, @@ -
+> 3322,6 +3357,8 @@ void intel_ddi_get_config(struct intel_encoder *encoder,
+>  		intel_ddi_read_func_ctl(encoder, pipe_config);
+>  	}
+> 
+> +	intel_ddi_mso_get_config(encoder, pipe_config);
+> +
+>  	pipe_config->has_audio =
+>  		intel_ddi_is_audio_enabled(dev_priv, cpu_transcoder);
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index beed08c00b6c..fe9985bd5786 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -4856,8 +4856,30 @@ static void intel_crtc_readout_derived_state(struct
+> intel_crtc_state *crtc_state
+>  		pipe_mode->crtc_clock /= 2;
+>  	}
+> 
+> -	intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
+> -	intel_mode_from_crtc_timings(adjusted_mode, adjusted_mode);
+> +	if (crtc_state->splitter.enable) {
 
-Hi,
+We can just add an else if case to if (crtc_state->bigjoiner) {
 
-Looks last gvt pull missed -gt-next window before CNY holiday.
-So here're left three changes for fixing ww locking, cmd parser
-fix for i915 state use and one left cleanup fix.
+if (crtc_state->bigjoiner) {
+...
+} else if (crtc_state->splitter.enable) {
+...
+}
 
-Thanks!
---
-The following changes since commit 81ce8f04aa96f7f6cae05770f68b5d15be91f5a2:
+> +		int n = crtc_state->splitter.link_count;
+> +		int overlap = crtc_state->splitter.pixel_overlap;
+> +
+> +		/*
+> +		 * eDP MSO uses segment timings from EDID for transcoder
+> +		 * timings, but full mode for everything else.
+> +		 *
+> +		 * h_full = (h_segment - pixel_overlap) * link_count
+> +		 */
+> +		pipe_mode->crtc_hdisplay = (pipe_mode->crtc_hdisplay - overlap) *
+> n;
+> +		pipe_mode->crtc_hblank_start = (pipe_mode->crtc_hblank_start -
+> overlap) * n;
+> +		pipe_mode->crtc_hblank_end = (pipe_mode->crtc_hblank_end -
+> overlap) * n;
+> +		pipe_mode->crtc_hsync_start = (pipe_mode->crtc_hsync_start -
+> overlap) * n;
+> +		pipe_mode->crtc_hsync_end = (pipe_mode->crtc_hsync_end -
+> overlap) * n;
+> +		pipe_mode->crtc_htotal = (pipe_mode->crtc_htotal - overlap) * n;
+> +		pipe_mode->crtc_clock *= n;
+> +
+> +		intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
+> +		intel_mode_from_crtc_timings(adjusted_mode, pipe_mode);
 
-  drm/i915/gt: Correct surface base address for renderclear (2021-02-17 06:19:04 -0500)
+Then we can keep above 2 out of the if conditions.
 
-are available in the Git repository at:
+> +	} else {
+> +		intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
+> +		intel_mode_from_crtc_timings(adjusted_mode, adjusted_mode);
+> +	}
+> 
+>  	intel_crtc_compute_pixel_rate(crtc_state);
+> 
+> @@ -8259,6 +8281,11 @@ static void intel_dump_pipe_config(const struct
+> intel_crtc_state *pipe_config,
+>  		    pipe_config->bigjoiner_slave ? "slave" :
+>  		    pipe_config->bigjoiner ? "master" : "no");
+> 
+> +	drm_dbg_kms(&dev_priv->drm, "splitter: %s, link count %d, overlap %d\n",
+> +		    enableddisabled(pipe_config->splitter.enable),
+> +		    pipe_config->splitter.link_count,
+> +		    pipe_config->splitter.pixel_overlap);
+> +
+>  	if (pipe_config->has_pch_encoder)
+>  		intel_dump_m_n_config(pipe_config, "fdi",
+>  				      pipe_config->fdi_lanes,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 71611b596c88..5564db512d22 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1161,6 +1161,13 @@ struct intel_crtc_state {
+>  		u8 pipeline_full;
+>  		u16 flipline, vmin, vmax;
+>  	} vrr;
+> +
+> +	/* Stream Splitter for eDP MSO */
+> +	struct {
+> +		bool enable;
+> +		u8 link_count;
+> +		u8 pixel_overlap;
+> +	} splitter;
 
-  https://github.com/intel/gvt-linux tags/gvt-next-fixes-2021-02-22
+For DSI which also has this in common along with MSO, may be we can take these link_count and
+pixel_overlap out of splitter which is more of a MSO feature. Thoughts ?
 
-for you to fetch changes up to 67f1120381df022a7016f4acc8d4880da9a66c03:
-
-  drm/i915/gvt: Introduce per object locking in GVT scheduler. (2021-02-22 16:42:14 +0800)
-
-----------------------------------------------------------------
-gvt-next-fixes-2021-02-22
-
-- Fix to use i915 default state for cmd parser on all engines (Chris)
-- Purge dev_priv->gt (Chris)
-- Fix gvt object ww locking (Zhi)
-
-----------------------------------------------------------------
-Chris Wilson (2):
-      drm/i915/gvt: Parse default state to update reg whitelist
-      drm/i915/gvt: Purge dev_priv->gt
-
-Zhi Wang (1):
-      drm/i915/gvt: Introduce per object locking in GVT scheduler.
-
- drivers/gpu/drm/i915/gvt/cmd_parser.c | 93 ++++++++---------------------------
- drivers/gpu/drm/i915/gvt/execlist.c   |  8 ++-
- drivers/gpu/drm/i915/gvt/scheduler.c  | 52 +++++++++++++++-----
- 3 files changed, 64 insertions(+), 89 deletions(-)
-
---gj572EiMnwbLXET9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYDNsdQAKCRCxBBozTXgY
-J53GAJ9ohRnr1LI1kA33vyUljoDp6T44fwCfUlRaa8Ltqo1KWZPxKqwW+KlIvik=
-=tiz1
------END PGP SIGNATURE-----
-
---gj572EiMnwbLXET9--
-
---===============0667116131==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>  };
+> 
+>  enum intel_pipe_crc_source {
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 9f55b5e6d8c9..3d8be7b021d9 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1709,6 +1709,8 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
+> 
+>  #define HAS_CSR(dev_priv)	(INTEL_INFO(dev_priv)->display.has_csr)
+> 
+> +#define HAS_MSO(i915)		(INTEL_GEN(i915) >= 12)
+> +
+>  #define HAS_RUNTIME_PM(dev_priv) (INTEL_INFO(dev_priv)->has_runtime_pm)
+>  #define HAS_64BIT_RELOC(dev_priv) (INTEL_INFO(dev_priv)->has_64bit_reloc)
+> 
+> --
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0667116131==--
