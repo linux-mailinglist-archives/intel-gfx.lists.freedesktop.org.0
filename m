@@ -2,63 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83BD8321525
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 12:31:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC6DF321555
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 12:46:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD47E6E947;
-	Mon, 22 Feb 2021 11:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03E8C6E4D2;
+	Mon, 22 Feb 2021 11:46:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 488FA6E947
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 11:31:00 +0000 (UTC)
-IronPort-SDR: tM4dA2wZzObd8+5vWBS9+d+CwKJHZrnNES1j5aF4Q3YL/Nr0ZL/b4kjcMJquDGEjVPyNrm3KdF
- GRF3G9QiAzsg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9902"; a="171546764"
-X-IronPort-AV: E=Sophos;i="5.81,197,1610438400"; d="scan'208";a="171546764"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2021 03:30:59 -0800
-IronPort-SDR: YbD29sYxXz1R+7wjyIr3QtF0L45UQP9h44HLwp+8IjWOq58YjgTZ50Ea6HNr358EAYqgBOozX0
- OYeI94D+Ge+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,197,1610438400"; d="scan'208";a="379975893"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by orsmga002.jf.intel.com with ESMTP; 22 Feb 2021 03:30:59 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 22 Feb 2021 03:30:59 -0800
-Received: from hasmsx602.ger.corp.intel.com (10.184.107.142) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 22 Feb 2021 03:30:57 -0800
-Received: from hasmsx602.ger.corp.intel.com ([10.184.107.142]) by
- HASMSX602.ger.corp.intel.com ([10.184.107.142]) with mapi id 15.01.2106.002;
- Mon, 22 Feb 2021 13:30:56 +0200
-From: "Winkler, Tomas" <tomas.winkler@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Miquel Raynal
- <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, "Vignesh
- Raghavendra" <vigneshr@ti.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Thread-Topic: [RFC PATCH 2/9] drm/i915/spi: intel_spi_region map
-Thread-Index: AQHXBJBVKwf5piBMOke5w08ZELz+LapcCZsAgAC3KiCABxx5AIAANLrA
-Date: Mon, 22 Feb 2021 11:30:56 +0000
-Message-ID: <ef89f4dc32d843df84719b8fcf11d385@intel.com>
-References: <20210216181925.650082-1-tomas.winkler@intel.com>
- <20210216181925.650082-3-tomas.winkler@intel.com> <87eehfas5d.fsf@intel.com>
- <9768d50298114d7daf9736f17c6ed009@intel.com> <87v9akfltn.fsf@intel.com>
-In-Reply-To: <87v9akfltn.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.184.70.1]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A0EC6E4D2;
+ Mon, 22 Feb 2021 11:46:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 02AA4A9932;
+ Mon, 22 Feb 2021 11:46:30 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH 2/9] drm/i915/spi: intel_spi_region map
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Mon, 22 Feb 2021 11:46:30 -0000
+Message-ID: <161399439097.19118.15558128163933737584@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210222100608.400730-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210222100608.400730-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/compat=3A_more_dummy_implementations?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,97 +38,242 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Usyskin,
- Alexander" <alexander.usyskin@intel.com>, "Lubart,
- Vitaly" <vitaly.lubart@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1370188530=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1370188530==
+Content-Type: multipart/alternative;
+ boundary="===============4438399471256605105=="
 
-> On Wed, 17 Feb 2021, "Winkler, Tomas" <tomas.winkler@intel.com> wrote:
-> >> On Tue, 16 Feb 2021, Tomas Winkler <tomas.winkler@intel.com> wrote:
-> >> > Add the dGFX spi region map and convey it via mfd cell platform
-> >> > data to the spi child device.
-> >> >
-> >> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> > Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/spi/intel_spi.c | 9 +++++++++
-> >> > drivers/gpu/drm/i915/spi/intel_spi.h | 5 +++++
-> >> >  2 files changed, 14 insertions(+)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/spi/intel_spi.c
-> >> > b/drivers/gpu/drm/i915/spi/intel_spi.c
-> >> > index 07da7197bd5d..6f83f24f7208 100644
-> >> > --- a/drivers/gpu/drm/i915/spi/intel_spi.c
-> >> > +++ b/drivers/gpu/drm/i915/spi/intel_spi.c
-> >> > @@ -14,11 +14,20 @@ static const struct resource spi_resources[] = {
-> >> >  	DEFINE_RES_MEM_NAMED(GEN12_GUNIT_SPI_BASE, 0x80, "i915-
-> >> spi-mmio"),
-> >> > };
-> >> >
-> >> > +static const struct i915_spi_region regions[I915_SPI_REGIONS] = {
-> >> > +	[0] = { .name = "DESCRIPTOR", },
-> >> > +	[2] = { .name = "GSC", },
-> >> > +	[11] = { .name = "OptionROM", },
-> >> > +	[12] = { .name = "DAM", },
-> >> > +};
-> >> > +
-> >> >  static const struct mfd_cell intel_spi_cell = {
-> >> >  	.id = 2,
-> >> >  	.name = "i915-spi",
-> >> >  	.num_resources = ARRAY_SIZE(spi_resources),
-> >> >  	.resources = spi_resources,
-> >> > +	.platform_data = (void *)regions,
-> >> > +	.pdata_size    = sizeof(regions),
-> >> >  };
-> >> >
-> >> >  void intel_spi_init(struct intel_spi *spi, struct drm_i915_private
-> >> > *dev_priv) diff --git a/drivers/gpu/drm/i915/spi/intel_spi.h
-> >> > b/drivers/gpu/drm/i915/spi/intel_spi.h
-> >> > index 276551fed993..6b5bf053f7d3 100644
-> >> > --- a/drivers/gpu/drm/i915/spi/intel_spi.h
-> >> > +++ b/drivers/gpu/drm/i915/spi/intel_spi.h
-> >> > @@ -8,6 +8,11 @@
-> >> >
-> >> >  struct drm_i915_private;
-> >> >
-> >> > +#define I915_SPI_REGIONS 13
-> >> > +struct i915_spi_region {
-> >> > +	const char *name;
-> >> > +};
-> >>
-> >> Does this need to be exposed to the rest of i915?
-> > This part is between the device which is part of i915 and the driver.
-> >>If we're trying to isolate
-> >> spi/, I'd prefer it if this header was the only header included from
-> >>the rest of  i915, and contained the minimum required information.
-> >
-> >> As the driver has grown bigger, we've tried to minimize the
-> >> interconnections between the modules, and it's slow going. Let's try
-> >> to keep the new parts isolated.
-> >>
-> > So do you prefer we create another header or duplicate the structure
-> definition?
-> 
-> I didn't see the struct being used in i915, or am I missing something?
-This file is part of i915
- 
-> Have a header that contains the interface exposed to the rest of i915, and
-> another header with stuff internal to spi/?
+--===============4438399471256605105==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The spi `device` is part of i915 (as a mfd cell) and  struct i915_spi_region is  passed to the spi `driver` as platform_data of the device.
-In order for driver to be able to understand  it needs to know ' struct i915_spi_region' 
+== Series Details ==
 
-Thanks
-Tomas
+Series: drm/compat: more dummy implementations
+URL   : https://patchwork.freedesktop.org/series/87280/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9793 -> Patchwork_19712
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19712 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-gfx0:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-y/igt@gem_tiled_blits@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-tgl-y/igt@gem_tiled_blits@basic.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bxt-dsi/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][6] ([fdo#109271]) +27 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bxt-dsi/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-bxt-dsi:         NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#533])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bxt-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-n3050:       [INCOMPLETE][8] ([i915#2940]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [DMESG-WARN][10] ([i915#402]) -> [PASS][11] +2 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Participating hosts (43 -> 40)
+------------------------------
+
+  Additional (1): fi-bxt-dsi 
+  Missing    (4): fi-byt-j1900 fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9793 -> Patchwork_19712
+
+  CI-20190529: 20190529
+  CI_DRM_9793: 6c7aa00d5968abe675da4d933d6ec819fed58e69 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6010: e8fb87056cc4053dde25fe151df9ed3264adbf5a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19712: 49f0011150a164ecc120679fbd1a8d76da94db57 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+49f0011150a1 drm/compat: more dummy implementations
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/index.html
+
+--===============4438399471256605105==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/compat: more dummy implementations</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87280/">https://patchwork.freedesktop.org/series/87280/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9793 -&gt; Patchwork_19712</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19712 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-gfx0:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bsw-n3050/igt@amdgpu/amd_cs_nop@sync-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bxt-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-y/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-tgl-y/igt@gem_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bxt-dsi/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bxt-dsi/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-bxt-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bxt-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-bsw-n3050/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9793/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19712/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 40)</h2>
+<p>Additional (1): fi-bxt-dsi <br />
+  Missing    (4): fi-byt-j1900 fi-ctg-p8600 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9793 -&gt; Patchwork_19712</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9793: 6c7aa00d5968abe675da4d933d6ec819fed58e69 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6010: e8fb87056cc4053dde25fe151df9ed3264adbf5a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19712: 49f0011150a164ecc120679fbd1a8d76da94db57 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>49f0011150a1 drm/compat: more dummy implementations</p>
+
+</body>
+</html>
+
+--===============4438399471256605105==--
+
+--===============1370188530==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1370188530==--
