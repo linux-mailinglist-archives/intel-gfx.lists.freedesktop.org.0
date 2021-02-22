@@ -1,61 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6936C32137E
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 10:57:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5079F3213B1
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 11:06:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9D8C6E930;
-	Mon, 22 Feb 2021 09:57:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 581506E932;
+	Mon, 22 Feb 2021 10:06:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 916648929B
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 09:57:05 +0000 (UTC)
-IronPort-SDR: XxWvld6nwaebMGH4eD0NrHXBUdIR4VH5GEYVe1GU2cZvfa+4L/FQYxiZXOnzQdIkEXBfAhfDUy
- n5dg5Vd++RqQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9902"; a="183672497"
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="183672497"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2021 01:57:05 -0800
-IronPort-SDR: k4oeSnutHhoIfDjpMlN7vC7wuvRTavP0z3Q3HWfSOahL2oLX3L8ZMI/oipxvGnYnUQoVw/iqoJ
- LrJZEwWzRRuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,196,1610438400"; d="scan'208";a="432007190"
-Received: from orsmsx604.amr.corp.intel.com ([10.22.229.17])
- by fmsmga002.fm.intel.com with ESMTP; 22 Feb 2021 01:57:05 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX604.amr.corp.intel.com (10.22.229.17) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 22 Feb 2021 01:57:04 -0800
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 22 Feb 2021 01:57:03 -0800
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
- IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2106.002;
- Mon, 22 Feb 2021 09:57:02 +0000
-From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Souza, Jose" <jose.souza@intel.com>
-Thread-Topic: [PATCH 4/4] drm/i915/display: Set source_support even if panel
- do not support PSR
-Thread-Index: AQHW/w9F9rLAaydVwU+s1irWlshKJKpkBF+A
-Date: Mon, 22 Feb 2021 09:57:01 +0000
-Message-ID: <56992b81dec2c56c3fbe91296b253e2741d1af48.camel@intel.com>
-References: <20210209181439.215104-1-jose.souza@intel.com>
- <20210209181439.215104-4-jose.souza@intel.com>
-In-Reply-To: <20210209181439.215104-4-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.253.164]
-Content-ID: <71D36C515B28064D845D4EB442683D74@intel.com>
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
+ [IPv6:2a00:1450:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F10896E932
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 10:06:17 +0000 (UTC)
+Received: by mail-wr1-x434.google.com with SMTP id r3so6755923wro.9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 02:06:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=XTd2xcZO6rfYz+GL8IrUYzSOQrcSm1K+ucx+r825GYw=;
+ b=CRPLPieGKd/s1xtUt2XfCQyh/d+gWsf1NWQpuFuHpfgUrdOde67ofiYdRHtu91pYr6
+ xkx1giUEvH7kafzPPtXsp1WC8Kd4ycUsTbNITVXXleVQdzPmMuzHrbDS5bloWTtqss/3
+ DzauHNjx83YkebW/aLoUR5/ZsblEGJQb5PebM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=XTd2xcZO6rfYz+GL8IrUYzSOQrcSm1K+ucx+r825GYw=;
+ b=gKFGb2r02slyBwjwI6RszyHBWhV9s1Z6bVkfvCGdur2rvAi9wdCXle/lGINnLdPvir
+ cuNJeDuEXviSwR8oCiKeg6uGa3aOWslKlItAcHUQImOZJf9eEopJqyZ21334QFNBMb2n
+ aKgDMhAQMCK59dE7D4DuQ1+W8KLLWzSeP/n1/CGvqVPs9vclUMc25nYejot8omwxgX41
+ nq1dESivgAhmYMUmP4R2TkeCkKBMsjs4AFIn4XY0EwOx5Vh/rc8nDGxY+ZCz0AsTey10
+ 99SWwu5OcCfsIpklGYOiyvGj3dMFhBqjePX0m0En78nm3XYo8HnUH75W8wEUXpJEC6Fv
+ FYiA==
+X-Gm-Message-State: AOAM531Hci2Ui5hIUgmaPxOLTNqMZ3AQIYX0ADthZyVQYi8g+8Ryi4gh
+ h5lO2OFuloBYrYNwW+2gDdR7Hg==
+X-Google-Smtp-Source: ABdhPJwxsPWVCvn3sfu+AfZSCkvdx+tfpUSIp7DqYlVMaHSEAJj8qnn5l+NsFV3YRWVwT4LQmNwpRA==
+X-Received: by 2002:a5d:42cf:: with SMTP id t15mr20813358wrr.82.1613988376483; 
+ Mon, 22 Feb 2021 02:06:16 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id u142sm25986018wmu.3.2021.02.22.02.06.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Feb 2021 02:06:16 -0800 (PST)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Mon, 22 Feb 2021 11:06:08 +0100
+Message-Id: <20210222100608.400730-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.30.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/display: Set source_support
- even if panel do not support PSR
+Subject: [Intel-gfx] [PATCH] drm/compat: more dummy implementations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,34 +61,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIxLTAyLTA5IGF0IDEwOjE0IC0wODAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBUaGlzIHdpbGwgc2V0IHRoZSByaWdodCB2YWx1ZSBvZiBzb3VyY2Vfc3VwcG9y
-dCB3aGVuIHRoZSBwb3J0DQo+IGVuY29kZXIvcG9ydCBzdXBwb3J0cyBQU1IgYnV0IHNpbmsgZG9u
-J3QuDQo+IA0KPiBUaGlzIGNoYW5nZSB3aWxsIGFsc28gYmUgbmVlZGVkIGluIGZ1dHVyZSBmb3Ig
-cGFuZWwgcmVwbGF5IGFzIHBzcg0KPiBzdHJ1Y3QgbmVlZHMgdG8gYmUgaW5pdGlhbGl6ZWQgZXZl
-biBpZiBkaXNjb25uZWN0ZWQgb3IgY3VycmVudCBzaW5rDQo+IGRvbid0IHN1cHBvcnQgUFNSLg0K
-PiANCj4gQ2M6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNvbT4NCj4g
-U2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5j
-b20+DQo+IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMg
-fCAzIC0tLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAzIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IGluZGV4IGUwMTExYjQ3MDU3
-MC4uNmIzZTIxMjAxNjFlIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX3Bzci5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfcHNyLmMNCj4gQEAgLTE4MzcsOSArMTgzNyw2IEBAIHZvaWQgaW50ZWxfcHNyX2luaXQoc3Ry
-dWN0IGludGVsX2RwICppbnRlbF9kcCkNCj4gwqDCoMKgwqDCoMKgwqDCoGlmICghSEFTX1BTUihk
-ZXZfcHJpdikpDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuOw0KPiDC
-oA0KPiAtwqDCoMKgwqDCoMKgwqBpZiAoIWludGVsX2RwLT5wc3Iuc2lua19zdXBwb3J0KQ0KPiAt
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuOw0KPiAtDQo+IMKgwqDCoMKgwqDC
-oMKgwqAvKg0KPiDCoMKgwqDCoMKgwqDCoMKgICogSFNXIHNwZWMgZXhwbGljaXRseSBzYXlzIFBT
-UiBpcyB0aWVkIHRvIHBvcnQgQS4NCj4gwqDCoMKgwqDCoMKgwqDCoCAqIEJEVysgcGxhdGZvcm1z
-IGhhdmUgYSBpbnN0YW5jZSBvZiBQU1IgcmVnaXN0ZXJzIHBlcg0KPiB0cmFuc2NvZGVyIGJ1dA0K
-DQpSZXZpZXdlZC1ieTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29t
-Pg0KDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+drm_noop really doesnt do much, and who cares about the permission checks.
+So let's delete some code.
+
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+---
+ drivers/gpu/drm/drm_ioc32.c | 15 +++------------
+ 1 file changed, 3 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_ioc32.c b/drivers/gpu/drm/drm_ioc32.c
+index dc734d4828a1..33390f02f5eb 100644
+--- a/drivers/gpu/drm/drm_ioc32.c
++++ b/drivers/gpu/drm/drm_ioc32.c
+@@ -302,12 +302,8 @@ static int compat_drm_getstats(struct file *file, unsigned int cmd,
+ 			       unsigned long arg)
+ {
+ 	drm_stats32_t __user *argp = (void __user *)arg;
+-	int err;
+-
+-	err = drm_ioctl_kernel(file, drm_noop, NULL, 0);
+-	if (err)
+-		return err;
+ 
++	/* getstats is defunct, just clear */
+ 	if (clear_user(argp, sizeof(drm_stats32_t)))
+ 		return -EFAULT;
+ 	return 0;
+@@ -820,13 +816,8 @@ typedef struct drm_update_draw32 {
+ static int compat_drm_update_draw(struct file *file, unsigned int cmd,
+ 				  unsigned long arg)
+ {
+-	drm_update_draw32_t update32;
+-
+-	if (copy_from_user(&update32, (void __user *)arg, sizeof(update32)))
+-		return -EFAULT;
+-
+-	return drm_ioctl_kernel(file, drm_noop, NULL,
+-				DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY);
++	/* update_draw is defunct */
++	return 0;
+ }
+ #endif
+ 
+-- 
+2.30.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
