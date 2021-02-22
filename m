@@ -2,31 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B623322052
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 20:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0173F322116
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 22:04:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B89C389FD7;
-	Mon, 22 Feb 2021 19:43:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4944F6E214;
+	Mon, 22 Feb 2021 21:04:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D774589598;
- Mon, 22 Feb 2021 19:43:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CF648A363D;
- Mon, 22 Feb 2021 19:43:06 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D11CE6E214
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 21:04:09 +0000 (UTC)
+IronPort-SDR: +oKt8fujCGZIBX5MIQbGg17pBzu2bb3GDDvLRaKCD9QBEIM8noYIU/cv0uiKc08ezsstpFDkQQ
+ 9OfJTg6rzMfw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9903"; a="171731381"
+X-IronPort-AV: E=Sophos;i="5.81,198,1610438400"; d="scan'208";a="171731381"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2021 13:04:04 -0800
+IronPort-SDR: RGOMMnZJViN5rpbUcP+wnNNVIf3gG4J5p7rYaSba5FAVAyXAZeeF+2dtUkajdv2ny/++psMoDW
+ sT/BSoSTDXNw==
+X-IronPort-AV: E=Sophos;i="5.81,198,1610438400"; d="scan'208";a="390018993"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2021 13:04:02 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 22 Feb 2021 23:04:00 +0200
+Message-Id: <20210222210400.940158-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Mon, 22 Feb 2021 19:43:06 -0000
-Message-ID: <161402298682.19116.704123814286101277@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210222190528.1591188-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20210222190528.1591188-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Do_not_allow_DC3CO_if_PSR_SF_is_enabled_=28rev?=
- =?utf-8?q?2=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl+: Sanitize the DDI LANES/IO and
+ AUX power domain names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,222 +45,493 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0427836463=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0427836463==
-Content-Type: multipart/alternative;
- boundary="===============7393169481207991220=="
+In Bspec the TGL TypeC ports are TC1-6, the AUX power well request flags
+are USBC1-6/TBT1-6, so for clarity use these names in the port power
+domain names instead of the D-I terminology (which Bspec uses only for
+the ICL TypeC ports).
 
---===============7393169481207991220==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+No functional change.
 
-== Series Details ==
+Cc: Souza Jose <jose.souza@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ .../drm/i915/display/intel_display_power.c    | 212 ++++++++----------
+ .../drm/i915/display/intel_display_power.h    |  32 +++
+ 2 files changed, 130 insertions(+), 114 deletions(-)
 
-Series: drm/i915/display: Do not allow DC3CO if PSR SF is enabled (rev2)
-URL   : https://patchwork.freedesktop.org/series/87283/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9795 -> Patchwork_19716
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19716 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_getparams_basic@basic-subslice-total:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9795/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +34 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-snb-2600:        NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@basic:
-    - fi-tgl-y:           [DMESG-WARN][5] ([i915#402]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9795/fi-tgl-y/igt@gem_flink_basic@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-tgl-y/igt@gem_flink_basic@basic.html
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-7500u:       [DMESG-WARN][7] ([i915#2605]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9795/fi-kbl-7500u/igt@i915_module_load@reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-kbl-7500u/igt@i915_module_load@reload.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][9] ([i915#2128]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9795/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2128]: https://gitlab.freedesktop.org/drm/intel/issues/2128
-  [i915#2605]: https://gitlab.freedesktop.org/drm/intel/issues/2605
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (44 -> 41)
-------------------------------
-
-  Additional (1): fi-snb-2600 
-  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9795 -> Patchwork_19716
-
-  CI-20190529: 20190529
-  CI_DRM_9795: 5f1072de87a90be6d0ba8f4e4cffdbbe13166f03 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6011: 8c8499c29dd2aa189c3d687e057ba4df326b1732 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19716: 55bfe3430c7926e85bc07128be74ff2658486251 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-55bfe3430c79 drm/i915/display: Do not allow DC3CO if PSR SF is enabled
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/index.html
-
---===============7393169481207991220==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Do not allow DC3CO if PSR SF is enabled (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87283/">https://patchwork.freedesktop.org/series/87283/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9795 -&gt; Patchwork_19716</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19716 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_getparams_basic@basic-subslice-total:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9795/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-snb-2600/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +34 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-snb-2600/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9795/fi-tgl-y/igt@gem_flink_basic@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-tgl-y/igt@gem_flink_basic@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9795/fi-kbl-7500u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2605">i915#2605</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-kbl-7500u/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9795/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2128">i915#2128</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19716/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 41)</h2>
-<p>Additional (1): fi-snb-2600 <br />
-  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9795 -&gt; Patchwork_19716</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9795: 5f1072de87a90be6d0ba8f4e4cffdbbe13166f03 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6011: 8c8499c29dd2aa189c3d687e057ba4df326b1732 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19716: 55bfe3430c7926e85bc07128be74ff2658486251 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>55bfe3430c79 drm/i915/display: Do not allow DC3CO if PSR SF is enabled</p>
-
-</body>
-</html>
-
---===============7393169481207991220==--
-
---===============0427836463==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index f00c1750febd..7e0eaa872350 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -2886,24 +2886,24 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+ 	BIT_ULL(POWER_DOMAIN_PIPE_B) |			\
+ 	BIT_ULL(POWER_DOMAIN_TRANSCODER_B) |		\
+ 	BIT_ULL(POWER_DOMAIN_PIPE_B_PANEL_FITTER) |	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_D_LANES) |	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_E_LANES) |	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_F_LANES) |	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_G_LANES) |	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_H_LANES) |	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_I_LANES) |	\
+-	BIT_ULL(POWER_DOMAIN_AUX_D) |			\
+-	BIT_ULL(POWER_DOMAIN_AUX_E) |			\
+-	BIT_ULL(POWER_DOMAIN_AUX_F) |			\
+-	BIT_ULL(POWER_DOMAIN_AUX_G) |			\
+-	BIT_ULL(POWER_DOMAIN_AUX_H) |			\
+-	BIT_ULL(POWER_DOMAIN_AUX_I) |			\
+-	BIT_ULL(POWER_DOMAIN_AUX_D_TBT) |		\
+-	BIT_ULL(POWER_DOMAIN_AUX_E_TBT) |		\
+-	BIT_ULL(POWER_DOMAIN_AUX_F_TBT) |		\
+-	BIT_ULL(POWER_DOMAIN_AUX_G_TBT) |		\
+-	BIT_ULL(POWER_DOMAIN_AUX_H_TBT) |		\
+-	BIT_ULL(POWER_DOMAIN_AUX_I_TBT) |		\
++	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC1) |	\
++	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC2) |	\
++	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC3) |	\
++	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC4) |	\
++	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC5) |	\
++	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC6) |	\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC1) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC2) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC3) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC4) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC5) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC6) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT1) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT2) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT3) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT4) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT5) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT6) |		\
+ 	BIT_ULL(POWER_DOMAIN_VGA) |			\
+ 	BIT_ULL(POWER_DOMAIN_AUDIO) |			\
+ 	BIT_ULL(POWER_DOMAIN_INIT))
+@@ -2921,18 +2921,12 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+ 	BIT_ULL(POWER_DOMAIN_AUX_C) |			\
+ 	BIT_ULL(POWER_DOMAIN_INIT))
+ 
+-#define TGL_DDI_IO_D_TC1_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_D_IO))
+-#define TGL_DDI_IO_E_TC2_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_E_IO))
+-#define TGL_DDI_IO_F_TC3_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_F_IO))
+-#define TGL_DDI_IO_G_TC4_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_G_IO))
+-#define TGL_DDI_IO_H_TC5_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_H_IO))
+-#define TGL_DDI_IO_I_TC6_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_I_IO))
++#define TGL_DDI_IO_TC1_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC1)
++#define TGL_DDI_IO_TC2_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC2)
++#define TGL_DDI_IO_TC3_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC3)
++#define TGL_DDI_IO_TC4_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC4)
++#define TGL_DDI_IO_TC5_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC5)
++#define TGL_DDI_IO_TC6_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC6)
+ 
+ #define TGL_AUX_A_IO_POWER_DOMAINS (		\
+ 	BIT_ULL(POWER_DOMAIN_AUX_IO_A) |	\
+@@ -2941,44 +2935,34 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+ 	BIT_ULL(POWER_DOMAIN_AUX_B))
+ #define TGL_AUX_C_IO_POWER_DOMAINS (		\
+ 	BIT_ULL(POWER_DOMAIN_AUX_C))
+-#define TGL_AUX_D_TC1_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_D))
+-#define TGL_AUX_E_TC2_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_E))
+-#define TGL_AUX_F_TC3_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_F))
+-#define TGL_AUX_G_TC4_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_G))
+-#define TGL_AUX_H_TC5_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_H))
+-#define TGL_AUX_I_TC6_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_I))
+-#define TGL_AUX_D_TBT1_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_D_TBT))
+-#define TGL_AUX_E_TBT2_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_E_TBT))
+-#define TGL_AUX_F_TBT3_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_F_TBT))
+-#define TGL_AUX_G_TBT4_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_G_TBT))
+-#define TGL_AUX_H_TBT5_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_H_TBT))
+-#define TGL_AUX_I_TBT6_IO_POWER_DOMAINS (	\
+-	BIT_ULL(POWER_DOMAIN_AUX_I_TBT))
++
++#define TGL_AUX_IO_USBC1_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC1)
++#define TGL_AUX_IO_USBC2_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC2)
++#define TGL_AUX_IO_USBC3_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC3)
++#define TGL_AUX_IO_USBC4_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC4)
++#define TGL_AUX_IO_USBC5_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC5)
++#define TGL_AUX_IO_USBC6_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC6)
++
++#define TGL_AUX_IO_TBT1_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT1)
++#define TGL_AUX_IO_TBT2_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT2)
++#define TGL_AUX_IO_TBT3_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT3)
++#define TGL_AUX_IO_TBT4_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT4)
++#define TGL_AUX_IO_TBT5_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT5)
++#define TGL_AUX_IO_TBT6_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT6)
+ 
+ #define TGL_TC_COLD_OFF_POWER_DOMAINS (		\
+-	BIT_ULL(POWER_DOMAIN_AUX_D)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_E)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_F)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_G)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_H)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_I)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_D_TBT)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_E_TBT)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_F_TBT)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_G_TBT)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_H_TBT)	|	\
+-	BIT_ULL(POWER_DOMAIN_AUX_I_TBT)	|	\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC1)	|	\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC2)	|	\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC3)	|	\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC4)	|	\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC5)	|	\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC6)	|	\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT1) |	\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT2) |	\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT3) |	\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT4) |	\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT5) |	\
++	BIT_ULL(POWER_DOMAIN_AUX_TBT6) |	\
+ 	BIT_ULL(POWER_DOMAIN_TC_COLD_OFF))
+ 
+ #define RKL_PW_4_POWER_DOMAINS (			\
+@@ -2994,10 +2978,10 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
+ 	BIT_ULL(POWER_DOMAIN_AUDIO) |			\
+ 	BIT_ULL(POWER_DOMAIN_VGA) |			\
+ 	BIT_ULL(POWER_DOMAIN_TRANSCODER_B) |		\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_D_LANES) |	\
+-	BIT_ULL(POWER_DOMAIN_PORT_DDI_E_LANES) |	\
+-	BIT_ULL(POWER_DOMAIN_AUX_D) |			\
+-	BIT_ULL(POWER_DOMAIN_AUX_E) |			\
++	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC1) |	\
++	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC2) |	\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC1) |		\
++	BIT_ULL(POWER_DOMAIN_AUX_USBC2) |		\
+ 	BIT_ULL(POWER_DOMAIN_INIT))
+ 
+ /*
+@@ -4145,8 +4129,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		}
+ 	},
+ 	{
+-		.name = "DDI D TC1 IO",
+-		.domains = TGL_DDI_IO_D_TC1_POWER_DOMAINS,
++		.name = "DDI IO TC1",
++		.domains = TGL_DDI_IO_TC1_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4155,8 +4139,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "DDI E TC2 IO",
+-		.domains = TGL_DDI_IO_E_TC2_POWER_DOMAINS,
++		.name = "DDI IO TC2",
++		.domains = TGL_DDI_IO_TC2_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4165,8 +4149,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "DDI F TC3 IO",
+-		.domains = TGL_DDI_IO_F_TC3_POWER_DOMAINS,
++		.name = "DDI IO TC3",
++		.domains = TGL_DDI_IO_TC3_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4175,8 +4159,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "DDI G TC4 IO",
+-		.domains = TGL_DDI_IO_G_TC4_POWER_DOMAINS,
++		.name = "DDI IO TC4",
++		.domains = TGL_DDI_IO_TC4_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4185,8 +4169,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "DDI H TC5 IO",
+-		.domains = TGL_DDI_IO_H_TC5_POWER_DOMAINS,
++		.name = "DDI IO TC5",
++		.domains = TGL_DDI_IO_TC5_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4195,8 +4179,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "DDI I TC6 IO",
+-		.domains = TGL_DDI_IO_I_TC6_POWER_DOMAINS,
++		.name = "DDI IO TC6",
++		.domains = TGL_DDI_IO_TC6_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4241,8 +4225,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX D TC1",
+-		.domains = TGL_AUX_D_TC1_IO_POWER_DOMAINS,
++		.name = "AUX USBC1",
++		.domains = TGL_AUX_IO_USBC1_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4252,8 +4236,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX E TC2",
+-		.domains = TGL_AUX_E_TC2_IO_POWER_DOMAINS,
++		.name = "AUX USBC2",
++		.domains = TGL_AUX_IO_USBC2_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4263,8 +4247,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX F TC3",
+-		.domains = TGL_AUX_F_TC3_IO_POWER_DOMAINS,
++		.name = "AUX USBC3",
++		.domains = TGL_AUX_IO_USBC3_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4274,8 +4258,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX G TC4",
+-		.domains = TGL_AUX_G_TC4_IO_POWER_DOMAINS,
++		.name = "AUX USBC4",
++		.domains = TGL_AUX_IO_USBC4_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4285,8 +4269,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX H TC5",
+-		.domains = TGL_AUX_H_TC5_IO_POWER_DOMAINS,
++		.name = "AUX USBC5",
++		.domains = TGL_AUX_IO_USBC5_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4296,8 +4280,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX I TC6",
+-		.domains = TGL_AUX_I_TC6_IO_POWER_DOMAINS,
++		.name = "AUX USBC6",
++		.domains = TGL_AUX_IO_USBC6_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4307,8 +4291,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX D TBT1",
+-		.domains = TGL_AUX_D_TBT1_IO_POWER_DOMAINS,
++		.name = "AUX TBT1",
++		.domains = TGL_AUX_IO_TBT1_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4318,8 +4302,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX E TBT2",
+-		.domains = TGL_AUX_E_TBT2_IO_POWER_DOMAINS,
++		.name = "AUX TBT2",
++		.domains = TGL_AUX_IO_TBT2_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4329,8 +4313,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX F TBT3",
+-		.domains = TGL_AUX_F_TBT3_IO_POWER_DOMAINS,
++		.name = "AUX TBT3",
++		.domains = TGL_AUX_IO_TBT3_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4340,8 +4324,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX G TBT4",
+-		.domains = TGL_AUX_G_TBT4_IO_POWER_DOMAINS,
++		.name = "AUX TBT4",
++		.domains = TGL_AUX_IO_TBT4_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4351,8 +4335,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX H TBT5",
+-		.domains = TGL_AUX_H_TBT5_IO_POWER_DOMAINS,
++		.name = "AUX TBT5",
++		.domains = TGL_AUX_IO_TBT5_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4362,8 +4346,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX I TBT6",
+-		.domains = TGL_AUX_I_TBT6_IO_POWER_DOMAINS,
++		.name = "AUX TBT6",
++		.domains = TGL_AUX_IO_TBT6_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4471,8 +4455,8 @@ static const struct i915_power_well_desc rkl_power_wells[] = {
+ 		}
+ 	},
+ 	{
+-		.name = "DDI D TC1 IO",
+-		.domains = TGL_DDI_IO_D_TC1_POWER_DOMAINS,
++		.name = "DDI IO TC1",
++		.domains = TGL_DDI_IO_TC1_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4481,8 +4465,8 @@ static const struct i915_power_well_desc rkl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "DDI E TC2 IO",
+-		.domains = TGL_DDI_IO_E_TC2_POWER_DOMAINS,
++		.name = "DDI IO TC2",
++		.domains = TGL_DDI_IO_TC2_POWER_DOMAINS,
+ 		.ops = &hsw_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4511,8 +4495,8 @@ static const struct i915_power_well_desc rkl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX D TC1",
+-		.domains = TGL_AUX_D_TC1_IO_POWER_DOMAINS,
++		.name = "AUX USBC1",
++		.domains = TGL_AUX_IO_USBC1_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+@@ -4521,8 +4505,8 @@ static const struct i915_power_well_desc rkl_power_wells[] = {
+ 		},
+ 	},
+ 	{
+-		.name = "AUX E TC2",
+-		.domains = TGL_AUX_E_TC2_IO_POWER_DOMAINS,
++		.name = "AUX USBC2",
++		.domains = TGL_AUX_IO_USBC2_POWER_DOMAINS,
+ 		.ops = &icl_aux_power_well_ops,
+ 		.id = DISP_PW_ID_NONE,
+ 		{
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index bc30c479be53..f3ca5d5c9778 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -41,6 +41,14 @@ enum intel_display_power_domain {
+ 	POWER_DOMAIN_PORT_DDI_G_LANES,
+ 	POWER_DOMAIN_PORT_DDI_H_LANES,
+ 	POWER_DOMAIN_PORT_DDI_I_LANES,
++
++	POWER_DOMAIN_PORT_DDI_LANES_TC1 = POWER_DOMAIN_PORT_DDI_D_LANES, /* tgl+ */
++	POWER_DOMAIN_PORT_DDI_LANES_TC2,
++	POWER_DOMAIN_PORT_DDI_LANES_TC3,
++	POWER_DOMAIN_PORT_DDI_LANES_TC4,
++	POWER_DOMAIN_PORT_DDI_LANES_TC5,
++	POWER_DOMAIN_PORT_DDI_LANES_TC6,
++
+ 	POWER_DOMAIN_PORT_DDI_A_IO,
+ 	POWER_DOMAIN_PORT_DDI_B_IO,
+ 	POWER_DOMAIN_PORT_DDI_C_IO,
+@@ -50,6 +58,14 @@ enum intel_display_power_domain {
+ 	POWER_DOMAIN_PORT_DDI_G_IO,
+ 	POWER_DOMAIN_PORT_DDI_H_IO,
+ 	POWER_DOMAIN_PORT_DDI_I_IO,
++
++	POWER_DOMAIN_PORT_DDI_IO_TC1 = POWER_DOMAIN_PORT_DDI_D_IO, /* tgl+ */
++	POWER_DOMAIN_PORT_DDI_IO_TC2,
++	POWER_DOMAIN_PORT_DDI_IO_TC3,
++	POWER_DOMAIN_PORT_DDI_IO_TC4,
++	POWER_DOMAIN_PORT_DDI_IO_TC5,
++	POWER_DOMAIN_PORT_DDI_IO_TC6,
++
+ 	POWER_DOMAIN_PORT_DSI,
+ 	POWER_DOMAIN_PORT_CRT,
+ 	POWER_DOMAIN_PORT_OTHER,
+@@ -64,6 +80,14 @@ enum intel_display_power_domain {
+ 	POWER_DOMAIN_AUX_G,
+ 	POWER_DOMAIN_AUX_H,
+ 	POWER_DOMAIN_AUX_I,
++
++	POWER_DOMAIN_AUX_USBC1 = POWER_DOMAIN_AUX_D, /* tgl+ */
++	POWER_DOMAIN_AUX_USBC2,
++	POWER_DOMAIN_AUX_USBC3,
++	POWER_DOMAIN_AUX_USBC4,
++	POWER_DOMAIN_AUX_USBC5,
++	POWER_DOMAIN_AUX_USBC6,
++
+ 	POWER_DOMAIN_AUX_IO_A,
+ 	POWER_DOMAIN_AUX_C_TBT,
+ 	POWER_DOMAIN_AUX_D_TBT,
+@@ -72,6 +96,14 @@ enum intel_display_power_domain {
+ 	POWER_DOMAIN_AUX_G_TBT,
+ 	POWER_DOMAIN_AUX_H_TBT,
+ 	POWER_DOMAIN_AUX_I_TBT,
++
++	POWER_DOMAIN_AUX_TBT1 = POWER_DOMAIN_AUX_D_TBT, /* tgl+ */
++	POWER_DOMAIN_AUX_TBT2,
++	POWER_DOMAIN_AUX_TBT3,
++	POWER_DOMAIN_AUX_TBT4,
++	POWER_DOMAIN_AUX_TBT5,
++	POWER_DOMAIN_AUX_TBT6,
++
+ 	POWER_DOMAIN_GMBUS,
+ 	POWER_DOMAIN_MODESET,
+ 	POWER_DOMAIN_GT_IRQ,
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0427836463==--
