@@ -2,37 +2,123 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0173F322116
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 22:04:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BD74322133
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Feb 2021 22:18:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4944F6E214;
-	Mon, 22 Feb 2021 21:04:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C3C36E7D5;
+	Mon, 22 Feb 2021 21:18:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D11CE6E214
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Feb 2021 21:04:09 +0000 (UTC)
-IronPort-SDR: +oKt8fujCGZIBX5MIQbGg17pBzu2bb3GDDvLRaKCD9QBEIM8noYIU/cv0uiKc08ezsstpFDkQQ
- 9OfJTg6rzMfw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9903"; a="171731381"
-X-IronPort-AV: E=Sophos;i="5.81,198,1610438400"; d="scan'208";a="171731381"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2021 13:04:04 -0800
-IronPort-SDR: RGOMMnZJViN5rpbUcP+wnNNVIf3gG4J5p7rYaSba5FAVAyXAZeeF+2dtUkajdv2ny/++psMoDW
- sT/BSoSTDXNw==
-X-IronPort-AV: E=Sophos;i="5.81,198,1610438400"; d="scan'208";a="390018993"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2021 13:04:02 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 Feb 2021 23:04:00 +0200
-Message-Id: <20210222210400.940158-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2081.outbound.protection.outlook.com [40.107.223.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFBCB89FC3;
+ Mon, 22 Feb 2021 21:18:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jiZ8jOM11RU4lAlTJjPr0v2bujCeEVRgmunoBHagXb94fAG898XXAU3br2cToZXwL1VJR4HStXnILw2vT4EUDXopHzSVLN8omIAWOL6AELFRpCzyx0tuaGE4SBw29kcQp7WlpEvkHKRe9aYSFaJuCm4VXjDkkSuhK48Jn9LZ1RRYGY2HmA8okuWxWkIdxtNmEMaF+1wuYB2uqpKUDSMPwZA77XchFYlEdNIqgHmH/Hh7hrZUN/59hi2IpLv9hftcidsE6GFCqNX2+NRyWtedxoq7aW55vvgbj996cjNI4rokM+J/9j5E5Vgp0NU16TJGpPxyWhvRz04jIS5u1Ywtvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xq78wik05PDXVxcBUi+SA5/2OhzwHRcgOVle/oAClcc=;
+ b=gTndMM3mBjQ34KvF30IPyLKCMiTIwTS6s7fxOO2zffFxUqn0P+wax9TiUemIAmu6gy4XvNMRcezmSgd+PKoRBtwSy5zIS4izd1BpZqfNeXYjrPsSV0iZWMR/pUOWAsnWO/LL3sBXETvucVwab77mEgooUNQab6jwDlKkHErPA7cnnDfPDDX8P4+z7Ax3e58B1WeKlM5otG9XHJJFfdgu2wD9o4CgUFqPTF/mg1dnPn3B4l3yHqdYMjW/b4DLomOYpVLJyNUWY3wWDeua2i7YLk5aDbXFQVVTPihBx2jj71sO+PtXhLvUTsIccxaQfuHLoVJnvngwNMIJfEsMZBxqcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xq78wik05PDXVxcBUi+SA5/2OhzwHRcgOVle/oAClcc=;
+ b=WjM+oZ3ELgxaeLoedr7K5QRVYULqEebXSW2xsAEzDDziLwDzVi98BZtPwDYopWB1IHlYupJJIKL66tsZm5yJYYvFhgpGG+iSo22/RHYy9NRt3g7VTMzxNYtz4EpiaWrkajVV3bBVpIVarfMzZo2EkpyQjs8sYxEoSv5eykrkBlo=
+Authentication-Results: foundation.x.org; dkim=none (message not signed)
+ header.d=none;foundation.x.org; dmarc=none action=none header.from=amd.com;
+Received: from MW3PR12MB4379.namprd12.prod.outlook.com (2603:10b6:303:5e::11)
+ by MWHPR1201MB2508.namprd12.prod.outlook.com (2603:10b6:300:df::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3868.30; Mon, 22 Feb
+ 2021 21:18:15 +0000
+Received: from MW3PR12MB4379.namprd12.prod.outlook.com
+ ([fe80::8c0c:5b9b:fec6:e12b]) by MW3PR12MB4379.namprd12.prod.outlook.com
+ ([fe80::8c0c:5b9b:fec6:e12b%4]) with mapi id 15.20.3868.033; Mon, 22 Feb 2021
+ 21:18:15 +0000
+To: Xorg Members List <members@x.org>,
+ "xorg-devel@lists.freedesktop.org" <xorg-devel@lists.freedesktop.org>,
+ "wayland-devel@lists.freedesktop.org" <wayland-devel@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org,
+ "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "etnaviv@lists.freedesktop.org" <etnaviv@lists.freedesktop.org>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+From: Harry Wentland <harry.wentland@amd.com>
+Message-ID: <8c434d92-2f41-745f-003f-53c299e77c14@amd.com>
+Date: Mon, 22 Feb 2021 16:18:10 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+Content-Language: en-US
+X-Originating-IP: [198.200.67.155]
+X-ClientProxiedBy: YTBPR01CA0024.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:14::37) To MW3PR12MB4379.namprd12.prod.outlook.com
+ (2603:10b6:303:5e::11)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl+: Sanitize the DDI LANES/IO and
- AUX power domain names
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.193] (198.200.67.155) by
+ YTBPR01CA0024.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:14::37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3868.31 via Frontend Transport; Mon, 22 Feb 2021 21:18:12 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 9cbc996f-ae08-4ff2-1b11-08d8d7775df9
+X-MS-TrafficTypeDiagnostic: MWHPR1201MB2508:
+X-Microsoft-Antispam-PRVS: <MWHPR1201MB2508DD961C6A451C167F5E848C819@MWHPR1201MB2508.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /2Ac5C7XE4BhEelkQoThQvu9IwvfjkvjO1zxXgFfaC9I4aI61Z/8O0M8G7sJAdx5U3dMMFnSIWE0NkD+dquCQ1QWiUIEyhGJEp28ixHgM3tCCG1AtlcjvfAmGun+GMasDURgam5nKcbTFFDTAEazAcOSDQvmZdhxbrpSB9wDLl7wjASSdloklNJC7zS3MtUrw5oL/Sz5nS90fAF9VQ/JCqjfBN1rPrEhavWDSu78T3OQWwxgarTjcyDyjsKrCKGHuKHlsDnVye60D7XXJL4FUYb6gFkgOl2DNvJDacj4cWSmbFj/BpyBsQkgXJQEN6LQYWZbusREyNiOCmzKRV2JnSP156yZwexlzBCruHxSPGuNKilqCMFXwhZPTBxjMrSZ7RQSLen6we7EJ0rJHwqHUh7BOif6tmjIZsQAy8Vcp9gE1418I1dvxdcWN/JM4hakYKiO2ab9BO8IvcdicUj5GlqpD3zcoaB5wZSHZmy8aM1DAF4vkEGBczzxvWQ/b/+l1YbYgT96fp3gcoIfUnYyUV1/rvyOBlQzrpB20hgSilUIF00JqkgqmRbmjBeXLw8rIFZfMnyiFFW4JOp18JkrXvSYxbEYeGqc+1K4AauPCacP8A8KCmmi+G0sFUNjRd799p4X/ioaaLpRpn4VYX4eZqMG9/BNdB+X0bTvaoPHJnIq3kzvZ3x7q/tIm0ZAJVYsQKbo5UCdnrGqvtuWylNsOw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW3PR12MB4379.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(39860400002)(376002)(366004)(396003)(346002)(8936002)(31686004)(5660300002)(478600001)(6486002)(31696002)(956004)(110136005)(44832011)(921005)(2906002)(966005)(36756003)(66476007)(66946007)(316002)(186003)(16526019)(83380400001)(26005)(52116002)(66556008)(86362001)(8676002)(16576012)(7416002)(66574015)(4326008)(2616005)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?WkNpRjFCWFgrTVZmczREU0NpSExpSUZsdVA5dEMzY2piNTN3Q0krbTVoRmE3?=
+ =?utf-8?B?SnJCODlrRGFXUXZHSVE0SlJoMlFhY3phbjd2WVA5RnlSNkJObnNHMDAyaU9w?=
+ =?utf-8?B?eHNueEJ0bmJOQ0Fkc3VDV3pLSzB1QURnZzZpVUYreDRWZTVNaVl5YmUxOURZ?=
+ =?utf-8?B?R0NPNEhhQmRDVDg3MkFKOHBoRm56bmxTcnJIdjdQV0VzR1k2Qk5mNTZORDhJ?=
+ =?utf-8?B?MTVpbzlKQlZSOVN1M25tdGRZRnlSS3VWTll3SGJrdFB0emZsUEhZWUVCb1l2?=
+ =?utf-8?B?S3Foc1ZsUUhibnZnQjBxaXZzbnF1bGdVb1lKZStTTVRaaDB3d1JCN1dEendv?=
+ =?utf-8?B?VzQvYUtoUXM3cmQxVXZndXZEREZUQnFEQU42WGkvQ3oyU0ZnMFRwTFNCazFV?=
+ =?utf-8?B?UTBaZ2NaZDdmSjdySE9FN3hpZy9YdEUzYmkvUW4rZlVYSlFpb1pIeXkrYkEx?=
+ =?utf-8?B?OVBCT3BWeDZzampUdWNwZnVxdTFOM1MyWVMyUndmSkNVUmFwWHRUeThEVnJt?=
+ =?utf-8?B?SjBmdzRrT3BIWUlBRHRkQ21uT1ZzRjdJUTVlaGM0ZW5NUTlsMVMycmN2ZTlV?=
+ =?utf-8?B?ZlNjaVljTGJYYm9CRkRvT0cyOCs2cDRLeVM0a2ViNUNXKy9Vb2dSOW8zVTZN?=
+ =?utf-8?B?cXQxZkYwNG5vNHcrVmNLSkR5bkF6a0h3Q0xDZ014anRZWkUvK0Z4VUlDWk9i?=
+ =?utf-8?B?SXU3bDNnNnBIdlkwaTJ0dFNvemJvaHhPdk9icjROK3N1QzVLNXc2V0pCU1pP?=
+ =?utf-8?B?K213elBEUFV4ZlNpcENDVEkyK0c1ZkVaekFBWWEyUENlNm1GdDJ6Q2MwV0tz?=
+ =?utf-8?B?MHdNU25qYm1hUVB3NFp2Zi9sREorYkZvV1NsTlFoK2V2TjA4R3hBMk9hNjJp?=
+ =?utf-8?B?MTYrOXkwQ1VHaW1QNGJyYlp6a09nKzRTMzBvcEZkQ3F2VTFUd0JzVWd2OEZ0?=
+ =?utf-8?B?T2UvWlZ6RFFaVEpqSVJJbDkrZldYQ3U4WjYzczlYSmJhS3VFbVlCZnU1VEJH?=
+ =?utf-8?B?Tzhvem9Pc3NXUjdlbVVqL0twZDNmYkJZSnVPeUZOc1ZxRVpKQVFoajJzSk9n?=
+ =?utf-8?B?ZG5DVVQrSW40MkRCcGNsNHp5b0FHTUxUKzJIZWZ0OUFIamlRelNTdjVzMUtT?=
+ =?utf-8?B?eHpwb2FSc2hvSDUxN21MQUtpdThyYTlyZ21aeEVCM0JjYXo4cnNoTmxzdnhK?=
+ =?utf-8?B?V04xQW1DWnF0Vm5xcmE4dXR0L3FGV3ZPUDE3UTlNcGQ0VmdGUk45VkQzYngy?=
+ =?utf-8?B?b2UrSzFFYU9nZk0yYzZ3dlRrUGlMUkFTck91WUpoRm5YZTRGU0Rock1GWVk2?=
+ =?utf-8?B?YmRTRUwyQnowNnZrWS9pU3VQSU56L3FibkVmWkdiZ3VTem9JQ3RLczBaS25E?=
+ =?utf-8?B?c0lLWStuZ1lJMnNKNmVmckxvQWNrT1Q4alNzRUJJd2loNC8vZWF1VGUvOGJV?=
+ =?utf-8?B?ekREazNvVmdXSXZYWVp0MTE5WGgvMFdBNWtkWVN2cjZ6KzNMZVdYbzFTaWtF?=
+ =?utf-8?B?aU9FZ2hjMzlod0F5TFl3TFRZWERHdWo5T09QbzRYYi9heDU3ZFIwRXB6dWk3?=
+ =?utf-8?B?TVJKdk1OYmNSSjVhMXR5L0NsZnFJRWpKblR5NWJXNnd0eGx6U3UvSFFyMktq?=
+ =?utf-8?B?VjIrRHM3VENKbW5zQzVDT2liaVM0ODZCblVzYXJPNVNEaDlnQlhmcTNWcEhY?=
+ =?utf-8?B?cWp4QWJQU0dBOHBrdHhaVUVPOVp1aGxoTUFJZU1GRDBEWHkrUmZUdDFaVjFi?=
+ =?utf-8?Q?fc0B9qlTSQXGL4mDsJZZL2z9kUX3Gsi2A5YsnwJ?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cbc996f-ae08-4ff2-1b11-08d8d7775df9
+X-MS-Exchange-CrossTenant-AuthSource: MW3PR12MB4379.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Feb 2021 21:18:15.2702 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sz3E8FNES8UhOKr+QujIyYTB9g6R01x56ShruVAO7bH6UPRjvf7BBaKPbNlPJGF2Rb4cERXQWvBrcs9Nod74sA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1201MB2508
+Subject: [Intel-gfx] 2021 X.Org Board of Directors Elections Nomination
+ period is NOW
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,493 +131,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: elections@x.org, board@foundation.x.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In Bspec the TGL TypeC ports are TC1-6, the AUX power well request flags
-are USBC1-6/TBT1-6, so for clarity use these names in the port power
-domain names instead of the D-I terminology (which Bspec uses only for
-the ICL TypeC ports).
-
-No functional change.
-
-Cc: Souza Jose <jose.souza@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- .../drm/i915/display/intel_display_power.c    | 212 ++++++++----------
- .../drm/i915/display/intel_display_power.h    |  32 +++
- 2 files changed, 130 insertions(+), 114 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index f00c1750febd..7e0eaa872350 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -2886,24 +2886,24 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- 	BIT_ULL(POWER_DOMAIN_PIPE_B) |			\
- 	BIT_ULL(POWER_DOMAIN_TRANSCODER_B) |		\
- 	BIT_ULL(POWER_DOMAIN_PIPE_B_PANEL_FITTER) |	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_D_LANES) |	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_E_LANES) |	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_F_LANES) |	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_G_LANES) |	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_H_LANES) |	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_I_LANES) |	\
--	BIT_ULL(POWER_DOMAIN_AUX_D) |			\
--	BIT_ULL(POWER_DOMAIN_AUX_E) |			\
--	BIT_ULL(POWER_DOMAIN_AUX_F) |			\
--	BIT_ULL(POWER_DOMAIN_AUX_G) |			\
--	BIT_ULL(POWER_DOMAIN_AUX_H) |			\
--	BIT_ULL(POWER_DOMAIN_AUX_I) |			\
--	BIT_ULL(POWER_DOMAIN_AUX_D_TBT) |		\
--	BIT_ULL(POWER_DOMAIN_AUX_E_TBT) |		\
--	BIT_ULL(POWER_DOMAIN_AUX_F_TBT) |		\
--	BIT_ULL(POWER_DOMAIN_AUX_G_TBT) |		\
--	BIT_ULL(POWER_DOMAIN_AUX_H_TBT) |		\
--	BIT_ULL(POWER_DOMAIN_AUX_I_TBT) |		\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC1) |	\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC2) |	\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC3) |	\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC4) |	\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC5) |	\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC6) |	\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC1) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC2) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC3) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC4) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC5) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC6) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT1) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT2) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT3) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT4) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT5) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT6) |		\
- 	BIT_ULL(POWER_DOMAIN_VGA) |			\
- 	BIT_ULL(POWER_DOMAIN_AUDIO) |			\
- 	BIT_ULL(POWER_DOMAIN_INIT))
-@@ -2921,18 +2921,12 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- 	BIT_ULL(POWER_DOMAIN_AUX_C) |			\
- 	BIT_ULL(POWER_DOMAIN_INIT))
- 
--#define TGL_DDI_IO_D_TC1_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_D_IO))
--#define TGL_DDI_IO_E_TC2_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_E_IO))
--#define TGL_DDI_IO_F_TC3_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_F_IO))
--#define TGL_DDI_IO_G_TC4_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_G_IO))
--#define TGL_DDI_IO_H_TC5_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_H_IO))
--#define TGL_DDI_IO_I_TC6_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_I_IO))
-+#define TGL_DDI_IO_TC1_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC1)
-+#define TGL_DDI_IO_TC2_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC2)
-+#define TGL_DDI_IO_TC3_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC3)
-+#define TGL_DDI_IO_TC4_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC4)
-+#define TGL_DDI_IO_TC5_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC5)
-+#define TGL_DDI_IO_TC6_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_PORT_DDI_IO_TC6)
- 
- #define TGL_AUX_A_IO_POWER_DOMAINS (		\
- 	BIT_ULL(POWER_DOMAIN_AUX_IO_A) |	\
-@@ -2941,44 +2935,34 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- 	BIT_ULL(POWER_DOMAIN_AUX_B))
- #define TGL_AUX_C_IO_POWER_DOMAINS (		\
- 	BIT_ULL(POWER_DOMAIN_AUX_C))
--#define TGL_AUX_D_TC1_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_D))
--#define TGL_AUX_E_TC2_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_E))
--#define TGL_AUX_F_TC3_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_F))
--#define TGL_AUX_G_TC4_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_G))
--#define TGL_AUX_H_TC5_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_H))
--#define TGL_AUX_I_TC6_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_I))
--#define TGL_AUX_D_TBT1_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_D_TBT))
--#define TGL_AUX_E_TBT2_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_E_TBT))
--#define TGL_AUX_F_TBT3_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_F_TBT))
--#define TGL_AUX_G_TBT4_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_G_TBT))
--#define TGL_AUX_H_TBT5_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_H_TBT))
--#define TGL_AUX_I_TBT6_IO_POWER_DOMAINS (	\
--	BIT_ULL(POWER_DOMAIN_AUX_I_TBT))
-+
-+#define TGL_AUX_IO_USBC1_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC1)
-+#define TGL_AUX_IO_USBC2_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC2)
-+#define TGL_AUX_IO_USBC3_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC3)
-+#define TGL_AUX_IO_USBC4_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC4)
-+#define TGL_AUX_IO_USBC5_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC5)
-+#define TGL_AUX_IO_USBC6_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_USBC6)
-+
-+#define TGL_AUX_IO_TBT1_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT1)
-+#define TGL_AUX_IO_TBT2_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT2)
-+#define TGL_AUX_IO_TBT3_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT3)
-+#define TGL_AUX_IO_TBT4_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT4)
-+#define TGL_AUX_IO_TBT5_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT5)
-+#define TGL_AUX_IO_TBT6_POWER_DOMAINS	BIT_ULL(POWER_DOMAIN_AUX_TBT6)
- 
- #define TGL_TC_COLD_OFF_POWER_DOMAINS (		\
--	BIT_ULL(POWER_DOMAIN_AUX_D)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_E)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_F)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_G)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_H)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_I)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_D_TBT)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_E_TBT)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_F_TBT)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_G_TBT)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_H_TBT)	|	\
--	BIT_ULL(POWER_DOMAIN_AUX_I_TBT)	|	\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC1)	|	\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC2)	|	\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC3)	|	\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC4)	|	\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC5)	|	\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC6)	|	\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT1) |	\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT2) |	\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT3) |	\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT4) |	\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT5) |	\
-+	BIT_ULL(POWER_DOMAIN_AUX_TBT6) |	\
- 	BIT_ULL(POWER_DOMAIN_TC_COLD_OFF))
- 
- #define RKL_PW_4_POWER_DOMAINS (			\
-@@ -2994,10 +2978,10 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- 	BIT_ULL(POWER_DOMAIN_AUDIO) |			\
- 	BIT_ULL(POWER_DOMAIN_VGA) |			\
- 	BIT_ULL(POWER_DOMAIN_TRANSCODER_B) |		\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_D_LANES) |	\
--	BIT_ULL(POWER_DOMAIN_PORT_DDI_E_LANES) |	\
--	BIT_ULL(POWER_DOMAIN_AUX_D) |			\
--	BIT_ULL(POWER_DOMAIN_AUX_E) |			\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC1) |	\
-+	BIT_ULL(POWER_DOMAIN_PORT_DDI_LANES_TC2) |	\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC1) |		\
-+	BIT_ULL(POWER_DOMAIN_AUX_USBC2) |		\
- 	BIT_ULL(POWER_DOMAIN_INIT))
- 
- /*
-@@ -4145,8 +4129,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		}
- 	},
- 	{
--		.name = "DDI D TC1 IO",
--		.domains = TGL_DDI_IO_D_TC1_POWER_DOMAINS,
-+		.name = "DDI IO TC1",
-+		.domains = TGL_DDI_IO_TC1_POWER_DOMAINS,
- 		.ops = &hsw_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4155,8 +4139,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "DDI E TC2 IO",
--		.domains = TGL_DDI_IO_E_TC2_POWER_DOMAINS,
-+		.name = "DDI IO TC2",
-+		.domains = TGL_DDI_IO_TC2_POWER_DOMAINS,
- 		.ops = &hsw_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4165,8 +4149,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "DDI F TC3 IO",
--		.domains = TGL_DDI_IO_F_TC3_POWER_DOMAINS,
-+		.name = "DDI IO TC3",
-+		.domains = TGL_DDI_IO_TC3_POWER_DOMAINS,
- 		.ops = &hsw_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4175,8 +4159,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "DDI G TC4 IO",
--		.domains = TGL_DDI_IO_G_TC4_POWER_DOMAINS,
-+		.name = "DDI IO TC4",
-+		.domains = TGL_DDI_IO_TC4_POWER_DOMAINS,
- 		.ops = &hsw_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4185,8 +4169,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "DDI H TC5 IO",
--		.domains = TGL_DDI_IO_H_TC5_POWER_DOMAINS,
-+		.name = "DDI IO TC5",
-+		.domains = TGL_DDI_IO_TC5_POWER_DOMAINS,
- 		.ops = &hsw_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4195,8 +4179,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "DDI I TC6 IO",
--		.domains = TGL_DDI_IO_I_TC6_POWER_DOMAINS,
-+		.name = "DDI IO TC6",
-+		.domains = TGL_DDI_IO_TC6_POWER_DOMAINS,
- 		.ops = &hsw_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4241,8 +4225,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX D TC1",
--		.domains = TGL_AUX_D_TC1_IO_POWER_DOMAINS,
-+		.name = "AUX USBC1",
-+		.domains = TGL_AUX_IO_USBC1_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4252,8 +4236,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX E TC2",
--		.domains = TGL_AUX_E_TC2_IO_POWER_DOMAINS,
-+		.name = "AUX USBC2",
-+		.domains = TGL_AUX_IO_USBC2_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4263,8 +4247,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX F TC3",
--		.domains = TGL_AUX_F_TC3_IO_POWER_DOMAINS,
-+		.name = "AUX USBC3",
-+		.domains = TGL_AUX_IO_USBC3_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4274,8 +4258,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX G TC4",
--		.domains = TGL_AUX_G_TC4_IO_POWER_DOMAINS,
-+		.name = "AUX USBC4",
-+		.domains = TGL_AUX_IO_USBC4_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4285,8 +4269,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX H TC5",
--		.domains = TGL_AUX_H_TC5_IO_POWER_DOMAINS,
-+		.name = "AUX USBC5",
-+		.domains = TGL_AUX_IO_USBC5_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4296,8 +4280,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX I TC6",
--		.domains = TGL_AUX_I_TC6_IO_POWER_DOMAINS,
-+		.name = "AUX USBC6",
-+		.domains = TGL_AUX_IO_USBC6_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4307,8 +4291,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX D TBT1",
--		.domains = TGL_AUX_D_TBT1_IO_POWER_DOMAINS,
-+		.name = "AUX TBT1",
-+		.domains = TGL_AUX_IO_TBT1_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4318,8 +4302,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX E TBT2",
--		.domains = TGL_AUX_E_TBT2_IO_POWER_DOMAINS,
-+		.name = "AUX TBT2",
-+		.domains = TGL_AUX_IO_TBT2_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4329,8 +4313,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX F TBT3",
--		.domains = TGL_AUX_F_TBT3_IO_POWER_DOMAINS,
-+		.name = "AUX TBT3",
-+		.domains = TGL_AUX_IO_TBT3_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4340,8 +4324,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX G TBT4",
--		.domains = TGL_AUX_G_TBT4_IO_POWER_DOMAINS,
-+		.name = "AUX TBT4",
-+		.domains = TGL_AUX_IO_TBT4_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4351,8 +4335,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX H TBT5",
--		.domains = TGL_AUX_H_TBT5_IO_POWER_DOMAINS,
-+		.name = "AUX TBT5",
-+		.domains = TGL_AUX_IO_TBT5_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4362,8 +4346,8 @@ static const struct i915_power_well_desc tgl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX I TBT6",
--		.domains = TGL_AUX_I_TBT6_IO_POWER_DOMAINS,
-+		.name = "AUX TBT6",
-+		.domains = TGL_AUX_IO_TBT6_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4471,8 +4455,8 @@ static const struct i915_power_well_desc rkl_power_wells[] = {
- 		}
- 	},
- 	{
--		.name = "DDI D TC1 IO",
--		.domains = TGL_DDI_IO_D_TC1_POWER_DOMAINS,
-+		.name = "DDI IO TC1",
-+		.domains = TGL_DDI_IO_TC1_POWER_DOMAINS,
- 		.ops = &hsw_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4481,8 +4465,8 @@ static const struct i915_power_well_desc rkl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "DDI E TC2 IO",
--		.domains = TGL_DDI_IO_E_TC2_POWER_DOMAINS,
-+		.name = "DDI IO TC2",
-+		.domains = TGL_DDI_IO_TC2_POWER_DOMAINS,
- 		.ops = &hsw_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4511,8 +4495,8 @@ static const struct i915_power_well_desc rkl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX D TC1",
--		.domains = TGL_AUX_D_TC1_IO_POWER_DOMAINS,
-+		.name = "AUX USBC1",
-+		.domains = TGL_AUX_IO_USBC1_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-@@ -4521,8 +4505,8 @@ static const struct i915_power_well_desc rkl_power_wells[] = {
- 		},
- 	},
- 	{
--		.name = "AUX E TC2",
--		.domains = TGL_AUX_E_TC2_IO_POWER_DOMAINS,
-+		.name = "AUX USBC2",
-+		.domains = TGL_AUX_IO_USBC2_POWER_DOMAINS,
- 		.ops = &icl_aux_power_well_ops,
- 		.id = DISP_PW_ID_NONE,
- 		{
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index bc30c479be53..f3ca5d5c9778 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -41,6 +41,14 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_PORT_DDI_G_LANES,
- 	POWER_DOMAIN_PORT_DDI_H_LANES,
- 	POWER_DOMAIN_PORT_DDI_I_LANES,
-+
-+	POWER_DOMAIN_PORT_DDI_LANES_TC1 = POWER_DOMAIN_PORT_DDI_D_LANES, /* tgl+ */
-+	POWER_DOMAIN_PORT_DDI_LANES_TC2,
-+	POWER_DOMAIN_PORT_DDI_LANES_TC3,
-+	POWER_DOMAIN_PORT_DDI_LANES_TC4,
-+	POWER_DOMAIN_PORT_DDI_LANES_TC5,
-+	POWER_DOMAIN_PORT_DDI_LANES_TC6,
-+
- 	POWER_DOMAIN_PORT_DDI_A_IO,
- 	POWER_DOMAIN_PORT_DDI_B_IO,
- 	POWER_DOMAIN_PORT_DDI_C_IO,
-@@ -50,6 +58,14 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_PORT_DDI_G_IO,
- 	POWER_DOMAIN_PORT_DDI_H_IO,
- 	POWER_DOMAIN_PORT_DDI_I_IO,
-+
-+	POWER_DOMAIN_PORT_DDI_IO_TC1 = POWER_DOMAIN_PORT_DDI_D_IO, /* tgl+ */
-+	POWER_DOMAIN_PORT_DDI_IO_TC2,
-+	POWER_DOMAIN_PORT_DDI_IO_TC3,
-+	POWER_DOMAIN_PORT_DDI_IO_TC4,
-+	POWER_DOMAIN_PORT_DDI_IO_TC5,
-+	POWER_DOMAIN_PORT_DDI_IO_TC6,
-+
- 	POWER_DOMAIN_PORT_DSI,
- 	POWER_DOMAIN_PORT_CRT,
- 	POWER_DOMAIN_PORT_OTHER,
-@@ -64,6 +80,14 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_AUX_G,
- 	POWER_DOMAIN_AUX_H,
- 	POWER_DOMAIN_AUX_I,
-+
-+	POWER_DOMAIN_AUX_USBC1 = POWER_DOMAIN_AUX_D, /* tgl+ */
-+	POWER_DOMAIN_AUX_USBC2,
-+	POWER_DOMAIN_AUX_USBC3,
-+	POWER_DOMAIN_AUX_USBC4,
-+	POWER_DOMAIN_AUX_USBC5,
-+	POWER_DOMAIN_AUX_USBC6,
-+
- 	POWER_DOMAIN_AUX_IO_A,
- 	POWER_DOMAIN_AUX_C_TBT,
- 	POWER_DOMAIN_AUX_D_TBT,
-@@ -72,6 +96,14 @@ enum intel_display_power_domain {
- 	POWER_DOMAIN_AUX_G_TBT,
- 	POWER_DOMAIN_AUX_H_TBT,
- 	POWER_DOMAIN_AUX_I_TBT,
-+
-+	POWER_DOMAIN_AUX_TBT1 = POWER_DOMAIN_AUX_D_TBT, /* tgl+ */
-+	POWER_DOMAIN_AUX_TBT2,
-+	POWER_DOMAIN_AUX_TBT3,
-+	POWER_DOMAIN_AUX_TBT4,
-+	POWER_DOMAIN_AUX_TBT5,
-+	POWER_DOMAIN_AUX_TBT6,
-+
- 	POWER_DOMAIN_GMBUS,
- 	POWER_DOMAIN_MODESET,
- 	POWER_DOMAIN_GT_IRQ,
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgYXJlIHNlZWtpbmcgbm9taW5hdGlvbnMgZm9yIGNhbmRpZGF0ZXMgZm9yIGVsZWN0aW9uIHRv
+IHRoZSBYLk9yZyAKRm91bmRhdGlvbiBCb2FyZCBvZiBEaXJlY3RvcnMuIEFsbCBYLk9yZyBGb3Vu
+ZGF0aW9uIG1lbWJlcnMgYXJlIGVsaWdpYmxlIApmb3IgZWxlY3Rpb24gdG8gdGhlIGJvYXJkLgoK
+Tm9taW5hdGlvbnMgZm9yIHRoZSAyMDIxIGVsZWN0aW9uIGFyZSBub3cgb3BlbiBhbmQgd2lsbCBy
+ZW1haW4gb3BlbiAKdW50aWwgU3VuZGF5LCB0aGUgN3RoIG9mIE1hcmNoLgoKVGhlIEJvYXJkIGNv
+bnNpc3RzIG9mIGRpcmVjdG9ycyBlbGVjdGVkIGZyb20gdGhlIG1lbWJlcnNoaXAuIEVhY2ggeWVh
+ciwgCmFuIGVsZWN0aW9uIGlzIGhlbGQgdG8gYnJpbmcgdGhlIHRvdGFsIG51bWJlciBvZiBkaXJl
+Y3RvcnMgdG8gZWlnaHQuIFRoZSAKZm91ciBtZW1iZXJzIHJlY2VpdmluZyB0aGUgaGlnaGVzdCB2
+b3RlIHRvdGFscyB3aWxsIHNlcnZlIGFzIGRpcmVjdG9ycyAKZm9yIHR3byB5ZWFyIHRlcm1zLgoK
+VGhlIGRpcmVjdG9ycyB3aG8gcmVjZWl2ZWQgdHdvIHllYXIgdGVybXMgc3RhcnRpbmcgaW4gMjAy
+MCB3ZXJlIEVyaWMgCkFuaG9sdCwgTWFyayBGaWxpb24sIEtlaXRoIFBhY2thcmQsIGFuZCBIYXJy
+eSBXZW50bGFuZC4gVGhleSB3aWxsIApjb250aW51ZSB0byBzZXJ2ZSB1bnRpbCB0aGVpciB0ZXJt
+IGVuZHMgaW4gMjAyMi4gQ3VycmVudCBkaXJlY3RvcnMgd2hvc2UgCnRlcm0gZXhwaXJlcyBpbiAy
+MDIxIGFyZSBTYW11ZWwgSWdsZXNpYXMgR29uc8OhbHZleiwgTWFuYXNpIEQgTmF2YXJlLCAKTHl1
+ZGUgUGF1bCwgYW5kIERhbmllbCBWZXR0ZXIuCgpBIGRpcmVjdG9yIGlzIGV4cGVjdGVkIHRvIHBh
+cnRpY2lwYXRlIGluIHRoZSBmb3J0bmlnaHRseSBJUkMgbWVldGluZyB0byAKZGlzY3VzcyBjdXJy
+ZW50IGJ1c2luZXNzIGFuZCB0byBhdHRlbmQgdGhlIGFubnVhbCBtZWV0aW5nIG9mIHRoZSBYLk9y
+ZyAKRm91bmRhdGlvbiwgd2hpY2ggd2lsbCBiZSBoZWxkIGF0IGEgbG9jYXRpb24gZGV0ZXJtaW5l
+ZCBpbiBhZHZhbmNlIGJ5IAp0aGUgQm9hcmQgb2YgRGlyZWN0b3JzLgoKQSBtZW1iZXIgbWF5IG5v
+bWluYXRlIHRoZW1zZWx2ZXMgb3IgYW55IG90aGVyIG1lbWJlciB0aGV5IGZlZWwgaXMgCnF1YWxp
+ZmllZC4gTm9taW5hdGlvbnMgc2hvdWxkIGJlIHNlbnQgdG8gdGhlIEVsZWN0aW9uIENvbW1pdHRl
+ZSBhdCAKZWxlY3Rpb25zIGF0IHgub3JnLgoKTm9taW5lZXMgc2hhbGwgYmUgcmVxdWlyZWQgdG8g
+YmUgY3VycmVudCBtZW1iZXJzIG9mIHRoZSBYLk9yZyAKRm91bmRhdGlvbiwgYW5kIHN1Ym1pdCBh
+IHBlcnNvbmFsIHN0YXRlbWVudCBvZiB1cCB0byAyMDAgd29yZHMgdGhhdCB3aWxsIApiZSBwcm92
+aWRlZCB0byBwcm9zcGVjdGl2ZSB2b3RlcnMuIFRoZSBjb2xsZWN0ZWQgc3RhdGVtZW50cywgYWxv
+bmcgd2l0aCAKdGhlIHN0YXRlbWVudCBvZiBjb250cmlidXRpb24gdG8gdGhlIFguT3JnIEZvdW5k
+YXRpb24gaW4gdGhlIG1lbWJlcidzIAphY2NvdW50IHBhZ2Ugb24gaHR0cDovL21lbWJlcnMueC5v
+cmcsIHdpbGwgYmUgbWFkZSBhdmFpbGFibGUgdG8gYWxsIAp2b3RlcnMgdG8gaGVscCB0aGVtIG1h
+a2UgdGhlaXIgdm90aW5nIGRlY2lzaW9ucy4KCk5vbWluYXRpb25zIG11c3QgYmUgcmVjZWl2ZWQg
+YmVmb3JlIHRoZSBlbmQgb2YgZGF5IG9uIFN1bmRheSwgdGhlIDd0aCBvZiAKTWFyY2guCgpNZW1i
+ZXJzaGlwIGFwcGxpY2F0aW9ucyBvciByZW5ld2FscyBhbmQgY29tcGxldGVkIHBlcnNvbmFsIHN0
+YXRlbWVudHMgCm11c3QgYmUgcmVjZWl2ZWQgbm8gbGF0ZXIgdGhhbiB0aGUgZW5kIG9mIGRheSBv
+biBUaHVyc2RheSwgdGhlIDExdHRoIG9mIApNYXJjaC4KClRoZSBzbGF0ZSBvZiBjYW5kaWRhdGVz
+IHdpbGwgYmUgcHVibGlzaGVkIG9uIE1vbmRheSwgdGhlIDE1dGggb2YgTWFyY2ggCmFuZCBjYW5k
+aWRhdGUgUSZBIHdpbGwgYmVnaW4gdGhlbi4KCioqIEVsZWN0aW9uIFNjaGVkdWxlICoqCgpOb21p
+bmF0aW9uIHBlcmlvZCBTdGFydDogTW9uIDIybmQgRmVicnVhcnkKTm9taW5hdGlvbiBwZXJpb2Qg
+RW5kOiBTdW4gN3RoIE1hcmNoCkRlYWRsaW5lIG9mIFguT3JnIG1lbWJlcnNoaXAgYXBwbGljYXRp
+b24gb3IgcmVuZXdhbDogVGh1IDExdGggTWFyY2gKUHVibGljYXRpb24gb2YgQ2FuZGlkYXRlcyAm
+IHN0YXJ0IG9mIENhbmRpZGF0ZSBRQTogTW9uIDE1dGggTWFyY2gKRWxlY3Rpb24gUGxhbm5lZCBT
+dGFydDogTW9uIDIybmQgTWFyY2ggYW55d2hlcmUgb24gZWFydGgKRWxlY3Rpb24gUGxhbm5lZCBF
+bmQ6IFN1biA0dGggQXByaWwgYW55d2hlcmUgb24gZWFydGgKCioqIEVsZWN0aW9uIENvbW1pdHRl
+ZSAqKgoKKiBFcmljIEFuaG9sdAoqIE1hcmsgRmlsaW9uCiogS2VpdGggUGFja2FyZAoqIEhhcnJ5
+IFdlbnRsYW5kCgpDaGVlcnMsCkhhcnJ5IFdlbnRsYW5kLApvbiBiZWhhbGYgb2YgdGhlIFguT3Jn
+IGVsZWN0aW9ucyBjb21taXR0ZWUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+aW50ZWwtZ2Z4Cg==
