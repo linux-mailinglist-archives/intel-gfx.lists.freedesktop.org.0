@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43073322CED
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Feb 2021 15:55:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEAE1322C98
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Feb 2021 15:42:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94ED56E9CA;
-	Tue, 23 Feb 2021 14:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 545E889D49;
+	Tue, 23 Feb 2021 14:42:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5EE26E591;
- Tue, 23 Feb 2021 01:22:28 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A8BC86023B;
- Tue, 23 Feb 2021 01:22:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1614043347;
- bh=QyNsljerVpDiDO+K9/ltiFTkhVqcxc/0Ay2CXZ1z8vI=;
- h=Date:From:To:cc:Subject:In-Reply-To:References:From;
- b=qT9uEWGJgqYzpURFhCR6u+Wbw6bbsJzfvEpXt+qOvRpZBeHHsRUnipN3HQHDDB3E3
- gCjXrJz0oOmy8eLfkAtbzisTgVdrdP8aPT65rPgULTDiPO+qGgU3kXayVSCi7szBX/
- MfxWKKRGZmJ1Y0ya3KFks5fDwYLPA+LP36j6egOWcx+zZZlUCQVI7We8WcL7pgLfTc
- aFyNR7YKXv/dZO9DLIrqsrZIWF99Xag6MDO0N1HuYflfFdk0rqJHeOrj3VhyML8MHz
- tVChYYBBryvSqBDuB2Mo5J/NvyYzT12d/wTuwUUZX0GTHVvNU/omP5eYzJ827lYJXw
- ABjqJ4JGM8RZA==
-Date: Mon, 22 Feb 2021 17:22:24 -0800 (PST)
-From: Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
-To: Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-In-Reply-To: <YDAgT2ZIdncNwNlf@Konrads-MacBook-Pro.local>
-Message-ID: <alpine.DEB.2.21.2102221511360.3234@sstabellini-ThinkPad-T480s>
-References: <20210203233709.19819-1-dongli.zhang@oracle.com>
- <20210203233709.19819-6-dongli.zhang@oracle.com>
- <20210204084023.GA32328@lst.de> <20210207155601.GA25111@lst.de>
- <YDAgT2ZIdncNwNlf@Konrads-MacBook-Pro.local>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65EEC89B42;
+ Tue, 23 Feb 2021 14:42:33 +0000 (UTC)
+IronPort-SDR: Te9toicNnHhLpHYXg+3J9RNNm6PVMvB/+dKSeBX+admG5kIeKtMBmcjDnR3Vok67DYQfvpqlhR
+ dyT6PnBdtm/w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9903"; a="269775767"
+X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; d="scan'208";a="269775767"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2021 06:42:32 -0800
+IronPort-SDR: B30A7rHbUxONgX/CuKvH2rvKOvtMU0X8CTKW1exCv0pYE+nYnnV+BRQsDuZhnVar5WMcgNNX6t
+ 1yBQLNuY0JKQ==
+X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; d="scan'208";a="366609033"
+Received: from mmgoodso-mobl3.amr.corp.intel.com (HELO intel.com)
+ ([10.212.211.76])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2021 06:42:31 -0800
+Date: Tue, 23 Feb 2021 09:42:30 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Message-ID: <YDUUVt0chYrFyUQQ@intel.com>
+References: <20210222083402.GD1551@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 23 Feb 2021 14:55:27 +0000
-Subject: Re: [Intel-gfx] [PATCH RFC v1 5/6] xen-swiotlb: convert variables
- to arrays
+Content-Disposition: inline
+In-Reply-To: <20210222083402.GD1551@zhen-hp.sh.intel.com>
+Subject: Re: [Intel-gfx] [PULL] gvt-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,122 +47,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ulf.hansson@linaro.org, airlied@linux.ie, benh@kernel.crashing.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- paulus@samba.org, hpa@zytor.com, Christoph Hellwig <hch@lst.de>,
- m.szyprowski@samsung.com, sstabellini@kernel.org, adrian.hunter@intel.com,
- Dongli Zhang <dongli.zhang@oracle.com>, x86@kernel.org, joe.jin@oracle.com,
- mingo@kernel.org, peterz@infradead.org, mingo@redhat.com, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- matthew.auld@intel.com, thomas.lendacky@amd.com,
- intel-gfx@lists.freedesktop.org, bp@alien8.de, bhelgaas@google.com,
- Boris Ostrovsky <boris.ostrovsky@oracle.com>, chris@chris-wilson.co.uk,
- jgross@suse.com, tsbogend@alpha.franken.de, nouveau@lists.freedesktop.org,
- robin.murphy@arm.com, linux-mmc@vger.kernel.org, linux-mips@vger.kernel.org,
- iommu@lists.linux-foundation.org, tglx@linutronix.de, bauerman@linux.ibm.com,
- mpe@ellerman.id.au, akpm@linux-foundation.org, linuxppc-dev@lists.ozlabs.org,
- rppt@kernel.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 19 Feb 2021, Konrad Rzeszutek Wilk wrote:
-> On Sun, Feb 07, 2021 at 04:56:01PM +0100, Christoph Hellwig wrote:
-> > On Thu, Feb 04, 2021 at 09:40:23AM +0100, Christoph Hellwig wrote:
-> > > So one thing that has been on my mind for a while:  I'd really like
-> > > to kill the separate dma ops in Xen swiotlb.  If we compare xen-swiotlb
-> > > to swiotlb the main difference seems to be:
-> > > 
-> > >  - additional reasons to bounce I/O vs the plain DMA capable
-> > >  - the possibility to do a hypercall on arm/arm64
-> > >  - an extra translation layer before doing the phys_to_dma and vice
-> > >    versa
-> > >  - an special memory allocator
-> > > 
-> > > I wonder if inbetween a few jump labels or other no overhead enablement
-> > > options and possibly better use of the dma_range_map we could kill
-> > > off most of swiotlb-xen instead of maintaining all this code duplication?
-> > 
-> > So I looked at this a bit more.
-> > 
-> > For x86 with XENFEAT_auto_translated_physmap (how common is that?)
+On Mon, Feb 22, 2021 at 04:34:02PM +0800, Zhenyu Wang wrote:
 > 
-> Juergen, Boris please correct me if I am wrong, but that XENFEAT_auto_translated_physmap
-> only works for PVH guests?
-
-ARM is always XENFEAT_auto_translated_physmap
-
-
-> > pfn_to_gfn is a nop, so plain phys_to_dma/dma_to_phys do work as-is.
-> > 
-> > xen_arch_need_swiotlb always returns true for x86, and
-> > range_straddles_page_boundary should never be true for the
-> > XENFEAT_auto_translated_physmap case.
+> Hi,
 > 
-> Correct. The kernel should have no clue of what the real MFNs are
-> for PFNs.
+> Looks last gvt pull missed -gt-next window before CNY holiday.
+> So here're left three changes for fixing ww locking, cmd parser
+> fix for i915 state use and one left cleanup fix.
 
-On ARM, Linux knows the MFNs because for local pages MFN == PFN and for
-foreign pages it keeps track in arch/arm/xen/p2m.c. More on this below.
+no problem at all. I believe we still have time.
+pulled now.
 
-xen_arch_need_swiotlb only returns true on ARM in rare situations where
-bouncing on swiotlb buffers is required. Today it only happens on old
-versions of Xen that don't support the cache flushing hypercall but
-there could be more cases in the future.
+Happy New Year!
 
-
-> > 
-> > So as far as I can tell the mapping fast path for the
-> > XENFEAT_auto_translated_physmap can be trivially reused from swiotlb.
-> > 
-> > That leaves us with the next more complicated case, x86 or fully cache
-> > coherent arm{,64} without XENFEAT_auto_translated_physmap.  In that case
-> > we need to patch in a phys_to_dma/dma_to_phys that performs the MFN
-> > lookup, which could be done using alternatives or jump labels.
-> > I think if that is done right we should also be able to let that cover
-> > the foreign pages in is_xen_swiotlb_buffer/is_swiotlb_buffer, but
-> > in that worst case that would need another alternative / jump label.
-> > 
-> > For non-coherent arm{,64} we'd also need to use alternatives or jump
-> > labels to for the cache maintainance ops, but that isn't a hard problem
-> > either.
-
-With the caveat that ARM is always XENFEAT_auto_translated_physmap, what
-you wrote looks correct. I am writing down a brief explanation on how
-swiotlb-xen is used on ARM.
-
-
-pfn: address as seen by the guest, pseudo-physical address in ARM terminology
-mfn (or bfn): real address, physical address in ARM terminology
-
-
-On ARM dom0 is auto_translated (so Xen sets up the stage2 translation
-in the MMU) and the translation is 1:1. So pfn == mfn for Dom0.
-
-However, when another domain shares a page with Dom0, that page is not
-1:1. Swiotlb-xen is used to retrieve the mfn for the foreign page at
-xen_swiotlb_map_page. It does that with xen_phys_to_bus -> pfn_to_bfn.
-It is implemented with a rbtree in arch/arm/xen/p2m.c.
-
-In addition, swiotlb-xen is also used to cache-flush the page via
-hypercall at xen_swiotlb_unmap_page. That is done because dev_addr is
-really the mfn at unmap_page and we don't know the pfn for it. We can do
-pfn-to-mfn but we cannot do mfn-to-pfn (there are good reasons for it
-unfortunately). The only way to cache-flush by mfn is by issuing a
-hypercall. The hypercall is implemented in arch/arm/xen/mm.c.
-
-The pfn != bfn and pfn_valid() checks are used to detect if the page is
-local (of dom0) or foreign; they work thanks to the fact that Dom0 is
-1:1 mapped.
+> 
+> Thanks!
+> --
+> The following changes since commit 81ce8f04aa96f7f6cae05770f68b5d15be91f5a2:
+> 
+>   drm/i915/gt: Correct surface base address for renderclear (2021-02-17 06:19:04 -0500)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/intel/gvt-linux tags/gvt-next-fixes-2021-02-22
+> 
+> for you to fetch changes up to 67f1120381df022a7016f4acc8d4880da9a66c03:
+> 
+>   drm/i915/gvt: Introduce per object locking in GVT scheduler. (2021-02-22 16:42:14 +0800)
+> 
+> ----------------------------------------------------------------
+> gvt-next-fixes-2021-02-22
+> 
+> - Fix to use i915 default state for cmd parser on all engines (Chris)
+> - Purge dev_priv->gt (Chris)
+> - Fix gvt object ww locking (Zhi)
+> 
+> ----------------------------------------------------------------
+> Chris Wilson (2):
+>       drm/i915/gvt: Parse default state to update reg whitelist
+>       drm/i915/gvt: Purge dev_priv->gt
+> 
+> Zhi Wang (1):
+>       drm/i915/gvt: Introduce per object locking in GVT scheduler.
+> 
+>  drivers/gpu/drm/i915/gvt/cmd_parser.c | 93 ++++++++---------------------------
+>  drivers/gpu/drm/i915/gvt/execlist.c   |  8 ++-
+>  drivers/gpu/drm/i915/gvt/scheduler.c  | 52 +++++++++++++++-----
+>  3 files changed, 64 insertions(+), 89 deletions(-)
 
 
-Getting back to what you wrote, yes if we had a way to do MFN lookups in
-phys_to_dma, and a way to call the hypercall at unmap_page if the page
-is foreign (e.g. if it fails a pfn_valid check) then I think we would be
-good from an ARM perspective. The only exception is when
-xen_arch_need_swiotlb returns true, in which case we need to actually
-bounce on swiotlb buffers.
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
