@@ -1,33 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2808322964
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Feb 2021 12:19:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C503229AD
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Feb 2021 12:52:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A33E6E976;
-	Tue, 23 Feb 2021 11:19:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E88E6E42E;
+	Tue, 23 Feb 2021 11:52:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4229E6E81C;
- Tue, 23 Feb 2021 11:19:09 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id C4837AC69;
- Tue, 23 Feb 2021 11:19:07 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20210223105951.912577-1-daniel.vetter@ffwll.ch>
- <20210223105951.912577-2-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <3c34b317-5f95-24ac-5a05-d8d73994bff5@suse.de>
-Date: Tue, 23 Feb 2021 12:19:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-MIME-Version: 1.0
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 545B26E980
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Feb 2021 11:52:01 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id v62so2156746wmg.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Feb 2021 03:52:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=mlU/eDlnmLoM/5fZmN66A2MzT6qJs+p+TD9jil8/t6w=;
+ b=Uzr2ZyLaXupOm4IQUNADvBFgHemkZCuTuWBo18SfpsRO5cDVhA5g4O9ovSCptRO9Z2
+ rRzpSdrS0rHEtkQ9aDa9GA9aVo0QGk/RCtnOmK/DX7TcdVXnP0fRTjuwcCxr2ncHjaHh
+ FerHXI3ABiDRh/pSnc8MlBFCn7I1hwIMl3FcI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=mlU/eDlnmLoM/5fZmN66A2MzT6qJs+p+TD9jil8/t6w=;
+ b=hK8mX0Pj22NsyCofnpHBZLdR36VHhA/W1kH2FIvFzNnxrj5crK7f+bDUJB2+q7KAFm
+ otZvoVnAXTAs9DHllf3iJoDehH581LFPnlJerG2PEH5ARpabVXkQpbltzK+Iv1oe+/7W
+ 6cVKtGoLTAaJNEzT58hvGMGdbEnMgtqMRNkv04gC9K2EYerhl60mhOca7++72Mnf47Tz
+ jaqeF+k6dWyj1g1yt84SJ2twPYLUFmCM6O480OqHnGkPAP4vEODbOOcxxSkXSFa3IJ0g
+ 22G/Z9K2kIb66vJWBYiWnoDpXuJXHk5s95zfd49NwOpg9n/4hjztK+0TMXraWm/B+7Sx
+ Uosw==
+X-Gm-Message-State: AOAM532A/xSRhSzBw0v99dsogqr3ZmnmuY4lDxUnFclTb90la1mD4D2+
+ 8i3RZRT8lSdGmgyiLh4MVlVzaQI/DQUZtA==
+X-Google-Smtp-Source: ABdhPJwngJ7iCBRTUNzqFllem4+iTi7j7pTBDmm5HrcgBvr89H0cvxWhAOPOm3N/7mZxjegiLwcXzg==
+X-Received: by 2002:a1c:5fd4:: with SMTP id t203mr23650074wmb.17.1614081119983; 
+ Tue, 23 Feb 2021 03:51:59 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id 64sm37524614wrc.50.2021.02.23.03.51.59
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 23 Feb 2021 03:51:59 -0800 (PST)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Tue, 23 Feb 2021 12:51:54 +0100
+Message-Id: <20210223115154.921260-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.30.0
 In-Reply-To: <20210223105951.912577-2-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/vgem: use shmem helpers
+References: <20210223105951.912577-2-daniel.vetter@ffwll.ch>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/vgem: use shmem helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,457 +63,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Melissa Wen <melissa.srw@gmail.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: multipart/mixed; boundary="===============1913565431=="
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Melissa Wen <melissa.srw@gmail.com>, John Stultz <john.stultz@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Sumit Semwal <sumit.semwal@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1913565431==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="9grg3ik0P8P0jUCitbtqiv8csdOpR9Pir"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---9grg3ik0P8P0jUCitbtqiv8csdOpR9Pir
-Content-Type: multipart/mixed; boundary="crBlKecepw0PHMmy8zGe3m1wst1JuO0Y2";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Melissa Wen <melissa.srw@gmail.com>, Daniel Vetter
- <daniel.vetter@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <3c34b317-5f95-24ac-5a05-d8d73994bff5@suse.de>
-Subject: Re: [PATCH 2/2] drm/vgem: use shmem helpers
-References: <20210223105951.912577-1-daniel.vetter@ffwll.ch>
- <20210223105951.912577-2-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210223105951.912577-2-daniel.vetter@ffwll.ch>
-
---crBlKecepw0PHMmy8zGe3m1wst1JuO0Y2
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 23.02.21 um 11:59 schrieb Daniel Vetter:
-> Aside from deleting lots of code the real motivation here is to switch
-> the mmap over to VM_PFNMAP, to be more consistent with what real gpu
-> drivers do. They're all VM_PFNMP, which means get_user_pages doesn't
-> work, and even if you try and there's a struct page behind that,
-> touching it and mucking around with its refcount can upset drivers
-> real bad.
->=20
-> Cc: John Stultz <john.stultz@linaro.org>
-> Cc: Sumit Semwal <sumit.semwal@linaro.org>
-> Cc: "Christian K=C3=B6nig" <christian.koenig@amd.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Melissa Wen <melissa.srw@gmail.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   drivers/gpu/drm/vgem/vgem_drv.c | 280 +------------------------------=
--
->   1 file changed, 3 insertions(+), 277 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vge=
-m_drv.c
-> index a0e75f1d5d01..88b3d125a610 100644
-> --- a/drivers/gpu/drm/vgem/vgem_drv.c
-> +++ b/drivers/gpu/drm/vgem/vgem_drv.c
-> @@ -40,6 +40,7 @@
->   #include <drm/drm_file.h>
->   #include <drm/drm_ioctl.h>
->   #include <drm/drm_managed.h>
-> +#include <drm/drm_gem_shmem_helper.h>
-
-This should be between file.h and ioctl.h
-
->   #include <drm/drm_prime.h>
->  =20
->   #include "vgem_drv.h"
-> @@ -50,27 +51,11 @@
->   #define DRIVER_MAJOR	1
->   #define DRIVER_MINOR	0
->  =20
-> -static const struct drm_gem_object_funcs vgem_gem_object_funcs;
-> -
->   static struct vgem_device {
->   	struct drm_device drm;
->   	struct platform_device *platform;
->   } *vgem_device;
->  =20
-> -static void vgem_gem_free_object(struct drm_gem_object *obj)
-> -{
-> -	struct drm_vgem_gem_object *vgem_obj =3D to_vgem_bo(obj);
-> -
-> -	kvfree(vgem_obj->pages);
-> -	mutex_destroy(&vgem_obj->pages_lock);
-> -
-> -	if (obj->import_attach)
-> -		drm_prime_gem_destroy(obj, vgem_obj->table);
-> -
-> -	drm_gem_object_release(obj);
-> -	kfree(vgem_obj);
-> -}
-> -
->   static vm_fault_t vgem_gem_fault(struct vm_fault *vmf)
-
- From a quick grep it looks like you should be able to remove this=20
-function and vgam_gem_vm_ops as well.
-
-The rest of the patch looks good to me.
-
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
->   {
->   	struct vm_area_struct *vma =3D vmf->vma;
-> @@ -159,265 +144,12 @@ static void vgem_postclose(struct drm_device *de=
-v, struct drm_file *file)
->   	kfree(vfile);
->   }
->  =20
-> -static struct drm_vgem_gem_object *__vgem_gem_create(struct drm_device=
- *dev,
-> -						unsigned long size)
-> -{
-> -	struct drm_vgem_gem_object *obj;
-> -	int ret;
-> -
-> -	obj =3D kzalloc(sizeof(*obj), GFP_KERNEL);
-> -	if (!obj)
-> -		return ERR_PTR(-ENOMEM);
-> -
-> -	obj->base.funcs =3D &vgem_gem_object_funcs;
-> -
-> -	ret =3D drm_gem_object_init(dev, &obj->base, roundup(size, PAGE_SIZE)=
-);
-> -	if (ret) {
-> -		kfree(obj);
-> -		return ERR_PTR(ret);
-> -	}
-> -
-> -	mutex_init(&obj->pages_lock);
-> -
-> -	return obj;
-> -}
-> -
-> -static void __vgem_gem_destroy(struct drm_vgem_gem_object *obj)
-> -{
-> -	drm_gem_object_release(&obj->base);
-> -	kfree(obj);
-> -}
-> -
-> -static struct drm_gem_object *vgem_gem_create(struct drm_device *dev,
-> -					      struct drm_file *file,
-> -					      unsigned int *handle,
-> -					      unsigned long size)
-> -{
-> -	struct drm_vgem_gem_object *obj;
-> -	int ret;
-> -
-> -	obj =3D __vgem_gem_create(dev, size);
-> -	if (IS_ERR(obj))
-> -		return ERR_CAST(obj);
-> -
-> -	ret =3D drm_gem_handle_create(file, &obj->base, handle);
-> -	if (ret) {
-> -		drm_gem_object_put(&obj->base);
-> -		return ERR_PTR(ret);
-> -	}
-> -
-> -	return &obj->base;
-> -}
-> -
-> -static int vgem_gem_dumb_create(struct drm_file *file, struct drm_devi=
-ce *dev,
-> -				struct drm_mode_create_dumb *args)
-> -{
-> -	struct drm_gem_object *gem_object;
-> -	u64 pitch, size;
-> -
-> -	pitch =3D args->width * DIV_ROUND_UP(args->bpp, 8);
-> -	size =3D args->height * pitch;
-> -	if (size =3D=3D 0)
-> -		return -EINVAL;
-> -
-> -	gem_object =3D vgem_gem_create(dev, file, &args->handle, size);
-> -	if (IS_ERR(gem_object))
-> -		return PTR_ERR(gem_object);
-> -
-> -	args->size =3D gem_object->size;
-> -	args->pitch =3D pitch;
-> -
-> -	drm_gem_object_put(gem_object);
-> -
-> -	DRM_DEBUG("Created object of size %llu\n", args->size);
-> -
-> -	return 0;
-> -}
-> -
->   static struct drm_ioctl_desc vgem_ioctls[] =3D {
->   	DRM_IOCTL_DEF_DRV(VGEM_FENCE_ATTACH, vgem_fence_attach_ioctl, DRM_RE=
-NDER_ALLOW),
->   	DRM_IOCTL_DEF_DRV(VGEM_FENCE_SIGNAL, vgem_fence_signal_ioctl, DRM_RE=
-NDER_ALLOW),
->   };
->  =20
-> -static int vgem_mmap(struct file *filp, struct vm_area_struct *vma)
-> -{
-> -	unsigned long flags =3D vma->vm_flags;
-> -	int ret;
-> -
-> -	ret =3D drm_gem_mmap(filp, vma);
-> -	if (ret)
-> -		return ret;
-> -
-> -	/* Keep the WC mmaping set by drm_gem_mmap() but our pages
-> -	 * are ordinary and not special.
-> -	 */
-> -	vma->vm_flags =3D flags | VM_DONTEXPAND | VM_DONTDUMP;
-> -	return 0;
-> -}
-> -
-> -static const struct file_operations vgem_driver_fops =3D {
-> -	.owner		=3D THIS_MODULE,
-> -	.open		=3D drm_open,
-> -	.mmap		=3D vgem_mmap,
-> -	.poll		=3D drm_poll,
-> -	.read		=3D drm_read,
-> -	.unlocked_ioctl =3D drm_ioctl,
-> -	.compat_ioctl	=3D drm_compat_ioctl,
-> -	.release	=3D drm_release,
-> -};
-> -
-> -static struct page **vgem_pin_pages(struct drm_vgem_gem_object *bo)
-> -{
-> -	mutex_lock(&bo->pages_lock);
-> -	if (bo->pages_pin_count++ =3D=3D 0) {
-> -		struct page **pages;
-> -
-> -		pages =3D drm_gem_get_pages(&bo->base);
-> -		if (IS_ERR(pages)) {
-> -			bo->pages_pin_count--;
-> -			mutex_unlock(&bo->pages_lock);
-> -			return pages;
-> -		}
-> -
-> -		bo->pages =3D pages;
-> -	}
-> -	mutex_unlock(&bo->pages_lock);
-> -
-> -	return bo->pages;
-> -}
-> -
-> -static void vgem_unpin_pages(struct drm_vgem_gem_object *bo)
-> -{
-> -	mutex_lock(&bo->pages_lock);
-> -	if (--bo->pages_pin_count =3D=3D 0) {
-> -		drm_gem_put_pages(&bo->base, bo->pages, true, true);
-> -		bo->pages =3D NULL;
-> -	}
-> -	mutex_unlock(&bo->pages_lock);
-> -}
-> -
-> -static int vgem_prime_pin(struct drm_gem_object *obj)
-> -{
-> -	struct drm_vgem_gem_object *bo =3D to_vgem_bo(obj);
-> -	long n_pages =3D obj->size >> PAGE_SHIFT;
-> -	struct page **pages;
-> -
-> -	pages =3D vgem_pin_pages(bo);
-> -	if (IS_ERR(pages))
-> -		return PTR_ERR(pages);
-> -
-> -	/* Flush the object from the CPU cache so that importers can rely
-> -	 * on coherent indirect access via the exported dma-address.
-> -	 */
-> -	drm_clflush_pages(pages, n_pages);
-> -
-> -	return 0;
-> -}
-> -
-> -static void vgem_prime_unpin(struct drm_gem_object *obj)
-> -{
-> -	struct drm_vgem_gem_object *bo =3D to_vgem_bo(obj);
-> -
-> -	vgem_unpin_pages(bo);
-> -}
-> -
-> -static struct sg_table *vgem_prime_get_sg_table(struct drm_gem_object =
-*obj)
-> -{
-> -	struct drm_vgem_gem_object *bo =3D to_vgem_bo(obj);
-> -
-> -	return drm_prime_pages_to_sg(obj->dev, bo->pages, bo->base.size >> PA=
-GE_SHIFT);
-> -}
-> -
-> -static struct drm_gem_object* vgem_prime_import(struct drm_device *dev=
-,
-> -						struct dma_buf *dma_buf)
-> -{
-> -	struct vgem_device *vgem =3D container_of(dev, typeof(*vgem), drm);
-> -
-> -	return drm_gem_prime_import_dev(dev, dma_buf, &vgem->platform->dev);
-> -}
-> -
-> -static struct drm_gem_object *vgem_prime_import_sg_table(struct drm_de=
-vice *dev,
-> -			struct dma_buf_attachment *attach, struct sg_table *sg)
-> -{
-> -	struct drm_vgem_gem_object *obj;
-> -	int npages;
-> -
-> -	obj =3D __vgem_gem_create(dev, attach->dmabuf->size);
-> -	if (IS_ERR(obj))
-> -		return ERR_CAST(obj);
-> -
-> -	npages =3D PAGE_ALIGN(attach->dmabuf->size) / PAGE_SIZE;
-> -
-> -	obj->table =3D sg;
-> -	obj->pages =3D kvmalloc_array(npages, sizeof(struct page *), GFP_KERN=
-EL);
-> -	if (!obj->pages) {
-> -		__vgem_gem_destroy(obj);
-> -		return ERR_PTR(-ENOMEM);
-> -	}
-> -
-> -	obj->pages_pin_count++; /* perma-pinned */
-> -	drm_prime_sg_to_page_array(obj->table, obj->pages, npages);
-> -	return &obj->base;
-> -}
-> -
-> -static int vgem_prime_vmap(struct drm_gem_object *obj, struct dma_buf_=
-map *map)
-> -{
-> -	struct drm_vgem_gem_object *bo =3D to_vgem_bo(obj);
-> -	long n_pages =3D obj->size >> PAGE_SHIFT;
-> -	struct page **pages;
-> -	void *vaddr;
-> -
-> -	pages =3D vgem_pin_pages(bo);
-> -	if (IS_ERR(pages))
-> -		return PTR_ERR(pages);
-> -
-> -	vaddr =3D vmap(pages, n_pages, 0, pgprot_writecombine(PAGE_KERNEL));
-> -	if (!vaddr)
-> -		return -ENOMEM;
-> -	dma_buf_map_set_vaddr(map, vaddr);
-> -
-> -	return 0;
-> -}
-> -
-> -static void vgem_prime_vunmap(struct drm_gem_object *obj, struct dma_b=
-uf_map *map)
-> -{
-> -	struct drm_vgem_gem_object *bo =3D to_vgem_bo(obj);
-> -
-> -	vunmap(map->vaddr);
-> -	vgem_unpin_pages(bo);
-> -}
-> -
-> -static int vgem_prime_mmap(struct drm_gem_object *obj,
-> -			   struct vm_area_struct *vma)
-> -{
-> -	int ret;
-> -
-> -	if (obj->size < vma->vm_end - vma->vm_start)
-> -		return -EINVAL;
-> -
-> -	if (!obj->filp)
-> -		return -ENODEV;
-> -
-> -	ret =3D call_mmap(obj->filp, vma);
-> -	if (ret)
-> -		return ret;
-> -
-> -	vma_set_file(vma, obj->filp);
-> -	vma->vm_flags |=3D VM_DONTEXPAND | VM_DONTDUMP;
-> -	vma->vm_page_prot =3D pgprot_writecombine(vm_get_page_prot(vma->vm_fl=
-ags));
-> -
-> -	return 0;
-> -}
-> -
-> -static const struct drm_gem_object_funcs vgem_gem_object_funcs =3D {
-> -	.free =3D vgem_gem_free_object,
-> -	.pin =3D vgem_prime_pin,
-> -	.unpin =3D vgem_prime_unpin,
-> -	.get_sg_table =3D vgem_prime_get_sg_table,
-> -	.vmap =3D vgem_prime_vmap,
-> -	.vunmap =3D vgem_prime_vunmap,
-> -	.vm_ops =3D &vgem_gem_vm_ops,
-> -};
-> +DEFINE_DRM_GEM_FOPS(vgem_driver_fops);
->  =20
->   static const struct drm_driver vgem_driver =3D {
->   	.driver_features		=3D DRIVER_GEM | DRIVER_RENDER,
-> @@ -427,13 +159,7 @@ static const struct drm_driver vgem_driver =3D {
->   	.num_ioctls 			=3D ARRAY_SIZE(vgem_ioctls),
->   	.fops				=3D &vgem_driver_fops,
->  =20
-> -	.dumb_create			=3D vgem_gem_dumb_create,
-> -
-> -	.prime_handle_to_fd =3D drm_gem_prime_handle_to_fd,
-> -	.prime_fd_to_handle =3D drm_gem_prime_fd_to_handle,
-> -	.gem_prime_import =3D vgem_prime_import,
-> -	.gem_prime_import_sg_table =3D vgem_prime_import_sg_table,
-> -	.gem_prime_mmap =3D vgem_prime_mmap,
-> +	DRM_GEM_SHMEM_DRIVER_OPS,
->  =20
->   	.name	=3D DRIVER_NAME,
->   	.desc	=3D DRIVER_DESC,
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---crBlKecepw0PHMmy8zGe3m1wst1JuO0Y2--
-
---9grg3ik0P8P0jUCitbtqiv8csdOpR9Pir
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmA05KoFAwAAAAAACgkQlh/E3EQov+Cf
-RQ/7BMyMc6wbCXYJ3oXEUSuoAyFjowm6t4Yf6N2UoubOWe3CO9ubCdtsTHDHNV4qvRin1vqEQLqC
-xDErh8ni/RRVJfe+Pm3h1sbtFnUrV66GWJKibJ2U5UeVfyPW1ZqXexl7i2S0uI+rTqRs+LU5M6fR
-wUP4X+vDuRkuLWSojWF0n/H7U/ktMfgjCdV7mfAI3Mtb1Fb2v4sneRX2BDrpekpvCEhvjAW6NIjB
-nZ6LUT5PF1P9A1Nm982m9Mp5yYOZkqH0hxXxTz55BgmDxuFU8o846uEa2deoFnSQK74aY/tx2GyI
-X8SoPf3eZIL1MyO17ArkrzAWhz7Yn/k7T7ZCO20MGeDI/hVaMBfqbOhZ5u81/nk2CsAdrhwSaMG7
-vMGWcaIymsGXMCRe0TJW7kbR9Ud7IFZbhufjIF2AMCzuMp30ojjSpaJUZLdue070S9J3R7qfpsSx
-rz2OykIDXE02VMVDmpRYwR4vQUB6bNBPaqG1c8i/zIls8iP8eZ80l4784rFrrc7wcKascsFXZxLA
-pkGZcAZVIC/sIwcYShZg6lf4b7DGHD/yrYIDHPxxMo5FbRru1cqcNr7PjNA4ctsR25RY84iEFXYh
-h1FY5BHcuS3k9iDCPSaV9p2I7nZlLiZLOOQHM+uyZUxAE9EaIryEFoIX1PadSC4vS4mz5y0/ktcY
-IGs=
-=Kvn5
------END PGP SIGNATURE-----
-
---9grg3ik0P8P0jUCitbtqiv8csdOpR9Pir--
-
---===============1913565431==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1913565431==--
+QXNpZGUgZnJvbSBkZWxldGluZyBsb3RzIG9mIGNvZGUgdGhlIHJlYWwgbW90aXZhdGlvbiBoZXJl
+IGlzIHRvIHN3aXRjaAp0aGUgbW1hcCBvdmVyIHRvIFZNX1BGTk1BUCwgdG8gYmUgbW9yZSBjb25z
+aXN0ZW50IHdpdGggd2hhdCByZWFsIGdwdQpkcml2ZXJzIGRvLiBUaGV5J3JlIGFsbCBWTV9QRk5N
+UCwgd2hpY2ggbWVhbnMgZ2V0X3VzZXJfcGFnZXMgZG9lc24ndAp3b3JrLCBhbmQgZXZlbiBpZiB5
+b3UgdHJ5IGFuZCB0aGVyZSdzIGEgc3RydWN0IHBhZ2UgYmVoaW5kIHRoYXQsCnRvdWNoaW5nIGl0
+IGFuZCBtdWNraW5nIGFyb3VuZCB3aXRoIGl0cyByZWZjb3VudCBjYW4gdXBzZXQgZHJpdmVycwpy
+ZWFsIGJhZC4KCnYyOiBSZXZpZXcgZnJvbSBUaG9tYXM6Ci0gc29ydCAjaW5jbHVkZQotIGRyb3Ag
+bW9yZSBkZWFkIGNvZGUgdGhhdCBJIGRpZG4ndCBzcG90IHNvbWVob3cKCkNjOiBUaG9tYXMgWmlt
+bWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KQWNrZWQtYnk6IFRob21hcyBaaW1tZXJtYW5u
+IDx0emltbWVybWFubkBzdXNlLmRlPgpDYzogSm9obiBTdHVsdHogPGpvaG4uc3R1bHR6QGxpbmFy
+by5vcmc+CkNjOiBTdW1pdCBTZW13YWwgPHN1bWl0LnNlbXdhbEBsaW5hcm8ub3JnPgpDYzogIkNo
+cmlzdGlhbiBLw7ZuaWciIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+ClNpZ25lZC1vZmYtYnk6
+IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgpDYzogTWVsaXNzYSBXZW4g
+PG1lbGlzc2Euc3J3QGdtYWlsLmNvbT4KQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2ls
+c29uLmNvLnVrPgotLS0KIGRyaXZlcnMvZ3B1L2RybS92Z2VtL3ZnZW1fZHJ2LmMgfCAzNDAgKy0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlv
+bnMoKyksIDMzNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdmdl
+bS92Z2VtX2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL3ZnZW0vdmdlbV9kcnYuYwppbmRleCBhMGU3
+NWYxZDVkMDEuLmIxYjNhNWZmYzU0MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3ZnZW0v
+dmdlbV9kcnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vdmdlbS92Z2VtX2Rydi5jCkBAIC0zOCw2
+ICszOCw3IEBACiAKICNpbmNsdWRlIDxkcm0vZHJtX2Rydi5oPgogI2luY2x1ZGUgPGRybS9kcm1f
+ZmlsZS5oPgorI2luY2x1ZGUgPGRybS9kcm1fZ2VtX3NobWVtX2hlbHBlci5oPgogI2luY2x1ZGUg
+PGRybS9kcm1faW9jdGwuaD4KICNpbmNsdWRlIDxkcm0vZHJtX21hbmFnZWQuaD4KICNpbmNsdWRl
+IDxkcm0vZHJtX3ByaW1lLmg+CkBAIC01MCw4NyArNTEsMTEgQEAKICNkZWZpbmUgRFJJVkVSX01B
+Sk9SCTEKICNkZWZpbmUgRFJJVkVSX01JTk9SCTAKIAotc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1f
+Z2VtX29iamVjdF9mdW5jcyB2Z2VtX2dlbV9vYmplY3RfZnVuY3M7Ci0KIHN0YXRpYyBzdHJ1Y3Qg
+dmdlbV9kZXZpY2UgewogCXN0cnVjdCBkcm1fZGV2aWNlIGRybTsKIAlzdHJ1Y3QgcGxhdGZvcm1f
+ZGV2aWNlICpwbGF0Zm9ybTsKIH0gKnZnZW1fZGV2aWNlOwogCi1zdGF0aWMgdm9pZCB2Z2VtX2dl
+bV9mcmVlX29iamVjdChzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaikKLXsKLQlzdHJ1Y3QgZHJt
+X3ZnZW1fZ2VtX29iamVjdCAqdmdlbV9vYmogPSB0b192Z2VtX2JvKG9iaik7Ci0KLQlrdmZyZWUo
+dmdlbV9vYmotPnBhZ2VzKTsKLQltdXRleF9kZXN0cm95KCZ2Z2VtX29iai0+cGFnZXNfbG9jayk7
+Ci0KLQlpZiAob2JqLT5pbXBvcnRfYXR0YWNoKQotCQlkcm1fcHJpbWVfZ2VtX2Rlc3Ryb3kob2Jq
+LCB2Z2VtX29iai0+dGFibGUpOwotCi0JZHJtX2dlbV9vYmplY3RfcmVsZWFzZShvYmopOwotCWtm
+cmVlKHZnZW1fb2JqKTsKLX0KLQotc3RhdGljIHZtX2ZhdWx0X3QgdmdlbV9nZW1fZmF1bHQoc3Ry
+dWN0IHZtX2ZhdWx0ICp2bWYpCi17Ci0Jc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEgPSB2bWYt
+PnZtYTsKLQlzdHJ1Y3QgZHJtX3ZnZW1fZ2VtX29iamVjdCAqb2JqID0gdm1hLT52bV9wcml2YXRl
+X2RhdGE7Ci0JLyogV2UgZG9uJ3QgdXNlIHZtZi0+cGdvZmYgc2luY2UgdGhhdCBoYXMgdGhlIGZh
+a2Ugb2Zmc2V0ICovCi0JdW5zaWduZWQgbG9uZyB2YWRkciA9IHZtZi0+YWRkcmVzczsKLQl2bV9m
+YXVsdF90IHJldCA9IFZNX0ZBVUxUX1NJR0JVUzsKLQlsb2ZmX3QgbnVtX3BhZ2VzOwotCXBnb2Zm
+X3QgcGFnZV9vZmZzZXQ7Ci0JcGFnZV9vZmZzZXQgPSAodmFkZHIgLSB2bWEtPnZtX3N0YXJ0KSA+
+PiBQQUdFX1NISUZUOwotCi0JbnVtX3BhZ2VzID0gRElWX1JPVU5EX1VQKG9iai0+YmFzZS5zaXpl
+LCBQQUdFX1NJWkUpOwotCi0JaWYgKHBhZ2Vfb2Zmc2V0ID49IG51bV9wYWdlcykKLQkJcmV0dXJu
+IFZNX0ZBVUxUX1NJR0JVUzsKLQotCW11dGV4X2xvY2soJm9iai0+cGFnZXNfbG9jayk7Ci0JaWYg
+KG9iai0+cGFnZXMpIHsKLQkJZ2V0X3BhZ2Uob2JqLT5wYWdlc1twYWdlX29mZnNldF0pOwotCQl2
+bWYtPnBhZ2UgPSBvYmotPnBhZ2VzW3BhZ2Vfb2Zmc2V0XTsKLQkJcmV0ID0gMDsKLQl9Ci0JbXV0
+ZXhfdW5sb2NrKCZvYmotPnBhZ2VzX2xvY2spOwotCWlmIChyZXQpIHsKLQkJc3RydWN0IHBhZ2Ug
+KnBhZ2U7Ci0KLQkJcGFnZSA9IHNobWVtX3JlYWRfbWFwcGluZ19wYWdlKAotCQkJCQlmaWxlX2lu
+b2RlKG9iai0+YmFzZS5maWxwKS0+aV9tYXBwaW5nLAotCQkJCQlwYWdlX29mZnNldCk7Ci0JCWlm
+ICghSVNfRVJSKHBhZ2UpKSB7Ci0JCQl2bWYtPnBhZ2UgPSBwYWdlOwotCQkJcmV0ID0gMDsKLQkJ
+fSBlbHNlIHN3aXRjaCAoUFRSX0VSUihwYWdlKSkgewotCQkJY2FzZSAtRU5PU1BDOgotCQkJY2Fz
+ZSAtRU5PTUVNOgotCQkJCXJldCA9IFZNX0ZBVUxUX09PTTsKLQkJCQlicmVhazsKLQkJCWNhc2Ug
+LUVCVVNZOgotCQkJCXJldCA9IFZNX0ZBVUxUX1JFVFJZOwotCQkJCWJyZWFrOwotCQkJY2FzZSAt
+RUZBVUxUOgotCQkJY2FzZSAtRUlOVkFMOgotCQkJCXJldCA9IFZNX0ZBVUxUX1NJR0JVUzsKLQkJ
+CQlicmVhazsKLQkJCWRlZmF1bHQ6Ci0JCQkJV0FSTl9PTihQVFJfRVJSKHBhZ2UpKTsKLQkJCQly
+ZXQgPSBWTV9GQVVMVF9TSUdCVVM7Ci0JCQkJYnJlYWs7Ci0JCX0KLQotCX0KLQlyZXR1cm4gcmV0
+OwotfQotCi1zdGF0aWMgY29uc3Qgc3RydWN0IHZtX29wZXJhdGlvbnNfc3RydWN0IHZnZW1fZ2Vt
+X3ZtX29wcyA9IHsKLQkuZmF1bHQgPSB2Z2VtX2dlbV9mYXVsdCwKLQkub3BlbiA9IGRybV9nZW1f
+dm1fb3BlbiwKLQkuY2xvc2UgPSBkcm1fZ2VtX3ZtX2Nsb3NlLAotfTsKLQogc3RhdGljIGludCB2
+Z2VtX29wZW4oc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9maWxlICpmaWxlKQog
+ewogCXN0cnVjdCB2Z2VtX2ZpbGUgKnZmaWxlOwpAQCAtMTU5LDI2NSArODQsMTIgQEAgc3RhdGlj
+IHZvaWQgdmdlbV9wb3N0Y2xvc2Uoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9m
+aWxlICpmaWxlKQogCWtmcmVlKHZmaWxlKTsKIH0KIAotc3RhdGljIHN0cnVjdCBkcm1fdmdlbV9n
+ZW1fb2JqZWN0ICpfX3ZnZW1fZ2VtX2NyZWF0ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAotCQkJ
+CQkJdW5zaWduZWQgbG9uZyBzaXplKQotewotCXN0cnVjdCBkcm1fdmdlbV9nZW1fb2JqZWN0ICpv
+Ymo7Ci0JaW50IHJldDsKLQotCW9iaiA9IGt6YWxsb2Moc2l6ZW9mKCpvYmopLCBHRlBfS0VSTkVM
+KTsKLQlpZiAoIW9iaikKLQkJcmV0dXJuIEVSUl9QVFIoLUVOT01FTSk7Ci0KLQlvYmotPmJhc2Uu
+ZnVuY3MgPSAmdmdlbV9nZW1fb2JqZWN0X2Z1bmNzOwotCi0JcmV0ID0gZHJtX2dlbV9vYmplY3Rf
+aW5pdChkZXYsICZvYmotPmJhc2UsIHJvdW5kdXAoc2l6ZSwgUEFHRV9TSVpFKSk7Ci0JaWYgKHJl
+dCkgewotCQlrZnJlZShvYmopOwotCQlyZXR1cm4gRVJSX1BUUihyZXQpOwotCX0KLQotCW11dGV4
+X2luaXQoJm9iai0+cGFnZXNfbG9jayk7Ci0KLQlyZXR1cm4gb2JqOwotfQotCi1zdGF0aWMgdm9p
+ZCBfX3ZnZW1fZ2VtX2Rlc3Ryb3koc3RydWN0IGRybV92Z2VtX2dlbV9vYmplY3QgKm9iaikKLXsK
+LQlkcm1fZ2VtX29iamVjdF9yZWxlYXNlKCZvYmotPmJhc2UpOwotCWtmcmVlKG9iaik7Ci19Ci0K
+LXN0YXRpYyBzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKnZnZW1fZ2VtX2NyZWF0ZShzdHJ1Y3QgZHJt
+X2RldmljZSAqZGV2LAotCQkJCQkgICAgICBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGUsCi0JCQkJCSAg
+ICAgIHVuc2lnbmVkIGludCAqaGFuZGxlLAotCQkJCQkgICAgICB1bnNpZ25lZCBsb25nIHNpemUp
+Ci17Ci0Jc3RydWN0IGRybV92Z2VtX2dlbV9vYmplY3QgKm9iajsKLQlpbnQgcmV0OwotCi0Jb2Jq
+ID0gX192Z2VtX2dlbV9jcmVhdGUoZGV2LCBzaXplKTsKLQlpZiAoSVNfRVJSKG9iaikpCi0JCXJl
+dHVybiBFUlJfQ0FTVChvYmopOwotCi0JcmV0ID0gZHJtX2dlbV9oYW5kbGVfY3JlYXRlKGZpbGUs
+ICZvYmotPmJhc2UsIGhhbmRsZSk7Ci0JaWYgKHJldCkgewotCQlkcm1fZ2VtX29iamVjdF9wdXQo
+Jm9iai0+YmFzZSk7Ci0JCXJldHVybiBFUlJfUFRSKHJldCk7Ci0JfQotCi0JcmV0dXJuICZvYmot
+PmJhc2U7Ci19Ci0KLXN0YXRpYyBpbnQgdmdlbV9nZW1fZHVtYl9jcmVhdGUoc3RydWN0IGRybV9m
+aWxlICpmaWxlLCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAotCQkJCXN0cnVjdCBkcm1fbW9kZV9j
+cmVhdGVfZHVtYiAqYXJncykKLXsKLQlzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKmdlbV9vYmplY3Q7
+Ci0JdTY0IHBpdGNoLCBzaXplOwotCi0JcGl0Y2ggPSBhcmdzLT53aWR0aCAqIERJVl9ST1VORF9V
+UChhcmdzLT5icHAsIDgpOwotCXNpemUgPSBhcmdzLT5oZWlnaHQgKiBwaXRjaDsKLQlpZiAoc2l6
+ZSA9PSAwKQotCQlyZXR1cm4gLUVJTlZBTDsKLQotCWdlbV9vYmplY3QgPSB2Z2VtX2dlbV9jcmVh
+dGUoZGV2LCBmaWxlLCAmYXJncy0+aGFuZGxlLCBzaXplKTsKLQlpZiAoSVNfRVJSKGdlbV9vYmpl
+Y3QpKQotCQlyZXR1cm4gUFRSX0VSUihnZW1fb2JqZWN0KTsKLQotCWFyZ3MtPnNpemUgPSBnZW1f
+b2JqZWN0LT5zaXplOwotCWFyZ3MtPnBpdGNoID0gcGl0Y2g7Ci0KLQlkcm1fZ2VtX29iamVjdF9w
+dXQoZ2VtX29iamVjdCk7Ci0KLQlEUk1fREVCVUcoIkNyZWF0ZWQgb2JqZWN0IG9mIHNpemUgJWxs
+dVxuIiwgYXJncy0+c2l6ZSk7Ci0KLQlyZXR1cm4gMDsKLX0KLQogc3RhdGljIHN0cnVjdCBkcm1f
+aW9jdGxfZGVzYyB2Z2VtX2lvY3Rsc1tdID0gewogCURSTV9JT0NUTF9ERUZfRFJWKFZHRU1fRkVO
+Q0VfQVRUQUNILCB2Z2VtX2ZlbmNlX2F0dGFjaF9pb2N0bCwgRFJNX1JFTkRFUl9BTExPVyksCiAJ
+RFJNX0lPQ1RMX0RFRl9EUlYoVkdFTV9GRU5DRV9TSUdOQUwsIHZnZW1fZmVuY2Vfc2lnbmFsX2lv
+Y3RsLCBEUk1fUkVOREVSX0FMTE9XKSwKIH07CiAKLXN0YXRpYyBpbnQgdmdlbV9tbWFwKHN0cnVj
+dCBmaWxlICpmaWxwLCBzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSkKLXsKLQl1bnNpZ25lZCBs
+b25nIGZsYWdzID0gdm1hLT52bV9mbGFnczsKLQlpbnQgcmV0OwotCi0JcmV0ID0gZHJtX2dlbV9t
+bWFwKGZpbHAsIHZtYSk7Ci0JaWYgKHJldCkKLQkJcmV0dXJuIHJldDsKLQotCS8qIEtlZXAgdGhl
+IFdDIG1tYXBpbmcgc2V0IGJ5IGRybV9nZW1fbW1hcCgpIGJ1dCBvdXIgcGFnZXMKLQkgKiBhcmUg
+b3JkaW5hcnkgYW5kIG5vdCBzcGVjaWFsLgotCSAqLwotCXZtYS0+dm1fZmxhZ3MgPSBmbGFncyB8
+IFZNX0RPTlRFWFBBTkQgfCBWTV9ET05URFVNUDsKLQlyZXR1cm4gMDsKLX0KLQotc3RhdGljIGNv
+bnN0IHN0cnVjdCBmaWxlX29wZXJhdGlvbnMgdmdlbV9kcml2ZXJfZm9wcyA9IHsKLQkub3duZXIJ
+CT0gVEhJU19NT0RVTEUsCi0JLm9wZW4JCT0gZHJtX29wZW4sCi0JLm1tYXAJCT0gdmdlbV9tbWFw
+LAotCS5wb2xsCQk9IGRybV9wb2xsLAotCS5yZWFkCQk9IGRybV9yZWFkLAotCS51bmxvY2tlZF9p
+b2N0bCA9IGRybV9pb2N0bCwKLQkuY29tcGF0X2lvY3RsCT0gZHJtX2NvbXBhdF9pb2N0bCwKLQku
+cmVsZWFzZQk9IGRybV9yZWxlYXNlLAotfTsKLQotc3RhdGljIHN0cnVjdCBwYWdlICoqdmdlbV9w
+aW5fcGFnZXMoc3RydWN0IGRybV92Z2VtX2dlbV9vYmplY3QgKmJvKQotewotCW11dGV4X2xvY2so
+JmJvLT5wYWdlc19sb2NrKTsKLQlpZiAoYm8tPnBhZ2VzX3Bpbl9jb3VudCsrID09IDApIHsKLQkJ
+c3RydWN0IHBhZ2UgKipwYWdlczsKLQotCQlwYWdlcyA9IGRybV9nZW1fZ2V0X3BhZ2VzKCZiby0+
+YmFzZSk7Ci0JCWlmIChJU19FUlIocGFnZXMpKSB7Ci0JCQliby0+cGFnZXNfcGluX2NvdW50LS07
+Ci0JCQltdXRleF91bmxvY2soJmJvLT5wYWdlc19sb2NrKTsKLQkJCXJldHVybiBwYWdlczsKLQkJ
+fQotCi0JCWJvLT5wYWdlcyA9IHBhZ2VzOwotCX0KLQltdXRleF91bmxvY2soJmJvLT5wYWdlc19s
+b2NrKTsKLQotCXJldHVybiBiby0+cGFnZXM7Ci19Ci0KLXN0YXRpYyB2b2lkIHZnZW1fdW5waW5f
+cGFnZXMoc3RydWN0IGRybV92Z2VtX2dlbV9vYmplY3QgKmJvKQotewotCW11dGV4X2xvY2soJmJv
+LT5wYWdlc19sb2NrKTsKLQlpZiAoLS1iby0+cGFnZXNfcGluX2NvdW50ID09IDApIHsKLQkJZHJt
+X2dlbV9wdXRfcGFnZXMoJmJvLT5iYXNlLCBiby0+cGFnZXMsIHRydWUsIHRydWUpOwotCQliby0+
+cGFnZXMgPSBOVUxMOwotCX0KLQltdXRleF91bmxvY2soJmJvLT5wYWdlc19sb2NrKTsKLX0KLQot
+c3RhdGljIGludCB2Z2VtX3ByaW1lX3BpbihzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaikKLXsK
+LQlzdHJ1Y3QgZHJtX3ZnZW1fZ2VtX29iamVjdCAqYm8gPSB0b192Z2VtX2JvKG9iaik7Ci0JbG9u
+ZyBuX3BhZ2VzID0gb2JqLT5zaXplID4+IFBBR0VfU0hJRlQ7Ci0Jc3RydWN0IHBhZ2UgKipwYWdl
+czsKLQotCXBhZ2VzID0gdmdlbV9waW5fcGFnZXMoYm8pOwotCWlmIChJU19FUlIocGFnZXMpKQot
+CQlyZXR1cm4gUFRSX0VSUihwYWdlcyk7Ci0KLQkvKiBGbHVzaCB0aGUgb2JqZWN0IGZyb20gdGhl
+IENQVSBjYWNoZSBzbyB0aGF0IGltcG9ydGVycyBjYW4gcmVseQotCSAqIG9uIGNvaGVyZW50IGlu
+ZGlyZWN0IGFjY2VzcyB2aWEgdGhlIGV4cG9ydGVkIGRtYS1hZGRyZXNzLgotCSAqLwotCWRybV9j
+bGZsdXNoX3BhZ2VzKHBhZ2VzLCBuX3BhZ2VzKTsKLQotCXJldHVybiAwOwotfQotCi1zdGF0aWMg
+dm9pZCB2Z2VtX3ByaW1lX3VucGluKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqb2JqKQotewotCXN0
+cnVjdCBkcm1fdmdlbV9nZW1fb2JqZWN0ICpibyA9IHRvX3ZnZW1fYm8ob2JqKTsKLQotCXZnZW1f
+dW5waW5fcGFnZXMoYm8pOwotfQotCi1zdGF0aWMgc3RydWN0IHNnX3RhYmxlICp2Z2VtX3ByaW1l
+X2dldF9zZ190YWJsZShzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaikKLXsKLQlzdHJ1Y3QgZHJt
+X3ZnZW1fZ2VtX29iamVjdCAqYm8gPSB0b192Z2VtX2JvKG9iaik7Ci0KLQlyZXR1cm4gZHJtX3By
+aW1lX3BhZ2VzX3RvX3NnKG9iai0+ZGV2LCBiby0+cGFnZXMsIGJvLT5iYXNlLnNpemUgPj4gUEFH
+RV9TSElGVCk7Ci19Ci0KLXN0YXRpYyBzdHJ1Y3QgZHJtX2dlbV9vYmplY3QqIHZnZW1fcHJpbWVf
+aW1wb3J0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCi0JCQkJCQlzdHJ1Y3QgZG1hX2J1ZiAqZG1h
+X2J1ZikKLXsKLQlzdHJ1Y3QgdmdlbV9kZXZpY2UgKnZnZW0gPSBjb250YWluZXJfb2YoZGV2LCB0
+eXBlb2YoKnZnZW0pLCBkcm0pOwotCi0JcmV0dXJuIGRybV9nZW1fcHJpbWVfaW1wb3J0X2Rldihk
+ZXYsIGRtYV9idWYsICZ2Z2VtLT5wbGF0Zm9ybS0+ZGV2KTsKLX0KLQotc3RhdGljIHN0cnVjdCBk
+cm1fZ2VtX29iamVjdCAqdmdlbV9wcmltZV9pbXBvcnRfc2dfdGFibGUoc3RydWN0IGRybV9kZXZp
+Y2UgKmRldiwKLQkJCXN0cnVjdCBkbWFfYnVmX2F0dGFjaG1lbnQgKmF0dGFjaCwgc3RydWN0IHNn
+X3RhYmxlICpzZykKLXsKLQlzdHJ1Y3QgZHJtX3ZnZW1fZ2VtX29iamVjdCAqb2JqOwotCWludCBu
+cGFnZXM7Ci0KLQlvYmogPSBfX3ZnZW1fZ2VtX2NyZWF0ZShkZXYsIGF0dGFjaC0+ZG1hYnVmLT5z
+aXplKTsKLQlpZiAoSVNfRVJSKG9iaikpCi0JCXJldHVybiBFUlJfQ0FTVChvYmopOwotCi0JbnBh
+Z2VzID0gUEFHRV9BTElHTihhdHRhY2gtPmRtYWJ1Zi0+c2l6ZSkgLyBQQUdFX1NJWkU7Ci0KLQlv
+YmotPnRhYmxlID0gc2c7Ci0Jb2JqLT5wYWdlcyA9IGt2bWFsbG9jX2FycmF5KG5wYWdlcywgc2l6
+ZW9mKHN0cnVjdCBwYWdlICopLCBHRlBfS0VSTkVMKTsKLQlpZiAoIW9iai0+cGFnZXMpIHsKLQkJ
+X192Z2VtX2dlbV9kZXN0cm95KG9iaik7Ci0JCXJldHVybiBFUlJfUFRSKC1FTk9NRU0pOwotCX0K
+LQotCW9iai0+cGFnZXNfcGluX2NvdW50Kys7IC8qIHBlcm1hLXBpbm5lZCAqLwotCWRybV9wcmlt
+ZV9zZ190b19wYWdlX2FycmF5KG9iai0+dGFibGUsIG9iai0+cGFnZXMsIG5wYWdlcyk7Ci0JcmV0
+dXJuICZvYmotPmJhc2U7Ci19Ci0KLXN0YXRpYyBpbnQgdmdlbV9wcmltZV92bWFwKHN0cnVjdCBk
+cm1fZ2VtX29iamVjdCAqb2JqLCBzdHJ1Y3QgZG1hX2J1Zl9tYXAgKm1hcCkKLXsKLQlzdHJ1Y3Qg
+ZHJtX3ZnZW1fZ2VtX29iamVjdCAqYm8gPSB0b192Z2VtX2JvKG9iaik7Ci0JbG9uZyBuX3BhZ2Vz
+ID0gb2JqLT5zaXplID4+IFBBR0VfU0hJRlQ7Ci0Jc3RydWN0IHBhZ2UgKipwYWdlczsKLQl2b2lk
+ICp2YWRkcjsKLQotCXBhZ2VzID0gdmdlbV9waW5fcGFnZXMoYm8pOwotCWlmIChJU19FUlIocGFn
+ZXMpKQotCQlyZXR1cm4gUFRSX0VSUihwYWdlcyk7Ci0KLQl2YWRkciA9IHZtYXAocGFnZXMsIG5f
+cGFnZXMsIDAsIHBncHJvdF93cml0ZWNvbWJpbmUoUEFHRV9LRVJORUwpKTsKLQlpZiAoIXZhZGRy
+KQotCQlyZXR1cm4gLUVOT01FTTsKLQlkbWFfYnVmX21hcF9zZXRfdmFkZHIobWFwLCB2YWRkcik7
+Ci0KLQlyZXR1cm4gMDsKLX0KLQotc3RhdGljIHZvaWQgdmdlbV9wcmltZV92dW5tYXAoc3RydWN0
+IGRybV9nZW1fb2JqZWN0ICpvYmosIHN0cnVjdCBkbWFfYnVmX21hcCAqbWFwKQotewotCXN0cnVj
+dCBkcm1fdmdlbV9nZW1fb2JqZWN0ICpibyA9IHRvX3ZnZW1fYm8ob2JqKTsKLQotCXZ1bm1hcCht
+YXAtPnZhZGRyKTsKLQl2Z2VtX3VucGluX3BhZ2VzKGJvKTsKLX0KLQotc3RhdGljIGludCB2Z2Vt
+X3ByaW1lX21tYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosCi0JCQkgICBzdHJ1Y3Qgdm1f
+YXJlYV9zdHJ1Y3QgKnZtYSkKLXsKLQlpbnQgcmV0OwotCi0JaWYgKG9iai0+c2l6ZSA8IHZtYS0+
+dm1fZW5kIC0gdm1hLT52bV9zdGFydCkKLQkJcmV0dXJuIC1FSU5WQUw7Ci0KLQlpZiAoIW9iai0+
+ZmlscCkKLQkJcmV0dXJuIC1FTk9ERVY7Ci0KLQlyZXQgPSBjYWxsX21tYXAob2JqLT5maWxwLCB2
+bWEpOwotCWlmIChyZXQpCi0JCXJldHVybiByZXQ7Ci0KLQl2bWFfc2V0X2ZpbGUodm1hLCBvYmot
+PmZpbHApOwotCXZtYS0+dm1fZmxhZ3MgfD0gVk1fRE9OVEVYUEFORCB8IFZNX0RPTlREVU1QOwot
+CXZtYS0+dm1fcGFnZV9wcm90ID0gcGdwcm90X3dyaXRlY29tYmluZSh2bV9nZXRfcGFnZV9wcm90
+KHZtYS0+dm1fZmxhZ3MpKTsKLQotCXJldHVybiAwOwotfQotCi1zdGF0aWMgY29uc3Qgc3RydWN0
+IGRybV9nZW1fb2JqZWN0X2Z1bmNzIHZnZW1fZ2VtX29iamVjdF9mdW5jcyA9IHsKLQkuZnJlZSA9
+IHZnZW1fZ2VtX2ZyZWVfb2JqZWN0LAotCS5waW4gPSB2Z2VtX3ByaW1lX3BpbiwKLQkudW5waW4g
+PSB2Z2VtX3ByaW1lX3VucGluLAotCS5nZXRfc2dfdGFibGUgPSB2Z2VtX3ByaW1lX2dldF9zZ190
+YWJsZSwKLQkudm1hcCA9IHZnZW1fcHJpbWVfdm1hcCwKLQkudnVubWFwID0gdmdlbV9wcmltZV92
+dW5tYXAsCi0JLnZtX29wcyA9ICZ2Z2VtX2dlbV92bV9vcHMsCi19OworREVGSU5FX0RSTV9HRU1f
+Rk9QUyh2Z2VtX2RyaXZlcl9mb3BzKTsKIAogc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fZHJpdmVy
+IHZnZW1fZHJpdmVyID0gewogCS5kcml2ZXJfZmVhdHVyZXMJCT0gRFJJVkVSX0dFTSB8IERSSVZF
+Ul9SRU5ERVIsCkBAIC00MjcsMTMgKzk5LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fZHJp
+dmVyIHZnZW1fZHJpdmVyID0gewogCS5udW1faW9jdGxzIAkJCT0gQVJSQVlfU0laRSh2Z2VtX2lv
+Y3RscyksCiAJLmZvcHMJCQkJPSAmdmdlbV9kcml2ZXJfZm9wcywKIAotCS5kdW1iX2NyZWF0ZQkJ
+CT0gdmdlbV9nZW1fZHVtYl9jcmVhdGUsCi0KLQkucHJpbWVfaGFuZGxlX3RvX2ZkID0gZHJtX2dl
+bV9wcmltZV9oYW5kbGVfdG9fZmQsCi0JLnByaW1lX2ZkX3RvX2hhbmRsZSA9IGRybV9nZW1fcHJp
+bWVfZmRfdG9faGFuZGxlLAotCS5nZW1fcHJpbWVfaW1wb3J0ID0gdmdlbV9wcmltZV9pbXBvcnQs
+Ci0JLmdlbV9wcmltZV9pbXBvcnRfc2dfdGFibGUgPSB2Z2VtX3ByaW1lX2ltcG9ydF9zZ190YWJs
+ZSwKLQkuZ2VtX3ByaW1lX21tYXAgPSB2Z2VtX3ByaW1lX21tYXAsCisJRFJNX0dFTV9TSE1FTV9E
+UklWRVJfT1BTLAogCiAJLm5hbWUJPSBEUklWRVJfTkFNRSwKIAkuZGVzYwk9IERSSVZFUl9ERVND
+LAotLSAKMi4zMC4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
