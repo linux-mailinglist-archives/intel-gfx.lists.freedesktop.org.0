@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0A40322DA0
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Feb 2021 16:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6775C322DA1
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Feb 2021 16:36:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E26A6E9D8;
-	Tue, 23 Feb 2021 15:36:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B685E6E9DB;
+	Tue, 23 Feb 2021 15:36:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EC8D6E9D8
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Feb 2021 15:36:16 +0000 (UTC)
-IronPort-SDR: hkb0XC2H27vh5Ok1EcgGiSPjtzoUyTp/xOxzEX4FQz/oE8BPzYqilmf/FkSaMywXw9fukoKRad
- lOFyafjyq+xA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9903"; a="184954998"
-X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; d="scan'208";a="184954998"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A100D6E9DD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Feb 2021 15:36:18 +0000 (UTC)
+IronPort-SDR: H0u93hQBWL3yLO9eyHnIRp5eAsrQqIx95PnI0k9jQHzVRTY+8vLNe7oL8YffR0Sajh9V4ecvyp
+ y2OKWWLorfoA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9903"; a="184955012"
+X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; d="scan'208";a="184955012"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2021 07:36:12 -0800
-IronPort-SDR: duqhGaa/C7cqahX2/I+hbBA3BHFlU+XBAyU4s0iLFBQXbHMmhjUTrVkRcTq2xaMlwx0uBDYYNm
- 0yW9vYB4o7EQ==
-X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; d="scan'208";a="432748710"
+ 23 Feb 2021 07:36:17 -0800
+IronPort-SDR: NAbygtXr2ODvvH3cnBQlygfZJ0JqPTnU5UgyjEuYoJ5z/1Cats6W5PJn+92JvDgQZiCcrJSkqQ
+ EkV9eknhggeg==
+X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; d="scan'208";a="364543979"
 Received: from kcushion-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.40.63])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2021 07:36:10 -0800
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2021 07:36:15 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Feb 2021 17:35:10 +0200
-Message-Id: <d3aa6e00284382ed49adbe28e77f7569b929ebe0.1614094093.git.jani.nikula@intel.com>
+Date: Tue, 23 Feb 2021 17:35:11 +0200
+Message-Id: <51d718e2b6f0543c87d19994e55acc41d4fe8c48.1614094093.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1614094093.git.jani.nikula@intel.com>
 References: <cover.1614094093.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 5/7] drm/i915: switch TGL and ADL to the new
- stepping scheme
+Subject: [Intel-gfx] [PATCH v2 6/7] drm/i915: rename
+ DISP_STEPPING->DISPLAY_STEP and GT_STEPPING->GT_STEP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,167 +54,175 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This changes the way revids not present in the array are handled:
-
-- For gaps in the array, the next present revid is used.
-
-- For revids beyond the array, the new STEP_FUTURE is used instead of
-  the last revid in the array.
-
-In both cases, we'll get debug logging of what's going on.
+Matter of taste. STEP matches the enums.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h       | 59 +++++++--------------------
- drivers/gpu/drm/i915/intel_stepping.c | 17 ++++++--
- drivers/gpu/drm/i915/intel_stepping.h |  8 ----
- 3 files changed, 28 insertions(+), 56 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c           |  4 ++--
+ drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c        | 10 +++++-----
+ drivers/gpu/drm/i915/i915_drv.h                    | 10 +++++-----
+ drivers/gpu/drm/i915/intel_device_info.c           |  2 +-
+ drivers/gpu/drm/i915/intel_pm.c                    |  2 +-
+ 7 files changed, 16 insertions(+), 16 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index f00c1750febd..1f7b2700947a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -5349,7 +5349,7 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
+ 
+ 	if (IS_ALDERLAKE_S(dev_priv) ||
+ 	    IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
+-	    IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B0))
++	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
+ 		/* Wa_1409767108:tgl,dg1,adl-s */
+ 		table = wa_1409767108_buddy_page_masks;
+ 	else
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 7c6e561f86c1..da5084b54eb6 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -548,7 +548,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 
+ 	if (intel_dp->psr.psr2_sel_fetch_enabled) {
+ 		/* WA 1408330847 */
+-		if (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0) ||
++		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
+ 		    IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0))
+ 			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+ 				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
+@@ -1103,7 +1103,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 
+ 	/* WA 1408330847 */
+ 	if (intel_dp->psr.psr2_sel_fetch_enabled &&
+-	    (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0) ||
++	    (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
+ 	     IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0)))
+ 		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+ 			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 1f335cb09149..c4edfc673d47 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1858,7 +1858,7 @@ static bool gen12_plane_supports_mc_ccs(struct drm_i915_private *dev_priv,
+ {
+ 	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
+ 	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
+-	    IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_C0))
++	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0))
+ 		return false;
+ 
+ 	return plane_id < PLANE_SPRITE4;
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 0c502a733779..4f8f9fbf6619 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1091,19 +1091,19 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ 	gen12_gt_workarounds_init(i915, wal);
+ 
+ 	/* Wa_1409420604:tgl */
+-	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
++	if (IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0))
+ 		wa_write_or(wal,
+ 			    SUBSLICE_UNIT_LEVEL_CLKGATE2,
+ 			    CPSSUNIT_CLKGATE_DIS);
+ 
+ 	/* Wa_1607087056:tgl also know as BUG:1409180338 */
+-	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
++	if (IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0))
+ 		wa_write_or(wal,
+ 			    SLICE_UNIT_LEVEL_CLKGATE,
+ 			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
+ 
+ 	/* Wa_1408615072:tgl[a0] */
+-	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
++	if (IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0))
+ 		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+ 			    VSUNIT_CLKGATE_DIS_TGL);
+ }
+@@ -1581,7 +1581,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 	struct drm_i915_private *i915 = engine->i915;
+ 
+ 	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
+-	    IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0)) {
++	    IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0)) {
+ 		/*
+ 		 * Wa_1607138336:tgl[a0],dg1[a0]
+ 		 * Wa_1607063988:tgl[a0],dg1[a0]
+@@ -1591,7 +1591,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
+ 	}
+ 
+-	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0)) {
++	if (IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0)) {
+ 		/*
+ 		 * Wa_1606679103:tgl
+ 		 * (see also Wa_1606682166:icl)
 diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 8f0e66ac2561..2d2ebf284e64 100644
+index 2d2ebf284e64..927a32427197 100644
 --- a/drivers/gpu/drm/i915/i915_drv.h
 +++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1510,44 +1510,17 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+@@ -1510,15 +1510,15 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
  #define IS_JSL_EHL_REVID(p, since, until) \
  	(IS_JSL_EHL(p) && IS_REVID(p, since, until))
  
--static inline const struct i915_rev_steppings *
--tgl_stepping_get(struct drm_i915_private *dev_priv)
--{
--	u8 revid = INTEL_REVID(dev_priv);
--	u8 size;
--	const struct i915_rev_steppings *revid_step_tbl;
--
--	if (IS_ALDERLAKE_S(dev_priv)) {
--		revid_step_tbl = adls_revid_step_tbl;
--		size = ARRAY_SIZE(adls_revid_step_tbl);
--	} else if (IS_TGL_U(dev_priv) || IS_TGL_Y(dev_priv)) {
--		revid_step_tbl = tgl_uy_revid_step_tbl;
--		size = ARRAY_SIZE(tgl_uy_revid_step_tbl);
--	} else {
--		revid_step_tbl = tgl_revid_step_tbl;
--		size = ARRAY_SIZE(tgl_revid_step_tbl);
--	}
--
--	revid = min_t(u8, revid, size - 1);
--
--	return &revid_step_tbl[revid];
--}
--
--#define IS_TGL_DISP_STEPPING(p, since, until) \
--	(IS_TIGERLAKE(p) && \
--	 tgl_stepping_get(p)->disp_stepping >= (since) && \
--	 tgl_stepping_get(p)->disp_stepping <= (until))
-+#define IS_TGL_DISP_STEPPING(__i915, since, until) \
-+	(IS_TIGERLAKE(__i915) && \
-+	 IS_DISPLAY_STEP(__i915, since, until))
+-#define IS_TGL_DISP_STEPPING(__i915, since, until) \
++#define IS_TGL_DISPLAY_STEP(__i915, since, until) \
+ 	(IS_TIGERLAKE(__i915) && \
+ 	 IS_DISPLAY_STEP(__i915, since, until))
  
--#define IS_TGL_UY_GT_STEPPING(p, since, until) \
--	((IS_TGL_U(p) || IS_TGL_Y(p)) && \
--	 tgl_stepping_get(p)->gt_stepping >= (since) && \
--	 tgl_stepping_get(p)->gt_stepping <= (until))
-+#define IS_TGL_UY_GT_STEPPING(__i915, since, until) \
-+	((IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
-+	 IS_GT_STEP(__i915, since, until))
+-#define IS_TGL_UY_GT_STEPPING(__i915, since, until) \
++#define IS_TGL_UY_GT_STEP(__i915, since, until) \
+ 	((IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
+ 	 IS_GT_STEP(__i915, since, until))
  
--#define IS_TGL_GT_STEPPING(p, since, until) \
--	(IS_TIGERLAKE(p) && \
--	 !(IS_TGL_U(p) || IS_TGL_Y(p)) && \
--	 tgl_stepping_get(p)->gt_stepping >= (since) && \
--	 tgl_stepping_get(p)->gt_stepping <= (until))
-+#define IS_TGL_GT_STEPPING(__i915, since, until) \
-+	(IS_TIGERLAKE(__i915) && !(IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
-+	 IS_GT_STEP(__i915, since, until))
+-#define IS_TGL_GT_STEPPING(__i915, since, until) \
++#define IS_TGL_GT_STEP(__i915, since, until) \
+ 	(IS_TIGERLAKE(__i915) && !(IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
+ 	 IS_GT_STEP(__i915, since, until))
  
- #define RKL_REVID_A0		0x0
- #define RKL_REVID_B0		0x1
-@@ -1562,15 +1535,13 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
+@@ -1535,11 +1535,11 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
  #define IS_DG1_REVID(p, since, until) \
  	(IS_DG1(p) && IS_REVID(p, since, until))
  
--#define IS_ADLS_DISP_STEPPING(p, since, until) \
--	(IS_ALDERLAKE_S(p) && \
--	 tgl_stepping_get(p)->disp_stepping >= (since) && \
--	 tgl_stepping_get(p)->disp_stepping <= (until))
-+#define IS_ADLS_DISP_STEPPING(__i915, since, until) \
-+	(IS_ALDERLAKE_S(__i915) && \
-+	 IS_DISPLAY_STEP(__i915, since, until))
+-#define IS_ADLS_DISP_STEPPING(__i915, since, until) \
++#define IS_ADLS_DISPLAY_STEP(__i915, since, until) \
+ 	(IS_ALDERLAKE_S(__i915) && \
+ 	 IS_DISPLAY_STEP(__i915, since, until))
  
--#define IS_ADLS_GT_STEPPING(p, since, until) \
--	(IS_ALDERLAKE_S(p) && \
--	 tgl_stepping_get(p)->gt_stepping >= (since) && \
--	 tgl_stepping_get(p)->gt_stepping <= (until))
-+#define IS_ADLS_GT_STEPPING(__i915, since, until) \
-+	(IS_ALDERLAKE_S(__i915) && \
-+	 IS_GT_STEP(__i915, since, until))
+-#define IS_ADLS_GT_STEPPING(__i915, since, until) \
++#define IS_ADLS_GT_STEP(__i915, since, until) \
+ 	(IS_ALDERLAKE_S(__i915) && \
+ 	 IS_GT_STEP(__i915, since, until))
  
- #define IS_LP(dev_priv)	(INTEL_INFO(dev_priv)->is_lp)
- #define IS_GEN9_LP(dev_priv)	(IS_GEN(dev_priv, 9) && IS_LP(dev_priv))
-diff --git a/drivers/gpu/drm/i915/intel_stepping.c b/drivers/gpu/drm/i915/intel_stepping.c
-index 67155b94d6d3..3a54297e8a14 100644
---- a/drivers/gpu/drm/i915/intel_stepping.c
-+++ b/drivers/gpu/drm/i915/intel_stepping.c
-@@ -26,7 +26,7 @@ static const struct i915_rev_steppings kbl_revids[] = {
- 	[7] = { .gt_stepping = STEP_G0, .disp_stepping = STEP_C0 },
- };
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index aeb28d589b2b..de02207f6ec6 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -251,7 +251,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 	enum pipe pipe;
  
--const struct i915_rev_steppings tgl_uy_revid_step_tbl[] = {
-+static const struct i915_rev_steppings tgl_uy_revid_step_tbl[] = {
- 	[0] = { .gt_stepping = STEP_A0, .disp_stepping = STEP_A0 },
- 	[1] = { .gt_stepping = STEP_B0, .disp_stepping = STEP_C0 },
- 	[2] = { .gt_stepping = STEP_B1, .disp_stepping = STEP_C0 },
-@@ -34,12 +34,12 @@ const struct i915_rev_steppings tgl_uy_revid_step_tbl[] = {
- };
+ 	/* Wa_14011765242: adl-s A0 */
+-	if (IS_ADLS_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0))
++	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0))
+ 		for_each_pipe(dev_priv, pipe)
+ 			runtime->num_scalers[pipe] = 0;
+ 	else if (INTEL_GEN(dev_priv) >= 10) {
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index dbf87892193a..e16f5e498a86 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -7070,7 +7070,7 @@ static void gen12lp_init_clock_gating(struct drm_i915_private *dev_priv)
+ 			   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
  
- /* Same GT stepping between tgl_uy_revids and tgl_revids don't mean the same HW */
--const struct i915_rev_steppings tgl_revid_step_tbl[] = {
-+static const struct i915_rev_steppings tgl_revid_step_tbl[] = {
- 	[0] = { .gt_stepping = STEP_A0, .disp_stepping = STEP_B0 },
- 	[1] = { .gt_stepping = STEP_B0, .disp_stepping = STEP_D0 },
- };
+ 	/* Wa_1409825376:tgl (pre-prod)*/
+-	if (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B1))
++	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B1))
+ 		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
+ 			   TGL_VRH_GATING_DIS);
  
--const struct i915_rev_steppings adls_revid_step_tbl[] = {
-+static const struct i915_rev_steppings adls_revid_step_tbl[] = {
- 	[0x0] = { .gt_stepping = STEP_A0, .disp_stepping = STEP_A0 },
- 	[0x1] = { .gt_stepping = STEP_A0, .disp_stepping = STEP_A2 },
- 	[0x4] = { .gt_stepping = STEP_B0, .disp_stepping = STEP_B0 },
-@@ -54,7 +54,16 @@ void intel_stepping_init(struct drm_i915_private *i915)
- 	int revid = INTEL_REVID(i915);
- 	struct i915_rev_steppings stepping = {};
- 
--	if (IS_KABYLAKE(i915)) {
-+	if (IS_ALDERLAKE_S(i915)) {
-+		revids = adls_revid_step_tbl;
-+		size = ARRAY_SIZE(adls_revid_step_tbl);
-+	} else if (IS_TGL_U(i915) || IS_TGL_Y(i915)) {
-+		revids = tgl_uy_revid_step_tbl;
-+		size = ARRAY_SIZE(tgl_uy_revid_step_tbl);
-+	} else if (IS_TIGERLAKE(i915)) {
-+		revids = tgl_revid_step_tbl;
-+		size = ARRAY_SIZE(tgl_revid_step_tbl);
-+	} else if (IS_KABYLAKE(i915)) {
- 		revids = kbl_revids;
- 		size = ARRAY_SIZE(kbl_revids);
- 	}
-diff --git a/drivers/gpu/drm/i915/intel_stepping.h b/drivers/gpu/drm/i915/intel_stepping.h
-index 8c7f17b405b2..b1d8dcda7aa4 100644
---- a/drivers/gpu/drm/i915/intel_stepping.h
-+++ b/drivers/gpu/drm/i915/intel_stepping.h
-@@ -15,14 +15,6 @@ struct i915_rev_steppings {
- 	u8 disp_stepping;
- };
- 
--#define TGL_UY_REVID_STEP_TBL_SIZE	4
--#define TGL_REVID_STEP_TBL_SIZE		2
--#define ADLS_REVID_STEP_TBL_SIZE	13
--
--extern const struct i915_rev_steppings tgl_uy_revid_step_tbl[TGL_UY_REVID_STEP_TBL_SIZE];
--extern const struct i915_rev_steppings tgl_revid_step_tbl[TGL_REVID_STEP_TBL_SIZE];
--extern const struct i915_rev_steppings adls_revid_step_tbl[ADLS_REVID_STEP_TBL_SIZE];
--
- /*
-  * Symbolic steppings that do not match the hardware. These are valid both as gt
-  * and display steppings as symbolic names.
 -- 
 2.20.1
 
