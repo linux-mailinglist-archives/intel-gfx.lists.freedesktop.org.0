@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 863AD322B0F
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Feb 2021 14:04:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84155322B3A
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Feb 2021 14:11:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF1746E9BF;
-	Tue, 23 Feb 2021 13:04:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C00B26E2F2;
+	Tue, 23 Feb 2021 13:11:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A25D6E997
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Feb 2021 13:03:29 +0000 (UTC)
-IronPort-SDR: 6vo9H98IoaFdXm7G34+8NfL2qUeMYhN4sxb9Laeb2J58QEAUD51VXTqzvPyGRuPmeFU3gXzVX4
- lssst6DtQ6mQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9903"; a="171929249"
-X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; d="scan'208";a="171929249"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2021 05:03:01 -0800
-IronPort-SDR: SVmMw6mMMtrsODi1WB8esJmIMd31/L00b/iIpyC7G7ec++mg4UQrjok4kW67hZc8s9ZXVCn3kA
- jhQxT3kY105g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,200,1610438400"; d="scan'208";a="499103560"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga001.fm.intel.com with ESMTP; 23 Feb 2021 05:03:00 -0800
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 23 Feb 2021 14:59:13 +0200
-Message-Id: <20210223125913.3267045-3-kai.vehmanen@linux.intel.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210223125913.3267045-1-kai.vehmanen@linux.intel.com>
-References: <20210223125913.3267045-1-kai.vehmanen@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7C8BD6E2F2;
+ Tue, 23 Feb 2021 13:11:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 74DD8A8830;
+ Tue, 23 Feb 2021 13:11:04 +0000 (UTC)
 MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Tue, 23 Feb 2021 13:11:04 -0000
+Message-ID: <161408586447.21176.1482903304028725995@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-Subject: [Intel-gfx] [REVIEW] Full tree diff against internal/internal
+References: <20210223105951.912577-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210223105951.912577-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/2=5D_dma-buf=3A_Require_VM=5FPFNMAP_vm?=
+ =?utf-8?q?a_for_mmap_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,55 +39,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Auto-generated diff between internal/internal..internal
----
- sound/pci/hda/hda_intel.c  | 6 +++++-
- sound/pci/hda/patch_hdmi.c | 1 +
- 2 files changed, 6 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
-index 27e02cdef6d9..8d3d7e700ca3 100644
---- a/sound/pci/hda/hda_intel.c
-+++ b/sound/pci/hda/hda_intel.c
-@@ -368,7 +368,8 @@ enum {
- 					((pci)->device == 0x0c0c) || \
- 					((pci)->device == 0x0d0c) || \
- 					((pci)->device == 0x160c) || \
--					((pci)->device == 0x490d))
-+					((pci)->device == 0x490d) || \
-+					((pci)->device == 0x4f90))
- 
- #define IS_BXT(pci) ((pci)->vendor == 0x8086 && (pci)->device == 0x5a98)
- 
-@@ -2506,6 +2507,9 @@ static const struct pci_device_id azx_ids[] = {
- 	/* DG1 */
- 	{ PCI_DEVICE(0x8086, 0x490d),
- 	  .driver_data = AZX_DRIVER_SKL | AZX_DCAPS_INTEL_SKYLAKE},
-+	/* DG2 */
-+	{ PCI_DEVICE(0x8086, 0x4f90),
-+	  .driver_data = AZX_DRIVER_SKL | AZX_DCAPS_INTEL_SKYLAKE},
- 	/* Alderlake-S */
- 	{ PCI_DEVICE(0x8086, 0x7ad0),
- 	  .driver_data = AZX_DRIVER_SKL | AZX_DCAPS_INTEL_SKYLAKE},
-diff --git a/sound/pci/hda/patch_hdmi.c b/sound/pci/hda/patch_hdmi.c
-index 70f34f9e9b2c..4655286cada2 100644
---- a/sound/pci/hda/patch_hdmi.c
-+++ b/sound/pci/hda/patch_hdmi.c
-@@ -4347,6 +4347,7 @@ HDA_CODEC_ENTRY(0x80862812, "Tigerlake HDMI",	patch_i915_tgl_hdmi),
- HDA_CODEC_ENTRY(0x80862814, "DG1 HDMI",	patch_i915_tgl_hdmi),
- HDA_CODEC_ENTRY(0x80862815, "Alderlake HDMI",	patch_i915_tgl_hdmi),
- HDA_CODEC_ENTRY(0x80862816, "Rocketlake HDMI",	patch_i915_tgl_hdmi),
-+HDA_CODEC_ENTRY(0x80862819, "DG2 HDMI",	patch_i915_tgl_hdmi),
- HDA_CODEC_ENTRY(0x8086281a, "Jasperlake HDMI",	patch_i915_icl_hdmi),
- HDA_CODEC_ENTRY(0x8086281b, "Elkhartlake HDMI",	patch_i915_icl_hdmi),
- HDA_CODEC_ENTRY(0x8086281c, "Alderlake-P HDMI", patch_i915_tgl_hdmi),
---
-git-pile 0.96
+Series: series starting with [1/2] dma-buf: Require VM_PFNMAP vma for mmap (rev2)
+URL   : https://patchwork.freedesktop.org/series/87313/
+State : failure
+
+== Summary ==
+
+CALL    scripts/checksyscalls.sh
+  CALL    scripts/atomic/check-atomics.sh
+  DESCEND  objtool
+  CHK     include/generated/compile.h
+Kernel: arch/x86/boot/bzImage is ready  (#1)
+  MODPOST Module.symvers
+ERROR: modpost: "drm_gem_shmem_prime_import_sg_table" [drivers/gpu/drm/vgem/vgem.ko] undefined!
+ERROR: modpost: "drm_gem_shmem_dumb_create" [drivers/gpu/drm/vgem/vgem.ko] undefined!
+scripts/Makefile.modpost:111: recipe for target 'Module.symvers' failed
+make[1]: *** [Module.symvers] Error 1
+make[1]: *** Deleting file 'Module.symvers'
+Makefile:1391: recipe for target 'modules' failed
+make: *** [modules] Error 2
+
 
 _______________________________________________
 Intel-gfx mailing list
