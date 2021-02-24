@@ -1,55 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215AC323977
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Feb 2021 10:31:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0D4E323994
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Feb 2021 10:38:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB2D26EA6F;
-	Wed, 24 Feb 2021 09:31:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFBB06EA70;
+	Wed, 24 Feb 2021 09:38:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com
- [IPv6:2607:f8b0:4864:20::c30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A05666EA6D
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 09:31:23 +0000 (UTC)
-Received: by mail-oo1-xc30.google.com with SMTP id s23so351727oot.12
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 01:31:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=yO64SmF65dLY5inu45BzDUbRVbnNPzs6fQ+9WkgdAR8=;
- b=TIsLL882GLiZNhcHf5unEMZEEnFIa54ZLe5U8QQXYUbIS6B83GgN3p5lTRVgVBteTN
- ux2DpZTQ3C82WU0Aakm66BUOZZtmhfWzbUltanmo61Xfc+9Lv4z45CwhhJ/u849ho1Tt
- 8T7j/EuCTQeq3/akwjtS/+t0ObWgku+D7wFc8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=yO64SmF65dLY5inu45BzDUbRVbnNPzs6fQ+9WkgdAR8=;
- b=l+uaNyt4BZc0LZRW6CMghbfIzVgARgRdDkb/4/wTFa6stsqpBORvDXoouN4smbVBAo
- 1lo7LmpmHOrwF1wprCc3dV7S8M+LSqg4MxotG9sBSHJQwOHgDxyUDuYrfP3iSG9Y3Yvk
- XLS9cWLBQjtn0ODHolBSaTWhFLJcbMRgAs7SFeyL0WCwRb924xBS/uuxgw+kCCKRwms6
- m/CNq4Wt+UsXepEO5topOUPrwXMxou9RPIJXE06XRedOxkjtUxEPZXJLMc7CoMuyjrkX
- W4AzRt/123Hg6rWmSSM+qZYi6wIJSSwS3z8fTSgfIrEkjUi5DJCJYU4SUyvezIOvni8k
- yZ6A==
-X-Gm-Message-State: AOAM530wq2bAkGPTsqY/UMTDXE5qFgx/o493fccnXC687uNNl0JrUaxg
- CAuYkkUn7GXlxQ3aHRZnaGmkZGJKWiDcQ2fb6mC6pg==
-X-Google-Smtp-Source: ABdhPJxlGpWmTxsLgmVmbNO5tD2KdzisUXxYIdnLolzjBnYjQ/PpY6Z8HGSVScSYuQZ6smpaISRIESBzC9ltbmHvb3k=
-X-Received: by 2002:a4a:be01:: with SMTP id l1mr18496246oop.89.1614159082849; 
- Wed, 24 Feb 2021 01:31:22 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ABC026EA6E;
+ Wed, 24 Feb 2021 09:38:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A4D27A01BB;
+ Wed, 24 Feb 2021 09:38:56 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210223105951.912577-1-daniel.vetter@ffwll.ch>
- <1a7c2295-6241-f2bf-4a78-6cadd43bc248@shipmail.org>
- <CAKMK7uHzRb6Q_LgPUrrHn18sorYo7ysTgB+PNE36LDUUsJpHDg@mail.gmail.com>
- <f43311c8-a02a-1a29-a53b-88e599c92187@shipmail.org>
-In-Reply-To: <f43311c8-a02a-1a29-a53b-88e599c92187@shipmail.org>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Wed, 24 Feb 2021 10:31:11 +0100
-Message-ID: <CAKMK7uE2UrOruQPWG9KPBQ781f9Bq9xpVRNserAC9BZ2VzDutQ@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m_=28Intel=29?= <thomas_os@shipmail.org>
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 1/2] dma-buf: Require
- VM_PFNMAP vma for mmap
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 24 Feb 2021 09:38:56 -0000
+Message-ID: <161415953664.17225.12158622201104297633@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1614094093.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1614094093.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_refactor_KBL/TGL/ADLS_stepping_scheme?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,88 +38,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Wilcox <willy@infradead.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, John Stultz <john.stultz@linaro.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBGZWIgMjQsIDIwMjEgYXQgMTA6MTYgQU0gVGhvbWFzIEhlbGxzdHLDtm0gKEludGVs
-KQo8dGhvbWFzX29zQHNoaXBtYWlsLm9yZz4gd3JvdGU6Cj4KPgo+IE9uIDIvMjQvMjEgOTo0NSBB
-TSwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+IE9uIFdlZCwgRmViIDI0LCAyMDIxIGF0IDg6NDYg
-QU0gVGhvbWFzIEhlbGxzdHLDtm0gKEludGVsKQo+ID4gPHRob21hc19vc0BzaGlwbWFpbC5vcmc+
-IHdyb3RlOgo+ID4+Cj4gPj4gT24gMi8yMy8yMSAxMTo1OSBBTSwgRGFuaWVsIFZldHRlciB3cm90
-ZToKPiA+Pj4gdGxkcjsgRE1BIGJ1ZmZlcnMgYXJlbid0IG5vcm1hbCBtZW1vcnksIGV4cGVjdGlu
-ZyB0aGF0IHlvdSBjYW4gdXNlCj4gPj4+IHRoZW0gbGlrZSB0aGF0IChsaWtlIGNhbGxpbmcgZ2V0
-X3VzZXJfcGFnZXMgd29ya3MsIG9yIHRoYXQgdGhleSdyZQo+ID4+PiBhY2NvdW50aW5nIGxpa2Ug
-YW55IG90aGVyIG5vcm1hbCBtZW1vcnkpIGNhbm5vdCBiZSBndWFyYW50ZWVkLgo+ID4+Pgo+ID4+
-PiBTaW5jZSBzb21lIHVzZXJzcGFjZSBvbmx5IHJ1bnMgb24gaW50ZWdyYXRlZCBkZXZpY2VzLCB3
-aGVyZSBhbGwKPiA+Pj4gYnVmZmVycyBhcmUgYWN0dWFsbHkgYWxsIHJlc2lkZW50IHN5c3RlbSBt
-ZW1vcnksIHRoZXJlJ3MgYSBodWdlCj4gPj4+IHRlbXB0YXRpb24gdG8gYXNzdW1lIHRoYXQgYSBz
-dHJ1Y3QgcGFnZSBpcyBhbHdheXMgcHJlc2VudCBhbmQgdXNlYWJsZQo+ID4+PiBsaWtlIGZvciBh
-bnkgbW9yZSBwYWdlY2FjaGUgYmFja2VkIG1tYXAuIFRoaXMgaGFzIHRoZSBwb3RlbnRpYWwgdG8K
-PiA+Pj4gcmVzdWx0IGluIGEgdWFwaSBuaWdodG1hcmUuCj4gPj4+Cj4gPj4+IFRvIHN0b3AgdGhp
-cyBnYXAgcmVxdWlyZSB0aGF0IERNQSBidWZmZXIgbW1hcHMgYXJlIFZNX1BGTk1BUCwgd2hpY2gK
-PiA+Pj4gYmxvY2tzIGdldF91c2VyX3BhZ2VzIGFuZCBhbGwgdGhlIG90aGVyIHN0cnVjdCBwYWdl
-IGJhc2VkCj4gPj4+IGluZnJhc3RydWN0dXJlIGZvciBldmVyeW9uZS4gSW4gc3Bpcml0IHRoaXMg
-aXMgdGhlIHVhcGkgY291bnRlcnBhcnQgdG8KPiA+Pj4gdGhlIGtlcm5lbC1pbnRlcm5hbCBDT05G
-SUdfRE1BQlVGX0RFQlVHLgo+ID4+Pgo+ID4+PiBNb3RpdmF0ZWQgYnkgYSByZWNlbnQgcGF0Y2gg
-d2hpY2ggd2FudGVkIHRvIHN3aWNoIHRoZSBzeXN0ZW0gZG1hLWJ1Zgo+ID4+PiBoZWFwIHRvIHZt
-X2luc2VydF9wYWdlIGluc3RlYWQgb2Ygdm1faW5zZXJ0X3Bmbi4KPiA+Pj4KPiA+Pj4gdjI6Cj4g
-Pj4+Cj4gPj4+IEphc29uIGJyb3VnaHQgdXAgdGhhdCB3ZSBhbHNvIHdhbnQgdG8gZ3VhcmFudGVl
-IHRoYXQgYWxsIHB0ZXMgaGF2ZSB0aGUKPiA+Pj4gcHRlX3NwZWNpYWwgZmxhZyBzZXQsIHRvIGNh
-dGNoIGZhc3QgZ2V0X3VzZXJfcGFnZXMgKG9uIGFyY2hpdGVjdHVyZXMKPiA+Pj4gdGhhdCBzdXBw
-b3J0IHRoaXMpLiBBbGxvd2luZyBWTV9NSVhFRE1BUCAobGlrZSBWTV9TUEVDSUFMIGRvZXMpIHdv
-dWxkCj4gPj4+IHN0aWxsIGFsbG93IHZtX2luc2VydF9wYWdlLCBidXQgbGltaXRpbmcgdG8gVk1f
-UEZOTUFQIHdpbGwgY2F0Y2ggdGhhdC4KPiA+Pj4KPiA+Pj4gICBGcm9tIGF1ZGl0aW5nIHRoZSB2
-YXJpb3VzIGZ1bmN0aW9ucyB0byBpbnNlcnQgcGZuIHB0ZSBlbnRpcmVzCj4gPj4+ICh2bV9pbnNl
-cnRfcGZuX3Byb3QsIHJlbWFwX3Bmbl9yYW5nZSBhbmQgYWxsIGl0J3MgY2FsbGVycyBsaWtlCj4g
-Pj4+IGRtYV9tbWFwX3djKSBpdCBsb29rcyBsaWtlIFZNX1BGTk1BUCBpcyBhbHJlYWR5IHJlcXVp
-cmVkIGFueXdheSwgc28KPiA+Pj4gdGhpcyBzaG91bGQgYmUgdGhlIGNvcnJlY3QgZmxhZyB0byBj
-aGVjayBmb3IuCj4gPj4+Cj4gPj4gSWYgd2UgcmVxdWlyZSBWTV9QRk5NQVAsIGZvciBvcmRpbmFy
-eSBwYWdlIG1hcHBpbmdzLCB3ZSBhbHNvIG5lZWQgdG8KPiA+PiBkaXNhbGxvdyBDT1cgbWFwcGlu
-Z3MsIHNpbmNlIGl0IHdpbGwgbm90IHdvcmsgb24gYXJjaGl0ZWN0dXJlcyB0aGF0Cj4gPj4gZG9u
-J3QgaGF2ZSBDT05GSUdfQVJDSF9IQVNfUFRFX1NQRUNJQUwsIChzZWUgdGhlIGRvY3MgZm9yIHZt
-X25vcm1hbF9wYWdlKCkpLgo+ID4gSG0gSSBmaWd1cmVkIGV2ZXJ5b25lIGp1c3QgdXNlcyBNQVBf
-U0hBUkVEIGZvciBidWZmZXIgb2JqZWN0cyBzaW5jZQo+ID4gQ09XIHJlYWxseSBtYWtlcyBhYnNv
-bHV0ZWx5IG5vIHNlbnNlLiBIb3cgd291bGQgd2UgZW5mb3JjZSB0aGlzPwo+Cj4gUGVyaGFwcyBy
-ZXR1cm5pbmcgLUVJTlZBTCBvbiBpc19jb3dfbWFwcGluZygpIGF0IG1tYXAgdGltZS4gRWl0aGVy
-IHRoYXQKPiBvciBhbGxvd2luZyBNSVhFRE1BUC4KPgo+ID4+IEFsc28gd29ydGggbm90aW5nIGlz
-IHRoZSBjb21tZW50IGluICB0dG1fYm9fbW1hcF92bWFfc2V0dXAoKSB3aXRoCj4gPj4gcG9zc2li
-bGUgcGVyZm9ybWFuY2UgaW1wbGljYXRpb25zIHdpdGggeDg2ICsgUEFUICsgVk1fUEZOTUFQICsg
-bm9ybWFsCj4gPj4gcGFnZXMuIFRoYXQncyBhIHZlcnkgb2xkIGNvbW1lbnQsIHRob3VnaCwgYW5k
-IG1pZ2h0IG5vdCBiZSB2YWxpZCBhbnltb3JlLgo+ID4gSSB0aGluayB0aGF0J3Mgd2h5IHR0bSBo
-YXMgYSBwYWdlIGNhY2hlIGZvciB0aGVzZSwgYmVjYXVzZSBpdCBpbmRlZWQKPiA+IHN1Y2tzLiBU
-aGUgUEFUIGNoYW5nZXMgb24gcGFnZXMgYXJlIHJhdGhlciBleHBlbnNpdmUuCj4KPiBJSVJDIHRo
-ZSBwYWdlIGNhY2hlIHdhcyBpbXBsZW1lbnRlZCBiZWNhdXNlIG9mIHRoZSBzbG93bmVzcyBvZiB0
-aGUKPiBjYWNoaW5nIG1vZGUgdHJhbnNpdGlvbiBpdHNlbGYsIG1vcmUgc3BlY2lmaWNhbGx5IHRo
-ZSB3YmludmQoKSBjYWxsICsKPiBnbG9iYWwgVExCIGZsdXNoLgo+Cj4gPgo+ID4gVGhlcmUgaXMg
-c3RpbGwgYW4gaXNzdWUgZm9yIGlvbWVtIG1hcHBpbmdzLCBiZWNhdXNlIHRoZSBQQVQgdmFsaWRh
-dGlvbgo+ID4gZG9lcyBhIGxpbmVhciB3YWxrIG9mIHRoZSByZXNvdXJjZSB0cmVlIChsb2wpIGZv
-ciBldmVyeSB2bV9pbnNlcnRfcGZuLgo+ID4gQnV0IGZvciBpOTE1IGF0IGxlYXN0IHRoaXMgaXMg
-Zml4ZWQgYnkgdXNpbmcgdGhlIGlvX21hcHBpbmcKPiA+IGluZnJhc3RydWN0dXJlLCB3aGljaCBk
-b2VzIHRoZSBQQVQgcmVzZXJ2YXRpb24gb25seSBvbmNlIHdoZW4geW91IHNldAo+ID4gdXAgdGhl
-IG1hcHBpbmcgYXJlYSBhdCBkcml2ZXIgbG9hZC4KPgo+IFllcywgSSBndWVzcyB0aGF0IHdhcyB0
-aGUgaXNzdWUgdGhhdCB0aGUgY29tbWVudCBkZXNjcmliZXMsIGJ1dCB0aGUKPiBpc3N1ZSB3YXNu
-J3QgdGhlcmUgd2l0aCB2bV9pbnNlcnRfbWl4ZWQoKSArIFZNX01JWEVETUFQLgo+Cj4gPgo+ID4g
-QWxzbyBUVE0gdXNlcyBWTV9QRk5NQVAgcmlnaHQgbm93IGZvciBldmVyeXRoaW5nLCBzbyBpdCBj
-YW4ndCBiZSBhCj4gPiBwcm9ibGVtIHRoYXQgaHVydHMgbXVjaCA6LSkKPgo+IEhtbSwgYm90aCA1
-LjExIGFuZCBkcm0tdGlwIGFwcGVhcnMgdG8gc3RpbGwgdXNlIE1JWEVETUFQPwo+Cj4gaHR0cHM6
-Ly9lbGl4aXIuYm9vdGxpbi5jb20vbGludXgvbGF0ZXN0L3NvdXJjZS9kcml2ZXJzL2dwdS9kcm0v
-dHRtL3R0bV9ib192bS5jI0w1NTQKClVoIHRoYXQncyBiYWQsIGJlY2F1c2UgbWl4ZWQgbWFwcyBw
-b2ludGluZyBhdCBzdHJ1Y3QgcGFnZSB3b250IHN0b3AKZ3VwLiBBdCBsZWFzdCBhZmFpay4KCkNo
-cmlzdGlhbiwgZG8gd2UgbmVlZCB0byBwYXRjaCB0aGlzIHVwLCBhbmQgbWF5YmUgZml4IHVwIHR0
-bSBmYXVsdApoYW5kbGVyIHRvIHVzZSBpb19tYXBwaW5nIHNvIHRoZSB2bV9pbnNlcnRfcGZuIHN0
-dWZmIGlzIGZhc3Q/Ci1EYW5pZWwKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIs
-IEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915: refactor KBL/TGL/ADLS stepping scheme
+URL   : https://patchwork.freedesktop.org/series/87323/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+c850cee093c5 drm/i915: remove unused ADLS_REVID_* macros
+6679d541fc02 drm/i915: split out stepping info to a new file
+-:117: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#117: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 158 lines checked
+9f0ab3110d6b drm/i915: add new helpers for accessing stepping info
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#28: FILE: drivers/gpu/drm/i915/i915_drv.h:1280:
++#define IS_DISPLAY_STEP(__i915, since, until) \
++	(drm_WARN_ON(&(__i915)->drm, INTEL_DISPLAY_STEP(__i915) == STEP_NONE), \
++	 INTEL_DISPLAY_STEP(__i915) >= (since) && INTEL_DISPLAY_STEP(__i915) <= (until))
+
+-:32: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#32: FILE: drivers/gpu/drm/i915/i915_drv.h:1284:
++#define IS_GT_STEP(__i915, since, until) \
++	(drm_WARN_ON(&(__i915)->drm, INTEL_GT_STEP(__i915) == STEP_NONE), \
++	 INTEL_GT_STEP(__i915) >= (since) && INTEL_GT_STEP(__i915) <= (until))
+
+total: 0 errors, 0 warnings, 2 checks, 70 lines checked
+8ea29c76e36c drm/i915: switch KBL to the new stepping scheme
+-:106: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#106: FILE: drivers/gpu/drm/i915/i915_drv.h:1478:
++#define IS_KBL_GT_STEP(dev_priv, since, until) \
++	(IS_KABYLAKE(dev_priv) && IS_GT_STEP(dev_priv, since, until))
+
+-:108: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev_priv' - possible side-effects?
+#108: FILE: drivers/gpu/drm/i915/i915_drv.h:1480:
++#define IS_KBL_DISPLAY_STEP(dev_priv, since, until) \
++	(IS_KABYLAKE(dev_priv) && IS_DISPLAY_STEP(dev_priv, since, until))
+
+-:149: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#149: FILE: drivers/gpu/drm/i915/intel_stepping.c:16:
+ 
++
+
+total: 0 errors, 0 warnings, 3 checks, 198 lines checked
+b00cf6262f47 drm/i915: switch TGL and ADL to the new stepping scheme
+-:52: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#52: FILE: drivers/gpu/drm/i915/i915_drv.h:1513:
++#define IS_TGL_DISP_STEPPING(__i915, since, until) \
++	(IS_TIGERLAKE(__i915) && \
++	 IS_DISPLAY_STEP(__i915, since, until))
+
+-:60: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#60: FILE: drivers/gpu/drm/i915/i915_drv.h:1517:
++#define IS_TGL_UY_GT_STEPPING(__i915, since, until) \
++	((IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
++	 IS_GT_STEP(__i915, since, until))
+
+-:69: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#69: FILE: drivers/gpu/drm/i915/i915_drv.h:1521:
++#define IS_TGL_GT_STEPPING(__i915, since, until) \
++	(IS_TIGERLAKE(__i915) && !(IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
++	 IS_GT_STEP(__i915, since, until))
+
+-:83: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#83: FILE: drivers/gpu/drm/i915/i915_drv.h:1538:
++#define IS_ADLS_DISP_STEPPING(__i915, since, until) \
++	(IS_ALDERLAKE_S(__i915) && \
++	 IS_DISPLAY_STEP(__i915, since, until))
+
+-:91: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#91: FILE: drivers/gpu/drm/i915/i915_drv.h:1542:
++#define IS_ADLS_GT_STEPPING(__i915, since, until) \
++	(IS_ALDERLAKE_S(__i915) && \
++	 IS_GT_STEP(__i915, since, until))
+
+total: 0 errors, 0 warnings, 5 checks, 127 lines checked
+9ea2f25d6c52 drm/i915: rename DISP_STEPPING->DISPLAY_STEP and GT_STEPPING->GT_STEP
+-:113: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#113: FILE: drivers/gpu/drm/i915/i915_drv.h:1513:
++#define IS_TGL_DISPLAY_STEP(__i915, since, until) \
+ 	(IS_TIGERLAKE(__i915) && \
+ 	 IS_DISPLAY_STEP(__i915, since, until))
+
+-:118: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#118: FILE: drivers/gpu/drm/i915/i915_drv.h:1517:
++#define IS_TGL_UY_GT_STEP(__i915, since, until) \
+ 	((IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
+ 	 IS_GT_STEP(__i915, since, until))
+
+-:123: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#123: FILE: drivers/gpu/drm/i915/i915_drv.h:1521:
++#define IS_TGL_GT_STEP(__i915, since, until) \
+ 	(IS_TIGERLAKE(__i915) && !(IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
+ 	 IS_GT_STEP(__i915, since, until))
+
+-:132: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#132: FILE: drivers/gpu/drm/i915/i915_drv.h:1538:
++#define IS_ADLS_DISPLAY_STEP(__i915, since, until) \
+ 	(IS_ALDERLAKE_S(__i915) && \
+ 	 IS_DISPLAY_STEP(__i915, since, until))
+
+-:137: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i915' - possible side-effects?
+#137: FILE: drivers/gpu/drm/i915/i915_drv.h:1542:
++#define IS_ADLS_GT_STEP(__i915, since, until) \
+ 	(IS_ALDERLAKE_S(__i915) && \
+ 	 IS_GT_STEP(__i915, since, until))
+
+total: 0 errors, 0 warnings, 5 checks, 117 lines checked
+7317a17b497d drm/i915: rename disp_stepping->display_step and gt_stepping->gt_step
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
