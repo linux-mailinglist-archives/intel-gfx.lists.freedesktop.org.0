@@ -2,42 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C054F3238E8
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Feb 2021 09:47:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 249CF323945
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Feb 2021 10:16:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2828F6EA67;
-	Wed, 24 Feb 2021 08:47:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8D46EA6A;
+	Wed, 24 Feb 2021 09:16:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C1776EA67
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 08:47:02 +0000 (UTC)
-IronPort-SDR: Uk9Rpkx0oOKEYny+UxWX3LMJupOfSVsE8wkpE0xrYY+usAzxSauq/d2v4cA7Ht+/CnCu+cHDhA
- L/6Zn13/LXKA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9904"; a="182618730"
-X-IronPort-AV: E=Sophos;i="5.81,202,1610438400"; d="scan'208";a="182618730"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2021 00:47:01 -0800
-IronPort-SDR: cBIi1aWa4JWMfyZgVrBQTWeQGY536nL2s96p6hPn4Gp8m6uoyu7e9INnUHX1sZTg2YxW21CkkI
- J7k8Qf5+M0sQ==
-X-IronPort-AV: E=Sophos;i="5.81,202,1610438400"; d="scan'208";a="403594033"
-Received: from apalla-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.40.194])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2021 00:46:58 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20210224015455.4z2mhbtmeofzelxj@ldmartin-desk1>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1614094093.git.jani.nikula@intel.com>
- <51d718e2b6f0543c87d19994e55acc41d4fe8c48.1614094093.git.jani.nikula@intel.com>
- <20210224015455.4z2mhbtmeofzelxj@ldmartin-desk1>
-Date: Wed, 24 Feb 2021 10:46:55 +0200
-Message-ID: <87tuq1etts.fsf@intel.com>
+Received: from pio-pvt-msa1.bahnhof.se (pio-pvt-msa1.bahnhof.se [79.136.2.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72B266EA6A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Feb 2021 09:16:03 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTP id 698E93FB8E;
+ Wed, 24 Feb 2021 10:16:01 +0100 (CET)
+Authentication-Results: pio-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="MhA+2q2N";
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Received: from pio-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (pio-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id ysZtkX8b-I9f; Wed, 24 Feb 2021 10:15:59 +0100 (CET)
+Received: by pio-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id BB3A33FB77;
+ Wed, 24 Feb 2021 10:15:56 +0100 (CET)
+Received: from [192.168.0.209] (h-205-35.A357.priv.bahnhof.se [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 2F140360057;
+ Wed, 24 Feb 2021 10:15:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1614158156; bh=ix+su6huoHUWLoam5bGdxjErhPEi4qIOKLMdA1dPgHU=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=MhA+2q2NGiHMfMcJDMTa7neNduFcPwmpSmsTPFQG0lbRffsO/vhzORz07U1rvua4A
+ 8ha06+kF4kkAAYtf6NGt1wC2+iu8HzUXwqeK1TKRr94eT8Jz6ne45QO9HM7vr3LTDd
+ vNINgDMca1lMbaQ/SVtY1PkxJM2aSkX7JsaLBiUs=
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <20210223105951.912577-1-daniel.vetter@ffwll.ch>
+ <1a7c2295-6241-f2bf-4a78-6cadd43bc248@shipmail.org>
+ <CAKMK7uHzRb6Q_LgPUrrHn18sorYo7ysTgB+PNE36LDUUsJpHDg@mail.gmail.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <f43311c8-a02a-1a29-a53b-88e599c92187@shipmail.org>
+Date: Wed, 24 Feb 2021 10:15:55 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 6/7] drm/i915: rename
- DISP_STEPPING->DISPLAY_STEP and GT_STEPPING->GT_STEP
+In-Reply-To: <CAKMK7uHzRb6Q_LgPUrrHn18sorYo7ysTgB+PNE36LDUUsJpHDg@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 1/2] dma-buf: Require
+ VM_PFNMAP vma for mmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,210 +66,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Wilcox <willy@infradead.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, John Stultz <john.stultz@linaro.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Suren Baghdasaryan <surenb@google.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 23 Feb 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Feb 23, 2021 at 05:35:11PM +0200, Jani Nikula wrote:
->>Matter of taste. STEP matches the enums.
->>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>---
->> drivers/gpu/drm/i915/display/intel_display_power.c |  2 +-
->> drivers/gpu/drm/i915/display/intel_psr.c           |  4 ++--
->> drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
->> drivers/gpu/drm/i915/gt/intel_workarounds.c        | 10 +++++-----
->> drivers/gpu/drm/i915/i915_drv.h                    | 10 +++++-----
->> drivers/gpu/drm/i915/intel_device_info.c           |  2 +-
->> drivers/gpu/drm/i915/intel_pm.c                    |  2 +-
->> 7 files changed, 16 insertions(+), 16 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
->>index f00c1750febd..1f7b2700947a 100644
->>--- a/drivers/gpu/drm/i915/display/intel_display_power.c
->>+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->>@@ -5349,7 +5349,7 @@ static void tgl_bw_buddy_init(struct drm_i915_private *dev_priv)
->>
->> 	if (IS_ALDERLAKE_S(dev_priv) ||
->> 	    IS_DG1_REVID(dev_priv, DG1_REVID_A0, DG1_REVID_A0) ||
->>-	    IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B0))
->>+	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B0))
->> 		/* Wa_1409767108:tgl,dg1,adl-s */
->> 		table = wa_1409767108_buddy_page_masks;
->> 	else
->>diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
->>index 7c6e561f86c1..da5084b54eb6 100644
->>--- a/drivers/gpu/drm/i915/display/intel_psr.c
->>+++ b/drivers/gpu/drm/i915/display/intel_psr.c
->>@@ -548,7 +548,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
->>
->> 	if (intel_dp->psr.psr2_sel_fetch_enabled) {
->> 		/* WA 1408330847 */
->>-		if (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0) ||
->>+		if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
->
-> I always hated the DISP vs DISPLAY. It should be in the commit message.
->
-> But if you are doing the s/STEPPING/STEP/, shouldn't the filename also use
-> step and all the functions/structs?
-
-To be honest, the rename came as an afterthought, after Aditya (I think)
-added the STEP_X enums.
-
-For me step everywhere sounds good, I wonder what the native speakers
-think.
-
-
-BR,
-Jani.
-
-
->
-> Lucas De Marchi
->
->> 		    IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0))
->> 			intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
->> 				     DIS_RAM_BYPASS_PSR2_MAN_TRACK,
->>@@ -1103,7 +1103,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
->>
->> 	/* WA 1408330847 */
->> 	if (intel_dp->psr.psr2_sel_fetch_enabled &&
->>-	    (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0) ||
->>+	    (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0) ||
->> 	     IS_RKL_REVID(dev_priv, RKL_REVID_A0, RKL_REVID_A0)))
->> 		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
->> 			     DIS_RAM_BYPASS_PSR2_MAN_TRACK, 0);
->>diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>index 1f335cb09149..c4edfc673d47 100644
->>--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>@@ -1858,7 +1858,7 @@ static bool gen12_plane_supports_mc_ccs(struct drm_i915_private *dev_priv,
->> {
->> 	/* Wa_14010477008:tgl[a0..c0],rkl[all],dg1[all] */
->> 	if (IS_DG1(dev_priv) || IS_ROCKETLAKE(dev_priv) ||
->>-	    IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_C0))
->>+	    IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_C0))
->> 		return false;
->>
->> 	return plane_id < PLANE_SPRITE4;
->>diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>index 0c502a733779..4f8f9fbf6619 100644
->>--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->>@@ -1091,19 +1091,19 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
->> 	gen12_gt_workarounds_init(i915, wal);
->>
->> 	/* Wa_1409420604:tgl */
->>-	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
->>+	if (IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0))
->> 		wa_write_or(wal,
->> 			    SUBSLICE_UNIT_LEVEL_CLKGATE2,
->> 			    CPSSUNIT_CLKGATE_DIS);
->>
->> 	/* Wa_1607087056:tgl also know as BUG:1409180338 */
->>-	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
->>+	if (IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0))
->> 		wa_write_or(wal,
->> 			    SLICE_UNIT_LEVEL_CLKGATE,
->> 			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
->>
->> 	/* Wa_1408615072:tgl[a0] */
->>-	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0))
->>+	if (IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0))
->> 		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
->> 			    VSUNIT_CLKGATE_DIS_TGL);
->> }
->>@@ -1581,7 +1581,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->> 	struct drm_i915_private *i915 = engine->i915;
->>
->> 	if (IS_DG1_REVID(i915, DG1_REVID_A0, DG1_REVID_A0) ||
->>-	    IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0)) {
->>+	    IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0)) {
->> 		/*
->> 		 * Wa_1607138336:tgl[a0],dg1[a0]
->> 		 * Wa_1607063988:tgl[a0],dg1[a0]
->>@@ -1591,7 +1591,7 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->> 			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
->> 	}
->>
->>-	if (IS_TGL_UY_GT_STEPPING(i915, STEP_A0, STEP_A0)) {
->>+	if (IS_TGL_UY_GT_STEP(i915, STEP_A0, STEP_A0)) {
->> 		/*
->> 		 * Wa_1606679103:tgl
->> 		 * (see also Wa_1606682166:icl)
->>diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->>index 2d2ebf284e64..927a32427197 100644
->>--- a/drivers/gpu/drm/i915/i915_drv.h
->>+++ b/drivers/gpu/drm/i915/i915_drv.h
->>@@ -1510,15 +1510,15 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->> #define IS_JSL_EHL_REVID(p, since, until) \
->> 	(IS_JSL_EHL(p) && IS_REVID(p, since, until))
->>
->>-#define IS_TGL_DISP_STEPPING(__i915, since, until) \
->>+#define IS_TGL_DISPLAY_STEP(__i915, since, until) \
->> 	(IS_TIGERLAKE(__i915) && \
->> 	 IS_DISPLAY_STEP(__i915, since, until))
->>
->>-#define IS_TGL_UY_GT_STEPPING(__i915, since, until) \
->>+#define IS_TGL_UY_GT_STEP(__i915, since, until) \
->> 	((IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
->> 	 IS_GT_STEP(__i915, since, until))
->>
->>-#define IS_TGL_GT_STEPPING(__i915, since, until) \
->>+#define IS_TGL_GT_STEP(__i915, since, until) \
->> 	(IS_TIGERLAKE(__i915) && !(IS_TGL_U(__i915) || IS_TGL_Y(__i915)) && \
->> 	 IS_GT_STEP(__i915, since, until))
->>
->>@@ -1535,11 +1535,11 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->> #define IS_DG1_REVID(p, since, until) \
->> 	(IS_DG1(p) && IS_REVID(p, since, until))
->>
->>-#define IS_ADLS_DISP_STEPPING(__i915, since, until) \
->>+#define IS_ADLS_DISPLAY_STEP(__i915, since, until) \
->> 	(IS_ALDERLAKE_S(__i915) && \
->> 	 IS_DISPLAY_STEP(__i915, since, until))
->>
->>-#define IS_ADLS_GT_STEPPING(__i915, since, until) \
->>+#define IS_ADLS_GT_STEP(__i915, since, until) \
->> 	(IS_ALDERLAKE_S(__i915) && \
->> 	 IS_GT_STEP(__i915, since, until))
->>
->>diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
->>index aeb28d589b2b..de02207f6ec6 100644
->>--- a/drivers/gpu/drm/i915/intel_device_info.c
->>+++ b/drivers/gpu/drm/i915/intel_device_info.c
->>@@ -251,7 +251,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
->> 	enum pipe pipe;
->>
->> 	/* Wa_14011765242: adl-s A0 */
->>-	if (IS_ADLS_DISP_STEPPING(dev_priv, STEP_A0, STEP_A0))
->>+	if (IS_ADLS_DISPLAY_STEP(dev_priv, STEP_A0, STEP_A0))
->> 		for_each_pipe(dev_priv, pipe)
->> 			runtime->num_scalers[pipe] = 0;
->> 	else if (INTEL_GEN(dev_priv) >= 10) {
->>diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
->>index dbf87892193a..e16f5e498a86 100644
->>--- a/drivers/gpu/drm/i915/intel_pm.c
->>+++ b/drivers/gpu/drm/i915/intel_pm.c
->>@@ -7070,7 +7070,7 @@ static void gen12lp_init_clock_gating(struct drm_i915_private *dev_priv)
->> 			   ILK_DPFC_CHICKEN_COMP_DUMMY_PIXEL);
->>
->> 	/* Wa_1409825376:tgl (pre-prod)*/
->>-	if (IS_TGL_DISP_STEPPING(dev_priv, STEP_A0, STEP_B1))
->>+	if (IS_TGL_DISPLAY_STEP(dev_priv, STEP_A0, STEP_B1))
->> 		intel_uncore_write(&dev_priv->uncore, GEN9_CLKGATE_DIS_3, intel_uncore_read(&dev_priv->uncore, GEN9_CLKGATE_DIS_3) |
->> 			   TGL_VRH_GATING_DIS);
->>
->>-- 
->>2.20.1
->>
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDIvMjQvMjEgOTo0NSBBTSwgRGFuaWVsIFZldHRlciB3cm90ZToKPiBPbiBXZWQsIEZlYiAy
+NCwgMjAyMSBhdCA4OjQ2IEFNIFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCkKPiA8dGhvbWFzX29z
+QHNoaXBtYWlsLm9yZz4gd3JvdGU6Cj4+Cj4+IE9uIDIvMjMvMjEgMTE6NTkgQU0sIERhbmllbCBW
+ZXR0ZXIgd3JvdGU6Cj4+PiB0bGRyOyBETUEgYnVmZmVycyBhcmVuJ3Qgbm9ybWFsIG1lbW9yeSwg
+ZXhwZWN0aW5nIHRoYXQgeW91IGNhbiB1c2UKPj4+IHRoZW0gbGlrZSB0aGF0IChsaWtlIGNhbGxp
+bmcgZ2V0X3VzZXJfcGFnZXMgd29ya3MsIG9yIHRoYXQgdGhleSdyZQo+Pj4gYWNjb3VudGluZyBs
+aWtlIGFueSBvdGhlciBub3JtYWwgbWVtb3J5KSBjYW5ub3QgYmUgZ3VhcmFudGVlZC4KPj4+Cj4+
+PiBTaW5jZSBzb21lIHVzZXJzcGFjZSBvbmx5IHJ1bnMgb24gaW50ZWdyYXRlZCBkZXZpY2VzLCB3
+aGVyZSBhbGwKPj4+IGJ1ZmZlcnMgYXJlIGFjdHVhbGx5IGFsbCByZXNpZGVudCBzeXN0ZW0gbWVt
+b3J5LCB0aGVyZSdzIGEgaHVnZQo+Pj4gdGVtcHRhdGlvbiB0byBhc3N1bWUgdGhhdCBhIHN0cnVj
+dCBwYWdlIGlzIGFsd2F5cyBwcmVzZW50IGFuZCB1c2VhYmxlCj4+PiBsaWtlIGZvciBhbnkgbW9y
+ZSBwYWdlY2FjaGUgYmFja2VkIG1tYXAuIFRoaXMgaGFzIHRoZSBwb3RlbnRpYWwgdG8KPj4+IHJl
+c3VsdCBpbiBhIHVhcGkgbmlnaHRtYXJlLgo+Pj4KPj4+IFRvIHN0b3AgdGhpcyBnYXAgcmVxdWly
+ZSB0aGF0IERNQSBidWZmZXIgbW1hcHMgYXJlIFZNX1BGTk1BUCwgd2hpY2gKPj4+IGJsb2NrcyBn
+ZXRfdXNlcl9wYWdlcyBhbmQgYWxsIHRoZSBvdGhlciBzdHJ1Y3QgcGFnZSBiYXNlZAo+Pj4gaW5m
+cmFzdHJ1Y3R1cmUgZm9yIGV2ZXJ5b25lLiBJbiBzcGlyaXQgdGhpcyBpcyB0aGUgdWFwaSBjb3Vu
+dGVycGFydCB0bwo+Pj4gdGhlIGtlcm5lbC1pbnRlcm5hbCBDT05GSUdfRE1BQlVGX0RFQlVHLgo+
+Pj4KPj4+IE1vdGl2YXRlZCBieSBhIHJlY2VudCBwYXRjaCB3aGljaCB3YW50ZWQgdG8gc3dpY2gg
+dGhlIHN5c3RlbSBkbWEtYnVmCj4+PiBoZWFwIHRvIHZtX2luc2VydF9wYWdlIGluc3RlYWQgb2Yg
+dm1faW5zZXJ0X3Bmbi4KPj4+Cj4+PiB2MjoKPj4+Cj4+PiBKYXNvbiBicm91Z2h0IHVwIHRoYXQg
+d2UgYWxzbyB3YW50IHRvIGd1YXJhbnRlZSB0aGF0IGFsbCBwdGVzIGhhdmUgdGhlCj4+PiBwdGVf
+c3BlY2lhbCBmbGFnIHNldCwgdG8gY2F0Y2ggZmFzdCBnZXRfdXNlcl9wYWdlcyAob24gYXJjaGl0
+ZWN0dXJlcwo+Pj4gdGhhdCBzdXBwb3J0IHRoaXMpLiBBbGxvd2luZyBWTV9NSVhFRE1BUCAobGlr
+ZSBWTV9TUEVDSUFMIGRvZXMpIHdvdWxkCj4+PiBzdGlsbCBhbGxvdyB2bV9pbnNlcnRfcGFnZSwg
+YnV0IGxpbWl0aW5nIHRvIFZNX1BGTk1BUCB3aWxsIGNhdGNoIHRoYXQuCj4+Pgo+Pj4gICBGcm9t
+IGF1ZGl0aW5nIHRoZSB2YXJpb3VzIGZ1bmN0aW9ucyB0byBpbnNlcnQgcGZuIHB0ZSBlbnRpcmVz
+Cj4+PiAodm1faW5zZXJ0X3Bmbl9wcm90LCByZW1hcF9wZm5fcmFuZ2UgYW5kIGFsbCBpdCdzIGNh
+bGxlcnMgbGlrZQo+Pj4gZG1hX21tYXBfd2MpIGl0IGxvb2tzIGxpa2UgVk1fUEZOTUFQIGlzIGFs
+cmVhZHkgcmVxdWlyZWQgYW55d2F5LCBzbwo+Pj4gdGhpcyBzaG91bGQgYmUgdGhlIGNvcnJlY3Qg
+ZmxhZyB0byBjaGVjayBmb3IuCj4+Pgo+PiBJZiB3ZSByZXF1aXJlIFZNX1BGTk1BUCwgZm9yIG9y
+ZGluYXJ5IHBhZ2UgbWFwcGluZ3MsIHdlIGFsc28gbmVlZCB0bwo+PiBkaXNhbGxvdyBDT1cgbWFw
+cGluZ3MsIHNpbmNlIGl0IHdpbGwgbm90IHdvcmsgb24gYXJjaGl0ZWN0dXJlcyB0aGF0Cj4+IGRv
+bid0IGhhdmUgQ09ORklHX0FSQ0hfSEFTX1BURV9TUEVDSUFMLCAoc2VlIHRoZSBkb2NzIGZvciB2
+bV9ub3JtYWxfcGFnZSgpKS4KPiBIbSBJIGZpZ3VyZWQgZXZlcnlvbmUganVzdCB1c2VzIE1BUF9T
+SEFSRUQgZm9yIGJ1ZmZlciBvYmplY3RzIHNpbmNlCj4gQ09XIHJlYWxseSBtYWtlcyBhYnNvbHV0
+ZWx5IG5vIHNlbnNlLiBIb3cgd291bGQgd2UgZW5mb3JjZSB0aGlzPwoKUGVyaGFwcyByZXR1cm5p
+bmcgLUVJTlZBTCBvbiBpc19jb3dfbWFwcGluZygpIGF0IG1tYXAgdGltZS4gRWl0aGVyIHRoYXQg
+Cm9yIGFsbG93aW5nIE1JWEVETUFQLgoKPj4gQWxzbyB3b3J0aCBub3RpbmcgaXMgdGhlIGNvbW1l
+bnQgaW4gIHR0bV9ib19tbWFwX3ZtYV9zZXR1cCgpIHdpdGgKPj4gcG9zc2libGUgcGVyZm9ybWFu
+Y2UgaW1wbGljYXRpb25zIHdpdGggeDg2ICsgUEFUICsgVk1fUEZOTUFQICsgbm9ybWFsCj4+IHBh
+Z2VzLiBUaGF0J3MgYSB2ZXJ5IG9sZCBjb21tZW50LCB0aG91Z2gsIGFuZCBtaWdodCBub3QgYmUg
+dmFsaWQgYW55bW9yZS4KPiBJIHRoaW5rIHRoYXQncyB3aHkgdHRtIGhhcyBhIHBhZ2UgY2FjaGUg
+Zm9yIHRoZXNlLCBiZWNhdXNlIGl0IGluZGVlZAo+IHN1Y2tzLiBUaGUgUEFUIGNoYW5nZXMgb24g
+cGFnZXMgYXJlIHJhdGhlciBleHBlbnNpdmUuCgpJSVJDIHRoZSBwYWdlIGNhY2hlIHdhcyBpbXBs
+ZW1lbnRlZCBiZWNhdXNlIG9mIHRoZSBzbG93bmVzcyBvZiB0aGUgCmNhY2hpbmcgbW9kZSB0cmFu
+c2l0aW9uIGl0c2VsZiwgbW9yZSBzcGVjaWZpY2FsbHkgdGhlIHdiaW52ZCgpIGNhbGwgKyAKZ2xv
+YmFsIFRMQiBmbHVzaC4KCj4KPiBUaGVyZSBpcyBzdGlsbCBhbiBpc3N1ZSBmb3IgaW9tZW0gbWFw
+cGluZ3MsIGJlY2F1c2UgdGhlIFBBVCB2YWxpZGF0aW9uCj4gZG9lcyBhIGxpbmVhciB3YWxrIG9m
+IHRoZSByZXNvdXJjZSB0cmVlIChsb2wpIGZvciBldmVyeSB2bV9pbnNlcnRfcGZuLgo+IEJ1dCBm
+b3IgaTkxNSBhdCBsZWFzdCB0aGlzIGlzIGZpeGVkIGJ5IHVzaW5nIHRoZSBpb19tYXBwaW5nCj4g
+aW5mcmFzdHJ1Y3R1cmUsIHdoaWNoIGRvZXMgdGhlIFBBVCByZXNlcnZhdGlvbiBvbmx5IG9uY2Ug
+d2hlbiB5b3Ugc2V0Cj4gdXAgdGhlIG1hcHBpbmcgYXJlYSBhdCBkcml2ZXIgbG9hZC4KClllcywg
+SSBndWVzcyB0aGF0IHdhcyB0aGUgaXNzdWUgdGhhdCB0aGUgY29tbWVudCBkZXNjcmliZXMsIGJ1
+dCB0aGUgCmlzc3VlIHdhc24ndCB0aGVyZSB3aXRoIHZtX2luc2VydF9taXhlZCgpICsgVk1fTUlY
+RURNQVAuCgo+Cj4gQWxzbyBUVE0gdXNlcyBWTV9QRk5NQVAgcmlnaHQgbm93IGZvciBldmVyeXRo
+aW5nLCBzbyBpdCBjYW4ndCBiZSBhCj4gcHJvYmxlbSB0aGF0IGh1cnRzIG11Y2ggOi0pCgpIbW0s
+IGJvdGggNS4xMSBhbmQgZHJtLXRpcCBhcHBlYXJzIHRvIHN0aWxsIHVzZSBNSVhFRE1BUD8KCmh0
+dHBzOi8vZWxpeGlyLmJvb3RsaW4uY29tL2xpbnV4L2xhdGVzdC9zb3VyY2UvZHJpdmVycy9ncHUv
+ZHJtL3R0bS90dG1fYm9fdm0uYyNMNTU0Cgo+IC1EYW5pZWwKCi9UaG9tYXMKCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
