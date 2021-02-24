@@ -2,30 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A243244CE
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Feb 2021 20:59:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D8B33244EF
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Feb 2021 21:09:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D88F6E07F;
-	Wed, 24 Feb 2021 19:59:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4D076EB23;
+	Wed, 24 Feb 2021 20:09:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 121EC6E07D;
- Wed, 24 Feb 2021 19:59:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0A607A73C9;
- Wed, 24 Feb 2021 19:59:25 +0000 (UTC)
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E6D16E07F;
+ Wed, 24 Feb 2021 20:09:17 +0000 (UTC)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+ id 0AAE61C0B80; Wed, 24 Feb 2021 21:09:13 +0100 (CET)
+Date: Wed, 24 Feb 2021 21:09:12 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: kernel list <linux-kernel@vger.kernel.org>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ intel-gfx@lists.freedesktop.org, airlied@redhat.com,
+ sean@poorly.run, tzimmermann@suse.de, dri-devel@lists.freedesktop.org
+Message-ID: <20210224200912.GA27905@duo.ucw.cz>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Piorkowski, Piotr" <piotr.piorkowski@intel.com>
-Date: Wed, 24 Feb 2021 19:59:25 -0000
-Message-ID: <161419676501.17230.2793936853428937511@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210224152925.1969970-1-piotr.piorkowski@intel.com>
-In-Reply-To: <20210224152925.1969970-1-piotr.piorkowski@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Verify_dma=5Faddr_in_gen8=5Fggtt=5Fpte=5Fencode?=
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [Intel-gfx] udldrmfb: causes WARN in i915 on X60 (x86-32)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,162 +36,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1430321944=="
+Content-Type: multipart/mixed; boundary="===============1124663039=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1430321944==
-Content-Type: multipart/alternative;
- boundary="===============6144751966796990808=="
 
---===============6144751966796990808==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Verify dma_addr in gen8_ggtt_pte_encode
-URL   : https://patchwork.freedesktop.org/series/87352/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9798 -> Patchwork_19727
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19727/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19727 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9798/fi-tgl-y/igt@fbdev@write.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19727/fi-tgl-y/igt@fbdev@write.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9798/fi-tgl-y/igt@i915_hangman@error-state-basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19727/fi-tgl-y/igt@i915_hangman@error-state-basic.html
-
-  
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+--===============1124663039==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="82I3+IH0IqGh5yIs"
+Content-Disposition: inline
 
 
-Participating hosts (45 -> 41)
-------------------------------
+--82I3+IH0IqGh5yIs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+Hi!
 
+This is in -next, but I get same behaviour on 5.11; and no, udl does
+not work, but monitor is detected:
 
-Build changes
--------------
-
-  * Linux: CI_DRM_9798 -> Patchwork_19727
-
-  CI-20190529: 20190529
-  CI_DRM_9798: 70e2e79cd772b97799f4cecd823539f452063562 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6013: a6c7181747850161377dae5161d33c0675ab273e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19727: 201369a1d91fbc03775a97d3e776dab86436e45f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-201369a1d91f drm/i915: Verify dma_addr in gen8_ggtt_pte_encode
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19727/index.html
-
---===============6144751966796990808==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+pavel@amd:~/g/tui/crashled$ xrandr=20
+Screen 0: minimum 320 x 200, current 1024 x 768, maximum 4096 x 4096
+LVDS1 connected 1024x768+0+0 (normal left inverted right x axis y axis) 246=
+mm x 185mm
+   1024x768      50.00*+  60.00    40.00 =20
+   800x600       60.32    56.25 =20
+   640x480       59.94 =20
+VGA1 disconnected (normal left inverted right x axis y axis)
+DVI-1-0 connected 1024x768+0+0 304mm x 228mm
+   1024x768      60.00*+  75.03 =20
+   800x600       75.00    60.32 =20
+   640x480       75.00    59.94 =20
+   720x400       70.08 =20
+  1024x768 (0x45) 65.000MHz -HSync -VSync
+        h: width  1024 start 1048 end 1184 total 1344 skew    0 clock  48.3=
+6KHz
+        v: height  768 start  771 end  777 total  806           clock  60.0=
+0Hz
+  800x600 (0x47) 40.000MHz +HSync +VSync
+        h: width   800 start  840 end  968 total 1056 skew    0 clock  37.8=
+8KHz
+        v: height  600 start  601 end  605 total  628           clock  60.3=
+2Hz
+  640x480 (0x49) 25.175MHz -HSync -VSync
+        h: width   640 start  656 end  752 total  800 skew    0 clock  31.4=
+7KHz
+        v: height  480 start  490 end  492 total  525           clock  59.9=
+4Hz
+pavel@amd:~/g/tui/crashled$=20
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Verify dma_addr in gen8_ggtt_pte_encode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87352/">https://patchwork.freedesktop.org/series/87352/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+[13957.499755] wlan0: associated
+[13962.906368] udl 1-5:1.0: [drm] fb1: udldrmfb frame buffer device
+[13972.585101] ------------[ cut here ]------------
+[13972.585117] WARNING: CPU: 0 PID: 3159 at kernel/dma/mapping.c:192 dma_ma=
+p_sg_attrs+0x38/0x50
+[13972.585137] Modules linked in:
+[13972.585149] CPU: 0 PID: 3159 Comm: Xorg Not tainted 5.11.0-next-20210223=
++ #176
+[13972.585158] Hardware name: LENOVO 17097HU/17097HU, BIOS 7BETD8WW (2.19 )=
+ 03/31/2011
+[13972.585166] EIP: dma_map_sg_attrs+0x38/0x50
+[13972.585176] Code: f0 01 00 00 00 74 23 ff 75 0c 53 e8 72 1b 00 00 5a 59 =
+85 c0 78 1c 8b 5d fc c9 c3 8d b4 26 00 00 00 00 0f 0b 8d b6 00 00 00 00 <0f=
+> 0b 31 c0 eb e6 66 90 0f 0b 8d b4 26 00 00 00 00 8d b4 26 00 00
+[13972.585186] EAX: c296c41c EBX: 00000000 ECX: 00000055 EDX: dbbc4800
+[13972.585194] ESI: c69f9ea0 EDI: d2c313c0 EBP: c5cbdda8 ESP: c5cbdda4
+[13972.585202] DS: 007b ES: 007b FS: 00d8 GS: 00e0 SS: 0068 EFLAGS: 00210246
+[13972.585211] CR0: 80050033 CR2: b6b99000 CR3: 05d42000 CR4: 000006b0
+[13972.585219] Call Trace:
+[13972.585227]  i915_gem_map_dma_buf+0xee/0x160
+[13972.585240]  dma_buf_map_attachment+0xb8/0x140
+[13972.585251]  drm_gem_prime_import_dev.part.0+0x33/0xc0
+[13972.585262]  ? drm_gem_shmem_create+0x10/0x10
+[13972.585271]  drm_gem_prime_import_dev+0x22/0x70
+[13972.585280]  drm_gem_prime_fd_to_handle+0x186/0x1c0
+[13972.585289]  ? drm_gem_prime_import_dev+0x70/0x70
+[13972.585298]  ? drm_prime_destroy_file_private+0x20/0x20
+[13972.585307]  drm_prime_fd_to_handle_ioctl+0x1c/0x30
+[13972.585315]  drm_ioctl_kernel+0x8e/0xe0
+[13972.585325]  ? drm_prime_destroy_file_private+0x20/0x20
+[13972.585334]  drm_ioctl+0x1fd/0x380
+[13972.585343]  ? drm_prime_destroy_file_private+0x20/0x20
+[13972.585352]  ? ksys_write+0x5c/0xd0
+[13972.585363]  ? vfs_write+0xeb/0x3f0
+[13972.585371]  ? drm_ioctl_kernel+0xe0/0xe0
+[13972.585380]  __ia32_sys_ioctl+0x369/0x7d0
+[13972.585389]  ? exit_to_user_mode_prepare+0x4e/0x170
+[13972.585398]  do_int80_syscall_32+0x2c/0x40
+[13972.585409]  entry_INT80_32+0x111/0x111
+[13972.585419] EIP: 0xb7f68092
+[13972.585427] Code: 00 00 00 e9 90 ff ff ff ff a3 24 00 00 00 68 30 00 00 =
+00 e9 80 ff ff ff ff a3 e8 ff ff ff 66 90 00 00 00 00 00 00 00 00 cd 80 <c3=
+> 8d b4 26 00 00 00 00 8d b6 00 00 00 00 8b 1c 24 c3 8d b4 26 00
+[13972.585436] EAX: ffffffda EBX: 00000030 ECX: c00c642e EDX: bfaeda30
+[13972.585444] ESI: 00915790 EDI: c00c642e EBP: 00000030 ESP: bfaed9e4
+[13972.585452] DS: 007b ES: 007b FS: 0000 GS: 0033 SS: 007b EFLAGS: 00200296
+[13972.585461]  ? asm_exc_nmi+0xcc/0x2bc
+[13972.585470] ---[ end trace 46a21fad0595bc89 ]---
+pavel@amd:~/g/tui/crashled$=20
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19727/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19727/index.html</a></td></tr>
+Any ideas?
 
-</table>
+Best regards,
 
+									Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
 
-    <h1>CI Bug Log - changes from CI_DRM_9798 -&gt; Patchwork_19727</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19727/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19727 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@fbdev@write:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9798/fi-tgl-y/igt@fbdev@write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19727/fi-tgl-y/igt@fbdev@write.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_hangman@error-state-basic:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9798/fi-tgl-y/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19727/fi-tgl-y/igt@i915_hangman@error-state-basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 41)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9798 -&gt; Patchwork_19727</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9798: 70e2e79cd772b97799f4cecd823539f452063562 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6013: a6c7181747850161377dae5161d33c0675ab273e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19727: 201369a1d91fbc03775a97d3e776dab86436e45f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>201369a1d91f drm/i915: Verify dma_addr in gen8_ggtt_pte_encode</p>
+--82I3+IH0IqGh5yIs
+Content-Type: application/pgp-signature; name="signature.asc"
 
-</body>
-</html>
+-----BEGIN PGP SIGNATURE-----
 
---===============6144751966796990808==--
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYDayaAAKCRAw5/Bqldv6
+8iSEAKDBkf7JQqx5xJs5omtox+yEPx8jAwCeIQwmTgx3Sra8FoAllIGkX2a4kB0=
+=1+My
+-----END PGP SIGNATURE-----
 
---===============1430321944==
+--82I3+IH0IqGh5yIs--
+
+--===============1124663039==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -204,4 +169,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1430321944==--
+--===============1124663039==--
