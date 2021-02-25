@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F971324CC2
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Feb 2021 10:25:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E285324D30
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Feb 2021 10:53:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C3B76E8DA;
-	Thu, 25 Feb 2021 09:25:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C2006EC76;
+	Thu, 25 Feb 2021 09:53:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D66926E218;
- Thu, 25 Feb 2021 09:25:49 +0000 (UTC)
-IronPort-SDR: MsqSf5pl9o6+htMSfMperKJyRGXIS/oo8tQVFKsvH+/lq27woi7TWRP3fUedLs4YgcmOd0YbKU
- n9WGhVpYAk/A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9905"; a="164688311"
-X-IronPort-AV: E=Sophos;i="5.81,205,1610438400"; d="scan'208";a="164688311"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2021 01:25:49 -0800
-IronPort-SDR: zczo3BuwbZXbxNjLUGwXihKQQcunKpY2Vup/i3SopTDBytZquCqlpClmSkgxS0QDeXUrjE7/5n
- f0IpubgN5d7g==
-X-IronPort-AV: E=Sophos;i="5.81,205,1610438400"; d="scan'208";a="392235214"
-Received: from stuppert-mobl.ger.corp.intel.com (HELO [10.252.41.159])
- ([10.252.41.159])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2021 01:25:47 -0800
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <0f60a68c-d562-7266-0815-ea75ff680b17@linux.intel.com>
-Date: Thu, 25 Feb 2021 10:25:45 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 784FB6EC74;
+ Thu, 25 Feb 2021 09:53:24 +0000 (UTC)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+ id 2708A1C0B8B; Thu, 25 Feb 2021 10:53:23 +0100 (CET)
+Date: Thu, 25 Feb 2021 10:53:22 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20210225095322.GA5089@amd>
+References: <20210224200912.GA27905@duo.ucw.cz>
+ <452585d5-9d18-f5a8-9d6b-6d39aa037480@suse.de>
 MIME-Version: 1.0
-Content-Language: en-US
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+In-Reply-To: <452585d5-9d18-f5a8-9d6b-6d39aa037480@suse.de>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Subject: [Intel-gfx] udldrm does not recover from powersave? Re: udldrmfb:
+ causes WARN in i915 on X60 (x86-32)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,84 +37,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, kernel list <linux-kernel@vger.kernel.org>,
+ dri-devel@lists.freedesktop.org, airlied@redhat.com
+Content-Type: multipart/mixed; boundary="===============1799370747=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm-misc-next-fixes-2021-02-25:
-drm-misc-next tasty fixes for v5.12:
-- Cherry pick of drm-misc-fixes pull:
-"here's this week's PR for drm-misc-fixes. One of the patches is a memory
-leak; the rest is for hardware issues."
-- Fix dt bindings for dp connector.
-- Fix build error in atyfb.
-- Improve error handling for dma-buf heaps.
-- Make vblank timestamp more correct, by recording timestamp to be set when signaling.
-The following changes since commit e2183fb135a7f62d317aa1c61eb3d1919080edba:
 
-  Revert "drm/scheduler: Job timeout handler returns status (v3)" (2021-02-10 15:26:00 +0100)
+--===============1799370747==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="tKW2IUtsqtDRztdT"
+Content-Disposition: inline
 
-are available in the Git repository at:
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2021-02-25
+--tKW2IUtsqtDRztdT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-for you to fetch changes up to d922d58fedcd98ba625e89b625a98e222b090b10:
+Hi!
 
-  drm/panel: kd35t133: allow using non-continuous dsi clock (2021-02-25 10:18:45 +0100)
+> >This is in -next, but I get same behaviour on 5.11; and no, udl does
+>=20
+> Thanks for reporting. We are in the process of fixing the issue. The late=
+st
+> patch is at [1].
+>
 
-----------------------------------------------------------------
-drm-misc-next tasty fixes for v5.12:
-- Cherry pick of drm-misc-fixes pull:
-"here's this week's PR for drm-misc-fixes. One of the patches is a memory
-leak; the rest is for hardware issues."
-- Fix dt bindings for dp connector.
-- Fix build error in atyfb.
-- Improve error handling for dma-buf heaps.
-- Make vblank timestamp more correct, by recording timestamp to be set when signaling.
+Thank you, that fixes the DMA issue, and I can use the udl.
 
-----------------------------------------------------------------
-Alyssa Rosenzweig (1):
-      drm/rockchip: Require the YTR modifier for AFBC
+=2E..for a while. Then screensaver blanks laptop screen, udl screen
+blanks too. Upon hitting a key, internal screen shows up, udl does
+not.
 
-Bjorn Andersson (1):
-      dt-bindings: dp-connector: Drop maxItems from -supply
+I try rerunning xrandr ... --auto, but could not recover it.
 
-Heiko Stuebner (1):
-      drm/panel: kd35t133: allow using non-continuous dsi clock
+Any ideas?
 
-John Stultz (2):
-      dma-buf: system_heap: Make sure to return an error if we abort
-      dma-buf: heaps: Rework heap allocation hooks to return struct dma_buf instead of fd
+Best regards,
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
 
-Randy Dunlap (1):
-      fbdev: atyfb: add stubs for aty_{ld,st}_lcd()
+--tKW2IUtsqtDRztdT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-Veera Sundaram Sankaran (2):
-      dma-fence: allow signaling drivers to set fence timestamp
-      drm/drm_vblank: set the dma-fence timestamp during send_vblank_event
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
-xinhui pan (1):
-      drm/ttm: Fix a memory leak
+iEYEARECAAYFAmA3c5IACgkQMOfwapXb+vIK+wCfcBgCyVwqlwT9BhlQBINozkZu
+6EMAn2cKNi7+6HsERfcaiq/3RwULgi5f
+=/Y0f
+-----END PGP SIGNATURE-----
 
- .../bindings/display/connector/dp-connector.yaml   |  1 -
- drivers/dma-buf/dma-fence.c                        | 70 +++++++++++++++++++---
- drivers/dma-buf/dma-heap.c                         | 14 ++++-
- drivers/dma-buf/heaps/cma_heap.c                   | 22 +++----
- drivers/dma-buf/heaps/system_heap.c                | 25 ++++----
- drivers/gpu/drm/drm_file.c                         | 68 +++++++++++++++++----
- drivers/gpu/drm/drm_vblank.c                       |  9 ++-
- drivers/gpu/drm/panel/panel-elida-kd35t133.c       |  3 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop.h        | 11 ++++
- drivers/gpu/drm/ttm/ttm_bo.c                       |  9 ++-
- drivers/video/fbdev/aty/atyfb_base.c               |  9 +++
- include/drm/drm_file.h                             |  3 +
- include/linux/dma-fence.h                          |  3 +
- include/linux/dma-heap.h                           | 12 ++--
- 14 files changed, 197 insertions(+), 62 deletions(-)
+--tKW2IUtsqtDRztdT--
+
+--===============1799370747==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1799370747==--
