@@ -1,54 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D63463248AC
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Feb 2021 02:55:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E58BD324B91
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Feb 2021 08:53:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D3276E120;
-	Thu, 25 Feb 2021 01:55:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F33E6EC5D;
+	Thu, 25 Feb 2021 07:53:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
- [IPv6:2a00:1450:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 424E46E104;
- Thu, 25 Feb 2021 01:55:28 +0000 (UTC)
-Received: by mail-ej1-x62a.google.com with SMTP id u20so6184310ejb.7;
- Wed, 24 Feb 2021 17:55:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=i3VIO1nHnPUxKu6tZXh33nsQtWjX1wulGCOkA+JXeHc=;
- b=E8R+Evj/3mi8rFmzXU6lIQUDGiJu14+B5T8SYnkK1zxuAJyBcwQ1CM5TxMDLZ7KtlT
- 3kvOV2p5szayFxiYGJFc4kOopUQ8EH4N6eRu5NFRK7ZwUb08cAJxRW54fNsDYtPokvTl
- HI9crOrL2kwnd4plcHLD4ZD6b8O4Nsc/M+pEx0qeJc+K7ZvZkv5203V0MWkzRVxg58Yp
- sBTGpFvwslgBIZVp8QmESTKnECCjRPZLq4HLpkPzolAikrf0HiMLXslAU+2yCDYcssbC
- 8VQGJr6tyB6285fdl26qBK9bP3khrEbgw8D+khFTP+m5BSqhXgA0kOzMzvw3XNmFeM1s
- gLpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=i3VIO1nHnPUxKu6tZXh33nsQtWjX1wulGCOkA+JXeHc=;
- b=VFKeKzUpnBY6qsVLIIDvyxxWEh0GizARI5MBGh5xuz/SYwm/nhk25hxZJzZEzs6I+U
- yHv4dumGWeUtlH/BYto72eSN3VIiDY7Qt3cWKfELNk/M7SeSZZNF81FC/ZI5qdLqYIiB
- a22dVtas6wcwyS5Gc6ZxEZmaZl5It10NXBodsn35di34C1bVRfrsT0JDeGdmG7Zon8VN
- Cwf+HP5lzINCsxJs10gGzajvGD7UDLkzItTD1X2nkW+s18sPFIK0JduaAXM7kDWnJz6Q
- BOTB/JWHe49Jn8ROFC4cF6Vu4jF4LASBtIeu+mO/fPkuTZb70mqYsdFvgPU5lV2lEuoV
- uXNw==
-X-Gm-Message-State: AOAM532hnoPfPo128nHobTkbAvqqjNPVOw3YyYItGbh2dFQDBa+kfK7e
- Vo+k3xr0REua4H7JzkJaYO9VhBwsf/04iMqRnIo=
-X-Google-Smtp-Source: ABdhPJy/UwLda6TcML22PaWGN7kr/Txag6r3KXc4fJwb7rSM0GND/t47VYbcSOA3ntD3QFR4KvTxuErEEfG5UAXJMfM=
-X-Received: by 2002:a17:907:3e02:: with SMTP id
- hp2mr486960ejc.340.1614218126755; 
- Wed, 24 Feb 2021 17:55:26 -0800 (PST)
-MIME-Version: 1.0
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D1296EC5A;
+ Thu, 25 Feb 2021 07:53:44 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id F411AADE5;
+ Thu, 25 Feb 2021 07:53:42 +0000 (UTC)
+To: Dave Airlie <airlied@gmail.com>
 References: <YDYqJhsuNDKvD3V/@linux-uq9g>
-In-Reply-To: <YDYqJhsuNDKvD3V/@linux-uq9g>
-From: Dave Airlie <airlied@gmail.com>
-Date: Thu, 25 Feb 2021 11:55:15 +1000
-Message-ID: <CAPM=9tzu+Sa+1w4LCwdV0wsRCvqPnXSdrCxi-dTMxn+hN_Kz2A@mail.gmail.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
+ <CAPM=9tzu+Sa+1w4LCwdV0wsRCvqPnXSdrCxi-dTMxn+hN_Kz2A@mail.gmail.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <9592f25d-b7fa-5b84-eccf-01af1019ef06@suse.de>
+Date: Thu, 25 Feb 2021 08:53:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+MIME-Version: 1.0
+In-Reply-To: <CAPM=9tzu+Sa+1w4LCwdV0wsRCvqPnXSdrCxi-dTMxn+hN_Kz2A@mail.gmail.com>
 Subject: Re: [Intel-gfx] [PULL] drm-misc-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,50 +42,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: "DRM maintainer tools announcements, discussion,
  and development" <dim-tools@lists.freedesktop.org>,
  Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  dri-devel <dri-devel@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Maxime Ripard <mripard@kernel.org>
+Content-Type: multipart/mixed; boundary="===============1618932927=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyNCBGZWIgMjAyMSBhdCAyMDoyNywgVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJt
-YW5uQHN1c2UuZGU+IHdyb3RlOgo+Cj4gSGkgRGF2ZSBhbmQgRGFuaWVsLAo+Cj4gaGVyZSdzIHRo
-aXMgd2VlaydzIFBSIGZvciBkcm0tbWlzYy1maXhlcy4gT25lIG9mIHRoZSBwYXRjaGVzIGlzIGEg
-bWVtb3J5Cj4gbGVhazsgdGhlIHJlc3QgaXMgZm9yIGhhcmR3YXJlIGlzc3Vlcy4KPgoKVGhpcyBp
-cyBiYXNlZCBvbiA1LjExIGFuZCBJJ20gbm90IGN1cnJlbnRseSBpbiB0aGUgbWFya2V0IGZvciBh
-CmJhY2ttZWdlIG5vdyBiZWZvcmUgcmMxIHNvIGNhbiB5b3UganVzdCB0b3AgdGhpcyB1cCBuZXh0
-IHdlZWs/CgpUaG91Z2ggbWF5YmUgdGhlIHR0bSBmaXggc2hvdWxkIGJlIGZhc3QgdHJhY2tlZCwg
-d2lsbCBjb250ZW1wbGF0ZSBpdC4KCkRhdmUuCgo+IEJlc3QgcmVnYXJkcwo+IFRob21hcwo+Cj4g
-ZHJtLW1pc2MtZml4ZXMtMjAyMS0wMi0yNDoKPiAgKiBkcm0vcGFuZWw6IGtkMzV0MTMzOiBXb3Jr
-IHdpdGggbm9uLWNvbnRpbnVvdXMgRFNJIGNsb2NrCj4gICogZHJtL3JvY2tjaGlwOiBSZXF1aXJl
-IFlUUiBtb2RpZmllciBmb3IgQUZCQwo+ICAqIGRybS90dG06IEZpeCBhIG1lbW9yeSBsZWFrIGlu
-IGVycm9yIGhhbmRsaW5nCj4gVGhlIGZvbGxvd2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1pdCBmNDBk
-ZGNlODg1OTM0ODI5MTk3NjFmNzQ5MTBmNDJmNGI4NGMwMDRiOgo+Cj4gICBMaW51eCA1LjExICgy
-MDIxLTAyLTE0IDE0OjMyOjI0IC0wODAwKQo+Cj4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgR2l0IHJl
-cG9zaXRvcnkgYXQ6Cj4KPiAgIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2RybS9kcm0t
-bWlzYyB0YWdzL2RybS1taXNjLWZpeGVzLTIwMjEtMDItMjQKPgo+IGZvciB5b3UgdG8gZmV0Y2gg
-Y2hhbmdlcyB1cCB0byA1NGRhYjNhNzE4ZjcwOTQ1MzJkYWY3ZDI1Y2QxNDEyMWEwZTAwZTM0Ogo+
-Cj4gICBkcm0vcGFuZWw6IGtkMzV0MTMzOiBhbGxvdyB1c2luZyBub24tY29udGludW91cyBkc2kg
-Y2xvY2sgKDIwMjEtMDItMjMgMjI6NDQ6NTggKzAxMDApCj4KPiAtLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gICogZHJtL3Bh
-bmVsOiBrZDM1dDEzMzogV29yayB3aXRoIG5vbi1jb250aW51b3VzIERTSSBjbG9jawo+ICAqIGRy
-bS9yb2NrY2hpcDogUmVxdWlyZSBZVFIgbW9kaWZpZXIgZm9yIEFGQkMKPiAgKiBkcm0vdHRtOiBG
-aXggYSBtZW1vcnkgbGVhayBpbiBlcnJvciBoYW5kbGluZwo+Cj4gLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+IEFseXNzYSBS
-b3Nlbnp3ZWlnICgxKToKPiAgICAgICBkcm0vcm9ja2NoaXA6IFJlcXVpcmUgdGhlIFlUUiBtb2Rp
-ZmllciBmb3IgQUZCQwo+Cj4gSGVpa28gU3R1ZWJuZXIgKDEpOgo+ICAgICAgIGRybS9wYW5lbDog
-a2QzNXQxMzM6IGFsbG93IHVzaW5nIG5vbi1jb250aW51b3VzIGRzaSBjbG9jawo+Cj4geGluaHVp
-IHBhbiAoMSk6Cj4gICAgICAgZHJtL3R0bTogRml4IGEgbWVtb3J5IGxlYWsKPgo+ICBkcml2ZXJz
-L2dwdS9kcm0vcGFuZWwvcGFuZWwtZWxpZGEta2QzNXQxMzMuYyB8ICAzICsrLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vcm9ja2NoaXAvcm9ja2NoaXBfZHJtX3ZvcC5oICB8IDExICsrKysrKysrKysrCj4g
-IGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMgICAgICAgICAgICAgICAgIHwgIDkgKysrKysr
-LS0tCj4gIDMgZmlsZXMgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkK
-Pgo+IC0tCj4gVGhvbWFzIFppbW1lcm1hbm4KPiBHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyCj4g
-U1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2VybWFueSBHbWJICj4gTWF4ZmVsZHN0ci4gNSwgOTA0
-MDkgTsO8cm5iZXJnLCBHZXJtYW55Cj4gKEhSQiAzNjgwOSwgQUcgTsO8cm5iZXJnKQo+IEdlc2No
-w6RmdHNmw7xocmVyOiBGZWxpeCBJbWVuZMO2cmZmZXIKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1618932927==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="DMZdv4ptfVr1o70LrZ5Vt91Au9Cg8a72y"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--DMZdv4ptfVr1o70LrZ5Vt91Au9Cg8a72y
+Content-Type: multipart/mixed; boundary="xki79IW9FNO2NRlXE77Pn1XBBLDGIVhOk";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>
+Cc: "DRM maintainer tools announcements, discussion, and development"
+ <dim-tools@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>
+Message-ID: <9592f25d-b7fa-5b84-eccf-01af1019ef06@suse.de>
+Subject: Re: [PULL] drm-misc-fixes
+References: <YDYqJhsuNDKvD3V/@linux-uq9g>
+ <CAPM=9tzu+Sa+1w4LCwdV0wsRCvqPnXSdrCxi-dTMxn+hN_Kz2A@mail.gmail.com>
+In-Reply-To: <CAPM=9tzu+Sa+1w4LCwdV0wsRCvqPnXSdrCxi-dTMxn+hN_Kz2A@mail.gmail.com>
+
+--xki79IW9FNO2NRlXE77Pn1XBBLDGIVhOk
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 25.02.21 um 02:55 schrieb Dave Airlie:
+> On Wed, 24 Feb 2021 at 20:27, Thomas Zimmermann <tzimmermann@suse.de> w=
+rote:
+>>
+>> Hi Dave and Daniel,
+>>
+>> here's this week's PR for drm-misc-fixes. One of the patches is a memo=
+ry
+>> leak; the rest is for hardware issues.
+>>
+>=20
+> This is based on 5.11 and I'm not currently in the market for a
+> backmege now before rc1 so can you just top this up next week?
+
+I can, but I think Maxime will take over after -rc1.
+
+Best regards
+Thomas
+
+>=20
+> Though maybe the ttm fix should be fast tracked, will contemplate it.
+>=20
+> Dave.
+>=20
+>> Best regards
+>> Thomas
+>>
+>> drm-misc-fixes-2021-02-24:
+>>   * drm/panel: kd35t133: Work with non-continuous DSI clock
+>>   * drm/rockchip: Require YTR modifier for AFBC
+>>   * drm/ttm: Fix a memory leak in error handling
+>> The following changes since commit f40ddce88593482919761f74910f42f4b84=
+c004b:
+>>
+>>    Linux 5.11 (2021-02-14 14:32:24 -0800)
+>>
+>> are available in the Git repository at:
+>>
+>>    git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2021=
+-02-24
+>>
+>> for you to fetch changes up to 54dab3a718f7094532daf7d25cd14121a0e00e3=
+4:
+>>
+>>    drm/panel: kd35t133: allow using non-continuous dsi clock (2021-02-=
+23 22:44:58 +0100)
+>>
+>> ----------------------------------------------------------------
+>>   * drm/panel: kd35t133: Work with non-continuous DSI clock
+>>   * drm/rockchip: Require YTR modifier for AFBC
+>>   * drm/ttm: Fix a memory leak in error handling
+>>
+>> ----------------------------------------------------------------
+>> Alyssa Rosenzweig (1):
+>>        drm/rockchip: Require the YTR modifier for AFBC
+>>
+>> Heiko Stuebner (1):
+>>        drm/panel: kd35t133: allow using non-continuous dsi clock
+>>
+>> xinhui pan (1):
+>>        drm/ttm: Fix a memory leak
+>>
+>>   drivers/gpu/drm/panel/panel-elida-kd35t133.c |  3 ++-
+>>   drivers/gpu/drm/rockchip/rockchip_drm_vop.h  | 11 +++++++++++
+>>   drivers/gpu/drm/ttm/ttm_bo.c                 |  9 ++++++---
+>>   3 files changed, 19 insertions(+), 4 deletions(-)
+>>
+>> --
+>> Thomas Zimmermann
+>> Graphics Driver Developer
+>> SUSE Software Solutions Germany GmbH
+>> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+>> (HRB 36809, AG N=C3=BCrnberg)
+>> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--xki79IW9FNO2NRlXE77Pn1XBBLDGIVhOk--
+
+--DMZdv4ptfVr1o70LrZ5Vt91Au9Cg8a72y
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmA3V4YFAwAAAAAACgkQlh/E3EQov+Ai
+Vw/9HLgFfONLhJKv4ntetjdMDEeXOhTr6eyd57U4okq1jXTEnTz7nU2cvBP66TdKwX9H5LRDvCgz
+zsYirmA7FFox14wbJ+sb2ltWfw3GLD/kdSIv/TT44mIM/u90oNJHQPrqX3ZQdcR0AFb+PL1Ox6Bt
+IG9sm2Btu2XGeyAyvGlSWitIL/Jno6tV4Sf5h1TcuY7KHLPJUF5UJs7q4ClByTOkfm9AaWKvTyTC
+UKaVRn7TXCYHIZSiTgvJyzlKROEXHABhGOcmjsSbV/u2OSjcO950coLVo88WwmbsSwUfSHW5NBnF
+4k7M2iNWKJTGgszoni3gjUFfPVQsqUwLl8wnc+wE8/L6BNNdDuCiNHHZVs350UVeYRXVEFKwgSej
+Q4IYgcMFhbbKamJuj2QEGE7O9iVc15nCLbIp66zPn/STdioofJXitQF4NUMoq/DNGG2ACix82YrI
+6puAXBiEcCGcmrWwHaNz0grikLAaU936wahHg8ETwTFslF6VPW8KoS/ikYf2XqENv/WFdf/vSU8z
+UqaD8RkKFG8EC4whUPz8oCavqGS+0Gsx5Z5bFyJ6124ZesvP5OhdnPywjOGnU+siInMrpHWjcT6x
+nVF61jx6yBpH7E3/uFTYayBR8jU0UkpfEeHtu4WhdpCkKVTioyz6QebpdxCLXF0mrO9wYGmNUJVZ
+bIY=
+=Ayd/
+-----END PGP SIGNATURE-----
+
+--DMZdv4ptfVr1o70LrZ5Vt91Au9Cg8a72y--
+
+--===============1618932927==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1618932927==--
