@@ -2,53 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F4F325C37
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Feb 2021 04:58:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DD67325CCE
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Feb 2021 06:01:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82F186E8D8;
-	Fri, 26 Feb 2021 03:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D6F06E8E8;
+	Fri, 26 Feb 2021 05:01:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
- [IPv6:2a00:1450:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C97BC6E8D8
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Feb 2021 03:58:04 +0000 (UTC)
-Received: by mail-lj1-x233.google.com with SMTP id q14so9084562ljp.4
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Feb 2021 19:58:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=IKcGR9mazlUUFUCJHZLpv+HgMJWAswex7iAdBxFMsas=;
- b=QXGOxOrc30RkjTFMoXYgNZN9aKZah9TJL8+FeIDzUqdOhlFB16EzADtDKwN24Pr6Me
- lVy8jOde4a3EHpWNph3fPIYrxmQGALemW9oLwX7ALKnc7/1R9sx5C3CbjvfKhg5HsGjO
- YR+W53mExuY+D9stcgZWxSVvxj8AVeezKm8eiKoZ0AF/RnoeJdAp/SD2NTlR+gpFy7M7
- 9PVmZeYqeZlfLeqzvmGX67mXnbDKEwhFLVcTEIUIJZ7WDlQqM3rWwbwDPJnr/WvEZrQy
- +Ps5SPvaFb14e6C/aqVvY37js4Xu9rzne1UItA0EumXeC0VlTbQhgt4vkiWON27I8K9W
- 3EBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=IKcGR9mazlUUFUCJHZLpv+HgMJWAswex7iAdBxFMsas=;
- b=iTAL4oUaUnyLf2mSOPgt8VjohT/EMdDtLgJPj/StRxgCMjWoMBcDFgfxZYoAkXvgj8
- 2mFRySjoCw5UGnAZ8ceMlT5jl++CgghdhJm4hHphRsuW6+k8lGjsXUkuOsSTi8zKsJfN
- Pkgz8UMZSFRulIDlW5Y7j0wUUHQNd1/nuv+nDfcmI3BuRni7uUB5vEz1FqHdqR3LAhAb
- ADXuRbyVCMVVB5/2+prvZpT0ieWh0iV/b7RZRzWCoJXus/7bPb8Hnj01TmAJWDFDTeL6
- xvN01GGj2GZ1+63IU8rYIr2VdJAjlrp9JanAa5UFU5iBuKO5PwTHmUE/lC270JdsKew/
- 1Iew==
-X-Gm-Message-State: AOAM5311vJAJxhK/xCw3zQST26uOdEq5aZVUfYlobgw9mUvYOBRxCEVk
- 5EyYZ0UcBcOVZcMDTWEJ825JHcqsq8l9asNGRZMzvg==
-X-Google-Smtp-Source: ABdhPJx/pbxqQ4tVmMGKowXmBZLmvQbMe0LIG0j9zdeku6gTbxeiU4ZEHNZuRd9UmA3p7DxDyFxh2XaIyMxq6HHuOIU=
-X-Received: by 2002:a2e:8ec6:: with SMTP id e6mr505307ljl.257.1614311882892;
- Thu, 25 Feb 2021 19:58:02 -0800 (PST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB5506E8E7;
+ Fri, 26 Feb 2021 05:01:10 +0000 (UTC)
+IronPort-SDR: AE7u4uS+DCQYntAJKuCSO+R9mCk4GtYXKS8w9e1OvoSq3wTCSH2ms6OnJR/4qf4YrXZfLlJtPG
+ LfJYf0A8CFEQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9906"; a="164993933"
+X-IronPort-AV: E=Sophos;i="5.81,207,1610438400"; d="scan'208";a="164993933"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2021 21:01:10 -0800
+IronPort-SDR: MwUHK9Y/FNDbll/XnPZ49GjXvdQWmatbO8ziam9+t6CxyKyRwggiv877l1ZAgxmteTO0Igfd2+
+ A3yoEK9AEBYQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,207,1610438400"; d="scan'208";a="516384038"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by orsmga004.jf.intel.com with ESMTP; 25 Feb 2021 21:01:09 -0800
+Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Thu, 25 Feb 2021 21:01:08 -0800
+Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
+ BGSMSX602.gar.corp.intel.com (10.109.78.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Fri, 26 Feb 2021 10:31:06 +0530
+Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
+ BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
+ Fri, 26 Feb 2021 10:31:06 +0530
+From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+To: Colin King <colin.king@canonical.com>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "C,
+ Ramalingam" <ramalingam.c@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>
+Thread-Topic: [PATCH][next] drm/i915/hdcp: Fix null pointer dereference of
+ connector->encoder
+Thread-Index: AQHXChjJmIv7gDW21UG5hJXtQsGn1Kpp5AuQ
+Date: Fri, 26 Feb 2021 05:01:06 +0000
+Message-ID: <acbf924a09544030966f95c750b1bfa7@intel.com>
+References: <20210223191909.16682-1-colin.king@canonical.com>
+In-Reply-To: <20210223191909.16682-1-colin.king@canonical.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.5.1.3
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.1]
 MIME-Version: 1.0
-References: <20210223105951.912577-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210223105951.912577-1-daniel.vetter@ffwll.ch>
-From: John Stultz <john.stultz@linaro.org>
-Date: Thu, 25 Feb 2021 19:57:48 -0800
-Message-ID: <CALAqxLURCOA9vfw3VqhUTtf_n6nsTHaA+F1Gu32U3pW8zW-YTw@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 1/2] dma-buf: Require VM_PFNMAP vma for mmap
+Subject: Re: [Intel-gfx] [PATCH][next] drm/i915/hdcp: Fix null pointer
+ dereference of connector->encoder
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,65 +74,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Wilcox <willy@infradead.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Jason Gunthorpe <jgg@ziepe.ca>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Hridya Valsaraju <hridya@google.com>, Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- linux-media <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "kernel-janitors@vger.kernel.org" <kernel-janitors@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBGZWIgMjMsIDIwMjEgYXQgMzowMCBBTSBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0
-dGVyQGZmd2xsLmNoPiB3cm90ZToKPgo+IHRsZHI7IERNQSBidWZmZXJzIGFyZW4ndCBub3JtYWwg
-bWVtb3J5LCBleHBlY3RpbmcgdGhhdCB5b3UgY2FuIHVzZQo+IHRoZW0gbGlrZSB0aGF0IChsaWtl
-IGNhbGxpbmcgZ2V0X3VzZXJfcGFnZXMgd29ya3MsIG9yIHRoYXQgdGhleSdyZQo+IGFjY291bnRp
-bmcgbGlrZSBhbnkgb3RoZXIgbm9ybWFsIG1lbW9yeSkgY2Fubm90IGJlIGd1YXJhbnRlZWQuCj4K
-PiBTaW5jZSBzb21lIHVzZXJzcGFjZSBvbmx5IHJ1bnMgb24gaW50ZWdyYXRlZCBkZXZpY2VzLCB3
-aGVyZSBhbGwKPiBidWZmZXJzIGFyZSBhY3R1YWxseSBhbGwgcmVzaWRlbnQgc3lzdGVtIG1lbW9y
-eSwgdGhlcmUncyBhIGh1Z2UKPiB0ZW1wdGF0aW9uIHRvIGFzc3VtZSB0aGF0IGEgc3RydWN0IHBh
-Z2UgaXMgYWx3YXlzIHByZXNlbnQgYW5kIHVzZWFibGUKPiBsaWtlIGZvciBhbnkgbW9yZSBwYWdl
-Y2FjaGUgYmFja2VkIG1tYXAuIFRoaXMgaGFzIHRoZSBwb3RlbnRpYWwgdG8KPiByZXN1bHQgaW4g
-YSB1YXBpIG5pZ2h0bWFyZS4KPgo+IFRvIHN0b3AgdGhpcyBnYXAgcmVxdWlyZSB0aGF0IERNQSBi
-dWZmZXIgbW1hcHMgYXJlIFZNX1BGTk1BUCwgd2hpY2gKPiBibG9ja3MgZ2V0X3VzZXJfcGFnZXMg
-YW5kIGFsbCB0aGUgb3RoZXIgc3RydWN0IHBhZ2UgYmFzZWQKPiBpbmZyYXN0cnVjdHVyZSBmb3Ig
-ZXZlcnlvbmUuIEluIHNwaXJpdCB0aGlzIGlzIHRoZSB1YXBpIGNvdW50ZXJwYXJ0IHRvCj4gdGhl
-IGtlcm5lbC1pbnRlcm5hbCBDT05GSUdfRE1BQlVGX0RFQlVHLgo+Cj4gTW90aXZhdGVkIGJ5IGEg
-cmVjZW50IHBhdGNoIHdoaWNoIHdhbnRlZCB0byBzd2ljaCB0aGUgc3lzdGVtIGRtYS1idWYKPiBo
-ZWFwIHRvIHZtX2luc2VydF9wYWdlIGluc3RlYWQgb2Ygdm1faW5zZXJ0X3Bmbi4KPgo+IHYyOgo+
-Cj4gSmFzb24gYnJvdWdodCB1cCB0aGF0IHdlIGFsc28gd2FudCB0byBndWFyYW50ZWUgdGhhdCBh
-bGwgcHRlcyBoYXZlIHRoZQo+IHB0ZV9zcGVjaWFsIGZsYWcgc2V0LCB0byBjYXRjaCBmYXN0IGdl
-dF91c2VyX3BhZ2VzIChvbiBhcmNoaXRlY3R1cmVzCj4gdGhhdCBzdXBwb3J0IHRoaXMpLiBBbGxv
-d2luZyBWTV9NSVhFRE1BUCAobGlrZSBWTV9TUEVDSUFMIGRvZXMpIHdvdWxkCj4gc3RpbGwgYWxs
-b3cgdm1faW5zZXJ0X3BhZ2UsIGJ1dCBsaW1pdGluZyB0byBWTV9QRk5NQVAgd2lsbCBjYXRjaCB0
-aGF0Lgo+Cj4gRnJvbSBhdWRpdGluZyB0aGUgdmFyaW91cyBmdW5jdGlvbnMgdG8gaW5zZXJ0IHBm
-biBwdGUgZW50aXJlcwo+ICh2bV9pbnNlcnRfcGZuX3Byb3QsIHJlbWFwX3Bmbl9yYW5nZSBhbmQg
-YWxsIGl0J3MgY2FsbGVycyBsaWtlCj4gZG1hX21tYXBfd2MpIGl0IGxvb2tzIGxpa2UgVk1fUEZO
-TUFQIGlzIGFscmVhZHkgcmVxdWlyZWQgYW55d2F5LCBzbwo+IHRoaXMgc2hvdWxkIGJlIHRoZSBj
-b3JyZWN0IGZsYWcgdG8gY2hlY2sgZm9yLgo+Cj4gUmVmZXJlbmNlczogaHR0cHM6Ly9sb3JlLmtl
-cm5lbC5vcmcvbGttbC9DQUtNSzd1SGkrbUcwejBIVW1OdDEzUUNDdnV0dVJWanBjUjBOalJMMTJr
-LVdiV3prUmdAbWFpbC5nbWFpbC5jb20vCj4gQWNrZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNo
-cmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPiBDYzogSmFzb24gR3VudGhvcnBlIDxqZ2dAemllcGUu
-Y2E+Cj4gQ2M6IFN1cmVuIEJhZ2hkYXNhcnlhbiA8c3VyZW5iQGdvb2dsZS5jb20+Cj4gQ2M6IE1h
-dHRoZXcgV2lsY294IDx3aWxseUBpbmZyYWRlYWQub3JnPgo+IENjOiBKb2huIFN0dWx0eiA8am9o
-bi5zdHVsdHpAbGluYXJvLm9yZz4KPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5p
-ZWwudmV0dGVyQGludGVsLmNvbT4KPiBDYzogU3VtaXQgU2Vtd2FsIDxzdW1pdC5zZW13YWxAbGlu
-YXJvLm9yZz4KPiBDYzogIkNocmlzdGlhbiBLw7ZuaWciIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5j
-b20+Cj4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZwo+IENjOiBsaW5hcm8tbW0tc2ln
-QGxpc3RzLmxpbmFyby5vcmcKPiAtLS0KPiAgZHJpdmVycy9kbWEtYnVmL2RtYS1idWYuYyB8IDE1
-ICsrKysrKysrKysrKystLQo+ICAxIGZpbGUgY2hhbmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgMiBk
-ZWxldGlvbnMoLSkKCgpTbyBJIGdhdmUgdGhpcyBhIHNwaW4gaW4gYSBmZXcgb2YgbXkgZW52aXJv
-bm1lbnRzLCBhbmQgd2l0aCB0aGUKY3VycmVudCBkbWFidWYgaGVhcHMgaXQgc3Bld3MgYSBsb3Qg
-b2Ygd2FybmluZ3MuCgpJJ20gdGVzdGluZyBzb21lIHNpbXBsZSBmaXhlcyB0byBhZGQ6CiAgICB2
-bWEtPnZtX2ZsYWdzIHw9IFZNX1BGTk1BUDsKCnRvIHRoZSBkbWFidWYgaGVhcCBtbWFwIG9wcywg
-d2hpY2ggd2UgbWlnaHQgd2FudCB0byBxdWV1ZSBhbG9uZyBzaWRlIG9mIHRoaXMuCgpTbyBhc3N1
-bWluZyB0aG9zZSBjYW4gbGFuZCB0b2dldGhlci4KQWNrZWQtYnk6IEpvaG4gU3R1bHR6IDxqb2hu
-LnN0dWx0ekBsaW5hcm8ub3JnPgoKdGhhbmtzCi1qb2huCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+
+
+> -----Original Message-----
+> From: Colin King <colin.king@canonical.com>
+> Sent: Wednesday, February 24, 2021 12:49 AM
+> To: Jani Nikula <jani.nikula@linux.intel.com>; Joonas Lahtinen
+> <joonas.lahtinen@linux.intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>;
+> David Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>; C, Ramalingam
+> <ramalingam.c@intel.com>; Gupta, Anshuman <anshuman.gupta@intel.com>;
+> intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+> Cc: kernel-janitors@vger.kernel.org; linux-kernel@vger.kernel.org
+> Subject: [PATCH][next] drm/i915/hdcp: Fix null pointer dereference of
+> connector->encoder
+> 
+> From: Colin Ian King <colin.king@canonical.com>
+> 
+> The recent commit 6c63e6e14da7 ("drm/i915/hdcp: No HDCP when encoder is't
+> initialized") added a null pointer check on connector->encoder hence implying
+> that it could potentially be null.  This means that the initialization of dig_port via
+> the call intel_attached_dig_port may cause a null pointer dereference on
+> connector->encoder. Fix this by only assigning dig_port after a null check has
+> been performed on connector->encoder.
+> 
+> Addresses-Coverity: ("Dereference before null check")
+> Fixes: 36e5e7042b20 ("drm/i915: Don't fully disable HDCP on a port if multiple
+> pipes are using it")
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+Looks good to me.
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index ae1371c36a32..7525ea31766c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -2260,7 +2260,7 @@ int intel_hdcp_enable(struct intel_connector
+> *connector,
+>  		      const struct intel_crtc_state *pipe_config, u8 content_type)
+> {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> -	struct intel_digital_port *dig_port =
+> intel_attached_dig_port(connector);
+> +	struct intel_digital_port *dig_port;
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+>  	unsigned long check_link_interval = DRM_HDCP_CHECK_PERIOD_MS;
+>  	int ret = -EINVAL;
+> @@ -2274,6 +2274,7 @@ int intel_hdcp_enable(struct intel_connector
+> *connector,
+>  		return -ENODEV;
+>  	}
+> 
+> +	dig_port = intel_attached_dig_port(connector);
+>  	mutex_lock(&hdcp->mutex);
+>  	mutex_lock(&dig_port->hdcp_mutex);
+>  	drm_WARN_ON(&dev_priv->drm,
+> --
+> 2.30.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
