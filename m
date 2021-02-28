@@ -1,45 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8126C32805A
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 15:10:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D9EB32815E
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 15:52:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D24ED6E5BB;
-	Mon,  1 Mar 2021 14:10:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C150E89D83;
+	Mon,  1 Mar 2021 14:52:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F289A6E5BB
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Mar 2021 14:10:16 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6528D64D99;
- Mon,  1 Mar 2021 14:10:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1614607816;
- bh=MpORY1LSS6duWPJ6gsbDFWyR60Ty4kPP2cIOqbGO5xE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=EhiRmv9XuCYUsjCgHNTx9OZEKlrYso8t1YBo2T+GSndID3VDaP4GpDbIp+Rn1gi+o
- R+HUWULG4kDTQKcddGOAyx6U++EZpjGoxncBeFS7iDqr2aaKx+sW3tMNubFjFkcbvY
- GqoGg2FylKbs0OSHYauax4haOf2rbvpXrrxwwiQs=
-Date: Mon, 1 Mar 2021 15:10:13 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <YDz1xcbN050kIR6P@kroah.com>
-References: <161282685855.9448.10484374241892252440@build.alporthouse.com>
- <f1070486-891a-8ec0-0390-b9aeb03178ce@redhat.com>
- <161291205642.6673.10994709665368036431@build.alporthouse.com>
- <02fd493c-957f-890d-d0ad-ebd4119f55f2@redhat.com>
- <161296131275.7731.862746142230006325@build.alporthouse.com>
- <8f550b67-2c7c-c726-09d1-dc8842152974@redhat.com>
- <161304059194.7731.17263409378570191651@build.alporthouse.com>
- <e00f5813-37c6-52e7-4fd3-691be9d062d9@redhat.com>
- <96614fc1-c92d-1532-fd92-beb19e490075@redhat.com>
- <YCqEs8FaSBukRcaZ@kroah.com>
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
+ [IPv6:2a00:1450:4864:20::330])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3C286E214
+ for <intel-gfx@lists.freedesktop.org>; Sun, 28 Feb 2021 14:29:10 +0000 (UTC)
+Received: by mail-wm1-x330.google.com with SMTP id i9so10933246wml.0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 28 Feb 2021 06:29:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=qCy+l4W0SN+Qr0q0h1Kr4cn7PGq4wjNf/wKoSbiwHDE=;
+ b=l+7csCuZQGg74lRO/aOwfa+azvIzyT13bs+7tEu51cqSR2+YvGM30NAa+8yIwlOIhg
+ WRBongyXfTw3qdsbNBhUq8mLclr7VH5G0Krt/dNhPCb0PKFPLEIUMzXsjzXo92DS3/At
+ Kx16EKbTlFiD2fWYYMpoTsoBFaKg9C76RRTN6/DIEiXSNi0MBAULu/q0E9PDYL4mp6sR
+ uZr3ai/kDpbNMOxVwB03GOvglhpyYY8BfCJugOR5+cap3cdNSv8EHNaVprlDXE3k7lcO
+ y1+MP3dlCtntLCrwOZfdzFWcYjLPS5Q9NAjL2XsPAqFA/LhTcnkAW+J2f+RQX2R5rVhk
+ WKlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=qCy+l4W0SN+Qr0q0h1Kr4cn7PGq4wjNf/wKoSbiwHDE=;
+ b=bZf420UH21KDtvGIxJEztIy21GIX3DikYtrxix0/f6pC/bZW7pD9FEryoKP/F0MzLE
+ WfjyXU33Ab4U9wRVXgslKIIUAXmJ2fOlyYl8dJUiLPurqMO7JgnVvLxDOWVtzVjX4ERo
+ 1X1Ruxh4lCHITNA5x9XejxhMm/Z6ne+21neKU48+lhzyF7tHIiEqOA6ZynMw+wSjJPoi
+ 7YZh1/DSAEoO6+m81QJvNbeFnDaynAfglD7+gI+KIGnx1WrFi+9qX6I7ERRUm8mjrXJW
+ 091P3WxlMr8jdoAhHVmKz9qqG05QFJFRM6f/NRbLirfHQPc+iGJdNSLXjU2rmQqALdSo
+ gx7w==
+X-Gm-Message-State: AOAM5334g0gzezGLgD6KuiFQDCyoAzsyja8bmOTJZ3TergPctXic/LCM
+ HgD1YqhfOudmrXqrvzDWD/tkXCQDyPk=
+X-Google-Smtp-Source: ABdhPJyL5GhlUaJX6hs8PLE0HB6OEqb+oGhN+EkR5+6gYZBYI2Eqeg667g8cA3rHPnT/OjlOG4OfKQ==
+X-Received: by 2002:a1c:730a:: with SMTP id d10mr11276577wmb.53.1614522549407; 
+ Sun, 28 Feb 2021 06:29:09 -0800 (PST)
+Received: from archlinux.localnet (80.142.94.90.dynamic.jazztel.es.
+ [90.94.142.80])
+ by smtp.gmail.com with ESMTPSA id f126sm7245178wmf.17.2021.02.28.06.29.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 28 Feb 2021 06:29:08 -0800 (PST)
+From: Diego Calleja <diegocg@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun, 28 Feb 2021 15:29:07 +0100
+Message-ID: <3423617.kz1aARBMGD@archlinux>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YCqEs8FaSBukRcaZ@kroah.com>
-Subject: Re: [Intel-gfx] [5.10.y regression] i915 clear-residuals mitigation
- is causing gfx issues
+X-Mailman-Approved-At: Mon, 01 Mar 2021 14:52:13 +0000
+Subject: [Intel-gfx] -stable regression in Intel graphics,
+ introduced in Linux 5.10.9
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,106 +66,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, stable@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 15, 2021 at 03:26:59PM +0100, Greg Kroah-Hartman wrote:
-> On Sun, Feb 14, 2021 at 05:00:44PM +0100, Hans de Goede wrote:
-> > Hi,
-> > 
-> > On 2/11/21 1:26 PM, Hans de Goede wrote:
-> > > Hi,
-> > > 
-> > > On 2/11/21 11:49 AM, Chris Wilson wrote:
-> > >> Quoting Hans de Goede (2021-02-11 10:36:13)
-> > >>> Hi,
-> > >>>
-> > >>> On 2/10/21 1:48 PM, Chris Wilson wrote:
-> > >>>> Quoting Hans de Goede (2021-02-10 10:37:19)
-> > >>>>> Hi,
-> > >>>>>
-> > >>>>> On 2/10/21 12:07 AM, Chris Wilson wrote:
-> > >>>>>> Quoting Hans de Goede (2021-02-09 11:46:46)
-> > >>>>>>> Hi,
-> > >>>>>>>
-> > >>>>>>> On 2/9/21 12:27 AM, Chris Wilson wrote:
-> > >>>>>>>> Quoting Hans de Goede (2021-02-08 20:38:58)
-> > >>>>>>>>> Hi All,
-> > >>>>>>>>>
-> > >>>>>>>>> We (Fedora) have been receiving reports from multiple users about gfx issues / glitches
-> > >>>>>>>>> stating with 5.10.9. All reporters are users of Ivy Bridge / Haswell iGPUs and all
-> > >>>>>>>>> reporters report that adding i915.mitigations=off to the cmdline fixes things, see:
-> > >>>>>>>>
-> > >>>>>>>> I tried to reproduce this on the w/e on hsw-gt1, to no avail; and piglit
-> > >>>>>>>> did not report any differences with and without mitigations. I have yet
-> > >>>>>>>> to test other platforms. So I don't yet have an alternative.
-> > >>>>>>>
-> > >>>>>>> Note the original / first reporter of:
-> > >>>>>>>
-> > >>>>>>> https://bugzilla.redhat.com/show_bug.cgi?id=1925346
-> > >>>>>>>
-> > >>>>>>> Is using hsw-gt2, so it seems that the problem is not just the enabling of
-> > >>>>>>> the mitigations on ivy-bridge / bay-trail but that there actually is
-> > >>>>>>> a regression on devices where the WA worked fine before...
-> > >>>>>>
-> > >>>>>> There have been 3 crashes uploaded related to v5.10.9, and in all 3
-> > >>>>>> cases the ACTHD has been in the first page. This strongly suggests that
-> > >>>>>> the w/a is scribbling over address 0. And there's then a very good
-> > >>>>>> chance that
-> > >>>>>>
-> > >>>>>> commit 29d35b73ead4e41aa0d1a954c9bfbdce659ec5d6
-> > >>>>>> Author: Chris Wilson <chris@chris-wilson.co.uk>
-> > >>>>>> Date:   Mon Jan 25 12:50:33 2021 +0000
-> > >>>>>>
-> > >>>>>>     drm/i915/gt: Always try to reserve GGTT address 0x0
-> > >>>>>>     
-> > >>>>>>     commit 489140b5ba2e7cc4b853c29e0591895ddb462a82 upstream.
-> > >>>>>>
-> > >>>>>> in v5.10.14 is sufficient to hide the issue.
-> > >>>>>
-> > >>>>> That one actually is already in v5.10.13 and the various reportes of these
-> > >>>>> issues have already tested 5.10.13. They did mention that it took longer
-> > >>>>> to reproduce with 5.10.13 then with 5.10.10, but that could also be due to:
-> > >>>>>
-> > >>>>> "drm/i915/gt: Clear CACHE_MODE prior to clearing residuals"
-> > >>>>> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?h=linux-5.10.y&id=520d05a77b2866eb4cb9e548e1d8c8abcfe60ec5
-> > >>>>
-> > >>>> Started looking for scratch page overwrites, and found this little gem:
-> > >>>> https://patchwork.freedesktop.org/patch/420436/?series=86947&rev=1
-> > >>>>
-> > >>>> Looks promising wrt the cause of overwriting random addresses -- and
-> > >>>> I hope that is the explanation for the glitches/hangs. I have a hsw gt2
-> > >>>> with gnome shell, piglit is happy, but I suspect it is all due to
-> > >>>> placement and so will only occur at random.
-> > >>>
-> > >>> If you can give me a list of commits to cherry-pick then I can prepare
-> > >>> a Fedora 5.10.y kernel which those added for the group of Fedora users
-> > >>> who are hitting this to test.
-> > >>
-> > >> e627d5923cae ("drm/i915/gt: One more flush for Baytrail clear residuals")
-> > >> d30bbd62b1bf ("drm/i915/gt: Flush before changing register state")
-> > >> 1914911f4aa0 ("drm/i915/gt: Correct surface base address for renderclear")
-> > > 
-> > > Thanks, the test-kernel is building now. I will let you know when I have
-> > > heard back from the Fedora users (this will likely take 1-2 days).
-> > 
-> > I've heard back from 2 of the reporters who were seeing issues with 5.10.9+
-> > 
-> > And I'm happy to report 5.10.15 + the 3 commits mentioned above cherry-picked
-> > on top fixes the graphics glitches for them.
-> > 
-> > So if we can get these 3 commits into 5.10.y and 5.11.y then this should be
-> > resolved.
-> 
-> Great!
-> 
-> Hopefully these will show up in Linus's tree soon...
+Hi,
 
-I think I have the needed 3 commits now.
+There is a regression in Linux 5.10.9 that does not happen in 5.10.8. It is still there as
+of 5.11.1
+
+This regression consists in graphics artifacts that will *only* start appearing after resuming
+from suspend. They don't happen immediately after resuming from suspend either, but
+after some minutes.
+
+My system has integrated intel graphics
+00:02.0 VGA compatible controller: Intel Corporation 4th Generation Core Processor Family Integrated Graphics Controller (rev 06) (prog-if 00 [VGA controller])                                            
+CPU: Intel(R) Core(TM) i3-4170T CPU @ 3.20GHz
+
+For reference, this is the list of i915 commits that went into 5.10.9.
+
+
+commit ecca0c675bdecebdeb2f2eb76fb33520c441dacf
+Author: Chris Wilson <chris@chris-wilson.co.uk>
+Date:   Mon Jan 11 22:52:19 2021 +0000
+
+    drm/i915/gt: Restore clear-residual mitigations for Ivybridge, Baytrail
+    
+    commit 09aa9e45863e9e25dfbf350bae89fc3c2964482c upstream.
+
+
+commit de3f572607c29f7fdd1bfd754646d08e32db0249
+Author: Imre Deak <imre.deak@intel.com>
+Date:   Wed Dec 9 17:39:52 2020 +0200
+
+    drm/i915/icl: Fix initing the DSI DSC power refcount during HW readout
+    
+    commit 2af5268180410b874fc06be91a1b2fbb22b1be0c upstream.
+
+
+commit 54c9246a47fa8559c3ec6da2048e976a4b8750f6
+Author: Hans de Goede <hdegoede@redhat.com>
+Date:   Wed Nov 18 13:40:58 2020 +0100
+
+    drm/i915/dsi: Use unconditional msleep for the panel_on_delay when there is no reset-deassert MIPI-sequence
+    
+    commit 00cb645fd7e29bdd20967cd20fa8f77bcdf422f9 upstream.
+
+
+commit 0a34addcdbd9e03e3f3d09bcd5a1719d90b2d637
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Fri Jan 8 17:28:41 2021 +0200
+
+    drm/i915/backlight: fix CPU mode backlight takeover on LPT
+    
+    commit bb83d5fb550bb7db75b29e6342417fda2bbb691c upstream.
+
+
+commit 48b8c6689efa7cd65a72f620940a4f234b944b73
+Author: Chris Wilson <chris@chris-wilson.co.uk>
+Date:   Mon Jan 11 22:52:18 2021 +0000
+
+    drm/i915/gt: Limit VFE threads based on GT
+    
+    commit ffaf97899c4a58b9fefb11534f730785443611a8 upstream.
+
+
+commit 481e27f050732b8c680f26287dd44967fddf9a79
+Author: Chris Wilson <chris@chris-wilson.co.uk>
+Date:   Mon Jan 11 22:52:20 2021 +0000
+
+    drm/i915: Allow the sysadmin to override security mitigations
+    
+    commit 984cadea032b103c5824a5f29d0a36b3e9df6333 upstream.
+
+
+Regards
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
