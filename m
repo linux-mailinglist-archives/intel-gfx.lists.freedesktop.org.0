@@ -2,67 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 011E8327A9D
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 10:21:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9358E327A95
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 10:20:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC2A26E526;
-	Mon,  1 Mar 2021 09:21:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D462589FCE;
+	Mon,  1 Mar 2021 09:19:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
- [213.80.101.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7C1189FD9;
- Mon,  1 Mar 2021 09:21:21 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id CDE5D3F3A1;
- Mon,  1 Mar 2021 10:21:19 +0100 (CET)
-Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=pTwKGOoe; 
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
- by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id tcU_ueMgXl_O; Mon,  1 Mar 2021 10:21:19 +0100 (CET)
-Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id AFBB83F393;
- Mon,  1 Mar 2021 10:21:16 +0100 (CET)
-Received: from [10.249.254.148] (unknown [192.198.151.43])
- by mail1.shipmail.org (Postfix) with ESMTPSA id E9C783600BA;
- Mon,  1 Mar 2021 10:21:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1614590476; bh=v/6gYa+I8Tt8B9P3C8K3rFhm+y2ThcWR/NttZk59Mig=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=pTwKGOoeZY6eQEETMEQFzNBP9mngHUBwdZttR6CPWTgPJ2KDTyLMNuMQIRYHqdH3k
- QVkSi3bBIaNdTDnlUwK6I5ZGdqMl3XtNuurr+MqgJmryh5kAKP/lI0iA7Ih0c4cW74
- ECt01QAIkTQUiQU988RWC/zJVXRzMqBUVNpyULPo=
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <f43311c8-a02a-1a29-a53b-88e599c92187@shipmail.org>
- <CAKMK7uE2UrOruQPWG9KPBQ781f9Bq9xpVRNserAC9BZ2VzDutQ@mail.gmail.com>
- <b30dacb0-edea-0a3c-6163-0f329e58ba61@gmail.com>
- <YDd/hlf8uM3+lxhr@phenom.ffwll.local>
- <CAKMK7uFezcV52oTZbHeve2HFFATeCGyK6zTT6nE1KVP69QRr0A@mail.gmail.com>
- <61c5c371-debe-4ca0-a067-ce306e51ef88@shipmail.org>
- <CAKMK7uFUiJyMP0E5JUzMOx=NyMW+ZObGsaFOh409x0LOvGbnzg@mail.gmail.com>
- <0d69bd00-e673-17cf-c9e3-ccbcd52649a6@shipmail.org>
- <CAKMK7uE=8+hj-MUFXHFoG_hAbz_Obi8a99+DE5_d1K+KZaG+tQ@mail.gmail.com>
- <b367b7e8-f202-4d23-d672-a5c9bc7fcec1@shipmail.org>
- <YDyuYk8x5QeX83s6@phenom.ffwll.local>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <be8f2503-ffcb-eb58-83be-26fa0fc1837a@shipmail.org>
-Date: Mon, 1 Mar 2021 10:21:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B59C189FCE
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Mar 2021 09:19:56 +0000 (UTC)
+IronPort-SDR: EfLQJcyH4BbQkEoTnyQQHSGG4HYFQW00Q4CwA4EgVBVxrqnQ/GgPKpx/gfeANfURpoaQgqLKHP
+ 8mySpV2GJ78w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9909"; a="166283075"
+X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="166283075"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2021 01:19:56 -0800
+IronPort-SDR: M2O6b+3uJGNd2ZHrGfycNNSa3WuCL4Jfpm5272AeY2XMj9AIx9eNXv5rl1aqvM3o4Oj3dB/7Od
+ VswjDFT4o7fg==
+X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="595357900"
+Received: from unknown (HELO intel.com) ([10.237.72.91])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2021 01:19:55 -0800
+Date: Mon, 1 Mar 2021 11:21:41 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20210301092141.GB22174@intel.com>
+References: <20210226153204.1270-1-ville.syrjala@linux.intel.com>
+ <20210226153204.1270-6-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YDyuYk8x5QeX83s6@phenom.ffwll.local>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 1/2] dma-buf: Require
- VM_PFNMAP vma for mmap
+Content-Disposition: inline
+In-Reply-To: <20210226153204.1270-6-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: Introduce SAGV transtion
+ watermark
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,75 +49,395 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Wilcox <willy@infradead.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, John Stultz <john.stultz@linaro.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Suren Baghdasaryan <surenb@google.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDMvMS8yMSAxMDowNSBBTSwgRGFuaWVsIFZldHRlciB3cm90ZToKPiBPbiBNb24sIE1hciAw
-MSwgMjAyMSBhdCAwOTozOTo1M0FNICswMTAwLCBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpIHdy
-b3RlOgo+PiBIaSwKPj4KPj4gT24gMy8xLzIxIDk6MjggQU0sIERhbmllbCBWZXR0ZXIgd3JvdGU6
-Cj4+PiBPbiBTYXQsIEZlYiAyNywgMjAyMSBhdCA5OjA2IEFNIFRob21hcyBIZWxsc3Ryw7ZtIChJ
-bnRlbCkKPj4+IDx0aG9tYXNfb3NAc2hpcG1haWwub3JnPiB3cm90ZToKPj4+PiBPbiAyLzI2LzIx
-IDI6MjggUE0sIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+Pj4+IFNvIEkgdGhpbmsgaXQgc3RvcHMg
-Z3VwLiBCdXQgSSBoYXZlbid0IHZlcmlmaWVkIGF0IGFsbC4gV291bGQgYmUgZ29vZAo+Pj4+PiBp
-ZiBDaHJpc3RpYW4gY2FuIGNoZWNrIHRoaXMgd2l0aCBzb21lIGRpcmVjdCBpbyB0byBhIGJ1ZmZl
-ciBpbiBzeXN0ZW0KPj4+Pj4gbWVtb3J5Lgo+Pj4+IEhtbSwKPj4+Pgo+Pj4+IERvY3MgKGFnYWlu
-IHZtX25vcm1hbF9wYWdlKCkgc2F5KQo+Pj4+Cj4+Pj4gICAgICogVk1fTUlYRURNQVAgbWFwcGlu
-Z3MgY2FuIGxpa2V3aXNlIGNvbnRhaW4gbWVtb3J5IHdpdGggb3Igd2l0aG91dCAic3RydWN0Cj4+
-Pj4gICAgICogcGFnZSIgYmFja2luZywgaG93ZXZlciB0aGUgZGlmZmVyZW5jZSBpcyB0aGF0IF9h
-bGxfIHBhZ2VzIHdpdGggYSBzdHJ1Y3QKPj4+PiAgICAgKiBwYWdlICh0aGF0IGlzLCB0aG9zZSB3
-aGVyZSBwZm5fdmFsaWQgaXMgdHJ1ZSkgYXJlIHJlZmNvdW50ZWQgYW5kCj4+Pj4gY29uc2lkZXJl
-ZAo+Pj4+ICAgICAqIG5vcm1hbCBwYWdlcyBieSB0aGUgVk0uIFRoZSBkaXNhZHZhbnRhZ2UgaXMg
-dGhhdCBwYWdlcyBhcmUgcmVmY291bnRlZAo+Pj4+ICAgICAqICh3aGljaCBjYW4gYmUgc2xvd2Vy
-IGFuZCBzaW1wbHkgbm90IGFuIG9wdGlvbiBmb3Igc29tZSBQRk5NQVAKPj4+PiB1c2VycykuIFRo
-ZQo+Pj4+ICAgICAqIGFkdmFudGFnZSBpcyB0aGF0IHdlIGRvbid0IGhhdmUgdG8gZm9sbG93IHRo
-ZSBzdHJpY3QgbGluZWFyaXR5IHJ1bGUgb2YKPj4+PiAgICAgKiBQRk5NQVAgbWFwcGluZ3MgaW4g
-b3JkZXIgdG8gc3VwcG9ydCBDT1dhYmxlIG1hcHBpbmdzLgo+Pj4+Cj4+Pj4gYnV0IGl0J3MgdHJ1
-ZSBfX3ZtX2luc2VydF9taXhlZCgpIGVuZHMgdXAgaW4gdGhlIGluc2VydF9wZm4oKSBwYXRoLCBz
-bwo+Pj4+IHRoZSBhYm92ZSBpc24ndCByZWFsbHkgdHJ1ZSwgd2hpY2ggbWFrZXMgbWUgd29uZGVy
-IGlmIGFuZCBpbiB0aGF0IGNhc2UKPj4+PiB3aHkgdGhlcmUgY291bGQgYW55IGxvbmdlciBldmVy
-IGJlIGEgc2lnbmlmaWNhbnQgcGVyZm9ybWFuY2UgZGlmZmVyZW5jZQo+Pj4+IGJldHdlZW4gTUlY
-RURNQVAgYW5kIFBGTk1BUC4KPj4+IFllYWggaXQncyBkZWZpbml0ZWx5IGNvbmZ1c2luZy4gSSBn
-dWVzcyBJJ2xsIGhhY2sgdXAgYSBwYXRjaCBhbmQgc2VlCj4+PiB3aGF0IHN0aWNrcy4KPj4+Cj4+
-Pj4gQlRXIHJlZ2FyZGluZyB0aGUgVFRNIGh1Z2VwdGVzLCBJIGRvbid0IHRoaW5rIHdlIGV2ZXIg
-bGFuZGVkIHRoYXQgZGV2bWFwCj4+Pj4gaGFjaywgc28gdGhleSBhcmUgKGZvciB0aGUgbm9uLWd1
-cCBjYXNlKSByZWx5aW5nIG9uCj4+Pj4gdm1hX2lzX3NwZWNpYWxfaHVnZSgpLiBGb3IgdGhlIGd1
-cCBjYXNlLCBJIHRoaW5rIHRoZSBidWcgaXMgc3RpbGwgdGhlcmUuCj4+PiBNYXliZSB0aGVyZSdz
-IGFub3RoZXIgZGV2bWFwIGhhY2ssIGJ1dCB0aGUgdHRtX3ZtX2luc2VydCBmdW5jdGlvbnMgZG8K
-Pj4+IHVzZSBQRk5fREVWIGFuZCBhbGwgdGhhdC4gQW5kIEkgdGhpbmsgdGhhdCBzdG9wcyBndXBf
-ZmFzdCBmcm9tIHRyeWluZwo+Pj4gdG8gZmluZCB0aGUgdW5kZXJseWluZyBwYWdlLgo+Pj4gLURh
-bmllbAo+PiBIbW0gcGVyaGFwcyBpdCBtaWdodCwgYnV0IEkgZG9uJ3QgdGhpbmsgc28uIFRoZSBm
-aXggSSB0cmllZCBvdXQgd2FzIHRvIHNldAo+Pgo+PiBQRk5fREVWIHwgUEZOX01BUCBmb3IgaHVn
-ZSBQVEVzIHdoaWNoIGNhdXNlcyBwZm5fZGV2bWFwKCkgdG8gYmUgdHJ1ZSwgYW5kCj4+IHRoZW4K
-Pj4KPj4gZm9sbG93X2Rldm1hcF9wbWQoKS0+Z2V0X2Rldl9wYWdlbWFwKCkgd2hpY2ggcmV0dXJu
-cyBOVUxMIGFuZCBndXBfZmFzdCgpCj4+IGJhY2tzIG9mZiwKPj4KPj4gaW4gdGhlIGVuZCB0aGF0
-IHdvdWxkIG1lYW4gc2V0dGluZyBpbiBzdG9uZSB0aGF0ICJpZiB0aGVyZSBpcyBhIGh1Z2UgZGV2
-bWFwCj4+IHBhZ2UgdGFibGUgZW50cnkgZm9yIHdoaWNoIHdlIGhhdmVuJ3QgcmVnaXN0ZXJlZCBh
-bnkgZGV2bWFwIHN0cnVjdCBwYWdlcwo+PiAoZ2V0X2Rldl9wYWdlbWFwIHJldHVybnMgTlVMTCks
-IHdlIHNob3VsZCB0cmVhdCB0aGF0IGFzIGEgInNwZWNpYWwiIGh1Z2UKPj4gcGFnZSB0YWJsZSBl
-bnRyeSIuCj4+Cj4+ICBGcm9tIHdoYXQgSSBjYW4gdGVsbCwgYWxsIGNvZGUgY2FsbGluZyBnZXRf
-ZGV2X3BhZ2VtYXAoKSBhbHJlYWR5IGRvZXMgdGhhdCwKPj4gaXQncyBqdXN0IGEgcXVlc3Rpb24g
-b2YgZ2V0dGluZyBpdCBhY2NlcHRlZCBhbmQgZm9ybWFsaXppbmcgaXQuCj4gT2ggSSB0aG91Z2h0
-IHRoYXQncyBhbHJlYWR5IGhvdyBpdCB3b3Jrcywgc2luY2UgSSBkaWRuJ3Qgc3BvdCBhbnl0aGlu
-Zwo+IGVsc2UgdGhhdCB3b3VsZCBibG9jayBndXBfZmFzdCBmcm9tIGZhbGxpbmcgb3Zlci4gSSBn
-dWVzcyByZWFsbHkgd291bGQKPiBuZWVkIHNvbWUgdGVzdGNhc2VzIHRvIG1ha2Ugc3VyZSBkaXJl
-Y3QgaS9vICh0aGF0J3MgdGhlIGVhc2llc3QgdG8gdGVzdCkKPiBmYWlscyBsaWtlIHdlIGV4cGVj
-dC4KClllYWgsIElJUkMgdGhlICJ8IFBGTl9NQVAiIGlzIHRoZSBtaXNzaW5nIHBpZWNlIGZvciBU
-VE0gaHVnZSBwdGVzLiAKT3RoZXJ3aXNlIHBtZF9kZXZtYXAoKSB3aWxsIG5vdCByZXR1cm4gdHJ1
-ZSBhbmQgc2luY2UgdGhlcmUgaXMgbm8gCnBtZF9zcGVjaWFsKCkgdGhpbmdzIGJyZWFrLgoKL1Ro
-b21hcwoKCgo+IC1EYW5pZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+On Fri, Feb 26, 2021 at 05:32:02PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> Seems to me that if we calculate WM0 using the bumped up SAGV latency
+> we need to calculate the transition watermark accordingly. Track it
+> alongside the other watermarks.
+> =
+
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  |  4 +-
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/intel_pm.c               | 94 ++++++++++++-------
+>  3 files changed, 65 insertions(+), 34 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 718e66f49332..e34e5a9da5c1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -9459,7 +9459,9 @@ static void verify_wm_state(struct intel_crtc *crtc,
+>  		}
+>  =
+
+>  		if (!skl_wm_level_equals(&hw_plane_wm->trans_wm,
+> -					 &sw_plane_wm->trans_wm)) {
+> +					 &sw_plane_wm->trans_wm) &&
+> +		    !skl_wm_level_equals(&hw_plane_wm->trans_wm,
+> +					 &sw_plane_wm->sagv.trans_wm)) {
+>  			drm_err(&dev_priv->drm,
+>  				"mismatch in trans WM pipe %c cursor (expected e=3D%d b=3D%u l=3D%u,=
+ got e=3D%d b=3D%u l=3D%u)\n",
+>  				pipe_name(pipe),
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 6321cd3df81e..e2365f2d07cc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -734,6 +734,7 @@ struct skl_plane_wm {
+>  	struct skl_wm_level trans_wm;
+>  	struct {
+>  		struct skl_wm_level wm0;
+> +		struct skl_wm_level trans_wm;
+>  	} sagv;
+>  	bool is_planar;
+>  };
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index a1591d9189a0..9d9ba63fc395 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4758,6 +4758,18 @@ skl_plane_wm_level(const struct skl_pipe_wm *pipe_=
+wm,
+>  	return &wm->wm[level];
+>  }
+>  =
+
+> +static const struct skl_wm_level *
+> +skl_plane_trans_wm(const struct skl_pipe_wm *pipe_wm,
+> +		   enum plane_id plane_id)
+> +{
+> +	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
+> +
+> +	if (pipe_wm->use_sagv_wm)
+> +		return &wm->sagv.trans_wm;
+> +
+> +	return &wm->trans_wm;
+> +}
+> +
+>  static int
+>  skl_allocate_plane_ddb(struct intel_atomic_state *state,
+>  		       struct intel_crtc *crtc)
+> @@ -4967,6 +4979,9 @@ skl_allocate_plane_ddb(struct intel_atomic_state *s=
+tate,
+>  =
+
+>  		if (wm->sagv.wm0.plane_res_b >=3D total[plane_id])
+>  			memset(&wm->sagv.wm0, 0, sizeof(wm->sagv.wm0));
+> +
+> +		if (wm->sagv.trans_wm.plane_res_b >=3D total[plane_id])
+> +			memset(&wm->sagv.trans_wm, 0, sizeof(wm->sagv.trans_wm));
+>  	}
+>  =
+
+>  	return 0;
+> @@ -5325,12 +5340,11 @@ static void tgl_compute_sagv_wm(const struct inte=
+l_crtc_state *crtc_state,
+>  			     sagv_wm);
+>  }
+>  =
+
+> -static void skl_compute_transition_wm(const struct intel_crtc_state *crt=
+c_state,
+> -				      const struct skl_wm_params *wp,
+> -				      struct skl_plane_wm *wm)
+> +static void skl_compute_transition_wm(struct drm_i915_private *dev_priv,
+> +				      struct skl_wm_level *trans_wm,
+> +				      const struct skl_wm_level *wm0,
+> +				      const struct skl_wm_params *wp)
+>  {
+> -	struct drm_device *dev =3D crtc_state->uapi.crtc->dev;
+> -	const struct drm_i915_private *dev_priv =3D to_i915(dev);
+>  	u16 trans_min, trans_amount, trans_y_tile_min;
+>  	u16 wm0_sel_res_b, trans_offset_b, res_blocks;
+>  =
+
+> @@ -5368,7 +5382,7 @@ static void skl_compute_transition_wm(const struct =
+intel_crtc_state *crtc_state,
+>  	 * Result Blocks is Result Blocks minus 1 and it should work for the
+>  	 * current platforms.
+>  	 */
+> -	wm0_sel_res_b =3D wm->wm[0].plane_res_b - 1;
+> +	wm0_sel_res_b =3D wm0->plane_res_b - 1;
+>  =
+
+>  	if (wp->y_tiled) {
+>  		trans_y_tile_min =3D
+> @@ -5384,8 +5398,8 @@ static void skl_compute_transition_wm(const struct =
+intel_crtc_state *crtc_state,
+>  	 * computing the DDB we'll come back and disable it if that
+>  	 * assumption turns out to be false.
+>  	 */
+> -	wm->trans_wm.plane_res_b =3D res_blocks + 1;
+> -	wm->trans_wm.plane_en =3D true;
+> +	trans_wm->plane_res_b =3D res_blocks + 1;
+> +	trans_wm->plane_en =3D true;
+>  }
+>  =
+
+>  static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_state,
+> @@ -5405,10 +5419,15 @@ static int skl_build_plane_wm_single(struct intel=
+_crtc_state *crtc_state,
+>  =
+
+>  	skl_compute_wm_levels(crtc_state, &wm_params, wm->wm);
+>  =
+
+> -	if (INTEL_GEN(dev_priv) >=3D 12)
+> +	skl_compute_transition_wm(dev_priv, &wm->trans_wm,
+> +				  &wm->wm[0], &wm_params);
+> +
+> +	if (INTEL_GEN(dev_priv) >=3D 12) {
+>  		tgl_compute_sagv_wm(crtc_state, &wm_params, wm);
+>  =
+
+> -	skl_compute_transition_wm(crtc_state, &wm_params, wm);
+> +		skl_compute_transition_wm(dev_priv, &wm->sagv.trans_wm,
+> +					  &wm->sagv.wm0, &wm_params);
+> +	}
+>  =
+
+>  	return 0;
+>  }
+> @@ -5584,7 +5603,7 @@ void skl_write_plane_wm(struct intel_plane *plane,
+>  				   skl_plane_wm_level(pipe_wm, plane_id, level));
+>  =
+
+>  	skl_write_wm_level(dev_priv, PLANE_WM_TRANS(pipe, plane_id),
+> -			   &wm->trans_wm);
+> +			   skl_plane_trans_wm(pipe_wm, plane_id));
+>  =
+
+>  	if (INTEL_GEN(dev_priv) >=3D 11) {
+>  		skl_ddb_entry_write(dev_priv,
+> @@ -5609,7 +5628,6 @@ void skl_write_cursor_wm(struct intel_plane *plane,
+>  	enum plane_id plane_id =3D plane->id;
+>  	enum pipe pipe =3D plane->pipe;
+>  	const struct skl_pipe_wm *pipe_wm =3D &crtc_state->wm.skl.optimal;
+> -	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
+>  	const struct skl_ddb_entry *ddb =3D
+>  		&crtc_state->wm.skl.plane_ddb_y[plane_id];
+>  =
+
+> @@ -5617,7 +5635,8 @@ void skl_write_cursor_wm(struct intel_plane *plane,
+>  		skl_write_wm_level(dev_priv, CUR_WM(pipe, level),
+>  				   skl_plane_wm_level(pipe_wm, plane_id, level));
+>  =
+
+> -	skl_write_wm_level(dev_priv, CUR_WM_TRANS(pipe), &wm->trans_wm);
+> +	skl_write_wm_level(dev_priv, CUR_WM_TRANS(pipe),
+> +			   skl_plane_trans_wm(pipe_wm, plane_id));
+>  =
+
+>  	skl_ddb_entry_write(dev_priv, CUR_BUF_CFG(pipe), ddb);
+>  }
+> @@ -5648,7 +5667,8 @@ static bool skl_plane_wm_equals(struct drm_i915_pri=
+vate *dev_priv,
+>  	}
+>  =
+
+>  	return skl_wm_level_equals(&wm1->trans_wm, &wm2->trans_wm) &&
+> -		skl_wm_level_equals(&wm1->sagv.wm0, &wm2->sagv.wm0);
+> +		skl_wm_level_equals(&wm1->sagv.wm0, &wm2->sagv.wm0) &&
+> +		skl_wm_level_equals(&wm1->sagv.trans_wm, &wm2->sagv.trans_wm);
+>  }
+>  =
+
+>  static bool skl_ddb_entries_overlap(const struct skl_ddb_entry *a,
+> @@ -5878,8 +5898,8 @@ skl_print_wm_changes(struct intel_atomic_state *sta=
+te)
+>  				continue;
+>  =
+
+>  			drm_dbg_kms(&dev_priv->drm,
+> -				    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6=
+,%cwm7,%ctwm,%cswm"
+> -				    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm=
+\n",
+> +				    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6=
+,%cwm7,%ctwm,%cswm,%cstwm"
+> +				    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm=
+,%cstwm\n",
+>  				    plane->base.base.id, plane->base.name,
+>  				    enast(old_wm->wm[0].plane_en), enast(old_wm->wm[1].plane_en),
+>  				    enast(old_wm->wm[2].plane_en), enast(old_wm->wm[3].plane_en),
+> @@ -5887,16 +5907,18 @@ skl_print_wm_changes(struct intel_atomic_state *s=
+tate)
+>  				    enast(old_wm->wm[6].plane_en), enast(old_wm->wm[7].plane_en),
+>  				    enast(old_wm->trans_wm.plane_en),
+>  				    enast(old_wm->sagv.wm0.plane_en),
+> +				    enast(old_wm->sagv.trans_wm.plane_en),
+>  				    enast(new_wm->wm[0].plane_en), enast(new_wm->wm[1].plane_en),
+>  				    enast(new_wm->wm[2].plane_en), enast(new_wm->wm[3].plane_en),
+>  				    enast(new_wm->wm[4].plane_en), enast(new_wm->wm[5].plane_en),
+>  				    enast(new_wm->wm[6].plane_en), enast(new_wm->wm[7].plane_en),
+>  				    enast(new_wm->trans_wm.plane_en),
+> -				    enast(new_wm->sagv.wm0.plane_en));
+> +				    enast(new_wm->sagv.wm0.plane_en),
+> +				    enast(new_wm->sagv.trans_wm.plane_en));
+>  =
+
+>  			drm_dbg_kms(&dev_priv->drm,
+> -				    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d=
+,%c%3d,%c%3d,%c%3d"
+> -				      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%=
+3d\n",
+> +				    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d=
+,%c%3d,%c%3d,%c%3d,%c%4d"
+> +				      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%=
+3d,%c%4d\n",
+>  				    plane->base.base.id, plane->base.name,
+>  				    enast(old_wm->wm[0].ignore_lines), old_wm->wm[0].plane_res_l,
+>  				    enast(old_wm->wm[1].ignore_lines), old_wm->wm[1].plane_res_l,
+> @@ -5908,7 +5930,7 @@ skl_print_wm_changes(struct intel_atomic_state *sta=
+te)
+>  				    enast(old_wm->wm[7].ignore_lines), old_wm->wm[7].plane_res_l,
+>  				    enast(old_wm->trans_wm.ignore_lines), old_wm->trans_wm.plane_res=
+_l,
+>  				    enast(old_wm->sagv.wm0.ignore_lines), old_wm->sagv.wm0.plane_res=
+_l,
+> -
+> +				    enast(old_wm->sagv.trans_wm.ignore_lines), old_wm->sagv.trans_wm=
+.plane_res_l,
+>  				    enast(new_wm->wm[0].ignore_lines), new_wm->wm[0].plane_res_l,
+>  				    enast(new_wm->wm[1].ignore_lines), new_wm->wm[1].plane_res_l,
+>  				    enast(new_wm->wm[2].ignore_lines), new_wm->wm[2].plane_res_l,
+> @@ -5918,11 +5940,12 @@ skl_print_wm_changes(struct intel_atomic_state *s=
+tate)
+>  				    enast(new_wm->wm[6].ignore_lines), new_wm->wm[6].plane_res_l,
+>  				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].plane_res_l,
+>  				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.plane_res=
+_l,
+> -				    enast(new_wm->sagv.wm0.ignore_lines), new_wm->sagv.wm0.plane_res=
+_l);
+> +				    enast(new_wm->sagv.wm0.ignore_lines), new_wm->sagv.wm0.plane_res=
+_l,
+> +				    enast(new_wm->sagv.trans_wm.ignore_lines), new_wm->sagv.trans_wm=
+.plane_res_l);
+>  =
+
+>  			drm_dbg_kms(&dev_priv->drm,
+> -				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
+> -				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
+> +				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%=
+5d"
+> +				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
+>  				    plane->base.base.id, plane->base.name,
+>  				    old_wm->wm[0].plane_res_b, old_wm->wm[1].plane_res_b,
+>  				    old_wm->wm[2].plane_res_b, old_wm->wm[3].plane_res_b,
+> @@ -5930,16 +5953,18 @@ skl_print_wm_changes(struct intel_atomic_state *s=
+tate)
+>  				    old_wm->wm[6].plane_res_b, old_wm->wm[7].plane_res_b,
+>  				    old_wm->trans_wm.plane_res_b,
+>  				    old_wm->sagv.wm0.plane_res_b,
+> +				    old_wm->sagv.trans_wm.plane_res_b,
+>  				    new_wm->wm[0].plane_res_b, new_wm->wm[1].plane_res_b,
+>  				    new_wm->wm[2].plane_res_b, new_wm->wm[3].plane_res_b,
+>  				    new_wm->wm[4].plane_res_b, new_wm->wm[5].plane_res_b,
+>  				    new_wm->wm[6].plane_res_b, new_wm->wm[7].plane_res_b,
+>  				    new_wm->trans_wm.plane_res_b,
+> -				    new_wm->sagv.wm0.plane_res_b);
+> +				    new_wm->sagv.wm0.plane_res_b,
+> +				    new_wm->sagv.trans_wm.plane_res_b);
+>  =
+
+>  			drm_dbg_kms(&dev_priv->drm,
+> -				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
+> -				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d\n",
+> +				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%=
+5d"
+> +				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
+>  				    plane->base.base.id, plane->base.name,
+>  				    old_wm->wm[0].min_ddb_alloc, old_wm->wm[1].min_ddb_alloc,
+>  				    old_wm->wm[2].min_ddb_alloc, old_wm->wm[3].min_ddb_alloc,
+> @@ -5947,12 +5972,14 @@ skl_print_wm_changes(struct intel_atomic_state *s=
+tate)
+>  				    old_wm->wm[6].min_ddb_alloc, old_wm->wm[7].min_ddb_alloc,
+>  				    old_wm->trans_wm.min_ddb_alloc,
+>  				    old_wm->sagv.wm0.min_ddb_alloc,
+> +				    old_wm->sagv.trans_wm.min_ddb_alloc,
+>  				    new_wm->wm[0].min_ddb_alloc, new_wm->wm[1].min_ddb_alloc,
+>  				    new_wm->wm[2].min_ddb_alloc, new_wm->wm[3].min_ddb_alloc,
+>  				    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_alloc,
+>  				    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_alloc,
+>  				    new_wm->trans_wm.min_ddb_alloc,
+> -				    new_wm->sagv.wm0.min_ddb_alloc);
+> +				    new_wm->sagv.wm0.min_ddb_alloc,
+> +				    new_wm->sagv.trans_wm.min_ddb_alloc);
+>  		}
+>  	}
+>  }
+> @@ -5961,8 +5988,6 @@ static bool skl_plane_selected_wm_equals(struct int=
+el_plane *plane,
+>  					 const struct skl_pipe_wm *old_pipe_wm,
+>  					 const struct skl_pipe_wm *new_pipe_wm)
+>  {
+> -	const struct skl_plane_wm *old_wm =3D &old_pipe_wm->planes[plane->id];
+> -	const struct skl_plane_wm *new_wm =3D &new_pipe_wm->planes[plane->id];
+>  	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
+>  	int level, max_level =3D ilk_wm_max_level(i915);
+>  =
+
+> @@ -5977,7 +6002,8 @@ static bool skl_plane_selected_wm_equals(struct int=
+el_plane *plane,
+>  			return false;
+>  	}
+>  =
+
+> -	return skl_wm_level_equals(&old_wm->trans_wm, &new_wm->trans_wm);
+> +	return skl_wm_level_equals(skl_plane_trans_wm(old_pipe_wm, plane->id),
+> +				   skl_plane_trans_wm(new_pipe_wm, plane->id));
+>  }
+>  =
+
+>  /*
+> @@ -6188,15 +6214,17 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *=
+crtc,
+>  			skl_wm_level_from_reg_val(val, &wm->wm[level]);
+>  		}
+>  =
+
+> -		if (INTEL_GEN(dev_priv) >=3D 12)
+> -			wm->sagv.wm0 =3D wm->wm[0];
+> -
+>  		if (plane_id !=3D PLANE_CURSOR)
+>  			val =3D intel_uncore_read(&dev_priv->uncore, PLANE_WM_TRANS(pipe, pla=
+ne_id));
+>  		else
+>  			val =3D intel_uncore_read(&dev_priv->uncore, CUR_WM_TRANS(pipe));
+>  =
+
+>  		skl_wm_level_from_reg_val(val, &wm->trans_wm);
+> +
+> +		if (INTEL_GEN(dev_priv) >=3D 12) {
+> +			wm->sagv.wm0 =3D wm->wm[0];
+> +			wm->sagv.trans_wm =3D wm->trans_wm;
+> +		}
+>  	}
+>  }
+>  =
+
+> -- =
+
+> 2.26.2
+> =
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
