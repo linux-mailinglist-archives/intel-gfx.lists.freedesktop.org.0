@@ -1,42 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 490E1327A8B
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 10:16:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 011E8327A9D
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 10:21:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 468506E52E;
-	Mon,  1 Mar 2021 09:16:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC2A26E526;
+	Mon,  1 Mar 2021 09:21:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 317486E508
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Mar 2021 09:16:17 +0000 (UTC)
-IronPort-SDR: dB9CrtkTuTQmBuwYOPC3ZrP/d2b6zdfr4s7lvzz3nhE5KW3TgdEiqxojM6eOhsA69FTG9Vbuf4
- 5W7jkLr6Kazg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9909"; a="186460975"
-X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="186460975"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2021 01:16:16 -0800
-IronPort-SDR: RJ+shrFreAWLvxlYHHY4ANCn8YfaZl756jOtbWEeTDMZK2Z4wqIt2uUPD44vTlQ33RElNOebsr
- yIkZ/wG4tMEA==
-X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="595356723"
-Received: from unknown (HELO intel.com) ([10.237.72.91])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2021 01:16:14 -0800
-Date: Mon, 1 Mar 2021 11:17:47 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210301091747.GA22174@intel.com>
-References: <20210226153204.1270-1-ville.syrjala@linux.intel.com>
- <20210226153204.1270-5-ville.syrjala@linux.intel.com>
+Received: from ste-pvt-msa1.bahnhof.se (ste-pvt-msa1.bahnhof.se
+ [213.80.101.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7C1189FD9;
+ Mon,  1 Mar 2021 09:21:21 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTP id CDE5D3F3A1;
+ Mon,  1 Mar 2021 10:21:19 +0100 (CET)
+Authentication-Results: ste-pvt-msa1.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=pTwKGOoe; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Received: from ste-pvt-msa1.bahnhof.se ([127.0.0.1])
+ by localhost (ste-pvt-msa1.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id tcU_ueMgXl_O; Mon,  1 Mar 2021 10:21:19 +0100 (CET)
+Received: by ste-pvt-msa1.bahnhof.se (Postfix) with ESMTPA id AFBB83F393;
+ Mon,  1 Mar 2021 10:21:16 +0100 (CET)
+Received: from [10.249.254.148] (unknown [192.198.151.43])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id E9C783600BA;
+ Mon,  1 Mar 2021 10:21:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1614590476; bh=v/6gYa+I8Tt8B9P3C8K3rFhm+y2ThcWR/NttZk59Mig=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=pTwKGOoeZY6eQEETMEQFzNBP9mngHUBwdZttR6CPWTgPJ2KDTyLMNuMQIRYHqdH3k
+ QVkSi3bBIaNdTDnlUwK6I5ZGdqMl3XtNuurr+MqgJmryh5kAKP/lI0iA7Ih0c4cW74
+ ECt01QAIkTQUiQU988RWC/zJVXRzMqBUVNpyULPo=
+To: Daniel Vetter <daniel@ffwll.ch>
+References: <f43311c8-a02a-1a29-a53b-88e599c92187@shipmail.org>
+ <CAKMK7uE2UrOruQPWG9KPBQ781f9Bq9xpVRNserAC9BZ2VzDutQ@mail.gmail.com>
+ <b30dacb0-edea-0a3c-6163-0f329e58ba61@gmail.com>
+ <YDd/hlf8uM3+lxhr@phenom.ffwll.local>
+ <CAKMK7uFezcV52oTZbHeve2HFFATeCGyK6zTT6nE1KVP69QRr0A@mail.gmail.com>
+ <61c5c371-debe-4ca0-a067-ce306e51ef88@shipmail.org>
+ <CAKMK7uFUiJyMP0E5JUzMOx=NyMW+ZObGsaFOh409x0LOvGbnzg@mail.gmail.com>
+ <0d69bd00-e673-17cf-c9e3-ccbcd52649a6@shipmail.org>
+ <CAKMK7uE=8+hj-MUFXHFoG_hAbz_Obi8a99+DE5_d1K+KZaG+tQ@mail.gmail.com>
+ <b367b7e8-f202-4d23-d672-a5c9bc7fcec1@shipmail.org>
+ <YDyuYk8x5QeX83s6@phenom.ffwll.local>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <be8f2503-ffcb-eb58-83be-26fa0fc1837a@shipmail.org>
+Date: Mon, 1 Mar 2021 10:21:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210226153204.1270-5-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915: Stuff SAGV watermark into a
- sub-structure
+In-Reply-To: <YDyuYk8x5QeX83s6@phenom.ffwll.local>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 1/2] dma-buf: Require
+ VM_PFNMAP vma for mmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,243 +75,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Wilcox <willy@infradead.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, John Stultz <john.stultz@linaro.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Suren Baghdasaryan <surenb@google.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 26, 2021 at 05:32:01PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> We'll want a SAGV transition watermark as well. Prepare
-> for that by collecting SAGV wm0 into a sub-strcture.
-> =
-
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  |  4 +--
->  .../drm/i915/display/intel_display_types.h    |  4 ++-
->  drivers/gpu/drm/i915/intel_pm.c               | 30 +++++++++----------
->  3 files changed, 20 insertions(+), 18 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index d0da88751c72..718e66f49332 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -9387,7 +9387,7 @@ static void verify_wm_state(struct intel_crtc *crtc,
->  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
->  						&sw_plane_wm->wm[level]) ||
->  			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[level],
-> -							       &sw_plane_wm->sagv_wm0)))
-> +							       &sw_plane_wm->sagv.wm0)))
->  				continue;
->  =
-
->  			drm_err(&dev_priv->drm,
-> @@ -9444,7 +9444,7 @@ static void verify_wm_state(struct intel_crtc *crtc,
->  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
->  						&sw_plane_wm->wm[level]) ||
->  			    (level =3D=3D 0 && skl_wm_level_equals(&hw_plane_wm->wm[level],
-> -							       &sw_plane_wm->sagv_wm0)))
-> +							       &sw_plane_wm->sagv.wm0)))
->  				continue;
->  =
-
->  			drm_err(&dev_priv->drm,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 1a76e1d9de7a..6321cd3df81e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -732,7 +732,9 @@ struct skl_plane_wm {
->  	struct skl_wm_level wm[8];
->  	struct skl_wm_level uv_wm[8];
->  	struct skl_wm_level trans_wm;
-> -	struct skl_wm_level sagv_wm0;
-> +	struct {
-> +		struct skl_wm_level wm0;
-> +	} sagv;
->  	bool is_planar;
->  };
->  =
-
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 06c54adc609a..a1591d9189a0 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3924,7 +3924,7 @@ static bool tgl_crtc_can_enable_sagv(const struct i=
-ntel_crtc_state *crtc_state)
->  		const struct skl_plane_wm *wm =3D
->  			&crtc_state->wm.skl.optimal.planes[plane_id];
->  =
-
-> -		if (wm->wm[0].plane_en && !wm->sagv_wm0.plane_en)
-> +		if (wm->wm[0].plane_en && !wm->sagv.wm0.plane_en)
->  			return false;
->  	}
->  =
-
-> @@ -4753,7 +4753,7 @@ skl_plane_wm_level(const struct skl_pipe_wm *pipe_w=
-m,
->  	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
->  =
-
->  	if (level =3D=3D 0 && pipe_wm->use_sagv_wm)
-> -		return &wm->sagv_wm0;
-> +		return &wm->sagv.wm0;
->  =
-
->  	return &wm->wm[level];
->  }
-> @@ -4965,8 +4965,8 @@ skl_allocate_plane_ddb(struct intel_atomic_state *s=
-tate,
->  		if (wm->trans_wm.plane_res_b >=3D total[plane_id])
->  			memset(&wm->trans_wm, 0, sizeof(wm->trans_wm));
->  =
-
-> -		if (wm->sagv_wm0.plane_res_b >=3D total[plane_id])
-> -			memset(&wm->sagv_wm0, 0, sizeof(wm->sagv_wm0));
-> +		if (wm->sagv.wm0.plane_res_b >=3D total[plane_id])
-> +			memset(&wm->sagv.wm0, 0, sizeof(wm->sagv.wm0));
->  	}
->  =
-
->  	return 0;
-> @@ -5316,7 +5316,7 @@ static void tgl_compute_sagv_wm(const struct intel_=
-crtc_state *crtc_state,
->  				struct skl_plane_wm *plane_wm)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
-v);
-> -	struct skl_wm_level *sagv_wm =3D &plane_wm->sagv_wm0;
-> +	struct skl_wm_level *sagv_wm =3D &plane_wm->sagv.wm0;
->  	struct skl_wm_level *levels =3D plane_wm->wm;
->  	unsigned int latency =3D dev_priv->wm.skl_latency[0] + dev_priv->sagv_b=
-lock_time_us;
->  =
-
-> @@ -5648,7 +5648,7 @@ static bool skl_plane_wm_equals(struct drm_i915_pri=
-vate *dev_priv,
->  	}
->  =
-
->  	return skl_wm_level_equals(&wm1->trans_wm, &wm2->trans_wm) &&
-> -		skl_wm_level_equals(&wm1->sagv_wm0, &wm2->sagv_wm0);
-> +		skl_wm_level_equals(&wm1->sagv.wm0, &wm2->sagv.wm0);
->  }
->  =
-
->  static bool skl_ddb_entries_overlap(const struct skl_ddb_entry *a,
-> @@ -5886,13 +5886,13 @@ skl_print_wm_changes(struct intel_atomic_state *s=
-tate)
->  				    enast(old_wm->wm[4].plane_en), enast(old_wm->wm[5].plane_en),
->  				    enast(old_wm->wm[6].plane_en), enast(old_wm->wm[7].plane_en),
->  				    enast(old_wm->trans_wm.plane_en),
-> -				    enast(old_wm->sagv_wm0.plane_en),
-> +				    enast(old_wm->sagv.wm0.plane_en),
->  				    enast(new_wm->wm[0].plane_en), enast(new_wm->wm[1].plane_en),
->  				    enast(new_wm->wm[2].plane_en), enast(new_wm->wm[3].plane_en),
->  				    enast(new_wm->wm[4].plane_en), enast(new_wm->wm[5].plane_en),
->  				    enast(new_wm->wm[6].plane_en), enast(new_wm->wm[7].plane_en),
->  				    enast(new_wm->trans_wm.plane_en),
-> -				    enast(new_wm->sagv_wm0.plane_en));
-> +				    enast(new_wm->sagv.wm0.plane_en));
->  =
-
->  			drm_dbg_kms(&dev_priv->drm,
->  				    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d=
-,%c%3d,%c%3d,%c%3d"
-> @@ -5907,7 +5907,7 @@ skl_print_wm_changes(struct intel_atomic_state *sta=
-te)
->  				    enast(old_wm->wm[6].ignore_lines), old_wm->wm[6].plane_res_l,
->  				    enast(old_wm->wm[7].ignore_lines), old_wm->wm[7].plane_res_l,
->  				    enast(old_wm->trans_wm.ignore_lines), old_wm->trans_wm.plane_res=
-_l,
-> -				    enast(old_wm->sagv_wm0.ignore_lines), old_wm->sagv_wm0.plane_res=
-_l,
-> +				    enast(old_wm->sagv.wm0.ignore_lines), old_wm->sagv.wm0.plane_res=
-_l,
->  =
-
->  				    enast(new_wm->wm[0].ignore_lines), new_wm->wm[0].plane_res_l,
->  				    enast(new_wm->wm[1].ignore_lines), new_wm->wm[1].plane_res_l,
-> @@ -5918,7 +5918,7 @@ skl_print_wm_changes(struct intel_atomic_state *sta=
-te)
->  				    enast(new_wm->wm[6].ignore_lines), new_wm->wm[6].plane_res_l,
->  				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].plane_res_l,
->  				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.plane_res=
-_l,
-> -				    enast(new_wm->sagv_wm0.ignore_lines), new_wm->sagv_wm0.plane_res=
-_l);
-> +				    enast(new_wm->sagv.wm0.ignore_lines), new_wm->sagv.wm0.plane_res=
-_l);
->  =
-
->  			drm_dbg_kms(&dev_priv->drm,
->  				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> @@ -5929,13 +5929,13 @@ skl_print_wm_changes(struct intel_atomic_state *s=
-tate)
->  				    old_wm->wm[4].plane_res_b, old_wm->wm[5].plane_res_b,
->  				    old_wm->wm[6].plane_res_b, old_wm->wm[7].plane_res_b,
->  				    old_wm->trans_wm.plane_res_b,
-> -				    old_wm->sagv_wm0.plane_res_b,
-> +				    old_wm->sagv.wm0.plane_res_b,
->  				    new_wm->wm[0].plane_res_b, new_wm->wm[1].plane_res_b,
->  				    new_wm->wm[2].plane_res_b, new_wm->wm[3].plane_res_b,
->  				    new_wm->wm[4].plane_res_b, new_wm->wm[5].plane_res_b,
->  				    new_wm->wm[6].plane_res_b, new_wm->wm[7].plane_res_b,
->  				    new_wm->trans_wm.plane_res_b,
-> -				    new_wm->sagv_wm0.plane_res_b);
-> +				    new_wm->sagv.wm0.plane_res_b);
->  =
-
->  			drm_dbg_kms(&dev_priv->drm,
->  				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d"
-> @@ -5946,13 +5946,13 @@ skl_print_wm_changes(struct intel_atomic_state *s=
-tate)
->  				    old_wm->wm[4].min_ddb_alloc, old_wm->wm[5].min_ddb_alloc,
->  				    old_wm->wm[6].min_ddb_alloc, old_wm->wm[7].min_ddb_alloc,
->  				    old_wm->trans_wm.min_ddb_alloc,
-> -				    old_wm->sagv_wm0.min_ddb_alloc,
-> +				    old_wm->sagv.wm0.min_ddb_alloc,
->  				    new_wm->wm[0].min_ddb_alloc, new_wm->wm[1].min_ddb_alloc,
->  				    new_wm->wm[2].min_ddb_alloc, new_wm->wm[3].min_ddb_alloc,
->  				    new_wm->wm[4].min_ddb_alloc, new_wm->wm[5].min_ddb_alloc,
->  				    new_wm->wm[6].min_ddb_alloc, new_wm->wm[7].min_ddb_alloc,
->  				    new_wm->trans_wm.min_ddb_alloc,
-> -				    new_wm->sagv_wm0.min_ddb_alloc);
-> +				    new_wm->sagv.wm0.min_ddb_alloc);
->  		}
->  	}
->  }
-> @@ -6189,7 +6189,7 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *cr=
-tc,
->  		}
->  =
-
->  		if (INTEL_GEN(dev_priv) >=3D 12)
-> -			wm->sagv_wm0 =3D wm->wm[0];
-> +			wm->sagv.wm0 =3D wm->wm[0];
->  =
-
->  		if (plane_id !=3D PLANE_CURSOR)
->  			val =3D intel_uncore_read(&dev_priv->uncore, PLANE_WM_TRANS(pipe, pla=
-ne_id));
-> -- =
-
-> 2.26.2
-> =
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDMvMS8yMSAxMDowNSBBTSwgRGFuaWVsIFZldHRlciB3cm90ZToKPiBPbiBNb24sIE1hciAw
+MSwgMjAyMSBhdCAwOTozOTo1M0FNICswMTAwLCBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpIHdy
+b3RlOgo+PiBIaSwKPj4KPj4gT24gMy8xLzIxIDk6MjggQU0sIERhbmllbCBWZXR0ZXIgd3JvdGU6
+Cj4+PiBPbiBTYXQsIEZlYiAyNywgMjAyMSBhdCA5OjA2IEFNIFRob21hcyBIZWxsc3Ryw7ZtIChJ
+bnRlbCkKPj4+IDx0aG9tYXNfb3NAc2hpcG1haWwub3JnPiB3cm90ZToKPj4+PiBPbiAyLzI2LzIx
+IDI6MjggUE0sIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+Pj4+IFNvIEkgdGhpbmsgaXQgc3RvcHMg
+Z3VwLiBCdXQgSSBoYXZlbid0IHZlcmlmaWVkIGF0IGFsbC4gV291bGQgYmUgZ29vZAo+Pj4+PiBp
+ZiBDaHJpc3RpYW4gY2FuIGNoZWNrIHRoaXMgd2l0aCBzb21lIGRpcmVjdCBpbyB0byBhIGJ1ZmZl
+ciBpbiBzeXN0ZW0KPj4+Pj4gbWVtb3J5Lgo+Pj4+IEhtbSwKPj4+Pgo+Pj4+IERvY3MgKGFnYWlu
+IHZtX25vcm1hbF9wYWdlKCkgc2F5KQo+Pj4+Cj4+Pj4gICAgICogVk1fTUlYRURNQVAgbWFwcGlu
+Z3MgY2FuIGxpa2V3aXNlIGNvbnRhaW4gbWVtb3J5IHdpdGggb3Igd2l0aG91dCAic3RydWN0Cj4+
+Pj4gICAgICogcGFnZSIgYmFja2luZywgaG93ZXZlciB0aGUgZGlmZmVyZW5jZSBpcyB0aGF0IF9h
+bGxfIHBhZ2VzIHdpdGggYSBzdHJ1Y3QKPj4+PiAgICAgKiBwYWdlICh0aGF0IGlzLCB0aG9zZSB3
+aGVyZSBwZm5fdmFsaWQgaXMgdHJ1ZSkgYXJlIHJlZmNvdW50ZWQgYW5kCj4+Pj4gY29uc2lkZXJl
+ZAo+Pj4+ICAgICAqIG5vcm1hbCBwYWdlcyBieSB0aGUgVk0uIFRoZSBkaXNhZHZhbnRhZ2UgaXMg
+dGhhdCBwYWdlcyBhcmUgcmVmY291bnRlZAo+Pj4+ICAgICAqICh3aGljaCBjYW4gYmUgc2xvd2Vy
+IGFuZCBzaW1wbHkgbm90IGFuIG9wdGlvbiBmb3Igc29tZSBQRk5NQVAKPj4+PiB1c2VycykuIFRo
+ZQo+Pj4+ICAgICAqIGFkdmFudGFnZSBpcyB0aGF0IHdlIGRvbid0IGhhdmUgdG8gZm9sbG93IHRo
+ZSBzdHJpY3QgbGluZWFyaXR5IHJ1bGUgb2YKPj4+PiAgICAgKiBQRk5NQVAgbWFwcGluZ3MgaW4g
+b3JkZXIgdG8gc3VwcG9ydCBDT1dhYmxlIG1hcHBpbmdzLgo+Pj4+Cj4+Pj4gYnV0IGl0J3MgdHJ1
+ZSBfX3ZtX2luc2VydF9taXhlZCgpIGVuZHMgdXAgaW4gdGhlIGluc2VydF9wZm4oKSBwYXRoLCBz
+bwo+Pj4+IHRoZSBhYm92ZSBpc24ndCByZWFsbHkgdHJ1ZSwgd2hpY2ggbWFrZXMgbWUgd29uZGVy
+IGlmIGFuZCBpbiB0aGF0IGNhc2UKPj4+PiB3aHkgdGhlcmUgY291bGQgYW55IGxvbmdlciBldmVy
+IGJlIGEgc2lnbmlmaWNhbnQgcGVyZm9ybWFuY2UgZGlmZmVyZW5jZQo+Pj4+IGJldHdlZW4gTUlY
+RURNQVAgYW5kIFBGTk1BUC4KPj4+IFllYWggaXQncyBkZWZpbml0ZWx5IGNvbmZ1c2luZy4gSSBn
+dWVzcyBJJ2xsIGhhY2sgdXAgYSBwYXRjaCBhbmQgc2VlCj4+PiB3aGF0IHN0aWNrcy4KPj4+Cj4+
+Pj4gQlRXIHJlZ2FyZGluZyB0aGUgVFRNIGh1Z2VwdGVzLCBJIGRvbid0IHRoaW5rIHdlIGV2ZXIg
+bGFuZGVkIHRoYXQgZGV2bWFwCj4+Pj4gaGFjaywgc28gdGhleSBhcmUgKGZvciB0aGUgbm9uLWd1
+cCBjYXNlKSByZWx5aW5nIG9uCj4+Pj4gdm1hX2lzX3NwZWNpYWxfaHVnZSgpLiBGb3IgdGhlIGd1
+cCBjYXNlLCBJIHRoaW5rIHRoZSBidWcgaXMgc3RpbGwgdGhlcmUuCj4+PiBNYXliZSB0aGVyZSdz
+IGFub3RoZXIgZGV2bWFwIGhhY2ssIGJ1dCB0aGUgdHRtX3ZtX2luc2VydCBmdW5jdGlvbnMgZG8K
+Pj4+IHVzZSBQRk5fREVWIGFuZCBhbGwgdGhhdC4gQW5kIEkgdGhpbmsgdGhhdCBzdG9wcyBndXBf
+ZmFzdCBmcm9tIHRyeWluZwo+Pj4gdG8gZmluZCB0aGUgdW5kZXJseWluZyBwYWdlLgo+Pj4gLURh
+bmllbAo+PiBIbW0gcGVyaGFwcyBpdCBtaWdodCwgYnV0IEkgZG9uJ3QgdGhpbmsgc28uIFRoZSBm
+aXggSSB0cmllZCBvdXQgd2FzIHRvIHNldAo+Pgo+PiBQRk5fREVWIHwgUEZOX01BUCBmb3IgaHVn
+ZSBQVEVzIHdoaWNoIGNhdXNlcyBwZm5fZGV2bWFwKCkgdG8gYmUgdHJ1ZSwgYW5kCj4+IHRoZW4K
+Pj4KPj4gZm9sbG93X2Rldm1hcF9wbWQoKS0+Z2V0X2Rldl9wYWdlbWFwKCkgd2hpY2ggcmV0dXJu
+cyBOVUxMIGFuZCBndXBfZmFzdCgpCj4+IGJhY2tzIG9mZiwKPj4KPj4gaW4gdGhlIGVuZCB0aGF0
+IHdvdWxkIG1lYW4gc2V0dGluZyBpbiBzdG9uZSB0aGF0ICJpZiB0aGVyZSBpcyBhIGh1Z2UgZGV2
+bWFwCj4+IHBhZ2UgdGFibGUgZW50cnkgZm9yIHdoaWNoIHdlIGhhdmVuJ3QgcmVnaXN0ZXJlZCBh
+bnkgZGV2bWFwIHN0cnVjdCBwYWdlcwo+PiAoZ2V0X2Rldl9wYWdlbWFwIHJldHVybnMgTlVMTCks
+IHdlIHNob3VsZCB0cmVhdCB0aGF0IGFzIGEgInNwZWNpYWwiIGh1Z2UKPj4gcGFnZSB0YWJsZSBl
+bnRyeSIuCj4+Cj4+ICBGcm9tIHdoYXQgSSBjYW4gdGVsbCwgYWxsIGNvZGUgY2FsbGluZyBnZXRf
+ZGV2X3BhZ2VtYXAoKSBhbHJlYWR5IGRvZXMgdGhhdCwKPj4gaXQncyBqdXN0IGEgcXVlc3Rpb24g
+b2YgZ2V0dGluZyBpdCBhY2NlcHRlZCBhbmQgZm9ybWFsaXppbmcgaXQuCj4gT2ggSSB0aG91Z2h0
+IHRoYXQncyBhbHJlYWR5IGhvdyBpdCB3b3Jrcywgc2luY2UgSSBkaWRuJ3Qgc3BvdCBhbnl0aGlu
+Zwo+IGVsc2UgdGhhdCB3b3VsZCBibG9jayBndXBfZmFzdCBmcm9tIGZhbGxpbmcgb3Zlci4gSSBn
+dWVzcyByZWFsbHkgd291bGQKPiBuZWVkIHNvbWUgdGVzdGNhc2VzIHRvIG1ha2Ugc3VyZSBkaXJl
+Y3QgaS9vICh0aGF0J3MgdGhlIGVhc2llc3QgdG8gdGVzdCkKPiBmYWlscyBsaWtlIHdlIGV4cGVj
+dC4KClllYWgsIElJUkMgdGhlICJ8IFBGTl9NQVAiIGlzIHRoZSBtaXNzaW5nIHBpZWNlIGZvciBU
+VE0gaHVnZSBwdGVzLiAKT3RoZXJ3aXNlIHBtZF9kZXZtYXAoKSB3aWxsIG5vdCByZXR1cm4gdHJ1
+ZSBhbmQgc2luY2UgdGhlcmUgaXMgbm8gCnBtZF9zcGVjaWFsKCkgdGhpbmdzIGJyZWFrLgoKL1Ro
+b21hcwoKCgo+IC1EYW5pZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4Cg==
