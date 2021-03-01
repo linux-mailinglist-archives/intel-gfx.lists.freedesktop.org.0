@@ -2,41 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10CD327972
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 09:41:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEBE5327988
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 09:44:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ADB86E506;
-	Mon,  1 Mar 2021 08:41:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA97E6E50B;
+	Mon,  1 Mar 2021 08:44:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFAAF6E506
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Mar 2021 08:41:32 +0000 (UTC)
-IronPort-SDR: k2Gel1CrtOsTzHeULg38RiDQmluL1D7a4joPBWExroZNdn8kwiATPaVTBypWGYUpdSPt16wHU/
- IA9g6DHnoIYQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9909"; a="185720961"
-X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="185720961"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2021 00:41:32 -0800
-IronPort-SDR: eL6Vv3OlGZqVF6+CJWxioKhkHrQRV5tGutK20oAc84NpTfkT4LPb5ff9WgAT7nqcqIUHuj9Nmm
- 22H8KungnU/g==
-X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="595282580"
-Received: from unknown (HELO intel.com) ([10.237.72.91])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2021 00:41:31 -0800
-Date: Mon, 1 Mar 2021 10:42:57 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210301084134.GA22011@intel.com>
-References: <20210226153204.1270-1-ville.syrjala@linux.intel.com>
- <20210226153204.1270-3-ville.syrjala@linux.intel.com>
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com
+ [IPv6:2a00:1450:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD586E50B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Mar 2021 08:44:17 +0000 (UTC)
+Received: by mail-wm1-x329.google.com with SMTP id n4so12153324wmq.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 01 Mar 2021 00:44:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=casXV986YYPpP/xVweHLp0D+mMI8e5v7nph9gP3C210=;
+ b=KwubmRjBCacpJEoQ8nI/i0O6N0bT0UF+rjnwIHXkRjuHaOxDxcAX0+0VI97PkXE4F8
+ p7b3CKJDuNdeBcyWyvkGT1jJBXYzz0SpeF3EyRCUj7ZrYmituxGo0H3ApF/wvLI4V94g
+ 6t027mMCenAmki/gYvyzyzx95eC0WzyShZCyI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=casXV986YYPpP/xVweHLp0D+mMI8e5v7nph9gP3C210=;
+ b=TmU+vTNjb5X5p0d37csddctn9EZ+cd7dUhdbvUeRC4V+E9MVyXFdQvPIiwDTGc8ali
+ sD9Z5E81MxUsO+X3UL0RmXQ0Ba4xz24AMzZjcNwkKxH3Lm0zDC9tYN+0hgM+06QlHXqS
+ ZSuvpYlkHOMwqg+ZfmBWMJSUZza7i3HgWEGikwj5CniEa2HSIwc3wA3WWa8tP767fYJ9
+ m3aZOLbV0PCT69pDrSlWZ7AC6ryIJLSkSHBGXE5m8RwduJW0WNWHGn/RdMKj7JcVG0K1
+ irE8ZmvCN2rJ6hJAmAyGrSiFgJitP8myYGgePFE7LoeZoutDM27srpYvTzyzUZsUMKPa
+ JKAA==
+X-Gm-Message-State: AOAM532Q1f4val5saDM4kNeYeBiaHV/5c9NlyKi2BRa3TGbh/Y1KA2RW
+ 7WBxR3TF9MYp4ijSSfRmvur6Sg==
+X-Google-Smtp-Source: ABdhPJw127V6ng7xDem45/zMMy84q21yO4BFfknDh2GJ/IHtBlg9Nbdd5BlIUoB8hUto+ypMIgI5XA==
+X-Received: by 2002:a05:600c:2248:: with SMTP id
+ a8mr14413003wmm.167.1614588256291; 
+ Mon, 01 Mar 2021 00:44:16 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id l22sm25045665wrb.4.2021.03.01.00.44.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 01 Mar 2021 00:44:15 -0800 (PST)
+Date: Mon, 1 Mar 2021 09:44:13 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <YDypXb3M1uVBxcyH@phenom.ffwll.local>
+Mail-Followup-To: Christoph Hellwig <hch@lst.de>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Peter Zijlstra <peterz@infradead.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org
+References: <20210301083320.943079-1-hch@lst.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210226153204.1270-3-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915: Zero out SAGV wm when we
- don't have enough DDB for it
+In-Reply-To: <20210301083320.943079-1-hch@lst.de>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] add remap_pfn_range_notrack instead of reinventing
+ it in i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,85 +76,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Peter Zijlstra <peterz@infradead.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ dri-devel@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 26, 2021 at 05:31:59PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+On Mon, Mar 01, 2021 at 09:33:18AM +0100, Christoph Hellwig wrote:
+> Hi all,
+> 
+> i915 has some reason to want to avoid the track_pfn_remap overhead in
+> remap_pfn_range.  Add a function to the core VM to do just that rather
+> than reinventing the functionality poorly in the driver.
 
-> Let's handle the SAGV WM0 more like the other wm levels and just
-> totally zero it out when we don't have the DDB space to back it
-> up.
+It's not _notrack it's "rely on the tracking established by the struct
+io_mapping". Exporting a _notrack version to drivers sounds like not
+something we want to ever do. So I think you want a helper which takes the
+io_mapping, and not something that encourages drivers to go full stupid.
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Note that the remap_io_sg path does get exercises when using Xorg on my
+> Thinkpad X1, so this should be considered lightly tested, I've not
+> managed to hit the remap_io_mapping path at all.
 
-> =
-
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 2d0e3e7f11b8..c341fa957884 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3921,12 +3921,10 @@ static bool tgl_crtc_can_enable_sagv(const struct=
- intel_crtc_state *crtc_state)
->  		return true;
->  =
-
->  	for_each_plane_id_on_crtc(crtc, plane_id) {
-> -		const struct skl_ddb_entry *plane_alloc =3D
-> -			&crtc_state->wm.skl.plane_ddb_y[plane_id];
->  		const struct skl_plane_wm *wm =3D
->  			&crtc_state->wm.skl.optimal.planes[plane_id];
->  =
-
-> -		if (skl_ddb_entry_size(plane_alloc) < wm->sagv_wm0.min_ddb_alloc)
-> +		if (wm->wm[0].plane_en && !wm->sagv_wm0.plane_en)
->  			return false;
->  	}
->  =
-
-> @@ -4957,8 +4955,8 @@ skl_allocate_plane_ddb(struct intel_atomic_state *s=
-tate,
->  	}
->  =
-
->  	/*
-> -	 * Go back and disable the transition watermark if it turns out we
-> -	 * don't have enough DDB blocks for it.
-> +	 * Go back and disable the transition and SAGV watermarks
-> +	 * if it turns out we don't have enough DDB blocks for them.
->  	 */
->  	for_each_plane_id_on_crtc(crtc, plane_id) {
->  		struct skl_plane_wm *wm =3D
-> @@ -4966,6 +4964,9 @@ skl_allocate_plane_ddb(struct intel_atomic_state *s=
-tate,
->  =
-
->  		if (wm->trans_wm.plane_res_b >=3D total[plane_id])
->  			memset(&wm->trans_wm, 0, sizeof(wm->trans_wm));
-> +
-> +		if (wm->sagv_wm0.plane_res_b >=3D total[plane_id])
-> +			memset(&wm->sagv_wm0, 0, sizeof(wm->sagv_wm0));
->  	}
->  =
-
->  	return 0;
-> -- =
-
-> 2.26.2
-> =
-
+Needs an older machine and old userspace. intel-gfx CI should still check
+whether it's all ok.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
