@@ -2,32 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44F74328930
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 18:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37B56328E74
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 20:34:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8263B6E885;
-	Mon,  1 Mar 2021 17:54:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 645626E884;
+	Mon,  1 Mar 2021 19:34:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 851936E87A;
- Mon,  1 Mar 2021 17:54:15 +0000 (UTC)
-Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com
- [66.24.58.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C0AFF65368;
- Mon,  1 Mar 2021 17:54:14 +0000 (UTC)
-Date: Mon, 1 Mar 2021 12:54:13 -0500
-From: Steven Rostedt <rostedt@goodmis.org>
-To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Message-ID: <20210301125413.70c5a424@gandalf.local.home>
-In-Reply-To: <YD0ie6qcKBgGgcNW@intel.com>
-References: <20210301115946.295279c1@gandalf.local.home>
- <YD0ie6qcKBgGgcNW@intel.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 337C86E884
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Mar 2021 19:34:02 +0000 (UTC)
+IronPort-SDR: 0E0V2E4jPMBTZ2OdOT6Xc4mkX4Hw2ZfLV5xbyppKi5ntxVluZm3bUDscsNIH993hHPy1Ig0DTF
+ eoy6qhy0fuiA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9910"; a="247985709"
+X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="247985709"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2021 11:34:00 -0800
+IronPort-SDR: K13oyEmOT8k8qaqQjtMIVRc+3zaTyS/xjPKxjlfubWbCBIR3Bup8d+xORwI69a8aLEuoPNtrBW
+ f6rOk0vO4IPw==
+X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="435483683"
+Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2021 11:32:58 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  1 Mar 2021 11:31:44 -0800
+Message-Id: <20210301193200.1369-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [WARNING] v5.12-rc1 in intel_pipe_disable tracepoint
+Subject: [Intel-gfx] [PATCH v2 00/16] Introduce Intel PXP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,49 +44,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org,
- Linus Torvalds <torvalds@linux-foundation.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Gaurav Kumar <kumar.gaurav@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAxIE1hciAyMDIxIDE5OjIwOjU5ICswMjAwClZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgoKCj4gPiAgIGlsa19jcnRjX2Rpc2FibGUr
-MHg4NS8weDM5MCBbaTkxNV0gIAo+IAo+IEJ1dCB0aGlzIHBhcnQgaXMgY29uZnVzaW5nIG1lLiBp
-bnRlbF9jcnRjX2dldF92YmxhbmtfY291bnRlcigpIGlzCj4gb25seSBzdXBwb3NlZCB0byBkbyBk
-cm1fY3J0Y19hY2N1cmF0ZV92YmxhbmtfY291bnQoKSBmYWxsYmFjayB3aGVuCj4gdGhlIGhhcmR3
-YXJlIGxhY2tzIGEgd29ya2luZyBmcmFtZSBjb3VudGVyLCBhbmQgdGhhdCBzaG91bGQgb25seQo+
-IGJlIHRoZSBjYXNlIGZvciBhbmNpZW50IGdlbjIgb3Igc2VtaS1hbmNpZW50IGk5NjVnbSBUViBv
-dXRwdXQsCj4gaWxrX2NydGNfZGlzYWJsZSgpIGlzIG5vdCB0aGUgZnVuY3Rpb24gd2Ugc2hvdWxk
-IGJlIGNhbGxpbmcgaW4KPiBlaXRoZXIgb2YgdGhvc2UgY2FzZXMuCj4gCj4gV2hhdCBoYXJkd2Fy
-ZSBkbyB5b3UgaGF2ZT8KPiAKCkFjY29yZGluZyB0byAibHNwY2kgLXZ2diIKCjAwOjAyLjAgVkdB
-IGNvbXBhdGlibGUgY29udHJvbGxlcjogSW50ZWwgQ29ycG9yYXRpb24gWGVvbiBFMy0xMjAwIHYy
-LzNyZCBHZW4gQ29yZSBwcm9jZXNzb3IgR3JhcGhpY3MgQ29udHJvbGxlciAocmV2IDA5KSAocHJv
-Zy1pZiAwMCBbVkdBIGNvbnRyb2xsZXJdKQogICAgICAgIERldmljZU5hbWU6ICBPbmJvYXJkIFZH
-QQogICAgICAgIFN1YnN5c3RlbTogSGV3bGV0dC1QYWNrYXJkIENvbXBhbnkgRGV2aWNlIDMzOWEK
-ICAgICAgICBDb250cm9sOiBJL08rIE1lbSsgQnVzTWFzdGVyKyBTcGVjQ3ljbGUtIE1lbVdJTlYt
-IFZHQVNub29wLSBQYXJFcnItIFN0ZXBwaW5nLSBTRVJSLSBGYXN0QjJCLSBEaXNJTlR4KwogICAg
-ICAgIFN0YXR1czogQ2FwKyA2Nk1Iei0gVURGLSBGYXN0QjJCKyBQYXJFcnItIERFVlNFTD1mYXN0
-ID5UQWJvcnQtIDxUQWJvcnQtIDxNQWJvcnQtID5TRVJSLSA8UEVSUi0gSU5UeC0KICAgICAgICBM
-YXRlbmN5OiAwCiAgICAgICAgSW50ZXJydXB0OiBwaW4gQSByb3V0ZWQgdG8gSVJRIDI4CiAgICAg
-ICAgUmVnaW9uIDA6IE1lbW9yeSBhdCBmNzgwMDAwMCAoNjQtYml0LCBub24tcHJlZmV0Y2hhYmxl
-KSBbc2l6ZT00TV0KICAgICAgICBSZWdpb24gMjogTWVtb3J5IGF0IGUwMDAwMDAwICg2NC1iaXQs
-IHByZWZldGNoYWJsZSkgW3NpemU9MjU2TV0KICAgICAgICBSZWdpb24gNDogSS9PIHBvcnRzIGF0
-IGYwMDAgW3NpemU9NjRdCiAgICAgICAgRXhwYW5zaW9uIFJPTSBhdCAwMDBjMDAwMCBbdmlydHVh
-bF0gW2Rpc2FibGVkXSBbc2l6ZT0xMjhLXQogICAgICAgIENhcGFiaWxpdGllczogWzkwXSBNU0k6
-IEVuYWJsZSsgQ291bnQ9MS8xIE1hc2thYmxlLSA2NGJpdC0KICAgICAgICAgICAgICAgIEFkZHJl
-c3M6IGZlZTIwMDA0ICBEYXRhOiAwMDIyCiAgICAgICAgQ2FwYWJpbGl0aWVzOiBbZDBdIFBvd2Vy
-IE1hbmFnZW1lbnQgdmVyc2lvbiAyCiAgICAgICAgICAgICAgICBGbGFnczogUE1FQ2xrLSBEU0kr
-IEQxLSBEMi0gQXV4Q3VycmVudD0wbUEgUE1FKEQwLSxEMS0sRDItLEQzaG90LSxEM2NvbGQtKQog
-ICAgICAgICAgICAgICAgU3RhdHVzOiBEMCBOb1NvZnRSc3QtIFBNRS1FbmFibGUtIERTZWw9MCBE
-U2NhbGU9MCBQTUUtCiAgICAgICAgQ2FwYWJpbGl0aWVzOiBbYTRdIFBDSSBBZHZhbmNlZCBGZWF0
-dXJlcwogICAgICAgICAgICAgICAgQUZDYXA6IFRQKyBGTFIrCiAgICAgICAgICAgICAgICBBRkN0
-cmw6IEZMUi0KICAgICAgICAgICAgICAgIEFGU3RhdHVzOiBUUC0KICAgICAgICBLZXJuZWwgZHJp
-dmVyIGluIHVzZTogaTkxNQogICAgICAgIEtlcm5lbCBtb2R1bGVzOiBpOTE1CgpOb3RlLCB0aGlz
-IGlzIGEgZGV2IGJveCB0aGF0IGlzIG9ubHkgY29ubmVjdGVkIHRvIGEgS1ZNIGFuZCBJIGhhdmVu
-J3QKY29ubmVjdGVkIHRvIGl0IG91dHNpZGUgb2Ygc3NoIGluIHllYXJzLgoKLS0gU3RldmUKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+PXP (Protected Xe Path) is an i915 component, available on
+GEN12+, that helps to establish the hardware protected session
+and manage the status of the alive software session, as well
+as its life cycle.
+
+Several major functional changes compared to v1:
+- Termination is issued on runtime resume as well.
+- Protected objects and contexts are marked as invalid on termination.
+  Invalid contexts are reported to userspace via RESET_STATS.
+- Trying to flip an invalid objects results in a black frame.
+
+I've done more testing compared to v1 (initial IGTs from Alan will be
+hitting the ML soon), but I still haven't stress-tested with userspace
+applications, so there might be bugs. I'll make sure to run more testing
+and fix everything before merge, but in the meantime I wanted to get
+forward with the reviews given that the current tests give me enough
+confidence that this isn't completely broken.
+
+Cc: Gaurav Kumar <kumar.gaurav@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Juston Li <juston.li@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+
+Anshuman Gupta (2):
+  drm/i915/pxp: Add plane decryption support
+  drm/i915/pxp: black pixels on pxp disabled
+
+Bommu Krishnaiah (2):
+  drm/i915/uapi: introduce drm_i915_gem_create_ext
+  drm/i915/pxp: User interface for Protected buffer
+
+Daniele Ceraolo Spurio (6):
+  drm/i915/pxp: Define PXP component interface
+  drm/i915/pxp: define PXP device flag and kconfig
+  drm/i915/pxp: allocate a vcs context for pxp usage
+  drm/i915/pxp: set KCR reg init during the boot time
+  drm/i915/pxp: interface for creation of protected contexts
+  drm/i915/pxp: enable PXP for integrated Gen12
+
+Huang, Sean Z (5):
+  drm/i915/pxp: Implement funcs to create the TEE channel
+  drm/i915/pxp: Create the arbitrary session after boot
+  drm/i915/pxp: Implement arb session teardown
+  drm/i915/pxp: Implement PXP irq handler
+  drm/i915/pxp: Enable PXP power management
+
+Vitaly Lubart (1):
+  mei: pxp: export pavp client to me client bus
+
+ drivers/gpu/drm/i915/Kconfig                  |  11 +
+ drivers/gpu/drm/i915/Makefile                 |   9 +
+ .../drm/i915/display/skl_universal_plane.c    |  50 +++-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  59 ++++-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  18 ++
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  68 +++++-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  23 ++
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   6 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  12 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  13 +
+ drivers/gpu/drm/i915/gt/intel_engine.h        |  10 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  19 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   7 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  14 +-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/i915_drv.c               |   4 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   4 +
+ drivers/gpu/drm/i915/i915_pci.c               |   2 +
+ drivers/gpu/drm/i915/i915_reg.h               |  48 ++++
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 215 ++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          |  70 ++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      | 166 +++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h      |  15 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      | 153 ++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.h      |  33 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  99 ++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |  33 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c  | 140 +++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.h  |  18 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 199 +++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |  17 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  38 +++
+ drivers/misc/mei/Kconfig                      |   2 +
+ drivers/misc/mei/Makefile                     |   1 +
+ drivers/misc/mei/pxp/Kconfig                  |  13 +
+ drivers/misc/mei/pxp/Makefile                 |   7 +
+ drivers/misc/mei/pxp/mei_pxp.c                | 230 ++++++++++++++++++
+ drivers/misc/mei/pxp/mei_pxp.h                |  18 ++
+ include/drm/i915_component.h                  |   1 +
+ include/drm/i915_pxp_tee_interface.h          |  45 ++++
+ include/uapi/drm/i915_drm.h                   |  92 +++++++
+ 44 files changed, 1972 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+ create mode 100644 drivers/misc/mei/pxp/Kconfig
+ create mode 100644 drivers/misc/mei/pxp/Makefile
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
+ create mode 100644 include/drm/i915_pxp_tee_interface.h
+
+-- 
+2.29.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
