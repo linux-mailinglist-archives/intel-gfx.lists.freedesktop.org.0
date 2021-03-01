@@ -1,45 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED874327952
-	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 09:34:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63DA0327953
+	for <lists+intel-gfx@lfdr.de>; Mon,  1 Mar 2021 09:36:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 604136E50D;
-	Mon,  1 Mar 2021 08:34:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1E266E506;
+	Mon,  1 Mar 2021 08:36:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 489A26E50B;
- Mon,  1 Mar 2021 08:34:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-Type:Content-ID:Content-Description;
- bh=u8wenE83xNnepC5igb4zL7nbRigZYhYPUAh9K0DcSt4=; b=le2X1i9G+q9874lCk+S1kQo4w0
- +ExgRDaa/Omact5Rb4dB1EeYpycDSNeMU32iwrMYNoEmsf4vC8i7w11GJO51oKZYFE9+xnxvirUSR
- XfiAzTgXS+8FyRuncAqy+hK+xu7Cdp/H5dtKumAnGsQdW5ivFyoPG4zy9Un5SsV+S2UedInfXjDIm
- 89aLhh7pPjsMppJ7JsWu1SK9Wuwu/zIGIp3n2CK/bCkfeO2UNDm0rwBse8G8NjDZIiOTpCgdzOK5M
- RconJ4hCSWP33FgcLJzkAqvYVJTuy04fP8GdCXyMhP7VXmk7fZNDipSgIJQkzGQaPzht7taUYjSgG
- 77MghFfQ==;
-Received: from [2001:4bb8:19b:e4b7:cdf9:733f:4874:8eb4] (helo=localhost)
- by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
- id 1lGe0J-00FTzw-Ew; Mon, 01 Mar 2021 08:34:16 +0000
-From: Christoph Hellwig <hch@lst.de>
-To: Andrew Morton <akpm@linux-foundation.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Mon,  1 Mar 2021 09:33:20 +0100
-Message-Id: <20210301083320.943079-3-hch@lst.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210301083320.943079-1-hch@lst.de>
-References: <20210301083320.943079-1-hch@lst.de>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 114FB6E506
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Mar 2021 08:36:05 +0000 (UTC)
+IronPort-SDR: AUAeIPmY9BOFsvmPsUeS2HRwODUWg/CpYHNwCLdprYKkrEmyRJNsEX3kiQS3qILrbvwX0pDTh9
+ qfPiNkmiawFA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9909"; a="247808121"
+X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="247808121"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2021 00:36:04 -0800
+IronPort-SDR: i/Q6qiL/NXBXzyZtfj2YymtBjHKE9IyAFjT0zYMiVXTPhsvHaoSRAjzlQcIIIkBayPQSPvbyxM
+ JvHFBi1nx/eQ==
+X-IronPort-AV: E=Sophos;i="5.81,215,1610438400"; d="scan'208";a="406123342"
+Received: from unknown (HELO intel.com) ([10.237.72.91])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Mar 2021 00:36:03 -0800
+Date: Mon, 1 Mar 2021 10:38:10 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20210301083810.GA21872@intel.com>
+References: <20210226153204.1270-1-ville.syrjala@linux.intel.com>
+ <20210226153204.1270-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- casper.infradead.org. See http://www.infradead.org/rpr.html
-Subject: [Intel-gfx] [PATCH 2/2] i915: use remap_pfn_range_notrack
+Content-Disposition: inline
+In-Reply-To: <20210226153204.1270-2-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915: Fix TGL+ plane SAGV watermark
+ programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,162 +49,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Zijlstra <peterz@infradead.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
- linux-mm@kvack.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the remap_pfn_range_notrack helper instead of directly messing
-with PTEs.
+On Fri, Feb 26, 2021 at 05:31:58PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- drivers/gpu/drm/i915/i915_mm.c | 101 +++++++++------------------------
- 1 file changed, 26 insertions(+), 75 deletions(-)
+> When we switch between SAGV on vs. off we need to reprogram all
+> plane wateramrks accordingly. Currently skl_wm_add_affected_planes()
+> totally ignores the SAGV watermark and just assumes we will use
+> the normal WM0.
+> =
 
-diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
-index 666808cb3a3260..a6bafac5ade0bd 100644
---- a/drivers/gpu/drm/i915/i915_mm.c
-+++ b/drivers/gpu/drm/i915/i915_mm.c
-@@ -28,55 +28,10 @@
- 
- #include "i915_drv.h"
- 
--struct remap_pfn {
--	struct mm_struct *mm;
--	unsigned long pfn;
--	pgprot_t prot;
--
--	struct sgt_iter sgt;
--	resource_size_t iobase;
--};
--
--static int remap_pfn(pte_t *pte, unsigned long addr, void *data)
--{
--	struct remap_pfn *r = data;
--
--	/* Special PTE are not associated with any struct page */
--	set_pte_at(r->mm, addr, pte, pte_mkspecial(pfn_pte(r->pfn, r->prot)));
--	r->pfn++;
--
--	return 0;
--}
-+#define EXPECTED_FLAGS (VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP)
- 
- #define use_dma(io) ((io) != -1)
- 
--static inline unsigned long sgt_pfn(const struct remap_pfn *r)
--{
--	if (use_dma(r->iobase))
--		return (r->sgt.dma + r->sgt.curr + r->iobase) >> PAGE_SHIFT;
--	else
--		return r->sgt.pfn + (r->sgt.curr >> PAGE_SHIFT);
--}
--
--static int remap_sg(pte_t *pte, unsigned long addr, void *data)
--{
--	struct remap_pfn *r = data;
--
--	if (GEM_WARN_ON(!r->sgt.sgp))
--		return -EINVAL;
--
--	/* Special PTE are not associated with any struct page */
--	set_pte_at(r->mm, addr, pte,
--		   pte_mkspecial(pfn_pte(sgt_pfn(r), r->prot)));
--	r->pfn++; /* track insertions in case we need to unwind later */
--
--	r->sgt.curr += PAGE_SIZE;
--	if (r->sgt.curr >= r->sgt.max)
--		r->sgt = __sgt_iter(__sg_next(r->sgt.sgp), use_dma(r->iobase));
--
--	return 0;
--}
--
- /**
-  * remap_io_mapping - remap an IO mapping to userspace
-  * @vma: user vma to map to
-@@ -91,25 +46,12 @@ int remap_io_mapping(struct vm_area_struct *vma,
- 		     unsigned long addr, unsigned long pfn, unsigned long size,
- 		     struct io_mapping *iomap)
- {
--	struct remap_pfn r;
--	int err;
--
--#define EXPECTED_FLAGS (VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP)
- 	GEM_BUG_ON((vma->vm_flags & EXPECTED_FLAGS) != EXPECTED_FLAGS);
- 
- 	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
--	r.mm = vma->vm_mm;
--	r.pfn = pfn;
--	r.prot = __pgprot((pgprot_val(iomap->prot) & _PAGE_CACHE_MASK) |
--			  (pgprot_val(vma->vm_page_prot) & ~_PAGE_CACHE_MASK));
--
--	err = apply_to_page_range(r.mm, addr, size, remap_pfn, &r);
--	if (unlikely(err)) {
--		zap_vma_ptes(vma, addr, (r.pfn - pfn) << PAGE_SHIFT);
--		return err;
--	}
--
--	return 0;
-+	return remap_pfn_range_notrack(vma, addr, pfn, size,
-+		__pgprot((pgprot_val(iomap->prot) & _PAGE_CACHE_MASK) |
-+			 (pgprot_val(vma->vm_page_prot) & ~_PAGE_CACHE_MASK)));
- }
- 
- /**
-@@ -126,12 +68,7 @@ int remap_io_sg(struct vm_area_struct *vma,
- 		unsigned long addr, unsigned long size,
- 		struct scatterlist *sgl, resource_size_t iobase)
- {
--	struct remap_pfn r = {
--		.mm = vma->vm_mm,
--		.prot = vma->vm_page_prot,
--		.sgt = __sgt_iter(sgl, use_dma(iobase)),
--		.iobase = iobase,
--	};
-+	unsigned long pfn, len, remapped = 0;
- 	int err;
- 
- 	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
-@@ -140,11 +77,25 @@ int remap_io_sg(struct vm_area_struct *vma,
- 	if (!use_dma(iobase))
- 		flush_cache_range(vma, addr, size);
- 
--	err = apply_to_page_range(r.mm, addr, size, remap_sg, &r);
--	if (unlikely(err)) {
--		zap_vma_ptes(vma, addr, r.pfn << PAGE_SHIFT);
--		return err;
--	}
--
--	return 0;
-+	do {
-+		if (use_dma(iobase)) {
-+			if (!sg_dma_len(sgl))
-+				break;
-+			pfn = (sg_dma_address(sgl) + iobase) >> PAGE_SHIFT;
-+			len = sg_dma_len(sgl);
-+		} else {
-+			pfn = page_to_pfn(sg_page(sgl));
-+			len = sgl->length;
-+		}
-+
-+		err = remap_pfn_range_notrack(vma, addr + remapped, pfn, len,
-+					      vma->vm_page_prot);
-+		if (err)
-+			break;
-+		remapped += len;
-+	} while ((sgl = __sg_next(sgl)));
-+
-+	if (err)
-+		zap_vma_ptes(vma, addr, remapped);
-+	return err;
- }
--- 
-2.29.2
+> Fix this by utilizing skl_plane_wm_level() which picks the
+> correct watermark based on use_sagv_wm. Thus we will force
+> an update on all the planes whose watermark registers need
+> to be reprogrammed.
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+> =
+
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 60 ++++++++++++++++++++-------------
+>  1 file changed, 37 insertions(+), 23 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 8cc67f9c4e58..2d0e3e7f11b8 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4748,11 +4748,10 @@ icl_get_total_relative_data_rate(struct intel_ato=
+mic_state *state,
+>  }
+>  =
+
+>  static const struct skl_wm_level *
+> -skl_plane_wm_level(const struct intel_crtc_state *crtc_state,
+> +skl_plane_wm_level(const struct skl_pipe_wm *pipe_wm,
+>  		   enum plane_id plane_id,
+>  		   int level)
+>  {
+> -	const struct skl_pipe_wm *pipe_wm =3D &crtc_state->wm.skl.optimal;
+>  	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
+>  =
+
+>  	if (level =3D=3D 0 && pipe_wm->use_sagv_wm)
+> @@ -5572,21 +5571,17 @@ void skl_write_plane_wm(struct intel_plane *plane,
+>  	int level, max_level =3D ilk_wm_max_level(dev_priv);
+>  	enum plane_id plane_id =3D plane->id;
+>  	enum pipe pipe =3D plane->pipe;
+> -	const struct skl_plane_wm *wm =3D
+> -		&crtc_state->wm.skl.optimal.planes[plane_id];
+> +	const struct skl_pipe_wm *pipe_wm =3D &crtc_state->wm.skl.optimal;
+> +	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
+>  	const struct skl_ddb_entry *ddb_y =3D
+>  		&crtc_state->wm.skl.plane_ddb_y[plane_id];
+>  	const struct skl_ddb_entry *ddb_uv =3D
+>  		&crtc_state->wm.skl.plane_ddb_uv[plane_id];
+>  =
+
+> -	for (level =3D 0; level <=3D max_level; level++) {
+> -		const struct skl_wm_level *wm_level;
+> -
+> -		wm_level =3D skl_plane_wm_level(crtc_state, plane_id, level);
+> -
+> +	for (level =3D 0; level <=3D max_level; level++)
+>  		skl_write_wm_level(dev_priv, PLANE_WM(pipe, plane_id, level),
+> -				   wm_level);
+> -	}
+> +				   skl_plane_wm_level(pipe_wm, plane_id, level));
+> +
+>  	skl_write_wm_level(dev_priv, PLANE_WM_TRANS(pipe, plane_id),
+>  			   &wm->trans_wm);
+>  =
+
+> @@ -5612,19 +5607,15 @@ void skl_write_cursor_wm(struct intel_plane *plan=
+e,
+>  	int level, max_level =3D ilk_wm_max_level(dev_priv);
+>  	enum plane_id plane_id =3D plane->id;
+>  	enum pipe pipe =3D plane->pipe;
+> -	const struct skl_plane_wm *wm =3D
+> -		&crtc_state->wm.skl.optimal.planes[plane_id];
+> +	const struct skl_pipe_wm *pipe_wm =3D &crtc_state->wm.skl.optimal;
+> +	const struct skl_plane_wm *wm =3D &pipe_wm->planes[plane_id];
+>  	const struct skl_ddb_entry *ddb =3D
+>  		&crtc_state->wm.skl.plane_ddb_y[plane_id];
+>  =
+
+> -	for (level =3D 0; level <=3D max_level; level++) {
+> -		const struct skl_wm_level *wm_level;
+> -
+> -		wm_level =3D skl_plane_wm_level(crtc_state, plane_id, level);
+> -
+> +	for (level =3D 0; level <=3D max_level; level++)
+>  		skl_write_wm_level(dev_priv, CUR_WM(pipe, level),
+> -				   wm_level);
+> -	}
+> +				   skl_plane_wm_level(pipe_wm, plane_id, level));
+> +
+>  	skl_write_wm_level(dev_priv, CUR_WM_TRANS(pipe), &wm->trans_wm);
+>  =
+
+>  	skl_ddb_entry_write(dev_priv, CUR_BUF_CFG(pipe), ddb);
+> @@ -5964,6 +5955,29 @@ skl_print_wm_changes(struct intel_atomic_state *st=
+ate)
+>  	}
+>  }
+>  =
+
+> +static bool skl_plane_selected_wm_equals(struct intel_plane *plane,
+> +					 const struct skl_pipe_wm *old_pipe_wm,
+> +					 const struct skl_pipe_wm *new_pipe_wm)
+> +{
+> +	const struct skl_plane_wm *old_wm =3D &old_pipe_wm->planes[plane->id];
+> +	const struct skl_plane_wm *new_wm =3D &new_pipe_wm->planes[plane->id];
+> +	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
+> +	int level, max_level =3D ilk_wm_max_level(i915);
+> +
+> +	for (level =3D 0; level <=3D max_level; level++) {
+> +		/*
+> +		 * We don't check uv_wm as the hardware doesn't actually
+> +		 * use it. It only gets used for calculating the required
+> +		 * ddb allocation.
+> +		 */
+> +		if (!skl_wm_level_equals(skl_plane_wm_level(old_pipe_wm, level, plane-=
+>id),
+> +					 skl_plane_wm_level(new_pipe_wm, level, plane->id)))
+> +			return false;
+> +	}
+> +
+> +	return skl_wm_level_equals(&old_wm->trans_wm, &new_wm->trans_wm);
+> +}
+> +
+>  /*
+>   * To make sure the cursor watermark registers are always consistent
+>   * with our computed state the following scenario needs special
+> @@ -6009,9 +6023,9 @@ static int skl_wm_add_affected_planes(struct intel_=
+atomic_state *state,
+>  		 * with the software state.
+>  		 */
+>  		if (!drm_atomic_crtc_needs_modeset(&new_crtc_state->uapi) &&
+> -		    skl_plane_wm_equals(dev_priv,
+> -					&old_crtc_state->wm.skl.optimal.planes[plane_id],
+> -					&new_crtc_state->wm.skl.optimal.planes[plane_id]))
+> +		    skl_plane_selected_wm_equals(plane,
+> +						 &old_crtc_state->wm.skl.optimal,
+> +						 &new_crtc_state->wm.skl.optimal))
+>  			continue;
+>  =
+
+>  		plane_state =3D intel_atomic_get_plane_state(state, plane);
+> -- =
+
+> 2.26.2
+> =
 
 _______________________________________________
 Intel-gfx mailing list
