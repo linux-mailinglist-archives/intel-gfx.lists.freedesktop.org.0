@@ -1,61 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D81E3299F1
-	for <lists+intel-gfx@lfdr.de>; Tue,  2 Mar 2021 11:29:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD467329B3F
+	for <lists+intel-gfx@lfdr.de>; Tue,  2 Mar 2021 12:03:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F02389F0A;
-	Tue,  2 Mar 2021 10:29:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E1DC89F8E;
+	Tue,  2 Mar 2021 11:03:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7913F89F0A
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Mar 2021 10:29:52 +0000 (UTC)
-IronPort-SDR: 4/1SEyf/tBBbeevkudkI1Al909o2FNrHyoqNvnuUv4hnjLOkTYnjQjqLUbZbEkbKN81dkiJRN3
- IdHgcvWvYXbw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9910"; a="166006150"
-X-IronPort-AV: E=Sophos;i="5.81,216,1610438400"; d="scan'208";a="166006150"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2021 02:29:52 -0800
-IronPort-SDR: d0N7+jev7UtqzEsu2Qje0UKf+1Wm2IYhN8GY/yQ1VrPSJN5oDT/6upvCwX6hCxyzyLeICVPhcq
- KI/N2oROn3Tg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,216,1610438400"; d="scan'208";a="517784170"
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
- by orsmga004.jf.intel.com with ESMTP; 02 Mar 2021 02:29:51 -0800
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Tue, 2 Mar 2021 10:29:49 +0000
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.002;
- Tue, 2 Mar 2021 15:59:48 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 6/9] drm/i915/mso: add splitter state
- readout for platforms that support it
-Thread-Index: AQHXAIWgS4v3OqO73U+mE3KHgjtWMKpjv5CAgABaNQCADCWVAIAAXTZw
-Date: Tue, 2 Mar 2021 10:29:48 +0000
-Message-ID: <b496471ef06047b1b12a8977c364769a@intel.com>
-References: <cover.1613054234.git.jani.nikula@intel.com>
- <6fb9f831672c951c00d92f1176bd42d3b0f30145.1613054234.git.jani.nikula@intel.com>
- <485ac3466f8945afa89a79d4d979f0d1@intel.com> <87eeh8f3et.fsf@intel.com>
- <87czwhq2df.fsf@intel.com>
-In-Reply-To: <87czwhq2df.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27A0789C1F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  2 Mar 2021 11:03:23 +0000 (UTC)
+IronPort-SDR: KEaP1yYdzt3xnHv1/pjZ3E11SEfzZeV4pjZ6YFPmdUbOHhui1hcl06A465f9D0wLZnJx+vrs8+
+ tX8Gausts/tw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9910"; a="174408626"
+X-IronPort-AV: E=Sophos;i="5.81,216,1610438400"; d="scan'208";a="174408626"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2021 03:03:18 -0800
+IronPort-SDR: tMvce93HlJExdnW/907CjaeRgMnhY4t8OY9vqbyloJVQXfV6icRiTOZGtEMRzd/NGxK+JptDLA
+ eeBZx/1TpxWA==
+X-IronPort-AV: E=Sophos;i="5.81,216,1610438400"; d="scan'208";a="406663611"
+Received: from rwathan-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.61.106])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2021 03:03:09 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  2 Mar 2021 13:02:58 +0200
+Message-Id: <cover.1614682842.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 6/9] drm/i915/mso: add splitter state
- readout for platforms that support it
+Subject: [Intel-gfx] [PATCH v4 0/4] drm/i915: complete eDP MSO support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,83 +45,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Varide, Nischal" <nischal.varide@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The remaining and updated patches from [1].
+
+Address some review comments from Uma, and fix MSO for downclocked
+modes.
+
+BR,
+Jani.
 
 
-> -----Original Message-----
-> From: Nikula, Jani <jani.nikula@intel.com>
-> Sent: Tuesday, March 2, 2021 3:55 PM
-> To: Shankar, Uma <uma.shankar@intel.com>; intel-gfx@lists.freedesktop.org
-> Cc: Varide, Nischal <nischal.varide@intel.com>; Ville Syrj=E4l=E4
-> <ville.syrjala@linux.intel.com>
-> Subject: RE: [Intel-gfx] [PATCH v3 6/9] drm/i915/mso: add splitter state =
-readout for
-> platforms that support it
-> =
+[1] https://patchwork.freedesktop.org/series/86992/
 
-> On Mon, 22 Feb 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> > On Mon, 22 Feb 2021, "Shankar, Uma" <uma.shankar@intel.com> wrote:
-> >>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> >>> b/drivers/gpu/drm/i915/display/intel_display_types.h
-> >>> index 71611b596c88..5564db512d22 100644
-> >>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> >>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> >>> @@ -1161,6 +1161,13 @@ struct intel_crtc_state {
-> >>>  		u8 pipeline_full;
-> >>>  		u16 flipline, vmin, vmax;
-> >>>  	} vrr;
-> >>> +
-> >>> +	/* Stream Splitter for eDP MSO */
-> >>> +	struct {
-> >>> +		bool enable;
-> >>> +		u8 link_count;
-> >>> +		u8 pixel_overlap;
-> >>> +	} splitter;
-> >>
-> >> For DSI which also has this in common along with MSO, may be we can
-> >> take these link_count and pixel_overlap out of splitter which is more
-> >> of a MSO feature. Thoughts ?
-> >
-> > Ville suggested the same I think.
-> =
+Jani Nikula (4):
+  drm/i915/mso: add splitter state readout for platforms that support it
+  drm/i915/mso: add splitter state check
+  drm/i915/edp: modify fixed and downclock modes for MSO
+  drm/i915/edp: enable eDP MSO during link training
 
-> Coming back to this. DSI does not actually use crtc state for this curren=
-tly. But it
-> does use the display stream splitter. The register is different, but the =
-functionality is
-> roughly the same.
-> =
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 78 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.c  | 48 +++++++++++-
+ .../drm/i915/display/intel_display_types.h    |  7 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       | 72 ++++++++++++++++-
+ drivers/gpu/drm/i915/i915_drv.h               |  2 +
+ 5 files changed, 201 insertions(+), 6 deletions(-)
 
-> I suggest we keep the "splitter" substruct as above, and convert DSI code=
- to use it in
-> follow-up.
-> =
+-- 
+2.20.1
 
-> In early versions of the patch the substruct was called "mso"; I think "s=
-plitter" is
-> better, and captures both MSO and DSI cases.
-> =
-
-> I'll send v4 with the other suggested changes.
-
-Makes sense, I am ok with this.
-
-Regards,
-Uma Shankar
-
-> BR,
-> Jani.
-> =
-
-> =
-
-> --
-> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
