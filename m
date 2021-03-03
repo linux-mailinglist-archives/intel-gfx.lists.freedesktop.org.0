@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2987D32BA46
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 20:54:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2018832BA48
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 20:56:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B8B56E9C2;
-	Wed,  3 Mar 2021 19:54:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D2B56E9C1;
+	Wed,  3 Mar 2021 19:56:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C00A46E9C1;
- Wed,  3 Mar 2021 19:54:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B9AA4A0091;
- Wed,  3 Mar 2021 19:54:44 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B68766E9C1
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 19:56:30 +0000 (UTC)
+IronPort-SDR: 2/euNijtrMTe3CnTwXXQDMvNa0KU+YVv8QkveVP/aZp+vKek8AB6vH/DIgnbL+Nz6AC9bsYBT0
+ 2XhegIocgpqA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9912"; a="174907369"
+X-IronPort-AV: E=Sophos;i="5.81,220,1610438400"; d="scan'208";a="174907369"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2021 11:56:26 -0800
+IronPort-SDR: hRKs3W/Ticz/sdCKd8nUhA6KFVhsGypusjIyPO+YoUTi1t/PrnpqxBCtwI6SJXOcGUGRm3KGm8
+ JmYjmwZiIFKA==
+X-IronPort-AV: E=Sophos;i="5.81,220,1610438400"; d="scan'208";a="518402465"
+Received: from aginocch-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.212.198.113])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2021 11:56:26 -0800
+Date: Wed, 3 Mar 2021 14:56:35 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <YD/p82KP1elV5tzh@intel.com>
+References: <20210301193200.1369-1-daniele.ceraolospurio@intel.com>
+ <20210301193200.1369-17-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cooper Chiou" <cooper.chiou@intel.com>
-Date: Wed, 03 Mar 2021 19:54:44 -0000
-Message-ID: <161480128473.23597.8483683757955216144@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200916180745.627-1-cooper.chiou@intel.com>
-In-Reply-To: <20200916180745.627-1-cooper.chiou@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Enable_WaProgramMgsrForCorrectSliceSpecificMmioReads_f?=
- =?utf-8?q?or_Gen9_=28rev6=29?=
+Content-Disposition: inline
+In-Reply-To: <20210301193200.1369-17-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 16/16] drm/i915/pxp: enable PXP for
+ integrated Gen12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,228 +49,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1313344731=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1313344731==
-Content-Type: multipart/alternative;
- boundary="===============7077318385440557025=="
+On Mon, Mar 01, 2021 at 11:32:00AM -0800, Daniele Ceraolo Spurio wrote:
+> Note that discrete cards can support PXP as well, but we haven't tested
+> on those yet so keeping it disabled for now.
+> 
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
---===============7077318385440557025==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-== Series Details ==
-
-Series: drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9 (rev6)
-URL   : https://patchwork.freedesktop.org/series/81764/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9824 -> Patchwork_19752
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19752 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19752, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19752:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2] +36 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@uncore:
-    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] +36 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-kbl-7567u/igt@i915_selftest@live@uncore.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-kbl-7567u/igt@i915_selftest@live@uncore.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19752 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#262])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
-    - fi-kbl-7567u:       [PASS][7] -> [DMESG-WARN][8] ([i915#262])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-kbl-7567u/igt@gem_exec_suspend@basic-s0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-kbl-7567u/igt@gem_exec_suspend@basic-s0.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][9] ([i915#1372]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-
-
-Participating hosts (42 -> 37)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9824 -> Patchwork_19752
-
-  CI-20190529: 20190529
-  CI_DRM_9824: 6b21aa2a30637b56282297d09a9fbfd1954cc7b0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6020: 8382d9e87bba39ecc6fa879b2491e28c7fb2e3c7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19752: 95da8234127844e4072face90b3b9155382c4506 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-95da82341278 drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/index.html
-
---===============7077318385440557025==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9 (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/81764/">https://patchwork.freedesktop.org/series/81764/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9824 -&gt; Patchwork_19752</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19752 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19752, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19752:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-cfl-8109u/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> +36 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@uncore:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-kbl-7567u/igt@i915_selftest@live@uncore.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-kbl-7567u/igt@i915_selftest@live@uncore.html">DMESG-WARN</a> +36 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19752 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>
-<p>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</p>
-</li>
-<li>
-<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-kbl-7567u/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-kbl-7567u/igt@gem_exec_suspend@basic-s0.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_chamelium@dp-crc-fast:<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19752/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 37)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9824 -&gt; Patchwork_19752</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9824: 6b21aa2a30637b56282297d09a9fbfd1954cc7b0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6020: 8382d9e87bba39ecc6fa879b2491e28c7fb2e3c7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19752: 95da8234127844e4072face90b3b9155382c4506 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>95da82341278 drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9</p>
-
-</body>
-</html>
-
---===============7077318385440557025==--
-
---===============1313344731==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> ---
+>  drivers/gpu/drm/i915/i915_pci.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index a9f24f2bda33..f380a92e5c7c 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -880,6 +880,7 @@ static const struct intel_device_info jsl_info = {
+>  	}, \
+>  	TGL_CURSOR_OFFSETS, \
+>  	.has_global_mocs = 1, \
+> +	.has_pxp = 1, \
+>  	.display.has_dsb = 1
+>  
+>  static const struct intel_device_info tgl_info = {
+> @@ -908,6 +909,7 @@ static const struct intel_device_info rkl_info = {
+>  	.memory_regions = REGION_SMEM | REGION_LMEM, \
+>  	.has_master_unit_irq = 1, \
+>  	.has_llc = 0, \
+> +	.has_pxp = 0, \
+>  	.has_snoop = 1, \
+>  	.is_dgfx = 1
+>  
+> -- 
+> 2.29.2
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1313344731==--
