@@ -2,37 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D43732ACB1
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 02:07:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71AC332ACB2
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 02:07:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28DBD6E52C;
-	Wed,  3 Mar 2021 01:07:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F8D86E314;
+	Wed,  3 Mar 2021 01:07:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8650A6E3F9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DDC56E364
  for <intel-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 01:07:48 +0000 (UTC)
-IronPort-SDR: ppOLO/dTQcgMTasuyz5BTUK0oJSqqMRjYenEj72QoD5TJ87bona4gpEqUiY5OcUOtS29DMv/CA
- HjP73QjeM/aA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9911"; a="187115119"
-X-IronPort-AV: E=Sophos;i="5.81,218,1610438400"; d="scan'208";a="187115119"
+IronPort-SDR: LMMvgqlN/fs4KTpLfCYUADMAvLCeNpzot3hraiQRfM5QM1Ovt2RUUStzG/qBRwFBuVpXBm6nvn
+ ieu/R9pCslhQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9911"; a="187115120"
+X-IronPort-AV: E=Sophos;i="5.81,218,1610438400"; d="scan'208";a="187115120"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Mar 2021 17:07:44 -0800
-IronPort-SDR: fwjMMFMcGlFEzo/5DE6HDOHfzUDMcgNJWJCaSLVX9Crw6rIka3IBE3DS3neonm/6jJFj487nef
- niIw7ba5IGhw==
-X-IronPort-AV: E=Sophos;i="5.81,218,1610438400"; d="scan'208";a="518071481"
+IronPort-SDR: nMo3mcUSGV+3SboK1rFjxGckKI6OKUPtpn0bKbBhmUI7sNtlHxmoJiZ+sF+Of2V552YdmfGvAy
+ zcxulnW/qsmA==
+X-IronPort-AV: E=Sophos;i="5.81,218,1610438400"; d="scan'208";a="518071484"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Mar 2021 17:07:44 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  2 Mar 2021 17:07:25 -0800
-Message-Id: <20210303010728.3605269-1-lucas.demarchi@intel.com>
+Date: Tue,  2 Mar 2021 17:07:26 -0800
+Message-Id: <20210303010728.3605269-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.30.1
+In-Reply-To: <20210303010728.3605269-1-lucas.demarchi@intel.com>
+References: <20210303010728.3605269-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915/gen12: Add recommended hardware
- tuning value
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/icl: add Wa_22010271021 for all
+ gen11
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,112 +54,38 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Caz Yokoyama <caz.yokoyama@intel.com>
 
-Follow Bspec 31870 to set recommended tuning values for certain GT
-register.  These values aren't workarounds per-se, but it's best to
-handle them in the same general area of the driver, especially since
-there may be real workarounds that update other bits of the same
-registers.
+Wa_22010271021 does not apply only to EHL, but to all gen11 platforms.
 
-At the moment the only value we need to worry about is the
-TDS_TIMER setting in FF_MODE2.  This setting was previously
-described as "Wa_1604555607" on some platforms, but the spec
-tells us that we should continue to program this on all current
-gen12 platforms, even those that do not have that WA.
-
-Bspec: 31870
+Bspec: 33450, 52887
 
 Cc: Clinton Taylor <clinton.a.taylor@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Caz Yokoyama <caz.yokoyama@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 48 ++++++++++++++++-----
- 1 file changed, 37 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 3b4a7da60f0b..f6d9b849aa62 100644
+index f6d9b849aa62..9e6e405aabac 100644
 --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -646,9 +646,38 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN11_DIS_PICK_2ND_EU);
- }
+@@ -1820,11 +1820,10 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 			    GEN7_FF_THREAD_MODE,
+ 			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
  
-+/*
-+ * These settings aren't actually workarounds, but general tuning settings that
-+ * need to be programmed on several platforms.
-+ */
-+static void gen12_ctx_gt_tuning_init(struct intel_engine_cs *engine,
-+				     struct i915_wa_list *wal)
-+{
-+	/*
-+	 * Although some platforms refer to it as Wa_1604555607, we need to
-+	 * program it even on those that don't explicitly list that
-+	 * workaround.
-+	 *
-+	 * Note that the implementation of this workaround is further modified
-+	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
-+	 *
-+	 * FF_MODE2 register will return the wrong value when read. The default
-+	 * value for this register is zero for all fields and there are no bit
-+	 * masks. So instead of doing a RMW we should just write TDS timer
-+	 * value. For the same reason read verification is ignored.
-+	 */
-+	wa_add(wal,
-+	       FF_MODE2,
-+	       FF_MODE2_TDS_TIMER_MASK,
-+	       FF_MODE2_TDS_TIMER_128,
-+	       0);
-+}
-+
- static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
- 				       struct i915_wa_list *wal)
- {
-+	gen12_ctx_gt_tuning_init(engine, wal);
-+
- 	/*
- 	 * Wa_1409142259:tgl
- 	 * Wa_1409347922:tgl
-@@ -675,19 +704,15 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	gen12_ctx_workarounds_init(engine, wal);
+-		/* Wa_22010271021:ehl */
+-		if (IS_JSL_EHL(i915))
+-			wa_masked_en(wal,
+-				     GEN9_CS_DEBUG_MODE1,
+-				     FF_DOP_CLOCK_GATE_DISABLE);
++		/* Wa_22010271021:gen11 */
++		wa_masked_en(wal,
++			     GEN9_CS_DEBUG_MODE1,
++			     FF_DOP_CLOCK_GATE_DISABLE);
+ 	}
  
- 	/*
--	 * Wa_1604555607:tgl,rkl
-+	 * Wa_16011163337
- 	 *
--	 * Note that the implementation of this workaround is further modified
--	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
--	 * FF_MODE2 register will return the wrong value when read. The default
--	 * value for this register is zero for all fields and there are no bit
--	 * masks. So instead of doing a RMW we should just write the GS Timer
--	 * and TDS timer values for Wa_1604555607 and Wa_16011163337.
-+	 * Like in gen12_ctx_gt_tuning_init(), read verification is ignored due
-+	 * to Wa_1608008084.
- 	 */
- 	wa_add(wal,
- 	       FF_MODE2,
--	       FF_MODE2_GS_TIMER_MASK | FF_MODE2_TDS_TIMER_MASK,
--	       FF_MODE2_GS_TIMER_224  | FF_MODE2_TDS_TIMER_128,
-+	       FF_MODE2_GS_TIMER_MASK,
-+	       FF_MODE2_GS_TIMER_224,
- 	       0);
- }
- 
-@@ -707,12 +732,13 @@ static void dg1_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	/*
- 	 * Wa_16011163337
- 	 *
--	 * Like in tgl_ctx_workarounds_init(), read verification is ignored due
-+	 * Like in gen12_ctx_gt_tuning_init(), read verification is ignored due
- 	 * to Wa_1608008084.
- 	 */
- 	wa_add(wal,
- 	       FF_MODE2,
--	       FF_MODE2_GS_TIMER_MASK, FF_MODE2_GS_TIMER_224, 0);
-+	       FF_MODE2_GS_TIMER_MASK,
-+	       FF_MODE2_GS_TIMER_224, 0);
- }
- 
- static void
+ 	if (IS_GEN_RANGE(i915, 9, 12)) {
 -- 
 2.30.1
 
