@@ -2,46 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 878AA32D2C7
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Mar 2021 13:23:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 587CA32D661
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Mar 2021 16:20:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D46356E4A7;
-	Thu,  4 Mar 2021 12:23:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 425326EA56;
+	Thu,  4 Mar 2021 15:20:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1CE06E4AA
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Mar 2021 12:23:54 +0000 (UTC)
-IronPort-SDR: /8ERbjXXM9fVTFSwfeVGof1Ql5H30Svlya3ZHacFUu6cBQDBT5EMZtj5sLizbazE2AYpQsISb1
- EG6jxs9kNKxQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9912"; a="175034910"
-X-IronPort-AV: E=Sophos;i="5.81,222,1610438400"; d="scan'208";a="175034910"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2021 04:23:53 -0800
-IronPort-SDR: tVWRCKo8plxwJ8p8X7H81KKFBzAR6FI9TYKy/gMeVn+LZyu5pcNvhkshmcZHZ3rdpr9k0N8kEk
- 3V/fFiTr+aow==
-X-IronPort-AV: E=Sophos;i="5.81,222,1610438400"; d="scan'208";a="407761065"
-Received: from kuanhsun-mobl.ger.corp.intel.com (HELO [10.252.43.176])
- ([10.252.43.176])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2021 04:23:52 -0800
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-References: <20210303212800.43787-1-umesh.nerlige.ramappa@intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <663bc4f9-d68f-35c8-67cb-502d637d5bf4@intel.com>
-Date: Thu, 4 Mar 2021 14:23:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 832C36EA2C;
+ Thu,  4 Mar 2021 15:20:13 +0000 (UTC)
+Message-Id: <20210303132023.077167457@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1614870844;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=CdClLt4+fuyCD6ZyqthkXbcv3Ic59BWpZ3AO1GEhCVA=;
+ b=xMnck+A//N+JJ/RpCJYdExXhoUvZ2fcDik9DVsp1+5j7nuopQjCucFhmvkqVup9fM19Grj
+ BXnfokOAQ6iuFq44L7pJ4+c4eVzu+k+76u9fdHc+X7OnXi0aAftiBRG89BlNAzJpRFBBJD
+ 0M4yCujiJH2tIhkhYO+VhD3K8VhrGHcp+ALOlmOexUgS1vIovXUubnt2oT6Nx6A6SmS/l3
+ vzPAPkoceU7qZmr7PyHWloesBXaP6TBOlyFg+fytBEZRG2FbHaO8xuMcvI/nmYapv0qIO8
+ m8+eGV23YjiKIi9mf8XHp90jzjRch6yjA6YXHjJhKuuZt3XMjXT6+iEyiqVurw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1614870844;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=CdClLt4+fuyCD6ZyqthkXbcv3Ic59BWpZ3AO1GEhCVA=;
+ b=puGQh+pRRhN/TY3HF9OfSaRiQL69Lg4hw447EvqmiySd+QW3AXl1HHcjurw7yenjNobZem
+ +chTQ0TX3LANkTDQ==
+Date: Wed, 03 Mar 2021 14:20:23 +0100
+From: Thomas Gleixner <tglx@linutronix.de>
+To: LKML <linux-kernel@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210303212800.43787-1-umesh.nerlige.ramappa@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] i915/query: Correlate engine and cpu
- timestamps with better accuracy
+Subject: [Intel-gfx] [patch 0/7] drm,
+ highmem: Cleanup io/kmap_atomic*() usage
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,65 +51,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, Roland Scheidegger <sroland@vmware.com>,
+ dri-devel@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-mm@kvack.org, Huang Rui <ray.huang@amd.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Christian Koenig <christian.koenig@amd.com>, Zack Rusin <zackr@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 03/03/2021 23:28, Umesh Nerlige Ramappa wrote:
-> Perf measurements rely on CPU and engine timestamps to correlate
-> events of interest across these time domains. Current mechanisms get
-> these timestamps separately and the calculated delta between these
-> timestamps lack enough accuracy.
->
-> To improve the accuracy of these time measurements to within a few us,
-> add a query that returns the engine and cpu timestamps captured as
-> close to each other as possible.
->
-> v2: (Tvrtko)
-> - document clock reference used
-> - return cpu timestamp always
-> - capture cpu time just before lower dword of cs timestamp
->
-> v3: (Chris)
-> - use uncore-rpm
-> - use __query_cs_timestamp helper
->
-> v4: (Lionel)
-> - Kernel perf subsytem allows users to specify the clock id to be used
->    in perf_event_open. This clock id is used by the perf subsystem to
->    return the appropriate cpu timestamp in perf events. Similarly, let
->    the user pass the clockid to this query so that cpu timestamp
->    corresponds to the clock id requested.
->
-> v5: (Tvrtko)
-> - Use normal ktime accessors instead of fast versions
-> - Add more uApi documentation
->
-> v6: (Lionel)
-> - Move switch out of spinlock
->
-> v7: (Chris)
-> - cs_timestamp is a misnomer, use cs_cycles instead
-> - return the cs cycle frequency as well in the query
->
-> v8:
-> - Add platform and engine specific checks
->
-> v9: (Lionel)
-> - Return 2 cpu timestamps in the query - captured before and after the
->    register read
->
-> Signed-off-by: Umesh Nerlige Ramappa<umesh.nerlige.ramappa@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_query.c | 144 ++++++++++++++++++++++++++++++
+None of the DRM usage sites of temporary mappings requires the side
+effects of io/kmap_atomic(), i.e. preemption and pagefault disable.
 
-FYI, the MR for Mesa : 
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/9407
+Replace them with the io/kmap_local() variants, simplify the
+copy_to/from_user() error handling and remove the atomic variants.
 
+Thanks,
 
--Lionel
-
+	tglx
+---
+ Documentation/driver-api/io-mapping.rst             |   22 +++-------
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c      |    7 +--
+ drivers/gpu/drm/i915/i915_gem.c                     |   40 ++++++-------------
+ drivers/gpu/drm/i915/selftests/i915_gem.c           |    4 -
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c       |    8 +--
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/fbmem.h |    8 +--
+ drivers/gpu/drm/qxl/qxl_image.c                     |   18 ++++----
+ drivers/gpu/drm/qxl/qxl_ioctl.c                     |   27 ++++++------
+ drivers/gpu/drm/qxl/qxl_object.c                    |   12 ++---
+ drivers/gpu/drm/qxl/qxl_object.h                    |    4 -
+ drivers/gpu/drm/qxl/qxl_release.c                   |    4 -
+ drivers/gpu/drm/ttm/ttm_bo_util.c                   |   20 +++++----
+ drivers/gpu/drm/vmwgfx/vmwgfx_blit.c                |   30 +++++---------
+ include/linux/highmem-internal.h                    |   14 ------
+ include/linux/io-mapping.h                          |   42 --------------------
+ 15 files changed, 93 insertions(+), 167 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
