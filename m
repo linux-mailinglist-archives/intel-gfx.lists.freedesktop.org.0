@@ -2,70 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E9C32ACAE
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 02:01:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D43732ACB1
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 02:07:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78C216E30F;
-	Wed,  3 Mar 2021 01:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28DBD6E52C;
+	Wed,  3 Mar 2021 01:07:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
- [IPv6:2a00:1450:4864:20::129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2F4D6E30F
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 01:01:45 +0000 (UTC)
-Received: by mail-lf1-x129.google.com with SMTP id z11so34283311lfb.9
- for <intel-gfx@lists.freedesktop.org>; Tue, 02 Mar 2021 17:01:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=OIV9sys/VM3XXe3OUXsbOwdDnvoGoPf0M6wyTBcUS7o=;
- b=Fm/QyImgOETEl2V1Mlpd0epYKKBCXigL2jbpLY93RbrHRct6WvHsYzOGSsiEfUp4+L
- z9kxg8C/7TISHjJjJYhPwLR83b5hM8apit5eHM4H+Ghc/wgSfECx/S/KapC1y91Oo8Ok
- 55nje5RAye2iG64+hrt/r79heIpWRrfu7d5nA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=OIV9sys/VM3XXe3OUXsbOwdDnvoGoPf0M6wyTBcUS7o=;
- b=OF+JlG3Tp+Ne2x7Q7Y3d5fZ7Z+8mX0pKR5D20Gw/itlcoHn0VHF9E069o2C+CzU6kJ
- C16yJaNJdazd4ai7S+JaPBUAof3AB2r8KMjQnWPXsV+YOyLceTv1bzO+1V6uru4DiGFB
- 1+vcFgp87YVLETdDpGAt9dMhHL+Y93FXvlPp7uv6rhmsMlfYSVJgj1rxET2EKk25MZL5
- egyFIbs1yj3xziptG8DXDGGrWvPY4NsttniBSWvx7EKniujHX8VV8oJhTLuMbr9N902P
- x9H//Euo9eqQVP7i31hKhPQvG1cqX7GdyR1HZOKq2GPZXR7kn1howlqY1vSJMr+eS7Mn
- zBEQ==
-X-Gm-Message-State: AOAM531aMJsZYn30shGo9n5irVFxikpHq5Wi2EGaakgOqYIwTczHwU2T
- e2d7nQb/SuRS70Mqh0CpfbKCztMgCqOfsg==
-X-Google-Smtp-Source: ABdhPJwNtn/yrXbBgxNkL3X1olwy+0XcCpSzWMI+dtcxfSOpN6oOGWhScRwhxzNgEA7iWu0CN/rfww==
-X-Received: by 2002:a19:b81:: with SMTP id 123mr12773221lfl.553.1614733303816; 
- Tue, 02 Mar 2021 17:01:43 -0800 (PST)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com.
- [209.85.167.49])
- by smtp.gmail.com with ESMTPSA id d3sm2793984lfg.122.2021.03.02.17.01.42
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 02 Mar 2021 17:01:42 -0800 (PST)
-Received: by mail-lf1-f49.google.com with SMTP id d3so34304688lfg.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 02 Mar 2021 17:01:42 -0800 (PST)
-X-Received: by 2002:a05:6512:a8c:: with SMTP id
- m12mr13972416lfu.253.1614733302255; 
- Tue, 02 Mar 2021 17:01:42 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8650A6E3F9
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 01:07:48 +0000 (UTC)
+IronPort-SDR: ppOLO/dTQcgMTasuyz5BTUK0oJSqqMRjYenEj72QoD5TJ87bona4gpEqUiY5OcUOtS29DMv/CA
+ HjP73QjeM/aA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9911"; a="187115119"
+X-IronPort-AV: E=Sophos;i="5.81,218,1610438400"; d="scan'208";a="187115119"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2021 17:07:44 -0800
+IronPort-SDR: fwjMMFMcGlFEzo/5DE6HDOHfzUDMcgNJWJCaSLVX9Crw6rIka3IBE3DS3neonm/6jJFj487nef
+ niIw7ba5IGhw==
+X-IronPort-AV: E=Sophos;i="5.81,218,1610438400"; d="scan'208";a="518071481"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2021 17:07:44 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  2 Mar 2021 17:07:25 -0800
+Message-Id: <20210303010728.3605269-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-References: <e12dfaac0aa242f4a10d8c5b920a98db@intel.com>
- <51946a94b1154605bd7dda2c77ab12fc@intel.com>
- <fb8a2d722d4b4c008eeb1ffae87233be@intel.com>
- <CAPM=9tzLJAgjo=+JCNJrVaz3RY3D66tG+zdw_nCCTQGSwFbwCg@mail.gmail.com>
- <CAHk-=whxZJXkuvX2j56QH6ANA_girjWK3nQCPJGuOWwfYEgtag@mail.gmail.com>
- <CAPM=9twngQ=T6WgJBVje9PUtYrSa4LyZgsMZKEykCRc_MObrHw@mail.gmail.com>
- <CAHk-=wjyoO7Evytd_DxEhx1yFKf2GNvBjynhgRkHFkeqyxcQAw@mail.gmail.com>
- <e5eceeca-c13d-efea-bbf7-c1d94ab81685@kernel.dk>
- <f436251f-2eab-df40-7d0a-0f32b40f5996@kernel.dk>
-In-Reply-To: <f436251f-2eab-df40-7d0a-0f32b40f5996@kernel.dk>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Tue, 2 Mar 2021 17:01:26 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wjmKrGZ+WaBpEb0CbGw7SjRCw1+yjufVa7++5PpLj69Lw@mail.gmail.com>
-Message-ID: <CAHk-=wjmKrGZ+WaBpEb0CbGw7SjRCw1+yjufVa7++5PpLj69Lw@mail.gmail.com>
-To: Jens Axboe <axboe@kernel.dk>
-Subject: Re: [Intel-gfx] Public i915 CI shardruns are disabled
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915/gen12: Add recommended hardware
+ tuning value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,28 +45,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Damien Le Moal <damien.lemoal@wdc.com>,
- Chaitanya Kulkarni <chaitanya.kulkarni@wdc.com>, "Sarvela,
- Tomi P" <tomi.p.sarvela@intel.com>,
- Johannes Thumshirn <johannes.thumshirn@wdc.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Linux Memory Management List <linux-mm@kvack.org>,
- Andrew Morton <akpm@linux-foundation.org>, Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 2, 2021 at 4:36 PM Jens Axboe <axboe@kernel.dk> wrote:
->
-> Or if you want a pull, just let me know. Have another misc patch to
-> flush out anyway that doesn't belong in any of my usual branches.
+From: Caz Yokoyama <caz.yokoyama@intel.com>
 
-Ok, if you have something else pending anyway, let's do that. Send me
-the pull request, and I'll take it asap.
+Follow Bspec 31870 to set recommended tuning values for certain GT
+register.  These values aren't workarounds per-se, but it's best to
+handle them in the same general area of the driver, especially since
+there may be real workarounds that update other bits of the same
+registers.
 
-Thanks,
-               Linus
+At the moment the only value we need to worry about is the
+TDS_TIMER setting in FF_MODE2.  This setting was previously
+described as "Wa_1604555607" on some platforms, but the spec
+tells us that we should continue to program this on all current
+gen12 platforms, even those that do not have that WA.
+
+Bspec: 31870
+
+Cc: Clinton Taylor <clinton.a.taylor@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Caz Yokoyama <caz.yokoyama@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 48 ++++++++++++++++-----
+ 1 file changed, 37 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 3b4a7da60f0b..f6d9b849aa62 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -646,9 +646,38 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN11_DIS_PICK_2ND_EU);
+ }
+ 
++/*
++ * These settings aren't actually workarounds, but general tuning settings that
++ * need to be programmed on several platforms.
++ */
++static void gen12_ctx_gt_tuning_init(struct intel_engine_cs *engine,
++				     struct i915_wa_list *wal)
++{
++	/*
++	 * Although some platforms refer to it as Wa_1604555607, we need to
++	 * program it even on those that don't explicitly list that
++	 * workaround.
++	 *
++	 * Note that the implementation of this workaround is further modified
++	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
++	 *
++	 * FF_MODE2 register will return the wrong value when read. The default
++	 * value for this register is zero for all fields and there are no bit
++	 * masks. So instead of doing a RMW we should just write TDS timer
++	 * value. For the same reason read verification is ignored.
++	 */
++	wa_add(wal,
++	       FF_MODE2,
++	       FF_MODE2_TDS_TIMER_MASK,
++	       FF_MODE2_TDS_TIMER_128,
++	       0);
++}
++
+ static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 				       struct i915_wa_list *wal)
+ {
++	gen12_ctx_gt_tuning_init(engine, wal);
++
+ 	/*
+ 	 * Wa_1409142259:tgl
+ 	 * Wa_1409347922:tgl
+@@ -675,19 +704,15 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	gen12_ctx_workarounds_init(engine, wal);
+ 
+ 	/*
+-	 * Wa_1604555607:tgl,rkl
++	 * Wa_16011163337
+ 	 *
+-	 * Note that the implementation of this workaround is further modified
+-	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
+-	 * FF_MODE2 register will return the wrong value when read. The default
+-	 * value for this register is zero for all fields and there are no bit
+-	 * masks. So instead of doing a RMW we should just write the GS Timer
+-	 * and TDS timer values for Wa_1604555607 and Wa_16011163337.
++	 * Like in gen12_ctx_gt_tuning_init(), read verification is ignored due
++	 * to Wa_1608008084.
+ 	 */
+ 	wa_add(wal,
+ 	       FF_MODE2,
+-	       FF_MODE2_GS_TIMER_MASK | FF_MODE2_TDS_TIMER_MASK,
+-	       FF_MODE2_GS_TIMER_224  | FF_MODE2_TDS_TIMER_128,
++	       FF_MODE2_GS_TIMER_MASK,
++	       FF_MODE2_GS_TIMER_224,
+ 	       0);
+ }
+ 
+@@ -707,12 +732,13 @@ static void dg1_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	/*
+ 	 * Wa_16011163337
+ 	 *
+-	 * Like in tgl_ctx_workarounds_init(), read verification is ignored due
++	 * Like in gen12_ctx_gt_tuning_init(), read verification is ignored due
+ 	 * to Wa_1608008084.
+ 	 */
+ 	wa_add(wal,
+ 	       FF_MODE2,
+-	       FF_MODE2_GS_TIMER_MASK, FF_MODE2_GS_TIMER_224, 0);
++	       FF_MODE2_GS_TIMER_MASK,
++	       FF_MODE2_GS_TIMER_224, 0);
+ }
+ 
+ static void
+-- 
+2.30.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
