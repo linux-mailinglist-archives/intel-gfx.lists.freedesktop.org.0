@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E16AD32B9D9
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 19:28:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE9AD32B9DA
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 19:29:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 329D36E118;
-	Wed,  3 Mar 2021 18:28:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06A326E0EC;
+	Wed,  3 Mar 2021 18:29:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 247326E0EC;
- Wed,  3 Mar 2021 18:28:10 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E37676E0EC;
+ Wed,  3 Mar 2021 18:29:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1D5F5A0091;
- Wed,  3 Mar 2021 18:28:10 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E0B13A0091;
+ Wed,  3 Mar 2021 18:29:11 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jens Axboe" <axboe@kernel.dk>
-Date: Wed, 03 Mar 2021 18:28:10 -0000
-Message-ID: <161479609009.23595.16715732457117884279@emeril.freedesktop.org>
+To: "Han, Zhen" <zhen.han@intel.com>
+Date: Wed, 03 Mar 2021 18:29:11 -0000
+Message-ID: <161479615191.23596.753194886891341572@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <e12dfaac0aa242f4a10d8c5b920a98db@intel.com>
-In-Reply-To: <e12dfaac0aa242f4a10d8c5b920a98db@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgUHVi?=
- =?utf-8?q?lic_i915_CI_shardruns_are_disabled?=
+References: <20210303010728.3605269-1-lucas.demarchi@intel.com>
+In-Reply-To: <20210303010728.3605269-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/4=5D_drm/i915/gen12=3A_Add_recommended?=
+ =?utf-8?q?_hardware_tuning_value_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,86 +41,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0539040427=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0539040427==
-Content-Type: multipart/alternative;
- boundary="===============1757520094440214273=="
-
---===============1757520094440214273==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Public i915 CI shardruns are disabled
-URL   : https://patchwork.freedesktop.org/series/87558/
+Series: series starting with [1/4] drm/i915/gen12: Add recommended hardware tuning value (rev2)
+URL   : https://patchwork.freedesktop.org/series/87560/
 State : failure
 
 == Summary ==
 
-Applying: Public i915 CI shardruns are disabled
+Applying: drm/i915/gen12: Add recommended hardware tuning value
+Applying: drm/i915/icl: add Wa_22010271021 for all gen11
+Applying: drm/i915: Wa_14010826681 does the same as Wa_22010271021
+Applying: drm/i915/dg1: WA GPU hang at RCC
+error: patch failed: drivers/gpu/drm/i915/gt/intel_workarounds.c:739
+error: drivers/gpu/drm/i915/gt/intel_workarounds.c: patch does not apply
+error: Did you hand edit your patch?
+It does not apply to blobs recorded in its index.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
 Using index info to reconstruct a base tree...
-M	include/linux/swap.h
-M	mm/page_io.c
-M	mm/swapfile.c
-Falling back to patching base and 3-way merge...
-No changes -- Patch already applied.
+Patch failed at 0004 drm/i915/dg1: WA GPU hang at RCC
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-
-
---===============1757520094440214273==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Public i915 CI shardruns are disabled</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87558/">https://patchwork.freedesktop.org/series/87558/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-</table>
-
-
-    <p>Applying: Public i915 CI shardruns are disabled<br />
-Using index info to reconstruct a base tree...<br />
-M   include/linux/swap.h<br />
-M   mm/page_io.c<br />
-M   mm/swapfile.c<br />
-Falling back to patching base and 3-way merge...<br />
-No changes -- Patch already applied.</p>
-
-</body>
-</html>
-
---===============1757520094440214273==--
-
---===============0539040427==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0539040427==--
