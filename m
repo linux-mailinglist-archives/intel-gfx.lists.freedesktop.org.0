@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E532F32B9D2
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 19:25:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FCBD32B9BC
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 19:09:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81FF76E17A;
-	Wed,  3 Mar 2021 18:25:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0A9F6E417;
+	Wed,  3 Mar 2021 18:09:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D84326E17A
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 18:25:43 +0000 (UTC)
-IronPort-SDR: TWNPUK1zxo47ZTWeOAreiLtcd+UsHQ4LiJmqaQC0c1mig0rE06dlqbU9tphBtsrhZy6AK2NA5L
- 6hCP27YclLPw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9912"; a="206945445"
-X-IronPort-AV: E=Sophos;i="5.81,220,1610438400"; d="scan'208";a="206945445"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2021 10:25:43 -0800
-IronPort-SDR: +e0jomGTv+vu73uf5CPvNjAhGUC5Xup6ckLA0hXsJ0dgHT+e6n+nw28LM7uUItXabUWuQdPz25
- ofdf8hgYo9Qw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,220,1610438400"; d="scan'208";a="428367657"
-Received: from cooperch-ml.itwn.intel.com ([10.5.253.155])
- by fmsmga004.fm.intel.com with ESMTP; 03 Mar 2021 10:25:41 -0800
-From: Cooper Chiou <cooper.chiou@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  4 Mar 2021 02:09:31 +0800
-Message-Id: <20210303180931.29192-1-cooper.chiou@intel.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200916180745.627-1-cooper.chiou@intel.com>
-References: <20200916180745.627-1-cooper.chiou@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 65D116E9BE;
+ Wed,  3 Mar 2021 18:09:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 60402A8830;
+ Wed,  3 Mar 2021 18:09:47 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4] drm/i915: Enable
- WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Wed, 03 Mar 2021 18:09:47 -0000
+Message-ID: <161479498737.23597.15890095280951321226@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210302204132.12058-1-manasi.d.navare@intel.com>
+In-Reply-To: <20210302204132.12058-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/atomic=3A_Add_the_crtc_to_affected_crtc_only_if_uapi=2E?=
+ =?utf-8?q?enable_=3D_true?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,71 +39,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>,
- William Tseng <william.tseng@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2FQcm9ncmFtTWdzckZvckNvcnJlY3RTbGljZVNwZWNpZmljTW1pb1JlYWRzIGFwcGxpZXMgZm9y
-IEdlbjkgdG8KcmVzb2x2ZSBWUDggaGFyZHdhcmUgZW5jb2Rpbmcgc3lzdGVtIGhhbmcgdXAgb24g
-R1QxIHNrdSBmb3IKQ2hyb21pdW1PUyBwcm9qZWN0cwoKU2xpY2Ugc3BlY2lmaWMgTU1JTyByZWFk
-IGluYWNjdXJhdGUgc28gTUdTUiBuZWVkcyB0byBiZSBwcm9ncmFtbWVkCmFwcHJvcHJpYXRlbHkg
-dG8gZ2V0IGNvcnJlY3QgcmVhZHMgZnJvbSB0aGVzZSBzbGljZXQtcmVsYXRlZCBNTUlPcy4KCkl0
-IGRpY3RhdGVzIHRoYXQgYmVmb3JlIGFueSBNTUlPIHJlYWQgaW50byBTbGljZS9TdWJzbGljZSBz
-cGVjaWZpYwpyZWdpc3RlcnMsIE1DUiBwYWNrZXQgY29udHJvbCByZWdpc3RlcigweEZEQykgbmVl
-ZHMgdG8gYmUgcHJvZ3JhbW1lZAp0byBwb2ludCB0byBhbnkgZW5hYmxlZCBzbGljZS9zdWJzbGlj
-ZSBwYWlyLCBlc3BlY2lhbGx5IEdUMSBmdXNlZCBza3UKc2luY2UgdGhpcyBpc3N1ZSBjYW4gYmUg
-cmVwcm9kdWNlZCBvbiBWUDggaGFyZHdhcmUgZW5jb2RpbmcgdmlhIGZmbXBlZwpvbiBDaHJvbWl1
-bU9TIGRldmljZXMuCldoZW4gZXhpdCBQQzcsIE1HU1Igd2lsbCByZXNldCBzbyB0aGF0IHdlIGhh
-dmUgdG8gc2tpcCBmdXNlZCBzdWJzbGljZSBJRC4KClJlZmVyZW5jZTogSFNEIzE1MDgwNDUwMTgs
-MTQwNTU4Njg0MCwgQlNJRCMwNTc1CgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
-QGxpbnV4LmludGVsLmNvbT4KQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNv
-bT4KQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+CkNjOiBDaHJpcyBXaWxz
-b24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28u
-dXJzdWxpbkBsaW51eC5pbnRlbC5jb20+CkNjOiBXaWxsaWFtIFRzZW5nIDx3aWxsaWFtLnRzZW5n
-QGludGVsLmNvbT4KQ2M6IExlZSBTaGF3biBDIDxzaGF3bi5jLmxlZUBpbnRlbC5jb20+CgpTaWdu
-ZWQtb2ZmLWJ5OiBDb29wZXIgQ2hpb3UgPGNvb3Blci5jaGlvdUBpbnRlbC5jb20+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYyB8IDM3ICsrKysrKysrKysr
-KysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDM3IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwppbmRleCAzYjRhN2RhNjBmMGIuLjU5
-ZDFkMTJjOTU5YiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29y
-a2Fyb3VuZHMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5k
-cy5jCkBAIC04NzgsOSArODc4LDQ2IEBAIGhzd19ndF93b3JrYXJvdW5kc19pbml0KHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1LCBzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWwpCiAJd2Ffd3Jp
-dGVfY2xyKHdhbCwgR0VON19GRl9USFJFQURfTU9ERSwgR0VON19GRl9WU19SRUZfQ05UX0ZGTUUp
-OwogfQogCitzdGF0aWMgdm9pZAorZ2VuOV93YV9pbml0X21jcihzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqaTkxNSwgc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsKQoreworCWNvbnN0IHN0cnVjdCBz
-c2V1X2Rldl9pbmZvICpzc2V1ID0gJmk5MTUtPmd0LmluZm8uc3NldTsKKwl1bnNpZ25lZCBpbnQg
-c2xpY2UsIHN1YnNsaWNlOworCXUzMiBtY3IsIG1jcl9tYXNrOworCisJR0VNX0JVR19PTihJTlRF
-TF9HRU4oaTkxNSkgPCA5KTsKKworCS8qCisJICogV2FQcm9ncmFtTWdzckZvckNvcnJlY3RTbGlj
-ZVNwZWNpZmljTW1pb1JlYWRzOmdsayxrYmwsY21sCisJICogQmVmb3JlIGFueSBNTUlPIHJlYWQg
-aW50byBzbGljZS9zdWJzbGljZSBzcGVjaWZpYyByZWdpc3RlcnMsIE1DUgorCSAqIHBhY2tldCBj
-b250cm9sIHJlZ2lzdGVyIG5lZWRzIHRvIGJlIHByb2dyYW1tZWQgdG8gcG9pbnQgdG8gYW55CisJ
-ICogZW5hYmxlZCBzL3NzIHBhaXIuIE90aGVyd2lzZSwgaW5jb3JyZWN0IHZhbHVlcyB3aWxsIGJl
-IHJldHVybmVkLgorCSAqIFRoaXMgbWVhbnMgZWFjaCBzdWJzZXF1ZW50IE1NSU8gcmVhZCB3aWxs
-IGJlIGZvcndhcmRlZCB0byBhbgorCSAqIHNwZWNpZmljIHMvc3MgY29tYmluYXRpb24sIGJ1dCB0
-aGlzIGlzIE9LIHNpbmNlIHRoZXNlIHJlZ2lzdGVycworCSAqIGFyZSBjb25zaXN0ZW50IGFjcm9z
-cyBzL3NzIGluIGFsbW9zdCBhbGwgY2FzZXMuIEluIHRoZSByYXJlCisJICogb2NjYXNpb25zLCBz
-dWNoIGFzIElOU1RET05FLCB3aGVyZSB0aGlzIHZhbHVlIGlzIGRlcGVuZGVudAorCSAqIG9uIHMv
-c3MgY29tYm8sIHRoZSByZWFkIHNob3VsZCBiZSBkb25lIHdpdGggcmVhZF9zdWJzbGljZV9yZWcu
-CisJICovCisJc2xpY2UgPSBmbHMoc3NldS0+c2xpY2VfbWFzaykgLSAxOworCUdFTV9CVUdfT04o
-c2xpY2UgPj0gQVJSQVlfU0laRShzc2V1LT5zdWJzbGljZV9tYXNrKSk7CisJc3Vic2xpY2UgPSBm
-bHMoaW50ZWxfc3NldV9nZXRfc3Vic2xpY2VzKHNzZXUsIHNsaWNlKSk7CisJR0VNX0JVR19PTigh
-c3Vic2xpY2UpOworCXN1YnNsaWNlLS07CisKKwltY3IgPSBHRU44X01DUl9TTElDRShzbGljZSkg
-fCBHRU44X01DUl9TVUJTTElDRShzdWJzbGljZSk7CisJbWNyX21hc2sgPSBHRU44X01DUl9TTElD
-RV9NQVNLIHwgR0VOOF9NQ1JfU1VCU0xJQ0VfTUFTSzsKKworCWRybV9kYmcoJmk5MTUtPmRybSwg
-Ik1DUiBzbGljZTolZC9zdWJzbGljZTolZCA9ICV4XG4iLCBzbGljZSwgc3Vic2xpY2UsIG1jcik7
-CisKKwl3YV93cml0ZV9jbHJfc2V0KHdhbCwgR0VOOF9NQ1JfU0VMRUNUT1IsIG1jcl9tYXNrLCBt
-Y3IpOworfQorCiBzdGF0aWMgdm9pZAogZ2VuOV9ndF93b3JrYXJvdW5kc19pbml0KHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1LCBzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWwpCiB7CisJLyog
-V2FQcm9ncmFtTWdzckZvckNvcnJlY3RTbGljZVNwZWNpZmljTW1pb1JlYWRzOmdsayxrYmwsY21s
-LGdlbjkgKi8KKwlnZW45X3dhX2luaXRfbWNyKGk5MTUsIHdhbCk7CisKIAkvKiBXYURpc2FibGVL
-aWxsTG9naWM6Ynh0LHNrbCxrYmwgKi8KIAlpZiAoIUlTX0NPRkZFRUxBS0UoaTkxNSkgJiYgIUlT
-X0NPTUVUTEFLRShpOTE1KSkKIAkJd2Ffd3JpdGVfb3Iod2FsLAotLSAKMi4xNy4xCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: drm/atomic: Add the crtc to affected crtc only if uapi.enable = true
+URL   : https://patchwork.freedesktop.org/series/87555/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+bf128dc47afb drm/atomic: Add the crtc to affected crtc only if uapi.enable = true
+-:10: WARNING:TYPO_SPELLING: 'mutiple' may be misspelled - perhaps 'multiple'?
+#10: 
+In case of a modeset where a mode gets split across mutiple CRTCs
+                                                    ^^^^^^^
+
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+the affected CRTCs based on the drm_crtc_mask and indicate the stolen CRTC as
+
+total: 0 errors, 2 warnings, 0 checks, 12 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
