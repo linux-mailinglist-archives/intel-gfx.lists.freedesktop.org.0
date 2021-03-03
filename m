@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2267532BA65
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 21:39:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDCB032BB23
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 22:18:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97CE16E9CA;
-	Wed,  3 Mar 2021 20:38:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F0536E9DA;
+	Wed,  3 Mar 2021 21:18:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3B5B6E9C8;
- Wed,  3 Mar 2021 20:38:53 +0000 (UTC)
-IronPort-SDR: 6TDWgRTOwooP/zjSNI9SvJzLANfQZioflWIKHpqCD6gX9VsQ4N6BTb8PxwHfCS2GKCcaqFnbQ+
- sOMYugYVIJxw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9912"; a="183895946"
-X-IronPort-AV: E=Sophos;i="5.81,220,1610438400"; d="scan'208";a="183895946"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2021 12:38:52 -0800
-IronPort-SDR: pN9K3TDOnshdZh2IEWKSCKRMyI5B0P10V3dcUzjwoMw10HpQL3dw2leZGbigI7rxYdMyoBeFso
- w5dsERZPmk7w==
-X-IronPort-AV: E=Sophos;i="5.81,220,1610438400"; d="scan'208";a="407406107"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2021 12:38:51 -0800
-Date: Wed, 3 Mar 2021 12:44:33 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>
-Message-ID: <20210303204433.GA15819@labuser-Z97X-UD5H>
-References: <20210302204132.12058-1-manasi.d.navare@intel.com>
- <20210303104744.2c064f09@eldfell>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C79D6E9DA
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 21:18:19 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.69.177; 
+Received: from localhost (unverified [78.156.69.177]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 24009775-1500050 for multiple; Wed, 03 Mar 2021 21:18:15 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210303104744.2c064f09@eldfell>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Add the crtc to affected crtc
- only if uapi.enable = true
+In-Reply-To: <20210301193200.1369-10-daniele.ceraolospurio@intel.com>
+References: <20210301193200.1369-1-daniele.ceraolospurio@intel.com>
+ <20210301193200.1369-10-daniele.ceraolospurio@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Date: Wed, 03 Mar 2021 21:18:15 +0000
+Message-ID: <161480629555.25897.8434912809854085938@build.alporthouse.com>
+User-Agent: alot/0.9
+Subject: Re: [Intel-gfx] [PATCH v2 09/16] drm/i915/pxp: Implement PXP irq
+ handler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,101 +41,385 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
- Daniel Stone <daniels@collabora.com>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Huang@freedesktop.org, "Huang, Sean Z" <sean.z.huang@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 03, 2021 at 10:47:44AM +0200, Pekka Paalanen wrote:
-> On Tue,  2 Mar 2021 12:41:32 -0800
-> Manasi Navare <manasi.d.navare@intel.com> wrote:
-> =
+Quoting Daniele Ceraolo Spurio (2021-03-01 19:31:53)
+> From: "Huang, Sean Z" <sean.z.huang@intel.com>
+> 
+> The HW will generate a teardown interrupt when session termination is
+> required, which requires i915 to submit a terminating batch. Once the HW
+> is done with the termination it will generate another interrupt, at
+> which point it is safe to re-create the session.
+> 
+> v2: use struct completion instead of bool (Chris)
+> 
+> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/Makefile                |   1 +
+>  drivers/gpu/drm/i915/gt/intel_gt_irq.c       |   7 +
+>  drivers/gpu/drm/i915/i915_reg.h              |   1 +
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c         |  34 +++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp.h         |  16 ++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     | 151 +++++++++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_irq.h     |  33 ++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_session.c |   9 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_session.h |   1 +
+>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  10 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_types.h   |   8 +
+>  11 files changed, 268 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 8b605f326039..5e9bd34dec38 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -274,6 +274,7 @@ i915-y += i915_perf.o
+>  i915-$(CONFIG_DRM_I915_PXP) += \
+>         pxp/intel_pxp.o \
+>         pxp/intel_pxp_cmd.o \
+> +       pxp/intel_pxp_irq.o \
+>         pxp/intel_pxp_session.o \
+>         pxp/intel_pxp_tee.o
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> index d29126c458ba..0d3585efe2b8 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> @@ -13,6 +13,7 @@
+>  #include "intel_lrc_reg.h"
+>  #include "intel_uncore.h"
+>  #include "intel_rps.h"
+> +#include "pxp/intel_pxp_irq.h"
+>  
+>  static void guc_irq_handler(struct intel_guc *guc, u16 iir)
+>  {
+> @@ -64,6 +65,9 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
+>         if (instance == OTHER_GTPM_INSTANCE)
+>                 return gen11_rps_irq_handler(&gt->rps, iir);
+>  
+> +       if (instance == OTHER_KCR_INSTANCE)
+> +               return intel_pxp_irq_handler(&gt->pxp, iir);
+> +
+>         WARN_ONCE(1, "unhandled other interrupt instance=0x%x, iir=0x%x\n",
+>                   instance, iir);
+>  }
+> @@ -190,6 +194,9 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
+>         intel_uncore_write(uncore, GEN11_GPM_WGBOXPERF_INTR_MASK,  ~0);
+>         intel_uncore_write(uncore, GEN11_GUC_SG_INTR_ENABLE, 0);
+>         intel_uncore_write(uncore, GEN11_GUC_SG_INTR_MASK,  ~0);
+> +
+> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, 0);
+> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~0);
+>  }
+>  
+>  void gen11_gt_irq_postinstall(struct intel_gt *gt)
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index e5dd0203991b..97a6d0c638ec 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7958,6 +7958,7 @@ enum {
+>  /* irq instances for OTHER_CLASS */
+>  #define OTHER_GUC_INSTANCE     0
+>  #define OTHER_GTPM_INSTANCE    1
+> +#define OTHER_KCR_INSTANCE     4
+>  
+>  #define GEN11_INTR_IDENTITY_REG(x)     _MMIO(0x190060 + ((x) * 4))
+>  
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> index cbec9395bde9..0ca1c2c16972 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -2,7 +2,9 @@
+>  /*
+>   * Copyright(c) 2020 Intel Corporation.
+>   */
+> +#include <linux/workqueue.h>
+>  #include "intel_pxp.h"
+> +#include "intel_pxp_irq.h"
+>  #include "intel_pxp_tee.h"
+>  #include "gt/intel_context.h"
+>  #include "i915_drv.h"
+> @@ -67,12 +69,23 @@ void intel_pxp_init(struct intel_pxp *pxp)
+>  
+>         mutex_init(&pxp->mutex);
+>  
+> +       /*
+> +        * we'll use the completion to check if there is a termination pending,
+> +        * so we start it as completed and we reinit it when a termination
+> +        * is triggered.
+> +        */
+> +       init_completion(&pxp->termination);
+> +       complete_all(&pxp->termination);
+> +
+>         kcr_pxp_enable(gt);
+>  
+>         ret = create_vcs_context(pxp);
+>         if (ret)
+>                 goto out_kcr;
+>  
+> +       intel_pxp_irq_init(pxp);
+> +       intel_pxp_irq_enable(pxp);
+> +
+>         ret = intel_pxp_tee_component_init(pxp);
+>         if (ret)
+>                 goto out_context;
+> @@ -94,10 +107,31 @@ void intel_pxp_fini(struct intel_pxp *pxp)
+>         if (!intel_pxp_is_enabled(pxp))
+>                 return;
+>  
+> +       intel_pxp_irq_disable(pxp);
+> +
+>         intel_pxp_tee_component_fini(pxp);
+>  
+>         destroy_vcs_context(pxp);
+>  
+>         kcr_pxp_disable(gt);
+> +}
+>  
+> +int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
+> +{
+> +       int ret;
+> +
+> +       if (!intel_pxp_is_enabled(pxp))
+> +               return 0;
+> +
+> +       ret = wait_for_completion_timeout(&pxp->termination,
+> +                                         msecs_to_jiffies(100));
+> +
+> +       /* the wait returns 0 on failure */
+> +       if (ret)
+> +               ret = 0;
+> +       else
+> +               ret = -ETIMEDOUT;
+> +
+> +       return ret;
+>  }
+> +
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> index 3bede9306481..89cf66c9bef3 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> @@ -9,6 +9,15 @@
+>  #include "gt/intel_gt_types.h"
+>  #include "intel_pxp_types.h"
+>  
+> +#define GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT BIT(1)
+> +#define GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT BIT(2)
+> +#define GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT BIT(3)
+> +
+> +#define GEN12_PXP_INTERRUPTS \
+> +       (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT | \
+> +        GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT | \
+> +        GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
+> +
+>  static inline struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
+>  {
+>         return container_of(pxp, struct intel_gt, pxp);
+> @@ -27,6 +36,8 @@ static inline bool intel_pxp_is_active(const struct intel_pxp *pxp)
+>  #ifdef CONFIG_DRM_I915_PXP
+>  void intel_pxp_init(struct intel_pxp *pxp);
+>  void intel_pxp_fini(struct intel_pxp *pxp);
+> +
+> +int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp);
+>  #else
+>  static inline void intel_pxp_init(struct intel_pxp *pxp)
+>  {
+> @@ -35,6 +46,11 @@ static inline void intel_pxp_init(struct intel_pxp *pxp)
+>  static inline void intel_pxp_fini(struct intel_pxp *pxp)
+>  {
+>  }
+> +
+> +static inline int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
+> +{
+> +       return 0;
+> +}
+>  #endif
+>  
+>  #endif /* __INTEL_PXP_H__ */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> new file mode 100644
+> index 000000000000..40115bf0b6bb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> @@ -0,0 +1,151 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020 Intel Corporation.
+> + */
+> +#include <linux/workqueue.h>
+> +#include "intel_pxp.h"
+> +#include "intel_pxp_irq.h"
+> +#include "intel_pxp_session.h"
+> +#include "gt/intel_gt_irq.h"
+> +#include "i915_irq.h"
+> +#include "i915_reg.h"
+> +
+> +static int pxp_terminate(struct intel_pxp *pxp)
+> +{
+> +       int ret = 0;
+> +
+> +       mutex_lock(&pxp->mutex);
+> +
+> +       pxp->global_state_attacked = true;
+> +
+> +       ret = intel_pxp_arb_terminate_session_with_global_terminate(pxp);
+> +
+> +       mutex_unlock(&pxp->mutex);
+> +
+> +       return ret;
+> +}
+> +
+> +static int pxp_terminate_complete(struct intel_pxp *pxp)
+> +{
+> +       int ret = 0;
+> +
+> +       mutex_lock(&pxp->mutex);
+> +
+> +       if (pxp->global_state_attacked) {
+> +               pxp->global_state_attacked = false;
+> +
+> +               /* Re-create the arb session after teardown handle complete */
+> +               ret = intel_pxp_create_arb_session(pxp);
+> +       }
 
-> > In case of a modeset where a mode gets split across mutiple CRTCs
-> > in the driver specific implementation (bigjoiner in i915) we wrongly co=
-unt
-> > the affected CRTCs based on the drm_crtc_mask and indicate the stolen C=
-RTC as
-> > an affected CRTC in atomic_check_only().
-> > This triggers a warning since affected CRTCs doent match requested CRTC.
-> > =
+	/* Re-create the arb session after teardown handle complete */
+	if (fetch_and_zero(&pxp->global_state_attacked))
+		ret = intel_pxp_create_arb_session(pxp);
 
-> > To fix this in such bigjoiner configurations, we should only
-> > increment affected crtcs if that CRTC is enabled in UAPI not
-> > if it is just used internally in the driver to split the mode.
-> =
+> +
+> +       mutex_unlock(&pxp->mutex);
+> +
+> +       complete_all(&pxp->termination);
+> +
+> +       return ret;
+> +}
+> +
+> +static void intel_pxp_irq_work(struct work_struct *work)
+> +{
+> +       struct intel_pxp *pxp = container_of(work, typeof(*pxp), irq_work);
+> +       struct intel_gt *gt = pxp_to_gt(pxp);
+> +       u32 events = 0;
+> +
+> +       spin_lock_irq(&gt->irq_lock);
+> +       events = fetch_and_zero(&pxp->current_events);
+> +       spin_unlock_irq(&gt->irq_lock);
+> +
+> +       if (!events)
+> +               return;
+> +
+> +       if (events & (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT |
+> +                     GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
+> +               pxp_terminate(pxp);
+> +
+> +       if (events & GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
+> +               pxp_terminate_complete(pxp);
+> +
+> +       /*
+> +        * we expect the terminate complete to arrive quickly after emitting
+> +        * the terminate, so check back on it
+> +        */
+> +       if (pxp->irq_enabled)
+> +               queue_work(system_unbound_wq, &pxp->irq_work);
 
-> Hi,
-> =
+pxp->current_events is only updated in the interrupt handler, so running
+the work before the irq gains nothing.
 
-> I think that makes sense to me. Stealing CRTCs that are not currently
-> used by the userspace (display server) should be ok, as long as that
-> is completely invisible to userspace: meaning that it does not cause
-> userspace to unexpectedly e.g. receive or miss per-crtc atomic
-> completion events.
+> +}
+> +
+> +/**
+> + * intel_pxp_irq_handler - Handles PXP interrupts.
+> + * @pxp: pointer to pxp struct
+> + * @iir: interrupt vector
+> + */
+> +void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir)
+> +{
+> +       struct intel_gt *gt = pxp_to_gt(pxp);
+> +
+> +       if (GEM_WARN_ON(!intel_pxp_is_enabled(pxp)))
+> +               return;
+> +
+> +       lockdep_assert_held(&gt->irq_lock);
+> +
+> +       if (unlikely(!iir))
+> +               return;
+> +
+> +       /* immediately mark PXP as inactive on termination */
+> +       if (iir & (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT |
+> +                  GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
+> +               intel_pxp_mark_termination_in_progress(pxp);
+> +
+> +       pxp->current_events |= iir;
+> +       queue_work(system_unbound_wq, &pxp->irq_work);
+> +}
+> +
+> +static inline void __pxp_set_interrupts(struct intel_gt *gt, u32 interrupts)
+> +{
+> +       struct intel_uncore *uncore = gt->uncore;
+> +       const u32 mask = interrupts << 16;
+> +
+> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, mask);
+> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~mask);
+> +}
+> +
+> +static inline void pxp_irq_reset(struct intel_gt *gt)
+> +{
+> +       spin_lock_irq(&gt->irq_lock);
+> +       gen11_gt_reset_one_iir(gt, 0, GEN11_KCR);
+> +       spin_unlock_irq(&gt->irq_lock);
+> +}
+> +
+> +void intel_pxp_irq_init(struct intel_pxp *pxp)
+> +{
+> +       INIT_WORK(&pxp->irq_work, intel_pxp_irq_work);
+> +}
+> +
+> +void intel_pxp_irq_enable(struct intel_pxp *pxp)
+> +{
+> +       struct intel_gt *gt = pxp_to_gt(pxp);
+> +
+> +       spin_lock_irq(&gt->irq_lock);
+> +       if (!pxp->irq_enabled) {
+> +               WARN_ON_ONCE(gen11_gt_reset_one_iir(gt, 0, GEN11_KCR));
+> +               __pxp_set_interrupts(gt, GEN12_PXP_INTERRUPTS);
+> +               pxp->irq_enabled = true;
+> +       }
+> +       spin_unlock_irq(&gt->irq_lock);
+> +}
+> +
+> +void intel_pxp_irq_disable(struct intel_pxp *pxp)
+> +{
+> +       struct intel_gt *gt = pxp_to_gt(pxp);
+> +
+> +       spin_lock_irq(&gt->irq_lock);
+> +
+> +       pxp->irq_enabled = false;
+> +       __pxp_set_interrupts(gt, 0);
+> +
+> +       spin_unlock_irq(&gt->irq_lock);
+> +       intel_synchronize_irq(gt->i915);
+> +
+> +       pxp_irq_reset(gt);
+> +
+> +       flush_work(&pxp->irq_work);
 
-Yes since we are only doing atomic_check_only() here, the stolen
-crtc is completely invisible to the userspace and hence that is =
+As I read it, if the session was in play at the time of irq_disable and
+there were inflight interrupts then the state of the session at the end
+of this function is undefined.
 
-indicated by uapi.enable which is not true for this stolen
-crtc. However if allow modeset flag set, then it will do a full
-modeset and indicate the uapi.enable for this stolen crtc as well
-since that cannot be used for other modeset requested by userspace.
+Should the session be terminated prior to disabling irq (that would seem
+appropriate for the driver flow)? Certainly at the point of
+unregistering the driver from userspace, all user sessions should cease.
 
-> =
-
-> Can that also be asserted somehow, or does this already do that?
-
-Not clear what you want the assertion for? Could you elaborate
-
-Manasi
-
-> =
-
-> =
-
-> Thanks,
-> pq
-> =
-
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Cc: Simon Ser <contact@emersion.fr>
-> > Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-> > Cc: Daniel Stone <daniels@collabora.com>
-> > Cc: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_atomic.c | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> > index 5b4547e0f775..d7acd6bbd97e 100644
-> > --- a/drivers/gpu/drm/drm_atomic.c
-> > +++ b/drivers/gpu/drm/drm_atomic.c
-> > @@ -1358,8 +1358,10 @@ int drm_atomic_check_only(struct drm_atomic_stat=
-e *state)
-> >  		}
-> >  	}
-> >  =
-
-> > -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> > -		affected_crtc |=3D drm_crtc_mask(crtc);
-> > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
-> > +		if (new_crtc_state->enable)
-> > +			affected_crtc |=3D drm_crtc_mask(crtc);
-> > +	}
-> >  =
-
-> >  	/*
-> >  	 * For commits that allow modesets drivers can add other CRTCs to the
-> =
-
-
-
+Is an assert like GEM_BUG_ON(!completion_done(&pxp->termination)); valid
+here?
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
