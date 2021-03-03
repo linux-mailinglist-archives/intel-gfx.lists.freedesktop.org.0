@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE9AD32B9DA
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 19:29:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E427432B9E0
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 19:30:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06A326E0EC;
-	Wed,  3 Mar 2021 18:29:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 382C26E0EC;
+	Wed,  3 Mar 2021 18:30:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E37676E0EC;
- Wed,  3 Mar 2021 18:29:11 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 533606E0EC;
+ Wed,  3 Mar 2021 18:30:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E0B13A0091;
- Wed,  3 Mar 2021 18:29:11 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 508A1A47DB;
+ Wed,  3 Mar 2021 18:30:50 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Han, Zhen" <zhen.han@intel.com>
-Date: Wed, 03 Mar 2021 18:29:11 -0000
-Message-ID: <161479615191.23596.753194886891341572@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Wed, 03 Mar 2021 18:30:50 -0000
+Message-ID: <161479625032.23596.12198056940429234320@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210303010728.3605269-1-lucas.demarchi@intel.com>
-In-Reply-To: <20210303010728.3605269-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/4=5D_drm/i915/gen12=3A_Add_recommended?=
- =?utf-8?q?_hardware_tuning_value_=28rev2=29?=
+References: <20210302204132.12058-1-manasi.d.navare@intel.com>
+In-Reply-To: <20210302204132.12058-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/atomic=3A_Add_the_crtc_to_affected_crtc_only_if_uapi=2Eenable_?=
+ =?utf-8?q?=3D_true?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,36 +41,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0970231508=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0970231508==
+Content-Type: multipart/alternative;
+ boundary="===============2586027107555608471=="
+
+--===============2586027107555608471==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: series starting with [1/4] drm/i915/gen12: Add recommended hardware tuning value (rev2)
-URL   : https://patchwork.freedesktop.org/series/87560/
+Series: drm/atomic: Add the crtc to affected crtc only if uapi.enable = true
+URL   : https://patchwork.freedesktop.org/series/87555/
 State : failure
 
 == Summary ==
 
-Applying: drm/i915/gen12: Add recommended hardware tuning value
-Applying: drm/i915/icl: add Wa_22010271021 for all gen11
-Applying: drm/i915: Wa_14010826681 does the same as Wa_22010271021
-Applying: drm/i915/dg1: WA GPU hang at RCC
-error: patch failed: drivers/gpu/drm/i915/gt/intel_workarounds.c:739
-error: drivers/gpu/drm/i915/gt/intel_workarounds.c: patch does not apply
-error: Did you hand edit your patch?
-It does not apply to blobs recorded in its index.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Using index info to reconstruct a base tree...
-Patch failed at 0004 drm/i915/dg1: WA GPU hang at RCC
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+CI Bug Log - changes from CI_DRM_9824 -> Patchwork_19747
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_19747 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_19747, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19747:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_wait@busy@all:
+    - fi-bsw-nick:        [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-bsw-nick/igt@gem_wait@busy@all.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/fi-bsw-nick/igt@gem_wait@busy@all.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [DMESG-WARN][3] ([i915#1982]) -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19747 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][5] ([i915#1372]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+
+
+Participating hosts (42 -> 37)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9824 -> Patchwork_19747
+
+  CI-20190529: 20190529
+  CI_DRM_9824: 6b21aa2a30637b56282297d09a9fbfd1954cc7b0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6020: 8382d9e87bba39ecc6fa879b2491e28c7fb2e3c7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19747: bf128dc47afbdf9d6d0d1760e3d45098c1f52ee5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bf128dc47afb drm/atomic: Add the crtc to affected crtc only if uapi.enable = true
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/index.html
+
+--===============2586027107555608471==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/atomic: Add the crtc to affected crtc only if uapi.enable = true</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87555/">https://patchwork.freedesktop.org/series/87555/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9824 -&gt; Patchwork_19747</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_19747 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_19747, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19747:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@gem_wait@busy@all:<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-bsw-nick/igt@gem_wait@busy@all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/fi-bsw-nick/igt@gem_wait@busy@all.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19747 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_chamelium@dp-crc-fast:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9824/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19747/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (42 -&gt; 37)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9824 -&gt; Patchwork_19747</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9824: 6b21aa2a30637b56282297d09a9fbfd1954cc7b0 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6020: 8382d9e87bba39ecc6fa879b2491e28c7fb2e3c7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19747: bf128dc47afbdf9d6d0d1760e3d45098c1f52ee5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>bf128dc47afb drm/atomic: Add the crtc to affected crtc only if uapi.enable = true</p>
+
+</body>
+</html>
+
+--===============2586027107555608471==--
+
+--===============0970231508==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0970231508==--
