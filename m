@@ -1,34 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDCB032BB23
-	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 22:18:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 455BB32BBA3
+	for <lists+intel-gfx@lfdr.de>; Wed,  3 Mar 2021 22:28:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F0536E9DA;
-	Wed,  3 Mar 2021 21:18:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91C466E424;
+	Wed,  3 Mar 2021 21:28:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C79D6E9DA
- for <intel-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 21:18:19 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 24009775-1500050 for multiple; Wed, 03 Mar 2021 21:18:15 +0000
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBD556E424
+ for <intel-gfx@lists.freedesktop.org>; Wed,  3 Mar 2021 21:28:06 +0000 (UTC)
+IronPort-SDR: wVjfesqWDaYyvN32UKAk+krfMrjmxIaw5fXjK5bEU3Z/qkY/KsoLIINhHQDvkz9WqVd78pk2N6
+ LqIDKF9UemcQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9912"; a="251330345"
+X-IronPort-AV: E=Sophos;i="5.81,220,1610438400"; d="scan'208";a="251330345"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2021 13:28:06 -0800
+IronPort-SDR: 7qIU3dcSSHBbv5wVeCUqKKfHhwqF/T/b4Ga11AU6aQLJ0QpzbpDRweOypZMtofjHmbN3biMb6R
+ oncs6wTUVWNA==
+X-IronPort-AV: E=Sophos;i="5.81,220,1610438400"; d="scan'208";a="407419915"
+Received: from orsosgc001.ra.intel.com ([10.23.184.150])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2021 13:28:05 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Lionel G Landwerlin <lionel.g.landwerlin@intel.com>
+Date: Wed,  3 Mar 2021 13:28:00 -0800
+Message-Id: <20210303212800.43787-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20210301193200.1369-10-daniele.ceraolospurio@intel.com>
-References: <20210301193200.1369-1-daniele.ceraolospurio@intel.com>
- <20210301193200.1369-10-daniele.ceraolospurio@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Wed, 03 Mar 2021 21:18:15 +0000
-Message-ID: <161480629555.25897.8434912809854085938@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH v2 09/16] drm/i915/pxp: Implement PXP irq
- handler
+Subject: [Intel-gfx] [PATCH] i915/query: Correlate engine and cpu timestamps
+ with better accuracy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,385 +47,297 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Huang@freedesktop.org, "Huang, Sean Z" <sean.z.huang@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniele Ceraolo Spurio (2021-03-01 19:31:53)
-> From: "Huang, Sean Z" <sean.z.huang@intel.com>
-> 
-> The HW will generate a teardown interrupt when session termination is
-> required, which requires i915 to submit a terminating batch. Once the HW
-> is done with the termination it will generate another interrupt, at
-> which point it is safe to re-create the session.
-> 
-> v2: use struct completion instead of bool (Chris)
-> 
-> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/Makefile                |   1 +
->  drivers/gpu/drm/i915/gt/intel_gt_irq.c       |   7 +
->  drivers/gpu/drm/i915/i915_reg.h              |   1 +
->  drivers/gpu/drm/i915/pxp/intel_pxp.c         |  34 +++++
->  drivers/gpu/drm/i915/pxp/intel_pxp.h         |  16 ++
->  drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     | 151 +++++++++++++++++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_irq.h     |  33 ++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_session.c |   9 +-
->  drivers/gpu/drm/i915/pxp/intel_pxp_session.h |   1 +
->  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  10 +-
->  drivers/gpu/drm/i915/pxp/intel_pxp_types.h   |   8 +
->  11 files changed, 268 insertions(+), 3 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
-> 
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 8b605f326039..5e9bd34dec38 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -274,6 +274,7 @@ i915-y += i915_perf.o
->  i915-$(CONFIG_DRM_I915_PXP) += \
->         pxp/intel_pxp.o \
->         pxp/intel_pxp_cmd.o \
-> +       pxp/intel_pxp_irq.o \
->         pxp/intel_pxp_session.o \
->         pxp/intel_pxp_tee.o
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> index d29126c458ba..0d3585efe2b8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-> @@ -13,6 +13,7 @@
->  #include "intel_lrc_reg.h"
->  #include "intel_uncore.h"
->  #include "intel_rps.h"
-> +#include "pxp/intel_pxp_irq.h"
->  
->  static void guc_irq_handler(struct intel_guc *guc, u16 iir)
->  {
-> @@ -64,6 +65,9 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
->         if (instance == OTHER_GTPM_INSTANCE)
->                 return gen11_rps_irq_handler(&gt->rps, iir);
->  
-> +       if (instance == OTHER_KCR_INSTANCE)
-> +               return intel_pxp_irq_handler(&gt->pxp, iir);
-> +
->         WARN_ONCE(1, "unhandled other interrupt instance=0x%x, iir=0x%x\n",
->                   instance, iir);
->  }
-> @@ -190,6 +194,9 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
->         intel_uncore_write(uncore, GEN11_GPM_WGBOXPERF_INTR_MASK,  ~0);
->         intel_uncore_write(uncore, GEN11_GUC_SG_INTR_ENABLE, 0);
->         intel_uncore_write(uncore, GEN11_GUC_SG_INTR_MASK,  ~0);
-> +
-> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, 0);
-> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~0);
->  }
->  
->  void gen11_gt_irq_postinstall(struct intel_gt *gt)
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index e5dd0203991b..97a6d0c638ec 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7958,6 +7958,7 @@ enum {
->  /* irq instances for OTHER_CLASS */
->  #define OTHER_GUC_INSTANCE     0
->  #define OTHER_GTPM_INSTANCE    1
-> +#define OTHER_KCR_INSTANCE     4
->  
->  #define GEN11_INTR_IDENTITY_REG(x)     _MMIO(0x190060 + ((x) * 4))
->  
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> index cbec9395bde9..0ca1c2c16972 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> @@ -2,7 +2,9 @@
->  /*
->   * Copyright(c) 2020 Intel Corporation.
->   */
-> +#include <linux/workqueue.h>
->  #include "intel_pxp.h"
-> +#include "intel_pxp_irq.h"
->  #include "intel_pxp_tee.h"
->  #include "gt/intel_context.h"
->  #include "i915_drv.h"
-> @@ -67,12 +69,23 @@ void intel_pxp_init(struct intel_pxp *pxp)
->  
->         mutex_init(&pxp->mutex);
->  
-> +       /*
-> +        * we'll use the completion to check if there is a termination pending,
-> +        * so we start it as completed and we reinit it when a termination
-> +        * is triggered.
-> +        */
-> +       init_completion(&pxp->termination);
-> +       complete_all(&pxp->termination);
-> +
->         kcr_pxp_enable(gt);
->  
->         ret = create_vcs_context(pxp);
->         if (ret)
->                 goto out_kcr;
->  
-> +       intel_pxp_irq_init(pxp);
-> +       intel_pxp_irq_enable(pxp);
-> +
->         ret = intel_pxp_tee_component_init(pxp);
->         if (ret)
->                 goto out_context;
-> @@ -94,10 +107,31 @@ void intel_pxp_fini(struct intel_pxp *pxp)
->         if (!intel_pxp_is_enabled(pxp))
->                 return;
->  
-> +       intel_pxp_irq_disable(pxp);
-> +
->         intel_pxp_tee_component_fini(pxp);
->  
->         destroy_vcs_context(pxp);
->  
->         kcr_pxp_disable(gt);
-> +}
->  
-> +int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
-> +{
-> +       int ret;
-> +
-> +       if (!intel_pxp_is_enabled(pxp))
-> +               return 0;
-> +
-> +       ret = wait_for_completion_timeout(&pxp->termination,
-> +                                         msecs_to_jiffies(100));
-> +
-> +       /* the wait returns 0 on failure */
-> +       if (ret)
-> +               ret = 0;
-> +       else
-> +               ret = -ETIMEDOUT;
-> +
-> +       return ret;
->  }
-> +
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> index 3bede9306481..89cf66c9bef3 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-> @@ -9,6 +9,15 @@
->  #include "gt/intel_gt_types.h"
->  #include "intel_pxp_types.h"
->  
-> +#define GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT BIT(1)
-> +#define GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT BIT(2)
-> +#define GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT BIT(3)
-> +
-> +#define GEN12_PXP_INTERRUPTS \
-> +       (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT | \
-> +        GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT | \
-> +        GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
-> +
->  static inline struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
->  {
->         return container_of(pxp, struct intel_gt, pxp);
-> @@ -27,6 +36,8 @@ static inline bool intel_pxp_is_active(const struct intel_pxp *pxp)
->  #ifdef CONFIG_DRM_I915_PXP
->  void intel_pxp_init(struct intel_pxp *pxp);
->  void intel_pxp_fini(struct intel_pxp *pxp);
-> +
-> +int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp);
->  #else
->  static inline void intel_pxp_init(struct intel_pxp *pxp)
->  {
-> @@ -35,6 +46,11 @@ static inline void intel_pxp_init(struct intel_pxp *pxp)
->  static inline void intel_pxp_fini(struct intel_pxp *pxp)
->  {
->  }
-> +
-> +static inline int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
-> +{
-> +       return 0;
-> +}
->  #endif
->  
->  #endif /* __INTEL_PXP_H__ */
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> new file mode 100644
-> index 000000000000..40115bf0b6bb
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
-> @@ -0,0 +1,151 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright(c) 2020 Intel Corporation.
-> + */
-> +#include <linux/workqueue.h>
-> +#include "intel_pxp.h"
-> +#include "intel_pxp_irq.h"
-> +#include "intel_pxp_session.h"
-> +#include "gt/intel_gt_irq.h"
-> +#include "i915_irq.h"
-> +#include "i915_reg.h"
-> +
-> +static int pxp_terminate(struct intel_pxp *pxp)
-> +{
-> +       int ret = 0;
-> +
-> +       mutex_lock(&pxp->mutex);
-> +
-> +       pxp->global_state_attacked = true;
-> +
-> +       ret = intel_pxp_arb_terminate_session_with_global_terminate(pxp);
-> +
-> +       mutex_unlock(&pxp->mutex);
-> +
-> +       return ret;
-> +}
-> +
-> +static int pxp_terminate_complete(struct intel_pxp *pxp)
-> +{
-> +       int ret = 0;
-> +
-> +       mutex_lock(&pxp->mutex);
-> +
-> +       if (pxp->global_state_attacked) {
-> +               pxp->global_state_attacked = false;
-> +
-> +               /* Re-create the arb session after teardown handle complete */
-> +               ret = intel_pxp_create_arb_session(pxp);
-> +       }
+Perf measurements rely on CPU and engine timestamps to correlate
+events of interest across these time domains. Current mechanisms get
+these timestamps separately and the calculated delta between these
+timestamps lack enough accuracy.
 
-	/* Re-create the arb session after teardown handle complete */
-	if (fetch_and_zero(&pxp->global_state_attacked))
-		ret = intel_pxp_create_arb_session(pxp);
+To improve the accuracy of these time measurements to within a few us,
+add a query that returns the engine and cpu timestamps captured as
+close to each other as possible.
 
-> +
-> +       mutex_unlock(&pxp->mutex);
-> +
-> +       complete_all(&pxp->termination);
-> +
-> +       return ret;
-> +}
-> +
-> +static void intel_pxp_irq_work(struct work_struct *work)
-> +{
-> +       struct intel_pxp *pxp = container_of(work, typeof(*pxp), irq_work);
-> +       struct intel_gt *gt = pxp_to_gt(pxp);
-> +       u32 events = 0;
-> +
-> +       spin_lock_irq(&gt->irq_lock);
-> +       events = fetch_and_zero(&pxp->current_events);
-> +       spin_unlock_irq(&gt->irq_lock);
-> +
-> +       if (!events)
-> +               return;
-> +
-> +       if (events & (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT |
-> +                     GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
-> +               pxp_terminate(pxp);
-> +
-> +       if (events & GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
-> +               pxp_terminate_complete(pxp);
-> +
-> +       /*
-> +        * we expect the terminate complete to arrive quickly after emitting
-> +        * the terminate, so check back on it
-> +        */
-> +       if (pxp->irq_enabled)
-> +               queue_work(system_unbound_wq, &pxp->irq_work);
+v2: (Tvrtko)
+- document clock reference used
+- return cpu timestamp always
+- capture cpu time just before lower dword of cs timestamp
 
-pxp->current_events is only updated in the interrupt handler, so running
-the work before the irq gains nothing.
+v3: (Chris)
+- use uncore-rpm
+- use __query_cs_timestamp helper
 
-> +}
-> +
-> +/**
-> + * intel_pxp_irq_handler - Handles PXP interrupts.
-> + * @pxp: pointer to pxp struct
-> + * @iir: interrupt vector
-> + */
-> +void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir)
-> +{
-> +       struct intel_gt *gt = pxp_to_gt(pxp);
-> +
-> +       if (GEM_WARN_ON(!intel_pxp_is_enabled(pxp)))
-> +               return;
-> +
-> +       lockdep_assert_held(&gt->irq_lock);
-> +
-> +       if (unlikely(!iir))
-> +               return;
-> +
-> +       /* immediately mark PXP as inactive on termination */
-> +       if (iir & (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT |
-> +                  GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
-> +               intel_pxp_mark_termination_in_progress(pxp);
-> +
-> +       pxp->current_events |= iir;
-> +       queue_work(system_unbound_wq, &pxp->irq_work);
-> +}
-> +
-> +static inline void __pxp_set_interrupts(struct intel_gt *gt, u32 interrupts)
-> +{
-> +       struct intel_uncore *uncore = gt->uncore;
-> +       const u32 mask = interrupts << 16;
-> +
-> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, mask);
-> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~mask);
-> +}
-> +
-> +static inline void pxp_irq_reset(struct intel_gt *gt)
-> +{
-> +       spin_lock_irq(&gt->irq_lock);
-> +       gen11_gt_reset_one_iir(gt, 0, GEN11_KCR);
-> +       spin_unlock_irq(&gt->irq_lock);
-> +}
-> +
-> +void intel_pxp_irq_init(struct intel_pxp *pxp)
-> +{
-> +       INIT_WORK(&pxp->irq_work, intel_pxp_irq_work);
-> +}
-> +
-> +void intel_pxp_irq_enable(struct intel_pxp *pxp)
-> +{
-> +       struct intel_gt *gt = pxp_to_gt(pxp);
-> +
-> +       spin_lock_irq(&gt->irq_lock);
-> +       if (!pxp->irq_enabled) {
-> +               WARN_ON_ONCE(gen11_gt_reset_one_iir(gt, 0, GEN11_KCR));
-> +               __pxp_set_interrupts(gt, GEN12_PXP_INTERRUPTS);
-> +               pxp->irq_enabled = true;
-> +       }
-> +       spin_unlock_irq(&gt->irq_lock);
-> +}
-> +
-> +void intel_pxp_irq_disable(struct intel_pxp *pxp)
-> +{
-> +       struct intel_gt *gt = pxp_to_gt(pxp);
-> +
-> +       spin_lock_irq(&gt->irq_lock);
-> +
-> +       pxp->irq_enabled = false;
-> +       __pxp_set_interrupts(gt, 0);
-> +
-> +       spin_unlock_irq(&gt->irq_lock);
-> +       intel_synchronize_irq(gt->i915);
-> +
-> +       pxp_irq_reset(gt);
-> +
-> +       flush_work(&pxp->irq_work);
+v4: (Lionel)
+- Kernel perf subsytem allows users to specify the clock id to be used
+  in perf_event_open. This clock id is used by the perf subsystem to
+  return the appropriate cpu timestamp in perf events. Similarly, let
+  the user pass the clockid to this query so that cpu timestamp
+  corresponds to the clock id requested.
 
-As I read it, if the session was in play at the time of irq_disable and
-there were inflight interrupts then the state of the session at the end
-of this function is undefined.
+v5: (Tvrtko)
+- Use normal ktime accessors instead of fast versions
+- Add more uApi documentation
 
-Should the session be terminated prior to disabling irq (that would seem
-appropriate for the driver flow)? Certainly at the point of
-unregistering the driver from userspace, all user sessions should cease.
+v6: (Lionel)
+- Move switch out of spinlock
 
-Is an assert like GEM_BUG_ON(!completion_done(&pxp->termination)); valid
-here?
--Chris
+v7: (Chris)
+- cs_timestamp is a misnomer, use cs_cycles instead
+- return the cs cycle frequency as well in the query
+
+v8:
+- Add platform and engine specific checks
+
+v9: (Lionel)
+- Return 2 cpu timestamps in the query - captured before and after the
+  register read
+
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/i915/i915_query.c | 144 ++++++++++++++++++++++++++++++
+ include/uapi/drm/i915_drm.h       |  47 ++++++++++
+ 2 files changed, 191 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+index fed337ad7b68..acca22ee6014 100644
+--- a/drivers/gpu/drm/i915/i915_query.c
++++ b/drivers/gpu/drm/i915/i915_query.c
+@@ -6,6 +6,8 @@
+ 
+ #include <linux/nospec.h>
+ 
++#include "gt/intel_engine_pm.h"
++#include "gt/intel_engine_user.h"
+ #include "i915_drv.h"
+ #include "i915_perf.h"
+ #include "i915_query.h"
+@@ -90,6 +92,147 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
+ 	return total_length;
+ }
+ 
++typedef u64 (*__ktime_func_t)(void);
++static __ktime_func_t __clock_id_to_func(clockid_t clk_id)
++{
++	/*
++	 * Use logic same as the perf subsystem to allow user to select the
++	 * reference clock id to be used for timestamps.
++	 */
++	switch (clk_id) {
++	case CLOCK_MONOTONIC:
++		return &ktime_get_ns;
++	case CLOCK_MONOTONIC_RAW:
++		return &ktime_get_raw_ns;
++	case CLOCK_REALTIME:
++		return &ktime_get_real_ns;
++	case CLOCK_BOOTTIME:
++		return &ktime_get_boottime_ns;
++	case CLOCK_TAI:
++		return &ktime_get_clocktai_ns;
++	default:
++		return NULL;
++	}
++}
++
++static inline int
++__read_timestamps(struct intel_uncore *uncore,
++		  i915_reg_t lower_reg,
++		  i915_reg_t upper_reg,
++		  u64 *cs_ts,
++		  u64 *cpu_ts,
++		  __ktime_func_t cpu_clock)
++{
++	u32 upper, lower, old_upper, loop = 0;
++
++	upper = intel_uncore_read_fw(uncore, upper_reg);
++	do {
++		cpu_ts[0] = cpu_clock();
++		lower = intel_uncore_read_fw(uncore, lower_reg);
++		cpu_ts[1] = cpu_clock();
++		old_upper = upper;
++		upper = intel_uncore_read_fw(uncore, upper_reg);
++	} while (upper != old_upper && loop++ < 2);
++
++	*cs_ts = (u64)upper << 32 | lower;
++
++	return 0;
++}
++
++static int
++__query_cs_cycles(struct intel_engine_cs *engine,
++		  u64 *cs_ts, u64 *cpu_ts,
++		  __ktime_func_t cpu_clock)
++{
++	struct intel_uncore *uncore = engine->uncore;
++	enum forcewake_domains fw_domains;
++	u32 base = engine->mmio_base;
++	intel_wakeref_t wakeref;
++	int ret;
++
++	fw_domains = intel_uncore_forcewake_for_reg(uncore,
++						    RING_TIMESTAMP(base),
++						    FW_REG_READ);
++
++	with_intel_runtime_pm(uncore->rpm, wakeref) {
++		spin_lock_irq(&uncore->lock);
++		intel_uncore_forcewake_get__locked(uncore, fw_domains);
++
++		ret = __read_timestamps(uncore,
++					RING_TIMESTAMP(base),
++					RING_TIMESTAMP_UDW(base),
++					cs_ts,
++					cpu_ts,
++					cpu_clock);
++
++		intel_uncore_forcewake_put__locked(uncore, fw_domains);
++		spin_unlock_irq(&uncore->lock);
++	}
++
++	return ret;
++}
++
++static int
++query_cs_cycles(struct drm_i915_private *i915,
++		struct drm_i915_query_item *query_item)
++{
++	struct drm_i915_query_cs_cycles __user *query_ptr;
++	struct drm_i915_query_cs_cycles query;
++	struct intel_engine_cs *engine;
++	__ktime_func_t cpu_clock;
++	int ret;
++
++	if (INTEL_GEN(i915) < 6)
++		return -ENODEV;
++
++	query_ptr = u64_to_user_ptr(query_item->data_ptr);
++	ret = copy_query_item(&query, sizeof(query), sizeof(query), query_item);
++	if (ret != 0)
++		return ret;
++
++	if (query.flags)
++		return -EINVAL;
++
++	if (query.rsvd)
++		return -EINVAL;
++
++	cpu_clock = __clock_id_to_func(query.clockid);
++	if (!cpu_clock)
++		return -EINVAL;
++
++	engine = intel_engine_lookup_user(i915,
++					  query.engine.engine_class,
++					  query.engine.engine_instance);
++	if (!engine)
++		return -EINVAL;
++
++	if (IS_GEN(i915, 6) &&
++	    query.engine.engine_class != I915_ENGINE_CLASS_RENDER)
++		return -ENODEV;
++
++	query.cs_frequency = engine->gt->clock_frequency;
++	ret = __query_cs_cycles(engine,
++				&query.cs_cycles,
++				query.cpu_timestamp,
++				cpu_clock);
++	if (ret)
++		return ret;
++
++	if (put_user(query.cs_frequency, &query_ptr->cs_frequency))
++		return -EFAULT;
++
++	if (put_user(query.cpu_timestamp[0], &query_ptr->cpu_timestamp[0]))
++		return -EFAULT;
++
++	if (put_user(query.cpu_timestamp[1], &query_ptr->cpu_timestamp[1]))
++		return -EFAULT;
++
++	if (put_user(query.cs_cycles, &query_ptr->cs_cycles))
++		return -EFAULT;
++
++	return sizeof(query);
++}
++
+ static int
+ query_engine_info(struct drm_i915_private *i915,
+ 		  struct drm_i915_query_item *query_item)
+@@ -424,6 +567,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+ 	query_topology_info,
+ 	query_engine_info,
+ 	query_perf_config,
++	query_cs_cycles,
+ };
+ 
+ int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 1987e2ea79a3..abcc479e2be1 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -2176,6 +2176,10 @@ struct drm_i915_query_item {
+ #define DRM_I915_QUERY_TOPOLOGY_INFO    1
+ #define DRM_I915_QUERY_ENGINE_INFO	2
+ #define DRM_I915_QUERY_PERF_CONFIG      3
++	/**
++	 * Query Command Streamer timestamp register.
++	 */
++#define DRM_I915_QUERY_CS_CYCLES	4
+ /* Must be kept compact -- no holes and well documented */
+ 
+ 	/*
+@@ -2309,6 +2313,49 @@ struct drm_i915_engine_info {
+ 	__u64 rsvd1[4];
+ };
+ 
++/**
++ * struct drm_i915_query_cs_cycles
++ *
++ * The query returns the command streamer cycles and the frequency that can be
++ * used to calculate the command streamer timestamp. In addition the query
++ * returns the cpu timestamp that indicates when the command streamer cycle
++ * count was captured.
++ */
++struct drm_i915_query_cs_cycles {
++	/** Engine for which command streamer cycles is queried. */
++	struct i915_engine_class_instance engine;
++
++	/** Must be zero. */
++	__u32 flags;
++
++	/**
++	 * Command streamer cycles as read from the command streamer
++	 * register at 0x358 offset.
++	 */
++	__u64 cs_cycles;
++
++	/** Frequency of the cs cycles in Hz. */
++	__u64 cs_frequency;
++
++	/**
++	 * CPU timestamp in nanoseconds. cpu_timestamp[0] is captured before
++	 * reading the cs_cycles register and cpu_timestamp[1] is captured after
++	 * reading the register.
++	 **/
++	__u64 cpu_timestamp[2];
++
++	/**
++	 * Reference clock id for CPU timestamp. For definition, see
++	 * clock_gettime(2) and perf_event_open(2). Supported clock ids are
++	 * CLOCK_MONOTONIC, CLOCK_MONOTONIC_RAW, CLOCK_REALTIME, CLOCK_BOOTTIME,
++	 * CLOCK_TAI.
++	 */
++	__s32 clockid;
++
++	/** Must be zero. */
++	__u32 rsvd;
++};
++
+ /**
+  * struct drm_i915_query_engine_info
+  *
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
