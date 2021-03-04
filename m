@@ -2,43 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08EB32CE86
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Mar 2021 09:33:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A09632CEA6
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Mar 2021 09:42:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 396596E49F;
-	Thu,  4 Mar 2021 08:33:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D40B289CF3;
+	Thu,  4 Mar 2021 08:42:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D09716EA01
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Mar 2021 08:33:20 +0000 (UTC)
-IronPort-SDR: JlhXF7Z2f6VqTQWqu0ufb70v+obpeg7aSVxoWVw3axq+JAWOIVkaJrSLxEvtWUbXPJXQhEdgWP
- wWXfvCXNI7ag==
-X-IronPort-AV: E=McAfee;i="6000,8403,9912"; a="167269245"
-X-IronPort-AV: E=Sophos;i="5.81,222,1610438400"; d="scan'208";a="167269245"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2021 00:33:19 -0800
-IronPort-SDR: ga70ziVcAP0b+oWpVvMVRQ2i9HIEpvxb3w5cEz6TnkrbQhndrVr0LTofzTgeLUtETtvPQ3nkLE
- yUazx1k4qHng==
-X-IronPort-AV: E=Sophos;i="5.81,222,1610438400"; d="scan'208";a="407675510"
-Received: from kinzelba-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.44.66])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2021 00:33:15 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Shankar\, Uma" <uma.shankar@intel.com>,
- "intel-gfx\@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-In-Reply-To: <9fc4a8dd74894b9fb18282223193d362@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1614682842.git.jani.nikula@intel.com>
- <95cbe1c9d45edf3e3ec252e49fb49055def98155.1614682842.git.jani.nikula@intel.com>
- <9fc4a8dd74894b9fb18282223193d362@intel.com>
-Date: Thu, 04 Mar 2021 10:33:11 +0200
-Message-ID: <87r1kvnws8.fsf@intel.com>
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com
+ [IPv6:2a00:1450:4864:20::129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E1F889CF3;
+ Thu,  4 Mar 2021 08:42:28 +0000 (UTC)
+Received: by mail-lf1-x129.google.com with SMTP id z11so41771814lfb.9;
+ Thu, 04 Mar 2021 00:42:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=mCUvXtDbpYOmVLpGyxtriKsie7qQBaDkkpJAR4b0GYI=;
+ b=AKxBQiYTyrirpvLqGRQN0cJ3rA8sXCmI7M+wf8I3B+W0S6C+h01pH+r8eZ3pYJTOsR
+ xnoCuc03cIYxCzb2X3gr9x5dGkHesoN47XELfqDlPqaYV4qNteqcdfFSUdYLgd9CYzYF
+ EGELzfc6R2LRTT+Era2ZoPQVWIhnrEcOg5jnCF1Qz2iw1IBUX5SN5FZrAGVKiIHZHsFc
+ +aSFvrm/AT1gd7E5je7UbznVLs0atsu+dRGPJCMLUtikx9OHa9ul3QLDHhcc+V1U34zN
+ m43zbLxvMESWspeFFzR1PiFJvkNdJwru3smjiV6k9IMGoaot/CdxZaKTyr8bo64qV7in
+ VQ/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=mCUvXtDbpYOmVLpGyxtriKsie7qQBaDkkpJAR4b0GYI=;
+ b=H0OzTViyf2rgzUlbZi2cJE8p9o05O4ngd3XLBCpYjjaeY9nHSpDCE/X8xxGsN8eizD
+ 88m6jCeqdIpN68ux4V51zV2ZRHzRfQnSduYvmED+FzcEmPCvOy5dqt4rhI4Cwb/GEZ1P
+ +v+jdYi1aAF4IbB6/Y3HC4yVUA9tGcQ/jbnYeb3YfXNvKrQfGTl8X/79fZFydhsRf/wE
+ GjzVds+iy/K2cqnh+j/p8z3qBhC6KMMwyFrmvfGy/dhkuhezBtZuHDb//6anwDAsO4e4
+ Vwr7kWSjQBhcu/WtSzPuKrAS/vwjyH1slT6EruwedfIIImhEa6hqMowReX2zQ9TV2Ep9
+ +lYg==
+X-Gm-Message-State: AOAM531f3c0KV3b7QLMmfbsPIhS1MP73g4rf1X+JpwoesN9wxo8ZRE/1
+ g7OQO57b7zN49fNnCKc4NmM=
+X-Google-Smtp-Source: ABdhPJy0KC4m50xJdjI43gjSGC2IrbFgY9DBzNv50vRzlaKoo8/7uxdNuGQB474G5AcPIhCpteiEug==
+X-Received: by 2002:a05:6512:31d0:: with SMTP id
+ j16mr1694036lfe.467.1614847346826; 
+ Thu, 04 Mar 2021 00:42:26 -0800 (PST)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id d11sm1077200lfs.291.2021.03.04.00.42.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 04 Mar 2021 00:42:26 -0800 (PST)
+Date: Thu, 4 Mar 2021 10:42:23 +0200
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: "Navare, Manasi" <manasi.d.navare@intel.com>
+Message-ID: <20210304104223.6b3490bc@eldfell>
+In-Reply-To: <20210303204433.GA15819@labuser-Z97X-UD5H>
+References: <20210302204132.12058-1-manasi.d.navare@intel.com>
+ <20210303104744.2c064f09@eldfell>
+ <20210303204433.GA15819@labuser-Z97X-UD5H>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 1/4] drm/i915/mso: add splitter state
- readout for platforms that support it
+Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Add the crtc to affected crtc
+ only if uapi.enable = true
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,48 +69,151 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Varide, Nischal" <nischal.varide@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
+ Daniel Stone <daniels@collabora.com>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1588408002=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 03 Mar 2021, "Shankar, Uma" <uma.shankar@intel.com> wrote:
-> Looks Good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+--===============1588408002==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/eKQv8/pHSZT3FZUwsOzSPdK"; protocol="application/pgp-signature"
 
-Thanks for the review, pushed the series.
+--Sig_/eKQv8/pHSZT3FZUwsOzSPdK
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
->> b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index 1a76e1d9de7a..9f1945018712 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1166,6 +1166,13 @@ struct intel_crtc_state {
->>  		u8 pipeline_full;
->>  		u16 flipline, vmin, vmax;
->>  	} vrr;
->> +
->> +	/* Stream Splitter for eDP MSO */
->> +	struct {
->> +		bool enable;
->> +		u8 link_count;
->> +		u8 pixel_overlap;
->> +	} splitter;
->>  };
+On Wed, 3 Mar 2021 12:44:33 -0800
+"Navare, Manasi" <manasi.d.navare@intel.com> wrote:
 
-Due to certain amount of urgency, I decided to push the series with this
-naming in crtc state. I think it's accurate now, and workable for legacy
-DSI as well. However, I'm not hung up on it, and I'm open to renaming
-when the time comes to convert legacy DSI to using crtc state for this
-stuff.
+> On Wed, Mar 03, 2021 at 10:47:44AM +0200, Pekka Paalanen wrote:
+> > On Tue,  2 Mar 2021 12:41:32 -0800
+> > Manasi Navare <manasi.d.navare@intel.com> wrote:
+> >  =20
+> > > In case of a modeset where a mode gets split across mutiple CRTCs
+> > > in the driver specific implementation (bigjoiner in i915) we wrongly =
+count
+> > > the affected CRTCs based on the drm_crtc_mask and indicate the stolen=
+ CRTC as
+> > > an affected CRTC in atomic_check_only().
+> > > This triggers a warning since affected CRTCs doent match requested CR=
+TC.
+> > >=20
+> > > To fix this in such bigjoiner configurations, we should only
+> > > increment affected crtcs if that CRTC is enabled in UAPI not
+> > > if it is just used internally in the driver to split the mode. =20
+> >=20
+> > Hi,
+> >=20
+> > I think that makes sense to me. Stealing CRTCs that are not currently
+> > used by the userspace (display server) should be ok, as long as that
+> > is completely invisible to userspace: meaning that it does not cause
+> > userspace to unexpectedly e.g. receive or miss per-crtc atomic
+> > completion events. =20
+>=20
+> Yes since we are only doing atomic_check_only() here, the stolen
 
-BR,
-Jani.
+But the real not-test-only commit will follow if this test-only commit
+succeeds, and keeping the guarantees for the real commit are important.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> crtc is completely invisible to the userspace and hence that is=20
+> indicated by uapi.enable which is not true for this stolen
+> crtc. However if allow modeset flag set, then it will do a full
+> modeset and indicate the uapi.enable for this stolen crtc as well
+> since that cannot be used for other modeset requested by userspace.
+>=20
+> >=20
+> > Can that also be asserted somehow, or does this already do that? =20
+>=20
+> Not clear what you want the assertion for? Could you elaborate
+
+As assertion that when the real atomic commit happens and then
+completion events are fired, they match exactly the affected crtcs mask.
+
+I understand this may be off-topic for this particular patch, but since
+we are discussing the topic, such checks would be really nice. I'm
+curious if such checks already exist.
+
+
+Thanks,
+pq
+
+>=20
+> Manasi
+>=20
+> >=20
+> >=20
+> > Thanks,
+> > pq
+> >  =20
+> > > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> > > Cc: Simon Ser <contact@emersion.fr>
+> > > Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+> > > Cc: Daniel Stone <daniels@collabora.com>
+> > > Cc: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: dri-devel@lists.freedesktop.org
+> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_atomic.c | 6 ++++--
+> > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomi=
+c.c
+> > > index 5b4547e0f775..d7acd6bbd97e 100644
+> > > --- a/drivers/gpu/drm/drm_atomic.c
+> > > +++ b/drivers/gpu/drm/drm_atomic.c
+> > > @@ -1358,8 +1358,10 @@ int drm_atomic_check_only(struct drm_atomic_st=
+ate *state)
+> > >  		}
+> > >  	}
+> > > =20
+> > > -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
+> > > -		affected_crtc |=3D drm_crtc_mask(crtc);
+> > > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > > +		if (new_crtc_state->enable)
+> > > +			affected_crtc |=3D drm_crtc_mask(crtc);
+> > > +	}
+> > > =20
+> > >  	/*
+> > >  	 * For commits that allow modesets drivers can add other CRTCs to t=
+he =20
+> >  =20
+>=20
+>=20
+
+
+--Sig_/eKQv8/pHSZT3FZUwsOzSPdK
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmBAnW8ACgkQI1/ltBGq
+qqcFCw/9G1+ZHHKwPAT0dabHK9NIdG4MjGQMwmZMc9gNBca3eUt7CgNS88sTFmY1
+Zfej90sWSmYtpo6tlrFrQtwbxQ8x3XV6DEaEEfyh/JQzDLrunvFQ2kaK1hAyrd0P
+aOuzwXKGYZjwsdNJsKsv6GjdviYT+qtRJFLwYSl9AnJcgxg16wrqEiwlF1Rt3p15
+cDpLK46FQsUvUBrU2xAv/7kg25+M4hAEPYnS2aTEi3AFMs2sJDpYhZEyIyjqsjng
+OM3b8f4vp97125B+ixqMCY3RayBVZuItpO/ELidpu7bfHkfBl9ZscDXY8QxVcfHm
+r2m9D1bpHRCEKWkoeyTV0ac9MnhXD0lrsBPsB//UAku15Fblcros4KZc10DoTz79
+qBlJBb0kCp54BQyIVFu/n9R7IQ7lYXK9I/t2BTxjExJEaoE81MVAefQ2T3ErgzZX
+FyyDtWbHTgDYDlpBnB5gFnQS/AlAFcGqKzHMytXqVj4y9xg6PWdP3u0fuspey+uy
+A4btQbEnkJTIxBctswLk0yRNYxq3EAF54Vsl2NUhjGFpIcFGZ+JxpuyvGBkGF7aU
+5ycC52AGo1s3uM8Bg7nyfivK3flrQwvogLjmBMD8MYxbC+8lMASXyX5TfTseFmpT
+fTyA1ggWSpKqYEpCRTe5yC0a/9XoJptO4vdfLUdNShJ1O9bV3j4=
+=yCWz
+-----END PGP SIGNATURE-----
+
+--Sig_/eKQv8/pHSZT3FZUwsOzSPdK--
+
+--===============1588408002==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1588408002==--
