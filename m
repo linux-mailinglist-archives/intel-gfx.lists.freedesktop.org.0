@@ -1,55 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 214CB32D0A5
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Mar 2021 11:27:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DBBA32D103
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Mar 2021 11:42:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA7BE6EA16;
-	Thu,  4 Mar 2021 10:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A864D6EA15;
+	Thu,  4 Mar 2021 10:42:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF32B6EA16
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Mar 2021 10:27:40 +0000 (UTC)
-IronPort-SDR: XRFDa+zxU1XsSTbAtYB0I9FFXNhczPiP3bldL11rhzzw6f6S7mv4asimccMn3pklCE2qu9kwYd
- oxMMYw8jo00w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9912"; a="207095284"
-X-IronPort-AV: E=Sophos;i="5.81,222,1610438400"; 
- d="scan'208,217";a="207095284"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2021 02:27:40 -0800
-IronPort-SDR: zMdZhMoeutGsQ9yxtir2m6qiwJa4hYv6aMAu8pW/tvEyytTcEyNJHI6WrlUzScOC9ljpMfR5AY
- bGLBb36YEuSg==
-X-IronPort-AV: E=Sophos;i="5.81,222,1610438400"; 
- d="scan'208,217";a="407720735"
-Received: from mtelelek-mobl.ger.corp.intel.com (HELO [10.249.41.65])
- ([10.249.41.65])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2021 02:27:38 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210303212800.43787-1-umesh.nerlige.ramappa@intel.com>
- <161481659467.25897.2525788939236038076@build.alporthouse.com>
- <81d17b5e-5b32-69b9-67bb-00da8469d88a@intel.com>
- <161484828635.28586.889038613448637986@build.alporthouse.com>
- <1e257505-83a5-2d4a-5f0b-7d0fc939cb9b@intel.com>
- <161485169130.28586.8322916604277505617@build.alporthouse.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <d74a97a5-d5a7-aacb-ec5b-4067a91b673b@intel.com>
-Date: Thu, 4 Mar 2021 12:27:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-MIME-Version: 1.0
-In-Reply-To: <161485169130.28586.8322916604277505617@build.alporthouse.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 241E86EA15
+ for <intel-gfx@lists.freedesktop.org>; Thu,  4 Mar 2021 10:42:19 +0000 (UTC)
+IronPort-SDR: /nCqIcjyktQn3tTTgJUXOjoCiEYsIh9QHo9algvCrSwFQ3J1JFfoLOuNBFlr7URhOf8LRg7283
+ 6aKj370Vi3Xg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9912"; a="184980121"
+X-IronPort-AV: E=Sophos;i="5.81,222,1610438400"; d="scan'208";a="184980121"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2021 02:42:18 -0800
+IronPort-SDR: AROwak1gvn8I8KEPc2NdmfbpyDJx4kTMqAexFfFQClW2+7TXWnDOH0vQMWD/Jw07mGiw3SdTNI
+ CjSjuoFcIOJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,222,1610438400"; d="scan'208";a="384396804"
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138])
+ by orsmga002.jf.intel.com with ESMTP; 04 Mar 2021 02:42:17 -0800
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Thu, 4 Mar 2021 10:42:17 +0000
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2106.013;
+ Thu, 4 Mar 2021 10:42:17 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 1/6] drm/i915: Call primary encoder's
+ .get_config() from MST .get_config()
+Thread-Index: AQHXCrtRfugPN1esGUqR6NZBPgW4DKpzsGtw
+Date: Thu, 4 Mar 2021 10:42:16 +0000
+Message-ID: <249c116ad21f43ff997adcd05669e380@intel.com>
+References: <20210224144214.24803-1-ville.syrjala@linux.intel.com>
+ <20210224144214.24803-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210224144214.24803-2-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] i915/query: Correlate engine and cpu
- timestamps with better accuracy
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.253.164]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Call primary encoder's
+ .get_config() from MST .get_config()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,163 +63,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0439469155=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============0439469155==
-Content-Type: multipart/alternative;
- boundary="------------1513490E046159DA44C43228"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------1513490E046159DA44C43228
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 04/03/2021 11:54, Chris Wilson wrote:
->>>> Actually if we want the best accuracy we can just deal with the lower dword.
->>> Accuracy of what? The lower dword read perhaps, or the accuracy of the
->>> sample point for the combined reads for the timestamp, which is closer
->>> to an external observer (cpu_clock() implies reference to an external
->>> observer).
->>>
->>> The two clock samples are not even necessarily closely related due to the
->>> nmi adjustments. If you wanted an unadjusted elapsed time for the read
->>> you can use local_clock() then return the chosen cpu_clock() before plus
->>> the elapsed delta from around the read as the estimated error.
->>>
->>> cpu_ts[1] = local_clock();
->>> cpu_ts[0] = cpu_clock();
->>> lower = intel_uncore_read_fw(uncore, lower_reg);
->>> cpu_ts[1] = local_clock() - cpu_ts[1];
->>> -Chris
->> Thanks,
->>
->>
->> I meant the accuracy of having 2 samples GPU/CPU as close as possible.
->>
->> Avoiding to account another register read in there is nice.
->>
->>
->> My testing was also mostly done with CLOCK_MONOTONIC_RAW which doesn't
->> seem to be adjusted like CLOCK_MONOTONIC so maybe that why I didn't see
->> the issue.
-> _RAW is still adjusted for skews, just not coupled into the ntp feedback.
-> That is less obvious than the other clocks, and why it's preferred for
-> comparing against other HW sources. But two reads of _RAW are only
-> monotonic, not necessarily on the same time base. local_clock() is
-> tsc/arat, so counting the CPU cycles between the two reads with the
-> frequency (at least on x86) held constant (and arat should be frequency
-> invariant).
->
-> If we want much better accuracy, we are supposed to use cyclecounter_t
-> and the system_device_crosststamp.
-> -Chris
-
-Thanks for the pointers.
-
-I think people are mostly trying to map what's coming out of OA or 
-queries from the various command streamers back to perf/ftrace.
-
-As far I know perf will only let you select a clockid.
-
-
-So maybe cyclecounter_t is not that useful atm.
-
-
--Lionel
-
-
---------------1513490E046159DA44C43228
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 04/03/2021 11:54, Chris Wilson
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:161485169130.28586.8322916604277505617@build.alporthouse.com">
-      <blockquote type="cite" style="color: #007cff;">
-        <blockquote type="cite" style="color: #007cff;">
-          <blockquote type="cite" style="color: #007cff;">
-            <pre class="moz-quote-pre" wrap="">Actually if we want the best accuracy we can just deal with the lower dword.
-</pre>
-          </blockquote>
-          <pre class="moz-quote-pre" wrap="">Accuracy of what? The lower dword read perhaps, or the accuracy of the
-sample point for the combined reads for the timestamp, which is closer
-to an external observer (cpu_clock() implies reference to an external
-observer).
-
-The two clock samples are not even necessarily closely related due to the
-nmi adjustments. If you wanted an unadjusted elapsed time for the read
-you can use local_clock() then return the chosen cpu_clock() before plus
-the elapsed delta from around the read as the estimated error.
-
-cpu_ts[1] = local_clock();
-cpu_ts[0] = cpu_clock();
-lower = intel_uncore_read_fw(uncore, lower_reg);
-cpu_ts[1] = local_clock() - cpu_ts[1];
--Chris
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">Thanks,
-
-
-I meant the accuracy of having 2 samples GPU/CPU as close as possible.
-
-Avoiding to account another register read in there is nice.
-
-
-My testing was also mostly done with CLOCK_MONOTONIC_RAW which doesn't 
-seem to be adjusted like CLOCK_MONOTONIC so maybe that why I didn't see 
-the issue.
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">_RAW is still adjusted for skews, just not coupled into the ntp feedback.
-That is less obvious than the other clocks, and why it's preferred for
-comparing against other HW sources. But two reads of _RAW are only
-monotonic, not necessarily on the same time base. local_clock() is
-tsc/arat, so counting the CPU cycles between the two reads with the
-frequency (at least on x86) held constant (and arat should be frequency
-invariant).
-
-If we want much better accuracy, we are supposed to use cyclecounter_t
-and the system_device_crosststamp.
--Chris
-</pre>
-    </blockquote>
-    <p>Thanks for the pointers.</p>
-    <p>I think people are mostly trying to map what's coming out of OA
-      or queries from the various command streamers back to perf/ftrace.</p>
-    <p>As far I know perf will only let you select a clockid.</p>
-    <p><br>
-    </p>
-    <p>So maybe cyclecounter_t is not that useful atm.</p>
-    <p><br>
-    </p>
-    <p>-Lionel<br>
-    </p>
-  </body>
-</html>
-
---------------1513490E046159DA44C43228--
-
---===============0439469155==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0439469155==--
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
+eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIFZpbGxlDQo+IFN5
+cmphbGENCj4gU2VudDogV2VkbmVzZGF5LCBGZWJydWFyeSAyNCwgMjAyMSA0OjQyIFBNDQo+IFRv
+OiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFN1YmplY3Q6IFtJbnRlbC1nZnhd
+IFtQQVRDSCAxLzZdIGRybS9pOTE1OiBDYWxsIHByaW1hcnkgZW5jb2RlcidzDQo+IC5nZXRfY29u
+ZmlnKCkgZnJvbSBNU1QgLmdldF9jb25maWcoKQ0KPiANCj4gRnJvbTogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gDQo+IFN0b3AgYXNzdW1pbmcgaW50
+ZWxfZGRpX2dldF9jb25maWcoKSBpcyBhbGwgd2UgbmVlZCBmcm9tIHRoZSBwcmltYXJ5DQo+IGVu
+Y29kZXIsIGFuZCBpbnN0ZWFkIGNhbGwgaXQgdmlhIHRoZSAuZ2V0X2NvbmZpZygpIHZmdW5jLiBU
+aGlzIHdpbGwgYWxsb3cNCj4gY3VzdG9taXplZCAuZ2V0X2NvbmZpZygpIGZvciB0aGUgcHJpbWFy
+eSwgd2hpY2ggSSBwbGFuIHRvIHVzZSB0byBoYW5kbGUgdGhlDQo+IGRpZmZlcmVuY2VzIGluIHRo
+ZSBjbG9jayByZWFkb3V0IGJldHdlZW4gdmFyaW91cyBwbGF0Zm9ybXMuDQo+IA0KPiBTaWduZWQt
+b2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+DQpSZXZpZXdlZC1ieTogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xhQGludGVsLmNvbT4NCg0KPiAt
+LS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMgfCAyICst
+DQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5j
+DQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0KPiBpbmRl
+eCA4ZTMxNjE0NmI2ZDEuLjkwNjg2MGFkOGViOCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jDQo+IEBAIC01OTEsNyArNTkxLDcgQEAgc3RhdGlj
+IHZvaWQgaW50ZWxfZHBfbXN0X2VuY19nZXRfY29uZmlnKHN0cnVjdA0KPiBpbnRlbF9lbmNvZGVy
+ICplbmNvZGVyLA0KPiAgCXN0cnVjdCBpbnRlbF9kcF9tc3RfZW5jb2RlciAqaW50ZWxfbXN0ID0g
+ZW5jX3RvX21zdChlbmNvZGVyKTsNCj4gIAlzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdf
+cG9ydCA9IGludGVsX21zdC0+cHJpbWFyeTsNCj4gDQo+IC0JaW50ZWxfZGRpX2dldF9jb25maWco
+JmRpZ19wb3J0LT5iYXNlLCBwaXBlX2NvbmZpZyk7DQo+ICsJZGlnX3BvcnQtPmJhc2UuZ2V0X2Nv
+bmZpZygmZGlnX3BvcnQtPmJhc2UsIHBpcGVfY29uZmlnKTsNCj4gIH0NCj4gDQo+ICBzdGF0aWMg
+Ym9vbCBpbnRlbF9kcF9tc3RfaW5pdGlhbF9mYXN0c2V0X2NoZWNrKHN0cnVjdCBpbnRlbF9lbmNv
+ZGVyDQo+ICplbmNvZGVyLA0KPiAtLQ0KPiAyLjI2LjINCj4gDQo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QN
+Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
