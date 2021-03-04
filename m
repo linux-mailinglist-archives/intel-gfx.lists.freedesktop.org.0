@@ -1,39 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E26B532D026
-	for <lists+intel-gfx@lfdr.de>; Thu,  4 Mar 2021 10:54:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C557D32D041
+	for <lists+intel-gfx@lfdr.de>; Thu,  4 Mar 2021 10:59:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 321ED6EA15;
-	Thu,  4 Mar 2021 09:54:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4E3B6EA16;
+	Thu,  4 Mar 2021 09:59:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 789CD6EA15
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Mar 2021 09:54:55 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 24009255-1500050 for multiple; Thu, 04 Mar 2021 09:54:53 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 751786EA15;
+ Thu,  4 Mar 2021 09:59:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6B51FA0BA8;
+ Thu,  4 Mar 2021 09:59:23 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <1e257505-83a5-2d4a-5f0b-7d0fc939cb9b@intel.com>
-References: <20210303212800.43787-1-umesh.nerlige.ramappa@intel.com>
- <161481659467.25897.2525788939236038076@build.alporthouse.com>
- <81d17b5e-5b32-69b9-67bb-00da8469d88a@intel.com>
- <161484828635.28586.889038613448637986@build.alporthouse.com>
- <1e257505-83a5-2d4a-5f0b-7d0fc939cb9b@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-Date: Thu, 04 Mar 2021 09:54:51 +0000
-Message-ID: <161485169130.28586.8322916604277505617@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] i915/query: Correlate engine and cpu
- timestamps with better accuracy
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Thu, 04 Mar 2021 09:59:23 -0000
+Message-ID: <161485196340.18685.5203414924633374419@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210304085608.21372-1-anshuman.gupta@intel.com>
+In-Reply-To: <20210304085608.21372-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSERD?=
+ =?utf-8?q?P_2=2E2_MST_fixes_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,174 +38,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0521381481=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lionel Landwerlin (2021-03-04 09:45:47)
-> On 04/03/2021 10:58, Chris Wilson wrote:
-> > Quoting Lionel Landwerlin (2021-03-04 08:28:59)
-> >> On 04/03/2021 02:09, Chris Wilson wrote:
-> >>> Quoting Umesh Nerlige Ramappa (2021-03-03 21:28:00)
-> >>>> Perf measurements rely on CPU and engine timestamps to correlate
-> >>>> events of interest across these time domains. Current mechanisms get
-> >>>> these timestamps separately and the calculated delta between these
-> >>>> timestamps lack enough accuracy.
-> >>>>
-> >>>> To improve the accuracy of these time measurements to within a few us,
-> >>>> add a query that returns the engine and cpu timestamps captured as
-> >>>> close to each other as possible.
-> >>>>
-> >>>> v2: (Tvrtko)
-> >>>> - document clock reference used
-> >>>> - return cpu timestamp always
-> >>>> - capture cpu time just before lower dword of cs timestamp
-> >>>>
-> >>>> v3: (Chris)
-> >>>> - use uncore-rpm
-> >>>> - use __query_cs_timestamp helper
-> >>>>
-> >>>> v4: (Lionel)
-> >>>> - Kernel perf subsytem allows users to specify the clock id to be used
-> >>>>     in perf_event_open. This clock id is used by the perf subsystem to
-> >>>>     return the appropriate cpu timestamp in perf events. Similarly, let
-> >>>>     the user pass the clockid to this query so that cpu timestamp
-> >>>>     corresponds to the clock id requested.
-> >>>>
-> >>>> v5: (Tvrtko)
-> >>>> - Use normal ktime accessors instead of fast versions
-> >>>> - Add more uApi documentation
-> >>>>
-> >>>> v6: (Lionel)
-> >>>> - Move switch out of spinlock
-> >>>>
-> >>>> v7: (Chris)
-> >>>> - cs_timestamp is a misnomer, use cs_cycles instead
-> >>>> - return the cs cycle frequency as well in the query
-> >>>>
-> >>>> v8:
-> >>>> - Add platform and engine specific checks
-> >>>>
-> >>>> v9: (Lionel)
-> >>>> - Return 2 cpu timestamps in the query - captured before and after the
-> >>>>     register read
-> >>>>
-> >>>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> >>>> ---
-> >>>>    drivers/gpu/drm/i915/i915_query.c | 144 ++++++++++++++++++++++++++++++
-> >>>>    include/uapi/drm/i915_drm.h       |  47 ++++++++++
-> >>>>    2 files changed, 191 insertions(+)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> >>>> index fed337ad7b68..acca22ee6014 100644
-> >>>> --- a/drivers/gpu/drm/i915/i915_query.c
-> >>>> +++ b/drivers/gpu/drm/i915/i915_query.c
-> >>>> @@ -6,6 +6,8 @@
-> >>>>    
-> >>>>    #include <linux/nospec.h>
-> >>>>    
-> >>>> +#include "gt/intel_engine_pm.h"
-> >>>> +#include "gt/intel_engine_user.h"
-> >>>>    #include "i915_drv.h"
-> >>>>    #include "i915_perf.h"
-> >>>>    #include "i915_query.h"
-> >>>> @@ -90,6 +92,147 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
-> >>>>           return total_length;
-> >>>>    }
-> >>>>    
-> >>>> +typedef u64 (*__ktime_func_t)(void);
-> >>>> +static __ktime_func_t __clock_id_to_func(clockid_t clk_id)
-> >>>> +{
-> >>>> +       /*
-> >>>> +        * Use logic same as the perf subsystem to allow user to select the
-> >>>> +        * reference clock id to be used for timestamps.
-> >>>> +        */
-> >>>> +       switch (clk_id) {
-> >>>> +       case CLOCK_MONOTONIC:
-> >>>> +               return &ktime_get_ns;
-> >>>> +       case CLOCK_MONOTONIC_RAW:
-> >>>> +               return &ktime_get_raw_ns;
-> >>>> +       case CLOCK_REALTIME:
-> >>>> +               return &ktime_get_real_ns;
-> >>>> +       case CLOCK_BOOTTIME:
-> >>>> +               return &ktime_get_boottime_ns;
-> >>>> +       case CLOCK_TAI:
-> >>>> +               return &ktime_get_clocktai_ns;
-> >>>> +       default:
-> >>>> +               return NULL;
-> >>>> +       }
-> >>>> +}
-> >>>> +
-> >>>> +static inline int
-> >>>> +__read_timestamps(struct intel_uncore *uncore,
-> >>>> +                 i915_reg_t lower_reg,
-> >>>> +                 i915_reg_t upper_reg,
-> >>>> +                 u64 *cs_ts,
-> >>>> +                 u64 *cpu_ts,
-> >>>> +                 __ktime_func_t cpu_clock)
-> >>>> +{
-> >>>> +       u32 upper, lower, old_upper, loop = 0;
-> >>>> +
-> >>>> +       upper = intel_uncore_read_fw(uncore, upper_reg);
-> >>>> +       do {
-> >>>> +               cpu_ts[0] = cpu_clock();
-> >>>> +               lower = intel_uncore_read_fw(uncore, lower_reg);
-> >>>> +               cpu_ts[1] = cpu_clock();
-> >>>> +               old_upper = upper;
-> >>>> +               upper = intel_uncore_read_fw(uncore, upper_reg);
-> >>> Both register reads comprise the timestamp returned to userspace, so
-> >>> presumably you want cpu_ts[] to wrap both.
-> >>>
-> >>>          do {
-> >>>                  old_upper = upper;
-> >>>
-> >>>                  cpu_ts[0] = cpu_clock();
-> >>>                  lower = intel_uncore_read_fw(uncore, lower_reg);
-> >>>                  upper = intel_uncore_read_fw(uncore, upper_reg);
-> >>>                  cpu_ts[1] = cpu_clock();
-> >>>          } while (upper != old_upper && loop++ < 2);
-> >> Actually if we want the best accuracy we can just deal with the lower dword.
-> > Accuracy of what? The lower dword read perhaps, or the accuracy of the
-> > sample point for the combined reads for the timestamp, which is closer
-> > to an external observer (cpu_clock() implies reference to an external
-> > observer).
-> >
-> > The two clock samples are not even necessarily closely related due to the
-> > nmi adjustments. If you wanted an unadjusted elapsed time for the read
-> > you can use local_clock() then return the chosen cpu_clock() before plus
-> > the elapsed delta from around the read as the estimated error.
-> >
-> > cpu_ts[1] = local_clock();
-> > cpu_ts[0] = cpu_clock();
-> > lower = intel_uncore_read_fw(uncore, lower_reg);
-> > cpu_ts[1] = local_clock() - cpu_ts[1];
-> > -Chris
-> 
-> Thanks,
-> 
-> 
-> I meant the accuracy of having 2 samples GPU/CPU as close as possible.
-> 
-> Avoiding to account another register read in there is nice.
-> 
-> 
-> My testing was also mostly done with CLOCK_MONOTONIC_RAW which doesn't 
-> seem to be adjusted like CLOCK_MONOTONIC so maybe that why I didn't see 
-> the issue.
+--===============0521381481==
+Content-Type: multipart/alternative;
+ boundary="===============0509304486238409908=="
 
-_RAW is still adjusted for skews, just not coupled into the ntp feedback.
-That is less obvious than the other clocks, and why it's preferred for
-comparing against other HW sources. But two reads of _RAW are only
-monotonic, not necessarily on the same time base. local_clock() is
-tsc/arat, so counting the CPU cycles between the two reads with the
-frequency (at least on x86) held constant (and arat should be frequency
-invariant).
+--===============0509304486238409908==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If we want much better accuracy, we are supposed to use cyclecounter_t
-and the system_device_crosststamp.
--Chris
+== Series Details ==
+
+Series: HDCP 2.2 MST fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/87475/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9827 -> Patchwork_19755
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19755 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +26 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@fbdev@read:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9827/fi-tgl-y/igt@fbdev@read.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-tgl-y/igt@fbdev@read.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_basic@create-close:
+    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9827/fi-tgl-y/igt@gem_basic@create-close.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-tgl-y/igt@gem_basic@create-close.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-kbl-8809g:       [TIMEOUT][8] ([i915#3145]) -> [PASS][9] +1 similar issue
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9827/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         [DMESG-WARN][10] -> [DMESG-WARN][11] ([i915#1982])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9827/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9827 -> Patchwork_19755
+
+  CI-20190529: 20190529
+  CI_DRM_9827: 2659a5b229f34506196153fee450224aec2a9b19 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6022: 3c3d08ad629c404ace39256da334e4317b550de6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19755: fcecb6aa821cd67081b1de7a90df6e350552a771 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fcecb6aa821c drm/i915/hdcp: return correct error code
+0bba791af341 drm/i915/hdcp: link hdcp2 recovery on link enc stopped
+1614758cd74f drm/i915/hdcp: HDCP2.2 MST Link failure recovery
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/index.html
+
+--===============0509304486238409908==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>HDCP 2.2 MST fixes (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87475/">https://patchwork.freedesktop.org/series/87475/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9827 -&gt; Patchwork_19755</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19755 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@read:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9827/fi-tgl-y/igt@fbdev@read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-tgl-y/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_basic@create-close:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9827/fi-tgl-y/igt@gem_basic@create-close.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-tgl-y/igt@gem_basic@create-close.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9827/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9827/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19755/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9827 -&gt; Patchwork_19755</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9827: 2659a5b229f34506196153fee450224aec2a9b19 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6022: 3c3d08ad629c404ace39256da334e4317b550de6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19755: fcecb6aa821cd67081b1de7a90df6e350552a771 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>fcecb6aa821c drm/i915/hdcp: return correct error code<br />
+0bba791af341 drm/i915/hdcp: link hdcp2 recovery on link enc stopped<br />
+1614758cd74f drm/i915/hdcp: HDCP2.2 MST Link failure recovery</p>
+
+</body>
+</html>
+
+--===============0509304486238409908==--
+
+--===============0521381481==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0521381481==--
