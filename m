@@ -2,31 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C84932F4AC
-	for <lists+intel-gfx@lfdr.de>; Fri,  5 Mar 2021 21:41:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B871A32F515
+	for <lists+intel-gfx@lfdr.de>; Fri,  5 Mar 2021 22:09:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6702D6EC51;
-	Fri,  5 Mar 2021 20:41:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 036DD6EC53;
+	Fri,  5 Mar 2021 21:09:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A1F786EC50;
- Fri,  5 Mar 2021 20:41:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9A9BBA00CC;
- Fri,  5 Mar 2021 20:41:08 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 698166EC53
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Mar 2021 21:09:48 +0000 (UTC)
+IronPort-SDR: n0xKX+qgaVj9s2ObqfH9U94adiXm2UzbRdwYUJlui2JJZL8rU+Di6QfUBOGA5a2wWA61HWIyCR
+ xmMGDa9h8kfQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9914"; a="207471607"
+X-IronPort-AV: E=Sophos;i="5.81,226,1610438400"; d="scan'208";a="207471607"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2021 13:09:47 -0800
+IronPort-SDR: 5Vvn4tJNvZXNkn3wDX1ppynqUerapgIaigd5Zs1wacY8tvc/tlZbJwYA1IxWa5j58R+PjpA14j
+ uFYyINJh+n2A==
+X-IronPort-AV: E=Sophos;i="5.81,226,1610438400"; d="scan'208";a="408499600"
+Received: from orsosgc001.ra.intel.com ([10.23.184.150])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2021 13:09:47 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  5 Mar 2021 13:09:47 -0800
+Message-Id: <20210305210947.58751-1-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Date: Fri, 05 Mar 2021 20:41:08 -0000
-Message-ID: <161497686860.8413.14645808201518397161@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210305193757.50470-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20210305193757.50470-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgaTkx?=
- =?utf-8?q?5/query=3A_Correlate_engine_and_cpu_timestamps_with_better_accu?=
- =?utf-8?q?racy_=28rev3=29?=
+Subject: [Intel-gfx] [PATCH] i915/perf: Start hrtimer only if sampling the
+ OA buffer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,243 +45,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1412758359=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1412758359==
-Content-Type: multipart/alternative;
- boundary="===============4217531788760841774=="
+SAMPLE_OA parameter enables sampling of OA buffer and results in a call
+to init the OA buffer which initializes the OA unit head/tail pointers.
+The OA_EXPONENT parameter controls the periodicity of the OA reports in
+the OA buffer and results in starting a hrtimer.
 
---===============4217531788760841774==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Before gen12, all use cases required the use of the OA buffer and i915
+enforced this setting when vetting out the parameters passed. In these
+platforms the hrtimer was enabled if OA_EXPONENT was passed. This worked
+fine since it was implied that SAMPLE_OA is always passed.
 
-== Series Details ==
+With gen12, this changed. Users can use perf without enabling the OA
+buffer as in OAR use cases. While an OAR use case should ideally not
+start the hrtimer, we see that passing an OA_EXPONENT parameter will
+start the hrtimer even though SAMPLE_OA is not specified. This results
+in an uninitialized OA buffer, so the head/tail pointers used to track
+the buffer are zero.
 
-Series: i915/query: Correlate engine and cpu timestamps with better accuracy (rev3)
-URL   : https://patchwork.freedesktop.org/series/87552/
-State : success
+This itself does not fail, but if we ran a use-case that SAMPLED the OA
+buffer previously, then the OA_TAIL register is still pointing to an old
+value. When the timer callback runs, it ends up calculating a
+wrong/large number of available reports. Since we do a spinlock_irq_save
+and start processing a large number of reports, NMI watchdog fires and
+causes a crash.
 
-== Summary ==
+Start the timer only if SAMPLE_OA is specified.
 
-CI Bug Log - changes from CI_DRM_9836 -> Patchwork_19762
-====================================================
+v2:
+- Drop SAMPLE OA check when appending samples (Ashutosh)
+- Prevent read if OA buffer is not being sampled
 
-Summary
--------
+Fixes: 00a7f0d7155c ("drm/i915/tgl: Add perf support on TGL")
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/i915_perf.c | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19762 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271]) +23 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][2] ([fdo#109271] / [i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_tiled_fence_blits@basic:
-    - fi-kbl-8809g:       [PASS][3] -> [TIMEOUT][4] ([i915#3145])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9836/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][5] ([i915#1886] / [i915#2291])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][6] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-kbl-soraka:      NOTRUN -> [FAIL][7] ([i915#49])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#533])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-glk-dsi:         [DMESG-WARN][9] ([i915#1982] / [i915#3143]) -> [DMESG-WARN][10] ([i915#3143])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9836/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#3143]: https://gitlab.freedesktop.org/drm/intel/issues/3143
-  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-icl-y fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9836 -> Patchwork_19762
-
-  CI-20190529: 20190529
-  CI_DRM_9836: 8449e42c5aab6666ce79a2c9f5e75ddd31b9b50e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6024: d8e03fe437f0c328c96717a92ad97719c02ba2cd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19762: 885dfe7b703ec08c3522dbb7253f42af121590dd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-885dfe7b703e i915/query: Correlate engine and cpu timestamps with better accuracy
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/index.html
-
---===============4217531788760841774==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>i915/query: Correlate engine and cpu timestamps with better accuracy (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87552/">https://patchwork.freedesktop.org/series/87552/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9836 -&gt; Patchwork_19762</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19762 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +23 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9836/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/49">i915#49</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9836/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3143">i915#3143</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19762/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3143">i915#3143</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Additional (1): fi-kbl-soraka <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-icl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9836 -&gt; Patchwork_19762</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9836: 8449e42c5aab6666ce79a2c9f5e75ddd31b9b50e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6024: d8e03fe437f0c328c96717a92ad97719c02ba2cd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19762: 885dfe7b703ec08c3522dbb7253f42af121590dd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>885dfe7b703e i915/query: Correlate engine and cpu timestamps with better accuracy</p>
-
-</body>
-</html>
-
---===============4217531788760841774==--
-
---===============1412758359==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index c15bead2dac7..2fd2c13b76ac 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -595,7 +595,6 @@ static int append_oa_sample(struct i915_perf_stream *stream,
+ {
+ 	int report_size = stream->oa_buffer.format_size;
+ 	struct drm_i915_perf_record_header header;
+-	u32 sample_flags = stream->sample_flags;
+ 
+ 	header.type = DRM_I915_PERF_RECORD_SAMPLE;
+ 	header.pad = 0;
+@@ -609,10 +608,8 @@ static int append_oa_sample(struct i915_perf_stream *stream,
+ 		return -EFAULT;
+ 	buf += sizeof(header);
+ 
+-	if (sample_flags & SAMPLE_OA_REPORT) {
+-		if (copy_to_user(buf, report, report_size))
+-			return -EFAULT;
+-	}
++	if (copy_to_user(buf, report, report_size))
++		return -EFAULT;
+ 
+ 	(*offset) += header.size;
+ 
+@@ -2669,7 +2666,7 @@ static void i915_oa_stream_enable(struct i915_perf_stream *stream)
+ 
+ 	stream->perf->ops.oa_enable(stream);
+ 
+-	if (stream->periodic)
++	if (stream->sample_flags & SAMPLE_OA_REPORT)
+ 		hrtimer_start(&stream->poll_check_timer,
+ 			      ns_to_ktime(stream->poll_oa_period),
+ 			      HRTIMER_MODE_REL_PINNED);
+@@ -2732,7 +2729,7 @@ static void i915_oa_stream_disable(struct i915_perf_stream *stream)
+ {
+ 	stream->perf->ops.oa_disable(stream);
+ 
+-	if (stream->periodic)
++	if (stream->sample_flags & SAMPLE_OA_REPORT)
+ 		hrtimer_cancel(&stream->poll_check_timer);
+ }
+ 
+@@ -3015,7 +3012,7 @@ static ssize_t i915_perf_read(struct file *file,
+ 	 * disabled stream as an error. In particular it might otherwise lead
+ 	 * to a deadlock for blocking file descriptors...
+ 	 */
+-	if (!stream->enabled)
++	if (!stream->enabled || !(stream->sample_flags & SAMPLE_OA_REPORT))
+ 		return -EIO;
+ 
+ 	if (!(file->f_flags & O_NONBLOCK)) {
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1412758359==--
