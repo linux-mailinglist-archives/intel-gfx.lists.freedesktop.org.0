@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D556F330815
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Mar 2021 07:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52636330816
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Mar 2021 07:28:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3584D6E804;
-	Mon,  8 Mar 2021 06:28:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B37896E819;
+	Mon,  8 Mar 2021 06:28:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBDEB6E81A
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Mar 2021 06:28:27 +0000 (UTC)
-IronPort-SDR: sz2DfoeABRruntOG2uYE/eNQgCuGCvp/1JeaY6VcJKUQErpOar4PKq/DygPkWQEfe5JTGP6g/Z
- FYUrd4k5b8mQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9916"; a="249354852"
-X-IronPort-AV: E=Sophos;i="5.81,231,1610438400"; d="scan'208";a="249354852"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56BAF6E819
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Mar 2021 06:28:31 +0000 (UTC)
+IronPort-SDR: xsHR+MrUSmDKa8NVV/daElTmXiqRm5fi13rMMiuswd3i1EQKZxp1Npla2boM+D2EBnihW3A4wP
+ gANtPUuh5FxA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9916"; a="249354858"
+X-IronPort-AV: E=Sophos;i="5.81,231,1610438400"; d="scan'208";a="249354858"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2021 22:28:27 -0800
-IronPort-SDR: YaG8UgBBFu3NnNGKqnVf1pXZTiJ2qyM1F5GI6CRelJS0GMi0M8bsrHPqJ3LUv0VRLKKCePaqrN
- j2DsjElyoiHA==
-X-IronPort-AV: E=Sophos;i="5.81,231,1610438400"; d="scan'208";a="409181995"
+ 07 Mar 2021 22:28:31 -0800
+IronPort-SDR: 8E03uU3hoRk/FMR7EIEWVr2GexCm2Wo3DkfMWWZviADTLzAgaqdIoBAHoFzSFzDNkzQj0y8KgF
+ TtxFZZsX1Beg==
+X-IronPort-AV: E=Sophos;i="5.81,231,1610438400"; d="scan'208";a="409182018"
 Received: from twinkler-lnx.jer.intel.com ([10.12.91.138])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Mar 2021 22:28:23 -0800
+ 07 Mar 2021 22:28:27 -0800
 From: Tomas Winkler <tomas.winkler@intel.com>
 To: Miquel Raynal <miquel.raynal@bootlin.com>,
  Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Mon,  8 Mar 2021 08:27:45 +0200
-Message-Id: <20210308062748.208017-8-tomas.winkler@intel.com>
+Date: Mon,  8 Mar 2021 08:27:46 +0200
+Message-Id: <20210308062748.208017-9-tomas.winkler@intel.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210308062748.208017-1-tomas.winkler@intel.com>
 References: <20210308062748.208017-1-tomas.winkler@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 07/10 v2] drm/i915/spi: mtd: implement
- access handlers
+Subject: [Intel-gfx] [RFC PATCH 08/10 v2] drm/i915/spi: serialize spi access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,212 +59,145 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Implement mtd read, erase, and write handlers.
-For erase operation address and size should be 4K aligned.
-For write operation address and size has to be 4bytes aligned.
+The SPI regions cannot be accessed in parallel because for each
+region the region selector has to be set. Add a mutex to prevent
+parallel access.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 Signed-off-by: Tomas Winkler <tomas.winkler@intel.com>
-Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
 ---
 V2:
 1. Rebase
 
- drivers/gpu/drm/i915/spi/i915_spi.c | 138 ++++++++++++++++++++++++++--
- 1 file changed, 131 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/spi/i915_spi.c | 32 +++++++++++++++++++++++++----
+ 1 file changed, 28 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/spi/i915_spi.c b/drivers/gpu/drm/i915/spi/i915_spi.c
-index bdf58e14fd6b..1e8a40339e6d 100644
+index 1e8a40339e6d..9de49d00297d 100644
 --- a/drivers/gpu/drm/i915/spi/i915_spi.c
 +++ b/drivers/gpu/drm/i915/spi/i915_spi.c
-@@ -173,7 +173,6 @@ static int i915_spi_is_valid(struct i915_spi *spi)
- 	return 0;
+@@ -20,6 +20,7 @@
+ 
+ struct i915_spi {
+ 	struct mtd_info mtd;
++	struct mutex lock; /* region access lock */
+ 	void __iomem *base;
+ 	size_t size;
+ 	unsigned int nregions;
+@@ -354,6 +355,7 @@ static int i915_spi_erase(struct mtd_info *mtd, struct erase_info *info)
+ 	loff_t from;
+ 	size_t len;
+ 	size_t total_len;
++	int ret = 0;
+ 
+ 	if (!mtd || !info)
+ 		return -EINVAL;
+@@ -370,18 +372,23 @@ static int i915_spi_erase(struct mtd_info *mtd, struct erase_info *info)
+ 	total_len = info->len;
+ 	addr = info->addr;
+ 
++	if (!mutex_trylock(&spi->lock))
++		return -EBUSY;
++
+ 	while (total_len > 0) {
+ 		if (!IS_ALIGNED(addr, SZ_4K) || !IS_ALIGNED(total_len, SZ_4K)) {
+ 			dev_err(&mtd->dev, "unaligned erase %llx %zx\n", addr, total_len);
+ 			info->fail_addr = addr;
+-			return -ERANGE;
++			ret = -ERANGE;
++			goto out;
+ 		}
+ 
+ 		idx = spi_get_region(spi, addr);
+ 		if (idx >= spi->nregions) {
+ 			dev_err(&mtd->dev, "out of range");
+ 			info->fail_addr = MTD_FAIL_ADDR_UNKNOWN;
+-			return -ERANGE;
++			ret = -ERANGE;
++			goto out;
+ 		}
+ 
+ 		from = addr - spi->regions[idx].offset;
+@@ -397,14 +404,17 @@ static int i915_spi_erase(struct mtd_info *mtd, struct erase_info *info)
+ 		if (bytes < 0) {
+ 			dev_dbg(&mtd->dev, "erase failed with %zd\n", bytes);
+ 			info->fail_addr += spi->regions[idx].offset;
+-			return bytes;
++			ret = bytes;
++			goto out;
+ 		}
+ 
+ 		addr += len;
+ 		total_len -= len;
+ 	}
+ 
+-	return 0;
++out:
++	mutex_unlock(&spi->lock);
++	return ret;
  }
  
--__maybe_unused
- static unsigned int spi_get_region(const struct i915_spi *spi, loff_t from)
- {
- 	unsigned int i;
-@@ -188,7 +187,6 @@ static unsigned int spi_get_region(const struct i915_spi *spi, loff_t from)
- 	return i;
- }
- 
--__maybe_unused
- static ssize_t spi_write(struct i915_spi *spi, u8 region,
- 			 loff_t to, size_t len, const unsigned char *buf)
- {
-@@ -219,7 +217,6 @@ static ssize_t spi_write(struct i915_spi *spi, u8 region,
- 	return len;
- }
- 
--__maybe_unused
- static ssize_t spi_read(struct i915_spi *spi, u8 region,
- 			loff_t from, size_t len, unsigned char *buf)
- {
-@@ -261,7 +258,6 @@ static ssize_t spi_read(struct i915_spi *spi, u8 region,
- 	return len;
- }
- 
--__maybe_unused
- static ssize_t
- spi_erase(struct i915_spi *spi, u8 region, loff_t from, u64 len, u64 *fail_addr)
- {
-@@ -350,7 +346,63 @@ static int i915_spi_init(struct i915_spi *spi, struct device *device)
- 
- static int i915_spi_erase(struct mtd_info *mtd, struct erase_info *info)
- {
--	dev_err(&mtd->dev, "erasing %lld %lld\n", info->addr, info->len);
-+	struct i915_spi *spi;
-+	unsigned int idx;
-+	u8 region;
-+	u64 addr;
-+	ssize_t bytes;
-+	loff_t from;
-+	size_t len;
-+	size_t total_len;
-+
-+	if (!mtd || !info)
-+		return -EINVAL;
-+
-+	spi = mtd->priv;
-+
-+	if (!IS_ALIGNED(info->addr, SZ_4K) || !IS_ALIGNED(info->len, SZ_4K)) {
-+		dev_err(&mtd->dev, "unaligned erase %llx %llx\n",
-+			info->addr, info->len);
-+		info->fail_addr = MTD_FAIL_ADDR_UNKNOWN;
-+		return -EINVAL;
-+	}
-+
-+	total_len = info->len;
-+	addr = info->addr;
-+
-+	while (total_len > 0) {
-+		if (!IS_ALIGNED(addr, SZ_4K) || !IS_ALIGNED(total_len, SZ_4K)) {
-+			dev_err(&mtd->dev, "unaligned erase %llx %zx\n", addr, total_len);
-+			info->fail_addr = addr;
-+			return -ERANGE;
-+		}
-+
-+		idx = spi_get_region(spi, addr);
-+		if (idx >= spi->nregions) {
-+			dev_err(&mtd->dev, "out of range");
-+			info->fail_addr = MTD_FAIL_ADDR_UNKNOWN;
-+			return -ERANGE;
-+		}
-+
-+		from = addr - spi->regions[idx].offset;
-+		region = spi->regions[idx].id;
-+		len = total_len;
-+		if (len > spi->regions[idx].size - from)
-+			len = spi->regions[idx].size - from;
-+
-+		dev_dbg(&mtd->dev, "erasing region[%d] %s from %llx len %zx\n",
-+			region, spi->regions[idx].name, from, len);
-+
-+		bytes = spi_erase(spi, region, from, len, &info->fail_addr);
-+		if (bytes < 0) {
-+			dev_dbg(&mtd->dev, "erase failed with %zd\n", bytes);
-+			info->fail_addr += spi->regions[idx].offset;
-+			return bytes;
-+		}
-+
-+		addr += len;
-+		total_len -= len;
-+	}
- 
- 	return 0;
- }
-@@ -358,7 +410,43 @@ static int i915_spi_erase(struct mtd_info *mtd, struct erase_info *info)
  static int i915_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
- 			 size_t *retlen, u_char *buf)
- {
--	dev_err(&mtd->dev, "read %lld %zd\n", from, len);
-+	struct i915_spi *spi;
-+	ssize_t ret;
-+	unsigned int idx;
-+	u8 region;
-+
-+	if (!mtd)
-+		return -EINVAL;
-+
-+	spi = mtd->priv;
-+
-+	if (!IS_ALIGNED(from, sizeof(u32))) {
-+		dev_err(&mtd->dev, "unaligned read %lld %zd\n", from, len);
-+		return -EINVAL;
-+	}
-+
-+	idx = spi_get_region(spi, from);
-+
-+	dev_dbg(&mtd->dev, "reading region[%d] %s from %lld len %zd\n",
-+		spi->regions[idx].id, spi->regions[idx].name, from, len);
-+
-+	if (idx >= spi->nregions) {
-+		dev_err(&mtd->dev, "out of ragnge");
-+		return -ERANGE;
-+	}
-+
-+	from -= spi->regions[idx].offset;
-+	region = spi->regions[idx].id;
-+	if (len > spi->regions[idx].size - from)
-+		len = spi->regions[idx].size - from;
-+
-+	ret = spi_read(spi, region, from, len, buf);
-+	if (ret < 0) {
-+		dev_dbg(&mtd->dev, "read failed with %zd\n", ret);
-+		return ret;
-+	}
-+
-+	*retlen = ret;
+@@ -440,14 +450,19 @@ static int i915_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
+ 	if (len > spi->regions[idx].size - from)
+ 		len = spi->regions[idx].size - from;
  
++	if (!mutex_trylock(&spi->lock))
++		return -EBUSY;
++
+ 	ret = spi_read(spi, region, from, len, buf);
+ 	if (ret < 0) {
+ 		dev_dbg(&mtd->dev, "read failed with %zd\n", ret);
++		mutex_unlock(&spi->lock);
+ 		return ret;
+ 	}
+ 
+ 	*retlen = ret;
+ 
++	mutex_unlock(&spi->lock);
  	return 0;
  }
-@@ -366,7 +454,43 @@ static int i915_spi_read(struct mtd_info *mtd, loff_t from, size_t len,
- static int i915_spi_write(struct mtd_info *mtd, loff_t to, size_t len,
- 			  size_t *retlen, const u_char *buf)
- {
--	dev_err(&mtd->dev, "writing %lld %zd\n", to, len);
-+	struct i915_spi *spi;
-+	ssize_t ret;
-+	unsigned int idx;
-+	u8 region;
-+
-+	if (!mtd)
-+		return -EINVAL;
-+
-+	spi = mtd->priv;
-+
-+	if (!(IS_ALIGNED(len, 4) && IS_ALIGNED(to, 4))) {
-+		dev_err(&mtd->dev, "unaligned write %lld %zd\n", to, len);
-+		return -EINVAL;
-+	}
-+
-+	idx = spi_get_region(spi, to);
-+
-+	dev_dbg(&mtd->dev, "writing region[%d] %s to %lld len %zd\n",
-+		spi->regions[idx].id, spi->regions[idx].name, to, len);
-+
-+	if (idx >= spi->nregions) {
-+		dev_err(&mtd->dev, "out of range");
-+		return -ERANGE;
-+	}
-+
-+	to -= spi->regions[idx].offset;
-+	region = spi->regions[idx].id;
-+	if (len > spi->regions[idx].size - to)
-+		len = spi->regions[idx].size - to;
-+
-+	ret = spi_write(spi, region, to, len, buf);
-+	if (ret < 0) {
-+		dev_dbg(&mtd->dev, "write failed with %zd\n", ret);
-+		return ret;
-+	}
-+
-+	*retlen = ret;
  
+@@ -484,14 +499,19 @@ static int i915_spi_write(struct mtd_info *mtd, loff_t to, size_t len,
+ 	if (len > spi->regions[idx].size - to)
+ 		len = spi->regions[idx].size - to;
+ 
++	if (!mutex_trylock(&spi->lock))
++		return -EBUSY;
++
+ 	ret = spi_write(spi, region, to, len, buf);
+ 	if (ret < 0) {
+ 		dev_dbg(&mtd->dev, "write failed with %zd\n", ret);
++		mutex_unlock(&spi->lock);
+ 		return ret;
+ 	}
+ 
+ 	*retlen = ret;
+ 
++	mutex_unlock(&spi->lock);
  	return 0;
  }
+ 
+@@ -505,6 +525,8 @@ static int i915_spi_init_mtd(struct i915_spi *spi, struct device *device,
+ 
+ 	dev_dbg(device, "registering with mtd\n");
+ 
++	mutex_init(&spi->lock);
++
+ 	spi->mtd.owner = THIS_MODULE;
+ 	spi->mtd.dev.parent = device;
+ 	spi->mtd.flags = MTD_CAP_NORFLASH | MTD_WRITEABLE;
+@@ -630,6 +652,8 @@ static int i915_spi_remove(struct platform_device *platdev)
+ 
+ 	mtd_device_unregister(&spi->mtd);
+ 
++	mutex_destroy(&spi->lock);
++
+ 	platform_set_drvdata(platdev, NULL);
+ 
+ 	return 0;
 -- 
 2.26.2
 
