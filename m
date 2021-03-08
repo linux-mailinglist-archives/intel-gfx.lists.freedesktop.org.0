@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459F8331623
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Mar 2021 19:32:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A484C331695
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Mar 2021 19:49:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4711289CF3;
-	Mon,  8 Mar 2021 18:32:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B6D689BA5;
+	Mon,  8 Mar 2021 18:49:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 338C089CF3
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Mar 2021 18:32:35 +0000 (UTC)
-IronPort-SDR: e1V+Jy9hA1RtSyof3NjRkshfGqr+O4n+us/bXhlws6vatAVFgkoJXFCWkK8bpmrsHJgWHsrbIW
- +TvSFxsFMt2g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="185697458"
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="185697458"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5175C89BA5
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Mar 2021 18:49:50 +0000 (UTC)
+IronPort-SDR: 8CrEL6aqqk0lsEFdsnjZFZ4tlGrDQWBhIQPqgcNs5c98EzfGyVfC50nOnYhjqIga1Hv57CVjGe
+ BOSHRLqOYCEQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="175699151"
+X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="175699151"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2021 10:32:34 -0800
-IronPort-SDR: 7jTYFcvtM+Rbhnv1K5jDHxSQ2SDkT9ecx73cgE9+BDWCPUXnmnsKH2szvmLdqJxbTz5+xjWG+T
- r5RVTe9Ow1+w==
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="447219421"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2021 10:49:48 -0800
+IronPort-SDR: LU9eExS7kLi9DlTjhU8s/MqhDt9DljHP5bgbH3H2wCM1M1HSA93VIDWoKv+kZsiiCVVf3fI1Q3
+ iQu7qyHOzfhA==
+X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="447223792"
 Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.212.237.60])
  ([10.212.237.60])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2021 10:32:33 -0800
+ 08 Mar 2021 10:49:45 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20210301193200.1369-1-daniele.ceraolospurio@intel.com>
- <20210301193200.1369-12-daniele.ceraolospurio@intel.com>
- <161481341145.25897.4915487485777391734@build.alporthouse.com>
+ <20210301193200.1369-10-daniele.ceraolospurio@intel.com>
+ <161480629555.25897.8434912809854085938@build.alporthouse.com>
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <f130c7ce-f445-68f7-612e-b9f7306eaa14@intel.com>
-Date: Mon, 8 Mar 2021 10:32:31 -0800
+Message-ID: <b05440cb-8a8d-205e-3487-7fcd673b113a@intel.com>
+Date: Mon, 8 Mar 2021 10:49:42 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <161481341145.25897.4915487485777391734@build.alporthouse.com>
+In-Reply-To: <161480629555.25897.8434912809854085938@build.alporthouse.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 11/16] drm/i915/pxp: interface for
- creation of protected contexts
+Subject: Re: [Intel-gfx] [PATCH v2 09/16] drm/i915/pxp: Implement PXP irq
+ handler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,6 +52,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Huang, Sean Z" <sean.z.huang@intel.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -59,423 +60,388 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 3/3/2021 3:16 PM, Chris Wilson wrote:
-> Quoting Daniele Ceraolo Spurio (2021-03-01 19:31:55)
->> Usage of protected objects, coming in a follow-up patch, will be
->> restricted to protected contexts. Contexts can only be marked as
->> protected at creation time and they must be both bannable and not
->> recoverable.
+On 3/3/2021 1:18 PM, Chris Wilson wrote:
+> Quoting Daniele Ceraolo Spurio (2021-03-01 19:31:53)
+>> From: "Huang, Sean Z" <sean.z.huang@intel.com>
 >>
->> When a PXP teardown occurs, all gem contexts marked as protected that
->> have been used at least once will be marked as invalid and all new
->> submissions using them will be rejected. All intel contexts within the
->> invalidated gem contexts will be marked banned.
->> A new flag has been added to the RESET_STATS ioctl to report the
->> invalidation to userspace.
+>> The HW will generate a teardown interrupt when session termination is
+>> required, which requires i915 to submit a terminating batch. Once the HW
+>> is done with the termination it will generate another interrupt, at
+>> which point it is safe to re-create the session.
 >>
->> v2: split to its own patch and improve doc (Chris), invalidate contexts
->> on teardown
+>> v2: use struct completion instead of bool (Chris)
 >>
+>> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 >> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 >> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 >> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_context.c   | 59 ++++++++++++++++++-
->>   drivers/gpu/drm/i915/gem/i915_gem_context.h   | 18 ++++++
->>   .../gpu/drm/i915/gem/i915_gem_context_types.h |  2 +
->>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 13 ++++
->>   drivers/gpu/drm/i915/pxp/intel_pxp.c          | 38 ++++++++++++
->>   drivers/gpu/drm/i915/pxp/intel_pxp.h          |  1 +
->>   drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |  3 +
->>   include/uapi/drm/i915_drm.h                   | 19 ++++++
->>   8 files changed, 150 insertions(+), 3 deletions(-)
+>>   drivers/gpu/drm/i915/Makefile                |   1 +
+>>   drivers/gpu/drm/i915/gt/intel_gt_irq.c       |   7 +
+>>   drivers/gpu/drm/i915/i915_reg.h              |   1 +
+>>   drivers/gpu/drm/i915/pxp/intel_pxp.c         |  34 +++++
+>>   drivers/gpu/drm/i915/pxp/intel_pxp.h         |  16 ++
+>>   drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     | 151 +++++++++++++++++++
+>>   drivers/gpu/drm/i915/pxp/intel_pxp_irq.h     |  33 ++++
+>>   drivers/gpu/drm/i915/pxp/intel_pxp_session.c |   9 +-
+>>   drivers/gpu/drm/i915/pxp/intel_pxp_session.h |   1 +
+>>   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  10 +-
+>>   drivers/gpu/drm/i915/pxp/intel_pxp_types.h   |   8 +
+>>   11 files changed, 268 insertions(+), 3 deletions(-)
+>>   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+>>   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
 >>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> index ca37d93ef5e7..19ac24a3c42c 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> @@ -76,6 +76,8 @@
->>   #include "gt/intel_gpu_commands.h"
->>   #include "gt/intel_ring.h"
+>> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+>> index 8b605f326039..5e9bd34dec38 100644
+>> --- a/drivers/gpu/drm/i915/Makefile
+>> +++ b/drivers/gpu/drm/i915/Makefile
+>> @@ -274,6 +274,7 @@ i915-y += i915_perf.o
+>>   i915-$(CONFIG_DRM_I915_PXP) += \
+>>          pxp/intel_pxp.o \
+>>          pxp/intel_pxp_cmd.o \
+>> +       pxp/intel_pxp_irq.o \
+>>          pxp/intel_pxp_session.o \
+>>          pxp/intel_pxp_tee.o
 >>   
->> +#include "pxp/intel_pxp.h"
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+>> index d29126c458ba..0d3585efe2b8 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+>> @@ -13,6 +13,7 @@
+>>   #include "intel_lrc_reg.h"
+>>   #include "intel_uncore.h"
+>>   #include "intel_rps.h"
+>> +#include "pxp/intel_pxp_irq.h"
+>>   
+>>   static void guc_irq_handler(struct intel_guc *guc, u16 iir)
+>>   {
+>> @@ -64,6 +65,9 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
+>>          if (instance == OTHER_GTPM_INSTANCE)
+>>                  return gen11_rps_irq_handler(&gt->rps, iir);
+>>   
+>> +       if (instance == OTHER_KCR_INSTANCE)
+>> +               return intel_pxp_irq_handler(&gt->pxp, iir);
 >> +
->>   #include "i915_drm_client.h"
->>   #include "i915_gem_context.h"
->>   #include "i915_globals.h"
->> @@ -2006,6 +2008,40 @@ static int set_priority(struct i915_gem_context *ctx,
->>          return 0;
+>>          WARN_ONCE(1, "unhandled other interrupt instance=0x%x, iir=0x%x\n",
+>>                    instance, iir);
+>>   }
+>> @@ -190,6 +194,9 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
+>>          intel_uncore_write(uncore, GEN11_GPM_WGBOXPERF_INTR_MASK,  ~0);
+>>          intel_uncore_write(uncore, GEN11_GUC_SG_INTR_ENABLE, 0);
+>>          intel_uncore_write(uncore, GEN11_GUC_SG_INTR_MASK,  ~0);
+>> +
+>> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, 0);
+>> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~0);
 >>   }
 >>   
->> +static int set_protected(struct i915_gem_context *ctx,
->> +                        const struct drm_i915_gem_context_param *args)
+>>   void gen11_gt_irq_postinstall(struct intel_gt *gt)
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>> index e5dd0203991b..97a6d0c638ec 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -7958,6 +7958,7 @@ enum {
+>>   /* irq instances for OTHER_CLASS */
+>>   #define OTHER_GUC_INSTANCE     0
+>>   #define OTHER_GTPM_INSTANCE    1
+>> +#define OTHER_KCR_INSTANCE     4
+>>   
+>>   #define GEN11_INTR_IDENTITY_REG(x)     _MMIO(0x190060 + ((x) * 4))
+>>   
+>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+>> index cbec9395bde9..0ca1c2c16972 100644
+>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+>> @@ -2,7 +2,9 @@
+>>   /*
+>>    * Copyright(c) 2020 Intel Corporation.
+>>    */
+>> +#include <linux/workqueue.h>
+>>   #include "intel_pxp.h"
+>> +#include "intel_pxp_irq.h"
+>>   #include "intel_pxp_tee.h"
+>>   #include "gt/intel_context.h"
+>>   #include "i915_drv.h"
+>> @@ -67,12 +69,23 @@ void intel_pxp_init(struct intel_pxp *pxp)
+>>   
+>>          mutex_init(&pxp->mutex);
+>>   
+>> +       /*
+>> +        * we'll use the completion to check if there is a termination pending,
+>> +        * so we start it as completed and we reinit it when a termination
+>> +        * is triggered.
+>> +        */
+>> +       init_completion(&pxp->termination);
+>> +       complete_all(&pxp->termination);
+>> +
+>>          kcr_pxp_enable(gt);
+>>   
+>>          ret = create_vcs_context(pxp);
+>>          if (ret)
+>>                  goto out_kcr;
+>>   
+>> +       intel_pxp_irq_init(pxp);
+>> +       intel_pxp_irq_enable(pxp);
+>> +
+>>          ret = intel_pxp_tee_component_init(pxp);
+>>          if (ret)
+>>                  goto out_context;
+>> @@ -94,10 +107,31 @@ void intel_pxp_fini(struct intel_pxp *pxp)
+>>          if (!intel_pxp_is_enabled(pxp))
+>>                  return;
+>>   
+>> +       intel_pxp_irq_disable(pxp);
+>> +
+>>          intel_pxp_tee_component_fini(pxp);
+>>   
+>>          destroy_vcs_context(pxp);
+>>   
+>>          kcr_pxp_disable(gt);
+>> +}
+>>   
+>> +int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
+>> +{
+>> +       int ret;
+>> +
+>> +       if (!intel_pxp_is_enabled(pxp))
+>> +               return 0;
+>> +
+>> +       ret = wait_for_completion_timeout(&pxp->termination,
+>> +                                         msecs_to_jiffies(100));
+>> +
+>> +       /* the wait returns 0 on failure */
+>> +       if (ret)
+>> +               ret = 0;
+>> +       else
+>> +               ret = -ETIMEDOUT;
+>> +
+>> +       return ret;
+>>   }
+>> +
+>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+>> index 3bede9306481..89cf66c9bef3 100644
+>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
+>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+>> @@ -9,6 +9,15 @@
+>>   #include "gt/intel_gt_types.h"
+>>   #include "intel_pxp_types.h"
+>>   
+>> +#define GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT BIT(1)
+>> +#define GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT BIT(2)
+>> +#define GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT BIT(3)
+>> +
+>> +#define GEN12_PXP_INTERRUPTS \
+>> +       (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT | \
+>> +        GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT | \
+>> +        GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
+>> +
+>>   static inline struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
+>>   {
+>>          return container_of(pxp, struct intel_gt, pxp);
+>> @@ -27,6 +36,8 @@ static inline bool intel_pxp_is_active(const struct intel_pxp *pxp)
+>>   #ifdef CONFIG_DRM_I915_PXP
+>>   void intel_pxp_init(struct intel_pxp *pxp);
+>>   void intel_pxp_fini(struct intel_pxp *pxp);
+>> +
+>> +int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp);
+>>   #else
+>>   static inline void intel_pxp_init(struct intel_pxp *pxp)
+>>   {
+>> @@ -35,6 +46,11 @@ static inline void intel_pxp_init(struct intel_pxp *pxp)
+>>   static inline void intel_pxp_fini(struct intel_pxp *pxp)
+>>   {
+>>   }
+>> +
+>> +static inline int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
+>> +{
+>> +       return 0;
+>> +}
+>>   #endif
+>>   
+>>   #endif /* __INTEL_PXP_H__ */
+>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+>> new file mode 100644
+>> index 000000000000..40115bf0b6bb
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+>> @@ -0,0 +1,151 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright(c) 2020 Intel Corporation.
+>> + */
+>> +#include <linux/workqueue.h>
+>> +#include "intel_pxp.h"
+>> +#include "intel_pxp_irq.h"
+>> +#include "intel_pxp_session.h"
+>> +#include "gt/intel_gt_irq.h"
+>> +#include "i915_irq.h"
+>> +#include "i915_reg.h"
+>> +
+>> +static int pxp_terminate(struct intel_pxp *pxp)
 >> +{
 >> +       int ret = 0;
 >> +
->> +       if (!intel_pxp_is_enabled(&ctx->i915->gt.pxp))
->> +               ret = -ENODEV;
->> +       else if (ctx->client) /* can't change this after creation! */
->> +               ret = -EEXIST;
->> +       else if (args->size)
->> +               ret = -EINVAL;
->> +       else if (!args->value)
->> +               clear_bit(UCONTEXT_PROTECTED, &ctx->user_flags);
->> +       else if (i915_gem_context_is_recoverable(ctx) ||
->> +                !i915_gem_context_is_bannable(ctx))
->> +               ret = -EPERM;
->> +       else
->> +               set_bit(UCONTEXT_PROTECTED, &ctx->user_flags);
+>> +       mutex_lock(&pxp->mutex);
+>> +
+>> +       pxp->global_state_attacked = true;
+>> +
+>> +       ret = intel_pxp_arb_terminate_session_with_global_terminate(pxp);
+>> +
+>> +       mutex_unlock(&pxp->mutex);
 >> +
 >> +       return ret;
 >> +}
 >> +
->> +static int get_protected(struct i915_gem_context *ctx,
->> +                        struct drm_i915_gem_context_param *args)
+>> +static int pxp_terminate_complete(struct intel_pxp *pxp)
 >> +{
->> +       if (!intel_pxp_is_enabled(&ctx->i915->gt.pxp))
->> +               return -ENODEV;
+>> +       int ret = 0;
 >> +
->> +       args->size = 0;
->> +       args->value = i915_gem_context_can_use_protected_content(ctx);
+>> +       mutex_lock(&pxp->mutex);
 >> +
->> +       return 0;
->> +}
+>> +       if (pxp->global_state_attacked) {
+>> +               pxp->global_state_attacked = false;
 >> +
->>   static int ctx_setparam(struct drm_i915_file_private *fpriv,
->>                          struct i915_gem_context *ctx,
->>                          struct drm_i915_gem_context_param *args)
->> @@ -2038,6 +2074,8 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
->>                          ret = -EPERM;
->>                  else if (args->value)
->>                          i915_gem_context_set_bannable(ctx);
->> +               else if (i915_gem_context_can_use_protected_content(ctx))
->> +                       ret = -EPERM; /* can't clear this for protected contexts */
->>                  else
->>                          i915_gem_context_clear_bannable(ctx);
->>                  break;
->> @@ -2045,10 +2083,12 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
->>          case I915_CONTEXT_PARAM_RECOVERABLE:
->>                  if (args->size)
->>                          ret = -EINVAL;
->> -               else if (args->value)
->> -                       i915_gem_context_set_recoverable(ctx);
->> -               else
->> +               else if (!args->value)
->>                          i915_gem_context_clear_recoverable(ctx);
->> +               else if (i915_gem_context_can_use_protected_content(ctx))
->> +                       ret = -EPERM; /* can't set this for protected contexts */
->> +               else
->> +                       i915_gem_context_set_recoverable(ctx);
->>                  break;
->>   
->>          case I915_CONTEXT_PARAM_PRIORITY:
->> @@ -2075,6 +2115,10 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
->>                  ret = set_ringsize(ctx, args);
->>                  break;
->>   
->> +       case I915_CONTEXT_PARAM_PROTECTED_CONTENT:
->> +               ret = set_protected(ctx, args);
->> +               break;
->> +
->>          case I915_CONTEXT_PARAM_BAN_PERIOD:
->>          default:
->>                  ret = -EINVAL;
->> @@ -2532,6 +2576,10 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
->>                  ret = get_ringsize(ctx, args);
->>                  break;
->>   
->> +       case I915_CONTEXT_PARAM_PROTECTED_CONTENT:
->> +               ret = get_protected(ctx, args);
->> +               break;
->> +
->>          case I915_CONTEXT_PARAM_BAN_PERIOD:
->>          default:
->>                  ret = -EINVAL;
->> @@ -2592,6 +2640,11 @@ int i915_gem_context_reset_stats_ioctl(struct drm_device *dev,
->>          args->batch_active = atomic_read(&ctx->guilty_count);
->>          args->batch_pending = atomic_read(&ctx->active_count);
->>   
->> +       /* re-use args->flags for output flags */
->> +       args->flags = 0;
->> +       if (i915_gem_context_invalidated(ctx))
->> +               args->flags |= I915_CONTEXT_INVALIDATED;
->> +
->>          ret = 0;
->>   out:
->>          rcu_read_unlock();
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
->> index b5c908f3f4f2..b04d4eeb0500 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
->> @@ -108,6 +108,24 @@ i915_gem_context_clear_user_engines(struct i915_gem_context *ctx)
->>          clear_bit(CONTEXT_USER_ENGINES, &ctx->flags);
->>   }
->>   
->> +static inline bool
->> +i915_gem_context_invalidated(const struct i915_gem_context *ctx)
->> +{
->> +       return test_bit(CONTEXT_INVALID, &ctx->flags);
->> +}
->> +
->> +static inline void
->> +i915_gem_context_set_invalid(struct i915_gem_context *ctx)
->> +{
->> +       set_bit(CONTEXT_INVALID, &ctx->flags);
->> +}
->> +
->> +static inline bool
->> +i915_gem_context_can_use_protected_content(const struct i915_gem_context *ctx)
->> +{
->> +       return test_bit(UCONTEXT_PROTECTED, &ctx->user_flags);
->> +}
->> +
->>   /* i915_gem_context.c */
->>   void i915_gem_init__contexts(struct drm_i915_private *i915);
->>   
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
->> index d5bc75508048..79a87268b8da 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
->> @@ -130,6 +130,7 @@ struct i915_gem_context {
->>   #define UCONTEXT_BANNABLE              2
->>   #define UCONTEXT_RECOVERABLE           3
->>   #define UCONTEXT_PERSISTENCE           4
->> +#define UCONTEXT_PROTECTED             5
->>   
->>          /**
->>           * @flags: small set of booleans
->> @@ -137,6 +138,7 @@ struct i915_gem_context {
->>          unsigned long flags;
->>   #define CONTEXT_CLOSED                 0
->>   #define CONTEXT_USER_ENGINES           1
->> +#define CONTEXT_INVALID                        2
->>   
->>          struct mutex mutex;
->>   
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> index fe170186dd42..e503c9f789c0 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> @@ -21,6 +21,8 @@
->>   #include "gt/intel_gt_pm.h"
->>   #include "gt/intel_ring.h"
->>   
->> +#include "pxp/intel_pxp.h"
->> +
->>   #include "i915_drv.h"
->>   #include "i915_gem_clflush.h"
->>   #include "i915_gem_context.h"
->> @@ -726,6 +728,11 @@ static int eb_select_context(struct i915_execbuffer *eb)
->>          if (unlikely(!ctx))
->>                  return -ENOENT;
->>   
->> +       if (i915_gem_context_invalidated(ctx)) {
->> +               i915_gem_context_put(ctx);
->> +               return -EIO;
+>> +               /* Re-create the arb session after teardown handle complete */
+>> +               ret = intel_pxp_create_arb_session(pxp);
 >> +       }
->> +
->>          eb->gem_context = ctx;
->>          if (rcu_access_pointer(ctx->vm))
->>                  eb->invalid_flags |= EXEC_OBJECT_NEEDS_GTT;
->> @@ -2761,6 +2768,12 @@ eb_select_engine(struct i915_execbuffer *eb)
->>   
->>          intel_gt_pm_get(ce->engine->gt);
->>   
->> +       if (i915_gem_context_can_use_protected_content(eb->gem_context)) {
->> +               err = intel_pxp_wait_for_termination_completion(&ce->engine->gt->pxp);
->> +               if (err)
->> +                       goto err;
-> This should check for context_invalidated
+> 	/* Re-create the arb session after teardown handle complete */
+> 	if (fetch_and_zero(&pxp->global_state_attacked))
+> 		ret = intel_pxp_create_arb_session(pxp);
 >
->> +       }
 >> +
->>          if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
->>                  err = intel_context_alloc_state(ce);
->>                  if (err)
->> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> index 0ca1c2c16972..5912e4a12d94 100644
->> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> @@ -6,6 +6,7 @@
->>   #include "intel_pxp.h"
->>   #include "intel_pxp_irq.h"
->>   #include "intel_pxp_tee.h"
->> +#include "gem/i915_gem_context.h"
->>   #include "gt/intel_context.h"
->>   #include "i915_drv.h"
->>   
->> @@ -135,3 +136,40 @@ int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
->>          return ret;
->>   }
->>   
->> +void intel_pxp_invalidate(struct intel_pxp *pxp)
+>> +       mutex_unlock(&pxp->mutex);
+>> +
+>> +       complete_all(&pxp->termination);
+>> +
+>> +       return ret;
+>> +}
+>> +
+>> +static void intel_pxp_irq_work(struct work_struct *work)
 >> +{
->> +       struct drm_i915_private *i915 = pxp_to_gt(pxp)->i915;
->> +       struct i915_gem_context *ctx, *cn;
+>> +       struct intel_pxp *pxp = container_of(work, typeof(*pxp), irq_work);
+>> +       struct intel_gt *gt = pxp_to_gt(pxp);
+>> +       u32 events = 0;
 >> +
->> +       /* ban all contexts marked as protected */
->> +       spin_lock_irq(&i915->gem.contexts.lock);
->> +       list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link) {
->> +               struct i915_gem_engines_iter it;
->> +               struct intel_context *ce;
+>> +       spin_lock_irq(&gt->irq_lock);
+>> +       events = fetch_and_zero(&pxp->current_events);
+>> +       spin_unlock_irq(&gt->irq_lock);
 >> +
->> +               if (!kref_get_unless_zero(&ctx->ref))
->> +                       continue;
+>> +       if (!events)
+>> +               return;
 >> +
->> +               if (likely(!i915_gem_context_can_use_protected_content(ctx)))
->> +                       continue;
+>> +       if (events & (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT |
+>> +                     GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
+>> +               pxp_terminate(pxp);
 >> +
->> +               if (i915_gem_context_invalidated(ctx))
->> +                       continue;
+>> +       if (events & GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
+>> +               pxp_terminate_complete(pxp);
 >> +
->> +               spin_unlock_irq(&i915->gem.contexts.lock);
->> +
->> +               for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
->> +                       if (test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
->> +                               intel_context_set_banned(ce);
-> That's a pair of unserialised operations. However, you can just set
-> banned before we even try to alloc. But at the moment, it's very
-
-I wanted to avoid banning the intel_contexts if none of them had been 
-allocated (i.e. gem_context created but not used).
-
-> spurious to call intel_context_set_banned() as no action is performed to
-> flush the ban to the backend, and execbuf is primarily checking the GEM
-> context invalid bit. It looks a bit flimsy...
->
-> The impact of this loop would be to cancel all pending requests (but not
-> the inflight request), sounds like you should just call revoke_context
-> to remove the inflight context and pending requests from the HW.
-
-I agree it is flimsy, but the whole process is best effort so I didn't 
-want to over-complicate it by taking out the inflight request. The 
-moment we get the interrupt the keys are already invalid so it's most 
-likely already too late to save the inflight request if it is using one 
-of the sessions. I've tried to prioritize getting the session back up as 
-soon as possible.
-
-What's revoke_context? I can't find it.
-
->
->> +                               i915_gem_context_set_invalid(ctx);
->> +                       }
->> +               }
->> +               i915_gem_context_unlock_engines(ctx);
->> +
->> +               spin_lock_irq(&i915->gem.contexts.lock);
->> +               list_safe_reset_next(ctx, cn, link);
->> +               i915_gem_context_put(ctx);
->> +       }
->> +       spin_unlock_irq(&i915->gem.contexts.lock);
-> And then there's a race condition where we can create a new protect
-> context, submit an execbuf using the global session between the call to
-> intel_pxp_invalidate and terminate_session_and_global. That's covered by
-> irq_handler calling mark_termination_in_progress and execbuf waiting
-> for that termination to complete. Almost.
-
-Why almost? what am I missing?
-
->
-> This will result in userspace context lost upon runtime suspend? That
-> can be quite catastrophic for the system...
-
-Unfortunately S0ix kills the keys, so yes, unless we decide that we 
-don't want to ban protected contexts when the keys are invalidated. That 
-was a purely software design decision, the contexts are in no way tied 
-to PXP in HW.
-
+>> +       /*
+>> +        * we expect the terminate complete to arrive quickly after emitting
+>> +        * the terminate, so check back on it
+>> +        */
+>> +       if (pxp->irq_enabled)
+>> +               queue_work(system_unbound_wq, &pxp->irq_work);
+> pxp->current_events is only updated in the interrupt handler, so running
+> the work before the irq gains nothing.
 >
 >> +}
 >> +
->> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> index 89cf66c9bef3..e36200833095 100644
->> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> @@ -38,6 +38,7 @@ void intel_pxp_init(struct intel_pxp *pxp);
->>   void intel_pxp_fini(struct intel_pxp *pxp);
->>   
->>   int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp);
->> +void intel_pxp_invalidate(struct intel_pxp *pxp);
->>   #else
->>   static inline void intel_pxp_init(struct intel_pxp *pxp)
->>   {
->> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
->> index bb981d38c2fe..527217b3db23 100644
->> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
->> @@ -111,6 +111,9 @@ int intel_pxp_arb_terminate_session_with_global_terminate(struct intel_pxp *pxp)
->>   
->>          lockdep_assert_held(&pxp->mutex);
->>   
->> +       /* invalidate protected objects */
->> +       intel_pxp_invalidate(pxp);
->> +
->>          /* terminate the hw sessions */
->>          ret = intel_pxp_submit_session_termination(pxp, ARB_SESSION);
->>          if (ret) {
->> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
->> index 56c6bfe6c2d0..0f5456046c4c 100644
->> --- a/include/uapi/drm/i915_drm.h
->> +++ b/include/uapi/drm/i915_drm.h
->> @@ -1694,6 +1694,24 @@ struct drm_i915_gem_context_param {
->>    * Default is 16 KiB.
->>    */
->>   #define I915_CONTEXT_PARAM_RINGSIZE    0xc
->> +
->> +/*
->> + * I915_CONTEXT_PARAM_PROTECTED_CONTENT:
->> + *
->> + * Enable usage of protected content with the context. This flag can only be
->> + * set at context creation time and, when set to true, must be preceded by
->> + * an explicit setting of I915_CONTEXT_PARAM_RECOVERABLE to false. This flag
->> + * can't be set to true in conjunction with setting the
->> + * I915_CONTEXT_PARAM_BANNABLE flag to false.
-> I haven't seen any interaction with bannable here. Since you just ignore
-> the bannable flag.
-
-But I still want to stop userspace from setting the context as not 
-bannable. Once I know that protected implies bannable I don't need to 
-check the latter.
-
->
->> + *
->> + * Given the numerous restriction on this flag, there are several unique
->> + * failure cases:
->> + *
->> + * -ENODEV: feature not available
->> + * -EEXIST: trying to modify an existing context
->> + * -EPERM: trying to mark a recoverable or not bannable context as protected
-> Also -EIO from execbuf. Do we want to pick EACCES?
-
-instead of EIO? sounds reasonable.
-
->
+>> +/**
+>> + * intel_pxp_irq_handler - Handles PXP interrupts.
+>> + * @pxp: pointer to pxp struct
+>> + * @iir: interrupt vector
 >> + */
->> +#define I915_CONTEXT_PARAM_PROTECTED_CONTENT    0xd
->>   /* Must be kept compact -- no holes and well documented */
->>   
->>          __u64 value;
->> @@ -1924,6 +1942,7 @@ struct drm_i915_reg_read {
->>   struct drm_i915_reset_stats {
->>          __u32 ctx_id;
->>          __u32 flags;
->> +#define I915_CONTEXT_INVALIDATED 0x1
-> Mention the side effect for protected content contexts.
-
-ok.
-
+>> +void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir)
+>> +{
+>> +       struct intel_gt *gt = pxp_to_gt(pxp);
+>> +
+>> +       if (GEM_WARN_ON(!intel_pxp_is_enabled(pxp)))
+>> +               return;
+>> +
+>> +       lockdep_assert_held(&gt->irq_lock);
+>> +
+>> +       if (unlikely(!iir))
+>> +               return;
+>> +
+>> +       /* immediately mark PXP as inactive on termination */
+>> +       if (iir & (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT |
+>> +                  GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
+>> +               intel_pxp_mark_termination_in_progress(pxp);
+>> +
+>> +       pxp->current_events |= iir;
+>> +       queue_work(system_unbound_wq, &pxp->irq_work);
+>> +}
+>> +
+>> +static inline void __pxp_set_interrupts(struct intel_gt *gt, u32 interrupts)
+>> +{
+>> +       struct intel_uncore *uncore = gt->uncore;
+>> +       const u32 mask = interrupts << 16;
+>> +
+>> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, mask);
+>> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~mask);
+>> +}
+>> +
+>> +static inline void pxp_irq_reset(struct intel_gt *gt)
+>> +{
+>> +       spin_lock_irq(&gt->irq_lock);
+>> +       gen11_gt_reset_one_iir(gt, 0, GEN11_KCR);
+>> +       spin_unlock_irq(&gt->irq_lock);
+>> +}
+>> +
+>> +void intel_pxp_irq_init(struct intel_pxp *pxp)
+>> +{
+>> +       INIT_WORK(&pxp->irq_work, intel_pxp_irq_work);
+>> +}
+>> +
+>> +void intel_pxp_irq_enable(struct intel_pxp *pxp)
+>> +{
+>> +       struct intel_gt *gt = pxp_to_gt(pxp);
+>> +
+>> +       spin_lock_irq(&gt->irq_lock);
+>> +       if (!pxp->irq_enabled) {
+>> +               WARN_ON_ONCE(gen11_gt_reset_one_iir(gt, 0, GEN11_KCR));
+>> +               __pxp_set_interrupts(gt, GEN12_PXP_INTERRUPTS);
+>> +               pxp->irq_enabled = true;
+>> +       }
+>> +       spin_unlock_irq(&gt->irq_lock);
+>> +}
+>> +
+>> +void intel_pxp_irq_disable(struct intel_pxp *pxp)
+>> +{
+>> +       struct intel_gt *gt = pxp_to_gt(pxp);
+>> +
+>> +       spin_lock_irq(&gt->irq_lock);
+>> +
+>> +       pxp->irq_enabled = false;
+>> +       __pxp_set_interrupts(gt, 0);
+>> +
+>> +       spin_unlock_irq(&gt->irq_lock);
+>> +       intel_synchronize_irq(gt->i915);
+>> +
+>> +       pxp_irq_reset(gt);
+>> +
+>> +       flush_work(&pxp->irq_work);
+> As I read it, if the session was in play at the time of irq_disable and
+> there were inflight interrupts then the state of the session at the end
+> of this function is undefined.
 >
->>   
->>          /* All resets since boot/module reload, for all contexts */
->>          __u32 reset_count;
->> -- 
->> 2.29.2
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->>
+> Should the session be terminated prior to disabling irq (that would seem
+> appropriate for the driver flow)? Certainly at the point of
+> unregistering the driver from userspace, all user sessions should cease.
+>
+> Is an assert like GEM_BUG_ON(!completion_done(&pxp->termination)); valid
+> here?
+
+I wanted to avoid doing a termination here because we have to do it 
+anyway when we re-enable. I've checked with the archs and basically the 
+HW state is undefined on resume (even the in_play register might be out 
+of sync with actual HW state), so that termination is mandatory. I can 
+add a check to make sure PXP is not considered active by the driver when 
+we disable the interrupts, to make sure we're in a flow that will submit 
+a termination to re-activate later.
+
+Daniele
+
+> -Chris
 
 _______________________________________________
 Intel-gfx mailing list
