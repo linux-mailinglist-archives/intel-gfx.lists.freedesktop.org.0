@@ -1,45 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A484C331695
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Mar 2021 19:49:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE0433184A
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Mar 2021 21:16:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B6D689BA5;
-	Mon,  8 Mar 2021 18:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B0F16E875;
+	Mon,  8 Mar 2021 20:16:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5175C89BA5
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Mar 2021 18:49:50 +0000 (UTC)
-IronPort-SDR: 8CrEL6aqqk0lsEFdsnjZFZ4tlGrDQWBhIQPqgcNs5c98EzfGyVfC50nOnYhjqIga1Hv57CVjGe
- BOSHRLqOYCEQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="175699151"
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="175699151"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2021 10:49:48 -0800
-IronPort-SDR: LU9eExS7kLi9DlTjhU8s/MqhDt9DljHP5bgbH3H2wCM1M1HSA93VIDWoKv+kZsiiCVVf3fI1Q3
- iQu7qyHOzfhA==
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="447223792"
-Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.212.237.60])
- ([10.212.237.60])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2021 10:49:45 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20210301193200.1369-1-daniele.ceraolospurio@intel.com>
- <20210301193200.1369-10-daniele.ceraolospurio@intel.com>
- <161480629555.25897.8434912809854085938@build.alporthouse.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <b05440cb-8a8d-205e-3487-7fcd673b113a@intel.com>
-Date: Mon, 8 Mar 2021 10:49:42 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B87086E875
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Mar 2021 20:16:09 +0000 (UTC)
+IronPort-SDR: CgZFEt/O0BCdYlBlVxJpKSCgA70H6K7xjD0BEZZZDy+eKU9rsuemrT7Ue0wUowIkSznNPLfgcY
+ w5QYbGZxZX5w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="168012586"
+X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="168012586"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2021 12:16:09 -0800
+IronPort-SDR: lCYmjIf40BZuT0Bo2jJsQqn07A2a07hX38K4BhmLTVfVRugU95WoAJGgxAgEQ+x5GsmbMyqSKq
+ Mdpc0Kjxl+wQ==
+X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="599008562"
+Received: from sbalasub-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
+ ([10.209.97.66])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2021 12:16:08 -0800
+Date: Mon, 8 Mar 2021 12:16:08 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210308201608.plntz77ae7oi4mbb@ldmartin-desk1>
+X-Patchwork-Hint: comment
+References: <20210303010728.3605269-1-lucas.demarchi@intel.com>
+ <20210303031407.GD2690983@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <161480629555.25897.8434912809854085938@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 09/16] drm/i915/pxp: Implement PXP irq
- handler
+Content-Disposition: inline
+In-Reply-To: <20210303031407.GD2690983@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gen12: Add recommended
+ hardware tuning value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,397 +50,168 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Huang, Sean Z" <sean.z.huang@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Mar 02, 2021 at 07:14:07PM -0800, Matt Roper wrote:
+>On Tue, Mar 02, 2021 at 05:07:25PM -0800, Lucas De Marchi wrote:
+>> From: Caz Yokoyama <caz.yokoyama@intel.com>
+>>
+>> Follow Bspec 31870 to set recommended tuning values for certain GT
+>> register.  These values aren't workarounds per-se, but it's best to
+>> handle them in the same general area of the driver, especially since
+>> there may be real workarounds that update other bits of the same
+>> registers.
+>>
+>> At the moment the only value we need to worry about is the
+>> TDS_TIMER setting in FF_MODE2.  This setting was previously
+>> described as "Wa_1604555607" on some platforms, but the spec
+>> tells us that we should continue to program this on all current
+>> gen12 platforms, even those that do not have that WA.
+>>
+>> Bspec: 31870
+>>
+>> Cc: Clinton Taylor <clinton.a.taylor@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Signed-off-by: Caz Yokoyama <caz.yokoyama@intel.com>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>A couple minor nitpicks about the comments, but you can tweak those
+>while applying.
+>
+>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>
+>There appear to be some other registers recommended on the same bspec
+>tuning page that we don't seem to be handling yet.  Will those be coming
+>as additional patches?
 
+I don't have those ready, but that is the intention, yes. Here I
+basically wanted to get the basic changes in place to make those
+possible, while moving the one we already have in the driver there.
 
-On 3/3/2021 1:18 PM, Chris Wilson wrote:
-> Quoting Daniele Ceraolo Spurio (2021-03-01 19:31:53)
->> From: "Huang, Sean Z" <sean.z.huang@intel.com>
->>
->> The HW will generate a teardown interrupt when session termination is
->> required, which requires i915 to submit a terminating batch. Once the HW
->> is done with the termination it will generate another interrupt, at
->> which point it is safe to re-create the session.
->>
->> v2: use struct completion instead of bool (Chris)
->>
->> Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
->> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>
 >> ---
->>   drivers/gpu/drm/i915/Makefile                |   1 +
->>   drivers/gpu/drm/i915/gt/intel_gt_irq.c       |   7 +
->>   drivers/gpu/drm/i915/i915_reg.h              |   1 +
->>   drivers/gpu/drm/i915/pxp/intel_pxp.c         |  34 +++++
->>   drivers/gpu/drm/i915/pxp/intel_pxp.h         |  16 ++
->>   drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     | 151 +++++++++++++++++++
->>   drivers/gpu/drm/i915/pxp/intel_pxp_irq.h     |  33 ++++
->>   drivers/gpu/drm/i915/pxp/intel_pxp_session.c |   9 +-
->>   drivers/gpu/drm/i915/pxp/intel_pxp_session.h |   1 +
->>   drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  10 +-
->>   drivers/gpu/drm/i915/pxp/intel_pxp_types.h   |   8 +
->>   11 files changed, 268 insertions(+), 3 deletions(-)
->>   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
->>   create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
+>>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 48 ++++++++++++++++-----
+>>  1 file changed, 37 insertions(+), 11 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
->> index 8b605f326039..5e9bd34dec38 100644
->> --- a/drivers/gpu/drm/i915/Makefile
->> +++ b/drivers/gpu/drm/i915/Makefile
->> @@ -274,6 +274,7 @@ i915-y += i915_perf.o
->>   i915-$(CONFIG_DRM_I915_PXP) += \
->>          pxp/intel_pxp.o \
->>          pxp/intel_pxp_cmd.o \
->> +       pxp/intel_pxp_irq.o \
->>          pxp/intel_pxp_session.o \
->>          pxp/intel_pxp_tee.o
->>   
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
->> index d29126c458ba..0d3585efe2b8 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
->> @@ -13,6 +13,7 @@
->>   #include "intel_lrc_reg.h"
->>   #include "intel_uncore.h"
->>   #include "intel_rps.h"
->> +#include "pxp/intel_pxp_irq.h"
->>   
->>   static void guc_irq_handler(struct intel_guc *guc, u16 iir)
->>   {
->> @@ -64,6 +65,9 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
->>          if (instance == OTHER_GTPM_INSTANCE)
->>                  return gen11_rps_irq_handler(&gt->rps, iir);
->>   
->> +       if (instance == OTHER_KCR_INSTANCE)
->> +               return intel_pxp_irq_handler(&gt->pxp, iir);
->> +
->>          WARN_ONCE(1, "unhandled other interrupt instance=0x%x, iir=0x%x\n",
->>                    instance, iir);
->>   }
->> @@ -190,6 +194,9 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
->>          intel_uncore_write(uncore, GEN11_GPM_WGBOXPERF_INTR_MASK,  ~0);
->>          intel_uncore_write(uncore, GEN11_GUC_SG_INTR_ENABLE, 0);
->>          intel_uncore_write(uncore, GEN11_GUC_SG_INTR_MASK,  ~0);
->> +
->> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, 0);
->> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~0);
->>   }
->>   
->>   void gen11_gt_irq_postinstall(struct intel_gt *gt)
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> index e5dd0203991b..97a6d0c638ec 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -7958,6 +7958,7 @@ enum {
->>   /* irq instances for OTHER_CLASS */
->>   #define OTHER_GUC_INSTANCE     0
->>   #define OTHER_GTPM_INSTANCE    1
->> +#define OTHER_KCR_INSTANCE     4
->>   
->>   #define GEN11_INTR_IDENTITY_REG(x)     _MMIO(0x190060 + ((x) * 4))
->>   
->> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> index cbec9395bde9..0ca1c2c16972 100644
->> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
->> @@ -2,7 +2,9 @@
->>   /*
->>    * Copyright(c) 2020 Intel Corporation.
->>    */
->> +#include <linux/workqueue.h>
->>   #include "intel_pxp.h"
->> +#include "intel_pxp_irq.h"
->>   #include "intel_pxp_tee.h"
->>   #include "gt/intel_context.h"
->>   #include "i915_drv.h"
->> @@ -67,12 +69,23 @@ void intel_pxp_init(struct intel_pxp *pxp)
->>   
->>          mutex_init(&pxp->mutex);
->>   
->> +       /*
->> +        * we'll use the completion to check if there is a termination pending,
->> +        * so we start it as completed and we reinit it when a termination
->> +        * is triggered.
->> +        */
->> +       init_completion(&pxp->termination);
->> +       complete_all(&pxp->termination);
->> +
->>          kcr_pxp_enable(gt);
->>   
->>          ret = create_vcs_context(pxp);
->>          if (ret)
->>                  goto out_kcr;
->>   
->> +       intel_pxp_irq_init(pxp);
->> +       intel_pxp_irq_enable(pxp);
->> +
->>          ret = intel_pxp_tee_component_init(pxp);
->>          if (ret)
->>                  goto out_context;
->> @@ -94,10 +107,31 @@ void intel_pxp_fini(struct intel_pxp *pxp)
->>          if (!intel_pxp_is_enabled(pxp))
->>                  return;
->>   
->> +       intel_pxp_irq_disable(pxp);
->> +
->>          intel_pxp_tee_component_fini(pxp);
->>   
->>          destroy_vcs_context(pxp);
->>   
->>          kcr_pxp_disable(gt);
->> +}
->>   
->> +int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
->> +{
->> +       int ret;
->> +
->> +       if (!intel_pxp_is_enabled(pxp))
->> +               return 0;
->> +
->> +       ret = wait_for_completion_timeout(&pxp->termination,
->> +                                         msecs_to_jiffies(100));
->> +
->> +       /* the wait returns 0 on failure */
->> +       if (ret)
->> +               ret = 0;
->> +       else
->> +               ret = -ETIMEDOUT;
->> +
->> +       return ret;
->>   }
->> +
->> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> index 3bede9306481..89cf66c9bef3 100644
->> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
->> @@ -9,6 +9,15 @@
->>   #include "gt/intel_gt_types.h"
->>   #include "intel_pxp_types.h"
->>   
->> +#define GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT BIT(1)
->> +#define GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT BIT(2)
->> +#define GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT BIT(3)
->> +
->> +#define GEN12_PXP_INTERRUPTS \
->> +       (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT | \
->> +        GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT | \
->> +        GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
->> +
->>   static inline struct intel_gt *pxp_to_gt(const struct intel_pxp *pxp)
->>   {
->>          return container_of(pxp, struct intel_gt, pxp);
->> @@ -27,6 +36,8 @@ static inline bool intel_pxp_is_active(const struct intel_pxp *pxp)
->>   #ifdef CONFIG_DRM_I915_PXP
->>   void intel_pxp_init(struct intel_pxp *pxp);
->>   void intel_pxp_fini(struct intel_pxp *pxp);
->> +
->> +int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp);
->>   #else
->>   static inline void intel_pxp_init(struct intel_pxp *pxp)
->>   {
->> @@ -35,6 +46,11 @@ static inline void intel_pxp_init(struct intel_pxp *pxp)
->>   static inline void intel_pxp_fini(struct intel_pxp *pxp)
->>   {
->>   }
->> +
->> +static inline int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
->> +{
->> +       return 0;
->> +}
->>   #endif
->>   
->>   #endif /* __INTEL_PXP_H__ */
->> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
->> new file mode 100644
->> index 000000000000..40115bf0b6bb
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
->> @@ -0,0 +1,151 @@
->> +// SPDX-License-Identifier: MIT
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> index 3b4a7da60f0b..f6d9b849aa62 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> @@ -646,9 +646,38 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>>  	wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN11_DIS_PICK_2ND_EU);
+>>  }
+>>
 >> +/*
->> + * Copyright(c) 2020 Intel Corporation.
+>> + * These settings aren't actually workarounds, but general tuning settings that
+>> + * need to be programmed on several platforms.
 >> + */
->> +#include <linux/workqueue.h>
->> +#include "intel_pxp.h"
->> +#include "intel_pxp_irq.h"
->> +#include "intel_pxp_session.h"
->> +#include "gt/intel_gt_irq.h"
->> +#include "i915_irq.h"
->> +#include "i915_reg.h"
->> +
->> +static int pxp_terminate(struct intel_pxp *pxp)
+>> +static void gen12_ctx_gt_tuning_init(struct intel_engine_cs *engine,
+>> +				     struct i915_wa_list *wal)
 >> +{
->> +       int ret = 0;
->> +
->> +       mutex_lock(&pxp->mutex);
->> +
->> +       pxp->global_state_attacked = true;
->> +
->> +       ret = intel_pxp_arb_terminate_session_with_global_terminate(pxp);
->> +
->> +       mutex_unlock(&pxp->mutex);
->> +
->> +       return ret;
->> +}
->> +
->> +static int pxp_terminate_complete(struct intel_pxp *pxp)
->> +{
->> +       int ret = 0;
->> +
->> +       mutex_lock(&pxp->mutex);
->> +
->> +       if (pxp->global_state_attacked) {
->> +               pxp->global_state_attacked = false;
->> +
->> +               /* Re-create the arb session after teardown handle complete */
->> +               ret = intel_pxp_create_arb_session(pxp);
->> +       }
-> 	/* Re-create the arb session after teardown handle complete */
-> 	if (fetch_and_zero(&pxp->global_state_attacked))
-> 		ret = intel_pxp_create_arb_session(pxp);
+>> +	/*
+>> +	 * Although some platforms refer to it as Wa_1604555607, we need to
+>> +	 * program it even on those that don't explicitly list that
+>> +	 * workaround.
+>> +	 *
+>> +	 * Note that the implementation of this workaround is further modified
 >
->> +
->> +       mutex_unlock(&pxp->mutex);
->> +
->> +       complete_all(&pxp->termination);
->> +
->> +       return ret;
->> +}
->> +
->> +static void intel_pxp_irq_work(struct work_struct *work)
->> +{
->> +       struct intel_pxp *pxp = container_of(work, typeof(*pxp), irq_work);
->> +       struct intel_gt *gt = pxp_to_gt(pxp);
->> +       u32 events = 0;
->> +
->> +       spin_lock_irq(&gt->irq_lock);
->> +       events = fetch_and_zero(&pxp->current_events);
->> +       spin_unlock_irq(&gt->irq_lock);
->> +
->> +       if (!events)
->> +               return;
->> +
->> +       if (events & (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT |
->> +                     GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
->> +               pxp_terminate(pxp);
->> +
->> +       if (events & GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
->> +               pxp_terminate_complete(pxp);
->> +
->> +       /*
->> +        * we expect the terminate complete to arrive quickly after emitting
->> +        * the terminate, so check back on it
->> +        */
->> +       if (pxp->irq_enabled)
->> +               queue_work(system_unbound_wq, &pxp->irq_work);
-> pxp->current_events is only updated in the interrupt handler, so running
-> the work before the irq gains nothing.
+>Since we just got done saying that this technically isn't a workaround,
+>even though some of the older platforms still list it that way, I'd
+>re-word the comment here.  Maybe "Note that the programming of this
+>register is further modified..." would be more appropriate.
 >
->> +}
->> +
->> +/**
->> + * intel_pxp_irq_handler - Handles PXP interrupts.
->> + * @pxp: pointer to pxp struct
->> + * @iir: interrupt vector
->> + */
->> +void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir)
->> +{
->> +       struct intel_gt *gt = pxp_to_gt(pxp);
->> +
->> +       if (GEM_WARN_ON(!intel_pxp_is_enabled(pxp)))
->> +               return;
->> +
->> +       lockdep_assert_held(&gt->irq_lock);
->> +
->> +       if (unlikely(!iir))
->> +               return;
->> +
->> +       /* immediately mark PXP as inactive on termination */
->> +       if (iir & (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT |
->> +                  GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT))
->> +               intel_pxp_mark_termination_in_progress(pxp);
->> +
->> +       pxp->current_events |= iir;
->> +       queue_work(system_unbound_wq, &pxp->irq_work);
->> +}
->> +
->> +static inline void __pxp_set_interrupts(struct intel_gt *gt, u32 interrupts)
->> +{
->> +       struct intel_uncore *uncore = gt->uncore;
->> +       const u32 mask = interrupts << 16;
->> +
->> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, mask);
->> +       intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~mask);
->> +}
->> +
->> +static inline void pxp_irq_reset(struct intel_gt *gt)
->> +{
->> +       spin_lock_irq(&gt->irq_lock);
->> +       gen11_gt_reset_one_iir(gt, 0, GEN11_KCR);
->> +       spin_unlock_irq(&gt->irq_lock);
->> +}
->> +
->> +void intel_pxp_irq_init(struct intel_pxp *pxp)
->> +{
->> +       INIT_WORK(&pxp->irq_work, intel_pxp_irq_work);
->> +}
->> +
->> +void intel_pxp_irq_enable(struct intel_pxp *pxp)
->> +{
->> +       struct intel_gt *gt = pxp_to_gt(pxp);
->> +
->> +       spin_lock_irq(&gt->irq_lock);
->> +       if (!pxp->irq_enabled) {
->> +               WARN_ON_ONCE(gen11_gt_reset_one_iir(gt, 0, GEN11_KCR));
->> +               __pxp_set_interrupts(gt, GEN12_PXP_INTERRUPTS);
->> +               pxp->irq_enabled = true;
->> +       }
->> +       spin_unlock_irq(&gt->irq_lock);
->> +}
->> +
->> +void intel_pxp_irq_disable(struct intel_pxp *pxp)
->> +{
->> +       struct intel_gt *gt = pxp_to_gt(pxp);
->> +
->> +       spin_lock_irq(&gt->irq_lock);
->> +
->> +       pxp->irq_enabled = false;
->> +       __pxp_set_interrupts(gt, 0);
->> +
->> +       spin_unlock_irq(&gt->irq_lock);
->> +       intel_synchronize_irq(gt->i915);
->> +
->> +       pxp_irq_reset(gt);
->> +
->> +       flush_work(&pxp->irq_work);
-> As I read it, if the session was in play at the time of irq_disable and
-> there were inflight interrupts then the state of the session at the end
-> of this function is undefined.
+>> +	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
+>> +	 *
 >
-> Should the session be terminated prior to disabling irq (that would seem
-> appropriate for the driver flow)? Certainly at the point of
-> unregistering the driver from userspace, all user sessions should cease.
+>Minor nitpick; the new paragraph start here makes it sound like we've
+>moved on to describing something else, rather than explaining what
+>Wa_1608008084:gen12 asks us to do.  I'd remove the blank line here and
+>start the next sentence with "Wa_1608008084 tells us..." to link the
+>statements together.
+
+thanks. I changed those and will resubmit.
+
+Lucas De Marchi
+
 >
-> Is an assert like GEM_BUG_ON(!completion_done(&pxp->termination)); valid
-> here?
-
-I wanted to avoid doing a termination here because we have to do it 
-anyway when we re-enable. I've checked with the archs and basically the 
-HW state is undefined on resume (even the in_play register might be out 
-of sync with actual HW state), so that termination is mandatory. I can 
-add a check to make sure PXP is not considered active by the driver when 
-we disable the interrupts, to make sure we're in a flow that will submit 
-a termination to re-activate later.
-
-Daniele
-
-> -Chris
-
+>
+>Matt
+>
+>> +	 * FF_MODE2 register will return the wrong value when read. The default
+>> +	 * value for this register is zero for all fields and there are no bit
+>> +	 * masks. So instead of doing a RMW we should just write TDS timer
+>> +	 * value. For the same reason read verification is ignored.
+>> +	 */
+>> +	wa_add(wal,
+>> +	       FF_MODE2,
+>> +	       FF_MODE2_TDS_TIMER_MASK,
+>> +	       FF_MODE2_TDS_TIMER_128,
+>> +	       0);
+>> +}
+>> +
+>>  static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
+>>  				       struct i915_wa_list *wal)
+>>  {
+>> +	gen12_ctx_gt_tuning_init(engine, wal);
+>> +
+>>  	/*
+>>  	 * Wa_1409142259:tgl
+>>  	 * Wa_1409347922:tgl
+>> @@ -675,19 +704,15 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>>  	gen12_ctx_workarounds_init(engine, wal);
+>>
+>>  	/*
+>> -	 * Wa_1604555607:tgl,rkl
+>> +	 * Wa_16011163337
+>>  	 *
+>> -	 * Note that the implementation of this workaround is further modified
+>> -	 * according to the FF_MODE2 guidance given by Wa_1608008084:gen12.
+>> -	 * FF_MODE2 register will return the wrong value when read. The default
+>> -	 * value for this register is zero for all fields and there are no bit
+>> -	 * masks. So instead of doing a RMW we should just write the GS Timer
+>> -	 * and TDS timer values for Wa_1604555607 and Wa_16011163337.
+>> +	 * Like in gen12_ctx_gt_tuning_init(), read verification is ignored due
+>> +	 * to Wa_1608008084.
+>>  	 */
+>>  	wa_add(wal,
+>>  	       FF_MODE2,
+>> -	       FF_MODE2_GS_TIMER_MASK | FF_MODE2_TDS_TIMER_MASK,
+>> -	       FF_MODE2_GS_TIMER_224  | FF_MODE2_TDS_TIMER_128,
+>> +	       FF_MODE2_GS_TIMER_MASK,
+>> +	       FF_MODE2_GS_TIMER_224,
+>>  	       0);
+>>  }
+>>
+>> @@ -707,12 +732,13 @@ static void dg1_ctx_workarounds_init(struct intel_engine_cs *engine,
+>>  	/*
+>>  	 * Wa_16011163337
+>>  	 *
+>> -	 * Like in tgl_ctx_workarounds_init(), read verification is ignored due
+>> +	 * Like in gen12_ctx_gt_tuning_init(), read verification is ignored due
+>>  	 * to Wa_1608008084.
+>>  	 */
+>>  	wa_add(wal,
+>>  	       FF_MODE2,
+>> -	       FF_MODE2_GS_TIMER_MASK, FF_MODE2_GS_TIMER_224, 0);
+>> +	       FF_MODE2_GS_TIMER_MASK,
+>> +	       FF_MODE2_GS_TIMER_224, 0);
+>>  }
+>>
+>>  static void
+>> --
+>> 2.30.1
+>>
+>
+>-- 
+>Matt Roper
+>Graphics Software Engineer
+>VTT-OSGC Platform Enablement
+>Intel Corporation
+>(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
