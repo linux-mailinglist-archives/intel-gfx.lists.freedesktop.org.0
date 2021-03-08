@@ -1,157 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EDF13314EA
-	for <lists+intel-gfx@lfdr.de>; Mon,  8 Mar 2021 18:32:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 459F8331623
+	for <lists+intel-gfx@lfdr.de>; Mon,  8 Mar 2021 19:32:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45F1789E59;
-	Mon,  8 Mar 2021 17:32:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4711289CF3;
+	Mon,  8 Mar 2021 18:32:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6226189E59
- for <intel-gfx@lists.freedesktop.org>; Mon,  8 Mar 2021 17:32:47 +0000 (UTC)
-IronPort-SDR: gjJ/F7BhD/PUnxDEcn191h9ol8NoangkYSr/AX9kRgGx+v7com95dWlU+jTzn1q9OTfKIr8K5I
- 2YZ4bjP1LSEQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="167985002"
-X-IronPort-AV: E=Sophos;i="5.81,232,1610438400"; d="scan'208";a="167985002"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2021 09:32:46 -0800
-IronPort-SDR: bR92O9Poa4SjLJgMeD8K1Jdgxm+5x5wvGQ/yzJrDioy6T9W5ld1YS3adisRzbuefEIRwEibaG1
- R2fgQHStp2LA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,232,1610438400"; d="scan'208";a="430444143"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga004.fm.intel.com with ESMTP; 08 Mar 2021 09:32:46 -0800
-Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 8 Mar 2021 09:32:46 -0800
-Received: from orsmsx609.amr.corp.intel.com (10.22.229.22) by
- ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 8 Mar 2021 09:32:45 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx609.amr.corp.intel.com (10.22.229.22) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
- via Frontend Transport; Mon, 8 Mar 2021 09:32:45 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2106.2; Mon, 8 Mar 2021 09:32:45 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=S9oMe59xRX796/2vylAxKHrtSLHRVUdG/NTlf6CIKN/q75c/u0Bd3mzXaicNfNID83BjUIppn21o6n1+4jWgI8WPTQDEF0nyurqoEwMILZlNhmEoORuJl3T71iGAbJiaRUYxi/qMgUdUhxz4/FMQIjMeVzY/NuG5wh8gsngieo91nL+fquCMwEeQ5HBtr/qgq3j+HUsZyZjwir53Ky1GGWU9rO92SvAzDUNzDPF9OLO/LzUoFil0oieOLCrkFWR+xz54LPV0tvxqGyd/IR2yYzxPP0UYUU9VNyxRDrFTISA/yCWMCfgpDDa3MqAoNLZYZz1omvvNYhsNv/uUttxLpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6tJ7qbd9A+72f65H4Um3thFwKwGQRrKb20V9rrdnfgU=;
- b=Kyh5H/2tgtcjeCPeKj/z2n7dQO7r4Z3a6v0fxbBsOxxaQb9xKFTCOPIJYWv0nXOsVrwijhrVE4L5gGvrnh4pOSADnIRhLV2U2djQl1PsfeEAo4uqafzzOxuEnaRBWDuLSZvNPzj8ADgvWT8WYsOxYqKTYGBHUBnDB7+WclsymFO7X4HXl2MZdw1VHd2YKWPKjl0yZC/ku+9ZnEi0rNtOoYtFy05CSLW6IoRJVo4vaNi+w3RwlOVdBcO8NLANk+MizZxnC1TCalDi1p9Zit+BUBVjM3EnvTNPjjfKShZNjxMPXs/9CDRfVyrRSwxi9i3+AfVd37HCQ8G4g82Vu5EYgQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6tJ7qbd9A+72f65H4Um3thFwKwGQRrKb20V9rrdnfgU=;
- b=Ohhxz824LYcBK40epGZcy6k+8XgI+zCGgcLe00JzBRQiWvHtfVtmATT2/I9SxdT5WE9efZIPq8y6+5MEx6DUdc2rQbBjMTahivPmjgLQK3zY6UJX4qJvbS9tKdpcJ+1nJl/cR11dq6RKJe+tOhJ6Y0DTdeUm+ARQ/X2CQw+FqWA=
-Received: from SA2PR11MB4969.namprd11.prod.outlook.com (2603:10b6:806:111::12)
- by SN6PR11MB2815.namprd11.prod.outlook.com (2603:10b6:805:62::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3912.26; Mon, 8 Mar
- 2021 17:32:42 +0000
-Received: from SA2PR11MB4969.namprd11.prod.outlook.com
- ([fe80::781d:e956:8a67:f119]) by SA2PR11MB4969.namprd11.prod.outlook.com
- ([fe80::781d:e956:8a67:f119%6]) with mapi id 15.20.3868.041; Mon, 8 Mar 2021
- 17:32:42 +0000
-From: "Chiou, Cooper" <cooper.chiou@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Chris Wilson
- <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3] drm/i915: Enable
- WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
-Thread-Index: AQHXDy9TNUpQng5a8UOTNIkE1rTbjqpzjp4AgAAB8gCAACvUAIAA2R2AgACOaACAADGngIAAMJ3wgAAM94CABMGLcA==
-Date: Mon, 8 Mar 2021 17:32:41 +0000
-Message-ID: <SA2PR11MB496960ABA0D7C5E2A53A2C099D939@SA2PR11MB4969.namprd11.prod.outlook.com>
-References: <20200916180745.627-1-cooper.chiou@intel.com>
- <20210302062700.6025-1-cooper.chiou@intel.com>
- <0c8ef2fb-34b0-98ea-12bb-fc300172799c@linux.intel.com>
- <161484956454.28586.15932692857365863465@build.alporthouse.com>
- <161485897632.28586.2630377954645968923@build.alporthouse.com>
- <161490560153.13701.1838349946598091390@build.alporthouse.com>
- <40dd702b-c71c-0b99-93e6-0e120ef7715d@linux.intel.com>
- <161494684568.15221.13792200139079395463@build.alporthouse.com>
- <SA2PR11MB49696180125900E3CCB090049D969@SA2PR11MB4969.namprd11.prod.outlook.com>
- <194e43a3-2425-f5de-a8db-ad86bac19a66@linux.intel.com>
-In-Reply-To: <194e43a3-2425-f5de-a8db-ad86bac19a66@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-authentication-results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [123.193.93.97]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 45a65e97-a999-4fdd-52fe-08d8e2582ddb
-x-ms-traffictypediagnostic: SN6PR11MB2815:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SN6PR11MB2815609BD59817E75FA9A6229D939@SN6PR11MB2815.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 78h7wxM+nupOPwFFUvZSVjxZ0ns+EPb3K2LGZQBdQCNwBFIfeCd5JWLLAj7jVv6LwwlcbCjs9rQAWM4MXn6oRTPLQ/zp21Nv9nWInsPJwoq6P2rw2F1ScVVS4LBSnbetFqJFsHMlSl2ll+X2+1Rr3j88uI9v98+XcKLd/LqAN5TbB0XPisK3jScRWX3DSr872KHs6ykwiGOZEA0PrvTcUty5pLOmHkoRAUs5pBHujquHjXUWjTPD+2DjhvXWzyeN5wQFo9dQocZZ6ZJh+BaRzF38gmj8gmx6DyVFOkqMf3ywl0vYJ9W8tZqc9o9tFfLZdZyEv1W3omCqpXgixWfQS3DuXDOV+zBTqxpdKOYVdknqqgCpgzbWwbsoY/HlGGtZQmRYzXzRiuHtKn7znqHV29V7jAihfPXtlYi/zv17i4iyJsN90ivb1VujORO7W2MA6K4wBU7TR5CIm3LztQavxyDJf51JSQ2/L/dkH2qVDRjgbNc+15OUVRouAOh30M5EVbVvoQtt5ZHE2V6PCgQm+C+N10aNpY7vCfQE7R1PDg+VbdNk7vRV7G2LzQwXrLRN
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA2PR11MB4969.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(6029001)(39860400002)(366004)(136003)(346002)(376002)(396003)(33656002)(76116006)(66446008)(66556008)(66476007)(64756008)(186003)(26005)(2906002)(5660300002)(316002)(83380400001)(66946007)(9686003)(54906003)(52536014)(7696005)(6506007)(55016002)(71200400001)(478600001)(4326008)(110136005)(8936002)(8676002)(86362001)(213903007);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?utf-8?B?QWtCZlFtSVc0YzlUMmsvV0lBUDFlWndNTXQ5enVYQS94UWNFV01VZXUybjZx?=
- =?utf-8?B?aXBEb0p3OE1ITStMbmczQWt1R3EvUEFVZk9WTWNPTWYyZU82ZVJzczdoY0U4?=
- =?utf-8?B?elNwRk1nMkJpaXExL1ZIUlV5QXFzZ2picVQvTU96alZXdWxCVVNKRzNyQkRD?=
- =?utf-8?B?cGFCcVcwc2xuNnd5M0RTNEFFUUxpOGhpcytjRTQ1QUFLUWd2d1M1RWZZVi9v?=
- =?utf-8?B?eS85bGpHY1BSSWE1WGhRUks1MGlpaWFwdFNSYjV6OE5BSWdVeDAwZHlUZi9l?=
- =?utf-8?B?MUpHL2ZKd2tFQXJzK1B3U2dmRmV0MGNsZnluR0Fjd2FSTnJLZGZmenRRWEtr?=
- =?utf-8?B?amc3SVBIRjhIQ0pWd2FQcGRQNm5CckJyb0ZBQitnbUxvTFFhWExKclVEK2Ix?=
- =?utf-8?B?WkNsQ1AvL0xkT3ZzbzYweEN1QWY2UURtbFdVbXZ5RStCMHZmQStuRHJxbisw?=
- =?utf-8?B?TllibjVmclZhVklqTHlrWnZMNGp2L3RnYWdaTVFiUThEY1RBbHJ3WktNMGND?=
- =?utf-8?B?ZE1tQjNTZmE4QXoxRjAzY3NCTkV0bkw4a3ZGZTkrZ3JLNmRnMDkwVnFKQ2xH?=
- =?utf-8?B?ckRlelJ4Und4UTJEWE9UYkd2N3NFSmJMejREUWFqS2daalcvZjlBem5rNXJa?=
- =?utf-8?B?TnMybzA1YlE4SisvNG1mbTBISGM4S2xaTGFRTzd6RFhoUWJLOHV6ZlJFRlNo?=
- =?utf-8?B?b0pOdUZhYWtHYktzQUQvT0VyQmFMMTN2MUs5RnJlTit1cDJHK2hKNUNGNlhj?=
- =?utf-8?B?WjhoR0g5RG1veVFScy8wNDhuTytkVnN4MTJxcVZrRmtNakdIOXBmUG9leDhK?=
- =?utf-8?B?SWhVVjZmYU52WXQva05UN0h3OWZlZU93YkVvdzdZQ2xqY3BtT3Zoc2lKTnFI?=
- =?utf-8?B?Ynp2T1hSQWdMZVIxYi92Yms2M1ZZQzQ1Qm5ncjFSeHVNVWt0T3AyQWVnbnlV?=
- =?utf-8?B?eTV2USszT1BFR243TEhWWkRPdURmMU5Sd3NMaFJZM2ZWdkNuT0RKa25jU2NK?=
- =?utf-8?B?M29FSEFyaCt1T2swdGRNc3k2M1lDU3hub3lnZ0djOHp2Vzk2cll2dWVWWGFN?=
- =?utf-8?B?WTNvdjRUNHJYcWJDZUNxeHJkc0h1S0Z6WTZuV09lVUJtb3BDNTFzaisvQlZI?=
- =?utf-8?B?eWpUWVcyTFk3cSs0ZU0ybldGNTZ0T1REOFc5WGkyR0RpSHRqTzBmeFZQZXIr?=
- =?utf-8?B?ZmZ4VWJhOE5McWlIRWh6ekFINXBmWTkxYWMzaVRkc0MwaHAra1JaWDE4NjE3?=
- =?utf-8?B?NnM5NUYrU3I5Rzc4VUNjblU2OGhLS1JRN0o0eFo2bmhLQjUyMzNUeXltdmJu?=
- =?utf-8?B?MEpTWU5iMCtWVlFmd0owdnlDN2pkV3doY01HK2RPczRvcW1rOWppZzNyQXU4?=
- =?utf-8?B?WDN0cjJJQU1IZERKQXRkS2VCVkJ4SFJaekg2SmJPbGhub1A1eTV6SnJzclMr?=
- =?utf-8?B?aDduZFNOZVZBMHpxMVZxeDd1TTMyRXlzL1V4bVRzR2VjdW9YcnMzSSt0emx4?=
- =?utf-8?B?YlFLTEFsUy8zTnpvQ0pta3hKcnJDVnNWZUl1L2FWUks0OXZtRHhDZmpZZlZt?=
- =?utf-8?B?Q1pYNC8xZWViUTdvY0NranhGc0ZhM2IzRmxtWU9vV2xGUUt0VFZLMU1pb3Bl?=
- =?utf-8?B?VVp2clVxUWV5d0NNa2QzQU83YUtxUUJ0S245RmhnQ0ljVHhrWWVDUllsYW1p?=
- =?utf-8?B?clpLYmlSeDZvT3kvVW5UNlVVek9hbFl4TEZLMVd6RTZuYklvWXpqb2QvYVFu?=
- =?utf-8?Q?+iexmN1PWdixbVzGh4SFUTkTDP09PFGDXLvmUmq?=
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 338C089CF3
+ for <intel-gfx@lists.freedesktop.org>; Mon,  8 Mar 2021 18:32:35 +0000 (UTC)
+IronPort-SDR: e1V+Jy9hA1RtSyof3NjRkshfGqr+O4n+us/bXhlws6vatAVFgkoJXFCWkK8bpmrsHJgWHsrbIW
+ +TvSFxsFMt2g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="185697458"
+X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="185697458"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2021 10:32:34 -0800
+IronPort-SDR: 7jTYFcvtM+Rbhnv1K5jDHxSQ2SDkT9ecx73cgE9+BDWCPUXnmnsKH2szvmLdqJxbTz5+xjWG+T
+ r5RVTe9Ow1+w==
+X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="447219421"
+Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.212.237.60])
+ ([10.212.237.60])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2021 10:32:33 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20210301193200.1369-1-daniele.ceraolospurio@intel.com>
+ <20210301193200.1369-12-daniele.ceraolospurio@intel.com>
+ <161481341145.25897.4915487485777391734@build.alporthouse.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <f130c7ce-f445-68f7-612e-b9f7306eaa14@intel.com>
+Date: Mon, 8 Mar 2021 10:32:31 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4969.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45a65e97-a999-4fdd-52fe-08d8e2582ddb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2021 17:32:42.1617 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hatkIeM1bnHFis4c9TjSGLHg7WopdijjF3Fxmjp+iXY8rsFokClQkSUpBx8YQToS2Kls19i8bfmxWG+uTeI9OQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2815
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Enable
- WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
+In-Reply-To: <161481341145.25897.4915487485777391734@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 11/16] drm/i915/pxp: interface for
+ creation of protected contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,48 +52,431 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Tseng,
- William" <william.tseng@intel.com>, "Chen, Rong A" <rong.a.chen@intel.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I've tested on GLK, KBL, CFL Intel NUC devices and got the following performance results, there is no performance regression per my testing.
 
-Patch: [v5] drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
-Test suite: phoronix-test-suite.supertuxkart.1024x768.Fullscreen.Ultimate.1.GranParadisoIsland.frames_per_second
-Kernel version: 5.12.0-rc1 (drm-tip)
 
-a. Device: Intel NUC kit NUC7JY Gemini Lake Celeron J4005 @2.7GHz (2 Cores)
-    Without patch, fps=57.45
-    With patch, fps=57.49
-b. Device: Intel NUC kit NUC8BEH Coffee Lake Core i3-8109U @3.6GHz(4 Cores)
-    Without patch, fps=117.23
-    With patch, fps=117.27
-c. Device: Intel NUC kit NUC7i3BNH Kaby Lake Core i3-7100U @2.4GHz(4 Cores)
-    Without patch, fps=114.05
-    With patch, fps=114.34
+On 3/3/2021 3:16 PM, Chris Wilson wrote:
+> Quoting Daniele Ceraolo Spurio (2021-03-01 19:31:55)
+>> Usage of protected objects, coming in a follow-up patch, will be
+>> restricted to protected contexts. Contexts can only be marked as
+>> protected at creation time and they must be both bannable and not
+>> recoverable.
+>>
+>> When a PXP teardown occurs, all gem contexts marked as protected that
+>> have been used at least once will be marked as invalid and all new
+>> submissions using them will be rejected. All intel contexts within the
+>> invalidated gem contexts will be marked banned.
+>> A new flag has been added to the RESET_STATS ioctl to report the
+>> invalidation to userspace.
+>>
+>> v2: split to its own patch and improve doc (Chris), invalidate contexts
+>> on teardown
+>>
+>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_context.c   | 59 ++++++++++++++++++-
+>>   drivers/gpu/drm/i915/gem/i915_gem_context.h   | 18 ++++++
+>>   .../gpu/drm/i915/gem/i915_gem_context_types.h |  2 +
+>>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 13 ++++
+>>   drivers/gpu/drm/i915/pxp/intel_pxp.c          | 38 ++++++++++++
+>>   drivers/gpu/drm/i915/pxp/intel_pxp.h          |  1 +
+>>   drivers/gpu/drm/i915/pxp/intel_pxp_session.c  |  3 +
+>>   include/uapi/drm/i915_drm.h                   | 19 ++++++
+>>   8 files changed, 150 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> index ca37d93ef5e7..19ac24a3c42c 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> @@ -76,6 +76,8 @@
+>>   #include "gt/intel_gpu_commands.h"
+>>   #include "gt/intel_ring.h"
+>>   
+>> +#include "pxp/intel_pxp.h"
+>> +
+>>   #include "i915_drm_client.h"
+>>   #include "i915_gem_context.h"
+>>   #include "i915_globals.h"
+>> @@ -2006,6 +2008,40 @@ static int set_priority(struct i915_gem_context *ctx,
+>>          return 0;
+>>   }
+>>   
+>> +static int set_protected(struct i915_gem_context *ctx,
+>> +                        const struct drm_i915_gem_context_param *args)
+>> +{
+>> +       int ret = 0;
+>> +
+>> +       if (!intel_pxp_is_enabled(&ctx->i915->gt.pxp))
+>> +               ret = -ENODEV;
+>> +       else if (ctx->client) /* can't change this after creation! */
+>> +               ret = -EEXIST;
+>> +       else if (args->size)
+>> +               ret = -EINVAL;
+>> +       else if (!args->value)
+>> +               clear_bit(UCONTEXT_PROTECTED, &ctx->user_flags);
+>> +       else if (i915_gem_context_is_recoverable(ctx) ||
+>> +                !i915_gem_context_is_bannable(ctx))
+>> +               ret = -EPERM;
+>> +       else
+>> +               set_bit(UCONTEXT_PROTECTED, &ctx->user_flags);
+>> +
+>> +       return ret;
+>> +}
+>> +
+>> +static int get_protected(struct i915_gem_context *ctx,
+>> +                        struct drm_i915_gem_context_param *args)
+>> +{
+>> +       if (!intel_pxp_is_enabled(&ctx->i915->gt.pxp))
+>> +               return -ENODEV;
+>> +
+>> +       args->size = 0;
+>> +       args->value = i915_gem_context_can_use_protected_content(ctx);
+>> +
+>> +       return 0;
+>> +}
+>> +
+>>   static int ctx_setparam(struct drm_i915_file_private *fpriv,
+>>                          struct i915_gem_context *ctx,
+>>                          struct drm_i915_gem_context_param *args)
+>> @@ -2038,6 +2074,8 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
+>>                          ret = -EPERM;
+>>                  else if (args->value)
+>>                          i915_gem_context_set_bannable(ctx);
+>> +               else if (i915_gem_context_can_use_protected_content(ctx))
+>> +                       ret = -EPERM; /* can't clear this for protected contexts */
+>>                  else
+>>                          i915_gem_context_clear_bannable(ctx);
+>>                  break;
+>> @@ -2045,10 +2083,12 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
+>>          case I915_CONTEXT_PARAM_RECOVERABLE:
+>>                  if (args->size)
+>>                          ret = -EINVAL;
+>> -               else if (args->value)
+>> -                       i915_gem_context_set_recoverable(ctx);
+>> -               else
+>> +               else if (!args->value)
+>>                          i915_gem_context_clear_recoverable(ctx);
+>> +               else if (i915_gem_context_can_use_protected_content(ctx))
+>> +                       ret = -EPERM; /* can't set this for protected contexts */
+>> +               else
+>> +                       i915_gem_context_set_recoverable(ctx);
+>>                  break;
+>>   
+>>          case I915_CONTEXT_PARAM_PRIORITY:
+>> @@ -2075,6 +2115,10 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
+>>                  ret = set_ringsize(ctx, args);
+>>                  break;
+>>   
+>> +       case I915_CONTEXT_PARAM_PROTECTED_CONTENT:
+>> +               ret = set_protected(ctx, args);
+>> +               break;
+>> +
+>>          case I915_CONTEXT_PARAM_BAN_PERIOD:
+>>          default:
+>>                  ret = -EINVAL;
+>> @@ -2532,6 +2576,10 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
+>>                  ret = get_ringsize(ctx, args);
+>>                  break;
+>>   
+>> +       case I915_CONTEXT_PARAM_PROTECTED_CONTENT:
+>> +               ret = get_protected(ctx, args);
+>> +               break;
+>> +
+>>          case I915_CONTEXT_PARAM_BAN_PERIOD:
+>>          default:
+>>                  ret = -EINVAL;
+>> @@ -2592,6 +2640,11 @@ int i915_gem_context_reset_stats_ioctl(struct drm_device *dev,
+>>          args->batch_active = atomic_read(&ctx->guilty_count);
+>>          args->batch_pending = atomic_read(&ctx->active_count);
+>>   
+>> +       /* re-use args->flags for output flags */
+>> +       args->flags = 0;
+>> +       if (i915_gem_context_invalidated(ctx))
+>> +               args->flags |= I915_CONTEXT_INVALIDATED;
+>> +
+>>          ret = 0;
+>>   out:
+>>          rcu_read_unlock();
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+>> index b5c908f3f4f2..b04d4eeb0500 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+>> @@ -108,6 +108,24 @@ i915_gem_context_clear_user_engines(struct i915_gem_context *ctx)
+>>          clear_bit(CONTEXT_USER_ENGINES, &ctx->flags);
+>>   }
+>>   
+>> +static inline bool
+>> +i915_gem_context_invalidated(const struct i915_gem_context *ctx)
+>> +{
+>> +       return test_bit(CONTEXT_INVALID, &ctx->flags);
+>> +}
+>> +
+>> +static inline void
+>> +i915_gem_context_set_invalid(struct i915_gem_context *ctx)
+>> +{
+>> +       set_bit(CONTEXT_INVALID, &ctx->flags);
+>> +}
+>> +
+>> +static inline bool
+>> +i915_gem_context_can_use_protected_content(const struct i915_gem_context *ctx)
+>> +{
+>> +       return test_bit(UCONTEXT_PROTECTED, &ctx->user_flags);
+>> +}
+>> +
+>>   /* i915_gem_context.c */
+>>   void i915_gem_init__contexts(struct drm_i915_private *i915);
+>>   
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>> index d5bc75508048..79a87268b8da 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+>> @@ -130,6 +130,7 @@ struct i915_gem_context {
+>>   #define UCONTEXT_BANNABLE              2
+>>   #define UCONTEXT_RECOVERABLE           3
+>>   #define UCONTEXT_PERSISTENCE           4
+>> +#define UCONTEXT_PROTECTED             5
+>>   
+>>          /**
+>>           * @flags: small set of booleans
+>> @@ -137,6 +138,7 @@ struct i915_gem_context {
+>>          unsigned long flags;
+>>   #define CONTEXT_CLOSED                 0
+>>   #define CONTEXT_USER_ENGINES           1
+>> +#define CONTEXT_INVALID                        2
+>>   
+>>          struct mutex mutex;
+>>   
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> index fe170186dd42..e503c9f789c0 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+>> @@ -21,6 +21,8 @@
+>>   #include "gt/intel_gt_pm.h"
+>>   #include "gt/intel_ring.h"
+>>   
+>> +#include "pxp/intel_pxp.h"
+>> +
+>>   #include "i915_drv.h"
+>>   #include "i915_gem_clflush.h"
+>>   #include "i915_gem_context.h"
+>> @@ -726,6 +728,11 @@ static int eb_select_context(struct i915_execbuffer *eb)
+>>          if (unlikely(!ctx))
+>>                  return -ENOENT;
+>>   
+>> +       if (i915_gem_context_invalidated(ctx)) {
+>> +               i915_gem_context_put(ctx);
+>> +               return -EIO;
+>> +       }
+>> +
+>>          eb->gem_context = ctx;
+>>          if (rcu_access_pointer(ctx->vm))
+>>                  eb->invalid_flags |= EXEC_OBJECT_NEEDS_GTT;
+>> @@ -2761,6 +2768,12 @@ eb_select_engine(struct i915_execbuffer *eb)
+>>   
+>>          intel_gt_pm_get(ce->engine->gt);
+>>   
+>> +       if (i915_gem_context_can_use_protected_content(eb->gem_context)) {
+>> +               err = intel_pxp_wait_for_termination_completion(&ce->engine->gt->pxp);
+>> +               if (err)
+>> +                       goto err;
+> This should check for context_invalidated
+>
+>> +       }
+>> +
+>>          if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
+>>                  err = intel_context_alloc_state(ce);
+>>                  if (err)
+>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+>> index 0ca1c2c16972..5912e4a12d94 100644
+>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+>> @@ -6,6 +6,7 @@
+>>   #include "intel_pxp.h"
+>>   #include "intel_pxp_irq.h"
+>>   #include "intel_pxp_tee.h"
+>> +#include "gem/i915_gem_context.h"
+>>   #include "gt/intel_context.h"
+>>   #include "i915_drv.h"
+>>   
+>> @@ -135,3 +136,40 @@ int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp)
+>>          return ret;
+>>   }
+>>   
+>> +void intel_pxp_invalidate(struct intel_pxp *pxp)
+>> +{
+>> +       struct drm_i915_private *i915 = pxp_to_gt(pxp)->i915;
+>> +       struct i915_gem_context *ctx, *cn;
+>> +
+>> +       /* ban all contexts marked as protected */
+>> +       spin_lock_irq(&i915->gem.contexts.lock);
+>> +       list_for_each_entry_safe(ctx, cn, &i915->gem.contexts.list, link) {
+>> +               struct i915_gem_engines_iter it;
+>> +               struct intel_context *ce;
+>> +
+>> +               if (!kref_get_unless_zero(&ctx->ref))
+>> +                       continue;
+>> +
+>> +               if (likely(!i915_gem_context_can_use_protected_content(ctx)))
+>> +                       continue;
+>> +
+>> +               if (i915_gem_context_invalidated(ctx))
+>> +                       continue;
+>> +
+>> +               spin_unlock_irq(&i915->gem.contexts.lock);
+>> +
+>> +               for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
+>> +                       if (test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
+>> +                               intel_context_set_banned(ce);
+> That's a pair of unserialised operations. However, you can just set
+> banned before we even try to alloc. But at the moment, it's very
 
-Meanwhile, Intel lkp team has validated performance on lkp-kbl-nuc1 and no regression.
-f69d02e37a85645a  d912096c40cdc3bc9364966971 testcase/testparams/testbox
-----------------  -------------------------- ---------------------------
-          %stddev      change         %stddev
-              \          |                \
-      29.79                       29.67
-phoronix-test-suite/performance-true-Fullscreen-Ultimate-1-Gran_Paradiso_Island__Approxima-supertuxkart-1.5.2-ucode=0xde/lkp-kbl-nuc1
-      29.79                       29.67        GEO-MEAN phoronix-test-suite.supertuxkart.1280x1024.Fullscreen.Ultimate.1.GranParadisoIsland.frames_per_second
+I wanted to avoid banning the intel_contexts if none of them had been 
+allocated (i.e. gem_context created but not used).
 
-Best Regards,
-Cooper
+> spurious to call intel_context_set_banned() as no action is performed to
+> flush the ban to the backend, and execbuf is primarily checking the GEM
+> context invalid bit. It looks a bit flimsy...
+>
+> The impact of this loop would be to cancel all pending requests (but not
+> the inflight request), sounds like you should just call revoke_context
+> to remove the inflight context and pending requests from the HW.
 
-> We need testing on more that one box I'm afraid. Need to cover different
-> fusing configs of Gen9 with and without the patch. I don't have any useful
-> ideas on how to do it though. :(
-> 
-> Regards,
-> 
-> Tvrtko
+I agree it is flimsy, but the whole process is best effort so I didn't 
+want to over-complicate it by taking out the inflight request. The 
+moment we get the interrupt the keys are already invalid so it's most 
+likely already too late to save the inflight request if it is using one 
+of the sessions. I've tried to prioritize getting the session back up as 
+soon as possible.
+
+What's revoke_context? I can't find it.
+
+>
+>> +                               i915_gem_context_set_invalid(ctx);
+>> +                       }
+>> +               }
+>> +               i915_gem_context_unlock_engines(ctx);
+>> +
+>> +               spin_lock_irq(&i915->gem.contexts.lock);
+>> +               list_safe_reset_next(ctx, cn, link);
+>> +               i915_gem_context_put(ctx);
+>> +       }
+>> +       spin_unlock_irq(&i915->gem.contexts.lock);
+> And then there's a race condition where we can create a new protect
+> context, submit an execbuf using the global session between the call to
+> intel_pxp_invalidate and terminate_session_and_global. That's covered by
+> irq_handler calling mark_termination_in_progress and execbuf waiting
+> for that termination to complete. Almost.
+
+Why almost? what am I missing?
+
+>
+> This will result in userspace context lost upon runtime suspend? That
+> can be quite catastrophic for the system...
+
+Unfortunately S0ix kills the keys, so yes, unless we decide that we 
+don't want to ban protected contexts when the keys are invalidated. That 
+was a purely software design decision, the contexts are in no way tied 
+to PXP in HW.
+
+>
+>> +}
+>> +
+>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+>> index 89cf66c9bef3..e36200833095 100644
+>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
+>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+>> @@ -38,6 +38,7 @@ void intel_pxp_init(struct intel_pxp *pxp);
+>>   void intel_pxp_fini(struct intel_pxp *pxp);
+>>   
+>>   int intel_pxp_wait_for_termination_completion(struct intel_pxp *pxp);
+>> +void intel_pxp_invalidate(struct intel_pxp *pxp);
+>>   #else
+>>   static inline void intel_pxp_init(struct intel_pxp *pxp)
+>>   {
+>> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+>> index bb981d38c2fe..527217b3db23 100644
+>> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+>> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+>> @@ -111,6 +111,9 @@ int intel_pxp_arb_terminate_session_with_global_terminate(struct intel_pxp *pxp)
+>>   
+>>          lockdep_assert_held(&pxp->mutex);
+>>   
+>> +       /* invalidate protected objects */
+>> +       intel_pxp_invalidate(pxp);
+>> +
+>>          /* terminate the hw sessions */
+>>          ret = intel_pxp_submit_session_termination(pxp, ARB_SESSION);
+>>          if (ret) {
+>> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+>> index 56c6bfe6c2d0..0f5456046c4c 100644
+>> --- a/include/uapi/drm/i915_drm.h
+>> +++ b/include/uapi/drm/i915_drm.h
+>> @@ -1694,6 +1694,24 @@ struct drm_i915_gem_context_param {
+>>    * Default is 16 KiB.
+>>    */
+>>   #define I915_CONTEXT_PARAM_RINGSIZE    0xc
+>> +
+>> +/*
+>> + * I915_CONTEXT_PARAM_PROTECTED_CONTENT:
+>> + *
+>> + * Enable usage of protected content with the context. This flag can only be
+>> + * set at context creation time and, when set to true, must be preceded by
+>> + * an explicit setting of I915_CONTEXT_PARAM_RECOVERABLE to false. This flag
+>> + * can't be set to true in conjunction with setting the
+>> + * I915_CONTEXT_PARAM_BANNABLE flag to false.
+> I haven't seen any interaction with bannable here. Since you just ignore
+> the bannable flag.
+
+But I still want to stop userspace from setting the context as not 
+bannable. Once I know that protected implies bannable I don't need to 
+check the latter.
+
+>
+>> + *
+>> + * Given the numerous restriction on this flag, there are several unique
+>> + * failure cases:
+>> + *
+>> + * -ENODEV: feature not available
+>> + * -EEXIST: trying to modify an existing context
+>> + * -EPERM: trying to mark a recoverable or not bannable context as protected
+> Also -EIO from execbuf. Do we want to pick EACCES?
+
+instead of EIO? sounds reasonable.
+
+>
+>> + */
+>> +#define I915_CONTEXT_PARAM_PROTECTED_CONTENT    0xd
+>>   /* Must be kept compact -- no holes and well documented */
+>>   
+>>          __u64 value;
+>> @@ -1924,6 +1942,7 @@ struct drm_i915_reg_read {
+>>   struct drm_i915_reset_stats {
+>>          __u32 ctx_id;
+>>          __u32 flags;
+>> +#define I915_CONTEXT_INVALIDATED 0x1
+> Mention the side effect for protected content contexts.
+
+ok.
+
+>
+>>   
+>>          /* All resets since boot/module reload, for all contexts */
+>>          __u32 reset_count;
+>> -- 
+>> 2.29.2
+>>
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>>
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
