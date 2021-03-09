@@ -1,42 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B106331BF0
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Mar 2021 01:52:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 929B0331BE7
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Mar 2021 01:47:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E61D889854;
-	Tue,  9 Mar 2021 00:51:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA8989854;
+	Tue,  9 Mar 2021 00:47:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6F4489854
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Mar 2021 00:51:55 +0000 (UTC)
-IronPort-SDR: G1xQbZ5CO2M6xpZnxcxHMIdDF0Y6k5DzKEJTdoqI8f9zgr4dQbkS1IhGaStq1WPr6fTf8wC4v2
- ZVnLmlmaEnhA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="252160306"
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="252160306"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2021 16:51:53 -0800
-IronPort-SDR: 0xG/kfVBuD4/1OmskSfbFQkv+ZcQ9S3KtZUhK4mcrvbhKXljEDGImDIQOznZIXxPe7GaNp49Mb
- IAyvo80D4iHA==
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="602385196"
-Received: from sbalasub-mobl1.amr.corp.intel.com (HELO ldmartin-desk1)
- ([10.209.97.66])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2021 16:51:53 -0800
-Date: Mon, 8 Mar 2021 16:51:52 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20210309005152.ohqj3zm6xb5u77ps@ldmartin-desk1>
-References: <cover.1613580193.git.jani.nikula@intel.com>
- <23911ee2dee946211f180ac92512ccbb87bbfcfe.1613580193.git.jani.nikula@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB01E6E413;
+ Tue,  9 Mar 2021 00:47:14 +0000 (UTC)
+IronPort-SDR: TybAHZg9FyTVorU3Bru3x3ZSl4rvrxpwAkYWXGY4lMfoymgDvP07szYQ4z/NhUARbCE16XqrDE
+ QI+SgZOK5V6w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="167401407"
+X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="167401407"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2021 16:47:06 -0800
+IronPort-SDR: EGDcmkmHrPCKSbrcfIpPV2OwpUEJCtgzdgzBtTUZzPcxF49CyDFxIuLtorCRoHao9Vsyb6BMWJ
+ bhK6XyJpYL7g==
+X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="409514158"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2021 16:47:06 -0800
+Date: Mon, 8 Mar 2021 16:52:58 -0800
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Pekka Paalanen <ppaalanen@gmail.com>
+Message-ID: <20210309005252.GA27491@labuser-Z97X-UD5H>
+References: <20210302204132.12058-1-manasi.d.navare@intel.com>
+ <20210303104744.2c064f09@eldfell>
+ <20210303204433.GA15819@labuser-Z97X-UD5H>
+ <20210304104223.6b3490bc@eldfell>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <23911ee2dee946211f180ac92512ccbb87bbfcfe.1613580193.git.jani.nikula@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 05/12] drm/i915/bios: create fake child
- devices on missing VBT
+In-Reply-To: <20210304104223.6b3490bc@eldfell>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Add the crtc to affected crtc
+ only if uapi.enable = true
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,126 +52,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
+ Daniel Stone <daniels@collabora.com>, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 17, 2021 at 07:03:35PM +0200, Jani Nikula wrote:
->Instead of initialing data directly in ddi_port_info array, create fake
->child devices for default outputs when the VBT is missing. This makes
->further unification of output handling easier.
->
->This will make intel_bios_is_port_present() return true for the fake
->child devices. This may cause subtle changes in a handful of places.
->
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
->Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_bios.c | 47 ++++++++++++++++++-----
-> 1 file changed, 37 insertions(+), 10 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i=
-915/display/intel_bios.c
->index b9d99324d66d..59d315b395c2 100644
->--- a/drivers/gpu/drm/i915/display/intel_bios.c
->+++ b/drivers/gpu/drm/i915/display/intel_bios.c
->@@ -2063,8 +2063,8 @@ init_vbt_missing_defaults(struct drm_i915_private *i=
-915)
-> 		return;
->
-> 	for_each_port_masked(port, ports) {
->-		struct ddi_vbt_port_info *info =3D
->-			&i915->vbt.ddi_port_info[port];
->+		struct display_device_data *devdata;
->+		struct child_device_config *child;
-> 		enum phy phy =3D intel_port_to_phy(i915, port);
->
-> 		/*
->@@ -2074,11 +2074,38 @@ init_vbt_missing_defaults(struct drm_i915_private =
-*i915)
-> 		if (intel_phy_is_tc(i915, phy))
-> 			continue;
->
->-		info->supports_dvi =3D (port !=3D PORT_A && port !=3D PORT_E);
->-		info->supports_hdmi =3D info->supports_dvi;
->-		info->supports_dp =3D (port !=3D PORT_E);
->-		info->supports_edp =3D (port =3D=3D PORT_A);
->+		/* Create fake child device config */
->+		devdata =3D kzalloc(sizeof(*devdata), GFP_KERNEL);
->+		if (!devdata)
->+			break;
->+
->+		child =3D &devdata->child;
->+
->+		if (port =3D=3D PORT_F)
->+			child->dvo_port =3D DVO_PORT_HDMIF;
->+		else if (port =3D=3D PORT_E)
->+			child->dvo_port =3D DVO_PORT_HDMIE;
->+		else
->+			child->dvo_port =3D DVO_PORT_HDMIA + port;
+On Thu, Mar 04, 2021 at 10:42:23AM +0200, Pekka Paalanen wrote:
+> On Wed, 3 Mar 2021 12:44:33 -0800
+> "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
+> =
 
-initially I was confused here, but after checking I understoo why you're
-doing this, since DVO_PORT_HDMIE/DVO_PORT_HDMIF doesn't follow
-DVO_PORT_HDMID
+> > On Wed, Mar 03, 2021 at 10:47:44AM +0200, Pekka Paalanen wrote:
+> > > On Tue,  2 Mar 2021 12:41:32 -0800
+> > > Manasi Navare <manasi.d.navare@intel.com> wrote:
+> > >   =
+
+> > > > In case of a modeset where a mode gets split across mutiple CRTCs
+> > > > in the driver specific implementation (bigjoiner in i915) we wrongl=
+y count
+> > > > the affected CRTCs based on the drm_crtc_mask and indicate the stol=
+en CRTC as
+> > > > an affected CRTC in atomic_check_only().
+> > > > This triggers a warning since affected CRTCs doent match requested =
+CRTC.
+> > > > =
+
+> > > > To fix this in such bigjoiner configurations, we should only
+> > > > increment affected crtcs if that CRTC is enabled in UAPI not
+> > > > if it is just used internally in the driver to split the mode.  =
+
+> > > =
+
+> > > Hi,
+> > > =
+
+> > > I think that makes sense to me. Stealing CRTCs that are not currently
+> > > used by the userspace (display server) should be ok, as long as that
+> > > is completely invisible to userspace: meaning that it does not cause
+> > > userspace to unexpectedly e.g. receive or miss per-crtc atomic
+> > > completion events.  =
+
+> > =
+
+> > Yes since we are only doing atomic_check_only() here, the stolen
+> =
+
+> But the real not-test-only commit will follow if this test-only commit
+> succeeds, and keeping the guarantees for the real commit are important.
+
+Hmm well after the actual real commit, since the second crtc is stolen
+even though it is not being used for the display output, it is
+used for joiner so the uapi.enable will be true after the real commit.
+
+so actually the assertion would fail in this case.
+
+@Ville @Danvet any suggestions here in that case?
+
+Manasi
+
+> =
+
+> > crtc is completely invisible to the userspace and hence that is =
+
+> > indicated by uapi.enable which is not true for this stolen
+> > crtc. However if allow modeset flag set, then it will do a full
+> > modeset and indicate the uapi.enable for this stolen crtc as well
+> > since that cannot be used for other modeset requested by userspace.
+> > =
+
+> > > =
+
+> > > Can that also be asserted somehow, or does this already do that?  =
+
+> > =
+
+> > Not clear what you want the assertion for? Could you elaborate
+> =
+
+> As assertion that when the real atomic commit happens and then
+> completion events are fired, they match exactly the affected crtcs mask.
+> =
+
+> I understand this may be off-topic for this particular patch, but since
+> we are discussing the topic, such checks would be really nice. I'm
+> curious if such checks already exist.
+> =
+
+> =
+
+> Thanks,
+> pq
+> =
+
+> > =
+
+> > Manasi
+> > =
+
+> > > =
+
+> > > =
+
+> > > Thanks,
+> > > pq
+> > >   =
+
+> > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > Cc: Simon Ser <contact@emersion.fr>
+> > > > Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+> > > > Cc: Daniel Stone <daniels@collabora.com>
+> > > > Cc: Daniel Vetter <daniel.vetter@intel.com>
+> > > > Cc: dri-devel@lists.freedesktop.org
+> > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/drm_atomic.c | 6 ++++--
+> > > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > > =
+
+> > > > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_ato=
+mic.c
+> > > > index 5b4547e0f775..d7acd6bbd97e 100644
+> > > > --- a/drivers/gpu/drm/drm_atomic.c
+> > > > +++ b/drivers/gpu/drm/drm_atomic.c
+> > > > @@ -1358,8 +1358,10 @@ int drm_atomic_check_only(struct drm_atomic_=
+state *state)
+> > > >  		}
+> > > >  	}
+> > > >  =
+
+> > > > -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
+> > > > -		affected_crtc |=3D drm_crtc_mask(crtc);
+> > > > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > > > +		if (new_crtc_state->enable)
+> > > > +			affected_crtc |=3D drm_crtc_mask(crtc);
+> > > > +	}
+> > > >  =
+
+> > > >  	/*
+> > > >  	 * For commits that allow modesets drivers can add other CRTCs to=
+ the  =
+
+> > >   =
+
+> > =
+
+> > =
+
+> =
 
 
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Lucas De Marchi
-
->+
->+		if (port !=3D PORT_A && port !=3D PORT_E)
->+			child->device_type |=3D DEVICE_TYPE_TMDS_DVI_SIGNALING;
->+
->+		if (port !=3D PORT_E)
->+			child->device_type |=3D DEVICE_TYPE_DISPLAYPORT_OUTPUT;
->+
->+		if (port =3D=3D PORT_A)
->+			child->device_type |=3D DEVICE_TYPE_INTERNAL_CONNECTOR;
->+
->+		list_add_tail(&devdata->node, &i915->vbt.display_devices);
->+
->+		drm_dbg_kms(&i915->drm,
->+			    "Generating default VBT child device with type 0x04%x on port %c\n=
-",
->+			    child->device_type, port_name(port));
-> 	}
->+
->+	/* Bypass some minimum baseline VBT version checks */
->+	i915->vbt.version =3D 155;
-> }
->
-> static const struct bdb_header *get_bdb_header(const struct vbt_header *v=
-bt)
->@@ -2255,10 +2282,6 @@ void intel_bios_init(struct drm_i915_private *i915)
-> 	/* Depends on child device list */
-> 	parse_compression_parameters(i915, bdb);
->
->-	/* Further processing on pre-parsed data */
->-	parse_sdvo_device_mapping(i915);
->-	parse_ddi_ports(i915);
->-
-> out:
-> 	if (!vbt) {
-> 		drm_info(&i915->drm,
->@@ -2266,6 +2289,10 @@ void intel_bios_init(struct drm_i915_private *i915)
-> 		init_vbt_missing_defaults(i915);
-> 	}
->
->+	/* Further processing on pre-parsed or generated child device data */
->+	parse_sdvo_device_mapping(i915);
->+	parse_ddi_ports(i915);
->+
-> 	kfree(oprom_vbt);
-> }
->
->-- =
-
->2.20.1
->
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
