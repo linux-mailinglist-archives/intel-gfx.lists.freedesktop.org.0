@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 929B0331BE7
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Mar 2021 01:47:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC822331DE1
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Mar 2021 05:28:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA8989854;
-	Tue,  9 Mar 2021 00:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02BAB6E45E;
+	Tue,  9 Mar 2021 04:28:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB01E6E413;
- Tue,  9 Mar 2021 00:47:14 +0000 (UTC)
-IronPort-SDR: TybAHZg9FyTVorU3Bru3x3ZSl4rvrxpwAkYWXGY4lMfoymgDvP07szYQ4z/NhUARbCE16XqrDE
- QI+SgZOK5V6w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="167401407"
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="167401407"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2357B6E428;
+ Tue,  9 Mar 2021 04:28:46 +0000 (UTC)
+IronPort-SDR: 6mVKxSfYAAunoBKXNS9WL2fGF7U5bZvg9LRGL1FR1hfIGiQhNpa3OpXXJwz4NWEpP4/9UnxtrE
+ PmvJEvhIOO8Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="168069851"
+X-IronPort-AV: E=Sophos;i="5.81,234,1610438400"; d="scan'208";a="168069851"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2021 16:47:06 -0800
-IronPort-SDR: EGDcmkmHrPCKSbrcfIpPV2OwpUEJCtgzdgzBtTUZzPcxF49CyDFxIuLtorCRoHao9Vsyb6BMWJ
- bhK6XyJpYL7g==
-X-IronPort-AV: E=Sophos;i="5.81,233,1610438400"; d="scan'208";a="409514158"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2021 20:28:45 -0800
+IronPort-SDR: ExVPP9kmYh92w+EmCqg3hJMZdvTMVqdKNKgXfZG5fPG5YM8m2Z9t/sKT/2l7Y3kUTNK5/gbB6l
+ gVhShxn1Cq4g==
+X-IronPort-AV: E=Sophos;i="5.81,234,1610438400"; d="scan'208";a="409572613"
+Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.215.132.107])
+ ([10.215.132.107])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2021 16:47:06 -0800
-Date: Mon, 8 Mar 2021 16:52:58 -0800
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>
-Message-ID: <20210309005252.GA27491@labuser-Z97X-UD5H>
-References: <20210302204132.12058-1-manasi.d.navare@intel.com>
- <20210303104744.2c064f09@eldfell>
- <20210303204433.GA15819@labuser-Z97X-UD5H>
- <20210304104223.6b3490bc@eldfell>
+ 08 Mar 2021 20:28:42 -0800
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210204064842.11595-1-ankit.k.nautiyal@intel.com>
+ <20210204064842.11595-2-ankit.k.nautiyal@intel.com>
+ <87blcueroq.fsf@intel.com> <82d5cf44-4618-6d1d-2219-a5ac80d00d7a@intel.com>
+Message-ID: <035b7941-9e6e-fbd2-8825-11d3d07bb71a@intel.com>
+Date: Tue, 9 Mar 2021 09:58:35 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210304104223.6b3490bc@eldfell>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Add the crtc to affected crtc
- only if uapi.enable = true
+In-Reply-To: <82d5cf44-4618-6d1d-2219-a5ac80d00d7a@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/3] i915/display/intel_dp: Read PCON DSC
+ ENC caps only for DPCD rev >= 1.4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,159 +52,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
- Daniel Stone <daniels@collabora.com>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: dri-devel@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 04, 2021 at 10:42:23AM +0200, Pekka Paalanen wrote:
-> On Wed, 3 Mar 2021 12:44:33 -0800
-> "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
-> =
-
-> > On Wed, Mar 03, 2021 at 10:47:44AM +0200, Pekka Paalanen wrote:
-> > > On Tue,  2 Mar 2021 12:41:32 -0800
-> > > Manasi Navare <manasi.d.navare@intel.com> wrote:
-> > >   =
-
-> > > > In case of a modeset where a mode gets split across mutiple CRTCs
-> > > > in the driver specific implementation (bigjoiner in i915) we wrongl=
-y count
-> > > > the affected CRTCs based on the drm_crtc_mask and indicate the stol=
-en CRTC as
-> > > > an affected CRTC in atomic_check_only().
-> > > > This triggers a warning since affected CRTCs doent match requested =
-CRTC.
-> > > > =
-
-> > > > To fix this in such bigjoiner configurations, we should only
-> > > > increment affected crtcs if that CRTC is enabled in UAPI not
-> > > > if it is just used internally in the driver to split the mode.  =
-
-> > > =
-
-> > > Hi,
-> > > =
-
-> > > I think that makes sense to me. Stealing CRTCs that are not currently
-> > > used by the userspace (display server) should be ok, as long as that
-> > > is completely invisible to userspace: meaning that it does not cause
-> > > userspace to unexpectedly e.g. receive or miss per-crtc atomic
-> > > completion events.  =
-
-> > =
-
-> > Yes since we are only doing atomic_check_only() here, the stolen
-> =
-
-> But the real not-test-only commit will follow if this test-only commit
-> succeeds, and keeping the guarantees for the real commit are important.
-
-Hmm well after the actual real commit, since the second crtc is stolen
-even though it is not being used for the display output, it is
-used for joiner so the uapi.enable will be true after the real commit.
-
-so actually the assertion would fail in this case.
-
-@Ville @Danvet any suggestions here in that case?
-
-Manasi
-
-> =
-
-> > crtc is completely invisible to the userspace and hence that is =
-
-> > indicated by uapi.enable which is not true for this stolen
-> > crtc. However if allow modeset flag set, then it will do a full
-> > modeset and indicate the uapi.enable for this stolen crtc as well
-> > since that cannot be used for other modeset requested by userspace.
-> > =
-
-> > > =
-
-> > > Can that also be asserted somehow, or does this already do that?  =
-
-> > =
-
-> > Not clear what you want the assertion for? Could you elaborate
-> =
-
-> As assertion that when the real atomic commit happens and then
-> completion events are fired, they match exactly the affected crtcs mask.
-> =
-
-> I understand this may be off-topic for this particular patch, but since
-> we are discussing the topic, such checks would be really nice. I'm
-> curious if such checks already exist.
-> =
-
-> =
-
-> Thanks,
-> pq
-> =
-
-> > =
-
-> > Manasi
-> > =
-
-> > > =
-
-> > > =
-
-> > > Thanks,
-> > > pq
-> > >   =
-
-> > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > Cc: Simon Ser <contact@emersion.fr>
-> > > > Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-> > > > Cc: Daniel Stone <daniels@collabora.com>
-> > > > Cc: Daniel Vetter <daniel.vetter@intel.com>
-> > > > Cc: dri-devel@lists.freedesktop.org
-> > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/drm_atomic.c | 6 ++++--
-> > > >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > > > =
-
-> > > > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_ato=
-mic.c
-> > > > index 5b4547e0f775..d7acd6bbd97e 100644
-> > > > --- a/drivers/gpu/drm/drm_atomic.c
-> > > > +++ b/drivers/gpu/drm/drm_atomic.c
-> > > > @@ -1358,8 +1358,10 @@ int drm_atomic_check_only(struct drm_atomic_=
-state *state)
-> > > >  		}
-> > > >  	}
-> > > >  =
-
-> > > > -	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> > > > -		affected_crtc |=3D drm_crtc_mask(crtc);
-> > > > +	for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
-> > > > +		if (new_crtc_state->enable)
-> > > > +			affected_crtc |=3D drm_crtc_mask(crtc);
-> > > > +	}
-> > > >  =
-
-> > > >  	/*
-> > > >  	 * For commits that allow modesets drivers can add other CRTCs to=
- the  =
-
-> > >   =
-
-> > =
-
-> > =
-
-> =
-
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QXMgSSByZWFsaXplZCwgdGhpcyBwYXRjaCBpcyBtaXhpbmcgRFBDRCByZXYgYW5kIERQIHZlcnNp
+b24sIG5lZWQgYW4gCmFwcHJvcHJpYXRlIGNoZWNrIGluc3RlYWQuCgpBcyBmb3IgdGhlIGdpdGxh
+YiBpc3N1ZSAKaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vl
+cy8yODY4IHRoaXMgc2VlbXMgdG8gYmUgCm5vdCBkdWUgdG8gYSBEUENEIHJlZ2lzdGVyIG5vdCBk
+ZWZpbmVkIGZvciBhbiBvbGRlciBzaW5rLgoKVGhlIERQQ0QgcmVhZCBpbiB0aGF0IGNhc2Ugc2hv
+dWxkIGhhdmUgYmVlbiAwLCBpbnN0ZWFkIG9mIHRpbWVvdXQuCgpJIHdpbGwgZHJvcCB0aGlzIHBh
+dGNoIGZvciBub3csIGZyb20gdGhlIHNlcmllcyBhbmQgcmV2aXNpdCBpdCBsYXRlci4KClRoYW5r
+cyAmIFJlZ2FyZHMsCgpBbmtpdAoKT24gMi84LzIwMjEgNToxNCBQTSwgTmF1dGl5YWwsIEFua2l0
+IEsgd3JvdGU6Cj4KPiBPbiAyLzgvMjAyMSA0OjQ1IFBNLCBKYW5pIE5pa3VsYSB3cm90ZToKPj4g
+T24gVGh1LCAwNCBGZWIgMjAyMSwgQW5raXQgTmF1dGl5YWwgPGFua2l0LmsubmF1dGl5YWxAaW50
+ZWwuY29tPiB3cm90ZToKPj4+IERQLUhETUkyLjEgUENPTiBoYXMgRFNDIGVuY29kZXIgY2FwcyBk
+ZWZpbmVkIGluIHJlZ2lzdGVycyAweDkyLTB4OUUuCj4+PiBEbyBub3QgcmVhZCB0aGUgcmVnaXN0
+ZXJzIGlmIERQQ0QgcmV2IDwgMS40Lgo+Pj4KPj4+IEZpeGVzOiBodHRwczovL2dpdGxhYi5mcmVl
+ZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzI4NjgKPj4gUGxlYXNlIHVzZSBGaXhlczog
+dG8gcmVmZXJlbmNlIGNvbW1pdHMgdGhhdCB0aGlzIHBhdGNoIGZpeGVzLgo+Pgo+PiBQbGVhc2Ug
+dXNlIENsb3NlczogdG8gcmVmZXJlbmNlIGlzc3VlcyB0aGF0IHRoaXMgcGF0Y2ggZml4ZXMuCj4+
+Cj4+IE5vIG5lZWQgdG8gcmVzZW5kIGZvciB0aGlzLCBjYW4gYmUgZml4ZWQgd2hpbGUgYXBwbHlp
+bmcsIGJ1dCBwbGVhc2UgdGVsbAo+PiBtZSB0aGUgY29tbWl0IHRoYXQgaW50cm9kdWNlZCB0aGUg
+cHJvYmxlbS4KPj4KPj4gQlIsCj4+IEphbmkuCj4+Cj4gQWxyaWdodCB3aWxsIHRha2UgY2FyZS4g
+UGxlYXNlIGZpbmQgYmVsb3cgdGhlIGNvbW1pdCB0aGF0IGludHJvZHVjZWQgCj4gdGhpczoKPgo+
+IGI5ZDk2ZGFjZGMzZDk4M2VhZTIzNGI1MjQwMWVkYjU2ZGJjZWI3NjQKPgo+IFBhdGNoIDogZHJt
+L2k5MTU6IFJlYWQgRFNDIGNhcGFiaWxpdGllcyBvZiB0aGUgSERNSTIuMSBQQ09OIGVuY29kZXIg
+Cj4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzQwODc3OS8KPgo+Cj4g
+VGhhbmtzICYgUmVnYXJkcywKPgo+IEFua2l0Cj4KPj4+IFNpZ25lZC1vZmYtYnk6IEFua2l0IE5h
+dXRpeWFsIDxhbmtpdC5rLm5hdXRpeWFsQGludGVsLmNvbT4KPj4+IC0tLQo+Pj4gwqAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIHwgNCArKystCj4+PiDCoCAxIGZpbGUg
+Y2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4+Pgo+Pj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyAKPj4+IGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4+PiBpbmRleCA4YzEyZDUzNzU2MDcu
+LjJiODNmMGY0MzNhMiAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZHAuYwo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kcC5jCj4+PiBAQCAtMjQ4OSw5ICsyNDg5LDExIEBAIHN0YXRpYyB2b2lkIGludGVsX2RwX2dl
+dF9wY29uX2RzY19jYXAoc3RydWN0IAo+Pj4gaW50ZWxfZHAgKmludGVsX2RwKQo+Pj4gwqDCoMKg
+wqDCoCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGRwX3RvX2k5MTUoaW50ZWxfZHAp
+Owo+Pj4gwqAgwqDCoMKgwqDCoCAvKiBDbGVhciB0aGUgY2FjaGVkIHJlZ2lzdGVyIHNldCB0byBh
+dm9pZCB1c2luZyBzdGFsZSB2YWx1ZXMgKi8KPj4+IC0KPj4+IMKgwqDCoMKgwqAgbWVtc2V0KGlu
+dGVsX2RwLT5wY29uX2RzY19kcGNkLCAwLCAKPj4+IHNpemVvZihpbnRlbF9kcC0+cGNvbl9kc2Nf
+ZHBjZCkpOwo+Pj4gwqAgK8KgwqDCoCBpZiAoaW50ZWxfZHAtPmRwY2RbRFBfRFBDRF9SRVZdIDwg
+MHgxNCkKPj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm47Cj4+PiArCj4+PiDCoMKgwqDCoMKgIGlm
+IChkcm1fZHBfZHBjZF9yZWFkKCZpbnRlbF9kcC0+YXV4LCBEUF9QQ09OX0RTQ19FTkNPREVSLAo+
+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGludGVsX2RwLT5wY29uX2Rz
+Y19kcGNkLAo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHNpemVvZihp
+bnRlbF9kcC0+cGNvbl9kc2NfZHBjZCkpIDwgMCkKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
