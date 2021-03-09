@@ -1,41 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2584F3327D5
-	for <lists+intel-gfx@lfdr.de>; Tue,  9 Mar 2021 14:55:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F47E33300B
+	for <lists+intel-gfx@lfdr.de>; Tue,  9 Mar 2021 21:39:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB19B6E906;
-	Tue,  9 Mar 2021 13:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3211B6E96A;
+	Tue,  9 Mar 2021 20:39:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D14C76E904;
- Tue,  9 Mar 2021 13:55:00 +0000 (UTC)
-IronPort-SDR: IEwAmRhqPPL92JU1hSa1H+Trq2gzzP4J8dGCloHUdLw5XTDc2i/vSXNd9+UmkKQGJk34j5T6nF
- E+a1ODEsKTYw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="168151631"
-X-IronPort-AV: E=Sophos;i="5.81,234,1610438400"; d="scan'208";a="168151631"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2021 05:55:00 -0800
-IronPort-SDR: HH7UaDceu6izhkz73RCLVFhEzhDbok5LCLRQR0Lu69+Zt6NaAOha57Q8hrStUK6i6PJZ9V/3oq
- YpIl/aXLwqww==
-X-IronPort-AV: E=Sophos;i="5.81,234,1610438400"; d="scan'208";a="369792813"
-Received: from kjwindec-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.48.180])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2021 05:54:58 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Tue,  9 Mar 2021 15:54:14 +0200
-Message-Id: <96ad612f337691cc31ab25f6a661bf1d3721fab9.1615297748.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1615297748.git.jani.nikula@intel.com>
-References: <cover.1615297748.git.jani.nikula@intel.com>
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com
+ [IPv6:2a00:1450:4864:20::229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FF216E96A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Mar 2021 20:39:01 +0000 (UTC)
+Received: by mail-lj1-x229.google.com with SMTP id p15so22531893ljc.13
+ for <intel-gfx@lists.freedesktop.org>; Tue, 09 Mar 2021 12:39:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=zMwwa8yu3ZnyIGmWM3xIJxPV47GpT6zhiy8aZvE7KQc=;
+ b=Rm+8yVVyqVAqWmZ9v0inuIYfjDJnheKeGDfTrUVdu+57n8vFZQiUh4veJx6VUp1paa
+ wSId0acTVjlHgXo0HdJuup1SxvhGMJrxGmf9Mi9RYmdGPK7Nolmiqlz/es73BymfqA68
+ qlglywaNi7D8Rtpg+M+ns3LGqUqw0LI7tyKJ4YwYDYqSHT6yLSFCZS94OqAph9AQFuZH
+ B9S95xcKvahCvL+ytuyoIRyIACu5SIYg6J4LHJ37X3tgx8m1T+URAqoRXNpTT7nAIai8
+ eYzU83u0vVFk16858RN4OhNJY1Ie4dKvzSeWyjn3+VIugKhvlsmycJi3qxJodUUKKK+C
+ oaZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=zMwwa8yu3ZnyIGmWM3xIJxPV47GpT6zhiy8aZvE7KQc=;
+ b=pA3gKc02SbWiAVmomFWEDO4ebQngn/d0glkNS/9jXZmtak6siFAHjkhZaxRRQLbhFG
+ 38aVfzhc47M1pZwCoi9zBXZUuTw/lIZL9VyV7oX1Ag3JFP8pFzwypj0Skp5OsPoPFjqK
+ gCQdT6LNFb2qb32zQWS+UltiREjZZzjnlO9tnNBYR3Jltssq0ytdTO+NtV3cFImRZVnC
+ d34h7BTUkhjywKCphnWRnvkDwJdfOb4WED3ijww8TYCn2Iz6hSaA9Sk/34n54LdVKeOc
+ 4pTcvI4Kz7B+zKrNZTwmgt4N616GV9yLtVJ92Lv5P2wgBN1WssP+fQdrOzIK6isDUHag
+ KjQA==
+X-Gm-Message-State: AOAM530ndaC7n8Kom8IU04I2oKQUAY/2AHUjGSsfKzHwoa7fe5HuGF3r
+ NVrJEaIPHs/qOYDLJoPXdSwuwiSzY8sOQ6yDlq010g==
+X-Google-Smtp-Source: ABdhPJw5fjWk71nOKny9Xvb3l1nQBQr9GHIPnH/4seWqpbTGGIoETGefTmswEHTxcKlurybig+1SBJPOCSavkIGLI3k=
+X-Received: by 2002:a2e:91c2:: with SMTP id u2mr12581600ljg.301.1615322339148; 
+ Tue, 09 Mar 2021 12:38:59 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC v1 6/6] drm/edid: use the new displayid iterator
- for tile info
+References: <20200312185629.141280-1-rajatja@google.com>
+ <20200312185629.141280-6-rajatja@google.com>
+ <76d1a721-5f7b-1e86-b8ee-183bffb78ff1@redhat.com>
+ <CACK8Z6Hd8WqEKi9MQdyoW0bMpjGiOsUrzYTm0HRaXscRWYS4aA@mail.gmail.com>
+In-Reply-To: <CACK8Z6Hd8WqEKi9MQdyoW0bMpjGiOsUrzYTm0HRaXscRWYS4aA@mail.gmail.com>
+From: Rajat Jain <rajatja@google.com>
+Date: Tue, 9 Mar 2021 12:38:22 -0800
+Message-ID: <CACK8Z6EVo7rJJSbFfySTSKRyduPY31oj2BtBBFbyy0QWVb5h0w@mail.gmail.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH v9 5/5] drm/i915: Enable support for
+ integrated privacy screen
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,123 +64,317 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: Sean Paul <seanpaul@google.com>, David Airlie <airlied@linux.ie>,
+ Sugumaran Lacshiminarayanan <slacshiminar@lenovo.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Daniel Thompson <daniel.thompson@linaro.org>, Jonathan Corbet <corbet@lwn.net>,
+ Mark Pearson <mpearson@lenovo.com>, Tomoki Maruichi <maruichit@lenovo.com>,
+ Jesse Barnes <jsbarnes@google.com>, Rajat Jain <rajatxjain@gmail.com>,
+ intel-gfx@lists.freedesktop.org, Mat King <mathewk@google.com>,
+ Maxime Ripard <mripard@kernel.org>, Duncan Laurie <dlaurie@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Pavel Machek <pavel@denx.de>, Nitin Joshi1 <njoshi1@lenovo.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Neatly reduce displayid boilerplate in code. Remove excessive debug
-logging while at it, no other functional changes.
+Hello Hans,
 
-The old displayid iterator becomes unused; remove it as well as make
-drm_find_displayid_extension() static.
+On Mon, Jul 6, 2020 at 5:50 PM Rajat Jain <rajatja@google.com> wrote:
+>
+> Hello Hans,
+>
+> On Mon, Jul 6, 2020 at 5:51 AM Hans de Goede <hdegoede@redhat.com> wrote:
+> >
+> > Hi,
+> >
+> > On 3/12/20 7:56 PM, Rajat Jain wrote:
+> > > Add support for an ACPI based integrated privacy screen that is
+> > > available on some systems.
+> > >
+> > > Signed-off-by: Rajat Jain <rajatja@google.com>
+> >
+> > So as discussed a while ago I'm working on adding support for the
+> > privacy-screen on Lenovo Thinkpads, introducing a small new
+> > subsystem / helper-class as intermediary for when the privacy-screen
+> > is controlled by e.g. some random drivers/platform/x86 driver rather
+> > then directly by the GPU driver.
+> >
+> > I'm almost ready to send out v1. I was working on hooking things
+> > up in the i915 code and I was wondering what you were doing when
+> > the property is actually changed and we need to commit the new
+> > privacy-screen state to the hardware.
+> >
+> > This made me look at this patch, some comments inline:
+> >
+> > > ---
+> > > v9: same as v8
+> > > v8: - separate the APCI privacy screen into a separate patch.
+> > >      - Don't destroy the property if there is no privacy screen (because
+> > >        drm core doesn't like destroying property in late_register()).
+> > >      - The setting change needs to be committed in ->update_pipe() for
+> > >        ddi.c as well as dp.c and both of them call intel_dp_add_properties()
+> > > v7: Look for ACPI node in ->late_register() hook.
+> > >      Do the scan only once per drm_device (instead of 1 per drm_connector)
+> > > v6: Addressed minor comments from Jani at
+> > >      https://lkml.org/lkml/2020/1/24/1143
+> > >       - local variable renamed.
+> > >       - used drm_dbg_kms()
+> > >       - used acpi_device_handle()
+> > >       - Used opaque type acpi_handle instead of void*
+> > > v5: same as v4
+> > > v4: Same as v3
+> > > v3: fold the code into existing acpi_device_id_update() function
+> > > v2: formed by splitting the original patch into ACPI lookup, and privacy
+> > >      screen property. Also move it into i915 now that I found existing code
+> > >      in i915 that can be re-used.
+> > >
+> > >   drivers/gpu/drm/i915/display/intel_atomic.c |  2 ++
+> > >   drivers/gpu/drm/i915/display/intel_ddi.c    |  1 +
+> > >   drivers/gpu/drm/i915/display/intel_dp.c     | 34 ++++++++++++++++++++-
+> > >   drivers/gpu/drm/i915/display/intel_dp.h     |  5 +++
+> > >   4 files changed, 41 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> > > index d043057d2fa03..9898d8980e7ce 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> > > @@ -150,6 +150,8 @@ int intel_digital_connector_atomic_check(struct drm_connector *conn,
+> > >           new_conn_state->base.picture_aspect_ratio != old_conn_state->base.picture_aspect_ratio ||
+> > >           new_conn_state->base.content_type != old_conn_state->base.content_type ||
+> > >           new_conn_state->base.scaling_mode != old_conn_state->base.scaling_mode ||
+> > > +         new_conn_state->base.privacy_screen_status !=
+> > > +             old_conn_state->base.privacy_screen_status ||
+> > >           !blob_equal(new_conn_state->base.hdr_output_metadata,
+> > >                       old_conn_state->base.hdr_output_metadata))
+> > >               crtc_state->mode_changed = true;
+> >
+> > Right I was planning on doing this to.
+> >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > index 73d0f4648c06a..69a5423216dc5 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -3708,6 +3708,7 @@ static void intel_ddi_update_pipe(struct intel_encoder *encoder,
+> > >       if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> > >               intel_ddi_update_pipe_dp(encoder, crtc_state, conn_state);
+> > >
+> > > +     intel_dp_update_privacy_screen(encoder, crtc_state, conn_state);
+> > >       intel_hdcp_update_pipe(encoder, crtc_state, conn_state);
+> > >   }
+> > >
+> >
+> > And this too.
+> >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > index 3ddc424b028c1..5f33ebb466135 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > @@ -62,6 +62,7 @@
+> > >   #include "intel_lspcon.h"
+> > >   #include "intel_lvds.h"
+> > >   #include "intel_panel.h"
+> > > +#include "intel_privacy_screen.h"
+> > >   #include "intel_psr.h"
+> > >   #include "intel_sideband.h"
+> > >   #include "intel_tc.h"
+> > > @@ -5886,6 +5887,10 @@ intel_dp_connector_register(struct drm_connector *connector)
+> > >               dev_priv->acpi_scan_done = true;
+> > >       }
+> > >
+> > > +     /* Check for integrated Privacy screen support */
+> > > +     if (intel_privacy_screen_present(to_intel_connector(connector)))
+> > > +             drm_connector_attach_privacy_screen_property(connector);
+> > > +
+> > >       DRM_DEBUG_KMS("registering %s bus for %s\n",
+> > >                     intel_dp->aux.name, connector->kdev->kobj.name);
+> > >
+> > > @@ -6883,6 +6888,33 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
+> > >               connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+> > >
+> > >       }
+> > > +
+> > > +     /*
+> > > +      * Created here, but depending on result of probing for privacy-screen
+> > > +      * in intel_dp_connector_register(), gets attached in that function.
+> > > +      * Need to create here because the drm core doesn't like creating
+> > > +      * properties during ->late_register().
+> > > +      */
+> > > +     drm_connector_create_privacy_screen_property(connector);
+> > > +}
+> > > +
+> > > +void
+> > > +intel_dp_update_privacy_screen(struct intel_encoder *encoder,
+> > > +                            const struct intel_crtc_state *crtc_state,
+> > > +                            const struct drm_connector_state *conn_state)
+> > > +{
+> > > +     struct drm_connector *connector = conn_state->connector;
+> > > +
+> > > +     intel_privacy_screen_set_val(to_intel_connector(connector),
+> > > +                                  conn_state->privacy_screen_status);
+> > > +}
+> > > +
+> > > +static void intel_dp_update_pipe(struct intel_encoder *encoder,
+> > > +                              const struct intel_crtc_state *crtc_state,
+> > > +                              const struct drm_connector_state *conn_state)
+> > > +{
+> > > +     intel_dp_update_privacy_screen(encoder, crtc_state, conn_state);
+> > > +     intel_panel_update_backlight(encoder, crtc_state, conn_state);
+> > >   }
+> > >
+> > >   static void intel_dp_init_panel_power_timestamps(struct intel_dp *intel_dp)
+> > > @@ -7826,7 +7858,7 @@ bool intel_dp_init(struct drm_i915_private *dev_priv,
+> > >       intel_encoder->compute_config = intel_dp_compute_config;
+> > >       intel_encoder->get_hw_state = intel_dp_get_hw_state;
+> > >       intel_encoder->get_config = intel_dp_get_config;
+> > > -     intel_encoder->update_pipe = intel_panel_update_backlight;
+> > > +     intel_encoder->update_pipe = intel_dp_update_pipe;
+> > >       intel_encoder->suspend = intel_dp_encoder_suspend;
+> > >       if (IS_CHERRYVIEW(dev_priv)) {
+> > >               intel_encoder->pre_pll_enable = chv_dp_pre_pll_enable;
+> >
+> > And this too.
+> >
+> > One problem here is that AFAICT the update_pipe callback is only called on
+> > fast modesets. So if the privacy_screen state is changed as part of a
+> > full modeset, then the change will be ignored.
+>
+> I'm actually new to the drm / i915, so I did what I thought was right
+> at the time and was working on my setup. But, yeah, that might be a
+> possible issue it seems.
+>
+> >
+> > Even if we ignore that for now, this means that we end up calling
+> > intel_privacy_screen_set_val(), or my equivalent of that for
+> > each fast modeset.
+> >
+> > In patch 4/5 intel_privacy_screen_set_val() is defined like this:
+> >
+> > +void intel_privacy_screen_set_val(struct intel_connector *connector,
+> > +                                 enum drm_privacy_screen_status val)
+> > +{
+> > +       struct drm_device *drm = connector->base.dev;
+> > +
+> > +       if (val == PRIVACY_SCREEN_DISABLED) {
+> > +               drm_dbg_kms(drm, "%s: disabling privacy-screen\n",
+> > +                           CONN_NAME(connector));
+> > +               acpi_privacy_screen_call_dsm(connector,
+> > +                                            CONNECTOR_DSM_FN_PRIVACY_DISABLE);
+> > +       } else {
+> > +               drm_dbg_kms(drm, "%s: enabling privacy-screen\n",
+> > +                           CONN_NAME(connector));
+> > +               acpi_privacy_screen_call_dsm(connector,
+> > +                                            CONNECTOR_DSM_FN_PRIVACY_ENABLE);
+> > +       }
+> > +}
+> > +
+> >
+> > There are 2 problems with this:
+> >
+> > 1. It makes the call even if there is no privacy-screen, and then
+> > acpi_privacy_screen_call_dsm() will log an error (if the connector has an
+> > associated handle but not the DSM).
+> >
+> > 2. It makes this call on any modeset, even if the property did non change
+> > (and even if there is no privacy-screen) and AFAIK these ACPI calls are somewhat
+> > expensive to make.
+>
+> Ack to both these problems.
+>
+> >
+> > 1. Should be easy to fix, fixing 2. is trickier. We really need access
+> > to the new and old connector_state here to only make the ACPI calls when
+> > necessary. But ATM all callbacks only ever get passed the new-state and
+> > these callbacks are all called after drm_atomic_helper_swap_state() at
+> > which point there is no way to get the old_state from the new_state.
+> >
+> > I've chosen to instead do this to update the privacy-screen change:
+> >
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -15501,6 +15503,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+> >                         intel_color_load_luts(new_crtc_state);
+> >         }
+> >
+> > +       for_each_new_connector_in_state(&state->base, connector, new_connector_state, i)
+> > +               drm_connector_update_privacy_screen(connector, &state->base);
+> > +
+> >         /*
+> >          * Now that the vblank has passed, we can go ahead and program the
+> >          * optimal watermarks on platforms that need two-step watermark
+> >
+> > With drm_connector_update_privacy_screen() looking like this:
+> >
+> > +void drm_connector_update_privacy_screen(struct drm_connector *connector,
+> > +                                        struct drm_atomic_state *state)
+> > +{
+> > +       struct drm_connector_state *new_connector_state, *old_connector_state;
+> > +       int ret;
+> > +
+> > +       if (!connector->privacy_screen)
+> > +               return;
+> > +
+> > +       new_connector_state = drm_atomic_get_new_connector_state(state, connector);
+> > +       old_connector_state = drm_atomic_get_old_connector_state(state, connector);
+> > +
+> > +       if (new_connector_state->privacy_screen_sw_state ==
+> > +           old_connector_state->privacy_screen_sw_state)
+> > +               return;
+> > +
+> > +       ret = drm_privacy_screen_set_sw_state(connector->privacy_screen,
+> > +                               new_connector_state->privacy_screen_sw_state);
+> > +       if (ret)
+> > +               drm_err(connector->dev, "Error updating privacy-screen sw_state\n");
+> > +}
+> >
+> > Which avoids all the problems described above.
+>
+> Ack. This looks like a better way since it takes care of these
+> problems. Please feel free to use my patches as you see fit (I didn't
+> see much activity on them since last many months so I have moved on to
+> something else now).
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_displayid.c |  6 +++---
- drivers/gpu/drm/drm_edid.c      | 37 +++++++--------------------------
- include/drm/drm_displayid.h     | 12 -----------
- 3 files changed, 10 insertions(+), 45 deletions(-)
+I'm curious to know what was the fate of these patches. I know you
+were working on a version of it. Did the privacy-screen feature
+actually find some traction upstream and was accepted in some form?
 
-diff --git a/drivers/gpu/drm/drm_displayid.c b/drivers/gpu/drm/drm_displayid.c
-index 88070267aac9..b146f2d0d72a 100644
---- a/drivers/gpu/drm/drm_displayid.c
-+++ b/drivers/gpu/drm/drm_displayid.c
-@@ -33,9 +33,9 @@ static int validate_displayid(const u8 *displayid, int length, int idx)
- 	return 0;
- }
- 
--const u8 *drm_find_displayid_extension(const struct edid *edid,
--				       int *length, int *idx,
--				       int *ext_index)
-+static const u8 *drm_find_displayid_extension(const struct edid *edid,
-+					      int *length, int *idx,
-+					      int *ext_index)
- {
- 	const u8 *displayid = drm_find_edid_extension(edid, DISPLAYID_EXT, ext_index);
- 	const struct displayid_hdr *base;
-diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-index 4526e2557dca..81d5f2524246 100644
---- a/drivers/gpu/drm/drm_edid.c
-+++ b/drivers/gpu/drm/drm_edid.c
-@@ -5969,43 +5969,20 @@ static void drm_parse_tiled_block(struct drm_connector *connector,
- 	}
- }
- 
--static void drm_displayid_parse_tiled(struct drm_connector *connector,
--				      const u8 *displayid, int length, int idx)
--{
--	const struct displayid_block *block;
--
--	idx += sizeof(struct displayid_hdr);
--	for_each_displayid_db(displayid, block, idx, length) {
--		DRM_DEBUG_KMS("block id 0x%x, rev %d, len %d\n",
--			      block->tag, block->rev, block->num_bytes);
--
--		switch (block->tag) {
--		case DATA_BLOCK_TILED_DISPLAY:
--			drm_parse_tiled_block(connector, block);
--			break;
--		default:
--			DRM_DEBUG_KMS("found DisplayID tag 0x%x, unhandled\n", block->tag);
--			break;
--		}
--	}
--}
--
- void drm_update_tile_info(struct drm_connector *connector,
- 			  const struct edid *edid)
- {
--	const void *displayid = NULL;
--	int ext_index = 0;
--	int length, idx;
-+	const struct displayid_block *block;
-+	struct displayid_iter iter;
- 
- 	connector->has_tile = false;
--	for (;;) {
--		displayid = drm_find_displayid_extension(edid, &length, &idx,
--							 &ext_index);
--		if (!displayid)
--			break;
- 
--		drm_displayid_parse_tiled(connector, displayid, length, idx);
-+	displayid_iter_edid_begin(edid, &iter);
-+	displayid_iter_for_each(block, &iter) {
-+		if (block->tag == DATA_BLOCK_TILED_DISPLAY)
-+			drm_parse_tiled_block(connector, block);
- 	}
-+	displayid_iter_end(&iter);
- 
- 	if (!connector->has_tile && connector->tile_group) {
- 		drm_mode_put_tile_group(connector->dev, connector->tile_group);
-diff --git a/include/drm/drm_displayid.h b/include/drm/drm_displayid.h
-index 27e06c98db17..10ee863f1734 100644
---- a/include/drm/drm_displayid.h
-+++ b/include/drm/drm_displayid.h
-@@ -96,18 +96,6 @@ struct displayid_detailed_timing_block {
- 	struct displayid_detailed_timings_1 timings[];
- };
- 
--#define for_each_displayid_db(displayid, block, idx, length) \
--	for ((block) = (const struct displayid_block *)&(displayid)[idx]; \
--	     (idx) + sizeof(struct displayid_block) <= (length) && \
--	     (idx) + sizeof(struct displayid_block) + (block)->num_bytes <= (length) && \
--	     (block)->num_bytes > 0; \
--	     (idx) += sizeof(struct displayid_block) + (block)->num_bytes, \
--	     (block) = (const struct displayid_block *)&(displayid)[idx])
--
--const u8 *drm_find_displayid_extension(const struct edid *edid,
--				       int *length, int *idx,
--				       int *ext_index);
--
- /* DisplayID iteration */
- struct displayid_iter {
- 	const struct edid *edid;
--- 
-2.20.1
+Thanks,
 
+Rajat
+
+
+>
+> Thanks & Best Regards,
+>
+> Rajat
+>
+> >
+> > REgards,
+> >
+> > Hans
+> >
+> >
+> >
+> >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+> > > index 0c7be8ed1423a..e4594e27ce5a8 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> > > @@ -123,4 +123,9 @@ static inline unsigned int intel_dp_unused_lane_mask(int lane_count)
+> > >
+> > >   u32 intel_dp_mode_to_fec_clock(u32 mode_clock);
+> > >
+> > > +void
+> > > +intel_dp_update_privacy_screen(struct intel_encoder *encoder,
+> > > +                            const struct intel_crtc_state *crtc_state,
+> > > +                            const struct drm_connector_state *conn_state);
+> > > +
+> > >   #endif /* __INTEL_DP_H__ */
+> > >
+> >
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
