@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F929334063
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 15:31:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC50533472A
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 19:52:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B5B26EA36;
-	Wed, 10 Mar 2021 14:31:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55D7B6E25A;
+	Wed, 10 Mar 2021 18:52:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DB9EA6EA35;
- Wed, 10 Mar 2021 14:31:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D4953A7DFC;
- Wed, 10 Mar 2021 14:31:46 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EECC16E23F;
+ Wed, 10 Mar 2021 18:52:02 +0000 (UTC)
+IronPort-SDR: 0YjAVGnmzps8Ei7BKzHmAD+sNLmdZX6HwZKVdPpClNL/jBXNLuq8fvM5eo2t4ECOxIDc7d2gqI
+ 2zfqogKiC3xA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="273578791"
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="273578791"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2021 10:52:02 -0800
+IronPort-SDR: wUsgHdiIdOFjuxOJ37skXD/o2nOh69YpiJzyLdAROxzSi1DaWCuM2C1RjZ+1k1lIcPXEpBy1ii
+ ec8TPly0Kj+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="448002155"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga001.jf.intel.com with SMTP; 10 Mar 2021 10:51:55 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 10 Mar 2021 20:51:54 +0200
+Date: Wed, 10 Mar 2021 20:51:54 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Message-ID: <YEkVSrqKmUTmO+9L@intel.com>
+References: <20210309043915.1921-1-ankit.k.nautiyal@intel.com>
+ <20210309043915.1921-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Christophe Leroy" <christophe.leroy@csgroup.eu>
-Date: Wed, 10 Mar 2021 14:31:46 -0000
-Message-ID: <161538670684.2311.16420858809639226524@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <25459896a398909d195fd5eb3d82ca1acb07b783.1615381467.git.christophe.leroy@csgroup.eu>
-In-Reply-To: <25459896a398909d195fd5eb3d82ca1acb07b783.1615381467.git.christophe.leroy@csgroup.eu>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Use_user=5Fwrite=5Faccess=5Fbegin=28=29_instead_of?=
- =?utf-8?q?_user=5Faccess=5Fbegin=28=29?=
+Content-Disposition: inline
+In-Reply-To: <20210309043915.1921-2-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3 1/3] drm/dp_helper: Define options for
+ FRL training for HDMI2.1 PCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,198 +51,201 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1034512516=="
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1034512516==
-Content-Type: multipart/alternative;
- boundary="===============1658707583011052679=="
+On Tue, Mar 09, 2021 at 10:09:13AM +0530, Ankit Nautiyal wrote:
+> Currently the FRL training mode (Concurrent, Sequential) and
+> training type (Normal, Extended) are not defined properly and
+> are passed as bool values in drm_helpers for pcon
+> configuration for FRL training.
+> =
 
---===============1658707583011052679==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> This patch:
+> -Add register masks for Sequential and Normal FRL training options.
+> -Fixes the drm_helpers for FRL Training configuration to use the
+>  appropriate masks.
+> -Modifies the calls to the above drm_helpers in i915/intel_dp as per
+>  the above change.
+> =
 
-== Series Details ==
+> v2: Re-used the register masks for these options, instead of enum. (Ville)
+> =
 
-Series: drm/i915/gem: Use user_write_access_begin() instead of user_access_begin()
-URL   : https://patchwork.freedesktop.org/series/87834/
-State : success
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-== Summary ==
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-CI Bug Log - changes from CI_DRM_9844 -> Patchwork_19772
-====================================================
+> ---
+>  drivers/gpu/drm/drm_dp_helper.c         | 24 ++++++++++++++----------
+>  drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++------
+>  include/drm/drm_dp_helper.h             |  6 ++++--
+>  3 files changed, 22 insertions(+), 18 deletions(-)
+> =
 
-Summary
--------
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_hel=
+per.c
+> index eedbb48815b7..cb2f53e56685 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -2635,14 +2635,16 @@ EXPORT_SYMBOL(drm_dp_pcon_is_frl_ready);
+>   * drm_dp_pcon_frl_configure_1() - Set HDMI LINK Configuration-Step1
+>   * @aux: DisplayPort AUX channel
+>   * @max_frl_gbps: maximum frl bw to be configured between PCON and HDMI =
+sink
+> - * @concurrent_mode: true if concurrent mode or operation is required,
+> - * false otherwise.
+> + * @frl_mode: FRL Training mode, it can be either Concurrent or Sequenti=
+al.
+> + * In Concurrent Mode, the FRL link bring up can be done along with
+> + * DP Link training. In Sequential mode, the FRL link bring up is done p=
+rior to
+> + * the DP Link training.
+>   *
+>   * Returns 0 if success, else returns negative error code.
+>   */
+>  =
 
-  **SUCCESS**
+>  int drm_dp_pcon_frl_configure_1(struct drm_dp_aux *aux, int max_frl_gbps,
+> -				bool concurrent_mode)
+> +				u8 frl_mode)
+>  {
+>  	int ret;
+>  	u8 buf;
+> @@ -2651,7 +2653,7 @@ int drm_dp_pcon_frl_configure_1(struct drm_dp_aux *=
+aux, int max_frl_gbps,
+>  	if (ret < 0)
+>  		return ret;
+>  =
 
-  No regressions found.
+> -	if (concurrent_mode)
+> +	if (frl_mode =3D=3D DP_PCON_ENABLE_CONCURRENT_LINK)
+>  		buf |=3D DP_PCON_ENABLE_CONCURRENT_LINK;
+>  	else
+>  		buf &=3D ~DP_PCON_ENABLE_CONCURRENT_LINK;
+> @@ -2694,21 +2696,23 @@ EXPORT_SYMBOL(drm_dp_pcon_frl_configure_1);
+>   * drm_dp_pcon_frl_configure_2() - Set HDMI Link configuration Step-2
+>   * @aux: DisplayPort AUX channel
+>   * @max_frl_mask : Max FRL BW to be tried by the PCON with HDMI Sink
+> - * @extended_train_mode : true for Extended Mode, false for Normal Mode.
+> - * In Normal mode, the PCON tries each frl bw from the max_frl_mask star=
+ting
+> - * from min, and stops when link training is successful. In Extended mod=
+e, all
+> - * frl bw selected in the mask are trained by the PCON.
+> + * @frl_type : FRL training type, can be Extended, or Normal.
+> + * In Normal FRL training, the PCON tries each frl bw from the max_frl_m=
+ask
+> + * starting from min, and stops when link training is successful. In Ext=
+ended
+> + * FRL training, all frl bw selected in the mask are trained by the PCON.
+>   *
+>   * Returns 0 if success, else returns negative error code.
+>   */
+>  int drm_dp_pcon_frl_configure_2(struct drm_dp_aux *aux, int max_frl_mask,
+> -				bool extended_train_mode)
+> +				u8 frl_type)
+>  {
+>  	int ret;
+>  	u8 buf =3D max_frl_mask;
+>  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/index.html
+> -	if (extended_train_mode)
+> +	if (frl_type =3D=3D DP_PCON_FRL_LINK_TRAIN_EXTENDED)
+>  		buf |=3D DP_PCON_FRL_LINK_TRAIN_EXTENDED;
+> +	else
+> +		buf &=3D ~DP_PCON_FRL_LINK_TRAIN_EXTENDED;
+>  =
 
-Known issues
-------------
+>  	ret =3D drm_dp_dpcd_writeb(aux, DP_PCON_HDMI_LINK_CONFIG_2, buf);
+>  	if (ret < 0)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 4f89e0de5dde..85ec74ae952e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2557,10 +2557,6 @@ static int intel_dp_hdmi_sink_max_frl(struct intel=
+_dp *intel_dp)
+>  =
 
-  Here are the changes found in Patchwork_19772 that come from known issues:
+>  static int intel_dp_pcon_start_frl_training(struct intel_dp *intel_dp)
+>  {
+> -#define PCON_EXTENDED_TRAIN_MODE (1 > 0)
+> -#define PCON_CONCURRENT_MODE (1 > 0)
+> -#define PCON_SEQUENTIAL_MODE !PCON_CONCURRENT_MODE
+> -#define PCON_NORMAL_TRAIN_MODE !PCON_EXTENDED_TRAIN_MODE
+>  #define TIMEOUT_FRL_READY_MS 500
+>  #define TIMEOUT_HDMI_LINK_ACTIVE_MS 1000
+>  =
 
-### IGT changes ###
+> @@ -2594,10 +2590,12 @@ static int intel_dp_pcon_start_frl_training(struc=
+t intel_dp *intel_dp)
+>  		return -ETIMEDOUT;
+>  =
 
-#### Issues hit ####
+>  	max_frl_bw_mask =3D intel_dp_pcon_set_frl_mask(max_frl_bw);
+> -	ret =3D drm_dp_pcon_frl_configure_1(&intel_dp->aux, max_frl_bw, PCON_SE=
+QUENTIAL_MODE);
+> +	ret =3D drm_dp_pcon_frl_configure_1(&intel_dp->aux, max_frl_bw,
+> +					  DP_PCON_ENABLE_SEQUENTIAL_LINK);
+>  	if (ret < 0)
+>  		return ret;
+> -	ret =3D drm_dp_pcon_frl_configure_2(&intel_dp->aux, max_frl_bw_mask, PC=
+ON_NORMAL_TRAIN_MODE);
+> +	ret =3D drm_dp_pcon_frl_configure_2(&intel_dp->aux, max_frl_bw_mask,
+> +					  DP_PCON_FRL_LINK_TRAIN_NORMAL);
+>  	if (ret < 0)
+>  		return ret;
+>  	ret =3D drm_dp_pcon_frl_enable(&intel_dp->aux);
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index edffd1dcca3e..f1c7e09728d4 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1171,6 +1171,7 @@ struct drm_device;
+>  # define DP_PCON_ENABLE_MAX_BW_48GBPS	       6
+>  # define DP_PCON_ENABLE_SOURCE_CTL_MODE       (1 << 3)
+>  # define DP_PCON_ENABLE_CONCURRENT_LINK       (1 << 4)
+> +# define DP_PCON_ENABLE_SEQUENTIAL_LINK       (0 << 4)
+>  # define DP_PCON_ENABLE_LINK_FRL_MODE         (1 << 5)
+>  # define DP_PCON_ENABLE_HPD_READY	      (1 << 6)
+>  # define DP_PCON_ENABLE_HDMI_LINK             (1 << 7)
+> @@ -1185,6 +1186,7 @@ struct drm_device;
+>  # define DP_PCON_FRL_BW_MASK_40GBPS           (1 << 4)
+>  # define DP_PCON_FRL_BW_MASK_48GBPS           (1 << 5)
+>  # define DP_PCON_FRL_LINK_TRAIN_EXTENDED      (1 << 6)
+> +# define DP_PCON_FRL_LINK_TRAIN_NORMAL        (0 << 6)
+>  =
 
-  * igt@gem_exec_gttfill@basic:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
+>  /* PCON HDMI LINK STATUS */
+>  #define DP_PCON_HDMI_TX_LINK_STATUS           0x303B
+> @@ -2149,9 +2151,9 @@ int drm_dp_get_pcon_max_frl_bw(const u8 dpcd[DP_REC=
+EIVER_CAP_SIZE],
+>  int drm_dp_pcon_frl_prepare(struct drm_dp_aux *aux, bool enable_frl_read=
+y_hpd);
+>  bool drm_dp_pcon_is_frl_ready(struct drm_dp_aux *aux);
+>  int drm_dp_pcon_frl_configure_1(struct drm_dp_aux *aux, int max_frl_gbps,
+> -				bool concurrent_mode);
+> +				u8 frl_mode);
+>  int drm_dp_pcon_frl_configure_2(struct drm_dp_aux *aux, int max_frl_mask,
+> -				bool extended_train_mode);
+> +				u8 frl_type);
+>  int drm_dp_pcon_reset_frl_config(struct drm_dp_aux *aux);
+>  int drm_dp_pcon_frl_enable(struct drm_dp_aux *aux);
+>  =
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][2] ([i915#3159])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
+> -- =
 
-  * igt@gem_linear_blits@basic:
-    - fi-kbl-8809g:       [PASS][3] -> [TIMEOUT][4] ([i915#2502] / [i915#3145]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-kbl-8809g/igt@gem_linear_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/fi-kbl-8809g/igt@gem_linear_blits@basic.html
+> 2.29.2
 
-  
-#### Possible fixes ####
+-- =
 
-  * igt@i915_selftest@live@client:
-    - fi-glk-dsi:         [DMESG-FAIL][5] ([i915#3047]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-glk-dsi/igt@i915_selftest@live@client.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/fi-glk-dsi/igt@i915_selftest@live@client.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#2502]: https://gitlab.freedesktop.org/drm/intel/issues/2502
-  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
-  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
-  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
-
-
-Participating hosts (45 -> 41)
-------------------------------
-
-  Additional (1): fi-bsw-n3050 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bsw-kefka fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9844 -> Patchwork_19772
-
-  CI-20190529: 20190529
-  CI_DRM_9844: 3108bcbbbf191b3b5e624f21348c306010725a02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6027: b8b3facdfbb99a0b9ef5f541a0ee7d6bca2aafea @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19772: 33c3518f25314aef8221adffec37dae85e7a1efa @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-33c3518f2531 drm/i915/gem: Use user_write_access_begin() instead of user_access_begin()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/index.html
-
---===============1658707583011052679==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gem: Use user_write_access_begin() instead of user_access_begin()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87834/">https://patchwork.freedesktop.org/series/87834/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9844 -&gt; Patchwork_19772</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19772 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_linear_blits@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-kbl-8809g/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/fi-kbl-8809g/igt@gem_linear_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2502">i915#2502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@client:<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19772/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 41)</h2>
-<p>Additional (1): fi-bsw-n3050 <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bsw-kefka fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9844 -&gt; Patchwork_19772</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9844: 3108bcbbbf191b3b5e624f21348c306010725a02 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6027: b8b3facdfbb99a0b9ef5f541a0ee7d6bca2aafea @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19772: 33c3518f25314aef8221adffec37dae85e7a1efa @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>33c3518f2531 drm/i915/gem: Use user_write_access_begin() instead of user_access_begin()</p>
-
-</body>
-</html>
-
---===============1658707583011052679==--
-
---===============1034512516==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1034512516==--
