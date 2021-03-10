@@ -2,43 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E36243347B7
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 20:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B701433483A
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 20:43:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 446326E2B6;
-	Wed, 10 Mar 2021 19:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58D0B6E2DC;
+	Wed, 10 Mar 2021 19:43:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8B2F6E25B;
- Wed, 10 Mar 2021 19:16:20 +0000 (UTC)
-IronPort-SDR: SJFujEcii4Ax4uRAxS27Ua2H6MzJDouQVBNhFbfuefDV8YOJm61mMbk2D2TPKla6ZXZLRFb+gE
- xXLLGDy9LFRg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="175649281"
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="175649281"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2021 11:16:19 -0800
-IronPort-SDR: iEu5E41QWqP8wldJmVDcRI7ZRmyKIi+SrLN8Jg0VFt5aw0px/n78Rf4+eRSVW0DfVxOw+8H1Jo
- bl9jyKj4x8qA==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D56FF6E2DC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Mar 2021 19:43:54 +0000 (UTC)
+IronPort-SDR: QAn2lsgErTwTQJXVR7dOssy0aa8iT0kqcYxr0kVywmcMoa8jdzKhqV4NAplxb4JHWberGZrxiW
+ 8dCZwWmIA98w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="167824553"
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="167824553"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2021 11:43:54 -0800
+IronPort-SDR: E6XgrSLxpJ1nw6Bn3G30MBOTmgas64fw6BUJtb98ay6Ol7Yg7F09dQI0EEXDPv5EoB18zaH+qr
+ mSNkV4PX4mYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="438438134"
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="386754306"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 10 Mar 2021 11:16:17 -0800
+ by orsmga002.jf.intel.com with SMTP; 10 Mar 2021 11:43:52 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 10 Mar 2021 21:16:16 +0200
-Date: Wed, 10 Mar 2021 21:16:16 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YEkbAIWTqZ6MO8dT@intel.com>
-References: <cover.1615297748.git.jani.nikula@intel.com>
- <96ad612f337691cc31ab25f6a661bf1d3721fab9.1615297748.git.jani.nikula@intel.com>
+ Wed, 10 Mar 2021 21:43:51 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 10 Mar 2021 21:43:51 +0200
+Message-Id: <20210310194351.6233-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <96ad612f337691cc31ab25f6a661bf1d3721fab9.1615297748.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [RFC v1 6/6] drm/edid: use the new displayid
- iterator for tile info
+Subject: [Intel-gfx] [PATCH] drm/i915: Tolerate bogus DPLL selection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,159 +46,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 09, 2021 at 03:54:14PM +0200, Jani Nikula wrote:
-> Neatly reduce displayid boilerplate in code. Remove excessive debug
-> logging while at it, no other functional changes.
-> =
-
-> The old displayid iterator becomes unused; remove it as well as make
-> drm_find_displayid_extension() static.
-> =
-
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-Hopeuflly you tested with some of those weird EDIDs with
-multiple DisplayID and/or CEA blocks ;)
-
-I was thinking we should try to coalesce an iterator for
-the CEA stuff as well...
-
-> ---
->  drivers/gpu/drm/drm_displayid.c |  6 +++---
->  drivers/gpu/drm/drm_edid.c      | 37 +++++++--------------------------
->  include/drm/drm_displayid.h     | 12 -----------
->  3 files changed, 10 insertions(+), 45 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/drm_displayid.c b/drivers/gpu/drm/drm_displa=
-yid.c
-> index 88070267aac9..b146f2d0d72a 100644
-> --- a/drivers/gpu/drm/drm_displayid.c
-> +++ b/drivers/gpu/drm/drm_displayid.c
-> @@ -33,9 +33,9 @@ static int validate_displayid(const u8 *displayid, int =
-length, int idx)
->  	return 0;
->  }
->  =
-
-> -const u8 *drm_find_displayid_extension(const struct edid *edid,
-> -				       int *length, int *idx,
-> -				       int *ext_index)
-> +static const u8 *drm_find_displayid_extension(const struct edid *edid,
-> +					      int *length, int *idx,
-> +					      int *ext_index)
->  {
->  	const u8 *displayid =3D drm_find_edid_extension(edid, DISPLAYID_EXT, ex=
-t_index);
->  	const struct displayid_hdr *base;
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 4526e2557dca..81d5f2524246 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -5969,43 +5969,20 @@ static void drm_parse_tiled_block(struct drm_conn=
-ector *connector,
->  	}
->  }
->  =
-
-> -static void drm_displayid_parse_tiled(struct drm_connector *connector,
-> -				      const u8 *displayid, int length, int idx)
-> -{
-> -	const struct displayid_block *block;
-> -
-> -	idx +=3D sizeof(struct displayid_hdr);
-> -	for_each_displayid_db(displayid, block, idx, length) {
-> -		DRM_DEBUG_KMS("block id 0x%x, rev %d, len %d\n",
-> -			      block->tag, block->rev, block->num_bytes);
-> -
-> -		switch (block->tag) {
-> -		case DATA_BLOCK_TILED_DISPLAY:
-> -			drm_parse_tiled_block(connector, block);
-> -			break;
-> -		default:
-> -			DRM_DEBUG_KMS("found DisplayID tag 0x%x, unhandled\n", block->tag);
-> -			break;
-> -		}
-> -	}
-> -}
-> -
->  void drm_update_tile_info(struct drm_connector *connector,
->  			  const struct edid *edid)
->  {
-> -	const void *displayid =3D NULL;
-> -	int ext_index =3D 0;
-> -	int length, idx;
-> +	const struct displayid_block *block;
-> +	struct displayid_iter iter;
->  =
-
->  	connector->has_tile =3D false;
-> -	for (;;) {
-> -		displayid =3D drm_find_displayid_extension(edid, &length, &idx,
-> -							 &ext_index);
-> -		if (!displayid)
-> -			break;
->  =
-
-> -		drm_displayid_parse_tiled(connector, displayid, length, idx);
-> +	displayid_iter_edid_begin(edid, &iter);
-> +	displayid_iter_for_each(block, &iter) {
-> +		if (block->tag =3D=3D DATA_BLOCK_TILED_DISPLAY)
-> +			drm_parse_tiled_block(connector, block);
->  	}
-> +	displayid_iter_end(&iter);
->  =
-
->  	if (!connector->has_tile && connector->tile_group) {
->  		drm_mode_put_tile_group(connector->dev, connector->tile_group);
-> diff --git a/include/drm/drm_displayid.h b/include/drm/drm_displayid.h
-> index 27e06c98db17..10ee863f1734 100644
-> --- a/include/drm/drm_displayid.h
-> +++ b/include/drm/drm_displayid.h
-> @@ -96,18 +96,6 @@ struct displayid_detailed_timing_block {
->  	struct displayid_detailed_timings_1 timings[];
->  };
->  =
-
-> -#define for_each_displayid_db(displayid, block, idx, length) \
-> -	for ((block) =3D (const struct displayid_block *)&(displayid)[idx]; \
-> -	     (idx) + sizeof(struct displayid_block) <=3D (length) && \
-> -	     (idx) + sizeof(struct displayid_block) + (block)->num_bytes <=3D (=
-length) && \
-> -	     (block)->num_bytes > 0; \
-> -	     (idx) +=3D sizeof(struct displayid_block) + (block)->num_bytes, \
-> -	     (block) =3D (const struct displayid_block *)&(displayid)[idx])
-> -
-> -const u8 *drm_find_displayid_extension(const struct edid *edid,
-> -				       int *length, int *idx,
-> -				       int *ext_index);
-> -
->  /* DisplayID iteration */
->  struct displayid_iter {
->  	const struct edid *edid;
-> -- =
-
-> 2.20.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkxl
+dCdzIGNoZWNrIHRoYXQgd2UgYWN0dWFsbHkgZm91bmQgdGhlIFBMTCBiZWZvcmUgZG9pbmcgdGhl
+CnBvcnRfY2xvY2sgcmVhZG91dCwganVzdCBpbiBjYXNlIHRoZSBoYXJkd2FyZSBpcyBzZXZlcmx5
+Cm1pc3Byb2dyYW1taW5nIGJ5IHRoZSBwcmV2aW91cyBndXkuIE5vdCBzdXJlIHRoZSBodyB3b3Vs
+ZApldmVuIHN1cnZpdmUgc3VjaCBtaXNwcm9ncmFtbWluZyB3aXRob3V0IGhhbmdpbmcgYnV0IG5v
+CnJlYWwgaGFybSBpbiBjaGVja2luZyBhbnl3YXkuCgpDYzogS2FydGhpayBCIFMgPGthcnRoaWsu
+Yi5zQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2RkaS5jIHwgMTcgKysrKysrKysrKysrKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMyBpbnNl
+cnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2RkaS5jCmluZGV4IGJhODM2ODJlMWQzZS4uNjRhOTUyZGI4NTI4IDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKQEAgLTM3MTYsNiArMzcxNiw5IEBAIHZvaWQg
+aW50ZWxfZGRpX2dldF9jbG9jayhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAlzdHJ1
+Y3QgaWNsX3BvcnRfZHBsbCAqcG9ydF9kcGxsID0gJmNydGNfc3RhdGUtPmljbF9wb3J0X2RwbGxz
+W3BvcnRfZHBsbF9pZF07CiAJYm9vbCBwbGxfYWN0aXZlOwogCisJaWYgKGRybV9XQVJOX09OKCZp
+OTE1LT5kcm0sICFwbGwpKQorCQlyZXR1cm47CisKIAlwb3J0X2RwbGwtPnBsbCA9IHBsbDsKIAlw
+bGxfYWN0aXZlID0gaW50ZWxfZHBsbF9nZXRfaHdfc3RhdGUoaTkxNSwgcGxsLCAmcG9ydF9kcGxs
+LT5od19zdGF0ZSk7CiAJZHJtX1dBUk5fT04oJmk5MTUtPmRybSwgIXBsbF9hY3RpdmUpOwpAQCAt
+Mzc1NCwxNiArMzc1NywxNyBAQCBzdGF0aWMgdm9pZCBpY2xfZGRpX2NvbWJvX2dldF9jb25maWco
+c3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJaW50ZWxfZGRpX2dldF9jb25maWcoZW5j
+b2RlciwgY3J0Y19zdGF0ZSk7CiB9CiAKLXN0YXRpYyB2b2lkIGljbF9kZGlfdGNfZ2V0X2NvbmZp
+ZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKLQkJCQkgIHN0cnVjdCBpbnRlbF9jcnRj
+X3N0YXRlICpjcnRjX3N0YXRlKQorc3RhdGljIHZvaWQgaWNsX2RkaV90Y19nZXRfY2xvY2soc3Ry
+dWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCisJCQkJIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
+ICpjcnRjX3N0YXRlLAorCQkJCSBzdHJ1Y3QgaW50ZWxfc2hhcmVkX2RwbGwgKnBsbCkKIHsKIAlz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYp
+OwogCWVudW0gaWNsX3BvcnRfZHBsbF9pZCBwb3J0X2RwbGxfaWQ7CiAJc3RydWN0IGljbF9wb3J0
+X2RwbGwgKnBvcnRfZHBsbDsKLQlzdHJ1Y3QgaW50ZWxfc2hhcmVkX2RwbGwgKnBsbDsKIAlib29s
+IHBsbF9hY3RpdmU7CiAKLQlwbGwgPSBpY2xfZGRpX3RjX2dldF9wbGwoZW5jb2Rlcik7CisJaWYg
+KGRybV9XQVJOX09OKCZpOTE1LT5kcm0sICFwbGwpKQorCQlyZXR1cm47CiAKIAlpZiAoaW50ZWxf
+Z2V0X3NoYXJlZF9kcGxsX2lkKGk5MTUsIHBsbCkgPT0gRFBMTF9JRF9JQ0xfVEJUUExMKQogCQlw
+b3J0X2RwbGxfaWQgPSBJQ0xfUE9SVF9EUExMX0RFRkFVTFQ7CkBAIC0zNzgzLDcgKzM3ODcsMTIg
+QEAgc3RhdGljIHZvaWQgaWNsX2RkaV90Y19nZXRfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVy
+ICplbmNvZGVyLAogCWVsc2UKIAkJY3J0Y19zdGF0ZS0+cG9ydF9jbG9jayA9IGludGVsX2RwbGxf
+Z2V0X2ZyZXEoaTkxNSwgY3J0Y19zdGF0ZS0+c2hhcmVkX2RwbGwsCiAJCQkJCQkJICAgICAmY3J0
+Y19zdGF0ZS0+ZHBsbF9od19zdGF0ZSk7Cit9CiAKK3N0YXRpYyB2b2lkIGljbF9kZGlfdGNfZ2V0
+X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKKwkJCQkgIHN0cnVjdCBpbnRl
+bF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQoreworCWljbF9kZGlfdGNfZ2V0X2Nsb2NrKGVuY29k
+ZXIsIGNydGNfc3RhdGUsIGljbF9kZGlfdGNfZ2V0X3BsbChlbmNvZGVyKSk7CiAJaW50ZWxfZGRp
+X2dldF9jb25maWcoZW5jb2RlciwgY3J0Y19zdGF0ZSk7CiB9CiAKLS0gCjIuMjYuMgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
