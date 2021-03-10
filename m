@@ -1,39 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B701433483A
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 20:43:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 019BE334949
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 22:00:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58D0B6E2DC;
-	Wed, 10 Mar 2021 19:43:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03F466EA5B;
+	Wed, 10 Mar 2021 21:00:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D56FF6E2DC
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Mar 2021 19:43:54 +0000 (UTC)
-IronPort-SDR: QAn2lsgErTwTQJXVR7dOssy0aa8iT0kqcYxr0kVywmcMoa8jdzKhqV4NAplxb4JHWberGZrxiW
- 8dCZwWmIA98w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="167824553"
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="167824553"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2021 11:43:54 -0800
-IronPort-SDR: E6XgrSLxpJ1nw6Bn3G30MBOTmgas64fw6BUJtb98ay6Ol7Yg7F09dQI0EEXDPv5EoB18zaH+qr
- mSNkV4PX4mYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="386754306"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga002.jf.intel.com with SMTP; 10 Mar 2021 11:43:52 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 10 Mar 2021 21:43:51 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Mar 2021 21:43:51 +0200
-Message-Id: <20210310194351.6233-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com
+ [IPv6:2607:f8b0:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 324386EA5B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Mar 2021 21:00:55 +0000 (UTC)
+Received: by mail-pl1-x631.google.com with SMTP id u18so9083132plc.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Mar 2021 13:00:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ik84YBzzUjW+xanhnX2Y30aWCflIMPvvkL8xxyTIkY8=;
+ b=NO+0FTVuv+wutTpeUKOMHZOnz8qWAqwU55dot9OkFJIDWFb4/v/e4mMfHc6ALgZSUb
+ RdtS0znpLoeSQm+eda/O7APHJTKbSKJ6EBbs2pBikjE7n39HqnwkDsZhQvRp6ThitgGt
+ 2bdo2JyIIqBUEyhN6cZqpaoGY5CoC7Wik95ZXDMOicWhhLeZMYsTjHxcORzXF2unfJm6
+ oTA5Tn+H0ZEePObk0xMmoGYG7oZiDNz8Z8LGbUNX68ofgbUmEvPmCrcN8SbpoCJtyYej
+ xUGNln2kxUUKv5Cq0bfO2Dg4J46AYFv024ztL5PkthtI+n1b0ms1RWNt+x9m2/pPHLGl
+ btIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ik84YBzzUjW+xanhnX2Y30aWCflIMPvvkL8xxyTIkY8=;
+ b=GpAM6zMacNekxn7myaBB2x26H4BKWKlzjmbLPxVPlqjMiGHf4IN86pxDFSom4xilKl
+ OLdSfVuHDcTOsuzFGdQkZG9XnJi/zi7+n/Ts+k5IWUWad609NlUrJTuQjkhugFFZkU7M
+ A/J6XMj9bxV2aUIGbOnaRiATbsUXij178t6lE5A287xqaDxsZ5CEfw44EnyLWxeTkh0X
+ aT+Is9zd8tCD7mT8A5X9IOXlkrDvyhi18E+2Ftp8y7guRUxLI/hMhFoXJEGTMOBcr1j/
+ Il/+2aaTKgbq8M06rbvUEJlgCf7U0UXSOjT2L8eh5Wk00wKrQvyQSZPF+UY1b792UYg0
+ GFHg==
+X-Gm-Message-State: AOAM530FTXpQsata1GFj2WGDj7Bg/5AOMx4vGa7Ld2p/SCzCOOwyJ73J
+ MhMRxlVGrprWdjJd/VI5Kw6T9Q==
+X-Google-Smtp-Source: ABdhPJwAFES6oHNRR64pzpLjmCm7O7I+4BvwaFyAyE87kW5c1AY88CgdoP1cXOfy1A0nagKbYbn1Fw==
+X-Received: by 2002:a17:90a:a414:: with SMTP id
+ y20mr5321134pjp.77.1615410054480; 
+ Wed, 10 Mar 2021 13:00:54 -0800 (PST)
+Received: from omlet.lan (jfdmzpr06-ext.jf.intel.com. [134.134.137.75])
+ by smtp.gmail.com with ESMTPSA id w5sm373867pfn.51.2021.03.10.13.00.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 10 Mar 2021 13:00:53 -0800 (PST)
+From: Jason Ekstrand <jason@jlekstrand.net>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ airlied@redhat.com
+Date: Wed, 10 Mar 2021 15:00:49 -0600
+Message-Id: <20210310210049.723206-1-jason@jlekstrand.net>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Tolerate bogus DPLL selection
+Subject: [Intel-gfx] [PATCH] i915: Drop legacy execbuffer support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,53 +67,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkxl
-dCdzIGNoZWNrIHRoYXQgd2UgYWN0dWFsbHkgZm91bmQgdGhlIFBMTCBiZWZvcmUgZG9pbmcgdGhl
-CnBvcnRfY2xvY2sgcmVhZG91dCwganVzdCBpbiBjYXNlIHRoZSBoYXJkd2FyZSBpcyBzZXZlcmx5
-Cm1pc3Byb2dyYW1taW5nIGJ5IHRoZSBwcmV2aW91cyBndXkuIE5vdCBzdXJlIHRoZSBodyB3b3Vs
-ZApldmVuIHN1cnZpdmUgc3VjaCBtaXNwcm9ncmFtbWluZyB3aXRob3V0IGhhbmdpbmcgYnV0IG5v
-CnJlYWwgaGFybSBpbiBjaGVja2luZyBhbnl3YXkuCgpDYzogS2FydGhpayBCIFMgPGthcnRoaWsu
-Yi5zQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJq
-YWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RkaS5jIHwgMTcgKysrKysrKysrKysrKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMyBpbnNl
-cnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RkaS5jCmluZGV4IGJhODM2ODJlMWQzZS4uNjRhOTUyZGI4NTI4IDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKQEAgLTM3MTYsNiArMzcxNiw5IEBAIHZvaWQg
-aW50ZWxfZGRpX2dldF9jbG9jayhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAlzdHJ1
-Y3QgaWNsX3BvcnRfZHBsbCAqcG9ydF9kcGxsID0gJmNydGNfc3RhdGUtPmljbF9wb3J0X2RwbGxz
-W3BvcnRfZHBsbF9pZF07CiAJYm9vbCBwbGxfYWN0aXZlOwogCisJaWYgKGRybV9XQVJOX09OKCZp
-OTE1LT5kcm0sICFwbGwpKQorCQlyZXR1cm47CisKIAlwb3J0X2RwbGwtPnBsbCA9IHBsbDsKIAlw
-bGxfYWN0aXZlID0gaW50ZWxfZHBsbF9nZXRfaHdfc3RhdGUoaTkxNSwgcGxsLCAmcG9ydF9kcGxs
-LT5od19zdGF0ZSk7CiAJZHJtX1dBUk5fT04oJmk5MTUtPmRybSwgIXBsbF9hY3RpdmUpOwpAQCAt
-Mzc1NCwxNiArMzc1NywxNyBAQCBzdGF0aWMgdm9pZCBpY2xfZGRpX2NvbWJvX2dldF9jb25maWco
-c3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJaW50ZWxfZGRpX2dldF9jb25maWcoZW5j
-b2RlciwgY3J0Y19zdGF0ZSk7CiB9CiAKLXN0YXRpYyB2b2lkIGljbF9kZGlfdGNfZ2V0X2NvbmZp
-ZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKLQkJCQkgIHN0cnVjdCBpbnRlbF9jcnRj
-X3N0YXRlICpjcnRjX3N0YXRlKQorc3RhdGljIHZvaWQgaWNsX2RkaV90Y19nZXRfY2xvY2soc3Ry
-dWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCisJCQkJIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
-ICpjcnRjX3N0YXRlLAorCQkJCSBzdHJ1Y3QgaW50ZWxfc2hhcmVkX2RwbGwgKnBsbCkKIHsKIAlz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYp
-OwogCWVudW0gaWNsX3BvcnRfZHBsbF9pZCBwb3J0X2RwbGxfaWQ7CiAJc3RydWN0IGljbF9wb3J0
-X2RwbGwgKnBvcnRfZHBsbDsKLQlzdHJ1Y3QgaW50ZWxfc2hhcmVkX2RwbGwgKnBsbDsKIAlib29s
-IHBsbF9hY3RpdmU7CiAKLQlwbGwgPSBpY2xfZGRpX3RjX2dldF9wbGwoZW5jb2Rlcik7CisJaWYg
-KGRybV9XQVJOX09OKCZpOTE1LT5kcm0sICFwbGwpKQorCQlyZXR1cm47CiAKIAlpZiAoaW50ZWxf
-Z2V0X3NoYXJlZF9kcGxsX2lkKGk5MTUsIHBsbCkgPT0gRFBMTF9JRF9JQ0xfVEJUUExMKQogCQlw
-b3J0X2RwbGxfaWQgPSBJQ0xfUE9SVF9EUExMX0RFRkFVTFQ7CkBAIC0zNzgzLDcgKzM3ODcsMTIg
-QEAgc3RhdGljIHZvaWQgaWNsX2RkaV90Y19nZXRfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVy
-ICplbmNvZGVyLAogCWVsc2UKIAkJY3J0Y19zdGF0ZS0+cG9ydF9jbG9jayA9IGludGVsX2RwbGxf
-Z2V0X2ZyZXEoaTkxNSwgY3J0Y19zdGF0ZS0+c2hhcmVkX2RwbGwsCiAJCQkJCQkJICAgICAmY3J0
-Y19zdGF0ZS0+ZHBsbF9od19zdGF0ZSk7Cit9CiAKK3N0YXRpYyB2b2lkIGljbF9kZGlfdGNfZ2V0
-X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKKwkJCQkgIHN0cnVjdCBpbnRl
-bF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQoreworCWljbF9kZGlfdGNfZ2V0X2Nsb2NrKGVuY29k
-ZXIsIGNydGNfc3RhdGUsIGljbF9kZGlfdGNfZ2V0X3BsbChlbmNvZGVyKSk7CiAJaW50ZWxfZGRp
-X2dldF9jb25maWcoZW5jb2RlciwgY3J0Y19zdGF0ZSk7CiB9CiAKLS0gCjIuMjYuMgoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+libdrm has supported the newer execbuffer2 ioctl and using it by default
+when it exists since libdrm commit b50964027bef249a0cc3d511de05c2464e0a1e22
+which landed Mar 2, 2010.  The i915 and i965 drivers in Mesa at the time
+both used libdrm and so did the Intel X11 back-end.  The SNA back-end
+for X11 has always used execbuffer2.
+
+Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 100 ------------------
+ drivers/gpu/drm/i915/gem/i915_gem_ioctls.h    |   2 -
+ drivers/gpu/drm/i915/i915_drv.c               |   2 +-
+ 3 files changed, 1 insertion(+), 103 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index fe170186dd428..99772f37bff60 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -3394,106 +3394,6 @@ static bool check_buffer_count(size_t count)
+ 	return !(count < 1 || count > INT_MAX || count > SIZE_MAX / sz - 1);
+ }
+ 
+-/*
+- * Legacy execbuffer just creates an exec2 list from the original exec object
+- * list array and passes it to the real function.
+- */
+-int
+-i915_gem_execbuffer_ioctl(struct drm_device *dev, void *data,
+-			  struct drm_file *file)
+-{
+-	struct drm_i915_private *i915 = to_i915(dev);
+-	struct drm_i915_gem_execbuffer *args = data;
+-	struct drm_i915_gem_execbuffer2 exec2;
+-	struct drm_i915_gem_exec_object *exec_list = NULL;
+-	struct drm_i915_gem_exec_object2 *exec2_list = NULL;
+-	const size_t count = args->buffer_count;
+-	unsigned int i;
+-	int err;
+-
+-	if (!check_buffer_count(count)) {
+-		drm_dbg(&i915->drm, "execbuf2 with %zd buffers\n", count);
+-		return -EINVAL;
+-	}
+-
+-	exec2.buffers_ptr = args->buffers_ptr;
+-	exec2.buffer_count = args->buffer_count;
+-	exec2.batch_start_offset = args->batch_start_offset;
+-	exec2.batch_len = args->batch_len;
+-	exec2.DR1 = args->DR1;
+-	exec2.DR4 = args->DR4;
+-	exec2.num_cliprects = args->num_cliprects;
+-	exec2.cliprects_ptr = args->cliprects_ptr;
+-	exec2.flags = I915_EXEC_RENDER;
+-	i915_execbuffer2_set_context_id(exec2, 0);
+-
+-	err = i915_gem_check_execbuffer(&exec2);
+-	if (err)
+-		return err;
+-
+-	/* Copy in the exec list from userland */
+-	exec_list = kvmalloc_array(count, sizeof(*exec_list),
+-				   __GFP_NOWARN | GFP_KERNEL);
+-
+-	/* Allocate extra slots for use by the command parser */
+-	exec2_list = kvmalloc_array(count + 2, eb_element_size(),
+-				    __GFP_NOWARN | GFP_KERNEL);
+-	if (exec_list == NULL || exec2_list == NULL) {
+-		drm_dbg(&i915->drm,
+-			"Failed to allocate exec list for %d buffers\n",
+-			args->buffer_count);
+-		kvfree(exec_list);
+-		kvfree(exec2_list);
+-		return -ENOMEM;
+-	}
+-	err = copy_from_user(exec_list,
+-			     u64_to_user_ptr(args->buffers_ptr),
+-			     sizeof(*exec_list) * count);
+-	if (err) {
+-		drm_dbg(&i915->drm, "copy %d exec entries failed %d\n",
+-			args->buffer_count, err);
+-		kvfree(exec_list);
+-		kvfree(exec2_list);
+-		return -EFAULT;
+-	}
+-
+-	for (i = 0; i < args->buffer_count; i++) {
+-		exec2_list[i].handle = exec_list[i].handle;
+-		exec2_list[i].relocation_count = exec_list[i].relocation_count;
+-		exec2_list[i].relocs_ptr = exec_list[i].relocs_ptr;
+-		exec2_list[i].alignment = exec_list[i].alignment;
+-		exec2_list[i].offset = exec_list[i].offset;
+-		if (INTEL_GEN(to_i915(dev)) < 4)
+-			exec2_list[i].flags = EXEC_OBJECT_NEEDS_FENCE;
+-		else
+-			exec2_list[i].flags = 0;
+-	}
+-
+-	err = i915_gem_do_execbuffer(dev, file, &exec2, exec2_list);
+-	if (exec2.flags & __EXEC_HAS_RELOC) {
+-		struct drm_i915_gem_exec_object __user *user_exec_list =
+-			u64_to_user_ptr(args->buffers_ptr);
+-
+-		/* Copy the new buffer offsets back to the user's exec list. */
+-		for (i = 0; i < args->buffer_count; i++) {
+-			if (!(exec2_list[i].offset & UPDATE))
+-				continue;
+-
+-			exec2_list[i].offset =
+-				gen8_canonical_addr(exec2_list[i].offset & PIN_OFFSET_MASK);
+-			exec2_list[i].offset &= PIN_OFFSET_MASK;
+-			if (__copy_to_user(&user_exec_list[i].offset,
+-					   &exec2_list[i].offset,
+-					   sizeof(user_exec_list[i].offset)))
+-				break;
+-		}
+-	}
+-
+-	kvfree(exec_list);
+-	kvfree(exec2_list);
+-	return err;
+-}
+-
+ int
+ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+ 			   struct drm_file *file)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ioctls.h b/drivers/gpu/drm/i915/gem/i915_gem_ioctls.h
+index 87d8b27f426de..7fd22f3efbef0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ioctls.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ioctls.h
+@@ -14,8 +14,6 @@ int i915_gem_busy_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file);
+ int i915_gem_create_ioctl(struct drm_device *dev, void *data,
+ 			  struct drm_file *file);
+-int i915_gem_execbuffer_ioctl(struct drm_device *dev, void *data,
+-			      struct drm_file *file);
+ int i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+ 			       struct drm_file *file);
+ int i915_gem_get_aperture_ioctl(struct drm_device *dev, void *data,
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 3edd5e47ad682..64edcab59fe12 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1701,7 +1701,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(I915_VBLANK_SWAP, drm_noop, DRM_AUTH),
+ 	DRM_IOCTL_DEF_DRV(I915_HWS_ADDR, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_INIT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF_DRV(I915_GEM_EXECBUFFER, i915_gem_execbuffer_ioctl, DRM_AUTH),
++	DRM_IOCTL_DEF_DRV(I915_GEM_EXECBUFFER, drm_invalid_op, DRM_AUTH),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_EXECBUFFER2_WR, i915_gem_execbuffer2_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_PIN, i915_gem_reject_pin_ioctl, DRM_AUTH|DRM_ROOT_ONLY),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_UNPIN, i915_gem_reject_pin_ioctl, DRM_AUTH|DRM_ROOT_ONLY),
+-- 
+2.29.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
