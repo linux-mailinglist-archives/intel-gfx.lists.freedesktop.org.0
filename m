@@ -2,30 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E501E333941
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 10:54:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94A583339CF
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 11:19:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D7566E4E3;
-	Wed, 10 Mar 2021 09:54:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2546E9EE;
+	Wed, 10 Mar 2021 10:19:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 181EF6E303;
- Wed, 10 Mar 2021 09:54:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1180AA66C9;
- Wed, 10 Mar 2021 09:54:03 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E5116E9EE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Mar 2021 10:19:19 +0000 (UTC)
+IronPort-SDR: nLmw0tLnVL7g18t6HpPjc+ty5CCliU3Tve3wG0KUKYHcndjZaOQSnDjqommRwEV2KQ72P4yxF3
+ wmqkyGpqfz2w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9917"; a="273471986"
+X-IronPort-AV: E=Sophos;i="5.81,237,1610438400"; d="scan'208";a="273471986"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2021 02:19:18 -0800
+IronPort-SDR: mivjzZSChBthorMiISCe2eSuGjRJQrWakRQRRu2CCeO1LoeVdFSGRFo2aH+dkC5CaDX43O710e
+ oNwQw1g21YlA==
+X-IronPort-AV: E=Sophos;i="5.81,237,1610438400"; d="scan'208";a="410130522"
+Received: from deyangko-mobl1.ccr.corp.intel.com (HELO [10.249.43.167])
+ ([10.249.43.167])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2021 02:19:14 -0800
+To: "Chiou, Cooper" <cooper.chiou@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20200916180745.627-1-cooper.chiou@intel.com>
+ <20210302062700.6025-1-cooper.chiou@intel.com>
+ <0c8ef2fb-34b0-98ea-12bb-fc300172799c@linux.intel.com>
+ <161484956454.28586.15932692857365863465@build.alporthouse.com>
+ <161485897632.28586.2630377954645968923@build.alporthouse.com>
+ <161490560153.13701.1838349946598091390@build.alporthouse.com>
+ <40dd702b-c71c-0b99-93e6-0e120ef7715d@linux.intel.com>
+ <161494684568.15221.13792200139079395463@build.alporthouse.com>
+ <SA2PR11MB49696180125900E3CCB090049D969@SA2PR11MB4969.namprd11.prod.outlook.com>
+ <194e43a3-2425-f5de-a8db-ad86bac19a66@linux.intel.com>
+ <SA2PR11MB496960ABA0D7C5E2A53A2C099D939@SA2PR11MB4969.namprd11.prod.outlook.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <928454d4-8ae6-9b02-747f-fecdcc1e6ac4@linux.intel.com>
+Date: Wed, 10 Mar 2021 10:19:12 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 10 Mar 2021 09:54:03 -0000
-Message-ID: <161537004304.2306.17954089161191412726@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1615297748.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1615297748.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/edid=3A_overhaul_displayid_iterator_=28rev2=29?=
+In-Reply-To: <SA2PR11MB496960ABA0D7C5E2A53A2C099D939@SA2PR11MB4969.namprd11.prod.outlook.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Enable
+ WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,254 +63,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0923660446=="
+Cc: "Nikula, Jani" <jani.nikula@intel.com>, "Tseng,
+ William" <william.tseng@intel.com>, "Chen, Rong A" <rong.a.chen@intel.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0923660446==
-Content-Type: multipart/alternative;
- boundary="===============8258046476419364439=="
 
---===============8258046476419364439==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+On 08/03/2021 17:32, Chiou, Cooper wrote:
+> I've tested on GLK, KBL, CFL Intel NUC devices and got the following performance results, there is no performance regression per my testing.
+> 
+> Patch: [v5] drm/i915: Enable WaProgramMgsrForCorrectSliceSpecificMmioReads for Gen9
+> Test suite: phoronix-test-suite.supertuxkart.1024x768.Fullscreen.Ultimate.1.GranParadisoIsland.frames_per_second
+> Kernel version: 5.12.0-rc1 (drm-tip)
+> 
+> a. Device: Intel NUC kit NUC7JY Gemini Lake Celeron J4005 @2.7GHz (2 Cores)
+>      Without patch, fps=57.45
+>      With patch, fps=57.49
+> b. Device: Intel NUC kit NUC8BEH Coffee Lake Core i3-8109U @3.6GHz(4 Cores)
+>      Without patch, fps=117.23
+>      With patch, fps=117.27
+> c. Device: Intel NUC kit NUC7i3BNH Kaby Lake Core i3-7100U @2.4GHz(4 Cores)
+>      Without patch, fps=114.05
+>      With patch, fps=114.34
+> 
+> Meanwhile, Intel lkp team has validated performance on lkp-kbl-nuc1 and no regression.
+> f69d02e37a85645a  d912096c40cdc3bc9364966971 testcase/testparams/testbox
+> ----------------  -------------------------- ---------------------------
+>            %stddev      change         %stddev
+>                \          |                \
+>        29.79                       29.67
+> phoronix-test-suite/performance-true-Fullscreen-Ultimate-1-Gran_Paradiso_Island__Approxima-supertuxkart-1.5.2-ucode=0xde/lkp-kbl-nuc1
+>        29.79                       29.67        GEO-MEAN phoronix-test-suite.supertuxkart.1280x1024.Fullscreen.Ultimate.1.GranParadisoIsland.frames_per_second
+> 
 
-Series: drm/edid: overhaul displayid iterator (rev2)
-URL   : https://patchwork.freedesktop.org/series/87802/
-State : success
+CI results are green so that is good.
 
-== Summary ==
+Do the machines used for performance testing include unusual fusing? 
+Worrying thing is that we were never able to reproduce the reported 
+regression in house due lack of identical machine, right? Although I 
+guess avoiding hangs trumps performance.
 
-CI Bug Log - changes from CI_DRM_9844 -> Patchwork_19771
-====================================================
+Regards,
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19771 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-kbl-8809g:       [PASS][1] -> [TIMEOUT][2] ([i915#3145])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][3] ([fdo#109271])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][4] ([i915#3159])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_tiled_blits@basic:
-    - fi-kbl-8809g:       [PASS][5] -> [TIMEOUT][6] ([i915#2502] / [i915#3145])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-kbl-8809g/igt@gem_tiled_blits@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-kbl-8809g/igt@gem_tiled_blits@basic.html
-
-  * igt@i915_selftest@live@blt:
-    - fi-snb-2600:        [PASS][7] -> [DMESG-FAIL][8] ([i915#1409])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-snb-2600/igt@i915_selftest@live@blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-snb-2600/igt@i915_selftest@live@blt.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][9] ([i915#1602] / [i915#2029] / [i915#2369])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_tiled_fence_blits@basic:
-    - fi-kbl-8809g:       [TIMEOUT][10] ([i915#3145]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
-
-  * igt@i915_selftest@live@client:
-    - fi-glk-dsi:         [DMESG-FAIL][12] ([i915#3047]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-glk-dsi/igt@i915_selftest@live@client.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-glk-dsi/igt@i915_selftest@live@client.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1409]: https://gitlab.freedesktop.org/drm/intel/issues/1409
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2369]: https://gitlab.freedesktop.org/drm/intel/issues/2369
-  [i915#2502]: https://gitlab.freedesktop.org/drm/intel/issues/2502
-  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
-  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
-  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
-
-
-Participating hosts (45 -> 42)
-------------------------------
-
-  Additional (1): fi-bsw-n3050 
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9844 -> Patchwork_19771
-
-  CI-20190529: 20190529
-  CI_DRM_9844: 3108bcbbbf191b3b5e624f21348c306010725a02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6027: b8b3facdfbb99a0b9ef5f541a0ee7d6bca2aafea @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19771: 7a1e03ddde500cf23d3464177119c8c323b7d08e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7a1e03ddde50 drm/edid: use the new displayid iterator for tile info
-742b27ceab41 drm/edid: use the new displayid iterator for finding CEA extension
-e1b0237e413c drm/edid: use the new displayid iterator for detailed modes
-2cd7c9986b9e drm/displayid: add new displayid section/block iterators
-6e714eb67565 drm/displayid: add separate drm_displayid.c
-4c9b64816221 drm/edid: make a number of functions, parameters and variables const
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/index.html
-
---===============8258046476419364439==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/edid: overhaul displayid iterator (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87802/">https://patchwork.freedesktop.org/series/87802/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9844 -&gt; Patchwork_19771</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19771 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>
-<p>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</p>
-</li>
-<li>
-<p>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-kbl-8809g/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-kbl-8809g/igt@gem_tiled_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2502">i915#2502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@blt:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-snb-2600/igt@i915_selftest@live@blt.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-snb-2600/igt@i915_selftest@live@blt.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1409">i915#1409</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2369">i915#2369</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@client:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9844/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19771/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 42)</h2>
-<p>Additional (1): fi-bsw-n3050 <br />
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9844 -&gt; Patchwork_19771</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9844: 3108bcbbbf191b3b5e624f21348c306010725a02 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6027: b8b3facdfbb99a0b9ef5f541a0ee7d6bca2aafea @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19771: 7a1e03ddde500cf23d3464177119c8c323b7d08e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7a1e03ddde50 drm/edid: use the new displayid iterator for tile info<br />
-742b27ceab41 drm/edid: use the new displayid iterator for finding CEA extension<br />
-e1b0237e413c drm/edid: use the new displayid iterator for detailed modes<br />
-2cd7c9986b9e drm/displayid: add new displayid section/block iterators<br />
-6e714eb67565 drm/displayid: add separate drm_displayid.c<br />
-4c9b64816221 drm/edid: make a number of functions, parameters and variables const</p>
-
-</body>
-</html>
-
---===============8258046476419364439==--
-
---===============0923660446==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0923660446==--
