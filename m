@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60035334B49
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 23:17:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AC18334B4D
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 23:17:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABF4F89E3F;
-	Wed, 10 Mar 2021 22:17:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F56E89E5B;
+	Wed, 10 Mar 2021 22:17:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21AE489E08
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A97A589E06
  for <intel-gfx@lists.freedesktop.org>; Wed, 10 Mar 2021 22:17:41 +0000 (UTC)
-IronPort-SDR: vQ88dHu1WFBDgtxdhbRQdYM+xo9rhy/46KBBLVwS157VjVmwaVcQg/JftcDpj1JFCPcs048ymo
- 3S7aRke7O10w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="252592050"
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="252592050"
+IronPort-SDR: YJDRkL/mrzso4e7f0iK8RE/x9kmp1G8zvDatbHYP6TkXAi66zXlKsgh8GH3CgGlskD4VH8ziRF
+ j16X+L+7jJeQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="252592051"
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="252592051"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2021 14:17:40 -0800
-IronPort-SDR: VhgJM1DwBbmuvcXNS6PgztbIo4e+s+xgnLwzcj/7cL9/9GhKj3uQa2Tcu0bWOBg4WPXZk5n6G2
- jvWztBUPtwZw==
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="403852162"
+ 10 Mar 2021 14:17:41 -0800
+IronPort-SDR: LvXjYKEzLm3ZMaoSthCSvE9BaQ35OfYEhNJP1Wk3njAkRu40VAuyxocfOXKCmjrn2rvtiBPSXn
+ hr92ToplG18A==
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="403852170"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2021 14:17:39 -0800
+ 10 Mar 2021 14:17:40 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Mar 2021 00:17:14 +0200
-Message-Id: <20210310221736.2963264-2-imre.deak@intel.com>
+Date: Thu, 11 Mar 2021 00:17:15 +0200
+Message-Id: <20210310221736.2963264-3-imre.deak@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210310221736.2963264-1-imre.deak@intel.com>
 References: <20210310221736.2963264-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/23] drm/i915: Fix rotation setup during plane
- HW readout
+Subject: [Intel-gfx] [PATCH 02/23] drm/i915/selftest: Fix error handling in
+ igt_vma_remapped_gtt()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,37 +52,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The HW plane state is cleared and inited after we store the rotation to
-it, so store it instead to the uapi state to match what we do with all
-other plane state until intel_plane_copy_uapi_to_hw_state() is called.
-
-Rotation for initial FBs is not supported atm, but let's still fix the
-plane state setup here.
+An inner scope version of err shadows the variable in the outer scope,
+and err doesn't get set after a failure, fix these.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/selftests/i915_vma.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 5bfc06c46e28..12b54e032bc1 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2468,11 +2468,11 @@ intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
- 	return;
+diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+index 065a9d82ad5c..2c067343d65f 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_vma.c
++++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+@@ -890,7 +890,6 @@ static int igt_vma_remapped_gtt(void *arg)
+ 			struct i915_vma *vma;
+ 			u32 __iomem *map;
+ 			unsigned int x, y;
+-			int err;
  
- valid_fb:
--	intel_state->hw.rotation = plane_config->rotation;
-+	plane_state->rotation = plane_config->rotation;
- 	intel_fill_fb_ggtt_view(&intel_state->view, fb,
--				intel_state->hw.rotation);
-+				plane_state->rotation);
- 	intel_state->color_plane[0].stride =
--		intel_fb_pitch(fb, 0, intel_state->hw.rotation);
-+		intel_fb_pitch(fb, 0, plane_state->rotation);
- 
- 	__i915_vma_pin(vma);
- 	intel_state->vma = i915_vma_get(vma);
+ 			vma = i915_gem_object_ggtt_pin(obj, &view, 0, 0, PIN_MAPPABLE);
+ 			if (IS_ERR(vma)) {
+@@ -956,6 +955,7 @@ static int igt_vma_remapped_gtt(void *arg)
+ 						       *t == I915_GGTT_VIEW_ROTATED ? "Rotated" : "Remapped",
+ 						       val, exp);
+ 						i915_vma_unpin_iomap(vma);
++						err = -EINVAL;
+ 						goto out;
+ 					}
+ 				}
 -- 
 2.25.1
 
