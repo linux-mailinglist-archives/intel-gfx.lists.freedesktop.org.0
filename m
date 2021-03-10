@@ -2,37 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 407DE334B4A
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 23:17:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60035334B49
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 23:17:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74ED889E06;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABF4F89E3F;
 	Wed, 10 Mar 2021 22:17:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E157D89E06
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Mar 2021 22:17:40 +0000 (UTC)
-IronPort-SDR: FrcJhtGuhQpRwNhDVbUxEPRL2DG5wR7Q3AXBauJt+XDsPxKK1QGZTKVrxe12GfgY0nRAJMVLax
- +0M/qyQpvAnQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="252592048"
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="252592048"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21AE489E08
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Mar 2021 22:17:41 +0000 (UTC)
+IronPort-SDR: vQ88dHu1WFBDgtxdhbRQdYM+xo9rhy/46KBBLVwS157VjVmwaVcQg/JftcDpj1JFCPcs048ymo
+ 3S7aRke7O10w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="252592050"
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="252592050"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2021 14:17:39 -0800
-IronPort-SDR: 3SH23pkoz4rlq9AvuB6pwNDbHjzC5NTfS5r4i6sGAXTMDph7PKlOnYEKfOiAgiN9C9yQkaWzXT
- XyR1Pmb6LXJw==
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="403852155"
+ 10 Mar 2021 14:17:40 -0800
+IronPort-SDR: VhgJM1DwBbmuvcXNS6PgztbIo4e+s+xgnLwzcj/7cL9/9GhKj3uQa2Tcu0bWOBg4WPXZk5n6G2
+ jvWztBUPtwZw==
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="403852162"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2021 14:17:38 -0800
+ 10 Mar 2021 14:17:39 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Mar 2021 00:17:13 +0200
-Message-Id: <20210310221736.2963264-1-imre.deak@intel.com>
+Date: Thu, 11 Mar 2021 00:17:14 +0200
+Message-Id: <20210310221736.2963264-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210310221736.2963264-1-imre.deak@intel.com>
+References: <20210310221736.2963264-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 00/23] drm/i915: Add support for FBs requiring a
- POT stride padding
+Subject: [Intel-gfx] [PATCH 01/23] drm/i915: Fix rotation setup during plane
+ HW readout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,71 +52,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-An upcoming platform requires the stride of tiled display surfaces to be
-power-of-two aligned. This patch adds support for this using the FB
-remapping logic.
+The HW plane state is cleared and inited after we store the rotation to
+it, so store it instead to the uapi state to match what we do with all
+other plane state until intel_plane_copy_uapi_to_hw_state() is called.
 
-Until the functionality is fully enabled we keep testing it via the
-vma selftests and by the last patch which forces the padding on for all
-platforms where the FB remapping is possible.
+Rotation for initial FBs is not supported atm, but let's still fix the
+plane state setup here.
 
-The other goal of the changes is to reduce the size of intel_display.c,
-starting to collect all FB plane specific functions to a separate
-intel_fb.c file and to share more code between the FB creation and
-commit time remapping logic.
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-For reference I also pushed the changes to:
-https://github.com/ideak/linux/commits/fb_pot_remap
-
-Imre Deak (23):
-  drm/i915: Fix rotation setup during plane HW readout
-  drm/i915/selftest: Fix error handling in igt_vma_remapped_gtt()
-  drm/i915/selftest: Fix debug message in igt_vma_remapped_gtt()
-  drm/i915: Make sure i915_ggtt_view is inited when creating an FB
-  drm/i915/selftest: Make sure to init i915_ggtt_view in
-    igt_vma_rotate_remap()
-  drm/i915: Remove duplicate intel_surf_alignment() declaration
-  drm/i915/intel_fb: Pull FB plane functions from intel_display_types.h
-  drm/i915/intel_fb: Pull FB plane functions from skl_universal_plane.c
-  drm/i915/intel_fb: Pull is_surface_linear() from
-    intel_display.c/skl_universal_plane.c
-  drm/i915/intel_fb: Pull FB plane functions from intel_sprite.c
-  drm/i915/intel_fb: Pull FB plane functions from intel_display.c
-  drm/i915/intel_fb: Unexport intel_fb_check_stride()
-  drm/i915/intel_fb: s/dev_priv/i915/
-  drm/i915/intel_fb: Factor out convert_plane_offset_to_xy()
-  drm/i915/intel_fb: Factor out calc_plane_aligned_offset()
-  drm/i915/intel_fb: Factor out calc_plane_normal_size()
-  drm/i915/intel_fb: Factor out plane_calc_remap_info()
-  drm/i915: Shrink the size of intel_remapped_plane_info struct
-  drm/i915/selftest: Unify use of intel_remapped_plane_info in
-    igt_vma_rotate_remap()
-  drm/i915: s/stride/src_stride/ in the intel_remapped_plane_info struct
-  drm/i915: Add support for FBs requiring a POT stride alignment
-  drm/i915/selftest: Add remap/rotate vma subtests when
-    dst_stride!=width/height
-  drm/i915: For-CI: Force remapping the FB with a POT aligned stride
-
- drivers/gpu/drm/i915/Makefile                 |    1 +
- drivers/gpu/drm/i915/display/i9xx_plane.c     |    1 +
- drivers/gpu/drm/i915/display/intel_cursor.c   |    1 +
- drivers/gpu/drm/i915/display/intel_display.c  |  833 +-------------
- drivers/gpu/drm/i915/display/intel_display.h  |   19 -
- .../drm/i915/display/intel_display_types.h    |   32 +-
- drivers/gpu/drm/i915/display/intel_fb.c       | 1012 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_fb.h       |   56 +
- drivers/gpu/drm/i915/display/intel_sprite.c   |   32 -
- drivers/gpu/drm/i915/display/intel_sprite.h   |    1 -
- .../drm/i915/display/skl_universal_plane.c    |   41 +-
- .../drm/i915/display/skl_universal_plane.h    |    2 -
- drivers/gpu/drm/i915/gt/intel_ggtt.c          |   58 +-
- drivers/gpu/drm/i915/i915_debugfs.c           |   16 +-
- drivers/gpu/drm/i915/i915_vma_types.h         |   12 +-
- drivers/gpu/drm/i915/selftests/i915_vma.c     |  217 +++-
- 16 files changed, 1310 insertions(+), 1024 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 5bfc06c46e28..12b54e032bc1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2468,11 +2468,11 @@ intel_find_initial_plane_obj(struct intel_crtc *intel_crtc,
+ 	return;
+ 
+ valid_fb:
+-	intel_state->hw.rotation = plane_config->rotation;
++	plane_state->rotation = plane_config->rotation;
+ 	intel_fill_fb_ggtt_view(&intel_state->view, fb,
+-				intel_state->hw.rotation);
++				plane_state->rotation);
+ 	intel_state->color_plane[0].stride =
+-		intel_fb_pitch(fb, 0, intel_state->hw.rotation);
++		intel_fb_pitch(fb, 0, plane_state->rotation);
+ 
+ 	__i915_vma_pin(vma);
+ 	intel_state->vma = i915_vma_get(vma);
 -- 
 2.25.1
 
