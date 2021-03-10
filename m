@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FFCB33474E
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 20:00:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D21A8334794
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Mar 2021 20:10:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 890206E25A;
-	Wed, 10 Mar 2021 19:00:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56F556E2A3;
+	Wed, 10 Mar 2021 19:10:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DB216E250;
- Wed, 10 Mar 2021 19:00:20 +0000 (UTC)
-IronPort-SDR: DlpVBf1XpvDpkDUwh5tr4SqBMaFhCSYCEGYgcdIj/og7p4xtrvQh3gtzGOM4iIwohQXjdYfcm+
- eH5cwwyuuKtA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="168458294"
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="168458294"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2021 11:00:19 -0800
-IronPort-SDR: kSDBTH/8VDfZV+B99y7DfHWSaOidglpaH3vwoVqHyBorRxjayf2LqM2qESdTweKwKLccnLWn2Q
- ylxOWsqb2i7w==
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 474006E2A3;
+ Wed, 10 Mar 2021 19:10:09 +0000 (UTC)
+IronPort-SDR: PR2O6kyHi1ntSi0RsHFeigtmUe26txCqDUqQGrJBhf9NlulFAdQG9sNGl3XAvgYEAyCDoJk//D
+ AzzO+cGxXmQA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="249911963"
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="249911963"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2021 11:10:08 -0800
+IronPort-SDR: n5OPszd23y7QuDcILN2oQewmGm7has0qgLLqAttcGy7rX3J5VN4WxROqO08HdZrsB4RKrjMsEo
+ SLpvflxwxhLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="403794493"
+X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="377087951"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 10 Mar 2021 11:00:17 -0800
+ by fmsmga007.fm.intel.com with SMTP; 10 Mar 2021 11:10:05 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 10 Mar 2021 21:00:16 +0200
-Date: Wed, 10 Mar 2021 21:00:16 +0200
+ Wed, 10 Mar 2021 21:10:04 +0200
+Date: Wed, 10 Mar 2021 21:10:04 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <YEkXQHR596NZMQPH@intel.com>
+Message-ID: <YEkZjAzG0izQmN/A@intel.com>
 References: <cover.1615297748.git.jani.nikula@intel.com>
- <6c62c8b87ea14bc4dd4d9ecaf9d100afaab3478d.1615297748.git.jani.nikula@intel.com>
+ <d0fd3a830b0ebc082250fb6c1381bb8383715263.1615297748.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <6c62c8b87ea14bc4dd4d9ecaf9d100afaab3478d.1615297748.git.jani.nikula@intel.com>
+In-Reply-To: <d0fd3a830b0ebc082250fb6c1381bb8383715263.1615297748.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [RFC v1 2/6] drm/displayid: add separate
- drm_displayid.c
+Subject: Re: [Intel-gfx] [RFC v1 3/6] drm/displayid: add new displayid
+ section/block iterators
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,261 +57,186 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 09, 2021 at 03:54:10PM +0200, Jani Nikula wrote:
-> We'll be adding more DisplayID specific functions going forward, so
-> start off by splitting out a few functions to a separate file.
+On Tue, Mar 09, 2021 at 03:54:11PM +0200, Jani Nikula wrote:
+> Iterating DisplayID blocks across sections (in EDID extensions) is
+> unnecessarily complicated for the caller. Implement DisplayID iterators
+> to go through all blocks in all sections.
 > =
 
-> We don't bother with exporting the functions; at least for now they
-> should be needed solely within drm.ko.
+> Usage example:
 > =
 
-> No functional changes.
+> 	const struct displayid_block *block;
+> 	struct displayid_iter iter;
+> =
+
+> 	displayid_iter_edid_begin(edid, &iter);
+> 	displayid_iter_for_each(block, &iter) {
+> 		/* operate on block */
+> 	}
+> 	displayid_iter_end(&iter);
+> =
+
+> When DisplayID is stored in EDID extensions, the DisplayID sections map
+> to extensions as described in VESA DisplayID v1.3 Appendix B: DisplayID
+> as an EDID Extension. This is implemented here.
+> =
+
+> When DisplayID is stored in its dedicated DDC device 0xA4, according to
+> VESA E-DDC v1.3, different rules apply for the structure. This is not
+> implemented here, as we don't currently use it, but the idea is you'd
+> have a different call for beginning the iteration, for example simply:
+> =
+
+> 	displayid_iter_begin(displayid, &iter);
+> =
+
+> instead of displayid_iter_edid_begin(), and everything else would be
+> hidden away in the iterator functions.
 > =
 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/drm_displayid.c | 74 +++++++++++++++++++++++++++++++++
+>  include/drm/drm_displayid.h     | 18 ++++++++
+>  2 files changed, 92 insertions(+)
+> =
+
+> diff --git a/drivers/gpu/drm/drm_displayid.c b/drivers/gpu/drm/drm_displa=
+yid.c
+> index 908bbe6feb61..88070267aac9 100644
+> --- a/drivers/gpu/drm/drm_displayid.c
+> +++ b/drivers/gpu/drm/drm_displayid.c
+> @@ -57,3 +57,77 @@ const u8 *drm_find_displayid_extension(const struct ed=
+id *edid,
+>  =
+
+>  	return displayid;
+>  }
+> +
+> +void displayid_iter_edid_begin(const struct edid *edid,
+> +			       struct displayid_iter *iter)
+> +{
+> +	memset(iter, 0, sizeof(*iter));
+> +
+> +	iter->edid =3D edid;
+> +}
+> +
+> +static const struct displayid_block *
+> +__displayid_iter_block(const struct displayid_iter *iter)
+> +{
+> +	const struct displayid_block *block;
+> +
+> +	if (!iter->section)
+> +		return NULL;
+> +
+> +	block =3D (const struct displayid_block *)&iter->section[iter->idx];
+> +
+> +	if (iter->idx + sizeof(struct displayid_block) <=3D iter->length &&
+> +	    iter->idx + sizeof(struct displayid_block) + block->num_bytes <=3D =
+iter->length &&
+
+sizeof(*block) perhaps
+
+> +	    block->num_bytes > 0)
+> +		return block;
+> +
+> +	return NULL;
+> +}
+> +
+> +const struct displayid_block *
+> +__displayid_iter_next(struct displayid_iter *iter)
+> +{
+> +	const struct displayid_block *block;
+> +
+> +	if (!iter->edid)
+> +		return NULL;
+> +
+> +	if (iter->section) {
+> +		/* current block should always be valid */
+> +		block =3D __displayid_iter_block(iter);
+> +		if (WARN_ON(!block)) {
+> +			iter->section =3D NULL;
+> +			iter->edid =3D NULL;
+> +			return NULL;
+> +		}
+> +
+> +		/* next block in section */
+> +		iter->idx +=3D sizeof(struct displayid_block) + block->num_bytes;
+
+ditto
+
+Looks like this should do the same thing the current thing does,
+or at least I couldn't immediately spot nay differences.
 
 Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-> ---
->  drivers/gpu/drm/Makefile        |  2 +-
->  drivers/gpu/drm/drm_displayid.c | 59 +++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/drm_edid.c      | 58 ++------------------------------
->  include/drm/drm_displayid.h     |  8 +++++
->  include/drm/drm_edid.h          |  3 ++
->  5 files changed, 73 insertions(+), 57 deletions(-)
->  create mode 100644 drivers/gpu/drm/drm_displayid.c
-> =
-
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 5eb5bf7c16e3..78ef2fd14f10 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -7,7 +7,7 @@ drm-y       :=3D	drm_auth.o drm_cache.o \
->  		drm_file.o drm_gem.o drm_ioctl.o drm_irq.o \
->  		drm_drv.o \
->  		drm_sysfs.o drm_hashtab.o drm_mm.o \
-> -		drm_crtc.o drm_fourcc.o drm_modes.o drm_edid.o \
-> +		drm_crtc.o drm_fourcc.o drm_modes.o drm_edid.o drm_displayid.o \
->  		drm_encoder_slave.o \
->  		drm_trace_points.o drm_prime.o \
->  		drm_rect.o drm_vma_manager.o drm_flip_work.o \
-> diff --git a/drivers/gpu/drm/drm_displayid.c b/drivers/gpu/drm/drm_displa=
-yid.c
-> new file mode 100644
-> index 000000000000..908bbe6feb61
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_displayid.c
-> @@ -0,0 +1,59 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright =A9 2021 Intel Corporation
-> + */
 > +
-> +#include <drm/drm_displayid.h>
-> +#include <drm/drm_edid.h>
-> +#include <drm/drm_print.h>
-> +
-> +static int validate_displayid(const u8 *displayid, int length, int idx)
-> +{
-> +	int i, dispid_length;
-> +	u8 csum =3D 0;
-> +	const struct displayid_hdr *base;
-> +
-> +	base =3D (const struct displayid_hdr *)&displayid[idx];
-> +
-> +	DRM_DEBUG_KMS("base revision 0x%x, length %d, %d %d\n",
-> +		      base->rev, base->bytes, base->prod_id, base->ext_count);
-> +
-> +	/* +1 for DispID checksum */
-> +	dispid_length =3D sizeof(*base) + base->bytes + 1;
-> +	if (dispid_length > length - idx)
-> +		return -EINVAL;
-> +
-> +	for (i =3D 0; i < dispid_length; i++)
-> +		csum +=3D displayid[idx + i];
-> +	if (csum) {
-> +		DRM_NOTE("DisplayID checksum invalid, remainder is %d\n", csum);
-> +		return -EINVAL;
+> +		block =3D __displayid_iter_block(iter);
+> +		if (block)
+> +			return block;
 > +	}
 > +
-> +	return 0;
+> +	for (;;) {
+> +		iter->section =3D drm_find_displayid_extension(iter->edid,
+> +							     &iter->length,
+> +							     &iter->idx,
+> +							     &iter->ext_index);
+> +		if (!iter->section) {
+> +			iter->edid =3D NULL;
+> +			return NULL;
+> +		}
+> +
+> +		iter->idx +=3D sizeof(struct displayid_hdr);
+> +
+> +		block =3D __displayid_iter_block(iter);
+> +		if (block)
+> +			return block;
+> +	}
 > +}
 > +
-> +const u8 *drm_find_displayid_extension(const struct edid *edid,
-> +				       int *length, int *idx,
-> +				       int *ext_index)
+> +void displayid_iter_end(struct displayid_iter *iter)
 > +{
-> +	const u8 *displayid =3D drm_find_edid_extension(edid, DISPLAYID_EXT, ex=
-t_index);
-> +	const struct displayid_hdr *base;
-> +	int ret;
-> +
-> +	if (!displayid)
-> +		return NULL;
-> +
-> +	/* EDID extensions block checksum isn't for us */
-> +	*length =3D EDID_LENGTH - 1;
-> +	*idx =3D 1;
-> +
-> +	ret =3D validate_displayid(displayid, *length, *idx);
-> +	if (ret)
-> +		return NULL;
-> +
-> +	base =3D (const struct displayid_hdr *)&displayid[*idx];
-> +	*length =3D *idx + sizeof(*base) + base->bytes;
-> +
-> +	return displayid;
+> +	memset(iter, 0, sizeof(*iter));
 > +}
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index d510b827a1f8..58e61f792bc7 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -1585,8 +1585,6 @@ module_param_named(edid_fixup, edid_fixup, int, 040=
-0);
->  MODULE_PARM_DESC(edid_fixup,
->  		 "Minimum number of valid EDID header bytes (0-8, default 6)");
->  =
-
-> -static int validate_displayid(const u8 *displayid, int length, int idx);
-> -
->  static int drm_edid_block_checksum(const u8 *raw_edid)
->  {
->  	int i;
-> @@ -3241,8 +3239,8 @@ add_detailed_modes(struct drm_connector *connector,=
- struct edid *edid,
->  /*
->   * Search EDID for CEA extension block.
->   */
-> -static const u8 *drm_find_edid_extension(const struct edid *edid,
-> -					 int ext_id, int *ext_index)
-> +const u8 *drm_find_edid_extension(const struct edid *edid,
-> +				  int ext_id, int *ext_index)
->  {
->  	const u8 *edid_ext =3D NULL;
->  	int i;
-> @@ -3266,32 +3264,6 @@ static const u8 *drm_find_edid_extension(const str=
-uct edid *edid,
->  	return edid_ext;
->  }
->  =
-
-> -
-> -static const u8 *drm_find_displayid_extension(const struct edid *edid,
-> -					      int *length, int *idx,
-> -					      int *ext_index)
-> -{
-> -	const u8 *displayid =3D drm_find_edid_extension(edid, DISPLAYID_EXT, ex=
-t_index);
-> -	const struct displayid_hdr *base;
-> -	int ret;
-> -
-> -	if (!displayid)
-> -		return NULL;
-> -
-> -	/* EDID extensions block checksum isn't for us */
-> -	*length =3D EDID_LENGTH - 1;
-> -	*idx =3D 1;
-> -
-> -	ret =3D validate_displayid(displayid, *length, *idx);
-> -	if (ret)
-> -		return NULL;
-> -
-> -	base =3D (const struct displayid_hdr *)&displayid[*idx];
-> -	*length =3D *idx + sizeof(*base) + base->bytes;
-> -
-> -	return displayid;
-> -}
-> -
->  static const u8 *drm_find_cea_extension(const struct edid *edid)
->  {
->  	int length, idx;
-> @@ -5287,32 +5259,6 @@ u32 drm_add_display_info(struct drm_connector *con=
-nector, const struct edid *edi
->  	return quirks;
->  }
->  =
-
-> -static int validate_displayid(const u8 *displayid, int length, int idx)
-> -{
-> -	int i, dispid_length;
-> -	u8 csum =3D 0;
-> -	const struct displayid_hdr *base;
-> -
-> -	base =3D (const struct displayid_hdr *)&displayid[idx];
-> -
-> -	DRM_DEBUG_KMS("base revision 0x%x, length %d, %d %d\n",
-> -		      base->rev, base->bytes, base->prod_id, base->ext_count);
-> -
-> -	/* +1 for DispID checksum */
-> -	dispid_length =3D sizeof(*base) + base->bytes + 1;
-> -	if (dispid_length > length - idx)
-> -		return -EINVAL;
-> -
-> -	for (i =3D 0; i < dispid_length; i++)
-> -		csum +=3D displayid[idx + i];
-> -	if (csum) {
-> -		DRM_NOTE("DisplayID checksum invalid, remainder is %d\n", csum);
-> -		return -EINVAL;
-> -	}
-> -
-> -	return 0;
-> -}
-> -
->  static struct drm_display_mode *drm_mode_displayid_detailed(struct drm_d=
-evice *dev,
->  							    struct displayid_detailed_timings_1 *timings)
->  {
 > diff --git a/include/drm/drm_displayid.h b/include/drm/drm_displayid.h
-> index f141c0eff083..3c6db22a518a 100644
+> index 3c6db22a518a..27e06c98db17 100644
 > --- a/include/drm/drm_displayid.h
 > +++ b/include/drm/drm_displayid.h
-> @@ -22,6 +22,10 @@
->  #ifndef DRM_DISPLAYID_H
->  #define DRM_DISPLAYID_H
+> @@ -108,4 +108,22 @@ const u8 *drm_find_displayid_extension(const struct =
+edid *edid,
+>  				       int *length, int *idx,
+>  				       int *ext_index);
 >  =
 
-> +#include <linux/types.h>
+> +/* DisplayID iteration */
+> +struct displayid_iter {
+> +	const struct edid *edid;
 > +
-> +struct edid;
+> +	const u8 *section;
+> +	int length;
+> +	int idx;
+> +	int ext_index;
+> +};
 > +
->  #define DATA_BLOCK_PRODUCT_ID 0x00
->  #define DATA_BLOCK_DISPLAY_PARAMETERS 0x01
->  #define DATA_BLOCK_COLOR_CHARACTERISTICS 0x02
-> @@ -100,4 +104,8 @@ struct displayid_detailed_timing_block {
->  	     (idx) +=3D sizeof(struct displayid_block) + (block)->num_bytes, \
->  	     (block) =3D (const struct displayid_block *)&(displayid)[idx])
->  =
-
-> +const u8 *drm_find_displayid_extension(const struct edid *edid,
-> +				       int *length, int *idx,
-> +				       int *ext_index);
+> +void displayid_iter_edid_begin(const struct edid *edid,
+> +			       struct displayid_iter *iter);
+> +const struct displayid_block *
+> +__displayid_iter_next(struct displayid_iter *iter);
+> +#define displayid_iter_for_each(__block, __iter) \
+> +	while (((__block) =3D __displayid_iter_next(__iter)))
+> +void displayid_iter_end(struct displayid_iter *iter);
 > +
 >  #endif
-> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
-> index a158f585f658..759328a5eeb2 100644
-> --- a/include/drm/drm_edid.h
-> +++ b/include/drm/drm_edid.h
-> @@ -543,5 +543,8 @@ struct drm_display_mode *drm_mode_find_dmt(struct drm=
-_device *dev,
->  struct drm_display_mode *
->  drm_display_mode_from_cea_vic(struct drm_device *dev,
->  			      u8 video_code);
-> +const u8 *drm_find_edid_extension(const struct edid *edid,
-> +				  int ext_id, int *ext_index);
-> +
->  =
-
->  #endif /* __DRM_EDID_H__ */
 > -- =
 
 > 2.20.1
 > =
 
 > _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
 -- =
 
