@@ -1,63 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D515337A9D
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 18:18:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7992337AA5
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 18:21:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 684F66EA98;
-	Thu, 11 Mar 2021 17:18:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0BED6EA9F;
+	Thu, 11 Mar 2021 17:21:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com
- [IPv6:2a00:1450:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72DA36EA98
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 17:18:24 +0000 (UTC)
-Received: by mail-ej1-x636.google.com with SMTP id jt13so47868658ejb.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 09:18:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=rtJcHtdP8Rs6PgaoPwT/W8KV1nXHT5BqKw6RxL+gOik=;
- b=Squ9bDChVVBBRRCbwAcmJ6JZacfEnNyzNHtVFoW1DNL97HR5Myc83eGqYiS90IC8EG
- uwGTxwbE78GrFj58o6IfZJHblIoxnBemYKR39GJZlnUCa8LLwju1k7AwnXgZIOvEW91B
- MsvEOmDiZSnw2md7RI0VaidlKo4VoefiicpiU7/YI5tiYbWNed8lxPrjvfljSF9/cDK1
- wePIxwSv+EsEBWhG3LwgHiZxpqZFSN/vn1ejH7zNLC/mDrqYEFcocsE4dWCWVyl1VW4e
- Ue2EtgnVk6JuTleoBMWmcaDm6wXcjEMDgb4dRs/u72cE/DS8DhepGQUYb8m2+N0XLP1C
- 59zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=rtJcHtdP8Rs6PgaoPwT/W8KV1nXHT5BqKw6RxL+gOik=;
- b=hztq53i6zat6iR78ZDLe5M4PTRjPp/bFsueJenBkZe0Ya+mICEhsS2JiU8zCHLG+i0
- ib8ocEuCfXQqi3YskjbHDwksw4vr6kH2Ls/8mYuqcPGKwoq+Ru86xG/cXZqeEFwc7/Tb
- lbYY5QkUjBf26NKY7raQPy286NTzUNarpCNjjQp5SHu2kTMMrYmza9rRigZyWgiPVZf7
- 3bBfKAbOWUi3qFySx5hfAz53bsDUt8gff+ql0/L7Tijh1K3s4820RZsz8orvRRHoGVPQ
- M/z6I49KTscXcTwBt6M54aVxydLScFhG7Srn4NVP9cALYVIaVSNO2bMWwqOWLuxnfzgy
- mfhQ==
-X-Gm-Message-State: AOAM530OU0v5BwkQZq03j0C5LuOZF6fZ9GvlKOdWOlfXKOV1lh1d3cni
- aYGr2Gr/jWjX/7AoEAnczEQ73UJnOCG6Sug+8nZoMg==
-X-Google-Smtp-Source: ABdhPJyZRMiVJgLMbPnugEJzvW1EKgrYpQvEFWWzUIbmhEz15L7xlw6GAK1VYhAC+01CfPy0RIMQeLUMSlJ1aPeSWr0=
-X-Received: by 2002:a17:906:a86:: with SMTP id
- y6mr4230207ejf.354.1615483102950; 
- Thu, 11 Mar 2021 09:18:22 -0800 (PST)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC4A56EA9F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 17:21:49 +0000 (UTC)
+IronPort-SDR: OEGVEDU4xX1IMxos5Z0a42Z6azlqQsh8Zh9iIfK6gOTD/FFqPrKqNUQ8O5D/o7gavjyuVypsec
+ v82T0a+Q4Fuw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="185347225"
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="185347225"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 09:21:32 -0800
+IronPort-SDR: BgO07BsUu5VehXkYSas40JdXFS+dLuyMrmyCrCMnjEx1MUSjmZHFo4DunNn6r7MA8/vOpO9Z+o
+ moMIprUK20Cw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="387080688"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga002.jf.intel.com with SMTP; 11 Mar 2021 09:21:30 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 11 Mar 2021 19:21:29 +0200
+Date: Thu, 11 Mar 2021 19:21:29 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <YEpRmUdd5NNdxxrL@intel.com>
+References: <20210310221736.2963264-1-imre.deak@intel.com>
+ <20210310221736.2963264-18-imre.deak@intel.com>
 MIME-Version: 1.0
-References: <20210310212606.766121-1-jason@jlekstrand.net>
- <20210310215007.782649-1-jason@jlekstrand.net>
- <20210311114432.GB101473@zkempczy-mobl2>
- <CAOFGe94FEfM6RKf=fcDm03OW1zvJhRpvTtnQ4dXWY+pQrf-K=Q@mail.gmail.com>
- <CAKMK7uHwYczVHD7SmHAJd9niP4+aanDvEhPviofjmQiEweK3CQ@mail.gmail.com>
- <CAOFGe96bL1Wu2Qgie7QOhMDoY-3hFhDxhokCekyEHnAC8CgjnQ@mail.gmail.com>
- <20210311165054.GA118464@zkempczy-mobl2>
-In-Reply-To: <20210311165054.GA118464@zkempczy-mobl2>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Thu, 11 Mar 2021 11:18:11 -0600
-Message-ID: <CAOFGe96W_vgkfw_zs_v0RMrKrrQu2kmYYhfZNdgJt4Rc_duT7w@mail.gmail.com>
-To: =?UTF-8?Q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] i915: Drop relocation support on all new
- hardware (v3)
+Content-Disposition: inline
+In-Reply-To: <20210310221736.2963264-18-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 17/23] drm/i915/intel_fb: Factor out
+ plane_calc_remap_info()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,142 +51,392 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBNYXIgMTEsIDIwMjEgYXQgMTA6NTEgQU0gWmJpZ25pZXcgS2VtcGN6ecWEc2tpCjx6
-Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+IHdyb3RlOgo+Cj4gT24gVGh1LCBNYXIgMTEs
-IDIwMjEgYXQgMTA6MjQ6MzhBTSAtMDYwMCwgSmFzb24gRWtzdHJhbmQgd3JvdGU6Cj4gPiBPbiBU
-aHUsIE1hciAxMSwgMjAyMSBhdCA5OjU3IEFNIERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5j
-aD4gd3JvdGU6Cj4gPiA+Cj4gPiA+IE9uIFRodSwgTWFyIDExLCAyMDIxIGF0IDQ6NTAgUE0gSmFz
-b24gRWtzdHJhbmQgPGphc29uQGpsZWtzdHJhbmQubmV0PiB3cm90ZToKPiA+ID4gPgo+ID4gPiA+
-IE9uIFRodSwgTWFyIDExLCAyMDIxIGF0IDU6NDQgQU0gWmJpZ25pZXcgS2VtcGN6ecWEc2tpCj4g
-PiA+ID4gPHpiaWduaWV3LmtlbXBjenluc2tpQGludGVsLmNvbT4gd3JvdGU6Cj4gPiA+ID4gPgo+
-ID4gPiA+ID4gT24gV2VkLCBNYXIgMTAsIDIwMjEgYXQgMDM6NTA6MDdQTSAtMDYwMCwgSmFzb24g
-RWtzdHJhbmQgd3JvdGU6Cj4gPiA+ID4gPiA+IFRoZSBWdWxrYW4gZHJpdmVyIGluIE1lc2EgZm9y
-IEludGVsIGhhcmR3YXJlIG5ldmVyIHVzZXMgcmVsb2NhdGlvbnMgaWYKPiA+ID4gPiA+ID4gaXQn
-cyBydW5uaW5nIG9uIGEgdmVyc2lvbiBvZiBpOTE1IHRoYXQgc3VwcG9ydHMgYXQgbGVhc3Qgc29m
-dHBpbiB3aGljaAo+ID4gPiA+ID4gPiBhbGwgdmVyc2lvbnMgb2YgaTkxNSBzdXBwb3J0aW5nIEdl
-bjEyIGRvLiAgT24gdGhlIE9wZW5HTCBzaWRlLCBHZW4xMisgaXMKPiA+ID4gPiA+ID4gb25seSBz
-dXBwb3J0ZWQgYnkgaXJpcyB3aGljaCBuZXZlciB1c2VzIHJlbG9jYXRpb25zLiAgVGhlIG9sZGVy
-IGk5NjUKPiA+ID4gPiA+ID4gZHJpdmVyIGluIE1lc2EgZG9lcyB1c2UgcmVsb2NhdGlvbnMgYnV0
-IGl0IG9ubHkgc3VwcG9ydHMgSW50ZWwgaGFyZHdhcmUKPiA+ID4gPiA+ID4gdGhyb3VnaCBHZW4x
-MSBhbmQgaGFzIGJlZW4gZGVwcmVjYXRlZCBmb3IgYWxsIGhhcmR3YXJlIEdlbjkrLiAgVGhlCj4g
-PiA+ID4gPiA+IGNvbXB1dGUgZHJpdmVyIGFsc28gbmV2ZXIgdXNlcyByZWxvY2F0aW9ucy4gIFRo
-aXMgb25seSBsZWF2ZXMgdGhlIG1lZGlhCj4gPiA+ID4gPiA+IGRyaXZlciB3aGljaCBpcyBzdXBw
-b3NlZCB0byBiZSBzd2l0Y2hpbmcgdG8gc29mdHBpbiBnb2luZyBmb3J3YXJkLgo+ID4gPiA+ID4g
-PiBNYWtpbmcgc29mdHBpbiBhIHJlcXVpcmVtZW50IGZvciBhbGwgZnV0dXJlIGhhcmR3YXJlIHNl
-ZW1zIHJlYXNvbmFibGUuCj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+IFJlamVjdGluZyByZWxvY2F0
-aW9ucyBzdGFydGluZyB3aXRoIEdlbjEyIGhhcyB0aGUgYmVuZWZpdCB0aGF0IHdlIGRvbid0Cj4g
-PiA+ID4gPiA+IGhhdmUgdG8gYm90aGVyIHN1cHBvcnRpbmcgaXQgb24gcGxhdGZvcm1zIHdpdGgg
-bG9jYWwgbWVtb3J5LiAgR2l2ZW4gaG93Cj4gPiA+ID4gPiA+IG11Y2ggQ1BVIHRvdWNoaW5nIG9m
-IG1lbW9yeSBpcyByZXF1aXJlZCBmb3IgcmVsb2NhdGlvbnMsIG5vdCBoYXZpbmcgdG8KPiA+ID4g
-PiA+ID4gZG8gc28gb24gcGxhdGZvcm1zIHdoZXJlIG5vdCBhbGwgbWVtb3J5IGlzIGRpcmVjdGx5
-IENQVS1hY2Nlc3NpYmxlCj4gPiA+ID4gPiA+IGNhcnJpZXMgc2lnbmlmaWNhbnQgYWR2YW50YWdl
-cy4KPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gdjIgKEphc29uIEVrc3RyYW5kKToKPiA+ID4gPiA+
-ID4gIC0gQWxsb3cgVEdMLUxQIHBsYXRmb3JtcyBhcyB0aGV5J3ZlIGFscmVhZHkgc2hpcHBlZAo+
-ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiB2MyAoSmFzb24gRWtzdHJhbmQpOgo+ID4gPiA+ID4gPiAg
-LSBXQVJOX09OIHBsYXRmb3JtcyB3aXRoIExNRU0gc3VwcG9ydCBpbiBjYXNlIHRoZSBjaGVjayBp
-cyB3cm9uZwo+ID4gPiA+ID4KPiA+ID4gPiA+IEkgd2FzIGFza2VkIHRvIHJldmlldyBvZiB0aGlz
-IHBhdGNoLiBJdCB3b3JrcyBhbG9uZyB3aXRoIGV4cGVjdGVkCj4gPiA+ID4gPiBJR1QgY2hlY2sg
-aHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzQyMzM2MS8/c2VyaWVzPTgy
-OTU0JnJldj0yNQo+ID4gPiA+ID4KPiA+ID4gPiA+IEJlZm9yZSBJJ2xsIGdpdmUgeW91IHItYiAt
-IGlzbid0IGk5MTVfZ2VtX2V4ZWNidWZmZXIyX2lvY3RsKCkgYmV0dGVyIHBsYWNlCj4gPiA+ID4g
-PiB0byBkbyBmb3IgbG9vcCBqdXN0IGFmdGVyIGNvcHlfZnJvbV91c2VyKCkgYW5kIGNoZWNrIHJl
-bG9jYXRpb25fY291bnQ/Cj4gPiA+ID4gPiBXZSBoYXZlIGFuIGFjY2VzcyB0byBleGVjMl9saXN0
-IHRoZXJlLCB3ZSBrbm93IHRoZSBnZW4gc28gd2UncmUgYWJsZSB0byBzYXkKPiA+ID4gPiA+IHJl
-bG9jYXRpb25zIGFyZSBub3Qgc3VwcG9ydGVkIGltbWVkaWF0ZSwgd2l0aG91dCBlbnRlcmluZyBp
-OTE1X2dlbV9kb19leGVjYnVmZmVyKCkuCj4gPiA+ID4KPiA+ID4gPiBJIGNvbnNpZGVyZWQgdGhh
-dCBidXQgaXQgYWRkcyBhbiBleHRyYSBvYmplY3QgbGlzdCB3YWxrIGZvciBhIGNhc2UKPiA+ID4g
-PiB3aGljaCB3ZSBleHBlY3QgdG8gbm90IGhhcHBlbi4gIEknbSBub3Qgc3VyZSBob3cgZXhwZW5z
-aXZlIHRoZSBsaXN0Cj4gPiA+ID4gd2FsayB3b3VsZCBiZSBpZiBhbGwgd2UgZG8gaXMgY2hlY2sg
-dGhlIG51bWJlciBvZiByZWxvY2F0aW9ucyBvbiBlYWNoCj4gPiA+ID4gb2JqZWN0LiAgSSBndWVz
-cywgaWYgaXQgY29tZXMgcmlnaHQgYWZ0ZXIgYSBjb3B5X2Zyb21fdXNlciwgaXQncyBhbGwKPiA+
-ID4gPiBob3QgaW4gdGhlIGNhY2hlIHNvIGl0IHNob3VsZG4ndCBtYXR0ZXIuICBPay4gIEkndmUg
-Y29udmluY2VkIG15c2VsZi4KPiA+ID4gPiBJJ2xsIG1vdmUgaXQuCj4gPiA+Cj4gPiA+IEkgcmVh
-bGx5IHdvdWxkbid0IG1vdmUgaXQgaWYgaXQncyBhbm90aGVyIGxpc3Qgd2Fsay4gRXhlY2J1ZiBo
-YXMgYSBsb3QKPiA+ID4gb2YgZmFzdC1wYXRocyBnb2luZyBvbiwgYW5kIHdlIGhhdmUgZXh0ZW5z
-aXZlIHRlc3RzIHRvIG1ha2Ugc3VyZSBpdAo+ID4gPiB1bndpbmRzIGNvcnJlY3RseSBpbiBhbGwg
-Y2FzZXMuIEl0J3Mgbm90IHZlcnkgaW50dWl0aXZlLCBidXQgZXhlY2J1Zgo+ID4gPiBjb2RlIGlz
-bid0IHNjb3JpbmcgdmVyeSBoaWdoIG9uIHRoYXQuCj4gPgo+ID4gQW5kIGhlcmUgSSdkIGp1c3Qg
-ZmluaXNoZWQgZG9pbmcgdGhlIHR5cGluZyB0byBtb3ZlIGl0LiAgR29vZCB0aGluZyBJCj4gPiBo
-YWRuJ3QgY2xvc2VkIHZpbSB5ZXQgYW5kIGl0IHdhcyBzdGlsbCBpbiBteSB1bmRvIGJ1ZmZlci4g
-Oi0pCj4KPiBCZWZvcmUgZW50ZXJpbmcgInNsb3dlciIgcGF0aCBmcm9tIG15IHBlcnNwZWN0aXZl
-IEkgd291bGQganVzdCBjaGVjawo+IGJhdGNoIG9iamVjdCBhdCB0aGF0IHBsYWNlLiBXZSBzdGls
-bCB3b3VsZCBoYXZlIHNpbmdsZSBsaXN0IHdhbGt0aHJvdWdoCj4gYW5kIHF1aWNrIGNoZWNrIG9u
-IHRoZSB2ZXJ5IGJlZ2lubmluZy4KCkNhbiB5b3UgYmUgbW9yZSBzcGVjaWZpYyBhYm91dCB3aGF0
-IGV4YWN0bHkgeW91IHRoaW5rIHdlIGNhbiBjaGVjayBhdAp0aGUgYmVnaW5uaW5nPyAgRWl0aGVy
-IHdlIGFkZCBhIGZsYWcgdGhhdCB3ZSBjYW4gTygxKSBjaGVjayBhdCB0aGUKYmVnaW5uaW5nIG9y
-IHdlIGhhdmUgdG8gY2hlY2sgZXZlcnl0aGluZyBpbiBleGVjMl9saXN0IGZvcgpleGVjMl9saXN0
-W25dLnJlbG9jYXRpb25fY291bnQgPT0gMC4gIFRoYXQncyBhIGxpc3Qgd2Fsay4gIEknbSBub3QK
-c2VlaW5nIHdoYXQgdXAtZnJvbnQgY2hlY2sgeW91J3JlIHRoaW5raW5nIHdlIGNhbiBkbyB3aXRo
-b3V0IHRoZSBsaXN0CndhbGsuCgotLUphc29uCgo+IC0tCj4gWmJpZ25pZXcKPgo+ID4KPiA+IC0t
-SmFzb24KPiA+Cj4gPiA+IC1EYW5pZWwKPiA+ID4KPiA+ID4gPgo+ID4gPiA+IC0tSmFzb24KPiA+
-ID4gPgo+ID4gPiA+ID4gLS0KPiA+ID4gPiA+IFpiaWduaWV3Cj4gPiA+ID4gPgo+ID4gPiA+ID4g
-Pgo+ID4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxla3N0
-cmFuZC5uZXQ+Cj4gPiA+ID4gPiA+IENjOiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29t
-Pgo+ID4gPiA+ID4gPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+
-Cj4gPiA+ID4gPiA+IC0tLQo+ID4gPiA+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5
-MTVfZ2VtX2V4ZWNidWZmZXIuYyB8IDE1ICsrKysrKysrKysrKy0tLQo+ID4gPiA+ID4gPiAgMSBm
-aWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4gPiA+ID4gPiA+
-Cj4gPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
-ZW1fZXhlY2J1ZmZlci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNi
-dWZmZXIuYwo+ID4gPiA+ID4gPiBpbmRleCA5OTc3MmYzN2JmZjYwLi5iMDJkYmQxNmJmYTAzIDEw
-MDY0NAo+ID4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-ZXhlY2J1ZmZlci5jCj4gPiA+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
-OTE1X2dlbV9leGVjYnVmZmVyLmMKPiA+ID4gPiA+ID4gQEAgLTE3NjQsNyArMTc2NCw4IEBAIGVi
-X3JlbG9jYXRlX3ZtYV9zbG93KHN0cnVjdCBpOTE1X2V4ZWNidWZmZXIgKmViLCBzdHJ1Y3QgZWJf
-dm1hICpldikKPiA+ID4gPiA+ID4gICAgICAgcmV0dXJuIGVycjsKPiA+ID4gPiA+ID4gIH0KPiA+
-ID4gPiA+ID4KPiA+ID4gPiA+ID4gLXN0YXRpYyBpbnQgY2hlY2tfcmVsb2NhdGlvbnMoY29uc3Qg
-c3RydWN0IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgKmVudHJ5KQo+ID4gPiA+ID4gPiArc3Rh
-dGljIGludCBjaGVja19yZWxvY2F0aW9ucyhjb25zdCBzdHJ1Y3QgaTkxNV9leGVjYnVmZmVyICpl
-YiwKPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgY29uc3Qgc3RydWN0IGRy
-bV9pOTE1X2dlbV9leGVjX29iamVjdDIgKmVudHJ5KQo+ID4gPiA+ID4gPiAgewo+ID4gPiA+ID4g
-PiAgICAgICBjb25zdCBjaGFyIF9fdXNlciAqYWRkciwgKmVuZDsKPiA+ID4gPiA+ID4gICAgICAg
-dW5zaWduZWQgbG9uZyBzaXplOwo+ID4gPiA+ID4gPiBAQCAtMTc3NCw2ICsxNzc1LDE0IEBAIHN0
-YXRpYyBpbnQgY2hlY2tfcmVsb2NhdGlvbnMoY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9leGVj
-X29iamVjdDIgKmVudHJ5KQo+ID4gPiA+ID4gPiAgICAgICBpZiAoc2l6ZSA9PSAwKQo+ID4gPiA+
-ID4gPiAgICAgICAgICAgICAgIHJldHVybiAwOwo+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiArICAg
-ICAvKiBSZWxvY2F0aW9ucyBhcmUgZGlzYWxsb3dlZCBmb3IgYWxsIHBsYXRmb3JtcyBhZnRlciBU
-R0wtTFAgKi8KPiA+ID4gPiA+ID4gKyAgICAgaWYgKElOVEVMX0dFTihlYi0+aTkxNSkgPj0gMTIg
-JiYgIUlTX1RJR0VSTEFLRShlYi0+aTkxNSkpCj4gPiA+ID4gPiA+ICsgICAgICAgICAgICAgcmV0
-dXJuIC1FSU5WQUw7Cj4gPiA+ID4gPiA+ICsKPiA+ID4gPiA+ID4gKyAgICAgLyogQWxsIGRpc2Ny
-ZXRlIG1lbW9yeSBwbGF0Zm9ybXMgYXJlIEdlbjEyIG9yIGFib3ZlICovCj4gPiA+ID4gPiA+ICsg
-ICAgIGlmIChXQVJOX09OKEhBU19MTUVNKGViLT5pOTE1KSkpCj4gPiA+ID4gPiA+ICsgICAgICAg
-ICAgICAgcmV0dXJuIC1FSU5WQUw7Cj4gPiA+ID4gPiA+ICsKPiA+ID4gPiA+ID4gICAgICAgaWYg
-KHNpemUgPiBOX1JFTE9DKFVMT05HX01BWCkpCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgcmV0
-dXJuIC1FSU5WQUw7Cj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+IEBAIC0xODA3LDcgKzE4MTYsNyBA
-QCBzdGF0aWMgaW50IGViX2NvcHlfcmVsb2NhdGlvbnMoY29uc3Qgc3RydWN0IGk5MTVfZXhlY2J1
-ZmZlciAqZWIpCj4gPiA+ID4gPiA+ICAgICAgICAgICAgICAgaWYgKG5yZWxvYyA9PSAwKQo+ID4g
-PiA+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gPiA+ID4gPiA+Cj4gPiA+
-ID4gPiA+IC0gICAgICAgICAgICAgZXJyID0gY2hlY2tfcmVsb2NhdGlvbnMoJmViLT5leGVjW2ld
-KTsKPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICBlcnIgPSBjaGVja19yZWxvY2F0aW9ucyhlYiwg
-JmViLT5leGVjW2ldKTsKPiA+ID4gPiA+ID4gICAgICAgICAgICAgICBpZiAoZXJyKQo+ID4gPiA+
-ID4gPiAgICAgICAgICAgICAgICAgICAgICAgZ290byBlcnI7Cj4gPiA+ID4gPiA+Cj4gPiA+ID4g
-PiA+IEBAIC0xODgwLDcgKzE4ODksNyBAQCBzdGF0aWMgaW50IGViX3ByZWZhdWx0X3JlbG9jYXRp
-b25zKGNvbnN0IHN0cnVjdCBpOTE1X2V4ZWNidWZmZXIgKmViKQo+ID4gPiA+ID4gPiAgICAgICBm
-b3IgKGkgPSAwOyBpIDwgY291bnQ7IGkrKykgewo+ID4gPiA+ID4gPiAgICAgICAgICAgICAgIGlu
-dCBlcnI7Cj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+IC0gICAgICAgICAgICAgZXJyID0gY2hlY2tf
-cmVsb2NhdGlvbnMoJmViLT5leGVjW2ldKTsKPiA+ID4gPiA+ID4gKyAgICAgICAgICAgICBlcnIg
-PSBjaGVja19yZWxvY2F0aW9ucyhlYiwgJmViLT5leGVjW2ldKTsKPiA+ID4gPiA+ID4gICAgICAg
-ICAgICAgICBpZiAoZXJyKQo+ID4gPiA+ID4gPiAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJu
-IGVycjsKPiA+ID4gPiA+ID4gICAgICAgfQo+ID4gPiA+ID4gPiAtLQo+ID4gPiA+ID4gPiAyLjI5
-LjIKPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KPiA+ID4gPiA+ID4gZHJpLWRldmVsIG1haWxpbmcgbGlzdAo+ID4g
-PiA+ID4gPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiA+ID4gPiA+IGh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCj4gPiA+
-ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+ID4g
-PiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0Cj4gPiA+ID4gZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwo+ID4gPiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vZHJpLWRldmVsCj4gPiA+Cj4gPiA+Cj4gPiA+Cj4gPiA+IC0tCj4gPiA+IERhbmllbCBW
-ZXR0ZXIKPiA+ID4gU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCj4gPiA+IGh0
-dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+On Thu, Mar 11, 2021 at 12:17:30AM +0200, Imre Deak wrote:
+> Factor out to a new function the logic to calculate the FB remapping
+> parameters both during creating the FB and when flipping to it.
+> =
+
+> Add a new intel_fb_plane_remap_info() that can be used by a new remapped
+> view set up when creating the FB in a follow up patch.
+> =
+
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  10 +-
+>  drivers/gpu/drm/i915/display/intel_fb.c       | 210 ++++++++----------
+>  2 files changed, 93 insertions(+), 127 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 65159a1ea7dd..fc02eca45e4d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -85,6 +85,11 @@ enum intel_broadcast_rgb {
+>  	INTEL_BROADCAST_RGB_LIMITED,
+>  };
+>  =
+
+> +struct intel_fb_plane_remap_info {
+> +	unsigned int x, y;
+> +	unsigned int pitch; /* pixels */
+> +};
+> +
+>  struct intel_framebuffer {
+>  	struct drm_framebuffer base;
+>  	struct intel_frontbuffer *frontbuffer;
+> @@ -95,10 +100,7 @@ struct intel_framebuffer {
+>  		unsigned int x, y;
+>  	} normal[4];
+>  	/* for each plane in the rotated GTT view for no-CCS formats */
+> -	struct {
+> -		unsigned int x, y;
+> -		unsigned int pitch; /* pixels */
+> -	} rotated[2];
+> +	struct intel_fb_plane_remap_info rotated[2];
+>  };
+>  =
+
+>  struct intel_fbdev {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
+15/display/intel_fb.c
+> index f661b21b119d..16a1b5c922bb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -9,6 +9,8 @@
+>  #include "display/intel_display_types.h"
+>  #include "display/intel_fb.h"
+>  =
+
+> +#define check_array_bounds(i915, a, i) drm_WARN_ON(&i915->drm, i >=3D AR=
+RAY_SIZE(a))
+> +
+>  bool is_ccs_plane(const struct drm_framebuffer *fb, int plane)
+>  {
+>  	if (!is_ccs_modifier(fb->modifier))
+> @@ -574,66 +576,6 @@ static u32 calc_plane_aligned_offset(const struct in=
+tel_framebuffer *fb, int col
+>  	return offset / tile_size;
+>  }
+>  =
+
+> -/*
+> - * Setup the rotated view for an FB plane and return the size the GTT ma=
+pping
+> - * requires for this view.
+> - */
+> -static u32 setup_fb_rotation(int plane, const struct intel_remapped_plan=
+e_info *plane_info,
+> -			     u32 gtt_offset_rotated, int x, int y,
+> -			     unsigned int width, unsigned int height,
+> -			     unsigned int tile_size,
+> -			     unsigned int tile_width, unsigned int tile_height,
+> -			     struct drm_framebuffer *fb)
+> -{
+> -	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
+> -	struct intel_rotation_info *rot_info =3D &intel_fb->rot_info;
+> -	unsigned int pitch_tiles;
+> -	struct drm_rect r;
+> -
+> -	/* Y or Yf modifiers required for 90/270 rotation */
+> -	if (fb->modifier !=3D I915_FORMAT_MOD_Y_TILED &&
+> -	    fb->modifier !=3D I915_FORMAT_MOD_Yf_TILED)
+> -		return 0;
+> -
+> -	if (drm_WARN_ON(fb->dev, plane >=3D ARRAY_SIZE(rot_info->plane)))
+> -		return 0;
+> -
+> -	rot_info->plane[plane] =3D *plane_info;
+> -
+> -	intel_fb->rotated[plane].pitch =3D plane_info->height * tile_height;
+> -
+> -	/* rotate the x/y offsets to match the GTT view */
+> -	drm_rect_init(&r, x, y, width, height);
+> -	drm_rect_rotate(&r,
+> -			plane_info->width * tile_width,
+> -			plane_info->height * tile_height,
+> -			DRM_MODE_ROTATE_270);
+> -	x =3D r.x1;
+> -	y =3D r.y1;
+> -
+> -	/* rotate the tile dimensions to match the GTT view */
+> -	pitch_tiles =3D intel_fb->rotated[plane].pitch / tile_height;
+> -	swap(tile_width, tile_height);
+> -
+> -	/*
+> -	 * We only keep the x/y offsets, so push all of the
+> -	 * gtt offset into the x/y offsets.
+> -	 */
+> -	intel_adjust_tile_offset(&x, &y,
+> -				 tile_width, tile_height,
+> -				 tile_size, pitch_tiles,
+> -				 gtt_offset_rotated * tile_size, 0);
+> -
+> -	/*
+> -	 * First pixel of the framebuffer from
+> -	 * the start of the rotated gtt mapping.
+> -	 */
+> -	intel_fb->rotated[plane].x =3D x;
+> -	intel_fb->rotated[plane].y =3D y;
+> -
+> -	return plane_info->width * plane_info->height;
+> -}
+> -
+>  struct fb_plane_view_dims {
+>  	unsigned int width, height;
+>  	unsigned int tile_width, tile_height;
+> @@ -665,6 +607,66 @@ static unsigned int plane_view_tile_rows(const struc=
+t intel_framebuffer *fb, int
+>  	return DIV_ROUND_UP(y + dims->height, dims->tile_height);
+>  }
+>  =
+
+> +static u32 calc_plane_remap_info(const struct intel_framebuffer *fb, int=
+ color_plane,
+> +				 const struct fb_plane_view_dims *dims,
+> +				 enum i915_ggtt_view_type view_type,
+> +				 u32 obj_offset, u32 gtt_offset, int x, int y,
+> +				 struct intel_remapped_plane_info *gtt_remap_info,
+> +				 struct intel_fb_plane_remap_info *plane_remap_info)
+> +{
+> +	const struct drm_framebuffer *drm_fb =3D &fb->base;
+> +	struct drm_i915_private *i915 =3D to_i915(drm_fb->dev);
+> +	unsigned int tile_width =3D dims->tile_width;
+> +	unsigned int tile_height =3D dims->tile_height;
+> +	unsigned int tile_size =3D intel_tile_size(i915);
+> +	unsigned int pitch_tiles;
+> +	struct drm_rect r;
+> +
+> +	gtt_remap_info->offset =3D obj_offset;
+> +	gtt_remap_info->width =3D DIV_ROUND_UP(x + dims->width, dims->tile_widt=
+h);
+> +	gtt_remap_info->height =3D plane_view_tile_rows(fb, color_plane, dims, =
+y);
+> +	gtt_remap_info->stride =3D plane_view_stride_tiles(fb, color_plane, dim=
+s);
+
+I would keep offset and stride next to each other like in the other place
+since they are both related to the actual backing memory, whereas
+width+height are the size of the view.
+
+> +
+> +	if (view_type =3D=3D I915_GGTT_VIEW_ROTATED) {
+> +		/* rotate the x/y offsets to match the GTT view */
+> +		drm_rect_init(&r, x, y, dims->width, dims->height);
+> +		drm_rect_rotate(&r,
+> +				gtt_remap_info->width * tile_width,
+> +				gtt_remap_info->height * tile_height,
+> +				DRM_MODE_ROTATE_270);
+> +
+> +		plane_remap_info->x =3D r.x1;
+> +		plane_remap_info->y =3D r.y1;
+> +
+> +		pitch_tiles =3D gtt_remap_info->height;
+> +		plane_remap_info->pitch =3D pitch_tiles * tile_height;
+> +		/* rotate the tile dimensions to match the GTT view */
+> +		swap(tile_width, tile_height);
+> +	} else {
+> +		drm_WARN_ON(&i915->drm, view_type !=3D I915_GGTT_VIEW_REMAPPED);
+> +
+> +		plane_remap_info->x =3D x;
+> +		plane_remap_info->y =3D y;
+> +
+> +		pitch_tiles =3D gtt_remap_info->width;
+> +		plane_remap_info->pitch =3D pitch_tiles * tile_width * drm_fb->format-=
+>cpp[color_plane];
+> +	}
+> +
+> +	/*
+> +	 * We only keep the x/y offsets, so push all of the
+> +	 * gtt offset into the x/y offsets.
+> +	 * x,y will hold the first pixel of the framebuffer
+> +	 * plane from the start of the remapped/rotated gtt
+> +	 * mapping.
+> +	 */
+> +	intel_adjust_tile_offset(&plane_remap_info->x, &plane_remap_info->y,
+> +				 tile_width, tile_height,
+> +				 tile_size, pitch_tiles,
+> +				 gtt_offset * tile_size, 0);
+> +
+> +	return gtt_remap_info->width * gtt_remap_info->height;
+> +}
+> +
+>  static int calc_plane_normal_size(const struct intel_framebuffer *fb, in=
+t color_plane,
+>  				  const struct fb_plane_view_dims *dims,
+>  				  int x, int y)
+> @@ -734,21 +736,17 @@ int intel_fill_fb_info(struct drm_i915_private *i91=
+5, struct drm_framebuffer *fb
+>  =
+
+>  		offset =3D calc_plane_aligned_offset(intel_fb, i, &x, &y);
+>  =
+
+> -		if (!is_surface_linear(fb, i)) {
+> -			struct intel_remapped_plane_info plane_info;
+> +		/* Y or Yf modifiers required for 90/270 rotation */
+> +		if (fb->modifier =3D=3D I915_FORMAT_MOD_Y_TILED ||
+> +		    fb->modifier =3D=3D I915_FORMAT_MOD_Yf_TILED) {
+
+Was confused for a bit that we'd now go into this stuff with
+tgl+ ccs, but then remembered that those have a dedicated modifier.
+
+> +			check_array_bounds(i915, intel_fb->rot_info.plane, i);
+> +			check_array_bounds(i915, intel_fb->rotated, i);
+>  =
+
+> -			plane_info.offset =3D offset;
+> -			plane_info.stride =3D plane_view_stride_tiles(intel_fb, i, &view_dims=
+);
+> -			plane_info.width =3D DIV_ROUND_UP(x + width, view_dims.tile_width);
+> -			plane_info.height =3D plane_view_tile_rows(intel_fb, i, &view_dims, y=
+);
+> -
+> -			gtt_offset_rotated +=3D
+> -				setup_fb_rotation(i, &plane_info,
+> -						  gtt_offset_rotated,
+> -						  x, y, width, height,
+> -						  tile_size,
+> -						  view_dims.tile_width, view_dims.tile_height,
+> -						  fb);
+> +			gtt_offset_rotated +=3D calc_plane_remap_info(intel_fb, i, &view_dims,
+> +								    I915_GGTT_VIEW_ROTATED,
+> +								    offset, gtt_offset_rotated, x, y,
+> +								    &intel_fb->rot_info.plane[i],
+> +								    &intel_fb->rotated[i]);
+>  		}
+>  =
+
+>  		size =3D calc_plane_normal_size(intel_fb, i, &view_dims, x, y);
+> @@ -772,10 +770,8 @@ static void intel_plane_remap_gtt(struct intel_plane=
+_state *plane_state)
+>  		to_i915(plane_state->uapi.plane->dev);
+>  	struct drm_framebuffer *fb =3D plane_state->hw.fb;
+>  	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
+> -	struct intel_rotation_info *info =3D &plane_state->view.rotated;
+>  	unsigned int rotation =3D plane_state->hw.rotation;
+>  	int i, num_planes =3D fb->format->num_planes;
+> -	unsigned int tile_size =3D intel_tile_size(i915);
+>  	unsigned int src_x, src_y;
+>  	unsigned int src_w, src_h;
+>  	u32 gtt_offset =3D 0;
+> @@ -804,20 +800,19 @@ static void intel_plane_remap_gtt(struct intel_plan=
+e_state *plane_state)
+>  	for (i =3D 0; i < num_planes; i++) {
+>  		unsigned int hsub =3D i ? fb->format->hsub : 1;
+>  		unsigned int vsub =3D i ? fb->format->vsub : 1;
+> -		unsigned int cpp =3D fb->format->cpp[i];
+> -		unsigned int tile_width, tile_height;
+> +		struct intel_fb_plane_remap_info plane_remap_info;
+> +		struct fb_plane_view_dims view_dims;
+>  		unsigned int width, height;
+> -		unsigned int pitch_tiles;
+>  		unsigned int x, y;
+>  		u32 offset;
+>  =
+
+> -		intel_tile_dims(fb, i, &tile_width, &tile_height);
+> -
+>  		x =3D src_x / hsub;
+>  		y =3D src_y / vsub;
+>  		width =3D src_w / hsub;
+>  		height =3D src_h / vsub;
+>  =
+
+> +		init_plane_view_dims(intel_fb, i, width, height, &view_dims);
+> +
+>  		/*
+>  		 * First pixel of the src viewport from the
+>  		 * start of the normal gtt mapping.
+> @@ -827,49 +822,18 @@ static void intel_plane_remap_gtt(struct intel_plan=
+e_state *plane_state)
+>  =
+
+>  		offset =3D calc_plane_aligned_offset(intel_fb, i, &x, &y);
+>  =
+
+> -		drm_WARN_ON(&i915->drm, i >=3D ARRAY_SIZE(info->plane));
+> -		info->plane[i].offset =3D offset;
+> -		info->plane[i].stride =3D DIV_ROUND_UP(fb->pitches[i],
+> -						     tile_width * cpp);
+> -		info->plane[i].width =3D DIV_ROUND_UP(x + width, tile_width);
+> -		info->plane[i].height =3D DIV_ROUND_UP(y + height, tile_height);
+> -
+> -		if (drm_rotation_90_or_270(rotation)) {
+> -			struct drm_rect r;
+> -
+> -			/* rotate the x/y offsets to match the GTT view */
+> -			drm_rect_init(&r, x, y, width, height);
+> -			drm_rect_rotate(&r,
+> -					info->plane[i].width * tile_width,
+> -					info->plane[i].height * tile_height,
+> -					DRM_MODE_ROTATE_270);
+> -			x =3D r.x1;
+> -			y =3D r.y1;
+> -
+> -			pitch_tiles =3D info->plane[i].height;
+> -			plane_state->color_plane[i].stride =3D pitch_tiles * tile_height;
+> -
+> -			/* rotate the tile dimensions to match the GTT view */
+> -			swap(tile_width, tile_height);
+> -		} else {
+> -			pitch_tiles =3D info->plane[i].width;
+> -			plane_state->color_plane[i].stride =3D pitch_tiles * tile_width * cpp;
+> -		}
+> -
+> -		/*
+> -		 * We only keep the x/y offsets, so push all of the
+> -		 * gtt offset into the x/y offsets.
+> -		 */
+> -		intel_adjust_tile_offset(&x, &y,
+> -					 tile_width, tile_height,
+> -					 tile_size, pitch_tiles,
+> -					 gtt_offset * tile_size, 0);
+> -
+> -		gtt_offset +=3D info->plane[i].width * info->plane[i].height;
+> -
+> +		check_array_bounds(i915, plane_state->view.remapped.plane, i);
+> +		gtt_offset +=3D calc_plane_remap_info(intel_fb, i, &view_dims,
+> +						    plane_state->view.type,
+> +						    offset, gtt_offset, x, y,
+> +						    &plane_state->view.remapped.plane[i],
+
+I guess we had some kind of magic aliasing going on here?
+
+> +						    &plane_remap_info);
+> +
+> +		check_array_bounds(i915, plane_state->color_plane, i);
+>  		plane_state->color_plane[i].offset =3D 0;
+> -		plane_state->color_plane[i].x =3D x;
+> -		plane_state->color_plane[i].y =3D y;
+> +		plane_state->color_plane[i].x =3D plane_remap_info.x;
+> +		plane_state->color_plane[i].y =3D plane_remap_info.y;
+> +		plane_state->color_plane[i].stride =3D plane_remap_info.pitch;
+>  	}
+>  }
+>  =
+
+> -- =
+
+> 2.25.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
