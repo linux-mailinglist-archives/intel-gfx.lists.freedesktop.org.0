@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64210337A27
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 17:57:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A80337A4E
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 18:02:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 623A46E4EA;
-	Thu, 11 Mar 2021 16:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12D5D6E03E;
+	Thu, 11 Mar 2021 17:02:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AAE86E4EA
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 16:57:55 +0000 (UTC)
-IronPort-SDR: de2WJ/zPhsmApZbN/V5xGJEiiKmXUpetD8B6TYQbJjPHYPGeZHdlK8oHGXdFffmfX///UGfbYT
- xwHP1WR7XZhg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="208525781"
-X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="208525781"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 670D86EA99
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 17:02:30 +0000 (UTC)
+IronPort-SDR: 8J2lnuVcZObXAGQMVI4N9xtDGyAPilB3MgqtySoGy1Zsmr98+KJl97yzc65AKilczForWsNPRp
+ 7bPmLlPgIDTA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="252716893"
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="252716893"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2021 08:57:55 -0800
-IronPort-SDR: xDb/LtYIi6l99rx8vN3GEui0+qlds27cBaSA8WhvQGw1OKP8AaLFkxK8diV+g16QMVh0QWN8qt
- uGmx0uu0cCcg==
-X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="410671589"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 09:02:29 -0800
+IronPort-SDR: m9tQdcft7rWQ9weKZYqh9R2WySkVGWBe8ki8xx8hb4j2qLJXipLcKJsui81p8nhMbyCh/M0IQy
+ JZmxlatbOWxA==
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="410673319"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2021 08:57:43 -0800
-Date: Thu, 11 Mar 2021 18:57:39 +0200
+ 11 Mar 2021 09:02:27 -0800
+Date: Thu, 11 Mar 2021 19:02:23 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20210311165739.GE2970909@ideak-desk.fi.intel.com>
+Message-ID: <20210311170223.GF2970909@ideak-desk.fi.intel.com>
 References: <20210310221736.2963264-1-imre.deak@intel.com>
- <20210310221736.2963264-15-imre.deak@intel.com>
- <YEpGDj7E4KBbPRiO@intel.com>
+ <20210310221736.2963264-17-imre.deak@intel.com>
+ <YEpKys5LiW06dihB@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YEpGDj7E4KBbPRiO@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 14/23] drm/i915/intel_fb: Factor out
- convert_plane_offset_to_xy()
+In-Reply-To: <YEpKys5LiW06dihB@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 16/23] drm/i915/intel_fb: Factor out
+ calc_plane_normal_size()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,146 +56,202 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 11, 2021 at 06:32:14PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Thu, Mar 11, 2021 at 12:17:27AM +0200, Imre Deak wrote:
-> > Factor out to a new function the logic to convert the FB plane offset to
-> > x/y and check the validity of x/y, with the goal to make
-> > intel_fill_fb_info() more readable.
+On Thu, Mar 11, 2021 at 06:52:26PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Thu, Mar 11, 2021 at 12:17:29AM +0200, Imre Deak wrote:
+> > Factor out to a new function the logic to calculate an FB plane's
+> > normal-view size.
+> > =
+
+> > Instead of using intel_remapped_plane_info, which is related only to
+> > remapping, add a helper to get the tile pitch and rows for an FB plane,
+> > so these helpers can be used both by the normal size calculation and the
+> > remapping code.
+> > =
+
+> > Also add a new fb_plane_view_dims struct in which we can pass around the
+> > view (either FB plane or plane source) and tile dimensions conveniently
+> > to functions calculating further view parameters.
 > > =
 
 > > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_fb.c | 70 +++++++++++++++----------
-> >  1 file changed, 42 insertions(+), 28 deletions(-)
+> >  drivers/gpu/drm/i915/display/intel_fb.c | 82 ++++++++++++++++++-------
+> >  1 file changed, 61 insertions(+), 21 deletions(-)
 > > =
 
 > > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/=
 i915/display/intel_fb.c
-> > index b96849ec32df..806341c229f0 100644
+> > index 62a8e37dca38..f661b21b119d 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_fb.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > @@ -400,10 +400,10 @@ static int intel_fb_offset_to_xy(int *x, int *y,
-> >  	return 0;
+> > @@ -634,6 +634,59 @@ static u32 setup_fb_rotation(int plane, const stru=
+ct intel_remapped_plane_info *
+> >  	return plane_info->width * plane_info->height;
 > >  }
 > >  =
 
-> > -static int intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int ccs_p=
-lane, int x, int y)
-> > +static int intel_fb_check_ccs_xy(const struct drm_framebuffer *fb, int=
- ccs_plane, int x, int y)
-> >  {
-> >  	struct drm_i915_private *i915 =3D to_i915(fb->dev);
-> > -	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
-> > +	const struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
-> >  	int main_plane;
-> >  	int hsub, vsub;
-> >  	int tile_width, tile_height;
-> > @@ -520,6 +520,45 @@ static bool intel_plane_needs_remap(const struct i=
-ntel_plane_state *plane_state)
-> >  	return stride > max_stride;
-> >  }
-> >  =
-
-> > +static int convert_plane_offset_to_xy(const struct intel_framebuffer *=
-fb, int color_plane,
-> > +				      int plane_width, int *x, int *y)
+> > +struct fb_plane_view_dims {
+> > +	unsigned int width, height;
+> > +	unsigned int tile_width, tile_height;
+> > +};
+> > +
+> > +static void init_plane_view_dims(const struct intel_framebuffer *fb, i=
+nt color_plane,
+> > +				 unsigned int width, unsigned int height,
+> > +				 struct fb_plane_view_dims *dims)
 > > +{
-> > +	const struct drm_framebuffer *drm_fb =3D &fb->base;
-> =
-
-> Not a fan of these aliasing pointers. I know that the fb =
-
-> stuff is a bit of a mess when it comes to the drm_ vs. intel_
-> usage.
-> =
-
-> We've mostly cleaned up that stuff for plane/crtc/etc. by just
-> avoiding the aliasing pointers and just using foo->base where
-> appropriate. Not sure how that sort of approach would look in
-> the end of fbs?
-
-Yes, can use &fb->base instead.
-
-> > +	struct drm_i915_gem_object *obj =3D intel_fb_obj(drm_fb);
-> > +	int ret;
+> > +	dims->width =3D width;
+> > +	dims->height =3D height;
 > > +
-> > +	ret =3D intel_fb_offset_to_xy(x, y, drm_fb, color_plane);
-> > +	if (ret) {
-> > +		drm_dbg_kms(drm_fb->dev,
-> > +			    "bad fb plane %d offset: 0x%x\n",
-> > +			    color_plane, drm_fb->offsets[color_plane]);
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret =3D intel_fb_check_ccs_xy(drm_fb, color_plane, *x, *y);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/*
-> > +	 * The fence (if used) is aligned to the start of the object
-> > +	 * so having the framebuffer wrap around across the edge of the
-> > +	 * fenced region doesn't really work. We have no API to configure
-> > +	 * the fence start offset within the object (nor could we probably
-> > +	 * on gen2/3). So it's just easier if we just require that the
-> > +	 * fb layout agrees with the fence layout. We already check that the
-> > +	 * fb stride matches the fence stride elsewhere.
-> > +	 */
-> > +	if (color_plane =3D=3D 0 && i915_gem_object_is_tiled(obj) &&
-> > +	    (*x + plane_width) * drm_fb->format->cpp[color_plane] > drm_fb->p=
-itches[color_plane]) {
-> > +		drm_dbg_kms(drm_fb->dev,
-> > +			    "bad fb plane %d offset: 0x%x\n",
-> > +			    color_plane, drm_fb->offsets[color_plane]);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return 0;
+> > +	intel_tile_dims(&fb->base, color_plane, &dims->tile_width, &dims->til=
+e_height);
 > > +}
 > > +
-> >  /*
-> >   * Setup the rotated view for an FB plane and return the size the GTT =
-mapping
-> >   * requires for this view.
-> > @@ -611,35 +650,10 @@ int intel_fill_fb_info(struct drm_i915_private *i=
-915, struct drm_framebuffer *fb
-> >  		cpp =3D fb->format->cpp[i];
-> >  		intel_fb_plane_dims(&width, &height, fb, i);
+> > +static unsigned int plane_view_stride_tiles(const struct intel_framebu=
+ffer *fb, int color_plane,
+> > +					    const struct fb_plane_view_dims *dims)
+> > +{
+> > +	const struct drm_framebuffer *drm_fb =3D &fb->base;
+> > +
+> > +	return DIV_ROUND_UP(drm_fb->pitches[color_plane],
+> > +			    dims->tile_width * drm_fb->format->cpp[color_plane]);
+> =
+
+> plane_view_fb_stride_tiles() maybe to make it clear it's the fb stride
+> we're talking about here?
+
+Ok.
+
+> > +}
+> > +
+> > +static unsigned int plane_view_tile_rows(const struct intel_framebuffe=
+r *fb, int color_plane,
+> > +					 const struct fb_plane_view_dims *dims,
+> > +					 int y)
+> > +{
+> > +	return DIV_ROUND_UP(y + dims->height, dims->tile_height);
+> > +}
+> > +
+> > +static int calc_plane_normal_size(const struct intel_framebuffer *fb, =
+int color_plane,
+> > +				  const struct fb_plane_view_dims *dims,
+> > +				  int x, int y)
+> > +{
+> > +	const struct drm_framebuffer *drm_fb =3D &fb->base;
+> > +	struct drm_i915_private *i915 =3D to_i915(drm_fb->dev);
+> > +	int pages;
+> =
+
+> 'tiles'?
+
+Ok, not always pages.
+
+> > +
+> > +	if (is_surface_linear(drm_fb, color_plane)) {
+> > +		unsigned int size;
+> > +
+> > +		size =3D (y + dims->height) * drm_fb->pitches[color_plane] +
+> > +		       x * drm_fb->format->cpp[color_plane];
+> > +		pages =3D DIV_ROUND_UP(size, intel_tile_size(i915));
+> > +	} else {
+> > +		pages =3D plane_view_stride_tiles(fb, color_plane, dims) *
+> > +			plane_view_tile_rows(fb, color_plane, dims, y);
+> > +	}
+> > +
+> > +	return pages;
+> > +}
+> > +
+> >  int intel_fill_fb_info(struct drm_i915_private *i915, struct drm_frame=
+buffer *fb)
+> >  {
+> >  	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
+> > @@ -644,6 +697,7 @@ int intel_fill_fb_info(struct drm_i915_private *i91=
+5, struct drm_framebuffer *fb
+> >  	unsigned int tile_size =3D intel_tile_size(i915);
 > >  =
 
-> > -		ret =3D intel_fb_offset_to_xy(&x, &y, fb, i);
-> > -		if (ret) {
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "bad fb plane %d offset: 0x%x\n",
-> > -				    i, fb->offsets[i]);
-> > -			return ret;
-> > -		}
-> > -
-> > -		ret =3D intel_fb_check_ccs_xy(fb, i, x, y);
-> > +		ret =3D convert_plane_offset_to_xy(intel_fb, i, width, &x, &y);
+> >  	for (i =3D 0; i < num_planes; i++) {
+> > +		struct fb_plane_view_dims view_dims;
+> >  		unsigned int width, height;
+> >  		unsigned int cpp, size;
+> >  		u32 offset;
+> > @@ -669,6 +723,8 @@ int intel_fill_fb_info(struct drm_i915_private *i91=
+5, struct drm_framebuffer *fb
 > >  		if (ret)
 > >  			return ret;
 > >  =
 
-> > -		/*
-> > -		 * The fence (if used) is aligned to the start of the object
-> > -		 * so having the framebuffer wrap around across the edge of the
-> > -		 * fenced region doesn't really work. We have no API to configure
-> > -		 * the fence start offset within the object (nor could we probably
-> > -		 * on gen2/3). So it's just easier if we just require that the
-> > -		 * fb layout agrees with the fence layout. We already check that the
-> > -		 * fb stride matches the fence stride elsewhere.
-> > -		 */
-> > -		if (i =3D=3D 0 && i915_gem_object_is_tiled(obj) &&
-> > -		    (x + width) * cpp > fb->pitches[i]) {
-> > -			drm_dbg_kms(&i915->drm,
-> > -				    "bad fb plane %d offset: 0x%x\n",
-> > -				     i, fb->offsets[i]);
-> > -			return -EINVAL;
-> > -		}
-> > -
+> > +		init_plane_view_dims(intel_fb, i, width, height, &view_dims);
+> > +
 > >  		/*
 > >  		 * First pixel of the framebuffer from
 > >  		 * the start of the normal gtt mapping.
+> > @@ -680,38 +736,22 @@ int intel_fill_fb_info(struct drm_i915_private *i=
+915, struct drm_framebuffer *fb
+> >  =
+
+> >  		if (!is_surface_linear(fb, i)) {
+> >  			struct intel_remapped_plane_info plane_info;
+> > -			unsigned int tile_width, tile_height;
+> > -
+> > -			intel_tile_dims(fb, i, &tile_width, &tile_height);
+> >  =
+
+> >  			plane_info.offset =3D offset;
+> > -			plane_info.stride =3D DIV_ROUND_UP(fb->pitches[i],
+> > -							 tile_width * cpp);
+> > -			plane_info.width =3D DIV_ROUND_UP(x + width, tile_width);
+> > -			plane_info.height =3D DIV_ROUND_UP(y + height,
+> > -							 tile_height);
+> > -
+> > -			/* how many tiles does this plane need */
+> > -			size =3D plane_info.stride * plane_info.height;
+> > -			/*
+> > -			 * If the plane isn't horizontally tile aligned,
+> > -			 * we need one more tile.
+> > -			 */
+> > -			if (x !=3D 0)
+> > -				size++;
+> =
+
+> Where did that go?
+
+Arg, thanks for catching it.
+
+> > +			plane_info.stride =3D plane_view_stride_tiles(intel_fb, i, &view_di=
+ms);
+> > +			plane_info.width =3D DIV_ROUND_UP(x + width, view_dims.tile_width);
+> =
+
+> Why this doesn't have its own function?
+
+Can move it to a plane_view_fb_width_tiles() helper (and maybe also
+s/plane_view_tile_rows/plane_view_fb_height_tiles).
+
+> =
+
+> > +			plane_info.height =3D plane_view_tile_rows(intel_fb, i, &view_dims,=
+ y);
+> >  =
+
+> >  			gtt_offset_rotated +=3D
+> >  				setup_fb_rotation(i, &plane_info,
+> >  						  gtt_offset_rotated,
+> >  						  x, y, width, height,
+> >  						  tile_size,
+> > -						  tile_width, tile_height,
+> > +						  view_dims.tile_width, view_dims.tile_height,
+> >  						  fb);
+> > -		} else {
+> > -			size =3D DIV_ROUND_UP((y + height) * fb->pitches[i] +
+> > -					    x * cpp, tile_size);
+> >  		}
+> >  =
+
+> > +		size =3D calc_plane_normal_size(intel_fb, i, &view_dims, x, y);
+> >  		/* how many tiles in total needed in the bo */
+> >  		max_size =3D max(max_size, offset + size);
+> >  	}
 > > -- =
 
 > > 2.25.1
