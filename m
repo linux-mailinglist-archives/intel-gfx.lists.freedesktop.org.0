@@ -2,57 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A21883378A6
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 17:01:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB3E3378A8
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 17:02:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5C556EE33;
-	Thu, 11 Mar 2021 16:01:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D48716EE31;
+	Thu, 11 Mar 2021 16:02:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 225FA6EE33
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 16:01:50 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id u16so2503789wrt.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 08:01:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=6PUsVpGph36284eeRK5/psG4ebBX4nn/izAO0rHcc4U=;
- b=hpPgHTWBaVyNOFFTSWYVZMjf19TcHlvdRyjSTRmh0MFiHhAGvJtB+ZoseD7Vfi3D2p
- oeA9vNGnyvVQJCbuxzp3WK0CgOFDuK76TWwKtFOKxD0paGbMlzh6XLhEj2aI7w7jMN1L
- gwzQ5NYhtr9ttUbUI3gRxnYFXMRfh/fXAvtMA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=6PUsVpGph36284eeRK5/psG4ebBX4nn/izAO0rHcc4U=;
- b=NopoQOjlvkEOrvFBKeW2xYSZ/nb13wQbhApI2TV6HWj40duzpRWIOy2TQUOj+Wd2NY
- UbdFAPARP+WdCCdgop1g0kIDx2aM2V33g8ST29eAFOTr9KIaxRgbRWbVw561WOTNxOTT
- LU67Kcqy3ADNVkpKzBGCY4dRtcckDLtTabo8BK0hzu2a9kIqDiVZOvtpLVumU9/sc3qT
- psPv9A11xxehsDrV4OJoqaCJqtx1FbvSkmMwlZ7DyM69RjgCulUBDIRRZTD8LE3+4y9L
- Tr1xrk4kLwiOdC1PptplMEi01T//NYqr6IrH5iCJF9kUfdnVHgkNlhpMYicczgi/O5JG
- P+8A==
-X-Gm-Message-State: AOAM53072KMQYY0XpxEah5pvPXm8eS/W5J1c+A4Avlomwl2Tsf6ZUJ2K
- ZeI2wE/R8DPLo0mn7y80farVEA==
-X-Google-Smtp-Source: ABdhPJzhXdJi5PgNzvG48cxc6tOHXnRSOX3KF1zUl83bpJcKnXMggcaYT5VRZzd9/qfDlM+cAa2Wew==
-X-Received: by 2002:adf:d0c9:: with SMTP id z9mr9775543wrh.396.1615478508855; 
- Thu, 11 Mar 2021 08:01:48 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id l4sm4448134wrt.60.2021.03.11.08.01.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Mar 2021 08:01:48 -0800 (PST)
-Date: Thu, 11 Mar 2021 17:01:46 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YEo+6uvS7d0hh6nz@phenom.ffwll.local>
-References: <20210305170546.56472-1-jason.ekstrand@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E6926EE31;
+ Thu, 11 Mar 2021 16:02:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 36290A7DFC;
+ Thu, 11 Mar 2021 16:02:21 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210305170546.56472-1-jason.ekstrand@intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915: Propagate errors on
- awaiting already signaled fences"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Thu, 11 Mar 2021 16:02:21 -0000
+Message-ID: <161547854121.28799.11221142258671604993@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210311153415.3024607-1-matthew.d.roper@intel.com>
+In-Reply-To: <20210311153415.3024607-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Separate_display_version_numbering_and_add_XE=5FLPD_=28vers?=
+ =?utf-8?q?ion_13=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,96 +39,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jason Ekstrand <jason.ekstrand@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 05, 2021 at 11:05:46AM -0600, Jason Ekstrand wrote:
-> This reverts commit 9e31c1fe45d555a948ff66f1f0e3fe1f83ca63f7.  Ever
-> since that commit, we've been having issues where a hang in one client
-> can propagate to another.  In particular, a hang in an app can propagate
-> to the X server which causes the whole desktop to lock up.
-> 
-> Signed-off-by: Jason Ekstrand <jason.ekstrand@intel.com>
-> Reported-by: Marcin Slusarz <marcin.slusarz@intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3080
-> Fixes: 9e31c1fe45d5 ("drm/i915: Propagate errors on awaiting already signaled fences")
+== Series Details ==
 
-Yeah I suggested to just go with the revert, so I guess on my to give you
-the explainer to be added to the commit message.
+Series: Separate display version numbering and add XE_LPD (version 13)
+URL   : https://patchwork.freedesktop.org/series/87886/
+State : warning
 
-Error propagation along fences sound like a good idea, but as your bug
-shows, surprising consequences, since propagating errors across security
-boundaries is not a good thing.
+== Summary ==
 
-What we do have is track the hangs on the ctx, and report information to
-userspace using RESET_STATS. That's how arb_robustness works. Also, if my
-understanding is still correct, the EIO from execbuf is when your context
-is banned (because not recoverable or too many hangs). And in all these
-cases it's up to userspace to figure out what is all impacted and should
-be reported to the application, that's not on the kernel to guess and
-automatically propagate.
+$ dim checkpatch origin/drm-tip
+325b78c69cb5 drm/i915/display: Convert gen5/gen6 tests to IS_IRONLAKE/IS_SANDYBRIDGE
+-:100: CHECK:CAMELCASE: Avoid CamelCase: <ILK_eDP_A_DISABLE>
+#100: FILE: drivers/gpu/drm/i915/display/intel_display.c:11602:
++	if (IS_IRONLAKE(dev_priv) && (intel_de_read(dev_priv, FUSE_STRAP) & ILK_eDP_A_DISABLE))
 
-What's more, we're also building more features on top of ctx error
-reporting with RESET_STATS ioctl: Encrypted buffers use the same, and the
-userspace fence wait also relies on that mechanism. So it is the path
-going forward for reporting gpu hangs and resets to userspace.
+total: 0 errors, 0 warnings, 1 checks, 216 lines checked
+bb353a8d0201 drm/i915: Add DISPLAY_VER()
+-:59: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#59: FILE: drivers/gpu/drm/i915/i915_pci.c:39:
++#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display_ver = x
 
-So all together that's why I think we should just bury this idea again as
-not quite the direction we want to go to, hence why I think the revert is
-the right option here.
+total: 0 errors, 0 warnings, 1 checks, 25 lines checked
+5b3894ed6cd4 drm/i915/display: Eliminate most usage of INTEL_GEN()
+-:35: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#35: 
+        + if (DISPLAY_VER(dev_priv) >= from && DISPLAY_VER(dev_priv) <= until) S
 
-Maybe quote the entire above thing in the commit message, if it makes some
-sense?
+-:1222: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1222: FILE: drivers/gpu/drm/i915/display/intel_ddi.c:552:
+ 
++
 
-Cheers, Daniel
-> ---
->  drivers/gpu/drm/i915/i915_request.c | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index e7b4c4bc41a64..870d6083bb57e 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -1232,10 +1232,8 @@ i915_request_await_execution(struct i915_request *rq,
->  
->  	do {
->  		fence = *child++;
-> -		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags)) {
-> -			i915_sw_fence_set_error_once(&rq->submit, fence->error);
-> +		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
->  			continue;
-> -		}
->  
->  		if (fence->context == rq->fence.context)
->  			continue;
-> @@ -1333,10 +1331,8 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
->  
->  	do {
->  		fence = *child++;
-> -		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags)) {
-> -			i915_sw_fence_set_error_once(&rq->submit, fence->error);
-> +		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
->  			continue;
-> -		}
->  
->  		/*
->  		 * Requests on the same timeline are explicitly ordered, along
-> -- 
-> 2.29.2
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+-:2058: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'port == PORT_E'
+#2058: FILE: drivers/gpu/drm/i915/display/intel_display.c:6715:
++	if (DISPLAY_VER(dev_priv) < 9 &&
+ 	    (port == PORT_E) && intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) {
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+-:2646: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 63)
+#2646: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:153:
++	if (DISPLAY_VER(dev_priv) >= 9)
+ 		/* no global SR status; inspect per-plane WM */;
+
+-:4192: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_IS_SUPPORTED'
+#4192: FILE: drivers/gpu/drm/i915/display/intel_psr.c:324:
++	if (DISPLAY_VER(dev_priv) >= 9 &&
+ 	    (intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_IS_SUPPORTED)) {
+
+-:4808: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#4808: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:2032:
++		plane->need_async_flip_disable_wa = (DISPLAY_VER(dev_priv) >= 9 && DISPLAY_VER(dev_priv) <= 10);
+
+total: 0 errors, 3 warnings, 3 checks, 4213 lines checked
+69601631074c drm/i915: Convert INTEL_GEN() to DISPLAY_VER() as appropriate in intel_pm.c
+fbaed21cd392 drm/i915: Convert INTEL_GEN() to DISPLAY_VER() as appropriate in i915_irq.c
+5a8f8a2a7928 drm/i915/display: Simplify GLK display version tests
+873b4ff9025c drm/i915/xelpd: add XE_LPD display characteristics
+21a721ff4189 drm/i915/xelpd: Handle proper AUX interrupt bits
+14df043f007f drm/i915/xelpd: Enhanced pipe underrun reporting
+-:66: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#66: FILE: drivers/gpu/drm/i915/display/intel_fifo_underrun.c:390:
++		return "hard";
++	else
+
+total: 0 errors, 1 warnings, 0 checks, 131 lines checked
+50ac2fcab8d8 drm/i915/xelpd: Define plane capabilities
+c41d35b07706 drm/i915/xelpd: Support 128k plane stride
+ca26cb633455 drm/i915/xelpd: Handle new location of outputs D and E
+223193985bf3 drm/i915/xelpd: Add XE_LPD power wells
+-:36: WARNING:BAD_SIGN_OFF: Duplicate signature
+#36: 
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 522 lines checked
+8439a0c727fa drm/i915/xelpd: Handle LPSP for XE_LPD
+fa941027b199 drm/i915/xelpd: Increase maximum watermark lines to 255
+b7e094126453 drm/i915/xelpd: Required bandwidth increases when VT-d is active
+68f54617c023 drm/i915/xelpd: Add Wa_14011503030
+e7d031d87c65 drm/i915/display/dsc: Refactor intel_dp_dsc_compute_bpp
+9de1ac3266ec drm/i915/xelpd: Support DP1.4 compression BPPs
+-:40: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#40: FILE: drivers/gpu/drm/i915/display/intel_dp.c:569:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 75 lines checked
+4f795e23a16a drm/i915: Get slice height before computing rc params
+fd3647ae8e29 drm/i915/xelpd: Calculate VDSC RC parameters
+-:51: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#51: FILE: drivers/gpu/drm/i915/display/intel_vdsc.c:393:
++		rc->first_line_bpg_offset = 12 + DIV_ROUND_UP((9 * min(34, vdsc_cfg->slice_height - 8)), 100);
+
+total: 0 errors, 1 warnings, 0 checks, 134 lines checked
+1e18a983ae35 drm/i915/xelpd: Add rc_qp_table for rcparams calculation
+-:18: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#18: 
+new file mode 100644
+
+-:369: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#369: FILE: drivers/gpu/drm/i915/display/intel_vdsc.c:426:
++			rc->rc_range_params[buf_i].range_min_qp = RC_RANGE_QP(min, 10, buf_i, bpp_i);
+
+-:370: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#370: FILE: drivers/gpu/drm/i915/display/intel_vdsc.c:427:
++			rc->rc_range_params[buf_i].range_max_qp = RC_RANGE_QP(max, 10, buf_i, bpp_i);
+
+-:373: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#373: FILE: drivers/gpu/drm/i915/display/intel_vdsc.c:430:
++			rc->rc_range_params[buf_i].range_min_qp = RC_RANGE_QP(min, 12, buf_i, bpp_i);
+
+-:374: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#374: FILE: drivers/gpu/drm/i915/display/intel_vdsc.c:431:
++			rc->rc_range_params[buf_i].range_max_qp = RC_RANGE_QP(max, 12, buf_i, bpp_i);
+
+total: 0 errors, 5 warnings, 0 checks, 347 lines checked
+cddd8ca967f3 drm/i915/xelpd: Add VRR guardband for VRR CTL
+-:156: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#156: FILE: drivers/gpu/drm/i915/display/intel_vrr.c:221:
++		crtc_state->vrr.guardband = REG_FIELD_GET(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, trans_vrr_ctl);
+
+-:159: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#159: FILE: drivers/gpu/drm/i915/display/intel_vrr.c:224:
++			crtc_state->vrr.pipeline_full = REG_FIELD_GET(VRR_CTL_PIPELINE_FULL_MASK, trans_vrr_ctl);
+
+-:186: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#186: FILE: drivers/gpu/drm/i915/i915_reg.h:4360:
++#define	  XELPD_VRR_CTL_VRR_GUARDBAND(x)	REG_FIELD_PREP(XELPD_VRR_CTL_VRR_GUARDBAND_MASK, (x))
+
+total: 0 errors, 3 warnings, 0 checks, 140 lines checked
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
