@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFD83377DD
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 16:34:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 517063377D8
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 16:34:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC8E46EDDE;
-	Thu, 11 Mar 2021 15:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF786EDEF;
+	Thu, 11 Mar 2021 15:34:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D271F6EDDE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D50156EDF6
  for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 15:34:31 +0000 (UTC)
-IronPort-SDR: XQcBKZcATw8XHjXh1RCkPcH3sZ2aHj2cZcaDI9hfEQYcX6mEyVhOyJn+0fE30tkEMRNTXpeDR1
- caPFN7NKMCKA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="175797249"
-X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="175797249"
+IronPort-SDR: TwsgilO3O+Rlgp2t+ILfRVlBtb+eby6VGh7B6dMT5NITjb06Wy9e//2cfM1QSRHIq83ONkPxAH
+ NC7tyoilryMw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="175797250"
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="175797250"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Mar 2021 07:34:31 -0800
-IronPort-SDR: 84V6HKuMF2c1e5CHweFWuQZbKznblzvgHHbDvNEuppmsTO6PvmtNbGktrN9XCY4m4APEQIm5HN
- 8xuS4w5q1M+g==
-X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="589251682"
+IronPort-SDR: DDs9jnWW2dlZX08byr+5BXzaAdkt/VRSWrx3pXpoxVUSlCvUSjccDuQelwu1yBcL2iAP7EWFxA
+ 5HR15rBIWoOA==
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="589251685"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Mar 2021 07:34:31 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Mar 2021 07:34:07 -0800
-Message-Id: <20210311153415.3024607-16-matthew.d.roper@intel.com>
+Date: Thu, 11 Mar 2021 07:34:08 -0800
+Message-Id: <20210311153415.3024607-17-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210311153415.3024607-1-matthew.d.roper@intel.com>
 References: <20210311153415.3024607-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 15/23] drm/i915/xelpd: Increase maximum
- watermark lines to 255
+Subject: [Intel-gfx] [PATCH v2 16/23] drm/i915/xelpd: Required bandwidth
+ increases when VT-d is active
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,65 +47,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-WEVfTFBEIGNvbnRpbnVlcyB0byB1c2UgdGhlIHNhbWUgInNreWxha2Utc3R5bGUiIHdhdGVybWFy
-awpwcm9ncmFtbWluZyBhcyBvdGhlciByZWNlbnQgcGxhdGZvcm1zLiAgVGhlIG9ubHkgY2hhbmdl
-IHRvIHRoZSB3YXRlcm1hcmsKY2FsY3VsYXRpb25zIGNvbXBhcmVkIHRvIERpc3BsYXkxMiBpcyB0
-aGF0IFhFX0xQRCBub3cgYWxsb3dzIGEKbWF4aW11bSBvZiAyNTUgbGluZXMgdnMgdGhlIG9sZCBs
-aW1pdCBvZiAzMS4KCkR1ZSB0byB0aGUgbGFyZ2VyIHBvc3NpYmxlIGxpbmVzIHZhbHVlLCB0aGUg
-Y29ycmVzcG9uZGluZyBiaXRzCnJlcHJlc2VudGluZyB0aGUgdmFsdWUgaW4gUExBTkVfV00gYXJl
-IGFsc28gZXh0ZW5kZWQsIHNvIG1ha2Ugc3VyZSB3ZQpyZWFkL3dyaXRlIGVub3VnaCBiaXRzLiAg
-TGV0J3MgYWxzbyB0YWtlIHRoaXMgb3Bwb3J0dW5pdHkgdG8gc3dpdGNoIG92ZXIKdG8gdGhlIFJF
-R19GSUVMRCBub3RhdGlvbi4KCkJzcGVjOiA0OTMyNQpCc3BlYzogNTA0MTkKQ2M6IFZpbGxlIFN5
-cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBBbnNodW1hbiBHdXB0
-YSA8YW5zaHVtYW4uZ3VwdGFAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxt
-YXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-cmVnLmggfCAgMyArLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgfCAxNSArKysr
-KysrKysrKy0tLS0KIDIgZmlsZXMgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlv
-bnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAppbmRleCA5ODE5MDFiNjc5MTYuLjM0OGI5NGE2
-OWI5NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAorKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCkBAIC02NDI1LDggKzY0MjUsNyBAQCBlbnVt
-IHsKICNkZWZpbmUgX0NVUl9XTV9UUkFOU19CXzAJMHg3MTE2OAogI2RlZmluZSAgIFBMQU5FX1dN
-X0VOCQkoMSA8PCAzMSkKICNkZWZpbmUgICBQTEFORV9XTV9JR05PUkVfTElORVMJKDEgPDwgMzAp
-Ci0jZGVmaW5lICAgUExBTkVfV01fTElORVNfU0hJRlQJMTQKLSNkZWZpbmUgICBQTEFORV9XTV9M
-SU5FU19NQVNLCTB4MWYKKyNkZWZpbmUgICBQTEFORV9XTV9MSU5FU19NQVNLCVJFR19HRU5NQVNL
-KDIxLCAxNCkKICNkZWZpbmUgICBQTEFORV9XTV9CTE9DS1NfTUFTSwkweDdmZiAvKiBza2wrOiAx
-MCBiaXRzLCBpY2wrIDExIGJpdHMgKi8KIAogI2RlZmluZSBfQ1VSX1dNXzAocGlwZSkgX1BJUEUo
-cGlwZSwgX0NVUl9XTV9BXzAsIF9DVVJfV01fQl8wKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfcG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKaW5k
-ZXggMjYxNmIxODQ1NzE5Li4wYmFkOWNjNzY1MDUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2ludGVsX3BtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYwpA
-QCAtNTE3Niw2ICs1MTc2LDE0IEBAIHN0YXRpYyBib29sIHNrbF93bV9oYXNfbGluZXMoc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBpbnQgbGV2ZWwpCiAJcmV0dXJuIGxldmVsID4g
-MDsKIH0KIAorc3RhdGljIGludCBza2xfd21fbWF4X2xpbmVzKHN0cnVjdCBkcm1faTkxNV9wcml2
-YXRlICpkZXZfcHJpdikKK3sKKwlpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpID49IDEzKQorCQly
-ZXR1cm4gMjU1OworCWVsc2UKKwkJcmV0dXJuIDMxOworfQorCiBzdGF0aWMgdm9pZCBza2xfY29t
-cHV0ZV9wbGFuZV93bShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwK
-IAkJCQkgaW50IGxldmVsLAogCQkJCSB1bnNpZ25lZCBpbnQgbGF0ZW5jeSwKQEAgLTUyODQsNyAr
-NTI5Miw3IEBAIHN0YXRpYyB2b2lkIHNrbF9jb21wdXRlX3BsYW5lX3dtKGNvbnN0IHN0cnVjdCBp
-bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCWlmICghc2tsX3dtX2hhc19saW5lcyhkZXZf
-cHJpdiwgbGV2ZWwpKQogCQlyZXNfbGluZXMgPSAwOwogCi0JaWYgKHJlc19saW5lcyA+IDMxKSB7
-CisJaWYgKHJlc19saW5lcyA+IHNrbF93bV9tYXhfbGluZXMoZGV2X3ByaXYpKSB7CiAJCS8qIHJl
-amVjdCBpdCAqLwogCQlyZXN1bHQtPm1pbl9kZGJfYWxsb2MgPSBVMTZfTUFYOwogCQlyZXR1cm47
-CkBAIC01NTc5LDcgKzU1ODcsNyBAQCBzdGF0aWMgdm9pZCBza2xfd3JpdGVfd21fbGV2ZWwoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAogCWlmIChsZXZlbC0+aWdub3JlX2xpbmVz
-KQogCQl2YWwgfD0gUExBTkVfV01fSUdOT1JFX0xJTkVTOwogCXZhbCB8PSBsZXZlbC0+cGxhbmVf
-cmVzX2I7Ci0JdmFsIHw9IGxldmVsLT5wbGFuZV9yZXNfbCA8PCBQTEFORV9XTV9MSU5FU19TSElG
-VDsKKwl2YWwgfD0gUkVHX0ZJRUxEX1BSRVAoUExBTkVfV01fTElORVNfTUFTSywgbGV2ZWwtPnBs
-YW5lX3Jlc19sKTsKIAogCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCByZWcsIHZhbCk7CiB9
-CkBAIC02MTg3LDggKzYxOTUsNyBAQCBzdGF0aWMgdm9pZCBza2xfd21fbGV2ZWxfZnJvbV9yZWdf
-dmFsKHUzMiB2YWwsIHN0cnVjdCBza2xfd21fbGV2ZWwgKmxldmVsKQogCWxldmVsLT5wbGFuZV9l
-biA9IHZhbCAmIFBMQU5FX1dNX0VOOwogCWxldmVsLT5pZ25vcmVfbGluZXMgPSB2YWwgJiBQTEFO
-RV9XTV9JR05PUkVfTElORVM7CiAJbGV2ZWwtPnBsYW5lX3Jlc19iID0gdmFsICYgUExBTkVfV01f
-QkxPQ0tTX01BU0s7Ci0JbGV2ZWwtPnBsYW5lX3Jlc19sID0gKHZhbCA+PiBQTEFORV9XTV9MSU5F
-U19TSElGVCkgJgotCQlQTEFORV9XTV9MSU5FU19NQVNLOworCWxldmVsLT5wbGFuZV9yZXNfbCA9
-IFJFR19GSUVMRF9HRVQoUExBTkVfV01fTElORVNfTUFTSywgdmFsKTsKIH0KIAogdm9pZCBza2xf
-cGlwZV93bV9nZXRfaHdfc3RhdGUoc3RydWN0IGludGVsX2NydGMgKmNydGMsCi0tIAoyLjI1LjQK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+If VT-d is active, the memory bandwidth usage of the display is 5%
+higher.  Take this into account when determining whether we can support
+a display configuration.
+
+Bspec: 64631
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 20dbc3759d27..23cf9bf31e41 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -344,6 +344,9 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
+ 	for_each_pipe(dev_priv, pipe)
+ 		data_rate += bw_state->data_rate[pipe];
+ 
++	if (DISPLAY_VER(dev_priv) >= 13 && intel_vtd_active())
++		data_rate = data_rate * 105 / 100;
++
+ 	return data_rate;
+ }
+ 
+-- 
+2.25.4
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
