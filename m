@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8C54337A0B
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 17:52:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64210337A27
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 17:57:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08CD66EA8C;
-	Thu, 11 Mar 2021 16:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 623A46E4EA;
+	Thu, 11 Mar 2021 16:57:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 672A26EA8C
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 16:52:54 +0000 (UTC)
-IronPort-SDR: GuEW+h1QjcBFFPWgVLQXkOa2vlTtgUz+KBd09l1W9A3BWHvXAnV62N7MIHBQngK2pios4wF/cv
- CZ5G0bbw1Jzg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="168616037"
-X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="168616037"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2021 08:52:48 -0800
-IronPort-SDR: VTVMgQAT+QS4S1geaWi60MAdM9zocS3LOHGjVpt2xhGEWgrSNLUnVSV3Opr75i5Qpsz5Xa32a0
- bHgV95x55qMg==
-X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="404128460"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AAE86E4EA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 16:57:55 +0000 (UTC)
+IronPort-SDR: de2WJ/zPhsmApZbN/V5xGJEiiKmXUpetD8B6TYQbJjPHYPGeZHdlK8oHGXdFffmfX///UGfbYT
+ xwHP1WR7XZhg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="208525781"
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="208525781"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 08:57:55 -0800
+IronPort-SDR: xDb/LtYIi6l99rx8vN3GEui0+qlds27cBaSA8WhvQGw1OKP8AaLFkxK8diV+g16QMVh0QWN8qt
+ uGmx0uu0cCcg==
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="410671589"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2021 08:52:47 -0800
-Date: Thu, 11 Mar 2021 18:52:44 +0200
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 08:57:43 -0800
+Date: Thu, 11 Mar 2021 18:57:39 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20210311165244.GD2970909@ideak-desk.fi.intel.com>
+Message-ID: <20210311165739.GE2970909@ideak-desk.fi.intel.com>
 References: <20210310221736.2963264-1-imre.deak@intel.com>
- <20210310221736.2963264-2-imre.deak@intel.com>
- <YEo/qYrwyIeDx/+H@intel.com>
+ <20210310221736.2963264-15-imre.deak@intel.com>
+ <YEpGDj7E4KBbPRiO@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YEo/qYrwyIeDx/+H@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 01/23] drm/i915: Fix rotation setup during
- plane HW readout
+In-Reply-To: <YEpGDj7E4KBbPRiO@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 14/23] drm/i915/intel_fb: Factor out
+ convert_plane_offset_to_xy()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,62 +56,146 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 11, 2021 at 06:04:57PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Thu, Mar 11, 2021 at 12:17:14AM +0200, Imre Deak wrote:
-> > The HW plane state is cleared and inited after we store the rotation to
-> > it, so store it instead to the uapi state to match what we do with all
-> > other plane state until intel_plane_copy_uapi_to_hw_state() is called.
-> =
-
-> Feels a bit backwards. Ideally I'd like the readout to go the other way.
-> But given how this code is atm this is consistent with the rest.
-
-Yes makes sense to read out to an i915 specific state first, if that's
-what you mean.
-
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> Looks like we could also nuke the
->  intel_state->uapi.src =3D drm_plane_state_src(plane_state);
->  intel_state->uapi.dst =3D drm_plane_state_dest(plane_state);
-> since intel_plane_copy_uapi_to_hw_state() also does that for us.
-
-Yes, though the fn name suggests that it only copies from uapi -> hw.
-
-> > Rotation for initial FBs is not supported atm, but let's still fix the
-> > plane state setup here.
+On Thu, Mar 11, 2021 at 06:32:14PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Thu, Mar 11, 2021 at 12:17:27AM +0200, Imre Deak wrote:
+> > Factor out to a new function the logic to convert the FB plane offset to
+> > x/y and check the validity of x/y, with the goal to make
+> > intel_fill_fb_info() more readable.
 > > =
 
 > > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> >  drivers/gpu/drm/i915/display/intel_fb.c | 70 +++++++++++++++----------
+> >  1 file changed, 42 insertions(+), 28 deletions(-)
 > > =
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 5bfc06c46e28..12b54e032bc1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -2468,11 +2468,11 @@ intel_find_initial_plane_obj(struct intel_crtc =
-*intel_crtc,
-> >  	return;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/=
+i915/display/intel_fb.c
+> > index b96849ec32df..806341c229f0 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> > @@ -400,10 +400,10 @@ static int intel_fb_offset_to_xy(int *x, int *y,
+> >  	return 0;
+> >  }
 > >  =
 
-> >  valid_fb:
-> > -	intel_state->hw.rotation =3D plane_config->rotation;
-> > +	plane_state->rotation =3D plane_config->rotation;
-> >  	intel_fill_fb_ggtt_view(&intel_state->view, fb,
-> > -				intel_state->hw.rotation);
-> > +				plane_state->rotation);
-> >  	intel_state->color_plane[0].stride =3D
-> > -		intel_fb_pitch(fb, 0, intel_state->hw.rotation);
-> > +		intel_fb_pitch(fb, 0, plane_state->rotation);
+> > -static int intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int ccs_p=
+lane, int x, int y)
+> > +static int intel_fb_check_ccs_xy(const struct drm_framebuffer *fb, int=
+ ccs_plane, int x, int y)
+> >  {
+> >  	struct drm_i915_private *i915 =3D to_i915(fb->dev);
+> > -	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
+> > +	const struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
+> >  	int main_plane;
+> >  	int hsub, vsub;
+> >  	int tile_width, tile_height;
+> > @@ -520,6 +520,45 @@ static bool intel_plane_needs_remap(const struct i=
+ntel_plane_state *plane_state)
+> >  	return stride > max_stride;
+> >  }
 > >  =
 
-> >  	__i915_vma_pin(vma);
-> >  	intel_state->vma =3D i915_vma_get(vma);
+> > +static int convert_plane_offset_to_xy(const struct intel_framebuffer *=
+fb, int color_plane,
+> > +				      int plane_width, int *x, int *y)
+> > +{
+> > +	const struct drm_framebuffer *drm_fb =3D &fb->base;
+> =
+
+> Not a fan of these aliasing pointers. I know that the fb =
+
+> stuff is a bit of a mess when it comes to the drm_ vs. intel_
+> usage.
+> =
+
+> We've mostly cleaned up that stuff for plane/crtc/etc. by just
+> avoiding the aliasing pointers and just using foo->base where
+> appropriate. Not sure how that sort of approach would look in
+> the end of fbs?
+
+Yes, can use &fb->base instead.
+
+> > +	struct drm_i915_gem_object *obj =3D intel_fb_obj(drm_fb);
+> > +	int ret;
+> > +
+> > +	ret =3D intel_fb_offset_to_xy(x, y, drm_fb, color_plane);
+> > +	if (ret) {
+> > +		drm_dbg_kms(drm_fb->dev,
+> > +			    "bad fb plane %d offset: 0x%x\n",
+> > +			    color_plane, drm_fb->offsets[color_plane]);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret =3D intel_fb_check_ccs_xy(drm_fb, color_plane, *x, *y);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/*
+> > +	 * The fence (if used) is aligned to the start of the object
+> > +	 * so having the framebuffer wrap around across the edge of the
+> > +	 * fenced region doesn't really work. We have no API to configure
+> > +	 * the fence start offset within the object (nor could we probably
+> > +	 * on gen2/3). So it's just easier if we just require that the
+> > +	 * fb layout agrees with the fence layout. We already check that the
+> > +	 * fb stride matches the fence stride elsewhere.
+> > +	 */
+> > +	if (color_plane =3D=3D 0 && i915_gem_object_is_tiled(obj) &&
+> > +	    (*x + plane_width) * drm_fb->format->cpp[color_plane] > drm_fb->p=
+itches[color_plane]) {
+> > +		drm_dbg_kms(drm_fb->dev,
+> > +			    "bad fb plane %d offset: 0x%x\n",
+> > +			    color_plane, drm_fb->offsets[color_plane]);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  /*
+> >   * Setup the rotated view for an FB plane and return the size the GTT =
+mapping
+> >   * requires for this view.
+> > @@ -611,35 +650,10 @@ int intel_fill_fb_info(struct drm_i915_private *i=
+915, struct drm_framebuffer *fb
+> >  		cpp =3D fb->format->cpp[i];
+> >  		intel_fb_plane_dims(&width, &height, fb, i);
+> >  =
+
+> > -		ret =3D intel_fb_offset_to_xy(&x, &y, fb, i);
+> > -		if (ret) {
+> > -			drm_dbg_kms(&i915->drm,
+> > -				    "bad fb plane %d offset: 0x%x\n",
+> > -				    i, fb->offsets[i]);
+> > -			return ret;
+> > -		}
+> > -
+> > -		ret =3D intel_fb_check_ccs_xy(fb, i, x, y);
+> > +		ret =3D convert_plane_offset_to_xy(intel_fb, i, width, &x, &y);
+> >  		if (ret)
+> >  			return ret;
+> >  =
+
+> > -		/*
+> > -		 * The fence (if used) is aligned to the start of the object
+> > -		 * so having the framebuffer wrap around across the edge of the
+> > -		 * fenced region doesn't really work. We have no API to configure
+> > -		 * the fence start offset within the object (nor could we probably
+> > -		 * on gen2/3). So it's just easier if we just require that the
+> > -		 * fb layout agrees with the fence layout. We already check that the
+> > -		 * fb stride matches the fence stride elsewhere.
+> > -		 */
+> > -		if (i =3D=3D 0 && i915_gem_object_is_tiled(obj) &&
+> > -		    (x + width) * cpp > fb->pitches[i]) {
+> > -			drm_dbg_kms(&i915->drm,
+> > -				    "bad fb plane %d offset: 0x%x\n",
+> > -				     i, fb->offsets[i]);
+> > -			return -EINVAL;
+> > -		}
+> > -
+> >  		/*
+> >  		 * First pixel of the framebuffer from
+> >  		 * the start of the normal gtt mapping.
 > > -- =
 
 > > 2.25.1
