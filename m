@@ -2,27 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 789D533746D
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 14:49:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E470C337578
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 15:23:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2976ECA2;
-	Thu, 11 Mar 2021 13:49:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50C0F6ED12;
+	Thu, 11 Mar 2021 14:23:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl
- [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6F26ECB6
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 13:48:56 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Mar 2021 14:42:49 +0100
-Message-Id: <20210311134249.588632-70-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210311134249.588632-1-maarten.lankhorst@linux.intel.com>
-References: <20210311134249.588632-1-maarten.lankhorst@linux.intel.com>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 608526ED12
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 14:23:56 +0000 (UTC)
+IronPort-SDR: dKCrCMS5qFoFoFV+HFKLSchZlR4O3IaiTPR+IXZQCcRkJSkvgakVIfTWMdUho0iP4j6UI4Etjp
+ VjFtGbkiicBg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="168590567"
+X-IronPort-AV: E=Sophos;i="5.81,240,1610438400"; d="scan'208";a="168590567"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 06:23:55 -0800
+IronPort-SDR: Yw2pUmAYWmB+s2TLNHINuLiSW89KxwrLfkt5TpQKpdn69GYsBjcZwFlsjcqw31TQAvWFViwHsC
+ Ft/u77q2YKlw==
+X-IronPort-AV: E=Sophos;i="5.81,240,1610438400"; d="scan'208";a="448295358"
+Received: from unknown (HELO intel.com) ([10.237.72.91])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 06:23:54 -0800
+Date: Thu, 11 Mar 2021 16:26:13 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20210311142613.GA8447@intel.com>
+References: <20210305153610.12177-1-ville.syrjala@linux.intel.com>
+ <20210305153610.12177-7-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v8 69/69] drm/i915: Pass ww ctx to
- i915_gem_object_pin_pages
+Content-Disposition: inline
+In-Reply-To: <20210305153610.12177-7-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915: s/plane_res_b/blocks/ etc.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,439 +48,545 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is the final part of passing ww ctx to the get_pages() callbacks.
-Now we no longer have to implicitly get ww ctx by using get_ww_ctx.
+On Fri, Mar 05, 2021 at 05:36:10PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_clflush.c   |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c    |  6 +++---
- drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 21 ++++++++++++-------
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 19 +++++++++++------
- drivers/gpu/drm/i915/gem/i915_gem_object.h    | 11 ++++++----
- drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 14 +++++++------
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c    |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c   |  4 ++--
- drivers/gpu/drm/i915/gt/intel_gtt.c           |  4 ++--
- drivers/gpu/drm/i915/i915_gem.c               |  6 +++---
- drivers/gpu/drm/i915/i915_vma.c               |  7 ++++---
- 13 files changed, 60 insertions(+), 40 deletions(-)
+> Rename a bunch of the skl+ watermark struct members to
+> have sensible names. Avoids me having to think what
+> plane_res_b/etc. means.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index acfd50248f7b..0a21393412c9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1153,7 +1153,7 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
- 	if (!ret && phys_cursor)
- 		ret = i915_gem_object_attach_phys(obj, alignment);
- 	if (!ret)
--		ret = i915_gem_object_pin_pages(obj);
-+		ret = i915_gem_object_pin_pages(obj, &ww);
- 	if (ret)
- 		goto err;
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-index e4c24558eaa8..109f5c8b802a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
-@@ -55,7 +55,7 @@ static struct clflush *clflush_work_create(struct drm_i915_gem_object *obj)
- 	if (!clflush)
- 		return NULL;
- 
--	if (__i915_gem_object_get_pages(obj) < 0) {
-+	if (__i915_gem_object_get_pages(obj, NULL) < 0) {
- 		kfree(clflush);
- 		return NULL;
- 	}
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-index 5821524e391c..9e6d72a3e94b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_dmabuf.c
-@@ -25,7 +25,7 @@ static struct sg_table *i915_gem_map_dma_buf(struct dma_buf_attachment *attachme
- 	struct scatterlist *src, *dst;
- 	int ret, i;
- 
--	ret = i915_gem_object_pin_pages(obj);
-+	ret = i915_gem_object_pin_pages(obj, NULL);
- 	if (ret)
- 		goto err;
- 
-@@ -130,7 +130,7 @@ static int i915_gem_begin_cpu_access(struct dma_buf *dma_buf, enum dma_data_dire
- retry:
- 	err = i915_gem_object_lock(obj, &ww);
- 	if (!err)
--		err = i915_gem_object_pin_pages(obj);
-+		err = i915_gem_object_pin_pages(obj, &ww);
- 	if (!err) {
- 		i915_gem_object_set_to_cpu_domain(obj, write);
- 		i915_gem_object_unpin_pages(obj);
-@@ -154,7 +154,7 @@ static int i915_gem_end_cpu_access(struct dma_buf *dma_buf, enum dma_data_direct
- retry:
- 	err = i915_gem_object_lock(obj, &ww);
- 	if (!err)
--		err = i915_gem_object_pin_pages(obj);
-+		err = i915_gem_object_pin_pages(obj, &ww);
- 	if (!err) {
- 		i915_gem_object_set_to_gtt_domain(obj, false);
- 		i915_gem_object_unpin_pages(obj);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index a5b3a21faf9c..85d3d3f4a77e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -430,6 +430,7 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- 	struct drm_i915_gem_object *obj;
- 	u32 read_domains = args->read_domains;
- 	u32 write_domain = args->write_domain;
-+	struct i915_gem_ww_ctx ww;
- 	int err;
- 
- 	/* Only handle setting domains to types used by the CPU. */
-@@ -470,7 +471,9 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- 		goto out;
- 	}
- 
--	err = i915_gem_object_lock_interruptible(obj, NULL);
-+	i915_gem_ww_ctx_init(&ww, true);
-+retry:
-+	err = i915_gem_object_lock_interruptible(obj, &ww);
- 	if (err)
- 		goto out;
- 
-@@ -483,9 +486,9 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- 	 * continue to assume that the obj remained out of the CPU cached
- 	 * domain.
- 	 */
--	err = i915_gem_object_pin_pages(obj);
-+	err = i915_gem_object_pin_pages(obj, &ww);
- 	if (err)
--		goto out_unlock;
-+		goto out;
- 
- 	/*
- 	 * Already in the desired write domain? Nothing for us to do!
-@@ -510,8 +513,6 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- out_unpin:
- 	i915_gem_object_unpin_pages(obj);
- 
--out_unlock:
--	i915_gem_object_unlock(obj);
- out_wait:
- 	if (!err) {
- 		err = i915_gem_object_wait(obj,
-@@ -524,6 +525,12 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
- 	}
- 
- out:
-+	if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&ww);
-+		if (!err)
-+			goto retry;
-+	}
-+	i915_gem_ww_ctx_fini(&ww);
- 	i915_gem_object_put(obj);
- 	return err;
- }
-@@ -545,7 +552,7 @@ int i915_gem_object_prepare_read(struct drm_i915_gem_object *obj,
- 
- 	assert_object_held(obj);
- 
--	ret = i915_gem_object_pin_pages(obj);
-+	ret = i915_gem_object_pin_pages(obj, ww);
- 	if (ret)
- 		return ret;
- 
-@@ -590,7 +597,7 @@ int i915_gem_object_prepare_write(struct drm_i915_gem_object *obj,
- 
- 	assert_object_held(obj);
- 
--	ret = i915_gem_object_pin_pages(obj);
-+	ret = i915_gem_object_pin_pages(obj, ww);
- 	if (ret)
- 		return ret;
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 3d50f2d17d3c..7e60e41d6c0c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2497,7 +2497,7 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
- 		pw->batch_map = i915_gem_object_pin_map(batch, &eb->ww, I915_MAP_WC);
- 
- 	if (IS_ERR(pw->batch_map)) {
--		err = i915_gem_object_pin_pages(batch);
-+		err = i915_gem_object_pin_pages(batch, &eb->ww);
- 		if (err)
- 			goto err_unmap_shadow;
- 		pw->batch_map = NULL;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index edac8ee3be9a..8690bf434407 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -239,6 +239,7 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
- 	struct i915_mmap_offset *mmo = area->vm_private_data;
- 	struct drm_i915_gem_object *obj = mmo->obj;
- 	resource_size_t iomap;
-+	struct i915_gem_ww_ctx ww;
- 	int err;
- 
- 	/* Sanity check that we allow writing into this object */
-@@ -246,10 +247,11 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
- 		     area->vm_flags & VM_WRITE))
- 		return VM_FAULT_SIGBUS;
- 
--	if (i915_gem_object_lock_interruptible(obj, NULL))
--		return VM_FAULT_NOPAGE;
--
--	err = i915_gem_object_pin_pages(obj);
-+	i915_gem_ww_ctx_init(&ww, true);
-+retry:
-+	err = i915_gem_object_lock(obj, &ww);
-+	if (!err)
-+		err = i915_gem_object_pin_pages(obj, &ww);
- 	if (err)
- 		goto out;
- 
-@@ -272,7 +274,12 @@ static vm_fault_t vm_fault_cpu(struct vm_fault *vmf)
- 	i915_gem_object_unpin_pages(obj);
- 
- out:
--	i915_gem_object_unlock(obj);
-+	if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&ww);
-+		if (!err)
-+			goto retry;
-+	}
-+	i915_gem_ww_ctx_fini(&ww);
- 	return i915_error_to_vmf_fault(err);
- }
- 
-@@ -313,7 +320,7 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
- 		goto err_rpm;
- 	}
- 
--	ret = i915_gem_object_pin_pages(obj);
-+	ret = i915_gem_object_pin_pages(obj, &ww);
- 	if (ret)
- 		goto err_rpm;
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 9bd9b47dcc8d..64819b4e592a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -378,18 +378,21 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
- 				 struct sg_table *pages,
- 				 unsigned int sg_page_sizes);
- 
--int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj);
--int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj);
-+int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj,
-+				  struct i915_gem_ww_ctx *ww);
-+int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj,
-+				struct i915_gem_ww_ctx *ww);
- 
- static inline int __must_check
--i915_gem_object_pin_pages(struct drm_i915_gem_object *obj)
-+i915_gem_object_pin_pages(struct drm_i915_gem_object *obj,
-+			  struct i915_gem_ww_ctx *ww)
- {
- 	assert_object_held(obj);
- 
- 	if (atomic_inc_not_zero(&obj->mm.pages_pin_count))
- 		return 0;
- 
--	return __i915_gem_object_get_pages(obj);
-+	return __i915_gem_object_get_pages(obj, ww);
- }
- 
- int i915_gem_object_pin_pages_unlocked(struct drm_i915_gem_object *obj);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-index 232832398457..94cc33ea483d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-@@ -87,7 +87,8 @@ void __i915_gem_object_set_pages(struct drm_i915_gem_object *obj,
- 	}
- }
- 
--int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
-+int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj,
-+				  struct i915_gem_ww_ctx *ww)
- {
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
- 	int err;
-@@ -100,7 +101,7 @@ int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
- 		return -EFAULT;
- 	}
- 
--	err = obj->ops->get_pages(obj, NULL);
-+	err = obj->ops->get_pages(obj, ww);
- 	GEM_BUG_ON(!err && !i915_gem_object_has_pages(obj));
- 
- 	return err;
-@@ -113,7 +114,8 @@ int ____i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
-  * either as a result of memory pressure (reaping pages under the shrinker)
-  * or as the object is itself released.
-  */
--int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
-+int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj,
-+				struct i915_gem_ww_ctx *ww)
- {
- 	int err;
- 
-@@ -124,7 +126,7 @@ int __i915_gem_object_get_pages(struct drm_i915_gem_object *obj)
- 	if (unlikely(!i915_gem_object_has_pages(obj))) {
- 		GEM_BUG_ON(i915_gem_object_has_pinned_pages(obj));
- 
--		err = ____i915_gem_object_get_pages(obj);
-+		err = ____i915_gem_object_get_pages(obj, ww);
- 		if (err)
- 			return err;
- 
-@@ -144,7 +146,7 @@ int i915_gem_object_pin_pages_unlocked(struct drm_i915_gem_object *obj)
- retry:
- 	err = i915_gem_object_lock(obj, &ww);
- 	if (!err)
--		err = i915_gem_object_pin_pages(obj);
-+		err = i915_gem_object_pin_pages(obj, &ww);
- 
- 	if (err == -EDEADLK) {
- 		err = i915_gem_ww_ctx_backoff(&ww);
-@@ -362,7 +364,7 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
- 		if (unlikely(!i915_gem_object_has_pages(obj))) {
- 			GEM_BUG_ON(i915_gem_object_has_pinned_pages(obj));
- 
--			err = ____i915_gem_object_get_pages(obj);
-+			err = ____i915_gem_object_get_pages(obj, ww);
- 			if (err)
- 				return ERR_PTR(err);
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 5b732b0fe5ce..48b2258091c3 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -641,7 +641,7 @@ static int __i915_gem_object_create_stolen(struct intel_memory_region *mem,
- 	if (WARN_ON(!i915_gem_object_trylock(obj)))
- 		return -EBUSY;
- 
--	err = i915_gem_object_pin_pages(obj);
-+	err = i915_gem_object_pin_pages(obj, NULL);
- 	if (!err)
- 		i915_gem_object_init_memory_region(obj, mem);
- 	i915_gem_object_unlock(obj);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 693d0dbe9ed2..71c928c789b3 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -261,7 +261,7 @@ static int i915_gem_object_userptr_unbind(struct drm_i915_gem_object *obj, bool
- 		i915_gem_userptr_put_pages(obj, pages);
- 
- 	if (get_pages)
--		err = ____i915_gem_object_get_pages(obj);
-+		err = ____i915_gem_object_get_pages(obj, NULL);
- 
- 	return err;
- }
-@@ -390,7 +390,7 @@ int i915_gem_object_userptr_validate(struct drm_i915_gem_object *obj)
- 		 * it doesn't matter if we collide with the mmu notifier,
- 		 * and -EAGAIN handling is not required.
- 		 */
--		err = i915_gem_object_pin_pages(obj);
-+		err = i915_gem_object_pin_pages(obj, NULL);
- 		if (!err)
- 			i915_gem_object_unpin_pages(obj);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index 994e4ea28903..38c1ba203071 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -30,7 +30,7 @@ int pin_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
- 	int err;
- 
- 	i915_gem_object_lock(obj, NULL);
--	err = i915_gem_object_pin_pages(obj);
-+	err = i915_gem_object_pin_pages(obj, NULL);
- 	i915_gem_object_unlock(obj);
- 	if (err)
- 		return err;
-@@ -43,7 +43,7 @@ int pin_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object
- {
- 	int err;
- 
--	err = i915_gem_object_pin_pages(obj);
-+	err = i915_gem_object_pin_pages(obj, NULL);
- 	if (err)
- 		return err;
- 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index a935c05809d5..49f0e459ee64 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -212,7 +212,7 @@ i915_gem_shmem_pread(struct drm_i915_gem_object *obj,
- 	if (ret)
- 		return ret;
- 
--	ret = i915_gem_object_pin_pages(obj);
-+	ret = i915_gem_object_pin_pages(obj, NULL);
- 	if (ret)
- 		goto err_unlock;
- 
-@@ -311,7 +311,7 @@ static struct i915_vma *i915_gem_gtt_prepare(struct drm_i915_gem_object *obj,
- 		vma = NULL;
- 	}
- 
--	ret = i915_gem_object_pin_pages(obj);
-+	ret = i915_gem_object_pin_pages(obj, &ww);
- 	if (ret) {
- 		if (drm_mm_node_allocated(node)) {
- 			ggtt->vm.clear_range(&ggtt->vm, node->start, node->size);
-@@ -633,7 +633,7 @@ i915_gem_shmem_pwrite(struct drm_i915_gem_object *obj,
- 	if (ret)
- 		return ret;
- 
--	ret = i915_gem_object_pin_pages(obj);
-+	ret = i915_gem_object_pin_pages(obj, NULL);
- 	if (ret)
- 		goto err_unlock;
- 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index c5b9f30ac0a3..03291c032814 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -785,7 +785,8 @@ static bool try_qad_pin(struct i915_vma *vma, unsigned int flags)
- 	return pinned;
- }
- 
--static int vma_get_pages(struct i915_vma *vma)
-+static int vma_get_pages(struct i915_vma *vma,
-+			 struct i915_gem_ww_ctx *ww)
- {
- 	int err = 0;
- 
-@@ -798,7 +799,7 @@ static int vma_get_pages(struct i915_vma *vma)
- 
- 	if (!atomic_read(&vma->pages_count)) {
- 		if (vma->obj) {
--			err = i915_gem_object_pin_pages(vma->obj);
-+			err = i915_gem_object_pin_pages(vma->obj, ww);
- 			if (err)
- 				goto unlock;
- 		}
-@@ -876,7 +877,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 	if (try_qad_pin(vma, flags & I915_VMA_BIND_MASK))
- 		return 0;
- 
--	err = vma_get_pages(vma);
-+	err = vma_get_pages(vma, ww);
- 	if (err)
- 		return err;
- 
--- 
-2.30.1
+Nice idea, was always wondering why such tricky names :)
+plane_res_b =3D> blocks etc, makes huge difference for readability.
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+> =
+
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  |  24 +--
+>  .../drm/i915/display/intel_display_types.h    |   6 +-
+>  drivers/gpu/drm/i915/intel_pm.c               | 198 +++++++++---------
+>  3 files changed, 112 insertions(+), 116 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 076d381d3387..ad6567f04bfa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -9433,12 +9433,12 @@ static void verify_wm_state(struct intel_crtc *cr=
+tc,
+>  			drm_err(&dev_priv->drm,
+>  				"[PLANE:%d:%s] mismatch in WM%d (expected e=3D%d b=3D%u l=3D%u, got =
+e=3D%d b=3D%u l=3D%u)\n",
+>  				plane->base.base.id, plane->base.name, level,
+> -				sw_wm_level->plane_en,
+> -				sw_wm_level->plane_res_b,
+> -				sw_wm_level->plane_res_l,
+> -				hw_wm_level->plane_en,
+> -				hw_wm_level->plane_res_b,
+> -				hw_wm_level->plane_res_l);
+> +				sw_wm_level->enable,
+> +				sw_wm_level->blocks,
+> +				sw_wm_level->lines,
+> +				hw_wm_level->enable,
+> +				hw_wm_level->blocks,
+> +				hw_wm_level->lines);
+>  		}
+>  =
+
+>  		hw_wm_level =3D &hw->wm.planes[plane->id].trans_wm;
+> @@ -9448,12 +9448,12 @@ static void verify_wm_state(struct intel_crtc *cr=
+tc,
+>  			drm_err(&dev_priv->drm,
+>  				"[PLANE:%d:%s] mismatch in trans WM (expected e=3D%d b=3D%u l=3D%u, =
+got e=3D%d b=3D%u l=3D%u)\n",
+>  				plane->base.base.id, plane->base.name,
+> -				sw_wm_level->plane_en,
+> -				sw_wm_level->plane_res_b,
+> -				sw_wm_level->plane_res_l,
+> -				hw_wm_level->plane_en,
+> -				hw_wm_level->plane_res_b,
+> -				hw_wm_level->plane_res_l);
+> +				sw_wm_level->enable,
+> +				sw_wm_level->blocks,
+> +				sw_wm_level->lines,
+> +				hw_wm_level->enable,
+> +				hw_wm_level->blocks,
+> +				hw_wm_level->lines);
+>  		}
+>  =
+
+>  		/* DDB */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 8d9113fa82c7..b6eaa8ee2b66 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -721,9 +721,9 @@ struct intel_pipe_wm {
+>  =
+
+>  struct skl_wm_level {
+>  	u16 min_ddb_alloc;
+> -	u16 plane_res_b;
+> -	u8 plane_res_l;
+> -	bool plane_en;
+> +	u16 blocks;
+> +	u8 lines;
+> +	bool enable;
+>  	bool ignore_lines;
+>  	bool can_sagv;
+>  };
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 3e26d8b667a1..559bc3ba9a74 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -3893,12 +3893,12 @@ static bool skl_crtc_can_enable_sagv(const struct=
+ intel_crtc_state *crtc_state)
+>  		int level;
+>  =
+
+>  		/* Skip this plane if it's not enabled */
+> -		if (!wm->wm[0].plane_en)
+> +		if (!wm->wm[0].enable)
+>  			continue;
+>  =
+
+>  		/* Find the highest enabled wm level for this plane */
+>  		for (level =3D ilk_wm_max_level(dev_priv);
+> -		     !wm->wm[level].plane_en; --level)
+> +		     !wm->wm[level].enable; --level)
+>  		     { }
+>  =
+
+>  		/* Highest common enabled wm level for all planes */
+> @@ -3917,7 +3917,7 @@ static bool skl_crtc_can_enable_sagv(const struct i=
+ntel_crtc_state *crtc_state)
+>  		 * All enabled planes must have enabled a common wm level that
+>  		 * can tolerate memory latencies higher than sagv_block_time_us
+>  		 */
+> -		if (wm->wm[0].plane_en && !wm->wm[max_level].can_sagv)
+> +		if (wm->wm[0].enable && !wm->wm[max_level].can_sagv)
+>  			return false;
+>  	}
+>  =
+
+> @@ -3936,7 +3936,7 @@ static bool tgl_crtc_can_enable_sagv(const struct i=
+ntel_crtc_state *crtc_state)
+>  		const struct skl_plane_wm *wm =3D
+>  			&crtc_state->wm.skl.optimal.planes[plane_id];
+>  =
+
+> -		if (wm->wm[0].plane_en && !wm->sagv.wm0.plane_en)
+> +		if (wm->wm[0].enable && !wm->sagv.wm0.enable)
+>  			return false;
+>  	}
+>  =
+
+> @@ -4987,9 +4987,9 @@ skl_allocate_plane_ddb(struct intel_atomic_state *s=
+tate,
+>  			 * Underruns with WM1+ disabled
+>  			 */
+>  			if (IS_GEN(dev_priv, 11) &&
+> -			    level =3D=3D 1 && wm->wm[0].plane_en) {
+> -				wm->wm[level].plane_res_b =3D wm->wm[0].plane_res_b;
+> -				wm->wm[level].plane_res_l =3D wm->wm[0].plane_res_l;
+> +			    level =3D=3D 1 && wm->wm[0].enable) {
+> +				wm->wm[level].blocks =3D wm->wm[0].blocks;
+> +				wm->wm[level].lines =3D wm->wm[0].lines;
+>  				wm->wm[level].ignore_lines =3D wm->wm[0].ignore_lines;
+>  			}
+>  		}
+> @@ -5210,7 +5210,7 @@ static void skl_compute_plane_wm(const struct intel=
+_crtc_state *crtc_state,
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
+v);
+>  	uint_fixed_16_16_t method1, method2;
+>  	uint_fixed_16_16_t selected_result;
+> -	u32 res_blocks, res_lines, min_ddb_alloc =3D 0;
+> +	u32 blocks, lines, min_ddb_alloc =3D 0;
+>  =
+
+>  	if (latency =3D=3D 0) {
+>  		/* reject it */
+> @@ -5256,24 +5256,22 @@ static void skl_compute_plane_wm(const struct int=
+el_crtc_state *crtc_state,
+>  		}
+>  	}
+>  =
+
+> -	res_blocks =3D fixed16_to_u32_round_up(selected_result) + 1;
+> -	res_lines =3D div_round_up_fixed16(selected_result,
+> -					 wp->plane_blocks_per_line);
+> +	blocks =3D fixed16_to_u32_round_up(selected_result) + 1;
+> +	lines =3D div_round_up_fixed16(selected_result,
+> +				     wp->plane_blocks_per_line);
+>  =
+
+>  	if (IS_GEN9_BC(dev_priv) || IS_BROXTON(dev_priv)) {
+>  		/* Display WA #1125: skl,bxt,kbl */
+>  		if (level =3D=3D 0 && wp->rc_surface)
+> -			res_blocks +=3D
+> -				fixed16_to_u32_round_up(wp->y_tile_minimum);
+> +			blocks +=3D fixed16_to_u32_round_up(wp->y_tile_minimum);
+>  =
+
+>  		/* Display WA #1126: skl,bxt,kbl */
+>  		if (level >=3D 1 && level <=3D 7) {
+>  			if (wp->y_tiled) {
+> -				res_blocks +=3D
+> -				    fixed16_to_u32_round_up(wp->y_tile_minimum);
+> -				res_lines +=3D wp->y_min_scanlines;
+> +				blocks +=3D fixed16_to_u32_round_up(wp->y_tile_minimum);
+> +				lines +=3D wp->y_min_scanlines;
+>  			} else {
+> -				res_blocks++;
+> +				blocks++;
+>  			}
+>  =
+
+>  			/*
+> @@ -5282,8 +5280,8 @@ static void skl_compute_plane_wm(const struct intel=
+_crtc_state *crtc_state,
+>  			 * Assumption in DDB algorithm optimization for special
+>  			 * cases. Also covers Display WA #1125 for RC.
+>  			 */
+> -			if (result_prev->plane_res_b > res_blocks)
+> -				res_blocks =3D result_prev->plane_res_b;
+> +			if (result_prev->blocks > blocks)
+> +				blocks =3D result_prev->blocks;
+>  		}
+>  	}
+>  =
+
+> @@ -5291,40 +5289,39 @@ static void skl_compute_plane_wm(const struct int=
+el_crtc_state *crtc_state,
+>  		if (wp->y_tiled) {
+>  			int extra_lines;
+>  =
+
+> -			if (res_lines % wp->y_min_scanlines =3D=3D 0)
+> +			if (lines % wp->y_min_scanlines =3D=3D 0)
+>  				extra_lines =3D wp->y_min_scanlines;
+>  			else
+>  				extra_lines =3D wp->y_min_scanlines * 2 -
+> -					res_lines % wp->y_min_scanlines;
+> +					lines % wp->y_min_scanlines;
+>  =
+
+> -			min_ddb_alloc =3D mul_round_up_u32_fixed16(res_lines + extra_lines,
+> +			min_ddb_alloc =3D mul_round_up_u32_fixed16(lines + extra_lines,
+>  								 wp->plane_blocks_per_line);
+>  		} else {
+> -			min_ddb_alloc =3D res_blocks +
+> -				DIV_ROUND_UP(res_blocks, 10);
+> +			min_ddb_alloc =3D blocks + DIV_ROUND_UP(blocks, 10);
+>  		}
+>  	}
+>  =
+
+>  	if (!skl_wm_has_lines(dev_priv, level))
+> -		res_lines =3D 0;
+> +		lines =3D 0;
+>  =
+
+> -	if (res_lines > 31) {
+> +	if (lines > 31) {
+>  		/* reject it */
+>  		result->min_ddb_alloc =3D U16_MAX;
+>  		return;
+>  	}
+>  =
+
+>  	/*
+> -	 * If res_lines is valid, assume we can use this watermark level
+> +	 * If lines is valid, assume we can use this watermark level
+>  	 * for now.  We'll come back and disable it after we calculate the
+>  	 * DDB allocation if it turns out we don't actually have enough
+>  	 * blocks to satisfy it.
+>  	 */
+> -	result->plane_res_b =3D res_blocks;
+> -	result->plane_res_l =3D res_lines;
+> +	result->blocks =3D blocks;
+> +	result->lines =3D lines;
+>  	/* Bspec says: value >=3D plane ddb allocation -> invalid, hence the +1=
+ here */
+> -	result->min_ddb_alloc =3D max(min_ddb_alloc, res_blocks) + 1;
+> -	result->plane_en =3D true;
+> +	result->min_ddb_alloc =3D max(min_ddb_alloc, blocks) + 1;
+> +	result->enable =3D true;
+>  =
+
+>  	if (INTEL_GEN(dev_priv) < 12)
+>  		result->can_sagv =3D latency >=3D dev_priv->sagv_block_time_us;
+> @@ -5370,7 +5367,7 @@ static void skl_compute_transition_wm(struct drm_i9=
+15_private *dev_priv,
+>  				      const struct skl_wm_params *wp)
+>  {
+>  	u16 trans_min, trans_amount, trans_y_tile_min;
+> -	u16 wm0_sel_res_b, trans_offset_b, res_blocks;
+> +	u16 wm0_blocks, trans_offset, blocks;
+>  =
+
+>  	/* Transition WM don't make any sense if ipc is disabled */
+>  	if (!dev_priv->ipc_enabled)
+> @@ -5394,38 +5391,37 @@ static void skl_compute_transition_wm(struct drm_=
+i915_private *dev_priv,
+>  	else
+>  		trans_amount =3D 10; /* This is configurable amount */
+>  =
+
+> -	trans_offset_b =3D trans_min + trans_amount;
+> +	trans_offset =3D trans_min + trans_amount;
+>  =
+
+>  	/*
+>  	 * The spec asks for Selected Result Blocks for wm0 (the real value),
+>  	 * not Result Blocks (the integer value). Pay attention to the capital
+> -	 * letters. The value wm_l0->plane_res_b is actually Result Blocks, but
+> +	 * letters. The value wm_l0->blocks is actually Result Blocks, but
+>  	 * since Result Blocks is the ceiling of Selected Result Blocks plus 1,
+>  	 * and since we later will have to get the ceiling of the sum in the
+>  	 * transition watermarks calculation, we can just pretend Selected
+>  	 * Result Blocks is Result Blocks minus 1 and it should work for the
+>  	 * current platforms.
+>  	 */
+> -	wm0_sel_res_b =3D wm0->plane_res_b - 1;
+> +	wm0_blocks =3D wm0->blocks - 1;
+>  =
+
+>  	if (wp->y_tiled) {
+>  		trans_y_tile_min =3D
+>  			(u16)mul_round_up_u32_fixed16(2, wp->y_tile_minimum);
+> -		res_blocks =3D max(wm0_sel_res_b, trans_y_tile_min) +
+> -				trans_offset_b;
+> +		blocks =3D max(wm0_blocks, trans_y_tile_min) + trans_offset;
+>  	} else {
+> -		res_blocks =3D wm0_sel_res_b + trans_offset_b;
+> +		blocks =3D wm0_blocks + trans_offset;
+>  	}
+> -	res_blocks++;
+> +	blocks++;
+>  =
+
+>  	/*
+>  	 * Just assume we can enable the transition watermark.  After
+>  	 * computing the DDB we'll come back and disable it if that
+>  	 * assumption turns out to be false.
+>  	 */
+> -	trans_wm->plane_res_b =3D res_blocks;
+> -	trans_wm->min_ddb_alloc =3D max_t(u16, wm0->min_ddb_alloc, res_blocks +=
+ 1);
+> -	trans_wm->plane_en =3D true;
+> +	trans_wm->blocks =3D blocks;
+> +	trans_wm->min_ddb_alloc =3D max_t(u16, wm0->min_ddb_alloc, blocks + 1);
+> +	trans_wm->enable =3D true;
+>  }
+>  =
+
+>  static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_state,
+> @@ -5600,12 +5596,12 @@ static void skl_write_wm_level(struct drm_i915_pr=
+ivate *dev_priv,
+>  {
+>  	u32 val =3D 0;
+>  =
+
+> -	if (level->plane_en)
+> +	if (level->enable)
+>  		val |=3D PLANE_WM_EN;
+>  	if (level->ignore_lines)
+>  		val |=3D PLANE_WM_IGNORE_LINES;
+> -	val |=3D level->plane_res_b;
+> -	val |=3D level->plane_res_l << PLANE_WM_LINES_SHIFT;
+> +	val |=3D level->blocks;
+> +	val |=3D level->lines << PLANE_WM_LINES_SHIFT;
+>  =
+
+>  	intel_de_write_fw(dev_priv, reg, val);
+>  }
+> @@ -5670,10 +5666,10 @@ void skl_write_cursor_wm(struct intel_plane *plan=
+e,
+>  bool skl_wm_level_equals(const struct skl_wm_level *l1,
+>  			 const struct skl_wm_level *l2)
+>  {
+> -	return l1->plane_en =3D=3D l2->plane_en &&
+> +	return l1->enable =3D=3D l2->enable &&
+>  		l1->ignore_lines =3D=3D l2->ignore_lines &&
+> -		l1->plane_res_l =3D=3D l2->plane_res_l &&
+> -		l1->plane_res_b =3D=3D l2->plane_res_b;
+> +		l1->lines =3D=3D l2->lines &&
+> +		l1->blocks =3D=3D l2->blocks;
+>  }
+>  =
+
+>  static bool skl_plane_wm_equals(struct drm_i915_private *dev_priv,
+> @@ -5927,66 +5923,66 @@ skl_print_wm_changes(struct intel_atomic_state *s=
+tate)
+>  				    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6=
+,%cwm7,%ctwm,%cswm,%cstwm"
+>  				    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm=
+,%cstwm\n",
+>  				    plane->base.base.id, plane->base.name,
+> -				    enast(old_wm->wm[0].plane_en), enast(old_wm->wm[1].plane_en),
+> -				    enast(old_wm->wm[2].plane_en), enast(old_wm->wm[3].plane_en),
+> -				    enast(old_wm->wm[4].plane_en), enast(old_wm->wm[5].plane_en),
+> -				    enast(old_wm->wm[6].plane_en), enast(old_wm->wm[7].plane_en),
+> -				    enast(old_wm->trans_wm.plane_en),
+> -				    enast(old_wm->sagv.wm0.plane_en),
+> -				    enast(old_wm->sagv.trans_wm.plane_en),
+> -				    enast(new_wm->wm[0].plane_en), enast(new_wm->wm[1].plane_en),
+> -				    enast(new_wm->wm[2].plane_en), enast(new_wm->wm[3].plane_en),
+> -				    enast(new_wm->wm[4].plane_en), enast(new_wm->wm[5].plane_en),
+> -				    enast(new_wm->wm[6].plane_en), enast(new_wm->wm[7].plane_en),
+> -				    enast(new_wm->trans_wm.plane_en),
+> -				    enast(new_wm->sagv.wm0.plane_en),
+> -				    enast(new_wm->sagv.trans_wm.plane_en));
+> +				    enast(old_wm->wm[0].enable), enast(old_wm->wm[1].enable),
+> +				    enast(old_wm->wm[2].enable), enast(old_wm->wm[3].enable),
+> +				    enast(old_wm->wm[4].enable), enast(old_wm->wm[5].enable),
+> +				    enast(old_wm->wm[6].enable), enast(old_wm->wm[7].enable),
+> +				    enast(old_wm->trans_wm.enable),
+> +				    enast(old_wm->sagv.wm0.enable),
+> +				    enast(old_wm->sagv.trans_wm.enable),
+> +				    enast(new_wm->wm[0].enable), enast(new_wm->wm[1].enable),
+> +				    enast(new_wm->wm[2].enable), enast(new_wm->wm[3].enable),
+> +				    enast(new_wm->wm[4].enable), enast(new_wm->wm[5].enable),
+> +				    enast(new_wm->wm[6].enable), enast(new_wm->wm[7].enable),
+> +				    enast(new_wm->trans_wm.enable),
+> +				    enast(new_wm->sagv.wm0.enable),
+> +				    enast(new_wm->sagv.trans_wm.enable));
+>  =
+
+>  			drm_dbg_kms(&dev_priv->drm,
+>  				    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d=
+,%c%3d,%c%3d,%c%3d,%c%4d"
+>  				      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%=
+3d,%c%4d\n",
+>  				    plane->base.base.id, plane->base.name,
+> -				    enast(old_wm->wm[0].ignore_lines), old_wm->wm[0].plane_res_l,
+> -				    enast(old_wm->wm[1].ignore_lines), old_wm->wm[1].plane_res_l,
+> -				    enast(old_wm->wm[2].ignore_lines), old_wm->wm[2].plane_res_l,
+> -				    enast(old_wm->wm[3].ignore_lines), old_wm->wm[3].plane_res_l,
+> -				    enast(old_wm->wm[4].ignore_lines), old_wm->wm[4].plane_res_l,
+> -				    enast(old_wm->wm[5].ignore_lines), old_wm->wm[5].plane_res_l,
+> -				    enast(old_wm->wm[6].ignore_lines), old_wm->wm[6].plane_res_l,
+> -				    enast(old_wm->wm[7].ignore_lines), old_wm->wm[7].plane_res_l,
+> -				    enast(old_wm->trans_wm.ignore_lines), old_wm->trans_wm.plane_res=
+_l,
+> -				    enast(old_wm->sagv.wm0.ignore_lines), old_wm->sagv.wm0.plane_res=
+_l,
+> -				    enast(old_wm->sagv.trans_wm.ignore_lines), old_wm->sagv.trans_wm=
+.plane_res_l,
+> -				    enast(new_wm->wm[0].ignore_lines), new_wm->wm[0].plane_res_l,
+> -				    enast(new_wm->wm[1].ignore_lines), new_wm->wm[1].plane_res_l,
+> -				    enast(new_wm->wm[2].ignore_lines), new_wm->wm[2].plane_res_l,
+> -				    enast(new_wm->wm[3].ignore_lines), new_wm->wm[3].plane_res_l,
+> -				    enast(new_wm->wm[4].ignore_lines), new_wm->wm[4].plane_res_l,
+> -				    enast(new_wm->wm[5].ignore_lines), new_wm->wm[5].plane_res_l,
+> -				    enast(new_wm->wm[6].ignore_lines), new_wm->wm[6].plane_res_l,
+> -				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].plane_res_l,
+> -				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.plane_res=
+_l,
+> -				    enast(new_wm->sagv.wm0.ignore_lines), new_wm->sagv.wm0.plane_res=
+_l,
+> -				    enast(new_wm->sagv.trans_wm.ignore_lines), new_wm->sagv.trans_wm=
+.plane_res_l);
+> +				    enast(old_wm->wm[0].ignore_lines), old_wm->wm[0].lines,
+> +				    enast(old_wm->wm[1].ignore_lines), old_wm->wm[1].lines,
+> +				    enast(old_wm->wm[2].ignore_lines), old_wm->wm[2].lines,
+> +				    enast(old_wm->wm[3].ignore_lines), old_wm->wm[3].lines,
+> +				    enast(old_wm->wm[4].ignore_lines), old_wm->wm[4].lines,
+> +				    enast(old_wm->wm[5].ignore_lines), old_wm->wm[5].lines,
+> +				    enast(old_wm->wm[6].ignore_lines), old_wm->wm[6].lines,
+> +				    enast(old_wm->wm[7].ignore_lines), old_wm->wm[7].lines,
+> +				    enast(old_wm->trans_wm.ignore_lines), old_wm->trans_wm.lines,
+> +				    enast(old_wm->sagv.wm0.ignore_lines), old_wm->sagv.wm0.lines,
+> +				    enast(old_wm->sagv.trans_wm.ignore_lines), old_wm->sagv.trans_wm=
+.lines,
+> +				    enast(new_wm->wm[0].ignore_lines), new_wm->wm[0].lines,
+> +				    enast(new_wm->wm[1].ignore_lines), new_wm->wm[1].lines,
+> +				    enast(new_wm->wm[2].ignore_lines), new_wm->wm[2].lines,
+> +				    enast(new_wm->wm[3].ignore_lines), new_wm->wm[3].lines,
+> +				    enast(new_wm->wm[4].ignore_lines), new_wm->wm[4].lines,
+> +				    enast(new_wm->wm[5].ignore_lines), new_wm->wm[5].lines,
+> +				    enast(new_wm->wm[6].ignore_lines), new_wm->wm[6].lines,
+> +				    enast(new_wm->wm[7].ignore_lines), new_wm->wm[7].lines,
+> +				    enast(new_wm->trans_wm.ignore_lines), new_wm->trans_wm.lines,
+> +				    enast(new_wm->sagv.wm0.ignore_lines), new_wm->sagv.wm0.lines,
+> +				    enast(new_wm->sagv.trans_wm.ignore_lines), new_wm->sagv.trans_wm=
+.lines);
+>  =
+
+>  			drm_dbg_kms(&dev_priv->drm,
+>  				    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%=
+5d"
+>  				    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
+>  				    plane->base.base.id, plane->base.name,
+> -				    old_wm->wm[0].plane_res_b, old_wm->wm[1].plane_res_b,
+> -				    old_wm->wm[2].plane_res_b, old_wm->wm[3].plane_res_b,
+> -				    old_wm->wm[4].plane_res_b, old_wm->wm[5].plane_res_b,
+> -				    old_wm->wm[6].plane_res_b, old_wm->wm[7].plane_res_b,
+> -				    old_wm->trans_wm.plane_res_b,
+> -				    old_wm->sagv.wm0.plane_res_b,
+> -				    old_wm->sagv.trans_wm.plane_res_b,
+> -				    new_wm->wm[0].plane_res_b, new_wm->wm[1].plane_res_b,
+> -				    new_wm->wm[2].plane_res_b, new_wm->wm[3].plane_res_b,
+> -				    new_wm->wm[4].plane_res_b, new_wm->wm[5].plane_res_b,
+> -				    new_wm->wm[6].plane_res_b, new_wm->wm[7].plane_res_b,
+> -				    new_wm->trans_wm.plane_res_b,
+> -				    new_wm->sagv.wm0.plane_res_b,
+> -				    new_wm->sagv.trans_wm.plane_res_b);
+> +				    old_wm->wm[0].blocks, old_wm->wm[1].blocks,
+> +				    old_wm->wm[2].blocks, old_wm->wm[3].blocks,
+> +				    old_wm->wm[4].blocks, old_wm->wm[5].blocks,
+> +				    old_wm->wm[6].blocks, old_wm->wm[7].blocks,
+> +				    old_wm->trans_wm.blocks,
+> +				    old_wm->sagv.wm0.blocks,
+> +				    old_wm->sagv.trans_wm.blocks,
+> +				    new_wm->wm[0].blocks, new_wm->wm[1].blocks,
+> +				    new_wm->wm[2].blocks, new_wm->wm[3].blocks,
+> +				    new_wm->wm[4].blocks, new_wm->wm[5].blocks,
+> +				    new_wm->wm[6].blocks, new_wm->wm[7].blocks,
+> +				    new_wm->trans_wm.blocks,
+> +				    new_wm->sagv.wm0.blocks,
+> +				    new_wm->sagv.trans_wm.blocks);
+>  =
+
+>  			drm_dbg_kms(&dev_priv->drm,
+>  				    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%=
+5d"
+> @@ -6210,10 +6206,10 @@ static void ilk_optimize_watermarks(struct intel_=
+atomic_state *state,
+>  =
+
+>  static void skl_wm_level_from_reg_val(u32 val, struct skl_wm_level *leve=
+l)
+>  {
+> -	level->plane_en =3D val & PLANE_WM_EN;
+> +	level->enable =3D val & PLANE_WM_EN;
+>  	level->ignore_lines =3D val & PLANE_WM_IGNORE_LINES;
+> -	level->plane_res_b =3D val & PLANE_WM_BLOCKS_MASK;
+> -	level->plane_res_l =3D (val >> PLANE_WM_LINES_SHIFT) &
+> +	level->blocks =3D val & PLANE_WM_BLOCKS_MASK;
+> +	level->lines =3D (val >> PLANE_WM_LINES_SHIFT) &
+>  		PLANE_WM_LINES_MASK;
+>  }
+>  =
+
+> -- =
+
+> 2.26.2
+> =
 
 _______________________________________________
 Intel-gfx mailing list
