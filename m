@@ -2,52 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27C7F336D8B
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 09:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA2D336F59
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 10:54:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEF3F6EB31;
-	Thu, 11 Mar 2021 08:14:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09EC86EB6C;
+	Thu, 11 Mar 2021 09:54:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
- [IPv6:2a00:1450:4864:20::22d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB8E36EB19;
- Thu, 11 Mar 2021 08:14:33 +0000 (UTC)
-Received: by mail-lj1-x22d.google.com with SMTP id 184so995473ljf.9;
- Thu, 11 Mar 2021 00:14:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=hopiSLCzCJWM8+V53PdoiSs1GqKs/2+4TO/eWgMFmL8=;
- b=lt1AZddWPABeZvB5gc21VkYrdQoSzvfiDh8pCTVIIJUtsQQQ/XguniN/Eluli9NUdh
- MRiQw0Nb4Bhqj0uRbh5Id66w/35h7PmieM4oVB1cC/027nlr4DB+IRnL+QTNbmwutvL3
- OqRAuDi1LKqM7lKZSi2RFie/E2XW1bFzl4uCq5y+5ZZSiWuiS8jS4/Skri6hTN7P4Biz
- LBmFfmpePjd4HIQSWUQXhfGrpYggtRVU9zpo+EbKZs1GijOgGa76DTuohJaxYiLiU/x3
- XVVEfmxhPixjdMbA/k+OggYoI5EBWLCQTn8qaRBi71E+KmA3R0rYx6jt1iRpm7rcCEeo
- aSvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=hopiSLCzCJWM8+V53PdoiSs1GqKs/2+4TO/eWgMFmL8=;
- b=udKgE96FLLEodxYknUY6VG2i6orL1yS/pT74uHqep2CI3+Vs0MvqRkxwrg+wawCvGG
- w9IdkopLHJGEp/D23ggHqcKD6Q2Cplfywr2TtKEZOW+rAuiBVAVBxqq4TNNd8MU4l+24
- egbVi4ZBTkqELKN3kT4Zjqe2QIa/JVwtzWSme07VtYxXmoxhRjpZPR42JS15rXVUTttj
- c+Oy7htktkEy4qJ6ylE7orql6RdDB80zT909jgVSXWh1DsHurjV+kBtnZHMMMl591rqN
- 8isUdvdj9asm8clcbkg+X9wgR7yGKmFqY7tkKThielHCGOn8OnuMzcOZS6HQmYpWf0Xl
- oNaw==
-X-Gm-Message-State: AOAM530mkD4iyDT2PFGtuIETAfd5IelJ27ukRk/sAquamC/m4vdAyKw4
- PptYboqrJZJc/ur0GZaMZ4dNpnmHO+eClSfRtVE=
-X-Google-Smtp-Source: ABdhPJxalcSkKqt7XoU1PA9qqPn4/uA3zxZRdWZDchPxpV9Ju5mo/75YNGqp3OQQZe/pKitSV63L5OSQ7im5dQ2JHUc=
-X-Received: by 2002:a2e:94c8:: with SMTP id r8mr4160354ljh.332.1615450472267; 
- Thu, 11 Mar 2021 00:14:32 -0800 (PST)
-MIME-Version: 1.0
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4204E6E4D0;
+ Thu, 11 Mar 2021 09:54:39 +0000 (UTC)
+IronPort-SDR: IsoIATqdXdy9kZYkG6ExJu3o87DVC55S3Ou4Xbp+Zg91s2fnmYB/5VTUnDkfR4liQnzR2EzOgH
+ 8UXLVb0Pcdpg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="250008697"
+X-IronPort-AV: E=Sophos;i="5.81,240,1610438400"; d="scan'208";a="250008697"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 01:54:38 -0800
+IronPort-SDR: qhJZOWF+1LcHpSdvE7Iej0rGZwWB6+W8gqRPnAyyFOls8yagSunLLblhijslZtlD1i3decdDqv
+ GfW/5ygnQ2nA==
+X-IronPort-AV: E=Sophos;i="5.81,240,1610438400"; d="scan'208";a="509976052"
+Received: from rbustenx-mobl1.ger.corp.intel.com (HELO [10.214.193.155])
+ ([10.214.193.155])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 01:54:35 -0800
+To: Jason Ekstrand <jason@jlekstrand.net>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 References: <20210310212606.766121-1-jason@jlekstrand.net>
  <20210310215007.782649-1-jason@jlekstrand.net>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <a4afba25-ce50-8d5f-f7b7-e6738660308e@linux.intel.com>
+Date: Thu, 11 Mar 2021 09:54:33 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
+MIME-Version: 1.0
 In-Reply-To: <20210310215007.782649-1-jason@jlekstrand.net>
-From: Lucas De Marchi <lucas.de.marchi@gmail.com>
-Date: Thu, 11 Mar 2021 00:14:21 -0800
-Message-ID: <CAKi4VAKbEhhr+w1K8ByeioAnrzczH6grnXT9GmdMu9taVPtAmg@mail.gmail.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
+Content-Language: en-US
 Subject: Re: [Intel-gfx] [PATCH] i915: Drop relocation support on all new
  hardware (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -62,17 +53,14 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>, DRI <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 10, 2021 at 1:50 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
->
+
+On 10/03/2021 21:50, Jason Ekstrand wrote:
 > The Vulkan driver in Mesa for Intel hardware never uses relocations if
 > it's running on a version of i915 that supports at least softpin which
 > all versions of i915 supporting Gen12 do.  On the OpenGL side, Gen12+ is
@@ -81,87 +69,87 @@ On Wed, Mar 10, 2021 at 1:50 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
 > through Gen11 and has been deprecated for all hardware Gen9+.  The
 > compute driver also never uses relocations.  This only leaves the media
 > driver which is supposed to be switching to softpin going forward.
+
+How does "supposed to be" translates to actually being ready? Cc someone 
+from media so they can ack?
+
 > Making softpin a requirement for all future hardware seems reasonable.
->
+> 
 > Rejecting relocations starting with Gen12 has the benefit that we don't
 > have to bother supporting it on platforms with local memory.  Given how
 > much CPU touching of memory is required for relocations, not having to
 > do so on platforms where not all memory is directly CPU-accessible
 > carries significant advantages.
->
+> 
 > v2 (Jason Ekstrand):
->  - Allow TGL-LP platforms as they've already shipped
->
+>   - Allow TGL-LP platforms as they've already shipped
+> 
 > v3 (Jason Ekstrand):
->  - WARN_ON platforms with LMEM support in case the check is wrong
->
+>   - WARN_ON platforms with LMEM support in case the check is wrong
+> 
 > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
 > Cc: Dave Airlie <airlied@redhat.com>
 > Cc: Daniel Vetter <daniel.vetter@intel.com>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
->
+>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 15 ++++++++++++---
+>   1 file changed, 12 insertions(+), 3 deletions(-)
+> 
 > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 > index 99772f37bff60..b02dbd16bfa03 100644
 > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 > @@ -1764,7 +1764,8 @@ eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
->         return err;
->  }
->
+>   	return err;
+>   }
+>   
 > -static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
 > +static int check_relocations(const struct i915_execbuffer *eb,
-> +                            const struct drm_i915_gem_exec_object2 *entry)
->  {
->         const char __user *addr, *end;
->         unsigned long size;
+> +			     const struct drm_i915_gem_exec_object2 *entry)
+>   {
+>   	const char __user *addr, *end;
+>   	unsigned long size;
 > @@ -1774,6 +1775,14 @@ static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
->         if (size == 0)
->                 return 0;
->
-> +       /* Relocations are disallowed for all platforms after TGL-LP */
-> +       if (INTEL_GEN(eb->i915) >= 12 && !IS_TIGERLAKE(eb->i915))
-> +               return -EINVAL;
+>   	if (size == 0)
+>   		return 0;
+>   
+> +	/* Relocations are disallowed for all platforms after TGL-LP */
+> +	if (INTEL_GEN(eb->i915) >= 12 && !IS_TIGERLAKE(eb->i915))
+> +		return -EINVAL;
 > +
-> +       /* All discrete memory platforms are Gen12 or above */
-> +       if (WARN_ON(HAS_LMEM(eb->i915)))
+> +	/* All discrete memory platforms are Gen12 or above */
+> +	if (WARN_ON(HAS_LMEM(eb->i915)))
+> +		return -EINVAL;
 
-HAS_LMEM() will return true for the fake lmem support, which may be < gen12.
-Dropping the fake lmem would be a possibility.
+Maybe ENODEV as our more typical "this platform does not support this" 
+instead of "you are using it wrong".
 
-Lucas De Marchi
+Regards,
 
-> +               return -EINVAL;
+Tvrtko
+
 > +
->         if (size > N_RELOC(ULONG_MAX))
->                 return -EINVAL;
->
+>   	if (size > N_RELOC(ULONG_MAX))
+>   		return -EINVAL;
+>   
 > @@ -1807,7 +1816,7 @@ static int eb_copy_relocations(const struct i915_execbuffer *eb)
->                 if (nreloc == 0)
->                         continue;
->
-> -               err = check_relocations(&eb->exec[i]);
-> +               err = check_relocations(eb, &eb->exec[i]);
->                 if (err)
->                         goto err;
->
+>   		if (nreloc == 0)
+>   			continue;
+>   
+> -		err = check_relocations(&eb->exec[i]);
+> +		err = check_relocations(eb, &eb->exec[i]);
+>   		if (err)
+>   			goto err;
+>   
 > @@ -1880,7 +1889,7 @@ static int eb_prefault_relocations(const struct i915_execbuffer *eb)
->         for (i = 0; i < count; i++) {
->                 int err;
->
-> -               err = check_relocations(&eb->exec[i]);
-> +               err = check_relocations(eb, &eb->exec[i]);
->                 if (err)
->                         return err;
->         }
-> --
-> 2.29.2
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>   	for (i = 0; i < count; i++) {
+>   		int err;
+>   
+> -		err = check_relocations(&eb->exec[i]);
+> +		err = check_relocations(eb, &eb->exec[i]);
+>   		if (err)
+>   			return err;
+>   	}
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
