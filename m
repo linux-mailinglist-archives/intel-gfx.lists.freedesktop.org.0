@@ -1,43 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89BB0336AFF
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 05:11:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27C7F336D8B
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 09:14:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 681A46EA7F;
-	Thu, 11 Mar 2021 04:11:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEF3F6EB31;
+	Thu, 11 Mar 2021 08:14:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41C256EA7F
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 04:11:42 +0000 (UTC)
-IronPort-SDR: MZ4eJaoGX3Ia/Tz8XSRbaIb5JWkP8EB+0nxfaOdxhLtKGGBUW/0o/cfFCzqu6wdG0hi3PMnORE
- JNLQPJWU3LuQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="186230766"
-X-IronPort-AV: E=Sophos;i="5.81,239,1610438400"; d="scan'208";a="186230766"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2021 20:11:37 -0800
-IronPort-SDR: qtCNuDxH+FNGTOEhyB6l4m/KqLCm6v2XsrvZN8O0VVdA4Y3GlW6RMPr/Dsrr9np6A2UjZj+cU9
- ++JShEYL2NKg==
-X-IronPort-AV: E=Sophos;i="5.81,238,1610438400"; d="scan'208";a="403940403"
-Received: from kbs1-mobl1.gar.corp.intel.com (HELO [10.251.68.59])
- ([10.251.68.59])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2021 20:11:36 -0800
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210310194351.6233-1-ville.syrjala@linux.intel.com>
-From: Karthik B S <karthik.b.s@intel.com>
-Message-ID: <fa8e5ea0-2d0e-5337-faef-89f1d64a3d75@intel.com>
-Date: Thu, 11 Mar 2021 09:41:34 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com
+ [IPv6:2a00:1450:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB8E36EB19;
+ Thu, 11 Mar 2021 08:14:33 +0000 (UTC)
+Received: by mail-lj1-x22d.google.com with SMTP id 184so995473ljf.9;
+ Thu, 11 Mar 2021 00:14:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=hopiSLCzCJWM8+V53PdoiSs1GqKs/2+4TO/eWgMFmL8=;
+ b=lt1AZddWPABeZvB5gc21VkYrdQoSzvfiDh8pCTVIIJUtsQQQ/XguniN/Eluli9NUdh
+ MRiQw0Nb4Bhqj0uRbh5Id66w/35h7PmieM4oVB1cC/027nlr4DB+IRnL+QTNbmwutvL3
+ OqRAuDi1LKqM7lKZSi2RFie/E2XW1bFzl4uCq5y+5ZZSiWuiS8jS4/Skri6hTN7P4Biz
+ LBmFfmpePjd4HIQSWUQXhfGrpYggtRVU9zpo+EbKZs1GijOgGa76DTuohJaxYiLiU/x3
+ XVVEfmxhPixjdMbA/k+OggYoI5EBWLCQTn8qaRBi71E+KmA3R0rYx6jt1iRpm7rcCEeo
+ aSvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=hopiSLCzCJWM8+V53PdoiSs1GqKs/2+4TO/eWgMFmL8=;
+ b=udKgE96FLLEodxYknUY6VG2i6orL1yS/pT74uHqep2CI3+Vs0MvqRkxwrg+wawCvGG
+ w9IdkopLHJGEp/D23ggHqcKD6Q2Cplfywr2TtKEZOW+rAuiBVAVBxqq4TNNd8MU4l+24
+ egbVi4ZBTkqELKN3kT4Zjqe2QIa/JVwtzWSme07VtYxXmoxhRjpZPR42JS15rXVUTttj
+ c+Oy7htktkEy4qJ6ylE7orql6RdDB80zT909jgVSXWh1DsHurjV+kBtnZHMMMl591rqN
+ 8isUdvdj9asm8clcbkg+X9wgR7yGKmFqY7tkKThielHCGOn8OnuMzcOZS6HQmYpWf0Xl
+ oNaw==
+X-Gm-Message-State: AOAM530mkD4iyDT2PFGtuIETAfd5IelJ27ukRk/sAquamC/m4vdAyKw4
+ PptYboqrJZJc/ur0GZaMZ4dNpnmHO+eClSfRtVE=
+X-Google-Smtp-Source: ABdhPJxalcSkKqt7XoU1PA9qqPn4/uA3zxZRdWZDchPxpV9Ju5mo/75YNGqp3OQQZe/pKitSV63L5OSQ7im5dQ2JHUc=
+X-Received: by 2002:a2e:94c8:: with SMTP id r8mr4160354ljh.332.1615450472267; 
+ Thu, 11 Mar 2021 00:14:32 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20210310194351.6233-1-ville.syrjala@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Tolerate bogus DPLL selection
+References: <20210310212606.766121-1-jason@jlekstrand.net>
+ <20210310215007.782649-1-jason@jlekstrand.net>
+In-Reply-To: <20210310215007.782649-1-jason@jlekstrand.net>
+From: Lucas De Marchi <lucas.de.marchi@gmail.com>
+Date: Thu, 11 Mar 2021 00:14:21 -0800
+Message-ID: <CAKi4VAKbEhhr+w1K8ByeioAnrzczH6grnXT9GmdMu9taVPtAmg@mail.gmail.com>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Subject: Re: [Intel-gfx] [PATCH] i915: Drop relocation support on all new
+ hardware (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,58 +62,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Dave Airlie <airlied@redhat.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>, DRI <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMy8xMS8yMDIxIDE6MTMgQU0sIFZpbGxlIFN5cmphbGEgd3JvdGU6Cj4gRnJvbTogVmlsbGUg
-U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPgo+IExldCdzIGNoZWNr
-IHRoYXQgd2UgYWN0dWFsbHkgZm91bmQgdGhlIFBMTCBiZWZvcmUgZG9pbmcgdGhlCj4gcG9ydF9j
-bG9jayByZWFkb3V0LCBqdXN0IGluIGNhc2UgdGhlIGhhcmR3YXJlIGlzIHNldmVybHkKPiBtaXNw
-cm9ncmFtbWluZyBieSB0aGUgcHJldmlvdXMgZ3V5LiBOb3Qgc3VyZSB0aGUgaHcgd291bGQKPiBl
-dmVuIHN1cnZpdmUgc3VjaCBtaXNwcm9ncmFtbWluZyB3aXRob3V0IGhhbmdpbmcgYnV0IG5vCj4g
-cmVhbCBoYXJtIGluIGNoZWNraW5nIGFueXdheS4KPgo+IENjOiBLYXJ0aGlrIEIgUyA8a2FydGhp
-ay5iLnNAaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+CgpMb29rcyBnb29kIHRvIG1lLgoKUmV2aWV3ZWQtYnk6
-IEthcnRoaWsgQiBTIDxrYXJ0aGlrLmIuc0BpbnRlbC5jb20+Cgo+IC0tLQo+ICAgZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDE3ICsrKysrKysrKysrKystLS0tCj4g
-ICAxIGZpbGUgY2hhbmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKPgo+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwo+IGluZGV4IGJhODM2ODJlMWQz
-ZS4uNjRhOTUyZGI4NTI4IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGRpLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RkaS5jCj4gQEAgLTM3MTYsNiArMzcxNiw5IEBAIHZvaWQgaW50ZWxfZGRpX2dldF9jbG9jayhz
-dHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKPiAgIAlzdHJ1Y3QgaWNsX3BvcnRfZHBsbCAq
-cG9ydF9kcGxsID0gJmNydGNfc3RhdGUtPmljbF9wb3J0X2RwbGxzW3BvcnRfZHBsbF9pZF07Cj4g
-ICAJYm9vbCBwbGxfYWN0aXZlOwo+ICAgCj4gKwlpZiAoZHJtX1dBUk5fT04oJmk5MTUtPmRybSwg
-IXBsbCkpCj4gKwkJcmV0dXJuOwo+ICsKPiAgIAlwb3J0X2RwbGwtPnBsbCA9IHBsbDsKPiAgIAlw
-bGxfYWN0aXZlID0gaW50ZWxfZHBsbF9nZXRfaHdfc3RhdGUoaTkxNSwgcGxsLCAmcG9ydF9kcGxs
-LT5od19zdGF0ZSk7Cj4gICAJZHJtX1dBUk5fT04oJmk5MTUtPmRybSwgIXBsbF9hY3RpdmUpOwo+
-IEBAIC0zNzU0LDE2ICszNzU3LDE3IEBAIHN0YXRpYyB2b2lkIGljbF9kZGlfY29tYm9fZ2V0X2Nv
-bmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKPiAgIAlpbnRlbF9kZGlfZ2V0X2Nv
-bmZpZyhlbmNvZGVyLCBjcnRjX3N0YXRlKTsKPiAgIH0KPiAgIAo+IC1zdGF0aWMgdm9pZCBpY2xf
-ZGRpX3RjX2dldF9jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4gLQkJCQkg
-IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQo+ICtzdGF0aWMgdm9pZCBpY2xf
-ZGRpX3RjX2dldF9jbG9jayhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKPiArCQkJCSBz
-dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPiArCQkJCSBzdHJ1Y3QgaW50ZWxf
-c2hhcmVkX2RwbGwgKnBsbCkKPiAgIHsKPiAgIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
-NSA9IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYpOwo+ICAgCWVudW0gaWNsX3BvcnRfZHBsbF9p
-ZCBwb3J0X2RwbGxfaWQ7Cj4gICAJc3RydWN0IGljbF9wb3J0X2RwbGwgKnBvcnRfZHBsbDsKPiAt
-CXN0cnVjdCBpbnRlbF9zaGFyZWRfZHBsbCAqcGxsOwo+ICAgCWJvb2wgcGxsX2FjdGl2ZTsKPiAg
-IAo+IC0JcGxsID0gaWNsX2RkaV90Y19nZXRfcGxsKGVuY29kZXIpOwo+ICsJaWYgKGRybV9XQVJO
-X09OKCZpOTE1LT5kcm0sICFwbGwpKQo+ICsJCXJldHVybjsKPiAgIAo+ICAgCWlmIChpbnRlbF9n
-ZXRfc2hhcmVkX2RwbGxfaWQoaTkxNSwgcGxsKSA9PSBEUExMX0lEX0lDTF9UQlRQTEwpCj4gICAJ
-CXBvcnRfZHBsbF9pZCA9IElDTF9QT1JUX0RQTExfREVGQVVMVDsKPiBAQCAtMzc4Myw3ICszNzg3
-LDEyIEBAIHN0YXRpYyB2b2lkIGljbF9kZGlfdGNfZ2V0X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5j
-b2RlciAqZW5jb2RlciwKPiAgIAllbHNlCj4gICAJCWNydGNfc3RhdGUtPnBvcnRfY2xvY2sgPSBp
-bnRlbF9kcGxsX2dldF9mcmVxKGk5MTUsIGNydGNfc3RhdGUtPnNoYXJlZF9kcGxsLAo+ICAgCQkJ
-CQkJCSAgICAgJmNydGNfc3RhdGUtPmRwbGxfaHdfc3RhdGUpOwo+ICt9Cj4gICAKPiArc3RhdGlj
-IHZvaWQgaWNsX2RkaV90Y19nZXRfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVy
-LAo+ICsJCQkJICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKPiArewo+ICsJ
-aWNsX2RkaV90Y19nZXRfY2xvY2soZW5jb2RlciwgY3J0Y19zdGF0ZSwgaWNsX2RkaV90Y19nZXRf
-cGxsKGVuY29kZXIpKTsKPiAgIAlpbnRlbF9kZGlfZ2V0X2NvbmZpZyhlbmNvZGVyLCBjcnRjX3N0
-YXRlKTsKPiAgIH0KPiAgIAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+On Wed, Mar 10, 2021 at 1:50 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
+>
+> The Vulkan driver in Mesa for Intel hardware never uses relocations if
+> it's running on a version of i915 that supports at least softpin which
+> all versions of i915 supporting Gen12 do.  On the OpenGL side, Gen12+ is
+> only supported by iris which never uses relocations.  The older i965
+> driver in Mesa does use relocations but it only supports Intel hardware
+> through Gen11 and has been deprecated for all hardware Gen9+.  The
+> compute driver also never uses relocations.  This only leaves the media
+> driver which is supposed to be switching to softpin going forward.
+> Making softpin a requirement for all future hardware seems reasonable.
+>
+> Rejecting relocations starting with Gen12 has the benefit that we don't
+> have to bother supporting it on platforms with local memory.  Given how
+> much CPU touching of memory is required for relocations, not having to
+> do so on platforms where not all memory is directly CPU-accessible
+> carries significant advantages.
+>
+> v2 (Jason Ekstrand):
+>  - Allow TGL-LP platforms as they've already shipped
+>
+> v3 (Jason Ekstrand):
+>  - WARN_ON platforms with LMEM support in case the check is wrong
+>
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 99772f37bff60..b02dbd16bfa03 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1764,7 +1764,8 @@ eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
+>         return err;
+>  }
+>
+> -static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
+> +static int check_relocations(const struct i915_execbuffer *eb,
+> +                            const struct drm_i915_gem_exec_object2 *entry)
+>  {
+>         const char __user *addr, *end;
+>         unsigned long size;
+> @@ -1774,6 +1775,14 @@ static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
+>         if (size == 0)
+>                 return 0;
+>
+> +       /* Relocations are disallowed for all platforms after TGL-LP */
+> +       if (INTEL_GEN(eb->i915) >= 12 && !IS_TIGERLAKE(eb->i915))
+> +               return -EINVAL;
+> +
+> +       /* All discrete memory platforms are Gen12 or above */
+> +       if (WARN_ON(HAS_LMEM(eb->i915)))
+
+HAS_LMEM() will return true for the fake lmem support, which may be < gen12.
+Dropping the fake lmem would be a possibility.
+
+Lucas De Marchi
+
+> +               return -EINVAL;
+> +
+>         if (size > N_RELOC(ULONG_MAX))
+>                 return -EINVAL;
+>
+> @@ -1807,7 +1816,7 @@ static int eb_copy_relocations(const struct i915_execbuffer *eb)
+>                 if (nreloc == 0)
+>                         continue;
+>
+> -               err = check_relocations(&eb->exec[i]);
+> +               err = check_relocations(eb, &eb->exec[i]);
+>                 if (err)
+>                         goto err;
+>
+> @@ -1880,7 +1889,7 @@ static int eb_prefault_relocations(const struct i915_execbuffer *eb)
+>         for (i = 0; i < count; i++) {
+>                 int err;
+>
+> -               err = check_relocations(&eb->exec[i]);
+> +               err = check_relocations(eb, &eb->exec[i]);
+>                 if (err)
+>                         return err;
+>         }
+> --
+> 2.29.2
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
