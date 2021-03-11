@@ -2,52 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D205733733B
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 14:00:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52A2B33737F
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 14:12:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA05F6EC4F;
-	Thu, 11 Mar 2021 13:00:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C4EC6EC4E;
+	Thu, 11 Mar 2021 13:12:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 058E06EC4F
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 13:00:24 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id j2so1754777wrx.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 05:00:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=laLq4w5cBBPgv4Yt32gfnqKz0NPdTJL/WYi+PW4VG4I=;
- b=Jf3SQfjZ+Vruv6zVn3xMRID8s49zUHIxA8JrzzQpkQqs+J1FYEsx92oBuuHP3715Za
- cu8wkOo2wriYktgmnmPwkXg+UpPf+jFloCahD1yngaQ+HGaijQ9dbrQZy3f5z94dY1rh
- Sy33/bnio/p/ZguVID2tjtikxdg2UKaZM+F+8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=laLq4w5cBBPgv4Yt32gfnqKz0NPdTJL/WYi+PW4VG4I=;
- b=cnMWXRgjYC+1ZJtuR4Pi2NSj5dPX/YN0FYeF0J+GOhmjJOQSdtTMZylNylaz2ubFcW
- gvPC9p4nwoNpBI010Pxcry51dbIV9bXtk8rBKK+mIk+V+tAN/RJuCoXCV+z1GmaZpL/4
- i4/ug0/P16mdeYV5hBaHmnfNx9zviTRPq67urK2WAloYuydQn+53EjfQ4rJS0WC9BkA4
- iVWU/Hpfzh4UlK+C9HmXuDzjSJ4pChkRommNM9+NRzaddKwXehoDYo8CBEdGJ0W2F5RM
- 6TNoDyVrw3rQiBOc4jwVoZKYshdGeLIIqxw18BIiJ03g0WtnYMbSd4MViYxxiFf7YtBr
- dBdQ==
-X-Gm-Message-State: AOAM533Slvnd5FceKMisATvycFvg+T7pRKvtZZA848hWtRUh+0hADLdR
- sKzopoQuH3a357sjlKoVfypAvw==
-X-Google-Smtp-Source: ABdhPJyD2MEeAgzGiLOT0tix7phgqP5M//DqDonBpa0FIMW1EahQzl21eg/o49kzQFLAqxbcG7M91w==
-X-Received: by 2002:a05:6000:1363:: with SMTP id
- q3mr8627832wrz.74.1615467623597; 
- Thu, 11 Mar 2021 05:00:23 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id k11sm3662427wmj.1.2021.03.11.05.00.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Mar 2021 05:00:22 -0800 (PST)
-Date: Thu, 11 Mar 2021 14:00:21 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <YEoUZe8BtvQdv3TG@phenom.ffwll.local>
+Received: from ste-pvt-msa2.bahnhof.se (ste-pvt-msa2.bahnhof.se
+ [213.80.101.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A3186E512;
+ Thu, 11 Mar 2021 13:12:37 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 9AA743F7AA;
+ Thu, 11 Mar 2021 14:12:35 +0100 (CET)
+Authentication-Results: ste-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
+ unprotected) header.d=shipmail.org header.i=@shipmail.org header.b=Mjr7q+K/; 
+ dkim-atps=neutral
+X-Virus-Scanned: Debian amavisd-new at bahnhof.se
+X-Spam-Flag: NO
+X-Spam-Score: -2.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
+ tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+ DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
+ URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
+Authentication-Results: ste-ftg-msa2.bahnhof.se (amavisd-new);
+ dkim=pass (1024-bit key) header.d=shipmail.org
+Received: from ste-pvt-msa2.bahnhof.se ([127.0.0.1])
+ by localhost (ste-ftg-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id jt75w819o8DR; Thu, 11 Mar 2021 14:12:34 +0100 (CET)
+Received: by ste-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id E6D453F4B5;
+ Thu, 11 Mar 2021 14:12:31 +0100 (CET)
+Received: from [192.168.0.209] (h-205-35.A357.priv.bahnhof.se [155.4.205.35])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id 7F3EB360133;
+ Thu, 11 Mar 2021 14:12:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1615468351; bh=YBkdKA9c8Xfco/ZakLkKtG1rIiSy52T2Ub7JaudfbB0=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=Mjr7q+K/wuhHNs/9xBrH39funrcR0iYzwN414cz/xgFXqeEXqaw1OG8P3AXTr7yLx
+ ObsbyFYyNPm6JBl9georhfYejKx/U9+HegjuSAubuvEO4/GwjkhVHKV7v7o7TbIDtX
+ bYDJ/iv40g0pL4++ZDSlJGTz9IcADyTKZ3LXIWes=
+To: Daniel Vetter <daniel@ffwll.ch>
 References: <61c5c371-debe-4ca0-a067-ce306e51ef88@shipmail.org>
  <CAKMK7uFUiJyMP0E5JUzMOx=NyMW+ZObGsaFOh409x0LOvGbnzg@mail.gmail.com>
  <0d69bd00-e673-17cf-c9e3-ccbcd52649a6@shipmail.org>
@@ -58,10 +54,15 @@ References: <61c5c371-debe-4ca0-a067-ce306e51ef88@shipmail.org>
  <648556e6-2d99-950d-c940-706eb5a8f6cc@amd.com>
  <CAKMK7uHOe=LacUkvGC75dyWAt9TRm7ce8vgxasXOXn-6wJTVnA@mail.gmail.com>
  <9d608c61-c64c-dcde-c719-59a970144404@shipmail.org>
+ <YEoUZe8BtvQdv3TG@phenom.ffwll.local>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <0e15ae7a-58d3-c75e-9a6c-e397e11750a7@shipmail.org>
+Date: Thu, 11 Mar 2021 14:12:30 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9d608c61-c64c-dcde-c719-59a970144404@shipmail.org>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
+In-Reply-To: <YEoUZe8BtvQdv3TG@phenom.ffwll.local>
+Content-Language: en-US
 Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 1/2] dma-buf: Require
  VM_PFNMAP vma for mmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -76,7 +77,7 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+Cc: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  Matthew Wilcox <willy@infradead.org>,
  "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
@@ -84,290 +85,175 @@ Cc: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
  DRI Development <dri-devel@lists.freedesktop.org>,
  Daniel Vetter <daniel.vetter@intel.com>,
  Suren Baghdasaryan <surenb@google.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
  "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 11, 2021 at 11:22:06AM +0100, Thomas Hellstr=F6m (Intel) wrote:
-> =
-
-> On 3/1/21 3:09 PM, Daniel Vetter wrote:
-> > On Mon, Mar 1, 2021 at 11:17 AM Christian K=F6nig
-> > <christian.koenig@amd.com> wrote:
-> > > =
-
-> > > =
-
-> > > Am 01.03.21 um 10:21 schrieb Thomas Hellstr=F6m (Intel):
-> > > > On 3/1/21 10:05 AM, Daniel Vetter wrote:
-> > > > > On Mon, Mar 01, 2021 at 09:39:53AM +0100, Thomas Hellstr=F6m (Int=
-el)
-> > > > > wrote:
-> > > > > > Hi,
-> > > > > > =
-
-> > > > > > On 3/1/21 9:28 AM, Daniel Vetter wrote:
-> > > > > > > On Sat, Feb 27, 2021 at 9:06 AM Thomas Hellstr=F6m (Intel)
-> > > > > > > <thomas_os@shipmail.org> wrote:
-> > > > > > > > On 2/26/21 2:28 PM, Daniel Vetter wrote:
-> > > > > > > > > So I think it stops gup. But I haven't verified at all. W=
-ould be
-> > > > > > > > > good
-> > > > > > > > > if Christian can check this with some direct io to a buff=
-er in
-> > > > > > > > > system
-> > > > > > > > > memory.
-> > > > > > > > Hmm,
-> > > > > > > > =
-
-> > > > > > > > Docs (again vm_normal_page() say)
-> > > > > > > > =
-
-> > > > > > > >      * VM_MIXEDMAP mappings can likewise contain memory wit=
-h or
-> > > > > > > > without "struct
-> > > > > > > >      * page" backing, however the difference is that _all_ =
-pages
-> > > > > > > > with a struct
-> > > > > > > >      * page (that is, those where pfn_valid is true) are re=
-fcounted
-> > > > > > > > and
-> > > > > > > > considered
-> > > > > > > >      * normal pages by the VM. The disadvantage is that pag=
-es are
-> > > > > > > > refcounted
-> > > > > > > >      * (which can be slower and simply not an option for so=
-me PFNMAP
-> > > > > > > > users). The
-> > > > > > > >      * advantage is that we don't have to follow the strict
-> > > > > > > > linearity rule of
-> > > > > > > >      * PFNMAP mappings in order to support COWable mappings.
-> > > > > > > > =
-
-> > > > > > > > but it's true __vm_insert_mixed() ends up in the insert_pfn=
-()
-> > > > > > > > path, so
-> > > > > > > > the above isn't really true, which makes me wonder if and i=
-n that
-> > > > > > > > case
-> > > > > > > > why there could any longer ever be a significant performance
-> > > > > > > > difference
-> > > > > > > > between MIXEDMAP and PFNMAP.
-> > > > > > > Yeah it's definitely confusing. I guess I'll hack up a patch =
-and see
-> > > > > > > what sticks.
-> > > > > > > =
-
-> > > > > > > > BTW regarding the TTM hugeptes, I don't think we ever lande=
-d that
-> > > > > > > > devmap
-> > > > > > > > hack, so they are (for the non-gup case) relying on
-> > > > > > > > vma_is_special_huge(). For the gup case, I think the bug is=
- still
-> > > > > > > > there.
-> > > > > > > Maybe there's another devmap hack, but the ttm_vm_insert func=
-tions do
-> > > > > > > use PFN_DEV and all that. And I think that stops gup_fast fro=
-m trying
-> > > > > > > to find the underlying page.
-> > > > > > > -Daniel
-> > > > > > Hmm perhaps it might, but I don't think so. The fix I tried out=
- was
-> > > > > > to set
-> > > > > > =
-
-> > > > > > PFN_DEV | PFN_MAP for huge PTEs which causes pfn_devmap() to be
-> > > > > > true, and
-> > > > > > then
-> > > > > > =
-
-> > > > > > follow_devmap_pmd()->get_dev_pagemap() which returns NULL and
-> > > > > > gup_fast()
-> > > > > > backs off,
-> > > > > > =
-
-> > > > > > in the end that would mean setting in stone that "if there is a=
- huge
-> > > > > > devmap
-> > > > > > page table entry for which we haven't registered any devmap str=
-uct
-> > > > > > pages
-> > > > > > (get_dev_pagemap returns NULL), we should treat that as a "spec=
-ial"
-> > > > > > huge
-> > > > > > page table entry".
-> > > > > > =
-
-> > > > > >   From what I can tell, all code calling get_dev_pagemap() alre=
-ady
-> > > > > > does that,
-> > > > > > it's just a question of getting it accepted and formalizing it.
-> > > > > Oh I thought that's already how it works, since I didn't spot any=
-thing
-> > > > > else that would block gup_fast from falling over. I guess really =
-would
-> > > > > need some testcases to make sure direct i/o (that's the easiest t=
-o test)
-> > > > > fails like we expect.
-> > > > Yeah, IIRC the "| PFN_MAP" is the missing piece for TTM huge ptes.
-> > > > Otherwise pmd_devmap() will not return true and since there is no
-> > > > pmd_special() things break.
-> > > Is that maybe the issue we have seen with amdgpu and huge pages?
-> > Yeah, essentially when you have a hugepte inserted by ttm, and it
-> > happens to point at system memory, then gup will work on that. And
-> > create all kinds of havoc.
-> > =
-
-> > > Apart from that I'm lost guys, that devmap and gup stuff is not
-> > > something I have a good knowledge of apart from a one mile high view.
-> > I'm not really better, hence would be good to do a testcase and see.
-> > This should provoke it:
-> > - allocate nicely aligned bo in system memory
-> > - mmap, again nicely aligned to 2M
-> > - do some direct io from a filesystem into that mmap, that should trigg=
-er gup
-> > - before the gup completes free the mmap and bo so that ttm recycles
-> > the pages, which should trip up on the elevated refcount. If you wait
-> > until the direct io is completely, then I think nothing bad can be
-> > observed.
-> > =
-
-> > Ofc if your amdgpu+hugepte issue is something else, then maybe we have
-> > another issue.
-> > =
-
-> > Also usual caveat: I'm not an mm hacker either, so might be completely =
-wrong.
-> > -Daniel
-> =
-
-> So I did the following quick experiment on vmwgfx, and it turns out that
-> with it,
-> fast gup never succeeds. Without the "| PFN_MAP", it typically succeeds
-> =
-
-> I should probably craft an RFC formalizing this.
-
-Yeah I think that would be good. Maybe even more formalized if we also
-switch over to VM_PFNMAP, since afaiui these pte flags here only stop the
-fast gup path. And slow gup can still peak through VM_MIXEDMAP. Or
-something like that.
-
-Otoh your description of when it only sometimes succeeds would indicate my
-understanding of VM_PFNMAP vs VM_MIXEDMAP is wrong here.
-
-Christian, what's your take?
--Daniel
-
-> =
-
-> /Thomas
-> =
-
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> index 6dc96cf66744..72b6fb17c984 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> @@ -195,6 +195,7 @@ static vm_fault_t ttm_bo_vm_insert_huge(struct vm_fau=
-lt
-> *vmf,
-> =A0=A0=A0=A0=A0=A0=A0 pfn_t pfnt;
-> =A0=A0=A0=A0=A0=A0=A0 struct ttm_tt *ttm =3D bo->ttm;
-> =A0=A0=A0=A0=A0=A0=A0 bool write =3D vmf->flags & FAULT_FLAG_WRITE;
-> +=A0=A0=A0=A0=A0=A0 struct dev_pagemap *pagemap;
-> =
-
-> =A0=A0=A0=A0=A0=A0=A0 /* Fault should not cross bo boundary. */
-> =A0=A0=A0=A0=A0=A0=A0 page_offset &=3D ~(fault_page_size - 1);
-> @@ -210,6 +211,17 @@ static vm_fault_t ttm_bo_vm_insert_huge(struct vm_fa=
-ult
-> *vmf,
-> =A0=A0=A0=A0=A0=A0=A0 if ((pfn & (fault_page_size - 1)) !=3D 0)
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_fallback;
-> =
-
-> +=A0=A0=A0=A0=A0=A0 /*
-> +=A0=A0=A0=A0=A0=A0=A0 * Huge entries must be special, that is marking th=
-em as devmap
-> +=A0=A0=A0=A0=A0=A0=A0 * with no backing device map range. If there is a =
-backing
-> +=A0=A0=A0=A0=A0=A0=A0 * range, Don't insert a huge entry.
-> +=A0=A0=A0=A0=A0=A0=A0 */
-> +=A0=A0=A0=A0=A0=A0 pagemap =3D get_dev_pagemap(pfn, NULL);
-> +=A0=A0=A0=A0=A0=A0 if (pagemap) {
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 put_dev_pagemap(pagemap);
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_fallback;
-> +=A0=A0=A0=A0=A0=A0 }
-> +
-> =A0=A0=A0=A0=A0=A0=A0 /* Check that memory is contiguous. */
-> =A0=A0=A0=A0=A0=A0=A0 if (!bo->mem.bus.is_iomem) {
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 for (i =3D 1; i < fault_pag=
-e_size; ++i) {
-> @@ -223,7 +235,7 @@ static vm_fault_t ttm_bo_vm_insert_huge(struct vm_fau=
-lt
-> *vmf,
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 }
-> =A0=A0=A0=A0=A0=A0=A0 }
-> =
-
-> -=A0=A0=A0=A0=A0=A0 pfnt =3D __pfn_to_pfn_t(pfn, PFN_DEV);
-> +=A0=A0=A0=A0=A0=A0 pfnt =3D __pfn_to_pfn_t(pfn, PFN_DEV | PFN_MAP);
-> =A0=A0=A0=A0=A0=A0=A0 if (fault_page_size =3D=3D (HPAGE_PMD_SIZE >> PAGE_=
-SHIFT))
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D vmf_insert_pfn_pmd_=
-prot(vmf, pfnt, pgprot, write);
-> =A0#ifdef CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE_PUD
-> @@ -236,6 +248,21 @@ static vm_fault_t ttm_bo_vm_insert_huge(struct vm_fa=
-ult
-> *vmf,
-> =A0=A0=A0=A0=A0=A0=A0 if (ret !=3D VM_FAULT_NOPAGE)
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_fallback;
-> =
-
-> +#if 1
-> +=A0=A0=A0=A0=A0=A0 {
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int npages;
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct page *page;
-> +
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 npages =3D get_user_pages_fas=
-t_only(vmf->address, 1, 0,
-> &page);
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (npages =3D=3D 1) {
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 DRM_W=
-ARN("Fast gup succeeded. Bad.\n");
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 put_p=
-age(page);
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 } else {
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 DRM_I=
-NFO("Fast gup failed. Good.\n");
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 }
-> +=A0=A0=A0=A0=A0=A0 }
-> +#endif
-> +
-> =A0=A0=A0=A0=A0=A0=A0 return VM_FAULT_NOPAGE;
-> =A0out_fallback:
-> =A0=A0=A0=A0=A0=A0=A0 count_vm_event(THP_FAULT_FALLBACK);
-> =
-
-> =
-
-> =
-
-> =
-
-> =
-
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGkhCgpPbiAzLzExLzIxIDI6MDAgUE0sIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gT24gVGh1LCBN
+YXIgMTEsIDIwMjEgYXQgMTE6MjI6MDZBTSArMDEwMCwgVGhvbWFzIEhlbGxzdHLDtm0gKEludGVs
+KSB3cm90ZToKPj4gT24gMy8xLzIxIDM6MDkgUE0sIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+PiBP
+biBNb24sIE1hciAxLCAyMDIxIGF0IDExOjE3IEFNIENocmlzdGlhbiBLw7ZuaWcKPj4+IDxjaHJp
+c3RpYW4ua29lbmlnQGFtZC5jb20+IHdyb3RlOgo+Pj4+Cj4+Pj4gQW0gMDEuMDMuMjEgdW0gMTA6
+MjEgc2NocmllYiBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpOgo+Pj4+PiBPbiAzLzEvMjEgMTA6
+MDUgQU0sIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+Pj4+PiBPbiBNb24sIE1hciAwMSwgMjAyMSBh
+dCAwOTozOTo1M0FNICswMTAwLCBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpCj4+Pj4+PiB3cm90
+ZToKPj4+Pj4+PiBIaSwKPj4+Pj4+Pgo+Pj4+Pj4+IE9uIDMvMS8yMSA5OjI4IEFNLCBEYW5pZWwg
+VmV0dGVyIHdyb3RlOgo+Pj4+Pj4+PiBPbiBTYXQsIEZlYiAyNywgMjAyMSBhdCA5OjA2IEFNIFRo
+b21hcyBIZWxsc3Ryw7ZtIChJbnRlbCkKPj4+Pj4+Pj4gPHRob21hc19vc0BzaGlwbWFpbC5vcmc+
+IHdyb3RlOgo+Pj4+Pj4+Pj4gT24gMi8yNi8yMSAyOjI4IFBNLCBEYW5pZWwgVmV0dGVyIHdyb3Rl
+Ogo+Pj4+Pj4+Pj4+IFNvIEkgdGhpbmsgaXQgc3RvcHMgZ3VwLiBCdXQgSSBoYXZlbid0IHZlcmlm
+aWVkIGF0IGFsbC4gV291bGQgYmUKPj4+Pj4+Pj4+PiBnb29kCj4+Pj4+Pj4+Pj4gaWYgQ2hyaXN0
+aWFuIGNhbiBjaGVjayB0aGlzIHdpdGggc29tZSBkaXJlY3QgaW8gdG8gYSBidWZmZXIgaW4KPj4+
+Pj4+Pj4+PiBzeXN0ZW0KPj4+Pj4+Pj4+PiBtZW1vcnkuCj4+Pj4+Pj4+PiBIbW0sCj4+Pj4+Pj4+
+Pgo+Pj4+Pj4+Pj4gRG9jcyAoYWdhaW4gdm1fbm9ybWFsX3BhZ2UoKSBzYXkpCj4+Pj4+Pj4+Pgo+
+Pj4+Pj4+Pj4gICAgICAgKiBWTV9NSVhFRE1BUCBtYXBwaW5ncyBjYW4gbGlrZXdpc2UgY29udGFp
+biBtZW1vcnkgd2l0aCBvcgo+Pj4+Pj4+Pj4gd2l0aG91dCAic3RydWN0Cj4+Pj4+Pj4+PiAgICAg
+ICAqIHBhZ2UiIGJhY2tpbmcsIGhvd2V2ZXIgdGhlIGRpZmZlcmVuY2UgaXMgdGhhdCBfYWxsXyBw
+YWdlcwo+Pj4+Pj4+Pj4gd2l0aCBhIHN0cnVjdAo+Pj4+Pj4+Pj4gICAgICAgKiBwYWdlICh0aGF0
+IGlzLCB0aG9zZSB3aGVyZSBwZm5fdmFsaWQgaXMgdHJ1ZSkgYXJlIHJlZmNvdW50ZWQKPj4+Pj4+
+Pj4+IGFuZAo+Pj4+Pj4+Pj4gY29uc2lkZXJlZAo+Pj4+Pj4+Pj4gICAgICAgKiBub3JtYWwgcGFn
+ZXMgYnkgdGhlIFZNLiBUaGUgZGlzYWR2YW50YWdlIGlzIHRoYXQgcGFnZXMgYXJlCj4+Pj4+Pj4+
+PiByZWZjb3VudGVkCj4+Pj4+Pj4+PiAgICAgICAqICh3aGljaCBjYW4gYmUgc2xvd2VyIGFuZCBz
+aW1wbHkgbm90IGFuIG9wdGlvbiBmb3Igc29tZSBQRk5NQVAKPj4+Pj4+Pj4+IHVzZXJzKS4gVGhl
+Cj4+Pj4+Pj4+PiAgICAgICAqIGFkdmFudGFnZSBpcyB0aGF0IHdlIGRvbid0IGhhdmUgdG8gZm9s
+bG93IHRoZSBzdHJpY3QKPj4+Pj4+Pj4+IGxpbmVhcml0eSBydWxlIG9mCj4+Pj4+Pj4+PiAgICAg
+ICAqIFBGTk1BUCBtYXBwaW5ncyBpbiBvcmRlciB0byBzdXBwb3J0IENPV2FibGUgbWFwcGluZ3Mu
+Cj4+Pj4+Pj4+Pgo+Pj4+Pj4+Pj4gYnV0IGl0J3MgdHJ1ZSBfX3ZtX2luc2VydF9taXhlZCgpIGVu
+ZHMgdXAgaW4gdGhlIGluc2VydF9wZm4oKQo+Pj4+Pj4+Pj4gcGF0aCwgc28KPj4+Pj4+Pj4+IHRo
+ZSBhYm92ZSBpc24ndCByZWFsbHkgdHJ1ZSwgd2hpY2ggbWFrZXMgbWUgd29uZGVyIGlmIGFuZCBp
+biB0aGF0Cj4+Pj4+Pj4+PiBjYXNlCj4+Pj4+Pj4+PiB3aHkgdGhlcmUgY291bGQgYW55IGxvbmdl
+ciBldmVyIGJlIGEgc2lnbmlmaWNhbnQgcGVyZm9ybWFuY2UKPj4+Pj4+Pj4+IGRpZmZlcmVuY2UK
+Pj4+Pj4+Pj4+IGJldHdlZW4gTUlYRURNQVAgYW5kIFBGTk1BUC4KPj4+Pj4+Pj4gWWVhaCBpdCdz
+IGRlZmluaXRlbHkgY29uZnVzaW5nLiBJIGd1ZXNzIEknbGwgaGFjayB1cCBhIHBhdGNoIGFuZCBz
+ZWUKPj4+Pj4+Pj4gd2hhdCBzdGlja3MuCj4+Pj4+Pj4+Cj4+Pj4+Pj4+PiBCVFcgcmVnYXJkaW5n
+IHRoZSBUVE0gaHVnZXB0ZXMsIEkgZG9uJ3QgdGhpbmsgd2UgZXZlciBsYW5kZWQgdGhhdAo+Pj4+
+Pj4+Pj4gZGV2bWFwCj4+Pj4+Pj4+PiBoYWNrLCBzbyB0aGV5IGFyZSAoZm9yIHRoZSBub24tZ3Vw
+IGNhc2UpIHJlbHlpbmcgb24KPj4+Pj4+Pj4+IHZtYV9pc19zcGVjaWFsX2h1Z2UoKS4gRm9yIHRo
+ZSBndXAgY2FzZSwgSSB0aGluayB0aGUgYnVnIGlzIHN0aWxsCj4+Pj4+Pj4+PiB0aGVyZS4KPj4+
+Pj4+Pj4gTWF5YmUgdGhlcmUncyBhbm90aGVyIGRldm1hcCBoYWNrLCBidXQgdGhlIHR0bV92bV9p
+bnNlcnQgZnVuY3Rpb25zIGRvCj4+Pj4+Pj4+IHVzZSBQRk5fREVWIGFuZCBhbGwgdGhhdC4gQW5k
+IEkgdGhpbmsgdGhhdCBzdG9wcyBndXBfZmFzdCBmcm9tIHRyeWluZwo+Pj4+Pj4+PiB0byBmaW5k
+IHRoZSB1bmRlcmx5aW5nIHBhZ2UuCj4+Pj4+Pj4+IC1EYW5pZWwKPj4+Pj4+PiBIbW0gcGVyaGFw
+cyBpdCBtaWdodCwgYnV0IEkgZG9uJ3QgdGhpbmsgc28uIFRoZSBmaXggSSB0cmllZCBvdXQgd2Fz
+Cj4+Pj4+Pj4gdG8gc2V0Cj4+Pj4+Pj4KPj4+Pj4+PiBQRk5fREVWIHwgUEZOX01BUCBmb3IgaHVn
+ZSBQVEVzIHdoaWNoIGNhdXNlcyBwZm5fZGV2bWFwKCkgdG8gYmUKPj4+Pj4+PiB0cnVlLCBhbmQK
+Pj4+Pj4+PiB0aGVuCj4+Pj4+Pj4KPj4+Pj4+PiBmb2xsb3dfZGV2bWFwX3BtZCgpLT5nZXRfZGV2
+X3BhZ2VtYXAoKSB3aGljaCByZXR1cm5zIE5VTEwgYW5kCj4+Pj4+Pj4gZ3VwX2Zhc3QoKQo+Pj4+
+Pj4+IGJhY2tzIG9mZiwKPj4+Pj4+Pgo+Pj4+Pj4+IGluIHRoZSBlbmQgdGhhdCB3b3VsZCBtZWFu
+IHNldHRpbmcgaW4gc3RvbmUgdGhhdCAiaWYgdGhlcmUgaXMgYSBodWdlCj4+Pj4+Pj4gZGV2bWFw
+Cj4+Pj4+Pj4gcGFnZSB0YWJsZSBlbnRyeSBmb3Igd2hpY2ggd2UgaGF2ZW4ndCByZWdpc3RlcmVk
+IGFueSBkZXZtYXAgc3RydWN0Cj4+Pj4+Pj4gcGFnZXMKPj4+Pj4+PiAoZ2V0X2Rldl9wYWdlbWFw
+IHJldHVybnMgTlVMTCksIHdlIHNob3VsZCB0cmVhdCB0aGF0IGFzIGEgInNwZWNpYWwiCj4+Pj4+
+Pj4gaHVnZQo+Pj4+Pj4+IHBhZ2UgdGFibGUgZW50cnkiLgo+Pj4+Pj4+Cj4+Pj4+Pj4gICAgRnJv
+bSB3aGF0IEkgY2FuIHRlbGwsIGFsbCBjb2RlIGNhbGxpbmcgZ2V0X2Rldl9wYWdlbWFwKCkgYWxy
+ZWFkeQo+Pj4+Pj4+IGRvZXMgdGhhdCwKPj4+Pj4+PiBpdCdzIGp1c3QgYSBxdWVzdGlvbiBvZiBn
+ZXR0aW5nIGl0IGFjY2VwdGVkIGFuZCBmb3JtYWxpemluZyBpdC4KPj4+Pj4+IE9oIEkgdGhvdWdo
+dCB0aGF0J3MgYWxyZWFkeSBob3cgaXQgd29ya3MsIHNpbmNlIEkgZGlkbid0IHNwb3QgYW55dGhp
+bmcKPj4+Pj4+IGVsc2UgdGhhdCB3b3VsZCBibG9jayBndXBfZmFzdCBmcm9tIGZhbGxpbmcgb3Zl
+ci4gSSBndWVzcyByZWFsbHkgd291bGQKPj4+Pj4+IG5lZWQgc29tZSB0ZXN0Y2FzZXMgdG8gbWFr
+ZSBzdXJlIGRpcmVjdCBpL28gKHRoYXQncyB0aGUgZWFzaWVzdCB0byB0ZXN0KQo+Pj4+Pj4gZmFp
+bHMgbGlrZSB3ZSBleHBlY3QuCj4+Pj4+IFllYWgsIElJUkMgdGhlICJ8IFBGTl9NQVAiIGlzIHRo
+ZSBtaXNzaW5nIHBpZWNlIGZvciBUVE0gaHVnZSBwdGVzLgo+Pj4+PiBPdGhlcndpc2UgcG1kX2Rl
+dm1hcCgpIHdpbGwgbm90IHJldHVybiB0cnVlIGFuZCBzaW5jZSB0aGVyZSBpcyBubwo+Pj4+PiBw
+bWRfc3BlY2lhbCgpIHRoaW5ncyBicmVhay4KPj4+PiBJcyB0aGF0IG1heWJlIHRoZSBpc3N1ZSB3
+ZSBoYXZlIHNlZW4gd2l0aCBhbWRncHUgYW5kIGh1Z2UgcGFnZXM/Cj4+PiBZZWFoLCBlc3NlbnRp
+YWxseSB3aGVuIHlvdSBoYXZlIGEgaHVnZXB0ZSBpbnNlcnRlZCBieSB0dG0sIGFuZCBpdAo+Pj4g
+aGFwcGVucyB0byBwb2ludCBhdCBzeXN0ZW0gbWVtb3J5LCB0aGVuIGd1cCB3aWxsIHdvcmsgb24g
+dGhhdC4gQW5kCj4+PiBjcmVhdGUgYWxsIGtpbmRzIG9mIGhhdm9jLgo+Pj4KPj4+PiBBcGFydCBm
+cm9tIHRoYXQgSSdtIGxvc3QgZ3V5cywgdGhhdCBkZXZtYXAgYW5kIGd1cCBzdHVmZiBpcyBub3QK
+Pj4+PiBzb21ldGhpbmcgSSBoYXZlIGEgZ29vZCBrbm93bGVkZ2Ugb2YgYXBhcnQgZnJvbSBhIG9u
+ZSBtaWxlIGhpZ2ggdmlldy4KPj4+IEknbSBub3QgcmVhbGx5IGJldHRlciwgaGVuY2Ugd291bGQg
+YmUgZ29vZCB0byBkbyBhIHRlc3RjYXNlIGFuZCBzZWUuCj4+PiBUaGlzIHNob3VsZCBwcm92b2tl
+IGl0Ogo+Pj4gLSBhbGxvY2F0ZSBuaWNlbHkgYWxpZ25lZCBibyBpbiBzeXN0ZW0gbWVtb3J5Cj4+
+PiAtIG1tYXAsIGFnYWluIG5pY2VseSBhbGlnbmVkIHRvIDJNCj4+PiAtIGRvIHNvbWUgZGlyZWN0
+IGlvIGZyb20gYSBmaWxlc3lzdGVtIGludG8gdGhhdCBtbWFwLCB0aGF0IHNob3VsZCB0cmlnZ2Vy
+IGd1cAo+Pj4gLSBiZWZvcmUgdGhlIGd1cCBjb21wbGV0ZXMgZnJlZSB0aGUgbW1hcCBhbmQgYm8g
+c28gdGhhdCB0dG0gcmVjeWNsZXMKPj4+IHRoZSBwYWdlcywgd2hpY2ggc2hvdWxkIHRyaXAgdXAg
+b24gdGhlIGVsZXZhdGVkIHJlZmNvdW50LiBJZiB5b3Ugd2FpdAo+Pj4gdW50aWwgdGhlIGRpcmVj
+dCBpbyBpcyBjb21wbGV0ZWx5LCB0aGVuIEkgdGhpbmsgbm90aGluZyBiYWQgY2FuIGJlCj4+PiBv
+YnNlcnZlZC4KPj4+Cj4+PiBPZmMgaWYgeW91ciBhbWRncHUraHVnZXB0ZSBpc3N1ZSBpcyBzb21l
+dGhpbmcgZWxzZSwgdGhlbiBtYXliZSB3ZSBoYXZlCj4+PiBhbm90aGVyIGlzc3VlLgo+Pj4KPj4+
+IEFsc28gdXN1YWwgY2F2ZWF0OiBJJ20gbm90IGFuIG1tIGhhY2tlciBlaXRoZXIsIHNvIG1pZ2h0
+IGJlIGNvbXBsZXRlbHkgd3JvbmcuCj4+PiAtRGFuaWVsCj4+IFNvIEkgZGlkIHRoZSBmb2xsb3dp
+bmcgcXVpY2sgZXhwZXJpbWVudCBvbiB2bXdnZngsIGFuZCBpdCB0dXJucyBvdXQgdGhhdAo+PiB3
+aXRoIGl0LAo+PiBmYXN0IGd1cCBuZXZlciBzdWNjZWVkcy4gV2l0aG91dCB0aGUgInwgUEZOX01B
+UCIsIGl0IHR5cGljYWxseSBzdWNjZWVkcwo+Pgo+PiBJIHNob3VsZCBwcm9iYWJseSBjcmFmdCBh
+biBSRkMgZm9ybWFsaXppbmcgdGhpcy4KPiBZZWFoIEkgdGhpbmsgdGhhdCB3b3VsZCBiZSBnb29k
+LiBNYXliZSBldmVuIG1vcmUgZm9ybWFsaXplZCBpZiB3ZSBhbHNvCj4gc3dpdGNoIG92ZXIgdG8g
+Vk1fUEZOTUFQLCBzaW5jZSBhZmFpdWkgdGhlc2UgcHRlIGZsYWdzIGhlcmUgb25seSBzdG9wIHRo
+ZQo+IGZhc3QgZ3VwIHBhdGguIEFuZCBzbG93IGd1cCBjYW4gc3RpbGwgcGVhayB0aHJvdWdoIFZN
+X01JWEVETUFQLiBPcgo+IHNvbWV0aGluZyBsaWtlIHRoYXQuCj4KPiBPdG9oIHlvdXIgZGVzY3Jp
+cHRpb24gb2Ygd2hlbiBpdCBvbmx5IHNvbWV0aW1lcyBzdWNjZWVkcyB3b3VsZCBpbmRpY2F0ZSBt
+eQo+IHVuZGVyc3RhbmRpbmcgb2YgVk1fUEZOTUFQIHZzIFZNX01JWEVETUFQIGlzIHdyb25nIGhl
+cmUuCgpNeSB1bmRlcnN0YW5kaW5nIGZyb20gcmVhZGluZyB0aGUgdm1mX2luc2VydF9taXhlZCgp
+IGNvZGUgaXMgdGhhdCBpZmYgCnRoZSBhcmNoIGhhcyBwdGVfc3BlY2lhbCgpLCBWTV9NSVhFRE1B
+UCBzaG91bGQgYmUgaGFybWxlc3MuIEJ1dCB0aGF0J3MgCm5vdCBjb25zaXN0ZW50IHdpdGggdGhl
+IHZtX25vcm1hbF9wYWdlKCkgZG9jLiBGb3IgYXJjaGl0ZWN0dXJlcyB3aXRob3V0IApwdGVfc3Bl
+Y2lhbCwgVk1fUEZOTUFQIG11c3QgYmUgdXNlZCwgYW5kIHRoZW4gd2UgbXVzdCBhbHNvIGJsb2Nr
+IENPVyAKbWFwcGluZ3MuCgpJZiB3ZSBjYW4gZ2V0IHNvbWVvbmUgY2FuIGNvbW1pdCB0byB2ZXJp
+ZnkgdGhhdCB0aGUgcG90ZW50aWFsIFBBVCBXQyAKcGVyZm9ybWFuY2UgaXNzdWUgaXMgZ29uZSB3
+aXRoIFBGTk1BUCwgSSBjYW4gcHV0IHRvZ2V0aGVyIGEgc2VyaWVzIHdpdGggCnRoYXQgaW5jbHVk
+ZWQuCgpBcyBmb3IgZXhpc3RpbmcgdXNlcnNwYWNlIHVzaW5nIENPVyBUVE0gbWFwcGluZ3MsIEkg
+b25jZSBoYWQgYSBjb3VwbGUgb2YgCnRlc3QgY2FzZXMgdG8gdmVyaWZ5IHRoYXQgaXQgYWN0dWFs
+bHkgd29ya2VkLCBpbiBwYXJ0aWN1bGFyIHRvZ2V0aGVyIAp3aXRoIGh1Z2UgUE1EcyBhbmQgUFVE
+cyB3aGVyZSBicmVha2luZyBDT1cgd291bGQgaW1wbHkgc3BsaXR0aW5nIHRob3NlLCAKYnV0IEkg
+Y2FuJ3QgdGhpbmsgb2YgYW55dGhpbmcgZWxzZSBhY3R1YWxseSB3YW50aW5nIHRvIGRvIHRoYXQg
+b3RoZXIgCnRoYW4gYnkgbWlzdGFrZS4KCi9UaG9tYXMKCgo+Cj4gQ2hyaXN0aWFuLCB3aGF0J3Mg
+eW91ciB0YWtlPwo+IC1EYW5pZWwKPgo+PiAvVGhvbWFzCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vdHRtL3R0bV9ib192bS5jCj4+IGIvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1f
+Ym9fdm0uYwo+PiBpbmRleCA2ZGM5NmNmNjY3NDQuLjcyYjZmYjE3Yzk4NCAxMDA2NDQKPj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm9fdm0uYwo+PiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vdHRtL3R0bV9ib192bS5jCj4+IEBAIC0xOTUsNiArMTk1LDcgQEAgc3RhdGljIHZtX2ZhdWx0
+X3QgdHRtX2JvX3ZtX2luc2VydF9odWdlKHN0cnVjdCB2bV9mYXVsdAo+PiAqdm1mLAo+PiAgwqDC
+oMKgwqDCoMKgwqAgcGZuX3QgcGZudDsKPj4gIMKgwqDCoMKgwqDCoMKgIHN0cnVjdCB0dG1fdHQg
+KnR0bSA9IGJvLT50dG07Cj4+ICDCoMKgwqDCoMKgwqDCoCBib29sIHdyaXRlID0gdm1mLT5mbGFn
+cyAmIEZBVUxUX0ZMQUdfV1JJVEU7Cj4+ICvCoMKgwqDCoMKgwqAgc3RydWN0IGRldl9wYWdlbWFw
+ICpwYWdlbWFwOwo+Pgo+PiAgwqDCoMKgwqDCoMKgwqAgLyogRmF1bHQgc2hvdWxkIG5vdCBjcm9z
+cyBibyBib3VuZGFyeS4gKi8KPj4gIMKgwqDCoMKgwqDCoMKgIHBhZ2Vfb2Zmc2V0ICY9IH4oZmF1
+bHRfcGFnZV9zaXplIC0gMSk7Cj4+IEBAIC0yMTAsNiArMjExLDE3IEBAIHN0YXRpYyB2bV9mYXVs
+dF90IHR0bV9ib192bV9pbnNlcnRfaHVnZShzdHJ1Y3Qgdm1fZmF1bHQKPj4gKnZtZiwKPj4gIMKg
+wqDCoMKgwqDCoMKgIGlmICgocGZuICYgKGZhdWx0X3BhZ2Vfc2l6ZSAtIDEpKSAhPSAwKQo+PiAg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gb3V0X2ZhbGxiYWNrOwo+Pgo+PiAr
+wqDCoMKgwqDCoMKgIC8qCj4+ICvCoMKgwqDCoMKgwqDCoCAqIEh1Z2UgZW50cmllcyBtdXN0IGJl
+IHNwZWNpYWwsIHRoYXQgaXMgbWFya2luZyB0aGVtIGFzIGRldm1hcAo+PiArwqDCoMKgwqDCoMKg
+wqAgKiB3aXRoIG5vIGJhY2tpbmcgZGV2aWNlIG1hcCByYW5nZS4gSWYgdGhlcmUgaXMgYSBiYWNr
+aW5nCj4+ICvCoMKgwqDCoMKgwqDCoCAqIHJhbmdlLCBEb24ndCBpbnNlcnQgYSBodWdlIGVudHJ5
+Lgo+PiArwqDCoMKgwqDCoMKgwqAgKi8KPj4gK8KgwqDCoMKgwqDCoCBwYWdlbWFwID0gZ2V0X2Rl
+dl9wYWdlbWFwKHBmbiwgTlVMTCk7Cj4+ICvCoMKgwqDCoMKgwqAgaWYgKHBhZ2VtYXApIHsKPj4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcHV0X2Rldl9wYWdlbWFwKHBhZ2VtYXApOwo+
+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBnb3RvIG91dF9mYWxsYmFjazsKPj4gK8Kg
+wqDCoMKgwqDCoCB9Cj4+ICsKPj4gIMKgwqDCoMKgwqDCoMKgIC8qIENoZWNrIHRoYXQgbWVtb3J5
+IGlzIGNvbnRpZ3VvdXMuICovCj4+ICDCoMKgwqDCoMKgwqDCoCBpZiAoIWJvLT5tZW0uYnVzLmlz
+X2lvbWVtKSB7Cj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZm9yIChpID0gMTsg
+aSA8IGZhdWx0X3BhZ2Vfc2l6ZTsgKytpKSB7Cj4+IEBAIC0yMjMsNyArMjM1LDcgQEAgc3RhdGlj
+IHZtX2ZhdWx0X3QgdHRtX2JvX3ZtX2luc2VydF9odWdlKHN0cnVjdCB2bV9mYXVsdAo+PiAqdm1m
+LAo+PiAgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0KPj4gIMKgwqDCoMKgwqDCoMKg
+IH0KPj4KPj4gLcKgwqDCoMKgwqDCoCBwZm50ID0gX19wZm5fdG9fcGZuX3QocGZuLCBQRk5fREVW
+KTsKPj4gK8KgwqDCoMKgwqDCoCBwZm50ID0gX19wZm5fdG9fcGZuX3QocGZuLCBQRk5fREVWIHwg
+UEZOX01BUCk7Cj4+ICDCoMKgwqDCoMKgwqDCoCBpZiAoZmF1bHRfcGFnZV9zaXplID09IChIUEFH
+RV9QTURfU0laRSA+PiBQQUdFX1NISUZUKSkKPj4gIMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCByZXQgPSB2bWZfaW5zZXJ0X3Bmbl9wbWRfcHJvdCh2bWYsIHBmbnQsIHBncHJvdCwgd3Jp
+dGUpOwo+PiAgwqAjaWZkZWYgQ09ORklHX0hBVkVfQVJDSF9UUkFOU1BBUkVOVF9IVUdFUEFHRV9Q
+VUQKPj4gQEAgLTIzNiw2ICsyNDgsMjEgQEAgc3RhdGljIHZtX2ZhdWx0X3QgdHRtX2JvX3ZtX2lu
+c2VydF9odWdlKHN0cnVjdCB2bV9mYXVsdAo+PiAqdm1mLAo+PiAgwqDCoMKgwqDCoMKgwqAgaWYg
+KHJldCAhPSBWTV9GQVVMVF9OT1BBR0UpCj4+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgZ290byBvdXRfZmFsbGJhY2s7Cj4+Cj4+ICsjaWYgMQo+PiArwqDCoMKgwqDCoMKgIHsKPj4g
+K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaW50IG5wYWdlczsKPj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IHBhZ2UgKnBhZ2U7Cj4+ICsKPj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgbnBhZ2VzID0gZ2V0X3VzZXJfcGFnZXNfZmFzdF9vbmx5KHZtZi0+
+YWRkcmVzcywgMSwgMCwKPj4gJnBhZ2UpOwo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBpZiAobnBhZ2VzID09IDEpIHsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIERSTV9XQVJOKCJGYXN0IGd1cCBzdWNjZWVkZWQuIEJhZC5cbiIpOwo+PiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcHV0X3BhZ2UocGFn
+ZSk7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0gZWxzZSB7Cj4+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBEUk1fSU5GTygiRmFzdCBndXAg
+ZmFpbGVkLiBHb29kLlxuIik7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0KPj4g
+K8KgwqDCoMKgwqDCoCB9Cj4+ICsjZW5kaWYKPj4gKwo+PiAgwqDCoMKgwqDCoMKgwqAgcmV0dXJu
+IFZNX0ZBVUxUX05PUEFHRTsKPj4gIMKgb3V0X2ZhbGxiYWNrOgo+PiAgwqDCoMKgwqDCoMKgwqAg
+Y291bnRfdm1fZXZlbnQoVEhQX0ZBVUxUX0ZBTExCQUNLKTsKPj4KPj4KPj4KPj4KPj4KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
