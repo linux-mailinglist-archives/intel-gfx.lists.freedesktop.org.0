@@ -1,48 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 136FF337B78
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 18:58:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5FD9337C49
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 19:17:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17F1D6E045;
-	Thu, 11 Mar 2021 17:58:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9993899BE;
+	Thu, 11 Mar 2021 18:17:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9FC26E045
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 17:58:39 +0000 (UTC)
-IronPort-SDR: fwitdXSHeF77cdoXF3tu48dECFWrV9qtpuNM0DLzYyeAx0JsYhI6V5KQRFkEDZVY2F1S+m1dhR
- BKnd4xRJTNUw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="252727077"
-X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="252727077"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2021 09:58:38 -0800
-IronPort-SDR: Xlq+ubX6VNJ2IaKo1owhJsZaIVEQoEYIXr7EFBhk+7Gax83htQe00j2OgNk0QfURAgGNchrymA
- oOJxtjvOXoeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="410693075"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 11 Mar 2021 09:58:36 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 11 Mar 2021 19:58:35 +0200
-Date: Thu, 11 Mar 2021 19:58:35 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <YEpaS7u1aclC/HDh@intel.com>
-References: <20210310221736.2963264-1-imre.deak@intel.com>
- <20210310221736.2963264-17-imre.deak@intel.com>
- <YEpKys5LiW06dihB@intel.com>
- <20210311170223.GF2970909@ideak-desk.fi.intel.com>
- <YEpS0lKUt6ynqcy4@intel.com>
- <20210311174725.GG2970909@ideak-desk.fi.intel.com>
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com
+ [IPv6:2607:f8b0:4864:20::52f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3265899BE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 18:17:39 +0000 (UTC)
+Received: by mail-pg1-x52f.google.com with SMTP id t37so3401882pga.11
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 10:17:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=SChis0vGtZm1iq7sn+k+kRfgAmu4A3E0FlpMCLrCELA=;
+ b=uF/HsqWm/VCG0YhPTC3AvCRHLm/30uX/XprXnFSVCHXWkRdlOTvJA/oeKz4JeiE3Yp
+ Bm72TqhgAnfiaRj5oymzV21cyhlD90ydPWCqgUc3KTjAko6PmvNXbvGk8NC6smb3UDFc
+ ahF0TZsy1fn0PZP+2tvDl9nJKRYu/q352xcp53CtKSA9LkQhXsGFmsuTzGfsMTz6fjzR
+ ju4T7sG3/ReDyM6LM44sfSqRVWtbp2Rvj8v2FNc7XVtbsVWlPJJYPlwfPjqy5UF+leSt
+ 4lFLwKThFfZeQhihaiyIlk/zg9v7F7brkDzyy1gTJ/FpxGpTa8LPjH9QWcLkhAE2HdjZ
+ 9LrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=SChis0vGtZm1iq7sn+k+kRfgAmu4A3E0FlpMCLrCELA=;
+ b=G6v/zNMe5Oywt8/5/vh2+jMmn81bOZAdgN6qCRX4Bgp1KY94PTHULilQXAR7jr4vS1
+ zU035RqZ5uZaJXfBY8KI4EDK0pQLs/dNfDDm7Vrh6PxnheHJuMqY6FEKlAhcP0Ah3KjK
+ RtH1ajUU2AT47GWdTOpjQOwoxWzvPjL+7uLgsloIT/ix6P6W6Oqd+8ZQC6xWvFEmjiUQ
+ n0lCsDcvUKRuUwxQ/4BhOwPJjwbnMgTr3u2wRNe/beSCCJL1oDGT9b53xbuLeNYEK/82
+ aNSy1ELjRmKbkDPqi+9hoPDKnSZXXjjDMZFSxWdmOM/7cYWfHgpH3O+uLIsVUnLgoWeW
+ lSUw==
+X-Gm-Message-State: AOAM531gDWM2dhnOt+GC3xTBJetCcWauUK05242oH1Y/wap7lkWeh9vh
+ dbDDpwlgNNGpdIJ04/xCrsLOo+N/k0cOJQ==
+X-Google-Smtp-Source: ABdhPJx9YEM7TpqDj1BvpFBtnY+XB/EeHraQceerWnk0Cwc5jRMxi3XdYLIX9UygeKQNyKmrkXivTQ==
+X-Received: by 2002:a63:224c:: with SMTP id t12mr8164325pgm.289.1615486658827; 
+ Thu, 11 Mar 2021 10:17:38 -0800 (PST)
+Received: from omlet.lan (jfdmzpr05-ext.jf.intel.com. [134.134.139.74])
+ by smtp.gmail.com with ESMTPSA id v1sm3018536pjt.1.2021.03.11.10.17.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Mar 2021 10:17:38 -0800 (PST)
+From: Jason Ekstrand <jason@jlekstrand.net>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 11 Mar 2021 12:17:33 -0600
+Message-Id: <20210311181733.1048640-1-jason@jlekstrand.net>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210310215007.782649-1-jason@jlekstrand.net>
+References: <20210310215007.782649-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210311174725.GG2970909@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 16/23] drm/i915/intel_fb: Factor out
- calc_plane_normal_size()
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Drop relocation support on all
+ new hardware (v4)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,220 +68,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 11, 2021 at 07:47:25PM +0200, Imre Deak wrote:
-> On Thu, Mar 11, 2021 at 07:26:42PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Thu, Mar 11, 2021 at 07:02:23PM +0200, Imre Deak wrote:
-> > > On Thu, Mar 11, 2021 at 06:52:26PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > On Thu, Mar 11, 2021 at 12:17:29AM +0200, Imre Deak wrote:
-> > > > > Factor out to a new function the logic to calculate an FB plane's
-> > > > > normal-view size.
-> > > > > =
+The Vulkan driver in Mesa for Intel hardware never uses relocations if
+it's running on a version of i915 that supports at least softpin which
+all versions of i915 supporting Gen12 do.  On the OpenGL side, Gen12+ is
+only supported by iris which never uses relocations.  The older i965
+driver in Mesa does use relocations but it only supports Intel hardware
+through Gen11 and has been deprecated for all hardware Gen9+.  The
+compute driver also never uses relocations.  This only leaves the media
+driver which is supposed to be switching to softpin going forward.
+Making softpin a requirement for all future hardware seems reasonable.
 
-> > > > > Instead of using intel_remapped_plane_info, which is related only=
- to
-> > > > > remapping, add a helper to get the tile pitch and rows for an FB =
-plane,
-> > > > > so these helpers can be used both by the normal size calculation =
-and the
-> > > > > remapping code.
-> > > > > =
+There is one piece of hardware enabled by default in i915: RKL which was
+enabled by e22fa6f0a976 which has not yet landed in drm-next so this
+almost but not really a userspace API change for RKL.  If it becomes a
+problem, we can always add !IS_ROCKETLAKE(eb->i915) to the condition.
 
-> > > > > Also add a new fb_plane_view_dims struct in which we can pass aro=
-und the
-> > > > > view (either FB plane or plane source) and tile dimensions conven=
-iently
-> > > > > to functions calculating further view parameters.
-> > > > > =
+Rejecting relocations starting with newer Gen12 platforms has the
+benefit that we don't have to bother supporting it on platforms with
+local memory.  Given how much CPU touching of memory is required for
+relocations, not having to do so on platforms where not all memory is
+directly CPU-accessible carries significant advantages.
 
-> > > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_fb.c | 82 ++++++++++++++++++-=
-------
-> > > > >  1 file changed, 61 insertions(+), 21 deletions(-)
-> > > > > =
+v2 (Jason Ekstrand):
+ - Allow TGL-LP platforms as they've already shipped
 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gp=
-u/drm/i915/display/intel_fb.c
-> > > > > index 62a8e37dca38..f661b21b119d 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > > @@ -634,6 +634,59 @@ static u32 setup_fb_rotation(int plane, cons=
-t struct intel_remapped_plane_info *
-> > > > >  	return plane_info->width * plane_info->height;
-> > > > >  }
-> > > > >  =
+v3 (Jason Ekstrand):
+ - WARN_ON platforms with LMEM support in case the check is wrong
 
-> > > > > +struct fb_plane_view_dims {
-> > > > > +	unsigned int width, height;
-> > > > > +	unsigned int tile_width, tile_height;
-> > > > > +};
-> > > > > +
-> > > > > +static void init_plane_view_dims(const struct intel_framebuffer =
-*fb, int color_plane,
-> > > > > +				 unsigned int width, unsigned int height,
-> > > > > +				 struct fb_plane_view_dims *dims)
-> > > > > +{
-> > > > > +	dims->width =3D width;
-> > > > > +	dims->height =3D height;
-> > > > > +
-> > > > > +	intel_tile_dims(&fb->base, color_plane, &dims->tile_width, &dim=
-s->tile_height);
-> > > > > +}
-> > > > > +
-> > > > > +static unsigned int plane_view_stride_tiles(const struct intel_f=
-ramebuffer *fb, int color_plane,
-> > > > > +					    const struct fb_plane_view_dims *dims)
-> > > > > +{
-> > > > > +	const struct drm_framebuffer *drm_fb =3D &fb->base;
-> > > > > +
-> > > > > +	return DIV_ROUND_UP(drm_fb->pitches[color_plane],
-> > > > > +			    dims->tile_width * drm_fb->format->cpp[color_plane]);
-> > > > =
+v4 (Jason Ekstrand):
+ - Call out Rocket Lake in the commit message
 
-> > > > plane_view_fb_stride_tiles() maybe to make it clear it's the fb str=
-ide
-> > > > we're talking about here?
-> > > =
+Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+Acked-by: Keith Packard <keithp@keithp.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-> > > Ok.
-> > > =
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 99772f37bff60..b02dbd16bfa03 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1764,7 +1764,8 @@ eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 	return err;
+ }
+ 
+-static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
++static int check_relocations(const struct i915_execbuffer *eb,
++			     const struct drm_i915_gem_exec_object2 *entry)
+ {
+ 	const char __user *addr, *end;
+ 	unsigned long size;
+@@ -1774,6 +1775,14 @@ static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
+ 	if (size == 0)
+ 		return 0;
+ 
++	/* Relocations are disallowed for all platforms after TGL-LP */
++	if (INTEL_GEN(eb->i915) >= 12 && !IS_TIGERLAKE(eb->i915))
++		return -EINVAL;
++
++	/* All discrete memory platforms are Gen12 or above */
++	if (WARN_ON(HAS_LMEM(eb->i915)))
++		return -EINVAL;
++
+ 	if (size > N_RELOC(ULONG_MAX))
+ 		return -EINVAL;
+ 
+@@ -1807,7 +1816,7 @@ static int eb_copy_relocations(const struct i915_execbuffer *eb)
+ 		if (nreloc == 0)
+ 			continue;
+ 
+-		err = check_relocations(&eb->exec[i]);
++		err = check_relocations(eb, &eb->exec[i]);
+ 		if (err)
+ 			goto err;
+ 
+@@ -1880,7 +1889,7 @@ static int eb_prefault_relocations(const struct i915_execbuffer *eb)
+ 	for (i = 0; i < count; i++) {
+ 		int err;
+ 
+-		err = check_relocations(&eb->exec[i]);
++		err = check_relocations(eb, &eb->exec[i]);
+ 		if (err)
+ 			return err;
+ 	}
+-- 
+2.29.2
 
-> > > > > +}
-> > > > > +
-> > > > > +static unsigned int plane_view_tile_rows(const struct intel_fram=
-ebuffer *fb, int color_plane,
-> > > > > +					 const struct fb_plane_view_dims *dims,
-> > > > > +					 int y)
-> > > > > +{
-> > > > > +	return DIV_ROUND_UP(y + dims->height, dims->tile_height);
-> > > > > +}
-> > > > > +
-> > > > > +static int calc_plane_normal_size(const struct intel_framebuffer=
- *fb, int color_plane,
-> > > > > +				  const struct fb_plane_view_dims *dims,
-> > > > > +				  int x, int y)
-> > > > > +{
-> > > > > +	const struct drm_framebuffer *drm_fb =3D &fb->base;
-> > > > > +	struct drm_i915_private *i915 =3D to_i915(drm_fb->dev);
-> > > > > +	int pages;
-> > > > =
-
-> > > > 'tiles'?
-> > > =
-
-> > > Ok, not always pages.
-> > > =
-
-> > > > > +
-> > > > > +	if (is_surface_linear(drm_fb, color_plane)) {
-> > > > > +		unsigned int size;
-> > > > > +
-> > > > > +		size =3D (y + dims->height) * drm_fb->pitches[color_plane] +
-> > > > > +		       x * drm_fb->format->cpp[color_plane];
-> > > > > +		pages =3D DIV_ROUND_UP(size, intel_tile_size(i915));
-> > > > > +	} else {
-> > > > > +		pages =3D plane_view_stride_tiles(fb, color_plane, dims) *
-> > > > > +			plane_view_tile_rows(fb, color_plane, dims, y);
-> > > > > +	}
-> > > > > +
-> > > > > +	return pages;
-> > > > > +}
-> > > > > +
-> > > > >  int intel_fill_fb_info(struct drm_i915_private *i915, struct drm=
-_framebuffer *fb)
-> > > > >  {
-> > > > >  	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
-> > > > > @@ -644,6 +697,7 @@ int intel_fill_fb_info(struct drm_i915_privat=
-e *i915, struct drm_framebuffer *fb
-> > > > >  	unsigned int tile_size =3D intel_tile_size(i915);
-> > > > >  =
-
-> > > > >  	for (i =3D 0; i < num_planes; i++) {
-> > > > > +		struct fb_plane_view_dims view_dims;
-> > > > >  		unsigned int width, height;
-> > > > >  		unsigned int cpp, size;
-> > > > >  		u32 offset;
-> > > > > @@ -669,6 +723,8 @@ int intel_fill_fb_info(struct drm_i915_privat=
-e *i915, struct drm_framebuffer *fb
-> > > > >  		if (ret)
-> > > > >  			return ret;
-> > > > >  =
-
-> > > > > +		init_plane_view_dims(intel_fb, i, width, height, &view_dims);
-> > > > > +
-> > > > >  		/*
-> > > > >  		 * First pixel of the framebuffer from
-> > > > >  		 * the start of the normal gtt mapping.
-> > > > > @@ -680,38 +736,22 @@ int intel_fill_fb_info(struct drm_i915_priv=
-ate *i915, struct drm_framebuffer *fb
-> > > > >  =
-
-> > > > >  		if (!is_surface_linear(fb, i)) {
-> > > > >  			struct intel_remapped_plane_info plane_info;
-> > > > > -			unsigned int tile_width, tile_height;
-> > > > > -
-> > > > > -			intel_tile_dims(fb, i, &tile_width, &tile_height);
-> > > > >  =
-
-> > > > >  			plane_info.offset =3D offset;
-> > > > > -			plane_info.stride =3D DIV_ROUND_UP(fb->pitches[i],
-> > > > > -							 tile_width * cpp);
-> > > > > -			plane_info.width =3D DIV_ROUND_UP(x + width, tile_width);
-> > > > > -			plane_info.height =3D DIV_ROUND_UP(y + height,
-> > > > > -							 tile_height);
-> > > > > -
-> > > > > -			/* how many tiles does this plane need */
-> > > > > -			size =3D plane_info.stride * plane_info.height;
-> > > > > -			/*
-> > > > > -			 * If the plane isn't horizontally tile aligned,
-> > > > > -			 * we need one more tile.
-> > > > > -			 */
-> > > > > -			if (x !=3D 0)
-> > > > > -				size++;
-> > > > =
-
-> > > > Where did that go?
-> > > =
-
-> > > Arg, thanks for catching it.
-> > > =
-
-> > > > > +			plane_info.stride =3D plane_view_stride_tiles(intel_fb, i, &v=
-iew_dims);
-> > > > > +			plane_info.width =3D DIV_ROUND_UP(x + width, view_dims.tile_w=
-idth);
-> > > > =
-
-> > > > Why this doesn't have its own function?
-> > > =
-
-> > > Can move it to a plane_view_fb_width_tiles() helper (and maybe also
-> > > s/plane_view_tile_rows/plane_view_fb_height_tiles).
-> > =
-
-> > Well. those are the view width/height no? So I would not put the "fb" in
-> > the name there.
-> =
-
-> Ah, right.
-> =
-
-> Btw just realized that later in the patchset I rename
-> plane_view_stride_tiles() to plane_view_src_stride_tiles() and add
-> plane_view_dst_stride_tiles(), are you ok with that instead?
-
-Yeah, seems ok.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
