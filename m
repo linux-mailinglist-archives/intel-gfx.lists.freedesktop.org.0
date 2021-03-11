@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C021A337EFA
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 21:20:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA009337EFB
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 21:20:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 335156E530;
-	Thu, 11 Mar 2021 20:20:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62F266E53C;
+	Thu, 11 Mar 2021 20:20:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
- [IPv6:2607:f8b0:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE9BF6E530
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 20:20:24 +0000 (UTC)
-Received: by mail-pf1-x431.google.com with SMTP id b23so308700pfo.8
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 12:20:24 -0800 (PST)
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com
+ [IPv6:2607:f8b0:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3355B6E536
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 20:20:26 +0000 (UTC)
+Received: by mail-pl1-x635.google.com with SMTP id q12so324872plr.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 12:20:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=wIBg2TmFtTDfZ2+nNDQBSKuSR2y4FVXLy8VSgkAHfuQ=;
- b=lH3zoHj5SBaoZwTkl6fqCpLF2p/equaVwvt1PQ3DATuEZOSakxt1ST5tBSaZpe5bBF
- Am+EAzMUOZRxWS4yV7/XyA75FogXMmvaFaHHCtpKs1D20rKz7zEfjN3mWr5hIl7tbcE8
- 7AEIlXxhDnUMV/ziU4BvEVbjO7/WU6sTfFxVkPXL+Ga5B6FcSqCHAblXApv6Zdf77j14
- o18zDtmq8wmcCt5kTswItGlayVft9/wduOIUZtT3BqLtsg47+bNULDTb81c2sDItApOi
- cPQMaiahWBgfTXmE1IuiclOF0rQAOpEDmsowEL3tv/A4ZXvebFFaC311hWL5uz5xG9Ez
- mofw==
+ bh=037x0s1NuuVARwngWoEU+ClMBVQyZ4NhgosKv9WBglw=;
+ b=1xqC4U/MpH8LbmImFhHrsKMQed3eQdmOy435PIXfhbDUcSifUC7FPn/IfxRascW2Uc
+ Y0Vyx+X21QocQitNPIlNDH2mQ057eOK4KJonnszgRBqb2smum4rsUbFcQSavfEp0LcF1
+ JYhXfvO/vzATMB04kSrDkifBYj+Eyn5++zeHuUvQcy88ejyMKcfTROgXc+4Btvmn4Ou9
+ ckblxlv3NvO22Ze6bMuXiVcOs8afr8hpDmQTmeH5UJsYc0WcwCi1NgKkpTjHdlztzv2d
+ r+igHFv8RhOM+ZXKl68Mt49GsxoikHWZ9tlZKD+DIGMAzgftOYRJDpQOBOKQM0efCLF3
+ VCJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=wIBg2TmFtTDfZ2+nNDQBSKuSR2y4FVXLy8VSgkAHfuQ=;
- b=gK23geXb2+o1Sisg3O4H3Q6UUpFaZTIjxf0c9Tb2xDgOa0fZgAsDfUEzdhTll2lFcN
- pXf6ZMpXmWHSjGGW++hYYIa1UN1/bbeb49PCvbJiE8pfX+ikdlRQbEB/ZOYy0JwnRQtI
- fIsmCer5kKNM/mIz9WMlA6TJ/hHoSbzYTRXU6VtIwwUan0qZaSQGFhCLJnVSssHS9NTB
- MGL0+Qt7PO4nNeD8PHZKEkHLRlycHCw6h070DYru0ugMPZnUxsM6+JXYhwJIPhPb9XF4
- eRrzSmKqRXAfNm22wrKfAVYWGtSlVuxspVWz/cH26Y6G/yXUeVeSL1rHGPco/F/yxctA
- 8Gdw==
-X-Gm-Message-State: AOAM533wNQszw+sOmpyFYkaB4H1kSEmQZIT2LkgWAP/BMK9bnWieKvu/
- EZnj/y1njqCMNUxcBGLpl4kNuSLL0C/4ag==
-X-Google-Smtp-Source: ABdhPJyFuF39SEqmnldG/VCaNwz4OjdFUVvEQoWx4tidgZFafn1ADIemh0fTLAIsC+dJkMJX2pdzTQ==
-X-Received: by 2002:aa7:881a:0:b029:1f1:6148:15c3 with SMTP id
- c26-20020aa7881a0000b02901f1614815c3mr9410854pfo.30.1615494023824; 
- Thu, 11 Mar 2021 12:20:23 -0800 (PST)
+ bh=037x0s1NuuVARwngWoEU+ClMBVQyZ4NhgosKv9WBglw=;
+ b=GhmWoGV132YD8Jtz4r0Zx5+hwwgBMMJ+tV2sYXU/wmAGXqatLNfdAOXtEsJBHN4rg+
+ L4nuep4fo/RJ1qXykaSXZneXBjVWplqCkvRYdkLK6UKJNHYVTixaJl2hCtVLuFytKFDI
+ NKRv0OEf4YWkP65mdNFRoYgZk3veX5yMl8HhU8MweR6UloPmuJxe5yLXzfwiazCi+cme
+ PUIdGD6e6R61vD7QfRMACFrCgyXovfUkJEAwaugsalQATRXNPeDcPH87wwYclLatPBcv
+ h8JdO3cV6oAefnYmsz4Y2vR+NjO3LxZvk2ngbR7HzpL00Ka4tbEIZsAKhhzsR2LYw9is
+ Q1sQ==
+X-Gm-Message-State: AOAM533Dv6MEOdMytx5hio+DVoCLONvAUkQTHmU7n0BbAf4K97BMiihx
+ OK1BDsKJoQCm7VIgZJM0sYKonYt/KP2YJw==
+X-Google-Smtp-Source: ABdhPJzFyA+2WBBJNRqQPhuFY6/pIOGUqowzUKAr1LuobL4knc+8/MA383SF2wUd2HlLthV6El6x0w==
+X-Received: by 2002:a17:90a:8417:: with SMTP id
+ j23mr10602820pjn.224.1615494025327; 
+ Thu, 11 Mar 2021 12:20:25 -0800 (PST)
 Received: from omlet.lan (jfdmzpr05-ext.jf.intel.com. [134.134.139.74])
- by smtp.gmail.com with ESMTPSA id i62sm3122636pgc.11.2021.03.11.12.20.22
+ by smtp.gmail.com with ESMTPSA id i62sm3122636pgc.11.2021.03.11.12.20.24
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Mar 2021 12:20:23 -0800 (PST)
+ Thu, 11 Mar 2021 12:20:24 -0800 (PST)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 11 Mar 2021 14:20:16 -0600
-Message-Id: <20210311202017.1133327-1-jason@jlekstrand.net>
+Date: Thu, 11 Mar 2021 14:20:17 -0600
+Message-Id: <20210311202017.1133327-2-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1611354210.git.ashutosh.dixit@intel.com>
+In-Reply-To: <20210311202017.1133327-1-jason@jlekstrand.net>
 References: <cover.1611354210.git.ashutosh.dixit@intel.com>
+ <20210311202017.1133327-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 0/1]drm/i915: Disable pread/pwrite ioctl's for
+Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Disable pread/pwrite ioctl's for
  future platforms (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,6 +74,8 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
 The rationale for this change is roughly as follows:
 
@@ -103,18 +106,69 @@ v2 (Jason Ekstrand):
  - Improved commit message with the status of all usermode drivers
  - A more future-proof platform check
 
-Test-with: 20210121083742.46592-1-ashutosh.dixit@intel.com
-
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-
-Ashutosh Dixit (1):
-  drm/i915: Disable pread/pwrite ioctl's for future platforms (v2)
-
+---
  drivers/gpu/drm/i915/i915_drv.h |  1 +
  drivers/gpu/drm/i915/i915_gem.c | 18 ++++++++++++++++++
  2 files changed, 19 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 1d45d7492d10d..3f74188fa8090 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1633,6 +1633,7 @@ tgl_stepping_get(struct drm_i915_private *dev_priv)
+ #define HAS_SECURE_BATCHES(dev_priv) (INTEL_GEN(dev_priv) < 6)
+ #define HAS_WT(dev_priv)	HAS_EDRAM(dev_priv)
+ 
++#define HAS_PREAD_PWRITE(dev_priv)	(!INTEL_INFO(dev_priv)->no_pread_pwrite)
+ #define HWS_NEEDS_PHYSICAL(dev_priv)	(INTEL_INFO(dev_priv)->hws_needs_physical)
+ 
+ #define HAS_LOGICAL_RING_CONTEXTS(dev_priv) \
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index b2e3b5cfccb4a..78ad5a9dd4784 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -374,10 +374,19 @@ int
+ i915_gem_pread_ioctl(struct drm_device *dev, void *data,
+ 		     struct drm_file *file)
+ {
++	struct drm_i915_private *i915 = to_i915(dev);
+ 	struct drm_i915_gem_pread *args = data;
+ 	struct drm_i915_gem_object *obj;
+ 	int ret;
+ 
++	/* Pread is disallowed for all platforms after TGL-LP */
++	if (INTEL_GEN(i915) >= 12 && !IS_TIGERLAKE(i915))
++		return -EOPNOTSUPP;
++
++	/* All discrete memory platforms are Gen12 or above */
++	if (WARN_ON(HAS_LMEM(i915)))
++		return -EOPNOTSUPP;
++
+ 	if (args->size == 0)
+ 		return 0;
+ 
+@@ -675,10 +684,19 @@ int
+ i915_gem_pwrite_ioctl(struct drm_device *dev, void *data,
+ 		      struct drm_file *file)
+ {
++	struct drm_i915_private *i915 = to_i915(dev);
+ 	struct drm_i915_gem_pwrite *args = data;
+ 	struct drm_i915_gem_object *obj;
+ 	int ret;
+ 
++	/* Pwrite is disallowed for all platforms after TGL-LP */
++	if (INTEL_GEN(i915) >= 12 && !IS_TIGERLAKE(i915))
++		return -EOPNOTSUPP;
++
++	/* All discrete memory platforms are Gen12 or above */
++	if (WARN_ON(HAS_LMEM(i915)))
++		return -EOPNOTSUPP;
++
+ 	if (args->size == 0)
+ 		return 0;
+ 
 -- 
 2.29.2
 
