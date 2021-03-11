@@ -1,42 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 221F83371A0
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 12:44:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D205733733B
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 14:00:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCF9D6E504;
-	Thu, 11 Mar 2021 11:44:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA05F6EC4F;
+	Thu, 11 Mar 2021 13:00:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5C506E503;
- Thu, 11 Mar 2021 11:44:40 +0000 (UTC)
-IronPort-SDR: jDqtNT2YH1qMHb3wc3ZP9G1Kv0tJWwkWBOZ3Fa3qjmI1zZ8uYxcmhGBCwFhPh7YVgt3/rmD+TU
- fq1VI07DCs2A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9919"; a="188692221"
-X-IronPort-AV: E=Sophos;i="5.81,240,1610438400"; d="scan'208";a="188692221"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2021 03:44:39 -0800
-IronPort-SDR: kgZszxngzAXAwRwWdphkS9Mie7MmTzHmKMTOiFB6g0XeQYDWTurOrF/Z/zSr0FmVvvMY0LtlVz
- YvbKOr6aPljg==
-X-IronPort-AV: E=Sophos;i="5.81,240,1610438400"; d="scan'208";a="509995244"
-Received: from wkryszax-mobl2.ger.corp.intel.com (HELO zkempczy-mobl2)
- ([10.213.2.99])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2021 03:44:37 -0800
-Date: Thu, 11 Mar 2021 12:44:32 +0100
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <20210311114432.GB101473@zkempczy-mobl2>
-References: <20210310212606.766121-1-jason@jlekstrand.net>
- <20210310215007.782649-1-jason@jlekstrand.net>
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 058E06EC4F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 13:00:24 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id j2so1754777wrx.9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 05:00:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=laLq4w5cBBPgv4Yt32gfnqKz0NPdTJL/WYi+PW4VG4I=;
+ b=Jf3SQfjZ+Vruv6zVn3xMRID8s49zUHIxA8JrzzQpkQqs+J1FYEsx92oBuuHP3715Za
+ cu8wkOo2wriYktgmnmPwkXg+UpPf+jFloCahD1yngaQ+HGaijQ9dbrQZy3f5z94dY1rh
+ Sy33/bnio/p/ZguVID2tjtikxdg2UKaZM+F+8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=laLq4w5cBBPgv4Yt32gfnqKz0NPdTJL/WYi+PW4VG4I=;
+ b=cnMWXRgjYC+1ZJtuR4Pi2NSj5dPX/YN0FYeF0J+GOhmjJOQSdtTMZylNylaz2ubFcW
+ gvPC9p4nwoNpBI010Pxcry51dbIV9bXtk8rBKK+mIk+V+tAN/RJuCoXCV+z1GmaZpL/4
+ i4/ug0/P16mdeYV5hBaHmnfNx9zviTRPq67urK2WAloYuydQn+53EjfQ4rJS0WC9BkA4
+ iVWU/Hpfzh4UlK+C9HmXuDzjSJ4pChkRommNM9+NRzaddKwXehoDYo8CBEdGJ0W2F5RM
+ 6TNoDyVrw3rQiBOc4jwVoZKYshdGeLIIqxw18BIiJ03g0WtnYMbSd4MViYxxiFf7YtBr
+ dBdQ==
+X-Gm-Message-State: AOAM533Slvnd5FceKMisATvycFvg+T7pRKvtZZA848hWtRUh+0hADLdR
+ sKzopoQuH3a357sjlKoVfypAvw==
+X-Google-Smtp-Source: ABdhPJyD2MEeAgzGiLOT0tix7phgqP5M//DqDonBpa0FIMW1EahQzl21eg/o49kzQFLAqxbcG7M91w==
+X-Received: by 2002:a05:6000:1363:: with SMTP id
+ q3mr8627832wrz.74.1615467623597; 
+ Thu, 11 Mar 2021 05:00:23 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id k11sm3662427wmj.1.2021.03.11.05.00.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Mar 2021 05:00:22 -0800 (PST)
+Date: Thu, 11 Mar 2021 14:00:21 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m_=28Intel=29?= <thomas_os@shipmail.org>
+Message-ID: <YEoUZe8BtvQdv3TG@phenom.ffwll.local>
+References: <61c5c371-debe-4ca0-a067-ce306e51ef88@shipmail.org>
+ <CAKMK7uFUiJyMP0E5JUzMOx=NyMW+ZObGsaFOh409x0LOvGbnzg@mail.gmail.com>
+ <0d69bd00-e673-17cf-c9e3-ccbcd52649a6@shipmail.org>
+ <CAKMK7uE=8+hj-MUFXHFoG_hAbz_Obi8a99+DE5_d1K+KZaG+tQ@mail.gmail.com>
+ <b367b7e8-f202-4d23-d672-a5c9bc7fcec1@shipmail.org>
+ <YDyuYk8x5QeX83s6@phenom.ffwll.local>
+ <be8f2503-ffcb-eb58-83be-26fa0fc1837a@shipmail.org>
+ <648556e6-2d99-950d-c940-706eb5a8f6cc@amd.com>
+ <CAKMK7uHOe=LacUkvGC75dyWAt9TRm7ce8vgxasXOXn-6wJTVnA@mail.gmail.com>
+ <9d608c61-c64c-dcde-c719-59a970144404@shipmail.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210310215007.782649-1-jason@jlekstrand.net>
-Subject: Re: [Intel-gfx] [PATCH] i915: Drop relocation support on all new
- hardware (v3)
+In-Reply-To: <9d608c61-c64c-dcde-c719-59a970144404@shipmail.org>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [Linaro-mm-sig] [PATCH 1/2] dma-buf: Require
+ VM_PFNMAP vma for mmap
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,109 +76,297 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Wilcox <willy@infradead.org>,
+ "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, John Stultz <john.stultz@linaro.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Suren Baghdasaryan <surenb@google.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 10, 2021 at 03:50:07PM -0600, Jason Ekstrand wrote:
-> The Vulkan driver in Mesa for Intel hardware never uses relocations if
-> it's running on a version of i915 that supports at least softpin which
-> all versions of i915 supporting Gen12 do.  On the OpenGL side, Gen12+ is
-> only supported by iris which never uses relocations.  The older i965
-> driver in Mesa does use relocations but it only supports Intel hardware
-> through Gen11 and has been deprecated for all hardware Gen9+.  The
-> compute driver also never uses relocations.  This only leaves the media
-> driver which is supposed to be switching to softpin going forward.
-> Making softpin a requirement for all future hardware seems reasonable.
-> 
-> Rejecting relocations starting with Gen12 has the benefit that we don't
-> have to bother supporting it on platforms with local memory.  Given how
-> much CPU touching of memory is required for relocations, not having to
-> do so on platforms where not all memory is directly CPU-accessible
-> carries significant advantages.
-> 
-> v2 (Jason Ekstrand):
->  - Allow TGL-LP platforms as they've already shipped
-> 
-> v3 (Jason Ekstrand):
->  - WARN_ON platforms with LMEM support in case the check is wrong
+On Thu, Mar 11, 2021 at 11:22:06AM +0100, Thomas Hellstr=F6m (Intel) wrote:
+> =
 
-I was asked to review of this patch. It works along with expected
-IGT check https://patchwork.freedesktop.org/patch/423361/?series=82954&rev=25
+> On 3/1/21 3:09 PM, Daniel Vetter wrote:
+> > On Mon, Mar 1, 2021 at 11:17 AM Christian K=F6nig
+> > <christian.koenig@amd.com> wrote:
+> > > =
 
-Before I'll give you r-b - isn't i915_gem_execbuffer2_ioctl() better place
-to do for loop just after copy_from_user() and check relocation_count?
-We have an access to exec2_list there, we know the gen so we're able to say
-relocations are not supported immediate, without entering i915_gem_do_execbuffer().
+> > > =
 
---
-Zbigniew
+> > > Am 01.03.21 um 10:21 schrieb Thomas Hellstr=F6m (Intel):
+> > > > On 3/1/21 10:05 AM, Daniel Vetter wrote:
+> > > > > On Mon, Mar 01, 2021 at 09:39:53AM +0100, Thomas Hellstr=F6m (Int=
+el)
+> > > > > wrote:
+> > > > > > Hi,
+> > > > > > =
 
-> 
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 99772f37bff60..b02dbd16bfa03 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1764,7 +1764,8 @@ eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
->  	return err;
->  }
->  
-> -static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
-> +static int check_relocations(const struct i915_execbuffer *eb,
-> +			     const struct drm_i915_gem_exec_object2 *entry)
->  {
->  	const char __user *addr, *end;
->  	unsigned long size;
-> @@ -1774,6 +1775,14 @@ static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
->  	if (size == 0)
->  		return 0;
->  
-> +	/* Relocations are disallowed for all platforms after TGL-LP */
-> +	if (INTEL_GEN(eb->i915) >= 12 && !IS_TIGERLAKE(eb->i915))
-> +		return -EINVAL;
+> > > > > > On 3/1/21 9:28 AM, Daniel Vetter wrote:
+> > > > > > > On Sat, Feb 27, 2021 at 9:06 AM Thomas Hellstr=F6m (Intel)
+> > > > > > > <thomas_os@shipmail.org> wrote:
+> > > > > > > > On 2/26/21 2:28 PM, Daniel Vetter wrote:
+> > > > > > > > > So I think it stops gup. But I haven't verified at all. W=
+ould be
+> > > > > > > > > good
+> > > > > > > > > if Christian can check this with some direct io to a buff=
+er in
+> > > > > > > > > system
+> > > > > > > > > memory.
+> > > > > > > > Hmm,
+> > > > > > > > =
+
+> > > > > > > > Docs (again vm_normal_page() say)
+> > > > > > > > =
+
+> > > > > > > >      * VM_MIXEDMAP mappings can likewise contain memory wit=
+h or
+> > > > > > > > without "struct
+> > > > > > > >      * page" backing, however the difference is that _all_ =
+pages
+> > > > > > > > with a struct
+> > > > > > > >      * page (that is, those where pfn_valid is true) are re=
+fcounted
+> > > > > > > > and
+> > > > > > > > considered
+> > > > > > > >      * normal pages by the VM. The disadvantage is that pag=
+es are
+> > > > > > > > refcounted
+> > > > > > > >      * (which can be slower and simply not an option for so=
+me PFNMAP
+> > > > > > > > users). The
+> > > > > > > >      * advantage is that we don't have to follow the strict
+> > > > > > > > linearity rule of
+> > > > > > > >      * PFNMAP mappings in order to support COWable mappings.
+> > > > > > > > =
+
+> > > > > > > > but it's true __vm_insert_mixed() ends up in the insert_pfn=
+()
+> > > > > > > > path, so
+> > > > > > > > the above isn't really true, which makes me wonder if and i=
+n that
+> > > > > > > > case
+> > > > > > > > why there could any longer ever be a significant performance
+> > > > > > > > difference
+> > > > > > > > between MIXEDMAP and PFNMAP.
+> > > > > > > Yeah it's definitely confusing. I guess I'll hack up a patch =
+and see
+> > > > > > > what sticks.
+> > > > > > > =
+
+> > > > > > > > BTW regarding the TTM hugeptes, I don't think we ever lande=
+d that
+> > > > > > > > devmap
+> > > > > > > > hack, so they are (for the non-gup case) relying on
+> > > > > > > > vma_is_special_huge(). For the gup case, I think the bug is=
+ still
+> > > > > > > > there.
+> > > > > > > Maybe there's another devmap hack, but the ttm_vm_insert func=
+tions do
+> > > > > > > use PFN_DEV and all that. And I think that stops gup_fast fro=
+m trying
+> > > > > > > to find the underlying page.
+> > > > > > > -Daniel
+> > > > > > Hmm perhaps it might, but I don't think so. The fix I tried out=
+ was
+> > > > > > to set
+> > > > > > =
+
+> > > > > > PFN_DEV | PFN_MAP for huge PTEs which causes pfn_devmap() to be
+> > > > > > true, and
+> > > > > > then
+> > > > > > =
+
+> > > > > > follow_devmap_pmd()->get_dev_pagemap() which returns NULL and
+> > > > > > gup_fast()
+> > > > > > backs off,
+> > > > > > =
+
+> > > > > > in the end that would mean setting in stone that "if there is a=
+ huge
+> > > > > > devmap
+> > > > > > page table entry for which we haven't registered any devmap str=
+uct
+> > > > > > pages
+> > > > > > (get_dev_pagemap returns NULL), we should treat that as a "spec=
+ial"
+> > > > > > huge
+> > > > > > page table entry".
+> > > > > > =
+
+> > > > > >   From what I can tell, all code calling get_dev_pagemap() alre=
+ady
+> > > > > > does that,
+> > > > > > it's just a question of getting it accepted and formalizing it.
+> > > > > Oh I thought that's already how it works, since I didn't spot any=
+thing
+> > > > > else that would block gup_fast from falling over. I guess really =
+would
+> > > > > need some testcases to make sure direct i/o (that's the easiest t=
+o test)
+> > > > > fails like we expect.
+> > > > Yeah, IIRC the "| PFN_MAP" is the missing piece for TTM huge ptes.
+> > > > Otherwise pmd_devmap() will not return true and since there is no
+> > > > pmd_special() things break.
+> > > Is that maybe the issue we have seen with amdgpu and huge pages?
+> > Yeah, essentially when you have a hugepte inserted by ttm, and it
+> > happens to point at system memory, then gup will work on that. And
+> > create all kinds of havoc.
+> > =
+
+> > > Apart from that I'm lost guys, that devmap and gup stuff is not
+> > > something I have a good knowledge of apart from a one mile high view.
+> > I'm not really better, hence would be good to do a testcase and see.
+> > This should provoke it:
+> > - allocate nicely aligned bo in system memory
+> > - mmap, again nicely aligned to 2M
+> > - do some direct io from a filesystem into that mmap, that should trigg=
+er gup
+> > - before the gup completes free the mmap and bo so that ttm recycles
+> > the pages, which should trip up on the elevated refcount. If you wait
+> > until the direct io is completely, then I think nothing bad can be
+> > observed.
+> > =
+
+> > Ofc if your amdgpu+hugepte issue is something else, then maybe we have
+> > another issue.
+> > =
+
+> > Also usual caveat: I'm not an mm hacker either, so might be completely =
+wrong.
+> > -Daniel
+> =
+
+> So I did the following quick experiment on vmwgfx, and it turns out that
+> with it,
+> fast gup never succeeds. Without the "| PFN_MAP", it typically succeeds
+> =
+
+> I should probably craft an RFC formalizing this.
+
+Yeah I think that would be good. Maybe even more formalized if we also
+switch over to VM_PFNMAP, since afaiui these pte flags here only stop the
+fast gup path. And slow gup can still peak through VM_MIXEDMAP. Or
+something like that.
+
+Otoh your description of when it only sometimes succeeds would indicate my
+understanding of VM_PFNMAP vs VM_MIXEDMAP is wrong here.
+
+Christian, what's your take?
+-Daniel
+
+> =
+
+> /Thomas
+> =
+
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> index 6dc96cf66744..72b6fb17c984 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
+> @@ -195,6 +195,7 @@ static vm_fault_t ttm_bo_vm_insert_huge(struct vm_fau=
+lt
+> *vmf,
+> =A0=A0=A0=A0=A0=A0=A0 pfn_t pfnt;
+> =A0=A0=A0=A0=A0=A0=A0 struct ttm_tt *ttm =3D bo->ttm;
+> =A0=A0=A0=A0=A0=A0=A0 bool write =3D vmf->flags & FAULT_FLAG_WRITE;
+> +=A0=A0=A0=A0=A0=A0 struct dev_pagemap *pagemap;
+> =
+
+> =A0=A0=A0=A0=A0=A0=A0 /* Fault should not cross bo boundary. */
+> =A0=A0=A0=A0=A0=A0=A0 page_offset &=3D ~(fault_page_size - 1);
+> @@ -210,6 +211,17 @@ static vm_fault_t ttm_bo_vm_insert_huge(struct vm_fa=
+ult
+> *vmf,
+> =A0=A0=A0=A0=A0=A0=A0 if ((pfn & (fault_page_size - 1)) !=3D 0)
+> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_fallback;
+> =
+
+> +=A0=A0=A0=A0=A0=A0 /*
+> +=A0=A0=A0=A0=A0=A0=A0 * Huge entries must be special, that is marking th=
+em as devmap
+> +=A0=A0=A0=A0=A0=A0=A0 * with no backing device map range. If there is a =
+backing
+> +=A0=A0=A0=A0=A0=A0=A0 * range, Don't insert a huge entry.
+> +=A0=A0=A0=A0=A0=A0=A0 */
+> +=A0=A0=A0=A0=A0=A0 pagemap =3D get_dev_pagemap(pfn, NULL);
+> +=A0=A0=A0=A0=A0=A0 if (pagemap) {
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 put_dev_pagemap(pagemap);
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_fallback;
+> +=A0=A0=A0=A0=A0=A0 }
 > +
-> +	/* All discrete memory platforms are Gen12 or above */
-> +	if (WARN_ON(HAS_LMEM(eb->i915)))
-> +		return -EINVAL;
+> =A0=A0=A0=A0=A0=A0=A0 /* Check that memory is contiguous. */
+> =A0=A0=A0=A0=A0=A0=A0 if (!bo->mem.bus.is_iomem) {
+> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 for (i =3D 1; i < fault_pag=
+e_size; ++i) {
+> @@ -223,7 +235,7 @@ static vm_fault_t ttm_bo_vm_insert_huge(struct vm_fau=
+lt
+> *vmf,
+> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 }
+> =A0=A0=A0=A0=A0=A0=A0 }
+> =
+
+> -=A0=A0=A0=A0=A0=A0 pfnt =3D __pfn_to_pfn_t(pfn, PFN_DEV);
+> +=A0=A0=A0=A0=A0=A0 pfnt =3D __pfn_to_pfn_t(pfn, PFN_DEV | PFN_MAP);
+> =A0=A0=A0=A0=A0=A0=A0 if (fault_page_size =3D=3D (HPAGE_PMD_SIZE >> PAGE_=
+SHIFT))
+> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D vmf_insert_pfn_pmd_=
+prot(vmf, pfnt, pgprot, write);
+> =A0#ifdef CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE_PUD
+> @@ -236,6 +248,21 @@ static vm_fault_t ttm_bo_vm_insert_huge(struct vm_fa=
+ult
+> *vmf,
+> =A0=A0=A0=A0=A0=A0=A0 if (ret !=3D VM_FAULT_NOPAGE)
+> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto out_fallback;
+> =
+
+> +#if 1
+> +=A0=A0=A0=A0=A0=A0 {
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 int npages;
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct page *page;
 > +
->  	if (size > N_RELOC(ULONG_MAX))
->  		return -EINVAL;
->  
-> @@ -1807,7 +1816,7 @@ static int eb_copy_relocations(const struct i915_execbuffer *eb)
->  		if (nreloc == 0)
->  			continue;
->  
-> -		err = check_relocations(&eb->exec[i]);
-> +		err = check_relocations(eb, &eb->exec[i]);
->  		if (err)
->  			goto err;
->  
-> @@ -1880,7 +1889,7 @@ static int eb_prefault_relocations(const struct i915_execbuffer *eb)
->  	for (i = 0; i < count; i++) {
->  		int err;
->  
-> -		err = check_relocations(&eb->exec[i]);
-> +		err = check_relocations(eb, &eb->exec[i]);
->  		if (err)
->  			return err;
->  	}
-> -- 
-> 2.29.2
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 npages =3D get_user_pages_fas=
+t_only(vmf->address, 1, 0,
+> &page);
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if (npages =3D=3D 1) {
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 DRM_W=
+ARN("Fast gup succeeded. Bad.\n");
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 put_p=
+age(page);
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 } else {
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 DRM_I=
+NFO("Fast gup failed. Good.\n");
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 }
+> +=A0=A0=A0=A0=A0=A0 }
+> +#endif
+> +
+> =A0=A0=A0=A0=A0=A0=A0 return VM_FAULT_NOPAGE;
+> =A0out_fallback:
+> =A0=A0=A0=A0=A0=A0=A0 count_vm_event(THP_FAULT_FALLBACK);
+> =
+
+> =
+
+> =
+
+> =
+
+> =
+
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
