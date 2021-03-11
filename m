@@ -1,34 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F001337962
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 17:31:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A35B0337964
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Mar 2021 17:31:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2C376EE60;
-	Thu, 11 Mar 2021 16:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC0066EE68;
+	Thu, 11 Mar 2021 16:31:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E3246EE60;
- Thu, 11 Mar 2021 16:31:20 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.69.177; 
-Received: from localhost (unverified [78.156.69.177]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 24078142-1500050 for multiple; Thu, 11 Mar 2021 16:31:13 +0000
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D2086EE68
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Mar 2021 16:31:34 +0000 (UTC)
+IronPort-SDR: iaN/MbaFCwB9KMt0ZA6vHSOP4kNcGSymmYtuwzFeDqeHV4jxisgAj5ab1xkmYy3Rbxz/rpL6/h
+ s2NXC5kbNTnA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="273735200"
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="273735200"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 08:31:32 -0800
+IronPort-SDR: dY4ncyOX7RpwGbnTE3nKMgZL7fHIWBnfkMAwb9hAvkjyaKLNGKYNBQVjkdv1asfPnS1SDMbpkZ
+ FPagoAstJmGg==
+X-IronPort-AV: E=Sophos;i="5.81,241,1610438400"; d="scan'208";a="404122275"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2021 08:31:31 -0800
+Date: Thu, 11 Mar 2021 18:31:27 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20210311163127.GC2970909@ideak-desk.fi.intel.com>
+References: <20210310221736.2963264-1-imre.deak@intel.com>
+ <20210310221736.2963264-8-imre.deak@intel.com>
+ <YEpCHqY2Mc9AEHK4@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210311114432.GB101473@zkempczy-mobl2>
-References: <20210310212606.766121-1-jason@jlekstrand.net>
- <20210310215007.782649-1-jason@jlekstrand.net>
- <20210311114432.GB101473@zkempczy-mobl2>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Jason Ekstrand <jason@jlekstrand.net>, Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-Date: Thu, 11 Mar 2021 16:31:11 +0000
-Message-ID: <161548027193.13836.14203592427794395157@build.alporthouse.com>
-User-Agent: alot/0.9
-Subject: Re: [Intel-gfx] [PATCH] i915: Drop relocation support on all new
- hardware (v3)
+Content-Disposition: inline
+In-Reply-To: <YEpCHqY2Mc9AEHK4@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 07/23] drm/i915/intel_fb: Pull FB plane
+ functions from intel_display_types.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,49 +49,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBaYmlnbmlldyBLZW1wY3p5xYRza2kgKDIwMjEtMDMtMTEgMTE6NDQ6MzIpCj4gT24g
-V2VkLCBNYXIgMTAsIDIwMjEgYXQgMDM6NTA6MDdQTSAtMDYwMCwgSmFzb24gRWtzdHJhbmQgd3Jv
-dGU6Cj4gPiBUaGUgVnVsa2FuIGRyaXZlciBpbiBNZXNhIGZvciBJbnRlbCBoYXJkd2FyZSBuZXZl
-ciB1c2VzIHJlbG9jYXRpb25zIGlmCj4gPiBpdCdzIHJ1bm5pbmcgb24gYSB2ZXJzaW9uIG9mIGk5
-MTUgdGhhdCBzdXBwb3J0cyBhdCBsZWFzdCBzb2Z0cGluIHdoaWNoCj4gPiBhbGwgdmVyc2lvbnMg
-b2YgaTkxNSBzdXBwb3J0aW5nIEdlbjEyIGRvLiAgT24gdGhlIE9wZW5HTCBzaWRlLCBHZW4xMisg
-aXMKPiA+IG9ubHkgc3VwcG9ydGVkIGJ5IGlyaXMgd2hpY2ggbmV2ZXIgdXNlcyByZWxvY2F0aW9u
-cy4gIFRoZSBvbGRlciBpOTY1Cj4gPiBkcml2ZXIgaW4gTWVzYSBkb2VzIHVzZSByZWxvY2F0aW9u
-cyBidXQgaXQgb25seSBzdXBwb3J0cyBJbnRlbCBoYXJkd2FyZQo+ID4gdGhyb3VnaCBHZW4xMSBh
-bmQgaGFzIGJlZW4gZGVwcmVjYXRlZCBmb3IgYWxsIGhhcmR3YXJlIEdlbjkrLiAgVGhlCj4gPiBj
-b21wdXRlIGRyaXZlciBhbHNvIG5ldmVyIHVzZXMgcmVsb2NhdGlvbnMuICBUaGlzIG9ubHkgbGVh
-dmVzIHRoZSBtZWRpYQo+ID4gZHJpdmVyIHdoaWNoIGlzIHN1cHBvc2VkIHRvIGJlIHN3aXRjaGlu
-ZyB0byBzb2Z0cGluIGdvaW5nIGZvcndhcmQuCj4gPiBNYWtpbmcgc29mdHBpbiBhIHJlcXVpcmVt
-ZW50IGZvciBhbGwgZnV0dXJlIGhhcmR3YXJlIHNlZW1zIHJlYXNvbmFibGUuCj4gPiAKPiA+IFJl
-amVjdGluZyByZWxvY2F0aW9ucyBzdGFydGluZyB3aXRoIEdlbjEyIGhhcyB0aGUgYmVuZWZpdCB0
-aGF0IHdlIGRvbid0Cj4gPiBoYXZlIHRvIGJvdGhlciBzdXBwb3J0aW5nIGl0IG9uIHBsYXRmb3Jt
-cyB3aXRoIGxvY2FsIG1lbW9yeS4gIEdpdmVuIGhvdwo+ID4gbXVjaCBDUFUgdG91Y2hpbmcgb2Yg
-bWVtb3J5IGlzIHJlcXVpcmVkIGZvciByZWxvY2F0aW9ucywgbm90IGhhdmluZyB0bwo+ID4gZG8g
-c28gb24gcGxhdGZvcm1zIHdoZXJlIG5vdCBhbGwgbWVtb3J5IGlzIGRpcmVjdGx5IENQVS1hY2Nl
-c3NpYmxlCj4gPiBjYXJyaWVzIHNpZ25pZmljYW50IGFkdmFudGFnZXMuCj4gPiAKPiA+IHYyIChK
-YXNvbiBFa3N0cmFuZCk6Cj4gPiAgLSBBbGxvdyBUR0wtTFAgcGxhdGZvcm1zIGFzIHRoZXkndmUg
-YWxyZWFkeSBzaGlwcGVkCj4gPiAKPiA+IHYzIChKYXNvbiBFa3N0cmFuZCk6Cj4gPiAgLSBXQVJO
-X09OIHBsYXRmb3JtcyB3aXRoIExNRU0gc3VwcG9ydCBpbiBjYXNlIHRoZSBjaGVjayBpcyB3cm9u
-Zwo+IAo+IEkgd2FzIGFza2VkIHRvIHJldmlldyBvZiB0aGlzIHBhdGNoLiBJdCB3b3JrcyBhbG9u
-ZyB3aXRoIGV4cGVjdGVkCj4gSUdUIGNoZWNrIGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9w
-Lm9yZy9wYXRjaC80MjMzNjEvP3Nlcmllcz04Mjk1NCZyZXY9MjUKPiAKPiBCZWZvcmUgSSdsbCBn
-aXZlIHlvdSByLWIgLSBpc24ndCBpOTE1X2dlbV9leGVjYnVmZmVyMl9pb2N0bCgpIGJldHRlciBw
-bGFjZQo+IHRvIGRvIGZvciBsb29wIGp1c3QgYWZ0ZXIgY29weV9mcm9tX3VzZXIoKSBhbmQgY2hl
-Y2sgcmVsb2NhdGlvbl9jb3VudD8KPiBXZSBoYXZlIGFuIGFjY2VzcyB0byBleGVjMl9saXN0IHRo
-ZXJlLCB3ZSBrbm93IHRoZSBnZW4gc28gd2UncmUgYWJsZSB0byBzYXkKPiByZWxvY2F0aW9ucyBh
-cmUgbm90IHN1cHBvcnRlZCBpbW1lZGlhdGUsIHdpdGhvdXQgZW50ZXJpbmcgaTkxNV9nZW1fZG9f
-ZXhlY2J1ZmZlcigpLgoKVGhlcmUncyBhIE5PUkVMT0MgZmxhZyB5b3UgY2FuIGVuZm9yY2UgYXMg
-bWFuZGF0b3J5LiBUaGF0J3MgdHJpdmlhbCBmb3IKdXNlcnNwYWNlIHRvIHNldCwgcmVhbGx5IG1h
-a2VzIHN1cmUgdGhleSBhcmUgYXdhcmUgb2YgdGhlIGNoYW5nZSBhZm9vdCwKYW5kIGk5MTVfZ2Vt
-X2NlY2tfZXhlY2J1ZmZlcigpIHdpbGwgcGVyZm9ybSB0aGUgdmFsaWRhdGlvbiB1cGZyb250IHdp
-dGgKdGhlIG90aGVyIGZsYWcgY2hlY2tzLgotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Thu, Mar 11, 2021 at 06:15:26PM +0200, Ville Syrj=E4l=E4 wrote:
+> ...
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/=
+i915/display/intel_fb.c
+> > new file mode 100644
+> > index 000000000000..29b8ec087f53
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> > @@ -0,0 +1,28 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright =A9 2021 Intel Corporation
+> > + */
+> > +
+> > +#include <drm/drm_framebuffer.h>
+> > +
+> > +#include "display/intel_display_types.h"
+> > +#include "display/intel_fb.h"
+> =
+
+> I don't think we usually have the "display/" part in these.
+
+Ah ok, took that idea from intel_display.c, but that was only
+intentional before moving it under display/. Will fix this.
+
+> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> > +
+> > +bool is_ccs_plane(const struct drm_framebuffer *fb, int plane)
+> > +{
+> > +	if (!is_ccs_modifier(fb->modifier))
+> > +		return false;
+> > +
+> > +	return plane >=3D fb->format->num_planes / 2;
+> > +}
+> > +
+> > +bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane)
+> > +{
+> > +	return is_gen12_ccs_modifier(fb->modifier) && is_ccs_plane(fb, plane);
+> > +}
+> > +
+> > +bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane)
+> > +{
+> > +	return fb->modifier =3D=3D I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC &&
+> > +	       plane =3D=3D 2;
+> > +}
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/=
+i915/display/intel_fb.h
+> > new file mode 100644
+> > index 000000000000..64e6a2521320
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.h
+> > @@ -0,0 +1,17 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright =A9 2020-2021 Intel Corporation
+> > + */
+> > +
+> > +#ifndef __INTEL_FB_H__
+> > +#define __INTEL_FB_H__
+> > +
+> > +#include <linux/types.h>
+> > +
+> > +struct drm_framebuffer;
+> > +
+> > +bool is_ccs_plane(const struct drm_framebuffer *fb, int plane);
+> > +bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane);
+> > +bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane=
+);
+> > +
+> > +#endif /* __INTEL_FB_H__ */
+> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drive=
+rs/gpu/drm/i915/display/skl_universal_plane.c
+> > index 1f335cb09149..3ff1008b0b4a 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > @@ -11,6 +11,7 @@
+> >  #include "i915_drv.h"
+> >  #include "intel_atomic_plane.h"
+> >  #include "intel_display_types.h"
+> > +#include "intel_fb.h"
+> >  #include "intel_pm.h"
+> >  #include "intel_psr.h"
+> >  #include "intel_sprite.h"
+> > -- =
+
+> > 2.25.1
+> > =
+
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
