@@ -2,39 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F5593388A2
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 10:28:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66340338930
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 10:50:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91CC26F51B;
-	Fri, 12 Mar 2021 09:28:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C93DF6F52C;
+	Fri, 12 Mar 2021 09:50:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63E566F51B
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 09:28:28 +0000 (UTC)
-IronPort-SDR: yW1T6hgPaIybZEMdiU56KKfztYVYLKFEPCeqS7mujaCJRCenTHJz9Spay5Xm14U0171z3lYLtB
- tluY8cW4hHRw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="188903970"
-X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="188903970"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2021 01:28:26 -0800
-IronPort-SDR: rxMfoFfHBqHMPFeVMmj3UUNBmZHsfytxbF5ZzrRkndLgo16AYsOt2jRMeiRBToKcHJGycaqoDO
- uwNxNbiF/eIA==
-X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="410950474"
-Received: from gdampc-mobl1.ger.corp.intel.com (HELO zkempczy-mobl2)
- ([10.249.138.101])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2021 01:28:24 -0800
-Date: Fri, 12 Mar 2021 10:28:20 +0100
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <20210312092820.GB13588@zkempczy-mobl2>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 139066F52C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 09:50:25 +0000 (UTC)
+IronPort-SDR: YUFnJus1nrD5MJfbHG+0eesQXASVa6z4wOD3wEQlODDWJALybhqvulGjNAgu3ckNuQJC50IJEg
+ nMEakn1E4WMg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="188174809"
+X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="188174809"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2021 01:50:23 -0800
+IronPort-SDR: t+wgNz+l0pXo1Xs62UPSD9NBiCNuIegga6+hzgKG8r5ADnUu1N0KHZDI+VYLHtlSlobYNR6QmW
+ DeUwwsVIpTJA==
+X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="448575817"
+Received: from nstrumtz-desk02.ger.corp.intel.com (HELO [10.214.213.111])
+ ([10.214.213.111])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2021 01:50:21 -0800
+To: Jason Ekstrand <jason@jlekstrand.net>, intel-gfx@lists.freedesktop.org
 References: <20210310215007.782649-1-jason@jlekstrand.net>
  <20210311181733.1048640-1-jason@jlekstrand.net>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <39bfc60f-cc5a-d793-5cea-e1b8e0751d62@linux.intel.com>
+Date: Fri, 12 Mar 2021 09:50:14 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Content-Disposition: inline
 In-Reply-To: <20210311181733.1048640-1-jason@jlekstrand.net>
+Content-Language: en-US
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Drop relocation support on
  all new hardware (v4)
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -49,82 +52,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBNYXIgMTEsIDIwMjEgYXQgMTI6MTc6MzNQTSAtMDYwMCwgSmFzb24gRWtzdHJhbmQg
-d3JvdGU6Cj4gVGhlIFZ1bGthbiBkcml2ZXIgaW4gTWVzYSBmb3IgSW50ZWwgaGFyZHdhcmUgbmV2
-ZXIgdXNlcyByZWxvY2F0aW9ucyBpZgo+IGl0J3MgcnVubmluZyBvbiBhIHZlcnNpb24gb2YgaTkx
-NSB0aGF0IHN1cHBvcnRzIGF0IGxlYXN0IHNvZnRwaW4gd2hpY2gKPiBhbGwgdmVyc2lvbnMgb2Yg
-aTkxNSBzdXBwb3J0aW5nIEdlbjEyIGRvLiAgT24gdGhlIE9wZW5HTCBzaWRlLCBHZW4xMisgaXMK
-PiBvbmx5IHN1cHBvcnRlZCBieSBpcmlzIHdoaWNoIG5ldmVyIHVzZXMgcmVsb2NhdGlvbnMuICBU
-aGUgb2xkZXIgaTk2NQo+IGRyaXZlciBpbiBNZXNhIGRvZXMgdXNlIHJlbG9jYXRpb25zIGJ1dCBp
-dCBvbmx5IHN1cHBvcnRzIEludGVsIGhhcmR3YXJlCj4gdGhyb3VnaCBHZW4xMSBhbmQgaGFzIGJl
-ZW4gZGVwcmVjYXRlZCBmb3IgYWxsIGhhcmR3YXJlIEdlbjkrLiAgVGhlCj4gY29tcHV0ZSBkcml2
-ZXIgYWxzbyBuZXZlciB1c2VzIHJlbG9jYXRpb25zLiAgVGhpcyBvbmx5IGxlYXZlcyB0aGUgbWVk
-aWEKPiBkcml2ZXIgd2hpY2ggaXMgc3VwcG9zZWQgdG8gYmUgc3dpdGNoaW5nIHRvIHNvZnRwaW4g
-Z29pbmcgZm9yd2FyZC4KPiBNYWtpbmcgc29mdHBpbiBhIHJlcXVpcmVtZW50IGZvciBhbGwgZnV0
-dXJlIGhhcmR3YXJlIHNlZW1zIHJlYXNvbmFibGUuCj4gCj4gVGhlcmUgaXMgb25lIHBpZWNlIG9m
-IGhhcmR3YXJlIGVuYWJsZWQgYnkgZGVmYXVsdCBpbiBpOTE1OiBSS0wgd2hpY2ggd2FzCj4gZW5h
-YmxlZCBieSBlMjJmYTZmMGE5NzYgd2hpY2ggaGFzIG5vdCB5ZXQgbGFuZGVkIGluIGRybS1uZXh0
-IHNvIHRoaXMKPiBhbG1vc3QgYnV0IG5vdCByZWFsbHkgYSB1c2Vyc3BhY2UgQVBJIGNoYW5nZSBm
-b3IgUktMLiAgSWYgaXQgYmVjb21lcyBhCj4gcHJvYmxlbSwgd2UgY2FuIGFsd2F5cyBhZGQgIUlT
-X1JPQ0tFVExBS0UoZWItPmk5MTUpIHRvIHRoZSBjb25kaXRpb24uCj4gCj4gUmVqZWN0aW5nIHJl
-bG9jYXRpb25zIHN0YXJ0aW5nIHdpdGggbmV3ZXIgR2VuMTIgcGxhdGZvcm1zIGhhcyB0aGUKPiBi
-ZW5lZml0IHRoYXQgd2UgZG9uJ3QgaGF2ZSB0byBib3RoZXIgc3VwcG9ydGluZyBpdCBvbiBwbGF0
-Zm9ybXMgd2l0aAo+IGxvY2FsIG1lbW9yeS4gIEdpdmVuIGhvdyBtdWNoIENQVSB0b3VjaGluZyBv
-ZiBtZW1vcnkgaXMgcmVxdWlyZWQgZm9yCj4gcmVsb2NhdGlvbnMsIG5vdCBoYXZpbmcgdG8gZG8g
-c28gb24gcGxhdGZvcm1zIHdoZXJlIG5vdCBhbGwgbWVtb3J5IGlzCj4gZGlyZWN0bHkgQ1BVLWFj
-Y2Vzc2libGUgY2FycmllcyBzaWduaWZpY2FudCBhZHZhbnRhZ2VzLgo+IAo+IHYyIChKYXNvbiBF
-a3N0cmFuZCk6Cj4gIC0gQWxsb3cgVEdMLUxQIHBsYXRmb3JtcyBhcyB0aGV5J3ZlIGFscmVhZHkg
-c2hpcHBlZAo+IAo+IHYzIChKYXNvbiBFa3N0cmFuZCk6Cj4gIC0gV0FSTl9PTiBwbGF0Zm9ybXMg
-d2l0aCBMTUVNIHN1cHBvcnQgaW4gY2FzZSB0aGUgY2hlY2sgaXMgd3JvbmcKPiAKPiB2NCAoSmFz
-b24gRWtzdHJhbmQpOgo+ICAtIENhbGwgb3V0IFJvY2tldCBMYWtlIGluIHRoZSBjb21taXQgbWVz
-c2FnZQo+IAo+IFNpZ25lZC1vZmYtYnk6IEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3RyYW5k
-Lm5ldD4KPiBBY2tlZC1ieTogS2VpdGggUGFja2FyZCA8a2VpdGhwQGtlaXRocC5jb20+Cj4gQ2M6
-IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRh
-bmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fZXhlY2J1ZmZlci5jIHwgMTUgKysrKysrKysrKysrLS0tCj4gIDEgZmlsZSBjaGFu
-Z2VkLCAxMiBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYwo+IGluZGV4IDk5NzcyZjM3YmZm
-NjAuLmIwMmRiZDE2YmZhMDMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX2V4ZWNidWZmZXIuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
-OTE1X2dlbV9leGVjYnVmZmVyLmMKPiBAQCAtMTc2NCw3ICsxNzY0LDggQEAgZWJfcmVsb2NhdGVf
-dm1hX3Nsb3coc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAqZWIsIHN0cnVjdCBlYl92bWEgKmV2KQo+
-ICAJcmV0dXJuIGVycjsKPiAgfQo+ICAKPiAtc3RhdGljIGludCBjaGVja19yZWxvY2F0aW9ucyhj
-b25zdCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNfb2JqZWN0MiAqZW50cnkpCj4gK3N0YXRpYyBp
-bnQgY2hlY2tfcmVsb2NhdGlvbnMoY29uc3Qgc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAqZWIsCj4g
-KwkJCSAgICAgY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgKmVudHJ5KQo+
-ICB7Cj4gIAljb25zdCBjaGFyIF9fdXNlciAqYWRkciwgKmVuZDsKPiAgCXVuc2lnbmVkIGxvbmcg
-c2l6ZTsKPiBAQCAtMTc3NCw2ICsxNzc1LDE0IEBAIHN0YXRpYyBpbnQgY2hlY2tfcmVsb2NhdGlv
-bnMoY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgKmVudHJ5KQo+ICAJaWYg
-KHNpemUgPT0gMCkKPiAgCQlyZXR1cm4gMDsKPiAgCj4gKwkvKiBSZWxvY2F0aW9ucyBhcmUgZGlz
-YWxsb3dlZCBmb3IgYWxsIHBsYXRmb3JtcyBhZnRlciBUR0wtTFAgKi8KPiArCWlmIChJTlRFTF9H
-RU4oZWItPmk5MTUpID49IDEyICYmICFJU19USUdFUkxBS0UoZWItPmk5MTUpKQo+ICsJCXJldHVy
-biAtRUlOVkFMOwo+ICsKPiArCS8qIEFsbCBkaXNjcmV0ZSBtZW1vcnkgcGxhdGZvcm1zIGFyZSBH
-ZW4xMiBvciBhYm92ZSAqLwo+ICsJaWYgKFdBUk5fT04oSEFTX0xNRU0oZWItPmk5MTUpKSkKPiAr
-CQlyZXR1cm4gLUVJTlZBTDsKPiArCgpMb29rcyBnb29kIElNTywgSSd2ZSB0ZXN0ZWQgaXQgd2l0
-aCB1cGNvbWluZyBnZW1faGFzX3JlbG9jYXRpb24oKSBJR1QgY2hlY2suCgpSZXZpZXdlZC1ieTog
-WmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+Cgot
-LQpaYmlnbmlldwoKCj4gIAlpZiAoc2l6ZSA+IE5fUkVMT0MoVUxPTkdfTUFYKSkKPiAgCQlyZXR1
-cm4gLUVJTlZBTDsKPiAgCj4gQEAgLTE4MDcsNyArMTgxNiw3IEBAIHN0YXRpYyBpbnQgZWJfY29w
-eV9yZWxvY2F0aW9ucyhjb25zdCBzdHJ1Y3QgaTkxNV9leGVjYnVmZmVyICplYikKPiAgCQlpZiAo
-bnJlbG9jID09IDApCj4gIAkJCWNvbnRpbnVlOwo+ICAKPiAtCQllcnIgPSBjaGVja19yZWxvY2F0
-aW9ucygmZWItPmV4ZWNbaV0pOwo+ICsJCWVyciA9IGNoZWNrX3JlbG9jYXRpb25zKGViLCAmZWIt
-PmV4ZWNbaV0pOwo+ICAJCWlmIChlcnIpCj4gIAkJCWdvdG8gZXJyOwo+ICAKPiBAQCAtMTg4MCw3
-ICsxODg5LDcgQEAgc3RhdGljIGludCBlYl9wcmVmYXVsdF9yZWxvY2F0aW9ucyhjb25zdCBzdHJ1
-Y3QgaTkxNV9leGVjYnVmZmVyICplYikKPiAgCWZvciAoaSA9IDA7IGkgPCBjb3VudDsgaSsrKSB7
-Cj4gIAkJaW50IGVycjsKPiAgCj4gLQkJZXJyID0gY2hlY2tfcmVsb2NhdGlvbnMoJmViLT5leGVj
-W2ldKTsKPiArCQllcnIgPSBjaGVja19yZWxvY2F0aW9ucyhlYiwgJmViLT5leGVjW2ldKTsKPiAg
-CQlpZiAoZXJyKQo+ICAJCQlyZXR1cm4gZXJyOwo+ICAJfQo+IC0tIAo+IDIuMjkuMgo+IAo+IF9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+On 11/03/2021 18:17, Jason Ekstrand wrote:
+> The Vulkan driver in Mesa for Intel hardware never uses relocations if
+> it's running on a version of i915 that supports at least softpin which
+> all versions of i915 supporting Gen12 do.  On the OpenGL side, Gen12+ is
+> only supported by iris which never uses relocations.  The older i965
+> driver in Mesa does use relocations but it only supports Intel hardware
+> through Gen11 and has been deprecated for all hardware Gen9+.  The
+> compute driver also never uses relocations.  This only leaves the media
+> driver which is supposed to be switching to softpin going forward.
+> Making softpin a requirement for all future hardware seems reasonable.
+> 
+> There is one piece of hardware enabled by default in i915: RKL which was
+> enabled by e22fa6f0a976 which has not yet landed in drm-next so this
+> almost but not really a userspace API change for RKL.  If it becomes a
+> problem, we can always add !IS_ROCKETLAKE(eb->i915) to the condition.
+> 
+> Rejecting relocations starting with newer Gen12 platforms has the
+> benefit that we don't have to bother supporting it on platforms with
+> local memory.  Given how much CPU touching of memory is required for
+> relocations, not having to do so on platforms where not all memory is
+> directly CPU-accessible carries significant advantages.
+> 
+> v2 (Jason Ekstrand):
+>   - Allow TGL-LP platforms as they've already shipped
+> 
+> v3 (Jason Ekstrand):
+>   - WARN_ON platforms with LMEM support in case the check is wrong
+> 
+> v4 (Jason Ekstrand):
+>   - Call out Rocket Lake in the commit message
+> 
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Acked-by: Keith Packard <keithp@keithp.com>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 15 ++++++++++++---
+>   1 file changed, 12 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 99772f37bff60..b02dbd16bfa03 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1764,7 +1764,8 @@ eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
+>   	return err;
+>   }
+>   
+> -static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
+> +static int check_relocations(const struct i915_execbuffer *eb,
+> +			     const struct drm_i915_gem_exec_object2 *entry)
+>   {
+>   	const char __user *addr, *end;
+>   	unsigned long size;
+> @@ -1774,6 +1775,14 @@ static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
+>   	if (size == 0)
+>   		return 0;
+>   
+> +	/* Relocations are disallowed for all platforms after TGL-LP */
+> +	if (INTEL_GEN(eb->i915) >= 12 && !IS_TIGERLAKE(eb->i915))
+> +		return -EINVAL;
+
+I still recommend ENODEV as more inline with our established error 
+codes. (Platform does not support vs dear userspace you messed up your 
+flags, modes, whatever.)
+
+> +
+> +	/* All discrete memory platforms are Gen12 or above */
+> +	if (WARN_ON(HAS_LMEM(eb->i915)))
+> +		return -EINVAL;
+
+What was the conclusion on value of supporting fake lmem?
+
+Regards,
+
+Tvrtko
+
+> +
+>   	if (size > N_RELOC(ULONG_MAX))
+>   		return -EINVAL;
+>   
+> @@ -1807,7 +1816,7 @@ static int eb_copy_relocations(const struct i915_execbuffer *eb)
+>   		if (nreloc == 0)
+>   			continue;
+>   
+> -		err = check_relocations(&eb->exec[i]);
+> +		err = check_relocations(eb, &eb->exec[i]);
+>   		if (err)
+>   			goto err;
+>   
+> @@ -1880,7 +1889,7 @@ static int eb_prefault_relocations(const struct i915_execbuffer *eb)
+>   	for (i = 0; i < count; i++) {
+>   		int err;
+>   
+> -		err = check_relocations(&eb->exec[i]);
+> +		err = check_relocations(eb, &eb->exec[i]);
+>   		if (err)
+>   			return err;
+>   	}
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
