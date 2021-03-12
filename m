@@ -2,45 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A51983395DD
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 19:09:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DDF13395FC
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 19:16:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F08186ECC3;
-	Fri, 12 Mar 2021 18:09:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C85FD6ED23;
+	Fri, 12 Mar 2021 18:16:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C98816ECC3
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 18:09:20 +0000 (UTC)
-IronPort-SDR: feXV6T0SypVVfDRoxzZWnnIBJwW2sSN7AiPfFJg462t7Fz37Gr5vS84CI7zC6JC+sLDPb8FAje
- kvlpUy/orjyg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9921"; a="188964020"
-X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; d="scan'208";a="188964020"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2021 10:09:19 -0800
-IronPort-SDR: g5kX9WUe6eA5IThyEU7UJTDlR8+oNjIqwkho29ZlqcJViM9wOEseqNqsWQ//rauuoTJCaO/m5a
- DhWg1zmE6JCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; d="scan'208";a="377787231"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga007.fm.intel.com with SMTP; 12 Mar 2021 10:09:17 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 12 Mar 2021 20:09:16 +0200
-Date: Fri, 12 Mar 2021 20:09:16 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <YEuuTBaP2IUCWPp8@intel.com>
-References: <20210310221736.2963264-1-imre.deak@intel.com>
- <20210310221736.2963264-19-imre.deak@intel.com>
- <YEpzSj9TVv1wFrSr@intel.com>
- <20210311221942.GA3107177@ideak-desk.fi.intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF9536ED23
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 18:16:22 +0000 (UTC)
+IronPort-SDR: IZxx5yRknQG24x21OhQU/Y2HSzD9tnraGFRuvZU8MPj/gjx9QwUHOW2VxDOjxfFaJU0mEwjWyY
+ BpdgaPXlRSuA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9921"; a="252888076"
+X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; d="scan'208";a="252888076"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2021 10:16:22 -0800
+IronPort-SDR: t81XZxVR4FsLTGX7OVZ1EdvjMc6EW2vuVDsasljYAmCYzlDjPlTgZEvm9ttJPK9Dz82G92FaG3
+ BbBsrtMT+xFw==
+X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; d="scan'208";a="600673560"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2021 10:16:21 -0800
+Date: Fri, 12 Mar 2021 10:16:20 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+Message-ID: <20210312181620.GT2690983@mdroper-desk1.amr.corp.intel.com>
+References: <20210311182612.17004-1-swathi.dhanavanthri@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210311221942.GA3107177@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 18/23] drm/i915: Shrink the size of
- intel_remapped_plane_info struct
+In-Reply-To: <20210311182612.17004-1-swathi.dhanavanthri@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add Wa_14011060649
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,63 +48,101 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 12, 2021 at 12:19:42AM +0200, Imre Deak wrote:
-> On Thu, Mar 11, 2021 at 09:45:14PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Thu, Mar 11, 2021 at 12:17:31AM +0200, Imre Deak wrote:
-> > > Save some place in the GTT VMAs by using a u16 instead of unsigned int
-> > > to store the view dimensions. The maximum FB stride is 256kB which is
-> > > 4096 tiles in the worst case (yf-tiles), the maximum FB height is 16k
-> > > pixels, which is 2048 tiles in the worst case (x-tiles).
-> > =
+On Thu, Mar 11, 2021 at 10:26:12AM -0800, Swathi Dhanavanthri wrote:
+> This is a permanent workaround for TGL,RKL,DG1 and ADLS.
+> 
+> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 23 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h             |  3 +++
+>  2 files changed, 26 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 3b4a7da60f0b..683a0446337a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1117,11 +1117,34 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+>  			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
+>  }
+>  
+> +/*
+> + * This is a common function for WA 14011060649
+> + */
 
-> > Actually I think the worst case for height is remapping linear fbs
-> > since we more or less treat it as 4kx1 tiles. But 16k is still< 64k
-> > so should be all good.
-> =
+This comment doesn't really add anything useful; the function name
+itself makes it clear that it applies to WA 14011060649.
 
-> Yes, thanks for catching that. Will fix the commit message.
-> =
+A more useful thing to comment on here is that although this workaround
+programs some per-engine registers, those register values persist
+through engine resets which is why this doesn't get added to a
+per-engine workaround list; it should only be applied on the GT
+workaround list.
 
-> > Integer promotion stuff/etc. is what worried me the most here, but
-> > looks like rotate_pages()/remap_pages() at least gets everything
-> > passed in as unsigned int, so we're not in danger of sign bit
-> > shenanigans there at least.
-> =
+With an updated comment,
 
-> Yes. Fwiw I can think only of the following kind of sign-extension
-> problem scenario with u16:
-> =
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> u16 v1=3D-1;
-> int i=3Dv1;
-> =
+> +static void
+> +wa_14011060649(struct drm_i915_private *i915, struct i915_wa_list *wal)
+> +{
+> +	struct intel_engine_cs *engine;
+> +	struct intel_gt *gt = &i915->gt;
+> +	int id;
+> +
+> +	for_each_engine(engine, gt, id) {
+> +		if ((engine->class != VIDEO_DECODE_CLASS) ||
+> +		    (engine->instance % 2))
+> +			continue;
+> +
+> +		wa_write_or(wal, VDBOX_CGCTL3F10(engine->mmio_base),
+> +			    IECPUNIT_CLKGATE_DIS);
+> +	}
+> +}
+> +
+>  static void
+>  gen12_gt_workarounds_init(struct drm_i915_private *i915,
+>  			  struct i915_wa_list *wal)
+>  {
+>  	wa_init_mcr(i915, wal);
+> +
+> +	/* Wa_14011060649:tgl,rkl,dg1,adls */
+> +	wa_14011060649(i915, wal);
+>  }
+>  
+>  static void
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index e5dd0203991b..cc60556306e2 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2715,6 +2715,9 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>  #define RING_INDIRECT_CTX_OFFSET(base)	_MMIO((base) + 0x1c8) /* gen8+ */
+>  #define RING_CTX_TIMESTAMP(base)	_MMIO((base) + 0x3a8) /* gen8+ */
+>  
+> +#define VDBOX_CGCTL3F10(base)		_MMIO((base) + 0x3f10)
+> +#define   IECPUNIT_CLKGATE_DIS		REG_BIT(22)
+> +
+>  #define ERROR_GEN6	_MMIO(0x40a0)
+>  #define GEN7_ERR_INT	_MMIO(0x44040)
+>  #define   ERR_INT_POISON		(1 << 31)
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-> So if u16 stored a negative result, we'd miss the expected
-> sign-extension, but I can't see a way we wanted to store a negative
-> value to these fields. So for instance in remap_pages() the
-> =
-
-> 	offset +=3D src_stride - width;
-> =
-
-> would be still correct even if src_stride/width would be u16 and
-> src_stride was less than width.
-
-I suppose most issues would be along the lines of expecting
-u16-u16 to produce a mod u16 result. But since things get
-promoted to signed int that is no longer true when the result
-is negative. Also if you then cast that result to some bigger
-type you can get even more sign extension happening.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
