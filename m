@@ -2,55 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46B5E338EF1
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 14:38:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D1DD338F98
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 15:15:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDCE6E147;
-	Fri, 12 Mar 2021 13:38:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 721196F40A;
+	Fri, 12 Mar 2021 14:15:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E14F36E147
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 13:38:02 +0000 (UTC)
-IronPort-SDR: iwL4dXUR2htTZz3bo6KkEUmvBBAiogG30X8dWgcsvF6+QeJGzaD6sTHbAGYtUrg8YGl1Ru0EMk
- W0xYsVMDCQ9A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="188195586"
-X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="188195586"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2021 05:38:02 -0800
-IronPort-SDR: 8I6B60vwzlqTYatNwjeeX6jjpomiZXo4tluX5IiA5Za7VdqsdXCSJOp6gj0riMPXN/OFcQGfy0
- oNF2xSwdbqrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="448623908"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
- by orsmga001.jf.intel.com with ESMTP; 12 Mar 2021 05:38:01 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Fri, 12 Mar 2021 13:38:00 +0000
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.013;
- Fri, 12 Mar 2021 05:37:58 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915/display/psr: Add sink not reliable check to
- intel_psr_work()
-Thread-Index: AQHXF0R1GNUd2bQR/kufcQmm+RycB6qA4fWA
-Date: Fri, 12 Mar 2021 13:37:58 +0000
-Message-ID: <85d3edee2ca1da2ed4cf09fe6451b6a079b2fd51.camel@intel.com>
-References: <20210312133430.1478156-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20210312133430.1478156-1-gwan-gyeong.mun@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-ID: <AD2CF3EA26A675459C499853E6E32044@intel.com>
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
+ [IPv6:2a00:1450:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 294EE6EEC0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 14:15:07 +0000 (UTC)
+Received: by mail-wm1-x335.google.com with SMTP id
+ f22-20020a7bc8d60000b029010c024a1407so15896550wml.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 06:15:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=Af3mHPZaT2LqPuBFoXyUtYrCtuU51W2QCvy0JH+xM/c=;
+ b=K5+4O2vLpHWuJ+nsGqSzGBmDM8uB6sSAkq04oKhFvkkF3urlatz3lBF6BT07cJZ+ra
+ +GESRZUgblJtgpBXq6pOdVt79sGnPdAYYlw30eDP0KW/hOAcrBRFvd++YJd3fINZyBXB
+ gnXsn+6bg1BNRwdumHXgV1NvaUkDxI8/XLfow=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Af3mHPZaT2LqPuBFoXyUtYrCtuU51W2QCvy0JH+xM/c=;
+ b=Yo6zsi2IKXmoQJkaMu+ZfJubDOchhyZ8BJH+bhwvzTmOWKjSBfVfWMuPHU5A0MGi2D
+ L2mrT62v0ZcALIwGs10CboUvTEvHOu4vVdokKB9tg+5g7jiqEEhmk2AF9oWkD2ClzAgt
+ vYTwEXmb0jyo9FLGHhWBCFbIgj90oO2ltOwZ16NDALOVBoBVYeJuXPt2zw74p7CDL95D
+ +ycjH/UTLOpPYZXm8enBRqXn/Pi6Oox+Capq07a4IAtRKZHrUnBKvMSCBWLinBq3pZDD
+ Kc+N7Hbg3P6D6Pu6tjrUkXt3bUhytsPE3uISZwO4fgmijoh28AX8tGzxdfQehQHvqqGa
+ K6rA==
+X-Gm-Message-State: AOAM530vmOCtqFeU9f+p0uvJkakdIFKJ2C5mG1j7lTsopgkVvES8Ca46
+ /snVmcSRf816HRtFMXz7St7dww==
+X-Google-Smtp-Source: ABdhPJzJ0pzqKsGjmqvPE9hbg/rFLfBqAQjZTBv3DIf7Vq2A9IQs0yMNEU+RDC6VOM4LWib9TcBhug==
+X-Received: by 2002:a7b:c2aa:: with SMTP id c10mr13304059wmk.101.1615558505789; 
+ Fri, 12 Mar 2021 06:15:05 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id u2sm2868382wmm.5.2021.03.12.06.15.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 12 Mar 2021 06:15:05 -0800 (PST)
+Date: Fri, 12 Mar 2021 15:15:03 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YEt3Z2GbRZmmFkE4@phenom.ffwll.local>
+References: <20210310210049.723206-1-jason@jlekstrand.net>
+ <87sg51un0c.wl-ashutosh.dixit@intel.com>
+ <17824b43488.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/psr: Add sink not reliable
- check to intel_psr_work()
+Content-Disposition: inline
+In-Reply-To: <17824b43488.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH] i915: Drop legacy execbuffer support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,32 +67,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIxLTAzLTEyIGF0IDE1OjM0ICswMjAwLCBHd2FuLWd5ZW9uZyBNdW4gd3JvdGU6
-DQo+IElmIHRoZSBzaW5rIHN0YXRlIGlzIG5vdCByZWxpYWJsZSwgaXQgZG9lcyBub3QgbmVlZCB0
-byB3YWl0IGZvcg0KPiBQU1IgIklETEUgc3RhdGUiIGZvciByZS1lbmFibGluZyBQU1IuIEFuZCBp
-dCBzaG91bGQgbm90IHRyeSB0byByZS1lbmFibGUNCj4gUFNSLg0KPiANCj4gU2lnbmVkLW9mZi1i
-eTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPg0KPiAtLS0NCj4g
-wqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIHwgMyArKysNCj4gwqAx
-IGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gaW5kZXggY2Q0MzQyODVlM2I3Li43ZjU1NTQwN2RlMDYg
-MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMN
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBAQCAt
-MTY4Niw2ICsxNjg2LDkgQEAgc3RhdGljIHZvaWQgaW50ZWxfcHNyX3dvcmsoc3RydWN0IHdvcmtf
-c3RydWN0ICp3b3JrKQ0KPiDCoAlpZiAoUkVBRF9PTkNFKGludGVsX2RwLT5wc3IuaXJxX2F1eF9l
-cnJvcikpDQo+IMKgCQlpbnRlbF9wc3JfaGFuZGxlX2lycShpbnRlbF9kcCk7DQo+IMKgDQo+IA0K
-PiANCj4gDQo+ICsJaWYgKGludGVsX2RwLT5wc3Iuc2lua19ub3RfcmVsaWFibGUpDQo+ICsJCWdv
-dG8gdW5sb2NrOw0KDQpJIGNhbid0IHRoaW5rIGFueSBzY2VuYXJpbyB0aGF0IHRoaXMgd2lsbCBo
-aXQuDQpCZWZvcmUgc2V0IHNpbmtfbm90X3JlbGlhYmxlIFBTUiB3aWxsIGJlIGRpc2FibGVkIHNv
-IGl0IHdpbGwgYmUgY2F1Z2h0IGluIHRoZSBmaXJzdCBjaGVjayBvZiBpbnRlbF9wc3Jfd29yaygp
-Lg0KDQo+ICsNCj4gwqAJLyoNCj4gwqAJICogV2UgaGF2ZSB0byBtYWtlIHN1cmUgUFNSIGlzIHJl
-YWR5IGZvciByZS1lbmFibGUNCj4gwqAJICogb3RoZXJ3aXNlIGl0IGtlZXBzIGRpc2FibGVkIHVu
-dGlsIG5leHQgZnVsbCBlbmFibGUvZGlzYWJsZSBjeWNsZS4NCg0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Thu, Mar 11, 2021 at 10:31:33PM -0600, Jason Ekstrand wrote:
+> 
+> On March 11, 2021 20:26:06 "Dixit, Ashutosh" <ashutosh.dixit@intel.com> wrote:
+> 
+> > On Wed, 10 Mar 2021 13:00:49 -0800, Jason Ekstrand wrote:
+> > > 
+> > > libdrm has supported the newer execbuffer2 ioctl and using it by default
+> > > when it exists since libdrm commit b50964027bef249a0cc3d511de05c2464e0a1e22
+> > > which landed Mar 2, 2010.  The i915 and i965 drivers in Mesa at the time
+> > > both used libdrm and so did the Intel X11 back-end.  The SNA back-end
+> > > for X11 has always used execbuffer2.
+> > > 
+> > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> > > ---
+> > > .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 100 ------------------
+> > > drivers/gpu/drm/i915/gem/i915_gem_ioctls.h    |   2 -
+> > > drivers/gpu/drm/i915/i915_drv.c               |   2 +-
+> > > 3 files changed, 1 insertion(+), 103 deletions(-)
+> > 
+> > Don't we want to clean up references to legacy execbuffer in
+> > include/uapi/drm/i915_drm.h too?
+> 
+> I thought about that but Daniel said we should leave them. Maybe a comment
+> is in order?
+
+These headers are copied unchanged to userspace for building. We don't use
+kernel-headers packages directly in any of our userspace (I hope at
+least), but still better safe than sorry and avoid compilation failures
+simply due to updated uapi headers that lost a few old things.
+
+Also we need at least the struct size because that's encoded in the ioctl
+number, and at that point might as well keep the entire thing.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
