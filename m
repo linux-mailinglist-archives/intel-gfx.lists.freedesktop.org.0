@@ -2,48 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19670338BDD
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 12:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF702338C62
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 13:07:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC1F6F5D3;
-	Fri, 12 Mar 2021 11:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 574BE6F5D7;
+	Fri, 12 Mar 2021 12:07:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3928B6F5D3
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 11:52:12 +0000 (UTC)
-IronPort-SDR: yyjxQxBxJvp402SKDX5JfF7yBrryDYQOcVr9oPjdN173+onrdOpRQmaKAbo83jsm+USKt6SH3v
- VChK26JMevCw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="252837376"
-X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="252837376"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2021 03:52:12 -0800
-IronPort-SDR: fJNGu3u9BfhcskeF91Ws0Exh6rKQzGKevlvDM2r10NQbJuG+FgZfbefdHQu9ZdfFY4ZheYnM8n
- uzSZEg/OtdbQ==
-X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="448603343"
-Received: from nstrumtz-desk02.ger.corp.intel.com (HELO [10.214.213.111])
- ([10.214.213.111])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2021 03:52:10 -0800
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matthew Auld <matthew.william.auld@gmail.com>
-References: <20210310215007.782649-1-jason@jlekstrand.net>
- <20210311181733.1048640-1-jason@jlekstrand.net>
- <39bfc60f-cc5a-d793-5cea-e1b8e0751d62@linux.intel.com>
- <CAM0jSHMirGmPp3UrFTr3vPv-EVbw1wjveAYWZ=Xdc0KF8hRb9g@mail.gmail.com>
- <0cdae8c1-df51-be5f-a331-e541dbbd191b@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <aca1a975-564f-ce9a-b12a-63d443414272@linux.intel.com>
-Date: Fri, 12 Mar 2021 11:52:07 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFABC6F5D7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 12:07:35 +0000 (UTC)
+IronPort-SDR: opODCwEInOh4zYDjgl5/x81aOKg8U3pzLazazgM8+AoRQHKbY8lzsq5zvfJiTL0XfRbz+CR1W1
+ 3C7dRTCK2Smg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="208662670"
+X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="208662670"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2021 04:07:34 -0800
+IronPort-SDR: 0wMc8DZGpLwKrtCwImUS1q6EUEPAiJutEszgGJHe8lnzFPv6tJxKA3mV5Z+Ay8cYarHl3MyHBb
+ 6l+ZxmFE2Lnw==
+X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="510313040"
+Received: from joemurpx-mobl.ger.corp.intel.com (HELO helsinki.intel.com)
+ ([10.213.209.246])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2021 04:07:33 -0800
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 12 Mar 2021 14:07:22 +0200
+Message-Id: <20210312120722.1450481-1-gwan-gyeong.mun@intel.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-In-Reply-To: <0cdae8c1-df51-be5f-a331-e541dbbd191b@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Drop relocation support on
- all new hardware (v4)
+Subject: [Intel-gfx] [PATCH] drm/i915/psr: Configure and Program IO buffer
+ Wake and Fast Wake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,109 +46,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@redhat.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 12/03/2021 11:33, Maarten Lankhorst wrote:
-> Op 2021-03-12 om 11:56 schreef Matthew Auld:
->> On Fri, 12 Mar 2021 at 09:50, Tvrtko Ursulin
->> <tvrtko.ursulin@linux.intel.com> wrote:
->>>
->>> On 11/03/2021 18:17, Jason Ekstrand wrote:
->>>> The Vulkan driver in Mesa for Intel hardware never uses relocations if
->>>> it's running on a version of i915 that supports at least softpin which
->>>> all versions of i915 supporting Gen12 do.  On the OpenGL side, Gen12+ is
->>>> only supported by iris which never uses relocations.  The older i965
->>>> driver in Mesa does use relocations but it only supports Intel hardware
->>>> through Gen11 and has been deprecated for all hardware Gen9+.  The
->>>> compute driver also never uses relocations.  This only leaves the media
->>>> driver which is supposed to be switching to softpin going forward.
->>>> Making softpin a requirement for all future hardware seems reasonable.
->>>>
->>>> There is one piece of hardware enabled by default in i915: RKL which was
->>>> enabled by e22fa6f0a976 which has not yet landed in drm-next so this
->>>> almost but not really a userspace API change for RKL.  If it becomes a
->>>> problem, we can always add !IS_ROCKETLAKE(eb->i915) to the condition.
->>>>
->>>> Rejecting relocations starting with newer Gen12 platforms has the
->>>> benefit that we don't have to bother supporting it on platforms with
->>>> local memory.  Given how much CPU touching of memory is required for
->>>> relocations, not having to do so on platforms where not all memory is
->>>> directly CPU-accessible carries significant advantages.
->>>>
->>>> v2 (Jason Ekstrand):
->>>>    - Allow TGL-LP platforms as they've already shipped
->>>>
->>>> v3 (Jason Ekstrand):
->>>>    - WARN_ON platforms with LMEM support in case the check is wrong
->>>>
->>>> v4 (Jason Ekstrand):
->>>>    - Call out Rocket Lake in the commit message
->>>>
->>>> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
->>>> Acked-by: Keith Packard <keithp@keithp.com>
->>>> Cc: Dave Airlie <airlied@redhat.com>
->>>> Cc: Daniel Vetter <daniel.vetter@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 15 ++++++++++++---
->>>>    1 file changed, 12 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>>> index 99772f37bff60..b02dbd16bfa03 100644
->>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->>>> @@ -1764,7 +1764,8 @@ eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
->>>>        return err;
->>>>    }
->>>>
->>>> -static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
->>>> +static int check_relocations(const struct i915_execbuffer *eb,
->>>> +                          const struct drm_i915_gem_exec_object2 *entry)
->>>>    {
->>>>        const char __user *addr, *end;
->>>>        unsigned long size;
->>>> @@ -1774,6 +1775,14 @@ static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
->>>>        if (size == 0)
->>>>                return 0;
->>>>
->>>> +     /* Relocations are disallowed for all platforms after TGL-LP */
->>>> +     if (INTEL_GEN(eb->i915) >= 12 && !IS_TIGERLAKE(eb->i915))
->>>> +             return -EINVAL;
->>> I still recommend ENODEV as more inline with our established error
->>> codes. (Platform does not support vs dear userspace you messed up your
->>> flags, modes, whatever.)
->>>
->>>> +
->>>> +     /* All discrete memory platforms are Gen12 or above */
->>>> +     if (WARN_ON(HAS_LMEM(eb->i915)))
->>>> +             return -EINVAL;
->>> What was the conclusion on value of supporting fake lmem?
->> >From the previous thread, nothing is currently using it, we did have a
->> dedicated machine in CI but that has been gone for some months it
->> seems, so it might already be broken. Also its use was limited only to
->> the live selftests, which can't even hit this path. The plan was to
->> eventually remove it, since supporting both real and fake lmem in the
->> same tree is likely more effort than it's worth.
-> 
-> I think -EINVAL is fine, but not against -ENODEV either, up to author imo.
-
-It's pretty well established in our code that ENODEV is used when API is 
-used on a platform which does not support or implement it.
-
-Arguably relocations are a grey area since they can be supported but we 
-don't want to. So perhaps ENOTSUPP would also work. I just don't see yet 
-another overload of EINVAL is the ideal choice.
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QXMgcGVyIGIuc3BlYyA0OTI3NCwgdGhlIElPIGJ1ZmZlciBXYWtlIGxpbmVzIGFuZCBGYXN0IFdh
+a2UgbGluZXMgY2FuIGJlCmNhbGN1bGF0ZWQgYmFzZWQgb24gdGhlIGZvbGxvd2luZyBmb3JtdWxh
+LgoKIElPIGJ1ZmZlciB3YWtlIGxpbmVzID0gUk9VTkRVUChQU1IyIElPIHdha2UgdGltZSAvIHRv
+dGFsIGxpbmUgdGltZSBpbiBtaWNyb3NlY29uZHMpCiBGYXN0IHdha2UgbGluZXMgPSBST1VORFVQ
+KFBTUjIgYXV4IHRyYW5zYWN0aW9uIHRpbWUgLyB0b3RhbCBsaW5lIHRpbWUgaW4gbWljcm9zZWNv
+bmRzKQogRm9yIGJvdGggZmllbGRzIGxpbWl0IHRoZSBtaW5pbXVtIHRvIDcgbGluZXMgYW5kIG1h
+eGltdW0gdG8gMTIgbGluZXMKIFBTUjIgSU8gd2FrZSB0aW1lID0gNTB1cywgUFNSMiBhdXggdHJh
+bnNhY3Rpb24gdGltZSA9IDMydXMuCgpJdCBjYWxjdWxhdGVzIElPIGJ1ZmZlciBXYWtlIGFuZCBG
+YXN0IFdha2UgYmFzZWQgb24gYi5zcGVjIDQ5Mjc0IGFuZApwcm9ncmFtcyBpdC4KCnYyOiBBZGRy
+ZXNzIEpvc2UncyByZXZpZXcgY29tbWVudC4KIC0gRG8gbm90IG92ZXJ3cml0ZSB0aGUgdmFsdWVz
+LgogLSBNb3ZlIGNhbHVsYXRpbmcgYW5kIHZhbGlkYXRpbmcgb2YgaW9fYnVmZmVyX3dha2UvZmFz
+dF93YWtlIHRvCiAgICBpbnRlbF9wc3IyX2NvbmZpZ192YWxpZCgpIGZyb20gaW50ZWxfcHNyX2Nv
+bXB1dGVfY29uZmlnKCkKIC0gQWRkIG1hY3JvcyBmb3IgaGFyZGNvZGVkIHZhbHVlcy4KIC0gU2lt
+cGxpZnkgYW5kIHJldXNlIHRoZSB2YWxpZGF0aW5nIHRoZSBpb19idWZmZXJfd2FrZS9mYXN0X3dh
+a2UuCgpDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+CkNj
+OiBMZWUgU2hhd24gQyA8c2hhd24uYy5sZWVAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBHd2Fu
+LWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+Ci0tLQogLi4uL2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oICAgIHwgIDIgKwogZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyAgICAgIHwgNjUgKysrKysrKysrKysrKysrLS0tLQog
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAgICAgICAgICAgIHwgIDggKysrCiAz
+IGZpbGVzIGNoYW5nZWQsIDYzIGluc2VydGlvbnMoKyksIDEyIGRlbGV0aW9ucygtKQoKZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5o
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKaW5k
+ZXggZjE1OWRjZTBmNzQ0Li4wMjQxZjdlYjBhMWQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCkBAIC0xNDY5LDYgKzE0NjksOCBA
+QCBzdHJ1Y3QgaW50ZWxfcHNyIHsKIAl1MTYgc3VfeF9ncmFudWxhcml0eTsKIAlib29sIGRjM2Nv
+X2VuYWJsZWQ7CiAJdTMyIGRjM2NvX2V4aXRfZGVsYXk7CisJdTMyIGlvX2J1ZmZlcl93YWtlOwor
+CXUzMiBmYXN0X3dha2U7CiAJc3RydWN0IGRlbGF5ZWRfd29yayBkYzNjb193b3JrOwogCXN0cnVj
+dCBkcm1fZHBfdnNjX3NkcCB2c2M7CiB9OwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9wc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfcHNyLmMKaW5kZXggY2Q0MzQyODVlM2I3Li5mYWFjMDIzZDA1YjIgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwpAQCAtNTMxLDE5ICs1MzEsMTUgQEAgc3RhdGlj
+IHZvaWQgaHN3X2FjdGl2YXRlX3BzcjIoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKIAl2YWwg
+fD0gaW50ZWxfcHNyMl9nZXRfdHBfdGltZShpbnRlbF9kcCk7CiAKIAlpZiAoSU5URUxfR0VOKGRl
+dl9wcml2KSA+PSAxMikgewotCQkvKgotCQkgKiBUT0RPOiA3IGxpbmVzIG9mIElPX0JVRkZFUl9X
+QUtFIGFuZCBGQVNUX1dBS0UgYXJlIGRlZmF1bHQKLQkJICogdmFsdWVzIGZyb20gQlNwZWMuIElu
+IG9yZGVyIHRvIHNldHRpbmcgYW4gb3B0aW1hbCBwb3dlcgotCQkgKiBjb25zdW1wdGlvbiwgbG93
+ZXIgdGhhbiA0ayByZXNvbHVpdGlvbiBtb2RlIG5lZWRzIHRvIGRlY3Jlc2UKLQkJICogSU9fQlVG
+RkVSX1dBS0UgYW5kIEZBU1RfV0FLRS4gQW5kIGhpZ2hlciB0aGFuIDRLIHJlc29sdXRpb24KLQkJ
+ICogbW9kZSBuZWVkcyB0byBpbmNyZWFzZSBJT19CVUZGRVJfV0FLRSBhbmQgRkFTVF9XQUtFLgot
+CQkgKi8KLQkJdmFsIHw9IFRHTF9FRFBfUFNSMl9CTE9DS19DT1VOVF9OVU1fMjsKLQkJdmFsIHw9
+IFRHTF9FRFBfUFNSMl9JT19CVUZGRVJfV0FLRSg3KTsKLQkJdmFsIHw9IFRHTF9FRFBfUFNSMl9G
+QVNUX1dBS0UoNyk7CisJCWlmIChpbnRlbF9kcC0+cHNyLmlvX2J1ZmZlcl93YWtlIDwgOSB8fCBp
+bnRlbF9kcC0+cHNyLmZhc3Rfd2FrZSA8IDkpCisJCQl2YWwgfD0gVEdMX0VEUF9QU1IyX0JMT0NL
+X0NPVU5UX05VTV8yOworCQllbHNlCisJCQl2YWwgfD0gVEdMX0VEUF9QU1IyX0JMT0NLX0NPVU5U
+X05VTV8zOworCQl2YWwgfD0gVEdMX0VEUF9QU1IyX0lPX0JVRkZFUl9XQUtFKGludGVsX2RwLT5w
+c3IuaW9fYnVmZmVyX3dha2UpOworCQl2YWwgfD0gVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRShpbnRl
+bF9kcC0+cHNyLmZhc3Rfd2FrZSk7CiAJfSBlbHNlIGlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49
+IDkpIHsKLQkJdmFsIHw9IEVEUF9QU1IyX0lPX0JVRkZFUl9XQUtFKDcpOwotCQl2YWwgfD0gRURQ
+X1BTUjJfRkFTVF9XQUtFKDcpOworCQl2YWwgfD0gRURQX1BTUjJfSU9fQlVGRkVSX1dBS0UoaW50
+ZWxfZHAtPnBzci5pb19idWZmZXJfd2FrZSk7CisJCXZhbCB8PSBFRFBfUFNSMl9GQVNUX1dBS0Uo
+aW50ZWxfZHAtPnBzci5mYXN0X3dha2UpOwogCX0KIAogCWlmIChpbnRlbF9kcC0+cHNyLnBzcjJf
+c2VsX2ZldGNoX2VuYWJsZWQpIHsKQEAgLTcyMiw2ICs3MTgsOCBAQCBzdGF0aWMgYm9vbCBpbnRl
+bF9wc3IyX2NvbmZpZ192YWxpZChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCWludCBjcnRj
+X2hkaXNwbGF5ID0gY3J0Y19zdGF0ZS0+aHcuYWRqdXN0ZWRfbW9kZS5jcnRjX2hkaXNwbGF5Owog
+CWludCBjcnRjX3ZkaXNwbGF5ID0gY3J0Y19zdGF0ZS0+aHcuYWRqdXN0ZWRfbW9kZS5jcnRjX3Zk
+aXNwbGF5OwogCWludCBwc3JfbWF4X2ggPSAwLCBwc3JfbWF4X3YgPSAwLCBtYXhfYnBwID0gMDsK
+Kwl1MzIgaW9fYnVmZmVyX3dha2UsIGlvX2J1ZmZlcl93YWtlX21heCwgaW9fYnVmZmVyX3dha2Vf
+bWluOworCXUzMiBmYXN0X3dha2UsIGZhc3Rfd2FrZV9tYXgsIGZhc3Rfd2FrZV9taW47CiAKIAlp
+ZiAoIWludGVsX2RwLT5wc3Iuc2lua19wc3IyX3N1cHBvcnQpCiAJCXJldHVybiBmYWxzZTsKQEAg
+LTc2NSwxNCArNzYzLDI2IEBAIHN0YXRpYyBib29sIGludGVsX3BzcjJfY29uZmlnX3ZhbGlkKHN0
+cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCiAJCXBzcl9tYXhfaCA9IDUxMjA7CiAJCXBzcl9tYXhf
+diA9IDMyMDA7CiAJCW1heF9icHAgPSAzMDsKKwkJaW9fYnVmZmVyX3dha2VfbWF4ID0gVEdMX0VE
+UF9QU1IyX0lPX0JVRkZFUl9XQUtFX01BWF9MSU5FUzsKKwkJaW9fYnVmZmVyX3dha2VfbWluID0g
+VEdMX0VEUF9QU1IyX0lPX0JVRkZFUl9XQUtFX01JTl9MSU5FUzsKKwkJZmFzdF93YWtlX21heCA9
+IFRHTF9FRFBfUFNSMl9GQVNUX1dBS0VfTUFYX0xJTkVTOworCQlmYXN0X3dha2VfbWluID0gVEdM
+X0VEUF9QU1IyX0ZBU1RfV0FLRV9NSU5fTElORVM7CiAJfSBlbHNlIGlmIChJTlRFTF9HRU4oZGV2
+X3ByaXYpID49IDEwIHx8IElTX0dFTUlOSUxBS0UoZGV2X3ByaXYpKSB7CiAJCXBzcl9tYXhfaCA9
+IDQwOTY7CiAJCXBzcl9tYXhfdiA9IDIzMDQ7CiAJCW1heF9icHAgPSAyNDsKKwkJaW9fYnVmZmVy
+X3dha2VfbWF4ID0gRURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfTUFYX0xJTkVTOworCQlpb19idWZm
+ZXJfd2FrZV9taW4gPSBFRFBfUFNSMl9JT19CVUZGRVJfV0FLRV9NSU5fTElORVM7CisJCWZhc3Rf
+d2FrZV9tYXggPSBFRFBfUFNSMl9GQVNUX1dBS0VfTUFYX0xJTkVTOworCQlmYXN0X3dha2VfbWlu
+ID0gRURQX1BTUjJfRkFTVF9XQUtFX01JTl9MSU5FUzsKIAl9IGVsc2UgaWYgKElTX0dFTihkZXZf
+cHJpdiwgOSkpIHsKIAkJcHNyX21heF9oID0gMzY0MDsKIAkJcHNyX21heF92ID0gMjMwNDsKIAkJ
+bWF4X2JwcCA9IDI0OworCQlpb19idWZmZXJfd2FrZV9tYXggPSBFRFBfUFNSMl9JT19CVUZGRVJf
+V0FLRV9NQVhfTElORVM7CisJCWlvX2J1ZmZlcl93YWtlX21pbiA9IEVEUF9QU1IyX0lPX0JVRkZF
+Ul9XQUtFX01JTl9MSU5FUzsKKwkJZmFzdF93YWtlX21heCA9IEVEUF9QU1IyX0ZBU1RfV0FLRV9N
+QVhfTElORVM7CisJCWZhc3Rfd2FrZV9taW4gPSBFRFBfUFNSMl9GQVNUX1dBS0VfTUlOX0xJTkVT
+OwogCX0KIAogCWlmIChjcnRjX3N0YXRlLT5waXBlX2JwcCA+IG1heF9icHApIHsKQEAgLTc4Miw2
+ICs3OTIsMzcgQEAgc3RhdGljIGJvb2wgaW50ZWxfcHNyMl9jb25maWdfdmFsaWQoc3RydWN0IGlu
+dGVsX2RwICppbnRlbF9kcCwKIAkJcmV0dXJuIGZhbHNlOwogCX0KIAorCS8qCisJICogQi5TcGVj
+IDQ5Mjc0CisJICogSU8gYnVmZmVyIHdha2UgbGluZXMgPSBST1VORFVQKFBTUjIgSU8gd2FrZSB0
+aW1lIC8gdG90YWwgbGluZSB0aW1lIGluIG1pY3Jvc2Vjb25kcykKKwkgKiBGYXN0IHdha2UgbGlu
+ZXMgPSBST1VORFVQKFBTUjIgYXV4IHRyYW5zYWN0aW9uIHRpbWUgLyB0b3RhbCBsaW5lIHRpbWUg
+aW4gbWljcm9zZWNvbmRzKQorCSAqIEZvciBib3RoIGZpZWxkcyBsaW1pdCB0aGUgbWluaW11bSB0
+byA3IGxpbmVzIGFuZCBtYXhpbXVtIHRvIDEyIGxpbmVzCisJICogUFNSMiBJTyB3YWtlIHRpbWUg
+PSA1MHVzLCBQU1IyIGF1eCB0cmFuc2FjdGlvbiB0aW1lID0gMzJ1cy4KKwkgKi8KKwlpb19idWZm
+ZXJfd2FrZSA9IGludGVsX3VzZWNzX3RvX3NjYW5saW5lcygmY3J0Y19zdGF0ZS0+dWFwaS5hZGp1
+c3RlZF9tb2RlLAorCQkJCQkJICBFRFBfUFNSMl9JT19XQUtFX1RJTUUpOworCWZhc3Rfd2FrZSA9
+IGludGVsX3VzZWNzX3RvX3NjYW5saW5lcygmY3J0Y19zdGF0ZS0+dWFwaS5hZGp1c3RlZF9tb2Rl
+LAorCQkJCQkgICAgIEVEUF9QU1IyX0FVWF9UUkFOU0FDVElPTl9USU1FKTsKKworCWlmIChpb19i
+dWZmZXJfd2FrZSA8IGlvX2J1ZmZlcl93YWtlX21pbiB8fCBpb19idWZmZXJfd2FrZSA+IGlvX2J1
+ZmZlcl93YWtlX21heCkgeworCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwKKwkJCSAgICAi
+UFNSIGNvbmRpdGlvbiBmYWlsZWQ6IEludmFsaWQgUFNSMiBJTyBCdWZmZXIgV2FrZSBsaW5lcyAo
+JWQpXG4iLAorCQkJICAgIGlvX2J1ZmZlcl93YWtlKTsKKwkJcmV0dXJuIGZhbHNlOworCX0KKwor
+CWlmIChmYXN0X3dha2UgPCBmYXN0X3dha2VfbWluIHx8IGZhc3Rfd2FrZSA+IGZhc3Rfd2FrZV9t
+YXgpIHsKKwkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sCisJCQkgICAgIlBTUiBjb25kaXRp
+b24gZmFpbGVkOiBJbnZhbGlkIFBTUjIgRkFTVCBXYWtlIGxpbmVzICglZClcbiIsCisJCQkgICAg
+ZmFzdF93YWtlKTsKKwkJcmV0dXJuIGZhbHNlOworCX0KKworCWludGVsX2RwLT5wc3IuaW9fYnVm
+ZmVyX3dha2UgPQorCQlpb19idWZmZXJfd2FrZSA8IEVEUF9QU1IyX0lPX0JVRkZFUl9XQUtFX0RF
+RkFVTFQgPyBFRFBfUFNSMl9JT19CVUZGRVJfV0FLRV9ERUZBVUxUIDogaW9fYnVmZmVyX3dha2U7
+CisJaW50ZWxfZHAtPnBzci5mYXN0X3dha2UgPQorCQlmYXN0X3dha2UgPCBFRFBfUFNSMl9GQVNU
+X1dBS0VfREVGQVVMVCA/IEVEUF9QU1IyX0ZBU1RfV0FLRV9ERUZBVUxUIDogZmFzdF93YWtlOwor
+CiAJLyoKIAkgKiBIVyBzZW5kcyBTVSBibG9ja3Mgb2Ygc2l6ZSBmb3VyIHNjYW4gbGluZXMsIHdo
+aWNoIG1lYW5zIHRoZSBzdGFydGluZwogCSAqIFggY29vcmRpbmF0ZSBhbmQgWSBncmFudWxhcml0
+eSByZXF1aXJlbWVudHMgd2lsbCBhbHdheXMgYmUgbWV0LiBXZQpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVn
+LmgKaW5kZXggZTVkZDAyMDM5OTFiLi40YWU0Y2RiYjk3NTQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9y
+ZWcuaApAQCAtNDU1NywxNCArNDU1NywyMiBAQCBlbnVtIHsKICNkZWZpbmUgICBFRFBfTUFYX1NV
+X0RJU0FCTEVfVElNRSh0KQkJKCh0KSA8PCAyMCkKICNkZWZpbmUgICBFRFBfTUFYX1NVX0RJU0FC
+TEVfVElNRV9NQVNLCQkoMHgxZiA8PCAyMCkKICNkZWZpbmUgICBFRFBfUFNSMl9JT19CVUZGRVJf
+V0FLRV9NQVhfTElORVMJOAorI2RlZmluZSAgIEVEUF9QU1IyX0lPX0JVRkZFUl9XQUtFX01JTl9M
+SU5FUwk1CisjZGVmaW5lICAgRURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfREVGQVVMVAk3CiAjZGVm
+aW5lICAgRURQX1BTUjJfSU9fQlVGRkVSX1dBS0UobGluZXMpCSgoRURQX1BTUjJfSU9fQlVGRkVS
+X1dBS0VfTUFYX0xJTkVTIC0gKGxpbmVzKSkgPDwgMTMpCiAjZGVmaW5lICAgRURQX1BTUjJfSU9f
+QlVGRkVSX1dBS0VfTUFTSwkJKDMgPDwgMTMpCisjZGVmaW5lICAgRURQX1BTUjJfSU9fV0FLRV9U
+SU1FCQkJNTAKKyNkZWZpbmUgICBUR0xfRURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfTUFYX0xJTkVT
+CTEyCiAjZGVmaW5lICAgVEdMX0VEUF9QU1IyX0lPX0JVRkZFUl9XQUtFX01JTl9MSU5FUwk1CiAj
+ZGVmaW5lICAgVEdMX0VEUF9QU1IyX0lPX0JVRkZFUl9XQUtFKGxpbmVzKQkoKChsaW5lcykgLSBU
+R0xfRURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfTUlOX0xJTkVTKSA8PCAxMykKICNkZWZpbmUgICBU
+R0xfRURQX1BTUjJfSU9fQlVGRkVSX1dBS0VfTUFTSwkoNyA8PCAxMykKICNkZWZpbmUgICBFRFBf
+UFNSMl9GQVNUX1dBS0VfTUFYX0xJTkVTCQk4CisjZGVmaW5lICAgRURQX1BTUjJfRkFTVF9XQUtF
+X01JTl9MSU5FUwkJNQorI2RlZmluZSAgIEVEUF9QU1IyX0ZBU1RfV0FLRV9ERUZBVUxUCQk3CiAj
+ZGVmaW5lICAgRURQX1BTUjJfRkFTVF9XQUtFKGxpbmVzKQkJKChFRFBfUFNSMl9GQVNUX1dBS0Vf
+TUFYX0xJTkVTIC0gKGxpbmVzKSkgPDwgMTEpCiAjZGVmaW5lICAgRURQX1BTUjJfRkFTVF9XQUtF
+X01BU0sJCSgzIDw8IDExKQorI2RlZmluZSAgIEVEUF9QU1IyX0FVWF9UUkFOU0FDVElPTl9USU1F
+CQkzMgorI2RlZmluZSAgIFRHTF9FRFBfUFNSMl9GQVNUX1dBS0VfTUFYX0xJTkVTCTEyCiAjZGVm
+aW5lICAgVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRV9NSU5fTElORVMJNQogI2RlZmluZSAgIFRHTF9F
+RFBfUFNSMl9GQVNUX1dBS0UobGluZXMpCQkoKChsaW5lcykgLSBUR0xfRURQX1BTUjJfRkFTVF9X
+QUtFX01JTl9MSU5FUykgPDwgMTApCiAjZGVmaW5lICAgVEdMX0VEUF9QU1IyX0ZBU1RfV0FLRV9N
+QVNLCQkoNyA8PCAxMCkKLS0gCjIuMzAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vaW50ZWwtZ2Z4Cg==
