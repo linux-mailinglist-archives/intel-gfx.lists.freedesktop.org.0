@@ -1,60 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D1DD338F98
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 15:15:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 958A6338F9C
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 15:16:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 721196F40A;
-	Fri, 12 Mar 2021 14:15:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D78296F478;
+	Fri, 12 Mar 2021 14:16:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
- [IPv6:2a00:1450:4864:20::335])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 294EE6EEC0
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 14:15:07 +0000 (UTC)
-Received: by mail-wm1-x335.google.com with SMTP id
- f22-20020a7bc8d60000b029010c024a1407so15896550wml.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 06:15:07 -0800 (PST)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
+ [IPv6:2a00:1450:4864:20::32c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CF226F47B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 14:16:29 +0000 (UTC)
+Received: by mail-wm1-x32c.google.com with SMTP id g8so3905150wmd.4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 06:16:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Af3mHPZaT2LqPuBFoXyUtYrCtuU51W2QCvy0JH+xM/c=;
- b=K5+4O2vLpHWuJ+nsGqSzGBmDM8uB6sSAkq04oKhFvkkF3urlatz3lBF6BT07cJZ+ra
- +GESRZUgblJtgpBXq6pOdVt79sGnPdAYYlw30eDP0KW/hOAcrBRFvd++YJd3fINZyBXB
- gnXsn+6bg1BNRwdumHXgV1NvaUkDxI8/XLfow=
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=JUvT0MBo8wfpJuqgpg/e5b4hLDFZsxheVOHt/GP8+ak=;
+ b=ZpKisELW/1NbPZmcGKJsMRLVvDNLVWPWsw/1aa6r5tw3VORGMpUZgWBkFVthJa/xq3
+ QElXHzLNmP0b1k9Oz6OYhHQVgcX6etL9Cx57VhUmuSUQQlcs2sVgZoJCD0tkoqx5IjUk
+ KtuPmGNlN5BFaqQ+GQ2i1uR+Hu8LoNLEsmIbc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Af3mHPZaT2LqPuBFoXyUtYrCtuU51W2QCvy0JH+xM/c=;
- b=Yo6zsi2IKXmoQJkaMu+ZfJubDOchhyZ8BJH+bhwvzTmOWKjSBfVfWMuPHU5A0MGi2D
- L2mrT62v0ZcALIwGs10CboUvTEvHOu4vVdokKB9tg+5g7jiqEEhmk2AF9oWkD2ClzAgt
- vYTwEXmb0jyo9FLGHhWBCFbIgj90oO2ltOwZ16NDALOVBoBVYeJuXPt2zw74p7CDL95D
- +ycjH/UTLOpPYZXm8enBRqXn/Pi6Oox+Capq07a4IAtRKZHrUnBKvMSCBWLinBq3pZDD
- Kc+N7Hbg3P6D6Pu6tjrUkXt3bUhytsPE3uISZwO4fgmijoh28AX8tGzxdfQehQHvqqGa
- K6rA==
-X-Gm-Message-State: AOAM530vmOCtqFeU9f+p0uvJkakdIFKJ2C5mG1j7lTsopgkVvES8Ca46
- /snVmcSRf816HRtFMXz7St7dww==
-X-Google-Smtp-Source: ABdhPJzJ0pzqKsGjmqvPE9hbg/rFLfBqAQjZTBv3DIf7Vq2A9IQs0yMNEU+RDC6VOM4LWib9TcBhug==
-X-Received: by 2002:a7b:c2aa:: with SMTP id c10mr13304059wmk.101.1615558505789; 
- Fri, 12 Mar 2021 06:15:05 -0800 (PST)
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=JUvT0MBo8wfpJuqgpg/e5b4hLDFZsxheVOHt/GP8+ak=;
+ b=S/7dl4bs4EOA5zRaJBAzalrNDuDm0FnXvIcpX58DcuyoSQPw9MGqeMUHApzTiKLb2F
+ 3/xQlMauoqttk79SowNggux90fXvOorb7/99PhAHe/JLjxJxOsRHaW0bjfB6MBw62qyh
+ 7UMkHuBtzljDol4kEjxFdmDZ7lGCbBnwE+AfxUdEXehJ8OXqznR+WwbVz4bqHrcJS8XT
+ VxaL9YVkYTM+1iv4trnxDBwclChK+GhYXjgV1T9G3g6jFsJnE1IqCtxWtmJNKwAJftg0
+ zAzYdIy9Tm3dbjjsxJyrA4JPEbU5MGkVzfvG5t9Xg9N6S5za409CVJxtkqaZrGzTxm93
+ cPig==
+X-Gm-Message-State: AOAM530FFWfrr3x5ve7G3e7J9uJUaYB3IqALKXLDkfagNFxlDP44Tu1D
+ 32XDakJmHm867eoAoZdsEFxrVw==
+X-Google-Smtp-Source: ABdhPJwPVrA85vR0j9D3vFDmDmffNtcLpsOSiqFIT9rSt+1kf1oIEkWflNt28S6E951NW7wydzIidg==
+X-Received: by 2002:a05:600c:22cd:: with SMTP id
+ 13mr13050369wmg.90.1615558587807; 
+ Fri, 12 Mar 2021 06:16:27 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id u2sm2868382wmm.5.2021.03.12.06.15.05
+ by smtp.gmail.com with ESMTPSA id a3sm7586147wrt.68.2021.03.12.06.16.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Mar 2021 06:15:05 -0800 (PST)
-Date: Fri, 12 Mar 2021 15:15:03 +0100
+ Fri, 12 Mar 2021 06:16:27 -0800 (PST)
+Date: Fri, 12 Mar 2021 15:16:25 +0100
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YEt3Z2GbRZmmFkE4@phenom.ffwll.local>
-References: <20210310210049.723206-1-jason@jlekstrand.net>
- <87sg51un0c.wl-ashutosh.dixit@intel.com>
- <17824b43488.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+Message-ID: <YEt3uVbUi4/ut7aX@phenom.ffwll.local>
+References: <20210310212606.766121-1-jason@jlekstrand.net>
+ <20210310215007.782649-1-jason@jlekstrand.net>
+ <20210311114432.GB101473@zkempczy-mobl2>
+ <CAOFGe94FEfM6RKf=fcDm03OW1zvJhRpvTtnQ4dXWY+pQrf-K=Q@mail.gmail.com>
+ <CAKMK7uHwYczVHD7SmHAJd9niP4+aanDvEhPviofjmQiEweK3CQ@mail.gmail.com>
+ <CAOFGe96bL1Wu2Qgie7QOhMDoY-3hFhDxhokCekyEHnAC8CgjnQ@mail.gmail.com>
+ <20210311165054.GA118464@zkempczy-mobl2>
+ <CAOFGe96W_vgkfw_zs_v0RMrKrrQu2kmYYhfZNdgJt4Rc_duT7w@mail.gmail.com>
+ <20210311181953.GA124003@zkempczy-mobl2>
+ <CAOFGe94CRE73nJKeGkZmtDa25XnZvSQyYo8nYwfF0Ytfx_6=Pw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <17824b43488.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+In-Reply-To: <CAOFGe94CRE73nJKeGkZmtDa25XnZvSQyYo8nYwfF0Ytfx_6=Pw@mail.gmail.com>
 X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH] i915: Drop legacy execbuffer support
+Subject: Re: [Intel-gfx] [PATCH] i915: Drop relocation support on all new
+ hardware (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,50 +76,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 11, 2021 at 10:31:33PM -0600, Jason Ekstrand wrote:
-> 
-> On March 11, 2021 20:26:06 "Dixit, Ashutosh" <ashutosh.dixit@intel.com> wrote:
-> 
-> > On Wed, 10 Mar 2021 13:00:49 -0800, Jason Ekstrand wrote:
-> > > 
-> > > libdrm has supported the newer execbuffer2 ioctl and using it by default
-> > > when it exists since libdrm commit b50964027bef249a0cc3d511de05c2464e0a1e22
-> > > which landed Mar 2, 2010.  The i915 and i965 drivers in Mesa at the time
-> > > both used libdrm and so did the Intel X11 back-end.  The SNA back-end
-> > > for X11 has always used execbuffer2.
-> > > 
-> > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > > ---
-> > > .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 100 ------------------
-> > > drivers/gpu/drm/i915/gem/i915_gem_ioctls.h    |   2 -
-> > > drivers/gpu/drm/i915/i915_drv.c               |   2 +-
-> > > 3 files changed, 1 insertion(+), 103 deletions(-)
-> > 
-> > Don't we want to clean up references to legacy execbuffer in
-> > include/uapi/drm/i915_drm.h too?
-> 
-> I thought about that but Daniel said we should leave them. Maybe a comment
-> is in order?
-
-These headers are copied unchanged to userspace for building. We don't use
-kernel-headers packages directly in any of our userspace (I hope at
-least), but still better safe than sorry and avoid compilation failures
-simply due to updated uapi headers that lost a few old things.
-
-Also we need at least the struct size because that's encoded in the ioctl
-number, and at that point might as well keep the entire thing.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCBNYXIgMTEsIDIwMjEgYXQgMTI6NTc6MjVQTSAtMDYwMCwgSmFzb24gRWtzdHJhbmQg
+d3JvdGU6Cj4gT24gVGh1LCBNYXIgMTEsIDIwMjEgYXQgMTI6MjAgUE0gWmJpZ25pZXcgS2VtcGN6
+ecWEc2tpCj4gPHpiaWduaWV3LmtlbXBjenluc2tpQGludGVsLmNvbT4gd3JvdGU6Cj4gPgo+ID4g
+T24gVGh1LCBNYXIgMTEsIDIwMjEgYXQgMTE6MTg6MTFBTSAtMDYwMCwgSmFzb24gRWtzdHJhbmQg
+d3JvdGU6Cj4gPiA+IE9uIFRodSwgTWFyIDExLCAyMDIxIGF0IDEwOjUxIEFNIFpiaWduaWV3IEtl
+bXBjennFhHNraQo+ID4gPiA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29tPiB3cm90ZToK
+PiA+ID4gPgo+ID4gPiA+IE9uIFRodSwgTWFyIDExLCAyMDIxIGF0IDEwOjI0OjM4QU0gLTA2MDAs
+IEphc29uIEVrc3RyYW5kIHdyb3RlOgo+ID4gPiA+ID4gT24gVGh1LCBNYXIgMTEsIDIwMjEgYXQg
+OTo1NyBBTSBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+IHdyb3RlOgo+ID4gPiA+ID4g
+Pgo+ID4gPiA+ID4gPiBPbiBUaHUsIE1hciAxMSwgMjAyMSBhdCA0OjUwIFBNIEphc29uIEVrc3Ry
+YW5kIDxqYXNvbkBqbGVrc3RyYW5kLm5ldD4gd3JvdGU6Cj4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+
+ID4gPiBPbiBUaHUsIE1hciAxMSwgMjAyMSBhdCA1OjQ0IEFNIFpiaWduaWV3IEtlbXBjennFhHNr
+aQo+ID4gPiA+ID4gPiA+IDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+IHdyb3RlOgo+
+ID4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+IE9uIFdlZCwgTWFyIDEwLCAyMDIxIGF0IDAz
+OjUwOjA3UE0gLTA2MDAsIEphc29uIEVrc3RyYW5kIHdyb3RlOgo+ID4gPiA+ID4gPiA+ID4gPiBU
+aGUgVnVsa2FuIGRyaXZlciBpbiBNZXNhIGZvciBJbnRlbCBoYXJkd2FyZSBuZXZlciB1c2VzIHJl
+bG9jYXRpb25zIGlmCj4gPiA+ID4gPiA+ID4gPiA+IGl0J3MgcnVubmluZyBvbiBhIHZlcnNpb24g
+b2YgaTkxNSB0aGF0IHN1cHBvcnRzIGF0IGxlYXN0IHNvZnRwaW4gd2hpY2gKPiA+ID4gPiA+ID4g
+PiA+ID4gYWxsIHZlcnNpb25zIG9mIGk5MTUgc3VwcG9ydGluZyBHZW4xMiBkby4gIE9uIHRoZSBP
+cGVuR0wgc2lkZSwgR2VuMTIrIGlzCj4gPiA+ID4gPiA+ID4gPiA+IG9ubHkgc3VwcG9ydGVkIGJ5
+IGlyaXMgd2hpY2ggbmV2ZXIgdXNlcyByZWxvY2F0aW9ucy4gIFRoZSBvbGRlciBpOTY1Cj4gPiA+
+ID4gPiA+ID4gPiA+IGRyaXZlciBpbiBNZXNhIGRvZXMgdXNlIHJlbG9jYXRpb25zIGJ1dCBpdCBv
+bmx5IHN1cHBvcnRzIEludGVsIGhhcmR3YXJlCj4gPiA+ID4gPiA+ID4gPiA+IHRocm91Z2ggR2Vu
+MTEgYW5kIGhhcyBiZWVuIGRlcHJlY2F0ZWQgZm9yIGFsbCBoYXJkd2FyZSBHZW45Ky4gIFRoZQo+
+ID4gPiA+ID4gPiA+ID4gPiBjb21wdXRlIGRyaXZlciBhbHNvIG5ldmVyIHVzZXMgcmVsb2NhdGlv
+bnMuICBUaGlzIG9ubHkgbGVhdmVzIHRoZSBtZWRpYQo+ID4gPiA+ID4gPiA+ID4gPiBkcml2ZXIg
+d2hpY2ggaXMgc3VwcG9zZWQgdG8gYmUgc3dpdGNoaW5nIHRvIHNvZnRwaW4gZ29pbmcgZm9yd2Fy
+ZC4KPiA+ID4gPiA+ID4gPiA+ID4gTWFraW5nIHNvZnRwaW4gYSByZXF1aXJlbWVudCBmb3IgYWxs
+IGZ1dHVyZSBoYXJkd2FyZSBzZWVtcyByZWFzb25hYmxlLgo+ID4gPiA+ID4gPiA+ID4gPgo+ID4g
+PiA+ID4gPiA+ID4gPiBSZWplY3RpbmcgcmVsb2NhdGlvbnMgc3RhcnRpbmcgd2l0aCBHZW4xMiBo
+YXMgdGhlIGJlbmVmaXQgdGhhdCB3ZSBkb24ndAo+ID4gPiA+ID4gPiA+ID4gPiBoYXZlIHRvIGJv
+dGhlciBzdXBwb3J0aW5nIGl0IG9uIHBsYXRmb3JtcyB3aXRoIGxvY2FsIG1lbW9yeS4gIEdpdmVu
+IGhvdwo+ID4gPiA+ID4gPiA+ID4gPiBtdWNoIENQVSB0b3VjaGluZyBvZiBtZW1vcnkgaXMgcmVx
+dWlyZWQgZm9yIHJlbG9jYXRpb25zLCBub3QgaGF2aW5nIHRvCj4gPiA+ID4gPiA+ID4gPiA+IGRv
+IHNvIG9uIHBsYXRmb3JtcyB3aGVyZSBub3QgYWxsIG1lbW9yeSBpcyBkaXJlY3RseSBDUFUtYWNj
+ZXNzaWJsZQo+ID4gPiA+ID4gPiA+ID4gPiBjYXJyaWVzIHNpZ25pZmljYW50IGFkdmFudGFnZXMu
+Cj4gPiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiA+IHYyIChKYXNvbiBFa3N0cmFuZCk6
+Cj4gPiA+ID4gPiA+ID4gPiA+ICAtIEFsbG93IFRHTC1MUCBwbGF0Zm9ybXMgYXMgdGhleSd2ZSBh
+bHJlYWR5IHNoaXBwZWQKPiA+ID4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+ID4gdjMgKEph
+c29uIEVrc3RyYW5kKToKPiA+ID4gPiA+ID4gPiA+ID4gIC0gV0FSTl9PTiBwbGF0Zm9ybXMgd2l0
+aCBMTUVNIHN1cHBvcnQgaW4gY2FzZSB0aGUgY2hlY2sgaXMgd3JvbmcKPiA+ID4gPiA+ID4gPiA+
+Cj4gPiA+ID4gPiA+ID4gPiBJIHdhcyBhc2tlZCB0byByZXZpZXcgb2YgdGhpcyBwYXRjaC4gSXQg
+d29ya3MgYWxvbmcgd2l0aCBleHBlY3RlZAo+ID4gPiA+ID4gPiA+ID4gSUdUIGNoZWNrIGh0dHBz
+Oi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC80MjMzNjEvP3Nlcmllcz04Mjk1NCZy
+ZXY9MjUKPiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiBCZWZvcmUgSSdsbCBnaXZlIHlv
+dSByLWIgLSBpc24ndCBpOTE1X2dlbV9leGVjYnVmZmVyMl9pb2N0bCgpIGJldHRlciBwbGFjZQo+
+ID4gPiA+ID4gPiA+ID4gdG8gZG8gZm9yIGxvb3AganVzdCBhZnRlciBjb3B5X2Zyb21fdXNlcigp
+IGFuZCBjaGVjayByZWxvY2F0aW9uX2NvdW50Pwo+ID4gPiA+ID4gPiA+ID4gV2UgaGF2ZSBhbiBh
+Y2Nlc3MgdG8gZXhlYzJfbGlzdCB0aGVyZSwgd2Uga25vdyB0aGUgZ2VuIHNvIHdlJ3JlIGFibGUg
+dG8gc2F5Cj4gPiA+ID4gPiA+ID4gPiByZWxvY2F0aW9ucyBhcmUgbm90IHN1cHBvcnRlZCBpbW1l
+ZGlhdGUsIHdpdGhvdXQgZW50ZXJpbmcgaTkxNV9nZW1fZG9fZXhlY2J1ZmZlcigpLgo+ID4gPiA+
+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gSSBjb25zaWRlcmVkIHRoYXQgYnV0IGl0IGFkZHMgYW4gZXh0
+cmEgb2JqZWN0IGxpc3Qgd2FsayBmb3IgYSBjYXNlCj4gPiA+ID4gPiA+ID4gd2hpY2ggd2UgZXhw
+ZWN0IHRvIG5vdCBoYXBwZW4uICBJJ20gbm90IHN1cmUgaG93IGV4cGVuc2l2ZSB0aGUgbGlzdAo+
+ID4gPiA+ID4gPiA+IHdhbGsgd291bGQgYmUgaWYgYWxsIHdlIGRvIGlzIGNoZWNrIHRoZSBudW1i
+ZXIgb2YgcmVsb2NhdGlvbnMgb24gZWFjaAo+ID4gPiA+ID4gPiA+IG9iamVjdC4gIEkgZ3Vlc3Ms
+IGlmIGl0IGNvbWVzIHJpZ2h0IGFmdGVyIGEgY29weV9mcm9tX3VzZXIsIGl0J3MgYWxsCj4gPiA+
+ID4gPiA+ID4gaG90IGluIHRoZSBjYWNoZSBzbyBpdCBzaG91bGRuJ3QgbWF0dGVyLiAgT2suICBJ
+J3ZlIGNvbnZpbmNlZCBteXNlbGYuCj4gPiA+ID4gPiA+ID4gSSdsbCBtb3ZlIGl0Lgo+ID4gPiA+
+ID4gPgo+ID4gPiA+ID4gPiBJIHJlYWxseSB3b3VsZG4ndCBtb3ZlIGl0IGlmIGl0J3MgYW5vdGhl
+ciBsaXN0IHdhbGsuIEV4ZWNidWYgaGFzIGEgbG90Cj4gPiA+ID4gPiA+IG9mIGZhc3QtcGF0aHMg
+Z29pbmcgb24sIGFuZCB3ZSBoYXZlIGV4dGVuc2l2ZSB0ZXN0cyB0byBtYWtlIHN1cmUgaXQKPiA+
+ID4gPiA+ID4gdW53aW5kcyBjb3JyZWN0bHkgaW4gYWxsIGNhc2VzLiBJdCdzIG5vdCB2ZXJ5IGlu
+dHVpdGl2ZSwgYnV0IGV4ZWNidWYKPiA+ID4gPiA+ID4gY29kZSBpc24ndCBzY29yaW5nIHZlcnkg
+aGlnaCBvbiB0aGF0Lgo+ID4gPiA+ID4KPiA+ID4gPiA+IEFuZCBoZXJlIEknZCBqdXN0IGZpbmlz
+aGVkIGRvaW5nIHRoZSB0eXBpbmcgdG8gbW92ZSBpdC4gIEdvb2QgdGhpbmcgSQo+ID4gPiA+ID4g
+aGFkbid0IGNsb3NlZCB2aW0geWV0IGFuZCBpdCB3YXMgc3RpbGwgaW4gbXkgdW5kbyBidWZmZXIu
+IDotKQo+ID4gPiA+Cj4gPiA+ID4gQmVmb3JlIGVudGVyaW5nICJzbG93ZXIiIHBhdGggZnJvbSBt
+eSBwZXJzcGVjdGl2ZSBJIHdvdWxkIGp1c3QgY2hlY2sKPiA+ID4gPiBiYXRjaCBvYmplY3QgYXQg
+dGhhdCBwbGFjZS4gV2Ugc3RpbGwgd291bGQgaGF2ZSBzaW5nbGUgbGlzdCB3YWxrdGhyb3VnaAo+
+ID4gPiA+IGFuZCBxdWljayBjaGVjayBvbiB0aGUgdmVyeSBiZWdpbm5pbmcuCj4gPiA+Cj4gPiA+
+IENhbiB5b3UgYmUgbW9yZSBzcGVjaWZpYyBhYm91dCB3aGF0IGV4YWN0bHkgeW91IHRoaW5rIHdl
+IGNhbiBjaGVjayBhdAo+ID4gPiB0aGUgYmVnaW5uaW5nPyAgRWl0aGVyIHdlIGFkZCBhIGZsYWcg
+dGhhdCB3ZSBjYW4gTygxKSBjaGVjayBhdCB0aGUKPiA+ID4gYmVnaW5uaW5nIG9yIHdlIGhhdmUg
+dG8gY2hlY2sgZXZlcnl0aGluZyBpbiBleGVjMl9saXN0IGZvcgo+ID4gPiBleGVjMl9saXN0W25d
+LnJlbG9jYXRpb25fY291bnQgPT0gMC4gIFRoYXQncyBhIGxpc3Qgd2Fsay4gIEknbSBub3QKPiA+
+ID4gc2VlaW5nIHdoYXQgdXAtZnJvbnQgY2hlY2sgeW91J3JlIHRoaW5raW5nIHdlIGNhbiBkbyB3
+aXRob3V0IHRoZSBsaXN0Cj4gPiA+IHdhbGsuCj4gPgo+ID4gSSBleHBlY3QgdGhhdCBsYXN0IChk
+ZWZhdWx0KSBvciBmaXJzdCAoSTkxNV9FWEVDX0JBVENIX0ZJUlNUKSBleGVjb2JqCj4gPiAoYmF0
+Y2gpIHdpbGwgbGlrZWx5IGhhcyByZWxvY2F0aW9ucy4gU28gd2UgY2FuIGNoZWNrIHRoYXQgc2lu
+Z2xlCj4gPiBvYmplY3Qgd2l0aG91dCBlbnRlcmluZyBpOTE1X2dlbV9kb19leGVjYnVmZmVyKCku
+IElmIHRoYXQgY2hlY2sKPiA+IGlzIG1pc3NlZCAocmVsb2NhdGlvbl9jb3VudCA9IDApIHlvdSds
+bCBjYXRjaCByZWxvY2F0aW9ucyBpbiBvdGhlcgo+ID4gb2JqZWN0cyBpbiBjaGVja19yZWxvY2F0
+aW9ucygpIGFzIHlvdSBhbHJlYWR5IGRpZC4gVGhpcyBpcyBzaW1wbGUKPiA+IG9wdGltaXphdGlv
+biBidXQgd2UgY2FuIGF2b2lkIHR3byBpdGVyYXRpb25zIG92ZXIgYnVmZmVyIGxpc3QKPiA+IChm
+aXJzdCBpcyBpbiBlYl9sb29rdXBfdm1hcygpKS4KPiAKPiBTdXJlLCB3ZSBjYW4gZG8gYW4gZWFy
+bHktZXhpdCBjaGVjayBvZiB0aGUgZmlyc3QgYW5kIGxhc3Qgb2JqZWN0cy4KPiBJJ20ganVzdCBu
+b3Qgc2VlaW5nIHdoYXQgdGhhdCBzYXZlcyB1cyBnaXZlbiB0aGF0IHdlIHN0aWxsIGhhdmUgdG8g
+ZG8KPiB0aGUgZnVsbCBsaXN0LXdhbGsgY2hlY2sgYW55d2F5LiAgRXNwZWNpYWxseSBzaW5jZSB0
+aGlzIGlzIGFuIGVycm9yCj4gcGF0aCB3aGljaCBzaG91bGRuJ3QgYmUgaGl0IGJ5IHJlYWwgdXNl
+cnNwYWNlIGRyaXZlcnMuCgpZZWFoIG9wdGltaXppbmcgZXJyb3IgY2hlY2tpbmcgc291bmRzIGxp
+a2UgdGhlIHdyb25nIHRoaW5nIHRvIG9wdGltaXplLgpVc2Vyc3BhY2UgaXMgd3JvbmcsIGl0IG1p
+Z2h0IGFzIHdlbGwgaGF2ZSB0byB3YWl0IGEgYml0IHVudGlsIGl0IGdldHMgdGhhdApyZWplY3Rp
+b24gOi0pCi1EYW5pZWwKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVs
+IENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
