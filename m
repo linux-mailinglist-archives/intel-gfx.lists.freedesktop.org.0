@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ECA1338C68
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 13:10:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87673338C6E
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 13:12:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA48E6F5E5;
-	Fri, 12 Mar 2021 12:10:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 467056F5E9;
+	Fri, 12 Mar 2021 12:12:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC02F6F5E5
- for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 12:10:12 +0000 (UTC)
-IronPort-SDR: /zAck5LKWuuuxoxiLqEgUt2klbuxQKOnsnlkH7rNgwJo6Z71EmYjyGgIuE9ttCiBvwLfnHOPNr
- ggAxwmJRXxEw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="168739473"
-X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="168739473"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2021 04:10:12 -0800
-IronPort-SDR: H6al1lUs29qZqjM5RbyrnghQgJj80Eo653CZmNN0/Lw3wLIaPoUC1T21Z5LaJAhXl+5t1EYjnb
- OKsT+7yBz6mw==
-X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="410988668"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF0026F5E9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 12:12:04 +0000 (UTC)
+IronPort-SDR: 0aTgFRSO/UtDGs5r3KrafkyvO4j+T2gTjvXLhN3L5+KsvFcoawt+52EH29L17L+tRIFltww1BH
+ VibS0yjxyMTA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9920"; a="168096664"
+X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="168096664"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2021 04:12:04 -0800
+IronPort-SDR: 0uskIaBRDdwhcZ2zLLW9tPgTeJUHJS9QWyErmkJl0Inuu1f787U7+xb/inASYzfKbQRsJswxC7
+ q8mAJVRCzLNg==
+X-IronPort-AV: E=Sophos;i="5.81,243,1610438400"; d="scan'208";a="600579950"
 Received: from unknown (HELO intel.com) ([10.237.72.91])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2021 04:10:09 -0800
-Date: Fri, 12 Mar 2021 14:12:30 +0200
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2021 04:12:03 -0800
+Date: Fri, 12 Mar 2021 14:13:58 +0200
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20210312121230.GA12252@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20210312121358.GB12252@intel.com>
 References: <20210305153610.12177-1-ville.syrjala@linux.intel.com>
- <20210305153610.12177-3-ville.syrjala@linux.intel.com>
- <20210311143605.GA8577@intel.com> <YEo3K4RjsgsMSNiZ@intel.com>
+ <20210305153610.12177-4-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <YEo3K4RjsgsMSNiZ@intel.com>
+In-Reply-To: <20210305153610.12177-4-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Tighten SAGV constraint for
- pre-tgl
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Check SAGV wm min_ddb_alloc
+ rather than plane_res_b
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,72 +55,49 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 11, 2021 at 05:28:43PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Thu, Mar 11, 2021 at 04:36:05PM +0200, Lisovskiy, Stanislav wrote:
-> > On Fri, Mar 05, 2021 at 05:36:06PM +0200, Ville Syrjala wrote:
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > =
-
-> > > Say we have two planes enabled with watermarks configured
-> > > as follows:
-> > > plane A: wm0=3Denabled/can_sagv=3Dfalse, wm1=3Denabled/can_sagv=3Dtrue
-> > > plane B: wm0=3Denabled/can_sagv=3Dtrue,  wm1=3Ddisabled
-> > =
-
-> > Was thinking about this, always thought its not possible, i.e
-> > wm1 kinda requires more resources, so if we can do wm1, should
-> > always be able to do wm0..
-> > =
-
-> > > =
-
-> > > This is possible since the latency we use to calculate
-> > > can_sagv may not be the same for both planes due to
-> > > skl_needs_memory_bw_wa().
-> > =
-
-> > The current code, which I see in internal at least looks like this:
-> > =
-
-> > /*
-> >  * FIXME: We still don't have the proper code detect if we need to appl=
-y the WA,
-> >  * so assume we'll always need it in order to avoid underruns.
-> >  */
-> > static bool skl_needs_memory_bw_wa(struct drm_i915_private *dev_priv)
-> > {
-> >       return IS_GEN9_BC(dev_priv) || IS_BROXTON(dev_priv);
-> > }
-> > =
-
-> > i.e I think it will return same latency for all planes.
-> > =
-
-> > Or am I missing something?..
+On Fri, Mar 05, 2021 at 05:36:07PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > =
 
-> We do stuff like =
-
-> if (skl_needs_memory_bw_wa(dev_priv) && wp->x_tiled)
-> 	latency +=3D 15;
-> so different latencies for different tilings.
+> For non-transition watermarks we are supposed to check min_ddb_alloc
+> rather than plane_res_b when determining if we have enough DDB space
+> for it. A bit too much copy pasta made me check the wrong thing.
 > =
 
-> Also the fact that eg. Y vs. X/linear do the method1 vs. method2
-> selection differently could mean we get different set of wm levels
-> even w/o any latency adjustments. Or at least it's impossible for
-> me to see from the code that it couldn't happen.
-
-Ah ok, so it is based on tiling basically.
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Fixes: df4a50a35e2c ("drm/i915: Zero out SAGV wm when we don't have enoug=
+h DDB for it")
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > =
 
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index b6e34d1701a0..36601e0a5073 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4989,7 +4989,7 @@ skl_allocate_plane_ddb(struct intel_atomic_state *s=
+tate,
+>  		if (wm->trans_wm.plane_res_b >=3D total[plane_id])
+>  			memset(&wm->trans_wm, 0, sizeof(wm->trans_wm));
+>  =
+
+> -		if (wm->sagv.wm0.plane_res_b >=3D total[plane_id])
+> +		if (wm->sagv.wm0.min_ddb_alloc > total[plane_id])
+>  			memset(&wm->sagv.wm0, 0, sizeof(wm->sagv.wm0));
+>  =
+
+>  		if (wm->sagv.trans_wm.plane_res_b >=3D total[plane_id])
 > -- =
 
-> Ville Syrj=E4l=E4
-> Intel
+> 2.26.2
+> =
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
