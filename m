@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C606C3393DD
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 17:48:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75DD83393DF
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Mar 2021 17:50:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 123B06E17F;
-	Fri, 12 Mar 2021 16:48:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBE126E182;
+	Fri, 12 Mar 2021 16:50:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 336076E040;
- Fri, 12 Mar 2021 16:48:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2BD8BA00FD;
- Fri, 12 Mar 2021 16:48:22 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C80886E182
+ for <intel-gfx@lists.freedesktop.org>; Fri, 12 Mar 2021 16:50:03 +0000 (UTC)
+IronPort-SDR: ZrLG8KP9/hvse4MphnD3efzCHaXQdt3cgJ3kGkJo+WI0KfQAXkt6otOBtC0yDVddq22zNALlVH
+ mD70+3NIt+dQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9921"; a="208700041"
+X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; d="scan'208";a="208700041"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2021 08:50:03 -0800
+IronPort-SDR: smBOC437pDukL6lLy8pTXbKU5Hn2eNkEZLMfdz+6Zm2LWNBo4Nbr6Ie3JKUPV4+YsI1k1+bM1i
+ rYkRJJOI6ImQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,244,1610438400"; d="scan'208";a="387396872"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga002.jf.intel.com with SMTP; 12 Mar 2021 08:50:00 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 12 Mar 2021 18:50:00 +0200
+Date: Fri, 12 Mar 2021 18:50:00 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <YEubuI/9GrPsAEnJ@intel.com>
+References: <20210311223632.3191939-1-matthew.d.roper@intel.com>
+ <20210311223632.3191939-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Fri, 12 Mar 2021 16:48:22 -0000
-Message-ID: <161556770214.8356.15982227150305125500@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210312154622.1767865-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210312154622.1767865-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRGVm?=
- =?utf-8?q?ault_request/fence_expiry_+_watchdog?=
+Content-Disposition: inline
+In-Reply-To: <20210311223632.3191939-2-matthew.d.roper@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 01/56] drm/i915/display: Convert gen5/gen6
+ tests to IS_IRONLAKE/IS_SANDYBRIDGE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,214 +51,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0862919869=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0862919869==
-Content-Type: multipart/alternative;
- boundary="===============3096666064555452379=="
+On Thu, Mar 11, 2021 at 02:35:37PM -0800, Matt Roper wrote:
+> ILK is the only platform that we consider "gen5" and SNB is the only
+> platform we consider "gen6."  Add an IS_SANDYBRIDGE() macro and then
+> replace numeric platform tests for these two generations with direct
+> platform tests with the following Coccinelle semantic patch:
+> =
 
---===============3096666064555452379==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+>         @@ expression dev_priv; @@
+>         - IS_GEN(dev_priv, 5)
+>         + IS_IRONLAKE(dev_priv)
+> =
 
-== Series Details ==
+>         @@ expression dev_priv; @@
+>         - IS_GEN(dev_priv, 6)
+>         + IS_SANDYBRIDGE(dev_priv)
+> =
 
-Series: Default request/fence expiry + watchdog
-URL   : https://patchwork.freedesktop.org/series/87930/
-State : success
+>         @@ expression dev_priv; @@
+>         - IS_GEN_RANGE(dev_priv, 5, 6)
+>         + IS_SANDYBRIDGE(dev_priv) || IS_IRONLAKE(dev_priv)
 
-== Summary ==
+I'd probably make this IS_ILK||IS_SNB. Looks like we tend to use
+the old->new order in most of the cases this touches.
 
-CI Bug Log - changes from CI_DRM_9854 -> Patchwork_19789
-====================================================
+> @@ -7439,7 +7439,7 @@ int intel_plane_atomic_calc_changes(const struct in=
+tel_crtc_state *old_crtc_stat
+>  	 * plane, not only sprite plane.
+>  	 */
+>  	if (plane->id !=3D PLANE_CURSOR &&
+> -	    (IS_GEN_RANGE(dev_priv, 5, 6) ||
+> +	    (IS_SANDYBRIDGE(dev_priv) || IS_IRONLAKE(dev_priv) ||
+>  	     IS_IVYBRIDGE(dev_priv)) &&
+>  	    (turn_on || (!needs_scaling(old_plane_state) &&
+>  			 needs_scaling(plane_state))))
 
-Summary
--------
+This is at least one case where the IS_SNB||IS_ILK order
+makes things look confusing.
 
-  **SUCCESS**
+Apart from that I like it.
 
-  No regressions found.
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/index.html
+-- =
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19789 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-kbl-8809g:       [PASS][1] -> [TIMEOUT][2] ([i915#3145])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9854/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][3] ([i915#1602] / [i915#2029] / [i915#2369])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-tgl-u2:          [FAIL][4] ([i915#1888]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9854/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_tiled_blits@basic:
-    - fi-kbl-8809g:       [TIMEOUT][6] ([i915#2502] / [i915#3145]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9854/fi-kbl-8809g/igt@gem_tiled_blits@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/fi-kbl-8809g/igt@gem_tiled_blits@basic.html
-
-  
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2369]: https://gitlab.freedesktop.org/drm/intel/issues/2369
-  [i915#2502]: https://gitlab.freedesktop.org/drm/intel/issues/2502
-  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
-
-
-Participating hosts (46 -> 41)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * IGT: IGT_6031 -> TrybotIGT_303
-  * Linux: CI_DRM_9854 -> Patchwork_19789
-
-  CI-20190529: 20190529
-  CI_DRM_9854: 4483074e9d0683cba71600dec27241fffef7b2d6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6031: 6ab78f9da7621b62c162929013772b3c6ac87dbd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19789: 7f4fb6d644b5b89887d99fda13cc3a42fa38516a @ git://anongit.freedesktop.org/gfx-ci/linux
-  TrybotIGT_303: https://intel-gfx-ci.01.org/tree/drm-tip/TrybotIGT_303/index.html
-
-
-== Linux commits ==
-
-7f4fb6d644b5 drm/i915: Allow configuring default request expiry via modparam
-5d0b88dfca39 drm/i915: Fail too long user submissions by default
-9e458012bb44 drm/i915: Allow userspace to configure the watchdog
-c4f617682a6d drm/i915: Request watchdog infrastructure
-5b101fa80277 drm/i915: Restrict sentinel requests further
-865f5ed6eec8 drm/i915: Individual request cancellation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/index.html
-
---===============3096666064555452379==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Default request/fence expiry + watchdog</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87930/">https://patchwork.freedesktop.org/series/87930/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9854 -&gt; Patchwork_19789</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19789 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9854/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2369">i915#2369</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9854/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/fi-tgl-u2/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9854/fi-kbl-8809g/igt@gem_tiled_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2502">i915#2502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19789/fi-kbl-8809g/igt@gem_tiled_blits@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (46 -&gt; 41)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_6031 -&gt; TrybotIGT_303</li>
-<li>Linux: CI_DRM_9854 -&gt; Patchwork_19789</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9854: 4483074e9d0683cba71600dec27241fffef7b2d6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6031: 6ab78f9da7621b62c162929013772b3c6ac87dbd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19789: 7f4fb6d644b5b89887d99fda13cc3a42fa38516a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  TrybotIGT_303: https://intel-gfx-ci.01.org/tree/drm-tip/TrybotIGT_303/index.html</p>
-<p>== Linux commits ==</p>
-<p>7f4fb6d644b5 drm/i915: Allow configuring default request expiry via modparam<br />
-5d0b88dfca39 drm/i915: Fail too long user submissions by default<br />
-9e458012bb44 drm/i915: Allow userspace to configure the watchdog<br />
-c4f617682a6d drm/i915: Request watchdog infrastructure<br />
-5b101fa80277 drm/i915: Restrict sentinel requests further<br />
-865f5ed6eec8 drm/i915: Individual request cancellation</p>
-
-</body>
-</html>
-
---===============3096666064555452379==--
-
---===============0862919869==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0862919869==--
