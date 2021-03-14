@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8AC733A4DF
-	for <lists+intel-gfx@lfdr.de>; Sun, 14 Mar 2021 13:49:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F69333A50C
+	for <lists+intel-gfx@lfdr.de>; Sun, 14 Mar 2021 14:48:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 120606E32F;
-	Sun, 14 Mar 2021 12:49:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9D5F6E23D;
+	Sun, 14 Mar 2021 13:48:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com
- [IPv6:2607:f8b0:4864:20::f36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBBD46E32F
- for <intel-gfx@lists.freedesktop.org>; Sun, 14 Mar 2021 12:49:02 +0000 (UTC)
-Received: by mail-qv1-xf36.google.com with SMTP id by2so6523875qvb.11
- for <intel-gfx@lists.freedesktop.org>; Sun, 14 Mar 2021 05:49:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=mm2pDUcPQI3vYgNih/nfQzmVaJ6+8vjYRD2dtPrRyLE=;
- b=Ix0MG2KEifJrMuEyfrmbUjlAB3ZlCZ2ozvLjzVEiK7sGVF6bNM8EssbiNJ/rDPfEda
- E9eew7Mcuye6nKzzb41z9dLEpX2pFlol6ddOPzAXteRmNVs+rG9hixA5qXyhY1LQRaEM
- nS/EzhiEL93oQxQoQ68BOP/AlZ7+eMnzziNDrw31adbWLxE5q4GkNPsOYHbXN3Pb0Bcl
- W/QIPvtBFwJpROwhYj3iBMEGdV4bjNqQOGzmtsvpzQSmSsVKkb9Twr0R4oTkry9heBuc
- vBUHxhj0o5BERoso/BjpECaO0qyqeQpSCA80g0BH8qzPs9xWUcj+zko8dxGXUxVH7oym
- tQlA==
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+ [209.85.128.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 614C26E23D
+ for <intel-gfx@lists.freedesktop.org>; Sun, 14 Mar 2021 13:48:11 +0000 (UTC)
+Received: by mail-wm1-f51.google.com with SMTP id
+ m20-20020a7bcb940000b029010cab7e5a9fso18653112wmi.3
+ for <intel-gfx@lists.freedesktop.org>; Sun, 14 Mar 2021 06:48:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=mm2pDUcPQI3vYgNih/nfQzmVaJ6+8vjYRD2dtPrRyLE=;
- b=GE796golcGox2Jz6TBRrB2kMEfF2ur9w9wwTxLIMqHSRqqhkxlYAJbwrwGP8FMbVad
- zWntssl7I0IXEtVSzJOpTWdpksLHqVGFtZKie/1765iTXvAbF8ml+pft10lCg/6llvyx
- Lwwjycmny+3PrcaJjclD2XdOZ3CBOsYXAmJwMZPlIhsWGzJxC1rG9DItnAbVFbOknuKC
- dfYG/6WDDZY1RBCtJmVTDq4REO4jDpssUEGoRRPTAlqdf9ZEjhSGk1uob8+HUB6k24Bq
- GdJ65zu28OuXc5ZfsA2KChirGhfmRYAhqqJOV762gcSxoFI7vm6zWk2B2wE8FdHXZQ3Z
- +Hyw==
-X-Gm-Message-State: AOAM532Le/3HRyw4X4fSgOLBm0pNSJcwTE/JpKIYQlTRn6tvW/rJ5kGE
- AYW4c0/XjAisXaBVuDWLV4JcJk1EZ9lOpzzT+27p1fdrv2nHRg==
-X-Google-Smtp-Source: ABdhPJxxWtU7GjqT9R7ouwwnTaGM7lJlv7kD/nA3Z/H6Cwm9vnIhAckZ7HaAx2gjTvbEJJ6R3YKzGsxb/N/DiiIzs/0=
-X-Received: by 2002:a0c:8ec7:: with SMTP id y7mr6352056qvb.9.1615726141725;
- Sun, 14 Mar 2021 05:49:01 -0700 (PDT)
-MIME-Version: 1.0
-From: Ed Ceaser <ceasere@gmail.com>
-Date: Sun, 14 Mar 2021 08:48:50 -0400
-Message-ID: <CAP_6--tUX=-xC1cNu2U89LqpzowkwE_gc4mwfyTNVHUk9373nA@mail.gmail.com>
+ h=x-gm-message-state:message-id:subject:from:to:date:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=tqv1ZJXL3HqCMD3zmmEEWUnkSO8nGjmjqlsWVdJR0sk=;
+ b=HvX2KII7ow0woHnln7SAeQgpil2k0QA8UGmO1yBD5eSJ+4xptVNOEeyv0Jibb+XdwZ
+ PEEK91nHXsUS+aYoOcYHd+ar8XwTNxdsxdGaq94EN4bnVQ0f/EBGHqTgajjm8H0/60Pl
+ PxQ7/cHhBNy0WRlY10dq6ac/0SWCdY5AZVDZTiPmuDWD9X1nsNFohfXwdCDj6c1SdxKo
+ JcgjeXk6WTVL2RornKI9YBcmFd2cebwb5Cz3DDyhsjDhnoQQbEHycNUsOOhd7kZi/qDd
+ Mwiq4G8+xCTCYGvOOJ9ZKQOPA+EfUL5uzJ092Z9nmH65Zb9rHYZafE1xtDrqUKKQtP0h
+ TiNQ==
+X-Gm-Message-State: AOAM531Dw1xcI0mk6/HOBOqBeAdnllOISB6+sFCLRdx+cTTwXENAy555
+ +9bwbTJ4cYV97BNdcHB1E9XlUKpC57s=
+X-Google-Smtp-Source: ABdhPJzuK0jdAlPIoYejSx2NrRSPF2MDFzUFoDUrKWDEq0WZ4ZTX3ZH5L9GGiPb4ItYaASPgVG5uVg==
+X-Received: by 2002:a05:600c:19d1:: with SMTP id
+ u17mr21568387wmq.141.1615729689792; 
+ Sun, 14 Mar 2021 06:48:09 -0700 (PDT)
+Received: from ?IPv6:2003:c1:1f4f:ba00:f585:f458:b5b5:1f70?
+ (p200300c11f4fba00f585f458b5b51f70.dip0.t-ipconnect.de.
+ [2003:c1:1f4f:ba00:f585:f458:b5b5:1f70])
+ by smtp.gmail.com with ESMTPSA id r2sm15048592wrt.8.2021.03.14.06.48.08
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 14 Mar 2021 06:48:09 -0700 (PDT)
+Message-ID: <769a4194df25ee2432284d8f10f876a17cc94fec.camel@linux.com>
+From: Mario =?ISO-8859-1?Q?H=FCttel?= <mario.huettel@linux.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [Intel-gfx] Debugging an i915 DP link training timing issue
+Date: Sun, 14 Mar 2021 14:48:08 +0100
+User-Agent: Evolution 3.38.4 
+MIME-Version: 1.0
+Subject: [Intel-gfx] [bug report] drm/i915: Computer does not shutdown since
+ commit fe0f1e3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,102 +60,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1019316118=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1019316118==
-Content-Type: multipart/alternative; boundary="000000000000bb5eb405bd7e8eb5"
+Hello,
 
---000000000000bb5eb405bd7e8eb5
-Content-Type: text/plain; charset="UTF-8"
+It seems, like the mailing list, didn't accept my previous emails. So
+I'll send it again:
 
-Hi all,
+I want to report a bug. I've got a PC with Intel i7-6700K processor
+(with integrated graphics) and an AsRock Fatal1ty Z170 Gaming K6
+mainboard. I use the CPU's integrated graphics.
+My system is Archlinux with Kernel v5.11.6.
 
-tl;dr: I've discovered what appears to be some kind of timing issue with DP
-link training on new hardware. I applied a hacky fix locally, but I need
-help with coming up with a real fix that we can actually use.
+Using this setup, my PC works normally. However, when I shut it down,
+the power is not cut. Fans keep spinning and LEDs stay on. I couldn't
+detect any other problem when shutting down. Drives etc. stop as
+expected and the video is blank. Even after waiting several hours, the
+system doesn't power down. This behavior is 100% reproducible.
 
-I recently got a new laptop, a Thinkpad X1 Extreme Gen 3, with an OLED
-display. I've been trying to debug inconsistent behavior during resume
-where the display would not power on the majority of the time.
+Restarts work normally.
 
-This is all the first time I've ever worked with this stuff, so I have no
-idea what I'm really doing and so anything I say here might be wrong. When
-comparing logs between a good and bad resume, I noticed the following:
+I haven't yet found any other people on the internet that have the same
+bug.
 
-* Failed resumes would result in "Max Voltage Swing reached", and "Link
-Training failed".
-* Successful and failed resumes would have the exact same behavior
-regarding link training in the logs, right up until the end, where for a
-bad resume. we'd read the following register state:
-   [drm:drm_dp_dpcd_read [drm_kms_helper]] AUX A/DDI A/PHY A: 0x00202 AUX
--> (ret= 6) 00 00 00 00 22 22
+I used git bisect to find the commit that causes this behavior on my
+machine. The result is: fe0f1e3bfdfeb53e18f1206aea4f40b9bd1f291c is the
+first bad commit (drm/i915: Shut down displays gracefully on reboot).
 
-  and a good resume:
-  [drm:drm_dp_dpcd_read [drm_kms_helper]] AUX A/DDI A/PHY A: 0x00202 AUX ->
-(ret=  6) 77 77 81 01 22 22
+I hope this is the correct mailing list for this issue.
 
-This led me to think that there's some kind of timing issue here where
-we're reading the register before it's fully populated. To test that, I
-added an additional 20ms sleep to intel_dp_link_training_clock_recovery
-right after the call to intel_dp_link_training_clock_recovery_delay. I
-attached the hack patch to the issue I filed tracking this:
-https://gitlab.freedesktop.org/drm/intel/-/issues/3173
+Let me know if you need more information or someone to test it.
 
-Since applying that patch, everything has been working perfectly. So now
-I'd love to figure out how to get this into a real fix, but I don't really
-know what to propose beyond my current hack of "wait longer".
+Thanks
 
-Thanks in advance for any assistance!
-
---000000000000bb5eb405bd7e8eb5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>tl;dr: I&#39;ve disc=
-overed what appears to be some kind of timing issue with DP link training o=
-n new hardware. I applied a hacky fix locally, but I need help with coming =
-up with a real fix that we can actually use. </div><div><br></div><div>I re=
-cently got a new laptop, a Thinkpad X1 Extreme Gen 3, with an OLED display.=
- I&#39;ve been trying to debug inconsistent behavior during resume where th=
-e display would not power on the majority of the time.</div><div><br></div>=
-<div>This is all the first time I&#39;ve ever worked with this stuff, so I =
-have no idea what I&#39;m really doing and so anything I say here might be =
-wrong. When comparing logs between a good and bad resume, I noticed the fol=
-lowing:</div><div><br></div><div>* Failed resumes would result in &quot;Max=
- Voltage Swing reached&quot;, and &quot;Link Training failed&quot;.</div><d=
-iv>* Successful and failed resumes would have the exact same behavior regar=
-ding link training in the logs, right up until the end, where for a bad res=
-ume. we&#39;d read the following register state:</div><div>=C2=A0=C2=A0 [dr=
-m:drm_dp_dpcd_read [drm_kms_helper]] AUX A/DDI A/PHY A: 0x00202 AUX -&gt; (=
-ret=3D  6) 00 00 00 00 22 22</div><div>=C2=A0 <br></div><div>=C2=A0 and a g=
-ood resume:</div><div>=C2=A0 [drm:drm_dp_dpcd_read [drm_kms_helper]] AUX A/=
-DDI A/PHY A: 0x00202 AUX -&gt; (ret=3D =C2=A06) 77 77 81 01 22 22</div><div=
-><br></div><div>This led me to think that there&#39;s some kind of timing i=
-ssue here where we&#39;re reading the register before it&#39;s fully popula=
-ted. To test that, I added an additional 20ms sleep to intel_dp_link_traini=
-ng_clock_recovery right after the call to intel_dp_link_training_clock_reco=
-very_delay. I attached the hack patch to the issue I filed tracking this: <=
-a href=3D"https://gitlab.freedesktop.org/drm/intel/-/issues/3173">https://g=
-itlab.freedesktop.org/drm/intel/-/issues/3173</a></div><div><br></div><div>=
-Since applying that patch, everything has been working perfectly. So now I&=
-#39;d love to figure out how to get this into a real fix, but I don&#39;t r=
-eally know what to propose beyond my current hack of &quot;wait longer&quot=
-;.</div><div><br></div><div>Thanks in advance for any assistance!<br></div>=
-<div>=C2=A0=C2=A0 <br></div></div>
-
---000000000000bb5eb405bd7e8eb5--
-
---===============1019316118==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Mario
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1019316118==--
