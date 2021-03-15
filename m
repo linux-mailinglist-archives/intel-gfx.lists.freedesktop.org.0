@@ -2,62 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8765033BC3B
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Mar 2021 15:34:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06BC033BDD3
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Mar 2021 15:44:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E59189DA7;
-	Mon, 15 Mar 2021 14:34:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5187C89DA2;
+	Mon, 15 Mar 2021 14:44:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com
- [IPv6:2607:f8b0:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB4089BEC
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Mar 2021 14:34:42 +0000 (UTC)
-Received: by mail-pl1-x635.google.com with SMTP id d23so12189499plq.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Mar 2021 07:34:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=CmHS2y60rTDgtSz42Ly3Q4aYmzkC3eRySaxOqwoqXEo=;
- b=NYJXncy4fhn21Fj2lMrloo4KMCAXdujk1mVadZxowWTKbhSZREbqRYmVfQNpxrW4k2
- xFLUacwb+r1cMKB3Fl+BCnwOSdWEvej6+/W/hq7UWud9HM5t3U3WzouD0GJyYc1TvA2t
- A5yle/2C3sd9PcMYjRBrU4qLJutwkTnW1DyfKS+ls0/w9ceC6k2Khnci8FNMbLbrVysK
- HCIY++Q/YyH/BA8spA8O9mfgirZMV2xzaRHPZ/b0jpibvHkvq2FmuZaWA0w7zMS3JuiF
- +RiBiYYVn+OChLv+ieuHwOHeCiY6J4t0JYKEcqQQ/r4iLgCNiqfR5PTQgzy8Q9ifFNXf
- 1U5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=CmHS2y60rTDgtSz42Ly3Q4aYmzkC3eRySaxOqwoqXEo=;
- b=kwmAHMYqFu8DyxdPlrOKjgYHxjS0diUJOkxfPQwqlGww9nyoif2IMxUiPBnlX49X4I
- CdfekjaxAKcBn8lPgSHcEP9Y5pYcpWKr8SHBBPW/t3s9nb8RItZfskSPQupXXGIpEjVS
- AV61w1NQguFh5RxvXLguUOpe30uCu9IiFDog4p3yyqyrXtsJwz/Knp8bwOy1i85lk+/B
- R+J5BDgX2BSTteWcxYqqcO3bumbb7ETUx0jWwJCLvBKhadd3XxpQ/f2m1HPplM/8f/Ju
- Rf2v3PxLAPTXHOtOJmoT4agLmw6pvb5PFUlaeUhDu2c1STiRuMfk30dHDqc6Pr+ON+ox
- Ro+Q==
-X-Gm-Message-State: AOAM5303BCR8Jhjadp+JKvy+5xojSqmMDurJNf8K5/BY7ayQP5jXazC3
- otpJ0uF8CTtJSLg0qXyQ63LXfWl8xB65yA==
-X-Google-Smtp-Source: ABdhPJwk8kfTxmiUPo2zWMDtpz8KLN91i6jwA1jaTUkvT0GcfBMFRY6bp2St5nLn/MwqXtXlYIZAnA==
-X-Received: by 2002:a17:90a:1049:: with SMTP id
- y9mr13173017pjd.173.1615818881985; 
- Mon, 15 Mar 2021 07:34:41 -0700 (PDT)
-Received: from omlet.com (jfdmzpr06-ext.jf.intel.com. [134.134.137.75])
- by smtp.gmail.com with ESMTPSA id x190sm13520383pfx.166.2021.03.15.07.34.40
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Mar 2021 07:34:41 -0700 (PDT)
-From: Jason Ekstrand <jason@jlekstrand.net>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Mar 2021 09:34:28 -0500
-Message-Id: <20210315143428.1471489-4-jason@jlekstrand.net>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210315143428.1471489-1-jason@jlekstrand.net>
-References: <20210315143428.1471489-1-jason@jlekstrand.net>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43FF489DA2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Mar 2021 14:44:15 +0000 (UTC)
+IronPort-SDR: fHDnGurGK67+NwJtyT/fJckpQEMwqPs8vZbOtd6KFcAm8h1BLFO7X21Dl4BAFl6BVKwmCSqe/1
+ oDek8RA0goQQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9923"; a="189187327"
+X-IronPort-AV: E=Sophos;i="5.81,249,1610438400"; d="scan'208";a="189187327"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2021 07:44:14 -0700
+IronPort-SDR: /fOvc7TpB0Qz5JnxN8Mu5Mr7GAQwKcTHFCjmtLQw95odRvi0nW2bSu+DFltnYsem3masqxaZpU
+ PSsQO6DaPzjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,249,1610438400"; d="scan'208";a="449385511"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga001.jf.intel.com with SMTP; 15 Mar 2021 07:44:12 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 15 Mar 2021 16:44:11 +0200
+Date: Mon, 15 Mar 2021 16:44:11 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <YE9yu6uUeBV8UFIX@intel.com>
+References: <20210310221736.2963264-1-imre.deak@intel.com>
+ <20210310221736.2963264-22-imre.deak@intel.com>
+ <YEusvH7rdjn24Hnr@intel.com>
+ <20210313143647.GC3154085@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Disable pread/pwrite ioctl's for
- future platforms (v3)
+Content-Disposition: inline
+In-Reply-To: <20210313143647.GC3154085@ideak-desk.fi.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 21/23] drm/i915: Add support for FBs
+ requiring a POT stride alignment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,96 +53,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+On Sat, Mar 13, 2021 at 04:36:47PM +0200, Imre Deak wrote:
+> On Fri, Mar 12, 2021 at 08:02:36PM +0200, Ville Syrj=E4l=E4 wrote:
+> > [...]
+> > On Thu, Mar 11, 2021 at 12:17:34AM +0200, Imre Deak wrote:
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/dri=
+vers/gpu/drm/i915/display/intel_display_types.h
+> > > index fc02eca45e4d..08b348c9e3e1 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > @@ -94,6 +94,7 @@ struct intel_framebuffer {
+> > >  	struct drm_framebuffer base;
+> > >  	struct intel_frontbuffer *frontbuffer;
+> > >  	struct intel_rotation_info rot_info;
+> > > +	struct intel_remapped_info rem_info;
+> > >  =
 
-The rationale for this change is roughly as follows:
+> > >  	/* for each plane in the normal GTT view */
+> > >  	struct {
+> > > @@ -101,6 +102,8 @@ struct intel_framebuffer {
+> > >  	} normal[4];
+> > >  	/* for each plane in the rotated GTT view for no-CCS formats */
+> > >  	struct intel_fb_plane_remap_info rotated[2];
+> > > +	/* for each plane in the remapped GTT view. TODO: CCS formats */
+> > > +	struct intel_fb_plane_remap_info remapped[2];
+> > =
 
- 1. The functionality can be done entirely in userspace with a
-    combination of mmap + memcpy
+> > We might want to look into restructuring this a it as a followup.
+> > Maybe we can collect all the rotation vs. remapping stuff into
+> > separate sub-structures. Not sure.
+> =
 
- 2. The only reason anyone in userspace is still using it is because
-    someone implemented bo_subdata that way in libdrm ages ago and
-    they're all too lazy to write the 5 lines of code to do a map.
+> Do you mean
+> =
 
- 3. This falls cleanly into the category of things which will only get
-    more painful with local memory support.
+>  struct intel_fb_plane_remap_info {
+> +       struct intel_remapped_plane_info gtt;
+>         unsigned int x, y;
+>         unsigned int pitch; /* pixels */
+>  };
+> @@ -93,8 +94,6 @@ struct intel_fb_plane_remap_info {
+>  struct intel_framebuffer {
+>         struct drm_framebuffer base;
+>         struct intel_frontbuffer *frontbuffer;
+> -       struct intel_rotation_info rot_info;
+> -       struct intel_remapped_info rem_info;
+>  =
 
-These ioctls aren't used much anymore by "real" userspace drivers.
-Vulkan has never used them and neither has the iris GL driver.  The old
-i965 GL driver does use PWRITE for glBufferSubData but it only supports
-up through Gen11; Gen12 was never enabled in i965.  The compute driver
-has never used PREAD/PWRITE.  The only remaining user is the media
-driver which uses it exactly twice and they're easily removed [1] so
-expecting them to drop it going forward is reasonable.
+>         /* for each plane in the normal GTT view */
+>         struct {
+> =
 
-IGT changes which handle this kernel change have also been submitted [2].
+> resulting in
+> https://github.com/ideak/linux/commit/0fd28d738f9
+> =
 
-[1] https://github.com/intel/media-driver/pull/1160
-[2] https://patchwork.freedesktop.org/series/81384/
+> ?
+> =
 
-v2 (Jason Ekstrand):
- - Improved commit message with the status of all usermode drivers
- - A more future-proof platform check
+> Looks better to me.
 
-v3 (Jason Ekstrand):
- - Drop the HAS_LMEM checks as they're already covered by the version
-   checks
+Yeah something like that I guess.
 
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
----
- drivers/gpu/drm/i915/i915_gem.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+> =
 
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index b2e3b5cfccb4a..80915467e0d84 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -374,10 +374,17 @@ int
- i915_gem_pread_ioctl(struct drm_device *dev, void *data,
- 		     struct drm_file *file)
- {
-+	struct drm_i915_private *i915 = to_i915(dev);
- 	struct drm_i915_gem_pread *args = data;
- 	struct drm_i915_gem_object *obj;
- 	int ret;
- 
-+	/* PREAD is disallowed for all platforms after TGL-LP.  This also
-+	 * covers all platforms with local memory.
-+	 */
-+	if (INTEL_GEN(i915) >= 12 && !IS_TIGERLAKE(i915))
-+		return -EOPNOTSUPP;
-+
- 	if (args->size == 0)
- 		return 0;
- 
-@@ -675,10 +682,17 @@ int
- i915_gem_pwrite_ioctl(struct drm_device *dev, void *data,
- 		      struct drm_file *file)
- {
-+	struct drm_i915_private *i915 = to_i915(dev);
- 	struct drm_i915_gem_pwrite *args = data;
- 	struct drm_i915_gem_object *obj;
- 	int ret;
- 
-+	/* PWRITE is disallowed for all platforms after TGL-LP.  This also
-+	 * covers all platforms with local memory.
-+	 */
-+	if (INTEL_GEN(i915) >= 12 && !IS_TIGERLAKE(i915))
-+		return -EOPNOTSUPP;
-+
- 	if (args->size == 0)
- 		return 0;
- 
--- 
-2.29.2
+> > [...] =
 
+> > > +static unsigned int plane_view_dst_stride(const struct intel_framebu=
+ffer *fb, int color_plane,
+> > > +					  int pitch_tiles)
+> > > +{
+> > > +	unsigned int dst_stride;
+> > > +
+> > > +	if (!intel_fb_needs_pot_stride_remap(fb)) {
+> > > +		dst_stride =3D pitch_tiles;
+> > > +	} else {
+> > > +		dst_stride =3D roundup_pow_of_two(pitch_tiles);
+> > > +		drm_WARN_ON(fb->base.dev, dst_stride < pitch_tiles);
+> > =
+
+> > Dunno if that WARN is particularly useful. We're talking in tiles here
+> > so seems extremely unlikely it could overflow.
+> > =
+
+> > So I'd probably just make this as simple as possible, like:
+> > if (needs_pot)
+> > 	return roundup(x);
+> > else
+> > 	return x;
+> =
+
+> Ok, maybe I was thinking of u16, but the overflow for that is checked
+> later.
+> =
+
+> I'll also s/int pitch_tiles/unsigned int pitch_tiles/.
+> =
+
+> > > +	};
+> > > +
+> > > +	return dst_stride;
+> > > +}
+> > > +
+> > [...]
+> > > @@ -1280,9 +1282,27 @@ rotate_pages(struct drm_i915_gem_object *obj, =
+unsigned int offset,
+> > >  			sg_dma_address(sg) =3D
+> > >  				i915_gem_object_get_dma_address(obj, src_idx);
+> > >  			sg_dma_len(sg) =3D I915_GTT_PAGE_SIZE;
+> > > +
+> > >  			sg =3D sg_next(sg);
+> > > -			src_idx -=3D stride;
+> > > +			src_idx -=3D src_stride;
+> > >  		}
+> > > +
+> > > +		left =3D (dst_stride - height) * I915_GTT_PAGE_SIZE;
+> > > +
+> > > +		if (!left)
+> > > +			continue;
+> > > +
+> > > +		st->nents++;
+> > > +
+> > > +		/*
+> > > +		 * The DE ignores the PTEs for the padding tiles, the sg entry
+> > > +		 * here is just a conenience to indicate how many padding PTEs
+> > > +		 * to insert at this spot.
+> > > +		 */
+> > =
+
+> > OK. That certainly makes this nice and simple.
+> =
+
+> This was only confirmed to be the case on ADL_P, but that's the only
+> relevant place in any case.
+> =
+
+> > > +		sg_set_page(sg, NULL, left, 0);
+> > > +		sg_dma_address(sg) =3D 0;
+> > > +		sg_dma_len(sg) =3D left;
+> > > +		sg =3D sg_next(sg);
+> > =
+
+> > Do we have enough sg entries for these extras? Ah, yeah we allocate
+> > based on the worst case where each vma page needs its own entry.
+> =
+
+> Yes, and then i915_sg_trim() compacts it.
+> =
+
+> > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
+
+> > >  	}
+> > >  =
+
+> > >  	return sg;
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
