@@ -1,63 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 201C433BC30
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Mar 2021 15:34:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8765033BC3B
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Mar 2021 15:34:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 039A289AC9;
-	Mon, 15 Mar 2021 14:34:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E59189DA7;
+	Mon, 15 Mar 2021 14:34:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com
- [IPv6:2607:f8b0:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 633D789AC9
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Mar 2021 14:34:40 +0000 (UTC)
-Received: by mail-pg1-x536.google.com with SMTP id x29so20563480pgk.6
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Mar 2021 07:34:40 -0700 (PDT)
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com
+ [IPv6:2607:f8b0:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB4089BEC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Mar 2021 14:34:42 +0000 (UTC)
+Received: by mail-pl1-x635.google.com with SMTP id d23so12189499plq.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Mar 2021 07:34:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=pUUyxKf93oWiP0QJC+NOJJh3yv8RD020aRRzbsOsfrM=;
- b=bbuDqJOs2Xvf1JAdG98pTXBq30yI1ppH2hj69s1br8X4ImOIItZrnhUa5dmwmChn5N
- kuWfvNAdFd39Y9Aoy/rkMV3heRlI01iDDYS+E+QtQunp5eGcOWunDbq8fB8TlF7TYCLu
- dwXI+uB1tMGX73I33rPEQvKzGAsDJJhgm2T995H0VcTKztvpziU3DqOBfROsQHeT38H0
- WxFlZYvxOXRUc8fjnFFKqWZuJ599JGc1JvWXMJPd9Nrijnn7MVLR2DwuFvBbp22Yho+r
- qlbETaLfgrEhnxfL4ESU362WXmlseAam6Fu1DRkXXK58amGMD6CehkcfjfJhEQBHCdsR
- UhEQ==
+ bh=CmHS2y60rTDgtSz42Ly3Q4aYmzkC3eRySaxOqwoqXEo=;
+ b=NYJXncy4fhn21Fj2lMrloo4KMCAXdujk1mVadZxowWTKbhSZREbqRYmVfQNpxrW4k2
+ xFLUacwb+r1cMKB3Fl+BCnwOSdWEvej6+/W/hq7UWud9HM5t3U3WzouD0GJyYc1TvA2t
+ A5yle/2C3sd9PcMYjRBrU4qLJutwkTnW1DyfKS+ls0/w9ceC6k2Khnci8FNMbLbrVysK
+ HCIY++Q/YyH/BA8spA8O9mfgirZMV2xzaRHPZ/b0jpibvHkvq2FmuZaWA0w7zMS3JuiF
+ +RiBiYYVn+OChLv+ieuHwOHeCiY6J4t0JYKEcqQQ/r4iLgCNiqfR5PTQgzy8Q9ifFNXf
+ 1U5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=pUUyxKf93oWiP0QJC+NOJJh3yv8RD020aRRzbsOsfrM=;
- b=ZHmOUKM8RYUGSfZS8UcAi3qTLCvc11mfwBPMMaeKuHYfTylsDgY1vOQmTly/z/pt9U
- GoDBTsHSfKoRQ0BxyOT31hCt3dhx9AUn0eT5Lm9Yz72qaUMibgBxUbXBMlt5RsqKGbLs
- kUF6QwNA1cqpNQJ44ETmdsXWxY1NKhQ3ovjURlz2gQShg3USKXkfh74imWmUsY0h7776
- YbHE5pi+cWCujD8MydUHQ72gbP5j5u2SzHv6HPEBUDGUoHGZ2J7zuDM6bgYOz1U26DnN
- hF+/PC30pRXCx912rbTJ2U+XQeF+tZRriu+sNoWL/hpCG/aHpnj8/B2VGj0TcCSDD0T5
- 7mug==
-X-Gm-Message-State: AOAM5329aYcqdqI34kApwXgmISyG6Emqq6VHddHcPQFflLrpHiW+B8Ye
- J+jNjEglHhslpyiYH0BY6W43Mw==
-X-Google-Smtp-Source: ABdhPJw6TdygJaOjlMSXHN/Mc95bLJko9dDEIcEfXFRq66jr1r8iLClzxareuNCglwbWC0FP1fu2Gg==
-X-Received: by 2002:a05:6a00:b54:b029:207:2a04:7b05 with SMTP id
- p20-20020a056a000b54b02902072a047b05mr5389769pfo.12.1615818879876; 
- Mon, 15 Mar 2021 07:34:39 -0700 (PDT)
+ bh=CmHS2y60rTDgtSz42Ly3Q4aYmzkC3eRySaxOqwoqXEo=;
+ b=kwmAHMYqFu8DyxdPlrOKjgYHxjS0diUJOkxfPQwqlGww9nyoif2IMxUiPBnlX49X4I
+ CdfekjaxAKcBn8lPgSHcEP9Y5pYcpWKr8SHBBPW/t3s9nb8RItZfskSPQupXXGIpEjVS
+ AV61w1NQguFh5RxvXLguUOpe30uCu9IiFDog4p3yyqyrXtsJwz/Knp8bwOy1i85lk+/B
+ R+J5BDgX2BSTteWcxYqqcO3bumbb7ETUx0jWwJCLvBKhadd3XxpQ/f2m1HPplM/8f/Ju
+ Rf2v3PxLAPTXHOtOJmoT4agLmw6pvb5PFUlaeUhDu2c1STiRuMfk30dHDqc6Pr+ON+ox
+ Ro+Q==
+X-Gm-Message-State: AOAM5303BCR8Jhjadp+JKvy+5xojSqmMDurJNf8K5/BY7ayQP5jXazC3
+ otpJ0uF8CTtJSLg0qXyQ63LXfWl8xB65yA==
+X-Google-Smtp-Source: ABdhPJwk8kfTxmiUPo2zWMDtpz8KLN91i6jwA1jaTUkvT0GcfBMFRY6bp2St5nLn/MwqXtXlYIZAnA==
+X-Received: by 2002:a17:90a:1049:: with SMTP id
+ y9mr13173017pjd.173.1615818881985; 
+ Mon, 15 Mar 2021 07:34:41 -0700 (PDT)
 Received: from omlet.com (jfdmzpr06-ext.jf.intel.com. [134.134.137.75])
- by smtp.gmail.com with ESMTPSA id x190sm13520383pfx.166.2021.03.15.07.34.37
+ by smtp.gmail.com with ESMTPSA id x190sm13520383pfx.166.2021.03.15.07.34.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Mar 2021 07:34:39 -0700 (PDT)
+ Mon, 15 Mar 2021 07:34:41 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Mar 2021 09:34:27 -0500
-Message-Id: <20210315143428.1471489-3-jason@jlekstrand.net>
+Date: Mon, 15 Mar 2021 09:34:28 -0500
+Message-Id: <20210315143428.1471489-4-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20210315143428.1471489-1-jason@jlekstrand.net>
 References: <20210315143428.1471489-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/gem: Drop relocation support on
- all new hardware (v5)
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Disable pread/pwrite ioctl's for
+ future platforms (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,71 +70,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhlIFZ1bGthbiBkcml2ZXIgaW4gTWVzYSBmb3IgSW50ZWwgaGFyZHdhcmUgbmV2ZXIgdXNlcyBy
-ZWxvY2F0aW9ucyBpZgppdCdzIHJ1bm5pbmcgb24gYSB2ZXJzaW9uIG9mIGk5MTUgdGhhdCBzdXBw
-b3J0cyBhdCBsZWFzdCBzb2Z0cGluIHdoaWNoCmFsbCB2ZXJzaW9ucyBvZiBpOTE1IHN1cHBvcnRp
-bmcgR2VuMTIgZG8uICBPbiB0aGUgT3BlbkdMIHNpZGUsIEdlbjEyKyBpcwpvbmx5IHN1cHBvcnRl
-ZCBieSBpcmlzIHdoaWNoIG5ldmVyIHVzZXMgcmVsb2NhdGlvbnMuICBUaGUgb2xkZXIgaTk2NQpk
-cml2ZXIgaW4gTWVzYSBkb2VzIHVzZSByZWxvY2F0aW9ucyBidXQgaXQgb25seSBzdXBwb3J0cyBJ
-bnRlbCBoYXJkd2FyZQp0aHJvdWdoIEdlbjExIGFuZCBoYXMgYmVlbiBkZXByZWNhdGVkIGZvciBh
-bGwgaGFyZHdhcmUgR2VuOSsuICBUaGUKY29tcHV0ZSBkcml2ZXIgYWxzbyBuZXZlciB1c2VzIHJl
-bG9jYXRpb25zLiAgVGhpcyBvbmx5IGxlYXZlcyB0aGUgbWVkaWEKZHJpdmVyIHdoaWNoIGlzIHN1
-cHBvc2VkIHRvIGJlIHN3aXRjaGluZyB0byBzb2Z0cGluIGdvaW5nIGZvcndhcmQuCk1ha2luZyBz
-b2Z0cGluIGEgcmVxdWlyZW1lbnQgZm9yIGFsbCBmdXR1cmUgaGFyZHdhcmUgc2VlbXMgcmVhc29u
-YWJsZS4KClRoZXJlIGlzIG9uZSBwaWVjZSBvZiBoYXJkd2FyZSBlbmFibGVkIGJ5IGRlZmF1bHQg
-aW4gaTkxNTogUktMIHdoaWNoIHdhcwplbmFibGVkIGJ5IGUyMmZhNmYwYTk3NiB3aGljaCBoYXMg
-bm90IHlldCBsYW5kZWQgaW4gZHJtLW5leHQgc28gdGhpcwphbG1vc3QgYnV0IG5vdCByZWFsbHkg
-YSB1c2Vyc3BhY2UgQVBJIGNoYW5nZSBmb3IgUktMLiAgSWYgaXQgYmVjb21lcyBhCnByb2JsZW0s
-IHdlIGNhbiBhbHdheXMgYWRkICFJU19ST0NLRVRMQUtFKGViLT5pOTE1KSB0byB0aGUgY29uZGl0
-aW9uLgoKUmVqZWN0aW5nIHJlbG9jYXRpb25zIHN0YXJ0aW5nIHdpdGggbmV3ZXIgR2VuMTIgcGxh
-dGZvcm1zIGhhcyB0aGUKYmVuZWZpdCB0aGF0IHdlIGRvbid0IGhhdmUgdG8gYm90aGVyIHN1cHBv
-cnRpbmcgaXQgb24gcGxhdGZvcm1zIHdpdGgKbG9jYWwgbWVtb3J5LiAgR2l2ZW4gaG93IG11Y2gg
-Q1BVIHRvdWNoaW5nIG9mIG1lbW9yeSBpcyByZXF1aXJlZCBmb3IKcmVsb2NhdGlvbnMsIG5vdCBo
-YXZpbmcgdG8gZG8gc28gb24gcGxhdGZvcm1zIHdoZXJlIG5vdCBhbGwgbWVtb3J5IGlzCmRpcmVj
-dGx5IENQVS1hY2Nlc3NpYmxlIGNhcnJpZXMgc2lnbmlmaWNhbnQgYWR2YW50YWdlcy4KCnYyIChK
-YXNvbiBFa3N0cmFuZCk6CiAtIEFsbG93IFRHTC1MUCBwbGF0Zm9ybXMgYXMgdGhleSd2ZSBhbHJl
-YWR5IHNoaXBwZWQKCnYzIChKYXNvbiBFa3N0cmFuZCk6CiAtIFdBUk5fT04gcGxhdGZvcm1zIHdp
-dGggTE1FTSBzdXBwb3J0IGluIGNhc2UgdGhlIGNoZWNrIGlzIHdyb25nCgp2NCAoSmFzb24gRWtz
-dHJhbmQpOgogLSBDYWxsIG91dCBSb2NrZXQgTGFrZSBpbiB0aGUgY29tbWl0IG1lc3NhZ2UKCnY1
-IChKYXNvbiBFa3N0cmFuZCk6CiAtIERyb3AgdGhlIEhBU19MTUVNIGNoZWNrIGFzIGl0J3MgYWxy
-ZWFkeSBjb3ZlcmVkIGJ5IHRoZSB2ZXJzaW9uIGNoZWNrCgpTaWduZWQtb2ZmLWJ5OiBKYXNvbiBF
-a3N0cmFuZCA8amFzb25Aamxla3N0cmFuZC5uZXQ+ClJldmlld2VkLWJ5OiBaYmlnbmlldyBLZW1w
-Y3p5xYRza2kgPHpiaWduaWV3LmtlbXBjenluc2tpQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IE1h
-YXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Ci0tLQog
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYyB8IDEzICsrKysr
-KysrKystLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygt
-KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVm
-ZmVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCmlu
-ZGV4IDk5NzcyZjM3YmZmNjAuLmY2NmNmZjI5NDNiYWEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVjYnVmZmVyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYwpAQCAtMTc2NCw3ICsxNzY0LDggQEAgZWJf
-cmVsb2NhdGVfdm1hX3Nsb3coc3RydWN0IGk5MTVfZXhlY2J1ZmZlciAqZWIsIHN0cnVjdCBlYl92
-bWEgKmV2KQogCXJldHVybiBlcnI7CiB9CiAKLXN0YXRpYyBpbnQgY2hlY2tfcmVsb2NhdGlvbnMo
-Y29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgKmVudHJ5KQorc3RhdGljIGlu
-dCBjaGVja19yZWxvY2F0aW9ucyhjb25zdCBzdHJ1Y3QgaTkxNV9leGVjYnVmZmVyICplYiwKKwkJ
-CSAgICAgY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgKmVudHJ5KQogewog
-CWNvbnN0IGNoYXIgX191c2VyICphZGRyLCAqZW5kOwogCXVuc2lnbmVkIGxvbmcgc2l6ZTsKQEAg
-LTE3NzQsNiArMTc3NSwxMiBAQCBzdGF0aWMgaW50IGNoZWNrX3JlbG9jYXRpb25zKGNvbnN0IHN0
-cnVjdCBkcm1faTkxNV9nZW1fZXhlY19vYmplY3QyICplbnRyeSkKIAlpZiAoc2l6ZSA9PSAwKQog
-CQlyZXR1cm4gMDsKIAorCS8qIFJlbG9jYXRpb25zIGFyZSBkaXNhbGxvd2VkIGZvciBhbGwgcGxh
-dGZvcm1zIGFmdGVyIFRHTC1MUC4gIFRoaXMKKwkgKiBhbHNvIGNvdmVycyBhbGwgcGxhdGZvcm1z
-IHdpdGggbG9jYWwgbWVtb3J5LgorCSAqLworCWlmIChJTlRFTF9HRU4oZWItPmk5MTUpID49IDEy
-ICYmICFJU19USUdFUkxBS0UoZWItPmk5MTUpKQorCQlyZXR1cm4gLUVJTlZBTDsKKwogCWlmIChz
-aXplID4gTl9SRUxPQyhVTE9OR19NQVgpKQogCQlyZXR1cm4gLUVJTlZBTDsKIApAQCAtMTgwNyw3
-ICsxODE0LDcgQEAgc3RhdGljIGludCBlYl9jb3B5X3JlbG9jYXRpb25zKGNvbnN0IHN0cnVjdCBp
-OTE1X2V4ZWNidWZmZXIgKmViKQogCQlpZiAobnJlbG9jID09IDApCiAJCQljb250aW51ZTsKIAot
-CQllcnIgPSBjaGVja19yZWxvY2F0aW9ucygmZWItPmV4ZWNbaV0pOworCQllcnIgPSBjaGVja19y
-ZWxvY2F0aW9ucyhlYiwgJmViLT5leGVjW2ldKTsKIAkJaWYgKGVycikKIAkJCWdvdG8gZXJyOwog
-CkBAIC0xODgwLDcgKzE4ODcsNyBAQCBzdGF0aWMgaW50IGViX3ByZWZhdWx0X3JlbG9jYXRpb25z
-KGNvbnN0IHN0cnVjdCBpOTE1X2V4ZWNidWZmZXIgKmViKQogCWZvciAoaSA9IDA7IGkgPCBjb3Vu
-dDsgaSsrKSB7CiAJCWludCBlcnI7CiAKLQkJZXJyID0gY2hlY2tfcmVsb2NhdGlvbnMoJmViLT5l
-eGVjW2ldKTsKKwkJZXJyID0gY2hlY2tfcmVsb2NhdGlvbnMoZWIsICZlYi0+ZXhlY1tpXSk7CiAJ
-CWlmIChlcnIpCiAJCQlyZXR1cm4gZXJyOwogCX0KLS0gCjIuMjkuMgoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+
+The rationale for this change is roughly as follows:
+
+ 1. The functionality can be done entirely in userspace with a
+    combination of mmap + memcpy
+
+ 2. The only reason anyone in userspace is still using it is because
+    someone implemented bo_subdata that way in libdrm ages ago and
+    they're all too lazy to write the 5 lines of code to do a map.
+
+ 3. This falls cleanly into the category of things which will only get
+    more painful with local memory support.
+
+These ioctls aren't used much anymore by "real" userspace drivers.
+Vulkan has never used them and neither has the iris GL driver.  The old
+i965 GL driver does use PWRITE for glBufferSubData but it only supports
+up through Gen11; Gen12 was never enabled in i965.  The compute driver
+has never used PREAD/PWRITE.  The only remaining user is the media
+driver which uses it exactly twice and they're easily removed [1] so
+expecting them to drop it going forward is reasonable.
+
+IGT changes which handle this kernel change have also been submitted [2].
+
+[1] https://github.com/intel/media-driver/pull/1160
+[2] https://patchwork.freedesktop.org/series/81384/
+
+v2 (Jason Ekstrand):
+ - Improved commit message with the status of all usermode drivers
+ - A more future-proof platform check
+
+v3 (Jason Ekstrand):
+ - Drop the HAS_LMEM checks as they're already covered by the version
+   checks
+
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+---
+ drivers/gpu/drm/i915/i915_gem.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index b2e3b5cfccb4a..80915467e0d84 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -374,10 +374,17 @@ int
+ i915_gem_pread_ioctl(struct drm_device *dev, void *data,
+ 		     struct drm_file *file)
+ {
++	struct drm_i915_private *i915 = to_i915(dev);
+ 	struct drm_i915_gem_pread *args = data;
+ 	struct drm_i915_gem_object *obj;
+ 	int ret;
+ 
++	/* PREAD is disallowed for all platforms after TGL-LP.  This also
++	 * covers all platforms with local memory.
++	 */
++	if (INTEL_GEN(i915) >= 12 && !IS_TIGERLAKE(i915))
++		return -EOPNOTSUPP;
++
+ 	if (args->size == 0)
+ 		return 0;
+ 
+@@ -675,10 +682,17 @@ int
+ i915_gem_pwrite_ioctl(struct drm_device *dev, void *data,
+ 		      struct drm_file *file)
+ {
++	struct drm_i915_private *i915 = to_i915(dev);
+ 	struct drm_i915_gem_pwrite *args = data;
+ 	struct drm_i915_gem_object *obj;
+ 	int ret;
+ 
++	/* PWRITE is disallowed for all platforms after TGL-LP.  This also
++	 * covers all platforms with local memory.
++	 */
++	if (INTEL_GEN(i915) >= 12 && !IS_TIGERLAKE(i915))
++		return -EOPNOTSUPP;
++
+ 	if (args->size == 0)
+ 		return 0;
+ 
+-- 
+2.29.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
