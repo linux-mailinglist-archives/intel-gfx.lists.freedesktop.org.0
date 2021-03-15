@@ -1,46 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8D4E33C691
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Mar 2021 20:11:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D57AB33C781
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Mar 2021 21:14:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 744126E13C;
-	Mon, 15 Mar 2021 19:10:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F48F6E17B;
+	Mon, 15 Mar 2021 20:14:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 052E06E115;
- Mon, 15 Mar 2021 19:10:56 +0000 (UTC)
-IronPort-SDR: d1cKlmezCautB0wORfTqR9HnGWvRINpiHldpWxP92qerwsFPqFaZJzMRFvg0axID+gPAbeu064
- WeoW1H84CwAg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9924"; a="274184350"
-X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; 
- d="gz'50?scan'50,208,50";a="274184350"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2021 12:10:51 -0700
-IronPort-SDR: NWqsGmootzIhWYABGCOz23hPjIffNRSYElWmlydmkT567/iHoX17DFXX0KZ57Bwoq8rBKszr1B
- zuRQr+X7iEjg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; 
- d="gz'50?scan'50,208,50";a="511141824"
-Received: from lkp-server02.sh.intel.com (HELO 1dc5e1a854f4) ([10.239.97.151])
- by fmsmga001.fm.intel.com with ESMTP; 15 Mar 2021 12:10:47 -0700
-Received: from kbuild by 1dc5e1a854f4 with local (Exim 4.92)
- (envelope-from <lkp@intel.com>)
- id 1lLsc2-0000bg-IC; Mon, 15 Mar 2021 19:10:46 +0000
-Date: Tue, 16 Mar 2021 03:10:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <202103160303.UDMMlM6R-lkp@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B1246E169
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Mar 2021 20:14:44 +0000 (UTC)
+IronPort-SDR: z9fXCI3AxIohdHB/wqyYAJwdIwCtJIFGB6GyE6g0StNASRPIcQp/lEmQ4oc5uQ+8dPB62iwA4A
+ OtF7XDkvToQA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9924"; a="188510145"
+X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="188510145"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2021 13:14:43 -0700
+IronPort-SDR: GcER+bw34HcdMbZNf2204pxQg4kAZX/AwTIzUTZM6Gq66YLNZnS67WvYZ8m9oShiOPimIeI6Cr
+ V3Cm7I9LZ+tA==
+X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="590424177"
+Received: from jhou13-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.152.93])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2021 13:14:42 -0700
+Date: Mon, 15 Mar 2021 13:14:42 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210315201442.asmgbo6u4djhwgew@ldmartin-desk2>
+References: <20210311153415.3024607-1-matthew.d.roper@intel.com>
+ <20210311153415.3024607-4-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="5mCyUwZo2JvN/JJP"
 Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] [drm-intel:topic/core-for-CI 20/30]
- include/linux/kconfig.h:7:10: fatal error: generated/autoconf.h: No such
- file or directory
+In-Reply-To: <20210311153415.3024607-4-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 03/23] drm/i915/display: Eliminate most
+ usage of INTEL_GEN()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,912 +49,4983 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
- dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Mar 11, 2021 at 07:33:55AM -0800, Matt Roper wrote:
+>Use Coccinelle to convert most of the usage of INTEL_GEN() and IS_GEN()
+>in the display code to use DISPLAY_VER() comparisons instead.  The
+>following semantic patch was used:
+>
+>        @@ expression dev_priv; @@
+>        - INTEL_GEN(dev_priv)
+>        + DISPLAY_VER(dev_priv)
+>
+>        @@ expression dev_priv; expression E; @@
+>        - !IS_GEN(dev_priv, E)
+>        + DISPLAY_VER(dev_priv) != E
+>
+>        @@ expression dev_priv; expression E; @@
+>        - IS_GEN(dev_priv, E)
+>        + DISPLAY_VER(dev_priv) == E
+>
+>        @@
+>        expression dev_priv;
+>        expression from, until;
+>        @@
+>        - !IS_GEN_RANGE(dev_priv, from, until)
+>        + DISPLAY_VER(dev_priv) < from || DISPLAY_VER(dev_priv) > until
+>
+>        @@
+>        expression dev_priv;
+>        expression from, until;
+>        statement S;
+>        @@
+>        - if (IS_GEN_RANGE(dev_priv, from, until)) S
+>        + if (DISPLAY_VER(dev_priv) >= from && DISPLAY_VER(dev_priv) <= until) S
+>
+>        @@
+>        expression dev_priv;
+>        expression from, until;
+>        @@
+>        - IS_GEN_RANGE(dev_priv, from, until)
+>        + (DISPLAY_VER(dev_priv) >= from && DISPLAY_VER(dev_priv) <= until)
+>
+>There are still some display-related uses of INTEL_GEN() in intel_pm.c
+>(watermark code) and i915_irq.c.  Those will be updated separately.
+>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 
---5mCyUwZo2JvN/JJP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The reason why we had macros like IS_GEN() and IS_GEN_RANGE() is because
+this allows the compiler to short-circuit it into a single
+bitwise AND + comparison check.
 
-tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
-head:   785b066b32b630e4735ca6e51acbb067703e2d3a
-commit: 98a674f9cd22c2cf6f507ccc1f26fae3c91d1271 [20/30] Revert "drm/i915: Don't select BROKEN"
-config: alpha-randconfig-r033-20210315 (attached as .config)
-compiler: alpha-linux-gcc (GCC) 9.3.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git remote add drm-intel git://anongit.freedesktop.org/drm-intel
-        git fetch --no-tags drm-intel topic/core-for-CI
-        git checkout 98a674f9cd22c2cf6f507ccc1f26fae3c91d1271
-        # save the attached .config to linux build tree
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=alpha 
+However checking the conversions below it seems that over time we simply
+used the "INTEL_GEN() >=" form, rendering that optimization moot in most
+places.  In theory the compiler can also do this in the if/else branch,
+but given it often involves also checking other fields, there's not much
+to gain here.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+So, in the end I think we can proceed with this but we need this in the
+commit message:
 
-All errors (new ones prefixed by >>):
+	1) What is the size change after the conversion
+	2) Mention that this was not an oversight
 
-   In file included from scripts/selinux/mdp/mdp.c:22:
->> include/linux/kconfig.h:7:10: fatal error: generated/autoconf.h: No such file or directory
-       7 | #include <generated/autoconf.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
---
-   Makefile arch include kernel scripts source usr [scripts/kconfig/Makefile:63: syncconfig] Error 1
-   Makefile arch include kernel scripts source usr [Makefile:600: syncconfig] Error 2
-   Makefile arch include kernel scripts source usr [Makefile:709: include/config/auto.conf.cmd] Error 2
-   Failed to remake makefile 'include/config/auto.conf.cmd'.
-   Failed to remake makefile 'include/config/auto.conf'.
-   In file included from scripts/selinux/mdp/mdp.c:22:
->> include/linux/kconfig.h:7:10: fatal error: generated/autoconf.h: No such file or directory
-   7 | #include <generated/autoconf.h>
-   | ^~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-   Makefile arch include kernel scripts source usr [scripts/Makefile.host:95: scripts/selinux/mdp/mdp] Error 1
-   Target '__build' not remade because of errors.
-   Makefile arch include kernel scripts source usr [scripts/Makefile.build:514: scripts/selinux/mdp] Error 2
-   Target '__build' not remade because of errors.
-   Makefile arch include kernel scripts source usr [scripts/Makefile.build:514: scripts/selinux] Error 2
-   Target '__build' not remade because of errors.
-   Makefile arch include kernel scripts source usr [Makefile:1217: scripts] Error 2
-   Target 'modules_prepare' not remade because of errors.
-   make: Makefile arch include kernel scripts source usr [Makefile:215: __sub-make] Error 2
-   make: Target 'modules_prepare' not remade because of errors.
---
-   Makefile arch include kernel scripts source usr [scripts/kconfig/Makefile:63: syncconfig] Error 1
-   Makefile arch include kernel scripts source usr [Makefile:600: syncconfig] Error 2
-   Makefile arch include kernel scripts source usr [Makefile:709: include/config/auto.conf.cmd] Error 2
-   Failed to remake makefile 'include/config/auto.conf.cmd'.
-   Failed to remake makefile 'include/config/auto.conf'.
-   In file included from scripts/selinux/mdp/mdp.c:22:
->> include/linux/kconfig.h:7:10: fatal error: generated/autoconf.h: No such file or directory
-   7 | #include <generated/autoconf.h>
-   | ^~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-   Makefile arch include kernel scripts source usr [scripts/Makefile.host:95: scripts/selinux/mdp/mdp] Error 1
-   Target '__build' not remade because of errors.
-   Makefile arch include kernel scripts source usr [scripts/Makefile.build:514: scripts/selinux/mdp] Error 2
-   Target '__build' not remade because of errors.
-   Makefile arch include kernel scripts source usr [scripts/Makefile.build:514: scripts/selinux] Error 2
-   Target '__build' not remade because of errors.
-   Makefile arch include kernel scripts source usr [Makefile:1217: scripts] Error 2
-   Target 'prepare' not remade because of errors.
-   make: Makefile arch include kernel scripts source usr [Makefile:215: __sub-make] Error 2
-   make: Target 'prepare' not remade because of errors.
+With the commit message addition:
 
 
-vim +7 include/linux/kconfig.h
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-8b59cd81dc5e72 Masahiro Yamada 2020-04-23  6  
-2a11c8ea20bf85 Michal Marek    2011-07-20 @7  #include <generated/autoconf.h>
-2a11c8ea20bf85 Michal Marek    2011-07-20  8  
 
-:::::: The code at line 7 was first introduced by commit
-:::::: 2a11c8ea20bf850b3a2c60db8c2e7497d28aba99 kconfig: Introduce IS_ENABLED(), IS_BUILTIN() and IS_MODULE()
+Maybe as a separate patch we may want to get rid of gen_mask as we are
+reducing even further its use.
 
-:::::: TO: Michal Marek <mmarek@suse.cz>
-:::::: CC: Michal Marek <mmarek@suse.cz>
+Lucas De Marchi
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
-
---5mCyUwZo2JvN/JJP
-Content-Type: application/gzip
-Content-Disposition: attachment; filename=".config.gz"
-Content-Transfer-Encoding: base64
-
-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
-
---5mCyUwZo2JvN/JJP
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>---
+> drivers/gpu/drm/i915/display/i9xx_plane.c     |  52 ++--
+> drivers/gpu/drm/i915/display/icl_dsi.c        |  14 +-
+> drivers/gpu/drm/i915/display/intel_atomic.c   |   6 +-
+> drivers/gpu/drm/i915/display/intel_audio.c    |  18 +-
+> drivers/gpu/drm/i915/display/intel_bios.c     |  14 +-
+> drivers/gpu/drm/i915/display/intel_bw.c       |  10 +-
+> drivers/gpu/drm/i915/display/intel_cdclk.c    |  60 ++---
+> drivers/gpu/drm/i915/display/intel_color.c    |  28 +--
+> .../gpu/drm/i915/display/intel_combo_phy.c    |   8 +-
+> drivers/gpu/drm/i915/display/intel_crt.c      |  12 +-
+> drivers/gpu/drm/i915/display/intel_crtc.c     |  20 +-
+> drivers/gpu/drm/i915/display/intel_csr.c      |   4 +-
+> drivers/gpu/drm/i915/display/intel_cursor.c   |  12 +-
+> drivers/gpu/drm/i915/display/intel_ddi.c      | 108 ++++----
+> .../drm/i915/display/intel_ddi_buf_trans.c    |   4 +-
+> drivers/gpu/drm/i915/display/intel_display.c  | 236 +++++++++---------
+> .../drm/i915/display/intel_display_debugfs.c  |  44 ++--
+> .../drm/i915/display/intel_display_power.c    |  52 ++--
+> drivers/gpu/drm/i915/display/intel_dp.c       |  46 ++--
+> drivers/gpu/drm/i915/display/intel_dp_aux.c   |  10 +-
+> drivers/gpu/drm/i915/display/intel_dp_mst.c   |  20 +-
+> drivers/gpu/drm/i915/display/intel_dpll.c     |  12 +-
+> drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  20 +-
+> drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   4 +-
+> drivers/gpu/drm/i915/display/intel_fbc.c      |  56 ++---
+> .../drm/i915/display/intel_fifo_underrun.c    |   6 +-
+> drivers/gpu/drm/i915/display/intel_gmbus.c    |   4 +-
+> drivers/gpu/drm/i915/display/intel_hdcp.c     |  10 +-
+> drivers/gpu/drm/i915/display/intel_hdmi.c     |  28 +--
+> drivers/gpu/drm/i915/display/intel_lvds.c     |  12 +-
+> drivers/gpu/drm/i915/display/intel_overlay.c  |  12 +-
+> drivers/gpu/drm/i915/display/intel_panel.c    |  18 +-
+> drivers/gpu/drm/i915/display/intel_pipe_crc.c |  12 +-
+> drivers/gpu/drm/i915/display/intel_psr.c      |  46 ++--
+> drivers/gpu/drm/i915/display/intel_sdvo.c     |   8 +-
+> drivers/gpu/drm/i915/display/intel_sprite.c   |  12 +-
+> drivers/gpu/drm/i915/display/intel_tc.c       |   8 +-
+> drivers/gpu/drm/i915/display/intel_tv.c       |   8 +-
+> drivers/gpu/drm/i915/display/intel_vdsc.c     |   8 +-
+> drivers/gpu/drm/i915/display/intel_vga.c      |   4 +-
+> drivers/gpu/drm/i915/display/skl_scaler.c     |   8 +-
+> .../drm/i915/display/skl_universal_plane.c    |  66 ++---
+> 42 files changed, 571 insertions(+), 569 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+>index 95933cc13d58..ffc79b9fff8d 100644
+>--- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+>+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+>@@ -128,7 +128,7 @@ static bool i9xx_plane_has_fbc(struct drm_i915_private *dev_priv,
+> 	else if (IS_IVYBRIDGE(dev_priv))
+> 		return i9xx_plane == PLANE_A || i9xx_plane == PLANE_B ||
+> 			i9xx_plane == PLANE_C;
+>-	else if (INTEL_GEN(dev_priv) >= 4)
+>+	else if (DISPLAY_VER(dev_priv) >= 4)
+> 		return i9xx_plane == PLANE_A || i9xx_plane == PLANE_B;
+> 	else
+> 		return i9xx_plane == PLANE_A;
+>@@ -141,9 +141,9 @@ static bool i9xx_plane_has_windowing(struct intel_plane *plane)
+>
+> 	if (IS_CHERRYVIEW(dev_priv))
+> 		return i9xx_plane == PLANE_B;
+>-	else if (INTEL_GEN(dev_priv) >= 5 || IS_G4X(dev_priv))
+>+	else if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
+> 		return false;
+>-	else if (IS_GEN(dev_priv, 4))
+>+	else if (DISPLAY_VER(dev_priv) == 4)
+> 		return i9xx_plane == PLANE_C;
+> 	else
+> 		return i9xx_plane == PLANE_B ||
+>@@ -210,7 +210,7 @@ static u32 i9xx_plane_ctl(const struct intel_crtc_state *crtc_state,
+> 		return 0;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 4 &&
+>+	if (DISPLAY_VER(dev_priv) >= 4 &&
+> 	    fb->modifier == I915_FORMAT_MOD_X_TILED)
+> 		dspcntr |= DISPPLANE_TILED;
+>
+>@@ -249,7 +249,7 @@ int i9xx_check_plane_surface(struct intel_plane_state *plane_state)
+>
+> 	intel_add_fb_offsets(&src_x, &src_y, plane_state, 0);
+>
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		offset = intel_plane_compute_aligned_offset(&src_x, &src_y,
+> 							    plane_state, 0);
+> 	else
+>@@ -266,7 +266,7 @@ int i9xx_check_plane_surface(struct intel_plane_state *plane_state)
+> 	 * Linear surfaces seem to work just fine, even on hsw/bdw
+> 	 * despite them not using the linear offset anymore.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 4 && fb->modifier == I915_FORMAT_MOD_X_TILED) {
+>+	if (DISPLAY_VER(dev_priv) >= 4 && fb->modifier == I915_FORMAT_MOD_X_TILED) {
+> 		u32 alignment = intel_surf_alignment(fb, 0);
+> 		int cpp = fb->format->cpp[0];
+>
+>@@ -305,7 +305,7 @@ int i9xx_check_plane_surface(struct intel_plane_state *plane_state)
+>
+> 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+> 		drm_WARN_ON(&dev_priv->drm, src_x > 8191 || src_y > 4095);
+>-	} else if (INTEL_GEN(dev_priv) >= 4 &&
+>+	} else if (DISPLAY_VER(dev_priv) >= 4 &&
+> 		   fb->modifier == I915_FORMAT_MOD_X_TILED) {
+> 		drm_WARN_ON(&dev_priv->drm, src_x > 4095 || src_y > 4095);
+> 	}
+>@@ -363,7 +363,7 @@ static u32 i9xx_plane_ctl_crtc(const struct intel_crtc_state *crtc_state)
+> 	if (crtc_state->csc_enable)
+> 		dspcntr |= DISPPLANE_PIPE_CSC_ENABLE;
+>
+>-	if (INTEL_GEN(dev_priv) < 5)
+>+	if (DISPLAY_VER(dev_priv) < 5)
+> 		dspcntr |= DISPPLANE_SEL_PIPE(crtc->pipe);
+>
+> 	return dspcntr;
+>@@ -437,7 +437,7 @@ static void i9xx_update_plane(struct intel_plane *plane,
+>
+> 	linear_offset = intel_fb_xy_to_linear(x, y, plane_state, 0);
+>
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		dspaddr_offset = plane_state->color_plane[0].offset;
+> 	else
+> 		dspaddr_offset = linear_offset;
+>@@ -447,7 +447,7 @@ static void i9xx_update_plane(struct intel_plane *plane,
+> 	intel_de_write_fw(dev_priv, DSPSTRIDE(i9xx_plane),
+> 			  plane_state->color_plane[0].stride);
+>
+>-	if (INTEL_GEN(dev_priv) < 4) {
+>+	if (DISPLAY_VER(dev_priv) < 4) {
+> 		/*
+> 		 * PLANE_A doesn't actually have a full window
+> 		 * generator but let's assume we still need to
+>@@ -468,7 +468,7 @@ static void i9xx_update_plane(struct intel_plane *plane,
+> 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+> 		intel_de_write_fw(dev_priv, DSPOFFSET(i9xx_plane),
+> 				  (y << 16) | x);
+>-	} else if (INTEL_GEN(dev_priv) >= 4) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 4) {
+> 		intel_de_write_fw(dev_priv, DSPLINOFF(i9xx_plane),
+> 				  linear_offset);
+> 		intel_de_write_fw(dev_priv, DSPTILEOFF(i9xx_plane),
+>@@ -481,7 +481,7 @@ static void i9xx_update_plane(struct intel_plane *plane,
+> 	 * the control register just before the surface register.
+> 	 */
+> 	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane),
+> 				  intel_plane_ggtt_offset(plane_state) + dspaddr_offset);
+> 	else
+>@@ -514,7 +514,7 @@ static void i9xx_disable_plane(struct intel_plane *plane,
+> 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+>
+> 	intel_de_write_fw(dev_priv, DSPCNTR(i9xx_plane), dspcntr);
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		intel_de_write_fw(dev_priv, DSPSURF(i9xx_plane), 0);
+> 	else
+> 		intel_de_write_fw(dev_priv, DSPADDR(i9xx_plane), 0);
+>@@ -669,7 +669,7 @@ static bool i9xx_plane_get_hw_state(struct intel_plane *plane,
+>
+> 	ret = val & DISPLAY_PLANE_ENABLE;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5)
+>+	if (DISPLAY_VER(dev_priv) >= 5)
+> 		*pipe = plane->pipe;
+> 	else
+> 		*pipe = (val & DISPPLANE_SEL_PIPE_MASK) >>
+>@@ -729,7 +729,7 @@ i9xx_plane_max_stride(struct intel_plane *plane,
+> {
+> 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+>
+>-	if (INTEL_GEN(dev_priv) >= 3) {
+>+	if (DISPLAY_VER(dev_priv) >= 3) {
+> 		if (modifier == I915_FORMAT_MOD_X_TILED)
+> 			return 8*1024;
+> 		else
+>@@ -779,7 +779,7 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 	 * On gen2/3 only plane A can do FBC, but the panel fitter and LVDS
+> 	 * port is hooked to pipe B. Hence we want plane A feeding pipe B.
+> 	 */
+>-	if (HAS_FBC(dev_priv) && INTEL_GEN(dev_priv) < 4 &&
+>+	if (HAS_FBC(dev_priv) && DISPLAY_VER(dev_priv) < 4 &&
+> 	    INTEL_NUM_PIPES(dev_priv) == 2)
+> 		plane->i9xx_plane = (enum i9xx_plane_id) !pipe;
+> 	else
+>@@ -797,7 +797,7 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+> 		formats = vlv_primary_formats;
+> 		num_formats = ARRAY_SIZE(vlv_primary_formats);
+>-	} else if (INTEL_GEN(dev_priv) >= 4) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 4) {
+> 		/*
+> 		 * WaFP16GammaEnabling:ivb
+> 		 * "Workaround : When using the 64-bit format, the plane
+>@@ -823,7 +823,7 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 		num_formats = ARRAY_SIZE(i8xx_primary_formats);
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		plane_funcs = &i965_plane_funcs;
+> 	else
+> 		plane_funcs = &i8xx_plane_funcs;
+>@@ -838,7 +838,7 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 		plane->min_cdclk = i9xx_plane_min_cdclk;
+>
+> 	if (HAS_GMCH(dev_priv)) {
+>-		if (INTEL_GEN(dev_priv) >= 4)
+>+		if (DISPLAY_VER(dev_priv) >= 4)
+> 			plane->max_stride = i965_plane_max_stride;
+> 		else
+> 			plane->max_stride = i9xx_plane_max_stride;
+>@@ -863,17 +863,17 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 		plane->async_flip = g4x_primary_async_flip;
+> 		plane->enable_flip_done = bdw_primary_enable_flip_done;
+> 		plane->disable_flip_done = bdw_primary_disable_flip_done;
+>-	} else if (INTEL_GEN(dev_priv) >= 7) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 7) {
+> 		plane->async_flip = g4x_primary_async_flip;
+> 		plane->enable_flip_done = ivb_primary_enable_flip_done;
+> 		plane->disable_flip_done = ivb_primary_disable_flip_done;
+>-	} else if (INTEL_GEN(dev_priv) >= 5) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 5) {
+> 		plane->async_flip = g4x_primary_async_flip;
+> 		plane->enable_flip_done = ilk_primary_enable_flip_done;
+> 		plane->disable_flip_done = ilk_primary_disable_flip_done;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 5 || IS_G4X(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
+> 		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> 					       0, plane_funcs,
+> 					       formats, num_formats,
+>@@ -895,14 +895,14 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 		supported_rotations =
+> 			DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180 |
+> 			DRM_MODE_REFLECT_X;
+>-	} else if (INTEL_GEN(dev_priv) >= 4) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 4) {
+> 		supported_rotations =
+> 			DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180;
+> 	} else {
+> 		supported_rotations = DRM_MODE_ROTATE_0;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		drm_plane_create_rotation_property(&plane->base,
+> 						   DRM_MODE_ROTATE_0,
+> 						   supported_rotations);
+>@@ -985,7 +985,7 @@ i9xx_get_initial_plane_config(struct intel_crtc *crtc,
+>
+> 	val = intel_de_read(dev_priv, DSPCNTR(i9xx_plane));
+>
+>-	if (INTEL_GEN(dev_priv) >= 4) {
+>+	if (DISPLAY_VER(dev_priv) >= 4) {
+> 		if (val & DISPPLANE_TILED) {
+> 			plane_config->tiling = I915_TILING_X;
+> 			fb->modifier = I915_FORMAT_MOD_X_TILED;
+>@@ -1006,7 +1006,7 @@ i9xx_get_initial_plane_config(struct intel_crtc *crtc,
+> 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+> 		offset = intel_de_read(dev_priv, DSPOFFSET(i9xx_plane));
+> 		base = intel_de_read(dev_priv, DSPSURF(i9xx_plane)) & 0xfffff000;
+>-	} else if (INTEL_GEN(dev_priv) >= 4) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 4) {
+> 		if (plane_config->tiling)
+> 			offset = intel_de_read(dev_priv,
+> 					       DSPTILEOFF(i9xx_plane));
+>diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+>index 7f2abc088a66..37e2d93d064c 100644
+>--- a/drivers/gpu/drm/i915/display/icl_dsi.c
+>+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+>@@ -457,7 +457,7 @@ static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
+> 		intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), tmp);
+>
+> 		/* For EHL, TGL, set latency optimization for PCS_DW1 lanes */
+>-		if (IS_JSL_EHL(dev_priv) || (INTEL_GEN(dev_priv) >= 12)) {
+>+		if (IS_JSL_EHL(dev_priv) || (DISPLAY_VER(dev_priv) >= 12)) {
+> 			tmp = intel_de_read(dev_priv,
+> 					    ICL_PORT_PCS_DW1_AUX(phy));
+> 			tmp &= ~LATENCY_OPTIM_MASK;
+>@@ -592,7 +592,7 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+> 	 * a value '0' inside TA_PARAM_REGISTERS otherwise
+> 	 * leave all fields at HW default values.
+> 	 */
+>-	if (IS_GEN(dev_priv, 11)) {
+>+	if (DISPLAY_VER(dev_priv) == 11) {
+> 		if (afe_clk(encoder, crtc_state) <= 800000) {
+> 			for_each_dsi_port(port, intel_dsi->ports) {
+> 				tmp = intel_de_read(dev_priv,
+>@@ -692,7 +692,7 @@ static void gen11_dsi_map_pll(struct intel_encoder *encoder,
+> 	intel_de_write(dev_priv, ICL_DPCLKA_CFGCR0, val);
+>
+> 	for_each_dsi_phy(phy, intel_dsi->phys) {
+>-		if (INTEL_GEN(dev_priv) >= 12)
+>+		if (DISPLAY_VER(dev_priv) >= 12)
+> 			val |= ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
+> 		else
+> 			val &= ~ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
+>@@ -774,7 +774,7 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+> 			}
+> 		}
+>
+>-		if (INTEL_GEN(dev_priv) >= 12) {
+>+		if (DISPLAY_VER(dev_priv) >= 12) {
+> 			if (is_vid_mode(intel_dsi))
+> 				tmp |= BLANKING_PACKET_ENABLE;
+> 		}
+>@@ -1020,7 +1020,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+> 	}
+>
+> 	/* program TRANS_VBLANK register, should be same as vtotal programmed */
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		for_each_dsi_port(port, intel_dsi->ports) {
+> 			dsi_trans = dsi_port_to_transcoder(port);
+> 			intel_de_write(dev_priv, VBLANK(dsi_trans),
+>@@ -1158,7 +1158,7 @@ gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
+> 	gen11_dsi_configure_transcoder(encoder, crtc_state);
+>
+> 	/* Step 4l: Gate DDI clocks */
+>-	if (IS_GEN(dev_priv, 11))
+>+	if (DISPLAY_VER(dev_priv) == 11)
+> 		gen11_dsi_gate_clocks(encoder);
+> }
+>
+>@@ -1534,7 +1534,7 @@ static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
+> {
+> 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> 	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+>-	int dsc_max_bpc = INTEL_GEN(dev_priv) >= 12 ? 12 : 10;
+>+	int dsc_max_bpc = DISPLAY_VER(dev_priv) >= 12 ? 12 : 10;
+> 	bool use_dsc;
+> 	int ret;
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+>index 27f7d7109ca3..8b1ecd86a688 100644
+>--- a/drivers/gpu/drm/i915/display/intel_atomic.c
+>+++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+>@@ -332,7 +332,7 @@ static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_sta
+> 	    plane_state->hw.fb->format->is_yuv &&
+> 	    plane_state->hw.fb->format->num_planes > 1) {
+> 		struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+>-		if (IS_GEN(dev_priv, 9) &&
+>+		if (DISPLAY_VER(dev_priv) == 9 &&
+> 		    !IS_GEMINILAKE(dev_priv)) {
+> 			mode = SKL_PS_SCALER_MODE_NV12;
+> 		} else if (icl_is_hdr_plane(dev_priv, plane->id)) {
+>@@ -351,7 +351,7 @@ static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_sta
+> 			if (linked)
+> 				mode |= PS_PLANE_Y_SEL(linked->id);
+> 		}
+>-	} else if (INTEL_GEN(dev_priv) > 9 || IS_GEMINILAKE(dev_priv)) {
+>+	} else if (DISPLAY_VER(dev_priv) > 9 || IS_GEMINILAKE(dev_priv)) {
+> 		mode = PS_SCALER_MODE_NORMAL;
+> 	} else if (num_scalers_need == 1 && intel_crtc->num_scalers > 1) {
+> 		/*
+>@@ -460,7 +460,7 @@ int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
+> 				 * isn't necessary to change between HQ and dyn mode
+> 				 * on those platforms.
+> 				 */
+>-				if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+				if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 					continue;
+>
+> 				plane = drm_plane_from_index(&dev_priv->drm, i);
+>diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+>index f7de55707746..eefe211ed958 100644
+>--- a/drivers/gpu/drm/i915/display/intel_audio.c
+>+++ b/drivers/gpu/drm/i915/display/intel_audio.c
+>@@ -248,7 +248,7 @@ static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_sta
+> 			break;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) < 12 && adjusted_mode->crtc_clock > 148500)
+>+	if (DISPLAY_VER(dev_priv) < 12 && adjusted_mode->crtc_clock > 148500)
+> 		i = ARRAY_SIZE(hdmi_audio_clock);
+>
+> 	if (i == ARRAY_SIZE(hdmi_audio_clock)) {
+>@@ -586,14 +586,14 @@ static void enable_audio_dsc_wa(struct intel_encoder *encoder,
+> 	unsigned int hblank_early_prog, samples_room;
+> 	unsigned int val;
+>
+>-	if (INTEL_GEN(i915) < 11)
+>+	if (DISPLAY_VER(i915) < 11)
+> 		return;
+>
+> 	val = intel_de_read(i915, AUD_CONFIG_BE);
+>
+>-	if (INTEL_GEN(i915) == 11)
+>+	if (DISPLAY_VER(i915) == 11)
+> 		val |= HBLANK_EARLY_ENABLE_ICL(pipe);
+>-	else if (INTEL_GEN(i915) >= 12)
+>+	else if (DISPLAY_VER(i915) >= 12)
+> 		val |= HBLANK_EARLY_ENABLE_TGL(pipe);
+>
+> 	if (crtc_state->dsc.compression_enable &&
+>@@ -933,7 +933,7 @@ void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
+> 	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+> 		dev_priv->display.audio_codec_enable = ilk_audio_codec_enable;
+> 		dev_priv->display.audio_codec_disable = ilk_audio_codec_disable;
+>-	} else if (IS_HASWELL(dev_priv) || INTEL_GEN(dev_priv) >= 8) {
+>+	} else if (IS_HASWELL(dev_priv) || DISPLAY_VER(dev_priv) >= 8) {
+> 		dev_priv->display.audio_codec_enable = hsw_audio_codec_enable;
+> 		dev_priv->display.audio_codec_disable = hsw_audio_codec_disable;
+> 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+>@@ -1010,7 +1010,7 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
+> 	ret = intel_display_power_get(dev_priv, POWER_DOMAIN_AUDIO);
+>
+> 	if (dev_priv->audio_power_refcount++ == 0) {
+>-		if (INTEL_GEN(dev_priv) >= 9) {
+>+		if (DISPLAY_VER(dev_priv) >= 9) {
+> 			intel_de_write(dev_priv, AUD_FREQ_CNTRL,
+> 				       dev_priv->audio_freq_cntrl);
+> 			drm_dbg_kms(&dev_priv->drm,
+>@@ -1022,7 +1022,7 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
+> 		if (IS_GEMINILAKE(dev_priv))
+> 			glk_force_audio_cdclk(dev_priv, true);
+>
+>-		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+		if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 			intel_de_write(dev_priv, AUD_PIN_BUF_CTL,
+> 				       (intel_de_read(dev_priv, AUD_PIN_BUF_CTL) | AUD_PIN_BUF_ENABLE));
+> 	}
+>@@ -1050,7 +1050,7 @@ static void i915_audio_component_codec_wake_override(struct device *kdev,
+> 	unsigned long cookie;
+> 	u32 tmp;
+>
+>-	if (INTEL_GEN(dev_priv) < 9)
+>+	if (DISPLAY_VER(dev_priv) < 9)
+> 		return;
+>
+> 	cookie = i915_audio_component_get_power(kdev);
+>@@ -1296,7 +1296,7 @@ static void i915_audio_component_init(struct drm_i915_private *dev_priv)
+> 		return;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 9) {
+>+	if (DISPLAY_VER(dev_priv) >= 9) {
+> 		dev_priv->audio_freq_cntrl = intel_de_read(dev_priv,
+> 							   AUD_FREQ_CNTRL);
+> 		drm_dbg_kms(&dev_priv->drm,
+>diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+>index f3fa1441ce16..7d438d16973c 100644
+>--- a/drivers/gpu/drm/i915/display/intel_bios.c
+>+++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>@@ -542,7 +542,7 @@ parse_sdvo_panel_data(struct drm_i915_private *dev_priv,
+> static int intel_bios_ssc_frequency(struct drm_i915_private *dev_priv,
+> 				    bool alternate)
+> {
+>-	switch (INTEL_GEN(dev_priv)) {
+>+	switch (DISPLAY_VER(dev_priv)) {
+> 	case 2:
+> 		return alternate ? 66667 : 48000;
+> 	case 3:
+>@@ -608,7 +608,7 @@ parse_sdvo_device_mapping(struct drm_i915_private *dev_priv, u8 bdb_version)
+> 	 * Only parse SDVO mappings on gens that could have SDVO. This isn't
+> 	 * accurate and doesn't have to be, as long as it's not too strict.
+> 	 */
+>-	if (!IS_GEN_RANGE(dev_priv, 3, 7)) {
+>+	if (DISPLAY_VER(dev_priv) < 3 || DISPLAY_VER(dev_priv) > 7) {
+> 		drm_dbg_kms(&dev_priv->drm, "Skipping SDVO device mapping\n");
+> 		return;
+> 	}
+>@@ -682,7 +682,7 @@ parse_driver_features(struct drm_i915_private *dev_priv,
+> 	if (!driver)
+> 		return;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5) {
+>+	if (DISPLAY_VER(dev_priv) >= 5) {
+> 		/*
+> 		 * Note that we consider BDB_DRIVER_FEATURE_INT_SDVO_LVDS
+> 		 * to mean "eDP". The VBT spec doesn't agree with that
+>@@ -916,7 +916,7 @@ parse_psr(struct drm_i915_private *dev_priv, const struct bdb_header *bdb)
+> 	 */
+> 	if (bdb->version >= 205 &&
+> 	    (IS_GEN9_BC(dev_priv) || IS_GEMINILAKE(dev_priv) ||
+>-	     INTEL_GEN(dev_priv) >= 10)) {
+>+	     DISPLAY_VER(dev_priv) >= 10)) {
+> 		switch (psr_table->tp1_wakeup_time) {
+> 		case 0:
+> 			dev_priv->vbt.psr.tp1_wakeup_time_us = 500;
+>@@ -1825,7 +1825,7 @@ static void parse_ddi_port(struct drm_i915_private *dev_priv,
+> 	is_hdmi = is_dvi && (child->device_type & DEVICE_TYPE_NOT_HDMI_OUTPUT) == 0;
+> 	is_edp = is_dp && (child->device_type & DEVICE_TYPE_INTERNAL_CONNECTOR);
+>
+>-	if (port == PORT_A && is_dvi && INTEL_GEN(dev_priv) < 12) {
+>+	if (port == PORT_A && is_dvi && DISPLAY_VER(dev_priv) < 12) {
+> 		drm_dbg_kms(&dev_priv->drm,
+> 			    "VBT claims port A supports DVI%s, ignoring\n",
+> 			    is_hdmi ? "/HDMI" : "");
+>@@ -2564,8 +2564,8 @@ bool intel_bios_is_dsi_present(struct drm_i915_private *dev_priv,
+> 		dvo_port = child->dvo_port;
+>
+> 		if (dvo_port == DVO_PORT_MIPIA ||
+>-		    (dvo_port == DVO_PORT_MIPIB && INTEL_GEN(dev_priv) >= 11) ||
+>-		    (dvo_port == DVO_PORT_MIPIC && INTEL_GEN(dev_priv) < 11)) {
+>+		    (dvo_port == DVO_PORT_MIPIB && DISPLAY_VER(dev_priv) >= 11) ||
+>+		    (dvo_port == DVO_PORT_MIPIC && DISPLAY_VER(dev_priv) < 11)) {
+> 			if (port)
+> 				*port = dvo_port - DVO_PORT_MIPIA;
+> 			return true;
+>diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+>index d122b9965532..20dbc3759d27 100644
+>--- a/drivers/gpu/drm/i915/display/intel_bw.c
+>+++ b/drivers/gpu/drm/i915/display/intel_bw.c
+>@@ -77,7 +77,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+>
+> 	qi->num_points = dram_info->num_qgv_points;
+>
+>-	if (IS_GEN(dev_priv, 12))
+>+	if (DISPLAY_VER(dev_priv) == 12)
+> 		switch (dram_info->type) {
+> 		case INTEL_DRAM_DDR4:
+> 			qi->t_bl = 4;
+>@@ -89,7 +89,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
+> 			qi->t_bl = 16;
+> 			break;
+> 		}
+>-	else if (IS_GEN(dev_priv, 11))
+>+	else if (DISPLAY_VER(dev_priv) == 11)
+> 		qi->t_bl = dev_priv->dram_info.type == INTEL_DRAM_DDR4 ? 4 : 8;
+>
+> 	if (drm_WARN_ON(&dev_priv->drm,
+>@@ -271,9 +271,9 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv)
+> 		icl_get_bw_info(dev_priv, &adls_sa_info);
+> 	else if (IS_ROCKETLAKE(dev_priv))
+> 		icl_get_bw_info(dev_priv, &rkl_sa_info);
+>-	else if (IS_GEN(dev_priv, 12))
+>+	else if (DISPLAY_VER(dev_priv) == 12)
+> 		icl_get_bw_info(dev_priv, &tgl_sa_info);
+>-	else if (IS_GEN(dev_priv, 11))
+>+	else if (DISPLAY_VER(dev_priv) == 11)
+> 		icl_get_bw_info(dev_priv, &icl_sa_info);
+> }
+>
+>@@ -533,7 +533,7 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+> 	u32 mask = (1 << num_qgv_points) - 1;
+>
+> 	/* FIXME earlier gens need some checks too */
+>-	if (INTEL_GEN(dev_priv) < 11)
+>+	if (DISPLAY_VER(dev_priv) < 11)
+> 		return 0;
+>
+> 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>index 83678feb8897..640b6423f23b 100644
+>--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+>+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+>@@ -1375,7 +1375,7 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
+> {
+> 	u32 val, ratio;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		icl_readout_refclk(dev_priv, cdclk_config);
+> 	else if (IS_CANNONLAKE(dev_priv))
+> 		cnl_readout_refclk(dev_priv, cdclk_config);
+>@@ -1397,7 +1397,7 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
+> 	 * CNL+ have the ratio directly in the PLL enable register, gen9lp had
+> 	 * it in a separate PLL control register.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 10)
+>+	if (DISPLAY_VER(dev_priv) >= 10)
+> 		ratio = val & CNL_CDCLK_PLL_RATIO_MASK;
+> 	else
+> 		ratio = intel_de_read(dev_priv, BXT_DE_PLL_CTL) & BXT_DE_PLL_RATIO_MASK;
+>@@ -1413,9 +1413,9 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+>
+> 	bxt_de_pll_readout(dev_priv, cdclk_config);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		cdclk_config->bypass = cdclk_config->ref / 2;
+>-	else if (INTEL_GEN(dev_priv) >= 11)
+>+	else if (DISPLAY_VER(dev_priv) >= 11)
+> 		cdclk_config->bypass = 50000;
+> 	else
+> 		cdclk_config->bypass = cdclk_config->ref;
+>@@ -1433,7 +1433,7 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+> 		break;
+> 	case BXT_CDCLK_CD2X_DIV_SEL_1_5:
+> 		drm_WARN(&dev_priv->drm,
+>-			 IS_GEMINILAKE(dev_priv) || INTEL_GEN(dev_priv) >= 10,
+>+			 IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >= 10,
+> 			 "Unsupported divider\n");
+> 		div = 3;
+> 		break;
+>@@ -1441,7 +1441,8 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
+> 		div = 4;
+> 		break;
+> 	case BXT_CDCLK_CD2X_DIV_SEL_4:
+>-		drm_WARN(&dev_priv->drm, INTEL_GEN(dev_priv) >= 10,
+>+		drm_WARN(&dev_priv->drm,
+>+			 DISPLAY_VER(dev_priv) >= 10,
+> 			 "Unsupported divider\n");
+> 		div = 8;
+> 		break;
+>@@ -1530,12 +1531,12 @@ static void cnl_cdclk_pll_enable(struct drm_i915_private *dev_priv, int vco)
+>
+> static u32 bxt_cdclk_cd2x_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+> {
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		if (pipe == INVALID_PIPE)
+> 			return TGL_CDCLK_CD2X_PIPE_NONE;
+> 		else
+> 			return TGL_CDCLK_CD2X_PIPE(pipe);
+>-	} else if (INTEL_GEN(dev_priv) >= 11) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> 		if (pipe == INVALID_PIPE)
+> 			return ICL_CDCLK_CD2X_PIPE_NONE;
+> 		else
+>@@ -1558,7 +1559,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> 	int ret;
+>
+> 	/* Inform power controller of upcoming frequency change. */
+>-	if (INTEL_GEN(dev_priv) >= 10)
+>+	if (DISPLAY_VER(dev_priv) >= 10)
+> 		ret = skl_pcode_request(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+> 					SKL_CDCLK_PREPARE_FOR_CHANGE,
+> 					SKL_CDCLK_READY_FOR_CHANGE,
+>@@ -1591,7 +1592,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> 		break;
+> 	case 3:
+> 		drm_WARN(&dev_priv->drm,
+>-			 IS_GEMINILAKE(dev_priv) || INTEL_GEN(dev_priv) >= 10,
+>+			 IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >= 10,
+> 			 "Unsupported divider\n");
+> 		divider = BXT_CDCLK_CD2X_DIV_SEL_1_5;
+> 		break;
+>@@ -1599,13 +1600,14 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> 		divider = BXT_CDCLK_CD2X_DIV_SEL_2;
+> 		break;
+> 	case 8:
+>-		drm_WARN(&dev_priv->drm, INTEL_GEN(dev_priv) >= 10,
+>+		drm_WARN(&dev_priv->drm,
+>+			 DISPLAY_VER(dev_priv) >= 10,
+> 			 "Unsupported divider\n");
+> 		divider = BXT_CDCLK_CD2X_DIV_SEL_4;
+> 		break;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 10) {
+>+	if (DISPLAY_VER(dev_priv) >= 10) {
+> 		if (dev_priv->cdclk.hw.vco != 0 &&
+> 		    dev_priv->cdclk.hw.vco != vco)
+> 			cnl_cdclk_pll_disable(dev_priv);
+>@@ -1636,7 +1638,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+> 	if (pipe != INVALID_PIPE)
+> 		intel_wait_for_vblank(dev_priv, pipe);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10) {
+>+	if (DISPLAY_VER(dev_priv) >= 10) {
+> 		ret = sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
+> 					      cdclk_config->voltage_level);
+> 	} else {
+>@@ -1661,7 +1663,7 @@ static void bxt_set_cdclk(struct drm_i915_private *dev_priv,
+>
+> 	intel_update_cdclk(dev_priv);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10)
+>+	if (DISPLAY_VER(dev_priv) >= 10)
+> 		/*
+> 		 * Can't read out the voltage level :(
+> 		 * Let's just assume everything is as expected.
+>@@ -1795,7 +1797,7 @@ static void bxt_cdclk_uninit_hw(struct drm_i915_private *dev_priv)
+>  */
+> void intel_cdclk_init_hw(struct drm_i915_private *i915)
+> {
+>-	if (IS_GEN9_LP(i915) || INTEL_GEN(i915) >= 10)
+>+	if (IS_GEN9_LP(i915) || DISPLAY_VER(i915) >= 10)
+> 		bxt_cdclk_init_hw(i915);
+> 	else if (IS_GEN9_BC(i915))
+> 		skl_cdclk_init_hw(i915);
+>@@ -1810,7 +1812,7 @@ void intel_cdclk_init_hw(struct drm_i915_private *i915)
+>  */
+> void intel_cdclk_uninit_hw(struct drm_i915_private *i915)
+> {
+>-	if (INTEL_GEN(i915) >= 10 || IS_GEN9_LP(i915))
+>+	if (DISPLAY_VER(i915) >= 10 || IS_GEN9_LP(i915))
+> 		bxt_cdclk_uninit_hw(i915);
+> 	else if (IS_GEN9_BC(i915))
+> 		skl_cdclk_uninit_hw(i915);
+>@@ -1850,7 +1852,7 @@ static bool intel_cdclk_can_cd2x_update(struct drm_i915_private *dev_priv,
+> 					const struct intel_cdclk_config *b)
+> {
+> 	/* Older hw doesn't have the capability */
+>-	if (INTEL_GEN(dev_priv) < 10 && !IS_GEN9_LP(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) < 10 && !IS_GEN9_LP(dev_priv))
+> 		return false;
+>
+> 	return a->cdclk != b->cdclk &&
+>@@ -1998,9 +2000,9 @@ static int intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc_state)
+> 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+> 	int pixel_rate = crtc_state->pixel_rate;
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		return DIV_ROUND_UP(pixel_rate, 2);
+>-	else if (IS_GEN(dev_priv, 9) ||
+>+	else if (DISPLAY_VER(dev_priv) == 9 ||
+> 		 IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+> 		return pixel_rate;
+> 	else if (IS_CHERRYVIEW(dev_priv))
+>@@ -2051,7 +2053,7 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+> 		if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)) {
+> 			/* Display WA #1145: glk,cnl */
+> 			min_cdclk = max(316800, min_cdclk);
+>-		} else if (IS_GEN(dev_priv, 9) || IS_BROADWELL(dev_priv)) {
+>+		} else if (DISPLAY_VER(dev_priv) == 9 || IS_BROADWELL(dev_priv)) {
+> 			/* Display WA #1144: skl,bxt */
+> 			min_cdclk = max(432000, min_cdclk);
+> 		}
+>@@ -2061,7 +2063,7 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+> 	 * According to BSpec, "The CD clock frequency must be at least twice
+> 	 * the frequency of the Azalia BCLK." and BCLK is 96 MHz by default.
+> 	 */
+>-	if (crtc_state->has_audio && INTEL_GEN(dev_priv) >= 9)
+>+	if (crtc_state->has_audio && DISPLAY_VER(dev_priv) >= 9)
+> 		min_cdclk = max(2 * 96000, min_cdclk);
+>
+> 	/*
+>@@ -2588,14 +2590,14 @@ static int intel_compute_max_dotclk(struct drm_i915_private *dev_priv)
+> {
+> 	int max_cdclk_freq = dev_priv->max_cdclk_freq;
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		return 2 * max_cdclk_freq;
+>-	else if (IS_GEN(dev_priv, 9) ||
+>+	else if (DISPLAY_VER(dev_priv) == 9 ||
+> 		 IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+> 		return max_cdclk_freq;
+> 	else if (IS_CHERRYVIEW(dev_priv))
+> 		return max_cdclk_freq*95/100;
+>-	else if (INTEL_GEN(dev_priv) < 4)
+>+	else if (DISPLAY_VER(dev_priv) < 4)
+> 		return 2*max_cdclk_freq*90/100;
+> 	else
+> 		return max_cdclk_freq*90/100;
+>@@ -2616,7 +2618,7 @@ void intel_update_max_cdclk(struct drm_i915_private *dev_priv)
+> 			dev_priv->max_cdclk_freq = 552000;
+> 		else
+> 			dev_priv->max_cdclk_freq = 556800;
+>-	} else if (INTEL_GEN(dev_priv) >= 11) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> 		if (dev_priv->cdclk.hw.ref == 24000)
+> 			dev_priv->max_cdclk_freq = 648000;
+> 		else
+>@@ -2831,7 +2833,7 @@ u32 intel_read_rawclk(struct drm_i915_private *dev_priv)
+> 		freq = pch_rawclk(dev_priv);
+> 	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> 		freq = vlv_hrawclk(dev_priv);
+>-	else if (INTEL_GEN(dev_priv) >= 3)
+>+	else if (DISPLAY_VER(dev_priv) >= 3)
+> 		freq = i9xx_hrawclk(dev_priv);
+> 	else
+> 		/* no rawclk on other platforms, or no need to know it */
+>@@ -2852,7 +2854,7 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+> 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+> 		dev_priv->display.calc_voltage_level = tgl_calc_voltage_level;
+> 		dev_priv->cdclk.table = rkl_cdclk_table;
+>-	} else if (INTEL_GEN(dev_priv) >= 12) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 12) {
+> 		dev_priv->display.set_cdclk = bxt_set_cdclk;
+> 		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+> 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+>@@ -2864,7 +2866,7 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+> 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+> 		dev_priv->display.calc_voltage_level = ehl_calc_voltage_level;
+> 		dev_priv->cdclk.table = icl_cdclk_table;
+>-	} else if (INTEL_GEN(dev_priv) >= 11) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> 		dev_priv->display.set_cdclk = bxt_set_cdclk;
+> 		dev_priv->display.bw_calc_min_cdclk = skl_bw_calc_min_cdclk;
+> 		dev_priv->display.modeset_calc_cdclk = bxt_modeset_calc_cdclk;
+>@@ -2906,7 +2908,7 @@ void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
+> 		dev_priv->display.modeset_calc_cdclk = fixed_modeset_calc_cdclk;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEN9_LP(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEN9_LP(dev_priv))
+> 		dev_priv->display.get_cdclk = bxt_get_cdclk;
+> 	else if (IS_GEN9_BC(dev_priv))
+> 		dev_priv->display.get_cdclk = skl_get_cdclk;
+>diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+>index ff7dcb7088bf..558f21c6803b 100644
+>--- a/drivers/gpu/drm/i915/display/intel_color.c
+>+++ b/drivers/gpu/drm/i915/display/intel_color.c
+>@@ -173,7 +173,7 @@ static void ilk_update_pipe_csc(struct intel_crtc *crtc,
+> 		       coeff[6] << 16 | coeff[7]);
+> 	intel_de_write(dev_priv, PIPE_CSC_COEFF_BV(pipe), coeff[8] << 16);
+>
+>-	if (INTEL_GEN(dev_priv) >= 7) {
+>+	if (DISPLAY_VER(dev_priv) >= 7) {
+> 		intel_de_write(dev_priv, PIPE_CSC_POSTOFF_HI(pipe),
+> 			       postoff[0]);
+> 		intel_de_write(dev_priv, PIPE_CSC_POSTOFF_ME(pipe),
+>@@ -225,7 +225,7 @@ static bool ilk_csc_limited_range(const struct intel_crtc_state *crtc_state)
+> 	 */
+> 	return crtc_state->limited_color_range &&
+> 		(IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv) ||
+>-		 IS_GEN_RANGE(dev_priv, 9, 10));
+>+		 (DISPLAY_VER(dev_priv) >= 9 && DISPLAY_VER(dev_priv) <= 10));
+> }
+>
+> static void ilk_csc_convert_ctm(const struct intel_crtc_state *crtc_state,
+>@@ -530,7 +530,7 @@ static void skl_color_commit(const struct intel_crtc_state *crtc_state)
+> 	intel_de_write(dev_priv, GAMMA_MODE(crtc->pipe),
+> 		       crtc_state->gamma_mode);
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		icl_load_csc_matrix(crtc_state);
+> 	else
+> 		ilk_load_csc_matrix(crtc_state);
+>@@ -737,7 +737,7 @@ static void ivb_load_lut_ext_max(const struct intel_crtc_state *crtc_state)
+> 	 * ToDo: Extend the ABI to be able to program values
+> 	 * from 3.0 to 7.0
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+> 		intel_dsb_reg_write(crtc_state, PREC_PAL_EXT2_GC_MAX(pipe, 0),
+> 				    1 << 16);
+> 		intel_dsb_reg_write(crtc_state, PREC_PAL_EXT2_GC_MAX(pipe, 1),
+>@@ -1222,7 +1222,7 @@ static bool need_plane_update(struct intel_plane *plane,
+> 	 * We have to reconfigure that even if the plane is inactive.
+> 	 */
+> 	return crtc_state->active_planes & BIT(plane->id) ||
+>-		(INTEL_GEN(dev_priv) < 9 &&
+>+		(DISPLAY_VER(dev_priv) < 9 &&
+> 		 plane->id == PLANE_PRIMARY);
+> }
+>
+>@@ -1709,7 +1709,7 @@ int intel_color_get_gamma_bit_precision(const struct intel_crtc_state *crtc_stat
+> 		else
+> 			return i9xx_gamma_precision(crtc_state);
+> 	} else {
+>-		if (INTEL_GEN(dev_priv) >= 11)
+>+		if (DISPLAY_VER(dev_priv) >= 11)
+> 			return icl_gamma_precision(crtc_state);
+> 		else if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
+> 			return glk_gamma_precision(crtc_state);
+>@@ -2105,7 +2105,7 @@ void intel_color_init(struct intel_crtc *crtc)
+> 			dev_priv->display.color_commit = i9xx_color_commit;
+> 			dev_priv->display.load_luts = chv_load_luts;
+> 			dev_priv->display.read_luts = chv_read_luts;
+>-		} else if (INTEL_GEN(dev_priv) >= 4) {
+>+		} else if (DISPLAY_VER(dev_priv) >= 4) {
+> 			dev_priv->display.color_check = i9xx_color_check;
+> 			dev_priv->display.color_commit = i9xx_color_commit;
+> 			dev_priv->display.load_luts = i965_load_luts;
+>@@ -2117,31 +2117,31 @@ void intel_color_init(struct intel_crtc *crtc)
+> 			dev_priv->display.read_luts = i9xx_read_luts;
+> 		}
+> 	} else {
+>-		if (INTEL_GEN(dev_priv) >= 11)
+>+		if (DISPLAY_VER(dev_priv) >= 11)
+> 			dev_priv->display.color_check = icl_color_check;
+>-		else if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+		else if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 			dev_priv->display.color_check = glk_color_check;
+>-		else if (INTEL_GEN(dev_priv) >= 7)
+>+		else if (DISPLAY_VER(dev_priv) >= 7)
+> 			dev_priv->display.color_check = ivb_color_check;
+> 		else
+> 			dev_priv->display.color_check = ilk_color_check;
+>
+>-		if (INTEL_GEN(dev_priv) >= 9)
+>+		if (DISPLAY_VER(dev_priv) >= 9)
+> 			dev_priv->display.color_commit = skl_color_commit;
+> 		else if (IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+> 			dev_priv->display.color_commit = hsw_color_commit;
+> 		else
+> 			dev_priv->display.color_commit = ilk_color_commit;
+>
+>-		if (INTEL_GEN(dev_priv) >= 11) {
+>+		if (DISPLAY_VER(dev_priv) >= 11) {
+> 			dev_priv->display.load_luts = icl_load_luts;
+> 			dev_priv->display.read_luts = icl_read_luts;
+> 		} else if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)) {
+> 			dev_priv->display.load_luts = glk_load_luts;
+> 			dev_priv->display.read_luts = glk_read_luts;
+>-		} else if (INTEL_GEN(dev_priv) >= 8) {
+>+		} else if (DISPLAY_VER(dev_priv) >= 8) {
+> 			dev_priv->display.load_luts = bdw_load_luts;
+>-		} else if (INTEL_GEN(dev_priv) >= 7) {
+>+		} else if (DISPLAY_VER(dev_priv) >= 7) {
+> 			dev_priv->display.load_luts = ivb_load_luts;
+> 		} else {
+> 			dev_priv->display.load_luts = ilk_load_luts;
+>diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+>index c55813c6194a..5df57d16a401 100644
+>--- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
+>+++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+>@@ -278,7 +278,7 @@ static bool icl_combo_phy_verify_state(struct drm_i915_private *dev_priv,
+> 	if (!icl_combo_phy_enabled(dev_priv, phy))
+> 		return false;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		ret &= check_phy_reg(dev_priv, phy, ICL_PORT_TX_DW8_LN0(phy),
+> 				     ICL_PORT_TX_DW8_ODCC_CLK_SEL |
+> 				     ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK,
+>@@ -401,7 +401,7 @@ static void icl_combo_phys_init(struct drm_i915_private *dev_priv)
+> 		intel_de_write(dev_priv, ICL_PHY_MISC(phy), val);
+>
+> skip_phy_misc:
+>-		if (INTEL_GEN(dev_priv) >= 12) {
+>+		if (DISPLAY_VER(dev_priv) >= 12) {
+> 			val = intel_de_read(dev_priv, ICL_PORT_TX_DW8_LN0(phy));
+> 			val &= ~ICL_PORT_TX_DW8_ODCC_CLK_DIV_SEL_MASK;
+> 			val |= ICL_PORT_TX_DW8_ODCC_CLK_SEL;
+>@@ -473,7 +473,7 @@ static void icl_combo_phys_uninit(struct drm_i915_private *dev_priv)
+>
+> void intel_combo_phy_init(struct drm_i915_private *i915)
+> {
+>-	if (INTEL_GEN(i915) >= 11)
+>+	if (DISPLAY_VER(i915) >= 11)
+> 		icl_combo_phys_init(i915);
+> 	else if (IS_CANNONLAKE(i915))
+> 		cnl_combo_phys_init(i915);
+>@@ -481,7 +481,7 @@ void intel_combo_phy_init(struct drm_i915_private *i915)
+>
+> void intel_combo_phy_uninit(struct drm_i915_private *i915)
+> {
+>-	if (INTEL_GEN(i915) >= 11)
+>+	if (DISPLAY_VER(i915) >= 11)
+> 		icl_combo_phys_uninit(i915);
+> 	else if (IS_CANNONLAKE(i915))
+> 		cnl_combo_phys_uninit(i915);
+>diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+>index 7f3d11c5ce3e..06ee0ba3388d 100644
+>--- a/drivers/gpu/drm/i915/display/intel_crt.c
+>+++ b/drivers/gpu/drm/i915/display/intel_crt.c
+>@@ -165,7 +165,7 @@ static void intel_crt_set_dpms(struct intel_encoder *encoder,
+> 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> 	u32 adpa;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5)
+>+	if (DISPLAY_VER(dev_priv) >= 5)
+> 		adpa = ADPA_HOTPLUG_BITS;
+> 	else
+> 		adpa = 0;
+>@@ -356,7 +356,7 @@ intel_crt_mode_valid(struct drm_connector *connector,
+> 		 * DAC limit supposedly 355 MHz.
+> 		 */
+> 		max_clock = 270000;
+>-	else if (IS_GEN_RANGE(dev_priv, 3, 4))
+>+	else if ((DISPLAY_VER(dev_priv) >= 3 && DISPLAY_VER(dev_priv) <= 4))
+> 		max_clock = 400000;
+> 	else
+> 		max_clock = 350000;
+>@@ -711,7 +711,7 @@ intel_crt_load_detect(struct intel_crt *crt, u32 pipe)
+> 	/* Set the border color to purple. */
+> 	intel_uncore_write(uncore, bclrpat_reg, 0x500050);
+>
+>-	if (!IS_GEN(dev_priv, 2)) {
+>+	if (DISPLAY_VER(dev_priv) != 2) {
+> 		u32 pipeconf = intel_uncore_read(uncore, pipeconf_reg);
+> 		intel_uncore_write(uncore,
+> 				   pipeconf_reg,
+>@@ -890,7 +890,7 @@ intel_crt_detect(struct drm_connector *connector,
+> 	if (ret > 0) {
+> 		if (intel_crt_detect_ddc(connector))
+> 			status = connector_status_connected;
+>-		else if (INTEL_GEN(dev_priv) < 4)
+>+		else if (DISPLAY_VER(dev_priv) < 4)
+> 			status = intel_crt_load_detect(crt,
+> 				to_intel_crtc(connector->state->crtc)->pipe);
+> 		else if (dev_priv->params.load_detect_test)
+>@@ -949,7 +949,7 @@ void intel_crt_reset(struct drm_encoder *encoder)
+> 	struct drm_i915_private *dev_priv = to_i915(encoder->dev);
+> 	struct intel_crt *crt = intel_encoder_to_crt(to_intel_encoder(encoder));
+>
+>-	if (INTEL_GEN(dev_priv) >= 5) {
+>+	if (DISPLAY_VER(dev_priv) >= 5) {
+> 		u32 adpa;
+>
+> 		adpa = intel_de_read(dev_priv, crt->adpa_reg);
+>@@ -1047,7 +1047,7 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+> 	else
+> 		crt->base.pipe_mask = ~0;
+>
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		connector->interlace_allowed = 0;
+> 	else
+> 		connector->interlace_allowed = 1;
+>diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+>index 3248f49999bb..e4a8cb41501f 100644
+>--- a/drivers/gpu/drm/i915/display/intel_crtc.c
+>+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+>@@ -70,9 +70,9 @@ u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state)
+> 	    (crtc_state->output_types & BIT(INTEL_OUTPUT_TVOUT)))
+> 		return 0;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5 || IS_G4X(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
+> 		return 0xffffffff; /* full 32 bit counter */
+>-	else if (INTEL_GEN(dev_priv) >= 3)
+>+	else if (DISPLAY_VER(dev_priv) >= 3)
+> 		return 0xffffff; /* only 24 bits of frame count */
+> 	else
+> 		return 0; /* Gen2 doesn't have a hardware frame counter */
+>@@ -265,7 +265,7 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 	crtc->pipe = pipe;
+> 	crtc->num_scalers = RUNTIME_INFO(dev_priv)->num_scalers[pipe];
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		primary = skl_universal_plane_create(dev_priv, pipe,
+> 						     PLANE_PRIMARY);
+> 	else
+>@@ -279,7 +279,7 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 	for_each_sprite(dev_priv, pipe, sprite) {
+> 		struct intel_plane *plane;
+>
+>-		if (INTEL_GEN(dev_priv) >= 9)
+>+		if (DISPLAY_VER(dev_priv) >= 9)
+> 			plane = skl_universal_plane_create(dev_priv, pipe,
+> 							   PLANE_SPRITE0 + sprite);
+> 		else
+>@@ -302,16 +302,16 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 		if (IS_CHERRYVIEW(dev_priv) ||
+> 		    IS_VALLEYVIEW(dev_priv) || IS_G4X(dev_priv))
+> 			funcs = &g4x_crtc_funcs;
+>-		else if (IS_GEN(dev_priv, 4))
+>+		else if (DISPLAY_VER(dev_priv) == 4)
+> 			funcs = &i965_crtc_funcs;
+> 		else if (IS_I945GM(dev_priv) || IS_I915GM(dev_priv))
+> 			funcs = &i915gm_crtc_funcs;
+>-		else if (IS_GEN(dev_priv, 3))
+>+		else if (DISPLAY_VER(dev_priv) == 3)
+> 			funcs = &i915_crtc_funcs;
+> 		else
+> 			funcs = &i8xx_crtc_funcs;
+> 	} else {
+>-		if (INTEL_GEN(dev_priv) >= 8)
+>+		if (DISPLAY_VER(dev_priv) >= 8)
+> 			funcs = &bdw_crtc_funcs;
+> 		else
+> 			funcs = &ilk_crtc_funcs;
+>@@ -327,7 +327,7 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 	       dev_priv->pipe_to_crtc_mapping[pipe] != NULL);
+> 	dev_priv->pipe_to_crtc_mapping[pipe] = crtc;
+>
+>-	if (INTEL_GEN(dev_priv) < 9) {
+>+	if (DISPLAY_VER(dev_priv) < 9) {
+> 		enum i9xx_plane_id i9xx_plane = primary->i9xx_plane;
+>
+> 		BUG_ON(i9xx_plane >= ARRAY_SIZE(dev_priv->plane_to_crtc_mapping) ||
+>@@ -335,7 +335,7 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
+> 		dev_priv->plane_to_crtc_mapping[i9xx_plane] = crtc;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 10)
+>+	if (DISPLAY_VER(dev_priv) >= 10)
+> 		drm_crtc_create_scaling_filter_property(&crtc->base,
+> 						BIT(DRM_SCALING_FILTER_DEFAULT) |
+> 						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
+>@@ -546,7 +546,7 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
+> 	 * Incase of mipi dsi command mode, we need to set frame update
+> 	 * request for every commit.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 11 &&
+>+	if (DISPLAY_VER(dev_priv) >= 11 &&
+> 	    intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))
+> 		icl_dsi_frame_update(new_crtc_state);
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
+>index 42005c1b5f0e..82360593b0a6 100644
+>--- a/drivers/gpu/drm/i915/display/intel_csr.c
+>+++ b/drivers/gpu/drm/i915/display/intel_csr.c
+>@@ -705,11 +705,11 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
+> 		csr->fw_path = RKL_CSR_PATH;
+> 		csr->required_version = RKL_CSR_VERSION_REQUIRED;
+> 		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
+>-	} else if (INTEL_GEN(dev_priv) >= 12) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 12) {
+> 		csr->fw_path = TGL_CSR_PATH;
+> 		csr->required_version = TGL_CSR_VERSION_REQUIRED;
+> 		csr->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
+>-	} else if (IS_GEN(dev_priv, 11)) {
+>+	} else if (DISPLAY_VER(dev_priv) == 11) {
+> 		csr->fw_path = ICL_CSR_PATH;
+> 		csr->required_version = ICL_CSR_VERSION_REQUIRED;
+> 		csr->max_fw_size = ICL_CSR_MAX_FW_SIZE;
+>diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+>index 3057179dd4eb..0132ed3cb09d 100644
+>--- a/drivers/gpu/drm/i915/display/intel_cursor.c
+>+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+>@@ -338,7 +338,7 @@ static u32 i9xx_cursor_ctl_crtc(const struct intel_crtc_state *crtc_state)
+> 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> 	u32 cntl = 0;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		return cntl;
+>
+> 	if (crtc_state->gamma_enable)
+>@@ -347,7 +347,7 @@ static u32 i9xx_cursor_ctl_crtc(const struct intel_crtc_state *crtc_state)
+> 	if (crtc_state->csc_enable)
+> 		cntl |= MCURSOR_PIPE_CSC_ENABLE;
+>
+>-	if (INTEL_GEN(dev_priv) < 5 && !IS_G4X(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv))
+> 		cntl |= MCURSOR_PIPE_SELECT(crtc->pipe);
+>
+> 	return cntl;
+>@@ -527,7 +527,7 @@ static void i9xx_update_cursor(struct intel_plane *plane,
+> 	 * the CURCNTR write arms the update.
+> 	 */
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		skl_write_cursor_wm(plane, crtc_state);
+>
+> 	if (!intel_crtc_needs_modeset(crtc_state))
+>@@ -583,7 +583,7 @@ static bool i9xx_cursor_get_hw_state(struct intel_plane *plane,
+>
+> 	ret = val & MCURSOR_MODE;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5 || IS_G4X(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
+> 		*pipe = plane->pipe;
+> 	else
+> 		*pipe = (val & MCURSOR_PIPE_SELECT_MASK) >>
+>@@ -783,7 +783,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+> 	if (ret)
+> 		goto fail;
+>
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		drm_plane_create_rotation_property(&cursor->base,
+> 						   DRM_MODE_ROTATE_0,
+> 						   DRM_MODE_ROTATE_0 |
+>@@ -792,7 +792,7 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+> 	zpos = RUNTIME_INFO(dev_priv)->num_sprites[pipe] + 1;
+> 	drm_plane_create_zpos_immutable_property(&cursor->base, zpos);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		drm_plane_enable_fb_damage_clips(&cursor->base);
+>
+> 	drm_plane_helper_add(&cursor->base, &intel_plane_helper_funcs);
+>diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>index ba83682e1d3e..3e641b36bbd3 100644
+>--- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>@@ -174,7 +174,7 @@ static void intel_wait_ddi_buf_active(struct drm_i915_private *dev_priv,
+> 				      enum port port)
+> {
+> 	/* Wait > 518 usecs for DDI_BUF_CTL to be non idle */
+>-	if (INTEL_GEN(dev_priv) < 10 && !IS_GEMINILAKE(dev_priv)) {
+>+	if (DISPLAY_VER(dev_priv) < 10 && !IS_GEMINILAKE(dev_priv)) {
+> 		usleep_range(518, 1000);
+> 		return;
+> 	}
+>@@ -390,7 +390,7 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
+>
+> 	/* Enable TRANS_DDI_FUNC_CTL for the pipe to work in HDMI mode */
+> 	temp = TRANS_DDI_FUNC_ENABLE;
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		temp |= TGL_TRANS_DDI_SELECT_PORT(port);
+> 	else
+> 		temp |= TRANS_DDI_SELECT_PORT(port);
+>@@ -458,7 +458,7 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
+> 		temp |= TRANS_DDI_MODE_SELECT_DP_MST;
+> 		temp |= DDI_PORT_WIDTH(crtc_state->lane_count);
+>
+>-		if (INTEL_GEN(dev_priv) >= 12) {
+>+		if (DISPLAY_VER(dev_priv) >= 12) {
+> 			enum transcoder master;
+>
+> 			master = crtc_state->mst_master_transcoder;
+>@@ -471,7 +471,7 @@ intel_ddi_transcoder_func_reg_val_get(struct intel_encoder *encoder,
+> 		temp |= DDI_PORT_WIDTH(crtc_state->lane_count);
+> 	}
+>
+>-	if (IS_GEN_RANGE(dev_priv, 8, 10) &&
+>+	if ((DISPLAY_VER(dev_priv) >= 8 && DISPLAY_VER(dev_priv) <= 10) &&
+> 	    crtc_state->master_transcoder != INVALID_TRANSCODER) {
+> 		u8 master_select =
+> 			bdw_trans_port_sync_master_select(crtc_state->master_transcoder);
+>@@ -490,7 +490,7 @@ void intel_ddi_enable_transcoder_func(struct intel_encoder *encoder,
+> 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11) {
+>+	if (DISPLAY_VER(dev_priv) >= 11) {
+> 		enum transcoder master_transcoder = crtc_state->master_transcoder;
+> 		u32 ctl2 = 0;
+>
+>@@ -536,7 +536,7 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
+> 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> 	u32 ctl;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		intel_de_write(dev_priv,
+> 			       TRANS_DDI_FUNC_CTL2(cpu_transcoder), 0);
+>
+>@@ -546,11 +546,11 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
+>
+> 	ctl &= ~TRANS_DDI_FUNC_ENABLE;
+>
+>-	if (IS_GEN_RANGE(dev_priv, 8, 10))
+>-		ctl &= ~(TRANS_DDI_PORT_SYNC_ENABLE |
+>-			 TRANS_DDI_PORT_SYNC_MASTER_SELECT_MASK);
+>+	if (DISPLAY_VER(dev_priv) >= 8 && DISPLAY_VER(dev_priv) <= 10)
+>+		ctl &= ~(TRANS_DDI_PORT_SYNC_ENABLE | TRANS_DDI_PORT_SYNC_MASTER_SELECT_MASK);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		if (!intel_dp_mst_is_master_trans(crtc_state)) {
+> 			ctl &= ~(TGL_TRANS_DDI_PORT_MASK |
+> 				 TRANS_DDI_MODE_SELECT_MASK);
+>@@ -714,7 +714,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+> 		if (!trans_wakeref)
+> 			continue;
+>
+>-		if (INTEL_GEN(dev_priv) >= 12) {
+>+		if (DISPLAY_VER(dev_priv) >= 12) {
+> 			port_mask = TGL_TRANS_DDI_PORT_MASK;
+> 			ddi_select = TGL_TRANS_DDI_SELECT_PORT(port);
+> 		} else {
+>@@ -854,7 +854,7 @@ void intel_ddi_enable_pipe_clock(struct intel_encoder *encoder,
+> 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>
+> 	if (cpu_transcoder != TRANSCODER_EDP) {
+>-		if (INTEL_GEN(dev_priv) >= 12)
+>+		if (DISPLAY_VER(dev_priv) >= 12)
+> 			intel_de_write(dev_priv,
+> 				       TRANS_CLK_SEL(cpu_transcoder),
+> 				       TGL_TRANS_CLK_SEL_PORT(port));
+>@@ -871,7 +871,7 @@ void intel_ddi_disable_pipe_clock(const struct intel_crtc_state *crtc_state)
+> 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>
+> 	if (cpu_transcoder != TRANSCODER_EDP) {
+>-		if (INTEL_GEN(dev_priv) >= 12)
+>+		if (DISPLAY_VER(dev_priv) >= 12)
+> 			intel_de_write(dev_priv,
+> 				       TRANS_CLK_SEL(cpu_transcoder),
+> 				       TGL_TRANS_CLK_SEL_DISABLED);
+>@@ -971,12 +971,12 @@ static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp,
+> 	enum phy phy = intel_port_to_phy(dev_priv, port);
+> 	int n_entries;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		if (intel_phy_is_combo(dev_priv, phy))
+> 			tgl_get_combo_buf_trans(encoder, crtc_state, &n_entries);
+> 		else
+> 			tgl_get_dkl_buf_trans(encoder, crtc_state, &n_entries);
+>-	} else if (INTEL_GEN(dev_priv) == 11) {
+>+	} else if (DISPLAY_VER(dev_priv) == 11) {
+> 		if (IS_PLATFORM(dev_priv, INTEL_JASPERLAKE))
+> 			jsl_get_combo_buf_trans(encoder, crtc_state, &n_entries);
+> 		else if (IS_PLATFORM(dev_priv, INTEL_ELKHARTLAKE))
+>@@ -1147,7 +1147,7 @@ static void icl_ddi_combo_vswing_program(struct intel_encoder *encoder,
+> 	int n_entries, ln;
+> 	u32 val;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		ddi_translations = tgl_get_combo_buf_trans(encoder, crtc_state, &n_entries);
+> 	else if (IS_PLATFORM(dev_priv, INTEL_JASPERLAKE))
+> 		ddi_translations = jsl_get_combo_buf_trans(encoder, crtc_state, &n_entries);
+>@@ -2210,7 +2210,7 @@ icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
+> 	    dig_port->tc_mode == TC_PORT_TBT_ALT)
+> 		return;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> 			       HIP_INDEX_VAL(tc_port, 0x0));
+> 		ln0 = intel_de_read(dev_priv, DKL_DP_MODE(tc_port));
+>@@ -2276,7 +2276,7 @@ icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
+> 		MISSING_CASE(pin_assignment);
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		intel_de_write(dev_priv, HIP_INDEX_REG(tc_port),
+> 			       HIP_INDEX_VAL(tc_port, 0x0));
+> 		intel_de_write(dev_priv, DKL_DP_MODE(tc_port), ln0);
+>@@ -2303,7 +2303,7 @@ i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
+> {
+> 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		return TGL_DP_TP_CTL(tgl_dp_tp_transcoder(crtc_state));
+> 	else
+> 		return DP_TP_CTL(encoder->port);
+>@@ -2314,7 +2314,7 @@ i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
+> {
+> 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		return TGL_DP_TP_STATUS(tgl_dp_tp_transcoder(crtc_state));
+> 	else
+> 		return DP_TP_STATUS(encoder->port);
+>@@ -2621,7 +2621,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> 	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
+> 	int level = intel_ddi_dp_level(intel_dp);
+>
+>-	if (INTEL_GEN(dev_priv) < 11)
+>+	if (DISPLAY_VER(dev_priv) < 11)
+> 		drm_WARN_ON(&dev_priv->drm,
+> 			    is_mst && (port == PORT_A || port == PORT_E));
+> 	else
+>@@ -2644,7 +2644,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>
+> 	icl_program_mg_dp_mode(dig_port, crtc_state);
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		icl_ddi_vswing_sequence(encoder, crtc_state, level);
+> 	else if (IS_CANNONLAKE(dev_priv))
+> 		cnl_ddi_vswing_sequence(encoder, crtc_state, level);
+>@@ -2663,7 +2663,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> 					      true);
+> 	intel_dp_sink_set_fec_ready(intel_dp, crtc_state);
+> 	intel_dp_start_link_train(intel_dp, crtc_state);
+>-	if ((port != PORT_A || INTEL_GEN(dev_priv) >= 9) &&
+>+	if ((port != PORT_A || DISPLAY_VER(dev_priv) >= 9) &&
+> 	    !is_trans_port_sync_mode(crtc_state))
+> 		intel_dp_stop_link_train(intel_dp, crtc_state);
+>
+>@@ -2683,7 +2683,7 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> {
+> 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		tgl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
+> 	else
+> 		hsw_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
+>@@ -2818,7 +2818,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+> 	 */
+> 	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		if (is_mst) {
+> 			enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
+> 			u32 val;
+>@@ -2843,7 +2843,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+> 	 * Configure Transcoder Clock select to direct no clock to the
+> 	 * transcoder"
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		intel_ddi_disable_pipe_clock(old_crtc_state);
+>
+> 	intel_pps_vdd_on(intel_dp);
+>@@ -2904,7 +2904,7 @@ static void intel_ddi_post_disable(struct intel_atomic_state *state,
+>
+> 		intel_dsc_disable(old_crtc_state);
+>
+>-		if (INTEL_GEN(dev_priv) >= 9)
+>+		if (DISPLAY_VER(dev_priv) >= 9)
+> 			skl_scaler_disable(old_crtc_state);
+> 		else
+> 			ilk_pfit_disable(old_crtc_state);
+>@@ -3035,7 +3035,7 @@ static void intel_enable_ddi_dp(struct intel_atomic_state *state,
+> 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+> 	enum port port = encoder->port;
+>
+>-	if (port == PORT_A && INTEL_GEN(dev_priv) < 9)
+>+	if (port == PORT_A && DISPLAY_VER(dev_priv) < 9)
+> 		intel_dp_stop_link_train(intel_dp, crtc_state);
+>
+> 	intel_edp_backlight_on(crtc_state, conn_state);
+>@@ -3064,7 +3064,7 @@ gen9_chicken_trans_reg_by_port(struct drm_i915_private *dev_priv,
+> 		[PORT_E] = TRANSCODER_A,
+> 	};
+>
+>-	drm_WARN_ON(&dev_priv->drm, INTEL_GEN(dev_priv) < 9);
+>+	drm_WARN_ON(&dev_priv->drm, DISPLAY_VER(dev_priv) < 9);
+>
+> 	if (drm_WARN_ON(&dev_priv->drm, port < PORT_A || port > PORT_E))
+> 		port = PORT_A;
+>@@ -3090,9 +3090,9 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
+> 			    "[CONNECTOR:%d:%s] Failed to configure sink scrambling/TMDS bit clock ratio\n",
+> 			    connector->base.id, connector->name);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		tgl_ddi_vswing_sequence(encoder, crtc_state, level);
+>-	else if (INTEL_GEN(dev_priv) == 11)
+>+	else if (DISPLAY_VER(dev_priv) == 11)
+> 		icl_ddi_vswing_sequence(encoder, crtc_state, level);
+> 	else if (IS_CANNONLAKE(dev_priv))
+> 		cnl_ddi_vswing_sequence(encoder, crtc_state, level);
+>@@ -3424,7 +3424,7 @@ static void intel_ddi_set_idle_link_train(struct intel_dp *intel_dp,
+> 	 * In this case there is requirement to wait for a minimum number of
+> 	 * idle patterns to be sent.
+> 	 */
+>-	if (port == PORT_A && INTEL_GEN(dev_priv) < 12)
+>+	if (port == PORT_A && DISPLAY_VER(dev_priv) < 12)
+> 		return;
+>
+> 	if (intel_de_wait_for_set(dev_priv,
+>@@ -3450,11 +3450,11 @@ static bool intel_ddi_is_audio_enabled(struct drm_i915_private *dev_priv,
+> void intel_ddi_compute_min_voltage_level(struct drm_i915_private *dev_priv,
+> 					 struct intel_crtc_state *crtc_state)
+> {
+>-	if (INTEL_GEN(dev_priv) >= 12 && crtc_state->port_clock > 594000)
+>+	if (DISPLAY_VER(dev_priv) >= 12 && crtc_state->port_clock > 594000)
+> 		crtc_state->min_voltage_level = 2;
+> 	else if (IS_JSL_EHL(dev_priv) && crtc_state->port_clock > 594000)
+> 		crtc_state->min_voltage_level = 3;
+>-	else if (INTEL_GEN(dev_priv) >= 11 && crtc_state->port_clock > 594000)
+>+	else if (DISPLAY_VER(dev_priv) >= 11 && crtc_state->port_clock > 594000)
+> 		crtc_state->min_voltage_level = 1;
+> 	else if (IS_CANNONLAKE(dev_priv) && crtc_state->port_clock > 594000)
+> 		crtc_state->min_voltage_level = 2;
+>@@ -3465,7 +3465,7 @@ static enum transcoder bdw_transcoder_master_readout(struct drm_i915_private *de
+> {
+> 	u32 master_select;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11) {
+>+	if (DISPLAY_VER(dev_priv) >= 11) {
+> 		u32 ctl2 = intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL2(cpu_transcoder));
+>
+> 		if ((ctl2 & PORT_SYNC_MODE_ENABLE) == 0)
+>@@ -3589,7 +3589,7 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
+> 			((temp & DDI_PORT_WIDTH_MASK) >> DDI_PORT_WIDTH_SHIFT) + 1;
+> 		intel_dp_get_m_n(intel_crtc, pipe_config);
+>
+>-		if (INTEL_GEN(dev_priv) >= 11) {
+>+		if (DISPLAY_VER(dev_priv) >= 11) {
+> 			i915_reg_t dp_tp_ctl = dp_tp_ctl_reg(encoder, pipe_config);
+>
+> 			pipe_config->fec_enable =
+>@@ -3613,7 +3613,7 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
+> 		pipe_config->lane_count =
+> 			((temp & DDI_PORT_WIDTH_MASK) >> DDI_PORT_WIDTH_SHIFT) + 1;
+>
+>-		if (INTEL_GEN(dev_priv) >= 12)
+>+		if (DISPLAY_VER(dev_priv) >= 12)
+> 			pipe_config->mst_master_transcoder =
+> 					REG_FIELD_GET(TRANS_DDI_MST_TRANSPORT_SELECT_MASK, temp);
+>
+>@@ -3700,7 +3700,7 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
+> 			     HDMI_INFOFRAME_TYPE_DRM,
+> 			     &pipe_config->infoframes.drm);
+>
+>-	if (INTEL_GEN(dev_priv) >= 8)
+>+	if (DISPLAY_VER(dev_priv) >= 8)
+> 		bdw_get_trans_port_sync_config(pipe_config);
+>
+> 	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA);
+>@@ -3934,7 +3934,7 @@ intel_ddi_port_sync_transcoders(const struct intel_crtc_state *ref_crtc_state,
+> 	 * We don't enable port sync on BDW due to missing w/as and
+> 	 * due to not having adjusted the modeset sequence appropriately.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 9)
+>+	if (DISPLAY_VER(dev_priv) < 9)
+> 		return 0;
+>
+> 	if (!intel_crtc_has_type(ref_crtc_state, INTEL_OUTPUT_DP))
+>@@ -4029,9 +4029,9 @@ intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
+> 	dig_port->dp.set_link_train = intel_ddi_set_link_train;
+> 	dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		dig_port->dp.set_signal_levels = tgl_set_signal_levels;
+>-	else if (INTEL_GEN(dev_priv) >= 11)
+>+	else if (DISPLAY_VER(dev_priv) >= 11)
+> 		dig_port->dp.set_signal_levels = icl_set_signal_levels;
+> 	else if (IS_CANNONLAKE(dev_priv))
+> 		dig_port->dp.set_signal_levels = cnl_set_signal_levels;
+>@@ -4300,7 +4300,7 @@ intel_ddi_max_lanes(struct intel_digital_port *dig_port)
+> 	enum port port = dig_port->base.port;
+> 	int max_lanes = 4;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		return max_lanes;
+>
+> 	if (port == PORT_A || port == PORT_E) {
+>@@ -4402,9 +4402,9 @@ static enum hpd_pin skl_hpd_pin(struct drm_i915_private *dev_priv, enum port por
+>
+> static bool intel_ddi_is_tc(struct drm_i915_private *i915, enum port port)
+> {
+>-	if (INTEL_GEN(i915) >= 12)
+>+	if (DISPLAY_VER(i915) >= 12)
+> 		return port >= PORT_TC1;
+>-	else if (INTEL_GEN(i915) >= 11)
+>+	else if (DISPLAY_VER(i915) >= 11)
+> 		return port >= PORT_C;
+> 	else
+> 		return false;
+>@@ -4461,7 +4461,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>
+> 	encoder = &dig_port->base;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		enum tc_port tc_port = intel_port_to_tc(dev_priv, port);
+>
+> 		drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
+>@@ -4471,7 +4471,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+> 				 port >= PORT_TC1 ? port_tc_name(port) : port_name(port),
+> 				 tc_port != TC_PORT_NONE ? "TC" : "",
+> 				 tc_port != TC_PORT_NONE ? tc_port_name(tc_port) : phy_name(phy));
+>-	} else if (INTEL_GEN(dev_priv) >= 11) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> 		enum tc_port tc_port = intel_port_to_tc(dev_priv, port);
+>
+> 		drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
+>@@ -4540,7 +4540,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+> 			encoder->is_clock_enabled = icl_ddi_combo_is_clock_enabled;
+> 			encoder->get_config = icl_ddi_combo_get_config;
+> 		}
+>-	} else if (INTEL_GEN(dev_priv) >= 11) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 11) {
+> 		if (intel_ddi_is_tc(dev_priv, port)) {
+> 			encoder->enable_clock = icl_ddi_tc_enable_clock;
+> 			encoder->disable_clock = icl_ddi_tc_disable_clock;
+>@@ -4576,20 +4576,20 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+> 		encoder->hpd_pin = dg1_hpd_pin(dev_priv, port);
+> 	else if (IS_ROCKETLAKE(dev_priv))
+> 		encoder->hpd_pin = rkl_hpd_pin(dev_priv, port);
+>-	else if (INTEL_GEN(dev_priv) >= 12)
+>+	else if (DISPLAY_VER(dev_priv) >= 12)
+> 		encoder->hpd_pin = tgl_hpd_pin(dev_priv, port);
+> 	else if (IS_JSL_EHL(dev_priv))
+> 		encoder->hpd_pin = ehl_hpd_pin(dev_priv, port);
+>-	else if (IS_GEN(dev_priv, 11))
+>+	else if (DISPLAY_VER(dev_priv) == 11)
+> 		encoder->hpd_pin = icl_hpd_pin(dev_priv, port);
+>-	else if (IS_GEN(dev_priv, 10))
+>+	else if (DISPLAY_VER(dev_priv) == 10)
+> 		encoder->hpd_pin = cnl_hpd_pin(dev_priv, port);
+>-	else if (IS_GEN(dev_priv, 9))
+>+	else if (DISPLAY_VER(dev_priv) == 9)
+> 		encoder->hpd_pin = skl_hpd_pin(dev_priv, port);
+> 	else
+> 		encoder->hpd_pin = intel_hpd_pin_default(dev_priv, port);
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		dig_port->saved_port_bits =
+> 			intel_de_read(dev_priv, DDI_BUF_CTL(port))
+> 			& DDI_BUF_PORT_REVERSAL;
+>@@ -4638,12 +4638,12 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+> 			goto err;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 11) {
+>+	if (DISPLAY_VER(dev_priv) >= 11) {
+> 		if (intel_phy_is_tc(dev_priv, phy))
+> 			dig_port->connected = intel_tc_port_connected;
+> 		else
+> 			dig_port->connected = lpt_digital_port_connected;
+>-	} else if (INTEL_GEN(dev_priv) >= 8) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 8) {
+> 		if (port == PORT_A || IS_GEN9_LP(dev_priv))
+> 			dig_port->connected = bdw_digital_port_connected;
+> 		else
+>diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>index f65c2b35461c..50746e2725e8 100644
+>--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>@@ -1355,13 +1355,13 @@ int intel_ddi_hdmi_num_entries(struct intel_encoder *encoder,
+> 	enum phy phy = intel_port_to_phy(dev_priv, encoder->port);
+> 	int n_entries;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		if (intel_phy_is_combo(dev_priv, phy))
+> 			tgl_get_combo_buf_trans_hdmi(encoder, crtc_state, &n_entries);
+> 		else
+> 			tgl_get_dkl_buf_trans_hdmi(encoder, crtc_state, &n_entries);
+> 		*default_entry = n_entries - 1;
+>-	} else if (INTEL_GEN(dev_priv) == 11) {
+>+	} else if (DISPLAY_VER(dev_priv) == 11) {
+> 		if (intel_phy_is_combo(dev_priv, phy))
+> 			icl_get_combo_buf_trans_hdmi(encoder, crtc_state, &n_entries);
+> 		else
+>diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>index f47bbe042a64..933b9d791691 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display.c
+>@@ -227,7 +227,7 @@ static bool pipe_scanline_is_moving(struct drm_i915_private *dev_priv,
+> 	u32 line1, line2;
+> 	u32 line_mask;
+>
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		line_mask = DSL_LINEMASK_GEN2;
+> 	else
+> 		line_mask = DSL_LINEMASK_GEN3;
+>@@ -267,7 +267,7 @@ intel_wait_for_pipe_off(const struct intel_crtc_state *old_crtc_state)
+> 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+> 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>
+>-	if (INTEL_GEN(dev_priv) >= 4) {
+>+	if (DISPLAY_VER(dev_priv) >= 4) {
+> 		enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
+> 		i915_reg_t reg = PIPECONF(cpu_transcoder);
+>
+>@@ -855,7 +855,7 @@ void intel_disable_pipe(const struct intel_crtc_state *old_crtc_state)
+>
+> static unsigned int intel_tile_size(const struct drm_i915_private *dev_priv)
+> {
+>-	return IS_GEN(dev_priv, 2) ? 2048 : 4096;
+>+	return DISPLAY_VER(dev_priv) == 2 ? 2048 : 4096;
+> }
+>
+> static bool is_aux_plane(const struct drm_framebuffer *fb, int plane)
+>@@ -891,7 +891,7 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+> 	case DRM_FORMAT_MOD_LINEAR:
+> 		return intel_tile_size(dev_priv);
+> 	case I915_FORMAT_MOD_X_TILED:
+>-		if (IS_GEN(dev_priv, 2))
+>+		if (DISPLAY_VER(dev_priv) == 2)
+> 			return 128;
+> 		else
+> 			return 512;
+>@@ -906,7 +906,7 @@ intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane)
+> 			return 64;
+> 		fallthrough;
+> 	case I915_FORMAT_MOD_Y_TILED:
+>-		if (IS_GEN(dev_priv, 2) || HAS_128_BYTE_Y_TILING(dev_priv))
+>+		if (DISPLAY_VER(dev_priv) == 2 || HAS_128_BYTE_Y_TILING(dev_priv))
+> 			return 128;
+> 		else
+> 			return 512;
+>@@ -1024,12 +1024,12 @@ static unsigned int intel_cursor_alignment(const struct drm_i915_private *dev_pr
+>
+> static unsigned int intel_linear_alignment(const struct drm_i915_private *dev_priv)
+> {
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		return 256 * 1024;
+> 	else if (IS_I965G(dev_priv) || IS_I965GM(dev_priv) ||
+> 		 IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> 		return 128 * 1024;
+>-	else if (INTEL_GEN(dev_priv) >= 4)
+>+	else if (DISPLAY_VER(dev_priv) >= 4)
+> 		return 4 * 1024;
+> 	else
+> 		return 0;
+>@@ -1037,7 +1037,7 @@ static unsigned int intel_linear_alignment(const struct drm_i915_private *dev_pr
+>
+> static bool has_async_flips(struct drm_i915_private *i915)
+> {
+>-	return INTEL_GEN(i915) >= 5;
+>+	return DISPLAY_VER(i915) >= 5;
+> }
+>
+> unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+>@@ -1046,7 +1046,7 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+> 	struct drm_i915_private *dev_priv = to_i915(fb->dev);
+>
+> 	/* AUX_DIST needs only 4K alignment */
+>-	if ((INTEL_GEN(dev_priv) < 12 && is_aux_plane(fb, color_plane)) ||
+>+	if ((DISPLAY_VER(dev_priv) < 12 && is_aux_plane(fb, color_plane)) ||
+> 	    is_ccs_plane(fb, color_plane))
+> 		return 4096;
+>
+>@@ -1067,7 +1067,7 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+> 	case I915_FORMAT_MOD_Y_TILED_CCS:
+> 	case I915_FORMAT_MOD_Yf_TILED_CCS:
+> 	case I915_FORMAT_MOD_Y_TILED:
+>-		if (INTEL_GEN(dev_priv) >= 12 &&
+>+		if (DISPLAY_VER(dev_priv) >= 12 &&
+> 		    is_semiplanar_uv_plane(fb, color_plane))
+> 			return intel_tile_row_size(fb, color_plane);
+> 		fallthrough;
+>@@ -1084,7 +1084,7 @@ static bool intel_plane_uses_fence(const struct intel_plane_state *plane_state)
+> 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+> 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
+>
+>-	return INTEL_GEN(dev_priv) < 4 ||
+>+	return DISPLAY_VER(dev_priv) < 4 ||
+> 		(plane->has_fbc &&
+> 		 plane_state->view.type == I915_GGTT_VIEW_NORMAL);
+> }
+>@@ -1167,7 +1167,7 @@ intel_pin_and_fence_fb_obj(struct drm_framebuffer *fb,
+> 		 * mode that matches the user configuration.
+> 		 */
+> 		ret = i915_vma_pin_fence(vma);
+>-		if (ret != 0 && INTEL_GEN(dev_priv) < 4) {
+>+		if (ret != 0 && DISPLAY_VER(dev_priv) < 4) {
+> 			i915_vma_unpin(vma);
+> 			vma = ERR_PTR(ret);
+> 			goto err;
+>@@ -1417,7 +1417,7 @@ static int intel_fb_offset_to_xy(int *x, int *y,
+> 	unsigned int height;
+> 	u32 alignment;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12 &&
+>+	if (DISPLAY_VER(dev_priv) >= 12 &&
+> 	    is_semiplanar_uv_plane(fb, color_plane))
+> 		alignment = intel_tile_row_size(fb, color_plane);
+> 	else if (fb->modifier != DRM_FORMAT_MOD_LINEAR)
+>@@ -1637,9 +1637,9 @@ u32 intel_fb_max_stride(struct drm_i915_private *dev_priv,
+> 	 * The new CCS hash mode makes remapping impossible
+> 	 */
+> 	if (!is_ccs_modifier(modifier)) {
+>-		if (INTEL_GEN(dev_priv) >= 7)
+>+		if (DISPLAY_VER(dev_priv) >= 7)
+> 			return 256*1024;
+>-		else if (INTEL_GEN(dev_priv) >= 4)
+>+		else if (DISPLAY_VER(dev_priv) >= 4)
+> 			return 128*1024;
+> 	}
+>
+>@@ -1679,13 +1679,13 @@ intel_fb_stride_alignment(const struct drm_framebuffer *fb, int color_plane)
+> 		 * require the entire fb to accommodate that to avoid
+> 		 * potential runtime errors at plane configuration time.
+> 		 */
+>-		if (IS_GEN(dev_priv, 9) && color_plane == 0 && fb->width > 3840)
+>+		if (DISPLAY_VER(dev_priv) == 9 && color_plane == 0 && fb->width > 3840)
+> 			tile_width *= 4;
+> 		/*
+> 		 * The main surface pitch must be padded to a multiple of four
+> 		 * tile widths.
+> 		 */
+>-		else if (INTEL_GEN(dev_priv) >= 12)
+>+		else if (DISPLAY_VER(dev_priv) >= 12)
+> 			tile_width *= 4;
+> 	}
+> 	return tile_width;
+>@@ -1708,7 +1708,7 @@ bool intel_plane_can_remap(const struct intel_plane_state *plane_state)
+> 	 * Would also need to deal with the fence POT alignment
+> 	 * and gen2 2KiB GTT tile size.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 4)
+>+	if (DISPLAY_VER(dev_priv) < 4)
+> 		return false;
+>
+> 	/*
+>@@ -2394,7 +2394,7 @@ static void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+> 	 * Gen2 reports pipe underruns whenever all planes are disabled.
+> 	 * So disable underrun reporting before all the planes get disabled.
+> 	 */
+>-	if (IS_GEN(dev_priv, 2) && !crtc_state->active_planes)
+>+	if (DISPLAY_VER(dev_priv) == 2 && !crtc_state->active_planes)
+> 		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, false);
+>
+> 	intel_disable_plane(plane, crtc_state);
+>@@ -3257,7 +3257,7 @@ static bool needs_nv12_wa(const struct intel_crtc_state *crtc_state)
+> 		return false;
+>
+> 	/* WA Display #0827: Gen9:all */
+>-	if (IS_GEN(dev_priv, 9) && !IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) == 9 && !IS_GEMINILAKE(dev_priv))
+> 		return true;
+>
+> 	return false;
+>@@ -3268,7 +3268,7 @@ static bool needs_scalerclk_wa(const struct intel_crtc_state *crtc_state)
+> 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+>
+> 	/* Wa_2006604312:icl,ehl */
+>-	if (crtc_state->scaler_state.scaler_users > 0 && IS_GEN(dev_priv, 11))
+>+	if (crtc_state->scaler_state.scaler_users > 0 && DISPLAY_VER(dev_priv) == 11)
+> 		return true;
+>
+> 	return false;
+>@@ -3468,7 +3468,7 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+> 	 * chance of catching underruns with the intermediate watermarks
+> 	 * vs. the old plane configuration.
+> 	 */
+>-	if (IS_GEN(dev_priv, 2) && planes_disabling(old_crtc_state, new_crtc_state))
+>+	if (DISPLAY_VER(dev_priv) == 2 && planes_disabling(old_crtc_state, new_crtc_state))
+> 		intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
+>
+> 	/*
+>@@ -3866,7 +3866,7 @@ static void icl_pipe_mbus_enable(struct intel_crtc *crtc)
+>
+> 	val = MBUS_DBOX_A_CREDIT(2);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		val |= MBUS_DBOX_BW_CREDIT(2);
+> 		val |= MBUS_DBOX_B_CREDIT(12);
+> 	} else {
+>@@ -3964,7 +3964,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+> 	}
+>
+> 	intel_set_pipe_src_size(new_crtc_state);
+>-	if (INTEL_GEN(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
+> 		bdw_set_pipemisc(new_crtc_state);
+>
+> 	if (!new_crtc_state->bigjoiner_slave && !transcoder_is_dsi(cpu_transcoder)) {
+>@@ -3992,7 +3992,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+> 	if (psl_clkgate_wa)
+> 		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, true);
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		skl_pfit_enable(new_crtc_state);
+> 	else
+> 		ilk_pfit_enable(new_crtc_state);
+>@@ -4004,18 +4004,18 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
+> 	intel_color_load_luts(new_crtc_state);
+> 	intel_color_commit(new_crtc_state);
+> 	/* update DSPCNTR to configure gamma/csc for pipe bottom color */
+>-	if (INTEL_GEN(dev_priv) < 9)
+>+	if (DISPLAY_VER(dev_priv) < 9)
+> 		intel_disable_primary_plane(new_crtc_state);
+>
+> 	hsw_set_linetime_wm(new_crtc_state);
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		icl_set_pipe_chicken(crtc);
+>
+> 	if (dev_priv->display.initial_watermarks)
+> 		dev_priv->display.initial_watermarks(state, crtc);
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		icl_pipe_mbus_enable(crtc);
+>
+> 	if (new_crtc_state->bigjoiner_slave)
+>@@ -4156,7 +4156,7 @@ bool intel_phy_is_combo(struct drm_i915_private *dev_priv, enum phy phy)
+> 		return phy <= PHY_D;
+> 	else if (IS_JSL_EHL(dev_priv))
+> 		return phy <= PHY_C;
+>-	else if (INTEL_GEN(dev_priv) >= 11)
+>+	else if (DISPLAY_VER(dev_priv) >= 11)
+> 		return phy <= PHY_B;
+> 	else
+> 		return false;
+>@@ -4189,7 +4189,7 @@ enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv, enum port port)
+> 	if (!intel_phy_is_tc(dev_priv, intel_port_to_phy(dev_priv, port)))
+> 		return TC_PORT_NONE;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		return TC_PORT_1 + port - PORT_TC1;
+> 	else
+> 		return TC_PORT_1 + port - PORT_C;
+>@@ -4441,7 +4441,7 @@ static void i9xx_crtc_enable(struct intel_atomic_state *state,
+>
+> 	crtc->active = true;
+>
+>-	if (!IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) != 2)
+> 		intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, true);
+>
+> 	intel_encoders_pre_enable(state, crtc);
+>@@ -4466,7 +4466,7 @@ static void i9xx_crtc_enable(struct intel_atomic_state *state,
+> 	intel_encoders_enable(state, crtc);
+>
+> 	/* prevents spurious underruns */
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		intel_wait_for_vblank(dev_priv, pipe);
+> }
+>
+>@@ -4497,7 +4497,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
+> 	 * On gen2 planes are double buffered but the pipe isn't, so we must
+> 	 * wait for planes to fully turn off before disabling the pipe.
+> 	 */
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		intel_wait_for_vblank(dev_priv, pipe);
+>
+> 	intel_encoders_disable(state, crtc);
+>@@ -4521,7 +4521,7 @@ static void i9xx_crtc_disable(struct intel_atomic_state *state,
+>
+> 	intel_encoders_post_pll_disable(state, crtc);
+>
+>-	if (!IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) != 2)
+> 		intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
+>
+> 	if (!dev_priv->display.initial_watermarks)
+>@@ -4760,7 +4760,7 @@ static bool intel_crtc_supports_double_wide(const struct intel_crtc *crtc)
+> 	const struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>
+> 	/* GDG double wide on either pipe, otherwise pipe A only */
+>-	return INTEL_GEN(dev_priv) < 4 &&
+>+	return DISPLAY_VER(dev_priv) < 4 &&
+> 		(crtc->pipe == PIPE_A || IS_I915G(dev_priv));
+> }
+>
+>@@ -4928,7 +4928,7 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
+>
+> 	intel_mode_from_crtc_timings(pipe_mode, pipe_mode);
+>
+>-	if (INTEL_GEN(dev_priv) < 4) {
+>+	if (DISPLAY_VER(dev_priv) < 4) {
+> 		clock_limit = dev_priv->max_cdclk_freq * 9 / 10;
+>
+> 		/*
+>@@ -4974,7 +4974,7 @@ static int intel_crtc_compute_config(struct intel_crtc *crtc,
+> 	/* Cantiga+ cannot handle modes with a hsync front porch of 0.
+> 	 * WaPruneModeWithIncorrectHsyncOffset:ctg,elk,ilk,snb,ivb,vlv,hsw.
+> 	 */
+>-	if ((INTEL_GEN(dev_priv) > 4 || IS_G4X(dev_priv)) &&
+>+	if ((DISPLAY_VER(dev_priv) > 4 || IS_G4X(dev_priv)) &&
+> 	    pipe_mode->crtc_hsync_start == pipe_mode->crtc_hdisplay)
+> 		return -EINVAL;
+>
+>@@ -5085,7 +5085,7 @@ static bool transcoder_has_m2_n2(struct drm_i915_private *dev_priv,
+> 	 * Strictly speaking some registers are available before
+> 	 * gen7, but we only support DRRS on gen7+
+> 	 */
+>-	return IS_GEN(dev_priv, 7) || IS_CHERRYVIEW(dev_priv);
+>+	return DISPLAY_VER(dev_priv) == 7 || IS_CHERRYVIEW(dev_priv);
+> }
+>
+> static void intel_cpu_transcoder_set_m_n(const struct intel_crtc_state *crtc_state,
+>@@ -5097,7 +5097,7 @@ static void intel_cpu_transcoder_set_m_n(const struct intel_crtc_state *crtc_sta
+> 	enum pipe pipe = crtc->pipe;
+> 	enum transcoder transcoder = crtc_state->cpu_transcoder;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5) {
+>+	if (DISPLAY_VER(dev_priv) >= 5) {
+> 		intel_de_write(dev_priv, PIPE_DATA_M1(transcoder),
+> 			       TU_SIZE(m_n->tu) | m_n->gmch_m);
+> 		intel_de_write(dev_priv, PIPE_DATA_N1(transcoder),
+>@@ -5185,7 +5185,7 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+> 			vsyncshift += adjusted_mode->crtc_htotal;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) > 3)
+>+	if (DISPLAY_VER(dev_priv) > 3)
+> 		intel_de_write(dev_priv, VSYNCSHIFT(cpu_transcoder),
+> 		               vsyncshift);
+>
+>@@ -5232,10 +5232,10 @@ static bool intel_pipe_is_interlaced(const struct intel_crtc_state *crtc_state)
+> 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+> 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		return false;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9 ||
+>+	if (DISPLAY_VER(dev_priv) >= 9 ||
+> 	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+> 		return intel_de_read(dev_priv, PIPECONF(cpu_transcoder)) & PIPECONF_INTERLACE_MASK_HSW;
+> 	else
+>@@ -5339,7 +5339,7 @@ static void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
+> 	}
+>
+> 	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE) {
+>-		if (INTEL_GEN(dev_priv) < 4 ||
+>+		if (DISPLAY_VER(dev_priv) < 4 ||
+> 		    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_SDVO))
+> 			pipeconf |= PIPECONF_INTERLACE_W_FIELD_INDICATION;
+> 		else
+>@@ -5365,7 +5365,7 @@ static bool i9xx_has_pfit(struct drm_i915_private *dev_priv)
+> 	if (IS_I830(dev_priv))
+> 		return false;
+>
+>-	return INTEL_GEN(dev_priv) >= 4 ||
+>+	return DISPLAY_VER(dev_priv) >= 4 ||
+> 		IS_PINEVIEW(dev_priv) || IS_MOBILE(dev_priv);
+> }
+>
+>@@ -5383,7 +5383,7 @@ static void i9xx_get_pfit_config(struct intel_crtc_state *crtc_state)
+> 		return;
+>
+> 	/* Check whether the pfit is attached to our pipe. */
+>-	if (INTEL_GEN(dev_priv) < 4) {
+>+	if (DISPLAY_VER(dev_priv) < 4) {
+> 		if (crtc->pipe != PIPE_B)
+> 			return;
+> 	} else {
+>@@ -5551,7 +5551,7 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
+> 	i9xx_get_pipe_color_config(pipe_config);
+> 	intel_color_get_config(pipe_config);
+>
+>-	if (INTEL_GEN(dev_priv) < 4)
+>+	if (DISPLAY_VER(dev_priv) < 4)
+> 		pipe_config->double_wide = tmp & PIPECONF_DOUBLE_WIDE;
+>
+> 	intel_get_transcoder_timings(crtc, pipe_config);
+>@@ -5559,7 +5559,7 @@ static bool i9xx_get_pipe_config(struct intel_crtc *crtc,
+>
+> 	i9xx_get_pfit_config(pipe_config);
+>
+>-	if (INTEL_GEN(dev_priv) >= 4) {
+>+	if (DISPLAY_VER(dev_priv) >= 4) {
+> 		/* No way to read it out on pipes B and C */
+> 		if (IS_CHERRYVIEW(dev_priv) && crtc->pipe != PIPE_A)
+> 			tmp = dev_priv->chv_dpll_md[crtc->pipe];
+>@@ -6239,12 +6239,12 @@ static void bdw_set_pipemisc(const struct intel_crtc_state *crtc_state)
+> 		val |= PIPEMISC_YUV420_ENABLE |
+> 			PIPEMISC_YUV420_MODE_FULL_BLEND;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11 &&
+>+	if (DISPLAY_VER(dev_priv) >= 11 &&
+> 	    (crtc_state->active_planes & ~(icl_hdr_plane_mask() |
+> 					   BIT(PLANE_CURSOR))) == 0)
+> 		val |= PIPEMISC_HDR_MODE_PRECISION;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		val |= PIPEMISC_PIXEL_ROUNDING_TRUNC;
+>
+> 	intel_de_write(dev_priv, PIPEMISC(crtc->pipe), val);
+>@@ -6307,7 +6307,7 @@ static void intel_cpu_transcoder_get_m_n(struct intel_crtc *crtc,
+> 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> 	enum pipe pipe = crtc->pipe;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5) {
+>+	if (DISPLAY_VER(dev_priv) >= 5) {
+> 		m_n->link_m = intel_de_read(dev_priv,
+> 					    PIPE_LINK_M1(transcoder));
+> 		m_n->link_n = intel_de_read(dev_priv,
+>@@ -6427,7 +6427,7 @@ static void ilk_get_pfit_config(struct intel_crtc_state *crtc_state)
+> 	 * ivb/hsw (since we don't use the higher upscaling modes which
+> 	 * differentiates them) so just WARN about this case for now.
+> 	 */
+>-	drm_WARN_ON(&dev_priv->drm, IS_GEN(dev_priv, 7) &&
+>+	drm_WARN_ON(&dev_priv->drm, DISPLAY_VER(dev_priv) == 7 &&
+> 		    (ctl & PF_PIPE_SEL_MASK_IVB) != PF_PIPE_SEL_IVB(crtc->pipe));
+> }
+>
+>@@ -6562,7 +6562,7 @@ static bool hsw_get_transcoder_state(struct intel_crtc *crtc,
+> 	enum transcoder panel_transcoder;
+> 	u32 tmp;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		panel_transcoder_mask |=
+> 			BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1);
+>
+>@@ -6701,7 +6701,7 @@ static void hsw_get_ddi_port_state(struct intel_crtc *crtc,
+> 				    TRANS_DDI_FUNC_CTL(cpu_transcoder));
+> 		if (!(tmp & TRANS_DDI_FUNC_ENABLE))
+> 			return;
+>-		if (INTEL_GEN(dev_priv) >= 12)
+>+		if (DISPLAY_VER(dev_priv) >= 12)
+> 			port = TGL_TRANS_DDI_FUNC_CTL_VAL_TO_PORT(tmp);
+> 		else
+> 			port = TRANS_DDI_FUNC_CTL_VAL_TO_PORT(tmp);
+>@@ -6712,7 +6712,7 @@ static void hsw_get_ddi_port_state(struct intel_crtc *crtc,
+> 	 * DDI E. So just check whether this pipe is wired to DDI E and whether
+> 	 * the PCH transcoder is on.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 9 &&
+>+	if (DISPLAY_VER(dev_priv) < 9 &&
+> 	    (port == PORT_E) && intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) {
+> 		pipe_config->has_pch_encoder = true;
+>
+>@@ -6759,7 +6759,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+> 		/* we cannot read out most state, so don't bother.. */
+> 		pipe_config->quirks |= PIPE_CONFIG_QUIRK_BIGJOINER_SLAVE;
+> 	} else if (!transcoder_is_dsi(pipe_config->cpu_transcoder) ||
+>-	    INTEL_GEN(dev_priv) >= 11) {
+>+	    DISPLAY_VER(dev_priv) >= 11) {
+> 		hsw_get_ddi_port_state(crtc, pipe_config);
+> 		intel_get_transcoder_timings(crtc, pipe_config);
+> 	}
+>@@ -6788,7 +6788,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+> 	pipe_config->csc_mode = intel_de_read(dev_priv,
+> 					      PIPE_CSC_MODE(crtc->pipe));
+>
+>-	if (INTEL_GEN(dev_priv) >= 9) {
+>+	if (DISPLAY_VER(dev_priv) >= 9) {
+> 		tmp = intel_de_read(dev_priv, SKL_BOTTOM_COLOR(crtc->pipe));
+>
+> 		if (tmp & SKL_BOTTOM_COLOR_GAMMA_ENABLE)
+>@@ -6810,7 +6810,7 @@ static bool hsw_get_pipe_config(struct intel_crtc *crtc,
+>
+> 	if (intel_display_power_get_in_set_if_enabled(dev_priv, &power_domain_set,
+> 						      POWER_DOMAIN_PIPE_PANEL_FITTER(crtc->pipe))) {
+>-		if (INTEL_GEN(dev_priv) >= 9)
+>+		if (DISPLAY_VER(dev_priv) >= 9)
+> 			skl_get_pfit_config(pipe_config);
+> 		else
+> 			ilk_get_pfit_config(pipe_config);
+>@@ -7110,7 +7110,7 @@ static int i9xx_pll_refclk(struct drm_device *dev,
+> 		return dev_priv->vbt.lvds_ssc_freq;
+> 	else if (HAS_PCH_SPLIT(dev_priv))
+> 		return 120000;
+>-	else if (!IS_GEN(dev_priv, 2))
+>+	else if (DISPLAY_VER(dev_priv) != 2)
+> 		return 96000;
+> 	else
+> 		return 48000;
+>@@ -7143,7 +7143,7 @@ static void i9xx_crtc_clock_get(struct intel_crtc *crtc,
+> 		clock.m2 = (fp & FP_M2_DIV_MASK) >> FP_M2_DIV_SHIFT;
+> 	}
+>
+>-	if (!IS_GEN(dev_priv, 2)) {
+>+	if (DISPLAY_VER(dev_priv) != 2) {
+> 		if (IS_PINEVIEW(dev_priv))
+> 			clock.p1 = ffs((dpll & DPLL_FPA01_P1_POST_DIV_MASK_PINEVIEW) >>
+> 				DPLL_FPA01_P1_POST_DIV_SHIFT_PINEVIEW);
+>@@ -7340,7 +7340,7 @@ int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_stat
+> 	bool turn_off, turn_on, visible, was_visible;
+> 	int ret;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9 && plane->id != PLANE_CURSOR) {
+>+	if (DISPLAY_VER(dev_priv) >= 9 && plane->id != PLANE_CURSOR) {
+> 		ret = skl_update_scaler_plane(crtc_state, plane_state);
+> 		if (ret)
+> 			return ret;
+>@@ -7381,21 +7381,21 @@ int intel_plane_atomic_calc_changes(const struct intel_crtc_state *old_crtc_stat
+> 		       turn_off, turn_on, mode_changed);
+>
+> 	if (turn_on) {
+>-		if (INTEL_GEN(dev_priv) < 5 && !IS_G4X(dev_priv))
+>+		if (DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv))
+> 			crtc_state->update_wm_pre = true;
+>
+> 		/* must disable cxsr around plane enable/disable */
+> 		if (plane->id != PLANE_CURSOR)
+> 			crtc_state->disable_cxsr = true;
+> 	} else if (turn_off) {
+>-		if (INTEL_GEN(dev_priv) < 5 && !IS_G4X(dev_priv))
+>+		if (DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv))
+> 			crtc_state->update_wm_post = true;
+>
+> 		/* must disable cxsr around plane enable/disable */
+> 		if (plane->id != PLANE_CURSOR)
+> 			crtc_state->disable_cxsr = true;
+> 	} else if (intel_wm_need_update(old_plane_state, plane_state)) {
+>-		if (INTEL_GEN(dev_priv) < 5 && !IS_G4X(dev_priv)) {
+>+		if (DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv)) {
+> 			/* FIXME bollocks */
+> 			crtc_state->update_wm_pre = true;
+> 			crtc_state->update_wm_post = true;
+>@@ -7512,7 +7512,7 @@ static int icl_check_nv12_planes(struct intel_crtc_state *crtc_state)
+> 	struct intel_plane_state *plane_state;
+> 	int i;
+>
+>-	if (INTEL_GEN(dev_priv) < 11)
+>+	if (DISPLAY_VER(dev_priv) < 11)
+> 		return 0;
+>
+> 	/*
+>@@ -7674,7 +7674,7 @@ static int hsw_compute_linetime_wm(struct intel_atomic_state *state,
+> 		intel_atomic_get_new_crtc_state(state, crtc);
+> 	const struct intel_cdclk_state *cdclk_state;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		crtc_state->linetime = skl_linetime_wm(crtc_state);
+> 	else
+> 		crtc_state->linetime = hsw_linetime_wm(crtc_state);
+>@@ -7701,7 +7701,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+> 	bool mode_changed = intel_crtc_needs_modeset(crtc_state);
+> 	int ret;
+>
+>-	if (INTEL_GEN(dev_priv) < 5 && !IS_G4X(dev_priv) &&
+>+	if (DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv) &&
+> 	    mode_changed && !crtc_state->hw.active)
+> 		crtc_state->update_wm_post = true;
+>
+>@@ -7755,7 +7755,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+> 		}
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 9) {
+>+	if (DISPLAY_VER(dev_priv) >= 9) {
+> 		if (mode_changed || crtc_state->update_pipe) {
+> 			ret = skl_update_scaler_crtc(crtc_state);
+> 			if (ret)
+>@@ -7773,7 +7773,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+> 			return ret;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 9 ||
+>+	if (DISPLAY_VER(dev_priv) >= 9 ||
+> 	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv)) {
+> 		ret = hsw_compute_linetime_wm(state, crtc);
+> 		if (ret)
+>@@ -7878,7 +7878,7 @@ compute_baseline_pipe_bpp(struct intel_crtc *crtc,
+> 	if ((IS_G4X(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+> 	    IS_CHERRYVIEW(dev_priv)))
+> 		bpp = 10*3;
+>-	else if (INTEL_GEN(dev_priv) >= 5)
+>+	else if (DISPLAY_VER(dev_priv) >= 5)
+> 		bpp = 12*3;
+> 	else
+> 		bpp = 8*3;
+>@@ -8147,7 +8147,7 @@ static void intel_dump_pipe_config(const struct intel_crtc_state *pipe_config,
+> 	drm_dbg_kms(&dev_priv->drm, "linetime: %d, ips linetime: %d\n",
+> 		    pipe_config->linetime, pipe_config->ips_linetime);
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		drm_dbg_kms(&dev_priv->drm,
+> 			    "num_scalers: %d, scaler_users: 0x%x, scaler_id: %d\n",
+> 			    crtc->num_scalers,
+>@@ -8723,7 +8723,7 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
+> 		return dev_priv->params.fastboot;
+>
+> 	/* Enable fastboot by default on Skylake and newer */
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		return true;
+>
+> 	/* Enable fastboot by default on VLV and CHV */
+>@@ -8935,7 +8935,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+> 	PIPE_CONF_CHECK_I(lane_count);
+> 	PIPE_CONF_CHECK_X(lane_lat_optim_mask);
+>
+>-	if (INTEL_GEN(dev_priv) < 8) {
+>+	if (DISPLAY_VER(dev_priv) < 8) {
+> 		PIPE_CONF_CHECK_M_N(dp_m_n);
+>
+> 		if (current_config->has_drrs)
+>@@ -8994,7 +8994,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>
+> 	PIPE_CONF_CHECK_I(output_format);
+> 	PIPE_CONF_CHECK_BOOL(has_hdmi_sink);
+>-	if ((INTEL_GEN(dev_priv) < 8 && !IS_HASWELL(dev_priv)) ||
+>+	if ((DISPLAY_VER(dev_priv) < 8 && !IS_HASWELL(dev_priv)) ||
+> 	    IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> 		PIPE_CONF_CHECK_BOOL(limited_color_range);
+>
+>@@ -9009,7 +9009,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>
+> 	PIPE_CONF_CHECK_X(gmch_pfit.control);
+> 	/* pfit ratios are autocomputed by the hw on gen4+ */
+>-	if (INTEL_GEN(dev_priv) < 4)
+>+	if (DISPLAY_VER(dev_priv) < 4)
+> 		PIPE_CONF_CHECK_X(gmch_pfit.pgm_ratios);
+> 	PIPE_CONF_CHECK_X(gmch_pfit.lvds_border_bits);
+>
+>@@ -9093,7 +9093,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+> 		PIPE_CONF_CHECK_X(dsi_pll.ctrl);
+> 		PIPE_CONF_CHECK_X(dsi_pll.div);
+>
+>-		if (IS_G4X(dev_priv) || INTEL_GEN(dev_priv) >= 5)
+>+		if (IS_G4X(dev_priv) || DISPLAY_VER(dev_priv) >= 5)
+> 			PIPE_CONF_CHECK_I(pipe_bpp);
+>
+> 		PIPE_CONF_CHECK_CLOCK_FUZZY(hw.pipe_mode.crtc_clock);
+>@@ -9179,7 +9179,7 @@ static void verify_wm_state(struct intel_crtc *crtc,
+> 	struct intel_plane *plane;
+> 	u8 hw_enabled_slices;
+>
+>-	if (INTEL_GEN(dev_priv) < 9 || !new_crtc_state->hw.active)
+>+	if (DISPLAY_VER(dev_priv) < 9 || !new_crtc_state->hw.active)
+> 		return;
+>
+> 	hw = kzalloc(sizeof(*hw), GFP_KERNEL);
+>@@ -9192,7 +9192,7 @@ static void verify_wm_state(struct intel_crtc *crtc,
+>
+> 	hw_enabled_slices = intel_enabled_dbuf_slices_mask(dev_priv);
+>
+>-	if (INTEL_GEN(dev_priv) >= 11 &&
+>+	if (DISPLAY_VER(dev_priv) >= 11 &&
+> 	    hw_enabled_slices != dev_priv->dbuf.enabled_slices)
+> 		drm_err(&dev_priv->drm,
+> 			"mismatch in DBUF Slices (expected 0x%x, got 0x%x)\n",
+>@@ -9572,7 +9572,7 @@ intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state)
+> 	 * However if queried just before the start of vblank we'll get an
+> 	 * answer that's slightly in the future.
+> 	 */
+>-	if (IS_GEN(dev_priv, 2)) {
+>+	if (DISPLAY_VER(dev_priv) == 2) {
+> 		int vtotal;
+>
+> 		vtotal = adjusted_mode.crtc_vtotal;
+>@@ -9779,7 +9779,7 @@ static bool active_planes_affects_min_cdclk(struct drm_i915_private *dev_priv)
+> 	/* See {hsw,vlv,ivb}_plane_ratio() */
+> 	return IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv) ||
+> 		IS_CHERRYVIEW(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
+>-		IS_IVYBRIDGE(dev_priv) || (INTEL_GEN(dev_priv) >= 11);
+>+		IS_IVYBRIDGE(dev_priv) || (DISPLAY_VER(dev_priv) >= 11);
+> }
+>
+> static int intel_crtc_add_bigjoiner_planes(struct intel_atomic_state *state,
+>@@ -10455,7 +10455,7 @@ void intel_crtc_arm_fifo_underrun(struct intel_crtc *crtc,
+> {
+> 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>
+>-	if (!IS_GEN(dev_priv, 2) || crtc_state->active_planes)
+>+	if (DISPLAY_VER(dev_priv) != 2 || crtc_state->active_planes)
+> 		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, true);
+>
+> 	if (crtc_state->has_pch_encoder) {
+>@@ -10483,7 +10483,7 @@ static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
+> 	intel_set_pipe_src_size(new_crtc_state);
+>
+> 	/* on skylake this is done by detaching scalers */
+>-	if (INTEL_GEN(dev_priv) >= 9) {
+>+	if (DISPLAY_VER(dev_priv) >= 9) {
+> 		skl_detach_scalers(new_crtc_state);
+>
+> 		if (new_crtc_state->pch_pfit.enabled)
+>@@ -10503,11 +10503,11 @@ static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
+> 	 * HSW/BDW only really need this here for fastboot, after
+> 	 * that the value should not change without a full modeset.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 9 ||
+>+	if (DISPLAY_VER(dev_priv) >= 9 ||
+> 	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+> 		hsw_set_linetime_wm(new_crtc_state);
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		icl_set_pipe_chicken(crtc);
+> }
+>
+>@@ -10530,10 +10530,10 @@ static void commit_pipe_config(struct intel_atomic_state *state,
+> 		    new_crtc_state->update_pipe)
+> 			intel_color_commit(new_crtc_state);
+>
+>-		if (INTEL_GEN(dev_priv) >= 9)
+>+		if (DISPLAY_VER(dev_priv) >= 9)
+> 			skl_detach_scalers(new_crtc_state);
+>
+>-		if (INTEL_GEN(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
+>+		if (DISPLAY_VER(dev_priv) >= 9 || IS_BROADWELL(dev_priv))
+> 			bdw_set_pipemisc(new_crtc_state);
+>
+> 		if (new_crtc_state->update_pipe)
+>@@ -10599,7 +10599,7 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+>
+> 	commit_pipe_config(state, crtc);
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		skl_update_planes_on_crtc(state, crtc);
+> 	else
+> 		i9xx_update_planes_on_crtc(state, crtc);
+>@@ -11073,7 +11073,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+> 		 * chance of catching underruns with the intermediate watermarks
+> 		 * vs. the new plane configuration.
+> 		 */
+>-		if (IS_GEN(dev_priv, 2) && planes_enabling(old_crtc_state, new_crtc_state))
+>+		if (DISPLAY_VER(dev_priv) == 2 && planes_enabling(old_crtc_state, new_crtc_state))
+> 			intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, true);
+>
+> 		if (dev_priv->display.optimize_watermarks)
+>@@ -11209,7 +11209,7 @@ static int intel_atomic_commit(struct drm_device *dev,
+> 	 * FIXME doing watermarks and fb cleanup from a vblank worker
+> 	 * (assuming we had any) would solve these problems.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 9 && state->base.legacy_cursor_update) {
+>+	if (DISPLAY_VER(dev_priv) < 9 && state->base.legacy_cursor_update) {
+> 		struct intel_crtc_state *new_crtc_state;
+> 		struct intel_crtc *crtc;
+> 		int i;
+>@@ -11306,7 +11306,7 @@ static void add_rps_boost_after_vblank(struct drm_crtc *crtc,
+> 	if (!dma_fence_is_i915(fence))
+> 		return;
+>
+>-	if (INTEL_GEN(to_i915(crtc->dev)) < 6)
+>+	if (DISPLAY_VER(to_i915(crtc->dev)) < 6)
+> 		return;
+>
+> 	if (drm_crtc_vblank_get(crtc))
+>@@ -11607,7 +11607,7 @@ static bool ilk_has_edp_a(struct drm_i915_private *dev_priv)
+>
+> static bool intel_ddi_crt_present(struct drm_i915_private *dev_priv)
+> {
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		return false;
+>
+> 	if (IS_HSW_ULT(dev_priv) || IS_BDW_ULT(dev_priv))
+>@@ -11648,7 +11648,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+> 		intel_ddi_init(dev_priv, PORT_B);
+> 		intel_ddi_init(dev_priv, PORT_TC1);
+> 		intel_ddi_init(dev_priv, PORT_TC2);
+>-	} else if (INTEL_GEN(dev_priv) >= 12) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 12) {
+> 		intel_ddi_init(dev_priv, PORT_A);
+> 		intel_ddi_init(dev_priv, PORT_B);
+> 		intel_ddi_init(dev_priv, PORT_TC1);
+>@@ -11664,7 +11664,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+> 		intel_ddi_init(dev_priv, PORT_C);
+> 		intel_ddi_init(dev_priv, PORT_D);
+> 		icl_dsi_init(dev_priv);
+>-	} else if (IS_GEN(dev_priv, 11)) {
+>+	} else if (DISPLAY_VER(dev_priv) == 11) {
+> 		intel_ddi_init(dev_priv, PORT_A);
+> 		intel_ddi_init(dev_priv, PORT_B);
+> 		intel_ddi_init(dev_priv, PORT_C);
+>@@ -11821,7 +11821,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+> 	} else if (IS_PINEVIEW(dev_priv)) {
+> 		intel_lvds_init(dev_priv);
+> 		intel_crt_init(dev_priv);
+>-	} else if (IS_GEN_RANGE(dev_priv, 3, 4)) {
+>+	} else if ((DISPLAY_VER(dev_priv) >= 3 && DISPLAY_VER(dev_priv) <= 4)) {
+> 		bool found = false;
+>
+> 		if (IS_MOBILE(dev_priv))
+>@@ -11865,7 +11865,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>
+> 		if (SUPPORTS_TV(dev_priv))
+> 			intel_tv_init(dev_priv);
+>-	} else if (IS_GEN(dev_priv, 2)) {
+>+	} else if (DISPLAY_VER(dev_priv) == 2) {
+> 		if (IS_I85X(dev_priv))
+> 			intel_lvds_init(dev_priv);
+>
+>@@ -11985,7 +11985,7 @@ static int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> 	 * gen2/3 display engine uses the fence if present,
+> 	 * so the tiling mode must match the fb modifier exactly.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 4 &&
+>+	if (DISPLAY_VER(dev_priv) < 4 &&
+> 	    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
+> 		drm_dbg_kms(&dev_priv->drm,
+> 			    "tiling_mode must match fb modifier exactly on gen2/3\n");
+>@@ -12130,18 +12130,18 @@ intel_mode_valid(struct drm_device *dev,
+> 		return MODE_BAD;
+>
+> 	/* Transcoder timing limits */
+>-	if (INTEL_GEN(dev_priv) >= 11) {
+>+	if (DISPLAY_VER(dev_priv) >= 11) {
+> 		hdisplay_max = 16384;
+> 		vdisplay_max = 8192;
+> 		htotal_max = 16384;
+> 		vtotal_max = 8192;
+>-	} else if (INTEL_GEN(dev_priv) >= 9 ||
+>+	} else if (DISPLAY_VER(dev_priv) >= 9 ||
+> 		   IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv)) {
+> 		hdisplay_max = 8192; /* FDI max 4096 handled elsewhere */
+> 		vdisplay_max = 4096;
+> 		htotal_max = 8192;
+> 		vtotal_max = 8192;
+>-	} else if (INTEL_GEN(dev_priv) >= 3) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 3) {
+> 		hdisplay_max = 4096;
+> 		vdisplay_max = 4096;
+> 		htotal_max = 8192;
+>@@ -12165,7 +12165,7 @@ intel_mode_valid(struct drm_device *dev,
+> 	    mode->vtotal > vtotal_max)
+> 		return MODE_V_ILLEGAL;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5) {
+>+	if (DISPLAY_VER(dev_priv) >= 5) {
+> 		if (mode->hdisplay < 64 ||
+> 		    mode->htotal - mode->hdisplay < 32)
+> 			return MODE_H_ILLEGAL;
+>@@ -12194,7 +12194,7 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> 	 * intel_mode_valid() should be
+> 	 * sufficient on older platforms.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 9)
+>+	if (DISPLAY_VER(dev_priv) < 9)
+> 		return MODE_OK;
+>
+> 	/*
+>@@ -12202,7 +12202,7 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+> 	 * plane so let's not advertize modes that are
+> 	 * too big for that.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 11) {
+>+	if (DISPLAY_VER(dev_priv) >= 11) {
+> 		plane_width_max = 5120 << bigjoiner;
+> 		plane_height_max = 4320;
+> 	} else {
+>@@ -12242,7 +12242,7 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
+>
+> 	intel_dpll_init_clock_hook(dev_priv);
+>
+>-	if (INTEL_GEN(dev_priv) >= 9) {
+>+	if (DISPLAY_VER(dev_priv) >= 9) {
+> 		dev_priv->display.get_pipe_config = hsw_get_pipe_config;
+> 		dev_priv->display.crtc_enable = hsw_crtc_enable;
+> 		dev_priv->display.crtc_disable = hsw_crtc_disable;
+>@@ -12267,7 +12267,7 @@ void intel_init_display_hooks(struct drm_i915_private *dev_priv)
+>
+> 	intel_fdi_init_hook(dev_priv);
+>
+>-	if (INTEL_GEN(dev_priv) >= 9) {
+>+	if (DISPLAY_VER(dev_priv) >= 9) {
+> 		dev_priv->display.commit_modeset_enables = skl_commit_modeset_enables;
+> 		dev_priv->display.get_initial_plane_config = skl_get_initial_plane_config;
+> 	} else {
+>@@ -12523,13 +12523,13 @@ static void intel_mode_config_init(struct drm_i915_private *i915)
+> 	 * Maximum framebuffer dimensions, chosen to match
+> 	 * the maximum render engine surface size on gen4+.
+> 	 */
+>-	if (INTEL_GEN(i915) >= 7) {
+>+	if (DISPLAY_VER(i915) >= 7) {
+> 		mode_config->max_width = 16384;
+> 		mode_config->max_height = 16384;
+>-	} else if (INTEL_GEN(i915) >= 4) {
+>+	} else if (DISPLAY_VER(i915) >= 4) {
+> 		mode_config->max_width = 8192;
+> 		mode_config->max_height = 8192;
+>-	} else if (IS_GEN(i915, 3)) {
+>+	} else if (DISPLAY_VER(i915) == 3) {
+> 		mode_config->max_width = 4096;
+> 		mode_config->max_height = 4096;
+> 	} else {
+>@@ -12872,7 +12872,7 @@ intel_sanitize_plane_mapping(struct drm_i915_private *dev_priv)
+> {
+> 	struct intel_crtc *crtc;
+>
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		return;
+>
+> 	for_each_intel_crtc(&dev_priv->drm, crtc) {
+>@@ -12931,7 +12931,7 @@ static void intel_sanitize_frame_start_delay(const struct intel_crtc_state *crtc
+> 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9 ||
+>+	if (DISPLAY_VER(dev_priv) >= 9 ||
+> 	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv)) {
+> 		i915_reg_t reg = CHICKEN_TRANS(cpu_transcoder);
+> 		u32 val;
+>@@ -13003,7 +13003,7 @@ static void intel_sanitize_crtc(struct intel_crtc *crtc,
+> 		 * Disable any background color set by the BIOS, but enable the
+> 		 * gamma and CSC to match how we program our planes.
+> 		 */
+>-		if (INTEL_GEN(dev_priv) >= 9)
+>+		if (DISPLAY_VER(dev_priv) >= 9)
+> 			intel_de_write(dev_priv, SKL_BOTTOM_COLOR(crtc->pipe),
+> 				       SKL_BOTTOM_COLOR_GAMMA_ENABLE | SKL_BOTTOM_COLOR_CSC_ENABLE);
+> 	}
+>@@ -13328,7 +13328,7 @@ static void intel_modeset_readout_hw_state(struct drm_device *dev)
+> 			 */
+> 			if (plane_state->uapi.visible && plane->min_cdclk) {
+> 				if (crtc_state->double_wide ||
+>-				    INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+				    DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 					crtc_state->min_cdclk[plane->id] =
+> 						DIV_ROUND_UP(crtc_state->pixel_rate, 2);
+> 				else
+>@@ -13419,7 +13419,7 @@ static void intel_early_display_was(struct drm_i915_private *dev_priv)
+> 	 * Display WA #1185 WaDisableDARBFClkGating:cnl,glk,icl,ehl,tgl
+> 	 * Also known as Wa_14010480278.
+> 	 */
+>-	if (IS_GEN_RANGE(dev_priv, 10, 12) || IS_GEMINILAKE(dev_priv))
+>+	if ((DISPLAY_VER(dev_priv) >= 10 && DISPLAY_VER(dev_priv) <= 12) || IS_GEMINILAKE(dev_priv))
+> 		intel_de_write(dev_priv, GEN9_CLKGATE_DIS_0,
+> 			       intel_de_read(dev_priv, GEN9_CLKGATE_DIS_0) | DARBF_GATING_DIS);
+>
+>@@ -13574,7 +13574,7 @@ intel_modeset_setup_hw_state(struct drm_device *dev,
+> 	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+> 		vlv_wm_get_hw_state(dev_priv);
+> 		vlv_wm_sanitize(dev_priv);
+>-	} else if (INTEL_GEN(dev_priv) >= 9) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 9) {
+> 		skl_wm_get_hw_state(dev_priv);
+> 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+> 		ilk_wm_get_hw_state(dev_priv);
+>@@ -13843,16 +13843,16 @@ intel_display_capture_error_state(struct drm_i915_private *dev_priv)
+>
+> 		error->plane[i].control = intel_de_read(dev_priv, DSPCNTR(i));
+> 		error->plane[i].stride = intel_de_read(dev_priv, DSPSTRIDE(i));
+>-		if (INTEL_GEN(dev_priv) <= 3) {
+>+		if (DISPLAY_VER(dev_priv) <= 3) {
+> 			error->plane[i].size = intel_de_read(dev_priv,
+> 							     DSPSIZE(i));
+> 			error->plane[i].pos = intel_de_read(dev_priv,
+> 							    DSPPOS(i));
+> 		}
+>-		if (INTEL_GEN(dev_priv) <= 7 && !IS_HASWELL(dev_priv))
+>+		if (DISPLAY_VER(dev_priv) <= 7 && !IS_HASWELL(dev_priv))
+> 			error->plane[i].addr = intel_de_read(dev_priv,
+> 							     DSPADDR(i));
+>-		if (INTEL_GEN(dev_priv) >= 4) {
+>+		if (DISPLAY_VER(dev_priv) >= 4) {
+> 			error->plane[i].surface = intel_de_read(dev_priv,
+> 								DSPSURF(i));
+> 			error->plane[i].tile_offset = intel_de_read(dev_priv,
+>@@ -13926,13 +13926,13 @@ intel_display_print_error_state(struct drm_i915_error_state_buf *m,
+> 		err_printf(m, "Plane [%d]:\n", i);
+> 		err_printf(m, "  CNTR: %08x\n", error->plane[i].control);
+> 		err_printf(m, "  STRIDE: %08x\n", error->plane[i].stride);
+>-		if (INTEL_GEN(dev_priv) <= 3) {
+>+		if (DISPLAY_VER(dev_priv) <= 3) {
+> 			err_printf(m, "  SIZE: %08x\n", error->plane[i].size);
+> 			err_printf(m, "  POS: %08x\n", error->plane[i].pos);
+> 		}
+>-		if (INTEL_GEN(dev_priv) <= 7 && !IS_HASWELL(dev_priv))
+>+		if (DISPLAY_VER(dev_priv) <= 7 && !IS_HASWELL(dev_priv))
+> 			err_printf(m, "  ADDR: %08x\n", error->plane[i].addr);
+>-		if (INTEL_GEN(dev_priv) >= 4) {
+>+		if (DISPLAY_VER(dev_priv) >= 4) {
+> 			err_printf(m, "  SURF: %08x\n", error->plane[i].surface);
+> 			err_printf(m, "  TILEOFF: %08x\n", error->plane[i].tile_offset);
+> 		}
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>index 20194ccfec05..1666aa23092b 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>@@ -58,11 +58,11 @@ static int i915_fbc_status(struct seq_file *m, void *unused)
+> 	if (intel_fbc_is_active(dev_priv)) {
+> 		u32 mask;
+>
+>-		if (INTEL_GEN(dev_priv) >= 8)
+>+		if (DISPLAY_VER(dev_priv) >= 8)
+> 			mask = intel_de_read(dev_priv, IVB_FBC_STATUS2) & BDW_FBC_COMP_SEG_MASK;
+>-		else if (INTEL_GEN(dev_priv) >= 7)
+>+		else if (DISPLAY_VER(dev_priv) >= 7)
+> 			mask = intel_de_read(dev_priv, IVB_FBC_STATUS2) & IVB_FBC_COMP_SEG_MASK;
+>-		else if (INTEL_GEN(dev_priv) >= 5)
+>+		else if (DISPLAY_VER(dev_priv) >= 5)
+> 			mask = intel_de_read(dev_priv, ILK_DPFC_STATUS) & ILK_DPFC_COMP_SEG_MASK;
+> 		else if (IS_G4X(dev_priv))
+> 			mask = intel_de_read(dev_priv, DPFC_STATUS) & DPFC_COMP_SEG_MASK;
+>@@ -83,7 +83,7 @@ static int i915_fbc_false_color_get(void *data, u64 *val)
+> {
+> 	struct drm_i915_private *dev_priv = data;
+>
+>-	if (INTEL_GEN(dev_priv) < 7 || !HAS_FBC(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) < 7 || !HAS_FBC(dev_priv))
+> 		return -ENODEV;
+>
+> 	*val = dev_priv->fbc.false_color;
+>@@ -96,7 +96,7 @@ static int i915_fbc_false_color_set(void *data, u64 val)
+> 	struct drm_i915_private *dev_priv = data;
+> 	u32 reg;
+>
+>-	if (INTEL_GEN(dev_priv) < 7 || !HAS_FBC(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) < 7 || !HAS_FBC(dev_priv))
+> 		return -ENODEV;
+>
+> 	mutex_lock(&dev_priv->fbc.lock);
+>@@ -128,7 +128,7 @@ static int i915_ips_status(struct seq_file *m, void *unused)
+> 	seq_printf(m, "Enabled by kernel parameter: %s\n",
+> 		   yesno(dev_priv->params.enable_ips));
+>
+>-	if (INTEL_GEN(dev_priv) >= 8) {
+>+	if (DISPLAY_VER(dev_priv) >= 8) {
+> 		seq_puts(m, "Currently: unknown\n");
+> 	} else {
+> 		if (intel_de_read(dev_priv, IPS_CTL) & IPS_ENABLE)
+>@@ -150,7 +150,7 @@ static int i915_sr_status(struct seq_file *m, void *unused)
+>
+> 	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_INIT);
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		/* no global SR status; inspect per-plane WM */;
+> 	else if (HAS_PCH_SPLIT(dev_priv))
+> 		sr_enabled = intel_de_read(dev_priv, WM1_LP_ILK) & WM1_LP_SR_EN;
+>@@ -550,7 +550,7 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
+> 	seq_printf(m, "version: %d.%d\n", CSR_VERSION_MAJOR(csr->version),
+> 		   CSR_VERSION_MINOR(csr->version));
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		if (IS_DGFX(dev_priv)) {
+> 			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
+> 		} else {
+>@@ -1190,7 +1190,7 @@ static int i915_ddb_info(struct seq_file *m, void *unused)
+> 	struct skl_ddb_entry *entry;
+> 	struct intel_crtc *crtc;
+>
+>-	if (INTEL_GEN(dev_priv) < 9)
+>+	if (DISPLAY_VER(dev_priv) < 9)
+> 		return -ENODEV;
+>
+> 	drm_modeset_lock_all(dev);
+>@@ -1339,7 +1339,7 @@ static int i915_lpsp_status(struct seq_file *m, void *unused)
+> {
+> 	struct drm_i915_private *i915 = node_to_i915(m->private);
+>
+>-	switch (INTEL_GEN(i915)) {
+>+	switch (DISPLAY_VER(i915)) {
+> 	case 12:
+> 	case 11:
+> 		LPSP_STATUS(!intel_lpsp_power_well_enabled(i915, ICL_DISP_PW_3));
+>@@ -1616,7 +1616,7 @@ static void wm_latency_show(struct seq_file *m, const u16 wm[8])
+> 		 * - WM1+ latency values in 0.5us units
+> 		 * - latencies are in us on gen9/vlv/chv
+> 		 */
+>-		if (INTEL_GEN(dev_priv) >= 9 ||
+>+		if (DISPLAY_VER(dev_priv) >= 9 ||
+> 		    IS_VALLEYVIEW(dev_priv) ||
+> 		    IS_CHERRYVIEW(dev_priv) ||
+> 		    IS_G4X(dev_priv))
+>@@ -1636,7 +1636,7 @@ static int pri_wm_latency_show(struct seq_file *m, void *data)
+> 	struct drm_i915_private *dev_priv = m->private;
+> 	const u16 *latencies;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		latencies = dev_priv->wm.skl_latency;
+> 	else
+> 		latencies = dev_priv->wm.pri_latency;
+>@@ -1651,7 +1651,7 @@ static int spr_wm_latency_show(struct seq_file *m, void *data)
+> 	struct drm_i915_private *dev_priv = m->private;
+> 	const u16 *latencies;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		latencies = dev_priv->wm.skl_latency;
+> 	else
+> 		latencies = dev_priv->wm.spr_latency;
+>@@ -1666,7 +1666,7 @@ static int cur_wm_latency_show(struct seq_file *m, void *data)
+> 	struct drm_i915_private *dev_priv = m->private;
+> 	const u16 *latencies;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		latencies = dev_priv->wm.skl_latency;
+> 	else
+> 		latencies = dev_priv->wm.cur_latency;
+>@@ -1680,7 +1680,7 @@ static int pri_wm_latency_open(struct inode *inode, struct file *file)
+> {
+> 	struct drm_i915_private *dev_priv = inode->i_private;
+>
+>-	if (INTEL_GEN(dev_priv) < 5 && !IS_G4X(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) < 5 && !IS_G4X(dev_priv))
+> 		return -ENODEV;
+>
+> 	return single_open(file, pri_wm_latency_show, dev_priv);
+>@@ -1759,7 +1759,7 @@ static ssize_t pri_wm_latency_write(struct file *file, const char __user *ubuf,
+> 	struct drm_i915_private *dev_priv = m->private;
+> 	u16 *latencies;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		latencies = dev_priv->wm.skl_latency;
+> 	else
+> 		latencies = dev_priv->wm.pri_latency;
+>@@ -1774,7 +1774,7 @@ static ssize_t spr_wm_latency_write(struct file *file, const char __user *ubuf,
+> 	struct drm_i915_private *dev_priv = m->private;
+> 	u16 *latencies;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		latencies = dev_priv->wm.skl_latency;
+> 	else
+> 		latencies = dev_priv->wm.spr_latency;
+>@@ -1789,7 +1789,7 @@ static ssize_t cur_wm_latency_write(struct file *file, const char __user *ubuf,
+> 	struct drm_i915_private *dev_priv = m->private;
+> 	u16 *latencies;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		latencies = dev_priv->wm.skl_latency;
+> 	else
+> 		latencies = dev_priv->wm.cur_latency;
+>@@ -1986,7 +1986,7 @@ static int i915_drrs_ctl_set(void *data, u64 val)
+> 	struct drm_device *dev = &dev_priv->drm;
+> 	struct intel_crtc *crtc;
+>
+>-	if (INTEL_GEN(dev_priv) < 7)
+>+	if (DISPLAY_VER(dev_priv) < 7)
+> 		return -ENODEV;
+>
+> 	for_each_intel_crtc(dev, crtc) {
+>@@ -2244,7 +2244,7 @@ static int i915_lpsp_capability_show(struct seq_file *m, void *data)
+> 	if (connector->status != connector_status_connected)
+> 		return -ENODEV;
+>
+>-	switch (INTEL_GEN(i915)) {
+>+	switch (DISPLAY_VER(i915)) {
+> 	case 12:
+> 		/*
+> 		 * Actually TGL can drive LPSP on port till DDI_C
+>@@ -2416,7 +2416,7 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
+> 				    connector, &i915_hdcp_sink_capability_fops);
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 &&
+>+	if (DISPLAY_VER(dev_priv) >= 10 &&
+> 	    ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
+> 	      !to_intel_connector(connector)->mst_port) ||
+> 	     connector->connector_type == DRM_MODE_CONNECTOR_eDP))
+>@@ -2424,7 +2424,7 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
+> 				    connector, &i915_dsc_fec_support_fops);
+>
+> 	/* Legacy panels doesn't lpsp on any platform */
+>-	if ((INTEL_GEN(dev_priv) >= 9 || IS_HASWELL(dev_priv) ||
+>+	if ((DISPLAY_VER(dev_priv) >= 9 || IS_HASWELL(dev_priv) ||
+> 	     IS_BROADWELL(dev_priv)) &&
+> 	     (connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
+> 	     connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+>index 7e0eaa872350..e7546dc5caac 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>@@ -408,7 +408,7 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
+> 	if (power_well->desc->hsw.has_fuses) {
+> 		enum skl_power_gate pg;
+>
+>-		pg = INTEL_GEN(dev_priv) >= 11 ? ICL_PW_CTL_IDX_TO_PG(pw_idx) :
+>+		pg = DISPLAY_VER(dev_priv) >= 11 ? ICL_PW_CTL_IDX_TO_PG(pw_idx) :
+> 						 SKL_PW_CTL_IDX_TO_PG(pw_idx);
+> 		/*
+> 		 * For PW1 we have to wait both for the PW0/PG0 fuse state
+>@@ -441,7 +441,7 @@ static void hsw_power_well_enable(struct drm_i915_private *dev_priv,
+> 	if (power_well->desc->hsw.has_fuses) {
+> 		enum skl_power_gate pg;
+>
+>-		pg = INTEL_GEN(dev_priv) >= 11 ? ICL_PW_CTL_IDX_TO_PG(pw_idx) :
+>+		pg = DISPLAY_VER(dev_priv) >= 11 ? ICL_PW_CTL_IDX_TO_PG(pw_idx) :
+> 						 SKL_PW_CTL_IDX_TO_PG(pw_idx);
+> 		gen9_wait_for_power_well_fuses(dev_priv, pg);
+> 	}
+>@@ -484,7 +484,7 @@ icl_combo_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+> 	intel_de_write(dev_priv, regs->driver,
+> 		       val | HSW_PWR_WELL_CTL_REQ(pw_idx));
+>
+>-	if (INTEL_GEN(dev_priv) < 12) {
+>+	if (DISPLAY_VER(dev_priv) < 12) {
+> 		val = intel_de_read(dev_priv, ICL_PORT_CL_DW12(phy));
+> 		intel_de_write(dev_priv, ICL_PORT_CL_DW12(phy),
+> 			       val | ICL_LANE_ENABLE_AUX);
+>@@ -550,7 +550,7 @@ static void icl_tc_port_assert_ref_held(struct drm_i915_private *dev_priv,
+> 	if (drm_WARN_ON(&dev_priv->drm, !dig_port))
+> 		return;
+>
+>-	if (INTEL_GEN(dev_priv) == 11 && dig_port->tc_legacy_port)
+>+	if (DISPLAY_VER(dev_priv) == 11 && dig_port->tc_legacy_port)
+> 		return;
+>
+> 	drm_WARN_ON(&dev_priv->drm, !intel_tc_port_ref_held(dig_port));
+>@@ -619,14 +619,14 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
+> 	 * exit sequence.
+> 	 */
+> 	timeout_expected = is_tbt;
+>-	if (INTEL_GEN(dev_priv) == 11 && dig_port->tc_legacy_port) {
+>+	if (DISPLAY_VER(dev_priv) == 11 && dig_port->tc_legacy_port) {
+> 		icl_tc_cold_exit(dev_priv);
+> 		timeout_expected = true;
+> 	}
+>
+> 	hsw_wait_for_power_well_enable(dev_priv, power_well, timeout_expected);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12 && !is_tbt) {
+>+	if (DISPLAY_VER(dev_priv) >= 12 && !is_tbt) {
+> 		enum tc_port tc_port;
+>
+> 		tc_port = TGL_AUX_PW_TO_TC_PORT(power_well->desc->hsw.idx);
+>@@ -709,7 +709,7 @@ static bool hsw_power_well_enabled(struct drm_i915_private *dev_priv,
+> 	 * BIOS's own request bits, which are forced-on for these power wells
+> 	 * when exiting DC5/6.
+> 	 */
+>-	if (IS_GEN(dev_priv, 9) && !IS_GEN9_LP(dev_priv) &&
+>+	if (DISPLAY_VER(dev_priv) == 9 && !IS_GEN9_LP(dev_priv) &&
+> 	    (id == SKL_DISP_PW_1 || id == SKL_DISP_PW_MISC_IO))
+> 		val |= intel_de_read(dev_priv, regs->bios);
+>
+>@@ -804,10 +804,10 @@ static u32 gen9_dc_mask(struct drm_i915_private *dev_priv)
+>
+> 	mask = DC_STATE_EN_UPTO_DC5;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		mask |= DC_STATE_EN_DC3CO | DC_STATE_EN_UPTO_DC6
+> 					  | DC_STATE_EN_DC9;
+>-	else if (IS_GEN(dev_priv, 11))
+>+	else if (DISPLAY_VER(dev_priv) == 11)
+> 		mask |= DC_STATE_EN_UPTO_DC6 | DC_STATE_EN_DC9;
+> 	else if (IS_GEN9_LP(dev_priv))
+> 		mask |= DC_STATE_EN_DC9;
+>@@ -1035,7 +1035,7 @@ static void assert_can_enable_dc5(struct drm_i915_private *dev_priv)
+> 	enum i915_power_well_id high_pg;
+>
+> 	/* Power wells at this level and above must be disabled for DC5 entry */
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		high_pg = ICL_DISP_PW_3;
+> 	else
+> 		high_pg = SKL_DISP_PW_2;
+>@@ -1192,7 +1192,7 @@ static void gen9_disable_dc_states(struct drm_i915_private *dev_priv)
+> 	if (IS_GEN9_LP(dev_priv))
+> 		bxt_verify_ddi_phy_power_wells(dev_priv);
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		/*
+> 		 * DMC retains HW context only for port A, the other combo
+> 		 * PHY's HW context for port B is lost after DC transitions,
+>@@ -4535,9 +4535,9 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
+>
+> 	if (IS_DG1(dev_priv))
+> 		max_dc = 3;
+>-	else if (INTEL_GEN(dev_priv) >= 12)
+>+	else if (DISPLAY_VER(dev_priv) >= 12)
+> 		max_dc = 4;
+>-	else if (INTEL_GEN(dev_priv) >= 10 || IS_GEN9_BC(dev_priv))
+>+	else if (DISPLAY_VER(dev_priv) >= 10 || IS_GEN9_BC(dev_priv))
+> 		max_dc = 2;
+> 	else if (IS_GEN9_LP(dev_priv))
+> 		max_dc = 1;
+>@@ -4549,7 +4549,7 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
+> 	 * not depending on the DMC firmware. It's needed by system
+> 	 * suspend/resume, so allow it unconditionally.
+> 	 */
+>-	mask = IS_GEN9_LP(dev_priv) || INTEL_GEN(dev_priv) >= 11 ?
+>+	mask = IS_GEN9_LP(dev_priv) || DISPLAY_VER(dev_priv) >= 11 ?
+> 	       DC_STATE_EN_DC9 : 0;
+>
+> 	if (!dev_priv->params.disable_power_well)
+>@@ -4678,9 +4678,9 @@ int intel_power_domains_init(struct drm_i915_private *dev_priv)
+> 					   BIT_ULL(TGL_DISP_PW_TC_COLD_OFF));
+> 	} else if (IS_ROCKETLAKE(dev_priv)) {
+> 		err = set_power_wells(power_domains, rkl_power_wells);
+>-	} else if (IS_GEN(dev_priv, 12)) {
+>+	} else if (DISPLAY_VER(dev_priv) == 12) {
+> 		err = set_power_wells(power_domains, tgl_power_wells);
+>-	} else if (IS_GEN(dev_priv, 11)) {
+>+	} else if (DISPLAY_VER(dev_priv) == 11) {
+> 		err = set_power_wells(power_domains, icl_power_wells);
+> 	} else if (IS_CNL_WITH_PORT_F(dev_priv)) {
+> 		err = set_power_wells(power_domains, cnl_power_wells);
+>@@ -4837,7 +4837,7 @@ static void icl_mbus_init(struct drm_i915_private *dev_priv)
+> 	 * expect us to program the abox_ctl0 register as well, even though
+> 	 * we don't have to program other instance-0 registers like BW_BUDDY.
+> 	 */
+>-	if (IS_GEN(dev_priv, 12))
+>+	if (DISPLAY_VER(dev_priv) == 12)
+> 		abox_regs |= BIT(0);
+>
+> 	for_each_set_bit(i, &abox_regs, sizeof(abox_regs))
+>@@ -5396,7 +5396,7 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+> 	/* 4. Enable CDCLK. */
+> 	intel_cdclk_init_hw(dev_priv);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		gen12_dbuf_slices_config(dev_priv);
+>
+> 	/* 5. Enable DBUF. */
+>@@ -5406,14 +5406,14 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+> 	icl_mbus_init(dev_priv);
+>
+> 	/* 7. Program arbiter BW_BUDDY registers */
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		tgl_bw_buddy_init(dev_priv);
+>
+> 	if (resume && dev_priv->csr.dmc_payload)
+> 		intel_csr_load_program(dev_priv);
+>
+> 	/* Wa_14011508470 */
+>-	if (IS_GEN(dev_priv, 12)) {
+>+	if (DISPLAY_VER(dev_priv) == 12) {
+> 		val = DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
+> 		      DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR;
+> 		intel_uncore_rmw(&dev_priv->uncore, GEN11_CHICKEN_DCPR_2, 0, val);
+>@@ -5619,7 +5619,7 @@ void intel_power_domains_init_hw(struct drm_i915_private *i915, bool resume)
+>
+> 	power_domains->initializing = true;
+>
+>-	if (INTEL_GEN(i915) >= 11) {
+>+	if (DISPLAY_VER(i915) >= 11) {
+> 		icl_display_core_init(i915, resume);
+> 	} else if (IS_CANNONLAKE(i915)) {
+> 		cnl_display_core_init(i915, resume);
+>@@ -5780,7 +5780,7 @@ void intel_power_domains_suspend(struct drm_i915_private *i915,
+> 	intel_display_power_flush_work(i915);
+> 	intel_power_domains_verify_state(i915);
+>
+>-	if (INTEL_GEN(i915) >= 11)
+>+	if (DISPLAY_VER(i915) >= 11)
+> 		icl_display_core_uninit(i915);
+> 	else if (IS_CANNONLAKE(i915))
+> 		cnl_display_core_uninit(i915);
+>@@ -5908,7 +5908,7 @@ static void intel_power_domains_verify_state(struct drm_i915_private *i915)
+>
+> void intel_display_power_suspend_late(struct drm_i915_private *i915)
+> {
+>-	if (INTEL_GEN(i915) >= 11 || IS_GEN9_LP(i915)) {
+>+	if (DISPLAY_VER(i915) >= 11 || IS_GEN9_LP(i915)) {
+> 		bxt_enable_dc9(i915);
+> 		/* Tweaked Wa_14010685332:icp,jsp,mcc */
+> 		if (INTEL_PCH_TYPE(i915) >= PCH_ICP && INTEL_PCH_TYPE(i915) <= PCH_MCC)
+>@@ -5921,7 +5921,7 @@ void intel_display_power_suspend_late(struct drm_i915_private *i915)
+>
+> void intel_display_power_resume_early(struct drm_i915_private *i915)
+> {
+>-	if (INTEL_GEN(i915) >= 11 || IS_GEN9_LP(i915)) {
+>+	if (DISPLAY_VER(i915) >= 11 || IS_GEN9_LP(i915)) {
+> 		gen9_sanitize_dc_state(i915);
+> 		bxt_disable_dc9(i915);
+> 		/* Tweaked Wa_14010685332:icp,jsp,mcc */
+>@@ -5935,7 +5935,7 @@ void intel_display_power_resume_early(struct drm_i915_private *i915)
+>
+> void intel_display_power_suspend(struct drm_i915_private *i915)
+> {
+>-	if (INTEL_GEN(i915) >= 11) {
+>+	if (DISPLAY_VER(i915) >= 11) {
+> 		icl_display_core_uninit(i915);
+> 		bxt_enable_dc9(i915);
+> 	} else if (IS_GEN9_LP(i915)) {
+>@@ -5948,7 +5948,7 @@ void intel_display_power_suspend(struct drm_i915_private *i915)
+>
+> void intel_display_power_resume(struct drm_i915_private *i915)
+> {
+>-	if (INTEL_GEN(i915) >= 11) {
+>+	if (DISPLAY_VER(i915) >= 11) {
+> 		bxt_disable_dc9(i915);
+> 		icl_display_core_init(i915, true);
+> 		if (i915->csr.dmc_payload) {
+>diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>index 31263250e7f9..04bf536f6a12 100644
+>--- a/drivers/gpu/drm/i915/display/intel_dp.c
+>+++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>@@ -261,8 +261,8 @@ bool intel_dp_can_bigjoiner(struct intel_dp *intel_dp)
+> 	struct intel_encoder *encoder = &intel_dig_port->base;
+> 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>
+>-	return INTEL_GEN(dev_priv) >= 12 ||
+>-		(INTEL_GEN(dev_priv) == 11 &&
+>+	return DISPLAY_VER(dev_priv) >= 12 ||
+>+		(DISPLAY_VER(dev_priv) == 11 &&
+> 		 encoder->port != PORT_A);
+> }
+>
+>@@ -339,10 +339,10 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
+> 	drm_WARN_ON(&dev_priv->drm,
+> 		    intel_dp->source_rates || intel_dp->num_source_rates);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10) {
+>+	if (DISPLAY_VER(dev_priv) >= 10) {
+> 		source_rates = cnl_rates;
+> 		size = ARRAY_SIZE(cnl_rates);
+>-		if (IS_GEN(dev_priv, 10))
+>+		if (DISPLAY_VER(dev_priv) == 10)
+> 			max_rate = cnl_max_source_rate(intel_dp);
+> 		else if (IS_JSL_EHL(dev_priv))
+> 			max_rate = ehl_max_source_rate(intel_dp);
+>@@ -530,7 +530,7 @@ u32 intel_dp_mode_to_fec_clock(u32 mode_clock)
+> static int
+> small_joiner_ram_size_bits(struct drm_i915_private *i915)
+> {
+>-	if (INTEL_GEN(i915) >= 11)
+>+	if (DISPLAY_VER(i915) >= 11)
+> 		return 7680 * 8;
+> 	else
+> 		return 6144 * 8;
+>@@ -823,7 +823,7 @@ intel_dp_mode_valid(struct drm_connector *connector,
+> 	 * Output bpp is stored in 6.4 format so right shift by 4 to get the
+> 	 * integer value since we support only integer values of bpp.
+> 	 */
+>-	if ((INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) &&
+>+	if ((DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) &&
+> 	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
+> 		if (intel_dp_is_edp(intel_dp)) {
+> 			dsc_max_output_bpp =
+>@@ -993,10 +993,10 @@ static bool intel_dp_source_supports_fec(struct intel_dp *intel_dp,
+> 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+>
+> 	/* On TGL, FEC is supported on all Pipes */
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		return true;
+>
+>-	if (IS_GEN(dev_priv, 11) && pipe_config->cpu_transcoder != TRANSCODER_A)
+>+	if (DISPLAY_VER(dev_priv) == 11 && pipe_config->cpu_transcoder != TRANSCODER_A)
+> 		return true;
+>
+> 	return false;
+>@@ -1315,7 +1315,7 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+> 		return -EINVAL;
+>
+> 	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		dsc_max_bpc = min_t(u8, 12, conn_state->max_requested_bpc);
+> 	else
+> 		dsc_max_bpc = min_t(u8, 10,
+>@@ -1554,7 +1554,7 @@ static bool intel_dp_port_has_audio(struct drm_i915_private *dev_priv,
+> {
+> 	if (IS_G4X(dev_priv))
+> 		return false;
+>-	if (INTEL_GEN(dev_priv) < 12 && port == PORT_A)
+>+	if (DISPLAY_VER(dev_priv) < 12 && port == PORT_A)
+> 		return false;
+>
+> 	return true;
+>@@ -3681,7 +3681,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
+> 	intel_dp_set_common_rates(intel_dp);
+>
+> 	/* Read the eDP DSC DPCD registers */
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		intel_dp_get_dsc_sink_cap(intel_dp);
+>
+> 	/*
+>@@ -4862,7 +4862,7 @@ int intel_dp_retrain_link(struct intel_encoder *encoder,
+> 			to_intel_crtc_state(crtc->base.state);
+>
+> 		/* retrain on the MST master transcoder */
+>-		if (INTEL_GEN(dev_priv) >= 12 &&
+>+		if (DISPLAY_VER(dev_priv) >= 12 &&
+> 		    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) &&
+> 		    !intel_dp_mst_is_master_trans(crtc_state))
+> 			continue;
+>@@ -4966,7 +4966,7 @@ static int intel_dp_do_phy_test(struct intel_encoder *encoder,
+> 			to_intel_crtc_state(crtc->base.state);
+>
+> 		/* test on the MST master transcoder */
+>-		if (INTEL_GEN(dev_priv) >= 12 &&
+>+		if (DISPLAY_VER(dev_priv) >= 12 &&
+> 		    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) &&
+> 		    !intel_dp_mst_is_master_trans(crtc_state))
+> 			continue;
+>@@ -5417,7 +5417,7 @@ intel_dp_update_420(struct intel_dp *intel_dp)
+> 								 DP_DS_HDMI_BT709_RGB_YCBCR_CONV |
+> 								 DP_DS_HDMI_BT2020_RGB_YCBCR_CONV);
+>
+>-	if (INTEL_GEN(i915) >= 11) {
+>+	if (DISPLAY_VER(i915) >= 11) {
+> 		/* Let PCON convert from RGB->YCbCr if possible */
+> 		if (is_branch && rgb_to_ycbcr && ycbcr_444_to_420) {
+> 			intel_dp->dfp.rgb_to_ycbcr = true;
+>@@ -5535,7 +5535,7 @@ intel_dp_detect(struct drm_connector *connector,
+> 	}
+>
+> 	/* Read DP Sink DSC Cap DPCD regs for DP v1.4 */
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		intel_dp_get_dsc_sink_cap(intel_dp);
+>
+> 	intel_dp_configure_mst(intel_dp);
+>@@ -5922,7 +5922,7 @@ static int intel_dp_connector_atomic_check(struct drm_connector *conn,
+> 	 * We don't enable port sync on BDW due to missing w/as and
+> 	 * due to not having adjusted the modeset sequence appropriately.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 9)
+>+	if (DISPLAY_VER(dev_priv) < 9)
+> 		return 0;
+>
+> 	if (!intel_connector_needs_modeset(state, conn))
+>@@ -6010,10 +6010,10 @@ bool intel_dp_is_port_edp(struct drm_i915_private *dev_priv, enum port port)
+> 	 * eDP not supported on g4x. so bail out early just
+> 	 * for a bit extra safety in case the VBT is bonkers.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 5)
+>+	if (DISPLAY_VER(dev_priv) < 5)
+> 		return false;
+>
+>-	if (INTEL_GEN(dev_priv) < 9 && port == PORT_A)
+>+	if (DISPLAY_VER(dev_priv) < 9 && port == PORT_A)
+> 		return true;
+>
+> 	return intel_bios_is_port_edp(dev_priv, port);
+>@@ -6034,7 +6034,7 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
+> 	intel_attach_broadcast_rgb_property(connector);
+> 	if (HAS_GMCH(dev_priv))
+> 		drm_connector_attach_max_bpc_property(connector, 6, 10);
+>-	else if (INTEL_GEN(dev_priv) >= 5)
+>+	else if (DISPLAY_VER(dev_priv) >= 5)
+> 		drm_connector_attach_max_bpc_property(connector, 6, 12);
+>
+> 	/* Register HDMI colorspace for case of lspcon */
+>@@ -6045,7 +6045,7 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
+> 		intel_attach_dp_colorspace_property(connector);
+> 	}
+>
+>-	if (IS_GEMINILAKE(dev_priv) || INTEL_GEN(dev_priv) >= 11)
+>+	if (IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >= 11)
+> 		drm_object_attach_property(&connector->base,
+> 					   connector->dev->mode_config.hdr_output_metadata_property,
+> 					   0);
+>@@ -6126,7 +6126,7 @@ static void intel_dp_set_drrs_state(struct drm_i915_private *dev_priv,
+> 		return;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 8 && !IS_CHERRYVIEW(dev_priv)) {
+>+	if (DISPLAY_VER(dev_priv) >= 8 && !IS_CHERRYVIEW(dev_priv)) {
+> 		switch (index) {
+> 		case DRRS_HIGH_RR:
+> 			intel_dp_set_m_n(crtc_state, M1_N1);
+>@@ -6139,7 +6139,7 @@ static void intel_dp_set_drrs_state(struct drm_i915_private *dev_priv,
+> 			drm_err(&dev_priv->drm,
+> 				"Unsupported refreshrate type\n");
+> 		}
+>-	} else if (INTEL_GEN(dev_priv) > 6) {
+>+	} else if (DISPLAY_VER(dev_priv) > 6) {
+> 		i915_reg_t reg = PIPECONF(crtc_state->cpu_transcoder);
+> 		u32 val;
+>
+>@@ -6467,7 +6467,7 @@ intel_dp_drrs_init(struct intel_connector *connector,
+> 	INIT_DELAYED_WORK(&dev_priv->drrs.work, intel_edp_drrs_downclock_work);
+> 	mutex_init(&dev_priv->drrs.mutex);
+>
+>-	if (INTEL_GEN(dev_priv) <= 6) {
+>+	if (DISPLAY_VER(dev_priv) <= 6) {
+> 		drm_dbg_kms(&dev_priv->drm,
+> 			    "DRRS supported for Gen7 and above\n");
+> 		return NULL;
+>diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>index 4ba08aa4680b..b7eee37d040a 100644
+>--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>@@ -647,10 +647,10 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+> 	struct intel_encoder *encoder = &dig_port->base;
+> 	enum aux_ch aux_ch = dig_port->aux_ch;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		intel_dp->aux_ch_ctl_reg = tgl_aux_ctl_reg;
+> 		intel_dp->aux_ch_data_reg = tgl_aux_data_reg;
+>-	} else if (INTEL_GEN(dev_priv) >= 9) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 9) {
+> 		intel_dp->aux_ch_ctl_reg = skl_aux_ctl_reg;
+> 		intel_dp->aux_ch_data_reg = skl_aux_data_reg;
+> 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+>@@ -661,7 +661,7 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+> 		intel_dp->aux_ch_data_reg = g4x_aux_data_reg;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		intel_dp->get_aux_clock_divider = skl_get_aux_clock_divider;
+> 	else if (IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
+> 		intel_dp->get_aux_clock_divider = hsw_get_aux_clock_divider;
+>@@ -670,7 +670,7 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+> 	else
+> 		intel_dp->get_aux_clock_divider = g4x_get_aux_clock_divider;
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		intel_dp->get_aux_send_ctl = skl_get_aux_send_ctl;
+> 	else
+> 		intel_dp->get_aux_send_ctl = g4x_get_aux_send_ctl;
+>@@ -678,7 +678,7 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+> 	drm_dp_aux_init(&intel_dp->aux);
+>
+> 	/* Failure to allocate our preferred name is not critical */
+>-	if (INTEL_GEN(dev_priv) >= 12 && aux_ch >= AUX_CH_USBC1)
+>+	if (DISPLAY_VER(dev_priv) >= 12 && aux_ch >= AUX_CH_USBC1)
+> 		intel_dp->aux.name = kasprintf(GFP_KERNEL, "AUX USBC%c/%s",
+> 					       aux_ch - AUX_CH_USBC1 + '1',
+> 					       encoder->base.name);
+>diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>index 906860ad8eb8..2daa3f67791e 100644
+>--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>@@ -177,7 +177,7 @@ intel_dp_mst_transcoder_mask(struct intel_atomic_state *state,
+> 	u8 transcoders = 0;
+> 	int i;
+>
+>-	if (INTEL_GEN(dev_priv) < 12)
+>+	if (DISPLAY_VER(dev_priv) < 12)
+> 		return 0;
+>
+> 	for_each_new_intel_connector_in_state(state, connector, conn_state, i) {
+>@@ -228,7 +228,7 @@ intel_dp_mst_atomic_master_trans_check(struct intel_connector *connector,
+> 	struct drm_connector_list_iter connector_list_iter;
+> 	struct intel_connector *connector_iter;
+>
+>-	if (INTEL_GEN(dev_priv) < 12)
+>+	if (DISPLAY_VER(dev_priv) < 12)
+> 		return  0;
+>
+> 	if (!intel_connector_needs_modeset(state, &connector->base))
+>@@ -390,7 +390,7 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+> 	intel_dp->active_mst_links--;
+> 	last_mst_stream = intel_dp->active_mst_links == 0;
+> 	drm_WARN_ON(&dev_priv->drm,
+>-		    INTEL_GEN(dev_priv) >= 12 && last_mst_stream &&
+>+		    DISPLAY_VER(dev_priv) >= 12 && last_mst_stream &&
+> 		    !intel_dp_mst_is_master_trans(old_crtc_state));
+>
+> 	intel_crtc_vblank_off(old_crtc_state);
+>@@ -414,7 +414,7 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+>
+> 	intel_ddi_disable_transcoder_func(old_crtc_state);
+>
+>-	if (INTEL_GEN(dev_priv) >= 9)
+>+	if (DISPLAY_VER(dev_priv) >= 9)
+> 		skl_scaler_disable(old_crtc_state);
+> 	else
+> 		ilk_pfit_disable(old_crtc_state);
+>@@ -440,7 +440,7 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
+> 	 * From older GENs spec: "Configure Transcoder Clock Select to direct
+> 	 * no clock to the transcoder"
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 12 || !last_mst_stream)
+>+	if (DISPLAY_VER(dev_priv) < 12 || !last_mst_stream)
+> 		intel_ddi_disable_pipe_clock(old_crtc_state);
+>
+>
+>@@ -488,7 +488,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
+> 	intel_mst->connector = connector;
+> 	first_mst_stream = intel_dp->active_mst_links == 0;
+> 	drm_WARN_ON(&dev_priv->drm,
+>-		    INTEL_GEN(dev_priv) >= 12 && first_mst_stream &&
+>+		    DISPLAY_VER(dev_priv) >= 12 && first_mst_stream &&
+> 		    !intel_dp_mst_is_master_trans(pipe_config));
+>
+> 	drm_dbg_kms(&dev_priv->drm, "active links %d\n",
+>@@ -521,7 +521,7 @@ static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
+> 	 * first MST stream, so it's done on the DDI for the first stream and
+> 	 * here for the following ones.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 12 || !first_mst_stream)
+>+	if (DISPLAY_VER(dev_priv) < 12 || !first_mst_stream)
+> 		intel_ddi_enable_pipe_clock(encoder, pipe_config);
+>
+> 	intel_ddi_set_dp_msa(pipe_config, conn_state);
+>@@ -831,7 +831,7 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
+> 	intel_attach_force_audio_property(connector);
+> 	intel_attach_broadcast_rgb_property(connector);
+>
+>-	if (INTEL_GEN(dev_priv) <= 12) {
+>+	if (DISPLAY_VER(dev_priv) <= 12) {
+> 		ret = intel_dp_init_hdcp(dig_port, intel_connector);
+> 		if (ret)
+> 			drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP MST init failed, skipping.\n",
+>@@ -945,10 +945,10 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
+> 	if (!HAS_DP_MST(i915) || intel_dp_is_edp(intel_dp))
+> 		return 0;
+>
+>-	if (INTEL_GEN(i915) < 12 && port == PORT_A)
+>+	if (DISPLAY_VER(i915) < 12 && port == PORT_A)
+> 		return 0;
+>
+>-	if (INTEL_GEN(i915) < 11 && port == PORT_E)
+>+	if (DISPLAY_VER(i915) < 11 && port == PORT_E)
+> 		return 0;
+>
+> 	intel_dp->mst_mgr.cbs = &mst_cbs;
+>diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+>index 166e9a3a8c09..e010acf2a4f6 100644
+>--- a/drivers/gpu/drm/i915/display/intel_dpll.c
+>+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+>@@ -847,7 +847,7 @@ static void i9xx_compute_dpll(struct intel_crtc *crtc,
+> 		dpll |= DPLLB_LVDS_P2_CLOCK_DIV_14;
+> 		break;
+> 	}
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		dpll |= (6 << PLL_LOAD_PULSE_PHASE_SHIFT);
+>
+> 	if (crtc_state->sdvo_tv_clock)
+>@@ -861,7 +861,7 @@ static void i9xx_compute_dpll(struct intel_crtc *crtc,
+> 	dpll |= DPLL_VCO_ENABLE;
+> 	crtc_state->dpll_hw_state.dpll = dpll;
+>
+>-	if (INTEL_GEN(dev_priv) >= 4) {
+>+	if (DISPLAY_VER(dev_priv) >= 4) {
+> 		u32 dpll_md = (crtc_state->pixel_multiplier - 1)
+> 			<< DPLL_MD_UDI_MULTIPLIER_SHIFT;
+> 		crtc_state->dpll_hw_state.dpll_md = dpll_md;
+>@@ -926,7 +926,7 @@ static int hsw_crtc_compute_clock(struct intel_crtc *crtc,
+> 		to_intel_atomic_state(crtc_state->uapi.state);
+>
+> 	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) ||
+>-	    INTEL_GEN(dev_priv) >= 11) {
+>+	    DISPLAY_VER(dev_priv) >= 11) {
+> 		struct intel_encoder *encoder =
+> 			intel_get_crtc_new_encoder(state, crtc_state);
+>
+>@@ -1346,7 +1346,7 @@ static int i8xx_crtc_compute_clock(struct intel_crtc *crtc,
+> void
+> intel_dpll_init_clock_hook(struct drm_i915_private *dev_priv)
+> {
+>-	if (INTEL_GEN(dev_priv) >= 9 || HAS_DDI(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 9 || HAS_DDI(dev_priv))
+> 		dev_priv->display.crtc_compute_clock = hsw_crtc_compute_clock;
+> 	else if (HAS_PCH_SPLIT(dev_priv))
+> 		dev_priv->display.crtc_compute_clock = ilk_crtc_compute_clock;
+>@@ -1358,7 +1358,7 @@ intel_dpll_init_clock_hook(struct drm_i915_private *dev_priv)
+> 		dev_priv->display.crtc_compute_clock = g4x_crtc_compute_clock;
+> 	else if (IS_PINEVIEW(dev_priv))
+> 		dev_priv->display.crtc_compute_clock = pnv_crtc_compute_clock;
+>-	else if (!IS_GEN(dev_priv, 2))
+>+	else if (DISPLAY_VER(dev_priv) != 2)
+> 		dev_priv->display.crtc_compute_clock = i9xx_crtc_compute_clock;
+> 	else
+> 		dev_priv->display.crtc_compute_clock = i8xx_crtc_compute_clock;
+>@@ -1398,7 +1398,7 @@ void i9xx_enable_pll(struct intel_crtc *crtc,
+> 	intel_de_posting_read(dev_priv, reg);
+> 	udelay(150);
+>
+>-	if (INTEL_GEN(dev_priv) >= 4) {
+>+	if (DISPLAY_VER(dev_priv) >= 4) {
+> 		intel_de_write(dev_priv, DPLL_MD(crtc->pipe),
+> 			       crtc_state->dpll_hw_state.dpll_md);
+> 	} else {
+>diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>index 22ee8e13b518..2e08fbbab942 100644
+>--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>@@ -247,7 +247,7 @@ void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_state)
+> 	unsigned int pipe_mask = BIT(crtc->pipe);
+>
+> 	/* PCH only available on ILK+ */
+>-	if (INTEL_GEN(dev_priv) < 5)
+>+	if (DISPLAY_VER(dev_priv) < 5)
+> 		return;
+>
+> 	if (pll == NULL)
+>@@ -3017,7 +3017,7 @@ static bool icl_calc_tbt_pll(struct intel_crtc_state *crtc_state,
+> {
+> 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		switch (dev_priv->dpll.ref_clks.nssc) {
+> 		default:
+> 			MISSING_CASE(dev_priv->dpll.ref_clks.nssc);
+>@@ -3112,7 +3112,7 @@ static void icl_calc_dpll_state(struct drm_i915_private *i915,
+> 			    DPLL_CFGCR1_KDIV(pll_params->kdiv) |
+> 			    DPLL_CFGCR1_PDIV(pll_params->pdiv);
+>
+>-	if (INTEL_GEN(i915) >= 12)
+>+	if (DISPLAY_VER(i915) >= 12)
+> 		pll_state->cfgcr1 |= TGL_DPLL_CFGCR1_CFSELOVRD_NORMAL_XTAL;
+> 	else
+> 		pll_state->cfgcr1 |= DPLL_CFGCR1_CENTRAL_FREQ_8400;
+>@@ -3222,7 +3222,7 @@ static bool icl_calc_mg_pll_state(struct intel_crtc_state *crtc_state,
+> 	u64 tmp;
+> 	bool use_ssc = false;
+> 	bool is_dp = !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI);
+>-	bool is_dkl = INTEL_GEN(dev_priv) >= 12;
+>+	bool is_dkl = DISPLAY_VER(dev_priv) >= 12;
+>
+> 	memset(pll_state, 0, sizeof(*pll_state));
+>
+>@@ -3422,7 +3422,7 @@ static int icl_ddi_mg_pll_get_freq(struct drm_i915_private *dev_priv,
+>
+> 	ref_clock = dev_priv->dpll.ref_clks.nssc;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		m1 = pll_state->mg_pll_div0 & DKL_PLL_DIV0_FBPREDIV_MASK;
+> 		m1 = m1 >> DKL_PLL_DIV0_FBPREDIV_SHIFT;
+> 		m2_int = pll_state->mg_pll_div0 & DKL_PLL_DIV0_FBDIV_INT_MASK;
+>@@ -3884,7 +3884,7 @@ static bool icl_pll_get_hw_state(struct drm_i915_private *dev_priv,
+> 						 RKL_DPLL_CFGCR0(id));
+> 		hw_state->cfgcr1 = intel_de_read(dev_priv,
+> 						 RKL_DPLL_CFGCR1(id));
+>-	} else if (INTEL_GEN(dev_priv) >= 12) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 12) {
+> 		hw_state->cfgcr0 = intel_de_read(dev_priv,
+> 						 TGL_DPLL_CFGCR0(id));
+> 		hw_state->cfgcr1 = intel_de_read(dev_priv,
+>@@ -3941,7 +3941,7 @@ static void icl_dpll_write(struct drm_i915_private *dev_priv,
+> 	} else if (IS_ROCKETLAKE(dev_priv)) {
+> 		cfgcr0_reg = RKL_DPLL_CFGCR0(id);
+> 		cfgcr1_reg = RKL_DPLL_CFGCR1(id);
+>-	} else if (INTEL_GEN(dev_priv) >= 12) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 12) {
+> 		cfgcr0_reg = TGL_DPLL_CFGCR0(id);
+> 		cfgcr1_reg = TGL_DPLL_CFGCR1(id);
+> 	} else {
+>@@ -4172,7 +4172,7 @@ static void mg_pll_enable(struct drm_i915_private *dev_priv,
+>
+> 	icl_pll_power_enable(dev_priv, pll, enable_reg);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		dkl_pll_write(dev_priv, pll);
+> 	else
+> 		icl_mg_pll_write(dev_priv, pll);
+>@@ -4433,11 +4433,11 @@ void intel_shared_dpll_init(struct drm_device *dev)
+> 		dpll_mgr = &dg1_pll_mgr;
+> 	else if (IS_ROCKETLAKE(dev_priv))
+> 		dpll_mgr = &rkl_pll_mgr;
+>-	else if (INTEL_GEN(dev_priv) >= 12)
+>+	else if (DISPLAY_VER(dev_priv) >= 12)
+> 		dpll_mgr = &tgl_pll_mgr;
+> 	else if (IS_JSL_EHL(dev_priv))
+> 		dpll_mgr = &ehl_pll_mgr;
+>-	else if (INTEL_GEN(dev_priv) >= 11)
+>+	else if (DISPLAY_VER(dev_priv) >= 11)
+> 		dpll_mgr = &icl_pll_mgr;
+> 	else if (IS_CANNONLAKE(dev_priv))
+> 		dpll_mgr = &cnl_pll_mgr;
+>diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>index e349caef1926..c2a2cd1f84dc 100644
+>--- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>@@ -203,7 +203,7 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
+> 		break;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) < 11)
+>+	if (DISPLAY_VER(dev_priv) < 11)
+> 		vlv_dsi_wait_for_fifo_empty(intel_dsi, port);
+>
+> out:
+>@@ -380,7 +380,7 @@ static const u8 *mipi_exec_gpio(struct intel_dsi *intel_dsi, const u8 *data)
+> 	/* pull up/down */
+> 	value = *data++ & 1;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		icl_exec_gpio(dev_priv, gpio_source, gpio_index, value);
+> 	else if (IS_VALLEYVIEW(dev_priv))
+> 		vlv_exec_gpio(dev_priv, gpio_source, gpio_number, value);
+>diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+>index c7beda2e35bc..f888e1c6ff7a 100644
+>--- a/drivers/gpu/drm/i915/display/intel_fbc.c
+>+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+>@@ -67,9 +67,9 @@ static int intel_fbc_calculate_cfb_size(struct drm_i915_private *dev_priv,
+> 	int lines;
+>
+> 	intel_fbc_get_plane_source_size(cache, NULL, &lines);
+>-	if (IS_GEN(dev_priv, 7))
+>+	if (DISPLAY_VER(dev_priv) == 7)
+> 		lines = min(lines, 2048);
+>-	else if (INTEL_GEN(dev_priv) >= 8)
+>+	else if (DISPLAY_VER(dev_priv) >= 8)
+> 		lines = min(lines, 2560);
+>
+> 	/* Hardware needs the full buffer stride, not just the active area. */
+>@@ -109,7 +109,7 @@ static void i8xx_fbc_activate(struct drm_i915_private *dev_priv)
+> 		cfb_pitch = params->fb.stride;
+>
+> 	/* FBC_CTL wants 32B or 64B units */
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		cfb_pitch = (cfb_pitch / 32) - 1;
+> 	else
+> 		cfb_pitch = (cfb_pitch / 64) - 1;
+>@@ -118,7 +118,7 @@ static void i8xx_fbc_activate(struct drm_i915_private *dev_priv)
+> 	for (i = 0; i < (FBC_LL_SIZE / 32) + 1; i++)
+> 		intel_de_write(dev_priv, FBC_TAG(i), 0);
+>
+>-	if (IS_GEN(dev_priv, 4)) {
+>+	if (DISPLAY_VER(dev_priv) == 4) {
+> 		u32 fbc_ctl2;
+>
+> 		/* Set it up... */
+>@@ -222,9 +222,9 @@ static void snb_fbc_recompress(struct drm_i915_private *dev_priv)
+>
+> static void intel_fbc_recompress(struct drm_i915_private *dev_priv)
+> {
+>-	if (INTEL_GEN(dev_priv) >= 6)
+>+	if (DISPLAY_VER(dev_priv) >= 6)
+> 		snb_fbc_recompress(dev_priv);
+>-	else if (INTEL_GEN(dev_priv) >= 4)
+>+	else if (DISPLAY_VER(dev_priv) >= 4)
+> 		i965_fbc_recompress(dev_priv);
+> 	else
+> 		i8xx_fbc_recompress(dev_priv);
+>@@ -354,7 +354,7 @@ static void gen7_fbc_activate(struct drm_i915_private *dev_priv)
+>
+> static bool intel_fbc_hw_is_active(struct drm_i915_private *dev_priv)
+> {
+>-	if (INTEL_GEN(dev_priv) >= 5)
+>+	if (DISPLAY_VER(dev_priv) >= 5)
+> 		return ilk_fbc_is_active(dev_priv);
+> 	else if (IS_GM45(dev_priv))
+> 		return g4x_fbc_is_active(dev_priv);
+>@@ -371,9 +371,9 @@ static void intel_fbc_hw_activate(struct drm_i915_private *dev_priv)
+> 	fbc->active = true;
+> 	fbc->activated = true;
+>
+>-	if (INTEL_GEN(dev_priv) >= 7)
+>+	if (DISPLAY_VER(dev_priv) >= 7)
+> 		gen7_fbc_activate(dev_priv);
+>-	else if (INTEL_GEN(dev_priv) >= 5)
+>+	else if (DISPLAY_VER(dev_priv) >= 5)
+> 		ilk_fbc_activate(dev_priv);
+> 	else if (IS_GM45(dev_priv))
+> 		g4x_fbc_activate(dev_priv);
+>@@ -389,7 +389,7 @@ static void intel_fbc_hw_deactivate(struct drm_i915_private *dev_priv)
+>
+> 	fbc->active = false;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5)
+>+	if (DISPLAY_VER(dev_priv) >= 5)
+> 		ilk_fbc_deactivate(dev_priv);
+> 	else if (IS_GM45(dev_priv))
+> 		g4x_fbc_deactivate(dev_priv);
+>@@ -426,7 +426,7 @@ static void intel_fbc_deactivate(struct drm_i915_private *dev_priv,
+>
+> static u64 intel_fbc_cfb_base_max(struct drm_i915_private *i915)
+> {
+>-	if (INTEL_GEN(i915) >= 5 || IS_G4X(i915))
+>+	if (DISPLAY_VER(i915) >= 5 || IS_G4X(i915))
+> 		return BIT_ULL(28);
+> 	else
+> 		return BIT_ULL(32);
+>@@ -473,7 +473,7 @@ static int find_compression_threshold(struct drm_i915_private *dev_priv,
+>
+> 	ret = i915_gem_stolen_insert_node_in_range(dev_priv, node, size >>= 1,
+> 						   4096, 0, end);
+>-	if (ret && INTEL_GEN(dev_priv) <= 4) {
+>+	if (ret && DISPLAY_VER(dev_priv) <= 4) {
+> 		return 0;
+> 	} else if (ret) {
+> 		compression_threshold <<= 1;
+>@@ -504,7 +504,7 @@ static int intel_fbc_alloc_cfb(struct drm_i915_private *dev_priv,
+>
+> 	fbc->threshold = ret;
+>
+>-	if (INTEL_GEN(dev_priv) >= 5)
+>+	if (DISPLAY_VER(dev_priv) >= 5)
+> 		intel_de_write(dev_priv, ILK_DPFC_CB_BASE,
+> 			       fbc->compressed_fb.start);
+> 	else if (IS_GM45(dev_priv)) {
+>@@ -590,14 +590,14 @@ static bool stride_is_valid(struct drm_i915_private *dev_priv,
+> 	if (stride < 512)
+> 		return false;
+>
+>-	if (IS_GEN(dev_priv, 2) || IS_GEN(dev_priv, 3))
+>+	if (DISPLAY_VER(dev_priv) == 2 || DISPLAY_VER(dev_priv) == 3)
+> 		return stride == 4096 || stride == 8192;
+>
+>-	if (IS_GEN(dev_priv, 4) && !IS_G4X(dev_priv) && stride < 2048)
+>+	if (DISPLAY_VER(dev_priv) == 4 && !IS_G4X(dev_priv) && stride < 2048)
+> 		return false;
+>
+> 	/* Display WA #1105: skl,bxt,kbl,cfl,glk */
+>-	if (IS_GEN(dev_priv, 9) &&
+>+	if (DISPLAY_VER(dev_priv) == 9 &&
+> 	    modifier == DRM_FORMAT_MOD_LINEAR && stride & 511)
+> 		return false;
+>
+>@@ -617,7 +617,7 @@ static bool pixel_format_is_valid(struct drm_i915_private *dev_priv,
+> 	case DRM_FORMAT_XRGB1555:
+> 	case DRM_FORMAT_RGB565:
+> 		/* 16bpp not supported on gen2 */
+>-		if (IS_GEN(dev_priv, 2))
+>+		if (DISPLAY_VER(dev_priv) == 2)
+> 			return false;
+> 		/* WaFbcOnly1to1Ratio:ctg */
+> 		if (IS_G4X(dev_priv))
+>@@ -631,10 +631,10 @@ static bool pixel_format_is_valid(struct drm_i915_private *dev_priv,
+> static bool rotation_is_valid(struct drm_i915_private *dev_priv,
+> 			      u32 pixel_format, unsigned int rotation)
+> {
+>-	if (INTEL_GEN(dev_priv) >= 9 && pixel_format == DRM_FORMAT_RGB565 &&
+>+	if (DISPLAY_VER(dev_priv) >= 9 && pixel_format == DRM_FORMAT_RGB565 &&
+> 	    drm_rotation_90_or_270(rotation))
+> 		return false;
+>-	else if (INTEL_GEN(dev_priv) <= 4 && !IS_G4X(dev_priv) &&
+>+	else if (DISPLAY_VER(dev_priv) <= 4 && !IS_G4X(dev_priv) &&
+> 		 rotation != DRM_MODE_ROTATE_0)
+> 		return false;
+>
+>@@ -653,13 +653,13 @@ static bool intel_fbc_hw_tracking_covers_screen(struct intel_crtc *crtc)
+> 	struct intel_fbc *fbc = &dev_priv->fbc;
+> 	unsigned int effective_w, effective_h, max_w, max_h;
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+> 		max_w = 5120;
+> 		max_h = 4096;
+>-	} else if (INTEL_GEN(dev_priv) >= 8 || IS_HASWELL(dev_priv)) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 8 || IS_HASWELL(dev_priv)) {
+> 		max_w = 4096;
+> 		max_h = 4096;
+>-	} else if (IS_G4X(dev_priv) || INTEL_GEN(dev_priv) >= 5) {
+>+	} else if (IS_G4X(dev_priv) || DISPLAY_VER(dev_priv) >= 5) {
+> 		max_w = 4096;
+> 		max_h = 2048;
+> 	} else {
+>@@ -680,7 +680,7 @@ static bool tiling_is_valid(struct drm_i915_private *dev_priv,
+> {
+> 	switch (modifier) {
+> 	case DRM_FORMAT_MOD_LINEAR:
+>-		if (INTEL_GEN(dev_priv) >= 9)
+>+		if (DISPLAY_VER(dev_priv) >= 9)
+> 			return true;
+> 		return false;
+> 	case I915_FORMAT_MOD_X_TILED:
+>@@ -844,7 +844,7 @@ static bool intel_fbc_can_activate(struct intel_crtc *crtc)
+> 	 * For now this will effectively disable FBC with 90/270 degree
+> 	 * rotation.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 9 && cache->fence_id < 0) {
+>+	if (DISPLAY_VER(dev_priv) < 9 && cache->fence_id < 0) {
+> 		fbc->no_fbc_reason = "framebuffer not tiled or fenced";
+> 		return false;
+> 	}
+>@@ -903,14 +903,14 @@ static bool intel_fbc_can_activate(struct intel_crtc *crtc)
+> 	 * having a Y offset that isn't divisible by 4 causes FIFO underrun
+> 	 * and screen flicker.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 9 &&
+>+	if (DISPLAY_VER(dev_priv) >= 9 &&
+> 	    (fbc->state_cache.plane.adjusted_y & 3)) {
+> 		fbc->no_fbc_reason = "plane Y offset is misaligned";
+> 		return false;
+> 	}
+>
+> 	/* Wa_22010751166: icl, ehl, tgl, dg1, rkl */
+>-	if (INTEL_GEN(dev_priv) >= 11 &&
+>+	if (DISPLAY_VER(dev_priv) >= 11 &&
+> 	    (cache->plane.src_h + cache->plane.adjusted_y) % 4) {
+> 		fbc->no_fbc_reason = "plane height + offset is non-modulo of 4";
+> 		return false;
+>@@ -1036,7 +1036,7 @@ bool intel_fbc_pre_update(struct intel_atomic_state *state,
+> 		 * if at least one frame has already passed.
+> 		 */
+> 		if (fbc->activated &&
+>-		    (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)))
+>+		    (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)))
+> 			need_vblank_wait = true;
+> 		fbc->activated = false;
+> 	}
+>@@ -1445,7 +1445,7 @@ static int intel_sanitize_fbc_option(struct drm_i915_private *dev_priv)
+> 	if (!HAS_FBC(dev_priv))
+> 		return 0;
+>
+>-	if (IS_BROADWELL(dev_priv) || INTEL_GEN(dev_priv) >= 9)
+>+	if (IS_BROADWELL(dev_priv) || DISPLAY_VER(dev_priv) >= 9)
+> 		return 1;
+>
+> 	return 0;
+>diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+>index a3715cd42ed0..5b1136838b9c 100644
+>--- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+>+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+>@@ -271,9 +271,9 @@ static bool __intel_set_cpu_fifo_underrun_reporting(struct drm_device *dev,
+> 		i9xx_set_fifo_underrun_reporting(dev, pipe, enable, old);
+> 	else if (IS_SANDYBRIDGE(dev_priv) || IS_IRONLAKE(dev_priv))
+> 		ilk_set_fifo_underrun_reporting(dev, pipe, enable);
+>-	else if (IS_GEN(dev_priv, 7))
+>+	else if (DISPLAY_VER(dev_priv) == 7)
+> 		ivb_set_fifo_underrun_reporting(dev, pipe, enable, old);
+>-	else if (INTEL_GEN(dev_priv) >= 8)
+>+	else if (DISPLAY_VER(dev_priv) >= 8)
+> 		bdw_set_fifo_underrun_reporting(dev, pipe, enable);
+>
+> 	return old;
+>@@ -432,7 +432,7 @@ void intel_check_cpu_fifo_underruns(struct drm_i915_private *dev_priv)
+>
+> 		if (HAS_GMCH(dev_priv))
+> 			i9xx_check_fifo_underruns(crtc);
+>-		else if (IS_GEN(dev_priv, 7))
+>+		else if (DISPLAY_VER(dev_priv) == 7)
+> 			ivb_check_fifo_underruns(crtc);
+> 	}
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+>index 0c952e1d720e..c8a4f1f5d650 100644
+>--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+>+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+>@@ -392,8 +392,8 @@ gmbus_wait_idle(struct drm_i915_private *dev_priv)
+>
+> static unsigned int gmbus_max_xfer_size(struct drm_i915_private *dev_priv)
+> {
+>-	return INTEL_GEN(dev_priv) >= 9 ? GEN9_GMBUS_BYTE_COUNT_MAX :
+>-	       GMBUS_BYTE_COUNT_MAX;
+>+	return DISPLAY_VER(dev_priv) >= 9 ? GEN9_GMBUS_BYTE_COUNT_MAX :
+>+		GMBUS_BYTE_COUNT_MAX;
+> }
+>
+> static int
+>diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+>index ae1371c36a32..d418fe796263 100644
+>--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+>+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+>@@ -318,7 +318,7 @@ static
+> u32 intel_hdcp_get_repeater_ctl(struct drm_i915_private *dev_priv,
+> 				enum transcoder cpu_transcoder, enum port port)
+> {
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		switch (cpu_transcoder) {
+> 		case TRANSCODER_A:
+> 			return HDCP_TRANSA_REP_PRESENT |
+>@@ -1089,7 +1089,7 @@ static void intel_hdcp_prop_work(struct work_struct *work)
+> bool is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port)
+> {
+> 	return INTEL_INFO(dev_priv)->display.has_hdcp &&
+>-			(INTEL_GEN(dev_priv) >= 12 || port < PORT_E);
+>+			(DISPLAY_VER(dev_priv) >= 12 || port < PORT_E);
+> }
+>
+> static int
+>@@ -2137,7 +2137,7 @@ static int initialize_hdcp_port_data(struct intel_connector *connector,
+> 	struct intel_hdcp *hdcp = &connector->hdcp;
+> 	enum port port = dig_port->base.port;
+>
+>-	if (INTEL_GEN(dev_priv) < 12)
+>+	if (DISPLAY_VER(dev_priv) < 12)
+> 		data->fw_ddi = intel_get_mei_fw_ddi_index(port);
+> 	else
+> 		/*
+>@@ -2176,7 +2176,7 @@ static bool is_hdcp2_supported(struct drm_i915_private *dev_priv)
+> 	if (!IS_ENABLED(CONFIG_INTEL_MEI_HDCP))
+> 		return false;
+>
+>-	return (INTEL_GEN(dev_priv) >= 10 ||
+>+	return (DISPLAY_VER(dev_priv) >= 10 ||
+> 		IS_GEMINILAKE(dev_priv) ||
+> 		IS_KABYLAKE(dev_priv) ||
+> 		IS_COFFEELAKE(dev_priv) ||
+>@@ -2288,7 +2288,7 @@ int intel_hdcp_enable(struct intel_connector *connector,
+> 		hdcp->stream_transcoder = INVALID_TRANSCODER;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		dig_port->hdcp_port_data.fw_tc = intel_get_mei_fw_tc(hdcp->cpu_transcoder);
+>
+> 	/*
+>diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>index 7f384f259fc8..b122c46a5657 100644
+>--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>@@ -200,7 +200,7 @@ static int hsw_dip_data_size(struct drm_i915_private *dev_priv,
+> 	case DP_SDP_PPS:
+> 		return VIDEO_DIP_PPS_DATA_SIZE;
+> 	case HDMI_PACKET_TYPE_GAMUT_METADATA:
+>-		if (INTEL_GEN(dev_priv) >= 11)
+>+		if (DISPLAY_VER(dev_priv) >= 11)
+> 			return VIDEO_DIP_GMP_DATA_SIZE;
+> 		else
+> 			return VIDEO_DIP_DATA_SIZE;
+>@@ -583,7 +583,7 @@ static u32 hsw_infoframes_enabled(struct intel_encoder *encoder,
+> 		VIDEO_DIP_ENABLE_GCP_HSW | VIDEO_DIP_ENABLE_VS_HSW |
+> 		VIDEO_DIP_ENABLE_GMP_HSW | VIDEO_DIP_ENABLE_SPD_HSW);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		mask |= VIDEO_DIP_ENABLE_DRM_GLK;
+>
+> 	return val & mask;
+>@@ -839,7 +839,7 @@ intel_hdmi_compute_drm_infoframe(struct intel_encoder *encoder,
+> 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> 	int ret;
+>
+>-	if (!(INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)))
+>+	if (!(DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)))
+> 		return true;
+>
+> 	if (!crtc_state->has_infoframe)
+>@@ -2157,11 +2157,11 @@ static int intel_hdmi_source_max_tmds_clock(struct intel_encoder *encoder)
+> 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> 	int max_tmds_clock, vbt_max_tmds_clock;
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		max_tmds_clock = 594000;
+>-	else if (INTEL_GEN(dev_priv) >= 8 || IS_HASWELL(dev_priv))
+>+	else if (DISPLAY_VER(dev_priv) >= 8 || IS_HASWELL(dev_priv))
+> 		max_tmds_clock = 300000;
+>-	else if (INTEL_GEN(dev_priv) >= 5)
+>+	else if (DISPLAY_VER(dev_priv) >= 5)
+> 		max_tmds_clock = 225000;
+> 	else
+> 		max_tmds_clock = 165000;
+>@@ -2284,7 +2284,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
+> 						       true, has_hdmi_sink);
+>
+> 		/* if we can't do 8,12bpc we may still be able to do 10bpc */
+>-		if (status != MODE_OK && INTEL_GEN(dev_priv) >= 11)
+>+		if (status != MODE_OK && DISPLAY_VER(dev_priv) >= 11)
+> 			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 10),
+> 						       true, has_hdmi_sink);
+> 	}
+>@@ -2347,7 +2347,7 @@ static bool hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state,
+> 	if (HAS_GMCH(dev_priv))
+> 		return false;
+>
+>-	if (bpc == 10 && INTEL_GEN(dev_priv) < 11)
+>+	if (bpc == 10 && DISPLAY_VER(dev_priv) < 11)
+> 		return false;
+>
+> 	/*
+>@@ -2359,7 +2359,7 @@ static bool hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state,
+>
+> 	/* Display Wa_1405510057:icl,ehl */
+> 	if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
+>-	    bpc == 10 && IS_GEN(dev_priv, 11) &&
+>+	    bpc == 10 && DISPLAY_VER(dev_priv) == 11 &&
+> 	    (adjusted_mode->crtc_hblank_end -
+> 	     adjusted_mode->crtc_hblank_start) % 8 == 2)
+> 		return false;
+>@@ -2546,7 +2546,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+>
+> 	pipe_config->lane_count = 4;
+>
+>-	if (scdc->scrambling.supported && (INTEL_GEN(dev_priv) >= 10 ||
+>+	if (scdc->scrambling.supported && (DISPLAY_VER(dev_priv) >= 10 ||
+> 					   IS_GEMINILAKE(dev_priv))) {
+> 		if (scdc->scrambling.low_rates)
+> 			pipe_config->hdmi_scrambling = true;
+>@@ -2705,7 +2705,7 @@ intel_hdmi_detect(struct drm_connector *connector, bool force)
+>
+> 	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_GMBUS);
+>
+>-	if (INTEL_GEN(dev_priv) >= 11 &&
+>+	if (DISPLAY_VER(dev_priv) >= 11 &&
+> 	    !intel_digital_port_connected(encoder))
+> 		goto out;
+>
+>@@ -2965,7 +2965,7 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
+> 	intel_attach_hdmi_colorspace_property(connector);
+> 	drm_connector_attach_content_type_property(connector);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		drm_object_attach_property(&connector->base,
+> 			connector->dev->mode_config.hdr_output_metadata_property, 0);
+>
+>@@ -3298,7 +3298,7 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+> 		    "Adding HDMI connector on [ENCODER:%d:%s]\n",
+> 		    intel_encoder->base.base.id, intel_encoder->base.name);
+>
+>-	if (INTEL_GEN(dev_priv) < 12 && drm_WARN_ON(dev, port == PORT_A))
+>+	if (DISPLAY_VER(dev_priv) < 12 && drm_WARN_ON(dev, port == PORT_A))
+> 		return;
+>
+> 	if (drm_WARN(dev, dig_port->max_lanes < 4,
+>@@ -3320,7 +3320,7 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+> 	connector->doublescan_allowed = 0;
+> 	connector->stereo_allowed = 1;
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		connector->ycbcr_420_allowed = true;
+>
+> 	intel_connector->polled = DRM_CONNECTOR_POLL_HPD;
+>diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
+>index c6c7c0b9989b..dd12d15f47c7 100644
+>--- a/drivers/gpu/drm/i915/display/intel_lvds.c
+>+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+>@@ -136,12 +136,12 @@ static void intel_lvds_get_config(struct intel_encoder *encoder,
+>
+> 	pipe_config->hw.adjusted_mode.flags |= flags;
+>
+>-	if (INTEL_GEN(dev_priv) < 5)
+>+	if (DISPLAY_VER(dev_priv) < 5)
+> 		pipe_config->gmch_pfit.lvds_border_bits =
+> 			tmp & LVDS_BORDER_ENABLE;
+>
+> 	/* gen2/3 store dither state in pfit control, needs to match */
+>-	if (INTEL_GEN(dev_priv) < 4) {
+>+	if (DISPLAY_VER(dev_priv) < 4) {
+> 		tmp = intel_de_read(dev_priv, PFIT_CONTROL);
+>
+> 		pipe_config->gmch_pfit.control |= tmp & PANEL_8TO6_DITHER_ENABLE;
+>@@ -179,7 +179,7 @@ static void intel_lvds_pps_get_hw_state(struct drm_i915_private *dev_priv,
+> 	/* Convert from 100ms to 100us units */
+> 	pps->t4 = val * 1000;
+>
+>-	if (INTEL_GEN(dev_priv) <= 4 &&
+>+	if (DISPLAY_VER(dev_priv) <= 4 &&
+> 	    pps->t1_t2 == 0 && pps->t5 == 0 && pps->t3 == 0 && pps->tx == 0) {
+> 		drm_dbg_kms(&dev_priv->drm,
+> 			    "Panel power timings uninitialized, "
+>@@ -280,7 +280,7 @@ static void intel_pre_enable_lvds(struct intel_atomic_state *state,
+> 	 * special lvds dither control bit on pch-split platforms, dithering is
+> 	 * only controlled through the PIPECONF reg.
+> 	 */
+>-	if (IS_GEN(dev_priv, 4)) {
+>+	if (DISPLAY_VER(dev_priv) == 4) {
+> 		/*
+> 		 * Bspec wording suggests that LVDS port dithering only exists
+> 		 * for 18bpp panels.
+>@@ -415,7 +415,7 @@ static int intel_lvds_compute_config(struct intel_encoder *intel_encoder,
+> 	int ret;
+>
+> 	/* Should never happen!! */
+>-	if (INTEL_GEN(dev_priv) < 4 && intel_crtc->pipe == 0) {
+>+	if (DISPLAY_VER(dev_priv) < 4 && intel_crtc->pipe == 0) {
+> 		drm_err(&dev_priv->drm, "Can't support LVDS on pipe A\n");
+> 		return -EINVAL;
+> 	}
+>@@ -915,7 +915,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
+> 	intel_encoder->power_domain = POWER_DOMAIN_PORT_OTHER;
+> 	intel_encoder->port = PORT_NONE;
+> 	intel_encoder->cloneable = 0;
+>-	if (INTEL_GEN(dev_priv) < 4)
+>+	if (DISPLAY_VER(dev_priv) < 4)
+> 		intel_encoder->pipe_mask = BIT(PIPE_B);
+> 	else
+> 		intel_encoder->pipe_mask = ~0;
+>diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+>index ef8f44f5e751..ad657a77ad4e 100644
+>--- a/drivers/gpu/drm/i915/display/intel_overlay.c
+>+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+>@@ -550,7 +550,7 @@ static u32 calc_swidthsw(struct drm_i915_private *dev_priv, u32 offset, u32 widt
+> {
+> 	u32 sw;
+>
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		sw = ALIGN((offset & 31) + width, 32);
+> 	else
+> 		sw = ALIGN((offset & 63) + width, 64);
+>@@ -794,7 +794,7 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
+> 			oconfig |= OCONF_CC_OUT_8BIT;
+> 		if (crtc_state->gamma_enable)
+> 			oconfig |= OCONF_GAMMA2_ENABLE;
+>-		if (IS_GEN(dev_priv, 4))
+>+		if (DISPLAY_VER(dev_priv) == 4)
+> 			oconfig |= OCONF_CSC_MODE_BT709;
+> 		oconfig |= pipe == 0 ?
+> 			OCONF_PIPE_A : OCONF_PIPE_B;
+>@@ -913,7 +913,7 @@ static void update_pfit_vscale_ratio(struct intel_overlay *overlay)
+> 	/* XXX: This is not the same logic as in the xorg driver, but more in
+> 	 * line with the intel documentation for the i965
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 4) {
+>+	if (DISPLAY_VER(dev_priv) >= 4) {
+> 		/* on i965 use the PGM reg to read out the autoscaler values */
+> 		ratio = intel_de_read(dev_priv, PFIT_PGM_RATIOS) >> PFIT_VERT_SCALE_SHIFT_965;
+> 	} else {
+>@@ -1028,7 +1028,7 @@ static int check_overlay_src(struct drm_i915_private *dev_priv,
+>
+> 	if (rec->stride_Y & stride_mask || rec->stride_UV & stride_mask)
+> 		return -EINVAL;
+>-	if (IS_GEN(dev_priv, 4) && rec->stride_Y < 512)
+>+	if (DISPLAY_VER(dev_priv) == 4 && rec->stride_Y < 512)
+> 		return -EINVAL;
+>
+> 	tmp = (rec->flags & I915_OVERLAY_TYPE_MASK) == I915_OVERLAY_YUV_PLANAR ?
+>@@ -1255,7 +1255,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
+> 		attrs->contrast   = overlay->contrast;
+> 		attrs->saturation = overlay->saturation;
+>
+>-		if (!IS_GEN(dev_priv, 2)) {
+>+		if (DISPLAY_VER(dev_priv) != 2) {
+> 			attrs->gamma0 = intel_de_read(dev_priv, OGAMC0);
+> 			attrs->gamma1 = intel_de_read(dev_priv, OGAMC1);
+> 			attrs->gamma2 = intel_de_read(dev_priv, OGAMC2);
+>@@ -1279,7 +1279,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
+> 		update_reg_attrs(overlay, overlay->regs);
+>
+> 		if (attrs->flags & I915_OVERLAY_UPDATE_GAMMA) {
+>-			if (IS_GEN(dev_priv, 2))
+>+			if (DISPLAY_VER(dev_priv) == 2)
+> 				goto out_unlock;
+>
+> 			if (overlay->active) {
+>diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+>index 4653b5ef382f..5c216a84c6df 100644
+>--- a/drivers/gpu/drm/i915/display/intel_panel.c
+>+++ b/drivers/gpu/drm/i915/display/intel_panel.c
+>@@ -405,7 +405,7 @@ int intel_gmch_panel_fitting(struct intel_crtc_state *crtc_state,
+> 		break;
+> 	case DRM_MODE_SCALE_ASPECT:
+> 		/* Scale but preserve the aspect ratio */
+>-		if (INTEL_GEN(dev_priv) >= 4)
+>+		if (DISPLAY_VER(dev_priv) >= 4)
+> 			i965_scale_aspect(crtc_state, &pfit_control);
+> 		else
+> 			i9xx_scale_aspect(crtc_state, &pfit_control,
+>@@ -419,7 +419,7 @@ int intel_gmch_panel_fitting(struct intel_crtc_state *crtc_state,
+> 		if (crtc_state->pipe_src_h != adjusted_mode->crtc_vdisplay ||
+> 		    crtc_state->pipe_src_w != adjusted_mode->crtc_hdisplay) {
+> 			pfit_control |= PFIT_ENABLE;
+>-			if (INTEL_GEN(dev_priv) >= 4)
+>+			if (DISPLAY_VER(dev_priv) >= 4)
+> 				pfit_control |= PFIT_SCALING_AUTO;
+> 			else
+> 				pfit_control |= (VERT_AUTO_SCALE |
+>@@ -435,7 +435,7 @@ int intel_gmch_panel_fitting(struct intel_crtc_state *crtc_state,
+>
+> 	/* 965+ wants fuzzy fitting */
+> 	/* FIXME: handle multiple panels by failing gracefully */
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		pfit_control |= PFIT_PIPE(crtc->pipe) | PFIT_FILTER_FUZZY;
+>
+> out:
+>@@ -445,7 +445,7 @@ int intel_gmch_panel_fitting(struct intel_crtc_state *crtc_state,
+> 	}
+>
+> 	/* Make sure pre-965 set dither correctly for 18bpp panels. */
+>-	if (INTEL_GEN(dev_priv) < 4 && crtc_state->pipe_bpp == 18)
+>+	if (DISPLAY_VER(dev_priv) < 4 && crtc_state->pipe_bpp == 18)
+> 		pfit_control |= PANEL_8TO6_DITHER_ENABLE;
+>
+> 	crtc_state->gmch_pfit.control = pfit_control;
+>@@ -590,7 +590,7 @@ static u32 i9xx_get_backlight(struct intel_connector *connector, enum pipe unuse
+> 	u32 val;
+>
+> 	val = intel_de_read(dev_priv, BLC_PWM_CTL) & BACKLIGHT_DUTY_CYCLE_MASK;
+>-	if (INTEL_GEN(dev_priv) < 4)
+>+	if (DISPLAY_VER(dev_priv) < 4)
+> 		val >>= 1;
+>
+> 	if (panel->backlight.combination_mode) {
+>@@ -667,7 +667,7 @@ static void i9xx_set_backlight(const struct drm_connector_state *conn_state, u32
+> 		pci_write_config_byte(to_pci_dev(dev_priv->drm.dev), LBPC, lbpc);
+> 	}
+>
+>-	if (IS_GEN(dev_priv, 4)) {
+>+	if (DISPLAY_VER(dev_priv) == 4) {
+> 		mask = BACKLIGHT_DUTY_CYCLE_MASK;
+> 	} else {
+> 		level <<= 1;
+>@@ -1040,7 +1040,7 @@ static void i9xx_enable_backlight(const struct intel_crtc_state *crtc_state,
+> 	 * 855gm only, but checking for gen2 is safe, as 855gm is the only gen2
+> 	 * that has backlight.
+> 	 */
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		intel_de_write(dev_priv, BLC_HIST_CTL, BLM_HISTOGRAM_ENABLE);
+> }
+>
+>@@ -1728,7 +1728,7 @@ static int i9xx_setup_backlight(struct intel_connector *connector, enum pipe unu
+>
+> 	ctl = intel_de_read(dev_priv, BLC_PWM_CTL);
+>
+>-	if (IS_GEN(dev_priv, 2) || IS_I915GM(dev_priv) || IS_I945GM(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) == 2 || IS_I915GM(dev_priv) || IS_I945GM(dev_priv))
+> 		panel->backlight.combination_mode = ctl & BLM_LEGACY_MODE;
+>
+> 	if (IS_PINEVIEW(dev_priv))
+>@@ -2178,7 +2178,7 @@ intel_panel_init_backlight_funcs(struct intel_panel *panel)
+> 		} else {
+> 			panel->backlight.pwm_funcs = &vlv_pwm_funcs;
+> 		}
+>-	} else if (IS_GEN(dev_priv, 4)) {
+>+	} else if (DISPLAY_VER(dev_priv) == 4) {
+> 		panel->backlight.pwm_funcs = &i965_pwm_funcs;
+> 	} else {
+> 		panel->backlight.pwm_funcs = &i9xx_pwm_funcs;
+>diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+>index 3c4024409d85..c4142991d0d4 100644
+>--- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+>+++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+>@@ -409,15 +409,15 @@ static int get_new_crc_ctl_reg(struct drm_i915_private *dev_priv,
+> 			       enum pipe pipe,
+> 			       enum intel_pipe_crc_source *source, u32 *val)
+> {
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		return i8xx_pipe_crc_ctl_reg(source, val);
+>-	else if (INTEL_GEN(dev_priv) < 5)
+>+	else if (DISPLAY_VER(dev_priv) < 5)
+> 		return i9xx_pipe_crc_ctl_reg(dev_priv, pipe, source, val);
+> 	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> 		return vlv_pipe_crc_ctl_reg(dev_priv, pipe, source, val);
+> 	else if (IS_SANDYBRIDGE(dev_priv) || IS_IRONLAKE(dev_priv))
+> 		return ilk_pipe_crc_ctl_reg(source, val);
+>-	else if (INTEL_GEN(dev_priv) < 9)
+>+	else if (DISPLAY_VER(dev_priv) < 9)
+> 		return ivb_pipe_crc_ctl_reg(dev_priv, pipe, source, val);
+> 	else
+> 		return skl_pipe_crc_ctl_reg(dev_priv, pipe, source, val);
+>@@ -539,15 +539,15 @@ static int
+> intel_is_valid_crc_source(struct drm_i915_private *dev_priv,
+> 			  const enum intel_pipe_crc_source source)
+> {
+>-	if (IS_GEN(dev_priv, 2))
+>+	if (DISPLAY_VER(dev_priv) == 2)
+> 		return i8xx_crc_source_valid(dev_priv, source);
+>-	else if (INTEL_GEN(dev_priv) < 5)
+>+	else if (DISPLAY_VER(dev_priv) < 5)
+> 		return i9xx_crc_source_valid(dev_priv, source);
+> 	else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> 		return vlv_crc_source_valid(dev_priv, source);
+> 	else if (IS_SANDYBRIDGE(dev_priv) || IS_IRONLAKE(dev_priv))
+> 		return ilk_crc_source_valid(dev_priv, source);
+>-	else if (INTEL_GEN(dev_priv) < 9)
+>+	else if (DISPLAY_VER(dev_priv) < 9)
+> 		return ivb_crc_source_valid(dev_priv, source);
+> 	else
+> 		return skl_crc_source_valid(dev_priv, source);
+>diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+>index cd434285e3b7..f6d1bc3269b2 100644
+>--- a/drivers/gpu/drm/i915/display/intel_psr.c
+>+++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>@@ -118,7 +118,7 @@ static void psr_irq_control(struct intel_dp *intel_dp)
+> 	 * using the same bit definition: handle it as TRANSCODER_EDP to force
+> 	 * 0 shift in bit definition
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		trans_shift = 0;
+> 		imr_reg = TRANS_PSR_IMR(intel_dp->psr.transcoder);
+> 	} else {
+>@@ -184,7 +184,7 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+> 	enum transcoder trans_shift;
+> 	i915_reg_t imr_reg;
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		trans_shift = 0;
+> 		imr_reg = TRANS_PSR_IMR(intel_dp->psr.transcoder);
+> 	} else {
+>@@ -205,7 +205,7 @@ void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir)
+> 			    "[transcoder %s] PSR exit completed\n",
+> 			    transcoder_name(cpu_transcoder));
+>
+>-		if (INTEL_GEN(dev_priv) >= 9) {
+>+		if (DISPLAY_VER(dev_priv) >= 9) {
+> 			u32 val = intel_de_read(dev_priv,
+> 						PSR_EVENT(cpu_transcoder));
+> 			bool psr2_enabled = intel_dp->psr.psr2_enabled;
+>@@ -321,7 +321,7 @@ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
+> 	intel_dp->psr.sink_sync_latency =
+> 		intel_dp_get_sink_sync_latency(intel_dp);
+>
+>-	if (INTEL_GEN(dev_priv) >= 9 &&
+>+	if (DISPLAY_VER(dev_priv) >= 9 &&
+> 	    (intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_IS_SUPPORTED)) {
+> 		bool y_req = intel_dp->psr_dpcd[1] &
+> 			     DP_PSR2_SU_Y_COORDINATE_REQUIRED;
+>@@ -402,7 +402,7 @@ static void intel_psr_enable_sink(struct intel_dp *intel_dp)
+> 		if (intel_dp->psr.link_standby)
+> 			dpcd_val |= DP_PSR_MAIN_LINK_ACTIVE;
+>
+>-		if (INTEL_GEN(dev_priv) >= 8)
+>+		if (DISPLAY_VER(dev_priv) >= 8)
+> 			dpcd_val |= DP_PSR_CRC_VERIFICATION;
+> 	}
+>
+>@@ -416,7 +416,7 @@ static u32 intel_psr1_get_tp_time(struct intel_dp *intel_dp)
+> 	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
+> 	u32 val = 0;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		val |= EDP_PSR_TP4_TIME_0US;
+>
+> 	if (dev_priv->params.psr_safest_params) {
+>@@ -487,7 +487,7 @@ static void hsw_activate_psr1(struct intel_dp *intel_dp)
+>
+> 	val |= intel_psr1_get_tp_time(intel_dp);
+>
+>-	if (INTEL_GEN(dev_priv) >= 8)
+>+	if (DISPLAY_VER(dev_priv) >= 8)
+> 		val |= EDP_PSR_CRC_ENABLE;
+>
+> 	val |= (intel_de_read(dev_priv, EDP_PSR_CTL(intel_dp->psr.transcoder)) &
+>@@ -524,13 +524,13 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+> 	val = psr_compute_idle_frames(intel_dp) << EDP_PSR2_IDLE_FRAME_SHIFT;
+>
+> 	val |= EDP_PSR2_ENABLE | EDP_SU_TRACK_ENABLE;
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		val |= EDP_Y_COORDINATE_ENABLE;
+>
+> 	val |= EDP_PSR2_FRAME_BEFORE_SU(intel_dp->psr.sink_sync_latency + 1);
+> 	val |= intel_psr2_get_tp_time(intel_dp);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		/*
+> 		 * TODO: 7 lines of IO_BUFFER_WAKE and FAST_WAKE are default
+> 		 * values from BSpec. In order to setting an optimal power
+>@@ -541,7 +541,7 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+> 		val |= TGL_EDP_PSR2_BLOCK_COUNT_NUM_2;
+> 		val |= TGL_EDP_PSR2_IO_BUFFER_WAKE(7);
+> 		val |= TGL_EDP_PSR2_FAST_WAKE(7);
+>-	} else if (INTEL_GEN(dev_priv) >= 9) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 9) {
+> 		val |= EDP_PSR2_IO_BUFFER_WAKE(7);
+> 		val |= EDP_PSR2_FAST_WAKE(7);
+> 	}
+>@@ -574,9 +574,9 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+> static bool
+> transcoder_has_psr2(struct drm_i915_private *dev_priv, enum transcoder trans)
+> {
+>-	if (INTEL_GEN(dev_priv) < 9)
+>+	if (DISPLAY_VER(dev_priv) < 9)
+> 		return false;
+>-	else if (INTEL_GEN(dev_priv) >= 12)
+>+	else if (DISPLAY_VER(dev_priv) >= 12)
+> 		return trans == TRANSCODER_A;
+> 	else
+> 		return trans == TRANSCODER_EDP;
+>@@ -761,15 +761,15 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
+> 		return false;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		psr_max_h = 5120;
+> 		psr_max_v = 3200;
+> 		max_bpp = 30;
+>-	} else if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+> 		psr_max_h = 4096;
+> 		psr_max_v = 2304;
+> 		max_bpp = 24;
+>-	} else if (IS_GEN(dev_priv, 9)) {
+>+	} else if (DISPLAY_VER(dev_priv) == 9) {
+> 		psr_max_h = 3640;
+> 		psr_max_v = 2304;
+> 		max_bpp = 24;
+>@@ -909,7 +909,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+> 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
+> 		hsw_psr_setup_aux(intel_dp);
+>
+>-	if (intel_dp->psr.psr2_enabled && (IS_GEN(dev_priv, 9) &&
+>+	if (intel_dp->psr.psr2_enabled && (DISPLAY_VER(dev_priv) == 9 &&
+> 					   !IS_GEMINILAKE(dev_priv))) {
+> 		i915_reg_t reg = CHICKEN_TRANS(cpu_transcoder);
+> 		u32 chicken = intel_de_read(dev_priv, reg);
+>@@ -930,7 +930,7 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+> 	       EDP_PSR_DEBUG_MASK_LPSP |
+> 	       EDP_PSR_DEBUG_MASK_MAX_SLEEP;
+>
+>-	if (INTEL_GEN(dev_priv) < 11)
+>+	if (DISPLAY_VER(dev_priv) < 11)
+> 		mask |= EDP_PSR_DEBUG_MASK_DISP_REG_WRITE;
+>
+> 	intel_de_write(dev_priv, EDP_PSR_DEBUG(intel_dp->psr.transcoder),
+>@@ -987,7 +987,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+> 	 * first time that PSR HW tries to activate so lets keep PSR disabled
+> 	 * to avoid any rendering problems.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		val = intel_de_read(dev_priv,
+> 				    TRANS_PSR_IIR(intel_dp->psr.transcoder));
+> 		val &= EDP_PSR_ERROR(0);
+>@@ -1169,7 +1169,7 @@ static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
+> 		 * and a better fix is found.
+> 		 */
+> 		intel_psr_exit(intel_dp);
+>-	else if (INTEL_GEN(dev_priv) >= 9)
+>+	else if (DISPLAY_VER(dev_priv) >= 9)
+> 		/*
+> 		 * Display WA #0884: skl+
+> 		 * This documented WA for bxt can be safely applied
+>@@ -1451,7 +1451,7 @@ void intel_psr_update(struct intel_dp *intel_dp,
+> 		/* Force a PSR exit when enabling CRC to avoid CRC timeouts */
+> 		if (crtc_state->crc_enabled && psr->enabled)
+> 			psr_force_hw_tracking_exit(intel_dp);
+>-		else if (INTEL_GEN(dev_priv) < 9 && psr->enabled) {
+>+		else if (DISPLAY_VER(dev_priv) < 9 && psr->enabled) {
+> 			/*
+> 			 * Activate PSR again after a force exit when enabling
+> 			 * CRC in older gens
+>@@ -1855,7 +1855,7 @@ void intel_psr_init(struct intel_dp *intel_dp)
+> 	 * So lets keep it hardcoded to PORT_A for BDW, GEN9 and GEN11.
+> 	 * But GEN12 supports a instance of PSR registers per transcoder.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) < 12 && dig_port->base.port != PORT_A) {
+>+	if (DISPLAY_VER(dev_priv) < 12 && dig_port->base.port != PORT_A) {
+> 		drm_dbg_kms(&dev_priv->drm,
+> 			    "PSR condition failed: Port not supported\n");
+> 		return;
+>@@ -1872,14 +1872,14 @@ void intel_psr_init(struct intel_dp *intel_dp)
+> 		dev_priv->hsw_psr_mmio_adjust = _SRD_CTL_EDP - _HSW_EDP_PSR_BASE;
+>
+> 	if (dev_priv->params.enable_psr == -1)
+>-		if (INTEL_GEN(dev_priv) < 9 || !dev_priv->vbt.psr.enable)
+>+		if (DISPLAY_VER(dev_priv) < 9 || !dev_priv->vbt.psr.enable)
+> 			dev_priv->params.enable_psr = 0;
+>
+> 	/* Set link_standby x link_off defaults */
+> 	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
+> 		/* HSW and BDW require workarounds that we don't implement. */
+> 		intel_dp->psr.link_standby = false;
+>-	else if (INTEL_GEN(dev_priv) < 12)
+>+	else if (DISPLAY_VER(dev_priv) < 12)
+> 		/* For new platforms up to TGL let's respect VBT back again */
+> 		intel_dp->psr.link_standby = dev_priv->vbt.psr.full_link;
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+>index 3fac60899d8e..f770d6bcd2c9 100644
+>--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+>+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+>@@ -1540,11 +1540,11 @@ static void intel_sdvo_pre_enable(struct intel_atomic_state *state,
+> 		return;
+>
+> 	/* Set the SDVO control regs. */
+>-	if (INTEL_GEN(dev_priv) >= 4) {
+>+	if (DISPLAY_VER(dev_priv) >= 4) {
+> 		/* The real mode polarity is set by the SDVO commands, using
+> 		 * struct intel_sdvo_dtd. */
+> 		sdvox = SDVO_VSYNC_ACTIVE_HIGH | SDVO_HSYNC_ACTIVE_HIGH;
+>-		if (INTEL_GEN(dev_priv) < 5)
+>+		if (DISPLAY_VER(dev_priv) < 5)
+> 			sdvox |= SDVO_BORDER_ENABLE;
+> 	} else {
+> 		sdvox = intel_de_read(dev_priv, intel_sdvo->sdvo_reg);
+>@@ -1560,7 +1560,7 @@ static void intel_sdvo_pre_enable(struct intel_atomic_state *state,
+> 	else
+> 		sdvox |= SDVO_PIPE_SEL(crtc->pipe);
+>
+>-	if (INTEL_GEN(dev_priv) >= 4) {
+>+	if (DISPLAY_VER(dev_priv) >= 4) {
+> 		/* done in crtc_mode_set as the dpll_md reg must be written early */
+> 	} else if (IS_I945G(dev_priv) || IS_I945GM(dev_priv) ||
+> 		   IS_G33(dev_priv) || IS_PINEVIEW(dev_priv)) {
+>@@ -1571,7 +1571,7 @@ static void intel_sdvo_pre_enable(struct intel_atomic_state *state,
+> 	}
+>
+> 	if (input_dtd.part2.sdvo_flags & SDVO_NEED_TO_STALL &&
+>-	    INTEL_GEN(dev_priv) < 5)
+>+	    DISPLAY_VER(dev_priv) < 5)
+> 		sdvox |= SDVO_STALL_SELECT;
+> 	intel_sdvo_write_sdvox(intel_sdvo, sdvox);
+> }
+>diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+>index fb506409a63b..d55a13312885 100644
+>--- a/drivers/gpu/drm/i915/display/intel_sprite.c
+>+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+>@@ -1392,7 +1392,7 @@ g4x_sprite_check(struct intel_crtc_state *crtc_state,
+> 	int ret;
+>
+> 	if (g4x_fb_scalable(plane_state->hw.fb)) {
+>-		if (INTEL_GEN(dev_priv) < 7) {
+>+		if (DISPLAY_VER(dev_priv) < 7) {
+> 			min_scale = 1;
+> 			max_scale = 16 << 16;
+> 		} else if (IS_IVYBRIDGE(dev_priv)) {
+>@@ -1421,7 +1421,7 @@ g4x_sprite_check(struct intel_crtc_state *crtc_state,
+> 	if (ret)
+> 		return ret;
+>
+>-	if (INTEL_GEN(dev_priv) >= 7)
+>+	if (DISPLAY_VER(dev_priv) >= 7)
+> 		plane_state->ctl = ivb_sprite_ctl(crtc_state, plane_state);
+> 	else
+> 		plane_state->ctl = g4x_sprite_ctl(crtc_state, plane_state);
+>@@ -1482,7 +1482,7 @@ vlv_sprite_check(struct intel_crtc_state *crtc_state,
+>
+> static bool has_dst_key_in_primary_plane(struct drm_i915_private *dev_priv)
+> {
+>-	return INTEL_GEN(dev_priv) >= 9;
+>+	return DISPLAY_VER(dev_priv) >= 9;
+> }
+>
+> static void intel_plane_set_ckey(struct intel_plane_state *plane_state,
+>@@ -1506,7 +1506,7 @@ static void intel_plane_set_ckey(struct intel_plane_state *plane_state,
+> 	 * On SKL+ we want dst key enabled on
+> 	 * the primary and not on the sprite.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 9 && plane->id != PLANE_PRIMARY &&
+>+	if (DISPLAY_VER(dev_priv) >= 9 && plane->id != PLANE_PRIMARY &&
+> 	    set->flags & I915_SET_COLORKEY_DESTINATION)
+> 		key->flags = 0;
+> }
+>@@ -1545,7 +1545,7 @@ int intel_sprite_set_colorkey_ioctl(struct drm_device *dev, void *data,
+> 	 * Also multiple planes can't do destination keying on the same
+> 	 * pipe simultaneously.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 9 &&
+>+	if (DISPLAY_VER(dev_priv) >= 9 &&
+> 	    to_intel_plane(plane)->id >= PLANE_SPRITE1 &&
+> 	    set->flags & I915_SET_COLORKEY_DESTINATION)
+> 		return -EINVAL;
+>@@ -1810,7 +1810,7 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+> 		modifiers = i9xx_plane_format_modifiers;
+>
+> 		plane_funcs = &vlv_sprite_funcs;
+>-	} else if (INTEL_GEN(dev_priv) >= 7) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 7) {
+> 		plane->update_plane = ivb_update_plane;
+> 		plane->disable_plane = ivb_disable_plane;
+> 		plane->get_hw_state = ivb_plane_get_hw_state;
+>diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+>index 2cefc13535a0..88085486ee59 100644
+>--- a/drivers/gpu/drm/i915/display/intel_tc.c
+>+++ b/drivers/gpu/drm/i915/display/intel_tc.c
+>@@ -28,7 +28,7 @@ tc_cold_get_power_domain(struct intel_digital_port *dig_port)
+> {
+> 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+>
+>-	if (INTEL_GEN(i915) == 11)
+>+	if (DISPLAY_VER(i915) == 11)
+> 		return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
+> 	else
+> 		return POWER_DOMAIN_TC_COLD_OFF;
+>@@ -40,7 +40,7 @@ tc_cold_block(struct intel_digital_port *dig_port)
+> 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> 	enum intel_display_power_domain domain;
+>
+>-	if (INTEL_GEN(i915) == 11 && !dig_port->tc_legacy_port)
+>+	if (DISPLAY_VER(i915) == 11 && !dig_port->tc_legacy_port)
+> 		return 0;
+>
+> 	domain = tc_cold_get_power_domain(dig_port);
+>@@ -71,7 +71,7 @@ assert_tc_cold_blocked(struct intel_digital_port *dig_port)
+> 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> 	bool enabled;
+>
+>-	if (INTEL_GEN(i915) == 11 && !dig_port->tc_legacy_port)
+>+	if (DISPLAY_VER(i915) == 11 && !dig_port->tc_legacy_port)
+> 		return;
+>
+> 	enabled = intel_display_power_is_enabled(i915,
+>@@ -455,7 +455,7 @@ static void intel_tc_port_reset_mode(struct intel_digital_port *dig_port,
+> 	enum tc_port_mode old_tc_mode = dig_port->tc_mode;
+>
+> 	intel_display_power_flush_work(i915);
+>-	if (INTEL_GEN(i915) != 11 || !dig_port->tc_legacy_port) {
+>+	if (DISPLAY_VER(i915) != 11 || !dig_port->tc_legacy_port) {
+> 		enum intel_display_power_domain aux_domain;
+> 		bool aux_powered;
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+>index 7a7b99b015a5..2c5c77693474 100644
+>--- a/drivers/gpu/drm/i915/display/intel_tv.c
+>+++ b/drivers/gpu/drm/i915/display/intel_tv.c
+>@@ -1165,7 +1165,7 @@ intel_tv_get_config(struct intel_encoder *encoder,
+> static bool intel_tv_source_too_wide(struct drm_i915_private *dev_priv,
+> 				     int hdisplay)
+> {
+>-	return IS_GEN(dev_priv, 3) && hdisplay > 1024;
+>+	return DISPLAY_VER(dev_priv) == 3 && hdisplay > 1024;
+> }
+>
+> static bool intel_tv_vert_scaling(const struct drm_display_mode *tv_mode,
+>@@ -1519,7 +1519,7 @@ static void intel_tv_pre_enable(struct intel_atomic_state *state,
+>
+> 	set_color_conversion(dev_priv, color_conversion);
+>
+>-	if (INTEL_GEN(dev_priv) >= 4)
+>+	if (DISPLAY_VER(dev_priv) >= 4)
+> 		intel_de_write(dev_priv, TV_CLR_KNOBS, 0x00404000);
+> 	else
+> 		intel_de_write(dev_priv, TV_CLR_KNOBS, 0x00606000);
+>@@ -1789,7 +1789,7 @@ intel_tv_get_modes(struct drm_connector *connector)
+> 			continue;
+>
+> 		/* no vertical scaling with wide sources on gen3 */
+>-		if (IS_GEN(dev_priv, 3) && input->w > 1024 &&
+>+		if (DISPLAY_VER(dev_priv) == 3 && input->w > 1024 &&
+> 		    input->h > intel_tv_mode_vdisplay(tv_mode))
+> 			continue;
+>
+>@@ -1978,7 +1978,7 @@ intel_tv_init(struct drm_i915_private *dev_priv)
+> 	/* Create TV properties then attach current values */
+> 	for (i = 0; i < ARRAY_SIZE(tv_modes); i++) {
+> 		/* 1080p50/1080p60 not supported on gen3 */
+>-		if (IS_GEN(dev_priv, 3) &&
+>+		if (DISPLAY_VER(dev_priv) == 3 &&
+> 		    tv_modes[i].oversample == 1)
+> 			break;
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>index f58cc5700784..1ccef159a9a0 100644
+>--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+>+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>@@ -343,10 +343,10 @@ bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state)
+> 		return false;
+>
+> 	/* On TGL, DSC is supported on all Pipes */
+>-	if (INTEL_GEN(i915) >= 12)
+>+	if (DISPLAY_VER(i915) >= 12)
+> 		return true;
+>
+>-	if (INTEL_GEN(i915) >= 10 &&
+>+	if (DISPLAY_VER(i915) >= 10 &&
+> 	    (pipe != PIPE_A ||
+> 	     (cpu_transcoder == TRANSCODER_EDP ||
+> 	      cpu_transcoder == TRANSCODER_DSI_0 ||
+>@@ -362,7 +362,7 @@ static bool is_pipe_dsc(const struct intel_crtc_state *crtc_state)
+> 	const struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>
+>-	if (INTEL_GEN(i915) >= 12)
+>+	if (DISPLAY_VER(i915) >= 12)
+> 		return true;
+>
+> 	if (cpu_transcoder == TRANSCODER_EDP ||
+>@@ -479,7 +479,7 @@ intel_dsc_power_domain(const struct intel_crtc_state *crtc_state)
+> 	 * the pipe in use. Hence another reference on the pipe power domain
+> 	 * will suffice. (Except no VDSC/joining on ICL pipe A.)
+> 	 */
+>-	if (INTEL_GEN(i915) >= 12 && !IS_ROCKETLAKE(i915) && pipe == PIPE_A)
+>+	if (DISPLAY_VER(i915) >= 12 && !IS_ROCKETLAKE(i915) && pipe == PIPE_A)
+> 		return POWER_DOMAIN_TRANSCODER_VDSC_PW2;
+> 	else if (is_pipe_dsc(crtc_state))
+> 		return POWER_DOMAIN_PIPE(pipe);
+>diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
+>index 5f8e4f53649d..f002b82ba9c0 100644
+>--- a/drivers/gpu/drm/i915/display/intel_vga.c
+>+++ b/drivers/gpu/drm/i915/display/intel_vga.c
+>@@ -16,7 +16,7 @@ static i915_reg_t intel_vga_cntrl_reg(struct drm_i915_private *i915)
+> {
+> 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
+> 		return VLV_VGACNTRL;
+>-	else if (INTEL_GEN(i915) >= 5)
+>+	else if (DISPLAY_VER(i915) >= 5)
+> 		return CPU_VGACNTRL;
+> 	else
+> 		return VGACNTRL;
+>@@ -96,7 +96,7 @@ void intel_vga_reset_io_mem(struct drm_i915_private *i915)
+> static int
+> intel_vga_set_state(struct drm_i915_private *i915, bool enable_decode)
+> {
+>-	unsigned int reg = INTEL_GEN(i915) >= 6 ? SNB_GMCH_CTRL : INTEL_GMCH_CTRL;
+>+	unsigned int reg = DISPLAY_VER(i915) >= 6 ? SNB_GMCH_CTRL : INTEL_GMCH_CTRL;
+> 	u16 gmch_ctrl;
+>
+> 	if (pci_read_config_word(i915->bridge_dev, reg, &gmch_ctrl)) {
+>diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+>index b37a87bb190f..17a98cb627df 100644
+>--- a/drivers/gpu/drm/i915/display/skl_scaler.c
+>+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+>@@ -115,7 +115,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+> 	 * Once NV12 is enabled, handle it here while allocating scaler
+> 	 * for NV12.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 9 && crtc_state->hw.enable &&
+>+	if (DISPLAY_VER(dev_priv) >= 9 && crtc_state->hw.enable &&
+> 	    need_scaler && adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) {
+> 		drm_dbg_kms(&dev_priv->drm,
+> 			    "Pipe/Plane scaling not supported with IF-ID mode\n");
+>@@ -157,10 +157,10 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+> 	/* range checks */
+> 	if (src_w < SKL_MIN_SRC_W || src_h < SKL_MIN_SRC_H ||
+> 	    dst_w < SKL_MIN_DST_W || dst_h < SKL_MIN_DST_H ||
+>-	    (INTEL_GEN(dev_priv) >= 11 &&
+>+	    (DISPLAY_VER(dev_priv) >= 11 &&
+> 	     (src_w > ICL_MAX_SRC_W || src_h > ICL_MAX_SRC_H ||
+> 	      dst_w > ICL_MAX_DST_W || dst_h > ICL_MAX_DST_H)) ||
+>-	    (INTEL_GEN(dev_priv) < 11 &&
+>+	    (DISPLAY_VER(dev_priv) < 11 &&
+> 	     (src_w > SKL_MAX_SRC_W || src_h > SKL_MAX_SRC_H ||
+> 	      dst_w > SKL_MAX_DST_W || dst_h > SKL_MAX_DST_H)))	{
+> 		drm_dbg_kms(&dev_priv->drm,
+>@@ -280,7 +280,7 @@ int skl_update_scaler_plane(struct intel_crtc_state *crtc_state,
+> 	case DRM_FORMAT_ABGR16161616F:
+> 	case DRM_FORMAT_XRGB16161616F:
+> 	case DRM_FORMAT_ARGB16161616F:
+>-		if (INTEL_GEN(dev_priv) >= 11)
+>+		if (DISPLAY_VER(dev_priv) >= 11)
+> 			break;
+> 		fallthrough;
+> 	default:
+>diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>index 1f335cb09149..91e5d8a5d4a9 100644
+>--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>@@ -275,13 +275,13 @@ static u8 icl_nv12_y_plane_mask(struct drm_i915_private *i915)
+> bool icl_is_nv12_y_plane(struct drm_i915_private *dev_priv,
+> 			 enum plane_id plane_id)
+> {
+>-	return INTEL_GEN(dev_priv) >= 11 &&
+>+	return DISPLAY_VER(dev_priv) >= 11 &&
+> 		icl_nv12_y_plane_mask(dev_priv) & BIT(plane_id);
+> }
+>
+> bool icl_is_hdr_plane(struct drm_i915_private *dev_priv, enum plane_id plane_id)
+> {
+>-	return INTEL_GEN(dev_priv) >= 11 &&
+>+	return DISPLAY_VER(dev_priv) >= 11 &&
+> 		icl_hdr_plane_mask() & BIT(plane_id);
+> }
+>
+>@@ -294,7 +294,7 @@ skl_plane_ratio(const struct intel_crtc_state *crtc_state,
+> 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+>
+> 	if (fb->format->cpp[0] == 8) {
+>-		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+>+		if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+> 			*num = 10;
+> 			*den = 8;
+> 		} else {
+>@@ -317,7 +317,7 @@ static int skl_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
+> 	skl_plane_ratio(crtc_state, plane_state, &num, &den);
+>
+> 	/* two pixels per clock on glk+ */
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		den *= 2;
+>
+> 	return DIV_ROUND_UP(pixel_rate * num, den);
+>@@ -810,7 +810,7 @@ static u32 skl_plane_ctl_crtc(const struct intel_crtc_state *crtc_state)
+> 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+> 	u32 plane_ctl = 0;
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		return plane_ctl;
+>
+> 	if (crtc_state->gamma_enable)
+>@@ -834,7 +834,7 @@ static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
+>
+> 	plane_ctl = PLANE_CTL_ENABLE;
+>
+>-	if (INTEL_GEN(dev_priv) < 10 && !IS_GEMINILAKE(dev_priv)) {
+>+	if (DISPLAY_VER(dev_priv) < 10 && !IS_GEMINILAKE(dev_priv)) {
+> 		plane_ctl |= skl_plane_ctl_alpha(plane_state);
+> 		plane_ctl |= PLANE_CTL_PLANE_GAMMA_DISABLE;
+>
+>@@ -849,7 +849,7 @@ static u32 skl_plane_ctl(const struct intel_crtc_state *crtc_state,
+> 	plane_ctl |= skl_plane_ctl_tiling(fb->modifier);
+> 	plane_ctl |= skl_plane_ctl_rotate(rotation & DRM_MODE_ROTATE_MASK);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10)
+>+	if (DISPLAY_VER(dev_priv) >= 10)
+> 		plane_ctl |= cnl_plane_ctl_flip(rotation &
+> 						DRM_MODE_REFLECT_MASK);
+>
+>@@ -866,7 +866,7 @@ static u32 glk_plane_color_ctl_crtc(const struct intel_crtc_state *crtc_state)
+> 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+> 	u32 plane_color_ctl = 0;
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		return plane_color_ctl;
+>
+> 	if (crtc_state->gamma_enable)
+>@@ -941,7 +941,7 @@ skl_main_to_aux_plane(const struct drm_framebuffer *fb, int main_plane)
+>
+> 	if (is_ccs_modifier(fb->modifier))
+> 		return main_to_ccs_plane(fb, main_plane);
+>-	else if (INTEL_GEN(i915) < 11 &&
+>+	else if (DISPLAY_VER(i915) < 11 &&
+> 		 intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
+> 		return 1;
+> 	else
+>@@ -976,7 +976,7 @@ skl_program_plane(struct intel_plane *plane,
+>
+> 	plane_ctl |= skl_plane_ctl_crtc(crtc_state);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		plane_color_ctl = plane_state->color_ctl |
+> 			glk_plane_color_ctl_crtc(crtc_state);
+>
+>@@ -999,7 +999,7 @@ skl_program_plane(struct intel_plane *plane,
+> 	if (aux_plane) {
+> 		aux_dist = plane_state->color_plane[aux_plane].offset - surf_addr;
+>
+>-		if (INTEL_GEN(dev_priv) < 12)
+>+		if (DISPLAY_VER(dev_priv) < 12)
+> 			aux_dist |= skl_plane_stride(plane_state, aux_plane);
+> 	}
+>
+>@@ -1017,7 +1017,7 @@ skl_program_plane(struct intel_plane *plane,
+> 		intel_de_write_fw(dev_priv, PLANE_CUS_CTL(pipe, plane_id),
+> 				  plane_state->cus_ctl);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id),
+> 				  plane_color_ctl);
+>
+>@@ -1038,7 +1038,7 @@ skl_program_plane(struct intel_plane *plane,
+> 	intel_de_write_fw(dev_priv, PLANE_OFFSET(pipe, plane_id),
+> 			  (y << 16) | x);
+>
+>-	if (INTEL_GEN(dev_priv) < 11)
+>+	if (DISPLAY_VER(dev_priv) < 11)
+> 		intel_de_write_fw(dev_priv, PLANE_AUX_OFFSET(pipe, plane_id),
+> 				  (plane_state->color_plane[1].y << 16) | plane_state->color_plane[1].x);
+>
+>@@ -1154,7 +1154,7 @@ static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
+> 		 */
+> 		switch (fb->format->format) {
+> 		case DRM_FORMAT_RGB565:
+>-			if (INTEL_GEN(dev_priv) >= 11)
+>+			if (DISPLAY_VER(dev_priv) >= 11)
+> 				break;
+> 			fallthrough;
+> 		case DRM_FORMAT_C8:
+>@@ -1262,7 +1262,7 @@ static int skl_plane_max_scale(struct drm_i915_private *dev_priv,
+> 	 * the best case.
+> 	 * FIXME need to properly check this later.
+> 	 */
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv) ||
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv) ||
+> 	    !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
+> 		return 0x30000 - 1;
+> 	else
+>@@ -1631,7 +1631,7 @@ static bool skl_fb_scalable(const struct drm_framebuffer *fb)
+> 	case DRM_FORMAT_ARGB16161616F:
+> 	case DRM_FORMAT_XBGR16161616F:
+> 	case DRM_FORMAT_ABGR16161616F:
+>-		return INTEL_GEN(to_i915(fb->dev)) >= 11;
+>+		return DISPLAY_VER(to_i915(fb->dev)) >= 11;
+> 	default:
+> 		return true;
+> 	}
+>@@ -1687,7 +1687,7 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
+>
+> 	plane_state->ctl = skl_plane_ctl(crtc_state, plane_state);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		plane_state->color_ctl = glk_plane_color_ctl(crtc_state,
+> 							     plane_state);
+>
+>@@ -1719,7 +1719,7 @@ static bool skl_plane_has_planar(struct drm_i915_private *dev_priv,
+> 	if (IS_SKYLAKE(dev_priv) || IS_BROXTON(dev_priv))
+> 		return false;
+>
+>-	if (IS_GEN(dev_priv, 9) && !IS_GEMINILAKE(dev_priv) && pipe == PIPE_C)
+>+	if (DISPLAY_VER(dev_priv) == 9 && !IS_GEMINILAKE(dev_priv) && pipe == PIPE_C)
+> 		return false;
+>
+> 	if (plane_id != PLANE_PRIMARY && plane_id != PLANE_SPRITE0)
+>@@ -1776,7 +1776,7 @@ static bool skl_plane_has_ccs(struct drm_i915_private *dev_priv,
+> 	if (plane_id == PLANE_CURSOR)
+> 		return false;
+>
+>-	if (INTEL_GEN(dev_priv) >= 10)
+>+	if (DISPLAY_VER(dev_priv) >= 10)
+> 		return true;
+>
+> 	if (IS_GEMINILAKE(dev_priv))
+>@@ -2009,11 +2009,11 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+> 		fbc->possible_framebuffer_bits |= plane->frontbuffer_bit;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 11) {
+>+	if (DISPLAY_VER(dev_priv) >= 11) {
+> 		plane->min_width = icl_plane_min_width;
+> 		plane->max_width = icl_plane_max_width;
+> 		plane->max_height = icl_plane_max_height;
+>-	} else if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+>+	} else if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+> 		plane->max_width = glk_plane_max_width;
+> 		plane->max_height = skl_plane_max_height;
+> 	} else {
+>@@ -2029,16 +2029,16 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+> 	plane->min_cdclk = skl_plane_min_cdclk;
+>
+> 	if (plane_id == PLANE_PRIMARY) {
+>-		plane->need_async_flip_disable_wa = IS_GEN_RANGE(dev_priv, 9, 10);
+>+		plane->need_async_flip_disable_wa = (DISPLAY_VER(dev_priv) >= 9 && DISPLAY_VER(dev_priv) <= 10);
+> 		plane->async_flip = skl_plane_async_flip;
+> 		plane->enable_flip_done = skl_plane_enable_flip_done;
+> 		plane->disable_flip_done = skl_plane_disable_flip_done;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		formats = icl_get_plane_formats(dev_priv, pipe,
+> 						plane_id, &num_formats);
+>-	else if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	else if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		formats = glk_get_plane_formats(dev_priv, pipe,
+> 						plane_id, &num_formats);
+> 	else
+>@@ -2046,7 +2046,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+> 						plane_id, &num_formats);
+>
+> 	plane->has_ccs = skl_plane_has_ccs(dev_priv, pipe, plane_id);
+>-	if (INTEL_GEN(dev_priv) >= 12) {
+>+	if (DISPLAY_VER(dev_priv) >= 12) {
+> 		modifiers = gen12_get_plane_modifiers(dev_priv, plane_id);
+> 		plane_funcs = &gen12_plane_funcs;
+> 	} else {
+>@@ -2075,7 +2075,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+> 		DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 |
+> 		DRM_MODE_ROTATE_180 | DRM_MODE_ROTATE_270;
+>
+>-	if (INTEL_GEN(dev_priv) >= 10)
+>+	if (DISPLAY_VER(dev_priv) >= 10)
+> 		supported_rotations |= DRM_MODE_REFLECT_X;
+>
+> 	drm_plane_create_rotation_property(&plane->base,
+>@@ -2084,7 +2084,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+>
+> 	supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+> 		supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
+>
+> 	drm_plane_create_color_properties(&plane->base,
+>@@ -2102,10 +2102,10 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+>
+> 	drm_plane_create_zpos_immutable_property(&plane->base, plane_id);
+>
+>-	if (INTEL_GEN(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 12)
+> 		drm_plane_enable_fb_damage_clips(&plane->base);
+>
+>-	if (INTEL_GEN(dev_priv) >= 10)
+>+	if (DISPLAY_VER(dev_priv) >= 10)
+> 		drm_plane_create_scaling_filter_property(&plane->base,
+> 						BIT(DRM_SCALING_FILTER_DEFAULT) |
+> 						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
+>@@ -2159,12 +2159,12 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
+>
+> 	val = intel_de_read(dev_priv, PLANE_CTL(pipe, plane_id));
+>
+>-	if (INTEL_GEN(dev_priv) >= 11)
+>+	if (DISPLAY_VER(dev_priv) >= 11)
+> 		pixel_format = val & ICL_PLANE_CTL_FORMAT_MASK;
+> 	else
+> 		pixel_format = val & PLANE_CTL_FORMAT_MASK;
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+>+	if (DISPLAY_VER(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
+> 		alpha = intel_de_read(dev_priv,
+> 				      PLANE_COLOR_CTL(pipe, plane_id));
+> 		alpha &= PLANE_COLOR_ALPHA_MASK;
+>@@ -2188,7 +2188,7 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
+> 	case PLANE_CTL_TILED_Y:
+> 		plane_config->tiling = I915_TILING_Y;
+> 		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
+>-			fb->modifier = INTEL_GEN(dev_priv) >= 12 ?
+>+			fb->modifier = DISPLAY_VER(dev_priv) >= 12 ?
+> 				I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS :
+> 				I915_FORMAT_MOD_Y_TILED_CCS;
+> 		else if (val & PLANE_CTL_MEDIA_DECOMPRESSION_ENABLE)
+>@@ -2226,7 +2226,7 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
+> 		break;
+> 	}
+>
+>-	if (INTEL_GEN(dev_priv) >= 10 &&
+>+	if (DISPLAY_VER(dev_priv) >= 10 &&
+> 	    val & PLANE_CTL_FLIP_HORIZONTAL)
+> 		plane_config->rotation |= DRM_MODE_REFLECT_X;
+>
+>-- 
+>2.25.4
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---5mCyUwZo2JvN/JJP--
