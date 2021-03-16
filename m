@@ -2,43 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249B633D490
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Mar 2021 14:06:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70CAB33D5E3
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Mar 2021 15:38:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07C876E3E3;
-	Tue, 16 Mar 2021 13:06:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD6FD89E0C;
+	Tue, 16 Mar 2021 14:38:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEDBD6E3E3
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 13:06:48 +0000 (UTC)
-IronPort-SDR: T/G5LIUErAZMA/WTu0KnhUSzQuZEKIH1iO/zz1HcFYPfWuRioBBW3ECd0ZAfvUFoLHaUHnGo75
- lrYifzheJ/rQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9924"; a="168527393"
-X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="168527393"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2021 06:06:28 -0700
-IronPort-SDR: 8KeAlBtrTOGxJkHrMq4Id57TDJUSYkReLn4mFM2X8us0/ZCRec7Qzg9ROZGuwOxsKA/YVwpM3d
- R8jXeKVQqeqw==
-X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="405538038"
-Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.215.126.178])
- ([10.215.126.178])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2021 06:06:26 -0700
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210127100051.30595-1-anshuman.gupta@intel.com>
- <955b8a9b-14ed-2252-c564-b095413e6615@intel.com>
-Message-ID: <03ec2274-dc85-a13d-8c47-20a2bc42b8c9@intel.com>
-Date: Tue, 16 Mar 2021 18:36:24 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
-MIME-Version: 1.0
-In-Reply-To: <955b8a9b-14ed-2252-c564-b095413e6615@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAC5E89E0C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 14:38:38 +0000 (UTC)
+IronPort-SDR: MbASaonP4KwNRDZOLv+gjHwt5iGOAW9G0BJ+4dAq1V2K0M8MHVyoTPFZM1AF2BdbdErZViOn9K
+ IYhxc1u0g1wg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9924"; a="189362679"
+X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="189362679"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2021 07:38:38 -0700
+IronPort-SDR: sN/70fYWUWWSd5plxB9QacdxsoXXkAKWRVgekrQByJr0OodYZx+79H2lJQtuh7fP32c2eSAdGs
+ d7U9tEGeGRrw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="440105312"
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
+ by FMSMGA003.fm.intel.com with ESMTP; 16 Mar 2021 07:38:37 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Tue, 16 Mar 2021 14:38:35 +0000
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.013;
+ Tue, 16 Mar 2021 07:38:34 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915/display/psr: Add sink not reliable check to
+ intel_psr_work()
+Thread-Index: AQHXF0R1GNUd2bQR/kufcQmm+RycB6qA4fWAgAH9BACABEyDgA==
+Date: Tue, 16 Mar 2021 14:38:34 +0000
+Message-ID: <bcad3bf35917433c39107a23a3d997a250691a6e.camel@intel.com>
+References: <20210312133430.1478156-1-gwan-gyeong.mun@intel.com>
+ <85d3edee2ca1da2ed4cf09fe6451b6a079b2fd51.camel@intel.com>
+ <b66c0c1ade0bf80c3dc799b0e9498d540bcf4a51.camel@intel.com>
+In-Reply-To: <b66c0c1ade0bf80c3dc799b0e9498d540bcf4a51.camel@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: mst streams type1 capability
- check
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <A5162F0970F58F4EA28FC751C4E6C49C@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/psr: Add sink not reliable
+ check to intel_psr_work()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,126 +65,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sean Paul <seanpaul@chromium.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U29ycnkgbXkgbWlzdGFrZSwgSSBkaWQgbm90IHRha2UgaW50byBhY2NvdW50IHRoZSBlbmRpYW5u
-ZXNzLgoKUGF0Y2ggbG9va3MgZ29vZCB0byBtZS4KClJldmlld2VkLWJ5OiBBbmtpdCBOYXV0aXlh
-bCA8YW5raXQuay5uYXV0aXlhbEBpbnRlbC5jb20+CgoKT24gMy8xNi8yMDIxIDY6MjAgUE0sIE5h
-dXRpeWFsLCBBbmtpdCBLIHdyb3RlOgo+IEhpIEFuc2h1bWFuLAo+Cj4gSSBhZ3JlZSB3aXRoIHRo
-ZSBwYXRjaC4gT3ZlcmFsbCBsb29rcyBnb29kLgo+Cj4gVGhlcmUgaXMgYSBjb3JyZWN0aW9uIHN1
-Z2dlc3RlZCBiZWxvdzoKPgo+IE9uIDEvMjcvMjAyMSAzOjMwIFBNLCBBbnNodW1hbiBHdXB0YSB3
-cm90ZToKPj4gSXQgcmVxdWlyZXMgdG8gY2hlY2sgc3RyZWFtcyB0eXBlMSBjYXBhYmlsaXR5IGlu
-IG1zdCB0b3BvbG9neQo+PiBieSBjaGVja2luZyBSeGluZm8gaW5zdGVhZCBjb25uZWN0b3IgSERD
-UDIueCBjYXBhYmlsaXR5IGluCj4+IG9yZGVyIHRvIGVuZm9yY2UgdHlwZTAgc3RyZWFtIGVuY3J5
-cHRpb24gaW4gYSBtaXggb2YKPj4gSERDUCB7MS54LDIueH0gbXN0IHRvcG9sb2d5Lgo+PiBSeGNh
-cHMgYWx3YXlzIHNob3dzIEhEQ1AgMi54IGNhcGFiaWxpdHkgb2YgaW1tZWRpYXRlIGRvd25zdHJl
-YW0KPj4gY29ubmVjdG9yLiBMZXQncyB1c2UgUnhpbmZvIEhEQ1AxX0RFVklDRV9ET1dOU1RSRUFN
-IGJpdCB0bwo+PiBkZXRlY3QgYSBIRENQIHsxLngsMi54fSBtaXggbXN0IHRvcG9sb2d5Lgo+Pgo+
-PiBDYzogU2VhbiBQYXVsIDxzZWFucGF1bEBjaHJvbWl1bS5vcmc+Cj4+IENjOiBSYW1hbGluZ2Ft
-IEMgPHJhbWFsaW5nYW0uY0BpbnRlbC5jb20+Cj4+IFNpZ25lZC1vZmYtYnk6IEFuc2h1bWFuIEd1
-cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+Cj4+IC0tLQo+PiDCoCAuLi4vZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmjCoMKgwqAgfMKgIDQgKysKPj4gwqAgZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9oZGNwLmPCoCB8IDM5ICsrKysrKysrKysr
-KysrKysrKysKPj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwLmPC
-oMKgwqDCoCB8IDE3ICsrKysrKystCj4+IMKgIDMgZmlsZXMgY2hhbmdlZCwgNTkgaW5zZXJ0aW9u
-cygrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmggCj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKPj4gaW5kZXggMzkzOTc3NDhiNGIwLi5j
-ZmM5ZWM4MmYxMTcgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheV90eXBlcy5oCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCj4+IEBAIC0zNzMsNiArMzczLDEwIEBAIHN0cnVjdCBp
-bnRlbF9oZGNwX3NoaW0gewo+PiDCoMKgwqDCoMKgIGludCAoKmhkY3BfMl8yX2NhcGFibGUpKHN0
-cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LAo+PiDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIGJvb2wgKmNhcGFibGUpOwo+PiDCoCArwqDCoMKgIC8qIERldGVjdHMg
-d2hldGhlciBhIEhEQ1AgMS40IHNpbmsgY29ubmVjdGVkIGluIE1TVCB0b3BvbG9neSAqLwo+PiAr
-wqDCoMKgIGludCAoKnN0cmVhbXNfdHlwZTFfY2FwYWJsZSkoc3RydWN0IGludGVsX2Nvbm5lY3Rv
-ciAqY29ubmVjdG9yLAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBib29sICpjYXBhYmxlKTsKPj4gKwo+PiDCoMKgwqDCoMKgIC8qIFdyaXRlIEhEQ1AyLjIgbWVz
-c2FnZXMgKi8KPj4gwqDCoMKgwqDCoCBpbnQgKCp3cml0ZV8yXzJfbXNnKShzdHJ1Y3QgaW50ZWxf
-ZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCwKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHZvaWQgKmJ1Ziwgc2l6ZV90IHNpemUpOwo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9oZGNwLmMgCj4+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9oZGNwLmMKPj4gaW5kZXggZjM3MmUyNWVkYWI0Li4zNWUz
-YjBlNGM3NDAgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZHBfaGRjcC5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZHBfaGRjcC5jCj4+IEBAIC00NzgsNiArNDc4LDIzIEBAIGludCBpbnRlbF9kcF9oZGNwMl93cml0
-ZV9tc2coc3RydWN0IAo+PiBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LAo+PiDCoMKgwqDC
-oMKgIHJldHVybiBzaXplOwo+PiDCoCB9Cj4+IMKgICtzdGF0aWMgaW50Cj4+ICtnZXRfcnhpbmZv
-X2hkY3BfMV9kZXZfZG93bnN0cmVhbShzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0IAo+PiAqZGln
-X3BvcnQsIGJvb2wgKmhkY3BfMV94KQo+PiArewo+PiArwqDCoMKgIHU4IHJ4X2luZm9bSERDUF8y
-XzJfUlhJTkZPX0xFTl07Cj4+ICvCoMKgwqAgaW50IHJldDsKPj4gKwo+PiArwqDCoMKgIHJldCA9
-IGRybV9kcF9kcGNkX3JlYWQoJmRpZ19wb3J0LT5kcC5hdXgsCj4+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgRFBfSERDUF8yXzJfUkVHX1JYSU5GT19PRkZTRVQsCj4+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKHZvaWQgKilyeF9pbmZvLCBIRENQ
-XzJfMl9SWElORk9fTEVOKTsKPj4gKwo+PiArwqDCoMKgIGlmIChyZXQgIT0gSERDUF8yXzJfUlhJ
-TkZPX0xFTikKPj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiByZXQgPj0gMCA/IC1FSU8gOiByZXQ7
-Cj4+ICsKPj4gK8KgwqDCoCAqaGRjcF8xX3ggPSBIRENQXzJfMl9IRENQMV9ERVZJQ0VfQ09OTkVD
-VEVEKHJ4X2luZm9bMV0pID8gdHJ1ZSA6IAo+PiBmYWxzZTsKPgo+IEkgdGhpbmsgdGhpcyBzaG91
-bGQgYmUgcnhfaW5mb1swXSBhcyB3ZSBhcmUgY2hlY2tpbmcgZm9yIGJpdCAwIG9mIHRoZSAKPiBm
-aXJzdCBieXRlIGFzIHBlciByeEluZm8gYml0IGZpZWxkIGRlZmluaXRpb25zLgo+Cj4gUmVnYXJk
-cywKPgo+IEFua2l0Cj4KPgo+PiArwqDCoMKgIHJldHVybiAwOwo+PiArfQo+PiArCj4+IMKgIHN0
-YXRpYwo+PiDCoCBzc2l6ZV90IGdldF9yZWNlaXZlcl9pZF9saXN0X3NpemUoc3RydWN0IGludGVs
-X2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpCj4+IMKgIHsKPj4gQEAgLTYyNiw2ICs2NDMsMjcgQEAg
-aW50IGludGVsX2RwX2hkY3AyX2NhcGFibGUoc3RydWN0IAo+PiBpbnRlbF9kaWdpdGFsX3BvcnQg
-KmRpZ19wb3J0LAo+PiDCoMKgwqDCoMKgIHJldHVybiAwOwo+PiDCoCB9Cj4+IMKgICtzdGF0aWMK
-Pj4gK2ludCBpbnRlbF9kcF9tc3Rfc3RyZWFtc190eXBlMV9jYXBhYmxlKHN0cnVjdCBpbnRlbF9j
-b25uZWN0b3IgCj4+ICpjb25uZWN0b3IsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBib29sICpjYXBhYmxlKQo+PiArewo+PiArwqDCoMKgIHN0cnVjdCBp
-bnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0gCj4+IGludGVsX2F0dGFjaGVkX2RpZ19wb3J0
-KGNvbm5lY3Rvcik7Cj4+ICvCoMKgwqAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0
-b19pOTE1KGRpZ19wb3J0LT5iYXNlLmJhc2UuZGV2KTsKPj4gK8KgwqDCoCBpbnQgcmV0Owo+PiAr
-wqDCoMKgIGJvb2wgaGRjcF8xX3g7Cj4+ICsKPj4gK8KgwqDCoCByZXQgPSBnZXRfcnhpbmZvX2hk
-Y3BfMV9kZXZfZG93bnN0cmVhbShkaWdfcG9ydCwgJmhkY3BfMV94KTsKPj4gK8KgwqDCoCBpZiAo
-cmV0KSB7Cj4+ICvCoMKgwqDCoMKgwqDCoCBkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLAo+PiArwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJbJXM6JWRdIGZhaWxlZCB0byByZWFkIFJ4SW5m
-byByZXQ9JWRcbiIsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29ubmVjdG9y
-LT5iYXNlLm5hbWUsIGNvbm5lY3Rvci0+YmFzZS5iYXNlLmlkLCByZXQpOwo+PiArwqDCoMKgwqDC
-oMKgwqAgcmV0dXJuIHJldDsKPj4gK8KgwqDCoCB9Cj4+ICsKPj4gK8KgwqDCoCAqY2FwYWJsZSA9
-ICFoZGNwXzFfeDsKPj4gK8KgwqDCoCByZXR1cm4gMDsKPj4gK30KPj4gKwo+PiDCoCBzdGF0aWMg
-Y29uc3Qgc3RydWN0IGludGVsX2hkY3Bfc2hpbSBpbnRlbF9kcF9oZGNwX3NoaW0gPSB7Cj4+IMKg
-wqDCoMKgwqAgLndyaXRlX2FuX2Frc3YgPSBpbnRlbF9kcF9oZGNwX3dyaXRlX2FuX2Frc3YsCj4+
-IMKgwqDCoMKgwqAgLnJlYWRfYmtzdiA9IGludGVsX2RwX2hkY3BfcmVhZF9ia3N2LAo+PiBAQCAt
-ODEzLDYgKzg1MSw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfaGRjcF9zaGltIAo+PiBp
-bnRlbF9kcF9tc3RfaGRjcF9zaGltID0gewo+PiDCoMKgwqDCoMKgIC5zdHJlYW1fMl8yX2VuY3J5
-cHRpb24gPSBpbnRlbF9kcF9tc3RfaGRjcDJfc3RyZWFtX2VuY3J5cHRpb24sCj4+IMKgwqDCoMKg
-wqAgLmNoZWNrXzJfMl9saW5rID0gaW50ZWxfZHBfbXN0X2hkY3AyX2NoZWNrX2xpbmssCj4+IMKg
-wqDCoMKgwqAgLmhkY3BfMl8yX2NhcGFibGUgPSBpbnRlbF9kcF9oZGNwMl9jYXBhYmxlLAo+PiAr
-wqDCoMKgIC5zdHJlYW1zX3R5cGUxX2NhcGFibGUgPSBpbnRlbF9kcF9tc3Rfc3RyZWFtc190eXBl
-MV9jYXBhYmxlLAo+PiDCoMKgwqDCoMKgIC5wcm90b2NvbCA9IEhEQ1BfUFJPVE9DT0xfRFAsCj4+
-IMKgIH07Cj4+IMKgIGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2hkY3AuYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkY3Au
-Ywo+PiBpbmRleCBhZTEzNzFjMzZhMzIuLjViMmUyNjI1Nzc5YiAxMDA2NDQKPj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwLmMKPj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZGNwLmMKPj4gQEAgLTMyLDYgKzMyLDIxIEBAIHN0
-YXRpYyBpbnQgaW50ZWxfY29ubl90b192Y3BpKHN0cnVjdCAKPj4gaW50ZWxfY29ubmVjdG9yICpj
-b25uZWN0b3IpCj4+IMKgwqDCoMKgwqAgcmV0dXJuIGNvbm5lY3Rvci0+cG9ydMKgwqDCoCA/IGNv
-bm5lY3Rvci0+cG9ydC0+dmNwaS52Y3BpIDogMDsKPj4gwqAgfQo+PiDCoCArc3RhdGljIGJvb2wK
-Pj4gK2ludGVsX3N0cmVhbXNfdHlwZTFfY2FwYWJsZShzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpj
-b25uZWN0b3IpCj4+ICt7Cj4+ICvCoMKgwqAgY29uc3Qgc3RydWN0IGludGVsX2hkY3Bfc2hpbSAq
-c2hpbSA9IGNvbm5lY3Rvci0+aGRjcC5zaGltOwo+PiArwqDCoMKgIGJvb2wgY2FwYWJsZSA9IGZh
-bHNlOwo+PiArCj4+ICvCoMKgwqAgaWYgKCFzaGltKQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJu
-IGNhcGFibGU7Cj4+ICsKPj4gK8KgwqDCoCBpZiAoc2hpbS0+c3RyZWFtc190eXBlMV9jYXBhYmxl
-KQo+PiArwqDCoMKgwqDCoMKgwqAgc2hpbS0+c3RyZWFtc190eXBlMV9jYXBhYmxlKGNvbm5lY3Rv
-ciwgJmNhcGFibGUpOwo+PiArCj4+ICvCoMKgwqAgcmV0dXJuIGNhcGFibGU7Cj4+ICt9Cj4+ICsK
-Pj4gwqAgLyoKPj4gwqDCoCAqIGludGVsX2hkY3BfcmVxdWlyZWRfY29udGVudF9zdHJlYW0gc2Vs
-ZWN0cyB0aGUgbW9zdCBoaWdoZXN0IAo+PiBjb21tb24gcG9zc2libGUgSERDUAo+PiDCoMKgICog
-Y29udGVudF90eXBlIGZvciBhbGwgc3RyZWFtcyBpbiBEUCBNU1QgdG9wb2xvZ3kgYmVjYXVzZSBz
-ZWN1cml0eSAKPj4gZi93IGRvZXNuJ3QKPj4gQEAgLTcwLDcgKzg1LDcgQEAgaW50ZWxfaGRjcF9y
-ZXF1aXJlZF9jb250ZW50X3N0cmVhbShzdHJ1Y3QgCj4+IGludGVsX2RpZ2l0YWxfcG9ydCAqZGln
-X3BvcnQpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoY29ubl9kaWdfcG9ydCAhPSBkaWdfcG9y
-dCkKPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29udGludWU7Cj4+IMKgIC3CoMKgwqDC
-oMKgwqDCoCBpZiAoIWVuZm9yY2VfdHlwZTAgJiYgIWludGVsX2hkY3AyX2NhcGFibGUoY29ubmVj
-dG9yKSkKPj4gK8KgwqDCoMKgwqDCoMKgIGlmICghZW5mb3JjZV90eXBlMCAmJiAhaW50ZWxfc3Ry
-ZWFtc190eXBlMV9jYXBhYmxlKGNvbm5lY3RvcikpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIGVuZm9yY2VfdHlwZTAgPSB0cnVlOwo+PiDCoCDCoMKgwqDCoMKgwqDCoMKgwqAgZGF0YS0+
-c3RyZWFtc1tkYXRhLT5rXS5zdHJlYW1faWQgPSAKPj4gaW50ZWxfY29ubl90b192Y3BpKGNvbm5l
-Y3Rvcik7Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-PiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-Zwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Sat, 2021-03-13 at 20:01 +0000, Mun, Gwan-gyeong wrote:
+> On Fri, 2021-03-12 at 05:37 -0800, Souza, Jose wrote:
+> > On Fri, 2021-03-12 at 15:34 +0200, Gwan-gyeong Mun wrote:
+> > > If the sink state is not reliable, it does not need to wait for
+> > > PSR "IDLE state" for re-enabling PSR. And it should not try to re-
+> > > enable
+> > > PSR.
+> > > 
+> > > Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_psr.c | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+> > > b/drivers/gpu/drm/i915/display/intel_psr.c
+> > > index cd434285e3b7..7f555407de06 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > > @@ -1686,6 +1686,9 @@ static void intel_psr_work(struct work_struct
+> > > *work)
+> > >         if (READ_ONCE(intel_dp->psr.irq_aux_error))
+> > >                 intel_psr_handle_irq(intel_dp);
+> > >  
+> > > 
+> > > 
+> > > 
+> 1. In intel_psr_irq_handler()
+>    when the psr error happens,
+>      intel_dp->psr.irq_aux_error = true; 
+>       schedule_work(&intel_dp->psr.work);
+> 
+> 
+> 2. In intel_psr_work()
+>     ...
+>    if (READ_ONCE(intel_dp->psr.irq_aux_error))
+>      intel_psr_handle_irq(intel_dp); 
+> 	 -> intel_psr_disable_locked(intel_dp); 
+>             psr->sink_not_reliable = true;  
+>     ...
+> 
+> 
+> IMO, when this scenario happens, the below code seems to be needed.
+
+
+Information like this should be in the commit message.
+Do not add another check, just do a goto close to the function that handles irq_aux_error.
+
+> 
+> > > +       if (intel_dp->psr.sink_not_reliable)
+> > > +               goto unlock;
+> > 
+> > I can't think any scenario that this will hit.
+> > Before set sink_not_reliable PSR will be disabled so it will be caught
+> > in the first check of intel_psr_work().
+> > 
+> > > +
+> > >         /*
+> > >          * We have to make sure PSR is ready for re-enable
+> > >          * otherwise it keeps disabled until next full enable/disable
+> > > cycle.
+> > 
+> 
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
