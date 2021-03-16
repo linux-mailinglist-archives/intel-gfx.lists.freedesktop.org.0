@@ -2,53 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D4E33E09F
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Mar 2021 22:35:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9DC933E151
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Mar 2021 23:23:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A680589ABA;
-	Tue, 16 Mar 2021 21:35:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E02D46E0C9;
+	Tue, 16 Mar 2021 22:23:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C20C89ADC
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 21:35:21 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id u6so32328596oic.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 14:35:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0V6idEL2dFI31HGEklwz+KMTTdsvOPV4u4MC4yyGBoQ=;
- b=GQyBZZlOulBULlPkFu8YUvGbL4LjSZ3WNRAzkU19wL8cnQPu9Q+o+acohfo2Kmw33W
- 7UBNQpLi1kKPZrazDJk69LcMt6OGPPc3OO85Vqq7C62uUgUCmEmRtS/MZrqmdJszBA3z
- 4BVwmVWHnwcyT4Zi4u99jE6fnoHoySBimZJ9g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=0V6idEL2dFI31HGEklwz+KMTTdsvOPV4u4MC4yyGBoQ=;
- b=suFjB0bqxf90sxyC7jGYjV7/MI9aYXFi2XUXIB5Z4J9MZaVY8K3gzGJAypOgAuUVsj
- vpVSToyWxZ8U25vC5AtGm6TqBomH9D3GDikQXNxGKA8FJ7hxj73D6S5lpPHJOxLOEueN
- Bdc0imVSRQPID6I5wnMk3W+uKchI8vOGN/EjdpRMpChYLY5xZ9n4B3FeSZSYiyFHESw0
- LPLhRsKE/APLrjqB5n4HoKCXCNBZaE4GbPBPpMi0t91J68jIJzztynvfeeoiO5Co+EUC
- n/v/DuNVatXPeGm5AOZXiAwcAQ7Qo2sqzj2sSatDToG5WQ2YERgnAKeOQQKkKp5P0B/f
- vdKA==
-X-Gm-Message-State: AOAM5308gp4i8msPw+xQkk/0B6Gmy1dfOyIxEPa+S4vJ0+uZnGt+w7/W
- ZV+EQYIP495HQqvZKPIYo+IHXXrNwoUukX722Wbo2w==
-X-Google-Smtp-Source: ABdhPJx6N6GuqvBdFRheECM/ouRNeas4liEj9qHDhewi1HE+AShbur0xbPq//EQtgLQQIttvg8h9Ns3oIBfTqtPxe7c=
-X-Received: by 2002:aca:eb56:: with SMTP id j83mr509128oih.14.1615930520470;
- Tue, 16 Mar 2021 14:35:20 -0700 (PDT)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03D316E07F;
+ Tue, 16 Mar 2021 22:23:15 +0000 (UTC)
+IronPort-SDR: ZwU1/TLw8bYadcxnAH5yF9Q51hZcFZweWAI3GcajNkMrFXYxOlnM4YKywu50wK+th0SFJCjHuo
+ o3WteXzI2TcA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9925"; a="168615445"
+X-IronPort-AV: E=Sophos;i="5.81,254,1610438400"; d="scan'208";a="168615445"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2021 15:23:15 -0700
+IronPort-SDR: 053bkLXgKe+VxN9RugWgcwVp7JUVuJYPT4ckoq8I936Y2yAhvWdju7uaPF7QIIXICVJ3U3c26a
+ ZrcND/wSoyVg==
+X-IronPort-AV: E=Sophos;i="5.81,254,1610438400"; d="scan'208";a="412397950"
+Received: from sdhanava-desk2.jf.intel.com ([10.165.21.144])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2021 15:23:15 -0700
+From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 16 Mar 2021 15:12:51 -0700
+Message-Id: <20210316221251.19650-1-swathi.dhanavanthri@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20210302204132.12058-1-manasi.d.navare@intel.com>
- <20210303104744.2c064f09@eldfell> <20210303204433.GA15819@labuser-Z97X-UD5H>
- <20210304104223.6b3490bc@eldfell> <20210309005252.GA27491@labuser-Z97X-UD5H>
- <20210309111350.3be0543f@eldfell>
-In-Reply-To: <20210309111350.3be0543f@eldfell>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Tue, 16 Mar 2021 22:35:09 +0100
-Message-ID: <CAKMK7uEak_2YNDZpyho5bBhhYCvoXh6MoPNL6FmV9sU8oELGPA@mail.gmail.com>
-To: Pekka Paalanen <ppaalanen@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Add the crtc to affected crtc
- only if uapi.enable = true
+Subject: [Intel-gfx] [PATCH] drm/i915: Add Wa_14011060649
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,147 +44,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Daniel Stone <daniels@collabora.com>,
- dri-devel <dri-devel@lists.freedesktop.org>
+Cc: dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 9, 2021 at 10:14 AM Pekka Paalanen <ppaalanen@gmail.com> wrote:
->
-> On Mon, 8 Mar 2021 16:52:58 -0800
-> "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
->
-> > On Thu, Mar 04, 2021 at 10:42:23AM +0200, Pekka Paalanen wrote:
-> > > On Wed, 3 Mar 2021 12:44:33 -0800
-> > > "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
-> > >
-> > > > On Wed, Mar 03, 2021 at 10:47:44AM +0200, Pekka Paalanen wrote:
-> > > > > On Tue,  2 Mar 2021 12:41:32 -0800
-> > > > > Manasi Navare <manasi.d.navare@intel.com> wrote:
-> > > > >
-> > > > > > In case of a modeset where a mode gets split across mutiple CRTCs
-> > > > > > in the driver specific implementation (bigjoiner in i915) we wrongly count
-> > > > > > the affected CRTCs based on the drm_crtc_mask and indicate the stolen CRTC as
-> > > > > > an affected CRTC in atomic_check_only().
-> > > > > > This triggers a warning since affected CRTCs doent match requested CRTC.
-> > > > > >
-> > > > > > To fix this in such bigjoiner configurations, we should only
-> > > > > > increment affected crtcs if that CRTC is enabled in UAPI not
-> > > > > > if it is just used internally in the driver to split the mode.
-> > > > >
-> > > > > Hi,
-> > > > >
-> > > > > I think that makes sense to me. Stealing CRTCs that are not currently
-> > > > > used by the userspace (display server) should be ok, as long as that
-> > > > > is completely invisible to userspace: meaning that it does not cause
-> > > > > userspace to unexpectedly e.g. receive or miss per-crtc atomic
-> > > > > completion events.
-> > > >
-> > > > Yes since we are only doing atomic_check_only() here, the stolen
-> > >
-> > > But the real not-test-only commit will follow if this test-only commit
-> > > succeeds, and keeping the guarantees for the real commit are important.
-> >
-> > Hmm well after the actual real commit, since the second crtc is stolen
-> > even though it is not being used for the display output, it is
-> > used for joiner so the uapi.enable will be true after the real commit.
-> >
-> > so actually the assertion would fail in this case.
-> >
-> > @Ville @Danvet any suggestions here in that case?
+This is a permanent workaround for TGL,RKL,DG1 and ADLS.
 
-That is very bad. We can't frob uapi state like that. I think that
-calls for even more checks to make sure kms drivers who try to play
-clever games don't get it wrong, so we probably need to check uapi
-enable and active state in another mask before/after ->atomic_check
-too. Or something like that.
+Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 23 +++++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h             |  3 +++
+ 2 files changed, 26 insertions(+)
 
-> Hi,
->
-> that is not what I was talking about, but sounds like you found a
-> different problem. It seems like the problem you are talking about
-> would be guaranteed to be hit if bigjoiner was used. Have you not
-> tested this?
->
-> However, I was talking about the real commit itself, not what happens
-> on commits after it, see below.
->
-> > > > crtc is completely invisible to the userspace and hence that is
-> > > > indicated by uapi.enable which is not true for this stolen
-> > > > crtc. However if allow modeset flag set, then it will do a full
-> > > > modeset and indicate the uapi.enable for this stolen crtc as well
-> > > > since that cannot be used for other modeset requested by userspace.
-> > > >
-> > > > >
-> > > > > Can that also be asserted somehow, or does this already do that?
-> > > >
-> > > > Not clear what you want the assertion for? Could you elaborate
-> > >
-> > > As assertion that when the real atomic commit happens and then
-> > > completion events are fired, they match exactly the affected crtcs mask.
->
-> This is my concern and a question, although like I say below, only
-> tangential to this patch.
->
-> However, as this patch aims to allow bigjoiner usage, naturally the
-> question will arise whether the completion events then match what
-> userspace expects or not. Userspace does not expect completion events
-> referring to the stolen CRTCs.
-
-Yeah we also must make sure that we don't send out events for these
-additional crtc in bigjoiner usage. Sounds like igt testing didn't
-catch this, I think we need a lot more igts here to make sure all
-these surprises don't happen.
-
-Plus maybe triple-checking that drm_atomic_uapi.c makes sure we can't
-send out events for stuff that userspace didn't ask for.
--Daniel
-
->
-> > > I understand this may be off-topic for this particular patch, but since
-> > > we are discussing the topic, such checks would be really nice. I'm
-> > > curious if such checks already exist.
->
->
-> Thanks,
-> pq
->
-> > > > > > ---
-> > > > > >  drivers/gpu/drm/drm_atomic.c | 6 ++++--
-> > > > > >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> > > > > > index 5b4547e0f775..d7acd6bbd97e 100644
-> > > > > > --- a/drivers/gpu/drm/drm_atomic.c
-> > > > > > +++ b/drivers/gpu/drm/drm_atomic.c
-> > > > > > @@ -1358,8 +1358,10 @@ int drm_atomic_check_only(struct drm_atomic_state *state)
-> > > > > >               }
-> > > > > >       }
-> > > > > >
-> > > > > > -     for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
-> > > > > > -             affected_crtc |= drm_crtc_mask(crtc);
-> > > > > > +     for_each_new_crtc_in_state(state, crtc, new_crtc_state, i) {
-> > > > > > +             if (new_crtc_state->enable)
-> > > > > > +                     affected_crtc |= drm_crtc_mask(crtc);
-> > > > > > +     }
-> > > > > >
-> > > > > >       /*
-> > > > > >        * For commits that allow modesets drivers can add other CRTCs to the
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
-
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 3b4a7da60f0b..683a0446337a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1117,11 +1117,34 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
+ 			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
+ }
+ 
++/*
++ * This is a common function for WA 14011060649
++ */
++static void
++wa_14011060649(struct drm_i915_private *i915, struct i915_wa_list *wal)
++{
++	struct intel_engine_cs *engine;
++	struct intel_gt *gt = &i915->gt;
++	int id;
++
++	for_each_engine(engine, gt, id) {
++		if ((engine->class != VIDEO_DECODE_CLASS) ||
++		    (engine->instance % 2))
++			continue;
++
++		wa_write_or(wal, VDBOX_CGCTL3F10(engine->mmio_base),
++			    IECPUNIT_CLKGATE_DIS);
++	}
++}
++
+ static void
+ gen12_gt_workarounds_init(struct drm_i915_private *i915,
+ 			  struct i915_wa_list *wal)
+ {
+ 	wa_init_mcr(i915, wal);
++
++	/* Wa_14011060649:tgl,rkl,dg1,adls */
++	wa_14011060649(i915, wal);
+ }
+ 
+ static void
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index e5dd0203991b..cc60556306e2 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2715,6 +2715,9 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define RING_INDIRECT_CTX_OFFSET(base)	_MMIO((base) + 0x1c8) /* gen8+ */
+ #define RING_CTX_TIMESTAMP(base)	_MMIO((base) + 0x3a8) /* gen8+ */
+ 
++#define VDBOX_CGCTL3F10(base)		_MMIO((base) + 0x3f10)
++#define   IECPUNIT_CLKGATE_DIS		REG_BIT(22)
++
+ #define ERROR_GEN6	_MMIO(0x40a0)
+ #define GEN7_ERR_INT	_MMIO(0x44040)
+ #define   ERR_INT_POISON		(1 << 31)
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
