@@ -1,42 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C309533D35C
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Mar 2021 12:52:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC9C333D434
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Mar 2021 13:50:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02FB56E3B7;
-	Tue, 16 Mar 2021 11:52:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AFB16E3DF;
+	Tue, 16 Mar 2021 12:50:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BC846E3AE;
- Tue, 16 Mar 2021 11:52:16 +0000 (UTC)
-IronPort-SDR: G4vzvJTEKKSIYH9k/WxNXEfULRsBOfj5Gr4lkm2f9maOdsBnpWkjqBMykupRcapVeURKVBplF3
- xEsRDJM70SvA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9924"; a="186866511"
-X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="186866511"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2021 04:52:14 -0700
-IronPort-SDR: CZuSbgZivrko2fVsY+rRZ1KyrPyZXDpGN361NGOlqQGJNLP1EDxDFYDFOtWOK/CFqEySOCdWWP
- 6H/FP2DAe2WA==
-X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="412187519"
-Received: from dumser-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.50.146])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2021 04:52:11 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi\,
- Rodrigo" <rodrigo.vivi@intel.com>
-In-Reply-To: <20210316074330.GC1551@zhen-hp.sh.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210316074330.GC1551@zhen-hp.sh.intel.com>
-Date: Tue, 16 Mar 2021 13:52:09 +0200
-Message-ID: <871rcfpb86.fsf@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BCB66E3DF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 12:50:47 +0000 (UTC)
+IronPort-SDR: Oaif6i3KzBFCQUxKhyriGQrs5GeASw9Jf0BU5PZgDzvQc/rIUvAryM0MX/9wLrM4qYkd7SsOqU
+ slMk//yHlBHw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9924"; a="253267539"
+X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="253267539"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2021 05:50:46 -0700
+IronPort-SDR: mPyDNELzQMA9sAr3MtUIa6G57ZnpeCn09FnfSR1B7okgisj8GLODZu00U6xdnPl4S/+6mglJxg
+ b/MhLB2jEGlQ==
+X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="405533997"
+Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.215.126.178])
+ ([10.215.126.178])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2021 05:50:44 -0700
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210127100051.30595-1-anshuman.gupta@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <955b8a9b-14ed-2252-c564-b095413e6615@intel.com>
+Date: Tue, 16 Mar 2021 18:20:37 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PULL] gvt-next
+In-Reply-To: <20210127100051.30595-1-anshuman.gupta@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: mst streams type1 capability
+ check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,74 +50,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv, 
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Sean Paul <seanpaul@chromium.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 16 Mar 2021, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
-> Hi,
->
-> This is queued gvt-next pull for 5.13. Mostly it's for accurate
-> vGPU virtual display rate tracking and change for per-vGPU vblank
-> timer based on that, which brings accurate vblank injection.
+Hi Anshuman,
 
-Pulled to drm-intel-next.
+I agree with the patch. Overall looks good.
 
-BR,
-Jani.
+There is a correction suggested below:
 
+On 1/27/2021 3:30 PM, Anshuman Gupta wrote:
+> It requires to check streams type1 capability in mst topology
+> by checking Rxinfo instead connector HDCP2.x capability in
+> order to enforce type0 stream encryption in a mix of
+> HDCP {1.x,2.x} mst topology.
+> Rxcaps always shows HDCP 2.x capability of immediate downstream
+> connector. Let's use Rxinfo HDCP1_DEVICE_DOWNSTREAM bit to
+> detect a HDCP {1.x,2.x} mix mst topology.
 >
-> Thanks
-> --
-> The following changes since commit c73927183f2b85bf1a06d75d2b51be72aff42358:
+> Cc: Sean Paul <seanpaul@chromium.org>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>   .../drm/i915/display/intel_display_types.h    |  4 ++
+>   drivers/gpu/drm/i915/display/intel_dp_hdcp.c  | 39 +++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_hdcp.c     | 17 +++++++-
+>   3 files changed, 59 insertions(+), 1 deletion(-)
 >
->   drm/i915/tgl+: Sanitize the DDI LANES/IO and AUX power domain names (2021-02-24 14:05:39 +0200)
->
-> are available in the Git repository at:
->
->   https://github.com/intel/gvt-linux.git tags/gvt-next-2021-03-16
->
-> for you to fetch changes up to 9317f356df83a5caeccae2e343d1a569929bcfc9:
->
->   drm/i915/gvt: Fixed couple of spellings in the file gtt.c (2021-03-01 14:02:14 +0800)
->
-> ----------------------------------------------------------------
-> gvt-next-2021-03-16
->
-> - Parse accurate vGPU virtual display rate (Colin)
-> - Convert vblank timer as per-vGPU based on current rate (Colin)
-> - spelling fix (Bhaskar)
->
-> ----------------------------------------------------------------
-> Bhaskar Chowdhury (1):
->       drm/i915/gvt: Fixed couple of spellings in the file gtt.c
->
-> Colin Xu (2):
->       drm/i915/gvt: Get accurate vGPU virtual display refresh rate from vreg
->       drm/i915/gvt: Refactor GVT vblank emulator for vGPU virtual display
->
->  drivers/gpu/drm/i915/gvt/display.c   | 107 +++++++-------
->  drivers/gpu/drm/i915/gvt/display.h   |  14 +-
->  drivers/gpu/drm/i915/gvt/gtt.c       |   4 +-
->  drivers/gpu/drm/i915/gvt/gvt.c       |  25 +++-
->  drivers/gpu/drm/i915/gvt/gvt.h       |  13 +-
->  drivers/gpu/drm/i915/gvt/handlers.c  | 261 ++++++++++++++++++++++++++++++++++-
->  drivers/gpu/drm/i915/gvt/interrupt.c |  37 -----
->  drivers/gpu/drm/i915/gvt/interrupt.h |   7 -
->  drivers/gpu/drm/i915/gvt/vgpu.c      |   2 -
->  9 files changed, 355 insertions(+), 115 deletions(-)
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 39397748b4b0..cfc9ec82f117 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -373,6 +373,10 @@ struct intel_hdcp_shim {
+>   	int (*hdcp_2_2_capable)(struct intel_digital_port *dig_port,
+>   				bool *capable);
+>   
+> +	/* Detects whether a HDCP 1.4 sink connected in MST topology */
+> +	int (*streams_type1_capable)(struct intel_connector *connector,
+> +				     bool *capable);
+> +
+>   	/* Write HDCP2.2 messages */
+>   	int (*write_2_2_msg)(struct intel_digital_port *dig_port,
+>   			     void *buf, size_t size);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> index f372e25edab4..35e3b0e4c740 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> @@ -478,6 +478,23 @@ int intel_dp_hdcp2_write_msg(struct intel_digital_port *dig_port,
+>   	return size;
+>   }
+>   
+> +static int
+> +get_rxinfo_hdcp_1_dev_downstream(struct intel_digital_port *dig_port, bool *hdcp_1_x)
+> +{
+> +	u8 rx_info[HDCP_2_2_RXINFO_LEN];
+> +	int ret;
+> +
+> +	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
+> +			       DP_HDCP_2_2_REG_RXINFO_OFFSET,
+> +			       (void *)rx_info, HDCP_2_2_RXINFO_LEN);
+> +
+> +	if (ret != HDCP_2_2_RXINFO_LEN)
+> +		return ret >= 0 ? -EIO : ret;
+> +
+> +	*hdcp_1_x = HDCP_2_2_HDCP1_DEVICE_CONNECTED(rx_info[1]) ? true : false;
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+I think this should be rx_info[0] as we are checking for bit 0 of the 
+first byte as per rxInfo bit field definitions.
+
+Regards,
+
+Ankit
+
+
+> +	return 0;
+> +}
+> +
+>   static
+>   ssize_t get_receiver_id_list_size(struct intel_digital_port *dig_port)
+>   {
+> @@ -626,6 +643,27 @@ int intel_dp_hdcp2_capable(struct intel_digital_port *dig_port,
+>   	return 0;
+>   }
+>   
+> +static
+> +int intel_dp_mst_streams_type1_capable(struct intel_connector *connector,
+> +				       bool *capable)
+> +{
+> +	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+> +	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+> +	int ret;
+> +	bool hdcp_1_x;
+> +
+> +	ret = get_rxinfo_hdcp_1_dev_downstream(dig_port, &hdcp_1_x);
+> +	if (ret) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "[%s:%d] failed to read RxInfo ret=%d\n",
+> +			    connector->base.name, connector->base.base.id, ret);
+> +		return ret;
+> +	}
+> +
+> +	*capable = !hdcp_1_x;
+> +	return 0;
+> +}
+> +
+>   static const struct intel_hdcp_shim intel_dp_hdcp_shim = {
+>   	.write_an_aksv = intel_dp_hdcp_write_an_aksv,
+>   	.read_bksv = intel_dp_hdcp_read_bksv,
+> @@ -813,6 +851,7 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
+>   	.stream_2_2_encryption = intel_dp_mst_hdcp2_stream_encryption,
+>   	.check_2_2_link = intel_dp_mst_hdcp2_check_link,
+>   	.hdcp_2_2_capable = intel_dp_hdcp2_capable,
+> +	.streams_type1_capable = intel_dp_mst_streams_type1_capable,
+>   	.protocol = HDCP_PROTOCOL_DP,
+>   };
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index ae1371c36a32..5b2e2625779b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -32,6 +32,21 @@ static int intel_conn_to_vcpi(struct intel_connector *connector)
+>   	return connector->port	? connector->port->vcpi.vcpi : 0;
+>   }
+>   
+> +static bool
+> +intel_streams_type1_capable(struct intel_connector *connector)
+> +{
+> +	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
+> +	bool capable = false;
+> +
+> +	if (!shim)
+> +		return capable;
+> +
+> +	if (shim->streams_type1_capable)
+> +		shim->streams_type1_capable(connector, &capable);
+> +
+> +	return capable;
+> +}
+> +
+>   /*
+>    * intel_hdcp_required_content_stream selects the most highest common possible HDCP
+>    * content_type for all streams in DP MST topology because security f/w doesn't
+> @@ -70,7 +85,7 @@ intel_hdcp_required_content_stream(struct intel_digital_port *dig_port)
+>   		if (conn_dig_port != dig_port)
+>   			continue;
+>   
+> -		if (!enforce_type0 && !intel_hdcp2_capable(connector))
+> +		if (!enforce_type0 && !intel_streams_type1_capable(connector))
+>   			enforce_type0 = true;
+>   
+>   		data->streams[data->k].stream_id = intel_conn_to_vcpi(connector);
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
