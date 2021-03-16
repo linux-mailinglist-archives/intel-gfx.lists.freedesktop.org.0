@@ -1,44 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B70CA33D063
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Mar 2021 10:18:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2650833D14E
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Mar 2021 11:02:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CD016E23F;
-	Tue, 16 Mar 2021 09:18:05 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D8396E23F
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 09:18:04 +0000 (UTC)
-IronPort-SDR: 8bvHe07SxRuDE2io+cZUTNTWwSClRniQcCasTmeaPaGnJRaca7+041sbjMNBpqg3D8HxyYGcqT
- WTCLy3oAXFTg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9924"; a="188587377"
-X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="188587377"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2021 02:18:03 -0700
-IronPort-SDR: /qJ2Ny0Xu6o6Ozl8eWcUN4WwKldCrFA2ZzHEP3h15sVqyw4w+JrjJVEnZCdWi+m7o5F4yw2eSZ
- FwpvSsV66YpQ==
-X-IronPort-AV: E=Sophos;i="5.81,251,1610438400"; d="scan'208";a="412149653"
-Received: from dumser-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.50.146])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2021 02:18:02 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20210315173238.4bsxk5mwmrnqw6er@ldmartin-desk2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1613580193.git.jani.nikula@intel.com>
- <f4d0ce154544e1798b6b0fdcc156a90b40abd09b.1613580193.git.jani.nikula@intel.com>
- <20210217174644.jq2fu57zzjdelpmc@ldmartin-desk1> <87tuqaa2pi.fsf@intel.com>
- <20210315173238.4bsxk5mwmrnqw6er@ldmartin-desk2>
-Date: Tue, 16 Mar 2021 11:18:00 +0200
-Message-ID: <87blbjpid3.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 676296E2B6;
+	Tue, 16 Mar 2021 10:02:15 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0376E2A3
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 10:02:14 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id t9so7095359wrn.11
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 03:02:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=mfLVA+73vEg/lj6ta6oGMzapBabiQYob/MJGjhTamW4=;
+ b=RiUl5nGHCtL7MGPKkzbD25Sft9Ls5CY3oZwslmzPBNGgeVsuK7efX18EoNl1BPV5n8
+ uZ0c300zx+hUVGJDtm2lwFiWetDKKb+RWtkIDWjm0Qi+ZkfP1Ny4jtS4Ahg2zethdi7V
+ LqAm4afo9gjSFS56tu2bXhu/DoBQehAjEcfK8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=mfLVA+73vEg/lj6ta6oGMzapBabiQYob/MJGjhTamW4=;
+ b=IG3rG7ePl13nN5xVfCzgJWqZ0hILvZMadt7sBWnb+PmUwc29T/oTQsmURCLiSiGaZi
+ Bqg7BV9QqRFL1hsgoPWDdSKUTZPY9qB6Fp73UBFlhu9mPpgzSDhyBfrzxOMbyg8o/3rz
+ vbJCmMLC+vpkT+Lxy9GShCImt4klBrxKHAsmjZe9t1QRNaICemyyOcIBvrGS8R24BxQD
+ gwMdj/3HpyBPxz6N76FHchOTG8FfhzWe+sJLFrDO0/1EXONVMvo7mc+wAuDpOS0Ms3IC
+ BlfU8KuQViNYb64/SbeveLWC7He66UKOPIgO1MOoFNZzeGY7LnyQ0wfLm/QJ4LjBcAtj
+ QBxA==
+X-Gm-Message-State: AOAM531GpUY4e1Df+mHPfVL94kmz0rBkgFS10jbxyBB9MwZ1glmZ2XK7
+ YHjrLiM99/mbyU2mfXb60iaDIg==
+X-Google-Smtp-Source: ABdhPJz3q95ktkhk4HtUQiybE2v7lbURXerYSd7wr5sguGb/JG+6nlQOZyFQDXHK2szKRdTI5Q12GQ==
+X-Received: by 2002:adf:aa08:: with SMTP id p8mr3867668wrd.232.1615888932623; 
+ Tue, 16 Mar 2021 03:02:12 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id f14sm2689796wmf.7.2021.03.16.03.02.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 16 Mar 2021 03:02:11 -0700 (PDT)
+Date: Tue, 16 Mar 2021 11:02:09 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YFCCISvHuBVyo2z8@phenom.ffwll.local>
+References: <20210312154622.1767865-1-tvrtko.ursulin@linux.intel.com>
+ <20210312154622.1767865-2-tvrtko.ursulin@linux.intel.com>
+ <f361804a-2c51-77ee-dbb4-0caba6bfffd0@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 08/12] drm/i915/vbt: add helper functions to
- check output support
+Content-Disposition: inline
+In-Reply-To: <f361804a-2c51-77ee-dbb4-0caba6bfffd0@linux.intel.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [RFC 1/6] drm/i915: Individual request cancellation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,99 +66,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAxNSBNYXIgMjAyMSwgTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
-bC5jb20+IHdyb3RlOgo+IE9uIFdlZCwgRmViIDE3LCAyMDIxIGF0IDA5OjU1OjUzUE0gKzAyMDAs
-IEphbmkgTmlrdWxhIHdyb3RlOgo+Pk9uIFdlZCwgMTcgRmViIDIwMjEsIEx1Y2FzIERlIE1hcmNo
-aSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPiB3cm90ZToKPj4+IE9uIFdlZCwgRmViIDE3LCAy
-MDIxIGF0IDA3OjAzOjM4UE0gKzAyMDAsIEphbmkgTmlrdWxhIHdyb3RlOgo+Pj4+VGhlc2Ugd2ls
-bCBiZSBleHBvc2VkIHRvIHRoZSByZXN0IG9mIHRoZSBkcml2ZXIgYW5kIHJlcGxhY2Ugb3RoZXIK
-Pj4+PmZ1bmN0aW9ucy4gRXZlcnl0aGluZyB3aWxsIG9wZXJhdGUgb24gdGhlIGNoaWxkIGRldmlj
-ZXMuCj4+Pj4KPj4+PkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNv
-bT4KPj4+PkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-Pgo+Pj4+U2lnbmVkLW9mZi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4K
-Pj4+Pi0tLQo+Pj4+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5jIHwg
-NjYgKysrKysrKysrKysrKysrKysrLS0tLS0KPj4+PiAxIGZpbGUgY2hhbmdlZCwgNTQgaW5zZXJ0
-aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pCj4+Pj4KPj4+PmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfYmlvcy5jCj4+Pj5pbmRleCAxOTM3NzJmNDI1ODIuLjczOWVmNWQ5MTkwNyAx
-MDA2NDQKPj4+Pi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5j
-Cj4+Pj4rKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Jpb3MuYwo+Pj4+
-QEAgLTY0LDYgKzY0LDcgQEAgc3RydWN0IGludGVsX2Jpb3NfZW5jb2Rlcl9kYXRhIHsKPj4+Pgo+
-Pj4+IAlzdHJ1Y3QgY2hpbGRfZGV2aWNlX2NvbmZpZyBjaGlsZDsKPj4+PiAJc3RydWN0IGRzY19j
-b21wcmVzc2lvbl9wYXJhbWV0ZXJzX2VudHJ5ICpkc2M7Cj4+Pj4rCj4+Pj4gCXN0cnVjdCBsaXN0
-X2hlYWQgbm9kZTsKPj4+PiB9Owo+Pj4+Cj4+Pj5AQCAtMTc2MSw2ICsxNzYyLDUzIEBAIHN0YXRp
-YyBlbnVtIHBvcnQgZHZvX3BvcnRfdG9fcG9ydChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
-NSwKPj4+PiAJCQkJCSAgZHZvX3BvcnQpOwo+Pj4+IH0KPj4+Pgo+Pj4+K3N0YXRpYyB2b2lkIHNh
-bml0aXplX2RldmljZV90eXBlKHN0cnVjdCBpbnRlbF9iaW9zX2VuY29kZXJfZGF0YSAqZGV2ZGF0
-YSwKPj4+PisJCQkJIGVudW0gcG9ydCBwb3J0KQo+Pj4+K3sKPj4+PisJc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmk5MTUgPSBkZXZkYXRhLT5pOTE1Owo+Pj4+Kwlib29sIGlzX2hkbWk7Cj4+Pj4r
-Cj4+Pj4rCWlmIChwb3J0ICE9IFBPUlRfQSB8fCBJTlRFTF9HRU4oaTkxNSkgPj0gMTIpCj4+Pj4r
-CQlyZXR1cm47Cj4+Pj4rCj4+Pj4rCWlmICghKGRldmRhdGEtPmNoaWxkLmRldmljZV90eXBlICYg
-REVWSUNFX1RZUEVfVE1EU19EVklfU0lHTkFMSU5HKSkKPj4+PisJCXJldHVybjsKPj4+PisKPj4+
-PisJaXNfaGRtaSA9ICEoZGV2ZGF0YS0+Y2hpbGQuZGV2aWNlX3R5cGUgJiBERVZJQ0VfVFlQRV9O
-T1RfSERNSV9PVVRQVVQpOwo+Pj4+Kwo+Pj4+Kwlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiVkJU
-IGNsYWltcyBwb3J0IEEgc3VwcG9ydHMgRFZJJXMsIGlnbm9yaW5nXG4iLAo+Pj4+KwkJICAgIGlz
-X2hkbWkgPyAiL0hETUkiIDogIiIpOwo+Pj4+Kwo+Pj4+KwlkZXZkYXRhLT5jaGlsZC5kZXZpY2Vf
-dHlwZSAmPSB+REVWSUNFX1RZUEVfVE1EU19EVklfU0lHTkFMSU5HOwo+Pj4+KwlkZXZkYXRhLT5j
-aGlsZC5kZXZpY2VfdHlwZSB8PSBERVZJQ0VfVFlQRV9OT1RfSERNSV9PVVRQVVQ7Cj4+Pj4rfQo+
-Pj4+Kwo+Pj4+K3N0YXRpYyBib29sCj4+Pj4raW50ZWxfYmlvc19lbmNvZGVyX3N1cHBvcnRzX2R2
-aShjb25zdCBzdHJ1Y3QgaW50ZWxfYmlvc19lbmNvZGVyX2RhdGEgKmRldmRhdGEpCj4+Pj4rewo+
-Pj4+KwlyZXR1cm4gZGV2ZGF0YS0+Y2hpbGQuZGV2aWNlX3R5cGUgJiBERVZJQ0VfVFlQRV9UTURT
-X0RWSV9TSUdOQUxJTkc7Cj4+Pj4rfQo+Pj4+Kwo+Pj4+K3N0YXRpYyBib29sCj4+Pj4raW50ZWxf
-Ymlvc19lbmNvZGVyX3N1cHBvcnRzX2hkbWkoY29uc3Qgc3RydWN0IGludGVsX2Jpb3NfZW5jb2Rl
-cl9kYXRhICpkZXZkYXRhKQo+Pj4+K3sKPj4+PisJcmV0dXJuIGludGVsX2Jpb3NfZW5jb2Rlcl9z
-dXBwb3J0c19kdmkoZGV2ZGF0YSkgJiYKPj4+PisJCShkZXZkYXRhLT5jaGlsZC5kZXZpY2VfdHlw
-ZSAmIERFVklDRV9UWVBFX05PVF9IRE1JX09VVFBVVCkgPT0gMDsKPj4+Pit9Cj4+Pj4rCj4+Pj4r
-c3RhdGljIGJvb2wKPj4+PitpbnRlbF9iaW9zX2VuY29kZXJfc3VwcG9ydHNfZHAoY29uc3Qgc3Ry
-dWN0IGludGVsX2Jpb3NfZW5jb2Rlcl9kYXRhICpkZXZkYXRhKQo+Pj4+K3sKPj4+PisJcmV0dXJu
-IGRldmRhdGEtPmNoaWxkLmRldmljZV90eXBlICYgREVWSUNFX1RZUEVfRElTUExBWVBPUlRfT1VU
-UFVUOwo+Pj4+K30KPj4+PisKPj4+PitzdGF0aWMgYm9vbAo+Pj4+K2ludGVsX2Jpb3NfZW5jb2Rl
-cl9zdXBwb3J0c19lZHAoY29uc3Qgc3RydWN0IGludGVsX2Jpb3NfZW5jb2Rlcl9kYXRhICpkZXZk
-YXRhKQo+Pj4+K3sKPj4+PisJcmV0dXJuIGludGVsX2Jpb3NfZW5jb2Rlcl9zdXBwb3J0c19kcChk
-ZXZkYXRhKSAmJgo+Pj4+KwkJZGV2ZGF0YS0+Y2hpbGQuZGV2aWNlX3R5cGUgJiBERVZJQ0VfVFlQ
-RV9JTlRFUk5BTF9DT05ORUNUT1I7Cj4+Pj4rfQo+Pj4+Kwo+Pj4+IHN0YXRpYyB2b2lkIHBhcnNl
-X2RkaV9wb3J0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+Pj4+IAkJCSAgIHN0cnVj
-dCBpbnRlbF9iaW9zX2VuY29kZXJfZGF0YSAqZGV2ZGF0YSkKPj4+PiB7Cj4+Pj5AQCAtMTc4Miwx
-OSArMTgzMCwxMyBAQCBzdGF0aWMgdm9pZCBwYXJzZV9kZGlfcG9ydChzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqaTkxNSwKPj4+PiAJCXJldHVybjsKPj4+PiAJfQo+Pj4+Cj4+Pj4tCWlzX2R2aSA9
-IGNoaWxkLT5kZXZpY2VfdHlwZSAmIERFVklDRV9UWVBFX1RNRFNfRFZJX1NJR05BTElORzsKPj4+
-Pi0JaXNfZHAgPSBjaGlsZC0+ZGV2aWNlX3R5cGUgJiBERVZJQ0VfVFlQRV9ESVNQTEFZUE9SVF9P
-VVRQVVQ7Cj4+Pj4tCWlzX2NydCA9IGNoaWxkLT5kZXZpY2VfdHlwZSAmIERFVklDRV9UWVBFX0FO
-QUxPR19PVVRQVVQ7Cj4+Pj4tCWlzX2hkbWkgPSBpc19kdmkgJiYgKGNoaWxkLT5kZXZpY2VfdHlw
-ZSAmIERFVklDRV9UWVBFX05PVF9IRE1JX09VVFBVVCkgPT0gMDsKPj4+Pi0JaXNfZWRwID0gaXNf
-ZHAgJiYgKGNoaWxkLT5kZXZpY2VfdHlwZSAmIERFVklDRV9UWVBFX0lOVEVSTkFMX0NPTk5FQ1RP
-Uik7Cj4+Pj4rCXNhbml0aXplX2RldmljZV90eXBlKGRldmRhdGEsIHBvcnQpOwo+Pj4+Cj4+Pj4t
-CWlmIChwb3J0ID09IFBPUlRfQSAmJiBpc19kdmkgJiYgSU5URUxfR0VOKGk5MTUpIDwgMTIpIHsK
-Pj4+Pi0JCWRybV9kYmdfa21zKCZpOTE1LT5kcm0sCj4+Pj4tCQkJICAgICJWQlQgY2xhaW1zIHBv
-cnQgQSBzdXBwb3J0cyBEVkklcywgaWdub3JpbmdcbiIsCj4+Pj4tCQkJICAgIGlzX2hkbWkgPyAi
-L0hETUkiIDogIiIpOwo+Pj4+LQkJaXNfZHZpID0gZmFsc2U7Cj4+Pj4tCQlpc19oZG1pID0gZmFs
-c2U7Cj4+Pj4tCX0KPj4+PisJaXNfZHZpID0gaW50ZWxfYmlvc19lbmNvZGVyX3N1cHBvcnRzX2R2
-aShkZXZkYXRhKTsKPj4+PisJaXNfZHAgPSBpbnRlbF9iaW9zX2VuY29kZXJfc3VwcG9ydHNfZHAo
-ZGV2ZGF0YSk7Cj4+Pj4rCWlzX2NydCA9IGNoaWxkLT5kZXZpY2VfdHlwZSAmIERFVklDRV9UWVBF
-X0FOQUxPR19PVVRQVVQ7Cj4+Pgo+Pj4gYW55IHJlYXNvbiB0byBsZWF2ZSB0aGlzIGJlaGluZD8K
-Pj4KPj5KdXN0IGxvZ2dpbmcsIGV2ZW4gdGhvdWdoIHRoYXQgZG9lc24ndCBtYXRjaCB3aGF0IHdl
-IGFjdHVhbGx5IGRvIGluCj4+aW50ZWxfZGRpX2NydF9wcmVzZW50KCkuIEkgZXhwZWN0IHRoZXJl
-IHRvIGJlIGZ1cnRoZXIgY2xlYW51cAo+PmFmdGVyd2FyZHMuCj4KPiBJIG1lYW46IHlvdSBhZGRl
-ZCBhIGludGVsX2Jpb3NfZW5jb2Rlcl9zdXBwb3J0c18qKCkgZm9yIGV2ZXJ5dGhpbmcgZWxzZS4K
-PiBXaHkgbm90IGZvciBjcnQ/CgpJJ3ZlIGFkZGVkIGl0IGZvciBldmVyeXRoaW5nIHRoYXQgbmVl
-ZHMgdG8gYmUgbWFkZSBub24tc3RhdGljIGFuZAphdmFpbGFibGUgdG8gdGhlIHJlc3Qgb2YgdGhl
-IGRyaXZlci4gSSBjYW4gYWRkIGl0IGZvciBjb21wbGV0ZW5lc3MgaWYKeW91IGxpa2UuCgpCUiwK
-SmFuaS4KCj4KPiBMdWNhcyBEZSBNYXJjaGkKPgo+Pgo+PkJSLAo+PkphbmkuCj4+Cj4+Pgo+Pj4g
-THVjYXMgRGUgTWFyY2hpCj4+Pgo+Pj4+Kwlpc19oZG1pID0gaW50ZWxfYmlvc19lbmNvZGVyX3N1
-cHBvcnRzX2hkbWkoZGV2ZGF0YSk7Cj4+Pj4rCWlzX2VkcCA9IGludGVsX2Jpb3NfZW5jb2Rlcl9z
-dXBwb3J0c19lZHAoZGV2ZGF0YSk7Cj4+Pj4KPj4+PiAJaW5mby0+c3VwcG9ydHNfZHZpID0gaXNf
-ZHZpOwo+Pj4+IAlpbmZvLT5zdXBwb3J0c19oZG1pID0gaXNfaGRtaTsKPj4+Pi0tCj4+Pj4yLjIw
-LjEKPj4+Pgo+Pgo+Pi0tIAo+PkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGlj
-cyBDZW50ZXIKPj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xwo+PkludGVsLWdmeCBtYWlsaW5nIGxpc3QKPj5JbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCj4+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVy
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Mon, Mar 15, 2021 at 05:37:27PM +0000, Tvrtko Ursulin wrote:
+> 
+> On 12/03/2021 15:46, Tvrtko Ursulin wrote:
+> > From: Chris Wilson <chris@chris-wilson.co.uk>
+> > 
+> > Currently, we cancel outstanding requests within a context when the
+> > context is closed. We may also want to cancel individual requests using
+> > the same graceful preemption mechanism.
+> > 
+> > v2 (Tvrtko):
+> >   * Cancel waiters carefully considering no timeline lock and RCU.
+> >   * Fixed selftests.
+> > 
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> [snip]
+> 
+> > +void i915_request_cancel(struct i915_request *rq, int error)
+> > +{
+> > +	if (!i915_request_set_error_once(rq, error))
+> > +		return;
+> > +
+> > +	set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
+> > +
+> > +	if (i915_sw_fence_signaled(&rq->submit)) {
+> > +		struct i915_dependency *p;
+> > +
+> > +restart:
+> > +		rcu_read_lock();
+> > +		for_each_waiter(p, rq) {
+> > +			struct i915_request *w =
+> > +				container_of(p->waiter, typeof(*w), sched);
+> > +
+> > +			if (__i915_request_is_complete(w) ||
+> > +			    fatal_error(w->fence.error))
+> > +				continue;
+> > +
+> > +			w = i915_request_get(w);
+> > +			rcu_read_unlock();
+> > +			/* Recursion bound by the number of engines */
+> > +			i915_request_cancel(w, error);
+> > +			i915_request_put(w);
+> > +
+> > +			/* Restart after having to drop rcu lock. */
+> > +			goto restart;
+> > +		}
+> 
+> So I need to fix this error propagation to waiters in order to avoid
+> potential stack overflow caught in shards (gem_ctx_ringsize).
+> 
+> Or alternatively we decide not to propagate fence errors. Not sure that
+> consequences either way are particularly better or worse. Things will break
+> anyway since what userspace inspects for unexpected fence errors?!
+
+fence error propagation is one of these "sounds like a good idea" things
+that turned into a can of worms. See the recent revert Jason submitted, I
+replied with a  more in-depth discussion.
+
+So I'd say if we don't need this internally somehow for scheduler state,
+remove it. Maybe even the entire scaffolding we have for the forwarding.
+
+Maybe best if you sync with Jason here, we need to stuff Jason's patch
+into -fixes since there's a pretty bad regression going on. I think Jason
+also said there's a pile of igts to remove once we give up on fence error
+propagation.
+
+> So rendering corruption more or less. Can it cause a further stream of GPU
+> hangs I am not sure. Only if there is a inter-engine data dependency
+> involving data more complex than images/textures.
+
+Yup. Also at least on modern-ish hw our userspace goes with
+non-recoverable contexts anyway, because everything needs to be
+reconstructed. vk is even more brutal, it just hands you back a
+vk_device_lost and everything is gone (textures, data, all api objects,
+really everything afaiui). Trying to continue is something only old
+userspace is doing, because the fully emit the entire ctx state at the
+start of each batch anyway.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
