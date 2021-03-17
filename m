@@ -1,49 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D46933FA61
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 22:17:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 347C033FA73
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 22:26:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 564F189C63;
-	Wed, 17 Mar 2021 21:17:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80C706E853;
+	Wed, 17 Mar 2021 21:26:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C17189C63;
- Wed, 17 Mar 2021 21:17:43 +0000 (UTC)
-IronPort-SDR: 0uqWvYJXn/xgLBNDX5W78F/XwoK6w8HrtzeXtB9i1J+P1DY/2+hLZNjpAyyEJRXiAviPDwM2KS
- 7j7z5kKM+65Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9926"; a="168824753"
-X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="168824753"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2021 14:17:41 -0700
-IronPort-SDR: AAYchsC5i4LrAN0vhFv8eT2hagSqLhZ4g92YNpGCKK6JxLIzRAKC1aCmpxMLfDd9eTxiLa0PXM
- gyYY1+jmU16w==
-X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="450239592"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2021 14:17:41 -0700
-Date: Wed, 17 Mar 2021 14:23:49 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Daniel Stone <daniel@fooishbar.org>
-Message-ID: <20210317212349.GA30079@labuser-Z97X-UD5H>
-References: <20210302204132.12058-1-manasi.d.navare@intel.com>
- <20210303104744.2c064f09@eldfell>
- <20210303204433.GA15819@labuser-Z97X-UD5H>
- <20210304104223.6b3490bc@eldfell>
- <20210309005252.GA27491@labuser-Z97X-UD5H>
- <20210309111350.3be0543f@eldfell>
- <CAKMK7uEak_2YNDZpyho5bBhhYCvoXh6MoPNL6FmV9sU8oELGPA@mail.gmail.com>
- <CAPj87rOtWpBW3u7M+ePPQqT_RKEmCzDA8u4gRfT-HrcRaR7_zg@mail.gmail.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 999B76E03E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 21:26:41 +0000 (UTC)
+IronPort-SDR: Fpl+lUz5utFB0fEfuqDk6xWF2F0FjZRkG/H+9ktruthZ6DCJpAaKFplK1E9xqufzALBLo/wFOJ
+ 3PmgTiTg/6+A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9926"; a="188915413"
+X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="188915413"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2021 14:26:41 -0700
+IronPort-SDR: B5RTKWbZOa5X4qZq7Cc4zEZQ3OjY94Y7MdvmcNNYTb63JaRZS0vh5JsUOI0hzl5slkJ3L61oUD
+ l9YRm5SU45PA==
+X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="412810536"
+Received: from lbozovsk-mobl3.ger.corp.intel.com (HELO helsinki.intel.com)
+ ([10.251.188.228])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2021 14:26:39 -0700
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 17 Mar 2021 23:26:32 +0200
+Message-Id: <20210317212632.2211971-1-gwan-gyeong.mun@intel.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAPj87rOtWpBW3u7M+ePPQqT_RKEmCzDA8u4gRfT-HrcRaR7_zg@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Add the crtc to affected crtc
- only if uapi.enable = true
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Not to try to re-enable
+ PSR after being raised an irq aux error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,71 +46,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Stone <daniels@collabora.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 16, 2021 at 11:46:38PM +0000, Daniel Stone wrote:
-> On Tue, 16 Mar 2021 at 21:35, Daniel Vetter <daniel@ffwll.ch> wrote:
-> 
-> > On Tue, Mar 9, 2021 at 10:14 AM Pekka Paalanen <ppaalanen@gmail.com>
-> > wrote:
-> > > On Mon, 8 Mar 2021 16:52:58 -0800
-> > > "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
-> > > > Hmm well after the actual real commit, since the second crtc is stolen
-> > > > even though it is not being used for the display output, it is
-> > > > used for joiner so the uapi.enable will be true after the real commit.
-> > > >
-> > > > so actually the assertion would fail in this case.
-> > > >
-> > > > @Ville @Danvet any suggestions here in that case?
-> >
-> > That is very bad. We can't frob uapi state like that. I think that
-> > calls for even more checks to make sure kms drivers who try to play
-> > clever games don't get it wrong, so we probably need to check uapi
-> > enable and active state in another mask before/after ->atomic_check
-> > too. Or something like that.
-> >
-> 
-> Yeah. We can _never_ generate externally-visible completion events. We can
-> later fail to enable the stolen CRTC - because trying to enable new things
-> can fail for any reason whatsoever - but we can't generate spurious
-> completion events, as doing so falls into the uncanny valley.
-> 
-> If the kernel is doing clever things behind userspace's back - such as
-> stealing planes or CRTCs - then userspace can never know about it, apart
-> from failing to enable those resources later. The kernel can either never
-> do anything clever (and make userspace bind them both together), or be
-> extremely clever (by hiding the entire details from userspace), but it
-> cannot choose the halfway house of doing clever things behind userspace's
-> back (such as stealing new CRTCs) whilst also exposing all those details to
-> userspace (such as delivering spurious completion events for resources
-> userspace never requested to be programmed).
-> 
-> Cheers,
-> Daniel
-
-Yes I agree, in this case there will not be any completion events associated with
-the stolen slave CRTC since that does not get used for the output.
-The completion events will only occur on the bigjoiner master crtc.
-
-But I guess like Danvet suggested we need a separate mask for keeping track of active and
-enabled crtcs before and after atomic check. But need to look at how this will fix
-the affected crtc not matching warning.
-
-Manasi
-
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SWYgYW4gaXJxIGF1eCBlcnJvciBoYXBwZW5zLCBpdCBkb2VzIG5vdCBuZWVkIHRvIHdhaXQgZm9y
+IFBTUiAiSURMRSBzdGF0ZSIKZm9yIHJlLWVuYWJsaW5nIFBTUi4gQW5kIGl0IHNob3VsZCBub3Qg
+dHJ5IHRvIHJlLWVuYWJsZSBQU1IuCgpUaGUgUFNSIGludGVycnVwdCBoYW5kbGVyIHNldHMgaXJx
+X2F1eF9lcnJvciB3aGVuIHRoZSBQU1IgZXJyb3IgaGFwcGVucy4KQW5kIGl0IHNjaGVkdWxlcyB0
+aGUgaW50ZXJfcHNyX3dvcmsoKS4gYnV0IHRoZSBjdXJyZW50IGludGVsX3Bzcl93b3JrKCkgY2Fu
+CmJlIHNjaGVkdWxlZCBieSBhbm90aGVyIFBTUiBpbnRlcm5hbCByb3V0aW5lLgpUaGVyZWZvcmUs
+IHdlIHNob3VsZCBub3QgcmUtZW5hYmxlIFBTUiBhZnRlciBoYW5kaW5nIGlycV9hdXhfZXJyb3Ig
+aW4KaW50ZWxfcHNyX3dvcmsoKS4KCnYyOiBBZGRyZXNzIEpvc2UncyByZXZpZXcgY29tbWVudC4K
+IC0gSGFuZGxpbmcgdGhlIGNsb3NpbmcgZnVuY3Rpb24gaW4gdGhlIGNoZWNrIHJvdXRpbmUgb2Yg
+aXJxX2F1eF9lcnJvci4KIC0gQWRkIGEgZGV0YWlsZWQgY29tbWl0IG1lc3NhZ2UgZm9yIHRoZSBz
+Y2VuYXJpby4KCkNjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNv
+bT4KU2lnbmVkLW9mZi1ieTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwu
+Y29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCA0ICsr
+Ky0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwppbmRleCBjZDQzNDI4NWUzYjcuLmFi
+YTE1ODQ2ZTc4ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9wc3IuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCkBA
+IC0xNjgzLDggKzE2ODMsMTAgQEAgc3RhdGljIHZvaWQgaW50ZWxfcHNyX3dvcmsoc3RydWN0IHdv
+cmtfc3RydWN0ICp3b3JrKQogCWlmICghaW50ZWxfZHAtPnBzci5lbmFibGVkKQogCQlnb3RvIHVu
+bG9jazsKIAotCWlmIChSRUFEX09OQ0UoaW50ZWxfZHAtPnBzci5pcnFfYXV4X2Vycm9yKSkKKwlp
+ZiAoUkVBRF9PTkNFKGludGVsX2RwLT5wc3IuaXJxX2F1eF9lcnJvcikpIHsKIAkJaW50ZWxfcHNy
+X2hhbmRsZV9pcnEoaW50ZWxfZHApOworCQlnb3RvIHVubG9jazsKKwl9CiAKIAkvKgogCSAqIFdl
+IGhhdmUgdG8gbWFrZSBzdXJlIFBTUiBpcyByZWFkeSBmb3IgcmUtZW5hYmxlCi0tIAoyLjMwLjEK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
+eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
