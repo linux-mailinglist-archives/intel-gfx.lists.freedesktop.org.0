@@ -1,41 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61C43343C62
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0337343C63
 	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 10:10:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93BE189E15;
-	Mon, 22 Mar 2021 09:10:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23C0689E05;
+	Mon, 22 Mar 2021 09:10:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9862F6E420
- for <intel-gfx@lists.freedesktop.org>; Tue, 16 Mar 2021 19:04:58 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1615921497; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Uyf6E+H1YXI0cL9QhZdsFGXH1uBKRc1Kbk7vPe0D4QU=;
- b=LGrMMbKyRb2b6FFkgR+sG8KdCwdkavBwtqJ4lXhQ7/WZlRl57kw4zBq9FoLPzTkvClzcr2
- j8ykwSOvCyG0F8QWahP0B6BO3ToT+Kv3+XQnRyvoa3QggFjqaOZVaTWkkxCTU0ZUhYe8bA
- l9tvmkxnJ3VkIG0yPlwajaJ3MhOCQVw=
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 37CE0AC24;
- Tue, 16 Mar 2021 19:04:57 +0000 (UTC)
-Message-ID: <8bee31ec7d936b6b70549d35207aacbd40508dfd.camel@suse.com>
-From: Santiago Zarate <santiago.zarate@suse.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Mar 2021 20:04:56 +0100
-In-Reply-To: <20210316165426.3388513-1-imre.deak@intel.com>
-References: <20210316165426.3388513-1-imre.deak@intel.com>
-User-Agent: Evolution 3.38.4 
+X-Greylist: delayed 950 seconds by postgrey-1.36 at gabe;
+ Wed, 17 Mar 2021 07:58:31 UTC
+Received: from m12-13.163.com (m12-13.163.com [220.181.12.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 492D86E4D7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 07:58:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=HhDgB
+ qjBcvhk9CXs4aaWu4TwFYv97w8AoJIatOGi19I=; b=US64WvfuweYjELoxrxu9I
+ LVTMj2SXNE59ryxPTwN0aoWvBnVLYVTwPmTexdAptIzmkPCey1DWlMEP1OSWt2zM
+ 4FLKSQoPcnBm+/6UfZDZXB70qIEOAH5v2c9Jwj6yuDfyae35IQ9Tl2APb7Uc2GIx
+ gLI+B7CIzTTGe5hboyM3l0=
+Received: from COOL-20201210PM.ccdomain.com (unknown [218.94.48.178])
+ by smtp9 (Coremail) with SMTP id DcCowAC3IwHaslFgA0SmBg--.14447S2;
+ Wed, 17 Mar 2021 15:42:22 +0800 (CST)
+From: zuoqilin1@163.com
+To: airlied@linux.ie,
+	daniel@ffwll.ch
+Date: Wed, 17 Mar 2021 15:42:28 +0800
+Message-Id: <20210317074228.1147-1-zuoqilin1@163.com>
+X-Mailer: git-send-email 2.28.0.windows.1
 MIME-Version: 1.0
+X-CM-TRANSID: DcCowAC3IwHaslFgA0SmBg--.14447S2
+X-Coremail-Antispam: 1Uf129KBjvdXoWruFyrGF43Ary7XF4fGr48JFb_yoWftrb_C3
+ WfZrs8uayUZ3Z0vr1akrn8ZrWSv3WYvrW8X3y0q34Fyw12yr1UGrsrWryxXw15XF1UtFWD
+ Xa18XFn5ZFsrWjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0UEf5UUUUU==
+X-Originating-IP: [218.94.48.178]
+X-CM-SenderInfo: 52xr1xpolqiqqrwthudrp/1tbiZR5YiV8ZNQXaRgAAsA
 X-Mailman-Approved-At: Mon, 22 Mar 2021 09:10:08 +0000
-Subject: Re: [Intel-gfx] drm/i915/ilk-glk: Fix link training on links with
- LTTPRs
+Subject: [Intel-gfx] [PATCH] display: Fix typo issue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,79 +51,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Takashi Iwai <tiwai@suse.de>, stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: zuoqilin <zuoqilin@yulong.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGVzdGVkLUJ5OiBTYW50aWFnbyBaYXJhdGUgPHNhbnRpYWdvLnphcmF0ZUBzdXNlLmNvbT4KClRl
-c3RlZCB3aXRoIGtlcm5lbCBidWlsdCBpbiBvYnMsIHNlZQpodHRwczovL2FwaWJ1Z3ppbGxhLnN1
-c2UuY29tL3Nob3dfYnVnLmNnaT9pZD0xMTgzMjk0I2MxOSBmb3IgbW9yZQpkZXRhaWxzCgpSZWdh
-cmRzLCAKClNhbnRpYWdvCgpPbiBUdWUsIDIwMjEtMDMtMTYgYXQgMTg6NTQgKzAyMDAsIEltcmUg
-RGVhayB3cm90ZToKPiBUaGUgc3BlYyByZXF1aXJlcyB0byB1c2UgYXQgbGVhc3QgMy4ybXMgZm9y
-IHRoZSBBVVggdGltZW91dCBwZXJpb2QgaWYKPiB0aGVyZSBhcmUgTFQtdHVuYWJsZSBQSFkgUmVw
-ZWF0ZXJzIG9uIHRoZSBsaW5rICgyLjExLjIpLiBBbiB1cGNvbWluZwo+IHNwZWMgdXBkYXRlIG1h
-a2VzIHRoaXMgbW9yZSBzcGVjaWZpYywgYnkgcmVxdWlyaW5nIGEgMy4ybXMgbWluaW11bQo+IHRp
-bWVvdXQgcGVyaW9kIGZvciB0aGUgTFRUUFIgZGV0ZWN0aW9uIHJlYWRpbmcgdGhlIDB4RjAwMDAt
-MHhGMDAwNwo+IHJhbmdlICgzLjYuNS4xKS4KPiAKPiBBY2NvcmRpbmdseSBkaXNhYmxlIExUVFBS
-IGRldGVjdGlvbiB1bnRpbCBHTEssIHdoZXJlIHRoZSBtYXhpbXVtCj4gdGltZW91dAo+IHdlIGNh
-biBzZXQgaXMgb25seSAxLjZtcy4KPiAKPiBMaW5rIHRyYWluaW5nIGluIHRoZSBub24tdHJhbnNw
-YXJlbnQgbW9kZSBpcyBrbm93biB0byBmYWlsIGF0IGxlYXN0IG9uCj4gc29tZSBTS0wgc3lzdGVt
-cyB3aXRoIGEgV0QxOSBkb2NrIG9uIHRoZSBsaW5rLCB3aGljaCBleHBvc2VzIGFuIExUVFBSCj4g
-KHNlZSB0aGUgUmVmZXJlbmNlcyBiZWxvdykuIFdoaWxlIHRoaXMgY291bGQgaGF2ZSBkaWZmZXJl
-bnQgcmVhc29ucwo+IGJlc2lkZXMgdGhlIHRvbyBzaG9ydCBBVVggdGltZW91dCB1c2VkLCBub3Qg
-ZGV0ZWN0aW5nIExUVFBScyAoYW5kIHNvCj4gbm90Cj4gdXNpbmcgdGhlIG5vbi10cmFuc3BhcmVu
-dCBMVCBtb2RlKSBmaXhlcyBsaW5rIHRyYWluaW5nIG9uIHRoZXNlCj4gc3lzdGVtcy4KPiAKPiBX
-aGlsZSBhdCBpdCBhZGQgYSBjb2RlIGNvbW1lbnQgYWJvdXQgdGhlIHBsYXRmb3JtIHNwZWNpZmlj
-IG1heGltdW0KPiB0aW1lb3V0IHZhbHVlcy4KPiAKPiBSZXBvcnRlZC1ieTogVGFrYXNoaSBJd2Fp
-IDx0aXdhaUBzdXNlLmRlPgo+IFJlZmVyZW5jZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9w
-Lm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvMzE2Ngo+IEZpeGVzOiBiMzBlZGZkOGQwYjQgKCJkcm0v
-aTkxNTogU3dpdGNoIHRvIExUVFBSIG5vbi10cmFuc3BhcmVudCBtb2RlCj4gbGluayB0cmFpbmlu
-ZyIpCj4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIHY1LjExCj4gQ2M6IFRha2FzaGkg
-SXdhaSA8dGl3YWlAc3VzZS5kZT4KPiBTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVh
-a0BpbnRlbC5jb20+Cj4gLS0tCj4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RwX2F1eC5jwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCA3ICsrKysrKysKPiDCoGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5jIHwgOCArKysrKysrKwo+
-IMKgMiBmaWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4LmMKPiBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4LmMKPiBpbmRleCBlYWViZjEyMzMxMGEuLmI1
-ODFlOGFjY2UwNyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RwX2F1eC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cF9hdXguYwo+IEBAIC0xMzMsNiArMTMzLDcgQEAgc3RhdGljIHUzMiBnNHhfZ2V0X2F1eF9zZW5k
-X2N0bChzdHJ1Y3QgaW50ZWxfZHAKPiAqaW50ZWxfZHAsCj4gwqDCoMKgwqDCoMKgwqDCoGVsc2UK
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHByZWNoYXJnZSA9IDU7Cj4gwqAKPiAr
-wqDCoMKgwqDCoMKgwqAvKiBNYXggdGltZW91dCB2YWx1ZSBvbiBJTEstQkRXOiAxLjZtcyAqLwo+
-IMKgwqDCoMKgwqDCoMKgwqBpZiAoSVNfQlJPQURXRUxMKGRldl9wcml2KSkKPiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoHRpbWVvdXQgPSBEUF9BVVhfQ0hfQ1RMX1RJTUVfT1VUXzYw
-MHVzOwo+IMKgwqDCoMKgwqDCoMKgwqBlbHNlCj4gQEAgLTE1OSw2ICsxNjAsMTIgQEAgc3RhdGlj
-IHUzMiBza2xfZ2V0X2F1eF9zZW5kX2N0bChzdHJ1Y3QgaW50ZWxfZHAKPiAqaW50ZWxfZHAsCj4g
-wqDCoMKgwqDCoMKgwqDCoGVudW0gcGh5IHBoeSA9IGludGVsX3BvcnRfdG9fcGh5KGk5MTUsIGRp
-Z19wb3J0LT5iYXNlLnBvcnQpOwo+IMKgwqDCoMKgwqDCoMKgwqB1MzIgcmV0Owo+IMKgCj4gK8Kg
-wqDCoMKgwqDCoMKgLyoKPiArwqDCoMKgwqDCoMKgwqAgKiBNYXggdGltZW91dCB2YWx1ZXM6Cj4g
-K8KgwqDCoMKgwqDCoMKgICogU0tMLUdMSzogMS42bXMKPiArwqDCoMKgwqDCoMKgwqAgKiBDTkw6
-IDMuMm1zCj4gK8KgwqDCoMKgwqDCoMKgICogSUNMKzogNG1zCj4gK8KgwqDCoMKgwqDCoMKgICov
-Cj4gwqDCoMKgwqDCoMKgwqDCoHJldCA9IERQX0FVWF9DSF9DVExfU0VORF9CVVNZIHwKPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBEUF9BVVhfQ0hfQ1RMX0RPTkUgfAo+IMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIERQX0FVWF9DSF9DVExfSU5URVJSVVBUIHwKPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMKPiBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5jCj4g
-aW5kZXggMTliYTdjN2NiYWFiLi5kZTZkNzBhMjliNDcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMKPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYwo+IEBAIC0x
-MjMsMTAgKzEyMywxOCBAQCBpbnRlbF9kcF9zZXRfbHR0cHJfdHJhbnNwYXJlbnRfbW9kZShzdHJ1
-Y3QKPiBpbnRlbF9kcCAqaW50ZWxfZHAsIGJvb2wgZW5hYmxlKQo+IMKgICovCj4gwqBpbnQgaW50
-ZWxfZHBfbHR0cHJfaW5pdChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQo+IMKgewo+ICvCoMKg
-wqDCoMKgwqDCoHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gZHBfdG9faTkxNShpbnRl
-bF9kcCk7Cj4gwqDCoMKgwqDCoMKgwqDCoGludCBsdHRwcl9jb3VudDsKPiDCoMKgwqDCoMKgwqDC
-oMKgYm9vbCByZXQ7Cj4gwqDCoMKgwqDCoMKgwqDCoGludCBpOwo+IMKgCj4gK8KgwqDCoMKgwqDC
-oMKgLyoKPiArwqDCoMKgwqDCoMKgwqAgKiBEZXRlY3RpbmcgTFRUUFJzIG11c3QgYmUgYXZvaWRl
-ZCBvbiBwbGF0Zm9ybXMgd2l0aCBhbiBBVVgKPiB0aW1lb3V0Cj4gK8KgwqDCoMKgwqDCoMKgICog
-cGVyaW9kIDwgMy4ybXMuIChzZWUgRFAgU3RhbmRhcmQgdjIuMCwgMi4xMS4yLCAzLjYuNi4xKS4K
-PiArwqDCoMKgwqDCoMKgwqAgKi8KPiArwqDCoMKgwqDCoMKgwqBpZiAoSU5URUxfR0VOKGk5MTUp
-IDwgMTApCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJldHVybiAwOwo+ICsKPiDC
-oMKgwqDCoMKgwqDCoMKgaWYgKGludGVsX2RwX2lzX2VkcChpbnRlbF9kcCkpCj4gwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPiDCoAoKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+From: zuoqilin <zuoqilin@yulong.com>
+
+Change 'befor' to 'before'.
+
+Signed-off-by: zuoqilin <zuoqilin@yulong.com>
+---
+ drivers/gpu/drm/i915/display/vlv_dsi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index f94025e..45187ff 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -846,7 +846,7 @@ static void intel_dsi_pre_enable(struct intel_atomic_state *state,
+ 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_INIT_OTP);
+ 
+ 	/* Enable port in pre-enable phase itself because as per hw team
+-	 * recommendation, port should be enabled befor plane & pipe */
++	 * recommendation, port should be enabled before plane & pipe */
+ 	if (is_cmd_mode(intel_dsi)) {
+ 		for_each_dsi_port(port, intel_dsi->ports)
+ 			intel_de_write(dev_priv,
+-- 
+1.9.1
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
