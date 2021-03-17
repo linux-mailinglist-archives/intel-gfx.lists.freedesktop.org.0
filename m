@@ -1,45 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7831B33F839
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 19:37:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9ED133F85B
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 19:49:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37CE16E067;
-	Wed, 17 Mar 2021 18:37:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C6C16E067;
+	Wed, 17 Mar 2021 18:49:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C56736E067
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 18:37:55 +0000 (UTC)
-IronPort-SDR: zXYskW1iQAXQ9j1NBIHSZcf71n0f9hI7JKGGMO3+NjoMli9sl4RcGKeKVFTHN4koQ/3ZvSWZm7
- 7THvlc/o5daw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9926"; a="209497257"
-X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="209497257"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2021 11:37:55 -0700
-IronPort-SDR: 3s0q9WSSv5CYhzO1C8bADhypAuZAFJf6In7p6cFQMUKHoiBhn6/BW3o+dAcuW+Mmizfx83pLrI
- zBfkeg2HU73g==
-X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="450199555"
-Received: from jksalasr-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.212.42.17])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2021 11:37:54 -0700
-Date: Wed, 17 Mar 2021 11:37:53 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20210317183753.wr6t33u5kh3d3rd4@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210311153415.3024607-1-matthew.d.roper@intel.com>
- <20210311153415.3024607-4-matthew.d.roper@intel.com>
- <20210315201442.asmgbo6u4djhwgew@ldmartin-desk2>
- <87czvxoe7n.fsf@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56DC16E067
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 18:49:06 +0000 (UTC)
+IronPort-SDR: Jq+2nZ7v5ODbRMwITl+BgUOX/tg515HkArMtrH6AdaF5tlDA/zW2LQuOZDeQpmnm8Ek+gcsDKe
+ KVBi+8HZn2HQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9926"; a="253537465"
+X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="253537465"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2021 11:49:05 -0700
+IronPort-SDR: El5N0F38OB5gA9/Zy+oj9TKOhuyGp1TOEfgTj+IDCJ1CE1Ta5u4pJ43iOUZXNCAj7NycvKzlxC
+ pNaQ7DxAOqUw==
+X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="511828503"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2021 11:49:04 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 17 Mar 2021 20:48:58 +0200
+Message-Id: <20210317184901.4029798-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87czvxoe7n.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 03/23] drm/i915/display: Eliminate most
- usage of INTEL_GEN()
+Subject: [Intel-gfx] [PATCH v2 0/3] drm/i915: Fix DP LTTPR link training
+ mode initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,100 +45,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: stable@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 17, 2021 at 07:57:32PM +0200, Jani Nikula wrote:
->On Mon, 15 Mar 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> On Thu, Mar 11, 2021 at 07:33:55AM -0800, Matt Roper wrote:
->>>Use Coccinelle to convert most of the usage of INTEL_GEN() and IS_GEN()
->>>in the display code to use DISPLAY_VER() comparisons instead.  The
->>>following semantic patch was used:
->>>
->>>        @@ expression dev_priv; @@
->>>        - INTEL_GEN(dev_priv)
->>>        + DISPLAY_VER(dev_priv)
->>>
->>>        @@ expression dev_priv; expression E; @@
->>>        - !IS_GEN(dev_priv, E)
->>>        + DISPLAY_VER(dev_priv) != E
->>>
->>>        @@ expression dev_priv; expression E; @@
->>>        - IS_GEN(dev_priv, E)
->>>        + DISPLAY_VER(dev_priv) == E
->>>
->>>        @@
->>>        expression dev_priv;
->>>        expression from, until;
->>>        @@
->>>        - !IS_GEN_RANGE(dev_priv, from, until)
->>>        + DISPLAY_VER(dev_priv) < from || DISPLAY_VER(dev_priv) > until
->>>
->>>        @@
->>>        expression dev_priv;
->>>        expression from, until;
->>>        statement S;
->>>        @@
->>>        - if (IS_GEN_RANGE(dev_priv, from, until)) S
->>>        + if (DISPLAY_VER(dev_priv) >= from && DISPLAY_VER(dev_priv) <= until) S
->>>
->>>        @@
->>>        expression dev_priv;
->>>        expression from, until;
->>>        @@
->>>        - IS_GEN_RANGE(dev_priv, from, until)
->>>        + (DISPLAY_VER(dev_priv) >= from && DISPLAY_VER(dev_priv) <= until)
->>>
->>>There are still some display-related uses of INTEL_GEN() in intel_pm.c
->>>(watermark code) and i915_irq.c.  Those will be updated separately.
->>>
->>>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->>
->> The reason why we had macros like IS_GEN() and IS_GEN_RANGE() is because
->> this allows the compiler to short-circuit it into a single
->> bitwise AND + comparison check.
->
->Well, just looking at the code, I think IS_GEN() and IS_GEN_RANGE() also
->look cleaner, at least once you've grown used to them.
->
->Stuff like this gets slower to read IMO:
->
->>>-	if (!IS_GEN_RANGE(dev_priv, 3, 7)) {
->>>+	if (DISPLAY_VER(dev_priv) < 3 || DISPLAY_VER(dev_priv) > 7) {
->
->In the past we had all combinations of <, <=, >, >= with && and ||, and,
->while it's pretty regular stuff, I think it benefited from the
->unification readability wise.
->
->Sure we can add IS_DISPLAY_VER() and _RANGE() later on, but with a bunch
->of churn that I find unlikely to happen again soon.
->
->So I guess I need more convincing this is indeed the path we want to
->take.
-
-I don't disagree. I think the case you cited is the worst case, where we
-have to invert the check. But looking at the code there are just 4 cases
-in which this is used:
-
-$ git grep \!IS_GEN_RANGE
-drivers/gpu/drm/i915/display/intel_bios.c:      if (!IS_GEN_RANGE(dev_priv, 3, 7)) {
-drivers/gpu/drm/i915/gt/gen8_ppgtt.c:   ppgtt->vm.has_read_only = !IS_GEN_RANGE(gt->i915, 11, 12);
-drivers/gpu/drm/i915/gt/intel_ring_submission.c:        if (!IS_GEN_RANGE(engine->i915, 6, 7))
-drivers/gpu/drm/i915/i915_cmd_parser.c:                         GEM_BUG_ON(!IS_GEN_RANGE(engine->i915, 6, 7));
-
-Checking also the positive checks:
-
-	$ git grep IS_GEN_RANGE | wc -l 
-	37
-
-So, not that many.  But to avoid this kind of issue I think we could add a
-`DISPLAY_VER_RANGE(i915, from, until)` already and get rid of this problem.
-
-Lucas De Marchi
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBpcyB2MiBvZgpodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzg4
+MDE1LwoKYWxzbyBtYWtpbmcgc3VyZSB0aGF0IExUVFBScyBhcmUgZGV0ZWN0ZWQgYW5kIGluaXRp
+YWxpemVkIG9ubHkgaWYgdGhlCkRQQ0QgYW5kIExUVFBSIHJldmlzaW9ucyBhcmUgPiAxLjQgYXMg
+cmVxdWlyZWQgYnkgRGlzcGxheSBQb3J0CnNwZWNpZmljYXRpb24uCgpDYzogVmlsbGUgU3lyasOk
+bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IDxzdGFibGVAdmdlci5rZXJu
+ZWwub3JnPiAjIHY1LjExCgpJbXJlIERlYWsgKDMpOgogIGRybS9pOTE1L2lsay1nbGs6IEZpeCBs
+aW5rIHRyYWluaW5nIG9uIGxpbmtzIHdpdGggTFRUUFJzCiAgZHJtL2k5MTU6IERpc2FibGUgTFRU
+UFIgc3VwcG9ydCB3aGVuIHRoZSBEUENEIHJldiA8IDEuNAogIGRybS9pOTE1OiBEaXNhYmxlIExU
+VFBSIHN1cHBvcnQgd2hlbiB0aGUgTFRUUFIgcmV2IDwgMS40CgogZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kcC5jICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZHBfYXV4LmMgICB8ICA3ICsrCiAuLi4vZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kcF9saW5rX3RyYWluaW5nLmMgfCA2NiArKysrKysrKysrKysrKy0tLS0tCiAuLi4vZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmggfCAgMiArLQogNCBmaWxlcyBj
+aGFuZ2VkLCA1OCBpbnNlcnRpb25zKCspLCAyMSBkZWxldGlvbnMoLSkKCi0tIAoyLjI1LjEKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
