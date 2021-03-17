@@ -1,59 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AAD633F371
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 15:42:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 796AD33F3CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 16:03:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6684A6E598;
-	Wed, 17 Mar 2021 14:41:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCAB36E5C1;
+	Wed, 17 Mar 2021 15:03:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96CEA6E598
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 14:41:58 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id w18so2620529edc.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 07:41:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=1x2DVLYPyLfTcPZ4DPcLeAmGngaBfj0fgp9byOgJXZc=;
- b=t1TDhoQ6qncZ42uinLcLjuW3X5F4aW0zDAq20Kw/c5Cpuy4/XT8PFwtaYhTk7Ld8ij
- kmRUJYXVvj8V3tqOGCs4OBHwjH8n6mnMKJGyugvI22EutB+d4ZdNpbwDm+NzxhMbyg5T
- dPj6E1DZfE4fz10X7SptKtIojeDnf30+fnL+ZPZvdfncv7vpyyvpLa8fOCUzF7gjmL5T
- N4WQMWrVsvTZDs4SIDJb0nPYBmwK/2q67IK+LpLNLArij+1enuPCT5Jrbz1My12IhoGe
- IeVnW4m88oZxPZ+6t3t7+z6msfhp+se/UBpkNl54BnG+ZxKpEezCaB9l2xC8wpqiGAJk
- BiDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=1x2DVLYPyLfTcPZ4DPcLeAmGngaBfj0fgp9byOgJXZc=;
- b=CYprWiZgA579M81Yr7+tgMPMGQgBRkm+ggPVxOhrGIMfeYQhisfxcLZyUAP6RhcEG0
- OAXF0Q+cjpoSxx6hA4LGDfVRj85G0KZcers+5BilnNHTPmKuf0YpczYoFaniu7yJNnR8
- ARnxoSRMtbhSSNCOunhiRUjWrBOAy1IOmDCllUHZb2LHEYHMjyDeD5aP4VID/49Bk3W3
- 0ajOWWfSjSSordi/EfavbpgXb/6S+CuJJBMkWRSMOYfovliplCY64Kz6aCpKmltRW4Pk
- ji+SarmrOM6bdbnw+8ElWS74pE15kSp6tof2DecNpovkknFF9BrUmnVaPpGG2MKd8GTs
- 3VFw==
-X-Gm-Message-State: AOAM532AZvwG2pIYz3ejy5kMnsdoqDj/J/7eg8Sc7c92qH1X2//gNWeG
- 2rPxCKf24/SGLR90tcdCMX/0Nc3QwulpGPvE0Pbt4w==
-X-Google-Smtp-Source: ABdhPJyf5OoL+X1btDFQd6YaxppjF8Yl09/CFO5eg5tZ+cFFwB0rIuA+MqfekRXiBkFCbogIYBe9Bn1RGayVMSqoeVE=
-X-Received: by 2002:a05:6402:17d6:: with SMTP id
- s22mr42077216edy.232.1615992117217; 
- Wed, 17 Mar 2021 07:41:57 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C1626E5C1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 15:03:53 +0000 (UTC)
+IronPort-SDR: 0jQWjCBhHHCieEtx4bLzSlIuin7Zd7bxE7cMdwTl0ALtUe48c1F5U4p+zDq41nIzgVStpaKInM
+ kOO+7pD+1eTA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9926"; a="209448662"
+X-IronPort-AV: E=Sophos;i="5.81,256,1610438400"; d="scan'208";a="209448662"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2021 08:03:32 -0700
+IronPort-SDR: 2A9SGhZzgnaR1J6UUaV7TUlw0gXksDQ79T6G2COwq5CYLXkSg/5VDvrTxRorfzDi7yfgJAHCUq
+ JDeSdiaEw3Zw==
+X-IronPort-AV: E=Sophos;i="5.81,256,1610438400"; d="scan'208";a="605743643"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2021 08:03:31 -0700
+Date: Wed, 17 Mar 2021 17:03:27 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20210317150327.GG3823928@ideak-desk.fi.intel.com>
+References: <20210316165426.3388513-1-imre.deak@intel.com>
+ <YFIMz62Zkq9ewP4m@intel.com>
 MIME-Version: 1.0
-References: <20210315143428.1471489-3-jason@jlekstrand.net>
- <20210317143935.2094831-1-jason@jlekstrand.net>
-In-Reply-To: <20210317143935.2094831-1-jason@jlekstrand.net>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Wed, 17 Mar 2021 09:41:46 -0500
-Message-ID: <CAOFGe95-ziVPXC4t-SvDKpQ30kTtUiu6R0-uq6dGeeehfHcdBw@mail.gmail.com>
-To: Maling list - DRI developers <dri-devel@lists.freedesktop.org>, 
- Intel GFX <intel-gfx@lists.freedesktop.org>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Drop relocation support on
- all new hardware (v6)
+Content-Disposition: inline
+In-Reply-To: <YFIMz62Zkq9ewP4m@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ilk-glk: Fix link training on
+ links with LTTPRs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,66 +48,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: imre.deak@intel.com
+Cc: Takashi Iwai <tiwai@suse.de>, intel-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SSBzaG91bGQgcHJvYmFibHkgaGF2ZSBzYWlkIHRoYXQgdGhlIHJldmlld3MgYXJlIG9uIHY1IGFu
-ZCBpdCdzIHZlcnkKZGlmZmVyZW50IGluIHY2IHNvIHRoZXkgc2hvdWxkIHByb2JhYmx5IGJlIGNv
-bnNpZGVyZWQgZHJvcHBlZCB1bnRpbApyZS1jb25maXJtZWQuCgpPbiBXZWQsIE1hciAxNywgMjAy
-MSBhdCA5OjM5IEFNIEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3RyYW5kLm5ldD4gd3JvdGU6
-Cj4KPiBUaGUgVnVsa2FuIGRyaXZlciBpbiBNZXNhIGZvciBJbnRlbCBoYXJkd2FyZSBuZXZlciB1
-c2VzIHJlbG9jYXRpb25zIGlmCj4gaXQncyBydW5uaW5nIG9uIGEgdmVyc2lvbiBvZiBpOTE1IHRo
-YXQgc3VwcG9ydHMgYXQgbGVhc3Qgc29mdHBpbiB3aGljaAo+IGFsbCB2ZXJzaW9ucyBvZiBpOTE1
-IHN1cHBvcnRpbmcgR2VuMTIgZG8uICBPbiB0aGUgT3BlbkdMIHNpZGUsIEdlbjEyKyBpcwo+IG9u
-bHkgc3VwcG9ydGVkIGJ5IGlyaXMgd2hpY2ggbmV2ZXIgdXNlcyByZWxvY2F0aW9ucy4gIFRoZSBv
-bGRlciBpOTY1Cj4gZHJpdmVyIGluIE1lc2EgZG9lcyB1c2UgcmVsb2NhdGlvbnMgYnV0IGl0IG9u
-bHkgc3VwcG9ydHMgSW50ZWwgaGFyZHdhcmUKPiB0aHJvdWdoIEdlbjExIGFuZCBoYXMgYmVlbiBk
-ZXByZWNhdGVkIGZvciBhbGwgaGFyZHdhcmUgR2VuOSsuICBUaGUKPiBjb21wdXRlIGRyaXZlciBh
-bHNvIG5ldmVyIHVzZXMgcmVsb2NhdGlvbnMuICBUaGlzIG9ubHkgbGVhdmVzIHRoZSBtZWRpYQo+
-IGRyaXZlciB3aGljaCBpcyBzdXBwb3NlZCB0byBiZSBzd2l0Y2hpbmcgdG8gc29mdHBpbiBnb2lu
-ZyBmb3J3YXJkLgo+IE1ha2luZyBzb2Z0cGluIGEgcmVxdWlyZW1lbnQgZm9yIGFsbCBmdXR1cmUg
-aGFyZHdhcmUgc2VlbXMgcmVhc29uYWJsZS4KPgo+IFRoZXJlIGlzIG9uZSBwaWVjZSBvZiBoYXJk
-d2FyZSBlbmFibGVkIGJ5IGRlZmF1bHQgaW4gaTkxNTogUktMIHdoaWNoIHdhcwo+IGVuYWJsZWQg
-YnkgZTIyZmE2ZjBhOTc2IHdoaWNoIGhhcyBub3QgeWV0IGxhbmRlZCBpbiBkcm0tbmV4dCBzbyB0
-aGlzCj4gYWxtb3N0IGJ1dCBub3QgcmVhbGx5IGEgdXNlcnNwYWNlIEFQSSBjaGFuZ2UgZm9yIFJL
-TC4gIElmIGl0IGJlY29tZXMgYQo+IHByb2JsZW0sIHdlIGNhbiBhbHdheXMgYWRkICFJU19ST0NL
-RVRMQUtFKGViLT5pOTE1KSB0byB0aGUgY29uZGl0aW9uLgo+Cj4gUmVqZWN0aW5nIHJlbG9jYXRp
-b25zIHN0YXJ0aW5nIHdpdGggbmV3ZXIgR2VuMTIgcGxhdGZvcm1zIGhhcyB0aGUKPiBiZW5lZml0
-IHRoYXQgd2UgZG9uJ3QgaGF2ZSB0byBib3RoZXIgc3VwcG9ydGluZyBpdCBvbiBwbGF0Zm9ybXMg
-d2l0aAo+IGxvY2FsIG1lbW9yeS4gIEdpdmVuIGhvdyBtdWNoIENQVSB0b3VjaGluZyBvZiBtZW1v
-cnkgaXMgcmVxdWlyZWQgZm9yCj4gcmVsb2NhdGlvbnMsIG5vdCBoYXZpbmcgdG8gZG8gc28gb24g
-cGxhdGZvcm1zIHdoZXJlIG5vdCBhbGwgbWVtb3J5IGlzCj4gZGlyZWN0bHkgQ1BVLWFjY2Vzc2li
-bGUgY2FycmllcyBzaWduaWZpY2FudCBhZHZhbnRhZ2VzLgo+Cj4gdjIgKEphc29uIEVrc3RyYW5k
-KToKPiAgLSBBbGxvdyBUR0wtTFAgcGxhdGZvcm1zIGFzIHRoZXkndmUgYWxyZWFkeSBzaGlwcGVk
-Cj4KPiB2MyAoSmFzb24gRWtzdHJhbmQpOgo+ICAtIFdBUk5fT04gcGxhdGZvcm1zIHdpdGggTE1F
-TSBzdXBwb3J0IGluIGNhc2UgdGhlIGNoZWNrIGlzIHdyb25nCj4KPiB2NCAoSmFzb24gRWtzdHJh
-bmQpOgo+ICAtIENhbGwgb3V0IFJvY2tldCBMYWtlIGluIHRoZSBjb21taXQgbWVzc2FnZQo+Cj4g
-djUgKEphc29uIEVrc3RyYW5kKToKPiAgLSBEcm9wIHRoZSBIQVNfTE1FTSBjaGVjayBhcyBpdCdz
-IGFscmVhZHkgY292ZXJlZCBieSB0aGUgdmVyc2lvbiBjaGVjawo+Cj4gdjYgKEphc29uIEVrc3Ry
-YW5kKToKPiAgLSBNb3ZlIHRoZSBjaGVjayB0byBlYl92YWxpZGF0ZV92bWEoKSB3aXRoIGFsbCB0
-aGUgb3RoZXIgZXhlY19vYmplY3QKPiAgICB2YWxpZGF0aW9uIGNoZWNrcy4KPgo+IFNpZ25lZC1v
-ZmYtYnk6IEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3RyYW5kLm5ldD4KPiBSZXZpZXdlZC1i
-eTogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymlnbmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+
-Cj4gUmV2aWV3ZWQtYnk6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51
-eC5pbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9l
-eGVjYnVmZmVyLmMgfCA3ICsrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygr
-KQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9leGVj
-YnVmZmVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5j
-Cj4gaW5kZXggOTk3NzJmMzdiZmY2MC4uYzA4MmZiMGJlZjMzMCAxMDA2NDQKPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5jCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYwo+IEBAIC00ODMsNiArNDgz
-LDEzIEBAIGViX3ZhbGlkYXRlX3ZtYShzdHJ1Y3QgaTkxNV9leGVjYnVmZmVyICplYiwKPiAgICAg
-ICAgICAgICAgICAgc3RydWN0IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgKmVudHJ5LAo+ICAg
-ICAgICAgICAgICAgICBzdHJ1Y3QgaTkxNV92bWEgKnZtYSkKPiAgewo+ICsgICAgICAgLyogUmVs
-b2NhdGlvbnMgYXJlIGRpc2FsbG93ZWQgZm9yIGFsbCBwbGF0Zm9ybXMgYWZ0ZXIgVEdMLUxQLiAg
-VGhpcwo+ICsgICAgICAgICogYWxzbyBjb3ZlcnMgYWxsIHBsYXRmb3JtcyB3aXRoIGxvY2FsIG1l
-bW9yeS4KPiArICAgICAgICAqLwo+ICsgICAgICAgaWYgKGVudHJ5LT5yZWxvY2F0aW9uX2NvdW50
-ICYmCj4gKyAgICAgICAgICAgSU5URUxfR0VOKGViLT5pOTE1KSA+PSAxMiAmJiAhSVNfVElHRVJM
-QUtFKGViLT5pOTE1KSkKPiArICAgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7Cj4gKwo+ICAg
-ICAgICAgaWYgKHVubGlrZWx5KGVudHJ5LT5mbGFncyAmIGViLT5pbnZhbGlkX2ZsYWdzKSkKPiAg
-ICAgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7Cj4KPiAtLQo+IDIuMjkuMgo+Cl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Mar 17, 2021 at 04:06:07PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Tue, Mar 16, 2021 at 06:54:26PM +0200, Imre Deak wrote:
+> > The spec requires to use at least 3.2ms for the AUX timeout period if
+> > there are LT-tunable PHY Repeaters on the link (2.11.2). An upcoming
+> > spec update makes this more specific, by requiring a 3.2ms minimum
+> > timeout period for the LTTPR detection reading the 0xF0000-0xF0007
+> > range (3.6.5.1).
+> > =
+
+> > Accordingly disable LTTPR detection until GLK, where the maximum timeout
+> > we can set is only 1.6ms.
+> > =
+
+> > Link training in the non-transparent mode is known to fail at least on
+> > some SKL systems with a WD19 dock on the link, which exposes an LTTPR
+> > (see the References below). While this could have different reasons
+> > besides the too short AUX timeout used, not detecting LTTPRs (and so not
+> > using the non-transparent LT mode) fixes link training on these systems.
+> > =
+
+> > While at it add a code comment about the platform specific maximum
+> > timeout values.
+> > =
+
+> > Reported-by: Takashi Iwai <tiwai@suse.de>
+> > References: https://gitlab.freedesktop.org/drm/intel/-/issues/3166
+> > Fixes: b30edfd8d0b4 ("drm/i915: Switch to LTTPR non-transparent mode li=
+nk training")
+> > Cc: <stable@vger.kernel.org> # v5.11
+> > Cc: Takashi Iwai <tiwai@suse.de>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_aux.c           | 7 +++++++
+> >  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 8 ++++++++
+> >  2 files changed, 15 insertions(+)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/=
+drm/i915/display/intel_dp_aux.c
+> > index eaebf123310a..b581e8acce07 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > @@ -133,6 +133,7 @@ static u32 g4x_get_aux_send_ctl(struct intel_dp *in=
+tel_dp,
+> >  	else
+> >  		precharge =3D 5;
+> >  =
+
+> > +	/* Max timeout value on ILK-BDW: 1.6ms */
+> =
+
+> also g4x
+
+Ok, will add it.
+
+> =
+
+> >  	if (IS_BROADWELL(dev_priv))
+> >  		timeout =3D DP_AUX_CH_CTL_TIME_OUT_600us;
+> >  	else
+> > @@ -159,6 +160,12 @@ static u32 skl_get_aux_send_ctl(struct intel_dp *i=
+ntel_dp,
+> >  	enum phy phy =3D intel_port_to_phy(i915, dig_port->base.port);
+> >  	u32 ret;
+> >  =
+
+> > +	/*
+> > +	 * Max timeout values:
+> > +	 * SKL-GLK: 1.6ms
+> > +	 * CNL: 3.2ms
+> > +	 * ICL+: 4ms
+> > +	 */
+> >  	ret =3D DP_AUX_CH_CTL_SEND_BUSY |
+> >  	      DP_AUX_CH_CTL_DONE |
+> >  	      DP_AUX_CH_CTL_INTERRUPT |
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/dr=
+ivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > index 19ba7c7cbaab..de6d70a29b47 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > @@ -123,10 +123,18 @@ intel_dp_set_lttpr_transparent_mode(struct intel_=
+dp *intel_dp, bool enable)
+> >   */
+> >  int intel_dp_lttpr_init(struct intel_dp *intel_dp)
+> >  {
+> > +	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> >  	int lttpr_count;
+> >  	bool ret;
+> >  	int i;
+> >  =
+
+> > +	/*
+> > +	 * Detecting LTTPRs must be avoided on platforms with an AUX timeout
+> > +	 * period < 3.2ms. (see DP Standard v2.0, 2.11.2, 3.6.6.1).
+> > +	 */
+> > +	if (INTEL_GEN(i915) < 10)
+> > +		return 0;
+> =
+
+> I don't understand how detecting the LTTPR affects this? The LTTPRs will
+> still snoop stuff and do their hidden magic even if we don't know
+> they're there. How does leaving them in transparent mode speed up
+> whatever they do?
+
+After an LTTPR detection, the DPTX reading the 0xF0000-0xF0007 range,
+LTTPRs will be either in transparent or non-transparent mode. In these
+modes the spec requires the LTTPRs not to send DEFERs and use a 3.2ms
+timeout scheme. I'm not sure about the exact details for the rational on
+this (afaiu it's to avoid a retransmission loop or corruption of
+transmit/reply packets), but the point is that LTTPRs will switch to
+this mode.
+
+W/o DEFERs and a timeout less than 3.2ms the DPTX can corrupt reply
+packets and so miss the ACK (or just simply miss reply because stopping
+to listen too early).
+
+Without doing an LTTPR detection, the LTTPRs will remain in no-LTTPR
+mode (so there are 3 different modes), where the LTTPRs will send DEFERs
+to their closest DPTX PHY and use the original 400us timeout scheme.
+This avoids the above transmit/reply packet clash.
+
+> Also, maybe we should just bump the timeout to the max on all platforms?
+
+Yes, I suppose we could do this as a follow-up.
+
+> =
+
+> > +
+> >  	if (intel_dp_is_edp(intel_dp))
+> >  		return 0;
+> >  =
+
+> > -- =
+
+> > 2.25.1
+> > =
+
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
