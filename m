@@ -1,37 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1EAF33E27F
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 01:08:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9FD333E2F1
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 01:43:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B74936E459;
-	Wed, 17 Mar 2021 00:08:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A33789B33;
+	Wed, 17 Mar 2021 00:42:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 435F26E455;
- Wed, 17 Mar 2021 00:08:11 +0000 (UTC)
-IronPort-SDR: csxZTEADFFvlsbQC2Q1ehSZcZ1OYF9+zInM7Aqf/8FMIpDHECPcHtsSdnollKByzmlY0QnVdhy
- CH5avAgrXLpg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9925"; a="274399908"
-X-IronPort-AV: E=Sophos;i="5.81,254,1610438400"; d="scan'208";a="274399908"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2021 17:08:09 -0700
-IronPort-SDR: xeD6GLhoiWNicTF/+8gegUQ7mal0THgXxQPkePbrMkBwfBw9gyE2kO/IEtEgThPoa8Sqf94Tee
- k1Uyp1RFantA==
-X-IronPort-AV: E=Sophos;i="5.81,254,1610438400"; d="scan'208";a="405718049"
-Received: from sdhanava-desk2.jf.intel.com ([10.165.21.144])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2021 17:08:09 -0700
-From: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 16 Mar 2021 16:57:46 -0700
-Message-Id: <20210316235746.19900-1-swathi.dhanavanthri@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5BF8A89B33;
+ Wed, 17 Mar 2021 00:42:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 54480A41FB;
+ Wed, 17 Mar 2021 00:42:58 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Add Wa_14011060649
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Swathi Dhanavanthri" <swathi.dhanavanthri@intel.com>
+Date: Wed, 17 Mar 2021 00:42:58 -0000
+Message-ID: <161594177831.17366.16366642316499829964@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210316235746.19900-1-swathi.dhanavanthri@intel.com>
+In-Reply-To: <20210316235746.19900-1-swathi.dhanavanthri@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Add_Wa=5F14011060649_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,79 +38,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a permanent workaround for TGL,RKL,DG1 and ADLS.
+== Series Details ==
 
-Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 27 +++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h             |  3 +++
- 2 files changed, 30 insertions(+)
+Series: drm/i915: Add Wa_14011060649 (rev3)
+URL   : https://patchwork.freedesktop.org/series/87895/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 3b4a7da60f0b..01f34a6bdf3e 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1117,11 +1117,38 @@ icl_gt_workarounds_init(struct drm_i915_private *i915, struct i915_wa_list *wal)
- 			    L3_CLKGATE_DIS | L3_CR2X_CLKGATE_DIS);
- }
- 
-+/*
-+ * Though there are per-engine instances of these registers,
-+ * they retain their value through engine resets and should
-+ * only be provided on the GT workaround list rather than
-+ * the engine-specific workaround list.
-+ *
-+ */
-+static void
-+wa_14011060649(struct drm_i915_private *i915, struct i915_wa_list *wal)
-+{
-+	struct intel_engine_cs *engine;
-+	struct intel_gt *gt = &i915->gt;
-+	int id;
-+
-+	for_each_engine(engine, gt, id) {
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+1bba4173fcb7 drm/i915: Add Wa_14011060649
+-:33: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'engine->class != VIDEO_DECODE_CLASS'
+#33: FILE: drivers/gpu/drm/i915/gt/intel_workarounds.c:1135:
 +		if ((engine->class != VIDEO_DECODE_CLASS) ||
 +		    (engine->instance % 2))
-+			continue;
-+
-+		wa_write_or(wal, VDBOX_CGCTL3F10(engine->mmio_base),
-+			    IECPUNIT_CLKGATE_DIS);
-+	}
-+}
-+
- static void
- gen12_gt_workarounds_init(struct drm_i915_private *i915,
- 			  struct i915_wa_list *wal)
- {
- 	wa_init_mcr(i915, wal);
-+
-+	/* Wa_14011060649:tgl,rkl,dg1,adls */
-+	wa_14011060649(i915, wal);
- }
- 
- static void
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index e5dd0203991b..cc60556306e2 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2715,6 +2715,9 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define RING_INDIRECT_CTX_OFFSET(base)	_MMIO((base) + 0x1c8) /* gen8+ */
- #define RING_CTX_TIMESTAMP(base)	_MMIO((base) + 0x3a8) /* gen8+ */
- 
-+#define VDBOX_CGCTL3F10(base)		_MMIO((base) + 0x3f10)
-+#define   IECPUNIT_CLKGATE_DIS		REG_BIT(22)
-+
- #define ERROR_GEN6	_MMIO(0x40a0)
- #define GEN7_ERR_INT	_MMIO(0x44040)
- #define   ERR_INT_POISON		(1 << 31)
--- 
-2.20.1
+
+total: 0 errors, 0 warnings, 1 checks, 47 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
