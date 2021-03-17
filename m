@@ -1,44 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0337343C63
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 10:10:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3006343C51
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 10:10:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23C0689E05;
-	Mon, 22 Mar 2021 09:10:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE12C89DD3;
+	Mon, 22 Mar 2021 09:10:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 950 seconds by postgrey-1.36 at gabe;
- Wed, 17 Mar 2021 07:58:31 UTC
-Received: from m12-13.163.com (m12-13.163.com [220.181.12.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 492D86E4D7
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 07:58:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=HhDgB
- qjBcvhk9CXs4aaWu4TwFYv97w8AoJIatOGi19I=; b=US64WvfuweYjELoxrxu9I
- LVTMj2SXNE59ryxPTwN0aoWvBnVLYVTwPmTexdAptIzmkPCey1DWlMEP1OSWt2zM
- 4FLKSQoPcnBm+/6UfZDZXB70qIEOAH5v2c9Jwj6yuDfyae35IQ9Tl2APb7Uc2GIx
- gLI+B7CIzTTGe5hboyM3l0=
-Received: from COOL-20201210PM.ccdomain.com (unknown [218.94.48.178])
- by smtp9 (Coremail) with SMTP id DcCowAC3IwHaslFgA0SmBg--.14447S2;
- Wed, 17 Mar 2021 15:42:22 +0800 (CST)
-From: zuoqilin1@163.com
-To: airlied@linux.ie,
-	daniel@ffwll.ch
-Date: Wed, 17 Mar 2021 15:42:28 +0800
-Message-Id: <20210317074228.1147-1-zuoqilin1@163.com>
-X-Mailer: git-send-email 2.28.0.windows.1
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
+ [IPv6:2a00:1450:4864:20::531])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 053B16E02B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 21:01:55 +0000 (UTC)
+Received: by mail-ed1-x531.google.com with SMTP id h10so3964134edt.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 14:01:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=in-reply-to:to:from:subject:message-id:date:user-agent:mime-version
+ :content-transfer-encoding:content-language;
+ bh=uT+dux+2hvy/k4yibWIepWagDCyEDVjI47X2i3xAMX8=;
+ b=paK65oohvJZrGG9KVeKwPA3nj3t7b7Qj5GxP79zTJl2yIvqiCY3hy26a7h7UVXh5+a
+ rNru28qBBCxUhqLgBffinW8nIfZuCm6DjpdoaGpVIO0uA3YXV44hbu48MQKowh9K46oW
+ qcSqh6NubPJAcHlLbnTyMyTozJg9wWaidft91+z2l1rQ+/0V/54+velSaHgRpRSO/2eF
+ ln396ABjlllXt2T0t7iD23yJ/6EwoRZPA8V6LUErCknSeUBIYp5N0mXd1JCeyiz8cLaR
+ xC7NJ/AfZD4wDwsMuaVfHL8RK9ajyU5xC6IQC33BsZJ7l12HeyLD93JZN2yPFsi5qH2h
+ 7+yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:in-reply-to:to:from:subject:message-id:date
+ :user-agent:mime-version:content-transfer-encoding:content-language;
+ bh=uT+dux+2hvy/k4yibWIepWagDCyEDVjI47X2i3xAMX8=;
+ b=DgKbr/bUo6xNQgHI0yWzQh3xOwL9UWol9r9hZzChyWsgUL4EZmoSH3Z/fS5lMkAbBF
+ I0WLlV4eo/Vo08i74lHUowTUSc4Pi0rnCQi/6f/zcRO2DhUzDmM+iB1zUepSQPRhCoTw
+ XoQ5ezeGimT4vWF/QbmiF7ce1GDSy/+hmx8+VzUX5m8J6VcW0y4xIxFSpX3TxaErofpS
+ HRU46yvC76kDsra4wk7xGhMhAFYnvuYjho1rL6ApOnuM6AfP52LOipjed+7Wbyh4x82k
+ z9SKyD/YluWCcJY3+Pt4uNx9iBKSe2VyQoFduVHnDb/MNZ5c64uD5i2BTAeKcss0HyJ9
+ lYoA==
+X-Gm-Message-State: AOAM531KUfxjL5cFql3dm8AuiptRX5XjM+xrWDfb6XpieP2DvXeM0tmG
+ oigEs0s2sN2x8r7YTtl3DgJypSvSpP5ViA==
+X-Google-Smtp-Source: ABdhPJyGQIJRh4eeqUpi7CiggTRimNJ9hJnXDGNJvx3PmCjAdXVap1z9BcCDz8fAayQF6DhxMNqUTw==
+X-Received: by 2002:a05:6402:1c98:: with SMTP id
+ cy24mr44388058edb.296.1616014913434; 
+ Wed, 17 Mar 2021 14:01:53 -0700 (PDT)
+Received: from [10.0.5.152] (24-113-252-168.wavecable.com. [24.113.252.168])
+ by smtp.gmail.com with ESMTPSA id gj26sm31566ejb.67.2021.03.17.14.01.52
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 17 Mar 2021 14:01:53 -0700 (PDT)
+In-Reply-To: <20210317184901.4029798-1-imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+From: "Zephaniah E. Loss-Cutler-Hull" <zephaniah@gmail.com>
+Message-ID: <208d393c-bcdf-b0b4-18bf-9f6c390a87ab@gmail.com>
+Date: Wed, 17 Mar 2021 14:01:50 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.7.1
 MIME-Version: 1.0
-X-CM-TRANSID: DcCowAC3IwHaslFgA0SmBg--.14447S2
-X-Coremail-Antispam: 1Uf129KBjvdXoWruFyrGF43Ary7XF4fGr48JFb_yoWftrb_C3
- WfZrs8uayUZ3Z0vr1akrn8ZrWSv3WYvrW8X3y0q34Fyw12yr1UGrsrWryxXw15XF1UtFWD
- Xa18XFn5ZFsrWjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0UEf5UUUUU==
-X-Originating-IP: [218.94.48.178]
-X-CM-SenderInfo: 52xr1xpolqiqqrwthudrp/1tbiZR5YiV8ZNQXaRgAAsA
+Content-Language: en-US
 X-Mailman-Approved-At: Mon, 22 Mar 2021 09:10:08 +0000
-Subject: [Intel-gfx] [PATCH] display: Fix typo issue
+Subject: Re: [Intel-gfx] drm/i915: Fix DP LTTPR link training mode
+ initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,38 +71,12 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: zuoqilin <zuoqilin@yulong.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: zuoqilin <zuoqilin@yulong.com>
-
-Change 'befor' to 'before'.
-
-Signed-off-by: zuoqilin <zuoqilin@yulong.com>
----
- drivers/gpu/drm/i915/display/vlv_dsi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index f94025e..45187ff 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -846,7 +846,7 @@ static void intel_dsi_pre_enable(struct intel_atomic_state *state,
- 	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_INIT_OTP);
- 
- 	/* Enable port in pre-enable phase itself because as per hw team
--	 * recommendation, port should be enabled befor plane & pipe */
-+	 * recommendation, port should be enabled before plane & pipe */
- 	if (is_cmd_mode(intel_dsi)) {
- 		for_each_dsi_port(port, intel_dsi->ports)
- 			intel_de_write(dev_priv,
--- 
-1.9.1
-
+Tested-by: Zephaniah E. Loss-Cutler-Hull <zephaniah@gmail.com>
 
 _______________________________________________
 Intel-gfx mailing list
