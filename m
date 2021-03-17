@@ -1,40 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DAE233F8AC
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 20:02:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2DCD33F8FD
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Mar 2021 20:18:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 218D86E5A1;
-	Wed, 17 Mar 2021 19:02:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B2CD6E081;
+	Wed, 17 Mar 2021 19:18:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B74746E5A1
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 19:02:20 +0000 (UTC)
-IronPort-SDR: qdvV/ew811Ieb2kLnOJE0eo3xx0mu717ZUqCFWniuoBy/Xs8qvNwi3hHQBAD6uHlxE2D6efgFg
- VlNBszIgbt9A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9926"; a="189621352"
-X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="189621352"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2021 12:01:55 -0700
-IronPort-SDR: cjFMaNIuTxTUnEqiJJDha5Qfb1+OSoFk5REtfhFhiuWIBggfxCvwxUCu2ZQVQou7RZF74VCaqS
- FtRXc4aEyaIQ==
-X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="450205782"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2021 12:01:51 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Mar 2021 21:01:49 +0200
-Message-Id: <20210317190149.4032966-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210317184901.4029798-3-imre.deak@intel.com>
-References: <20210317184901.4029798-3-imre.deak@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C79B6E081
+ for <intel-gfx@lists.freedesktop.org>; Wed, 17 Mar 2021 19:18:44 +0000 (UTC)
+IronPort-SDR: rMQQ2Q3CQEpc7Iprzu3s0Tv6zwFqs/sTD0IJ3EOsaL7UFJg3IPh5U9N5mTowvDcvsh+qWKiyFg
+ I4THxxf/2wyw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9926"; a="186174481"
+X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="186174481"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2021 12:18:43 -0700
+IronPort-SDR: eSyMo70tSGy3YgAIyZ9Rv+++00WURb07l5oG5VRMcjUlSIZG7SLdKo8Yga0hUUjvv+kPdAZBkh
+ 83ib4x7a56FA==
+X-IronPort-AV: E=Sophos;i="5.81,257,1610438400"; d="scan'208";a="374275709"
+Received: from jksalasr-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.212.42.17])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2021 12:18:43 -0700
+Date: Wed, 17 Mar 2021 12:18:42 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20210317191842.plywiy4uds3yxh2d@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <cover.1615998927.git.jani.nikula@intel.com>
+ <17288137452f731a820e737582672f836660a26f.1615998927.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 2/3] drm/i915: Disable LTTPR support when the
- DPCD rev < 1.4
+Content-Disposition: inline
+In-Reply-To: <17288137452f731a820e737582672f836660a26f.1615998927.git.jani.nikula@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 03/14] drm/i915/bios: reduce indent in
+ sanitize_ddc_pin and sanitize_aux_ch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,115 +50,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QnkgdGhlIHNwZWNpZmljYXRpb24gdGhlIDB4RjAwMDAtMHhGMDJGRiByYW5nZSBpcyBvbmx5IHZh
-bGlkIHdoZW4gdGhlCkRQQ0QgcmV2aXNpb24gaXMgMS40IG9yIGhpZ2hlci4gRGlzYWJsZSBMVFRQ
-UiBzdXBwb3J0IGlmIHRoaXMgaXNuJ3Qgc28uCgpUcnlpbmcgdG8gZGV0ZWN0IExUVFBScyByZXR1
-cm5lZCBjb3JydXB0ZWQgdmFsdWVzIGZvciB0aGUgYWJvdmUgRFBDRApyYW5nZSBhdCBsZWFzdCBv
-biBhIFNreWxha2UgaG9zdCB3aXRoIGFuIExHIDQzVUQ3OS1CIG1vbml0b3Igd2l0aCBhIERQQ0QK
-cmV2aXNpb24gMS4yIGNvbm5lY3RlZC4KCnYyOiBBZGQgdGhlIGFjdHVhbCB2ZXJzaW9uIGNoZWNr
-LgoKRml4ZXM6IDdiMmE0YWI4YjBlZiAoImRybS9pOTE1OiBTd2l0Y2ggdG8gTFRUUFIgdHJhbnNw
-YXJlbnQgbW9kZSBsaW5rIHRyYWluaW5nIikKQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAj
-IHY1LjExCkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
-PgpTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICAgICAgIHwgIDQgKy0KIC4uLi9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYyB8IDQ4ICsrKysrKysrKysr
-KysrLS0tLS0KIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuaCB8
-ICAyICstCiAzIGZpbGVzIGNoYW5nZWQsIDM5IGluc2VydGlvbnMoKyksIDE1IGRlbGV0aW9ucygt
-KQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwppbmRleCBiNmI1Nzc2ZjVh
-NjYuLjg3MzY4NGRhMGNkNCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAu
-YwpAQCAtMzcxMSw5ICszNzExLDcgQEAgaW50ZWxfZHBfZ2V0X2RwY2Qoc3RydWN0IGludGVsX2Rw
-ICppbnRlbF9kcCkKIHsKIAlpbnQgcmV0OwogCi0JaW50ZWxfZHBfbHR0cHJfaW5pdChpbnRlbF9k
-cCk7Ci0KLQlpZiAoZHJtX2RwX3JlYWRfZHBjZF9jYXBzKCZpbnRlbF9kcC0+YXV4LCBpbnRlbF9k
-cC0+ZHBjZCkpCisJaWYgKGludGVsX2RwX2luaXRfbHR0cHJfYW5kX2RwcnhfY2FwcyhpbnRlbF9k
-cCkgPCAwKQogCQlyZXR1cm4gZmFsc2U7CiAKIAkvKgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYwppbmRleCBjMGUyNWM3NWMx
-MDUuLjVhODIxZDY0NGU5YyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMKQEAgLTM1LDYgKzM1LDExIEBAIGludGVsX2Rw
-X2R1bXBfbGlua19zdGF0dXMoc3RydWN0IGRybV9kZXZpY2UgKmRybSwKIAkJICAgIGxpbmtfc3Rh
-dHVzWzNdLCBsaW5rX3N0YXR1c1s0XSwgbGlua19zdGF0dXNbNV0pOwogfQogCitzdGF0aWMgdm9p
-ZCBpbnRlbF9kcF9yZXNldF9sdHRwcl9jb21tb25fY2FwcyhzdHJ1Y3QgaW50ZWxfZHAgKmludGVs
-X2RwKQoreworCW1lbXNldCgmaW50ZWxfZHAtPmx0dHByX2NvbW1vbl9jYXBzLCAwLCBzaXplb2Yo
-aW50ZWxfZHAtPmx0dHByX2NvbW1vbl9jYXBzKSk7Cit9CisKIHN0YXRpYyB2b2lkIGludGVsX2Rw
-X3Jlc2V0X2x0dHByX2NvdW50KHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCiB7CiAJaW50ZWxf
-ZHAtPmx0dHByX2NvbW1vbl9jYXBzW0RQX1BIWV9SRVBFQVRFUl9DTlQgLQpAQCAtOTYsOCArMTAx
-LDcgQEAgc3RhdGljIGJvb2wgaW50ZWxfZHBfcmVhZF9sdHRwcl9jb21tb25fY2FwcyhzdHJ1Y3Qg
-aW50ZWxfZHAgKmludGVsX2RwKQogCiAJaWYgKGRybV9kcF9yZWFkX2x0dHByX2NvbW1vbl9jYXBz
-KCZpbnRlbF9kcC0+YXV4LAogCQkJCQkgIGludGVsX2RwLT5sdHRwcl9jb21tb25fY2FwcykgPCAw
-KSB7Ci0JCW1lbXNldChpbnRlbF9kcC0+bHR0cHJfY29tbW9uX2NhcHMsIDAsCi0JCSAgICAgICBz
-aXplb2YoaW50ZWxfZHAtPmx0dHByX2NvbW1vbl9jYXBzKSk7CisJCWludGVsX2RwX3Jlc2V0X2x0
-dHByX2NvbW1vbl9jYXBzKGludGVsX2RwKTsKIAkJcmV0dXJuIGZhbHNlOwogCX0KIApAQCAtMTE5
-LDMwICsxMjMsNDkgQEAgaW50ZWxfZHBfc2V0X2x0dHByX3RyYW5zcGFyZW50X21vZGUoc3RydWN0
-IGludGVsX2RwICppbnRlbF9kcCwgYm9vbCBlbmFibGUpCiB9CiAKIC8qKgotICogaW50ZWxfZHBf
-bHR0cHJfaW5pdCAtIGRldGVjdCBMVFRQUnMgYW5kIGluaXQgdGhlIExUVFBSIGxpbmsgdHJhaW5p
-bmcgbW9kZQorICogaW50ZWxfZHBfaW5pdF9sdHRwcl9hbmRfZHByeF9jYXBzIC0gZGV0ZWN0IExU
-VFBSIGFuZCBEUFJYIGNhcHMsIGluaXQgdGhlIExUVFBSIGxpbmsgdHJhaW5pbmcgbW9kZQogICog
-QGludGVsX2RwOiBJbnRlbCBEUCBzdHJ1Y3QKICAqCi0gKiBSZWFkIHRoZSBMVFRQUiBjb21tb24g
-Y2FwYWJpbGl0aWVzLCBzd2l0Y2ggdG8gbm9uLXRyYW5zcGFyZW50IGxpbmsgdHJhaW5pbmcKLSAq
-IG1vZGUgaWYgYW55IGlzIGRldGVjdGVkIGFuZCByZWFkIHRoZSBQSFkgY2FwYWJpbGl0aWVzIGZv
-ciBhbGwgZGV0ZWN0ZWQKLSAqIExUVFBScy4gSW4gY2FzZSBvZiBhbiBMVFRQUiBkZXRlY3Rpb24g
-ZXJyb3Igb3IgaWYgdGhlIG51bWJlciBvZgorICogUmVhZCB0aGUgTFRUUFIgY29tbW9uIGFuZCBE
-UFJYIGNhcGFiaWxpdGllcyBhbmQgc3dpdGNoIHRvIG5vbi10cmFuc3BhcmVudAorICogbGluayB0
-cmFpbmluZyBtb2RlIGlmIGFueSBpcyBkZXRlY3RlZCBhbmQgcmVhZCB0aGUgUEhZIGNhcGFiaWxp
-dGllcyBmb3IgYWxsCisgKiBkZXRlY3RlZCBMVFRQUnMuIEluIGNhc2Ugb2YgYW4gTFRUUFIgZGV0
-ZWN0aW9uIGVycm9yIG9yIGlmIHRoZSBudW1iZXIgb2YKICAqIExUVFBScyBpcyBtb3JlIHRoYW4g
-aXMgc3VwcG9ydGVkICg4KSwgZmFsbCBiYWNrIHRvIHRoZSBuby1MVFRQUiwKICAqIHRyYW5zcGFy
-ZW50IG1vZGUgbGluayB0cmFpbmluZyBtb2RlLgogICoKICAqIFJldHVybnM6Ci0gKiAgID4wICBp
-ZiBMVFRQUnMgd2VyZSBkZXRlY3RlZCBhbmQgdGhlIG5vbi10cmFuc3BhcmVudCBMVCBtb2RlIHdh
-cyBzZXQKKyAqICAgPjAgIGlmIExUVFBScyB3ZXJlIGRldGVjdGVkIGFuZCB0aGUgbm9uLXRyYW5z
-cGFyZW50IExUIG1vZGUgd2FzIHNldC4gVGhlCisgKiAgICAgICBEUFJYIGNhcGFiaWxpdGllcyBh
-cmUgcmVhZCBvdXQuCiAgKiAgICAwICBpZiBubyBMVFRQUnMgb3IgbW9yZSB0aGFuIDggTFRUUFJz
-IHdlcmUgZGV0ZWN0ZWQgb3IgaW4gY2FzZSBvZiBhCi0gKiAgICAgICBkZXRlY3Rpb24gZmFpbHVy
-ZSBhbmQgdGhlIHRyYW5zcGFyZW50IExUIG1vZGUgd2FzIHNldAorICogICAgICAgZGV0ZWN0aW9u
-IGZhaWx1cmUgYW5kIHRoZSB0cmFuc3BhcmVudCBMVCBtb2RlIHdhcyBzZXQuIFRoZSBEUFJYCisg
-KiAgICAgICBjYXBhYmlsaXRpZXMgYXJlIHJlYWQgb3V0LgorICogICA8MCAgUmVhZGluZyBvdXQg
-dGhlIERQUlggY2FwYWJpbGl0aWVzIGZhaWxlZC4KICAqLwotaW50IGludGVsX2RwX2x0dHByX2lu
-aXQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKK2ludCBpbnRlbF9kcF9pbml0X2x0dHByX2Fu
-ZF9kcHJ4X2NhcHMoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKIHsKIAlpbnQgbHR0cHJfY291
-bnQ7CiAJYm9vbCByZXQ7CiAJaW50IGk7CiAKIAlyZXQgPSBpbnRlbF9kcF9yZWFkX2x0dHByX2Nv
-bW1vbl9jYXBzKGludGVsX2RwKTsKKworCS8qIFRoZSBEUFRYIHNoYWxsIHJlYWQgdGhlIERSUFgg
-Y2FwcyBhZnRlciBMVFRQUiBkZXRlY3Rpb24uICovCisJaWYgKGRybV9kcF9yZWFkX2RwY2RfY2Fw
-cygmaW50ZWxfZHAtPmF1eCwgaW50ZWxfZHAtPmRwY2QpKSB7CisJCWludGVsX2RwX3Jlc2V0X2x0
-dHByX2NvbW1vbl9jYXBzKGludGVsX2RwKTsKKwkJcmV0dXJuIC1FSU87CisJfQorCiAJaWYgKCFy
-ZXQpCiAJCXJldHVybiAwOwogCisJLyoKKwkgKiBUaGUgMHhGMDAwMC0weEYwMkZGIHJhbmdlIGlz
-IG9ubHkgdmFsaWQgaWYgdGhlIERQQ0QgcmV2aXNpb24gaXMKKwkgKiBhdCBsZWFzdCAxLjQuCisJ
-ICovCisJaWYgKGludGVsX2RwLT5kcGNkW0RQX0RQQ0RfUkVWXSA8IDB4MTQpIHsKKwkJaW50ZWxf
-ZHBfcmVzZXRfbHR0cHJfY29tbW9uX2NhcHMoaW50ZWxfZHApOworCQlyZXR1cm4gMDsKKwl9CisK
-IAlsdHRwcl9jb3VudCA9IGRybV9kcF9sdHRwcl9jb3VudChpbnRlbF9kcC0+bHR0cHJfY29tbW9u
-X2NhcHMpOwogCS8qCiAJICogUHJldmVudCBzZXR0aW5nIExUVFBSIHRyYW5zcGFyZW50IG1vZGUg
-ZXhwbGljaXRseSBpZiBubyBMVFRQUnMgYXJlCkBAIC0xODIsNyArMjA1LDcgQEAgaW50IGludGVs
-X2RwX2x0dHByX2luaXQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKIAogCXJldHVybiBsdHRw
-cl9jb3VudDsKIH0KLUVYUE9SVF9TWU1CT0woaW50ZWxfZHBfbHR0cHJfaW5pdCk7CitFWFBPUlRf
-U1lNQk9MKGludGVsX2RwX2luaXRfbHR0cHJfYW5kX2RwcnhfY2Fwcyk7CiAKIHN0YXRpYyB1OCBk
-cF92b2x0YWdlX21heCh1OCBwcmVlbXBoKQogewpAQCAtODE3LDcgKzg0MCwxMCBAQCB2b2lkIGlu
-dGVsX2RwX3N0YXJ0X2xpbmtfdHJhaW4oc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKIAkgKiBU
-T0RPOiBSZWluaXRpbmcgTFRUUFJzIGhlcmUgd29uJ3QgYmUgbmVlZGVkIG9uY2UgcHJvcGVyIGNv
-bm5lY3RvcgogCSAqIEhXIHN0YXRlIHJlYWRvdXQgaXMgYWRkZWQuCiAJICovCi0JaW50IGx0dHBy
-X2NvdW50ID0gaW50ZWxfZHBfbHR0cHJfaW5pdChpbnRlbF9kcCk7CisJaW50IGx0dHByX2NvdW50
-ID0gaW50ZWxfZHBfaW5pdF9sdHRwcl9hbmRfZHByeF9jYXBzKGludGVsX2RwKTsKKworCWlmIChs
-dHRwcl9jb3VudCA8IDApCisJCXJldHVybjsKIAogCWlmICghaW50ZWxfZHBfbGlua190cmFpbl9h
-bGxfcGh5cyhpbnRlbF9kcCwgY3J0Y19zdGF0ZSwgbHR0cHJfY291bnQpKQogCQlpbnRlbF9kcF9z
-Y2hlZHVsZV9mYWxsYmFja19saW5rX3RyYWluaW5nKGludGVsX2RwLCBjcnRjX3N0YXRlKTsKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFp
-bmluZy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWlu
-aW5nLmgKaW5kZXggNmExZjc2YmQ4Yzc1Li45Y2I3YzI4MDI3ZjAgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5oCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlua190cmFpbmluZy5oCkBAIC0x
-MSw3ICsxMSw3IEBACiBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZTsKIHN0cnVjdCBpbnRlbF9kcDsK
-IAotaW50IGludGVsX2RwX2x0dHByX2luaXQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCk7Citp
-bnQgaW50ZWxfZHBfaW5pdF9sdHRwcl9hbmRfZHByeF9jYXBzKHN0cnVjdCBpbnRlbF9kcCAqaW50
-ZWxfZHApOwogCiB2b2lkIGludGVsX2RwX2dldF9hZGp1c3RfdHJhaW4oc3RydWN0IGludGVsX2Rw
-ICppbnRlbF9kcCwKIAkJCSAgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
-Y19zdGF0ZSwKLS0gCjIuMjUuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+On Wed, Mar 17, 2021 at 06:36:42PM +0200, Jani Nikula wrote:
+>Reduce indent with an early return. No functional changes.
+>
+>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_bios.c | 86 +++++++++++------------
+> 1 file changed, 41 insertions(+), 45 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+>index 824148063451..5e7dc0899ab1 100644
+>--- a/drivers/gpu/drm/i915/display/intel_bios.c
+>+++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>@@ -1525,31 +1525,29 @@ static void sanitize_ddc_pin(struct drm_i915_private *i915,
+> 		return;
+>
+> 	p = get_port_by_ddc_pin(i915, info->alternate_ddc_pin);
+>-	if (p != PORT_NONE) {
+>-		drm_dbg_kms(&i915->drm,
+>-			    "port %c trying to use the same DDC pin (0x%x) as port %c, "
+>-			    "disabling port %c DVI/HDMI support\n",
+>-			    port_name(port), info->alternate_ddc_pin,
+>-			    port_name(p), port_name(p));
+>+	if (p == PORT_NONE)
+>+		return;
+>
+>-		/*
+>-		 * If we have multiple ports supposedly sharing the
+>-		 * pin, then dvi/hdmi couldn't exist on the shared
+>-		 * port. Otherwise they share the same ddc bin and
+>-		 * system couldn't communicate with them separately.
+>-		 *
+>-		 * Give inverse child device order the priority,
+>-		 * last one wins. Yes, there are real machines
+>-		 * (eg. Asrock B250M-HDV) where VBT has both
+>-		 * port A and port E with the same AUX ch and
+>-		 * we must pick port E :(
+>-		 */
+>-		info = &i915->vbt.ddi_port_info[p];
+>+	drm_dbg_kms(&i915->drm,
+>+		    "port %c trying to use the same DDC pin (0x%x) as port %c, "
+>+		    "disabling port %c DVI/HDMI support\n",
+>+		    port_name(port), info->alternate_ddc_pin,
+>+		    port_name(p), port_name(p));
+>
+>-		info->supports_dvi = false;
+>-		info->supports_hdmi = false;
+>-		info->alternate_ddc_pin = 0;
+>-	}
+>+	/*
+>+	 * If we have multiple ports supposedly sharing the pin, then dvi/hdmi
+>+	 * couldn't exist on the shared port. Otherwise they share the same ddc
+>+	 * bin and system couldn't communicate with them separately.
+
+while at it, may be worth fixing the typo s/bin/pin/
+
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+Lucas De Marchi
+
+>+	 *
+>+	 * Give inverse child device order the priority, last one wins. Yes,
+>+	 * there are real machines (eg. Asrock B250M-HDV) where VBT has both
+>+	 * port A and port E with the same AUX ch and we must pick port E :(
+>+	 */
+>+	info = &i915->vbt.ddi_port_info[p];
+>+
+>+	info->supports_dvi = false;
+>+	info->supports_hdmi = false;
+>+	info->alternate_ddc_pin = 0;
+> }
+>
+> static enum port get_port_by_aux_ch(struct drm_i915_private *i915, u8 aux_ch)
+>@@ -1577,30 +1575,28 @@ static void sanitize_aux_ch(struct drm_i915_private *i915,
+> 		return;
+>
+> 	p = get_port_by_aux_ch(i915, info->alternate_aux_channel);
+>-	if (p != PORT_NONE) {
+>-		drm_dbg_kms(&i915->drm,
+>-			    "port %c trying to use the same AUX CH (0x%x) as port %c, "
+>-			    "disabling port %c DP support\n",
+>-			    port_name(port), info->alternate_aux_channel,
+>-			    port_name(p), port_name(p));
+>+	if (p == PORT_NONE)
+>+		return;
+>
+>-		/*
+>-		 * If we have multiple ports supposedlt sharing the
+>-		 * aux channel, then DP couldn't exist on the shared
+>-		 * port. Otherwise they share the same aux channel
+>-		 * and system couldn't communicate with them separately.
+>-		 *
+>-		 * Give inverse child device order the priority,
+>-		 * last one wins. Yes, there are real machines
+>-		 * (eg. Asrock B250M-HDV) where VBT has both
+>-		 * port A and port E with the same AUX ch and
+>-		 * we must pick port E :(
+>-		 */
+>-		info = &i915->vbt.ddi_port_info[p];
+>+	drm_dbg_kms(&i915->drm,
+>+		    "port %c trying to use the same AUX CH (0x%x) as port %c, "
+>+		    "disabling port %c DP support\n",
+>+		    port_name(port), info->alternate_aux_channel,
+>+		    port_name(p), port_name(p));
+>
+>-		info->supports_dp = false;
+>-		info->alternate_aux_channel = 0;
+>-	}
+>+	/*
+>+	 * If we have multiple ports supposedlt sharing the aux channel, then DP
+>+	 * couldn't exist on the shared port. Otherwise they share the same aux
+>+	 * channel and system couldn't communicate with them separately.
+>+	 *
+>+	 * Give inverse child device order the priority, last one wins. Yes,
+>+	 * there are real machines (eg. Asrock B250M-HDV) where VBT has both
+>+	 * port A and port E with the same AUX ch and we must pick port E :(
+>+	 */
+>+	info = &i915->vbt.ddi_port_info[p];
+>+
+>+	info->supports_dp = false;
+>+	info->alternate_aux_channel = 0;
+> }
+>
+> static const u8 cnp_ddc_pin_map[] = {
+>-- 
+>2.20.1
+>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
