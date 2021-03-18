@@ -2,48 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE3A5340CA5
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 19:15:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03D81340CFE
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 19:31:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8C36E950;
-	Thu, 18 Mar 2021 18:15:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 729616E956;
+	Thu, 18 Mar 2021 18:31:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD556E950;
- Thu, 18 Mar 2021 18:15:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
- Reply-To:Cc:Content-ID:Content-Description;
- bh=8Fkbd93Aq1q97jNctPteNuHQ9DD1eBmwgRUQ35hJ0rA=; b=V0w6Kb4Fi43X4zYOIkAMdjTWsk
- S9/vwlXjY6r4HCHXAEod+UTbZPkMX5fKjVvWVYOUjuNn03/jt6cXDp6ak6qm4VNCeaG/GiMiZPC3M
- 3IOkP8pCB7HSMBqq/6N9uBCJhEswE3SBi23EvX0mQl+/elBrvJkoAkpg4Yfk/mClpAXKprmfhZg/R
- Z5QLOm4hyncuW1Seq0UZ2Tn2FwvaqduQXZNOcxYHn/WxVHgH7irSLMfQrLXEwtfvg69rjsJdlZDMM
- 1vapm1DHm6hQlhM4BWMwkuzdYWV3CeM/qvUkfbFjhJt3zbSLhlYMM3+t/Q+HMLPDbLYHT14t5JyLQ
- HQhG7hRg==;
-Received: from [2601:1c0:6280:3f0::9757]
- by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
- id 1lMxAm-003Kqs-Se; Thu, 18 Mar 2021 18:15:07 +0000
-To: Bhaskar Chowdhury <unixbhaskar@gmail.com>, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
- daniel@ffwll.ch, sumit.semwal@linaro.org, christian.koenig@amd.com,
- chris@chris-wilson.co.uk, tvrtko.ursulin@intel.com,
- mika.kuoppala@linux.intel.com, maarten.lankhorst@linux.intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org
-References: <20210318101932.19894-1-unixbhaskar@gmail.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <027de4bd-cefc-0988-bd3b-b0bcc12d93b0@infradead.org>
-Date: Thu, 18 Mar 2021 11:15:00 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D90FD6E954;
+ Thu, 18 Mar 2021 18:31:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D1BF1A0BCB;
+ Thu, 18 Mar 2021 18:31:02 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210318101932.19894-1-unixbhaskar@gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: A typo fix
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 18 Mar 2021 18:31:02 -0000
+Message-ID: <161609226283.12738.9247155116127533289@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210318161015.22070-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210318161015.22070-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Shuffle_DP_code_around_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,45 +38,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1471241494=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 3/18/21 3:19 AM, Bhaskar Chowdhury wrote:
-> 
-> s/bariers/barriers/
-> 
-> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+--===============1471241494==
+Content-Type: multipart/alternative;
+ boundary="===============4136567789096622420=="
 
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
+--===============4136567789096622420==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_timeline.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> index 037b0e3ccbed..25fc7f44fee0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> @@ -435,7 +435,7 @@ void intel_timeline_exit(struct intel_timeline *tl)
->  	spin_unlock(&timelines->lock);
-> 
->  	/*
-> -	 * Since this timeline is idle, all bariers upon which we were waiting
-> +	 * Since this timeline is idle, all barriers upon which we were waiting
->  	 * must also be complete and so we can discard the last used barriers
->  	 * without loss of information.
->  	 */
-> --
-> 2.26.2
-> 
+== Series Details ==
+
+Series: drm/i915: Shuffle DP code around (rev2)
+URL   : https://patchwork.freedesktop.org/series/85878/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9870 -> Patchwork_19804
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19804 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_linear_blits@basic:
+    - fi-kbl-8809g:       [PASS][1] -> [TIMEOUT][2] ([i915#2502] / [i915#3145]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-8809g/igt@gem_linear_blits@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/fi-kbl-8809g/igt@gem_linear_blits@basic.html
+
+  * igt@gem_tiled_fence_blits@basic:
+    - fi-kbl-8809g:       [PASS][3] -> [TIMEOUT][4] ([i915#3145])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][5] -> [INCOMPLETE][6] ([i915#2940])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][7] ([i915#1436])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/fi-bsw-nick/igt@runner@aborted.html
+
+  
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#2502]: https://gitlab.freedesktop.org/drm/intel/issues/2502
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
 
 
--- 
-~Randy
+Participating hosts (44 -> 40)
+------------------------------
+
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9870 -> Patchwork_19804
+
+  CI-20190529: 20190529
+  CI_DRM_9870: a9a5ed8d2432e5335e6c26118cefb2cfff28ae37 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6036: 5b535494abcdf5ce2b9be99b7bb5df8ab4733083 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19804: d486c1851a6e55ed332635f4a70fdb78b7bf7bdf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d486c1851a6e drm/i915: Give g4x_{dp, hdmi}.c g4x_ namespace
+b38592cfbe51 drm/i915: Introduce g4x_hdmi.c
+0e432233fba9 drm/i915: Introduce g4x_dp.c
+9b0d464b0d6a drm/i915: Split intel_ddi_encoder_reset() from intel_dp_encoder_reset()
+8e555cecf0d9 drm/i915: Relocate intel_dp_program_link_training_pattern()
+0990a9e29ec5 drm/i915: Remove dead signal level debugs
+d6b23f62e26b drm/i915: Remove dead TPS3->TPS2 fallback code
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/index.html
+
+--===============4136567789096622420==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Shuffle DP code around (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/85878/">https://patchwork.freedesktop.org/series/85878/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9870 -&gt; Patchwork_19804</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19804 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_linear_blits@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-8809g/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/fi-kbl-8809g/igt@gem_linear_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2502">i915#2502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_fence_blits@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19804/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9870 -&gt; Patchwork_19804</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9870: a9a5ed8d2432e5335e6c26118cefb2cfff28ae37 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6036: 5b535494abcdf5ce2b9be99b7bb5df8ab4733083 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19804: d486c1851a6e55ed332635f4a70fdb78b7bf7bdf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>d486c1851a6e drm/i915: Give g4x_{dp, hdmi}.c g4x_ namespace<br />
+b38592cfbe51 drm/i915: Introduce g4x_hdmi.c<br />
+0e432233fba9 drm/i915: Introduce g4x_dp.c<br />
+9b0d464b0d6a drm/i915: Split intel_ddi_encoder_reset() from intel_dp_encoder_reset()<br />
+8e555cecf0d9 drm/i915: Relocate intel_dp_program_link_training_pattern()<br />
+0990a9e29ec5 drm/i915: Remove dead signal level debugs<br />
+d6b23f62e26b drm/i915: Remove dead TPS3-&gt;TPS2 fallback code</p>
+
+</body>
+</html>
+
+--===============4136567789096622420==--
+
+--===============1471241494==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1471241494==--
