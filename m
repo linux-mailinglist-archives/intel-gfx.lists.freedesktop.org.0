@@ -1,43 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7054340607
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 13:48:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D59D3406DC
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 14:28:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06A286E8F0;
-	Thu, 18 Mar 2021 12:48:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E27196E8FD;
+	Thu, 18 Mar 2021 13:27:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DB386E8F0
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 12:48:57 +0000 (UTC)
-IronPort-SDR: rk7Kwdmysl34R6Y9adtvyWOutDOn1m1xaoYxjRaQt9JIWoFxkFg4piU5xs3xAdbKjXqBKagaeJ
- CtUTEKaM38BQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9926"; a="176797690"
-X-IronPort-AV: E=Sophos;i="5.81,258,1610438400"; d="scan'208";a="176797690"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2021 05:48:56 -0700
-IronPort-SDR: b1dwHiDaZ12z8d/kT+LI5rXBn10fqXb6VMlwer+Hos94kTXCBCjiyIZcQJJb/ZVc7+1hRJNOAU
- KyRa/RA/ixlQ==
-X-IronPort-AV: E=Sophos;i="5.81,258,1610438400"; d="scan'208";a="413067736"
-Received: from hschroed-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.35.158])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2021 05:48:54 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20210317194250.z3brrb32l6ffzqhx@ldmartin-desk2>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1615998927.git.jani.nikula@intel.com>
- <2bd40ccc093796d16300742d1789d78ffac3c450.1615998927.git.jani.nikula@intel.com>
- <20210317194250.z3brrb32l6ffzqhx@ldmartin-desk2>
-Date: Thu, 18 Mar 2021 14:48:52 +0200
-Message-ID: <874kh88w5n.fsf@intel.com>
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A48D6E8FC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 13:27:56 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id v11so5532036wro.7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 06:27:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=xkMIGK74X6G/emJXPPRUEJAUaDQbwzNFJDZsIuSZhD0=;
+ b=S79+ToxCSgKay9BxaJ7SvuCcyRU6ZYY5mgab1Tl4u6Jp/8Y3DIqI1NGmJVCPwMxo7+
+ KB+BkIoYB3VGSR9Ea+H/QK1aAlv3DLZK/p+T+oSdhqVNmPQ61XU39iwgATc/XY0aSbCb
+ YJmb3L1eTFjAfL7IzIWFNhWv+F82PK3eVpB+A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=xkMIGK74X6G/emJXPPRUEJAUaDQbwzNFJDZsIuSZhD0=;
+ b=EcHqK1e2vIGvZscb9j9idWLVYdp/ZYr+kzDFg/z3HVi8wzF4I7nTVCbCfVUwDhIkQh
+ v3LSKtQblvegl56jw1Wg7a7eEaZzgWS+8N/PlCzkKmeWrwmthcp3VLgiVS826vWp/wbl
+ SCRrEFlcdjTuLy6A0E24SK+5A8srrBpz/p0lkF8L3yiB9O6UeOrazbfLawACXQxvc+Ht
+ NiUGJmh1T7K6CMXyrRDt3SfHnMMBJ+h9lsIa28kuThPnTCq7MIWyVKOD7A6+BK2xeBFx
+ MxIDLsc4ffVIj4M8JDZ7IuelGHNj2CHM3kPTNHA7dZfXDYJl7+wAxc+HzEbnAQ0bQ6Fb
+ GDeA==
+X-Gm-Message-State: AOAM533sxvC3wzR6zCmOSM6V5vw8AM67ZdtztJuqqzTreVNvohptihNP
+ Tdb8H/KpRL0whDZO6tFjnyGyvQ==
+X-Google-Smtp-Source: ABdhPJxdFazp2dWVeG9nErBvvNn1y5BLqDSBUvTIRZBd6Wexx5qerHL26WtUPDhPqInHW+KeqVwqJQ==
+X-Received: by 2002:adf:fe48:: with SMTP id m8mr9613642wrs.135.1616074074786; 
+ Thu, 18 Mar 2021 06:27:54 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id h62sm2622849wmf.37.2021.03.18.06.27.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 18 Mar 2021 06:27:54 -0700 (PDT)
+Date: Thu, 18 Mar 2021 14:27:52 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YFNVWJsX6Yq0+/Zx@phenom.ffwll.local>
+References: <20210315143428.1471489-1-jason@jlekstrand.net>
+ <20210317234014.2271006-1-jason@jlekstrand.net>
+ <20210317234014.2271006-4-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 10/14] drm/i915/bios: add helper
- functions to check output support
+Content-Disposition: inline
+In-Reply-To: <20210317234014.2271006-4-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915: Disable pread/pwrite ioctl's
+ for future platforms (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,95 +67,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAxNyBNYXIgMjAyMSwgTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
-bC5jb20+IHdyb3RlOgo+IE9uIFdlZCwgTWFyIDE3LCAyMDIxIGF0IDA2OjM2OjQ5UE0gKzAyMDAs
-IEphbmkgTmlrdWxhIHdyb3RlOgo+PlRoZXNlIHdpbGwgYmUgZXhwb3NlZCB0byB0aGUgcmVzdCBv
-ZiB0aGUgZHJpdmVyIGFuZCByZXBsYWNlIG90aGVyCj4+ZnVuY3Rpb25zLiBFdmVyeXRoaW5nIHdp
-bGwgb3BlcmF0ZSBvbiB0aGUgY2hpbGQgZGV2aWNlcy4KPj4KPj52MjoKPj4tIFJlYmFzZWQsIHJl
-bW92ZWQgc3RyYXkgYmxhbmsgbGluZQo+Pi0gQWxzbyBhYnN0cmFjdGVkIGludGVsX2Jpb3NfZW5j
-b2Rlcl9zdXBwb3J0c19jcnQgKEx1Y2FzKQo+Pgo+PkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2Fz
-LmRlbWFyY2hpQGludGVsLmNvbT4KPj5DYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
-QGxpbnV4LmludGVsLmNvbT4KPj5TaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1
-bGFAaW50ZWwuY29tPgo+Pi0tLQo+PiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Jpb3MuYyB8IDcxICsrKysrKysrKysrKysrKysrKystLS0tCj4+IDEgZmlsZSBjaGFuZ2VkLCA1
-OSBpbnNlcnRpb25zKCspLCAxMiBkZWxldGlvbnMoLSkKPj4KPj5kaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Jpb3MuYwo+PmluZGV4IDQwZmQ2MGFjZDU0OC4uNDNjYjUwNDhhYjlh
-IDEwMDY0NAo+Pi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYmlvcy5j
-Cj4+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMKPj5AQCAt
-MTc5NSw2ICsxNzk1LDU5IEBAIHN0YXRpYyBpbnQgcGFyc2VfYmRiXzIxNl9kcF9tYXhfbGlua19y
-YXRlKGNvbnN0IGludCB2YnRfbWF4X2xpbmtfcmF0ZSkKPj4gCX0KPj4gfQo+Pgo+PitzdGF0aWMg
-dm9pZCBzYW5pdGl6ZV9kZXZpY2VfdHlwZShzdHJ1Y3QgaW50ZWxfYmlvc19lbmNvZGVyX2RhdGEg
-KmRldmRhdGEsCj4+KwkJCQkgZW51bSBwb3J0IHBvcnQpCj4+K3sKPj4rCXN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICppOTE1ID0gZGV2ZGF0YS0+aTkxNTsKPj4rCWJvb2wgaXNfaGRtaTsKPj4rCj4+
-KwlpZiAocG9ydCAhPSBQT1JUX0EgfHwgSU5URUxfR0VOKGk5MTUpID49IDEyKQo+PisJCXJldHVy
-bjsKPj4rCj4+KwlpZiAoIShkZXZkYXRhLT5jaGlsZC5kZXZpY2VfdHlwZSAmIERFVklDRV9UWVBF
-X1RNRFNfRFZJX1NJR05BTElORykpCj4+KwkJcmV0dXJuOwo+PisKPj4rCWlzX2hkbWkgPSAhKGRl
-dmRhdGEtPmNoaWxkLmRldmljZV90eXBlICYgREVWSUNFX1RZUEVfTk9UX0hETUlfT1VUUFVUKTsK
-Pj4rCj4+Kwlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiVkJUIGNsYWltcyBwb3J0IEEgc3VwcG9y
-dHMgRFZJJXMsIGlnbm9yaW5nXG4iLAo+PisJCSAgICBpc19oZG1pID8gIi9IRE1JIiA6ICIiKTsK
-Pgo+IG5pdDogYSBsaXR0bGUgbW9yZSByZWFkYWJsZSBpZiB0aGlzIGZ1bmN0aW9uIHVzZXMgdGhl
-IGhlbHBlcnMgeW91IGp1c3QKPiBkZWZpbmVkOgo+Cj4KPiAJaWYgKCFpbnRlbF9iaW9zX2VuY29k
-ZXJfc3VwcG9ydHNfZHZpKGRldmRhdGEpKQo+IAkJcmV0dXJuOwo+Cj4gCWRybV9kYmdfa21zKCZp
-OTE1LT5kcm0sICJWQlQgY2xhaW1zIHBvcnQgQSBzdXBwb3J0cyBEVkklcywgaWdub3JpbmdcbiIs
-Cj4gCQkgICAgaW50ZWxfYmlvc19lbmNvZGVyX3N1cHBvcnRzX2hkbWkoZGV2ZGF0YSkgPyAiL0hE
-TUkiIDogIiIpOwo+Cj4KPiBhbHRob3VnaCB0aGUgIGxpbmVzIGJlbG93IGFyZSBtYW5pcHVsYXRp
-bmcgdGhlIGRldmljZV90eXBlIGFuZCBtYXkgYmUKPiBnb29kIHRvIGxldCB0aGUgY29uc3RhbnRz
-IGhlcmUsIHRvby4gVXAgdG8geW91LgoKSSBkb24ndCBkaXNhZ3JlZSwgYnV0IHNhdmVkIHRoaXMg
-Zm9yIGZ1dHVyZSBjbGVhbnVwLgoKQlIsCkphbmkuCgoKPgo+IFJldmlld2VkLWJ5OiBMdWNhcyBE
-ZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KPgo+IEx1Y2FzIERlIE1hcmNoaQo+
-Cj4KPj4rCj4+KwlkZXZkYXRhLT5jaGlsZC5kZXZpY2VfdHlwZSAmPSB+REVWSUNFX1RZUEVfVE1E
-U19EVklfU0lHTkFMSU5HOwo+PisJZGV2ZGF0YS0+Y2hpbGQuZGV2aWNlX3R5cGUgfD0gREVWSUNF
-X1RZUEVfTk9UX0hETUlfT1VUUFVUOwo+Pit9Cj4+Kwo+PitzdGF0aWMgYm9vbAo+PitpbnRlbF9i
-aW9zX2VuY29kZXJfc3VwcG9ydHNfY3J0KGNvbnN0IHN0cnVjdCBpbnRlbF9iaW9zX2VuY29kZXJf
-ZGF0YSAqZGV2ZGF0YSkKPj4rewo+PisJcmV0dXJuIGRldmRhdGEtPmNoaWxkLmRldmljZV90eXBl
-ICYgREVWSUNFX1RZUEVfQU5BTE9HX09VVFBVVDsKPj4rfQo+PisKPj4rc3RhdGljIGJvb2wKPj4r
-aW50ZWxfYmlvc19lbmNvZGVyX3N1cHBvcnRzX2R2aShjb25zdCBzdHJ1Y3QgaW50ZWxfYmlvc19l
-bmNvZGVyX2RhdGEgKmRldmRhdGEpCj4+K3sKPj4rCXJldHVybiBkZXZkYXRhLT5jaGlsZC5kZXZp
-Y2VfdHlwZSAmIERFVklDRV9UWVBFX1RNRFNfRFZJX1NJR05BTElORzsKPj4rfQo+PisKPj4rc3Rh
-dGljIGJvb2wKPj4raW50ZWxfYmlvc19lbmNvZGVyX3N1cHBvcnRzX2hkbWkoY29uc3Qgc3RydWN0
-IGludGVsX2Jpb3NfZW5jb2Rlcl9kYXRhICpkZXZkYXRhKQo+Pit7Cj4+KwlyZXR1cm4gaW50ZWxf
-Ymlvc19lbmNvZGVyX3N1cHBvcnRzX2R2aShkZXZkYXRhKSAmJgo+PisJCShkZXZkYXRhLT5jaGls
-ZC5kZXZpY2VfdHlwZSAmIERFVklDRV9UWVBFX05PVF9IRE1JX09VVFBVVCkgPT0gMDsKPj4rfQo+
-PisKPj4rc3RhdGljIGJvb2wKPj4raW50ZWxfYmlvc19lbmNvZGVyX3N1cHBvcnRzX2RwKGNvbnN0
-IHN0cnVjdCBpbnRlbF9iaW9zX2VuY29kZXJfZGF0YSAqZGV2ZGF0YSkKPj4rewo+PisJcmV0dXJu
-IGRldmRhdGEtPmNoaWxkLmRldmljZV90eXBlICYgREVWSUNFX1RZUEVfRElTUExBWVBPUlRfT1VU
-UFVUOwo+Pit9Cj4+Kwo+PitzdGF0aWMgYm9vbAo+PitpbnRlbF9iaW9zX2VuY29kZXJfc3VwcG9y
-dHNfZWRwKGNvbnN0IHN0cnVjdCBpbnRlbF9iaW9zX2VuY29kZXJfZGF0YSAqZGV2ZGF0YSkKPj4r
-ewo+PisJcmV0dXJuIGludGVsX2Jpb3NfZW5jb2Rlcl9zdXBwb3J0c19kcChkZXZkYXRhKSAmJgo+
-PisJCWRldmRhdGEtPmNoaWxkLmRldmljZV90eXBlICYgREVWSUNFX1RZUEVfSU5URVJOQUxfQ09O
-TkVDVE9SOwo+Pit9Cj4+Kwo+PiBzdGF0aWMgdm9pZCBwYXJzZV9kZGlfcG9ydChzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqaTkxNSwKPj4gCQkJICAgc3RydWN0IGludGVsX2Jpb3NfZW5jb2Rlcl9k
-YXRhICpkZXZkYXRhKQo+PiB7Cj4+QEAgLTE4MTYsMTkgKzE4NjksMTMgQEAgc3RhdGljIHZvaWQg
-cGFyc2VfZGRpX3BvcnQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCj4+IAkJcmV0dXJu
-Owo+PiAJfQo+Pgo+Pi0JaXNfZHZpID0gY2hpbGQtPmRldmljZV90eXBlICYgREVWSUNFX1RZUEVf
-VE1EU19EVklfU0lHTkFMSU5HOwo+Pi0JaXNfZHAgPSBjaGlsZC0+ZGV2aWNlX3R5cGUgJiBERVZJ
-Q0VfVFlQRV9ESVNQTEFZUE9SVF9PVVRQVVQ7Cj4+LQlpc19jcnQgPSBjaGlsZC0+ZGV2aWNlX3R5
-cGUgJiBERVZJQ0VfVFlQRV9BTkFMT0dfT1VUUFVUOwo+Pi0JaXNfaGRtaSA9IGlzX2R2aSAmJiAo
-Y2hpbGQtPmRldmljZV90eXBlICYgREVWSUNFX1RZUEVfTk9UX0hETUlfT1VUUFVUKSA9PSAwOwo+
-Pi0JaXNfZWRwID0gaXNfZHAgJiYgKGNoaWxkLT5kZXZpY2VfdHlwZSAmIERFVklDRV9UWVBFX0lO
-VEVSTkFMX0NPTk5FQ1RPUik7Cj4+KwlzYW5pdGl6ZV9kZXZpY2VfdHlwZShkZXZkYXRhLCBwb3J0
-KTsKPj4KPj4tCWlmIChwb3J0ID09IFBPUlRfQSAmJiBpc19kdmkgJiYgSU5URUxfR0VOKGk5MTUp
-IDwgMTIpIHsKPj4tCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLAo+Pi0JCQkgICAgIlZCVCBjbGFp
-bXMgcG9ydCBBIHN1cHBvcnRzIERWSSVzLCBpZ25vcmluZ1xuIiwKPj4tCQkJICAgIGlzX2hkbWkg
-PyAiL0hETUkiIDogIiIpOwo+Pi0JCWlzX2R2aSA9IGZhbHNlOwo+Pi0JCWlzX2hkbWkgPSBmYWxz
-ZTsKPj4tCX0KPj4rCWlzX2R2aSA9IGludGVsX2Jpb3NfZW5jb2Rlcl9zdXBwb3J0c19kdmkoZGV2
-ZGF0YSk7Cj4+Kwlpc19kcCA9IGludGVsX2Jpb3NfZW5jb2Rlcl9zdXBwb3J0c19kcChkZXZkYXRh
-KTsKPj4rCWlzX2NydCA9IGludGVsX2Jpb3NfZW5jb2Rlcl9zdXBwb3J0c19jcnQoZGV2ZGF0YSk7
-Cj4+Kwlpc19oZG1pID0gaW50ZWxfYmlvc19lbmNvZGVyX3N1cHBvcnRzX2hkbWkoZGV2ZGF0YSk7
-Cj4+Kwlpc19lZHAgPSBpbnRlbF9iaW9zX2VuY29kZXJfc3VwcG9ydHNfZWRwKGRldmRhdGEpOwo+
-Pgo+PiAJaW5mby0+c3VwcG9ydHNfZHZpID0gaXNfZHZpOwo+PiAJaW5mby0+c3VwcG9ydHNfaGRt
-aSA9IGlzX2hkbWk7Cj4+LS0gCj4+Mi4yMC4xCj4+Cj4gX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4g
-U291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+On Wed, Mar 17, 2021 at 06:40:12PM -0500, Jason Ekstrand wrote:
+> From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> 
+> The rationale for this change is roughly as follows:
+> 
+>  1. The functionality can be done entirely in userspace with a
+>     combination of mmap + memcpy
+> 
+>  2. The only reason anyone in userspace is still using it is because
+>     someone implemented bo_subdata that way in libdrm ages ago and
+>     they're all too lazy to write the 5 lines of code to do a map.
+> 
+>  3. This falls cleanly into the category of things which will only get
+>     more painful with local memory support.
+> 
+> These ioctls aren't used much anymore by "real" userspace drivers.
+> Vulkan has never used them and neither has the iris GL driver.  The old
+> i965 GL driver does use PWRITE for glBufferSubData but it only supports
+> up through Gen11; Gen12 was never enabled in i965.  The compute driver
+> has never used PREAD/PWRITE.  The only remaining user is the media
+> driver which uses it exactly twice and they're easily removed [1] so
+> expecting them to drop it going forward is reasonable.
+> 
+> IGT changes which handle this kernel change have also been submitted [2].
+> 
+> [1] https://github.com/intel/media-driver/pull/1160
+> [2] https://patchwork.freedesktop.org/series/81384/
+> 
+> v2 (Jason Ekstrand):
+>  - Improved commit message with the status of all usermode drivers
+>  - A more future-proof platform check
+> 
+> v3 (Jason Ekstrand):
+>  - Drop the HAS_LMEM checks as they're already covered by the version
+>    checks
+> 
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
+
+Merged the first three here. For the scheduler/context stuff I think we
+should go back to normal due process with kernel patch + igt patches
+tested together, then land igt first, then kernel, just to avoid hiccups
+in CI.
+
+Thanks, Daniel
+
+> ---
+>  drivers/gpu/drm/i915/i915_gem.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> index b2e3b5cfccb4a..80915467e0d84 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -374,10 +374,17 @@ int
+>  i915_gem_pread_ioctl(struct drm_device *dev, void *data,
+>  		     struct drm_file *file)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(dev);
+>  	struct drm_i915_gem_pread *args = data;
+>  	struct drm_i915_gem_object *obj;
+>  	int ret;
+>  
+> +	/* PREAD is disallowed for all platforms after TGL-LP.  This also
+> +	 * covers all platforms with local memory.
+> +	 */
+> +	if (INTEL_GEN(i915) >= 12 && !IS_TIGERLAKE(i915))
+> +		return -EOPNOTSUPP;
+> +
+>  	if (args->size == 0)
+>  		return 0;
+>  
+> @@ -675,10 +682,17 @@ int
+>  i915_gem_pwrite_ioctl(struct drm_device *dev, void *data,
+>  		      struct drm_file *file)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(dev);
+>  	struct drm_i915_gem_pwrite *args = data;
+>  	struct drm_i915_gem_object *obj;
+>  	int ret;
+>  
+> +	/* PWRITE is disallowed for all platforms after TGL-LP.  This also
+> +	 * covers all platforms with local memory.
+> +	 */
+> +	if (INTEL_GEN(i915) >= 12 && !IS_TIGERLAKE(i915))
+> +		return -EOPNOTSUPP;
+> +
+>  	if (args->size == 0)
+>  		return 0;
+>  
+> -- 
+> 2.29.2
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
