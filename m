@@ -1,31 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C2B4340E62
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 20:36:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84751340E6A
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 20:41:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AE086E084;
-	Thu, 18 Mar 2021 19:36:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F397C6E0F5;
+	Thu, 18 Mar 2021 19:41:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BA99F6E084;
- Thu, 18 Mar 2021 19:36:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ACE24A0BA8;
- Thu, 18 Mar 2021 19:36:22 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5151A6E0F5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 19:41:06 +0000 (UTC)
+IronPort-SDR: yVH+VnQ5465IVj5FrWhUEpVYsR8DH7PWHD2e+TMT0Xj1sVsfapMz1Xttj+bJJEXWZlwoVBpyGF
+ QR2sIezy7LJw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9927"; a="253766025"
+X-IronPort-AV: E=Sophos;i="5.81,259,1610438400"; d="scan'208";a="253766025"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2021 12:41:05 -0700
+IronPort-SDR: hT95NXQAQO8t2wVgqX5OJ84mYzrldA2w7fadnV7yz2bjJq8BKLeJPoFNwKk2IPQKYRzuOyrzl0
+ 4X8ehkTIiEQA==
+X-IronPort-AV: E=Sophos;i="5.81,259,1610438400"; d="scan'208";a="450600693"
+Received: from mhammerv-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.154.30])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2021 12:41:04 -0700
+Date: Thu, 18 Mar 2021 12:41:04 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20210318194104.5tdigypolqtpepra@ldmartin-desk2>
+References: <20210213190511.1017088-1-lucas.demarchi@intel.com>
+ <20210213190511.1017088-2-lucas.demarchi@intel.com>
+ <874kidd3eh.fsf@intel.com>
+ <20210215162653.sarercr3qcgo5hed@ldmartin-desk1>
+ <87sg5vbxn8.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 18 Mar 2021 19:36:22 -0000
-Message-ID: <161609618268.12738.5572733323755678461@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210318170419.2107512-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210318170419.2107512-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRGVm?=
- =?utf-8?q?ault_request/fence_expiry_+_watchdog_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <87sg5vbxn8.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display: move vbt check to
+ intel_ddi_init()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,218 +52,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1635726502=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1635726502==
-Content-Type: multipart/alternative;
- boundary="===============1909119941352533366=="
+On Tue, Feb 16, 2021 at 09:50:03PM +0200, Jani Nikula wrote:
+>On Mon, 15 Feb 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> On Mon, Feb 15, 2021 at 12:35:50PM +0200, Jani Nikula wrote:
+>>>On Sat, 13 Feb 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>>> On intel_ddi_init() we already check VBT if the port supports HDMI/DP
+>>>> and bail out otherwise. Instad of checking if a single port is present
+>>>> using VBT in intel_display.c, move the stronger check to
+>>>> intel_ddi_init() and return early in case it's not supported.  There
+>>>> would be no way intel_bios_* would report support for hdmi/dp if the
+>>>> port isn't present so this should cause no regressions for other
+>>>> platforms.
+>>>
+>>>Sorry, but this will regress machines that have no VBT.
+>>
+>> I missed that init_vbt_missing_defaults() also sets
+>> the supports_*.
+>>
+>>>
+>>>I've been thinking about creating fake child devices for that case to
+>>>reduce the exceptions.
+>>
+>> Adding a fake child would indeed be a good option. Are you going to
+>> implement that soon or should I?
+>
+>I'm working on it. Got a bit carried away with what I've had in mind for
+>ages regarding some other refactoring (e.g. getting rid of
+>i915->vbt.ddi_port_info[] altogether in order to bring pre- and post-ddi
+>platforms closer together). I'll try to get a smaller set ready first.
 
---===============1909119941352533366==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+now that those patches are applied, can you take a look in these?
 
-== Series Details ==
+thanks
+Lucas De Marchi
 
-Series: Default request/fence expiry + watchdog (rev3)
-URL   : https://patchwork.freedesktop.org/series/87930/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9870 -> Patchwork_19806
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19806:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@gem_exec_parallel@engines@userptr:
-    - {fi-rkl-11500t}:    [SKIP][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-rkl-11500t/igt@gem_exec_parallel@engines@userptr.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/fi-rkl-11500t/igt@gem_exec_parallel@engines@userptr.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19806 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_linear_blits@basic:
-    - fi-kbl-8809g:       [PASS][3] -> [TIMEOUT][4] ([i915#2502] / [i915#3145])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-8809g/igt@gem_linear_blits@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/fi-kbl-8809g/igt@gem_linear_blits@basic.html
-
-  * igt@gem_tiled_fence_blits@basic:
-    - fi-kbl-8809g:       [PASS][5] -> [TIMEOUT][6] ([i915#3145])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#2502]: https://gitlab.freedesktop.org/drm/intel/issues/2502
-  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * IGT: IGT_6036 -> IGTPW_5624
-  * Linux: CI_DRM_9870 -> Patchwork_19806
-
-  CI-20190529: 20190529
-  CI_DRM_9870: a9a5ed8d2432e5335e6c26118cefb2cfff28ae37 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_5624: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5624/index.html
-  IGT_6036: 5b535494abcdf5ce2b9be99b7bb5df8ab4733083 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19806: e814cfb2632dac33e0252fc578ca840503e63799 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e814cfb2632d drm/i915: Allow configuring default request expiry via modparam
-b3ae72befaf0 drm/i915: Fail too long user submissions by default
-ab49cf00b55d drm/i915: Request watchdog infrastructure
-7fa9b24cf91f drm/i915: Handle async cancellation in sentinel assert
-80086346fcaf drm/i915: Restrict sentinel requests further
-d8733af339ce drm/i915: Individual request cancellation
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/index.html
-
---===============1909119941352533366==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Default request/fence expiry + watchdog (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87930/">https://patchwork.freedesktop.org/series/87930/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9870 -&gt; Patchwork_19806</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19806:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@gem_exec_parallel@engines@userptr:<ul>
-<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-rkl-11500t/igt@gem_exec_parallel@engines@userptr.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/fi-rkl-11500t/igt@gem_exec_parallel@engines@userptr.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19806 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_linear_blits@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-8809g/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/fi-kbl-8809g/igt@gem_linear_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2502">i915#2502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_fence_blits@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_6036 -&gt; IGTPW_5624</li>
-<li>Linux: CI_DRM_9870 -&gt; Patchwork_19806</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9870: a9a5ed8d2432e5335e6c26118cefb2cfff28ae37 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGTPW_5624: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5624/index.html<br />
-  IGT_6036: 5b535494abcdf5ce2b9be99b7bb5df8ab4733083 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19806: e814cfb2632dac33e0252fc578ca840503e63799 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e814cfb2632d drm/i915: Allow configuring default request expiry via modparam<br />
-b3ae72befaf0 drm/i915: Fail too long user submissions by default<br />
-ab49cf00b55d drm/i915: Request watchdog infrastructure<br />
-7fa9b24cf91f drm/i915: Handle async cancellation in sentinel assert<br />
-80086346fcaf drm/i915: Restrict sentinel requests further<br />
-d8733af339ce drm/i915: Individual request cancellation</p>
-
-</body>
-</html>
-
---===============1909119941352533366==--
-
---===============1635726502==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+>BR,
+>Jani.
+>
+>
+>>
+>> thanks
+>> Lucas De Marchi
+>>
+>>>
+>>>BR,
+>>>Jani.
+>>>
+>>>
+>>>
+>>>>
+>>>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>> ---
+>>>>  drivers/gpu/drm/i915/display/intel_ddi.c     |  7 +++++++
+>>>>  drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++--------
+>>>>  2 files changed, 13 insertions(+), 8 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>>>> index 3b97c0091812..1235be0ba5d1 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>>>> @@ -3972,6 +3972,13 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>>>>  	bool init_hdmi, init_dp;
+>>>>  	enum phy phy = intel_port_to_phy(dev_priv, port);
+>>>>
+>>>> +	if (!intel_bios_is_port_present(dev_priv, port)) {
+>>>> +		drm_dbg_kms(&dev_priv->drm,
+>>>> +			    "VBT says port %c is not present, respect it\n",
+>>>> +			    port_name(port));
+>>>> +		return;
+>>>> +	}
+>>>> +
+>>>>  	/*
+>>>>  	 * On platforms with HTI (aka HDPORT), if it's enabled at boot it may
+>>>>  	 * have taken over some of the PHYs and made them unavailable to the
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>>>> index 23ec68498800..7aaf7a29d493 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>>>> @@ -11904,13 +11904,13 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>>>>  		intel_ddi_init(dev_priv, PORT_C);
+>>>>  		intel_ddi_init(dev_priv, PORT_D);
+>>>>  		intel_ddi_init(dev_priv, PORT_E);
+>>>> +
+>>>>  		/*
+>>>> -		 * On some ICL SKUs port F is not present. No strap bits for
+>>>> -		 * this, so rely on VBT.
+>>>> -		 * Work around broken VBTs on SKUs known to have no port F.
+>>>> +		 * On some ICL SKUs port F is not present, but broken VBTs mark
+>>>> +		 * the port as present. Only try to initialize port F for the
+>>>> +		 * SKUs that may actually have it.
+>>>>  		 */
+>>>> -		if (IS_ICL_WITH_PORT_F(dev_priv) &&
+>>>> -		    intel_bios_is_port_present(dev_priv, PORT_F))
+>>>> +		if (IS_ICL_WITH_PORT_F(dev_priv))
+>>>>  			intel_ddi_init(dev_priv, PORT_F);
+>>>>
+>>>>  		icl_dsi_init(dev_priv);
+>>>> @@ -11964,10 +11964,8 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>>>>  		/*
+>>>>  		 * On SKL we don't have a way to detect DDI-E so we rely on VBT.
+>>>>  		 */
+>>>> -		if (IS_GEN9_BC(dev_priv) &&
+>>>> -		    intel_bios_is_port_present(dev_priv, PORT_E))
+>>>> +		if (IS_GEN9_BC(dev_priv))
+>>>>  			intel_ddi_init(dev_priv, PORT_E);
+>>>> -
+>>>>  	} else if (HAS_PCH_SPLIT(dev_priv)) {
+>>>>  		int found;
+>>>
+>>>--
+>>>Jani Nikula, Intel Open Source Graphics Center
+>
+>-- 
+>Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1635726502==--
