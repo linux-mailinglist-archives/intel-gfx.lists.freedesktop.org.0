@@ -1,78 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5672F340C1D
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 18:49:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7419340C4C
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 18:57:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACF1D6E92E;
-	Thu, 18 Mar 2021 17:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF2546E93A;
+	Thu, 18 Mar 2021 17:57:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C94DB6E932
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 17:49:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1616089792;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=X1aq07hUECvkiCM1AMjlNy/+yooAsZ6Cw/htSTkJaNo=;
- b=hrJ65Fpx+C5RxT4OA4ide1FK4gQ5xRsu5oyAFHBAictpw0Joz+QVWFyDhSf03dOO0FFeJW
- 4EgcU0Q4TXlJOh2RK1vFqJwhyBWbidRGqmZfda0aasx4mb3YqTIoaupzqvgt+3FBBS0Zzn
- ZWGrpSyB+OYbvE9012fOPYBh3e0op0E=
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-237-a0IQMTcnO_KAjsmMHG8U4g-1; Thu, 18 Mar 2021 13:49:50 -0400
-X-MC-Unique: a0IQMTcnO_KAjsmMHG8U4g-1
-Received: by mail-qt1-f198.google.com with SMTP id m35so17982146qtd.11
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 10:49:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=X1aq07hUECvkiCM1AMjlNy/+yooAsZ6Cw/htSTkJaNo=;
- b=CYe/FzP5K/EnMb1BFZy6XMUA28aPoZlwlnl9K/QTvkR9GsnldzfXgIziSnyJyPtew2
- weLTV5ANdDUCkfS0J8O2fpaqWi6fp2a3pSU7HexBePygYqgRWyGXCx4QaGqsrubp5a9E
- 0UgMEir5Y9pv9aKlE7L2Jf03kybfLEdrDkILgcImN6JDIXplYgpA2zcG1T+hSGor6MdH
- iJbt3CVtJIMU8nH3GZ8lTbPTre2O2vBG+AjQSOtMEybT25CqPK8Em7f4zbS+c2/Jkeuw
- Nnru+aWiAM861LVld/rjHFRX1acET8dkqTuBcu8Cvi0gPxex8g6ji5Cl5wvjLAFVojGZ
- ZJ3A==
-X-Gm-Message-State: AOAM53340M1atLD+3dQjbeYciFi3MxhsIUIkBlK/e6HiP/ZUg6TBnu2G
- mErmDeleWZLlRZBx3ZqPQKtFj0TSynDq4o99/gLbIaNadDdLfu3UqJFsafjUpm0flGXWgcXlXYj
- hoWEkRuRuTJTgWRYAIQkYx5lPgKFKWTUJ3xHHPUa5QHJGKUdlFJLXEMdeLfHYVw5z2PIwfqdvVH
- CB
-X-Received: by 2002:a05:620a:15eb:: with SMTP id
- p11mr5374104qkm.454.1616089789455; 
- Thu, 18 Mar 2021 10:49:49 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy6RlaOk96Syg3NZIwU9HFylmyO+xGqvapwSiL2VZgzQaQreQr9yUIj7wRqiSeRuR3vLr6E0Q==
-X-Received: by 2002:a05:620a:15eb:: with SMTP id
- p11mr5374074qkm.454.1616089789174; 
- Thu, 18 Mar 2021 10:49:49 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id m90sm1923315qte.44.2021.03.18.10.49.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 18 Mar 2021 10:49:48 -0700 (PDT)
-Message-ID: <dfec442a4888c8387a6002b0424415ee5d8be343.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Mar 2021 13:49:47 -0400
-In-Reply-To: <20210318170204.513000-1-lyude@redhat.com>
-References: <20210318170204.513000-1-lyude@redhat.com>
-Organization: Red Hat
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5291D6E93A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 17:57:26 +0000 (UTC)
+IronPort-SDR: 626WpRD3qUHbXbQ1SuHqP+tyNE8tYmnH2//32H1/N6nZQF9sY5NJtlXGsy8lglqkhV+hNr1VfP
+ dvK9DHWeUstA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9927"; a="253748976"
+X-IronPort-AV: E=Sophos;i="5.81,259,1610438400"; d="scan'208";a="253748976"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2021 10:57:25 -0700
+IronPort-SDR: 0eIFfhRZh7RlG1GaHFlFO08q5HUeeloK0+GkyQ9d8bSBm9nwe75rBo06S0ohxLQLbkqxrL8ZrT
+ zI0zE4E/8g7A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,259,1610438400"; d="scan'208";a="512210990"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga001.fm.intel.com with SMTP; 18 Mar 2021 10:57:23 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 18 Mar 2021 19:57:22 +0200
+Date: Thu, 18 Mar 2021 19:57:22 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Message-ID: <YFOUgp1QvipUwSGR@intel.com>
+References: <20210317184901.4029798-3-imre.deak@intel.com>
+ <20210317190149.4032966-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dpcd_bl: Don't try vesa interface
- unless specified by VBT
+Content-Disposition: inline
+In-Reply-To: <20210317190149.4032966-1-imre.deak@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915: Disable LTTPR support when
+ the DPCD rev < 1.4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,67 +51,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Cc: Jani Nikula <jani.nikula@intel.com>,
- open list <linux-kernel@vger.kernel.org>, David Airlie <airlied@linux.ie>,
- Sean Paul <seanpaul@chromium.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- Aaron Ma <aaron.ma@canonical.com>, Dave Airlie <airlied@redhat.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWN0dWFsbHktTkFLIHRoaXMuIEkganVzdCByZWFsaXplZCBJJ3ZlIGJlZW4gbWlzcmVhZGluZyB0
-aGUgYnVnIGFuZCB0aGF0IHRoaXMKZG9lc24ndCBhY3R1YWxseSBzZWVtIHRvIGJlIGZpeGVkLiBX
-aWxsIHJlc2VuZCBvbmNlIEkgZmlndXJlIG91dCB3aGF0J3MgZ29pbmcgb24KCk9uIFRodSwgMjAy
-MS0wMy0xOCBhdCAxMzowMiAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90ZToKPiBMb29rcyBsaWtlIHRo
-YXQgdGhlcmUgYWN0dWFsbHkgYXJlIGFub3RoZXIgc3Vic2V0IG9mIGxhcHRvcHMgb24gdGhlIG1h
-cmtldAo+IHRoYXQgZG9uJ3Qgc3VwcG9ydCB0aGUgSW50ZWwgSERSIGJhY2tsaWdodCBpbnRlcmZh
-Y2UsIGJ1dCBkbyBhZHZlcnRpc2UKPiBzdXBwb3J0IGZvciB0aGUgVkVTQSBEUENEIGJhY2tsaWdo
-dCBpbnRlcmZhY2UgZGVzcGl0ZSB0aGUgZmFjdCBpdCBkb2Vzbid0Cj4gc2VlbSB0byB3b3JrLgo+
-IAo+IE5vdGUgdGhvdWdoIEknbSBub3QgZW50aXJlbHkgY2xlYXIgb24gdGhpcyAtIG9uIG9uZSBv
-ZiB0aGUgbWFjaGluZXMgd2hlcmUKPiB0aGlzIGlzc3VlIHdhcyBvYnNlcnZlZCwgSSBhbHNvIG5v
-dGljZWQgdGhhdCB3ZSBhcHBlYXJlZCB0byBiZSByZWplY3RpbmcKPiB0aGUgVkJUIGRlZmluZWQg
-YmFja2xpZ2h0IGZyZXF1ZW5jeSBpbgo+IGludGVsX2RwX2F1eF92ZXNhX2NhbGNfbWF4X2JhY2ts
-aWdodCgpLiBJdCdzIG5vdGVkIGluIHRoaXMgZnVuY3Rpb24gdGhhdDoKPiAKPiAvKiBVc2UgaGln
-aGVzdCBwb3NzaWJsZSB2YWx1ZSBvZiBQbiBmb3IgbW9yZSBncmFudWxhcml0eSBvZiBicmlnaHRu
-ZXNzCj4gwqAqIGFkanVzdG1lbnQgd2hpbGUgc2F0aWZ5aW5nIHRoZSBjb25kaXRpb25zIGJlbG93
-Lgo+IMKgKiAuLi4KPiDCoCogLSBGeFAgaXMgd2l0aGluIDI1JSBvZiBkZXNpcmVkIHZhbHVlLgo+
-IMKgKsKgwqAgTm90ZTogMjUlIGlzIGFyYml0cmFyeSB2YWx1ZSBhbmQgbWF5IG5lZWQgc29tZSB0
-d2Vhay4KPiDCoCovCj4gCj4gU28gaXQncyBwb3NzaWJsZSB0aGF0IHRoaXMgdmFsdWUgbWlnaHQg
-anVzdCBuZWVkIHRvIGJlIHR3ZWFrZWQsIGJ1dCBmb3Igbm93Cj4gbGV0J3MganVzdCBkaXNhYmxl
-IHRoZSBWRVNBIGJhY2tsaWdodCBpbnRlcmZhY2UgdW5sZXNzIGl0J3Mgc3BlY2lmaWVkIGluCj4g
-dGhlIFZCVCBqdXN0IHRvIGJlIHNhZmUuIFdlIG1pZ2h0IGJlIGFibGUgdG8gdHJ5IGVuYWJsaW5n
-IHRoaXMgYWdhaW4gYnkKPiBkZWZhdWx0IGluIHRoZSBmdXR1cmUuCj4gCj4gRml4ZXM6IDIyMjc4
-MTZlNjQ3YSAoImRybS9pOTE1L2RwOiBBbGxvdyBmb3JjaW5nIHNwZWNpZmljIGludGVyZmFjZXMg
-dGhyb3VnaAo+IGVuYWJsZV9kcGNkX2JhY2tsaWdodCIpCj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5p
-Lm5pa3VsYUBpbnRlbC5jb20+Cj4gQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVs
-LmNvbT4KPiBCdWd6aWxsYTogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRl
-bC8tL2lzc3Vlcy8zMTY5Cj4gU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0
-LmNvbT4KPiAtLS0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4
-X2JhY2tsaWdodC5jIHwgMSAtCj4gwqAxIGZpbGUgY2hhbmdlZCwgMSBkZWxldGlvbigtKQo+IAo+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2F1eF9i
-YWNrbGlnaHQuYwo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXhf
-YmFja2xpZ2h0LmMKPiBpbmRleCA2NTE4ODQzOTAxMzcuLjRmODMzN2M3ZmQyZSAxMDA2NDQKPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2F1eF9iYWNrbGlnaHQu
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4X2JhY2ts
-aWdodC5jCj4gQEAgLTY0Niw3ICs2NDYsNiBAQCBpbnQgaW50ZWxfZHBfYXV4X2luaXRfYmFja2xp
-Z2h0X2Z1bmNzKHN0cnVjdAo+IGludGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yKQo+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGJyZWFrOwo+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgY2FzZSBJTlRFTF9CQUNLTElHSFRfRElTUExBWV9EREk6
-Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgdHJ5X2lu
-dGVsX2ludGVyZmFjZSA9IHRydWU7Cj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqB0cnlfdmVzYV9pbnRlcmZhY2UgPSB0cnVlOwo+IMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGJyZWFrOwo+IMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgZGVmYXVsdDoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gLUVOT0RFVjsKCi0tIApTaW5jZXJlbHksCiAgIEx5
-dWRlIFBhdWwgKHNoZS9oZXIpCiAgIFNvZnR3YXJlIEVuZ2luZWVyIGF0IFJlZCBIYXQKICAgCk5v
-dGU6IEkgZGVhbCB3aXRoIGEgbG90IG9mIGVtYWlscyBhbmQgaGF2ZSBhIGxvdCBvZiBidWdzIG9u
-IG15IHBsYXRlLiBJZiB5b3UndmUKYXNrZWQgbWUgYSBxdWVzdGlvbiwgYXJlIHdhaXRpbmcgZm9y
-IGEgcmV2aWV3L21lcmdlIG9uIGEgcGF0Y2gsIGV0Yy4gYW5kIEkKaGF2ZW4ndCByZXNwb25kZWQg
-aW4gYSB3aGlsZSwgcGxlYXNlIGZlZWwgZnJlZSB0byBzZW5kIG1lIGFub3RoZXIgZW1haWwgdG8g
-Y2hlY2sKb24gbXkgc3RhdHVzLiBJIGRvbid0IGJpdGUhCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Wed, Mar 17, 2021 at 09:01:49PM +0200, Imre Deak wrote:
+> By the specification the 0xF0000-0xF02FF range is only valid when the
+> DPCD revision is 1.4 or higher. Disable LTTPR support if this isn't so.
+> =
+
+> Trying to detect LTTPRs returned corrupted values for the above DPCD
+> range at least on a Skylake host with an LG 43UD79-B monitor with a DPCD
+> revision 1.2 connected.
+> =
+
+> v2: Add the actual version check.
+> =
+
+> Fixes: 7b2a4ab8b0ef ("drm/i915: Switch to LTTPR transparent mode link tra=
+ining")
+> Cc: <stable@vger.kernel.org> # v5.11
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  4 +-
+>  .../drm/i915/display/intel_dp_link_training.c | 48 ++++++++++++++-----
+>  .../drm/i915/display/intel_dp_link_training.h |  2 +-
+>  3 files changed, 39 insertions(+), 15 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index b6b5776f5a66..873684da0cd4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3711,9 +3711,7 @@ intel_dp_get_dpcd(struct intel_dp *intel_dp)
+>  {
+>  	int ret;
+>  =
+
+> -	intel_dp_lttpr_init(intel_dp);
+> -
+> -	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd))
+> +	if (intel_dp_init_lttpr_and_dprx_caps(intel_dp) < 0)
+>  		return false;
+>  =
+
+>  	/*
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index c0e25c75c105..5a821d644e9c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -35,6 +35,11 @@ intel_dp_dump_link_status(struct drm_device *drm,
+>  		    link_status[3], link_status[4], link_status[5]);
+>  }
+>  =
+
+> +static void intel_dp_reset_lttpr_common_caps(struct intel_dp *intel_dp)
+> +{
+> +	memset(&intel_dp->lttpr_common_caps, 0, sizeof(intel_dp->lttpr_common_c=
+aps));
+> +}
+> +
+>  static void intel_dp_reset_lttpr_count(struct intel_dp *intel_dp)
+>  {
+>  	intel_dp->lttpr_common_caps[DP_PHY_REPEATER_CNT -
+> @@ -96,8 +101,7 @@ static bool intel_dp_read_lttpr_common_caps(struct int=
+el_dp *intel_dp)
+>  =
+
+>  	if (drm_dp_read_lttpr_common_caps(&intel_dp->aux,
+>  					  intel_dp->lttpr_common_caps) < 0) {
+> -		memset(intel_dp->lttpr_common_caps, 0,
+> -		       sizeof(intel_dp->lttpr_common_caps));
+> +		intel_dp_reset_lttpr_common_caps(intel_dp);
+>  		return false;
+>  	}
+>  =
+
+> @@ -119,30 +123,49 @@ intel_dp_set_lttpr_transparent_mode(struct intel_dp=
+ *intel_dp, bool enable)
+>  }
+>  =
+
+>  /**
+> - * intel_dp_lttpr_init - detect LTTPRs and init the LTTPR link training =
+mode
+> + * intel_dp_init_lttpr_and_dprx_caps - detect LTTPR and DPRX caps, init =
+the LTTPR link training mode
+>   * @intel_dp: Intel DP struct
+>   *
+> - * Read the LTTPR common capabilities, switch to non-transparent link tr=
+aining
+> - * mode if any is detected and read the PHY capabilities for all detected
+> - * LTTPRs. In case of an LTTPR detection error or if the number of
+> + * Read the LTTPR common and DPRX capabilities and switch to non-transpa=
+rent
+> + * link training mode if any is detected and read the PHY capabilities f=
+or all
+> + * detected LTTPRs. In case of an LTTPR detection error or if the number=
+ of
+>   * LTTPRs is more than is supported (8), fall back to the no-LTTPR,
+>   * transparent mode link training mode.
+>   *
+>   * Returns:
+> - *   >0  if LTTPRs were detected and the non-transparent LT mode was set
+> + *   >0  if LTTPRs were detected and the non-transparent LT mode was set=
+. The
+> + *       DPRX capabilities are read out.
+>   *    0  if no LTTPRs or more than 8 LTTPRs were detected or in case of a
+> - *       detection failure and the transparent LT mode was set
+> + *       detection failure and the transparent LT mode was set. The DPRX
+> + *       capabilities are read out.
+> + *   <0  Reading out the DPRX capabilities failed.
+>   */
+> -int intel_dp_lttpr_init(struct intel_dp *intel_dp)
+> +int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
+>  {
+>  	int lttpr_count;
+>  	bool ret;
+>  	int i;
+>  =
+
+>  	ret =3D intel_dp_read_lttpr_common_caps(intel_dp);
+> +
+> +	/* The DPTX shall read the DRPX caps after LTTPR detection. */
+> +	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd)) {
+> +		intel_dp_reset_lttpr_common_caps(intel_dp);
+> +		return -EIO;
+> +	}
+> +
+>  	if (!ret)
+>  		return 0;
+>  =
+
+> +	/*
+> +	 * The 0xF0000-0xF02FF range is only valid if the DPCD revision is
+> +	 * at least 1.4.
+> +	 */
+> +	if (intel_dp->dpcd[DP_DPCD_REV] < 0x14) {
+> +		intel_dp_reset_lttpr_common_caps(intel_dp);
+> +		return 0;
+> +	}
+
+Slight chicken vs. egg I guess. Seems ok
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> +
+>  	lttpr_count =3D drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
+>  	/*
+>  	 * Prevent setting LTTPR transparent mode explicitly if no LTTPRs are
+> @@ -182,7 +205,7 @@ int intel_dp_lttpr_init(struct intel_dp *intel_dp)
+>  =
+
+>  	return lttpr_count;
+>  }
+> -EXPORT_SYMBOL(intel_dp_lttpr_init);
+> +EXPORT_SYMBOL(intel_dp_init_lttpr_and_dprx_caps);
+>  =
+
+>  static u8 dp_voltage_max(u8 preemph)
+>  {
+> @@ -817,7 +840,10 @@ void intel_dp_start_link_train(struct intel_dp *inte=
+l_dp,
+>  	 * TODO: Reiniting LTTPRs here won't be needed once proper connector
+>  	 * HW state readout is added.
+>  	 */
+> -	int lttpr_count =3D intel_dp_lttpr_init(intel_dp);
+> +	int lttpr_count =3D intel_dp_init_lttpr_and_dprx_caps(intel_dp);
+> +
+> +	if (lttpr_count < 0)
+> +		return;
+>  =
+
+>  	if (!intel_dp_link_train_all_phys(intel_dp, crtc_state, lttpr_count))
+>  		intel_dp_schedule_fallback_link_training(intel_dp, crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.h
+> index 6a1f76bd8c75..9cb7c28027f0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> @@ -11,7 +11,7 @@
+>  struct intel_crtc_state;
+>  struct intel_dp;
+>  =
+
+> -int intel_dp_lttpr_init(struct intel_dp *intel_dp);
+> +int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp);
+>  =
+
+>  void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
+>  			       const struct intel_crtc_state *crtc_state,
+> -- =
+
+> 2.25.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
