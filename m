@@ -2,40 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B31340C87
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 19:10:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE3A5340CA5
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 19:15:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A28EF6E94A;
-	Thu, 18 Mar 2021 18:10:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F8C36E950;
+	Thu, 18 Mar 2021 18:15:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C93F16E94A
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 18:10:46 +0000 (UTC)
-IronPort-SDR: Leu6/HU6njbG5SN1EBGiMHYY0kvaOZou4DAyaoqHxe8Vw5Tom4kWuiaJlb8UBKEGLAkyzm/wPL
- S48dM2RdEXcA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9927"; a="209748627"
-X-IronPort-AV: E=Sophos;i="5.81,259,1610438400"; d="scan'208";a="209748627"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2021 11:10:46 -0700
-IronPort-SDR: S6nmHpMNAL627B8feFzhJVW6Je9fHsHl8pkNLuSoP1BaUd4pY9Os5iKkqHIa6cm+7Mw/w17myc
- krf7Ni6lpuOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,259,1610438400"; d="scan'208";a="411995127"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga007.jf.intel.com with SMTP; 18 Mar 2021 11:10:43 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 18 Mar 2021 20:10:42 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 18 Mar 2021 20:10:39 +0200
-Message-Id: <20210318181039.17260-2-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210318181039.17260-1-ville.syrjala@linux.intel.com>
-References: <20210318181039.17260-1-ville.syrjala@linux.intel.com>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD556E950;
+ Thu, 18 Mar 2021 18:15:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
+ Reply-To:Cc:Content-ID:Content-Description;
+ bh=8Fkbd93Aq1q97jNctPteNuHQ9DD1eBmwgRUQ35hJ0rA=; b=V0w6Kb4Fi43X4zYOIkAMdjTWsk
+ S9/vwlXjY6r4HCHXAEod+UTbZPkMX5fKjVvWVYOUjuNn03/jt6cXDp6ak6qm4VNCeaG/GiMiZPC3M
+ 3IOkP8pCB7HSMBqq/6N9uBCJhEswE3SBi23EvX0mQl+/elBrvJkoAkpg4Yfk/mClpAXKprmfhZg/R
+ Z5QLOm4hyncuW1Seq0UZ2Tn2FwvaqduQXZNOcxYHn/WxVHgH7irSLMfQrLXEwtfvg69rjsJdlZDMM
+ 1vapm1DHm6hQlhM4BWMwkuzdYWV3CeM/qvUkfbFjhJt3zbSLhlYMM3+t/Q+HMLPDbLYHT14t5JyLQ
+ HQhG7hRg==;
+Received: from [2601:1c0:6280:3f0::9757]
+ by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+ id 1lMxAm-003Kqs-Se; Thu, 18 Mar 2021 18:15:07 +0000
+To: Bhaskar Chowdhury <unixbhaskar@gmail.com>, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
+ daniel@ffwll.ch, sumit.semwal@linaro.org, christian.koenig@amd.com,
+ chris@chris-wilson.co.uk, tvrtko.ursulin@intel.com,
+ mika.kuoppala@linux.intel.com, maarten.lankhorst@linux.intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org
+References: <20210318101932.19894-1-unixbhaskar@gmail.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <027de4bd-cefc-0988-bd3b-b0bcc12d93b0@infradead.org>
+Date: Thu, 18 Mar 2021 11:15:00 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Remove stray newlines
+In-Reply-To: <20210318101932.19894-1-unixbhaskar@gmail.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: A typo fix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,52 +56,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkEg
-YnVuY2ggb2YgZmlsZXMgaGF2ZSBhIHN0cmF5IG5ld2xpbmUgYXQgdGhlIGVuZC4gUmVtb3ZlIGl0
-LgoKU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2k5eHhfcGxhbmUuYyAg
-ICAgICAgICB8IDEgLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2Fs
-X3BsYW5lLmMgfCAxIC0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19sb2df
-ZGVidWdmcy5jIHwgMSAtCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BhcmFtcy5oICAgICAg
-ICAgICAgICAgICB8IDEgLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWFfdHlwZXMuaCAg
-ICAgICAgICAgICAgfCAxIC0KIDUgZmlsZXMgY2hhbmdlZCwgNSBkZWxldGlvbnMoLSkKCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2k5eHhfcGxhbmUuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaTl4eF9wbGFuZS5jCmluZGV4IDhhNTJiZWFlZDJkYS4u
-NzM5MWNkMTk1ZDQxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2k5
-eHhfcGxhbmUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2k5eHhfcGxhbmUu
-YwpAQCAtMTAzOCw0ICsxMDM4LDMgQEAgaTl4eF9nZXRfaW5pdGlhbF9wbGFuZV9jb25maWcoc3Ry
-dWN0IGludGVsX2NydGMgKmNydGMsCiAKIAlwbGFuZV9jb25maWctPmZiID0gaW50ZWxfZmI7CiB9
-Ci0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNh
-bF9wbGFuZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3Bs
-YW5lLmMKaW5kZXggMWYzMzVjYjA5MTQ5Li5hMDZjNDc0MjIzYzEgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jCkBAIC0yMjYzLDQg
-KzIyNjMsMyBAQCBza2xfZ2V0X2luaXRpYWxfcGxhbmVfY29uZmlnKHN0cnVjdCBpbnRlbF9jcnRj
-ICpjcnRjLAogZXJyb3I6CiAJa2ZyZWUoaW50ZWxfZmIpOwogfQotCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfbG9nX2RlYnVnZnMuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19sb2dfZGVidWdmcy5jCmluZGV4IDEyOWUwY2Y3
-ZGZlMi4uNjRlMGI4NmJmMjU4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91
-Yy9pbnRlbF9ndWNfbG9nX2RlYnVnZnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91
-Yy9pbnRlbF9ndWNfbG9nX2RlYnVnZnMuYwpAQCAtMTIxLDQgKzEyMSwzIEBAIHZvaWQgaW50ZWxf
-Z3VjX2xvZ19kZWJ1Z2ZzX3JlZ2lzdGVyKHN0cnVjdCBpbnRlbF9ndWNfbG9nICpsb2csCiAKIAlp
-bnRlbF9ndF9kZWJ1Z2ZzX3JlZ2lzdGVyX2ZpbGVzKHJvb3QsIGZpbGVzLCBBUlJBWV9TSVpFKGZp
-bGVzKSwgbG9nKTsKIH0KLQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9w
-YXJhbXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGFyYW1zLmgKaW5kZXggNDhmNDdl
-NDRlODQ4Li4xOGJiYzkyYjY0MmQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfcGFyYW1zLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wYXJhbXMuaApAQCAt
-OTYsNCArOTYsMyBAQCB2b2lkIGk5MTVfcGFyYW1zX2NvcHkoc3RydWN0IGk5MTVfcGFyYW1zICpk
-ZXN0LCBjb25zdCBzdHJ1Y3QgaTkxNV9wYXJhbXMgKnNyYyk7CiB2b2lkIGk5MTVfcGFyYW1zX2Zy
-ZWUoc3RydWN0IGk5MTVfcGFyYW1zICpwYXJhbXMpOwogCiAjZW5kaWYKLQpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWFfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfdm1hX3R5cGVzLmgKaW5kZXggZjVjYjg0OGI3YTdlLi5jNzYxNGZiYWJiOWMgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfdm1hX3R5cGVzLmgKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWFfdHlwZXMuaApAQCAtMjgyLDQgKzI4MiwzIEBAIHN0
-cnVjdCBpOTE1X3ZtYSB7CiB9OwogCiAjZW5kaWYKLQotLSAKMi4yNi4yCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On 3/18/21 3:19 AM, Bhaskar Chowdhury wrote:
+> 
+> s/bariers/barriers/
+> 
+> Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
+
+Acked-by: Randy Dunlap <rdunlap@infradead.org>
+
+> ---
+>  drivers/gpu/drm/i915/gt/intel_timeline.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> index 037b0e3ccbed..25fc7f44fee0 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> @@ -435,7 +435,7 @@ void intel_timeline_exit(struct intel_timeline *tl)
+>  	spin_unlock(&timelines->lock);
+> 
+>  	/*
+> -	 * Since this timeline is idle, all bariers upon which we were waiting
+> +	 * Since this timeline is idle, all barriers upon which we were waiting
+>  	 * must also be complete and so we can discard the last used barriers
+>  	 * without loss of information.
+>  	 */
+> --
+> 2.26.2
+> 
+
+
+-- 
+~Randy
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
