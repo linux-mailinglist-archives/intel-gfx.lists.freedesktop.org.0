@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A92E4340C5E
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 19:00:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFFAE340C61
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 19:01:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1C2C6E93D;
-	Thu, 18 Mar 2021 18:00:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BBA16E942;
+	Thu, 18 Mar 2021 18:01:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A368F6E93D
- for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 18:00:13 +0000 (UTC)
-IronPort-SDR: J2RoYqmXYIAyCYg8yacCnExv/HM6Vjpa7oD3D9W5tIM/OXbXQVGJII4wD1SDz2TPD2CFQANGxa
- 1ReWwskdNlkA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9927"; a="177332408"
-X-IronPort-AV: E=Sophos;i="5.81,259,1610438400"; d="scan'208";a="177332408"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2021 11:00:13 -0700
-IronPort-SDR: ro7YVxnXiCp+zBgYJ81Sxdp29Ts51zPhsrULw/SY+//gT7PHrNUvNgW2VLfCGtY0q6rgj9khfe
- rH88PaEbggdA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,259,1610438400"; d="scan'208";a="450570890"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 18 Mar 2021 11:00:10 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 18 Mar 2021 20:00:10 +0200
-Date: Thu, 18 Mar 2021 20:00:10 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <YFOVKoReLkmB7ZuQ@intel.com>
-References: <20210317184901.4029798-1-imre.deak@intel.com>
- <20210317184901.4029798-4-imre.deak@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 79F826E942;
+ Thu, 18 Mar 2021 18:01:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72C0DA7DFC;
+ Thu, 18 Mar 2021 18:01:50 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210317184901.4029798-4-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915: Disable LTTPR support when
- the LTTPR rev < 1.4
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Thu, 18 Mar 2021 18:01:50 -0000
+Message-ID: <161609051046.12740.13346196517902594823@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210318161015.22070-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210318161015.22070-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Shuffle_DP_code_around_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,89 +38,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 17, 2021 at 08:49:01PM +0200, Imre Deak wrote:
-> By the specification the 0xF0000 - 0xF02FF range is only valid if the
-> LTTPR revision at 0xF0000 is at least 1.4. Disable the LTTPR support
-> otherwise.
-> =
+== Series Details ==
 
-> Fixes: 7b2a4ab8b0ef ("drm/i915: Switch to LTTPR transparent mode link tra=
-ining")
-> Cc: <stable@vger.kernel.org> # v5.11
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_dp_link_training.c  | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
-> =
+Series: drm/i915: Shuffle DP code around (rev2)
+URL   : https://patchwork.freedesktop.org/series/85878/
+State : warning
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_link_training.c
-> index d8d90903226f..d92eb192c89d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -100,17 +100,23 @@ static bool intel_dp_read_lttpr_common_caps(struct =
-intel_dp *intel_dp)
->  		return false;
->  =
+== Summary ==
 
->  	if (drm_dp_read_lttpr_common_caps(&intel_dp->aux,
-> -					  intel_dp->lttpr_common_caps) < 0) {
-> -		intel_dp_reset_lttpr_common_caps(intel_dp);
-> -		return false;
-> -	}
-> +					  intel_dp->lttpr_common_caps) < 0)
-> +		goto reset_caps;
+$ dim checkpatch origin/drm-tip
+d6b23f62e26b drm/i915: Remove dead TPS3->TPS2 fallback code
+0990a9e29ec5 drm/i915: Remove dead signal level debugs
+8e555cecf0d9 drm/i915: Relocate intel_dp_program_link_training_pattern()
+9b0d464b0d6a drm/i915: Split intel_ddi_encoder_reset() from intel_dp_encoder_reset()
+0e432233fba9 drm/i915: Introduce g4x_dp.c
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
 
-BTW just noticed this oddball thing in the spec:
-"DPTX shall read specific registers within the LTTPR field (DPCD
- Addresses F0000h through F0004h; see Table 2-198) to determine
- whether any LTTPR(s) are present and if so, how many. This read
- shall be in the form of a 5-byte native AUX Read transaction."
+-:231: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#231: FILE: drivers/gpu/drm/i915/display/g4x_dp.c:194:
++}
++#define assert_dp_port_disabled(d) assert_dp_port((d), false)
 
-Why exactly 5 bytes? I have no idea. Doesn't really make sense.
-Just wondering if we really need to respect that and some LTTPRs
-would fsck things up if we read more...
+-:241: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#241: FILE: drivers/gpu/drm/i915/display/g4x_dp.c:204:
++}
++#define assert_edp_pll_enabled(d) assert_edp_pll((d), true)
 
-Anyways
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+-:266: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#266: FILE: drivers/gpu/drm/i915/display/g4x_dp.c:229:
++	udelay(500);
 
->  =
+-:281: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#281: FILE: drivers/gpu/drm/i915/display/g4x_dp.c:244:
++	udelay(200);
 
->  	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
->  		    "LTTPR common capabilities: %*ph\n",
->  		    (int)sizeof(intel_dp->lttpr_common_caps),
->  		    intel_dp->lttpr_common_caps);
->  =
+-:300: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#300: FILE: drivers/gpu/drm/i915/display/g4x_dp.c:263:
++	udelay(200);
 
-> +	/* The minimum value of LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_RE=
-V is 1.4 */
-> +	if (intel_dp->lttpr_common_caps[0] < 0x14)
-> +		goto reset_caps;
-> +
->  	return true;
-> +
-> +reset_caps:
-> +	intel_dp_reset_lttpr_common_caps(intel_dp);
-> +	return false;
->  }
->  =
+-:2896: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#2896: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2318:
++								   DP_DS_HDMI_BT2020_RGB_YCBCR_CONV);
 
->  static bool
-> -- =
+-:2928: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#2928: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2340:
++		drm_dbg_kms(&i915->drm,
++			   "Failed to set protocol converter RGB->YCbCr conversion mode to %s\n",
 
-> 2.25.1
+-:2932: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#2932: FILE: drivers/gpu/drm/i915/display/intel_dp.c:2344:
+ 
++
 
--- =
+total: 0 errors, 2 warnings, 7 checks, 3238 lines checked
+b38592cfbe51 drm/i915: Introduce g4x_hdmi.c
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
 
-Ville Syrj=E4l=E4
-Intel
+-:299: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#299: FILE: drivers/gpu/drm/i915/display/g4x_hdmi.c:262:
++			       intel_de_read(dev_priv, TRANS_CHICKEN1(pipe)) | TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE);
+
+-:316: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#316: FILE: drivers/gpu/drm/i915/display/g4x_hdmi.c:279:
++			       intel_de_read(dev_priv, TRANS_CHICKEN1(pipe)) & ~TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE);
+
+total: 0 errors, 3 warnings, 0 checks, 1341 lines checked
+d486c1851a6e drm/i915: Give g4x_{dp, hdmi}.c g4x_ namespace
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
