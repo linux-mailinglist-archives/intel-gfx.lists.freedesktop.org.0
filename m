@@ -2,31 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866DB340ED9
-	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 21:09:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 397BC340EF9
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Mar 2021 21:22:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 102FA6E964;
-	Thu, 18 Mar 2021 20:09:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA5926E96E;
+	Thu, 18 Mar 2021 20:22:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C1BAA6E964;
- Thu, 18 Mar 2021 20:09:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BE327A0019;
- Thu, 18 Mar 2021 20:09:43 +0000 (UTC)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 688076E96E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 20:22:28 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id o19so8279542edc.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 18 Mar 2021 13:22:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=EhVimMALqdLCb9q+6HXj4osKqTlnaXqo/dphUQ9VXRc=;
+ b=jUn0hY3XtjuzOOoBgNI7qU4Cc3d1nozDP4KoLBqU4iaj5F6lTaguMjkjZj7yiTYFni
+ hGM0hTzFFt4G0teJ+5xj3gPDUoKj/mV04AyIo6ymzbwBCVtZuhgiszRI51CWLfaFrcaX
+ iVI24tfdAz2tkB9iUKgXmgT9bsb1uAZu7KWW4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=EhVimMALqdLCb9q+6HXj4osKqTlnaXqo/dphUQ9VXRc=;
+ b=dpehXPzKhI/IMuCsWW5aXNf0SIGARUJpHL0q6tByzA2uZG5V6RH6r4SrkCngGZDkJF
+ J6ar2sn9BDgRAll2GzlFswdMLYBaPQeUgIKqh/z6K0ImxZskTR1M28CM0IHSxfRE8EnN
+ ZHDcjhA0JItkBRJ8g7HwktzMHew3uoMlh8wDeUgGnyt+lLq613ppwR6X83REHR+TNqWE
+ Xyl1LUzLr9yGetdcBycwO1BuQPgeLqDwnDrZXBu+Yxrhlmay9B2RCzJEL0foDDH5d9wJ
+ DOw55nM3CZO0fm/+coSlvxSRHyI5Mhog2bUFy41uTrmj6hGyPxX6UPWUDkqH5sxA0UhO
+ nZ0g==
+X-Gm-Message-State: AOAM532m0Fz0QudnArUqDEU76rydqoKARrMt8XZukTGTUaj5fS+sOtkS
+ Ia8da1ceBxBujhEWYPJS6RRvYQ==
+X-Google-Smtp-Source: ABdhPJwO0rOSLqvM/mAox+S6mUlIKqV36/IOiOwlR/BvVoFJMym0GKGh1hs60quhs1LlVbxTbjydeg==
+X-Received: by 2002:aa7:dc0b:: with SMTP id b11mr5946277edu.124.1616098947106; 
+ Thu, 18 Mar 2021 13:22:27 -0700 (PDT)
+Received: from alco.lan ([80.71.134.83])
+ by smtp.gmail.com with ESMTPSA id e16sm2481120ejc.63.2021.03.18.13.22.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 18 Mar 2021 13:22:26 -0700 (PDT)
+From: Ricardo Ribalda <ribalda@chromium.org>
+To: trivial@kernel.org
+Date: Thu, 18 Mar 2021 21:22:18 +0100
+Message-Id: <20210318202223.164873-4-ribalda@chromium.org>
+X-Mailer: git-send-email 2.31.0.rc2.261.g7f71774620-goog
+In-Reply-To: <20210318202223.164873-1-ribalda@chromium.org>
+References: <20210318202223.164873-1-ribalda@chromium.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 18 Mar 2021 20:09:43 -0000
-Message-ID: <161609818377.12738.9441142796604021229@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210318181039.17260-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210318181039.17260-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Fix_pre-skl_DP_AUX_prec?=
- =?utf-8?q?harge_length?=
+Subject: [Intel-gfx] [PATCH 4/9] drm/i915/error: Fix typo "accesible"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,191 +63,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1152231415=="
+Cc: intel-gfx@lists.freedesktop.org, Ricardo Ribalda <ribalda@chromium.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1152231415==
-Content-Type: multipart/alternative;
- boundary="===============1162659718156485823=="
+Trivial fix.
 
---===============1162659718156485823==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+---
+ drivers/gpu/drm/i915/i915_gpu_error.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Series Details ==
-
-Series: series starting with [1/2] drm/i915: Fix pre-skl DP AUX precharge length
-URL   : https://patchwork.freedesktop.org/series/88132/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9870 -> Patchwork_19807
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19807 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19807, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19807/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19807:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-kbl-soraka:      [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19807/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19807 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bwr-2160:        [PASS][3] -> [FAIL][4] ([i915#3194])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19807/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [i915#3194]: https://gitlab.freedesktop.org/drm/intel/issues/3194
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9870 -> Patchwork_19807
-
-  CI-20190529: 20190529
-  CI_DRM_9870: a9a5ed8d2432e5335e6c26118cefb2cfff28ae37 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6036: 5b535494abcdf5ce2b9be99b7bb5df8ab4733083 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19807: 89c9ce9bcfbf7286c2ec25ffaa26041909ec84d6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-89c9ce9bcfbf drm/i915: Remove stray newlines
-6b3f9e7ed7f6 drm/i915: Fix pre-skl DP AUX precharge length
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19807/index.html
-
---===============1162659718156485823==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Fix pre-skl DP AUX precharge length</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88132/">https://patchwork.freedesktop.org/series/88132/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19807/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19807/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9870 -&gt; Patchwork_19807</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19807 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19807, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19807/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19807:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19807/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19807 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19807/fi-bwr-2160/igt@core_hotunplug@unbind-rebind.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3194">i915#3194</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9870 -&gt; Patchwork_19807</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9870: a9a5ed8d2432e5335e6c26118cefb2cfff28ae37 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6036: 5b535494abcdf5ce2b9be99b7bb5df8ab4733083 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19807: 89c9ce9bcfbf7286c2ec25ffaa26041909ec84d6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>89c9ce9bcfbf drm/i915: Remove stray newlines<br />
-6b3f9e7ed7f6 drm/i915: Fix pre-skl DP AUX precharge length</p>
-
-</body>
-</html>
-
---===============1162659718156485823==--
-
---===============1152231415==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index f962693404b7..ea7d0398fb05 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -1503,7 +1503,7 @@ gt_record_uc(struct intel_gt_coredump *gt,
+ 	memcpy(&error_uc->huc_fw, &uc->huc.fw, sizeof(uc->huc.fw));
+ 
+ 	/* Non-default firmware paths will be specified by the modparam.
+-	 * As modparams are generally accesible from the userspace make
++	 * As modparams are generally accessible from the userspace make
+ 	 * explicit copies of the firmware paths.
+ 	 */
+ 	error_uc->guc_fw.path = kstrdup(uc->guc.fw.path, ALLOW_FAIL);
+-- 
+2.31.0.rc2.261.g7f71774620-goog
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1152231415==--
