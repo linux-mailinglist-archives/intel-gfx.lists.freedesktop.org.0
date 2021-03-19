@@ -1,31 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E77B43425CA
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 20:08:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9F4342625
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 20:26:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAA846EA94;
-	Fri, 19 Mar 2021 19:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0259E6EA99;
+	Fri, 19 Mar 2021 19:26:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4699A6EA93;
- Fri, 19 Mar 2021 19:08:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 702D6A73C7;
- Fri, 19 Mar 2021 19:08:40 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D9DD6EA99
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 19:26:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1616181998;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=iaEleN4vhj/UbF6WKsnMkPmeWsyI2Knns1LkBS7Hd7E=;
+ b=CLM0Nqoes0wcE47W7rEbCMz3PXGAhkP/Nn9qDiJuXNhQ2mlwpJE5OASn0I/ew038LDm5Zd
+ cWGpL82m3T3Vr1oas1tt2KiZFRKdTq5ga7MBCcZgx8nQyUreAHnqJu7pW5HvFDx0Bk67iO
+ EgeDkojMQOBh86TH3R24PvqMSZdbQTM=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-248-H9XcRUofNdGA8ve4FGp19A-1; Fri, 19 Mar 2021 15:26:36 -0400
+X-MC-Unique: H9XcRUofNdGA8ve4FGp19A-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
+ [10.5.11.11])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8BC048189CE;
+ Fri, 19 Mar 2021 19:26:35 +0000 (UTC)
+Received: from omen.home.shazbot.org (ovpn-112-120.phx2.redhat.com
+ [10.3.112.120])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2D46019CB1;
+ Fri, 19 Mar 2021 19:26:35 +0000 (UTC)
+Date: Fri, 19 Mar 2021 13:26:34 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Fred Gao <fred.gao@intel.com>
+Message-ID: <20210319132634.5af398b9@omen.home.shazbot.org>
+In-Reply-To: <20210302130220.9349-1-fred.gao@intel.com>
+References: <20210208170253.29968-1-fred.gao@intel.com>
+ <20210302130220.9349-1-fred.gao@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Fri, 19 Mar 2021 19:08:40 -0000
-Message-ID: <161618092043.8631.320174419404607353@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210319175720.5901-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210319175720.5901-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Enable_TPS3/4_on_all_platforms_that_support_them?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+Subject: Re: [Intel-gfx] [PATCH v4] vfio/pci: Add support for opregion v2.1+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,155 +59,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1546859995=="
+Cc: Swee Yee Fonn <swee.yee.fonn@intel.com>, intel-gfx@lists.freedesktop.org,
+ kvm@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1546859995==
-Content-Type: multipart/alternative;
- boundary="===============3220717749209293853=="
+On Tue,  2 Mar 2021 21:02:20 +0800
+Fred Gao <fred.gao@intel.com> wrote:
 
---===============3220717749209293853==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Before opregion version 2.0 VBT data is stored in opregion mailbox #4,
+> However, When VBT data exceeds 6KB size and cannot be within mailbox #4
+> starting from opregion v2.0+, Extended VBT region, next to opregion, is
+> used to hold the VBT data, so the total size will be opregion size plus
+> extended VBT region size.
+> 
+> since opregion v2.0 with physical host VBT address should not be
+> practically available for end user, it is not supported.
+> 
+> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> Signed-off-by: Swee Yee Fonn <swee.yee.fonn@intel.com>
+> Signed-off-by: Fred Gao <fred.gao@intel.com>
+> ---
+>  drivers/vfio/pci/vfio_pci_igd.c | 49 +++++++++++++++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+> 
+> diff --git a/drivers/vfio/pci/vfio_pci_igd.c b/drivers/vfio/pci/vfio_pci_igd.c
+> index 53d97f459252..4edb8afcdbfc 100644
+> --- a/drivers/vfio/pci/vfio_pci_igd.c
+> +++ b/drivers/vfio/pci/vfio_pci_igd.c
+> @@ -21,6 +21,10 @@
+>  #define OPREGION_SIZE		(8 * 1024)
+>  #define OPREGION_PCI_ADDR	0xfc
+>  
+> +#define OPREGION_RVDA		0x3ba
+> +#define OPREGION_RVDS		0x3c2
+> +#define OPREGION_VERSION	0x16
+> +
+>  static size_t vfio_pci_igd_rw(struct vfio_pci_device *vdev, char __user *buf,
+>  			      size_t count, loff_t *ppos, bool iswrite)
+>  {
+> @@ -58,6 +62,7 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
+>  	u32 addr, size;
+>  	void *base;
+>  	int ret;
+> +	u16 version;
+>  
+>  	ret = pci_read_config_dword(vdev->pdev, OPREGION_PCI_ADDR, &addr);
+>  	if (ret)
+> @@ -83,6 +88,50 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
+>  
+>  	size *= 1024; /* In KB */
+>  
+> +	/*
+> +	 * Support opregion v2.1+
+> +	 * When VBT data exceeds 6KB size and cannot be within mailbox #4
 
-== Series Details ==
+s/#4/#4, then the/
 
-Series: drm/i915: Enable TPS3/4 on all platforms that support them
-URL   : https://patchwork.freedesktop.org/series/88186/
-State : success
+> +	 * Extended VBT region, next to opregion, is used to hold the VBT data.
+> +	 * RVDA (Relative Address of VBT Data from Opregion Base) and RVDS
+> +	 * (VBT Data Size) from opregion structure member are used to hold the
+> +	 * address from region base and size of VBT data while RVDA/RVDS
+> +	 * are not defined before opregion 2.0.
+> +	 *
+> +	 * opregion 2.0: rvda is the physical VBT address.
 
-== Summary ==
+Let's expand the comment to include why this is a problem to support
+(virtualization of this register would be required in userspace) and why
+we're choosing not to manipulate this into a 2.1+ table, which I think
+is both the practical lack of v2.0 tables in use and any implicit
+dependencies software may have on the OpRegion version.
 
-CI Bug Log - changes from CI_DRM_9877 -> Patchwork_19815
-====================================================
+> +	 *
+> +	 * opregion 2.1+: rvda is unsigned, relative offset from
+> +	 * opregion base, and should never point within opregion.
 
-Summary
--------
+And for our purposes must exactly follow the base opregion to avoid
+exposing unknown host memory to userspace, ie. provide a more
+descriptive justification for the 2nd error condition below.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19815/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19815 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-kbl-8809g:       [TIMEOUT][1] ([i915#3145]) -> [PASS][2] +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9877/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19815/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-
-  
-  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9877 -> Patchwork_19815
-
-  CI-20190529: 20190529
-  CI_DRM_9877: c7c8b4a1b289d78a5ebf4381737e7babfdfb0f79 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6039: 8c4a2cda2a92bdd87797969ef299ad7f6e8e993b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19815: 93c5ceb64847fc1a269f895e7c920696d882f739 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-93c5ceb64847 drm/i915: Enable TPS3/4 on all platforms that support them
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19815/index.html
-
---===============3220717749209293853==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Enable TPS3/4 on all platforms that support them</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88186/">https://patchwork.freedesktop.org/series/88186/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19815/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19815/index.html</a></td></tr>
-
-</table>
+> +	 */
+> +	version = le16_to_cpu(*(__le16 *)(base + OPREGION_VERSION));
+> +	if (version >= 0x0200) {
+> +		u64 rvda;
+> +		u32 rvds;
+> +
+> +		rvda = le64_to_cpu(*(__le64 *)(base + OPREGION_RVDA));
+> +		rvds = le32_to_cpu(*(__le32 *)(base + OPREGION_RVDS));
+> +		if (rvda && rvds) {
+> +			/* no support for opregion v2.0 with physical VBT address */
+> +			if (version == 0x0200) {
+> +				memunmap(base);
+> +				pci_err(vdev->pdev,
+> +					"IGD passthrough does not support opregion\n"
+> +					"version 0x%x with physical rvda 0x%llx\n", version, rvda);
 
 
-    <h1>CI Bug Log - changes from CI_DRM_9877 -&gt; Patchwork_19815</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19815/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19815 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_gttfill@basic:<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9877/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19815/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9877 -&gt; Patchwork_19815</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9877: c7c8b4a1b289d78a5ebf4381737e7babfdfb0f79 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6039: 8c4a2cda2a92bdd87797969ef299ad7f6e8e993b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19815: 93c5ceb64847fc1a269f895e7c920696d882f739 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>93c5ceb64847 drm/i915: Enable TPS3/4 on all platforms that support them</p>
+Why do we need a new line midway through this log message?
 
-</body>
-</html>
+s/passthrough/assignment/
 
---===============3220717749209293853==--
+In testing the version you include the leading zero, do you also want
+that leading zero in the printed version, ie. %04x?
 
---===============1546859995==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+If we get to this code, we already know that both rvda and rvds are
+non-zero, why is it useful to print the rvda value in this error
+message?  For example, we could print:
+
+ "IGD assignment does not support opregion version 0x%04x with an extended VBT region"
+
+> +				return -EINVAL;
+> +			}
+> +
+> +			if ((u32)rvda != size) {
+
+What allows us to assume rvda is a 32bit value given that it's a 64bit
+register?  It seems safer not to include this cast.
+
+> +				memunmap(base);
+> +				pci_err(vdev->pdev,
+> +					"Extended VBT does not follow opregion !\n"
+> +					"opregion version 0x%x:rvda 0x%llx\n", version, rvda);
+
+Again I'm not sure about the usefulness of printing the rvda value on
+its own.  Without knowing the size value it seems meaningless.  Like
+above, get rid of the mid-error new line and random space if you keep
+the exclamation point.
+
+> +				return -EINVAL;
+> +			}
+> +
+> +			/* region size for opregion v2.0+: opregion and VBT size */
+> +			size += rvds;
+
+RVDS is defined as size in bytes, not in kilobytes like the base
+opregion size, right?  Let's include that clarification in the comment
+since the spec is private.  Thanks,
+
+Alex
+
+
+> +		}
+> +	}
+> +
+>  	if (size != OPREGION_SIZE) {
+>  		memunmap(base);
+>  		base = memremap(addr, size, MEMREMAP_WB);
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1546859995==--
