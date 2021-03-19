@@ -1,58 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FA91343C56
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 10:10:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5BAC343C58
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 10:10:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C626089DED;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE24989DEA;
 	Mon, 22 Mar 2021 09:10:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com
- [IPv6:2607:f8b0:4864:20::102c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34B776EA29
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 14:35:53 +0000 (UTC)
-Received: by mail-pj1-x102c.google.com with SMTP id
- kk2-20020a17090b4a02b02900c777aa746fso4947889pjb.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 07:35:53 -0700 (PDT)
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
+ [IPv6:2607:f8b0:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14B626EA49
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 14:38:03 +0000 (UTC)
+Received: by mail-pl1-x636.google.com with SMTP id v23so3042536ple.9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 07:38:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0R7vCUqOiWqusGQdLDA2yAGdzDAYsdMM6CojvsuIllk=;
- b=dYE81wS7DSKdB7GyR7+XAISp1t5pL/zSDfGVzIkbDNtoK9UFhOBsBQloCz5aWC1JAw
- lb3M2Iovl8eVPmG9iOIr/YUjCSJAhPTN/g+p6UMu6/Y1VjFTY32AXsOmDiENYV+o4uYU
- 2E6IrTuBArSyTrhCPYpg4mJiuwrSs7OAHvKo0A4CJV1bCBDO7aWZsxn8OtdcMNW1ZA7u
- S+elXIqViLr/nD7rTq4htiUkJ5lo2uGNeF21pedQKl0u5C8M9VsU/JvlO1Bjey6pA7C4
- ANLJaApZfubVYKU033BWxll74mz1LZeSHXGAp7PYpcEbxUnJW9WBOVD/HMYy5a3wMAlo
- KCQg==
+ :cc; bh=r8t+Haw8hnnyPI1A8ckYO+AnKAwkWRp0vTVGtS6IUlo=;
+ b=VHOSnptigraQrnHtiYP3M5TJPLgguQqQNkJ+HKd6uE/tEHIW1D2lCZYt4kluq/2Uyo
+ +XIW78QJtL/XDkFFfwtHiv31BNMpBs+3fONQIb0wj4848a0o8Nvc/e4aIs0pkwMAblku
+ GAA/cn8GOMk3KVKy/PN5Y9R5fA0FccSOupDMtLD/c+JgPqJU+pGEvGd/d/0DTs1kvd7J
+ qgE7tuYaHWJfSY2oUN6QbFQCwn8sw2WEPS2upkrhFubBrn4vhwpswSpZuAJ3eAIGGZuV
+ 9H9YKEuPCTliyuPzVKa5nnr7CvtuIstrFaSr+ovqhzSSSqV17hqiKOimHpNyb8R1EJ3b
+ IPWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=0R7vCUqOiWqusGQdLDA2yAGdzDAYsdMM6CojvsuIllk=;
- b=mYCG6bS+9W5wraUctvT0cz8bn6xLncITT0CSDqZTh3ouuFpwsXTZZD0iGECf7WpwQQ
- arExYQle9taHTMQkM3EqzXbXVO+kSKSlGwHoOG84am5WhVTxA5ihU+32Vy0t409nbaIQ
- +QFjY+XhQY/RNcC5V2Ih+TXI9rvi3XTtYevCuSXF921ZmTzPyHB116fWGZU59DA2okVB
- Tsvbb39BRS+eKs1CQDVhJNR7GptsGApxQsdipFmsjuzjgY7whQP4LavOOfiQmRaiS6C4
- 3IGkjieK2TKmdgDnz3aZRsw3nSDwYf5X7OrcTk9s+BijeoG+P0qz89b/pPqUqhxJSHZ/
- xLpQ==
-X-Gm-Message-State: AOAM5310Qp0aJk+lUlsjEQASD6GsajI4nWSpE4kIiFcK9GxNTG0J1SWS
- JrunEHtQYKT671Ei/YKi3bo16VnYIkKRbecgOtPggw==
-X-Google-Smtp-Source: ABdhPJx6mz7QtxY42zHzQ4OwZrXSYkhmbs+ESa/8sPIZwAXqhmt9XhBi9MDQuYZrkn0CZzsEUeDWOtF7VrY+uzB9bCI=
-X-Received: by 2002:a17:90a:4a8f:: with SMTP id
- f15mr10307132pjh.19.1616164552793; 
- Fri, 19 Mar 2021 07:35:52 -0700 (PDT)
+ bh=r8t+Haw8hnnyPI1A8ckYO+AnKAwkWRp0vTVGtS6IUlo=;
+ b=swd2nNcb3h1qaAF1M3ngpz0NY+hMq7ta+pXZxVeGXUmy5cODqBqilHldUTC+Zl48Ll
+ 10OFDAWTplLu0t/GwNkKooEHs58L8QA2kPs+gRAjAeoaVA2BQhVQzYcRszHov0Z8DG0J
+ AxavZ2aaA/cWiORRfHuc1h1POk1eMk3o4tNm90Amfklwc4rdH882QwEUY1j+mo3BZkJV
+ G2oDCljy2AuE7ue4w3CN+jMqCPPDd9kO5PonyKQQXLjxy3zIe0NxpqY8DC3rWP80WiBE
+ G+VR7zfCWZ4YSazzO01GPtVzEFBrTnSo2Rrqt+uC07wGmNtkDkS6+5td5FT9IgtEhGrV
+ rgXw==
+X-Gm-Message-State: AOAM533qaW7jH5OyfvEA3BUWKeE7p7cbRQhmiZ6xRRrxJTaY43AsxCis
+ D/ocb2NMWm0tdcVyzFHEY05CS5zqS8bSXcWWpjYnFQ==
+X-Google-Smtp-Source: ABdhPJw8c9CchTDySBs3NZLqT/TkgcU8jgQYXzTtozt8IS+78Ccw8naSaLYw4NWbogbCmYjnH85XuIvZ55HTa3abjoE=
+X-Received: by 2002:a17:902:7d8d:b029:e6:4061:b767 with SMTP id
+ a13-20020a1709027d8db02900e64061b767mr14682850plm.32.1616164682659; Fri, 19
+ Mar 2021 07:38:02 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210219215326.2227596-1-lyude@redhat.com>
- <20210219215326.2227596-9-lyude@redhat.com>
-In-Reply-To: <20210219215326.2227596-9-lyude@redhat.com>
+ <20210219215326.2227596-10-lyude@redhat.com>
+In-Reply-To: <20210219215326.2227596-10-lyude@redhat.com>
 From: Robert Foss <robert.foss@linaro.org>
-Date: Fri, 19 Mar 2021 15:35:41 +0100
-Message-ID: <CAG3jFyto=4U7wqtw92Escsu9cXGV=xD8SUKm_UUm7bRmYPUYxA@mail.gmail.com>
+Date: Fri, 19 Mar 2021 15:37:51 +0100
+Message-ID: <CAG3jFyvW3YxG8jNq9krRJmWUbTFc3sXNXTjnsY0Pmgky6GJgQQ@mail.gmail.com>
 To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Mon, 22 Mar 2021 09:10:08 +0000
-Subject: Re: [Intel-gfx] [PATCH 08/30] drm/bridge/analogix/anx78xx: Setup
- encoder before registering connector
+Subject: Re: [Intel-gfx] [PATCH 09/30] drm/bridge/analogix/anx78xx: Cleanup
+ on error in anx78xx_bridge_attach()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,12 +64,13 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Torsten Duwe <duwe@lst.de>, Jernej Skrabec <jernej.skrabec@siol.net>,
+Cc: Jernej Skrabec <jernej.skrabec@siol.net>,
  dri-devel <dri-devel@lists.freedesktop.org>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>,
  Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
  nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Jonas Karlman <jonas@kwiboo.se>, open list <linux-kernel@vger.kernel.org>,
- Andrzej Hajda <a.hajda@samsung.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ Andrzej Hajda <a.hajda@samsung.com>, Torsten Duwe <duwe@lst.de>,
  amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
  Sam Ravnborg <sam@ravnborg.org>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
@@ -87,46 +87,54 @@ Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
 On Fri, 19 Feb 2021 at 22:56, Lyude Paul <lyude@redhat.com> wrote:
 >
-> Since encoder mappings for connectors are exposed to userspace, we should
-> be attaching the encoder before exposing the connector to userspace. Just a
-> drive-by fix for an issue I noticed while fixing up usages of
-> drm_dp_aux_init()/drm_dp_aux_register() across the tree.
+> Just another issue I noticed while correcting usages of
+> drm_dp_aux_init()/drm_dp_aux_register() around the tree. If any of the
+> steps in anx78xx_bridge_attach() fail, we end up leaking resources. So,
+> let's fix that (and fix leaking a DP AUX adapter in the process) by
+> unrolling on errors.
 >
 > Signed-off-by: Lyude Paul <lyude@redhat.com>
 > ---
->  drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-> index ec4607dc01eb..338dd8531d4b 100644
+> index 338dd8531d4b..f20558618220 100644
 > --- a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
 > +++ b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-> @@ -924,12 +924,6 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
->         drm_connector_helper_add(&anx78xx->connector,
->                                  &anx78xx_connector_helper_funcs);
->
-> -       err = drm_connector_register(&anx78xx->connector);
-> -       if (err) {
-> -               DRM_ERROR("Failed to register connector: %d\n", err);
+> @@ -918,7 +918,7 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
+>                                  DRM_MODE_CONNECTOR_DisplayPort);
+>         if (err) {
+>                 DRM_ERROR("Failed to initialize connector: %d\n", err);
 > -               return err;
-> -       }
-> -
->         anx78xx->connector.polled = DRM_CONNECTOR_POLL_HPD;
->
->         err = drm_connector_attach_encoder(&anx78xx->connector,
-> @@ -939,6 +933,12 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
->                 return err;
+> +               goto aux_unregister;
 >         }
 >
-> +       err = drm_connector_register(&anx78xx->connector);
-> +       if (err) {
-> +               DRM_ERROR("Failed to register connector: %d\n", err);
-> +               return err;
-> +       }
-> +
+>         drm_connector_helper_add(&anx78xx->connector,
+> @@ -930,16 +930,21 @@ static int anx78xx_bridge_attach(struct drm_bridge *bridge,
+>                                            bridge->encoder);
+>         if (err) {
+>                 DRM_ERROR("Failed to link up connector to encoder: %d\n", err);
+> -               return err;
+> +               goto connector_cleanup;
+>         }
+>
+>         err = drm_connector_register(&anx78xx->connector);
+>         if (err) {
+>                 DRM_ERROR("Failed to register connector: %d\n", err);
+> -               return err;
+> +               goto connector_cleanup;
+>         }
+>
 >         return 0;
+> +connector_cleanup:
+> +       drm_connector_cleanup(&anx78xx->connector);
+> +aux_unregister:
+> +       drm_dp_aux_unregister(&anx78xx->aux);
+> +       return err;
 >  }
 >
+>  static void anx78xx_bridge_detach(struct drm_bridge *bridge)
 > --
 > 2.29.2
 >
