@@ -1,50 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5601A34204A
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 15:56:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F348E3420C0
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 16:20:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93CF86EA3B;
-	Fri, 19 Mar 2021 14:56:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7A4B6EA4C;
+	Fri, 19 Mar 2021 15:20:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BE1E6EA39;
- Fri, 19 Mar 2021 14:56:28 +0000 (UTC)
-IronPort-SDR: 5wVcO7b/7vd/FRDueQK0VnyVjp/w4GwmEsgn5zLfL/TXaptzH6YTTWZXo0QPCeLFKiN9KDYd1x
- /zbKTdl0T5oA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9928"; a="209931456"
-X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="209931456"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2021 07:56:27 -0700
-IronPort-SDR: CPIoOIS9/BQ+JNpwVETXumFtv1On7ZiDEPUU7j446BOkA44fDRCiz/FNoNzli7RJxZC0UV7YyV
- 0kPbFMOETPzg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="450888778"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 19 Mar 2021 07:56:24 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 19 Mar 2021 16:56:24 +0200
-Date: Fri, 19 Mar 2021 16:56:24 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <YFS7mINBWsHiYIKm@intel.com>
-References: <20210302204132.12058-1-manasi.d.navare@intel.com>
- <20210303104744.2c064f09@eldfell>
- <20210303204433.GA15819@labuser-Z97X-UD5H>
- <20210304104223.6b3490bc@eldfell>
- <20210309005252.GA27491@labuser-Z97X-UD5H>
- <20210309111350.3be0543f@eldfell>
- <CAKMK7uEak_2YNDZpyho5bBhhYCvoXh6MoPNL6FmV9sU8oELGPA@mail.gmail.com>
- <20210318230126.GA1900@labuser-Z97X-UD5H>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 730926EA4C;
+ Fri, 19 Mar 2021 15:20:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6C084A47E8;
+ Fri, 19 Mar 2021 15:20:36 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210318230126.GA1900@labuser-Z97X-UD5H>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Add the crtc to affected crtc
- only if uapi.enable = true
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Fri, 19 Mar 2021 15:20:36 -0000
+Message-ID: <161616723641.8631.12712187678240202315@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210319143021.21823-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210319143021.21823-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Read_C0DRB3/C1DRB3_as_1?=
+ =?utf-8?q?6_bits_again?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,226 +39,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Stone <daniels@collabora.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1050057061=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 18, 2021 at 04:01:26PM -0700, Navare, Manasi wrote:
-> So basically we see this warning only in case of bigjoiner when
-> drm_atomic_check gets called without setting the state->allow_modeset fla=
-g.
+--===============1050057061==
+Content-Type: multipart/alternative;
+ boundary="===============4876148137907313809=="
 
-Considering the code is 'WARN(!state->allow_modeset, ...' that
-fact should be rather obvious.
+--===============4876148137907313809==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> =
+== Series Details ==
 
-> So do you think that in i915, in intel_atomic_check_bigjoiner() we should=
- only
-> steal the crtc when allow_modeset flag is set in state?
+Series: series starting with [1/3] drm/i915: Read C0DRB3/C1DRB3 as 16 bits again
+URL   : https://patchwork.freedesktop.org/series/88179/
+State : success
 
-No. If you fully read drm_atomic_check_only() you will observe
-that it will reject any commit w/ allow_modeset=3D=3Dfalse which =
+== Summary ==
 
-needs a modeset. And it does that before the WARN.
+CI Bug Log - changes from CI_DRM_9875 -> Patchwork_19813
+====================================================
 
-So you're barking up the wrong tree here. The problem I think
-is that you're just computing requested_crtcs wrong.
+Summary
+-------
 
-> If we add this check there then the affected crtc wont count the slave cr=
-tc
-> and we wont get this warning.
-> =
+  **SUCCESS**
 
-> Ville, Danvet?
-> =
+  No regressions found.
 
-> Manasi
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19813/index.html
 
-> =
+Known issues
+------------
 
-> On Tue, Mar 16, 2021 at 10:35:09PM +0100, Daniel Vetter wrote:
-> > On Tue, Mar 9, 2021 at 10:14 AM Pekka Paalanen <ppaalanen@gmail.com> wr=
-ote:
-> > >
-> > > On Mon, 8 Mar 2021 16:52:58 -0800
-> > > "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
-> > >
-> > > > On Thu, Mar 04, 2021 at 10:42:23AM +0200, Pekka Paalanen wrote:
-> > > > > On Wed, 3 Mar 2021 12:44:33 -0800
-> > > > > "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
-> > > > >
-> > > > > > On Wed, Mar 03, 2021 at 10:47:44AM +0200, Pekka Paalanen wrote:
-> > > > > > > On Tue,  2 Mar 2021 12:41:32 -0800
-> > > > > > > Manasi Navare <manasi.d.navare@intel.com> wrote:
-> > > > > > >
-> > > > > > > > In case of a modeset where a mode gets split across mutiple=
- CRTCs
-> > > > > > > > in the driver specific implementation (bigjoiner in i915) w=
-e wrongly count
-> > > > > > > > the affected CRTCs based on the drm_crtc_mask and indicate =
-the stolen CRTC as
-> > > > > > > > an affected CRTC in atomic_check_only().
-> > > > > > > > This triggers a warning since affected CRTCs doent match re=
-quested CRTC.
-> > > > > > > >
-> > > > > > > > To fix this in such bigjoiner configurations, we should only
-> > > > > > > > increment affected crtcs if that CRTC is enabled in UAPI not
-> > > > > > > > if it is just used internally in the driver to split the mo=
-de.
-> > > > > > >
-> > > > > > > Hi,
-> > > > > > >
-> > > > > > > I think that makes sense to me. Stealing CRTCs that are not c=
-urrently
-> > > > > > > used by the userspace (display server) should be ok, as long =
-as that
-> > > > > > > is completely invisible to userspace: meaning that it does no=
-t cause
-> > > > > > > userspace to unexpectedly e.g. receive or miss per-crtc atomic
-> > > > > > > completion events.
-> > > > > >
-> > > > > > Yes since we are only doing atomic_check_only() here, the stolen
-> > > > >
-> > > > > But the real not-test-only commit will follow if this test-only c=
-ommit
-> > > > > succeeds, and keeping the guarantees for the real commit are impo=
-rtant.
-> > > >
-> > > > Hmm well after the actual real commit, since the second crtc is sto=
-len
-> > > > even though it is not being used for the display output, it is
-> > > > used for joiner so the uapi.enable will be true after the real comm=
-it.
-> > > >
-> > > > so actually the assertion would fail in this case.
-> > > >
-> > > > @Ville @Danvet any suggestions here in that case?
-> > =
+  Here are the changes found in Patchwork_19813 that come from known issues:
 
-> > That is very bad. We can't frob uapi state like that. I think that
-> > calls for even more checks to make sure kms drivers who try to play
-> > clever games don't get it wrong, so we probably need to check uapi
-> > enable and active state in another mask before/after ->atomic_check
-> > too. Or something like that.
-> > =
+### IGT changes ###
 
-> > > Hi,
-> > >
-> > > that is not what I was talking about, but sounds like you found a
-> > > different problem. It seems like the problem you are talking about
-> > > would be guaranteed to be hit if bigjoiner was used. Have you not
-> > > tested this?
-> > >
-> > > However, I was talking about the real commit itself, not what happens
-> > > on commits after it, see below.
-> > >
-> > > > > > crtc is completely invisible to the userspace and hence that is
-> > > > > > indicated by uapi.enable which is not true for this stolen
-> > > > > > crtc. However if allow modeset flag set, then it will do a full
-> > > > > > modeset and indicate the uapi.enable for this stolen crtc as we=
-ll
-> > > > > > since that cannot be used for other modeset requested by usersp=
-ace.
-> > > > > >
-> > > > > > >
-> > > > > > > Can that also be asserted somehow, or does this already do th=
-at?
-> > > > > >
-> > > > > > Not clear what you want the assertion for? Could you elaborate
-> > > > >
-> > > > > As assertion that when the real atomic commit happens and then
-> > > > > completion events are fired, they match exactly the affected crtc=
-s mask.
-> > >
-> > > This is my concern and a question, although like I say below, only
-> > > tangential to this patch.
-> > >
-> > > However, as this patch aims to allow bigjoiner usage, naturally the
-> > > question will arise whether the completion events then match what
-> > > userspace expects or not. Userspace does not expect completion events
-> > > referring to the stolen CRTCs.
-> > =
+#### Issues hit ####
 
-> > Yeah we also must make sure that we don't send out events for these
-> > additional crtc in bigjoiner usage. Sounds like igt testing didn't
-> > catch this, I think we need a lot more igts here to make sure all
-> > these surprises don't happen.
-> > =
+  * igt@gem_exec_gttfill@basic:
+    - fi-kbl-8809g:       [PASS][1] -> [TIMEOUT][2] ([i915#3145])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9875/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19813/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
 
-> > Plus maybe triple-checking that drm_atomic_uapi.c makes sure we can't
-> > send out events for stuff that userspace didn't ask for.
-> > -Daniel
-> > =
+  
+#### Possible fixes ####
 
-> > >
-> > > > > I understand this may be off-topic for this particular patch, but=
- since
-> > > > > we are discussing the topic, such checks would be really nice. I'm
-> > > > > curious if such checks already exist.
-> > >
-> > >
-> > > Thanks,
-> > > pq
-> > >
-> > > > > > > > ---
-> > > > > > > >  drivers/gpu/drm/drm_atomic.c | 6 ++++--
-> > > > > > > >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > > > > > > >
-> > > > > > > > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm=
-/drm_atomic.c
-> > > > > > > > index 5b4547e0f775..d7acd6bbd97e 100644
-> > > > > > > > --- a/drivers/gpu/drm/drm_atomic.c
-> > > > > > > > +++ b/drivers/gpu/drm/drm_atomic.c
-> > > > > > > > @@ -1358,8 +1358,10 @@ int drm_atomic_check_only(struct drm=
-_atomic_state *state)
-> > > > > > > >               }
-> > > > > > > >       }
-> > > > > > > >
-> > > > > > > > -     for_each_new_crtc_in_state(state, crtc, new_crtc_stat=
-e, i)
-> > > > > > > > -             affected_crtc |=3D drm_crtc_mask(crtc);
-> > > > > > > > +     for_each_new_crtc_in_state(state, crtc, new_crtc_stat=
-e, i) {
-> > > > > > > > +             if (new_crtc_state->enable)
-> > > > > > > > +                     affected_crtc |=3D drm_crtc_mask(crtc=
-);
-> > > > > > > > +     }
-> > > > > > > >
-> > > > > > > >       /*
-> > > > > > > >        * For commits that allow modesets drivers can add ot=
-her CRTCs to the
-> > > _______________________________________________
-> > > dri-devel mailing list
-> > > dri-devel@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> > =
+  * igt@gem_tiled_fence_blits@basic:
+    - fi-kbl-8809g:       [TIMEOUT][3] ([i915#3145]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9875/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19813/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html
 
-> > =
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-> > =
+  [i915#1222]: https://gitlab.freedesktop.org/drm/intel/issues/1222
+  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
+  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
 
-> > -- =
 
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Participating hosts (44 -> 40)
+------------------------------
 
--- =
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
 
-Ville Syrj=E4l=E4
-Intel
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9875 -> Patchwork_19813
+
+  CI-20190529: 20190529
+  CI_DRM_9875: 218e09274103c3117d90167bb3ee0ba3a0a63f84 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6039: 8c4a2cda2a92bdd87797969ef299ad7f6e8e993b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19813: c35c909f75ea9d3aae766c504f3b8b22f11a38d9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c35c909f75ea drm/i915: Rewrite CL/CTG L-shaped memory detection
+af7440d572e7 drm/i915: Give C0DRB3/C1DRB3 a _BW suffix
+d2e294c19d15 drm/i915: Read C0DRB3/C1DRB3 as 16 bits again
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19813/index.html
+
+--===============4876148137907313809==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915: Read C0DRB3/C1DRB3 as 16 bits again</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88179/">https://patchwork.freedesktop.org/series/88179/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19813/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19813/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9875 -&gt; Patchwork_19813</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19813/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19813 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@gem_exec_gttfill@basic:<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9875/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19813/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@gem_tiled_fence_blits@basic:<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9875/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19813/fi-kbl-8809g/igt@gem_tiled_fence_blits@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9875 -&gt; Patchwork_19813</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9875: 218e09274103c3117d90167bb3ee0ba3a0a63f84 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6039: 8c4a2cda2a92bdd87797969ef299ad7f6e8e993b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19813: c35c909f75ea9d3aae766c504f3b8b22f11a38d9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c35c909f75ea drm/i915: Rewrite CL/CTG L-shaped memory detection<br />
+af7440d572e7 drm/i915: Give C0DRB3/C1DRB3 a _BW suffix<br />
+d2e294c19d15 drm/i915: Read C0DRB3/C1DRB3 as 16 bits again</p>
+
+</body>
+</html>
+
+--===============4876148137907313809==--
+
+--===============1050057061==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1050057061==--
