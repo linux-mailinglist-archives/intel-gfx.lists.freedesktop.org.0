@@ -1,80 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7134342324
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 18:25:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 790B034235F
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 18:29:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCB996EA5D;
-	Fri, 19 Mar 2021 17:25:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A10226E098;
+	Fri, 19 Mar 2021 17:29:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C98D6EA5D
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 17:25:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1616174716;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=CXLDsLPoubbGp67OogE9XornHlWLqBqoYkBToHUCuGI=;
- b=ibjph8URka3JRcX++jDSPg1zul+gSt8sGYqHJbyq++KSNBOmu4PtOND/aiJg36rpESVH55
- /9aFN2jgUwTGk/ju51AnssPtenza9tuNzyEqlwTiN15CUKTI8XXZUfdAYRcylK/rcsAE9v
- rt07hQF5SfmgUsgFYR00QKUsaBp9Rfc=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-439-eDBSObwfNJqeYoYxYWstkA-1; Fri, 19 Mar 2021 13:25:12 -0400
-X-MC-Unique: eDBSObwfNJqeYoYxYWstkA-1
-Received: by mail-qv1-f71.google.com with SMTP id da16so32481158qvb.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 10:25:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
- :in-reply-to:references:organization:user-agent:mime-version
- :content-transfer-encoding;
- bh=CXLDsLPoubbGp67OogE9XornHlWLqBqoYkBToHUCuGI=;
- b=T+PzFvGAInlpt3M9LVh0Jlk/SIiTLTwD+1FLJmJ+PBsudpS0/6Cd0l1yuIGkdXBYo9
- dgzsMdhf9fXxp9YcSa/H5PslAnIKKxRLGUPxn60TNZsJ+/18q1kgzF5MVxnB9n+U1WXd
- hL/N6X0np/DDHi9tcGINiAnyewBJA4yAdX7dywrx6GUg43LNEh1sZWZ4e5+cyxUXjv0Y
- MGvR/iJmX+5AvGg3ct/wpMQB+8ZwXVgF/0AHOZhOroJ+dE7sQaf975CJ3rsb0H3Abv9w
- 12YMIF8m73PNScTR2Dc6sYqVFEqw2zBLIMZCCvXPCP678eib6tc9RYXkjm2lcnDb9kIm
- l5mQ==
-X-Gm-Message-State: AOAM532FDwOoZKhXVsDi+6gNEe/TATnl9n1Ve+L/sCgqvAa/9lj6dXw4
- BKMcDHG5TxNihIvKubFwBii8/RgIRESWGkKfDm/54VlLu72GiFANCZeGX0IULNYdVZ5kPHLXYD5
- YvcCSSqGPvIZDF2ZMRsTmoHOdgPDZ
-X-Received: by 2002:a05:620a:16dc:: with SMTP id
- a28mr10483833qkn.442.1616174711247; 
- Fri, 19 Mar 2021 10:25:11 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx2PNSNgacEAxGh8jQ+yratSe0lj4CTdS+H9WCqhb0qDBaoyoNsaXhesCCJsm0Js0YryqbGcw==
-X-Received: by 2002:a05:620a:16dc:: with SMTP id
- a28mr10483806qkn.442.1616174711008; 
- Fri, 19 Mar 2021 10:25:11 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id 18sm5119562qkr.90.2021.03.19.10.25.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 19 Mar 2021 10:25:09 -0700 (PDT)
-Message-ID: <ce79f22e1f7f7e6bf4424e5f9d2d657d8215480d.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: imre.deak@intel.com, "Almahallawy, Khaled" <khaled.almahallawy@intel.com>
-Date: Fri, 19 Mar 2021 13:25:08 -0400
-In-Reply-To: <20210318231749.GA23036@ideak-desk.fi.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 944F06EA5E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 17:29:48 +0000 (UTC)
+IronPort-SDR: ftAlX7oE7vhz0OjLt/kDyYzJUW71pxz+7ZqZQN17Y/9vabisLKWeqVlw+HIzcQHhax10WLNCfY
+ CQCxpMdRmTnQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9928"; a="209967614"
+X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="209967614"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2021 10:29:47 -0700
+IronPort-SDR: Wty3SGUNGDMA6yjUa+Fid+JrPHvHcy1EPG4CcFyZ6LEY3YRs9UqscAsa3BHKOegqegKT6ONgwe
+ 7aA+uGasc7Vw==
+X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="413593939"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2021 10:29:45 -0700
+Date: Fri, 19 Mar 2021 19:29:41 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20210319172941.GI94006@ideak-desk.fi.intel.com>
 References: <20210317184901.4029798-1-imre.deak@intel.com>
- <20210317184901.4029798-2-imre.deak@intel.com> <YFOO4FOmOB8yp3me@intel.com>
+ <20210317184901.4029798-2-imre.deak@intel.com>
+ <YFOO4FOmOB8yp3me@intel.com>
  <20210318174907.GE4128033@ideak-desk.fi.intel.com>
  <20210318180645.GG4128033@ideak-desk.fi.intel.com>
  <e1e9f9ea76071af914b37352fc201d09f378a55b.camel@intel.com>
  <20210318231749.GA23036@ideak-desk.fi.intel.com>
-Organization: Red Hat
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33)
+ <ce79f22e1f7f7e6bf4424e5f9d2d657d8215480d.camel@redhat.com>
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+Content-Disposition: inline
+In-Reply-To: <ce79f22e1f7f7e6bf4424e5f9d2d657d8215480d.camel@redhat.com>
 Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915/ilk-glk: Fix link training
  on links with LTTPRs
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -89,162 +54,268 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
+Reply-To: imre.deak@intel.com
 Cc: "mail@bodograumann.de" <mail@bodograumann.de>,
  "santiago.zarate@suse.com" <santiago.zarate@suse.com>,
  "tiwai@suse.de" <tiwai@suse.de>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "stable@vger.kernel.org" <stable@vger.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIxLTAzLTE5IGF0IDAxOjE3ICswMjAwLCBJbXJlIERlYWsgd3JvdGU6Cj4gT24g
-RnJpLCBNYXIgMTksIDIwMjEgYXQgMTI6MDQ6NTRBTSArMDIwMCwgQWxtYWhhbGxhd3ksIEtoYWxl
-ZCB3cm90ZToKPiA+IE9uIFRodSwgMjAyMS0wMy0xOCBhdCAyMDowNiArMDIwMCwgSW1yZSBEZWFr
-IHdyb3RlOgo+ID4gPiBPbiBUaHUsIE1hciAxOCwgMjAyMSBhdCAwNzo0OToxM1BNICswMjAwLCBJ
-bXJlIERlYWsgd3JvdGU6Cj4gPiA+ID4gT24gVGh1LCBNYXIgMTgsIDIwMjEgYXQgMDc6MzM6MjBQ
-TSArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+ID4gPiA+ID4gT24gV2VkLCBNYXIgMTcs
-IDIwMjEgYXQgMDg6NDg6NTlQTSArMDIwMCwgSW1yZSBEZWFrIHdyb3RlOgo+ID4gPiA+ID4gPiBU
-aGUgc3BlYyByZXF1aXJlcyB0byB1c2UgYXQgbGVhc3QgMy4ybXMgZm9yIHRoZSBBVVggdGltZW91
-dAo+ID4gPiA+ID4gPiBwZXJpb2QgaWYKPiA+ID4gPiA+ID4gdGhlcmUgYXJlIExULXR1bmFibGUg
-UEhZIFJlcGVhdGVycyBvbiB0aGUgbGluayAoMi4xMS4yKS4gQW4KPiA+ID4gPiA+ID4gdXBjb21p
-bmcKPiA+ID4gPiA+ID4gc3BlYyB1cGRhdGUgbWFrZXMgdGhpcyBtb3JlIHNwZWNpZmljLCBieSBy
-ZXF1aXJpbmcgYSAzLjJtcwo+ID4gPiA+ID4gPiBtaW5pbXVtCj4gPiA+ID4gPiA+IHRpbWVvdXQg
-cGVyaW9kIGZvciB0aGUgTFRUUFIgZGV0ZWN0aW9uIHJlYWRpbmcgdGhlIDB4RjAwMDAtCj4gPiA+
-ID4gPiA+IDB4RjAwMDcKPiA+ID4gPiA+ID4gcmFuZ2UgKDMuNi41LjEpLgo+ID4gPiA+ID4gCj4g
-PiA+ID4gPiBJJ20gcG9uZGVyaW5nIGlmIHdlIGNvdWxkIHJlZHVjZSB0aGUgdGltZW91dCBhZnRl
-ciBoYXZpbmcKPiA+ID4gPiA+IGRldGVybWluZWQKPiA+ID4gPiA+IHdoZXJ0aGVyIExUVFBScyBh
-cmUgcHJlc2VudCBvciBub3Q/IEJ1dCBtYXliZSB0aGF0IHdvdWxkbid0Cj4gPiA+ID4gPiByZWFs
-bHkgc3BlZWQKPiA+ID4gPiA+IHVwIGFueXRoaW5nIHNpbmNlIHdlIGNhbid0IHJlZHVjZSB0aGUg
-dGltZW91dCB1bnRpbCBhZnRlcgo+ID4gPiA+ID4gZGV0ZWN0aW5nCj4gPiA+ID4gPiAqc29tZXRo
-aW5nKi4gQW5kIG9uY2UgdGhlcmUgaXMgc29tZXRoaW5nIHRoZXJlIHdlIHNob3VsZG4ndAo+ID4g
-PiA+ID4gcmVhbGx5IGdldAo+ID4gPiA+ID4gYW55IG1vcmUgdGltZW91dHMgSSBndWVzcy4gU28g
-cHJvYmFibHkgYSB0b3RhbGx5IHN0dXBpZCBpZGVhLgo+ID4gPiA+IAo+ID4gPiA+IFJpZ2h0LCBp
-ZiBzb21ldGhpbmcgaXMgY29ubmVjdGVkIGl0IHdvdWxkIHRha2UgYW55d2F5IGFzIG11Y2ggdGlt
-ZQo+ID4gPiA+IGFzIGl0Cj4gPiA+ID4gdGFrZXMgZm9yIHRoZSBzaW5rIHRvIHJlcGx5IHdoZXRo
-ZXIgb3Igbm90IHdlIGRlY3JlYXNlZCB0aGUKPiA+ID4gPiB0aW1lb3V0Lgo+ID4gPiA+IAo+ID4g
-PiA+IEhvd2V2ZXIgaWYgbm90aGluZyBpcyBjb25uZWN0ZWQsIHdlIGhhdmUgdGhlIGV4Y2Vzc2l2
-ZSB0aW1lb3V0Cj4gPiA+ID4gS2hhbGVkCj4gPiA+ID4gYWxyZWFkeSBub3RpY2VkICgxNjAgKiA0
-bXMgPSA2LjQgc2VjIG9uIElDTCspLiBJIHRoaW5rIHRvIGltcHJvdmUKPiA+ID4gPiB0aGF0Cj4g
-PiA+ID4gd2UgY291bGQgc2NhbGUgdGhlIHRvdGFsIG51bWJlciBvZiByZXRyaWVzIGJ5IG1ha2lu
-ZyBpdAo+ID4gPiA+IHRvdGFsX3RpbWVvdXQvcGxhdGZvcm1fc3BlY2lmaWNfdGltZW91dCAobGV0
-dGluZyB0b3RhbF90aW1lb3V0PTJzZWMKPiA+ID4gPiBmb3IKPiA+ID4gPiBpbnN0YW5jZSkgb3Ig
-anVzdCBjaGFuZ2luZyB0aGUgZHJtIHJldHJ5IGxvZ2ljIHRvIGJlIHRpbWUgYmFzZWQKPiA+ID4g
-PiBpbnN0ZWFkCj4gPiA+ID4gb2YgdGhlIG51bWJlciBvZiByZXRyaWVzIHdlIHVzZSBhdG0uCj4g
-PiA+IAo+ID4gPiBEb2gsIHJlZHVjaW5nIHNpbXBseSB0aGUgSFcgdGltZW91dHMgd291bGQgYmUg
-ZW5vdWdoIHRvIGZpeCB0aGlzLgo+ID4gCj4gPiBXaGF0IGFib3V0IEx5dWRlJ3Mgc3VnZ2VzdGlv
-biAoCj4gPiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvcGF0Y2gvNDIwMzY5LyNj
-b21tZW50Xzc1NjU3MikKPiA+IHRvIGRyb3AgdGhlIHJldHJpZXMgaW4gaW50ZWxfZHBfYXV4X3hm
-ZXIoKQo+ID4gLyogTXVzdCB0cnkgYXQgbGVhc3QgMyB0aW1lcyBhY2NvcmRpbmcgdG8gRFAgc3Bl
-YyAqLwo+ID4gZm9yICh0cnkgPSAwOyB0cnkgPCA1OyB0cnkrKykgewo+ID4gCj4gPiBBbmQgdXNl
-IG9ubHkgdGhlIHJldHJpZXMgaW4gZHJtX2RwY2RfYWNjZXNzPwo+IAo+IEkgdGhpbmsgaXQgd291
-bGQgd29yayBpZiB3ZSBjYW4gbWFrZSB0aGUgcmV0cmllcyBjb25maWd1cmFibGUgYW5kIHNldCBp
-dAo+IHRvCj4gwqDCoMKgwqDCoMKgwqDCoHJldHJpZXMgPSB0b3RhbF90aW1lb3V0IC8gcGxhdGZv
-cm1fc3BlY2lmaWNfdGltZW91dF9wZXJfcmV0cnkKPiAKPiB3aGVyZSB0b3RhbF90aW1lb3V0IHdv
-dWxkIGJlIHNvbWV0aGluZyByZWFzb25hYmxlIGxpa2UgMSBzZWMuCgpJIGFjdHVhbGx5IHRoaW5r
-IEknbSBtb3JlIG9wZW4gdG8gdGhlIGlkZWEgb2YgY29uZmlndXJhYmxlIHJldHJpZXMgYWZ0ZXIK
-bGVhcm5pbmcgdGhhdCBhcHBhcmVudGx5IHRoaXMgaXMgYSB0aGluZyB0aGF0IHRoZSBpMmMgc3Vi
-c3lzdGVtIGRvZXMgLSBzbwp0aGVyZSdzIG1vcmUgcHJlY2VkZW5jZSBmb3IgaXQgaW4gdGhlIHJl
-c3Qgb2YgdGhlIGtlcm5lbCB0aGFuIEkgb3JpZ2luYWxseQp0aG91Z2h0LgoKSSdtIHN0aWxsIGN1
-cmlvdXMgaWYgd2UgbmVlZCB0aGVzZSBleHRyYSByZXRyaWVzIGluIGhlcmUgdGhvdWdoIC0gdGhl
-cmUgc2VlbXMgdG8KYmUgb25lIHNldCBvZiByZXRyaWVzIHRoYXQgaXMgYWN0dWFsbHkgcGxhdGZv
-cm0gc3BlY2lmaWMsIGFuZCB0aGVuIGp1c3QgYSByYW5kb20Kc2V0IG9mIDUgcmV0cmllcyB0aGF0
-IGRvbid0IHNlZW0gdG8gaGF2ZSBhbnl0aGluZyB0byBkbyB3aXRoIHBsYXRmb3JtIHNwZWNpZmlj
-CmJlaGF2aW9yIC0gc28gSSB0aGluayBpdCdkIHN0aWxsIGJlIHdvcnRoIGdpdmluZyBhIHNob3Qg
-YXQgZ2V0dGluZyByaWQgb2YgdGhhdAoKPiAKPiA+IAo+ID4gVGhhbmtzCj4gPiBLaGFsZWQKPiA+
-IAo+ID4gPiAKPiA+ID4gPiA+IEFueXdheXMsIHRoaXMgc2VlbXMgYWJvdXQgdGhlIG9ubHkgdGhp
-bmcgd2UgY2FuIGRvIGdpdmVuIHRoZQo+ID4gPiA+ID4gbGltaXRlZAo+ID4gPiA+ID4gaHcgY2Fw
-YWJpbGl0aWVzLgo+ID4gPiA+ID4gUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gQWNjb3JkaW5n
-bHkgZGlzYWJsZSBMVFRQUiBkZXRlY3Rpb24gdW50aWwgR0xLLCB3aGVyZSB0aGUKPiA+ID4gPiA+
-ID4gbWF4aW11bSB0aW1lb3V0Cj4gPiA+ID4gPiA+IHdlIGNhbiBzZXQgaXMgb25seSAxLjZtcy4K
-PiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+IExpbmsgdHJhaW5pbmcgaW4gdGhlIG5vbi10cmFuc3Bh
-cmVudCBtb2RlIGlzIGtub3duIHRvIGZhaWwgYXQKPiA+ID4gPiA+ID4gbGVhc3Qgb24KPiA+ID4g
-PiA+ID4gc29tZSBTS0wgc3lzdGVtcyB3aXRoIGEgV0QxOSBkb2NrIG9uIHRoZSBsaW5rLCB3aGlj
-aCBleHBvc2VzIGFuCj4gPiA+ID4gPiA+IExUVFBSCj4gPiA+ID4gPiA+IChzZWUgdGhlIFJlZmVy
-ZW5jZXMgYmVsb3cpLiBXaGlsZSB0aGlzIGNvdWxkIGhhdmUgZGlmZmVyZW50Cj4gPiA+ID4gPiA+
-IHJlYXNvbnMKPiA+ID4gPiA+ID4gYmVzaWRlcyB0aGUgdG9vIHNob3J0IEFVWCB0aW1lb3V0IHVz
-ZWQsIG5vdCBkZXRlY3RpbmcgTFRUUFJzCj4gPiA+ID4gPiA+IChhbmQgc28gbm90Cj4gPiA+ID4g
-PiA+IHVzaW5nIHRoZSBub24tdHJhbnNwYXJlbnQgTFQgbW9kZSkgZml4ZXMgbGluayB0cmFpbmlu
-ZyBvbiB0aGVzZQo+ID4gPiA+ID4gPiBzeXN0ZW1zLgo+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4g
-V2hpbGUgYXQgaXQgYWRkIGEgY29kZSBjb21tZW50IGFib3V0IHRoZSBwbGF0Zm9ybSBzcGVjaWZp
-Ywo+ID4gPiA+ID4gPiBtYXhpbXVtCj4gPiA+ID4gPiA+IHRpbWVvdXQgdmFsdWVzLgo+ID4gPiA+
-ID4gPiAKPiA+ID4gPiA+ID4gdjI6IEFkZCBhIGNvbW1lbnQgYWJvdXQgdGhlIGc0eCBtYXhpbXVt
-IHRpbWVvdXQgYXMgd2VsbC4KPiA+ID4gPiA+ID4gKFZpbGxlKQo+ID4gPiA+ID4gPiAKPiA+ID4g
-PiA+ID4gUmVwb3J0ZWQtYnk6IFRha2FzaGkgSXdhaSA8dGl3YWlAc3VzZS5kZT4KPiA+ID4gPiA+
-ID4gUmVwb3J0ZWQtYW5kLXRlc3RlZC1ieTogU2FudGlhZ28gWmFyYXRlIDwKPiA+ID4gPiA+ID4g
-c2FudGlhZ28uemFyYXRlQHN1c2UuY29tPgo+ID4gPiA+ID4gPiBSZXBvcnRlZC1hbmQtdGVzdGVk
-LWJ5OiBCb2RvIEdyYXVtYW5uIDxtYWlsQGJvZG9ncmF1bWFubi5kZT4KPiA+ID4gPiA+ID4gUmVm
-ZXJlbmNlczoKPiA+ID4gPiA+ID4gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9p
-bnRlbC8tL2lzc3Vlcy8zMTY2Cj4gPiA+ID4gPiA+IEZpeGVzOiBiMzBlZGZkOGQwYjQgKCJkcm0v
-aTkxNTogU3dpdGNoIHRvIExUVFBSIG5vbi10cmFuc3BhcmVudAo+ID4gPiA+ID4gPiBtb2RlIGxp
-bmsgdHJhaW5pbmciKQo+ID4gPiA+ID4gPiBDYzogPHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc+ICMg
-djUuMTEKPiA+ID4gPiA+ID4gQ2M6IFRha2FzaGkgSXdhaSA8dGl3YWlAc3VzZS5kZT4KPiA+ID4g
-PiA+ID4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
-Cj4gPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNv
-bT4KPiA+ID4gPiA+ID4gLS0tCj4gPiA+ID4gPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kcF9hdXguY8KgwqDCoMKgwqDCoCB8wqAgNyArKysrKysrCj4gPiA+ID4gPiA+
-IMKgLi4uL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcuYyB8IDE1
-Cj4gPiA+ID4gPiA+ICsrKysrKysrKysrKy0tLQo+ID4gPiA+ID4gPiDCoDIgZmlsZXMgY2hhbmdl
-ZCwgMTkgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPiA+ID4gPiA+ID4gCj4gPiA+ID4g
-PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2F1
-eC5jCj4gPiA+ID4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9h
-dXguYwo+ID4gPiA+ID4gPiBpbmRleCBlYWViZjEyMzMxMGEuLjEwZmUxN2I3MjgwZCAxMDA2NDQK
-PiA+ID4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9h
-dXguYwo+ID4gPiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RwX2F1eC5jCj4gPiA+ID4gPiA+IEBAIC0xMzMsNiArMTMzLDcgQEAgc3RhdGljIHUzMiBnNHhf
-Z2V0X2F1eF9zZW5kX2N0bChzdHJ1Y3QKPiA+ID4gPiA+ID4gaW50ZWxfZHAgKmludGVsX2RwLAo+
-ID4gPiA+ID4gPiDCoGVsc2UKPiA+ID4gPiA+ID4gwqBwcmVjaGFyZ2UgPSA1Owo+ID4gPiA+ID4g
-PiAKPiA+ID4gPiA+ID4gKy8qIE1heCB0aW1lb3V0IHZhbHVlIG9uIEc0eC1CRFc6IDEuNm1zICov
-Cj4gPiA+ID4gPiA+IMKgaWYgKElTX0JST0FEV0VMTChkZXZfcHJpdikpCj4gPiA+ID4gPiA+IMKg
-dGltZW91dCA9IERQX0FVWF9DSF9DVExfVElNRV9PVVRfNjAwdXM7Cj4gPiA+ID4gPiA+IMKgZWxz
-ZQo+ID4gPiA+ID4gPiBAQCAtMTU5LDYgKzE2MCwxMiBAQCBzdGF0aWMgdTMyIHNrbF9nZXRfYXV4
-X3NlbmRfY3RsKHN0cnVjdAo+ID4gPiA+ID4gPiBpbnRlbF9kcCAqaW50ZWxfZHAsCj4gPiA+ID4g
-PiA+IMKgZW51bSBwaHkgcGh5ID0gaW50ZWxfcG9ydF90b19waHkoaTkxNSwgZGlnX3BvcnQtCj4g
-PiA+ID4gPiA+ID4gYmFzZS5wb3J0KTsKPiA+ID4gPiA+ID4gwqB1MzIgcmV0Owo+ID4gPiA+ID4g
-PiAKPiA+ID4gPiA+ID4gKy8qCj4gPiA+ID4gPiA+ICsgKiBNYXggdGltZW91dCB2YWx1ZXM6Cj4g
-PiA+ID4gPiA+ICsgKiBTS0wtR0xLOiAxLjZtcwo+ID4gPiA+ID4gPiArICogQ05MOiAzLjJtcwo+
-ID4gPiA+ID4gPiArICogSUNMKzogNG1zCj4gPiA+ID4gPiA+ICsgKi8KPiA+ID4gPiA+ID4gwqBy
-ZXQgPSBEUF9BVVhfQ0hfQ1RMX1NFTkRfQlVTWSB8Cj4gPiA+ID4gPiA+IMKgwqDCoMKgwqDCoCBE
-UF9BVVhfQ0hfQ1RMX0RPTkUgfAo+ID4gPiA+ID4gPiDCoMKgwqDCoMKgwqAgRFBfQVVYX0NIX0NU
-TF9JTlRFUlJVUFQgfAo+ID4gPiA+ID4gPiBkaWZmIC0tZ2l0Cj4gPiA+ID4gPiA+IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMKPiA+ID4gPiA+
-ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2xpbmtfdHJhaW5pbmcu
-Ywo+ID4gPiA+ID4gPiBpbmRleCAxOWJhN2M3Y2JhYWIuLmMwZTI1Yzc1YzEwNSAxMDA2NDQKPiA+
-ID4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5r
-X3RyYWluaW5nLmMKPiA+ID4gPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMKPiA+ID4gPiA+ID4gQEAgLTgyLDYgKzgyLDE4IEBA
-IHN0YXRpYyB2b2lkCj4gPiA+ID4gPiA+IGludGVsX2RwX3JlYWRfbHR0cHJfcGh5X2NhcHMoc3Ry
-dWN0IGludGVsX2RwICppbnRlbF9kcCwKPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+IMKgc3RhdGlj
-IGJvb2wgaW50ZWxfZHBfcmVhZF9sdHRwcl9jb21tb25fY2FwcyhzdHJ1Y3QgaW50ZWxfZHAKPiA+
-ID4gPiA+ID4gKmludGVsX2RwKQo+ID4gPiA+ID4gPiDCoHsKPiA+ID4gPiA+ID4gK3N0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7Cj4gPiA+ID4gPiA+
-ICsKPiA+ID4gPiA+ID4gK2lmIChpbnRlbF9kcF9pc19lZHAoaW50ZWxfZHApKQo+ID4gPiA+ID4g
-PiArcmV0dXJuIGZhbHNlOwo+ID4gPiA+ID4gPiArCj4gPiA+ID4gPiA+ICsvKgo+ID4gPiA+ID4g
-PiArICogRGV0ZWN0aW5nIExUVFBScyBtdXN0IGJlIGF2b2lkZWQgb24gcGxhdGZvcm1zIHdpdGgK
-PiA+ID4gPiA+ID4gYW4gQVVYIHRpbWVvdXQKPiA+ID4gPiA+ID4gKyAqIHBlcmlvZCA8IDMuMm1z
-LiAoc2VlIERQIFN0YW5kYXJkIHYyLjAsIDIuMTEuMiwKPiA+ID4gPiA+ID4gMy42LjYuMSkuCj4g
-PiA+ID4gPiA+ICsgKi8KPiA+ID4gPiA+ID4gK2lmIChJTlRFTF9HRU4oaTkxNSkgPCAxMCkKPiA+
-ID4gPiA+ID4gK3JldHVybiBmYWxzZTsKPiA+ID4gPiA+ID4gKwo+ID4gPiA+ID4gPiDCoGlmIChk
-cm1fZHBfcmVhZF9sdHRwcl9jb21tb25fY2FwcygmaW50ZWxfZHAtPmF1eCwKPiA+ID4gPiA+ID4g
-wqDCoCBpbnRlbF9kcC0KPiA+ID4gPiA+ID4gPiBsdHRwcl9jb21tb25fY2FwcykgPCAwKSB7Cj4g
-PiA+ID4gPiA+IMKgbWVtc2V0KGludGVsX2RwLT5sdHRwcl9jb21tb25fY2FwcywgMCwKPiA+ID4g
-PiA+ID4gQEAgLTEyNyw5ICsxMzksNiBAQCBpbnQgaW50ZWxfZHBfbHR0cHJfaW5pdChzdHJ1Y3Qg
-aW50ZWxfZHAKPiA+ID4gPiA+ID4gKmludGVsX2RwKQo+ID4gPiA+ID4gPiDCoGJvb2wgcmV0Owo+
-ID4gPiA+ID4gPiDCoGludCBpOwo+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gLWlmIChpbnRlbF9k
-cF9pc19lZHAoaW50ZWxfZHApKQo+ID4gPiA+ID4gPiAtcmV0dXJuIDA7Cj4gPiA+ID4gPiA+IC0K
-PiA+ID4gPiA+ID4gwqByZXQgPSBpbnRlbF9kcF9yZWFkX2x0dHByX2NvbW1vbl9jYXBzKGludGVs
-X2RwKTsKPiA+ID4gPiA+ID4gwqBpZiAoIXJldCkKPiA+ID4gPiA+ID4gwqByZXR1cm4gMDsKPiA+
-ID4gPiA+ID4gLS0KPiA+ID4gPiA+ID4gMi4yNS4xCj4gPiA+ID4gPiAKPiA+ID4gPiA+IC0tCj4g
-PiA+ID4gPiBWaWxsZSBTeXJqw6Rsw6QKPiA+ID4gPiA+IEludGVsCj4gCgotLSAKU2luY2VyZWx5
-LAogICBMeXVkZSBQYXVsIChzaGUvaGVyKQogICBTb2Z0d2FyZSBFbmdpbmVlciBhdCBSZWQgSGF0
-CiAgIApOb3RlOiBJIGRlYWwgd2l0aCBhIGxvdCBvZiBlbWFpbHMgYW5kIGhhdmUgYSBsb3Qgb2Yg
-YnVncyBvbiBteSBwbGF0ZS4gSWYgeW91J3ZlCmFza2VkIG1lIGEgcXVlc3Rpb24sIGFyZSB3YWl0
-aW5nIGZvciBhIHJldmlldy9tZXJnZSBvbiBhIHBhdGNoLCBldGMuIGFuZCBJCmhhdmVuJ3QgcmVz
-cG9uZGVkIGluIGEgd2hpbGUsIHBsZWFzZSBmZWVsIGZyZWUgdG8gc2VuZCBtZSBhbm90aGVyIGVt
-YWlsIHRvIGNoZWNrCm9uIG15IHN0YXR1cy4gSSBkb24ndCBiaXRlIQoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Fri, Mar 19, 2021 at 01:25:08PM -0400, Lyude Paul wrote:
+> On Fri, 2021-03-19 at 01:17 +0200, Imre Deak wrote:
+> > On Fri, Mar 19, 2021 at 12:04:54AM +0200, Almahallawy, Khaled wrote:
+> > > On Thu, 2021-03-18 at 20:06 +0200, Imre Deak wrote:
+> > > > On Thu, Mar 18, 2021 at 07:49:13PM +0200, Imre Deak wrote:
+> > > > > On Thu, Mar 18, 2021 at 07:33:20PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > > > > On Wed, Mar 17, 2021 at 08:48:59PM +0200, Imre Deak wrote:
+> > > > > > > The spec requires to use at least 3.2ms for the AUX timeout
+> > > > > > > period if
+> > > > > > > there are LT-tunable PHY Repeaters on the link (2.11.2). An
+> > > > > > > upcoming
+> > > > > > > spec update makes this more specific, by requiring a 3.2ms
+> > > > > > > minimum
+> > > > > > > timeout period for the LTTPR detection reading the 0xF0000-
+> > > > > > > 0xF0007
+> > > > > > > range (3.6.5.1).
+> > > > > > =
+
+> > > > > > I'm pondering if we could reduce the timeout after having
+> > > > > > determined
+> > > > > > wherther LTTPRs are present or not? But maybe that wouldn't
+> > > > > > really speed
+> > > > > > up anything since we can't reduce the timeout until after
+> > > > > > detecting
+> > > > > > *something*. And once there is something there we shouldn't
+> > > > > > really get
+> > > > > > any more timeouts I guess. So probably a totally stupid idea.
+> > > > > =
+
+> > > > > Right, if something is connected it would take anyway as much time
+> > > > > as it
+> > > > > takes for the sink to reply whether or not we decreased the
+> > > > > timeout.
+> > > > > =
+
+> > > > > However if nothing is connected, we have the excessive timeout
+> > > > > Khaled
+> > > > > already noticed (160 * 4ms =3D 6.4 sec on ICL+). I think to impro=
+ve
+> > > > > that
+> > > > > we could scale the total number of retries by making it
+> > > > > total_timeout/platform_specific_timeout (letting total_timeout=3D=
+2sec
+> > > > > for
+> > > > > instance) or just changing the drm retry logic to be time based
+> > > > > instead
+> > > > > of the number of retries we use atm.
+> > > > =
+
+> > > > Doh, reducing simply the HW timeouts would be enough to fix this.
+> > > =
+
+> > > What about Lyude's suggestion (
+> > > https://patchwork.freedesktop.org/patch/420369/#comment_756572)
+> > > to drop the retries in intel_dp_aux_xfer()
+> > > /* Must try at least 3 times according to DP spec */
+> > > for (try =3D 0; try < 5; try++) {
+> > > =
+
+> > > And use only the retries in drm_dpcd_access?
+> > =
+
+> > I think it would work if we can make the retries configurable and set it
+> > to
+> > =A0=A0=A0=A0=A0=A0=A0=A0retries =3D total_timeout / platform_specific_t=
+imeout_per_retry
+> > =
+
+> > where total_timeout would be something reasonable like 1 sec.
+> =
+
+> I actually think I'm more open to the idea of configurable retries after
+> learning that apparently this is a thing that the i2c subsystem does - so
+> there's more precedence for it in the rest of the kernel than I originally
+> thought.
+> =
+
+> I'm still curious if we need these extra retries in here though - there s=
+eems to
+> be one set of retries that is actually platform specific, and then just a=
+ random
+> set of 5 retries that don't seem to have anything to do with platform spe=
+cific
+> behavior - so I think it'd still be worth giving a shot at getting rid of=
+ that
+
+The platform specific part of the timeout is the one desctibed in the
+maximum timeout values comments.
+
+> > > Thanks
+> > > Khaled
+> > > =
+
+> > > > =
+
+> > > > > > Anyways, this seems about the only thing we can do given the
+> > > > > > limited
+> > > > > > hw capabilities.
+> > > > > > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > =
+
+> > > > > > > Accordingly disable LTTPR detection until GLK, where the
+> > > > > > > maximum timeout
+> > > > > > > we can set is only 1.6ms.
+> > > > > > > =
+
+> > > > > > > Link training in the non-transparent mode is known to fail at
+> > > > > > > least on
+> > > > > > > some SKL systems with a WD19 dock on the link, which exposes =
+an
+> > > > > > > LTTPR
+> > > > > > > (see the References below). While this could have different
+> > > > > > > reasons
+> > > > > > > besides the too short AUX timeout used, not detecting LTTPRs
+> > > > > > > (and so not
+> > > > > > > using the non-transparent LT mode) fixes link training on the=
+se
+> > > > > > > systems.
+> > > > > > > =
+
+> > > > > > > While at it add a code comment about the platform specific
+> > > > > > > maximum
+> > > > > > > timeout values.
+> > > > > > > =
+
+> > > > > > > v2: Add a comment about the g4x maximum timeout as well.
+> > > > > > > (Ville)
+> > > > > > > =
+
+> > > > > > > Reported-by: Takashi Iwai <tiwai@suse.de>
+> > > > > > > Reported-and-tested-by: Santiago Zarate <
+> > > > > > > santiago.zarate@suse.com>
+> > > > > > > Reported-and-tested-by: Bodo Graumann <mail@bodograumann.de>
+> > > > > > > References:
+> > > > > > > https://gitlab.freedesktop.org/drm/intel/-/issues/3166
+> > > > > > > Fixes: b30edfd8d0b4 ("drm/i915: Switch to LTTPR non-transpare=
+nt
+> > > > > > > mode link training")
+> > > > > > > Cc: <stable@vger.kernel.org> # v5.11
+> > > > > > > Cc: Takashi Iwai <tiwai@suse.de>
+> > > > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > > > > > ---
+> > > > > > > =A0drivers/gpu/drm/i915/display/intel_dp_aux.c=A0=A0=A0=A0=A0=
+=A0 |=A0 7 +++++++
+> > > > > > > =A0.../gpu/drm/i915/display/intel_dp_link_training.c | 15
+> > > > > > > ++++++++++++---
+> > > > > > > =A02 files changed, 19 insertions(+), 3 deletions(-)
+> > > > > > > =
+
+> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > > > > > > b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > > > > > > index eaebf123310a..10fe17b7280d 100644
+> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> > > > > > > @@ -133,6 +133,7 @@ static u32 g4x_get_aux_send_ctl(struct
+> > > > > > > intel_dp *intel_dp,
+> > > > > > > =A0else
+> > > > > > > =A0precharge =3D 5;
+> > > > > > > =
+
+> > > > > > > +/* Max timeout value on G4x-BDW: 1.6ms */
+> > > > > > > =A0if (IS_BROADWELL(dev_priv))
+> > > > > > > =A0timeout =3D DP_AUX_CH_CTL_TIME_OUT_600us;
+> > > > > > > =A0else
+> > > > > > > @@ -159,6 +160,12 @@ static u32 skl_get_aux_send_ctl(struct
+> > > > > > > intel_dp *intel_dp,
+> > > > > > > =A0enum phy phy =3D intel_port_to_phy(i915, dig_port-
+> > > > > > > > base.port);
+> > > > > > > =A0u32 ret;
+> > > > > > > =
+
+> > > > > > > +/*
+> > > > > > > + * Max timeout values:
+> > > > > > > + * SKL-GLK: 1.6ms
+> > > > > > > + * CNL: 3.2ms
+> > > > > > > + * ICL+: 4ms
+> > > > > > > + */
+> > > > > > > =A0ret =3D DP_AUX_CH_CTL_SEND_BUSY |
+> > > > > > > =A0=A0=A0=A0=A0=A0 DP_AUX_CH_CTL_DONE |
+> > > > > > > =A0=A0=A0=A0=A0=A0 DP_AUX_CH_CTL_INTERRUPT |
+> > > > > > > diff --git
+> > > > > > > a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > > > > > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > > > > > index 19ba7c7cbaab..c0e25c75c105 100644
+> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > > > > > @@ -82,6 +82,18 @@ static void
+> > > > > > > intel_dp_read_lttpr_phy_caps(struct intel_dp *intel_dp,
+> > > > > > > =
+
+> > > > > > > =A0static bool intel_dp_read_lttpr_common_caps(struct intel_dp
+> > > > > > > *intel_dp)
+> > > > > > > =A0{
+> > > > > > > +struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
+> > > > > > > +
+> > > > > > > +if (intel_dp_is_edp(intel_dp))
+> > > > > > > +return false;
+> > > > > > > +
+> > > > > > > +/*
+> > > > > > > + * Detecting LTTPRs must be avoided on platforms with
+> > > > > > > an AUX timeout
+> > > > > > > + * period < 3.2ms. (see DP Standard v2.0, 2.11.2,
+> > > > > > > 3.6.6.1).
+> > > > > > > + */
+> > > > > > > +if (INTEL_GEN(i915) < 10)
+> > > > > > > +return false;
+> > > > > > > +
+> > > > > > > =A0if (drm_dp_read_lttpr_common_caps(&intel_dp->aux,
+> > > > > > > =A0=A0 intel_dp-
+> > > > > > > > lttpr_common_caps) < 0) {
+> > > > > > > =A0memset(intel_dp->lttpr_common_caps, 0,
+> > > > > > > @@ -127,9 +139,6 @@ int intel_dp_lttpr_init(struct intel_dp
+> > > > > > > *intel_dp)
+> > > > > > > =A0bool ret;
+> > > > > > > =A0int i;
+> > > > > > > =
+
+> > > > > > > -if (intel_dp_is_edp(intel_dp))
+> > > > > > > -return 0;
+> > > > > > > -
+> > > > > > > =A0ret =3D intel_dp_read_lttpr_common_caps(intel_dp);
+> > > > > > > =A0if (!ret)
+> > > > > > > =A0return 0;
+> > > > > > > --
+> > > > > > > 2.25.1
+> > > > > > =
+
+> > > > > > --
+> > > > > > Ville Syrj=E4l=E4
+> > > > > > Intel
+> > =
+
+> =
+
+> -- =
+
+> Sincerely,
+>    Lyude Paul (she/her)
+>    Software Engineer at Red Hat
+>    =
+
+> Note: I deal with a lot of emails and have a lot of bugs on my plate. If =
+you've
+> asked me a question, are waiting for a review/merge on a patch, etc. and I
+> haven't responded in a while, please feel free to send me another email t=
+o check
+> on my status. I don't bite!
+> =
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
