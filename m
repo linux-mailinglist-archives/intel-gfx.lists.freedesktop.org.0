@@ -1,42 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CDFC342725
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 21:49:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A4D7342721
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 21:48:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 643EA6EABF;
-	Fri, 19 Mar 2021 20:49:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 766E06EAB4;
+	Fri, 19 Mar 2021 20:48:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6A936EAB5
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 20:49:22 +0000 (UTC)
-IronPort-SDR: O/nU0CsI5CIX7iJ5x2pW65QxQG1MfQsMrzGUXnQW5AitYdR3RNz9v8vV3bpD8q+OyhyTgYRAdZ
- JKnGFHjH0CJA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9928"; a="210000263"
-X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="210000263"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A87FE6EAB4;
+ Fri, 19 Mar 2021 20:48:03 +0000 (UTC)
+IronPort-SDR: Q7BeQBhJC77EQ8GYAODd6fAft6pLVsbw8AF7fz7D+gvmEm7i//4kST85JAG0RG+nT1/4gEyfBR
+ +T9bx4h9V1tg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9928"; a="187618231"
+X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="187618231"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2021 13:49:22 -0700
-IronPort-SDR: p9oHHqg7RglTT2KTj2TxwleeEiNUp1y9BH06GiBOVZJzTdXuni2MHLioQFnavaiAXQ5s3UugJN
- sbru/3kD3/vA==
-X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="373184273"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2021 13:48:03 -0700
+IronPort-SDR: GGbfnzjDAKmj11H3Tm18ZN+R3k3W40weQDqzt41BnD85l97ZA4H1CkVAN4mzUgPUcAHK0XG17Q
+ L0tZON5G8bng==
+X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="373184028"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
+ ([10.165.21.211])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2021 13:49:22 -0700
-Date: Fri, 19 Mar 2021 13:49:20 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20210319204920.GO3422723@mdroper-desk1.amr.corp.intel.com>
-References: <20210311153415.3024607-1-matthew.d.roper@intel.com>
- <20210311153415.3024607-3-matthew.d.roper@intel.com>
- <87h7l9oesj.fsf@intel.com>
+ 19 Mar 2021 13:48:02 -0700
+Date: Fri, 19 Mar 2021 13:54:13 -0700
+From: "Navare, Manasi" <manasi.d.navare@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20210319205413.GA6359@labuser-Z97X-UD5H>
+References: <20210302204132.12058-1-manasi.d.navare@intel.com>
+ <20210303104744.2c064f09@eldfell>
+ <20210303204433.GA15819@labuser-Z97X-UD5H>
+ <20210304104223.6b3490bc@eldfell>
+ <20210309005252.GA27491@labuser-Z97X-UD5H>
+ <20210309111350.3be0543f@eldfell>
+ <CAKMK7uEak_2YNDZpyho5bBhhYCvoXh6MoPNL6FmV9sU8oELGPA@mail.gmail.com>
+ <20210318230126.GA1900@labuser-Z97X-UD5H>
+ <YFS7mINBWsHiYIKm@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <87h7l9oesj.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2 02/23] drm/i915: Add DISPLAY_VER()
+In-Reply-To: <YFS7mINBWsHiYIKm@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Add the crtc to affected crtc
+ only if uapi.enable = true
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,129 +57,253 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniel Stone <daniels@collabora.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 17, 2021 at 07:45:00PM +0200, Jani Nikula wrote:
-> On Thu, 11 Mar 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
-> > Although we've long referred to platforms by a single "GEN" number, the
-> > hardware teams have recommended that we stop doing this since the
-> > various component IP blocks are going to start using independent number
-> > schemes with varying cadence.  To support this, hardware platforms a bit
-> > down the road are going to start providing MMIO registers that the
-> > driver can read to obtain the "graphics version," "media version," and
-> > "display version" without needing to do a PCI ID -> platform -> version
-> > translation.
-> >
-> > Although our current platforms don't yet expose these registers (and the
-> > next couple we release probably won't have them yet either), the
-> > hardware teams would still like to see us move to this independent
-> > numbering scheme now in preparation.  For i915 that means we should try
-> > to eliminate all usage of INTEL_GEN() throughout our code and instead
-> > replace it with separate GRAPHICS_VER(), MEDIA_VER(), and DISPLAY_VER()
-> > constructs in the code.  For old platforms, these will all usually give
-> > the same value for each IP block (aside from a few special cases like
-> > GLK which we can no more accurately represent as graphics=9 +
-> > display=10), but future platforms will have more flexibility to bump IP
-> > version numbers independently.
-> >
-> > The next hardware platform we'll be upstreaming (very soon!) will have a
-> > display version of 13 and a graphics version of 12, so let's just the
-> > first step of breaking out DISPLAY_VER(), but leaving the rest of
-> > INTEL_GEN() untouched for now.  For now we'll automatically
-> > derive the display version from the platform's INTEL_GEN() value except
-> > in cases where an alternative display version is explicitly provided in
-> > the device info structure.
-> >
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_drv.h          | 2 ++
-> >  drivers/gpu/drm/i915/i915_pci.c          | 2 +-
-> >  drivers/gpu/drm/i915/intel_device_info.h | 3 +++
-> >  3 files changed, 6 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> > index 4fe90a9782e8..5ec0524d3418 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -1247,6 +1247,8 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
-> >  #define INTEL_GEN(dev_priv)	(INTEL_INFO(dev_priv)->gen)
-> >  #define INTEL_DEVID(dev_priv)	(RUNTIME_INFO(dev_priv)->device_id)
-> >  
-> > +#define DISPLAY_VER(i915)	INTEL_INFO(i915)->display_ver
-> 
-> The value needs to be wrapped in parenthesis.
+On Fri, Mar 19, 2021 at 04:56:24PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Thu, Mar 18, 2021 at 04:01:26PM -0700, Navare, Manasi wrote:
+> > So basically we see this warning only in case of bigjoiner when
+> > drm_atomic_check gets called without setting the state->allow_modeset f=
+lag.
+> =
 
-It's not obvious to me what the extra parenthesis on a bunch of these
-are for.  I don't see any obvious order-of-operations problems that
-they're saving us from?
+> Considering the code is 'WARN(!state->allow_modeset, ...' that
+> fact should be rather obvious.
+> =
 
-> 
-> Maybe this should be ->display.version?
+> > =
 
-Yeah, I was torn on this.  Eventually we're going to have .graphics_ver
-and .media_ver too so it seems strange to have .display_ver as the
-special case off in its own sub-structure.  But since we haven't added
-the other two yet, I'll move it down for now and we can figure out
-whether we want to keep it there or not when the other two version
-numbers show up in the future.
+> > So do you think that in i915, in intel_atomic_check_bigjoiner() we shou=
+ld only
+> > steal the crtc when allow_modeset flag is set in state?
+> =
 
-> 
-> > +
-> >  #define REVID_FOREVER		0xff
-> >  #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
-> >  
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> > index a9f24f2bda33..3543611cf0fc 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -36,7 +36,7 @@
-> >  #include "i915_selftest.h"
-> >  
-> >  #define PLATFORM(x) .platform = (x)
-> > -#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1)
-> > +#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display_ver = x
-> 
-> x needs parenthesis.
+> No. If you fully read drm_atomic_check_only() you will observe
+> that it will reject any commit w/ allow_modeset=3D=3Dfalse which =
 
-Same question as above...what do the extra parentheses give us (other
-than consistency with the surrounding code)?  Especially since any 'x'
-passed to this macro is always a simple integer literal.
+> needs a modeset. And it does that before the WARN.
+> =
 
+> So you're barking up the wrong tree here. The problem I think
+> is that you're just computing requested_crtcs wrong.
 
-Matt
+So here in this case, requested CRTC =3D 0x1 since it requests modeset on C=
+RTC 0
+Now in teh atomic check, it steals the slave CRTC 1 and hence affected CRTC=
+ comes out
+as 0x3 and hence the mismatch.
+Now what is not clear to me is that if a full modeset was not required
+why did i915 still steal that slave CRTC?
 
-> 
-> >  
-> >  #define I845_PIPE_OFFSETS \
-> >  	.pipe_offsets = { \
-> > diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> > index d44f64b57b7a..3c7db9c690f4 100644
-> > --- a/drivers/gpu/drm/i915/intel_device_info.h
-> > +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> > @@ -162,6 +162,9 @@ struct intel_device_info {
-> >  
-> >  	u8 gen;
-> >  	u8 gt; /* GT number, 0 if undefined */
-> > +
-> > +	u8 display_ver;
-> > +
-> >  	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
-> >  
-> >  	enum intel_platform platform;
-> 
-> -- 
-> Jani Nikula, Intel Open Source Graphics Center
+Manasi
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+> =
+
+> > If we add this check there then the affected crtc wont count the slave =
+crtc
+> > and we wont get this warning.
+> > =
+
+> > Ville, Danvet?
+> > =
+
+> > Manasi
+> > =
+
+> > =
+
+> > On Tue, Mar 16, 2021 at 10:35:09PM +0100, Daniel Vetter wrote:
+> > > On Tue, Mar 9, 2021 at 10:14 AM Pekka Paalanen <ppaalanen@gmail.com> =
+wrote:
+> > > >
+> > > > On Mon, 8 Mar 2021 16:52:58 -0800
+> > > > "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
+> > > >
+> > > > > On Thu, Mar 04, 2021 at 10:42:23AM +0200, Pekka Paalanen wrote:
+> > > > > > On Wed, 3 Mar 2021 12:44:33 -0800
+> > > > > > "Navare, Manasi" <manasi.d.navare@intel.com> wrote:
+> > > > > >
+> > > > > > > On Wed, Mar 03, 2021 at 10:47:44AM +0200, Pekka Paalanen wrot=
+e:
+> > > > > > > > On Tue,  2 Mar 2021 12:41:32 -0800
+> > > > > > > > Manasi Navare <manasi.d.navare@intel.com> wrote:
+> > > > > > > >
+> > > > > > > > > In case of a modeset where a mode gets split across mutip=
+le CRTCs
+> > > > > > > > > in the driver specific implementation (bigjoiner in i915)=
+ we wrongly count
+> > > > > > > > > the affected CRTCs based on the drm_crtc_mask and indicat=
+e the stolen CRTC as
+> > > > > > > > > an affected CRTC in atomic_check_only().
+> > > > > > > > > This triggers a warning since affected CRTCs doent match =
+requested CRTC.
+> > > > > > > > >
+> > > > > > > > > To fix this in such bigjoiner configurations, we should o=
+nly
+> > > > > > > > > increment affected crtcs if that CRTC is enabled in UAPI =
+not
+> > > > > > > > > if it is just used internally in the driver to split the =
+mode.
+> > > > > > > >
+> > > > > > > > Hi,
+> > > > > > > >
+> > > > > > > > I think that makes sense to me. Stealing CRTCs that are not=
+ currently
+> > > > > > > > used by the userspace (display server) should be ok, as lon=
+g as that
+> > > > > > > > is completely invisible to userspace: meaning that it does =
+not cause
+> > > > > > > > userspace to unexpectedly e.g. receive or miss per-crtc ato=
+mic
+> > > > > > > > completion events.
+> > > > > > >
+> > > > > > > Yes since we are only doing atomic_check_only() here, the sto=
+len
+> > > > > >
+> > > > > > But the real not-test-only commit will follow if this test-only=
+ commit
+> > > > > > succeeds, and keeping the guarantees for the real commit are im=
+portant.
+> > > > >
+> > > > > Hmm well after the actual real commit, since the second crtc is s=
+tolen
+> > > > > even though it is not being used for the display output, it is
+> > > > > used for joiner so the uapi.enable will be true after the real co=
+mmit.
+> > > > >
+> > > > > so actually the assertion would fail in this case.
+> > > > >
+> > > > > @Ville @Danvet any suggestions here in that case?
+> > > =
+
+> > > That is very bad. We can't frob uapi state like that. I think that
+> > > calls for even more checks to make sure kms drivers who try to play
+> > > clever games don't get it wrong, so we probably need to check uapi
+> > > enable and active state in another mask before/after ->atomic_check
+> > > too. Or something like that.
+> > > =
+
+> > > > Hi,
+> > > >
+> > > > that is not what I was talking about, but sounds like you found a
+> > > > different problem. It seems like the problem you are talking about
+> > > > would be guaranteed to be hit if bigjoiner was used. Have you not
+> > > > tested this?
+> > > >
+> > > > However, I was talking about the real commit itself, not what happe=
+ns
+> > > > on commits after it, see below.
+> > > >
+> > > > > > > crtc is completely invisible to the userspace and hence that =
+is
+> > > > > > > indicated by uapi.enable which is not true for this stolen
+> > > > > > > crtc. However if allow modeset flag set, then it will do a fu=
+ll
+> > > > > > > modeset and indicate the uapi.enable for this stolen crtc as =
+well
+> > > > > > > since that cannot be used for other modeset requested by user=
+space.
+> > > > > > >
+> > > > > > > >
+> > > > > > > > Can that also be asserted somehow, or does this already do =
+that?
+> > > > > > >
+> > > > > > > Not clear what you want the assertion for? Could you elaborate
+> > > > > >
+> > > > > > As assertion that when the real atomic commit happens and then
+> > > > > > completion events are fired, they match exactly the affected cr=
+tcs mask.
+> > > >
+> > > > This is my concern and a question, although like I say below, only
+> > > > tangential to this patch.
+> > > >
+> > > > However, as this patch aims to allow bigjoiner usage, naturally the
+> > > > question will arise whether the completion events then match what
+> > > > userspace expects or not. Userspace does not expect completion even=
+ts
+> > > > referring to the stolen CRTCs.
+> > > =
+
+> > > Yeah we also must make sure that we don't send out events for these
+> > > additional crtc in bigjoiner usage. Sounds like igt testing didn't
+> > > catch this, I think we need a lot more igts here to make sure all
+> > > these surprises don't happen.
+> > > =
+
+> > > Plus maybe triple-checking that drm_atomic_uapi.c makes sure we can't
+> > > send out events for stuff that userspace didn't ask for.
+> > > -Daniel
+> > > =
+
+> > > >
+> > > > > > I understand this may be off-topic for this particular patch, b=
+ut since
+> > > > > > we are discussing the topic, such checks would be really nice. =
+I'm
+> > > > > > curious if such checks already exist.
+> > > >
+> > > >
+> > > > Thanks,
+> > > > pq
+> > > >
+> > > > > > > > > ---
+> > > > > > > > >  drivers/gpu/drm/drm_atomic.c | 6 ++++--
+> > > > > > > > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > > > > > > >
+> > > > > > > > > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/d=
+rm/drm_atomic.c
+> > > > > > > > > index 5b4547e0f775..d7acd6bbd97e 100644
+> > > > > > > > > --- a/drivers/gpu/drm/drm_atomic.c
+> > > > > > > > > +++ b/drivers/gpu/drm/drm_atomic.c
+> > > > > > > > > @@ -1358,8 +1358,10 @@ int drm_atomic_check_only(struct d=
+rm_atomic_state *state)
+> > > > > > > > >               }
+> > > > > > > > >       }
+> > > > > > > > >
+> > > > > > > > > -     for_each_new_crtc_in_state(state, crtc, new_crtc_st=
+ate, i)
+> > > > > > > > > -             affected_crtc |=3D drm_crtc_mask(crtc);
+> > > > > > > > > +     for_each_new_crtc_in_state(state, crtc, new_crtc_st=
+ate, i) {
+> > > > > > > > > +             if (new_crtc_state->enable)
+> > > > > > > > > +                     affected_crtc |=3D drm_crtc_mask(cr=
+tc);
+> > > > > > > > > +     }
+> > > > > > > > >
+> > > > > > > > >       /*
+> > > > > > > > >        * For commits that allow modesets drivers can add =
+other CRTCs to the
+> > > > _______________________________________________
+> > > > dri-devel mailing list
+> > > > dri-devel@lists.freedesktop.org
+> > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> > > =
+
+> > > =
+
+> > > =
+
+> > > -- =
+
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > http://blog.ffwll.ch
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
