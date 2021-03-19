@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AC60342708
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 21:38:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CDFC342725
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 21:49:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A1E86EAAD;
-	Fri, 19 Mar 2021 20:38:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 643EA6EABF;
+	Fri, 19 Mar 2021 20:49:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E22A16EAAD
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 20:38:16 +0000 (UTC)
-IronPort-SDR: SR8C81YSOqWp0Uwx8UMya6mlmSpk3yJWLNuU/z5Xctx+ee4D2qcmiIBEsspUXV7PIThMMFbson
- wBtPoqRIFwlw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9928"; a="169899563"
-X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="169899563"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2021 13:38:16 -0700
-IronPort-SDR: ZtW1sZ2GZPxnsYeWWy1Bb8hEipWx5hzJC4WehDcyQhpjX+Yja/3+kaOq/cuCHR+cJJzwZtEa5/
- daiwoSGyomMA==
-X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="450994903"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO labuser-Z97X-UD5H)
- ([10.165.21.211])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2021 13:38:16 -0700
-Date: Fri, 19 Mar 2021 13:44:27 -0700
-From: "Navare, Manasi" <manasi.d.navare@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20210319204421.GA6043@labuser-Z97X-UD5H>
-References: <20210319115333.8330-1-jani.nikula@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6A936EAB5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 20:49:22 +0000 (UTC)
+IronPort-SDR: O/nU0CsI5CIX7iJ5x2pW65QxQG1MfQsMrzGUXnQW5AitYdR3RNz9v8vV3bpD8q+OyhyTgYRAdZ
+ JKnGFHjH0CJA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9928"; a="210000263"
+X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="210000263"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2021 13:49:22 -0700
+IronPort-SDR: p9oHHqg7RglTT2KTj2TxwleeEiNUp1y9BH06GiBOVZJzTdXuni2MHLioQFnavaiAXQ5s3UugJN
+ sbru/3kD3/vA==
+X-IronPort-AV: E=Sophos;i="5.81,262,1610438400"; d="scan'208";a="373184273"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2021 13:49:22 -0700
+Date: Fri, 19 Mar 2021 13:49:20 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20210319204920.GO3422723@mdroper-desk1.amr.corp.intel.com>
+References: <20210311153415.3024607-1-matthew.d.roper@intel.com>
+ <20210311153415.3024607-3-matthew.d.roper@intel.com>
+ <87h7l9oesj.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210319115333.8330-1-jani.nikula@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsc: fix DSS CTL register usage
- for ICL DSI transcoders
+In-Reply-To: <87h7l9oesj.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 02/23] drm/i915: Add DISPLAY_VER()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,75 +49,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 19, 2021 at 01:53:33PM +0200, Jani Nikula wrote:
-> Use the correct DSS CTL registers for ICL DSI transcoders.
+On Wed, Mar 17, 2021 at 07:45:00PM +0200, Jani Nikula wrote:
+> On Thu, 11 Mar 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
+> > Although we've long referred to platforms by a single "GEN" number, the
+> > hardware teams have recommended that we stop doing this since the
+> > various component IP blocks are going to start using independent number
+> > schemes with varying cadence.  To support this, hardware platforms a bit
+> > down the road are going to start providing MMIO registers that the
+> > driver can read to obtain the "graphics version," "media version," and
+> > "display version" without needing to do a PCI ID -> platform -> version
+> > translation.
+> >
+> > Although our current platforms don't yet expose these registers (and the
+> > next couple we release probably won't have them yet either), the
+> > hardware teams would still like to see us move to this independent
+> > numbering scheme now in preparation.  For i915 that means we should try
+> > to eliminate all usage of INTEL_GEN() throughout our code and instead
+> > replace it with separate GRAPHICS_VER(), MEDIA_VER(), and DISPLAY_VER()
+> > constructs in the code.  For old platforms, these will all usually give
+> > the same value for each IP block (aside from a few special cases like
+> > GLK which we can no more accurately represent as graphics=9 +
+> > display=10), but future platforms will have more flexibility to bump IP
+> > version numbers independently.
+> >
+> > The next hardware platform we'll be upstreaming (very soon!) will have a
+> > display version of 13 and a graphics version of 12, so let's just the
+> > first step of breaking out DISPLAY_VER(), but leaving the rest of
+> > INTEL_GEN() untouched for now.  For now we'll automatically
+> > derive the display version from the platform's INTEL_GEN() value except
+> > in cases where an alternative display version is explicitly provided in
+> > the device info structure.
+> >
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/i915_drv.h          | 2 ++
+> >  drivers/gpu/drm/i915/i915_pci.c          | 2 +-
+> >  drivers/gpu/drm/i915/intel_device_info.h | 3 +++
+> >  3 files changed, 6 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > index 4fe90a9782e8..5ec0524d3418 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -1247,6 +1247,8 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+> >  #define INTEL_GEN(dev_priv)	(INTEL_INFO(dev_priv)->gen)
+> >  #define INTEL_DEVID(dev_priv)	(RUNTIME_INFO(dev_priv)->device_id)
+> >  
+> > +#define DISPLAY_VER(i915)	INTEL_INFO(i915)->display_ver
 > 
-> As a side effect, this also brings back the sanity check for trying to
-> use pipe DSC registers on pipe A on ICL.
+> The value needs to be wrapped in parenthesis.
+
+It's not obvious to me what the extra parenthesis on a bunch of these
+are for.  I don't see any obvious order-of-operations problems that
+they're saving us from?
+
 > 
-> Fixes: 8a029c113b17 ("drm/i915/dp: Modify VDSC helpers to configure DSC for Bigjoiner slave")
-> References: http://lore.kernel.org/r/87eegxq2lq.fsf@intel.com
+> Maybe this should be ->display.version?
 
-Thanks Jani for the detailed review comments here and explanation on what
-broke the DSI DSC on < Gen 12 platforms.
+Yeah, I was torn on this.  Eventually we're going to have .graphics_ver
+and .media_ver too so it seems strange to have .display_ver as the
+special case off in its own sub-structure.  But since we haven't added
+the other two yet, I'll move it down for now and we can figure out
+whether we want to keep it there or not when the other two version
+numbers show up in the future.
 
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: Animesh Manna <animesh.manna@intel.com>
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.11+
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > 
-> ---
+> > +
+> >  #define REVID_FOREVER		0xff
+> >  #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
+> >  
+> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> > index a9f24f2bda33..3543611cf0fc 100644
+> > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > @@ -36,7 +36,7 @@
+> >  #include "i915_selftest.h"
+> >  
+> >  #define PLATFORM(x) .platform = (x)
+> > -#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1)
+> > +#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display_ver = x
 > 
-> Untested, I don't have the platform.
-> ---
->  drivers/gpu/drm/i915/display/intel_vdsc.c | 10 ++--------
->  1 file changed, 2 insertions(+), 8 deletions(-)
+> x needs parenthesis.
+
+Same question as above...what do the extra parentheses give us (other
+than consistency with the surrounding code)?  Especially since any 'x'
+passed to this macro is always a simple integer literal.
+
+
+Matt
+
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index f58cc5700784..a86c57d117f2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -1014,20 +1014,14 @@ static i915_reg_t dss_ctl1_reg(const struct intel_crtc_state *crtc_state)
->  {
->  	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
->  
-> -	if (crtc_state->cpu_transcoder == TRANSCODER_EDP)
-> -		return DSS_CTL1;
-> -
-> -	return ICL_PIPE_DSS_CTL1(pipe);
-> +	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL1(pipe) : DSS_CTL1;
-
-Yes using is_pipe_dsc() makes sense here in order to select proper DSS_CTL regs
-for DSI.
-
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-
-Manasi
-
->  }
->  
->  static i915_reg_t dss_ctl2_reg(const struct intel_crtc_state *crtc_state)
->  {
->  	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
->  
-> -	if (crtc_state->cpu_transcoder == TRANSCODER_EDP)
-> -		return DSS_CTL2;
-> -
-> -	return ICL_PIPE_DSS_CTL2(pipe);
-> +	return is_pipe_dsc(crtc_state) ? ICL_PIPE_DSS_CTL2(pipe) : DSS_CTL2;
->  }
->  
->  void intel_dsc_enable(struct intel_encoder *encoder,
+> >  
+> >  #define I845_PIPE_OFFSETS \
+> >  	.pipe_offsets = { \
+> > diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> > index d44f64b57b7a..3c7db9c690f4 100644
+> > --- a/drivers/gpu/drm/i915/intel_device_info.h
+> > +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> > @@ -162,6 +162,9 @@ struct intel_device_info {
+> >  
+> >  	u8 gen;
+> >  	u8 gt; /* GT number, 0 if undefined */
+> > +
+> > +	u8 display_ver;
+> > +
+> >  	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
+> >  
+> >  	enum intel_platform platform;
+> 
 > -- 
-> 2.20.1
-> 
+> Jani Nikula, Intel Open Source Graphics Center
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
