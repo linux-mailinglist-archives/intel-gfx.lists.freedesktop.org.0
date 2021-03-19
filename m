@@ -1,52 +1,122 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9F4342625
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 20:26:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7DFC342705
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Mar 2021 21:36:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0259E6EA99;
-	Fri, 19 Mar 2021 19:26:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DE9B6EAA2;
+	Fri, 19 Mar 2021 20:36:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D9DD6EA99
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 19:26:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1616181998;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=iaEleN4vhj/UbF6WKsnMkPmeWsyI2Knns1LkBS7Hd7E=;
- b=CLM0Nqoes0wcE47W7rEbCMz3PXGAhkP/Nn9qDiJuXNhQ2mlwpJE5OASn0I/ew038LDm5Zd
- cWGpL82m3T3Vr1oas1tt2KiZFRKdTq5ga7MBCcZgx8nQyUreAHnqJu7pW5HvFDx0Bk67iO
- EgeDkojMQOBh86TH3R24PvqMSZdbQTM=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-248-H9XcRUofNdGA8ve4FGp19A-1; Fri, 19 Mar 2021 15:26:36 -0400
-X-MC-Unique: H9XcRUofNdGA8ve4FGp19A-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
- [10.5.11.11])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 8BC048189CE;
- Fri, 19 Mar 2021 19:26:35 +0000 (UTC)
-Received: from omen.home.shazbot.org (ovpn-112-120.phx2.redhat.com
- [10.3.112.120])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 2D46019CB1;
- Fri, 19 Mar 2021 19:26:35 +0000 (UTC)
-Date: Fri, 19 Mar 2021 13:26:34 -0600
-From: Alex Williamson <alex.williamson@redhat.com>
-To: Fred Gao <fred.gao@intel.com>
-Message-ID: <20210319132634.5af398b9@omen.home.shazbot.org>
-In-Reply-To: <20210302130220.9349-1-fred.gao@intel.com>
-References: <20210208170253.29968-1-fred.gao@intel.com>
- <20210302130220.9349-1-fred.gao@intel.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDDF16EAA2;
+ Fri, 19 Mar 2021 20:36:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XN3g87jrtBXH+ECgayjzEFY4yEbaTgDJ9rYpEvg3uwmPiYpUZ1pYCwyTOsLl3xTMDzecingtKJhB8De+AQAWpvTyhpn3EGS8yBachgnU34ELOLdDIuY7tUwt5ILmzvap2xDiG9wRX34h0Z0Dxa1KPAkUjle9Ap7vBHDc7Hu9vw4rhuzG1sphss18YVV2CDeTGttqZHd5TyCWqME1p4NhqD8y/EU/u9di+KLfr0ZdmZzzYOM6VZEx7qzgJ7U4oSSy30evIG370p9QTvc60IQmkAgGJB+60nDignOSDTBNonc2eYhD60rCX2YmfeMuNJbYYuh/vG/xi1HBYQ4lr2YCZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LQIOBFPbNelIpifalnYLgpdltoIMnJrjaSR/S/8uhhY=;
+ b=H/OyRZH1pGWnQwKJu/OHB+5FemIunGEhfoPCgh+rt+facLzg25m7WUY63jQXZ/MMlcJew7OdrunrQlodZ4LLfGvcmofc68BrZTowata4518pjYa8SW2iMfOpvh9+efhFM+30PnASBio5ENY8W0sdcABeKBpp15pu5QFjDvJ48qvxOL3sGVf9927z48FU1DlEfssKQrlKRDT72chTIggoSjkwDFcWLtNJ4QzGwMGp5lxSfJB1cRSE+MPpidJgi1ZHwl2HeoO8+NXJ9vCiWzrbrLcXOv6OzJdaOIgc3ma5W9Fth0CVInlHHut2j2Xl+1cmw7kagVDIijqm/W3a6LyTDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LQIOBFPbNelIpifalnYLgpdltoIMnJrjaSR/S/8uhhY=;
+ b=USoT55jOHBvjMfn2maqK/fcZ/I/TVCwJGebx94Tit7fQCiAbHD9kZ7fA0L6E+MvapL7B4f5GNkVrPEaKfaYOGMtNnAj0JYZer5wlwxTN/2RyfkSmphrTqt8aWysIK1XA7oMhDkySmZd7wCQEqDYZGm+WTL3EUTVvtme3AHnY+GE=
+Authentication-Results: ideasonboard.com; dkim=none (message not signed)
+ header.d=none;ideasonboard.com; dmarc=none action=none header.from=amd.com;
+Received: from MW3PR12MB4379.namprd12.prod.outlook.com (2603:10b6:303:5e::11)
+ by MW2PR12MB2346.namprd12.prod.outlook.com (2603:10b6:907:4::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.18; Fri, 19 Mar
+ 2021 20:36:43 +0000
+Received: from MW3PR12MB4379.namprd12.prod.outlook.com
+ ([fe80::4987:8b2f:78ca:deb8]) by MW3PR12MB4379.namprd12.prod.outlook.com
+ ([fe80::4987:8b2f:78ca:deb8%7]) with mapi id 15.20.3955.018; Fri, 19 Mar 2021
+ 20:36:43 +0000
+To: Maxime Ripard <maxime@cerno.tech>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+References: <20210319124922.144726-1-maxime@cerno.tech>
+ <20210319124922.144726-2-maxime@cerno.tech>
+From: Harry Wentland <harry.wentland@amd.com>
+Message-ID: <e92fe32f-70d1-edc1-c4af-38eee5d2a5f8@amd.com>
+Date: Fri, 19 Mar 2021 16:36:35 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+In-Reply-To: <20210319124922.144726-2-maxime@cerno.tech>
+Content-Language: en-US
+X-Originating-IP: [198.200.67.155]
+X-ClientProxiedBy: YT1PR01CA0122.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:2c::31) To MW3PR12MB4379.namprd12.prod.outlook.com
+ (2603:10b6:303:5e::11)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
-Subject: Re: [Intel-gfx] [PATCH v4] vfio/pci: Add support for opregion v2.1+
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.193] (198.200.67.155) by
+ YT1PR01CA0122.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:2c::31) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3890.25 via Frontend Transport; Fri, 19 Mar 2021 20:36:39 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: a1fb7c84-ea9e-41ad-2363-08d8eb16b4cd
+X-MS-TrafficTypeDiagnostic: MW2PR12MB2346:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <MW2PR12MB2346F4C64A93AA9E4BACE4C28C689@MW2PR12MB2346.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ycL1ySMc/cjugGFw7SA0UOOGu7yqevkpkWTfpTDdO5507AEg6ZcgQMhotqUPjWH75qVyYha8PewiuC4uAaaADERzPDy7hvLaUoos3wVC1lDMG3/YPJQrCUwXEEPk8a9RUftHxu3vfQyG+l8aXW0Cbg0qsIey40KInQz8qRGfNxYq0ErAGaA8w5mG6vENkIJW3n8NB5voQmIl+EXypcLKfEOxGVofAnMxlG39ZgxcT5qdR6RSPxs0q/X08Stx9rh0s97S9yAEtu0ALRCp9QyjZ0JZbaXtQQRcSu2yS1PriMTuLWbOIFttstHvyBEgOQZkvaa83h0ojG7sJHqbNaTGl5r5z2RVz6SYMxIh7CLQoOLC0/QmMq8pjsPdTmJMCtDJh0UX+qHxcv9eYX98Ye5KnMIZB67raWavApwSoZ8DRvFK8xJAWEPUYwmcnjl2i8xt6FhD5hfdJKHNqiIkNJju3GP9J/0gkDMwjmsVbvtGpQqKxXAqHU5d/WArUQhBTmHqVcTR9aQIiOtqv7AtwBrY2tgG2sVYnUWSNZTkuXUnVnsFxg5DHKwSyxG/RjFktxp2X5BmJ+NFSwrQSD/pSQhOR2fN7/sYzQlR2A3zVyQN7NSXx6BJT9Lkp1GAZAFo8hsXgbd5D7/Hi+hbpAg+KE8DyGR3C8C7EWrZSOzLgEUVH+aITPOkkfICBvE5Rpe1GtRXB+W6WBsR13WkWQynisqxRtYSJPW66ZViGtJpcKYTe44=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW3PR12MB4379.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(39860400002)(396003)(366004)(346002)(86362001)(478600001)(16576012)(316002)(8676002)(7416002)(36756003)(66556008)(2906002)(8936002)(5660300002)(53546011)(26005)(956004)(6486002)(66946007)(110136005)(44832011)(31686004)(2616005)(54906003)(16526019)(83380400001)(31696002)(6666004)(186003)(4326008)(38100700001)(66476007)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?T3FvRWRVWE96R3M5MUd3N0JpUWNSQ3RhS3R6RVdsam1XNWVHd0RvUFh2Rm1F?=
+ =?utf-8?B?bTlSZGVaeHdZNHB4Sk1qNE1RYzNlOUp5OFNETnFtN0RxZTdpcytlTHl5N1Uz?=
+ =?utf-8?B?d1dBZEVXK0NmQ2xLOXpwTHlLSUd2K0MvL21DSnhodzZuaUZEN3RUNUZ0WTNC?=
+ =?utf-8?B?c0k2S21NWjNVc1dnc2JHTUJXeWdVZjUrUjlDSE5sdHF3Ulo4REhwemU3bTlJ?=
+ =?utf-8?B?Sk5BT1dQd2VJRWs4d2NDMzloVURYV0duNGo1YUFlRk84R1RpNVRtU1k1VHNu?=
+ =?utf-8?B?TXJsYy8veTl4cE5IYmVHa24wRUJOZVl2QXNIcmU2ZlV5ZmhoNTBVSXAwSTZQ?=
+ =?utf-8?B?d0RIK0xRYmZBWUM5cjJpMkpmc2Z0OG5tdnVHWXV3MzYyS2FTL2QzVDFFbnZK?=
+ =?utf-8?B?MmV0UWFpajFCNGZ4bVVBSXZzWjBlQWFIS0hGcGpLWE52c1BTdGlCN0NxdHl4?=
+ =?utf-8?B?VVlNb1l6Q1RrbXJsWllvUVNnQW83b1BxSkhYdlJoZmhwTlprOUllUVFlVnNM?=
+ =?utf-8?B?ZGp2MFdDK1FjY3haOGg5ODhZZytZcEpsbU45S05Cb0xodSs0SWNxbkp3TUY2?=
+ =?utf-8?B?eEhUcEt4Sjk0NXdrZkpxMHBRWnFtQVRWb2xEeTlKRGJrMDRQanBISkxpeGVs?=
+ =?utf-8?B?djlrb1o2TFJJREg0aDFtWld3R0ZDcStPYnJwN0NhT3hPdUpNN25MWllMMHZN?=
+ =?utf-8?B?ZlBETElLc2l2YXBUUG5sSkxQb0Nxem9URXpBY002M3laeFdSNTloVnZueEhu?=
+ =?utf-8?B?dmxxMlVkTzRoS0RYd2xJaXUrQStIOWFPTlFTOWh3VDRlWjN4VzVlaVNZNnFU?=
+ =?utf-8?B?OUFmUGFpckVUeHovQ08zUmd4Sjl6WWZuNzdZWnhoblNIcnhkU1Y1MlZYWm9K?=
+ =?utf-8?B?dTZlVkdOb0Y1OXBGeWl2VW1CaG85dGxlK25HaUgvTXBOVWR6ZXh6RmVGSDB0?=
+ =?utf-8?B?UFdpMHVHSWR3NXJGdXkwWWJlYWg5akVyYVBEbzFLNnR5TjNCMk1BYXByS3I5?=
+ =?utf-8?B?VEp6aWd0aCsrcitRWGdBS1NKUEFVaDk5N3lFMFk4cnpOc2lURCtsT0JYUFJZ?=
+ =?utf-8?B?aWZ3SFg4K2pkRGpTUEI3MUFTeDNjOVNmUnB0L0FyQUpwT0VpVXk5d3pWSCs4?=
+ =?utf-8?B?N1hCaWxmT3B2VzRSZFh0eG8vcVN1REJGLzZvaDNZUXBTc3huUk03L3RYOFJk?=
+ =?utf-8?B?QzgrUDN0ZmFvNU54ZUprZWZGdXRaeDQyTmo4UW9hQVB3bFZpUGxuRFhVc2tH?=
+ =?utf-8?B?WW5GK2NBRFRNQ0RQL1diRGJ6N1UxYUhXSWRaNnZEUWZBY0RML2wxRDVRcHdF?=
+ =?utf-8?B?dEdDSlIxUUV4L25sc0hVZUlDNFV6MXJ3VW1rSXBMOE1hRHJkNkdMNzJDc2Vu?=
+ =?utf-8?B?a0x5UnBKaDcwS2Z3Rzljak1ZNWxINXdibHJ2YUVTVUFFWGFwUk12T0tNME5O?=
+ =?utf-8?B?MTJLVU5Cd2JsSzJHSHZPcW11aElIelBLWWZRLzNtcUl2OCsxMlpVK05USkJh?=
+ =?utf-8?B?N2pCWEVjazVXS2hOOUtUR243UHVtSllzdk1WVWtpc0VzRE9SMHdqVjJLS3hE?=
+ =?utf-8?B?RldveEQvSUlJTE1qcWMxODg3eUlEdkRRRkt0YTJROXJySjVpVkVibkxXcDNE?=
+ =?utf-8?B?Sm14SkJkd1gyS0R2YmxFWnNvam54cjFVWndaNGlSWW9XdHlkakJ3ZlE4Skdk?=
+ =?utf-8?B?WXhDSGVDU3B3R1RMSHorQW1MRk5XOW1aVFFzbllkZlEvUC9zZWZFQVBacW9o?=
+ =?utf-8?Q?YdvZlozqmx6mC04a3sGRRflB0yhHOZBcpdzNH6/?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1fb7c84-ea9e-41ad-2363-08d8eb16b4cd
+X-MS-Exchange-CrossTenant-AuthSource: MW3PR12MB4379.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2021 20:36:43.3561 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GqxeKIWMfqVYjbYSkd8r+CuclPmvtJJNx8JaAkIvXUgq8o+yjr9efIl65/z24mgJBSWi2NrDZtbtk9vDtn2GXQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB2346
+Subject: Re: [Intel-gfx] [PATCH 2/3] drm/connector: Add helper to compare
+ HDR metadata
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,154 +129,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Swee Yee Fonn <swee.yee.fonn@intel.com>, intel-gfx@lists.freedesktop.org,
- kvm@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Dom Cobley <dom@raspberrypi.com>,
+ Tim Gover <tim.gover@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, Leo Li <sunpeng.li@amd.com>,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Eric Anholt <eric@anholt.net>,
+ Jonas Karlman <jonas@kwiboo.se>, Andrzej Hajda <a.hajda@samsung.com>,
+ Maxime Ripard <mripard@kernel.org>, Alex Deucher <alexander.deucher@amd.com>,
+ Phil Elwell <phil@raspberrypi.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue,  2 Mar 2021 21:02:20 +0800
-Fred Gao <fred.gao@intel.com> wrote:
+On 2021-03-19 8:49 a.m., Maxime Ripard wrote:
+> All the drivers that support the HDR metadata property have a similar
+> function to compare the metadata from one connector state to the next,
+> and force a mode change if they differ.
+> 
+> All these functions run pretty much the same code, so let's turn it into
+> an helper that can be shared across those drivers.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
-> Before opregion version 2.0 VBT data is stored in opregion mailbox #4,
-> However, When VBT data exceeds 6KB size and cannot be within mailbox #4
-> starting from opregion v2.0+, Extended VBT region, next to opregion, is
-> used to hold the VBT data, so the total size will be opregion size plus
-> extended VBT region size.
-> 
-> since opregion v2.0 with physical host VBT address should not be
-> practically available for end user, it is not supported.
-> 
-> Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-> Signed-off-by: Swee Yee Fonn <swee.yee.fonn@intel.com>
-> Signed-off-by: Fred Gao <fred.gao@intel.com>
+Patches 1 & 2 are
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+
+Harry
+
 > ---
->  drivers/vfio/pci/vfio_pci_igd.c | 49 +++++++++++++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
+>   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 21 +-------------
+>   drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     | 17 +----------
+>   drivers/gpu/drm/drm_connector.c               | 28 +++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_atomic.c   | 13 +--------
+>   include/drm/drm_connector.h                   |  2 ++
+>   5 files changed, 33 insertions(+), 48 deletions(-)
 > 
-> diff --git a/drivers/vfio/pci/vfio_pci_igd.c b/drivers/vfio/pci/vfio_pci_igd.c
-> index 53d97f459252..4edb8afcdbfc 100644
-> --- a/drivers/vfio/pci/vfio_pci_igd.c
-> +++ b/drivers/vfio/pci/vfio_pci_igd.c
-> @@ -21,6 +21,10 @@
->  #define OPREGION_SIZE		(8 * 1024)
->  #define OPREGION_PCI_ADDR	0xfc
->  
-> +#define OPREGION_RVDA		0x3ba
-> +#define OPREGION_RVDS		0x3c2
-> +#define OPREGION_VERSION	0x16
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 06908a3cee0f..4eb5201e566a 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -5924,25 +5924,6 @@ static int fill_hdr_info_packet(const struct drm_connector_state *state,
+>   	return 0;
+>   }
+>   
+> -static bool
+> -is_hdr_metadata_different(const struct drm_connector_state *old_state,
+> -			  const struct drm_connector_state *new_state)
+> -{
+> -	struct drm_property_blob *old_blob = old_state->hdr_output_metadata;
+> -	struct drm_property_blob *new_blob = new_state->hdr_output_metadata;
+> -
+> -	if (old_blob != new_blob) {
+> -		if (old_blob && new_blob &&
+> -		    old_blob->length == new_blob->length)
+> -			return memcmp(old_blob->data, new_blob->data,
+> -				      old_blob->length);
+> -
+> -		return true;
+> -	}
+> -
+> -	return false;
+> -}
+> -
+>   static int
+>   amdgpu_dm_connector_atomic_check(struct drm_connector *conn,
+>   				 struct drm_atomic_state *state)
+> @@ -5960,7 +5941,7 @@ amdgpu_dm_connector_atomic_check(struct drm_connector *conn,
+>   	if (!crtc)
+>   		return 0;
+>   
+> -	if (is_hdr_metadata_different(old_con_state, new_con_state)) {
+> +	if (!drm_connector_atomic_hdr_metadata_equal(old_con_state, new_con_state)) {
+>   		struct dc_info_packet hdr_infopacket;
+>   
+>   		ret = fill_hdr_info_packet(new_con_state, &hdr_infopacket);
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> index f24bbb840dbf..f871e33c2fc9 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> @@ -2395,21 +2395,6 @@ static int dw_hdmi_connector_get_modes(struct drm_connector *connector)
+>   	return ret;
+>   }
+>   
+> -static bool hdr_metadata_equal(const struct drm_connector_state *old_state,
+> -			       const struct drm_connector_state *new_state)
+> -{
+> -	struct drm_property_blob *old_blob = old_state->hdr_output_metadata;
+> -	struct drm_property_blob *new_blob = new_state->hdr_output_metadata;
+> -
+> -	if (!old_blob || !new_blob)
+> -		return old_blob == new_blob;
+> -
+> -	if (old_blob->length != new_blob->length)
+> -		return false;
+> -
+> -	return !memcmp(old_blob->data, new_blob->data, old_blob->length);
+> -}
+> -
+>   static int dw_hdmi_connector_atomic_check(struct drm_connector *connector,
+>   					  struct drm_atomic_state *state)
+>   {
+> @@ -2423,7 +2408,7 @@ static int dw_hdmi_connector_atomic_check(struct drm_connector *connector,
+>   	if (!crtc)
+>   		return 0;
+>   
+> -	if (!hdr_metadata_equal(old_state, new_state)) {
+> +	if (!drm_connector_atomic_hdr_metadata_equal(old_state, new_state)) {
+>   		crtc_state = drm_atomic_get_crtc_state(state, crtc);
+>   		if (IS_ERR(crtc_state))
+>   			return PTR_ERR(crtc_state);
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index e25248e23e18..d781a3a1e9bf 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -2170,6 +2170,34 @@ int drm_connector_attach_hdr_output_metadata_property(struct drm_connector *conn
+>   }
+>   EXPORT_SYMBOL(drm_connector_attach_hdr_output_metadata_property);
+>   
+> +/**
+> + * drm_connector_atomic_hdr_metadata_equal - checks if the hdr metadata changed
+> + * @old_state: old connector state to compare
+> + * @new_state: new connector state to compare
+> + *
+> + * This is used by HDR-enabled drivers to test whether the HDR metadata
+> + * have changed between two different connector state (and thus probably
+> + * requires a full blown mode change).
+> + *
+> + * Returns:
+> + * True if the metadata are equal, False otherwise
+> + */
+> +bool drm_connector_atomic_hdr_metadata_equal(struct drm_connector_state *old_state,
+> +					     struct drm_connector_state *new_state)
+> +{
+> +	struct drm_property_blob *old_blob = old_state->hdr_output_metadata;
+> +	struct drm_property_blob *new_blob = new_state->hdr_output_metadata;
 > +
->  static size_t vfio_pci_igd_rw(struct vfio_pci_device *vdev, char __user *buf,
->  			      size_t count, loff_t *ppos, bool iswrite)
->  {
-> @@ -58,6 +62,7 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
->  	u32 addr, size;
->  	void *base;
->  	int ret;
-> +	u16 version;
->  
->  	ret = pci_read_config_dword(vdev->pdev, OPREGION_PCI_ADDR, &addr);
->  	if (ret)
-> @@ -83,6 +88,50 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
->  
->  	size *= 1024; /* In KB */
->  
-> +	/*
-> +	 * Support opregion v2.1+
-> +	 * When VBT data exceeds 6KB size and cannot be within mailbox #4
-
-s/#4/#4, then the/
-
-> +	 * Extended VBT region, next to opregion, is used to hold the VBT data.
-> +	 * RVDA (Relative Address of VBT Data from Opregion Base) and RVDS
-> +	 * (VBT Data Size) from opregion structure member are used to hold the
-> +	 * address from region base and size of VBT data while RVDA/RVDS
-> +	 * are not defined before opregion 2.0.
-> +	 *
-> +	 * opregion 2.0: rvda is the physical VBT address.
-
-Let's expand the comment to include why this is a problem to support
-(virtualization of this register would be required in userspace) and why
-we're choosing not to manipulate this into a 2.1+ table, which I think
-is both the practical lack of v2.0 tables in use and any implicit
-dependencies software may have on the OpRegion version.
-
-> +	 *
-> +	 * opregion 2.1+: rvda is unsigned, relative offset from
-> +	 * opregion base, and should never point within opregion.
-
-And for our purposes must exactly follow the base opregion to avoid
-exposing unknown host memory to userspace, ie. provide a more
-descriptive justification for the 2nd error condition below.
-
-> +	 */
-> +	version = le16_to_cpu(*(__le16 *)(base + OPREGION_VERSION));
-> +	if (version >= 0x0200) {
-> +		u64 rvda;
-> +		u32 rvds;
+> +	if (!old_blob || !new_blob)
+> +		return old_blob == new_blob;
 > +
-> +		rvda = le64_to_cpu(*(__le64 *)(base + OPREGION_RVDA));
-> +		rvds = le32_to_cpu(*(__le32 *)(base + OPREGION_RVDS));
-> +		if (rvda && rvds) {
-> +			/* no support for opregion v2.0 with physical VBT address */
-> +			if (version == 0x0200) {
-> +				memunmap(base);
-> +				pci_err(vdev->pdev,
-> +					"IGD passthrough does not support opregion\n"
-> +					"version 0x%x with physical rvda 0x%llx\n", version, rvda);
-
-
-Why do we need a new line midway through this log message?
-
-s/passthrough/assignment/
-
-In testing the version you include the leading zero, do you also want
-that leading zero in the printed version, ie. %04x?
-
-If we get to this code, we already know that both rvda and rvds are
-non-zero, why is it useful to print the rvda value in this error
-message?  For example, we could print:
-
- "IGD assignment does not support opregion version 0x%04x with an extended VBT region"
-
-> +				return -EINVAL;
-> +			}
+> +	if (old_blob->length != new_blob->length)
+> +		return false;
 > +
-> +			if ((u32)rvda != size) {
-
-What allows us to assume rvda is a 32bit value given that it's a 64bit
-register?  It seems safer not to include this cast.
-
-> +				memunmap(base);
-> +				pci_err(vdev->pdev,
-> +					"Extended VBT does not follow opregion !\n"
-> +					"opregion version 0x%x:rvda 0x%llx\n", version, rvda);
-
-Again I'm not sure about the usefulness of printing the rvda value on
-its own.  Without knowing the size value it seems meaningless.  Like
-above, get rid of the mid-error new line and random space if you keep
-the exclamation point.
-
-> +				return -EINVAL;
-> +			}
+> +	return !memcmp(old_blob->data, new_blob->data, old_blob->length);
+> +}
+> +EXPORT_SYMBOL(drm_connector_atomic_hdr_metadata_equal);
 > +
-> +			/* region size for opregion v2.0+: opregion and VBT size */
-> +			size += rvds;
-
-RVDS is defined as size in bytes, not in kilobytes like the base
-opregion size, right?  Let's include that clarification in the comment
-since the spec is private.  Thanks,
-
-Alex
-
-
-> +		}
-> +	}
-> +
->  	if (size != OPREGION_SIZE) {
->  		memunmap(base);
->  		base = memremap(addr, size, MEMREMAP_WB);
+>   /**
+>    * drm_connector_set_vrr_capable_property - sets the variable refresh rate
+>    * capable property for a connector
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> index e00fdc47c0eb..efec9454af5a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -109,16 +109,6 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
+>   	return -EINVAL;
+>   }
+>   
+> -static bool blob_equal(const struct drm_property_blob *a,
+> -		       const struct drm_property_blob *b)
+> -{
+> -	if (a && b)
+> -		return a->length == b->length &&
+> -			!memcmp(a->data, b->data, a->length);
+> -
+> -	return !a == !b;
+> -}
+> -
+>   int intel_digital_connector_atomic_check(struct drm_connector *conn,
+>   					 struct drm_atomic_state *state)
+>   {
+> @@ -149,8 +139,7 @@ int intel_digital_connector_atomic_check(struct drm_connector *conn,
+>   	    new_conn_state->base.picture_aspect_ratio != old_conn_state->base.picture_aspect_ratio ||
+>   	    new_conn_state->base.content_type != old_conn_state->base.content_type ||
+>   	    new_conn_state->base.scaling_mode != old_conn_state->base.scaling_mode ||
+> -	    !blob_equal(new_conn_state->base.hdr_output_metadata,
+> -			old_conn_state->base.hdr_output_metadata))
+> +	    !drm_connector_atomic_hdr_metadata_equal(old_state, new_state))
+>   		crtc_state->mode_changed = true;
+>   
+>   	return 0;
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 32172dab8427..1f51d73ca715 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1672,6 +1672,8 @@ int drm_connector_attach_scaling_mode_property(struct drm_connector *connector,
+>   int drm_connector_attach_vrr_capable_property(
+>   		struct drm_connector *connector);
+>   int drm_connector_attach_hdr_output_metadata_property(struct drm_connector *connector);
+> +bool drm_connector_atomic_hdr_metadata_equal(struct drm_connector_state *old_state,
+> +					     struct drm_connector_state *new_state);
+>   int drm_mode_create_aspect_ratio_property(struct drm_device *dev);
+>   int drm_mode_create_hdmi_colorspace_property(struct drm_connector *connector);
+>   int drm_mode_create_dp_colorspace_property(struct drm_connector *connector);
+> 
 
 _______________________________________________
 Intel-gfx mailing list
