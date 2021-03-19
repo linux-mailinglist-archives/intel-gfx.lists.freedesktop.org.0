@@ -1,56 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28993343C52
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 10:10:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 334DE343C61
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 10:10:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A275889DC1;
-	Mon, 22 Mar 2021 09:10:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C85289E0E;
+	Mon, 22 Mar 2021 09:10:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com
- [IPv6:2607:f8b0:4864:20::530])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 081946EA31
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 14:44:45 +0000 (UTC)
-Received: by mail-pg1-x530.google.com with SMTP id k24so3821254pgl.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 07:44:45 -0700 (PDT)
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com
+ [IPv6:2607:f8b0:4864:20::1033])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C9976EA31
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 14:45:57 +0000 (UTC)
+Received: by mail-pj1-x1033.google.com with SMTP id
+ k23-20020a17090a5917b02901043e35ad4aso6796252pji.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Mar 2021 07:45:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=iGtWWRPtYaesVII9xVuarQ74BpkCKYVsirQYS4eH+kw=;
- b=VQopFqQ7Oi/j1u/8XxsX/Ys7cEFxGEox7f1bx6NoTv7BEvoz2YuGPDmss5cNrpjOzy
- VAEKj4MFXAwl6WPpkX+M+hI1Hu7VonNAkypLrCqWQSz2YlE6bFVZrX+y7MYzhM61hIBF
- hMAVmp/+eBnAWvLEUGT385c0lLIE3zNjKg3yEbrxcspNhbT85xP1rQObj/i7c8C1DsTJ
- RuyzGHHLesk4ojCDSC8eApoQe9iKz0uFKGjxbFcDZGqjP1i/Qc/4i9fpNqpKjlA8WYdG
- V7Lj9zoGrF4wQEB5h/JkCwP+fOh8CXDTsErgXHi2Lk46AUjB3sux/6XHCsHuo2j0YsyK
- KJbg==
+ :cc; bh=TDOGGWm21psnrXGlHEe6HvlgMdBE2hycDbnwOwrR0qU=;
+ b=UlA8BUn9E5sUqHuUQiDVI3TjSNEzIgglN6StA4KCyVdX76E7TgzijdMXlwYNtcOU0U
+ oK0YUt9NaUKh9OYWeJPjOkj4C5gutCsoHgMAvOd4Co8G5QdGHna9dHm7ddeuPGYGq/UU
+ Si3mf/vcqt4SyjTxw+ErupnhAHbv7gJlYCmf1cF8qg82nbjZAt3Z/IIoFUghJvvgtcHU
+ +FleiDUKLNV1+6e/kdi2/1LZ5WlwKchV5dNwMhB4LJ5WQEEREoixVpYSoLkG/fUbcn/z
+ iqEMWMaGTVyjVI457AtXUukS3iu0mLK0n5p3e4aIfbfoRaFuJj8XAwJkM4jRv0vRhq69
+ yzqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=iGtWWRPtYaesVII9xVuarQ74BpkCKYVsirQYS4eH+kw=;
- b=GM2+EF8kKjXGmVZM00wlDrW13PHHy2IIoi1NtzShQjjB6P5HjabxmljYjo1/yyqcIK
- TtvmuCThqsldOBC2IQPapeqXr7hXzqSmjX4I9VAIp2zlbFZLLITxMqD+juJ48hWhJ+la
- V2OyxWKE1uJbujvxGBe9oGO8dFS2Vk8AOuW147kFAszPdMsUlZePKFzKlXbCao569OoM
- Fyc4xRAXTyaxGLP+iowSElVpkFzNblPiWms+7DbZRo//UHSesxdbKlUFe+VmZHOSLR0y
- /0/OZZh2CUqdOrACvzBdQPf5cTUh0OtrGiMxnwVZ1XrsTRoVooNEu8ymeptxYocrvwo6
- qgEA==
-X-Gm-Message-State: AOAM531u36BGeUt5IqCsn5Kjfe6kyoifroW4mubSeOWD/NG7CqcNa/p7
- y6iKPKlCVFI11q7Umqtb/xDi7Y9XSWl8yxpP8la23Q==
-X-Google-Smtp-Source: ABdhPJzrBJishtLlW1vLHQuX3g9moCjtqg8gvKyfKMXQAVynNrWk794TQB88/EgV8doHLowCXDYIwqS+scDaYBD2Ma4=
-X-Received: by 2002:a63:ee4b:: with SMTP id n11mr11862551pgk.265.1616165084661; 
- Fri, 19 Mar 2021 07:44:44 -0700 (PDT)
+ bh=TDOGGWm21psnrXGlHEe6HvlgMdBE2hycDbnwOwrR0qU=;
+ b=XgzHLQdrbRnr5tKIpQBZj/RhE8NKVCR+Ivsc0nuDVdQL5iWnt+0F1pLoxLM+Q1XVsk
+ 0BaiE2lYtMp+26VXpQGfkC88DdR2xoPwR0qY0l1vwyDUgu+aKY3g9THKXxrWYfWMkHzG
+ PCnC1rITye/wOch7JtdevBKLgKuOo0J+xbn3uA8H5aXQ2V62TdQl1CSiHUdTEAz/BQi6
+ yXkxNMRSjKEK0WiJghv798/0ukbUG/r0AzNAflEG5uh4svwI2lFH7c20PkdXIt0oh0Yn
+ riIXer6+UAAHytGXvXB85tG4NkA0S3ouSLylt2btIiNW3FzmTcO/96oxAB6siOY+taYH
+ 4FMQ==
+X-Gm-Message-State: AOAM530hCWV3t6H621i1rjTdZqLJA0j4S9d5hnxGQSmb8GUrSNqWtxvB
+ cRG0nLAtYXpIAdiExa61QoSA+V4OPN2VwrZp02S4yw==
+X-Google-Smtp-Source: ABdhPJxweZfNiCPg9C7NrDu3mAB+yl61lfkYpCt6KNMgXUL5b8ziQQV9oK2kr7DsR12MgPe9uLa2ifDL7vrvhQ8WUh4=
+X-Received: by 2002:a17:902:e752:b029:e6:822c:355c with SMTP id
+ p18-20020a170902e752b02900e6822c355cmr14735796plf.69.1616165156604; Fri, 19
+ Mar 2021 07:45:56 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210219215326.2227596-1-lyude@redhat.com>
- <20210219215326.2227596-13-lyude@redhat.com>
-In-Reply-To: <20210219215326.2227596-13-lyude@redhat.com>
+ <20210219215326.2227596-14-lyude@redhat.com>
+In-Reply-To: <20210219215326.2227596-14-lyude@redhat.com>
 From: Robert Foss <robert.foss@linaro.org>
-Date: Fri, 19 Mar 2021 15:44:33 +0100
-Message-ID: <CAG3jFysehSDHFFXAAc5VexAjyVhCq6hUyD8yWFsE6V3hv_9iPA@mail.gmail.com>
+Date: Fri, 19 Mar 2021 15:45:45 +0100
+Message-ID: <CAG3jFyuJ=_Ab_LXNANs7VQAkgB16KC47zmibK1fXUKGvrGNUEw@mail.gmail.com>
 To: Lyude Paul <lyude@redhat.com>
 X-Mailman-Approved-At: Mon, 22 Mar 2021 09:10:08 +0000
-Subject: Re: [Intel-gfx] [PATCH 12/30] drm/bridge/analogix/anx6345: Cleanup
- on errors in anx6345_bridge_attach()
+Subject: Re: [Intel-gfx] [PATCH 13/30] drm/bridge/analogix/dp_core:
+ Unregister DP AUX channel on error in analogix_dp_probe()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,15 +65,15 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jernej Skrabec <jernej.skrabec@siol.net>,
+Cc: Jernej Skrabec <jernej.skrabec@siol.net>, Joe Perches <joe@perches.com>,
  dri-devel <dri-devel@lists.freedesktop.org>,
  Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
  nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Jonas Karlman <jonas@kwiboo.se>, open list <linux-kernel@vger.kernel.org>,
- Vasily Khoruzhick <anarsoul@gmail.com>, Andrzej Hajda <a.hajda@samsung.com>,
- Torsten Duwe <duwe@lst.de>, amd-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>, Joe Perches <joe@perches.com>,
- Icenowy Zheng <icenowy@aosc.io>, Sam Ravnborg <sam@ravnborg.org>,
+ Andrzej Hajda <a.hajda@samsung.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Andy Yan <andy.yan@rock-chips.com>, Sam Ravnborg <sam@ravnborg.org>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -86,52 +88,27 @@ Reviewed-by: Robert Foss <robert.foss@linaro.org>
 
 On Fri, 19 Feb 2021 at 22:58, Lyude Paul <lyude@redhat.com> wrote:
 >
-> Another drive-by fix I found when fixing DP AUX adapter across the kernel
-> tree - make sure we don't leak resources (and by proxy-AUX adapters) on
-> failures in anx6345_bridge_attach() by unrolling on errors.
+> Just another drive-by fix I noticed while going through the tree to cleanup
+> DP aux adapter registration - make sure we unregister the DP AUX dev if
+> analogix_dp_probe() fails.
 >
 > Signed-off-by: Lyude Paul <lyude@redhat.com>
 > ---
->  drivers/gpu/drm/bridge/analogix/analogix-anx6345.c | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c b/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
-> index 6258f16da0e8..aa6cda458eb9 100644
-> --- a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
-> +++ b/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
-> @@ -550,7 +550,7 @@ static int anx6345_bridge_attach(struct drm_bridge *bridge,
->                                  DRM_MODE_CONNECTOR_eDP);
->         if (err) {
->                 DRM_ERROR("Failed to initialize connector: %d\n", err);
-> -               return err;
-> +               goto aux_unregister;
->         }
+> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> index aa1bb86293fd..f115233b1cb9 100644
+> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> @@ -1782,6 +1782,7 @@ int analogix_dp_bind(struct analogix_dp_device *dp, struct drm_device *drm_dev)
 >
->         drm_connector_helper_add(&anx6345->connector,
-> @@ -562,16 +562,21 @@ static int anx6345_bridge_attach(struct drm_bridge *bridge,
->                                            bridge->encoder);
->         if (err) {
->                 DRM_ERROR("Failed to link up connector to encoder: %d\n", err);
-> -               return err;
-> +               goto connector_cleanup;
->         }
+>  err_disable_pm_runtime:
+>         pm_runtime_disable(dp->dev);
+> +       drm_dp_aux_unregister(&dp->aux);
 >
->         err = drm_connector_register(&anx6345->connector);
->         if (err) {
->                 DRM_ERROR("Failed to register connector: %d\n", err);
-> -               return err;
-> +               goto connector_cleanup;
->         }
->
->         return 0;
-> +connector_cleanup:
-> +       drm_connector_cleanup(&anx6345->connector);
-> +aux_unregister:
-> +       drm_dp_aux_unregister(&anx6345->aux);
-> +       return err;
+>         return ret;
 >  }
->
->  static void anx6345_bridge_detach(struct drm_bridge *bridge)
 > --
 > 2.29.2
 >
