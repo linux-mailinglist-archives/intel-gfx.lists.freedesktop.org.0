@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24013344B03
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 17:20:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17A0E344B14
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 17:21:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72CCF6E517;
-	Mon, 22 Mar 2021 16:20:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67B086E517;
+	Mon, 22 Mar 2021 16:21:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC3B96E517
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 16:20:02 +0000 (UTC)
-IronPort-SDR: q7A/VKa7NW/lNrXUIjRFnvciNbIyFLxyPryRz2W/rfga/PlCl4tk16BhAVWgJleZRbvg60MymX
- +gc0xLISMYdQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="190331031"
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="190331031"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 856A86E517
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 16:21:00 +0000 (UTC)
+IronPort-SDR: 0MAnBg/HKsFQJliyIo+cVpaanXreA9qqm+dU47ue7aBgYYMUi61hZO7kWYi/yn3mKCQ9Tbb1zh
+ mG5Gp/XhG5sw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="190331249"
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="190331249"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2021 09:19:45 -0700
-IronPort-SDR: 03ediMbjLqmrJ1FV5WdfTGePLAyTX2lPxYSHZT4Dcg1lCbdGZkg79+zwz62Vqrq12GHtiA2fKA
- pi1HL3BZ8q7A==
+ 22 Mar 2021 09:21:00 -0700
+IronPort-SDR: fcvBmp2YK+HW0dGQnl7fOPCoHvqd3NrEOIlteI+08jcid3EfmuZBM330q6NfDj3hdDD2IXNiwz
+ 6c0NzXyxjReA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="414555134"
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="451790876"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 22 Mar 2021 09:19:41 -0700
+ by orsmga001.jf.intel.com with SMTP; 22 Mar 2021 09:20:57 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 22 Mar 2021 18:19:40 +0200
-Date: Mon, 22 Mar 2021 18:19:40 +0200
+ Mon, 22 Mar 2021 18:20:57 +0200
+Date: Mon, 22 Mar 2021 18:20:57 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
-Message-ID: <YFjDnIjpYAuD75MR@intel.com>
+Message-ID: <YFjD6WRb/XEAvZbu@intel.com>
 References: <20210322143008.29250-1-bhanuprakash.modem@intel.com>
+ <20210322143008.29250-6-bhanuprakash.modem@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210322143008.29250-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20210322143008.29250-6-bhanuprakash.modem@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 0/7] drm/i915: Add state checker for CSC
- coeff values
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915/display: Extract ilk_read_csc()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,38 +56,106 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 22, 2021 at 08:00:01PM +0530, Bhanuprakash Modem wrote:
-> In this patch series, added state checker to validate CSC. This reads
-> hardware state, and compares the originally requested state(s/w). This
-> is done for chv, ilk, glk and their variant platforms. Rest of
-> the platforms will be enabled on top of this later.
+On Mon, Mar 22, 2021 at 08:00:06PM +0530, Bhanuprakash Modem wrote:
+> For ilk+, add hw read out to create hw blob of ctm coeff values.
+
+We need an explanation why this is safe given display w/a 1184...
+
 > =
 
+> Cc: Swati Sharma <swati2.sharma@intel.com>
+> Cc: Uma Shankar <uma.shankar@intel.com>
 > Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_color.c | 52 ++++++++++++++++++++++
+>  1 file changed, 52 insertions(+)
 > =
 
-> Bhanuprakash Modem (7):
->   drm/i915/display: Introduce vfunc read_csc() to create hw ctm
->   drm/i915/display: Add func to compare hw/sw CSC matrix
->   drm/i915/display: Add macro to compare hw/sw CSC matrix
->   drm/i915/display: Extract chv_read_csc()
->   drm/i915/display: Extract ilk_read_csc()
->   drm/i915/display: Extract icl_read_csc()
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm=
+/i915/display/intel_color.c
+> index 15f97fbb77b3..877833f294bb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -321,6 +321,54 @@ static void ilk_load_csc_matrix(const struct intel_c=
+rtc_state *crtc_state)
+>  		       crtc_state->csc_mode);
+>  }
+>  =
 
-The patch subjects are confusing me. You're not extracting any code
-AFAICS?
+> +static struct drm_property_blob *ilk_read_csc_matrix(struct intel_crtc *=
+crtc)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +	enum pipe pipe =3D crtc->pipe;
+> +	struct drm_property_blob *blob;
+> +	struct drm_color_ctm *ctm;
+> +	u32 temp;
+> +
+> +	blob =3D drm_property_create_blob(&dev_priv->drm,
+> +					sizeof(struct drm_color_ctm),
+> +					NULL);
+> +	if (IS_ERR(blob))
+> +		return NULL;
+> +
+> +	ctm =3D blob->data;
+> +
+> +	temp =3D intel_de_read(dev_priv, PIPE_CSC_COEFF_RY_GY(pipe));
+> +	ctm->matrix[0] =3D (temp >> 16) & 0xffff;
+> +	ctm->matrix[1] =3D temp & 0xffff;
+> +
+> +	temp =3D intel_de_read(dev_priv, PIPE_CSC_COEFF_BY(pipe));
+> +	ctm->matrix[2] =3D (temp >> 16) & 0xffff;
+> +
+> +	temp =3D intel_de_read(dev_priv, PIPE_CSC_COEFF_RU_GU(pipe));
+> +	ctm->matrix[3] =3D (temp >> 16) & 0xffff;
+> +	ctm->matrix[4] =3D temp & 0xffff;
+> +
+> +	temp =3D intel_de_read(dev_priv, PIPE_CSC_COEFF_BU(pipe));
+> +	ctm->matrix[5] =3D (temp >> 16) & 0xffff;
+> +
+> +	temp =3D intel_de_read(dev_priv, PIPE_CSC_COEFF_RV_GV(pipe));
+> +	ctm->matrix[6] =3D (temp >> 16) & 0xffff;
+> +	ctm->matrix[7] =3D temp & 0xffff;
+> +
+> +	temp =3D intel_de_read(dev_priv, PIPE_CSC_COEFF_BV(pipe));
+> +	ctm->matrix[8] =3D (temp >> 16) & 0xffff;
+> +
+> +	return blob;
+> +}
+> +
+> +static void ilk_read_csc(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +
+> +	if (crtc_state->csc_enable)
+> +		crtc_state->hw.ctm =3D ilk_read_csc_matrix(crtc);
+> +}
+> +
+>  static void icl_load_csc_matrix(const struct intel_crtc_state *crtc_stat=
+e)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -2226,13 +2274,17 @@ void intel_color_init(struct intel_crtc *crtc)
+>  		} else if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)) {
+>  			dev_priv->display.load_luts =3D glk_load_luts;
+>  			dev_priv->display.read_luts =3D glk_read_luts;
+> +			dev_priv->display.read_csc =3D ilk_read_csc;
+>  		} else if (INTEL_GEN(dev_priv) >=3D 8) {
+>  			dev_priv->display.load_luts =3D bdw_load_luts;
+> +			dev_priv->display.read_csc =3D ilk_read_csc;
+>  		} else if (INTEL_GEN(dev_priv) >=3D 7) {
+>  			dev_priv->display.load_luts =3D ivb_load_luts;
+> +			dev_priv->display.read_csc =3D ilk_read_csc;
+>  		} else {
+>  			dev_priv->display.load_luts =3D ilk_load_luts;
+>  			dev_priv->display.read_luts =3D ilk_read_luts;
+> +			dev_priv->display.read_csc =3D ilk_read_csc;
+>  		}
+>  	}
+>  =
 
->   FOR_TESTING_ONLY: Print coeffs of hw and sw CTM
-> =
+> -- =
 
->  drivers/gpu/drm/i915/display/intel_color.c   | 209 ++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_color.h   |   3 +
->  drivers/gpu/drm/i915/display/intel_display.c |  31 +++
->  drivers/gpu/drm/i915/i915_drv.h              |   1 +
->  4 files changed, 239 insertions(+), 5 deletions(-)
-> =
-
-> --
 > 2.20.1
 > =
 
