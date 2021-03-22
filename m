@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9225A3452EE
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 00:20:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD82A3452F7
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 00:25:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17B396E7FE;
-	Mon, 22 Mar 2021 23:20:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E7276E808;
+	Mon, 22 Mar 2021 23:25:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CA7056E7FE;
- Mon, 22 Mar 2021 23:20:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id C104F6E802;
+ Mon, 22 Mar 2021 23:25:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B922BA363D;
- Mon, 22 Mar 2021 23:20:13 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B1E0EA0003;
+ Mon, 22 Mar 2021 23:25:18 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Imre Deak" <imre.deak@intel.com>
-Date: Mon, 22 Mar 2021 23:20:13 -0000
-Message-ID: <161645521372.19227.4892694577246141732@emeril.freedesktop.org>
+Date: Mon, 22 Mar 2021 23:25:18 -0000
+Message-ID: <161645551870.19228.6783705267644780316@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210322204223.919936-1-imre.deak@intel.com>
 In-Reply-To: <20210322204223.919936-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Fix_the_GT_fence_revocation_runtime_PM_logic?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915=3A_Fix_the_GT_fence_revocation_runtime_PM_logic?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,21 +53,10 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-85e423a9bccf drm/i915: Fix the GT fence revocation runtime PM logic
--:90: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'rpm' - possible side-effects?
-#90: FILE: drivers/gpu/drm/i915/intel_runtime_pm.h:192:
-+#define with_intel_runtime_pm_if_active(rpm, wf) \
-+	for ((wf) = intel_runtime_pm_get_if_active(rpm); (wf); \
-+	     intel_runtime_pm_put((rpm), (wf)), (wf) = 0)
-
--:90: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'wf' - possible side-effects?
-#90: FILE: drivers/gpu/drm/i915/intel_runtime_pm.h:192:
-+#define with_intel_runtime_pm_if_active(rpm, wf) \
-+	for ((wf) = intel_runtime_pm_get_if_active(rpm); (wf); \
-+	     intel_runtime_pm_put((rpm), (wf)), (wf) = 0)
-
-total: 0 errors, 0 warnings, 2 checks, 58 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/intel_runtime_pm.c:430: warning: expecting prototype for intel_runtime_pm_get_if_in_use(). Prototype was for __intel_runtime_pm_get_if_active() instead
+./drivers/gpu/drm/i915/intel_runtime_pm.c:430: warning: Function parameter or member 'ignore_usecount' not described in '__intel_runtime_pm_get_if_active'
+./drivers/gpu/drm/i915/intel_runtime_pm.c:430: warning: expecting prototype for intel_runtime_pm_get_if_in_use(). Prototype was for __intel_runtime_pm_get_if_active() instead
 
 
 _______________________________________________
