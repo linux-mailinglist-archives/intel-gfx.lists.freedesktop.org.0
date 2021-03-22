@@ -1,43 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F2EC34482C
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 15:53:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57D96344851
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 15:57:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A543F89D42;
-	Mon, 22 Mar 2021 14:53:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AAD4893D1;
+	Mon, 22 Mar 2021 14:57:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D05C6E4C4
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 14:53:12 +0000 (UTC)
-IronPort-SDR: Cyybxdwb1o1wlSk1sGcYCj8WIAXzNZMPSSUCLWTm/78KOU4Yx/z3U9Bxv97040vpOqdQ1xXjG/
- jD4mMm4/w3pQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="186965916"
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="186965916"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2021 07:53:11 -0700
-IronPort-SDR: tOYSWfqfXaOWjAqcm/UK1IAbL5WGUxsG3C/JcAAmgjMJLSdRoUyR21s6cItU+Q7++cCTP8LODY
- wgb2LKhBIP2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="441207032"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 22 Mar 2021 07:53:08 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 22 Mar 2021 16:53:08 +0200
-Date: Mon, 22 Mar 2021 16:53:08 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <YFivVDZ/j6sybifB@intel.com>
-References: <28b8cfd3f29d3e5ed4224c687ef173d6c45e028d.camel@gmx.net>
- <5ad5226b-91ce-8685-4c3f-e6890dd642a2@redhat.com>
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com
+ [IPv6:2607:f8b0:4864:20::22b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A73C2893D1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 14:57:38 +0000 (UTC)
+Received: by mail-oi1-x22b.google.com with SMTP id n8so13320892oie.10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 07:57:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Uc9jOiPjsv2+bqSBL/UB3Xjl7J144/LUH8xpcAEOibs=;
+ b=heBUEZfZZoOyR8MmdjLoK2JXO5B8gUdUnRo9DFCHvQaG0yeJrvNT7gmzeWxebdrhX6
+ /oNr1+Lh2To4dm5rEdbLYFaGTzTyXxJFjL4eOZ05qMJkg773Uhhq+PbOVAqwwMyGuBNs
+ tp88AtEUqDJzgRQ6DqRTCuI9lizs3rfru43v8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Uc9jOiPjsv2+bqSBL/UB3Xjl7J144/LUH8xpcAEOibs=;
+ b=ThwrOybaHgZqHtdHxAHMUYzqidRKwyS0i30IB58TxRmiSeYct/2G1duZr/IsNpjLgP
+ TmA4CfPstL/hm8OVTTWYGCjewTZvidD2+3NhZUopzCXef7Hc61FTKiATJM+fizBxIoqk
+ ehQAzEgsc5mDFOMQRXdhadeHRmg/PyE/JzBY84wjtIvQurqIZastvrSFPDMdZYCNOgK6
+ nS6MaMJAcKK1mkdtA//Zptyqmz0xIxoGaPrZSuFTo3gXc0ZXXGsJia1+7cuXatTiROYF
+ pZBRlBVMGEc54gGscd35KttxzM4dMYo7dDM+afGE0zaxhLuODqWpViwaazAFZCD6uRPK
+ BeeA==
+X-Gm-Message-State: AOAM533+HsK+VC8UG3eKbZR20pUinD2uLFmT6sUO0UWb/YlIhToTBK++
+ lk0OC4u/UPZZZnWrbOoc/n168FzX3tl3/4gAW/YT9A==
+X-Google-Smtp-Source: ABdhPJyjDGAwVZ/0yIPR+9WUk5MNvew5cQ3cyVvemLg/Ph4RrJziV/YSRltWbRbxxhRMcdpLbJFkFncHdIE4zeDnA1M=
+X-Received: by 2002:aca:b646:: with SMTP id g67mr103771oif.14.1616425057978;
+ Mon, 22 Mar 2021 07:57:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <5ad5226b-91ce-8685-4c3f-e6890dd642a2@redhat.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [bug report] drm/i915: Computer does not shutdown,
+References: <20210319223856.2983244-1-jason@jlekstrand.net>
+ <20210319223856.2983244-4-jason@jlekstrand.net>
+ <7918db68-835c-b416-6187-1e62892ce5ed@linux.intel.com>
+ <YFilKSbKYd+0HbCn@phenom.ffwll.local>
+ <d83162e2-4b9e-c7e9-5324-6612bb9561d6@linux.intel.com>
+In-Reply-To: <d83162e2-4b9e-c7e9-5324-6612bb9561d6@linux.intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Mon, 22 Mar 2021 15:57:27 +0100
+Message-ID: <CAKMK7uG0GLPu+auqDgMgD7ugvWo3E7W7DL6eALKxmp6hk-aZiA@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Drop the CONTEXT_CLONE API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,76 +61,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Mario =?iso-8859-1?Q?H=FCttel?= <mario.huettel@gmx.net>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 22, 2021 at 11:45:39AM +0100, Hans de Goede wrote:
-> Hi,
-> =
+On Mon, Mar 22, 2021 at 3:33 PM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+>
+> On 22/03/2021 14:09, Daniel Vetter wrote:
+> > On Mon, Mar 22, 2021 at 11:22:01AM +0000, Tvrtko Ursulin wrote:
+> >>
+> >> On 19/03/2021 22:38, Jason Ekstrand wrote:
+> >>> This API allows one context to grab bits out of another context upon
+> >>> creation.  It can be used as a short-cut for setparam(getparam()) for
+> >>> things like I915_CONTEXT_PARAM_VM.  However, it's never been used by any
+> >>> real userspace.  It's used by a few IGT tests and that's it.  Since it
+> >>> doesn't add any real value (most of the stuff you can CLONE you can copy
+> >>> in other ways), drop it.
+> >>
+> >> No complaints to remove if it ended up unused outside IGT. Latter is a _big_
+> >> problem though, since it is much more that a few IGT tests. So I really
+> >> think there really needs to be an evaluation and a plan for that (we don't
+> >> want to lose 50% of the coverage over night).
+> >>
+> >>> There is one thing that this API allows you to clone which you cannot
+> >>> clone via getparam/setparam: timelines.  However, timelines are an
+> >>> implementation detail of i915 and not really something that needs to be
+> >>
+> >> Not really true timelines are i915 implementation detail. They are in fact a
+> >> dma-fence context:seqno concept, nothing more that than. I think you are
+> >> probably confusing struct intel_timeline with the timeline wording in the
+> >> uapi. Former is i915 implementation detail, but context:seqno are truly
+> >> userspace timelines.
+> >
+> > I think you're both saying the same thing and talking a bit past each
+> > another.
+> >
+> > Yes the timeline is just a string of dma_fence, that's correct. Now
+> > usually if you submit batches with execbuf, we have 3 ways to synchronize
+> > concurrent submission: implicit sync, sync_file and drm_syncob. They all
+> > map to different needs in different protocols/render apis.
+> >
+> > Now in one additional case the kernel makes sure that batchbuffers are
+> > ordered, and that's when you submit them to the same hw ctx. Because
+> > there's only 1 hw context and you really can't have batchbuffers run on
+> > that single hw context out of order. That's what the timeline object we
+> > talk about here is. But that largely is an internal implementation detail,
+> > which happens to also use most/all the same infrastructure as the
+> > dma_fence uapi pieces above.
+> >
+> > Now the internal implementation detail leaking here is that we exposed
+> > this to userspace, without there being any need for this. What Jason
+> > implements with syncobj in the next patch is essentially what userspace
+> > should have been using for cross-engine sync. media userspace doesn't care
+> > about interop with winsys/client apis, so they equally could have used
+> > implicit sync or sync_file here (which I think is the solution now for the
+> > new uapi prepped internally), since they all are about equally powerful
+> > for stringing batchbuffers together.
+>
+> Are you saying we exposed a single timeline of execution per hw context
+> via the single timeline flag?!
 
-> On 3/14/21 11:30 AM, Mario H=FCttel wrote:
-> > Hello,
-> > =
+Nope.
 
-> > It seems, like the mailing list, didn't accept my email. So I'll send
-> > it again:
-> > =
+> Timelines of execution were always exposed. Any "engine" (ring
+> previously) in I915_EXEC_RING_MASK was a single timeline of execution.
+> It is completely the same with engine map engines, which are also
+> different indices into I915_EXEC_RING_MASK space.
+>
+> Userspace was aware of these timelines forever as well. Media was
+> creating multiple contexts to have multiple timelines (so parallelism).
+> Everyone knew that engine-hopping submissions needs to be either
+> implicitly or explicitly synchronised, etc.
 
-> > I want to report a bug. I have a PC with Intel i7-6700K processor (with
-> > integrated graphics) and an AsRock Fatal1ty Z170 Gaming K6 mainboard. I
-> > use the CPU's integrated graphics.
-> > My system is Archlinux with Kernel v5.11.6.
-> > =
+Yup, I think we're saying the same thing here.
 
-> > Using this setup, my PC works normally. However, when I shut it down,
-> > the power is not cut. Fans keep spinning and LEDs stay on. I couldn't
-> > detect any other problem when shutting down. Drives etc. stop as
-> > expected and the video is blank. Even after waiting several hours, the
-> > system doesn't power down.
-> > =
+> So I really don't see that we have leaked timelines as a concept *now*.
+> What the patch has exposed to userspace is a new way to sync between
+> timelines and nothing more.
 
-> > Restarts work normally.
-> > =
-
-> > I haven't yet found any other people on the internet that have the same
-> > bug.
-> > =
-
-> > I used git bisect to find the commit that causes this behavior on my
-> > machine.
-> =
-
-> Thank you for doing a bisect that is always very helpful.
-> =
-
-> > The result is: fe0f1e3bfdfeb53e18f1206aea4f40b9bd1f291c is the
-> > first bad commit.
-> =
-
-> To save others the trouble of having to look up the hasj, that is:
-> =
-
-> "drm/i915: Shut down displays gracefully on reboot"
-> =
-
-> Which is the same commit as which I've reported is causing issues
-> with DSI panels not lighting up on reboots on some BYT/CHT devices.
-> =
-
-> Since this seems to mostly be intended to fix issues surrounding
-> DP MST stuff, maybe the graceful shutdown should only be done when
-> MST is in use?
-
-No. It also fixes Windows, lols.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+We've leaked it as something you can now share across hw context.
+Which is possible because of how it's internally implemented (I think
+load balancer relies on that), but not really a synchronization
+primitive we want to export as such to userspace. We have other
+interfaces and concepts for that.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
