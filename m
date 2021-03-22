@@ -2,42 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DDCA344F21
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 19:53:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DBA9344F9B
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 20:07:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 984B76E151;
-	Mon, 22 Mar 2021 18:53:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0E976E598;
+	Mon, 22 Mar 2021 19:07:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E21026E151
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 18:53:20 +0000 (UTC)
-IronPort-SDR: gsvWNCtRrrcJJZ2XP+n+BO3oPA8ouXrQ0aiY5Mh/yF0oexsP1hNjXeG+HvjIBXU8geXuSYx14Q
- q9lEzRBfeRIg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="190356833"
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="190356833"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2021 11:53:19 -0700
-IronPort-SDR: EmpVV58sgW0/bcZEqh10B+yKeHR13jpwOYrI3n/z8GI8FGKXj5ArPLEdMkYFRWkR7jubJYNuN/
- /dXQcbD7a2gA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="407947145"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 22 Mar 2021 11:53:16 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 22 Mar 2021 20:53:16 +0200
-Date: Mon, 22 Mar 2021 20:53:16 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <YFjnnFhUtO9zVO0O@intel.com>
-References: <20210322181055.207619-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 742BE6E595;
+ Mon, 22 Mar 2021 19:07:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6D2BAA363D;
+ Mon, 22 Mar 2021 19:07:09 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Mon, 22 Mar 2021 19:07:09 -0000
+Message-ID: <161644002941.19229.13227971707855677558@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210322181055.207619-1-jose.souza@intel.com>
 In-Reply-To: <20210322181055.207619-1-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Warn when display irq
- functions are called without display
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Warn_when_display_irq_f?=
+ =?utf-8?q?unctions_are_called_without_display?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,193 +39,412 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1445287328=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 22, 2021 at 11:10:53AM -0700, Jos=E9 Roberto de Souza wrote:
-> With previous changes none of those warnings will be printed but let's
-> add them so CI can caught regressions.
-> =
+--===============1445287328==
+Content-Type: multipart/alternative;
+ boundary="===============8717786598763156025=="
 
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_fifo_underrun.c  |  2 ++
->  drivers/gpu/drm/i915/display/intel_hotplug.c    |  2 ++
->  drivers/gpu/drm/i915/i915_irq.c                 | 17 +++++++++++++++++
->  3 files changed, 21 insertions(+)
-> =
+--===============8717786598763156025==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers=
-/gpu/drm/i915/display/intel_fifo_underrun.c
-> index 813a4f7033e1..f3631e319e5d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-> @@ -373,6 +373,8 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i=
-915_private *dev_priv,
->  {
->  	struct intel_crtc *crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
->  =
+== Series Details ==
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
+Series: series starting with [1/3] drm/i915: Warn when display irq functions are called without display
+URL   : https://patchwork.freedesktop.org/series/88294/
+State : success
 
-Sprinkling these everywhere isn't great. Would be better to stick them
-into just the top level display irq handlers.
+== Summary ==
 
->  	/* We may be called too early in init, thanks BIOS! */
->  	if (crtc =3D=3D NULL)
->  		return;
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/d=
-rm/i915/display/intel_hotplug.c
-> index f46a1b7190b8..77ce4a54a137 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> @@ -478,6 +478,8 @@ void intel_hpd_irq_handler(struct drm_i915_private *d=
-ev_priv,
->  	if (!pin_mask)
->  		return;
->  =
+CI Bug Log - changes from CI_DRM_9880 -> Patchwork_19829
+====================================================
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
->  	spin_lock(&dev_priv->irq_lock);
->  =
+Summary
+-------
 
->  	/*
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
-irq.c
-> index 44aed4cbf894..cbb2aae4fc13 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -519,6 +519,8 @@ void i915_enable_pipestat(struct drm_i915_private *de=
-v_priv,
->  	i915_reg_t reg =3D PIPESTAT(pipe);
->  	u32 enable_mask;
->  =
+  **SUCCESS**
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
+  No regressions found.
 
-Not much point in adding these to any gmch code. It's never
-going to trip.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/index.html
 
->  	drm_WARN_ONCE(&dev_priv->drm, status_mask & ~PIPESTAT_INT_STATUS_MASK,
->  		      "pipe %c: status_mask=3D0x%x\n",
->  		      pipe_name(pipe), status_mask);
-> @@ -1273,6 +1275,7 @@ static u32 intel_hpd_hotplug_enables(struct drm_i91=
-5_private *i915,
->  =
+Possible new issues
+-------------------
 
->  static void gmbus_irq_handler(struct drm_i915_private *dev_priv)
->  {
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
->  	wake_up_all(&dev_priv->gmbus_wait_queue);
->  }
->  =
+  Here are the unknown changes that may have been introduced in Patchwork_19829:
 
-> @@ -1366,6 +1369,8 @@ static void i9xx_pipe_crc_irq_handler(struct drm_i9=
-15_private *dev_priv,
->  {
->  	u32 res1, res2;
->  =
+### IGT changes ###
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
->  	if (INTEL_GEN(dev_priv) >=3D 3)
->  		res1 =3D intel_uncore_read(&dev_priv->uncore, PIPE_CRC_RES_RES1_I915(p=
-ipe));
->  	else
-> @@ -1558,6 +1563,8 @@ static u32 i9xx_hpd_irq_ack(struct drm_i915_private=
- *dev_priv)
->  	u32 hotplug_status =3D 0, hotplug_status_mask;
->  	int i;
->  =
+#### Suppressed ####
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
->  	if (IS_G4X(dev_priv) ||
->  	    IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
->  		hotplug_status_mask =3D HOTPLUG_INT_STATUS_G4X |
-> @@ -1597,6 +1604,8 @@ static void i9xx_hpd_irq_handler(struct drm_i915_pr=
-ivate *dev_priv,
->  	u32 pin_mask =3D 0, long_mask =3D 0;
->  	u32 hotplug_trigger;
->  =
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
->  	if (IS_G4X(dev_priv) ||
->  	    IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
->  		hotplug_trigger =3D hotplug_status & HOTPLUG_INT_STATUS_G4X;
-> @@ -2038,6 +2047,8 @@ static void ilk_display_irq_handler(struct drm_i915=
-_private *dev_priv,
->  	enum pipe pipe;
->  	u32 hotplug_trigger =3D de_iir & DE_DP_A_HOTPLUG;
->  =
+  * igt@gem_exec_fence@nb-await@vcs0:
+    - {fi-rkl-11500t}:    NOTRUN -> [FAIL][1] +38 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-rkl-11500t/igt@gem_exec_fence@nb-await@vcs0.html
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
->  	if (hotplug_trigger)
->  		ilk_hpd_irq_handler(dev_priv, hotplug_trigger);
->  =
+  * igt@i915_selftest@live@evict:
+    - {fi-ehl-1}:         [PASS][2] -> [DMESG-WARN][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-ehl-1/igt@i915_selftest@live@evict.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-ehl-1/igt@i915_selftest@live@evict.html
 
-> @@ -2087,6 +2098,8 @@ static void ivb_display_irq_handler(struct drm_i915=
-_private *dev_priv,
->  	enum pipe pipe;
->  	u32 hotplug_trigger =3D de_iir & DE_DP_A_HOTPLUG_IVB;
->  =
+  * igt@prime_vgem@basic-read:
+    - {fi-rkl-11500t}:    NOTRUN -> [SKIP][4] +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-rkl-11500t/igt@prime_vgem@basic-read.html
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
->  	if (hotplug_trigger)
->  		ilk_hpd_irq_handler(dev_priv, hotplug_trigger);
->  =
+  
+Known issues
+------------
 
-> @@ -2421,6 +2434,8 @@ gen8_de_irq_handler(struct drm_i915_private *dev_pr=
-iv, u32 master_ctl)
->  	u32 iir;
->  	enum pipe pipe;
->  =
+  Here are the changes found in Patchwork_19829 that come from known issues:
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
->  	if (master_ctl & GEN8_DE_MISC_IRQ) {
->  		iir =3D intel_uncore_read(&dev_priv->uncore, GEN8_DE_MISC_IIR);
->  		if (iir) {
-> @@ -3477,6 +3492,8 @@ static void spt_hpd_irq_setup(struct drm_i915_priva=
-te *dev_priv)
->  {
->  	u32 hotplug_irqs, enabled_irqs;
->  =
+### IGT changes ###
 
-> +	drm_WARN_ON_ONCE(&dev_priv->drm, !HAS_DISPLAY(dev_priv));
-> +
->  	if (INTEL_PCH_TYPE(dev_priv) >=3D PCH_CNP)
->  		intel_uncore_write(&dev_priv->uncore, SHPD_FILTER_CNT, SHPD_FILTER_CNT=
-_500_ADJ);
->  =
+#### Issues hit ####
 
-> -- =
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-tgl-y:           NOTRUN -> [SKIP][5] ([fdo#109315])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@amdgpu/amd_basic@query-info.html
 
-> 2.31.0
-> =
+  * igt@amdgpu/amd_cs_nop@fork-gfx0:
+    - fi-tgl-y:           NOTRUN -> [SKIP][6] ([fdo#109315] / [i915#2575]) +16 similar issues
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@amdgpu/amd_cs_nop@fork-gfx0.html
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  * igt@gem_huc_copy@huc-copy:
+    - fi-glk-dsi:         NOTRUN -> [SKIP][7] ([fdo#109271] / [i915#2190])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@gem_huc_copy@huc-copy.html
+    - fi-tgl-y:           NOTRUN -> [SKIP][8] ([i915#2190])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@gem_huc_copy@huc-copy.html
 
--- =
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-glk-dsi:         NOTRUN -> [DMESG-WARN][9] ([i915#3143]) +26 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@i915_pm_rpm@module-reload:
+    - fi-glk-dsi:         NOTRUN -> [DMESG-WARN][10] ([i915#1982] / [i915#3143])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-tgl-y:           NOTRUN -> [DMESG-FAIL][11] ([i915#2373])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@gt_pm:
+    - fi-tgl-y:           NOTRUN -> [DMESG-FAIL][12] ([i915#1759])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@i915_selftest@live@gt_pm.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-glk-dsi:         NOTRUN -> [SKIP][13] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-tgl-y:           NOTRUN -> [SKIP][14] ([fdo#111827]) +8 similar issues
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-y:           NOTRUN -> [SKIP][15] ([fdo#109285])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-glk-dsi:         NOTRUN -> [SKIP][16] ([fdo#109271] / [i915#533])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@primary_page_flip:
+    - fi-glk-dsi:         NOTRUN -> [SKIP][17] ([fdo#109271]) +27 similar issues
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@kms_psr@primary_page_flip.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-tgl-y:           NOTRUN -> [DMESG-WARN][18] ([i915#402]) +1 similar issue
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@prime_vgem@basic-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_linear_blits@basic:
+    - fi-kbl-8809g:       [TIMEOUT][19] ([i915#2502] / [i915#3145]) -> [PASS][20] +1 similar issue
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-kbl-8809g/igt@gem_linear_blits@basic.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-kbl-8809g/igt@gem_linear_blits@basic.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cfl-8109u:       [DMESG-WARN][21] -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-cfl-8109u:       [DMESG-WARN][23] ([i915#203]) -> [PASS][24] +2 similar issues
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
+    - {fi-tgl-dsi}:       [DMESG-WARN][25] ([i915#402]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+  [i915#1759]: https://gitlab.freedesktop.org/drm/intel/issues/1759
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2373]: https://gitlab.freedesktop.org/drm/intel/issues/2373
+  [i915#2502]: https://gitlab.freedesktop.org/drm/intel/issues/2502
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
+  [i915#3143]: https://gitlab.freedesktop.org/drm/intel/issues/3143
+  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
+
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Additional (3): fi-rkl-11500t fi-glk-dsi fi-tgl-y 
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-bsw-n3050 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9880 -> Patchwork_19829
+
+  CI-20190529: 20190529
+  CI_DRM_9880: ec7a4e63b83999b055ba61da41bdd0ce656485d4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6040: 69b578b6ab0a36750f0d23c223a3487fc88fb6a7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19829: 98e228ef7a0e3f71c9800a095efe82291852fd8d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+98e228ef7a0e drm/i915: skip display initialization when there is no display
+1893c0d5088d drm/i915: Do not set any power wells when there is no display
+1f009a2a9117 drm/i915: Warn when display irq functions are called without display
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/index.html
+
+--===============8717786598763156025==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915: Warn when display irq functions are called without display</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88294/">https://patchwork.freedesktop.org/series/88294/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9880 -&gt; Patchwork_19829</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19829:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@gem_exec_fence@nb-await@vcs0:</p>
+<ul>
+<li>{fi-rkl-11500t}:    NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-rkl-11500t/igt@gem_exec_fence@nb-await@vcs0.html">FAIL</a> +38 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@evict:</p>
+<ul>
+<li>{fi-ehl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-ehl-1/igt@i915_selftest@live@evict.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-ehl-1/igt@i915_selftest@live@evict.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>{fi-rkl-11500t}:    NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-rkl-11500t/igt@prime_vgem@basic-read.html">SKIP</a> +3 similar issues</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19829 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@i915_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3143">i915#3143</a>) +26 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3143">i915#3143</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@i915_selftest@live@gt_lrc.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2373">i915#2373</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_pm:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1759">i915#1759</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@vga-edid-read:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-glk-dsi/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-read:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-y/igt@prime_vgem@basic-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_linear_blits@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-kbl-8809g/igt@gem_linear_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2502">i915#2502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-kbl-8809g/igt@gem_linear_blits@basic.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/203">i915#203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
+<ul>
+<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9880/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19829/fi-tgl-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Additional (3): fi-rkl-11500t fi-glk-dsi fi-tgl-y <br />
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-bsw-n3050 </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9880 -&gt; Patchwork_19829</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9880: ec7a4e63b83999b055ba61da41bdd0ce656485d4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6040: 69b578b6ab0a36750f0d23c223a3487fc88fb6a7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19829: 98e228ef7a0e3f71c9800a095efe82291852fd8d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>98e228ef7a0e drm/i915: skip display initialization when there is no display<br />
+1893c0d5088d drm/i915: Do not set any power wells when there is no display<br />
+1f009a2a9117 drm/i915: Warn when display irq functions are called without display</p>
+
+</body>
+</html>
+
+--===============8717786598763156025==--
+
+--===============1445287328==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1445287328==--
