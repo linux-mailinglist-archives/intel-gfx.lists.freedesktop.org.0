@@ -2,55 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 250C8344600
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 14:41:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44ED634460D
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 14:41:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DAF46E489;
-	Mon, 22 Mar 2021 13:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3F7A6E49C;
+	Mon, 22 Mar 2021 13:41:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36E216E489
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 13:40:57 +0000 (UTC)
-IronPort-SDR: cK3uAZSfBv2i5/4ZzKIuuTKKO+CTAYCNHorZ1RTgIUpuXQGY6iLZMUZAP294PmYqlyjn3CHotC
- NeGuSqDjhS5A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9930"; a="169602990"
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="169602990"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2021 06:40:55 -0700
-IronPort-SDR: jN0I1+uWgThEngjrl71ski4Ck1SMHnCqscNzL7g+X5Xtq0J8tgD5vs8/2/eaBWIo6SD5SUFW8h
- zEXU92wbmZ9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="414494105"
-Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7])
- by orsmga008.jf.intel.com with ESMTP; 22 Mar 2021 06:40:54 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 22 Mar 2021 13:40:53 +0000
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.013;
- Mon, 22 Mar 2021 06:40:52 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2] drm/i915/display: Not to try to re-enable PSR after
- being raised an irq aux error
-Thread-Index: AQHXG3Q4PppkI0VD70SWD3XgRc/J4qqQgQKA
-Date: Mon, 22 Mar 2021 13:40:51 +0000
-Message-ID: <2218a7a4ae4069dfefb223610df50c6a20378807.camel@intel.com>
-References: <20210317212632.2211971-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20210317212632.2211971-1-gwan-gyeong.mun@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-ID: <B2400421F2BD7A4E914DC81BF5FC71F8@intel.com>
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
+ [IPv6:2a00:1450:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A1C46E497
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 13:41:39 +0000 (UTC)
+Received: by mail-wr1-x42d.google.com with SMTP id e9so16849943wrw.10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 06:41:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=INfilF6yJ4n21X8RhKBBngxEv/hMuyhn5BRihkpsfgA=;
+ b=io+iYRCg6GaY95pphBE1/bMCkySNq7Vy/aUanS9UBP1u8pI80cQ2C8RQxqoJMwYCbL
+ PE+acndxmzgJEsRrQegGkTxCXvt9ke5GN7W/wP7xbWYLIta17mNGslxztsSvwQckaoyR
+ MuzA777DZFmQnsDOpjWILEL/6GqHT1H6tSiHM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=INfilF6yJ4n21X8RhKBBngxEv/hMuyhn5BRihkpsfgA=;
+ b=PmQKYD4kV18VGwSS7lw2ztd0x4fmIBTK60fCaPRx/b1gGSyVJ2ofwI+hRFW4AE+Y0V
+ P5WAVOobnPVK6yembGKzQtXbT6ilgVGoAEzsqekOqSSbsb/XA3x4Yun+OgfQZ+pRh7EG
+ 4waKMpej3jIByWQdQSQez3VDpXj22QxF3ou/NEhW2bEckE2k7ALdRELgwAj3Qwctwdxj
+ F8XYtw5bqGH1V10VETqwPA2DtGIyiNS2/2m8Q9j9CGaqwEmlFCmqiVWpLY18ZL9kcLc4
+ s9TND0miKHBuPveuwG7Oz3dqolwCUKKolsx3wZk0v1Vab8vJkGDbIp+j96TSuoxelT2K
+ jPNw==
+X-Gm-Message-State: AOAM533G+tD9531KbYqvmzoCSagWCwcGshPNUzKqtgAkmI1pc/oB8Eoj
+ obzq6PBGPRo6KYYx7k1yZLezzA==
+X-Google-Smtp-Source: ABdhPJzXdS64VI8wvFOc0kn6WRqDgAZqVSVrNUlPARFJokzXA1wv3l9i98oRhjn5Moj8HQlmAI59eA==
+X-Received: by 2002:a1c:e341:: with SMTP id a62mr16547323wmh.152.1616420498315; 
+ Mon, 22 Mar 2021 06:41:38 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id y16sm20062607wrh.3.2021.03.22.06.41.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Mar 2021 06:41:37 -0700 (PDT)
+Date: Mon, 22 Mar 2021 14:41:36 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YFiekGrvT25CPEw3@phenom.ffwll.local>
+References: <20210318170419.2107512-1-tvrtko.ursulin@linux.intel.com>
+ <161611666102.8628.1124825882873170304@emeril.freedesktop.org>
+ <39d7d721-4e52-89b2-8efe-54cb7768ec6c@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Not to try to
- re-enable PSR after being raised an irq aux error
+Content-Disposition: inline
+In-Reply-To: <39d7d721-4e52-89b2-8efe-54cb7768ec6c@linux.intel.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgRGVm?=
+ =?utf-8?q?ault_request/fence_expiry_+_watchdog_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,40 +68,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIxLTAzLTE3IGF0IDIzOjI2ICswMjAwLCBHd2FuLWd5ZW9uZyBNdW4gd3JvdGU6
-DQo+IElmIGFuIGlycSBhdXggZXJyb3IgaGFwcGVucywgaXQgZG9lcyBub3QgbmVlZCB0byB3YWl0
-IGZvciBQU1IgIklETEUgc3RhdGUiDQo+IGZvciByZS1lbmFibGluZyBQU1IuIEFuZCBpdCBzaG91
-bGQgbm90IHRyeSB0byByZS1lbmFibGUgUFNSLg0KPiANCj4gVGhlIFBTUiBpbnRlcnJ1cHQgaGFu
-ZGxlciBzZXRzIGlycV9hdXhfZXJyb3Igd2hlbiB0aGUgUFNSIGVycm9yIGhhcHBlbnMuDQo+IEFu
-ZCBpdCBzY2hlZHVsZXMgdGhlIGludGVyX3Bzcl93b3JrKCkuIGJ1dCB0aGUgY3VycmVudCBpbnRl
-bF9wc3Jfd29yaygpIGNhbg0KPiBiZSBzY2hlZHVsZWQgYnkgYW5vdGhlciBQU1IgaW50ZXJuYWwg
-cm91dGluZS4NCj4gVGhlcmVmb3JlLCB3ZSBzaG91bGQgbm90IHJlLWVuYWJsZSBQU1IgYWZ0ZXIg
-aGFuZGluZyBpcnFfYXV4X2Vycm9yIGluDQo+IGludGVsX3Bzcl93b3JrKCkuDQo+IA0KPiB2Mjog
-QWRkcmVzcyBKb3NlJ3MgcmV2aWV3IGNvbW1lbnQuDQo+IMKgLSBIYW5kbGluZyB0aGUgY2xvc2lu
-ZyBmdW5jdGlvbiBpbiB0aGUgY2hlY2sgcm91dGluZSBvZiBpcnFfYXV4X2Vycm9yLg0KPiDCoC0g
-QWRkIGEgZGV0YWlsZWQgY29tbWl0IG1lc3NhZ2UgZm9yIHRoZSBzY2VuYXJpby4NCg0KUmV2aWV3
-ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KDQo+
-IA0KPiBDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+
-IFNpZ25lZC1vZmYtYnk6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNv
-bT4NCj4gLS0tDQo+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyB8
-IDQgKysrLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24o
-LSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X3Bzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRl
-eCBjZDQzNDI4NWUzYjcuLmFiYTE1ODQ2ZTc4ZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC0xNjgzLDggKzE2ODMsMTAgQEAgc3RhdGljIHZv
-aWQgaW50ZWxfcHNyX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQ0KPiDCoAlpZiAoIWlu
-dGVsX2RwLT5wc3IuZW5hYmxlZCkNCj4gwqAJCWdvdG8gdW5sb2NrOw0KPiDCoA0KPiANCj4gDQo+
-IA0KPiAtCWlmIChSRUFEX09OQ0UoaW50ZWxfZHAtPnBzci5pcnFfYXV4X2Vycm9yKSkNCj4gKwlp
-ZiAoUkVBRF9PTkNFKGludGVsX2RwLT5wc3IuaXJxX2F1eF9lcnJvcikpIHsNCj4gwqAJCWludGVs
-X3Bzcl9oYW5kbGVfaXJxKGludGVsX2RwKTsNCj4gKwkJZ290byB1bmxvY2s7DQo+ICsJfQ0KPiDC
-oA0KPiANCj4gDQo+IA0KPiDCoAkvKg0KPiDCoAkgKiBXZSBoYXZlIHRvIG1ha2Ugc3VyZSBQU1Ig
-aXMgcmVhZHkgZm9yIHJlLWVuYWJsZQ0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngK
+On Mon, Mar 22, 2021 at 01:37:58PM +0000, Tvrtko Ursulin wrote:
+> 
+> On 19/03/2021 01:17, Patchwork wrote:
+> 
+> Okay with 20s default expiration the hangcheck tests on Tigerlake pass and
+> we are left with these failures:
+> 
+> >       IGT changes
+> > 
+> > 
+> >         Possible regressions
+> > 
+> >   *
+> > 
+> >     igt@gem_ctx_ringsize@idle@bcs0:
+> > 
+> >       o shard-skl: PASS
+> >         <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9870/shard-skl10/igt@gem_ctx_ringsize@idle@bcs0.html>
+> >         -> INCOMPLETE
+> >         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/shard-skl7/igt@gem_ctx_ringsize@idle@bcs0.html>
+> 
+> Too many runnable requests on a slow Skylake SKU with command parsing
+> active. Too many to finish withing the 20s default expiration that is. This
+> is actually the same root cause as the below tests tries to explicitly
+> demonstrate:
+> 
+> >   *
+> > 
+> >     {igt@gem_watchdog@far-fence@bcs0} (NEW):
+> > 
+> >       o shard-glk: NOTRUN -> FAIL
+> >         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/shard-glk7/igt@gem_watchdog@far-fence@bcs0.html>
+> >   *
+> > 
+> >     {igt@gem_watchdog@far-fence@vcs0} (NEW):
+> > 
+> >       o shard-apl: NOTRUN -> FAIL
+> >         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/shard-apl1/igt@gem_watchdog@far-fence@vcs0.html>
+> >         +2 similar issues
+> >   *
+> > 
+> >     {igt@gem_watchdog@far-fence@vecs0} (NEW):
+> > 
+> >       o shard-kbl: NOTRUN -> FAIL
+> >         <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19806/shard-kbl7/igt@gem_watchdog@far-fence@vecs0.html>
+> >         +2 similar issues
+> 
+> The vulnerability default expiration adds compared to the current state is
+> applicable to heaviliy loaded systems where GPU is shared between multiple
+> clients.
+> 
+> Otherwise series seems to work. Failing tests can be blacklisted going
+> forward. Ack to merge and merge itself, after review, I leave to maintainers
+> since personally I am not supportive of this mechanism.
+
+Yeah I think we have some leftovers to look at after this has landed on
+igt side, since with 20s we're rather long on the timeout side, and some
+of the tests need to be resurrected with the preempt-ctx execbuf mode I
+think.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
