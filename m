@@ -1,63 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02B03452D9
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 00:13:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AA0F3452E3
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 00:16:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5C276E042;
-	Mon, 22 Mar 2021 23:13:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 839726E079;
+	Mon, 22 Mar 2021 23:16:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com
- [IPv6:2a00:1450:4864:20::42a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 188176E041;
- Mon, 22 Mar 2021 23:13:37 +0000 (UTC)
-Received: by mail-wr1-x42a.google.com with SMTP id j7so18892148wrd.1;
- Mon, 22 Mar 2021 16:13:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=tYvb3I5DkX3N6jN+5U7mg9SkFokyTC7DYO1POXsmyXA=;
- b=JAukgRqBFlBqYxoTg07QIe3L0u4Zd4pnU8/KawSiQ9CobCuM3gzIOiljfx6LuzgDWA
- UowTprAJ6pvQSXvs4KSQRoxyhk97bRV/HvA6p2Z7/U2jyU55VRoMchp/WW94qOWwfctx
- xjztqDCBK6KyOMwxPOwi4e26tFik5N8gD8ME46WI4P9N9+IGYjmYXftjUoCOmT9YRUhI
- oxS7NQe6LKxh0Fe3YkrHljuKHXVZGAd59GORjepGb1sCy/oTzRkzKEYxW8PIJ/sFr1d6
- zI5HyhOjX7JC0HU1eEG4mNxiJ04gBc9w35eUnfsZO8LW67/ihxMVwREYJPst2Xb0XGu3
- JGJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to;
- bh=tYvb3I5DkX3N6jN+5U7mg9SkFokyTC7DYO1POXsmyXA=;
- b=OU6TZF9wGheM9uKqNOEjofi9WOvrxDNd8jCWfpV1TTBJuDpHAOiWoz/suHoA4fIaKx
- l5sQJ/Z5rGcJyvBehQGg8V91XfIzFqfyeZxmeh10cxtNGjwTtRyW28EoutjASpV4+kN6
- n2uNK1byTAlooAdxvmwFs7LnyrnqzqrsndQitTEyBLuZ/ZZ2OVpTYx/Y6iUkZoOitz60
- +2SKQ1YGLViXdFWAknuIAvxQksoqvTvTfYEnuV7kNbQI+j7lckFdJXdYZ2yPdEfq1zBS
- 40d+YhaEezheoaKVfr4gzevjmkkgyWlhXMxdqAKZ4NaEERk8u/8cUbZpUmgaRsOjcqB4
- uSKw==
-X-Gm-Message-State: AOAM530jVA8veKt6fLGuMUCFhwEPyFMEyK4yJfb7Fd8C6eKpFSnWazBv
- DhiNNkeW9MjPTnHDIKnKCKo=
-X-Google-Smtp-Source: ABdhPJwD5sKWkDZI+WUiEv9LaU8t0tl7e3Sco91hCCQ6VjFxt+KbUyFjpi5+6SIPcvWKZoMwC1DUgg==
-X-Received: by 2002:adf:b642:: with SMTP id i2mr867183wre.8.1616454815721;
- Mon, 22 Mar 2021 16:13:35 -0700 (PDT)
-Received: from gmail.com (54033286.catv.pool.telekom.hu. [84.3.50.134])
- by smtp.gmail.com with ESMTPSA id w6sm20916828wrl.49.2021.03.22.16.13.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Mar 2021 16:13:35 -0700 (PDT)
-Date: Tue, 23 Mar 2021 00:13:32 +0100
-From: Ingo Molnar <mingo@kernel.org>
-To: Martin Sebor <msebor@gmail.com>
-Message-ID: <20210322231332.GA1984184@gmail.com>
-References: <20210322160253.4032422-1-arnd@kernel.org>
- <20210322160253.4032422-3-arnd@kernel.org>
- <20210322202958.GA1955909@gmail.com>
- <b944a853-0e4b-b767-0175-cc2c1edba759@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 325E26E042;
+ Mon, 22 Mar 2021 23:16:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1FE91A0019;
+ Mon, 22 Mar 2021 23:16:30 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <b944a853-0e4b-b767-0175-cc2c1edba759@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 02/11] x86: tboot: avoid
- Wstringop-overread-warning
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Mon, 22 Mar 2021 23:16:30 -0000
+Message-ID: <161645499009.19228.13005598423531543741@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210322202730.1066559-1-lucas.demarchi@intel.com>
+In-Reply-To: <20210322202730.1066559-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_settle_on_=22adl-s=22_v?=
+ =?utf-8?q?s_=22adl=5Fs=22_in_WA_comments?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,80 +39,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, "H. Peter Anvin" <hpa@zytor.com>,
- Will Deacon <will@kernel.org>, linux-scsi@vger.kernel.org, x86@kernel.org,
- James Smart <james.smart@broadcom.com>, tboot-devel@lists.sourceforge.net,
- Ingo Molnar <mingo@redhat.com>, Kalle Valo <kvalo@codeaurora.org>,
- intel-gfx@lists.freedesktop.org, Serge Hallyn <serge@hallyn.com>,
- Arnd Bergmann <arnd@arndb.de>, "James E.J. Bottomley" <jejb@linux.ibm.com>,
- Ning Sun <ning.sun@intel.com>, Anders Larsen <al@alarsen.net>,
- Borislav Petkov <bp@alien8.de>, cgroups@vger.kernel.org,
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-kernel@lists.infradead.org,
- Arnd Bergmann <arnd@kernel.org>, Martin Sebor <msebor@gcc.gnu.org>,
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
- linux-security-module@vger.kernel.org, Tejun Heo <tj@kernel.org>,
- Simon Kelley <simon@thekelleys.org.uk>,
- Andrew Morton <akpm@linux-foundation.org>, Lu Baolu <baolu.lu@linux.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1172851831=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1172851831==
+Content-Type: multipart/alternative;
+ boundary="===============4106493393254436336=="
 
-* Martin Sebor <msebor@gmail.com> wrote:
+--===============4106493393254436336==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> > I.e. the real workaround might be to turn off the -Wstringop-overread-warning,
-> > until GCC-11 gets fixed?
-> 
-> In GCC 10 -Wstringop-overread is a subset of -Wstringop-overflow.
-> GCC 11 breaks it out as a separate warning to make it easier to
-> control.  Both warnings have caught some real bugs but they both
-> have a nonzero rate of false positives.  Other than bug reports
-> we don't have enough data to say what their S/N ratio might be
-> but my sense is that it's fairly high in general.
-> 
->   https://gcc.gnu.org/bugzilla/show_bug.cgi?id=wstringop-overread
->   https://gcc.gnu.org/bugzilla/show_bug.cgi?id=wstringop-overflow
-> 
-> In GCC 11, all access warnings expect objects to be either declared
-> or allocated.  Pointers with constant values are taken to point to
-> nothing valid (as Arnd mentioned above, this is to detect invalid
-> accesses to members of structs at address zero).
-> 
-> One possible solution to the known address problem is to extend GCC
-> attributes address and io that pin an object to a hardwired address
-> to all targets (at the moment they're supported on just one or two
-> targets).  I'm not sure this can still happen before GCC 11 releases
-> sometime in April or May.
-> 
-> Until then, another workaround is to convert the fixed address to
-> a volatile pointer before using it for the access, along the lines
-> below.  It should have only a negligible effect on efficiency.
+== Series Details ==
 
-Thank you for the detailed answer!
+Series: series starting with [1/2] drm/i915: settle on "adl-s" vs "adl_s" in WA comments
+URL   : https://patchwork.freedesktop.org/series/88299/
+State : success
 
-I think I'll go with Arnd's original patch - which makes the code a 
-slightly bit cleaner by separating out the check_tboot_version() check 
-into a standalone function.
+== Summary ==
 
-The only ugly aspect is the global nature of the 'tboot' pointer - but 
-that's a self-inflicted wound.
+CI Bug Log - changes from CI_DRM_9882 -> Patchwork_19832
+====================================================
 
-I'd also guess that the S/N ratio somewhat unfairly penalizes this 
-warning right now, because the kernel had a decade of growing real 
-fixes via other efforts such as static and dynamic instrumentation as 
-well.
+Summary
+-------
 
-So the probability of false positive remaining is in fact higher, and 
-going forward we should see a better S/N ratio of this warning. Most 
-of which will never be seen by upstream maintainers, as the mishaps 
-will stay at the individual developer level. :-)
+  **SUCCESS**
 
-Thanks,
+  No regressions found.
 
-	Ingo
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19832 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-bsw-kefka:       [PASS][1] -> [INCOMPLETE][2] ([i915#2539])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_linear_blits@basic:
+    - fi-kbl-8809g:       [PASS][4] -> [TIMEOUT][5] ([i915#2502] / [i915#3145])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-kbl-8809g/igt@gem_linear_blits@basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-kbl-8809g/igt@gem_linear_blits@basic.html
+
+  * igt@i915_selftest@live@client:
+    - fi-glk-dsi:         [PASS][6] -> [DMESG-FAIL][7] ([i915#3047])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-glk-dsi/igt@i915_selftest@live@client.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-glk-dsi/igt@i915_selftest@live@client.html
+
+  * igt@kms_addfb_basic@bad-pitch-63:
+    - fi-tgl-y:           [PASS][8] -> [DMESG-WARN][9] ([i915#402])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-63.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-63.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-byt-j1900:       NOTRUN -> [SKIP][10] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-kbl-8809g:       [TIMEOUT][13] ([i915#2502] / [i915#3145]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-kbl-8809g/igt@gem_tiled_blits@basic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-kbl-8809g/igt@gem_tiled_blits@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1222]: https://gitlab.freedesktop.org/drm/intel/issues/1222
+  [i915#2502]: https://gitlab.freedesktop.org/drm/intel/issues/2502
+  [i915#2539]: https://gitlab.freedesktop.org/drm/intel/issues/2539
+  [i915#3047]: https://gitlab.freedesktop.org/drm/intel/issues/3047
+  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (47 -> 43)
+------------------------------
+
+  Additional (1): fi-byt-j1900 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9882 -> Patchwork_19832
+
+  CI-20190529: 20190529
+  CI_DRM_9882: 34f82d5853a3c6467ccf71e055e3432d2b12ecb9 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6040: 69b578b6ab0a36750f0d23c223a3487fc88fb6a7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19832: 4589b5d472f0d560c1fb9c86dfd7c785dc1767cb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4589b5d472f0 drm/i915/adl_s: add missing PCI IDs
+33f10ab2431d drm/i915: settle on "adl-s" vs "adl_s" in WA comments
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/index.html
+
+--===============4106493393254436336==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: settle on &quot;adl-s&quot; vs &quot;adl_s&quot; in WA comments</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88299/">https://patchwork.freedesktop.org/series/88299/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9882 -&gt; Patchwork_19832</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19832 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-bsw-kefka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2539">i915#2539</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_linear_blits@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-kbl-8809g/igt@gem_linear_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-kbl-8809g/igt@gem_linear_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2502">i915#2502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@client:</p>
+<ul>
+<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-glk-dsi/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-glk-dsi/igt@i915_selftest@live@client.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3047">i915#3047</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@bad-pitch-63:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-63.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-63.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-crc-fast:</p>
+<ul>
+<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_mmap_gtt@basic:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-tgl-y/igt@gem_mmap_gtt@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-tgl-y/igt@gem_mmap_gtt@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9882/fi-kbl-8809g/igt@gem_tiled_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2502">i915#2502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19832/fi-kbl-8809g/igt@gem_tiled_blits@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (47 -&gt; 43)</h2>
+<p>Additional (1): fi-byt-j1900 <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9882 -&gt; Patchwork_19832</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9882: 34f82d5853a3c6467ccf71e055e3432d2b12ecb9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6040: 69b578b6ab0a36750f0d23c223a3487fc88fb6a7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19832: 4589b5d472f0d560c1fb9c86dfd7c785dc1767cb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>4589b5d472f0 drm/i915/adl_s: add missing PCI IDs<br />
+33f10ab2431d drm/i915: settle on "adl-s" vs "adl_s" in WA comments</p>
+
+</body>
+</html>
+
+--===============4106493393254436336==--
+
+--===============1172851831==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1172851831==--
