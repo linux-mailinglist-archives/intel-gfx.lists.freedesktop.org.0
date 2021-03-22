@@ -1,42 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE09B34512C
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 21:51:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC440345135
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 21:56:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB996E5BD;
-	Mon, 22 Mar 2021 20:51:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5751089F2D;
+	Mon, 22 Mar 2021 20:56:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F1486E5B4;
- Mon, 22 Mar 2021 20:51:51 +0000 (UTC)
-IronPort-SDR: fKGwnLKcLq3xwrzMUhk1hJCGmeLKbkrF42PvoFJduIzH/LzUJaH0we2BfNu1MqETHvO3VMODKg
- 5JGkX7hmYiSA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="190373947"
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="190373947"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2021 13:51:50 -0700
-IronPort-SDR: 9rD+cPZNNn/jiw3DxHGciMk7J0kZvRlVXCTtRJlRI5EQ2r2fXy7DCWHdpYPL2zNta549kgMuJa
- XhEPTZYcFuuA==
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="390619153"
-Received: from hhchau-mobl1.amr.corp.intel.com (HELO intel.com)
- ([10.212.137.90])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2021 13:51:49 -0700
-Date: Mon, 22 Mar 2021 16:51:47 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <YFkDYzN0NJ3Co8bT@intel.com>
-References: <20210301154347.50052-1-hdegoede@redhat.com>
- <8d882647-bab3-dfc3-70ad-4f1910dcb5af@redhat.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8306889F2D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 20:56:05 +0000 (UTC)
+IronPort-SDR: +idODkFR4J9NWKNXz3LLUqdaf5LC/JanS0zOy/hC5rGnR05FN7GbREi86yOdwT1M/ePn85tM0n
+ nyyGIutcfwew==
+X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="251700663"
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="251700663"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2021 13:56:03 -0700
+IronPort-SDR: 2qaD7qd9KfV9QidpExBNnXTngkvFBAiQy5YdDFmEQeYnBWIwZ6Z9vdSA9Wx3pHama0B53GcGkQ
+ Nn+BEmIBalWQ==
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="414643326"
+Received: from doothoux-mobl3.amr.corp.intel.com (HELO
+ josouza-mobl2.intel.com) ([10.254.31.75])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2021 13:55:59 -0700
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 22 Mar 2021 13:58:03 -0700
+Message-Id: <20210322205805.62205-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <8d882647-bab3-dfc3-70ad-4f1910dcb5af@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/vlv_dsi: Do no shut down
- displays on reboot if a DSI panel is used
+Subject: [Intel-gfx] [PATCH v2 1/3] drm/i915: Skip display interruption
+ setup when display is not available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,120 +46,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 19, 2021 at 04:45:32PM +0100, Hans de Goede wrote:
-> Hi,
-> 
-> On 3/1/21 4:43 PM, Hans de Goede wrote:
-> > After the recently added commit fe0f1e3bfdfe ("drm/i915: Shut down
-> > displays gracefully on reboot"), the DSI panel on a Cherry Trail based
-> > Predia Basic tablet would no longer properly light up after reboot.
-> > 
-> > The backlight still turns back on after reboot, but the LCD shows an
-> > all black display. The display is also all black during the time that
-> > EFI / the GOP is managing it, so e.g. the grub menu also is not visible.
-> > 
-> > In this scenario the panel is initialized so that it appears to be working
-> > and the fastboot code skips doing a modeset. Forcing a modeset by doing a
-> > chvt to a text-console over ssh followed by echo-ing 1 and then 0 to
-> > /sys/class/graphics/fb0/blank causes the panel to work again.
-> > 
-> > Add a QUIRK_SKIP_SHUTDOWN quirk which turns i915_driver_shutdown() into
-> > a no-op when set; and set this on vlv/chv devices when a DSI panel is
-> > detected, to work around this.
-> > 
-> > Admittedly this is a bit of a big hammer, but these platforms have been
-> > around for quite some time now and they have always worked fine without
-> > the new behavior to shutdown everything on shutdown/reboot. This approach
-> > simply disables the recently introduced new shutdown behavior in this
-> > specific case where it is known to cause problems. Which is a nice and
-> > simple way to deal with this.
-> > 
-> > Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> 
-> Ping? Since sending this patch I've been seeing the issue addressed by
-> this on variour other CHT based devices too.
-> 
-> So we have various devices suffering from a black screen after reboot
-> now. This is pretty serious usability regression.
-> 
-> As such it would be good to get this reviewed, or another fix proposed.
-
-For the quirks we try to limit them to very specific vendor and model ids,
-so I wonder if it would be possible to get this information in here instead
-to all the vlv with dsi...
-
-Or avoid the quirk "infra" and skip to all vlv with active dsi?!
-
-Jani?
-Ville?
-
-> 
-> Regards,
-> 
-> Hans
-> 
-> 
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/vlv_dsi.c | 3 +++
-> >  drivers/gpu/drm/i915/i915_drv.c        | 3 +++
-> >  drivers/gpu/drm/i915/i915_drv.h        | 1 +
-> >  3 files changed, 7 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> > index f94025ec603a..792ef868b6af 100644
-> > --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> > +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> > @@ -1949,6 +1949,9 @@ void vlv_dsi_init(struct drm_i915_private *dev_priv)
-> >  
-> >  	vlv_dsi_add_properties(intel_connector);
-> >  
-> > +	/* Some BIOS-es fail to re-init the DSI panel on reboot if we turn it off */
-> > +	dev_priv->quirks |= QUIRK_SKIP_SHUTDOWN;
-> > +
-> >  	return;
-> >  
-> >  err_cleanup_connector:
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> > index 8e9cb44e66e5..92f2af55af6d 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.c
-> > +++ b/drivers/gpu/drm/i915/i915_drv.c
-> > @@ -1048,6 +1048,9 @@ static void intel_shutdown_encoders(struct drm_i915_private *dev_priv)
-> >  
-> >  void i915_driver_shutdown(struct drm_i915_private *i915)
-> >  {
-> > +	if (i915->quirks & QUIRK_SKIP_SHUTDOWN)
-> > +		return;
-> > +
-> >  	disable_rpm_wakeref_asserts(&i915->runtime_pm);
-> >  
-> >  	i915_gem_suspend(i915);
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> > index 26d69d06aa6d..272cd7cb22d4 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -517,6 +517,7 @@ struct i915_psr {
-> >  #define QUIRK_PIN_SWIZZLED_PAGES (1<<5)
-> >  #define QUIRK_INCREASE_T12_DELAY (1<<6)
-> >  #define QUIRK_INCREASE_DDI_DISABLED_TIME (1<<7)
-> > +#define QUIRK_SKIP_SHUTDOWN (1<<8)
-> >  
-> >  struct intel_fbdev;
-> >  struct intel_fbc_work;
-> > 
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UmV0dXJuIGVhbGllciBpbiB0aGUgZnVuY3Rpb25zIGRvaW5nIGludGVycnVwdGlvbiBzZXR1cCBm
+b3IgR0VOOCsgYWxzbwphZGRpbmcgYSB3YXJuaW5nIGluIGdlbjhfZGVfaXJxX2hhbmRsZXIoKSB0
+byBsZXQgdXMga25vdyB0aGF0CnNvbWV0aGluZyBlbHNlIGlzIHN0aWxsIG1pc3NpbmcuCgpDYzog
+VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IEx1Y2Fz
+IERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKb3PD
+qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTog
+SmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2lycS5jIHwgMzkgKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tCiAx
+IGZpbGUgY2hhbmdlZCwgMzIgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9pcnEuYwppbmRleCA0NGFlZDRjYmY4OTQuLjg3NTgyOWY4YTE5MCAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2lycS5jCkBAIC0yNDIxLDYgKzI0MjEsOCBAQCBnZW44X2RlX2lycV9oYW5kbGVy
+KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwgdTMyIG1hc3Rlcl9jdGwpCiAJdTMy
+IGlpcjsKIAllbnVtIHBpcGUgcGlwZTsKIAorCWRybV9XQVJOX09OX09OQ0UoJmRldl9wcml2LT5k
+cm0sICFIQVNfRElTUExBWShkZXZfcHJpdikpOworCiAJaWYgKG1hc3Rlcl9jdGwgJiBHRU44X0RF
+X01JU0NfSVJRKSB7CiAJCWlpciA9IGludGVsX3VuY29yZV9yZWFkKCZkZXZfcHJpdi0+dW5jb3Jl
+LCBHRU44X0RFX01JU0NfSUlSKTsKIAkJaWYgKGlpcikgewpAQCAtMzA1OCwxNCArMzA2MCwxMyBA
+QCBzdGF0aWMgdm9pZCBjbnBfZGlzcGxheV9jbG9ja193YShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
+ZSAqZGV2X3ByaXYpCiAJfQogfQogCi1zdGF0aWMgdm9pZCBnZW44X2lycV9yZXNldChzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCitzdGF0aWMgdm9pZCBnZW44X2Rpc3BsYXlfaXJx
+X3Jlc2V0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIHsKIAlzdHJ1Y3QgaW50
+ZWxfdW5jb3JlICp1bmNvcmUgPSAmZGV2X3ByaXYtPnVuY29yZTsKIAllbnVtIHBpcGUgcGlwZTsK
+IAotCWdlbjhfbWFzdGVyX2ludHJfZGlzYWJsZShkZXZfcHJpdi0+dW5jb3JlLnJlZ3MpOwotCi0J
+Z2VuOF9ndF9pcnFfcmVzZXQoJmRldl9wcml2LT5ndCk7CisJaWYgKCFIQVNfRElTUExBWShkZXZf
+cHJpdikpCisJCXJldHVybjsKIAogCWludGVsX3VuY29yZV93cml0ZSh1bmNvcmUsIEVEUF9QU1Jf
+SU1SLCAweGZmZmZmZmZmKTsKIAlpbnRlbF91bmNvcmVfd3JpdGUodW5jb3JlLCBFRFBfUFNSX0lJ
+UiwgMHhmZmZmZmZmZik7CkBAIC0zMDc3LDYgKzMwNzgsMTYgQEAgc3RhdGljIHZvaWQgZ2VuOF9p
+cnFfcmVzZXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCiAJR0VOM19JUlFf
+UkVTRVQodW5jb3JlLCBHRU44X0RFX1BPUlRfKTsKIAlHRU4zX0lSUV9SRVNFVCh1bmNvcmUsIEdF
+TjhfREVfTUlTQ18pOworfQorCitzdGF0aWMgdm9pZCBnZW44X2lycV9yZXNldChzdHJ1Y3QgZHJt
+X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCit7CisJc3RydWN0IGludGVsX3VuY29yZSAqdW5jb3Jl
+ID0gJmRldl9wcml2LT51bmNvcmU7CisKKwlnZW44X21hc3Rlcl9pbnRyX2Rpc2FibGUoZGV2X3By
+aXYtPnVuY29yZS5yZWdzKTsKKworCWdlbjhfZ3RfaXJxX3Jlc2V0KCZkZXZfcHJpdi0+Z3QpOwor
+CWdlbjhfZGlzcGxheV9pcnFfcmVzZXQoZGV2X3ByaXYpOwogCUdFTjNfSVJRX1JFU0VUKHVuY29y
+ZSwgR0VOOF9QQ1VfKTsKIAogCWlmIChIQVNfUENIX1NQTElUKGRldl9wcml2KSkKQEAgLTMwOTIs
+NiArMzEwMyw5IEBAIHN0YXRpYyB2b2lkIGdlbjExX2Rpc3BsYXlfaXJxX3Jlc2V0KHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAl1MzIgdHJhbnNfbWFzayA9IEJJVChUUkFOU0NP
+REVSX0EpIHwgQklUKFRSQU5TQ09ERVJfQikgfAogCQlCSVQoVFJBTlNDT0RFUl9DKSB8IEJJVChU
+UkFOU0NPREVSX0QpOwogCisJaWYgKCFIQVNfRElTUExBWShkZXZfcHJpdikpCisJCXJldHVybjsK
+KwogCWludGVsX3VuY29yZV93cml0ZSh1bmNvcmUsIEdFTjExX0RJU1BMQVlfSU5UX0NUTCwgMCk7
+CiAKIAlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikgewpAQCAtMzcxNCw2ICszNzI4LDkg
+QEAgc3RhdGljIHZvaWQgZ2VuOF9kZV9pcnFfcG9zdGluc3RhbGwoc3RydWN0IGRybV9pOTE1X3By
+aXZhdGUgKmRldl9wcml2KQogCQlCSVQoVFJBTlNDT0RFUl9DKSB8IEJJVChUUkFOU0NPREVSX0Qp
+OwogCWVudW0gcGlwZSBwaXBlOwogCisJaWYgKCFIQVNfRElTUExBWShkZXZfcHJpdikpCisJCXJl
+dHVybjsKKwogCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpIDw9IDEwKQogCQlkZV9taXNjX21hc2tl
+ZCB8PSBHRU44X0RFX01JU0NfR1NFOwogCkBAIC0zNzk3LDYgKzM4MTQsMTYgQEAgc3RhdGljIHZv
+aWQgZ2VuOF9pcnFfcG9zdGluc3RhbGwoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2
+KQogCWdlbjhfbWFzdGVyX2ludHJfZW5hYmxlKGRldl9wcml2LT51bmNvcmUucmVncyk7CiB9CiAK
+K3N0YXRpYyB2b2lkIGdlbjExX2RlX2lycV9wb3N0aW5zdGFsbChzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqZGV2X3ByaXYpCit7CisJaWYgKCFIQVNfRElTUExBWShkZXZfcHJpdikpCisJCXJldHVy
+bjsKKworCWdlbjhfZGVfaXJxX3Bvc3RpbnN0YWxsKGRldl9wcml2KTsKKworCWludGVsX3VuY29y
+ZV93cml0ZSgmZGV2X3ByaXYtPnVuY29yZSwgR0VOMTFfRElTUExBWV9JTlRfQ1RMLAorCQkJICAg
+R0VOMTFfRElTUExBWV9JUlFfRU5BQkxFKTsKK30KIAogc3RhdGljIHZvaWQgZ2VuMTFfaXJxX3Bv
+c3RpbnN0YWxsKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIHsKQEAgLTM4MDcs
+MTIgKzM4MzQsMTAgQEAgc3RhdGljIHZvaWQgZ2VuMTFfaXJxX3Bvc3RpbnN0YWxsKHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAkJaWNwX2lycV9wb3N0aW5zdGFsbChkZXZfcHJp
+dik7CiAKIAlnZW4xMV9ndF9pcnFfcG9zdGluc3RhbGwoJmRldl9wcml2LT5ndCk7Ci0JZ2VuOF9k
+ZV9pcnFfcG9zdGluc3RhbGwoZGV2X3ByaXYpOworCWdlbjExX2RlX2lycV9wb3N0aW5zdGFsbChk
+ZXZfcHJpdik7CiAKIAlHRU4zX0lSUV9JTklUKHVuY29yZSwgR0VOMTFfR1VfTUlTQ18sIH5ndV9t
+aXNjX21hc2tlZCwgZ3VfbWlzY19tYXNrZWQpOwogCi0JaW50ZWxfdW5jb3JlX3dyaXRlKCZkZXZf
+cHJpdi0+dW5jb3JlLCBHRU4xMV9ESVNQTEFZX0lOVF9DVEwsIEdFTjExX0RJU1BMQVlfSVJRX0VO
+QUJMRSk7Ci0KIAlpZiAoSEFTX01BU1RFUl9VTklUX0lSUShkZXZfcHJpdikpIHsKIAkJZGcxX21h
+c3Rlcl9pbnRyX2VuYWJsZSh1bmNvcmUtPnJlZ3MpOwogCQlpbnRlbF91bmNvcmVfcG9zdGluZ19y
+ZWFkKCZkZXZfcHJpdi0+dW5jb3JlLCBERzFfTVNUUl9VTklUX0lOVFIpOwotLSAKMi4zMS4wCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
