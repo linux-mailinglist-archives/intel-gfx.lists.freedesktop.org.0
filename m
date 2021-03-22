@@ -2,45 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88AEE3451D3
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 22:34:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33FF0345E4E
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 13:38:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B414D6E5BE;
-	Mon, 22 Mar 2021 21:34:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E98E6E114;
+	Tue, 23 Mar 2021 12:38:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF4E06E5BE
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 21:34:41 +0000 (UTC)
-IronPort-SDR: i6fFbL0ydgPbpRMZ3+8OwCFq95pWGWRFAFgHsxdlNJieLkfHOiefXO9ltWBLSZh8PH8iJmxNSG
- 7UVDDsfRpVXA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="254350536"
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="254350536"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Mar 2021 14:34:40 -0700
-IronPort-SDR: NVnlORE1l95pMUpGebiiVgXbaIIPI9d7kAfM/pibtu8Lqo/ZPTaUq3NpjPGscPEQp0MqPTkAHi
- 5rywRvr2RjfA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="441356943"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 22 Mar 2021 14:34:38 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 22 Mar 2021 23:34:37 +0200
-Date: Mon, 22 Mar 2021 23:34:37 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <YFkNbfTKXnvnpLrW@intel.com>
-References: <20210322194810.3969336-1-matthew.d.roper@intel.com>
- <20210322195017.3969488-1-matthew.d.roper@intel.com>
- <YFkJLCzqK65y5Vfl@intel.com>
- <20210322212512.GR3422723@mdroper-desk1.amr.corp.intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82C4E6E5C0;
+ Mon, 22 Mar 2021 21:40:04 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3FC4B619AC;
+ Mon, 22 Mar 2021 21:40:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1616449204;
+ bh=ZjEe7Re0RKu002ndI22T8BlfDJ+aY+HHY+t9XvQS7Q8=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=bJZCpZ5EEGZerp3UrSyvokIM6nH3GPNLIsyJMJB5nyc4Sgnjtzn+OMtjUL2ZBSie+
+ Fi83eey5HsMSKc/9qaD2RuZEeUeUwoE2M6qwk7wrSCjkj4ws8OGv18z8EyYcukmWHT
+ jM35+ir6/srZfSH78DCRwpRXtTCanNR0ouNRk+r0zZqC9uicwbh5Vl6qVN2J0nC7fg
+ yAR8A/u0nDcj41ohiNdL688eDQ2opEHdctaDOmgytVvpFgfvzBz92vFYBp5Nn21+zL
+ vtNIUbcaOAFjelvCYqZ6uXvufN0DecSq4tETddYi+zxgAsQXGrS7YO4xRruhTqWyYj
+ CraMDT8xmXxbw==
+Received: by mail-ot1-f41.google.com with SMTP id
+ m21-20020a9d7ad50000b02901b83efc84a0so17457943otn.10; 
+ Mon, 22 Mar 2021 14:40:04 -0700 (PDT)
+X-Gm-Message-State: AOAM532zauOn330rmstyJjRZDC6Zd1vYFft3xcNa3Uvo+gJF5uzye6PK
+ a/uNspz6WkrmVDBGTvYxO/V/rEaSsBY1IsQgMR0=
+X-Google-Smtp-Source: ABdhPJzNzw6/c6SVRTMWeDvzQfOYlqmnHJ7XZUtZKGXGAyd4E2bODGHMqyepsXMnLh1hlMatZvPmNE5xJdhqw6/8ZCE=
+X-Received: by 2002:a9d:316:: with SMTP id 22mr1561463otv.210.1616449203436;
+ Mon, 22 Mar 2021 14:40:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210322212512.GR3422723@mdroper-desk1.amr.corp.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2.1 6/6] drm/i915/display: Simplify GLK
- display version tests
+References: <20210322160253.4032422-1-arnd@kernel.org>
+ <20210322160253.4032422-3-arnd@kernel.org>
+ <20210322202958.GA1955909@gmail.com>
+In-Reply-To: <20210322202958.GA1955909@gmail.com>
+From: Arnd Bergmann <arnd@kernel.org>
+Date: Mon, 22 Mar 2021 22:39:47 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a10d8hgBiO5W=34oLqw8m22=Xi4C=MxVSY_fGnXZUJ3iA@mail.gmail.com>
+Message-ID: <CAK8P3a10d8hgBiO5W=34oLqw8m22=Xi4C=MxVSY_fGnXZUJ3iA@mail.gmail.com>
+To: Ingo Molnar <mingo@kernel.org>
+X-Mailman-Approved-At: Tue, 23 Mar 2021 12:38:33 +0000
+Subject: Re: [Intel-gfx] [PATCH 02/11] x86: tboot: avoid
+ Wstringop-overread-warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,101 +57,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, Will Deacon <will@kernel.org>,
+ linux-scsi <linux-scsi@vger.kernel.org>,
+ the arch/x86 maintainers <x86@kernel.org>,
+ James Smart <james.smart@broadcom.com>, tboot-devel@lists.sourceforge.net,
+ Ingo Molnar <mingo@redhat.com>, Kalle Valo <kvalo@codeaurora.org>,
+ ath11k@lists.infradead.org, Serge Hallyn <serge@hallyn.com>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>, Ning Sun <ning.sun@intel.com>,
+ Anders Larsen <al@alarsen.net>, Borislav Petkov <bp@alien8.de>,
+ Cgroups <cgroups@vger.kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Martin Sebor <msebor@gcc.gnu.org>, Networking <netdev@vger.kernel.org>,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ LSM List <linux-security-module@vger.kernel.org>, Tejun Heo <tj@kernel.org>,
+ Simon Kelley <simon@thekelleys.org.uk>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Lu Baolu <baolu.lu@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 22, 2021 at 02:25:12PM -0700, Matt Roper wrote:
-> On Mon, Mar 22, 2021 at 11:16:28PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Mon, Mar 22, 2021 at 12:50:17PM -0700, Matt Roper wrote:
-> > > GLK has always been a bit of a special case since it reports INTEL_GE=
-N()
-> > > as 9, but has version 10 display IP.  Now we can properly represent t=
-he
-> > > display version as 10 and simplify the display generation tests
-> > > throughout the display code.
-> > > =
+On Mon, Mar 22, 2021 at 9:29 PM Ingo Molnar <mingo@kernel.org> wrote:
+> * Arnd Bergmann <arnd@kernel.org> wrote:
+> > From: Arnd Bergmann <arnd@arndb.de>
 
-> > > Aside from manually adding the version to the glk_info structure, the
-> > > rest of this patch is generated with a Coccinelle semantic patch.  No=
-te
-> > > that we also need to switch any code that matches gen10 today but *no=
-t*
-> > > GLK to be CNL-specific:
-> > > =
+> This is indeed rather ugly - and the other patch that removes a debug
+> check seems counterproductive as well.
+>
+> Do we know how many genuine bugs -Wstringop-overread-warning has
+> caught or is about to catch?
+>
+> I.e. the real workaround might be to turn off the -Wstringop-overread-warning,
+> until GCC-11 gets fixed?
 
-> > >         @@ expression dev_priv; @@
-> > >         - DISPLAY_VER(dev_priv) > 9
-> > >         + DISPLAY_VER(dev_priv) >=3D 10
-> > > =
+See the [PATCH 0/11] message. The last two patches in the series are for
+code that I suspect may be broken, the others are basically all false positives.
 
-> > >         @@ expression dev_priv, E; @@
-> > >         (
-> > >         - DISPLAY_VER(dev_priv) >=3D 10 && E
-> > >         + (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)) =
-&& E
-> > >         |
-> > >         - DISPLAY_VER(dev_priv) >=3D 10
-> > >         + DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)
-> > >         |
-> > >         - IS_DISPLAY_RANGE(dev_priv, 10, E)
-> > >         + IS_DISPLAY_RANGE(dev_priv, 11, E) || IS_CANNONLAKE(dev_priv)
-> > >         )
-> > > =
+As gcc-11 is not released yet, I don't think we have to apply any of the
+patches or disable the warning at the moment, but I posted all the patches
+to get a better understanding on which of them should be addressed in
+the kernel vs gcc.
 
-> > >         @@ expression dev_priv, E, E2; @@
-> > >         (
-> > >         - (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
-> > >         + IS_DISPLAY_VER(dev_priv, 10)
-> > >         |
-> > >         - E || IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)
-> > >         + E || IS_DISPLAY_VER(dev_priv, 10)
-> > >         |
-> > >         - (IS_GEMINILAKE(dev_priv) || IS_CANNONLAKE(dev_priv))
-> > >         + IS_DISPLAY_VER(dev_priv, 10)
-> > >         |
-> > >         - IS_GEMINILAKE(dev_priv) || E || IS_CANNONLAKE(dev_priv)
-> > >         + E || IS_DISPLAY_VER(dev_priv, 10)
-> > >         |
-> > >         - E || IS_GEMINILAKE(dev_priv) || E2 || IS_CANNONLAKE(dev_pri=
-v)
-> > >         + E || E2 || IS_DISPLAY_VER(dev_priv, 10)
-> > =
-
-> > Sometimes I really wish cocci would have a way to say "these things can
-> > go in any order" :/
-> =
-
-> Coccinelle has support for user-defined isomorphisms that I think are
-> supposed to be able to do this.  I tried to create some isomorphisms
-> like:
-> =
-
->         Expression
->         @ dv_no_sideeffects @
->         expression dev_priv;
->         int i;
->         binary operator OP;
->         @@
->         DISPLAY_VER(dev_priv) OP i || E <=3D> E || DISPLAY_VER(dev_priv) =
-OP i
-> =
-
-> for the various IS_* and DISPLAY_VER() macros so that it would allow
-> them in any order (since we know these macros have no side effects), but
-> I must have been doing it wrong, or passing the iso file to coccinelle
-> incorrectly, since they didn't seem to be working.
-
-Ah, thanks for pointing this out. Need to give that a try
-at some point.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+       Arnd
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
