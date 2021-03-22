@@ -1,81 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B0E13451C0
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 22:28:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88AEE3451D3
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 22:34:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ED1D6E079;
-	Mon, 22 Mar 2021 21:28:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B414D6E5BE;
+	Mon, 22 Mar 2021 21:34:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3F636E079
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 21:28:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1616448491;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=14m01PcuzCoNayNzn6+wIkzawZge0KqmlJ/a9zKMMOY=;
- b=F7zC2G8QsTqWPJOkNYoevrfQcKORqGKshzLN/6xkXXbNsXErhSC/0zb4twy4Y0u5ubX3Wg
- OImPNfuaausLDBs/mLc8KHUCd2VEcOXyzdhto4gqTXU89aJm601wWp1sGBUOVHT3rF4LKz
- eV57uFGUPGgFp/S5KHnwysIjX9w3m/4=
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
- [209.85.208.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-513-csECXki8MGeqTpf-IHiZ_A-1; Mon, 22 Mar 2021 17:28:09 -0400
-X-MC-Unique: csECXki8MGeqTpf-IHiZ_A-1
-Received: by mail-ed1-f72.google.com with SMTP id a2so137531edx.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 14:28:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=14m01PcuzCoNayNzn6+wIkzawZge0KqmlJ/a9zKMMOY=;
- b=JNAaat6jY2IOGyRspiukOZa+ajL/k9aTvMcvqQGJVdzub0qxDpneQnCbBGik4YUPMg
- 9+p3J1keFVGwOwjHqXwzvrF8hLMBxnFhv7YsW080F1BM1H3Qv479n/0K30dz56QLxnwJ
- siAF59jgX9QJ8PsJNLx2u9LOX1a76jBNzbTcbVtRht92uLFq96Nvbjmvw9Zu8ZwS8BI4
- tOCtd73Gcbstk4HKuImZDcME4Q7YVxNJ/TtJ61EQyloUMw3fwPQ7AfdvTL8x2N43dEx/
- LF0KgI1HYEgPqansf47D/N8TPiLd/XGgB8DMnh3+ucF2bsv//c3Z5LY9QcMh0J9xFjJb
- ZYrw==
-X-Gm-Message-State: AOAM533IjGUHcEFjHe/GhWjnSZe/ljS9YJWX8f5Dn2NZIOpv/ZIfA/Z7
- f8gZPY27oZ720FoYTgCow+AVPLzNeU4jQAYMgAE0eL71U60Hf2UPDbKix5kaxxuk8+IImdfB6FT
- GZPR/vP3bQlaz0hYnFw/jeNYBW/iB
-X-Received: by 2002:a17:907:1b20:: with SMTP id
- mp32mr1670151ejc.495.1616448488018; 
- Mon, 22 Mar 2021 14:28:08 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzVm8lLf2wXl77V1ZvbGq7gC1k+pKIsC4RSCtFtvxWE+eaSPJogtVzRDECxGWI5ZXow+eVoWw==
-X-Received: by 2002:a17:907:1b20:: with SMTP id
- mp32mr1670140ejc.495.1616448487819; 
- Mon, 22 Mar 2021 14:28:07 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id g20sm11737275edb.7.2021.03.22.14.28.07
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 22 Mar 2021 14:28:07 -0700 (PDT)
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20210301154347.50052-1-hdegoede@redhat.com>
- <8d882647-bab3-dfc3-70ad-4f1910dcb5af@redhat.com>
- <YFkDYzN0NJ3Co8bT@intel.com> <YFkFH2uAR+6mNONZ@intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <c1beb028-9f9d-ad3e-9a06-2685ca36a8d4@redhat.com>
-Date: Mon, 22 Mar 2021 22:28:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF4E06E5BE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 21:34:41 +0000 (UTC)
+IronPort-SDR: i6fFbL0ydgPbpRMZ3+8OwCFq95pWGWRFAFgHsxdlNJieLkfHOiefXO9ltWBLSZh8PH8iJmxNSG
+ 7UVDDsfRpVXA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="254350536"
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="254350536"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2021 14:34:40 -0700
+IronPort-SDR: NVnlORE1l95pMUpGebiiVgXbaIIPI9d7kAfM/pibtu8Lqo/ZPTaUq3NpjPGscPEQp0MqPTkAHi
+ 5rywRvr2RjfA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="441356943"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga002.fm.intel.com with SMTP; 22 Mar 2021 14:34:38 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 22 Mar 2021 23:34:37 +0200
+Date: Mon, 22 Mar 2021 23:34:37 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <YFkNbfTKXnvnpLrW@intel.com>
+References: <20210322194810.3969336-1-matthew.d.roper@intel.com>
+ <20210322195017.3969488-1-matthew.d.roper@intel.com>
+ <YFkJLCzqK65y5Vfl@intel.com>
+ <20210322212512.GR3422723@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YFkFH2uAR+6mNONZ@intel.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/vlv_dsi: Do no shut down
- displays on reboot if a DSI panel is used
+Content-Disposition: inline
+In-Reply-To: <20210322212512.GR3422723@mdroper-desk1.amr.corp.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v2.1 6/6] drm/i915/display: Simplify GLK
+ display version tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,88 +53,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGksCgpPbiAzLzIyLzIxIDk6NTkgUE0sIFZpbGxlIFN5cmrDpGzDpCB3cm90ZToKPiBPbiBNb24s
-IE1hciAyMiwgMjAyMSBhdCAwNDo1MTo0N1BNIC0wNDAwLCBSb2RyaWdvIFZpdmkgd3JvdGU6Cj4+
-IE9uIEZyaSwgTWFyIDE5LCAyMDIxIGF0IDA0OjQ1OjMyUE0gKzAxMDAsIEhhbnMgZGUgR29lZGUg
-d3JvdGU6Cj4+PiBIaSwKPj4+Cj4+PiBPbiAzLzEvMjEgNDo0MyBQTSwgSGFucyBkZSBHb2VkZSB3
-cm90ZToKPj4+PiBBZnRlciB0aGUgcmVjZW50bHkgYWRkZWQgY29tbWl0IGZlMGYxZTNiZmRmZSAo
-ImRybS9pOTE1OiBTaHV0IGRvd24KPj4+PiBkaXNwbGF5cyBncmFjZWZ1bGx5IG9uIHJlYm9vdCIp
-LCB0aGUgRFNJIHBhbmVsIG9uIGEgQ2hlcnJ5IFRyYWlsIGJhc2VkCj4+Pj4gUHJlZGlhIEJhc2lj
-IHRhYmxldCB3b3VsZCBubyBsb25nZXIgcHJvcGVybHkgbGlnaHQgdXAgYWZ0ZXIgcmVib290Lgo+
-Pj4+Cj4+Pj4gVGhlIGJhY2tsaWdodCBzdGlsbCB0dXJucyBiYWNrIG9uIGFmdGVyIHJlYm9vdCwg
-YnV0IHRoZSBMQ0Qgc2hvd3MgYW4KPj4+PiBhbGwgYmxhY2sgZGlzcGxheS4gVGhlIGRpc3BsYXkg
-aXMgYWxzbyBhbGwgYmxhY2sgZHVyaW5nIHRoZSB0aW1lIHRoYXQKPj4+PiBFRkkgLyB0aGUgR09Q
-IGlzIG1hbmFnaW5nIGl0LCBzbyBlLmcuIHRoZSBncnViIG1lbnUgYWxzbyBpcyBub3QgdmlzaWJs
-ZS4KPj4+Pgo+Pj4+IEluIHRoaXMgc2NlbmFyaW8gdGhlIHBhbmVsIGlzIGluaXRpYWxpemVkIHNv
-IHRoYXQgaXQgYXBwZWFycyB0byBiZSB3b3JraW5nCj4+Pj4gYW5kIHRoZSBmYXN0Ym9vdCBjb2Rl
-IHNraXBzIGRvaW5nIGEgbW9kZXNldC4gRm9yY2luZyBhIG1vZGVzZXQgYnkgZG9pbmcgYQo+Pj4+
-IGNodnQgdG8gYSB0ZXh0LWNvbnNvbGUgb3ZlciBzc2ggZm9sbG93ZWQgYnkgZWNoby1pbmcgMSBh
-bmQgdGhlbiAwIHRvCj4+Pj4gL3N5cy9jbGFzcy9ncmFwaGljcy9mYjAvYmxhbmsgY2F1c2VzIHRo
-ZSBwYW5lbCB0byB3b3JrIGFnYWluLgo+Pj4+Cj4+Pj4gQWRkIGEgUVVJUktfU0tJUF9TSFVURE9X
-TiBxdWlyayB3aGljaCB0dXJucyBpOTE1X2RyaXZlcl9zaHV0ZG93bigpIGludG8KPj4+PiBhIG5v
-LW9wIHdoZW4gc2V0OyBhbmQgc2V0IHRoaXMgb24gdmx2L2NodiBkZXZpY2VzIHdoZW4gYSBEU0kg
-cGFuZWwgaXMKPj4+PiBkZXRlY3RlZCwgdG8gd29yayBhcm91bmQgdGhpcy4KPj4+Pgo+Pj4+IEFk
-bWl0dGVkbHkgdGhpcyBpcyBhIGJpdCBvZiBhIGJpZyBoYW1tZXIsIGJ1dCB0aGVzZSBwbGF0Zm9y
-bXMgaGF2ZSBiZWVuCj4+Pj4gYXJvdW5kIGZvciBxdWl0ZSBzb21lIHRpbWUgbm93IGFuZCB0aGV5
-IGhhdmUgYWx3YXlzIHdvcmtlZCBmaW5lIHdpdGhvdXQKPj4+PiB0aGUgbmV3IGJlaGF2aW9yIHRv
-IHNodXRkb3duIGV2ZXJ5dGhpbmcgb24gc2h1dGRvd24vcmVib290LiBUaGlzIGFwcHJvYWNoCj4+
-Pj4gc2ltcGx5IGRpc2FibGVzIHRoZSByZWNlbnRseSBpbnRyb2R1Y2VkIG5ldyBzaHV0ZG93biBi
-ZWhhdmlvciBpbiB0aGlzCj4+Pj4gc3BlY2lmaWMgY2FzZSB3aGVyZSBpdCBpcyBrbm93biB0byBj
-YXVzZSBwcm9ibGVtcy4gV2hpY2ggaXMgYSBuaWNlIGFuZAo+Pj4+IHNpbXBsZSB3YXkgdG8gZGVh
-bCB3aXRoIHRoaXMuCj4+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVn
-b2VkZUByZWRoYXQuY29tPgo+Pj4KPj4+IFBpbmc/IFNpbmNlIHNlbmRpbmcgdGhpcyBwYXRjaCBJ
-J3ZlIGJlZW4gc2VlaW5nIHRoZSBpc3N1ZSBhZGRyZXNzZWQgYnkKPj4+IHRoaXMgb24gdmFyaW91
-ciBvdGhlciBDSFQgYmFzZWQgZGV2aWNlcyB0b28uCj4+Pgo+Pj4gU28gd2UgaGF2ZSB2YXJpb3Vz
-IGRldmljZXMgc3VmZmVyaW5nIGZyb20gYSBibGFjayBzY3JlZW4gYWZ0ZXIgcmVib290Cj4+PiBu
-b3cuIFRoaXMgaXMgcHJldHR5IHNlcmlvdXMgdXNhYmlsaXR5IHJlZ3Jlc3Npb24uCj4+Pgo+Pj4g
-QXMgc3VjaCBpdCB3b3VsZCBiZSBnb29kIHRvIGdldCB0aGlzIHJldmlld2VkLCBvciBhbm90aGVy
-IGZpeCBwcm9wb3NlZC4KPj4KPj4gRm9yIHRoZSBxdWlya3Mgd2UgdHJ5IHRvIGxpbWl0IHRoZW0g
-dG8gdmVyeSBzcGVjaWZpYyB2ZW5kb3IgYW5kIG1vZGVsIGlkcywKPj4gc28gSSB3b25kZXIgaWYg
-aXQgd291bGQgYmUgcG9zc2libGUgdG8gZ2V0IHRoaXMgaW5mb3JtYXRpb24gaW4gaGVyZSBpbnN0
-ZWFkCj4+IHRvIGFsbCB0aGUgdmx2IHdpdGggZHNpLi4uCj4+Cj4+IE9yIGF2b2lkIHRoZSBxdWly
-ayAiaW5mcmEiIGFuZCBza2lwIHRvIGFsbCB2bHYgd2l0aCBhY3RpdmUgZHNpPyEKPj4KPj4gSmFu
-aT8KPj4gVmlsbGU/Cj4gCj4gV2UgbmVlZCB0byBmaWd1cmUgb3V0IHdoeSB0aGUgcGFuZWwgZG9l
-c24ndCBzdGFydCB1cCBhZ2Fpbi4KCk5vdGUgaXQgaXMgdGhlIEdPUCB3aGljaCBmYWlscyB0byBs
-aWdodCBpdCB1cCBhZ2Fpbi4gSSB0aGluayB3ZSB0dXJuIHNvbWV0aGluZwpvZmYsIHdoaWNoIGFm
-dGVyIGEgcG93ZXItb24tcmVzZXQgaXMgb24sIHNvIHRoZSBHT1AgZXhwZWN0cyBpdCB0byBiZSBv
-bi4KCj4gSWYgaXQgaGFzCj4gcHJvYmxlbXMgd2l0aCB0aGlzIHRoZW4gc3VyZWx5IGl0IGFsc28g
-ZmFpbHMgaWYgd2UganVzdCBoYXBwZW4gdG8gcmVib290Cj4gd2l0aCB0aGUgcGFuZWwgYWxyZWFk
-eSBvZmY/CgpJIHdvdWxkIGFzc3VtZSBzbywgeWVzLCBidXQgdGhhdCBvbmx5IGhhcHBlbnMgb24g
-c2F5IGEgInJlYm9vdCAtLWZvcmNlIgpvdmVyIHNzaCwgd2hpbGUgdGhlIHNjcmVlbiBpcyBvZmYu
-IFdoaWNoIGFyZSByYXRoZXIgZXhjZXB0aW9uYWwgY2lyY3Vtc3RhbmNlcy4KCldoZXJlIGFzIGp1
-c3QgYSByZWd1bGFyIHJlYm9vdCBpcyBxdWl0ZSBub3JtYWwgYW5kIG5vdyByZXN1bHRzIGluIGEg
-YmxhY2sKc2NyZWVuLiBBbmQgcmVjb3Zlcnkgb2YgdGhpcyBjb25kaXRpb24gYnkgYSBub3JtYWwg
-dXNlciBpbnZvbHZlcyBhCnBvd2VyLWN5Y2xlIGJ5IHByZXNzaW5nIHRoZSBwb3dlci1idXR0b24g
-Zm9yIDEwIHNlY29uZHMgKHRoZXNlIGFyZSB0YWJsZXRzCnNvIHRoZSBmb3JjZS1wb3dlci1vZmYg
-dGltZSBpcyBxdWl0ZSBsb25nKSwgd2hpY2ggbW9zdCB1c2VycyBkb24ndCBldmVuIGtub3cKdGhl
-eSBjYW4gZG8uLi4KCj4gT2ggYSBtb2Rlc2V0IGZpeGVzIGl0PyBUaGVuIEkgZ3Vlc3MgaXQncyBq
-dXN0IGZhc3Rib290IGZhaWwgZHVlIHRvIERTSQo+IGNvZGUgYmVpbmcgY3JhcD8KClRoaXMgaXMg
-bm90IGEgZmFzdGJvb3QgaXNzdWUsIGlmIEkgbWFrZSB0aGUgZ3J1YiBtZW51IHNob3cgZXZlcnkg
-Ym9vdCwKdGhlIGdydWItbWVudSBpcyBhbHNvIGFsbCBibGFjaywgYXMgdGhlIEdPUCBmYWlscyB0
-byBwcm9wZXJseSBpbml0aWFsaXplCnRoZSBwYW5lbCB3aGVuIHRoaXMgaGFwcGVucyBmYXN0Ym9v
-dCBqdXN0IGluaGVyaXRzIHRoaXMgY29uZGl0aW9uLgoKQXNzdW1pbmcgdGhhdCB3ZSB3YW50IHRv
-IGhhdmUgdGhlIEVGSSBnZngvY29uc29sZSB3b3JrIG9uIHJlYm9vdAooZm9yIHNheSB0aGUgZ3J1
-YiBtZW51KSwgdGhlbiBkaXNhYmxpbmcgZmFzdGJvb3QgaXMgbm90IGdvaW5nIHRvIGhlbHAuCgpB
-bHNvIG5vdGUgdGhhdCB0aGUgV2luZG93cyBib290LXNwbGFzaCB3aXRoIHRoZSBjaXJjbGluZyBk
-b3RzIHVzZXMgdGhlCmVmaWZiLCBzbyByZWJvb3RpbmcgaW50byBXaW5kb3dzIGFsc28gbGVhZHMg
-dG8gYSBibGFja3NjcmVlbiBhdCBsZWFzdAp1bnRpbCBXaW5kb3dzIGhhcyBib290ZWQgYWxsIHRo
-ZSB3YXkuIE5vdGUgSSBoYXZlIG5vdCB0cmllZCBXaW5kb3dzLApzbyBJIGRvbid0IGtub3cgaWYg
-V2luZG93cyB3aWxsIHJlY292ZXIgZnJvbSB0aGUgYmxhY2sgc2NyZWVuIG9uY2UKaXRzIGdmeCBk
-cml2ZXIgbG9hZHMsIG9yIGlmIGl0IHN0YXlzIGJsYWNrIHRoZW4gdG9vLgoKPiBJZiBubyBvbmUg
-aXMgd2lsbGluZyB0byBmaXggaXQgdGhlbiBJIGd1ZXNzIHdlIGp1c3QKPiBuZWVkIHRvIGRpc2Fi
-bGUgZmFzdGJvb3QgZm9yIERTSSBzb21laG93LgoKU2VlIGFib3ZlLCB0aGlzIGlzIGEgR09QIGlz
-c3VlLCBzbyB0aGVyZSBpcyBub3RoaW5nIGZvciB1cyB0byBmaXgsCndoYXQgd2UgbmVlZCB0byBk
-byBpcyBzdG9wIGxlYXZpbmcgdGhlIGh3IGluIGEgc3RhdGUgd2hpY2ggdGhlIEdPUApjYW5ub3Qg
-ZGVhbCB3aXRoLiBXaGljaCBsZWFkcyBtZSB0byBiZWxpZXZlIHRoYXQgd2UganVzdCBuZWVkIHRv
-IGRpc2FibGUKdGhlICJncmFjZWZ1bCBzaHV0ZG93biIgb24gdGhlIGNvbWJpbmF0aW9uIG9mIERT
-SSArIEJZVC9DSFQuCgpSZWdhcmRzLAoKSGFucwoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, Mar 22, 2021 at 02:25:12PM -0700, Matt Roper wrote:
+> On Mon, Mar 22, 2021 at 11:16:28PM +0200, Ville Syrj=E4l=E4 wrote:
+> > On Mon, Mar 22, 2021 at 12:50:17PM -0700, Matt Roper wrote:
+> > > GLK has always been a bit of a special case since it reports INTEL_GE=
+N()
+> > > as 9, but has version 10 display IP.  Now we can properly represent t=
+he
+> > > display version as 10 and simplify the display generation tests
+> > > throughout the display code.
+> > > =
+
+> > > Aside from manually adding the version to the glk_info structure, the
+> > > rest of this patch is generated with a Coccinelle semantic patch.  No=
+te
+> > > that we also need to switch any code that matches gen10 today but *no=
+t*
+> > > GLK to be CNL-specific:
+> > > =
+
+> > >         @@ expression dev_priv; @@
+> > >         - DISPLAY_VER(dev_priv) > 9
+> > >         + DISPLAY_VER(dev_priv) >=3D 10
+> > > =
+
+> > >         @@ expression dev_priv, E; @@
+> > >         (
+> > >         - DISPLAY_VER(dev_priv) >=3D 10 && E
+> > >         + (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)) =
+&& E
+> > >         |
+> > >         - DISPLAY_VER(dev_priv) >=3D 10
+> > >         + DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)
+> > >         |
+> > >         - IS_DISPLAY_RANGE(dev_priv, 10, E)
+> > >         + IS_DISPLAY_RANGE(dev_priv, 11, E) || IS_CANNONLAKE(dev_priv)
+> > >         )
+> > > =
+
+> > >         @@ expression dev_priv, E, E2; @@
+> > >         (
+> > >         - (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
+> > >         + IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - E || IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)
+> > >         + E || IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - (IS_GEMINILAKE(dev_priv) || IS_CANNONLAKE(dev_priv))
+> > >         + IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - IS_GEMINILAKE(dev_priv) || E || IS_CANNONLAKE(dev_priv)
+> > >         + E || IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - E || IS_GEMINILAKE(dev_priv) || E2 || IS_CANNONLAKE(dev_pri=
+v)
+> > >         + E || E2 || IS_DISPLAY_VER(dev_priv, 10)
+> > =
+
+> > Sometimes I really wish cocci would have a way to say "these things can
+> > go in any order" :/
+> =
+
+> Coccinelle has support for user-defined isomorphisms that I think are
+> supposed to be able to do this.  I tried to create some isomorphisms
+> like:
+> =
+
+>         Expression
+>         @ dv_no_sideeffects @
+>         expression dev_priv;
+>         int i;
+>         binary operator OP;
+>         @@
+>         DISPLAY_VER(dev_priv) OP i || E <=3D> E || DISPLAY_VER(dev_priv) =
+OP i
+> =
+
+> for the various IS_* and DISPLAY_VER() macros so that it would allow
+> them in any order (since we know these macros have no side effects), but
+> I must have been doing it wrong, or passing the iso file to coccinelle
+> incorrectly, since they didn't seem to be working.
+
+Ah, thanks for pointing this out. Need to give that a try
+at some point.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
