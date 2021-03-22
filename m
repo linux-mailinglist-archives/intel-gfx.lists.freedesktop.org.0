@@ -2,54 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F09B734496C
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 16:39:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF60344989
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Mar 2021 16:45:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF76389B61;
-	Mon, 22 Mar 2021 15:38:59 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com
- [IPv6:2607:f8b0:4864:20::836])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 591A789444;
- Mon, 22 Mar 2021 15:38:58 +0000 (UTC)
-Received: by mail-qt1-x836.google.com with SMTP id c6so12646168qtc.1;
- Mon, 22 Mar 2021 08:38:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Q5Ft5lLSDaaxbDQPFOK0eIFQBb3jzsyJPgsCkWhfbtM=;
- b=J2EO49ifEv2cKS6X3/HI/5pLJRAh2nVCnbC/myzg7CBUv6OqIYWkcGQcTrqS7UVCen
- zQ//FRb88kI45bvVtZ2hJYROEjBOv0LWO4WXb9c5/CpMmjaJtL+SIY3CAGvLZIgNzJ74
- H1Cl1uUGt4bU5LyPe7ZevQUWMfxwq505U30qWzmjxeztv2geIElRGRiIlRwN0jGwfoFf
- yJBRYOK3Z5a2c1bcbFQAH8D3Zmgv7Ohz8Vc92K0NuFzxe0ACDFV4oYGI4RmSLQI5c4+7
- yj20/PvVqAk5+VXsnercY1693a/M/v6XTnG/d8rypJDfCJLJh02QclOfHAzvuNQ08mEE
- Gm/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Q5Ft5lLSDaaxbDQPFOK0eIFQBb3jzsyJPgsCkWhfbtM=;
- b=t8LLhUeRMqfl8YciqIUhByEmF0CJcZHybR7eoWoLCw8PLfFRymnjFTKh9cz15JirXx
- uaVeFLUjtp6trZlOb5SlAThYrOEcWl/ErbeFR2dQvKGXR7cuwLFzAu5ODG1FlvYv2Kfl
- pASTnBu2Cs2Psee4jE2zeuI6EJzSsYoNNRnw5Q5m9Fb2jbg9Ms44H0dhruy0juCfatqn
- FJKBca7qOFaCfFr4fpIevtMyG8nPq4PjU0KVHJart0MB13tdgJLnJBbRnaVzPvUbFfOO
- jmz6QgsQ7nrAtzON04YCgX0C9l52vVor5+ofZXKwkLaVai/7BwTGG0OirvQfBVdQ/On1
- HVVg==
-X-Gm-Message-State: AOAM5320qkpFwoVt/S3WcaBxNX7jlX+gLZxtOf9q1P9ABYBZvdKfjr6S
- Ny+zHlvhg57T/UZuwCEY/BydQG/drmg9pT+OHw9UKLKvnMQ=
-X-Google-Smtp-Source: ABdhPJwKbT2CiLUGj3z4i5+PNdob1Ppx5HWnWqxQNF951Hzpv7GLjvziLZ+2MVqGM+a6zY5cbmiaIkig83KXID+3dp4=
-X-Received: by 2002:ac8:4c90:: with SMTP id j16mr436916qtv.223.1616427537416; 
- Mon, 22 Mar 2021 08:38:57 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34CA789EB4;
+	Mon, 22 Mar 2021 15:45:26 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1D1189DED
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Mar 2021 15:45:24 +0000 (UTC)
+IronPort-SDR: R3FmTvc5nQ8D+5czH+qoT4GQCulZKi568nZGf1YZtan+7HegKWrVM/Bk9oKbPYRHxr79w/0XHs
+ c+/wORN/EhDA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="189697382"
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="189697382"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Mar 2021 08:45:24 -0700
+IronPort-SDR: X8PA+XWsIjFyvOi/TU5yCkjLbE7qtDAjzIqjDUYuf35f8Bj82w4DYMW4gTf8WyJh3eyC8qxk8l
+ T6A17Ic9Q7cQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,269,1610438400"; d="scan'208";a="442189248"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by FMSMGA003.fm.intel.com with SMTP; 22 Mar 2021 08:45:22 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 22 Mar 2021 17:45:21 +0200
+Date: Mon, 22 Mar 2021 17:45:21 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Message-ID: <YFi7kQldiwmEcc2Y@intel.com>
+References: <20210319175720.5901-1-ville.syrjala@linux.intel.com>
+ <161618092043.8631.320174419404607353@emeril.freedesktop.org>
 MIME-Version: 1.0
-References: <20210318170419.2107512-1-tvrtko.ursulin@linux.intel.com>
- <20210318170419.2107512-2-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210318170419.2107512-2-tvrtko.ursulin@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 22 Mar 2021 15:38:31 +0000
-Message-ID: <CAM0jSHNLVqvtMPs+vdiDVpiZwotruqxyCLzBjbZSoVHaCDd3rg@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Individual request
- cancellation
+Content-Disposition: inline
+In-Reply-To: <161618092043.8631.320174419404607353@emeril.freedesktop.org>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Enable_TPS3/4_on_all_platforms_that_support_them?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,154 +52,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 Mar 2021 at 17:04, Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
->
-> From: Chris Wilson <chris@chris-wilson.co.uk>
->
-> Currently, we cancel outstanding requests within a context when the
-> context is closed. We may also want to cancel individual requests using
-> the same graceful preemption mechanism.
->
-> v2 (Tvrtko):
->  * Cancel waiters carefully considering no timeline lock and RCU.
->  * Fixed selftests.
->
-> v3 (Tvrtko):
->  * Remove error propagation to waiters for now.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |   1 +
->  .../drm/i915/gt/intel_execlists_submission.c  |   9 +-
->  drivers/gpu/drm/i915/i915_request.c           |  52 ++++-
->  drivers/gpu/drm/i915/i915_request.h           |   4 +-
->  drivers/gpu/drm/i915/selftests/i915_request.c | 201 ++++++++++++++++++
->  5 files changed, 261 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-> index 0b062fad1837..e2fb3ae2aaf3 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
-> @@ -314,6 +314,7 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
->                 mutex_unlock(&ce->timeline->mutex);
->         }
->
-> +       intel_engine_flush_scheduler(engine);
->         intel_engine_pm_put(engine);
->         return err;
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index 85ff5fe861b4..4c2acb5a6c0a 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -421,6 +421,11 @@ static void reset_active(struct i915_request *rq,
->         ce->lrc.lrca = lrc_update_regs(ce, engine, head);
->  }
->
-> +static bool bad_request(const struct i915_request *rq)
-> +{
-> +       return rq->fence.error && i915_request_started(rq);
-> +}
-> +
->  static struct intel_engine_cs *
->  __execlists_schedule_in(struct i915_request *rq)
->  {
-> @@ -433,7 +438,7 @@ __execlists_schedule_in(struct i915_request *rq)
->                      !intel_engine_has_heartbeat(engine)))
->                 intel_context_set_banned(ce);
->
-> -       if (unlikely(intel_context_is_banned(ce)))
-> +       if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
->                 reset_active(rq, engine);
->
->         if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-> @@ -1112,7 +1117,7 @@ static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
->                 return 0;
->
->         /* Force a fast reset for terminated contexts (ignoring sysfs!) */
-> -       if (unlikely(intel_context_is_banned(rq->context)))
-> +       if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq)))
->                 return 1;
->
->         return READ_ONCE(engine->props.preempt_timeout_ms);
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index e7b4c4bc41a6..b4511ac05e9a 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -33,7 +33,10 @@
->  #include "gem/i915_gem_context.h"
->  #include "gt/intel_breadcrumbs.h"
->  #include "gt/intel_context.h"
-> +#include "gt/intel_engine.h"
-> +#include "gt/intel_engine_heartbeat.h"
->  #include "gt/intel_gpu_commands.h"
-> +#include "gt/intel_reset.h"
->  #include "gt/intel_ring.h"
->  #include "gt/intel_rps.h"
->
-> @@ -429,20 +432,22 @@ void __i915_request_skip(struct i915_request *rq)
->         rq->infix = rq->postfix;
->  }
->
-> -void i915_request_set_error_once(struct i915_request *rq, int error)
-> +bool i915_request_set_error_once(struct i915_request *rq, int error)
->  {
->         int old;
->
->         GEM_BUG_ON(!IS_ERR_VALUE((long)error));
->
->         if (i915_request_signaled(rq))
-> -               return;
-> +               return false;
->
->         old = READ_ONCE(rq->fence.error);
->         do {
->                 if (fatal_error(old))
-> -                       return;
-> +                       return false;
->         } while (!try_cmpxchg(&rq->fence.error, &old, error));
-> +
-> +       return true;
->  }
->
->  struct i915_request *i915_request_mark_eio(struct i915_request *rq)
-> @@ -609,6 +614,47 @@ void i915_request_unsubmit(struct i915_request *request)
->         spin_unlock_irqrestore(&se->lock, flags);
->  }
->
-> +static struct intel_engine_cs *active_engine(struct i915_request *rq)
-> +{
-> +       struct intel_engine_cs *engine, *locked;
-> +
-> +       locked = READ_ONCE(rq->engine);
-> +       spin_lock_irq(&locked->sched.lock);
-> +       while (unlikely(locked != (engine = READ_ONCE(rq->engine)))) {
-> +               spin_unlock(&locked->sched.lock);
-> +               locked = engine;
-> +               spin_lock(&locked->sched.lock);
-> +       }
-> +
-> +       engine = NULL;
-> +       if (i915_request_is_active(rq) && !__i915_request_is_complete(rq))
-> +               engine = locked;
-> +
-> +       spin_unlock_irq(&locked->sched.lock);
-> +
-> +       return engine;
+On Fri, Mar 19, 2021 at 07:08:40PM -0000, Patchwork wrote:
+> =3D=3D Series Details =3D=3D
+> =
 
-Bad idea to reuse __active_engine() somehow?
+> Series: drm/i915: Enable TPS3/4 on all platforms that support them
+> URL   : https://patchwork.freedesktop.org/series/88186/
+> State : success
+> =
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> =3D=3D Summary =3D=3D
+> =
+
+> CI Bug Log - changes from CI_DRM_9877 -> Patchwork_19815
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D
+> =
+
+> Summary
+> -------
+> =
+
+>   **SUCCESS**
+
+That's a bit odd considering the link training still fails with this.
+Did we convert some erorrs to debugs perhaps, or maybe this never
+got flagged as an error?
+
+<7>[    8.235008] i915 0000:00:02.0: [drm:intel_dp_start_link_train [i915]]=
+ Using LINK_RATE_SET value 03
+<7>[    8.236203] i915 0000:00:02.0: [drm:intel_dp_set_signal_levels [i915]=
+] Using vswing level 0, pre-emphasis level 0, at DPRX
+<7>[    8.236341] i915 0000:00:02.0: [drm:intel_dp_program_link_training_pa=
+ttern [i915]] [ENCODER:307:DDI A/PHY A] Using DP training pattern TPS1
+<7>[    8.237373] i915 0000:00:02.0: [drm:intel_dp_link_train_phy [i915]] c=
+lock recovery OK
+<7>[    8.237460] i915 0000:00:02.0: [drm:intel_dp_program_link_training_pa=
+ttern [i915]] [ENCODER:307:DDI A/PHY A] Using DP training pattern TPS4
+<7>[    8.239054] i915 0000:00:02.0: [drm:intel_dp_dump_link_status.isra.4 =
+[i915]] ln0_1:0x0 ln2_3:0x0 align:0x80 sink:0x0 adj_req0_1:0x0 adj_req2_3:0=
+x0
+<7>[    8.239135] i915 0000:00:02.0: [drm:intel_dp_link_train_phy [i915]] C=
+lock recovery check failed, cannot continue channel equalization
+<7>[    8.239218] i915 0000:00:02.0: [drm:intel_dp_link_train_phy [i915]] [=
+CONNECTOR:308:eDP-1] Link Training failed at link rate =3D 270000, lane cou=
+nt =3D 2, at DPRX
+
+So CR lock is lost as soon as we switch to TPS4. I really wonder if the sink
+actually even implements TPS4, and maybe when we write TPS4 to the DPCD reg
+it starts to expect some other pattern? Should be semi-easy to confirm
+I guess...
+
+One thing I was pondering is whether we're detecting TPS4 vs. TPS3 differen=
+tly
+that eg. Windows. Based on some trawling it looks to me that for some reason
+Windows uses the EDP_DPCD_REV>=3D0x4 check rather than DPCD_REV>=3D0x14 on =
+eDP
+panels when checking for TPS4 suppport. Unfortunately following that
+convention here wouldn't help us:
+
+<7>[    6.835706] i915 0000:00:02.0: [drm:intel_dp_init_connector [i915]] e=
+DP DPCD: 04 fb ff
+<7>[    8.234921] [drm:drm_dp_read_dpcd_caps] AUX A/DDI A/PHY A: Base DPCD:=
+ 14 0a 82 41 00 00 01 c0 02 00 00 00 0f 09 80
+<7>[    8.234943] [drm:drm_dp_read_dpcd_caps] AUX A/DDI A/PHY A: DPCD: 14 0=
+a 82 c1 00 00 01 c0 02 00 00 00 0f 09 80
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
