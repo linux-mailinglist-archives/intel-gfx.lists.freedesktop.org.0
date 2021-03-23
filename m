@@ -1,66 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1017C345E4A
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 13:38:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D0EE3454FB
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 02:27:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A8566E069;
-	Tue, 23 Mar 2021 12:38:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 786A46E820;
+	Tue, 23 Mar 2021 01:27:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com
- [IPv6:2607:f8b0:4864:20::730])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3D7E6E81C;
- Tue, 23 Mar 2021 01:16:25 +0000 (UTC)
-Received: by mail-qk1-x730.google.com with SMTP id o5so12774020qkb.0;
- Mon, 22 Mar 2021 18:16:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=S5pECjMsM/qvstnesb/+ZKBN9a5m4sodJTA9keXe8fs=;
- b=dzSqflgkinPRl41IH6b6OavC4s0p/5zLninBkx7jvN5x0aJcq94JpIET1747IB/M34
- /NQ5JHATUU7E2Pl5dV0kMt5gdt+RQRS5LU+f/X7EDMxiVCiFXWAij/EXKpT1w/elqHhD
- rb4eZFhPkBSBN0bIgG7ZSLW7HYN7BvToY6tZT3n40b4ucj1vYqJCWZHebwuP8H10sCmk
- GsUeQdhycaM8SPxIDYfV8dBZH+S86dibxCrrTasFH78QMmsxBZl9rLfkZPoOWLAQ8eQJ
- mC1iozFhXJBE4szBqDdCTGZcdU0VjF8metQOKmbjGoQnHrYGDrl0JhzHfMNLFXszuV44
- LP7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=S5pECjMsM/qvstnesb/+ZKBN9a5m4sodJTA9keXe8fs=;
- b=DwYaUSm3GwvPxULB5Z6yx8cauHW5JD4ZUPy/pO7Sm0rgWTvNTJMtEWo9VFqc225ZGT
- nvSMrjy1fx9t2qlj+Xs3mKbqwqsWxWakYqAW9qWi7hR6tFfdyGmToU29YnDo536SV7ap
- FEMATbdttgXBxDsLzfmwnO3y9wAzkHz+Jkb0JwwgXIjPCTqGOrf9FvCe3GPcfB+Csibc
- TnxVyPzeinRqm9a49XUgu/7ynCTzpDPR7yab8k+YmEohhl5V0cBJEQymLtDp/FjOptqZ
- V8acbrgRIBT41XPjhtq511CUJjqPL3qc3iY+ZI8EvJUyod02rCDItpwskBWwYUcxiPzB
- 71Pw==
-X-Gm-Message-State: AOAM530uSpJB0g0ltjv/YMTL/nZR8vNwRRVXKhBmG8cihvmXsxDxxanM
- RfleZSyZn7WG3WO3J2xQ0Gk=
-X-Google-Smtp-Source: ABdhPJwZ/rCncMQ46/4RmOQg6AKfgCTO4VHUsa9gsBjtXTcAf+WrZsvRdMlXLSN8z2pGmqgSqMrVpQ==
-X-Received: by 2002:a05:620a:1326:: with SMTP id
- p6mr3178972qkj.217.1616462184987; 
- Mon, 22 Mar 2021 18:16:24 -0700 (PDT)
-Received: from localhost.localdomain ([37.19.198.117])
- by smtp.gmail.com with ESMTPSA id i93sm10383114qtd.48.2021.03.22.18.16.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Mar 2021 18:16:24 -0700 (PDT)
-From: Bhaskar Chowdhury <unixbhaskar@gmail.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
- imre.deak@intel.com, ville.syrjala@linux.intel.com,
- lucas.demarchi@intel.com, matthew.d.roper@intel.com,
- tejaskumarx.surendrakumar.upadhyay@intel.com, unixbhaskar@gmail.com,
- aditya.swarup@intel.com, anusha.srivatsa@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Tue, 23 Mar 2021 06:46:07 +0530
-Message-Id: <20210323011607.182803-1-unixbhaskar@gmail.com>
-X-Mailer: git-send-email 2.31.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E57DC6E820;
+ Tue, 23 Mar 2021 01:27:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DF852A8169;
+ Tue, 23 Mar 2021 01:27:02 +0000 (UTC)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 23 Mar 2021 12:38:33 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: A typo fix
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Tue, 23 Mar 2021 01:27:02 -0000
+Message-ID: <161646282289.20052.1193248878530394370@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210320044245.3920043-1-matthew.d.roper@intel.com>
+In-Reply-To: <20210320044245.3920043-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Disassociate_display_version_from_INTEL=5FGEN=28=29_=28rev5?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,35 +39,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rdunlap@infradead.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-s/nothign/nothing/
+Series: Disassociate display version from INTEL_GEN() (rev5)
+URL   : https://patchwork.freedesktop.org/series/88198/
+State : warning
 
-Signed-off-by: Bhaskar Chowdhury <unixbhaskar@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index f6ad257a260e..14d784a6fae5 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4185,7 +4185,7 @@ static void icl_pll_disable(struct drm_i915_private *dev_priv,
- 	/*
- 	 * DVFS pre sequence would be here, but in our driver the cdclk code
- 	 * paths should already be setting the appropriate voltage, hence we do
--	 * nothign here.
-+	 * nothing here.
- 	 */
+$ dim checkpatch origin/drm-tip
+590f81d89285 drm/i915/display: Convert gen5/gen6 tests to IS_IRONLAKE/IS_SANDYBRIDGE
+-:130: CHECK:CAMELCASE: Avoid CamelCase: <ILK_eDP_A_DISABLE>
+#130: FILE: drivers/gpu/drm/i915/display/intel_display.c:11604:
++	if (IS_IRONLAKE(dev_priv) && (intel_de_read(dev_priv, FUSE_STRAP) & ILK_eDP_A_DISABLE))
 
- 	val = intel_de_read(dev_priv, enable_reg);
---
-2.31.0
+total: 0 errors, 0 warnings, 1 checks, 216 lines checked
+b23b2ac9f456 drm/i915: Add DISPLAY_VER() and related macros
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#73: FILE: drivers/gpu/drm/i915/i915_drv.h:1245:
++#define IS_DISPLAY_RANGE(i915, from, until) \
++	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+
+-:89: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#89: FILE: drivers/gpu/drm/i915/i915_pci.c:39:
++#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display.version = (x)
+
+total: 0 errors, 0 warnings, 2 checks, 27 lines checked
+8179128a529d drm/i915/display: Eliminate most usage of INTEL_GEN()
+-:2043: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'port == PORT_E'
+#2043: FILE: drivers/gpu/drm/i915/display/intel_display.c:6717:
++	if (DISPLAY_VER(dev_priv) < 9 &&
+ 	    (port == PORT_E) && intel_de_read(dev_priv, LPT_TRANSCONF) & TRANS_ENABLE) {
+
+-:2631: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 63)
+#2631: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:153:
++	if (DISPLAY_VER(dev_priv) >= 9)
+ 		/* no global SR status; inspect per-plane WM */;
+
+-:4188: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_IS_SUPPORTED'
+#4188: FILE: drivers/gpu/drm/i915/display/intel_psr.c:324:
++	if (DISPLAY_VER(dev_priv) >= 9 &&
+ 	    (intel_dp->psr_dpcd[0] == DP_PSR2_WITH_Y_COORD_IS_SUPPORTED)) {
+
+total: 0 errors, 1 warnings, 2 checks, 4216 lines checked
+3a21e8a872da drm/i915: Convert INTEL_GEN() to DISPLAY_VER() as appropriate in intel_pm.c
+9483991f662f drm/i915: Convert INTEL_GEN() to DISPLAY_VER() as appropriate in i915_irq.c
+c1d5003cdc8e drm/i915/display: Simplify GLK display version tests
+-:77: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#77: 
+        - (IS_DISPLAY_RANGE(dev_priv, 11, E) || IS_DISPLAY_VER(dev_priv, 10))
+
+-:388: WARNING:LONG_LINE: line length of 235 exceeds 100 columns
+#388: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs.c:2419:
++	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) && ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort && !to_intel_connector(connector)->mst_port) || connector->connector_type == DRM_MODE_CONNECTOR_eDP))
+
+-:574: WARNING:LONG_LINE: line length of 195 exceeds 100 columns
+#574: FILE: drivers/gpu/drm/i915/display/intel_vdsc.c:349:
++	if ((DISPLAY_VER(i915) >= 11 || IS_CANNONLAKE(i915)) && (pipe != PIPE_A || (cpu_transcoder == TRANSCODER_EDP || cpu_transcoder == TRANSCODER_DSI_0 || cpu_transcoder == TRANSCODER_DSI_1)))
+
+-:741: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#741: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:2230:
++	if ((DISPLAY_VER(dev_priv) >= 11 || IS_CANNONLAKE(dev_priv)) && val & PLANE_CTL_FLIP_HORIZONTAL)
+
+total: 0 errors, 4 warnings, 0 checks, 574 lines checked
+
 
 _______________________________________________
 Intel-gfx mailing list
