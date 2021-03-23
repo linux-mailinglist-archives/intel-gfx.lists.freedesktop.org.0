@@ -1,43 +1,82 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CA90346644
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 18:27:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 257B634665A
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 18:30:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90C586E917;
-	Tue, 23 Mar 2021 17:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B906A6EABF;
+	Tue, 23 Mar 2021 17:29:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FE6A6E917
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 17:27:37 +0000 (UTC)
-IronPort-SDR: quc7jeHfPHhKFhSB9Q/8Vd4Y2kFFvKuTEVhlynFnzxCJvXrRXJ+rsBKGtU4WILajBadRCOELke
- /IGOfpsduBPQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9932"; a="190559489"
-X-IronPort-AV: E=Sophos;i="5.81,272,1610438400"; d="scan'208";a="190559489"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2021 10:27:36 -0700
-IronPort-SDR: oF4WhXTiugc78mVVrd0DIRzGcjm4I/HmusDUkXN0Pypwc+qLxGepZuTeIrYLc6aZ3JuZchOjSN
- BmZqQgZVs0rg==
-X-IronPort-AV: E=Sophos;i="5.81,272,1610438400"; d="scan'208";a="408419277"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2021 10:27:36 -0700
-Date: Tue, 23 Mar 2021 10:27:34 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20210323172734.GU3422723@mdroper-desk1.amr.corp.intel.com>
-References: <YFkJLCzqK65y5Vfl@intel.com>
- <20210322233840.4056851-1-matthew.d.roper@intel.com>
- <YFokpaRM8yCqRJlF@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [63.128.21.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3318D6EB0C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 17:29:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1616520598;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=IaXjku08lJw38Jz4K+oKYtPDWrWwNMciFdk/Pj53xdY=;
+ b=aJhZ15oDIg1XyhjmKuGcvzd+3Nf+qETFVJ2t33YWQfe7RLnNiJorO3ycS/wIRpYzLN0fIb
+ psTmXBGvjmave+RLZaXb81RBy5amLoE3HPF+VS2/i1vG4itmCE4mmEd7UvWx+mMKinv0IP
+ YQrfwSjqiRrZaE+QOIgqfOJiR0aUJIE=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-540-Jpy_vuOfPl-SmgfvF8ZYXQ-1; Tue, 23 Mar 2021 13:29:57 -0400
+X-MC-Unique: Jpy_vuOfPl-SmgfvF8ZYXQ-1
+Received: by mail-ej1-f70.google.com with SMTP id d6so1379229ejd.15
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 10:29:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=IaXjku08lJw38Jz4K+oKYtPDWrWwNMciFdk/Pj53xdY=;
+ b=VvsRljHU6dXRBozUQwOGrQzv16a2u9y+gcel8Ih7a1PFwuMjjFPPBB9c2wdu4nmkPR
+ fWSaUrqVU/7tAFIbqOTqwHBzS3DjCpMA6zW6G/aelFTsQz5Locxu7BkwDagkkKtoQ8J+
+ nX+2zoSF6WamaR8BQi/3dOIq4xCMPrmCjRsKlaa5n9bIyRHfvrdAonz5YKtr04cp65tt
+ Z45JFFQez1a4sPmJs8tUW5dyQL6c3N7BXLulX2KVvbmOvI+/E++FdzEmZNzNRIWkEvv/
+ RMioFeAMkaQ9uv5yrYkxp9Q25SDQSv7SMN4Dm85cheYgypEj8KfeFVt1+3qCpmKQTgKL
+ QShw==
+X-Gm-Message-State: AOAM530R4oP6HDg4ZGtTV12W2Qp4WVCULsABv//ZfUoBjjc44kNmlfdK
+ tq8B9B8gfn9xcA2Ox6ABYW2QLoY/3IKp7PEeSke9/JMTEUkQHXJeeXwVsm5gayNN68C7TkajXeL
+ kAascg9JBKBsOSCBd/16yMbALd43e
+X-Received: by 2002:a17:906:aad5:: with SMTP id
+ kt21mr5930800ejb.160.1616520595546; 
+ Tue, 23 Mar 2021 10:29:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz6V1MGNXGV7WxOvZK24w+auH2ASZ5A04Mq8FkpNVUuvcpvJwnbhpBCjqVr1kZMm2UAtFaJYg==
+X-Received: by 2002:a17:906:aad5:: with SMTP id
+ kt21mr5930717ejb.160.1616520594343; 
+ Tue, 23 Mar 2021 10:29:54 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id gz20sm11642989ejc.25.2021.03.23.10.29.53
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 23 Mar 2021 10:29:53 -0700 (PDT)
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20210301154347.50052-1-hdegoede@redhat.com>
+ <8d882647-bab3-dfc3-70ad-4f1910dcb5af@redhat.com>
+ <YFkDYzN0NJ3Co8bT@intel.com> <YFkFH2uAR+6mNONZ@intel.com>
+ <c1beb028-9f9d-ad3e-9a06-2685ca36a8d4@redhat.com>
+ <YFkQigJmpLRJWxzb@intel.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <8a127f0c-ba08-3471-88f4-ef0aa281cd7b@redhat.com>
+Date: Tue, 23 Mar 2021 18:29:53 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YFokpaRM8yCqRJlF@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 6/6] drm/i915/display: Simplify GLK
- display version tests
+In-Reply-To: <YFkQigJmpLRJWxzb@intel.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/vlv_dsi: Do no shut down
+ displays on reboot if a DSI panel is used
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,1086 +89,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 23, 2021 at 07:25:57PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Mon, Mar 22, 2021 at 04:38:40PM -0700, Matt Roper wrote:
-> > GLK has always been a bit of a special case since it reports INTEL_GEN()
-> > as 9, but has version 10 display IP.  Now we can properly represent the
-> > display version as 10 and simplify the display generation tests
-> > throughout the display code.
-> > =
-
-> > Aside from manually adding the version to the glk_info structure, the
-> > rest of this patch is generated with a Coccinelle semantic patch.  Note
-> > that we also need to switch any code that matches gen10 today but *not*
-> > GLK to be CNL-specific:
-> > =
-
-> >         @@ expression dev_priv; @@
-> >         - DISPLAY_VER(dev_priv) > 9
-> >         + DISPLAY_VER(dev_priv) >=3D 10
-> > =
-
-> >         @@ expression dev_priv, E; @@
-> >         (
-> >         - DISPLAY_VER(dev_priv) >=3D 10 && E
-> >         + (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)) &&=
- E
-> >         |
-> >         - DISPLAY_VER(dev_priv) >=3D 10
-> >         + DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)
-> >         |
-> >         - IS_DISPLAY_RANGE(dev_priv, 10, E)
-> >         + IS_DISPLAY_RANGE(dev_priv, 11, E) || IS_CANNONLAKE(dev_priv)
-> >         )
-> > =
-
-> >         @@ expression dev_priv, E, E2; @@
-> >         (
-> >         - (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
-> >         + IS_DISPLAY_VER(dev_priv, 10)
-> >         |
-> >         - E || IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)
-> >         + E || IS_DISPLAY_VER(dev_priv, 10)
-> >         |
-> >         - (IS_GEMINILAKE(dev_priv) || IS_CANNONLAKE(dev_priv))
-> >         + IS_DISPLAY_VER(dev_priv, 10)
-> >         |
-> >         - IS_GEMINILAKE(dev_priv) || E || IS_CANNONLAKE(dev_priv)
-> >         + E || IS_DISPLAY_VER(dev_priv, 10)
-> >         |
-> >         - E || IS_GEMINILAKE(dev_priv) || E2 || IS_CANNONLAKE(dev_priv)
-> >         + E || E2 || IS_DISPLAY_VER(dev_priv, 10)
-> >         |
-> >         - (IS_DISPLAY_VER(dev_priv, 10) || IS_GEMINILAKE(dev_priv))
-> >         + IS_DISPLAY_VER(dev_priv, 10)
-> >         |
-> >         - (IS_GEMINILAKE(dev_priv) || IS_DISPLAY_VER(dev_priv, 10))
-> >         + IS_DISPLAY_VER(dev_priv, 10)
-> >         )
-> > =
-
-> >         @@ expression dev_priv; @@
-> >         - (IS_DISPLAY_VER(dev_priv, 9) && !IS_GEMINILAKE(dev_priv))
-> >         + IS_DISPLAY_VER(dev_priv, 9)
-> > =
-
-> >         @@ expression dev_priv; @@
-> >         (
-> >         - !(DISPLAY_VER(dev_priv) >=3D 11 || IS_DISPLAY_VER(dev_priv, 1=
-0))
-> >         + DISPLAY_VER(dev_priv) < 10
-> >         |
-> >         - (DISPLAY_VER(dev_priv) >=3D 11 || IS_DISPLAY_VER(dev_priv, 10=
-))
-> >         + DISPLAY_VER(dev_priv) >=3D 10
-> >         )
-> > =
-
-> >         @@ expression dev_priv, E; @@
-> >         - E || DISPLAY_VER(dev_priv) >=3D 11 || IS_DISPLAY_VER(dev_priv=
-, 10)
-> >         + E || DISPLAY_VER(dev_priv) >=3D 10
-> > =
-
-> >         @@ expression dev_priv, E; @@
-> >         - (IS_DISPLAY_RANGE(dev_priv, 11, E) || IS_DISPLAY_VER(dev_priv=
-, 10))
-> >         + IS_DISPLAY_RANGE(dev_priv, 10, E)
-> > =
-
-> >         @@ expression dev_priv; @@
-> >         (
-> >         - DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv) || I=
-S_GEN9_LP(dev_priv)
-> >         + DISPLAY_VER(dev_priv) >=3D 10 || IS_GEN9_LP(dev_priv)
-> >         |
-> >         - IS_GEN9_LP(dev_priv) || DISPLAY_VER(dev_priv) >=3D 11 || IS_C=
-ANNONLAKE(dev_priv)
-> >         + IS_GEN9_LP(dev_priv) || DISPLAY_VER(dev_priv) >=3D 10
-> >         )
-> > =
-
-> >         @@ expression dev_priv, E; @@
-> >         - !(DISPLAY_VER(dev_priv) >=3D E)
-> >         + DISPLAY_VER(dev_priv) < E
-> > =
-
-> > v2:
-> >  - Convert gen10 conditions that don't include GLK into CNL conditions.
-> >    (Ville)
-> > =
-
-> > v3:
-> >  - Rework coccinelle rules so that "ver>=3D10" turns into "ver>=3D11||i=
-s_cnl." (Ville)
-> > =
-
-> > v3.1:
-> >  - Manually re-add the ".display.version =3D 10" to glk_info after
-> >    regenerating patch via Coccinelle.
-> > =
-
-> > v4:
-> >  - Also apply cocci rules to intel_pm.c and i915_irq.c!  (CI)
-> =
-
-> Ugh. One thing that occurred to me when looking at i915_irq.c is that
-> IS_GEN9_LP() is now maybe broken on glk? So seems to me all uses of
-> IS_GEN9_LP() need to be reviewed and potentially changed.
-
-Broken how?  That macro still uses the gen/gt version instead of the
-display number, so I think it still behaves the same as before?
-
-
-Matt
-
-> =
-
-> > =
-
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_atomic.c   |  7 ++--
-> >  drivers/gpu/drm/i915/display/intel_audio.c    |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_bios.c     |  3 +-
-> >  drivers/gpu/drm/i915/display/intel_cdclk.c    | 26 +++++++------
-> >  drivers/gpu/drm/i915/display/intel_color.c    |  8 ++--
-> >  drivers/gpu/drm/i915/display/intel_crtc.c     |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_display.c  |  9 ++---
-> >  .../drm/i915/display/intel_display_debugfs.c  |  5 +--
-> >  .../drm/i915/display/intel_display_power.c    |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_dp.c       |  6 +--
-> >  drivers/gpu/drm/i915/display/intel_fbc.c      |  4 +-
-> >  drivers/gpu/drm/i915/display/intel_hdcp.c     |  1 -
-> >  drivers/gpu/drm/i915/display/intel_hdmi.c     | 13 +++----
-> >  drivers/gpu/drm/i915/display/intel_psr.c      |  7 ++--
-> >  drivers/gpu/drm/i915/display/intel_vdsc.c     |  6 +--
-> >  .../drm/i915/display/skl_universal_plane.c    | 37 +++++++++----------
-> >  drivers/gpu/drm/i915/i915_pci.c               |  1 +
-> >  drivers/gpu/drm/i915/intel_pm.c               | 16 ++++----
-> >  18 files changed, 71 insertions(+), 84 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/=
-drm/i915/display/intel_atomic.c
-> > index 2b928795755e..4fa389fce8cb 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> > @@ -332,8 +332,7 @@ static void intel_atomic_setup_scaler(struct intel_=
-crtc_scaler_state *scaler_sta
-> >  	    plane_state->hw.fb->format->is_yuv &&
-> >  	    plane_state->hw.fb->format->num_planes > 1) {
-> >  		struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane=
-);
-> > -		if (IS_DISPLAY_VER(dev_priv, 9) &&
-> > -		    !IS_GEMINILAKE(dev_priv)) {
-> > +		if (IS_DISPLAY_VER(dev_priv, 9)) {
-> >  			mode =3D SKL_PS_SCALER_MODE_NV12;
-> >  		} else if (icl_is_hdr_plane(dev_priv, plane->id)) {
-> >  			/*
-> > @@ -351,7 +350,7 @@ static void intel_atomic_setup_scaler(struct intel_=
-crtc_scaler_state *scaler_sta
-> >  			if (linked)
-> >  				mode |=3D PS_PLANE_Y_SEL(linked->id);
-> >  		}
-> > -	} else if (DISPLAY_VER(dev_priv) > 9 || IS_GEMINILAKE(dev_priv)) {
-> > +	} else if (DISPLAY_VER(dev_priv) >=3D 10) {
-> >  		mode =3D PS_SCALER_MODE_NORMAL;
-> >  	} else if (num_scalers_need =3D=3D 1 && intel_crtc->num_scalers > 1) {
-> >  		/*
-> > @@ -460,7 +459,7 @@ int intel_atomic_setup_scalers(struct drm_i915_priv=
-ate *dev_priv,
-> >  				 * isn't necessary to change between HQ and dyn mode
-> >  				 * on those platforms.
-> >  				 */
-> > -				if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +				if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  					continue;
-> >  =
-
-> >  				plane =3D drm_plane_from_index(&dev_priv->drm, i);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/d=
-rm/i915/display/intel_audio.c
-> > index 7ab9d1669f09..3ea20c857440 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> > @@ -1022,7 +1022,7 @@ static unsigned long i915_audio_component_get_pow=
-er(struct device *kdev)
-> >  		if (IS_GEMINILAKE(dev_priv))
-> >  			glk_force_audio_cdclk(dev_priv, true);
-> >  =
-
-> > -		if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +		if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  			intel_de_write(dev_priv, AUD_PIN_BUF_CTL,
-> >  				       (intel_de_read(dev_priv, AUD_PIN_BUF_CTL) | AUD_PIN_BUF_ENA=
-BLE));
-> >  	}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/dr=
-m/i915/display/intel_bios.c
-> > index 182db9de03c3..3d0c035b5e38 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> > @@ -917,8 +917,7 @@ parse_psr(struct drm_i915_private *i915, const stru=
-ct bdb_header *bdb)
-> >  	 * Old decimal value is wake up time in multiples of 100 us.
-> >  	 */
-> >  	if (bdb->version >=3D 205 &&
-> > -	    (IS_GEN9_BC(i915) || IS_GEMINILAKE(i915) ||
-> > -	     DISPLAY_VER(i915) >=3D 10)) {
-> > +	    (IS_GEN9_BC(i915) || DISPLAY_VER(i915) >=3D 10)) {
-> >  		switch (psr_table->tp1_wakeup_time) {
-> >  		case 0:
-> >  			i915->vbt.psr.tp1_wakeup_time_us =3D 500;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/d=
-rm/i915/display/intel_cdclk.c
-> > index 4be848d0d156..3f43ad4d7362 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > @@ -1397,7 +1397,7 @@ static void bxt_de_pll_readout(struct drm_i915_pr=
-ivate *dev_priv,
-> >  	 * CNL+ have the ratio directly in the PLL enable register, gen9lp had
-> >  	 * it in a separate PLL control register.
-> >  	 */
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10)
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv))
-> >  		ratio =3D val & CNL_CDCLK_PLL_RATIO_MASK;
-> >  	else
-> >  		ratio =3D intel_de_read(dev_priv, BXT_DE_PLL_CTL) & BXT_DE_PLL_RATIO=
-_MASK;
-> > @@ -1433,7 +1433,7 @@ static void bxt_get_cdclk(struct drm_i915_private=
- *dev_priv,
-> >  		break;
-> >  	case BXT_CDCLK_CD2X_DIV_SEL_1_5:
-> >  		drm_WARN(&dev_priv->drm,
-> > -			 IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >=3D 10,
-> > +			 DISPLAY_VER(dev_priv) >=3D 10,
-> >  			 "Unsupported divider\n");
-> >  		div =3D 3;
-> >  		break;
-> > @@ -1441,7 +1441,8 @@ static void bxt_get_cdclk(struct drm_i915_private=
- *dev_priv,
-> >  		div =3D 4;
-> >  		break;
-> >  	case BXT_CDCLK_CD2X_DIV_SEL_4:
-> > -		drm_WARN(&dev_priv->drm, DISPLAY_VER(dev_priv) >=3D 10,
-> > +		drm_WARN(&dev_priv->drm,
-> > +			 DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv),
-> >  			 "Unsupported divider\n");
-> >  		div =3D 8;
-> >  		break;
-> > @@ -1558,7 +1559,7 @@ static void bxt_set_cdclk(struct drm_i915_private=
- *dev_priv,
-> >  	int ret;
-> >  =
-
-> >  	/* Inform power controller of upcoming frequency change. */
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10)
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv))
-> >  		ret =3D skl_pcode_request(dev_priv, SKL_PCODE_CDCLK_CONTROL,
-> >  					SKL_CDCLK_PREPARE_FOR_CHANGE,
-> >  					SKL_CDCLK_READY_FOR_CHANGE,
-> > @@ -1591,7 +1592,7 @@ static void bxt_set_cdclk(struct drm_i915_private=
- *dev_priv,
-> >  		break;
-> >  	case 3:
-> >  		drm_WARN(&dev_priv->drm,
-> > -			 IS_GEMINILAKE(dev_priv) || DISPLAY_VER(dev_priv) >=3D 10,
-> > +			 DISPLAY_VER(dev_priv) >=3D 10,
-> >  			 "Unsupported divider\n");
-> >  		divider =3D BXT_CDCLK_CD2X_DIV_SEL_1_5;
-> >  		break;
-> > @@ -1599,13 +1600,14 @@ static void bxt_set_cdclk(struct drm_i915_priva=
-te *dev_priv,
-> >  		divider =3D BXT_CDCLK_CD2X_DIV_SEL_2;
-> >  		break;
-> >  	case 8:
-> > -		drm_WARN(&dev_priv->drm, DISPLAY_VER(dev_priv) >=3D 10,
-> > +		drm_WARN(&dev_priv->drm,
-> > +			 DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv),
-> >  			 "Unsupported divider\n");
-> >  		divider =3D BXT_CDCLK_CD2X_DIV_SEL_4;
-> >  		break;
-> >  	}
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10) {
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)) {
-> >  		if (dev_priv->cdclk.hw.vco !=3D 0 &&
-> >  		    dev_priv->cdclk.hw.vco !=3D vco)
-> >  			cnl_cdclk_pll_disable(dev_priv);
-> > @@ -1636,7 +1638,7 @@ static void bxt_set_cdclk(struct drm_i915_private=
- *dev_priv,
-> >  	if (pipe !=3D INVALID_PIPE)
-> >  		intel_wait_for_vblank(dev_priv, pipe);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10) {
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)) {
-> >  		ret =3D sandybridge_pcode_write(dev_priv, SKL_PCODE_CDCLK_CONTROL,
-> >  					      cdclk_config->voltage_level);
-> >  	} else {
-> > @@ -1661,7 +1663,7 @@ static void bxt_set_cdclk(struct drm_i915_private=
- *dev_priv,
-> >  =
-
-> >  	intel_update_cdclk(dev_priv);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10)
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv))
-> >  		/*
-> >  		 * Can't read out the voltage level :(
-> >  		 * Let's just assume everything is as expected.
-> > @@ -1998,7 +2000,7 @@ static int intel_pixel_rate_to_cdclk(const struct=
- intel_crtc_state *crtc_state)
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> >  	int pixel_rate =3D crtc_state->pixel_rate;
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		return DIV_ROUND_UP(pixel_rate, 2);
-> >  	else if (IS_DISPLAY_VER(dev_priv, 9) ||
-> >  		 IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
-> > @@ -2048,7 +2050,7 @@ int intel_crtc_compute_min_cdclk(const struct int=
-el_crtc_state *crtc_state)
-> >  	    crtc_state->has_audio &&
-> >  	    crtc_state->port_clock >=3D 540000 &&
-> >  	    crtc_state->lane_count =3D=3D 4) {
-> > -		if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)) {
-> > +		if (IS_DISPLAY_VER(dev_priv, 10)) {
-> >  			/* Display WA #1145: glk,cnl */
-> >  			min_cdclk =3D max(316800, min_cdclk);
-> >  		} else if (IS_DISPLAY_VER(dev_priv, 9) || IS_BROADWELL(dev_priv)) {
-> > @@ -2588,7 +2590,7 @@ static int intel_compute_max_dotclk(struct drm_i9=
-15_private *dev_priv)
-> >  {
-> >  	int max_cdclk_freq =3D dev_priv->max_cdclk_freq;
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		return 2 * max_cdclk_freq;
-> >  	else if (IS_DISPLAY_VER(dev_priv, 9) ||
-> >  		 IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
-> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/d=
-rm/i915/display/intel_color.c
-> > index 37e275509a36..c75d7124d57a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > @@ -737,7 +737,7 @@ static void ivb_load_lut_ext_max(const struct intel=
-_crtc_state *crtc_state)
-> >  	 * ToDo: Extend the ABI to be able to program values
-> >  	 * from 3.0 to 7.0
-> >  	 */
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)) {
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10) {
-> >  		intel_dsb_reg_write(crtc_state, PREC_PAL_EXT2_GC_MAX(pipe, 0),
-> >  				    1 << 16);
-> >  		intel_dsb_reg_write(crtc_state, PREC_PAL_EXT2_GC_MAX(pipe, 1),
-> > @@ -1711,7 +1711,7 @@ int intel_color_get_gamma_bit_precision(const str=
-uct intel_crtc_state *crtc_stat
-> >  	} else {
-> >  		if (DISPLAY_VER(dev_priv) >=3D 11)
-> >  			return icl_gamma_precision(crtc_state);
-> > -		else if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
-> > +		else if (IS_DISPLAY_VER(dev_priv, 10))
-> >  			return glk_gamma_precision(crtc_state);
-> >  		else if (IS_IRONLAKE(dev_priv))
-> >  			return ilk_gamma_precision(crtc_state);
-> > @@ -2119,7 +2119,7 @@ void intel_color_init(struct intel_crtc *crtc)
-> >  	} else {
-> >  		if (DISPLAY_VER(dev_priv) >=3D 11)
-> >  			dev_priv->display.color_check =3D icl_color_check;
-> > -		else if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +		else if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  			dev_priv->display.color_check =3D glk_color_check;
-> >  		else if (DISPLAY_VER(dev_priv) >=3D 7)
-> >  			dev_priv->display.color_check =3D ivb_color_check;
-> > @@ -2136,7 +2136,7 @@ void intel_color_init(struct intel_crtc *crtc)
-> >  		if (DISPLAY_VER(dev_priv) >=3D 11) {
-> >  			dev_priv->display.load_luts =3D icl_load_luts;
-> >  			dev_priv->display.read_luts =3D icl_read_luts;
-> > -		} else if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)) {
-> > +		} else if (IS_DISPLAY_VER(dev_priv, 10)) {
-> >  			dev_priv->display.load_luts =3D glk_load_luts;
-> >  			dev_priv->display.read_luts =3D glk_read_luts;
-> >  		} else if (DISPLAY_VER(dev_priv) >=3D 8) {
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/dr=
-m/i915/display/intel_crtc.c
-> > index 004ace523970..39358076c05b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > @@ -335,7 +335,7 @@ int intel_crtc_init(struct drm_i915_private *dev_pr=
-iv, enum pipe pipe)
-> >  		dev_priv->plane_to_crtc_mapping[i9xx_plane] =3D crtc;
-> >  	}
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10)
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv))
-> >  		drm_crtc_create_scaling_filter_property(&crtc->base,
-> >  						BIT(DRM_SCALING_FILTER_DEFAULT) |
-> >  						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 8a5014f4b3f4..a1fb5a101942 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -3259,7 +3259,7 @@ static bool needs_nv12_wa(const struct intel_crtc=
-_state *crtc_state)
-> >  		return false;
-> >  =
-
-> >  	/* WA Display #0827: Gen9:all */
-> > -	if (IS_DISPLAY_VER(dev_priv, 9) && !IS_GEMINILAKE(dev_priv))
-> > +	if (IS_DISPLAY_VER(dev_priv, 9))
-> >  		return true;
-> >  =
-
-> >  	return false;
-> > @@ -3989,7 +3989,7 @@ static void hsw_crtc_enable(struct intel_atomic_s=
-tate *state,
-> >  	crtc->active =3D true;
-> >  =
-
-> >  	/* Display WA #1180: WaDisableScalarClockGating: glk, cnl */
-> > -	psl_clkgate_wa =3D (IS_GEMINILAKE(dev_priv) || IS_CANNONLAKE(dev_priv=
-)) &&
-> > +	psl_clkgate_wa =3D IS_DISPLAY_VER(dev_priv, 10) &&
-> >  		new_crtc_state->pch_pfit.enabled;
-> >  	if (psl_clkgate_wa)
-> >  		glk_pipe_scaler_clock_gating_wa(dev_priv, pipe, true);
-> > @@ -13329,8 +13329,7 @@ static void intel_modeset_readout_hw_state(stru=
-ct drm_device *dev)
-> >  			 * use plane->min_cdclk() :(
-> >  			 */
-> >  			if (plane_state->uapi.visible && plane->min_cdclk) {
-> > -				if (crtc_state->double_wide ||
-> > -				    DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +				if (crtc_state->double_wide || DISPLAY_VER(dev_priv) >=3D 10)
-> >  					crtc_state->min_cdclk[plane->id] =3D
-> >  						DIV_ROUND_UP(crtc_state->pixel_rate, 2);
-> >  				else
-> > @@ -13421,7 +13420,7 @@ static void intel_early_display_was(struct drm_=
-i915_private *dev_priv)
-> >  	 * Display WA #1185 WaDisableDARBFClkGating:cnl,glk,icl,ehl,tgl
-> >  	 * Also known as Wa_14010480278.
-> >  	 */
-> > -	if (IS_DISPLAY_RANGE(dev_priv, 10, 12) || IS_GEMINILAKE(dev_priv))
-> > +	if (IS_DISPLAY_RANGE(dev_priv, 10, 12))
-> >  		intel_de_write(dev_priv, GEN9_CLKGATE_DIS_0,
-> >  			       intel_de_read(dev_priv, GEN9_CLKGATE_DIS_0) | DARBF_GATING_D=
-IS);
-> >  =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/dri=
-vers/gpu/drm/i915/display/intel_display_debugfs.c
-> > index 1666aa23092b..564509a4e666 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > @@ -2416,10 +2416,7 @@ int intel_connector_debugfs_add(struct drm_conne=
-ctor *connector)
-> >  				    connector, &i915_hdcp_sink_capability_fops);
-> >  	}
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 &&
-> > -	    ((connector->connector_type =3D=3D DRM_MODE_CONNECTOR_DisplayPort=
- &&
-> > -	      !to_intel_connector(connector)->mst_port) ||
-> > -	     connector->connector_type =3D=3D DRM_MODE_CONNECTOR_eDP))
-> > +	if ((DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)) && ((c=
-onnector->connector_type =3D=3D DRM_MODE_CONNECTOR_DisplayPort && !to_intel=
-_connector(connector)->mst_port) || connector->connector_type =3D=3D DRM_MO=
-DE_CONNECTOR_eDP))
-> >  		debugfs_create_file("i915_dsc_fec_support", S_IRUGO, root,
-> >  				    connector, &i915_dsc_fec_support_fops);
-> >  =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drive=
-rs/gpu/drm/i915/display/intel_display_power.c
-> > index 1eb16bad677a..cef177208e68 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > @@ -4537,7 +4537,7 @@ static u32 get_allowed_dc_mask(const struct drm_i=
-915_private *dev_priv,
-> >  		max_dc =3D 3;
-> >  	else if (DISPLAY_VER(dev_priv) >=3D 12)
-> >  		max_dc =3D 4;
-> > -	else if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEN9_BC(dev_priv))
-> > +	else if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv) || =
-IS_GEN9_BC(dev_priv))
-> >  		max_dc =3D 2;
-> >  	else if (IS_GEN9_LP(dev_priv))
-> >  		max_dc =3D 1;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
-i915/display/intel_dp.c
-> > index 4ba5e37f17d2..d81b8d238163 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -292,7 +292,7 @@ intel_dp_set_source_rates(struct intel_dp *intel_dp)
-> >  	drm_WARN_ON(&dev_priv->drm,
-> >  		    intel_dp->source_rates || intel_dp->num_source_rates);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10) {
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)) {
-> >  		source_rates =3D cnl_rates;
-> >  		size =3D ARRAY_SIZE(cnl_rates);
-> >  		if (IS_DISPLAY_VER(dev_priv, 10))
-> > @@ -776,7 +776,7 @@ intel_dp_mode_valid(struct drm_connector *connector,
-> >  	 * Output bpp is stored in 6.4 format so right shift by 4 to get the
-> >  	 * integer value since we support only integer values of bpp.
-> >  	 */
-> > -	if ((DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)) &&
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10 &&
-> >  	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
-> >  		if (intel_dp_is_edp(intel_dp)) {
-> >  			dsc_max_output_bpp =3D
-> > @@ -2523,7 +2523,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp)
-> >  	intel_dp_set_common_rates(intel_dp);
-> >  =
-
-> >  	/* Read the eDP DSC DPCD registers */
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		intel_dp_get_dsc_sink_cap(intel_dp);
-> >  =
-
-> >  	/*
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm=
-/i915/display/intel_fbc.c
-> > index 58f603066700..88e02ee3a631 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > @@ -653,7 +653,7 @@ static bool intel_fbc_hw_tracking_covers_screen(str=
-uct intel_crtc *crtc)
-> >  	struct intel_fbc *fbc =3D &dev_priv->fbc;
-> >  	unsigned int effective_w, effective_h, max_w, max_h;
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)) {
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10) {
-> >  		max_w =3D 5120;
-> >  		max_h =3D 4096;
-> >  	} else if (DISPLAY_VER(dev_priv) >=3D 8 || IS_HASWELL(dev_priv)) {
-> > @@ -1036,7 +1036,7 @@ bool intel_fbc_pre_update(struct intel_atomic_sta=
-te *state,
-> >  		 * if at least one frame has already passed.
-> >  		 */
-> >  		if (fbc->activated &&
-> > -		    (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)))
-> > +		    DISPLAY_VER(dev_priv) >=3D 10)
-> >  			need_vblank_wait =3D true;
-> >  		fbc->activated =3D false;
-> >  	}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/dr=
-m/i915/display/intel_hdcp.c
-> > index fe0bfabdbb5d..d8570e14fe60 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > @@ -2206,7 +2206,6 @@ static bool is_hdcp2_supported(struct drm_i915_pr=
-ivate *dev_priv)
-> >  		return false;
-> >  =
-
-> >  	return (DISPLAY_VER(dev_priv) >=3D 10 ||
-> > -		IS_GEMINILAKE(dev_priv) ||
-> >  		IS_KABYLAKE(dev_priv) ||
-> >  		IS_COFFEELAKE(dev_priv) ||
-> >  		IS_COMETLAKE(dev_priv));
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/dr=
-m/i915/display/intel_hdmi.c
-> > index ef766a7b6c71..d69f0a6dc26d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > @@ -564,7 +564,7 @@ static u32 hsw_infoframes_enabled(struct intel_enco=
-der *encoder,
-> >  		VIDEO_DIP_ENABLE_GCP_HSW | VIDEO_DIP_ENABLE_VS_HSW |
-> >  		VIDEO_DIP_ENABLE_GMP_HSW | VIDEO_DIP_ENABLE_SPD_HSW);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		mask |=3D VIDEO_DIP_ENABLE_DRM_GLK;
-> >  =
-
-> >  	return val & mask;
-> > @@ -820,7 +820,7 @@ intel_hdmi_compute_drm_infoframe(struct intel_encod=
-er *encoder,
-> >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> >  	int ret;
-> >  =
-
-> > -	if (!(DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)))
-> > +	if (DISPLAY_VER(dev_priv) < 10)
-> >  		return true;
-> >  =
-
-> >  	if (!crtc_state->has_infoframe)
-> > @@ -1775,7 +1775,7 @@ static int intel_hdmi_source_max_tmds_clock(struc=
-t intel_encoder *encoder)
-> >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> >  	int max_tmds_clock, vbt_max_tmds_clock;
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		max_tmds_clock =3D 594000;
-> >  	else if (DISPLAY_VER(dev_priv) >=3D 8 || IS_HASWELL(dev_priv))
-> >  		max_tmds_clock =3D 300000;
-> > @@ -2164,8 +2164,7 @@ int intel_hdmi_compute_config(struct intel_encode=
-r *encoder,
-> >  =
-
-> >  	pipe_config->lane_count =3D 4;
-> >  =
-
-> > -	if (scdc->scrambling.supported && (DISPLAY_VER(dev_priv) >=3D 10 ||
-> > -					   IS_GEMINILAKE(dev_priv))) {
-> > +	if (scdc->scrambling.supported && DISPLAY_VER(dev_priv) >=3D 10) {
-> >  		if (scdc->scrambling.low_rates)
-> >  			pipe_config->hdmi_scrambling =3D true;
-> >  =
-
-> > @@ -2460,7 +2459,7 @@ intel_hdmi_add_properties(struct intel_hdmi *inte=
-l_hdmi, struct drm_connector *c
-> >  	intel_attach_hdmi_colorspace_property(connector);
-> >  	drm_connector_attach_content_type_property(connector);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		drm_object_attach_property(&connector->base,
-> >  			connector->dev->mode_config.hdr_output_metadata_property, 0);
-> >  =
-
-> > @@ -2815,7 +2814,7 @@ void intel_hdmi_init_connector(struct intel_digit=
-al_port *dig_port,
-> >  	connector->doublescan_allowed =3D 0;
-> >  	connector->stereo_allowed =3D 1;
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		connector->ycbcr_420_allowed =3D true;
-> >  =
-
-> >  	intel_connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm=
-/i915/display/intel_psr.c
-> > index 4ab568f82ddf..d05f9aaa8c06 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> > @@ -524,7 +524,7 @@ static void hsw_activate_psr2(struct intel_dp *inte=
-l_dp)
-> >  	val =3D psr_compute_idle_frames(intel_dp) << EDP_PSR2_IDLE_FRAME_SHIF=
-T;
-> >  =
-
-> >  	val |=3D EDP_PSR2_ENABLE | EDP_SU_TRACK_ENABLE;
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		val |=3D EDP_Y_COORDINATE_ENABLE;
-> >  =
-
-> >  	val |=3D EDP_PSR2_FRAME_BEFORE_SU(intel_dp->psr.sink_sync_latency + 1=
-);
-> > @@ -765,7 +765,7 @@ static bool intel_psr2_config_valid(struct intel_dp=
- *intel_dp,
-> >  		psr_max_h =3D 5120;
-> >  		psr_max_v =3D 3200;
-> >  		max_bpp =3D 30;
-> > -	} else if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)) {
-> > +	} else if (DISPLAY_VER(dev_priv) >=3D 10) {
-> >  		psr_max_h =3D 4096;
-> >  		psr_max_v =3D 2304;
-> >  		max_bpp =3D 24;
-> > @@ -909,8 +909,7 @@ static void intel_psr_enable_source(struct intel_dp=
- *intel_dp,
-> >  	if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
-> >  		hsw_psr_setup_aux(intel_dp);
-> >  =
-
-> > -	if (intel_dp->psr.psr2_enabled && (IS_DISPLAY_VER(dev_priv, 9) &&
-> > -					   !IS_GEMINILAKE(dev_priv))) {
-> > +	if (intel_dp->psr.psr2_enabled && IS_DISPLAY_VER(dev_priv, 9)) {
-> >  		i915_reg_t reg =3D CHICKEN_TRANS(cpu_transcoder);
-> >  		u32 chicken =3D intel_de_read(dev_priv, reg);
-> >  =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/dr=
-m/i915/display/intel_vdsc.c
-> > index 1ccef159a9a0..5272bc80ce04 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> > @@ -346,11 +346,7 @@ bool intel_dsc_source_support(const struct intel_c=
-rtc_state *crtc_state)
-> >  	if (DISPLAY_VER(i915) >=3D 12)
-> >  		return true;
-> >  =
-
-> > -	if (DISPLAY_VER(i915) >=3D 10 &&
-> > -	    (pipe !=3D PIPE_A ||
-> > -	     (cpu_transcoder =3D=3D TRANSCODER_EDP ||
-> > -	      cpu_transcoder =3D=3D TRANSCODER_DSI_0 ||
-> > -	      cpu_transcoder =3D=3D TRANSCODER_DSI_1)))
-> > +	if ((DISPLAY_VER(i915) >=3D 11 || IS_CANNONLAKE(i915)) && (pipe !=3D =
-PIPE_A || (cpu_transcoder =3D=3D TRANSCODER_EDP || cpu_transcoder =3D=3D TR=
-ANSCODER_DSI_0 || cpu_transcoder =3D=3D TRANSCODER_DSI_1)))
-> >  		return true;
-> >  =
-
-> >  	return false;
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drive=
-rs/gpu/drm/i915/display/skl_universal_plane.c
-> > index 89b2475a3d60..c6d7b6c054b5 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > @@ -294,7 +294,7 @@ skl_plane_ratio(const struct intel_crtc_state *crtc=
-_state,
-> >  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> >  =
-
-> >  	if (fb->format->cpp[0] =3D=3D 8) {
-> > -		if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)) {
-> > +		if (DISPLAY_VER(dev_priv) >=3D 10) {
-> >  			*num =3D 10;
-> >  			*den =3D 8;
-> >  		} else {
-> > @@ -317,7 +317,7 @@ static int skl_plane_min_cdclk(const struct intel_c=
-rtc_state *crtc_state,
-> >  	skl_plane_ratio(crtc_state, plane_state, &num, &den);
-> >  =
-
-> >  	/* two pixels per clock on glk+ */
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		den *=3D 2;
-> >  =
-
-> >  	return DIV_ROUND_UP(pixel_rate * num, den);
-> > @@ -810,7 +810,7 @@ static u32 skl_plane_ctl_crtc(const struct intel_cr=
-tc_state *crtc_state)
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> >  	u32 plane_ctl =3D 0;
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		return plane_ctl;
-> >  =
-
-> >  	if (crtc_state->gamma_enable)
-> > @@ -849,7 +849,7 @@ static u32 skl_plane_ctl(const struct intel_crtc_st=
-ate *crtc_state,
-> >  	plane_ctl |=3D skl_plane_ctl_tiling(fb->modifier);
-> >  	plane_ctl |=3D skl_plane_ctl_rotate(rotation & DRM_MODE_ROTATE_MASK);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10)
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv))
-> >  		plane_ctl |=3D cnl_plane_ctl_flip(rotation &
-> >  						DRM_MODE_REFLECT_MASK);
-> >  =
-
-> > @@ -976,7 +976,7 @@ skl_program_plane(struct intel_plane *plane,
-> >  =
-
-> >  	plane_ctl |=3D skl_plane_ctl_crtc(crtc_state);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		plane_color_ctl =3D plane_state->color_ctl |
-> >  			glk_plane_color_ctl_crtc(crtc_state);
-> >  =
-
-> > @@ -1017,7 +1017,7 @@ skl_program_plane(struct intel_plane *plane,
-> >  		intel_de_write_fw(dev_priv, PLANE_CUS_CTL(pipe, plane_id),
-> >  				  plane_state->cus_ctl);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id),
-> >  				  plane_color_ctl);
-> >  =
-
-> > @@ -1222,7 +1222,7 @@ static int skl_plane_check_dst_coordinates(const =
-struct intel_crtc_state *crtc_s
-> >  	 * than the cursor ending less than 4 pixels from the left edge of the
-> >  	 * screen may cause FIFO underflow and display corruption.
-> >  	 */
-> > -	if ((IS_GEMINILAKE(dev_priv) || IS_CANNONLAKE(dev_priv)) &&
-> > +	if (IS_DISPLAY_VER(dev_priv, 10) &&
-> >  	    (crtc_x + crtc_w < 4 || crtc_x > pipe_src_w - 4)) {
-> >  		drm_dbg_kms(&dev_priv->drm,
-> >  			    "requested plane X %s position %d invalid (valid range %d-%d)\n=
-",
-> > @@ -1262,7 +1262,7 @@ static int skl_plane_max_scale(struct drm_i915_pr=
-ivate *dev_priv,
-> >  	 * the best case.
-> >  	 * FIXME need to properly check this later.
-> >  	 */
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv) ||
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10 ||
-> >  	    !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
-> >  		return 0x30000 - 1;
-> >  	else
-> > @@ -1687,7 +1687,7 @@ static int skl_plane_check(struct intel_crtc_stat=
-e *crtc_state,
-> >  =
-
-> >  	plane_state->ctl =3D skl_plane_ctl(crtc_state, plane_state);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		plane_state->color_ctl =3D glk_plane_color_ctl(crtc_state,
-> >  							     plane_state);
-> >  =
-
-> > @@ -1719,7 +1719,7 @@ static bool skl_plane_has_planar(struct drm_i915_=
-private *dev_priv,
-> >  	if (IS_SKYLAKE(dev_priv) || IS_BROXTON(dev_priv))
-> >  		return false;
-> >  =
-
-> > -	if (IS_DISPLAY_VER(dev_priv, 9) && !IS_GEMINILAKE(dev_priv) && pipe =
-=3D=3D PIPE_C)
-> > +	if (IS_DISPLAY_VER(dev_priv, 9) && pipe =3D=3D PIPE_C)
-> >  		return false;
-> >  =
-
-> >  	if (plane_id !=3D PLANE_PRIMARY && plane_id !=3D PLANE_SPRITE0)
-> > @@ -1776,7 +1776,7 @@ static bool skl_plane_has_ccs(struct drm_i915_pri=
-vate *dev_priv,
-> >  	if (plane_id =3D=3D PLANE_CURSOR)
-> >  		return false;
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10)
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv))
-> >  		return true;
-> >  =
-
-> >  	if (IS_GEMINILAKE(dev_priv))
-> > @@ -2013,7 +2013,7 @@ skl_universal_plane_create(struct drm_i915_privat=
-e *dev_priv,
-> >  		plane->min_width =3D icl_plane_min_width;
-> >  		plane->max_width =3D icl_plane_max_width;
-> >  		plane->max_height =3D icl_plane_max_height;
-> > -	} else if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)) {
-> > +	} else if (DISPLAY_VER(dev_priv) >=3D 10) {
-> >  		plane->max_width =3D glk_plane_max_width;
-> >  		plane->max_height =3D skl_plane_max_height;
-> >  	} else {
-> > @@ -2039,7 +2039,7 @@ skl_universal_plane_create(struct drm_i915_privat=
-e *dev_priv,
-> >  	if (DISPLAY_VER(dev_priv) >=3D 11)
-> >  		formats =3D icl_get_plane_formats(dev_priv, pipe,
-> >  						plane_id, &num_formats);
-> > -	else if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	else if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		formats =3D glk_get_plane_formats(dev_priv, pipe,
-> >  						plane_id, &num_formats);
-> >  	else
-> > @@ -2076,7 +2076,7 @@ skl_universal_plane_create(struct drm_i915_privat=
-e *dev_priv,
-> >  		DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 |
-> >  		DRM_MODE_ROTATE_180 | DRM_MODE_ROTATE_270;
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10)
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv))
-> >  		supported_rotations |=3D DRM_MODE_REFLECT_X;
-> >  =
-
-> >  	drm_plane_create_rotation_property(&plane->base,
-> > @@ -2085,7 +2085,7 @@ skl_universal_plane_create(struct drm_i915_privat=
-e *dev_priv,
-> >  =
-
-> >  	supported_csc =3D BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT=
-709);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		supported_csc |=3D BIT(DRM_COLOR_YCBCR_BT2020);
-> >  =
-
-> >  	drm_plane_create_color_properties(&plane->base,
-> > @@ -2106,7 +2106,7 @@ skl_universal_plane_create(struct drm_i915_privat=
-e *dev_priv,
-> >  	if (DISPLAY_VER(dev_priv) >=3D 12)
-> >  		drm_plane_enable_fb_damage_clips(&plane->base);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10)
-> > +	if (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv))
-> >  		drm_plane_create_scaling_filter_property(&plane->base,
-> >  						BIT(DRM_SCALING_FILTER_DEFAULT) |
-> >  						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
-> > @@ -2165,7 +2165,7 @@ skl_get_initial_plane_config(struct intel_crtc *c=
-rtc,
-> >  	else
-> >  		pixel_format =3D val & PLANE_CTL_FORMAT_MASK;
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)) {
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10) {
-> >  		alpha =3D intel_de_read(dev_priv,
-> >  				      PLANE_COLOR_CTL(pipe, plane_id));
-> >  		alpha &=3D PLANE_COLOR_ALPHA_MASK;
-> > @@ -2227,8 +2227,7 @@ skl_get_initial_plane_config(struct intel_crtc *c=
-rtc,
-> >  		break;
-> >  	}
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 &&
-> > -	    val & PLANE_CTL_FLIP_HORIZONTAL)
-> > +	if ((DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)) && val=
- & PLANE_CTL_FLIP_HORIZONTAL)
-> >  		plane_config->rotation |=3D DRM_MODE_REFLECT_X;
-> >  =
-
-> >  	/* 90/270 degree rotation would require extra work */
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i91=
-5_pci.c
-> > index d327882d6d4b..480553746794 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -723,6 +723,7 @@ static const struct intel_device_info bxt_info =3D {
-> >  static const struct intel_device_info glk_info =3D {
-> >  	GEN9_LP_FEATURES,
-> >  	PLATFORM(INTEL_GEMINILAKE),
-> > +	.display.version =3D 10,
-> >  	.ddb_size =3D 1024,
-> >  	GLK_COLORS,
-> >  };
-> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/int=
-el_pm.c
-> > index f847752f3512..820f850d5cbb 100644
-> > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > @@ -3660,7 +3660,7 @@ static bool skl_needs_memory_bw_wa(struct drm_i91=
-5_private *dev_priv)
-> >  static bool
-> >  intel_has_sagv(struct drm_i915_private *dev_priv)
-> >  {
-> > -	return (IS_GEN9_BC(dev_priv) || DISPLAY_VER(dev_priv) >=3D 10) &&
-> > +	return (IS_GEN9_BC(dev_priv) || DISPLAY_VER(dev_priv) >=3D 11 || IS_C=
-ANNONLAKE(dev_priv)) &&
-> >  		dev_priv->sagv_status !=3D I915_SAGV_NOT_CONTROLLED;
-> >  }
-> >  =
-
-> > @@ -5030,7 +5030,7 @@ skl_wm_method1(const struct drm_i915_private *dev=
-_priv, u32 pixel_rate,
-> >  	wm_intermediate_val =3D latency * pixel_rate * cpp;
-> >  	ret =3D div_fixed16(wm_intermediate_val, 1000 * dbuf_block_size);
-> >  =
-
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		ret =3D add_fixed16_u32(ret, 1);
-> >  =
-
-> >  	return ret;
-> > @@ -5144,7 +5144,7 @@ skl_compute_wm_params(const struct intel_crtc_sta=
-te *crtc_state,
-> >  					   wp->y_min_scanlines,
-> >  					   wp->dbuf_block_size);
-> >  =
-
-> > -		if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +		if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  			interm_pbpl++;
-> >  =
-
-> >  		wp->plane_blocks_per_line =3D div_fixed16(interm_pbpl,
-> > @@ -5153,8 +5153,7 @@ skl_compute_wm_params(const struct intel_crtc_sta=
-te *crtc_state,
-> >  		interm_pbpl =3D DIV_ROUND_UP(wp->plane_bytes_per_line,
-> >  					   wp->dbuf_block_size);
-> >  =
-
-> > -		if (!wp->x_tiled ||
-> > -		    DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +		if (!wp->x_tiled || DISPLAY_VER(dev_priv) >=3D 10)
-> >  			interm_pbpl++;
-> >  =
-
-> >  		wp->plane_blocks_per_line =3D u32_to_fixed16(interm_pbpl);
-> > @@ -5193,7 +5192,7 @@ skl_compute_plane_wm_params(const struct intel_cr=
-tc_state *crtc_state,
-> >  =
-
-> >  static bool skl_wm_has_lines(struct drm_i915_private *dev_priv, int le=
-vel)
-> >  {
-> > -	if (DISPLAY_VER(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > +	if (DISPLAY_VER(dev_priv) >=3D 10)
-> >  		return true;
-> >  =
-
-> >  	/* The number of lines are ignored for the level 0 watermark. */
-> > @@ -5246,8 +5245,7 @@ static void skl_compute_plane_wm(const struct int=
-el_crtc_state *crtc_state,
-> >  		     (wp->plane_bytes_per_line / wp->dbuf_block_size < 1)) {
-> >  			selected_result =3D method2;
-> >  		} else if (latency >=3D wp->linetime_us) {
-> > -			if (IS_DISPLAY_VER(dev_priv, 9) &&
-> > -			    !IS_GEMINILAKE(dev_priv))
-> > +			if (IS_DISPLAY_VER(dev_priv, 9))
-> >  				selected_result =3D min_fixed16(method1, method2);
-> >  			else
-> >  				selected_result =3D method2;
-> > @@ -5386,7 +5384,7 @@ static void skl_compute_transition_wm(struct drm_=
-i915_private *dev_priv,
-> >  		trans_min =3D 14;
-> >  =
-
-> >  	/* Display WA #1140: glk,cnl */
-> > -	if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
-> > +	if (IS_DISPLAY_VER(dev_priv, 10))
-> >  		trans_amount =3D 0;
-> >  	else
-> >  		trans_amount =3D 10; /* This is configurable amount */
-> > -- =
-
-> > 2.25.4
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGksCgpPbiAzLzIyLzIxIDEwOjQ3IFBNLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6Cj4gT24gTW9u
+LCBNYXIgMjIsIDIwMjEgYXQgMTA6Mjg6MDZQTSArMDEwMCwgSGFucyBkZSBHb2VkZSB3cm90ZToK
+Pj4gSGksCj4+Cj4+IE9uIDMvMjIvMjEgOTo1OSBQTSwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+
+Pj4gT24gTW9uLCBNYXIgMjIsIDIwMjEgYXQgMDQ6NTE6NDdQTSAtMDQwMCwgUm9kcmlnbyBWaXZp
+IHdyb3RlOgo+Pj4+IE9uIEZyaSwgTWFyIDE5LCAyMDIxIGF0IDA0OjQ1OjMyUE0gKzAxMDAsIEhh
+bnMgZGUgR29lZGUgd3JvdGU6Cj4+Pj4+IEhpLAo+Pj4+Pgo+Pj4+PiBPbiAzLzEvMjEgNDo0MyBQ
+TSwgSGFucyBkZSBHb2VkZSB3cm90ZToKPj4+Pj4+IEFmdGVyIHRoZSByZWNlbnRseSBhZGRlZCBj
+b21taXQgZmUwZjFlM2JmZGZlICgiZHJtL2k5MTU6IFNodXQgZG93bgo+Pj4+Pj4gZGlzcGxheXMg
+Z3JhY2VmdWxseSBvbiByZWJvb3QiKSwgdGhlIERTSSBwYW5lbCBvbiBhIENoZXJyeSBUcmFpbCBi
+YXNlZAo+Pj4+Pj4gUHJlZGlhIEJhc2ljIHRhYmxldCB3b3VsZCBubyBsb25nZXIgcHJvcGVybHkg
+bGlnaHQgdXAgYWZ0ZXIgcmVib290Lgo+Pj4+Pj4KPj4+Pj4+IFRoZSBiYWNrbGlnaHQgc3RpbGwg
+dHVybnMgYmFjayBvbiBhZnRlciByZWJvb3QsIGJ1dCB0aGUgTENEIHNob3dzIGFuCj4+Pj4+PiBh
+bGwgYmxhY2sgZGlzcGxheS4gVGhlIGRpc3BsYXkgaXMgYWxzbyBhbGwgYmxhY2sgZHVyaW5nIHRo
+ZSB0aW1lIHRoYXQKPj4+Pj4+IEVGSSAvIHRoZSBHT1AgaXMgbWFuYWdpbmcgaXQsIHNvIGUuZy4g
+dGhlIGdydWIgbWVudSBhbHNvIGlzIG5vdCB2aXNpYmxlLgo+Pj4+Pj4KPj4+Pj4+IEluIHRoaXMg
+c2NlbmFyaW8gdGhlIHBhbmVsIGlzIGluaXRpYWxpemVkIHNvIHRoYXQgaXQgYXBwZWFycyB0byBi
+ZSB3b3JraW5nCj4+Pj4+PiBhbmQgdGhlIGZhc3Rib290IGNvZGUgc2tpcHMgZG9pbmcgYSBtb2Rl
+c2V0LiBGb3JjaW5nIGEgbW9kZXNldCBieSBkb2luZyBhCj4+Pj4+PiBjaHZ0IHRvIGEgdGV4dC1j
+b25zb2xlIG92ZXIgc3NoIGZvbGxvd2VkIGJ5IGVjaG8taW5nIDEgYW5kIHRoZW4gMCB0bwo+Pj4+
+Pj4gL3N5cy9jbGFzcy9ncmFwaGljcy9mYjAvYmxhbmsgY2F1c2VzIHRoZSBwYW5lbCB0byB3b3Jr
+IGFnYWluLgo+Pj4+Pj4KPj4+Pj4+IEFkZCBhIFFVSVJLX1NLSVBfU0hVVERPV04gcXVpcmsgd2hp
+Y2ggdHVybnMgaTkxNV9kcml2ZXJfc2h1dGRvd24oKSBpbnRvCj4+Pj4+PiBhIG5vLW9wIHdoZW4g
+c2V0OyBhbmQgc2V0IHRoaXMgb24gdmx2L2NodiBkZXZpY2VzIHdoZW4gYSBEU0kgcGFuZWwgaXMK
+Pj4+Pj4+IGRldGVjdGVkLCB0byB3b3JrIGFyb3VuZCB0aGlzLgo+Pj4+Pj4KPj4+Pj4+IEFkbWl0
+dGVkbHkgdGhpcyBpcyBhIGJpdCBvZiBhIGJpZyBoYW1tZXIsIGJ1dCB0aGVzZSBwbGF0Zm9ybXMg
+aGF2ZSBiZWVuCj4+Pj4+PiBhcm91bmQgZm9yIHF1aXRlIHNvbWUgdGltZSBub3cgYW5kIHRoZXkg
+aGF2ZSBhbHdheXMgd29ya2VkIGZpbmUgd2l0aG91dAo+Pj4+Pj4gdGhlIG5ldyBiZWhhdmlvciB0
+byBzaHV0ZG93biBldmVyeXRoaW5nIG9uIHNodXRkb3duL3JlYm9vdC4gVGhpcyBhcHByb2FjaAo+
+Pj4+Pj4gc2ltcGx5IGRpc2FibGVzIHRoZSByZWNlbnRseSBpbnRyb2R1Y2VkIG5ldyBzaHV0ZG93
+biBiZWhhdmlvciBpbiB0aGlzCj4+Pj4+PiBzcGVjaWZpYyBjYXNlIHdoZXJlIGl0IGlzIGtub3du
+IHRvIGNhdXNlIHByb2JsZW1zLiBXaGljaCBpcyBhIG5pY2UgYW5kCj4+Pj4+PiBzaW1wbGUgd2F5
+IHRvIGRlYWwgd2l0aCB0aGlzLgo+Pj4+Pj4KPj4+Pj4+IFNpZ25lZC1vZmYtYnk6IEhhbnMgZGUg
+R29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4+Pj4+Cj4+Pj4+IFBpbmc/IFNpbmNlIHNlbmRp
+bmcgdGhpcyBwYXRjaCBJJ3ZlIGJlZW4gc2VlaW5nIHRoZSBpc3N1ZSBhZGRyZXNzZWQgYnkKPj4+
+Pj4gdGhpcyBvbiB2YXJpb3VyIG90aGVyIENIVCBiYXNlZCBkZXZpY2VzIHRvby4KPj4+Pj4KPj4+
+Pj4gU28gd2UgaGF2ZSB2YXJpb3VzIGRldmljZXMgc3VmZmVyaW5nIGZyb20gYSBibGFjayBzY3Jl
+ZW4gYWZ0ZXIgcmVib290Cj4+Pj4+IG5vdy4gVGhpcyBpcyBwcmV0dHkgc2VyaW91cyB1c2FiaWxp
+dHkgcmVncmVzc2lvbi4KPj4+Pj4KPj4+Pj4gQXMgc3VjaCBpdCB3b3VsZCBiZSBnb29kIHRvIGdl
+dCB0aGlzIHJldmlld2VkLCBvciBhbm90aGVyIGZpeCBwcm9wb3NlZC4KPj4+Pgo+Pj4+IEZvciB0
+aGUgcXVpcmtzIHdlIHRyeSB0byBsaW1pdCB0aGVtIHRvIHZlcnkgc3BlY2lmaWMgdmVuZG9yIGFu
+ZCBtb2RlbCBpZHMsCj4+Pj4gc28gSSB3b25kZXIgaWYgaXQgd291bGQgYmUgcG9zc2libGUgdG8g
+Z2V0IHRoaXMgaW5mb3JtYXRpb24gaW4gaGVyZSBpbnN0ZWFkCj4+Pj4gdG8gYWxsIHRoZSB2bHYg
+d2l0aCBkc2kuLi4KPj4+Pgo+Pj4+IE9yIGF2b2lkIHRoZSBxdWlyayAiaW5mcmEiIGFuZCBza2lw
+IHRvIGFsbCB2bHYgd2l0aCBhY3RpdmUgZHNpPyEKPj4+Pgo+Pj4+IEphbmk/Cj4+Pj4gVmlsbGU/
+Cj4+Pgo+Pj4gV2UgbmVlZCB0byBmaWd1cmUgb3V0IHdoeSB0aGUgcGFuZWwgZG9lc24ndCBzdGFy
+dCB1cCBhZ2Fpbi4KPj4KPj4gTm90ZSBpdCBpcyB0aGUgR09QIHdoaWNoIGZhaWxzIHRvIGxpZ2h0
+IGl0IHVwIGFnYWluLiBJIHRoaW5rIHdlIHR1cm4gc29tZXRoaW5nCj4+IG9mZiwgd2hpY2ggYWZ0
+ZXIgYSBwb3dlci1vbi1yZXNldCBpcyBvbiwgc28gdGhlIEdPUCBleHBlY3RzIGl0IHRvIGJlIG9u
+Lgo+IAo+IEhtbS4gRG8gYW55IG9mIHRoZSByZWJvb3Q9d2FybXxjb2xkfHdoYXRldmVyIGtub2Jz
+IG1ha2UgYSBkaWZmZXJlbmNlPwo+IEFyZSB0aGVyZSBhbnkgZmFzdCB2cy4gc2xvdyBib290IHNl
+dHRpbmdzIGluIHRoZSBCSU9TIHNldHVwPwoKT2ssIHNvIEkgd2FzIHJ1bm5pbmcgdGhlIHRlc3Rz
+IHdoaWNoIHlvdSByZXF1ZXN0ZWQgYW5kIGR1cmluZyB0aGlzCkkgbWFuYWdlZCB0byBmaW5kIHRo
+ZSByZWFsIHByb2JsZW0uCgpXaGF0IGhhcHBlbnMgb24gcmVib290IGlzIGEgcmVhbGx5IHF1aWNr
+IHBhbmVsIG9mZi9vbiBjeWNsZSBhbmQgdGhhdCBpcwpjYXVzaW5nIHRoZSBpc3N1ZS4KCkkgY2Fu
+IHJlcHJvZHVjZSB0aGlzIGJ5IGRvaW5nOgoKY2h2dCAzOyBlY2hvIDEgPiAvc3lzL2NsYXNzL2dy
+YXBoaWNzL2ZiMC9ibGFuazsgZWNobyAwID4gL3N5cy9jbGFzcy9ncmFwaGljcy9mYjAvYmxhbmsK
+ClRoZSBwcm9ibGVtIGlzIHRoYXQgd2UncmUgbm90IGhvbm9yaW5nIHBhbmVsX3B3cl9jeWNsZV9k
+ZWxheSBiZWNhdXNlCmludGVsX2RzaV9tc2xlZXAoKSBpcyBhIG5vLW9wIG9uIGRldmljZXMgd2l0
+aCBhIE1JUEktc2VxdWVuY2VzIHZlcnNpb24gPj0gMywKYmVjYXVzZSB0aG9zZSBzZXF1ZW5jZXMg
+YWxyZWFkeSBjb250YWluIHRoZSBuZWNlc3NhcnkgZGVsYXlzLCBhdCBsZWFzdApmb3IgbW9zdCBv
+ZiB0aGUgc3RlcHMgZHVyaW5nIHRoZSBvbi9vZmYgc2VxdWVuY2VzLiBJdCBzZWVtcyB0aGF0IHRo
+ZQpwd3ItY3ljbGUgZGVsYXkgaXMgbm90IGhhbmRsZWQgYnkgdGhvc2UgdjMrIHNlcXVlbmNlcy4K
+ClNvIGZpeGluZyB0aGlzIGlzIGFzIHNpbXBsZSBhcyBzd2l0Y2hpbmcgdG8gYSByZWd1bGFyIG1z
+bGVlcCBmb3IgdGhlCmludGVsX2RzaS0+cGFuZWxfcHdyX2N5Y2xlX2RlbGF5LgoKT25jZSB3ZSBk
+byB0aGF0IGl0IHdvdWxkIGJlIGdvb2QgKGZvciBlLmcuIHN1c3BlbmQvcmVzdW1lIHNwZWVkKSB0
+byBmaXg6CgogICAgICAgIC8qCiAgICAgICAgICogRklYTUUgQXMgd2UgZG8gd2l0aCBlRFAsIGp1
+c3QgbWFrZSBhIG5vdGUgb2YgdGhlIHRpbWUgaGVyZQogICAgICAgICAqIGFuZCBwZXJmb3JtIHRo
+ZSB3YWl0IGJlZm9yZSB0aGUgbmV4dCBwYW5lbCBwb3dlciBvbi4KICAgICAgICAgKi8KCldoaWNo
+IHNpdHMgcmlnaHQgYWJvdmUgdGhhdCBtc2xlZXAuIFNpbmNlIEkgaGF2ZSBhIHJlcHJvZHVjZXIg
+bm93IHdoaWNoCnNob3dzIHdoZW4gdGhlIHNsZWVwIGlzIHRvbyBzaG9ydCwgaXQgc2hvdWxkIG5v
+dyBiZSBlYXN5IHRpIGZpeCB0aGUgRklYTUUKYW5kIHRlc3QgdGhhdCB0aGUgZml4IHdvcmtzLiBJ
+J2xsIGRvIHRoaXMgaW4gYSBzZXBhcmF0ZSBwYXRjaCBhbmQgc2VuZAphIHBhdGNoLXNldCB3aXRo
+IGJvdGggcGF0Y2hlcyByZXBsYWNpbmcgdGhpcyBwYXRjaC4KClJlZ2FyZHMsCgpIYW5zCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
+bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
