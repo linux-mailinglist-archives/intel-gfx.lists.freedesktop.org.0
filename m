@@ -1,46 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24477345B4C
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 10:48:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C72345BB0
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 11:09:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD136E0DB;
-	Tue, 23 Mar 2021 09:48:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0491D6E88A;
+	Tue, 23 Mar 2021 10:09:32 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E06136E0DB;
- Tue, 23 Mar 2021 09:48:24 +0000 (UTC)
-IronPort-SDR: q2IahNmw84CzsHJIz+ndh1U08MFDz6AQ9DCOqvxRf+7hMp8o3vsFMzZkGupq9SBYVPvtHQXoEw
- BnkO1LncDwvA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="188127758"
-X-IronPort-AV: E=Sophos;i="5.81,271,1610438400"; d="scan'208";a="188127758"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2021 02:48:24 -0700
-IronPort-SDR: vmoHpaZrdGh97n1ivmxXbMxWwe1TAvGQ0h+qTr5Zi/f8t2BwhEGLN1vw6PJdpKhkO3lPHjqeTc
- /4H0vWUHyUSA==
-X-IronPort-AV: E=Sophos;i="5.81,271,1610438400"; d="scan'208";a="452077134"
-Received: from fbogue-mobl1.ger.corp.intel.com (HELO [10.213.247.160])
- ([10.213.247.160])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2021 02:48:20 -0700
-To: Matthew Auld <matthew.william.auld@gmail.com>
-References: <20210318170419.2107512-1-tvrtko.ursulin@linux.intel.com>
- <20210318170419.2107512-2-tvrtko.ursulin@linux.intel.com>
- <CAM0jSHNLVqvtMPs+vdiDVpiZwotruqxyCLzBjbZSoVHaCDd3rg@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <fdfde4a0-b748-bcd9-e427-080eeaef3bec@linux.intel.com>
-Date: Tue, 23 Mar 2021 09:48:18 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com
+ [IPv6:2607:f8b0:4864:20::729])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 315C76E888;
+ Tue, 23 Mar 2021 10:09:31 +0000 (UTC)
+Received: by mail-qk1-x729.google.com with SMTP id v70so13697145qkb.8;
+ Tue, 23 Mar 2021 03:09:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=brFLAs4ZmpZ4ezkH9aQuPcpMcvmSsqQiO68i32nNmTI=;
+ b=B+cqypR4dopKNzyTDjAxBiXQrDXdNBqq469LGev1FueCgm5BstVTAeXEeYQKEtbZag
+ Yov8dsWCHU4B8i3EZQjn/N+aG7XSKnaufr7boDryDqb5ey/sBIaIKDnmKEfdr5QEDw/t
+ A0QEvIugsU/T9eA434SSGVOvpvH9ltFmJ4upNrEmvEXsNZQCC/xeJ+FN3p7gKqeOc4qJ
+ 6glkohBfArz/VBvNyVSUhlaU0QoHE9IjC/SBpZn9xuZFeSBjDg+58CjTOOctJT78fxxU
+ 2z8iED6hIj1BxyihBGhb/NIDWu+D2sy79n/FC9yfGq0WtGK7VWOmn5EmmTe429PeVjiR
+ mHqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=brFLAs4ZmpZ4ezkH9aQuPcpMcvmSsqQiO68i32nNmTI=;
+ b=jLLK7sgIZ7PlJAGaoC/XdH+yhMBJlS4fVI1lGPwDHEL7JrO4hGktI6Vvh99SYt9cb0
+ j0u6goONR/5yE5iNCgwuHw+gEFm1gd5rksHJ6LEKg+94I5eOoSpL5P2XfUyctez/jjtt
+ gjaa5UIqOdor0SbDdEeg/W05LzNjFIOY0A6zNA07e6juRExcPY+NFg7qFLgEWBKmT4nO
+ 4Tg7O6E4nxC5o/sucU9xqa/WTqN1bGCu2yPElyzYDBtRwztop7ZMOvu1VapmVf0c51Z0
+ onsRtPosbg8JovnU/gxYW9fXUkjq2u3aMpsI0ziDZ9VocpIDlM8drsv2Kpw6yDg+jruW
+ Qkbw==
+X-Gm-Message-State: AOAM531kNcTRHiPIRZ/STGDxYYv74boFpB+x1LiFSvPl9Cr2kYBd2coR
+ Dwktsd6fXJDzwsuhRvLrjJL1mRJIZzXGqrivUdav6b5rlw0=
+X-Google-Smtp-Source: ABdhPJyR+hr9P5TBw8wqB0EM+62EGVxUbPwPQHRgyFi1qTngvF7eaciM1rZY9ZUrqU3gsRQZtnzMshNr/ZG17icFwbw=
+X-Received: by 2002:a05:620a:13ec:: with SMTP id
+ h12mr4376404qkl.460.1616494170347; 
+ Tue, 23 Mar 2021 03:09:30 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAM0jSHNLVqvtMPs+vdiDVpiZwotruqxyCLzBjbZSoVHaCDd3rg@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Individual request
- cancellation
+References: <20210318170419.2107512-1-tvrtko.ursulin@linux.intel.com>
+ <20210318170419.2107512-4-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210318170419.2107512-4-tvrtko.ursulin@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 23 Mar 2021 10:09:04 +0000
+Message-ID: <CAM0jSHOdStRHgwvJFtbdPjBdyK_xkCRQ7CxmgvfsceBLucDO6g@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Handle async cancellation in
+ sentinel assert
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,162 +64,60 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 18 Mar 2021 at 17:04, Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>
+> With the watchdog cancelling requests asynchronously to preempt-to-busy we
+> need to relax one assert making it apply only to requests not in error.
+>
+> v2:
+>  * Check against the correct request!
+>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index 4b870eca9693..bf557290173a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -815,6 +815,13 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
+>                 spin_unlock_irqrestore(&rq->lock, flags);
+>                 if (!ok)
+>                         return false;
+> +
+> +               /*
+> +                * Due async nature of preempt-to-busy and request cancellation
 
-On 22/03/2021 15:38, Matthew Auld wrote:
-> On Thu, 18 Mar 2021 at 17:04, Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->>
->> From: Chris Wilson <chris@chris-wilson.co.uk>
->>
->> Currently, we cancel outstanding requests within a context when the
->> context is closed. We may also want to cancel individual requests using
->> the same graceful preemption mechanism.
->>
->> v2 (Tvrtko):
->>   * Cancel waiters carefully considering no timeline lock and RCU.
->>   * Fixed selftests.
->>
->> v3 (Tvrtko):
->>   * Remove error propagation to waiters for now.
->>
->> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> ---
->>   .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |   1 +
->>   .../drm/i915/gt/intel_execlists_submission.c  |   9 +-
->>   drivers/gpu/drm/i915/i915_request.c           |  52 ++++-
->>   drivers/gpu/drm/i915/i915_request.h           |   4 +-
->>   drivers/gpu/drm/i915/selftests/i915_request.c | 201 ++++++++++++++++++
->>   5 files changed, 261 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->> index 0b062fad1837..e2fb3ae2aaf3 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_engine_heartbeat.c
->> @@ -314,6 +314,7 @@ int intel_engine_pulse(struct intel_engine_cs *engine)
->>                  mutex_unlock(&ce->timeline->mutex);
->>          }
->>
->> +       intel_engine_flush_scheduler(engine);
->>          intel_engine_pm_put(engine);
->>          return err;
->>   }
->> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> index 85ff5fe861b4..4c2acb5a6c0a 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
->> @@ -421,6 +421,11 @@ static void reset_active(struct i915_request *rq,
->>          ce->lrc.lrca = lrc_update_regs(ce, engine, head);
->>   }
->>
->> +static bool bad_request(const struct i915_request *rq)
->> +{
->> +       return rq->fence.error && i915_request_started(rq);
->> +}
->> +
->>   static struct intel_engine_cs *
->>   __execlists_schedule_in(struct i915_request *rq)
->>   {
->> @@ -433,7 +438,7 @@ __execlists_schedule_in(struct i915_request *rq)
->>                       !intel_engine_has_heartbeat(engine)))
->>                  intel_context_set_banned(ce);
->>
->> -       if (unlikely(intel_context_is_banned(ce)))
->> +       if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
->>                  reset_active(rq, engine);
->>
->>          if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
->> @@ -1112,7 +1117,7 @@ static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
->>                  return 0;
->>
->>          /* Force a fast reset for terminated contexts (ignoring sysfs!) */
->> -       if (unlikely(intel_context_is_banned(rq->context)))
->> +       if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq)))
->>                  return 1;
->>
->>          return READ_ONCE(engine->props.preempt_timeout_ms);
->> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
->> index e7b4c4bc41a6..b4511ac05e9a 100644
->> --- a/drivers/gpu/drm/i915/i915_request.c
->> +++ b/drivers/gpu/drm/i915/i915_request.c
->> @@ -33,7 +33,10 @@
->>   #include "gem/i915_gem_context.h"
->>   #include "gt/intel_breadcrumbs.h"
->>   #include "gt/intel_context.h"
->> +#include "gt/intel_engine.h"
->> +#include "gt/intel_engine_heartbeat.h"
->>   #include "gt/intel_gpu_commands.h"
->> +#include "gt/intel_reset.h"
->>   #include "gt/intel_ring.h"
->>   #include "gt/intel_rps.h"
->>
->> @@ -429,20 +432,22 @@ void __i915_request_skip(struct i915_request *rq)
->>          rq->infix = rq->postfix;
->>   }
->>
->> -void i915_request_set_error_once(struct i915_request *rq, int error)
->> +bool i915_request_set_error_once(struct i915_request *rq, int error)
->>   {
->>          int old;
->>
->>          GEM_BUG_ON(!IS_ERR_VALUE((long)error));
->>
->>          if (i915_request_signaled(rq))
->> -               return;
->> +               return false;
->>
->>          old = READ_ONCE(rq->fence.error);
->>          do {
->>                  if (fatal_error(old))
->> -                       return;
->> +                       return false;
->>          } while (!try_cmpxchg(&rq->fence.error, &old, error));
->> +
->> +       return true;
->>   }
->>
->>   struct i915_request *i915_request_mark_eio(struct i915_request *rq)
->> @@ -609,6 +614,47 @@ void i915_request_unsubmit(struct i915_request *request)
->>          spin_unlock_irqrestore(&se->lock, flags);
->>   }
->>
->> +static struct intel_engine_cs *active_engine(struct i915_request *rq)
->> +{
->> +       struct intel_engine_cs *engine, *locked;
->> +
->> +       locked = READ_ONCE(rq->engine);
->> +       spin_lock_irq(&locked->sched.lock);
->> +       while (unlikely(locked != (engine = READ_ONCE(rq->engine)))) {
->> +               spin_unlock(&locked->sched.lock);
->> +               locked = engine;
->> +               spin_lock(&locked->sched.lock);
->> +       }
->> +
->> +       engine = NULL;
->> +       if (i915_request_is_active(rq) && !__i915_request_is_complete(rq))
->> +               engine = locked;
->> +
->> +       spin_unlock_irq(&locked->sched.lock);
->> +
->> +       return engine;
-> 
-> Bad idea to reuse __active_engine() somehow?
+Due to the
 
-I can try and see how it ends up looking.
+> +                * we need to skip further asserts for cancelled requests.
+> +                */
+> +               if (READ_ONCE(rq->fence.error))
+> +                       break;
 
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> 
+If the above trylock fails, I guess we end up skipping this? Maybe add
+an explicit goto label to handle the skip here?
 
-Thanks,
-
-Tvrtko
+>         }
+>
+>         return ce;
+> --
+> 2.27.0
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
