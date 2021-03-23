@@ -2,55 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80C72345BB0
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 11:09:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D862B345BBA
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 11:13:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0491D6E88A;
-	Tue, 23 Mar 2021 10:09:32 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com
- [IPv6:2607:f8b0:4864:20::729])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 315C76E888;
- Tue, 23 Mar 2021 10:09:31 +0000 (UTC)
-Received: by mail-qk1-x729.google.com with SMTP id v70so13697145qkb.8;
- Tue, 23 Mar 2021 03:09:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=brFLAs4ZmpZ4ezkH9aQuPcpMcvmSsqQiO68i32nNmTI=;
- b=B+cqypR4dopKNzyTDjAxBiXQrDXdNBqq469LGev1FueCgm5BstVTAeXEeYQKEtbZag
- Yov8dsWCHU4B8i3EZQjn/N+aG7XSKnaufr7boDryDqb5ey/sBIaIKDnmKEfdr5QEDw/t
- A0QEvIugsU/T9eA434SSGVOvpvH9ltFmJ4upNrEmvEXsNZQCC/xeJ+FN3p7gKqeOc4qJ
- 6glkohBfArz/VBvNyVSUhlaU0QoHE9IjC/SBpZn9xuZFeSBjDg+58CjTOOctJT78fxxU
- 2z8iED6hIj1BxyihBGhb/NIDWu+D2sy79n/FC9yfGq0WtGK7VWOmn5EmmTe429PeVjiR
- mHqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=brFLAs4ZmpZ4ezkH9aQuPcpMcvmSsqQiO68i32nNmTI=;
- b=jLLK7sgIZ7PlJAGaoC/XdH+yhMBJlS4fVI1lGPwDHEL7JrO4hGktI6Vvh99SYt9cb0
- j0u6goONR/5yE5iNCgwuHw+gEFm1gd5rksHJ6LEKg+94I5eOoSpL5P2XfUyctez/jjtt
- gjaa5UIqOdor0SbDdEeg/W05LzNjFIOY0A6zNA07e6juRExcPY+NFg7qFLgEWBKmT4nO
- 4Tg7O6E4nxC5o/sucU9xqa/WTqN1bGCu2yPElyzYDBtRwztop7ZMOvu1VapmVf0c51Z0
- onsRtPosbg8JovnU/gxYW9fXUkjq2u3aMpsI0ziDZ9VocpIDlM8drsv2Kpw6yDg+jruW
- Qkbw==
-X-Gm-Message-State: AOAM531kNcTRHiPIRZ/STGDxYYv74boFpB+x1LiFSvPl9Cr2kYBd2coR
- Dwktsd6fXJDzwsuhRvLrjJL1mRJIZzXGqrivUdav6b5rlw0=
-X-Google-Smtp-Source: ABdhPJyR+hr9P5TBw8wqB0EM+62EGVxUbPwPQHRgyFi1qTngvF7eaciM1rZY9ZUrqU3gsRQZtnzMshNr/ZG17icFwbw=
-X-Received: by 2002:a05:620a:13ec:: with SMTP id
- h12mr4376404qkl.460.1616494170347; 
- Tue, 23 Mar 2021 03:09:30 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02D3E6E886;
+	Tue, 23 Mar 2021 10:13:29 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1792D6E0D1;
+ Tue, 23 Mar 2021 10:13:27 +0000 (UTC)
+IronPort-SDR: wxatpHcl5lPVQs6FOjElyAwcnYynn4rkm9vYbMCuNZ6jEBxbohuTQbDfSUYh/ko6wASnBvaKKX
+ XK9Bmf338fBg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="187130333"
+X-IronPort-AV: E=Sophos;i="5.81,271,1610438400"; d="scan'208";a="187130333"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2021 03:13:22 -0700
+IronPort-SDR: b0d+r6O/4DJ/yDbi3Yqo+mOTVjT+xUw0DEzn2aGjHuStMlF9xwfzjcCr3lJESaPLZ4WT5RtgAO
+ GwvESc5BywPA==
+X-IronPort-AV: E=Sophos;i="5.81,271,1610438400"; d="scan'208";a="414918003"
+Received: from wjlloyd-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.53.124])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2021 03:13:14 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+In-Reply-To: <20210323084453.366863-1-daniel.vetter@ffwll.ch>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210323084453.366863-1-daniel.vetter@ffwll.ch>
+Date: Tue, 23 Mar 2021 12:13:11 +0200
+Message-ID: <874kh25gaw.fsf@intel.com>
 MIME-Version: 1.0
-References: <20210318170419.2107512-1-tvrtko.ursulin@linux.intel.com>
- <20210318170419.2107512-4-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210318170419.2107512-4-tvrtko.ursulin@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 23 Mar 2021 10:09:04 +0000
-Message-ID: <CAM0jSHOdStRHgwvJFtbdPjBdyK_xkCRQ7CxmgvfsceBLucDO6g@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Handle async cancellation in
- sentinel assert
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: add gem/gt TODO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,61 +49,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 18 Mar 2021 at 17:04, Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
+On Tue, 23 Mar 2021, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> We've discussed a bit how to get the gem/gt team better integrated
+> and collaborate more with the wider community and agreed to the
+> following:
 >
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> - all gem/gt patches are reviewed on dri-devel for now. That's
+>   overkill, but in the past there was definitely too little of that.
 >
-> With the watchdog cancelling requests asynchronously to preempt-to-busy we
-> need to relax one assert making it apply only to requests not in error.
+> - i915-gem folks are encouraged to cross review core patches from
+>   other teams
 >
-> v2:
->  * Check against the correct request!
+> - big features (especially uapi changes) need to be discussed in an
+>   rfc patch that documents the interface and big picture design,
+>   before we get lost in the details of the code
 >
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> - Also a rough TODO (can be refined as we go ofc) to get gem/gt back
+>   on track, like we've e.g. done with DAL/DC to get that in shape.
+
+I personally think there should be a lower bar for discussing and
+editing the TODO items than via patches on the mailing list. Granted,
+the TODO file enforces the discussion happens at a large enough
+audience, but for at least some of the items I'd suggest filing gitlab
+issues [1], with todo label, and tracking there.
+
+BR,
+Jani.
+
+
+[1] https://gitlab.freedesktop.org/drm/intel/-/issues
+
+
+
+>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Dave Airlie <airlied@redhat.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_execlists_submission.c | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  drivers/gpu/drm/i915/TODO.txt | 36 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/TODO.txt
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> index 4b870eca9693..bf557290173a 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-> @@ -815,6 +815,13 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
->                 spin_unlock_irqrestore(&rq->lock, flags);
->                 if (!ok)
->                         return false;
+> diff --git a/drivers/gpu/drm/i915/TODO.txt b/drivers/gpu/drm/i915/TODO.txt
+> new file mode 100644
+> index 000000000000..d2e5bbb6339d
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/TODO.txt
+> @@ -0,0 +1,36 @@
+> +gem/gt TODO items
+> +-----------------
 > +
-> +               /*
-> +                * Due async nature of preempt-to-busy and request cancellation
+> +- For discrete memory manager, merge enough dg1 to be able to refactor it to
+> +  TTM. Then land pci ids (just in case that turns up an uapi problem). TTM has
+> +  improved a lot the past 2 years, there's no reason anymore not to use it.
+> +
+> +- Come up with a plan what to do with drm/scheduler and how to get there.
+> +
+> +- There's a lot of complexity added past few years to make relocations faster.
+> +  That doesn't make sense given hw and gpu apis moved away from this model years
+> +  ago:
+> +  1. Land a modern pre-bound uapi like VM_BIND
+> +  2. Any complexity added in this area past few years which can't be justified
+> +  with VM_BIND using userspace should be removed. Looking at amdgpu dma_resv on
+> +  the bo and vm, plus some lru locks is all that needed. No complex rcu,
+> +  refcounts, caching, ... on everything.
+> +  This is the matching task on the vm side compared to ttm/dma_resv on the
+> +  backing storage side.
+> +
+> +- i915_sw_fence seems to be the main structure for the i915-gem dma_fence model.
+> +  How-to-dma_fence is core and drivers really shouldn't build their own world
+> +  here, treating everything else as a fixed platform. i915_sw_fence concepts
+> +  should be moved to dma_fence, drm/scheduler or atomic commit helpers. Or
+> +  removed if dri-devel consensus is that it's not a good idea. Once that's done
+> +  maybe even remove it if there's nothing left.
+> +
+> +Smaller things:
+> +- i915_utils.h needs to be moved to the right places.
+> +
+> +- dma_fence_work should be in drivers/dma-buf
+> +
+> +- i915_mm.c should be moved to the right places. Some of the helpers also look a
+> +  bit fishy:
+> +
+> +  https://lore.kernel.org/linux-mm/20210301083320.943079-1-hch@lst.de/
 
-Due to the
-
-> +                * we need to skip further asserts for cancelled requests.
-> +                */
-> +               if (READ_ONCE(rq->fence.error))
-> +                       break;
-
-If the above trylock fails, I guess we end up skipping this? Maybe add
-an explicit goto label to handle the skip here?
-
->         }
->
->         return ce;
-> --
-> 2.27.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
