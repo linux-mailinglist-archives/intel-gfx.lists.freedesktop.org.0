@@ -2,44 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7847346714
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 19:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 562B334672B
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 19:07:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D59789C68;
-	Tue, 23 Mar 2021 18:00:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 849A36E921;
+	Tue, 23 Mar 2021 18:07:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2613A89C68
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 18:00:51 +0000 (UTC)
-IronPort-SDR: kHlw9QE7NxcE04GllstWg9fUhLCTEjO1/YC+8CTxem1f15kWL3cWm7G9ofnuTrgv5E0/0dXlJ0
- zCNF9ougsm8A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9932"; a="178100948"
-X-IronPort-AV: E=Sophos;i="5.81,272,1610438400"; d="scan'208";a="178100948"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2021 11:00:49 -0700
-IronPort-SDR: mjeSbxkgMJkQB9wmofLjCAZVLH9KSKGcRv8vn7g782BBeB6rfHzcu5segPbSG6gHsdOtl4oKkL
- PC95jI8cTkrA==
-X-IronPort-AV: E=Sophos;i="5.81,272,1610438400"; d="scan'208";a="441810266"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2021 11:00:48 -0700
-Date: Tue, 23 Mar 2021 11:00:47 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20210323180047.GV3422723@mdroper-desk1.amr.corp.intel.com>
-References: <YFkJLCzqK65y5Vfl@intel.com>
- <20210322233840.4056851-1-matthew.d.roper@intel.com>
- <YFokpaRM8yCqRJlF@intel.com>
- <20210323172734.GU3422723@mdroper-desk1.amr.corp.intel.com>
- <YFooKuVqPeZrLWM3@intel.com>
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
+ [IPv6:2607:f8b0:4864:20::235])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2921089CF9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 18:07:23 +0000 (UTC)
+Received: by mail-oi1-x235.google.com with SMTP id i81so16481565oif.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 11:07:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=e3B+59LKFePNVjHdMLcwFqvVHM4VPFbGxXZU5IK7OQ8=;
+ b=HVeVJBNYKC3tUFHU285N0IEjcrD5Njwr4l7AGXN/aNo0r5qppErYPJMdF4L7qR4K6b
+ a/6HaqnSUoGGgkDcvR0rfkIe6hf5UH6eGdYtyYvVkQu/Otum1VIJGCWPhBQ2ujjRvfLj
+ 997yu1ragdfdEYBcEIVVuTzPwlRAwEG8DmftRaBI0gAKQ9/sC+KjmhqBUjTvjw7FM2b1
+ LYTLAgi8la/A3Wnl9dnnLFeV7TWiegbzTXUm9hjhCfDyWbOlhG27OljhFXfY6rviiE6O
+ 50J6mycfV8t/JukN7DLMW2CJDgqie7Lo3NrmSaxiGrPpOQQWrW92KxY5FsIcRMmAwcjj
+ Bihw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=e3B+59LKFePNVjHdMLcwFqvVHM4VPFbGxXZU5IK7OQ8=;
+ b=k5Z60XdS1/VnwDW559QRMfM2yKTHaRxCVxpL+A+mE8Qw1mloOcDuOGL9Dy3Y8dqJZk
+ Zp1OG/On6t8cuZlCox7R1AWGNBmZhjvyknQ8eyqG5EoO8l5BUkTjOcKlafI7dTa7zsfG
+ vMBqbkNhHGf65rJUUDNDuKup3JC+atZC5LIOMW7taZLT1DkWBhN6qSaQzG6CbmGN3wL8
+ Wu94feSBxk7IM3iJT9DxhA3MslzKlb6ljL6GZNVc/fpzfo8khpyWUbnQR2ZhEaxEM7uB
+ YisBixhZQVtZ6L6yHXSaiW88+aZaB04M59Fi4ZeJ2USXt8bnzRHrhVd7G5+mXyyjqEHc
+ cRfg==
+X-Gm-Message-State: AOAM5321ZDleE9LtkHfWQNpXOZCuVd+32OJF4kHbZw6cJ6Vd6UmW0z4V
+ efbjhfUW+lnveEFf3XnK1L4V5jSqA8QbeER0tiFp+PeVJv8=
+X-Google-Smtp-Source: ABdhPJwzYKARMuXCB+e8ID2we7xc2Ro/TWKW1n8HjNlMHoy4QXSd+/6Di3TErIG0ErdYG9ghh/Tx2vGVVYLHCZhVKHg=
+X-Received: by 2002:aca:4d55:: with SMTP id a82mr4192505oib.23.1616522842373; 
+ Tue, 23 Mar 2021 11:07:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YFooKuVqPeZrLWM3@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 6/6] drm/i915/display: Simplify GLK
- display version tests
+References: <20210323084453.366863-1-daniel.vetter@ffwll.ch>
+ <874kh25gaw.fsf@intel.com> <YFnXszc5lZ/omk2V@phenom.ffwll.local>
+ <YFngbxt0KbZPXKll@intel.com> <YFnqmRkNdpljN30g@phenom.ffwll.local>
+In-Reply-To: <YFnqmRkNdpljN30g@phenom.ffwll.local>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Tue, 23 Mar 2021 13:07:11 -0500
+Message-ID: <CAOFGe95_rEvLP9dhBwrwr=31jPmAsmTNTauRfiFQxbx+QHiPFw@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: add gem/gt TODO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,182 +63,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 23, 2021 at 07:40:58PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Tue, Mar 23, 2021 at 10:27:34AM -0700, Matt Roper wrote:
-> > On Tue, Mar 23, 2021 at 07:25:57PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > On Mon, Mar 22, 2021 at 04:38:40PM -0700, Matt Roper wrote:
-> > > > GLK has always been a bit of a special case since it reports INTEL_=
-GEN()
-> > > > as 9, but has version 10 display IP.  Now we can properly represent=
- the
-> > > > display version as 10 and simplify the display generation tests
-> > > > throughout the display code.
-> > > > =
+On Tue, Mar 23, 2021 at 8:18 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Tue, Mar 23, 2021 at 08:34:55AM -0400, Rodrigo Vivi wrote:
+> > On Tue, Mar 23, 2021 at 12:57:39PM +0100, Daniel Vetter wrote:
+> > > On Tue, Mar 23, 2021 at 12:13:11PM +0200, Jani Nikula wrote:
+> > > > On Tue, 23 Mar 2021, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> > > > > We've discussed a bit how to get the gem/gt team better integrated
+> > > > > and collaborate more with the wider community and agreed to the
+> > > > > following:
+> > > > >
+> > > > > - all gem/gt patches are reviewed on dri-devel for now. That's
+> > > > >   overkill, but in the past there was definitely too little of that.
+> > > > >
+> > > > > - i915-gem folks are encouraged to cross review core patches from
+> > > > >   other teams
+> > > > >
+> > > > > - big features (especially uapi changes) need to be discussed in an
+> > > > >   rfc patch that documents the interface and big picture design,
+> > > > >   before we get lost in the details of the code
+> > > > >
+> > > > > - Also a rough TODO (can be refined as we go ofc) to get gem/gt back
+> > > > >   on track, like we've e.g. done with DAL/DC to get that in shape.
+> > > >
+> > > > I personally think there should be a lower bar for discussing and
+> > > > editing the TODO items than via patches on the mailing list. Granted,
+> > > > the TODO file enforces the discussion happens at a large enough
+> > > > audience, but for at least some of the items I'd suggest filing gitlab
+> > > > issues [1], with todo label, and tracking there.
+> >
+> > I also don't like the todo list in files and I agree that gitlab issues
+> > section should be better...
+> >
+> > > In general yes, and I'd go even further: it's up to each team/contributor
+> > > how they track review feedback and further work, whether that's gitlab or
+> > > some notes or just in their heads.
+> > >
+> > > This is a different situation here, and the "changes require big audience"
+> > > is a feature, not a bug. But it is a very exceptional situation, I think
+> > > this is only the 2nd time we're using a formal TODO for a gpu driver. If
+> > > we ignore gma500 in staging, which for me only showed that the separate
+> > > staging tree doesn't work so well for complex drivers like we have.
+> >
+> > ... but I understand the motivation, so
+> >
+> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >
+> > However... what about:
+> >
+> > 1. moving the smaller items to gitlab at least?
+> > 2. having both, all the entries in the todo file have gitlab issue
+> > associated and the number-id is also here in the todo file?
+>
+> Yeah that sounds reasonable. tbh we haven't started any of the
+> intel-internal planning on most of these (ttm and scheduler are started),
+> so none of these tracking things exist yet at all ...
 
-> > > > Aside from manually adding the version to the glk_info structure, t=
-he
-> > > > rest of this patch is generated with a Coccinelle semantic patch.  =
-Note
-> > > > that we also need to switch any code that matches gen10 today but *=
-not*
-> > > > GLK to be CNL-specific:
-> > > > =
+I'm a fan of this.  GitLab issues provide a good place to organize the
+chatter on any particular ToDo item.  I'd also rather see people
+chattering about this stuff on public GitLab than JIRA, when possible.
+The last patch in the series closing out a ToDo can be a patch to this
+file to remove the bullet point.
 
-> > > >         @@ expression dev_priv; @@
-> > > >         - DISPLAY_VER(dev_priv) > 9
-> > > >         + DISPLAY_VER(dev_priv) >=3D 10
-> > > > =
+--Jason
 
-> > > >         @@ expression dev_priv, E; @@
-> > > >         (
-> > > >         - DISPLAY_VER(dev_priv) >=3D 10 && E
-> > > >         + (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)=
-) && E
-> > > >         |
-> > > >         - DISPLAY_VER(dev_priv) >=3D 10
-> > > >         + DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)
-> > > >         |
-> > > >         - IS_DISPLAY_RANGE(dev_priv, 10, E)
-> > > >         + IS_DISPLAY_RANGE(dev_priv, 11, E) || IS_CANNONLAKE(dev_pr=
-iv)
-> > > >         )
-> > > > =
-
-> > > >         @@ expression dev_priv, E, E2; @@
-> > > >         (
-> > > >         - (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
-> > > >         + IS_DISPLAY_VER(dev_priv, 10)
-> > > >         |
-> > > >         - E || IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)
-> > > >         + E || IS_DISPLAY_VER(dev_priv, 10)
-> > > >         |
-> > > >         - (IS_GEMINILAKE(dev_priv) || IS_CANNONLAKE(dev_priv))
-> > > >         + IS_DISPLAY_VER(dev_priv, 10)
-> > > >         |
-> > > >         - IS_GEMINILAKE(dev_priv) || E || IS_CANNONLAKE(dev_priv)
-> > > >         + E || IS_DISPLAY_VER(dev_priv, 10)
-> > > >         |
-> > > >         - E || IS_GEMINILAKE(dev_priv) || E2 || IS_CANNONLAKE(dev_p=
-riv)
-> > > >         + E || E2 || IS_DISPLAY_VER(dev_priv, 10)
-> > > >         |
-> > > >         - (IS_DISPLAY_VER(dev_priv, 10) || IS_GEMINILAKE(dev_priv))
-> > > >         + IS_DISPLAY_VER(dev_priv, 10)
-> > > >         |
-> > > >         - (IS_GEMINILAKE(dev_priv) || IS_DISPLAY_VER(dev_priv, 10))
-> > > >         + IS_DISPLAY_VER(dev_priv, 10)
-> > > >         )
-> > > > =
-
-> > > >         @@ expression dev_priv; @@
-> > > >         - (IS_DISPLAY_VER(dev_priv, 9) && !IS_GEMINILAKE(dev_priv))
-> > > >         + IS_DISPLAY_VER(dev_priv, 9)
-> > > > =
-
-> > > >         @@ expression dev_priv; @@
-> > > >         (
-> > > >         - !(DISPLAY_VER(dev_priv) >=3D 11 || IS_DISPLAY_VER(dev_pri=
-v, 10))
-> > > >         + DISPLAY_VER(dev_priv) < 10
-> > > >         |
-> > > >         - (DISPLAY_VER(dev_priv) >=3D 11 || IS_DISPLAY_VER(dev_priv=
-, 10))
-> > > >         + DISPLAY_VER(dev_priv) >=3D 10
-> > > >         )
-> > > > =
-
-> > > >         @@ expression dev_priv, E; @@
-> > > >         - E || DISPLAY_VER(dev_priv) >=3D 11 || IS_DISPLAY_VER(dev_=
-priv, 10)
-> > > >         + E || DISPLAY_VER(dev_priv) >=3D 10
-> > > > =
-
-> > > >         @@ expression dev_priv, E; @@
-> > > >         - (IS_DISPLAY_RANGE(dev_priv, 11, E) || IS_DISPLAY_VER(dev_=
-priv, 10))
-> > > >         + IS_DISPLAY_RANGE(dev_priv, 10, E)
-> > > > =
-
-> > > >         @@ expression dev_priv; @@
-> > > >         (
-> > > >         - DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv) =
-|| IS_GEN9_LP(dev_priv)
-> > > >         + DISPLAY_VER(dev_priv) >=3D 10 || IS_GEN9_LP(dev_priv)
-> > > >         |
-> > > >         - IS_GEN9_LP(dev_priv) || DISPLAY_VER(dev_priv) >=3D 11 || =
-IS_CANNONLAKE(dev_priv)
-> > > >         + IS_GEN9_LP(dev_priv) || DISPLAY_VER(dev_priv) >=3D 10
-> > > >         )
-> > > > =
-
-> > > >         @@ expression dev_priv, E; @@
-> > > >         - !(DISPLAY_VER(dev_priv) >=3D E)
-> > > >         + DISPLAY_VER(dev_priv) < E
-> > > > =
-
-> > > > v2:
-> > > >  - Convert gen10 conditions that don't include GLK into CNL conditi=
-ons.
-> > > >    (Ville)
-> > > > =
-
-> > > > v3:
-> > > >  - Rework coccinelle rules so that "ver>=3D10" turns into "ver>=3D1=
-1||is_cnl." (Ville)
-> > > > =
-
-> > > > v3.1:
-> > > >  - Manually re-add the ".display.version =3D 10" to glk_info after
-> > > >    regenerating patch via Coccinelle.
-> > > > =
-
-> > > > v4:
-> > > >  - Also apply cocci rules to intel_pm.c and i915_irq.c!  (CI)
-> > > =
-
-> > > Ugh. One thing that occurred to me when looking at i915_irq.c is that
-> > > IS_GEN9_LP() is now maybe broken on glk? So seems to me all uses of
-> > > IS_GEN9_LP() need to be reviewed and potentially changed.
-> > =
-
-> > Broken how?  That macro still uses the gen/gt version instead of the
-> > display number, so I think it still behaves the same as before?
-> =
-
-> Oh you're not changng it to to use display ver? I guess it still kinda
-> works then. But it's going to be pretty confusing to use that for
-> display stuff now. Ie. we should probably stop using it.
-
-That macro is used throughout the driver (including non-display code),
-so I don't think we'd want to re-define it.  But you're right that we
-probably should eliminate the places where it gets used in the display
-code (since the graphics gen shouldn't matter); I'll do that as a
-follow-up series.
-
-
-Matt
-
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+> -Daniel
+>
+> >
+> > > -Daniel
+> > >
+> > > >
+> > > > BR,
+> > > > Jani.
+> > > >
+> > > >
+> > > > [1] https://gitlab.freedesktop.org/drm/intel/-/issues
+> > > >
+> > > >
+> > > >
+> > > > >
+> > > > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > > > > Cc: Dave Airlie <airlied@redhat.com>
+> > > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/TODO.txt | 36 +++++++++++++++++++++++++++++++++++
+> > > > >  1 file changed, 36 insertions(+)
+> > > > >  create mode 100644 drivers/gpu/drm/i915/TODO.txt
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/i915/TODO.txt b/drivers/gpu/drm/i915/TODO.txt
+> > > > > new file mode 100644
+> > > > > index 000000000000..d2e5bbb6339d
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/gpu/drm/i915/TODO.txt
+> > > > > @@ -0,0 +1,36 @@
+> > > > > +gem/gt TODO items
+> > > > > +-----------------
+> > > > > +
+> > > > > +- For discrete memory manager, merge enough dg1 to be able to refactor it to
+> > > > > +  TTM. Then land pci ids (just in case that turns up an uapi problem). TTM has
+> > > > > +  improved a lot the past 2 years, there's no reason anymore not to use it.
+> > > > > +
+> > > > > +- Come up with a plan what to do with drm/scheduler and how to get there.
+> > > > > +
+> > > > > +- There's a lot of complexity added past few years to make relocations faster.
+> > > > > +  That doesn't make sense given hw and gpu apis moved away from this model years
+> > > > > +  ago:
+> > > > > +  1. Land a modern pre-bound uapi like VM_BIND
+> > > > > +  2. Any complexity added in this area past few years which can't be justified
+> > > > > +  with VM_BIND using userspace should be removed. Looking at amdgpu dma_resv on
+> > > > > +  the bo and vm, plus some lru locks is all that needed. No complex rcu,
+> > > > > +  refcounts, caching, ... on everything.
+> > > > > +  This is the matching task on the vm side compared to ttm/dma_resv on the
+> > > > > +  backing storage side.
+> > > > > +
+> > > > > +- i915_sw_fence seems to be the main structure for the i915-gem dma_fence model.
+> > > > > +  How-to-dma_fence is core and drivers really shouldn't build their own world
+> > > > > +  here, treating everything else as a fixed platform. i915_sw_fence concepts
+> > > > > +  should be moved to dma_fence, drm/scheduler or atomic commit helpers. Or
+> > > > > +  removed if dri-devel consensus is that it's not a good idea. Once that's done
+> > > > > +  maybe even remove it if there's nothing left.
+> > > > > +
+> > > > > +Smaller things:
+> > > > > +- i915_utils.h needs to be moved to the right places.
+> > > > > +
+> > > > > +- dma_fence_work should be in drivers/dma-buf
+> > > > > +
+> > > > > +- i915_mm.c should be moved to the right places. Some of the helpers also look a
+> > > > > +  bit fishy:
+> > > > > +
+> > > > > +  https://lore.kernel.org/linux-mm/20210301083320.943079-1-hch@lst.de/
+> > > >
+> > > > --
+> > > > Jani Nikula, Intel Open Source Graphics Center
+> > >
+> > > --
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > http://blog.ffwll.ch
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
