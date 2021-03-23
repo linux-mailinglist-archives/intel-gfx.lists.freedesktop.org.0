@@ -1,54 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0358C34665E
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 18:30:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A1534668E
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 18:41:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 760236EB0C;
-	Tue, 23 Mar 2021 17:30:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95E2D6E929;
+	Tue, 23 Mar 2021 17:41:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com
- [IPv6:2607:f8b0:4864:20::833])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 354BD6EB0C;
- Tue, 23 Mar 2021 17:30:36 +0000 (UTC)
-Received: by mail-qt1-x833.google.com with SMTP id l13so15489048qtu.9;
- Tue, 23 Mar 2021 10:30:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=o27xX8KhQwwCnCQ0fBPBvAew2fln+4ym7YqpWdYZ+AU=;
- b=qxXSEBgSAdV7sAG0yq3Uf+pGZJyX9TjYjcJ5NJwu+SW8om4ILMSLRmYAGnPyErVd3H
- YTIcR/0SifPrsQotctbbJGEZ24tgzPMkQ3BEbAxteU+CZhkRvYiSgFqs6S5wZJ8MX6LM
- +jVG7vzfu/Gnx+SzKe4iOVmM8Lf3G/vxlnSsTQiCrSFUAka4T0HtYizig/Ab+FNzQkT2
- dIGuO99rnZVt77syINAgpGFHn02NlfSASi206qQRKMEPcnuOm5U3gmnoRAozQpjSN8BT
- vP7LpiErfdGHrq77AH148ihxzmVszHAD+x9qtwGrgjBRco1/0HskNgMG8XIjqOrDAVmU
- k4NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=o27xX8KhQwwCnCQ0fBPBvAew2fln+4ym7YqpWdYZ+AU=;
- b=NZiJA2GHk6V3SH1j964Fn5/u9QPMq5Ram1AeOTkqgU4+ZlsdB8qJc85rkIbxTA0aLQ
- gcir/fH0HisgMBqA02yJPgdhbshwSgooNm8LL/QVCNNMndx5ZlADMu5dK5o/w/1SiKa0
- ErmOEVhzeUqHzFcN3pzOlySeonLrpWhd4bJVmf1CqqIG4a9wbvZVucbstqAKHdRpoaPb
- zPb3g9hX8v1eRuA2Bi9/9bG/jPu238k+UpzDTlV3/sru8lepdMzfYNXONzhngu+Sw9UY
- Ka1Y9WJWIcJURRUwWQGbDHhqepJ3fzYl2UkhGLONKaV+huRqpI7mu9xoD4//Ew/QFo3D
- czKA==
-X-Gm-Message-State: AOAM530mdVu0CcmNw/3ZsFERhJJnAm4uZd0JdFXJbKyUuMXZwqVTeAW2
- GOyjznFrDy7uxbAfiKfTlnjdY/whY9/MRHu++gg=
-X-Google-Smtp-Source: ABdhPJxnYtZNScEzXx7ViPBAiLwj5enMdVhTEFIJTJDx6KkwpVSxDbN8poO1A7YnSXQw0rB9RmTrrcLAoZlgJwG8byM=
-X-Received: by 2002:ac8:43c2:: with SMTP id w2mr5395635qtn.95.1616520635391;
- Tue, 23 Mar 2021 10:30:35 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CBBD6E929
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 17:41:02 +0000 (UTC)
+IronPort-SDR: 5bg7JyzjGU9sxBiLtapK1cWqyKGEKOz/UQ3Saw9Nb61HSODz0Mq6O9PC07lIS47z1OuOM4JWyL
+ o1nrEIIsf6SA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9932"; a="187212675"
+X-IronPort-AV: E=Sophos;i="5.81,272,1610438400"; d="scan'208";a="187212675"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2021 10:41:01 -0700
+IronPort-SDR: yfOjV+M++sHrX7JEacP3rW6aLYZmSH1yoWjzrnnYVTQ78yQXHyuD6yZeY2OYCp2rl03K4G8Vx+
+ CmcGO9V7PSfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,272,1610438400"; d="scan'208";a="442616716"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by FMSMGA003.fm.intel.com with SMTP; 23 Mar 2021 10:40:59 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 23 Mar 2021 19:40:58 +0200
+Date: Tue, 23 Mar 2021 19:40:58 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <YFooKuVqPeZrLWM3@intel.com>
+References: <YFkJLCzqK65y5Vfl@intel.com>
+ <20210322233840.4056851-1-matthew.d.roper@intel.com>
+ <YFokpaRM8yCqRJlF@intel.com>
+ <20210323172734.GU3422723@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-References: <20210323155059.628690-1-maarten.lankhorst@linux.intel.com>
- <20210323155059.628690-69-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20210323155059.628690-69-maarten.lankhorst@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 23 Mar 2021 17:30:08 +0000
-Message-ID: <CAM0jSHPL44qRd7dybPmmEz-8pr8xS0d9VXhRYm8iNj3YyX7h-A@mail.gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v9 68/70] drm/i915: Pass ww ctx to pin_map
+Content-Disposition: inline
+In-Reply-To: <20210323172734.GU3422723@mdroper-desk1.amr.corp.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3 6/6] drm/i915/display: Simplify GLK
+ display version tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,163 +53,159 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 23 Mar 2021 at 15:51, Maarten Lankhorst
-<maarten.lankhorst@linux.intel.com> wrote:
->
-> This will allow us to explicitly pass the ww to pin_pages,
-> when it starts taking it.
->
-> This allows us to finally kill off the explicit passing of ww
-> by retrieving it from the obj.
->
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  7 ++++---
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  1 +
->  .../gpu/drm/i915/gem/i915_gem_object_blt.c    |  4 ++--
->  drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 21 +++++++++++++++----
->  .../drm/i915/gem/selftests/i915_gem_context.c |  8 ++++---
->  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  2 +-
->  drivers/gpu/drm/i915/gt/gen7_renderclear.c    |  2 +-
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
->  drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 +-
->  drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 ++--
->  drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 +-
->  drivers/gpu/drm/i915/gt/intel_ring.c          |  2 +-
->  .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
->  drivers/gpu/drm/i915/gt/intel_timeline.c      |  7 ++++---
->  drivers/gpu/drm/i915/gt/intel_timeline.h      |  3 ++-
->  drivers/gpu/drm/i915/gt/intel_workarounds.c   |  2 +-
->  drivers/gpu/drm/i915/gt/mock_engine.c         |  2 +-
->  drivers/gpu/drm/i915/gt/selftest_lrc.c        |  2 +-
->  drivers/gpu/drm/i915/gt/selftest_rps.c        | 10 ++++-----
->  .../gpu/drm/i915/gt/selftest_workarounds.c    |  6 +++---
->  drivers/gpu/drm/i915/gvt/cmd_parser.c         |  4 ++--
->  drivers/gpu/drm/i915/i915_perf.c              |  4 ++--
->  drivers/gpu/drm/i915/selftests/igt_spinner.c  |  2 +-
->  24 files changed, 60 insertions(+), 43 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index dcfcae9c841b..73dd2a7673f5 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1340,7 +1340,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
->         if (err)
->                 goto err_pool;
->
-> -       cmd = i915_gem_object_pin_map(pool->obj, pool->type);
-> +       cmd = i915_gem_object_pin_map(pool->obj, &eb->ww, pool->type);
->         if (IS_ERR(cmd)) {
->                 err = PTR_ERR(cmd);
->                 goto err_pool;
-> @@ -2489,7 +2489,8 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
->                         goto err_shadow;
->         }
->
-> -       pw->shadow_map = i915_gem_object_pin_map(shadow->obj, I915_MAP_WB);
-> +       pw->shadow_map = i915_gem_object_pin_map(shadow->obj, &eb->ww,
-> +                                                I915_MAP_WB);
->         if (IS_ERR(pw->shadow_map)) {
->                 err = PTR_ERR(pw->shadow_map);
->                 goto err_trampoline;
-> @@ -2500,7 +2501,7 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
->
->         pw->batch_map = ERR_PTR(-ENODEV);
->         if (needs_clflush && i915_has_memcpy_from_wc())
-> -               pw->batch_map = i915_gem_object_pin_map(batch, I915_MAP_WC);
-> +               pw->batch_map = i915_gem_object_pin_map(batch, &eb->ww, I915_MAP_WC);
->
->         if (IS_ERR(pw->batch_map)) {
->                 err = i915_gem_object_pin_pages(batch);
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> index 2561a2f1e54f..edac8ee3be9a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> @@ -439,7 +439,7 @@ vm_access(struct vm_area_struct *area, unsigned long addr,
->                 goto out;
->
->         /* As this is primarily for debugging, let's focus on simplicity */
-> -       vaddr = i915_gem_object_pin_map(obj, I915_MAP_FORCE_WC);
-> +       vaddr = i915_gem_object_pin_map(obj, &ww, I915_MAP_FORCE_WC);
->         if (IS_ERR(vaddr)) {
->                 err = PTR_ERR(vaddr);
->                 goto out;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> index 1a8ec4035112..9bd9b47dcc8d 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> @@ -450,6 +450,7 @@ void i915_gem_object_writeback(struct drm_i915_gem_object *obj);
->   * ERR_PTR() on error.
->   */
->  void *__must_check i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
-> +                                          struct i915_gem_ww_ctx *ww,
->                                            enum i915_map_type type);
->
->  void *__must_check i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-> index df8e8c18c6c9..fae18622d2da 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-> @@ -58,7 +58,7 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
->         /* we pinned the pool, mark it as such */
->         intel_gt_buffer_pool_mark_used(pool);
->
-> -       cmd = i915_gem_object_pin_map(pool->obj, pool->type);
-> +       cmd = i915_gem_object_pin_map(pool->obj, ww, pool->type);
->         if (IS_ERR(cmd)) {
->                 err = PTR_ERR(cmd);
->                 goto out_unpin;
-> @@ -283,7 +283,7 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
->         /* we pinned the pool, mark it as such */
->         intel_gt_buffer_pool_mark_used(pool);
->
-> -       cmd = i915_gem_object_pin_map(pool->obj, pool->type);
-> +       cmd = i915_gem_object_pin_map(pool->obj, ww, pool->type);
->         if (IS_ERR(cmd)) {
->                 err = PTR_ERR(cmd);
->                 goto out_unpin;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> index 58e222030e10..232832398457 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> @@ -341,6 +341,7 @@ static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
->
->  /* get, pin, and map the pages of the object into kernel space */
->  void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
-> +                             struct i915_gem_ww_ctx *ww,
->                               enum i915_map_type type)
->  {
->         enum i915_map_type has_type;
-> @@ -408,13 +409,25 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
->  void *i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
->                                        enum i915_map_type type)
->  {
-> +       struct i915_gem_ww_ctx ww;
->         void *ret;
-> +       int err;
->
-> -       i915_gem_object_lock(obj, NULL);
-> -       ret = i915_gem_object_pin_map(obj, type);
-> -       i915_gem_object_unlock(obj);
-> +       i915_gem_ww_ctx_init(&ww, true);
-> +retry:
-> +       err = i915_gem_object_lock(obj, &ww);
-> +       if (!err)
-> +               ret = i915_gem_object_pin_map(obj, &ww, type);
-> +       if (IS_ERR(ret))
+On Tue, Mar 23, 2021 at 10:27:34AM -0700, Matt Roper wrote:
+> On Tue, Mar 23, 2021 at 07:25:57PM +0200, Ville Syrj=E4l=E4 wrote:
+> > On Mon, Mar 22, 2021 at 04:38:40PM -0700, Matt Roper wrote:
+> > > GLK has always been a bit of a special case since it reports INTEL_GE=
+N()
+> > > as 9, but has version 10 display IP.  Now we can properly represent t=
+he
+> > > display version as 10 and simplify the display generation tests
+> > > throughout the display code.
+> > > =
 
-This looks a little dodgy, since ret might not be initialized here,
-say if we encounter an error when grabbing the lock?
+> > > Aside from manually adding the version to the glk_info structure, the
+> > > rest of this patch is generated with a Coccinelle semantic patch.  No=
+te
+> > > that we also need to switch any code that matches gen10 today but *no=
+t*
+> > > GLK to be CNL-specific:
+> > > =
 
-Also maybe s/ret/ptr/? Seeing ret makes me think it's a plain integer.
+> > >         @@ expression dev_priv; @@
+> > >         - DISPLAY_VER(dev_priv) > 9
+> > >         + DISPLAY_VER(dev_priv) >=3D 10
+> > > =
+
+> > >         @@ expression dev_priv, E; @@
+> > >         (
+> > >         - DISPLAY_VER(dev_priv) >=3D 10 && E
+> > >         + (DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)) =
+&& E
+> > >         |
+> > >         - DISPLAY_VER(dev_priv) >=3D 10
+> > >         + DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv)
+> > >         |
+> > >         - IS_DISPLAY_RANGE(dev_priv, 10, E)
+> > >         + IS_DISPLAY_RANGE(dev_priv, 11, E) || IS_CANNONLAKE(dev_priv)
+> > >         )
+> > > =
+
+> > >         @@ expression dev_priv, E, E2; @@
+> > >         (
+> > >         - (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
+> > >         + IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - E || IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)
+> > >         + E || IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - (IS_GEMINILAKE(dev_priv) || IS_CANNONLAKE(dev_priv))
+> > >         + IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - IS_GEMINILAKE(dev_priv) || E || IS_CANNONLAKE(dev_priv)
+> > >         + E || IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - E || IS_GEMINILAKE(dev_priv) || E2 || IS_CANNONLAKE(dev_pri=
+v)
+> > >         + E || E2 || IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - (IS_DISPLAY_VER(dev_priv, 10) || IS_GEMINILAKE(dev_priv))
+> > >         + IS_DISPLAY_VER(dev_priv, 10)
+> > >         |
+> > >         - (IS_GEMINILAKE(dev_priv) || IS_DISPLAY_VER(dev_priv, 10))
+> > >         + IS_DISPLAY_VER(dev_priv, 10)
+> > >         )
+> > > =
+
+> > >         @@ expression dev_priv; @@
+> > >         - (IS_DISPLAY_VER(dev_priv, 9) && !IS_GEMINILAKE(dev_priv))
+> > >         + IS_DISPLAY_VER(dev_priv, 9)
+> > > =
+
+> > >         @@ expression dev_priv; @@
+> > >         (
+> > >         - !(DISPLAY_VER(dev_priv) >=3D 11 || IS_DISPLAY_VER(dev_priv,=
+ 10))
+> > >         + DISPLAY_VER(dev_priv) < 10
+> > >         |
+> > >         - (DISPLAY_VER(dev_priv) >=3D 11 || IS_DISPLAY_VER(dev_priv, =
+10))
+> > >         + DISPLAY_VER(dev_priv) >=3D 10
+> > >         )
+> > > =
+
+> > >         @@ expression dev_priv, E; @@
+> > >         - E || DISPLAY_VER(dev_priv) >=3D 11 || IS_DISPLAY_VER(dev_pr=
+iv, 10)
+> > >         + E || DISPLAY_VER(dev_priv) >=3D 10
+> > > =
+
+> > >         @@ expression dev_priv, E; @@
+> > >         - (IS_DISPLAY_RANGE(dev_priv, 11, E) || IS_DISPLAY_VER(dev_pr=
+iv, 10))
+> > >         + IS_DISPLAY_RANGE(dev_priv, 10, E)
+> > > =
+
+> > >         @@ expression dev_priv; @@
+> > >         (
+> > >         - DISPLAY_VER(dev_priv) >=3D 11 || IS_CANNONLAKE(dev_priv) ||=
+ IS_GEN9_LP(dev_priv)
+> > >         + DISPLAY_VER(dev_priv) >=3D 10 || IS_GEN9_LP(dev_priv)
+> > >         |
+> > >         - IS_GEN9_LP(dev_priv) || DISPLAY_VER(dev_priv) >=3D 11 || IS=
+_CANNONLAKE(dev_priv)
+> > >         + IS_GEN9_LP(dev_priv) || DISPLAY_VER(dev_priv) >=3D 10
+> > >         )
+> > > =
+
+> > >         @@ expression dev_priv, E; @@
+> > >         - !(DISPLAY_VER(dev_priv) >=3D E)
+> > >         + DISPLAY_VER(dev_priv) < E
+> > > =
+
+> > > v2:
+> > >  - Convert gen10 conditions that don't include GLK into CNL condition=
+s.
+> > >    (Ville)
+> > > =
+
+> > > v3:
+> > >  - Rework coccinelle rules so that "ver>=3D10" turns into "ver>=3D11|=
+|is_cnl." (Ville)
+> > > =
+
+> > > v3.1:
+> > >  - Manually re-add the ".display.version =3D 10" to glk_info after
+> > >    regenerating patch via Coccinelle.
+> > > =
+
+> > > v4:
+> > >  - Also apply cocci rules to intel_pm.c and i915_irq.c!  (CI)
+> > =
+
+> > Ugh. One thing that occurred to me when looking at i915_irq.c is that
+> > IS_GEN9_LP() is now maybe broken on glk? So seems to me all uses of
+> > IS_GEN9_LP() need to be reviewed and potentially changed.
+> =
+
+> Broken how?  That macro still uses the gen/gt version instead of the
+> display number, so I think it still behaves the same as before?
+
+Oh you're not changng it to to use display ver? I guess it still kinda
+works then. But it's going to be pretty confusing to use that for
+display stuff now. Ie. we should probably stop using it.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
