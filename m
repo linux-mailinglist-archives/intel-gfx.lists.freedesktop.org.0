@@ -2,64 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED22D345F90
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 14:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52010345FCF
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 14:38:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 844706E8F6;
-	Tue, 23 Mar 2021 13:23:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB4DA6E89E;
+	Tue, 23 Mar 2021 13:38:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
- [IPv6:2a00:1450:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22ADD6E8D9
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 13:23:39 +0000 (UTC)
-Received: by mail-wr1-x429.google.com with SMTP id v4so20756520wrp.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 06:23:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=5LNwVGo2JfdYYDu+UqyLlQQXc0p8gS/kb24bTlSb2vQ=;
- b=BerUZMuvqFDev6lmR1p2JDW+6R3cYG6TJ7zt3tIDLAHGQxljea3e4255NBPil9eUzW
- /dI3wm7dMo9yFbM4Eq/gRb/UFPW2jr5KWJ8f8Ao/9Sir1AnEH5KNDRoRIyNHKF4RKmar
- OUdAdDwUGEBc4Tjw4Lr6x5G/uO9OvzDJdsb4U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=5LNwVGo2JfdYYDu+UqyLlQQXc0p8gS/kb24bTlSb2vQ=;
- b=JUPyECJ0LUsIQ1v97ZTyMDDGnDen58PGK4PnygaIqwaIN6KBc5iz02VXnE1z6Q8Bgx
- BWLZDIFL/YBpbNOBuYoJ/FbQaZQUSnY4FAdPUK/hcx1WQW8vLfvaif+LiW9h84InSvTg
- vwG7Jd6VskM+D6+ySuUPJCFZYzqp8w8y8KUgjgpDPmsOACxJylCYrBSohyWDwk8K/eFn
- US46N2vDhMBDNtm0L6Vd1A1zECvqiw2bl36ZnqETFEjYlaACYi17wFPxC9z2yKDrsLq0
- RAxeUTZTzcwln3cFmnlziDgbjmr9q0V3GSw83nKgzJZNOLa4TUzIgSctohLlqzpPrFvX
- m1Ug==
-X-Gm-Message-State: AOAM532SlUZoT/FEeOJJnCz6gZL5PcalyMkAyUVvFrmfbm4A22XY+id1
- 1BXNlEqL+1bbZa9Jyt5OrTO61Q==
-X-Google-Smtp-Source: ABdhPJxjHNDP5XhmFtnF+V6LCIydneunJQp24NbMr8l654Ml7pWwf5MZK0HIAI+0kdgDipMsOjwjNg==
-X-Received: by 2002:a5d:50c7:: with SMTP id f7mr4126933wrt.18.1616505817776;
- Tue, 23 Mar 2021 06:23:37 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q17sm23141151wrv.25.2021.03.23.06.23.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 23 Mar 2021 06:23:36 -0700 (PDT)
-Date: Tue, 23 Mar 2021 14:23:34 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YFnr1iNxXnNCyhgf@phenom.ffwll.local>
-References: <20210319223856.2983244-1-jason@jlekstrand.net>
- <20210319223856.2983244-4-jason@jlekstrand.net>
- <7918db68-835c-b416-6187-1e62892ce5ed@linux.intel.com>
- <YFilKSbKYd+0HbCn@phenom.ffwll.local>
- <d83162e2-4b9e-c7e9-5324-6612bb9561d6@linux.intel.com>
- <CAKMK7uG0GLPu+auqDgMgD7ugvWo3E7W7DL6eALKxmp6hk-aZiA@mail.gmail.com>
- <fb406aca-1211-e1e5-b6a0-830c26d327ae@linux.intel.com>
- <CAKMK7uEf5p+UJNtr0sBRRjegn=88Pr=BCYhGpTy_J1hpRspk7Q@mail.gmail.com>
- <c2cab688-5e54-078b-7eed-7437ec2377e0@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9F696E134;
+ Tue, 23 Mar 2021 13:38:17 +0000 (UTC)
+IronPort-SDR: Fsmqrwa0Xy/isqSZcxgg9BQb4H6uj6LcgTeVxNxcmvDmEun/CU0V82aFlbIvGmlvT2E4nid26b
+ WCrtIh8f7aLw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9931"; a="187159386"
+X-IronPort-AV: E=Sophos;i="5.81,271,1610438400"; d="scan'208";a="187159386"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2021 06:38:17 -0700
+IronPort-SDR: Ehj61Lvj6WxrC8ZgMcN0B8segxHvcEf64UuNcAqxJo3EU4Jy/9tEf0HlIl/O7btS2WyGruvcVl
+ YlYtDRjEwSKQ==
+X-IronPort-AV: E=Sophos;i="5.81,271,1610438400"; d="scan'208";a="414989102"
+Received: from abdulla1-mobl1.gar.corp.intel.com (HELO intel.com)
+ ([10.251.23.100])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2021 06:38:16 -0700
+Date: Tue, 23 Mar 2021 09:38:14 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <YFnvRtUNgERZKzNs@intel.com>
+References: <20210323084453.366863-1-daniel.vetter@ffwll.ch>
+ <20210323084453.366863-2-daniel.vetter@ffwll.ch>
+ <YFng89ujYxcyJQmN@intel.com> <YFnouVsaKs2odAqq@phenom.ffwll.local>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <c2cab688-5e54-078b-7eed-7437ec2377e0@linux.intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Drop the CONTEXT_CLONE API
+In-Reply-To: <YFnouVsaKs2odAqq@phenom.ffwll.local>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/doc: Add RFC section
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,172 +49,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 23, 2021 at 09:14:36AM +0000, Tvrtko Ursulin wrote:
-> 
-> On 22/03/2021 16:43, Daniel Vetter wrote:
-> > On Mon, Mar 22, 2021 at 4:31 PM Tvrtko Ursulin
-> > <tvrtko.ursulin@linux.intel.com> wrote:
+On Tue, Mar 23, 2021 at 02:10:17PM +0100, Daniel Vetter wrote:
+> On Tue, Mar 23, 2021 at 08:37:07AM -0400, Rodrigo Vivi wrote:
+> > On Tue, Mar 23, 2021 at 09:44:53AM +0100, Daniel Vetter wrote:
+> > > Motivated by the pre-review process for i915 gem/gt features, but
+> > > probably useful in general for complex stuff.
 > > > 
+> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > > Cc: Dave Airlie <airlied@redhat.com>
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > ---
+> > >  Documentation/gpu/index.rst |  1 +
+> > >  Documentation/gpu/rfc.rst   | 16 ++++++++++++++++
+> > >  2 files changed, 17 insertions(+)
+> > >  create mode 100644 Documentation/gpu/rfc.rst
 > > > 
-> > > On 22/03/2021 14:57, Daniel Vetter wrote:
-> > > > On Mon, Mar 22, 2021 at 3:33 PM Tvrtko Ursulin
-> > > > <tvrtko.ursulin@linux.intel.com> wrote:
-> > > > > 
-> > > > > 
-> > > > > On 22/03/2021 14:09, Daniel Vetter wrote:
-> > > > > > On Mon, Mar 22, 2021 at 11:22:01AM +0000, Tvrtko Ursulin wrote:
-> > > > > > > 
-> > > > > > > On 19/03/2021 22:38, Jason Ekstrand wrote:
-> > > > > > > > This API allows one context to grab bits out of another context upon
-> > > > > > > > creation.  It can be used as a short-cut for setparam(getparam()) for
-> > > > > > > > things like I915_CONTEXT_PARAM_VM.  However, it's never been used by any
-> > > > > > > > real userspace.  It's used by a few IGT tests and that's it.  Since it
-> > > > > > > > doesn't add any real value (most of the stuff you can CLONE you can copy
-> > > > > > > > in other ways), drop it.
-> > > > > > > 
-> > > > > > > No complaints to remove if it ended up unused outside IGT. Latter is a _big_
-> > > > > > > problem though, since it is much more that a few IGT tests. So I really
-> > > > > > > think there really needs to be an evaluation and a plan for that (we don't
-> > > > > > > want to lose 50% of the coverage over night).
-> > > > > > > 
-> > > > > > > > There is one thing that this API allows you to clone which you cannot
-> > > > > > > > clone via getparam/setparam: timelines.  However, timelines are an
-> > > > > > > > implementation detail of i915 and not really something that needs to be
-> > > > > > > 
-> > > > > > > Not really true timelines are i915 implementation detail. They are in fact a
-> > > > > > > dma-fence context:seqno concept, nothing more that than. I think you are
-> > > > > > > probably confusing struct intel_timeline with the timeline wording in the
-> > > > > > > uapi. Former is i915 implementation detail, but context:seqno are truly
-> > > > > > > userspace timelines.
-> > > > > > 
-> > > > > > I think you're both saying the same thing and talking a bit past each
-> > > > > > another.
-> > > > > > 
-> > > > > > Yes the timeline is just a string of dma_fence, that's correct. Now
-> > > > > > usually if you submit batches with execbuf, we have 3 ways to synchronize
-> > > > > > concurrent submission: implicit sync, sync_file and drm_syncob. They all
-> > > > > > map to different needs in different protocols/render apis.
-> > > > > > 
-> > > > > > Now in one additional case the kernel makes sure that batchbuffers are
-> > > > > > ordered, and that's when you submit them to the same hw ctx. Because
-> > > > > > there's only 1 hw context and you really can't have batchbuffers run on
-> > > > > > that single hw context out of order. That's what the timeline object we
-> > > > > > talk about here is. But that largely is an internal implementation detail,
-> > > > > > which happens to also use most/all the same infrastructure as the
-> > > > > > dma_fence uapi pieces above.
-> > > > > > 
-> > > > > > Now the internal implementation detail leaking here is that we exposed
-> > > > > > this to userspace, without there being any need for this. What Jason
-> > > > > > implements with syncobj in the next patch is essentially what userspace
-> > > > > > should have been using for cross-engine sync. media userspace doesn't care
-> > > > > > about interop with winsys/client apis, so they equally could have used
-> > > > > > implicit sync or sync_file here (which I think is the solution now for the
-> > > > > > new uapi prepped internally), since they all are about equally powerful
-> > > > > > for stringing batchbuffers together.
-> > > > > 
-> > > > > Are you saying we exposed a single timeline of execution per hw context
-> > > > > via the single timeline flag?!
-> > > > 
-> > > > Nope.
-> > > > 
-> > > > > Timelines of execution were always exposed. Any "engine" (ring
-> > > > > previously) in I915_EXEC_RING_MASK was a single timeline of execution.
-> > > > > It is completely the same with engine map engines, which are also
-> > > > > different indices into I915_EXEC_RING_MASK space.
-> > > > > 
-> > > > > Userspace was aware of these timelines forever as well. Media was
-> > > > > creating multiple contexts to have multiple timelines (so parallelism).
-> > > > > Everyone knew that engine-hopping submissions needs to be either
-> > > > > implicitly or explicitly synchronised, etc.
-> > > > 
-> > > > Yup, I think we're saying the same thing here.
-> > > > 
-> > > > > So I really don't see that we have leaked timelines as a concept *now*.
-> > > > > What the patch has exposed to userspace is a new way to sync between
-> > > > > timelines and nothing more.
-> > > > 
-> > > > We've leaked it as something you can now share across hw context.
-> > > 
-> > > Okay so we agree on most things but apparently have different
-> > > definitions of what it means to leak internal implementation details.
-> > > 
-> > > While at the same time proof that we haven't leaked the internal
-> > > implementation details is that Jason was able to implement the single
-> > > timeline flag with a drm syncobj at the execbuf top level. (Well mostly,
-> > > ignoring the probably inconsequential difference of one vs multiple
-> > > fence contexts.)
+> > > diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
+> > > index c9a51e3bfb5a..df58cb826d68 100644
+> > > --- a/Documentation/gpu/index.rst
+> > > +++ b/Documentation/gpu/index.rst
+> > > @@ -16,6 +16,7 @@ Linux GPU Driver Developer's Guide
+> > >     vga-switcheroo
+> > >     vgaarbiter
+> > >     todo
+> > > +   rfc
 > > 
-> > It's not a matching implementation. It's only good enough for what
-> > media needs, and essentially what media should have done to begin
-> > with.
-> > 
-> > There's substantially different behaviour between SINGLE_TIMELINE and
-> > what Jason has done here when you race concurrent execbuf calls:
-> > Former guarantees total ordering, the latter doesn't even try. They
-> > are not the same thing, but luckily userspace doesn't care about that
-> > difference.
+> > I understand the motivation here so I didn't commented earlier, but looking now,
+> > I'm wondering that this section will polute the official doc...
 > 
-> Sounds like a very important difference to stress in the commit message.
-> 
-> Secondly, I am unclear whether we have agreement on whether the single
-> timeline flag is leaking implementation details of the execlists scheduler
-> to userspace or not?
+> We already have this problem between documentation meant for kernel driver
+> developers and documentation meant for userspace developers around uapi
+> and all that. "who is the audience here" is very ill-defined for our
+> current set of docs in Documentation/gpu :-(
 
-I do think Jason&me agree on that it does leak an internal concept to
-userspace that we shouldn't leak.
+you have a point...
 
-I'm honestly not entirely understanding your argument for why
-single_timeline isn't an internal concept somehow, and how exposing it to
-userspace doesn't leak that concept to userspace. Whether internally that
-concept is now perfectly represented by just struct intel_timeline, or
-maybe more the seqno/hswp, or more diffused through the code doesn't
-really change that we have an internal concept that we're now exposing for
-sharing in ways that wasn't possible before.
--Daniel
+another thing that I don't like is the overhead, but otoh it forces us to
+write more docs...
 
-> Regards,
+with all the pros and cons understood, let's move on...
+
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
 > 
-> Tvrtko
+> So I agree with you, but I also don't think this will make things worse.
+> -Daniel
 > 
 > > 
-> > Aside, just to make sure this wont get lost: I do agree that we should
-> > only allow this up to maybe ADL, and reject it on anything new (maybe
-> > including dg1 while we're at it, since the pci ids for that aren't
-> > even close to upstream yet).
-> > -Daniel
-> > 
-> > > > Which is possible because of how it's internally implemented (I think
-> > > > load balancer relies on that), but not really a synchronization
+> > >  
+> > >  .. only::  subproject and html
+> > >  
+> > > diff --git a/Documentation/gpu/rfc.rst b/Documentation/gpu/rfc.rst
+> > > new file mode 100644
+> > > index 000000000000..9d0ff2921af8
+> > > --- /dev/null
+> > > +++ b/Documentation/gpu/rfc.rst
+> > > @@ -0,0 +1,16 @@
+> > > +===============
+> > > +GPU RFC Section
+> > > +===============
+> > > +
+> > > +For complex work, especially new uapi, it is often good to nail the high level
+> > > +design issues before getting lost in the code details. This section is meant to
+> > > +host such documentation:
+> > > +
+> > > +* Each RFC should be a section in this file, explaining the goal and main design
+> > > +  considerations.
+> > > +
+> > > +* For uapi structures add a file to this directory with and then pull the
+> > > +  kerneldoc in like with real uapi headers.
+> > > +
+> > > +* Once the code has landed move all the documentation to the right places in
+> > > +  the main core, helper or driver sections.
+> > > -- 
+> > > 2.31.0
 > > > 
-> > > Virtual engine is a single timeline by definition and it is still that
-> > > regardless of the implementation details (execlists or GuC, in both
-> > > cases it is a single hardware context and a single timeline).
-> > > 
-> > > > primitive we want to export as such to userspace. We have other
-> > > > interfaces and concepts for that.
-> > > 
-> > > Yes, that is the only point to argue IMO. We can say it wasn't needed
-> > > and should have been avoided, but I still maintain we can't really say
-> > > we leaked anything backend specific to userspace via it.
-> > > 
-> > > Regards,
-> > > 
-> > > Tvrtko
-> > 
-> > 
-> > 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
