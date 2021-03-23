@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 562B334672B
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 19:07:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92B0F3467AB
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 19:32:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 849A36E921;
-	Tue, 23 Mar 2021 18:07:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 757E36EB0C;
+	Tue, 23 Mar 2021 18:32:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com
- [IPv6:2607:f8b0:4864:20::235])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2921089CF9
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 18:07:23 +0000 (UTC)
-Received: by mail-oi1-x235.google.com with SMTP id i81so16481565oif.6
- for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 11:07:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com
+ [IPv6:2607:f8b0:4864:20::22e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54D986EB0C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 18:32:04 +0000 (UTC)
+Received: by mail-oi1-x22e.google.com with SMTP id i3so18034316oik.7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 11:32:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=e3B+59LKFePNVjHdMLcwFqvVHM4VPFbGxXZU5IK7OQ8=;
- b=HVeVJBNYKC3tUFHU285N0IEjcrD5Njwr4l7AGXN/aNo0r5qppErYPJMdF4L7qR4K6b
- a/6HaqnSUoGGgkDcvR0rfkIe6hf5UH6eGdYtyYvVkQu/Otum1VIJGCWPhBQ2ujjRvfLj
- 997yu1ragdfdEYBcEIVVuTzPwlRAwEG8DmftRaBI0gAKQ9/sC+KjmhqBUjTvjw7FM2b1
- LYTLAgi8la/A3Wnl9dnnLFeV7TWiegbzTXUm9hjhCfDyWbOlhG27OljhFXfY6rviiE6O
- 50J6mycfV8t/JukN7DLMW2CJDgqie7Lo3NrmSaxiGrPpOQQWrW92KxY5FsIcRMmAwcjj
- Bihw==
+ :cc:content-transfer-encoding;
+ bh=K+T9J28jjl61wFwR8sOn/dolEBn3Acb0Hwet+RnL6BY=;
+ b=XYbt6yoyL5Y2v6flxP+44gcZ3dL+CnxLzJWpu2hooVP8sUQ+0swaj29laUsM46YnY4
+ zWC/Vu5/PjYYMOBtdUU7wWRwAHKvDvz97/lWpjV8CmLmHufKiiNleofIGr/Pjikcj4CZ
+ uhNWm6rQvsPbmLwFy9MwlMlbYNTktGP3u4qhI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=e3B+59LKFePNVjHdMLcwFqvVHM4VPFbGxXZU5IK7OQ8=;
- b=k5Z60XdS1/VnwDW559QRMfM2yKTHaRxCVxpL+A+mE8Qw1mloOcDuOGL9Dy3Y8dqJZk
- Zp1OG/On6t8cuZlCox7R1AWGNBmZhjvyknQ8eyqG5EoO8l5BUkTjOcKlafI7dTa7zsfG
- vMBqbkNhHGf65rJUUDNDuKup3JC+atZC5LIOMW7taZLT1DkWBhN6qSaQzG6CbmGN3wL8
- Wu94feSBxk7IM3iJT9DxhA3MslzKlb6ljL6GZNVc/fpzfo8khpyWUbnQR2ZhEaxEM7uB
- YisBixhZQVtZ6L6yHXSaiW88+aZaB04M59Fi4ZeJ2USXt8bnzRHrhVd7G5+mXyyjqEHc
- cRfg==
-X-Gm-Message-State: AOAM5321ZDleE9LtkHfWQNpXOZCuVd+32OJF4kHbZw6cJ6Vd6UmW0z4V
- efbjhfUW+lnveEFf3XnK1L4V5jSqA8QbeER0tiFp+PeVJv8=
-X-Google-Smtp-Source: ABdhPJwzYKARMuXCB+e8ID2we7xc2Ro/TWKW1n8HjNlMHoy4QXSd+/6Di3TErIG0ErdYG9ghh/Tx2vGVVYLHCZhVKHg=
-X-Received: by 2002:aca:4d55:: with SMTP id a82mr4192505oib.23.1616522842373; 
- Tue, 23 Mar 2021 11:07:22 -0700 (PDT)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=K+T9J28jjl61wFwR8sOn/dolEBn3Acb0Hwet+RnL6BY=;
+ b=FI4ETdWsWhgazmnumiwoLRzWVDHBLHRD/olFKQaPDCYFGvv+nJNw0jm5gBvyjI5Aym
+ 3Vk79ZUovWPG9yZgJd7UToYWAXwn4uL60OP/X7iCD68APYgkvCzVm+IMUFr6x1pN3ebt
+ PtrIHoXoDQl0womZhcMb/+MfnO2u2VHCQBUCgkc/AO0fnedgfOjUI1/rFRlSTzWq53es
+ TR5t8Zu02HJurAJuy57boYd7vsWhct4cqDDjsIgaSF3vcUbLJfdQ/WRKu6AMSPkvi2vM
+ n92QPiAjAAgEXFubeKtmhFaM1pZC8LNXuhL8bPkMoKzN8mv+CAvxs8Op+JDxe7FET2Tr
+ HyAQ==
+X-Gm-Message-State: AOAM530rYv8nZ3YQOoU1obk5yL/ShV0Rv+9Sng9dgelithLCYRW9pUTz
+ 0tlB5foap0Q15WXevZWxwZ/AVCFFrLS5S5R4cSRQj73zkz8X6A==
+X-Google-Smtp-Source: ABdhPJwxfHSm9T5Jk3b71cbiHY5fTVEkyEwpKQ+6P5xsMEVY2dUm6EFDVxTW0STVyBpKDFqGug64KpWEsoMz4QpdzKA=
+X-Received: by 2002:aca:4188:: with SMTP id o130mr4288312oia.101.1616524323733; 
+ Tue, 23 Mar 2021 11:32:03 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210323084453.366863-1-daniel.vetter@ffwll.ch>
- <874kh25gaw.fsf@intel.com> <YFnXszc5lZ/omk2V@phenom.ffwll.local>
- <YFngbxt0KbZPXKll@intel.com> <YFnqmRkNdpljN30g@phenom.ffwll.local>
-In-Reply-To: <YFnqmRkNdpljN30g@phenom.ffwll.local>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Tue, 23 Mar 2021 13:07:11 -0500
-Message-ID: <CAOFGe95_rEvLP9dhBwrwr=31jPmAsmTNTauRfiFQxbx+QHiPFw@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: add gem/gt TODO
+ <20210323084453.366863-2-daniel.vetter@ffwll.ch>
+ <_qgkbhnFRPb-XwdmeoSsVd7rlelflxuh9B-f9G8GLZoFIeXj48RGtUoEjws4RV0kI1jZvvZSGbOIcHhLWmI_RKJzzawOO9OIyJjBkG9lQH8=@emersion.fr>
+ <CAOFGe94kCGPW3YD31a9OjhKxpvyKGQS-HJVPg8OqVE1j1qpdJA@mail.gmail.com>
+In-Reply-To: <CAOFGe94kCGPW3YD31a9OjhKxpvyKGQS-HJVPg8OqVE1j1qpdJA@mail.gmail.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Tue, 23 Mar 2021 19:31:52 +0100
+Message-ID: <CAKMK7uHfA5f68JzCQ26sTXXcE6DVZvtvGMpYZ1vwvt5a2P2OCw@mail.gmail.com>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/doc: Add RFC section
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,162 +61,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Daniel Vetter <daniel.vetter@intel.com>, Simon Ser <contact@emersion.fr>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
  Dave Airlie <airlied@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 23, 2021 at 8:18 AM Daniel Vetter <daniel@ffwll.ch> wrote:
->
-> On Tue, Mar 23, 2021 at 08:34:55AM -0400, Rodrigo Vivi wrote:
-> > On Tue, Mar 23, 2021 at 12:57:39PM +0100, Daniel Vetter wrote:
-> > > On Tue, Mar 23, 2021 at 12:13:11PM +0200, Jani Nikula wrote:
-> > > > On Tue, 23 Mar 2021, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > > > > We've discussed a bit how to get the gem/gt team better integrated
-> > > > > and collaborate more with the wider community and agreed to the
-> > > > > following:
-> > > > >
-> > > > > - all gem/gt patches are reviewed on dri-devel for now. That's
-> > > > >   overkill, but in the past there was definitely too little of that.
-> > > > >
-> > > > > - i915-gem folks are encouraged to cross review core patches from
-> > > > >   other teams
-> > > > >
-> > > > > - big features (especially uapi changes) need to be discussed in an
-> > > > >   rfc patch that documents the interface and big picture design,
-> > > > >   before we get lost in the details of the code
-> > > > >
-> > > > > - Also a rough TODO (can be refined as we go ofc) to get gem/gt back
-> > > > >   on track, like we've e.g. done with DAL/DC to get that in shape.
-> > > >
-> > > > I personally think there should be a lower bar for discussing and
-> > > > editing the TODO items than via patches on the mailing list. Granted,
-> > > > the TODO file enforces the discussion happens at a large enough
-> > > > audience, but for at least some of the items I'd suggest filing gitlab
-> > > > issues [1], with todo label, and tracking there.
-> >
-> > I also don't like the todo list in files and I agree that gitlab issues
-> > section should be better...
-> >
-> > > In general yes, and I'd go even further: it's up to each team/contributor
-> > > how they track review feedback and further work, whether that's gitlab or
-> > > some notes or just in their heads.
-> > >
-> > > This is a different situation here, and the "changes require big audience"
-> > > is a feature, not a bug. But it is a very exceptional situation, I think
-> > > this is only the 2nd time we're using a formal TODO for a gpu driver. If
-> > > we ignore gma500 in staging, which for me only showed that the separate
-> > > staging tree doesn't work so well for complex drivers like we have.
-> >
-> > ... but I understand the motivation, so
-> >
-> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >
-> > However... what about:
-> >
-> > 1. moving the smaller items to gitlab at least?
-> > 2. having both, all the entries in the todo file have gitlab issue
-> > associated and the number-id is also here in the todo file?
->
-> Yeah that sounds reasonable. tbh we haven't started any of the
-> intel-internal planning on most of these (ttm and scheduler are started),
-> so none of these tracking things exist yet at all ...
-
-I'm a fan of this.  GitLab issues provide a good place to organize the
-chatter on any particular ToDo item.  I'd also rather see people
-chattering about this stuff on public GitLab than JIRA, when possible.
-The last patch in the series closing out a ToDo can be a patch to this
-file to remove the bullet point.
-
---Jason
-
-> -Daniel
->
-> >
-> > > -Daniel
-> > >
-> > > >
-> > > > BR,
-> > > > Jani.
-> > > >
-> > > >
-> > > > [1] https://gitlab.freedesktop.org/drm/intel/-/issues
-> > > >
-> > > >
-> > > >
-> > > > >
-> > > > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > > > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > Cc: Jason Ekstrand <jason@jlekstrand.net>
-> > > > > Cc: Dave Airlie <airlied@redhat.com>
-> > > > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/TODO.txt | 36 +++++++++++++++++++++++++++++++++++
-> > > > >  1 file changed, 36 insertions(+)
-> > > > >  create mode 100644 drivers/gpu/drm/i915/TODO.txt
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/TODO.txt b/drivers/gpu/drm/i915/TODO.txt
-> > > > > new file mode 100644
-> > > > > index 000000000000..d2e5bbb6339d
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/gpu/drm/i915/TODO.txt
-> > > > > @@ -0,0 +1,36 @@
-> > > > > +gem/gt TODO items
-> > > > > +-----------------
-> > > > > +
-> > > > > +- For discrete memory manager, merge enough dg1 to be able to refactor it to
-> > > > > +  TTM. Then land pci ids (just in case that turns up an uapi problem). TTM has
-> > > > > +  improved a lot the past 2 years, there's no reason anymore not to use it.
-> > > > > +
-> > > > > +- Come up with a plan what to do with drm/scheduler and how to get there.
-> > > > > +
-> > > > > +- There's a lot of complexity added past few years to make relocations faster.
-> > > > > +  That doesn't make sense given hw and gpu apis moved away from this model years
-> > > > > +  ago:
-> > > > > +  1. Land a modern pre-bound uapi like VM_BIND
-> > > > > +  2. Any complexity added in this area past few years which can't be justified
-> > > > > +  with VM_BIND using userspace should be removed. Looking at amdgpu dma_resv on
-> > > > > +  the bo and vm, plus some lru locks is all that needed. No complex rcu,
-> > > > > +  refcounts, caching, ... on everything.
-> > > > > +  This is the matching task on the vm side compared to ttm/dma_resv on the
-> > > > > +  backing storage side.
-> > > > > +
-> > > > > +- i915_sw_fence seems to be the main structure for the i915-gem dma_fence model.
-> > > > > +  How-to-dma_fence is core and drivers really shouldn't build their own world
-> > > > > +  here, treating everything else as a fixed platform. i915_sw_fence concepts
-> > > > > +  should be moved to dma_fence, drm/scheduler or atomic commit helpers. Or
-> > > > > +  removed if dri-devel consensus is that it's not a good idea. Once that's done
-> > > > > +  maybe even remove it if there's nothing left.
-> > > > > +
-> > > > > +Smaller things:
-> > > > > +- i915_utils.h needs to be moved to the right places.
-> > > > > +
-> > > > > +- dma_fence_work should be in drivers/dma-buf
-> > > > > +
-> > > > > +- i915_mm.c should be moved to the right places. Some of the helpers also look a
-> > > > > +  bit fishy:
-> > > > > +
-> > > > > +  https://lore.kernel.org/linux-mm/20210301083320.943079-1-hch@lst.de/
-> > > >
-> > > > --
-> > > > Jani Nikula, Intel Open Source Graphics Center
-> > >
-> > > --
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
->
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCBNYXIgMjMsIDIwMjEgYXQgNjo1NSBQTSBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxl
+a3N0cmFuZC5uZXQ+IHdyb3RlOgo+Cj4gT24gVHVlLCBNYXIgMjMsIDIwMjEgYXQgMTI6MDEgUE0g
+U2ltb24gU2VyIDxjb250YWN0QGVtZXJzaW9uLmZyPiB3cm90ZToKPiA+Cj4gPiBTaWRlIG5vdGU6
+IEkgZmVlbCBsaWtlIHdlIGNvdWxkIGhhdmUgYmV0dGVyIGxpbmVzIG9mIGNvbW11bmljYXRpb24K
+PiA+IGJldHdlZW4ga2VybmVsIGRldnMgYW5kIHVzZXItc3BhY2UgZGV2cy4gVGhlIG5ldyB1QVBJ
+IHJlcXVpcmVtZW50cyBzZWVtCj4gPiB0byBiZSBhIGhpZ2ggYmFycmllciB0byBlbnRyeSBmb3Ig
+a2VybmVsIGRldnMuIEhvd2V2ZXIgc29tZXRpbWVzCj4gPiB1c2VyLXNwYWNlIGRldnMgbWlnaHQg
+YmUgaW50ZXJlc3RlZCBpbiBoZWxwaW5nIG91dCB3aXRoIHRoZSB1c2VyLXNwYWNlCj4gPiBwYXJ0
+4oCmCj4gPgo+ID4gTWF5YmUgaXQgd291bGQgYmUgZ29vZCB0byBDQyBlLmcuIHdheWxhbmQtZGV2
+ZWwgZm9yIG5ldyBSRkNzLCBzbyB0aGF0Cj4gPiB1c2VyLXNwYWNlIGRldnMgY2FuIGp1bXAgaW4g
+aWYgdGhleSdyZSBpbnRlcmVzdGVkLiBBbmQgYWxzbyBwcm92aWRlCj4gPiBmZWVkYmFjaywgc2lu
+Y2UgbmV3IHVBUEkgaXMgaGFyZCB0byBzcG90IGluIHRoZSBzZWEgb2YgbWVzc2FnZXMgaW4KPiA+
+IGRyaS1kZXZlbC4KPgo+IFRoYXQncyBhIGdvb2Qgc3VnZ2VzdGlvbi4gIENDaW5nIHdheWxhbmQt
+ZGV2IG9yIG1lc2EtZGV2LCBhcwo+IGFwcHJvcHJpYXRlLCB3aXRoIHN1Y2ggZG9jcyBwYXRjaGVz
+IHNvdW5kcyBsaWtlIGEgZ29vZCBpZGVhLiAgSSdtIG5vdAo+IHN1cmUgd2hlcmUgd2Ugd291bGQg
+cHV0IHRoYXQgaW4gaGVyZSBidXQgaXQgd291bGQgYmUgZ29vZCB0byBjYWxsIG91dC4KCkknbGwg
+YWRkIGEgc3VnZ2VzdGlvbiB0byB0aGF0IGV4dGVuZCwgaXQncyBhIGdvb2Qgb25lLgotRGFuaWVs
+Ci0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpo
+dHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
