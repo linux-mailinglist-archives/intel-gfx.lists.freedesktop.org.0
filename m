@@ -1,31 +1,85 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6EE34691B
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 20:31:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BBB0346926
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 20:34:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0E816E943;
-	Tue, 23 Mar 2021 19:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9DFA6EB37;
+	Tue, 23 Mar 2021 19:34:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FBD06E943;
- Tue, 23 Mar 2021 19:31:07 +0000 (UTC)
-Received: by verein.lst.de (Postfix, from userid 2407)
- id 144AA68C7B; Tue, 23 Mar 2021 20:31:03 +0100 (CET)
-Date: Tue, 23 Mar 2021 20:31:03 +0100
-From: Christoph Hellwig <hch@lst.de>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20210323193103.GP17735@lst.de>
-References: <0-v1-7dedf20b2b75+4f785-vfio2_jgg@nvidia.com>
- <18-v1-7dedf20b2b75+4f785-vfio2_jgg@nvidia.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D0346E954
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 19:34:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1616528052;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=31oGaPN6WEE+FJRkpXZPYBXBaKtoW/FYH/2rjmBKGQg=;
+ b=ZFgwi+O1ZGZj8/9KffhuGfdV/Pe9weAq2yUaZY5L1pY9ZJ1P/LcBVjLsim7YBIurmxEvpu
+ Gmd744x8QapGGGYmtgsuY+oKlk7Sm7ulDERr6O+eon00gug2o5UGsmOxQKy4jkqI6K8mHk
+ umBNRHEx4GfqTCyHqzGFnCSufQxbH+E=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-206-_fDG1ffIOQucVztUKfSjvg-1; Tue, 23 Mar 2021 15:34:08 -0400
+X-MC-Unique: _fDG1ffIOQucVztUKfSjvg-1
+Received: by mail-ej1-f70.google.com with SMTP id r26so1516039eja.22
+ for <intel-gfx@lists.freedesktop.org>; Tue, 23 Mar 2021 12:34:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=31oGaPN6WEE+FJRkpXZPYBXBaKtoW/FYH/2rjmBKGQg=;
+ b=NLt7RxsamFhQspDzkL5V+LFDzjJ5CAZGp402bCaDmvdEcvHDO5GnLIZA+rfjPOJFZ1
+ 1OVboQQ5thxTTOQWCl9hFPu+AkY1P4L6FejtDOc5813JIoNE2YrQ8C6waYaP66yC5R79
+ /bm4v4wUT+4betQ8Yk5QZZgxHqCPsls49hLMRhKmT4D3WIhEDolhw9QthvSrKZIzPWvS
+ noSJp82xys8AQQBlvrqIP9pN7ZbZiHH4sBym9GzwKLhkmMxu95kdejXgs2hqbXPC01hy
+ pxPizenp9bWJ9cfKogAwORXFWCGDaTVmkIIkJiwx/RPVZR5p3zDpk3FOPbXTvo5Lrfwx
+ DpHQ==
+X-Gm-Message-State: AOAM530PE1ud06XGjhsb25FFcs2rUrtozx73scI6ygvTYQmkQjLGzaDc
+ dtzumW+PbIwo8cqribWoLozmRQl9lHfdwpo9LUoQP2JaZBxIHb1JE2bDTimewI9aCOFsIf/IjzT
+ mnTK2i0gcT8Nfr2SC838T9RD3kXEA
+X-Received: by 2002:a05:6402:32a:: with SMTP id
+ q10mr6071103edw.15.1616528047111; 
+ Tue, 23 Mar 2021 12:34:07 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx+UsrQGiuU+ygKu3pr1goGJotGBZyaWGB1z0Q7G13wKL79SOdoAZn+LbPZCg00Ag30TobuRQ==
+X-Received: by 2002:a05:6402:32a:: with SMTP id
+ q10mr6071091edw.15.1616528046940; 
+ Tue, 23 Mar 2021 12:34:06 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id gn19sm1248719ejc.4.2021.03.23.12.34.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 23 Mar 2021 12:34:06 -0700 (PDT)
+From: Hans de Goede <hdegoede@redhat.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+References: <20210301154347.50052-1-hdegoede@redhat.com>
+ <8d882647-bab3-dfc3-70ad-4f1910dcb5af@redhat.com>
+ <YFkDYzN0NJ3Co8bT@intel.com> <YFkFH2uAR+6mNONZ@intel.com>
+ <c1beb028-9f9d-ad3e-9a06-2685ca36a8d4@redhat.com>
+ <YFkQigJmpLRJWxzb@intel.com>
+ <8a127f0c-ba08-3471-88f4-ef0aa281cd7b@redhat.com>
+ <YFoqvIf3sU0CUe5X@intel.com>
+ <f769c3d7-49d2-5350-0d5a-990463643724@redhat.com>
+Message-ID: <0efc5388-0fd9-94c1-c2e7-50ff00b865f3@redhat.com>
+Date: Tue, 23 Mar 2021 20:34:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <18-v1-7dedf20b2b75+4f785-vfio2_jgg@nvidia.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH 18/18] vfio/mdev: Correct the function
- signatures for the mdev_type_attributes
+In-Reply-To: <f769c3d7-49d2-5350-0d5a-990463643724@redhat.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/vlv_dsi: Do no shut down
+ displays on reboot if a DSI panel is used
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,94 +92,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, Kirti Wankhede <kwankhede@nvidia.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>, Leon Romanovsky <leonro@nvidia.com>,
- Christoph Hellwig <hch@lst.de>, linux-s390@vger.kernel.org, "Raj,
- Ashok" <ashok.raj@intel.com>, Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Tarun Gupta <targupta@nvidia.com>, intel-gfx@lists.freedesktop.org,
- Max Gurtovoy <mgurtovoy@nvidia.com>, Eric Farman <farman@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Dan Williams <dan.j.williams@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Pierre Morel <pmorel@linux.ibm.com>,
- Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 23, 2021 at 02:55:35PM -0300, Jason Gunthorpe wrote:
-> The driver core standard is to pass in the properly typed object, the
-> properly typed attribute and the buffer data. It stems from the root
-> kobject method:
-> 
->   ssize_t (*show)(struct kobject *kobj, struct kobj_attribute *attr,..)
-> 
-> Each subclass of kobject should provide their own function with the same
-> signature but more specific types, eg struct device uses:
-> 
->   ssize_t (*show)(struct device *dev, struct device_attribute *attr,..)
-> 
-> In this case the existing signature is:
-> 
->   ssize_t (*show)(struct kobject *kobj, struct device *dev,..)
-> 
-> Where kobj is a 'struct mdev_type *' and dev is 'mdev_type->parent->dev'.
-> 
-> Change the mdev_type related sysfs attribute functions to:
-> 
->   ssize_t (*show)(struct mdev_type *mtype, struct mdev_type_attribute *attr,..)
-> 
-> In order to restore type safety and match the driver core standard
-> 
-> There are no current users of 'attr', but if it is ever needed it would be
-> hard to add in retroactively, so do it now.
-> 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->  drivers/gpu/drm/i915/gvt/gvt.c    | 21 +++++++++++----------
->  drivers/s390/cio/vfio_ccw_ops.c   | 15 +++++++++------
->  drivers/s390/crypto/vfio_ap_ops.c | 12 +++++++-----
->  drivers/vfio/mdev/mdev_core.c     | 14 ++++++++++++--
->  drivers/vfio/mdev/mdev_sysfs.c    | 11 ++++++-----
->  include/linux/mdev.h              | 11 +++++++----
->  samples/vfio-mdev/mbochs.c        | 26 +++++++++++++++-----------
->  samples/vfio-mdev/mdpy.c          | 24 ++++++++++++++----------
->  samples/vfio-mdev/mtty.c          | 18 +++++++++---------
->  9 files changed, 90 insertions(+), 62 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gvt/gvt.c b/drivers/gpu/drm/i915/gvt/gvt.c
-> index 4b47a18e9dfa0f..3703814a669b46 100644
-> --- a/drivers/gpu/drm/i915/gvt/gvt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gvt.c
-> @@ -54,14 +54,15 @@ intel_gvt_find_vgpu_type(struct intel_gvt *gvt, unsigned int type_group_id)
->  	return &gvt->types[type_group_id];
->  }
->  
-> -static ssize_t available_instances_show(struct kobject *kobj,
-> -					struct device *dev, char *buf)
-> +static ssize_t available_instances_show(struct mdev_type *mtype,
-> +					struct mdev_type_attribute *attr,
-> +					char *buf)
->  {
->  	struct intel_vgpu_type *type;
->  	unsigned int num = 0;
-> -	void *gvt = kdev_to_i915(dev)->gvt;
-> +	void *gvt = kdev_to_i915(mtype_get_parent_dev(mtype))->gvt;
->  
-> -	type = intel_gvt_find_vgpu_type(gvt, mtype_get_type_group_id(kobj));
-> +	type = intel_gvt_find_vgpu_type(gvt, mtype_get_type_group_id(mtype));
-
-Somewhere in this series you should probably
-switch intel_gvt_find_vgpu_type to only get the mtype, as it can trivially
-deduct the gvt from it (which also seems to have lost its type somewhere..)
-
-Otherwise looks good:
-
-Reviewed-by: Christoph Hellwig <hch@lst.de>
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SEksCgpPbiAzLzIzLzIxIDg6MTMgUE0sIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4gSGksCj4gCj4g
+T24gMy8yMy8yMSA2OjUxIFBNLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6Cj4+IE9uIFR1ZSwgTWFy
+IDIzLCAyMDIxIGF0IDA2OjI5OjUzUE0gKzAxMDAsIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4+PiBI
+aSwKPj4+Cj4+PiBPbiAzLzIyLzIxIDEwOjQ3IFBNLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6Cj4+
+Pj4gT24gTW9uLCBNYXIgMjIsIDIwMjEgYXQgMTA6Mjg6MDZQTSArMDEwMCwgSGFucyBkZSBHb2Vk
+ZSB3cm90ZToKPj4+Pj4gSGksCj4+Pj4+Cj4+Pj4+IE9uIDMvMjIvMjEgOTo1OSBQTSwgVmlsbGUg
+U3lyasOkbMOkIHdyb3RlOgo+Pj4+Pj4gT24gTW9uLCBNYXIgMjIsIDIwMjEgYXQgMDQ6NTE6NDdQ
+TSAtMDQwMCwgUm9kcmlnbyBWaXZpIHdyb3RlOgo+Pj4+Pj4+IE9uIEZyaSwgTWFyIDE5LCAyMDIx
+IGF0IDA0OjQ1OjMyUE0gKzAxMDAsIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4+Pj4+Pj4+IEhpLAo+
+Pj4+Pj4+Pgo+Pj4+Pj4+PiBPbiAzLzEvMjEgNDo0MyBQTSwgSGFucyBkZSBHb2VkZSB3cm90ZToK
+Pj4+Pj4+Pj4+IEFmdGVyIHRoZSByZWNlbnRseSBhZGRlZCBjb21taXQgZmUwZjFlM2JmZGZlICgi
+ZHJtL2k5MTU6IFNodXQgZG93bgo+Pj4+Pj4+Pj4gZGlzcGxheXMgZ3JhY2VmdWxseSBvbiByZWJv
+b3QiKSwgdGhlIERTSSBwYW5lbCBvbiBhIENoZXJyeSBUcmFpbCBiYXNlZAo+Pj4+Pj4+Pj4gUHJl
+ZGlhIEJhc2ljIHRhYmxldCB3b3VsZCBubyBsb25nZXIgcHJvcGVybHkgbGlnaHQgdXAgYWZ0ZXIg
+cmVib290Lgo+Pj4+Pj4+Pj4KPj4+Pj4+Pj4+IFRoZSBiYWNrbGlnaHQgc3RpbGwgdHVybnMgYmFj
+ayBvbiBhZnRlciByZWJvb3QsIGJ1dCB0aGUgTENEIHNob3dzIGFuCj4+Pj4+Pj4+PiBhbGwgYmxh
+Y2sgZGlzcGxheS4gVGhlIGRpc3BsYXkgaXMgYWxzbyBhbGwgYmxhY2sgZHVyaW5nIHRoZSB0aW1l
+IHRoYXQKPj4+Pj4+Pj4+IEVGSSAvIHRoZSBHT1AgaXMgbWFuYWdpbmcgaXQsIHNvIGUuZy4gdGhl
+IGdydWIgbWVudSBhbHNvIGlzIG5vdCB2aXNpYmxlLgo+Pj4+Pj4+Pj4KPj4+Pj4+Pj4+IEluIHRo
+aXMgc2NlbmFyaW8gdGhlIHBhbmVsIGlzIGluaXRpYWxpemVkIHNvIHRoYXQgaXQgYXBwZWFycyB0
+byBiZSB3b3JraW5nCj4+Pj4+Pj4+PiBhbmQgdGhlIGZhc3Rib290IGNvZGUgc2tpcHMgZG9pbmcg
+YSBtb2Rlc2V0LiBGb3JjaW5nIGEgbW9kZXNldCBieSBkb2luZyBhCj4+Pj4+Pj4+PiBjaHZ0IHRv
+IGEgdGV4dC1jb25zb2xlIG92ZXIgc3NoIGZvbGxvd2VkIGJ5IGVjaG8taW5nIDEgYW5kIHRoZW4g
+MCB0bwo+Pj4+Pj4+Pj4gL3N5cy9jbGFzcy9ncmFwaGljcy9mYjAvYmxhbmsgY2F1c2VzIHRoZSBw
+YW5lbCB0byB3b3JrIGFnYWluLgo+Pj4+Pj4+Pj4KPj4+Pj4+Pj4+IEFkZCBhIFFVSVJLX1NLSVBf
+U0hVVERPV04gcXVpcmsgd2hpY2ggdHVybnMgaTkxNV9kcml2ZXJfc2h1dGRvd24oKSBpbnRvCj4+
+Pj4+Pj4+PiBhIG5vLW9wIHdoZW4gc2V0OyBhbmQgc2V0IHRoaXMgb24gdmx2L2NodiBkZXZpY2Vz
+IHdoZW4gYSBEU0kgcGFuZWwgaXMKPj4+Pj4+Pj4+IGRldGVjdGVkLCB0byB3b3JrIGFyb3VuZCB0
+aGlzLgo+Pj4+Pj4+Pj4KPj4+Pj4+Pj4+IEFkbWl0dGVkbHkgdGhpcyBpcyBhIGJpdCBvZiBhIGJp
+ZyBoYW1tZXIsIGJ1dCB0aGVzZSBwbGF0Zm9ybXMgaGF2ZSBiZWVuCj4+Pj4+Pj4+PiBhcm91bmQg
+Zm9yIHF1aXRlIHNvbWUgdGltZSBub3cgYW5kIHRoZXkgaGF2ZSBhbHdheXMgd29ya2VkIGZpbmUg
+d2l0aG91dAo+Pj4+Pj4+Pj4gdGhlIG5ldyBiZWhhdmlvciB0byBzaHV0ZG93biBldmVyeXRoaW5n
+IG9uIHNodXRkb3duL3JlYm9vdC4gVGhpcyBhcHByb2FjaAo+Pj4+Pj4+Pj4gc2ltcGx5IGRpc2Fi
+bGVzIHRoZSByZWNlbnRseSBpbnRyb2R1Y2VkIG5ldyBzaHV0ZG93biBiZWhhdmlvciBpbiB0aGlz
+Cj4+Pj4+Pj4+PiBzcGVjaWZpYyBjYXNlIHdoZXJlIGl0IGlzIGtub3duIHRvIGNhdXNlIHByb2Js
+ZW1zLiBXaGljaCBpcyBhIG5pY2UgYW5kCj4+Pj4+Pj4+PiBzaW1wbGUgd2F5IHRvIGRlYWwgd2l0
+aCB0aGlzLgo+Pj4+Pj4+Pj4KPj4+Pj4+Pj4+IFNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUg
+PGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4+Pj4+Pj4+Cj4+Pj4+Pj4+IFBpbmc/IFNpbmNlIHNlbmRp
+bmcgdGhpcyBwYXRjaCBJJ3ZlIGJlZW4gc2VlaW5nIHRoZSBpc3N1ZSBhZGRyZXNzZWQgYnkKPj4+
+Pj4+Pj4gdGhpcyBvbiB2YXJpb3VyIG90aGVyIENIVCBiYXNlZCBkZXZpY2VzIHRvby4KPj4+Pj4+
+Pj4KPj4+Pj4+Pj4gU28gd2UgaGF2ZSB2YXJpb3VzIGRldmljZXMgc3VmZmVyaW5nIGZyb20gYSBi
+bGFjayBzY3JlZW4gYWZ0ZXIgcmVib290Cj4+Pj4+Pj4+IG5vdy4gVGhpcyBpcyBwcmV0dHkgc2Vy
+aW91cyB1c2FiaWxpdHkgcmVncmVzc2lvbi4KPj4+Pj4+Pj4KPj4+Pj4+Pj4gQXMgc3VjaCBpdCB3
+b3VsZCBiZSBnb29kIHRvIGdldCB0aGlzIHJldmlld2VkLCBvciBhbm90aGVyIGZpeCBwcm9wb3Nl
+ZC4KPj4+Pj4+Pgo+Pj4+Pj4+IEZvciB0aGUgcXVpcmtzIHdlIHRyeSB0byBsaW1pdCB0aGVtIHRv
+IHZlcnkgc3BlY2lmaWMgdmVuZG9yIGFuZCBtb2RlbCBpZHMsCj4+Pj4+Pj4gc28gSSB3b25kZXIg
+aWYgaXQgd291bGQgYmUgcG9zc2libGUgdG8gZ2V0IHRoaXMgaW5mb3JtYXRpb24gaW4gaGVyZSBp
+bnN0ZWFkCj4+Pj4+Pj4gdG8gYWxsIHRoZSB2bHYgd2l0aCBkc2kuLi4KPj4+Pj4+Pgo+Pj4+Pj4+
+IE9yIGF2b2lkIHRoZSBxdWlyayAiaW5mcmEiIGFuZCBza2lwIHRvIGFsbCB2bHYgd2l0aCBhY3Rp
+dmUgZHNpPyEKPj4+Pj4+Pgo+Pj4+Pj4+IEphbmk/Cj4+Pj4+Pj4gVmlsbGU/Cj4+Pj4+Pgo+Pj4+
+Pj4gV2UgbmVlZCB0byBmaWd1cmUgb3V0IHdoeSB0aGUgcGFuZWwgZG9lc24ndCBzdGFydCB1cCBh
+Z2Fpbi4KPj4+Pj4KPj4+Pj4gTm90ZSBpdCBpcyB0aGUgR09QIHdoaWNoIGZhaWxzIHRvIGxpZ2h0
+IGl0IHVwIGFnYWluLiBJIHRoaW5rIHdlIHR1cm4gc29tZXRoaW5nCj4+Pj4+IG9mZiwgd2hpY2gg
+YWZ0ZXIgYSBwb3dlci1vbi1yZXNldCBpcyBvbiwgc28gdGhlIEdPUCBleHBlY3RzIGl0IHRvIGJl
+IG9uLgo+Pj4+Cj4+Pj4gSG1tLiBEbyBhbnkgb2YgdGhlIHJlYm9vdD13YXJtfGNvbGR8d2hhdGV2
+ZXIga25vYnMgbWFrZSBhIGRpZmZlcmVuY2U/Cj4+Pj4gQXJlIHRoZXJlIGFueSBmYXN0IHZzLiBz
+bG93IGJvb3Qgc2V0dGluZ3MgaW4gdGhlIEJJT1Mgc2V0dXA/Cj4+Pgo+Pj4gT2ssIHNvIEkgd2Fz
+IHJ1bm5pbmcgdGhlIHRlc3RzIHdoaWNoIHlvdSByZXF1ZXN0ZWQgYW5kIGR1cmluZyB0aGlzCj4+
+PiBJIG1hbmFnZWQgdG8gZmluZCB0aGUgcmVhbCBwcm9ibGVtLgo+Pj4KPj4+IFdoYXQgaGFwcGVu
+cyBvbiByZWJvb3QgaXMgYSByZWFsbHkgcXVpY2sgcGFuZWwgb2ZmL29uIGN5Y2xlIGFuZCB0aGF0
+IGlzCj4+PiBjYXVzaW5nIHRoZSBpc3N1ZS4KPj4+Cj4+PiBJIGNhbiByZXByb2R1Y2UgdGhpcyBi
+eSBkb2luZzoKPj4+Cj4+PiBjaHZ0IDM7IGVjaG8gMSA+IC9zeXMvY2xhc3MvZ3JhcGhpY3MvZmIw
+L2JsYW5rOyBlY2hvIDAgPiAvc3lzL2NsYXNzL2dyYXBoaWNzL2ZiMC9ibGFuawo+Pj4KPj4+IFRo
+ZSBwcm9ibGVtIGlzIHRoYXQgd2UncmUgbm90IGhvbm9yaW5nIHBhbmVsX3B3cl9jeWNsZV9kZWxh
+eSBiZWNhdXNlCj4+PiBpbnRlbF9kc2lfbXNsZWVwKCkgaXMgYSBuby1vcCBvbiBkZXZpY2VzIHdp
+dGggYSBNSVBJLXNlcXVlbmNlcyB2ZXJzaW9uID49IDMsCj4+PiBiZWNhdXNlIHRob3NlIHNlcXVl
+bmNlcyBhbHJlYWR5IGNvbnRhaW4gdGhlIG5lY2Vzc2FyeSBkZWxheXMsIGF0IGxlYXN0Cj4+PiBm
+b3IgbW9zdCBvZiB0aGUgc3RlcHMgZHVyaW5nIHRoZSBvbi9vZmYgc2VxdWVuY2VzLiBJdCBzZWVt
+cyB0aGF0IHRoZQo+Pj4gcHdyLWN5Y2xlIGRlbGF5IGlzIG5vdCBoYW5kbGVkIGJ5IHRob3NlIHYz
+KyBzZXF1ZW5jZXMuCj4+Pgo+Pj4gU28gZml4aW5nIHRoaXMgaXMgYXMgc2ltcGxlIGFzIHN3aXRj
+aGluZyB0byBhIHJlZ3VsYXIgbXNsZWVwIGZvciB0aGUKPj4+IGludGVsX2RzaS0+cGFuZWxfcHdy
+X2N5Y2xlX2RlbGF5Lgo+Pj4KPj4+IE9uY2Ugd2UgZG8gdGhhdCBpdCB3b3VsZCBiZSBnb29kIChm
+b3IgZS5nLiBzdXNwZW5kL3Jlc3VtZSBzcGVlZCkgdG8gZml4Ogo+Pj4KPj4+ICAgICAgICAgLyoK
+Pj4+ICAgICAgICAgICogRklYTUUgQXMgd2UgZG8gd2l0aCBlRFAsIGp1c3QgbWFrZSBhIG5vdGUg
+b2YgdGhlIHRpbWUgaGVyZQo+Pj4gICAgICAgICAgKiBhbmQgcGVyZm9ybSB0aGUgd2FpdCBiZWZv
+cmUgdGhlIG5leHQgcGFuZWwgcG93ZXIgb24uCj4+PiAgICAgICAgICAqLwo+Pj4KPj4+IFdoaWNo
+IHNpdHMgcmlnaHQgYWJvdmUgdGhhdCBtc2xlZXAuIFNpbmNlIEkgaGF2ZSBhIHJlcHJvZHVjZXIg
+bm93IHdoaWNoCj4+PiBzaG93cyB3aGVuIHRoZSBzbGVlcCBpcyB0b28gc2hvcnQsIGl0IHNob3Vs
+ZCBub3cgYmUgZWFzeSB0aSBmaXggdGhlIEZJWE1FCj4+PiBhbmQgdGVzdCB0aGF0IHRoZSBmaXgg
+d29ya3MuIEknbGwgZG8gdGhpcyBpbiBhIHNlcGFyYXRlIHBhdGNoIGFuZCBzZW5kCj4+PiBhIHBh
+dGNoLXNldCB3aXRoIGJvdGggcGF0Y2hlcyByZXBsYWNpbmcgdGhpcyBwYXRjaC4KPj4KPj4gQXdl
+c29tZS4gSSdtIHJlYWxseSBoYXBweSB0byBhdm9pZCBhbnkgcXVpcmtzIGFuZCB3aGF0bm90IHNp
+bmNlCj4+IHRoZXkgYWx3YXlzIGNvbWUgYmFjayB0byBiaXRlIHlvdSBsYXRlci4gVGhhbmtzIGZv
+ciBkaWdnaW5nIGludG8gaXQuCj4+Cj4+IFNwZWFraW5nIG9mIERTSSwgeW91IHdvdWxkbid0IGhh
+cHBlbiB0byBoYXZlIG9uZSB0aGVzZSBtYWNoaW5lczoKPj4gaHR0cHM6Ly9naXRsYWIuZnJlZWRl
+c2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8yNjk4ID8KPiAKPiBTb3JyeSBJIGRvbid0IGhh
+dmUgYW55IDEwIiBEZWxsIG1vZGVscyBpbiBteSBjb2xsZWN0aW9uLgoKQnV0IEkgZG8gc2VlIHRo
+YXQgdGhlIHJlcG9ydGVyIGlzIGEgRmVkb3JhIHVzZXIuIFNvIEkgY2FuIHByZXAgYSB0ZXN0LWtl
+cm5lbAppbiBycG0gZm9ybSBmb3IgaGltIHdpdGggdGhlIHBhdGNoIGFwcGxpZWQsIHdoaWNoIHNo
+b3VsZCBtYWtlIGl0IGEgbG90IGVhc2llcgpmb3IgdGhlIHJlcG9ydGVyIHRvIHRlc3QgdGhlIHBh
+dGNoLgoKSSdtIGJ1aWxkaW5nIGEgdGVzdC1rZXJuZWwgZm9yIHRoaXMgbm93OgpodHRwczovL2tv
+amkuZmVkb3JhcHJvamVjdC5vcmcva29qaS90YXNraW5mbz90YXNrSUQ9NjQ0NDc2MTMKCkknbGwg
+dXBkYXRlIHRoZSBpc3N1ZSB3aXRoIGEgbGluayB0byBpdCB3aGVuIHRoZSBidWlsZCBpcyBkb25l
+LgoKUmVnYXJkcywKCkhhbnMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeAo=
