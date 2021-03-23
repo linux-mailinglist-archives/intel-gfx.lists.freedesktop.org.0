@@ -2,30 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A05D1346499
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 17:12:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D26863464CC
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Mar 2021 17:18:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0CC6E910;
-	Tue, 23 Mar 2021 16:12:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51BED6E91F;
+	Tue, 23 Mar 2021 16:18:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 819766E903;
- Tue, 23 Mar 2021 16:12:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 79E85A363B;
- Tue, 23 Mar 2021 16:12:55 +0000 (UTC)
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com
+ [IPv6:2607:f8b0:4864:20::833])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B7A6E91F;
+ Tue, 23 Mar 2021 16:18:53 +0000 (UTC)
+Received: by mail-qt1-x833.google.com with SMTP id g24so15303181qts.6;
+ Tue, 23 Mar 2021 09:18:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=N+m7f9IJTzNudEsMpBHUTqlfm59dpIkcchh4/DhT4qE=;
+ b=IPEmE2AtyGbrYl5Ent44jiqg7nnoaLOtpEEdoD74nQvE0DoomKWardbZd1CQA8QkRj
+ iTIOx6JcJ29PP313ht5L0VcFS/kjHn4PYIf4YmIZ3z0jM0sFGn6XBFJMbG1E0EDaD/Gi
+ mRGaVv10TsJitdMGSy2xGotRmLJP72j9uhFi21yZmleGLnWNopNsS2TVgQs9o+NgnKys
+ 1QJTJp98aQODmETuHEExoZiek+ym0RTpAJJdF4V4Deng3aOPJ2CMK429gySZzOw8f7Zk
+ u0awsyfrZ/SqFf6TXH0wGHKyqCuxa8+m38yhlOkEL22rbYBW93rEwqENqZc+roCdn/bN
+ Dv/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=N+m7f9IJTzNudEsMpBHUTqlfm59dpIkcchh4/DhT4qE=;
+ b=l8Ib5/yWnMgd5rcwlXhz4bnVfAIv+NvMhtPdaZlQmMNxcLT+nrAiNYRaLp6OdjbBy5
+ uFJy7kZOh/NxyNjAlJXqoYfqmdN+wTolns5stl8ZkZfCemEXlMW4gn+SFCAFM+Vo0CV/
+ 2mdUHM+71UupiwoArit1r1eXoV1WJMUBVxDEl4oY+3RjFyT5PHQ3A3djgwn/0ktFuD22
+ UmU+pOcVqmxWf6PQQ6DwIUqUnRqjEpkbB0eVt+XZVXH9YH76wQFojruqjBXVgjHf+Mjk
+ p0DjoLevDT9zV/Q/2kC/wC7V1u3avM7u7Ejapv5qHdlA7gyXp8aOLwFgmtoL+eLEAXl1
+ aemg==
+X-Gm-Message-State: AOAM530DJJwJOYFRv15NxOKARvRF2KOXV3QBxkn3XSQYPZSknBhFPPY7
+ h5zGFY31kOGfKB33PrWe2d8oIfeNcT5tAA1mWjM=
+X-Google-Smtp-Source: ABdhPJwzSJ+mHlg50NbWJZcVzlNfXKxSGAI3CEfrWNXW20Tin3EfAOrv+27ZAYpaKOb1yfJ2vX1OaPPKse+NJ5jxn6U=
+X-Received: by 2002:ac8:43c2:: with SMTP id w2mr5089711qtn.95.1616516332324;
+ Tue, 23 Mar 2021 09:18:52 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m_=28Intel=29?= <thomas_os@shipmail.org>
-Date: Tue, 23 Mar 2021 16:12:55 -0000
-Message-ID: <161651597546.20051.2984451369422484153@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
 References: <20210323155059.628690-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20210323155059.628690-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915=3A_Remove_obj-=3Emm=2Elock!_=28rev18=29?=
+ <20210323155059.628690-33-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20210323155059.628690-33-maarten.lankhorst@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 23 Mar 2021 16:18:25 +0000
+Message-ID: <CAM0jSHM+kzJx3ELVPeZXFMYYZ+0qASfczXOLVZ79zx2Tq28oxw@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v9 32/70] drm/i915: Prepare for obj->mm.lock
+ removal, v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,31 +63,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Remove obj->mm.lock! (rev18)
-URL   : https://patchwork.freedesktop.org/series/82337/
-State : warning
-
-== Summary ==
-
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMyBNYXIgMjAyMSBhdCAxNTo1MiwgTWFhcnRlbiBMYW5raG9yc3QKPG1hYXJ0ZW4u
+bGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4gd3JvdGU6Cj4KPiBGcm9tOiBUaG9tYXMgSGVsbHN0
+csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBpbnRlbC5jb20+Cj4KPiBTdG9sZW4gb2JqZWN0cyBuZWVk
+IHRvIGxvY2ssIGFuZCB3ZSBtYXkgY2FsbCBwdXRfcGFnZXMgd2hlbgo+IHJlZmNvdW50IGRyb3Bz
+IHRvIDAsIGVuc3VyZSBhbGwgY2FsbHMgYXJlIGhhbmRsZWQgY29ycmVjdGx5Lgo+Cj4gQ2hhbmdl
+cyBzaW5jZSB2MToKPiAtIFJlYmFzZSBvbiB0b3Agb2YgdXBzdHJlYW0gY2hhbmdlcy4KPgo+IElk
+ZWEtZnJvbTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgo+
+IFNpZ25lZC1vZmYtYnk6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51
+eC5pbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5o
+ZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+ZW0vaTkxNV9nZW1fb2JqZWN0LmggfCAxNCArKysrKysrKysrKysrKwo+ICBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9nZW0vaTkxNV9nZW1fcGFnZXMuYyAgfCAxNCArKysrKysrKysrKystLQo+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fc3RvbGVuLmMgfCAxMiArKysrKysrLS0tLS0K
+PiAgMyBmaWxlcyBjaGFuZ2VkLCAzMyBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQo+Cj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaCBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmplY3QuaAo+IGluZGV4IDk4M2Yy
+ZDRiMmE4NS4uNzRkZTE5NWI1N2RlIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9pOTE1X2dlbV9vYmplY3QuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
+OTE1X2dlbV9vYmplY3QuaAo+IEBAIC0xNDQsNiArMTQ0LDIwIEBAIGk5MTVfZ2VtX29iamVjdF9w
+dXQoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKPgo+ICAjZGVmaW5lIGFzc2VydF9v
+YmplY3RfaGVsZChvYmopIGRtYV9yZXN2X2Fzc2VydF9oZWxkKChvYmopLT5iYXNlLnJlc3YpCj4K
+PiArLyoKPiArICogSWYgbW9yZSB0aGFuIG9uZSBwb3RlbnRpYWwgc2ltdWx0YW5lb3VzIGxvY2tl
+ciwgYXNzZXJ0IGhlbGQuCj4gKyAqLwo+ICtzdGF0aWMgaW5saW5lIHZvaWQgYXNzZXJ0X29iamVj
+dF9oZWxkX3NoYXJlZChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+ICt7Cj4gKyAg
+ICAgICAvKgo+ICsgICAgICAgICogTm90ZSBtbSBsaXN0IGxvb2t1cCBpcyBwcm90ZWN0ZWQgYnkK
+CldoYXQgaXMgbWVhbnQgd2l0aCBtbSBsaXN0IGhlcmU/IE1heWJlIGp1c3QgYSBzdGFsZSBjb21t
+ZW50PwoKPiArICAgICAgICAqIGtyZWZfZ2V0X3VubGVzc196ZXJvKCkuCj4gKyAgICAgICAgKi8K
+PiArICAgICAgIGlmIChJU19FTkFCTEVEKENPTkZJR19MT0NLREVQKSAmJgo+ICsgICAgICAgICAg
+IGtyZWZfcmVhZCgmb2JqLT5iYXNlLnJlZmNvdW50KSA+IDApCj4gKyAgICAgICAgICAgICAgIGxv
+Y2tkZXBfYXNzZXJ0X2hlbGQoJm9iai0+bW0ubG9jayk7Cj4gK30KPiArCj4gIHN0YXRpYyBpbmxp
+bmUgaW50IF9faTkxNV9nZW1fb2JqZWN0X2xvY2soc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Qg
+Km9iaiwKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBp
+OTE1X2dlbV93d19jdHggKnd3LAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgYm9vbCBpbnRyKQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
+aTkxNV9nZW1fcGFnZXMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9wYWdl
+cy5jCj4gaW5kZXggYTI0NjE3YWYzYzkzLi4yZDAwNjVmYTZlODAgMTAwNjQ0Cj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3BhZ2VzLmMKPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fcGFnZXMuYwo+IEBAIC0xOSw3ICsxOSw3IEBAIHZvaWQg
+X19pOTE1X2dlbV9vYmplY3Rfc2V0X3BhZ2VzKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpv
+YmosCj4gICAgICAgICBib29sIHNocmlua2FibGU7Cj4gICAgICAgICBpbnQgaTsKPgo+IC0gICAg
+ICAgbG9ja2RlcF9hc3NlcnRfaGVsZCgmb2JqLT5tbS5sb2NrKTsKPiArICAgICAgIGFzc2VydF9v
+YmplY3RfaGVsZF9zaGFyZWQob2JqKTsKPgo+ICAgICAgICAgaWYgKGk5MTVfZ2VtX29iamVjdF9p
+c192b2xhdGlsZShvYmopKQo+ICAgICAgICAgICAgICAgICBvYmotPm1tLm1hZHYgPSBJOTE1X01B
+RFZfRE9OVE5FRUQ7Cj4gQEAgLTcwLDYgKzcwLDcgQEAgdm9pZCBfX2k5MTVfZ2VtX29iamVjdF9z
+ZXRfcGFnZXMoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPiAgICAgICAgICAgICAg
+ICAgc3RydWN0IGxpc3RfaGVhZCAqbGlzdDsKPiAgICAgICAgICAgICAgICAgdW5zaWduZWQgbG9u
+ZyBmbGFnczsKPgo+ICsgICAgICAgICAgICAgICBsb2NrZGVwX2Fzc2VydF9oZWxkKCZvYmotPm1t
+LmxvY2spOwo+ICAgICAgICAgICAgICAgICBzcGluX2xvY2tfaXJxc2F2ZSgmaTkxNS0+bW0ub2Jq
+X2xvY2ssIGZsYWdzKTsKPgo+ICAgICAgICAgICAgICAgICBpOTE1LT5tbS5zaHJpbmtfY291bnQr
+KzsKPiBAQCAtOTEsNiArOTIsOCBAQCBpbnQgX19fX2k5MTVfZ2VtX29iamVjdF9nZXRfcGFnZXMo
+c3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKPiAgICAgICAgIHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICppOTE1ID0gdG9faTkxNShvYmotPmJhc2UuZGV2KTsKPiAgICAgICAgIGludCBl
+cnI7Cj4KPiArICAgICAgIGFzc2VydF9vYmplY3RfaGVsZF9zaGFyZWQob2JqKTsKPiArCj4gICAg
+ICAgICBpZiAodW5saWtlbHkob2JqLT5tbS5tYWR2ICE9IEk5MTVfTUFEVl9XSUxMTkVFRCkpIHsK
+PiAgICAgICAgICAgICAgICAgZHJtX2RiZygmaTkxNS0+ZHJtLAo+ICAgICAgICAgICAgICAgICAg
+ICAgICAgICJBdHRlbXB0aW5nIHRvIG9idGFpbiBhIHB1cmdlYWJsZSBvYmplY3RcbiIpOwo+IEBA
+IC0xMTgsNiArMTIxLDggQEAgaW50IF9faTkxNV9nZW1fb2JqZWN0X2dldF9wYWdlcyhzdHJ1Y3Qg
+ZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+ICAgICAgICAgaWYgKGVycikKPiAgICAgICAgICAg
+ICAgICAgcmV0dXJuIGVycjsKPgo+ICsgICAgICAgYXNzZXJ0X29iamVjdF9oZWxkX3NoYXJlZChv
+YmopOwo+ICsKPiAgICAgICAgIGlmICh1bmxpa2VseSghaTkxNV9nZW1fb2JqZWN0X2hhc19wYWdl
+cyhvYmopKSkgewo+ICAgICAgICAgICAgICAgICBHRU1fQlVHX09OKGk5MTVfZ2VtX29iamVjdF9o
+YXNfcGlubmVkX3BhZ2VzKG9iaikpOwo+Cj4gQEAgLTE0NSw3ICsxNTAsNyBAQCB2b2lkIGk5MTVf
+Z2VtX29iamVjdF90cnVuY2F0ZShzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+ICAv
+KiBUcnkgdG8gZGlzY2FyZCB1bndhbnRlZCBwYWdlcyAqLwo+ICB2b2lkIGk5MTVfZ2VtX29iamVj
+dF93cml0ZWJhY2soc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKPiAgewo+IC0gICAg
+ICAgbG9ja2RlcF9hc3NlcnRfaGVsZCgmb2JqLT5tbS5sb2NrKTsKPiArICAgICAgIGFzc2VydF9v
+YmplY3RfaGVsZF9zaGFyZWQob2JqKTsKPiAgICAgICAgIEdFTV9CVUdfT04oaTkxNV9nZW1fb2Jq
+ZWN0X2hhc19wYWdlcyhvYmopKTsKPgo+ICAgICAgICAgaWYgKG9iai0+b3BzLT53cml0ZWJhY2sp
+Cj4gQEAgLTE3Niw2ICsxODEsOCBAQCBfX2k5MTVfZ2VtX29iamVjdF91bnNldF9wYWdlcyhzdHJ1
+Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+ICB7Cj4gICAgICAgICBzdHJ1Y3Qgc2dfdGFi
+bGUgKnBhZ2VzOwo+Cj4gKyAgICAgICBhc3NlcnRfb2JqZWN0X2hlbGRfc2hhcmVkKG9iaik7Cj4g
+Kwo+ICAgICAgICAgcGFnZXMgPSBmZXRjaF9hbmRfemVybygmb2JqLT5tbS5wYWdlcyk7Cj4gICAg
+ICAgICBpZiAoSVNfRVJSX09SX05VTEwocGFnZXMpKQo+ICAgICAgICAgICAgICAgICByZXR1cm4g
+cGFnZXM7Cj4gQEAgLTIwMyw2ICsyMTAsOSBAQCBpbnQgX19pOTE1X2dlbV9vYmplY3RfcHV0X3Bh
+Z2VzX2xvY2tlZChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+ICAgICAgICAgaWYg
+KGk5MTVfZ2VtX29iamVjdF9oYXNfcGlubmVkX3BhZ2VzKG9iaikpCj4gICAgICAgICAgICAgICAg
+IHJldHVybiAtRUJVU1k7Cj4KPiArICAgICAgIC8qIE1heSBiZSBjYWxsZWQgYnkgc2hyaW5rZXIg
+ZnJvbSB3aXRoaW4gZ2V0X3BhZ2VzKCkgKG9uIGFub3RoZXIgYm8pICovCj4gKyAgICAgICBhc3Nl
+cnRfb2JqZWN0X2hlbGRfc2hhcmVkKG9iaik7Cj4gKwo+ICAgICAgICAgaTkxNV9nZW1fb2JqZWN0
+X3JlbGVhc2VfbW1hcF9vZmZzZXQob2JqKTsKPgo+ICAgICAgICAgLyoKPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jCj4gaW5kZXggN2NkYjMyZDg4MWQ5Li5iMDU5
+N2RlMjA2ZGUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
+X3N0b2xlbi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xl
+bi5jCj4gQEAgLTYzNywxMyArNjM3LDE1IEBAIHN0YXRpYyBpbnQgX19pOTE1X2dlbV9vYmplY3Rf
+Y3JlYXRlX3N0b2xlbihzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtLAo+ICAgICAgICAg
+Y2FjaGVfbGV2ZWwgPSBIQVNfTExDKG1lbS0+aTkxNSkgPyBJOTE1X0NBQ0hFX0xMQyA6IEk5MTVf
+Q0FDSEVfTk9ORTsKPiAgICAgICAgIGk5MTVfZ2VtX29iamVjdF9zZXRfY2FjaGVfY29oZXJlbmN5
+KG9iaiwgY2FjaGVfbGV2ZWwpOwo+Cj4gLSAgICAgICBlcnIgPSBpOTE1X2dlbV9vYmplY3RfcGlu
+X3BhZ2VzKG9iaik7Cj4gLSAgICAgICBpZiAoZXJyKQo+IC0gICAgICAgICAgICAgICByZXR1cm4g
+ZXJyOwo+ICsgICAgICAgaWYgKFdBUk5fT04oIWk5MTVfZ2VtX29iamVjdF90cnlsb2NrKG9iaikp
+KQo+ICsgICAgICAgICAgICAgICByZXR1cm4gLUVCVVNZOwo+Cj4gLSAgICAgICBpOTE1X2dlbV9v
+YmplY3RfaW5pdF9tZW1vcnlfcmVnaW9uKG9iaiwgbWVtKTsKPiArICAgICAgIGVyciA9IGk5MTVf
+Z2VtX29iamVjdF9waW5fcGFnZXMob2JqKTsKPiArICAgICAgIGlmICghZXJyKQo+ICsgICAgICAg
+ICAgICAgICBpOTE1X2dlbV9vYmplY3RfaW5pdF9tZW1vcnlfcmVnaW9uKG9iaiwgbWVtKTsKClBy
+b2JhYmx5IG1vcmUgY29uc2lzdGVudCB0byBjYWxsIGluaXRfbWVtb3J5X3JlZ2lvbigpIGJlZm9y
+ZSBjYWxsaW5nCnBpbl9wYWdlcygpLCBidXQgSSBndWVzcyBpdCB3YXMgYWxyZWFkeSBsaWtlIHRo
+YXQsIHBsdXMgaXQgZG9lc24ndApzZWVtIHRvIG1hdHRlciBmb3Igc3RvbGVuIG1lbW9yeS4KClJl
+dmlld2VkLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
+IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
