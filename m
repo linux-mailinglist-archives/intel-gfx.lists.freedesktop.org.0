@@ -1,69 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C81F347252
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 08:23:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B201934745B
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 10:18:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5850A6E247;
-	Wed, 24 Mar 2021 07:23:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08B546E96F;
+	Wed, 24 Mar 2021 09:18:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9DDB6E247
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 07:23:09 +0000 (UTC)
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
- by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 12O7JQq5170670;
- Wed, 24 Mar 2021 07:23:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : mime-version : content-type :
- content-transfer-encoding; s=corp-2020-01-29;
- bh=km1JZi3v+ll3+ZKGjZuiYQOl7G1lXRQoCgTZZTK6p5I=;
- b=MXhiKpfYAW0k+DKWuk31NvdxLSoWw8QO+W1SjxTn8zkz23w8RHDDFCAxqdbPRnlTsmpK
- izRIq0KgBCqYJWCTOZCAHpJDSLQfvc04kBERocwvXXtSBVPVJJSnS9n7IlZ17ovcHUVQ
- NdVanjFwgMSErhJKC94Dyfw7Sobm+zS1cW0sx+fKyCy9yamAhUMyh8txSlLTuflQed5m
- NCe6N6xIKUosiFtqvZ7HltU68qF8USHliZCM6/rRbNjT5w/GayJyIBO+hVOshAlmAQpK
- 9vPem9bSBxsvD6Ooy0b5fbJ5E5nMvMmVA6LYht+vx+f+uVJScK69T5f48I/YchUlHQ4N 2A== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
- by aserp2120.oracle.com with ESMTP id 37d90mhmt6-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 24 Mar 2021 07:23:04 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
- by userp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 12O7KsXW060364;
- Wed, 24 Mar 2021 07:23:02 GMT
-Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
- by userp3030.oracle.com with ESMTP id 37dtyyfsd7-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 24 Mar 2021 07:23:02 +0000
-Received: from abhmp0003.oracle.com (abhmp0003.oracle.com [141.146.116.9])
- by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 12O7N0qk029887;
- Wed, 24 Mar 2021 07:23:00 GMT
-Received: from mwanda (/102.36.221.92) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Wed, 24 Mar 2021 07:23:00 +0000
-Date: Wed, 24 Mar 2021 10:22:54 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: ville.syrjala@linux.intel.com
-Message-ID: <YFrozlRheXy9ziyK@mwanda>
+X-Greylist: delayed 305 seconds by postgrey-1.36 at gabe;
+ Wed, 24 Mar 2021 09:18:11 UTC
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12C266E995
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 09:18:10 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-70-F_iQyAaGNv6_r3BEezM2zQ-1; Wed, 24 Mar 2021 09:11:56 +0000
+X-MC-Unique: F_iQyAaGNv6_r3BEezM2zQ-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.2; Wed, 24 Mar 2021 09:11:55 +0000
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.012; Wed, 24 Mar 2021 09:11:55 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Martin Sebor' <msebor@gmail.com>, Ingo Molnar <mingo@kernel.org>, "Arnd
+ Bergmann" <arnd@kernel.org>
+Thread-Topic: [PATCH 02/11] x86: tboot: avoid Wstringop-overread-warning
+Thread-Index: AQHXH2fn7jNrPkUb50e9k3rL2a+D9qqS2/oQ
+Date: Wed, 24 Mar 2021 09:11:55 +0000
+Message-ID: <0aa198a1dd904231bcc29454bf19a812@AcuMS.aculab.com>
+References: <20210322160253.4032422-1-arnd@kernel.org>
+ <20210322160253.4032422-3-arnd@kernel.org>
+ <20210322202958.GA1955909@gmail.com>
+ <b944a853-0e4b-b767-0175-cc2c1edba759@gmail.com>
+In-Reply-To: <b944a853-0e4b-b767-0175-cc2c1edba759@gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Disposition: inline
-X-Proofpoint-IMR: 1
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9932
- signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- bulkscore=0 phishscore=0
- mlxlogscore=999 suspectscore=0 spamscore=0 malwarescore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2103240055
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9932
- signatures=668683
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- malwarescore=0 mlxscore=0
- priorityscore=1501 bulkscore=0 impostorscore=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=999 suspectscore=0 clxscore=1015 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
- definitions=main-2103240055
-Subject: [Intel-gfx] [bug report] drm/i915: Fix enabled_planes bitmask
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 02/11] x86: tboot: avoid
+ Wstringop-overread-warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,76 +62,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, Will Deacon <will@kernel.org>,
+ "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "x86@kernel.org" <x86@kernel.org>, James Smart <james.smart@broadcom.com>,
+ "tboot-devel@lists.sourceforge.net" <tboot-devel@lists.sourceforge.net>,
+ Ingo Molnar <mingo@redhat.com>, Kalle Valo <kvalo@codeaurora.org>,
+ "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
+ Serge Hallyn <serge@hallyn.com>, Arnd Bergmann <arnd@arndb.de>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>, Ning Sun <ning.sun@intel.com>,
+ Anders Larsen <al@alarsen.net>, Borislav Petkov <bp@alien8.de>,
+ "cgroups@vger.kernel.org" <cgroups@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ Martin
+ Sebor <msebor@gcc.gnu.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Tejun Heo <tj@kernel.org>,
+ Simon Kelley <simon@thekelleys.org.uk>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Lu Baolu <baolu.lu@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Ville Syrj=E4l=E4,
+From: Martin Sebor
+> Sent: 22 March 2021 22:08
+...
+> In GCC 11, all access warnings expect objects to be either declared
+> or allocated.  Pointers with constant values are taken to point to
+> nothing valid (as Arnd mentioned above, this is to detect invalid
+> accesses to members of structs at address zero).
+> 
+> One possible solution to the known address problem is to extend GCC
+> attributes address and io that pin an object to a hardwired address
+> to all targets (at the moment they're supported on just one or two
+> targets).  I'm not sure this can still happen before GCC 11 releases
+> sometime in April or May.
 
-This is a semi-automatic email about new static checker warnings.
+A different solution is to define a normal C external data item
+and then assign a fixed address with an asm statement or in
+the linker script.
 
-The patch 97bc7ffa1b1e: "drm/i915: Fix enabled_planes bitmask" from
-Mar 5, 2021, leads to the following Smatch complaint:
+	David
 
-    drivers/gpu/drm/i915/display/intel_atomic_plane.c:332 intel_plane_atomi=
-c_check_with_state()
-    error: we previously assumed 'fb' could be null (see line 324)
-
-drivers/gpu/drm/i915/display/intel_atomic_plane.c
-   323	=
-
-   324		if (fb)
-                    ^^
-The patch adds a check for NULL
-
-   325			new_crtc_state->enabled_planes |=3D BIT(plane->id);
-   326	=
-
-   327		/* FIXME pre-g4x don't work like this */
-   328		if (new_plane_state->uapi.visible)
-   329			new_crtc_state->active_planes |=3D BIT(plane->id);
-   330	=
-
-   331		if (new_plane_state->uapi.visible &&
-   332		    intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
-                                                        ^^^^^^^^^^^^^^^^^^^=
-^^^^^
-Unchecked deref
-
-   333			new_crtc_state->nv12_planes |=3D BIT(plane->id);
-   334	=
-
-   335          if (new_plane_state->uapi.visible &&
-   336              fb->format->format =3D=3D DRM_FORMAT_C8)
-                    ^^^^^^^^^^
-Same.  These are potentially false positives.  I don't know if
-"uapi.visible" can be true when ctrc is non-NULL and fb is NULL for
-example?  (The point is I read the commit message, but I know pants all
-about DRM.  :P)
-
-   337                  new_crtc_state->c8_planes |=3D BIT(plane->id);
-   338  =
-
-   339          if (new_plane_state->uapi.visible || old_plane_state->uapi.=
-visible)
-   340                  new_crtc_state->update_planes |=3D BIT(plane->id);
-   341  =
-
-   342          new_crtc_state->data_rate[plane->id] =3D
-   343                  intel_plane_data_rate(new_crtc_state, new_plane_sta=
-te);
-   344  =
-
-   345          return intel_plane_atomic_calc_changes(old_crtc_state, new_=
-crtc_state,
-   346                                                 old_plane_state, new=
-_plane_state);
-   347  }
-
-regards,
-dan carpenter
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
