@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610E2347F3C
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 18:23:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 056EA347FE8
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 18:58:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 826FB6ECB8;
-	Wed, 24 Mar 2021 17:23:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F8276EA5C;
+	Wed, 24 Mar 2021 17:58:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB2746ECB8;
- Wed, 24 Mar 2021 17:22:58 +0000 (UTC)
-IronPort-SDR: npl03gj17Y+287WwiQurdwlkWJRKIVCjWZtUxr7BV6rUkB+ejWZsvp2iC5WM+e7DBbGofuEvyn
- Vr1hlF4yOGOg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="252110426"
-X-IronPort-AV: E=Sophos;i="5.81,275,1610438400"; d="scan'208";a="252110426"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 10:22:57 -0700
-IronPort-SDR: q7x5MCG+vkoOU9Zt5AI1qoSHSHC0Zp99QAlPGLHuv2CUXVcGAPnke24VDa6jskQUUfvyu5ceVQ
- Ar5TomltcFSQ==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7F266EA59;
+ Wed, 24 Mar 2021 17:58:30 +0000 (UTC)
+IronPort-SDR: tPe0iGCG0ihtoJp6oW2v/5O3H6fGr5HVm9t0UCqXEkL1RBTYydD5HJ4Wj/KnniMw+h4e/WC6Lc
+ qjfaYuk7kdWg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="190785530"
+X-IronPort-AV: E=Sophos;i="5.81,275,1610438400"; d="scan'208";a="190785530"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2021 10:58:29 -0700
+IronPort-SDR: D4tmMFVMx42KFE0m4I/LwlOEZ/rXtUKlRdlYIIFT1rFvad0Tf8A/mCFQCOBhfQnBH0ZMuOcseY
+ U134xeRvyu6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,275,1610438400"; d="scan'208";a="443059639"
+X-IronPort-AV: E=Sophos;i="5.81,275,1610438400"; d="scan'208";a="376521959"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by FMSMGA003.fm.intel.com with SMTP; 24 Mar 2021 10:22:49 -0700
+ by orsmga006.jf.intel.com with SMTP; 24 Mar 2021 10:58:26 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 24 Mar 2021 19:22:48 +0200
-Date: Wed, 24 Mar 2021 19:22:48 +0200
+ Wed, 24 Mar 2021 19:58:26 +0200
+Date: Wed, 24 Mar 2021 19:58:26 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <YFt1aBFwJI+z97g3@intel.com>
-References: <20210322160253.4032422-1-arnd@kernel.org>
- <20210322160253.4032422-11-arnd@kernel.org>
- <874kh04lin.fsf@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <YFt9wvC+3pTjyidz@intel.com>
+References: <20210323155059.628690-1-maarten.lankhorst@linux.intel.com>
+ <20210323155059.628690-64-maarten.lankhorst@linux.intel.com>
+ <YFtwHG3ZbjzhuzOZ@phenom.ffwll.local> <YFtzuLjmMAU030wn@intel.com>
+ <YFtz/KiStRF3uQUc@phenom.ffwll.local>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <874kh04lin.fsf@intel.com>
+In-Reply-To: <YFtz/KiStRF3uQUc@phenom.ffwll.local>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 10/11] drm/i915: avoid stringop-overread
- warning on pri_latency
+Subject: Re: [Intel-gfx] [PATCH v9 63/70] drm/i915: Move gt_revoke() slightly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,57 +52,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-scsi@vger.kernel.org,
- x86@kernel.org, James Smart <james.smart@broadcom.com>,
- tboot-devel@lists.sourceforge.net, Kalle Valo <kvalo@codeaurora.org>,
- intel-gfx@lists.freedesktop.org, Serge Hallyn <serge@hallyn.com>,
- Arnd Bergmann <arnd@arndb.de>, "James E.J. Bottomley" <jejb@linux.ibm.com>,
- Ning Sun <ning.sun@intel.com>, Anders Larsen <al@alarsen.net>,
- cgroups@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Arnd Bergmann <arnd@kernel.org>, Martin Sebor <msebor@gcc.gnu.org>,
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, ath11k@lists.infradead.org,
- linux-security-module@vger.kernel.org, Tejun Heo <tj@kernel.org>,
- Simon Kelley <simon@thekelleys.org.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBNYXIgMjQsIDIwMjEgYXQgMDU6MzA6MjRQTSArMDIwMCwgSmFuaSBOaWt1bGEgd3Jv
-dGU6Cj4gT24gTW9uLCAyMiBNYXIgMjAyMSwgQXJuZCBCZXJnbWFubiA8YXJuZEBrZXJuZWwub3Jn
-PiB3cm90ZToKPiA+IEZyb206IEFybmQgQmVyZ21hbm4gPGFybmRAYXJuZGIuZGU+Cj4gPgo+ID4g
-Z2NjLTExIHdhcm5zIGFib3V0IHdoYXQgYXBwZWFycyB0byBiZSBhbiBvdXQtb2YtcmFuZ2UgYXJy
-YXkgYWNjZXNzOgo+ID4KPiA+IEluIGZ1bmN0aW9uIOKAmHNuYl93bV9sYXRlbmN5X3F1aXJr4oCZ
-LAo+ID4gICAgIGlubGluZWQgZnJvbSDigJhpbGtfc2V0dXBfd21fbGF0ZW5jeeKAmSBhdCBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jOjMxMDg6MzoKPiA+IGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX3BtLmM6MzA1Nzo5OiBlcnJvcjog4oCYaW50ZWxfcHJpbnRfd21fbGF0ZW5jeeKA
-mSByZWFkaW5nIDE2IGJ5dGVzIGZyb20gYSByZWdpb24gb2Ygc2l6ZSAxMCBbLVdlcnJvcj1zdHJp
-bmdvcC1vdmVycmVhZF0KPiA+ICAzMDU3IHwgICAgICAgICBpbnRlbF9wcmludF93bV9sYXRlbmN5
-KGRldl9wcml2LCAiUHJpbWFyeSIsIGRldl9wcml2LT53bS5wcmlfbGF0ZW5jeSk7Cj4gPiAgICAg
-ICB8ICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+Cj4gPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9w
-bS5jOiBJbiBmdW5jdGlvbiDigJhpbGtfc2V0dXBfd21fbGF0ZW5jeeKAmToKPiA+IGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX3BtLmM6MzA1Nzo5OiBub3RlOiByZWZlcmVuY2luZyBhcmd1bWVu
-dCAzIG9mIHR5cGUg4oCYY29uc3QgdTE2ICrigJkge2FrYSDigJhjb25zdCBzaG9ydCB1bnNpZ25l
-ZCBpbnQgKuKAmX0KPiA+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmM6Mjk5NDoxMzog
-bm90ZTogaW4gYSBjYWxsIHRvIGZ1bmN0aW9uIOKAmGludGVsX3ByaW50X3dtX2xhdGVuY3nigJkK
-PiA+ICAyOTk0IHwgc3RhdGljIHZvaWQgaW50ZWxfcHJpbnRfd21fbGF0ZW5jeShzdHJ1Y3QgZHJt
-X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gPiAgICAgICB8ICAgICAgICAgICAgIF5+fn5+fn5+
-fn5+fn5+fn5+fn5+fn4KPiA+Cj4gPiBNeSBndWVzcyBpcyB0aGF0IHRoaXMgY29kZSBpcyBhY3R1
-YWxseSBzYWZlIGJlY2F1c2UgdGhlIHNpemUgb2YgdGhlCj4gPiBhcnJheSBkZXBlbmRzIG9uIHRo
-ZSBoYXJkd2FyZSBnZW5lcmF0aW9uLCBhbmQgdGhlIGZ1bmN0aW9uIGNoZWNrcyBmb3IKPiA+IHRo
-YXQsIGJ1dCBhdCB0aGUgc2FtZSB0aW1lIEkgd291bGQgbm90IGV4cGVjdCB0aGUgY29tcGlsZXIg
-dG8gd29yayBpdAo+ID4gb3V0IGNvcnJlY3RseSwgYW5kIHRoZSBjb2RlIHNlZW1zIGEgbGl0dGxl
-IGZyYWdpbGUgd2l0aCByZWdhcmRzIHRvCj4gPiBmdXR1cmUgY2hhbmdlcy4gU2ltcGx5IGluY3Jl
-YXNpbmcgdGhlIHNpemUgb2YgdGhlIGFycmF5IHNob3VsZCBoZWxwLgo+IAo+IEFncmVlZCwgSSBk
-b24ndCB0aGluayB0aGVyZSdzIGFuIGlzc3VlLCBidXQgdGhlIGNvZGUgY291bGQgdXNlIGEgYnVu
-Y2gKPiBvZiBpbXByb3ZlbWVudHMuCj4gCj4gTGlrZSwgd2UgaGF2ZSBpbnRlbF9wcmludF93bV9s
-YXRlbmN5KCkgZm9yIGRlYnVnIGxvZ2dpbmcgYW5kCj4gd21fbGF0ZW5jeV9zaG93KCkgZm9yIGRl
-YnVnZnMsIGFuZCB0aGVyZSdzIGEgYnVuY2ggb2YgZHVwbGljYXRpb24gYW5kCj4gdWdoLgoKVGhl
-cmUgaXMgYWxsIHRoaXMgYW5jaWVudCBzdHVmZiBpbiByZXZpZXcgbGltYm8uLi4KaHR0cHM6Ly9w
-YXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy81MDgwMi8KCi0tIApWaWxsZSBTeXJqw6Rs
-w6QKSW50ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Mar 24, 2021 at 06:16:44PM +0100, Daniel Vetter wrote:
+> On Wed, Mar 24, 2021 at 07:15:36PM +0200, Ville Syrj=E4l=E4 wrote:
+> > On Wed, Mar 24, 2021 at 06:00:12PM +0100, Daniel Vetter wrote:
+> > > On Tue, Mar 23, 2021 at 04:50:52PM +0100, Maarten Lankhorst wrote:
+> > > > We get a lockdep splat when the reset mutex is held, because it can=
+ be
+> > > > taken from fence_wait. This conflicts with the mmu notifier we have,
+> > > > because we recurse between reset mutex and mmap lock -> mmu notifie=
+r.
+> > > > =
+
+> > > > Remove this recursion by calling revoke_mmaps before taking the loc=
+k.
+> > > > =
+
+> > > > The reset code still needs fixing, as taking mmap locks during reset
+> > > > is not allowed.
+> > > > =
+
+> > > > Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > Reviewed-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/gt/intel_reset.c | 5 +++--
+> > > >  1 file changed, 3 insertions(+), 2 deletions(-)
+> > > > =
+
+> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/dr=
+m/i915/gt/intel_reset.c
+> > > > index 990cb4adbb9a..447f589750c2 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> > > > +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > > > @@ -970,8 +970,6 @@ static int do_reset(struct intel_gt *gt, intel_=
+engine_mask_t stalled_mask)
+> > > >  {
+> > > >  	int err, i;
+> > > >  =
+
+> > > > -	gt_revoke(gt);
+> > > > -
+> > > >  	err =3D __intel_gt_reset(gt, ALL_ENGINES);
+> > > >  	for (i =3D 0; err && i < RESET_MAX_RETRIES; i++) {
+> > > >  		msleep(10 * (i + 1));
+> > > > @@ -1026,6 +1024,9 @@ void intel_gt_reset(struct intel_gt *gt,
+> > > >  =
+
+> > > >  	might_sleep();
+> > > >  	GEM_BUG_ON(!test_bit(I915_RESET_BACKOFF, &gt->reset.flags));
+> > > > +
+> > > =
+
+> > > I've added a FIXME comment here just so we don't totally forget. This=
+ will
+> > > also blow up again when we wrap the entire reset path into a dma_fence
+> > > critical section annotation (at least going forward, we can't do that=
+ on
+> > > hw that needs display reset with the current code unfortunately).
+> > > =
+
+> > > But I did look at the code which originally added this in
+> > > =
+
+> > > commit 2caffbf1176256cc4f8d4e5c3c524fc689cb9876
+> > > Author: Chris Wilson <chris@chris-wilson.co.uk>
+> > > Date:   Fri Feb 8 15:37:03 2019 +0000
+> > > =
+
+> > >     drm/i915: Revoke mmaps and prevent access to fence registers acro=
+ss reset
+> > > =
+
+> > > and noped right out.
+> > > =
+
+> > > I think this complexity needs to go entirely, and instead we just pro=
+tect
+> > > the fence register state to make sure that after reset they are all g=
+ood
+> > > again:
+> > > - add a new mutex for low level fence register state
+> > > - hold that mutex around fence register writes (really just the low l=
+evel
+> > >   fence writes)
+> > > - hold it in the reset path when we restore fence registers
+> > > =
+
+> > > This means that a global reset also thrashes mmaps, but it's a global
+> > > reset we're talking about here, everything is thrash anyway. Plus/min=
+us
+> > > fenced gtt mmaps really doesn't change the tally.
+> > =
+
+> > My recollection is that GPU reset doesn't actually clobber the fence =
+
+> > registers. Though not 100% sure I can trust my brain on this. Also
+> > dunno if it actually matter here or not, but figured I'd point it out.
+> =
+
+> I think on gen2/3 it does, because there everything goes over. But yeah
+> maybe on gen4+ it's all fine, would be worth to check that.
+
+Right you are. Gave it a quick test on my 945gm and the fence
+registers did get zeroed out. I guess it was snb+ where it didn't
+happen. Well, could be some of the earlier platforms too I guess.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
