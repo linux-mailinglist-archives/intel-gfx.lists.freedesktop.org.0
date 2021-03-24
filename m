@@ -2,47 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC616347ADF
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 15:37:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31084347AFE
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 15:45:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E46A892C9;
-	Wed, 24 Mar 2021 14:37:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2144C6EA14;
+	Wed, 24 Mar 2021 14:45:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33D9F6EA0E;
- Wed, 24 Mar 2021 14:37:19 +0000 (UTC)
-IronPort-SDR: rrz0eSjykUBm8lU5u1rGd466fmhE5YASFKiwrgLnVmrTuD/n+0SHudN52Foe6nDdhkcIm1DcRX
- vyuczifN9Aog==
-X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="188414255"
-X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="188414255"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 07:37:18 -0700
-IronPort-SDR: q2dIgfJkIaJDycQPdKI/Vmr10WEOUDn8hG92lNmPYw32zKYHOUyPCnbTOLVK3T0gxqGJj1MxqN
- 1NOg0jaZ4d+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="415514592"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 24 Mar 2021 07:37:15 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 24 Mar 2021 16:37:14 +0200
-Date: Wed, 24 Mar 2021 16:37:14 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <YFtOmoklro5vnQsH@intel.com>
-References: <20210302120040.94435-1-hdegoede@redhat.com>
- <20210302120040.94435-3-hdegoede@redhat.com>
- <YD5Q8mA6y4/qcelo@intel.com>
- <d620fd9d-1685-3b2a-7c3b-a5d5fa6daddc@redhat.com>
- <YFtGjHEdkMfR3bLr@intel.com>
- <7d9bb155-5e07-161d-c699-581d89b9fb39@redhat.com>
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com
+ [IPv6:2a00:1450:4864:20::435])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45C4A6EA14
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 14:45:10 +0000 (UTC)
+Received: by mail-wr1-x435.google.com with SMTP id b9so24739157wrt.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 07:45:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=ps9qEbQgGB34O4fARf+U4c1qiAT+B+d/LT5jXsG6MHU=;
+ b=BycgyW78dG8cPn+Wdermaq/zIv5vU+bxnC6rr1CC0peWTrTw5ZYRe6vjbpL7hFBnEs
+ xwYRPWwf7112zo27PZHF9zIVEMD+czM4LAYvRlvJQxhSgVUhwcMDy2FI6rgPAzAcZILA
+ Z9Myes15/LaMQRsG9tnIb29YK4DuESgekQdjc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=ps9qEbQgGB34O4fARf+U4c1qiAT+B+d/LT5jXsG6MHU=;
+ b=ov5eBZY5G3DHxBb1TQ3sYSspgs5xDlLCiqumj97won8FHKennoEqsaiJlYGZcMbdtG
+ 0yiZNWbYW0uv6hr4vOXpxe5biLhyDzf5HX+6G1QCaLolG41zbsM5q0Qjt54aAVD0A+oV
+ 4Z/iS3b0YgVeHZ5+wOHGY8Rq0e7sHOV9McEAm9TTqzMkDUvFkRF8NssqPDeuFmxZVv9f
+ EEOvGC9LhFuZQ2JyNtHTSeCemxSw5rc7QNYpJ27tnsWYqWLcnVq3VtceJylHw7FGoscj
+ EvF2+boas0EGp5DJH1pYx5Tmd6Nb8ybfTdX1EAgqqQKVaAop5jwIiaAK3BjA1oltT3Qg
+ bCjw==
+X-Gm-Message-State: AOAM5301LM9bIokdkJ9jnwZemUWMx7jvY/7l5kX7SSOxsjedyjUXUBWO
+ N5p6ZxuD4z2ax3nF6jjlE95vUA==
+X-Google-Smtp-Source: ABdhPJwsWgS84B+kvHoXTFib7blRPJZOVJa/hV/x2EwQYG7o7m5PENfQa+waK+hChK6YqZRD1Lnm4w==
+X-Received: by 2002:adf:9bce:: with SMTP id e14mr4082617wrc.29.1616597108781; 
+ Wed, 24 Mar 2021 07:45:08 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id q4sm2684282wma.20.2021.03.24.07.45.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 24 Mar 2021 07:45:08 -0700 (PDT)
+Date: Wed, 24 Mar 2021 15:45:06 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <YFtQcojSJxLTUbDH@phenom.ffwll.local>
+References: <20210323155059.628690-1-maarten.lankhorst@linux.intel.com>
+ <20210323155059.628690-31-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <7d9bb155-5e07-161d-c699-581d89b9fb39@redhat.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH resend 2/2] drm/i915/display: Make
- vlv_find_free_pps() skip pipes which are in use for non DP purposes
+In-Reply-To: <20210323155059.628690-31-maarten.lankhorst@linux.intel.com>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH v9 30/70] drm/i915: Fix pread/pwrite to work
+ with new locking rules.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,166 +67,577 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 24, 2021 at 03:10:59PM +0100, Hans de Goede wrote:
-> Hi,
+On Tue, Mar 23, 2021 at 04:50:19PM +0100, Maarten Lankhorst wrote:
+> We are removing obj->mm.lock, and need to take the reservation lock
+> before we can pin pages. Move the pinning pages into the helper, and
+> merge gtt pwrite/pread preparation and cleanup paths.
 > =
 
-> On 3/24/21 3:02 PM, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Mar 23, 2021 at 11:39:09AM +0100, Hans de Goede wrote:
-> >> Hi,
-> >>
-> >> On 3/2/21 3:51 PM, Ville Syrj=E4l=E4 wrote:
-> >>> On Tue, Mar 02, 2021 at 01:00:40PM +0100, Hans de Goede wrote:
-> >>>> As explained by a long comment block, on VLV intel_setup_outputs()
-> >>>> sometimes thinks there might be an eDP panel connected while there i=
-s none.
-> >>>> In this case intel_setup_outputs() will call intel_dp_init() to chec=
-k.
-> >>>>
-> >>>> In this scenario vlv_find_free_pps() ends up selecting pipe A for th=
-e pps,
-> >>>> even though this might be in use for non DP purposes. When this is t=
-he case
-> >>>> then the assert_pipe() in vlv_force_pll_on() will fail when called f=
-rom
-> >>>> vlv_power_sequencer_kick().
-> >>>
-> >>> The idea is that you *can* select a PPS from a pipe used for a non-DP
-> >>> port since those don't care about the PPS stuff. So this doesn't seem
-> >>> correct.
-> >>
-> >> They may not care about the PPS stuff, but as the WARN / backtrace
-> >> shows if the DPLL_VCO_ENABLE bit is not already set for the pipe, while
-> >> the pipe is "otherwise" in use then vlv_force_pll_on() becomes unhappy
-> >> triggering the WARN.DPLL_VCO_ENABLE bit is not
-> >>
-> >>> a) I would like to see the VBT for this machine
-> >>
-> >> https://fedorapeople.org/~jwrdegoede/voyo-winpad-a15-vbt
-> >>
-> >>> b) I wonder if the DSI PLL is sufficient for getting the PPS going?
-> >>
-> >> I have no idea, I just noticed the WARN / backtrace and this seemed
-> >> like a reasonably way to deal with it. With that said I'm fine with fi=
-xing
-> >> this a different way.
-> >>
-> >>> c) If we do need the normal DPLL is there any harm to DSI in enabling=
- it?
-> >>
-> >> I would assume this increases power-consumption and DSI panels are alm=
-ost
-> >> always used in battery powered devices.
-> > =
-
-> > This is just used while probing the panel, so power consumption is
-> > not a concern.
+> The fence lock is also removed; it will conflict with fence annotations,
+> because of memory allocations done when pagefaulting inside copy_*_user.
 > =
 
-> Sorry I misinterpreted what you wrote, I interpreted it as have the DSI
-> code enable it to avoid this problem. I see now that that is now what
-> you meant.
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Reviewed-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+
+Same here, I picked the old version from there
+
+https://lore.kernel.org/intel-gfx/20210128162612.927917-31-maarten.lankhors=
+t@linux.intel.com/
+
+because too much conflicts with this version here.
+-Daniel
+
+> ---
+>  drivers/gpu/drm/i915/Makefile              |   1 -
+>  drivers/gpu/drm/i915/gem/i915_gem_fence.c  |  95 ---------
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h |   5 -
+>  drivers/gpu/drm/i915/i915_gem.c            | 215 +++++++++++----------
+>  4 files changed, 112 insertions(+), 204 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/i915/gem/i915_gem_fence.c
 > =
 
-> >> Also this would impact all BYT/CHT devices, possible triggering unwant=
-ed
-> >> side-effects. Where as the proposed fix below is much more narrowly ta=
-rgeted
-> >> at the problem. It might not be the most pretty fix but AFAICT it has =
-a low
-> >> risk of causing regressions.
-> > =
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 33c2100414a0..70a535798ef5 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -140,7 +140,6 @@ gem-y +=3D \
+>  	gem/i915_gem_dmabuf.o \
+>  	gem/i915_gem_domain.o \
+>  	gem/i915_gem_execbuffer.o \
+> -	gem/i915_gem_fence.o \
+>  	gem/i915_gem_internal.o \
+>  	gem/i915_gem_object.o \
+>  	gem/i915_gem_object_blt.o \
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_fence.c b/drivers/gpu/drm/=
+i915/gem/i915_gem_fence.c
+> deleted file mode 100644
+> index 8ab842c80f99..000000000000
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_fence.c
+> +++ /dev/null
+> @@ -1,95 +0,0 @@
+> -/*
+> - * SPDX-License-Identifier: MIT
+> - *
+> - * Copyright =A9 2019 Intel Corporation
+> - */
+> -
+> -#include "i915_drv.h"
+> -#include "i915_gem_object.h"
+> -
+> -struct stub_fence {
+> -	struct dma_fence dma;
+> -	struct i915_sw_fence chain;
+> -};
+> -
+> -static int __i915_sw_fence_call
+> -stub_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
+> -{
+> -	struct stub_fence *stub =3D container_of(fence, typeof(*stub), chain);
+> -
+> -	switch (state) {
+> -	case FENCE_COMPLETE:
+> -		dma_fence_signal(&stub->dma);
+> -		break;
+> -
+> -	case FENCE_FREE:
+> -		dma_fence_put(&stub->dma);
+> -		break;
+> -	}
+> -
+> -	return NOTIFY_DONE;
+> -}
+> -
+> -static const char *stub_driver_name(struct dma_fence *fence)
+> -{
+> -	return DRIVER_NAME;
+> -}
+> -
+> -static const char *stub_timeline_name(struct dma_fence *fence)
+> -{
+> -	return "object";
+> -}
+> -
+> -static void stub_release(struct dma_fence *fence)
+> -{
+> -	struct stub_fence *stub =3D container_of(fence, typeof(*stub), dma);
+> -
+> -	i915_sw_fence_fini(&stub->chain);
+> -
+> -	BUILD_BUG_ON(offsetof(typeof(*stub), dma));
+> -	dma_fence_free(&stub->dma);
+> -}
+> -
+> -static const struct dma_fence_ops stub_fence_ops =3D {
+> -	.get_driver_name =3D stub_driver_name,
+> -	.get_timeline_name =3D stub_timeline_name,
+> -	.release =3D stub_release,
+> -};
+> -
+> -struct dma_fence *
+> -i915_gem_object_lock_fence(struct drm_i915_gem_object *obj)
+> -{
+> -	struct stub_fence *stub;
+> -
+> -	assert_object_held(obj);
+> -
+> -	stub =3D kmalloc(sizeof(*stub), GFP_KERNEL);
+> -	if (!stub)
+> -		return NULL;
+> -
+> -	i915_sw_fence_init(&stub->chain, stub_notify);
+> -	dma_fence_init(&stub->dma, &stub_fence_ops, &stub->chain.wait.lock,
+> -		       0, 0);
+> -
+> -	if (i915_sw_fence_await_reservation(&stub->chain,
+> -					    obj->base.resv, NULL, true,
+> -					    i915_fence_timeout(to_i915(obj->base.dev)),
+> -					    I915_FENCE_GFP) < 0)
+> -		goto err;
+> -
+> -	dma_resv_add_excl_fence(obj->base.resv, &stub->dma);
+> -
+> -	return &stub->dma;
+> -
+> -err:
+> -	stub_release(&stub->dma);
+> -	return NULL;
+> -}
+> -
+> -void i915_gem_object_unlock_fence(struct drm_i915_gem_object *obj,
+> -				  struct dma_fence *fence)
+> -{
+> -	struct stub_fence *stub =3D container_of(fence, typeof(*stub), dma);
+> -
+> -	i915_sw_fence_commit(&stub->chain);
+> -}
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm=
+/i915/gem/i915_gem_object.h
+> index fef0d62f3eb7..6c3f75adb53c 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+> @@ -189,11 +189,6 @@ static inline void i915_gem_object_unlock(struct drm=
+_i915_gem_object *obj)
+>  	dma_resv_unlock(obj->base.resv);
+>  }
+>  =
 
-> > It rather significantly changes the logic of the workaround, potentially
-> > causing us to not find a free PPS at all. Eg. if you were to boot with
-> > a VLV with pipe A -> eDP B + eDP C inactive + pipe B -> VGA then your
-> > change would cause us to not find the free pipe B PPS for probing eDP C,
-> > and in the end we'd get a WARN and fall back to pipe A PPS which would
-> > clobber the actually in use pipe A PPS.
+> -struct dma_fence *
+> -i915_gem_object_lock_fence(struct drm_i915_gem_object *obj);
+> -void i915_gem_object_unlock_fence(struct drm_i915_gem_object *obj,
+> -				  struct dma_fence *fence);
+> -
+>  static inline void
+>  i915_gem_object_set_readonly(struct drm_i915_gem_object *obj)
+>  {
+> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_=
+gem.c
+> index 8373662e4b5f..eeb952889e4a 100644
+> --- a/drivers/gpu/drm/i915/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/i915_gem.c
+> @@ -204,7 +204,6 @@ i915_gem_shmem_pread(struct drm_i915_gem_object *obj,
+>  {
+>  	unsigned int needs_clflush;
+>  	unsigned int idx, offset;
+> -	struct dma_fence *fence;
+>  	char __user *user_data;
+>  	u64 remain;
+>  	int ret;
+> @@ -213,19 +212,17 @@ i915_gem_shmem_pread(struct drm_i915_gem_object *ob=
+j,
+>  	if (ret)
+>  		return ret;
+>  =
+
+> +	ret =3D i915_gem_object_pin_pages(obj);
+> +	if (ret)
+> +		goto err_unlock;
+> +
+>  	ret =3D i915_gem_object_prepare_read(obj, &needs_clflush);
+> -	if (ret) {
+> -		i915_gem_object_unlock(obj);
+> -		return ret;
+> -	}
+> +	if (ret)
+> +		goto err_unpin;
+>  =
+
+> -	fence =3D i915_gem_object_lock_fence(obj);
+>  	i915_gem_object_finish_access(obj);
+>  	i915_gem_object_unlock(obj);
+>  =
+
+> -	if (!fence)
+> -		return -ENOMEM;
+> -
+>  	remain =3D args->size;
+>  	user_data =3D u64_to_user_ptr(args->data_ptr);
+>  	offset =3D offset_in_page(args->offset);
+> @@ -243,7 +240,13 @@ i915_gem_shmem_pread(struct drm_i915_gem_object *obj,
+>  		offset =3D 0;
+>  	}
+>  =
+
+> -	i915_gem_object_unlock_fence(obj, fence);
+> +	i915_gem_object_unpin_pages(obj);
+> +	return ret;
+> +
+> +err_unpin:
+> +	i915_gem_object_unpin_pages(obj);
+> +err_unlock:
+> +	i915_gem_object_unlock(obj);
+>  	return ret;
+>  }
+>  =
+
+> @@ -271,48 +274,99 @@ gtt_user_read(struct io_mapping *mapping,
+>  	return unwritten;
+>  }
+>  =
+
+> -static int
+> -i915_gem_gtt_pread(struct drm_i915_gem_object *obj,
+> -		   const struct drm_i915_gem_pread *args)
+> +static struct i915_vma *i915_gem_gtt_prepare(struct drm_i915_gem_object =
+*obj,
+> +					     struct drm_mm_node *node,
+> +					     bool write)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(obj->base.dev);
+>  	struct i915_ggtt *ggtt =3D &i915->ggtt;
+> -	intel_wakeref_t wakeref;
+> -	struct drm_mm_node node;
+> -	struct dma_fence *fence;
+> -	void __user *user_data;
+>  	struct i915_vma *vma;
+> -	u64 remain, offset;
+> +	struct i915_gem_ww_ctx ww;
+>  	int ret;
+>  =
+
+> -	wakeref =3D intel_runtime_pm_get(&i915->runtime_pm);
+> +	i915_gem_ww_ctx_init(&ww, true);
+> +retry:
+>  	vma =3D ERR_PTR(-ENODEV);
+> +	ret =3D i915_gem_object_lock(obj, &ww);
+> +	if (ret)
+> +		goto err_ww;
+> +
+> +	i915_gem_object_set_to_gtt_domain(obj, write);
+>  	if (!i915_gem_object_is_tiled(obj))
+> -		vma =3D i915_gem_object_ggtt_pin(obj, NULL, 0, 0,
+> -					       PIN_MAPPABLE |
+> -					       PIN_NONBLOCK /* NOWARN */ |
+> -					       PIN_NOEVICT);
+> -	if (!IS_ERR(vma)) {
+> -		node.start =3D i915_ggtt_offset(vma);
+> -		node.flags =3D 0;
+> +		vma =3D i915_gem_object_ggtt_pin_ww(obj, &ww, NULL, 0, 0,
+> +						  PIN_MAPPABLE |
+> +						  PIN_NONBLOCK /* NOWARN */ |
+> +						  PIN_NOEVICT);
+> +	if (vma =3D=3D ERR_PTR(-EDEADLK)) {
+> +		ret =3D -EDEADLK;
+> +		goto err_ww;
+> +	} else if (!IS_ERR(vma)) {
+> +		node->start =3D i915_ggtt_offset(vma);
+> +		node->flags =3D 0;
+>  	} else {
+> -		ret =3D insert_mappable_node(ggtt, &node, PAGE_SIZE);
+> +		ret =3D insert_mappable_node(ggtt, node, PAGE_SIZE);
+>  		if (ret)
+> -			goto out_rpm;
+> -		GEM_BUG_ON(!drm_mm_node_allocated(&node));
+> +			goto err_ww;
+> +		GEM_BUG_ON(!drm_mm_node_allocated(node));
+> +		vma =3D NULL;
+>  	}
+>  =
+
+> -	ret =3D i915_gem_object_lock_interruptible(obj, NULL);
+> -	if (ret)
+> -		goto out_unpin;
+> +	ret =3D i915_gem_object_pin_pages(obj);
+> +	if (ret) {
+> +		if (drm_mm_node_allocated(node)) {
+> +			ggtt->vm.clear_range(&ggtt->vm, node->start, node->size);
+> +			remove_mappable_node(ggtt, node);
+> +		} else {
+> +			i915_vma_unpin(vma);
+> +		}
+> +	}
+> +
+> +err_ww:
+> +	if (ret =3D=3D -EDEADLK) {
+> +		ret =3D i915_gem_ww_ctx_backoff(&ww);
+> +		if (!ret)
+> +			goto retry;
+> +	}
+> +	i915_gem_ww_ctx_fini(&ww);
+>  =
+
+> -	i915_gem_object_set_to_gtt_domain(obj, false);
+> +	return ret ? ERR_PTR(ret) : vma;
+> +}
+>  =
+
+> -	fence =3D i915_gem_object_lock_fence(obj);
+> -	i915_gem_object_unlock(obj);
+> -	if (!fence) {
+> -		ret =3D -ENOMEM;
+> -		goto out_unpin;
+> +static void i915_gem_gtt_cleanup(struct drm_i915_gem_object *obj,
+> +				 struct drm_mm_node *node,
+> +				 struct i915_vma *vma)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(obj->base.dev);
+> +	struct i915_ggtt *ggtt =3D &i915->ggtt;
+> +
+> +	i915_gem_object_unpin_pages(obj);
+> +	if (drm_mm_node_allocated(node)) {
+> +		ggtt->vm.clear_range(&ggtt->vm, node->start, node->size);
+> +		remove_mappable_node(ggtt, node);
+> +	} else {
+> +		i915_vma_unpin(vma);
+> +	}
+> +}
+> +
+> +static int
+> +i915_gem_gtt_pread(struct drm_i915_gem_object *obj,
+> +		   const struct drm_i915_gem_pread *args)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(obj->base.dev);
+> +	struct i915_ggtt *ggtt =3D &i915->ggtt;
+> +	intel_wakeref_t wakeref;
+> +	struct drm_mm_node node;
+> +	void __user *user_data;
+> +	struct i915_vma *vma;
+> +	u64 remain, offset;
+> +	int ret =3D 0;
+> +
+> +	wakeref =3D intel_runtime_pm_get(&i915->runtime_pm);
+> +
+> +	vma =3D i915_gem_gtt_prepare(obj, &node, false);
+> +	if (IS_ERR(vma)) {
+> +		ret =3D PTR_ERR(vma);
+> +		goto out_rpm;
+>  	}
+>  =
+
+>  	user_data =3D u64_to_user_ptr(args->data_ptr);
+> @@ -349,14 +403,7 @@ i915_gem_gtt_pread(struct drm_i915_gem_object *obj,
+>  		offset +=3D page_length;
+>  	}
+>  =
+
+> -	i915_gem_object_unlock_fence(obj, fence);
+> -out_unpin:
+> -	if (drm_mm_node_allocated(&node)) {
+> -		ggtt->vm.clear_range(&ggtt->vm, node.start, node.size);
+> -		remove_mappable_node(ggtt, &node);
+> -	} else {
+> -		i915_vma_unpin(vma);
+> -	}
+> +	i915_gem_gtt_cleanup(obj, &node, vma);
+>  out_rpm:
+>  	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+>  	return ret;
+> @@ -421,15 +468,10 @@ i915_gem_pread_ioctl(struct drm_device *dev, void *=
+data,
+>  	if (ret)
+>  		goto out;
+>  =
+
+> -	ret =3D i915_gem_object_pin_pages(obj);
+> -	if (ret)
+> -		goto out;
+> -
+>  	ret =3D i915_gem_shmem_pread(obj, args);
+>  	if (ret =3D=3D -EFAULT || ret =3D=3D -ENODEV)
+>  		ret =3D i915_gem_gtt_pread(obj, args);
+>  =
+
+> -	i915_gem_object_unpin_pages(obj);
+>  out:
+>  	i915_gem_object_put(obj);
+>  	return ret;
+> @@ -477,11 +519,10 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object=
+ *obj,
+>  	struct intel_runtime_pm *rpm =3D &i915->runtime_pm;
+>  	intel_wakeref_t wakeref;
+>  	struct drm_mm_node node;
+> -	struct dma_fence *fence;
+>  	struct i915_vma *vma;
+>  	u64 remain, offset;
+>  	void __user *user_data;
+> -	int ret;
+> +	int ret =3D 0;
+>  =
+
+>  	if (i915_gem_object_has_struct_page(obj)) {
+>  		/*
+> @@ -499,33 +540,10 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object=
+ *obj,
+>  		wakeref =3D intel_runtime_pm_get(rpm);
+>  	}
+>  =
+
+> -	vma =3D ERR_PTR(-ENODEV);
+> -	if (!i915_gem_object_is_tiled(obj))
+> -		vma =3D i915_gem_object_ggtt_pin(obj, NULL, 0, 0,
+> -					       PIN_MAPPABLE |
+> -					       PIN_NONBLOCK /* NOWARN */ |
+> -					       PIN_NOEVICT);
+> -	if (!IS_ERR(vma)) {
+> -		node.start =3D i915_ggtt_offset(vma);
+> -		node.flags =3D 0;
+> -	} else {
+> -		ret =3D insert_mappable_node(ggtt, &node, PAGE_SIZE);
+> -		if (ret)
+> -			goto out_rpm;
+> -		GEM_BUG_ON(!drm_mm_node_allocated(&node));
+> -	}
+> -
+> -	ret =3D i915_gem_object_lock_interruptible(obj, NULL);
+> -	if (ret)
+> -		goto out_unpin;
+> -
+> -	i915_gem_object_set_to_gtt_domain(obj, true);
+> -
+> -	fence =3D i915_gem_object_lock_fence(obj);
+> -	i915_gem_object_unlock(obj);
+> -	if (!fence) {
+> -		ret =3D -ENOMEM;
+> -		goto out_unpin;
+> +	vma =3D i915_gem_gtt_prepare(obj, &node, true);
+> +	if (IS_ERR(vma)) {
+> +		ret =3D PTR_ERR(vma);
+> +		goto out_rpm;
+>  	}
+>  =
+
+>  	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
+> @@ -574,14 +592,7 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object =
+*obj,
+>  	intel_gt_flush_ggtt_writes(ggtt->vm.gt);
+>  	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
+>  =
+
+> -	i915_gem_object_unlock_fence(obj, fence);
+> -out_unpin:
+> -	if (drm_mm_node_allocated(&node)) {
+> -		ggtt->vm.clear_range(&ggtt->vm, node.start, node.size);
+> -		remove_mappable_node(ggtt, &node);
+> -	} else {
+> -		i915_vma_unpin(vma);
+> -	}
+> +	i915_gem_gtt_cleanup(obj, &node, vma);
+>  out_rpm:
+>  	intel_runtime_pm_put(rpm, wakeref);
+>  	return ret;
+> @@ -621,7 +632,6 @@ i915_gem_shmem_pwrite(struct drm_i915_gem_object *obj,
+>  	unsigned int partial_cacheline_write;
+>  	unsigned int needs_clflush;
+>  	unsigned int offset, idx;
+> -	struct dma_fence *fence;
+>  	void __user *user_data;
+>  	u64 remain;
+>  	int ret;
+> @@ -630,19 +640,17 @@ i915_gem_shmem_pwrite(struct drm_i915_gem_object *o=
+bj,
+>  	if (ret)
+>  		return ret;
+>  =
+
+> +	ret =3D i915_gem_object_pin_pages(obj);
+> +	if (ret)
+> +		goto err_unlock;
+> +
+>  	ret =3D i915_gem_object_prepare_write(obj, &needs_clflush);
+> -	if (ret) {
+> -		i915_gem_object_unlock(obj);
+> -		return ret;
+> -	}
+> +	if (ret)
+> +		goto err_unpin;
+>  =
+
+> -	fence =3D i915_gem_object_lock_fence(obj);
+>  	i915_gem_object_finish_access(obj);
+>  	i915_gem_object_unlock(obj);
+>  =
+
+> -	if (!fence)
+> -		return -ENOMEM;
+> -
+>  	/* If we don't overwrite a cacheline completely we need to be
+>  	 * careful to have up-to-date data by first clflushing. Don't
+>  	 * overcomplicate things and flush the entire patch.
+> @@ -670,8 +678,14 @@ i915_gem_shmem_pwrite(struct drm_i915_gem_object *ob=
+j,
+>  	}
+>  =
+
+>  	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
+> -	i915_gem_object_unlock_fence(obj, fence);
+>  =
+
+> +	i915_gem_object_unpin_pages(obj);
+> +	return ret;
+> +
+> +err_unpin:
+> +	i915_gem_object_unpin_pages(obj);
+> +err_unlock:
+> +	i915_gem_object_unlock(obj);
+>  	return ret;
+>  }
+>  =
+
+> @@ -735,10 +749,6 @@ i915_gem_pwrite_ioctl(struct drm_device *dev, void *=
+data,
+>  	if (ret)
+>  		goto err;
+>  =
+
+> -	ret =3D i915_gem_object_pin_pages(obj);
+> -	if (ret)
+> -		goto err;
+> -
+>  	ret =3D -EFAULT;
+>  	/* We can only do the GTT pwrite on untiled buffers, as otherwise
+>  	 * it would end up going through the fenced access, and we'll get
+> @@ -759,7 +769,6 @@ i915_gem_pwrite_ioctl(struct drm_device *dev, void *d=
+ata,
+>  			ret =3D i915_gem_shmem_pwrite(obj, args);
+>  	}
+>  =
+
+> -	i915_gem_object_unpin_pages(obj);
+>  err:
+>  	i915_gem_object_put(obj);
+>  	return ret;
+> -- =
+
+> 2.31.0
 > =
 
-> I would welcome, and will happily test, another fix for this. ATM we
-> have a WARN triggering on actual hardware (and not just in a hypothetical
-> example) and I would like to see that WARN fixed. If you can come up with
-> a better fix I would be happy to test.
-
-Well, I think there are a couple things we want to experiment wiht:
-
-a) Just skip the asserts and see if enabling the DPLL/poking the PPS
-   perturbs the DSI output in any way.
-
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1467,7 +1467,7 @@ void vlv_enable_pll(struct intel_crtc *crtc,
- 	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
- 	enum pipe pipe =3D crtc->pipe;
- =
-
--	assert_pipe_disabled(dev_priv, pipe_config->cpu_transcoder);
-+	//assert_pipe_disabled(dev_priv, pipe_config->cpu_transcoder);
- =
-
- 	/* PLL is protected by panel, make sure we can write it */
- 	assert_panel_unlocked(dev_priv, pipe);
-@@ -1800,7 +1800,7 @@ void vlv_disable_pll(struct drm_i915_private *dev_pri=
-v, enum pipe pipe)
- 	u32 val;
- =
-
- 	/* Make sure the pipe isn't still relying on us */
--	assert_pipe_disabled(dev_priv, (enum transcoder)pipe);
-+	//assert_pipe_disabled(dev_priv, (enum transcoder)pipe);
- =
-
- 	val =3D DPLL_INTEGRATED_REF_CLK_VLV |
- 		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -110,6 +110,8 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
- 	intel_de_write(dev_priv, intel_dp->output_reg, DP & ~DP_PORT_EN);
- 	intel_de_posting_read(dev_priv, intel_dp->output_reg);
- =
-
-+	msleep(1000); // just to make sure we keep angering DSI for a bit longer
-+
- 	if (!pll_enabled) {
- 		vlv_force_pll_off(dev_priv, pipe);
- =
-
-
-b) Don't enable the DPLL at all and see if the DSI PLL is capable of
-   clocking the PPS. My gut feeling says this will not work and we
-   should see the PPS state machine not make progress, but not sure.
-
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -77,7 +77,7 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
- 	else
- 		DP |=3D DP_PIPE_SEL(pipe);
- =
-
--	pll_enabled =3D intel_de_read(dev_priv, DPLL(pipe)) & DPLL_VCO_ENABLE;
-+	pll_enabled =3D true;//intel_de_read(dev_priv, DPLL(pipe)) & DPLL_VCO_ENA=
-BLE;
- =
-
- 	/*
- 	 * The DPLL for the pipe must be enabled for this to work.
-
-I do have DSI VLV machine at the office, so I can also try to poke it a
-bit next time I'm at the office.
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
-Ville Syrj=E4l=E4
-Intel
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
