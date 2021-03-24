@@ -1,61 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FB7B3482DF
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 21:27:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E58A7348A00
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 08:20:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 268C66EA5C;
-	Wed, 24 Mar 2021 20:27:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A34B46ECB1;
+	Thu, 25 Mar 2021 07:20:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EE6C6EA5C
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 20:27:28 +0000 (UTC)
-IronPort-SDR: HKQp7EXYrCJbnu1SDPGLdoLOrXAHulQzhnfQhzhNfL8bk7x5RSbiiXIhZMYwIGEmvH5rp49XhC
- MRukvWGPOF8g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="190207545"
-X-IronPort-AV: E=Sophos;i="5.81,275,1610438400"; d="scan'208";a="190207545"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 13:27:28 -0700
-IronPort-SDR: ay3rJ4iDr//ihtKpy8Pxtj8ijcIwEFUnCEvdYfsQbstAT1NVOHMXCm3Tuw7/6JfPWY9AgScB5n
- avGRgd8Vx6fw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,275,1610438400"; d="scan'208";a="443107277"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by FMSMGA003.fm.intel.com with ESMTP; 24 Mar 2021 13:27:28 -0700
-Received: from bgsmsx606.gar.corp.intel.com (10.67.234.8) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 24 Mar 2021 13:27:27 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- BGSMSX606.gar.corp.intel.com (10.67.234.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 25 Mar 2021 01:57:25 +0530
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.013;
- Thu, 25 Mar 2021 01:57:25 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2] drm/i915/audio: set HDA link parameters in driver
-Thread-Index: AQHXIKsE0H15zK2oLkqufzbYUSPVOKqThihA
-Date: Wed, 24 Mar 2021 20:27:25 +0000
-Message-ID: <bdb9e37cf05d401d80a86e4d397649f5@intel.com>
-References: <20210324123725.4170214-1-kai.vehmanen@linux.intel.com>
-In-Reply-To: <20210324123725.4170214-1-kai.vehmanen@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+X-Greylist: delayed 581 seconds by postgrey-1.36 at gabe;
+ Wed, 24 Mar 2021 21:03:11 UTC
+Received: from mail.namei.org (namei.org [65.99.196.166])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72BB76E1BC;
+ Wed, 24 Mar 2021 21:03:11 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.namei.org (Postfix) with ESMTPS id 507624E1;
+ Wed, 24 Mar 2021 20:50:33 +0000 (UTC)
+Date: Thu, 25 Mar 2021 07:50:33 +1100 (AEDT)
+From: James Morris <jmorris@namei.org>
+To: Arnd Bergmann <arnd@kernel.org>
+In-Reply-To: <20210322160253.4032422-4-arnd@kernel.org>
+Message-ID: <b8ebab59-1cec-42d-6fb9-44aa1a464ae2@namei.org>
+References: <20210322160253.4032422-1-arnd@kernel.org>
+ <20210322160253.4032422-4-arnd@kernel.org>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/audio: set HDA link parameters
- in driver
+Content-Type: multipart/mixed;
+ boundary="1665246916-699807841-1616619033=:3443171"
+X-Mailman-Approved-At: Thu, 25 Mar 2021 07:20:42 +0000
+Subject: Re: [Intel-gfx] [PATCH 03/11] security: commoncap: fix
+ -Wstringop-overread warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,114 +42,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dri-devel@lists.freedesktop.org,
+ Christian Brauner <christian.brauner@ubuntu.com>, linux-scsi@vger.kernel.org,
+ x86@kernel.org, James Smart <james.smart@broadcom.com>,
+ tboot-devel@lists.sourceforge.net, Kalle Valo <kvalo@codeaurora.org>,
+ ath11k@lists.infradead.org, Serge Hallyn <serge@hallyn.com>,
+ Miklos Szeredi <mszeredi@redhat.com>, Kees Cook <keescook@chromium.org>,
+ Arnd Bergmann <arnd@arndb.de>, "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ Ning Sun <ning.sun@intel.com>, Anders Larsen <al@alarsen.net>,
+ cgroups@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Martin Sebor <msebor@gcc.gnu.org>, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-security-module@vger.kernel.org,
+ "Eric W. Biederman" <ebiederm@xmission.com>, Tejun Heo <tj@kernel.org>,
+ Simon Kelley <simon@thekelleys.org.uk>, intel-gfx@lists.freedesktop.org,
+ Tycho Andersen <tycho@tycho.pizza>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
+--1665246916-699807841-1616619033=:3443171
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-> -----Original Message-----
-> From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> Sent: Wednesday, March 24, 2021 6:07 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>; Shankar, Uma
-> <uma.shankar@intel.com>
-> Subject: [PATCH v2] drm/i915/audio: set HDA link parameters in driver
-> 
-> Update logic to program AUD_FREQ_CNTRL register based on new guidance.
-> Earlier this register was configured by BIOS and driver discovered the value at init.
-> This is no longer recommended and instead driver should set the values based on the
-> hardware revision.
-> 
-> Add the recommended values for all supported hardware. This change applies for all
-> GEN12+ hardware. For TGL, some special case handling is needed to not break
-> existing systems.
-> 
-> Extend the debug print to also include values of the register as written by BIOS. This
-> can help debug rare cases where BIOS has configured the link settings to incorrect
-> values.
+On Mon, 22 Mar 2021, Arnd Bergmann wrote:
 
-Pushed to drm-intel-next. Thanks for the patch.
+> From: Arnd Bergmann <arnd@arndb.de>
+> 
+> gcc-11 introdces a harmless warning for cap_inode_getsecurity:
+> 
+> security/commoncap.c: In function ‘cap_inode_getsecurity’:
+> security/commoncap.c:440:33: error: ‘memcpy’ reading 16 bytes from a region of size 0 [-Werror=stringop-overread]
+>   440 |                                 memcpy(&nscap->data, &cap->data, sizeof(__le32) * 2 * VFS_CAP_U32);
+>       |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> 
+> The problem here is that tmpbuf is initialized to NULL, so gcc assumes
+> it is not accessible unless it gets set by vfs_getxattr_alloc().  This is
+> a legitimate warning as far as I can tell, but the code is correct since
+> it correctly handles the error when that function fails.
+> 
+> Add a separate NULL check to tell gcc about it as well.
+> 
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 
-Regards,
-Uma Shankar
+Applied to
+git://git.kernel.org/pub/scm/linux/kernel/git/jmorris/linux-security.git fixes-v5.12
 
-> Bspec: 49279
-> Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_audio.c | 30 ++++++++++++++++++----
->  1 file changed, 25 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c
-> b/drivers/gpu/drm/i915/display/intel_audio.c
-> index 3ea20c857440..9671c8f6e892 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -1266,6 +1266,15 @@ static const struct component_ops
-> i915_audio_component_bind_ops = {
->  	.unbind	= i915_audio_component_unbind,
->  };
-> 
-> +#define AUD_FREQ_TMODE_SHIFT	14
-> +#define AUD_FREQ_4T		0
-> +#define AUD_FREQ_8T		(2 << AUD_FREQ_TMODE_SHIFT)
-> +#define AUD_FREQ_PULLCLKS(x)	(((x) & 0x3) << 11)
-> +#define AUD_FREQ_BCLK_96M	BIT(4)
-> +
-> +#define AUD_FREQ_GEN12          (AUD_FREQ_8T | AUD_FREQ_PULLCLKS(0) |
-> AUD_FREQ_BCLK_96M)
-> +#define AUD_FREQ_TGL_BROKEN     (AUD_FREQ_8T | AUD_FREQ_PULLCLKS(2) |
-> AUD_FREQ_BCLK_96M)
-> +
->  /**
->   * i915_audio_component_init - initialize and register the audio component
->   * @dev_priv: i915 device instance
-> @@ -1284,6 +1293,7 @@ static const struct component_ops
-> i915_audio_component_bind_ops = {
->   */
->  static void i915_audio_component_init(struct drm_i915_private *dev_priv)  {
-> +	u32 aud_freq, aud_freq_init;
->  	int ret;
-> 
->  	ret = component_add_typed(dev_priv->drm.dev,
-> @@ -1297,11 +1307,21 @@ static void i915_audio_component_init(struct
-> drm_i915_private *dev_priv)
->  	}
-> 
->  	if (DISPLAY_VER(dev_priv) >= 9) {
-> -		dev_priv->audio_freq_cntrl = intel_de_read(dev_priv,
-> -							   AUD_FREQ_CNTRL);
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "init value of AUD_FREQ_CNTRL of 0x%x\n",
-> -			    dev_priv->audio_freq_cntrl);
-> +		aud_freq_init = intel_de_read(dev_priv, AUD_FREQ_CNTRL);
-> +
-> +		if (INTEL_GEN(dev_priv) >= 12)
-> +			aud_freq = AUD_FREQ_GEN12;
-> +		else
-> +			aud_freq = aud_freq_init;
-> +
-> +		/* use BIOS provided value for TGL unless it is a known bad value */
-> +		if (IS_TIGERLAKE(dev_priv) && aud_freq_init !=
-> AUD_FREQ_TGL_BROKEN)
-> +			aud_freq = aud_freq_init;
-> +
-> +		drm_dbg_kms(&dev_priv->drm, "use AUD_FREQ_CNTRL of 0x%x
-> (init value 0x%x)\n",
-> +			    aud_freq, aud_freq_init);
-> +
-> +		dev_priv->audio_freq_cntrl = aud_freq;
->  	}
-> 
->  	dev_priv->audio_component_registered = true;
-> 
-> base-commit: 9d58aa46291d4d696bb1eac3436d3118f7bf2573
-> --
-> 2.29.2
+-- 
+James Morris
+<jmorris@namei.org>
+
+--1665246916-699807841-1616619033=:3443171
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--1665246916-699807841-1616619033=:3443171--
