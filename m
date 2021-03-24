@@ -1,60 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 148EE347582
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 11:11:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30630347651
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 11:40:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9464B6E9A7;
-	Wed, 24 Mar 2021 10:11:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BA276E200;
+	Wed, 24 Mar 2021 10:40:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
- [IPv6:2a00:1450:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C43D16E9A7
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 10:11:16 +0000 (UTC)
-Received: by mail-wr1-x429.google.com with SMTP id j7so23832357wrd.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 03:11:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=9UWhVxrBDTnf1xWRIlnCIU7DzbRlOGLlbilwpjER61c=;
- b=VSqZLrICyosXKp5sUstEztTk32gH1nX5XRFI5Z9t59H7lbVAW5bGV/I5Cn02sz4Aov
- 3P8hSNCvn68lcTV5fvsVtoxd7GGRoAp3lI70BDQF1apcgawAgOp/EqEDudlf/tQCSebb
- l7WBMXoWMQaojJCsfQu2yyJz/vtZvGq0Vsz4k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=9UWhVxrBDTnf1xWRIlnCIU7DzbRlOGLlbilwpjER61c=;
- b=UkkPElLcroYmkIBinCHknndLamWV0UEZLAHJkrJCTlXlFwNXUSHG0/CAfBuGVAqZKO
- 2Umv2mo6xNpN7H25JAgkKpijzw8GiHcKNFOZuRbnCSPQ8xG7MdyPiHU1C1uIm5gn27Gz
- xKXUYz7U+MVG4gyZCRo8M260WGNexg0Qneu1lUqWy65GLxpcRgDolMbiEOqwlZSIfagq
- 1EpCRZw9bRDnpPhPAuL+TXsHok01kb7WLIittL04GFxbGZ+lBmveW/XNa1+U4dbMQSlY
- +ntfCzMEnGb8OkeheJZSjcv5P1ihJ+NxlsCTLG/X8YuyZwQq5XepuGoDKC09w6c4k7D4
- k5LQ==
-X-Gm-Message-State: AOAM530xXPnU7Cmal3ErdazN0wByhKOVwbbmjf28foQHYuVEoQDum0SY
- naA2D3gXd6rCmwJNeoRNjYHs5w==
-X-Google-Smtp-Source: ABdhPJwPTTY6aqSs9EBBiEMgx4oBoJ4yQYjrD4RUSSGriSp0zi9LpQiGoLwdNtYYDjW8DeIXE/2j1A==
-X-Received: by 2002:adf:ecc8:: with SMTP id s8mr2579659wro.11.1616580675424;
- Wed, 24 Mar 2021 03:11:15 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id i3sm2416100wra.66.2021.03.24.03.11.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Mar 2021 03:11:14 -0700 (PDT)
-Date: Wed, 24 Mar 2021 11:11:13 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <YFsQQfwwyZhq5BBF@phenom.ffwll.local>
-References: <20210323155059.628690-1-maarten.lankhorst@linux.intel.com>
- <20210323155059.628690-69-maarten.lankhorst@linux.intel.com>
- <CAM0jSHPL44qRd7dybPmmEz-8pr8xS0d9VXhRYm8iNj3YyX7h-A@mail.gmail.com>
- <79e6f35b-0df6-0f45-e349-8f49529f7382@linux.intel.com>
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 144866E9B5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 10:40:01 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-129-cK_RaveBM8aprN2x6jOm4g-1; Wed, 24 Mar 2021 10:39:58 +0000
+X-MC-Unique: cK_RaveBM8aprN2x6jOm4g-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:994c:f5c2:35d6:9b65) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.2; Wed, 24 Mar 2021 10:39:57 +0000
+Received: from AcuMS.Aculab.com ([fe80::994c:f5c2:35d6:9b65]) by
+ AcuMS.aculab.com ([fe80::994c:f5c2:35d6:9b65%12]) with mapi id
+ 15.00.1497.012; Wed, 24 Mar 2021 10:39:57 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: David Laight <David.Laight@ACULAB.COM>, 'Martin Sebor' <msebor@gmail.com>, 
+ Ingo Molnar <mingo@kernel.org>, Arnd Bergmann <arnd@kernel.org>
+Thread-Topic: [PATCH 02/11] x86: tboot: avoid Wstringop-overread-warning
+Thread-Index: AQHXH2fn7jNrPkUb50e9k3rL2a+D9qqS2/oQgAAX0+A=
+Date: Wed, 24 Mar 2021 10:39:57 +0000
+Message-ID: <7e05de6cbb554b09ac532c073fab7386@AcuMS.aculab.com>
+References: <20210322160253.4032422-1-arnd@kernel.org>
+ <20210322160253.4032422-3-arnd@kernel.org>
+ <20210322202958.GA1955909@gmail.com>
+ <b944a853-0e4b-b767-0175-cc2c1edba759@gmail.com>
+ <0aa198a1dd904231bcc29454bf19a812@AcuMS.aculab.com>
+In-Reply-To: <0aa198a1dd904231bcc29454bf19a812@AcuMS.aculab.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <79e6f35b-0df6-0f45-e349-8f49529f7382@linux.intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH v9 68/70] drm/i915: Pass ww ctx to pin_map
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=C51A453 smtp.mailfrom=david.laight@aculab.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 02/11] x86: tboot: avoid
+ Wstringop-overread-warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,175 +61,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, Will Deacon <will@kernel.org>,
+ "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "x86@kernel.org" <x86@kernel.org>, James Smart <james.smart@broadcom.com>,
+ "tboot-devel@lists.sourceforge.net" <tboot-devel@lists.sourceforge.net>,
+ Ingo Molnar <mingo@redhat.com>, Kalle Valo <kvalo@codeaurora.org>,
+ "ath11k@lists.infradead.org" <ath11k@lists.infradead.org>,
+ Serge Hallyn <serge@hallyn.com>, Arnd Bergmann <arnd@arndb.de>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>, Ning Sun <ning.sun@intel.com>,
+ Anders Larsen <al@alarsen.net>, Borislav Petkov <bp@alien8.de>,
+ "cgroups@vger.kernel.org" <cgroups@vger.kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ Martin
+ Sebor <msebor@gcc.gnu.org>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "linux-wireless@vger.kernel.org" <linux-wireless@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>, Tejun Heo <tj@kernel.org>,
+ Simon Kelley <simon@thekelleys.org.uk>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Lu Baolu <baolu.lu@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 24, 2021 at 10:31:26AM +0100, Maarten Lankhorst wrote:
-> Op 23-03-2021 om 18:30 schreef Matthew Auld:
-> > On Tue, 23 Mar 2021 at 15:51, Maarten Lankhorst
-> > <maarten.lankhorst@linux.intel.com> wrote:
-> >> This will allow us to explicitly pass the ww to pin_pages,
-> >> when it starts taking it.
-> >>
-> >> This allows us to finally kill off the explicit passing of ww
-> >> by retrieving it from the obj.
-> >>
-> >> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> >> ---
-> >>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  7 ++++---
-> >>  drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  2 +-
-> >>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  1 +
-> >>  .../gpu/drm/i915/gem/i915_gem_object_blt.c    |  4 ++--
-> >>  drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 21 +++++++++++++++----
-> >>  .../drm/i915/gem/selftests/i915_gem_context.c |  8 ++++---
-> >>  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  2 +-
-> >>  drivers/gpu/drm/i915/gt/gen7_renderclear.c    |  2 +-
-> >>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
-> >>  drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 +-
-> >>  drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 ++--
-> >>  drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 +-
-> >>  drivers/gpu/drm/i915/gt/intel_ring.c          |  2 +-
-> >>  .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
-> >>  drivers/gpu/drm/i915/gt/intel_timeline.c      |  7 ++++---
-> >>  drivers/gpu/drm/i915/gt/intel_timeline.h      |  3 ++-
-> >>  drivers/gpu/drm/i915/gt/intel_workarounds.c   |  2 +-
-> >>  drivers/gpu/drm/i915/gt/mock_engine.c         |  2 +-
-> >>  drivers/gpu/drm/i915/gt/selftest_lrc.c        |  2 +-
-> >>  drivers/gpu/drm/i915/gt/selftest_rps.c        | 10 ++++-----
-> >>  .../gpu/drm/i915/gt/selftest_workarounds.c    |  6 +++---
-> >>  drivers/gpu/drm/i915/gvt/cmd_parser.c         |  4 ++--
-> >>  drivers/gpu/drm/i915/i915_perf.c              |  4 ++--
-> >>  drivers/gpu/drm/i915/selftests/igt_spinner.c  |  2 +-
-> >>  24 files changed, 60 insertions(+), 43 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> >> index dcfcae9c841b..73dd2a7673f5 100644
-> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> >> @@ -1340,7 +1340,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
-> >>         if (err)
-> >>                 goto err_pool;
-> >>
-> >> -       cmd = i915_gem_object_pin_map(pool->obj, pool->type);
-> >> +       cmd = i915_gem_object_pin_map(pool->obj, &eb->ww, pool->type);
-> >>         if (IS_ERR(cmd)) {
-> >>                 err = PTR_ERR(cmd);
-> >>                 goto err_pool;
-> >> @@ -2489,7 +2489,8 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
-> >>                         goto err_shadow;
-> >>         }
-> >>
-> >> -       pw->shadow_map = i915_gem_object_pin_map(shadow->obj, I915_MAP_WB);
-> >> +       pw->shadow_map = i915_gem_object_pin_map(shadow->obj, &eb->ww,
-> >> +                                                I915_MAP_WB);
-> >>         if (IS_ERR(pw->shadow_map)) {
-> >>                 err = PTR_ERR(pw->shadow_map);
-> >>                 goto err_trampoline;
-> >> @@ -2500,7 +2501,7 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
-> >>
-> >>         pw->batch_map = ERR_PTR(-ENODEV);
-> >>         if (needs_clflush && i915_has_memcpy_from_wc())
-> >> -               pw->batch_map = i915_gem_object_pin_map(batch, I915_MAP_WC);
-> >> +               pw->batch_map = i915_gem_object_pin_map(batch, &eb->ww, I915_MAP_WC);
-> >>
-> >>         if (IS_ERR(pw->batch_map)) {
-> >>                 err = i915_gem_object_pin_pages(batch);
-> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> >> index 2561a2f1e54f..edac8ee3be9a 100644
-> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-> >> @@ -439,7 +439,7 @@ vm_access(struct vm_area_struct *area, unsigned long addr,
-> >>                 goto out;
-> >>
-> >>         /* As this is primarily for debugging, let's focus on simplicity */
-> >> -       vaddr = i915_gem_object_pin_map(obj, I915_MAP_FORCE_WC);
-> >> +       vaddr = i915_gem_object_pin_map(obj, &ww, I915_MAP_FORCE_WC);
-> >>         if (IS_ERR(vaddr)) {
-> >>                 err = PTR_ERR(vaddr);
-> >>                 goto out;
-> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> >> index 1a8ec4035112..9bd9b47dcc8d 100644
-> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-> >> @@ -450,6 +450,7 @@ void i915_gem_object_writeback(struct drm_i915_gem_object *obj);
-> >>   * ERR_PTR() on error.
-> >>   */
-> >>  void *__must_check i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
-> >> +                                          struct i915_gem_ww_ctx *ww,
-> >>                                            enum i915_map_type type);
-> >>
-> >>  void *__must_check i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
-> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-> >> index df8e8c18c6c9..fae18622d2da 100644
-> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-> >> @@ -58,7 +58,7 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
-> >>         /* we pinned the pool, mark it as such */
-> >>         intel_gt_buffer_pool_mark_used(pool);
-> >>
-> >> -       cmd = i915_gem_object_pin_map(pool->obj, pool->type);
-> >> +       cmd = i915_gem_object_pin_map(pool->obj, ww, pool->type);
-> >>         if (IS_ERR(cmd)) {
-> >>                 err = PTR_ERR(cmd);
-> >>                 goto out_unpin;
-> >> @@ -283,7 +283,7 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
-> >>         /* we pinned the pool, mark it as such */
-> >>         intel_gt_buffer_pool_mark_used(pool);
-> >>
-> >> -       cmd = i915_gem_object_pin_map(pool->obj, pool->type);
-> >> +       cmd = i915_gem_object_pin_map(pool->obj, ww, pool->type);
-> >>         if (IS_ERR(cmd)) {
-> >>                 err = PTR_ERR(cmd);
-> >>                 goto out_unpin;
-> >> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> >> index 58e222030e10..232832398457 100644
-> >> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> >> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
-> >> @@ -341,6 +341,7 @@ static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
-> >>
-> >>  /* get, pin, and map the pages of the object into kernel space */
-> >>  void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
-> >> +                             struct i915_gem_ww_ctx *ww,
-> >>                               enum i915_map_type type)
-> >>  {
-> >>         enum i915_map_type has_type;
-> >> @@ -408,13 +409,25 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
-> >>  void *i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
-> >>                                        enum i915_map_type type)
-> >>  {
-> >> +       struct i915_gem_ww_ctx ww;
-> >>         void *ret;
-> >> +       int err;
-> >>
-> >> -       i915_gem_object_lock(obj, NULL);
-> >> -       ret = i915_gem_object_pin_map(obj, type);
-> >> -       i915_gem_object_unlock(obj);
-> >> +       i915_gem_ww_ctx_init(&ww, true);
-> >> +retry:
-> >> +       err = i915_gem_object_lock(obj, &ww);
-> >> +       if (!err)
-> >> +               ret = i915_gem_object_pin_map(obj, &ww, type);
-> >> +       if (IS_ERR(ret))
-> > This looks a little dodgy, since ret might not be initialized here,
-> > say if we encounter an error when grabbing the lock?
+From: David Laight
+> Sent: 24 March 2021 09:12
+> 
+> From: Martin Sebor
+> > Sent: 22 March 2021 22:08
+> ...
+> > In GCC 11, all access warnings expect objects to be either declared
+> > or allocated.  Pointers with constant values are taken to point to
+> > nothing valid (as Arnd mentioned above, this is to detect invalid
+> > accesses to members of structs at address zero).
 > >
-> > Also maybe s/ret/ptr/? Seeing ret makes me think it's a plain integer.
+> > One possible solution to the known address problem is to extend GCC
+> > attributes address and io that pin an object to a hardwired address
+> > to all targets (at the moment they're supported on just one or two
+> > targets).  I'm not sure this can still happen before GCC 11 releases
+> > sometime in April or May.
 > 
-> Ack, good catch!
-> 
-> Will send a new version to fix it.
+> A different solution is to define a normal C external data item
+> and then assign a fixed address with an asm statement or in
+> the linker script.
 
-Can you pls just update this patch with in-reply-to? I'm starting to
-apply.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Or stop gcc tracking the value by using:
+	struct foo *foo = (void *)xxxxx;
+	asm ("", "+r" (foo));
+
+If the address is used more than once forcing it into
+a register is also likely to generate better code.
+
+	David
+
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
