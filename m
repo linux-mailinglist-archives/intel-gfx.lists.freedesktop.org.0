@@ -1,58 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52B51348371
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 22:11:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E8C934848F
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 23:25:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51BBC6EA92;
-	Wed, 24 Mar 2021 21:10:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A1BD6EA9F;
+	Wed, 24 Mar 2021 22:25:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
- [IPv6:2a00:1450:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F2196E364
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 21:10:49 +0000 (UTC)
-Received: by mail-wm1-x336.google.com with SMTP id
- y124-20020a1c32820000b029010c93864955so1964834wmy.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 14:10:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=xGStlxqAvQR3fuObhoTNL58Dwx4zHJZi3lJkR5FRsGk=;
- b=Jj/jpTUzcmmqM7AkESib7LsQgXkV3puJ7LxSBMaHQAeDW0uf26jqzXo8At5nAI97p+
- WRld2EUYLUXsuTfv5FH9LDbG0iZZ+bs6VwoyZiOxwUpOrY/Mr4CLHVXjLYqAvCDAi538
- eG9dVvTQYaBgoOUnMktWPOdgw57V0/lpeyvmY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=xGStlxqAvQR3fuObhoTNL58Dwx4zHJZi3lJkR5FRsGk=;
- b=WMBl3m2UE89wQbG2e0KhGcbkvn4ZPfPe2mPDkhubJ+acx/lnCuiZkUJlx8Qvsf7qlV
- ic8/e31P5EPBIjWMEvoXSj9W6VUd6VByBwP3rWlAZSjF1Cy2J9f5dmcH93lr04e5ffNs
- HQHBXNYeYXL6Vk60E8CsFaBDmMr/TfLjgtTTOtdjFnUPc+w4Ov8Y2so1JkX3wy9fGw6K
- Omc9leS3g9yWxtE46fRbeS9zCYEJ0LB6XLrNAAbZVXSZ5U6Z5DK7pZPye6+JW80gaYqx
- WX7p8u2XKldN7lKDWna6BO9WvCoDPJFTdxBf/4Uq6HcfvOm8/jTahGyRrdriqHhx2+l3
- GdHA==
-X-Gm-Message-State: AOAM533eKHf++2ctCA3ErrPSnSGTMCS6BMyCOoi6tZKUybY0xj7PELDL
- LMJFn7U/tiuONvVWBg9YwrGorQ==
-X-Google-Smtp-Source: ABdhPJw9zQ9FHiIrOF4l1DSunVZ4O1l6WEd8btHlGjCMzAi/Xrn0LjUd6tarLCDJ0dcb4B1DIplhng==
-X-Received: by 2002:a05:600c:1550:: with SMTP id
- f16mr4715522wmg.97.1616620247888; 
- Wed, 24 Mar 2021 14:10:47 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id k4sm5343736wrd.9.2021.03.24.14.10.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Mar 2021 14:10:47 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Wed, 24 Mar 2021 22:10:41 +0100
-Message-Id: <20210324211041.1354941-2-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210324211041.1354941-1-daniel.vetter@ffwll.ch>
-References: <20210324211041.1354941-1-daniel.vetter@ffwll.ch>
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88B686EA9F;
+ Wed, 24 Mar 2021 22:25:02 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4F5N8T3WjPz9sWS;
+ Thu, 25 Mar 2021 09:24:56 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1616624700;
+ bh=Lt1046lPm+M0t+PnUEF/7zYkeQkAleAyRe/nHCtvliQ=;
+ h=Date:From:To:Cc:Subject:From;
+ b=n97owxz9QYJoqMkBquoOBIbQ3m85Fn5VJrXFdU8xakKvYG7bPyTsEmTK6KrHVv+1A
+ wzgBTsDbTG5zvav6L1oxzvYrf5DFfbA+Og3AiddKpHAZI1TYjxrmb+/lWM6+2+oGSc
+ 7AwGwYX0i6UmPW33OXpYA/zqQQRqMdgLKsXca865Emjt/WzHNimyDq+n5ssgaegFcj
+ JHpbZLlSa/bE3Tu7AbEp1z3BBhRhGfE9NMlLyGCL6d7VYNq7TxBY/Xnrk45pWTDNt7
+ P4jJLnjKj2YPx/gGvntMX+tO4j7nHvqU8+BeG7ygFjC8OjTOgO4XZ7L087v5TOQdno
+ bIokMdizzJIQg==
+Date: Thu, 25 Mar 2021 09:24:55 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20210325092455.7a629047@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/doc: Add RFC section
+Subject: [Intel-gfx] linux-next: build warning after merge of the
+ drm-intel-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,75 +51,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Ser <contact@emersion.fr>, Daniel Vetter <daniel.vetter@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Dave Airlie <airlied@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0857138678=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Motivated by the pre-review process for i915 gem/gt features, but
-probably useful in general for complex stuff.
+--===============0857138678==
+Content-Type: multipart/signed; boundary="Sig_/nicSjGR_B/XICY4AoVrQOrA";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-v2: Add reminder to not forget userspace projects in the discussion
-(Simon, Jason)
+--Sig_/nicSjGR_B/XICY4AoVrQOrA
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Cc: Simon Ser <contact@emersion.fr>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jason Ekstrand <jason@jlekstrand.net>
-Cc: Dave Airlie <airlied@redhat.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Dave Airlie <airlied@redhat.com>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- Documentation/gpu/index.rst |  1 +
- Documentation/gpu/rfc.rst   | 17 +++++++++++++++++
- 2 files changed, 18 insertions(+)
- create mode 100644 Documentation/gpu/rfc.rst
+Hi all,
 
-diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
-index c9a51e3bfb5a..df58cb826d68 100644
---- a/Documentation/gpu/index.rst
-+++ b/Documentation/gpu/index.rst
-@@ -16,6 +16,7 @@ Linux GPU Driver Developer's Guide
-    vga-switcheroo
-    vgaarbiter
-    todo
-+   rfc
- 
- .. only::  subproject and html
- 
-diff --git a/Documentation/gpu/rfc.rst b/Documentation/gpu/rfc.rst
-new file mode 100644
-index 000000000000..a8621f7dab8b
---- /dev/null
-+++ b/Documentation/gpu/rfc.rst
-@@ -0,0 +1,17 @@
-+===============
-+GPU RFC Section
-+===============
-+
-+For complex work, especially new uapi, it is often good to nail the high level
-+design issues before getting lost in the code details. This section is meant to
-+host such documentation:
-+
-+* Each RFC should be a section in this file, explaining the goal and main design
-+  considerations. Especially for uapi make sure you Cc: all relevant project
-+  mailing lists and involved people outside of dri-devel.
-+
-+* For uapi structures add a file to this directory with and then pull the
-+  kerneldoc in like with real uapi headers.
-+
-+* Once the code has landed move all the documentation to the right places in
-+  the main core, helper or driver sections.
--- 
-2.31.0
+After merging the drm-intel-fixes tree, today's linux-next build
+(htmldocs) produced this warning:
+
+Documentation/gpu/i915:22: /home/sfr/next/next/drivers/gpu/drm/i915/intel_r=
+untime_pm.c:423: WARNING: Inline strong start-string without end-string.
+
+Introduced by commit
+
+  8840e3bd981f ("drm/i915: Fix the GT fence revocation runtime PM logic")
+
+--=20
+Cheers,
+Stephen Rothwell
+
+--Sig_/nicSjGR_B/XICY4AoVrQOrA
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmBbvDcACgkQAVBC80lX
+0Gwu7gf6AipS7+ub2HMWch7KBKGHskD98Lxo/DuFL9WVwNXFWpXDOdVJ6pT9wsHs
+DlBBT1/4uSXzY2SDIQ+bxSlANTond+9Mc6ne6a+0JlrI3mMu9Q9R8nfKPNi327GJ
+qTOq3NtPovhJZqzg4EhNjM+H0jF5L6NUbaeA2b5fW5j3BszhdouKOtyG6OPd74l8
+bqLYAsLOMmyisDDanymY9lumMw7we4e2kZdmzLYmqPt0+Vhfa74UJre2OzAluVpm
++d7GniRz61rLuqUgKzZxIpxBZbmkdbt6LYYvFzxMOr4Ut+G4Ueo8ywvxJTcBX1IV
+1yQNdIDrukr8nQYS4v6fpAr5Lbh2+g==
+=dyCb
+-----END PGP SIGNATURE-----
+
+--Sig_/nicSjGR_B/XICY4AoVrQOrA--
+
+--===============0857138678==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0857138678==--
