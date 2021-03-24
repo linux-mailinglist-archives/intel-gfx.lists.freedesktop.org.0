@@ -2,61 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30C4234789A
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 13:37:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D8B63478B3
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 13:41:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E15896E9F9;
-	Wed, 24 Mar 2021 12:37:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE40E6E9F9;
+	Wed, 24 Mar 2021 12:41:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95CEC6E9F2
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 12:37:06 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- a132-20020a1c668a0000b029010f141fe7c2so1118741wmc.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 05:37:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=gtq/hThFqXcsyIC2/ThJJk45FOLKg8QZTLf9lOLcPkU=;
- b=HrC6LVjFRUoDuhAQnYI7M0B94dvl1ie9/FwimTF2ulTatkAUv8t4I9Mhr1HlXm2ZdN
- wCwcxyWF3i3OTryi9lPF7Nw5LSzvid0XV3SkLTp/d9w54AqpeFnoJ8XZrQ2EJ1ksKNku
- NrX/s4OHq7yLjY8RWf5ItSShzD8i8spzXNHDg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=gtq/hThFqXcsyIC2/ThJJk45FOLKg8QZTLf9lOLcPkU=;
- b=cpccbFVXnW6Aav59ZD59d45RWi7uGnwJkvyr/37WQcS0oBQ/pmBNWKCLtQ6Us0KX7A
- fqfsYaI3GK8A8vpT42ohX3AKGyGhJBbGh/devR9oGNNfqtspSgg03cvRlvnV6ApwmMgR
- rn+oUALDtH04i7gnoIYdAzBLn0JDxWdiLFrhtUZ+kv5ViPPnGTbs2OEqYnzMbpn+zoGC
- nH12Qut7/++e6WQThM35Mak9/SIFSwZ3G1JkA4DeLT0Sx9ySFfrtHgSE2vhr0C6yJdke
- PehGVtfFI3kJ4+ugyTIXfYFnk+VuBixGL2+zZvz9WO7HV4FcqbC37US5bMAEMKQWOUNz
- 3owg==
-X-Gm-Message-State: AOAM530URNMj25i2HTmmSMiDooBzsETZuEVS1cks9arreYEfLqbe1mJT
- FvYBHWNCsvjIN6u48gj3vNlneg==
-X-Google-Smtp-Source: ABdhPJxnHXbxOKNptGd/5/qPRTRhN6NB2PVSlFb+xT7fk/8G2NrZDZLsBNWBw20vv+asDhB8TalDYw==
-X-Received: by 2002:a05:600c:d1:: with SMTP id
- u17mr2785451wmm.64.1616589425368; 
- Wed, 24 Mar 2021 05:37:05 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id i17sm2991897wrp.77.2021.03.24.05.37.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Mar 2021 05:37:04 -0700 (PDT)
-Date: Wed, 24 Mar 2021 13:37:02 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <YFsybn94Z8Rj94s4@phenom.ffwll.local>
-References: <20210323155059.628690-1-maarten.lankhorst@linux.intel.com>
- <20210323155059.628690-28-maarten.lankhorst@linux.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D19EE6E9F9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 12:41:33 +0000 (UTC)
+IronPort-SDR: Y7sEeV2Sx3YXLc6AzTr0yKf9T3HBJHTK70ASitFYdsqxok00ScVwuVIg07AWDDpE66tGVF3OkQ
+ fyVZV2PC2ddw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9932"; a="178251222"
+X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="178251222"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2021 05:41:31 -0700
+IronPort-SDR: e/lfci7ism2fZgPg4RWYfloboJ//g9AmR4buU/a5xELrRymFhl+p0J5uF4vpCRQXh0R3d94+HD
+ 7jcxGG0sRf9Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="442951942"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
+ by FMSMGA003.fm.intel.com with ESMTP; 24 Mar 2021 05:41:26 -0700
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 24 Mar 2021 14:37:25 +0200
+Message-Id: <20210324123725.4170214-1-kai.vehmanen@linux.intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210323155059.628690-28-maarten.lankhorst@linux.intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH v9 27/70] drm/i915: Make __engine_unpark()
- compatible with ww locking.
+Subject: [Intel-gfx] [PATCH v2] drm/i915/audio: set HDA link parameters in
+ driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,72 +45,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 23, 2021 at 04:50:16PM +0100, Maarten Lankhorst wrote:
-> Take the ww lock around engine_unpark. Because of the
-> many many places where rpm is used, I chose the safest option
-> and used a trylock to opportunistically take this lock for
-> __engine_unpark.
+Update logic to program AUD_FREQ_CNTRL register based on new guidance.
+Earlier this register was configured by BIOS and driver discovered the
+value at init. This is no longer recommended and instead driver should
+set the values based on the hardware revision.
 
-Correct choice, runtime pm resume is on the critical path for dma-fence
-(we might need to wake up the device for e.g. atomic modeset commits), so
-definitely can't have a dma_resv_lock in here.
--Daniel
+Add the recommended values for all supported hardware. This change applies
+for all GEN12+ hardware. For TGL, some special case handling is needed
+to not break existing systems.
 
-> =
+Extend the debug print to also include values of the register as written
+by BIOS. This can help debug rare cases where BIOS has configured the link
+settings to incorrect values.
 
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Reviewed-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_pm.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> =
+Bspec: 49279
+Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_audio.c | 30 ++++++++++++++++++----
+ 1 file changed, 25 insertions(+), 5 deletions(-)
 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/=
-i915/gt/intel_engine_pm.c
-> index 27d9d17b35cb..bddc5c98fb04 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
-> @@ -27,12 +27,16 @@ static void dbg_poison_ce(struct intel_context *ce)
->  		int type =3D i915_coherent_map_type(ce->engine->i915);
->  		void *map;
->  =
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 3ea20c857440..9671c8f6e892 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -1266,6 +1266,15 @@ static const struct component_ops i915_audio_component_bind_ops = {
+ 	.unbind	= i915_audio_component_unbind,
+ };
+ 
++#define AUD_FREQ_TMODE_SHIFT	14
++#define AUD_FREQ_4T		0
++#define AUD_FREQ_8T		(2 << AUD_FREQ_TMODE_SHIFT)
++#define AUD_FREQ_PULLCLKS(x)	(((x) & 0x3) << 11)
++#define AUD_FREQ_BCLK_96M	BIT(4)
++
++#define AUD_FREQ_GEN12          (AUD_FREQ_8T | AUD_FREQ_PULLCLKS(0) | AUD_FREQ_BCLK_96M)
++#define AUD_FREQ_TGL_BROKEN     (AUD_FREQ_8T | AUD_FREQ_PULLCLKS(2) | AUD_FREQ_BCLK_96M)
++
+ /**
+  * i915_audio_component_init - initialize and register the audio component
+  * @dev_priv: i915 device instance
+@@ -1284,6 +1293,7 @@ static const struct component_ops i915_audio_component_bind_ops = {
+  */
+ static void i915_audio_component_init(struct drm_i915_private *dev_priv)
+ {
++	u32 aud_freq, aud_freq_init;
+ 	int ret;
+ 
+ 	ret = component_add_typed(dev_priv->drm.dev,
+@@ -1297,11 +1307,21 @@ static void i915_audio_component_init(struct drm_i915_private *dev_priv)
+ 	}
+ 
+ 	if (DISPLAY_VER(dev_priv) >= 9) {
+-		dev_priv->audio_freq_cntrl = intel_de_read(dev_priv,
+-							   AUD_FREQ_CNTRL);
+-		drm_dbg_kms(&dev_priv->drm,
+-			    "init value of AUD_FREQ_CNTRL of 0x%x\n",
+-			    dev_priv->audio_freq_cntrl);
++		aud_freq_init = intel_de_read(dev_priv, AUD_FREQ_CNTRL);
++
++		if (INTEL_GEN(dev_priv) >= 12)
++			aud_freq = AUD_FREQ_GEN12;
++		else
++			aud_freq = aud_freq_init;
++
++		/* use BIOS provided value for TGL unless it is a known bad value */
++		if (IS_TIGERLAKE(dev_priv) && aud_freq_init != AUD_FREQ_TGL_BROKEN)
++			aud_freq = aud_freq_init;
++
++		drm_dbg_kms(&dev_priv->drm, "use AUD_FREQ_CNTRL of 0x%x (init value 0x%x)\n",
++			    aud_freq, aud_freq_init);
++
++		dev_priv->audio_freq_cntrl = aud_freq;
+ 	}
+ 
+ 	dev_priv->audio_component_registered = true;
 
-> +		if (!i915_gem_object_trylock(obj))
-> +			return;
-> +
->  		map =3D i915_gem_object_pin_map(obj, type);
->  		if (!IS_ERR(map)) {
->  			memset(map, CONTEXT_REDZONE, obj->base.size);
->  			i915_gem_object_flush_map(obj);
->  			i915_gem_object_unpin_map(obj);
->  		}
-> +		i915_gem_object_unlock(obj);
->  	}
->  }
->  =
+base-commit: 9d58aa46291d4d696bb1eac3436d3118f7bf2573
+-- 
+2.29.2
 
-> -- =
-
-> 2.31.0
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
