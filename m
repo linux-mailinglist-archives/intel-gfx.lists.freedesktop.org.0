@@ -2,43 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FF123474C1
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 10:36:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 023023474F5
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 10:46:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5B286E96F;
-	Wed, 24 Mar 2021 09:36:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 420396E99C;
+	Wed, 24 Mar 2021 09:46:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAABD6E96F
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 09:36:06 +0000 (UTC)
-IronPort-SDR: ddI4KkaVOXPXH5sLHF9oovdzj1eaOHmUDsCeNnfMf4wk61ai3eRLQ26MMSglEdCtdTansEwyn/
- dR91Ft5cMycA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9932"; a="187356906"
-X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="187356906"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 02:36:06 -0700
-IronPort-SDR: hA502JpMEo52QvwAGSOp039ImxMzfZDWIHhiYwBQl+fhQC5a/OQp7NykFYuApzBRrPrGBmfo9E
- gFf+banr8W7g==
-X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="415405019"
-Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.252.163.96])
- ([10.252.163.96])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 02:36:04 -0700
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210127082437.31339-1-anshuman.gupta@intel.com>
- <20210127082437.31339-2-anshuman.gupta@intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <b1df0c61-9d6e-3a04-d22f-4a2c2a096df0@intel.com>
-Date: Wed, 24 Mar 2021 15:05:54 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B59BD6E99C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 09:46:43 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id x13so23718270wrs.9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 02:46:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=dd07koGZ5WAAGbgY9nn/FqFhw33nGGr/sbGQdd3IB0U=;
+ b=ldnyNXgo2zy1mxh6LmrH2QhlBdxxaGrAONi5ZajQ1VIdvKH8chB94Eu/1DQjNOVi28
+ TmgtkLlehMgKBDDigJE4vrAcifKu00557RUhh07JLBbfzE0t64YkVbggPkmY+oEGELEX
+ fXVlt7q0SmXsokVwWEfQIsuJtHTMCHisV+g3w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=dd07koGZ5WAAGbgY9nn/FqFhw33nGGr/sbGQdd3IB0U=;
+ b=OuybYsOMAruBPOezPQzNXtahXf3XhFGYGL72P8Wk0XBHdm1i7Ec9zYpnrjwGCqKB8j
+ lUlRmSNMjaWaJ8neWWfGT8OiD8W+sf5bqwtPYAHF+mMirgQTWfiRTx3pCCBOOUmBpltr
+ 8ZoiVRSEqP309zAfVmqDbu5/MQ8pRJEoRc95a9ph/VgNXSvSH80c6+xSODJtPpqroIS4
+ v6n87rHQuTWH/5lXpvVnHVEUbxEfZqBE6wzweagN2f+MpZoPSIiFAoNyS8fEUQ+YvYMU
+ HjrMNUz2Tvs+t/HL4/K3M69kpbE8kLQo4m9UJ0kEft5F9d02MgFrqHMz4Fk1Ideld3Ut
+ iFJg==
+X-Gm-Message-State: AOAM533l/GSBDnFsl5y22DwYVdLnHJ3mbUGdFEaj0Usxb6e+VhwcT2S7
+ Hnt+5P50H64Z5Nba5KpioyCnc+9B7ycgTz/y
+X-Google-Smtp-Source: ABdhPJzwFj7eejEMqprks9wbzL+FwiDMrPpLZ4krxZVUi8N8giCgMgObAZhX+Jhzr+AKX1GXnyDXGQ==
+X-Received: by 2002:a5d:638a:: with SMTP id p10mr2592629wru.286.1616579202354; 
+ Wed, 24 Mar 2021 02:46:42 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id f7sm1654435wmq.11.2021.03.24.02.46.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 24 Mar 2021 02:46:41 -0700 (PDT)
+Date: Wed, 24 Mar 2021 10:46:40 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YFsKgB5t5EOuMtnp@phenom.ffwll.local>
+References: <20210319223856.2983244-5-jason@jlekstrand.net>
+ <20210323175149.3390801-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-In-Reply-To: <20210127082437.31339-2-anshuman.gupta@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: Add DP HDCP2.2 timeout
- to read entire msg
+Content-Disposition: inline
+In-Reply-To: <20210323175149.3390801-1-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Implement SINGLE_TIMELINE with a
+ syncobj (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,173 +66,227 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Anshuman,
+On Tue, Mar 23, 2021 at 12:51:49PM -0500, Jason Ekstrand wrote:
+> This API is entirely unnecessary and I'd love to get rid of it.  If
+> userspace wants a single timeline across multiple contexts, they can
+> either use implicit synchronization or a syncobj, both of which existed
+> at the time this feature landed.  The justification given at the time
+> was that it would help GL drivers which are inherently single-timeline.
+> However, neither of our GL drivers actually wanted the feature.  i965
+> was already in maintenance mode at the time and iris uses syncobj for
+> everything.
+> 
+> Unfortunately, as much as I'd love to get rid of it, it is used by the
+> media driver so we can't do that.  We can, however, do the next-best
+> thing which is to embed a syncobj in the context and do exactly what
+> we'd expect from userspace internally.  This isn't an entirely identical
+> implementation because it's no longer atomic if userspace races with
+> itself by calling execbuffer2 twice simultaneously from different
+> threads.  It won't crash in that case; it just doesn't guarantee any
+> ordering between those two submits.
+> 
+> Moving SINGLE_TIMELINE to a syncobj emulation has a couple of technical
+> advantages beyond mere annoyance.  One is that intel_timeline is no
+> longer an api-visible object and can remain entirely an implementation
+> detail.  This may be advantageous as we make scheduler changes going
+> forward.  Second is that, together with deleting the CLONE_CONTEXT API,
+> we should now have a 1:1 mapping between intel_context and
+> intel_timeline which may help us reduce locking.
 
-Changes look good to me as per the Errata.
+Yeah I think this captures everything we need to say here.
 
-There are minor comments, inline:
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-On 1/27/2021 1:54 PM, Anshuman Gupta wrote:
-> As documented in HDCP 2.2 DP Errata spec transmitter should abort the
-> authentication protocol in case transmitter has not received the
-> entire {AKE_Send_Cert, AKE_Send_H_prime, AKE_Send_Paring_Info} msg
-> within {110,7,5} miliseconds.
->
-> Adding above msg timeout values and aborting the HDCP authentication
-> in case it timedout to read entire msg.
->
-> https://www.digital-cp.com/sites/default/files/HDCP%202_2_DisplayPort_Errata_v3_0.pdf
->
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+No full r-b because I have a pile of other things to do too.
+-Daniel
+
+> 
+> v2 (Jason Ekstrand):
+>  - Update the comment on i915_gem_context::syncobj to mention that it's
+>    an emulation and the possible race if userspace calls execbuffer2
+>    twice on the same context concurrently.
+>  - Wrap the checks for eb.gem_context->syncobj in unlikely()
+>  - Drop the dma_fence reference
+>  - Improved commit message
+> 
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 56 +++++++++++++-------
->   include/drm/drm_hdcp.h                       |  3 ++
->   2 files changed, 40 insertions(+), 19 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> index f372e25edab4..f7cc5cbcabc6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> @@ -292,39 +292,42 @@ struct hdcp2_dp_msg_data {
->   	u8 msg_id;
->   	u32 offset;
->   	bool msg_detectable;
-> +	bool msg_can_timedout;
-
-Perhaps we can just check if msg_read_timedout is not 0 , instead of 
-adding bool msg_can_timedout.
-
-
->   	u32 timeout;
->   	u32 timeout2; /* Added for non_paired situation */
-> +	/* Timeout to read entire msg */
-> +	u32 msg_read_timeout;
->   };
->   
->   static const struct hdcp2_dp_msg_data hdcp2_dp_msg_data[] = {
-> -	{ HDCP_2_2_AKE_INIT, DP_HDCP_2_2_AKE_INIT_OFFSET, false, 0, 0 },
-> +	{ HDCP_2_2_AKE_INIT, DP_HDCP_2_2_AKE_INIT_OFFSET, false, false, 0, 0, 0},
->   	{ HDCP_2_2_AKE_SEND_CERT, DP_HDCP_2_2_AKE_SEND_CERT_OFFSET,
-> -	  false, HDCP_2_2_CERT_TIMEOUT_MS, 0 },
-> +	  false, true, HDCP_2_2_CERT_TIMEOUT_MS, 0, HDCP_2_2_DP_CERT_READ_TIMEOUT_MS},
->   	{ HDCP_2_2_AKE_NO_STORED_KM, DP_HDCP_2_2_AKE_NO_STORED_KM_OFFSET,
-> -	  false, 0, 0 },
-> +	  false, false, 0, 0, 0 },
->   	{ HDCP_2_2_AKE_STORED_KM, DP_HDCP_2_2_AKE_STORED_KM_OFFSET,
-> -	  false, 0, 0 },
-> +	  false, false, 0, 0, 0 },
->   	{ HDCP_2_2_AKE_SEND_HPRIME, DP_HDCP_2_2_AKE_SEND_HPRIME_OFFSET,
-> -	  true, HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS,
-> -	  HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS },
-> +	  true, true, HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS,
-> +	  HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS, HDCP_2_2_DP_HPRIME_READ_TIMEOUT_MS},
->   	{ HDCP_2_2_AKE_SEND_PAIRING_INFO,
-> -	  DP_HDCP_2_2_AKE_SEND_PAIRING_INFO_OFFSET, true,
-> -	  HDCP_2_2_PAIRING_TIMEOUT_MS, 0 },
-> -	{ HDCP_2_2_LC_INIT, DP_HDCP_2_2_LC_INIT_OFFSET, false, 0, 0 },
-> +	  DP_HDCP_2_2_AKE_SEND_PAIRING_INFO_OFFSET, true, true,
-> +	  HDCP_2_2_PAIRING_TIMEOUT_MS, 0, HDCP_2_2_DP_PAIRING_READ_TIMEOUT_MS },
-> +	{ HDCP_2_2_LC_INIT, DP_HDCP_2_2_LC_INIT_OFFSET, false, false, 0, 0, 0 },
->   	{ HDCP_2_2_LC_SEND_LPRIME, DP_HDCP_2_2_LC_SEND_LPRIME_OFFSET,
-> -	  false, HDCP_2_2_DP_LPRIME_TIMEOUT_MS, 0 },
-> -	{ HDCP_2_2_SKE_SEND_EKS, DP_HDCP_2_2_SKE_SEND_EKS_OFFSET, false,
-> -	  0, 0 },
-> +	  false, false, HDCP_2_2_DP_LPRIME_TIMEOUT_MS, 0, 0 },
-> +	{ HDCP_2_2_SKE_SEND_EKS, DP_HDCP_2_2_SKE_SEND_EKS_OFFSET, false, false,
-> +	  0, 0, 0 },
->   	{ HDCP_2_2_REP_SEND_RECVID_LIST,
-> -	  DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET, true,
-> -	  HDCP_2_2_RECVID_LIST_TIMEOUT_MS, 0 },
-> -	{ HDCP_2_2_REP_SEND_ACK, DP_HDCP_2_2_REP_SEND_ACK_OFFSET, false,
-> -	  0, 0 },
-> +	  DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET, true, false,
-> +	  HDCP_2_2_RECVID_LIST_TIMEOUT_MS, 0, 0 },
-> +	{ HDCP_2_2_REP_SEND_ACK, DP_HDCP_2_2_REP_SEND_ACK_OFFSET, false, false,
-> +	  0, 0, 0 },
->   	{ HDCP_2_2_REP_STREAM_MANAGE,
-> -	  DP_HDCP_2_2_REP_STREAM_MANAGE_OFFSET, false,
-> -	  0, 0 },
-> +	  DP_HDCP_2_2_REP_STREAM_MANAGE_OFFSET, false, false,
-> +	  0, 0, 0},
->   	{ HDCP_2_2_REP_STREAM_READY, DP_HDCP_2_2_REP_STREAM_READY_OFFSET,
-> -	  false, HDCP_2_2_STREAM_READY_TIMEOUT_MS, 0 },
-> +	  false, false, HDCP_2_2_STREAM_READY_TIMEOUT_MS, 0, 0 },
->   /* local define to shovel this through the write_2_2 interface */
->   #define HDCP_2_2_ERRATA_DP_STREAM_TYPE	50
->   	{ HDCP_2_2_ERRATA_DP_STREAM_TYPE,
-> @@ -513,6 +516,8 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
->   	u8 *byte = buf;
->   	ssize_t ret, bytes_to_recv, len;
->   	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
-> +	ktime_t msg_end;
-> +	bool msg_expired;
->   
->   	hdcp2_msg_data = get_hdcp2_dp_msg_data(msg_id);
->   	if (!hdcp2_msg_data)
-> @@ -539,6 +544,11 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
->   		len = bytes_to_recv > DP_AUX_MAX_PAYLOAD_BYTES ?
->   		      DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_recv;
->   
-> +		/* Entire msg read timeout since initiate of msg read */
-> +		if (bytes_to_recv == size - 1)
-
-
-IMHO, we can add the check if msg_read_timeout > 0, so as to skip for 
-messages that do not have timeout requirement.
-
-
-> +			msg_end = ktime_add_ms(ktime_get_raw(),
-> +					       hdcp2_msg_data->msg_read_timeout);
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 47 ++++---------------
+>  .../gpu/drm/i915/gem/i915_gem_context_types.h | 14 +++++-
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 16 +++++++
+>  3 files changed, 39 insertions(+), 38 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index f88bac19333ec..e094f4a1ca4cd 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -67,6 +67,8 @@
+>  #include <linux/log2.h>
+>  #include <linux/nospec.h>
+>  
+> +#include <drm/drm_syncobj.h>
 > +
->   		ret = drm_dp_dpcd_read(&dig_port->dp.aux, offset,
->   				       (void *)byte, len);
->   		if (ret < 0) {
-> @@ -551,6 +561,14 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
->   		byte += ret;
->   		offset += ret;
->   	}
+>  #include "gt/gen6_ppgtt.h"
+>  #include "gt/intel_context.h"
+>  #include "gt/intel_engine_heartbeat.h"
+> @@ -224,10 +226,6 @@ static void intel_context_set_gem(struct intel_context *ce,
+>  		ce->vm = vm;
+>  	}
+>  
+> -	GEM_BUG_ON(ce->timeline);
+> -	if (ctx->timeline)
+> -		ce->timeline = intel_timeline_get(ctx->timeline);
+> -
+>  	if (ctx->sched.priority >= I915_PRIORITY_NORMAL &&
+>  	    intel_engine_has_timeslices(ce->engine))
+>  		__set_bit(CONTEXT_USE_SEMAPHORES, &ce->flags);
+> @@ -344,8 +342,8 @@ void i915_gem_context_release(struct kref *ref)
+>  	mutex_destroy(&ctx->engines_mutex);
+>  	mutex_destroy(&ctx->lut_mutex);
+>  
+> -	if (ctx->timeline)
+> -		intel_timeline_put(ctx->timeline);
+> +	if (ctx->syncobj)
+> +		drm_syncobj_put(ctx->syncobj);
+>  
+>  	put_pid(ctx->pid);
+>  	mutex_destroy(&ctx->mutex);
+> @@ -790,33 +788,11 @@ static void __assign_ppgtt(struct i915_gem_context *ctx,
+>  		i915_vm_close(vm);
+>  }
+>  
+> -static void __set_timeline(struct intel_timeline **dst,
+> -			   struct intel_timeline *src)
+> -{
+> -	struct intel_timeline *old = *dst;
+> -
+> -	*dst = src ? intel_timeline_get(src) : NULL;
+> -
+> -	if (old)
+> -		intel_timeline_put(old);
+> -}
+> -
+> -static void __apply_timeline(struct intel_context *ce, void *timeline)
+> -{
+> -	__set_timeline(&ce->timeline, timeline);
+> -}
+> -
+> -static void __assign_timeline(struct i915_gem_context *ctx,
+> -			      struct intel_timeline *timeline)
+> -{
+> -	__set_timeline(&ctx->timeline, timeline);
+> -	context_apply_all(ctx, __apply_timeline, timeline);
+> -}
+> -
+>  static struct i915_gem_context *
+>  i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+>  {
+>  	struct i915_gem_context *ctx;
+> +	int ret;
+>  
+>  	if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE &&
+>  	    !HAS_EXECLISTS(i915))
+> @@ -845,16 +821,13 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+>  	}
+>  
+>  	if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE) {
+> -		struct intel_timeline *timeline;
+> -
+> -		timeline = intel_timeline_create(&i915->gt);
+> -		if (IS_ERR(timeline)) {
+> +		ret = drm_syncobj_create(&ctx->syncobj,
+> +					 DRM_SYNCOBJ_CREATE_SIGNALED,
+> +					 NULL);
+> +		if (ret) {
+>  			context_close(ctx);
+> -			return ERR_CAST(timeline);
+> +			return ERR_PTR(ret);
+>  		}
+> -
+> -		__assign_timeline(ctx, timeline);
+> -		intel_timeline_put(timeline);
+>  	}
+>  
+>  	trace_i915_context_create(ctx);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> index 676592e27e7d2..df76767f0c41b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> @@ -83,7 +83,19 @@ struct i915_gem_context {
+>  	struct i915_gem_engines __rcu *engines;
+>  	struct mutex engines_mutex; /* guards writes to engines */
+>  
+> -	struct intel_timeline *timeline;
+> +	/**
+> +	 * @syncobj: Shared timeline syncobj
+> +	 *
+> +	 * When the SHARED_TIMELINE flag is set on context creation, we
+> +	 * emulate a single timeline across all engines using this syncobj.
+> +	 * For every execbuffer2 call, this syncobj is used as both an in-
+> +	 * and out-fence.  Unlike the real intel_timeline, this doesn't
+> +	 * provide perfect atomic in-order guarantees if the client races
+> +	 * with itself by calling execbuffer2 twice concurrently.  However,
+> +	 * if userspace races with itself, that's not likely to yield well-
+> +	 * defined results anyway so we choose to not care.
+> +	 */
+> +	struct drm_syncobj *syncobj;
+>  
+>  	/**
+>  	 * @vm: unique address space (GTT)
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 96403130a373d..2e9748c1edddf 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -3295,6 +3295,16 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  		goto err_vma;
+>  	}
+>  
+> +	if (unlikely(eb.gem_context->syncobj)) {
+> +		struct dma_fence *fence;
 > +
-> +	msg_expired = ktime_after(ktime_get_raw(), msg_end);
-> +	if (msg_expired && hdcp2_msg_data->msg_can_timedout) {
-
-As mentioned before, we can use msg_read_timeout here.
-
-
-Regards,
-
-Ankit
-
-> +		drm_dbg_kms(&i915->drm, "msg_id %d, entire msg read timeout(mSec): %d\n",
-> +			    msg_id, hdcp2_msg_data->msg_read_timeout);
-> +		return -ETIMEDOUT;
+> +		fence = drm_syncobj_fence_get(eb.gem_context->syncobj);
+> +		err = i915_request_await_dma_fence(eb.request, fence);
+> +		if (err)
+> +			goto err_ext;
+> +		dma_fence_put(fence);
 > +	}
 > +
->   	byte = buf;
->   	*byte = msg_id;
->   
-> diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
-> index ac22c246542a..2b165a0f434f 100644
-> --- a/include/drm/drm_hdcp.h
-> +++ b/include/drm/drm_hdcp.h
-> @@ -224,9 +224,12 @@ struct hdcp2_rep_stream_ready {
->   
->   /* HDCP2.2 TIMEOUTs in mSec */
->   #define HDCP_2_2_CERT_TIMEOUT_MS		100
-> +#define HDCP_2_2_DP_CERT_READ_TIMEOUT_MS	110
->   #define HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS	1000
->   #define HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS	200
-> +#define HDCP_2_2_DP_HPRIME_READ_TIMEOUT_MS	7
->   #define HDCP_2_2_PAIRING_TIMEOUT_MS		200
-> +#define HDCP_2_2_DP_PAIRING_READ_TIMEOUT_MS	5
->   #define	HDCP_2_2_HDMI_LPRIME_TIMEOUT_MS		20
->   #define HDCP_2_2_DP_LPRIME_TIMEOUT_MS		7
->   #define HDCP_2_2_RECVID_LIST_TIMEOUT_MS		3000
+>  	if (in_fence) {
+>  		if (args->flags & I915_EXEC_FENCE_SUBMIT)
+>  			err = i915_request_await_execution(eb.request,
+> @@ -3351,6 +3361,12 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  			fput(out_fence->file);
+>  		}
+>  	}
+> +
+> +	if (unlikely(eb.gem_context->syncobj)) {
+> +		drm_syncobj_replace_fence(eb.gem_context->syncobj,
+> +					  &eb.request->fence);
+> +	}
+> +
+>  	i915_request_put(eb.request);
+>  
+>  err_vma:
+> -- 
+> 2.29.2
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
