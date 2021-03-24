@@ -1,35 +1,69 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E58A7348A00
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 08:20:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D35BF34834A
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 21:58:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A34B46ECB1;
-	Thu, 25 Mar 2021 07:20:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2C296E1BC;
+	Wed, 24 Mar 2021 20:58:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 581 seconds by postgrey-1.36 at gabe;
- Wed, 24 Mar 2021 21:03:11 UTC
-Received: from mail.namei.org (namei.org [65.99.196.166])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72BB76E1BC;
- Wed, 24 Mar 2021 21:03:11 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by mail.namei.org (Postfix) with ESMTPS id 507624E1;
- Wed, 24 Mar 2021 20:50:33 +0000 (UTC)
-Date: Thu, 25 Mar 2021 07:50:33 +1100 (AEDT)
-From: James Morris <jmorris@namei.org>
-To: Arnd Bergmann <arnd@kernel.org>
-In-Reply-To: <20210322160253.4032422-4-arnd@kernel.org>
-Message-ID: <b8ebab59-1cec-42d-6fb9-44aa1a464ae2@namei.org>
-References: <20210322160253.4032422-1-arnd@kernel.org>
- <20210322160253.4032422-4-arnd@kernel.org>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 959276E1BC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 20:58:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1616619511;
+ h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type: content-transfer-encoding:content-transfer-encoding;
+ bh=wDpK0jU2adLTMsShi/tRLuaqod6dgo7/ErJCz2+WIZM=;
+ b=bjaN3MK3kdr+WR2p4c8S73du14lcAj1xqH6vvBqYPj1NeiUJ3uKcdG5FsFKE/3exa5ftlR
+ kO5BnM752xV1K2On2agcELbBThapR18P1KOYsRxttDp7HCuh8TJy/jsesMgZEgya9kgVx/
+ 4sv7VUse9C3mo9h4vQq4qiK0MG362uU=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-491-ngHVIGZxO7mwTW45pxLmpw-1; Wed, 24 Mar 2021 16:58:25 -0400
+X-MC-Unique: ngHVIGZxO7mwTW45pxLmpw-1
+Received: by mail-qv1-f70.google.com with SMTP id z5so2196902qvo.16
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 13:58:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
+ :organization:user-agent:mime-version:content-transfer-encoding;
+ bh=wDpK0jU2adLTMsShi/tRLuaqod6dgo7/ErJCz2+WIZM=;
+ b=r6JbhIUuhhMLanDsFKzuGCv8FQ8ysxqjEtiLPcye/Q42V8AOUkTuEY8P5IK2gFAG+T
+ YUwSIgj2w1Kk19IhMn77PpVo0L5+gtwb92+73DnHY9mFcNC+yMwCPOn81q1JbRXa+9Lz
+ vRCTDehwbII69wkJ6cx4ld8uOaL86PxJ+I6sw9o1yDpdqLh8MfvygOAJfYP7NrS5LOxq
+ KeQt6YbXL/tyW4g11I11C/38LKipuxwV6LrNcrbKl1za8TH9+qLKPyCIG8ug7bjHbLE3
+ 08/6ypQkt84bFVF7ZDaDBXCEXLp7/B3zXwhLKkzuFXmh7Ufynm5czkaWd7EcRs6UmYU7
+ BXWQ==
+X-Gm-Message-State: AOAM531rVVN51eIjoGMlOHBYsaFyrq3DY1YCG/6GSIegI0JvuaHgx8AV
+ gLojrxcsB2i9025Fs0zYIwbuTzZzZVwtBBfC2kJLaehOKwX5XvMrUsepr/8bHA+dIDgTxLV6wOM
+ jIr2aRUP4JB+zCxwhCsLPdKUVKtyT
+X-Received: by 2002:ac8:7d43:: with SMTP id h3mr4694727qtb.388.1616619504560; 
+ Wed, 24 Mar 2021 13:58:24 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzSTn2eQ9V18kRB76tQvlRAns2jg79GIZcv1/0glvorj3szTGYTXgIQB6NiHVlNxQ3CLGCDyQ==
+X-Received: by 2002:ac8:7d43:: with SMTP id h3mr4694721qtb.388.1616619504342; 
+ Wed, 24 Mar 2021 13:58:24 -0700 (PDT)
+Received: from Whitewolf.lyude.net
+ (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
+ by smtp.gmail.com with ESMTPSA id l129sm2569003qkd.76.2021.03.24.13.58.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 24 Mar 2021 13:58:23 -0700 (PDT)
+Message-ID: <dab3efecceb3e2ad2dc543a7c09fd9de0d55af2d.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Aaron Ma <aaron.ma@canonical.com>, Jani Nikula <jani.nikula@intel.com>
+Date: Wed, 24 Mar 2021 16:58:23 -0400
+Organization: Red Hat
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33)
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="1665246916-699807841-1616619033=:3443171"
-X-Mailman-Approved-At: Thu, 25 Mar 2021 07:20:42 +0000
-Subject: Re: [Intel-gfx] [PATCH 03/11] security: commoncap: fix
- -Wstringop-overread warning
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Intel-gfx] Regarding the laptop with the BOE panel with ID 2270
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,67 +76,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- Christian Brauner <christian.brauner@ubuntu.com>, linux-scsi@vger.kernel.org,
- x86@kernel.org, James Smart <james.smart@broadcom.com>,
- tboot-devel@lists.sourceforge.net, Kalle Valo <kvalo@codeaurora.org>,
- ath11k@lists.infradead.org, Serge Hallyn <serge@hallyn.com>,
- Miklos Szeredi <mszeredi@redhat.com>, Kees Cook <keescook@chromium.org>,
- Arnd Bergmann <arnd@arndb.de>, "James E.J. Bottomley" <jejb@linux.ibm.com>,
- Ning Sun <ning.sun@intel.com>, Anders Larsen <al@alarsen.net>,
- cgroups@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Martin Sebor <msebor@gcc.gnu.org>, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-security-module@vger.kernel.org,
- "Eric W. Biederman" <ebiederm@xmission.com>, Tejun Heo <tj@kernel.org>,
- Simon Kelley <simon@thekelleys.org.uk>, intel-gfx@lists.freedesktop.org,
- Tycho Andersen <tycho@tycho.pizza>
+Reply-To: lyude@redhat.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Hey Aaron! A while ago you submitted some patches for a machine that appears to
+have needed the VESA backlight interface in order to control the panel backlight
+on it:
 
---1665246916-699807841-1616619033=:3443171
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+https://patchwork.freedesktop.org/patch/394371/
 
-On Mon, 22 Mar 2021, Arnd Bergmann wrote:
+We're currently dealing with a different laptop where the machine advertises
+VESA backlight support, which we end up defaulting to after failing to probe for
+the Intel backlight interface, but this backlight interface appears to be
+broken:
 
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> gcc-11 introdces a harmless warning for cap_inode_getsecurity:
-> 
-> security/commoncap.c: In function ‘cap_inode_getsecurity’:
-> security/commoncap.c:440:33: error: ‘memcpy’ reading 16 bytes from a region of size 0 [-Werror=stringop-overread]
->   440 |                                 memcpy(&nscap->data, &cap->data, sizeof(__le32) * 2 * VFS_CAP_U32);
->       |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> The problem here is that tmpbuf is initialized to NULL, so gcc assumes
-> it is not accessible unless it gets set by vfs_getxattr_alloc().  This is
-> a legitimate warning as far as I can tell, but the code is correct since
-> it correctly handles the error when that function fails.
-> 
-> Add a separate NULL check to tell gcc about it as well.
-> 
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+https://gitlab.freedesktop.org/drm/intel/-/issues/3158
 
-Applied to
-git://git.kernel.org/pub/scm/linux/kernel/git/jmorris/linux-security.git fixes-v5.12
+The fix I was hoping to do was to just not attempt probing for the VESA
+backlight interface, but if we did that then it's possible that the backlight
+controls for the machine you submitted your patch for would stop working out of
+the box. However, it occurred to me that we never tried the Intel backlight
+interface on your machine - and if it works there, then we'd likely be able to
+require the VBT to advertise VESA support before using it and fix the machine in
+the gitlab issue I've linked.
 
+Do you think you could test this for us? If you build the latest kernel from
+drm-tip, the easiest way should be to boot up with
+"i915.enable_dpcd_backlight=3" and just see if your backlight controls still
+work as expected.
 -- 
-James Morris
-<jmorris@namei.org>
-
---1665246916-699807841-1616619033=:3443171
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Sincerely,
+   Lyude Paul (she/her)
+   Software Engineer at Red Hat
+   
+Note: I deal with a lot of emails and have a lot of bugs on my plate. If you've
+asked me a question, are waiting for a review/merge on a patch, etc. and I
+haven't responded in a while, please feel free to send me another email to check
+on my status. I don't bite!
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---1665246916-699807841-1616619033=:3443171--
