@@ -1,69 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D35BF34834A
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 21:58:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B9F34836F
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 22:10:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2C296E1BC;
-	Wed, 24 Mar 2021 20:58:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD7C96EA8D;
+	Wed, 24 Mar 2021 21:10:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 959276E1BC
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 20:58:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1616619511;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type: content-transfer-encoding:content-transfer-encoding;
- bh=wDpK0jU2adLTMsShi/tRLuaqod6dgo7/ErJCz2+WIZM=;
- b=bjaN3MK3kdr+WR2p4c8S73du14lcAj1xqH6vvBqYPj1NeiUJ3uKcdG5FsFKE/3exa5ftlR
- kO5BnM752xV1K2On2agcELbBThapR18P1KOYsRxttDp7HCuh8TJy/jsesMgZEgya9kgVx/
- 4sv7VUse9C3mo9h4vQq4qiK0MG362uU=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-491-ngHVIGZxO7mwTW45pxLmpw-1; Wed, 24 Mar 2021 16:58:25 -0400
-X-MC-Unique: ngHVIGZxO7mwTW45pxLmpw-1
-Received: by mail-qv1-f70.google.com with SMTP id z5so2196902qvo.16
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 13:58:24 -0700 (PDT)
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
+ [IPv6:2a00:1450:4864:20::32c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 443AA6EA44
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 21:10:48 +0000 (UTC)
+Received: by mail-wm1-x32c.google.com with SMTP id
+ z6-20020a1c4c060000b029010f13694ba2so18539wmf.5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 14:10:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Pjm3lSEUkPFnvj4h3fBO00NgJVgVJDDTyTJdMOuNubc=;
+ b=ESYUM2o75ZyedJVyltWn9GPRZKHp2ty46wRJVNV8BH1S8HOwY5RhvzDWqVJmWAvuJY
+ 8GbXJ6ouueJ76Tv4dymgqaF5DhFVs9g/uh+ozI8xQyEL8s2mVmOFt1R5VWHnz2leMVit
+ aw2LGfaKUS0YAXT3wEm/DnHmEs1X9CLy4D7zs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:reply-to:to:cc:date
- :organization:user-agent:mime-version:content-transfer-encoding;
- bh=wDpK0jU2adLTMsShi/tRLuaqod6dgo7/ErJCz2+WIZM=;
- b=r6JbhIUuhhMLanDsFKzuGCv8FQ8ysxqjEtiLPcye/Q42V8AOUkTuEY8P5IK2gFAG+T
- YUwSIgj2w1Kk19IhMn77PpVo0L5+gtwb92+73DnHY9mFcNC+yMwCPOn81q1JbRXa+9Lz
- vRCTDehwbII69wkJ6cx4ld8uOaL86PxJ+I6sw9o1yDpdqLh8MfvygOAJfYP7NrS5LOxq
- KeQt6YbXL/tyW4g11I11C/38LKipuxwV6LrNcrbKl1za8TH9+qLKPyCIG8ug7bjHbLE3
- 08/6ypQkt84bFVF7ZDaDBXCEXLp7/B3zXwhLKkzuFXmh7Ufynm5czkaWd7EcRs6UmYU7
- BXWQ==
-X-Gm-Message-State: AOAM531rVVN51eIjoGMlOHBYsaFyrq3DY1YCG/6GSIegI0JvuaHgx8AV
- gLojrxcsB2i9025Fs0zYIwbuTzZzZVwtBBfC2kJLaehOKwX5XvMrUsepr/8bHA+dIDgTxLV6wOM
- jIr2aRUP4JB+zCxwhCsLPdKUVKtyT
-X-Received: by 2002:ac8:7d43:: with SMTP id h3mr4694727qtb.388.1616619504560; 
- Wed, 24 Mar 2021 13:58:24 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzSTn2eQ9V18kRB76tQvlRAns2jg79GIZcv1/0glvorj3szTGYTXgIQB6NiHVlNxQ3CLGCDyQ==
-X-Received: by 2002:ac8:7d43:: with SMTP id h3mr4694721qtb.388.1616619504342; 
- Wed, 24 Mar 2021 13:58:24 -0700 (PDT)
-Received: from Whitewolf.lyude.net
- (pool-108-49-102-102.bstnma.fios.verizon.net. [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id l129sm2569003qkd.76.2021.03.24.13.58.23
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Pjm3lSEUkPFnvj4h3fBO00NgJVgVJDDTyTJdMOuNubc=;
+ b=HZs6Z5SAQemh+rkG0T1gDZ5eWEodrSmXL/3LZnD9I9C6AbXLCTuIzR4CydVZOy2AlL
+ FvC1cjkcTdahqT4bOJmKSUOGCcAJoxEnvkqYzGQqzXvAsDI48uRyQ3DTkCBNTiXvyRnG
+ AT0/XJa+qPtghTgkvYscBjFHJisC5D4rqrbvM7bUDG3A4weuhSN2B4Ux7+iMhiPSuIbg
+ Ml1yj/CBDRoeedqZtFMdoBGgMfLnVIkRFR/KbQ2Om/oUQtBuVII92kHANK93/ph0/+0N
+ NxpJuLyhy45gx/OLApSbUzejxxz226BtYlqE8nKX2yrywtn1DafTCO2Aqf1ER0SyRy/+
+ u9+A==
+X-Gm-Message-State: AOAM532v2oi0TbmL+syC8UMxdJY49Cuj15Ebu4LFH5YZgqnJC/l2FfMK
+ vU82Win9xQgm/yWD+lniPsOyrQ==
+X-Google-Smtp-Source: ABdhPJxR5joVKHRVShY0qhPx4p+Je9dDIF87SBRD5PyxhcUcGXNUN+xHEO7YiUMtfyq3uA/J2M9bKQ==
+X-Received: by 2002:a7b:c087:: with SMTP id r7mr4727280wmh.110.1616620246956; 
+ Wed, 24 Mar 2021 14:10:46 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id k4sm5343736wrd.9.2021.03.24.14.10.45
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Mar 2021 13:58:23 -0700 (PDT)
-Message-ID: <dab3efecceb3e2ad2dc543a7c09fd9de0d55af2d.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: Aaron Ma <aaron.ma@canonical.com>, Jani Nikula <jani.nikula@intel.com>
-Date: Wed, 24 Mar 2021 16:58:23 -0400
-Organization: Red Hat
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33)
+ Wed, 24 Mar 2021 14:10:46 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Wed, 24 Mar 2021 22:10:40 +0100
+Message-Id: <20210324211041.1354941-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: [Intel-gfx] Regarding the laptop with the BOE panel with ID 2270
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: add gem/gt TODO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,47 +62,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: lyude@redhat.com
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Dave Airlie <airlied@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey Aaron! A while ago you submitted some patches for a machine that appears to
-have needed the VESA backlight interface in order to control the panel backlight
-on it:
+We've discussed a bit how to get the gem/gt team better integrated
+and collaborate more with the wider community and agreed to the
+following:
 
-https://patchwork.freedesktop.org/patch/394371/
+- all gem/gt patches are reviewed on dri-devel for now. That's
+  overkill, but in the past there was definitely too little of that.
 
-We're currently dealing with a different laptop where the machine advertises
-VESA backlight support, which we end up defaulting to after failing to probe for
-the Intel backlight interface, but this backlight interface appears to be
-broken:
+- i915-gem folks are encouraged to cross review core patches from
+  other teams
 
-https://gitlab.freedesktop.org/drm/intel/-/issues/3158
+- big features (especially uapi changes) need to be discussed in an
+  rfc patch that documents the interface and big picture design,
+  before we get lost in the details of the code
 
-The fix I was hoping to do was to just not attempt probing for the VESA
-backlight interface, but if we did that then it's possible that the backlight
-controls for the machine you submitted your patch for would stop working out of
-the box. However, it occurred to me that we never tried the Intel backlight
-interface on your machine - and if it works there, then we'd likely be able to
-require the VBT to advertise VESA support before using it and fix the machine in
-the gitlab issue I've linked.
+- Also a rough TODO (can be refined as we go ofc) to get gem/gt back
+  on track, like we've e.g. done with DAL/DC to get that in shape.
 
-Do you think you could test this for us? If you build the latest kernel from
-drm-tip, the easiest way should be to boot up with
-"i915.enable_dpcd_backlight=3" and just see if your backlight controls still
-work as expected.
+v2:
+- add dma_fence annotations (Dave)
+- tasklet helpers (Jani on irc)
+
+There was also a discussion about moving these into gitlab issues, or
+gitlab issues as additional discussion place at least. For now it's
+just the TODO file
+
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jason Ekstrand <jason@jlekstrand.net>
+Cc: Dave Airlie <airlied@redhat.com>
+Acked-by: Dave Airlie <airlied@redhat.com>
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+---
+ drivers/gpu/drm/i915/TODO.txt | 41 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/TODO.txt
+
+diff --git a/drivers/gpu/drm/i915/TODO.txt b/drivers/gpu/drm/i915/TODO.txt
+new file mode 100644
+index 000000000000..81a82c9c203f
+--- /dev/null
++++ b/drivers/gpu/drm/i915/TODO.txt
+@@ -0,0 +1,41 @@
++gem/gt TODO items
++-----------------
++
++- For discrete memory manager, merge enough dg1 to be able to refactor it to
++  TTM. Then land pci ids (just in case that turns up an uapi problem). TTM has
++  improved a lot the past 2 years, there's no reason anymore not to use it.
++
++- Come up with a plan what to do with drm/scheduler and how to get there.
++
++- Roll out dma_fence critical section annotations.
++
++- There's a lot of complexity added past few years to make relocations faster.
++  That doesn't make sense given hw and gpu apis moved away from this model years
++  ago:
++  1. Land a modern pre-bound uapi like VM_BIND
++  2. Any complexity added in this area past few years which can't be justified
++  with VM_BIND using userspace should be removed. Looking at amdgpu dma_resv on
++  the bo and vm, plus some lru locks is all that needed. No complex rcu,
++  refcounts, caching, ... on everything.
++  This is the matching task on the vm side compared to ttm/dma_resv on the
++  backing storage side.
++
++- i915_sw_fence seems to be the main structure for the i915-gem dma_fence model.
++  How-to-dma_fence is core and drivers really shouldn't build their own world
++  here, treating everything else as a fixed platform. i915_sw_fence concepts
++  should be moved to dma_fence, drm/scheduler or atomic commit helpers. Or
++  removed if dri-devel consensus is that it's not a good idea. Once that's done
++  maybe even remove it if there's nothing left.
++
++Smaller things:
++- i915_utils.h needs to be moved to the right places.
++
++- dma_fence_work should be in drivers/dma-buf
++
++- i915_mm.c should be moved to the right places. Some of the helpers also look a
++  bit fishy:
++
++  https://lore.kernel.org/linux-mm/20210301083320.943079-1-hch@lst.de/
++
++- tasklet helpers in i915_gem.h also look a bit misplaced and should
++  probably be moved to tasklet headers.
 -- 
-Sincerely,
-   Lyude Paul (she/her)
-   Software Engineer at Red Hat
-   
-Note: I deal with a lot of emails and have a lot of bugs on my plate. If you've
-asked me a question, are waiting for a review/merge on a patch, etc. and I
-haven't responded in a while, please feel free to send me another email to check
-on my status. I don't bite!
+2.31.0
 
 _______________________________________________
 Intel-gfx mailing list
