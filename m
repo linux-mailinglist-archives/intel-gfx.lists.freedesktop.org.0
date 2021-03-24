@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1F133471F7
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 08:02:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00BE43471ED
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 07:57:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E935E89CAD;
-	Wed, 24 Mar 2021 07:02:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0355A6E98C;
+	Wed, 24 Mar 2021 06:57:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com
- [IPv6:2a00:1450:4864:20::630])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89FE589CAD;
- Wed, 24 Mar 2021 07:02:22 +0000 (UTC)
-Received: by mail-ej1-x630.google.com with SMTP id ce10so31087087ejb.6;
- Wed, 24 Mar 2021 00:02:22 -0700 (PDT)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1E776E98C;
+ Wed, 24 Mar 2021 06:57:37 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id z1so26395825edb.8;
+ Tue, 23 Mar 2021 23:57:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=4nP2sjxdIv+V7zOJ0GdZvSOpswpNmLx11k7HJ+bvJxk=;
- b=QvAU79pCBO+OQDfpn+xUY5yx++V0Ks5VP6K/O86bTfVDItoT42/06NiMeWV9tiei8W
- PVNx7w4yCT+TJKfioJxmgiMuUGKAp+jRwRBB9NRDpQsGvkdXeOYK09ZXqmp97mWdBv4W
- ZcICkmEpCRWPipZmcULSjDrmSAjPJWWa4Cq5/YTru2MWC1bVvfVaGeHNGwDyOxg/x6+8
- 03RqjoglLfGjh1a3lVfLBNz/cqGrriQbcYYqApkc+zeav6Fr+jpm78Nr4lmWjHg0jRWA
- npRrPT2N9JMPRK18nv71TSlII4zkq5c+CJSheXTRM4w2EHKmWLzUXvkmzhfA4ZQ0DTdb
- 806Q==
+ :cc; bh=jUHLlaX1OMcEX+7hwUCV5OUoSacAoX8aUCeag2OeSgo=;
+ b=XValwacryJ+5F8crFJE04X+dDf+TEhG+XkKzZb9hA3pejgNU/CdpbM5b0hIEi5JpRc
+ Eymaj682oQlzpXrRG8NVN8IBO7hvQ/HLm38BUGQgzkXxYZWTyuZqSxrGqj8AwV8EK/Yf
+ T9tOROEs2NuHGnYS3su/woSzNfslQ0v+TNRTarWXAQwfX7YEBHBfTlvc06VB5gPh/AJU
+ Bm6sMVva72TVNr5QFK0cLd0F4VLIK4hdVPbFoNWoRFSQzNE2M3SV2x24KUPLEGb9+z7Q
+ F0cJQW5rWIN1Ig+mq75+zYqb8rjlTYfFo7FMW69xzXTDio/0BDOMcmyV4iO63s2DTB/c
+ xdTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=4nP2sjxdIv+V7zOJ0GdZvSOpswpNmLx11k7HJ+bvJxk=;
- b=FsNQw3v+lceccHDa5DvCO/uDUmGhIG5orKNLaaPd8PrKQlTw2nGq69Mbf+jp+H1lTU
- tAIRzJx1E+6v3lpqmKECTJKRiBKXpV7c3BYlR5jUP1yUEvuJaQIVKQEvo7pWMoWjDtmZ
- 38VsXOf9at5mMqmsFJSaQ50wYB8MYiHCcSe392yudHGHHTmmXCKxZdvFQHLbPfKe721L
- XFhaV5DYL30eFEJg1dwGeY8Qb4x/dmVBPePQ6zf/ZfyqezZ7FU1hieWB93ceuyNT4xN7
- RG5jAUBX/95+aU8p3mu7QtPuyyZgDYjFCh84tdX3blonFGLjjvD46i1203FJLGWqNgum
- C8kw==
-X-Gm-Message-State: AOAM530H4LyV440ZMyjhKcsn/76H/VSiBd48L/vYCnNbmBnnmrOvKLFg
- SeusTq1ZB2Sp8dB0S6sluaj1vo7C+AWbdUQBjklsDYxg
-X-Google-Smtp-Source: ABdhPJwokLWdP5xYMSVLfBYxXbdntNqp0f6PT11epkzPIodULwpC23bGh6gmTKucCmzNm6zNQb3CupEPlTmURqzn/no=
-X-Received: by 2002:aa7:c88e:: with SMTP id p14mr1662803eds.119.1616567579852; 
- Tue, 23 Mar 2021 23:32:59 -0700 (PDT)
+ bh=jUHLlaX1OMcEX+7hwUCV5OUoSacAoX8aUCeag2OeSgo=;
+ b=jT46Y+nJOu054RynkweZNkCNm7VZ2RLCgnp7x+rINWOoB+EMSt3CBGLerC3vv48nEp
+ 1q8z2LkAp+vwI4Ddjzn+ODCk03vlik/cHyMlSH6ipGx+R1JLu+IOBhKW150dSUq7aFTl
+ icQBCGPWr+M/+Ufe+dIp4UfUxszFsYMkHAOd/Ki8iDnLCozEjeG8Y+sVaShAUfT9cPez
+ 1fpES3Dn/nBVUx3PcWdcZxhQ24eDrkotxrZhcPtayKxoGL29eBwovZ5Nc6ZpH2Fg5QdO
+ kYWS212ManSg9b9YR2ZdyFfLE8oHgTcTgqdCDRwIQnwGSJFLxZhBSB9cVgseSh9lbUOL
+ 6Chg==
+X-Gm-Message-State: AOAM531U/DloIi+zlaS7AnBI6mBwovtbuZUvvv/2ID4nN2bK5RvJBo9Q
+ nG/HBTnfQBMDjwndRaOe3b41jSTOTUPPiBnalqf2XsuX
+X-Google-Smtp-Source: ABdhPJyvW+V3BAMCMz8MYvdbOzYdQOS9CrKYneQ80P8dAGB9eTqpeLSprtLBpDt4Kt9YX2Y1fRNHWstfdZLKZAxQBlY=
+X-Received: by 2002:a17:906:ad96:: with SMTP id
+ la22mr2060614ejb.237.1616567697813; 
+ Tue, 23 Mar 2021 23:34:57 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210323084453.366863-1-daniel.vetter@ffwll.ch>
- <20210323084453.366863-2-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210323084453.366863-2-daniel.vetter@ffwll.ch>
+ <YFnqYj3geFFLFJac@phenom.ffwll.local>
+In-Reply-To: <YFnqYj3geFFLFJac@phenom.ffwll.local>
 From: Dave Airlie <airlied@gmail.com>
-Date: Wed, 24 Mar 2021 16:32:48 +1000
-Message-ID: <CAPM=9tyQ5=GWWPKzEYke4ARk0dNGqnZnpZAydXiM0nn0A8JxTQ@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/doc: Add RFC section
+Date: Wed, 24 Mar 2021 16:34:46 +1000
+Message-ID: <CAPM=9tyi3g_8hMPkGK+fSoMPxR-w6EzCh9iJpy4m1gCFb2z5Hg@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: add gem/gt TODO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,76 +64,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@intel.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Dave Airlie <airlied@redhat.com>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Dave Airlie <airlied@redhat.com>
+ Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 23 Mar 2021 at 18:45, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+On Tue, 23 Mar 2021 at 23:17, Daniel Vetter <daniel@ffwll.ch> wrote:
 >
-> Motivated by the pre-review process for i915 gem/gt features, but
-> probably useful in general for complex stuff.
->
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Jason Ekstrand <jason@jlekstrand.net>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> On Tue, Mar 23, 2021 at 09:44:52AM +0100, Daniel Vetter wrote:
+> > We've discussed a bit how to get the gem/gt team better integrated
+> > and collaborate more with the wider community and agreed to the
+> > following:
+> >
+> > - all gem/gt patches are reviewed on dri-devel for now. That's
+> >   overkill, but in the past there was definitely too little of that.
+> >
+> > - i915-gem folks are encouraged to cross review core patches from
+> >   other teams
+> >
+> > - big features (especially uapi changes) need to be discussed in an
+> >   rfc patch that documents the interface and big picture design,
+> >   before we get lost in the details of the code
+> >
+> > - Also a rough TODO (can be refined as we go ofc) to get gem/gt back
+> >   on track, like we've e.g. done with DAL/DC to get that in shape.
 
-Let's give it a try, I do like the future ideas of doing things with
-gitlab issues as well.
+I think we mentioned in the past about having better annotations for
+dma_fence critical sections,
 
-Acked-by: Dave Airlie <airlied@redhat.com>
-> ---
->  Documentation/gpu/index.rst |  1 +
->  Documentation/gpu/rfc.rst   | 16 ++++++++++++++++
->  2 files changed, 17 insertions(+)
->  create mode 100644 Documentation/gpu/rfc.rst
->
-> diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
-> index c9a51e3bfb5a..df58cb826d68 100644
-> --- a/Documentation/gpu/index.rst
-> +++ b/Documentation/gpu/index.rst
-> @@ -16,6 +16,7 @@ Linux GPU Driver Developer's Guide
->     vga-switcheroo
->     vgaarbiter
->     todo
-> +   rfc
->
->  .. only::  subproject and html
->
-> diff --git a/Documentation/gpu/rfc.rst b/Documentation/gpu/rfc.rst
-> new file mode 100644
-> index 000000000000..9d0ff2921af8
-> --- /dev/null
-> +++ b/Documentation/gpu/rfc.rst
-> @@ -0,0 +1,16 @@
-> +===============
-> +GPU RFC Section
-> +===============
-> +
-> +For complex work, especially new uapi, it is often good to nail the high level
-> +design issues before getting lost in the code details. This section is meant to
-> +host such documentation:
-> +
-> +* Each RFC should be a section in this file, explaining the goal and main design
-> +  considerations.
-> +
-> +* For uapi structures add a file to this directory with and then pull the
-> +  kerneldoc in like with real uapi headers.
-> +
-> +* Once the code has landed move all the documentation to the right places in
-> +  the main core, helper or driver sections.
-> --
-> 2.31.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Otherwise I think this is a great list to get us out of the woods and
+seeing how to move forward again.
+
+Dave.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
