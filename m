@@ -2,30 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A0EA347A7C
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 15:19:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC616347ADF
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 15:37:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A9306EBA7;
-	Wed, 24 Mar 2021 14:19:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E46A892C9;
+	Wed, 24 Mar 2021 14:37:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 934606EA0A;
- Wed, 24 Mar 2021 14:19:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8AA76A8169;
- Wed, 24 Mar 2021 14:19:41 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33D9F6EA0E;
+ Wed, 24 Mar 2021 14:37:19 +0000 (UTC)
+IronPort-SDR: rrz0eSjykUBm8lU5u1rGd466fmhE5YASFKiwrgLnVmrTuD/n+0SHudN52Foe6nDdhkcIm1DcRX
+ vyuczifN9Aog==
+X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="188414255"
+X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="188414255"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2021 07:37:18 -0700
+IronPort-SDR: q2dIgfJkIaJDycQPdKI/Vmr10WEOUDn8hG92lNmPYw32zKYHOUyPCnbTOLVK3T0gxqGJj1MxqN
+ 1NOg0jaZ4d+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="415514592"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga008.jf.intel.com with SMTP; 24 Mar 2021 07:37:15 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 24 Mar 2021 16:37:14 +0200
+Date: Wed, 24 Mar 2021 16:37:14 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <YFtOmoklro5vnQsH@intel.com>
+References: <20210302120040.94435-1-hdegoede@redhat.com>
+ <20210302120040.94435-3-hdegoede@redhat.com>
+ <YD5Q8mA6y4/qcelo@intel.com>
+ <d620fd9d-1685-3b2a-7c3b-a5d5fa6daddc@redhat.com>
+ <YFtGjHEdkMfR3bLr@intel.com>
+ <7d9bb155-5e07-161d-c699-581d89b9fb39@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kai Vehmanen" <kai.vehmanen@linux.intel.com>
-Date: Wed, 24 Mar 2021 14:19:41 -0000
-Message-ID: <161659558153.19034.10133003912898763147@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210324123725.4170214-1-kai.vehmanen@linux.intel.com>
-In-Reply-To: <20210324123725.4170214-1-kai.vehmanen@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/audio=3A_set_HDA_link_parameters_in_driver_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <7d9bb155-5e07-161d-c699-581d89b9fb39@redhat.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH resend 2/2] drm/i915/display: Make
+ vlv_find_free_pps() skip pipes which are in use for non DP purposes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,346 +55,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0377285246=="
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0377285246==
-Content-Type: multipart/alternative;
- boundary="===============3221942136942494843=="
+On Wed, Mar 24, 2021 at 03:10:59PM +0100, Hans de Goede wrote:
+> Hi,
+> =
 
---===============3221942136942494843==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> On 3/24/21 3:02 PM, Ville Syrj=E4l=E4 wrote:
+> > On Tue, Mar 23, 2021 at 11:39:09AM +0100, Hans de Goede wrote:
+> >> Hi,
+> >>
+> >> On 3/2/21 3:51 PM, Ville Syrj=E4l=E4 wrote:
+> >>> On Tue, Mar 02, 2021 at 01:00:40PM +0100, Hans de Goede wrote:
+> >>>> As explained by a long comment block, on VLV intel_setup_outputs()
+> >>>> sometimes thinks there might be an eDP panel connected while there i=
+s none.
+> >>>> In this case intel_setup_outputs() will call intel_dp_init() to chec=
+k.
+> >>>>
+> >>>> In this scenario vlv_find_free_pps() ends up selecting pipe A for th=
+e pps,
+> >>>> even though this might be in use for non DP purposes. When this is t=
+he case
+> >>>> then the assert_pipe() in vlv_force_pll_on() will fail when called f=
+rom
+> >>>> vlv_power_sequencer_kick().
+> >>>
+> >>> The idea is that you *can* select a PPS from a pipe used for a non-DP
+> >>> port since those don't care about the PPS stuff. So this doesn't seem
+> >>> correct.
+> >>
+> >> They may not care about the PPS stuff, but as the WARN / backtrace
+> >> shows if the DPLL_VCO_ENABLE bit is not already set for the pipe, while
+> >> the pipe is "otherwise" in use then vlv_force_pll_on() becomes unhappy
+> >> triggering the WARN.DPLL_VCO_ENABLE bit is not
+> >>
+> >>> a) I would like to see the VBT for this machine
+> >>
+> >> https://fedorapeople.org/~jwrdegoede/voyo-winpad-a15-vbt
+> >>
+> >>> b) I wonder if the DSI PLL is sufficient for getting the PPS going?
+> >>
+> >> I have no idea, I just noticed the WARN / backtrace and this seemed
+> >> like a reasonably way to deal with it. With that said I'm fine with fi=
+xing
+> >> this a different way.
+> >>
+> >>> c) If we do need the normal DPLL is there any harm to DSI in enabling=
+ it?
+> >>
+> >> I would assume this increases power-consumption and DSI panels are alm=
+ost
+> >> always used in battery powered devices.
+> > =
 
-== Series Details ==
+> > This is just used while probing the panel, so power consumption is
+> > not a concern.
+> =
 
-Series: drm/i915/audio: set HDA link parameters in driver (rev2)
-URL   : https://patchwork.freedesktop.org/series/87040/
-State : success
+> Sorry I misinterpreted what you wrote, I interpreted it as have the DSI
+> code enable it to avoid this problem. I see now that that is now what
+> you meant.
+> =
 
-== Summary ==
+> >> Also this would impact all BYT/CHT devices, possible triggering unwant=
+ed
+> >> side-effects. Where as the proposed fix below is much more narrowly ta=
+rgeted
+> >> at the problem. It might not be the most pretty fix but AFAICT it has =
+a low
+> >> risk of causing regressions.
+> > =
 
-CI Bug Log - changes from CI_DRM_9889 -> Patchwork_19848
-====================================================
+> > It rather significantly changes the logic of the workaround, potentially
+> > causing us to not find a free PPS at all. Eg. if you were to boot with
+> > a VLV with pipe A -> eDP B + eDP C inactive + pipe B -> VGA then your
+> > change would cause us to not find the free pipe B PPS for probing eDP C,
+> > and in the end we'd get a WARN and fall back to pipe A PPS which would
+> > clobber the actually in use pipe A PPS.
+> =
 
-Summary
--------
+> I would welcome, and will happily test, another fix for this. ATM we
+> have a WARN triggering on actual hardware (and not just in a hypothetical
+> example) and I would like to see that WARN fixed. If you can come up with
+> a better fix I would be happy to test.
 
-  **SUCCESS**
+Well, I think there are a couple things we want to experiment wiht:
 
-  No regressions found.
+a) Just skip the asserts and see if enabling the DPLL/poking the PPS
+   perturbs the DSI output in any way.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/index.html
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -1467,7 +1467,7 @@ void vlv_enable_pll(struct intel_crtc *crtc,
+ 	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+ 	enum pipe pipe =3D crtc->pipe;
+ =
 
-Known issues
-------------
+-	assert_pipe_disabled(dev_priv, pipe_config->cpu_transcoder);
++	//assert_pipe_disabled(dev_priv, pipe_config->cpu_transcoder);
+ =
 
-  Here are the changes found in Patchwork_19848 that come from known issues:
+ 	/* PLL is protected by panel, make sure we can write it */
+ 	assert_panel_unlocked(dev_priv, pipe);
+@@ -1800,7 +1800,7 @@ void vlv_disable_pll(struct drm_i915_private *dev_pri=
+v, enum pipe pipe)
+ 	u32 val;
+ =
 
-### IGT changes ###
+ 	/* Make sure the pipe isn't still relying on us */
+-	assert_pipe_disabled(dev_priv, (enum transcoder)pipe);
++	//assert_pipe_disabled(dev_priv, (enum transcoder)pipe);
+ =
 
-#### Issues hit ####
+ 	val =3D DPLL_INTEGRATED_REF_CLK_VLV |
+ 		DPLL_REF_CLK_ENABLE_VLV | DPLL_VGA_MODE_DIS;
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -110,6 +110,8 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
+ 	intel_de_write(dev_priv, intel_dp->output_reg, DP & ~DP_PORT_EN);
+ 	intel_de_posting_read(dev_priv, intel_dp->output_reg);
+ =
 
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-bsw-kefka:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +26 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][3] ([i915#2283])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][4] ([fdo#109271]) +27 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html
-    - fi-skl-guc:         NOTRUN -> [SKIP][5] ([fdo#109271] / [i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-skl-guc/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_tiled_blits@basic:
-    - fi-kbl-8809g:       [PASS][6] -> [TIMEOUT][7] ([i915#2502] / [i915#3145])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-kbl-8809g/igt@gem_tiled_blits@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-kbl-8809g/igt@gem_tiled_blits@basic.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-tgl-u2:          [PASS][8] -> [FAIL][9] ([i915#579])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-tgl-u2:          [PASS][10] -> [DMESG-WARN][11] ([i915#3240])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-tgl-u2:          [PASS][12] -> [DMESG-WARN][13] ([i915#2867]) +15 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-u2/igt@i915_selftest@live@workarounds.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-u2/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-skl-guc:         NOTRUN -> [SKIP][14] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-skl-guc/igt@kms_chamelium@dp-crc-fast.html
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][15] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-byt-j1900:       NOTRUN -> [SKIP][16] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-skl-guc:         NOTRUN -> [SKIP][17] ([fdo#109271] / [i915#533])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-skl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-skl-guc:         NOTRUN -> [SKIP][18] ([fdo#109271]) +25 similar issues
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-skl-guc/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@prime_vgem@basic-read:
-    - fi-tgl-y:           [PASS][19] -> [DMESG-WARN][20] ([i915#402]) +2 similar issues
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-y/igt@prime_vgem@basic-read.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-y/igt@prime_vgem@basic-read.html
-
-  * igt@runner@aborted:
-    - fi-kbl-guc:         NOTRUN -> [FAIL][21] ([i915#2426])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-kbl-guc/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-kbl-8809g:       [TIMEOUT][22] ([i915#3145]) -> [PASS][23]
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][24] ([i915#402]) -> [PASS][25] +1 similar issue
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2502]: https://gitlab.freedesktop.org/drm/intel/issues/2502
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3145]: https://gitlab.freedesktop.org/drm/intel/issues/3145
-  [i915#3240]: https://gitlab.freedesktop.org/drm/intel/issues/3240
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
++	msleep(1000); // just to make sure we keep angering DSI for a bit longer
++
+ 	if (!pll_enabled) {
+ 		vlv_force_pll_off(dev_priv, pipe);
+ =
 
 
-Participating hosts (46 -> 43)
-------------------------------
+b) Don't enable the DPLL at all and see if the DSI PLL is capable of
+   clocking the PPS. My gut feeling says this will not work and we
+   should see the PPS state machine not make progress, but not sure.
 
-  Additional (2): fi-byt-j1900 fi-skl-guc 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -77,7 +77,7 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
+ 	else
+ 		DP |=3D DP_PIPE_SEL(pipe);
+ =
 
+-	pll_enabled =3D intel_de_read(dev_priv, DPLL(pipe)) & DPLL_VCO_ENABLE;
++	pll_enabled =3D true;//intel_de_read(dev_priv, DPLL(pipe)) & DPLL_VCO_ENA=
+BLE;
+ =
 
-Build changes
--------------
+ 	/*
+ 	 * The DPLL for the pipe must be enabled for this to work.
 
-  * Linux: CI_DRM_9889 -> Patchwork_19848
+I do have DSI VLV machine at the office, so I can also try to poke it a
+bit next time I'm at the office.
 
-  CI-20190529: 20190529
-  CI_DRM_9889: c42d2e7296ecebf00ae234a847059cc92e41a86c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6044: 2c2fc6470646eb5e25fc6ea02449ef744f8b70c2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19848: 4d4322ec80e5024cd74b26ad0af9c54c1ebfacf5 @ git://anongit.freedesktop.org/gfx-ci/linux
+-- =
 
-
-== Linux commits ==
-
-4d4322ec80e5 drm/i915/audio: set HDA link parameters in driver
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/index.html
-
---===============3221942136942494843==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/audio: set HDA link parameters in driver (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87040/">https://patchwork.freedesktop.org/series/87040/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9889 -&gt; Patchwork_19848</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19848 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +26 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-byt-j1900/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</p>
-</li>
-<li>
-<p>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-skl-guc/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-kbl-8809g/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-kbl-8809g/igt@gem_tiled_blits@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2502">i915#2502</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-u2/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/579">i915#579</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-u2/igt@i915_selftest@live@gem_contexts.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3240">i915#3240</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-u2/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-u2/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) +15 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>
-<p>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-skl-guc/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-byt-j1900:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-byt-j1900/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-skl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-skl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-skl-guc/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +25 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-read:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-y/igt@prime_vgem@basic-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-y/igt@prime_vgem@basic-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-kbl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3145">i915#3145</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-kbl-8809g/igt@gem_exec_gttfill@basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9889/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19848/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (46 -&gt; 43)</h2>
-<p>Additional (2): fi-byt-j1900 fi-skl-guc <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9889 -&gt; Patchwork_19848</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9889: c42d2e7296ecebf00ae234a847059cc92e41a86c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6044: 2c2fc6470646eb5e25fc6ea02449ef744f8b70c2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19848: 4d4322ec80e5024cd74b26ad0af9c54c1ebfacf5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4d4322ec80e5 drm/i915/audio: set HDA link parameters in driver</p>
-
-</body>
-</html>
-
---===============3221942136942494843==--
-
---===============0377285246==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0377285246==--
