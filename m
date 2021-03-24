@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 877273474AD
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 10:31:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FF123474C1
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Mar 2021 10:36:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 692BD6E96F;
-	Wed, 24 Mar 2021 09:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5B286E96F;
+	Wed, 24 Mar 2021 09:36:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A731E6E96F;
- Wed, 24 Mar 2021 09:31:30 +0000 (UTC)
-IronPort-SDR: hd/hJc4lFZhqIx7TCKrOsJkfOE38LRhhLKrruHIm4ddJTFg2nGXD50h4unR2s2ro8jjO0SJkJp
- EG9k/M4xMYbg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9932"; a="190763690"
-X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="190763690"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 02:31:29 -0700
-IronPort-SDR: osiqi2rKkXCRXZhXogspV95daKSdAijpnuKsZ+nz+s8FyR7oI2YV8z7WIlChCAqAdakOcpkCH1
- dPoFmCpsTDvw==
-X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="408759122"
-Received: from gluca-mobl.ger.corp.intel.com (HELO [10.252.39.217])
- ([10.252.39.217])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 02:31:28 -0700
-To: Matthew Auld <matthew.william.auld@gmail.com>
-References: <20210323155059.628690-1-maarten.lankhorst@linux.intel.com>
- <20210323155059.628690-69-maarten.lankhorst@linux.intel.com>
- <CAM0jSHPL44qRd7dybPmmEz-8pr8xS0d9VXhRYm8iNj3YyX7h-A@mail.gmail.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <79e6f35b-0df6-0f45-e349-8f49529f7382@linux.intel.com>
-Date: Wed, 24 Mar 2021 10:31:26 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAABD6E96F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Mar 2021 09:36:06 +0000 (UTC)
+IronPort-SDR: ddI4KkaVOXPXH5sLHF9oovdzj1eaOHmUDsCeNnfMf4wk61ai3eRLQ26MMSglEdCtdTansEwyn/
+ dR91Ft5cMycA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9932"; a="187356906"
+X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="187356906"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2021 02:36:06 -0700
+IronPort-SDR: hA502JpMEo52QvwAGSOp039ImxMzfZDWIHhiYwBQl+fhQC5a/OQp7NykFYuApzBRrPrGBmfo9E
+ gFf+banr8W7g==
+X-IronPort-AV: E=Sophos;i="5.81,274,1610438400"; d="scan'208";a="415405019"
+Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.252.163.96])
+ ([10.252.163.96])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2021 02:36:04 -0700
+To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210127082437.31339-1-anshuman.gupta@intel.com>
+ <20210127082437.31339-2-anshuman.gupta@intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Message-ID: <b1df0c61-9d6e-3a04-d22f-4a2c2a096df0@intel.com>
+Date: Wed, 24 Mar 2021 15:05:54 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <CAM0jSHPL44qRd7dybPmmEz-8pr8xS0d9VXhRYm8iNj3YyX7h-A@mail.gmail.com>
+In-Reply-To: <20210127082437.31339-2-anshuman.gupta@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v9 68/70] drm/i915: Pass ww ctx to pin_map
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: Add DP HDCP2.2 timeout
+ to read entire msg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,169 +51,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 23-03-2021 om 18:30 schreef Matthew Auld:
-> On Tue, 23 Mar 2021 at 15:51, Maarten Lankhorst
-> <maarten.lankhorst@linux.intel.com> wrote:
->> This will allow us to explicitly pass the ww to pin_pages,
->> when it starts taking it.
->>
->> This allows us to finally kill off the explicit passing of ww
->> by retrieving it from the obj.
->>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  7 ++++---
->>  drivers/gpu/drm/i915/gem/i915_gem_mman.c      |  2 +-
->>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  1 +
->>  .../gpu/drm/i915/gem/i915_gem_object_blt.c    |  4 ++--
->>  drivers/gpu/drm/i915/gem/i915_gem_pages.c     | 21 +++++++++++++++----
->>  .../drm/i915/gem/selftests/i915_gem_context.c |  8 ++++---
->>  .../drm/i915/gem/selftests/i915_gem_dmabuf.c  |  2 +-
->>  drivers/gpu/drm/i915/gt/gen7_renderclear.c    |  2 +-
->>  drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
->>  drivers/gpu/drm/i915/gt/intel_engine_pm.c     |  2 +-
->>  drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 ++--
->>  drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 +-
->>  drivers/gpu/drm/i915/gt/intel_ring.c          |  2 +-
->>  .../gpu/drm/i915/gt/intel_ring_submission.c   |  2 +-
->>  drivers/gpu/drm/i915/gt/intel_timeline.c      |  7 ++++---
->>  drivers/gpu/drm/i915/gt/intel_timeline.h      |  3 ++-
->>  drivers/gpu/drm/i915/gt/intel_workarounds.c   |  2 +-
->>  drivers/gpu/drm/i915/gt/mock_engine.c         |  2 +-
->>  drivers/gpu/drm/i915/gt/selftest_lrc.c        |  2 +-
->>  drivers/gpu/drm/i915/gt/selftest_rps.c        | 10 ++++-----
->>  .../gpu/drm/i915/gt/selftest_workarounds.c    |  6 +++---
->>  drivers/gpu/drm/i915/gvt/cmd_parser.c         |  4 ++--
->>  drivers/gpu/drm/i915/i915_perf.c              |  4 ++--
->>  drivers/gpu/drm/i915/selftests/igt_spinner.c  |  2 +-
->>  24 files changed, 60 insertions(+), 43 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> index dcfcae9c841b..73dd2a7673f5 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
->> @@ -1340,7 +1340,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
->>         if (err)
->>                 goto err_pool;
->>
->> -       cmd = i915_gem_object_pin_map(pool->obj, pool->type);
->> +       cmd = i915_gem_object_pin_map(pool->obj, &eb->ww, pool->type);
->>         if (IS_ERR(cmd)) {
->>                 err = PTR_ERR(cmd);
->>                 goto err_pool;
->> @@ -2489,7 +2489,8 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
->>                         goto err_shadow;
->>         }
->>
->> -       pw->shadow_map = i915_gem_object_pin_map(shadow->obj, I915_MAP_WB);
->> +       pw->shadow_map = i915_gem_object_pin_map(shadow->obj, &eb->ww,
->> +                                                I915_MAP_WB);
->>         if (IS_ERR(pw->shadow_map)) {
->>                 err = PTR_ERR(pw->shadow_map);
->>                 goto err_trampoline;
->> @@ -2500,7 +2501,7 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
->>
->>         pw->batch_map = ERR_PTR(-ENODEV);
->>         if (needs_clflush && i915_has_memcpy_from_wc())
->> -               pw->batch_map = i915_gem_object_pin_map(batch, I915_MAP_WC);
->> +               pw->batch_map = i915_gem_object_pin_map(batch, &eb->ww, I915_MAP_WC);
->>
->>         if (IS_ERR(pw->batch_map)) {
->>                 err = i915_gem_object_pin_pages(batch);
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->> index 2561a2f1e54f..edac8ee3be9a 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
->> @@ -439,7 +439,7 @@ vm_access(struct vm_area_struct *area, unsigned long addr,
->>                 goto out;
->>
->>         /* As this is primarily for debugging, let's focus on simplicity */
->> -       vaddr = i915_gem_object_pin_map(obj, I915_MAP_FORCE_WC);
->> +       vaddr = i915_gem_object_pin_map(obj, &ww, I915_MAP_FORCE_WC);
->>         if (IS_ERR(vaddr)) {
->>                 err = PTR_ERR(vaddr);
->>                 goto out;
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> index 1a8ec4035112..9bd9b47dcc8d 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
->> @@ -450,6 +450,7 @@ void i915_gem_object_writeback(struct drm_i915_gem_object *obj);
->>   * ERR_PTR() on error.
->>   */
->>  void *__must_check i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
->> +                                          struct i915_gem_ww_ctx *ww,
->>                                            enum i915_map_type type);
->>
->>  void *__must_check i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
->> index df8e8c18c6c9..fae18622d2da 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
->> @@ -58,7 +58,7 @@ struct i915_vma *intel_emit_vma_fill_blt(struct intel_context *ce,
->>         /* we pinned the pool, mark it as such */
->>         intel_gt_buffer_pool_mark_used(pool);
->>
->> -       cmd = i915_gem_object_pin_map(pool->obj, pool->type);
->> +       cmd = i915_gem_object_pin_map(pool->obj, ww, pool->type);
->>         if (IS_ERR(cmd)) {
->>                 err = PTR_ERR(cmd);
->>                 goto out_unpin;
->> @@ -283,7 +283,7 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
->>         /* we pinned the pool, mark it as such */
->>         intel_gt_buffer_pool_mark_used(pool);
->>
->> -       cmd = i915_gem_object_pin_map(pool->obj, pool->type);
->> +       cmd = i915_gem_object_pin_map(pool->obj, ww, pool->type);
->>         if (IS_ERR(cmd)) {
->>                 err = PTR_ERR(cmd);
->>                 goto out_unpin;
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_pages.c b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
->> index 58e222030e10..232832398457 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_pages.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_pages.c
->> @@ -341,6 +341,7 @@ static void *i915_gem_object_map_pfn(struct drm_i915_gem_object *obj,
->>
->>  /* get, pin, and map the pages of the object into kernel space */
->>  void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
->> +                             struct i915_gem_ww_ctx *ww,
->>                               enum i915_map_type type)
->>  {
->>         enum i915_map_type has_type;
->> @@ -408,13 +409,25 @@ void *i915_gem_object_pin_map(struct drm_i915_gem_object *obj,
->>  void *i915_gem_object_pin_map_unlocked(struct drm_i915_gem_object *obj,
->>                                        enum i915_map_type type)
->>  {
->> +       struct i915_gem_ww_ctx ww;
->>         void *ret;
->> +       int err;
->>
->> -       i915_gem_object_lock(obj, NULL);
->> -       ret = i915_gem_object_pin_map(obj, type);
->> -       i915_gem_object_unlock(obj);
->> +       i915_gem_ww_ctx_init(&ww, true);
->> +retry:
->> +       err = i915_gem_object_lock(obj, &ww);
->> +       if (!err)
->> +               ret = i915_gem_object_pin_map(obj, &ww, type);
->> +       if (IS_ERR(ret))
-> This looks a little dodgy, since ret might not be initialized here,
-> say if we encounter an error when grabbing the lock?
+Hi Anshuman,
+
+Changes look good to me as per the Errata.
+
+There are minor comments, inline:
+
+On 1/27/2021 1:54 PM, Anshuman Gupta wrote:
+> As documented in HDCP 2.2 DP Errata spec transmitter should abort the
+> authentication protocol in case transmitter has not received the
+> entire {AKE_Send_Cert, AKE_Send_H_prime, AKE_Send_Paring_Info} msg
+> within {110,7,5} miliseconds.
 >
-> Also maybe s/ret/ptr/? Seeing ret makes me think it's a plain integer.
+> Adding above msg timeout values and aborting the HDCP authentication
+> in case it timedout to read entire msg.
+>
+> https://www.digital-cp.com/sites/default/files/HDCP%202_2_DisplayPort_Errata_v3_0.pdf
+>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 56 +++++++++++++-------
+>   include/drm/drm_hdcp.h                       |  3 ++
+>   2 files changed, 40 insertions(+), 19 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> index f372e25edab4..f7cc5cbcabc6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> @@ -292,39 +292,42 @@ struct hdcp2_dp_msg_data {
+>   	u8 msg_id;
+>   	u32 offset;
+>   	bool msg_detectable;
+> +	bool msg_can_timedout;
 
-Ack, good catch!
+Perhaps we can just check if msg_read_timedout is not 0 , instead of 
+adding bool msg_can_timedout.
 
-Will send a new version to fix it.
 
-~Maarten
+>   	u32 timeout;
+>   	u32 timeout2; /* Added for non_paired situation */
+> +	/* Timeout to read entire msg */
+> +	u32 msg_read_timeout;
+>   };
+>   
+>   static const struct hdcp2_dp_msg_data hdcp2_dp_msg_data[] = {
+> -	{ HDCP_2_2_AKE_INIT, DP_HDCP_2_2_AKE_INIT_OFFSET, false, 0, 0 },
+> +	{ HDCP_2_2_AKE_INIT, DP_HDCP_2_2_AKE_INIT_OFFSET, false, false, 0, 0, 0},
+>   	{ HDCP_2_2_AKE_SEND_CERT, DP_HDCP_2_2_AKE_SEND_CERT_OFFSET,
+> -	  false, HDCP_2_2_CERT_TIMEOUT_MS, 0 },
+> +	  false, true, HDCP_2_2_CERT_TIMEOUT_MS, 0, HDCP_2_2_DP_CERT_READ_TIMEOUT_MS},
+>   	{ HDCP_2_2_AKE_NO_STORED_KM, DP_HDCP_2_2_AKE_NO_STORED_KM_OFFSET,
+> -	  false, 0, 0 },
+> +	  false, false, 0, 0, 0 },
+>   	{ HDCP_2_2_AKE_STORED_KM, DP_HDCP_2_2_AKE_STORED_KM_OFFSET,
+> -	  false, 0, 0 },
+> +	  false, false, 0, 0, 0 },
+>   	{ HDCP_2_2_AKE_SEND_HPRIME, DP_HDCP_2_2_AKE_SEND_HPRIME_OFFSET,
+> -	  true, HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS,
+> -	  HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS },
+> +	  true, true, HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS,
+> +	  HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS, HDCP_2_2_DP_HPRIME_READ_TIMEOUT_MS},
+>   	{ HDCP_2_2_AKE_SEND_PAIRING_INFO,
+> -	  DP_HDCP_2_2_AKE_SEND_PAIRING_INFO_OFFSET, true,
+> -	  HDCP_2_2_PAIRING_TIMEOUT_MS, 0 },
+> -	{ HDCP_2_2_LC_INIT, DP_HDCP_2_2_LC_INIT_OFFSET, false, 0, 0 },
+> +	  DP_HDCP_2_2_AKE_SEND_PAIRING_INFO_OFFSET, true, true,
+> +	  HDCP_2_2_PAIRING_TIMEOUT_MS, 0, HDCP_2_2_DP_PAIRING_READ_TIMEOUT_MS },
+> +	{ HDCP_2_2_LC_INIT, DP_HDCP_2_2_LC_INIT_OFFSET, false, false, 0, 0, 0 },
+>   	{ HDCP_2_2_LC_SEND_LPRIME, DP_HDCP_2_2_LC_SEND_LPRIME_OFFSET,
+> -	  false, HDCP_2_2_DP_LPRIME_TIMEOUT_MS, 0 },
+> -	{ HDCP_2_2_SKE_SEND_EKS, DP_HDCP_2_2_SKE_SEND_EKS_OFFSET, false,
+> -	  0, 0 },
+> +	  false, false, HDCP_2_2_DP_LPRIME_TIMEOUT_MS, 0, 0 },
+> +	{ HDCP_2_2_SKE_SEND_EKS, DP_HDCP_2_2_SKE_SEND_EKS_OFFSET, false, false,
+> +	  0, 0, 0 },
+>   	{ HDCP_2_2_REP_SEND_RECVID_LIST,
+> -	  DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET, true,
+> -	  HDCP_2_2_RECVID_LIST_TIMEOUT_MS, 0 },
+> -	{ HDCP_2_2_REP_SEND_ACK, DP_HDCP_2_2_REP_SEND_ACK_OFFSET, false,
+> -	  0, 0 },
+> +	  DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET, true, false,
+> +	  HDCP_2_2_RECVID_LIST_TIMEOUT_MS, 0, 0 },
+> +	{ HDCP_2_2_REP_SEND_ACK, DP_HDCP_2_2_REP_SEND_ACK_OFFSET, false, false,
+> +	  0, 0, 0 },
+>   	{ HDCP_2_2_REP_STREAM_MANAGE,
+> -	  DP_HDCP_2_2_REP_STREAM_MANAGE_OFFSET, false,
+> -	  0, 0 },
+> +	  DP_HDCP_2_2_REP_STREAM_MANAGE_OFFSET, false, false,
+> +	  0, 0, 0},
+>   	{ HDCP_2_2_REP_STREAM_READY, DP_HDCP_2_2_REP_STREAM_READY_OFFSET,
+> -	  false, HDCP_2_2_STREAM_READY_TIMEOUT_MS, 0 },
+> +	  false, false, HDCP_2_2_STREAM_READY_TIMEOUT_MS, 0, 0 },
+>   /* local define to shovel this through the write_2_2 interface */
+>   #define HDCP_2_2_ERRATA_DP_STREAM_TYPE	50
+>   	{ HDCP_2_2_ERRATA_DP_STREAM_TYPE,
+> @@ -513,6 +516,8 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+>   	u8 *byte = buf;
+>   	ssize_t ret, bytes_to_recv, len;
+>   	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
+> +	ktime_t msg_end;
+> +	bool msg_expired;
+>   
+>   	hdcp2_msg_data = get_hdcp2_dp_msg_data(msg_id);
+>   	if (!hdcp2_msg_data)
+> @@ -539,6 +544,11 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+>   		len = bytes_to_recv > DP_AUX_MAX_PAYLOAD_BYTES ?
+>   		      DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_recv;
+>   
+> +		/* Entire msg read timeout since initiate of msg read */
+> +		if (bytes_to_recv == size - 1)
 
+
+IMHO, we can add the check if msg_read_timeout > 0, so as to skip for 
+messages that do not have timeout requirement.
+
+
+> +			msg_end = ktime_add_ms(ktime_get_raw(),
+> +					       hdcp2_msg_data->msg_read_timeout);
+> +
+>   		ret = drm_dp_dpcd_read(&dig_port->dp.aux, offset,
+>   				       (void *)byte, len);
+>   		if (ret < 0) {
+> @@ -551,6 +561,14 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+>   		byte += ret;
+>   		offset += ret;
+>   	}
+> +
+> +	msg_expired = ktime_after(ktime_get_raw(), msg_end);
+> +	if (msg_expired && hdcp2_msg_data->msg_can_timedout) {
+
+As mentioned before, we can use msg_read_timeout here.
+
+
+Regards,
+
+Ankit
+
+> +		drm_dbg_kms(&i915->drm, "msg_id %d, entire msg read timeout(mSec): %d\n",
+> +			    msg_id, hdcp2_msg_data->msg_read_timeout);
+> +		return -ETIMEDOUT;
+> +	}
+> +
+>   	byte = buf;
+>   	*byte = msg_id;
+>   
+> diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
+> index ac22c246542a..2b165a0f434f 100644
+> --- a/include/drm/drm_hdcp.h
+> +++ b/include/drm/drm_hdcp.h
+> @@ -224,9 +224,12 @@ struct hdcp2_rep_stream_ready {
+>   
+>   /* HDCP2.2 TIMEOUTs in mSec */
+>   #define HDCP_2_2_CERT_TIMEOUT_MS		100
+> +#define HDCP_2_2_DP_CERT_READ_TIMEOUT_MS	110
+>   #define HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS	1000
+>   #define HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS	200
+> +#define HDCP_2_2_DP_HPRIME_READ_TIMEOUT_MS	7
+>   #define HDCP_2_2_PAIRING_TIMEOUT_MS		200
+> +#define HDCP_2_2_DP_PAIRING_READ_TIMEOUT_MS	5
+>   #define	HDCP_2_2_HDMI_LPRIME_TIMEOUT_MS		20
+>   #define HDCP_2_2_DP_LPRIME_TIMEOUT_MS		7
+>   #define HDCP_2_2_RECVID_LIST_TIMEOUT_MS		3000
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
