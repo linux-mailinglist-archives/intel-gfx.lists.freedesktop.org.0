@@ -2,30 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312BD349758
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 17:54:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5219B348C8A
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 10:16:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 389306EDCA;
-	Thu, 25 Mar 2021 16:54:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEE596ECDF;
+	Thu, 25 Mar 2021 09:16:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 402A46EDCE;
- Thu, 25 Mar 2021 16:54:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 38439A3ECB;
- Thu, 25 Mar 2021 16:54:08 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54CEB6ECDF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 09:16:34 +0000 (UTC)
+IronPort-SDR: 2iNN/Kv3bMONCidmOm7KaXcLJt2009Qn6NnsE5P/QNCbgifEcDaqb1TqnQPtDElfiAOEonPYGi
+ RSCGHovPcuZQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="252244271"
+X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="252244271"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2021 02:16:33 -0700
+IronPort-SDR: NTFIndnYFO+inBmHE2s+rW7KAAK4EHsWZKzk6en68eLnL58eOfu8v5vDvHmWnWdYqfJxzoLUtl
+ JWfipT+1Bvow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="514538517"
+Received: from cfl-host.sh.intel.com ([10.239.158.118])
+ by fmsmga001.fm.intel.com with ESMTP; 25 Mar 2021 02:16:31 -0700
+From: Fred Gao <fred.gao@intel.com>
+To: kvm@vger.kernel.org,
+	intel-gfx@lists.freedesktop.org
+Date: Fri, 26 Mar 2021 01:09:53 +0800
+Message-Id: <20210325170953.24549-1-fred.gao@intel.com>
+X-Mailer: git-send-email 2.24.1.1.gb6d4d82bd5
+In-Reply-To: <20210302130220.9349-1-fred.gao@intel.com>
+References: <20210302130220.9349-1-fred.gao@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 25 Mar 2021 16:54:08 -0000
-Message-ID: <161669124820.15544.17348882263727853035@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210324200502.1731265-1-lucas.demarchi@intel.com>
-In-Reply-To: <20210324200502.1731265-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_missing_workarounds_and_refactors?=
+Subject: [Intel-gfx] [PATCH v5] vfio/pci: Add support for opregion v2.1+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,333 +47,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1460343672=="
+Cc: Fred Gao <fred.gao@intel.com>, Swee Yee Fonn <swee.yee.fonn@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1460343672==
-Content-Type: multipart/alternative;
- boundary="===============4887391363260956405=="
+Before opregion version 2.0 VBT data is stored in opregion mailbox #4,
+but when VBT data exceeds 6KB size and cannot be within mailbox #4
+then from opregion v2.0+, Extended VBT region, next to opregion is
+used to hold the VBT data, so the total size will be opregion size plus
+extended VBT region size.
 
---===============4887391363260956405==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Since opregion v2.0 with physical host VBT address would not be
+practically available for end user and guest can not directly access
+host physical address, so it is not supported.
 
-== Series Details ==
+Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+Signed-off-by: Swee Yee Fonn <swee.yee.fonn@intel.com>
+Signed-off-by: Fred Gao <fred.gao@intel.com>
+---
+ drivers/vfio/pci/vfio_pci_igd.c | 53 +++++++++++++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
 
-Series: drm/i915: missing workarounds and refactors
-URL   : https://patchwork.freedesktop.org/series/88408/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9894 -> Patchwork_19849
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19849 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19849, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19849:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-y:           NOTRUN -> [SKIP][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@prime_vgem@basic-userptr.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@gem_exec_parallel@engines@contexts:
-    - {fi-rkl-11500t}:    [FAIL][2] ([i915#3277]) -> [FAIL][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-rkl-11500t/igt@gem_exec_parallel@engines@contexts.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-rkl-11500t/igt@gem_exec_parallel@engines@contexts.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19849 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-icl-y:           NOTRUN -> [SKIP][4] ([fdo#109315]) +17 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-y:           NOTRUN -> [SKIP][5] ([i915#2190])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_tiled_blits@basic:
-    - fi-tgl-y:           [PASS][6] -> [DMESG-WARN][7] ([i915#402]) +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-tgl-y/igt@gem_tiled_blits@basic.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-tgl-y/igt@gem_tiled_blits@basic.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-y:           NOTRUN -> [SKIP][8] ([fdo#109284] / [fdo#111827]) +8 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-y:           NOTRUN -> [SKIP][9] ([fdo#109285])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-icl-y:           NOTRUN -> [SKIP][10] ([fdo#109278])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-icl-y:           NOTRUN -> [SKIP][11] ([fdo#110189]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@kms_psr@primary_mmap_gtt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-open:
-    - fi-tgl-y:           [DMESG-WARN][12] ([i915#402]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-tgl-y/igt@gem_flink_basic@bad-open.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-tgl-y/igt@gem_flink_basic@bad-open.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-y:           [DMESG-FAIL][14] -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@workarounds:
-    - fi-tgl-u2:          [DMESG-WARN][16] ([i915#2867]) -> [PASS][17] +15 similar issues
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-tgl-u2/igt@i915_selftest@live@workarounds.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-tgl-u2/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1222]: https://gitlab.freedesktop.org/drm/intel/issues/1222
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2867]: https://gitlab.freedesktop.org/drm/intel/issues/2867
-  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (46 -> 42)
-------------------------------
-
-  Additional (1): fi-icl-y 
-  Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9894 -> Patchwork_19849
-
-  CI-20190529: 20190529
-  CI_DRM_9894: 61395da5b95dbf1e1944dda455bb4b31675ef48d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6046: e76039273b1524147c43dba061756f06003d56ae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19849: 3c8e85c7aa8c0595aa65081c185a240b0ca278d0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3c8e85c7aa8c drm/i915: Add Wa_14011060649
-e29ab5d128ec drm/i915: Move Wa_16011163337 to gen12_ctx_workarounds_init()
-9d18cd074d51 drm/i915/icl: add Wa_22010271021 for all gen11
-3beaedc0334c drm/i915/gen12: Add recommended hardware tuning value
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/index.html
-
---===============4887391363260956405==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: missing workarounds and refactors</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88408/">https://patchwork.freedesktop.org/series/88408/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9894 -&gt; Patchwork_19849</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19849 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19849, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19849:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@prime_vgem@basic-userptr:<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@prime_vgem@basic-userptr.html">SKIP</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@gem_exec_parallel@engines@contexts:<ul>
-<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-rkl-11500t/igt@gem_exec_parallel@engines@contexts.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3277">i915#3277</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-rkl-11500t/igt@gem_exec_parallel@engines@contexts.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19849 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_blits@basic:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-tgl-y/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-tgl-y/igt@gem_tiled_blits@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-icl-y/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_flink_basic@bad-open:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-tgl-y/igt@gem_flink_basic@bad-open.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-tgl-y/igt@gem_flink_basic@bad-open.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9894/fi-tgl-u2/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2867">i915#2867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19849/fi-tgl-u2/igt@i915_selftest@live@workarounds.html">PASS</a> +15 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (46 -&gt; 42)</h2>
-<p>Additional (1): fi-icl-y <br />
-  Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9894 -&gt; Patchwork_19849</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9894: 61395da5b95dbf1e1944dda455bb4b31675ef48d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6046: e76039273b1524147c43dba061756f06003d56ae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19849: 3c8e85c7aa8c0595aa65081c185a240b0ca278d0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3c8e85c7aa8c drm/i915: Add Wa_14011060649<br />
-e29ab5d128ec drm/i915: Move Wa_16011163337 to gen12_ctx_workarounds_init()<br />
-9d18cd074d51 drm/i915/icl: add Wa_22010271021 for all gen11<br />
-3beaedc0334c drm/i915/gen12: Add recommended hardware tuning value</p>
-
-</body>
-</html>
-
---===============4887391363260956405==--
-
---===============1460343672==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/vfio/pci/vfio_pci_igd.c b/drivers/vfio/pci/vfio_pci_igd.c
+index e66dfb0178ed..228df565e9bc 100644
+--- a/drivers/vfio/pci/vfio_pci_igd.c
++++ b/drivers/vfio/pci/vfio_pci_igd.c
+@@ -21,6 +21,10 @@
+ #define OPREGION_SIZE		(8 * 1024)
+ #define OPREGION_PCI_ADDR	0xfc
+ 
++#define OPREGION_RVDA		0x3ba
++#define OPREGION_RVDS		0x3c2
++#define OPREGION_VERSION	0x16
++
+ static size_t vfio_pci_igd_rw(struct vfio_pci_device *vdev, char __user *buf,
+ 			      size_t count, loff_t *ppos, bool iswrite)
+ {
+@@ -58,6 +62,7 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
+ 	u32 addr, size;
+ 	void *base;
+ 	int ret;
++	u16 version;
+ 
+ 	ret = pci_read_config_dword(vdev->pdev, OPREGION_PCI_ADDR, &addr);
+ 	if (ret)
+@@ -83,6 +88,54 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
+ 
+ 	size *= 1024; /* In KB */
+ 
++	/*
++	 * Support opregion v2.1+
++	 * When VBT data exceeds 6KB size and cannot be within mailbox #4, then
++	 * the Extended VBT region next to opregion is used to hold the VBT data.
++	 * RVDA (Relative Address of VBT Data from Opregion Base) and RVDS
++	 * (Raw VBT Data Size) from opregion structure member are used to hold the
++	 * address from region base and size of VBT data. RVDA/RVDS are not
++	 * defined before opregion 2.0.
++	 *
++	 * opregion 2.1+: RVDA is unsigned, relative offset from
++	 * opregion base, and should point to the end of opregion.
++	 * otherwise, exposing to userspace to allow read access to everything between
++	 * the OpRegion and VBT is not safe.
++	 * RVDS is defined as size in bytes.
++	 *
++	 * opregion 2.0: rvda is the physical VBT address.
++	 * Since rvda is HPA it cannot be directly used in guest.
++	 * And it should not be practically available for end user,so it is not supported.
++	 */
++	version = le16_to_cpu(*(__le16 *)(base + OPREGION_VERSION));
++	if (version >= 0x0200) {
++		u64 rvda;
++		u32 rvds;
++
++		rvda = le64_to_cpu(*(__le64 *)(base + OPREGION_RVDA));
++		rvds = le32_to_cpu(*(__le32 *)(base + OPREGION_RVDS));
++		if (rvda && rvds) {
++			/* no support for opregion v2.0 with physical VBT address */
++			if (version == 0x0200) {
++				memunmap(base);
++				pci_err(vdev->pdev,
++					"IGD assignment does not support opregion v2.0 with an extended VBT region\n");
++				return -EINVAL;
++			}
++
++			if (rvda != size) {
++				memunmap(base);
++				pci_err(vdev->pdev,
++					"Extended VBT does not follow opregion on version 0x%04x\n",
++					version);
++				return -EINVAL;
++			}
++
++			/* region size for opregion v2.0+: opregion and VBT size. */
++			size += rvds;
++		}
++	}
++
+ 	if (size != OPREGION_SIZE) {
+ 		memunmap(base);
+ 		base = memremap(addr, size, MEMREMAP_WB);
+-- 
+2.24.1.1.gb6d4d82bd5
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1460343672==--
