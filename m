@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6352A349908
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 19:07:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52E9634990A
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 19:07:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60A346EE30;
-	Thu, 25 Mar 2021 18:07:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8909B6EE1D;
+	Thu, 25 Mar 2021 18:07:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7AAE6EE13
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 18:07:31 +0000 (UTC)
-IronPort-SDR: o7ct4eUunVjej+XJTe0QxrtSC/LeVjStYTiY8LPtXMYDQ+XhOwgzAE+oFpmgwyeklMvPt+0IIQ
- V9/ci9B++aGQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9934"; a="178112536"
-X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="178112536"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E5826EE1C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 18:07:32 +0000 (UTC)
+IronPort-SDR: USXQIJVADBF95drlz+e10mrlZNiv7+4JiCLA5x7FI1Dlk/k4ln0xtc2GG96xrJz9u1Pb3M663e
+ 7rZdc0CWOnUQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9934"; a="178112539"
+X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="178112539"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Mar 2021 11:07:31 -0700
-IronPort-SDR: Kl0NBzrFwpMahBGQqlWYqoDPK/XNKPh6AOe3JKPqPPNAHwjrkiW1gtVOeeltd8Ktgh2CXDAmTC
- HNSk4TNvQSCQ==
-X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="453176617"
+IronPort-SDR: 8H/9TwvcpBi6fSo5cCuxWboaGLSf/bcVyI1KzZHcoFXCfYavnt90m9Q8QxizDpXeIZ+kWeYU1O
+ P8JKrGeMUkWw==
+X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="453176621"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Mar 2021 11:07:31 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Mar 2021 11:06:51 -0700
-Message-Id: <20210325180720.401410-22-matthew.d.roper@intel.com>
+Date: Thu, 25 Mar 2021 11:06:52 -0700
+Message-Id: <20210325180720.401410-23-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210325180720.401410-1-matthew.d.roper@intel.com>
 References: <20210325180720.401410-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 21/50] drm/i915/adl_p: Add dedicated SAGV
- watermarks
+Subject: [Intel-gfx] [PATCH v2 22/50] drm/i915/adl_p: Extend PLANE_WM bits
+ for blocks & lines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,264 +53,35 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-XE_LPD reduces the number of regular watermark latency levels from 8
-to 6 on non-dgfx platforms.  However the hardware also adds a special
-purpose SAGV wateramrk (and an accompanying transition watermark) that
-will be used by the hardware in place of the level 0 values during SAGV
-transitions.
+ADL-P further extends the bits in PLANE_WM that represent blocks and
+lines; we need to extend our masks accordingly.  Since these bits are
+reserved and MBZ on earlier platforms, it's safe to use the larger
+bitmask on all platforms.
 
-Bspec: 49325, 49326, 50419
+Bspec: 50419
 Cc: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
+Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 32 +++++++++++
- drivers/gpu/drm/i915/i915_drv.h              |  2 +
- drivers/gpu/drm/i915/i915_reg.h              | 59 ++++++++++++++------
- drivers/gpu/drm/i915/intel_pm.c              | 56 +++++++++++++++++--
- 4 files changed, 128 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/i915_reg.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d1b067586c0b..d04924d405e5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -9275,6 +9275,38 @@ static void verify_wm_state(struct intel_crtc *crtc,
- 				hw_wm_level->lines);
- 		}
- 
-+		hw_wm_level = &hw->wm.planes[plane->id].sagv.wm0;
-+		sw_wm_level = &sw_wm->planes[plane->id].sagv.wm0;
-+
-+		if (HAS_HW_SAGV_WM(dev_priv) &&
-+		    !skl_wm_level_equals(hw_wm_level, sw_wm_level)) {
-+			drm_err(&dev_priv->drm,
-+				"[PLANE:%d:%s] mismatch in SAGV WM (expected e=%d b=%u l=%u, got e=%d b=%u l=%u)\n",
-+				plane->base.base.id, plane->base.name,
-+				sw_wm_level->enable,
-+				sw_wm_level->blocks,
-+				sw_wm_level->lines,
-+				hw_wm_level->enable,
-+				hw_wm_level->blocks,
-+				hw_wm_level->lines);
-+		}
-+
-+		hw_wm_level = &hw->wm.planes[plane->id].sagv.trans_wm;
-+		sw_wm_level = &sw_wm->planes[plane->id].sagv.trans_wm;
-+
-+		if (HAS_HW_SAGV_WM(dev_priv) &&
-+		    !skl_wm_level_equals(hw_wm_level, sw_wm_level)) {
-+			drm_err(&dev_priv->drm,
-+				"[PLANE:%d:%s] mismatch in SAGV trans WM (expected e=%d b=%u l=%u, got e=%d b=%u l=%u)\n",
-+				plane->base.base.id, plane->base.name,
-+				sw_wm_level->enable,
-+				sw_wm_level->blocks,
-+				sw_wm_level->lines,
-+				hw_wm_level->enable,
-+				hw_wm_level->blocks,
-+				hw_wm_level->lines);
-+		}
-+
- 		/* DDB */
- 		hw_ddb_entry = &hw->ddb_y[plane->id];
- 		sw_ddb_entry = &new_crtc_state->wm.skl.plane_ddb_y[plane->id];
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index ab1db490bbcf..68e216f5e0bb 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -581,6 +581,8 @@ i915_fence_timeout(const struct drm_i915_private *i915)
- /* Amount of SAGV/QGV points, BSpec precisely defines this */
- #define I915_NUM_QGV_POINTS 8
- 
-+#define HAS_HW_SAGV_WM(i915) ((DISPLAY_VER(i915) == 13) && !IS_DGFX(i915))
-+
- struct ddi_vbt_port_info {
- 	/* Non-NULL if port present. */
- 	struct intel_bios_encoder_data *devdata;
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 73ffdbc4e382..e39c2bbaa490 100644
+index e39c2bbaa490..8a04dcaf056d 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6426,16 +6426,28 @@ enum {
- /* Watermark register definitions for SKL */
- #define _CUR_WM_A_0		0x70140
- #define _CUR_WM_B_0		0x71140
-+#define _CUR_WM_SAGV_A		0x70158
-+#define _CUR_WM_SAGV_B		0x71158
-+#define _CUR_WM_SAGV_TRANS_A	0x7015C
-+#define _CUR_WM_SAGV_TRANS_B	0x7115C
-+#define _CUR_WM_TRANS_A		0x70168
-+#define _CUR_WM_TRANS_B		0x71168
- #define _PLANE_WM_1_A_0		0x70240
- #define _PLANE_WM_1_B_0		0x71240
- #define _PLANE_WM_2_A_0		0x70340
- #define _PLANE_WM_2_B_0		0x71340
--#define _PLANE_WM_TRANS_1_A_0	0x70268
--#define _PLANE_WM_TRANS_1_B_0	0x71268
--#define _PLANE_WM_TRANS_2_A_0	0x70368
--#define _PLANE_WM_TRANS_2_B_0	0x71368
--#define _CUR_WM_TRANS_A_0	0x70168
--#define _CUR_WM_TRANS_B_0	0x71168
-+#define _PLANE_WM_SAGV_1_A	0x70258
-+#define _PLANE_WM_SAGV_1_B	0x71258
-+#define _PLANE_WM_SAGV_2_A	0x70358
-+#define _PLANE_WM_SAGV_2_B	0x71358
-+#define _PLANE_WM_SAGV_TRANS_1_A	0x7025C
-+#define _PLANE_WM_SAGV_TRANS_1_B	0x7125C
-+#define _PLANE_WM_SAGV_TRANS_2_A	0x7035C
-+#define _PLANE_WM_SAGV_TRANS_2_B	0x7135C
-+#define _PLANE_WM_TRANS_1_A	0x70268
-+#define _PLANE_WM_TRANS_1_B	0x71268
-+#define _PLANE_WM_TRANS_2_A	0x70368
-+#define _PLANE_WM_TRANS_2_B	0x71368
+@@ -6450,8 +6450,8 @@ enum {
+ #define _PLANE_WM_TRANS_2_B	0x71368
  #define   PLANE_WM_EN		(1 << 31)
  #define   PLANE_WM_IGNORE_LINES	(1 << 30)
- #define   PLANE_WM_LINES_MASK	REG_GENMASK(21, 14)
-@@ -6443,19 +6455,32 @@ enum {
+-#define   PLANE_WM_LINES_MASK	REG_GENMASK(21, 14)
+-#define   PLANE_WM_BLOCKS_MASK	0x7ff /* skl+: 10 bits, icl+ 11 bits */
++#define   PLANE_WM_LINES_MASK	REG_GENMASK(26, 14)
++#define   PLANE_WM_BLOCKS_MASK	REG_GENMASK(11, 0)
  
  #define _CUR_WM_0(pipe) _PIPE(pipe, _CUR_WM_A_0, _CUR_WM_B_0)
  #define CUR_WM(pipe, level) _MMIO(_CUR_WM_0(pipe) + ((4) * (level)))
--#define CUR_WM_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_TRANS_A_0, _CUR_WM_TRANS_B_0)
--
-+#define CUR_WM_SAGV(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_A, _CUR_WM_SAGV_B)
-+#define CUR_WM_SAGV_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_TRANS_A, _CUR_WM_SAGV_TRANS_B)
-+#define CUR_WM_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_TRANS_A, _CUR_WM_TRANS_B)
- #define _PLANE_WM_1(pipe) _PIPE(pipe, _PLANE_WM_1_A_0, _PLANE_WM_1_B_0)
- #define _PLANE_WM_2(pipe) _PIPE(pipe, _PLANE_WM_2_A_0, _PLANE_WM_2_B_0)
--#define _PLANE_WM_BASE(pipe, plane)	\
--			_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
--#define PLANE_WM(pipe, plane, level)	\
--			_MMIO(_PLANE_WM_BASE(pipe, plane) + ((4) * (level)))
--#define _PLANE_WM_TRANS_1(pipe)	\
--			_PIPE(pipe, _PLANE_WM_TRANS_1_A_0, _PLANE_WM_TRANS_1_B_0)
--#define _PLANE_WM_TRANS_2(pipe)	\
--			_PIPE(pipe, _PLANE_WM_TRANS_2_A_0, _PLANE_WM_TRANS_2_B_0)
--#define PLANE_WM_TRANS(pipe, plane)	\
-+#define _PLANE_WM_BASE(pipe, plane) \
-+	_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
-+#define PLANE_WM(pipe, plane, level) \
-+	_MMIO(_PLANE_WM_BASE(pipe, plane) + ((4) * (level)))
-+#define _PLANE_WM_SAGV_1(pipe) \
-+	_PIPE(pipe, _PLANE_WM_SAGV_1_A, _PLANE_WM_SAGV_1_B)
-+#define _PLANE_WM_SAGV_2(pipe) \
-+	_PIPE(pipe, _PLANE_WM_SAGV_2_A, _PLANE_WM_SAGV_2_B)
-+#define PLANE_WM_SAGV(pipe, plane) \
-+	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_1(pipe), _PLANE_WM_SAGV_2(pipe)))
-+#define _PLANE_WM_SAGV_TRANS_1(pipe) \
-+	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_1_A, _PLANE_WM_SAGV_TRANS_1_B)
-+#define _PLANE_WM_SAGV_TRANS_2(pipe) \
-+	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_2_A, _PLANE_WM_SAGV_TRANS_2_B)
-+#define PLANE_WM_SAGV_TRANS(pipe, plane) \
-+	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_TRANS_1(pipe), _PLANE_WM_SAGV_TRANS_2(pipe)))
-+#define _PLANE_WM_TRANS_1(pipe) \
-+	_PIPE(pipe, _PLANE_WM_TRANS_1_A, _PLANE_WM_TRANS_1_B)
-+#define _PLANE_WM_TRANS_2(pipe) \
-+	_PIPE(pipe, _PLANE_WM_TRANS_2_A, _PLANE_WM_TRANS_2_B)
-+#define PLANE_WM_TRANS(pipe, plane) \
- 	_MMIO(_PLANE(plane, _PLANE_WM_TRANS_1(pipe), _PLANE_WM_TRANS_2(pipe)))
- 
- /* define the Watermark register on Ironlake */
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 18ee225016fa..acc6c2b9e6e9 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -2982,7 +2982,9 @@ static void intel_fixup_cur_wm_latency(struct drm_i915_private *dev_priv,
- int ilk_wm_max_level(const struct drm_i915_private *dev_priv)
- {
- 	/* how many WM levels are we expecting */
--	if (DISPLAY_VER(dev_priv) >= 9)
-+	if (HAS_HW_SAGV_WM(dev_priv))
-+		return 5;
-+	else if (DISPLAY_VER(dev_priv) >= 9)
- 		return 7;
- 	else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
- 		return 4;
-@@ -4010,8 +4012,10 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
- 		 * latter from the plane commit hooks (especially in the legacy
- 		 * cursor case)
- 		 */
--		pipe_wm->use_sagv_wm = DISPLAY_VER(dev_priv) >= 12 &&
--				       intel_can_enable_sagv(dev_priv, new_bw_state);
-+
-+		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(dev_priv) &&
-+			DISPLAY_VER(dev_priv) >= 12 &&
-+			intel_can_enable_sagv(dev_priv, new_bw_state);
- 	}
- 
- 	if (intel_can_enable_sagv(dev_priv, new_bw_state) !=
-@@ -5633,6 +5637,13 @@ void skl_write_plane_wm(struct intel_plane *plane,
- 	skl_write_wm_level(dev_priv, PLANE_WM_TRANS(pipe, plane_id),
- 			   skl_plane_trans_wm(pipe_wm, plane_id));
- 
-+	if (HAS_HW_SAGV_WM(dev_priv)) {
-+		skl_write_wm_level(dev_priv, PLANE_WM_SAGV(pipe, plane_id),
-+				   &wm->sagv.wm0);
-+		skl_write_wm_level(dev_priv, PLANE_WM_SAGV_TRANS(pipe, plane_id),
-+				   &wm->sagv.trans_wm);
-+	}
-+
- 	if (DISPLAY_VER(dev_priv) >= 11) {
- 		skl_ddb_entry_write(dev_priv,
- 				    PLANE_BUF_CFG(pipe, plane_id), ddb_y);
-@@ -5666,6 +5677,15 @@ void skl_write_cursor_wm(struct intel_plane *plane,
- 	skl_write_wm_level(dev_priv, CUR_WM_TRANS(pipe),
- 			   skl_plane_trans_wm(pipe_wm, plane_id));
- 
-+	if (HAS_HW_SAGV_WM(dev_priv)) {
-+		const struct skl_plane_wm *wm = &pipe_wm->planes[plane_id];
-+
-+		skl_write_wm_level(dev_priv, CUR_WM_SAGV(pipe),
-+				   &wm->sagv.wm0);
-+		skl_write_wm_level(dev_priv, CUR_WM_SAGV_TRANS(pipe),
-+				   &wm->sagv.trans_wm);
-+	}
-+
- 	skl_ddb_entry_write(dev_priv, CUR_BUF_CFG(pipe), ddb);
- }
- 
-@@ -6030,6 +6050,15 @@ static bool skl_plane_selected_wm_equals(struct intel_plane *plane,
- 			return false;
- 	}
- 
-+	if (HAS_HW_SAGV_WM(i915)) {
-+		const struct skl_plane_wm *old_wm = &old_pipe_wm->planes[plane->id];
-+		const struct skl_plane_wm *new_wm = &new_pipe_wm->planes[plane->id];
-+
-+		if (!skl_wm_level_equals(&old_wm->sagv.wm0, &new_wm->sagv.wm0) ||
-+		    !skl_wm_level_equals(&old_wm->sagv.trans_wm, &new_wm->sagv.trans_wm))
-+			return false;
-+	}
-+
- 	return skl_wm_level_equals(skl_plane_trans_wm(old_pipe_wm, plane->id),
- 				   skl_plane_trans_wm(new_pipe_wm, plane->id));
- }
-@@ -6248,7 +6277,26 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
- 
- 		skl_wm_level_from_reg_val(val, &wm->trans_wm);
- 
--		if (DISPLAY_VER(dev_priv) >= 12) {
-+
-+		if (HAS_HW_SAGV_WM(dev_priv)) {
-+			if (plane_id != PLANE_CURSOR)
-+				val = intel_uncore_read(&dev_priv->uncore,
-+							PLANE_WM_SAGV(pipe, plane_id));
-+			else
-+				val = intel_uncore_read(&dev_priv->uncore,
-+							CUR_WM_SAGV(pipe));
-+
-+			skl_wm_level_from_reg_val(val, &wm->sagv.wm0);
-+
-+			if (plane_id != PLANE_CURSOR)
-+				val = intel_uncore_read(&dev_priv->uncore,
-+							PLANE_WM_SAGV_TRANS(pipe, plane_id));
-+			else
-+				val = intel_uncore_read(&dev_priv->uncore,
-+							CUR_WM_SAGV_TRANS(pipe));
-+
-+			skl_wm_level_from_reg_val(val, &wm->sagv.trans_wm);
-+		} else if (DISPLAY_VER(dev_priv) >= 12) {
- 			wm->sagv.wm0 = wm->wm[0];
- 			wm->sagv.trans_wm = wm->trans_wm;
- 		}
 -- 
 2.25.4
 
