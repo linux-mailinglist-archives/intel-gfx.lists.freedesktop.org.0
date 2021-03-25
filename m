@@ -1,40 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5219B348C8A
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 10:16:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21C6B3498F6
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 19:07:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEE596ECDF;
-	Thu, 25 Mar 2021 09:16:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7F946EDFB;
+	Thu, 25 Mar 2021 18:07:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54CEB6ECDF
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 09:16:34 +0000 (UTC)
-IronPort-SDR: 2iNN/Kv3bMONCidmOm7KaXcLJt2009Qn6NnsE5P/QNCbgifEcDaqb1TqnQPtDElfiAOEonPYGi
- RSCGHovPcuZQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="252244271"
-X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="252244271"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2021 02:16:33 -0700
-IronPort-SDR: NTFIndnYFO+inBmHE2s+rW7KAAK4EHsWZKzk6en68eLnL58eOfu8v5vDvHmWnWdYqfJxzoLUtl
- JWfipT+1Bvow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="514538517"
-Received: from cfl-host.sh.intel.com ([10.239.158.118])
- by fmsmga001.fm.intel.com with ESMTP; 25 Mar 2021 02:16:31 -0700
-From: Fred Gao <fred.gao@intel.com>
-To: kvm@vger.kernel.org,
-	intel-gfx@lists.freedesktop.org
-Date: Fri, 26 Mar 2021 01:09:53 +0800
-Message-Id: <20210325170953.24549-1-fred.gao@intel.com>
-X-Mailer: git-send-email 2.24.1.1.gb6d4d82bd5
-In-Reply-To: <20210302130220.9349-1-fred.gao@intel.com>
-References: <20210302130220.9349-1-fred.gao@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB066EDDF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 18:07:27 +0000 (UTC)
+IronPort-SDR: 1HKKS6CHI1DwX/RHSn3OTp28eEyCH3KmKuc8E8sfB0v4wSFgbDJ8kSbAYRy0kBcZLZ+MvmjAhn
+ vQWAXhp1rC/w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9934"; a="276113746"
+X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="276113746"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2021 11:07:27 -0700
+IronPort-SDR: GGCISAX79nK+G4s6ec4ESPVCUW9j9rh5jSzTdLBGhuO8tQrtOoK/bY1OgCLf4m4pqo8lYmbApx
+ 8S2NtF3y7oxw==
+X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="453176503"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2021 11:07:26 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 25 Mar 2021 11:06:30 -0700
+Message-Id: <20210325180720.401410-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5] vfio/pci: Add support for opregion v2.1+
+Subject: [Intel-gfx] [PATCH v2 00/50] Introduce Alder Lake-P
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,111 +44,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Fred Gao <fred.gao@intel.com>, Swee Yee Fonn <swee.yee.fonn@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: me@freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Before opregion version 2.0 VBT data is stored in opregion mailbox #4,
-but when VBT data exceeds 6KB size and cannot be within mailbox #4
-then from opregion v2.0+, Extended VBT region, next to opregion is
-used to hold the VBT data, so the total size will be opregion size plus
-extended VBT region size.
-
-Since opregion v2.0 with physical host VBT address would not be
-practically available for end user and guest can not directly access
-host physical address, so it is not supported.
-
-Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
-Signed-off-by: Swee Yee Fonn <swee.yee.fonn@intel.com>
-Signed-off-by: Fred Gao <fred.gao@intel.com>
----
- drivers/vfio/pci/vfio_pci_igd.c | 53 +++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
-
-diff --git a/drivers/vfio/pci/vfio_pci_igd.c b/drivers/vfio/pci/vfio_pci_igd.c
-index e66dfb0178ed..228df565e9bc 100644
---- a/drivers/vfio/pci/vfio_pci_igd.c
-+++ b/drivers/vfio/pci/vfio_pci_igd.c
-@@ -21,6 +21,10 @@
- #define OPREGION_SIZE		(8 * 1024)
- #define OPREGION_PCI_ADDR	0xfc
- 
-+#define OPREGION_RVDA		0x3ba
-+#define OPREGION_RVDS		0x3c2
-+#define OPREGION_VERSION	0x16
-+
- static size_t vfio_pci_igd_rw(struct vfio_pci_device *vdev, char __user *buf,
- 			      size_t count, loff_t *ppos, bool iswrite)
- {
-@@ -58,6 +62,7 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
- 	u32 addr, size;
- 	void *base;
- 	int ret;
-+	u16 version;
- 
- 	ret = pci_read_config_dword(vdev->pdev, OPREGION_PCI_ADDR, &addr);
- 	if (ret)
-@@ -83,6 +88,54 @@ static int vfio_pci_igd_opregion_init(struct vfio_pci_device *vdev)
- 
- 	size *= 1024; /* In KB */
- 
-+	/*
-+	 * Support opregion v2.1+
-+	 * When VBT data exceeds 6KB size and cannot be within mailbox #4, then
-+	 * the Extended VBT region next to opregion is used to hold the VBT data.
-+	 * RVDA (Relative Address of VBT Data from Opregion Base) and RVDS
-+	 * (Raw VBT Data Size) from opregion structure member are used to hold the
-+	 * address from region base and size of VBT data. RVDA/RVDS are not
-+	 * defined before opregion 2.0.
-+	 *
-+	 * opregion 2.1+: RVDA is unsigned, relative offset from
-+	 * opregion base, and should point to the end of opregion.
-+	 * otherwise, exposing to userspace to allow read access to everything between
-+	 * the OpRegion and VBT is not safe.
-+	 * RVDS is defined as size in bytes.
-+	 *
-+	 * opregion 2.0: rvda is the physical VBT address.
-+	 * Since rvda is HPA it cannot be directly used in guest.
-+	 * And it should not be practically available for end user,so it is not supported.
-+	 */
-+	version = le16_to_cpu(*(__le16 *)(base + OPREGION_VERSION));
-+	if (version >= 0x0200) {
-+		u64 rvda;
-+		u32 rvds;
-+
-+		rvda = le64_to_cpu(*(__le64 *)(base + OPREGION_RVDA));
-+		rvds = le32_to_cpu(*(__le32 *)(base + OPREGION_RVDS));
-+		if (rvda && rvds) {
-+			/* no support for opregion v2.0 with physical VBT address */
-+			if (version == 0x0200) {
-+				memunmap(base);
-+				pci_err(vdev->pdev,
-+					"IGD assignment does not support opregion v2.0 with an extended VBT region\n");
-+				return -EINVAL;
-+			}
-+
-+			if (rvda != size) {
-+				memunmap(base);
-+				pci_err(vdev->pdev,
-+					"Extended VBT does not follow opregion on version 0x%04x\n",
-+					version);
-+				return -EINVAL;
-+			}
-+
-+			/* region size for opregion v2.0+: opregion and VBT size. */
-+			size += rvds;
-+		}
-+	}
-+
- 	if (size != OPREGION_SIZE) {
- 		memunmap(base);
- 		base = memremap(addr, size, MEMREMAP_WB);
--- 
-2.24.1.1.gb6d4d82bd5
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhlIHByZXZpb3VzIHZlcnNpb24gb2YgdGhpcyBzZXJpZXMgd2FzIGhlcmU6CiAgICAgICAgaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvaW50ZWwtZ2Z4LzIwMjEtTWFyY2gv
+MjYyMTY4Lmh0bWwKClRoZSBwcmVwYXJhdGlvbiBwYXRjaGVzIHRoYXQgY29udmVydCBkaXNwbGF5
+LyB0byB1c2UgRElTUExBWV9WRVIoKQppbnN0ZWFkIG9mIElOVEVMX0dFTigpIGhhdmUgbGFuZGVk
+IG9uIGRybS10aXAgbm93LCBzbyB0aGlzIGlzIG1vc3RseQpqdXN0IGEgc3RyYWlnaHRmb3J3YXJk
+IHJlYmFzZSBvZiB0aGUgcmVtYWluaW5nIHBhdGNoZXMuICBJIHRoaW5rIHRoZXJlCndhcyBvbmx5
+IG9uZSBtaW5vciBmdW5jdGlvbmFsIGZpeCB0byB0aGUgbGFzdCBwYXRjaCBvZiB0aGUgc2VyaWVz
+IChQU1IKY2hhbmdlcykuCgpDYzogQ2xpbnRvbiBUYXlsb3IgPGNsaW50b24uYS50YXlsb3JAaW50
+ZWwuY29tPgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+CgpB
+bmltZXNoIE1hbm5hICgzKToKICBkcm0vaTkxNS9iaWdqb2luZXI6IE1vZGUgdmFsaWRhdGlvbiB3
+aXRoIHVuY29tcHJlc3NlZCBwaXBlIGpvaW5lcgogIGRybS9pOTE1L2JpZ2pvaW5lcjogQXZvaWQg
+ZHNjX2NvbXB1dGVfY29uZmlnIGZvciB1bmNvbXByZXNzZWQKICAgIGJpZ2pvaW5lcgogIGRybS9p
+OTE1L2JpZ2pvaW5lcjogYXRvbWljIGNvbW1pdCBjaGFuZ2VzIGZvciB1bmNvbXByZXNzZWQgam9p
+bmVyCgpBbnVzaGEgU3JpdmF0c2EgKDcpOgogIGRybS9pOTE1L2FkbF9wOiBMb2FkIERNQwogIGRy
+bS9pOTE1L2FkbF9wOiBTZXR1cCBwb3J0cy9waHlzCiAgZHJtL2k5MTUvYWRsX3A6IEFkZCBjZGNs
+ayBzdXBwb3J0IGZvciBBREwtUAogIGRybS9pOTE1L2FkbF9wOiBBZGQgaW5pdGlhbCBBRExfUCBX
+b3JrYXJvdW5kcwogIGRybS9pOTE1L2FkbF9wOiBBZGQgUExMIFN1cHBvcnQKICBkcm0vaTkxNS9h
+ZGxwOiBBZGQgUElQRV9NSVNDMiBwcm9ncmFtbWluZwogIGRybS9pOTE1L2FkbF9wOiBVcGRhdGUg
+bWVtb3J5IGJhbmR3aWR0aCBwYXJhbWV0ZXJzCgpDbGludCBUYXlsb3IgKDEpOgogIGRybS9pOTE1
+L2FkbHA6IERlZmluZSBHdUMvSHVDIGZvciBBbGRlcmxha2VfUAoKQ2xpbnRvbiBUYXlsb3IgKDMp
+OgogIGRybS9pOTE1L2FkbF9wOiBBZGQgUENJIERldmljZXMgSURzCiAgZHJtL2k5MTUvYWRsX3A6
+IEFETF9QIGRldmljZSBpbmZvIGVuYWJsaW5nCiAgZHJtL2k5MTUvYWRsX3A6IEFkZCBQQ0ggc3Vw
+cG9ydAoKSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSAoOSk6CiAgZHJtL2k5MTUvZGlzcGxheS90Yzog
+UmVuYW1lIHNhZmVfbW9kZSBmdW5jdGlvbnMgb3duZXJzaGlwCiAgZHJtL2k5MTUvYWRsX3A6IEhh
+bmRsZSBUQyBjb2xkCiAgZHJtL2k5MTUvYWRsX3A6IEltcGxlbWVudCBUQyBzZXF1ZW5jZXMKICBk
+cm0vaTkxNS9hZGxfcDogRW5hYmxlIG1vZHVsYXIgZmlhCiAgZHJtL2k5MTUvYWRsX3A6IERvbid0
+IGNvbmZpZyBNQlVTIGFuZCBEQlVGIGR1cmluZyBkaXNwbGF5CiAgICBpbml0aWFsaXphdGlvbgog
+IGRybS9pOTE1L2FkbF9wOiBJbXBsZW1lbnQgV2FfMjIwMTEwOTE2OTQKICBkcm0vaTkxNS9kaXNw
+bGF5L2FkbF9wOiBJbXBsZW1lbnQgV2FfMjIwMTEzMjAzMTYKICBkcm0vaTkxNS9kaXNwbGF5L2Fk
+bF9wOiBSZW1vdmUgQ0NTIHN1cHBvcnQKICBkcm0vaTkxNS9kaXNwbGF5L2FkbF9wOiBJbXBsZW1l
+bnQgUFNSIGNoYW5nZXMKCkp1aGEtUGVra2EgSGVpa2tpbMOkICgxKToKICBkcm0vaTkxNS94ZWxw
+ZDogU3VwcG9ydCAxMjhrIHBsYW5lIHN0cmlkZQoKTWFuYXNpIE5hdmFyZSAoMSk6CiAgZHJtL2k5
+MTUveGVscGQ6IEFkZCBWUlIgZ3VhcmRiYW5kIGZvciBWUlIgQ1RMCgpNYXR0IFJvcGVyICgxMSk6
+CiAgZHJtL2k5MTUveGVscGQ6IGFkZCBYRV9MUEQgZGlzcGxheSBjaGFyYWN0ZXJpc3RpY3MKICBk
+cm0vaTkxNS94ZWxwZDogSGFuZGxlIHByb3BlciBBVVggaW50ZXJydXB0IGJpdHMKICBkcm0vaTkx
+NS94ZWxwZDogRW5oYW5jZWQgcGlwZSB1bmRlcnJ1biByZXBvcnRpbmcKICBkcm0vaTkxNS94ZWxw
+ZDogRGVmaW5lIHBsYW5lIGNhcGFiaWxpdGllcwogIGRybS9pOTE1L3hlbHBkOiBIYW5kbGUgbmV3
+IGxvY2F0aW9uIG9mIG91dHB1dHMgRCBhbmQgRQogIGRybS9pOTE1L3hlbHBkOiBBZGQgWEVfTFBE
+IHBvd2VyIHdlbGxzCiAgZHJtL2k5MTUveGVscGQ6IEluY3JlYXNlIG1heGltdW0gd2F0ZXJtYXJr
+IGxpbmVzIHRvIDI1NQogIGRybS9pOTE1L3hlbHBkOiBSZXF1aXJlZCBiYW5kd2lkdGggaW5jcmVh
+c2VzIHdoZW4gVlQtZCBpcyBhY3RpdmUKICBkcm0vaTkxNS94ZWxwZDogQWRkIFdhXzE0MDExNTAz
+MDMwCiAgZHJtL2k5MTUvYWRsX3A6IEFkZCBkZWRpY2F0ZWQgU0FHViB3YXRlcm1hcmtzCiAgZHJt
+L2k5MTUvYWRsX3A6IEV4dGVuZCBQTEFORV9XTSBiaXRzIGZvciBibG9ja3MgJiBsaW5lcwoKTWlr
+YSBLYWhvbGEgKDMpOgogIGRybS9pOTE1L2FkbF9wOiBUeCBlc2NhcGUgY2xvY2sgd2l0aCBEU0kK
+ICBkcm0vaTkxNS9hZGxfcDogRGVmaW5lIGFuZCB1c2UgQURMLVAgc3BlY2lmaWMgRFAgdHJhbnNs
+YXRpb24gdGFibGVzCiAgZHJtL2k5MTUvYWRsX3A6IEVuYWJsZS9kaXNhYmxlIGxvYWRnZW4gc2hh
+cmluZwoKVW1hIFNoYW5rYXIgKDEpOgogIGRybS9pOTE1L3hlbHBkOiBIYW5kbGUgTFBTUCBmb3Ig
+WEVfTFBECgpVbWVzaCBOZXJsaWdlIFJhbWFwcGEgKDEpOgogIGRybS9pOTE1L3BlcmY6IEVuYWJs
+ZSBPQSBmb3JtYXRzIGZvciBBRExfUAoKVmFuZGl0YSBLdWxrYXJuaSAoNyk6CiAgZHJtL2k5MTUv
+ZGlzcGxheS9kc2M6IFJlZmFjdG9yIGludGVsX2RwX2RzY19jb21wdXRlX2JwcAogIGRybS9pOTE1
+L3hlbHBkOiBTdXBwb3J0IERQMS40IGNvbXByZXNzaW9uIEJQUHMKICBkcm0vaTkxNTogR2V0IHNs
+aWNlIGhlaWdodCBiZWZvcmUgY29tcHV0aW5nIHJjIHBhcmFtcwogIGRybS9pOTE1L3hlbHBkOiBD
+YWxjdWxhdGUgVkRTQyBSQyBwYXJhbWV0ZXJzCiAgZHJtL2k5MTUveGVscGQ6IEFkZCByY19xcF90
+YWJsZSBmb3IgcmNwYXJhbXMgY2FsY3VsYXRpb24KICBkcm0vaTkxNS9hZGxfcDogQWRkIGRkYiBh
+bGxvY2F0aW9uIHN1cHBvcnQKICBkcm0vaTkxNS9hZGxfcDogTUJVUyBwcm9ncmFtbWluZwoKVmls
+bGUgU3lyasOkbMOkICgyKToKICBkcm0vaTkxNTogSW50cm9kdWNlIE1CVVMgcmVsYXRpdmUgZGJ1
+ZiBvZmZzZXRzCiAgZHJtL2k5MTU6IE1vdmUgaW50ZWxfbW9kZXNldF9hbGxfcGlwZXMoKQoKIGFy
+Y2gveDg2L2tlcm5lbC9lYXJseS1xdWlya3MuYyAgICAgICAgICAgICAgICB8ICAgMSArCiBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ljbF9kc2kuYyAgICAgICAgfCAgMjEgKy0KIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMgICB8ICAyMCArCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pYy5oICAgfCAgIDEgKwogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9iaW9zLmMgICAgIHwgIDEwICstCiBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2J3LmMgICAgICAgfCAgIDUgKy0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYyAgICB8ICA4NiArKy0tCiBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jICAgICAgfCAgMTAgKy0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgICAgICB8ICA0MCArLQogLi4uL2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGRpX2J1Zl90cmFucy5jICAgIHwgIDM0ICsrCiAuLi4vZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kZGlfYnVmX3RyYW5zLmggICAgfCAgIDQgKwogZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgIHwgMTI3ICsrKystCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaCAgfCAgIDkgKwogLi4uL2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMgIHwgICA2ICsKIC4uLi9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYyAgICB8IDQ1NSArKysrKysrKysrKysrKysrKy0KIC4u
+Li9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuaCAgICB8ICAxMSArCiAuLi4v
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmggICAgfCAgIDIgKy0KIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyAgICAgICB8ICA3NSArKy0KIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4LmMgICB8ICAxNCArLQogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcGxsX21nci5jIHwgIDcxICsrLQogLi4uL2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmlmb191bmRlcnJ1bi5jICAgIHwgIDY1ICsrLQogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMgICAgIHwgICAyICstCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jICAgICAgfCAgNTMgKy0KIC4uLi9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9xcF90YWJsZXMuYyAgICB8IDI3MiArKysrKysrKysrKwog
+Li4uL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3FwX3RhYmxlcy5oICAgIHwgIDM0ICsrCiBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMgICAgICAgfCAxNTkgKysrKyst
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuYyAgICAgfCAxNjAgKysr
+KystCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zkc2MuaCAgICAgfCAgIDIg
+KwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92cnIuYyAgICAgIHwgIDU2ICsr
+LQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jICAgIHwgIDc3ICsr
+LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvZ2VuOF9lbmdpbmVfY3MuYyAgICAgIHwgICA0ICst
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jICAgfCAgNTkgKyst
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91Y19mdy5jICAgICAgfCAgIDEgKwog
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICAgICAgIHwgIDEzICsKIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMgICAgICAgICAgICAgICB8ICAyOCArLQogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyAgICAgICAgICAgICAgIHwgIDIzICsKIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jICAgICAgICAgICAgICB8ICAgMSArCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgICAgfCAyMDQgKysrKysrLS0KIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmMgICAgICB8ICAgMyArLQogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaCAgICAgIHwgICAxICsKIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2ludGVsX3BjaC5jICAgICAgICAgICAgICB8ICAgNiArLQogZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaW50ZWxfcGNoLmggICAgICAgICAgICAgIHwgICAxICsKIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2ludGVsX3BtLmMgICAgICAgICAgICAgICB8IDM0MSArKysrKysrKysrKyst
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5oICAgICAgICAgICAgICAgfCAgIDIgKy0K
+IGluY2x1ZGUvZHJtL2k5MTVfcGNpaWRzLmggICAgICAgICAgICAgICAgICAgICB8ICAyMSArCiA0
+NSBmaWxlcyBjaGFuZ2VkLCAyMjkyIGluc2VydGlvbnMoKyksIDI5OCBkZWxldGlvbnMoLSkKIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3FwX3Rh
+Ymxlcy5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9xcF90YWJsZXMuaAoKLS0gCjIuMjUuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
