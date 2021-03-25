@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70142349905
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 19:07:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F313498F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 19:07:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B42A6EE17;
-	Thu, 25 Mar 2021 18:07:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5FBB6EDF5;
+	Thu, 25 Mar 2021 18:07:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB0E86EDDF
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 18:07:28 +0000 (UTC)
-IronPort-SDR: 8bch60whsvmtZr10bdht+kV1+Iwr7XhAcnhR3WH+Ca6HVtDPOV4a5Hslox5Q8czfvJZWBREkqm
- bUgzmv+UhB4g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9934"; a="276113761"
-X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="276113761"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A1786EDDF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 18:07:29 +0000 (UTC)
+IronPort-SDR: gCGeKLcK3QLtr4wsCRdVjJf9hCYafoXLocd7PzWL/x/SVoWYxk3Cst5fIu4qNOg2nirpsw8Fxj
+ T1gNJ9ksIG2A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9934"; a="276113764"
+X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="276113764"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Mar 2021 11:07:28 -0700
-IronPort-SDR: c7znUIxQdJnoxY/Ore+mUsNJhcck7JowOPIboOCPGf/UK49AItFqOGSwlu4QZLhzUDueaGQmOG
- CHo1jqk+Y19A==
-X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="453176548"
+IronPort-SDR: 6sJv3fh++nMolqK0NwAjm3HhSU6ldH/NIpY1GypJ3SPB9A1+8MT50wFpQgOpYvZfg2TDD/YipZ
+ 2gKgKfhbCIWw==
+X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="453176553"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Mar 2021 11:07:28 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Mar 2021 11:06:38 -0700
-Message-Id: <20210325180720.401410-9-matthew.d.roper@intel.com>
+Date: Thu, 25 Mar 2021 11:06:39 -0700
+Message-Id: <20210325180720.401410-10-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210325180720.401410-1-matthew.d.roper@intel.com>
 References: <20210325180720.401410-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 08/50] drm/i915/xelpd: Handle LPSP for XE_LPD
+Subject: [Intel-gfx] [PATCH v2 09/50] drm/i915/xelpd: Increase maximum
+ watermark lines to 255
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,53 +48,64 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: me@freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Uma Shankar <uma.shankar@intel.com>
-
-Enable LPSP for XE_LPD and get the proper power well
-enable check in place. For XE_LPD it is PW2 which
-need to check for LPSP.
-
-v2:
- - Move the XE_LPD check outside of the switch.  (Lucas)
-
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Cc: Animesh Manna <animesh.manna@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 564509a4e666..d5956c329745 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1339,6 +1339,12 @@ static int i915_lpsp_status(struct seq_file *m, void *unused)
- {
- 	struct drm_i915_private *i915 = node_to_i915(m->private);
- 
-+	if (DISPLAY_VER(i915) >= 13) {
-+		LPSP_STATUS(!intel_lpsp_power_well_enabled(i915,
-+							   SKL_DISP_PW_2));
-+		return 0;
-+	}
-+
- 	switch (DISPLAY_VER(i915)) {
- 	case 12:
- 	case 11:
--- 
-2.25.4
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+WEVfTFBEIGNvbnRpbnVlcyB0byB1c2UgdGhlIHNhbWUgInNreWxha2Utc3R5bGUiIHdhdGVybWFy
+awpwcm9ncmFtbWluZyBhcyBvdGhlciByZWNlbnQgcGxhdGZvcm1zLiAgVGhlIG9ubHkgY2hhbmdl
+IHRvIHRoZSB3YXRlcm1hcmsKY2FsY3VsYXRpb25zIGNvbXBhcmVkIHRvIERpc3BsYXkxMiBpcyB0
+aGF0IFhFX0xQRCBub3cgYWxsb3dzIGEKbWF4aW11bSBvZiAyNTUgbGluZXMgdnMgdGhlIG9sZCBs
+aW1pdCBvZiAzMS4KCkR1ZSB0byB0aGUgbGFyZ2VyIHBvc3NpYmxlIGxpbmVzIHZhbHVlLCB0aGUg
+Y29ycmVzcG9uZGluZyBiaXRzCnJlcHJlc2VudGluZyB0aGUgdmFsdWUgaW4gUExBTkVfV00gYXJl
+IGFsc28gZXh0ZW5kZWQsIHNvIG1ha2Ugc3VyZSB3ZQpyZWFkL3dyaXRlIGVub3VnaCBiaXRzLiAg
+TGV0J3MgYWxzbyB0YWtlIHRoaXMgb3Bwb3J0dW5pdHkgdG8gc3dpdGNoIG92ZXIKdG8gdGhlIFJF
+R19GSUVMRCBub3RhdGlvbi4KCkJzcGVjOiA0OTMyNQpCc3BlYzogNTA0MTkKQ2M6IFZpbGxlIFN5
+cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBBbnNodW1hbiBHdXB0
+YSA8YW5zaHVtYW4uZ3VwdGFAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxt
+YXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cmVnLmggfCAgMyArLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgfCAxNSArKysr
+KysrKysrKy0tLS0KIDIgZmlsZXMgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlv
+bnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAppbmRleCBiMzczMWNjOWFmYWQuLmQxNmYyMjhi
+YmVmMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAorKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCkBAIC02NDM2LDggKzY0MzYsNyBAQCBlbnVt
+IHsKICNkZWZpbmUgX0NVUl9XTV9UUkFOU19CXzAJMHg3MTE2OAogI2RlZmluZSAgIFBMQU5FX1dN
+X0VOCQkoMSA8PCAzMSkKICNkZWZpbmUgICBQTEFORV9XTV9JR05PUkVfTElORVMJKDEgPDwgMzAp
+Ci0jZGVmaW5lICAgUExBTkVfV01fTElORVNfU0hJRlQJMTQKLSNkZWZpbmUgICBQTEFORV9XTV9M
+SU5FU19NQVNLCTB4MWYKKyNkZWZpbmUgICBQTEFORV9XTV9MSU5FU19NQVNLCVJFR19HRU5NQVNL
+KDIxLCAxNCkKICNkZWZpbmUgICBQTEFORV9XTV9CTE9DS1NfTUFTSwkweDdmZiAvKiBza2wrOiAx
+MCBiaXRzLCBpY2wrIDExIGJpdHMgKi8KIAogI2RlZmluZSBfQ1VSX1dNXzAocGlwZSkgX1BJUEUo
+cGlwZSwgX0NVUl9XTV9BXzAsIF9DVVJfV01fQl8wKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaW50ZWxfcG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKaW5k
+ZXggODIwZjg1MGQ1Y2JiLi4xOGVlMjI1MDE2ZmEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2ludGVsX3BtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYwpA
+QCAtNTE5OSw2ICs1MTk5LDE0IEBAIHN0YXRpYyBib29sIHNrbF93bV9oYXNfbGluZXMoc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBpbnQgbGV2ZWwpCiAJcmV0dXJuIGxldmVsID4g
+MDsKIH0KIAorc3RhdGljIGludCBza2xfd21fbWF4X2xpbmVzKHN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICpkZXZfcHJpdikKK3sKKwlpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpID49IDEzKQorCQly
+ZXR1cm4gMjU1OworCWVsc2UKKwkJcmV0dXJuIDMxOworfQorCiBzdGF0aWMgdm9pZCBza2xfY29t
+cHV0ZV9wbGFuZV93bShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwK
+IAkJCQkgaW50IGxldmVsLAogCQkJCSB1bnNpZ25lZCBpbnQgbGF0ZW5jeSwKQEAgLTUzMDMsNyAr
+NTMxMSw3IEBAIHN0YXRpYyB2b2lkIHNrbF9jb21wdXRlX3BsYW5lX3dtKGNvbnN0IHN0cnVjdCBp
+bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCWlmICghc2tsX3dtX2hhc19saW5lcyhkZXZf
+cHJpdiwgbGV2ZWwpKQogCQlsaW5lcyA9IDA7CiAKLQlpZiAobGluZXMgPiAzMSkgeworCWlmIChs
+aW5lcyA+IHNrbF93bV9tYXhfbGluZXMoZGV2X3ByaXYpKSB7CiAJCS8qIHJlamVjdCBpdCAqLwog
+CQlyZXN1bHQtPm1pbl9kZGJfYWxsb2MgPSBVMTZfTUFYOwogCQlyZXR1cm47CkBAIC01NTk5LDcg
+KzU2MDcsNyBAQCBzdGF0aWMgdm9pZCBza2xfd3JpdGVfd21fbGV2ZWwoc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmRldl9wcml2LAogCWlmIChsZXZlbC0+aWdub3JlX2xpbmVzKQogCQl2YWwgfD0g
+UExBTkVfV01fSUdOT1JFX0xJTkVTOwogCXZhbCB8PSBsZXZlbC0+YmxvY2tzOwotCXZhbCB8PSBs
+ZXZlbC0+bGluZXMgPDwgUExBTkVfV01fTElORVNfU0hJRlQ7CisJdmFsIHw9IFJFR19GSUVMRF9Q
+UkVQKFBMQU5FX1dNX0xJTkVTX01BU0ssIGxldmVsLT5saW5lcyk7CiAKIAlpbnRlbF9kZV93cml0
+ZV9mdyhkZXZfcHJpdiwgcmVnLCB2YWwpOwogfQpAQCAtNjIwNyw4ICs2MjE1LDcgQEAgc3RhdGlj
+IHZvaWQgc2tsX3dtX2xldmVsX2Zyb21fcmVnX3ZhbCh1MzIgdmFsLCBzdHJ1Y3Qgc2tsX3dtX2xl
+dmVsICpsZXZlbCkKIAlsZXZlbC0+ZW5hYmxlID0gdmFsICYgUExBTkVfV01fRU47CiAJbGV2ZWwt
+Pmlnbm9yZV9saW5lcyA9IHZhbCAmIFBMQU5FX1dNX0lHTk9SRV9MSU5FUzsKIAlsZXZlbC0+Ymxv
+Y2tzID0gdmFsICYgUExBTkVfV01fQkxPQ0tTX01BU0s7Ci0JbGV2ZWwtPmxpbmVzID0gKHZhbCA+
+PiBQTEFORV9XTV9MSU5FU19TSElGVCkgJgotCQlQTEFORV9XTV9MSU5FU19NQVNLOworCWxldmVs
+LT5saW5lcyA9IFJFR19GSUVMRF9HRVQoUExBTkVfV01fTElORVNfTUFTSywgdmFsKTsKIH0KIAog
+dm9pZCBza2xfcGlwZV93bV9nZXRfaHdfc3RhdGUoc3RydWN0IGludGVsX2NydGMgKmNydGMsCi0t
+IAoyLjI1LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
