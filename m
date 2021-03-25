@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F0AE348B98
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 09:32:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DD6C348BDF
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 09:48:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D0AF6EB73;
-	Thu, 25 Mar 2021 08:32:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A07196EB71;
+	Thu, 25 Mar 2021 08:48:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 324036EB73
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 08:32:54 +0000 (UTC)
-IronPort-SDR: nUjWLB6BPj5erI/33+MPQJGF4nJ9fiBSADypHPp60cTlUuysoGQ9qKt+jPwCyu20oQUCLJygBL
- hzW5c1aaphaw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="254874355"
-X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="254874355"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2021 01:32:51 -0700
-IronPort-SDR: lDWg+7bLxfsNyWMlwCAznviUFfpXfWDdz1tX5UzDpLFOITvDEAxCgl9oHm6KSvgu2iq32iJlOw
- pGqKDf+I8kGg==
-X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="514525546"
-Received: from unknown (HELO intel.com) ([10.237.72.91])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2021 01:32:50 -0700
-Date: Thu, 25 Mar 2021 10:35:24 +0200
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210325083524.GA27205@intel.com>
-References: <20210325004415.17432-1-ville.syrjala@linux.intel.com>
+Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 905686ECDD;
+ Thu, 25 Mar 2021 08:48:11 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4F5dzX3HCBz9sRN;
+ Thu, 25 Mar 2021 19:48:08 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1616662089;
+ bh=tBQ4T2YDxZqLXKQJjgKq5hPoZEs+OKSjOiS/UCGOD5w=;
+ h=Date:From:To:Cc:Subject:From;
+ b=ZjrpqsUpqr0IG/sEGIXXvVf+ugcxyQipukI/vAuV1rEJcD0Lw/NRizTo+DfFRVSMw
+ fB52CF+26PP2A6aRM+ArILscr0gha/TgxwjcCYqvPkFYx/YX7IEDO53Fv6uXALVFaz
+ QbNfOXCgq6W1cQo9LX5dpSIwIbJIJ0Rg5e47kH/vFFEPbk6Uxr3ojZyRhznPBhMQyl
+ LgHjujyqcRW9xvjVnCa9sCvBv1EUF+m1mCOnhUgIwVKLYO5JSTH8KD1C/z036hTNpT
+ 5mNISLgk3Oz0dVpBe8tiaNamlYpu+1qhbuunIjlLKTWBRChu8/wWd+lsT2JpVzPByG
+ IgVM04T04sIjQ==
+Date: Thu, 25 Mar 2021 19:48:07 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics
+ <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
+Message-ID: <20210325194807.38ec3c55@canb.auug.org.au>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210325004415.17432-1-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix transposed arguments to
- skl_plane_wm_level()
+Subject: [Intel-gfx] linux-next: please do not base your tree on
+ v5.12-rc1-dontuse
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,63 +48,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+Content-Type: multipart/mixed; boundary="===============0524235273=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 25, 2021 at 02:44:14AM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+--===============0524235273==
+Content-Type: multipart/signed; boundary="Sig_/aK0egOh65TcUD3jC9tmu2u/";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-> Accidentally transposed the arguments to skl_plane_wm_level()
-> which is causing us to mistakenly think that the plane watermarks
-> have/have not changed when the opposite may be true. Swap the
-> arguments so this actually works.
-> =
+--Sig_/aK0egOh65TcUD3jC9tmu2u/
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-> The other uses of this look OK.
+Hi all,
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+The latest version of the drm-misc tree consists of just 2 commits on
+top of Linus' v5.12-rc1-dontuse tag.
 
-> =
+--=20
+Cheers,
+Stephen Rothwell
 
-> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Fixes: 2871b2fde449 ("drm/i915: Fix TGL+ plane SAGV watermark programming=
-")
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_pm.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> =
+--Sig_/aK0egOh65TcUD3jC9tmu2u/
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 820f850d5cbb..b2aede2be89d 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -6017,8 +6017,8 @@ static bool skl_plane_selected_wm_equals(struct int=
-el_plane *plane,
->  		 * use it. It only gets used for calculating the required
->  		 * ddb allocation.
->  		 */
-> -		if (!skl_wm_level_equals(skl_plane_wm_level(old_pipe_wm, level, plane-=
->id),
-> -					 skl_plane_wm_level(new_pipe_wm, level, plane->id)))
-> +		if (!skl_wm_level_equals(skl_plane_wm_level(old_pipe_wm, plane->id, le=
-vel),
-> +					 skl_plane_wm_level(new_pipe_wm, plane->id, level)))
->  			return false;
->  	}
->  =
+-----BEGIN PGP SIGNATURE-----
 
-> -- =
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmBcTkcACgkQAVBC80lX
+0Gz0VAf/ec4qbMsu5RHLC74gvf4aVusT7kTGpKjmo8fDjuc+wg7Z+qHAy2bHDXBR
+LQToSER6kZNssqydbqS9pW08EfWSOlXUQIe/ornNdpWUz3jG7chGLI1yU/cHcZgC
+5wN+lBLRxDpJ+uF/qbnDbRO6IQJAuvG0z0t9uVPeOPQlrNgGh16G8p3uqFX83pBZ
+UBZHdaxG6EiS1v8IzXroq71zBfzUcx7x3azse7R3erSsLQo6nYEf8A8QdUZXUZ/5
+ffW1sJPBn0H5EkBitBxwwKQk3/nUUl1f1GUbkFz8llXaiA3q1sl0YWRXV7rs4C/e
+YnakxYCa60uMXoZSsAJwv9Mlx075YA==
+=9NvJ
+-----END PGP SIGNATURE-----
 
-> 2.26.2
-> =
+--Sig_/aK0egOh65TcUD3jC9tmu2u/--
+
+--===============0524235273==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0524235273==--
