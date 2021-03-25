@@ -2,44 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C15A1348960
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 07:52:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D65348B19
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 09:05:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CDAD6EB38;
-	Thu, 25 Mar 2021 06:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58F226ECD3;
+	Thu, 25 Mar 2021 08:05:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ADF26EB2D;
- Thu, 25 Mar 2021 06:52:06 +0000 (UTC)
-IronPort-SDR: e2ma6SVoqwuX6+IHif9wghjK3XnNSKydw2d9pX6v7BgAGWecfSRUlE7S+w3GxnuqZSzVbhKdbT
- y1y3sbaHLx2g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="188569682"
-X-IronPort-AV: E=Sophos;i="5.81,276,1610438400"; d="scan'208";a="188569682"
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6EA66ECCE;
+ Thu, 25 Mar 2021 08:05:22 +0000 (UTC)
+IronPort-SDR: Vi9Ufp+Og1lHQ4NHSphBgKOWgRorNhm/H+SXPf+A37Q3K4mYbPoVb6QaDNNbZwCD1puhG+1tZ8
+ Iz62xo3jlOZw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="190904511"
+X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="190904511"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 23:52:05 -0700
-IronPort-SDR: eJZ841xfwm1YDoaHeuOw7RJcJ+urEuo6vbSwsXYYz3o7KI9MFPxzZq3wKTlJXA8tXOQSmAJ/Bz
- K4lWgwfjM/mw==
-X-IronPort-AV: E=Sophos;i="5.81,276,1610438400"; d="scan'208";a="415853286"
-Received: from aknautiy-mobl.gar.corp.intel.com (HELO [10.213.103.45])
- ([10.213.103.45])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2021 01:05:21 -0700
+IronPort-SDR: YSlh8X6JrYCAgcFAjL5XZMs9hqgR3pcWRIp1+nLDHbTGxn8DfB0UC8NvUc6Fyh2eKqFMEpwwEz
+ JeibtqsaiX5Q==
+X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="415886752"
+Received: from jweber-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.244])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2021 23:52:03 -0700
-To: Anshuman Gupta <anshuman.gupta@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20210324113012.7564-1-anshuman.gupta@intel.com>
- <20210324113012.7564-2-anshuman.gupta@intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Message-ID: <c9d95f02-3a2b-4a01-6b19-2ce3c051ec9d@intel.com>
-Date: Thu, 25 Mar 2021 12:21:52 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ 25 Mar 2021 01:05:09 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arnd Bergmann <arnd@kernel.org>, linux-kernel@vger.kernel.org,
+ Martin Sebor <msebor@gcc.gnu.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <20210322160253.4032422-12-arnd@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210322160253.4032422-1-arnd@kernel.org>
+ <20210322160253.4032422-12-arnd@kernel.org>
+Date: Thu, 25 Mar 2021 10:05:06 +0200
+Message-ID: <87wntv3bgt.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210324113012.7564-2-anshuman.gupta@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/hdcp: Add DP HDCP2.2
- timeout to read entire msg
+Subject: Re: [Intel-gfx] [PATCH 11/11] [RFC] drm/i915/dp: fix array overflow
+ warning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,150 +53,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: maarten.lankhorst@intel.com
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: dri-devel@lists.freedesktop.org, linux-scsi@vger.kernel.org, x86@kernel.org,
+ James Smart <james.smart@broadcom.com>, tboot-devel@lists.sourceforge.net,
+ Kalle Valo <kvalo@codeaurora.org>, ath11k@lists.infradead.org,
+ Serge Hallyn <serge@hallyn.com>, Arnd Bergmann <arnd@arndb.de>, "James
+ E.J. Bottomley" <jejb@linux.ibm.com>, Ning Sun <ning.sun@intel.com>,
+ Anders Larsen <al@alarsen.net>, Sean Paul <seanpaul@chromium.org>,
+ cgroups@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-security-module@vger.kernel.org, Tejun Heo <tj@kernel.org>,
+ Simon Kelley <simon@thekelleys.org.uk>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-LGTM.
-
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-
-On 3/24/2021 5:00 PM, Anshuman Gupta wrote:
-> As documented in HDCP 2.2 DP Errata spec transmitter should abort the
-> authentication protocol in case transmitter has not received the
-> entire {AKE_Send_Cert, AKE_Send_H_prime, AKE_Send_Paring_Info} msg
-> within {110,7,5} miliseconds.
->
-> Adding above msg timeout values and aborting the HDCP authentication
-> in case it timedout to read entire msg.
->
-> https://www.digital-cp.com/sites/default/files/HDCP%202_2_DisplayPort_Errata_v3_0.pdf
->
-> v2:
-> - Removed redundant variable msg_can_timedout. [Ankit]
->
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 45 ++++++++++++++------
->   include/drm/drm_hdcp.h                       |  3 ++
->   2 files changed, 35 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> index 40c516e90193..8bad4b3d34dd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> @@ -294,37 +294,39 @@ struct hdcp2_dp_msg_data {
->   	bool msg_detectable;
->   	u32 timeout;
->   	u32 timeout2; /* Added for non_paired situation */
-> +	/* Timeout to read entire msg */
-> +	u32 msg_read_timeout;
->   };
->   
->   static const struct hdcp2_dp_msg_data hdcp2_dp_msg_data[] = {
-> -	{ HDCP_2_2_AKE_INIT, DP_HDCP_2_2_AKE_INIT_OFFSET, false, 0, 0 },
-> +	{ HDCP_2_2_AKE_INIT, DP_HDCP_2_2_AKE_INIT_OFFSET, false, 0, 0, 0},
->   	{ HDCP_2_2_AKE_SEND_CERT, DP_HDCP_2_2_AKE_SEND_CERT_OFFSET,
-> -	  false, HDCP_2_2_CERT_TIMEOUT_MS, 0 },
-> +	  false, HDCP_2_2_CERT_TIMEOUT_MS, 0, HDCP_2_2_DP_CERT_READ_TIMEOUT_MS},
->   	{ HDCP_2_2_AKE_NO_STORED_KM, DP_HDCP_2_2_AKE_NO_STORED_KM_OFFSET,
-> -	  false, 0, 0 },
-> +	  false, 0, 0, 0 },
->   	{ HDCP_2_2_AKE_STORED_KM, DP_HDCP_2_2_AKE_STORED_KM_OFFSET,
-> -	  false, 0, 0 },
-> +	  false, 0, 0, 0 },
->   	{ HDCP_2_2_AKE_SEND_HPRIME, DP_HDCP_2_2_AKE_SEND_HPRIME_OFFSET,
->   	  true, HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS,
-> -	  HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS },
-> +	  HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS, HDCP_2_2_DP_HPRIME_READ_TIMEOUT_MS},
->   	{ HDCP_2_2_AKE_SEND_PAIRING_INFO,
->   	  DP_HDCP_2_2_AKE_SEND_PAIRING_INFO_OFFSET, true,
-> -	  HDCP_2_2_PAIRING_TIMEOUT_MS, 0 },
-> -	{ HDCP_2_2_LC_INIT, DP_HDCP_2_2_LC_INIT_OFFSET, false, 0, 0 },
-> +	  HDCP_2_2_PAIRING_TIMEOUT_MS, 0, HDCP_2_2_DP_PAIRING_READ_TIMEOUT_MS },
-> +	{ HDCP_2_2_LC_INIT, DP_HDCP_2_2_LC_INIT_OFFSET, false, 0, 0, 0 },
->   	{ HDCP_2_2_LC_SEND_LPRIME, DP_HDCP_2_2_LC_SEND_LPRIME_OFFSET,
-> -	  false, HDCP_2_2_DP_LPRIME_TIMEOUT_MS, 0 },
-> +	  false, HDCP_2_2_DP_LPRIME_TIMEOUT_MS, 0, 0 },
->   	{ HDCP_2_2_SKE_SEND_EKS, DP_HDCP_2_2_SKE_SEND_EKS_OFFSET, false,
-> -	  0, 0 },
-> +	  0, 0, 0 },
->   	{ HDCP_2_2_REP_SEND_RECVID_LIST,
->   	  DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET, true,
-> -	  HDCP_2_2_RECVID_LIST_TIMEOUT_MS, 0 },
-> +	  HDCP_2_2_RECVID_LIST_TIMEOUT_MS, 0, 0 },
->   	{ HDCP_2_2_REP_SEND_ACK, DP_HDCP_2_2_REP_SEND_ACK_OFFSET, false,
-> -	  0, 0 },
-> +	  0, 0, 0 },
->   	{ HDCP_2_2_REP_STREAM_MANAGE,
->   	  DP_HDCP_2_2_REP_STREAM_MANAGE_OFFSET, false,
-> -	  0, 0 },
-> +	  0, 0, 0},
->   	{ HDCP_2_2_REP_STREAM_READY, DP_HDCP_2_2_REP_STREAM_READY_OFFSET,
-> -	  false, HDCP_2_2_STREAM_READY_TIMEOUT_MS, 0 },
-> +	  false, HDCP_2_2_STREAM_READY_TIMEOUT_MS, 0, 0 },
->   /* local define to shovel this through the write_2_2 interface */
->   #define HDCP_2_2_ERRATA_DP_STREAM_TYPE	50
->   	{ HDCP_2_2_ERRATA_DP_STREAM_TYPE,
-> @@ -513,6 +515,8 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
->   	u8 *byte = buf;
->   	ssize_t ret, bytes_to_recv, len;
->   	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
-> +	ktime_t msg_end;
-> +	bool msg_expired;
->   
->   	hdcp2_msg_data = get_hdcp2_dp_msg_data(msg_id);
->   	if (!hdcp2_msg_data)
-> @@ -539,6 +543,11 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
->   		len = bytes_to_recv > DP_AUX_MAX_PAYLOAD_BYTES ?
->   		      DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_recv;
->   
-> +		/* Entire msg read timeout since initiate of msg read */
-> +		if (bytes_to_recv == size - 1 && hdcp2_msg_data->msg_read_timeout > 0)
-> +			msg_end = ktime_add_ms(ktime_get_raw(),
-> +					       hdcp2_msg_data->msg_read_timeout);
-> +
->   		ret = drm_dp_dpcd_read(&dig_port->dp.aux, offset,
->   				       (void *)byte, len);
->   		if (ret < 0) {
-> @@ -551,6 +560,16 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
->   		byte += ret;
->   		offset += ret;
->   	}
-> +
-> +	if (hdcp2_msg_data->msg_read_timeout > 0) {
-> +		msg_expired = ktime_after(ktime_get_raw(), msg_end);
-> +		if (msg_expired) {
-> +			drm_dbg_kms(&i915->drm, "msg_id %d, entire msg read timeout(mSec): %d\n",
-> +				    msg_id, hdcp2_msg_data->msg_read_timeout);
-> +			return -ETIMEDOUT;
-> +		}
-> +	}
-> +
->   	byte = buf;
->   	*byte = msg_id;
->   
-> diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
-> index ac22c246542a..2b165a0f434f 100644
-> --- a/include/drm/drm_hdcp.h
-> +++ b/include/drm/drm_hdcp.h
-> @@ -224,9 +224,12 @@ struct hdcp2_rep_stream_ready {
->   
->   /* HDCP2.2 TIMEOUTs in mSec */
->   #define HDCP_2_2_CERT_TIMEOUT_MS		100
-> +#define HDCP_2_2_DP_CERT_READ_TIMEOUT_MS	110
->   #define HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS	1000
->   #define HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS	200
-> +#define HDCP_2_2_DP_HPRIME_READ_TIMEOUT_MS	7
->   #define HDCP_2_2_PAIRING_TIMEOUT_MS		200
-> +#define HDCP_2_2_DP_PAIRING_READ_TIMEOUT_MS	5
->   #define	HDCP_2_2_HDMI_LPRIME_TIMEOUT_MS		20
->   #define HDCP_2_2_DP_LPRIME_TIMEOUT_MS		7
->   #define HDCP_2_2_RECVID_LIST_TIMEOUT_MS		3000
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCAyMiBNYXIgMjAyMSwgQXJuZCBCZXJnbWFubiA8YXJuZEBrZXJuZWwub3JnPiB3cm90
+ZToKPiBGcm9tOiBBcm5kIEJlcmdtYW5uIDxhcm5kQGFybmRiLmRlPgo+Cj4gZ2NjLTExIHdhcm5z
+IHRoYXQgaW50ZWxfZHBfY2hlY2tfbXN0X3N0YXR1cygpIGhhcyBhIGxvY2FsIGFycmF5IG9mCj4g
+Zm91cnRlZW4gYnl0ZXMgYW5kIHBhc3NlcyB0aGUgbGFzdCBmb3VyIGJ5dGVzIGludG8gYSBmdW5j
+dGlvbiB0aGF0Cj4gZXhwZWN0cyBhIHNpeC1ieXRlIGFycmF5Ogo+Cj4gZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jOiBJbiBmdW5jdGlvbiDigJhpbnRlbF9kcF9jaGVja19t
+c3Rfc3RhdHVz4oCZOgo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYzo0
+NTU2OjIyOiBlcnJvcjog4oCYZHJtX2RwX2NoYW5uZWxfZXFfb2vigJkgcmVhZGluZyA2IGJ5dGVz
+IGZyb20gYSByZWdpb24gb2Ygc2l6ZSA0IFstV2Vycm9yPXN0cmluZ29wLW92ZXJyZWFkXQo+ICA0
+NTU2IHwgICAgICAgICAgICAgICAgICAgICAhZHJtX2RwX2NoYW5uZWxfZXFfb2soJmVzaVsxMF0s
+IGludGVsX2RwLT5sYW5lX2NvdW50KSkgewo+ICAgICAgIHwgICAgICAgICAgICAgICAgICAgICAg
+Xn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgo+IGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYzo0NTU2OjIyOiBub3RlOiByZWZl
+cmVuY2luZyBhcmd1bWVudCAxIG9mIHR5cGUg4oCYY29uc3QgdTggKuKAmSB7YWthIOKAmGNvbnN0
+IHVuc2lnbmVkIGNoYXIgKuKAmX0KPiBJbiBmaWxlIGluY2x1ZGVkIGZyb20gZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jOjM4Ogo+IGluY2x1ZGUvZHJtL2RybV9kcF9oZWxw
+ZXIuaDoxNDU5OjY6IG5vdGU6IGluIGEgY2FsbCB0byBmdW5jdGlvbiDigJhkcm1fZHBfY2hhbm5l
+bF9lcV9va+KAmQo+ICAxNDU5IHwgYm9vbCBkcm1fZHBfY2hhbm5lbF9lcV9vayhjb25zdCB1OCBs
+aW5rX3N0YXR1c1tEUF9MSU5LX1NUQVRVU19TSVpFXSwKPiAgICAgICB8ICAgICAgXn5+fn5+fn5+
+fn5+fn5+fn5+fn4KPgo+IENsZWFybHkgc29tZXRoaW5nIGlzIHdyb25nIGhlcmUsIGJ1dCBJIGNh
+bid0IHF1aXRlIGZpZ3VyZSBvdXQgd2hhdC4KPiBDaGFuZ2luZyB0aGUgYXJyYXkgc2l6ZSB0byAx
+NiBieXRlcyBhdm9pZHMgdGhlIHdhcm5pbmcsIGJ1dCBpcwo+IHByb2JhYmx5IHRoZSB3cm9uZyBz
+b2x1dGlvbiBoZXJlLgoKVWdoLiBkcm1fZHBfY2hhbm5lbF9lcV9vaygpIGRvZXMgbm90IGFjdHVh
+bGx5IHJlcXVpcmUgbW9yZSB0aGFuCkRQX0xJTktfU1RBVFVTX1NJWkUgLSAyIGVsZW1lbnRzIGlu
+IHRoZSBsaW5rX3N0YXR1cy4gSXQncyBzb21lIG90aGVyCnJlbGF0ZWQgZnVuY3Rpb25zIHRoYXQg
+ZG8sIGFuZCBpbiBtb3N0IGNhc2VzIGl0J3MgY29udmVuaWVudCB0byByZWFkIGFsbAp0aG9zZSBE
+UF9MSU5LX1NUQVRVU19TSVpFIGJ5dGVzLgoKSG93ZXZlciwgaGVyZSB0aGUgY2FzZSBpcyBzbGln
+aHRseSBkaWZmZXJlbnQgZm9yIERQIE1TVCwgYW5kIHRoZSBjaGFuZ2UKY2F1c2VzIHJlc2VydmVk
+IERQQ0QgYWRkcmVzc2VzIHRvIGJlIHJlYWQuIE5vdCBzdXJlIGl0IG1hdHRlcnMsIGJ1dApyZWFs
+bHkgSSB0aGluayB0aGUgcHJvYmxlbSBpcyB3aGF0IGRybV9kcF9jaGFubmVsX2VxX29rKCkgYWR2
+ZXJ0aXplcy4KCkkgYWxzbyBkb24ndCBsaWtlIHRoZSBhcnJheSBub3RhdGlvbiB3aXRoIHNpemVz
+IGluIGZ1bmN0aW9uIHBhcmFtZXRlcnMKaW4gZ2VuZXJhbCwgYmVjYXVzZSBJIHRoaW5rIGl0J3Mg
+bWlzbGVhZGluZy4gV291bGQgZ2NjLTExIHdhcm4gaWYgYQpmdW5jdGlvbiBhY3R1YWxseSBhY2Nl
+c3NlcyB0aGUgbWVtb3J5IG91dCBvZiBib3VuZHMgb2YgdGhlIHNpemU/CgpBbnl3YXkuIEkgZG9u
+J3QgdGhpbmsgd2UncmUgZ29pbmcgdG8gZ2V0IHJpZCBvZiB0aGUgYXJyYXkgbm90YXRpb24KYW55
+dGltZSBzb29uLCBpZiBldmVyLCBubyBtYXR0ZXIgaG93IG11Y2ggSSBkaXNsaWtlIGl0LCBzbyBJ
+IHRoaW5rIHRoZQpyaWdodCBmaXggd291bGQgYmUgdG8gYXQgbGVhc3Qgc3RhdGUgdGhlIGNvcnJl
+Y3QgcmVxdWlyZWQgc2l6ZSBpbgpkcm1fZHBfY2hhbm5lbF9lcV9vaygpLgoKCkJSLApKYW5pLgoK
+Cj4KPiBTaWduZWQtb2ZmLWJ5OiBBcm5kIEJlcmdtYW5uIDxhcm5kQGFybmRiLmRlPgo+IC0tLQo+
+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgfCAyICstCj4gIDEgZmls
+ZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+IGluZGV4IDhjMTJkNTM3NTYwNy4uODMwZTI1MTVm
+MTE5IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAu
+Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+IEBAIC02
+NSw3ICs2NSw3IEBACj4gICNpbmNsdWRlICJpbnRlbF92ZHNjLmgiCj4gICNpbmNsdWRlICJpbnRl
+bF92cnIuaCIKPiAgCj4gLSNkZWZpbmUgRFBfRFBSWF9FU0lfTEVOIDE0Cj4gKyNkZWZpbmUgRFBf
+RFBSWF9FU0lfTEVOIDE2Cj4gIAo+ICAvKiBEUCBEU0MgdGhyb3VnaHB1dCB2YWx1ZXMgdXNlZCBm
+b3Igc2xpY2UgY291bnQgY2FsY3VsYXRpb25zIEtQaXhlbHMvcyAqLwo+ICAjZGVmaW5lIERQX0RT
+Q19QRUFLX1BJWEVMX1JBVEUJCQkyNzIwMDAwCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4g
+U291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZngK
