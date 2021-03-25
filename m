@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312A6349BE7
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 22:48:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 754A0349BEA
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 22:48:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1E136EE6B;
-	Thu, 25 Mar 2021 21:48:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C7396EE62;
+	Thu, 25 Mar 2021 21:48:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0549E6EE62
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 21:48:42 +0000 (UTC)
-IronPort-SDR: yEnqa+s69Hc5ZqQC3v7eOBhwcJKZ+tGALnPpj1FCX8ZW9h5dD5gFZortM91qTWaZPKh4RWTqNf
- HjJGQkpcxGBA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9934"; a="171005109"
-X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="171005109"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0526EE5F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 21:48:44 +0000 (UTC)
+IronPort-SDR: pJjDzKYINiq9avARZMQ4J83N8l3AvpBuv/YAQ7RVofBpMzC6dkp5U4/YKYUvH0n6vEZmXTED8c
+ skGXfMpB221Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9934"; a="171005111"
+X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="171005111"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2021 14:48:42 -0700
-IronPort-SDR: eAsx2xve2laP4cOfLaOj/sfdN39QAx9Oy1FEh5wbeQqrwzA+3vUPc4nXWO5y0QckYEp5cvg2fj
- QfLB876MIKFA==
-X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="375235752"
+ 25 Mar 2021 14:48:43 -0700
+IronPort-SDR: 7siLiNOfR2kUr+sIbU/wCcmQz2IK9aoIn4VICa1XOSpn/BSKpAXO5LZUOc0FxxK5u1gmiG5PDW
+ r/LlVnqNUhkQ==
+X-IronPort-AV: E=Sophos;i="5.81,278,1610438400"; d="scan'208";a="375235757"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2021 14:48:41 -0700
+ 25 Mar 2021 14:48:42 -0700
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Mar 2021 23:48:07 +0200
-Message-Id: <20210325214808.2071517-25-imre.deak@intel.com>
+Date: Thu, 25 Mar 2021 23:48:08 +0200
+Message-Id: <20210325214808.2071517-26-imre.deak@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210325214808.2071517-1-imre.deak@intel.com>
 References: <20210325214808.2071517-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 24/25] drm/i915/selftest: Add remap/rotate
- vma subtests when dst_stride!=width/height
+Subject: [Intel-gfx] [PATCH v2 25/25] drm/i915: For-CI: Force remapping the
+ FB with a POT aligned stride
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,111 +47,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWRkIHNlbGZ0ZXN0cyB0byB0ZXN0IHRoZSBQT1Qgc3RyaWRlIHBhZGRpbmcgZnVuY3Rpb25hbGl0
-eSBhZGRlZCBpbiB0aGUKcHJldmlvdXMgcGF0Y2guCgpTaWduZWQtb2ZmLWJ5OiBJbXJlIERlYWsg
-PGltcmUuZGVha0BpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
-LnN5cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L3NlbGZ0
-ZXN0cy9pOTE1X3ZtYS5jIHwgOTMgKysrKysrKysrKysrKysrKysrKysrLS0KIDEgZmlsZSBjaGFu
-Z2VkLCA4NiBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L3NlbGZ0ZXN0cy9pOTE1X3ZtYS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvc2VsZnRlc3RzL2k5MTVfdm1hLmMKaW5kZXggNmFhZGNkMzFkNzVhOS4uNWZlN2I4MGNhMGJk
-OSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfdm1hLmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfdm1hLmMKQEAgLTM3Myw2
-ICszNzMsOCBAQCBhc3NlcnRfcm90YXRlZChzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2Jq
-LAogCXVuc2lnbmVkIGludCB4LCB5OwogCiAJZm9yICh4ID0gMDsgeCA8IHItPnBsYW5lW25dLndp
-ZHRoOyB4KyspIHsKKwkJdW5zaWduZWQgaW50IGxlZnQ7CisKIAkJZm9yICh5ID0gMDsgeSA8IHIt
-PnBsYW5lW25dLmhlaWdodDsgeSsrKSB7CiAJCQl1bnNpZ25lZCBsb25nIHNyY19pZHg7CiAJCQlk
-bWFfYWRkcl90IHNyYzsKQEAgLTQwMSw2ICs0MDMsMzEgQEAgYXNzZXJ0X3JvdGF0ZWQoc3RydWN0
-IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKIAogCQkJc2cgPSBzZ19uZXh0KHNnKTsKIAkJfQor
-CisJCWxlZnQgPSAoci0+cGxhbmVbbl0uZHN0X3N0cmlkZSAtIHkpICogUEFHRV9TSVpFOworCisJ
-CWlmICghbGVmdCkKKwkJCWNvbnRpbnVlOworCisJCWlmICghc2cpIHsKKwkJCXByX2VycigiSW52
-YWxpZCBzZyB0YWJsZTogdG9vIHNob3J0IGF0IHBsYW5lICVkLCAoJWQsICVkKSFcbiIsCisJCQkg
-ICAgICAgbiwgeCwgeSk7CisJCQlyZXR1cm4gRVJSX1BUUigtRUlOVkFMKTsKKwkJfQorCisJCWlm
-IChzZ19kbWFfbGVuKHNnKSAhPSBsZWZ0KSB7CisJCQlwcl9lcnIoIkludmFsaWQgc2cubGVuZ3Ro
-LCBmb3VuZCAlZCwgZXhwZWN0ZWQgJXUgZm9yIHJvdGF0ZWQgcGFnZSAoJWQsICVkKVxuIiwKKwkJ
-CSAgICAgICBzZ19kbWFfbGVuKHNnKSwgbGVmdCwgeCwgeSk7CisJCQlyZXR1cm4gRVJSX1BUUigt
-RUlOVkFMKTsKKwkJfQorCisJCWlmIChzZ19kbWFfYWRkcmVzcyhzZykgIT0gMCkgeworCQkJcHJf
-ZXJyKCJJbnZhbGlkIGFkZHJlc3MsIGZvdW5kICVwYWQsIGV4cGVjdGVkIDAgZm9yIHJlbWFwcGVk
-IHBhZ2UgKCVkLCAlZClcbiIsCisJCQkgICAgICAgJnNnX2RtYV9hZGRyZXNzKHNnKSwgeCwgeSk7
-CisJCQlyZXR1cm4gRVJSX1BUUigtRUlOVkFMKTsKKwkJfQorCisJCXNnID0gc2dfbmV4dChzZyk7
-CiAJfQogCiAJcmV0dXJuIHNnOwpAQCAtNDYyLDE1ICs0ODksNTUgQEAgYXNzZXJ0X3JlbWFwcGVk
-KHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmosCiAJCQlpZiAoIWxlZnQpCiAJCQkJc2cg
-PSBzZ19uZXh0KHNnKTsKIAkJfQorCisJCWlmIChsZWZ0KSB7CisJCQlwcl9lcnIoIlVuZXhwZWN0
-ZWQgc2cgdGFpbCB3aXRoICVkIHNpemUgZm9yIHJlbWFwcGVkIHBhZ2UgKCVkLCAlZClcbiIsCisJ
-CQkgICAgICAgbGVmdCwKKwkJCSAgICAgICB4LCB5KTsKKwkJCXJldHVybiBFUlJfUFRSKC1FSU5W
-QUwpOworCQl9CisKKwkJbGVmdCA9IChyLT5wbGFuZVtuXS5kc3Rfc3RyaWRlIC0gci0+cGxhbmVb
-bl0ud2lkdGgpICogUEFHRV9TSVpFOworCisJCWlmICghbGVmdCkKKwkJCWNvbnRpbnVlOworCisJ
-CWlmICghc2cpIHsKKwkJCXByX2VycigiSW52YWxpZCBzZyB0YWJsZTogdG9vIHNob3J0IGF0IHBs
-YW5lICVkLCAoJWQsICVkKSFcbiIsCisJCQkgICAgICAgbiwgeCwgeSk7CisJCQlyZXR1cm4gRVJS
-X1BUUigtRUlOVkFMKTsKKwkJfQorCisJCWlmIChzZ19kbWFfbGVuKHNnKSAhPSBsZWZ0KSB7CisJ
-CQlwcl9lcnIoIkludmFsaWQgc2cubGVuZ3RoLCBmb3VuZCAldSwgZXhwZWN0ZWQgJXUgZm9yIHJl
-bWFwcGVkIHBhZ2UgKCVkLCAlZClcbiIsCisJCQkgICAgICAgc2dfZG1hX2xlbihzZyksIGxlZnQs
-CisJCQkgICAgICAgeCwgeSk7CisJCQlyZXR1cm4gRVJSX1BUUigtRUlOVkFMKTsKKwkJfQorCisJ
-CWlmIChzZ19kbWFfYWRkcmVzcyhzZykgIT0gMCkgeworCQkJcHJfZXJyKCJJbnZhbGlkIGFkZHJl
-c3MsIGZvdW5kICVwYWQsIGV4cGVjdGVkIDAgZm9yIHJlbWFwcGVkIHBhZ2UgKCVkLCAlZClcbiIs
-CisJCQkgICAgICAgJnNnX2RtYV9hZGRyZXNzKHNnKSwKKwkJCSAgICAgICB4LCB5KTsKKwkJCXJl
-dHVybiBFUlJfUFRSKC1FSU5WQUwpOworCQl9CisKKwkJc2cgPSBzZ19uZXh0KHNnKTsKKwkJbGVm
-dCA9IDA7CiAJfQogCiAJcmV0dXJuIHNnOwogfQogCi1zdGF0aWMgdW5zaWduZWQgaW50IHJvdGF0
-ZWRfc2l6ZShjb25zdCBzdHJ1Y3QgaW50ZWxfcmVtYXBwZWRfcGxhbmVfaW5mbyAqYSwKLQkJCQkg
-Y29uc3Qgc3RydWN0IGludGVsX3JlbWFwcGVkX3BsYW5lX2luZm8gKmIpCitzdGF0aWMgdW5zaWdu
-ZWQgaW50IHJlbWFwcGVkX3NpemUoZW51bSBpOTE1X2dndHRfdmlld190eXBlIHZpZXdfdHlwZSwK
-KwkJCQkgIGNvbnN0IHN0cnVjdCBpbnRlbF9yZW1hcHBlZF9wbGFuZV9pbmZvICphLAorCQkJCSAg
-Y29uc3Qgc3RydWN0IGludGVsX3JlbWFwcGVkX3BsYW5lX2luZm8gKmIpCiB7Ci0JcmV0dXJuIGEt
-PndpZHRoICogYS0+aGVpZ2h0ICsgYi0+d2lkdGggKiBiLT5oZWlnaHQ7CisKKwlpZiAodmlld190
-eXBlID09IEk5MTVfR0dUVF9WSUVXX1JPVEFURUQpCisJCXJldHVybiBhLT5kc3Rfc3RyaWRlICog
-YS0+d2lkdGggKyBiLT5kc3Rfc3RyaWRlICogYi0+d2lkdGg7CisJZWxzZQorCQlyZXR1cm4gYS0+
-ZHN0X3N0cmlkZSAqIGEtPmhlaWdodCArIGItPmRzdF9zdHJpZGUgKiBiLT5oZWlnaHQ7CiB9CiAK
-IHN0YXRpYyBpbnQgaWd0X3ZtYV9yb3RhdGVfcmVtYXAodm9pZCAqYXJnKQpAQCAtNDk0LDYgKzU2
-MSwxMSBAQCBzdGF0aWMgaW50IGlndF92bWFfcm90YXRlX3JlbWFwKHZvaWQgKmFyZykKIAogCQl7
-IC53aWR0aCA9IDQsIC5oZWlnaHQgPSA2LCAuc3JjX3N0cmlkZSA9IDYgfSwKIAkJeyAud2lkdGgg
-PSA2LCAuaGVpZ2h0ID0gNCwgLnNyY19zdHJpZGUgPSA2IH0sCisKKwkJeyAud2lkdGggPSAyLCAu
-aGVpZ2h0ID0gMiwgLnNyY19zdHJpZGUgPSAyLCAuZHN0X3N0cmlkZSA9IDIgfSwKKwkJeyAud2lk
-dGggPSAzLCAuaGVpZ2h0ID0gMywgLnNyY19zdHJpZGUgPSAzLCAuZHN0X3N0cmlkZSA9IDQgfSwK
-KwkJeyAud2lkdGggPSA1LCAuaGVpZ2h0ID0gNiwgLnNyY19zdHJpZGUgPSA3LCAuZHN0X3N0cmlk
-ZSA9IDggfSwKKwogCQl7IH0KIAl9LCAqYSwgKmI7CiAJZW51bSBpOTE1X2dndHRfdmlld190eXBl
-IHR5cGVzW10gPSB7CkBAIC01NTUsNyArNjI3LDcgQEAgc3RhdGljIGludCBpZ3Rfdm1hX3JvdGF0
-ZV9yZW1hcCh2b2lkICphcmcpCiAJCQkJCQlnb3RvIG91dF9vYmplY3Q7CiAJCQkJCX0KIAotCQkJ
-CQlleHBlY3RlZF9wYWdlcyA9IHJvdGF0ZWRfc2l6ZSgmcGxhbmVfaW5mb1swXSwgJnBsYW5lX2lu
-Zm9bMV0pOworCQkJCQlleHBlY3RlZF9wYWdlcyA9IHJlbWFwcGVkX3NpemUodmlldy50eXBlLCAm
-cGxhbmVfaW5mb1swXSwgJnBsYW5lX2luZm9bMV0pOwogCiAJCQkJCWlmICh2aWV3LnR5cGUgPT0g
-STkxNV9HR1RUX1ZJRVdfUk9UQVRFRCAmJgogCQkJCQkgICAgdm1hLT5zaXplICE9IGV4cGVjdGVk
-X3BhZ2VzICogUEFHRV9TSVpFKSB7CkBAIC02MDAsMTYgKzY3MiwxOCBAQCBzdGF0aWMgaW50IGln
-dF92bWFfcm90YXRlX3JlbWFwKHZvaWQgKmFyZykKIAkJCQkJCWVsc2UKIAkJCQkJCQlzZyA9IGFz
-c2VydF9yZW1hcHBlZChvYmosICZ2aWV3LnJlbWFwcGVkLCBuLCBzZyk7CiAJCQkJCQlpZiAoSVNf
-RVJSKHNnKSkgewotCQkJCQkJCXByX2VycigiSW5jb25zaXN0ZW50ICVzIFZNQSBwYWdlcyBmb3Ig
-cGxhbmUgJWQ6IFsoJWQsICVkLCAlZCwgJWQpLCAoJWQsICVkLCAlZCwgJWQpXVxuIiwKKwkJCQkJ
-CQlwcl9lcnIoIkluY29uc2lzdGVudCAlcyBWTUEgcGFnZXMgZm9yIHBsYW5lICVkOiBbKCVkLCAl
-ZCwgJWQsICVkLCAlZCksICglZCwgJWQsICVkLCAlZCwgJWQpXVxuIiwKIAkJCQkJCQkgICAgICAg
-dmlldy50eXBlID09IEk5MTVfR0dUVF9WSUVXX1JPVEFURUQgPwogCQkJCQkJCSAgICAgICAicm90
-YXRlZCIgOiAicmVtYXBwZWQiLCBuLAogCQkJCQkJCSAgICAgICBwbGFuZV9pbmZvWzBdLndpZHRo
-LAogCQkJCQkJCSAgICAgICBwbGFuZV9pbmZvWzBdLmhlaWdodCwKIAkJCQkJCQkgICAgICAgcGxh
-bmVfaW5mb1swXS5zcmNfc3RyaWRlLAorCQkJCQkJCSAgICAgICBwbGFuZV9pbmZvWzBdLmRzdF9z
-dHJpZGUsCiAJCQkJCQkJICAgICAgIHBsYW5lX2luZm9bMF0ub2Zmc2V0LAogCQkJCQkJCSAgICAg
-ICBwbGFuZV9pbmZvWzFdLndpZHRoLAogCQkJCQkJCSAgICAgICBwbGFuZV9pbmZvWzFdLmhlaWdo
-dCwKIAkJCQkJCQkgICAgICAgcGxhbmVfaW5mb1sxXS5zcmNfc3RyaWRlLAorCQkJCQkJCSAgICAg
-ICBwbGFuZV9pbmZvWzFdLmRzdF9zdHJpZGUsCiAJCQkJCQkJICAgICAgIHBsYW5lX2luZm9bMV0u
-b2Zmc2V0KTsKIAkJCQkJCQllcnIgPSAtRUlOVkFMOwogCQkJCQkJCWdvdG8gb3V0X29iamVjdDsK
-QEAgLTg3Nyw2ICs5NTEsMTEgQEAgc3RhdGljIGludCBpZ3Rfdm1hX3JlbWFwcGVkX2d0dCh2b2lk
-ICphcmcpCiAKIAkJeyAud2lkdGggPSA0LCAuaGVpZ2h0ID0gNiwgLnNyY19zdHJpZGUgPSA2IH0s
-CiAJCXsgLndpZHRoID0gNiwgLmhlaWdodCA9IDQsIC5zcmNfc3RyaWRlID0gNiB9LAorCisJCXsg
-LndpZHRoID0gMiwgLmhlaWdodCA9IDIsIC5zcmNfc3RyaWRlID0gMiwgLmRzdF9zdHJpZGUgPSAy
-IH0sCisJCXsgLndpZHRoID0gMywgLmhlaWdodCA9IDMsIC5zcmNfc3RyaWRlID0gMywgLmRzdF9z
-dHJpZGUgPSA0IH0sCisJCXsgLndpZHRoID0gNSwgLmhlaWdodCA9IDYsIC5zcmNfc3RyaWRlID0g
-NywgLmRzdF9zdHJpZGUgPSA4IH0sCisKIAkJeyB9CiAJfSwgKnA7CiAJZW51bSBpOTE1X2dndHRf
-dmlld190eXBlIHR5cGVzW10gPSB7CkBAIC05MzYsOSArMTAxNSw5IEBAIHN0YXRpYyBpbnQgaWd0
-X3ZtYV9yZW1hcHBlZF9ndHQodm9pZCAqYXJnKQogCQkJCQl1MzIgdmFsID0geSA8PCAxNiB8IHg7
-CiAKIAkJCQkJaWYgKCp0ID09IEk5MTVfR0dUVF9WSUVXX1JPVEFURUQpCi0JCQkJCQlvZmZzZXQg
-PSAoeCAqIHBsYW5lX2luZm9bMF0uaGVpZ2h0ICsgeSkgKiBQQUdFX1NJWkU7CisJCQkJCQlvZmZz
-ZXQgPSAoeCAqIHBsYW5lX2luZm9bMF0uZHN0X3N0cmlkZSArIHkpICogUEFHRV9TSVpFOwogCQkJ
-CQllbHNlCi0JCQkJCQlvZmZzZXQgPSAoeSAqIHBsYW5lX2luZm9bMF0ud2lkdGggKyB4KSAqIFBB
-R0VfU0laRTsKKwkJCQkJCW9mZnNldCA9ICh5ICogcGxhbmVfaW5mb1swXS5kc3Rfc3RyaWRlICsg
-eCkgKiBQQUdFX1NJWkU7CiAKIAkJCQkJaW93cml0ZTMyKHZhbCwgJm1hcFtvZmZzZXQgLyBzaXpl
-b2YoKm1hcCldKTsKIAkJCQl9Ci0tIAoyLjI1LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeAo=
+To test the POT stride padding functionality until it's taken into use
+by the actual platform needing it, enable the padding whenever the FB
+remapping is possible. An exception is to pad linear FBs when this would
+be otherwise possible (stride is page size aligned), because this won't
+be anyway needed. Padding of linear FBs will be still tested whenever
+a big stride requires remapping (so by igt/kms_big_fb).
+
+By this both the FB creation time and commit time remapping setup will
+be tested.
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fb.c | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index a8fced4570e30..2094fb9b5ecab 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -446,17 +446,25 @@ static int intel_fb_check_ccs_xy(const struct drm_framebuffer *fb, int ccs_plane
+ 	return 0;
+ }
+ 
++static bool intel_fb_can_remap(const struct drm_framebuffer *fb);
++
+ static bool intel_plane_can_remap(const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+-	struct drm_i915_private *i915 = to_i915(plane->base.dev);
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+-	int i;
+ 
+ 	/* We don't want to deal with remapping with cursors */
+ 	if (plane->id == PLANE_CURSOR)
+ 		return false;
+ 
++	return intel_fb_can_remap(fb);
++}
++
++static bool intel_fb_can_remap(const struct drm_framebuffer *fb)
++{
++	struct drm_i915_private *i915 = to_i915(fb->dev);
++	int i;
++
+ 	/*
+ 	 * The display engine limits already match/exceed the
+ 	 * render engine limits, so not much point in remapping.
+@@ -486,9 +494,13 @@ static bool intel_plane_can_remap(const struct intel_plane_state *plane_state)
+ 	return true;
+ }
+ 
++#define FORCE_POT_STRIDE_REMAP	true
++
+ static bool intel_fb_needs_pot_stride_remap(const struct intel_framebuffer *fb)
+ {
+-	return false;
++	return FORCE_POT_STRIDE_REMAP &&
++	       fb->base.modifier != DRM_FORMAT_MOD_LINEAR &&
++	       intel_fb_can_remap(&fb->base);
+ }
+ 
+ static int intel_fb_pitch(const struct intel_framebuffer *fb, int color_plane, unsigned int rotation)
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
