@@ -2,56 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A988349131
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 12:48:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE87A3491D4
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Mar 2021 13:26:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 488D66ED0F;
-	Thu, 25 Mar 2021 11:48:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D41CC6EB62;
+	Thu, 25 Mar 2021 12:26:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31D746ED09
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 11:48:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1616672913;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=dqqAoAaF7t4uki/qmDOLK+maxgb2dagmvhik6yTw1EA=;
- b=f+EJ+acz54IPK5wvsXzLfamZQKuignFy8MjbUsaEa/MtIcIXSF/c/+VqPgYRkXQwTrJRvF
- N6unp9RUa2vOGCeiIQM8mxRb8MhcIkJlZZEje5RemAuhk7zSe2TrYpcTjI93P1NYeOU6/5
- PljTf/SX8PZm307omJ8yszHUuIQX+Ds=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-237-zobh-ZT1MAy4Jxsb7yqUBw-1; Thu, 25 Mar 2021 07:48:31 -0400
-X-MC-Unique: zobh-ZT1MAy4Jxsb7yqUBw-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
- [10.5.11.14])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A5BBD87A83A;
- Thu, 25 Mar 2021 11:48:29 +0000 (UTC)
-Received: from x1.localdomain (ovpn-112-48.ams2.redhat.com [10.36.112.48])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 33C9C5D9D0;
- Thu, 25 Mar 2021 11:48:28 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 25 Mar 2021 12:48:23 +0100
-Message-Id: <20210325114823.44922-2-hdegoede@redhat.com>
-In-Reply-To: <20210325114823.44922-1-hdegoede@redhat.com>
-References: <20210325114823.44922-1-hdegoede@redhat.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35FE06EB62
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 12:26:11 +0000 (UTC)
+IronPort-SDR: jUmqLVXM4lajWbKOcpTKQvplNMVrGtFBhZRMdqICmlgSf6UFkFle308PGE5qpGCDtpnhXpYcxF
+ Erg69f8YQwXQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9933"; a="276042084"
+X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="276042084"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2021 05:26:10 -0700
+IronPort-SDR: k8XiIjF//bAB1ILwgUs155jfzoEiK1DWcXLMZtYlacVuHN+yQy5uVTF7hVkxQzdRdetrryESBU
+ necwfEtlU6+g==
+X-IronPort-AV: E=Sophos;i="5.81,277,1610438400"; d="scan'208";a="415984270"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2021 05:26:08 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 25 Mar 2021 17:39:47 +0530
+Message-Id: <20210325120947.11950-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210325093213.20794-1-anshuman.gupta@intel.com>
+References: <20210325093213.20794-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/display/vlv_dsi: Move
- panel_pwr_cycle_delay to next panel-on
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Tweaked Wa_14010685332 for all PCHs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,70 +46,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: david.e.box@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SW5zdGVhZCBvZiBzbGVlcGluZyBwYW5lbF9wd3JfY3ljbGVfZGVsYXkgbXMgd2hlbiB0dXJuaW5n
-IHRoZSBwYW5lbCBvZmYsCnJlY29yZCB0aGUgdGltZSBpdCBpcyB0dXJuZWQgb2ZmIGFuZCBpZiBu
-ZWNlc3Nhcnkgd2FpdCBhbnkgKHJlbWFpbmluZykKdGltZSB3aGVuIHRoZSBwYW5lbCBpcyB0dXJu
-ZWQgb24gYWdhaW4uCgpBbHNvIHNsZWVwIHRoZSByZW1haW5pbmcgdGltZSBvbiBzaHV0ZG93biwg
-YmVjYXVzZSBvbiByZWJvb3QgdGhlCkdPUCB3aWxsIGltbWVkaWF0ZWx5IHR1cm4gb24gdGhlIHBh
-bmVsIGFnYWluLgoKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
-bC5jb20+ClNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+
-Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2kuaCB8ICAxICsKIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvdmx2X2RzaS5jICAgfCAyNSArKysrKysrKysrKysr
-KysrKystLS0tLS0KIDIgZmlsZXMgY2hhbmdlZCwgMjAgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlv
-bnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rz
-aS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2kuaAppbmRleCA2MjVm
-MmYxYWUwNjEuLjUwZDZkYTBiMjQxOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kc2kuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RzaS5oCkBAIC0xMjQsNiArMTI0LDcgQEAgc3RydWN0IGludGVsX2RzaSB7CiAJdTE2IHBh
-bmVsX29uX2RlbGF5OwogCXUxNiBwYW5lbF9vZmZfZGVsYXk7CiAJdTE2IHBhbmVsX3B3cl9jeWNs
-ZV9kZWxheTsKKwlrdGltZV90IHBhbmVsX3Bvd2VyX29mZl90aW1lOwogfTsKIAogc3RydWN0IGlu
-dGVsX2RzaV9ob3N0IHsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-dmx2X2RzaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS92bHZfZHNpLmMKaW5kZXgg
-MzhkNWExZjNkZWQ1Li4zZWRlNTVjYjNmNDMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvdmx2X2RzaS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-dmx2X2RzaS5jCkBAIC03MTcsNiArNzE3LDE5IEBAIHN0YXRpYyB2b2lkIGludGVsX2RzaV9wb3J0
-X2Rpc2FibGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIpCiAJfQogfQogCitzdGF0aWMg
-dm9pZCBpbnRlbF9kc2lfd2FpdF9wYW5lbF9wb3dlcl9jeWNsZShzdHJ1Y3QgaW50ZWxfZHNpICpp
-bnRlbF9kc2kpCit7CisJa3RpbWVfdCBwYW5lbF9wb3dlcl9vbl90aW1lOworCXM2NCBwYW5lbF9w
-b3dlcl9vZmZfZHVyYXRpb247CisKKwlwYW5lbF9wb3dlcl9vbl90aW1lID0ga3RpbWVfZ2V0X2Jv
-b3R0aW1lKCk7CisJcGFuZWxfcG93ZXJfb2ZmX2R1cmF0aW9uID0ga3RpbWVfbXNfZGVsdGEocGFu
-ZWxfcG93ZXJfb25fdGltZSwKKwkJCQkJCSAgaW50ZWxfZHNpLT5wYW5lbF9wb3dlcl9vZmZfdGlt
-ZSk7CisKKwlpZiAocGFuZWxfcG93ZXJfb2ZmX2R1cmF0aW9uIDwgKHM2NClpbnRlbF9kc2ktPnBh
-bmVsX3B3cl9jeWNsZV9kZWxheSkKKwkJbXNsZWVwKGludGVsX2RzaS0+cGFuZWxfcHdyX2N5Y2xl
-X2RlbGF5IC0gcGFuZWxfcG93ZXJfb2ZmX2R1cmF0aW9uKTsKK30KKwogc3RhdGljIHZvaWQgaW50
-ZWxfZHNpX3ByZXBhcmUoc3RydWN0IGludGVsX2VuY29kZXIgKmludGVsX2VuY29kZXIsCiAJCQkg
-ICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25maWcpOwogc3RhdGlj
-IHZvaWQgaW50ZWxfZHNpX3VucHJlcGFyZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2Rlcik7
-CkBAIC03NzgsNiArNzkxLDggQEAgc3RhdGljIHZvaWQgaW50ZWxfZHNpX3ByZV9lbmFibGUoc3Ry
-dWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAKIAlkcm1fZGJnX2ttcygmZGV2X3ByaXYt
-PmRybSwgIlxuIik7CiAKKwlpbnRlbF9kc2lfd2FpdF9wYW5lbF9wb3dlcl9jeWNsZShpbnRlbF9k
-c2kpOworCiAJaW50ZWxfc2V0X2NwdV9maWZvX3VuZGVycnVuX3JlcG9ydGluZyhkZXZfcHJpdiwg
-cGlwZSwgdHJ1ZSk7CiAKIAkvKgpAQCAtOTkyLDE4ICsxMDA3LDE0IEBAIHN0YXRpYyB2b2lkIGlu
-dGVsX2RzaV9wb3N0X2Rpc2FibGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJ
-aW50ZWxfZHNpX21zbGVlcChpbnRlbF9kc2ksIGludGVsX2RzaS0+cGFuZWxfb2ZmX2RlbGF5KTsK
-IAlpbnRlbF9kc2lfdmJ0X2V4ZWNfc2VxdWVuY2UoaW50ZWxfZHNpLCBNSVBJX1NFUV9QT1dFUl9P
-RkYpOwogCi0JLyoKLQkgKiBGSVhNRSBBcyB3ZSBkbyB3aXRoIGVEUCwganVzdCBtYWtlIGEgbm90
-ZSBvZiB0aGUgdGltZSBoZXJlCi0JICogYW5kIHBlcmZvcm0gdGhlIHdhaXQgYmVmb3JlIHRoZSBu
-ZXh0IHBhbmVsIHBvd2VyIG9uLgotCSAqLwotCW1zbGVlcChpbnRlbF9kc2ktPnBhbmVsX3B3cl9j
-eWNsZV9kZWxheSk7CisJaW50ZWxfZHNpLT5wYW5lbF9wb3dlcl9vZmZfdGltZSA9IGt0aW1lX2dl
-dF9ib290dGltZSgpOwogfQogCiBzdGF0aWMgdm9pZCBpbnRlbF9kc2lfc2h1dGRvd24oc3RydWN0
-IGludGVsX2VuY29kZXIgKmVuY29kZXIpCiB7CiAJc3RydWN0IGludGVsX2RzaSAqaW50ZWxfZHNp
-ID0gZW5jX3RvX2ludGVsX2RzaShlbmNvZGVyKTsKIAotCW1zbGVlcChpbnRlbF9kc2ktPnBhbmVs
-X3B3cl9jeWNsZV9kZWxheSk7CisJaW50ZWxfZHNpX3dhaXRfcGFuZWxfcG93ZXJfY3ljbGUoaW50
-ZWxfZHNpKTsKIH0KIAogc3RhdGljIGJvb2wgaW50ZWxfZHNpX2dldF9od19zdGF0ZShzdHJ1Y3Qg
-aW50ZWxfZW5jb2RlciAqZW5jb2RlciwKQEAgLTE4ODQsNiArMTg5NSw4IEBAIHZvaWQgdmx2X2Rz
-aV9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKIAllbHNlCiAJCWludGVs
-X2VuY29kZXItPnBpcGVfbWFzayA9IEJJVChQSVBFX0IpOwogCisJaW50ZWxfZHNpLT5wYW5lbF9w
-b3dlcl9vZmZfdGltZSA9IGt0aW1lX2dldF9ib290dGltZSgpOworCiAJaWYgKGRldl9wcml2LT52
-YnQuZHNpLmNvbmZpZy0+ZHVhbF9saW5rKQogCQlpbnRlbF9kc2ktPnBvcnRzID0gQklUKFBPUlRf
-QSkgfCBCSVQoUE9SVF9DKTsKIAllbHNlCi0tIAoyLjMwLjIKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+dispcnlunit1_cp_xosc_clkreq clock observed to be active on TGL-H platform
+despite Wa_14010685332 original sequence, thus blocks entry to deeper s0ix state.
+
+The Tweaked Wa_14010685332 sequence fixes this issue, therefore use tweaked
+Wa_14010685332 sequence for every PCH since PCH_CNP.
+
+v2:
+- removed RKL from comment and simplified condition. [Rodrigo]
+
+Fixes: b896898c7369 ("drm/i915: Tweaked Wa_14010685332 for PCHs used on gen11 platforms")
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ .../drm/i915/display/intel_display_power.c    | 16 +++++++-------
+ drivers/gpu/drm/i915/i915_irq.c               | 21 -------------------
+ 2 files changed, 8 insertions(+), 29 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index cef177208e68..b76cc4379d5c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -5910,13 +5910,13 @@ void intel_display_power_suspend_late(struct drm_i915_private *i915)
+ {
+ 	if (DISPLAY_VER(i915) >= 11 || IS_GEN9_LP(i915)) {
+ 		bxt_enable_dc9(i915);
+-		/* Tweaked Wa_14010685332:icp,jsp,mcc */
+-		if (INTEL_PCH_TYPE(i915) >= PCH_ICP && INTEL_PCH_TYPE(i915) <= PCH_MCC)
+-			intel_de_rmw(i915, SOUTH_CHICKEN1,
+-				     SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
+ 	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
+ 		hsw_enable_pc8(i915);
+ 	}
++
++	/* Tweaked Wa_14010685332:cnp,icp,jsp,mcc,tgp,adp */
++	if (INTEL_PCH_TYPE(i915) >= PCH_CNP && INTEL_PCH_TYPE(i915) < PCH_DG1)
++		intel_de_rmw(i915, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
+ }
+ 
+ void intel_display_power_resume_early(struct drm_i915_private *i915)
+@@ -5924,13 +5924,13 @@ void intel_display_power_resume_early(struct drm_i915_private *i915)
+ 	if (DISPLAY_VER(i915) >= 11 || IS_GEN9_LP(i915)) {
+ 		gen9_sanitize_dc_state(i915);
+ 		bxt_disable_dc9(i915);
+-		/* Tweaked Wa_14010685332:icp,jsp,mcc */
+-		if (INTEL_PCH_TYPE(i915) >= PCH_ICP && INTEL_PCH_TYPE(i915) <= PCH_MCC)
+-			intel_de_rmw(i915, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
+-
+ 	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
+ 		hsw_disable_pc8(i915);
+ 	}
++
++	/* Tweaked Wa_14010685332:cnp,icp,jsp,mcc,tgp,adp */
++	if (INTEL_PCH_TYPE(i915) >= PCH_CNP && INTEL_PCH_TYPE(i915) < PCH_DG1)
++		intel_de_rmw(i915, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
+ }
+ 
+ void intel_display_power_suspend(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index 7eefbdec25a2..4547ba2f19b2 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -3040,24 +3040,6 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
+ 	spin_unlock_irq(&dev_priv->irq_lock);
+ }
+ 
+-static void cnp_display_clock_wa(struct drm_i915_private *dev_priv)
+-{
+-	struct intel_uncore *uncore = &dev_priv->uncore;
+-
+-	/*
+-	 * Wa_14010685332:cnp/cmp,tgp,adp
+-	 * TODO: Clarify which platforms this applies to
+-	 * TODO: Figure out if this workaround can be applied in the s0ix suspend/resume handlers as
+-	 * on earlier platforms and whether the workaround is also needed for runtime suspend/resume
+-	 */
+-	if (INTEL_PCH_TYPE(dev_priv) == PCH_CNP ||
+-	    (INTEL_PCH_TYPE(dev_priv) >= PCH_TGP && INTEL_PCH_TYPE(dev_priv) < PCH_DG1)) {
+-		intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS,
+-				 SBCLK_RUN_REFCLK_DIS);
+-		intel_uncore_rmw(uncore, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
+-	}
+-}
+-
+ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_uncore *uncore = &dev_priv->uncore;
+@@ -3082,7 +3064,6 @@ static void gen8_irq_reset(struct drm_i915_private *dev_priv)
+ 	if (HAS_PCH_SPLIT(dev_priv))
+ 		ibx_irq_reset(dev_priv);
+ 
+-	cnp_display_clock_wa(dev_priv);
+ }
+ 
+ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+@@ -3123,8 +3104,6 @@ static void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
+ 
+ 	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
+ 		GEN3_IRQ_RESET(uncore, SDE);
+-
+-	cnp_display_clock_wa(dev_priv);
+ }
+ 
+ static void gen11_irq_reset(struct drm_i915_private *dev_priv)
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
