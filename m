@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A854A349CC7
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 00:17:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 493BA349CD8
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 00:21:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF67A6EE56;
-	Thu, 25 Mar 2021 23:17:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38B256EE56;
+	Thu, 25 Mar 2021 23:21:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 19C946EE55;
- Thu, 25 Mar 2021 23:17:43 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D1E026EE55;
+ Thu, 25 Mar 2021 23:21:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 119D2A9932;
- Thu, 25 Mar 2021 23:17:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C86E1A0BCB;
+ Thu, 25 Mar 2021 23:21:09 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dale B Stimson" <dale.b.stimson@intel.com>
-Date: Thu, 25 Mar 2021 23:17:43 -0000
-Message-ID: <161671426304.15546.8178104850710741274@emeril.freedesktop.org>
+Date: Thu, 25 Mar 2021 23:21:09 -0000
+Message-ID: <161671446979.15546.2062527970100947375@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210325195230.97238-1-dale.b.stimson@intel.com>
 In-Reply-To: <20210325195230.97238-1-dale.b.stimson@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/dg1=3A_Add_HWMON_power_sensor_support?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/dg1=3A_Add_HWMON_power_sensor_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,48 +53,14 @@ State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21:    expected unsigned int [usertype] bits_to_set
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21:    expected unsigned int [usertype] bits_to_set
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21:    expected unsigned int [usertype] bits_to_set
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21:    expected unsigned int [usertype] bits_to_set
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21:    got restricted __le32
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21:    got restricted __le32
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21:    got restricted __le32
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21:    got restricted __le32
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:114:21: warning: incorrect type in assignment (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35:    expected restricted __le32 [usertype] v
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35:    expected restricted __le32 [usertype] v
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35:    expected restricted __le32 [usertype] v
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35:    expected restricted __le32 [usertype] v
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35:    got unsigned int [assigned] [usertype] reg_value
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35:    got unsigned int [assigned] [usertype] reg_value
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35:    got unsigned int [assigned] [usertype] reg_value
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35:    got unsigned int [assigned] [usertype] reg_value
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:63:35: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:720:48:    expected restricted __le32 [usertype] v
-+drivers/gpu/drm/i915/i915_hwmon.c:720:48:    got unsigned int [assigned] [usertype] val_sku_unit
-+drivers/gpu/drm/i915/i915_hwmon.c:720:48: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:721:49:    expected restricted __le32 [usertype] v
-+drivers/gpu/drm/i915/i915_hwmon.c:721:49:    got unsigned int [assigned] [usertype] val_sku_unit
-+drivers/gpu/drm/i915/i915_hwmon.c:721:49: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:722:47:    expected restricted __le32 [usertype] v
-+drivers/gpu/drm/i915/i915_hwmon.c:722:47:    got unsigned int [assigned] [usertype] val_sku_unit
-+drivers/gpu/drm/i915/i915_hwmon.c:722:47: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:87:35:    expected restricted __le64 [usertype] v
-+drivers/gpu/drm/i915/i915_hwmon.c:87:35:    expected restricted __le64 [usertype] v
-+drivers/gpu/drm/i915/i915_hwmon.c:87:35:    got unsigned long long [assigned] [usertype] reg_value
-+drivers/gpu/drm/i915/i915_hwmon.c:87:35:    got unsigned long long [assigned] [usertype] reg_value
-+drivers/gpu/drm/i915/i915_hwmon.c:87:35: warning: incorrect type in argument 1 (different base types)
-+drivers/gpu/drm/i915/i915_hwmon.c:87:35: warning: incorrect type in argument 1 (different base types)
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+/home/cidrm/kernel/Documentation/gpu/i915:22: ./drivers/gpu/drm/i915/intel_runtime_pm.c:423: WARNING: Inline strong start-string without end-string.
 
 
 _______________________________________________
