@@ -1,44 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C31434AC71
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 17:22:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12B3234AC76
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 17:26:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A4596F400;
-	Fri, 26 Mar 2021 16:22:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B3186F40B;
+	Fri, 26 Mar 2021 16:25:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77B776F400
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 16:22:25 +0000 (UTC)
-IronPort-SDR: oM6KnqNzaIGRKN6FuUYp9/XcKM+NTVH0y+SUiUqi2z8zsg6xJeptO/Bq0OCP/vhaEs7XMz6u+x
- PBo7LzkSwt+w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9935"; a="252530112"
-X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="252530112"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2021 09:22:24 -0700
-IronPort-SDR: foCuMoAhJfbSOEJPsMYYAhbLLSY/a+lG6G6o5/scypjF5Wmu+9aLQ6Ncs5sz6ZG2aVaSCzN1Ao
- T/kiEPZGRP5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="414600532"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga007.jf.intel.com with SMTP; 26 Mar 2021 09:22:22 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 26 Mar 2021 18:22:21 +0200
-Date: Fri, 26 Mar 2021 18:22:21 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <YF4KPXWC9Ixw3/fK@intel.com>
-References: <20210325214808.2071517-1-imre.deak@intel.com>
- <20210325214808.2071517-16-imre.deak@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E95016F400
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 16:25:57 +0000 (UTC)
+IronPort-SDR: vo7kxUtOHrsHuFkACHGwEQkN4pWZk4Bec+B+2DJgD2Iqrjpq1UVjdwYz6dogizP/APe+Cq26t9
+ IfWYVWOHB/MQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9935"; a="188905844"
+X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="188905844"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2021 09:25:55 -0700
+IronPort-SDR: C8xptJMkrfjZ6i37uJTxhQDf0abkVdomQ+x1jegTXOVtasWvqekSM3kTB6uMnkj2zo3GWCHKSC
+ b8lqEIUqjWhA==
+X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="409966584"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2021 09:25:54 -0700
+Date: Fri, 26 Mar 2021 18:25:50 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210326162550.GL2237616@ideak-desk.fi.intel.com>
+References: <20210325180720.401410-1-matthew.d.roper@intel.com>
+ <20210325180720.401410-41-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210325214808.2071517-16-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 15/25] drm/i915/intel_fb: Factor out
- calc_plane_normal_size()
+In-Reply-To: <20210325180720.401410-41-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 40/50] drm/i915/adl_p: Add PLL Support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,216 +47,238 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, me@freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 25, 2021 at 11:47:58PM +0200, Imre Deak wrote:
-> Factor out to a new function the logic to calculate an FB plane's
-> normal-view size.
+On Thu, Mar 25, 2021 at 11:07:10AM -0700, Matt Roper wrote:
+> From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 > =
 
-> Instead of using intel_remapped_plane_info, which is related only to
-> remapping, add a helper to get the tile pitch and rows for an FB plane,
-> so these helpers can be used both by the normal size calculation and the
-> remapping code.
+> The clocks in ALD_P is similar to that of TGL.
+> The combo PLLs  use the same DPLL0, DPLL1 and TBT_PLL.
 > =
 
-> Also add a new fb_plane_view_dims struct in which we can pass around the
-> view (either FB plane or plane source) and tile dimensions conveniently
-> to functions calculating further view parameters.
-> =
+> This patch adds the helper function intel_mg_pll_enable_reg()
+> which is similar to intel_combo_pll_enable_reg() for being lookup
+> place for PLL_ENABLE register in combo phy cases.
 
-> v2:
-> - Add back the +1 tile adjustment for x!=3D0 in calc_plane_normal_size().=
- (Ville)
-> - s/pages/tiles/ in calc_plane_normal_size(). (Ville)
-> - Add a helper for the plane view width calculation. (Ville)
-> - Return tiles as unsigned int from calc_plane_normal_size().
-> =
+On TypeC DDIs in dp-alt and legacy mode the DDI_BUF_CTL 'Phy link rate'
+field must be also set according to crtc_state->port_clock (in
+intel_ddi_init_dp_buf_reg()), see bspec 49533.
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
+> Bspec: 55409,55316
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Clinton Taylor <clinton.a.taylor@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_fb.c | 97 +++++++++++++++++++------
->  1 file changed, 76 insertions(+), 21 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 69 ++++++++++++++-----
+>  drivers/gpu/drm/i915/i915_reg.h               |  8 +++
+>  2 files changed, 60 insertions(+), 17 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index 1400a31f0dd6b..6f8206769c3df 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -632,6 +632,74 @@ static u32 setup_fb_rotation(int plane, const struct=
- intel_remapped_plane_info *
->  	return plane_info->width * plane_info->height;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
+drm/i915/display/intel_dpll_mgr.c
+> index 268ecf1c000f..618c61d4d3b6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -147,6 +147,16 @@ void assert_shared_dpll(struct drm_i915_private *dev=
+_priv,
+>  			pll->info->name, onoff(state), onoff(cur_state));
 >  }
 >  =
 
-> +struct fb_plane_view_dims {
-> +	unsigned int width, height;
-> +	unsigned int tile_width, tile_height;
+> +static enum tc_port icl_pll_id_to_tc_port(enum intel_dpll_id id)
+> +{
+> +	return TC_PORT_1 + id - DPLL_ID_ICL_MGPLL1;
+> +}
+> +
+> +enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port tc_port)
+> +{
+> +	return tc_port - TC_PORT_1 + DPLL_ID_ICL_MGPLL1;
+> +}
+> +
+>  static i915_reg_t
+>  intel_combo_pll_enable_reg(struct drm_i915_private *i915,
+>  			   struct intel_shared_dpll *pll)
+> @@ -159,6 +169,19 @@ intel_combo_pll_enable_reg(struct drm_i915_private *=
+i915,
+>  	return CNL_DPLL_ENABLE(pll->info->id);
+>  }
+>  =
+
+> +static i915_reg_t
+> +intel_tc_pll_enable_reg(struct drm_i915_private *i915,
+> +			struct intel_shared_dpll *pll)
+> +{
+> +	const enum intel_dpll_id id =3D pll->info->id;
+> +	enum tc_port tc_port =3D icl_pll_id_to_tc_port(id);
+> +
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return ADLP_PORTTC_PLL_ENABLE(tc_port);
+> +
+> +	return MG_PLL_ENABLE(tc_port);
+> +}
+> +
+>  /**
+>   * intel_prepare_shared_dpll - call a dpll's prepare hook
+>   * @crtc_state: CRTC, and its state, which has a shared dpll
+> @@ -3118,16 +3141,6 @@ static void icl_calc_dpll_state(struct drm_i915_pr=
+ivate *i915,
+>  		pll_state->cfgcr1 |=3D DPLL_CFGCR1_CENTRAL_FREQ_8400;
+>  }
+>  =
+
+> -static enum tc_port icl_pll_id_to_tc_port(enum intel_dpll_id id)
+> -{
+> -	return id - DPLL_ID_ICL_MGPLL1;
+> -}
+> -
+> -enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port tc_port)
+> -{
+> -	return tc_port + DPLL_ID_ICL_MGPLL1;
+> -}
+> -
+>  static bool icl_mg_pll_find_divisors(int clock_khz, bool is_dp, bool use=
+_ssc,
+>  				     u32 *target_dco_khz,
+>  				     struct intel_dpll_hw_state *state,
+> @@ -3726,12 +3739,14 @@ static bool mg_pll_get_hw_state(struct drm_i915_p=
+rivate *dev_priv,
+>  	bool ret =3D false;
+>  	u32 val;
+>  =
+
+> +	i915_reg_t enable_reg =3D intel_tc_pll_enable_reg(dev_priv, pll);
+> +
+>  	wakeref =3D intel_display_power_get_if_enabled(dev_priv,
+>  						     POWER_DOMAIN_DISPLAY_CORE);
+>  	if (!wakeref)
+>  		return false;
+>  =
+
+> -	val =3D intel_de_read(dev_priv, MG_PLL_ENABLE(tc_port));
+> +	val =3D intel_de_read(dev_priv, enable_reg);
+>  	if (!(val & PLL_ENABLE))
+>  		goto out;
+>  =
+
+> @@ -3795,7 +3810,7 @@ static bool dkl_pll_get_hw_state(struct drm_i915_pr=
+ivate *dev_priv,
+>  	if (!wakeref)
+>  		return false;
+>  =
+
+> -	val =3D intel_de_read(dev_priv, MG_PLL_ENABLE(tc_port));
+> +	val =3D intel_de_read(dev_priv, intel_tc_pll_enable_reg(dev_priv, pll));
+>  	if (!(val & PLL_ENABLE))
+>  		goto out;
+>  =
+
+> @@ -4167,8 +4182,7 @@ static void tbt_pll_enable(struct drm_i915_private =
+*dev_priv,
+>  static void mg_pll_enable(struct drm_i915_private *dev_priv,
+>  			  struct intel_shared_dpll *pll)
+>  {
+> -	i915_reg_t enable_reg =3D
+> -		MG_PLL_ENABLE(icl_pll_id_to_tc_port(pll->info->id));
+> +	i915_reg_t enable_reg =3D intel_tc_pll_enable_reg(dev_priv, pll);
+>  =
+
+>  	icl_pll_power_enable(dev_priv, pll, enable_reg);
+>  =
+
+> @@ -4247,8 +4261,7 @@ static void tbt_pll_disable(struct drm_i915_private=
+ *dev_priv,
+>  static void mg_pll_disable(struct drm_i915_private *dev_priv,
+>  			   struct intel_shared_dpll *pll)
+>  {
+> -	i915_reg_t enable_reg =3D
+> -		MG_PLL_ENABLE(icl_pll_id_to_tc_port(pll->info->id));
+> +	i915_reg_t enable_reg =3D intel_tc_pll_enable_reg(dev_priv, pll);
+>  =
+
+>  	icl_pll_disable(dev_priv, pll, enable_reg);
+>  }
+> @@ -4414,6 +4427,26 @@ static const struct intel_dpll_mgr adls_pll_mgr =
+=3D {
+>  	.dump_hw_state =3D icl_dump_hw_state,
+>  };
+>  =
+
+> +static const struct dpll_info adlp_plls[] =3D {
+> +	{ "DPLL 0", &combo_pll_funcs, DPLL_ID_ICL_DPLL0,  0 },
+> +	{ "DPLL 1", &combo_pll_funcs, DPLL_ID_ICL_DPLL1,  0 },
+> +	{ "TBT PLL",  &tbt_pll_funcs, DPLL_ID_ICL_TBTPLL, 0 },
+> +	{ "TC PLL 1", &dkl_pll_funcs, DPLL_ID_ICL_MGPLL1, 0 },
+> +	{ "TC PLL 2", &dkl_pll_funcs, DPLL_ID_ICL_MGPLL2, 0 },
+> +	{ "TC PLL 3", &dkl_pll_funcs, DPLL_ID_ICL_MGPLL3, 0 },
+> +	{ "TC PLL 4", &dkl_pll_funcs, DPLL_ID_ICL_MGPLL4, 0 },
+> +	{ },
 > +};
 > +
-> +static void init_plane_view_dims(const struct intel_framebuffer *fb, int=
- color_plane,
-> +				 unsigned int width, unsigned int height,
-> +				 struct fb_plane_view_dims *dims)
-> +{
-> +	dims->width =3D width;
-> +	dims->height =3D height;
+> +static const struct intel_dpll_mgr adlp_pll_mgr =3D {
+> +	.dpll_info =3D adlp_plls,
+> +	.get_dplls =3D icl_get_dplls,
+> +	.put_dplls =3D icl_put_dplls,
+> +	.update_active_dpll =3D icl_update_active_dpll,
+> +	.update_ref_clks =3D icl_update_dpll_ref_clks,
+> +	.dump_hw_state =3D icl_dump_hw_state,
+> +};
 > +
-> +	intel_tile_dims(&fb->base, color_plane, &dims->tile_width, &dims->tile_=
-height);
-> +}
-> +
-> +static unsigned int
-> +plane_view_stride_tiles(const struct intel_framebuffer *fb, int color_pl=
-ane,
-> +			const struct fb_plane_view_dims *dims)
-> +{
-> +	return DIV_ROUND_UP(fb->base.pitches[color_plane],
-> +			    dims->tile_width * fb->base.format->cpp[color_plane]);
-> +}
-> +
-> +static unsigned int
-> +plane_view_width_tiles(const struct intel_framebuffer *fb, int color_pla=
-ne,
-> +		       const struct fb_plane_view_dims *dims,
-> +		       int x)
-> +{
-> +	return DIV_ROUND_UP(x + dims->width, dims->tile_width);
-> +}
-> +
-> +static unsigned int
-> +plane_view_height_tiles(const struct intel_framebuffer *fb, int color_pl=
-ane,
-> +			const struct fb_plane_view_dims *dims,
-> +			int y)
-> +{
-> +	return DIV_ROUND_UP(y + dims->height, dims->tile_height);
-> +}
-> +
-> +/* Return number of tiles @color_plane needs. */
-> +static unsigned int
-> +calc_plane_normal_size(const struct intel_framebuffer *fb, int color_pla=
-ne,
-> +		       const struct fb_plane_view_dims *dims,
-> +		       int x, int y)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(fb->base.dev);
-> +	unsigned int tiles;
-> +
-> +	if (is_surface_linear(&fb->base, color_plane)) {
-> +		unsigned int size;
-> +
-> +		size =3D (y + dims->height) * fb->base.pitches[color_plane] +
-> +		       x * fb->base.format->cpp[color_plane];
-> +		tiles =3D DIV_ROUND_UP(size, intel_tile_size(i915));
-> +	} else {
-> +		tiles =3D plane_view_stride_tiles(fb, color_plane, dims) *
-> +			plane_view_height_tiles(fb, color_plane, dims, y);
-> +		/*
-> +		 * If the plane isn't horizontally tile aligned,
-> +		 * we need one more tile.
-> +		 */
-> +		if (x !=3D 0)
-> +			tiles++;
-> +	}
-> +
-> +	return tiles;
-> +}
-> +
->  int intel_fill_fb_info(struct drm_i915_private *i915, struct drm_framebu=
-ffer *fb)
->  {
->  	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
-> @@ -642,6 +710,7 @@ int intel_fill_fb_info(struct drm_i915_private *i915,=
- struct drm_framebuffer *fb
->  	unsigned int tile_size =3D intel_tile_size(i915);
+>  /**
+>   * intel_shared_dpll_init - Initialize shared DPLLs
+>   * @dev: drm device
+> @@ -4427,7 +4460,9 @@ void intel_shared_dpll_init(struct drm_device *dev)
+>  	const struct dpll_info *dpll_info;
+>  	int i;
 >  =
 
->  	for (i =3D 0; i < num_planes; i++) {
-> +		struct fb_plane_view_dims view_dims;
->  		unsigned int width, height;
->  		unsigned int cpp, size;
->  		u32 offset;
-> @@ -667,6 +736,8 @@ int intel_fill_fb_info(struct drm_i915_private *i915,=
- struct drm_framebuffer *fb
->  		if (ret)
->  			return ret;
+> -	if (IS_ALDERLAKE_S(dev_priv))
+> +	if (IS_ALDERLAKE_P(dev_priv))
+> +		dpll_mgr =3D &adlp_pll_mgr;
+> +	else if (IS_ALDERLAKE_S(dev_priv))
+>  		dpll_mgr =3D &adls_pll_mgr;
+>  	else if (IS_DG1(dev_priv))
+>  		dpll_mgr =3D &dg1_pll_mgr;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 393071cde6d4..017bd4817c5b 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -10539,6 +10539,14 @@ enum skl_power_gate {
+>  #define DG1_DPLL_ENABLE(pll)    _MMIO_PLL3(pll, DPLL0_ENABLE, DPLL1_ENAB=
+LE, \
+>  					   _MG_PLL1_ENABLE, _MG_PLL2_ENABLE)
 >  =
 
-> +		init_plane_view_dims(intel_fb, i, width, height, &view_dims);
+> +/* ADL-P Type C PLL */
+> +#define PORTTC1_PLL_ENABLE	0x46038
+> +#define PORTTC2_PLL_ENABLE	0x46040
 > +
->  		/*
->  		 * First pixel of the framebuffer from
->  		 * the start of the normal gtt mapping.
-> @@ -678,38 +749,22 @@ int intel_fill_fb_info(struct drm_i915_private *i91=
-5, struct drm_framebuffer *fb
->  =
-
->  		if (!is_surface_linear(fb, i)) {
->  			struct intel_remapped_plane_info plane_info;
-> -			unsigned int tile_width, tile_height;
-> -
-> -			intel_tile_dims(fb, i, &tile_width, &tile_height);
->  =
-
->  			plane_info.offset =3D offset;
-> -			plane_info.stride =3D DIV_ROUND_UP(fb->pitches[i],
-> -							 tile_width * cpp);
-> -			plane_info.width =3D DIV_ROUND_UP(x + width, tile_width);
-> -			plane_info.height =3D DIV_ROUND_UP(y + height,
-> -							 tile_height);
-> -
-> -			/* how many tiles does this plane need */
-> -			size =3D plane_info.stride * plane_info.height;
-> -			/*
-> -			 * If the plane isn't horizontally tile aligned,
-> -			 * we need one more tile.
-> -			 */
-> -			if (x !=3D 0)
-> -				size++;
-> +			plane_info.stride =3D plane_view_stride_tiles(intel_fb, i, &view_dims=
-);
-> +			plane_info.width =3D plane_view_width_tiles(intel_fb, i, &view_dims, =
-x);
-> +			plane_info.height =3D plane_view_height_tiles(intel_fb, i, &view_dims=
-, y);
->  =
-
->  			gtt_offset_rotated +=3D
->  				setup_fb_rotation(i, &plane_info,
->  						  gtt_offset_rotated,
->  						  x, y, width, height,
->  						  tile_size,
-> -						  tile_width, tile_height,
-> +						  view_dims.tile_width, view_dims.tile_height,
->  						  fb);
-> -		} else {
-> -			size =3D DIV_ROUND_UP((y + height) * fb->pitches[i] +
-> -					    x * cpp, tile_size);
->  		}
->  =
-
-> +		size =3D calc_plane_normal_size(intel_fb, i, &view_dims, x, y);
->  		/* how many tiles in total needed in the bo */
->  		max_size =3D max(max_size, offset + size);
->  	}
+> +#define ADLP_PORTTC_PLL_ENABLE(tc_port)		_MMIO_PORT((tc_port), \
+> +							    PORTTC1_PLL_ENABLE, \
+> +							    PORTTC2_PLL_ENABLE)
+> +
+>  #define _MG_REFCLKIN_CTL_PORT1				0x16892C
+>  #define _MG_REFCLKIN_CTL_PORT2				0x16992C
+>  #define _MG_REFCLKIN_CTL_PORT3				0x16A92C
 > -- =
 
-> 2.25.1
+> 2.25.4
+> =
 
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
