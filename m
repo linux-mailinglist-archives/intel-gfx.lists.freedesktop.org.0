@@ -1,59 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E75349DC1
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 01:25:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B1334A6EE
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 13:14:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4D1C6EE6B;
-	Fri, 26 Mar 2021 00:25:36 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com
- [IPv6:2a00:1450:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 641776E108
- for <Intel-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 00:25:35 +0000 (UTC)
-Received: by mail-wr1-x432.google.com with SMTP id v11so3999585wro.7
- for <Intel-gfx@lists.freedesktop.org>; Thu, 25 Mar 2021 17:25:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=S/RUiFmh7V+PoKkjgt1cusXMGd2gA07gS3MqT7ryX7c=;
- b=ITq0zjdcEe/ACb95eMyKwgljquOghrdw82x/mm9aNUMFACwLqBGmXS3fMXduw5CyzD
- opbj4ujUIscfAalQA2JeX0pkB0vQrzjiUiFmtX6kLYPgs0VFlj+kS2pXTzRp7CXVCcZp
- uT15Im+vHy+Rg65nn7vzRisadE5iE9dJDJz8Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=S/RUiFmh7V+PoKkjgt1cusXMGd2gA07gS3MqT7ryX7c=;
- b=kpPg6HNXHm722E3885aBOtwj7aOA8jWFT+HR8h+jmOexvZTv/qQz1zRw8mooSLSjlL
- eVzzEwyDqgYHZ/s6fs+APLUOqjHlZfVCBJLoVkhk3lkhwsi/Nwwt6PMBSjjJZRFFxCrU
- uLh0J5EKC+kWO5Lqzz0WQvL5fCW8mXtJBAr0iMK9C6ls0BCpxI8kxALOMvTJZXoheTad
- qfqrJPse9t/PHSfmS8cy1LcfEzY6PdtP1JLA7jdm365Xq8p3+n6oM3q+xORZPMhkk3L0
- npFBtUyVJKLfHayjL0tcJtGGTUbpG05NltCGiKG74uVo0ANUmvLVYACsEIHTakRi+Njy
- ke7Q==
-X-Gm-Message-State: AOAM53080EKjl3RHiziITw1klyVmlkQbcHmLXI+9BSUIj5IQ40f5yq4q
- KydmxeKKSyvXdGtqH2LwfqGV6w==
-X-Google-Smtp-Source: ABdhPJwN388BAdafFw9S0MsnPX1RfpZKKpUrvIVmywnWBiwFZJaZcFpmBIqzw3WfFnwiC3kMAh8Lfg==
-X-Received: by 2002:a5d:604b:: with SMTP id j11mr2462759wrt.424.1616718334064; 
- Thu, 25 Mar 2021 17:25:34 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id c131sm8722637wma.37.2021.03.25.17.25.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Mar 2021 17:25:33 -0700 (PDT)
-Date: Fri, 26 Mar 2021 01:25:31 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YF0p++UNk4R6d+G6@phenom.ffwll.local>
-References: <20210324121335.2307063-1-tvrtko.ursulin@linux.intel.com>
- <20210324121335.2307063-8-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C2D6E1B8;
+	Fri, 26 Mar 2021 12:13:59 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-m17637.qiye.163.com (mail-m17637.qiye.163.com
+ [59.111.176.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0BE26EE9B;
+ Fri, 26 Mar 2021 01:25:52 +0000 (UTC)
+Received: from wanjb-virtual-machine.localdomain (unknown [36.152.145.182])
+ by mail-m17637.qiye.163.com (Hmail) with ESMTPA id 2696F98027A;
+ Fri, 26 Mar 2021 09:25:49 +0800 (CST)
+From: Wan Jiabing <wanjiabing@vivo.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Wan Jiabing <wanjiabing@vivo.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Manasi Navare <manasi.d.navare@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Dave Airlie <airlied@redhat.com>,
+ Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Date: Fri, 26 Mar 2021 09:25:17 +0800
+Message-Id: <20210326012527.875026-1-wanjiabing@vivo.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210324121335.2307063-8-tvrtko.ursulin@linux.intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915: Allow configuring default
- request expiry via modparam
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
+ oVCBIfWUFZSUpDSU8ZSRodSk5KVkpNSk1MSUpCT0JMTUxVEwETFhoSFyQUDg9ZV1kWGg8SFR0UWU
+ FZT0tIVUpKS0hKTFVLWQY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PBg6PBw5Pj8TPD1RTw4eC0IU
+ MjUwFBVVSlVKTUpNTElKQk5LTUxNVTMWGhIXVQwaFRESGhkSFRw7DRINFFUYFBZFWVdZEgtZQVlI
+ TVVKTklVSk9OVUpDSVlXWQgBWUFIQkxJNwY+
+X-HM-Tid: 0a786c2333ead992kuws2696f98027a
+X-Mailman-Approved-At: Fri, 26 Mar 2021 12:13:58 +0000
+Subject: [Intel-gfx] [PATCH] [v2] drm/i915: Remove repeated declaration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,90 +56,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: kael_w@yeah.net
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 24, 2021 at 12:13:35PM +0000, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Module parameter is added (request_timeout_ms) to allow configuring the
-> default request/fence expiry.
-> 
-> Default value is inherited from CONFIG_DRM_I915_REQUEST_TIMEOUT.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-Entire series merged, thanks for the patches.
--Daniel
-
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c | 5 +++--
->  drivers/gpu/drm/i915/i915_params.c          | 5 +++++
->  drivers/gpu/drm/i915/i915_params.h          | 1 +
->  3 files changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 33ff1a6a7724..0e8f0476e01f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -845,11 +845,12 @@ static void __set_default_fence_expiry(struct i915_gem_context *ctx)
->  	struct drm_i915_private *i915 = ctx->i915;
->  	int ret;
->  
-> -	if (!IS_ACTIVE(CONFIG_DRM_I915_REQUEST_TIMEOUT))
-> +	if (!IS_ACTIVE(CONFIG_DRM_I915_REQUEST_TIMEOUT) ||
-> +	    !i915->params.request_timeout_ms)
->  		return;
->  
->  	/* Default expiry for user fences. */
-> -	ret = __set_watchdog(ctx, CONFIG_DRM_I915_REQUEST_TIMEOUT * 1000);
-> +	ret = __set_watchdog(ctx, i915->params.request_timeout_ms * 1000);
->  	if (ret)
->  		drm_notice(&i915->drm,
->  			   "Failed to configure default fence expiry! (%d)",
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> index 6939634e56ed..0320878d96b0 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -197,6 +197,11 @@ i915_param_named_unsafe(fake_lmem_start, ulong, 0400,
->  	"Fake LMEM start offset (default: 0)");
->  #endif
->  
-> +#if CONFIG_DRM_I915_REQUEST_TIMEOUT
-> +i915_param_named_unsafe(request_timeout_ms, uint, 0600,
-> +			"Default request/fence/batch buffer expiration timeout.");
-> +#endif
-> +
->  static __always_inline void _print_param(struct drm_printer *p,
->  					 const char *name,
->  					 const char *type,
-> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-> index 48f47e44e848..34ebb0662547 100644
-> --- a/drivers/gpu/drm/i915/i915_params.h
-> +++ b/drivers/gpu/drm/i915/i915_params.h
-> @@ -72,6 +72,7 @@ struct drm_printer;
->  	param(int, enable_dpcd_backlight, -1, 0600) \
->  	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
->  	param(unsigned long, fake_lmem_start, 0, 0400) \
-> +	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, 0600) \
->  	/* leave bools at the end to not create holes */ \
->  	param(bool, enable_hangcheck, true, 0600) \
->  	param(bool, load_detect_test, false, 0600) \
-> -- 
-> 2.27.0
-> 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUsIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlIGFuZApzdHJ1
+Y3QgaW50ZWxfY3J0YyBpcyBkZWNsYXJlZCB0d2ljZS4KUmVtb3ZlIHRoZSBkdXBsaWNhdGUuCgpS
+ZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+
+ClNpZ25lZC1vZmYtYnk6IFdhbiBKaWFiaW5nIDx3YW5qaWFiaW5nQHZpdm8uY29tPgotLS0KQ2hh
+bmdlbG9nOgp2MjoKLSBNb2RpZnkgc3ViamVjdCBsaW5lLgotIERlbGV0ZSB0cmFpbGluZyB3aGl0
+ZXNwYWNlIGluIGNvbW1pdCBsb2cuCi0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9jcnQuaCAgICAgfCAxIC0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheS5oIHwgMSAtCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zyci5o
+ICAgICB8IDEgLQogMyBmaWxlcyBjaGFuZ2VkLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3J0LmggYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2NydC5oCmluZGV4IDFiM2ZiYTM1OWVmYy4uNmM1YzQ0NjAw
+Y2JkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NydC5o
+CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3J0LmgKQEAgLTExLDcg
+KzExLDYgQEAKIGVudW0gcGlwZTsKIHN0cnVjdCBkcm1fZW5jb2RlcjsKIHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlOwotc3RydWN0IGRybV9pOTE1X3ByaXZhdGU7CiAKIGJvb2wgaW50ZWxfY3J0X3Bv
+cnRfZW5hYmxlZChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJCQkgICAgaTkx
+NV9yZWdfdCBhZHBhX3JlZywgZW51bSBwaXBlICpwaXBlKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmgKaW5kZXggNzZmOGE4MDViMGEzLi4yOWNiNmQ4NGVk
+NzAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eS5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oCkBA
+IC00OCw3ICs0OCw2IEBAIHN0cnVjdCBpOTE1X2dndHRfdmlldzsKIHN0cnVjdCBpbnRlbF9hdG9t
+aWNfc3RhdGU7CiBzdHJ1Y3QgaW50ZWxfY3J0YzsKIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlOwot
+c3RydWN0IGludGVsX2NydGNfc3RhdGU7CiBzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0Owogc3Ry
+dWN0IGludGVsX2RwOwogc3RydWN0IGludGVsX2VuY29kZXI7CmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zyci5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF92cnIuaAppbmRleCBmYWMwMWJmNGFiNTAuLjk2ZjljOWMyN2FiOSAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92cnIuaAorKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zyci5oCkBAIC0xNSw3ICsxNSw2IEBA
+IHN0cnVjdCBpbnRlbF9jcnRjOwogc3RydWN0IGludGVsX2NydGNfc3RhdGU7CiBzdHJ1Y3QgaW50
+ZWxfZHA7CiBzdHJ1Y3QgaW50ZWxfZW5jb2RlcjsKLXN0cnVjdCBpbnRlbF9jcnRjOwogCiBib29s
+IGludGVsX3Zycl9pc19jYXBhYmxlKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpOwog
+dm9pZCBpbnRlbF92cnJfY2hlY2tfbW9kZXNldChzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpz
+dGF0ZSk7Ci0tIAoyLjI1LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeAo=
