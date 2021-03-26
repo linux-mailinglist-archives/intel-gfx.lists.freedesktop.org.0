@@ -2,51 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13D3C34AC62
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 17:15:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85B7034AC66
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 17:18:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF016F421;
-	Fri, 26 Mar 2021 16:15:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C50986F400;
+	Fri, 26 Mar 2021 16:18:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27F876F421;
- Fri, 26 Mar 2021 16:15:27 +0000 (UTC)
-IronPort-SDR: FtwrJfPjRkG5nzK0TKtlDkj2yFadRbDTY3zAUG0XwSR6WhhXC1/q3Ou4h0w5IfbRyNGkAv36vz
- E3AMePuHRtEA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9935"; a="187891477"
-X-IronPort-AV: E=Sophos;i="5.81,280,1610438400"; d="scan'208";a="187891477"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2021 09:15:26 -0700
-IronPort-SDR: CAgqW+zStyWs23Jeva8WM6R/LIlj4zzOsA2bOQ+f4y24ZPOKdv6uKnA9E36oupDSH6YqqtmU+S
- Muyq55vko6xQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,280,1610438400"; d="scan'208";a="377290237"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 26 Mar 2021 09:15:23 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 26 Mar 2021 18:15:22 +0200
-Date: Fri, 26 Mar 2021 18:15:22 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Navare, Manasi" <manasi.d.navare@intel.com>
-Message-ID: <YF4ImoReniVIz+TT@intel.com>
-References: <20210309005252.GA27491@labuser-Z97X-UD5H>
- <20210309111350.3be0543f@eldfell>
- <CAKMK7uEak_2YNDZpyho5bBhhYCvoXh6MoPNL6FmV9sU8oELGPA@mail.gmail.com>
- <20210318230126.GA1900@labuser-Z97X-UD5H>
- <YFS7mINBWsHiYIKm@intel.com>
- <20210319205413.GA6359@labuser-Z97X-UD5H>
- <YFUTyb6ofKRI12hO@intel.com>
- <20210319212624.GA6560@labuser-Z97X-UD5H>
- <YFUXX/pDcBheiNWL@intel.com>
- <20210325220127.GA28898@labuser-Z97X-UD5H>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2783F6F400
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 16:18:22 +0000 (UTC)
+IronPort-SDR: xi3FkdPKq9Z4jQlWVYskrkv0xcnx5ShN0DA8Ru+xJDbZo/UIt4VpQ24pqLXe7e6ln9OAW2f7Oz
+ 3C7RiKw0Sa8w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9935"; a="188904120"
+X-IronPort-AV: E=Sophos;i="5.81,280,1610438400"; d="scan'208";a="188904120"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2021 09:18:21 -0700
+IronPort-SDR: fhz3s7J5lzNiUNBrJ7lSeAbPyG8o4Q6RiEpCTRdzCOuIHhQwPR6+dlMyfPV0wfv1EcFOHBA97G
+ cEDUsYLyb2KA==
+X-IronPort-AV: E=Sophos;i="5.81,280,1610438400"; d="scan'208";a="515111586"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2021 09:18:20 -0700
+Date: Fri, 26 Mar 2021 18:18:16 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210326161816.GK2237616@ideak-desk.fi.intel.com>
+References: <20210325180720.401410-1-matthew.d.roper@intel.com>
+ <20210325180720.401410-40-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210325220127.GA28898@labuser-Z97X-UD5H>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/atomic: Add the crtc to affected crtc
- only if uapi.enable = true
+In-Reply-To: <20210325180720.401410-40-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 39/50] drm/i915/adl_p: Enable/disable
+ loadgen sharing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,114 +48,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Stone <daniels@collabora.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, me@freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 25, 2021 at 03:01:29PM -0700, Navare, Manasi wrote:
-> On Fri, Mar 19, 2021 at 11:27:59PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Fri, Mar 19, 2021 at 02:26:24PM -0700, Navare, Manasi wrote:
-> > > On Fri, Mar 19, 2021 at 11:12:41PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > On Fri, Mar 19, 2021 at 01:54:13PM -0700, Navare, Manasi wrote:
-> > > > > On Fri, Mar 19, 2021 at 04:56:24PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > > > On Thu, Mar 18, 2021 at 04:01:26PM -0700, Navare, Manasi wrote:
-> > > > > > > So basically we see this warning only in case of bigjoiner wh=
-en
-> > > > > > > drm_atomic_check gets called without setting the state->allow=
-_modeset flag.
-> > > > > > =
+On Thu, Mar 25, 2021 at 11:07:09AM -0700, Matt Roper wrote:
+> From: Mika Kahola <mika.kahola@intel.com>
+> 
+> Disable loadgen sharing for DP link rate 1.62 GHz and HDMI 5.94 GHz.
+> For all other modes, we can enable loadgen sharing feature.
+> 
+> BSpec: 55359
+> 
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 8 ++++++++
+>  drivers/gpu/drm/i915/i915_reg.h          | 1 +
+>  2 files changed, 9 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 1a5213447db1..d58f6d297a2f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -1460,6 +1460,14 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+>  		val = intel_de_read(dev_priv, DKL_TX_DPCNTL2(tc_port));
+>  		val &= ~DKL_TX_DP20BITMODE;
+>  		intel_de_write(dev_priv, DKL_TX_DPCNTL2(tc_port), val);
+> +
+> +		if ((intel_crtc_has_dp_encoder(crtc_state) &&
+> +		    crtc_state->port_clock == 162000) ||
+> +		    (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
+> +		    crtc_state->port_clock == 594000))
+> +			val |= DKL_TX_LOADGEN_SHARING_PMD_DISABLE;
+> +		else
+> +			val &= ~DKL_TX_LOADGEN_SHARING_PMD_DISABLE;
 
-> > > > > > Considering the code is 'WARN(!state->allow_modeset, ...' that
-> > > > > > fact should be rather obvious.
-> > > > > > =
+Setting this flags isn't needed any more by the spec (bspec 54956).
 
-> > > > > > > =
-
-> > > > > > > So do you think that in i915, in intel_atomic_check_bigjoiner=
-() we should only
-> > > > > > > steal the crtc when allow_modeset flag is set in state?
-> > > > > > =
-
-> > > > > > No. If you fully read drm_atomic_check_only() you will observe
-> > > > > > that it will reject any commit w/ allow_modeset=3D=3Dfalse whic=
-h =
-
-> > > > > > needs a modeset. And it does that before the WARN.
-> > > > > > =
-
-> > > > > > So you're barking up the wrong tree here. The problem I think
-> > > > > > is that you're just computing requested_crtcs wrong.
-> > > > > =
-
-> > > > > So here in this case, requested CRTC =3D 0x1 since it requests mo=
-deset on CRTC 0
-> > > > > Now in teh atomic check, it steals the slave CRTC 1 and hence aff=
-ected CRTC comes out
-> > > > > as 0x3 and hence the mismatch.
-> > > > =
-
-> > > > Hmm. How can it be 0x3 if we filtered out the uapi.enable=3D=3Dfals=
-e case?
-> > > > =
-
-> > > =
-
-> > > Yes if I add that condition like in this patch then it correctly calc=
-ulates
-> > > the affected crtc bitmask as only 0x1 since it doesnt include the sla=
-ve crtc.
-> > > So with this patch, requested crtc =3D 0x 1, affected crtc =3D 0x1
-> > > =
-
-> > > If this looks good then this fixes our bigjoiner warnings.
-> > > Does this patch look good to you as is then?
-> > =
-
-> > I think you still need to fix the requested_crtcs calculation.
-> =
-
-> We calculate requested crtc at the beginning :
-> for_each_new_crtc_in_state(state, crtc, new_crtc_state, i)
->                 requested_crtc |=3D drm_crtc_mask(crtc);
-> =
-
-> Are you suggesting adding this to after:
->  if (config->funcs->atomic_check) {
->                 ret =3D config->funcs->atomic_check(state->dev, state);
-> =
-
->                 if (ret) {
->                         DRM_DEBUG_ATOMIC("atomic driver check for %p fail=
-ed: %d\n",
->                                          state, ret);
->                         return ret;
->                 }
-> 		requested_crtc |=3D drm_crtc_mask(crtc);    // Here it will have reques=
-ted crtc =3D 0x11
->         }
-> =
-
-> in this case here the state should already have master crtc 0 and slave c=
-rtc 1
-> and that requested crtc should already be 0x11
-> =
-
-> Then in that case we dont need any special check for calculating affected=
- crtc, that also will be 0x11
-
-All I'm saying is that you're currently calculating requested_crtcs and
-affected_crtcs differently. So I'm not at all surprised that they might
-not match.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index f25f68f3b2f4..393071cde6d4 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -10887,6 +10887,7 @@ enum skl_power_gate {
+>  						     _DKL_TX_DPCNTL1)
+>  
+>  #define _DKL_TX_DPCNTL2				0x2C8
+> +#define  DKL_TX_LOADGEN_SHARING_PMD_DISABLE            REG_BIT(12)
+>  #define  DKL_TX_DP20BITMODE				(1 << 2)
+>  #define DKL_TX_DPCNTL2(tc_port) _MMIO(_PORT(tc_port, \
+>  						     _DKL_PHY1_BASE, \
+> -- 
+> 2.25.4
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
