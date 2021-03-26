@@ -2,30 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BF5734A96B
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 15:18:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AA3A34AABB
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 15:59:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11A186F3E4;
-	Fri, 26 Mar 2021 14:18:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6118C6F3FD;
+	Fri, 26 Mar 2021 14:59:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8088D6F3E3;
- Fri, 26 Mar 2021 14:18:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 77CF3A8830;
- Fri, 26 Mar 2021 14:18:42 +0000 (UTC)
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com
+ [66.111.4.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98B3B6F3FD;
+ Fri, 26 Mar 2021 14:59:42 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailout.nyi.internal (Postfix) with ESMTP id 1EA135C06B8;
+ Fri, 26 Mar 2021 10:59:41 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Fri, 26 Mar 2021 10:59:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm2; bh=CTL0NmnayxJOjLe7a8ik2kF63mM
+ VJCYpWAUZPGVIWiI=; b=lF+bPR1aDy503O3gOJxslRVUVS5quP3bvN7nR4rbkHR
+ UPMxr6iylRppqXrV9s62aHb4Ys7oTiZA7C2Tw4pKA/P5lsJbjFYNxrrDXVZ5sXZ0
+ iz5ovtx3do+KU4RswqsOdWxfAN+AnvZWRdTFOCdwfCeig3Q8QV4wlC3kk2j4wFfr
+ VnBdVUQYckV0Ab+pVYoBx3vU19Wjl708EpoA8hn4Nk5s1TTPeWlQQOK9OgOQJZ8g
+ zp9j8JnxGLBsFMfeg+ztotCiIQofXguH4OitNS/sl/F7hfl2OalBwrIxjmz3YlEz
+ z+KxBO0fvfYHuRCXp7wi9D0E7heJRDnm3YPBJsWFIFg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=CTL0Nm
+ nayxJOjLe7a8ik2kF63mMVJCYpWAUZPGVIWiI=; b=uV3apl1u+tAU7+AGAHDz0T
+ HNHn+n5rute2ycZ17VaD7b0FotLG9xhbyet0AqnZL5lareW2lF2OSfOTEuUWBLzk
+ nTfGZ9gfNcVDLpQNpw53MAfDk60fhG5iStceF1oJvcS60xImn2Oiycb3C1R0KrSr
+ ho4/0u8Vabp8fg8fHi9waNvVIVlOVjyIX1YNPMZhfFzL9Eyqker80t77PeQWFoEO
+ lz26Fo2j0BlCt/REBoKB27Rpn0I1mTdmUgZCjSfP/77NwFzaq4B+5Jb9MkdWhlHD
+ 4lO6fPPaMBSzt432sF3I4WTNSX7tK2SgagTv/Yiw/tcNKQz8YiN0iFxDC4B9GiCQ
+ ==
+X-ME-Sender: <xms:2_ZdYPF4iOMwpqDW7bCY2yoaaPglKnycRANtW7NbsTiHry4EgCbIww>
+ <xme:2_ZdYFtQVsuuS3Y6ToUNSVXocyavqgm3VXChZWPs2SnEE9LwpJT6uqGxSEnHo3eSv
+ FNk63QPqDO2qKOfOXY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudehvddgjedvucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepuddvudfhkeekhefgffetffelgffftdehffduffegveetffehueeivddvjedv
+ gfevnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+ frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:2_ZdYJo21e0RsJ7m18rwzj-WE2gUsTOPpwaLqUcItZ3pFVYxhlwlFw>
+ <xmx:2_ZdYMkZB_HooHozbTDgAxN5m7np0AEMdcFyF2dg5JREAsjkcTRdkA>
+ <xmx:2_ZdYGiWKfMCsamlRW1qxkq2C4mGt6zm5_tkmB5sEG-vLrRiW4r-YQ>
+ <xmx:3fZdYKcddbZUhoDiEv8lGHBzj8vT9MbSuJ85kE8amcdB5AhlJO8M_g>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 4179324005D;
+ Fri, 26 Mar 2021 10:59:39 -0400 (EDT)
+Date: Fri, 26 Mar 2021 15:59:37 +0100
+From: Maxime Ripard <maxime@cerno.tech>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20210326145937.wfyxm4harrdi43c3@gilmour>
+References: <20210323112422.1211-1-ankit.k.nautiyal@intel.com>
+ <20210323112422.1211-2-ankit.k.nautiyal@intel.com>
+ <87a6qq2qlt.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 26 Mar 2021 14:18:42 -0000
-Message-ID: <161676832245.10682.13253258372000166033@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1616764798.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1616764798.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_refactor_KBL/TGL/ADLS_stepping_scheme_=28rev3=29?=
+In-Reply-To: <87a6qq2qlt.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5 1/2] drm/dp_helper: Define options for
+ FRL training for HDMI2.1 PCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,196 +80,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1112569581=="
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0071031553=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1112569581==
-Content-Type: multipart/alternative;
- boundary="===============1229077244346170844=="
 
---===============1229077244346170844==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: refactor KBL/TGL/ADLS stepping scheme (rev3)
-URL   : https://patchwork.freedesktop.org/series/87323/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9905 -> Patchwork_19867
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19867 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@prime_self_import@basic-with_one_bo:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9905/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9905/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][5] ([i915#3303]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9905/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
-  [i915#3278]: https://gitlab.freedesktop.org/drm/intel/issues/3278
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+--===============0071031553==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="azt2smnv7sau4ccb"
+Content-Disposition: inline
 
 
-Participating hosts (47 -> 43)
-------------------------------
+--azt2smnv7sau4ccb
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+Hi,
 
+On Fri, Mar 26, 2021 at 11:47:58AM +0200, Jani Nikula wrote:
+> On Tue, 23 Mar 2021, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> > Currently the FRL training mode (Concurrent, Sequential) and
+> > training type (Normal, Extended) are not defined properly and
+> > are passed as bool values in drm_helpers for pcon
+> > configuration for FRL training.
+> >
+> > This patch:
+> > -Add register masks for Sequential and Normal FRL training options.
+> > -Fixes the drm_helpers for FRL Training configuration to use the
+> >  appropriate masks.
+> > -Modifies the calls to the above drm_helpers in i915/intel_dp as per
+> >  the above change.
+> >
+> > v2: Re-used the register masks for these options, instead of enum. (Vil=
+le)
+> >
+> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+>=20
+> Maarten, Maxime, Thomas -
+>=20
+> Can I get an ack for merging this via drm-intel-next, please?
 
-Build changes
--------------
+I was hoping that someone with either i915 or DP knowledge would
+comment, but the patch looks fine to me, you can go ahead I guess :)
 
-  * Linux: CI_DRM_9905 -> Patchwork_19867
+Maxime
 
-  CI-20190529: 20190529
-  CI_DRM_9905: fac8bc351b6b76f5a7dffb51431aa4baa2d686c8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6046: e76039273b1524147c43dba061756f06003d56ae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19867: 505e061b09f9f7424b7d91681c4129b6aee0be44 @ git://anongit.freedesktop.org/gfx-ci/linux
+--azt2smnv7sau4ccb
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-== Linux commits ==
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYF322QAKCRDj7w1vZxhR
+xQhXAQC/DwNCm6rNFtLc2i4wdpZJdV9XLae5DjYwK5YZ/+VTyAEAy6OafI7ddlv+
+NfHjruX9fbAW6WeyTO2+TktPj1VKrwo=
+=NrqV
+-----END PGP SIGNATURE-----
 
-505e061b09f9 drm/i915: rename i915_rev_steppings->intel_step_info
-cf5108b09da1 drm/i915: rename disp_stepping->display_step and gt_stepping->gt_step
-a01b77b14b7e drm/i915: rename DISP_STEPPING->DISPLAY_STEP and GT_STEPPING->GT_STEP
-3dce1f7cf58b drm/i915: switch TGL and ADL to the new stepping scheme
-c4a274f64cda drm/i915: switch KBL to the new stepping scheme
-a158a630e648 drm/i915: add new helpers for accessing stepping info
-879114240a25 drm/i915: split out stepping info to a new file
+--azt2smnv7sau4ccb--
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/index.html
-
---===============1229077244346170844==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: refactor KBL/TGL/ADLS stepping scheme (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87323/">https://patchwork.freedesktop.org/series/87323/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9905 -&gt; Patchwork_19867</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19867 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_one_bo:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9905/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9905/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9905/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19867/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 43)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9905 -&gt; Patchwork_19867</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9905: fac8bc351b6b76f5a7dffb51431aa4baa2d686c8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6046: e76039273b1524147c43dba061756f06003d56ae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19867: 505e061b09f9f7424b7d91681c4129b6aee0be44 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>505e061b09f9 drm/i915: rename i915_rev_steppings-&gt;intel_step_info<br />
-cf5108b09da1 drm/i915: rename disp_stepping-&gt;display_step and gt_stepping-&gt;gt_step<br />
-a01b77b14b7e drm/i915: rename DISP_STEPPING-&gt;DISPLAY_STEP and GT_STEPPING-&gt;GT_STEP<br />
-3dce1f7cf58b drm/i915: switch TGL and ADL to the new stepping scheme<br />
-c4a274f64cda drm/i915: switch KBL to the new stepping scheme<br />
-a158a630e648 drm/i915: add new helpers for accessing stepping info<br />
-879114240a25 drm/i915: split out stepping info to a new file</p>
-
-</body>
-</html>
-
---===============1229077244346170844==--
-
---===============1112569581==
+--===============0071031553==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -238,4 +153,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1112569581==--
+--===============0071031553==--
