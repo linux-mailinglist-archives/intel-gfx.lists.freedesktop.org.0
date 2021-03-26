@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 851A134B1A0
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 22:56:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25D0934B1F0
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 23:12:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1066F49A;
-	Fri, 26 Mar 2021 21:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14AC76F4D4;
+	Fri, 26 Mar 2021 22:12:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E83B6F49A
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 21:56:33 +0000 (UTC)
-IronPort-SDR: +sa3TfxaPA7PiX5LExr6nnffCdvOQ28G36YJDrUBIt+/gY5RV13whMKeY6xzDRS0d2Aark01Hl
- Bt9Vx6T/7WNA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9935"; a="252576912"
-X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="252576912"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2021 14:56:32 -0700
-IronPort-SDR: HSZMcShNEjUtjL5SctTRXP832w+mv8yNSAXUfrxbU3Qn4FpVvyzuTNx2eafiRs3CxVO9JlWF+G
- /pfTwsdccdhA==
-X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="416705936"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2021 14:56:31 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 26 Mar 2021 23:56:29 +0200
-Message-Id: <20210326215629.2423461-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 776406F4D2;
+ Fri, 26 Mar 2021 22:12:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 65879A0019;
+ Fri, 26 Mar 2021 22:12:00 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Avoid the size check WARN in GEM
- create/userptr IOCTLs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lyude Paul" <lyude@redhat.com>
+Date: Fri, 26 Mar 2021 22:12:00 -0000
+Message-ID: <161679672038.10686.15008566010204241391@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210326203807.105754-1-lyude@redhat.com>
+In-Reply-To: <20210326203807.105754-1-lyude@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Use_new_DRM_printk_funcs_=28like_drm=5Fdbg=5F*=28=29?=
+ =?utf-8?q?=29_in_DP_helpers_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,96 +39,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since
-commit ae2fb480f32f ("drm/i915/gem: consolidate 2big error checking for object sizes")
-the
-	i915_gem_userptr_ioctl()
-	i915_gem_create_ioctl()
-	i915_gem_dumb_create()
-IOCTLs will throw a WARN if the size passed in by userspace is too big.
+== Series Details ==
 
-This keeps now all the SKLs in CI in a tainted state, so avoid the WARN
-in these functions to get the machines back online.
+Series: drm: Use new DRM printk funcs (like drm_dbg_*()) in DP helpers (rev4)
+URL   : https://patchwork.freedesktop.org/series/87242/
+State : warning
 
-Testcase: igt/gem_create/create-massive
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_create.c  |  3 +++
- drivers/gpu/drm/i915/gem/i915_gem_object.h  | 14 ++++++++++++--
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c |  2 +-
- 3 files changed, 16 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-index 45d60e3d98e3b..a8ce8aa1d50fb 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-@@ -27,6 +27,9 @@ i915_gem_create(struct drm_file *file,
- 	/* For most of the ABI (e.g. mmap) we think in system pages */
- 	GEM_BUG_ON(!IS_ALIGNED(size, PAGE_SIZE));
- 
-+	if (i915_gem_object_size_2big_nowarn(size))
-+		return -E2BIG;
-+
- 	/* Allocate the new object */
- 	obj = i915_gem_object_create_region(mr, size, 0);
- 	if (IS_ERR(obj))
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-index 2ebd79537aea9..b06d1eef7a727 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
-@@ -27,9 +27,9 @@
-  * - get_user_pages*() mixed ints with longs
-  */
- #define GEM_CHECK_SIZE_OVERFLOW(sz) \
--	GEM_WARN_ON((sz) >> PAGE_SHIFT > INT_MAX)
-+	((sz) >> PAGE_SHIFT > INT_MAX)
- 
--static inline bool i915_gem_object_size_2big(u64 size)
-+static inline bool __i915_gem_object_size_2big(u64 size)
- {
- 	struct drm_i915_gem_object *obj;
- 
-@@ -42,6 +42,16 @@ static inline bool i915_gem_object_size_2big(u64 size)
- 	return false;
- }
- 
-+static inline bool i915_gem_object_size_2big(u64 size)
-+{
-+	return GEM_WARN_ON(__i915_gem_object_size_2big(size));
-+}
-+
-+static inline bool i915_gem_object_size_2big_nowarn(u64 size)
-+{
-+	return __i915_gem_object_size_2big(size);
-+}
-+
- void i915_gem_init__objects(struct drm_i915_private *i915);
- 
- struct drm_i915_gem_object *i915_gem_object_alloc(void);
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index a657b99ec7606..947efcca85ad2 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -508,7 +508,7 @@ i915_gem_userptr_ioctl(struct drm_device *dev,
- 			    I915_USERPTR_UNSYNCHRONIZED))
- 		return -EINVAL;
- 
--	if (i915_gem_object_size_2big(args->user_size))
-+	if (i915_gem_object_size_2big_nowarn(args->user_size))
- 		return -E2BIG;
- 
- 	if (!args->user_size)
--- 
-2.25.1
+$ dim checkpatch origin/drm-tip
+3d8eb2ccbc66 drm/dp: Fixup kernel docs for struct drm_dp_aux
+1f1ad683073b drm/tegra: Don't register DP AUX channels before connectors
+39a3ba7fabb6 drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace
+882c255fa5a6 drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late register/early unregister
+faadf2e387ad drm/dp: Add backpointer to drm_device in drm_dp_aux
+25a7e4ed60bc drm/dp: Clarify DP AUX registration time
+69b1288a49da drm/print: Fixup DRM_DEBUG_KMS_RATELIMITED()
+b9f61e076c10 drm/dp: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()
+a730423465f6 drm/dp: Pass drm_dp_aux to drm_dp*_link_train_channel_eq_delay()
+a4c1cef8f891 drm/dp: Always print aux channel name in logs
+b963bb4dceb3 drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()
+c107259fc1cc drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_set_tmds_output()
+ae36c9371f4a drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_max_tmds_clock()
+d648bb1f7fce drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_get_tmds_output()
+185abde41e78 drm/dp_dual_mode: Pass drm_device to drm_lspcon_(get|set)_mode()
+3603f373ec81 drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()
+-:56: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#56: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:74:
++									       crtc_state->port_clock,
+
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+3514040cd5e7 drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_*()
+23839e954a71 drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using drm_err/drm_dbg_kms()
+0cde05949af0 drm/dp_mst: Drop DRM_ERROR() on kzalloc() fail in drm_dp_mst_handle_up_req()
+ee2eb7b61a11 drm/dp_mst: Convert drm_dp_mst_topology.c to drm_err()/drm_dbg*()
+
 
 _______________________________________________
 Intel-gfx mailing list
