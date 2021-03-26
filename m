@@ -1,44 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7522F34ACAF
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 17:43:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A9B34ACBD
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Mar 2021 17:45:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42A0E6F404;
-	Fri, 26 Mar 2021 16:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC7566F42D;
+	Fri, 26 Mar 2021 16:45:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F08E6F404
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 16:42:59 +0000 (UTC)
-IronPort-SDR: dS83AcCBtsBlA+a/XR9few6CZh0l1j+6Li5Q35cQl8wjnBGDBrvWLUJflNgCopY+guthXOKEMo
- 4BGVZRYjyG3A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9935"; a="255174776"
-X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="255174776"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2021 09:42:58 -0700
-IronPort-SDR: FtHPoi4cb3hPWl6mk+1TxS3agwNOxVd1SZDVsa2wRsE8lxj3F17XxEo1xkudThUC5NttUHeem7
- IDf5pH1iK8YA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="409972895"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 26 Mar 2021 09:42:56 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 26 Mar 2021 18:42:55 +0200
-Date: Fri, 26 Mar 2021 18:42:55 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <YF4PD6pUpQ615gaL@intel.com>
-References: <20210325214808.2071517-1-imre.deak@intel.com>
- <20210325214808.2071517-19-imre.deak@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A2366F42D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Mar 2021 16:45:13 +0000 (UTC)
+IronPort-SDR: 99orUdC2PSJ4aactd0ceHGNHS9tctREDJSx/q51FiRemvrKkGB5dmUFtSspCLgxPxtDn6WEu8q
+ JD+3Wmoct6aQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9935"; a="170559795"
+X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="170559795"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2021 09:45:13 -0700
+IronPort-SDR: 7X+3eB2X7Sl/9gyFKvG1iCcfAbcQfQAFV7m4mSjBboR6I9AL4JTlbRuog4eQTE/+vKNoOd0axM
+ fNvnYyTMdW/g==
+X-IronPort-AV: E=Sophos;i="5.81,281,1610438400"; d="scan'208";a="443419976"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2021 09:45:11 -0700
+Date: Fri, 26 Mar 2021 18:45:07 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, Jose Souza <jose.souza@intel.com>
+Message-ID: <20210326164507.GQ2237616@ideak-desk.fi.intel.com>
+References: <20210325180720.401410-1-matthew.d.roper@intel.com>
+ <20210325180720.401410-7-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210325214808.2071517-19-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v2 18/25] drm/i915: Simplify copying the FB
- view state to the plane state
+In-Reply-To: <20210325180720.401410-7-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 06/50] drm/i915/xelpd: Handle new
+ location of outputs D and E
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,322 +48,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, me@freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 25, 2021 at 11:48:01PM +0200, Imre Deak wrote:
-> Instead of copying separately the GTT remapped and color plane view info
-> from the FB to the plane state, do this by copying the whole
-> intel_fb_view struct. For this we make sure the FB view state is fully
-> inited (that is also including the view type) already during FB
-> creation, so this init is not required during atomic check time. This
-> also means the we don't need to reset the unused color plane info during
-> atomic check, as these are already reset during FB creation.
+On Thu, Mar 25, 2021 at 11:06:36AM -0700, Matt Roper wrote:
+> The DDI naming template for display version 12 went A-C, TC1-TC6.  With
+> XE_LPD, that naming scheme for DDI's has now changed to A-E, TC1-TC4.
 > =
 
-> I noticed that initial FBs will only work atm if they are page aligned
-> (which BIOS most probably always ensures), but add a comment to sanitize
-> this part once. Also we won't disable the plane if
-> get_initial_plane_config() failed for some reason (for instance due to
-> unsupported rotation), add a TODO: comment for this too.
+> The XE_LPD design keeps the register offsets and bitfields relating to
+> the TC outputs in the same location they were previously.  The new "D"
+> and "E" outputs now take the locations that were previously used by TC5
+> and TC6 outputs, or what we would have considered to be outputs "H" and
+> "I" under the legacy lettering scheme.
 > =
 
+> For the most part everything will just work as long as we initialize the
+> output with the proper 'enum port' value.  However we do need to take
+> care to pick the correct AUX channel when parsing the VBT (e.g., a
+> reference to 'AUX D' is actually asking us to use the 8th aux channel,
+> not the fourth).  We should also make sure that our encoders and aux
+> channels are named appropriately so that it's easier to correlate driver
+> debug messages with the bspec instructions.
+
+Isn't this patch also supposed to include all the ADL_P specific
+dvo_port -> port and VBT aux ch -> i915 aux ch mapping?
+
+> =
+
+> v2:
+>  - Update handling of TGL_TRANS_CLK_SEL_PORT.  (Jose)
+> =
+
+> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c  | 11 ++--
->  drivers/gpu/drm/i915/display/intel_fb.c       | 59 ++++++++-----------
->  drivers/gpu/drm/i915/display/intel_fb.h       |  7 +--
->  .../drm/i915/display/skl_universal_plane.c    |  8 +--
->  4 files changed, 34 insertions(+), 51 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bios.c    |  8 +++++--
+>  drivers/gpu/drm/i915/display/intel_ddi.c     | 25 +++++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_display.c |  6 ++++-
+>  drivers/gpu/drm/i915/display/intel_display.h |  8 +++++++
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c  | 14 +++++++----
+>  5 files changed, 44 insertions(+), 17 deletions(-)
 > =
 
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 3d0c035b5e38..6847fb5aff4d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -2852,7 +2852,9 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_=
+private *i915,
+>  			aux_ch =3D AUX_CH_C;
+>  		break;
+>  	case DP_AUX_D:
+> -		if (IS_ALDERLAKE_S(i915))
+> +		if (DISPLAY_VER(i915) >=3D 13)
+> +			aux_ch =3D AUX_CH_D_XELPD;
+> +		else if (IS_ALDERLAKE_S(i915))
+>  			aux_ch =3D AUX_CH_USBC3;
+>  		else if (IS_DG1(i915) || IS_ROCKETLAKE(i915))
+>  			aux_ch =3D AUX_CH_USBC2;
+> @@ -2860,7 +2862,9 @@ enum aux_ch intel_bios_port_aux_ch(struct drm_i915_=
+private *i915,
+>  			aux_ch =3D AUX_CH_D;
+>  		break;
+>  	case DP_AUX_E:
+> -		if (IS_ALDERLAKE_S(i915))
+> +		if (DISPLAY_VER(i915) >=3D 13)
+> +			aux_ch =3D AUX_CH_E_XELPD;
+> +		else if (IS_ALDERLAKE_S(i915))
+>  			aux_ch =3D AUX_CH_USBC4;
+>  		else
+>  			aux_ch =3D AUX_CH_E;
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 953de42e277c..933af861253e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -850,18 +850,19 @@ void intel_ddi_enable_pipe_clock(struct intel_encod=
+er *encoder,
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> -	enum port port =3D encoder->port;
+>  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
+> +	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
+> +	u32 val;
+>  =
+
+>  	if (cpu_transcoder !=3D TRANSCODER_EDP) {
+> -		if (DISPLAY_VER(dev_priv) >=3D 12)
+> -			intel_de_write(dev_priv,
+> -				       TRANS_CLK_SEL(cpu_transcoder),
+> -				       TGL_TRANS_CLK_SEL_PORT(port));
+> +		if (DISPLAY_VER(dev_priv) >=3D 13)
+> +			val =3D TGL_TRANS_CLK_SEL_PORT(phy);
+> +		else if (DISPLAY_VER(dev_priv) >=3D 12)
+> +			val =3D TGL_TRANS_CLK_SEL_PORT(encoder->port);
+>  		else
+> -			intel_de_write(dev_priv,
+> -				       TRANS_CLK_SEL(cpu_transcoder),
+> -				       TRANS_CLK_SEL_PORT(port));
+> +			val =3D TRANS_CLK_SEL_PORT(encoder->port);
+> +
+> +		intel_de_write(dev_priv, TRANS_CLK_SEL(cpu_transcoder), val);
+>  	}
+>  }
+>  =
+
+> @@ -4489,7 +4490,13 @@ void intel_ddi_init(struct drm_i915_private *dev_p=
+riv, enum port port)
+>  	encoder =3D &dig_port->base;
+>  	encoder->devdata =3D devdata;
+>  =
+
+> -	if (DISPLAY_VER(dev_priv) >=3D 12) {
+> +	if (DISPLAY_VER(dev_priv) >=3D 13 && port >=3D PORT_D_XELPD) {
+> +		drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
+> +				 DRM_MODE_ENCODER_TMDS,
+> +				 "DDI %c/PHY %c",
+> +				 port_name(port - PORT_D_XELPD + PORT_D),
+> +				 phy_name(phy));
+> +	} else if (DISPLAY_VER(dev_priv) >=3D 12) {
+>  		enum tc_port tc_port =3D intel_port_to_tc(dev_priv, port);
+>  =
+
+>  		drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index 4ee7e72142a5f..48b8e2083e14a 100644
+> index 17490d29dc13..03d1e0eedaa8 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1629,6 +1629,11 @@ intel_find_initial_plane_obj(struct intel_crtc *in=
-tel_crtc,
->  	struct drm_framebuffer *fb;
->  	struct i915_vma *vma;
+> @@ -4206,7 +4206,11 @@ bool intel_phy_is_tc(struct drm_i915_private *dev_=
+priv, enum phy phy)
 >  =
 
-> +	/*
-> +	 * TODO:
-> +	 *   Disable planes if get_initial_plane_config() failed.
-> +	 *   Make sure things work if the surface base is not page aligned.
-> +	 */
->  	if (!plane_config->fb)
->  		return;
->  =
-
-> @@ -1680,10 +1685,8 @@ intel_find_initial_plane_obj(struct intel_crtc *in=
-tel_crtc,
->  =
-
->  valid_fb:
->  	plane_state->rotation =3D plane_config->rotation;
-> -	intel_fill_fb_ggtt_view(&intel_state->view.gtt, fb,
-> -				plane_state->rotation);
-> -	intel_state->view.color_plane[0].pitch =3D
-> -		intel_fb_pitch(fb, 0, plane_state->rotation);
-> +	intel_fb_fill_view(to_intel_framebuffer(fb), plane_state->rotation,
-> +			   &intel_state->view);
->  =
-
->  	__i915_vma_pin(vma);
->  	intel_state->vma =3D i915_vma_get(vma);
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index 31fd8480f707e..16dcfb538b448 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -484,10 +484,8 @@ static bool intel_plane_can_remap(const struct intel=
-_plane_state *plane_state)
->  	return true;
->  }
->  =
-
-> -int intel_fb_pitch(const struct drm_framebuffer *drm_fb, int color_plane=
-, unsigned int rotation)
-> +static int intel_fb_pitch(const struct intel_framebuffer *fb, int color_=
-plane, unsigned int rotation)
+>  enum phy intel_port_to_phy(struct drm_i915_private *i915, enum port port)
 >  {
-> -	struct intel_framebuffer *fb =3D to_intel_framebuffer(drm_fb);
-> -
->  	if (drm_rotation_90_or_270(rotation))
->  		return fb->rotated_view.color_plane[color_plane].pitch;
->  	else
-> @@ -497,7 +495,7 @@ int intel_fb_pitch(const struct drm_framebuffer *drm_=
-fb, int color_plane, unsign
->  static bool intel_plane_needs_remap(const struct intel_plane_state *plan=
-e_state)
->  {
->  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
-> -	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> +	const struct intel_framebuffer *fb =3D to_intel_framebuffer(plane_state=
-->hw.fb);
->  	unsigned int rotation =3D plane_state->hw.rotation;
->  	u32 stride, max_stride;
+> -	if (IS_ALDERLAKE_S(i915) && port >=3D PORT_TC1)
+> +	if (DISPLAY_VER(i915) >=3D 13 && port >=3D PORT_D_XELPD)
+> +		return PHY_D + port - PORT_D_XELPD;
+> +	else if (DISPLAY_VER(i915) >=3D 13 && port >=3D PORT_TC1)
+> +		return PHY_F + port - PORT_TC1;
+> +	else if (IS_ALDERLAKE_S(i915) && port >=3D PORT_TC1)
+>  		return PHY_B + port - PORT_TC1;
+>  	else if ((IS_DG1(i915) || IS_ROCKETLAKE(i915)) && port >=3D PORT_TC1)
+>  		return PHY_C + port - PORT_TC1;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index f056e19cf559..5b19953840aa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -217,6 +217,10 @@ enum port {
+>  	PORT_TC5,
+>  	PORT_TC6,
 >  =
 
-> @@ -516,8 +514,8 @@ static bool intel_plane_needs_remap(const struct inte=
-l_plane_state *plane_state)
->  	 * unclear in Bspec, for now no checking.
->  	 */
->  	stride =3D intel_fb_pitch(fb, 0, rotation);
-> -	max_stride =3D plane->max_stride(plane, fb->format->format,
-> -				       fb->modifier, rotation);
-> +	max_stride =3D plane->max_stride(plane, fb->base.format->format,
-> +				       fb->base.modifier, rotation);
->  =
-
->  	return stride > max_stride;
->  }
-> @@ -702,6 +700,12 @@ calc_plane_normal_size(const struct intel_framebuffe=
-r *fb, int color_plane,
->  	return tiles;
->  }
->  =
-
-> +static void intel_fb_view_init(struct intel_fb_view *view, enum i915_ggt=
-t_view_type view_type)
-> +{
-> +	memset(view, 0, sizeof(*view));
-> +	view->gtt.type =3D view_type;
-> +}
+> +	/* XE_LPD repositions D/E offsets and bitfields */
+> +	PORT_D_XELPD =3D PORT_TC5,
+> +	PORT_E_XELPD,
 > +
->  int intel_fill_fb_info(struct drm_i915_private *i915, struct drm_framebu=
-ffer *fb)
->  {
->  	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
-> @@ -711,6 +715,9 @@ int intel_fill_fb_info(struct drm_i915_private *i915,=
- struct drm_framebuffer *fb
->  	int i, num_planes =3D fb->format->num_planes;
->  	unsigned int tile_size =3D intel_tile_size(i915);
+>  	I915_MAX_PORTS
+>  };
 >  =
 
-> +	intel_fb_view_init(&intel_fb->normal_view, I915_GGTT_VIEW_NORMAL);
-> +	intel_fb_view_init(&intel_fb->rotated_view, I915_GGTT_VIEW_ROTATED);
+> @@ -300,6 +304,10 @@ enum aux_ch {
+>  	AUX_CH_USBC4,
+>  	AUX_CH_USBC5,
+>  	AUX_CH_USBC6,
 > +
->  	for (i =3D 0; i < num_planes; i++) {
->  		struct fb_plane_view_dims view_dims;
->  		unsigned int width, height;
-> @@ -796,9 +803,9 @@ static void intel_plane_remap_gtt(struct intel_plane_=
-state *plane_state)
->  	unsigned int src_w, src_h;
->  	u32 gtt_offset =3D 0;
+> +	/* XE_LPD repositions D/E offsets and bitfields */
+> +	AUX_CH_D_XELPD =3D AUX_CH_USBC5,
+> +	AUX_CH_E_XELPD,
+>  };
 >  =
 
-> -	memset(&plane_state->view.gtt, 0, sizeof(plane_state->view.gtt));
-> -	plane_state->view.gtt.type =3D drm_rotation_90_or_270(rotation) ?
-> -		I915_GGTT_VIEW_ROTATED : I915_GGTT_VIEW_REMAPPED;
-> +	intel_fb_view_init(&plane_state->view,
-> +			   drm_rotation_90_or_270(rotation) ? I915_GGTT_VIEW_ROTATED :
-> +							      I915_GGTT_VIEW_REMAPPED);
+>  #define aux_ch_name(a) ((a) + 'A')
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_aux.c
+> index 7e83bc2cc34a..8937561329b1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -607,8 +607,8 @@ static i915_reg_t tgl_aux_ctl_reg(struct intel_dp *in=
+tel_dp)
+>  	case AUX_CH_USBC2:
+>  	case AUX_CH_USBC3:
+>  	case AUX_CH_USBC4:
+> -	case AUX_CH_USBC5:
+> -	case AUX_CH_USBC6:
+> +	case AUX_CH_USBC5:  /* aka AUX_CH_D_XELPD */
+> +	case AUX_CH_USBC6:  /* aka AUX_CH_E_XELPD */
+>  		return DP_AUX_CH_CTL(aux_ch);
+>  	default:
+>  		MISSING_CASE(aux_ch);
+> @@ -630,8 +630,8 @@ static i915_reg_t tgl_aux_data_reg(struct intel_dp *i=
+ntel_dp, int index)
+>  	case AUX_CH_USBC2:
+>  	case AUX_CH_USBC3:
+>  	case AUX_CH_USBC4:
+> -	case AUX_CH_USBC5:
+> -	case AUX_CH_USBC6:
+> +	case AUX_CH_USBC5:  /* aka AUX_CH_D_XELPD */
+> +	case AUX_CH_USBC6:  /* aka AUX_CH_E_XELPD */
+>  		return DP_AUX_CH_DATA(aux_ch, index);
+>  	default:
+>  		MISSING_CASE(aux_ch);
+> @@ -685,7 +685,11 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+>  	drm_dp_aux_init(&intel_dp->aux);
 >  =
 
->  	src_x =3D plane_state->uapi.src.x1 >> 16;
->  	src_y =3D plane_state->uapi.src.y1 >> 16;
-> @@ -889,17 +896,13 @@ static void intel_plane_remap_gtt(struct intel_plan=
-e_state *plane_state)
->  	}
->  }
->  =
-
-> -void intel_fill_fb_ggtt_view(struct i915_ggtt_view *view,
-> -			     const struct drm_framebuffer *fb,
-> -			     unsigned int rotation)
-> +void intel_fb_fill_view(const struct intel_framebuffer *fb, unsigned int=
- rotation,
-> +			struct intel_fb_view *view)
->  {
-> -	memset(view, 0, sizeof(*view));
-> -
-> -	view->type =3D I915_GGTT_VIEW_NORMAL;
-> -	if (drm_rotation_90_or_270(rotation)) {
-> -		view->type =3D I915_GGTT_VIEW_ROTATED;
-> -		view->rotated =3D to_intel_framebuffer(fb)->rotated_view.gtt.rotated;
-> -	}
-> +	if (drm_rotation_90_or_270(rotation))
-> +		*view =3D fb->rotated_view;
-> +	else
-> +		*view =3D fb->normal_view;
->  }
->  =
-
->  static int intel_plane_check_stride(const struct intel_plane_state *plan=
-e_state)
-> @@ -939,13 +942,10 @@ int intel_plane_compute_gtt(struct intel_plane_stat=
-e *plane_state)
->  	const struct intel_framebuffer *fb =3D
->  		to_intel_framebuffer(plane_state->hw.fb);
->  	unsigned int rotation =3D plane_state->hw.rotation;
-> -	int i, num_planes;
->  =
-
->  	if (!fb)
->  		return 0;
->  =
-
-> -	num_planes =3D fb->base.format->num_planes;
-> -
->  	if (intel_plane_needs_remap(plane_state)) {
->  		intel_plane_remap_gtt(plane_state);
->  =
-
-> @@ -958,20 +958,7 @@ int intel_plane_compute_gtt(struct intel_plane_state=
- *plane_state)
->  		return intel_plane_check_stride(plane_state);
->  	}
->  =
-
-> -	intel_fill_fb_ggtt_view(&plane_state->view.gtt, &fb->base, rotation);
-> -
-> -	for (i =3D 0; i < num_planes; i++) {
-> -		plane_state->view.color_plane[i].pitch =3D intel_fb_pitch(&fb->base, i=
-, rotation);
-> -		plane_state->view.color_plane[i].offset =3D 0;
-> -
-> -		if (drm_rotation_90_or_270(rotation)) {
-> -			plane_state->view.color_plane[i].x =3D fb->rotated_view.color_plane[i=
-].x;
-> -			plane_state->view.color_plane[i].y =3D fb->rotated_view.color_plane[i=
-].y;
-> -		} else {
-> -			plane_state->view.color_plane[i].x =3D fb->normal_view.color_plane[i]=
-.x;
-> -			plane_state->view.color_plane[i].y =3D fb->normal_view.color_plane[i]=
-.y;
-> -		}
-> -	}
-> +	intel_fb_fill_view(fb, rotation, &plane_state->view);
->  =
-
->  	/* Rotate src coordinates to match rotated GTT view */
->  	if (drm_rotation_90_or_270(rotation))
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i9=
-15/display/intel_fb.h
-> index 8ffc883a83c34..0ea9da360450d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.h
-> @@ -15,6 +15,7 @@ struct drm_i915_private;
->  struct i915_ggtt_view;
->  =
-
->  struct intel_fb_view;
-> +struct intel_framebuffer;
->  struct intel_plane_state;
->  =
-
->  enum i915_ggtt_view_type;
-> @@ -49,11 +50,9 @@ u32 intel_plane_compute_aligned_offset(int *x, int *y,
->  				       const struct intel_plane_state *state,
->  				       int color_plane);
->  =
-
-> -int intel_fb_pitch(const struct drm_framebuffer *fb, int color_plane, un=
-signed int rotation);
-> -
->  int intel_fill_fb_info(struct drm_i915_private *i915, struct drm_framebu=
-ffer *fb);
-> -void intel_fill_fb_ggtt_view(struct i915_ggtt_view *view, const struct d=
-rm_framebuffer *fb,
-> -			     unsigned int rotation);
-> +void intel_fb_fill_view(const struct intel_framebuffer *fb, unsigned int=
- rotation,
-> +			struct intel_fb_view *view);
->  int intel_plane_compute_gtt(struct intel_plane_state *plane_state);
->  =
-
->  #endif /* __INTEL_FB_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
-/gpu/drm/i915/display/skl_universal_plane.c
-> index 00a11fb516e52..00a53512ef6cd 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1538,7 +1538,7 @@ static int skl_check_ccs_aux_surface(struct intel_p=
-lane_state *plane_state)
->  static int skl_check_plane_surface(struct intel_plane_state *plane_state)
->  {
->  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> -	int ret, i;
-> +	int ret;
->  =
-
->  	ret =3D intel_plane_compute_gtt(plane_state);
->  	if (ret)
-> @@ -1564,12 +1564,6 @@ static int skl_check_plane_surface(struct intel_pl=
-ane_state *plane_state)
->  			return ret;
->  	}
->  =
-
-> -	for (i =3D fb->format->num_planes; i < ARRAY_SIZE(plane_state->view.col=
-or_plane); i++) {
-> -		plane_state->view.color_plane[i].offset =3D 0;
-> -		plane_state->view.color_plane[i].x =3D 0;
-> -		plane_state->view.color_plane[i].y =3D 0;
-> -	}
-> -
->  	ret =3D skl_check_main_surface(plane_state);
->  	if (ret)
->  		return ret;
+>  	/* Failure to allocate our preferred name is not critical */
+> -	if (DISPLAY_VER(dev_priv) >=3D 12 && aux_ch >=3D AUX_CH_USBC1)
+> +	if (DISPLAY_VER(dev_priv) >=3D 13 && aux_ch >=3D AUX_CH_D_XELPD)
+> +		intel_dp->aux.name =3D kasprintf(GFP_KERNEL, "AUX %c/%s",
+> +					       aux_ch_name(aux_ch - AUX_CH_D_XELPD + AUX_CH_D),
+> +					       encoder->base.name);
+> +	else if (DISPLAY_VER(dev_priv) >=3D 12 && aux_ch >=3D AUX_CH_USBC1)
+>  		intel_dp->aux.name =3D kasprintf(GFP_KERNEL, "AUX USBC%c/%s",
+>  					       aux_ch - AUX_CH_USBC1 + '1',
+>  					       encoder->base.name);
 > -- =
 
-> 2.25.1
+> 2.25.4
+> =
 
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
