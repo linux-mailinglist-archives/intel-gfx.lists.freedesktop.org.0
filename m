@@ -1,46 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5545034BF85
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Mar 2021 00:01:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C2AC34BF9E
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Mar 2021 00:57:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E3976E05C;
-	Sun, 28 Mar 2021 22:01:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84DC989F45;
+	Sun, 28 Mar 2021 22:57:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from ozlabs.org (ozlabs.org [IPv6:2401:3900:2:1::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F351C6E05C;
- Sun, 28 Mar 2021 22:01:23 +0000 (UTC)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4F7qRM31Fyz9sRf;
- Mon, 29 Mar 2021 09:01:18 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
- s=201702; t=1616968881;
- bh=5HhQHmCdYgsPA8RXY8VYh1EyFWPd5mOOiVguF7B+feg=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=kd3Gu2MbJnjuLrePT/Dbc+t+TFMjNcfw8hENvAuymA+KFzIUMx0BqPRZZWRdMB10a
- 5ncEz6+Exr2VdJ/UBV6lqZMubK+0V+uo7vyZEtgxS55Kq8UCjfukUXO3vdhHBy7rqJ
- OiE47UGHnsF60GQ/lfdNuxE5m+7fv1TxnGShi0Z4vCpN05HB02mX2QHjsC6rH0//dQ
- amNX4zSyfwkUlUoqZ/ci0ICJJEQ5498SI9xJyOGVXArACZw2FkBlvTL+98YmnWtlNn
- Qtt+ySEp+KbyOgtsQ6TANXYcbk0NvnXDGlaDVMGNoHg/IJUi4gMSKhZMnd5Ywza5Br
- NmuTU/8Ez5V+g==
-Date: Mon, 29 Mar 2021 09:01:17 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>
-Message-ID: <20210329090117.6b224931@canb.auug.org.au>
-In-Reply-To: <20210326195838.5ad4973b@canb.auug.org.au>
-References: <20210326195838.5ad4973b@canb.auug.org.au>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C492C89F45
+ for <intel-gfx@lists.freedesktop.org>; Sun, 28 Mar 2021 22:57:41 +0000 (UTC)
+IronPort-SDR: 6v5uKJye+RjFIVGFLb67ax2RbqS9ZAFkHd9itVnLZrxZ13a6uEfu4pvix8X5HGMJ0R/McOeohM
+ biC417lIWTyg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9937"; a="255443989"
+X-IronPort-AV: E=Sophos;i="5.81,285,1610438400"; d="scan'208";a="255443989"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2021 15:57:40 -0700
+IronPort-SDR: VOkDdYqW5BnpM93wpetSdQSWKqyIxLRHQKJaMKM9J9nYFCS5qVCtOixLbfIXFXn0Qpxb47fJ4s
+ Xej45J/Qeehg==
+X-IronPort-AV: E=Sophos;i="5.81,285,1610438400"; d="scan'208";a="376213734"
+Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2021 15:57:39 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Sun, 28 Mar 2021 15:56:52 -0700
+Message-Id: <20210328225709.18541-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
- drm-intel-fixes tree
+Subject: [Intel-gfx] [PATCH v3 00/16] Introduce Intel PXP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,68 +44,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="===============0822972767=="
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ Gaurav Kumar <kumar.gaurav@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0822972767==
-Content-Type: multipart/signed; boundary="Sig_//QsD_AfuZfie_FBZKD_mLXq";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+PXP (Protected Xe Path) is an i915 component, available on
+GEN12+, that helps to establish the hardware protected session
+and manage the status of the alive software session, as well
+as its life cycle.
 
---Sig_//QsD_AfuZfie_FBZKD_mLXq
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Lots of minor changes and fixes, but the main changes in v3 are:
 
-Hi all,
+- Using a protected object with a context not appropriately marked does
+  no longer result in an execbuf failure. This is to avoid apps
+  maliciously sharing protected/invalid objects to other apps and
+  causing them to fail.
+- All the termination work now goes through the same worker function,
+  which allows i915 to drop the mutex lock entirely.
 
-On Fri, 26 Mar 2021 19:58:38 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
-wrote:
->
-> After merging the drm-intel-fixes tree, today's linux-next build
-> (htmldocs) produced this warning:
->=20
-> Documentation/gpu/i915:22: /drivers/gpu/drm/i915/intel_runtime_pm.c:423: =
-WARNING: Inline strong start-string without end-string.
->=20
-> Introduced by commit
->=20
->   8840e3bd981f ("drm/i915: Fix the GT fence revocation runtime PM logic")
+Cc: Gaurav Kumar <kumar.gaurav@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Juston Li <juston.li@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 
-This warning now exists in Linus' tree.
+Anshuman Gupta (2):
+  drm/i915/pxp: Add plane decryption support
+  drm/i915/pxp: black pixels on pxp disabled
 
---=20
-Cheers,
-Stephen Rothwell
+Bommu Krishnaiah (2):
+  drm/i915/uapi: introduce drm_i915_gem_create_ext
+  drm/i915/pxp: User interface for Protected buffer
 
---Sig_//QsD_AfuZfie_FBZKD_mLXq
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Daniele Ceraolo Spurio (6):
+  drm/i915/pxp: Define PXP component interface
+  drm/i915/pxp: define PXP device flag and kconfig
+  drm/i915/pxp: allocate a vcs context for pxp usage
+  drm/i915/pxp: set KCR reg init
+  drm/i915/pxp: interface for marking contexts as using protected
+    content
+  drm/i915/pxp: enable PXP for integrated Gen12
 
------BEGIN PGP SIGNATURE-----
+Huang, Sean Z (5):
+  drm/i915/pxp: Implement funcs to create the TEE channel
+  drm/i915/pxp: Create the arbitrary session after boot
+  drm/i915/pxp: Implement arb session teardown
+  drm/i915/pxp: Implement PXP irq handler
+  drm/i915/pxp: Enable PXP power management
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmBg/K0ACgkQAVBC80lX
-0GyYwggAj9F/JN4TaL4WF+9DYWxOQ/V8lMzzerBR+N65DxX/5p01HhKhdU/sJUVS
-wbrnNAJViURVtHEpnl28m9jSBgdXVnoCBgt/kMQCtIv+vGREZ9isJ2T0KOw11F2I
-1OeHLooITppCjoFM7Kngnt4yJXWXirSSQk68DD+TWyRAgHDPec7rv+3562nBcfny
-F643OjjAHwkC2AbofvDk/FrlbNR9+3oTYP4FpVna8HNmOgWvYIPEcWZB+maFJwgt
-xPLR5ryD4ReYvIvSILrfo2syTRR0mj11eyiKlH3cDp0FFRfqqOpolKtSc4N3q9eE
-j9CqoH1WiURuS0+Z+C3SAj8jSBXD/w==
-=pIB0
------END PGP SIGNATURE-----
+Vitaly Lubart (1):
+  mei: pxp: export pavp client to me client bus
 
---Sig_//QsD_AfuZfie_FBZKD_mLXq--
+ drivers/gpu/drm/i915/Kconfig                  |  11 +
+ drivers/gpu/drm/i915/Makefile                 |   9 +
+ .../drm/i915/display/skl_universal_plane.c    |  50 +++-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  59 +++-
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |  18 ++
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |  68 ++++-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  34 +++
+ drivers/gpu/drm/i915/gem/i915_gem_object.c    |   6 +
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  12 +
+ .../gpu/drm/i915/gem/i915_gem_object_types.h  |  13 +
+ drivers/gpu/drm/i915/gt/intel_engine.h        |  12 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  32 ++-
+ drivers/gpu/drm/i915/gt/intel_gpu_commands.h  |  22 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |   5 +
+ drivers/gpu/drm/i915/gt/intel_gt_irq.c        |   7 +
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |  14 +-
+ drivers/gpu/drm/i915/gt/intel_gt_types.h      |   3 +
+ drivers/gpu/drm/i915/i915_drv.c               |   4 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   4 +
+ drivers/gpu/drm/i915/i915_pci.c               |   2 +
+ drivers/gpu/drm/i915/i915_reg.h               |  48 ++++
+ drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+ drivers/gpu/drm/i915/pxp/intel_pxp.c          | 262 ++++++++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp.h          |  65 +++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c      | 140 ++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h      |  15 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.c      | 100 +++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_irq.h      |  32 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.c       |  37 +++
+ drivers/gpu/drm/i915/pxp/intel_pxp_pm.h       |  23 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.c  | 172 ++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_session.h  |  15 +
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.c      | 182 ++++++++++++
+ drivers/gpu/drm/i915/pxp/intel_pxp_tee.h      |  17 ++
+ drivers/gpu/drm/i915/pxp/intel_pxp_types.h    |  43 +++
+ drivers/misc/mei/Kconfig                      |   2 +
+ drivers/misc/mei/Makefile                     |   1 +
+ drivers/misc/mei/pxp/Kconfig                  |  13 +
+ drivers/misc/mei/pxp/Makefile                 |   7 +
+ drivers/misc/mei/pxp/mei_pxp.c                | 233 ++++++++++++++++
+ drivers/misc/mei/pxp/mei_pxp.h                |  18 ++
+ include/drm/i915_component.h                  |   1 +
+ include/drm/i915_pxp_tee_interface.h          |  45 +++
+ include/uapi/drm/i915_drm.h                   |  96 +++++++
+ 45 files changed, 1931 insertions(+), 24 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_pm.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_session.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_tee.h
+ create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+ create mode 100644 drivers/misc/mei/pxp/Kconfig
+ create mode 100644 drivers/misc/mei/pxp/Makefile
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.c
+ create mode 100644 drivers/misc/mei/pxp/mei_pxp.h
+ create mode 100644 include/drm/i915_pxp_tee_interface.h
 
---===============0822972767==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0822972767==--
