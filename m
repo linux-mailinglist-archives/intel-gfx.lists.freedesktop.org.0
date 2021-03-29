@@ -2,40 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3783F34D072
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Mar 2021 14:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A34E34D158
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Mar 2021 15:37:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC3F89F47;
-	Mon, 29 Mar 2021 12:53:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CFC789E32;
+	Mon, 29 Mar 2021 13:37:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02E3389F47
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Mar 2021 12:53:11 +0000 (UTC)
-IronPort-SDR: Nsp0ZBAp8WuUX/spz9nJP79pf7/W+iFNJMqsHpocLRmcNII5rfSJqiiYeBxA+E/2xuID5do1BL
- tGvh7Q0jvRsA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9937"; a="276703672"
-X-IronPort-AV: E=Sophos;i="5.81,287,1610438400"; d="scan'208";a="276703672"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E91B89E15;
+ Mon, 29 Mar 2021 13:37:31 +0000 (UTC)
+IronPort-SDR: 6z5HU2KTQ1Y/coaum7u/TFpivtPz7x9yl6vQf3rLsV9nubY+VVP5dGREnIGBH7j8L84MdvDw8z
+ nzNUxNklYqKg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9938"; a="171563750"
+X-IronPort-AV: E=Sophos;i="5.81,287,1610438400"; d="scan'208";a="171563750"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2021 05:53:10 -0700
-IronPort-SDR: U8Qh0Lwi7Y0YylPYkSl0CTSbGF+Uu4MXTwMHmo2BFrjN2KGFyiQLWxEzBNdzdhAbv6BzTACd+c
- ZEyrmmQYYy1g==
-X-IronPort-AV: E=Sophos;i="5.81,287,1610438400"; d="scan'208";a="417656328"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2021 06:37:30 -0700
+IronPort-SDR: VWc0uQkcY4UMzqpRhsV3HJqFDBMBCBxs68QuPiFGKHsMJEpWAmgUOEZIGFIUAlSK6odWsxouge
+ HQHSz5BOhnzQ==
+X-IronPort-AV: E=Sophos;i="5.81,287,1610438400"; d="scan'208";a="417673305"
 Received: from auchter-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.56.199])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2021 05:53:09 -0700
+ 29 Mar 2021 06:37:28 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <cover.1616764798.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1616764798.git.jani.nikula@intel.com>
-Date: Mon, 29 Mar 2021 15:53:06 +0300
-Message-ID: <877dlqp1e5.fsf@intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Mon, 29 Mar 2021 16:37:14 +0300
+Message-Id: <cover.1617024940.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 0/7] drm/i915: refactor KBL/TGL/ADLS
- stepping scheme
+Subject: [Intel-gfx] [PATCH v2 0/8] drm/edid: overhaul displayid iterator
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,55 +45,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 26 Mar 2021, Jani Nikula <jani.nikula@intel.com> wrote:
-> v4 of [1], minor tweaks to address review.
->
-> BR,
-> Jani.
->
-> [1] https://patchwork.freedesktop.org/series/87323/
-
-Pushed to drm-intel-next, thanks for the reviews.
+v2 of [1], addressing Ville's review comments, and adding a couple of
+extra patches on top.
 
 BR,
 Jani.
 
+[1] https://patchwork.freedesktop.org/series/87802/
 
->
->
-> Jani Nikula (7):
->   drm/i915: split out stepping info to a new file
->   drm/i915: add new helpers for accessing stepping info
->   drm/i915: switch KBL to the new stepping scheme
->   drm/i915: switch TGL and ADL to the new stepping scheme
->   drm/i915: rename DISP_STEPPING->DISPLAY_STEP and GT_STEPPING->GT_STEP
->   drm/i915: rename disp_stepping->display_step and gt_stepping->gt_step
->   drm/i915: rename i915_rev_steppings->intel_step_info
->
->  drivers/gpu/drm/i915/Makefile                 |   1 +
->  .../drm/i915/display/intel_display_power.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |   4 +-
->  .../drm/i915/display/skl_universal_plane.c    |   2 +-
->  drivers/gpu/drm/i915/gt/gen8_engine_cs.c      |   2 +-
->  drivers/gpu/drm/i915/gt/intel_workarounds.c   |  55 ++------
->  drivers/gpu/drm/i915/i915_drv.c               |   3 +-
->  drivers/gpu/drm/i915/i915_drv.h               | 122 +++++-------------
->  drivers/gpu/drm/i915/intel_device_info.c      |   2 +-
->  drivers/gpu/drm/i915/intel_device_info.h      |   4 +
->  drivers/gpu/drm/i915/intel_pm.c               |   6 +-
->  drivers/gpu/drm/i915/intel_step.c             | 106 +++++++++++++++
->  drivers/gpu/drm/i915/intel_step.h             |  40 ++++++
->  13 files changed, 202 insertions(+), 147 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/intel_step.c
->  create mode 100644 drivers/gpu/drm/i915/intel_step.h
+
+Jani Nikula (8):
+  drm/edid: make a number of functions, parameters and variables const
+  drm/displayid: add separate drm_displayid.c
+  drm/displayid: add new displayid section/block iterators
+  drm/edid: use the new displayid iterator for detailed modes
+  drm/edid: use the new displayid iterator for finding CEA extension
+  drm/edid: use the new displayid iterator for tile info
+  drm/displayid: allow data blocks with 0 payload length
+  drm/displayid: rename displayid_hdr to displayid_header
+
+ drivers/gpu/drm/Makefile        |   2 +-
+ drivers/gpu/drm/drm_displayid.c | 132 ++++++++++++++++++++++++
+ drivers/gpu/drm/drm_edid.c      | 171 +++++++-------------------------
+ include/drm/drm_displayid.h     |  30 ++++--
+ include/drm/drm_edid.h          |   3 +
+ 5 files changed, 196 insertions(+), 142 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_displayid.c
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
