@@ -1,58 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A71034FC7A
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Mar 2021 11:18:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85B0834E5C6
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Mar 2021 12:50:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 346146EA24;
-	Wed, 31 Mar 2021 09:18:19 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
- [IPv6:2607:f8b0:4864:20::1029])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 949736E8A3
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 10:43:26 +0000 (UTC)
-Received: by mail-pj1-x1029.google.com with SMTP id
- ot17-20020a17090b3b51b0290109c9ac3c34so9243147pjb.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 30 Mar 2021 03:43:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E80C56E8A3;
+	Tue, 30 Mar 2021 10:50:24 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com
+ [IPv6:2607:f8b0:4864:20::835])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C15E6E8A2;
+ Tue, 30 Mar 2021 10:50:23 +0000 (UTC)
+Received: by mail-qt1-x835.google.com with SMTP id u8so11493977qtq.12;
+ Tue, 30 Mar 2021 03:50:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=inEEvxoI2d27PWTByb00t7709zab101mRTK+HEEURs0=;
- b=C9+RPFkWx1dnLku0VJzXhT4WCqoHsMPAfkkwl/4KohDQakhhONCUx+woSyEwYjrpXR
- t1d16MDlzS32+twkwF9bbNrzqgVVnTIfoI0AZogYL4G1S7OgpeJg0emu3T5/HWp5kcJG
- ++epmYQmqILHMzY2hL2QmPVz7uTVYnSW6ybUpM4NE/4ka6AX9/8CrsJwa6V5+njYVIo+
- XgbVwDjQ2vtltDtglB4fNijvaQUZc0s53NH8e1EYls6/XbWYbhbOWqh0zjfmI0VBaOGj
- vhK9ArLDxUL+ZjLu/rXXyDanwAeMXX50oJ08dRer+OEiWgpVZHK0JFYQd9TBlKlb28DY
- jk6A==
+ :cc; bh=fKvsmQgu8TgOOu+JZjwUP3CO4SXVpCnWJrnD9hEF4lY=;
+ b=Vx7yhmkKYOXo9JccSgK8bTBdeqRnTtgMXeFLxlazJpiTTWuZ8391DargscYp8YVZ9L
+ sUSvhew+py4upK5I3WaHvLb4XxJspzwVH7Fs85Cmm/WOgoV55+3eqPLg6Q0d9Fa/YWqd
+ bIpfDdFHQtpuCP/tucuYwJ53NGLKx+u4qU1BzTeiDhhjOb5XY/H2vDz2yq3HBhXk1Huo
+ g9GDHK1PaO0OEdJm5Ulz8MV4tCE31w4WLC7aI9H1y3cKHjJrqiyFuXdh+dqgKdTcSaxm
+ ONcQ7ErHP+WpW53jM688NS+9hmfjqmtgfRRVLO4njbFwBrNRz7DoDHDhxRsoLW3p3upX
+ ixjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=inEEvxoI2d27PWTByb00t7709zab101mRTK+HEEURs0=;
- b=aiuFdQdGZ1mXzV3XiCgSJUtaXP0iVK4e7c3S8cc09mayDJsc/0PydUGZ5933UG2dsB
- xPJVsPpXVUmyOyM9kkbWActzyAWJ2wyJw5qLe8yIUVeY5sCrKMFWYUR3hq5U/tzwbby/
- GH8bH3qWYHzIlA5Zux8WDh7OzWfp1WeYILk+D33kMnrNzXDqg9wA9gxEyFWpmBG7QP3m
- x1WSux2KIRUGddLM/DA1bHF7BKOax9ls84n9O9G4fMy1vJCAWPU7/ScgYJMIpdAkN4R6
- Eml6UyHC2ZwzjLpPMwSOSq6pdetC7U3uR78t4FsNYGKML/+hATDS2DhvtzdMKGHvbm2U
- cwuA==
-X-Gm-Message-State: AOAM533NkgIS/AQWVMOnrT1uaxRg32e7oPhvxtC8dP1JKvXOA6/BFsdy
- wV/Tlv9mQRUTyR5UsliUv/8mWzy8+avdMfnQdWZIZg==
-X-Google-Smtp-Source: ABdhPJxPMfsifg57CMk+e08YOVt3TzMww6aMvw5ulnMzAx23GI1ES2FVCsm8qjLz2RBA6UgJxREJNfH8cDlZ1xM4T2Y=
-X-Received: by 2002:a17:902:e752:b029:e6:822c:355c with SMTP id
- p18-20020a170902e752b02900e6822c355cmr32807495plf.69.1617101006157; Tue, 30
- Mar 2021 03:43:26 -0700 (PDT)
+ bh=fKvsmQgu8TgOOu+JZjwUP3CO4SXVpCnWJrnD9hEF4lY=;
+ b=Q06vtWcRi77SrPQievuQmhtEOasen7peky+hb+pRPZEqd9cXifzW5WlCfuq2ThvBGK
+ rpPxTy+fWI/Ts69YddUwlt7bgsfHz8w7aaD/1Xpy1EjKiuFrN66NB0KUlbyrf8Pvu4+I
+ ivcB1iDZBbYOFe0AOfbpmA3Vx+eQpiT7EAf/+qTocdiL8fyafU6V2eTp5JkeFddrlQHI
+ M7XhGkpEem8LhFzgHohNnOxCOsUTMhNU18bMIWBz13MbwkIEo2N7Q8NBwHuZtvNN28Hb
+ O8nT6MBw+9vxwHVmI88ME8qXZ9eTnBH9L7FOz/f1EyNA5ANYc4tOzv2l/fGX6u1fHqWc
+ W6lw==
+X-Gm-Message-State: AOAM530gIGtLTfWVQxnWiiCb4ibt1qAweDKMYfp5fJzjcACYrq9opaXV
+ 4TRiCJ7dn+VCrzc8GCOhH8IcnPievZjc7CbY900rdf5ZCSc=
+X-Google-Smtp-Source: ABdhPJzRLC5XQPKzO/+w/Z/qMQB3Efsof0HdOloX0hjuHBefAeXtKPGjwltrXQUe0s2Z0DOd9Yz2rOkIPc3uo7U8EXE=
+X-Received: by 2002:ac8:4c90:: with SMTP id j16mr27042524qtv.223.1617101422573; 
+ Tue, 30 Mar 2021 03:50:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210326203807.105754-1-lyude@redhat.com>
- <20210326203807.105754-8-lyude@redhat.com>
-In-Reply-To: <20210326203807.105754-8-lyude@redhat.com>
-From: Robert Foss <robert.foss@linaro.org>
-Date: Tue, 30 Mar 2021 12:43:15 +0200
-Message-ID: <CAG3jFyvK6bk5mF_Jp6w9HpN2rDAPKkdHKbQMRKiW6gGKdR9-Yw@mail.gmail.com>
-To: Lyude Paul <lyude@redhat.com>
-X-Mailman-Approved-At: Wed, 31 Mar 2021 09:18:15 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 07/20] drm/print: Fixup
- DRM_DEBUG_KMS_RATELIMITED()
+References: <20210318162400.2065097-1-tvrtko.ursulin@linux.intel.com>
+ <20210318162400.2065097-2-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210318162400.2065097-2-tvrtko.ursulin@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 30 Mar 2021 11:49:56 +0100
+Message-ID: <CAM0jSHOx2qmW0-BsBZBEGcg2rREGi=2QePymqzfAyQUCKg-Ggw@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/3] lib: Add helper for
+ reading modparam values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,87 +62,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
- Maxime Ripard <mripard@kernel.org>, amd-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>
+Cc: igt-dev@lists.freedesktop.org,
+ Intel Graphics Development <Intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey Lyude,
-
-I'm seeing no issues with this patch and the reasoning behind the
-patch is sound to me.
-
-Reviewed-by: Robert Foss <robert.foss@linaro.org>
-
-On Fri, 26 Mar 2021 at 21:39, Lyude Paul <lyude@redhat.com> wrote:
+On Thu, 18 Mar 2021 at 16:24, Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
 >
-> Since we're about to move drm_dp_helper.c over to drm_dbg_*(), we'll want
-> to make sure that we can also add ratelimited versions of these macros in
-> order to retain some of the previous debugging output behavior we had.
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >
-> However, as I was preparing to do this I noticed that the current
-> rate limited macros we have are kind of bogus. It looks like when I wrote
-> these, I didn't notice that we'd always be calling __ratelimit() even if
-> the debugging message we'd be printing would normally be filtered out due
-> to the relevant DRM debugging category being disabled.
+> Add __igt_params_get for simple reading of modparams.
 >
-> So, let's fix this by making sure to check drm_debug_enabled() in our
-> ratelimited macros before calling __ratelimit(), and start using
-> drm_dev_printk() in order to print debugging messages since that will save
-> us from doing a redundant drm_debug_enabled() check. And while we're at it,
-> let's move the code for this into another macro that we can reuse for
-> defining new ratelimited DRM debug macros more easily.
->
-> v2:
-> * Make sure to use tabs where possible in __DRM_DEFINE_DBG_RATELIMITED()
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: Robert Foss <robert.foss@linaro.org>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->  include/drm/drm_print.h | 20 ++++++++++++--------
->  1 file changed, 12 insertions(+), 8 deletions(-)
+>  lib/igt_params.c | 26 ++++++++++++++++++++++++++
+>  lib/igt_params.h |  2 ++
+>  2 files changed, 28 insertions(+)
 >
-> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> index f32d179e139d..a3c58c941bdc 100644
-> --- a/include/drm/drm_print.h
-> +++ b/include/drm/drm_print.h
-> @@ -524,16 +524,20 @@ void __drm_err(const char *format, ...);
->  #define DRM_DEBUG_DP(fmt, ...)                                         \
->         __drm_dbg(DRM_UT_DP, fmt, ## __VA_ARGS__)
+> diff --git a/lib/igt_params.c b/lib/igt_params.c
+> index c06416988baa..1dc6de77b2e0 100644
+> --- a/lib/igt_params.c
+> +++ b/lib/igt_params.c
+> @@ -156,6 +156,32 @@ int igt_params_open(int device)
+>         return params;
+>  }
 >
-> -
-> -#define DRM_DEBUG_KMS_RATELIMITED(fmt, ...)                            \
-> -({                                                                     \
-> -       static DEFINE_RATELIMIT_STATE(_rs,                              \
-> -                                     DEFAULT_RATELIMIT_INTERVAL,       \
-> -                                     DEFAULT_RATELIMIT_BURST);         \
-> -       if (__ratelimit(&_rs))                                          \
-> -               drm_dev_dbg(NULL, DRM_UT_KMS, fmt, ##__VA_ARGS__);      \
-> +#define __DRM_DEFINE_DBG_RATELIMITED(category, drm, fmt, ...)                                  \
-> +({                                                                                             \
-> +       static DEFINE_RATELIMIT_STATE(rs_, DEFAULT_RATELIMIT_INTERVAL, DEFAULT_RATELIMIT_BURST);\
-> +       const struct drm_device *drm_ = (drm);                                                  \
-> +                                                                                               \
-> +       if (drm_debug_enabled(DRM_UT_ ## category) && __ratelimit(&rs_))                        \
-> +               drm_dev_printk(drm_ ? drm_->dev : NULL, KERN_DEBUG, fmt, ## __VA_ARGS__);       \
->  })
->
-> +#define drm_dbg_kms_ratelimited(drm, fmt, ...) \
-> +       __DRM_DEFINE_DBG_RATELIMITED(KMS, drm, fmt, ## __VA_ARGS__)
+> +/**
+> + * __igt_params_get:
+> + * @device: fd of the device
+> + * @parameter: the name of the parameter to set
+
+to get
+
+> + *
+> + * This reads the value of the modparam.
+> + *
+> + * Returns:
+> + * A nul-terminated string, must be freed by caller after use, or NULL
+> + * on failure.
+> + */
+> +char *__igt_params_get(int device, const char *parameter)
+> +{
+> +       char *str;
+> +       int dir;
 > +
-> +#define DRM_DEBUG_KMS_RATELIMITED(fmt, ...) drm_dbg_kms_ratelimited(NULL, fmt, ## __VA_ARGS__)
+> +       dir = igt_params_open(device);
+> +       if (dir < 0)
+> +               return NULL;
 > +
->  /*
->   * struct drm_device based WARNs
->   *
-> --
-> 2.30.2
->
+> +       str = igt_sysfs_get(dir, parameter);
+> +       close(dir);
+> +
+> +       return str;
+> +}
+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
