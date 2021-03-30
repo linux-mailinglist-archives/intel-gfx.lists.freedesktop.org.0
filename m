@@ -1,38 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E77E34E377
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Mar 2021 10:46:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0021934FC7B
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Mar 2021 11:18:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12C7B6E87C;
-	Tue, 30 Mar 2021 08:46:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BB646EA27;
+	Wed, 31 Mar 2021 09:18:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 866966E87C;
- Tue, 30 Mar 2021 08:41:38 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
- t=1617093697; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=jiLzz+FDg8IDgOr7Ru1IW7IRXYaqlH8yrJkDxBSOd+M=;
- b=SwyQOSqvaO5avOz2XsxkAeyYpWcAxuEpeTup5y2W/3hjoJIa9VL+ySLWFEDXOGMXYYzaNj
- yfuPCkvCrHUDqDn4OiHjX+VW5qEwgFf/bjJtmVzQs0eem+tKxgSvbAVrRlz0EIt6ankmR8
- 9g4gU0a0vUOWreF+dSJDr1Ih1BW0A9I=
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id F0DDEB1C1;
- Tue, 30 Mar 2021 08:41:36 +0000 (UTC)
-Date: Tue, 30 Mar 2021 10:41:34 +0200
-From: Michal =?iso-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>
-To: Arnd Bergmann <arnd@kernel.org>
-Message-ID: <YGLkPjSBdgpriC0E@blackbook>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66EE96E882;
+ Tue, 30 Mar 2021 09:00:52 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 41CA061989;
+ Tue, 30 Mar 2021 09:00:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1617094851;
+ bh=7BKJpJRJJea7jWMl80W5EN9UAj8omc2Cs2r3GAQepzo=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=Wsuslf1aShoCKyVO6hEvzEdZFMLQDIu2sbrH3x69Zj3fzv+Ssz4//dpuMEbWngOUq
+ Zjq5v+sm416E8eDL5lOizTzEa7Erwc/f8fCuW75qsYfDXgJ3oE6b4i2kQYeYtPZd4I
+ FK+fITjA3iXC63XWANkkhj4NvYlqDfeUjJbbuVDoJnM3Z/9egQRLEp8Koxo3BlExlm
+ KJf0GkZPfII5XV5fPTrpbDnwtlOxinHOG65Ikgkmm49iP6nf4qHit/q0d/LnVY5qb5
+ qa+2M5n3XKCJv1Wm+mrJgHL5nAHA2YFzyo0MHv0A+yCW12hqtwqifDnY1PrNFQltR4
+ 2Y+g7lZslykhg==
+Received: by mail-oo1-f47.google.com with SMTP id
+ r17-20020a4acb110000b02901b657f28cdcso3613099ooq.6; 
+ Tue, 30 Mar 2021 02:00:51 -0700 (PDT)
+X-Gm-Message-State: AOAM530ln4RbYp2RjZJNnBHeIQ94t3+w5dfl4QN4N3QaBxmtdC/+7FWn
+ vh7vP3L7KDY1GQN2HDwRyKNWPwE/pV+sV26qAg0=
+X-Google-Smtp-Source: ABdhPJzpNNBXFi0zlX+fSlV+iQuwxA7n7pfSwfoGiIinCD5YA1YpFSD4jDETbIF3gyjCIllkPcG9Qx+cRKe7U+THggk=
+X-Received: by 2002:a4a:304a:: with SMTP id z10mr25148861ooz.26.1617094850520; 
+ Tue, 30 Mar 2021 02:00:50 -0700 (PDT)
+MIME-Version: 1.0
 References: <20210322160253.4032422-1-arnd@kernel.org>
  <20210322160253.4032422-7-arnd@kernel.org>
-MIME-Version: 1.0
-In-Reply-To: <20210322160253.4032422-7-arnd@kernel.org>
-X-Mailman-Approved-At: Tue, 30 Mar 2021 08:46:55 +0000
+ <YGLkPjSBdgpriC0E@blackbook>
+In-Reply-To: <YGLkPjSBdgpriC0E@blackbook>
+From: Arnd Bergmann <arnd@kernel.org>
+Date: Tue, 30 Mar 2021 11:00:36 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3nUCGwPpE+E820DniY8Haz1Xx72pA38P6s5MWsbi0iAQ@mail.gmail.com>
+Message-ID: <CAK8P3a3nUCGwPpE+E820DniY8Haz1Xx72pA38P6s5MWsbi0iAQ@mail.gmail.com>
+To: =?UTF-8?Q?Michal_Koutn=C3=BD?= <mkoutny@suse.com>
+X-Mailman-Approved-At: Wed, 31 Mar 2021 09:18:15 +0000
 Subject: Re: [Intel-gfx] [PATCH 06/11] cgroup: fix -Wzero-length-bounds
  warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -47,84 +57,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexei Starovoitov <ast@kernel.org>, dri-devel@lists.freedesktop.org,
+Cc: Alexei Starovoitov <ast@kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
  Zefan Li <lizefan.x@bytedance.com>, Cong Wang <xiyou.wangcong@gmail.com>,
  Christian Brauner <christian.brauner@ubuntu.com>, Odin Ugedal <odin@uged.al>,
- linux-scsi@vger.kernel.org, x86@kernel.org,
+ linux-scsi <linux-scsi@vger.kernel.org>,
+ the arch/x86 maintainers <x86@kernel.org>,
  James Smart <james.smart@broadcom.com>, tboot-devel@lists.sourceforge.net,
  Kalle Valo <kvalo@codeaurora.org>, Andrii Nakryiko <andriin@fb.com>,
  ath11k@lists.infradead.org, Serge Hallyn <serge@hallyn.com>,
- Arnd Bergmann <arnd@arndb.de>, "James E.J. Bottomley" <jejb@linux.ibm.com>,
- Ning Sun <ning.sun@intel.com>, Anders Larsen <al@alarsen.net>,
- Bhaskar Chowdhury <unixbhaskar@gmail.com>, cgroups@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Martin Sebor <msebor@gcc.gnu.org>,
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>, Ning Sun <ning.sun@intel.com>,
+ Anders Larsen <al@alarsen.net>, Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+ Cgroups <cgroups@vger.kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Martin Sebor <msebor@gcc.gnu.org>, Networking <netdev@vger.kernel.org>,
+ linux-wireless <linux-wireless@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ LSM List <linux-security-module@vger.kernel.org>,
  Johannes Weiner <hannes@cmpxchg.org>, Tejun Heo <tj@kernel.org>,
- Simon Kelley <simon@thekelleys.org.uk>, intel-gfx@lists.freedesktop.org,
- Roman Gushchin <guro@fb.com>
-Content-Type: multipart/mixed; boundary="===============0066986178=="
+ Simon Kelley <simon@thekelleys.org.uk>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, Roman Gushchin <guro@fb.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0066986178==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Gbn4BprmVLVWv2rO"
-Content-Disposition: inline
-
-
---Gbn4BprmVLVWv2rO
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Mar 22, 2021 at 05:02:44PM +0100, Arnd Bergmann <arnd@kernel.org> w=
-rote:
-> I'm not sure what is expected to happen for such a configuration,
-> presumably these functions are never calls in that case.
-Yes, the functions you patched would only be called from subsystems or
-there should be no way to obtain a struct cgroup_subsys reference
-anyway (hence it's ok to always branch as if ss=3D=3DNULL).
-
-I'd prefer a variant that wouldn't compile the affected codepaths when
-there are no subsystems registered, however, I couldn't come up with a
-way how to do it without some preprocessor ugliness.
-
-Reviewed-by: Michal Koutn=FD <mkoutny@suse.com>
-
---Gbn4BprmVLVWv2rO
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEEoQaUCWq8F2Id1tNia1+riC5qSgFAmBi5DcACgkQia1+riC5
-qSjuqxAAkm/zoS+xvdcQUERzkcuVxIruGtTqOse/NCPQQR9aGuJl6iybyjQw7D+r
-63+BYz7+BdP8zDg+NSTO354Yt0vsWFtCvuZBBabO91wCheLRPaZhHnGByJa0fXyM
-SKC2VSvFHKKiFuCG7mG7/WfDQxTGSaUL2jiFXlA5HAV5dKfkia/Jpuf+KtIy5nBR
-g8g4f44M2wW/TCoBzd5Elt5Cpx6fU2aKuJRCRCE04ts4CQy06/lLcc9H0N7bvgHj
-0oxkHbAjXeEnylnni4pfpmJpInUT2kOZuCjSF/WPw2XeLs00AnBnNB3lDP9Pe2qo
-ippcDc3AFqYMqewKnnxDWoTI3lyMTm8r0yzrDdwpb9Zv28bOCAYiwyoIsFV7+kdN
-C7DnhiL6d+UgKIzCqRuTPXnluthvSmHGzeblqF1vOAaWOFif4CcRmUtsR7v3EyZN
-5aiUTGqVtoKr/pcBNnRU1e2w7ulYpq5sbL/8f9HtnKsZ8MZlLdhdcDoSLjOkuohK
-OlQgS6p+2otxwk3xft0CdFPPHAFb5/WM6IyKdewFGuY0fohxczWJCRI92x94cfe9
-p0JSNLl19JjdM8loYpmBRcmlkoBH+MtkdZiR68b5yX5wcXypubmZPZ9o8ZzQqx1j
-ZX1/nhuyDl6KHuGW7gJXx8FhCLd6nPyKYVu4wbay23oLzdL/1sk=
-=nVTO
------END PGP SIGNATURE-----
-
---Gbn4BprmVLVWv2rO--
-
---===============0066986178==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0066986178==--
+T24gVHVlLCBNYXIgMzAsIDIwMjEgYXQgMTA6NDEgQU0gTWljaGFsIEtvdXRuw70gPG1rb3V0bnlA
+c3VzZS5jb20+IHdyb3RlOgo+Cj4gT24gTW9uLCBNYXIgMjIsIDIwMjEgYXQgMDU6MDI6NDRQTSAr
+MDEwMCwgQXJuZCBCZXJnbWFubiA8YXJuZEBrZXJuZWwub3JnPiB3cm90ZToKPiA+IEknbSBub3Qg
+c3VyZSB3aGF0IGlzIGV4cGVjdGVkIHRvIGhhcHBlbiBmb3Igc3VjaCBhIGNvbmZpZ3VyYXRpb24s
+Cj4gPiBwcmVzdW1hYmx5IHRoZXNlIGZ1bmN0aW9ucyBhcmUgbmV2ZXIgY2FsbHMgaW4gdGhhdCBj
+YXNlLgo+IFllcywgdGhlIGZ1bmN0aW9ucyB5b3UgcGF0Y2hlZCB3b3VsZCBvbmx5IGJlIGNhbGxl
+ZCBmcm9tIHN1YnN5c3RlbXMgb3IKPiB0aGVyZSBzaG91bGQgYmUgbm8gd2F5IHRvIG9idGFpbiBh
+IHN0cnVjdCBjZ3JvdXBfc3Vic3lzIHJlZmVyZW5jZQo+IGFueXdheSAoaGVuY2UgaXQncyBvayB0
+byBhbHdheXMgYnJhbmNoIGFzIGlmIHNzPT1OVUxMKS4KPgo+IEknZCBwcmVmZXIgYSB2YXJpYW50
+IHRoYXQgd291bGRuJ3QgY29tcGlsZSB0aGUgYWZmZWN0ZWQgY29kZXBhdGhzIHdoZW4KPiB0aGVy
+ZSBhcmUgbm8gc3Vic3lzdGVtcyByZWdpc3RlcmVkLCBob3dldmVyLCBJIGNvdWxkbid0IGNvbWUg
+dXAgd2l0aCBhCj4gd2F5IGhvdyB0byBkbyBpdCB3aXRob3V0IHNvbWUgcHJlcHJvY2Vzc29yIHVn
+bGluZXNzLgoKV291bGQgaXQgYmUgcG9zc2libGUgdG8gZW5jbG9zZSBtb3N0IG9yIGFsbCBvZiBr
+ZXJuZWwvY2dyb3VwL2Nncm91cC5jCmluIGFuICNpZmRlZiBDR1JPVVBfU1VCU1lTX0NPVU5UIGJs
+b2NrPyBJIGRpZG4ndCB0cnkgdGhhdApteXNlbGYsIGJ1dCB0aGlzIG1pZ2h0IGJlIGEgd2F5IHRv
+IGd1YXJhbnRlZSB0aGF0IHRoZXJlIGNhbm5vdApiZSBhbnkgY2FsbGVycyAoaXQgd291bGQgY2F1
+c2UgYSBsaW5rIGVycm9yKS4KCj4gUmV2aWV3ZWQtYnk6IE1pY2hhbCBLb3V0bsO9IDxta291dG55
+QHN1c2UuY29tPgoKVGhhbmtzCgogICAgICAgIEFybmQKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
