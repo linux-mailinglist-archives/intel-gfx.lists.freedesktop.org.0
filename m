@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C71F334E06A
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Mar 2021 06:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E77E34E377
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Mar 2021 10:46:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B713F6E4BA;
-	Tue, 30 Mar 2021 04:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12C7B6E87C;
+	Tue, 30 Mar 2021 08:46:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EE6D6E4BA;
- Tue, 30 Mar 2021 04:56:36 +0000 (UTC)
-IronPort-SDR: rDkMGH+6n2cba0h5MJFiDYxcnmHVDyDFpgMwFVsIsiTvGVRl4deB7tnu4bmb8L7JYPP6Gms5Bx
- h+NStcnEsvRg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9938"; a="191157581"
-X-IronPort-AV: E=Sophos;i="5.81,289,1610438400"; 
- d="asc'?scan'208";a="191157581"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2021 21:56:35 -0700
-IronPort-SDR: HZV/xAl6XU0XPfGFxxdOx0C4VltCnZVcNJYDLjmG5azusyYID8Cr+TmQoUDF/1I7Je0Wplsti7
- LzrIG0SLBjLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.81,289,1610438400"; 
- d="asc'?scan'208";a="438167110"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by fmsmga004.fm.intel.com with ESMTP; 29 Mar 2021 21:56:33 -0700
-Date: Tue, 30 Mar 2021 12:39:18 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20210330043918.GF1551@zhen-hp.sh.intel.com>
-References: <0-v1-7dedf20b2b75+4f785-vfio2_jgg@nvidia.com>
- <15-v1-7dedf20b2b75+4f785-vfio2_jgg@nvidia.com>
- <20210323192630.GM17735@lst.de>
- <20210323193936.GN2356281@nvidia.com>
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 866966E87C;
+ Tue, 30 Mar 2021 08:41:38 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+ t=1617093697; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=jiLzz+FDg8IDgOr7Ru1IW7IRXYaqlH8yrJkDxBSOd+M=;
+ b=SwyQOSqvaO5avOz2XsxkAeyYpWcAxuEpeTup5y2W/3hjoJIa9VL+ySLWFEDXOGMXYYzaNj
+ yfuPCkvCrHUDqDn4OiHjX+VW5qEwgFf/bjJtmVzQs0eem+tKxgSvbAVrRlz0EIt6ankmR8
+ 9g4gU0a0vUOWreF+dSJDr1Ih1BW0A9I=
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id F0DDEB1C1;
+ Tue, 30 Mar 2021 08:41:36 +0000 (UTC)
+Date: Tue, 30 Mar 2021 10:41:34 +0200
+From: Michal =?iso-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>
+To: Arnd Bergmann <arnd@kernel.org>
+Message-ID: <YGLkPjSBdgpriC0E@blackbook>
+References: <20210322160253.4032422-1-arnd@kernel.org>
+ <20210322160253.4032422-7-arnd@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210323193936.GN2356281@nvidia.com>
-Subject: Re: [Intel-gfx] [PATCH 15/18] vfio/gvt: Make DRM_I915_GVT depend on
- VFIO_MDEV
+In-Reply-To: <20210322160253.4032422-7-arnd@kernel.org>
+X-Mailman-Approved-At: Tue, 30 Mar 2021 08:46:55 +0000
+Subject: Re: [Intel-gfx] [PATCH 06/11] cgroup: fix -Wzero-length-bounds
+ warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,69 +47,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: Max Gurtovoy <mgurtovoy@nvidia.com>, "Raj, Ashok" <ashok.raj@intel.com>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Tarun Gupta <targupta@nvidia.com>,
- Dan Williams <dan.j.williams@intel.com>, Leon Romanovsky <leonro@nvidia.com>,
- Christoph Hellwig <hch@lst.de>
-Content-Type: multipart/mixed; boundary="===============0908711408=="
+Cc: Alexei Starovoitov <ast@kernel.org>, dri-devel@lists.freedesktop.org,
+ Zefan Li <lizefan.x@bytedance.com>, Cong Wang <xiyou.wangcong@gmail.com>,
+ Christian Brauner <christian.brauner@ubuntu.com>, Odin Ugedal <odin@uged.al>,
+ linux-scsi@vger.kernel.org, x86@kernel.org,
+ James Smart <james.smart@broadcom.com>, tboot-devel@lists.sourceforge.net,
+ Kalle Valo <kvalo@codeaurora.org>, Andrii Nakryiko <andriin@fb.com>,
+ ath11k@lists.infradead.org, Serge Hallyn <serge@hallyn.com>,
+ Arnd Bergmann <arnd@arndb.de>, "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ Ning Sun <ning.sun@intel.com>, Anders Larsen <al@alarsen.net>,
+ Bhaskar Chowdhury <unixbhaskar@gmail.com>, cgroups@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Martin Sebor <msebor@gcc.gnu.org>,
+ netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ Johannes Weiner <hannes@cmpxchg.org>, Tejun Heo <tj@kernel.org>,
+ Simon Kelley <simon@thekelleys.org.uk>, intel-gfx@lists.freedesktop.org,
+ Roman Gushchin <guro@fb.com>
+Content-Type: multipart/mixed; boundary="===============0066986178=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============0908711408==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="t5C3/nrmPumNj5sH"
+--===============0066986178==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Gbn4BprmVLVWv2rO"
 Content-Disposition: inline
 
 
---t5C3/nrmPumNj5sH
-Content-Type: text/plain; charset=us-ascii
+--Gbn4BprmVLVWv2rO
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On 2021.03.23 16:39:36 -0300, Jason Gunthorpe wrote:
-> On Tue, Mar 23, 2021 at 08:26:30PM +0100, Christoph Hellwig wrote:
-> > On Tue, Mar 23, 2021 at 02:55:32PM -0300, Jason Gunthorpe wrote:
-> > > Ideally all of this would be moved to kvmgt.c, but it is entangled wi=
-th
-> > > the rest of the "generic" code in an odd way. Thus put in a kconfig
-> > > dependency so we don't get randconfig failures when the next patch cr=
-eates
-> > > a link time dependency related to the use of MDEV_TYPE.
-> >=20
-> > Ideally that weird struct intel_gvt_mpt would go away entirely.  But
-> > that is clearly out of scope for this patchset..
->=20
-> Yes.. Maybe someone from Intel will take that on, along with that
-> other note you had. Compared to all the others this driver is quite
-> twisty!
->=20
+On Mon, Mar 22, 2021 at 05:02:44PM +0100, Arnd Bergmann <arnd@kernel.org> w=
+rote:
+> I'm not sure what is expected to happen for such a configuration,
+> presumably these functions are never calls in that case.
+Yes, the functions you patched would only be called from subsystems or
+there should be no way to obtain a struct cgroup_subsys reference
+anyway (hence it's ok to always branch as if ss=3D=3DNULL).
 
-It was there for other hypervisor support, although XenGT support was
-never upstream, but there's also some third-party hypervisor using GVT
-device model.
+I'd prefer a variant that wouldn't compile the affected codepaths when
+there are no subsystems registered, however, I couldn't come up with a
+way how to do it without some preprocessor ugliness.
 
-For vGPU type, it planned to be used for XenGT as well, but it turned
-out not to be true, yeah, I agree that should be in kvmgt.c and mdev only.
-Thanks to point out this. Until to clean up this, I may pick this one first.
+Reviewed-by: Michal Koutn=FD <mkoutny@suse.com>
 
-Thanks
-
---t5C3/nrmPumNj5sH
+--Gbn4BprmVLVWv2rO
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYGKrcQAKCRCxBBozTXgY
-J8zDAJ0Xy9PLJHspqp50RvI2/Vh4KD7eIQCfR1Zm6VKxdAZTrBsIgGUJ3lyADUI=
-=piPA
+iQIzBAEBCAAdFiEEEoQaUCWq8F2Id1tNia1+riC5qSgFAmBi5DcACgkQia1+riC5
+qSjuqxAAkm/zoS+xvdcQUERzkcuVxIruGtTqOse/NCPQQR9aGuJl6iybyjQw7D+r
+63+BYz7+BdP8zDg+NSTO354Yt0vsWFtCvuZBBabO91wCheLRPaZhHnGByJa0fXyM
+SKC2VSvFHKKiFuCG7mG7/WfDQxTGSaUL2jiFXlA5HAV5dKfkia/Jpuf+KtIy5nBR
+g8g4f44M2wW/TCoBzd5Elt5Cpx6fU2aKuJRCRCE04ts4CQy06/lLcc9H0N7bvgHj
+0oxkHbAjXeEnylnni4pfpmJpInUT2kOZuCjSF/WPw2XeLs00AnBnNB3lDP9Pe2qo
+ippcDc3AFqYMqewKnnxDWoTI3lyMTm8r0yzrDdwpb9Zv28bOCAYiwyoIsFV7+kdN
+C7DnhiL6d+UgKIzCqRuTPXnluthvSmHGzeblqF1vOAaWOFif4CcRmUtsR7v3EyZN
+5aiUTGqVtoKr/pcBNnRU1e2w7ulYpq5sbL/8f9HtnKsZ8MZlLdhdcDoSLjOkuohK
+OlQgS6p+2otxwk3xft0CdFPPHAFb5/WM6IyKdewFGuY0fohxczWJCRI92x94cfe9
+p0JSNLl19JjdM8loYpmBRcmlkoBH+MtkdZiR68b5yX5wcXypubmZPZ9o8ZzQqx1j
+ZX1/nhuyDl6KHuGW7gJXx8FhCLd6nPyKYVu4wbay23oLzdL/1sk=
+=nVTO
 -----END PGP SIGNATURE-----
 
---t5C3/nrmPumNj5sH--
+--Gbn4BprmVLVWv2rO--
 
---===============0908711408==
+--===============0066986178==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +127,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0908711408==--
+--===============0066986178==--
