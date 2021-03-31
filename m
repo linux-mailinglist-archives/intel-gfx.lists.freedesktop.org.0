@@ -2,40 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B6A34FF16
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Mar 2021 13:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A38734FF98
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Mar 2021 13:38:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F5EC6E1A3;
-	Wed, 31 Mar 2021 11:02:17 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D17489D67;
+	Wed, 31 Mar 2021 11:38:21 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 270A16E1A3;
- Wed, 31 Mar 2021 11:02:16 +0000 (UTC)
-IronPort-SDR: HLGSKxLZt1qXbiKAxGuVToHt6AyaMVbmSP/mJVOzv7V7esA6WQNrkXQ93eJ/lUN31A3K+IVSfx
- ZqHUpfGrRYVg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9939"; a="212218472"
-X-IronPort-AV: E=Sophos;i="5.81,293,1610438400"; d="scan'208";a="212218472"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5570989D60;
+ Wed, 31 Mar 2021 11:38:19 +0000 (UTC)
+IronPort-SDR: GxLYqGEqZb9d/7QnHZvSsdfUzucSDt/0PcOE9+d/jaNO2JO9Fw+V76OJgGO0vUMpnnbyaFxUfZ
+ HH1lO3lhRdNg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9939"; a="212224310"
+X-IronPort-AV: E=Sophos;i="5.81,293,1610438400"; d="scan'208";a="212224310"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2021 04:02:15 -0700
-IronPort-SDR: u+KjBWlnO/YvrYt9vXvSjoLHouKndnn/rODDXmO4ybWT+YrWEx6o4cyn8JgElU6HUAsYah/NSi
- fc6/7hPs6cjw==
-X-IronPort-AV: E=Sophos;i="5.81,293,1610438400"; d="scan'208";a="418621657"
-Received: from jlowe-mobl.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.213.201.218])
+ 31 Mar 2021 04:38:18 -0700
+IronPort-SDR: 5e/Azto5zXXn9RrTJ2BnMMvtfa53eJPVg+FJCtiWymLseEphBPjfyxwDh2X7F5lw3N48MQr3Y3
+ 5h+ZTurhSVwg==
+X-IronPort-AV: E=Sophos;i="5.81,293,1610438400"; d="scan'208";a="418634746"
+Received: from ebilea-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.249.32.112])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2021 04:02:14 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Wed, 31 Mar 2021 12:02:08 +0100
-Message-Id: <20210331110208.2582575-3-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210331110208.2582575-1-tvrtko.ursulin@linux.intel.com>
-References: <20210331110208.2582575-1-tvrtko.ursulin@linux.intel.com>
+ 31 Mar 2021 04:38:15 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Nautiyal\, Ankit K" <ankit.k.nautiyal@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <c9d95f02-3a2b-4a01-6b19-2ce3c051ec9d@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210324113012.7564-1-anshuman.gupta@intel.com>
+ <20210324113012.7564-2-anshuman.gupta@intel.com>
+ <c9d95f02-3a2b-4a01-6b19-2ce3c051ec9d@intel.com>
+Date: Wed, 31 Mar 2021 14:38:12 +0300
+Message-ID: <877dlno8nv.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 3/3] tests/i915/gem_watchdog: Exercise
- long rendering chains
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915/hdcp: Add DP HDCP2.2
+ timeout to read entire msg
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,388 +52,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
+Cc: maarten.lankhorst@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+On Thu, 25 Mar 2021, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
+> LGTM.
+>
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-Test to demonstrate a problem with the proposed default fence expiry
-semantics where long rendering chain get silently broken.
+Both patches pushed to drm-intel-next with Maxime's irc ack.
 
-If we had fence error propagation (no clear agreement whether to do it or
-not) maybe userspace would see if, assuming fence status is looked at, but
-overall potential rendering corruption is the story in any case.
+BR,
+Jani.
 
-Note that this is not a single long batch but just a long queue of work
-which could be viewed as heavy system load as well (like virtualisation
-or other types of resource sharing).
 
-v2:
- * Fix commit message.
- * Blacklist the test which is expected to fail for now.
+>
+> On 3/24/2021 5:00 PM, Anshuman Gupta wrote:
+>> As documented in HDCP 2.2 DP Errata spec transmitter should abort the
+>> authentication protocol in case transmitter has not received the
+>> entire {AKE_Send_Cert, AKE_Send_H_prime, AKE_Send_Paring_Info} msg
+>> within {110,7,5} miliseconds.
+>>
+>> Adding above msg timeout values and aborting the HDCP authentication
+>> in case it timedout to read entire msg.
+>>
+>> https://www.digital-cp.com/sites/default/files/HDCP%202_2_DisplayPort_Errata_v3_0.pdf
+>>
+>> v2:
+>> - Removed redundant variable msg_can_timedout. [Ankit]
+>>
+>> Cc: Ramalingam C <ramalingam.c@intel.com>
+>> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 45 ++++++++++++++------
+>>   include/drm/drm_hdcp.h                       |  3 ++
+>>   2 files changed, 35 insertions(+), 13 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+>> index 40c516e90193..8bad4b3d34dd 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+>> @@ -294,37 +294,39 @@ struct hdcp2_dp_msg_data {
+>>   	bool msg_detectable;
+>>   	u32 timeout;
+>>   	u32 timeout2; /* Added for non_paired situation */
+>> +	/* Timeout to read entire msg */
+>> +	u32 msg_read_timeout;
+>>   };
+>>   
+>>   static const struct hdcp2_dp_msg_data hdcp2_dp_msg_data[] = {
+>> -	{ HDCP_2_2_AKE_INIT, DP_HDCP_2_2_AKE_INIT_OFFSET, false, 0, 0 },
+>> +	{ HDCP_2_2_AKE_INIT, DP_HDCP_2_2_AKE_INIT_OFFSET, false, 0, 0, 0},
+>>   	{ HDCP_2_2_AKE_SEND_CERT, DP_HDCP_2_2_AKE_SEND_CERT_OFFSET,
+>> -	  false, HDCP_2_2_CERT_TIMEOUT_MS, 0 },
+>> +	  false, HDCP_2_2_CERT_TIMEOUT_MS, 0, HDCP_2_2_DP_CERT_READ_TIMEOUT_MS},
+>>   	{ HDCP_2_2_AKE_NO_STORED_KM, DP_HDCP_2_2_AKE_NO_STORED_KM_OFFSET,
+>> -	  false, 0, 0 },
+>> +	  false, 0, 0, 0 },
+>>   	{ HDCP_2_2_AKE_STORED_KM, DP_HDCP_2_2_AKE_STORED_KM_OFFSET,
+>> -	  false, 0, 0 },
+>> +	  false, 0, 0, 0 },
+>>   	{ HDCP_2_2_AKE_SEND_HPRIME, DP_HDCP_2_2_AKE_SEND_HPRIME_OFFSET,
+>>   	  true, HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS,
+>> -	  HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS },
+>> +	  HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS, HDCP_2_2_DP_HPRIME_READ_TIMEOUT_MS},
+>>   	{ HDCP_2_2_AKE_SEND_PAIRING_INFO,
+>>   	  DP_HDCP_2_2_AKE_SEND_PAIRING_INFO_OFFSET, true,
+>> -	  HDCP_2_2_PAIRING_TIMEOUT_MS, 0 },
+>> -	{ HDCP_2_2_LC_INIT, DP_HDCP_2_2_LC_INIT_OFFSET, false, 0, 0 },
+>> +	  HDCP_2_2_PAIRING_TIMEOUT_MS, 0, HDCP_2_2_DP_PAIRING_READ_TIMEOUT_MS },
+>> +	{ HDCP_2_2_LC_INIT, DP_HDCP_2_2_LC_INIT_OFFSET, false, 0, 0, 0 },
+>>   	{ HDCP_2_2_LC_SEND_LPRIME, DP_HDCP_2_2_LC_SEND_LPRIME_OFFSET,
+>> -	  false, HDCP_2_2_DP_LPRIME_TIMEOUT_MS, 0 },
+>> +	  false, HDCP_2_2_DP_LPRIME_TIMEOUT_MS, 0, 0 },
+>>   	{ HDCP_2_2_SKE_SEND_EKS, DP_HDCP_2_2_SKE_SEND_EKS_OFFSET, false,
+>> -	  0, 0 },
+>> +	  0, 0, 0 },
+>>   	{ HDCP_2_2_REP_SEND_RECVID_LIST,
+>>   	  DP_HDCP_2_2_REP_SEND_RECVID_LIST_OFFSET, true,
+>> -	  HDCP_2_2_RECVID_LIST_TIMEOUT_MS, 0 },
+>> +	  HDCP_2_2_RECVID_LIST_TIMEOUT_MS, 0, 0 },
+>>   	{ HDCP_2_2_REP_SEND_ACK, DP_HDCP_2_2_REP_SEND_ACK_OFFSET, false,
+>> -	  0, 0 },
+>> +	  0, 0, 0 },
+>>   	{ HDCP_2_2_REP_STREAM_MANAGE,
+>>   	  DP_HDCP_2_2_REP_STREAM_MANAGE_OFFSET, false,
+>> -	  0, 0 },
+>> +	  0, 0, 0},
+>>   	{ HDCP_2_2_REP_STREAM_READY, DP_HDCP_2_2_REP_STREAM_READY_OFFSET,
+>> -	  false, HDCP_2_2_STREAM_READY_TIMEOUT_MS, 0 },
+>> +	  false, HDCP_2_2_STREAM_READY_TIMEOUT_MS, 0, 0 },
+>>   /* local define to shovel this through the write_2_2 interface */
+>>   #define HDCP_2_2_ERRATA_DP_STREAM_TYPE	50
+>>   	{ HDCP_2_2_ERRATA_DP_STREAM_TYPE,
+>> @@ -513,6 +515,8 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+>>   	u8 *byte = buf;
+>>   	ssize_t ret, bytes_to_recv, len;
+>>   	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
+>> +	ktime_t msg_end;
+>> +	bool msg_expired;
+>>   
+>>   	hdcp2_msg_data = get_hdcp2_dp_msg_data(msg_id);
+>>   	if (!hdcp2_msg_data)
+>> @@ -539,6 +543,11 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+>>   		len = bytes_to_recv > DP_AUX_MAX_PAYLOAD_BYTES ?
+>>   		      DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_recv;
+>>   
+>> +		/* Entire msg read timeout since initiate of msg read */
+>> +		if (bytes_to_recv == size - 1 && hdcp2_msg_data->msg_read_timeout > 0)
+>> +			msg_end = ktime_add_ms(ktime_get_raw(),
+>> +					       hdcp2_msg_data->msg_read_timeout);
+>> +
+>>   		ret = drm_dp_dpcd_read(&dig_port->dp.aux, offset,
+>>   				       (void *)byte, len);
+>>   		if (ret < 0) {
+>> @@ -551,6 +560,16 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+>>   		byte += ret;
+>>   		offset += ret;
+>>   	}
+>> +
+>> +	if (hdcp2_msg_data->msg_read_timeout > 0) {
+>> +		msg_expired = ktime_after(ktime_get_raw(), msg_end);
+>> +		if (msg_expired) {
+>> +			drm_dbg_kms(&i915->drm, "msg_id %d, entire msg read timeout(mSec): %d\n",
+>> +				    msg_id, hdcp2_msg_data->msg_read_timeout);
+>> +			return -ETIMEDOUT;
+>> +		}
+>> +	}
+>> +
+>>   	byte = buf;
+>>   	*byte = msg_id;
+>>   
+>> diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
+>> index ac22c246542a..2b165a0f434f 100644
+>> --- a/include/drm/drm_hdcp.h
+>> +++ b/include/drm/drm_hdcp.h
+>> @@ -224,9 +224,12 @@ struct hdcp2_rep_stream_ready {
+>>   
+>>   /* HDCP2.2 TIMEOUTs in mSec */
+>>   #define HDCP_2_2_CERT_TIMEOUT_MS		100
+>> +#define HDCP_2_2_DP_CERT_READ_TIMEOUT_MS	110
+>>   #define HDCP_2_2_HPRIME_NO_PAIRED_TIMEOUT_MS	1000
+>>   #define HDCP_2_2_HPRIME_PAIRED_TIMEOUT_MS	200
+>> +#define HDCP_2_2_DP_HPRIME_READ_TIMEOUT_MS	7
+>>   #define HDCP_2_2_PAIRING_TIMEOUT_MS		200
+>> +#define HDCP_2_2_DP_PAIRING_READ_TIMEOUT_MS	5
+>>   #define	HDCP_2_2_HDMI_LPRIME_TIMEOUT_MS		20
+>>   #define HDCP_2_2_DP_LPRIME_TIMEOUT_MS		7
+>>   #define HDCP_2_2_RECVID_LIST_TIMEOUT_MS		3000
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- tests/i915/gem_watchdog.c    | 310 +++++++++++++++++++++++++++++++++++
- tests/intel-ci/blacklist.txt |   1 +
- 2 files changed, 311 insertions(+)
-
-diff --git a/tests/i915/gem_watchdog.c b/tests/i915/gem_watchdog.c
-index f86d3d4c7437..8f9fb17750fb 100644
---- a/tests/i915/gem_watchdog.c
-+++ b/tests/i915/gem_watchdog.c
-@@ -23,6 +23,8 @@
- 
- #include "config.h"
- 
-+#include <fcntl.h>
-+#include <sys/ioctl.h>
- #include <stdio.h>
- #include <unistd.h>
- #include <sched.h>
-@@ -321,8 +323,309 @@ static void virtual(int i915)
- 	igt_assert_eq(count, expect);
- }
- 
-+#define MI_INSTR(opcode, flags) (((opcode) << 23) | (flags))
-+
-+#define MI_MATH(x)                      MI_INSTR(0x1a, (x) - 1)
-+#define MI_MATH_INSTR(opcode, op1, op2) ((opcode) << 20 | (op1) << 10 | (op2))
-+/* Opcodes for MI_MATH_INSTR */
-+#define   MI_MATH_NOOP                  MI_MATH_INSTR(0x000, 0x0, 0x0)
-+#define   MI_MATH_LOAD(op1, op2)        MI_MATH_INSTR(0x080, op1, op2)
-+#define   MI_MATH_LOADINV(op1, op2)     MI_MATH_INSTR(0x480, op1, op2)
-+#define   MI_MATH_LOAD0(op1)            MI_MATH_INSTR(0x081, op1)
-+#define   MI_MATH_LOAD1(op1)            MI_MATH_INSTR(0x481, op1)
-+#define   MI_MATH_ADD                   MI_MATH_INSTR(0x100, 0x0, 0x0)
-+#define   MI_MATH_SUB                   MI_MATH_INSTR(0x101, 0x0, 0x0)
-+#define   MI_MATH_AND                   MI_MATH_INSTR(0x102, 0x0, 0x0)
-+#define   MI_MATH_OR                    MI_MATH_INSTR(0x103, 0x0, 0x0)
-+#define   MI_MATH_XOR                   MI_MATH_INSTR(0x104, 0x0, 0x0)
-+#define   MI_MATH_STORE(op1, op2)       MI_MATH_INSTR(0x180, op1, op2)
-+#define   MI_MATH_STOREINV(op1, op2)    MI_MATH_INSTR(0x580, op1, op2)
-+/* Registers used as operands in MI_MATH_INSTR */
-+#define   MI_MATH_REG(x)                (x)
-+#define   MI_MATH_REG_SRCA              0x20
-+#define   MI_MATH_REG_SRCB              0x21
-+#define   MI_MATH_REG_ACCU              0x31
-+#define   MI_MATH_REG_ZF                0x32
-+#define   MI_MATH_REG_CF                0x33
-+
-+#define MI_LOAD_REGISTER_REG    MI_INSTR(0x2A, 1)
-+
-+static unsigned int offset_in_page(void *addr)
-+{
-+	return (uintptr_t)addr & 4095;
-+}
-+
-+static uint64_t div64_u64_round_up(uint64_t x, uint64_t y)
-+{
-+	return (x + y - 1) / y;
-+}
-+
-+static int read_timestamp_frequency(int i915)
-+{
-+	int value = 0;
-+	drm_i915_getparam_t gp = {
-+		.value = &value,
-+		.param = I915_PARAM_CS_TIMESTAMP_FREQUENCY,
-+	};
-+	ioctl(i915, DRM_IOCTL_I915_GETPARAM, &gp);
-+	return value;
-+}
-+
-+static uint64_t ns_to_ticks(int i915, uint64_t ns)
-+{
-+	return div64_u64_round_up(ns * read_timestamp_frequency(i915),
-+				  NSEC_PER_SEC);
-+}
-+
-+static uint32_t __batch_create(int i915, uint32_t offset)
-+{
-+	const uint32_t bbe = MI_BATCH_BUFFER_END;
-+	uint32_t handle;
-+
-+	handle = gem_create(i915, ALIGN(offset + 4, 4096));
-+	gem_write(i915, handle, offset, &bbe, sizeof(bbe));
-+
-+	return handle;
-+}
-+
-+static uint32_t batch_create(int i915)
-+{
-+	return __batch_create(i915, 0);
-+}
-+
-+static void delay(int i915,
-+		  const struct intel_execution_engine2 *e,
-+		  uint32_t handle,
-+		  uint64_t addr,
-+		  uint64_t ns)
-+{
-+	const int use_64b = intel_gen(intel_get_drm_devid(i915)) >= 8;
-+	const uint32_t base = gem_engine_mmio_base(i915, e->name);
-+#define CS_GPR(x) (base + 0x600 + 8 * (x))
-+#define RUNTIME (base + 0x3a8)
-+	enum { START_TS, NOW_TS };
-+	uint32_t *map, *cs, *jmp;
-+
-+	igt_require(base);
-+
-+	/* Loop until CTX_TIMESTAMP - initial > @ns */
-+
-+	cs = map = gem_mmap__device_coherent(i915, handle, 0, 4096, PROT_WRITE);
-+
-+	*cs++ = MI_LOAD_REGISTER_IMM;
-+	*cs++ = CS_GPR(START_TS) + 4;
-+	*cs++ = 0;
-+	*cs++ = MI_LOAD_REGISTER_REG;
-+	*cs++ = RUNTIME;
-+	*cs++ = CS_GPR(START_TS);
-+
-+	while (offset_in_page(cs) & 63)
-+		*cs++ = 0;
-+	jmp = cs;
-+
-+	*cs++ = 0x5 << 23; /* MI_ARB_CHECK */
-+
-+	*cs++ = MI_LOAD_REGISTER_IMM;
-+	*cs++ = CS_GPR(NOW_TS) + 4;
-+	*cs++ = 0;
-+	*cs++ = MI_LOAD_REGISTER_REG;
-+	*cs++ = RUNTIME;
-+	*cs++ = CS_GPR(NOW_TS);
-+
-+	/* delta = now - start; inverted to match COND_BBE */
-+	*cs++ = MI_MATH(4);
-+	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCA, MI_MATH_REG(NOW_TS));
-+	*cs++ = MI_MATH_LOAD(MI_MATH_REG_SRCB, MI_MATH_REG(START_TS));
-+	*cs++ = MI_MATH_SUB;
-+	*cs++ = MI_MATH_STOREINV(MI_MATH_REG(NOW_TS), MI_MATH_REG_ACCU);
-+
-+	/* Save delta for reading by COND_BBE */
-+	*cs++ = 0x24 << 23 | (1 + use_64b); /* SRM */
-+	*cs++ = CS_GPR(NOW_TS);
-+	*cs++ = addr + 4000;
-+	*cs++ = addr >> 32;
-+
-+	/* Delay between SRM and COND_BBE to post the writes */
-+	for (int n = 0; n < 8; n++) {
-+		*cs++ = MI_STORE_DWORD_IMM;
-+		if (use_64b) {
-+			*cs++ = addr + 4064;
-+			*cs++ = addr >> 32;
-+		} else {
-+			*cs++ = 0;
-+			*cs++ = addr + 4064;
-+		}
-+		*cs++ = 0;
-+	}
-+
-+	/* Break if delta > ns */
-+	*cs++ = MI_COND_BATCH_BUFFER_END | MI_DO_COMPARE | (1 + use_64b);
-+	*cs++ = ~ns_to_ticks(i915, ns);
-+	*cs++ = addr + 4000;
-+	*cs++ = addr >> 32;
-+
-+	/* Otherwise back to recalculating delta */
-+	*cs++ = MI_BATCH_BUFFER_START | 1 << 8 | use_64b;
-+	*cs++ = addr + offset_in_page(jmp);
-+	*cs++ = addr >> 32;
-+
-+	munmap(map, 4096);
-+}
-+
-+static struct drm_i915_gem_exec_object2
-+delay_create(int i915, uint32_t ctx,
-+	     const struct intel_execution_engine2 *e,
-+	     uint64_t target_ns)
-+{
-+	struct drm_i915_gem_exec_object2 obj = {
-+		.handle = batch_create(i915),
-+		.flags = EXEC_OBJECT_SUPPORTS_48B_ADDRESS,
-+	};
-+	struct drm_i915_gem_execbuffer2 execbuf = {
-+		.buffers_ptr = to_user_pointer(&obj),
-+		.buffer_count = 1,
-+		.rsvd1 = ctx,
-+		.flags = e->flags,
-+	};
-+
-+	obj.offset = obj.handle << 12;
-+	gem_execbuf(i915, &execbuf);
-+	gem_sync(i915, obj.handle);
-+
-+	delay(i915, e, obj.handle, obj.offset, target_ns);
-+
-+	obj.flags |= EXEC_OBJECT_PINNED;
-+	return obj;
-+}
-+
-+static uint32_t vm_clone(int i915)
-+{
-+	uint32_t ctx = 0;
-+	__gem_context_clone(i915, 0,
-+			    I915_CONTEXT_CLONE_VM |
-+			    I915_CONTEXT_CLONE_ENGINES,
-+			    I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE,
-+			    &ctx);
-+	return ctx;
-+}
-+
-+static int __execbuf(int i915, struct drm_i915_gem_execbuffer2 *execbuf)
-+{
-+	int err;
-+
-+	err = 0;
-+	if (ioctl(i915, DRM_IOCTL_I915_GEM_EXECBUFFER2, execbuf)) {
-+		err = -errno;
-+		igt_assume(err);
-+	}
-+
-+	errno = 0;
-+	return err;
-+}
-+
-+static uint32_t
-+far_delay(int i915, unsigned long delay, unsigned int target,
-+	  const struct intel_execution_engine2 *e, int *fence)
-+{
-+	struct drm_i915_gem_exec_object2 obj = delay_create(i915, 0, e, delay);
-+	struct drm_i915_gem_exec_object2 batch[2] = {
-+		{
-+			.handle = batch_create(i915),
-+			.flags = EXEC_OBJECT_WRITE,
-+		}
-+	};
-+	struct drm_i915_gem_execbuffer2 execbuf = {
-+		.buffers_ptr = to_user_pointer(batch),
-+		.buffer_count = 2,
-+		.flags = e->flags,
-+	};
-+	uint32_t handle = gem_create(i915, 4096);
-+	unsigned long count, submit;
-+
-+	igt_require(intel_gen(intel_get_drm_devid(i915)) >= 8);
-+	igt_require(gem_class_can_store_dword(i915, e->class));
-+
-+	fcntl(i915, F_SETFL, fcntl(i915, F_GETFL) | O_NONBLOCK);
-+
-+	submit = 3 * target;
-+	submit *= NSEC_PER_SEC;
-+	submit /= 2 * delay;
-+
-+	/*
-+	 * Submit a few long chains of individually short pieces of work
-+	 * against a shared object.
-+	 */
-+	for (count = 0; count < submit;) {
-+		execbuf.rsvd1 = vm_clone(i915);
-+		if (!execbuf.rsvd1)
-+			break;
-+
-+		batch[1] = obj;
-+		while (__execbuf(i915, &execbuf) == 0)
-+			count++;
-+		gem_context_destroy(i915, execbuf.rsvd1);
-+	}
-+
-+	execbuf.flags |= I915_EXEC_FENCE_OUT;
-+	execbuf.rsvd1 = 0;
-+	batch[1] = batch[0];
-+	batch[1].flags &= ~EXEC_OBJECT_WRITE;
-+	batch[0].handle = handle;
-+	assert(batch[0].flags & EXEC_OBJECT_WRITE);
-+	gem_execbuf_wr(i915, &execbuf);
-+
-+	gem_close(i915, obj.handle);
-+
-+	/* And pass the resulting end fence out. */
-+	*fence = execbuf.rsvd2 >> 32;
-+
-+	return handle;
-+}
-+
-+static void
-+far_fence(int i915, int timeout, const struct intel_execution_engine2 *e)
-+{
-+	int fence = -1;
-+	uint32_t handle =
-+		far_delay(i915, NSEC_PER_SEC / 250, timeout, e, &fence);
-+
-+	gem_close(i915, handle);
-+
-+	igt_assert_eq(sync_fence_wait(fence, -1), 0);
-+
-+	/*
-+	 * Many short pieces of work simulating independent clients working and
-+	 * presenting work to a consumer should not be interrupted by the
-+	 * watchdog.
-+	 *
-+	 * TODO/FIXME: Opens:
-+	 *
-+	 * 1)
-+	 *    Missing fence error propagation means consumer may fail to notice
-+	 *    the work hasn't actually been executed.
-+	 *
-+	 *    There is also no clear agreement on whether error propagation is
-+	 *    desired or not.
-+	 *
-+	 * 2)
-+	 *    This assert could instead check that fence status is in error, if
-+	 *    it will be accepted this kind of workload should suddenly start
-+	 *    failing. Depends if the desire is to test watchdog could break
-+	 *    existing userspace or whether it is acceptable to silently not
-+	 *    execute workloads.
-+	 *
-+	 * 3)
-+	 *    Implement subtest which actually renders to a shared buffer so
-+	 *    watchdog effect on rendering result can also be demonstrated.
-+	 */
-+	igt_assert_eq(sync_fence_status(fence), 1);
-+
-+	close(fence);
-+}
-+
- igt_main
- {
-+	const struct intel_execution_engine2 *e;
- 	int i915 = -1;
- 
- 	igt_fixture {
-@@ -370,6 +673,13 @@ igt_main
- 			virtual(i915);
- 	}
- 
-+	igt_subtest_with_dynamic("far-fence") {
-+		__for_each_physical_engine(i915, e) {
-+			igt_dynamic_f("%s", e->name)
-+				far_fence(i915, default_timeout_wait_s * 3, e);
-+		}
-+	}
-+
- 	igt_fixture {
- 		close(i915);
- 	}
-diff --git a/tests/intel-ci/blacklist.txt b/tests/intel-ci/blacklist.txt
-index e186a29a7509..33f92e37f602 100644
---- a/tests/intel-ci/blacklist.txt
-+++ b/tests/intel-ci/blacklist.txt
-@@ -54,6 +54,7 @@ igt@gem_sync@(?!.*basic).*
- igt@gem_tiled_swapping@(?!non-threaded).*
- igt@gem_userptr_blits@(major|minor|forked|mlocked|swapping).*
- igt@gem_wait@hang.*
-+igt@gem_watchdog@far-fence
- igt@sysfs_heartbeat_interval@(long|off)
- igt@sysfs_preempt_timeout@off
- igt@sysfs_timeslice_duration@off
 -- 
-2.27.0
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
