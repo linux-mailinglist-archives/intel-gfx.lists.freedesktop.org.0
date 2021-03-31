@@ -2,41 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A6CA34FDF8
-	for <lists+intel-gfx@lfdr.de>; Wed, 31 Mar 2021 12:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 020E934FF0E
+	for <lists+intel-gfx@lfdr.de>; Wed, 31 Mar 2021 13:02:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 419BD6EA40;
-	Wed, 31 Mar 2021 10:22:56 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93C9789F31;
+	Wed, 31 Mar 2021 11:02:14 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 048B16EA40;
- Wed, 31 Mar 2021 10:22:54 +0000 (UTC)
-IronPort-SDR: YYvsRubkWmlwOJnJjC4kTJDsSpR+ZTL+mAHqVQKEGoLgNlfY+ttKeWkDZ5whWdVoC09XRbsc1F
- R153tVot0R0Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9939"; a="212212412"
-X-IronPort-AV: E=Sophos;i="5.81,293,1610438400"; d="scan'208";a="212212412"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA3D789F31;
+ Wed, 31 Mar 2021 11:02:13 +0000 (UTC)
+IronPort-SDR: /sUrKCnc05JAoh2XRJOingRz5/7cCY3zayazxgUuyrg8fQkg4egHMjNH1OFhL71IVf253lgx0W
+ D8iC5wL7yTxg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9939"; a="212218463"
+X-IronPort-AV: E=Sophos;i="5.81,293,1610438400"; d="scan'208";a="212218463"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2021 03:22:54 -0700
-IronPort-SDR: c7xnkrKpZwEo2ZwdONa/19OwjSgZfiKbROjlbd19gfFjbtVYIspIeebpAQAjfxy5bzbPYPtL+r
- jCeFaGGcbOvg==
-X-IronPort-AV: E=Sophos;i="5.81,293,1610438400"; d="scan'208";a="418603669"
-Received: from ebilea-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.32.112])
+ 31 Mar 2021 04:02:13 -0700
+IronPort-SDR: DOfqCclr89tDFUeRhHeEjSigKN+BifMGPo/6iI2NrEwnSqw+nrYu85T6ZyNHTI8uTDWuedM053
+ m5bynigYbMWQ==
+X-IronPort-AV: E=Sophos;i="5.81,293,1610438400"; d="scan'208";a="418621635"
+Received: from jlowe-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.213.201.218])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2021 03:22:51 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <87im5f2vz2.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210324113012.7564-1-anshuman.gupta@intel.com>
- <87im5f2vz2.fsf@intel.com>
-Date: Wed, 31 Mar 2021 13:22:48 +0300
-Message-ID: <87eefvoc5j.fsf@intel.com>
+ 31 Mar 2021 04:02:12 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Wed, 31 Mar 2021 12:02:06 +0100
+Message-Id: <20210331110208.2582575-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 0/2] HDCP 2.2 DP errata
+Subject: [Intel-gfx] [PATCH i-g-t 1/3] lib: Add helper for reading modparam
+ values
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,37 +46,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 25 Mar 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Wed, 24 Mar 2021, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
->> HDCP DP 2.2 errata is part of HDCP DP 2.3 specs
->> as well. 
->>
->> Anshuman Gupta (2):
->>   drm/i915/hdcp: Add DP HDCP2.2 timeout to read entire msg
->>   drm/hdcp: DP HDCP2.2 errata LC_Send_L_Prime=16
->>
->>  drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 45 ++++++++++++++------
->>  include/drm/drm_hdcp.h                       |  5 ++-
->>  2 files changed, 36 insertions(+), 14 deletions(-)
->
-> Maarten, Maxime, Thomas -
->
-> Can I get an ack for merging this via drm-intel-next, please?
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Ping! :)
+Add __igt_params_get for simple reading of modparams.
 
-BR,
-Jani.
+v2:
+ * Fix kerneldoc. (Matt)
 
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ lib/igt_params.c | 26 ++++++++++++++++++++++++++
+ lib/igt_params.h |  2 ++
+ 2 files changed, 28 insertions(+)
 
+diff --git a/lib/igt_params.c b/lib/igt_params.c
+index c06416988baa..3dad317a56b2 100644
+--- a/lib/igt_params.c
++++ b/lib/igt_params.c
+@@ -156,6 +156,32 @@ int igt_params_open(int device)
+ 	return params;
+ }
+ 
++/**
++ * __igt_params_get:
++ * @device: fd of the device
++ * @parameter: the name of the parameter to get
++ *
++ * This reads the value of the modparam.
++ *
++ * Returns:
++ * A nul-terminated string, must be freed by caller after use, or NULL
++ * on failure.
++ */
++char *__igt_params_get(int device, const char *parameter)
++{
++	char *str;
++	int dir;
++
++	dir = igt_params_open(device);
++	if (dir < 0)
++		return NULL;
++
++	str = igt_sysfs_get(dir, parameter);
++	close(dir);
++
++	return str;
++}
++
+ __attribute__((format(printf, 3, 0)))
+ static bool __igt_params_set(int device, const char *parameter,
+ 			     const char *fmt, va_list ap, bool save)
+diff --git a/lib/igt_params.h b/lib/igt_params.h
+index bbd6f3ee6582..6494786f0696 100644
+--- a/lib/igt_params.h
++++ b/lib/igt_params.h
+@@ -28,6 +28,8 @@
+ 
+ int igt_params_open(int device);
+ 
++char *__igt_params_get(int device, const char *parameter);
++
+ __attribute__((format(printf, 3, 4)))
+ bool igt_params_set(int device, const char *parameter, const char *fmt, ...);
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.27.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
