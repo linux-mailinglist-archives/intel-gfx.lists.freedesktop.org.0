@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFB4D3511CC
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Apr 2021 11:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C473511F8
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Apr 2021 11:25:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E470D6EC7F;
-	Thu,  1 Apr 2021 09:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8DB26E3AA;
+	Thu,  1 Apr 2021 09:25:45 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96DEC6E104;
- Thu,  1 Apr 2021 09:19:09 +0000 (UTC)
-IronPort-SDR: CyEiclTk453qnNukeoAZWDuIUE1ih9ZUYe1zGQSquXy169BHywBIaC7RlRI/xgNrQ8tYDJjI1i
- uP9+wkHTSqCA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9940"; a="253537127"
-X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; d="scan'208";a="253537127"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2021 02:19:05 -0700
-IronPort-SDR: I1RNBi7QrW7yECoEw7BkJOI1sF0c2LAzlehbxfz3KfDFwGrzcPULvK22EoaBbBrm527+B7XyQi
- +hof1o0FaKxg==
-X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; d="scan'208";a="419114778"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A117A6E3AA;
+ Thu,  1 Apr 2021 09:25:44 +0000 (UTC)
+IronPort-SDR: nc7gzgDgaE3oJ1xQdVVrTvomoB47kNm6QxdtD3cB0+K7wVpzTsZrFjiO3UDMB8YFkWJsmDhuT7
+ 8JIf4CN1qDHw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9940"; a="179735902"
+X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; d="scan'208";a="179735902"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2021 02:25:43 -0700
+IronPort-SDR: rKOci5kcALQY+8rFb4D8ZydtHeBIf62uHmMHKyuZSqI7LwOb9CYZYpi3CDbN7hzoHxAtpeTh8z
+ NDkUb4QcEqRw==
+X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; d="scan'208";a="610849035"
 Received: from chinchil-mobl.amr.corp.intel.com (HELO intel.com)
  ([10.212.231.48])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2021 02:19:04 -0700
-Date: Thu, 1 Apr 2021 05:19:03 -0400
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2021 02:25:41 -0700
+Date: Thu, 1 Apr 2021 05:25:39 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YGWQB+8gWgmZ/6Mg@intel.com>
-References: <20210331101850.2582027-1-tvrtko.ursulin@linux.intel.com>
+Message-ID: <YGWRk7CkotrB4XMG@intel.com>
+References: <20210330150637.2547762-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210331101850.2582027-1-tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Check actual RC6 status
+In-Reply-To: <20210330150637.2547762-1-tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Do not report 100% RC6 if not
+ supported
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,51 +55,50 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 31, 2021 at 11:18:50AM +0100, Tvrtko Ursulin wrote:
+On Tue, Mar 30, 2021 at 04:06:37PM +0100, Tvrtko Ursulin wrote:
 > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> RC6 support cannot be simply established by looking at the static device
-> HAS_RC6() flag. There are cases which disable RC6 at driver load time so
-> use the status of those check when deciding whether to enumerate the rc6
-> counter.
+> We use GT parked status to estimate RC6 while not in use, however if RC6
+> is not supported to start with that does not work very well and produces a
+> false 100% RC6 readout.
+
+oh! I had missed this one...
+
+> 
+> Fix by not advancing the estimated RC6 counter when feature is not
+> supported.
+
+either this or the other proposal, consider both as
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+I prefer this, but I don't have strong opinions on which one.
+you (or Eero) pick one...
+
 > 
 > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Fixes: 1fe699e30113 ("drm/i915/pmu: Fix sleep under atomic in RC6 readout")
 > Reported-by: Eero T Tamminen <eero.t.tamminen@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_pmu.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/i915_pmu.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index 41651ac255fa..a75cd1db320b 100644
+> index 41651ac255fa..02fe0d22c470 100644
 > --- a/drivers/gpu/drm/i915/i915_pmu.c
 > +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -476,6 +476,8 @@ engine_event_status(struct intel_engine_cs *engine,
->  static int
->  config_status(struct drm_i915_private *i915, u64 config)
->  {
-> +	struct intel_gt *gt = &i915->gt;
-> +
->  	switch (config) {
->  	case I915_PMU_ACTUAL_FREQUENCY:
->  		if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-> @@ -489,7 +491,7 @@ config_status(struct drm_i915_private *i915, u64 config)
->  	case I915_PMU_INTERRUPTS:
->  		break;
->  	case I915_PMU_RC6_RESIDENCY:
-> -		if (!HAS_RC6(i915))
-> +		if (!gt->rc6.supported)
-
-Is this really going to remove any confusion?
-Right now it is there but with residency 0, but after this change the event is
-not there anymore so I wonder if we are not just changing to a different kind
-of confusion on users.
-
->  			return -ENODEV;
-
-would a different return help somehow?
-
->  		break;
->  	case I915_PMU_SOFTWARE_GT_AWAKE_TIME:
+> @@ -191,7 +191,10 @@ static u64 get_rc6(struct intel_gt *gt)
+>  		 * on top of the last known real value, as the approximated RC6
+>  		 * counter value.
+>  		 */
+> -		val = ktime_since_raw(pmu->sleep_last);
+> +		if (gt->rc6.supported)
+> +			val = ktime_since_raw(pmu->sleep_last);
+> +		else
+> +			val = 0;
+>  		val += pmu->sample[__I915_SAMPLE_RC6].cur;
+>  	}
+>  
 > -- 
 > 2.27.0
 > 
