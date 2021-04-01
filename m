@@ -1,43 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D67A735154C
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Apr 2021 15:40:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47256351574
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Apr 2021 15:59:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6914F6E0CF;
-	Thu,  1 Apr 2021 13:40:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81EBA6ECC0;
+	Thu,  1 Apr 2021 13:59:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B9CE6E0CF;
- Thu,  1 Apr 2021 13:40:49 +0000 (UTC)
-IronPort-SDR: 3PSqg89DRxisX0jP9kS1oDlvqUhegBjHPvIZIzj0WkbKxN9UKtVwDq27gcWPrusr6/2moxzn7l
- +gesSGOT1BDQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9941"; a="277431052"
-X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; d="scan'208";a="277431052"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2021 06:40:39 -0700
-IronPort-SDR: LFYKKCnNLIHo8d1WzwQ5AsNeqrd0MpZqv++pww8uo/8fUTlbro4kse1JFIDXwGB/auZUAspbsR
- I6L+jGfT4YTw==
-X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; d="scan'208";a="419206855"
-Received: from shergane-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.41.188])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2021 06:40:36 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210326203807.105754-1-lyude@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210326203807.105754-1-lyude@redhat.com>
-Date: Thu, 01 Apr 2021 16:40:33 +0300
-Message-ID: <87blaym8by.fsf@intel.com>
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 098976ECB5;
+ Thu,  1 Apr 2021 13:59:22 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212])
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1lRxqy-0001rx-9N; Thu, 01 Apr 2021 13:59:20 +0000
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+From: Colin Ian King <colin.king@canonical.com>
+Message-ID: <5fac4ebb-e0aa-d628-1457-3feffea3b891@canonical.com>
+Date: Thu, 1 Apr 2021 14:59:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 00/20] drm: Use new DRM printk funcs
- (like drm_dbg_*()) in DP helpers
+Content-Language: en-US
+Subject: Re: [Intel-gfx] drm/i915/selftests: Prepare gtt tests for
+ obj->mm.lock removal
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,123 +40,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 26 Mar 2021, Lyude Paul <lyude@redhat.com> wrote:
-> Since it's been asked quite a few times on some of the various DP
-> related patch series I've submitted to use the new DRM printk helpers,
-> and it technically wasn't really trivial to do this before due to the
-> lack of a consistent way to find a drm_device for an AUX channel, this
-> patch series aims to address this. In this series we:
->
-> * Clean-up potentially erroneous usages of drm_dp_aux_init() and
->   drm_dp_aux_register() so that actual AUX registration doesn't happen
->   until we have an associated DRM device
-> * Clean-up any obvious errors in drivers we find along the way
-> * Add a backpointer to the respective drm_device for an AUX channel in
->   drm_dp_aux.drm_dev, and hook it up in every driver with an AUX channel
->   across the tree
-> * Add a new ratelimited print helper we'll need for converting the DP
->   helpers over to using the new DRM printk helpers
-> * Fix any inconsistencies with logging in drm_dp_helper.c so we always
->   have the aux channel name printed
-> * Prepare the various DP helpers so they can find the correct drm_device
->   to use for logging
-> * And finally, convert all of the DP helpers over to using drm_dbg_*()
->   and drm_err().
->
-> Series-wide changes in v2:
-> * Address most checkpatch issues ('most' as in all except for one line
->   going two chars over 100 in "drm/dp_mst: Pass drm_dp_mst_topology_mgr
->   to drm_dp_get_vc_payload_bw()" as this was the style in use
->   previously, and 2 chars over the limit looks nicer then trying to
->   line-wrap this
-> * Don't rewrap comments
+Hi,
 
-For anything touching i915, and for merging via whichever tree or branch
-seems best,
+Static analysis with Coverity on Linux-next has detected a potential
+issue with the following commit:
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+commit 480ae79537b28f30ef6e07b7de69a9ae2599daa7
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Tue Mar 23 16:50:49 2021 +0100
 
-That said, gut feeling says there will be conflicts before latest
-drm-misc-next and drm-intel-next have been merged to drm-next, and
-drm-next has been backmerged to drm-misc-next and drm-intel-next.
-
-It just might be a good idea to wait for those (as well as other driver
-feature pulls) to settle, do a topic branch with a common ancestor
-between drm-next and drm-misc-next, apply there, merge the topic branch
-to drm-misc-next, and let all drivers merge the topic branch as
-needed. Due to the timing, otherwise we might have to carry the
-conflicts for quite a while.
-
-BR,
-Jani.
+    drm/i915/selftests: Prepare gtt tests for obj->mm.lock removal
 
 
->
-> Lyude Paul (20):
->   drm/dp: Fixup kernel docs for struct drm_dp_aux
->   drm/tegra: Don't register DP AUX channels before connectors
->   drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace
->   drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late
->     register/early unregister
->   drm/dp: Add backpointer to drm_device in drm_dp_aux
->   drm/dp: Clarify DP AUX registration time
->   drm/print: Fixup DRM_DEBUG_KMS_RATELIMITED()
->   drm/dp: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()
->   drm/dp: Pass drm_dp_aux to drm_dp*_link_train_channel_eq_delay()
->   drm/dp: Always print aux channel name in logs
->   drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()
->   drm/dp_dual_mode: Pass drm_device to
->     drm_dp_dual_mode_set_tmds_output()
->   drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_max_tmds_clock()
->   drm/dp_dual_mode: Pass drm_device to
->     drm_dp_dual_mode_get_tmds_output()
->   drm/dp_dual_mode: Pass drm_device to drm_lspcon_(get|set)_mode()
->   drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()
->   drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_*()
->   drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using
->     drm_err/drm_dbg_kms()
->   drm/dp_mst: Drop DRM_ERROR() on kzalloc() fail in
->     drm_dp_mst_handle_up_req()
->   drm/dp_mst: Convert drm_dp_mst_topology.c to drm_err()/drm_dbg*()
->
->  drivers/gpu/drm/amd/amdgpu/atombios_dp.c      |   5 +-
->  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   1 +
->  .../drm/bridge/analogix/analogix-anx6345.c    |   1 +
->  .../drm/bridge/analogix/analogix-anx78xx.c    |   1 +
->  .../drm/bridge/analogix/analogix_dp_core.c    |   1 +
->  .../drm/bridge/cadence/cdns-mhdp8546-core.c   |  12 +-
->  drivers/gpu/drm/bridge/tc358767.c             |   1 +
->  drivers/gpu/drm/bridge/ti-sn65dsi86.c         |   1 +
->  drivers/gpu/drm/drm_dp_aux_dev.c              |   6 +
->  drivers/gpu/drm/drm_dp_dual_mode_helper.c     |  68 ++--
->  drivers/gpu/drm/drm_dp_helper.c               | 181 +++++----
->  drivers/gpu/drm/drm_dp_mst_topology.c         | 381 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_dp_aux.c   |   1 +
->  .../drm/i915/display/intel_dp_link_training.c |   6 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |   7 +-
->  drivers/gpu/drm/i915/display/intel_lspcon.c   |  17 +-
->  drivers/gpu/drm/msm/dp/dp_ctrl.c              |   6 +-
->  drivers/gpu/drm/msm/edp/edp.h                 |   3 +-
->  drivers/gpu/drm/msm/edp/edp_aux.c             |   5 +-
->  drivers/gpu/drm/msm/edp/edp_ctrl.c            |   8 +-
->  drivers/gpu/drm/nouveau/nouveau_connector.c   |  27 +-
->  drivers/gpu/drm/radeon/atombios_dp.c          |   5 +-
->  drivers/gpu/drm/tegra/dpaux.c                 |  12 +-
->  drivers/gpu/drm/xlnx/zynqmp_dp.c              |   5 +-
->  include/drm/drm_dp_dual_mode_helper.h         |  14 +-
->  include/drm/drm_dp_helper.h                   |  61 +--
->  include/drm/drm_dp_mst_helper.h               |   3 +-
->  include/drm/drm_print.h                       |  20 +-
->  29 files changed, 478 insertions(+), 384 deletions(-)
+The analysis by Coverity is as follows:
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+145 static int igt_ppgtt_alloc(void *arg)
+146 {
+147        struct drm_i915_private *dev_priv = arg;
+148        struct i915_ppgtt *ppgtt;
+   1. var_decl: Declaring variable ww without initializer.
+149        struct i915_gem_ww_ctx ww;
+150        u64 size, last, limit;
+151        int err = 0;
+152
+153        /* Allocate a ppggt and try to fill the entire range */
+154
+   2. Condition !(dev_priv->__info.ppgtt_type != INTEL_PPGTT_NONE),
+taking false branch.
+155        if (!HAS_PPGTT(dev_priv))
+156                return 0;
+157
+158        ppgtt = i915_ppgtt_create(&dev_priv->gt);
+   3. Condition IS_ERR(ppgtt), taking false branch.
+159        if (IS_ERR(ppgtt))
+160                return PTR_ERR(ppgtt);
+161
+   4. Condition !ppgtt->vm.allocate_va_range, taking true branch.
+162        if (!ppgtt->vm.allocate_va_range)
+   5. Jumping to label err_ppgtt_cleanup.
+163                goto err_ppgtt_cleanup;
+164
+165        /*
+166         * While we only allocate the page tables here and so we could
+167         * address a much larger GTT than we could actually fit into
+168         * RAM, a practical limit is the amount of physical pages in
+the system.
+169         * This should ensure that we do not run into the oomkiller
+during
+170         * the test and take down the machine wilfully.
+171         */
+172        limit = totalram_pages() << PAGE_SHIFT;
+173        limit = min(ppgtt->vm.total, limit);
+174
+175        i915_gem_ww_ctx_init(&ww, false);
+176retry:
+177        err = i915_vm_lock_objects(&ppgtt->vm, &ww);
+178        if (err)
+179                goto err_ppgtt_cleanup;
+180
+181        /* Check we can allocate the entire range */
+182        for (size = 4096; size <= limit; size <<= 2) {
+183                struct i915_vm_pt_stash stash = {};
+184
+185                err = i915_vm_alloc_pt_stash(&ppgtt->vm, &stash, size);
+186                if (err)
+187                        goto err_ppgtt_cleanup;
+188
+189                err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
+190                if (err) {
+191                        i915_vm_free_pt_stash(&ppgtt->vm, &stash);
+192                        goto err_ppgtt_cleanup;
+193                }
+194
+195                ppgtt->vm.allocate_va_range(&ppgtt->vm, &stash, 0, size);
+196                cond_resched();
+197
+198                ppgtt->vm.clear_range(&ppgtt->vm, 0, size);
+199
+200                i915_vm_free_pt_stash(&ppgtt->vm, &stash);
+201        }
+202
+203        /* Check we can incrementally allocate the entire range */
+204        for (last = 0, size = 4096; size <= limit; last = size, size
+<<= 2) {
+205                struct i915_vm_pt_stash stash = {};
+206
+207                err = i915_vm_alloc_pt_stash(&ppgtt->vm, &stash, size
+- last);
+208                if (err)
+209                        goto err_ppgtt_cleanup;
+210
+211                err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
+212                if (err) {
+213                        i915_vm_free_pt_stash(&ppgtt->vm, &stash);
+214                        goto err_ppgtt_cleanup;
+215                }
+216
+217                ppgtt->vm.allocate_va_range(&ppgtt->vm, &stash,
+218                                            last, size - last);
+219                cond_resched();
+220
+221                i915_vm_free_pt_stash(&ppgtt->vm, &stash);
+222        }
+223
+224 err_ppgtt_cleanup:
+   6. Condition err == -35, taking false branch.
+225        if (err == -EDEADLK) {
+226                err = i915_gem_ww_ctx_backoff(&ww);
+227                if (!err)
+228                        goto retry;
+229        }
+   7. uninit_use_in_call: Using uninitialized value ww.contended when
+calling i915_gem_ww_ctx_fini.
+   Uninitialized pointer read (UNINIT)
+   8. uninit_use_in_call: Using uninitialized value ww.ctx.acquired when
+calling i915_gem_ww_ctx_fini.
+230        i915_gem_ww_ctx_fini(&ww);
+231
+232        i915_vm_put(&ppgtt->vm);
+233        return err;
+234 }
+
+Coverity is reporting use of uninitialized values in (lines 230.  Not
+sure what the best fix is for this, so I'm reporting this as a potential
+issue.
+
+Colin
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
