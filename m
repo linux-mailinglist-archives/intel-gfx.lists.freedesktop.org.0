@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCE2B3514EA
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Apr 2021 14:52:49 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 155C23514EC
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Apr 2021 14:55:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4765C6E231;
-	Thu,  1 Apr 2021 12:52:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA9A6E231;
+	Thu,  1 Apr 2021 12:55:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 19BD06E231;
- Thu,  1 Apr 2021 12:52:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1022CABF1B;
- Thu,  1 Apr 2021 12:52:47 +0000 (UTC)
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CA396E231;
+ Thu,  1 Apr 2021 12:55:10 +0000 (UTC)
+Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
+ by youngberry.canonical.com with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <colin.king@canonical.com>)
+ id 1lRwqn-0004lS-9t; Thu, 01 Apr 2021 12:55:05 +0000
+From: Colin King <colin.king@canonical.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Thu,  1 Apr 2021 13:55:05 +0100
+Message-Id: <20210401125505.2012496-1-colin.king@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 01 Apr 2021 12:52:47 -0000
-Message-ID: <161728156706.12179.10272023453152163435@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210401115926.28169-1-jani.nikula@intel.com>
-In-Reply-To: <20210401115926.28169-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/hdmi=3A_convert_intel=5Fhdmi=5Fto=5Fdev_to_intel=5Fhdmi?=
- =?utf-8?q?=5Fto=5Fi915?=
+Subject: [Intel-gfx] [PATCH][next] drm/i915: Fix an uninitialized variable
+ issue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +44,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Colin Ian King <colin.king@canonical.com>
 
-Series: drm/i915/hdmi: convert intel_hdmi_to_dev to intel_hdmi_to_i915
-URL   : https://patchwork.freedesktop.org/series/88657/
-State : warning
+Currently there is a while loop that contains a handful of continue
+statements that can skip over the assignment of the variable err. At
+the end of the loop there is a potiential for err to be unassigned
+and possibly causing issues when err is checked for a non-zero value.
+Fix this by setting err to zero before the while loop starts.
 
-== Summary ==
+Addresses-Coverity: ("Uninitialized scalar variable")
+Fixes: cf41a8f1dc1e ("drm/i915: Finally remove obj->mm.lock.")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+index 3e248d3bd869..1e24ba872029 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+@@ -180,6 +180,7 @@ i915_gem_shrink(struct i915_gem_ww_ctx *ww,
+ 		 * the unbound/bound list until actually freed.
+ 		 */
+ 		spin_lock_irqsave(&i915->mm.obj_lock, flags);
++		err = 0;
+ 		while (count < target &&
+ 		       (obj = list_first_entry_or_null(phase->list,
+ 						       typeof(*obj),
+@@ -202,7 +203,6 @@ i915_gem_shrink(struct i915_gem_ww_ctx *ww,
+ 
+ 			spin_unlock_irqrestore(&i915->mm.obj_lock, flags);
+ 
+-			err = 0;
+ 			if (unsafe_drop_pages(obj, shrink)) {
+ 				/* May arrive from get_pages on another bo */
+ 				if (!ww) {
+-- 
+2.30.2
 
 _______________________________________________
 Intel-gfx mailing list
