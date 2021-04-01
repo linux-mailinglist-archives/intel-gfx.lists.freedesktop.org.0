@@ -2,32 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47256351574
-	for <lists+intel-gfx@lfdr.de>; Thu,  1 Apr 2021 15:59:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8032C35159D
+	for <lists+intel-gfx@lfdr.de>; Thu,  1 Apr 2021 16:23:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81EBA6ECC0;
-	Thu,  1 Apr 2021 13:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 638D66ECC4;
+	Thu,  1 Apr 2021 14:23:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 098976ECB5;
- Thu,  1 Apr 2021 13:59:22 +0000 (UTC)
-Received: from 1.general.cking.uk.vpn ([10.172.193.212])
- by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <colin.king@canonical.com>)
- id 1lRxqy-0001rx-9N; Thu, 01 Apr 2021 13:59:20 +0000
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-From: Colin Ian King <colin.king@canonical.com>
-Message-ID: <5fac4ebb-e0aa-d628-1457-3feffea3b891@canonical.com>
-Date: Thu, 1 Apr 2021 14:59:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0C96ECC4
+ for <intel-gfx@lists.freedesktop.org>; Thu,  1 Apr 2021 14:23:04 +0000 (UTC)
+IronPort-SDR: rQhDq6cjtKGwzKbvhpcADoHnuSgQH7RDLPziyp3Nj2iUTaV0qN03VoSRGmNHDz3pVAjZfWOUEQ
+ GyCOADI5QkKA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9941"; a="191732846"
+X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; d="scan'208";a="191732846"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2021 07:23:03 -0700
+IronPort-SDR: 2bQH3CqBvrP8fnZw/D9shWRz1VtSvakBFVhezWwYqzaAbRNTW795IB4YO5otX8EeJl8L/LBDvN
+ oyQGyk2hD6dw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.81,296,1610438400"; d="scan'208";a="446278680"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga002.fm.intel.com with SMTP; 01 Apr 2021 07:23:02 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 01 Apr 2021 17:23:01 +0300
+Date: Thu, 1 Apr 2021 17:23:01 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YGXXRQ3TbenjHh8/@intel.com>
+References: <20210330184254.6290-1-ville.syrjala@linux.intel.com>
+ <20210330184254.6290-2-ville.syrjala@linux.intel.com>
+ <87k0pmmafb.fsf@intel.com>
 MIME-Version: 1.0
-Content-Language: en-US
-Subject: Re: [Intel-gfx] drm/i915/selftests: Prepare gtt tests for
- obj->mm.lock removal
+Content-Disposition: inline
+In-Reply-To: <87k0pmmafb.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Reuse intel_adjusted_rate()
+ for pfit pixel rate adjustment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,143 +52,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Thu, Apr 01, 2021 at 03:55:20PM +0300, Jani Nikula wrote:
+> On Tue, 30 Mar 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >
+> > Replace the hand rolled pfit downscale calculations with
+> > intel_adjusted_rate().
+> >
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  .../gpu/drm/i915/display/intel_atomic_plane.c |  6 ++---
+> >  .../gpu/drm/i915/display/intel_atomic_plane.h |  4 ++++
+> >  drivers/gpu/drm/i915/display/intel_display.c  | 23 +++++--------------
+> >  3 files changed, 13 insertions(+), 20 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/driver=
+s/gpu/drm/i915/display/intel_atomic_plane.c
+> > index 3f830b70b0c1..5f0a5ea474eb 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> > @@ -133,9 +133,9 @@ intel_plane_destroy_state(struct drm_plane *plane,
+> >  	kfree(plane_state);
+> >  }
+> >  =
 
-Static analysis with Coverity on Linux-next has detected a potential
-issue with the following commit:
+> > -static unsigned int intel_adjusted_rate(const struct drm_rect *src,
+> > -					const struct drm_rect *dst,
+> > -					unsigned int rate)
+> > +unsigned int intel_adjusted_rate(const struct drm_rect *src,
+> > +				 const struct drm_rect *dst,
+> > +				 unsigned int rate)
+> >  {
+> >  	unsigned int src_w, src_h, dst_w, dst_h;
+> >  =
 
-commit 480ae79537b28f30ef6e07b7de69a9ae2599daa7
-Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date:   Tue Mar 23 16:50:49 2021 +0100
+> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/driver=
+s/gpu/drm/i915/display/intel_atomic_plane.h
+> > index 5c78a087ed86..dc4d05e75e1c 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> > @@ -10,6 +10,7 @@
+> >  =
 
-    drm/i915/selftests: Prepare gtt tests for obj->mm.lock removal
+> >  struct drm_plane;
+> >  struct drm_property;
+> > +struct drm_rect;
+> >  struct intel_atomic_state;
+> >  struct intel_crtc;
+> >  struct intel_crtc_state;
+> > @@ -18,6 +19,9 @@ struct intel_plane_state;
+> >  =
 
+> >  extern const struct drm_plane_helper_funcs intel_plane_helper_funcs;
+> >  =
 
-The analysis by Coverity is as follows:
+> > +unsigned int intel_adjusted_rate(const struct drm_rect *src,
+> > +				 const struct drm_rect *dst,
+> > +				 unsigned int rate);
+> >  unsigned int intel_plane_pixel_rate(const struct intel_crtc_state *crt=
+c_state,
+> >  				    const struct intel_plane_state *plane_state);
+> >  =
 
-145 static int igt_ppgtt_alloc(void *arg)
-146 {
-147        struct drm_i915_private *dev_priv = arg;
-148        struct i915_ppgtt *ppgtt;
-   1. var_decl: Declaring variable ww without initializer.
-149        struct i915_gem_ww_ctx ww;
-150        u64 size, last, limit;
-151        int err = 0;
-152
-153        /* Allocate a ppggt and try to fill the entire range */
-154
-   2. Condition !(dev_priv->__info.ppgtt_type != INTEL_PPGTT_NONE),
-taking false branch.
-155        if (!HAS_PPGTT(dev_priv))
-156                return 0;
-157
-158        ppgtt = i915_ppgtt_create(&dev_priv->gt);
-   3. Condition IS_ERR(ppgtt), taking false branch.
-159        if (IS_ERR(ppgtt))
-160                return PTR_ERR(ppgtt);
-161
-   4. Condition !ppgtt->vm.allocate_va_range, taking true branch.
-162        if (!ppgtt->vm.allocate_va_range)
-   5. Jumping to label err_ppgtt_cleanup.
-163                goto err_ppgtt_cleanup;
-164
-165        /*
-166         * While we only allocate the page tables here and so we could
-167         * address a much larger GTT than we could actually fit into
-168         * RAM, a practical limit is the amount of physical pages in
-the system.
-169         * This should ensure that we do not run into the oomkiller
-during
-170         * the test and take down the machine wilfully.
-171         */
-172        limit = totalram_pages() << PAGE_SHIFT;
-173        limit = min(ppgtt->vm.total, limit);
-174
-175        i915_gem_ww_ctx_init(&ww, false);
-176retry:
-177        err = i915_vm_lock_objects(&ppgtt->vm, &ww);
-178        if (err)
-179                goto err_ppgtt_cleanup;
-180
-181        /* Check we can allocate the entire range */
-182        for (size = 4096; size <= limit; size <<= 2) {
-183                struct i915_vm_pt_stash stash = {};
-184
-185                err = i915_vm_alloc_pt_stash(&ppgtt->vm, &stash, size);
-186                if (err)
-187                        goto err_ppgtt_cleanup;
-188
-189                err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
-190                if (err) {
-191                        i915_vm_free_pt_stash(&ppgtt->vm, &stash);
-192                        goto err_ppgtt_cleanup;
-193                }
-194
-195                ppgtt->vm.allocate_va_range(&ppgtt->vm, &stash, 0, size);
-196                cond_resched();
-197
-198                ppgtt->vm.clear_range(&ppgtt->vm, 0, size);
-199
-200                i915_vm_free_pt_stash(&ppgtt->vm, &stash);
-201        }
-202
-203        /* Check we can incrementally allocate the entire range */
-204        for (last = 0, size = 4096; size <= limit; last = size, size
-<<= 2) {
-205                struct i915_vm_pt_stash stash = {};
-206
-207                err = i915_vm_alloc_pt_stash(&ppgtt->vm, &stash, size
-- last);
-208                if (err)
-209                        goto err_ppgtt_cleanup;
-210
-211                err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
-212                if (err) {
-213                        i915_vm_free_pt_stash(&ppgtt->vm, &stash);
-214                        goto err_ppgtt_cleanup;
-215                }
-216
-217                ppgtt->vm.allocate_va_range(&ppgtt->vm, &stash,
-218                                            last, size - last);
-219                cond_resched();
-220
-221                i915_vm_free_pt_stash(&ppgtt->vm, &stash);
-222        }
-223
-224 err_ppgtt_cleanup:
-   6. Condition err == -35, taking false branch.
-225        if (err == -EDEADLK) {
-226                err = i915_gem_ww_ctx_backoff(&ww);
-227                if (!err)
-228                        goto retry;
-229        }
-   7. uninit_use_in_call: Using uninitialized value ww.contended when
-calling i915_gem_ww_ctx_fini.
-   Uninitialized pointer read (UNINIT)
-   8. uninit_use_in_call: Using uninitialized value ww.ctx.acquired when
-calling i915_gem_ww_ctx_fini.
-230        i915_gem_ww_ctx_fini(&ww);
-231
-232        i915_vm_put(&ppgtt->vm);
-233        return err;
-234 }
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index d74b263c5f4e..472e691286c6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -3978,7 +3978,7 @@ static bool intel_crtc_supports_double_wide(const=
+ struct intel_crtc *crtc)
+> >  static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *crtc_sta=
+te)
+> >  {
+> >  	u32 pixel_rate =3D crtc_state->hw.pipe_mode.crtc_clock;
+> > -	unsigned int pipe_w, pipe_h, pfit_w, pfit_h;
+> > +	struct drm_rect src;
+> >  =
 
-Coverity is reporting use of uninitialized values in (lines 230.  Not
-sure what the best fix is for this, so I'm reporting this as a potential
-issue.
+> >  	/*
+> >  	 * We only use IF-ID interlacing. If we ever use
+> > @@ -3988,23 +3988,12 @@ static u32 ilk_pipe_pixel_rate(const struct int=
+el_crtc_state *crtc_state)
+> >  	if (!crtc_state->pch_pfit.enabled)
+> >  		return pixel_rate;
+> >  =
 
-Colin
+> > -	pipe_w =3D crtc_state->pipe_src_w;
+> > -	pipe_h =3D crtc_state->pipe_src_h;
+> > +	drm_rect_init(&src, 0, 0,
+> > +		      crtc_state->pipe_src_w << 16,
+> > +		      crtc_state->pipe_src_h << 16);
+> >  =
 
+> > -	pfit_w =3D drm_rect_width(&crtc_state->pch_pfit.dst);
+> > -	pfit_h =3D drm_rect_height(&crtc_state->pch_pfit.dst);
+> > -
+> > -	if (pipe_w < pfit_w)
+> > -		pipe_w =3D pfit_w;
+> =
+
+> So this is src_w =3D max(src_w, dst_w) and gets turned into dst_w =3D
+> min(src_w, dst_w) instead? Ditto for _h. Does it end up being the same
+> thing after the division?
+
+Yes. The min/max just gets rid of the upscaling case,
+ie. causes the division to be just x/x=3D=3D1 when dst>src.
+Doesn't matter if we use the min or max approach to
+achieve that result.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
