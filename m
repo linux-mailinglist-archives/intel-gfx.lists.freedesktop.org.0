@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F05F35276A
-	for <lists+intel-gfx@lfdr.de>; Fri,  2 Apr 2021 10:23:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99C82352771
+	for <lists+intel-gfx@lfdr.de>; Fri,  2 Apr 2021 10:30:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 292606E17E;
-	Fri,  2 Apr 2021 08:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05FC86E235;
+	Fri,  2 Apr 2021 08:30:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33836E17E
- for <intel-gfx@lists.freedesktop.org>; Fri,  2 Apr 2021 08:23:21 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 93D5EABED;
- Fri,  2 Apr 2021 08:23:20 +0000 (UTC)
-From: Takashi Iwai <tiwai@suse.de>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Fri,  2 Apr 2021 10:23:17 +0200
-Message-Id: <20210402082317.871-1-tiwai@suse.de>
-X-Mailer: git-send-email 2.26.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E6E66E17E;
+ Fri,  2 Apr 2021 08:30:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 745FBA47E9;
+ Fri,  2 Apr 2021 08:30:39 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix invalid access to ACPI _DSM
- objects
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Takashi Iwai" <tiwai@suse.de>
+Date: Fri, 02 Apr 2021 08:30:39 -0000
+Message-ID: <161735223944.28933.4272014850898771036@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210402074749.25957-1-tiwai@suse.de>
+In-Reply-To: <20210402074749.25957-1-tiwai@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_invalid_access_to_ACPI_=5FDSM_objects?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,72 +38,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1696678615=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-intel_dsm_platform_mux_info() tries to parse the ACPI package data
-from _DSM for the debug information, but it assumes the fixed format
-without checking what values are stored in the elements actually.
-When an unexpected value is returned from BIOS, it may lead to GPF or
-NULL dereference, as reported recently.
+--===============1696678615==
+Content-Type: multipart/alternative;
+ boundary="===============2293595392722787078=="
 
-Add the checks of the contents in the returned values and skip the
-values for invalid cases.
+--===============2293595392722787078==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v1->v2: Check the info contents before dereferencing, too
+== Series Details ==
 
-BugLink: http://bugzilla.opensuse.org/show_bug.cgi?id=1184074
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Takashi Iwai <tiwai@suse.de>
----
- drivers/gpu/drm/i915/display/intel_acpi.c | 22 ++++++++++++++++++++--
- 1 file changed, 20 insertions(+), 2 deletions(-)
+Series: drm/i915: Fix invalid access to ACPI _DSM objects
+URL   : https://patchwork.freedesktop.org/series/88685/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-index e21fb14d5e07..833d0c1be4f1 100644
---- a/drivers/gpu/drm/i915/display/intel_acpi.c
-+++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-@@ -84,13 +84,31 @@ static void intel_dsm_platform_mux_info(acpi_handle dhandle)
- 		return;
- 	}
- 
-+	if (!pkg->package.count) {
-+		DRM_DEBUG_DRIVER("no connection in _DSM\n");
-+		return;
-+	}
-+
- 	connector_count = &pkg->package.elements[0];
- 	DRM_DEBUG_DRIVER("MUX info connectors: %lld\n",
- 		  (unsigned long long)connector_count->integer.value);
- 	for (i = 1; i < pkg->package.count; i++) {
- 		union acpi_object *obj = &pkg->package.elements[i];
--		union acpi_object *connector_id = &obj->package.elements[0];
--		union acpi_object *info = &obj->package.elements[1];
-+		union acpi_object *connector_id;
-+		union acpi_object *info;
-+
-+		if (obj->type != ACPI_TYPE_PACKAGE || obj->package.count < 2) {
-+			DRM_DEBUG_DRIVER("Invalid object for MUX #%d\n", i);
-+			continue;
-+		}
-+
-+		connector_id = &obj->package.elements[0];
-+		info = &obj->package.elements[1];
-+		if (info->type != ACPI_TYPE_BUFFER || info->buffer.length < 4) {
-+			DRM_DEBUG_DRIVER("Invalid info for MUX obj #%d\n", i);
-+			continue;
-+		}
-+
- 		DRM_DEBUG_DRIVER("Connector id: 0x%016llx\n",
- 			  (unsigned long long)connector_id->integer.value);
- 		DRM_DEBUG_DRIVER("  port id: %s\n",
--- 
-2.26.2
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9926 -> Patchwork_19891
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19891 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][1] -> [INCOMPLETE][2] ([i915#2782])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9926/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ringfill@basic-all:
+    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9926/fi-tgl-y/igt@gem_ringfill@basic-all.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/fi-tgl-y/igt@gem_ringfill@basic-all.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-soraka:      [DMESG-WARN][5] ([i915#1982]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9926/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (47 -> 39)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-tgl-u2 fi-hsw-4200u fi-bsw-n3050 fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9926 -> Patchwork_19891
+
+  CI-20190529: 20190529
+  CI_DRM_9926: c73cd6993305be64f07fc110883a12025ce3d3d3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6056: 84e6a7e19ccc7fafc46f372e756cad9d4aa093f7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19891: 666f62ea73ae0c6839fce429ae245506c3650fd5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+666f62ea73ae drm/i915: Fix invalid access to ACPI _DSM objects
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/index.html
+
+--===============2293595392722787078==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix invalid access to ACPI _DSM objects</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88685/">https://patchwork.freedesktop.org/series/88685/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9926 -&gt; Patchwork_19891</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19891 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9926/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_ringfill@basic-all:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9926/fi-tgl-y/igt@gem_ringfill@basic-all.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/fi-tgl-y/igt@gem_ringfill@basic-all.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9926/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19891/fi-kbl-soraka/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (47 -&gt; 39)</h2>
+<p>Missing    (8): fi-ilk-m540 fi-tgl-u2 fi-hsw-4200u fi-bsw-n3050 fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9926 -&gt; Patchwork_19891</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9926: c73cd6993305be64f07fc110883a12025ce3d3d3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6056: 84e6a7e19ccc7fafc46f372e756cad9d4aa093f7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19891: 666f62ea73ae0c6839fce429ae245506c3650fd5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>666f62ea73ae drm/i915: Fix invalid access to ACPI _DSM objects</p>
+
+</body>
+</html>
+
+--===============2293595392722787078==--
+
+--===============1696678615==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1696678615==--
