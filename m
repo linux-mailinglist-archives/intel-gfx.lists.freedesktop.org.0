@@ -1,44 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E043A3541E1
-	for <lists+intel-gfx@lfdr.de>; Mon,  5 Apr 2021 13:53:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A173541F1
+	for <lists+intel-gfx@lfdr.de>; Mon,  5 Apr 2021 14:08:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BBEA8938C;
-	Mon,  5 Apr 2021 11:53:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4990389198;
+	Mon,  5 Apr 2021 12:08:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 928 seconds by postgrey-1.36 at gabe;
- Sun, 04 Apr 2021 08:58:29 UTC
-Received: from m12-16.163.com (m12-16.163.com [220.181.12.16])
- by gabe.freedesktop.org (Postfix) with SMTP id CF2086E48C
- for <intel-gfx@lists.freedesktop.org>; Sun,  4 Apr 2021 08:58:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=G2cUs
- f+10M+0+o9ghzxvUiWetFHccy0hk0bp1FYd8Zk=; b=D7XQKFkv0Z54cdkqJx9S/
- VkuKKxNOvHHQwDqAD7z7QMdF1TtWJvrSUVyuHjYWtLiNGtoMuiTyIdtl/DOaxLZt
- oOKwiS2I2yCsObgUtATMOpe/e6x8JXY8qQvw6O2WHUG68+cC4zKvwp8t4unbe7bk
- yIO52f4SqcGyuFCcU9ajfU=
-Received: from localhost.localdomain (unknown [120.229.91.194])
- by smtp12 (Coremail) with SMTP id EMCowAAXHMSle2lgLIHajw--.20565S2;
- Sun, 04 Apr 2021 16:41:12 +0800 (CST)
-From: Carlis <llyz108@163.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Sun,  4 Apr 2021 08:41:03 +0000
-Message-Id: <20210404084103.528211-1-llyz108@163.com>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 534A589196;
+ Mon,  5 Apr 2021 12:08:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 48C84A00FD;
+ Mon,  5 Apr 2021 12:08:43 +0000 (UTC)
 MIME-Version: 1.0
-X-CM-TRANSID: EMCowAAXHMSle2lgLIHajw--.20565S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3GrW8KF4kKFyrXryfCw48Zwb_yoWxWF18pF
- 43J3WYvr48Grn2qa13AF4q9a4av3ZF9a47W3ykGwn5urnrArWDtFyDAayjkrWrGrZ2kr93
- JF1qkFy7uw4jvr7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j2byZUUUUU=
-X-Originating-IP: [120.229.91.194]
-X-CM-SenderInfo: xoo16iiqy6il2tof0z/1tbi2AJqhVr7tgSMuAAAsS
-X-Mailman-Approved-At: Mon, 05 Apr 2021 11:53:22 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915/sysfs: convert snprintf to sysfs_emit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Carlis" <llyz108@163.com>
+Date: Mon, 05 Apr 2021 12:08:43 -0000
+Message-ID: <161762452327.29295.12137287571734683291@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210404084103.528211-1-llyz108@163.com>
+In-Reply-To: <20210404084103.528211-1-llyz108@163.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/sysfs=3A_convert_snprintf_to_sysfs=5Femit?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,166 +38,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Xuezhi Zhang <zhangxuezhi1@yulong.com>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Xuezhi Zhang <zhangxuezhi1@yulong.com>
+== Series Details ==
 
-Fix the following coccicheck warning:
-drivers/gpu/drm/i915//i915_sysfs.c:266:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:285:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:276:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:335:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:390:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:465:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:107:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:75:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:83:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:91:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:99:8-16: 
-WARNING: use scnprintf or sprintf
-drivers/gpu/drm/i915//i915_sysfs.c:326:8-16: 
-WARNING: use scnprintf or sprintf
+Series: drm/i915/sysfs: convert snprintf to sysfs_emit
+URL   : https://patchwork.freedesktop.org/series/88715/
+State : warning
 
-Signed-off-by: Xuezhi Zhang <zhangxuezhi1@yulong.com>
----
- drivers/gpu/drm/i915/i915_sysfs.c | 30 ++++++++++++------------------
- 1 file changed, 12 insertions(+), 18 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_sysfs.c b/drivers/gpu/drm/i915/i915_sysfs.c
-index 45d32ef42787..4c6b5d52b5ca 100644
---- a/drivers/gpu/drm/i915/i915_sysfs.c
-+++ b/drivers/gpu/drm/i915/i915_sysfs.c
-@@ -72,7 +72,7 @@ show_rc6_mask(struct device *kdev, struct device_attribute *attr, char *buf)
- 	if (HAS_RC6pp(dev_priv))
- 		mask |= BIT(2);
- 
--	return snprintf(buf, PAGE_SIZE, "%x\n", mask);
-+	return sysfs_emit(buf, "%x\n", mask);
- }
- 
- static ssize_t
-@@ -80,7 +80,7 @@ show_rc6_ms(struct device *kdev, struct device_attribute *attr, char *buf)
- {
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
- 	u32 rc6_residency = calc_residency(dev_priv, GEN6_GT_GFX_RC6);
--	return snprintf(buf, PAGE_SIZE, "%u\n", rc6_residency);
-+	return sysfs_emit(buf, "%u\n", rc6_residency);
- }
- 
- static ssize_t
-@@ -88,7 +88,7 @@ show_rc6p_ms(struct device *kdev, struct device_attribute *attr, char *buf)
- {
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
- 	u32 rc6p_residency = calc_residency(dev_priv, GEN6_GT_GFX_RC6p);
--	return snprintf(buf, PAGE_SIZE, "%u\n", rc6p_residency);
-+	return sysfs_emit(buf, "%u\n", rc6p_residency);
- }
- 
- static ssize_t
-@@ -96,7 +96,7 @@ show_rc6pp_ms(struct device *kdev, struct device_attribute *attr, char *buf)
- {
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
- 	u32 rc6pp_residency = calc_residency(dev_priv, GEN6_GT_GFX_RC6pp);
--	return snprintf(buf, PAGE_SIZE, "%u\n", rc6pp_residency);
-+	return sysfs_emit(buf, "%u\n", rc6pp_residency);
- }
- 
- static ssize_t
-@@ -104,7 +104,7 @@ show_media_rc6_ms(struct device *kdev, struct device_attribute *attr, char *buf)
- {
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
- 	u32 rc6_residency = calc_residency(dev_priv, VLV_GT_MEDIA_RC6);
--	return snprintf(buf, PAGE_SIZE, "%u\n", rc6_residency);
-+	return sysfs_emit(buf, "%u\n", rc6_residency);
- }
- 
- static DEVICE_ATTR(rc6_enable, S_IRUGO, show_rc6_mask, NULL);
-@@ -263,8 +263,7 @@ static ssize_t gt_act_freq_mhz_show(struct device *kdev,
- 	struct drm_i915_private *i915 = kdev_minor_to_i915(kdev);
- 	struct intel_rps *rps = &i915->gt.rps;
- 
--	return snprintf(buf, PAGE_SIZE, "%d\n",
--			intel_rps_read_actual_frequency(rps));
-+	return sysfs_emit(buf, "%d\n", intel_rps_read_actual_frequency(rps));
- }
- 
- static ssize_t gt_cur_freq_mhz_show(struct device *kdev,
-@@ -273,8 +272,7 @@ static ssize_t gt_cur_freq_mhz_show(struct device *kdev,
- 	struct drm_i915_private *i915 = kdev_minor_to_i915(kdev);
- 	struct intel_rps *rps = &i915->gt.rps;
- 
--	return snprintf(buf, PAGE_SIZE, "%d\n",
--			intel_gpu_freq(rps, rps->cur_freq));
-+	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->cur_freq));
- }
- 
- static ssize_t gt_boost_freq_mhz_show(struct device *kdev, struct device_attribute *attr, char *buf)
-@@ -282,8 +280,7 @@ static ssize_t gt_boost_freq_mhz_show(struct device *kdev, struct device_attribu
- 	struct drm_i915_private *i915 = kdev_minor_to_i915(kdev);
- 	struct intel_rps *rps = &i915->gt.rps;
- 
--	return snprintf(buf, PAGE_SIZE, "%d\n",
--			intel_gpu_freq(rps, rps->boost_freq));
-+	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->boost_freq));
- }
- 
- static ssize_t gt_boost_freq_mhz_store(struct device *kdev,
-@@ -323,8 +320,7 @@ static ssize_t vlv_rpe_freq_mhz_show(struct device *kdev,
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
- 	struct intel_rps *rps = &dev_priv->gt.rps;
- 
--	return snprintf(buf, PAGE_SIZE, "%d\n",
--			intel_gpu_freq(rps, rps->efficient_freq));
-+	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->efficient_freq));
- }
- 
- static ssize_t gt_max_freq_mhz_show(struct device *kdev, struct device_attribute *attr, char *buf)
-@@ -332,8 +328,7 @@ static ssize_t gt_max_freq_mhz_show(struct device *kdev, struct device_attribute
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
- 	struct intel_rps *rps = &dev_priv->gt.rps;
- 
--	return snprintf(buf, PAGE_SIZE, "%d\n",
--			intel_gpu_freq(rps, rps->max_freq_softlimit));
-+	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->max_freq_softlimit));
- }
- 
- static ssize_t gt_max_freq_mhz_store(struct device *kdev,
-@@ -387,8 +382,7 @@ static ssize_t gt_min_freq_mhz_show(struct device *kdev, struct device_attribute
- 	struct drm_i915_private *dev_priv = kdev_minor_to_i915(kdev);
- 	struct intel_rps *rps = &dev_priv->gt.rps;
- 
--	return snprintf(buf, PAGE_SIZE, "%d\n",
--			intel_gpu_freq(rps, rps->min_freq_softlimit));
-+	return sysfs_emit(buf, "%d\n", intel_gpu_freq(rps, rps->min_freq_softlimit));
- }
- 
- static ssize_t gt_min_freq_mhz_store(struct device *kdev,
-@@ -462,7 +456,7 @@ static ssize_t gt_rp_mhz_show(struct device *kdev, struct device_attribute *attr
- 	else
- 		BUG();
- 
--	return snprintf(buf, PAGE_SIZE, "%d\n", val);
-+	return sysfs_emit(buf, "%d\n", val);
- }
- 
- static const struct attribute * const gen6_attrs[] = {
--- 
-2.25.1
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
 
 
 _______________________________________________
