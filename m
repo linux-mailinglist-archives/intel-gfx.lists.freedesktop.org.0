@@ -1,31 +1,160 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35B963552A2
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Apr 2021 13:49:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C578F35533B
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Apr 2021 14:10:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD6776E3D2;
-	Tue,  6 Apr 2021 11:49:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D69306E175;
+	Tue,  6 Apr 2021 12:10:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0E3216E3D2;
- Tue,  6 Apr 2021 11:49:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 03E4DA47DF;
- Tue,  6 Apr 2021 11:49:01 +0000 (UTC)
+Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF7EF89A88;
+ Tue,  6 Apr 2021 04:53:57 +0000 (UTC)
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 1364o270075949;
+ Tue, 6 Apr 2021 04:53:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : content-type :
+ content-transfer-encoding : mime-version; s=corp-2020-01-29;
+ bh=z6WUpdpP7QuueY+6HVjqRyjPlcWvW85PeHWksryxc1s=;
+ b=SZgD5nxpzoPP5BC/kCwEtImG++GGuRJ0VsqbamZHDVSVjgaRvtQ/6rVKOY+yEZKEyaDO
+ CLcSPT2WMzlgk+oCe9lnQfwmIRFUHkunczw22nyPnuFT6fXAHjB83QuQW3E2d7pZPU27
+ qySJdDM8rjLgOxzYD1La6zZp+F/nwteSl4OYbk7olbPnzAjewLgFZSYSJsh9HT4yO9fg
+ gYkYZzp1l4shtyjVdZHLIUk754lEP7qacfu8Z0Ruf2YDZNAUt8e3yOlNDRuTk1xliiih
+ TH0fIDyeCY2obmPG7Ajwy80lBmEYoL5EpSc0onIHDnrXjlstWlEZ00Hee+afFMCDS6bP 9Q== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+ by userp2130.oracle.com with ESMTP id 37qfuxbbu3-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 06 Apr 2021 04:53:29 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+ by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 1364ox0U070460;
+ Tue, 6 Apr 2021 04:53:29 GMT
+Received: from nam12-bn8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12lp2170.outbound.protection.outlook.com [104.47.55.170])
+ by userp3020.oracle.com with ESMTP id 37q2ptrhk3-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 06 Apr 2021 04:53:29 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SAGSNV40JtFcwq3X7jA9RSJD/Ev1XspRw/n8rPitetg5YIpFELbxK3V4M+KXS0UszdBmvaPFWc3vOFsdhip6jgK5p9jWQJTwlT9cvPzSS3vejPAuLNGfMs0SHh/b58Q9Yq33KftC273jCoZcxuw4KKrR/CJJSDWMa2W33F/GYvHtRaGVIdK46vRGyn3viQqWQ3XV77ltcHl6QLvZavRHM54eKom/a7GgX3cx29O91lqxxXdd/9SdQgccR/wcM1qU8gMNJ/eldKEc8JSw0fYXyVZsA2/d8VjJQm3twjgvRCXNHGVtYSx0gVm22P569EPMke/Me793j0xQT78zf3EyFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z6WUpdpP7QuueY+6HVjqRyjPlcWvW85PeHWksryxc1s=;
+ b=RCWQqqIce2QJZRTRPi0FuQETmNMEsa+8gCTHOwOrzt5mueeqEJKtnmlrQWQL1kDPfHVrWMHYLAvQhknYuqsGiKrKTXXTewDGoGg9Hy4YcdgrFHz2+7eSI02p0Jb093+3wllobRXe5ojx6McrotNkmKktg/+R8bE0FpGxVxVUlfhC72AjNVzlPDbiGM1rfTSRQYy8V3I6Rtot9bqxX6zulr/w1nyWYSzE9E6rOVNFdCvGXYvtuZmohMDKfrIFEknu0O8ikA+6Hx+IUC4Ne1L3a7CQEaQ2RjYyWocbQB+s98zP73upkHs37i9gq7YO8lbQcQuvNtdrwk4pKC+piWjjcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
+ dkim=pass header.d=oracle.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z6WUpdpP7QuueY+6HVjqRyjPlcWvW85PeHWksryxc1s=;
+ b=d8dNvvSXzSsDMO6sC7yDvuKOp/gJV3ecOQzOQPp5O2/jZPQE7A53hdLOFYygRW8DLoGoYFVHzeqRK9yCO8B14byUHVGUWJJ2W+OasQyi0zfXgDxuNIw/p3mYFpaj2yRzZp0HArxHhc3nAKGKrN9oI/hgzaxCNK8dUiv+C525g/E=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none; vger.kernel.org; dmarc=none action=none header.from=oracle.com; 
+Received: from PH0PR10MB4759.namprd10.prod.outlook.com (2603:10b6:510:3d::12)
+ by PH0PR10MB4407.namprd10.prod.outlook.com (2603:10b6:510:31::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.27; Tue, 6 Apr
+ 2021 04:53:27 +0000
+Received: from PH0PR10MB4759.namprd10.prod.outlook.com
+ ([fe80::dc39:c9fa:7365:8c8e]) by PH0PR10MB4759.namprd10.prod.outlook.com
+ ([fe80::dc39:c9fa:7365:8c8e%5]) with mapi id 15.20.3999.032; Tue, 6 Apr 2021
+ 04:53:27 +0000
+From: "Martin K. Petersen" <martin.petersen@oracle.com>
+To: linux-kernel@vger.kernel.org, Martin Sebor <msebor@gcc.gnu.org>,
+ Arnd Bergmann <arnd@kernel.org>
+Date: Tue,  6 Apr 2021 00:53:17 -0400
+Message-Id: <161768454091.32082.3141021591391350544.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210322160253.4032422-1-arnd@kernel.org>
+References: <20210322160253.4032422-1-arnd@kernel.org>
+X-Originating-IP: [138.3.201.9]
+X-ClientProxiedBy: SN7PR04CA0193.namprd04.prod.outlook.com
+ (2603:10b6:806:126::18) To PH0PR10MB4759.namprd10.prod.outlook.com
+ (2603:10b6:510:3d::12)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Tue, 06 Apr 2021 11:49:00 -0000
-Message-ID: <161770974098.18461.14565663266439034493@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210406101421.723-1-anshuman.gupta@intel.com>
-In-Reply-To: <20210406101421.723-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Fix_uninitialized_symbol_=27msg=5Fend=27?=
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from ca-mkp.mkp.ca.oracle.com (138.3.201.9) by
+ SN7PR04CA0193.namprd04.prod.outlook.com (2603:10b6:806:126::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28 via Frontend
+ Transport; Tue, 6 Apr 2021 04:53:24 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f385b0ec-113a-4387-b9b6-08d8f8b7ea54
+X-MS-TrafficTypeDiagnostic: PH0PR10MB4407:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <PH0PR10MB440778A91E46EBDCE62741098E769@PH0PR10MB4407.namprd10.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 93uHS3GeWRBYH1lOKR45QUqNQwRZQxoCkbtPesys8HPxVodQfcYx1A7FwnjQ6J7pvxo6fQxRdHYR+FxcuaptEEe+5OA/W/c3kwaJ6ckLRy8rJoJ3EKqN5ApyalaqIMuKr5rKBCO1uSiGgG05qQIe0jGFtmXt+7Htl7UrFKazxK7fI53oojqGKl/C/Jzmz83sdd4lN/ZqxPVRxRMfxsQQqR3V1M/e24Gd5Dp8AuRZcbaZkzltqhB0wukp0pZw0wmwCRSkDoyIuj6syX4v0t//0ELOWq+tupyvGKuHHuCkn7N/Y3q2Soo0bRzJ4npiXuYhojqNvZ3QpUm9/7ua9s9FnKwPqgGgZImGuquSNvFOJK9iGHD6ZnUDmQgGx+pakdUl0X6aSMSgXY/cbf+F3/3n+zwElnVT52jn2xPWNL4DD9vB/RMxItZDDakVZNR4EawhLxUzFXaYRJZyTj1EKrnS5Emh+ERRNKo5O1TI6ceqNsXof5LHymo4GYSHDcnTkeUXc6OVEH2lhNnNqjsllAt7RORmWt4FmxkHcP+yYL1bDyZh+NI1bnbVQXqWCTuB+q4rI5r+pwlALMdu5e+f8km7h/MRnJeNh3ehNllJ/P9Z4XjQDdFmxRnqxinfU0WmgzxQeUQFqQiYylJxnkP8/ZEFIfJ20fCN47k/8sI+DtvCW99i+wzme/Ajk/3tEqINiYAUWT+bGqXkDoe0Ty7RvsPm/14+ULdeG9vvL47Qce7S2gEPVH8qzgcTisE1bKCaygzJKaofWxyGj/c9RR2tlhgxvw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR10MB4759.namprd10.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(39860400002)(346002)(376002)(366004)(396003)(136003)(52116002)(8936002)(6486002)(7696005)(66946007)(66476007)(186003)(478600001)(86362001)(966005)(8676002)(4326008)(66556008)(956004)(2616005)(6666004)(26005)(16526019)(4744005)(7416002)(36756003)(110136005)(316002)(2906002)(38100700001)(103116003)(54906003)(5660300002)(83380400001)(38350700001);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?YURqcGlvY3ROSmtUTHZFNFIrY3lKV0RmbWcrVTVzdDRPaFVxRk5uVC9QZWVE?=
+ =?utf-8?B?akxpSVFEODl0MzZ2aDRSV2VMSXZ3V0VTb2pnUVc3K08zTXpCeHNyNGFKR1J0?=
+ =?utf-8?B?K1ZvTXZsQnM2VS9mdnFEd3R4aGp5eVVIL24xNGRadXFONnNpVCtYOXRXRFpy?=
+ =?utf-8?B?ZVJKeG1HQXZnRnBaM0VJaVpIRm5WT3l1WHcrRnBMNzMzL1RvZ1JDT2txVC9a?=
+ =?utf-8?B?KzNzTk5PU0J6eEc2L3hRTWpnb0FIVTlnRXhCUXArMUVXZlgvZGFicHh5bHlr?=
+ =?utf-8?B?SndVb2JCZWtrd3FJclNmVllEMStDM3VNUUVQSm43Vnc0bmdYUGFlcnVvQ1hO?=
+ =?utf-8?B?VEhPanY4amlDWUcyTWFJQ1RWVHM1cG9MZE81RDh1T0hKd29aT0t4Q0FzSUFO?=
+ =?utf-8?B?WENkdFlzUDN6cUdMMTZwN1RJcEdwdkFoeDk2d0xiUHNrYTRteGkrYmR4SUdt?=
+ =?utf-8?B?UkZQTXU2R3dQdWN0aUJUMzk3bXdGVXZZMzdmSjIxd3ZZOTBodFpOTVlCTC9V?=
+ =?utf-8?B?NHMwSnlmUFNzRUhPb2pPZ0lXSGxhclBGWGFwWlc2NDI2aHlVSlVkVHhNa3RC?=
+ =?utf-8?B?MEJEamVjMFIwRHA0Nmxmd3Vid2JRRUhuT1UrVmVIdy9wU2RMVzNrRDNlQlA3?=
+ =?utf-8?B?UGROZTVVTDQxa3U1ZHdVTWxnYjVIbXl5R3ZrQU5CMjBJK0U0Y1lVN3dMZ2ZX?=
+ =?utf-8?B?WHo4Uk95Q29RNGRSVUZYY1NsRUFYWnQxMEY1ZnkxcmdlaEtYN1k3YjN6SXh5?=
+ =?utf-8?B?NlNGdmpBeGlneVlIVU02Q3UxaXNFRzZtL3lCWSt1VDBPTHR1aGoxSEVsYzdF?=
+ =?utf-8?B?L2lmWHBWWUVSK1dGK1A2dDhQL01HYlc0WUdRODVyNEwvZ0dzSWRBSWhmblRk?=
+ =?utf-8?B?K3lXb21TSnR6U1ZjakQrOEgwTGY0WHk5MDM1QkJPTmV5bWZ0aEFjT1dwN0tQ?=
+ =?utf-8?B?NE8zM1FPSFRvaGtSeHUzNTZsK2NuUVBHTU9waEg2THZwdlB3RWd5QndUMVA1?=
+ =?utf-8?B?UXFQaWtVRWE0Q3FTbHp1cXlLSklvUVgwVWI5SGRIMmUyanBGZVgvd1hyQTFO?=
+ =?utf-8?B?V3lFRmhGSmE5aVNJZHFoYTZXYkFpRTIrZStrMU12ajR1a050MnJoNTh6VXhE?=
+ =?utf-8?B?cnNxTHZwQkRQYjZzTkFnR0NKbHh3WUF3ZW01NVdRQVZ0emRHODFpUllmYURw?=
+ =?utf-8?B?aW56MnQwN3NQOThwZlBXU3kwVy94eSs0MHQ2UWVxdHBRdzdTSnowMkFKMUJj?=
+ =?utf-8?B?MXVhcFpXTXZnS0JNbUZxelc0VkZHSURBNFk5YzlGTDZ6cUYrU3h4N0xDT05x?=
+ =?utf-8?B?VW5OSmhzcGFyR0Q4QlF3SWpVeUEwVnQxckcybm1uUk5TNkZ3RlRZMGp6Q0dr?=
+ =?utf-8?B?TjNUVkJZWFJRM2dyV29EZWlTc0U4ZWNteTluaWV3S0JBWXJNUkVkbGIwOENJ?=
+ =?utf-8?B?NStyWkdpOUxMMElVM05OYmV2d01LYWtYM2I4T2pEakd5d2xMekxqSDNoQjJN?=
+ =?utf-8?B?N1FRSUptSDNlNDJuWWt6a0UreExzcWdZNXBOR3g0anJDeGk2SkRxWEhKQjZw?=
+ =?utf-8?B?U1VNa0RaOTNyWndyUTNkWmM2Rjc4cHNQOEJyZFFxSDYzemtPY0ZFWjZlaVd5?=
+ =?utf-8?B?N0NiSDY1aVRuQWdQbTh2dUx1V2tENkVVMk9YNDFraFdoR1lqS1ZNakFhb202?=
+ =?utf-8?B?TnVjTlhMU0ppQ054VGd1U3V5dmtzd0UzWnFjTDJBUnRNSnJsZ3ppeEpFT3ov?=
+ =?utf-8?Q?5OHyi5icPi59JqAm82Fnd0uLlP6brlh28gYHedq?=
+X-OriginatorOrg: oracle.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f385b0ec-113a-4387-b9b6-08d8f8b7ea54
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR10MB4759.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2021 04:53:26.9548 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xmVdxnGdf7a2vnYXIwTtK7NJsct9SYMrVudDygXaznCttKr22dqZGLJ2ixyBv/3wty5+YXVUWk6YkXKH1mrVgRPp6OIfH9PLVeRYRFBLMMc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR10MB4407
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9945
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ suspectscore=0
+ malwarescore=0 phishscore=0 bulkscore=0 mlxscore=0 spamscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104030000 definitions=main-2104060030
+X-Proofpoint-GUID: _1EE_DsccH4Sfb1pX4B7aUVVtInHHQSF
+X-Proofpoint-ORIG-GUID: _1EE_DsccH4Sfb1pX4B7aUVVtInHHQSF
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=9945
+ signatures=668683
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1011
+ malwarescore=0
+ suspectscore=0 impostorscore=0 mlxscore=0 priorityscore=1501
+ mlxlogscore=999 bulkscore=0 spamscore=0 adultscore=0 phishscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104030000 definitions=main-2104060030
+X-Mailman-Approved-At: Tue, 06 Apr 2021 12:10:41 +0000
+Subject: Re: [Intel-gfx] [PATCH 00/11] treewide: address gcc-11
+ -Wstringop-overread warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,213 +167,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1312187406=="
+Cc: dri-devel@lists.freedesktop.org, linux-scsi@vger.kernel.org, x86@kernel.org,
+ James Smart <james.smart@broadcom.com>, tboot-devel@lists.sourceforge.net,
+ Kalle Valo <kvalo@codeaurora.org>, Anders Larsen <al@alarsen.net>,
+ Serge Hallyn <serge@hallyn.com>, Arnd Bergmann <arnd@arndb.de>,
+ intel-gfx@lists.freedesktop.org, Ning Sun <ning.sun@intel.com>,
+ cgroups@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ "Martin K . Petersen" <martin.petersen@oracle.com>, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+ linux-security-module@vger.kernel.org, Tejun Heo <tj@kernel.org>,
+ Simon Kelley <simon@thekelleys.org.uk>,
+ "James E.J. Bottomley" <jejb@linux.ibm.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1312187406==
-Content-Type: multipart/alternative;
- boundary="===============7755973070359159866=="
+On Mon, 22 Mar 2021 17:02:38 +0100, Arnd Bergmann wrote:
 
---===============7755973070359159866==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> The coming gcc release introduces a new warning for string operations
+> reading beyond the end of a fixed-length object. After testing
+> randconfig kernels for a while, think I have patches for any such
+> warnings that came up on x86, arm and arm64.
+> 
+> Most of these warnings are false-positive ones, either gcc warning
+> about something that is entirely correct, or about something that
+> looks suspicious but turns out to be correct after all.
+> 
+> [...]
 
-== Series Details ==
+Applied to 5.13/scsi-queue, thanks!
 
-Series: drm/i915/hdcp: Fix uninitialized symbol 'msg_end'
-URL   : https://patchwork.freedesktop.org/series/88756/
-State : success
+[09/11] scsi: lpfc: fix gcc -Wstringop-overread warning
+        https://git.kernel.org/mkp/scsi/c/ada48ba70f6b
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9928 -> Patchwork_19894
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19894 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([i915#402]) +2 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9928/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][6] ([i915#402]) -> [PASS][7] +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9928/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (45 -> 40)
-------------------------------
-
-  Additional (1): fi-bdw-5557u 
-  Missing    (6): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9928 -> Patchwork_19894
-
-  CI-20190529: 20190529
-  CI_DRM_9928: 39a8c358dcd5eaa8c6f8c81c69055d4f6574307c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6056: 84e6a7e19ccc7fafc46f372e756cad9d4aa093f7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19894: e4f71c7c55045407ab9c4f203c397e22a6d4e9a4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e4f71c7c5504 drm/i915/hdcp: Fix uninitialized symbol 'msg_end'
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/index.html
-
---===============7755973070359159866==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Fix uninitialized symbol &#39;msg_end&#39;</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88756/">https://patchwork.freedesktop.org/series/88756/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9928 -&gt; Patchwork_19894</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19894 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9928/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@prime_self_import@basic-with_one_bo_two_files:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9928/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19894/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (45 -&gt; 40)</h2>
-<p>Additional (1): fi-bdw-5557u <br />
-  Missing    (6): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9928 -&gt; Patchwork_19894</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9928: 39a8c358dcd5eaa8c6f8c81c69055d4f6574307c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6056: 84e6a7e19ccc7fafc46f372e756cad9d4aa093f7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19894: e4f71c7c55045407ab9c4f203c397e22a6d4e9a4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e4f71c7c5504 drm/i915/hdcp: Fix uninitialized symbol 'msg_end'</p>
-
-</body>
-</html>
-
---===============7755973070359159866==--
-
---===============1312187406==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Martin K. Petersen	Oracle Linux Engineering
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1312187406==--
