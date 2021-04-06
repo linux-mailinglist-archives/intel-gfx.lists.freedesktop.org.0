@@ -2,42 +2,125 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37EF23568A3
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Apr 2021 12:02:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 187EA356BE4
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Apr 2021 14:15:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A78B36E088;
-	Wed,  7 Apr 2021 10:02:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E75D6E152;
+	Wed,  7 Apr 2021 12:15:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEF156E088
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Apr 2021 10:02:32 +0000 (UTC)
-IronPort-SDR: lfPDPdW8VOFi22r6zMzLULThM3qBEw03vyFic3JAItpvowYbThMagIrXqYu88gsjVzmmPjCHzh
- Cn6w1HnJCcRw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9946"; a="213662533"
-X-IronPort-AV: E=Sophos;i="5.82,203,1613462400"; d="scan'208";a="213662533"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2021 03:02:21 -0700
-IronPort-SDR: FQ97xgW2Bawhc37aHiIHLr7gQEWZX5z19/aF3ztvPm+fAtDxceNTkGFS+HmqKsEoptiy5Al3ss
- V+aaPbIZ2syA==
-X-IronPort-AV: E=Sophos;i="5.82,203,1613462400"; d="scan'208";a="421630301"
-Received: from shochwel-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.33.133])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2021 03:02:20 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>
-In-Reply-To: <161778896672.12995.12386289714718473633@emeril.freedesktop.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210407090812.3602-1-jani.nikula@intel.com>
- <161778896672.12995.12386289714718473633@emeril.freedesktop.org>
-Date: Wed, 07 Apr 2021 13:02:17 +0300
-Message-ID: <87r1jmjtue.fsf@intel.com>
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2063.outbound.protection.outlook.com [40.107.236.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16A9B6E8AF;
+ Tue,  6 Apr 2021 20:07:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hKaYyFNLaNQOZEemqx+qlQ2n20kZ67guoxSFxYDvegm5fE0bFGBLZ0aPdJdhUpLMyFoogLJN3ZlL7UuRyQx2UTdHMAvYM2lUoDZHPN7QSHrGzDXa/O1QwmrFH8dtPmhNtJ0MO/J0K7QuZ+Z0C4kziNl78juXYLgiSaRjCiAfjWr+XmuMYMk+w31ax8EE57R55+4pvhkGRZRdUs0aPzrlOyqT9mtMtzuXkkO2NSl59bj4nP1yANpgYOXJ5KLbcjzhk1xrxhjFjJ6aQCDG5WYIM74JmoVz4QRqZTX54LQZqcErhS+eQ9GaNYl1a+xqcHOwaM5nALTuSbrSFegOfrslkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pQz5KvjjX7thR+DVlFOXa9VeJSk7pPDIRbsC+KXJL14=;
+ b=ClC5PWnLYp1OBqo0VtByrW2B4eTLQGly9ybavPgbQtTn61nrG6XrpQYyDg4POULQIR/seiCblMTeRSMTnWuWRWKQt3hulpv0D3CqvuoqIp/bNdLhnmXpnwsMR2e8XfLI0GB0DVClyf4w32bBSaiCqdixT9WNiVXRDtOCbDU84JjDRcgiNawDcwnQTIlb2KTZW8ig3pAkXug4bLHNV5OZ5HHSCVap5l8cq4hlDFVYUnDD0XsnOPHufe4cjh3Nw33E0FxgEBxlQijXZO+WB69u2g/6bPg0LqgNz3g+/4OWzlc7g+bYCIjVF2WTEfM64CFh9EggBZrZG4V+JBK2eIA8Zw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pQz5KvjjX7thR+DVlFOXa9VeJSk7pPDIRbsC+KXJL14=;
+ b=QfFr32B9vMcAbiYck7Hr/4oP8Mc2U/jn6+qRnC0xkB739fliwPRUqs/xlHedbgTEZQ8/r1Z7qhUCOBvJoam04j7dSGNxZjJFp+y7FldSsX23a3AuB99OAAlKHQA6hWEGlHP1CxDR5HXxeQ1WIhvPIN8IacEZd9MWUo4O1ZAqbsTIMCiXSUdPTaelIL0L0N/MtbZ9o0ZVcIXSi9hlWjTmkN4zrInIub89XjhKDP9XS2FRij+v6nlNVrxMFo+8CyvKCSzHYadtJOAz60meRfr+WEHao+Vzb2ePk2RRtwN+AwNhm7LW+EzaOrzaawCTvujfojVv7cto+jEudje2L0dxTw==
+Authentication-Results: linux.ie; dkim=none (message not signed)
+ header.d=none;linux.ie; dmarc=none action=none header.from=nvidia.com;
+Received: from DM6PR12MB3834.namprd12.prod.outlook.com (2603:10b6:5:14a::12)
+ by DM5PR12MB1883.namprd12.prod.outlook.com (2603:10b6:3:113::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.27; Tue, 6 Apr
+ 2021 20:07:23 +0000
+Received: from DM6PR12MB3834.namprd12.prod.outlook.com
+ ([fe80::1c62:7fa3:617b:ab87]) by DM6PR12MB3834.namprd12.prod.outlook.com
+ ([fe80::1c62:7fa3:617b:ab87%6]) with mapi id 15.20.3999.032; Tue, 6 Apr 2021
+ 20:07:23 +0000
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: David Airlie <airlied@linux.ie>, Tony Krowiak <akrowiak@linux.ibm.com>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ Eric Farman <farman@linux.ibm.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org,
+ Kirti Wankhede <kwankhede@nvidia.com>, linux-s390@vger.kernel.org,
+ Peter Oberparleiter <oberpar@linux.ibm.com>,
+ Halil Pasic <pasic@linux.ibm.com>, Pierre Morel <pmorel@linux.ibm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
+Date: Tue,  6 Apr 2021 16:40:40 -0300
+Message-Id: <17-v2-d36939638fc6+d54-vfio2_jgg@nvidia.com>
+In-Reply-To: <0-v2-d36939638fc6+d54-vfio2_jgg@nvidia.com>
+References: 
+X-Originating-IP: [142.162.115.133]
+X-ClientProxiedBy: BL0PR03CA0027.namprd03.prod.outlook.com
+ (2603:10b6:208:2d::40) To DM6PR12MB3834.namprd12.prod.outlook.com
+ (2603:10b6:5:14a::12)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/backlight=3A_switch_to_unique_backlight_device_names?=
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from mlx.ziepe.ca (142.162.115.133) by
+ BL0PR03CA0027.namprd03.prod.outlook.com (2603:10b6:208:2d::40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3999.28 via Frontend Transport; Tue, 6 Apr 2021 20:07:22 +0000
+Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
+ <jgg@nvidia.com>)	id 1lTrZ4-001mXu-G3; Tue, 06 Apr 2021 16:40:42 -0300
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c16b43ec-dcd5-4cc6-a792-08d8f9379728
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1883:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1883F603D6A7F66D3F8F40ECC2769@DM5PR12MB1883.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 12ZzVD5Lr87fpvFfZOj3vtlSDl8Zw/a4G1+IEhgYYx2uhlo0YZfJh1FVE+rR0GAcg/tFihwHSCNSUs3m7YDiMrV8vqtwNALKWjroboaAyhpYICb+MctRc9lmDkXUIhQLUN1dhJUtTcYmlJPAs4ukBUHivJ/ttOL9bxQomEyY3ZZFdKPzZFWwioqsBwkcyXzcsA4sNTiZ+NBdWIVFmwThlvc1NnR6pTYFEobcv4zJ6XY40tLFGf+48Hn/w9FXZ0wrdWc03EaG/jhP7T2HSf1/m2ulYxFy9CWUHfK1wOwN5dvyCXzT6nIVfjZqyM25O0GQNy6+pBGWob2abtRNjPdXcmetBA9/BrIM/FTd7XDpaNusIR8GxfakZFzQuGMhlXHP5TxVW/7WRmyWPGEXnzm5uUmgpaJLLuowJr2Ob57xyacSwoPIqyhhdj77xLEuxU263RP/Fc8OSXSppd03P7+Ut0GLznHD9LBnx9EzwlKUYaVpHYFVOkYRv/cR7B65/wYNMtnezy6ewoGs11seYrzTGY7cXzH4uBBiSsZts8Upj4WP8XxqEaW5Bejt01Iw8vfUaC/gyBFjC28Od+c4t7MvA2F5fE2k/ZoVI6gGp5t97GSnB78EIeDeALfADmUhCS7OYCdiBOScG3VnAdJY5Z6BVNK5Q2Zns7zoWdyLdT5C0xAnaIyV8VClZjtZLILYtoL4
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3834.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(136003)(39860400002)(366004)(346002)(396003)(38100700001)(186003)(86362001)(8676002)(8936002)(2906002)(2616005)(316002)(7416002)(54906003)(478600001)(110136005)(9746002)(83380400001)(26005)(66556008)(5660300002)(66946007)(107886003)(9786002)(4326008)(36756003)(921005)(426003)(66476007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?GGibTQ8RLskmI4XO6PdQDP97SIeXXTeK0Sw6sDdYWElf2x/uRfvrwXXYvqif?=
+ =?us-ascii?Q?gMsBqRb2mvrYv/eautLS5iVXPPvs1HB/4/D/c7mdVt7CMYceM+TnvNY9rFDM?=
+ =?us-ascii?Q?a4N2JzRIz+scV+xwfkG1FeVCvP8OWIx4aa9wWJQtN1eTl46TBejt4gCicnsG?=
+ =?us-ascii?Q?Bll7dvpne4Wsm1ZJwLYKboKQiHM4pKUZ/MSzztdJKsjb4mlfpndYpGu0W6RN?=
+ =?us-ascii?Q?y1g6u2iGgXnTf83Tw1kgUv28AN2oTnYooIpj7WPe5tDVcuBseVp82A7eXnaL?=
+ =?us-ascii?Q?kyLsZ2aBfHYUH6dVJlCfjapYnZ6UGsllrD5DnBcdZ1TL5TggWpwPuaIJmmdg?=
+ =?us-ascii?Q?fYgCGcU/1c0D8499ijVAi7B+12XBbA+zy0pQoCxbPVENz+1Wa/bA1GQl9Taq?=
+ =?us-ascii?Q?N4t3fCzoOF5c6KqKH7KpS/MYFfs2FCXzyaUnrNMZADwovLMjAe9Uc7sUUOlW?=
+ =?us-ascii?Q?P/iGtGHW43YvNhjF0m5pVBZhQAjyJB8mZnYRmH1fpmbCXteeFI6ytVwf2TKh?=
+ =?us-ascii?Q?aoM4gT7TAMtgIjMiS+uALsyS5AXsZZc0Z8uul4d0nalZqWjdfvYxLfhyc3ZT?=
+ =?us-ascii?Q?TCbNm5pyKIFmuWVlxx0NaMIRwGja7zmXpQIrDGjqbP0cFGxITmIpE0x5/T4G?=
+ =?us-ascii?Q?KrBMltoelaCEo4USzaTqjHAFoL1xjoe6l7Vul3Rxjm5S9vAkO5JUWwoUrb16?=
+ =?us-ascii?Q?NICCUjVQvvGVnsFhLs2Weoi8HOCe1fFSWxuG7ARLhfe75DY1M+/xgLThPbjI?=
+ =?us-ascii?Q?RV8gSf9cplx2NGrkQepaKssmqgV/vmgFW6Q54ivob0Vyo4MFI/PnbEGVEprr?=
+ =?us-ascii?Q?kOBloS83Bge/KROc9BIQXU9o9eqleT71+iQWYks4qY9i4j3MLadbOVg7iK/n?=
+ =?us-ascii?Q?CqgtoJIj5ymcz6HwdDMt8+HBmGqUPqf7Tx0Cie//np/s16q9LkdGj6wfAxK7?=
+ =?us-ascii?Q?pjFYmDhZIRjSlW1b3sJOiVN6UIaz/l7sIwINXlNX7RQJ0lwBQgxwdVKmyWrC?=
+ =?us-ascii?Q?yGpxiDrYCiH3kjDBVYMvZKSUvRiitYiaJ5iPcNQa4yhms3+1dWRW2Bw62+KE?=
+ =?us-ascii?Q?3IfG0PzDDTQkMANtuZz3w0SMhzA1WCxE+u1yjiIkinmx+F2TI/0XWVSsaQCT?=
+ =?us-ascii?Q?VjVtopz3j781mid5aZd+oR4+Pue3nXwa9WnZxiXaBA0Do1KxKzKsML4cxL6D?=
+ =?us-ascii?Q?14oCdBgIkKAm1xWbgn5Pmgxn8GnR5d8LRZxy+i1OFAXO0L6kSpuZGdkNZtcp?=
+ =?us-ascii?Q?IC3SxpY7mHVKpZMctp2P/Bi37UXVfGDu8z+mfT3EsOaWWHeByXg711Vk9ueq?=
+ =?us-ascii?Q?OOCI76CbMQadF6YI0lbjasIr++8czRnZlfna2OZaEcFz/Q=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c16b43ec-dcd5-4cc6-a792-08d8f9379728
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3834.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2021 20:07:23.1174 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EAt7p3spiPjS8SsQNFCHDz03CNjrL6DLOxk65OD541zQJcWthTd27IOHWxHpQ0Sw
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1883
+X-Mailman-Approved-At: Wed, 07 Apr 2021 12:15:31 +0000
+Subject: [Intel-gfx] [PATCH v2 17/18] vfio/mdev: Remove kobj from
+ mdev_parent_ops->create()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,177 +133,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Max Gurtovoy <mgurtovoy@nvidia.com>, "Raj, Ashok" <ashok.raj@intel.com>,
+ Cornelia Huck <cohuck@redhat.com>, Tarun Gupta <targupta@nvidia.com>,
+ Dan Williams <dan.j.williams@intel.com>, Leon Romanovsky <leonro@nvidia.com>,
+ Christoph Hellwig <hch@lst.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 07 Apr 2021, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: drm/i915/backlight: switch to unique backlight device names
-> URL   : https://patchwork.freedesktop.org/series/88798/
-> State : failure
->
-> == Summary ==
->
-> CI Bug Log - changes from CI_DRM_9931 -> Patchwork_19897
-> ====================================================
->
-> Summary
-> -------
->
->   **FAILURE**
->
->   Serious unknown changes coming with Patchwork_19897 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_19897, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
->
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/index.html
->
-> Possible new issues
-> -------------------
->
->   Here are the unknown changes that may have been introduced in Patchwork_19897:
->
-> ### IGT changes ###
->
-> #### Possible regressions ####
->
->   * igt@i915_pm_backlight@basic-brightness:
->     - fi-icl-u2:          [PASS][1] -> [SKIP][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-icl-u2/igt@i915_pm_backlight@basic-brightness.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-icl-u2/igt@i915_pm_backlight@basic-brightness.html
->     - fi-cml-u2:          [PASS][3] -> [SKIP][4]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-cml-u2/igt@i915_pm_backlight@basic-brightness.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-cml-u2/igt@i915_pm_backlight@basic-brightness.html
->     - fi-icl-y:           [PASS][5] -> [SKIP][6]
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-icl-y/igt@i915_pm_backlight@basic-brightness.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-icl-y/igt@i915_pm_backlight@basic-brightness.html
->     - fi-tgl-y:           [PASS][7] -> [SKIP][8]
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-tgl-y/igt@i915_pm_backlight@basic-brightness.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-tgl-y/igt@i915_pm_backlight@basic-brightness.html
->     - fi-cml-s:           [PASS][9] -> [SKIP][10]
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-cml-s/igt@i915_pm_backlight@basic-brightness.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-cml-s/igt@i915_pm_backlight@basic-brightness.html
+The kobj here is a type-erased version of mdev_type, which is already
+stored in the struct mdev_device being passed in. It was only ever used to
+compute the type_group_id, which is now extracted directly from the mdev.
 
-This is unsurprising, as igt is silly and uses a fixed "intel_backlight"
-path.
+Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+Reviewed-by: Cornelia Huck <cohuck@redhat.com>
+Reviewed-by: Christoph Hellwig <hch@lst.de>
+Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+---
+ drivers/gpu/drm/i915/gvt/kvmgt.c  | 2 +-
+ drivers/s390/cio/vfio_ccw_ops.c   | 2 +-
+ drivers/s390/crypto/vfio_ap_ops.c | 2 +-
+ drivers/vfio/mdev/mdev_core.c     | 2 +-
+ include/linux/mdev.h              | 3 +--
+ samples/vfio-mdev/mbochs.c        | 2 +-
+ samples/vfio-mdev/mdpy.c          | 2 +-
+ samples/vfio-mdev/mtty.c          | 2 +-
+ 8 files changed, 8 insertions(+), 9 deletions(-)
 
-BR,
-Jani.
-
-
->
->   
-> #### Suppressed ####
->
->   The following results come from untrusted machines, tests, or statuses.
->   They do not affect the overall result.
->
->   * igt@i915_pm_backlight@basic-brightness:
->     - {fi-ehl-1}:         [PASS][11] -> [SKIP][12]
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-ehl-1/igt@i915_pm_backlight@basic-brightness.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-ehl-1/igt@i915_pm_backlight@basic-brightness.html
->     - {fi-tgl-dsi}:       [PASS][13] -> [SKIP][14]
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-tgl-dsi/igt@i915_pm_backlight@basic-brightness.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-tgl-dsi/igt@i915_pm_backlight@basic-brightness.html
->     - {fi-ehl-2}:         [PASS][15] -> [SKIP][16]
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-ehl-2/igt@i915_pm_backlight@basic-brightness.html
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-ehl-2/igt@i915_pm_backlight@basic-brightness.html
->
->   
-> Known issues
-> ------------
->
->   Here are the changes found in Patchwork_19897 that come from known issues:
->
-> ### IGT changes ###
->
-> #### Issues hit ####
->
->   * igt@fbdev@read:
->     - fi-tgl-y:           [PASS][17] -> [DMESG-WARN][18] ([i915#402]) +2 similar issues
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-tgl-y/igt@fbdev@read.html
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-tgl-y/igt@fbdev@read.html
->
->   * igt@i915_pm_backlight@basic-brightness:
->     - fi-skl-6600u:       [PASS][19] -> [SKIP][20] ([fdo#109271])
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-skl-6600u/igt@i915_pm_backlight@basic-brightness.html
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-skl-6600u/igt@i915_pm_backlight@basic-brightness.html
->     - fi-snb-2520m:       [PASS][21] -> [SKIP][22] ([fdo#109271])
->    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-snb-2520m/igt@i915_pm_backlight@basic-brightness.html
->    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-snb-2520m/igt@i915_pm_backlight@basic-brightness.html
->     - fi-bxt-dsi:         [PASS][23] -> [SKIP][24] ([fdo#109271])
->    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-bxt-dsi/igt@i915_pm_backlight@basic-brightness.html
->    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-bxt-dsi/igt@i915_pm_backlight@basic-brightness.html
->     - fi-kbl-r:           [PASS][25] -> [SKIP][26] ([fdo#109271])
->    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-kbl-r/igt@i915_pm_backlight@basic-brightness.html
->    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-kbl-r/igt@i915_pm_backlight@basic-brightness.html
->     - fi-bsw-kefka:       [PASS][27] -> [SKIP][28] ([fdo#109271])
->    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-bsw-kefka/igt@i915_pm_backlight@basic-brightness.html
->    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-bsw-kefka/igt@i915_pm_backlight@basic-brightness.html
->     - fi-glk-dsi:         [PASS][29] -> [SKIP][30] ([fdo#109271])
->    [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-glk-dsi/igt@i915_pm_backlight@basic-brightness.html
->    [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-glk-dsi/igt@i915_pm_backlight@basic-brightness.html
->     - fi-kbl-soraka:      [PASS][31] -> [SKIP][32] ([fdo#109271])
->    [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-kbl-soraka/igt@i915_pm_backlight@basic-brightness.html
->    [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-kbl-soraka/igt@i915_pm_backlight@basic-brightness.html
->
->   * igt@i915_selftest@live@hangcheck:
->     - fi-snb-2600:        [PASS][33] -> [INCOMPLETE][34] ([i915#2782])
->    [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
->    [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
->
->   
-> #### Possible fixes ####
->
->   * igt@prime_vgem@basic-gtt:
->     - fi-tgl-y:           [DMESG-WARN][35] ([i915#402]) -> [PASS][36] +1 similar issue
->    [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9931/fi-tgl-y/igt@prime_vgem@basic-gtt.html
->    [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/fi-tgl-y/igt@prime_vgem@basic-gtt.html
->
->   
->   {name}: This element is suppressed. This means it is ignored when computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
->
->   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
->   [i915#1155]: https://gitlab.freedesktop.org/drm/intel/issues/1155
->   [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
->   [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
->
->
-> Participating hosts (43 -> 40)
-> ------------------------------
->
->   Missing    (3): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
->
->
-> Build changes
-> -------------
->
->   * Linux: CI_DRM_9931 -> Patchwork_19897
->
->   CI-20190529: 20190529
->   CI_DRM_9931: 88d3a98ecbb1264e9046972e1103ac11b573bf83 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_6059: fae783adafb5face387d2df7a983de5c1d752b45 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
->   Patchwork_19897: 9a58db04f241c83503c0a25dd4d30b78424d3662 @ git://anongit.freedesktop.org/gfx-ci/linux
->
->
-> == Linux commits ==
->
-> 9a58db04f241 drm/i915/backlight: switch to unique backlight device names
->
-> == Logs ==
->
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19897/index.html
-
+diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+index 16e1e4a38aa1f6..6bf176e8426e63 100644
+--- a/drivers/gpu/drm/i915/gvt/kvmgt.c
++++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+@@ -689,7 +689,7 @@ static void kvmgt_put_vfio_device(void *vgpu)
+ 	vfio_device_put(vdev->vfio_device);
+ }
+ 
+-static int intel_vgpu_create(struct kobject *kobj, struct mdev_device *mdev)
++static int intel_vgpu_create(struct mdev_device *mdev)
+ {
+ 	struct intel_vgpu *vgpu = NULL;
+ 	struct intel_vgpu_type *type;
+diff --git a/drivers/s390/cio/vfio_ccw_ops.c b/drivers/s390/cio/vfio_ccw_ops.c
+index 767ac41686fe2f..10407cf67583c6 100644
+--- a/drivers/s390/cio/vfio_ccw_ops.c
++++ b/drivers/s390/cio/vfio_ccw_ops.c
+@@ -110,7 +110,7 @@ static struct attribute_group *mdev_type_groups[] = {
+ 	NULL,
+ };
+ 
+-static int vfio_ccw_mdev_create(struct kobject *kobj, struct mdev_device *mdev)
++static int vfio_ccw_mdev_create(struct mdev_device *mdev)
+ {
+ 	struct vfio_ccw_private *private =
+ 		dev_get_drvdata(mdev_parent_dev(mdev));
+diff --git a/drivers/s390/crypto/vfio_ap_ops.c b/drivers/s390/crypto/vfio_ap_ops.c
+index 1ffdd411201cd6..d319152dd484a2 100644
+--- a/drivers/s390/crypto/vfio_ap_ops.c
++++ b/drivers/s390/crypto/vfio_ap_ops.c
+@@ -322,7 +322,7 @@ static void vfio_ap_matrix_init(struct ap_config_info *info,
+ 	matrix->adm_max = info->apxa ? info->Nd : 15;
+ }
+ 
+-static int vfio_ap_mdev_create(struct kobject *kobj, struct mdev_device *mdev)
++static int vfio_ap_mdev_create(struct mdev_device *mdev)
+ {
+ 	struct ap_matrix_mdev *matrix_mdev;
+ 
+diff --git a/drivers/vfio/mdev/mdev_core.c b/drivers/vfio/mdev/mdev_core.c
+index 5ae06f951a0998..10eff33ce1f263 100644
+--- a/drivers/vfio/mdev/mdev_core.c
++++ b/drivers/vfio/mdev/mdev_core.c
+@@ -286,7 +286,7 @@ int mdev_device_create(struct mdev_type *type, const guid_t *uuid)
+ 		goto out_put_device;
+ 	}
+ 
+-	ret = parent->ops->create(&type->kobj, mdev);
++	ret = parent->ops->create(mdev);
+ 	if (ret)
+ 		goto out_unlock;
+ 
+diff --git a/include/linux/mdev.h b/include/linux/mdev.h
+index 41e91936522394..c3a800051d6146 100644
+--- a/include/linux/mdev.h
++++ b/include/linux/mdev.h
+@@ -61,7 +61,6 @@ unsigned int mtype_get_type_group_id(struct kobject *mtype_kobj);
+  * @create:		Called to allocate basic resources in parent device's
+  *			driver for a particular mediated device. It is
+  *			mandatory to provide create ops.
+- *			@kobj: kobject of type for which 'create' is called.
+  *			@mdev: mdev_device structure on of mediated device
+  *			      that is being created
+  *			Returns integer: success (0) or error (< 0)
+@@ -107,7 +106,7 @@ struct mdev_parent_ops {
+ 	const struct attribute_group **mdev_attr_groups;
+ 	struct attribute_group **supported_type_groups;
+ 
+-	int     (*create)(struct kobject *kobj, struct mdev_device *mdev);
++	int     (*create)(struct mdev_device *mdev);
+ 	int     (*remove)(struct mdev_device *mdev);
+ 	int     (*open)(struct mdev_device *mdev);
+ 	void    (*release)(struct mdev_device *mdev);
+diff --git a/samples/vfio-mdev/mbochs.c b/samples/vfio-mdev/mbochs.c
+index a1af30df10a2ee..ac4d0dc2490705 100644
+--- a/samples/vfio-mdev/mbochs.c
++++ b/samples/vfio-mdev/mbochs.c
+@@ -506,7 +506,7 @@ static int mbochs_reset(struct mdev_device *mdev)
+ 	return 0;
+ }
+ 
+-static int mbochs_create(struct kobject *kobj, struct mdev_device *mdev)
++static int mbochs_create(struct mdev_device *mdev)
+ {
+ 	const struct mbochs_type *type =
+ 		&mbochs_types[mdev_get_type_group_id(mdev)];
+diff --git a/samples/vfio-mdev/mdpy.c b/samples/vfio-mdev/mdpy.c
+index 08c15f9f06a880..da88fd7dd42329 100644
+--- a/samples/vfio-mdev/mdpy.c
++++ b/samples/vfio-mdev/mdpy.c
+@@ -216,7 +216,7 @@ static int mdpy_reset(struct mdev_device *mdev)
+ 	return 0;
+ }
+ 
+-static int mdpy_create(struct kobject *kobj, struct mdev_device *mdev)
++static int mdpy_create(struct mdev_device *mdev)
+ {
+ 	const struct mdpy_type *type =
+ 		&mdpy_types[mdev_get_type_group_id(mdev)];
+diff --git a/samples/vfio-mdev/mtty.c b/samples/vfio-mdev/mtty.c
+index 191a587a8d5ab1..f2e36c06ac6aa2 100644
+--- a/samples/vfio-mdev/mtty.c
++++ b/samples/vfio-mdev/mtty.c
+@@ -708,7 +708,7 @@ static ssize_t mdev_access(struct mdev_device *mdev, u8 *buf, size_t count,
+ 	return ret;
+ }
+ 
+-static int mtty_create(struct kobject *kobj, struct mdev_device *mdev)
++static int mtty_create(struct mdev_device *mdev)
+ {
+ 	struct mdev_state *mdev_state;
+ 	int nr_ports = mdev_get_type_group_id(mdev) + 1;
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.31.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
