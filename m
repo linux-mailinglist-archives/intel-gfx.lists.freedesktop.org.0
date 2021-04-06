@@ -1,49 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 777FA355DBB
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Apr 2021 23:17:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 993EC355DBC
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Apr 2021 23:17:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A0A26E846;
-	Tue,  6 Apr 2021 21:17:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C2266E8C4;
+	Tue,  6 Apr 2021 21:17:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E29C6E846
- for <intel-gfx@lists.freedesktop.org>; Tue,  6 Apr 2021 21:17:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AADE6E8C4
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Apr 2021 21:17:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1617743821;
+ s=mimecast20190719; t=1617743822;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=KJUn2ssf/ULcrdCSKFDPTC4Gfd9s1AfVOAzFNeb3+Q4=;
- b=elUpygWO7DcBbzmVWyFB6JAmwM0xZ+sTMUi65tlZDDh0RLTdLz1yXOriuHdEKWs/U580Yy
- xqzweZW8/8N0I/PjNnQaNtAevjXdvShkSNvnUjUYhq4hXyMrcJId6VpV87ynXrAMC3iiJX
- xQT7HQU6vdIV3czlbv7TZt6HuFnsRpQ=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Yuyls6IZ8hM8W+RLby4U2pmwxvdOd9gbz5j9zkF+SIY=;
+ b=XAswz8XrAI2DMnoUe+AYOvTieOsnBX0zSkblk7oPouULvKpyK2gUA5TXKP7UxsU7waRxar
+ fz2jRx1Bxs4QFZtJCNzjN9ZAwRuq5aJcrAUeE69sZo2gRnqvNCbQhT/U0+VJFOBWlrflTX
+ av3NcqPBuUw46gekNh4LSg1FE5ccTeQ=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-410-vJX9QZhUPdig9HOkf3w2NA-1; Tue, 06 Apr 2021 17:16:57 -0400
-X-MC-Unique: vJX9QZhUPdig9HOkf3w2NA-1
+ us-mta-110-UU69IZE5OPqydiLhNj8v1w-1; Tue, 06 Apr 2021 17:16:58 -0400
+X-MC-Unique: UU69IZE5OPqydiLhNj8v1w-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 100AA8030D6;
- Tue,  6 Apr 2021 21:16:56 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9BB828030DD;
+ Tue,  6 Apr 2021 21:16:57 +0000 (UTC)
 Received: from x1.localdomain (ovpn-112-11.ams2.redhat.com [10.36.112.11])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 6465D6EF54;
- Tue,  6 Apr 2021 21:16:54 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 57475226FD;
+ Tue,  6 Apr 2021 21:16:56 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: "Rafael J . Wysocki" <rjw@rjwysocki.net>, Len Brown <lenb@kernel.org>,
  Zhang Rui <rui.zhang@intel.com>
-Date: Tue,  6 Apr 2021 23:16:52 +0200
-Message-Id: <20210406211653.182338-1-hdegoede@redhat.com>
+Date: Tue,  6 Apr 2021 23:16:53 +0200
+Message-Id: <20210406211653.182338-2-hdegoede@redhat.com>
+In-Reply-To: <20210406211653.182338-1-hdegoede@redhat.com>
+References: <20210406211653.182338-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-Subject: [Intel-gfx] [PATCH 1/2] ACPI: utils: Add acpi_reduced_hardware()
- helper
+Subject: [Intel-gfx] [PATCH 2/2] ACPI: video: Check LCD flag on
+ ACPI-reduced-hardware devices
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,66 +65,112 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a getter for the acpi_gbl_reduced_hardware variable so that modules
-can check if they are running on an ACPI reduced-hw platform or not.
+Starting with Windows 8, Windows no longer uses the ACPI-video interface
+for backlight control by default. Instead backlight control is left up
+to the GPU drivers and these are typically directly accessing the GPU
+for this instead of going through ACPI.
+
+This means that the ACPI video interface is no longer being tested by
+many vendors, which leads to false-positive /sys/class/backlight entries
+on devices which don't have a backlight at all such as desktops or
+top-set boxes. These false-positives causes desktop environments to show
+a non functional brightness slider in various places.
+
+Checking the LCD flag greatly reduces the amount of false-positives,
+so commit 5928c281524f ("ACPI / video: Default lcd_only to true on
+Win8-ready and newer machines") enabled the checking of this flag
+by default on all win8 BIOS-es. But this let to regressions on some
+models, so the check was made stricter adding a DMI chassis-type check
+to only enable the LCD flag checking on desktop/server chassis.
+
+Unfortunately the chassis-type reported in the DMI strings is not always
+reliable. One class of devices where this is a problem is Intel Bay Trail-T
+based top-set boxes / mini PCs / HDMI sticks. These are based on reference
+designs which were targetets and the reference design BIOS code
+is often used without changing the chassis-type to something more
+appropriate.
+
+There are many, many Bay Trail-T based devices affected by this, so DMI
+quirking our way out of this is a bad idea. This patch takes a different
+approach, Bay Trail-T (unlike regular Bay Trail) is an ACPI-reduced-hw
+platform and ACPI-reduced-hw platforms generally don't have
+an embedded-controller and thus will use a native (GPU specific) backlight
+interface. This patch enables Checking the LCD flag by default on
+ACPI-reduced-hw platforms with a win8 BIOS independent of the reported
+chassis-type, fixing the false positive /sys/class/backlight entries
+on these devices.
+
+Note in hindsight I should have never added the DMI chassis-type check
+when the enabling of LCD flag checking on Windows 8 BIOS-es let to some
+regressions. Instead I should have added DMI quirks for the (presumably
+few) models where the LCD flag check let to issues. But I'm afraid that
+it is too late to change this now, changing this now will likely lead to
+a bunch of regressions.
+
+This patch was tested on a Mele PCG03 mini PC.
 
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/acpi/utils.c    | 11 +++++++++++
- include/acpi/acpi_bus.h |  1 +
- include/linux/acpi.h    |  5 +++++
- 3 files changed, 17 insertions(+)
+ drivers/acpi/acpi_video.c | 39 ++++++++++++++++++++++++++-------------
+ 1 file changed, 26 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/acpi/utils.c b/drivers/acpi/utils.c
-index 682edd913b3b..4cb061d3169a 100644
---- a/drivers/acpi/utils.c
-+++ b/drivers/acpi/utils.c
-@@ -872,6 +872,17 @@ acpi_dev_get_first_match_dev(const char *hid, const char *uid, s64 hrv)
+diff --git a/drivers/acpi/acpi_video.c b/drivers/acpi/acpi_video.c
+index 2ea1781290cc..ade02152bb06 100644
+--- a/drivers/acpi/acpi_video.c
++++ b/drivers/acpi/acpi_video.c
+@@ -2182,6 +2182,30 @@ static bool dmi_is_desktop(void)
+ 	return false;
  }
- EXPORT_SYMBOL(acpi_dev_get_first_match_dev);
  
-+/**
-+ * acpi_reduced_hardware - Return if this is an ACPI-reduced-hw machine
-+ *
-+ * Return true when running on an ACPI-reduced-hw machine, false otherwise.
++/*
++ * We're seeing a lot of bogus backlight interfaces on newer machines
++ * without a LCD such as desktops, servers and HDMI sticks. Checking the
++ * lcd flag fixes this, enable this by default on any machines which are:
++ * 1.  Win8 ready (where we also prefer the native backlight driver, so
++ *     normally the acpi_video code should not register there anyways); *and*
++ * 2.1 Report a desktop/server DMI chassis-type, or
++ * 2.2 Are an ACPI-reduced-hardware platform (and thus won't use the EC for
++       backlight control)
 + */
-+bool acpi_reduced_hardware(void)
++static bool should_check_lcd_flag(void)
 +{
-+	return acpi_gbl_reduced_hardware;
-+}
-+EXPORT_SYMBOL(acpi_reduced_hardware);
++	if (!acpi_osi_is_win8())
++		return false;
 +
- /*
-  * acpi_backlight= handling, this is done here rather then in video_detect.c
-  * because __setup cannot be used in modules.
-diff --git a/include/acpi/acpi_bus.h b/include/acpi/acpi_bus.h
-index f28b097c658f..d631cb52283e 100644
---- a/include/acpi/acpi_bus.h
-+++ b/include/acpi/acpi_bus.h
-@@ -78,6 +78,7 @@ acpi_evaluate_dsm_typed(acpi_handle handle, const guid_t *guid, u64 rev,
- 
- bool acpi_dev_found(const char *hid);
- bool acpi_dev_present(const char *hid, const char *uid, s64 hrv);
-+bool acpi_reduced_hardware(void);
- 
- #ifdef CONFIG_ACPI
- 
-diff --git a/include/linux/acpi.h b/include/linux/acpi.h
-index 3bdcfc4401b7..e2e6db8313c8 100644
---- a/include/linux/acpi.h
-+++ b/include/linux/acpi.h
-@@ -748,6 +748,11 @@ acpi_dev_get_first_match_dev(const char *hid, const char *uid, s64 hrv)
- 	return NULL;
- }
- 
-+static inline bool acpi_reduced_hardware(void)
-+{
++	if (dmi_is_desktop())
++		return true;
++
++	if (acpi_reduced_hardware())
++		return true;
++
 +	return false;
 +}
 +
- static inline void acpi_dev_put(struct acpi_device *adev) {}
+ int acpi_video_register(void)
+ {
+ 	int ret = 0;
+@@ -2195,19 +2219,8 @@ int acpi_video_register(void)
+ 		goto leave;
+ 	}
  
- static inline bool is_acpi_node(const struct fwnode_handle *fwnode)
+-	/*
+-	 * We're seeing a lot of bogus backlight interfaces on newer machines
+-	 * without a LCD such as desktops, servers and HDMI sticks. Checking
+-	 * the lcd flag fixes this, so enable this on any machines which are
+-	 * win8 ready (where we also prefer the native backlight driver, so
+-	 * normally the acpi_video code should not register there anyways).
+-	 */
+-	if (only_lcd == -1) {
+-		if (dmi_is_desktop() && acpi_osi_is_win8())
+-			only_lcd = true;
+-		else
+-			only_lcd = false;
+-	}
++	if (only_lcd == -1)
++		only_lcd = should_check_lcd_flag();
+ 
+ 	dmi_check_system(video_dmi_table);
+ 
 -- 
 2.30.2
 
