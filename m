@@ -2,41 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 263E2354FFB
-	for <lists+intel-gfx@lfdr.de>; Tue,  6 Apr 2021 11:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD523550E9
+	for <lists+intel-gfx@lfdr.de>; Tue,  6 Apr 2021 12:31:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7985389DC7;
-	Tue,  6 Apr 2021 09:33:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 553F66E3BB;
+	Tue,  6 Apr 2021 10:31:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF8A289DB7;
- Tue,  6 Apr 2021 09:33:37 +0000 (UTC)
-IronPort-SDR: 3vfA3i00V9cDqgzBaNdvQG0LUR85ffYTaaoKEhhrth14WGkJxr33M+hbPwe3QwUuWMHX6rkww0
- YP5G9LqFktng==
-X-IronPort-AV: E=McAfee;i="6000,8403,9945"; a="257016056"
-X-IronPort-AV: E=Sophos;i="5.81,309,1610438400"; d="scan'208";a="257016056"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2021 02:33:34 -0700
-IronPort-SDR: yNx+NRizR5mkR8GcZPzlI8J7Pj0MjByUv03J9PMpLpN8+8z9CtxNE4aHX/zeWYKFAFUMA0T4x4
- hC15JwVa90TA==
-X-IronPort-AV: E=Sophos;i="5.81,309,1610438400"; d="scan'208";a="457817452"
-Received: from oowomilo-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.249.33.55])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2021 02:33:03 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Thierry Reding <thierry.reding@gmail.com>, Lee Jones <lee.jones@linaro.org>
-In-Reply-To: <20210406073036.26857-1-u.kleine-koenig@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210406073036.26857-1-u.kleine-koenig@pengutronix.de>
-Date: Tue, 06 Apr 2021 12:32:58 +0300
-Message-ID: <87tuojlpv9.fsf@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D1226E3BB
+ for <intel-gfx@lists.freedesktop.org>; Tue,  6 Apr 2021 10:31:43 +0000 (UTC)
+IronPort-SDR: 3kYG02ZEaPkIRv8HvGBtbY6D8SCSSFOY7iT2lc+uQ7g40zaasJl39tNU0+epM5o9XLFxcJJMsJ
+ 5EQhatYsTKFQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9945"; a="190868228"
+X-IronPort-AV: E=Sophos;i="5.81,309,1610438400"; d="scan'208";a="190868228"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2021 03:31:41 -0700
+IronPort-SDR: Zixxo62yIZhI8NqhWL056mJuO68zyBo6xaY0Xrvt+JOrrMjh235g3XYIWlOMsTyIhnBC4Bl5yz
+ 5MeCEtrLff9g==
+X-IronPort-AV: E=Sophos;i="5.81,309,1610438400"; d="scan'208";a="518984526"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2021 03:31:39 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  6 Apr 2021 15:44:21 +0530
+Message-Id: <20210406101421.723-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] pwm: Rename pwm_get_state() to better
- reflect its semantic
+Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: Fix uninitialized symbol
+ 'msg_end'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,46 +45,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Michael Turquette <mturquette@baylibre.com>,
- linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Liam Girdwood <lgirdwood@gmail.com>, Fabio Estevam <festevam@gmail.com>,
- linux-clk@vger.kernel.org, Alexandre Torgue <alexandre.torgue@st.com>,
- Daniel Thompson <daniel.thompson@linaro.org>, Jonathan Corbet <corbet@lwn.net>,
- Chen-Yu Tsai <wens@csie.org>, linux-stm32@st-md-mailman.stormreply.com,
- linux-rockchip@lists.infradead.org,
- Ludovic Desroches <ludovic.desroches@microchip.com>,
- NXP Linux Team <linux-imx@nxp.com>, linux-input@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-pwm@vger.kernel.org,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Maxime Ripard <mripard@kernel.org>,
- Mark Brown <broonie@kernel.org>, Fabrice Gasnier <fabrice.gasnier@st.com>,
- linux-arm-kernel@lists.infradead.org, Jernej Skrabec <jernej.skrabec@siol.net>,
- Support Opensource <support.opensource@diasemi.com>,
- Stephen Boyd <sboyd@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, linux-kernel@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, Claudiu Beznea <claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Dan Carpenter <dan.carpenter@oracle.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAwNiBBcHIgMjAyMSwgVXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0Bw
-ZW5ndXRyb25peC5kZT4gd3JvdGU6Cj4gR2l2ZW4gdGhhdCBsb3dsZXZlbCBkcml2ZXJzIHVzdWFs
-bHkgY2Fubm90IGltcGxlbWVudCBleGFjdGx5IHdoYXQgYQo+IGNvbnN1bWVyIHJlcXVlc3RzIHdp
-dGggcHdtX2FwcGx5X3N0YXRlKCkgdGhlcmUgaXMgc29tZSByb3VuZGluZyBpbnZvbHZlZC4KPgo+
-IHB3bV9nZXRfc3RhdGUoKSB0cmFkaXRpb25hbGx5IHJldHVybmVkIHRoZSBzZXR0aW5nIHRoYXQg
-d2FzIHJlcXVlc3RlZCBtb3N0Cj4gcmVjZW50bHkgYnkgdGhlIGNvbnN1bWVyIChvcHBvc2VkIHRv
-IHdoYXQgd2FzIGFjdHVhbGx5IGltcGxlbWVudGVkIGluCj4gaGFyZHdhcmUgaW4gcmVwbHkgdG8g
-dGhlIGxhc3QgcmVxdWVzdCkuIFRvIG1ha2UgdGhpcyBzZW1hbnRpYyBvYnZpb3VzCj4gcmVuYW1l
-IHRoZSBmdW5jdGlvbi4KPgo+IFNpZ25lZC1vZmYtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1Lmts
-ZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+Cj4gLS0tCgo+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3BhbmVsLmMgfCAgNCArLS0KCkFja2VkLWJ5OiBKYW5pIE5pa3VsYSA8
-amFuaS5uaWt1bGFAaW50ZWwuY29tPgoKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3Vy
-Y2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+Fix static analysis tool uninitialized symbol error.
+
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index 90868e156c69..a4373fb2817b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -532,7 +532,7 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+ 	u8 *byte = buf;
+ 	ssize_t ret, bytes_to_recv, len;
+ 	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
+-	ktime_t msg_end;
++	ktime_t msg_end = 0;
+ 	bool msg_expired;
+ 
+ 	hdcp2_msg_data = get_hdcp2_dp_msg_data(msg_id);
+-- 
+2.26.2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
