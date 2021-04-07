@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D176356C5B
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Apr 2021 14:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6849D356C7D
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Apr 2021 14:46:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A947B6E2F2;
-	Wed,  7 Apr 2021 12:42:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7328E6E908;
+	Wed,  7 Apr 2021 12:46:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BB1616E2F2;
- Wed,  7 Apr 2021 12:42:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B2256A41FB;
- Wed,  7 Apr 2021 12:42:08 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>
-Date: Wed, 07 Apr 2021 12:42:08 -0000
-Message-ID: <161779932872.12996.1284136429399176814@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210407122337.77493-1-andriy.shevchenko@linux.intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6FB46E908
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Apr 2021 12:46:45 +0000 (UTC)
+IronPort-SDR: ZZqrUNQ5tBi6Pvf1/8vUh3rYmp8pk9VCv6p/0A/5HWVrkoEeyQMFZeSfBS4uojTTsmQmsw/Nnr
+ I7BxN0xL/uxw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="191136660"
+X-IronPort-AV: E=Sophos;i="5.82,203,1613462400"; d="scan'208";a="191136660"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2021 05:46:45 -0700
+IronPort-SDR: WnUqqWXZL7oCyhW0EIInumpJdSfewC5ZnwxSWTxF1srzHQgl/wlwEVB4Kh7Jasr13leAQjiV4B
+ JfixiK8CSWug==
+X-IronPort-AV: E=Sophos;i="5.82,203,1613462400"; d="scan'208";a="415256731"
+Received: from shochwel-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.33.133])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2021 05:46:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ linux-kernel@vger.kernel.org
 In-Reply-To: <20210407122337.77493-1-andriy.shevchenko@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
- =?utf-8?q?ries_starting_with_=5Bv1=2C1/1=5D_drm/i915=3A_Include_only_need?=
- =?utf-8?q?ed_headers_in_ascii85=2Eh?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210407122337.77493-1-andriy.shevchenko@linux.intel.com>
+Date: Wed, 07 Apr 2021 15:46:37 +0300
+Message-ID: <87h7kijm8i.fsf@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v1 1/1] drm/i915: Include only needed
+ headers in ascii85.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,30 +50,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 07 Apr 2021, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+> The ascii85.h is user of exactly two headers, i.e. math.h and types.h.
+> There is no need to carry on entire kernel.h.
+>
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Series: series starting with [v1,1/1] drm/i915: Include only needed headers in ascii85.h
-URL   : https://patchwork.freedesktop.org/series/88803/
-State : warning
+That's hardly drm/i915 specific!
 
-== Summary ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+But who's going to pick it up and, hopefully, change the subject prefix
+to ascii85 or something?
 
+> ---
+>  include/linux/ascii85.h | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/include/linux/ascii85.h b/include/linux/ascii85.h
+> index 4cc40201273e..83ad775ad0aa 100644
+> --- a/include/linux/ascii85.h
+> +++ b/include/linux/ascii85.h
+> @@ -8,7 +8,8 @@
+>  #ifndef _ASCII85_H_
+>  #define _ASCII85_H_
+>  
+> -#include <linux/kernel.h>
+> +#include <linux/math.h>
+> +#include <linux/types.h>
+>  
+>  #define ASCII85_BUFSZ 6
 
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
