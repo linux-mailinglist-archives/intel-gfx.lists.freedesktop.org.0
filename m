@@ -2,41 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16E8235612C
-	for <lists+intel-gfx@lfdr.de>; Wed,  7 Apr 2021 04:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 582B03567AD
+	for <lists+intel-gfx@lfdr.de>; Wed,  7 Apr 2021 11:08:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52DC66E13A;
-	Wed,  7 Apr 2021 02:01:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDDBF6E235;
+	Wed,  7 Apr 2021 09:08:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE0D86E13A
- for <intel-gfx@lists.freedesktop.org>; Wed,  7 Apr 2021 02:01:27 +0000 (UTC)
-IronPort-SDR: Fyvd7S8SSAe6FxUn8rfz92jvxoHoMxlfsmO10hvowGhRhR/syiVbyzzo48yYcJ65G8Cs/pS8LO
- 0v53Jhyu5FJg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9946"; a="278462598"
-X-IronPort-AV: E=Sophos;i="5.82,201,1613462400"; d="scan'208";a="278462598"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2021 19:01:27 -0700
-IronPort-SDR: kM+Q7BdtgyzFI+MlF5ib/t6LdUooWWBY3l5CUufwQvNM77Eawz9bAbRJztiDTZzWmX4vkt87CS
- 8zU/craDm4MA==
-X-IronPort-AV: E=Sophos;i="5.82,201,1613462400"; d="scan'208";a="448874307"
-Received: from dceraolo-mobl.amr.corp.intel.com (HELO [10.254.66.158])
- ([10.254.66.158])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Apr 2021 19:01:26 -0700
-To: Aditya Swarup <aditya.swarup@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210401162818.211784-1-aditya.swarup@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <c8837797-e997-2a19-2b41-af9ba386b5a7@intel.com>
-Date: Tue, 6 Apr 2021 19:01:23 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A40446E235
+ for <intel-gfx@lists.freedesktop.org>; Wed,  7 Apr 2021 09:08:22 +0000 (UTC)
+IronPort-SDR: dKryw4JK28COlL0py3f3FQXxbVls9m6f8Bw/lw26DEr4zQ+JGDMEEhhi0QAFYpRG5QtyovAlKK
+ 0wEKH1FbjSWQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9946"; a="172737384"
+X-IronPort-AV: E=Sophos;i="5.82,203,1613462400"; d="scan'208";a="172737384"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2021 02:08:19 -0700
+IronPort-SDR: /P2dW4YDss9L2Dpg1gPtBaFstOjJ7AN/TqxaXk6iDG2KgP0NIqxeJJUKW5gQ+8Xa+3VQnNwg1T
+ DwY+tQe2+7jA==
+X-IronPort-AV: E=Sophos;i="5.82,203,1613462400"; d="scan'208";a="519361879"
+Received: from shochwel-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.33.133])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Apr 2021 02:08:17 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  7 Apr 2021 12:08:12 +0300
+Message-Id: <20210407090812.3602-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20210401162818.211784-1-aditya.swarup@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add Wa_14010733141
+Subject: [Intel-gfx] [RFC] drm/i915/backlight: switch to unique backlight
+ device names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,362 +46,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 4/1/2021 9:28 AM, Aditya Swarup wrote:
-> The WA requires the following procedure for VDBox SFC reset:
->
-> If (MFX-SFC usage is 1) {
-> 	1.Issue a MFX-SFC forced lock
-> 	2.Wait for MFX-SFC forced lock ack
-> 	3.Check the MFX-SFC usage bit
-> 	If (MFX-SFC usage bit is 1)
-> 		Reset VDBOX and SFC
-> 	else
-> 		Reset VDBOX
-> 	Release the force lock MFX-SFC
-> }
-> else if(HCP+SFC usage is 1) {
-> 	1.Issue a VE-SFC forced lock
-> 	2.Wait for SFC forced lock ack
-> 	3.Check the VE-SFC usage bit
-> 	If (VE-SFC usage bit is 1)
-> 		Reset VDBOX
-> 	else
-> 		Reset VDBOX and SFC
-> 	Release the force lock VE-SFC.
-> }
-> else
-> 	Reset VDBOX
->
-> - Restructure: the changes to the original code flow should stay
->    relatively minimal; we only need to do an extra HCP check after the
->    usual VD-MFX check and, if true, switch the register/bit we're
->    performing the lock on.(MattR)
->
-> Bspec: 52890, 53509
->
-> Co-developed-by: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_reset.c | 194 +++++++++++++++++---------
->   drivers/gpu/drm/i915/i915_reg.h       |   6 +
->   2 files changed, 137 insertions(+), 63 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index a377c4588aaa..bcb3d864db11 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -338,15 +338,69 @@ static int gen6_reset_engines(struct intel_gt *gt,
->   	return gen6_hw_domain_reset(gt, hw_mask);
->   }
->   
-> -static int gen11_lock_sfc(struct intel_engine_cs *engine, u32 *hw_mask)
-> +static struct intel_engine_cs *find_sfc_paired_vecs_engine(struct intel_engine_cs *engine)
-> +{
-> +	int vecs_id;
-> +
-> +	GEM_BUG_ON(engine->class != VIDEO_DECODE_CLASS);
-> +
-> +	vecs_id = _VECS((engine->instance) / 2);
-> +
-> +	return engine->gt->engine[vecs_id];
-> +}
-> +
-> +struct sfc_lock_data {
-> +	i915_reg_t lock_reg;
-> +	i915_reg_t ack_reg;
-> +	i915_reg_t usage_reg;
-> +	u32 lock_bit;
-> +	u32 ack_bit;
-> +	u32 usage_bit;
-> +	u32 reset_bit;
-> +};
-> +
-> +static void get_sfc_forced_lock_data(struct intel_engine_cs *engine,
-> +				     struct sfc_lock_data *sfc_lock)
-> +{
-> +	switch (engine->class) {
-> +	default:
-> +		MISSING_CASE(engine->class);
-> +		fallthrough;
-> +	case VIDEO_DECODE_CLASS:
-> +		sfc_lock->lock_reg = GEN11_VCS_SFC_FORCED_LOCK(engine);
-> +		sfc_lock->lock_bit = GEN11_VCS_SFC_FORCED_LOCK_BIT;
-> +
-> +		sfc_lock->ack_reg = GEN11_VCS_SFC_LOCK_STATUS(engine);
-> +		sfc_lock->ack_bit  = GEN11_VCS_SFC_LOCK_ACK_BIT;
-> +
-> +		sfc_lock->usage_reg = GEN11_VCS_SFC_LOCK_STATUS(engine);
-> +		sfc_lock->usage_bit = GEN11_VCS_SFC_USAGE_BIT;
-> +		sfc_lock->reset_bit = GEN11_VCS_SFC_RESET_BIT(engine->instance);
-> +
-> +		break;
-> +	case VIDEO_ENHANCEMENT_CLASS:
-> +		sfc_lock->lock_reg = GEN11_VECS_SFC_FORCED_LOCK(engine);
-> +		sfc_lock->lock_bit = GEN11_VECS_SFC_FORCED_LOCK_BIT;
-> +
-> +		sfc_lock->ack_reg = GEN11_VECS_SFC_LOCK_ACK(engine);
-> +		sfc_lock->ack_bit  = GEN11_VECS_SFC_LOCK_ACK_BIT;
-> +
-> +		sfc_lock->usage_reg = GEN11_VECS_SFC_USAGE(engine);
-> +		sfc_lock->usage_bit = GEN11_VECS_SFC_USAGE_BIT;
-> +		sfc_lock->reset_bit = GEN11_VECS_SFC_RESET_BIT(engine->instance);
-> +
-> +		break;
-> +	}
-> +}
-> +
-> +static int gen11_lock_sfc(struct intel_engine_cs *engine,
-> +			  u32 *reset_mask,
-> +			  u32 *unlock_mask)
->   {
->   	struct intel_uncore *uncore = engine->uncore;
->   	u8 vdbox_sfc_access = engine->gt->info.vdbox_sfc_access;
-> -	i915_reg_t sfc_forced_lock, sfc_forced_lock_ack;
-> -	u32 sfc_forced_lock_bit, sfc_forced_lock_ack_bit;
-> -	i915_reg_t sfc_usage;
-> -	u32 sfc_usage_bit;
-> -	u32 sfc_reset_bit;
-> +	struct sfc_lock_data sfc_lock;
-> +	bool lock_obtained, lock_to_other = false;
->   	int ret;
->   
->   	switch (engine->class) {
-> @@ -354,53 +408,72 @@ static int gen11_lock_sfc(struct intel_engine_cs *engine, u32 *hw_mask)
->   		if ((BIT(engine->instance) & vdbox_sfc_access) == 0)
->   			return 0;
->   
-> -		sfc_forced_lock = GEN11_VCS_SFC_FORCED_LOCK(engine);
-> -		sfc_forced_lock_bit = GEN11_VCS_SFC_FORCED_LOCK_BIT;
-> -
-> -		sfc_forced_lock_ack = GEN11_VCS_SFC_LOCK_STATUS(engine);
-> -		sfc_forced_lock_ack_bit  = GEN11_VCS_SFC_LOCK_ACK_BIT;
-> +		fallthrough;
-> +	case VIDEO_ENHANCEMENT_CLASS:
-> +		get_sfc_forced_lock_data(engine, &sfc_lock);
->   
-> -		sfc_usage = GEN11_VCS_SFC_LOCK_STATUS(engine);
-> -		sfc_usage_bit = GEN11_VCS_SFC_USAGE_BIT;
-> -		sfc_reset_bit = GEN11_VCS_SFC_RESET_BIT(engine->instance);
->   		break;
-> +	default:
-> +		return 0;
-> +	}
->   
-> -	case VIDEO_ENHANCEMENT_CLASS:
-> -		sfc_forced_lock = GEN11_VECS_SFC_FORCED_LOCK(engine);
-> -		sfc_forced_lock_bit = GEN11_VECS_SFC_FORCED_LOCK_BIT;
-> +	if (!(intel_uncore_read_fw(uncore, sfc_lock.usage_reg) & sfc_lock.usage_bit)) {
-> +		struct intel_engine_cs *paired_vecs;
->   
-> -		sfc_forced_lock_ack = GEN11_VECS_SFC_LOCK_ACK(engine);
-> -		sfc_forced_lock_ack_bit  = GEN11_VECS_SFC_LOCK_ACK_BIT;
-> +		if (engine->class != VIDEO_DECODE_CLASS ||
-> +		    !IS_GEN(engine->i915, 12))
-> +			return 0;
->   
-> -		sfc_usage = GEN11_VECS_SFC_USAGE(engine);
-> -		sfc_usage_bit = GEN11_VECS_SFC_USAGE_BIT;
-> -		sfc_reset_bit = GEN11_VECS_SFC_RESET_BIT(engine->instance);
-> -		break;
-> +		/*
-> +		 * Wa_14010733141
-> +		 *
-> +		 * If the VCS-MFX isn't using the SFC, we also need to check
-> +		 * whether VCS-HCP is using it.  If so, we need to issue a *VE*
-> +		 * forced lock on the VE engine that shares the same SFC.
-> +		 */
-> +		if (!(intel_uncore_read_fw(uncore,
-> +					   GEN12_HCP_SFC_LOCK_STATUS(engine)) &
-> +		      GEN12_HCP_SFC_USAGE_BIT))
-> +			return 0;
->   
-> -	default:
-> -		return 0;
-> +		paired_vecs = find_sfc_paired_vecs_engine(engine);
-> +		get_sfc_forced_lock_data(paired_vecs, &sfc_lock);
-> +		lock_to_other = true;
-> +		*unlock_mask |= BIT(paired_vecs->id);
-
-nit: could use paired_vecs->engine_mask directly here instead of BIT(...)
-
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Daniele
-
-> +	} else {
-> +		*unlock_mask |= engine->mask;
->   	}
->   
->   	/*
-> -	 * If the engine is using a SFC, tell the engine that a software reset
-> +	 * If the engine is using an SFC, tell the engine that a software reset
->   	 * is going to happen. The engine will then try to force lock the SFC.
->   	 * If SFC ends up being locked to the engine we want to reset, we have
->   	 * to reset it as well (we will unlock it once the reset sequence is
->   	 * completed).
->   	 */
-> -	if (!(intel_uncore_read_fw(uncore, sfc_usage) & sfc_usage_bit))
-> -		return 0;
-> -
-> -	rmw_set_fw(uncore, sfc_forced_lock, sfc_forced_lock_bit);
-> +	rmw_set_fw(uncore, sfc_lock.lock_reg, sfc_lock.lock_bit);
->   
->   	ret = __intel_wait_for_register_fw(uncore,
-> -					   sfc_forced_lock_ack,
-> -					   sfc_forced_lock_ack_bit,
-> -					   sfc_forced_lock_ack_bit,
-> +					   sfc_lock.ack_reg,
-> +					   sfc_lock.ack_bit,
-> +					   sfc_lock.ack_bit,
->   					   1000, 0, NULL);
->   
-> -	/* Was the SFC released while we were trying to lock it? */
-> -	if (!(intel_uncore_read_fw(uncore, sfc_usage) & sfc_usage_bit))
-> +	/*
-> +	 * Was the SFC released while we were trying to lock it?
-> +	 *
-> +	 * We should reset both the engine and the SFC if:
-> +	 *  - We were locking the SFC to this engine and the lock succeeded
-> +	 *       OR
-> +	 *  - We were locking the SFC to a different engine (Wa_14010733141)
-> +	 *    but the SFC was released before the lock was obtained.
-> +	 *
-> +	 * Otherwise we need only reset the engine by itself and we can
-> +	 * leave the SFC alone.
-> +	 */
-> +	lock_obtained = (intel_uncore_read_fw(uncore, sfc_lock.usage_reg) &
-> +			sfc_lock.usage_bit) != 0;
-> +	if (lock_obtained == lock_to_other)
->   		return 0;
->   
->   	if (ret) {
-> @@ -408,7 +481,7 @@ static int gen11_lock_sfc(struct intel_engine_cs *engine, u32 *hw_mask)
->   		return ret;
->   	}
->   
-> -	*hw_mask |= sfc_reset_bit;
-> +	*reset_mask |= sfc_lock.reset_bit;
->   	return 0;
->   }
->   
-> @@ -416,28 +489,19 @@ static void gen11_unlock_sfc(struct intel_engine_cs *engine)
->   {
->   	struct intel_uncore *uncore = engine->uncore;
->   	u8 vdbox_sfc_access = engine->gt->info.vdbox_sfc_access;
-> -	i915_reg_t sfc_forced_lock;
-> -	u32 sfc_forced_lock_bit;
-> -
-> -	switch (engine->class) {
-> -	case VIDEO_DECODE_CLASS:
-> -		if ((BIT(engine->instance) & vdbox_sfc_access) == 0)
-> -			return;
-> -
-> -		sfc_forced_lock = GEN11_VCS_SFC_FORCED_LOCK(engine);
-> -		sfc_forced_lock_bit = GEN11_VCS_SFC_FORCED_LOCK_BIT;
-> -		break;
-> +	struct sfc_lock_data sfc_lock = {};
->   
-> -	case VIDEO_ENHANCEMENT_CLASS:
-> -		sfc_forced_lock = GEN11_VECS_SFC_FORCED_LOCK(engine);
-> -		sfc_forced_lock_bit = GEN11_VECS_SFC_FORCED_LOCK_BIT;
-> -		break;
-> +	if (engine->class != VIDEO_DECODE_CLASS &&
-> +	    engine->class != VIDEO_ENHANCEMENT_CLASS)
-> +		return;
->   
-> -	default:
-> +	if (engine->class == VIDEO_DECODE_CLASS &&
-> +	    (BIT(engine->instance) & vdbox_sfc_access) == 0)
->   		return;
-> -	}
->   
-> -	rmw_clear_fw(uncore, sfc_forced_lock, sfc_forced_lock_bit);
-> +	get_sfc_forced_lock_data(engine, &sfc_lock);
-> +
-> +	rmw_clear_fw(uncore, sfc_lock.lock_reg, sfc_lock.lock_bit);
->   }
->   
->   static int gen11_reset_engines(struct intel_gt *gt,
-> @@ -456,23 +520,23 @@ static int gen11_reset_engines(struct intel_gt *gt,
->   	};
->   	struct intel_engine_cs *engine;
->   	intel_engine_mask_t tmp;
-> -	u32 hw_mask;
-> +	u32 reset_mask, unlock_mask = 0;
->   	int ret;
->   
->   	if (engine_mask == ALL_ENGINES) {
-> -		hw_mask = GEN11_GRDOM_FULL;
-> +		reset_mask = GEN11_GRDOM_FULL;
->   	} else {
-> -		hw_mask = 0;
-> +		reset_mask = 0;
->   		for_each_engine_masked(engine, gt, engine_mask, tmp) {
->   			GEM_BUG_ON(engine->id >= ARRAY_SIZE(hw_engine_mask));
-> -			hw_mask |= hw_engine_mask[engine->id];
-> -			ret = gen11_lock_sfc(engine, &hw_mask);
-> +			reset_mask |= hw_engine_mask[engine->id];
-> +			ret = gen11_lock_sfc(engine, &reset_mask, &unlock_mask);
->   			if (ret)
->   				goto sfc_unlock;
->   		}
->   	}
->   
-> -	ret = gen6_hw_domain_reset(gt, hw_mask);
-> +	ret = gen6_hw_domain_reset(gt, reset_mask);
->   
->   sfc_unlock:
->   	/*
-> @@ -480,10 +544,14 @@ static int gen11_reset_engines(struct intel_gt *gt,
->   	 * gen11_lock_sfc to make sure that we clean properly if something
->   	 * wrong happened during the lock (e.g. lock acquired after timeout
->   	 * expiration).
-> +	 *
-> +	 * Due to Wa_14010733141, we may have locked an SFC to an engine that
-> +	 * wasn't being reset.  So instead of calling gen11_unlock_sfc()
-> +	 * on engine_mask, we instead call it on the mask of engines that our
-> +	 * gen11_lock_sfc() calls told us actually had locks attempted.
->   	 */
-> -	if (engine_mask != ALL_ENGINES)
-> -		for_each_engine_masked(engine, gt, engine_mask, tmp)
-> -			gen11_unlock_sfc(engine);
-> +	for_each_engine_masked(engine, gt, unlock_mask, tmp)
-> +		gen11_unlock_sfc(engine);
->   
->   	return ret;
->   }
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index cbf7a60afe54..f265733979ed 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -416,6 +416,12 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
->   #define GEN11_VECS_SFC_USAGE(engine)		_MMIO((engine)->mmio_base + 0x2014)
->   #define   GEN11_VECS_SFC_USAGE_BIT		(1 << 0)
->   
-> +#define GEN12_HCP_SFC_FORCED_LOCK(engine)	_MMIO((engine)->mmio_base + 0x2910)
-> +#define   GEN12_HCP_SFC_FORCED_LOCK_BIT		REG_BIT(0)
-> +#define GEN12_HCP_SFC_LOCK_STATUS(engine)	_MMIO((engine)->mmio_base + 0x2914)
-> +#define   GEN12_HCP_SFC_LOCK_ACK_BIT		REG_BIT(1)
-> +#define   GEN12_HCP_SFC_USAGE_BIT			REG_BIT(0)
-> +
->   #define GEN12_SFC_DONE(n)		_MMIO(0x1cc00 + (n) * 0x100)
->   #define GEN12_SFC_DONE_MAX		4
->   
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q2hhbmdlIHRoZSBiYWNrbGlnaHQgZGV2aWNlIG5hbWVzIGZyb20gaW50ZWxfYmFja2xpZ2h0IHRv
+CmNhcmQlZC0lcy1iYWNrbGlnaHQgZm9ybWF0LCBmb3IgZXhhbXBsZSBjYXJkMC1lRFAtMS1iYWNr
+bGlnaHQsIHRvIG1ha2UKdGhlbSB1bmlxdWUuIE90aGVyd2lzZSwgcmVnaXN0ZXJpbmcgbXVsdGlw
+bGUgYmFja2xpZ2h0IGRldmljZXMgd2l0aAppbnRlbF9iYWNrbGlnaHQgbmFtZSB3aWxsIGZhaWws
+IHJlZ2FyZGxlc3Mgb2Ygd2hldGhlciB0aGV5J3JlIHR3bwpjb25uZWN0b3JzIGluIHRoZSBzYW1l
+IGRldmljZSBvciB0d28gZGlmZmVyZW50IGRldmljZXMuCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2
+aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2xvc2VzOiBodHRwczovL2dpdGxhYi5mcmVl
+ZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzI3OTQKU2lnbmVkLW9mZi1ieTogSmFuaSBO
+aWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KCi0tLQoKSXMgdGhlIG5hbWUgImludGVsX2Jh
+Y2tsaWdodCIgcGFydCBvZiB0aGUgVUFCST8gSW4gdGhlb3J5IHRoZSB1c2Vyc3BhY2UKc2hvdWxk
+IG9ubHkgbG9vayBhdCB0aGUgbmFtZXMgYW5kIHR5cGVzIGF2YWlsYWJsZSB1bmRlcgovc3lzL2Ns
+YXNzL2JhY2tsaWdodCwgbm90IHRoZSBleGFjdCBuYW1lcy4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmMgfCAyOSArKysrKysrKysrKysrKy0tLS0tLS0tCiAx
+IGZpbGUgY2hhbmdlZCwgMTggaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5lbC5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5lbC5jCmluZGV4IDEwMDIyZDE1NzVlMS4u
+NWViZjhjYjBlOGUzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX3BhbmVsLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5l
+bC5jCkBAIC0xMzcyLDYgKzEzNzIsOCBAQCBpbnQgaW50ZWxfYmFja2xpZ2h0X2RldmljZV9yZWdp
+c3RlcihzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpCiAJc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KGNvbm5lY3Rvci0+YmFzZS5kZXYpOwogCXN0cnVjdCBp
+bnRlbF9wYW5lbCAqcGFuZWwgPSAmY29ubmVjdG9yLT5wYW5lbDsKIAlzdHJ1Y3QgYmFja2xpZ2h0
+X3Byb3BlcnRpZXMgcHJvcHM7CisJY29uc3QgY2hhciAqbmFtZTsKKwlpbnQgcmV0ID0gMDsKIAog
+CWlmIChXQVJOX09OKHBhbmVsLT5iYWNrbGlnaHQuZGV2aWNlKSkKIAkJcmV0dXJuIC1FTk9ERVY7
+CkBAIC0xMzk4LDI4ICsxNDAwLDMzIEBAIGludCBpbnRlbF9iYWNrbGlnaHRfZGV2aWNlX3JlZ2lz
+dGVyKHN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmNvbm5lY3RvcikKIAllbHNlCiAJCXByb3BzLnBv
+d2VyID0gRkJfQkxBTktfUE9XRVJET1dOOwogCi0JLyoKLQkgKiBOb3RlOiB1c2luZyB0aGUgc2Ft
+ZSBuYW1lIGluZGVwZW5kZW50IG9mIHRoZSBjb25uZWN0b3IgcHJldmVudHMKLQkgKiByZWdpc3Ry
+YXRpb24gb2YgbXVsdGlwbGUgYmFja2xpZ2h0IGRldmljZXMgaW4gdGhlIGRyaXZlci4KLQkgKi8K
+KwluYW1lID0ga2FzcHJpbnRmKEdGUF9LRVJORUwsICJjYXJkJWQtJXMtYmFja2xpZ2h0IiwgaTkx
+NS0+ZHJtLnByaW1hcnktPmluZGV4LAorCQkJIGNvbm5lY3Rvci0+YmFzZS5uYW1lKTsKKwlpZiAo
+IW5hbWUpCisJCXJldHVybiAtRU5PTUVNOworCiAJcGFuZWwtPmJhY2tsaWdodC5kZXZpY2UgPQot
+CQliYWNrbGlnaHRfZGV2aWNlX3JlZ2lzdGVyKCJpbnRlbF9iYWNrbGlnaHQiLAorCQliYWNrbGln
+aHRfZGV2aWNlX3JlZ2lzdGVyKG5hbWUsCiAJCQkJCSAgY29ubmVjdG9yLT5iYXNlLmtkZXYsCiAJ
+CQkJCSAgY29ubmVjdG9yLAogCQkJCQkgICZpbnRlbF9iYWNrbGlnaHRfZGV2aWNlX29wcywgJnBy
+b3BzKTsKIAogCWlmIChJU19FUlIocGFuZWwtPmJhY2tsaWdodC5kZXZpY2UpKSB7Ci0JCWRybV9l
+cnIoJmk5MTUtPmRybSwgIkZhaWxlZCB0byByZWdpc3RlciBiYWNrbGlnaHQ6ICVsZFxuIiwKLQkJ
+CVBUUl9FUlIocGFuZWwtPmJhY2tsaWdodC5kZXZpY2UpKTsKKwkJZHJtX2VycigmaTkxNS0+ZHJt
+LCAiRmFpbGVkIHRvIHJlZ2lzdGVyIGJhY2tsaWdodCAlczogJWxkXG4iLAorCQkJbmFtZSwgUFRS
+X0VSUihwYW5lbC0+YmFja2xpZ2h0LmRldmljZSkpOwogCQlwYW5lbC0+YmFja2xpZ2h0LmRldmlj
+ZSA9IE5VTEw7Ci0JCXJldHVybiAtRU5PREVWOworCQlyZXQgPSAtRU5PREVWOworCQlnb3RvIG91
+dDsKIAl9CiAKIAlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLAotCQkgICAgIkNvbm5lY3RvciAlcyBi
+YWNrbGlnaHQgc3lzZnMgaW50ZXJmYWNlIHJlZ2lzdGVyZWRcbiIsCi0JCSAgICBjb25uZWN0b3It
+PmJhc2UubmFtZSk7CisJCSAgICAiQ29ubmVjdG9yICVzIGJhY2tsaWdodCBzeXNmcyBpbnRlcmZh
+Y2UgJXMgcmVnaXN0ZXJlZFxuIiwKKwkJICAgIG5hbWUsIGNvbm5lY3Rvci0+YmFzZS5uYW1lKTsK
+IAotCXJldHVybiAwOworb3V0OgorCWtmcmVlKG5hbWUpOworCisJcmV0dXJuIHJldDsKIH0KIAog
+dm9pZCBpbnRlbF9iYWNrbGlnaHRfZGV2aWNlX3VucmVnaXN0ZXIoc3RydWN0IGludGVsX2Nvbm5l
+Y3RvciAqY29ubmVjdG9yKQotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZngK
