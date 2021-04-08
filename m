@@ -1,39 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCD40357926
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 02:42:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC07357924
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 02:42:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60A6B6E9C3;
-	Thu,  8 Apr 2021 00:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DBE56E9BA;
+	Thu,  8 Apr 2021 00:42:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4B0B6E3D6
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 00:42:10 +0000 (UTC)
-IronPort-SDR: E4fjYNYlkjIcGWE3PFO/j2tKG93TBxyVTyfjtCwg3QHDMEEitbj7dpF6mCxVVyy2EBm3CibxH3
- A40NbKTSG3Bg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="172900157"
-X-IronPort-AV: E=Sophos;i="5.82,204,1613462400"; d="scan'208";a="172900157"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1146B6E107
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 00:42:11 +0000 (UTC)
+IronPort-SDR: FQTDQ1leMDCqpLes2pwzymyvg71YJhxY6NfdPtXDHcwgMfCpbUStAWj/GAjXHgKeK+IbyjcJKH
+ eLX0jWqhex3A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="172900158"
+X-IronPort-AV: E=Sophos;i="5.82,204,1613462400"; d="scan'208";a="172900158"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Apr 2021 17:42:10 -0700
-IronPort-SDR: DpjgKiVUW0Be4ZZ9mg4XDO7se/tiROVrBTo0Ip/Vt/Flui7yC2ELaAD7Od3rRGW3DIRrpPiauO
- PlgaIOX0VFzg==
-X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="519634229"
+IronPort-SDR: Q8ZBSDokzVce6L1bwczY/4ua8jOlHUlpL+HJ/Y7Nrr2sT+Hl9hzuaYOpTwNaXkJ9EUq6NjPTJN
+ kjbDPWa0Av/Q==
+X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="519634233"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2021 17:42:09 -0700
+ 07 Apr 2021 17:42:10 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  7 Apr 2021 17:41:54 -0700
-Message-Id: <20210408004200.984176-7-lucas.demarchi@intel.com>
+Date: Wed,  7 Apr 2021 17:41:55 -0700
+Message-Id: <20210408004200.984176-8-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210408004200.984176-1-lucas.demarchi@intel.com>
 References: <20210408004200.984176-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 06/12] drm/i915: finish removal of gen_mask
+Subject: [Intel-gfx] [PATCH 07/12] drm/i915: eliminate remaining uses of
+ intel_device_info->gen
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,93 +52,128 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that it's not used anywhere, remove it from struct
-intel_device_info. To allow a period in which code will be converted to
-the new macro, keep IS_GEN_RANGE() around, just redefining it to use
-the new fields. The size advantage from IS_GEN_RANGE() using a mask is
-not that big as it has pretty limited use througout the driver:
-
-   text    data     bss     dec     hex filename
-2758497   95965    6496 2860958  2ba79e drivers/gpu/drm/i915/i915.ko.old
-2758586   95953    6496 2861035  2ba7eb drivers/gpu/drm/i915/i915.ko.new
+Replace gen with the new graphics_ver value and use GRAPHICS_VER()
+in those places.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.c          |  2 --
- drivers/gpu/drm/i915/i915_drv.h          | 13 ++++---------
- drivers/gpu/drm/i915/i915_pci.c          |  1 -
- drivers/gpu/drm/i915/intel_device_info.h |  2 --
- 4 files changed, 4 insertions(+), 14 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 22 +++++++++----------
+ drivers/gpu/drm/i915/i915_drv.c               |  2 +-
+ drivers/gpu/drm/i915/intel_device_info.c      |  2 +-
+ 3 files changed, 13 insertions(+), 13 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 5964e67c7d36..297143511f99 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -274,7 +274,7 @@ struct i915_execbuffer {
+ 		struct drm_mm_node node; /** temporary GTT binding */
+ 		unsigned long vaddr; /** Current kmap address */
+ 		unsigned long page; /** Currently mapped page index */
+-		unsigned int gen; /** Cached value of INTEL_GEN */
++		unsigned int graphics_ver; /** Cached value of GRAPHICS_VER */
+ 		bool use_64bit_reloc : 1;
+ 		bool has_llc : 1;
+ 		bool has_fence : 1;
+@@ -1049,10 +1049,10 @@ static void reloc_cache_init(struct reloc_cache *cache,
+ 	cache->page = -1;
+ 	cache->vaddr = 0;
+ 	/* Must be a variable in the struct to allow GCC to unroll. */
+-	cache->gen = INTEL_GEN(i915);
++	cache->graphics_ver = GRAPHICS_VER(i915);
+ 	cache->has_llc = HAS_LLC(i915);
+ 	cache->use_64bit_reloc = HAS_64BIT_RELOC(i915);
+-	cache->has_fence = cache->gen < 4;
++	cache->has_fence = cache->graphics_ver < 4;
+ 	cache->needs_unfenced = INTEL_INFO(i915)->unfenced_needs_alignment;
+ 	cache->node.flags = 0;
+ 	reloc_cache_clear(cache);
+@@ -1402,7 +1402,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ 
+ 	err = eb->engine->emit_bb_start(rq,
+ 					batch->node.start, PAGE_SIZE,
+-					cache->gen > 5 ? 0 : I915_DISPATCH_SECURE);
++					cache->graphics_ver > 5 ? 0 : I915_DISPATCH_SECURE);
+ 	if (err)
+ 		goto skip_request;
+ 
+@@ -1503,14 +1503,14 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+ 			      u64 offset,
+ 			      u64 target_addr)
+ {
+-	const unsigned int gen = eb->reloc_cache.gen;
++	const unsigned int ver = eb->reloc_cache.graphics_ver;
+ 	unsigned int len;
+ 	u32 *batch;
+ 	u64 addr;
+ 
+-	if (gen >= 8)
++	if (ver >= 8)
+ 		len = offset & 7 ? 8 : 5;
+-	else if (gen >= 4)
++	else if (ver >= 4)
+ 		len = 4;
+ 	else
+ 		len = 3;
+@@ -1522,7 +1522,7 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+ 		return false;
+ 
+ 	addr = gen8_canonical_addr(vma->node.start + offset);
+-	if (gen >= 8) {
++	if (ver >= 8) {
+ 		if (offset & 7) {
+ 			*batch++ = MI_STORE_DWORD_IMM_GEN4;
+ 			*batch++ = lower_32_bits(addr);
+@@ -1542,7 +1542,7 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+ 			*batch++ = lower_32_bits(target_addr);
+ 			*batch++ = upper_32_bits(target_addr);
+ 		}
+-	} else if (gen >= 6) {
++	} else if (ver >= 6) {
+ 		*batch++ = MI_STORE_DWORD_IMM_GEN4;
+ 		*batch++ = 0;
+ 		*batch++ = addr;
+@@ -1552,12 +1552,12 @@ static int __reloc_entry_gpu(struct i915_execbuffer *eb,
+ 		*batch++ = 0;
+ 		*batch++ = vma_phys_addr(vma, offset);
+ 		*batch++ = target_addr;
+-	} else if (gen >= 4) {
++	} else if (ver >= 4) {
+ 		*batch++ = MI_STORE_DWORD_IMM_GEN4 | MI_USE_GGTT;
+ 		*batch++ = 0;
+ 		*batch++ = addr;
+ 		*batch++ = target_addr;
+-	} else if (gen >= 3 &&
++	} else if (ver >= 3 &&
+ 		   !(IS_I915G(eb->i915) || IS_I915GM(eb->i915))) {
+ 		*batch++ = MI_STORE_DWORD_IMM | MI_MEM_VIRTUAL;
+ 		*batch++ = addr;
 diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 2483447ff8dc..8f953a0b7e36 100644
+index 8f953a0b7e36..eef94635808d 100644
 --- a/drivers/gpu/drm/i915/i915_drv.c
 +++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -768,8 +768,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	memcpy(device_info, match_info, sizeof(*device_info));
- 	RUNTIME_INFO(i915)->device_id = pdev->device;
+@@ -794,7 +794,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		return PTR_ERR(i915);
  
--	BUG_ON(device_info->gen > BITS_PER_TYPE(device_info->gen_mask));
--
- 	return i915;
- }
+ 	/* Disable nuclear pageflip by default on pre-ILK */
+-	if (!i915->params.nuclear_pageflip && match_info->gen < 5)
++	if (!i915->params.nuclear_pageflip && match_info->graphics_ver < 5)
+ 		i915->drm.driver_features &= ~DRIVER_ATOMIC;
  
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 97cbd019f2e9..317249f47198 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1241,6 +1241,10 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
-  * GRAPHICS_VER(), MEDIA_VER and DISPLAY_VER()
-  */
- #define INTEL_GEN(dev_priv)		(INTEL_INFO(dev_priv)->gen)
-+/*
-+ * Deprecated: use IS_GRAPHICS_RANGE()
-+ */
-+#define IS_GEN_RANGE(dev_priv, s, e)	IS_GRAPHICS_RANGE(dev_priv, (s), (e))
- 
- #define GRAPHICS_VER(i915)		(INTEL_INFO(i915)->graphics_ver)
- #define IS_GRAPHICS_RANGE(i915, from, until) \
-@@ -1260,15 +1264,6 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
- #define REVID_FOREVER		0xff
- #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
- 
--#define INTEL_GEN_MASK(s, e) ( \
--	BUILD_BUG_ON_ZERO(!__builtin_constant_p(s)) + \
--	BUILD_BUG_ON_ZERO(!__builtin_constant_p(e)) + \
--	GENMASK((e) - 1, (s) - 1))
--
--/* Returns true if Gen is in inclusive range [Start, End] */
--#define IS_GEN_RANGE(dev_priv, s, e) \
--	(!!(INTEL_INFO(dev_priv)->gen_mask & INTEL_GEN_MASK((s), (e))))
--
- #define IS_GEN(dev_priv, n) \
- 	(BUILD_BUG_ON_ZERO(!__builtin_constant_p(n)) + \
- 	 INTEL_INFO(dev_priv)->gen == (n))
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 97ab73276334..3b9cd1af0f28 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -37,7 +37,6 @@
- 
- #define PLATFORM(x) .platform = (x)
- #define GEN(x) \
--	.gen_mask = BIT((x) - 1), \
- 	.gen = (x), \
- 	.graphics_ver = (x), \
- 	.media_ver = (x), \
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 405883a8cc84..b8f7b996f140 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -160,8 +160,6 @@ enum intel_ppgtt_type {
- 	func(supports_tv);
- 
- struct intel_device_info {
--	u16 gen_mask;
--
- 	u8 graphics_ver;
- 	u8 media_ver;
- 
+ 	/*
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index de02207f6ec6..b58bc7bff65e 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -95,7 +95,7 @@ static const char *iommu_name(void)
+ void intel_device_info_print_static(const struct intel_device_info *info,
+ 				    struct drm_printer *p)
+ {
+-	drm_printf(p, "gen: %d\n", info->gen);
++	drm_printf(p, "graphics_ver: %u\n", info->graphics_ver);
+ 	drm_printf(p, "gt: %d\n", info->gt);
+ 	drm_printf(p, "iommu: %s\n", iommu_name());
+ 	drm_printf(p, "memory-regions: %x\n", info->memory_regions);
 -- 
 2.31.1
 
