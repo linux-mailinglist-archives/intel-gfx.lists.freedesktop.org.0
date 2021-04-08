@@ -2,42 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 214B3358F50
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 23:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CD7F358F4F
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 23:38:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A413E6E3D8;
-	Thu,  8 Apr 2021 21:38:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 832BA6E3E5;
+	Thu,  8 Apr 2021 21:38:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B74A6E3EC
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 21:38:23 +0000 (UTC)
-IronPort-SDR: 9FGztIt1+NDS/YskEm8O2SScKnIAQKcUbKFyliqqCb8SwUGcZsK7RU2BoKf0wW6xMQm4Sgz5Ny
- s+i9e6nQ7C2Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9948"; a="254971750"
-X-IronPort-AV: E=Sophos;i="5.82,207,1613462400"; d="scan'208";a="254971750"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2021 14:38:22 -0700
-IronPort-SDR: Md0SKFF1J6bTq54NgC9DaKUO4WIb0NDLZp3HI4KOJ3NTZeCoxH4NBJm5lfl4VyGL3Wdk96XVhK
- 8elXoniopWtw==
-X-IronPort-AV: E=Sophos;i="5.82,207,1613462400"; d="scan'208";a="458992003"
-Received: from kmkerns-mobl2.amr.corp.intel.com (HELO intel.com)
- ([10.209.131.159])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2021 14:38:21 -0700
-Date: Thu, 8 Apr 2021 17:38:18 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <YG93ylhtDihPh4Qo@intel.com>
-References: <20210328225709.18541-1-daniele.ceraolospurio@intel.com>
- <20210328225709.18541-2-daniele.ceraolospurio@intel.com>
- <44b1a6ba-44fc-4a8d-d35b-c44e59849edf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 848686E3D8;
+ Thu,  8 Apr 2021 21:38:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7B596A73C9;
+ Thu,  8 Apr 2021 21:38:22 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <44b1a6ba-44fc-4a8d-d35b-c44e59849edf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 01/16] drm/i915/pxp: Define PXP component
- interface
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Thu, 08 Apr 2021 21:38:22 -0000
+Message-ID: <161791790247.10402.11371115925012884232@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210408203150.237947-1-jose.souza@intel.com>
+In-Reply-To: <20210408203150.237947-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915=3A_Skip_display_inter?=
+ =?utf-8?q?ruption_setup_when_display_is_not_available?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,143 +39,212 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Vitaly Lubart <vitaly.lubart@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0083123590=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 29, 2021 at 03:55:03PM +0200, Michal Wajdeczko wrote:
-> =
+--===============0083123590==
+Content-Type: multipart/alternative;
+ boundary="===============0736411253848894264=="
 
-> =
+--===============0736411253848894264==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> On 29.03.2021 00:56, Daniele Ceraolo Spurio wrote:
-> > This will be used for communication between the i915 driver and the mei
-> > one. Defining it in a stand-alone patch to avoid circualr dependedencies
-> =
+== Series Details ==
 
-> typos
-> =
+Series: series starting with [CI,1/3] drm/i915: Skip display interruption setup when display is not available
+URL   : https://patchwork.freedesktop.org/series/88879/
+State : success
 
-> > between the patches modifying the 2 drivers.
-> > =
+== Summary ==
 
-> > Split out from an original patch from  Huang, Sean Z
-> > =
+CI Bug Log - changes from CI_DRM_9946 -> Patchwork_19905
+====================================================
 
-> > v2: rename the component struct (Rodrigo)
-> > =
+Summary
+-------
 
-> > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> >  include/drm/i915_component.h         |  1 +
-> >  include/drm/i915_pxp_tee_interface.h | 45 ++++++++++++++++++++++++++++
-> >  2 files changed, 46 insertions(+)
-> >  create mode 100644 include/drm/i915_pxp_tee_interface.h
-> > =
+  **SUCCESS**
 
-> > diff --git a/include/drm/i915_component.h b/include/drm/i915_component.h
-> > index 55c3b123581b..c1e2a43d2d1e 100644
-> > --- a/include/drm/i915_component.h
-> > +++ b/include/drm/i915_component.h
-> > @@ -29,6 +29,7 @@
-> >  enum i915_component_type {
-> >  	I915_COMPONENT_AUDIO =3D 1,
-> >  	I915_COMPONENT_HDCP,
-> > +	I915_COMPONENT_PXP
-> >  };
-> >  =
+  No regressions found.
 
-> >  /* MAX_PORT is the number of port
-> > diff --git a/include/drm/i915_pxp_tee_interface.h b/include/drm/i915_px=
-p_tee_interface.h
-> > new file mode 100644
-> > index 000000000000..09b8389152af
-> > --- /dev/null
-> > +++ b/include/drm/i915_pxp_tee_interface.h
-> > @@ -0,0 +1,45 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright =A9 2020 Intel Corporation
-> > + *
-> > + * Authors:
-> > + * Vitaly Lubart <vitaly.lubart@intel.com>
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/index.html
 
-> shouldn't be at least on cc: ?
+Known issues
+------------
 
-yeap, good idea...
-let's start cc'ing now...
+  Here are the changes found in Patchwork_19905 that come from known issues:
 
-> =
+### IGT changes ###
 
-> > + */
-> > +
-> > +#ifndef _I915_PXP_TEE_INTERFACE_H_
-> > +#define _I915_PXP_TEE_INTERFACE_H_
-> > +
-> > +#include <linux/mutex.h>
-> > +#include <linux/device.h>
-> > +
-> > +/**
-> > + * struct i915_pxp_component_ops - ops for PXP services.
-> > + * @owner: Module providing the ops
-> > + * @send: sends data to PXP
-> > + * @receive: receives data from PXP
-> > + */
-> > +struct i915_pxp_component_ops {
-> > +	/**
-> > +	 * @owner: owner of the module provding the ops
-> =
+#### Issues hit ####
 
-> typo
-> =
+  * igt@prime_vgem@basic-write:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([i915#402])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9946/fi-tgl-y/igt@prime_vgem@basic-write.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/fi-tgl-y/igt@prime_vgem@basic-write.html
 
-> > +	 */
-> > +	struct module *owner;
-> =
+  * igt@runner@aborted:
+    - fi-kbl-r:           NOTRUN -> [FAIL][3] ([i915#1569] / [i915#192] / [i915#193] / [i915#194])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/fi-kbl-r/igt@runner@aborted.html
 
-> hmm, usually ops structs have only function pointers, why do we need
-> owner here ? and are you sure is it a right place if still needed ?
+  
+#### Possible fixes ####
 
-it is indeed not used here and for this series it could be removed.
+  * igt@fbdev@write:
+    - fi-tgl-y:           [DMESG-WARN][4] ([i915#402]) -> [PASS][5] +2 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9946/fi-tgl-y/igt@fbdev@write.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/fi-tgl-y/igt@fbdev@write.html
 
-I haven't considered this earlier because this came from TEE directly,
-but for now, let's remove if not used.
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][6] ([i915#1372]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9946/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
 
-> =
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-> > +
-> > +	int (*send)(struct device *dev, const void *message, size_t size);
-> > +	int (*recv)(struct device *dev, void *buffer, size_t size);
-> > +};
-> > +
-> > +/**
-> > + * struct i915_pxp_component - Used for communication between i915 and=
- TEE
-> > + * drivers for the PXP services
-> > + * @tee_dev: device that provide the PXP service from TEE Bus.
-> > + * @pxp_ops: Ops implemented by TEE driver, used by i915 driver.
-> > + */
-> > +struct i915_pxp_component {
-> > +	struct device *tee_dev;
-> > +	const struct i915_pxp_component_ops *ops;
-> > +
-> > +	/* To protect the above members. */
-> > +	struct mutex mutex;
-> > +};
-> > +
-> > +#endif /* _I915_TEE_PXP_INTERFACE_H_ */
-> > =
+  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
+  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
+  [i915#3278]: https://gitlab.freedesktop.org/drm/intel/issues/3278
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9946 -> Patchwork_19905
+
+  CI-20190529: 20190529
+  CI_DRM_9946: 6e235c4de2cc1cd4a53d77e173895614f1075b11 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6061: 4aa7cd3ac664af4a7ca87d3fa8ed44208e4b0fa5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19905: 8f8797def2351acba999fe522dca123737590d4e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8f8797def235 drm/i915: skip display initialization when there is no display
+b6797c585874 drm/i915: Do not set any power wells when there is no display
+d4ad74f70cc8 drm/i915: Skip display interruption setup when display is not available
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/index.html
+
+--===============0736411253848894264==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [CI,1/3] drm/i915: Skip display interruption setup when display is not available</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88879/">https://patchwork.freedesktop.org/series/88879/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9946 -&gt; Patchwork_19905</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19905 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@prime_vgem@basic-write:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9946/fi-tgl-y/igt@prime_vgem@basic-write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/fi-tgl-y/igt@prime_vgem@basic-write.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9946/fi-tgl-y/igt@fbdev@write.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/fi-tgl-y/igt@fbdev@write.html">PASS</a> +2 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9946/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19905/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9946 -&gt; Patchwork_19905</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9946: 6e235c4de2cc1cd4a53d77e173895614f1075b11 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6061: 4aa7cd3ac664af4a7ca87d3fa8ed44208e4b0fa5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19905: 8f8797def2351acba999fe522dca123737590d4e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8f8797def235 drm/i915: skip display initialization when there is no display<br />
+b6797c585874 drm/i915: Do not set any power wells when there is no display<br />
+d4ad74f70cc8 drm/i915: Skip display interruption setup when display is not available</p>
+
+</body>
+</html>
+
+--===============0736411253848894264==--
+
+--===============0083123590==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0083123590==--
