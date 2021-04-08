@@ -2,41 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C2EA35816A
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 13:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A65163581BC
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 13:28:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B9E46EA94;
-	Thu,  8 Apr 2021 11:13:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 467636EAA0;
+	Thu,  8 Apr 2021 11:28:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 995416EA8D;
- Thu,  8 Apr 2021 11:13:32 +0000 (UTC)
-IronPort-SDR: 6xB9HUDBXfguMJNNxfGIMpgw11H6upQ7DezcUTsY8ktum5vzn57LCpY2KtBHpf3XTreaVg3sHk
- AzOQ/OJv4SZg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="172992372"
-X-IronPort-AV: E=Sophos;i="5.82,206,1613462400"; d="scan'208";a="172992372"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2021 04:13:30 -0700
-IronPort-SDR: rq/99qS2pfwPDMCaPwdJEHFtHYYnS91hgLbRVWbwNSweFDQjMFFUFROPCrucjMhpF76UYug0GS
- fUffqDJmstNg==
-X-IronPort-AV: E=Sophos;i="5.82,206,1613462400"; d="scan'208";a="422193610"
-Received: from akervine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.34.131])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2021 04:13:27 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <YG7fz5UmK/SaoY/U@phenom.ffwll.local>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210326203807.105754-1-lyude@redhat.com>
- <87blaym8by.fsf@intel.com> <YG7fz5UmK/SaoY/U@phenom.ffwll.local>
-Date: Thu, 08 Apr 2021 14:13:24 +0300
-Message-ID: <87zgy9hvvv.fsf@intel.com>
+Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3601F6EA9A;
+ Thu,  8 Apr 2021 11:28:28 +0000 (UTC)
+Received: by verein.lst.de (Postfix, from userid 2407)
+ id EE14068B05; Thu,  8 Apr 2021 13:28:24 +0200 (CEST)
+Date: Thu, 8 Apr 2021 13:28:24 +0200
+From: Christoph Hellwig <hch@lst.de>
+To: Christoph Hellwig <hch@lst.de>, Andrew Morton <akpm@linux-foundation.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Peter Zijlstra <peterz@infradead.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org
+Message-ID: <20210408112824.GB9567@lst.de>
+References: <20210326055505.1424432-1-hch@lst.de>
+ <YG7cpchVvBAVgew7@phenom.ffwll.local>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 00/20] drm: Use new DRM printk funcs
- (like drm_dbg_*()) in DP helpers
+Content-Disposition: inline
+In-Reply-To: <YG7cpchVvBAVgew7@phenom.ffwll.local>
+User-Agent: Mutt/1.5.17 (2007-11-01)
+Subject: Re: [Intel-gfx] add remap_pfn_range_notrack instead of reinventing
+ it in i915 v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,27 +45,16 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 08 Apr 2021, Daniel Vetter <daniel@ffwll.ch> wrote:
-> I think Dave caught up on pulls to drm-next, so after a backmerge of that
-> to drm-misc-next I think should be all fine to apply directly, no need for
-> topic branch.
+On Thu, Apr 08, 2021 at 12:36:21PM +0200, Daniel Vetter wrote:
+> I've seen it's landed already in some tree, maybe if you can add the acks
+> ftr?
 
-Yup. We've done the backmerges to drm-intel-next and drm-intel-gt-next,
-and are all in sync, it's only the drm-next -> drm-misc-next backmerge
-that's still needed.
-
-BR,
-Jani.
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Andrew has picked it up in -mm.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
