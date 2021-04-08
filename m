@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D0E4357E0E
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 10:30:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DDF3357E52
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 10:43:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 672B06EA20;
-	Thu,  8 Apr 2021 08:30:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDAC86EA2C;
+	Thu,  8 Apr 2021 08:43:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78DB86EA20
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 08:30:48 +0000 (UTC)
-IronPort-SDR: CxuqIwM//KXkf7++FpLfdKixsh1qoNLUSRYr+LK/DLRJwY2CLJbN1coQdOyBrz8KINsJD/n+m2
- OCpCcgbXYp4A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="173571201"
-X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="173571201"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2021 01:30:48 -0700
-IronPort-SDR: 8EdEtlppgMOVw2Tv0ij/bRnwvOuGGafWP0YgPq1k0oEgDhozcQ9CgeJAomup30f0BwzjSsdFwc
- no2E+kQK3vPA==
-X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="415659780"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.1.187])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2021 01:30:46 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.oef
-Date: Thu,  8 Apr 2021 10:30:09 +0200
-Message-Id: <20210408083009.22860-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210408083009.22860-1-janusz.krzysztofik@linux.intel.com>
-References: <20210408083009.22860-1-janusz.krzysztofik@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8266EA2C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 08:43:18 +0000 (UTC)
+IronPort-SDR: tscLvB3nD20AYMd6NSo2p768RD6/ToqzqR2ta+4nZf56U1+dHdKzJkdOnHXO9sXIeYz9ZRG07X
+ K0HYlF7Q2qow==
+X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="213896403"
+X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="213896403"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2021 01:43:17 -0700
+IronPort-SDR: Fw83629suhAycwN4l1BjBtUxuBefC0gbA+DEbiv3jzGiB7bwzhZcKagFRHFBCxCYS3tfLVTmI/
+ YGe2sR6wcXNw==
+X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="387309064"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2021 01:43:15 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  8 Apr 2021 13:56:42 +0530
+Message-Id: <20210408082642.27066-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20210406101421.723-1-anshuman.gupta@intel.com>
+References: <20210406101421.723-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 2/2] intel-ci: Unblock
- core_hotunplug@*hot*bind* subtests
+Subject: [Intel-gfx] [PATCH v2] drm/i915/hdcp: Fix uninitialized symbol
+ 'msg_end'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,48 +47,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Dan Carpenter <dan.carpenter@oracle.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit be529747d8ea ("intel-ci: Broaden core_hotunplug blacklist")
-blamed issues triggered by hot variants[*] as responsible for random
-failures in subsequently executed tests,
+Fix static analysis tool uninitialized symbol error.
 
-According to the issue history[*], last reported occurrences were
-not related to core_hotunplug.  Remove *hot*bind* subtests from CI
-blocklist.
+v2:
+- use ktime_set(0, 0) instead to initialize to zero. [Ankit]
 
-[*] https://gitlab.freedesktop.org/drm/intel/-/issues/2644.
-
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 ---
- tests/intel-ci/blacklist.txt | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tests/intel-ci/blacklist.txt b/tests/intel-ci/blacklist.txt
-index 33f92e37f..595fd0ca6 100644
---- a/tests/intel-ci/blacklist.txt
-+++ b/tests/intel-ci/blacklist.txt
-@@ -112,10 +112,10 @@ igt@.*@.*pipe-f($|-.*)
- # Temporary workarounds for CI-impacting bugs
- ###############################################
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index 90868e156c69..2dd9360bdf9a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -532,7 +532,7 @@ int intel_dp_hdcp2_read_msg(struct intel_digital_port *dig_port,
+ 	u8 *byte = buf;
+ 	ssize_t ret, bytes_to_recv, len;
+ 	const struct hdcp2_dp_msg_data *hdcp2_msg_data;
+-	ktime_t msg_end;
++	ktime_t msg_end = ktime_set(0, 0);
+ 	bool msg_expired;
  
--# Currently fails and leaves the machine in a very bad state, and
--# causes coverage loss for other tests. IOMMU related.
--# https://gitlab.freedesktop.org/drm/intel/-/issues/2644
--igt@core_hotunplug@.*(hot|plug).*
-+# *plug* subtests still fail and leave the
-+# machine in a very bad state, causing coverage
-+# loss for other tests.  IOMMU related.
-+igt@core_hotunplug@.*plug.*
- 
- # hangs several gens of hosts, and has no immediate fix
- igt@device_reset@reset-bound
+ 	hdcp2_msg_data = get_hdcp2_dp_msg_data(msg_id);
 -- 
-2.25.1
+2.26.2
 
 _______________________________________________
 Intel-gfx mailing list
