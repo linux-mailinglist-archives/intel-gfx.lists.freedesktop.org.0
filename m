@@ -2,69 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A47493580F2
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 12:38:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C49F335811B
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 12:49:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDAD36EA76;
-	Thu,  8 Apr 2021 10:38:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E1AC6EA7D;
+	Thu,  8 Apr 2021 10:49:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
- [IPv6:2a00:1450:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DEE16EA76
- for <intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 10:38:56 +0000 (UTC)
-Received: by mail-wm1-x331.google.com with SMTP id p22so949176wmc.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 08 Apr 2021 03:38:55 -0700 (PDT)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B1426EA7D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 10:49:55 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id x15so1632808wrq.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 08 Apr 2021 03:49:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:in-reply-to;
- bh=eRaMcxz3zgFPYNGt7SjAbzHOcdHXj9ZgSC7Zn81PL2M=;
- b=DLhUR7rooHo2v1rKHmhVq8DM4VON7DuPXveOFVk80ZcGMyTsiP7rsIMtH1/nLDX8FP
- QmPygjaYOziMZBitOI3Uyq9WRsaAmG6l73GzWgAeeWb+/OUSbyHWQXaxyDD3R1bA4j5l
- u+DtvAa2DYQELE+PIl4jSGtSCwKK92mYNlzFo=
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=67+MEKdvuuMmCuXManwso7qCBU9d61GDUt3D3nSdJRI=;
+ b=eZ9xAYZzhlN3bvWf644DlpRvCzmAZPi0nNpynvkef1+Qle1fiXDPl9fTbhK0wREdJh
+ /8wyYg6JWjy+pE65hERPmb4qHPkSD79TuanL9t2j4dnhCK0OAPYA13niDKuRLReM+M3W
+ rfU94T6nxv/HNjaJx5P3LatYYl/ftLIThBx6Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id
- :mail-followup-to:references:mime-version:content-disposition
- :in-reply-to;
- bh=eRaMcxz3zgFPYNGt7SjAbzHOcdHXj9ZgSC7Zn81PL2M=;
- b=m6UX40qhB+uFblRIa2a/tO7ft0Qmzb980PAmGYX+yRPOoZMcG19XCamyJOEXdoDV4P
- G1n/XDcYuwJWSFqD5woTPHAq+3+rkfLinPVigXhRlIHFk9i0U7s+LDcaen1ZFKf8C+tG
- dNvz4ZuvrntaqX4g5O5REU9oQvdcObgE7dMoOIJOk1Zsy1R36JE2x/7xJupK5q5iVX5F
- pil+etoU6dyxoYiGdvtszQae+yEtjlmhz6W82jW3ieVz7jyIqwdap5BqHU21Lx1jEdUJ
- 5PquL7vVPJfL0I/+jIf3oIerjcmtGTYnOzSIEfeeApGGp6HsexKb+5HvSpMYNNj5GUU7
- JDVQ==
-X-Gm-Message-State: AOAM531Zs5HYisHLmJlCzpPG92OiurE7397+cZWshJyyWzuV+9iwbf2D
- RSs3FxKqDZ3y7g6xov8HBU69YQ==
-X-Google-Smtp-Source: ABdhPJwAY40s7fwbqph5oDTyB7TSOu75px+R8zevxVJSWWfJPeejFa8vysnU4+SyKebV8pJS/9JSqA==
-X-Received: by 2002:a1c:254:: with SMTP id 81mr946479wmc.77.1617878334782;
- Thu, 08 Apr 2021 03:38:54 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=67+MEKdvuuMmCuXManwso7qCBU9d61GDUt3D3nSdJRI=;
+ b=nL+YMqayvZnDxg8/pt5qBVPJEwifjy5zVKuBCPfO7PTYWOaXgE0Itaw+rfQJe6jaM/
+ 2zMUqvU3jPV2ymz0bLs3cnODhSm5vBQtnEDhTa/xlYFMP7wKYDcWAKEIfSMvcAncgTsL
+ ucI1SsKNO3+uFrcOabzg9pidNh+3TxW6HjIh4U82vn/H08shnN5J2C5pXqcJvRFAGRrq
+ Azska4oGViHJmxfUks/HAgyLYo19bnLhKNnweiDsDmlqFA4tyuPl6iJmA1xIti6BR1Ry
+ W1YAEXNzW3d5hvNY7zby6129hmWgq9Gd2T2n8NC3WHHDYN0x9x/pZ1zOnmaYigNo+4y8
+ Ok6g==
+X-Gm-Message-State: AOAM533Adb+rdxNgVATF/K+4FRSwLXFFssF2oQPLWzWJV02SjmFMIrqa
+ 6lbkjAvMr87nmicBnlv5E60G3A==
+X-Google-Smtp-Source: ABdhPJx5Dx4A60v8D/m0vrvrUtVGA0fYNamrAGx3037txALHjxNqc+Py46j1tCroPoMc10toF/BU8w==
+X-Received: by 2002:adf:c10a:: with SMTP id r10mr10792914wre.40.1617878994006; 
+ Thu, 08 Apr 2021 03:49:54 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id o14sm38073759wrh.88.2021.04.08.03.38.53
+ by smtp.gmail.com with ESMTPSA id v3sm13108164wmj.25.2021.04.08.03.49.53
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 Apr 2021 03:38:54 -0700 (PDT)
-Date: Thu, 8 Apr 2021 12:38:52 +0200
+ Thu, 08 Apr 2021 03:49:53 -0700 (PDT)
+Date: Thu, 8 Apr 2021 12:49:51 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <YG7dPD8NWbHLrFck@phenom.ffwll.local>
-Mail-Followup-To: Imre Deak <imre.deak@intel.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-References: <20210326195838.5ad4973b@canb.auug.org.au>
- <20210329090117.6b224931@canb.auug.org.au>
- <20210329182335.GE233691@ideak-desk.fi.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YG7fz5UmK/SaoY/U@phenom.ffwll.local>
+References: <20210326203807.105754-1-lyude@redhat.com>
+ <87blaym8by.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210329182335.GE233691@ideak-desk.fi.intel.com>
+In-Reply-To: <87blaym8by.fsf@intel.com>
 X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] linux-next: build warning after merge of the
- drm-intel-fixes tree
+Subject: Re: [Intel-gfx] [PATCH v2 00/20] drm: Use new DRM printk funcs
+ (like drm_dbg_*()) in DP helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,74 +66,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 29, 2021 at 09:23:35PM +0300, Imre Deak wrote:
-> Hi Stephen,
+On Thu, Apr 01, 2021 at 04:40:33PM +0300, Jani Nikula wrote:
+> On Fri, 26 Mar 2021, Lyude Paul <lyude@redhat.com> wrote:
+> > Since it's been asked quite a few times on some of the various DP
+> > related patch series I've submitted to use the new DRM printk helpers,
+> > and it technically wasn't really trivial to do this before due to the
+> > lack of a consistent way to find a drm_device for an AUX channel, this
+> > patch series aims to address this. In this series we:
+> >
+> > * Clean-up potentially erroneous usages of drm_dp_aux_init() and
+> >   drm_dp_aux_register() so that actual AUX registration doesn't happen
+> >   until we have an associated DRM device
+> > * Clean-up any obvious errors in drivers we find along the way
+> > * Add a backpointer to the respective drm_device for an AUX channel in
+> >   drm_dp_aux.drm_dev, and hook it up in every driver with an AUX channel
+> >   across the tree
+> > * Add a new ratelimited print helper we'll need for converting the DP
+> >   helpers over to using the new DRM printk helpers
+> > * Fix any inconsistencies with logging in drm_dp_helper.c so we always
+> >   have the aux channel name printed
+> > * Prepare the various DP helpers so they can find the correct drm_device
+> >   to use for logging
+> > * And finally, convert all of the DP helpers over to using drm_dbg_*()
+> >   and drm_err().
+> >
+> > Series-wide changes in v2:
+> > * Address most checkpatch issues ('most' as in all except for one line
+> >   going two chars over 100 in "drm/dp_mst: Pass drm_dp_mst_topology_mgr
+> >   to drm_dp_get_vc_payload_bw()" as this was the style in use
+> >   previously, and 2 chars over the limit looks nicer then trying to
+> >   line-wrap this
+> > * Don't rewrap comments
 > 
-> thanks for the report.
+> For anything touching i915, and for merging via whichever tree or branch
+> seems best,
 > 
-> On Mon, Mar 29, 2021 at 09:01:17AM +1100, Stephen Rothwell wrote:
-> > Hi all,
-> > 
-> > On Fri, 26 Mar 2021 19:58:38 +1100 Stephen Rothwell <sfr@canb.auug.org.au> wrote:
-> > >
-> > > After merging the drm-intel-fixes tree, today's linux-next build
-> > > (htmldocs) produced this warning:
-> > > 
-> > > Documentation/gpu/i915:22: /drivers/gpu/drm/i915/intel_runtime_pm.c:423: WARNING: Inline strong start-string without end-string.
+> Acked-by: Jani Nikula <jani.nikula@intel.com>
 > 
-> The problem seems to be the
+> That said, gut feeling says there will be conflicts before latest
+> drm-misc-next and drm-intel-next have been merged to drm-next, and
+> drm-next has been backmerged to drm-misc-next and drm-intel-next.
 > 
-> 	@ignore_usecount=true
-> 
-> part in __intel_runtime_pm_get_if_active()'s docbook documentation. I
-> can't see the problem with it, it was meant as a reference to the
-> function parameter, granted I'm not sure what's the proper markup syntax
-> for this.
-> 
-> I will follow up with the following change which suppresses the warning
-> and renders the html as expected unless someone can suggest a better
-> way:
-> 
-> - * If @ignore_usecount=true, a reference will be acquired even if there is no
-> + * If @ignore_usecount is true, a reference will be acquired even if there is no
+> It just might be a good idea to wait for those (as well as other driver
+> feature pulls) to settle, do a topic branch with a common ancestor
+> between drm-next and drm-misc-next, apply there, merge the topic branch
+> to drm-misc-next, and let all drivers merge the topic branch as
+> needed. Due to the timing, otherwise we might have to carry the
+> conflicts for quite a while.
 
-Yeah you can't just use most pseudo-code in kerneldoc because it's
-interpreted as raw .rst. So would need some .rst quoting of some sorts to
-make it render correctly.
-
-Usually for pseudo-code I go with blockquotes (started with :: at the end
-of the previous line, plus indenting), that gives you also a nice
-fixed-width font and everything.
-
-Aside from the hyperlink stuff plain English works best in the text parts.
+I think Dave caught up on pulls to drm-next, so after a backmerge of that
+to drm-misc-next I think should be all fine to apply directly, no need for
+topic branch.
 -Daniel
 
 > 
-> --Imre
-> 
-> > > 
-> > > Introduced by commit
-> > > 
-> > >   8840e3bd981f ("drm/i915: Fix the GT fence revocation runtime PM logic")
-> > 
-> > This warning now exists in Linus' tree.
-> > 
-> > -- 
-> > Cheers,
-> > Stephen Rothwell
+> BR,
+> Jani.
 > 
 > 
+> >
+> > Lyude Paul (20):
+> >   drm/dp: Fixup kernel docs for struct drm_dp_aux
+> >   drm/tegra: Don't register DP AUX channels before connectors
+> >   drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace
+> >   drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late
+> >     register/early unregister
+> >   drm/dp: Add backpointer to drm_device in drm_dp_aux
+> >   drm/dp: Clarify DP AUX registration time
+> >   drm/print: Fixup DRM_DEBUG_KMS_RATELIMITED()
+> >   drm/dp: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()
+> >   drm/dp: Pass drm_dp_aux to drm_dp*_link_train_channel_eq_delay()
+> >   drm/dp: Always print aux channel name in logs
+> >   drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()
+> >   drm/dp_dual_mode: Pass drm_device to
+> >     drm_dp_dual_mode_set_tmds_output()
+> >   drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_max_tmds_clock()
+> >   drm/dp_dual_mode: Pass drm_device to
+> >     drm_dp_dual_mode_get_tmds_output()
+> >   drm/dp_dual_mode: Pass drm_device to drm_lspcon_(get|set)_mode()
+> >   drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()
+> >   drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_*()
+> >   drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using
+> >     drm_err/drm_dbg_kms()
+> >   drm/dp_mst: Drop DRM_ERROR() on kzalloc() fail in
+> >     drm_dp_mst_handle_up_req()
+> >   drm/dp_mst: Convert drm_dp_mst_topology.c to drm_err()/drm_dbg*()
+> >
+> >  drivers/gpu/drm/amd/amdgpu/atombios_dp.c      |   5 +-
+> >  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |   1 +
+> >  .../drm/bridge/analogix/analogix-anx6345.c    |   1 +
+> >  .../drm/bridge/analogix/analogix-anx78xx.c    |   1 +
+> >  .../drm/bridge/analogix/analogix_dp_core.c    |   1 +
+> >  .../drm/bridge/cadence/cdns-mhdp8546-core.c   |  12 +-
+> >  drivers/gpu/drm/bridge/tc358767.c             |   1 +
+> >  drivers/gpu/drm/bridge/ti-sn65dsi86.c         |   1 +
+> >  drivers/gpu/drm/drm_dp_aux_dev.c              |   6 +
+> >  drivers/gpu/drm/drm_dp_dual_mode_helper.c     |  68 ++--
+> >  drivers/gpu/drm/drm_dp_helper.c               | 181 +++++----
+> >  drivers/gpu/drm/drm_dp_mst_topology.c         | 381 +++++++++---------
+> >  drivers/gpu/drm/i915/display/intel_dp_aux.c   |   1 +
+> >  .../drm/i915/display/intel_dp_link_training.c |   6 +-
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+> >  drivers/gpu/drm/i915/display/intel_hdmi.c     |   7 +-
+> >  drivers/gpu/drm/i915/display/intel_lspcon.c   |  17 +-
+> >  drivers/gpu/drm/msm/dp/dp_ctrl.c              |   6 +-
+> >  drivers/gpu/drm/msm/edp/edp.h                 |   3 +-
+> >  drivers/gpu/drm/msm/edp/edp_aux.c             |   5 +-
+> >  drivers/gpu/drm/msm/edp/edp_ctrl.c            |   8 +-
+> >  drivers/gpu/drm/nouveau/nouveau_connector.c   |  27 +-
+> >  drivers/gpu/drm/radeon/atombios_dp.c          |   5 +-
+> >  drivers/gpu/drm/tegra/dpaux.c                 |  12 +-
+> >  drivers/gpu/drm/xlnx/zynqmp_dp.c              |   5 +-
+> >  include/drm/drm_dp_dual_mode_helper.h         |  14 +-
+> >  include/drm/drm_dp_helper.h                   |  61 +--
+> >  include/drm/drm_dp_mst_helper.h               |   3 +-
+> >  include/drm/drm_print.h                       |  20 +-
+> >  29 files changed, 478 insertions(+), 384 deletions(-)
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- 
 Daniel Vetter
