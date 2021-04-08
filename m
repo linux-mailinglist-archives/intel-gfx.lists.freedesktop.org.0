@@ -1,62 +1,68 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9CF358071
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 12:19:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B80E33580B0
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 12:36:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DFA26EA6A;
-	Thu,  8 Apr 2021 10:18:58 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
- [IPv6:2a00:1450:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 342926EA65
- for <Intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 10:18:57 +0000 (UTC)
-Received: by mail-wm1-x336.google.com with SMTP id
- j20-20020a05600c1914b029010f31e15a7fso2625574wmq.1
- for <Intel-gfx@lists.freedesktop.org>; Thu, 08 Apr 2021 03:18:57 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FE876EA81;
+	Thu,  8 Apr 2021 10:36:26 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com
+ [IPv6:2a00:1450:4864:20::333])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D0F26EA7F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 10:36:25 +0000 (UTC)
+Received: by mail-wm1-x333.google.com with SMTP id p22so945881wmc.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 08 Apr 2021 03:36:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=FNHllNkRk/L46sKffP526g9CHXLWWnXq4f7s+lM9PCM=;
- b=Wgf1bTuQHGx65zBelgNZ4Ru8/ax7iD3VgZJQHCrOJqgT7dxU1vc3UfKcxfhinws4a1
- 73b/3C0amkLX1AGjMH6vU8405I+KWLnqPYipRjDn7miC7GculMdZpeBdot7o0n755UEh
- NvPWVFEkdABv/SIvisX5E3RHiVAuUkO6/ubwA=
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=Ehb071qhtIjNwg1coki7qfy1ZvMlP2t+7HCBWvzOtdo=;
+ b=E1codMSn0IXppsbUUVROaUamwBgW1+Bqn2Yc7Nhms6IPNIkKcACn6o+jhw6alG7V1t
+ gQKajoYhG9V+L7oeIHqOYRxbywQMWyzF0q6x6peu0RGFiKMwyhmiNLu9OHnGQqnRKPjF
+ 8n7EosyEkFqjhKSSfR6IGNvqB2YaaqWuroS6c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=FNHllNkRk/L46sKffP526g9CHXLWWnXq4f7s+lM9PCM=;
- b=GzUJo94pgld5oTbXqsgH9k2mGaRJ6ttTuSth5PU6W+NMMwBV24ecd1b378dOAg03+k
- P5mjc/FCOduNpU8a1YBckeAScvFBF4cEqzY8fEyqltPsPUA51/0bd+TZmsZQ9GXOhbbq
- ff1N4+aJ4ex1npEol09TMHR3P1HYqjq4ndUmpDAsEtyUSNq9bFwsnA4SlWzJmiyHn4tJ
- QuRoICImOOPgbsb+xjCw/IiQcpEJYCWVGQVNKoRtoED1sfztEzWZmQfy0j7170+I4jJt
- u7xyhot+L+ywDxILvGhKvXYYBopePYfEsQGY9dW1BvmwxZBohCifLATuwMJqHNEjs2Sy
- qW1w==
-X-Gm-Message-State: AOAM533pv53pPx/t0V+VwQWlwI7pZIDOCP7wyZ+mrTveDZy39ci82ZY7
- CuTx8sWhvTVeopazvI9yDZa5uA==
-X-Google-Smtp-Source: ABdhPJy1cZxz4F3OtNKRiufzkMS/GwrXBN+SiRATXPMVTYq87ytPB86ojPmY5gvRS5loiaX1q6ScZw==
-X-Received: by 2002:a05:600c:19d1:: with SMTP id
- u17mr7592354wmq.141.1617877135861; 
- Thu, 08 Apr 2021 03:18:55 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=Ehb071qhtIjNwg1coki7qfy1ZvMlP2t+7HCBWvzOtdo=;
+ b=kmD5O/oF+ffmbBzP0G/tnqVtpLl0I+Ib0nlOQuTDqE0NB0dopjiORVwl6ebYuOcK9x
+ oQXZFVl3lB85+F3jhRAnPi0HhUnbxUAHw8Hcvs2hecD/iwoVXgaQNEH7xBLU/Mk7FV5T
+ GzrqRgeV+tMJrYQt45ffq4tmrWv//B77qsN18XY/owNb5x8olFm3PryIF1OTNcbuSs5i
+ vZEz3Vw5ZbKT7+bJPXMnDFOPDLbg180rGwmacavOAaxoeNFFZkh8eS9W0shjGApjdw+3
+ o288Ds4SYIKfqTaUooP3ru//zwZAelOb0EL2LqJXiykSxQ6xtQBZ3qwo9TGR2jTVIVaw
+ dS8w==
+X-Gm-Message-State: AOAM532ipqCLrU+NSJOsX7c9icZvXd9XHSONmIgizkmaOrLbapZTx4Nn
+ K/iQX1HhCKVp1a0tqRvQ7jwlX8GAXONm3Q==
+X-Google-Smtp-Source: ABdhPJxVRQpjUIE10JDuV/W/95buK8as49pxXaiEpY23riFd8jWlvKx5lmQHHebGeYW5WOocwxiUIQ==
+X-Received: by 2002:a1c:4908:: with SMTP id w8mr7575080wma.57.1617878184058;
+ Thu, 08 Apr 2021 03:36:24 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id j1sm16567354wrq.90.2021.04.08.03.18.54
+ by smtp.gmail.com with ESMTPSA id z8sm45559832wrh.37.2021.04.08.03.36.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 Apr 2021 03:18:55 -0700 (PDT)
-Date: Thu, 8 Apr 2021 12:18:53 +0200
+ Thu, 08 Apr 2021 03:36:23 -0700 (PDT)
+Date: Thu, 8 Apr 2021 12:36:21 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YG7Yjb6LwhFUfWQw@phenom.ffwll.local>
-References: <20210324121335.2307063-1-tvrtko.ursulin@linux.intel.com>
- <YF2k9TivGrDdenoE@phenom.ffwll.local>
- <a73d8204-c3e4-9dda-e587-28c7c134dd59@linux.intel.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <YG7cpchVvBAVgew7@phenom.ffwll.local>
+Mail-Followup-To: Christoph Hellwig <hch@lst.de>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Peter Zijlstra <peterz@infradead.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org
+References: <20210326055505.1424432-1-hch@lst.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <a73d8204-c3e4-9dda-e587-28c7c134dd59@linux.intel.com>
+In-Reply-To: <20210326055505.1424432-1-hch@lst.de>
 X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH v4 0/7] Default request/fence expiry +
- watchdog
+Subject: Re: [Intel-gfx] add remap_pfn_range_notrack instead of reinventing
+ it in i915 v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,165 +75,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Peter Zijlstra <peterz@infradead.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
+ dri-devel@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 26, 2021 at 10:31:10AM +0000, Tvrtko Ursulin wrote:
+On Fri, Mar 26, 2021 at 06:55:01AM +0100, Christoph Hellwig wrote:
+> Hi all,
 > 
-> On 26/03/2021 09:10, Daniel Vetter wrote:
-> > On Wed, Mar 24, 2021 at 12:13:28PM +0000, Tvrtko Ursulin wrote:
-> > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > 
-> > > "Watchdog" aka "restoring hangcheck" aka default request/fence expiry - second
-> > > post of a somewhat controversial feature, now upgraded to patch status.
-> > > 
-> > > I quote the "watchdog" becuase in classical sense watchdog would allow userspace
-> > > to ping it and so remain alive.
-> > > 
-> > > I quote "restoring hangcheck" because this series, contrary to the old
-> > > hangcheck, is not looking at whether the workload is making any progress from
-> > > the kernel side either. (Although disclaimer my memory may be leaky - Daniel
-> > > suspects old hangcheck had some stricter, more indiscriminatory, angles to it.
-> > > But apart from being prone to both false negatives and false positives I can't
-> > > remember that myself.)
-> > > 
-> > > Short version - ask is to fail any user submissions after a set time period. In
-> > > this RFC that time is twelve seconds.
-> > > 
-> > > Time counts from the moment user submission is "runnable" (implicit and explicit
-> > > dependencies have been cleared) and keeps counting regardless of the GPU
-> > > contetion caused by other users of the system.
-> > > 
-> > > So semantics are really a bit weak, but again, I understand this is really
-> > > really wanted by the DRM core even if I am not convinced it is a good idea.
-> > > 
-> > > There are some dangers with doing this - text borrowed from a patch in the
-> > > series:
-> > > 
-> > >    This can have an effect that workloads which used to work fine will
-> > >    suddenly start failing. Even workloads comprised of short batches but in
-> > >    long dependency chains can be terminated.
-> > > 
-> > >    And becuase of lack of agreement on usefulness and safety of fence error
-> > >    propagation this partial execution can be invisible to userspace even if
-> > >    it is "listening" to returned fence status.
-> > > 
-> > >    Another interaction is with hangcheck where care needs to be taken timeout
-> > >    is not set lower or close to three times the heartbeat interval. Otherwise
-> > >    a hang in any application can cause complete termination of all
-> > >    submissions from unrelated clients. Any users modifying the per engine
-> > >    heartbeat intervals therefore need to be aware of this potential denial of
-> > >    service to avoid inadvertently enabling it.
-> > > 
-> > >    Given all this I am personally not convinced the scheme is a good idea.
-> > >    Intuitively it feels object importers would be better positioned to
-> > >    enforce the time they are willing to wait for something to complete.
-> > > 
-> > > v2:
-> > >   * Dropped context param.
-> > >   * Improved commit messages and Kconfig text.
-> > > 
-> > > v3:
-> > >   * Log timeouts.
-> > >   * Bump timeout to 20s to see if it helps Tigerlake.
-> > 
-> > I think 20s is a bit much, and seems like problem is still there in igt. I
-> > think we need look at that and figure out what to do with it. And then go
-> > back down with the timeout somewhat again since 20s is quite a long time.
-> > Irrespective of all the additional gaps/opens around watchdog timeout.
+> i915 has some reason to want to avoid the track_pfn_remap overhead in
+> remap_pfn_range.  Add a function to the core VM to do just that rather
+> than reinventing the functionality poorly in the driver.
 > 
-> 1)
+> Note that the remap_io_sg path does get exercises when using Xorg on my
+> Thinkpad X1, so this should be considered lightly tested, I've not
+> managed to hit the remap_io_mapping path at all.
 > 
-> The relationship with the hearbeat is the first issue. There we have 3x
-> heartbeat period (each rounded to full second) before sending a high-prio
-> pulse which can cause a preempt timeout and hence a reset/kicking out of a
-> non-compliant request.
-> 
-> Defaults for those values mean default expiry shouldn't be lower than 3x
-> rounded hearbeat interval + preempt timeout, currently ~9.75s. In practice
-> even 12s which I tried initially was too aggressive due slacks on some
-> platforms.
+> Changes since v1:
+>  - create a io_mapping_map_user wrapper instead of exporting
+>    remap_pfn_range_notrack
+>  - switch to plain remap_pfn_range for remap_sg as it does not use
+>    a pre-verified pgprot from an iomap
 
-Hm, would be good to put that as a comment next to the module param, or
-something like that. Maybe even a sanity check to make sure these two
-values are consistent (i.e. if watchdog is less than 3.5x the heartbeat,
-we complain in dmesg).
+I'm burried under patches and stuff so no in-depth review. But from a
+quick scan lgtm. On the series:
 
-> 2)
-> 
-> 20s seems to work apart that it shows the general regression unconditional
-> default expiry adds. Either some existing IGTs which create long runnable
-> chains, or the far-fence test which explicitly demonstrates this. AFAIK, and
-> apart from the can_merge_rq yet unexplained oops, this is the only class of
-> IGT failures which can appear.
-> 
-> So you could tweak it lower, if you also decide to make real hang detection
-> stricter. But doing that also worsens the regression with loaded systems.
-> 
-> I only can have a large shrug/dontknow here since I wish we went more
-> towards my suggestion of emulating setrlimit(RLIMIT_CPU). Meaning at least
-> going with GPU time instead of elapsed time and possibly even leaving the
-> policy of setting it to sysadmins. That would fit much better with our
-> hangcheck, but, doesn't fit the drm core mandate.. hence I really don't
-> know.
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-The bikeshed will come back when we wire up drm/scheduler as the frontend
-for guc scheduler backend. I guess we can tackle it then.
--Daniel
+I've seen it's landed already in some tree, maybe if you can add the acks
+ftr?
+
+Cheers, Daniel
 
 > 
-> Regards,
-> 
-> Tvrtko
-> 
-> > -Daniel
-> > 
-> > >   * Fix sentinel assert.
-> > > 
-> > > v4:
-> > >   * A round of review feedback applied.
-> > > 
-> > > Chris Wilson (1):
-> > >    drm/i915: Individual request cancellation
-> > > 
-> > > Tvrtko Ursulin (6):
-> > >    drm/i915: Extract active lookup engine to a helper
-> > >    drm/i915: Restrict sentinel requests further
-> > >    drm/i915: Handle async cancellation in sentinel assert
-> > >    drm/i915: Request watchdog infrastructure
-> > >    drm/i915: Fail too long user submissions by default
-> > >    drm/i915: Allow configuring default request expiry via modparam
-> > > 
-> > >   drivers/gpu/drm/i915/Kconfig.profile          |  14 ++
-> > >   drivers/gpu/drm/i915/gem/i915_gem_context.c   |  73 ++++---
-> > >   .../gpu/drm/i915/gem/i915_gem_context_types.h |   4 +
-> > >   drivers/gpu/drm/i915/gt/intel_context_param.h |  11 +-
-> > >   drivers/gpu/drm/i915/gt/intel_context_types.h |   4 +
-> > >   .../gpu/drm/i915/gt/intel_engine_heartbeat.c  |   1 +
-> > >   .../drm/i915/gt/intel_execlists_submission.c  |  23 +-
-> > >   .../drm/i915/gt/intel_execlists_submission.h  |   2 +
-> > >   drivers/gpu/drm/i915/gt/intel_gt.c            |   3 +
-> > >   drivers/gpu/drm/i915/gt/intel_gt.h            |   2 +
-> > >   drivers/gpu/drm/i915/gt/intel_gt_requests.c   |  28 +++
-> > >   drivers/gpu/drm/i915/gt/intel_gt_types.h      |   7 +
-> > >   drivers/gpu/drm/i915/i915_params.c            |   5 +
-> > >   drivers/gpu/drm/i915/i915_params.h            |   1 +
-> > >   drivers/gpu/drm/i915/i915_request.c           | 129 ++++++++++-
-> > >   drivers/gpu/drm/i915/i915_request.h           |  16 +-
-> > >   drivers/gpu/drm/i915/selftests/i915_request.c | 201 ++++++++++++++++++
-> > >   17 files changed, 479 insertions(+), 45 deletions(-)
-> > > 
-> > > -- 
-> > > 2.27.0
-> > > 
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > 
+> Diffstat:
+>  drivers/gpu/drm/i915/Kconfig             |    1 
+>  drivers/gpu/drm/i915/gem/i915_gem_mman.c |    9 +-
+>  drivers/gpu/drm/i915/i915_drv.h          |    3 
+>  drivers/gpu/drm/i915/i915_mm.c           |  117 ++++++-------------------------
+>  include/linux/io-mapping.h               |    3 
+>  include/linux/mm.h                       |    2 
+>  mm/Kconfig                               |    3 
+>  mm/Makefile                              |    1 
+>  mm/io-mapping.c                          |   29 +++++++
+>  mm/memory.c                              |   51 ++++++++-----
+>  10 files changed, 97 insertions(+), 122 deletions(-)
 
 -- 
 Daniel Vetter
