@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B6D357B7A
-	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 06:52:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1AFF357B7B
+	for <lists+intel-gfx@lfdr.de>; Thu,  8 Apr 2021 06:52:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB00A6E9F5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7ADB6E9F8;
 	Thu,  8 Apr 2021 04:52:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40C606E9F4
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7652D6E9F1
  for <intel-gfx@lists.freedesktop.org>; Thu,  8 Apr 2021 04:52:39 +0000 (UTC)
-IronPort-SDR: j1bQzN3i0ADVEI7D99AwN8BL/WY+mPmkUaIcP2i5iIwe7zHCqTKGJeGq7ygkr06jm6UCFMWhbq
- Mj/wVRwq03wg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="193573089"
-X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="193573089"
+IronPort-SDR: IhkBw5ED4DLNmP7J2R0k8kIJj1BGJqrmT5aV+YrG+C6wvPLpFn1euqhQfVcvvWidU/0qyiR5QF
+ uXL2jqpVd/kA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9947"; a="193573091"
+X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="193573091"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Apr 2021 21:52:37 -0700
-IronPort-SDR: mvJ6j8ZeczPR266rt8s8XQNQwQyjaWvGmHRqxjs9h7Jl7sK4/kDVDLGc94xJ3gyOngFKrndplu
- VxV1o3Hc3dHw==
-X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="422064219"
+IronPort-SDR: eFOyGzfTFmFli2OUrjq7q+zTDE21tRocG05psoWJ/EaOtQy5zxrjJTYtjMPGhXSdyxIdmhcz3B
+ GNfQVDkPx06w==
+X-IronPort-AV: E=Sophos;i="5.82,205,1613462400"; d="scan'208";a="422064222"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Apr 2021 21:52:37 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  7 Apr 2021 21:52:17 -0700
-Message-Id: <20210408045227.985408-3-lucas.demarchi@intel.com>
+Date: Wed,  7 Apr 2021 21:52:18 -0700
+Message-Id: <20210408045227.985408-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210408045227.985408-1-lucas.demarchi@intel.com>
 References: <20210408045227.985408-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/12] drm/i915: add macros for graphics and
- media versions
+Subject: [Intel-gfx] [PATCH 03/12] drm/i915/gt: replace gen use in
+ intel_engine_cs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,89 +52,202 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Like it was done in
-commit 01eb15c9165e ("drm/i915: Add DISPLAY_VER() and related macros")
-add the correspondent macros for graphics and media. Going forward we
-will prefer checking the versions for the specific IPs (graphics, media
-and display) rather than grouping everything under a "gen" version.
-
-For consistency and to make the maintenance easier, it'd be preferred
-not to mix the *GEN* macros with the new ones. For older platforms we
-can simply consider that the previous "gen" number will extend to all
-3 IPs. Then we can start replacing its use in the driver. Right now this
-replacement is not done and only the infrastructure is put in place.
-We also leave gen and gen_mask inside struct intel_device_info while
-it's still being used throughout the code.
+Start using the new fields graphics_version for the previous gen checks.
+Here we rename the "gen" field and replace the comparisons using it to
+start using the new GRAPHICS_VER(). Other uses of INTEL_GEN() were left
+as is for automatic conversion later.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h          | 17 ++++++++++++++++-
- drivers/gpu/drm/i915/i915_pci.c          |  7 ++++++-
- drivers/gpu/drm/i915/intel_device_info.h |  3 +++
- 3 files changed, 25 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 40 ++++++++++----------
+ drivers/gpu/drm/i915/gt/selftest_engine_cs.c | 18 ++++-----
+ 2 files changed, 29 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 8c62bb2abd31..97cbd019f2e9 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1234,9 +1234,24 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
- #define RUNTIME_INFO(dev_priv)	(&(dev_priv)->__runtime)
- #define DRIVER_CAPS(dev_priv)	(&(dev_priv)->caps)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index efe935f80c1a..6dbdbde00f14 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -45,9 +45,9 @@ struct engine_info {
+ 	unsigned int hw_id;
+ 	u8 class;
+ 	u8 instance;
+-	/* mmio bases table *must* be sorted in reverse gen order */
++	/* mmio bases table *must* be sorted in reverse graphics_ver order */
+ 	struct engine_mmio_base {
+-		u32 gen : 8;
++		u32 graphics_ver : 8;
+ 		u32 base : 24;
+ 	} mmio_bases[MAX_MMIO_BASES];
+ };
+@@ -58,7 +58,7 @@ static const struct engine_info intel_engines[] = {
+ 		.class = RENDER_CLASS,
+ 		.instance = 0,
+ 		.mmio_bases = {
+-			{ .gen = 1, .base = RENDER_RING_BASE }
++			{ .graphics_ver = 1, .base = RENDER_RING_BASE }
+ 		},
+ 	},
+ 	[BCS0] = {
+@@ -66,7 +66,7 @@ static const struct engine_info intel_engines[] = {
+ 		.class = COPY_ENGINE_CLASS,
+ 		.instance = 0,
+ 		.mmio_bases = {
+-			{ .gen = 6, .base = BLT_RING_BASE }
++			{ .graphics_ver = 6, .base = BLT_RING_BASE }
+ 		},
+ 	},
+ 	[VCS0] = {
+@@ -74,9 +74,9 @@ static const struct engine_info intel_engines[] = {
+ 		.class = VIDEO_DECODE_CLASS,
+ 		.instance = 0,
+ 		.mmio_bases = {
+-			{ .gen = 11, .base = GEN11_BSD_RING_BASE },
+-			{ .gen = 6, .base = GEN6_BSD_RING_BASE },
+-			{ .gen = 4, .base = BSD_RING_BASE }
++			{ .graphics_ver = 11, .base = GEN11_BSD_RING_BASE },
++			{ .graphics_ver = 6, .base = GEN6_BSD_RING_BASE },
++			{ .graphics_ver = 4, .base = BSD_RING_BASE }
+ 		},
+ 	},
+ 	[VCS1] = {
+@@ -84,8 +84,8 @@ static const struct engine_info intel_engines[] = {
+ 		.class = VIDEO_DECODE_CLASS,
+ 		.instance = 1,
+ 		.mmio_bases = {
+-			{ .gen = 11, .base = GEN11_BSD2_RING_BASE },
+-			{ .gen = 8, .base = GEN8_BSD2_RING_BASE }
++			{ .graphics_ver = 11, .base = GEN11_BSD2_RING_BASE },
++			{ .graphics_ver = 8, .base = GEN8_BSD2_RING_BASE }
+ 		},
+ 	},
+ 	[VCS2] = {
+@@ -93,7 +93,7 @@ static const struct engine_info intel_engines[] = {
+ 		.class = VIDEO_DECODE_CLASS,
+ 		.instance = 2,
+ 		.mmio_bases = {
+-			{ .gen = 11, .base = GEN11_BSD3_RING_BASE }
++			{ .graphics_ver = 11, .base = GEN11_BSD3_RING_BASE }
+ 		},
+ 	},
+ 	[VCS3] = {
+@@ -101,7 +101,7 @@ static const struct engine_info intel_engines[] = {
+ 		.class = VIDEO_DECODE_CLASS,
+ 		.instance = 3,
+ 		.mmio_bases = {
+-			{ .gen = 11, .base = GEN11_BSD4_RING_BASE }
++			{ .graphics_ver = 11, .base = GEN11_BSD4_RING_BASE }
+ 		},
+ 	},
+ 	[VECS0] = {
+@@ -109,8 +109,8 @@ static const struct engine_info intel_engines[] = {
+ 		.class = VIDEO_ENHANCEMENT_CLASS,
+ 		.instance = 0,
+ 		.mmio_bases = {
+-			{ .gen = 11, .base = GEN11_VEBOX_RING_BASE },
+-			{ .gen = 7, .base = VEBOX_RING_BASE }
++			{ .graphics_ver = 11, .base = GEN11_VEBOX_RING_BASE },
++			{ .graphics_ver = 7, .base = VEBOX_RING_BASE }
+ 		},
+ 	},
+ 	[VECS1] = {
+@@ -118,7 +118,7 @@ static const struct engine_info intel_engines[] = {
+ 		.class = VIDEO_ENHANCEMENT_CLASS,
+ 		.instance = 1,
+ 		.mmio_bases = {
+-			{ .gen = 11, .base = GEN11_VEBOX2_RING_BASE }
++			{ .graphics_ver = 11, .base = GEN11_VEBOX2_RING_BASE }
+ 		},
+ 	},
+ };
+@@ -146,9 +146,9 @@ u32 intel_engine_context_size(struct intel_gt *gt, u8 class)
  
--#define INTEL_GEN(dev_priv)	(INTEL_INFO(dev_priv)->gen)
- #define INTEL_DEVID(dev_priv)	(RUNTIME_INFO(dev_priv)->device_id)
+ 	switch (class) {
+ 	case RENDER_CLASS:
+-		switch (INTEL_GEN(gt->i915)) {
++		switch (GRAPHICS_VER(gt->i915)) {
+ 		default:
+-			MISSING_CASE(INTEL_GEN(gt->i915));
++			MISSING_CASE(GRAPHICS_VER(gt->i915));
+ 			return DEFAULT_LR_CONTEXT_RENDER_SIZE;
+ 		case 12:
+ 		case 11:
+@@ -184,8 +184,8 @@ u32 intel_engine_context_size(struct intel_gt *gt, u8 class)
+ 			 */
+ 			cxt_size = intel_uncore_read(uncore, CXT_SIZE) + 1;
+ 			drm_dbg(&gt->i915->drm,
+-				"gen%d CXT_SIZE = %d bytes [0x%08x]\n",
+-				INTEL_GEN(gt->i915), cxt_size * 64,
++				"graphics_ver = %d CXT_SIZE = %d bytes [0x%08x]\n",
++				GRAPHICS_VER(gt->i915), cxt_size * 64,
+ 				cxt_size - 1);
+ 			return round_up(cxt_size * 64, PAGE_SIZE);
+ 		case 3:
+@@ -201,7 +201,7 @@ u32 intel_engine_context_size(struct intel_gt *gt, u8 class)
+ 	case VIDEO_DECODE_CLASS:
+ 	case VIDEO_ENHANCEMENT_CLASS:
+ 	case COPY_ENGINE_CLASS:
+-		if (INTEL_GEN(gt->i915) < 8)
++		if (GRAPHICS_VER(gt->i915) < 8)
+ 			return 0;
+ 		return GEN8_LR_CONTEXT_OTHER_SIZE;
+ 	}
+@@ -213,7 +213,7 @@ static u32 __engine_mmio_base(struct drm_i915_private *i915,
+ 	int i;
  
-+/*
-+ * Deprecated: this will be replaced by individual IP checks:
-+ * GRAPHICS_VER(), MEDIA_VER and DISPLAY_VER()
-+ */
-+#define INTEL_GEN(dev_priv)		(INTEL_INFO(dev_priv)->gen)
-+
-+#define GRAPHICS_VER(i915)		(INTEL_INFO(i915)->graphics_ver)
-+#define IS_GRAPHICS_RANGE(i915, from, until) \
-+	(GRAPHICS_VER(i915) >= (from) && GRAPHICS_VER(i915) <= (until))
-+#define IS_GRAPHICS_VER(i915, v)	(GRAPHICS_VER(i915) == (v))
-+
-+#define MEDIA_VER(i915)			(INTEL_INFO(i915)->media_ver)
-+#define IS_MEDIA_RANGE(i915, from, until) \
-+	(MEDIA_VER(i915) >= (from) && MEDIA_VER(i915) <= (until))
-+#define IS_MEDIA_VER(i915, v)		(MEDIA_VER(i915) == (v))
-+
- #define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.ver)
- #define IS_DISPLAY_RANGE(i915, from, until) \
- 	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index ce5cbeaf036d..97ab73276334 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -36,7 +36,12 @@
- #include "i915_selftest.h"
+ 	for (i = 0; i < MAX_MMIO_BASES; i++)
+-		if (INTEL_GEN(i915) >= bases[i].gen)
++		if (GRAPHICS_VER(i915) >= bases[i].graphics_ver)
+ 			break;
  
- #define PLATFORM(x) .platform = (x)
--#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display.ver = (x)
-+#define GEN(x) \
-+	.gen_mask = BIT((x) - 1), \
-+	.gen = (x), \
-+	.graphics_ver = (x), \
-+	.media_ver = (x), \
-+	.display.ver = (x)
+ 	GEM_BUG_ON(i == MAX_MMIO_BASES);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_cs.c b/drivers/gpu/drm/i915/gt/selftest_engine_cs.c
+index b32814a1f20b..3453eb77c498 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/selftest_engine_cs.c
+@@ -376,34 +376,34 @@ static int intel_mmio_bases_check(void *arg)
+ 		u8 prev = U8_MAX;
  
- #define I845_PIPE_OFFSETS \
- 	.pipe_offsets = { \
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index b16c75927a12..405883a8cc84 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -162,6 +162,9 @@ enum intel_ppgtt_type {
- struct intel_device_info {
- 	u16 gen_mask;
+ 		for (j = 0; j < MAX_MMIO_BASES; j++) {
+-			u8 gen = info->mmio_bases[j].gen;
++			u8 ver = info->mmio_bases[j].graphics_ver;
+ 			u32 base = info->mmio_bases[j].base;
  
-+	u8 graphics_ver;
-+	u8 media_ver;
-+
- 	u8 gen;
- 	u8 gt; /* GT number, 0 if undefined */
- 	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
+-			if (gen >= prev) {
+-				pr_err("%s(%s, class:%d, instance:%d): mmio base for gen %x is before the one for gen %x\n",
++			if (ver >= prev) {
++				pr_err("%s(%s, class:%d, instance:%d): mmio base for graphics ver %u is before the one for ver %u\n",
+ 				       __func__,
+ 				       intel_engine_class_repr(info->class),
+ 				       info->class, info->instance,
+-				       prev, gen);
++				       prev, ver);
+ 				return -EINVAL;
+ 			}
+ 
+-			if (gen == 0)
++			if (ver == 0)
+ 				break;
+ 
+ 			if (!base) {
+-				pr_err("%s(%s, class:%d, instance:%d): invalid mmio base (%x) for gen %x at entry %u\n",
++				pr_err("%s(%s, class:%d, instance:%d): invalid mmio base (%x) for graphics ver %u at entry %u\n",
+ 				       __func__,
+ 				       intel_engine_class_repr(info->class),
+ 				       info->class, info->instance,
+-				       base, gen, j);
++				       base, ver, j);
+ 				return -EINVAL;
+ 			}
+ 
+-			prev = gen;
++			prev = ver;
+ 		}
+ 
+-		pr_debug("%s: min gen supported for %s%d is %d\n",
++		pr_debug("%s: min graphics version supported for %s%d is %u\n",
+ 			 __func__,
+ 			 intel_engine_class_repr(info->class),
+ 			 info->instance,
 -- 
 2.31.1
 
