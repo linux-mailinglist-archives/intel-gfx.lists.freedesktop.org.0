@@ -2,43 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1791359829
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Apr 2021 10:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 046FA359867
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Apr 2021 10:57:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBE4D6EB95;
-	Fri,  9 Apr 2021 08:43:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C07B6EB9D;
+	Fri,  9 Apr 2021 08:57:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 492426E488;
- Fri,  9 Apr 2021 08:43:16 +0000 (UTC)
-IronPort-SDR: M8dofAYBGh/RkJrcW2Q5EBx3ytSo89w56cYB+4oZjVzrDifbY52ZRHV/7Ylb173l32QwBFMCqg
- xAlXcu4S0Rcg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9948"; a="193760358"
-X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; d="scan'208";a="193760358"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2021 01:43:15 -0700
-IronPort-SDR: eFIc8h3ejSY5DuP682UYdPlU1zhjMygcWB2wtT6MTa4Tn78ybAiKnh1sY6gKtnwEHKUzdHqKCd
- 1C6BT5jslHxQ==
-X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; d="scan'208";a="459155075"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5489A6EB9C;
+ Fri,  9 Apr 2021 08:57:48 +0000 (UTC)
+IronPort-SDR: 2zRQyHtNI7gzNCkzv5xxWUh5j1h4fjyW5ZbEX9ogCQk3/3hJWXvDd3mKAQ43myDGDGhqPNgLzt
+ 1GnicGgMS0cw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9948"; a="191571230"
+X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; d="scan'208";a="191571230"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2021 01:57:26 -0700
+IronPort-SDR: 96umouX6Ry8qtR5DzQJ8tON2zLI0kY1tpQG7RiGmRpWS2KQ9vWOgfRev5AFZPrThh7oZxApUAR
+ +6GKF1Z412Yw==
+X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; d="scan'208";a="422646404"
 Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.3.166])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2021 01:43:13 -0700
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2021 01:57:23 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri, 09 Apr 2021 10:43:10 +0200
-Message-ID: <3107819.44csPzL39Z@jkrzyszt-mobl1.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <161789344525.10401.7041868063507113175@emeril.freedesktop.org>
-References: <20210408083157.23014-1-janusz.krzysztofik@linux.intel.com>
- <161789344525.10401.7041868063507113175@emeril.freedesktop.org>
+Date: Fri,  9 Apr 2021 10:57:04 +0200
+Message-Id: <20210409085704.40233-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5BRFC=2C1/2=5D_tests/core=5Fhotunplug=3A_Add?=
- =?utf-8?q?_perf_health_check?=
+Subject: [Intel-gfx] [RFC PATCH] tests/gem_userptr_blits: Check for banned
+ mmap-offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,518 +45,503 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On czwartek, 8 kwietnia 2021 16:50:45 CEST Patchwork wrote:
-> == Series Details ==
-> 
-> Series: series starting with [RFC,1/2] tests/core_hotunplug: Add perf health check
-> URL   : https://patchwork.freedesktop.org/series/88848/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_9934_full -> IGTPW_5718_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with IGTPW_5718_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in IGTPW_5718_full, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/index.html
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in IGTPW_5718_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@core_hotunplug@hotrebind:
->     - shard-tglb:         NOTRUN -> [FAIL][1] +1 similar issue
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb2/igt@core_hotunplug@hotrebind.html
->     - shard-glk:          NOTRUN -> [FAIL][2] +1 similar issue
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk1/igt@core_hotunplug@hotrebind.html
->     - shard-kbl:          NOTRUN -> [FAIL][3] +1 similar issue
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl4/igt@core_hotunplug@hotrebind.html
-> 
->   * igt@core_hotunplug@hotrebind-lateclose:
->     - shard-snb:          NOTRUN -> [INCOMPLETE][4]
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-snb6/igt@core_hotunplug@hotrebind-lateclose.html
->     - shard-iclb:         NOTRUN -> [FAIL][5] +1 similar issue
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb5/igt@core_hotunplug@hotrebind-lateclose.html
->     - shard-apl:          NOTRUN -> [FAIL][6] +1 similar issue
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl7/igt@core_hotunplug@hotrebind-lateclose.html
+Support for mmap-offset to userptr has been obsoleted, then related
+lockdep splat reported issues are not going to be resolved other than
+still banning mmap-offset to userptr attempts.
 
-Those FAILs are clear indications there is an issue with restoring device perf 
-features after hot rebind on some platforms (or an issue with IGT lib ability 
-to detect them), then that's not a regression, only bringing the issue into 
-light.  As long as we keep hot*bind* subtests blocklisted, the issue will not 
-be visible and will persist silently, I'm afraid.
+Replace "mmap-offset-invalidate-*" and "readonly-mmap-unsync" subtests
+which now skip with a negative "mmap-offset-banned" that fails if a
+mmap-offset attempt to a userptr object doesn't return ENODEV.  Also,
+remove mmap-offset to userptr dependent processing paths from other
+subtest bodies and drop obsolete subtest variants.
 
-Regarding the INCOMPLETE, I'm wondering how often similar system crashes on 
-GPU hangs happen, if they really happen only on GPU hangs after hot rebind, 
-and if that's still a good reason to keep the hot*bind* subtests blocklisted.  
-Chris, can you please comment?
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ tests/i915/gem_userptr_blits.c | 324 +++------------------------------
+ 1 file changed, 30 insertions(+), 294 deletions(-)
 
-Thanks,
-Janusz
-
-> 
->   
-> Known issues
-> ------------
-> 
->   Here are the changes found in IGTPW_5718_full that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@gem_create@create-massive:
->     - shard-snb:          NOTRUN -> [DMESG-WARN][7] ([i915#3002])
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-snb7/igt@gem_create@create-massive.html
-> 
->   * igt@gem_ctx_persistence@engines-queued:
->     - shard-snb:          NOTRUN -> [SKIP][8] ([fdo#109271] / [i915#1099]) +3 similar issues
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-snb6/igt@gem_ctx_persistence@engines-queued.html
-> 
->   * igt@gem_ctx_sseu@invalid-args:
->     - shard-tglb:         NOTRUN -> [SKIP][9] ([i915#280])
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb5/igt@gem_ctx_sseu@invalid-args.html
-> 
->   * igt@gem_exec_fair@basic-deadline:
->     - shard-glk:          [PASS][10] -> [FAIL][11] ([i915#2846])
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-glk2/igt@gem_exec_fair@basic-deadline.html
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk7/igt@gem_exec_fair@basic-deadline.html
->     - shard-apl:          NOTRUN -> [FAIL][12] ([i915#2846])
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl1/igt@gem_exec_fair@basic-deadline.html
-> 
->   * igt@gem_exec_fair@basic-none-solo@rcs0:
->     - shard-glk:          [PASS][13] -> [FAIL][14] ([i915#2842]) +1 similar issue
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-glk5/igt@gem_exec_fair@basic-none-solo@rcs0.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk4/igt@gem_exec_fair@basic-none-solo@rcs0.html
-> 
->   * igt@gem_exec_fair@basic-none@vcs0:
->     - shard-kbl:          NOTRUN -> [FAIL][15] ([i915#2842]) +1 similar issue
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl7/igt@gem_exec_fair@basic-none@vcs0.html
-> 
->   * igt@gem_exec_fair@basic-pace@bcs0:
->     - shard-tglb:         [PASS][16] -> [FAIL][17] ([i915#2842]) +1 similar issue
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-tglb8/igt@gem_exec_fair@basic-pace@bcs0.html
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb1/igt@gem_exec_fair@basic-pace@bcs0.html
-> 
->   * igt@gem_exec_fair@basic-pace@vcs1:
->     - shard-iclb:         NOTRUN -> [FAIL][18] ([i915#2842]) +4 similar issues
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb2/igt@gem_exec_fair@basic-pace@vcs1.html
-> 
->   * igt@gem_exec_fair@basic-pace@vecs0:
->     - shard-kbl:          [PASS][19] -> [FAIL][20] ([i915#2842])
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-kbl6/igt@gem_exec_fair@basic-pace@vecs0.html
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl6/igt@gem_exec_fair@basic-pace@vecs0.html
-> 
->   * igt@gem_exec_reloc@basic-wide-active@rcs0:
->     - shard-kbl:          NOTRUN -> [FAIL][21] ([i915#2389]) +4 similar issues
->    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl6/igt@gem_exec_reloc@basic-wide-active@rcs0.html
-> 
->   * igt@gem_exec_reloc@basic-wide-active@vcs1:
->     - shard-iclb:         NOTRUN -> [FAIL][22] ([i915#2389])
->    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb4/igt@gem_exec_reloc@basic-wide-active@vcs1.html
-> 
->   * igt@gem_huc_copy@huc-copy:
->     - shard-kbl:          NOTRUN -> [SKIP][23] ([fdo#109271] / [i915#2190])
->    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl6/igt@gem_huc_copy@huc-copy.html
-> 
->   * igt@gem_pread@exhaustion:
->     - shard-apl:          NOTRUN -> [WARN][24] ([i915#2658]) +1 similar issue
->    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl1/igt@gem_pread@exhaustion.html
-> 
->   * igt@gem_render_copy@y-tiled-ccs-to-y-tiled-mc-ccs:
->     - shard-glk:          NOTRUN -> [SKIP][25] ([fdo#109271]) +27 similar issues
->    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk9/igt@gem_render_copy@y-tiled-ccs-to-y-tiled-mc-ccs.html
->     - shard-iclb:         NOTRUN -> [SKIP][26] ([i915#768]) +1 similar issue
->    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb3/igt@gem_render_copy@y-tiled-ccs-to-y-tiled-mc-ccs.html
-> 
->   * igt@gem_userptr_blits@coherency-sync:
->     - shard-iclb:         NOTRUN -> [SKIP][27] ([fdo#109290])
->    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb8/igt@gem_userptr_blits@coherency-sync.html
-> 
->   * igt@gem_userptr_blits@process-exit-mmap-busy@wc:
->     - shard-apl:          NOTRUN -> [SKIP][28] ([fdo#109271] / [i915#1699]) +3 similar issues
->    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl2/igt@gem_userptr_blits@process-exit-mmap-busy@wc.html
-> 
->   * igt@gem_userptr_blits@vma-merge:
->     - shard-apl:          NOTRUN -> [FAIL][29] ([i915#3318])
->    [29]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl6/igt@gem_userptr_blits@vma-merge.html
-> 
->   * igt@gen9_exec_parse@basic-rejected-ctx-param:
->     - shard-iclb:         NOTRUN -> [SKIP][30] ([fdo#112306])
->    [30]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb4/igt@gen9_exec_parse@basic-rejected-ctx-param.html
-> 
->   * igt@gen9_exec_parse@bb-large:
->     - shard-apl:          NOTRUN -> [FAIL][31] ([i915#3296])
->    [31]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl1/igt@gen9_exec_parse@bb-large.html
->     - shard-kbl:          NOTRUN -> [FAIL][32] ([i915#3296])
->    [32]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl6/igt@gen9_exec_parse@bb-large.html
-> 
->   * igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-dp:
->     - shard-kbl:          NOTRUN -> [SKIP][33] ([fdo#109271] / [i915#1937])
->    [33]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl1/igt@i915_pm_lpsp@kms-lpsp@kms-lpsp-dp.html
-> 
->   * igt@i915_pm_rc6_residency@rc6-idle:
->     - shard-tglb:         [PASS][34] -> [WARN][35] ([i915#2681] / [i915#2684])
->    [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-tglb7/igt@i915_pm_rc6_residency@rc6-idle.html
->    [35]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb2/igt@i915_pm_rc6_residency@rc6-idle.html
-> 
->   * igt@i915_query@query-topology-unsupported:
->     - shard-iclb:         NOTRUN -> [SKIP][36] ([fdo#109302])
->    [36]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb1/igt@i915_query@query-topology-unsupported.html
-> 
->   * igt@i915_suspend@sysfs-reader:
->     - shard-kbl:          NOTRUN -> [DMESG-WARN][37] ([i915#180])
->    [37]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl6/igt@i915_suspend@sysfs-reader.html
-> 
->   * igt@kms_big_fb@x-tiled-16bpp-rotate-270:
->     - shard-iclb:         NOTRUN -> [SKIP][38] ([fdo#110725] / [fdo#111614]) +1 similar issue
->    [38]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb1/igt@kms_big_fb@x-tiled-16bpp-rotate-270.html
->     - shard-tglb:         NOTRUN -> [SKIP][39] ([fdo#111614])
->    [39]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb3/igt@kms_big_fb@x-tiled-16bpp-rotate-270.html
-> 
->   * igt@kms_big_fb@yf-tiled-32bpp-rotate-90:
->     - shard-tglb:         NOTRUN -> [SKIP][40] ([fdo#111615]) +1 similar issue
->    [40]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb1/igt@kms_big_fb@yf-tiled-32bpp-rotate-90.html
-> 
->   * igt@kms_big_fb@yf-tiled-64bpp-rotate-90:
->     - shard-iclb:         NOTRUN -> [SKIP][41] ([fdo#110723])
->    [41]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb7/igt@kms_big_fb@yf-tiled-64bpp-rotate-90.html
-> 
->   * igt@kms_big_joiner@invalid-modeset:
->     - shard-apl:          NOTRUN -> [SKIP][42] ([fdo#109271] / [i915#2705])
->    [42]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl1/igt@kms_big_joiner@invalid-modeset.html
-> 
->   * igt@kms_chamelium@hdmi-audio:
->     - shard-iclb:         NOTRUN -> [SKIP][43] ([fdo#109284] / [fdo#111827]) +6 similar issues
->    [43]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb6/igt@kms_chamelium@hdmi-audio.html
->     - shard-glk:          NOTRUN -> [SKIP][44] ([fdo#109271] / [fdo#111827]) +1 similar issue
->    [44]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk2/igt@kms_chamelium@hdmi-audio.html
->     - shard-tglb:         NOTRUN -> [SKIP][45] ([fdo#109284] / [fdo#111827]) +1 similar issue
->    [45]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb5/igt@kms_chamelium@hdmi-audio.html
-> 
->   * igt@kms_chamelium@hdmi-hpd-with-enabled-mode:
->     - shard-snb:          NOTRUN -> [SKIP][46] ([fdo#109271] / [fdo#111827]) +19 similar issues
->    [46]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-snb6/igt@kms_chamelium@hdmi-hpd-with-enabled-mode.html
-> 
->   * igt@kms_chamelium@vga-hpd-without-ddc:
->     - shard-kbl:          NOTRUN -> [SKIP][47] ([fdo#109271] / [fdo#111827]) +15 similar issues
->    [47]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl6/igt@kms_chamelium@vga-hpd-without-ddc.html
-> 
->   * igt@kms_color@pipe-d-ctm-0-25:
->     - shard-iclb:         NOTRUN -> [SKIP][48] ([fdo#109278] / [i915#1149])
->    [48]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb7/igt@kms_color@pipe-d-ctm-0-25.html
-> 
->   * igt@kms_color_chamelium@pipe-c-ctm-0-25:
->     - shard-apl:          NOTRUN -> [SKIP][49] ([fdo#109271] / [fdo#111827]) +23 similar issues
->    [49]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl6/igt@kms_color_chamelium@pipe-c-ctm-0-25.html
-> 
->   * igt@kms_content_protection@dp-mst-lic-type-0:
->     - shard-iclb:         NOTRUN -> [SKIP][50] ([i915#3116])
->    [50]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb7/igt@kms_content_protection@dp-mst-lic-type-0.html
->     - shard-tglb:         NOTRUN -> [SKIP][51] ([i915#3116])
->    [51]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb1/igt@kms_content_protection@dp-mst-lic-type-0.html
-> 
->   * igt@kms_content_protection@lic:
->     - shard-apl:          NOTRUN -> [TIMEOUT][52] ([i915#1319]) +1 similar issue
->    [52]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl6/igt@kms_content_protection@lic.html
-> 
->   * igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen:
->     - shard-kbl:          [PASS][53] -> [FAIL][54] ([i915#54])
->    [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-kbl3/igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen.html
->    [54]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl1/igt@kms_cursor_crc@pipe-b-cursor-64x64-onscreen.html
-> 
->   * igt@kms_cursor_crc@pipe-c-cursor-32x32-offscreen:
->     - shard-tglb:         NOTRUN -> [SKIP][55] ([i915#3319]) +1 similar issue
->    [55]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb2/igt@kms_cursor_crc@pipe-c-cursor-32x32-offscreen.html
-> 
->   * igt@kms_cursor_crc@pipe-d-cursor-suspend:
->     - shard-kbl:          NOTRUN -> [SKIP][56] ([fdo#109271]) +183 similar issues
->    [56]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl4/igt@kms_cursor_crc@pipe-d-cursor-suspend.html
-> 
->   * igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size:
->     - shard-iclb:         NOTRUN -> [SKIP][57] ([fdo#109274] / [fdo#109278])
->    [57]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb3/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic-transitions-varying-size.html
-> 
->   * igt@kms_cursor_legacy@flip-vs-cursor-varying-size:
->     - shard-tglb:         NOTRUN -> [FAIL][58] ([i915#2346])
->    [58]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb1/igt@kms_cursor_legacy@flip-vs-cursor-varying-size.html
-> 
->   * igt@kms_dp_dsc@basic-dsc-enable-edp:
->     - shard-iclb:         NOTRUN -> [SKIP][59] ([fdo#109349])
->    [59]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb4/igt@kms_dp_dsc@basic-dsc-enable-edp.html
-> 
->   * igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-ytiled:
->     - shard-glk:          [PASS][60] -> [FAIL][61] ([i915#52] / [i915#54]) +3 similar issues
->    [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-glk6/igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-ytiled.html
->    [61]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk2/igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-ytiled.html
-> 
->   * igt@kms_flip@2x-blocking-wf_vblank:
->     - shard-iclb:         NOTRUN -> [SKIP][62] ([fdo#109274]) +3 similar issues
->    [62]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb8/igt@kms_flip@2x-blocking-wf_vblank.html
-> 
->   * igt@kms_flip@2x-plain-flip-interruptible:
->     - shard-tglb:         NOTRUN -> [SKIP][63] ([fdo#111825]) +13 similar issues
->    [63]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb3/igt@kms_flip@2x-plain-flip-interruptible.html
-> 
->   * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1:
->     - shard-glk:          [PASS][64] -> [FAIL][65] ([i915#79])
->    [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-glk2/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1.html
->    [65]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk4/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a1.html
-> 
->   * igt@kms_flip@flip-vs-suspend-interruptible@b-dp1:
->     - shard-apl:          [PASS][66] -> [DMESG-WARN][67] ([i915#180])
->    [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1.html
->    [67]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl1/igt@kms_flip@flip-vs-suspend-interruptible@b-dp1.html
-> 
->   * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs:
->     - shard-kbl:          NOTRUN -> [SKIP][68] ([fdo#109271] / [i915#2672])
->    [68]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl4/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs.html
->     - shard-apl:          NOTRUN -> [SKIP][69] ([fdo#109271] / [i915#2672])
->    [69]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl7/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs.html
-> 
->   * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile:
->     - shard-apl:          NOTRUN -> [FAIL][70] ([i915#2641])
->    [70]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl6/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile.html
-> 
->   * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-draw-blt:
->     - shard-iclb:         NOTRUN -> [SKIP][71] ([fdo#109280]) +15 similar issues
->    [71]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb7/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-draw-blt.html
-> 
->   * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-indfb-draw-pwrite:
->     - shard-snb:          NOTRUN -> [SKIP][72] ([fdo#109271]) +353 similar issues
->    [72]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-snb5/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-indfb-draw-pwrite.html
-> 
->   * igt@kms_pipe_b_c_ivb@pipe-b-dpms-off-modeset-pipe-c:
->     - shard-iclb:         NOTRUN -> [SKIP][73] ([fdo#109289])
->    [73]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb5/igt@kms_pipe_b_c_ivb@pipe-b-dpms-off-modeset-pipe-c.html
->     - shard-tglb:         NOTRUN -> [SKIP][74] ([fdo#109289])
->    [74]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb5/igt@kms_pipe_b_c_ivb@pipe-b-dpms-off-modeset-pipe-c.html
-> 
->   * igt@kms_pipe_crc_basic@read-crc-pipe-d:
->     - shard-kbl:          NOTRUN -> [SKIP][75] ([fdo#109271] / [i915#533]) +1 similar issue
->    [75]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl7/igt@kms_pipe_crc_basic@read-crc-pipe-d.html
-> 
->   * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
->     - shard-kbl:          [PASS][76] -> [DMESG-WARN][77] ([i915#180])
->    [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-kbl2/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
->    [77]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-a-alpha-basic:
->     - shard-apl:          NOTRUN -> [FAIL][78] ([fdo#108145] / [i915#265]) +4 similar issues
->    [78]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl6/igt@kms_plane_alpha_blend@pipe-a-alpha-basic.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-b-alpha-basic:
->     - shard-kbl:          NOTRUN -> [FAIL][79] ([fdo#108145] / [i915#265]) +1 similar issue
->    [79]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl3/igt@kms_plane_alpha_blend@pipe-b-alpha-basic.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-d-constant-alpha-min:
->     - shard-iclb:         NOTRUN -> [SKIP][80] ([fdo#109278]) +12 similar issues
->    [80]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb3/igt@kms_plane_alpha_blend@pipe-d-constant-alpha-min.html
-> 
->   * igt@kms_plane_scaling@scaler-with-clipping-clamping@pipe-c-scaler-with-clipping-clamping:
->     - shard-apl:          NOTRUN -> [SKIP][81] ([fdo#109271] / [i915#2733])
->    [81]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl7/igt@kms_plane_scaling@scaler-with-clipping-clamping@pipe-c-scaler-with-clipping-clamping.html
-> 
->   * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-3:
->     - shard-kbl:          NOTRUN -> [SKIP][82] ([fdo#109271] / [i915#658]) +3 similar issues
->    [82]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl3/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-3.html
-> 
->   * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-5:
->     - shard-apl:          NOTRUN -> [SKIP][83] ([fdo#109271] / [i915#658]) +5 similar issues
->    [83]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl1/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-5.html
-> 
->   * igt@kms_psr2_sf@plane-move-sf-dmg-area-3:
->     - shard-iclb:         NOTRUN -> [SKIP][84] ([i915#658])
->    [84]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb4/igt@kms_psr2_sf@plane-move-sf-dmg-area-3.html
-> 
->   * igt@kms_psr@psr2_cursor_mmap_cpu:
->     - shard-iclb:         NOTRUN -> [SKIP][85] ([fdo#109441]) +1 similar issue
->    [85]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb1/igt@kms_psr@psr2_cursor_mmap_cpu.html
-> 
->   * igt@kms_psr@psr2_no_drrs:
->     - shard-iclb:         [PASS][86] -> [SKIP][87] ([fdo#109441]) +1 similar issue
->    [86]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-iclb2/igt@kms_psr@psr2_no_drrs.html
->    [87]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb6/igt@kms_psr@psr2_no_drrs.html
-> 
->   * igt@kms_setmode@basic:
->     - shard-snb:          NOTRUN -> [FAIL][88] ([i915#31])
->    [88]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-snb6/igt@kms_setmode@basic.html
-> 
->   * igt@kms_sysfs_edid_timing:
->     - shard-apl:          NOTRUN -> [FAIL][89] ([IGT#2])
->    [89]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl1/igt@kms_sysfs_edid_timing.html
-> 
->   * igt@kms_vblank@pipe-d-wait-idle:
->     - shard-apl:          NOTRUN -> [SKIP][90] ([fdo#109271] / [i915#533]) +3 similar issues
->    [90]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl6/igt@kms_vblank@pipe-d-wait-idle.html
-> 
->   * igt@nouveau_crc@pipe-b-ctx-flip-skip-current-frame:
->     - shard-apl:          NOTRUN -> [SKIP][91] ([fdo#109271]) +256 similar issues
->    [91]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl7/igt@nouveau_crc@pipe-b-ctx-flip-skip-current-frame.html
-> 
->   * igt@nouveau_crc@pipe-c-ctx-flip-skip-current-frame:
->     - shard-tglb:         NOTRUN -> [SKIP][92] ([i915#2530])
->    [92]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb1/igt@nouveau_crc@pipe-c-ctx-flip-skip-current-frame.html
->     - shard-iclb:         NOTRUN -> [SKIP][93] ([i915#2530])
->    [93]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb2/igt@nouveau_crc@pipe-c-ctx-flip-skip-current-frame.html
-> 
->   * igt@nouveau_crc@pipe-d-ctx-flip-skip-current-frame:
->     - shard-iclb:         NOTRUN -> [SKIP][94] ([fdo#109278] / [i915#2530])
->    [94]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb3/igt@nouveau_crc@pipe-d-ctx-flip-skip-current-frame.html
-> 
->   * igt@perf@polling-parameterized:
->     - shard-glk:          [PASS][95] -> [FAIL][96] ([i915#1542])
->    [95]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-glk3/igt@perf@polling-parameterized.html
->    [96]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk7/igt@perf@polling-parameterized.html
-> 
->   * igt@prime_udl:
->     - shard-iclb:         NOTRUN -> [SKIP][97] ([fdo#109291])
->    [97]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb4/igt@prime_udl.html
-> 
->   * igt@sysfs_clients@create:
->     - shard-iclb:         NOTRUN -> [SKIP][98] ([i915#2994]) +1 similar issue
->    [98]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb8/igt@sysfs_clients@create.html
-> 
->   * igt@sysfs_clients@sema-10:
->     - shard-kbl:          NOTRUN -> [SKIP][99] ([fdo#109271] / [i915#2994]) +2 similar issues
->    [99]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl2/igt@sysfs_clients@sema-10.html
->     - shard-apl:          NOTRUN -> [SKIP][100] ([fdo#109271] / [i915#2994]) +2 similar issues
->    [100]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-apl8/igt@sysfs_clients@sema-10.html
-> 
->   * igt@sysfs_clients@split-25:
->     - shard-tglb:         NOTRUN -> [SKIP][101] ([i915#2994])
->    [101]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb1/igt@sysfs_clients@split-25.html
->     - shard-glk:          NOTRUN -> [SKIP][102] ([fdo#109271] / [i915#2994])
->    [102]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk1/igt@sysfs_clients@split-25.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@gem_create@create-clear:
->     - shard-glk:          [FAIL][103] ([i915#1888] / [i915#3160]) -> [PASS][104]
->    [103]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-glk6/igt@gem_create@create-clear.html
->    [104]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk3/igt@gem_create@create-clear.html
-> 
->   * igt@gem_eio@unwedge-stress:
->     - shard-tglb:         [TIMEOUT][105] ([i915#2369] / [i915#3063]) -> [PASS][106]
->    [105]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-tglb5/igt@gem_eio@unwedge-stress.html
->    [106]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb6/igt@gem_eio@unwedge-stress.html
-> 
->   * igt@gem_exec_fair@basic-deadline:
->     - shard-kbl:          [FAIL][107] ([i915#2846]) -> [PASS][108]
->    [107]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-kbl3/igt@gem_exec_fair@basic-deadline.html
->    [108]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl1/igt@gem_exec_fair@basic-deadline.html
-> 
->   * igt@gem_exec_fair@basic-pace-solo@rcs0:
->     - shard-kbl:          [FAIL][109] ([i915#2842]) -> [PASS][110]
->    [109]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-kbl3/igt@gem_exec_fair@basic-pace-solo@rcs0.html
->    [110]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl1/igt@gem_exec_fair@basic-pace-solo@rcs0.html
-> 
->   * igt@gem_exec_whisper@basic-forked:
->     - shard-glk:          [DMESG-WARN][111] ([i915#118] / [i915#95]) -> [PASS][112] +1 similar issue
->    [111]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-glk4/igt@gem_exec_whisper@basic-forked.html
->    [112]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk6/igt@gem_exec_whisper@basic-forked.html
-> 
->   * igt@gem_mmap_gtt@cpuset-big-copy-xy:
->     - shard-iclb:         [FAIL][113] ([i915#307]) -> [PASS][114]
->    [113]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-iclb7/igt@gem_mmap_gtt@cpuset-big-copy-xy.html
->    [114]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb5/igt@gem_mmap_gtt@cpuset-big-copy-xy.html
-> 
->   * igt@kms_cursor_legacy@flip-vs-cursor-toggle:
->     - shard-tglb:         [FAIL][115] ([i915#2346]) -> [PASS][116]
->    [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-tglb8/igt@kms_cursor_legacy@flip-vs-cursor-toggle.html
->    [116]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb3/igt@kms_cursor_legacy@flip-vs-cursor-toggle.html
-> 
->   * igt@kms_draw_crc@draw-method-rgb565-blt-ytiled:
->     - shard-glk:          [FAIL][117] ([i915#52] / [i915#54]) -> [PASS][118] +1 similar issue
->    [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-glk9/igt@kms_draw_crc@draw-method-rgb565-blt-ytiled.html
->    [118]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk7/igt@kms_draw_crc@draw-method-rgb565-blt-ytiled.html
-> 
->   * igt@kms_fbcon_fbt@fbc-suspend:
->     - shard-iclb:         [INCOMPLETE][119] ([i915#1185]) -> [PASS][120]
->    [119]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-iclb3/igt@kms_fbcon_fbt@fbc-suspend.html
->    [120]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb5/igt@kms_fbcon_fbt@fbc-suspend.html
->     - shard-kbl:          [INCOMPLETE][121] ([i915#155] / [i915#180] / [i915#636]) -> [PASS][122]
->    [121]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-kbl7/igt@kms_fbcon_fbt@fbc-suspend.html
->    [122]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl7/igt@kms_fbcon_fbt@fbc-suspend.html
-> 
->   * igt@kms_flip@flip-vs-suspend-interruptible@a-dp1:
->     - shard-kbl:          [DMESG-WARN][123] ([i915#180]) -> [PASS][124] +8 similar issues
->    [123]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-kbl6/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
->    [124]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl1/igt@kms_flip@flip-vs-suspend-interruptible@a-dp1.html
-> 
->   * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-draw-pwrite:
->     - shard-glk:          [FAIL][125] ([i915#49]) -> [PASS][126]
->    [125]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-glk4/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-draw-pwrite.html
->    [126]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-glk2/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-cur-indfb-draw-pwrite.html
-> 
->   * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-4:
->     - shard-tglb:         [DMESG-WARN][127] ([i915#402]) -> [PASS][128]
->    [127]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-tglb3/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-4.html
->    [128]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-tglb3/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-4.html
-> 
->   * igt@kms_psr2_su@page_flip:
->     - shard-iclb:         [SKIP][129] ([fdo#109642] / [fdo#111068] / [i915#658]) -> [PASS][130]
->    [129]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-iclb8/igt@kms_psr2_su@page_flip.html
->    [130]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb2/igt@kms_psr2_su@page_flip.html
-> 
->   * igt@kms_psr@psr2_sprite_plane_move:
->     - shard-iclb:         [SKIP][131] ([fdo#109441]) -> [PASS][132] +1 similar issue
->    [131]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-iclb1/igt@kms_psr@psr2_sprite_plane_move.html
->    [132]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html
-> 
->   * igt@perf_pmu@rc6-suspend:
->     - shard-kbl:          [INCOMPLETE][133] ([i915#155] / [i915#794]) -> [PASS][134]
->    [133]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-kbl3/igt@perf_pmu@rc6-suspend.html
->    [134]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl3/igt@perf_pmu@rc6-suspend.html
-> 
->   
-> #### Warnings ####
-> 
->   * igt@gem_exec_fair@basic-pace@vcs0:
->     - shard-kbl:          [SKIP][135] ([fdo#109271]) -> [FAIL][136] ([i915#2842])
->    [135]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-kbl6/igt@gem_exec_fair@basic-pace@vcs0.html
->    [136]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-kbl6/igt@gem_exec_fair@basic-pace@vcs0.html
-> 
->   * igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-5:
->     - shard-iclb:         [SKIP][137] ([i915#2920]) -> [SKIP][138] ([i915#658])
->    [137]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-iclb2/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-5.html
->    [138]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb3/igt@kms_psr2_sf@overlay-primary-update-sf-dmg-area-5.html
-> 
->   * igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-3:
->     - shard-iclb:         [SKIP][139] ([i915#658]) -> [SKIP][140] ([i915#2920])
->    [139]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9934/shard-iclb6/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-3.html
->    [140]: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/shard-iclb2/igt@kms_psr2_sf@primary-plane-update-sf-dmg-area-3
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5718/index.html
-> 
-
-
-
+diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
+index 7a80c0161..aad5f141b 100644
+--- a/tests/i915/gem_userptr_blits.c
++++ b/tests/i915/gem_userptr_blits.c
+@@ -70,52 +70,12 @@
+ #endif
+ 
+ static uint32_t userptr_flags;
+-static bool *can_mmap;
+ 
+ #define WIDTH 512
+ #define HEIGHT 512
+ 
+ static uint32_t linear[WIDTH*HEIGHT];
+ 
+-static bool has_mmap(int i915, const struct mmap_offset *t)
+-{
+-	void *ptr, *map;
+-	uint32_t handle;
+-
+-	handle = gem_create(i915, PAGE_SIZE);
+-	map = __gem_mmap_offset(i915, handle, 0, PAGE_SIZE, PROT_WRITE,
+-				t->type);
+-	gem_close(i915, handle);
+-	if (map) {
+-		munmap(map, PAGE_SIZE);
+-	} else {
+-		igt_debug("no HW / kernel support for mmap-offset(%s)\n",
+-			  t->name);
+-		return false;
+-	}
+-	map = NULL;
+-
+-	igt_assert(posix_memalign(&ptr, PAGE_SIZE, PAGE_SIZE) == 0);
+-
+-	if (__gem_userptr(i915, ptr, 4096, 0,
+-			  I915_USERPTR_UNSYNCHRONIZED, &handle))
+-		goto out_ptr;
+-	igt_assert(handle != 0);
+-
+-	map = __gem_mmap_offset(i915, handle, 0, 4096, PROT_WRITE, t->type);
+-	if (map)
+-		munmap(map, 4096);
+-	else
+-		igt_debug("mmap-offset(%s) banned, lockdep loop prevention\n",
+-			  t->name);
+-
+-	gem_close(i915, handle);
+-out_ptr:
+-	free(ptr);
+-
+-	return map != NULL;
+-}
+-
+ static void gem_userptr_test_unsynchronized(void)
+ {
+ 	userptr_flags = I915_USERPTR_UNSYNCHRONIZED;
+@@ -914,28 +874,13 @@ static int test_invalid_mapping(int fd, const struct mmap_offset *t)
+ }
+ 
+ #define PE_BUSY 0x1
+-static void test_process_exit(int fd, const struct mmap_offset *mmo, int flags)
++static void test_process_exit(int fd, int flags)
+ {
+-	if (mmo)
+-		igt_require_f(can_mmap[mmo->type],
+-			      "HW & kernel support for LLC and mmap-offset(%s) over userptr\n",
+-			      mmo->name);
+-
+ 	igt_fork(child, 1) {
+ 		uint32_t handle;
+ 
+ 		handle = create_userptr_bo(fd, sizeof(linear));
+ 
+-		if (mmo) {
+-			uint32_t *ptr;
+-
+-			ptr = __gem_mmap_offset(fd, handle, 0, sizeof(linear),
+-						PROT_READ | PROT_WRITE,
+-						mmo->type);
+-			if (ptr)
+-				*ptr = 0;
+-		}
+-
+ 		if (flags & PE_BUSY)
+ 			igt_assert_eq(copy(fd, handle, handle), 0);
+ 	}
+@@ -1064,53 +1009,30 @@ static int test_map_fixed_invalidate(int fd, uint32_t flags,
+ 	return 0;
+ }
+ 
+-static void test_mmap_offset_invalidate(int fd,
+-					const struct mmap_offset *t,
+-					unsigned int flags)
+-#define MMOI_ACTIVE (1u << 0)
++static void test_mmap_offset_banned(int fd, const struct mmap_offset *t)
+ {
+-	igt_spin_t *spin = NULL;
+-	uint32_t handle;
+-	uint32_t *map;
++	struct drm_i915_gem_mmap_offset arg;
+ 	void *ptr;
+ 
+ 	/* check if mmap_offset type is supported by hardware, skip if not */
+-	handle = gem_create(fd, PAGE_SIZE);
+-	map = __gem_mmap_offset(fd, handle, 0, PAGE_SIZE,
+-				PROT_READ | PROT_WRITE, t->type);
+-	igt_require_f(map,
+-		      "HW & kernel support for mmap_offset(%s)\n", t->name);
+-	munmap(map, PAGE_SIZE);
+-	gem_close(fd, handle);
++	memset(&arg, 0, sizeof(arg));
++	arg.flags = t->type;
++	arg.handle = gem_create(fd, PAGE_SIZE);
++	igt_skip_on_f(igt_ioctl(fd, DRM_IOCTL_I915_GEM_MMAP_OFFSET, &arg),
++				"HW & kernel support for mmap_offset(%s)\n", t->name);
++	gem_close(fd, arg.handle);
+ 
+ 	/* create userptr object */
++	memset(&arg, 0, sizeof(arg));
++	arg.flags = t->type;
+ 	igt_assert_eq(posix_memalign(&ptr, PAGE_SIZE, PAGE_SIZE), 0);
+-	gem_userptr(fd, ptr, PAGE_SIZE, 0, userptr_flags, &handle);
++	gem_userptr(fd, ptr, PAGE_SIZE, 0, userptr_flags, &arg.handle);
+ 
+-	/* set up mmap-offset mapping on top of the object, skip if refused */
+-	map = __gem_mmap_offset(fd, handle, 0, PAGE_SIZE,
+-				PROT_READ | PROT_WRITE, t->type);
+-	igt_require_f(map, "mmap-offset banned, lockdep loop prevention\n");
+-
+-	/* set object pages in order to activate MMU notifier for it */
+-	gem_set_domain(fd, handle, t->domain, t->domain);
+-	*map = 0;
+-
+-	if (flags & MMOI_ACTIVE) {
+-		gem_quiescent_gpu(fd);
+-		spin = igt_spin_new(fd,
+-				    .dependency = handle,
+-				    .flags = IGT_SPIN_NO_PREEMPTION);
+-		igt_spin_set_timeout(spin, NSEC_PER_SEC); /* XXX borked */
+-	}
++	/* try to set up mmap-offset mapping on top of the object, fail if not banned */
++	do_ioctl_err(fd, DRM_IOCTL_I915_GEM_MMAP_OFFSET, &arg, ENODEV);
+ 
+-	/* trigger the notifier */
++	gem_close(fd, arg.handle);
+ 	munmap(ptr, PAGE_SIZE);
+-
+-	/* cleanup */
+-	igt_spin_free(fd, spin);
+-	munmap(map, PAGE_SIZE);
+-	gem_close(fd, handle);
+ }
+ 
+ static int test_forbidden_ops(int fd)
+@@ -1195,36 +1117,28 @@ static void (* volatile orig_sigbus)(int sig, siginfo_t *info, void *param);
+ static volatile unsigned long sigbus_start;
+ static volatile long sigbus_cnt = -1;
+ 
+-static void *umap(int fd, uint32_t handle, const struct mmap_offset *mmo)
++static void *umap(int fd, uint32_t handle)
+ {
+ 	void *ptr;
++	uint32_t tmp = gem_create(fd, sizeof(linear));
+ 
+-	if (mmo) {
+-		ptr = __gem_mmap_offset(fd, handle, 0, sizeof(linear),
+-					PROT_READ | PROT_WRITE, mmo->type);
+-		igt_assert(ptr);
+-	} else {
+-		uint32_t tmp = gem_create(fd, sizeof(linear));
+-		igt_assert_eq(copy(fd, tmp, handle), 0);
+-		ptr = gem_mmap__cpu(fd, tmp, 0, sizeof(linear), PROT_READ);
+-		gem_close(fd, tmp);
+-	}
++	igt_assert_eq(copy(fd, tmp, handle), 0);
++	ptr = gem_mmap__cpu(fd, tmp, 0, sizeof(linear), PROT_READ);
++	gem_close(fd, tmp);
+ 
+ 	return ptr;
+ }
+ 
+ static void
+-check_bo(int fd1, uint32_t handle1, int is_userptr, int fd2, uint32_t handle2,
+-	 const struct mmap_offset *mmo)
++check_bo(int fd1, uint32_t handle1, int is_userptr, int fd2, uint32_t handle2)
+ {
+ 	unsigned char *ptr1, *ptr2;
+-	unsigned long size = sizeof(linear);
+ 
+-	ptr2 = umap(fd2, handle2, mmo);
++	ptr2 = umap(fd2, handle2);
+ 	if (is_userptr)
+ 		ptr1 = is_userptr > 0 ? get_handle_ptr(handle1) : ptr2;
+ 	else
+-		ptr1 = umap(fd1, handle1, mmo);
++		ptr1 = umap(fd1, handle1);
+ 
+ 	igt_assert(ptr1);
+ 	igt_assert(ptr2);
+@@ -1232,12 +1146,6 @@ check_bo(int fd1, uint32_t handle1, int is_userptr, int fd2, uint32_t handle2,
+ 	sigbus_start = (unsigned long)ptr2;
+ 	igt_assert(memcmp(ptr1, ptr2, sizeof(linear)) == 0);
+ 
+-	if (mmo) {
+-		counter++;
+-		memset(ptr1, counter, size);
+-		memset(ptr2, counter, size);
+-	}
+-
+ 	if (!is_userptr)
+ 		munmap(ptr1, sizeof(linear));
+ 	munmap(ptr2, sizeof(linear));
+@@ -1260,47 +1168,15 @@ static int export_handle(int fd, uint32_t handle, int *outfd)
+ 	return ret;
+ }
+ 
+-static void sigbus(int sig, siginfo_t *info, void *param)
+-{
+-	unsigned long ptr = (unsigned long)info->si_addr;
+-	void *addr;
+-
+-	if (ptr >= sigbus_start &&
+-	    ptr < sigbus_start + sizeof(linear)) {
+-		/* replace mapping to allow progress */
+-		munmap((void *)sigbus_start, sizeof(linear));
+-		addr = mmap((void *)sigbus_start, sizeof(linear),
+-			    PROT_READ | PROT_WRITE,
+-			    MAP_ANONYMOUS | MAP_PRIVATE | MAP_FIXED, -1, 0);
+-		igt_assert((unsigned long)addr == sigbus_start);
+-		memset(addr, counter, sizeof(linear));
+-
+-		sigbus_cnt++;
+-		return;
+-	}
+-
+-	if (orig_sigbus)
+-		orig_sigbus(sig, info, param);
+-	igt_assert(0);
+-}
+-
+ static int test_dmabuf(void)
+ {
+ 	int fd1, fd2;
+ 	uint32_t handle, handle_import;
+ 	int dma_buf_fd = -1;
+ 	int ret;
+-	const struct mmap_offset *mmo = NULL;
+ 
+ 	fd1 = drm_open_driver(DRIVER_INTEL);
+ 
+-	for_each_mmap_offset_type(fd1, t)
+-		if (can_mmap[t->type]) {
+-			igt_debug("using mmap-offset(%s)\n", t->name);
+-			mmo = t;
+-			break;
+-	}
+-
+ 	handle = create_userptr_bo(fd1, sizeof(linear));
+ 	memset(get_handle_ptr(handle), counter, sizeof(linear));
+ 
+@@ -1317,35 +1193,16 @@ static int test_dmabuf(void)
+ 
+ 	fd2 = drm_open_driver(DRIVER_INTEL);
+ 	handle_import = prime_fd_to_handle(fd2, dma_buf_fd);
+-	check_bo(fd1, handle, 1, fd2, handle_import, mmo);
++	check_bo(fd1, handle, 1, fd2, handle_import);
+ 
+ 	/* close dma_buf, check whether nothing disappears. */
+ 	close(dma_buf_fd);
+-	check_bo(fd1, handle, 1, fd2, handle_import, mmo);
++	check_bo(fd1, handle, 1, fd2, handle_import);
+ 
+ 	/* destroy userptr object and expect SIGBUS */
+ 	free_userptr_bo(fd1, handle);
+ 	close(fd1);
+ 
+-	if (mmo) {
+-		struct sigaction sigact, orig_sigact;
+-
+-		memset(&sigact, 0, sizeof(sigact));
+-		sigact.sa_sigaction = sigbus;
+-		sigact.sa_flags = SA_SIGINFO;
+-		ret = sigaction(SIGBUS, &sigact, &orig_sigact);
+-		igt_assert_eq(ret, 0);
+-
+-		orig_sigbus = orig_sigact.sa_sigaction;
+-
+-		sigbus_cnt = 0;
+-		check_bo(fd2, handle_import, -1, fd2, handle_import, mmo);
+-		igt_assert(sigbus_cnt > 0);
+-
+-		ret = sigaction(SIGBUS, &orig_sigact, NULL);
+-		igt_assert_eq(ret, 0);
+-	}
+-
+ 	close(fd2);
+ 	reset_handle_ptr();
+ 
+@@ -1548,93 +1405,6 @@ static void test_readonly(int i915)
+ 	munmap(pages, sz);
+ }
+ 
+-static jmp_buf sigjmp;
+-
+-__noreturn static void sigjmp_handler(int sig)
+-{
+-	siglongjmp(sigjmp, sig);
+-}
+-
+-static void test_readonly_mmap(int i915, const struct mmap_offset *t)
+-{
+-	char *original, *result;
+-	uint32_t handle;
+-	uint32_t sz;
+-	void *pages;
+-	void *ptr;
+-	int sig;
+-
+-	/*
+-	 * A quick check to ensure that we cannot circumvent the
+-	 * read-only nature of our memory by creating a GTT mmap into
+-	 * the pages. Imagine receiving a readonly SHM segment from
+-	 * another process, or a readonly file mmap, it must remain readonly
+-	 * on the GPU as well.
+-	 */
+-
+-	handle = gem_create(i915, PAGE_SIZE);
+-	ptr = __gem_mmap_offset(i915, handle, 0, PAGE_SIZE,
+-				PROT_READ | PROT_WRITE, t->type);
+-	gem_close(i915, handle);
+-	igt_require_f(ptr, "HW & kernel support for mmap-offset(%s)\n",
+-		      t->name);
+-	munmap(ptr, PAGE_SIZE);
+-
+-	igt_require(igt_setup_clflush());
+-
+-	sz = 16 << 12;
+-	pages = mmap(NULL, sz, PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+-	igt_assert(pages != MAP_FAILED);
+-
+-	igt_require(__gem_userptr(i915, pages, sz, true, userptr_flags, &handle) == 0);
+-	gem_set_caching(i915, handle, 0);
+-
+-	memset(pages, 0xa5, sz);
+-	igt_clflush_range(pages, sz);
+-	original = g_compute_checksum_for_data(G_CHECKSUM_SHA1, pages, sz);
+-
+-	ptr = __gem_mmap_offset(i915, handle, 0, sz, PROT_WRITE, t->type);
+-	igt_assert(ptr == NULL);
+-
+-	/* Optional kernel support for GTT mmaps of userptr */
+-	ptr = __gem_mmap_offset(i915, handle, 0, sz, PROT_READ, t->type);
+-	gem_close(i915, handle);
+-
+-	if (ptr) { /* Check that a write into the GTT readonly map fails */
+-		if (!(sig = sigsetjmp(sigjmp, 1))) {
+-			signal(SIGBUS, sigjmp_handler);
+-			signal(SIGSEGV, sigjmp_handler);
+-			memset(ptr, 0x5a, sz);
+-			igt_assert(0);
+-		}
+-		igt_assert_eq(sig, SIGSEGV);
+-
+-		/* Check that we disallow removing the readonly protection */
+-		igt_assert(mprotect(ptr, sz, PROT_WRITE));
+-		if (!(sig = sigsetjmp(sigjmp, 1))) {
+-			signal(SIGBUS, sigjmp_handler);
+-			signal(SIGSEGV, sigjmp_handler);
+-			memset(ptr, 0x5a, sz);
+-			igt_assert(0);
+-		}
+-		igt_assert_eq(sig, SIGSEGV);
+-
+-		/* A single read from the GTT pointer to prove that works */
+-		igt_assert_eq_u32(*(uint8_t *)ptr, 0xa5);
+-		munmap(ptr, sz);
+-	}
+-
+-	/* Double check that the kernel did indeed not let any writes through */
+-	igt_clflush_range(pages, sz);
+-	result = g_compute_checksum_for_data(G_CHECKSUM_SHA1, pages, sz);
+-	igt_assert(!strcmp(original, result));
+-
+-	g_free(original);
+-	g_free(result);
+-
+-	munmap(pages, sz);
+-}
+-
+ static void test_readonly_pwrite(int i915)
+ {
+ 	char *original, *result;
+@@ -2423,12 +2193,6 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
+ 				mmo_max = t->type + 1;
+ 		igt_assert(mmo_max);
+ 
+-		can_mmap = calloc(mmo_max, sizeof(*can_mmap));
+-		igt_assert(can_mmap);
+-
+-		for_each_mmap_offset_type(fd, t)
+-			can_mmap[t->type] = has_mmap(fd, t) && gem_has_llc(fd);
+-
+ 		size = sizeof(linear);
+ 
+ 		aperture_size = gem_aperture_size(fd);
+@@ -2520,12 +2284,6 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
+ 		igt_subtest("readonly-unsync")
+ 			test_readonly(fd);
+ 
+-		igt_describe("Examine mmap-offset mapping to read-only userptr");
+-		igt_subtest_with_dynamic("readonly-mmap-unsync")
+-			for_each_mmap_offset_type(fd, t)
+-				igt_dynamic(t->name)
+-					test_readonly_mmap(fd, t);
+-
+ 		igt_subtest("readonly-pwrite-unsync")
+ 			test_readonly_pwrite(fd);
+ 
+@@ -2595,22 +2353,10 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
+ 		}
+ 
+ 		igt_subtest("process-exit")
+-			test_process_exit(fd, NULL, 0);
+-
+-		igt_describe("Test process exit with userptr object mmapped via mmap-offset");
+-		igt_subtest_with_dynamic("process-exit-mmap")
+-			for_each_mmap_offset_type(fd, t)
+-				igt_dynamic(t->name)
+-					test_process_exit(fd, t, 0);
++			test_process_exit(fd, 0);
+ 
+ 		igt_subtest("process-exit-busy")
+-			test_process_exit(fd, NULL, PE_BUSY);
+-
+-		igt_describe("Test process exit with busy userptr object mmapped via mmap-offset");
+-		igt_subtest_with_dynamic("process-exit-mmap-busy")
+-			for_each_mmap_offset_type(fd, t)
+-				igt_dynamic(t->name)
+-					test_process_exit(fd, t, PE_BUSY);
++			test_process_exit(fd, PE_BUSY);
+ 
+ 		igt_subtest("create-destroy-sync")
+ 			test_create_destroy(fd, 5);
+@@ -2655,18 +2401,11 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
+ 			}
+ 		}
+ 
+-		igt_describe("Invalidate pages of idle userptr with mmap-offset on top");
+-		igt_subtest_with_dynamic("mmap-offset-invalidate-idle")
++		igt_describe("Verify mmap_offset to userptr is banned");
++		igt_subtest_with_dynamic("mmap-offset-banned")
+ 			for_each_mmap_offset_type(fd, t)
+ 				igt_dynamic_f("%s", t->name)
+-					test_mmap_offset_invalidate(fd, t, 0);
+-
+-		igt_describe("Invalidate pages of active userptr with mmap-offset on top");
+-		igt_subtest_with_dynamic("mmap-offset-invalidate-active")
+-			for_each_mmap_offset_type(fd, t)
+-				igt_dynamic_f("%s", t->name)
+-					test_mmap_offset_invalidate(fd, t,
+-								   MMOI_ACTIVE);
++					test_mmap_offset_banned(fd, t);
+ 
+ 		igt_subtest("coherency-sync")
+ 			test_coherency(fd, count);
+@@ -2748,7 +2487,4 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
+ 
+ 	igt_subtest("access-control")
+ 		test_access_control(fd);
+-
+-	igt_fixture
+-		free(can_mmap);
+ }
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
