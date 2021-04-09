@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0AA13598F7
-	for <lists+intel-gfx@lfdr.de>; Fri,  9 Apr 2021 11:16:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD52A359961
+	for <lists+intel-gfx@lfdr.de>; Fri,  9 Apr 2021 11:38:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 590186E489;
-	Fri,  9 Apr 2021 09:16:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5D696EC00;
+	Fri,  9 Apr 2021 09:38:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BCA66E489
- for <intel-gfx@lists.freedesktop.org>; Fri,  9 Apr 2021 09:16:12 +0000 (UTC)
-IronPort-SDR: x5+sBV+bF1RjZbbglH0e34D2GAtQPJjDa1FjBlUerKRebCDSY6iDUJxAUz2/JIyl2Vs8ZqIt8U
- 7JA6ocq5a+/w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9948"; a="191574362"
-X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; d="scan'208";a="191574362"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2021 02:16:11 -0700
-IronPort-SDR: 7tjuiSKR+e9DD5+5JNwL9mp4qB/X3dZ1SjneFY/4qC74Z+LBej8klCTSZ3Nkkg1s/6mwlP08UL
- KUH+kvvt3WoA==
-X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; d="scan'208";a="448998372"
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6C6B6EC00
+ for <intel-gfx@lists.freedesktop.org>; Fri,  9 Apr 2021 09:38:06 +0000 (UTC)
+IronPort-SDR: JktJGoqnpX9a1Q3H6ejKjIZrbTGFMpuw1pk+h5Oo3nd9YPEC5KtmEojW7pgD3XCQb1WblR6yVh
+ Xy3tNGGEr8Sg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9948"; a="255060651"
+X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; d="scan'208";a="255060651"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2021 02:38:05 -0700
+IronPort-SDR: mCwNnp5Q8pzvs0c9RzPrQB9UBBRYrQNPgqVXkFN1/fFyvR1quDxDFKfzL7+/Lj6oLMH9I6dbx3
+ I8R5AItRZjIw==
+X-IronPort-AV: E=Sophos;i="5.82,209,1613462400"; d="scan'208";a="599103830"
 Received: from carlstax-mobl4.amr.corp.intel.com (HELO intel.com)
  ([10.212.45.152])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2021 02:16:11 -0700
-Date: Fri, 9 Apr 2021 05:16:09 -0400
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2021 02:38:04 -0700
+Date: Fri, 9 Apr 2021 05:38:02 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <YHAbWTfWihXLlV33@intel.com>
+Message-ID: <YHAgernDjiNHIYfA@intel.com>
 References: <20210328225709.18541-1-daniele.ceraolospurio@intel.com>
- <20210328225709.18541-9-daniele.ceraolospurio@intel.com>
+ <20210328225709.18541-10-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210328225709.18541-9-daniele.ceraolospurio@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 08/16] drm/i915/pxp: Implement arb
- session teardown
+In-Reply-To: <20210328225709.18541-10-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 09/16] drm/i915/pxp: Implement PXP irq
+ handler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,364 +56,554 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Mar 28, 2021 at 03:57:00PM -0700, Daniele Ceraolo Spurio wrote:
+On Sun, Mar 28, 2021 at 03:57:01PM -0700, Daniele Ceraolo Spurio wrote:
 > From: "Huang, Sean Z" <sean.z.huang@intel.com>
 > 
-> Teardown is triggered when the display topology changes and no
-> long meets the secure playback requirement, and hardware trashes
-> all the encryption keys for display. Additionally, we want to emit a
-> teardown operation to make sure we're clean on boot and resume
+> The HW will generate a teardown interrupt when session termination is
+> required, which requires i915 to submit a terminating batch. Once the HW
+> is done with the termination it will generate another interrupt, at
+> which point it is safe to re-create the session.
 > 
-> v2: emit in the ring, use high prio request (Chris)
-> v3: better defines, stalling flush, cleaned up and renamed submission
->     funcs (Chris)
+> Since the termination and re-creation flow is something we want to
+> trigger from the driver as well, use a common work function that can be
+> called both from the irq handler and from the driver set-up flows, which
+> has the addded benefit of allowing us to skip any extra locks because
+> the work itself serializes the operations.
+> 
+> v2: use struct completion instead of bool (Chris)
+> v3: drop locks, clean up functions and improve comments (Chris),
+>     move to common work function.
 > 
 > Signed-off-by: Huang, Sean Z <sean.z.huang@intel.com>
 > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 > Cc: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->  drivers/gpu/drm/i915/Makefile                |   1 +
->  drivers/gpu/drm/i915/gt/intel_gpu_commands.h |  22 ++-
->  drivers/gpu/drm/i915/pxp/intel_pxp.c         |   7 +-
->  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c     | 140 +++++++++++++++++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h     |  15 ++
->  drivers/gpu/drm/i915/pxp/intel_pxp_session.c |  29 ++++
->  drivers/gpu/drm/i915/pxp/intel_pxp_session.h |   1 +
->  7 files changed, 211 insertions(+), 4 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
->  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+>  drivers/gpu/drm/i915/Makefile                |  1 +
+>  drivers/gpu/drm/i915/gt/intel_gt_irq.c       |  7 ++
+>  drivers/gpu/drm/i915/i915_reg.h              |  1 +
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c         | 73 ++++++++++++++-
+>  drivers/gpu/drm/i915/pxp/intel_pxp.h         |  8 ++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_irq.c     | 97 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_irq.h     | 32 +++++++
+>  drivers/gpu/drm/i915/pxp/intel_pxp_session.c | 54 ++++++++++-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_session.h |  5 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_tee.c     |  8 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp_types.h   | 10 ++
+>  11 files changed, 281 insertions(+), 15 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+>  create mode 100644 drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
 > 
 > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 219095d9b42c..87a6145b4ae8 100644
+> index 87a6145b4ae8..9e6e61aca95f 100644
 > --- a/drivers/gpu/drm/i915/Makefile
 > +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -273,6 +273,7 @@ i915-y += i915_perf.o
->  # Protected execution platform (PXP) support
+> @@ -274,6 +274,7 @@ i915-y += i915_perf.o
 >  i915-$(CONFIG_DRM_I915_PXP) += \
 >  	pxp/intel_pxp.o \
-> +	pxp/intel_pxp_cmd.o \
+>  	pxp/intel_pxp_cmd.o \
+> +	pxp/intel_pxp_irq.o \
 >  	pxp/intel_pxp_session.o \
 >  	pxp/intel_pxp_tee.o
 >  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> index 14e2ffb6c0e5..a73f46db4910 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gpu_commands.h
-> @@ -28,10 +28,13 @@
->  #define INSTR_26_TO_24_MASK	0x7000000
->  #define   INSTR_26_TO_24_SHIFT	24
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> index 9fc6c912a4e5..7c4ec8880b1a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
+> @@ -13,6 +13,7 @@
+>  #include "intel_lrc_reg.h"
+>  #include "intel_uncore.h"
+>  #include "intel_rps.h"
+> +#include "pxp/intel_pxp_irq.h"
 >  
-> +#define __INSTR(client) ((client) << INSTR_CLIENT_SHIFT)
-> +
->  /*
->   * Memory interface instructions used by the kernel
->   */
-> -#define MI_INSTR(opcode, flags) (((opcode) << 23) | (flags))
-> +#define MI_INSTR(opcode, flags) \
-> +	(__INSTR(INSTR_MI_CLIENT) | (opcode) << 23 | (flags))
->  /* Many MI commands use bit 22 of the header dword for GGTT vs PPGTT */
->  #define  MI_GLOBAL_GTT    (1<<22)
->  
-> @@ -57,6 +60,7 @@
->  #define MI_SUSPEND_FLUSH	MI_INSTR(0x0b, 0)
->  #define   MI_SUSPEND_FLUSH_EN	(1<<0)
->  #define MI_SET_APPID		MI_INSTR(0x0e, 0)
-> +#define   MI_SET_APPID_SESSION_ID(x)	((x) << 0)
->  #define MI_OVERLAY_FLIP		MI_INSTR(0x11, 0)
->  #define   MI_OVERLAY_CONTINUE	(0x0<<21)
->  #define   MI_OVERLAY_ON		(0x1<<21)
-> @@ -144,6 +148,7 @@
->  #define MI_STORE_REGISTER_MEM_GEN8   MI_INSTR(0x24, 2)
->  #define   MI_SRM_LRM_GLOBAL_GTT		(1<<22)
->  #define MI_FLUSH_DW		MI_INSTR(0x26, 1) /* for GEN6 */
-> +#define   MI_FLUSH_DW_PROTECTED_MEM_EN	(1<<22)
->  #define   MI_FLUSH_DW_STORE_INDEX	(1<<21)
->  #define   MI_INVALIDATE_TLB		(1<<18)
->  #define   MI_FLUSH_DW_OP_STOREDW	(1<<14)
-> @@ -270,6 +275,19 @@
->  #define   MI_MATH_REG_ZF		0x32
->  #define   MI_MATH_REG_CF		0x33
->  
-> +/*
-> + * Media instructions used by the kernel
-> + */
-> +#define MEDIA_INSTR(pipe, op, sub_op, flags) \
-> +	(__INSTR(INSTR_RC_CLIENT) | (pipe) << INSTR_SUBCLIENT_SHIFT | \
-> +	(op) << INSTR_26_TO_24_SHIFT | (sub_op) << 16 | (flags))
-> +
-> +#define MFX_WAIT				MEDIA_INSTR(1, 0, 0, 0)
-> +#define  MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG	REG_BIT(8)
-> +#define  MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG	REG_BIT(9)
-> +
-> +#define CRYPTO_KEY_EXCHANGE			MEDIA_INSTR(2, 6, 9, 0)
-> +
->  /*
->   * Commands used only by the command parser
->   */
-> @@ -326,8 +344,6 @@
->  #define GFX_OP_3DSTATE_BINDING_TABLE_EDIT_PS \
->  	((0x3<<29)|(0x3<<27)|(0x0<<24)|(0x47<<16))
->  
-> -#define MFX_WAIT  ((0x3<<29)|(0x1<<27)|(0x0<<16))
-> -
->  #define COLOR_BLT     ((0x2<<29)|(0x40<<22))
->  #define SRC_COPY_BLT  ((0x2<<29)|(0x43<<22))
->  
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> index e496fc4ccf0a..2a5099034946 100644
-> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-> @@ -94,9 +94,14 @@ void intel_pxp_fini(struct intel_pxp *pxp)
->  
->  void intel_pxp_init_hw(struct intel_pxp *pxp)
+>  static void guc_irq_handler(struct intel_guc *guc, u16 iir)
 >  {
-> +	int ret;
-> +
->  	kcr_pxp_enable(pxp_to_gt(pxp));
+> @@ -106,6 +107,9 @@ gen11_other_irq_handler(struct intel_gt *gt, const u8 instance,
+>  	if (instance == OTHER_GTPM_INSTANCE)
+>  		return gen11_rps_irq_handler(&gt->rps, iir);
 >  
-> -	intel_pxp_create_arb_session(pxp);
-> +	/* always emit a full termination to clean the state */
-> +	ret = intel_pxp_terminate_arb_session_and_global(pxp);
-> +	if (!ret)
-> +		intel_pxp_create_arb_session(pxp);
+> +	if (instance == OTHER_KCR_INSTANCE)
+> +		return intel_pxp_irq_handler(&gt->pxp, iir);
+> +
+>  	WARN_ONCE(1, "unhandled other interrupt instance=0x%x, iir=0x%x\n",
+>  		  instance, iir);
+>  }
+> @@ -232,6 +236,9 @@ void gen11_gt_irq_reset(struct intel_gt *gt)
+>  	intel_uncore_write(uncore, GEN11_GPM_WGBOXPERF_INTR_MASK,  ~0);
+>  	intel_uncore_write(uncore, GEN11_GUC_SG_INTR_ENABLE, 0);
+>  	intel_uncore_write(uncore, GEN11_GUC_SG_INTR_MASK,  ~0);
+> +
+> +	intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, 0);
+> +	intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~0);
 >  }
 >  
->  void intel_pxp_fini_hw(struct intel_pxp *pxp)
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
-> new file mode 100644
-> index 000000000000..c577f1fbee55
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.c
-> @@ -0,0 +1,140 @@
-> +// SPDX-License-Identifier: MIT
+>  void gen11_gt_irq_postinstall(struct intel_gt *gt)
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index cbf7a60afe54..1fe42f4a4e4b 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -7969,6 +7969,7 @@ enum {
+>  /* irq instances for OTHER_CLASS */
+>  #define OTHER_GUC_INSTANCE	0
+>  #define OTHER_GTPM_INSTANCE	1
+> +#define OTHER_KCR_INSTANCE	4
+>  
+>  #define GEN11_INTR_IDENTITY_REG(x)	_MMIO(0x190060 + ((x) * 4))
+>  
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> index 2a5099034946..948b8153c8c9 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
+> @@ -2,7 +2,9 @@
+>  /*
+>   * Copyright(c) 2020 Intel Corporation.
+>   */
+> +#include <linux/workqueue.h>
+>  #include "intel_pxp.h"
+> +#include "intel_pxp_irq.h"
+>  #include "intel_pxp_session.h"
+>  #include "intel_pxp_tee.h"
+>  #include "gt/intel_context.h"
+> @@ -66,6 +68,16 @@ void intel_pxp_init(struct intel_pxp *pxp)
+>  	if (!HAS_PXP(gt->i915))
+>  		return;
+>  
+> +	/*
+> +	 * we'll use the completion to check if there is a termination pending,
+> +	 * so we start it as completed and we reinit it when a termination
+> +	 * is triggered.
+> +	 */
+> +	init_completion(&pxp->termination);
+> +	complete_all(&pxp->termination);
+> +
+> +	INIT_WORK(&pxp->session_work, intel_pxp_session_work);
+> +
+>  	ret = create_vcs_context(pxp);
+>  	if (ret)
+>  		return;
+> @@ -87,24 +99,75 @@ void intel_pxp_fini(struct intel_pxp *pxp)
+>  	if (!intel_pxp_is_enabled(pxp))
+>  		return;
+>  
+> +	pxp->arb_is_valid = false;
+
+oh! this should be part of the patch introducing this variable, no?!
+
+> +
+>  	intel_pxp_tee_component_fini(pxp);
+>  
+>  	destroy_vcs_context(pxp);
+>  }
+>  
+> -void intel_pxp_init_hw(struct intel_pxp *pxp)
+> +void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp)
+> +{
+> +	pxp->arb_is_valid = false;
+> +	reinit_completion(&pxp->termination);
+> +}
+> +
+> +static void intel_pxp_queue_termination(struct intel_pxp *pxp)
+> +{
+> +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +
+> +	/*
+> +	 * We want to get the same effect as if we received a termination
+> +	 * interrupt, so just pretend that we did.
+> +	 */
+> +	spin_lock_irq(&gt->irq_lock);
+> +	intel_pxp_mark_termination_in_progress(pxp);
+> +	pxp->session_events |= PXP_TERMINATION_REQUEST;
+> +	queue_work(system_unbound_wq, &pxp->session_work);
+> +	spin_unlock_irq(&gt->irq_lock);
+> +}
+> +
 > +/*
-> + * Copyright(c) 2020, Intel Corporation. All rights reserved.
+> + * the arb session is restarted from the irq work when we receive the
+> + * termination completion interrupt
 > + */
-> +
-> +#include "intel_pxp.h"
-> +#include "intel_pxp_session.h"
-> +#include "gt/intel_context.h"
-> +#include "gt/intel_engine_pm.h"
-> +#include "gt/intel_gpu_commands.h"
-> +#include "gt/intel_ring.h"
-> +
-> +#include "i915_trace.h"
-> +
-> +/* stall until prior PXP and MFX/HCP/HUC objects are cmopleted */
-> +#define MFX_WAIT_PXP (MFX_WAIT | \
-> +		      MFX_WAIT_DW0_PXP_SYNC_CONTROL_FLAG | \
-> +	              MFX_WAIT_DW0_MFX_SYNC_CONTROL_FLAG)
-> +
-> +static u32 *pxp_emit_session_selection(u32 *cs, u32 idx)
-> +{
-> +	*cs++ = MFX_WAIT_PXP;
-> +
-> +	/* pxp off */
-> +	*cs++ = MI_FLUSH_DW;
-> +	*cs++ = 0;
-> +	*cs++ = 0;
-> +
-> +	/* select session */
-> +	*cs++ = MI_SET_APPID | MI_SET_APPID_SESSION_ID(idx);
-> +
-> +	*cs++ = MFX_WAIT_PXP;
-> +
-> +	/* pxp on */
-> +	*cs++ = MI_FLUSH_DW | MI_FLUSH_DW_PROTECTED_MEM_EN |
-> +		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_DW_STORE_INDEX;
-> +	*cs++ = I915_GEM_HWS_PXP_ADDR | MI_FLUSH_DW_USE_GTT;
-> +	*cs++ = 0;
-> +
-> +	*cs++ = MFX_WAIT_PXP;
-> +
-> +	return cs;
-> +}
-> +
-> +static u32 *pxp_emit_inline_termination(u32 *cs)
-> +{
-> +	/* session inline termination */
-> +	*cs++ = CRYPTO_KEY_EXCHANGE;
-> +	*cs++ = 0;
-> +
-> +	return cs;
-> +}
-> +
-> +static u32 *pxp_emit_session_termination(u32 *cs, u32 idx)
-> +{
-> +	cs = pxp_emit_session_selection(cs, idx);
-> +	cs = pxp_emit_inline_termination(cs);
-> +
-> +	return cs;
-> +}
-> +
-> +static u32 *pxp_emit_wait(u32 *cs)
-> +{
-> +	/* wait for cmds to go through */
-> +	*cs++ = MFX_WAIT_PXP;
-> +	*cs++ = 0;
-> +
-> +	return cs;
-> +}
-> +
-> +/*
-> + * if we ever need to terminate more than one session, we can submit multiple
-> + * selections and terminations back-to-back with a single wait at the end
-> + */
-> +#define SELECTION_LEN 10
-> +#define TERMINATION_LEN 2
-> +#define SESSION_TERMINATION_LEN(x) ((SELECTION_LEN + TERMINATION_LEN) * (x))
-> +#define WAIT_LEN 2
-
-I always ask myself if we don't have a better automatic way to count the entries
-or why we don't keep the size near its function so it is easier to see...
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-> +
-> +static void pxp_request_commit(struct i915_request *rq)
-> +{
-> +	struct i915_sched_attr attr = { .priority = I915_PRIORITY_MAX };
-> +	struct intel_timeline * const tl = i915_request_timeline(rq);
-> +
-> +	lockdep_unpin_lock(&tl->mutex, rq->cookie);
-> +
-> +	trace_i915_request_add(rq);
-> +	__i915_request_commit(rq);
-> +	__i915_request_queue(rq, &attr);
-> +
-> +	mutex_unlock(&tl->mutex);
-> +}
-> +
-> +int intel_pxp_terminate_session(struct intel_pxp *pxp, u32 id)
-> +{
-> +	struct i915_request *rq;
-> +	struct intel_context *ce = pxp->ce;
-> +	u32 *cs;
-> +	int err;
-> +
+> +int intel_pxp_wait_for_arb_start(struct intel_pxp *pxp)
+>  {
+>  	int ret;
+>  
 > +	if (!intel_pxp_is_enabled(pxp))
 > +		return 0;
 > +
-> +	rq = i915_request_create(ce);
-> +	if (IS_ERR(rq))
-> +		return PTR_ERR(rq);
+> +	ret = wait_for_completion_timeout(&pxp->termination,
+> +					  msecs_to_jiffies(100));
 > +
-> +	if (ce->engine->emit_init_breadcrumb) {
-> +		err = ce->engine->emit_init_breadcrumb(rq);
-> +		if (err)
-> +			goto out_rq;
-> +	}
+> +	/* the wait returns 0 on failure */
+
+instead of justifying, why not simply
+if (!wait_for_completion_timeout(&pxp->termination,
+				 msecs_to_jiffies(100)))
+	return -ETIMEDOUT;
+
+?!
+
+> +	if (ret)
+> +		ret = 0;
+> +	else
+> +		return -ETIMEDOUT;
 > +
-> +	cs = intel_ring_begin(rq, SESSION_TERMINATION_LEN(1) + WAIT_LEN);
-> +	if (IS_ERR(cs)) {
-> +		err = PTR_ERR(cs);
-> +		goto out_rq;
-> +	}
+> +	if (!pxp->arb_is_valid)
+> +		return -EIO;
 > +
-> +	cs = pxp_emit_session_termination(cs, id);
-> +	cs = pxp_emit_wait(cs);
-> +
-> +	intel_ring_advance(rq, cs);
-> +
-> +out_rq:
-> +	i915_request_get(rq);
-> +
-> +	if (unlikely(err))
-> +		i915_request_set_error_once(rq, err);
-> +
-> +	pxp_request_commit(rq);
-> +
-> +	if (!err && i915_request_wait(rq, 0, HZ / 5) < 0)
-> +		err = -ETIME;
-> +
-> +	i915_request_put(rq);
-> +
-> +	return err;
+> +	return 0;
 > +}
 > +
-> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
+> +void intel_pxp_init_hw(struct intel_pxp *pxp)
+> +{
+>  	kcr_pxp_enable(pxp_to_gt(pxp));
+> +	intel_pxp_irq_enable(pxp);
+>  
+> -	/* always emit a full termination to clean the state */
+> -	ret = intel_pxp_terminate_arb_session_and_global(pxp);
+> -	if (!ret)
+> -		intel_pxp_create_arb_session(pxp);
+> +	/*
+> +	 * the session could've been attacked while we weren't loaded, so
+> +	 * handle it as if it was and re-create it.
+> +	 */
+> +	intel_pxp_queue_termination(pxp);
+>  }
+>  
+>  void intel_pxp_fini_hw(struct intel_pxp *pxp)
+>  {
+>  	kcr_pxp_disable(pxp_to_gt(pxp));
+> +
+> +	intel_pxp_irq_disable(pxp);
+>  }
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> index 8eeb65af78b1..074b3b980957 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
+> @@ -30,6 +30,9 @@ void intel_pxp_fini(struct intel_pxp *pxp);
+>  
+>  void intel_pxp_init_hw(struct intel_pxp *pxp);
+>  void intel_pxp_fini_hw(struct intel_pxp *pxp);
+> +
+> +void intel_pxp_mark_termination_in_progress(struct intel_pxp *pxp);
+> +int intel_pxp_wait_for_arb_start(struct intel_pxp *pxp);
+>  #else
+>  static inline void intel_pxp_init(struct intel_pxp *pxp)
+>  {
+> @@ -38,6 +41,11 @@ static inline void intel_pxp_init(struct intel_pxp *pxp)
+>  static inline void intel_pxp_fini(struct intel_pxp *pxp)
+>  {
+>  }
+> +
+> +static inline int intel_pxp_wait_for_arb_start(struct intel_pxp *pxp)
+> +{
+> +	return 0;
+> +}
+>  #endif
+>  
+>  #endif /* __INTEL_PXP_H__ */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
 > new file mode 100644
-> index 000000000000..6d6299543578
+> index 000000000000..196449243515
 > --- /dev/null
-> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd.h
-> @@ -0,0 +1,15 @@
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.c
+> @@ -0,0 +1,97 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2020 Intel Corporation.
+> + */
+> +#include <linux/workqueue.h>
+> +#include "intel_pxp.h"
+> +#include "intel_pxp_irq.h"
+> +#include "intel_pxp_session.h"
+> +#include "gt/intel_gt_irq.h"
+> +#include "i915_irq.h"
+> +#include "i915_reg.h"
+> +
+> +/**
+> + * intel_pxp_irq_handler - Handles PXP interrupts.
+> + * @pxp: pointer to pxp struct
+> + * @iir: interrupt vector
+> + */
+> +void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir)
+> +{
+> +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +
+> +	if (GEM_WARN_ON(!intel_pxp_is_enabled(pxp)))
+> +		return;
+> +
+> +	lockdep_assert_held(&gt->irq_lock);
+> +
+> +	if (unlikely(!iir))
+> +		return;
+> +
+> +	if (iir & (GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT |
+> +		   GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT)) {
+> +		/* immediately mark PXP as inactive on termination */
+> +		intel_pxp_mark_termination_in_progress(pxp);
+> +		pxp->session_events |= PXP_TERMINATION_REQUEST;
+> +	}
+> +
+> +	if (iir & GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
+> +		pxp->session_events |= PXP_TERMINATION_COMPLETE;
+> +
+> +	if (pxp->session_events)
+> +		queue_work(system_unbound_wq, &pxp->session_work);
+> +}
+> +
+> +static inline void __pxp_set_interrupts(struct intel_gt *gt, u32 interrupts)
+> +{
+> +	struct intel_uncore *uncore = gt->uncore;
+> +	const u32 mask = interrupts << 16;
+> +
+> +	intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_ENABLE, mask);
+> +	intel_uncore_write(uncore, GEN11_CRYPTO_RSVD_INTR_MASK,  ~mask);
+> +}
+> +
+> +static inline void pxp_irq_reset(struct intel_gt *gt)
+> +{
+> +	spin_lock_irq(&gt->irq_lock);
+> +	gen11_gt_reset_one_iir(gt, 0, GEN11_KCR);
+> +	spin_unlock_irq(&gt->irq_lock);
+> +}
+> +
+> +void intel_pxp_irq_enable(struct intel_pxp *pxp)
+> +{
+> +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +
+> +	spin_lock_irq(&gt->irq_lock);
+> +	if (!pxp->irq_enabled) {
+> +		WARN_ON_ONCE(gen11_gt_reset_one_iir(gt, 0, GEN11_KCR));
+> +		__pxp_set_interrupts(gt, GEN12_PXP_INTERRUPTS);
+> +		pxp->irq_enabled = true;
+> +	}
+> +	spin_unlock_irq(&gt->irq_lock);
+> +}
+> +
+> +void intel_pxp_irq_disable(struct intel_pxp *pxp)
+> +{
+> +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +
+> +	/*
+> +	 * We always need to submit a global termination when we re-enable the
+> +	 * interrupts, so there is no need to make sure that the session state
+> +	 * makes sense at the end of this function. Just make sure this is not
+> +	 * called in a path were the driver consider the session as valid and
+> +	 * doesn't call a termination on restart.
+> +	 */
+> +	GEM_WARN_ON(intel_pxp_is_active(pxp));
+> +
+> +	spin_lock_irq(&gt->irq_lock);
+> +
+> +	pxp->irq_enabled = false;
+> +	__pxp_set_interrupts(gt, 0);
+> +
+> +	spin_unlock_irq(&gt->irq_lock);
+> +	intel_synchronize_irq(gt->i915);
+> +
+> +	pxp_irq_reset(gt);
+> +
+> +	flush_work(&pxp->session_work);
+> +}
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_irq.h b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
+> new file mode 100644
+> index 000000000000..8b5793654844
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_irq.h
+> @@ -0,0 +1,32 @@
 > +/* SPDX-License-Identifier: MIT */
 > +/*
 > + * Copyright(c) 2020, Intel Corporation. All rights reserved.
 > + */
 > +
-> +#ifndef __INTEL_PXP_CMD_H__
-> +#define __INTEL_PXP_CMD_H__
+> +#ifndef __INTEL_PXP_IRQ_H__
+> +#define __INTEL_PXP_IRQ_H__
 > +
 > +#include <linux/types.h>
 > +
 > +struct intel_pxp;
 > +
-> +int intel_pxp_terminate_session(struct intel_pxp *pxp, u32 idx);
+> +#define GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT BIT(1)
+> +#define GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT BIT(2)
+> +#define GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT BIT(3)
 > +
-> +#endif /* __INTEL_PXP_CMD_H__ */
+> +#define GEN12_PXP_INTERRUPTS \
+> +	(GEN12_DISPLAY_PXP_STATE_TERMINATED_INTERRUPT | \
+> +	 GEN12_DISPLAY_APP_TERMINATED_PER_FW_REQ_INTERRUPT | \
+> +	 GEN12_DISPLAY_STATE_RESET_COMPLETE_INTERRUPT)
+> +
+> +#ifdef CONFIG_DRM_I915_PXP
+> +void intel_pxp_irq_enable(struct intel_pxp *pxp);
+> +void intel_pxp_irq_disable(struct intel_pxp *pxp);
+> +void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir);
+> +#else
+> +static inline void intel_pxp_irq_handler(struct intel_pxp *pxp, u16 iir)
+> +{
+> +}
+> +#endif
+> +
+> +#endif /* __INTEL_PXP_IRQ_H__ */
 > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> index 3331868f354c..b8e24adeb1f3 100644
+> index b8e24adeb1f3..e751122cb24a 100644
 > --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
 > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.c
-> @@ -7,6 +7,7 @@
->  #include "i915_drv.h"
+> @@ -48,7 +48,7 @@ static int pxp_wait_for_session_state(struct intel_pxp *pxp, u32 id, bool in_pla
+>  	return ret;
+>  }
 >  
->  #include "intel_pxp.h"
-> +#include "intel_pxp_cmd.h"
->  #include "intel_pxp_session.h"
->  #include "intel_pxp_tee.h"
->  #include "intel_pxp_types.h"
-> @@ -15,6 +16,9 @@
->  
->  #define GEN12_KCR_SIP _MMIO(0x32260) /* KCR hwdrm session in play 0-31 */
->  
-> +/* PXP global terminate register for session termination */
-> +#define PXP_GLOBAL_TERMINATE _MMIO(0x320f8)
-> +
->  static bool intel_pxp_session_is_in_play(struct intel_pxp *pxp, u32 id)
+> -int intel_pxp_create_arb_session(struct intel_pxp *pxp)
+> +static int pxp_create_arb_session(struct intel_pxp *pxp)
 >  {
 >  	struct intel_gt *gt = pxp_to_gt(pxp);
-> @@ -72,3 +76,28 @@ int intel_pxp_create_arb_session(struct intel_pxp *pxp)
->  
+>  	int ret;
+> @@ -77,12 +77,13 @@ int intel_pxp_create_arb_session(struct intel_pxp *pxp)
 >  	return 0;
 >  }
+>  
+> -int intel_pxp_terminate_arb_session_and_global(struct intel_pxp *pxp)
+> +static int pxp_terminate_arb_session_and_global(struct intel_pxp *pxp)
+>  {
+>  	int ret;
+>  	struct intel_gt *gt = pxp_to_gt(pxp);
+>  
+> -	pxp->arb_is_valid = false;
+> +	/* must mark termination in progress calling this function */
+> +	GEM_WARN_ON(pxp->arb_is_valid);
+>  
+>  	/* terminate the hw sessions */
+>  	ret = intel_pxp_terminate_session(pxp, ARB_SESSION);
+> @@ -101,3 +102,50 @@ int intel_pxp_terminate_arb_session_and_global(struct intel_pxp *pxp)
+>  
+>  	return ret;
+>  }
 > +
-> +int intel_pxp_terminate_arb_session_and_global(struct intel_pxp *pxp)
+> +static void pxp_terminate(struct intel_pxp *pxp)
 > +{
 > +	int ret;
+> +
+> +	pxp->global_state_attacked = true;
+> +
+> +	/*
+> +	 * if we fail to submit the termination there is no point in waiting for
+> +	 * it to complete. PXP will be marked as non-active until the next
+> +	 * termination is issued.
+> +	 */
+> +	ret = pxp_terminate_arb_session_and_global(pxp);
+> +	if (ret)
+> +		complete_all(&pxp->termination);
+> +}
+> +
+> +static void pxp_terminate_complete(struct intel_pxp *pxp)
+> +{
+> +	/* Re-create the arb session after teardown handle complete */
+> +	if (fetch_and_zero(&pxp->global_state_attacked))
+> +		pxp_create_arb_session(pxp);
+> +
+> +	complete_all(&pxp->termination);
+> +}
+> +
+> +void intel_pxp_session_work(struct work_struct *work)
+> +{
+> +	struct intel_pxp *pxp = container_of(work, typeof(*pxp), session_work);
 > +	struct intel_gt *gt = pxp_to_gt(pxp);
+> +	u32 events = 0;
 > +
-> +	pxp->arb_is_valid = false;
+> +	spin_lock_irq(&gt->irq_lock);
+> +	events = fetch_and_zero(&pxp->session_events);
+> +	spin_unlock_irq(&gt->irq_lock);
 > +
-> +	/* terminate the hw sessions */
-> +	ret = intel_pxp_terminate_session(pxp, ARB_SESSION);
-> +	if (ret) {
-> +		drm_err(&gt->i915->drm, "Failed to submit session termination\n");
-> +		return ret;
+> +	if (!events)
+> +		return;
+> +
+> +	if (events & PXP_TERMINATION_REQUEST) {
+> +		events &= ~PXP_TERMINATION_COMPLETE;
+> +		pxp_terminate(pxp);
 > +	}
 > +
-> +	ret = pxp_wait_for_session_state(pxp, ARB_SESSION, false);
-> +	if (ret) {
-> +		drm_err(&gt->i915->drm, "Session state did not clear\n");
-> +		return ret;
-> +	}
-> +
-> +	intel_uncore_write(gt->uncore, PXP_GLOBAL_TERMINATE, 1);
-> +
-> +	return ret;
+> +	if (events & PXP_TERMINATION_COMPLETE)
+> +		pxp_terminate_complete(pxp);
 > +}
 > diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_session.h b/drivers/gpu/drm/i915/pxp/intel_pxp_session.h
-> index 316c3bebed9c..7354314b1cc4 100644
+> index 7354314b1cc4..ba4c9d2b94b7 100644
 > --- a/drivers/gpu/drm/i915/pxp/intel_pxp_session.h
 > +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_session.h
-> @@ -11,5 +11,6 @@
->  struct intel_pxp;
+> @@ -8,9 +8,8 @@
 >  
->  int intel_pxp_create_arb_session(struct intel_pxp *pxp);
-> +int intel_pxp_terminate_arb_session_and_global(struct intel_pxp *pxp);
+>  #include <linux/types.h>
+>  
+> -struct intel_pxp;
+> +struct work_struct;
+>  
+> -int intel_pxp_create_arb_session(struct intel_pxp *pxp);
+> -int intel_pxp_terminate_arb_session_and_global(struct intel_pxp *pxp);
+> +void intel_pxp_session_work(struct work_struct *work);
 >  
 >  #endif /* __INTEL_PXP_SESSION_H__ */
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> index 170dd9fa5bb2..6d82531af11c 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_tee.c
+> @@ -89,21 +89,21 @@ static int i915_pxp_tee_component_bind(struct device *i915_kdev,
+>  {
+>  	struct drm_i915_private *i915 = kdev_to_i915(i915_kdev);
+>  	struct intel_pxp *pxp = i915_dev_to_pxp(i915_kdev);
+> +	int ret;
+>  
+>  	pxp->pxp_component = data;
+>  	pxp->pxp_component->tee_dev = tee_kdev;
+>  
+>  	/* the component is required to fully start the PXP HW */
+>  	intel_pxp_init_hw(pxp);
+> -
+> -	if (!pxp->arb_is_valid) {
+> +	ret = intel_pxp_wait_for_arb_start(pxp);
+> +	if (ret) {
+>  		drm_err(&i915->drm, "Failed to create arb session during bind\n");
+>  		intel_pxp_fini_hw(pxp);
+>  		pxp->pxp_component = NULL;
+> -		return -EIO;
+>  	}
+>  
+> -	return 0;
+> +	return ret;
+>  }
+>  
+>  static void i915_pxp_tee_component_unbind(struct device *i915_kdev,
+> diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> index b142b8170266..6c9265fb8e4b 100644
+> --- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> +++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
+> @@ -6,8 +6,10 @@
+>  #ifndef __INTEL_PXP_TYPES_H__
+>  #define __INTEL_PXP_TYPES_H__
+>  
+> +#include <linux/completion.h>
+>  #include <linux/types.h>
+>  #include <linux/mutex.h>
+> +#include <linux/workqueue.h>
+>  
+>  struct intel_context;
+>  struct i915_pxp_component;
+> @@ -23,6 +25,14 @@ struct intel_pxp {
+>  	 * session to know if it's valid and need to track the status in SW.
+>  	 */
+>  	bool arb_is_valid;
+> +	bool global_state_attacked;
+
+could you please describe a bit more about the attacked case?
+I missed the attacked = false on this patch, but also looking at
+the final result, to me it is strange that we set true on termination
+and false only on suspend... So I'm afraid I didn't fully understand this flow.
+
+Thanks,
+Rodrigo.
+
+> +	bool irq_enabled;
+> +	struct completion termination;
+> +
+> +	struct work_struct session_work;
+> +	u32 session_events; /* protected with gt->irq_lock */
+> +#define PXP_TERMINATION_REQUEST  BIT(0)
+> +#define PXP_TERMINATION_COMPLETE BIT(1)
+>  };
+>  
+>  #endif /* __INTEL_PXP_TYPES_H__ */
 > -- 
 > 2.29.2
 > 
