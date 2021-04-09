@@ -1,41 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A037D35C4C2
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 13:12:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CC3D35C5C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 13:55:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F7166E092;
-	Mon, 12 Apr 2021 11:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8A5289E57;
+	Mon, 12 Apr 2021 11:55:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29C636E092
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 11:12:38 +0000 (UTC)
-IronPort-SDR: KiSPBVe+Ii3XxXyXR2/KihB8DGvVq4RKi3xziuEWbElFj/LWXq0GS6ybETwYgwPIQXHqvAWav4
- +yo3jllhqz2A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9951"; a="258140647"
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="258140647"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2021 04:12:36 -0700
-IronPort-SDR: 17Nq7+hNbH2Mzs2oU+Ba0CeyOEWwQfZyZ6mpJTsBtKNlKLGpEs/It1ghIRuSfslKNZ2nTHMLVM
- eZ7gbIVu/Srw==
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="423751465"
-Received: from cyeni-mobl.ger.corp.intel.com (HELO localhost) ([10.252.62.41])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2021 04:12:34 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210408045227.985408-3-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210408045227.985408-1-lucas.demarchi@intel.com>
- <20210408045227.985408-3-lucas.demarchi@intel.com>
-Date: Mon, 12 Apr 2021 14:12:32 +0300
-Message-ID: <87czuzkb8f.fsf@intel.com>
+Received: from szxga04-in.huawei.com (szxga04-in.huawei.com [45.249.212.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 467436EC11;
+ Fri,  9 Apr 2021 12:52:29 +0000 (UTC)
+Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.58])
+ by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4FGydx5wLDz1BGYF;
+ Fri,  9 Apr 2021 20:50:13 +0800 (CST)
+Received: from DESKTOP-EFRLNPK.china.huawei.com (10.174.176.196) by
+ DGGEMS412-HUB.china.huawei.com (10.3.19.212) with Microsoft SMTP Server id
+ 14.3.498.0; Fri, 9 Apr 2021 20:52:16 +0800
+From: Qiheng Lin <linqiheng@huawei.com>
+To: <airlied@linux.ie>, <daniel@ffwll.ch>
+Date: Fri, 9 Apr 2021 20:51:51 +0800
+Message-ID: <20210409125151.9520-1-linqiheng@huawei.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 02/12] drm/i915: add macros for graphics and
- media versions
+X-Originating-IP: [10.174.176.196]
+X-CFilter-Loop: Reflected
+X-Mailman-Approved-At: Mon, 12 Apr 2021 11:55:22 +0000
+Subject: [Intel-gfx] [PATCH -next] drm/i915/display: remove redundant NULL
+ check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,111 +41,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Qiheng Lin <linqiheng@huawei.com>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 07 Apr 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Like it was done in
-> commit 01eb15c9165e ("drm/i915: Add DISPLAY_VER() and related macros")
-> add the correspondent macros for graphics and media. Going forward we
-> will prefer checking the versions for the specific IPs (graphics, media
-> and display) rather than grouping everything under a "gen" version.
->
-> For consistency and to make the maintenance easier, it'd be preferred
-> not to mix the *GEN* macros with the new ones. For older platforms we
-> can simply consider that the previous "gen" number will extend to all
-> 3 IPs. Then we can start replacing its use in the driver. Right now this
-> replacement is not done and only the infrastructure is put in place.
-> We also leave gen and gen_mask inside struct intel_device_info while
-> it's still being used throughout the code.
->
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_drv.h          | 17 ++++++++++++++++-
->  drivers/gpu/drm/i915/i915_pci.c          |  7 ++++++-
->  drivers/gpu/drm/i915/intel_device_info.h |  3 +++
->  3 files changed, 25 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 8c62bb2abd31..97cbd019f2e9 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1234,9 +1234,24 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
->  #define RUNTIME_INFO(dev_priv)	(&(dev_priv)->__runtime)
->  #define DRIVER_CAPS(dev_priv)	(&(dev_priv)->caps)
->  
-> -#define INTEL_GEN(dev_priv)	(INTEL_INFO(dev_priv)->gen)
->  #define INTEL_DEVID(dev_priv)	(RUNTIME_INFO(dev_priv)->device_id)
->  
-> +/*
-> + * Deprecated: this will be replaced by individual IP checks:
-> + * GRAPHICS_VER(), MEDIA_VER and DISPLAY_VER()
-> + */
-> +#define INTEL_GEN(dev_priv)		(INTEL_INFO(dev_priv)->gen)
-> +
-> +#define GRAPHICS_VER(i915)		(INTEL_INFO(i915)->graphics_ver)
-> +#define IS_GRAPHICS_RANGE(i915, from, until) \
-> +	(GRAPHICS_VER(i915) >= (from) && GRAPHICS_VER(i915) <= (until))
-> +#define IS_GRAPHICS_VER(i915, v)	(GRAPHICS_VER(i915) == (v))
-> +
-> +#define MEDIA_VER(i915)			(INTEL_INFO(i915)->media_ver)
-> +#define IS_MEDIA_RANGE(i915, from, until) \
-> +	(MEDIA_VER(i915) >= (from) && MEDIA_VER(i915) <= (until))
-> +#define IS_MEDIA_VER(i915, v)		(MEDIA_VER(i915) == (v))
-> +
->  #define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.ver)
->  #define IS_DISPLAY_RANGE(i915, from, until) \
+Fix the following coccicheck warning:
 
-Why is naming so hard?!
+drivers/gpu/drm/i915/display/intel_psr.c:1530:29-31: WARNING
+ !A || A && B is equivalent to !A || B
 
-I am seriously wondering if IS_GRAPHICS_RANGE() and friends can be
-misleading. What range? IS_GRAPHICS_VER_RANGE() is more accurate, but is
-it too long?
+Signed-off-by: Qiheng Lin <linqiheng@huawei.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Am I worrying over nothing?
-
-
-BR,
-Jani.
-
->  	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index ce5cbeaf036d..97ab73276334 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -36,7 +36,12 @@
->  #include "i915_selftest.h"
->  
->  #define PLATFORM(x) .platform = (x)
-> -#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display.ver = (x)
-> +#define GEN(x) \
-> +	.gen_mask = BIT((x) - 1), \
-> +	.gen = (x), \
-> +	.graphics_ver = (x), \
-> +	.media_ver = (x), \
-> +	.display.ver = (x)
->  
->  #define I845_PIPE_OFFSETS \
->  	.pipe_offsets = { \
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index b16c75927a12..405883a8cc84 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -162,6 +162,9 @@ enum intel_ppgtt_type {
->  struct intel_device_info {
->  	u16 gen_mask;
->  
-> +	u8 graphics_ver;
-> +	u8 media_ver;
-> +
->  	u8 gen;
->  	u8 gt; /* GT number, 0 if undefined */
->  	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 32d3d56259c2..4cec6b4d7fb9 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1526,8 +1526,7 @@ void intel_psr_wait_for_idle(const struct intel_crtc_state *new_crtc_state)
+ 		u32 psr_status;
+ 
+ 		mutex_lock(&intel_dp->psr.lock);
+-		if (!intel_dp->psr.enabled ||
+-		    (intel_dp->psr.enabled && intel_dp->psr.psr2_enabled)) {
++		if (!intel_dp->psr.enabled || intel_dp->psr.psr2_enabled) {
+ 			mutex_unlock(&intel_dp->psr.lock);
+ 			continue;
+ 		}
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.31.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
