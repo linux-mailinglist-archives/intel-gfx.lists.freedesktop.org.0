@@ -2,60 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B77D135AD93
-	for <lists+intel-gfx@lfdr.de>; Sat, 10 Apr 2021 15:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA63D35B5EA
+	for <lists+intel-gfx@lfdr.de>; Sun, 11 Apr 2021 17:34:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 104416E51C;
-	Sat, 10 Apr 2021 13:27:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 344D06E0D7;
+	Sun, 11 Apr 2021 15:34:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6B106E51C
- for <intel-gfx@lists.freedesktop.org>; Sat, 10 Apr 2021 13:27:27 +0000 (UTC)
-IronPort-SDR: u3NcTR34l5CAeuezehWU5dD0kMTZ+10Qwk5H2e99U4XcNzYL0/DS8G1Vc7ES4OfRjpa/HuYA4w
- bEvBwORikN0Q==
-X-IronPort-AV: E=McAfee;i="6000,8403,9950"; a="257902949"
-X-IronPort-AV: E=Sophos;i="5.82,210,1613462400"; d="scan'208";a="257902949"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2021 06:27:25 -0700
-IronPort-SDR: VeyvXumn5tUu3EWH4s+dW6P/s5844JHLfrZBKbKbB5CZj2a44AJCiXKOl55OImy0gy+nchHJw6
- 6NEWZve8+Gig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,210,1613462400"; d="scan'208";a="382411688"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga006.jf.intel.com with ESMTP; 10 Apr 2021 06:27:25 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Sat, 10 Apr 2021 06:27:24 -0700
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Sat, 10 Apr 2021 06:27:23 -0700
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
- IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2106.013;
- Sat, 10 Apr 2021 14:27:22 +0100
-From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Souza, Jose" <jose.souza@intel.com>
-Thread-Topic: [PATCH 2/2] Revert "drm/i915/tgl/psr: Fix glitches when doing
- frontbuffer modifications"
-Thread-Index: AQHXLLhNGvKYx4ZcukynETtbR9iKyaqtsESA
-Date: Sat, 10 Apr 2021 13:27:22 +0000
-Message-ID: <ce1f67edec580ba44177616e3eb90de8a1a3b27b.camel@intel.com>
-References: <20210408204917.254272-1-jose.souza@intel.com>
- <20210408204917.254272-2-jose.souza@intel.com>
-In-Reply-To: <20210408204917.254272-2-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.253.164]
-Content-ID: <D5FDF5289A5E3C4EA08101A84666D9FE@intel.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFF666E0D7
+ for <intel-gfx@lists.freedesktop.org>; Sun, 11 Apr 2021 15:34:00 +0000 (UTC)
+IronPort-SDR: JURKaBAM0h0flhOsXNiZKtHcxw+L2PmjArl8IjyZMXenKsacqGN7KsTPt3suebAReDVuMNIMf9
+ TLPbibbXKnmg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9951"; a="255366937"
+X-IronPort-AV: E=Sophos;i="5.82,214,1613462400"; d="scan'208";a="255366937"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2021 08:33:59 -0700
+IronPort-SDR: RAQcYI0HOFtuaSqwpUBgZFnNAqKJyNgdPWQEh/GisR4MoNhJmzuKanEE6dnzR2jmgX1lQVZqzM
+ PQbsVvO7LzjQ==
+X-IronPort-AV: E=Sophos;i="5.82,214,1613462400"; d="scan'208";a="451078694"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Apr 2021 08:33:59 -0700
+Date: Sun, 11 Apr 2021 08:33:58 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20210411153358.GA1637800@mdroper-desk1.amr.corp.intel.com>
+References: <20210408045227.985408-1-lucas.demarchi@intel.com>
+ <20210408045227.985408-2-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/2] Revert "drm/i915/tgl/psr: Fix glitches
- when doing frontbuffer modifications"
+Content-Disposition: inline
+In-Reply-To: <20210408045227.985408-2-lucas.demarchi@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915: rename display.version to
+ display.ver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,52 +49,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmV2aWV3ZWQtYnk6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNvbT4N
-ClRlc3RlZC1ieTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPg0K
-T24gVGh1LCAyMDIxLTA0LTA4IGF0IDEzOjQ5IC0wNzAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBUaGlzIHJldmVydHMgY29tbWl0IDcxYzFhNDk5ODMyMDk2MmY3YjgzNjJiMmM1
-ZWUzNjYxMGQ0OWU4ZmIuDQo+IA0KPiBUaGUgcHJvcGVyIGZpeCBpcyBXYV8xNDAxMzcyMzYyMiwg
-c28gbm93IHdlIGNhbiByZXZlcnQgdGhpcyBXQSBhbmQNCj4gZ2V0IGJhY2sgc29tZSBwb3dlciBz
-YXZpbmdzLg0KPiANCj4gQ2M6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVs
-LmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6
-YUBpbnRlbC5jb20+DQo+IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfcHNyLmMgfCAxNiArLS0tLS0tLS0tLS0tLS0tDQo+IMKgMSBmaWxlIGNoYW5nZWQsIDEgaW5z
-ZXJ0aW9uKCspLCAxNSBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRleCAzMmQzZDU2MjU5YzIuLjZhNjFmZTQyNjg2ZSAx
-MDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0K
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC0x
-MTYxLDIxICsxMTYxLDcgQEAgc3RhdGljIHZvaWQgcHNyX2ZvcmNlX2h3X3RyYWNraW5nX2V4aXQo
-c3RydWN0DQo+IGludGVsX2RwICppbnRlbF9kcCkNCj4gwqB7DQo+IMKgwqDCoMKgwqDCoMKgwqBz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsN
-Cj4gwqANCj4gLcKgwqDCoMKgwqDCoMKgaWYgKElTX1RJR0VSTEFLRShkZXZfcHJpdikpDQo+IC3C
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKg0KPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgICogV3JpdGVzIHRvIENVUlNVUkZMSVZFIGluIFRHTCBhcmUgY2F1c2luZyBJT01N
-VQ0KPiBlcnJvcnMgYW5kDQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiB2aXN1
-YWwgZ2xpdGNoZXMgdGhhdCBhcmUgb2Z0ZW4gcmVwcm9kdWNlZCB3aGVuDQo+IGV4ZWN1dGluZw0K
-PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogQ1BVIGludGVuc2l2ZSB3b3JrbG9h
-ZHMgd2hpbGUgYSBlRFAgNEsgcGFuZWwgaXMNCj4gYXR0YWNoZWQuDQo+IC3CoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgKg0KPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICog
-TWFudWFsbHkgZXhpdGluZyBQU1IgY2F1c2VzIHRoZSBmcm9udGJ1ZmZlciB0byBiZQ0KPiB1cGRh
-dGVkDQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiB3aXRob3V0IGdsaXRjaGVz
-IGFuZCB0aGUgSU9NTVUgZXJyb3JzIGFyZSBhbHNvIGdvbmUNCj4gYnV0DQo+IC3CoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgKiB0aGlzIGNvbWVzIGF0IHRoZSBjb3N0IG9mIGxlc3MgdGlt
-ZSB3aXRoIFBTUiBhY3RpdmUuDQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKg0K
-PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogU28gdXNpbmcgdGhpcyB3b3JrYXJv
-dW5kIHVudGlsIHRoaXMgaXNzdWUgaXMgcm9vdA0KPiBjYXVzZWQNCj4gLcKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCAqIGFuZCBhIGJldHRlciBmaXggaXMgZm91bmQuDQo+IC3CoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKi8NCj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoGludGVsX3Bzcl9leGl0KGludGVsX2RwKTsNCj4gLcKgwqDCoMKgwqDCoMKgZWxzZSBpZiAo
-RElTUExBWV9WRVIoZGV2X3ByaXYpID49IDkpDQo+ICvCoMKgwqDCoMKgwqDCoGlmIChESVNQTEFZ
-X1ZFUihkZXZfcHJpdikgPj0gOSkNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAv
-Kg0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIERpc3BsYXkgV0EgIzA4ODQ6
-IHNrbCsNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBUaGlzIGRvY3VtZW50
-ZWQgV0EgZm9yIGJ4dCBjYW4gYmUgc2FmZWx5IGFwcGxpZWQNCg0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Apr 07, 2021 at 09:52:16PM -0700, Lucas De Marchi wrote:
+> The macro we use to check is called DISPLAY_VER(). While using this
+> macro and the new ones being added in following changes I made the
+> mistake multiple times when mixing both "ver" and "version". Although
+> it's usually better to prefer the complete name, the shorhand
+> DISPLAY_VER() / GRAPHICS_VER / MEDIA_VER are clear and cause less
+> visual polution.
+> 
+> Another issue is when copying the variable to other places.
+> "display.version" would be copied to a "display_version" variable which
+> is long and would make people abbreviate as "version", or "display_ver".
+> In the first case it's not always clear what version refers to, and in
+> the second case it just hints it should be the name in the first place.
+> 
+> So, in the same way use used "gen" rather than "generation", use "ver"
+> instead of "version".
+
+I'm indifferent on "ver" versus "version" but Jani suggested using the
+full word "version" when we were first adding this, so you should
+probably get an ack from him.
+
+
+Matt
+
+> 
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h          | 2 +-
+>  drivers/gpu/drm/i915/i915_pci.c          | 4 ++--
+>  drivers/gpu/drm/i915/intel_device_info.h | 2 +-
+>  3 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 69e43bf91a15..8c62bb2abd31 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1237,7 +1237,7 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+>  #define INTEL_GEN(dev_priv)	(INTEL_INFO(dev_priv)->gen)
+>  #define INTEL_DEVID(dev_priv)	(RUNTIME_INFO(dev_priv)->device_id)
+>  
+> -#define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.version)
+> +#define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.ver)
+>  #define IS_DISPLAY_RANGE(i915, from, until) \
+>  	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+>  #define IS_DISPLAY_VER(i915, v) (DISPLAY_VER(i915) == (v))
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 480553746794..ce5cbeaf036d 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -36,7 +36,7 @@
+>  #include "i915_selftest.h"
+>  
+>  #define PLATFORM(x) .platform = (x)
+> -#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display.version = (x)
+> +#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display.ver = (x)
+>  
+>  #define I845_PIPE_OFFSETS \
+>  	.pipe_offsets = { \
+> @@ -723,7 +723,7 @@ static const struct intel_device_info bxt_info = {
+>  static const struct intel_device_info glk_info = {
+>  	GEN9_LP_FEATURES,
+>  	PLATFORM(INTEL_GEMINILAKE),
+> -	.display.version = 10,
+> +	.display.ver = 10,
+>  	.ddb_size = 1024,
+>  	GLK_COLORS,
+>  };
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index 2f442d418a15..b16c75927a12 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -189,7 +189,7 @@ struct intel_device_info {
+>  #undef DEFINE_FLAG
+>  
+>  	struct {
+> -		u8 version;
+> +		u8 ver;
+>  
+>  #define DEFINE_FLAG(name) u8 name:1
+>  		DEV_INFO_DISPLAY_FOR_EACH_FLAG(DEFINE_FLAG);
+> -- 
+> 2.31.1
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
