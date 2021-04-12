@@ -1,55 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5B335CEEE
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 18:57:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A24A335CF0E
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 19:01:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B75189B49;
-	Mon, 12 Apr 2021 16:57:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBFF089CE1;
+	Mon, 12 Apr 2021 17:01:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9DB89B49;
- Mon, 12 Apr 2021 16:57:21 +0000 (UTC)
-IronPort-SDR: vopJR4zk04NAyLq7oyH6WpNlHI8iZJc0JqjbWmNdV9sa6XvrSN20bWwYsjnUwSvb/T7XFd5xco
- yoJiE7vqqecA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="193797248"
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="193797248"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2021 09:57:20 -0700
-IronPort-SDR: xouNd4Vz+AyyhF1Gtu5Bd5wUL9pC0e315UKBEzk17+/XcKixurdTmhRrLxi2klYyLWTPq/yFJU
- I8I8KBMPBfKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="531949953"
-Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
- by orsmga004.jf.intel.com with ESMTP; 12 Apr 2021 09:57:19 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 12 Apr 2021 17:57:17 +0100
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.013;
- Mon, 12 Apr 2021 09:57:16 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Auld, Matthew" <matthew.auld@intel.com>
-Thread-Topic: [PATCH 15/19] drm/i915: WA for zero memory channel
-Thread-Index: AQHXL3uUfoLb8HUp/U6Xy2nEeUEJJ6qxkOYA
-Date: Mon, 12 Apr 2021 16:57:16 +0000
-Message-ID: <a7a6176fa4fdceec288cfe842349b06e1180a773.camel@intel.com>
-References: <20210412090526.30547-1-matthew.auld@intel.com>
- <20210412090526.30547-16-matthew.auld@intel.com>
-In-Reply-To: <20210412090526.30547-16-matthew.auld@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-ID: <7A18931D590F5A4A88675FD1B16F2AA1@intel.com>
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com
+ [IPv6:2607:f8b0:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47B0C89CE1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 17:01:10 +0000 (UTC)
+Received: by mail-ot1-x336.google.com with SMTP id
+ w21-20020a9d63950000b02901ce7b8c45b4so13442434otk.5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 10:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=VJuys9DyerV3PBPTioHmwNBQGpvYT5J6kN0jeTDaRFM=;
+ b=B2Iy/vsG7MV+bdINotSZiODSV3DfXIWuyvDrdp6d72Zr+3OuoMoszi+alaQOkGbABS
+ Tw07JO2eB7GNDmioybuur6/W/zhqrX776oBevCn25eDokjYXkX5Miwh+KGqdLDlYBTtA
+ OKmyvg0+BaR/7T6HPr23ZsGZWry+LzmU4USXM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=VJuys9DyerV3PBPTioHmwNBQGpvYT5J6kN0jeTDaRFM=;
+ b=EVWOJWNgyQ98yDlatuJ8pgSo5jeQqKJj00vTJQutBKSQMChwdSC1JWKOBigLfo//ym
+ ryTDuZKykN9/WA5b/WxcKPfNuEq561sAe2r7C2mhJrCtSO+MSz2KJaR35IC8mTtV4HRd
+ qRelM70FG27ybZHzu+9vTkelbIWHxtmQAC5QQop6bS2XcbqmrnZSReDK2y3wlSp32CV5
+ 4ahzmcglMjbVgzfN2fEXTxyeVyQgD8aVyn20LNZ7vF/DdjE4rwGgcZAFxEnWP5JaVhR3
+ nd705D2GHhOACXV1XwpEmgGiMkFk3iYZgmuMo3s1nmqGy3iNu0kJaQ3dFiHN7paX+XCc
+ VOoA==
+X-Gm-Message-State: AOAM531R7HqIbM/SKOL7u2y/TXa/U6/deVj5BAzKXDzFHRpKnBSjGEPc
+ O/Vtls5PJsxpivMEpXxguthdNOCJswX7EWeW9M3YJA==
+X-Google-Smtp-Source: ABdhPJzFhD9FEL0TCuYuZK+zL6+gT3TFDN6tV9A1NDwNSfHXCa9Q26pf7dD/GhiSpT36dEqIjnWlCZC4g5RmEhnT6n4=
+X-Received: by 2002:a9d:7b4e:: with SMTP id f14mr25422440oto.281.1618246869563; 
+ Mon, 12 Apr 2021 10:01:09 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 15/19] drm/i915: WA for zero memory channel
+References: <20210412090526.30547-1-matthew.auld@intel.com>
+ <20210412090526.30547-19-matthew.auld@intel.com>
+ <YHRkixaDBaf5cgkJ@phenom.ffwll.local>
+ <CAM0jSHM_1V6OSZhuuaaAMmHi4BTiZ7Hbo99i2b=RzFFBMuYJ_A@mail.gmail.com>
+In-Reply-To: <CAM0jSHM_1V6OSZhuuaaAMmHi4BTiZ7Hbo99i2b=RzFFBMuYJ_A@mail.gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Mon, 12 Apr 2021 19:00:58 +0200
+Message-ID: <CAKMK7uFK5_4cbWeefjvXzfnHXsTh1OCtWSyLHUy5QhiFfwMf1A@mail.gmail.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 18/19] drm/i915/gtt: map the PD up front
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,38 +61,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIxLTA0LTEyIGF0IDEwOjA1ICswMTAwLCBNYXR0aGV3IEF1bGQgd3JvdGU6DQo+
-IEZyb206IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiAN
-Cj4gQ29tbWl0IGM0NTdkOWNmMjU2ZSAoImRybS9pOTE1OiBNYWtlIHN1cmUgd2UgaGF2ZSBlbm91
-Z2ggbWVtb3J5DQo+IGJhbmR3aWR0aCBvbiBJQ0wiKSBhc3N1bWVzIHRoYXQgd2UgYWx3YXlzIGhh
-dmUgYSBub24temVybw0KPiBkcmFtX2luZm8tPmNoYW5uZWxzIGFuZCB1c2VzIGl0IGFzIGEgZGl2
-aXNvci4gV2UgbmVlZCBudW0gbWVtb3J5DQo+IGNoYW5uZWxzIHRvIGJlIGF0IGxlYXN0IDEgZm9y
-IHNhbmUgYncgbGltaXRzIGNoZWNraW5nLCBldmVuIHdoZW4gUENvZGUNCj4gcmV0dXJucyAwLCBz
-byBsZXRzIGZvcmNlIGl0IHRvIDEgaW4gdGhpcyBjYXNlLg0KDQpNaXNzaW5nIG15IHNvYi4NCg0K
-PiANCj4gQ2M6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwu
-Y29tPg0KPiBDYzogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPg0KPiBDYzog
-VmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gU2lnbmVk
-LW9mZi1ieTogRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGlu
-dGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNo
-aUBpbnRlbC5jb20+DQo+IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfYncuYyB8IDEgKw0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiANCj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYw0KPiBpbmRleCA1ODRhYjVjZTQx
-MDYuLmM1ZjcwZjNlOTMwZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9idy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfYncuYw0KPiBAQCAtMTc1LDYgKzE3NSw3IEBAIHN0YXRpYyBpbnQgaWNsX2dldF9id19pbmZv
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwgY29uc3Qgc3RydWN0IGludGVsDQo+
-IMKgCQkJICAgICJGYWlsZWQgdG8gZ2V0IG1lbW9yeSBzdWJzeXN0ZW0gaW5mb3JtYXRpb24sIGln
-bm9yaW5nIGJhbmR3aWR0aCBsaW1pdHMiKTsNCj4gwqAJCXJldHVybiByZXQ7DQo+IMKgCX0NCj4g
-KwludW1fY2hhbm5lbHMgPSBtYXhfdCh1OCwgMSwgbnVtX2NoYW5uZWxzKTsNCj4gwqANCj4gDQo+
-IA0KPiANCj4gwqAJZGVpbnRlcmxlYXZlID0gRElWX1JPVU5EX1VQKG51bV9jaGFubmVscywgaXNf
-eV90aWxlID8gNCA6IDIpOw0KPiDCoAlkY2xrX21heCA9IGljbF9zYWd2X21heF9kY2xrKCZxaSk7
-DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Mon, Apr 12, 2021 at 6:08 PM Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
+>
+> On Mon, 12 Apr 2021 at 16:17, Daniel Vetter <daniel@ffwll.ch> wrote:
+> >
+> > On Mon, Apr 12, 2021 at 10:05:25AM +0100, Matthew Auld wrote:
+> > > We need to general our accessor for the page directories and tables from
+> > > using the simple kmap_atomic to support local memory, and this setup
+> > > must be done on acquisition of the backing storage prior to entering
+> > > fence execution contexts. Here we replace the kmap with the object
+> > > maping code that for simple single page shmemfs object will return a
+> > > plain kmap, that is then kept for the lifetime of the page directory.
+> > >
+> > > v2: (Thomas) Rebase on dma_resv and obj->mm.lock removal.
+> > >
+> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> >
+> > So I wanted to understand what px stands for as an abbreviation, and dug
+> > all the way down to this:
+> >
+> > commit 567047be2a7ede082d29f45524c287b87bd75e53
+> > Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > Date:   Thu Jun 25 18:35:12 2015 +0300
+> >
+> >     drm/i915/gtt: Use macros to access dma mapped pages
+> >
+> > I still have no idea what it means, I guess px = page. But I also
+> > committed this, so I guess can blame myself :-)
+> >
+> > But while digging I've stumbled over this here
+> >
+> > commit 6eebfe8a10a62139d681e2f1af1386252742278b
+> > Author: Chris Wilson <chris@chris-wilson.co.uk>
+> > Date:   Fri Jul 12 08:58:18 2019 +0100
+> >
+> >     drm/i915/gtt: Use shallow dma pages for scratch
+> >
+> >
+> > And that's some serious wtf. Yes we've done some compile-time type
+> > casting automagic between i915_priv and dev in the past, and I think even
+> > that was bad taste. But it was justified with that we have these
+> > everywhere (especially in the mmio macros), and it would be a terrible
+> > flag day.
+> >
+> > But I'm not seeing any need for auto-casting for these pages here, and I'm
+> > not aware that we're doing this anywhere else in kernel code. There is
+> > some macro-trickery in lockdep annotations, but that relies on the lockdep
+> > map having the same struct member name in all lock types, and is not
+> > exposed to drivers at all.
+> >
+> > Am I missing something, or why do we have this compile-time type casting
+> > stuff going on in i915 page accessors?
+>
+> I think 'x' in the px family of macros/functions is meant in the
+> variable/polymorphic sense, so it can potentially be a pt, pd, etc
+> underneath. If you look at px_base() for example all it does is fish
+> out the base GEM object from the structure, using the
+> known-at-compile-time-type, which then lets us get at the dma address,
+> vaddr etc.
+
+Yeah, but that's not how things landed. px predates the magic
+polymorphism. I think the px just stands for page, or at least
+originally only stood for page. I'm not sure honestly. It seems to be
+just used for page directory type of things, but I haven't found that
+written down anywhere.
+
+> It does seem pretty magical, but seems ok to me, if it means less typing?
+
+That's the worst justification. Code is generally write once, read
+many times. Optimizing for writing at the cost of magic indirection is
+generally not the right tradeoff in the kernel, where any indirection
+could hide a major gotcha. In huge userspace applications fancy
+abstraction and polymorphism is often the right thing to do, but there
+you also have a real compiler with a real typesystem (generally at
+least) helping you out. Or it's yolo duct-taping with lots of tests,
+where the speed at which you can hack up something matters more than
+being able to read it quickly.
+
+We're typing C here. It is generally rather verbose, with type casting
+all done explicitly.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
