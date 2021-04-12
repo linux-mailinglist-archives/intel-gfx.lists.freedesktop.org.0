@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8559C35BC18
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 10:27:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A45EE35BC1A
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 10:28:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E69176E226;
-	Mon, 12 Apr 2021 08:27:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED12A89E5F;
+	Mon, 12 Apr 2021 08:28:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC3706E226
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 08:27:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 757A589E5F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 08:28:07 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id B930E68C4E; Mon, 12 Apr 2021 10:27:21 +0200 (CEST)
-Date: Mon, 12 Apr 2021 10:27:21 +0200
+ id 856F868C4E; Mon, 12 Apr 2021 10:28:05 +0200 (CEST)
+Date: Mon, 12 Apr 2021 10:28:05 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Peter Zijlstra <peterz@infradead.org>
-Message-ID: <20210412082721.GC4372@lst.de>
+Message-ID: <20210412082805.GD4372@lst.de>
 References: <20210412080012.357146277@infradead.org>
- <20210412080611.702979288@infradead.org>
+ <20210412080611.769864829@infradead.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210412080611.702979288@infradead.org>
+In-Reply-To: <20210412080611.769864829@infradead.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH 3/7] xen/gntdev: Remove
- apply_to_page_range() use from module
+Subject: Re: [Intel-gfx] [PATCH 4/7] mm: Introduce verify_page_range()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,21 +46,19 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 12, 2021 at 10:00:15AM +0200, Peter Zijlstra wrote:
-> --- a/drivers/xen/grant-table.c
-> +++ b/drivers/xen/grant-table.c
-> @@ -1591,6 +1591,43 @@ int gnttab_init(void)
->  }
->  EXPORT_SYMBOL_GPL(gnttab_init);
->  
-> +#include <xen/gntdev.h>
-> +#include "gntdev-common.h"
+On Mon, Apr 12, 2021 at 10:00:16AM +0200, Peter Zijlstra wrote:
+> +extern int verify_page_range(struct mm_struct *mm,
 
-Can't we keep the includes at the top of the file?
+No need for the extern here.
 
-Otherwise looks good:
+> +int verify_page_range(struct mm_struct *mm,
+> +		      unsigned long addr, unsigned long size,
+> +		      int (*fn)(pte_t pte, unsigned long addr, void *data),
+> +		      void *data)
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+A kerneldoc comment would be nice for this function.
+
+Otherwise this looks fine.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
