@@ -1,58 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49E4D35C995
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 17:17:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5093235C9FF
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 17:34:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 341F389CB9;
-	Mon, 12 Apr 2021 15:17:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32A9689D84;
+	Mon, 12 Apr 2021 15:34:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
- [IPv6:2a00:1450:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6222589CB9
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 15:17:35 +0000 (UTC)
-Received: by mail-wr1-x429.google.com with SMTP id a4so13356678wrr.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 08:17:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Dfrj2nvx51vCJt3vQw7+Er/lLFZtL1OsuHxAXytxIsM=;
- b=TBPe8FEv143UkaBPENWLkx2PQzG9apGIBDPvSfFzmlOtZLdVztvPDSgX52QDzlvBHE
- NxTVgrQS3E9KbEXHEpkbwFjV3aqbOSe7A9D7FlJBeM9Y7WT63CqFAyllPtXR9cTaYJfJ
- 1t3EVt8gZ+z08qY/t/MGXCJbBcG48QV4FVyWc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Dfrj2nvx51vCJt3vQw7+Er/lLFZtL1OsuHxAXytxIsM=;
- b=AiLPg5melm8pPxP9J0dzGUhjJv3BXkImg1j0c8tpH0ZuR56crIvTy43oacJSKvnISV
- 5N8pX5cbGxTj4zu+Ni4NXrmK94Fvy4Z1UBCH82I6AfFCjm9c3ne/PXYARSZu3r4SdcWg
- 5tqC8rh18TWqGR3UQRq589QuHVTNmhSssngTcL9h2geNdaJSfUdjpe/Skts0roz/kUj2
- oSRcMZVNA5IJ+31qhvfV/TeDLWjgfmrFbEJWFgCmbZOsYglcy/DlHTL8n5T3AQ5IH3cA
- wQ7wZmpd9NkHaDrSxOuSORkU/DRvlUzQL1DqAOxr4zkQG9XpXm15KshpJRUfZ8f4Sf6E
- lsAQ==
-X-Gm-Message-State: AOAM531dTi97nmw5KWjDvOoHT2aJThEtsxGbKdG3SNbERAdT5inn/AxE
- utRDRDXu69A0qM61Iwhw4hvjWh9AVuiadg==
-X-Google-Smtp-Source: ABdhPJxUT+O35ChtU4fVW+QFhKn5/FS4uGWnGLRS2T3vew/5Tu2II/kSCN2GO0t1PLrIHGp5DqDy4w==
-X-Received: by 2002:adf:dd49:: with SMTP id u9mr15177957wrm.337.1618240654000; 
- Mon, 12 Apr 2021 08:17:34 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id d2sm16799853wrs.10.2021.04.12.08.17.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 12 Apr 2021 08:17:33 -0700 (PDT)
-Date: Mon, 12 Apr 2021 17:17:31 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <YHRkixaDBaf5cgkJ@phenom.ffwll.local>
-References: <20210412090526.30547-1-matthew.auld@intel.com>
- <20210412090526.30547-19-matthew.auld@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 746D989CF7;
+ Mon, 12 Apr 2021 15:34:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6B2C9AADD0;
+ Mon, 12 Apr 2021 15:34:48 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210412090526.30547-19-matthew.auld@intel.com>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
-Subject: Re: [Intel-gfx] [PATCH 18/19] drm/i915/gtt: map the PD up front
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Qiheng Lin" <linqiheng@huawei.com>
+Date: Mon, 12 Apr 2021 15:34:48 -0000
+Message-ID: <161824168841.8702.16403732591963491256@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210409125151.9520-1-linqiheng@huawei.com>
+In-Reply-To: <20210409125151.9520-1-linqiheng@huawei.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_remove_redundant_NULL_check?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,568 +38,348 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0277249633=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 12, 2021 at 10:05:25AM +0100, Matthew Auld wrote:
-> We need to general our accessor for the page directories and tables from
-> using the simple kmap_atomic to support local memory, and this setup
-> must be done on acquisition of the backing storage prior to entering
-> fence execution contexts. Here we replace the kmap with the object
-> maping code that for simple single page shmemfs object will return a
-> plain kmap, that is then kept for the lifetime of the page directory.
-> 
-> v2: (Thomas) Rebase on dma_resv and obj->mm.lock removal.
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+--===============0277249633==
+Content-Type: multipart/alternative;
+ boundary="===============2201468524537309310=="
 
-So I wanted to understand what px stands for as an abbreviation, and dug
-all the way down to this:
+--===============2201468524537309310==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 567047be2a7ede082d29f45524c287b87bd75e53
-Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Date:   Thu Jun 25 18:35:12 2015 +0300
+== Series Details ==
 
-    drm/i915/gtt: Use macros to access dma mapped pages
+Series: drm/i915/display: remove redundant NULL check
+URL   : https://patchwork.freedesktop.org/series/88955/
+State : success
 
-I still have no idea what it means, I guess px = page. But I also
-committed this, so I guess can blame myself :-)
+== Summary ==
 
-But while digging I've stumbled over this here
+CI Bug Log - changes from CI_DRM_9960 -> Patchwork_19913
+====================================================
 
-commit 6eebfe8a10a62139d681e2f1af1386252742278b
-Author: Chris Wilson <chris@chris-wilson.co.uk>
-Date:   Fri Jul 12 08:58:18 2019 +0100
+Summary
+-------
 
-    drm/i915/gtt: Use shallow dma pages for scratch
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19913 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][1] ([fdo#109315])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-icl-y:           NOTRUN -> [SKIP][2] ([fdo#109315]) +17 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@fork-compute0:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575]) +16 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@amdgpu/amd_cs_nop@fork-compute0.html
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([i915#402]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9960/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][6] ([i915#2190])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html
+    - fi-icl-y:           NOTRUN -> [SKIP][7] ([i915#2190])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@gem_huc_copy@huc-copy.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-icl-y:           NOTRUN -> [SKIP][8] ([fdo#109284] / [fdo#111827]) +8 similar issues
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][9] ([fdo#109284] / [fdo#111827]) +8 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][10] ([fdo#109285])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html
+    - fi-icl-y:           NOTRUN -> [SKIP][11] ([fdo#109285])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
+    - fi-icl-y:           NOTRUN -> [SKIP][12] ([fdo#109278])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
+
+  * igt@kms_psr@primary_mmap_gtt:
+    - fi-icl-y:           NOTRUN -> [SKIP][13] ([fdo#110189]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@kms_psr@primary_mmap_gtt.html
+
+  * igt@prime_vgem@basic-userptr:
+    - fi-tgl-u2:          NOTRUN -> [SKIP][14] ([i915#3301])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@prime_vgem@basic-userptr.html
+    - fi-icl-y:           NOTRUN -> [SKIP][15] ([i915#3301])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@prime_vgem@basic-userptr.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][16] ([i915#1602] / [i915#2029])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@write:
+    - fi-tgl-y:           [DMESG-WARN][17] ([i915#402]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9960/fi-tgl-y/igt@fbdev@write.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-y/igt@fbdev@write.html
+
+  * igt@i915_module_load@reload:
+    - fi-tgl-y:           [DMESG-WARN][19] ([i915#1982] / [k.org#205379]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9960/fi-tgl-y/igt@i915_module_load@reload.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-y/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][21] ([i915#3303]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9960/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
 
 
-And that's some serious wtf. Yes we've done some compile-time type
-casting automagic between i915_priv and dev in the past, and I think even
-that was bad taste. But it was justified with that we have these
-everywhere (especially in the mmio macros), and it would be a terrible
-flag day.
+Participating hosts (45 -> 41)
+------------------------------
 
-But I'm not seeing any need for auto-casting for these pages here, and I'm
-not aware that we're doing this anywhere else in kernel code. There is
-some macro-trickery in lockdep annotations, but that relies on the lockdep
-map having the same struct member name in all lock types, and is not
-exposed to drivers at all.
+  Additional (2): fi-icl-y fi-tgl-u2 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-n3050 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
 
-Am I missing something, or why do we have this compile-time type casting
-stuff going on in i915 page accessors?
--Daniel
 
-> ---
->  .../drm/i915/gem/selftests/i915_gem_context.c | 11 +----
->  drivers/gpu/drm/i915/gt/gen6_ppgtt.c          | 11 ++---
->  drivers/gpu/drm/i915/gt/gen8_ppgtt.c          | 26 ++++------
->  drivers/gpu/drm/i915/gt/intel_ggtt.c          |  2 +-
->  drivers/gpu/drm/i915/gt/intel_gtt.c           | 48 +++++++++----------
->  drivers/gpu/drm/i915/gt/intel_gtt.h           | 11 +++--
->  drivers/gpu/drm/i915/gt/intel_ppgtt.c         |  7 ++-
->  drivers/gpu/drm/i915/i915_vma.c               |  3 +-
->  drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 10 ++--
->  drivers/gpu/drm/i915/selftests/i915_perf.c    |  3 +-
->  10 files changed, 54 insertions(+), 78 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> index 5fef592390cb..ce70d0a3afb2 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> @@ -1740,7 +1740,6 @@ static int read_from_scratch(struct i915_gem_context *ctx,
->  static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
->  {
->  	struct i915_address_space *vm;
-> -	struct page *page;
->  	u32 *vaddr;
->  	int err = 0;
->  
-> @@ -1748,24 +1747,18 @@ static int check_scratch_page(struct i915_gem_context *ctx, u32 *out)
->  	if (!vm)
->  		return -ENODEV;
->  
-> -	page = __px_page(vm->scratch[0]);
-> -	if (!page) {
-> +	if (!vm->scratch[0]) {
->  		pr_err("No scratch page!\n");
->  		return -EINVAL;
->  	}
->  
-> -	vaddr = kmap(page);
-> -	if (!vaddr) {
-> -		pr_err("No (mappable) scratch page!\n");
-> -		return -EINVAL;
-> -	}
-> +	vaddr = __px_vaddr(vm->scratch[0]);
->  
->  	memcpy(out, vaddr, sizeof(*out));
->  	if (memchr_inv(vaddr, *out, PAGE_SIZE)) {
->  		pr_err("Inconsistent initial state of scratch page!\n");
->  		err = -EINVAL;
->  	}
-> -	kunmap(page);
->  
->  	return err;
->  }
-> diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-> index e08dff376339..21b1085769be 100644
-> --- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-> +++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
-> @@ -96,9 +96,8 @@ static void gen6_ppgtt_clear_range(struct i915_address_space *vm,
->  		 * entries back to scratch.
->  		 */
->  
-> -		vaddr = kmap_atomic_px(pt);
-> +		vaddr = px_vaddr(pt);
->  		memset32(vaddr + pte, scratch_pte, count);
-> -		kunmap_atomic(vaddr);
->  
->  		pte = 0;
->  	}
-> @@ -120,7 +119,7 @@ static void gen6_ppgtt_insert_entries(struct i915_address_space *vm,
->  
->  	GEM_BUG_ON(!pd->entry[act_pt]);
->  
-> -	vaddr = kmap_atomic_px(i915_pt_entry(pd, act_pt));
-> +	vaddr = px_vaddr(i915_pt_entry(pd, act_pt));
->  	do {
->  		GEM_BUG_ON(sg_dma_len(iter.sg) < I915_GTT_PAGE_SIZE);
->  		vaddr[act_pte] = pte_encode | GEN6_PTE_ADDR_ENCODE(iter.dma);
-> @@ -136,12 +135,10 @@ static void gen6_ppgtt_insert_entries(struct i915_address_space *vm,
->  		}
->  
->  		if (++act_pte == GEN6_PTES) {
-> -			kunmap_atomic(vaddr);
-> -			vaddr = kmap_atomic_px(i915_pt_entry(pd, ++act_pt));
-> +			vaddr = px_vaddr(i915_pt_entry(pd, ++act_pt));
->  			act_pte = 0;
->  		}
->  	} while (1);
-> -	kunmap_atomic(vaddr);
->  
->  	vma->page_sizes.gtt = I915_GTT_PAGE_SIZE;
->  }
-> @@ -235,7 +232,7 @@ static int gen6_ppgtt_init_scratch(struct gen6_ppgtt *ppgtt)
->  		goto err_scratch0;
->  	}
->  
-> -	ret = pin_pt_dma(vm, vm->scratch[1]);
-> +	ret = map_pt_dma(vm, vm->scratch[1]);
->  	if (ret)
->  		goto err_scratch1;
->  
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-> index 176c19633412..f83496836f0f 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-> @@ -242,11 +242,10 @@ static u64 __gen8_ppgtt_clear(struct i915_address_space * const vm,
->  			    atomic_read(&pt->used));
->  			GEM_BUG_ON(!count || count >= atomic_read(&pt->used));
->  
-> -			vaddr = kmap_atomic_px(pt);
-> +			vaddr = px_vaddr(pt);
->  			memset64(vaddr + gen8_pd_index(start, 0),
->  				 vm->scratch[0]->encode,
->  				 count);
-> -			kunmap_atomic(vaddr);
->  
->  			atomic_sub(count, &pt->used);
->  			start += count;
-> @@ -375,7 +374,7 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
->  	gen8_pte_t *vaddr;
->  
->  	pd = i915_pd_entry(pdp, gen8_pd_index(idx, 2));
-> -	vaddr = kmap_atomic_px(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
-> +	vaddr = px_vaddr(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
->  	do {
->  		GEM_BUG_ON(sg_dma_len(iter->sg) < I915_GTT_PAGE_SIZE);
->  		vaddr[gen8_pd_index(idx, 0)] = pte_encode | iter->dma;
-> @@ -402,12 +401,10 @@ gen8_ppgtt_insert_pte(struct i915_ppgtt *ppgtt,
->  			}
->  
->  			clflush_cache_range(vaddr, PAGE_SIZE);
-> -			kunmap_atomic(vaddr);
-> -			vaddr = kmap_atomic_px(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
-> +			vaddr = px_vaddr(i915_pt_entry(pd, gen8_pd_index(idx, 1)));
->  		}
->  	} while (1);
->  	clflush_cache_range(vaddr, PAGE_SIZE);
-> -	kunmap_atomic(vaddr);
->  
->  	return idx;
->  }
-> @@ -442,7 +439,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
->  			encode |= GEN8_PDE_PS_2M;
->  			page_size = I915_GTT_PAGE_SIZE_2M;
->  
-> -			vaddr = kmap_atomic_px(pd);
-> +			vaddr = px_vaddr(pd);
->  		} else {
->  			struct i915_page_table *pt =
->  				i915_pt_entry(pd, __gen8_pte_index(start, 1));
-> @@ -457,7 +454,7 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
->  			     rem >= (I915_PDES - index) * I915_GTT_PAGE_SIZE))
->  				maybe_64K = __gen8_pte_index(start, 1);
->  
-> -			vaddr = kmap_atomic_px(pt);
-> +			vaddr = px_vaddr(pt);
->  		}
->  
->  		do {
-> @@ -491,7 +488,6 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
->  		} while (rem >= page_size && index < I915_PDES);
->  
->  		clflush_cache_range(vaddr, PAGE_SIZE);
-> -		kunmap_atomic(vaddr);
->  
->  		/*
->  		 * Is it safe to mark the 2M block as 64K? -- Either we have
-> @@ -505,9 +501,8 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
->  		      !iter->sg && IS_ALIGNED(vma->node.start +
->  					      vma->node.size,
->  					      I915_GTT_PAGE_SIZE_2M)))) {
-> -			vaddr = kmap_atomic_px(pd);
-> +			vaddr = px_vaddr(pd);
->  			vaddr[maybe_64K] |= GEN8_PDE_IPS_64K;
-> -			kunmap_atomic(vaddr);
->  			page_size = I915_GTT_PAGE_SIZE_64K;
->  
->  			/*
-> @@ -523,12 +518,11 @@ static void gen8_ppgtt_insert_huge(struct i915_vma *vma,
->  				u16 i;
->  
->  				encode = vma->vm->scratch[0]->encode;
-> -				vaddr = kmap_atomic_px(i915_pt_entry(pd, maybe_64K));
-> +				vaddr = px_vaddr(i915_pt_entry(pd, maybe_64K));
->  
->  				for (i = 1; i < index; i += 16)
->  					memset64(vaddr + i, encode, 15);
->  
-> -				kunmap_atomic(vaddr);
->  			}
->  		}
->  
-> @@ -602,7 +596,7 @@ static int gen8_init_scratch(struct i915_address_space *vm)
->  		if (IS_ERR(obj))
->  			goto free_scratch;
->  
-> -		ret = pin_pt_dma(vm, obj);
-> +		ret = map_pt_dma(vm, obj);
->  		if (ret) {
->  			i915_gem_object_put(obj);
->  			goto free_scratch;
-> @@ -639,7 +633,7 @@ static int gen8_preallocate_top_level_pdp(struct i915_ppgtt *ppgtt)
->  		if (IS_ERR(pde))
->  			return PTR_ERR(pde);
->  
-> -		err = pin_pt_dma(vm, pde->pt.base);
-> +		err = map_pt_dma(vm, pde->pt.base);
->  		if (err) {
->  			i915_gem_object_put(pde->pt.base);
->  			free_pd(vm, pde);
-> @@ -675,7 +669,7 @@ gen8_alloc_top_pd(struct i915_address_space *vm)
->  		goto err_pd;
->  	}
->  
-> -	err = pin_pt_dma(vm, pd->pt.base);
-> +	err = map_pt_dma(vm, pd->pt.base);
->  	if (err)
->  		goto err_pd;
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index 670c1271e7d5..d94628b9d89e 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -657,7 +657,7 @@ static int init_aliasing_ppgtt(struct i915_ggtt *ggtt)
->  		goto err_ppgtt;
->  
->  	i915_gem_object_lock(ppgtt->vm.scratch[0], NULL);
-> -	err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
-> +	err = i915_vm_map_pt_stash(&ppgtt->vm, &stash);
->  	i915_gem_object_unlock(ppgtt->vm.scratch[0]);
->  	if (err)
->  		goto err_stash;
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> index 941f8af016d6..d386b89e2758 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> @@ -25,27 +25,25 @@ struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz)
->  	return obj;
->  }
->  
-> -int pin_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
-> +int map_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
->  {
-> -	int err;
-> +	void *vaddr;
->  
-> -	i915_gem_object_lock(obj, NULL);
-> -	err = i915_gem_object_pin_pages(obj);
-> -	i915_gem_object_unlock(obj);
-> -	if (err)
-> -		return err;
-> +	vaddr = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
-> +	if (IS_ERR(vaddr))
-> +		return PTR_ERR(vaddr);
->  
->  	i915_gem_object_make_unshrinkable(obj);
->  	return 0;
->  }
->  
-> -int pin_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
-> +int map_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
->  {
-> -	int err;
-> +	void *vaddr;
->  
-> -	err = i915_gem_object_pin_pages(obj);
-> -	if (err)
-> -		return err;
-> +	vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
-> +	if (IS_ERR(vaddr))
-> +		return PTR_ERR(vaddr);
->  
->  	i915_gem_object_make_unshrinkable(obj);
->  	return 0;
-> @@ -155,6 +153,14 @@ void clear_pages(struct i915_vma *vma)
->  	memset(&vma->page_sizes, 0, sizeof(vma->page_sizes));
->  }
->  
-> +void *__px_vaddr(struct drm_i915_gem_object *p)
-> +{
-> +	enum i915_map_type type;
-> +
-> +	GEM_BUG_ON(!i915_gem_object_has_pages(p));
-> +	return page_unpack_bits(p->mm.mapping, &type);
-> +}
-> +
->  dma_addr_t __px_dma(struct drm_i915_gem_object *p)
->  {
->  	GEM_BUG_ON(!i915_gem_object_has_pages(p));
-> @@ -170,32 +176,22 @@ struct page *__px_page(struct drm_i915_gem_object *p)
->  void
->  fill_page_dma(struct drm_i915_gem_object *p, const u64 val, unsigned int count)
->  {
-> -	struct page *page = __px_page(p);
-> -	void *vaddr;
-> +	void *vaddr = __px_vaddr(p);
->  
-> -	vaddr = kmap(page);
->  	memset64(vaddr, val, count);
->  	clflush_cache_range(vaddr, PAGE_SIZE);
-> -	kunmap(page);
->  }
->  
->  static void poison_scratch_page(struct drm_i915_gem_object *scratch)
->  {
-> -	struct sgt_iter sgt;
-> -	struct page *page;
-> +	void *vaddr = __px_vaddr(scratch);
->  	u8 val;
->  
->  	val = 0;
->  	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
->  		val = POISON_FREE;
->  
-> -	for_each_sgt_page(page, sgt, scratch->mm.pages) {
-> -		void *vaddr;
-> -
-> -		vaddr = kmap(page);
-> -		memset(vaddr, val, PAGE_SIZE);
-> -		kunmap(page);
-> -	}
-> +	memset(vaddr, val, scratch->base.size);
->  }
->  
->  int setup_scratch_page(struct i915_address_space *vm)
-> @@ -225,7 +221,7 @@ int setup_scratch_page(struct i915_address_space *vm)
->  		if (IS_ERR(obj))
->  			goto skip;
->  
-> -		if (pin_pt_dma(vm, obj))
-> +		if (map_pt_dma(vm, obj))
->  			goto skip_obj;
->  
->  		/* We need a single contiguous page for our scratch */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> index e67e34e17913..40e486704558 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> @@ -180,6 +180,9 @@ struct page *__px_page(struct drm_i915_gem_object *p);
->  dma_addr_t __px_dma(struct drm_i915_gem_object *p);
->  #define px_dma(px) (__px_dma(px_base(px)))
->  
-> +void *__px_vaddr(struct drm_i915_gem_object *p);
-> +#define px_vaddr(px) (__px_vaddr(px_base(px)))
-> +
->  #define px_pt(px) \
->  	__px_choose_expr(px, struct i915_page_table *, __x, \
->  	__px_choose_expr(px, struct i915_page_directory *, &__x->pt, \
-> @@ -511,8 +514,6 @@ struct i915_ppgtt *i915_ppgtt_create(struct intel_gt *gt);
->  void i915_ggtt_suspend(struct i915_ggtt *gtt);
->  void i915_ggtt_resume(struct i915_ggtt *ggtt);
->  
-> -#define kmap_atomic_px(px) kmap_atomic(__px_page(px_base(px)))
-> -
->  void
->  fill_page_dma(struct drm_i915_gem_object *p, const u64 val, unsigned int count);
->  
-> @@ -530,8 +531,8 @@ struct i915_page_table *alloc_pt(struct i915_address_space *vm);
->  struct i915_page_directory *alloc_pd(struct i915_address_space *vm);
->  struct i915_page_directory *__alloc_pd(int npde);
->  
-> -int pin_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj);
-> -int pin_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object *obj);
-> +int map_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj);
-> +int map_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object *obj);
->  
->  void free_px(struct i915_address_space *vm,
->  	     struct i915_page_table *pt, int lvl);
-> @@ -578,7 +579,7 @@ void setup_private_pat(struct intel_uncore *uncore);
->  int i915_vm_alloc_pt_stash(struct i915_address_space *vm,
->  			   struct i915_vm_pt_stash *stash,
->  			   u64 size);
-> -int i915_vm_pin_pt_stash(struct i915_address_space *vm,
-> +int i915_vm_map_pt_stash(struct i915_address_space *vm,
->  			 struct i915_vm_pt_stash *stash);
->  void i915_vm_free_pt_stash(struct i915_address_space *vm,
->  			   struct i915_vm_pt_stash *stash);
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ppgtt.c b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-> index 014ae8ac4480..4e3d80c2295c 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ppgtt.c
-> @@ -87,11 +87,10 @@ write_dma_entry(struct drm_i915_gem_object * const pdma,
->  		const unsigned short idx,
->  		const u64 encoded_entry)
->  {
-> -	u64 * const vaddr = kmap_atomic(__px_page(pdma));
-> +	u64 * const vaddr = __px_vaddr(pdma);
->  
->  	vaddr[idx] = encoded_entry;
->  	clflush_cache_range(&vaddr[idx], sizeof(u64));
-> -	kunmap_atomic(vaddr);
->  }
->  
->  void
-> @@ -258,7 +257,7 @@ int i915_vm_alloc_pt_stash(struct i915_address_space *vm,
->  	return 0;
->  }
->  
-> -int i915_vm_pin_pt_stash(struct i915_address_space *vm,
-> +int i915_vm_map_pt_stash(struct i915_address_space *vm,
->  			 struct i915_vm_pt_stash *stash)
->  {
->  	struct i915_page_table *pt;
-> @@ -266,7 +265,7 @@ int i915_vm_pin_pt_stash(struct i915_address_space *vm,
->  
->  	for (n = 0; n < ARRAY_SIZE(stash->pt); n++) {
->  		for (pt = stash->pt[n]; pt; pt = pt->stash) {
-> -			err = pin_pt_dma_locked(vm, pt->base);
-> +			err = map_pt_dma_locked(vm, pt->base);
->  			if (err)
->  				return err;
->  		}
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index e24d33aecac4..c68a743fac2a 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -912,8 +912,7 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
->  			if (err)
->  				goto err_fence;
->  
-> -			err = i915_vm_pin_pt_stash(vma->vm,
-> -						   &work->stash);
-> +			err = i915_vm_map_pt_stash(vma->vm, &work->stash);
->  			if (err)
->  				goto err_fence;
->  		}
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-> index 2e4f06eaacc1..e060e455e9f6 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
-> @@ -186,7 +186,7 @@ static int igt_ppgtt_alloc(void *arg)
->  		if (err)
->  			goto err_ppgtt_cleanup;
->  
-> -		err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
-> +		err = i915_vm_map_pt_stash(&ppgtt->vm, &stash);
->  		if (err) {
->  			i915_vm_free_pt_stash(&ppgtt->vm, &stash);
->  			goto err_ppgtt_cleanup;
-> @@ -208,7 +208,7 @@ static int igt_ppgtt_alloc(void *arg)
->  		if (err)
->  			goto err_ppgtt_cleanup;
->  
-> -		err = i915_vm_pin_pt_stash(&ppgtt->vm, &stash);
-> +		err = i915_vm_map_pt_stash(&ppgtt->vm, &stash);
->  		if (err) {
->  			i915_vm_free_pt_stash(&ppgtt->vm, &stash);
->  			goto err_ppgtt_cleanup;
-> @@ -325,11 +325,10 @@ static int lowlevel_hole(struct i915_address_space *vm,
->  							   BIT_ULL(size)))
->  					goto alloc_vm_end;
->  
-> -				err = i915_vm_pin_pt_stash(vm, &stash);
-> +				err = i915_vm_map_pt_stash(vm, &stash);
->  				if (!err)
->  					vm->allocate_va_range(vm, &stash,
->  							      addr, BIT_ULL(size));
-> -
->  				i915_vm_free_pt_stash(vm, &stash);
->  alloc_vm_end:
->  				if (err == -EDEADLK) {
-> @@ -1967,10 +1966,9 @@ static int igt_cs_tlb(void *arg)
->  			if (err)
->  				goto end_ww;
->  
-> -			err = i915_vm_pin_pt_stash(vm, &stash);
-> +			err = i915_vm_map_pt_stash(vm, &stash);
->  			if (!err)
->  				vm->allocate_va_range(vm, &stash, offset, chunk_size);
-> -
->  			i915_vm_free_pt_stash(vm, &stash);
->  end_ww:
->  			if (err == -EDEADLK) {
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_perf.c b/drivers/gpu/drm/i915/selftests/i915_perf.c
-> index e9d86dab8677..bfb0290967a1 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_perf.c
-> @@ -307,7 +307,7 @@ static int live_noa_gpr(void *arg)
->  	}
->  
->  	/* Poison the ce->vm so we detect writes not to the GGTT gt->scratch */
-> -	scratch = kmap(__px_page(ce->vm->scratch[0]));
-> +	scratch = __px_vaddr(ce->vm->scratch[0]);
->  	memset(scratch, POISON_FREE, PAGE_SIZE);
->  
->  	rq = intel_context_create_request(ce);
-> @@ -405,7 +405,6 @@ static int live_noa_gpr(void *arg)
->  out_rq:
->  	i915_request_put(rq);
->  out_ce:
-> -	kunmap(__px_page(ce->vm->scratch[0]));
->  	intel_context_put(ce);
->  out:
->  	stream_destroy(stream);
-> -- 
-> 2.26.3
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Build changes
+-------------
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  * Linux: CI_DRM_9960 -> Patchwork_19913
+
+  CI-20190529: 20190529
+  CI_DRM_9960: 83246a97b645e8b2df61e4fadb347b5ce8470efe @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19913: a08300a9fd372f2b7fc587e1d280989bd5ef6a73 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a08300a9fd37 drm/i915/display: remove redundant NULL check
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/index.html
+
+--===============2201468524537309310==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: remove redundant NULL check</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88955/">https://patchwork.freedesktop.org/series/88955/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9960 -&gt; Patchwork_19913</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19913 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-compute0:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@amdgpu/amd_cs_nop@fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +16 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@debugfs_test@read_all_entries:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9960/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_huc_copy@huc-copy:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+<li>
+<p>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-hpd-fast:</p>
+<ul>
+<li>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+<li>
+<p>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
+<ul>
+<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_mmap_gtt:</p>
+<ul>
+<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +3 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-userptr:</p>
+<ul>
+<li>
+<p>fi-tgl-u2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-u2/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
+</li>
+<li>
+<p>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-icl-y/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9960/fi-tgl-y/igt@fbdev@write.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-y/igt@fbdev@write.html">PASS</a> +1 similar issue</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9960/fi-tgl-y/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-tgl-y/igt@i915_module_load@reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9960/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19913/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 41)</h2>
+<p>Additional (2): fi-icl-y fi-tgl-u2 <br />
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-n3050 fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9960 -&gt; Patchwork_19913</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9960: 83246a97b645e8b2df61e4fadb347b5ce8470efe @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19913: a08300a9fd372f2b7fc587e1d280989bd5ef6a73 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a08300a9fd37 drm/i915/display: remove redundant NULL check</p>
+
+</body>
+</html>
+
+--===============2201468524537309310==--
+
+--===============0277249633==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0277249633==--
