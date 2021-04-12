@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D7835C567
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 13:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23FE735C570
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 13:40:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0301B6E52D;
-	Mon, 12 Apr 2021 11:37:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D04A889E2B;
+	Mon, 12 Apr 2021 11:40:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C97816E52C;
- Mon, 12 Apr 2021 11:37:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BE89BA73C7;
- Mon, 12 Apr 2021 11:37:34 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A3D789E2B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 11:40:30 +0000 (UTC)
+IronPort-SDR: 0LrdBE9GozbjGEeSpmEZMlkD8jczAWRAVHRhrrVxnLgqpgf4OVI1MpHduUOFLae+1z2OkQzRFH
+ fewvjnoXH7QQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9951"; a="192037492"
+X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="192037492"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2021 04:40:30 -0700
+IronPort-SDR: vtl4i6cFqEwsbYLg5xkgIzjPb6wRKvYV1Ap/SmKdgSjZzEhkZQCG1ye3Nx2SmQiCUnh0GocHKG
+ d3X8D2CfYuIQ==
+X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="423763018"
+Received: from cyeni-mobl.ger.corp.intel.com (HELO localhost) ([10.252.62.41])
+ by orsmga008-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2021 04:40:27 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <87czuzkb8f.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210408045227.985408-1-lucas.demarchi@intel.com>
+ <20210408045227.985408-3-lucas.demarchi@intel.com> <87czuzkb8f.fsf@intel.com>
+Date: Mon, 12 Apr 2021 14:40:24 +0300
+Message-ID: <875z0rk9xz.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 12 Apr 2021 11:37:34 -0000
-Message-ID: <161822745474.8699.17472436932173535728@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210412090526.30547-1-matthew.auld@intel.com>
-In-Reply-To: <20210412090526.30547-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgTW9y?=
- =?utf-8?q?e_DG1_enabling?=
+Subject: Re: [Intel-gfx] [PATCH 02/12] drm/i915: add macros for graphics and
+ media versions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,305 +48,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1716391905=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1716391905==
-Content-Type: multipart/alternative;
- boundary="===============6596699320117890538=="
+On Mon, 12 Apr 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Wed, 07 Apr 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> Like it was done in
+>> commit 01eb15c9165e ("drm/i915: Add DISPLAY_VER() and related macros")
+>> add the correspondent macros for graphics and media. Going forward we
+>> will prefer checking the versions for the specific IPs (graphics, media
+>> and display) rather than grouping everything under a "gen" version.
+>>
+>> For consistency and to make the maintenance easier, it'd be preferred
+>> not to mix the *GEN* macros with the new ones. For older platforms we
+>> can simply consider that the previous "gen" number will extend to all
+>> 3 IPs. Then we can start replacing its use in the driver. Right now this
+>> replacement is not done and only the infrastructure is put in place.
+>> We also leave gen and gen_mask inside struct intel_device_info while
+>> it's still being used throughout the code.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_drv.h          | 17 ++++++++++++++++-
+>>  drivers/gpu/drm/i915/i915_pci.c          |  7 ++++++-
+>>  drivers/gpu/drm/i915/intel_device_info.h |  3 +++
+>>  3 files changed, 25 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+>> index 8c62bb2abd31..97cbd019f2e9 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>> @@ -1234,9 +1234,24 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+>>  #define RUNTIME_INFO(dev_priv)	(&(dev_priv)->__runtime)
+>>  #define DRIVER_CAPS(dev_priv)	(&(dev_priv)->caps)
+>>  
+>> -#define INTEL_GEN(dev_priv)	(INTEL_INFO(dev_priv)->gen)
+>>  #define INTEL_DEVID(dev_priv)	(RUNTIME_INFO(dev_priv)->device_id)
+>>  
+>> +/*
+>> + * Deprecated: this will be replaced by individual IP checks:
+>> + * GRAPHICS_VER(), MEDIA_VER and DISPLAY_VER()
+>> + */
+>> +#define INTEL_GEN(dev_priv)		(INTEL_INFO(dev_priv)->gen)
+>> +
+>> +#define GRAPHICS_VER(i915)		(INTEL_INFO(i915)->graphics_ver)
+>> +#define IS_GRAPHICS_RANGE(i915, from, until) \
+>> +	(GRAPHICS_VER(i915) >= (from) && GRAPHICS_VER(i915) <= (until))
+>> +#define IS_GRAPHICS_VER(i915, v)	(GRAPHICS_VER(i915) == (v))
+>> +
+>> +#define MEDIA_VER(i915)			(INTEL_INFO(i915)->media_ver)
+>> +#define IS_MEDIA_RANGE(i915, from, until) \
+>> +	(MEDIA_VER(i915) >= (from) && MEDIA_VER(i915) <= (until))
+>> +#define IS_MEDIA_VER(i915, v)		(MEDIA_VER(i915) == (v))
 
---===============6596699320117890538==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Btw, if we're ditching .gen_mask, the original reason (i.e. bit masking)
+for having the IS_GEN() macro goes away. Maybe we should just ditch the
+IS_GRAPHICS_VER(), IS_MEDIA_VER() and IS_DISPLAY_VER() macros, and move
+to GRAPHICS_VER() == V and friends instead?
 
-== Series Details ==
+I know we already added IS_DISPLAY_VER(). Actually 150+ instances of
+it. However, we have 500+ usages of DISPLAY_VER() with various
+comparisons. Why should "==" be special, when it no longer uses masking?
 
-Series: More DG1 enabling
-URL   : https://patchwork.freedesktop.org/series/88947/
-State : success
+I argued for keeping the _RANGE() variant to simplify range
+conditions. I still stand by that. But the reason is readability.
 
-== Summary ==
+...
 
-CI Bug Log - changes from CI_DRM_9957 -> Patchwork_19912
-====================================================
+And if we indeed removed IS_GRAPHICS_VER(i915, V)... could we make it
+IS_GRAPHICS_VER(i915, from, until) instead? Too confusing? Maybe.
 
-Summary
--------
+But I'd like to seriously consider dropping, or rather not adding, the
+single-version IS_GRAPHICS_VER() and IS_MEDIA_VER() checks, and
+converting the IS_DISPLAY_VER() ones too.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19912:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_flip@basic-flip-vs-modeset@a-edp1:
-    - {fi-cml-drallion}:  NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-cml-drallion/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19912 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][3] ([fdo#109271])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][4] ([i915#3159])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@prime_self_import@basic-with_one_bo:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9957/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-hsw-gt1}:       [DMESG-WARN][7] ([i915#3303]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9957/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-nick:        [DMESG-FAIL][9] ([i915#2927]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9957/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][11] ([i915#402]) -> [PASS][12] +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9957/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1208]: https://gitlab.freedesktop.org/drm/intel/issues/1208
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
-  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
-  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+Thoughts?
 
 
-Participating hosts (42 -> 39)
-------------------------------
-
-  Additional (2): fi-cml-drallion fi-bsw-n3050 
-  Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
+BR,
+Jani.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_9957 -> Patchwork_19912
-
-  CI-20190529: 20190529
-  CI_DRM_9957: 1c979586f3208fdd56573cec840f7d9000be51ab @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19912: 817240b12321d5959560cf2306142d63644bbef5 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
-== Linux commits ==
 
-817240b12321 drm/i915/gtt/dgfx: place the PD in LMEM
-a1d3eec6b5bc drm/i915/gtt: map the PD up front
-4988227f5fee drm/i915/dg1: Double memory bandwidth available
-acf0a81fb877 drm/i915/dg1: Compute MEM Bandwidth using MCHBAR
-2f21e3309e84 drm/i915: WA for zero memory channel
-dd926fd22135 drm/i915/oprom: Basic sanitization
-e793b2d75109 drm/i915/dg1: Read OPROM via SPI controller
-e03946b5bf8c drm/i915/lmem: Bypass aperture when lmem is available
-a7c90db9a5c4 drm/i915: Update the helper to set correct mapping
-4bd6b41215c3 drm/i915/dg1: Fix mapping type for default state object
-e861362b0f25 drm/i915/lmem: Fail driver init if LMEM training failed
-4ec6aedb7ac2 drm/i915: Return error value when bo not in LMEM for discrete
-693ca8d4d780 drm/i915/fbdev: Use lmem physical addresses for fb_mmap() on discrete
-03c0cc0dae7f drm/i915/stolen: pass the allocation flags
-154d7cbfda7f drm/i915/stolen: enforce the min_page_size contract
-9ab764a5a21b drm/i915/stolen: treat stolen local as normal local memory
-c46573ddee8d drm/i915: Create stolen memory region from local memory
-530e7443c201 drm/i915/selftests: Only query RAPL for integrated power measurements
-525b7ae56cfd drm/i915/gt: Skip aperture remapping selftest where there is no aperture
+>> +
+>>  #define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.ver)
+>>  #define IS_DISPLAY_RANGE(i915, from, until) \
+>
+> Why is naming so hard?!
+>
+> I am seriously wondering if IS_GRAPHICS_RANGE() and friends can be
+> misleading. What range? IS_GRAPHICS_VER_RANGE() is more accurate, but is
+> it too long?
+>
+> Am I worrying over nothing?
+>
+>
+> BR,
+> Jani.
+>
+>>  	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
+>> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+>> index ce5cbeaf036d..97ab73276334 100644
+>> --- a/drivers/gpu/drm/i915/i915_pci.c
+>> +++ b/drivers/gpu/drm/i915/i915_pci.c
+>> @@ -36,7 +36,12 @@
+>>  #include "i915_selftest.h"
+>>  
+>>  #define PLATFORM(x) .platform = (x)
+>> -#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display.ver = (x)
+>> +#define GEN(x) \
+>> +	.gen_mask = BIT((x) - 1), \
+>> +	.gen = (x), \
+>> +	.graphics_ver = (x), \
+>> +	.media_ver = (x), \
+>> +	.display.ver = (x)
+>>  
+>>  #define I845_PIPE_OFFSETS \
+>>  	.pipe_offsets = { \
+>> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+>> index b16c75927a12..405883a8cc84 100644
+>> --- a/drivers/gpu/drm/i915/intel_device_info.h
+>> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+>> @@ -162,6 +162,9 @@ enum intel_ppgtt_type {
+>>  struct intel_device_info {
+>>  	u16 gen_mask;
+>>  
+>> +	u8 graphics_ver;
+>> +	u8 media_ver;
+>> +
+>>  	u8 gen;
+>>  	u8 gt; /* GT number, 0 if undefined */
+>>  	intel_engine_mask_t platform_engine_mask; /* Engines supported by the HW */
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/index.html
-
---===============6596699320117890538==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>More DG1 enabling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88947/">https://patchwork.freedesktop.org/series/88947/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9957 -&gt; Patchwork_19912</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19912:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-modeset@a-edp1:<ul>
-<li>{fi-cml-drallion}:  NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-cml-drallion/igt@kms_flip@basic-flip-vs-modeset@a-edp1.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19912 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9957/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9957/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9957/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@prime_self_import@basic-with_one_bo_two_files:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9957/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19912/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Additional (2): fi-cml-drallion fi-bsw-n3050 <br />
-  Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9957 -&gt; Patchwork_19912</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9957: 1c979586f3208fdd56573cec840f7d9000be51ab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19912: 817240b12321d5959560cf2306142d63644bbef5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>817240b12321 drm/i915/gtt/dgfx: place the PD in LMEM<br />
-a1d3eec6b5bc drm/i915/gtt: map the PD up front<br />
-4988227f5fee drm/i915/dg1: Double memory bandwidth available<br />
-acf0a81fb877 drm/i915/dg1: Compute MEM Bandwidth using MCHBAR<br />
-2f21e3309e84 drm/i915: WA for zero memory channel<br />
-dd926fd22135 drm/i915/oprom: Basic sanitization<br />
-e793b2d75109 drm/i915/dg1: Read OPROM via SPI controller<br />
-e03946b5bf8c drm/i915/lmem: Bypass aperture when lmem is available<br />
-a7c90db9a5c4 drm/i915: Update the helper to set correct mapping<br />
-4bd6b41215c3 drm/i915/dg1: Fix mapping type for default state object<br />
-e861362b0f25 drm/i915/lmem: Fail driver init if LMEM training failed<br />
-4ec6aedb7ac2 drm/i915: Return error value when bo not in LMEM for discrete<br />
-693ca8d4d780 drm/i915/fbdev: Use lmem physical addresses for fb_mmap() on discrete<br />
-03c0cc0dae7f drm/i915/stolen: pass the allocation flags<br />
-154d7cbfda7f drm/i915/stolen: enforce the min_page_size contract<br />
-9ab764a5a21b drm/i915/stolen: treat stolen local as normal local memory<br />
-c46573ddee8d drm/i915: Create stolen memory region from local memory<br />
-530e7443c201 drm/i915/selftests: Only query RAPL for integrated power measurements<br />
-525b7ae56cfd drm/i915/gt: Skip aperture remapping selftest where there is no aperture</p>
-
-</body>
-</html>
-
---===============6596699320117890538==--
-
---===============1716391905==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1716391905==--
