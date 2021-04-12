@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C5B35C4AA
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 13:07:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6929735C4C1
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 13:12:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0FEA6E0A6;
-	Mon, 12 Apr 2021 11:07:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1F636E0AA;
+	Mon, 12 Apr 2021 11:12:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7B2DA6E092;
- Mon, 12 Apr 2021 11:07:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id BDE956E0AA;
+ Mon, 12 Apr 2021 11:12:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 718C9A0118;
- Mon, 12 Apr 2021 11:07:14 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B3699A008A;
+ Mon, 12 Apr 2021 11:12:19 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 12 Apr 2021 11:07:14 -0000
-Message-ID: <161822563443.8702.1248158014770657336@emeril.freedesktop.org>
+Date: Mon, 12 Apr 2021 11:12:19 -0000
+Message-ID: <161822593973.8700.14773436323997608496@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210412090526.30547-1-matthew.auld@intel.com>
 In-Reply-To: <20210412090526.30547-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_More_DG1_enabling?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIE1v?=
+ =?utf-8?q?re_DG1_enabling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,65 +40,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogTW9yZSBERzEgZW5hYmxpbmcKVVJMICAgOiBo
-dHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzg4OTQ3LwpTdGF0ZSA6IHdh
-cm5pbmcKCj09IFN1bW1hcnkgPT0KCiQgZGltIGNoZWNrcGF0Y2ggb3JpZ2luL2RybS10aXAKNTI1
-YjdhZTU2Y2ZkIGRybS9pOTE1L2d0OiBTa2lwIGFwZXJ0dXJlIHJlbWFwcGluZyBzZWxmdGVzdCB3
-aGVyZSB0aGVyZSBpcyBubyBhcGVydHVyZQo1MzBlNzQ0M2MyMDEgZHJtL2k5MTUvc2VsZnRlc3Rz
-OiBPbmx5IHF1ZXJ5IFJBUEwgZm9yIGludGVncmF0ZWQgcG93ZXIgbWVhc3VyZW1lbnRzCmM0NjU3
-M2RkZWU4ZCBkcm0vaTkxNTogQ3JlYXRlIHN0b2xlbiBtZW1vcnkgcmVnaW9uIGZyb20gbG9jYWwg
-bWVtb3J5Ci06MTM6IFdBUk5JTkc6Q09NTUlUX0xPR19MT05HX0xJTkU6IFBvc3NpYmxlIHVud3Jh
-cHBlZCBjb21taXQgZGVzY3JpcHRpb24gKHByZWZlciBhIG1heGltdW0gNzUgY2hhcnMgcGVyIGxp
-bmUpCiMxMzogCiAgICAgIGFzIHN0b2xlbi1sb2NhbCBvciBzdG9sZW4tc3lzdGVtIGJhc2VkIG9u
-IHRoaXMgdmFsdWUgd29uJ3Qgd29yay4gU3BsaXQKCnRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5n
-cywgMCBjaGVja3MsIDIzMSBsaW5lcyBjaGVja2VkCjlhYjc2NGE1YTIxYiBkcm0vaTkxNS9zdG9s
-ZW46IHRyZWF0IHN0b2xlbiBsb2NhbCBhcyBub3JtYWwgbG9jYWwgbWVtb3J5CjE1NGQ3Y2JmZGE3
-ZiBkcm0vaTkxNS9zdG9sZW46IGVuZm9yY2UgdGhlIG1pbl9wYWdlX3NpemUgY29udHJhY3QKMDNj
-MGNjMGRhZTdmIGRybS9pOTE1L3N0b2xlbjogcGFzcyB0aGUgYWxsb2NhdGlvbiBmbGFncwo2OTNj
-YThkNGQ3ODAgZHJtL2k5MTUvZmJkZXY6IFVzZSBsbWVtIHBoeXNpY2FsIGFkZHJlc3NlcyBmb3Ig
-ZmJfbW1hcCgpIG9uIGRpc2NyZXRlCjRlYzZhZWRiN2FjMiBkcm0vaTkxNTogUmV0dXJuIGVycm9y
-IHZhbHVlIHdoZW4gYm8gbm90IGluIExNRU0gZm9yIGRpc2NyZXRlCmU4NjEzNjJiMGYyNSBkcm0v
-aTkxNS9sbWVtOiBGYWlsIGRyaXZlciBpbml0IGlmIExNRU0gdHJhaW5pbmcgZmFpbGVkCjRiZDZi
-NDEyMTVjMyBkcm0vaTkxNS9kZzE6IEZpeCBtYXBwaW5nIHR5cGUgZm9yIGRlZmF1bHQgc3RhdGUg
-b2JqZWN0CmE3YzkwZGI5YTVjNCBkcm0vaTkxNTogVXBkYXRlIHRoZSBoZWxwZXIgdG8gc2V0IGNv
-cnJlY3QgbWFwcGluZwotOjY4OiBDSEVDSzpCUkFDRVM6IFVuYmFsYW5jZWQgYnJhY2VzIGFyb3Vu
-ZCBlbHNlIHN0YXRlbWVudAojNjg6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X3JpbmcuYzo1NjoKKwllbHNlIHsKCnRvdGFsOiAwIGVycm9ycywgMCB3YXJuaW5ncywgMSBjaGVj
-a3MsIDEzMiBsaW5lcyBjaGVja2VkCmUwMzk0NmI1YmY4YyBkcm0vaTkxNS9sbWVtOiBCeXBhc3Mg
-YXBlcnR1cmUgd2hlbiBsbWVtIGlzIGF2YWlsYWJsZQplNzkzYjJkNzUxMDkgZHJtL2k5MTUvZGcx
-OiBSZWFkIE9QUk9NIHZpYSBTUEkgY29udHJvbGxlcgpkZDkyNmZkMjIxMzUgZHJtL2k5MTUvb3By
-b206IEJhc2ljIHNhbml0aXphdGlvbgotOjE0MDogV0FSTklORzpMT05HX0xJTkU6IGxpbmUgbGVu
-Z3RoIG9mIDEyMiBleGNlZWRzIDEwMCBjb2x1bW5zCiMxNDA6IEZJTEU6IGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdpb24uYzo5OTY6CisJc2l6ZV81MTJfYnl0ZXMgPSBw
-YXJzZV9wdHJbKChzdHJ1Y3QgZXhwYW5zaW9uX3JvbV9oZWFkZXIgKilwYXJzZV9wdHIpLT5wY2lz
-dHJ1Y3RvZmZzZXQgKyBQQ0lfSU1BR0VfTEVOR1RIX09GRlNFVF07CgotOjE0MTogV0FSTklORzpM
-T05HX0xJTkU6IGxpbmUgbGVuZ3RoIG9mIDExNSBleGNlZWRzIDEwMCBjb2x1bW5zCiMxNDE6IEZJ
-TEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdpb24uYzo5OTc6CisJ
-KmNvZGVfdHlwZSA9IHBhcnNlX3B0clsoKHN0cnVjdCBleHBhbnNpb25fcm9tX2hlYWRlciAqKXBh
-cnNlX3B0ciktPnBjaXN0cnVjdG9mZnNldCArIFBDSV9DT0RFX1RZUEVfT0ZGU0VUXTsKCi06MTQy
-OiBXQVJOSU5HOkxPTkdfTElORTogbGluZSBsZW5ndGggb2YgMTI1IGV4Y2VlZHMgMTAwIGNvbHVt
-bnMKIzE0MjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJlZ2lv
-bi5jOjk5ODoKKwkqbGFzdF9pbWcgPSBwYXJzZV9wdHJbKChzdHJ1Y3QgZXhwYW5zaW9uX3JvbV9o
-ZWFkZXIgKilwYXJzZV9wdHIpLT5wY2lzdHJ1Y3RvZmZzZXQgKyBQQ0lfTEFTVF9JTUFHRV9JTkRJ
-Q0FUT1JfT0ZGU0VUXTsKCnRvdGFsOiAwIGVycm9ycywgMyB3YXJuaW5ncywgMCBjaGVja3MsIDMw
-NCBsaW5lcyBjaGVja2VkCjJmMjFlMzMwOWU4NCBkcm0vaTkxNTogV0EgZm9yIHplcm8gbWVtb3J5
-IGNoYW5uZWwKLTozMjogRVJST1I6Tk9fQVVUSE9SX1NJR05fT0ZGOiBNaXNzaW5nIFNpZ25lZC1v
-ZmYtYnk6IGxpbmUgYnkgbm9taW5hbCBwYXRjaCBhdXRob3IgJyJKb3PDqSBSb2JlcnRvIGRlIFNv
-dXphIiA8am9zZS5zb3V6YUBpbnRlbC5jb20+JwoKdG90YWw6IDEgZXJyb3JzLCAwIHdhcm5pbmdz
-LCAwIGNoZWNrcywgNyBsaW5lcyBjaGVja2VkCmFjZjBhODFmYjg3NyBkcm0vaTkxNS9kZzE6IENv
-bXB1dGUgTUVNIEJhbmR3aWR0aCB1c2luZyBNQ0hCQVIKNDk4ODIyN2Y1ZmVlIGRybS9pOTE1L2Rn
-MTogRG91YmxlIG1lbW9yeSBiYW5kd2lkdGggYXZhaWxhYmxlCmExZDNlZWM2YjViYyBkcm0vaTkx
-NS9ndHQ6IG1hcCB0aGUgUEQgdXAgZnJvbnQKLToxMDogV0FSTklORzpUWVBPX1NQRUxMSU5HOiAn
-bWFwaW5nJyBtYXkgYmUgbWlzc3BlbGxlZCAtIHBlcmhhcHMgJ21hcHBpbmcnPwojMTA6IAptYXBp
-bmcgY29kZSB0aGF0IGZvciBzaW1wbGUgc2luZ2xlIHBhZ2Ugc2htZW1mcyBvYmplY3Qgd2lsbCBy
-ZXR1cm4gYQpeXl5eXl4KCnRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDQw
-MyBsaW5lcyBjaGVja2VkCjgxNzI0MGIxMjMyMSBkcm0vaTkxNS9ndHQvZGdmeDogcGxhY2UgdGhl
-IFBEIGluIExNRU0KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+== Series Details ==
+
+Series: More DG1 enabling
+URL   : https://patchwork.freedesktop.org/series/88947/
+State : warning
+
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
