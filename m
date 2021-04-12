@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79B3135BC20
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 10:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 299F535BC26
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 10:28:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF9ED89F35;
-	Mon, 12 Apr 2021 08:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 847656E22B;
+	Mon, 12 Apr 2021 08:28:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6124C89F35
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 08:28:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D25D46E22B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 08:28:36 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 5820A68C4E; Mon, 12 Apr 2021 10:28:21 +0200 (CEST)
-Date: Mon, 12 Apr 2021 10:28:21 +0200
+ id DDC2768C4E; Mon, 12 Apr 2021 10:28:34 +0200 (CEST)
+Date: Mon, 12 Apr 2021 10:28:34 +0200
 From: Christoph Hellwig <hch@lst.de>
 To: Peter Zijlstra <peterz@infradead.org>
-Message-ID: <20210412082821.GE4372@lst.de>
+Message-ID: <20210412082834.GF4372@lst.de>
 References: <20210412080012.357146277@infradead.org>
- <20210412080611.835675015@infradead.org>
+ <20210412080611.902470568@infradead.org>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210412080611.835675015@infradead.org>
+In-Reply-To: <20210412080611.902470568@infradead.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH 5/7] xen/privcmd: Use verify_page_range()
+Subject: Re: [Intel-gfx] [PATCH 6/7] i915: Convert to verify_page_range()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
