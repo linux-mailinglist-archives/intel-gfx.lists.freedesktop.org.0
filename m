@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3104635CA38
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 17:39:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0AD35CA46
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 17:43:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD6689D63;
-	Mon, 12 Apr 2021 15:39:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A69489D79;
+	Mon, 12 Apr 2021 15:43:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5732189D63;
- Mon, 12 Apr 2021 15:39:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4D3F989D79;
+ Mon, 12 Apr 2021 15:43:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4E106A363D;
- Mon, 12 Apr 2021 15:39:48 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 44949A8835;
+ Mon, 12 Apr 2021 15:43:41 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 12 Apr 2021 15:39:48 -0000
-Message-ID: <161824198829.8702.2379179197081845313@emeril.freedesktop.org>
+Date: Mon, 12 Apr 2021 15:43:41 -0000
+Message-ID: <161824222125.8699.3985209155071777355@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210412121802.57131-1-matthew.auld@intel.com>
 In-Reply-To: <20210412121802.57131-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/doc/rfc=3A_i915_DG1_uAPI?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/doc/rfc=3A_i915_DG1_uAPI?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,35 +53,16 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-e8f92650b42d drm/doc/rfc: i915 DG1 uAPI
--:14: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#14: 
-new file mode 100644
-
--:19: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#19: FILE: Documentation/gpu/rfc/i915_create_ext.c:1:
-+struct drm_i915_gem_create_ext {
-
--:55: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#55: FILE: Documentation/gpu/rfc/i915_create_ext.c:37:
-+#define I915_OBJECT_PARAM  (1ull<<32)
-                                 ^
-
--:73: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#73: FILE: Documentation/gpu/rfc/i915_create_ext_placements.c:1:
-+#define I915_OBJECT_PARAM  (1ull<<32)
-
--:73: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
-#73: FILE: Documentation/gpu/rfc/i915_create_ext_placements.c:1:
-+#define I915_OBJECT_PARAM  (1ull<<32)
-                                 ^
-
--:98: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#98: FILE: Documentation/gpu/rfc/i915_region_query.c:1:
-+enum drm_i915_gem_memory_class {
-
-total: 0 errors, 4 warnings, 2 checks, 215 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+        struct drm_i915_gem_memory_class_instance region_param = {
+        struct drm_i915_gem_create_ext_setparam setparam_region = {
+        struct drm_i915_gem_create_ext create_ext = {
 
 
 _______________________________________________
