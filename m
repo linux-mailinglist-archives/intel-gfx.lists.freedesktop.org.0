@@ -2,39 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A151735BF9B
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 11:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D4735BFB4
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 11:19:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABA496E3DB;
-	Mon, 12 Apr 2021 09:09:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CEE36E3BB;
+	Mon, 12 Apr 2021 09:19:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD6456E3DB;
- Mon, 12 Apr 2021 09:09:51 +0000 (UTC)
-IronPort-SDR: 4VT4xgSbsNFH+ucQDEbYYufRjuIThNgKOb98WaRX7DMfq/BipaNqlEcb4EFRf+Kw72dj22kNBR
- 5s97OizhLmPg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9951"; a="193709769"
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="193709769"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2021 02:09:51 -0700
-IronPort-SDR: 1YLBnozKa/JDu/DdShPxqSaOv/9VC9IGhH7aiGTjcFXC9shvCFvqMl/mHHnkKc9khC8/rJa9GS
- B/4DLBvfaang==
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="423712810"
-Received: from tarynrox-mobl1.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.5.30])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2021 02:09:50 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Apr 2021 10:05:26 +0100
-Message-Id: <20210412090526.30547-20-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210412090526.30547-1-matthew.auld@intel.com>
-References: <20210412090526.30547-1-matthew.auld@intel.com>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FA5D6E3BB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 09:19:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=LbLEaQQn1m2iX7nE7PPEHGSV/YwnfR4XbHyT4vIPCOo=; b=Y7cOtXpfBCuSpO+OG8inZmByp2
+ uC4BQykiuxpyWwj9PEbqBrYmAomUef+mOvq9II+Bgwq1Wx4i9lqPwFP5iR1rQXCrraYmh+eDlZ4CT
+ 1Zhb2CFA6iX27CPaSKYYah/i6G3/iYOyevF+6LmNHtO4UY+7nqUwnKMHbwY/G3cXZNddMvKSh/rFU
+ fmJXSb7O6QXojSUBpWgdKineQsozxBH+82N4Q5tYFD/qBX8rSSSJWTnaKalsYRWilBjglVWMVfkcR
+ ywqTSgpLtVW5l2+baf/9yWnxmsIXNookZXXlEISRyNz6wkQ0irLAYcD3XvMUXzyeLoGChfhrG4gw4
+ XZdoU4Vg==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=noisy.programming.kicks-ass.net)
+ by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+ id 1lVshP-0044xV-Eb; Mon, 12 Apr 2021 09:17:41 +0000
+Received: from hirez.programming.kicks-ass.net
+ (hirez.programming.kicks-ass.net [192.168.1.225])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (Client did not present a certificate)
+ by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 1D49D300033;
+ Mon, 12 Apr 2021 11:17:36 +0200 (CEST)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+ id D543020224206; Mon, 12 Apr 2021 11:17:36 +0200 (CEST)
+Date: Mon, 12 Apr 2021 11:17:36 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <YHQQMPvsO5LtuI+/@hirez.programming.kicks-ass.net>
+References: <20210412080012.357146277@infradead.org>
+ <20210412080611.769864829@infradead.org>
+ <20210412082805.GD4372@lst.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 19/19] drm/i915/gtt/dgfx: place the PD in LMEM
+Content-Disposition: inline
+In-Reply-To: <20210412082805.GD4372@lst.de>
+Subject: Re: [Intel-gfx] [PATCH 4/7] mm: Introduce verify_page_range()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,113 +59,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: jgross@suse.com, sstabellini@kernel.org, keescook@chromium.org,
+ intel-gfx@lists.freedesktop.org, x86@kernel.org, linux-kernel@vger.kernel.org,
+ chris@chris-wilson.co.uk, linux-mm@kvack.org, boris.ostrovsky@oracle.com,
+ akpm@linux-foundation.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's a requirement that for dgfx we place all the paging structures in
-device local-memory.
+On Mon, Apr 12, 2021 at 10:28:05AM +0200, Christoph Hellwig wrote:
+> On Mon, Apr 12, 2021 at 10:00:16AM +0200, Peter Zijlstra wrote:
+> > +extern int verify_page_range(struct mm_struct *mm,
+> 
+> No need for the extern here.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gt/gen8_ppgtt.c |  5 ++++-
- drivers/gpu/drm/i915/gt/intel_gtt.c  | 27 +++++++++++++++++++++++++--
- drivers/gpu/drm/i915/gt/intel_gtt.h  |  1 +
- 3 files changed, 30 insertions(+), 3 deletions(-)
+It's consistent with the rest of the functions there. Also, I personally
+like that extern.
 
-diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-index f83496836f0f..11fb5df45a0f 100644
---- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-+++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-@@ -712,7 +712,10 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt)
- 	 */
- 	ppgtt->vm.has_read_only = !IS_GEN_RANGE(gt->i915, 11, 12);
- 
--	ppgtt->vm.alloc_pt_dma = alloc_pt_dma;
-+	if (HAS_LMEM(gt->i915))
-+		ppgtt->vm.alloc_pt_dma = alloc_pt_lmem;
-+	else
-+		ppgtt->vm.alloc_pt_dma = alloc_pt_dma;
- 
- 	err = gen8_init_scratch(&ppgtt->vm);
- 	if (err)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index d386b89e2758..1eeeab45445c 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -7,10 +7,23 @@
- 
- #include <linux/fault-inject.h>
- 
-+#include "gem/i915_gem_lmem.h"
- #include "i915_trace.h"
- #include "intel_gt.h"
- #include "intel_gtt.h"
- 
-+struct drm_i915_gem_object *alloc_pt_lmem(struct i915_address_space *vm, int sz)
-+{
-+	struct drm_i915_gem_object *obj;
-+
-+	obj = i915_gem_object_create_lmem(vm->i915, sz, 0);
-+
-+	/* ensure all dma objects have the same reservation class */
-+	if (!IS_ERR(obj))
-+		obj->base.resv = &vm->resv;
-+	return obj;
-+}
-+
- struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz)
- {
- 	struct drm_i915_gem_object *obj;
-@@ -27,9 +40,14 @@ struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz)
- 
- int map_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
- {
-+	enum i915_map_type type;
- 	void *vaddr;
- 
--	vaddr = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
-+	type = I915_MAP_WB;
-+	if (i915_gem_object_is_lmem(obj))
-+		type = I915_MAP_WC;
-+
-+	vaddr = i915_gem_object_pin_map_unlocked(obj, type);
- 	if (IS_ERR(vaddr))
- 		return PTR_ERR(vaddr);
- 
-@@ -39,9 +57,14 @@ int map_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
- 
- int map_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
- {
-+	enum i915_map_type type;
- 	void *vaddr;
- 
--	vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
-+	type = I915_MAP_WB;
-+	if (i915_gem_object_is_lmem(obj))
-+		type = I915_MAP_WC;
-+
-+	vaddr = i915_gem_object_pin_map(obj, type);
- 	if (IS_ERR(vaddr))
- 		return PTR_ERR(vaddr);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 40e486704558..44ce27c51631 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -527,6 +527,7 @@ int setup_scratch_page(struct i915_address_space *vm);
- void free_scratch(struct i915_address_space *vm);
- 
- struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz);
-+struct drm_i915_gem_object *alloc_pt_lmem(struct i915_address_space *vm, int sz);
- struct i915_page_table *alloc_pt(struct i915_address_space *vm);
- struct i915_page_directory *alloc_pd(struct i915_address_space *vm);
- struct i915_page_directory *__alloc_pd(int npde);
--- 
-2.26.3
+> > +int verify_page_range(struct mm_struct *mm,
+> > +		      unsigned long addr, unsigned long size,
+> > +		      int (*fn)(pte_t pte, unsigned long addr, void *data),
+> > +		      void *data)
+> 
+> A kerneldoc comment would be nice for this function.
+> 
+> Otherwise this looks fine.
 
+Something like so?
+
+/**
+ * verify_page_range() - Scan (and fill) a range of virtual memory and validate PTEs
+ * @mm: mm identifying the virtual memory map
+ * @addr: starting virtual address of the range
+ * @size: size of the range
+ * @fn: function that verifies the PTEs
+ * @data: opaque data passed to @fn
+ *
+ * Scan a region of virtual memory, filling in page tables as necessary and
+ * calling a provided function on each leaf, providing a copy of the
+ * page-table-entry.
+ *
+ * Similar apply_to_page_range(), but does not provide direct access to the
+ * page-tables.
+ *
+ * NOTE! this function does not work correctly vs large pages.
+ *
+ * Return: the first !0 return of the provided function, or 0 on completion.
+ */
+int verify_page_range(struct mm_struct *mm,
+		      unsigned long addr, unsigned long size,
+		      int (*fn)(pte_t pte, unsigned long addr, void *data),
+		      void *data)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
