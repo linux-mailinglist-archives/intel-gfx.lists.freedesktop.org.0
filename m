@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB25235BA34
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 08:40:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D7435BB1E
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 09:45:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B3E189D3E;
-	Mon, 12 Apr 2021 06:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C172D89FC8;
+	Mon, 12 Apr 2021 07:45:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1858289D3E;
- Mon, 12 Apr 2021 06:40:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0E5F8AA0ED;
- Mon, 12 Apr 2021 06:40:36 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65BFB89FC8;
+ Mon, 12 Apr 2021 07:45:05 +0000 (UTC)
+IronPort-SDR: NMoUDBxTHG5iNdSl8FFcD+M6x0ZxdrXzln8UPEEHJvudXv4sNiWZXZVSLDPcm0/fZ3toy0B56p
+ O8iJfzR0Ce7w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9951"; a="190947095"
+X-IronPort-AV: E=Sophos;i="5.82,214,1613462400"; 
+ d="asc'?scan'208";a="190947095"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2021 00:45:04 -0700
+IronPort-SDR: kJ45/0G5LOluO86VMetfbfo/+siKD1wQwSauZMy1qlplDqmNhGOn0QqCF7LVlOZeNK+iCD9Pt0
+ vCEjkmGuOEvw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,214,1613462400"; 
+ d="asc'?scan'208";a="449898175"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by FMSMGA003.fm.intel.com with ESMTP; 12 Apr 2021 00:45:00 -0700
+Date: Mon, 12 Apr 2021 15:27:15 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20210412072715.GC1551@zhen-hp.sh.intel.com>
+References: <0-v2-d36939638fc6+d54-vfio2_jgg@nvidia.com>
+ <15-v2-d36939638fc6+d54-vfio2_jgg@nvidia.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Mon, 12 Apr 2021 06:40:36 -0000
-Message-ID: <161820963602.8702.7305862238041582931@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210412054607.18133-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210412054607.18133-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_glk_display_version_regressions?=
+In-Reply-To: <15-v2-d36939638fc6+d54-vfio2_jgg@nvidia.com>
+Subject: Re: [Intel-gfx] [PATCH v2 15/18] vfio/gvt: Make DRM_I915_GVT depend
+ on VFIO_MDEV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,205 +49,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0617818286=="
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Max Gurtovoy <mgurtovoy@nvidia.com>, "Raj, Ashok" <ashok.raj@intel.com>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Dan Williams <dan.j.williams@intel.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>,
+ Tarun Gupta <targupta@nvidia.com>
+Content-Type: multipart/mixed; boundary="===============1723700447=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0617818286==
-Content-Type: multipart/alternative;
- boundary="===============2444656990953366180=="
 
---===============2444656990953366180==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Fix glk display version regressions
-URL   : https://patchwork.freedesktop.org/series/88938/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9955 -> Patchwork_19910
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19910 that come from known issues:
-
-### CI changes ###
+--===============1723700447==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="UExESr5xZTMxdOWv"
+Content-Disposition: inline
 
 
-### IGT changes ###
+--UExESr5xZTMxdOWv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-#### Possible fixes ####
+On 2021.04.06 16:40:38 -0300, Jason Gunthorpe wrote:
+> At some point there may have been some reason for this weird split in this
+> driver, but today only the VFIO side is actually implemented.
+>=20
+> However, it got messed up at some point and mdev code was put in gvt.c and
+> is pretending to be "generic" by masquerading as some generic attribute l=
+ist:
+>=20
+>    static MDEV_TYPE_ATTR_RO(description);
+>=20
+> But MDEV_TYPE attributes are only usable with mdev_device, nothing else.
+>=20
+> Ideally all of this would be moved to kvmgt.c, but it is entangled with
+> the rest of the "generic" code in an odd way. Thus put in a kconfig
+> dependency so we don't get randconfig failures when the next patch creates
+> a link time dependency related to the use of MDEV_TYPE.
+>=20
+> Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>  drivers/gpu/drm/i915/Kconfig | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 1e1cb245fca778..483e9ff8ca1d23 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -101,6 +101,7 @@ config DRM_I915_GVT
+>  	bool "Enable Intel GVT-g graphics virtualization host support"
+>  	depends on DRM_I915
+>  	depends on 64BIT
+> +	depends on VFIO_MDEV
+>  	default n
+>  	help
+>  	  Choose this option if you want to enable Intel GVT-g graphics
+> --=20
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-tgl-y:           [DMESG-WARN][1] ([i915#1982]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9955/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html
+Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
 
-  * igt@debugfs_test@read_all_entries:
-    - fi-tgl-y:           [DMESG-WARN][3] ([i915#402]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9955/fi-tgl-y/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/fi-tgl-y/igt@debugfs_test@read_all_entries.html
+--UExESr5xZTMxdOWv
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-y:           [DMESG-FAIL][5] ([i915#541]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9955/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
+-----BEGIN PGP SIGNATURE-----
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][7] ([i915#1372]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9955/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYHP2TgAKCRCxBBozTXgY
+J+xeAJsG2n6iRNLLmLnm0S82Wt4Do2WB6wCfX5U3GyYXsm1FLd6d4hZ1tT/DaCA=
+=bWKU
+-----END PGP SIGNATURE-----
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+--UExESr5xZTMxdOWv--
 
-  [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2788]: https://gitlab.freedesktop.org/drm/intel/issues/2788
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Additional (1): fi-dg1-1 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-glk-dsi fi-bsw-cyan fi-icl-y fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9955 -> Patchwork_19910
-
-  CI-20190529: 20190529
-  CI_DRM_9955: 77ebd079c5386d5864fa723222f4367de0cd408f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19910: 80cee6a874c3ae63cf7cf26583725dad0391a3fb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-80cee6a874c3 drm/i915: Remove a few redundant glk checks
-2845b238fe10 drm/i915: Don't use {skl, cnl}_hpd_pin() for bxt/glk
-fe1401b0dd85 drm/i915: Disable LTTPR detection on GLK once again
-c09ee72b4433 drm/i915: Restore lost glk ccs w/a
-2e896feb0fe1 drm/i915: Restore lost glk FBC 16bpp w/a
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/index.html
-
---===============2444656990953366180==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix glk display version regressions</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88938/">https://patchwork.freedesktop.org/series/88938/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9955 -&gt; Patchwork_19910</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19910 that come from known issues:</p>
-<h3>CI changes</h3>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9955/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/fi-tgl-y/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9955/fi-tgl-y/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/fi-tgl-y/igt@debugfs_test@read_all_entries.html">PASS</a> +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9955/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9955/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1372">i915#1372</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19910/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Additional (1): fi-dg1-1 <br />
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-glk-dsi fi-bsw-cyan fi-icl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9955 -&gt; Patchwork_19910</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9955: 77ebd079c5386d5864fa723222f4367de0cd408f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19910: 80cee6a874c3ae63cf7cf26583725dad0391a3fb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>80cee6a874c3 drm/i915: Remove a few redundant glk checks<br />
-2845b238fe10 drm/i915: Don't use {skl, cnl}_hpd_pin() for bxt/glk<br />
-fe1401b0dd85 drm/i915: Disable LTTPR detection on GLK once again<br />
-c09ee72b4433 drm/i915: Restore lost glk ccs w/a<br />
-2e896feb0fe1 drm/i915: Restore lost glk FBC 16bpp w/a</p>
-
-</body>
-</html>
-
---===============2444656990953366180==--
-
---===============0617818286==
+--===============1723700447==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -247,4 +134,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0617818286==--
+--===============1723700447==--
