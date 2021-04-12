@@ -1,43 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20B9835C4A6
-	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 13:05:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C5B35C4AA
+	for <lists+intel-gfx@lfdr.de>; Mon, 12 Apr 2021 13:07:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF45B891DB;
-	Mon, 12 Apr 2021 11:05:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0FEA6E0A6;
+	Mon, 12 Apr 2021 11:07:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE9F06E092
- for <intel-gfx@lists.freedesktop.org>; Mon, 12 Apr 2021 11:05:06 +0000 (UTC)
-IronPort-SDR: Cna+0ltCKdirDFApI2rN9h5/vdRr5e3W4pIF1dboMDVaazntRMjZQOsHr24XEyIMTiAEaNZH4L
- LNsrgWnWoFmg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9951"; a="192032726"
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="192032726"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2021 04:05:05 -0700
-IronPort-SDR: SNWZONVDIAoPlX9gG18NPmkF03urHXsd9jWdWNoMoV6/LRQexOEs5Ia7sCaHPcI45VDS2icP3H
- oxc1Wye6GFdA==
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; d="scan'208";a="423749497"
-Received: from cyeni-mobl.ger.corp.intel.com (HELO localhost) ([10.252.62.41])
- by orsmga008-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Apr 2021 04:05:02 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <20210411153358.GA1637800@mdroper-desk1.amr.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210408045227.985408-1-lucas.demarchi@intel.com>
- <20210408045227.985408-2-lucas.demarchi@intel.com>
- <20210411153358.GA1637800@mdroper-desk1.amr.corp.intel.com>
-Date: Mon, 12 Apr 2021 14:04:58 +0300
-Message-ID: <87fszvkbl1.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7B2DA6E092;
+ Mon, 12 Apr 2021 11:07:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 718C9A0118;
+ Mon, 12 Apr 2021 11:07:14 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915: rename display.version to
- display.ver
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Mon, 12 Apr 2021 11:07:14 -0000
+Message-ID: <161822563443.8702.1248158014770657336@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210412090526.30547-1-matthew.auld@intel.com>
+In-Reply-To: <20210412090526.30547-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_More_DG1_enabling?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,111 +38,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, 11 Apr 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Wed, Apr 07, 2021 at 09:52:16PM -0700, Lucas De Marchi wrote:
->> The macro we use to check is called DISPLAY_VER(). While using this
->> macro and the new ones being added in following changes I made the
->> mistake multiple times when mixing both "ver" and "version". Although
->> it's usually better to prefer the complete name, the shorhand
->> DISPLAY_VER() / GRAPHICS_VER / MEDIA_VER are clear and cause less
->> visual polution.
->> 
->> Another issue is when copying the variable to other places.
->> "display.version" would be copied to a "display_version" variable which
->> is long and would make people abbreviate as "version", or "display_ver".
->> In the first case it's not always clear what version refers to, and in
->> the second case it just hints it should be the name in the first place.
->> 
->> So, in the same way use used "gen" rather than "generation", use "ver"
->> instead of "version".
->
-> I'm indifferent on "ver" versus "version" but Jani suggested using the
-> full word "version" when we were first adding this, so you should
-> probably get an ack from him.
-
-For display version there were precious few places where we actually
-needed to refer to it, so I thought the longer version was better for
-clarity.
-
-I realize graphics_ver is used much more (although not necessarily in
-reference to intel_device_info) and it may get tedious to use the longer
-version. And it's better to have all of them unified.
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
->
->
-> Matt
->
->> 
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/i915/i915_drv.h          | 2 +-
->>  drivers/gpu/drm/i915/i915_pci.c          | 4 ++--
->>  drivers/gpu/drm/i915/intel_device_info.h | 2 +-
->>  3 files changed, 4 insertions(+), 4 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->> index 69e43bf91a15..8c62bb2abd31 100644
->> --- a/drivers/gpu/drm/i915/i915_drv.h
->> +++ b/drivers/gpu/drm/i915/i915_drv.h
->> @@ -1237,7 +1237,7 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
->>  #define INTEL_GEN(dev_priv)	(INTEL_INFO(dev_priv)->gen)
->>  #define INTEL_DEVID(dev_priv)	(RUNTIME_INFO(dev_priv)->device_id)
->>  
->> -#define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.version)
->> +#define DISPLAY_VER(i915)	(INTEL_INFO(i915)->display.ver)
->>  #define IS_DISPLAY_RANGE(i915, from, until) \
->>  	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
->>  #define IS_DISPLAY_VER(i915, v) (DISPLAY_VER(i915) == (v))
->> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
->> index 480553746794..ce5cbeaf036d 100644
->> --- a/drivers/gpu/drm/i915/i915_pci.c
->> +++ b/drivers/gpu/drm/i915/i915_pci.c
->> @@ -36,7 +36,7 @@
->>  #include "i915_selftest.h"
->>  
->>  #define PLATFORM(x) .platform = (x)
->> -#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display.version = (x)
->> +#define GEN(x) .gen = (x), .gen_mask = BIT((x) - 1), .display.ver = (x)
->>  
->>  #define I845_PIPE_OFFSETS \
->>  	.pipe_offsets = { \
->> @@ -723,7 +723,7 @@ static const struct intel_device_info bxt_info = {
->>  static const struct intel_device_info glk_info = {
->>  	GEN9_LP_FEATURES,
->>  	PLATFORM(INTEL_GEMINILAKE),
->> -	.display.version = 10,
->> +	.display.ver = 10,
->>  	.ddb_size = 1024,
->>  	GLK_COLORS,
->>  };
->> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
->> index 2f442d418a15..b16c75927a12 100644
->> --- a/drivers/gpu/drm/i915/intel_device_info.h
->> +++ b/drivers/gpu/drm/i915/intel_device_info.h
->> @@ -189,7 +189,7 @@ struct intel_device_info {
->>  #undef DEFINE_FLAG
->>  
->>  	struct {
->> -		u8 version;
->> +		u8 ver;
->>  
->>  #define DEFINE_FLAG(name) u8 name:1
->>  		DEV_INFO_DISPLAY_FOR_EACH_FLAG(DEFINE_FLAG);
->> -- 
->> 2.31.1
->> 
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogTW9yZSBERzEgZW5hYmxpbmcKVVJMICAgOiBo
+dHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzg4OTQ3LwpTdGF0ZSA6IHdh
+cm5pbmcKCj09IFN1bW1hcnkgPT0KCiQgZGltIGNoZWNrcGF0Y2ggb3JpZ2luL2RybS10aXAKNTI1
+YjdhZTU2Y2ZkIGRybS9pOTE1L2d0OiBTa2lwIGFwZXJ0dXJlIHJlbWFwcGluZyBzZWxmdGVzdCB3
+aGVyZSB0aGVyZSBpcyBubyBhcGVydHVyZQo1MzBlNzQ0M2MyMDEgZHJtL2k5MTUvc2VsZnRlc3Rz
+OiBPbmx5IHF1ZXJ5IFJBUEwgZm9yIGludGVncmF0ZWQgcG93ZXIgbWVhc3VyZW1lbnRzCmM0NjU3
+M2RkZWU4ZCBkcm0vaTkxNTogQ3JlYXRlIHN0b2xlbiBtZW1vcnkgcmVnaW9uIGZyb20gbG9jYWwg
+bWVtb3J5Ci06MTM6IFdBUk5JTkc6Q09NTUlUX0xPR19MT05HX0xJTkU6IFBvc3NpYmxlIHVud3Jh
+cHBlZCBjb21taXQgZGVzY3JpcHRpb24gKHByZWZlciBhIG1heGltdW0gNzUgY2hhcnMgcGVyIGxp
+bmUpCiMxMzogCiAgICAgIGFzIHN0b2xlbi1sb2NhbCBvciBzdG9sZW4tc3lzdGVtIGJhc2VkIG9u
+IHRoaXMgdmFsdWUgd29uJ3Qgd29yay4gU3BsaXQKCnRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5n
+cywgMCBjaGVja3MsIDIzMSBsaW5lcyBjaGVja2VkCjlhYjc2NGE1YTIxYiBkcm0vaTkxNS9zdG9s
+ZW46IHRyZWF0IHN0b2xlbiBsb2NhbCBhcyBub3JtYWwgbG9jYWwgbWVtb3J5CjE1NGQ3Y2JmZGE3
+ZiBkcm0vaTkxNS9zdG9sZW46IGVuZm9yY2UgdGhlIG1pbl9wYWdlX3NpemUgY29udHJhY3QKMDNj
+MGNjMGRhZTdmIGRybS9pOTE1L3N0b2xlbjogcGFzcyB0aGUgYWxsb2NhdGlvbiBmbGFncwo2OTNj
+YThkNGQ3ODAgZHJtL2k5MTUvZmJkZXY6IFVzZSBsbWVtIHBoeXNpY2FsIGFkZHJlc3NlcyBmb3Ig
+ZmJfbW1hcCgpIG9uIGRpc2NyZXRlCjRlYzZhZWRiN2FjMiBkcm0vaTkxNTogUmV0dXJuIGVycm9y
+IHZhbHVlIHdoZW4gYm8gbm90IGluIExNRU0gZm9yIGRpc2NyZXRlCmU4NjEzNjJiMGYyNSBkcm0v
+aTkxNS9sbWVtOiBGYWlsIGRyaXZlciBpbml0IGlmIExNRU0gdHJhaW5pbmcgZmFpbGVkCjRiZDZi
+NDEyMTVjMyBkcm0vaTkxNS9kZzE6IEZpeCBtYXBwaW5nIHR5cGUgZm9yIGRlZmF1bHQgc3RhdGUg
+b2JqZWN0CmE3YzkwZGI5YTVjNCBkcm0vaTkxNTogVXBkYXRlIHRoZSBoZWxwZXIgdG8gc2V0IGNv
+cnJlY3QgbWFwcGluZwotOjY4OiBDSEVDSzpCUkFDRVM6IFVuYmFsYW5jZWQgYnJhY2VzIGFyb3Vu
+ZCBlbHNlIHN0YXRlbWVudAojNjg6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
+X3JpbmcuYzo1NjoKKwllbHNlIHsKCnRvdGFsOiAwIGVycm9ycywgMCB3YXJuaW5ncywgMSBjaGVj
+a3MsIDEzMiBsaW5lcyBjaGVja2VkCmUwMzk0NmI1YmY4YyBkcm0vaTkxNS9sbWVtOiBCeXBhc3Mg
+YXBlcnR1cmUgd2hlbiBsbWVtIGlzIGF2YWlsYWJsZQplNzkzYjJkNzUxMDkgZHJtL2k5MTUvZGcx
+OiBSZWFkIE9QUk9NIHZpYSBTUEkgY29udHJvbGxlcgpkZDkyNmZkMjIxMzUgZHJtL2k5MTUvb3By
+b206IEJhc2ljIHNhbml0aXphdGlvbgotOjE0MDogV0FSTklORzpMT05HX0xJTkU6IGxpbmUgbGVu
+Z3RoIG9mIDEyMiBleGNlZWRzIDEwMCBjb2x1bW5zCiMxNDA6IEZJTEU6IGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdpb24uYzo5OTY6CisJc2l6ZV81MTJfYnl0ZXMgPSBw
+YXJzZV9wdHJbKChzdHJ1Y3QgZXhwYW5zaW9uX3JvbV9oZWFkZXIgKilwYXJzZV9wdHIpLT5wY2lz
+dHJ1Y3RvZmZzZXQgKyBQQ0lfSU1BR0VfTEVOR1RIX09GRlNFVF07CgotOjE0MTogV0FSTklORzpM
+T05HX0xJTkU6IGxpbmUgbGVuZ3RoIG9mIDExNSBleGNlZWRzIDEwMCBjb2x1bW5zCiMxNDE6IEZJ
+TEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfb3ByZWdpb24uYzo5OTc6CisJ
+KmNvZGVfdHlwZSA9IHBhcnNlX3B0clsoKHN0cnVjdCBleHBhbnNpb25fcm9tX2hlYWRlciAqKXBh
+cnNlX3B0ciktPnBjaXN0cnVjdG9mZnNldCArIFBDSV9DT0RFX1RZUEVfT0ZGU0VUXTsKCi06MTQy
+OiBXQVJOSU5HOkxPTkdfTElORTogbGluZSBsZW5ndGggb2YgMTI1IGV4Y2VlZHMgMTAwIGNvbHVt
+bnMKIzE0MjogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9vcHJlZ2lv
+bi5jOjk5ODoKKwkqbGFzdF9pbWcgPSBwYXJzZV9wdHJbKChzdHJ1Y3QgZXhwYW5zaW9uX3JvbV9o
+ZWFkZXIgKilwYXJzZV9wdHIpLT5wY2lzdHJ1Y3RvZmZzZXQgKyBQQ0lfTEFTVF9JTUFHRV9JTkRJ
+Q0FUT1JfT0ZGU0VUXTsKCnRvdGFsOiAwIGVycm9ycywgMyB3YXJuaW5ncywgMCBjaGVja3MsIDMw
+NCBsaW5lcyBjaGVja2VkCjJmMjFlMzMwOWU4NCBkcm0vaTkxNTogV0EgZm9yIHplcm8gbWVtb3J5
+IGNoYW5uZWwKLTozMjogRVJST1I6Tk9fQVVUSE9SX1NJR05fT0ZGOiBNaXNzaW5nIFNpZ25lZC1v
+ZmYtYnk6IGxpbmUgYnkgbm9taW5hbCBwYXRjaCBhdXRob3IgJyJKb3PDqSBSb2JlcnRvIGRlIFNv
+dXphIiA8am9zZS5zb3V6YUBpbnRlbC5jb20+JwoKdG90YWw6IDEgZXJyb3JzLCAwIHdhcm5pbmdz
+LCAwIGNoZWNrcywgNyBsaW5lcyBjaGVja2VkCmFjZjBhODFmYjg3NyBkcm0vaTkxNS9kZzE6IENv
+bXB1dGUgTUVNIEJhbmR3aWR0aCB1c2luZyBNQ0hCQVIKNDk4ODIyN2Y1ZmVlIGRybS9pOTE1L2Rn
+MTogRG91YmxlIG1lbW9yeSBiYW5kd2lkdGggYXZhaWxhYmxlCmExZDNlZWM2YjViYyBkcm0vaTkx
+NS9ndHQ6IG1hcCB0aGUgUEQgdXAgZnJvbnQKLToxMDogV0FSTklORzpUWVBPX1NQRUxMSU5HOiAn
+bWFwaW5nJyBtYXkgYmUgbWlzc3BlbGxlZCAtIHBlcmhhcHMgJ21hcHBpbmcnPwojMTA6IAptYXBp
+bmcgY29kZSB0aGF0IGZvciBzaW1wbGUgc2luZ2xlIHBhZ2Ugc2htZW1mcyBvYmplY3Qgd2lsbCBy
+ZXR1cm4gYQpeXl5eXl4KCnRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDQw
+MyBsaW5lcyBjaGVja2VkCjgxNzI0MGIxMjMyMSBkcm0vaTkxNS9ndHQvZGdmeDogcGxhY2UgdGhl
+IFBEIGluIExNRU0KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
