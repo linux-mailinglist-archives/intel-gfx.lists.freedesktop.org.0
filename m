@@ -1,46 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC2E335E525
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 19:39:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D19635E53E
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 19:42:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7AAF6E0D6;
-	Tue, 13 Apr 2021 17:39:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05FC76E841;
+	Tue, 13 Apr 2021 17:42:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E2886E0D6
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 17:39:14 +0000 (UTC)
-IronPort-SDR: 4Hiq7l1mlH1T7gW49e4TEFq/a3X2LoTbolnaytRhxGq2WHVdsow5gvh83xeLoz898/PG1pVLhL
- tzIDbcix99BA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9953"; a="192340655"
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="192340655"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 10:39:11 -0700
-IronPort-SDR: 3SmTZ+tvPO6ZplvcNcLG3AL3/8fEqlp2mKZWX0c2nRryqtgtaapJZDi4Ypt42q68vWC6UOEjv3
- W5RjgKz90ZrA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="452059104"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 13 Apr 2021 10:39:08 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 13 Apr 2021 20:39:07 +0300
-Date: Tue, 13 Apr 2021 20:39:07 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <YHXXO3PoqLlLYVrP@intel.com>
-References: <20210413060927.114342-1-lucas.demarchi@intel.com>
- <20210413060927.114342-4-lucas.demarchi@intel.com>
- <YHW8jE1Z3DLPxlXs@intel.com>
- <20210413172224.oqlnqqxgpqy6ifty@ldmartin-desk2>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CA7606E841;
+ Tue, 13 Apr 2021 17:42:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C5978A7E03;
+ Tue, 13 Apr 2021 17:42:53 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210413172224.oqlnqqxgpqy6ifty@ldmartin-desk2>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/display: remove strap checks
- from gen 9
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jason Ekstrand" <jason@jlekstrand.net>
+Date: Tue, 13 Apr 2021 17:42:53 -0000
+Message-ID: <161833577380.8797.13660823296646505253@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210413173259.472405-1-jason@jlekstrand.net>
+In-Reply-To: <20210413173259.472405-1-jason@jlekstrand.net>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/pm=3A_Make_the_wm_parameter_of_print=5Fwm=5Flatenc?=
+ =?utf-8?q?y_a_pointer?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,92 +39,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 13, 2021 at 10:22:24AM -0700, Lucas De Marchi wrote:
-> On Tue, Apr 13, 2021 at 06:45:16PM +0300, Ville Syrj=E4l=E4 wrote:
-> >On Mon, Apr 12, 2021 at 11:09:27PM -0700, Lucas De Marchi wrote:
-> >> Direction on gen9+ was to stop reading the straps and only rely on the
-> >> VBT for marking the port presence. This happened while dealing with
-> >> WaIgnoreDDIAStrap and instead of using it as a WA, it should now be the
-> >> normal flow. See commit 885d3e5b6f08 ("drm/i915/display: fix comment on
-> >> skl straps").
-> >>
-> >> For gen 10 it's hard to say if this will work or not since I can't test
-> >> it, so leave it with the same behavior as before.
-> >>
-> >> For PCH_TGP we should still rely on the VBT to make ports E and F not
-> >> available.
-> >>
-> >> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> >> Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_display.c | 36 ++++++--------------
-> >>  1 file changed, 11 insertions(+), 25 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gp=
-u/drm/i915/display/intel_display.c
-> >> index d62ce9c87748..5a03cbba0280 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >> @@ -10883,34 +10883,25 @@ static void intel_setup_outputs(struct drm_i=
-915_private *dev_priv)
-> >>  		intel_ddi_init(dev_priv, PORT_B);
-> >>  		intel_ddi_init(dev_priv, PORT_C);
-> >>  		vlv_dsi_init(dev_priv);
-> >> +	} else if (DISPLAY_VER(dev_priv) =3D=3D 9) {
-> >
-> >Should be >=3D10 I presume? Or did we want ot handle cnl along with
-> =
-
-> why >=3D 10? The only DISPLAY_VER() =3D=3D 10 platforms out there are han=
-dled
-> in the branch above. I can make it >=3D 9, but not >=3D 10. Intention was=
- to
-> handle skl/kbl here.
-
-Yeah, meant to write >=3D9. Cnl not really a thing, but I would get
-confused if we started skipping it in some places while still
-handling it in others. I guess we may want to consider just nuking
-cnl totally everywhere, but until that time I think we should keep
-things consistent.
-
-> =
-
-> =
-
-> >icl perhaps? Doesn't really matter I suppose, but it's surely
-> >going to consfuse the me the next time I read this.
-> >
-> >> +		intel_ddi_init(dev_priv, PORT_A);
-> >> +		intel_ddi_init(dev_priv, PORT_B);
-> >> +		intel_ddi_init(dev_priv, PORT_C);
-> >> +		intel_ddi_init(dev_priv, PORT_D);
-> >> +		intel_ddi_init(dev_priv, PORT_E);
-> >> +		intel_ddi_init(dev_priv, PORT_F);
-> >
-> >DDI F isn't a thing on skl/derivatives, so I'd probably skip it on
-> >those. Could just use IS_CNL_WITH_PORT_F() to match the looks of
-> >the icl stuff.
-> =
-
-> I was actually looking at ICL and thinking "shouldn't this hack for
-> broken VBT be hidden in intel_bios.c?"  I think we should trust what we
-> parse from VBT everywhere  except of course in intel_bios.c where we
-> fixup when the VBT is wrong. Thoughts?
-
-I guess we could stuff it all in there somehow. Not sure.
-Maybe Jani has thoughts on this?
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL2k5MTUvcG06IE1ha2UgdGhlIHdtIHBh
+cmFtZXRlciBvZiBwcmludF93bV9sYXRlbmN5IGEgcG9pbnRlcgpVUkwgICA6IGh0dHBzOi8vcGF0
+Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvODkwMjIvClN0YXRlIDogd2FybmluZwoKPT0g
+U3VtbWFyeSA9PQoKJCBkaW0gY2hlY2twYXRjaCBvcmlnaW4vZHJtLXRpcAowM2UyZjVhNmRjNzAg
+ZHJtL2k5MTUvcG06IE1ha2UgdGhlIHdtIHBhcmFtZXRlciBvZiBwcmludF93bV9sYXRlbmN5IGEg
+cG9pbnRlcgotOjEzOiBXQVJOSU5HOkNPTU1JVF9MT0dfTE9OR19MSU5FOiBQb3NzaWJsZSB1bndy
+YXBwZWQgY29tbWl0IGRlc2NyaXB0aW9uIChwcmVmZXIgYSBtYXhpbXVtIDc1IGNoYXJzIHBlciBs
+aW5lKQojMTM6IAogICAgICAgIGlubGluZWQgZnJvbSDigJhpbGtfc2V0dXBfd21fbGF0ZW5jeeKA
+mSBhdCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jOjMxMDk6MywKCnRvdGFsOiAwIGVy
+cm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDggbGluZXMgY2hlY2tlZAoKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
