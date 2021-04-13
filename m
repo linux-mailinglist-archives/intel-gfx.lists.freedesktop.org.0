@@ -1,42 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DA6735D512
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 04:01:55 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0F7235D6E3
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 07:10:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F30DB6E113;
-	Tue, 13 Apr 2021 02:01:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05D9C6E21D;
+	Tue, 13 Apr 2021 05:10:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 350A86E113;
- Tue, 13 Apr 2021 02:01:50 +0000 (UTC)
-IronPort-SDR: fanyHd/PPF86f7qWiIENmiYfq28Fy9BiHzqRFayt3f0vfWEMzShE4K9EfcROu/RRlCBme2pijc
- nC0ZNWeTJCnA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="194350500"
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; 
- d="asc'?scan'208";a="194350500"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E9366E1BD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 05:10:49 +0000 (UTC)
+IronPort-SDR: u9EaPBNPqAESNGovabjqMDRehPhlRNC/Ga4kKm1tmQa2jZ55BrF1wJY54lDRyfI2rFghL1JM/w
+ 9G2jIRjLsdtg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="194371980"
+X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="194371980"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2021 19:01:48 -0700
-IronPort-SDR: dpnk/tYDwYO3SVEi7HM2vnrFb6nowJMHhcesGzOnnSfRR6NRFYEwTf0/OwTmkwgzqynM+dJXTU
- cuhHkS5Ff9hg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,216,1613462400"; 
- d="asc'?scan'208";a="443268676"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by fmsmga004.fm.intel.com with ESMTP; 12 Apr 2021 19:01:46 -0700
-Date: Tue, 13 Apr 2021 09:43:58 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Message-ID: <20210413014358.GB14309@zhen-hp.sh.intel.com>
-References: <20210412103214.337d521a@omen>
- <20210412192347.042fbc14@x1.home.shazbot.org>
+ 12 Apr 2021 22:10:46 -0700
+IronPort-SDR: 39BKGXJAGCBkyjqyCutVFSg26Vsin8sTTWjuoFFsA5bNgS5qlQiaBO1h79U8VPFkq9C33VUTN5
+ wQFYv3/x5fdQ==
+X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="460450738"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2021 22:10:43 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 12 Apr 2021 22:09:50 -0700
+Message-Id: <20210413051002.92589-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210412192347.042fbc14@x1.home.shazbot.org>
-Subject: Re: [Intel-gfx] Regression: gvt: vgpu 1: MI_LOAD_REGISTER_MEM
- handler error
+Subject: [Intel-gfx] [PATCH v2 00/12] drm/i915: Extend GEN renames to the
+ rest of the driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,96 +45,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0791470182=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Like was done for the display part that parted ways with INTEL_GEN(),
+replacing with DISPLAY_VER(), do a similar conversion for the rest of
+the driver.
 
---===============0791470182==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="YiEDa0DAkWCtVeE4"
-Content-Disposition: inline
+v1.1: Remove .ko that was incorrectly added as part of patch 11, making it
+very big and not going through the mailing list. Sorry for those in CC
+who received it.
 
+v2:
+  - Add "drm/i915/display: rename display version macros" to rename
+    macro and repurpose it: s/IS_DISPLAY_RANGE/IS_DISPLAY_VER/ and convert
+    the current users of IS_DISPLAY_VER to use direct comparison
+  - Group display patches to easily apply independently
 
---YiEDa0DAkWCtVeE4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Lucas De Marchi (12):
+  drm/i915/display: use DISPLAY_VER() on remaining users
+  drm/i915: rename display.version to display.ver
+  drm/i915/display: rename display version macros
+  drm/i915: add macros for graphics and media versions
+  drm/i915/gt: replace gen use in intel_engine_cs
+  drm/i915/selftests: replace unused mask with simple version
+  drm/i915/selftests: eliminate use of gen_mask
+  drm/i915: finish removal of gen_mask
+  drm/i915: eliminate remaining uses of intel_device_info->gen
+  drm/i915: finish removal of gen from intel_device_info
+  drm/i915: add media and display versions to device_info print
+  drm/i915: split dgfx features from gen 12
 
-On 2021.04.12 19:23:47 -0600, Alex Williamson wrote:
-> On Mon, 12 Apr 2021 10:32:14 -0600
-> Alex Williamson <alex.williamson@redhat.com> wrote:
->=20
-> > Running a Windows guest on a i915-GVTg_V4_2 from an HD 5500 IGD on
-> > v5.12-rc6 results in host logs:
-> >=20
-> > gvt: vgpu 1: lrm access to register (20c0)
-> > gvt: vgpu 1: MI_LOAD_REGISTER_MEM handler error
-> > gvt: vgpu 1: cmd parser error
-> > 0x0=20
-> > 0x29=20
-> >=20
-> > gvt: vgpu 1: scan wa ctx error
-> > gvt: vgpu 1: failed to submit desc 0
-> > gvt: vgpu 1: fail submit workload on ring rcs0
-> > gvt: vgpu 1: fail to emulate MMIO write 00002230 len 4
-> >=20
-> > The guest goes into a boot loop triggering this error before reaching
-> > the desktop and rebooting.  Guest using Intel driver 20.19.15.5171
-> > dated 11/4/2020 (from driver file 15.40.5171).
-> >=20
-> > This VM works well with the same guest and userspace software stack on
-> > Fedora's kernel 5.11.11-200.fc33.x86_64.  Thanks,
->=20
-> Bisected to:
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  2 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  4 +-
+ drivers/gpu/drm/i915/display/intel_atomic.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_bw.c       |  8 +--
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 18 +++---
+ drivers/gpu/drm/i915/display/intel_color.c    |  6 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  6 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_csr.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 26 ++++-----
+ .../drm/i915/display/intel_ddi_buf_trans.c    |  8 +--
+ drivers/gpu/drm/i915/display/intel_display.c  | 56 +++++++++----------
+ .../drm/i915/display/intel_display_power.c    | 26 ++++-----
+ drivers/gpu/drm/i915/display/intel_dp.c       |  8 +--
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 20 +++----
+ .../drm/i915/display/intel_fifo_underrun.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_overlay.c  | 10 ++--
+ drivers/gpu/drm/i915/display/intel_panel.c    |  8 +--
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |  4 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  4 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       |  6 +-
+ drivers/gpu/drm/i915/display/intel_tv.c       |  6 +-
+ .../drm/i915/display/skl_universal_plane.c    |  8 +--
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 22 ++++----
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 40 ++++++-------
+ drivers/gpu/drm/i915/gt/selftest_engine_cs.c  | 18 +++---
+ .../gpu/drm/i915/gt/selftest_workarounds.c    | 10 ++--
+ drivers/gpu/drm/i915/i915_drv.c               |  4 +-
+ drivers/gpu/drm/i915/i915_drv.h               | 41 ++++++++------
+ drivers/gpu/drm/i915/i915_irq.c               | 10 ++--
+ drivers/gpu/drm/i915/i915_pci.c               | 13 +++--
+ drivers/gpu/drm/i915/intel_device_info.c      |  4 +-
+ drivers/gpu/drm/i915/intel_device_info.h      |  6 +-
+ drivers/gpu/drm/i915/intel_pm.c               | 48 ++++++++--------
+ drivers/gpu/drm/i915/intel_uncore.c           |  8 ++-
+ drivers/gpu/drm/i915/selftests/intel_uncore.c |  8 ++-
+ .../gpu/drm/i915/selftests/mock_gem_device.c  |  2 +-
+ 46 files changed, 260 insertions(+), 246 deletions(-)
 
-Looks we didn't hit this one on Broadwell with recent testing. I'll double
-check, maybe Broadwell missed something after our cmd parser rework.
-
-Thanks for reporting!
-
->=20
-> commit f18d417a57438498e0de481d3a0bc900c2b0e057
-> Author: Yan Zhao <yan.y.zhao@intel.com>
-> Date:   Wed Dec 23 11:45:08 2020 +0800
->=20
->     drm/i915/gvt: filter cmds "srm" and "lrm" in cmd_handler
->    =20
->     do not allow "srm" and "lrm" except for GEN8_L3SQCREG4 and 0x21f0.
->    =20
->     Cc: Colin Xu <colin.xu@intel.com>
->     Cc: Kevin Tian <kevin.tian@intel.com>
->     Signed-off-by: Yan Zhao <yan.y.zhao@intel.com>
->     Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
->     Link: http://patchwork.freedesktop.org/patch/msgid/20201223034508.170=
-31-1-yan.y.zhao@intel.com
->     Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
->=20
-
---YiEDa0DAkWCtVeE4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYHT3WgAKCRCxBBozTXgY
-JyIjAJ4qyEyXGFa1EIPUsVJohueGVLPmjQCeLZxe4LsLldAUVXy+DRZNan125N4=
-=mNfW
------END PGP SIGNATURE-----
-
---YiEDa0DAkWCtVeE4--
-
---===============0791470182==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.31.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0791470182==--
