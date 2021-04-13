@@ -2,41 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A24935DB1C
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 11:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C57935DB24
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 11:29:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E17756E24E;
-	Tue, 13 Apr 2021 09:26:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6ECED6E28B;
+	Tue, 13 Apr 2021 09:29:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EAD96E24E
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 09:26:01 +0000 (UTC)
-IronPort-SDR: DdaloRbbtlUmL8x9H3mx3gr356u5lqVA34ZOVNZhWev3CQ8t5zS/48Y5NlpQu5YRuF5+z6Slgk
- 59ioI+/sDNuw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="255699350"
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="255699350"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 02:26:01 -0700
-IronPort-SDR: BFBl8O+3msuWV9Gj+5b9/MKw7cArCgZqOpBi5BauKop4LP9IIkShEz4sTrAB+5dnpXn4VgQoEg
- Ax/bQB5cx+qw==
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="424176618"
-Received: from alinapar-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.249.36.253])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 02:25:58 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210413051002.92589-3-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210413051002.92589-1-lucas.demarchi@intel.com>
- <20210413051002.92589-3-lucas.demarchi@intel.com>
-Date: Tue, 13 Apr 2021 12:25:55 +0300
-Message-ID: <875z0qili4.fsf@intel.com>
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com
+ [IPv6:2607:f8b0:4864:20::f31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5840C6E28B;
+ Tue, 13 Apr 2021 09:29:04 +0000 (UTC)
+Received: by mail-qv1-xf31.google.com with SMTP id dp18so3083859qvb.5;
+ Tue, 13 Apr 2021 02:29:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2OlQh71ytZjTCrhMOEMr/W+H76i377Yceg9/bP1LlE0=;
+ b=jmi6PPtuqZsyJk6Ja0hkiAX5NTZKc0DHRBW+CWvPRU0xYz3E3Te1IRqmXM6pCU1mY+
+ l/MlDlFI3HAc57BUsovG45Puj95SorNaKQyqw+q7Z1wd0m8L2E1M/jaSMyhY5Ka0xQL8
+ wtx9gBlbwybo/hAHtnNHL9KY3hKItwRq+hwKv1OyzSUGaamsEbE/4J6jgqXEvdulTQBH
+ 6mAujJOWxm0AUQTTrBEvPBzXcWB2z1A1EebLY/+dhuQgpXBzyCFbxbgb5CWMWoR1YVqT
+ aDVy7rnY4CC2sPk+0YoGDScekhXb0k3TEE4EwcTVoJwlEJ9+wd9HVjlvjz88F8Bjwpnq
+ uDtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2OlQh71ytZjTCrhMOEMr/W+H76i377Yceg9/bP1LlE0=;
+ b=jBE1QkgXoDnmEVB2cLq9tp8+R5gb/DxSvB3Z/1nQuT+XYmKhlGok8drT1UQGuY0b3b
+ qvZgQA+oKO01omRVAUGW18UbaZve0yqOFRrYT1crhsTV3NYZ/UN69VBSDWTxzpbhvVIZ
+ 9nPyLOefGZbrChZFA6f8xC8oNauqC+ejQm1XdNkuQHa+OHwQKWopU9gOKj47U/ZWAIhd
+ Vi8Xg4d77SXz9cY6XatHYy5CB8/NU4vducyHN6vpdhqFbyp54Oll7rztS1I7N/3OPOvm
+ VYW22szwxYyr8LBny4ywoNkWuQF7lnjNq2PjsSs/KGwkL9WoDjz7vJcYqIDw8Jbh8ht1
+ mfnA==
+X-Gm-Message-State: AOAM532QWtXzOAqLCVmhEu4mxh4Lqz+vnirTfdy5OazqOaIs2CqojDsE
+ JqbzQUtWmIVyaXgCT0gyUvQukmQMabwq/H9S+es=
+X-Google-Smtp-Source: ABdhPJxj0Pbeuf8XKpQWQMIKficnsB3ukPUknswmKL5REJ5JZbczpmzq7BfFuEtMh0khAkmfU8LBaQ7/u09L3rb3Jaw=
+X-Received: by 2002:a0c:9e6a:: with SMTP id z42mr32903864qve.60.1618306143322; 
+ Tue, 13 Apr 2021 02:29:03 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 02/12] drm/i915: rename display.version
- to display.ver
+References: <20210412090526.30547-1-matthew.auld@intel.com>
+ <20210412090526.30547-19-matthew.auld@intel.com>
+ <YHRkixaDBaf5cgkJ@phenom.ffwll.local>
+ <CAM0jSHM_1V6OSZhuuaaAMmHi4BTiZ7Hbo99i2b=RzFFBMuYJ_A@mail.gmail.com>
+ <CAKMK7uFK5_4cbWeefjvXzfnHXsTh1OCtWSyLHUy5QhiFfwMf1A@mail.gmail.com>
+In-Reply-To: <CAKMK7uFK5_4cbWeefjvXzfnHXsTh1OCtWSyLHUy5QhiFfwMf1A@mail.gmail.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 13 Apr 2021 10:28:37 +0100
+Message-ID: <CAM0jSHP=xA0taPVVr5Fa5O9rMEv-upr_or_c2QbRO2MhNGEBCw@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 18/19] drm/i915/gtt: map the PD up front
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,70 +64,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAxMiBBcHIgMjAyMSwgTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRl
-bC5jb20+IHdyb3RlOgo+IFRoZSBtYWNybyB3ZSB1c2UgdG8gY2hlY2sgaXMgY2FsbGVkIERJU1BM
-QVlfVkVSKCkuIFdoaWxlIHVzaW5nIHRoaXMKPiBtYWNybyBhbmQgdGhlIG5ldyBvbmVzIGJlaW5n
-IGFkZGVkIGluIGZvbGxvd2luZyBjaGFuZ2VzIEkgbWFkZSB0aGUKPiBtaXN0YWtlIG11bHRpcGxl
-IHRpbWVzIHdoZW4gbWl4aW5nIGJvdGggInZlciIgYW5kICJ2ZXJzaW9uIi4gQWx0aG91Z2gKPiBp
-dCdzIHVzdWFsbHkgYmV0dGVyIHRvIHByZWZlciB0aGUgY29tcGxldGUgbmFtZSwgdGhlIHNob3Jo
-YW5kCj4gRElTUExBWV9WRVIoKSAvIEdSQVBISUNTX1ZFUiAvIE1FRElBX1ZFUiBhcmUgY2xlYXIg
-YW5kIGNhdXNlIGxlc3MKPiB2aXN1YWwgcG9sdXRpb24uCj4KPiBBbm90aGVyIGlzc3VlIGlzIHdo
-ZW4gY29weWluZyB0aGUgdmFyaWFibGUgdG8gb3RoZXIgcGxhY2VzLgo+ICJkaXNwbGF5LnZlcnNp
-b24iIHdvdWxkIGJlIGNvcGllZCB0byBhICJkaXNwbGF5X3ZlcnNpb24iIHZhcmlhYmxlIHdoaWNo
-Cj4gaXMgbG9uZyBhbmQgd291bGQgbWFrZSBwZW9wbGUgYWJicmV2aWF0ZSBhcyAidmVyc2lvbiIs
-IG9yICJkaXNwbGF5X3ZlciIuCj4gSW4gdGhlIGZpcnN0IGNhc2UgaXQncyBub3QgYWx3YXlzIGNs
-ZWFyIHdoYXQgdmVyc2lvbiByZWZlcnMgdG8sIGFuZCBpbgo+IHRoZSBzZWNvbmQgY2FzZSBpdCBq
-dXN0IGhpbnRzIGl0IHNob3VsZCBiZSB0aGUgbmFtZSBpbiB0aGUgZmlyc3QgcGxhY2UuCj4KPiBT
-bywgaW4gdGhlIHNhbWUgd2F5IHVzZSB1c2VkICJnZW4iIHJhdGhlciB0aGFuICJnZW5lcmF0aW9u
-IiwgdXNlICJ2ZXIiCj4gaW5zdGVhZCBvZiAidmVyc2lvbiIuCj4KPiBTaWduZWQtb2ZmLWJ5OiBM
-dWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KPiBSZXZpZXdlZC1ieTog
-Sm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Cj4gQWNrZWQtYnk6
-IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+CgpSZXZpZXdlZC1ieTogSmFuaSBO
-aWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfZHJ2LmggICAgICAgICAgfCAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfcGNpLmMgICAgICAgICAgfCA0ICsrLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
-ZGV2aWNlX2luZm8uaCB8IDIgKy0KPiAgMyBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyks
-IDQgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKPiBpbmRleCA2OWU0M2Jm
-OTFhMTUuLjhjNjJiYjJhYmQzMSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X2Rydi5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaAo+IEBAIC0x
-MjM3LDcgKzEyMzcsNyBAQCBzdGF0aWMgaW5saW5lIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpw
-ZGV2X3RvX2k5MTUoc3RydWN0IHBjaV9kZXYgKnBkZXYpCj4gICNkZWZpbmUgSU5URUxfR0VOKGRl
-dl9wcml2KQkoSU5URUxfSU5GTyhkZXZfcHJpdiktPmdlbikKPiAgI2RlZmluZSBJTlRFTF9ERVZJ
-RChkZXZfcHJpdikJKFJVTlRJTUVfSU5GTyhkZXZfcHJpdiktPmRldmljZV9pZCkKPiAgCj4gLSNk
-ZWZpbmUgRElTUExBWV9WRVIoaTkxNSkJKElOVEVMX0lORk8oaTkxNSktPmRpc3BsYXkudmVyc2lv
-bikKPiArI2RlZmluZSBESVNQTEFZX1ZFUihpOTE1KQkoSU5URUxfSU5GTyhpOTE1KS0+ZGlzcGxh
-eS52ZXIpCj4gICNkZWZpbmUgSVNfRElTUExBWV9SQU5HRShpOTE1LCBmcm9tLCB1bnRpbCkgXAo+
-ICAJKERJU1BMQVlfVkVSKGk5MTUpID49IChmcm9tKSAmJiBESVNQTEFZX1ZFUihpOTE1KSA8PSAo
-dW50aWwpKQo+ICAjZGVmaW5lIElTX0RJU1BMQVlfVkVSKGk5MTUsIHYpIChESVNQTEFZX1ZFUihp
-OTE1KSA9PSAodikpCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNp
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jCj4gaW5kZXggNDgwNTUzNzQ2Nzk0
-Li5jZTVjYmVhZjAzNmQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9w
-Y2kuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKPiBAQCAtMzYsNyAr
-MzYsNyBAQAo+ICAjaW5jbHVkZSAiaTkxNV9zZWxmdGVzdC5oIgo+ICAKPiAgI2RlZmluZSBQTEFU
-Rk9STSh4KSAucGxhdGZvcm0gPSAoeCkKPiAtI2RlZmluZSBHRU4oeCkgLmdlbiA9ICh4KSwgLmdl
-bl9tYXNrID0gQklUKCh4KSAtIDEpLCAuZGlzcGxheS52ZXJzaW9uID0gKHgpCj4gKyNkZWZpbmUg
-R0VOKHgpIC5nZW4gPSAoeCksIC5nZW5fbWFzayA9IEJJVCgoeCkgLSAxKSwgLmRpc3BsYXkudmVy
-ID0gKHgpCj4gIAo+ICAjZGVmaW5lIEk4NDVfUElQRV9PRkZTRVRTIFwKPiAgCS5waXBlX29mZnNl
-dHMgPSB7IFwKPiBAQCAtNzIzLDcgKzcyMyw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxf
-ZGV2aWNlX2luZm8gYnh0X2luZm8gPSB7Cj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2
-aWNlX2luZm8gZ2xrX2luZm8gPSB7Cj4gIAlHRU45X0xQX0ZFQVRVUkVTLAo+ICAJUExBVEZPUk0o
-SU5URUxfR0VNSU5JTEFLRSksCj4gLQkuZGlzcGxheS52ZXJzaW9uID0gMTAsCj4gKwkuZGlzcGxh
-eS52ZXIgPSAxMCwKPiAgCS5kZGJfc2l6ZSA9IDEwMjQsCj4gIAlHTEtfQ09MT1JTLAo+ICB9Owo+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5oIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaAo+IGluZGV4IDJmNDQyZDQx
-OGExNS4uYjE2Yzc1OTI3YTEyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
-dGVsX2RldmljZV9pbmZvLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZp
-Y2VfaW5mby5oCj4gQEAgLTE4OSw3ICsxODksNyBAQCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8g
-ewo+ICAjdW5kZWYgREVGSU5FX0ZMQUcKPiAgCj4gIAlzdHJ1Y3Qgewo+IC0JCXU4IHZlcnNpb247
-Cj4gKwkJdTggdmVyOwo+ICAKPiAgI2RlZmluZSBERUZJTkVfRkxBRyhuYW1lKSB1OCBuYW1lOjEK
-PiAgCQlERVZfSU5GT19ESVNQTEFZX0ZPUl9FQUNIX0ZMQUcoREVGSU5FX0ZMQUcpOwoKLS0gCkph
-bmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, 12 Apr 2021 at 18:01, Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Mon, Apr 12, 2021 at 6:08 PM Matthew Auld
+> <matthew.william.auld@gmail.com> wrote:
+> >
+> > On Mon, 12 Apr 2021 at 16:17, Daniel Vetter <daniel@ffwll.ch> wrote:
+> > >
+> > > On Mon, Apr 12, 2021 at 10:05:25AM +0100, Matthew Auld wrote:
+> > > > We need to general our accessor for the page directories and tables from
+> > > > using the simple kmap_atomic to support local memory, and this setup
+> > > > must be done on acquisition of the backing storage prior to entering
+> > > > fence execution contexts. Here we replace the kmap with the object
+> > > > maping code that for simple single page shmemfs object will return a
+> > > > plain kmap, that is then kept for the lifetime of the page directory.
+> > > >
+> > > > v2: (Thomas) Rebase on dma_resv and obj->mm.lock removal.
+> > > >
+> > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > >
+> > > So I wanted to understand what px stands for as an abbreviation, and dug
+> > > all the way down to this:
+> > >
+> > > commit 567047be2a7ede082d29f45524c287b87bd75e53
+> > > Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > > Date:   Thu Jun 25 18:35:12 2015 +0300
+> > >
+> > >     drm/i915/gtt: Use macros to access dma mapped pages
+> > >
+> > > I still have no idea what it means, I guess px = page. But I also
+> > > committed this, so I guess can blame myself :-)
+> > >
+> > > But while digging I've stumbled over this here
+> > >
+> > > commit 6eebfe8a10a62139d681e2f1af1386252742278b
+> > > Author: Chris Wilson <chris@chris-wilson.co.uk>
+> > > Date:   Fri Jul 12 08:58:18 2019 +0100
+> > >
+> > >     drm/i915/gtt: Use shallow dma pages for scratch
+> > >
+> > >
+> > > And that's some serious wtf. Yes we've done some compile-time type
+> > > casting automagic between i915_priv and dev in the past, and I think even
+> > > that was bad taste. But it was justified with that we have these
+> > > everywhere (especially in the mmio macros), and it would be a terrible
+> > > flag day.
+> > >
+> > > But I'm not seeing any need for auto-casting for these pages here, and I'm
+> > > not aware that we're doing this anywhere else in kernel code. There is
+> > > some macro-trickery in lockdep annotations, but that relies on the lockdep
+> > > map having the same struct member name in all lock types, and is not
+> > > exposed to drivers at all.
+> > >
+> > > Am I missing something, or why do we have this compile-time type casting
+> > > stuff going on in i915 page accessors?
+> >
+> > I think 'x' in the px family of macros/functions is meant in the
+> > variable/polymorphic sense, so it can potentially be a pt, pd, etc
+> > underneath. If you look at px_base() for example all it does is fish
+> > out the base GEM object from the structure, using the
+> > known-at-compile-time-type, which then lets us get at the dma address,
+> > vaddr etc.
+>
+> Yeah, but that's not how things landed. px predates the magic
+> polymorphism. I think the px just stands for page, or at least
+> originally only stood for page. I'm not sure honestly. It seems to be
+> just used for page directory type of things, but I haven't found that
+> written down anywhere.
+>
+> > It does seem pretty magical, but seems ok to me, if it means less typing?
+>
+> That's the worst justification. Code is generally write once, read
+> many times. Optimizing for writing at the cost of magic indirection is
+> generally not the right tradeoff in the kernel, where any indirection
+> could hide a major gotcha. In huge userspace applications fancy
+> abstraction and polymorphism is often the right thing to do, but there
+> you also have a real compiler with a real typesystem (generally at
+> least) helping you out. Or it's yolo duct-taping with lots of tests,
+> where the speed at which you can hack up something matters more than
+> being able to read it quickly.
+>
+> We're typing C here. It is generally rather verbose, with type casting
+> all done explicitly.
+
+Ok. So should we change this around for this patch? The px_ stuff is
+already quite prevalent it seems, and the px_vaddr() is just one part
+of it? Maybe just add pt_vaddr(), pd_vaddr() etc instead?
+
+> -Daniel
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
