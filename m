@@ -1,31 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF0435DC63
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 12:19:18 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD69435DCBA
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 12:48:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C842C6E2B6;
-	Tue, 13 Apr 2021 10:19:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBE8689B27;
+	Tue, 13 Apr 2021 10:48:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D3CF16E3DF;
- Tue, 13 Apr 2021 10:19:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CAF05AA915;
- Tue, 13 Apr 2021 10:19:14 +0000 (UTC)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C6CA89B27;
+ Tue, 13 Apr 2021 10:48:00 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id AC2ADAEFB;
+ Tue, 13 Apr 2021 10:47:58 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20210413094937.3736541-1-daniel.vetter@ffwll.ch>
+ <20210413094937.3736541-3-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <af920f32-4fc1-a96e-64e6-8352fb5da523@suse.de>
+Date: Tue, 13 Apr 2021 12:47:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jiapeng Chong" <jiapeng.chong@linux.alibaba.com>
-Date: Tue, 13 Apr 2021 10:19:14 -0000
-Message-ID: <161830915482.8796.15009668199074985130@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <1618294728-78952-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-In-Reply-To: <1618294728-78952-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gvt=3A_remove_useless_function?=
+In-Reply-To: <20210413094937.3736541-3-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/shmem-helper: Align to page size in
+ dumb_create
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,171 +41,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1410867633=="
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0769769404=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1410867633==
-Content-Type: multipart/alternative;
- boundary="===============2790768725448933710=="
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0769769404==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="jVfcCROk7CxJ91gQLk00cE3D6GttNh4VX"
 
---===============2790768725448933710==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--jVfcCROk7CxJ91gQLk00cE3D6GttNh4VX
+Content-Type: multipart/mixed; boundary="lWRzu6cbfPSWiUWanLTs6KEPAMCUK3JOu";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Message-ID: <af920f32-4fc1-a96e-64e6-8352fb5da523@suse.de>
+Subject: Re: [PATCH 3/3] drm/shmem-helper: Align to page size in dumb_create
+References: <20210413094937.3736541-1-daniel.vetter@ffwll.ch>
+ <20210413094937.3736541-3-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210413094937.3736541-3-daniel.vetter@ffwll.ch>
 
-== Series Details ==
+--lWRzu6cbfPSWiUWanLTs6KEPAMCUK3JOu
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/i915/gvt: remove useless function
-URL   : https://patchwork.freedesktop.org/series/88996/
-State : success
+Hi
 
-== Summary ==
+Am 13.04.21 um 11:49 schrieb Daniel Vetter:
+> shmem helpers seem a bit sloppy here by automatically rounding up when
+> actually creating the buffer, which results in under-reporting of what
+> we actually have. Caught by igt/vgem_basic tests.
+>=20
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 
-CI Bug Log - changes from CI_DRM_9963 -> Patchwork_19920
-====================================================
+Drivers get it more wrong than right. I always felt that we should have=20
+all this in generic code with a few parameters somewhere.
 
-Summary
--------
+But makes sense.
 
-  **SUCCESS**
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
 
-  No regressions found.
+> ---
+>   drivers/gpu/drm/drm_gem_shmem_helper.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/d=
+rm_gem_shmem_helper.c
+> index 6d625cee7a6a..d5e6d4568f99 100644
+> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+> @@ -505,13 +505,13 @@ int drm_gem_shmem_dumb_create(struct drm_file *fi=
+le, struct drm_device *dev,
+>  =20
+>   	if (!args->pitch || !args->size) {
+>   		args->pitch =3D min_pitch;
+> -		args->size =3D args->pitch * args->height;
+> +		args->size =3D PAGE_ALIGN(args->pitch * args->height);
+>   	} else {
+>   		/* ensure sane minimum values */
+>   		if (args->pitch < min_pitch)
+>   			args->pitch =3D min_pitch;
+>   		if (args->size < args->pitch * args->height)
+> -			args->size =3D args->pitch * args->height;
+> +			args->size =3D PAGE_ALIGN(args->pitch * args->height);
+>   	}
+>  =20
+>   	shmem =3D drm_gem_shmem_create_with_handle(file, dev, args->size, &a=
+rgs->handle);
+>=20
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19920 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_prime@amd-to-i915:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-kbl-soraka:      [DMESG-WARN][2] ([i915#1982] / [i915#262]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9963/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
-  [i915#3278]: https://gitlab.freedesktop.org/drm/intel/issues/3278
-
-
-Participating hosts (47 -> 42)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9963 -> Patchwork_19920
-
-  CI-20190529: 20190529
-  CI_DRM_9963: f71c7917b4b6d6c093f1e65e62acd3360d96e63a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19920: fb5616c78d3a64660d6fe01fcc23474b0aec6155 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fb5616c78d3a drm/i915/gvt: remove useless function
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html
-
---===============2790768725448933710==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+--lWRzu6cbfPSWiUWanLTs6KEPAMCUK3JOu--
 
+--jVfcCROk7CxJ91gQLk00cE3D6GttNh4VX
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gvt: remove useless function</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88996/">https://patchwork.freedesktop.org/series/88996/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+-----BEGIN PGP SIGNATURE-----
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html</a></td></tr>
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmB1dt0FAwAAAAAACgkQlh/E3EQov+DP
+4BAAygIlC8JQb0tw3dOLDSCRbqN6qGaeHa0YS17K+LZLhm50FcfzSmH9v/TOGJ+zzBIeC6crK01P
+Dem2fb9GGYu3U5ECnvG8/i2kah3tE7aDQ9uylUaV/LlY2mg85sz7Y8NiQ3im7osjS2FmKroW19mB
+W8PCAU655tFcXJzyje1uctIbxvql1jIPr75pKS+yi/nydJqcDi3B1a8fpoq6qnQ3QQ2/oUuolSMP
+w14jWSIDAoRbMqhki9mef3sZXpi9LTDi/tlxielmfM2gizpZTwy1iWlKFqf8MpZu9UI84Aar8MJD
+37TLqqiaKS7QNrzEaNIgKYieZ9e7r6gh4rjetg5vwZv8W9PaqEtTF6QALyAcMIQhE8bgkcaaNQ/p
+ZcIGHQl3d/YnuQDamym3qXZKlirvgNj5eEKhRaVt5X1Hwmd2WaysCg+RY/ChQVQWY8umf+vfILtv
+Yd+uYzUBE8ZP1/04drzjE8W0Pm40D/5h8hvJWD2/wufd8bWFwcRobVwSLDzV8xL/9+I3VPsKU2iC
+h5oxDrgSN6fzLbZ6513oxwAPhBRgVfqb6I2utOLQGef37TNq9u6PW9SdK/a7lXzLMuGHoRHkQpme
+hJxfh1JNHzpdz6xkxjamd7syddegBJDPBSq0YzBAvE9GaQRUJPtSVArwZshwnwi07wM7MHMo5qMp
+UuQ=
+=1po7
+-----END PGP SIGNATURE-----
 
-</table>
+--jVfcCROk7CxJ91gQLk00cE3D6GttNh4VX--
 
-
-    <h1>CI Bug Log - changes from CI_DRM_9963 -&gt; Patchwork_19920</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19920 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@amdgpu/amd_prime@amd-to-i915:<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@debugfs_test@read_all_entries:<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9963/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 42)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9963 -&gt; Patchwork_19920</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9963: f71c7917b4b6d6c093f1e65e62acd3360d96e63a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19920: fb5616c78d3a64660d6fe01fcc23474b0aec6155 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fb5616c78d3a drm/i915/gvt: remove useless function</p>
-
-</body>
-</html>
-
---===============2790768725448933710==--
-
---===============1410867633==
+--===============0769769404==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -213,4 +163,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1410867633==--
+--===============0769769404==--
