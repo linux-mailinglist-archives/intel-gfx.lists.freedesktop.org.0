@@ -1,32 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 843FE35DE4B
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 14:10:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B902A35DE50
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 14:11:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D03AF89D77;
-	Tue, 13 Apr 2021 12:10:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E963E89F38;
+	Tue, 13 Apr 2021 12:11:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 61C2989CF8;
- Tue, 13 Apr 2021 12:10:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 55D89A47E8;
- Tue, 13 Apr 2021 12:10:39 +0000 (UTC)
+Received: from new2-smtp.messagingengine.com (new2-smtp.messagingengine.com
+ [66.111.4.224])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E16B89E14;
+ Tue, 13 Apr 2021 12:11:13 +0000 (UTC)
+Received: from compute7.internal (compute7.nyi.internal [10.202.2.47])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 96B8B58037A;
+ Tue, 13 Apr 2021 08:11:10 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute7.internal (MEProxy); Tue, 13 Apr 2021 08:11:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding; s=fm2; bh=cbuXGXgLaupvjIq688HiNFaXJU
+ 6ajc1vYG74Y5TUPqo=; b=tujpqvXWAeMSn+Iud1rrp39cxnmCwwMYPwb3bM6sfv
+ 37aw84wL+3GvX9CuXK8+m46Xa0Dx4nhumPBFspq/ug8Wq67qpgyCQTLNUHbQq6n5
+ pZ8/6Ue40NZScCZ3Rn9kY70SOaDdWXLfi8abdPtkLGBZ+L7rzrMB16GxMQqrTibm
+ 0AjDcQ5LTahPNYiUS1xplN1HtQ1IwcYso29V+C0p2LDsMMxlxmI7i/kHpedRXpA+
+ AvkobIQfhL4ezySB8D5Vwl5kBDaaeD4bYTUUHp/BsC580g85iOv8d/z6ezQC8SpY
+ 53quJbjdJrjgroNRqe6k5C7hSQL180qPQpMfcE0grBKA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-transfer-encoding:date:from
+ :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=cbuXGXgLaupvjIq68
+ 8HiNFaXJU6ajc1vYG74Y5TUPqo=; b=tvv5NuVq4iFFw/HyUJZtE8AzUUC0EfxAz
+ Sd3z4qSb6TXq5druZhtnmqLVUWcqvkHvPZJA0dGzjyv2kvYVnBrrcZnLyJVK5dVX
+ 9+Q7sVV8fiMvRsHPVkess7E9KEAQmCWKODB4jZmnMaOVA+AvUg2cwGY5p3NsAUtD
+ oWRchrvoKiZ5+bLyYHYzPU/E6vyfKb4MRao8kwqbQpe6gToiSD9Ur0tlb6ZJ92ax
+ HMthUay6g2x0HaW93wh6T05LexrG9B2bsrjoZS+E0jeGA19yU4pw1BfKUZSaN0as
+ qA3R3EeAS2rI9MxPwi2d6hfKEMYlbHEqrjJHnqWBoUfDCmBzTHg8w==
+X-ME-Sender: <xms:W4p1YABo0yVadzZXjLw4BSySjTRDU-qjkjuDEEUHdQRuqgGS6bp2rA>
+ <xme:W4p1YCfJ6FJLy44n7G8l1dammo0XxBqmUb9ltx1xrIF03VadlIbwvK7FGj_ELmAW3
+ PcTh_mlshMY-iMYz6c>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudekledggeelucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcu
+ tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
+ hrnhepjeffheduvddvvdelhfegleelfffgieejvdehgfeijedtieeuteejteefueekjeeg
+ necukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+ hrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:W4p1YAel71TL6qfdXAnxyQ7nyjc0NAsrXFNQQmuSFnKhpO8PTagDyA>
+ <xmx:W4p1YOh6bG4ktCX6o1FHHVpR7pI3ZWw9af6oTOx2_k9gkGGXw8AMqQ>
+ <xmx:W4p1YETOewf2IL2MIRMK-tOOZkgKkX1nQmAeaOcuTLxH__McGF6g4A>
+ <xmx:Xop1YHpOybSvxgqLY0oD_aNsO5vuftlYybUhxqY7r2Ex50L2h8kwMQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id EDC6E24005A;
+ Tue, 13 Apr 2021 08:11:06 -0400 (EDT)
+From: Maxime Ripard <maxime@cerno.tech>
+To: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <maxime@cerno.tech>
+Date: Tue, 13 Apr 2021 14:11:00 +0200
+Message-Id: <20210413121104.375789-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Tue, 13 Apr 2021 12:10:39 -0000
-Message-ID: <161831583932.8797.5631148571000143975@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210413094904.3736372-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210413094904.3736372-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/12=5D_drm/arm=3A_Don=27t_set_all?=
- =?utf-8?q?ow=5Ffb=5Fmodifiers_explicitly?=
+Subject: [Intel-gfx] [PATCH v2 1/5] drm/connector: Create a helper to attach
+ the hdr_output_metadata property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,124 +79,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Tim Gover <tim.gover@raspberrypi.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Eric Anholt <eric@anholt.net>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Jernej Skrabec <jernej.skrabec@siol.net>,
+ Dom Cobley <dom@raspberrypi.com>, Andrzej Hajda <a.hajda@samsung.com>,
+ linux-kernel@vger.kernel.org, Robert Foss <robert.foss@linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+All the drivers that implement HDR output call pretty much the same
+function to initialise the hdr_output_metadata property, and while the
+creation of that property is in a helper, every driver uses the same
+code to attach it.
 
-Series: series starting with [01/12] drm/arm: Don't set allow_fb_modifiers explicitly
-URL   : https://patchwork.freedesktop.org/series/88999/
-State : warning
+Provide a helper for it as well
 
-== Summary ==
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+Reviewed-by: Jernej Skrabec <jernej.skrabec@siol.net>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
-$ dim checkpatch origin/drm-tip
-95d1b78648fe drm/arm: Don't set allow_fb_modifiers explicitly
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
-#8: 
-commit 890880ddfdbe256083170866e49c87618b706ac7
+---
 
--:47: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+Changes from v1:
+  - Rebased on latest drm-misc-next tag
+  - Added the tags
+---
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  4 +---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |  3 +--
+ drivers/gpu/drm/drm_connector.c               | 21 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  3 +--
+ include/drm/drm_connector.h                   |  1 +
+ 5 files changed, 25 insertions(+), 7 deletions(-)
 
-total: 1 errors, 1 warnings, 0 checks, 14 lines checked
-5a0febe6beff drm/arm/malidp: Always list modifiers
--:23: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
-#23: FILE: drivers/gpu/drm/arm/malidp_planes.c:930:
-+static const uint64_t linear_only_modifiers[] = {
-
--:41: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 1 checks, 21 lines checked
-0e8191b69ca9 drm/exynos: Don't set allow_fb_modifiers explicitly
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
-#8: 
-commit 890880ddfdbe256083170866e49c87618b706ac7
-
--:37: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 7 lines checked
-9e2aecf3367a drm/i915: Don't set allow_fb_modifiers explicitly
--:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
-#11: 
-commit 890880ddfdbe256083170866e49c87618b706ac7
-
--:44: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 8 lines checked
-1bf4883a3d8f drm/imx: Don't set allow_fb_modifiers explicitly
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
-#8: 
-commit 890880ddfdbe256083170866e49c87618b706ac7
-
--:53: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 14 lines checked
-5136a63981d1 drm/msm/dpu1: Don't set allow_fb_modifiers explicitly
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
-#8: 
-commit 890880ddfdbe256083170866e49c87618b706ac7
-
--:42: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 11 lines checked
-afa911ded79d drm/msm/mdp4: Fix modifier support enabling
--:41: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
-#41: FILE: drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c:352:
-+static const uint64_t supported_format_modifiers[] = {
-
--:58: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 1 warnings, 1 checks, 28 lines checked
-cdfd52445cfa drm/nouveau: Don't set allow_fb_modifiers explicitly
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
-#8: 
-commit 890880ddfdbe256083170866e49c87618b706ac7
-
--:38: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 7 lines checked
-e2b8b541e594 drm/stm: Don't set allow_fb_modifiers explicitly
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
-#8: 
-commit 890880ddfdbe256083170866e49c87618b706ac7
-
--:38: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 8 lines checked
-d87b3d5a3254 drm/tegra: Don't set allow_fb_modifiers explicitly
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
-#8: 
-commit 890880ddfdbe256083170866e49c87618b706ac7
-
--:38: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
-#38: FILE: drivers/gpu/drm/tegra/dc.c:962:
-+static const uint64_t linear_modifiers[] = {
-
--:77: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 1 checks, 36 lines checked
-cd7d120c5b56 drm/vc4: Don't set allow_fb_modifiers explicitly
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
-#8: 
-commit 890880ddfdbe256083170866e49c87618b706ac7
-
--:32: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 1 errors, 1 warnings, 0 checks, 7 lines checked
-0fa454884dab drm/modifiers: Enforce consistency between the cap an IN_FORMATS
--:8: WARNING:TYPO_SPELLING: 'ommitted' may be misspelled - perhaps 'omitted'?
-#8: 
-here, and some drivers screwed this up a bit. Most just ommitted the
-                                                        ^^^^^^^^
-
--:80: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
-
-total: 0 errors, 2 warnings, 0 checks, 43 lines checked
-
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+index 55e39b462a5e..1e22ce718010 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -7078,9 +7078,7 @@ void amdgpu_dm_connector_init_helper(struct amdgpu_display_manager *dm,
+ 	if (connector_type == DRM_MODE_CONNECTOR_HDMIA ||
+ 	    connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+ 	    connector_type == DRM_MODE_CONNECTOR_eDP) {
+-		drm_object_attach_property(
+-			&aconnector->base.base,
+-			dm->ddev->mode_config.hdr_output_metadata_property, 0);
++		drm_connector_attach_hdr_output_metadata_property(&aconnector->base);
+ 
+ 		if (!aconnector->mst_port)
+ 			drm_connector_attach_vrr_capable_property(&aconnector->base);
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index dda4fa9a1a08..f24bbb840dbf 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -2492,8 +2492,7 @@ static int dw_hdmi_connector_create(struct dw_hdmi *hdmi)
+ 	drm_connector_attach_max_bpc_property(connector, 8, 16);
+ 
+ 	if (hdmi->version >= 0x200a && hdmi->plat_data->use_drm_infoframe)
+-		drm_object_attach_property(&connector->base,
+-			connector->dev->mode_config.hdr_output_metadata_property, 0);
++		drm_connector_attach_hdr_output_metadata_property(connector);
+ 
+ 	drm_connector_attach_encoder(connector, hdmi->bridge.encoder);
+ 
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 7631f76e7f34..a4aa2d87af35 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -2150,6 +2150,27 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+ }
+ EXPORT_SYMBOL(drm_connector_attach_max_bpc_property);
+ 
++/**
++ * drm_connector_attach_hdr_output_metadata_property - attach "HDR_OUTPUT_METADA" property
++ * @connector: connector to attach the property on.
++ *
++ * This is used to allow the userspace to send HDR Metadata to the
++ * driver.
++ *
++ * Returns:
++ * Zero on success, negative errno on failure.
++ */
++int drm_connector_attach_hdr_output_metadata_property(struct drm_connector *connector)
++{
++	struct drm_device *dev = connector->dev;
++	struct drm_property *prop = dev->mode_config.hdr_output_metadata_property;
++
++	drm_object_attach_property(&connector->base, prop, 0);
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_connector_attach_hdr_output_metadata_property);
++
+ /**
+  * drm_connector_set_vrr_capable_property - sets the variable refresh rate
+  * capable property for a connector
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 95919d325b0b..f2f1b025e6ba 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2965,8 +2965,7 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
+ 	drm_connector_attach_content_type_property(connector);
+ 
+ 	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
+-		drm_object_attach_property(&connector->base,
+-			connector->dev->mode_config.hdr_output_metadata_property, 0);
++		drm_connector_attach_hdr_output_metadata_property(connector);
+ 
+ 	if (!HAS_GMCH(dev_priv))
+ 		drm_connector_attach_max_bpc_property(connector, 8, 12);
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 1922b278ffad..32172dab8427 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1671,6 +1671,7 @@ int drm_connector_attach_scaling_mode_property(struct drm_connector *connector,
+ 					       u32 scaling_mode_mask);
+ int drm_connector_attach_vrr_capable_property(
+ 		struct drm_connector *connector);
++int drm_connector_attach_hdr_output_metadata_property(struct drm_connector *connector);
+ int drm_mode_create_aspect_ratio_property(struct drm_device *dev);
+ int drm_mode_create_hdmi_colorspace_property(struct drm_connector *connector);
+ int drm_mode_create_dp_colorspace_property(struct drm_connector *connector);
+-- 
+2.30.2
 
 _______________________________________________
 Intel-gfx mailing list
