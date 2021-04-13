@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E056035D6E2
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 07:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53D4235D6E0
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 07:10:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E2736E20F;
-	Tue, 13 Apr 2021 05:10:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D6AC6E1D8;
+	Tue, 13 Apr 2021 05:10:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CC4E6E140
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2196E1BD
  for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 05:10:48 +0000 (UTC)
-IronPort-SDR: 9x86szwoaRYxJEj2kxfOty8e/p8v1ZByjZfVoMsAoEpqs8IERppA148HZZCz9Tnme8rYmILPEc
- msn+/IRwWTMw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="194371992"
-X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="194371992"
+IronPort-SDR: ugdKlhRQKHY1IFaixMLwgTt6Jfuov8xSpB0OAgKe1V4vuwOvB333cGwIlM4vFA0ejTb7Vj0/Zk
+ vbpPqmsPDVew==
+X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="194371993"
+X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="194371993"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2021 22:10:46 -0700
-IronPort-SDR: Pw0Oeuvpl56gNAAIqSTAGBsLscgBHKgcxbVaJHr9pUnAVpbQaxr7cbzlS3XgfIUDrGBdyQVWK6
- iQb8mWxHZVkA==
-X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="460450772"
+ 12 Apr 2021 22:10:47 -0700
+IronPort-SDR: YG6p5ebtQz653HNNtOtWzo/7vTwvwG6hO5SLivU3naZZuUvLc/jm6i/V12XL6g6v/oSgekScXl
+ Cjr5RehcXzfw==
+X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="460450774"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Apr 2021 22:10:45 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 12 Apr 2021 22:10:01 -0700
-Message-Id: <20210413051002.92589-12-lucas.demarchi@intel.com>
+Date: Mon, 12 Apr 2021 22:10:02 -0700
+Message-Id: <20210413051002.92589-13-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210413051002.92589-1-lucas.demarchi@intel.com>
 References: <20210413051002.92589-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 11/12] drm/i915: add media and display
- versions to device_info print
+Subject: [Intel-gfx] [PATCH v2 12/12] drm/i915: split dgfx features from gen
+ 12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,27 +52,40 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since we are now converting from a single gen version to graphics_ver,
-media_ver and display_ver, add the last 2 when printing the device info.
+Make them independent so we can use DGFX_FEATURES more generically.
+For future platforms that do not use the GEN nomenclature we will define
+graphics, media and display separately, so we avoid setting graphics_ver
+with the GEN() macro.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/intel_device_info.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/i915_pci.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index b58bc7bff65e..6a351a709417 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -96,6 +96,8 @@ void intel_device_info_print_static(const struct intel_device_info *info,
- 				    struct drm_printer *p)
- {
- 	drm_printf(p, "graphics_ver: %u\n", info->graphics_ver);
-+	drm_printf(p, "media_ver: %u\n", info->media_ver);
-+	drm_printf(p, "display_ver: %u\n", info->display.ver);
- 	drm_printf(p, "gt: %d\n", info->gt);
- 	drm_printf(p, "iommu: %s\n", iommu_name());
- 	drm_printf(p, "memory-regions: %x\n", info->memory_regions);
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 1453c1436f31..44e7b94db63d 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -907,8 +907,7 @@ static const struct intel_device_info rkl_info = {
+ 		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0),
+ };
+ 
+-#define GEN12_DGFX_FEATURES \
+-	GEN12_FEATURES, \
++#define DGFX_FEATURES \
+ 	.memory_regions = REGION_SMEM | REGION_LMEM, \
+ 	.has_master_unit_irq = 1, \
+ 	.has_llc = 0, \
+@@ -916,7 +915,8 @@ static const struct intel_device_info rkl_info = {
+ 	.is_dgfx = 1
+ 
+ static const struct intel_device_info dg1_info __maybe_unused = {
+-	GEN12_DGFX_FEATURES,
++	GEN12_FEATURES,
++	DGFX_FEATURES,
+ 	PLATFORM(INTEL_DG1),
+ 	.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
+ 	.require_force_probe = 1,
 -- 
 2.31.1
 
