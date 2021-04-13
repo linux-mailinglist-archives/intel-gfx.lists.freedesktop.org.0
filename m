@@ -1,41 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E69C35DC17
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 12:03:21 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6292E35DC61
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 12:19:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DDA189BAF;
-	Tue, 13 Apr 2021 10:03:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C0906E0F2;
+	Tue, 13 Apr 2021 10:19:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ACEB89BAF
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 10:03:17 +0000 (UTC)
-IronPort-SDR: +0+hmUxVweDf4dni0bN6fVF/6NxM3RsV1US6O7/pjc2BnKNq6P+1vLyNVe2tetZ4uZTnR4eSct
- pkxlzbmTaKgg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="191192769"
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="191192769"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 03:03:16 -0700
-IronPort-SDR: i0pj8U4bIxlZ2UTdOSZ8tHQFgL6KdPB0rqqm+793xKDX2/5MPBY/oNx9MIEodI99RsJ7w5iLpy
- hNqTUyHzN1qQ==
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="424185312"
-Received: from alinapar-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.249.36.253])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 03:03:13 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210413051002.92589-1-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210413051002.92589-1-lucas.demarchi@intel.com>
-Date: Tue, 13 Apr 2021 13:03:11 +0300
-Message-ID: <87a6q2h57k.fsf@intel.com>
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
+ [IPv6:2607:f8b0:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33D4C89F73
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 10:19:09 +0000 (UTC)
+Received: by mail-oi1-x233.google.com with SMTP id x2so16501673oiv.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 03:19:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=RbiNLZ7o/dsNK5HIgVqIuW0ZuSfjH0LlwngZuREvWqk=;
+ b=cqw2pGrQ/cM6PxRd3RUABRVmezTQ8abfOSzJ22kbr9jdzfpgcOn7gC+UpNOPVHMFai
+ +zDmZ8NXvXWcp8KlJHs203CI1p2l+M2pkjywROu7heTRI8yKBOLtfilmhFNH9tSwjla4
+ 1LG2vQ71hSOY+qg+32lZAtt03hAt0gs/TjM10=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=RbiNLZ7o/dsNK5HIgVqIuW0ZuSfjH0LlwngZuREvWqk=;
+ b=XeVAj5MZyL4BVmIqMIMWHzaklYDqXxsPXZ/68/PTjC/uAXzJ7ZOisoBItgAeZ9lyEL
+ Y8aSIFOSVGyCERxtcX+wdhjrmzvoxb1SFm0NKRiO/wEd1nAq/y53CEsiDTiS+btAh6df
+ Lgsajn4n7HiBDkQLQc8doxE7pp3YsNYNfZvGpTdqIKG24bnT3uediIy80EH+lKdGPTc/
+ nf+CR24AyP1XUReX8mJmfA8e0aqbk4bIkigdPtPKexTHQY9XxtEMbIUMvPEd2tE7OiJK
+ veA63C+84+kU0FvWu60i5d3x7kuyVJQypMkud4xNlNYaPr9FWF57XF8JizpuYaBqB3j3
+ mjJw==
+X-Gm-Message-State: AOAM530kkPOjCj7yFyMwhb/cuZkmF2mtb3R08XGGQuTgQcBK4zrsq/hg
+ odlRGCqdBt3GrWKWdfDycxtCteTtMXG2+FwiHUk2Uw==
+X-Google-Smtp-Source: ABdhPJy7ZDf0BPNHIS6TWDS2y9jGpGuPIOVDBtIMxj3igFFl6eOaHK8v+MLTYZEfQdAG/IiUc5SCmWPKJlRvlLGNdfg=
+X-Received: by 2002:aca:4188:: with SMTP id o130mr2734260oia.101.1618309148398; 
+ Tue, 13 Apr 2021 03:19:08 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 00/12] drm/i915: Extend GEN renames to
- the rest of the driver
+References: <20210412090526.30547-1-matthew.auld@intel.com>
+ <20210412090526.30547-19-matthew.auld@intel.com>
+ <YHRkixaDBaf5cgkJ@phenom.ffwll.local>
+ <CAM0jSHM_1V6OSZhuuaaAMmHi4BTiZ7Hbo99i2b=RzFFBMuYJ_A@mail.gmail.com>
+ <CAKMK7uFK5_4cbWeefjvXzfnHXsTh1OCtWSyLHUy5QhiFfwMf1A@mail.gmail.com>
+ <CAM0jSHP=xA0taPVVr5Fa5O9rMEv-upr_or_c2QbRO2MhNGEBCw@mail.gmail.com>
+In-Reply-To: <CAM0jSHP=xA0taPVVr5Fa5O9rMEv-upr_or_c2QbRO2MhNGEBCw@mail.gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 13 Apr 2021 12:18:57 +0200
+Message-ID: <CAKMK7uESFPMOd=ysUaMzVbijAeROYjYr67JRDGxPYeeM1iVuWg@mail.gmail.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 18/19] drm/i915/gtt: map the PD up front
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,53 +62,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 12 Apr 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Like was done for the display part that parted ways with INTEL_GEN(),
-> replacing with DISPLAY_VER(), do a similar conversion for the rest of
-> the driver.
+On Tue, Apr 13, 2021 at 11:29 AM Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
 >
-> v1.1: Remove .ko that was incorrectly added as part of patch 11, making it
-> very big and not going through the mailing list. Sorry for those in CC
-> who received it.
+> On Mon, 12 Apr 2021 at 18:01, Daniel Vetter <daniel@ffwll.ch> wrote:
+> >
+> > On Mon, Apr 12, 2021 at 6:08 PM Matthew Auld
+> > <matthew.william.auld@gmail.com> wrote:
+> > >
+> > > On Mon, 12 Apr 2021 at 16:17, Daniel Vetter <daniel@ffwll.ch> wrote:
+> > > >
+> > > > On Mon, Apr 12, 2021 at 10:05:25AM +0100, Matthew Auld wrote:
+> > > > > We need to general our accessor for the page directories and tables from
+> > > > > using the simple kmap_atomic to support local memory, and this setup
+> > > > > must be done on acquisition of the backing storage prior to entering
+> > > > > fence execution contexts. Here we replace the kmap with the object
+> > > > > maping code that for simple single page shmemfs object will return a
+> > > > > plain kmap, that is then kept for the lifetime of the page directory.
+> > > > >
+> > > > > v2: (Thomas) Rebase on dma_resv and obj->mm.lock removal.
+> > > > >
+> > > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > > >
+> > > > So I wanted to understand what px stands for as an abbreviation, and dug
+> > > > all the way down to this:
+> > > >
+> > > > commit 567047be2a7ede082d29f45524c287b87bd75e53
+> > > > Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > > > Date:   Thu Jun 25 18:35:12 2015 +0300
+> > > >
+> > > >     drm/i915/gtt: Use macros to access dma mapped pages
+> > > >
+> > > > I still have no idea what it means, I guess px = page. But I also
+> > > > committed this, so I guess can blame myself :-)
+> > > >
+> > > > But while digging I've stumbled over this here
+> > > >
+> > > > commit 6eebfe8a10a62139d681e2f1af1386252742278b
+> > > > Author: Chris Wilson <chris@chris-wilson.co.uk>
+> > > > Date:   Fri Jul 12 08:58:18 2019 +0100
+> > > >
+> > > >     drm/i915/gtt: Use shallow dma pages for scratch
+> > > >
+> > > >
+> > > > And that's some serious wtf. Yes we've done some compile-time type
+> > > > casting automagic between i915_priv and dev in the past, and I think even
+> > > > that was bad taste. But it was justified with that we have these
+> > > > everywhere (especially in the mmio macros), and it would be a terrible
+> > > > flag day.
+> > > >
+> > > > But I'm not seeing any need for auto-casting for these pages here, and I'm
+> > > > not aware that we're doing this anywhere else in kernel code. There is
+> > > > some macro-trickery in lockdep annotations, but that relies on the lockdep
+> > > > map having the same struct member name in all lock types, and is not
+> > > > exposed to drivers at all.
+> > > >
+> > > > Am I missing something, or why do we have this compile-time type casting
+> > > > stuff going on in i915 page accessors?
+> > >
+> > > I think 'x' in the px family of macros/functions is meant in the
+> > > variable/polymorphic sense, so it can potentially be a pt, pd, etc
+> > > underneath. If you look at px_base() for example all it does is fish
+> > > out the base GEM object from the structure, using the
+> > > known-at-compile-time-type, which then lets us get at the dma address,
+> > > vaddr etc.
+> >
+> > Yeah, but that's not how things landed. px predates the magic
+> > polymorphism. I think the px just stands for page, or at least
+> > originally only stood for page. I'm not sure honestly. It seems to be
+> > just used for page directory type of things, but I haven't found that
+> > written down anywhere.
+> >
+> > > It does seem pretty magical, but seems ok to me, if it means less typing?
+> >
+> > That's the worst justification. Code is generally write once, read
+> > many times. Optimizing for writing at the cost of magic indirection is
+> > generally not the right tradeoff in the kernel, where any indirection
+> > could hide a major gotcha. In huge userspace applications fancy
+> > abstraction and polymorphism is often the right thing to do, but there
+> > you also have a real compiler with a real typesystem (generally at
+> > least) helping you out. Or it's yolo duct-taping with lots of tests,
+> > where the speed at which you can hack up something matters more than
+> > being able to read it quickly.
+> >
+> > We're typing C here. It is generally rather verbose, with type casting
+> > all done explicitly.
 >
-> v2:
->   - Add "drm/i915/display: rename display version macros" to rename
->     macro and repurpose it: s/IS_DISPLAY_RANGE/IS_DISPLAY_VER/ and convert
->     the current users of IS_DISPLAY_VER to use direct comparison
->   - Group display patches to easily apply independently
+> Ok. So should we change this around for this patch? The px_ stuff is
+> already quite prevalent it seems, and the px_vaddr() is just one part
+> of it? Maybe just add pt_vaddr(), pd_vaddr() etc instead?
 
-I like the direction here. Even as the version checks diversify, we
-manage to simplify and reduce the macros.
-
-I think we're going to have to queueu this via a topic branch, and merge
-that to both drm-intel-next and drm-intel-gt-next. The next time the
-branches can sync up is just too far away at this point, and the
-conflicts may be really nasty to solve later.
-
-That does mean having to solve the conflict with 70bfb30743d5
-("drm/i915/display: Eliminate IS_GEN9_{BC,LP}") which is in din but not
-dign. The topic branch would be based on:
-
-$ git merge-base drm-intel/drm-intel-next drm-intel/drm-intel-gt-next
-9c0fed84d5750e1eea6c664e073ffa2534a17743
-
-There are two (crappy?) ideas to make that easier. 1) revert
-70bfb30743d5 from din and add it to the topic branch instead, 2) don't
-revert it but cherry-pick it to the topic branch also.
-
-Cc: Joonas and Daniel for their input on this as well.
-
-
-BR,
-Jani.
-
+Nah, that was just an orthogonal observation. The confusion with magic
+type-aware macros is preexisting and widespread, there's no point
+holding up dg1 code with that. But it is maybe something we should put
+on our cleanup list. Or at least have a better explanation for why
+exactly it is needed. Also note I'm not worried about the px stuff
+standing for pt/pd/whatever, it's the magic type casting property of
+these macros added with the 2nd patch I've mentioned above that looks
+rather questionable to me. Maybe as transition thing like we've done
+with i915_priv pointers, but not something that we should build on top
+for long term.
+-Daniel
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
