@@ -1,32 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9DA35D45C
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 02:11:27 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D84735D4C5
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 03:24:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F236B6E0EB;
-	Tue, 13 Apr 2021 00:11:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9F9E6E0EC;
+	Tue, 13 Apr 2021 01:23:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A8CC36E0EB;
- Tue, 13 Apr 2021 00:11:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 95014A8835;
- Tue, 13 Apr 2021 00:11:24 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF8086E0EC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 01:23:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1618277037;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Vdb72vFtidwPinNRFHvros4PP2idQiBFZaTUwAj2cuc=;
+ b=KuJf+Pd7fIRXRyXi8juTMJ5XGMMKU8eP4RIeNLiJlLHmiBbwJXB6EnXIOFp8yJw/LJ5oMw
+ R5jAVuNTbLLANB3TYL/EG/mEeCAd+BeiWCP3ZGz7+4cXqqa1ZjZEYQCp9h0CtG3+Kg0RGP
+ Pef8C6riI87tL4fXdVVxMBn0K4qVUjY=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-237-Z9JJU6_uN_KDYxPT0Ueucw-1; Mon, 12 Apr 2021 21:23:50 -0400
+X-MC-Unique: Z9JJU6_uN_KDYxPT0Ueucw-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
+ [10.5.11.13])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 745D18030A1;
+ Tue, 13 Apr 2021 01:23:49 +0000 (UTC)
+Received: from x1.home.shazbot.org (ovpn-117-254.rdu2.redhat.com
+ [10.10.117.254])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 2442F6F13B;
+ Tue, 13 Apr 2021 01:23:47 +0000 (UTC)
+Date: Mon, 12 Apr 2021 19:23:47 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: zhenyuw@linux.intel.com, zhi.a.wang@intel.com
+Message-ID: <20210412192347.042fbc14@x1.home.shazbot.org>
+In-Reply-To: <20210412103214.337d521a@omen>
+References: <20210412103214.337d521a@omen>
+Organization: Red Hat
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Tue, 13 Apr 2021 00:11:24 -0000
-Message-ID: <161827268460.8795.564618347544973278@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210412232413.2755054-1-imre.deak@intel.com>
-In-Reply-To: <20210412232413.2755054-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Fix_modesetting_in_case?=
- =?utf-8?q?_of_unexpected_AUX_timeouts?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Subject: Re: [Intel-gfx] Regression: gvt: vgpu 1: MI_LOAD_REGISTER_MEM
+ handler error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,169 +60,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0601600727=="
+Cc: yan.y.zhao@intel.com, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0601600727==
-Content-Type: multipart/alternative;
- boundary="===============6848749237573274567=="
+On Mon, 12 Apr 2021 10:32:14 -0600
+Alex Williamson <alex.williamson@redhat.com> wrote:
 
---===============6848749237573274567==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> Running a Windows guest on a i915-GVTg_V4_2 from an HD 5500 IGD on
+> v5.12-rc6 results in host logs:
+> 
+> gvt: vgpu 1: lrm access to register (20c0)
+> gvt: vgpu 1: MI_LOAD_REGISTER_MEM handler error
+> gvt: vgpu 1: cmd parser error
+> 0x0 
+> 0x29 
+> 
+> gvt: vgpu 1: scan wa ctx error
+> gvt: vgpu 1: failed to submit desc 0
+> gvt: vgpu 1: fail submit workload on ring rcs0
+> gvt: vgpu 1: fail to emulate MMIO write 00002230 len 4
+> 
+> The guest goes into a boot loop triggering this error before reaching
+> the desktop and rebooting.  Guest using Intel driver 20.19.15.5171
+> dated 11/4/2020 (from driver file 15.40.5171).
+> 
+> This VM works well with the same guest and userspace software stack on
+> Fedora's kernel 5.11.11-200.fc33.x86_64.  Thanks,
 
-== Series Details ==
+Bisected to:
 
-Series: series starting with [1/2] drm/i915: Fix modesetting in case of unexpected AUX timeouts
-URL   : https://patchwork.freedesktop.org/series/88982/
-State : success
+commit f18d417a57438498e0de481d3a0bc900c2b0e057
+Author: Yan Zhao <yan.y.zhao@intel.com>
+Date:   Wed Dec 23 11:45:08 2020 +0800
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9962 -> Patchwork_19917
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19917/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19917 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19917/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19917/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-
-
-Participating hosts (47 -> 42)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9962 -> Patchwork_19917
-
-  CI-20190529: 20190529
-  CI_DRM_9962: 2847b855cf291d61694ccfefa4f37d74d61f752b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19917: a89020fdabd805cc0c9cd77d817f4021ce665b09 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a89020fdabd8 drm/i915: Drop redundant address-of op before lttpr_common_caps array
-8a0eb452c5e4 drm/i915: Fix modesetting in case of unexpected AUX timeouts
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19917/index.html
-
---===============6848749237573274567==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915: Fix modesetting in case of unexpected AUX timeouts</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88982/">https://patchwork.freedesktop.org/series/88982/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19917/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19917/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9962 -&gt; Patchwork_19917</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19917/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19917 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19917/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19917/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (47 -&gt; 42)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9962 -&gt; Patchwork_19917</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9962: 2847b855cf291d61694ccfefa4f37d74d61f752b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19917: a89020fdabd805cc0c9cd77d817f4021ce665b09 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a89020fdabd8 drm/i915: Drop redundant address-of op before lttpr_common_caps array<br />
-8a0eb452c5e4 drm/i915: Fix modesetting in case of unexpected AUX timeouts</p>
-
-</body>
-</html>
-
---===============6848749237573274567==--
-
---===============0601600727==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+    drm/i915/gvt: filter cmds "srm" and "lrm" in cmd_handler
+    
+    do not allow "srm" and "lrm" except for GEN8_L3SQCREG4 and 0x21f0.
+    
+    Cc: Colin Xu <colin.xu@intel.com>
+    Cc: Kevin Tian <kevin.tian@intel.com>
+    Signed-off-by: Yan Zhao <yan.y.zhao@intel.com>
+    Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+    Link: http://patchwork.freedesktop.org/patch/msgid/20201223034508.17031-1-yan.y.zhao@intel.com
+    Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0601600727==--
