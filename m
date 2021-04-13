@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3714635DB69
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 11:38:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E7C135DB70
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 11:40:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8680C6E14F;
-	Tue, 13 Apr 2021 09:38:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85B5C6E14F;
+	Tue, 13 Apr 2021 09:40:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F11D96E14F
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 09:38:45 +0000 (UTC)
-IronPort-SDR: gR9esQ8OLhqL7o8vx+4GS4djBfcXhc5mUHsse4/j2wDRq0s3QPnV7nj3FJDZ3mDvSxBT1fH6TR
- EH5FToZihtyA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="279682061"
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="279682061"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F25F86E14F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 09:40:24 +0000 (UTC)
+IronPort-SDR: NbDtl4mff1qvCIZZ79i3JPzoyIlKj08Mo18SniCcUzL6KWMPx1lkQyIDMdXHE7RgUdW1k+y/v/
+ Ce8fJ7bgHMyA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="279682372"
+X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="279682372"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 02:38:45 -0700
-IronPort-SDR: XHq64EUf7108fBRZimVopaMOLvQh3lEuvgxRK3Fpk+VHkOLNDXG2RifPMfnZu9iomSDsKo2Fcj
- t210fa3llBEw==
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="417795019"
+ 13 Apr 2021 02:40:24 -0700
+IronPort-SDR: T1vvn5BlLW6x83F8HNewnsyluhhcZzFNZOFeyYHr/cJ8V/0T+J494ndUMAgxXNR8jw+f0JjOsK
+ +MXRZcr7BT0g==
+X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="460521895"
 Received: from alinapar-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.249.36.253])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 02:38:42 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2021 02:40:19 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210413051002.92589-8-lucas.demarchi@intel.com>
+In-Reply-To: <20210413051002.92589-9-lucas.demarchi@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20210413051002.92589-1-lucas.demarchi@intel.com>
- <20210413051002.92589-8-lucas.demarchi@intel.com>
-Date: Tue, 13 Apr 2021 12:38:39 +0300
-Message-ID: <87r1jeh6cg.fsf@intel.com>
+ <20210413051002.92589-9-lucas.demarchi@intel.com>
+Date: Tue, 13 Apr 2021 12:40:15 +0300
+Message-ID: <87o8eih69s.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 07/12] drm/i915/selftests: eliminate use
- of gen_mask
+Subject: Re: [Intel-gfx] [PATCH v2 08/12] drm/i915: finish removal of
+ gen_mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,87 +55,98 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Mon, 12 Apr 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Remove the remaining uses of INTEL_GEN_MASK() and the correspondent
-> gen_mask in struct intel_device_info. This will allow the removal of
-> gen_mask later since it's incompatible with the new per-IP versioning
-> scheme.
+> Now that it's not used anywhere, remove it from struct
+> intel_device_info. To allow a period in which code will be converted to
+> the new macro, keep IS_GEN_RANGE() around, just redefining it to use
+> the new fields. The size advantage from IS_GEN_RANGE() using a mask is
+> not that big as it has pretty limited use througout the driver:
+>
+>    text    data     bss     dec     hex filename
+> 2758497   95965    6496 2860958  2ba79e drivers/gpu/drm/i915/i915.ko.old
+> 2758586   95953    6496 2861035  2ba7eb drivers/gpu/drm/i915/i915.ko.new
 >
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->  drivers/gpu/drm/i915/intel_uncore.c           | 8 +++++---
->  drivers/gpu/drm/i915/selftests/intel_uncore.c | 8 +++++---
->  2 files changed, 10 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/i915_drv.c          |  2 --
+>  drivers/gpu/drm/i915/i915_drv.h          | 13 ++++---------
+>  drivers/gpu/drm/i915/i915_pci.c          |  1 -
+>  drivers/gpu/drm/i915/intel_device_info.h |  2 --
+>  4 files changed, 4 insertions(+), 14 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-> index 661b50191f2b..ed5abe7be498 100644
-> --- a/drivers/gpu/drm/i915/intel_uncore.c
-> +++ b/drivers/gpu/drm/i915/intel_uncore.c
-> @@ -2008,12 +2008,14 @@ void intel_uncore_fini_mmio(struct intel_uncore *uncore)
->  static const struct reg_whitelist {
->  	i915_reg_t offset_ldw;
->  	i915_reg_t offset_udw;
-> -	u16 gen_mask;
-> +	u8 min_graphics_ver;
-> +	u8 max_graphics_ver;
->  	u8 size;
->  } reg_read_whitelist[] = { {
->  	.offset_ldw = RING_TIMESTAMP(RENDER_RING_BASE),
->  	.offset_udw = RING_TIMESTAMP_UDW(RENDER_RING_BASE),
-> -	.gen_mask = INTEL_GEN_MASK(4, 12),
-> +	.min_graphics_ver = 4,
-> +	.max_graphics_ver = 12,
->  	.size = 8
->  } };
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index 305557e1942a..825b45cb3543 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -768,8 +768,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  	memcpy(device_info, match_info, sizeof(*device_info));
+>  	RUNTIME_INFO(i915)->device_id = pdev->device;
 >  
-> @@ -2038,7 +2040,7 @@ int i915_reg_read_ioctl(struct drm_device *dev,
->  		GEM_BUG_ON(entry->size > 8);
->  		GEM_BUG_ON(entry_offset & (entry->size - 1));
+> -	BUG_ON(device_info->gen > BITS_PER_TYPE(device_info->gen_mask));
+> -
+>  	return i915;
+>  }
 >  
-> -		if (INTEL_INFO(i915)->gen_mask & entry->gen_mask &&
-> +		if (IS_GRAPHICS_VER(i915, entry->min_graphics_ver, entry->max_graphics_ver) &&
->  		    entry_offset == (reg->offset & -entry->size))
->  			break;
->  		entry++;
-> diff --git a/drivers/gpu/drm/i915/selftests/intel_uncore.c b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-> index 0e4e6be0101d..f76c9bcec735 100644
-> --- a/drivers/gpu/drm/i915/selftests/intel_uncore.c
-> +++ b/drivers/gpu/drm/i915/selftests/intel_uncore.c
-> @@ -125,17 +125,19 @@ static int live_forcewake_ops(void *arg)
->  {
->  	static const struct reg {
->  		const char *name;
-> +		u8 min_graphics_ver;
-> +		u8 max_graphics_ver;
->  		unsigned long platforms;
->  		unsigned int offset;
->  	} registers[] = {
->  		{
->  			"RING_START",
-> -			INTEL_GEN_MASK(6, 7),
-> +			6, 7,
->  			0x38,
->  		},
->  		{
->  			"RING_MI_MODE",
-> -			INTEL_GEN_MASK(8, BITS_PER_LONG),
-> +			8, U8_MAX,
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index cb59eb0f6c5b..b984a340b21f 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1241,6 +1241,10 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+>   * GRAPHICS_VER(), MEDIA_VER and DISPLAY_VER()
+>   */
+>  #define INTEL_GEN(dev_priv)		(INTEL_INFO(dev_priv)->gen)
+> +/*
+> + * Deprecated: use IS_GRAPHICS_VER()
+> + */
 
-Makes me wonder if we should add VER_MAX. Can be done later if needed.
+Nitpick, I think this should also mention IS_MEDIA_VER() and
+DISPLAY_VER() to not have people blindly use IS_GRAPHICS_VER().
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
->  			0x9c,
->  		}
->  	};
-> @@ -170,7 +172,7 @@ static int live_forcewake_ops(void *arg)
+> +#define IS_GEN_RANGE(dev_priv, s, e)	IS_GRAPHICS_VER(dev_priv, (s), (e))
 >  
->  	/* We have to pick carefully to get the exact behaviour we need */
->  	for (r = registers; r->name; r++)
-> -		if (r->platforms & INTEL_INFO(gt->i915)->gen_mask)
-> +		if (IS_GRAPHICS_VER(gt->i915, r->min_graphics_ver, r->max_graphics_ver))
->  			break;
->  	if (!r->name) {
->  		pr_debug("Forcewaked register not known for %s; skipping\n",
+>  #define GRAPHICS_VER(i915)		(INTEL_INFO(i915)->graphics_ver)
+>  #define IS_GRAPHICS_VER(i915, from, until) \
+> @@ -1257,15 +1261,6 @@ static inline struct drm_i915_private *pdev_to_i915(struct pci_dev *pdev)
+>  #define REVID_FOREVER		0xff
+>  #define INTEL_REVID(dev_priv)	(to_pci_dev((dev_priv)->drm.dev)->revision)
+>  
+> -#define INTEL_GEN_MASK(s, e) ( \
+> -	BUILD_BUG_ON_ZERO(!__builtin_constant_p(s)) + \
+> -	BUILD_BUG_ON_ZERO(!__builtin_constant_p(e)) + \
+> -	GENMASK((e) - 1, (s) - 1))
+> -
+> -/* Returns true if Gen is in inclusive range [Start, End] */
+> -#define IS_GEN_RANGE(dev_priv, s, e) \
+> -	(!!(INTEL_INFO(dev_priv)->gen_mask & INTEL_GEN_MASK((s), (e))))
+> -
+>  #define IS_GEN(dev_priv, n) \
+>  	(BUILD_BUG_ON_ZERO(!__builtin_constant_p(n)) + \
+>  	 INTEL_INFO(dev_priv)->gen == (n))
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 97ab73276334..3b9cd1af0f28 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -37,7 +37,6 @@
+>  
+>  #define PLATFORM(x) .platform = (x)
+>  #define GEN(x) \
+> -	.gen_mask = BIT((x) - 1), \
+>  	.gen = (x), \
+>  	.graphics_ver = (x), \
+>  	.media_ver = (x), \
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+> index 405883a8cc84..b8f7b996f140 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.h
+> +++ b/drivers/gpu/drm/i915/intel_device_info.h
+> @@ -160,8 +160,6 @@ enum intel_ppgtt_type {
+>  	func(supports_tv);
+>  
+>  struct intel_device_info {
+> -	u16 gen_mask;
+> -
+>  	u8 graphics_ver;
+>  	u8 media_ver;
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
