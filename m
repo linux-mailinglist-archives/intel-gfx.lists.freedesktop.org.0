@@ -1,52 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71AE435D917
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 09:38:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9BD735D94E
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 09:50:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90F6F89C89;
-	Tue, 13 Apr 2021 07:38:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 656DA6E214;
+	Tue, 13 Apr 2021 07:50:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1697689C89
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 07:38:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=qiMozfse1ylK7l2xDfgLoNIFT6bNFBlMbrxg4GooV1s=; b=UD2Y8PFbs0xVNGOqw1H3pLJCRv
- wM10LfvBbRL/39M1Tyjp+W5Q+mR5BNpFWb7KXu6tZm+tnHEvSyk0C5w0fJtwR/UskSnCusTB3e0NU
- EMP9ZcmBl6xwdPN9iT/s3Y6oZjklp4ypiOiure0d6oRT+SbRL4iavkFCy7q0G4+fLDo+uK/Bv5+Hn
- UIo+fN58zb4+E01+fySJsDy2qxFujCk3xmTbkEIri1+0HZ7I0paj26LBh+HHZcz5eaAuGlhrDT0H+
- XrotGzlHsbobL1ruJrjlTHn3+1bFMRI4Eb8ET0Sg2x/EGHSq1wHxZcqV4tHjVCXFJLjxetbZpAetf
- MwHSazIA==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=noisy.programming.kicks-ass.net)
- by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
- id 1lWDb7-005PuV-Hl; Tue, 13 Apr 2021 07:37:00 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 5B71A30022D;
- Tue, 13 Apr 2021 09:36:32 +0200 (CEST)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id 2DA2920224209; Tue, 13 Apr 2021 09:36:32 +0200 (CEST)
-Date: Tue, 13 Apr 2021 09:36:32 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: Kees Cook <keescook@chromium.org>
-Message-ID: <YHVKACnVLAhbnt4j@hirez.programming.kicks-ass.net>
-References: <20210412080012.357146277@infradead.org>
- <20210412080611.769864829@infradead.org>
- <202104121302.57D7EF8@keescook>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA366E213;
+ Tue, 13 Apr 2021 07:50:21 +0000 (UTC)
+IronPort-SDR: Aq4V4eyOdeM5gbgbGMzhd51qTLDALSkZpcaIPEQBZYuEVx7hDMhbW7OVWGhKbXSPaRP376u+/e
+ 9G0L53Gs4mig==
+X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="192230978"
+X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="192230978"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2021 00:50:20 -0700
+IronPort-SDR: JJ4o7hXjsOjKgdOlGzSEWmuuEKzO5JijVvUewT8/TuOCnVF7OdJ9B+zp1nbu+oK4WRM8c7jqPJ
+ Ltac61jQq9eQ==
+X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="460491215"
+Received: from aericson-mobl1.ger.corp.intel.com ([10.249.254.233])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2021 00:50:18 -0700
+Message-ID: <62e5b25ce7e22633c09fb0242a69d268b3b45595.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Tue, 13 Apr 2021 09:50:15 +0200
+User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <202104121302.57D7EF8@keescook>
-Subject: Re: [Intel-gfx] [PATCH 4/7] mm: Introduce verify_page_range()
+Subject: [Intel-gfx] [RFC] Cross-driver ww transaction lock lists
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,81 +44,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jgross@suse.com, sstabellini@kernel.org, intel-gfx@lists.freedesktop.org,
- x86@kernel.org, linux-kernel@vger.kernel.org, chris@chris-wilson.co.uk,
- linux-mm@kvack.org, boris.ostrovsky@oracle.com, hch@lst.de,
- akpm@linux-foundation.org
+Cc: intel-gfx@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Matthew Auld <matthew.auld@intel.com>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 12, 2021 at 01:05:09PM -0700, Kees Cook wrote:
-> On Mon, Apr 12, 2021 at 10:00:16AM +0200, Peter Zijlstra wrote:
-> > +struct vpr_data {
-> > +	int (*fn)(pte_t pte, unsigned long addr, void *data);
-> > +	void *data;
-> > +};
-> 
-> Eeerg. This is likely to become an attack target itself. Stored function
-> pointer with stored (3rd) argument.
-> 
-> This doesn't seem needed: only DRM uses it, and that's for error
-> reporting. I'd rather plumb back errors in a way to not have to add
-> another place in the kernel where we do func+arg stored calling.
+Hi!
 
-Is this any better? It does have the stored pointer, but not a stored
-argument, assuming you don't count returns as arguments I suppose.
+During the dma_resv conversion of the i915 driver, we've been using ww
+transaction lock lists to keep track of ww_mutexes that are locked
+during the transaction so that they can be batch unlocked at suitable
+locations. Including also the LMEM/VRAM eviction we've ended up with
+two static lists per transaction context; one typically unlocked at the
+end of transaction and one initialized before and unlocked after each
+buffer object validate. This enables us to do sleeping locking at
+eviction and keep objects locked on the eviction list until we
+eventually succeed allocating memory (modulo minor flaws of course).
 
-The alternative is refactoring apply_to_page_range() :-/
+It would be beneficial with the i915 TTM conversion to be able to
+introduce a similar functionality that would work in ttm but also
+cross-driver in, for example move_notify. It would also be beneficial
+to be able to put any dma_resv ww mutex on the lists, and not require
+it to be embedded in a particular object type.
 
----
+I started scetching on some utilities for this. For TTM, for example,
+the idea would be to pass a list head for the ww transaction lock list
+in the ttm_operation_ctx. A function taking a ww_mutex could then
+either attach a grabbed lock to the list for batch unlocking, or be
+responsible for unlocking when the lock's scope is exited. It's also
+possible to create sublists if so desired. I believe the below would be
+sufficient to cover the i915 functionality.
 
-struct vpr_data {
-	bool (*fn)(pte_t pte, unsigned long addr);
-	unsigned long addr;
-};
+Any comments and suggestions appreciated!
 
-static int vpr_fn(pte_t *pte, unsigned long addr, void *data)
-{
-	struct vpr_data *vpr = data;
-	if (!vpr->fn(*pte, addr)) {
-		vpr->addr = addr;
-		return -EINVAL;
-	}
-	return 0;
-}
+8<------------------------------------------------------
+
+#ifndef _TRANSACTION_LOCKLIST_H_
+#define _TRANSACTION_LOCKLIST_H_
+
+struct trans_lockitem;
 
 /**
- * verify_page_range() - Scan (and fill) a range of virtual memory and validate PTEs
- * @mm: mm identifying the virtual memory map
- * @addr: starting virtual address of the range
- * @size: size of the range
- * @fn: function that verifies the PTEs
+ * struct trans_locklist_ops - Ops structure for the ww locklist
+functionality.
  *
- * Scan a region of virtual memory, filling in page tables as necessary and
- * calling a provided function on each leaf, providing a copy of the
- * page-table-entry.
- *
- * Similar apply_to_page_range(), but does not provide direct access to the
- * page-tables.
- *
- * NOTE! this function does not work correctly vs large pages.
- *
- * Return: the address that failed verification or 0 on success.
+ * Typically a const struct trans_locklist_ops is defined for each type
+that
+ * embeds a struct trans_lockitem, or hav a struct trans_lockitem
+pointing
+ * at it using the private pointer. It can be a buffer object,
+reservation
+ * object, a single ww_mutex or even a sublist of trans_lockitems. 
  */
-unsigned long verify_page_range(struct mm_struct *mm,
-				unsigned long addr, unsigned long size,
-				bool (*fn)(pte_t pte, unsigned long addr))
+struct trans_locklist_ops {
+	/**
+	 * slow_lock: Slow lock to relax the transaction. Only used by
+	 * a contending lock item.
+	 * @item: The struct trans_lockitem to lock
+	 * @intr: Whether to lock interruptible
+	 *
+	 * Return: -ERESTARTSYS: Hit a signal when relaxing,
+	 * -EAGAIN, relaxing succesful, but the contending lock
+	 * remains unlocked.
+	 */
+	int (*slow_lock) (struct trans_lockitem *item, bool intr);
+
+	/**
+	 * unlock: Unlock.
+	 * @item: The struct trans_lockitem to unlock.
+	 */
+	void (*unlock) (struct trans_lockitem *item);
+
+	/**
+	 * unlock: Unlock.
+	 * @item: The struct trans_lockitem to put. This function may
+be NULL.
+	 */
+	void (*put) (struct trans_lockitem *item);
+};
+
+/**
+ * struct trans_lockitem
+ * @ops: Pointer to an Ops structure for this lockitem.
+ * @link: List link for the transaction locklist.
+ * @private: Private info.
+ * @relax_unlock: Unlock contending lock after relaxation since it is
+ * likely not needed after a transaction restart.
+ *
+ * A struct trans_lockitem typically represents a single lock, but is
+ * generic enough to represent a sublist of locks. It can either be
+ * embedded, or allocated on demand. A kmem_cache might be beneficial.
+ */
+struct trans_lockitem {
+	const struct trans_locklist_ops *ops;
+	struct list_head link;
+	u32 relax_unlock:1;
+	void *private;
+};
+
+/* unlock example */
+static inline void trans_unlock_put_all(struct list_head *list)
 {
-	struct vpr_data vpr = {
-		.fn = fn,
-		.addr = 0,
-	};
-	apply_to_page_range(mm, addr, size, vpr_fn, &vpr);
-	return vpr.addr;
+	struct trans_lockitem *lock, *next;
+
+	list_for_each_entry_safe(lock, next, typeof(*lock), link) {
+		lock->ops->unlock(lock);
+		list_del_init(&lock->link);
+		if (lock->ops_put)
+			lock->ops->put(lock);
+	}
 }
-EXPORT_SYMBOL_GPL(verify_page_range);
+
+/* Backoff example */
+static inline int __must_check trans_backoff(struct list_head *list,
+bool intr,
+					     struct trans_lockitem
+*contending)
+{
+	int ret = 0;
+
+	trans_unlock_put_all(list);
+	if (contending) {
+		ret = contending->ops->slow_lock(contending, intr);
+		if (!ret && contending->relax_unlock)
+			contending->unlock(contending);
+		if (ret == -EAGAIN)
+			ret = 0;
+		contending->ops->put(contending);
+	}
+
+	return ret;
+}
+		
+		
+#endif _TRANSACTION_LOCKLIST_
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
