@@ -2,54 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6292E35DC61
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 12:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CF0435DC63
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 12:19:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C0906E0F2;
-	Tue, 13 Apr 2021 10:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C842C6E2B6;
+	Tue, 13 Apr 2021 10:19:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com
- [IPv6:2607:f8b0:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33D4C89F73
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 10:19:09 +0000 (UTC)
-Received: by mail-oi1-x233.google.com with SMTP id x2so16501673oiv.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 03:19:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=RbiNLZ7o/dsNK5HIgVqIuW0ZuSfjH0LlwngZuREvWqk=;
- b=cqw2pGrQ/cM6PxRd3RUABRVmezTQ8abfOSzJ22kbr9jdzfpgcOn7gC+UpNOPVHMFai
- +zDmZ8NXvXWcp8KlJHs203CI1p2l+M2pkjywROu7heTRI8yKBOLtfilmhFNH9tSwjla4
- 1LG2vQ71hSOY+qg+32lZAtt03hAt0gs/TjM10=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RbiNLZ7o/dsNK5HIgVqIuW0ZuSfjH0LlwngZuREvWqk=;
- b=XeVAj5MZyL4BVmIqMIMWHzaklYDqXxsPXZ/68/PTjC/uAXzJ7ZOisoBItgAeZ9lyEL
- Y8aSIFOSVGyCERxtcX+wdhjrmzvoxb1SFm0NKRiO/wEd1nAq/y53CEsiDTiS+btAh6df
- Lgsajn4n7HiBDkQLQc8doxE7pp3YsNYNfZvGpTdqIKG24bnT3uediIy80EH+lKdGPTc/
- nf+CR24AyP1XUReX8mJmfA8e0aqbk4bIkigdPtPKexTHQY9XxtEMbIUMvPEd2tE7OiJK
- veA63C+84+kU0FvWu60i5d3x7kuyVJQypMkud4xNlNYaPr9FWF57XF8JizpuYaBqB3j3
- mjJw==
-X-Gm-Message-State: AOAM530kkPOjCj7yFyMwhb/cuZkmF2mtb3R08XGGQuTgQcBK4zrsq/hg
- odlRGCqdBt3GrWKWdfDycxtCteTtMXG2+FwiHUk2Uw==
-X-Google-Smtp-Source: ABdhPJy7ZDf0BPNHIS6TWDS2y9jGpGuPIOVDBtIMxj3igFFl6eOaHK8v+MLTYZEfQdAG/IiUc5SCmWPKJlRvlLGNdfg=
-X-Received: by 2002:aca:4188:: with SMTP id o130mr2734260oia.101.1618309148398; 
- Tue, 13 Apr 2021 03:19:08 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D3CF16E3DF;
+ Tue, 13 Apr 2021 10:19:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CAF05AA915;
+ Tue, 13 Apr 2021 10:19:14 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210412090526.30547-1-matthew.auld@intel.com>
- <20210412090526.30547-19-matthew.auld@intel.com>
- <YHRkixaDBaf5cgkJ@phenom.ffwll.local>
- <CAM0jSHM_1V6OSZhuuaaAMmHi4BTiZ7Hbo99i2b=RzFFBMuYJ_A@mail.gmail.com>
- <CAKMK7uFK5_4cbWeefjvXzfnHXsTh1OCtWSyLHUy5QhiFfwMf1A@mail.gmail.com>
- <CAM0jSHP=xA0taPVVr5Fa5O9rMEv-upr_or_c2QbRO2MhNGEBCw@mail.gmail.com>
-In-Reply-To: <CAM0jSHP=xA0taPVVr5Fa5O9rMEv-upr_or_c2QbRO2MhNGEBCw@mail.gmail.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Tue, 13 Apr 2021 12:18:57 +0200
-Message-ID: <CAKMK7uESFPMOd=ysUaMzVbijAeROYjYr67JRDGxPYeeM1iVuWg@mail.gmail.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 18/19] drm/i915/gtt: map the PD up front
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jiapeng Chong" <jiapeng.chong@linux.alibaba.com>
+Date: Tue, 13 Apr 2021 10:19:14 -0000
+Message-ID: <161830915482.8796.15009668199074985130@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <1618294728-78952-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+In-Reply-To: <1618294728-78952-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gvt=3A_remove_useless_function?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,122 +38,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1410867633=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 13, 2021 at 11:29 AM Matthew Auld
-<matthew.william.auld@gmail.com> wrote:
->
-> On Mon, 12 Apr 2021 at 18:01, Daniel Vetter <daniel@ffwll.ch> wrote:
-> >
-> > On Mon, Apr 12, 2021 at 6:08 PM Matthew Auld
-> > <matthew.william.auld@gmail.com> wrote:
-> > >
-> > > On Mon, 12 Apr 2021 at 16:17, Daniel Vetter <daniel@ffwll.ch> wrote:
-> > > >
-> > > > On Mon, Apr 12, 2021 at 10:05:25AM +0100, Matthew Auld wrote:
-> > > > > We need to general our accessor for the page directories and tables from
-> > > > > using the simple kmap_atomic to support local memory, and this setup
-> > > > > must be done on acquisition of the backing storage prior to entering
-> > > > > fence execution contexts. Here we replace the kmap with the object
-> > > > > maping code that for simple single page shmemfs object will return a
-> > > > > plain kmap, that is then kept for the lifetime of the page directory.
-> > > > >
-> > > > > v2: (Thomas) Rebase on dma_resv and obj->mm.lock removal.
-> > > > >
-> > > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > > > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > >
-> > > > So I wanted to understand what px stands for as an abbreviation, and dug
-> > > > all the way down to this:
-> > > >
-> > > > commit 567047be2a7ede082d29f45524c287b87bd75e53
-> > > > Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > > > Date:   Thu Jun 25 18:35:12 2015 +0300
-> > > >
-> > > >     drm/i915/gtt: Use macros to access dma mapped pages
-> > > >
-> > > > I still have no idea what it means, I guess px = page. But I also
-> > > > committed this, so I guess can blame myself :-)
-> > > >
-> > > > But while digging I've stumbled over this here
-> > > >
-> > > > commit 6eebfe8a10a62139d681e2f1af1386252742278b
-> > > > Author: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > Date:   Fri Jul 12 08:58:18 2019 +0100
-> > > >
-> > > >     drm/i915/gtt: Use shallow dma pages for scratch
-> > > >
-> > > >
-> > > > And that's some serious wtf. Yes we've done some compile-time type
-> > > > casting automagic between i915_priv and dev in the past, and I think even
-> > > > that was bad taste. But it was justified with that we have these
-> > > > everywhere (especially in the mmio macros), and it would be a terrible
-> > > > flag day.
-> > > >
-> > > > But I'm not seeing any need for auto-casting for these pages here, and I'm
-> > > > not aware that we're doing this anywhere else in kernel code. There is
-> > > > some macro-trickery in lockdep annotations, but that relies on the lockdep
-> > > > map having the same struct member name in all lock types, and is not
-> > > > exposed to drivers at all.
-> > > >
-> > > > Am I missing something, or why do we have this compile-time type casting
-> > > > stuff going on in i915 page accessors?
-> > >
-> > > I think 'x' in the px family of macros/functions is meant in the
-> > > variable/polymorphic sense, so it can potentially be a pt, pd, etc
-> > > underneath. If you look at px_base() for example all it does is fish
-> > > out the base GEM object from the structure, using the
-> > > known-at-compile-time-type, which then lets us get at the dma address,
-> > > vaddr etc.
-> >
-> > Yeah, but that's not how things landed. px predates the magic
-> > polymorphism. I think the px just stands for page, or at least
-> > originally only stood for page. I'm not sure honestly. It seems to be
-> > just used for page directory type of things, but I haven't found that
-> > written down anywhere.
-> >
-> > > It does seem pretty magical, but seems ok to me, if it means less typing?
-> >
-> > That's the worst justification. Code is generally write once, read
-> > many times. Optimizing for writing at the cost of magic indirection is
-> > generally not the right tradeoff in the kernel, where any indirection
-> > could hide a major gotcha. In huge userspace applications fancy
-> > abstraction and polymorphism is often the right thing to do, but there
-> > you also have a real compiler with a real typesystem (generally at
-> > least) helping you out. Or it's yolo duct-taping with lots of tests,
-> > where the speed at which you can hack up something matters more than
-> > being able to read it quickly.
-> >
-> > We're typing C here. It is generally rather verbose, with type casting
-> > all done explicitly.
->
-> Ok. So should we change this around for this patch? The px_ stuff is
-> already quite prevalent it seems, and the px_vaddr() is just one part
-> of it? Maybe just add pt_vaddr(), pd_vaddr() etc instead?
+--===============1410867633==
+Content-Type: multipart/alternative;
+ boundary="===============2790768725448933710=="
 
-Nah, that was just an orthogonal observation. The confusion with magic
-type-aware macros is preexisting and widespread, there's no point
-holding up dg1 code with that. But it is maybe something we should put
-on our cleanup list. Or at least have a better explanation for why
-exactly it is needed. Also note I'm not worried about the px stuff
-standing for pt/pd/whatever, it's the magic type casting property of
-these macros added with the 2nd patch I've mentioned above that looks
-rather questionable to me. Maybe as transition thing like we've done
-with i915_priv pointers, but not something that we should build on top
-for long term.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+--===============2790768725448933710==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/gvt: remove useless function
+URL   : https://patchwork.freedesktop.org/series/88996/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9963 -> Patchwork_19920
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19920 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][1] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  
+#### Possible fixes ####
+
+  * igt@debugfs_test@read_all_entries:
+    - fi-kbl-soraka:      [DMESG-WARN][2] ([i915#1982] / [i915#262]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9963/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
+  [i915#3278]: https://gitlab.freedesktop.org/drm/intel/issues/3278
+
+
+Participating hosts (47 -> 42)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9963 -> Patchwork_19920
+
+  CI-20190529: 20190529
+  CI_DRM_9963: f71c7917b4b6d6c093f1e65e62acd3360d96e63a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19920: fb5616c78d3a64660d6fe01fcc23474b0aec6155 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fb5616c78d3a drm/i915/gvt: remove useless function
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html
+
+--===============2790768725448933710==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gvt: remove useless function</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88996/">https://patchwork.freedesktop.org/series/88996/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9963 -&gt; Patchwork_19920</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19920 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_prime@amd-to-i915:<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/fi-kbl-soraka/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@debugfs_test@read_all_entries:<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9963/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/262">i915#262</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19920/fi-kbl-soraka/igt@debugfs_test@read_all_entries.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (47 -&gt; 42)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9963 -&gt; Patchwork_19920</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9963: f71c7917b4b6d6c093f1e65e62acd3360d96e63a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6063: d3b7f74ce5df6fdea03e490b7c64f0c6bfe76f03 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19920: fb5616c78d3a64660d6fe01fcc23474b0aec6155 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>fb5616c78d3a drm/i915/gvt: remove useless function</p>
+
+</body>
+</html>
+
+--===============2790768725448933710==--
+
+--===============1410867633==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1410867633==--
