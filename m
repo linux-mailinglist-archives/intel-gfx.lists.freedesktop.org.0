@@ -2,33 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD69435DCBA
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 12:48:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF7435DCF3
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 12:57:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBE8689B27;
-	Tue, 13 Apr 2021 10:48:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B55B889DF9;
+	Tue, 13 Apr 2021 10:57:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C6CA89B27;
- Tue, 13 Apr 2021 10:48:00 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id AC2ADAEFB;
- Tue, 13 Apr 2021 10:47:58 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20210413094937.3736541-1-daniel.vetter@ffwll.ch>
- <20210413094937.3736541-3-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <af920f32-4fc1-a96e-64e6-8352fb5da523@suse.de>
-Date: Tue, 13 Apr 2021 12:47:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56BE389DF9
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 10:57:09 +0000 (UTC)
+IronPort-SDR: cuduMZHyXwsJMHPU5mFUlLmkdZgZlYc6ketb7AIPLCfK84tVm7WPU8Y6S+mmeMCExTf0oOfCTv
+ pugBopnBufmw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="181904327"
+X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="181904327"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2021 03:57:08 -0700
+IronPort-SDR: mXfrQtzqtB1TYLrBz9TPqKaqLGCjeY/6faRwU1FArikbL1SzApR56sII3UphkIEFZT8OQptmQ8
+ /670k5uMkLBQ==
+X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="424199744"
+Received: from alinapar-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.249.36.253])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2021 03:57:07 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210412054607.18133-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210412054607.18133-1-ville.syrjala@linux.intel.com>
+Date: Tue, 13 Apr 2021 13:57:04 +0300
+Message-ID: <877dl6h2pr.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210413094937.3736541-3-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/shmem-helper: Align to page size in
- dumb_create
+Subject: Re: [Intel-gfx] [PATCH 0/5] drm/i915: Fix glk display version
+ regressions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,126 +49,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0769769404=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0769769404==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="jVfcCROk7CxJ91gQLk00cE3D6GttNh4VX"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---jVfcCROk7CxJ91gQLk00cE3D6GttNh4VX
-Content-Type: multipart/mixed; boundary="lWRzu6cbfPSWiUWanLTs6KEPAMCUK3JOu";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <af920f32-4fc1-a96e-64e6-8352fb5da523@suse.de>
-Subject: Re: [PATCH 3/3] drm/shmem-helper: Align to page size in dumb_create
-References: <20210413094937.3736541-1-daniel.vetter@ffwll.ch>
- <20210413094937.3736541-3-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210413094937.3736541-3-daniel.vetter@ffwll.ch>
-
---lWRzu6cbfPSWiUWanLTs6KEPAMCUK3JOu
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-Am 13.04.21 um 11:49 schrieb Daniel Vetter:
-> shmem helpers seem a bit sloppy here by automatically rounding up when
-> actually creating the buffer, which results in under-reporting of what
-> we actually have. Caught by igt/vgem_basic tests.
->=20
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-
-Drivers get it more wrong than right. I always felt that we should have=20
-all this in generic code with a few parameters somewhere.
-
-But makes sense.
-
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> ---
->   drivers/gpu/drm/drm_gem_shmem_helper.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/d=
-rm_gem_shmem_helper.c
-> index 6d625cee7a6a..d5e6d4568f99 100644
-> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-> @@ -505,13 +505,13 @@ int drm_gem_shmem_dumb_create(struct drm_file *fi=
-le, struct drm_device *dev,
->  =20
->   	if (!args->pitch || !args->size) {
->   		args->pitch =3D min_pitch;
-> -		args->size =3D args->pitch * args->height;
-> +		args->size =3D PAGE_ALIGN(args->pitch * args->height);
->   	} else {
->   		/* ensure sane minimum values */
->   		if (args->pitch < min_pitch)
->   			args->pitch =3D min_pitch;
->   		if (args->size < args->pitch * args->height)
-> -			args->size =3D args->pitch * args->height;
-> +			args->size =3D PAGE_ALIGN(args->pitch * args->height);
->   	}
->  =20
->   	shmem =3D drm_gem_shmem_create_with_handle(file, dev, args->size, &a=
-rgs->handle);
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---lWRzu6cbfPSWiUWanLTs6KEPAMCUK3JOu--
-
---jVfcCROk7CxJ91gQLk00cE3D6GttNh4VX
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmB1dt0FAwAAAAAACgkQlh/E3EQov+DP
-4BAAygIlC8JQb0tw3dOLDSCRbqN6qGaeHa0YS17K+LZLhm50FcfzSmH9v/TOGJ+zzBIeC6crK01P
-Dem2fb9GGYu3U5ECnvG8/i2kah3tE7aDQ9uylUaV/LlY2mg85sz7Y8NiQ3im7osjS2FmKroW19mB
-W8PCAU655tFcXJzyje1uctIbxvql1jIPr75pKS+yi/nydJqcDi3B1a8fpoq6qnQ3QQ2/oUuolSMP
-w14jWSIDAoRbMqhki9mef3sZXpi9LTDi/tlxielmfM2gizpZTwy1iWlKFqf8MpZu9UI84Aar8MJD
-37TLqqiaKS7QNrzEaNIgKYieZ9e7r6gh4rjetg5vwZv8W9PaqEtTF6QALyAcMIQhE8bgkcaaNQ/p
-ZcIGHQl3d/YnuQDamym3qXZKlirvgNj5eEKhRaVt5X1Hwmd2WaysCg+RY/ChQVQWY8umf+vfILtv
-Yd+uYzUBE8ZP1/04drzjE8W0Pm40D/5h8hvJWD2/wufd8bWFwcRobVwSLDzV8xL/9+I3VPsKU2iC
-h5oxDrgSN6fzLbZ6513oxwAPhBRgVfqb6I2utOLQGef37TNq9u6PW9SdK/a7lXzLMuGHoRHkQpme
-hJxfh1JNHzpdz6xkxjamd7syddegBJDPBSq0YzBAvE9GaQRUJPtSVArwZshwnwi07wM7MHMo5qMp
-UuQ=
-=1po7
------END PGP SIGNATURE-----
-
---jVfcCROk7CxJ91gQLk00cE3D6GttNh4VX--
-
---===============0769769404==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0769769404==--
+T24gTW9uLCAxMiBBcHIgMjAyMSwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4KPiBGaXggYSBjb3VwbGUgb2YgcmVncmVzc2lvbnMgZHVlIHRvIHRo
+ZSBnbGsgZGlzcGxheSB2ZXJzaW9uIDktPjEwCj4gY2hhbmdlLiBJICp0aGluayogYWxsIHRoZSBv
+bmVzIHRoYXQgc2xpcHBlZCB0aHJvdWdoIGludm9sdmVkCj4gZWl0aGVyIERJU1BMQVlfVkVSPT05
+IG9yIERJU1BMQVlfVkVSPDEwIGNoZWNrcy4gVGhlc2UgdGhyZWUKPiByZWdyZXNzaW9ucyBhcmUg
+dGhlIG9uZXMgSSBmb3VuZCB0aHJvdWdoIGEgcXVpY2sgc2NhbiwgYnV0IHNvbWVvbmUKPiBzaG91
+bGQgcHJvYmFibHkgZ28gdGhyb3VnaCB0aGUgd2hvbGUgdHJlZSB3aXRoIGEgZmluZSB0b290aGNv
+bWIKPiBpbiBjYXNlIHdlIG1pc3NlZCBtb3JlIGNhc2VzLgo+Cj4gQWxzbyB0b3NzZWQgaW4gYSBj
+b3VwbGUgb2YgY2xlYW51cHMuCgpWaWxsZSwgcGxlYXNlIGhvbGQgb24gd2l0aCBtZXJnaW5nIHRo
+aXMgdW50aWwgd2UgZmlndXJlIG91dCBob3cgdG8gbWVyZ2UKWzFdLiBJIGRvbid0IHdhbnQgdG8g
+Y3JlYXRlIGV4dHJhIGNvbmZsaWN0cyB3aGVuIHRoZXkgY2FuIGJlIGF2b2lkZWQuCgpCUiwKSmFu
+aS4KCgpbMV0gaHR0cDovL2xvcmUua2VybmVsLm9yZy9yLzIwMjEwNDEzMDUxMDAyLjkyNTg5LTEt
+bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tCgoKPgo+IENjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQu
+cm9wZXJAaW50ZWwuY29tPgo+Cj4gVmlsbGUgU3lyasOkbMOkICg1KToKPiAgIGRybS9pOTE1OiBS
+ZXN0b3JlIGxvc3QgZ2xrIEZCQyAxNmJwcCB3L2EKPiAgIGRybS9pOTE1OiBSZXN0b3JlIGxvc3Qg
+Z2xrIGNjcyB3L2EKPiAgIGRybS9pOTE1OiBEaXNhYmxlIExUVFBSIGRldGVjdGlvbiBvbiBHTEsg
+b25jZSBhZ2Fpbgo+ICAgZHJtL2k5MTU6IERvbid0IHVzZSB7c2tsLGNubH1faHBkX3BpbigpIGZv
+ciBieHQvZ2xrCj4gICBkcm0vaTkxNTogUmVtb3ZlIGEgZmV3IHJlZHVuZGFudCBnbGsgY2hlY2tz
+Cj4KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyAgICAgICAgICAg
+ICAgfCA2ICsrKy0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
+YXkuYyAgICAgICAgICB8IDMgKystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZHBfbGlua190cmFpbmluZy5jIHwgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2ZiYy5jICAgICAgICAgICAgICB8IDIgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMgICAgfCAyICstCj4gIDUgZmlsZXMgY2hh
+bmdlZCwgOCBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoKLS0gCkphbmkgTmlrdWxhLCBJ
+bnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
