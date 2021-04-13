@@ -2,41 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCF7435DCF3
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 12:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09E1335DDDA
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 13:37:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B55B889DF9;
-	Tue, 13 Apr 2021 10:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85DDB89D57;
+	Tue, 13 Apr 2021 11:37:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56BE389DF9
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 10:57:09 +0000 (UTC)
-IronPort-SDR: cuduMZHyXwsJMHPU5mFUlLmkdZgZlYc6ketb7AIPLCfK84tVm7WPU8Y6S+mmeMCExTf0oOfCTv
- pugBopnBufmw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="181904327"
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="181904327"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 03:57:08 -0700
-IronPort-SDR: mXfrQtzqtB1TYLrBz9TPqKaqLGCjeY/6faRwU1FArikbL1SzApR56sII3UphkIEFZT8OQptmQ8
- /670k5uMkLBQ==
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="424199744"
-Received: from alinapar-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.249.36.253])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 03:57:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210412054607.18133-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210412054607.18133-1-ville.syrjala@linux.intel.com>
-Date: Tue, 13 Apr 2021 13:57:04 +0300
-Message-ID: <877dl6h2pr.fsf@intel.com>
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
+ [IPv6:2a00:1450:4864:20::336])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30D7E89D57;
+ Tue, 13 Apr 2021 11:37:01 +0000 (UTC)
+Received: by mail-wm1-x336.google.com with SMTP id
+ s10-20020a05600c318ab029012d7c83637bso19903wmp.0; 
+ Tue, 13 Apr 2021 04:37:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=d8prWghJv+BkiPsQ41cXnPAO/NBhcn05YDXuxcrhtEc=;
+ b=iff6X5Dx5VtccL1uM8p2zLSXcrty+PuUGC7J7z8zXEhInb/+xp6sCmr4WpXqZMvgb8
+ U/sI9sbF3KF8QWGS2ZH58/wbAC/7sFyazmiDGUsMMbiZdsdaQsyFRpSyaG/tncNYD7s3
+ b6F6wj3u3w1W3ik+XIzTB254U47VrGsIrfJCf1oonuFB3mpok5f2SQ1oAuc1yPmn3Ski
+ DYYNM2390gZtJEKQy/7PKGmwKrmIIzmf+Qjm0+BnJb5dxaY9IWr3JG1W0V+CDbW4edn9
+ 5m022ytrZ/AQR+nTw4hpDAfaI8luLhP1/kebH6wChvq4bm0gWtj+Dc6Q+lYkhQqBRZyR
+ sW8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=d8prWghJv+BkiPsQ41cXnPAO/NBhcn05YDXuxcrhtEc=;
+ b=L3CrXmLH3EYfBbaYsIqRS8atoX3dfLJTb76H93pNGf3AuMMZxoCuXYWZ4A6x03w/c8
+ Gsd3uofJvsBILT8Du1iaBrTxRUeZoxTUGBE4pDdlIYVjgI1P9KMRgYELpu7JCy2vzFF3
+ N+N6/prxt0H1wlFXwZvgy598yF8WoqUeV+fO8WGWxUO++tCCX7eOM4SV2Rx4+S3vDVSc
+ xjEKds0ZHZc40DWUDMzFDRgA7V9mPc/1gXV+vVOM0uJa2+7DTPvhtJD7upnhFkD+pTmZ
+ kPv/LMdlb87IenZ9UNob+AJ3yotMCgo50D46zDloyUV6WyNHXdiT4rw16TyInwDERLQ6
+ 5aLQ==
+X-Gm-Message-State: AOAM530fls2TbPezvH9Wk7s4ud3Eg/IhO80ysMJWrZI8Uqh4IbNReL7/
+ yMHbyX9LFCTjZmfNeVNs1pI=
+X-Google-Smtp-Source: ABdhPJxeKrK3zuVlsI2tuMeQzuZfRj5oEbBzKypg8YvEhMsDsu8BDty5SEpGMzwepcRaCUlSBf8+IA==
+X-Received: by 2002:a1c:7311:: with SMTP id d17mr3559703wmb.183.1618313819915; 
+ Tue, 13 Apr 2021 04:36:59 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+ by smtp.gmail.com with ESMTPSA id v18sm2141913wmh.28.2021.04.13.04.36.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 13 Apr 2021 04:36:58 -0700 (PDT)
+Date: Tue, 13 Apr 2021 13:37:38 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YHWCgpq5fVpSGdSN@orome.fritz.box>
+References: <20210413094904.3736372-1-daniel.vetter@ffwll.ch>
+ <20210413094904.3736372-10-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 0/5] drm/i915: Fix glk display version
- regressions
+In-Reply-To: <20210413094904.3736372-10-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+Subject: Re: [Intel-gfx] [PATCH 10/12] drm/tegra: Don't set
+ allow_fb_modifiers explicitly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,38 +69,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable@vger.kernel.org, Jonathan Hunter <jonathanh@nvidia.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>, linux-tegra@vger.kernel.org,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0597855037=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAxMiBBcHIgMjAyMSwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+Cj4KPiBGaXggYSBjb3VwbGUgb2YgcmVncmVzc2lvbnMgZHVlIHRvIHRo
-ZSBnbGsgZGlzcGxheSB2ZXJzaW9uIDktPjEwCj4gY2hhbmdlLiBJICp0aGluayogYWxsIHRoZSBv
-bmVzIHRoYXQgc2xpcHBlZCB0aHJvdWdoIGludm9sdmVkCj4gZWl0aGVyIERJU1BMQVlfVkVSPT05
-IG9yIERJU1BMQVlfVkVSPDEwIGNoZWNrcy4gVGhlc2UgdGhyZWUKPiByZWdyZXNzaW9ucyBhcmUg
-dGhlIG9uZXMgSSBmb3VuZCB0aHJvdWdoIGEgcXVpY2sgc2NhbiwgYnV0IHNvbWVvbmUKPiBzaG91
-bGQgcHJvYmFibHkgZ28gdGhyb3VnaCB0aGUgd2hvbGUgdHJlZSB3aXRoIGEgZmluZSB0b290aGNv
-bWIKPiBpbiBjYXNlIHdlIG1pc3NlZCBtb3JlIGNhc2VzLgo+Cj4gQWxzbyB0b3NzZWQgaW4gYSBj
-b3VwbGUgb2YgY2xlYW51cHMuCgpWaWxsZSwgcGxlYXNlIGhvbGQgb24gd2l0aCBtZXJnaW5nIHRo
-aXMgdW50aWwgd2UgZmlndXJlIG91dCBob3cgdG8gbWVyZ2UKWzFdLiBJIGRvbid0IHdhbnQgdG8g
-Y3JlYXRlIGV4dHJhIGNvbmZsaWN0cyB3aGVuIHRoZXkgY2FuIGJlIGF2b2lkZWQuCgpCUiwKSmFu
-aS4KCgpbMV0gaHR0cDovL2xvcmUua2VybmVsLm9yZy9yLzIwMjEwNDEzMDUxMDAyLjkyNTg5LTEt
-bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tCgoKPgo+IENjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQu
-cm9wZXJAaW50ZWwuY29tPgo+Cj4gVmlsbGUgU3lyasOkbMOkICg1KToKPiAgIGRybS9pOTE1OiBS
-ZXN0b3JlIGxvc3QgZ2xrIEZCQyAxNmJwcCB3L2EKPiAgIGRybS9pOTE1OiBSZXN0b3JlIGxvc3Qg
-Z2xrIGNjcyB3L2EKPiAgIGRybS9pOTE1OiBEaXNhYmxlIExUVFBSIGRldGVjdGlvbiBvbiBHTEsg
-b25jZSBhZ2Fpbgo+ICAgZHJtL2k5MTU6IERvbid0IHVzZSB7c2tsLGNubH1faHBkX3BpbigpIGZv
-ciBieHQvZ2xrCj4gICBkcm0vaTkxNTogUmVtb3ZlIGEgZmV3IHJlZHVuZGFudCBnbGsgY2hlY2tz
-Cj4KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyAgICAgICAgICAg
-ICAgfCA2ICsrKy0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
-YXkuYyAgICAgICAgICB8IDMgKystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZHBfbGlua190cmFpbmluZy5jIHwgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2ZiYy5jICAgICAgICAgICAgICB8IDIgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMgICAgfCAyICstCj4gIDUgZmlsZXMgY2hh
-bmdlZCwgOCBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoKLS0gCkphbmkgTmlrdWxhLCBJ
-bnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+--===============0597855037==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="3zY2OYTARJAQNWvh"
+Content-Disposition: inline
+
+
+--3zY2OYTARJAQNWvh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Apr 13, 2021 at 11:49:01AM +0200, Daniel Vetter wrote:
+> Since
+>=20
+> commit 890880ddfdbe256083170866e49c87618b706ac7
+> Author: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Date:   Fri Jan 4 09:56:10 2019 +0100
+>=20
+>     drm: Auto-set allow_fb_modifiers when given modifiers at plane init
+>=20
+> this is done automatically as part of plane init, if drivers set the
+> modifier list correctly. Which is the case here.
+>=20
+> It was slightly inconsistently though, since planes with only linear
+> modifier support haven't listed that explicitly. Fix that, and cc:
+> stable to allow userspace to rely on this. Again don't backport
+> further than where Paul's patch got added.
+>=20
+> Cc: stable@vger.kernel.org # v5.1 +
+> Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Jonathan Hunter <jonathanh@nvidia.com>
+> Cc: linux-tegra@vger.kernel.org
+> ---
+>  drivers/gpu/drm/tegra/dc.c  | 10 ++++++++--
+>  drivers/gpu/drm/tegra/drm.c |  2 --
+>  2 files changed, 8 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/tegra/dc.c b/drivers/gpu/drm/tegra/dc.c
+> index c9385cfd0fc1..f9845a50f866 100644
+> --- a/drivers/gpu/drm/tegra/dc.c
+> +++ b/drivers/gpu/drm/tegra/dc.c
+> @@ -959,6 +959,11 @@ static const struct drm_plane_helper_funcs tegra_cur=
+sor_plane_helper_funcs =3D {
+>  	.atomic_disable =3D tegra_cursor_atomic_disable,
+>  };
+> =20
+> +static const uint64_t linear_modifiers[] =3D {
+> +	DRM_FORMAT_MOD_LINEAR,
+> +	DRM_FORMAT_MOD_INVALID
+> +};
+> +
+>  static struct drm_plane *tegra_dc_cursor_plane_create(struct drm_device =
+*drm,
+>  						      struct tegra_dc *dc)
+>  {
+> @@ -987,7 +992,7 @@ static struct drm_plane *tegra_dc_cursor_plane_create=
+(struct drm_device *drm,
+> =20
+>  	err =3D drm_universal_plane_init(drm, &plane->base, possible_crtcs,
+>  				       &tegra_plane_funcs, formats,
+> -				       num_formats, NULL,
+> +				       num_formats, linear_modifiers,
+>  				       DRM_PLANE_TYPE_CURSOR, NULL);
+>  	if (err < 0) {
+>  		kfree(plane);
+> @@ -1106,7 +1111,8 @@ static struct drm_plane *tegra_dc_overlay_plane_cre=
+ate(struct drm_device *drm,
+> =20
+>  	err =3D drm_universal_plane_init(drm, &plane->base, possible_crtcs,
+>  				       &tegra_plane_funcs, formats,
+> -				       num_formats, NULL, type, NULL);
+> +				       num_formats, linear_modifiers,
+> +				       type, NULL);
+
+I think we can do better than linear_modifiers for overlay planes, but
+given that this doesn't change existing behaviour, I'll do that in a
+separate patch.
+
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--3zY2OYTARJAQNWvh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmB1goAACgkQ3SOs138+
+s6HiPg/9F2IhGz7bj0R3eFPU3cBNVrP3Fi7Q48YLUZofkiN0ka7nGaDGknhgaupF
+bE3N2Yk9Qp+tsN82z3R7PsFfmmPfy3uBKp8lcXV2jMJtb/sqH+JmRZAUl3wzT0qb
+ZwnaBs5xjoPATt8oFC8/8Y1sQ2GW7+6yWCWIaVC8PqiQ5g78L6gsu2N7Ig/rB+P6
+VAI6t1MGjdfiF8lrMF3+kkvbpxrqIybiAHXVhsUxViXH88AWq56lu9LRUWZTk3T9
+eLyBcbyth7XrO4KJOMuOFqXYjPn8f7dKittgCwSacGkItWmQv0+GBrdFeA+i0WZW
+b0SRu1QdGY9ClU0Z+rs9YCRV9P853vCUQs2E6rPEpO9Ul8tP/OKoGu0/DUFV98gJ
+iReAe4bP6CSJN96oJ+FUunvOyJ40gGWToWCmZ37fM1Vt/qH2+LkPAkkbdAPkCqBx
+1frCx2qFhxRNL+laXN7tkkmjg+ZPBqK8VjEQJ+dl5gBQsM8g1o4cliI6KSKgjm4B
+oAArUFz3u9zYzT0sFuqj+lyh9/Tu+gevrUNkcyAkUrngNaEZkCgSL6A6rJLKSOLY
+ZH964cF3UDvzZGwuOaVgR9agCBXh2i/WFa1AtE6HsvB/HELLxg3nUHYe5CBAGrjM
+4BLaGiVxVaYx73qjnaB2LKcqybVO8S+NEP48pWjwnGXz1fu0z/8=
+=0rrw
+-----END PGP SIGNATURE-----
+
+--3zY2OYTARJAQNWvh--
+
+--===============0597855037==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0597855037==--
