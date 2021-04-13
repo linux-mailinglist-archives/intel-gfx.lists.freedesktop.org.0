@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0EC835E319
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 17:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD0F35E47E
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 18:59:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5C296E7E6;
-	Tue, 13 Apr 2021 15:45:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A19F6E822;
+	Tue, 13 Apr 2021 16:59:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DACC6E7E6
- for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 15:45:36 +0000 (UTC)
-IronPort-SDR: qKGSVVEAeAhjeIrZt7cjrOH0aWnPQZrNP3rDRhmSHkiC4jL2dzNDQRXkhV+gulDVE51XwcCuiA
- k3vxhD8nLPTg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9953"; a="181955381"
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="181955381"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 08:45:20 -0700
-IronPort-SDR: Ta/lCTRO4uQZoaPyMM3js45t/5TR9mGSLBDSCaWKDdPLsg6KtrzJVG95GS2Jq4grZ1OA5L/2EX
- hdS2j136FSQg==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EC046E81F;
+ Tue, 13 Apr 2021 16:59:45 +0000 (UTC)
+IronPort-SDR: 8ZGdGym+Rj4x6VLZuKqQBgwSJTT06zyoAWV/aU4dNn1/CJovN0f2evPJh0+Xfh8/pR8IkLHTBr
+ sR3lySrZl7Dg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9953"; a="181582333"
+X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="181582333"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2021 09:59:41 -0700
+IronPort-SDR: b9JQnHmyNK9H0SxG2ldlD6mtXXg/Cwe1SH7FDueh3LgvnB1ET5V2880Yxkm6i8xK9N1XD7izze
+ ToJ8S6k9gT4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="417903379"
+X-IronPort-AV: E=Sophos;i="5.82,219,1613462400"; d="scan'208";a="424337626"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 13 Apr 2021 08:45:17 -0700
+ by orsmga008.jf.intel.com with SMTP; 13 Apr 2021 09:59:35 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 13 Apr 2021 18:45:16 +0300
-Date: Tue, 13 Apr 2021 18:45:16 +0300
+ Tue, 13 Apr 2021 19:59:34 +0300
+Date: Tue, 13 Apr 2021 19:59:34 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <YHW8jE1Z3DLPxlXs@intel.com>
-References: <20210413060927.114342-1-lucas.demarchi@intel.com>
- <20210413060927.114342-4-lucas.demarchi@intel.com>
+To: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Message-ID: <YHXN9lqtdvisT8gn@intel.com>
+References: <20210413170240.0d4ffa38@xhacker.debian>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210413060927.114342-4-lucas.demarchi@intel.com>
+In-Reply-To: <20210413170240.0d4ffa38@xhacker.debian>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/display: remove strap checks
- from gen 9
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix "mitigations" parsing if i915
+ is builtin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,124 +50,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 12, 2021 at 11:09:27PM -0700, Lucas De Marchi wrote:
-> Direction on gen9+ was to stop reading the straps and only rely on the
-> VBT for marking the port presence. This happened while dealing with
-> WaIgnoreDDIAStrap and instead of using it as a WA, it should now be the
-> normal flow. See commit 885d3e5b6f08 ("drm/i915/display: fix comment on
-> skl straps").
+On Tue, Apr 13, 2021 at 05:02:40PM +0800, Jisheng Zhang wrote:
+> I met below error during boot with i915 builtin if pass
+> "i915.mitigations=3Doff":
+> [    0.015589] Booting kernel: `off' invalid for parameter `i915.mitigati=
+ons'
 > =
 
-> For gen 10 it's hard to say if this will work or not since I can't test
-> it, so leave it with the same behavior as before.
+> The reason is slab subsystem isn't ready at that time, so kstrdup()
+> returns NULL. Fix this issue by using stack var instead of kstrdup().
 > =
 
-> For PCH_TGP we should still rely on the VBT to make ports E and F not
-> available.
-> =
-
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Fixes: 984cadea032b ("drm/i915: Allow the sysadmin to override security m=
+itigations")
+> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 36 ++++++--------------
->  1 file changed, 11 insertions(+), 25 deletions(-)
+>  drivers/gpu/drm/i915/i915_mitigations.c | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index d62ce9c87748..5a03cbba0280 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -10883,34 +10883,25 @@ static void intel_setup_outputs(struct drm_i915=
-_private *dev_priv)
->  		intel_ddi_init(dev_priv, PORT_B);
->  		intel_ddi_init(dev_priv, PORT_C);
->  		vlv_dsi_init(dev_priv);
-> +	} else if (DISPLAY_VER(dev_priv) =3D=3D 9) {
-
-Should be >=3D10 I presume? Or did we want ot handle cnl along with
-icl perhaps? Doesn't really matter I suppose, but it's surely
-going to consfuse the me the next time I read this.
-
-> +		intel_ddi_init(dev_priv, PORT_A);
-> +		intel_ddi_init(dev_priv, PORT_B);
-> +		intel_ddi_init(dev_priv, PORT_C);
-> +		intel_ddi_init(dev_priv, PORT_D);
-> +		intel_ddi_init(dev_priv, PORT_E);
-> +		intel_ddi_init(dev_priv, PORT_F);
-
-DDI F isn't a thing on skl/derivatives, so I'd probably skip it on
-those. Could just use IS_CNL_WITH_PORT_F() to match the looks of
-the icl stuff.
-
->  	} else if (HAS_DDI(dev_priv)) {
-> -		int found;
-> +		u32 found;
+> diff --git a/drivers/gpu/drm/i915/i915_mitigations.c b/drivers/gpu/drm/i9=
+15/i915_mitigations.c
+> index 84f12598d145..7dadf41064e0 100644
+> --- a/drivers/gpu/drm/i915/i915_mitigations.c
+> +++ b/drivers/gpu/drm/i915/i915_mitigations.c
+> @@ -29,15 +29,13 @@ bool i915_mitigate_clear_residuals(void)
+>  static int mitigations_set(const char *val, const struct kernel_param *k=
+p)
+>  {
+>  	unsigned long new =3D ~0UL;
+> -	char *str, *sep, *tok;
+> +	char str[64], *sep, *tok;
+>  	bool first =3D true;
+>  	int err =3D 0;
 >  =
 
->  		if (intel_ddi_crt_present(dev_priv))
->  			intel_crt_init(dev_priv);
+>  	BUILD_BUG_ON(ARRAY_SIZE(names) >=3D BITS_PER_TYPE(mitigations));
 >  =
 
-> -		/*
-> -		 * Haswell uses DDI functions to detect digital outputs.
-> -		 * On SKL pre-D0 the strap isn't connected. Later SKUs may or
-> -		 * may not have it - it was supposed to be fixed by the same
-> -		 * time we stopped using straps. Assume it's there.
-> -		 */
-> +		/* Haswell uses DDI functions to detect digital outputs. */
->  		found =3D intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISP=
-LAY_DETECTED;
-> -		/* WaIgnoreDDIAStrap: skl */
-> -		if (found || IS_DISPLAY_VER(dev_priv, 9))
-> +		if (found)
->  			intel_ddi_init(dev_priv, PORT_A);
->  =
+> -	str =3D kstrdup(val, GFP_KERNEL);
+> -	if (!str)
+> -		return -ENOMEM;
+> +	strncpy(str, val, sizeof(str) - 1);
 
-> -		/* DDI B, C, D, and F detection is indicated by the SFUSE_STRAP
-> -		 * register */
-> -		if (HAS_PCH_TGP(dev_priv)) {
-> -			/* W/A due to lack of STRAP config on TGP PCH*/
-> -			found =3D (SFUSE_STRAP_DDIB_DETECTED |
-> -				 SFUSE_STRAP_DDIC_DETECTED |
-> -				 SFUSE_STRAP_DDID_DETECTED);
-> -		} else {
-> -			found =3D intel_de_read(dev_priv, SFUSE_STRAP);
-> -		}
-> -
-> +		found =3D intel_de_read(dev_priv, SFUSE_STRAP);
->  		if (found & SFUSE_STRAP_DDIB_DETECTED)
->  			intel_ddi_init(dev_priv, PORT_B);
->  		if (found & SFUSE_STRAP_DDIC_DETECTED)
-> @@ -10919,11 +10910,6 @@ static void intel_setup_outputs(struct drm_i915_=
-private *dev_priv)
->  			intel_ddi_init(dev_priv, PORT_D);
->  		if (found & SFUSE_STRAP_DDIF_DETECTED)
->  			intel_ddi_init(dev_priv, PORT_F);
-> -		/*
-> -		 * On SKL we don't have a way to detect DDI-E so we rely on VBT.
-> -		 */
-> -		if (IS_DISPLAY_VER(dev_priv, 9)
-> -			intel_ddi_init(dev_priv, PORT_E);
->  	} else if (HAS_PCH_SPLIT(dev_priv)) {
->  		int found;
->  =
+I don't think strncpy() guarantees that the string is properly
+terminated.
 
-> -- =
+Also commit b1b6bed3b503 ("usb: core: fix quirks_param_set() writing to
+a const pointer") looks broken as well given your findings, and
+arch/um/drivers/virtio_uml.c seems to suffer from this as well.
+kernel/params.c itself seems to have some slab_is_available() magic
+around kmalloc().
 
-> 2.31.1
-> =
+I used the following cocci snippet to find these:
+@find@
+identifier O, F;
+position PS;
+@@
+struct kernel_param_ops O =3D {
+...,
+        .set =3D F@PS
+,...
+};
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+@alloc@
+identifier ALLOC =3D~ "^k.*(alloc|dup)";
+identifier find.F;
+position PA;
+@@
+F(...) {
+<+...
+ALLOC@PA(...)
+...+>
+}
+
+@script:python depends on alloc@
+ps << find.PS;
+pa << alloc.PA;
+@@
+coccilib.report.print_report(ps[0], "struct")
+coccilib.report.print_report(pa[0], "alloc")
+
+That could of course miss a bunch more if they allocate
+via some other function I didn't consider.
 
 -- =
 
