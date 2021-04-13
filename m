@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC05C35D76A
-	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 07:48:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9681735D7BD
+	for <lists+intel-gfx@lfdr.de>; Tue, 13 Apr 2021 08:09:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E72BF6E174;
-	Tue, 13 Apr 2021 05:48:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 606B06E214;
+	Tue, 13 Apr 2021 06:09:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1C4E96E174;
- Tue, 13 Apr 2021 05:48:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0D6A5A363D;
- Tue, 13 Apr 2021 05:48:38 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A75C16E214
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 06:09:51 +0000 (UTC)
+IronPort-SDR: 4cG5XdyL/aQ+j0ErmbUZ7gwaOCAYJJBEq9qgvZIf9jc3Ox0o1ukAu/tsUE2EmrrNCrMoVDpeYm
+ 1Y7vtRPs4FWQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9952"; a="192215137"
+X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="192215137"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2021 23:09:50 -0700
+IronPort-SDR: O1sxfefRpIAPJmbdl9lfCCo4ETSpXaRTNiNfkc9ZlR0n/3ktPKrJbOZmadZGdpAERHZ0Ndagft
+ yu62x1/ES2Lw==
+X-IronPort-AV: E=Sophos;i="5.82,218,1613462400"; d="scan'208";a="532160581"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Apr 2021 23:09:50 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 12 Apr 2021 23:09:24 -0700
+Message-Id: <20210413060927.114342-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 13 Apr 2021 05:48:38 -0000
-Message-ID: <161829291805.8795.4827322336977004403@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210413051002.92589-1-lucas.demarchi@intel.com>
-In-Reply-To: <20210413051002.92589-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915=3A_Extend_GEN_renames_to_the_rest_of_the_driver_=28rev3?=
- =?utf-8?q?=29?=
+Subject: [Intel-gfx] [PATCH 0/3] Simplify intel_setup_outputs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +44,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+First and second patches should be straightforward. Third patch is a
+tentative simplification that may break things in the presence of broken
+VBTs, but I'm feeling confident.
 
-Series: drm/i915: Extend GEN renames to the rest of the driver (rev3)
-URL   : https://patchwork.freedesktop.org/series/88825/
-State : warning
+Lucas De Marchi (3):
+  drm/i915/display: move vbt check to intel_ddi_init()
+  drm/i915/display: remove FIXME comment for intended feature
+  drm/i915/display: remove strap checks from gen 9
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_display.c | 54 ++++++--------------
+ 1 file changed, 16 insertions(+), 38 deletions(-)
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
-
+-- 
+2.31.1
 
 _______________________________________________
 Intel-gfx mailing list
