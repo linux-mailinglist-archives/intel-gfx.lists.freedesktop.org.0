@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 417FD35F0D0
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 11:26:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB7935F0DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 11:30:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9922D6E903;
-	Wed, 14 Apr 2021 09:26:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 733EE6E909;
+	Wed, 14 Apr 2021 09:30:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9CC76E903
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 09:26:26 +0000 (UTC)
-IronPort-SDR: G35S9o6HTGiIqmipbxG17nJBO7IMBmMPSbxMg3Zrzp/Qnr+Ek3y4QXrfuMMceVMAH0CNkoss9c
- nehcekIxlumA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9953"; a="174709852"
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; d="scan'208";a="174709852"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2021 02:26:26 -0700
-IronPort-SDR: zq1Xi9MNcm72vphKCqhvfPbsWkCK4sHHquUfZpgZ0n4ZOXhXRxv5/hncWlubmj4L9eiEec2yAu
- cQZyQa7Rc1Yg==
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; d="scan'208";a="461147071"
-Received: from dgeiger-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.63.90])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2021 02:26:24 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210412054607.18133-6-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210412054607.18133-1-ville.syrjala@linux.intel.com>
- <20210412054607.18133-6-ville.syrjala@linux.intel.com>
-Date: Wed, 14 Apr 2021 12:26:21 +0300
-Message-ID: <87czuxfc8y.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 822AB6E909;
+ Wed, 14 Apr 2021 09:30:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A6C05AAA91;
+ Wed, 14 Apr 2021 09:30:06 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915: Remove a few redundant glk
- checks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kai-Heng Feng" <kai.heng.feng@canonical.com>
+Date: Wed, 14 Apr 2021 09:30:06 -0000
+Message-ID: <161839260667.4305.11437251502342369207@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210414063011.996773-1-kai.heng.feng@canonical.com>
+In-Reply-To: <20210414063011.996773-1-kai.heng.feng@canonical.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dp=3A_Use_slow_and_wide_link_training_for_DPCP_rev_=3C_1?=
+ =?utf-8?q?=2E4?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,42 +39,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0318503604=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAxMiBBcHIgMjAyMSwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+Cj4KPiBOb3cgdGhhdCBnbGsgZGlzcGxheSB2ZXJzaW9uIGlzIDEwIHdl
-IGNhbiBkcm9wIGEgZmV3IG1vcmUgZ2xrIGNoZWNrcy4KPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CgpSZXZpZXdlZC1ieTog
-SmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KCj4gLS0tCj4gIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMgICAgICAgICAgIHwgMiArLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYyB8IDIgKy0KPiAgMiBm
-aWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKPiBpbmRleCBlMjA4ZGVkOWE2ODguLjc5
-ZWNlOWU0NWQ2NiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RkaS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGku
-Ywo+IEBAIC0xNzYsNyArMTc2LDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfd2FpdF9kZGlfYnVmX2Fj
-dGl2ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gIAkJCQkgICAgICBlbnVt
-IHBvcnQgcG9ydCkKPiAgewo+ICAJLyogV2FpdCA+IDUxOCB1c2VjcyBmb3IgRERJX0JVRl9DVEwg
-dG8gYmUgbm9uIGlkbGUgKi8KPiAtCWlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPCAxMCAmJiAh
-SVNfR0VNSU5JTEFLRShkZXZfcHJpdikpIHsKPiArCWlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikg
-PCAxMCkgewo+ICAJCXVzbGVlcF9yYW5nZSg1MTgsIDEwMDApOwo+ICAJCXJldHVybjsKPiAgCX0K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2Fs
-X3BsYW5lLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxh
-bmUuYwo+IGluZGV4IDA5ODYzNmM4MTFhOC4uNTkyNmVkMTA5NGE0IDEwMDY0NAo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jCj4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMKPiBAQCAt
-ODUzLDcgKzg1Myw3IEBAIHN0YXRpYyB1MzIgc2tsX3BsYW5lX2N0bChjb25zdCBzdHJ1Y3QgaW50
-ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKPiAgCj4gIAlwbGFuZV9jdGwgPSBQTEFORV9DVExf
-RU5BQkxFOwo+ICAKPiAtCWlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPCAxMCAmJiAhSVNfR0VN
-SU5JTEFLRShkZXZfcHJpdikpIHsKPiArCWlmIChESVNQTEFZX1ZFUihkZXZfcHJpdikgPCAxMCkg
-ewo+ICAJCXBsYW5lX2N0bCB8PSBza2xfcGxhbmVfY3RsX2FscGhhKHBsYW5lX3N0YXRlKTsKPiAg
-CQlwbGFuZV9jdGwgfD0gUExBTkVfQ1RMX1BMQU5FX0dBTU1BX0RJU0FCTEU7CgotLSAKSmFuaSBO
-aWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
-dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+--===============0318503604==
+Content-Type: multipart/alternative;
+ boundary="===============5064196714940913732=="
+
+--===============5064196714940913732==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/dp: Use slow and wide link training for DPCP rev < 1.4
+URL   : https://patchwork.freedesktop.org/series/89055/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9967 -> Patchwork_19932
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19932/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19932 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - {fi-hsw-gt1}:       [DMESG-WARN][1] ([i915#3303]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9967/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19932/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
+  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Missing    (4): fi-icl-y fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9967 -> Patchwork_19932
+
+  CI-20190529: 20190529
+  CI_DRM_9967: e9d6f14cc871b197c41abc1e781da8e364e27c21 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6064: 48d89e2c65c54883b0776930a884e6d3bcefb45b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19932: 127991a6808ba767cc91bb503979c07b5b2b5bc7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+127991a6808b drm/i915/dp: Use slow and wide link training for DPCP rev < 1.4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19932/index.html
+
+--===============5064196714940913732==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Use slow and wide link training for DPCP rev &lt; 1.4</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89055/">https://patchwork.freedesktop.org/series/89055/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19932/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19932/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9967 -&gt; Patchwork_19932</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19932/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19932 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>{fi-hsw-gt1}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9967/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3303">i915#3303</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19932/fi-hsw-gt1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (45 -&gt; 41)</h2>
+<p>Missing    (4): fi-icl-y fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9967 -&gt; Patchwork_19932</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9967: e9d6f14cc871b197c41abc1e781da8e364e27c21 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6064: 48d89e2c65c54883b0776930a884e6d3bcefb45b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19932: 127991a6808ba767cc91bb503979c07b5b2b5bc7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>127991a6808b drm/i915/dp: Use slow and wide link training for DPCP rev &lt; 1.4</p>
+
+</body>
+</html>
+
+--===============5064196714940913732==--
+
+--===============0318503604==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0318503604==--
