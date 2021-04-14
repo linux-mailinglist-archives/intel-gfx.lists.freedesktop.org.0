@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B434435F9CA
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 19:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A5735F9CB
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 19:29:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08FDA6E959;
-	Wed, 14 Apr 2021 17:29:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5D956E95A;
+	Wed, 14 Apr 2021 17:29:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
- [IPv6:2607:f8b0:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97FE26E959
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 17:29:34 +0000 (UTC)
-Received: by mail-pl1-x62a.google.com with SMTP id z22so5392188plo.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 10:29:34 -0700 (PDT)
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
+ [IPv6:2607:f8b0:4864:20::102f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A584A6E95A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 17:29:37 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id
+ b8-20020a17090a5508b029014d0fbe9b64so12882205pji.5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 10:29:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=NtcyLr97vt7tBtf+Evf5JrbdU0JuK+5BO0OeaqqfGII=;
- b=U3p66+Be9J9brLNZfLCAa72fmyHRhYkU2dLerndAukBzw9zqH+m1l2LBgLkyJu6/04
- s1uRRZ+UJIiAk+qKJDPUqbNlfS9edRSd1TqeoyJPJaOheuKDsALg4RevMCAL+aM1mJni
- RIbOhRQmnkWslS55DoyiBjiz4r02jbQvoJm18=
+ bh=SDiflsGvBCYCoVMBt0Fyo3zuZR1BmIQO6zXHXOu40Mw=;
+ b=bXgPeL+8QRF9Gjxpyiun2OlMg3Of3XNusHjUl10Do3tPZf0xCI4aDB2CRppJls5vCo
+ cQZrEVi7aWWJZUwv0C5LOB+dx0PcrY8Q6BfrgGB9OUU8NfN7SFS2zO5jCmIGYunfeawR
+ ywMgma3p50C1zJmwfplwwtgbrNeGp+IuyCWhA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=NtcyLr97vt7tBtf+Evf5JrbdU0JuK+5BO0OeaqqfGII=;
- b=SksTuFkIbTkpR/YmpKTlGhuCmPc35fZrYQ+nizR/iv/OEfAakJxQPFEL075XP0NmWJ
- ot2pSyVWpbo7BALMVPOyzoifYWxMBHJsrFVuw8E1FKU7lLw40oR6/TDANpB4VMJqHcWI
- SBnh4U/46vK1npA2NdLXL26cHhcnJFuMgPo/NpPseDB1IgAEyEbb+rsswwUZ+Nkv6KtH
- QgCGbWFTtM/0ae5Bd7oJUvRlWgbUDj8ChNRRrQXeJWWXKxHrSaocn/jreuA1gveGCWY4
- 4gNtzSdARbXZe0xPp8eK+/ShVs5ky5Ihnwg7EwOfB9Ar3cgPHqmRBBTyKJPIaUd/XHwJ
- EKUA==
-X-Gm-Message-State: AOAM5335sFH72y9bMnkZRLEuvVajOS/60PGchyNh+QcbN+DIK7HvsL/v
- Qc0TWHm65lhKrzq2x/irRkwnrw==
-X-Google-Smtp-Source: ABdhPJwPcZosbX6F/FEtrRwct5NPpkw0jknr5o9f0r7xAc5sBoT3Dcx5C3arvvo3qFB/+caOXsY09g==
-X-Received: by 2002:a17:90a:ce8d:: with SMTP id
- g13mr4686960pju.85.1618421374136; 
- Wed, 14 Apr 2021 10:29:34 -0700 (PDT)
+ bh=SDiflsGvBCYCoVMBt0Fyo3zuZR1BmIQO6zXHXOu40Mw=;
+ b=Tb7UbSvsSjj2/Lq6UxB+kjUlzNdRGm7SZEl2e7/kw1Vu6cFptkL1StXVXffxEF1vkd
+ W9ieFjMhkTV8Rd+isf03sN1+a1ezEIM33uZJsdlWCwv6VdHmnsrmIE3SrwvacAYfWh0/
+ F90buw0cenlLD3Awzcd/jijz9meSauE3vY519wG7RgXzT1FlrRwyzisAS7cQ9NERrF5K
+ CwNsPjutMs45N2kkeWDBPl5H3avE6k/nir8giukmLYW1g15KNR3ElcYEyH8wBzoqpbMy
+ Lm2c/oIk92315cM5wF0pv3hyu9q4EJTaP0kL6ql1UufVZQRXqOl9302NzDZDepiXOtCO
+ l+ng==
+X-Gm-Message-State: AOAM532CpaaT4gQLM3HdsB9ceG5o196Tt1TkVXIktecbeOxu+/57rdC3
+ 78R70JObdV6NhwAw6TOC1xWSmQ==
+X-Google-Smtp-Source: ABdhPJwM/DI2o34F+WDaWrZsOlue0b7UjEhkAxTdz2w/M4qUcKAuHYkMB4oCu8X13AIH9xl4tSLwfg==
+X-Received: by 2002:a17:90a:df17:: with SMTP id
+ gp23mr2497950pjb.7.1618421377192; 
+ Wed, 14 Apr 2021 10:29:37 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com
  ([2401:fa00:1:10:bae3:4af0:9792:1539])
- by smtp.gmail.com with ESMTPSA id e31sm63460pjk.4.2021.04.14.10.29.31
+ by smtp.gmail.com with ESMTPSA id e31sm63460pjk.4.2021.04.14.10.29.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 Apr 2021 10:29:33 -0700 (PDT)
+ Wed, 14 Apr 2021 10:29:36 -0700 (PDT)
 From: Hsin-Yi Wang <hsinyi@chromium.org>
 To: Wolfram Sang <wsa@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
  Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date: Thu, 15 Apr 2021 01:29:14 +0800
-Message-Id: <20210414172916.2689361-5-hsinyi@chromium.org>
+Date: Thu, 15 Apr 2021 01:29:15 +0800
+Message-Id: <20210414172916.2689361-6-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
 In-Reply-To: <20210414172916.2689361-1-hsinyi@chromium.org>
 References: <20210414172916.2689361-1-hsinyi@chromium.org>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v19 4/6] misc: eeprom: at24: check suspend
- status before disable regulator
+Subject: [Intel-gfx] [PATCH v19 5/6] arm64: dts: mt8183: add supply name for
+ eeprom
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,38 +81,110 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-cd5676db0574 ("misc: eeprom: at24: support pm_runtime control") disables
-regulator in runtime suspend. If runtime suspend is called before
-regulator disable, it will results in regulator unbalanced disabling.
+Add supplies for eeprom for mt8183 boards.
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- drivers/misc/eeprom/at24.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi | 4 ++++
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi | 4 ++++
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi  | 4 ++++
+ 3 files changed, 12 insertions(+)
 
-diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-index 926408b41270..7a6f01ace78a 100644
---- a/drivers/misc/eeprom/at24.c
-+++ b/drivers/misc/eeprom/at24.c
-@@ -763,7 +763,8 @@ static int at24_probe(struct i2c_client *client)
- 	at24->nvmem = devm_nvmem_register(dev, &nvmem_config);
- 	if (IS_ERR(at24->nvmem)) {
- 		pm_runtime_disable(dev);
--		regulator_disable(at24->vcc_reg);
-+		if (!pm_runtime_status_suspended(dev))
-+			regulator_disable(at24->vcc_reg);
- 		return PTR_ERR(at24->nvmem);
- 	}
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
+index b442e38a3156..28966a65391b 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dtsi
+@@ -88,11 +88,13 @@ &i2c2 {
+ 	pinctrl-0 = <&i2c2_pins>;
+ 	status = "okay";
+ 	clock-frequency = <400000>;
++	vbus-supply = <&mt6358_vcamio_reg>;
  
-@@ -774,7 +775,8 @@ static int at24_probe(struct i2c_client *client)
- 	err = at24_read(at24, 0, &test_byte, 1);
- 	if (err) {
- 		pm_runtime_disable(dev);
--		regulator_disable(at24->vcc_reg);
-+		if (!pm_runtime_status_suspended(dev))
-+			regulator_disable(at24->vcc_reg);
- 		return -ENODEV;
- 	}
+ 	eeprom@58 {
+ 		compatible = "atmel,24c32";
+ 		reg = <0x58>;
+ 		pagesize = <32>;
++		vcc-supply = <&mt6358_vcama2_reg>;
+ 	};
+ };
+ 
+@@ -101,11 +103,13 @@ &i2c4 {
+ 	pinctrl-0 = <&i2c4_pins>;
+ 	status = "okay";
+ 	clock-frequency = <400000>;
++	vbus-supply = <&mt6358_vcn18_reg>;
+ 
+ 	eeprom@54 {
+ 		compatible = "atmel,24c32";
+ 		reg = <0x54>;
+ 		pagesize = <32>;
++		vcc-supply = <&mt6358_vcn18_reg>;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
+index 2f5234a16ead..3aa79403c0c2 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama.dtsi
+@@ -62,11 +62,13 @@ &i2c2 {
+ 	pinctrl-0 = <&i2c2_pins>;
+ 	status = "okay";
+ 	clock-frequency = <400000>;
++	vbus-supply = <&mt6358_vcamio_reg>;
+ 
+ 	eeprom@58 {
+ 		compatible = "atmel,24c64";
+ 		reg = <0x58>;
+ 		pagesize = <32>;
++		vcc-supply = <&mt6358_vcamio_reg>;
+ 	};
+ };
+ 
+@@ -75,11 +77,13 @@ &i2c4 {
+ 	pinctrl-0 = <&i2c4_pins>;
+ 	status = "okay";
+ 	clock-frequency = <400000>;
++	vbus-supply = <&mt6358_vcn18_reg>;
+ 
+ 	eeprom@54 {
+ 		compatible = "atmel,24c64";
+ 		reg = <0x54>;
+ 		pagesize = <32>;
++		vcc-supply = <&mt6358_vcn18_reg>;
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
+index fbc471ccf805..30c183c96a54 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane.dtsi
+@@ -71,11 +71,13 @@ &i2c2 {
+ 	pinctrl-0 = <&i2c2_pins>;
+ 	status = "okay";
+ 	clock-frequency = <400000>;
++	vbus-supply = <&mt6358_vcamio_reg>;
+ 
+ 	eeprom@58 {
+ 		compatible = "atmel,24c32";
+ 		reg = <0x58>;
+ 		pagesize = <32>;
++		vcc-supply = <&mt6358_vcama2_reg>;
+ 	};
+ };
+ 
+@@ -84,11 +86,13 @@ &i2c4 {
+ 	pinctrl-0 = <&i2c4_pins>;
+ 	status = "okay";
+ 	clock-frequency = <400000>;
++	vbus-supply = <&mt6358_vcn18_reg>;
+ 
+ 	eeprom@54 {
+ 		compatible = "atmel,24c32";
+ 		reg = <0x54>;
+ 		pagesize = <32>;
++		vcc-supply = <&mt6358_vcn18_reg>;
+ 	};
+ };
  
 -- 
 2.31.1.295.g9ea45b61b8-goog
