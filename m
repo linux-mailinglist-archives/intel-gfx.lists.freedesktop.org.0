@@ -2,60 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93B235F9CC
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 19:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D27F35F9FD
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 19:41:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15CD26E4D7;
-	Wed, 14 Apr 2021 17:29:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8F256E4C4;
+	Wed, 14 Apr 2021 17:41:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF7676E4D7
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 17:29:40 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id u7so8712505plr.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 10:29:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=70dSAhdvNf9rW7naVyB8FacZo/tKpmgYTIzZpzN71Cs=;
- b=LsiMLszNVSqTMFSOmT7Vt7BL2HWjYpQnn9/Ah8Ahmt14VXi38iwnxuRRnAMd7nV+F4
- L8OiYKIW4vYpw8N0fUeTwgUCiDMq5+HbPF+3sOym2H36ZFwtvq4PnCKSeplaTzdczwh+
- M1/M+ijlrnFtXNjeEsgG7aN63y8Ce7LLt8uSE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=70dSAhdvNf9rW7naVyB8FacZo/tKpmgYTIzZpzN71Cs=;
- b=WqVW0kDmqpMoCAh3dQKDpftYLAHYDxdjjGCymmqXyjVXFmuQUR+054FyEoTq8JaFV9
- AkENutW9cEPkrECt9kWMqkoUDSbhCoQkMTJ461cs6HTPGkqWzmxNAJe6JHmLabaAjg/k
- H7ojEO+xZfb5qakAoefJ1zJI7/D1+l+OKBh/djYzL1+qduVnILIk6o+uhXP+HiCX/ocj
- RrWTQbj+7ZCnuuHngquFXDr2tEGfxF/M3tISm1GUX3q+798zO2WRx1nfquUDflXXHMgN
- 9WkzsKtpyvpxADNf3MS4WuNpKL/dfNHwd8PE3TrVamD9RdHMiYZzRxidAjeQ5bJrkVtI
- fJLw==
-X-Gm-Message-State: AOAM532all/nQwqsyOxmR6xw6TEsIyXnNsAzg/2W4l+zGKRpuhfPrQus
- Mtu31F2zGk5/1zwbNO/tpZnzKg==
-X-Google-Smtp-Source: ABdhPJwqy6xfsxSkXZwh4yhPlR+yx5Kxrr/lleQqawAAaqaYA9AZc2k7rgE80MSaJDQAOD1ejSDS8w==
-X-Received: by 2002:a17:90a:ca83:: with SMTP id
- y3mr4896192pjt.191.1618421380273; 
- Wed, 14 Apr 2021 10:29:40 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com
- ([2401:fa00:1:10:bae3:4af0:9792:1539])
- by smtp.gmail.com with ESMTPSA id e31sm63460pjk.4.2021.04.14.10.29.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 Apr 2021 10:29:39 -0700 (PDT)
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-To: Wolfram Sang <wsa@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date: Thu, 15 Apr 2021 01:29:16 +0800
-Message-Id: <20210414172916.2689361-7-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.31.1.295.g9ea45b61b8-goog
-In-Reply-To: <20210414172916.2689361-1-hsinyi@chromium.org>
-References: <20210414172916.2689361-1-hsinyi@chromium.org>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E0476E4CB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 17:41:48 +0000 (UTC)
+IronPort-SDR: Fin/h1DTo0IyL55FU4fuPTFwsKh8bACY1S80erkZuPW9WyayyI3VSG3sGepSm7aLOJRojnrByC
+ juJLaKiZpfUg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9954"; a="194260066"
+X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; d="scan'208";a="194260066"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2021 10:41:46 -0700
+IronPort-SDR: 1JGIMTetIMZHY46Ww+C4220iYp7bmAp9ZRpW7nqv1eMIJHRsntw7px7HkCt8xdiNDisVFEcs7K
+ SJsD4VzCPGnA==
+X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; d="scan'208";a="452557686"
+Received: from akng-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.209.106.143])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2021 10:41:45 -0700
+Date: Wed, 14 Apr 2021 10:41:45 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20210414174145.v45vrgt3qsv7amiv@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210413051002.92589-1-lucas.demarchi@intel.com>
+ <20210413051002.92589-9-lucas.demarchi@intel.com>
+ <2216c8a6-003d-5240-d983-8c162872fd66@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v19 6/6] drm/i915/selftests: Rename functions
- names
+Content-Disposition: inline
+In-Reply-To: <2216c8a6-003d-5240-d983-8c162872fd66@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 08/12] drm/i915: finish removal of
+ gen_mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,77 +51,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Qii Wang <qii.wang@mediatek.com>,
- Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Mark Brown <broonie@kernel.org>, linux-mediatek@lists.infradead.org,
- linux-i2c@vger.kernel.org, Bibby Hsieh <bibby.hsieh@mediatek.com>,
- linux-arm-kernel@lists.infradead.org,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-pm_resume and pm_suspend might be conflict with the ones defined in
-include/linux/suspend.h. Rename pm_resume{suspend} to
-i915_pm_resume{suspend} since they are only used here.
+On Wed, Apr 14, 2021 at 12:38:44PM +0100, Tvrtko Ursulin wrote:
+>
+>On 13/04/2021 06:09, Lucas De Marchi wrote:
+>>Now that it's not used anywhere, remove it from struct
+>>intel_device_info. To allow a period in which code will be converted to
+>>the new macro, keep IS_GEN_RANGE() around, just redefining it to use
+>>the new fields. The size advantage from IS_GEN_RANGE() using a mask is
+>>not that big as it has pretty limited use througout the driver:
+>>
+>>    text    data     bss     dec     hex filename
+>>2758497   95965    6496 2860958  2ba79e drivers/gpu/drm/i915/i915.ko.old
+>>2758586   95953    6496 2861035  2ba7eb drivers/gpu/drm/i915/i915.ko.new
+>
+>This delta refers to this patch - I mean this point in the series? 
+>Asking because it may not be 100% representative since some of the 
+>previous patches have already removed some gen mask usages.
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reported-by: kernel test robot <lkp@intel.com>
----
- drivers/gpu/drm/i915/selftests/i915_gem.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
-index dc394fb7ccfa..525afda9d31f 100644
---- a/drivers/gpu/drm/i915/selftests/i915_gem.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
-@@ -94,7 +94,7 @@ static int pm_prepare(struct drm_i915_private *i915)
- 	return 0;
- }
- 
--static void pm_suspend(struct drm_i915_private *i915)
-+static void i915_pm_suspend(struct drm_i915_private *i915)
- {
- 	intel_wakeref_t wakeref;
- 
-@@ -116,7 +116,7 @@ static void pm_hibernate(struct drm_i915_private *i915)
- 	}
- }
- 
--static void pm_resume(struct drm_i915_private *i915)
-+static void i915_pm_resume(struct drm_i915_private *i915)
- {
- 	intel_wakeref_t wakeref;
- 
-@@ -152,12 +152,12 @@ static int igt_gem_suspend(void *arg)
- 	if (err)
- 		goto out;
- 
--	pm_suspend(i915);
-+	i915_pm_suspend(i915);
- 
- 	/* Here be dragons! Note that with S3RST any S3 may become S4! */
- 	simulate_hibernate(i915);
- 
--	pm_resume(i915);
-+	i915_pm_resume(i915);
- 
- 	err = switch_to_context(ctx);
- out:
-@@ -192,7 +192,7 @@ static int igt_gem_hibernate(void *arg)
- 	/* Here be dragons! */
- 	simulate_hibernate(i915);
- 
--	pm_resume(i915);
-+	i915_pm_resume(i915);
- 
- 	err = switch_to_context(ctx);
- out:
--- 
-2.31.1.295.g9ea45b61b8-goog
+yes, it doesn't consider the other patches. These numbers are also for
+v1, not v2, as I didn't update the commit mesage.
 
+I don't think the numbers will be too different though.
+
+
+>
+>While I am here, I am a bit fond of the mask approach and wonder if 
+>using it for all (gt/media/whatelse) new fields would still make 
+>sense.
+>
+>Presence of the range check helpers suggests that it might, but I 
+>haven't looked at how prevalent their usage ends up after the series 
+>is done. So just in principle, I don't see why not still go with masks 
+>since that guarantees elegant check at each range check site. It would 
+>be all hidden in the macro implementation so easy.
+>
+>Also for historical reference, another reason why I went for masks 
+>everywhere approach is that at some point we had a feature request to 
+>allow compiling out platforms/gens. I *think* that was much easier to 
+>do with masking and in experiments back then I was able for instance 
+>to build just for Gen9+ and drop like 30% of the binary size.
+>
+>Oh I found the branch now.. The reason for IS_GEN(p, v) was also in 
+>that series. I don't know if I ever RFC-ed or trybotted it.. google 
+>suggests no and I neither can find it in my mailboxes. I could send 
+>out the old patches for reference? But to be honest I have no idea if 
+>this feature request (targeted driver builds) will ever resurface..
+
+At the time I also liked having the macros. Looking back and checking if
+we really took advantage of it, I lean towards a "no". Even when and if
+we are interested in compiling out some platforms, I think a better
+code split would be deserved rather relying on this.
+
+Lucas De Marchi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
