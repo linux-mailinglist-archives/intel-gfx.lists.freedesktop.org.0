@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DD0635F386
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 14:24:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E295235F389
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 14:25:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74E0189247;
-	Wed, 14 Apr 2021 12:24:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5556C895A8;
+	Wed, 14 Apr 2021 12:25:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0775789247;
- Wed, 14 Apr 2021 12:24:34 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8666189247;
+ Wed, 14 Apr 2021 12:25:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F2911A47E9;
- Wed, 14 Apr 2021 12:24:33 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 80B3AA47DF;
+ Wed, 14 Apr 2021 12:25:26 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Wed, 14 Apr 2021 12:24:33 -0000
-Message-ID: <161840307397.4306.18239118804811681081@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 14 Apr 2021 12:25:26 -0000
+Message-ID: <161840312652.4307.12548083049144682390@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210413094904.3736372-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20210413094904.3736372-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B01/12=5D_drm/arm=3A_Don=27t_set_allow=5F?=
- =?utf-8?q?fb=5Fmodifiers_explicitly_=28rev2=29?=
+References: <20210414115028.168504-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210414115028.168504-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBP?=
+ =?utf-8?q?ld_platform/gen_kconfig_options_series?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,26 +47,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [01/12] drm/arm: Don't set allow_fb_modifiers explicitly (rev2)
-URL   : https://patchwork.freedesktop.org/series/88999/
+Series: Old platform/gen kconfig options series
+URL   : https://patchwork.freedesktop.org/series/89069/
 State : failure
 
 == Summary ==
 
-Applying: drm/arm: Don't set allow_fb_modifiers explicitly
-Applying: drm/arm/malidp: Always list modifiers
-Applying: drm/exynos: Don't set allow_fb_modifiers explicitly
-Applying: drm/i915: Don't set allow_fb_modifiers explicitly
-Applying: drm/imx: Don't set allow_fb_modifiers explicitly
-Applying: drm/msm/dpu1: Don't set allow_fb_modifiers explicitly
+Applying: drm/i915: Make I830 platform support optional
 Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+M	drivers/gpu/drm/i915/Kconfig
+M	drivers/gpu/drm/i915/i915_drv.h
+M	drivers/gpu/drm/i915/i915_pci.c
 Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+Auto-merging drivers/gpu/drm/i915/i915_pci.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/i915_pci.c
+Auto-merging drivers/gpu/drm/i915/i915_drv.h
+Auto-merging drivers/gpu/drm/i915/Kconfig
 error: Failed to merge in the changes.
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0006 drm/msm/dpu1: Don't set allow_fb_modifiers explicitly
+Patch failed at 0001 drm/i915: Make I830 platform support optional
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
