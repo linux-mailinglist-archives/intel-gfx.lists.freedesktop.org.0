@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D133F35F0E0
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 11:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B48935F115
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 11:52:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADFD06E48B;
-	Wed, 14 Apr 2021 09:34:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E97466E916;
+	Wed, 14 Apr 2021 09:52:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEBA46E48B
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 09:34:57 +0000 (UTC)
-IronPort-SDR: nbDuKeWdxmL+E+FEuwUXFeidcf1XtRvCZrFSTz46xiWQkL/bjSzYSSA8RHbuZJvW97eFvHjOmF
- jBm1n9X/vq2g==
-X-IronPort-AV: E=McAfee;i="6200,9189,9953"; a="279916582"
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; d="scan'208";a="279916582"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A57766E916;
+ Wed, 14 Apr 2021 09:52:28 +0000 (UTC)
+IronPort-SDR: pn0pl+A4GY1DxnwOOgBIxVFELPIyyGLr6h1/VI36pUWK2c4ApVgIPSESkIJkyq4EJynucZ4Iz+
+ nYMlinN3GU3g==
+X-IronPort-AV: E=McAfee;i="6200,9189,9953"; a="194717301"
+X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; d="scan'208";a="194717301"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2021 02:34:54 -0700
-IronPort-SDR: xMjJbG6+Bj/f0aFCG7lh39AWXiwNlbY5kfTNgTVydBomDWne7DpJYWZOyAHM8ESec3FRxBx9mt
- ofNsBb3XR4dw==
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; d="scan'208";a="424652037"
-Received: from dgeiger-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.63.90])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2021 02:52:27 -0700
+IronPort-SDR: 4er8Vlmf01XqT7UEPI8iMQE4ovCTyEvvV+utlftNPEeaiS1FVlprxCpkIqvuYOt9EERh97TMj1
+ QYugfgzJQQaw==
+X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; d="scan'208";a="424656000"
+Received: from mbernato-z370.igk.intel.com ([10.102.30.7])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2021 02:34:52 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <877dl6h2pr.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210412054607.18133-1-ville.syrjala@linux.intel.com>
- <877dl6h2pr.fsf@intel.com>
-Date: Wed, 14 Apr 2021 12:34:48 +0300
-Message-ID: <878s5lfbuv.fsf@intel.com>
+ 14 Apr 2021 02:52:26 -0700
+Message-ID: <8be9557312e7cfb27738766dcfbc498d1e0e10b5.camel@linux.intel.com>
+From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>, 
+ igt-dev@lists.freedesktop.org
+Date: Wed, 14 Apr 2021 09:50:10 +0000
+In-Reply-To: <20210408083157.23014-1-janusz.krzysztofik@linux.intel.com>
+References: <20210408083157.23014-1-janusz.krzysztofik@linux.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+User-Agent: Evolution 3.36.4-0ubuntu1 
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 0/5] drm/i915: Fix glk display version
- regressions
+Subject: Re: [Intel-gfx] [RFC PATCH 1/2] tests/core_hotunplug: Add perf
+ health check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,41 +50,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAxMyBBcHIgMjAyMSwgSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVs
-LmNvbT4gd3JvdGU6Cj4gT24gTW9uLCAxMiBBcHIgMjAyMSwgVmlsbGUgU3lyamFsYSA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6Qg
-PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+Pgo+PiBGaXggYSBjb3VwbGUgb2YgcmVn
-cmVzc2lvbnMgZHVlIHRvIHRoZSBnbGsgZGlzcGxheSB2ZXJzaW9uIDktPjEwCj4+IGNoYW5nZS4g
-SSAqdGhpbmsqIGFsbCB0aGUgb25lcyB0aGF0IHNsaXBwZWQgdGhyb3VnaCBpbnZvbHZlZAo+PiBl
-aXRoZXIgRElTUExBWV9WRVI9PTkgb3IgRElTUExBWV9WRVI8MTAgY2hlY2tzLiBUaGVzZSB0aHJl
-ZQo+PiByZWdyZXNzaW9ucyBhcmUgdGhlIG9uZXMgSSBmb3VuZCB0aHJvdWdoIGEgcXVpY2sgc2Nh
-biwgYnV0IHNvbWVvbmUKPj4gc2hvdWxkIHByb2JhYmx5IGdvIHRocm91Z2ggdGhlIHdob2xlIHRy
-ZWUgd2l0aCBhIGZpbmUgdG9vdGhjb21iCj4+IGluIGNhc2Ugd2UgbWlzc2VkIG1vcmUgY2FzZXMu
-Cj4+Cj4+IEFsc28gdG9zc2VkIGluIGEgY291cGxlIG9mIGNsZWFudXBzLgo+Cj4gVmlsbGUsIHBs
-ZWFzZSBob2xkIG9uIHdpdGggbWVyZ2luZyB0aGlzIHVudGlsIHdlIGZpZ3VyZSBvdXQgaG93IHRv
-IG1lcmdlCj4gWzFdLiBJIGRvbid0IHdhbnQgdG8gY3JlYXRlIGV4dHJhIGNvbmZsaWN0cyB3aGVu
-IHRoZXkgY2FuIGJlIGF2b2lkZWQuCgpQdXNoZWQgdGhlIGxvdCB0byB0b3BpYy9pbnRlbC1nZW4t
-dG8tdmVyLCB0aGFua3MgZm9yIHRoZSBwYXRjaGVzLgoKQlIsCkphbmkuCgoKPgo+IEJSLAo+IEph
-bmkuCj4KPgo+IFsxXSBodHRwOi8vbG9yZS5rZXJuZWwub3JnL3IvMjAyMTA0MTMwNTEwMDIuOTI1
-ODktMS1sdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20KPgo+Cj4+Cj4+IENjOiBNYXR0IFJvcGVyIDxt
-YXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgo+Pgo+PiBWaWxsZSBTeXJqw6Rsw6QgKDUpOgo+PiAg
-IGRybS9pOTE1OiBSZXN0b3JlIGxvc3QgZ2xrIEZCQyAxNmJwcCB3L2EKPj4gICBkcm0vaTkxNTog
-UmVzdG9yZSBsb3N0IGdsayBjY3Mgdy9hCj4+ICAgZHJtL2k5MTU6IERpc2FibGUgTFRUUFIgZGV0
-ZWN0aW9uIG9uIEdMSyBvbmNlIGFnYWluCj4+ICAgZHJtL2k5MTU6IERvbid0IHVzZSB7c2tsLGNu
-bH1faHBkX3BpbigpIGZvciBieHQvZ2xrCj4+ICAgZHJtL2k5MTU6IFJlbW92ZSBhIGZldyByZWR1
-bmRhbnQgZ2xrIGNoZWNrcwo+Pgo+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kZGkuYyAgICAgICAgICAgICAgfCA2ICsrKy0tLQo+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgICAgICAgICAgfCAzICsrLQo+PiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9saW5rX3RyYWluaW5nLmMgfCAyICstCj4+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jICAgICAgICAgICAgICB8IDIgKy0K
-Pj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jICAg
-IHwgMiArLQo+PiAgNSBmaWxlcyBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25z
-KC0pCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Thu, 2021-04-08 at 10:31 +0200, Janusz Krzysztofik wrote:
+> Sometimes CI reports skips of perf subtests when run subsequently
+> after
+> core_hotunplug.  That may be an indication of issues with restoring
+> device perf features on driver (hot)rebind.
+> 
+> Detect device perf support at test start and check if still available
+> after driver rebind.  If that fails, a post-subtest device recovery
+> step restores the device perf support so no subsequently executed
+> tests
+> are affected.
+> 
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com
+> >
+> ---
+>  tests/core_hotunplug.c | 22 ++++++++++++++++++++++
+>  tests/meson.build      |  8 +++++++-
+>  2 files changed, 29 insertions(+), 1 deletion(-)
+> 
+> diff --git a/tests/core_hotunplug.c b/tests/core_hotunplug.c
+> index 56a88fefd..06f15d845 100644
+> --- a/tests/core_hotunplug.c
+> +++ b/tests/core_hotunplug.c
+> @@ -31,6 +31,7 @@
+>  #include <unistd.h>
+>  
+>  #include "i915/gem.h"
+> +#include "i915/perf.h"
+>  #include "igt.h"
+>  #include "igt_device_scan.h"
+>  #include "igt_kmod.h"
+> @@ -50,6 +51,7 @@ struct hotunplug {
+>  	const char *dev_bus_addr;
+>  	const char *failure;
+>  	bool need_healthcheck;
+> +	bool has_intel_perf;
+>  };
+>  
+>  /* Helpers */
+> @@ -319,6 +321,16 @@ static int local_i915_recover(int i915)
+>  	return local_i915_healthcheck(i915, "post-");
+>  }
+>  
+> +static bool local_i915_perf_healthcheck(int i915)
+> +{
+> +	struct intel_perf *intel_perf;
+> +
+> +	intel_perf = intel_perf_for_fd(i915);
+> +	if (intel_perf)
+> +		intel_perf_free(intel_perf);
+> +	return intel_perf;
+> +}
+> +
+>  #define FLAG_RENDER	(1 << 0)
+>  #define FLAG_RECOVER	(1 << 1)
+>  static void node_healthcheck(struct hotunplug *priv, unsigned flags)
+> @@ -360,6 +372,13 @@ static void node_healthcheck(struct hotunplug
+> *priv, unsigned flags)
+>  		}
+>  	}
+>  
+> +	if (!priv->failure && priv->has_intel_perf) {
+> +		local_debug("%s\n", "running i915 device perf
+> healthcheck");
+> +		priv->failure = "Device perf healthckeck failure!";
+> +		if (local_i915_perf_healthcheck(fd_drm))
+> +			priv->failure = NULL;
+> +	}
+> +
+>  	fd_drm = close_device(fd_drm, "", "health checked ");
+>  	if (closed || fd_drm < -1)	/* update status for
+> post_healthcheck */
+>  		priv->fd.drm_hc = fd_drm;
+> @@ -553,6 +572,7 @@ igt_main
+>  		.fd		= { .drm = -1, .drm_hc = -1,
+> .sysfs_dev = -1, },
+>  		.failure	= NULL,
+>  		.need_healthcheck = true,
+> +		.has_intel_perf = false,
+>  	};
+>  
+>  	igt_fixture {
+> @@ -567,6 +587,8 @@ igt_main
+>  			gem_quiescent_gpu(fd_drm);
+>  			igt_require_gem(fd_drm);
+>  
+> +			priv.has_intel_perf =
+> local_i915_perf_healthcheck(fd_drm);
+> +
+>  			/**
+>  			 * FIXME: Unbinding the i915 driver on some
+> Haswell
+>  			 * platforms with Azalia audio results in a
+> kernel WARN
+> diff --git a/tests/meson.build b/tests/meson.build
+> index 3e3db7d5b..3f6dc4fe3 100644
+> --- a/tests/meson.build
+> +++ b/tests/meson.build
+> @@ -3,7 +3,6 @@ test_progs = [
+>  	'core_getclient',
+>  	'core_getstats',
+>  	'core_getversion',
+> -	'core_hotunplug',
+>  	'core_setmaster',
+>  	'core_setmaster_vs_auth',
+>  	'debugfs_test',
+> @@ -361,6 +360,13 @@ test_executables += executable('perf',
+>  	   install : true)
+>  test_list += 'perf'
+>  
+> +test_executables += executable('core_hotunplug', 'core_hotunplug.c',
+> +	   dependencies : test_deps + [ lib_igt_i915_perf ],
+> +	   install_dir : libexecdir,
+> +	   install_rpath : libexecdir_rpathdir,
+> +	   install : true)
+> +test_list += 'core_hotunplug'
+> +
+>  executable('testdisplay', ['testdisplay.c',
+> 'testdisplay_hotplug.c'],
+>  	   dependencies : test_deps,
+>  	   install_dir : libexecdir,
+LGTM,
+Acked-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
