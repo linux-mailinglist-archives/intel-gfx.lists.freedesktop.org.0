@@ -1,40 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449BB35F83A
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 17:52:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57D5A35F8BF
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 18:20:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BE346E95D;
-	Wed, 14 Apr 2021 15:52:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E96C6E4AE;
+	Wed, 14 Apr 2021 16:20:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D42A56E969
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 15:52:31 +0000 (UTC)
-IronPort-SDR: opZ1p+dtI5Bvs/6azu8j5ghiDVl+eFEeZyUzEi3Hv0G4E8ZPn3f0MNCLjQpjWJBGuVKi1wkY9J
- SF8x4Bn8zijg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9954"; a="181791694"
-X-IronPort-AV: E=Sophos;i="5.82,222,1613462400"; d="scan'208";a="181791694"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2021 08:52:31 -0700
-IronPort-SDR: D9MYFBMK2IFUtmOSyPLr0O6I0nFaHbmOjmhZlT27wvMfO20UDQUa7sO5fuwvWNKhVPvQwEbXaI
- hG2K8Cnilwcw==
-X-IronPort-AV: E=Sophos;i="5.82,222,1613462400"; d="scan'208";a="399226640"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2021 08:52:30 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Apr 2021 18:52:08 +0300
-Message-Id: <20210414155208.3161335-12-imre.deak@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210414155208.3161335-1-imre.deak@intel.com>
-References: <20210414155208.3161335-1-imre.deak@intel.com>
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com
+ [IPv6:2607:f8b0:4864:20::82a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A6536E4AE;
+ Wed, 14 Apr 2021 16:20:34 +0000 (UTC)
+Received: by mail-qt1-x82a.google.com with SMTP id u8so15818352qtq.12;
+ Wed, 14 Apr 2021 09:20:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=5DVjdwLlZFLKSKTh9olJDps2LqC5ikOMteExXJqIkO8=;
+ b=XpZX4+c79jvdn7aAQKa/WcbSQbL9FWCE8zy2bFd3Ounhga3aYxbAceNd6nsFVabgVO
+ 2ULrV2WKtnDNUGRshkMio9aRRSX5guZubdg1ODWUKGAX2NCZEjUlAKrn06u4Movz1HOR
+ XsKhAB+nhBnEmAe2lr3kR0iEBMCyIkASwMFUBe751SxamORPHvSY9UKodKigvkld4IH4
+ mxZ4VkcVW3tNheYzrYwNy5kMj8AlhvMWKYmzp4MM4mbqBBmyp0jIUUTlNBDU+FqbhVD+
+ bIWjUYpRzp7sLJc0f/utwlsQErKJJo6cp+7DHhCgP+TdYxy0JuFCXjzy9FBUHE7apOJo
+ CtHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=5DVjdwLlZFLKSKTh9olJDps2LqC5ikOMteExXJqIkO8=;
+ b=spW9T6U37ikyJPpbHURpyNYQMqesUdrAil7rMyR/ajkDKtKAv23n0TOM9OXgUx6Mm4
+ PrpM7yjQhiwTp92h1BbjMIsl4+fUS34l6K0DyvswlrIsWAcc7ufF8+h7MFQY2WMbWQPE
+ poltFz7x9ikYEXn7PMsLCiCi4Qdxw5WCKcNfdDCt9oV3Oh2ZUWuoK7M0r7ANwHfjB83q
+ 6K6rs+v4K+komGwsCinOH6lpIpJOm7RdSVZz7hep5GYkE7Payhn0+ZsPv6cPvYUy8h+J
+ eAh9NZhvLVHvjmTALAAipE+Rzui11tjLnN2SNJsahcv7Kh3HO3RDf6d7IqwtXCyo6KTG
+ ZLug==
+X-Gm-Message-State: AOAM533UM36doua57eFW0VH1kpeSpvFEB7sK+JKILBVydXyiPfNPBZLl
+ 8UsvMNVWYLiiX7U7ctZbshjEteXF9qwc24nVRX0=
+X-Google-Smtp-Source: ABdhPJyBBi9wqraQ/WHI+Livd+pbsgy+bcQogqa/NaBU4DZATzUNI3A0SDeVDLriHu1+yOrKPlS8ExzUegHGZtSiiiw=
+X-Received: by 2002:ac8:5bd0:: with SMTP id b16mr35342866qtb.265.1618417233504; 
+ Wed, 14 Apr 2021 09:20:33 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 11/11] drm/i915/adl_p: Enable remapping to pad
- DPT FB strides to POT
+References: <20210412090526.30547-1-matthew.auld@intel.com>
+ <20210412090526.30547-12-matthew.auld@intel.com>
+ <7bc2a663-fbc0-6486-341a-7dca980c2440@linux.intel.com>
+In-Reply-To: <7bc2a663-fbc0-6486-341a-7dca980c2440@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Wed, 14 Apr 2021 17:20:07 +0100
+Message-ID: <CAM0jSHNhWcscW9txPDyKActTiTWjzhASJb5xC8XPzHeN+Y18QA@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 11/19] drm/i915: Update the helper to set
+ correct mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,77 +63,263 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RW5hYmxlIHBhZGRpbmcgb2YgRFBUIEZCIHN0cmlkZXMgdG8gUE9ULCB1c2luZyB0aGUgRkIgcmVt
-YXBwaW5nIGxvZ2ljLgoKU2lnbmVkLW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwu
-Y29tPgpSZXZpZXdlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-YyB8IDE2ICsrKysrKysrKysrKy0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZmIuYyAgICAgIHwgIDcgKysrKystLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9mYi5oICAgICAgfCAgMSArCiAzIGZpbGVzIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKyks
-IDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXkuYwppbmRleCAyZWJhMTM4OThmYmVhLi5iYjVjYjNmMzdjNDA4IDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMjI3LDE2ICsyMjcsMjIg
-QEAgc3RhdGljIHZvaWQgZHB0X2NsZWFudXAoc3RydWN0IGk5MTVfYWRkcmVzc19zcGFjZSAqdm0p
-CiB9CiAKIHN0YXRpYyBzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICoKLWludGVsX2RwdF9jcmVh
-dGUoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmopCitpbnRlbF9kcHRfY3JlYXRlKHN0cnVjdCBp
-bnRlbF9mcmFtZWJ1ZmZlciAqZmIpCiB7CisJc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmogPSAm
-aW50ZWxfZmJfb2JqKCZmYi0+YmFzZSktPmJhc2U7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-Kmk5MTUgPSB0b19pOTE1KG9iai0+ZGV2KTsKLQlzaXplX3Qgc2l6ZSA9IERJVl9ST1VORF9VUF9V
-TEwob2JqLT5zaXplLCA1MTIpOwogCXN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpkcHRfb2Jq
-OwogCXN0cnVjdCBpOTE1X2FkZHJlc3Nfc3BhY2UgKnZtOwogCXN0cnVjdCBpOTE1X2RwdCAqZHB0
-OworCXNpemVfdCBzaXplOwogCWludCByZXQ7CiAKLQlzaXplID0gcm91bmRfdXAoc2l6ZSwgNDA5
-Nik7CisJaWYgKGludGVsX2ZiX25lZWRzX3BvdF9zdHJpZGVfcmVtYXAoZmIpKQorCQlzaXplID0g
-aW50ZWxfcmVtYXBwZWRfaW5mb19zaXplKCZmYi0+cmVtYXBwZWRfdmlldy5ndHQucmVtYXBwZWQp
-OworCWVsc2UKKwkJc2l6ZSA9IERJVl9ST1VORF9VUF9VTEwob2JqLT5zaXplLCBJOTE1X0dUVF9Q
-QUdFX1NJWkUpOworCisJc2l6ZSA9IHJvdW5kX3VwKHNpemUgKiBzaXplb2YoZ2VuOF9wdGVfdCks
-IEk5MTVfR1RUX1BBR0VfU0laRSk7CiAKIAlkcHRfb2JqID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0
-ZV9zdG9sZW4oaTkxNSwgc2l6ZSk7CiAJaWYgKElTX0VSUihkcHRfb2JqKSkKQEAgLTExNTU4LDgg
-KzExNTY0LDEwIEBAIHN0YXRpYyBpbnQgaW50ZWxfZnJhbWVidWZmZXJfaW5pdChzdHJ1Y3QgaW50
-ZWxfZnJhbWVidWZmZXIgKmludGVsX2ZiLAogCQkJfQogCQl9CiAKKwkJLyogVE9ETzogQWRkIFBP
-VCBzdHJpZGUgcmVtYXBwaW5nIHN1cHBvcnQgZm9yIENDUyBmb3JtYXRzIGFzIHdlbGwuICovCiAJ
-CWlmIChJU19BTERFUkxBS0VfUChkZXZfcHJpdikgJiYKIAkJICAgIG1vZGVfY21kLT5tb2RpZmll
-cltpXSAhPSBEUk1fRk9STUFUX01PRF9MSU5FQVIgJiYKKwkJICAgICFpbnRlbF9mYl9uZWVkc19w
-b3Rfc3RyaWRlX3JlbWFwKGludGVsX2ZiKSAmJgogCQkgICAgIWlzX3Bvd2VyX29mXzIobW9kZV9j
-bWQtPnBpdGNoZXNbaV0pKSB7CiAJCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwKIAkJCQkg
-ICAgInBsYW5lICVkIHBpdGNoICglZCkgbXVzdCBiZSBwb3dlciBvZiB0d28gZm9yIHRpbGVkIGJ1
-ZmZlcnNcbiIsCkBAIC0xMTU3Nyw3ICsxMTU4NSw3IEBAIHN0YXRpYyBpbnQgaW50ZWxfZnJhbWVi
-dWZmZXJfaW5pdChzdHJ1Y3QgaW50ZWxfZnJhbWVidWZmZXIgKmludGVsX2ZiLAogCWlmIChpbnRl
-bF9mYl91c2VzX2RwdChmYikpIHsKIAkJc3RydWN0IGk5MTVfYWRkcmVzc19zcGFjZSAqdm07CiAK
-LQkJdm0gPSBpbnRlbF9kcHRfY3JlYXRlKCZvYmotPmJhc2UpOworCQl2bSA9IGludGVsX2RwdF9j
-cmVhdGUoaW50ZWxfZmIpOwogCQlpZiAoSVNfRVJSKHZtKSkgewogCQkJcmV0ID0gUFRSX0VSUih2
-bSk7CiAJCQlnb3RvIGVycjsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZmIuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmIuYwpp
-bmRleCAyZWUxMGVjZTI3YzU3Li5lYmZlZTVlN2NiYzhiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9mYi5jCkBAIC00ODYsOSArNDg2LDEyIEBAIHN0YXRpYyBib29sIGludGVs
-X3BsYW5lX2Nhbl9yZW1hcChjb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3N0
-YXRlKQogCXJldHVybiB0cnVlOwogfQogCi1zdGF0aWMgYm9vbCBpbnRlbF9mYl9uZWVkc19wb3Rf
-c3RyaWRlX3JlbWFwKGNvbnN0IHN0cnVjdCBpbnRlbF9mcmFtZWJ1ZmZlciAqZmIpCitib29sIGlu
-dGVsX2ZiX25lZWRzX3BvdF9zdHJpZGVfcmVtYXAoY29uc3Qgc3RydWN0IGludGVsX2ZyYW1lYnVm
-ZmVyICpmYikKIHsKLQlyZXR1cm4gZmFsc2U7CisJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5
-MTUgPSB0b19pOTE1KGZiLT5iYXNlLmRldik7CisKKwlyZXR1cm4gSVNfQUxERVJMQUtFX1AoaTkx
-NSkgJiYgZmItPmJhc2UubW9kaWZpZXIgIT0gRFJNX0ZPUk1BVF9NT0RfTElORUFSICYmCisJICAg
-ICAgICFpc19jY3NfbW9kaWZpZXIoZmItPmJhc2UubW9kaWZpZXIpOwogfQogCiBzdGF0aWMgaW50
-IGludGVsX2ZiX3BpdGNoKGNvbnN0IHN0cnVjdCBpbnRlbF9mcmFtZWJ1ZmZlciAqZmIsIGludCBj
-b2xvcl9wbGFuZSwgdW5zaWduZWQgaW50IHJvdGF0aW9uKQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYi5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9mYi5oCmluZGV4IDQ3NzE2NDg3ZGUxOWMuLmYxYzk3NTQwMDFlNTIgMTAwNjQ0
-Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmIuaAorKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiLmgKQEAgLTQ2LDYgKzQ2LDcgQEAgdTMy
-IGludGVsX3BsYW5lX2NvbXB1dGVfYWxpZ25lZF9vZmZzZXQoaW50ICp4LCBpbnQgKnksCiAJCQkJ
-ICAgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqc3RhdGUsCiAJCQkJICAgICAg
-IGludCBjb2xvcl9wbGFuZSk7CiAKK2Jvb2wgaW50ZWxfZmJfbmVlZHNfcG90X3N0cmlkZV9yZW1h
-cChjb25zdCBzdHJ1Y3QgaW50ZWxfZnJhbWVidWZmZXIgKmZiKTsKIGJvb2wgaW50ZWxfZmJfc3Vw
-cG9ydHNfOTBfMjcwX3JvdGF0aW9uKGNvbnN0IHN0cnVjdCBpbnRlbF9mcmFtZWJ1ZmZlciAqZmIp
-OwogCiBpbnQgaW50ZWxfZmlsbF9mYl9pbmZvKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1
-LCBzdHJ1Y3QgaW50ZWxfZnJhbWVidWZmZXIgKmZiKTsKLS0gCjIuMjcuMAoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, 14 Apr 2021 at 16:22, Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+>
+> On 12/04/2021 10:05, Matthew Auld wrote:
+> > From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+> >
+> > Determine the possible coherent map type based on object location,
+> > and if target has llc or if user requires an always coherent
+> > mapping.
+> >
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > Cc: CQ Tang <cq.tang@intel.com>
+> > Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  3 ++-
+> >   drivers/gpu/drm/i915/gt/intel_engine_pm.c    |  2 +-
+> >   drivers/gpu/drm/i915/gt/intel_lrc.c          |  4 +++-
+> >   drivers/gpu/drm/i915/gt/intel_ring.c         |  9 ++++++---
+> >   drivers/gpu/drm/i915/gt/selftest_context.c   |  3 ++-
+> >   drivers/gpu/drm/i915/gt/selftest_hangcheck.c |  4 ++--
+> >   drivers/gpu/drm/i915/gt/selftest_lrc.c       |  4 +++-
+> >   drivers/gpu/drm/i915/gt/uc/intel_guc.c       |  4 +++-
+> >   drivers/gpu/drm/i915/gt/uc/intel_huc.c       |  4 +++-
+> >   drivers/gpu/drm/i915/i915_drv.h              | 11 +++++++++--
+> >   drivers/gpu/drm/i915/selftests/igt_spinner.c |  4 ++--
+> >   11 files changed, 36 insertions(+), 16 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > index efe935f80c1a..b79568d370f5 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> > @@ -664,7 +664,8 @@ static int init_status_page(struct intel_engine_cs *engine)
+> >       if (ret)
+> >               goto err;
+> >
+> > -     vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
+> > +     vaddr = i915_gem_object_pin_map(obj,
+> > +                                     i915_coherent_map_type(engine->i915, obj, true));
+> >       if (IS_ERR(vaddr)) {
+> >               ret = PTR_ERR(vaddr);
+> >               goto err_unpin;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> > index 7c9af86fdb1e..47f4397095e5 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+> > @@ -23,7 +23,7 @@ static void dbg_poison_ce(struct intel_context *ce)
+> >
+> >       if (ce->state) {
+> >               struct drm_i915_gem_object *obj = ce->state->obj;
+> > -             int type = i915_coherent_map_type(ce->engine->i915);
+> > +             int type = i915_coherent_map_type(ce->engine->i915, obj, true);
+> >               void *map;
+> >
+> >               if (!i915_gem_object_trylock(obj))
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index e86897cde984..aafe2a4df496 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -903,7 +903,9 @@ lrc_pre_pin(struct intel_context *ce,
+> >       GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
+> >
+> >       *vaddr = i915_gem_object_pin_map(ce->state->obj,
+> > -                                      i915_coherent_map_type(ce->engine->i915) |
+> > +                                      i915_coherent_map_type(ce->engine->i915,
+> > +                                                             ce->state->obj,
+> > +                                                             false) |
+> >                                        I915_MAP_OVERRIDE);
+> >
+> >       return PTR_ERR_OR_ZERO(*vaddr);
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
+> > index aee0a77c77e0..3cf6c7e68108 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_ring.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+> > @@ -53,9 +53,12 @@ int intel_ring_pin(struct intel_ring *ring, struct i915_gem_ww_ctx *ww)
+> >
+> >       if (i915_vma_is_map_and_fenceable(vma))
+> >               addr = (void __force *)i915_vma_pin_iomap(vma);
+> > -     else
+> > -             addr = i915_gem_object_pin_map(vma->obj,
+> > -                                            i915_coherent_map_type(vma->vm->i915));
+> > +     else {
+> > +             int type = i915_coherent_map_type(vma->vm->i915, vma->obj, false);
+> > +
+> > +             addr = i915_gem_object_pin_map(vma->obj, type);
+> > +     }
+> > +
+> >       if (IS_ERR(addr)) {
+> >               ret = PTR_ERR(addr);
+> >               goto err_ring;
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
+> > index b9bdd1d23243..26685b927169 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_context.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
+> > @@ -88,7 +88,8 @@ static int __live_context_size(struct intel_engine_cs *engine)
+> >               goto err;
+> >
+> >       vaddr = i915_gem_object_pin_map_unlocked(ce->state->obj,
+> > -                                              i915_coherent_map_type(engine->i915));
+> > +                                              i915_coherent_map_type(engine->i915,
+> > +                                                                     ce->state->obj, false));
+> >       if (IS_ERR(vaddr)) {
+> >               err = PTR_ERR(vaddr);
+> >               intel_context_unpin(ce);
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> > index 746985971c3a..5b63d4df8c93 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+> > @@ -69,7 +69,7 @@ static int hang_init(struct hang *h, struct intel_gt *gt)
+> >       h->seqno = memset(vaddr, 0xff, PAGE_SIZE);
+> >
+> >       vaddr = i915_gem_object_pin_map_unlocked(h->obj,
+> > -                                              i915_coherent_map_type(gt->i915));
+> > +                                              i915_coherent_map_type(gt->i915, h->obj, false));
+> >       if (IS_ERR(vaddr)) {
+> >               err = PTR_ERR(vaddr);
+> >               goto err_unpin_hws;
+> > @@ -130,7 +130,7 @@ hang_create_request(struct hang *h, struct intel_engine_cs *engine)
+> >               return ERR_CAST(obj);
+> >       }
+> >
+> > -     vaddr = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(gt->i915));
+> > +     vaddr = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(gt->i915, obj, false));
+> >       if (IS_ERR(vaddr)) {
+> >               i915_gem_object_put(obj);
+> >               i915_vm_put(vm);
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> > index 85e7df6a5123..d8f6623524e8 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> > @@ -1221,7 +1221,9 @@ static int compare_isolation(struct intel_engine_cs *engine,
+> >       }
+> >
+> >       lrc = i915_gem_object_pin_map_unlocked(ce->state->obj,
+> > -                                   i915_coherent_map_type(engine->i915));
+> > +                                            i915_coherent_map_type(engine->i915,
+> > +                                                                   ce->state->obj,
+> > +                                                                   false));
+> >       if (IS_ERR(lrc)) {
+> >               err = PTR_ERR(lrc);
+> >               goto err_B1;
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> > index 78305b2ec89d..adae04c47aab 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+> > @@ -682,7 +682,9 @@ int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
+> >       if (IS_ERR(vma))
+> >               return PTR_ERR(vma);
+> >
+> > -     vaddr = i915_gem_object_pin_map_unlocked(vma->obj, I915_MAP_WB);
+> > +     vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
+> > +                                              i915_coherent_map_type(guc_to_gt(guc)->i915,
+> > +                                                                     vma->obj, true));
+> >       if (IS_ERR(vaddr)) {
+> >               i915_vma_unpin_and_release(&vma, 0);
+> >               return PTR_ERR(vaddr);
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> > index 2126dd81ac38..56d2144dc6a0 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> > @@ -82,7 +82,9 @@ static int intel_huc_rsa_data_create(struct intel_huc *huc)
+> >       if (IS_ERR(vma))
+> >               return PTR_ERR(vma);
+> >
+> > -     vaddr = i915_gem_object_pin_map_unlocked(vma->obj, I915_MAP_WB);
+> > +     vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
+> > +                                              i915_coherent_map_type(gt->i915,
+> > +                                                                     vma->obj, true));
+> >       if (IS_ERR(vaddr)) {
+> >               i915_vma_unpin_and_release(&vma, 0);
+> >               return PTR_ERR(vaddr);
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > index 69e43bf91a15..2abbc06712a4 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -78,6 +78,7 @@
+> >   #include "gem/i915_gem_context_types.h"
+> >   #include "gem/i915_gem_shrinker.h"
+> >   #include "gem/i915_gem_stolen.h"
+> > +#include "gem/i915_gem_lmem.h"
+> >
+> >   #include "gt/intel_engine.h"
+> >   #include "gt/intel_gt_types.h"
+> > @@ -1921,9 +1922,15 @@ static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
+> >   }
+> >
+> >   static inline enum i915_map_type
+> > -i915_coherent_map_type(struct drm_i915_private *i915)
+> > +i915_coherent_map_type(struct drm_i915_private *i915,
+> > +                    struct drm_i915_gem_object *obj, bool always_coherent)
+> >   {
+> > -     return HAS_LLC(i915) ? I915_MAP_WB : I915_MAP_WC;
+> > +     if (i915_gem_object_is_lmem(obj))
+> > +             return I915_MAP_WC;
+> > +     if (HAS_LLC(i915) || always_coherent)
+> > +             return I915_MAP_WB;
+> > +     else
+> > +             return I915_MAP_WC;
+>
+> Seems this patch is doing two things.
+>
+> First it is adding lmem support to this helper by always returning WC
+> for lmem objects.
+>
+> Secondly it is introducing an idea of "always coherent" in a helper
+> called i915_coherent_map_type. Could someone explain what is coherent vs
+> always coherent?
+>
+> And also, why is always coherent happy with WB? Sounds counter intuitive
+> to me.
+
+All this does is try to keep the existing behaviour intact, whilst
+also ensuring that all lmem objects are mapped using only WC, no
+matter what. The always_coherent=true thing is for the existing places
+where we sometimes map the object using WB, without first considering
+whether the device has the fast shared LLC vs snooping. Yes, it's
+slightly ugly :)
+
+>
+> Regards,
+>
+> Tvrtko
+>
+> >   }
+> >
+> >   #endif
+> > diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
+> > index cfbbe415b57c..5fe397b7d1d9 100644
+> > --- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
+> > +++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
+> > @@ -94,9 +94,9 @@ int igt_spinner_pin(struct igt_spinner *spin,
+> >       }
+> >
+> >       if (!spin->batch) {
+> > -             unsigned int mode =
+> > -                     i915_coherent_map_type(spin->gt->i915);
+> > +             unsigned int mode;
+> >
+> > +             mode = i915_coherent_map_type(spin->gt->i915, spin->obj, false);
+> >               vaddr = igt_spinner_pin_obj(ce, ww, spin->obj, mode, &spin->batch_vma);
+> >               if (IS_ERR(vaddr))
+> >                       return PTR_ERR(vaddr);
+> >
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
