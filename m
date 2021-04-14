@@ -1,45 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D6C335F6FC
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 17:09:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4521F35F6FE
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 17:10:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A48F6E925;
-	Wed, 14 Apr 2021 15:09:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90F1B6E924;
+	Wed, 14 Apr 2021 15:10:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35B8B6E924;
- Wed, 14 Apr 2021 15:09:22 +0000 (UTC)
-IronPort-SDR: dC2hWZsdBiXSU85WEd6ONiJ3V52sg2wXhFFFGUwWimJBKPjG833lvEWoEKdGAoDVgMfGFvD1jN
- 2WmATabI/1oA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9954"; a="191472220"
-X-IronPort-AV: E=Sophos;i="5.82,222,1613462400"; d="scan'208";a="191472220"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2021 08:07:07 -0700
-IronPort-SDR: W5IwAx3kULAMavkkpQjS21K0huNX63/eWoiO0c6nh5sV5FEEb4lycalSe3lW0muG473AKfzMya
- DJ8PN3wKeYkg==
-X-IronPort-AV: E=Sophos;i="5.82,222,1613462400"; d="scan'208";a="418356170"
-Received: from bdebhal-mobl.ger.corp.intel.com (HELO [10.213.205.119])
- ([10.213.205.119])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2021 08:07:06 -0700
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210412090526.30547-1-matthew.auld@intel.com>
- <20210412090526.30547-6-matthew.auld@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <64964b2f-73fc-b584-c54f-96c0bc0ae7c0@linux.intel.com>
-Date: Wed, 14 Apr 2021 16:07:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A769C6E924
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 15:10:24 +0000 (UTC)
+IronPort-SDR: SmJ/eaEhH+iUop893JjwHAxU5pcfQ4VA4AppqIuAerChbpvwNDWflMnbH4d22ixiH6Euhta4yq
+ Un5SUiY61CtQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9954"; a="215151289"
+X-IronPort-AV: E=Sophos;i="5.82,222,1613462400"; d="scan'208";a="215151289"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2021 08:09:28 -0700
+IronPort-SDR: WlQagMlMIbDB8SRBJ905E+9BAJ2e7pKbsBy/pdBc+apqD9iXFgzQYNOEuEEQQajxOo9L5oEe1U
+ TPhM1hgSY+iA==
+X-IronPort-AV: E=Sophos;i="5.82,222,1613462400"; d="scan'208";a="424775150"
+Received: from dgeiger-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.90])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2021 08:09:26 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210414022309.30898-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210414022309.30898-1-ville.syrjala@linux.intel.com>
+ <20210414022309.30898-3-ville.syrjala@linux.intel.com>
+Date: Wed, 14 Apr 2021 18:09:23 +0300
+Message-ID: <87r1jcewd8.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210412090526.30547-6-matthew.auld@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 05/19] drm/i915/stolen: enforce the
- min_page_size contract
+Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915: Rewrite the FBC tiling check
+ a bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,58 +50,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 12/04/2021 10:05, Matthew Auld wrote:
-> From: CQ Tang <cq.tang@intel.com>
-> 
-> Since stolen can now be device local-memory underneath, we should try to
-> enforce any min_page_size restrictions when allocating pages.
-> 
-> Signed-off-by: CQ Tang <cq.tang@intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 7 ++++---
->   1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> index 56dd58bef5ee..f713eabb7671 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> @@ -677,7 +677,8 @@ static int _i915_gem_object_stolen_init(struct intel_memory_region *mem,
->   	if (!stolen)
->   		return -ENOMEM;
->   
-> -	ret = i915_gem_stolen_insert_node(i915, stolen, size, 4096);
-> +	ret = i915_gem_stolen_insert_node(i915, stolen, size,
-> +					  mem->min_page_size);
->   	if (ret)
->   		goto err_free;
->   
-> @@ -817,8 +818,8 @@ i915_gem_object_create_stolen_for_preallocated(struct drm_i915_private *i915,
->   
->   	/* KISS and expect everything to be page-aligned */
->   	if (GEM_WARN_ON(size == 0) ||
-> -	    GEM_WARN_ON(!IS_ALIGNED(size, I915_GTT_PAGE_SIZE)) ||
-> -	    GEM_WARN_ON(!IS_ALIGNED(stolen_offset, I915_GTT_MIN_ALIGNMENT)))
-> +	    GEM_WARN_ON(!IS_ALIGNED(size, mem->min_page_size)) ||
-> +	    GEM_WARN_ON(!IS_ALIGNED(stolen_offset, mem->min_page_size)))
->   		return ERR_PTR(-EINVAL);
->   
->   	stolen = kzalloc(sizeof(*stolen), GFP_KERNEL);
-> 
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAxNCBBcHIgMjAyMSwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4KPiBXcml0ZSB0aGUgdGlsaW5nIGNoZWNrIGluIGEgbmljZXIgZm9y
+bS4KPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
+eC5pbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZmJjLmMgfCA2ICsrLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCA0IGRl
+bGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZmJjLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jCj4g
+aW5kZXggMDRkOWM3ZDIyYjA0Li4xNzgyNDNhNmQzYTIgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMKPiBAQCAtNjgxLDExICs2ODEsOSBAQCBzdGF0aWMgYm9v
+bCB0aWxpbmdfaXNfdmFsaWQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAo+ICB7
+Cj4gIAlzd2l0Y2ggKG1vZGlmaWVyKSB7Cj4gIAljYXNlIERSTV9GT1JNQVRfTU9EX0xJTkVBUjoK
+PiAtCQlpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpID49IDkpCj4gLQkJCXJldHVybiB0cnVlOwo+
+IC0JCXJldHVybiBmYWxzZTsKPiAtCWNhc2UgSTkxNV9GT1JNQVRfTU9EX1hfVElMRUQ6Cj4gIAlj
+YXNlIEk5MTVfRk9STUFUX01PRF9ZX1RJTEVEOgo+ICsJCXJldHVybiBESVNQTEFZX1ZFUihkZXZf
+cHJpdikgPj0gOTsKClNvIHRoaXMgYWRkcyB0aGUgdmVyc2lvbiBjaGVjayBvbiBJOTE1X0ZPUk1B
+VF9NT0RfWV9USUxFRCB3aGljaCBkaWRuJ3QKaGF2ZSBpdCBiZWZvcmU/CgpCUiwKSmFuaS4KCgo+
+ICsJY2FzZSBJOTE1X0ZPUk1BVF9NT0RfWF9USUxFRDoKPiAgCQlyZXR1cm4gdHJ1ZTsKPiAgCWRl
+ZmF1bHQ6Cj4gIAkJcmV0dXJuIGZhbHNlOwoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNv
+dXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+aW50ZWwtZ2Z4Cg==
