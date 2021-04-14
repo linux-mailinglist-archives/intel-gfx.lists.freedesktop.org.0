@@ -2,31 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CC5635EE06
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 09:14:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3868B35EEA0
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 09:45:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 748496E8ED;
-	Wed, 14 Apr 2021 07:14:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF016E463;
+	Wed, 14 Apr 2021 07:45:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9F20E6E461;
- Wed, 14 Apr 2021 07:14:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 950EBA0009;
- Wed, 14 Apr 2021 07:14:00 +0000 (UTC)
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
+ [IPv6:2a00:1450:4864:20::233])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B68F76E45E;
+ Wed, 14 Apr 2021 07:45:42 +0000 (UTC)
+Received: by mail-lj1-x233.google.com with SMTP id a25so8961850ljm.11;
+ Wed, 14 Apr 2021 00:45:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=Oh3uXTI5AKPh0+QnB4MnRnmcHC/GiVg0BzjUws+n8xA=;
+ b=D8ciI1VtZDibR38itw0RYrTuKKrtbe/DpuKI1d015E82jRU7Cjp8JAyv7zMj+Sjaxp
+ b2jK7yt3Yfbl8zGEBFljZKdIJYfySnIwUeK4FyaicZqVt1pCpnICDIFgRoj7UxHuCi1k
+ Tvl4UlMl3Vi/5BSHHvspe+tvdUDnb/59XL4RXrrlcNIWeiDFCkZXP/qsEsHnKIkxiLw0
+ aoIcuJk20ouE8PJu+q0jTHCGFKp1XYIdXIwTkRDPWDxPQ8tlALiZl+MDQJeL5ySPgI53
+ kThYa4BRXPrr/cPWg68eHty5uQKM5iei4/yusRVlZhlukJ3ieWCcjShtw0u1Of3CNAUi
+ EWXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=Oh3uXTI5AKPh0+QnB4MnRnmcHC/GiVg0BzjUws+n8xA=;
+ b=agyQFrfxecCnU3jHt+8KFQ/0Ymq24iNTuEsE7pdRLiBh6xnKhfhkxWQ8oKZ3/2d5/t
+ 7qz43WYKFyxd4O/gP8aBU9MmrKVKHHaFHjaC4QAoNldRPN6fk5vIC4KsnQDAlk9rXm9C
+ vvMnk+oWr7/x1Y0bemEVzotRTDDIDZSfHmOixCUrtopQQXXQbJkXHNc6esrDDpk2yCyv
+ YbY1AROfDz3XpLCOXGZpEtqtUJiu7NzQpI2ZRNJLNf9s5jJD71G/PB+1UOmkspQwfE9D
+ zwSaeZzdDVJSRMcIRwdZr/QgKJhsNz/Oov+YEuMJpogILXqnEcYpyKOv9fXqknqb2gFa
+ QXzg==
+X-Gm-Message-State: AOAM532YJLzOQ3e2CwvPN/QkOwjqSoPxA3N1wHIswan7OhCN0832/NmK
+ 2jabb3Bty9DJbPdlARXWZrY=
+X-Google-Smtp-Source: ABdhPJxNU9nkjIny1xQo1U7jvAL9/1B8t5814PNfaT4GHeNAY0CX6kKtdS56X/T4eggOIrHctEkjfA==
+X-Received: by 2002:a2e:d19:: with SMTP id 25mr13522917ljn.369.1618386341179; 
+ Wed, 14 Apr 2021 00:45:41 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id f11sm4241479lfm.230.2021.04.14.00.45.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 14 Apr 2021 00:45:40 -0700 (PDT)
+Date: Wed, 14 Apr 2021 10:45:30 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20210414104530.44b16355@eldfell>
+In-Reply-To: <YHWmkZYqUeZKQN9R@phenom.ffwll.local>
+References: <20210413094904.3736372-1-daniel.vetter@ffwll.ch>
+ <20210413094904.3736372-12-daniel.vetter@ffwll.ch>
+ <20210413145602.70f674b1@eldfell>
+ <YHWmkZYqUeZKQN9R@phenom.ffwll.local>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dan Carpenter" <dan.carpenter@oracle.com>
-Date: Wed, 14 Apr 2021 07:14:00 -0000
-Message-ID: <161838444057.4308.7870819783001917114@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <YHaFcEzcnh/hk1/Q@mwanda>
-In-Reply-To: <YHaFcEzcnh/hk1/Q@mwanda>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_fix_an_error_code_in_intel=5Foverlay=5Fdo=5Fput=5Fimag?=
- =?utf-8?b?ZSgp?=
+Subject: Re: [Intel-gfx] [PATCH 12/12] drm/modifiers: Enforce consistency
+ between the cap an IN_FORMATS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,234 +69,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0441633066=="
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============1194683602=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0441633066==
-Content-Type: multipart/alternative;
- boundary="===============2507679327815663690=="
+--===============1194683602==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/q+nGk+RET5w6PvXJF8OglyL"; protocol="application/pgp-signature"
 
---===============2507679327815663690==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/q+nGk+RET5w6PvXJF8OglyL
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+On Tue, 13 Apr 2021 16:11:29 +0200
+Daniel Vetter <daniel@ffwll.ch> wrote:
 
-Series: drm/i915: fix an error code in intel_overlay_do_put_image()
-URL   : https://patchwork.freedesktop.org/series/89050/
-State : success
+> On Tue, Apr 13, 2021 at 02:56:02PM +0300, Pekka Paalanen wrote:
+> > On Tue, 13 Apr 2021 11:49:03 +0200
+> > Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> >  =20
+> > > It's very confusing for userspace to have to deal with inconsistencies
+> > > here, and some drivers screwed this up a bit. Most just ommitted the
+> > > format list when they meant to say that only linear modifier is
+> > > allowed, but some also meant that only implied modifiers are
+> > > acceptable (because actually none of the planes registered supported
+> > > modifiers).
+> > >=20
+> > > Now that this is all done consistently across all drivers, document
+> > > the rules and enforce it in the drm core.
+> > >=20
+> > > Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > Cc: Maxime Ripard <mripard@kernel.org>
+> > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > > Cc: David Airlie <airlied@linux.ie>
+> > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > ---
+> > >  drivers/gpu/drm/drm_plane.c   | 16 +++++++++++++++-
+> > >  include/drm/drm_mode_config.h |  2 ++
+> > >  2 files changed, 17 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+> > > index 0dd43882fe7c..16a7e3e57f7f 100644
+> > > --- a/drivers/gpu/drm/drm_plane.c
+> > > +++ b/drivers/gpu/drm/drm_plane.c
+> > > @@ -128,6 +128,11 @@
+> > >   *     pairs supported by this plane. The blob is a struct
+> > >   *     drm_format_modifier_blob. Without this property the plane doe=
+sn't
+> > >   *     support buffers with modifiers. Userspace cannot change this =
+property.
+> > > + *
+> > > + *     Note that userspace can check the DRM_CAP_ADDFB2_MODIFIERS dr=
+iver
+> > > + *     capability for general modifier support. If this flag is set =
+then every
+> > > + *     plane will have the IN_FORMATS property, even when it only su=
+pports
+> > > + *     DRM_FORMAT_MOD_LINEAR. =20
+> >=20
+> > Ooh, that's even better. But isn't that changing the meaning of the
+> > cap? Isn't the cap older than IN_FORMATS? =20
+>=20
+> Hm indeed. But also how exactly are you going to user modifiers without
+> IN_FORMATS ... it's a bit hard.
 
-== Summary ==
+Easy for at least one specific case, as Daniel Stone said in IRC. Use
+GBM to allocate using the no-modifiers API but specify USE_LINEAR. That
+basically gives you MOD_LINEAR buffer. Then you can try to make a DRM
+FB for it using AddFB2-with-modifiers.
 
-CI Bug Log - changes from CI_DRM_9966 -> Patchwork_19931
-====================================================
+Does anyone do this, I have no idea.
 
-Summary
--------
+Actually, I think this semantic change is fine. Old userspace did not
+know that the cap means all planes have IN_FORMATS, so they can deal
+with IN_FORMATS missing, but if it is never missing, no problem.
 
-  **SUCCESS**
+It could be a problem with new userspace and old kernel, but that's by
+definition not a kernel bug, right? Just... inconvenient for userspace
+as they can't make full use of the flag and need to keep the fallback
+path for missing IN_FORMATS.
 
-  No regressions found.
+As long as there are KMS drivers that don't support modifiers, generic
+userspace probably needs the fallback path anyway.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/index.html
+> I think this is all because we've enabled
+> modifiers piece-by-piece and never across the entire thing (e.g. with
+> compositor and protocols), so the missing pieces only became apparent
+> later on.
+>=20
+> I'm not sure whether compositors really want to support this, I guess
+> worst case we could disable the cap on these old kernels.
+>=20
+> > What about the opposite? Is it allowed to have even a single IN_FORMATS
+> > if you don't have the cap? =20
+>=20
+> That direction is enforced since 5.1, because some drivers screwed it up
+> and confusion in userspace ensued.
+>=20
+> Should I add a bug that on kernels older than 5.1 the situation is more
+> murky and there's lots of bugs?
 
-Known issues
-------------
+Yes, that would help to set expectations.
 
-  Here are the changes found in Patchwork_19931 that come from known issues:
+I'm currently on Debian stable FWIW, so 4.19 based kernel with I don't
+know what patches.
 
-### IGT changes ###
+On Tue, 13 Apr 2021 16:19:10 +0200
+Daniel Vetter <daniel@ffwll.ch> wrote:
 
-#### Issues hit ####
+> On Tue, Apr 13, 2021 at 04:11:29PM +0200, Daniel Vetter wrote:
+> >=20
+> > Should I add a bug that on kernels older than 5.1 the situation is more
+> > murky and there's lots of bugs? =20
+>=20
+> I guess we should recommend to userspace that if they spot an
+> inconsistency between IN_FORMATS across planes and the cap then maybe they
+> want to disable modifier support because it might be all kinds of broken?
 
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-icl-y:           NOTRUN -> [SKIP][1] ([fdo#109315]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-icl-y:           NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@gem_huc_copy@huc-copy.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-y:           NOTRUN -> [SKIP][3] ([fdo#109284] / [fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - fi-icl-y:           NOTRUN -> [SKIP][4] ([fdo#109285])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-icl-y:           NOTRUN -> [SKIP][5] ([fdo#109278])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-icl-y:           NOTRUN -> [SKIP][6] ([fdo#110189]) +3 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-icl-y:           NOTRUN -> [SKIP][7] ([i915#3301])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@prime_vgem@basic-userptr.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-y:           [DMESG-WARN][8] ([i915#1982] / [k.org#205379]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9966/fi-tgl-y/igt@i915_module_load@reload.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-tgl-y/igt@i915_module_load@reload.html
-
-  
-  [fdo#109278]: https://bugs.freedesktop.org/show_bug.cgi?id=109278
-  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#110189]: https://bugs.freedesktop.org/show_bug.cgi?id=110189
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
-
-
-Participating hosts (46 -> 42)
-------------------------------
-
-  Additional (1): fi-icl-y 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9966 -> Patchwork_19931
-
-  CI-20190529: 20190529
-  CI_DRM_9966: 0f7f5236775ef3b8bb2ed5ba456797850f0c4e93 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6064: 48d89e2c65c54883b0776930a884e6d3bcefb45b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19931: 4b693331b57612871809c6e8954debc631b7c949 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4b693331b576 drm/i915: fix an error code in intel_overlay_do_put_image()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/index.html
-
---===============2507679327815663690==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Yes please!
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: fix an error code in intel_overlay_do_put_image()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89050/">https://patchwork.freedesktop.org/series/89050/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+------
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/index.html</a></td></tr>
+> >  =20
+> > >   */
+> > > =20
+> > >  static unsigned int drm_num_planes(struct drm_device *dev)
+> > > @@ -277,8 +282,14 @@ static int __drm_universal_plane_init(struct drm=
+_device *dev,
+> > >  			format_modifier_count++;
+> > >  	}
+> > > =20
+> > > -	if (format_modifier_count)
+> > > +	/* autoset the cap and check for consistency across all planes */
+> > > +	if (format_modifier_count) {
+> > > +		WARN_ON(!config->allow_fb_modifiers &&
+> > > +			!list_empty(&config->plane_list)); =20
+> >=20
+> > What does this mean? =20
+>=20
+> If allow_fb_modifiers isn't set yet (we do that in the line below) and we
+> are _not_ the first plane that gets added to the driver (that's done
+> towards the end of the function) then that means there's already a plane
+> registered without modifiers and hence IN_FORMAT. Which we then warn
+> about.
 
-</table>
+Ah, ok! Would have taken a while for me to decipher that, and
+impossible with just this patch context.
+
+> >  =20
+> > >  		config->allow_fb_modifiers =3D true;
+> > > +	} else {
+> > > +		WARN_ON(config->allow_fb_modifiers); =20
+>=20
+> This warning here checks the other case of an earlier plane with
+> modifiers, but the one we're adding now doesn't have them.
+
+Cool.
 
 
-    <h1>CI Bug Log - changes from CI_DRM_9966 -&gt; Patchwork_19931</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19931 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109284">fdo#109284</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109285">fdo#109285</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109278">fdo#109278</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=110189">fdo#110189</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-icl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-icl-y/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3301">i915#3301</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9966/fi-tgl-y/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19931/fi-tgl-y/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (46 -&gt; 42)</h2>
-<p>Additional (1): fi-icl-y <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9966 -&gt; Patchwork_19931</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9966: 0f7f5236775ef3b8bb2ed5ba456797850f0c4e93 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6064: 48d89e2c65c54883b0776930a884e6d3bcefb45b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19931: 4b693331b57612871809c6e8954debc631b7c949 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4b693331b576 drm/i915: fix an error code in intel_overlay_do_put_image()</p>
+Thanks,
+pq
 
-</body>
-</html>
+--Sig_/q+nGk+RET5w6PvXJF8OglyL
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
---===============2507679327815663690==--
+-----BEGIN PGP SIGNATURE-----
 
---===============0441633066==
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmB2nZoACgkQI1/ltBGq
+qqcFGQ//ZZqe6Vf64cEpyU19fKLi47KertYzn0aUALxH9Pui9SH2FsKlHqBpekDy
+jvCn6gfoFoNBt/ZNn4q2jlQzHy/+macSFVc23QVUVj/A1pDza4LNEB73cjFkLQjW
+Vg0rnO2lhEgd+pYmYryNrKP+i8Jg781zWJdD1XpifQzhwjhIBAcwVrzne0UL2ndT
+XJa8GUuT5olXC/UNGeLojQIaMXt7YPVS/HXIcacEPaWDEV4UaSrQ9SVm49bHsJIt
+3jOjFVd8lkS4WDSh/IJ+RBj1UJifW/kt+fIPywezkNW35l8sv69A6Lzd0c+A/h+o
+9djvHRKuCceHqk5m7AGjXhcFprQJR/LIcQ0fHdVSLEfxiOlxAUgvDEIrGzzWAxr/
++Q5CgXRlkl5UTiX66haTL1VsswFkcZn7knhglS5NzlpC1Cck+sq7h9DaHCocchCt
+cJg3Jonhd37FADNiWoCu+q2d4DpLXk6INKTTkSDWr/N0so1M1wXTlzYz33Lee6Pv
+7pysmEJFYJ67GK+z1Wnrxjva8E0+C0hlPkYajCd/dUhv19JbuAjwdes+vyOPREiO
+q0SLYJXsd73Dm57GNColGpkfzpmmlh7d9bfP1TEVJcbtzJSv3/ILT1Rl0MDroEbu
+ZwUFEzG65cSyVoeBHR7E8n3mPVJ9rbhnSd3oJRuWfU3AsXihuF0=
+=GLyu
+-----END PGP SIGNATURE-----
+
+--Sig_/q+nGk+RET5w6PvXJF8OglyL--
+
+--===============1194683602==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -277,4 +272,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0441633066==--
+--===============1194683602==--
