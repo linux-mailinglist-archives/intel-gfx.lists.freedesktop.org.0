@@ -1,112 +1,113 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798DB35F2EB
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 13:52:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2755E35F2EC
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 13:52:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 138826E938;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97EB66E93D;
 	Wed, 14 Apr 2021 11:52:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM04-BN3-obe.outbound.protection.outlook.com
- (mail-eopbgr680072.outbound.protection.outlook.com [40.107.68.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38F7D6E433;
- Wed, 14 Apr 2021 03:29:44 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2046.outbound.protection.outlook.com [40.107.236.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D24226E440;
+ Wed, 14 Apr 2021 06:06:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fYZWZTTcNiSudsa3NWoyRZEAIQ3EkNFA+dfI8/PpaaCMbB/RJVafGDDfUr6avHSnv71hedhMBEVauN3gHqZmKw4Rk42tlBXQtlRddjyLmTQy73jzedUQFW8wNis9ZfwrH7zRJ4lRvzVdekD9w7n6MlElLhswwvBSXGMC88ROpljKOCRxFzUAn7++2NXWIAuAdVX4/8XBhtLWl2xzHpT0bT+FzSJfmNtalURAVwe4sG+HNWL/B0L5ubDGEdQSsCmCFYSsOMuX3sGiGMFG/AGN7pwwThxbmaZqxSg3TcAaA3fmb6nn5eK5MjlPbuBATbS5fXihirC1Vr56N6PGXY3QgQ==
+ b=hZZuov+ZxiCdkn2nJWr6RVD3X3IAcg3U0O8G6syvTQSiTTZmDjnxQekK3yoVPuZKkDWMIJYGBnlNSnEhmEHDlGAbiT11poGofbmSpfamqbnbtE5GjyKnlzsxwU6jV2fh33tVyLxsjqgJFeoUNoaBeJaKg8QolQIF+GLX/8W3LQlGeQiMcXO8ofuXvmOh1gT57kPMVOX3ccTUOnHIAck+uiYcyCngLZL+FoqpqBS0wza/jwHPuTryEDvMYoSMohcLZ046n4mQM3YefneDIvpPEgj+5KNDrK/vQ9+Eyir4z4z4HHz/1hD0g2X/m5szv0NMXUfSjB8YrVCZ4MnO0cX+1A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0/4JiPwwWK+uIF10P0Ic0bqaO8Im5G75k3t4+mXuUnw=;
- b=aJuM8AvxZ3SBFvZWyxgYcKR3FSxNK68IP25/xvQ6WRfKCTpulA4Isx9xujlVPPd5DNw7GFVE7LVfJVaKDICWUqnokcxeKvE3qwW1iN4prekf1vJRPmm5H/JswiDCwqFdmYFcwlKRLwNNfSvTcqILTTkFFg425v8YbY8nkc/2LHSp8m79tZNCjFRiQ6NC+gQpABeXVPCdPY7jbst14ajyOpkacCV8zEPSNkqrCaZpsMcgK0p2SL1116V5+QU2FgDIdM+PQSIfef93QYegdRdMrrUGesHGHlyFGskLTKqj+LBTVpRUM3Ax7RKsDfh7X2aRTFR8FmW/op0p2kWTNiNleQ==
+ bh=5NaZ+OBOw4XrGwZl/LgyYrrtkIxaT/C/Y1MQLQpp5H4=;
+ b=hxzJ0Lm7IC8ajyIKf1TyjNCm1GjzHQj2CYbmelQmweus29aiqTR+HGFxq3RDM4s7ErXT48G6480gv5Kn8DHlaOChOmSwQgUCKxFucxAb69D4Z6oraFa0My5r1eCIuCJpEsBf0oE4XR2RDyMyg1O4bkLs6CMroe9WSC6UtQ4z6d7jKA/T0LrXR11gj83TNq5w9jMKzLm+MqK1FLc/kJm3wNdxgiJYubO4agWdicrCjlKVCbhi+DCXjxAf/QYSP2RDvqY4AdYsD7zLq3VphUwJzGCgDpjNTO/UduTddwHdnaGh72DkZvXpfFR4cjJ19XI5t7+UW+Ek10XclLicCmTU0Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+ smtp.mailfrom=synaptics.com; dmarc=pass action=none
+ header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
+ d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0/4JiPwwWK+uIF10P0Ic0bqaO8Im5G75k3t4+mXuUnw=;
- b=E5ZMafgqxgDetOto1GJEc9wMKeen5bHZD8GzzPYIjYdCEGYc1Nssbe9L2rlrg6nG8XYLeVtFMnroKYQzao2/JbjZy4XRbf1+dOPXAJbUK8fmgBDd+yo9cwxPzE3ECXMervW69bre0CbEwhp33Zm7zg0GWyqdvn9TEWdgpGq+hfo=
+ bh=5NaZ+OBOw4XrGwZl/LgyYrrtkIxaT/C/Y1MQLQpp5H4=;
+ b=hJ1r4WRbiEySh7QSjoI9H94fo7FwpWH0UCgi//1imm3jDTdSC0DqTHejB/Io/u94JNPU1RK4bPGfnmRcNIPvZn+4UdHDah24lnqwjSOm88iu4z0pgyzozCa8K1HNXN6XdN47XMJtl5JD3UF00Fqlc6dQda9IJy4Bp4UHElCkqRs=
 Authentication-Results: linux.intel.com; dkim=none (message not signed)
  header.d=none;linux.intel.com; dmarc=none action=none
- header.from=windriver.com;
-Received: from BN7PR11MB2579.namprd11.prod.outlook.com (2603:10b6:406:ab::21)
- by BN6PR11MB2001.namprd11.prod.outlook.com (2603:10b6:404:49::12)
+ header.from=synaptics.com;
+Received: from BY5PR03MB5345.namprd03.prod.outlook.com (2603:10b6:a03:219::16)
+ by SJ0PR03MB5664.namprd03.prod.outlook.com (2603:10b6:a03:28f::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.21; Wed, 14 Apr
- 2021 03:29:42 +0000
-Received: from BN7PR11MB2579.namprd11.prod.outlook.com
- ([fe80::4c79:805b:e69d:948b]) by BN7PR11MB2579.namprd11.prod.outlook.com
- ([fe80::4c79:805b:e69d:948b%6]) with mapi id 15.20.4020.023; Wed, 14 Apr 2021
- 03:29:42 +0000
-From: Jun Miao <jun.miao@windriver.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- airlied@linux.ie, daniel@ffwll.ch, dri-devel@lists.freedesktop.org
-Date: Wed, 14 Apr 2021 11:29:22 +0800
-Message-Id: <20210414032922.12639-2-jun.miao@windriver.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210414032922.12639-1-jun.miao@windriver.com>
-References: <20210414032922.12639-1-jun.miao@windriver.com>
-X-Originating-IP: [60.247.85.82]
-X-ClientProxiedBy: HK0PR03CA0117.apcprd03.prod.outlook.com
- (2603:1096:203:b0::33) To BN7PR11MB2579.namprd11.prod.outlook.com
- (2603:10b6:406:ab::21)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.18; Wed, 14 Apr
+ 2021 06:06:57 +0000
+Received: from BY5PR03MB5345.namprd03.prod.outlook.com
+ ([fe80::8569:341f:4bc6:5b72]) by BY5PR03MB5345.namprd03.prod.outlook.com
+ ([fe80::8569:341f:4bc6:5b72%8]) with mapi id 15.20.4020.022; Wed, 14 Apr 2021
+ 06:06:57 +0000
+Date: Wed, 14 Apr 2021 14:06:43 +0800
+From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Jon
+ Bloomfield <jon.bloomfield@intel.com>, Chris Wilson
+ <chris@chris-wilson.co.uk>, Ville =?UTF-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+Message-ID: <20210414140643.620c3adb@xhacker.debian>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+X-Originating-IP: [192.147.44.204]
+X-ClientProxiedBy: BYAPR07CA0053.namprd07.prod.outlook.com
+ (2603:10b6:a03:60::30) To BY5PR03MB5345.namprd03.prod.outlook.com
+ (2603:10b6:a03:219::16)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pek-lpggp3.wrs.com (60.247.85.82) by
- HK0PR03CA0117.apcprd03.prod.outlook.com (2603:1096:203:b0::33) with Microsoft
+Received: from xhacker.debian (192.147.44.204) by
+ BYAPR07CA0053.namprd07.prod.outlook.com (2603:10b6:a03:60::30) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4020.17 via Frontend Transport; Wed, 14 Apr 2021 03:29:38 +0000
+ 15.20.4020.17 via Frontend Transport; Wed, 14 Apr 2021 06:06:54 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 63e401c1-9da4-43aa-c287-08d8fef58a0a
-X-MS-TrafficTypeDiagnostic: BN6PR11MB2001:
-X-Microsoft-Antispam-PRVS: <BN6PR11MB200198497148E0F2FDD696D88E4E9@BN6PR11MB2001.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: c5a55b30-f8dd-4079-154d-08d8ff0b8263
+X-MS-TrafficTypeDiagnostic: SJ0PR03MB5664:
+X-Microsoft-Antispam-PRVS: <SJ0PR03MB5664AE8BE44D330C04564C40ED4E9@SJ0PR03MB5664.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: f8O8gWu/cvqj4fIHU/TXdq14ZmYkdvspLli19KFRj9Hi/9Y7MDhPSJ2BhdGj1dgzfCFaaag8pXu48Ugbg17wuGgTGJFjRl6FpsCHiE6XbEHt7AA1HCD5v3vilbortzfTqT8jCUaPvkMk/Cc88eFpja9r6BouzGQUyPgLoFhHpp7mxo24l0Nmk18McQiWEUMZaMZrbiMcyz27rPBNGzREjy3XLZOC69pO6jhwFqsArSABLCQ7GsRT8Ll3THPY4ZTQz6te4VDlUfgwUzm9VCHoah8W9CIoRns6kf7Jn94oj+VPQlwVNvwq7klMVKy2rEehSaDN7pJQu8JYfCc0fOwYpfBxJZPQfkzMg0vooEVpb55f98upIgkm1T8sz3QUlTB5e1TpEKXkDI4Mg2rtj587K4bChTn/0Uj/H6pB80sxWO2u+41EXhKo2kSmgGbSGI6AN9KoQm+Br4QTvKJV5CtmRXeDMfcmUxiJ1n3gUHdsIcqLaLNqGKdFcflvVXYHNwxLwrklimlg4H/MF+o+2lrFtJhDODpjlhRL1Vg9K3Syy55BoKbElUu7WLZDmNzJREFTvt9GJZNi9UzmZXzofdcDi6uxd+mGvy3U7DomuSUVlDdqySnv7VahFCPY0B+2JBW1u2/WBS+jXFQ+6/lSAd0n4A==
+X-Microsoft-Antispam-Message-Info: 8mpp/vIXYrzFtnQLtk7sLjHWdZZ3Lnv29tFf7S/f6/fBDxC9EaQYMddIasDSCHnkOAmhUBOqLDRvyIShhMPmCBjh9f8P4XoCyX+UguSDzZTo+MiHA95mgA5EiZK+Puv1TfnBLE0mj9cRtIl3opdYoB0npaIqkm6kG4Ok4M0ueavxiPKkm+jtl+44CRH92cl1yE8KRYTmMWVnQPmnDJY7cvRWX/YoX20uqUshn2xJUQHZ+DpkbxOwmTj1Y04jwiM7jD+0mqDbKqseBJNnOomwly4IXfrnNFIH5Z9SfTJKwTjOZ4JiR0LCkf6XnML9obMRInnBRo0HLX8PH2GKFXh0fAgoCSWmS1l0pf2HzMkWqSTt2GD9DjeZ/Pf3TH30zXBKHCXhmvPvQJ0Zj8u186JyuI1DOuQqaw71FJbqtQVekSELSumGXZjC92uHk4eFnjrTtRldtBfy2zF+hmVvAdwpxqWDywck5fCcfHDs6m7eU94iywdj8Q0nkitMyOyXzYnm87jtB3i0Z12ko+zMv88pYT+GAstrbRjziOQEc+mTMAtu/xgesP+9NV9lxm5iZNbKgQDCQhMlL6KHfySjMRLxqptydXWMkUQlcYiHSQTQWsRcHrDCJ717Y44I5L9IUQx2cV+esjS1Ka7GHwJozps27Ctf9nhR3N5yNYMz9WMoDXs=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN7PR11MB2579.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(396003)(136003)(39850400004)(376002)(346002)(366004)(6512007)(6666004)(36756003)(956004)(52116002)(5660300002)(8936002)(6486002)(16526019)(2906002)(316002)(83380400001)(86362001)(2616005)(186003)(66946007)(478600001)(1076003)(44832011)(6506007)(38100700002)(8676002)(66476007)(38350700002)(26005)(66556008)(4326008);
+ IPV:NLI; SFV:NSPM; H:BY5PR03MB5345.namprd03.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(346002)(136003)(396003)(366004)(376002)(39850400004)(66946007)(316002)(7696005)(38100700002)(7416002)(16526019)(66556008)(8676002)(6666004)(2906002)(110136005)(5660300002)(66476007)(83380400001)(6506007)(1076003)(4326008)(52116002)(55016002)(86362001)(956004)(8936002)(26005)(186003)(478600001)(38350700002)(9686003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?+raxFJxYDcm2Fhn1GSpAx8k0Mejk2ehptriwFleyv2d3epf3DAXu5R+wIdOL?=
- =?us-ascii?Q?+51flyZsBfVWO77zf4Szpx7BwfKvWYQ4lxIANKXpLP78lHmRKHI+0M29IQwq?=
- =?us-ascii?Q?Vv9WMldGoPJ0F7q93ikTUQp0yPcFxSUX2thHEyInimyoQZovALBhVy4TubyJ?=
- =?us-ascii?Q?vQz7wfsIRo5/lxO60nwExq6uh/hnmCAFva+m2qXpWmMkYg60wKoNMLuFcVVV?=
- =?us-ascii?Q?BXiLbHjVLodynj5nPvqBcF0oOwGenIQcH4L+L/XTXajkqq3l3IY+KhrBzsxb?=
- =?us-ascii?Q?sMj+wjQ46CwG85zOiCbCGrIG1MAS5OpgcwrC9pAvF8YafmhLRUG0+8UOVN/9?=
- =?us-ascii?Q?2NnZ5YOs6Nr5uWa1UCn053SVrwDFDlnHldoWELOYIKQjR3j+JCmYR0ntMU94?=
- =?us-ascii?Q?0zbbYjBW79jMqlU1yo/bR7SBlQzdF009PUYxWG6UwgdybKjse8E0F2zQEnQG?=
- =?us-ascii?Q?pJE2v6t5NIhHOwC4+INIp8ywvTbIsCv4wNCpkxr76wxqPn6LnOwLVNSj2tn8?=
- =?us-ascii?Q?kcehcm5LjV48K7A/FthsssSHYQyWVxX9K/oITI4RR6S1vg5nvGJE0b39wO/n?=
- =?us-ascii?Q?SrTwq1GfAQGLuXGncbsUfcE550JQd4H/ohxDnYIk7xtDizq4Xkr2MwYTxZ9W?=
- =?us-ascii?Q?edODyp+XjOuCZZlWsWcmIOr9UATGWHEw8MunNGrl3XItLNp6qK2FZKW7f5OK?=
- =?us-ascii?Q?lZV5HqE5kg3BkSxhGpoDeRdG+OX2Y0YjcudxSD7Nj0RNe1BFwOQnW1kKzF86?=
- =?us-ascii?Q?nmUOG3n3aSC4fyOmath6FLtt6qoBxNW92iR3EEj8F9k1b3Zl36EBzt8pMGt5?=
- =?us-ascii?Q?F+g/BPsQ7djDpm8Q/LgwHTAhUQL+gMP/WjSzF5fPMyAv4QT+5idqtfS5N5A/?=
- =?us-ascii?Q?ujXmX9IHRZHuTaewJAAsfBVdoxmy5vc/xLFCuBdUM6lGz/w9yV2anulsgAYB?=
- =?us-ascii?Q?szo5q20QcgYQB4gkWdTkkHpwFizetHTYGwiYAKOwXoq02rk8iB750oA6F9AC?=
- =?us-ascii?Q?rGVZFtJkv0fMEGn6WBvNwjVkhrn70TiPgu2M/CFBjwTm7kmd664eJ93zwfvZ?=
- =?us-ascii?Q?JwlS6OypqhJTaXcOuh/dVn16vBCAzU6fqaYNTIcLfaxXVIiaWDkatcAr52w8?=
- =?us-ascii?Q?j7OgwP660Af5iKHmhl9kNNY9HAyfbLwGzAA65Pqq9vgZMLYIupSBFxu4vLCr?=
- =?us-ascii?Q?ZWklt5OGBAz7Z9raEb/ITxSJe+5zcVI2hj/+iO042n3yKPkb9csT6h/xRuXJ?=
- =?us-ascii?Q?Pi5u/OTr0XhbQxufx8ghaK4f9ojT3oqr4miCNtlQc2Ci8iRJ51nMHZieXlAk?=
- =?us-ascii?Q?K+txACFPTp2miEnYQbgcDacH?=
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63e401c1-9da4-43aa-c287-08d8fef58a0a
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR11MB2579.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?uljiTkiWru+6kCn/hFevr4yONZo+OwmSJGGJn1RbyhoclIS5aHnBy8xIENVM?=
+ =?us-ascii?Q?ETKl5xQSmQAK0hpU10LesviB34R1n3ZkwT3SrtBvXlCzVOo2oFuTud+IC/OC?=
+ =?us-ascii?Q?W2Pu94TfEpY9CKSK6/QbxY8fOde3jrFQ5JkS3VLGvbSb8uuHy0RmwV/YVT/2?=
+ =?us-ascii?Q?7DjUFp1Z/ml6r0LPNgIlOBKzKkHD3ZkjRrjDDolVO64L/su4dX2GkXKhYRoq?=
+ =?us-ascii?Q?6/f68Z8SFBz5OL5IEU45s+nAxED5OHXka+af7RIoVC67pjsKN2zJ+fQyb7Z5?=
+ =?us-ascii?Q?ctGt0Xp+ueaiJjgaMYRonGbtXeAAZqeSnFOSXuNe6UneA57oMEUCrdA0VCu5?=
+ =?us-ascii?Q?6yrKBut89i3pjuFge3+HxBeCgEgV5Ln8KIW4jv1//VvpSNZ76naQqt5Rj1FD?=
+ =?us-ascii?Q?Hye4UefIX4L2TnsmJcbhHTuK3JelUqSnv3WTG0qNNa1zkb2+suxcJkuzAI3e?=
+ =?us-ascii?Q?XxcbKucOpokOcGgDuUp6HbvYk/JfnB6m2kQbOR+Ek/vRMSUg+SsWG3XziNt7?=
+ =?us-ascii?Q?qO/FwE2ogWwzTOvUCUOtB5vzeNFAZ45hA9wAp8ekKBQAvFZI+uC4RbvdZlum?=
+ =?us-ascii?Q?7NZZ6zqzGBxCbHFXRWIe4p58YwLCOt7n6GVBxJUo5vdVLkPh7VRgLlg9HyRq?=
+ =?us-ascii?Q?Z2mV5LIlY3eMCjSCqbTb82BodbLYkUnBjtpQ8l/e0shXZ/5UrB9bgJxiLPoz?=
+ =?us-ascii?Q?pCKKbLNLFFoxSrotG0SHYkNXGdMT1Jd7ziUqNgaBl3DTo3qfHOetQF5SDxXg?=
+ =?us-ascii?Q?UhHRDtJniunfGvHDMqLtYLjU6mDugxyJ3ZFRzY2a+nXVnGX1Cbpc420xOxSI?=
+ =?us-ascii?Q?zrPQPg8yPlFmmc4G8ngzMHQxSs4VSFvWx5molx7swrdCmu0gPifk7uT5GzPT?=
+ =?us-ascii?Q?ktGAJChCUubDzv6w8En7MUAeWSjM2lDcdHcOjiww5Py+ibTGASNcst+lWUw4?=
+ =?us-ascii?Q?9XAxn1HFzIX62MZ+Fb5q/1wkBb0D7/WVZ0isRkFx8pA6qiLIh9jDOZCv8c+N?=
+ =?us-ascii?Q?55z1tMEBFdFSaw6hUbdt6JKBbLnwzf49Cqkr10126asjgrF2Idnq1x8F8f63?=
+ =?us-ascii?Q?IKZ3zUxleUhmHcQtb+qJp7DhZTM9rF15gR5X95V3kObQCuVzG5ft5uigWxDp?=
+ =?us-ascii?Q?nlk/yp3kNsOTTmDKl/+6D6dJXZHir7yvIVGJ46s8pTw9SlQOzfwqdd2cCOPM?=
+ =?us-ascii?Q?mVrJ1mArU/+bT8l9Ygr7ZowqqIYfQRopszkPJ1MDX7tpC9PzBHrwCC7El9gm?=
+ =?us-ascii?Q?lnAX/tuLeOLWM05UDTi9KMYv7u9kINaJ3xRFvUkeyOoTKgufiwu1JQhBBAvG?=
+ =?us-ascii?Q?+dxmn+IcYfcOFom6C7USJ6Ub?=
+X-OriginatorOrg: synaptics.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c5a55b30-f8dd-4079-154d-08d8ff0b8263
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR03MB5345.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2021 03:29:42.8637 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2021 06:06:57.2161 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: E+6AP/qKnSahPNSn8uYZsDj7G0gDjM3iAqERecBveXKSpqMU/31bLVxsBUqjh7FK7oy52NyRQRstuPFotGxAcA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB2001
+X-MS-Exchange-CrossTenant-UserPrincipalName: L4jUboh/N1Uh7mFLXJJdvabbSK6qqvNESNyjP8smhK1ZjaeCAbzpz3XP5UkHev2+8hJQsJt3SetZv+b0rtS4nQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR03MB5664
 X-Mailman-Approved-At: Wed, 14 Apr 2021 11:52:48 +0000
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915/gt: Fix a lockdep warning on RT
- kernel
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Fix "mitigations" parsing if i915
+ is builtin
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,89 +120,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Don`t simple disable all the HD-irq, should race the region in the
-intel_breadcrumbs_disarm_irq() only.
+I met below error during boot with i915 builtin if pass
+"i915.mitigations=off":
+[    0.015589] Booting kernel: `off' invalid for parameter `i915.mitigations'
 
-BUG: sleeping function called from invalid context at kernel/locking/rtmutex.c:969
-  #0: ffff89c4c00ca970 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x1cf/0x6d0
-  #1: ffffa433c1f53e60 ((work_completion)(&engine->retire_work)){+.+.}-{0:0}, at: process_one_work+0x1cf 0x6d
-  #2: ffff89c4ccb0a0a8 (kernel_context){+.+.}-{0:0}, at: engine_retire+0x62/0x110 [i915]
-  #3: ffff89c4cf682300 (wakeref.mutex#3){+.+.}-{0:0}, at: __intel_wakeref_put_last+0x20/0x60 [i915]
-  #4: ffff89c4ccb08398 (&b->irq_lock){+.+.}-{0:0}, at: intel_breadcrumbs_disarm_irq+0x20/0xd0 [i915]
- irq event stamp: 2126
- hardirqs last  enabled at (2125): [<ffffffffbb134739>] cancel_delayed_work+0xa9/0xc0
- hardirqs last disabled at (2126): [<ffffffffc0507fe6>] __intel_breadcrumbs_park+0x76/0x80 [i915]
- softirqs last  enabled at (0): [<ffffffffbb1099ce>] copy_process+0x63e/0x1630
- softirqs last disabled at (0): [<0000000000000000>] 0x0
- CPU: 3 PID: 281 Comm: kworker/3:3 Not tainted 5.10.27-rt34-yocto-preempt-rt #1
- Hardware name: Intel(R) Client Systems NUC7i5DNKE/NUC7i5DNB, BIOS DNKBLi5v.86A.0064.2019.0523.1933 05/23 2019
- Workqueue: events engine_retire [i915]
- Call Trace:
-  show_stack+0x52/0x58
-  dump_stack+0x7d/0x9f
-  ___might_sleep.cold+0xe3/0xf4
-  rt_spin_lock+0x3f/0xc0
-  ? intel_breadcrumbs_disarm_irq+0x20/0xd0 [i915]
-  intel_breadcrumbs_disarm_irq+0x20/0xd0 [i915]
-  signal_irq_work+0x241/0x660 [i915]
-  ? __this_cpu_preempt_check+0x13/0x20
-  ? lockdep_hardirqs_off+0x106/0x120
-  __intel_breadcrumbs_park+0x3f/0x80 [i915]
-  __engine_park+0xbd/0xe0 [i915]
-  ____intel_wakeref_put_last+0x22/0x60 [i915]
-  __intel_wakeref_put_last+0x50/0x60 [i915]
-  intel_context_exit_engine+0x5f/0x70 [i915]
-  i915_request_retire+0x139/0x2d0 [i915]
-  engine_retire+0xb0/0x110 [i915]
-  process_one_work+0x26d/0x6d0
-  worker_thread+0x53/0x330
-  kthread+0x1b0/0x1d0
-  ? process_one_work+0x6d0/0x6d0
-  ? __kthread_parkme+0xc0/0xc0
-  ret_from_fork+0x22/0x30
+The reason is slab subsystem isn't ready at that time, so kstrdup()
+returns NULL. Fix this issue by using stack var instead of kstrdup().
 
-Fixes: 9d5612ca165a ("drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission")
-Signed-off-by: Jun Miao <jun.miao@windriver.com>
+Fixes: 984cadea032b ("drm/i915: Allow the sysadmin to override security mitigations")
+Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
 ---
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+Since v1:
+ - Ensure "str" is properly terminated. Thanks Ville for pointing this out.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index 0040b4765a54..89c2874ecc76 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -103,10 +103,11 @@ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
- 
- static void intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+ drivers/gpu/drm/i915/i915_mitigations.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_mitigations.c b/drivers/gpu/drm/i915/i915_mitigations.c
+index 84f12598d145..231aad5ff46c 100644
+--- a/drivers/gpu/drm/i915/i915_mitigations.c
++++ b/drivers/gpu/drm/i915/i915_mitigations.c
+@@ -29,15 +29,14 @@ bool i915_mitigate_clear_residuals(void)
+ static int mitigations_set(const char *val, const struct kernel_param *kp)
  {
--	spin_lock(&b->irq_lock);
-+	unsigned long flags;
-+	spin_lock_irqsave(&b->irq_lock,flags);
- 	if (b->irq_armed)
- 		__intel_breadcrumbs_disarm_irq(b);
--	spin_unlock(&b->irq_lock);
-+	spin_unlock_irqrestore(&b->irq_lock,flags);
- }
+ 	unsigned long new = ~0UL;
+-	char *str, *sep, *tok;
++	char str[64], *sep, *tok;
+ 	bool first = true;
+ 	int err = 0;
  
- static void add_signaling_context(struct intel_breadcrumbs *b,
-@@ -342,9 +343,7 @@ void intel_breadcrumbs_park(struct intel_breadcrumbs *b)
- 	/* Kick the work once more to drain the signalers */
- 	irq_work_sync(&b->irq_work);
- 	while (unlikely(READ_ONCE(b->irq_armed))) {
--		local_irq_disable();
- 		signal_irq_work(&b->irq_work);
--		local_irq_enable();
- 		cond_resched();
+ 	BUILD_BUG_ON(ARRAY_SIZE(names) >= BITS_PER_TYPE(mitigations));
+ 
+-	str = kstrdup(val, GFP_KERNEL);
+-	if (!str)
+-		return -ENOMEM;
++	strncpy(str, val, sizeof(str) - 1);
++	str[sizeof(str) - 1] = '\0';
+ 
+ 	for (sep = str; (tok = strsep(&sep, ","));) {
+ 		bool enable = true;
+@@ -86,7 +85,6 @@ static int mitigations_set(const char *val, const struct kernel_param *kp)
+ 			break;
+ 		}
  	}
- 	GEM_BUG_ON(!list_empty(&b->signalers));
+-	kfree(str);
+ 	if (err)
+ 		return err;
+ 
 -- 
-2.25.1
+2.31.0
 
 _______________________________________________
 Intel-gfx mailing list
