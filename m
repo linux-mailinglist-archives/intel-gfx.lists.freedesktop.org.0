@@ -1,40 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D618635EAF7
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 04:39:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 127A035EB33
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 05:01:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB876E429;
-	Wed, 14 Apr 2021 02:39:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA5E6E431;
+	Wed, 14 Apr 2021 03:01:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D5A06E429
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 02:39:50 +0000 (UTC)
-IronPort-SDR: urXM4QbaZgpEWDWLXxEfqSdi3P8pitOihhatARvEZzoQHl7QTQ/RYDzAMT6cRRCiaNXl6g2e9K
- 0NJhRRF3rwvw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9953"; a="194662182"
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; d="scan'208";a="194662182"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2021 19:39:50 -0700
-IronPort-SDR: oagVPphksAGw43smvG3ouNhvmOkbYayrx0Xz6lEvowNt7lWzqkjw2EHJlqXERPmTlv0HuuQh0x
- Noiz5Y2bWdQw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; d="scan'208";a="452243234"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 13 Apr 2021 19:39:47 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 14 Apr 2021 05:39:46 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 14 Apr 2021 05:39:46 +0300
-Message-Id: <20210414023946.842-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.26.3
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com
+ [IPv6:2607:f8b0:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 670856E431
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 03:01:10 +0000 (UTC)
+Received: by mail-pf1-x42b.google.com with SMTP id o123so12771439pfb.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 13 Apr 2021 20:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=TAR5yqsN9HoAFUY9r76iY0/Z55yb+yClu81GmGqClH8=;
+ b=AxctJN4YKisiNN3mi+jR9a4PjDrVydjLyKAjdhLsmYrQmMrpv2qEobv2Nvyg0HNTWx
+ 7szvLEm1gEw15HdvEMw40HI+RO95vOD0oLwcO6a8e7OFu4XSukj3DnnIKTZ8dpsRwLw0
+ podg0eVzOhWXD4N6oDRZgcgEPZIKqHA6fEZeU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=TAR5yqsN9HoAFUY9r76iY0/Z55yb+yClu81GmGqClH8=;
+ b=VqqilkVXs9bxbMCLoIBbe1V13wRw2r9dMDFzjLmeLwI8A79dC6jxXrcmR9ULSaHNby
+ uS58aFJ9qHsOZtUbZEy73+hJL3nJlyXh1qHnkhYRKa9x0QnVZMuZtiOEny+a9firRFju
+ EtnNlXuFs5QBUzpun9H2z9ZH7aRoyYt+QIflW2YDTVXdnKwrDbJn/tHa2YrMno7zVuCr
+ 8Yz9rmoMfuTulHdbdhk2L6E75Dnn/A4u5DYU52xDXGQh9+xFm+yZ1c1/wpDFXnnBVj6p
+ UhxVPtMsdjJPBCHEmPJrNmXCptev44Og0SZ8RwI4mFpx5XUVcLHf3x84IpRgpFkMniI+
+ e5Kg==
+X-Gm-Message-State: AOAM533BdaQy7R2tOhVVvNACTGweFmaAvrp7oFuTCNl8qfDH0xV03IJ4
+ tYPRJ2I/F6NWRWASinzFDJ/dtw==
+X-Google-Smtp-Source: ABdhPJxny0HhvRRvjLB4ExxpMb0WRmAlIu/+/yKctZz3k66U0emA0Hktzp0YxGEbXWZI5dhhte4d4Q==
+X-Received: by 2002:a05:6a00:796:b029:247:7a27:d612 with SMTP id
+ g22-20020a056a000796b02902477a27d612mr22006953pfu.78.1618369269985; 
+ Tue, 13 Apr 2021 20:01:09 -0700 (PDT)
+Received: from www.outflux.net (smtp.outflux.net. [198.145.64.163])
+ by smtp.gmail.com with ESMTPSA id c128sm13632751pfb.81.2021.04.13.20.01.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 13 Apr 2021 20:01:09 -0700 (PDT)
+Date: Tue, 13 Apr 2021 20:01:08 -0700
+From: Kees Cook <keescook@chromium.org>
+To: Peter Zijlstra <peterz@infradead.org>
+Message-ID: <202104131935.B5EBDAE@keescook>
+References: <20210412080012.357146277@infradead.org>
+ <20210412080611.769864829@infradead.org>
+ <202104121302.57D7EF8@keescook>
+ <YHVKACnVLAhbnt4j@hirez.programming.kicks-ass.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH xf86-video-intel v2] sna: Eliminate
- sna_mode_wants_tear_free()
+Content-Disposition: inline
+In-Reply-To: <YHVKACnVLAhbnt4j@hirez.programming.kicks-ass.net>
+Subject: Re: [Intel-gfx] [PATCH 4/7] mm: Introduce verify_page_range()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,89 +67,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jgross@suse.com, sstabellini@kernel.org, intel-gfx@lists.freedesktop.org,
+ x86@kernel.org, linux-kernel@vger.kernel.org, chris@chris-wilson.co.uk,
+ linux-mm@kvack.org, boris.ostrovsky@oracle.com, hch@lst.de,
+ akpm@linux-foundation.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
-ZSBtb2RwYXJhbSBjaGVja3MgcGVyZm9ybWVkIGJ5IHNuYV9tb2RlX3dhbnRzX3RlYXJfZnJlZSgp
-IGRvbid0CmdlbmVyYWxseSB3b3JrIHdoZW4gdGhlIHNlcnZlciBpcyBydW5uaW5nIGFzIGEgcmVn
-dWxhciB1c2VyLiBIZW5jZQp3ZSBjYW4ndCByZWx5IG9uIHRoZW0gdG8gaW5kaWNhdGUgd2hldGhl
-ciBGQkMvUFNSL2V0YyBpcyBlbmFibGVkLgpBIGxzbyB0aGUgIlBhbmVsIFNlbGYtUmVmcmVzaCIg
-Y29ubmVjdG9yIHByb3BlcnR5IGRvZXNuJ3QgYWN0dWFsbHkKZXhpc3Qgc28gd2UgY2FuIG51a2Ug
-dGhhdCBwYXJ0IGFzIHdlbGwuIExldCdzIGp1c3QgbnVrZSB0aGUgd2hvbGUKdGhpbmcgYW5kIGFz
-c3VtZSB3ZSB3YW50IGRpcnR5ZmIgYWx3YXlzIHdoZW4gdGVhcmZyZWUgaXMgbm90IGVuYWJsZWQu
-CgpJJ2xsIGFueXdheSB3YW50IHRvIGVuYWJsZSBGQkMgYnkgZGVmYXVsdCBhY3Jvc3MgdGhlIGJv
-YXJkIHNvb25pc2gKc28gdGhlIGNoZWNrIHdvdWxkbid0IHJlYWxseSBidXkgdXMgbXVjaCAod291
-bGQganVzdCBleGNsdWRlIGk4MzAKYW5kIGEgZmV3IG9sZCBkZXNrdG9wIGNoaXBzZXRzIHdoaWNo
-IGRvbid0IGhhdmUgRkJDIGhhcmR3YXJlKS4KCkFkZGl0aW9uYWxseSBpZiB3ZSBkb24ndCBoYXZl
-IHdvcmtpbmcgZGlydHlmYiB3ZSByZWFsbHkgc2hvdWxkCmVuYWJsZSB0ZWFyZnJlZSBieSBkZWZh
-dWx0IGJlY2F1c2Ugb3RoZXJ3aXNlIHdlJ3JlIGdvaW5nIHRvCmdldCBob3JyaWJsZSBsYWcgZHVl
-IHRvIG1pc3NpbmcgZnJvbnRidWZmZXIgZmx1c2hlcy4KCldpdGhvdXQgV0MgbW1hcHMgd2UgY291
-bGQgaW4gdGhlb3J5IHJlbHkgb24gdGhlIGh3IGd0dCB0cmFja2luZwpleGNlcHQgdGhlIGtlcm5l
-bCBubyBsb25nZXIgZGlmZmVyZW50aWF0ZXMgYmV0d2VlbiBHVFQvV0MvQ1BVCmFjY2VzcyBpbiBp
-dHMgc29mdHdhcmUgZnJvbnRidWZmZXIgdHJhY2tpbmcgY29kZSBzbyBpdCdsbCBqdXN0CmRlYWN0
-aXZhdGUgRkJDIGV2ZW4gZm9yIGEgR1RUIG1tYXAgYW5kIHBvdGVudGlhbGx5IG5ldmVyIHJlLWVu
-YWJsZQppdCBkdWUgdG8gdGhlIG1pc3NpbmcgZnJvbnRidWZmZXIgZmx1c2ggZnJvbSBkaXJ0eWZi
-LiBTbyBkaXJ0eWZiCmlzIGFsd2F5cyBuZWVkZWQuCgp2MjogUmViYXNlIGR1ZSB0byBwcGd0dC0+
-dGVhciBmcmVlIGxvZ2ljCgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIHNyYy9zbmEvc25hLmggICAgICAgICB8ICAxIC0K
-IHNyYy9zbmEvc25hX2Rpc3BsYXkuYyB8IDU5IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0KIHNyYy9zbmEvc25hX2RyaXZlci5jICB8ICA5ICsrLS0tLS0KIDMgZmls
-ZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCA2NyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
-YS9zcmMvc25hL3NuYS5oIGIvc3JjL3NuYS9zbmEuaAppbmRleCBmMmJjMTg5NjI0YTUuLjVjOTJm
-NjQ5ZDA1NCAxMDA2NDQKLS0tIGEvc3JjL3NuYS9zbmEuaAorKysgYi9zcmMvc25hL3NuYS5oCkBA
-IC00NTgsNyArNDU4LDYgQEAgc3RydWN0IHNuYSB7CiAKIGJvb2wgc25hX21vZGVfcHJlX2luaXQo
-U2NybkluZm9QdHIgc2Nybiwgc3RydWN0IHNuYSAqc25hKTsKIGJvb2wgc25hX21vZGVfZmFrZV9p
-bml0KHN0cnVjdCBzbmEgKnNuYSwgaW50IG51bV9mYWtlKTsKLWJvb2wgc25hX21vZGVfd2FudHNf
-dGVhcl9mcmVlKHN0cnVjdCBzbmEgKnNuYSk7CiB2b2lkIHNuYV9tb2RlX2FkanVzdF9mcmFtZShz
-dHJ1Y3Qgc25hICpzbmEsIGludCB4LCBpbnQgeSk7CiBleHRlcm4gdm9pZCBzbmFfbW9kZV9kaXNj
-b3ZlcihzdHJ1Y3Qgc25hICpzbmEsIGJvb2wgdGVsbCk7CiBleHRlcm4gdm9pZCBzbmFfbW9kZV9j
-aGVjayhzdHJ1Y3Qgc25hICpzbmEpOwpkaWZmIC0tZ2l0IGEvc3JjL3NuYS9zbmFfZGlzcGxheS5j
-IGIvc3JjL3NuYS9zbmFfZGlzcGxheS5jCmluZGV4IDg3NDI5MmJjYWIzMS4uOTY2YWQ5NjM4YTJh
-IDEwMDY0NAotLS0gYS9zcmMvc25hL3NuYV9kaXNwbGF5LmMKKysrIGIvc3JjL3NuYS9zbmFfZGlz
-cGxheS5jCkBAIC03OTUxLDY1ICs3OTUxLDYgQEAgYm9vbCBzbmFfbW9kZV9wcmVfaW5pdChTY3Ju
-SW5mb1B0ciBzY3JuLCBzdHJ1Y3Qgc25hICpzbmEpCiAJcmV0dXJuIHNjcm4tPm1vZGVzICE9IE5V
-TEw7CiB9CiAKLWJvb2wKLXNuYV9tb2RlX3dhbnRzX3RlYXJfZnJlZShzdHJ1Y3Qgc25hICpzbmEp
-Ci17Ci0JeGY4NkNydGNDb25maWdQdHIgY29uZmlnID0gWEY4Nl9DUlRDX0NPTkZJR19QVFIoc25h
-LT5zY3JuKTsKLQlib29sIGZvdW5kID0gZmFsc2U7Ci0JRklMRSAqZmlsZTsKLQlpbnQgaTsKLQot
-CWZpbGUgPSBmb3BlbigiL3N5cy9tb2R1bGUvaTkxNS9wYXJhbWV0ZXJzL2VuYWJsZV9mYmMiLCAi
-ciIpOwotCWlmIChmaWxlKSB7Ci0JCWludCBmYmNfZW5hYmxlZCA9IDA7Ci0JCWludCB2YWx1ZTsK
-LQotCQlpZiAoZnNjYW5mKGZpbGUsICIlZCIsICZ2YWx1ZSkgPT0gMSkKLQkJCWZiY19lbmFibGVk
-ID0gdmFsdWUgPiAwOwotCQlmY2xvc2UoZmlsZSk7Ci0KLQkJREJHKCgiJXM6IG1vZHVsZSBwYXJh
-bWV0ZXIgJ2VuYWJsZV9mYmMnIGVuYWJsZWQ/ICVkXG4iLAotCQkgICAgIF9fRlVOQ1RJT05fXywg
-ZmJjX2VuYWJsZWQpKTsKLQotCQlpZiAoZmJjX2VuYWJsZWQpCi0JCQlyZXR1cm4gdHJ1ZTsKLQl9
-Ci0KLQlmb3IgKGkgPSAwOyBpIDwgc25hLT5tb2RlLm51bV9yZWFsX291dHB1dDsgaSsrKSB7Ci0J
-CXN0cnVjdCBzbmFfb3V0cHV0ICpvdXRwdXQgPSB0b19zbmFfb3V0cHV0KGNvbmZpZy0+b3V0cHV0
-W2ldKTsKLQkJaW50IGlkID0gZmluZF9wcm9wZXJ0eShzbmEsIG91dHB1dCwgIlBhbmVsIFNlbGYt
-UmVmcmVzaCIpOwotCQlpZiAoaWQgPT0gLTEpCi0JCQljb250aW51ZTsKLQotCQlmb3VuZCA9IHRy
-dWU7Ci0JCWlmIChvdXRwdXQtPnByb3BfdmFsdWVzW2lkXSAhPSAtMSkgewotCQkJREJHKCgiJXM6
-IFBhbmVsIFNlbGYtUmVmcmVzaCBkZXRlY3RlZCBvbiAlc1xuIiwKLQkJCSAgICAgX19GVU5DVElP
-Tl9fLCBjb25maWctPm91dHB1dFtpXS0+bmFtZSkpOwotCQkJcmV0dXJuIHRydWU7Ci0JCX0KLQl9
-Ci0KLQlpZiAoIWZvdW5kKSB7Ci0JCWZpbGUgPSBmb3BlbigiL3N5cy9tb2R1bGUvaTkxNS9wYXJh
-bWV0ZXJzL2VuYWJsZV9wc3IiLCAiciIpOwotCQlpZiAoZmlsZSkgewotCQkJaW50IHBzcl9lbmFi
-bGVkID0gMDsKLQkJCWludCB2YWx1ZTsKLQotCQkJaWYgKGZzY2FuZihmaWxlLCAiJWQiLCAmdmFs
-dWUpID09IDEpCi0JCQkJcHNyX2VuYWJsZWQgPSB2YWx1ZSA+IDA7Ci0JCQlmY2xvc2UoZmlsZSk7
-Ci0KLQkJCURCRygoIiVzOiBtb2R1bGUgcGFyYW1ldGVyICdlbmFibGVfcHNyJyBlbmFibGVkPyAl
-ZFxuIiwKLQkJCSAgICAgX19GVU5DVElPTl9fLCBwc3JfZW5hYmxlZCkpOwotCi0JCQlpZiAocHNy
-X2VuYWJsZWQpCi0JCQkJcmV0dXJuIHRydWU7Ci0JCX0KLQl9Ci0KLQlyZXR1cm4gZmFsc2U7Ci19
-Ci0KIHZvaWQKIHNuYV9tb2RlX3NldF9wcmltYXJ5KHN0cnVjdCBzbmEgKnNuYSkKIHsKZGlmZiAt
-LWdpdCBhL3NyYy9zbmEvc25hX2RyaXZlci5jIGIvc3JjL3NuYS9zbmFfZHJpdmVyLmMKaW5kZXgg
-ZDgxMGIyNjJiNDUyLi4xNWMxMzNjZmRjMDIgMTAwNjQ0Ci0tLSBhL3NyYy9zbmEvc25hX2RyaXZl
-ci5jCisrKyBiL3NyYy9zbmEvc25hX2RyaXZlci5jCkBAIC00NjksMTIgKzQ2OSw3IEBAIHN0YXRp
-YyBib29sIGVuYWJsZV90ZWFyX2ZyZWUoc3RydWN0IHNuYSAqc25hKQogCWlmIChzbmEtPmtnZW0u
-aGFzX2Z1bGxfcHBndHQpCiAJCXJldHVybiB0cnVlOwogCi0JLyoKLQkgKiBVbmRlciBjZXJ0YWlu
-IGNvbmRpdGlvbnMsIHdlIHNob3VsZCBlbmFibGUgVGVhckZyZWUgYnkgZGVmYXVsdCwKLQkgKiBm
-b3IgZXhhbXBsZSB3aGVuIHRoZSBoYXJkd2FyZSByZXF1aXJlcyBwYWdlZmxpcHBpbmcgdG8gcnVu
-IHdpdGhpbgotCSAqIGl0cyBwb3dlci9wZXJmb3JtYW5jZSBidWRnZXQuCi0JICovCi0JaWYgKHNu
-YV9tb2RlX3dhbnRzX3RlYXJfZnJlZShzbmEpKQorCWlmICghc25hLT5rZ2VtLmhhc19kaXJ0eWZi
-KQogCQlyZXR1cm4gdHJ1ZTsKIAogCXJldHVybiBFTkFCTEVfVEVBUl9GUkVFOwpAQCAtNjc0LDcg
-KzY2OSw3IEBAIHN0YXRpYyBCb29sIHNuYV9wcmVfaW5pdChTY3JuSW5mb1B0ciBzY3JuLCBpbnQg
-cHJvYmUpCiAJfQogCXNjcm4tPmN1cnJlbnRNb2RlID0gc2Nybi0+bW9kZXM7CiAKLQlpZiAoIXNl
-dHVwX3RlYXJfZnJlZShzbmEpICYmIHNuYV9tb2RlX3dhbnRzX3RlYXJfZnJlZShzbmEpKQorCWlm
-ICghc2V0dXBfdGVhcl9mcmVlKHNuYSkpCiAJCXNuYS0+a2dlbS5uZWVkc19kaXJ0eWZiID0gc25h
-LT5rZ2VtLmhhc19kaXJ0eWZiOwogCiAJeGY4NlNldEdhbW1hKHNjcm4sIHplcm9zKTsKLS0gCjIu
-MjYuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
-ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Tue, Apr 13, 2021 at 09:36:32AM +0200, Peter Zijlstra wrote:
+> On Mon, Apr 12, 2021 at 01:05:09PM -0700, Kees Cook wrote:
+> > On Mon, Apr 12, 2021 at 10:00:16AM +0200, Peter Zijlstra wrote:
+> > > +struct vpr_data {
+> > > +	int (*fn)(pte_t pte, unsigned long addr, void *data);
+> > > +	void *data;
+> > > +};
+> > 
+> > Eeerg. This is likely to become an attack target itself. Stored function
+> > pointer with stored (3rd) argument.
+> > 
+> > This doesn't seem needed: only DRM uses it, and that's for error
+> > reporting. I'd rather plumb back errors in a way to not have to add
+> > another place in the kernel where we do func+arg stored calling.
+> 
+> Is this any better? It does have the stored pointer, but not a stored
+> argument, assuming you don't count returns as arguments I suppose.
+
+It's better in the sense that it's not the func/arg pair that really
+bugs me, yes. :)
+
+> The alternative is refactoring apply_to_page_range() :-/
+
+Yeah, I'm looking now, I see what you mean.
+
+> ---
+> 
+> struct vpr_data {
+> 	bool (*fn)(pte_t pte, unsigned long addr);
+> 	unsigned long addr;
+> };
+> 
+> static int vpr_fn(pte_t *pte, unsigned long addr, void *data)
+> {
+> 	struct vpr_data *vpr = data;
+> 	if (!vpr->fn(*pte, addr)) {
+> 		vpr->addr = addr;
+> 		return -EINVAL;
+> 	}
+> 	return 0;
+> }
+
+My point about passing "addr" was that nothing in the callback actually
+needs it -- the top level can just as easily report the error. And that
+the helper is always vpr_fn(), so it doesn't need to be passed either.
+
+So the addr can just be encoded in "int", and no structure is needed at:
+
+typedef bool (*vpr_fn_t)(pte_t pte);
+
+static int vpr_fn(pte_t *pte, unsigned long addr, void *data)
+{
+	vpr_fn_t callback = data;
+
+	if (!callback(*pte))
+		return addr >> PAGE_SIZE;
+	return 0;
+}
+
+unsigned long verify_page_range(struct mm_struct *mm,
+				unsigned long addr, unsigned long size,
+				vpr_fn_t callback)
+{
+	return apply_to_page_range(mm, addr, size, vpr_fn, callback) << PAGE_SIZE;
+}
+
+But maybe I'm missing something?
+
+-- 
+Kees Cook
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
