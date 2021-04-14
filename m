@@ -2,31 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75F6435F75C
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 17:15:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20F4C35F75F
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 17:16:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5C1E6E944;
-	Wed, 14 Apr 2021 15:15:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 775846E948;
+	Wed, 14 Apr 2021 15:16:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2C0DC6E935;
- Wed, 14 Apr 2021 15:15:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 232FEA47DF;
- Wed, 14 Apr 2021 15:15:24 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91D166E948;
+ Wed, 14 Apr 2021 15:16:16 +0000 (UTC)
+IronPort-SDR: OoGK8f9WeS5SgbZ6zlfNPQI4oaDiJOYs7zzYjuLbgUJrTeArbVmRRBPQWWHiGrZusagUtdvVeB
+ oRVnLKTL0LiQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9954"; a="279972501"
+X-IronPort-AV: E=Sophos;i="5.82,222,1613462400"; d="scan'208";a="279972501"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2021 08:16:13 -0700
+IronPort-SDR: DLCFbRb2L37VZ+fcE8tXkCv1U2DDcRFnbmSZIB7dDszJKf54pFzWc4VfuAWQEnDHNIO2TQ7XMe
+ ta7HWLvUH9yA==
+X-IronPort-AV: E=Sophos;i="5.82,222,1613462400"; d="scan'208";a="418359124"
+Received: from bdebhal-mobl.ger.corp.intel.com (HELO [10.213.205.119])
+ ([10.213.205.119])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2021 08:16:12 -0700
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210412090526.30547-1-matthew.auld@intel.com>
+ <20210412090526.30547-9-matthew.auld@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <28227924-447c-6ceb-eaec-7c55be29b1b1@linux.intel.com>
+Date: Wed, 14 Apr 2021 16:16:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Wed, 14 Apr 2021 15:15:24 -0000
-Message-ID: <161841332414.4306.10621763592403865627@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210414151049.95828-1-hdegoede@redhat.com>
-In-Reply-To: <20210414151049.95828-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm=3A_Add_privacy-screen_class_and_connector_properties_=28rev2?=
- =?utf-8?q?=29?=
+In-Reply-To: <20210412090526.30547-9-matthew.auld@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 08/19] drm/i915: Return error value when bo
+ not in LMEM for discrete
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,49 +52,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Mohammed Khajapasha <mohammed.khajapasha@intel.com>,
+ dri-devel@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm: Add privacy-screen class and connector properties (rev2)
-URL   : https://patchwork.freedesktop.org/series/79259/
-State : failure
+On 12/04/2021 10:05, Matthew Auld wrote:
+> From: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
+> 
+> Return EREMOTE value when frame buffer object is not backed by LMEM
+> for discrete. If Local memory is supported by hardware the framebuffer
+> backing gem objects should be from local memory.
+> 
+> Signed-off-by: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 411b46c012f8..57b06d8728af 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -63,6 +63,7 @@
+>   #include "display/intel_vdsc.h"
+>   #include "display/intel_vrr.h"
+>   
+> +#include "gem/i915_gem_lmem.h"
+>   #include "gem/i915_gem_object.h"
+>   
+>   #include "gt/intel_rps.h"
+> @@ -11279,11 +11280,20 @@ intel_user_framebuffer_create(struct drm_device *dev,
+>   	struct drm_framebuffer *fb;
+>   	struct drm_i915_gem_object *obj;
+>   	struct drm_mode_fb_cmd2 mode_cmd = *user_mode_cmd;
+> +	struct drm_i915_private *i915;
+>   
+>   	obj = i915_gem_object_lookup(filp, mode_cmd.handles[0]);
+>   	if (!obj)
+>   		return ERR_PTR(-ENOENT);
+>   
+> +	/* object is backed with LMEM for discrete */
+> +	i915 = to_i915(obj->base.dev);
+> +	if (HAS_LMEM(i915) && !i915_gem_object_is_lmem(obj)) {
+> +		/* object is "remote", not in local memory */
+> +		i915_gem_object_put(obj);
+> +		return ERR_PTR(-EREMOTE);
 
-== Summary ==
+I am a fan of rich errnos and this one feels appropriately descriptive, 
+but please get an ack from Daniel or so.
 
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND  objtool
-  CHK     include/generated/compile.h
-  GEN     .version
-  CHK     include/generated/compile.h
-  UPD     include/generated/compile.h
-  CC      init/version.o
-  AR      init/built-in.a
-  LD      vmlinux.o
-  MODPOST vmlinux.symvers
-  MODINFO modules.builtin.modinfo
-  GEN     modules.builtin
-  LD      .tmp_vmlinux.kallsyms1
-drivers/gpu/drm/drm_connector.o: In function `drm_connector_unregister':
-/home/cidrm/kernel/drivers/gpu/drm/drm_connector.c:573: undefined reference to `drm_privacy_screen_unregister_notifier'
-drivers/gpu/drm/drm_connector.o: In function `drm_connector_update_privacy_screen_properties':
-/home/cidrm/kernel/drivers/gpu/drm/drm_connector.c:2377: undefined reference to `drm_privacy_screen_get_state'
-drivers/gpu/drm/drm_connector.o: In function `drm_connector_register':
-/home/cidrm/kernel/drivers/gpu/drm/drm_connector.c:541: undefined reference to `drm_privacy_screen_register_notifier'
-drivers/gpu/drm/drm_connector.o: In function `drm_connector_update_privacy_screen':
-/home/cidrm/kernel/drivers/gpu/drm/drm_connector.c:2457: undefined reference to `drm_privacy_screen_set_sw_state'
-drivers/gpu/drm/drm_connector.o: In function `drm_connector_cleanup':
-/home/cidrm/kernel/drivers/gpu/drm/drm_connector.c:457: undefined reference to `drm_privacy_screen_put'
-Makefile:1199: recipe for target 'vmlinux' failed
-make: *** [vmlinux] Error 1
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
+Regards,
 
+Tvrtko
+
+> +	}
+> +
+>   	fb = intel_framebuffer_create(obj, &mode_cmd);
+>   	i915_gem_object_put(obj);
+>   
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
