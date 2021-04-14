@@ -1,47 +1,111 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 727D936042B
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 10:21:03 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57EA4360543
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 11:07:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AAB46E4F1;
-	Thu, 15 Apr 2021 08:21:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACCA56EA12;
+	Thu, 15 Apr 2021 09:07:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CFC76E4EA;
- Thu, 15 Apr 2021 08:21:00 +0000 (UTC)
-IronPort-SDR: 8Moi1cVa+sBmwM9JnS3GMgdDxQRRI1D9fMK4/ZhM6xUQ4cnkKmEOwm2mRA0E+aPnIJBKEGtb+N
- nzbnPDj3cKLA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9954"; a="194373678"
-X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; d="scan'208";a="194373678"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2021 01:20:52 -0700
-IronPort-SDR: FGYvNIvGL+X7lZMMxvq++0/s+FCisoY9n7yQaWxQhxVXjzcD4xUF8WehN3BHQsbDT/OZNbzku+
- uWIGe7q8BC5w==
-X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; d="scan'208";a="425089554"
-Received: from annelyon-mobl2.ger.corp.intel.com (HELO [10.213.207.39])
- ([10.213.207.39])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2021 01:20:51 -0700
-To: Matthew Auld <matthew.william.auld@gmail.com>
-References: <20210412090526.30547-1-matthew.auld@intel.com>
- <20210412090526.30547-12-matthew.auld@intel.com>
- <7bc2a663-fbc0-6486-341a-7dca980c2440@linux.intel.com>
- <CAM0jSHNhWcscW9txPDyKActTiTWjzhASJb5xC8XPzHeN+Y18QA@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <9aca524c-3710-dfaa-bfec-aef76aee7b26@linux.intel.com>
-Date: Thu, 15 Apr 2021 09:20:49 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B3516E4A7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 14:48:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fRwaxZjSS3MFYlpVz0FanqzZmYiY5htYw9Poz4SEjTo/KD7kt+o0aEifBI9Xkp3ZyoWLHxqZ1Y2FYdZwggR4f2figy7HMG2tRCf7oWEcr62foQlxAPcyFBG3x+eOL9aWlk0lC49Xw5K3pcKkx3QZdg9ZLYEnjeZh83u6FxnTjsdrlpjZ4BldMd44JtrOinkIJbucXTzcfXfvcRIQ6n3mClFYQ1fEyx6llVZfMmYeGmYkEIel2A98OhuTXjexFuzqAErvkdIXd69g0VKehx5eN6rahGMrAzt2Wl80jDVW451wW5qorQ/H1CPkqS4yV1kXvLBYffvZCddBS3njQhVeYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4UcjOUC/EJ8Gayv7XGE2vd7g9pKhw5u9yLWp3WQPens=;
+ b=MZuKCsc1Ti3yyUChgTXsY+z69qzHtQvcvEOiCacd4tZ3xJIoAAuWh5+2OIVsTNzYM6Kd6yEPJfQbQGVo5h9CN4sf4Kmgb14n8ogbzEZXb0RXUi+ARj4cvaVmjP3jBK4b+G6FO7Hr5/4jmtiCa4faWzpYbIyXD7akWcmEm7znALkPDQ8iW/ANiaX5GIKXqenZXtp2raQb9OtCfI76tC3fZzls5WmK+3bQVjjckaWVyS2rqJNA/3ZVFwLswB3dGcgPn8xlpkN1QqqvuX3m+Yza8iaC9vPFFf7Z3fqmo2oKcvw+8Xxq8brT8OoHv4TwauNqNsewPHZMCNifd1lxCVCVnA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4UcjOUC/EJ8Gayv7XGE2vd7g9pKhw5u9yLWp3WQPens=;
+ b=K1sBoItkR7rKMaTw0MivNROUjYCIC0LYbsPHYwfqpM4+m9Bm9DqZZ0+r+TXl8xz5vG1NKdwzTAxvLGniqyWOe9yXe9Mgk2GH50ChpEJBOmRSEMzVxk8+SQvu10V4t0yRKZvvJZOfZzVlau69BuiJRIRhQdEIfWICHKPCf9cvaBg=
+Authentication-Results: linux.intel.com; dkim=none (message not signed)
+ header.d=none;linux.intel.com; dmarc=none action=none
+ header.from=windriver.com;
+Received: from BN7PR11MB2579.namprd11.prod.outlook.com (2603:10b6:406:ab::21)
+ by BN9PR11MB5337.namprd11.prod.outlook.com (2603:10b6:408:136::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.16; Wed, 14 Apr
+ 2021 14:48:41 +0000
+Received: from BN7PR11MB2579.namprd11.prod.outlook.com
+ ([fe80::4c79:805b:e69d:948b]) by BN7PR11MB2579.namprd11.prod.outlook.com
+ ([fe80::4c79:805b:e69d:948b%6]) with mapi id 15.20.4020.023; Wed, 14 Apr 2021
+ 14:48:40 +0000
+From: Jun Miao <jun.miao@windriver.com>
+To: jani.nikula@linux.intel.com,
+	daniel@ffwll.ch,
+	airlied@linux.ie
+Date: Wed, 14 Apr 2021 22:48:28 +0800
+Message-Id: <20210414144828.22813-1-jun.miao@windriver.com>
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: BYAPR05CA0050.namprd05.prod.outlook.com
+ (2603:10b6:a03:74::27) To BN7PR11MB2579.namprd11.prod.outlook.com
+ (2603:10b6:406:ab::21)
 MIME-Version: 1.0
-In-Reply-To: <CAM0jSHNhWcscW9txPDyKActTiTWjzhASJb5xC8XPzHeN+Y18QA@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 11/19] drm/i915: Update the helper to set
- correct mapping
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pek-lpggp3.wrs.com (60.247.85.82) by
+ BYAPR05CA0050.namprd05.prod.outlook.com (2603:10b6:a03:74::27) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4042.8 via Frontend Transport; Wed, 14 Apr 2021 14:48:38 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d919ed8d-79c6-4a89-65a7-08d8ff54648e
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5337:
+X-Microsoft-Antispam-PRVS: <BN9PR11MB5337A25FF113A9E790B326CB8E4E9@BN9PR11MB5337.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: utqBMq2K4RWb0myH+oYhRrmm9cwgXmu8mwKplDmSjWVUFAlZ9tKcoTjD32CwT1W4+apyG5zbfnoYsykpf2RpAKvF3yYES/h8b8t/0oUXCVhGABcpyxfacFiwtXQMdsELik1dyirkHl6xxRTlGsMA+hsmf32194b751k3n33Co02EFA4ODH4BozxwN19pHW8vdhM/1V38Y0jrKl2/GCveYY9fEHrOwFa8hrmT+66TTiFdQKQgwsMhKfq/b+ImQPwNCcti+Z0IZVMh8ot6ZmQqn3xsuUsg+pK2zpKuCZtUAWh6lpBP8/7uSU+5SrxFfv0FSg6cOT2SlxoO2zP/jZxtP+HynJVwFvXe4iL3Ic/m6jM/AK/E5EaPCiRCy7kyHvoxxp31iMgWnBPiF1hOQrTy9p1ib4p0SgTpJ/dqm/gYeEpQIiIOIn/L3zXlpgYBZ5xIomPLuWfUVG7X3guxAtDbhvdUIMEOxAi+SPR445DRcIyD6K7alRBQmDsaMt3Vhee1ktrxEHOffHVfFiPlDxB8xjIvYMB9KaubBJpiKLwoXTvLRWHBrqOQwVtXPkgeh1jBwLq1YhXLvkXs17RhSWlf2IXNinrdewPo4UM9n3U0kYn2Viqk8FkRE25wcqOyGx4pmcqycE3f8VTPPICZO9i4/g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN7PR11MB2579.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(39850400004)(136003)(366004)(396003)(346002)(66946007)(6486002)(36756003)(38100700002)(38350700002)(66556008)(8936002)(66476007)(5660300002)(316002)(52116002)(8676002)(6666004)(6506007)(1076003)(44832011)(86362001)(16526019)(2906002)(6512007)(956004)(2616005)(26005)(186003)(478600001)(83380400001)(4326008);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Qimv9VeuSNujnvPZqyyMuZONblA0w6RpgRywCJqP5BTTRGQVy/S0c+F96uWw?=
+ =?us-ascii?Q?vBCjgAaFDVXdu2nVmbArct//O454WZumHl6ngPVNcRcqpsyv3oGZGl2jaQWJ?=
+ =?us-ascii?Q?T/Lxh3ryda9xeCKikX7vLsHOGcSJKHcM6ibwHDNXq+Z8XQhkUPyPVEq1Abiz?=
+ =?us-ascii?Q?1LvvQOgXCXwOt7zRMFVQfHtX5rcaJ2rPRFTXTOo1o+/MtP+Airr7CnJaSJg4?=
+ =?us-ascii?Q?CgLZg+7PJCQRLyJk+YddbDfY5zIwLkf4Iy6lE/EJ4ioWiZzFzQUuXPQ9bz+P?=
+ =?us-ascii?Q?vxz4ctA9d46VA0sZbmPJnKO16Lwxu93bvA6a8iArU9yWpyV4VpiCjdJ+BLhR?=
+ =?us-ascii?Q?1X1FivK61GyS885ku9rOMxFt5xa7e+I+x9JG/7t1rjxshQXYOZvXfzzYL2pw?=
+ =?us-ascii?Q?hhVgov+62F/NA73c5E1jMyBC2rfRjG334fQjFww9ywWMGu9s0tlq1NbE5Xv7?=
+ =?us-ascii?Q?6dKDSEmkglPh9tSZDro/I2LWd4RlqfcIqrkVOYBSCM7Il+DIXcLyvb1A0fXB?=
+ =?us-ascii?Q?V1QrpEVvsdWcbxMdqHtsNwdF/pUP0C+bErgHU9FtIicXqc6z/z1sp6lFYtjS?=
+ =?us-ascii?Q?fTVAawLUVAQMxfWApff4nL8tQ9S7n3Gjv8j7qSymyT7qQn87KPECjdkudEwB?=
+ =?us-ascii?Q?mQzkKZ2Wg7LylVXRlXxpbLpZqXjpl3DfY4bRXqpIC1lCCT5kS1tjZu0JE4iE?=
+ =?us-ascii?Q?+t113Gd7zHWF8a2P8j/3D+Ajk4jcjr00P4AB7XiYHWukCR4+lXdcIV/Rk7fX?=
+ =?us-ascii?Q?RAXByZ5Gyw9HeO4C/TR0rPjSx6W07u0xlBOs603Ol10fwDd/6Wo33x9hlHpj?=
+ =?us-ascii?Q?Pkwf9CWV3pZv70IInDHis3cTFv2z+k2mF4nskxC32bbmu9ZvNV97H/eKZBqp?=
+ =?us-ascii?Q?1FghLEWV5fKgGoLjbIsWm3mxILz6kI8Q6Fezvjzd1Kg+MfBty9+VTI7cmEZX?=
+ =?us-ascii?Q?QVO7sGK+RfbrvT49xt133v6EijDf0EY4lzUwj3lz7KGObumlcbwkhEGuvZfF?=
+ =?us-ascii?Q?20u9pce9ltAqIabLAKK7QQbFlJzYjwQlg1Ph2Nv0ckmWWr/tYCFwqCA8vmGM?=
+ =?us-ascii?Q?Rvs5VS1lXkdEDj2iUChs8kdoBsd2fOX3OCGS3HGzvZw919v6h2+JEzQS+xA8?=
+ =?us-ascii?Q?NtjtKRVBx0U4bFnDBzItFceR6pvWYiUNGvh8r84Jf7RWrlBxqGCIFvxtLgKo?=
+ =?us-ascii?Q?Z0AfR1cIparAVr7TLBDPnBvq2vAPYrSYUkdwvT7cw+aY5CiS+Yvt2y8fRDYI?=
+ =?us-ascii?Q?K5ke/8yagEqJ+kQOVqljkJi2FtWXctDDQeR0G+sES+WUApIsWKdIueGenv38?=
+ =?us-ascii?Q?QV5rNX6fKShlNhi1yRE1gsvt?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d919ed8d-79c6-4a89-65a7-08d8ff54648e
+X-MS-Exchange-CrossTenant-AuthSource: BN7PR11MB2579.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Apr 2021 14:48:40.6622 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DHY7bJ115pIT15Za7EGTa22mNBBk60ShL3ThhUHs93aEp20s00KTUHgmGoLxsO5ZdVyLdVVRXT0Bhbe1Ti+0BQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5337
+X-Mailman-Approved-At: Thu, 15 Apr 2021 09:07:43 +0000
+Subject: [Intel-gfx] [PATCH][V2] drm/i915/gt: Fix a lockdep warning on RT
+ kernel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,241 +118,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Don`t simple disable all the HD-irq, should race the region in the
+intel_breadcrumbs_disarm_irq() only.
 
-On 14/04/2021 17:20, Matthew Auld wrote:
-> On Wed, 14 Apr 2021 at 16:22, Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->>
->>
->> On 12/04/2021 10:05, Matthew Auld wrote:
->>> From: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
->>>
->>> Determine the possible coherent map type based on object location,
->>> and if target has llc or if user requires an always coherent
->>> mapping.
->>>
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> Cc: CQ Tang <cq.tang@intel.com>
->>> Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> Signed-off-by: Venkata Sandeep Dhanalakota <venkata.s.dhanalakota@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  3 ++-
->>>    drivers/gpu/drm/i915/gt/intel_engine_pm.c    |  2 +-
->>>    drivers/gpu/drm/i915/gt/intel_lrc.c          |  4 +++-
->>>    drivers/gpu/drm/i915/gt/intel_ring.c         |  9 ++++++---
->>>    drivers/gpu/drm/i915/gt/selftest_context.c   |  3 ++-
->>>    drivers/gpu/drm/i915/gt/selftest_hangcheck.c |  4 ++--
->>>    drivers/gpu/drm/i915/gt/selftest_lrc.c       |  4 +++-
->>>    drivers/gpu/drm/i915/gt/uc/intel_guc.c       |  4 +++-
->>>    drivers/gpu/drm/i915/gt/uc/intel_huc.c       |  4 +++-
->>>    drivers/gpu/drm/i915/i915_drv.h              | 11 +++++++++--
->>>    drivers/gpu/drm/i915/selftests/igt_spinner.c |  4 ++--
->>>    11 files changed, 36 insertions(+), 16 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> index efe935f80c1a..b79568d370f5 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
->>> @@ -664,7 +664,8 @@ static int init_status_page(struct intel_engine_cs *engine)
->>>        if (ret)
->>>                goto err;
->>>
->>> -     vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
->>> +     vaddr = i915_gem_object_pin_map(obj,
->>> +                                     i915_coherent_map_type(engine->i915, obj, true));
->>>        if (IS_ERR(vaddr)) {
->>>                ret = PTR_ERR(vaddr);
->>>                goto err_unpin;
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
->>> index 7c9af86fdb1e..47f4397095e5 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
->>> @@ -23,7 +23,7 @@ static void dbg_poison_ce(struct intel_context *ce)
->>>
->>>        if (ce->state) {
->>>                struct drm_i915_gem_object *obj = ce->state->obj;
->>> -             int type = i915_coherent_map_type(ce->engine->i915);
->>> +             int type = i915_coherent_map_type(ce->engine->i915, obj, true);
->>>                void *map;
->>>
->>>                if (!i915_gem_object_trylock(obj))
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> index e86897cde984..aafe2a4df496 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> @@ -903,7 +903,9 @@ lrc_pre_pin(struct intel_context *ce,
->>>        GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
->>>
->>>        *vaddr = i915_gem_object_pin_map(ce->state->obj,
->>> -                                      i915_coherent_map_type(ce->engine->i915) |
->>> +                                      i915_coherent_map_type(ce->engine->i915,
->>> +                                                             ce->state->obj,
->>> +                                                             false) |
->>>                                         I915_MAP_OVERRIDE);
->>>
->>>        return PTR_ERR_OR_ZERO(*vaddr);
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
->>> index aee0a77c77e0..3cf6c7e68108 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_ring.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
->>> @@ -53,9 +53,12 @@ int intel_ring_pin(struct intel_ring *ring, struct i915_gem_ww_ctx *ww)
->>>
->>>        if (i915_vma_is_map_and_fenceable(vma))
->>>                addr = (void __force *)i915_vma_pin_iomap(vma);
->>> -     else
->>> -             addr = i915_gem_object_pin_map(vma->obj,
->>> -                                            i915_coherent_map_type(vma->vm->i915));
->>> +     else {
->>> +             int type = i915_coherent_map_type(vma->vm->i915, vma->obj, false);
->>> +
->>> +             addr = i915_gem_object_pin_map(vma->obj, type);
->>> +     }
->>> +
->>>        if (IS_ERR(addr)) {
->>>                ret = PTR_ERR(addr);
->>>                goto err_ring;
->>> diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c b/drivers/gpu/drm/i915/gt/selftest_context.c
->>> index b9bdd1d23243..26685b927169 100644
->>> --- a/drivers/gpu/drm/i915/gt/selftest_context.c
->>> +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
->>> @@ -88,7 +88,8 @@ static int __live_context_size(struct intel_engine_cs *engine)
->>>                goto err;
->>>
->>>        vaddr = i915_gem_object_pin_map_unlocked(ce->state->obj,
->>> -                                              i915_coherent_map_type(engine->i915));
->>> +                                              i915_coherent_map_type(engine->i915,
->>> +                                                                     ce->state->obj, false));
->>>        if (IS_ERR(vaddr)) {
->>>                err = PTR_ERR(vaddr);
->>>                intel_context_unpin(ce);
->>> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
->>> index 746985971c3a..5b63d4df8c93 100644
->>> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
->>> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
->>> @@ -69,7 +69,7 @@ static int hang_init(struct hang *h, struct intel_gt *gt)
->>>        h->seqno = memset(vaddr, 0xff, PAGE_SIZE);
->>>
->>>        vaddr = i915_gem_object_pin_map_unlocked(h->obj,
->>> -                                              i915_coherent_map_type(gt->i915));
->>> +                                              i915_coherent_map_type(gt->i915, h->obj, false));
->>>        if (IS_ERR(vaddr)) {
->>>                err = PTR_ERR(vaddr);
->>>                goto err_unpin_hws;
->>> @@ -130,7 +130,7 @@ hang_create_request(struct hang *h, struct intel_engine_cs *engine)
->>>                return ERR_CAST(obj);
->>>        }
->>>
->>> -     vaddr = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(gt->i915));
->>> +     vaddr = i915_gem_object_pin_map_unlocked(obj, i915_coherent_map_type(gt->i915, obj, false));
->>>        if (IS_ERR(vaddr)) {
->>>                i915_gem_object_put(obj);
->>>                i915_vm_put(vm);
->>> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
->>> index 85e7df6a5123..d8f6623524e8 100644
->>> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
->>> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
->>> @@ -1221,7 +1221,9 @@ static int compare_isolation(struct intel_engine_cs *engine,
->>>        }
->>>
->>>        lrc = i915_gem_object_pin_map_unlocked(ce->state->obj,
->>> -                                   i915_coherent_map_type(engine->i915));
->>> +                                            i915_coherent_map_type(engine->i915,
->>> +                                                                   ce->state->obj,
->>> +                                                                   false));
->>>        if (IS_ERR(lrc)) {
->>>                err = PTR_ERR(lrc);
->>>                goto err_B1;
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->>> index 78305b2ec89d..adae04c47aab 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
->>> @@ -682,7 +682,9 @@ int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
->>>        if (IS_ERR(vma))
->>>                return PTR_ERR(vma);
->>>
->>> -     vaddr = i915_gem_object_pin_map_unlocked(vma->obj, I915_MAP_WB);
->>> +     vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
->>> +                                              i915_coherent_map_type(guc_to_gt(guc)->i915,
->>> +                                                                     vma->obj, true));
->>>        if (IS_ERR(vaddr)) {
->>>                i915_vma_unpin_and_release(&vma, 0);
->>>                return PTR_ERR(vaddr);
->>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
->>> index 2126dd81ac38..56d2144dc6a0 100644
->>> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
->>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
->>> @@ -82,7 +82,9 @@ static int intel_huc_rsa_data_create(struct intel_huc *huc)
->>>        if (IS_ERR(vma))
->>>                return PTR_ERR(vma);
->>>
->>> -     vaddr = i915_gem_object_pin_map_unlocked(vma->obj, I915_MAP_WB);
->>> +     vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
->>> +                                              i915_coherent_map_type(gt->i915,
->>> +                                                                     vma->obj, true));
->>>        if (IS_ERR(vaddr)) {
->>>                i915_vma_unpin_and_release(&vma, 0);
->>>                return PTR_ERR(vaddr);
->>> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
->>> index 69e43bf91a15..2abbc06712a4 100644
->>> --- a/drivers/gpu/drm/i915/i915_drv.h
->>> +++ b/drivers/gpu/drm/i915/i915_drv.h
->>> @@ -78,6 +78,7 @@
->>>    #include "gem/i915_gem_context_types.h"
->>>    #include "gem/i915_gem_shrinker.h"
->>>    #include "gem/i915_gem_stolen.h"
->>> +#include "gem/i915_gem_lmem.h"
->>>
->>>    #include "gt/intel_engine.h"
->>>    #include "gt/intel_gt_types.h"
->>> @@ -1921,9 +1922,15 @@ static inline int intel_hws_csb_write_index(struct drm_i915_private *i915)
->>>    }
->>>
->>>    static inline enum i915_map_type
->>> -i915_coherent_map_type(struct drm_i915_private *i915)
->>> +i915_coherent_map_type(struct drm_i915_private *i915,
->>> +                    struct drm_i915_gem_object *obj, bool always_coherent)
->>>    {
->>> -     return HAS_LLC(i915) ? I915_MAP_WB : I915_MAP_WC;
->>> +     if (i915_gem_object_is_lmem(obj))
->>> +             return I915_MAP_WC;
->>> +     if (HAS_LLC(i915) || always_coherent)
->>> +             return I915_MAP_WB;
->>> +     else
->>> +             return I915_MAP_WC;
->>
->> Seems this patch is doing two things.
->>
->> First it is adding lmem support to this helper by always returning WC
->> for lmem objects.
->>
->> Secondly it is introducing an idea of "always coherent" in a helper
->> called i915_coherent_map_type. Could someone explain what is coherent vs
->> always coherent?
->>
->> And also, why is always coherent happy with WB? Sounds counter intuitive
->> to me.
-> 
-> All this does is try to keep the existing behaviour intact, whilst
-> also ensuring that all lmem objects are mapped using only WC, no
-> matter what. The always_coherent=true thing is for the existing places
-> where we sometimes map the object using WB, without first considering
-> whether the device has the fast shared LLC vs snooping. Yes, it's
-> slightly ugly :)
+BUG: sleeping function called from invalid context at kernel/locking/rtmutex.c:969
+  #0: ffff89c4c00ca970 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x1cf/0x6d0
+  #1: ffffa433c1f53e60 ((work_completion)(&engine->retire_work)){+.+.}-{0:0}, at: process_one_work+0x1cf 0x6d
+  #2: ffff89c4ccb0a0a8 (kernel_context){+.+.}-{0:0}, at: engine_retire+0x62/0x110 [i915]
+  #3: ffff89c4cf682300 (wakeref.mutex#3){+.+.}-{0:0}, at: __intel_wakeref_put_last+0x20/0x60 [i915]
+  #4: ffff89c4ccb08398 (&b->irq_lock){+.+.}-{0:0}, at: intel_breadcrumbs_disarm_irq+0x20/0xd0 [i915]
+ irq event stamp: 2126
+ hardirqs last  enabled at (2125): [<ffffffffbb134739>] cancel_delayed_work+0xa9/0xc0
+ hardirqs last disabled at (2126): [<ffffffffc0507fe6>] __intel_breadcrumbs_park+0x76/0x80 [i915]
+ softirqs last  enabled at (0): [<ffffffffbb1099ce>] copy_process+0x63e/0x1630
+ softirqs last disabled at (0): [<0000000000000000>] 0x0
+ CPU: 3 PID: 281 Comm: kworker/3:3 Not tainted 5.10.27-rt34-yocto-preempt-rt #1
+ Hardware name: Intel(R) Client Systems NUC7i5DNKE/NUC7i5DNB, BIOS DNKBLi5v.86A.0064.2019.0523.1933 05/23 2019
+ Workqueue: events engine_retire [i915]
+ Call Trace:
+  show_stack+0x52/0x58
+  dump_stack+0x7d/0x9f
+  ___might_sleep.cold+0xe3/0xf4
+  rt_spin_lock+0x3f/0xc0
+  ? intel_breadcrumbs_disarm_irq+0x20/0xd0 [i915]
+  intel_breadcrumbs_disarm_irq+0x20/0xd0 [i915]
+  signal_irq_work+0x241/0x660 [i915]
+  ? __this_cpu_preempt_check+0x13/0x20
+  ? lockdep_hardirqs_off+0x106/0x120
+  __intel_breadcrumbs_park+0x3f/0x80 [i915]
+  __engine_park+0xbd/0xe0 [i915]
+  ____intel_wakeref_put_last+0x22/0x60 [i915]
+  __intel_wakeref_put_last+0x50/0x60 [i915]
+  intel_context_exit_engine+0x5f/0x70 [i915]
+  i915_request_retire+0x139/0x2d0 [i915]
+  engine_retire+0xb0/0x110 [i915]
+  process_one_work+0x26d/0x6d0
+  worker_thread+0x53/0x330
+  kthread+0x1b0/0x1d0
+  ? process_one_work+0x6d0/0x6d0
+  ? __kthread_parkme+0xc0/0xc0
+  ret_from_fork+0x22/0x30
 
-Not fully following - if we had to write kerneldoc for always_coherent 
-input argument - what it would say?
+Fixes: 9d5612ca165a ("drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission")
+Signed-off-by: Jun Miao <jun.miao@windriver.com>
+---
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Regards,
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index 34a645d..0589b1a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -103,10 +103,12 @@ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+ 
+ static void intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+ {
+-	spin_lock(&b->irq_lock);
++	unsigned long flags;
++
++	spin_lock_irqsave(&b->irq_lock, flags);
+ 	if (b->irq_armed)
+ 		__intel_breadcrumbs_disarm_irq(b);
+-	spin_unlock(&b->irq_lock);
++	spin_unlock_irqrestore(&b->irq_lock, flags);
+ }
+ 
+ static void add_signaling_context(struct intel_breadcrumbs *b,
+@@ -337,9 +339,7 @@ void __intel_breadcrumbs_park(struct intel_breadcrumbs *b)
+ 	/* Kick the work once more to drain the signalers, and disarm the irq */
+ 	irq_work_sync(&b->irq_work);
+ 	while (READ_ONCE(b->irq_armed) && !atomic_read(&b->active)) {
+-		local_irq_disable();
+ 		signal_irq_work(&b->irq_work);
+-		local_irq_enable();
+ 		cond_resched();
+ 	}
+ }
+-- 
+2.7.4
 
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
