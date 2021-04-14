@@ -1,40 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DAF635F014
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 10:50:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E9735F018
+	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 10:52:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F9456E4D4;
-	Wed, 14 Apr 2021 08:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39F7F6E4D4;
+	Wed, 14 Apr 2021 08:52:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B30A76E486;
- Wed, 14 Apr 2021 08:50:14 +0000 (UTC)
-IronPort-SDR: 4wTJPmpcClYmHWpWEJkuGcZbq5CCqMmfl+9oENI1cPrMJwVpUfYCAC964IPwQMVlDBChj7KV67
- bniP2ib/Kb9g==
-X-IronPort-AV: E=McAfee;i="6200,9189,9953"; a="174704390"
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; 
- d="asc'?scan'208";a="174704390"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2021 01:50:14 -0700
-IronPort-SDR: PhnCozf8UEFW4UKr5HkHWVFHrUZnwzlL5liJMxVYioxCDwDp1Ia1ghsUam5JRrwtgLBrVYSj2v
- Dzotrex2mzTg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,221,1613462400"; 
- d="asc'?scan'208";a="450722624"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by FMSMGA003.fm.intel.com with ESMTP; 14 Apr 2021 01:50:11 -0700
-Date: Wed, 14 Apr 2021 16:32:21 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-Message-ID: <20210414083221.GN1551@zhen-hp.sh.intel.com>
-References: <1618294728-78952-1-git-send-email-jiapeng.chong@linux.alibaba.com>
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com
+ [64.147.123.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A46136E486;
+ Wed, 14 Apr 2021 08:52:03 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailout.west.internal (Postfix) with ESMTP id ED95515F5;
+ Wed, 14 Apr 2021 04:52:00 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute6.internal (MEProxy); Wed, 14 Apr 2021 04:52:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm2; bh=tlSEw4hWRMxP+Ie9Rw2eTxfrnLy
+ +Oiu+FzNqODRDIgA=; b=FWrL6wb4oC7fm08k4x8FEUycwEbhuZJkgiFi22+f3PP
+ g+Y/OWOJkWlgIuY9lstumL825RT9XIM3dvRIPo3v0h/ZoFAYZwtFC5BNhLt2zZ7U
+ RerrkCOy4nc/Cy5bVGHOzVuKX8XxQT9vW54hw3wW0YNEODlKDuJhOEesel9wlS56
+ PMggCTSeHHMEjNGMosHYh+Dts2/w1VPz50r8vSsNOJ4E3ahPG8q2AJ64XH4527VU
+ 3TPibL4+NFoNZ7ImiJk1eBoDpOX+5lpbCFt5WcLf1rEH/bnwJZhM8xL9WhekK/wC
+ bJxy1UywaRy5eheFWMVILJiC3Ww7ptVniecQBDJEM7Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=tlSEw4
+ hWRMxP+Ie9Rw2eTxfrnLy+Oiu+FzNqODRDIgA=; b=nMMuEJwcHhkqLrVsw/YpLG
+ 18Urm7zEEshKI5LkWsICyHbN40aLStqdrRCiPlTKAUS+cwRPqTk9DWhBG1UtDujG
+ zpU6mxDwy9YbUC+hIQaSAIJD95vu5YwMGD+0uMWQC2XAtGRMTiSgm65YKkCXVNuG
+ qUmc8qNSpdg3s6RU0PP8rY3lsL+DdVx3OOcRrw3GWC/PXw2Q4WfG0g2W4AEmeXTg
+ fF1iaRNQiYB3yyRubD+hCvgqzXleJb0EzczRfn3dvEm4rdjiXhsAGzk+cFe6s0xT
+ OwQSQgeZDZf3z/SbLImSi+g5Ejdiq0X+25Dr6XfnL7iJmFg4YSe376wVfIFoC+qg
+ ==
+X-ME-Sender: <xms:L612YKFlsivfmd4aXRFZ15Ha2UAakL1ZQZSL3IZv5aBC-2ncAk1PPw>
+ <xme:L612YLUHpnj46xVINi4BJltEQe4Myc6UAFJjYnRAkCTxubj9ARYf0hPclc-jCDw7j
+ q6SSx_aNpsVdR07c58>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrudeluddgtdelucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+ gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+ frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:L612YEI-2pEbXPam2w4eSBtJBZr6GVts28cswaHpXiqoqEK3X10hPw>
+ <xmx:L612YEE6lxP41bZEsbet7gdrWZvHWXSyHEY66n57qKCMC75AcFgRJw>
+ <xmx:L612YAX46YMjTn9dXrLG7Sw7RNhjbnFF7pNi9Rreyk4cFz5TnanPLA>
+ <xmx:MK12YNgguAKC1Z8PJzpabhBCb1SlDdJl_S76pewJkncEjiDa2O151Q>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id AA094240057;
+ Wed, 14 Apr 2021 04:51:59 -0400 (EDT)
+Date: Wed, 14 Apr 2021 10:51:57 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20210414085157.nz7fmcc3lnip2igr@gilmour>
+References: <20210413094904.3736372-1-daniel.vetter@ffwll.ch>
+ <20210413094904.3736372-11-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-In-Reply-To: <1618294728-78952-1-git-send-email-jiapeng.chong@linux.alibaba.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: remove useless function
+In-Reply-To: <20210413094904.3736372-11-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 11/12] drm/vc4: Don't set allow_fb_modifiers
+ explicitly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,76 +79,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1249870031=="
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Eric Anholt <eric@anholt.net>
+Content-Type: multipart/mixed; boundary="===============1493111374=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============1249870031==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="ctZH5Gqgrl5HoVnD"
+--===============1493111374==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2474c5xhxry74zal"
 Content-Disposition: inline
 
 
---ctZH5Gqgrl5HoVnD
+--2474c5xhxry74zal
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On 2021.04.13 14:18:48 +0800, Jiapeng Chong wrote:
-> Fix the following clang warning:
+On Tue, Apr 13, 2021 at 11:49:02AM +0200, Daniel Vetter wrote:
+> Since
 >=20
-> drivers/gpu/drm/i915/gvt/gtt.c:590:20: warning: unused function
-> 'ppgtt_set_guest_root_entry' [-Wunused-function].
+> commit 890880ddfdbe256083170866e49c87618b706ac7
+> Author: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Date:   Fri Jan 4 09:56:10 2019 +0100
 >=20
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Signed-off-by: Jiapeng Chong <jiapeng.chong@linux.alibaba.com>
-> ---
->  drivers/gpu/drm/i915/gvt/gtt.c | 6 ------
->  1 file changed, 6 deletions(-)
+>     drm: Auto-set allow_fb_modifiers when given modifiers at plane init
 >=20
-> diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gt=
-t.c
-> index 897c007..a01ff44 100644
-> --- a/drivers/gpu/drm/i915/gvt/gtt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gtt.c
-> @@ -587,12 +587,6 @@ static void _ppgtt_set_root_entry(struct intel_vgpu_=
-mm *mm,
->  			   entry, index, false, 0, mm->vgpu);
->  }
-> =20
-> -static inline void ppgtt_set_guest_root_entry(struct intel_vgpu_mm *mm,
-> -		struct intel_gvt_gtt_entry *entry, unsigned long index)
-> -{
-> -	_ppgtt_set_root_entry(mm, entry, index, true);
-> -}
-> -
->  static inline void ppgtt_set_shadow_root_entry(struct intel_vgpu_mm *mm,
->  		struct intel_gvt_gtt_entry *entry, unsigned long index)
->  {
-> --=20
+> this is done automatically as part of plane init, if drivers set the
+> modifier list correctly. Which is the case here.
+>=20
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Eric Anholt <eric@anholt.net>
+> Cc: Maxime Ripard <mripard@kernel.org>
 
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+Acked-by: Maxime Ripard <maxime@cerno.tech>
 
-Thanks for covering me on this! Queue this up.
+Thanks!
+Maxime
 
---ctZH5Gqgrl5HoVnD
+--2474c5xhxry74zal
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYHaokAAKCRCxBBozTXgY
-J332AJ4salQYvYttCagxF7P2YWnt4+5OtACfSsWoYZp+DqERU/BbGvS+EbPHckI=
-=oqD8
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYHatLQAKCRDj7w1vZxhR
+xRQtAP9VIAi7ensrX/WDoO4TNpAY2rKi0ds9kJwSn9b65HtpPwEAo1OfR9XSgkK+
+BfiPI4Z5NWgciSXp3ttNctT3JVdJ5gk=
+=3N2a
 -----END PGP SIGNATURE-----
 
---ctZH5Gqgrl5HoVnD--
+--2474c5xhxry74zal--
 
---===============1249870031==
+--===============1493111374==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +144,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1249870031==--
+--===============1493111374==--
