@@ -1,54 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 575B335FD12
-	for <lists+intel-gfx@lfdr.de>; Wed, 14 Apr 2021 23:19:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15EF135FDB2
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 00:19:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F5C56E974;
-	Wed, 14 Apr 2021 21:18:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E03446E96F;
+	Wed, 14 Apr 2021 22:19:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
- [IPv6:2a00:1450:4864:20::12f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE556E974
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 21:18:58 +0000 (UTC)
-Received: by mail-lf1-x12f.google.com with SMTP id f17so28530132lfu.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 14:18:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LzhLPqNSk6yRIelwOKhkuSwSmAn9K1EbK4SP8DIv2YM=;
- b=IJKN8vuLvU/dUcz1LUaaiRD0ClnnnMl8w9F7IlNc3eCF88nWbhrdPK2MYu2XTbgwma
- C/f5KSGDca0Bq7rgNXu69SGDYzeJcMc+wLo33DALJaA5oG23OES7+zUPwIrV9S8mKp/S
- cJT4EWInG1nOpNedrGGVewV1j0TSJtC396kRb9vb0GKHWdUO4kpypls0aI+dXL7ebKNL
- cwoJyby3oIhYvtLnVQow6EinliP+nwiwQosoQGzcJhnAcwpXxHcxIB93duIui7Lh2OhE
- QSRDNdEt2EMge60JE7IWYm1onCcVrq8owOeOUjM+FpRqfyruDcpeq8cov4Quy/fjrOPM
- 0Fsw==
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com
+ [209.85.167.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E11476E96F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 22:19:28 +0000 (UTC)
+Received: by mail-oi1-f174.google.com with SMTP id i81so22233069oif.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 15:19:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=LzhLPqNSk6yRIelwOKhkuSwSmAn9K1EbK4SP8DIv2YM=;
- b=cm+AkTxiHkhCXRs+AZ9+fZIEveT1Vn4WtNvNtgdQICicvOExyx7YQV89po/2EkoauN
- nb4LnKhKdx/lJdMgyweRHL8uyD829ghc37O5DyTek7CBKrLVGNHTL/M2PyGybObfj1Cq
- sYjLWH9y/IOp4joXkR54YjLm2S2pXtc1Yl2BAAwyH0QEu7qnVuChfKrl2yPCVfL6+noh
- 2RSHMopC6OdlozAxeeDxVmUHtqIy8too69cv2VPMYKfaAm0wP6IxlI2GTNKMedgSPOow
- aLhUq2dw2gPaYyQW06n7CsSKygGHRabJFCksqRkB78tgd3jmcaEapTMcwtjKdGFSQCGz
- qd5w==
-X-Gm-Message-State: AOAM5308uSp7MgDljtmcY/G9yWY1ruiatYbbKJSyQH/Tsz99oxUajnns
- 2d0/BThWwkhAC67JrC6r+gT4V5U6c4Z11SzzAEihjQ==
-X-Google-Smtp-Source: ABdhPJwN1ImHU/060unJDkarn+Uz7YaUj/bX5poTfP+peWMVri3eTcYjaW/+9nFBNZOuerIQ6NpPk4hCiNGBQ83jVHA=
-X-Received: by 2002:a19:c43:: with SMTP id 64mr109924lfm.140.1618435136331;
- Wed, 14 Apr 2021 14:18:56 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=shhxLQuTrS6CU0G16xzkxHsbk3trBrwF7tum2COVf1Q=;
+ b=WgO0JKZ67c0UKdBxq8o3JQmtRRzI5ULZeXU6Q+OHFrE8shyFiHIvIjA+veKZWHh8UH
+ Pi2L9DG9AibMXEwAxvuURwDrqQSujpQz/M0yFZ7hACahN4PbkpHBcincZQpvYekBiU8I
+ 8jWixntqILvKWO59fHSfNr642T4Ai2ZlW3awl1p32OXPPyxR7Qii/xqT6sU/c9jgVqO5
+ jnaQhpmAzodQLasnWu3ROejJ21SowCPKGqqkA4A/S44y5Qz4hsywBwF6CJSvBigWSjkL
+ 2w8h41oIik+AQSCcdgITOMxBMmGgOvOMSm+0Y+8kNsCZcdkxRsA2SAV9buhuqgN3asex
+ lISQ==
+X-Gm-Message-State: AOAM533fgahLPY2Zz8uYBEsQzzGqbEho822W1ixQLE8iocN2qRWvi9fh
+ IzdSqg4oTeFNpBEXSSkNag==
+X-Google-Smtp-Source: ABdhPJx6GppsvAcMfhCc/TcWFOcFYEwW+XxDXo6r8z6IJFxygHtL17xNAfoh1RHqI7F2eLpl2oyvAw==
+X-Received: by 2002:aca:b787:: with SMTP id h129mr372861oif.58.1618438768152; 
+ Wed, 14 Apr 2021 15:19:28 -0700 (PDT)
+Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id i4sm195366oik.21.2021.04.14.15.19.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 14 Apr 2021 15:19:27 -0700 (PDT)
+Received: (nullmailer pid 69085 invoked by uid 1000);
+ Wed, 14 Apr 2021 22:19:26 -0000
+Date: Wed, 14 Apr 2021 17:19:26 -0500
+From: Rob Herring <robh@kernel.org>
+To: Hsin-Yi Wang <hsinyi@chromium.org>
+Message-ID: <20210414221926.GA69036@robh.at.kernel.org>
+References: <20210414172916.2689361-1-hsinyi@chromium.org>
+ <20210414172916.2689361-3-hsinyi@chromium.org>
 MIME-Version: 1.0
-References: <20210414151049.95828-1-hdegoede@redhat.com>
-In-Reply-To: <20210414151049.95828-1-hdegoede@redhat.com>
-From: Rajat Jain <rajatja@google.com>
-Date: Wed, 14 Apr 2021 14:18:20 -0700
-Message-ID: <CACK8Z6GoiTJskLkX0rMmrn3edG=ZMy=LqTb2an79oH4S7NfGbw@mail.gmail.com>
-To: Hans de Goede <hdegoede@redhat.com>, Jesse Barnes <jsbarnes@google.com>
-Subject: Re: [Intel-gfx] [PATCH resend 0/9] drm: Add privacy-screen class
- and connector properties
+Content-Disposition: inline
+In-Reply-To: <20210414172916.2689361-3-hsinyi@chromium.org>
+Subject: Re: [Intel-gfx] [PATCH v19 2/6] dt-binding: i2c: mt65xx: add
+ vbus-supply property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,153 +61,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- Marco Trevisan <marco.trevisan@canonical.com>,
- Mark Gross <mgross@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Sebastien Bacher <seb128@ubuntu.com>, David Airlie <airlied@linux.ie>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Mark Pearson <markpearson@lenovo.com>,
- Platform Driver <platform-driver-x86@vger.kernel.org>,
- Maxime Ripard <mripard@kernel.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Mario Limonciello <mario.limonciello@outlook.com>,
- Andy Shevchenko <andy@infradead.org>
+Cc: devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx@lists.freedesktop.org, Mark Brown <broonie@kernel.org>,
+ linux-kernel@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+ Rob Herring <robh+dt@kernel.org>, Qii Wang <qii.wang@mediatek.com>,
+ linux-i2c@vger.kernel.org, Bibby Hsieh <bibby.hsieh@mediatek.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Marek Szyprowski <m.szyprowski@samsung.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+Jesse Barnes
+On Thu, 15 Apr 2021 01:29:12 +0800, Hsin-Yi Wang wrote:
+> Add vbus-supply property for mt65xx. The regulator can be passed into
+> core and turned off during suspend/sleep to reduce power consumption.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Hello,
-
-On Wed, Apr 14, 2021 at 8:11 AM Hans de Goede <hdegoede@redhat.com> wrote:
->
-> Hi All,
->
-> Here is the privacy-screen related code which I last posted in August
-> of last year. To the best of my knowledge there is consensus about /
-> everyone is in agreement with the new userspace API (2 connector properties)
-> this patch-set add (patch 1 of the series).
->
-> The blocker the last time was that there were no userspace users of
-> the new properties and as a rule we don't add new drm userspace API
-> without users.
->
-> There now is GNOME userspace code using the new properties:
-> https://hackmd.io/@3v1n0/rkyIy3BOw
->
-> The new API works as designed for this userspace user and the branches
-> mentioned at the above link add the following features to GNOME:
->
-> 1. Showing an OSD notification when the privacy-screen is toggled on/off
->    through hotkeys handled by the embedded-controller
-> 2. Allowing control of the privacy-screen from the GNOME control-panel,
->    including the on/off slider shown there updating to match the hw-setting
->    when the setting is changed with the control-panel open.
-> 3. Restoring the last user-setting at login
->
-> This series consists of a number of different parts:
->
-> 1. A new version of Rajat's privacy-screen connector properties patch,
-> this adds new userspace API in the form of new properties
-
-Thanks a lot Hans!
-
->
-> 2. Since on most devices the privacy screen is actually controlled by
-> some vendor specific ACPI/WMI interface which has a driver under
-> drivers/platform/x86, we need some "glue" code to make this functionality
-> available to KMS drivers. Patches 2-4 add a new privacy-screen class for
-> this, which allows non KMS drivers (and possibly KMS drivers too) to
-> register a privacy-screen device and also adds an interface for KMS drivers
-> to get access to the privacy-screen associated with a specific connector.
-> This is modelled similar to how we deal with e.g. PWMs and GPIOs in the
-> kernel, including separate includes for consumers and providers(drivers).
->
-> 3. Some drm_connector helper functions to keep the actual changes needed
-> for this in individual KMS drivers as small as possible (patch 5).
->
-> 4. Make the thinkpad_acpi code register a privacy-screen device on
-> ThinkPads with a privacy-screen (patches 6-8)
->
-> 5. Make the i915 driver export the privacy-screen functionality through
-> the connector properties on the eDP connector.
->
-> I believe that it would be best to merge the entire series, including
-> the thinkpad_acpi changes through drm-misc in one go. As the pdx86
-> subsys maintainer I hereby give my ack for merging the thinkpad_acpi
-> changes through drm-misc.
-
-Huge +1 to this. This feature has been waiting for acceptance for
-almost 1.5 years now, and we (Chromeos) have been carrying it out of
-the tree since then. We have real products today that use this
-feature. If a version of it can please be accepted and applied, we
-look forward to cherry-pick / backport it to our kernels (and adapt chrome
-code to the new API).
-
-Thanks,
-Rajat
-
-
-
->
-> There is one small caveat with this series, which it is good to be
-> aware of. The i915 driver will now return -EPROBE_DEFER on Thinkpads
-> with an eprivacy screen, until the thinkpad_acpi driver is loaded.
-> This means that initrd generation tools will need to be updated to
-> include thinkpad_acpi when the i915 driver is added to the initrd.
-> Without this the loading of the i915 driver will be delayed to after
-> the switch to real rootfs.
->
-> Regards,
->
-> Hans
->
->
-> Hans de Goede (8):
->   drm: Add privacy-screen class
->   drm/privacy-screen: Add X86 specific arch init code
->   drm/privacy-screen: Add notifier support
->   drm/connector: Add a drm_connector privacy-screen helper functions
->   platform/x86: thinkpad_acpi: Add hotkey_notify_extended_hotkey()
->     helper
->   platform/x86: thinkpad_acpi: Get privacy-screen / lcdshadow ACPI
->     handles only once
->   platform/x86: thinkpad_acpi: Register a privacy-screen device
->   drm/i915: Add privacy-screen support
->
-> Rajat Jain (1):
->   drm/connector: Add support for privacy-screen properties (v4)
->
->  Documentation/gpu/drm-kms-helpers.rst        |  15 +
->  Documentation/gpu/drm-kms.rst                |   2 +
->  MAINTAINERS                                  |   8 +
->  drivers/gpu/drm/Kconfig                      |   5 +
->  drivers/gpu/drm/Makefile                     |   4 +
->  drivers/gpu/drm/drm_atomic_uapi.c            |   4 +
->  drivers/gpu/drm/drm_connector.c              | 214 ++++++++
->  drivers/gpu/drm/drm_privacy_screen.c         | 493 +++++++++++++++++++
->  drivers/gpu/drm/drm_privacy_screen_x86.c     |  82 +++
->  drivers/gpu/drm/i915/display/intel_display.c |   5 +
->  drivers/gpu/drm/i915/display/intel_dp.c      |  10 +
->  drivers/gpu/drm/i915/i915_pci.c              |  12 +
->  drivers/platform/x86/Kconfig                 |   1 +
->  drivers/platform/x86/thinkpad_acpi.c         | 131 +++--
->  include/drm/drm_connector.h                  |  56 +++
->  include/drm/drm_privacy_screen_consumer.h    |  32 ++
->  include/drm/drm_privacy_screen_driver.h      |  84 ++++
->  include/drm/drm_privacy_screen_machine.h     |  46 ++
->  18 files changed, 1162 insertions(+), 42 deletions(-)
->  create mode 100644 drivers/gpu/drm/drm_privacy_screen.c
->  create mode 100644 drivers/gpu/drm/drm_privacy_screen_x86.c
->  create mode 100644 include/drm/drm_privacy_screen_consumer.h
->  create mode 100644 include/drm/drm_privacy_screen_driver.h
->  create mode 100644 include/drm/drm_privacy_screen_machine.h
->
-> --
-> 2.31.1
->
+Acked-by: Rob Herring <robh@kernel.org>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
