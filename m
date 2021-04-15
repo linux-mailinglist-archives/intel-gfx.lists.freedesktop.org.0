@@ -1,41 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF7B13614A4
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Apr 2021 00:12:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E66D36158B
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Apr 2021 00:35:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE5646EB0A;
-	Thu, 15 Apr 2021 22:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAC226EABA;
+	Thu, 15 Apr 2021 22:35:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5BAC6EB0A
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Apr 2021 22:12:38 +0000 (UTC)
-IronPort-SDR: L2XJqlO3C3rfykhLd3CAnREWSKrUUKB0vmyx/LKuCnRsX13CWeViXYjQIy/FKCyV4x2ouApe+u
- 0yHCf0fsFLyw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9955"; a="195064731"
-X-IronPort-AV: E=Sophos;i="5.82,225,1613462400"; d="scan'208";a="195064731"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2021 15:12:38 -0700
-IronPort-SDR: 4/VMmYbKJ0QuW4GM+ld1RczYWZPH/5LrHRKR0Cequefg0/PP7QwMu9n+Ib1Ylb8Wkr5Enbscf1
- NRnmlZ8xzoGA==
-X-IronPort-AV: E=Sophos;i="5.82,225,1613462400"; d="scan'208";a="615778210"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2021 15:12:36 -0700
-Date: Fri, 16 Apr 2021 01:12:33 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20210415221233.GB3262868@ideak-desk.fi.intel.com>
-References: <20210414155208.3161335-1-imre.deak@intel.com>
- <20210414155208.3161335-11-imre.deak@intel.com>
+X-Greylist: delayed 576 seconds by postgrey-1.36 at gabe;
+ Thu, 15 Apr 2021 22:35:10 UTC
+Received: from s2.our.net (s2.our.net [69.168.53.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9787B6EABA;
+ Thu, 15 Apr 2021 22:35:10 +0000 (UTC)
+Received: from [192.168.1.108] (c-24-22-33-250.hsd1.or.comcast.net
+ [24.22.33.250]) by s2.our.net (Postfix) with ESMTPSA id A91975E61C;
+ Thu, 15 Apr 2021 15:25:32 -0700 (PDT)
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20210415155958.391624-1-matthew.auld@intel.com>
+ <20210415155958.391624-3-matthew.auld@intel.com>
+From: Ian Romanick <idr@freedesktop.org>
+Message-ID: <5de63e24-51f0-71eb-b992-484da998e65f@freedesktop.org>
+Date: Thu, 15 Apr 2021 15:25:32 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210414155208.3161335-11-imre.deak@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 10/11] drm/i915/adl_p: Require a minimum of
- 8 tiles stride for DPT FBs
+In-Reply-To: <20210415155958.391624-3-matthew.auld@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [Mesa-dev] [PATCH v3 3/4] drm/i915/uapi: convert
+ i915_query and friend to kernel doc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,54 +42,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: mesa-dev@lists.freedesktop.org, Kenneth Graunke <kenneth@whitecape.org>,
+ dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 14, 2021 at 06:52:07PM +0300, Imre Deak wrote:
-> The specification only requires DPT FB strides to be POT aligned, but
-> there seems to be also a minimum of 8 stride tile requirement. Scanning
-> out FBs with < 8 stride tiles will result in pipe faults (even though
-> the stride is POT aligned).
-
-This is now confirmed in bspec (index 53393).
-
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> Acked-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+On 4/15/21 8:59 AM, Matthew Auld wrote:
+> Add a note about the two-step process.
+> 
+> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: mesa-dev@lists.freedesktop.org
 > ---
->  drivers/gpu/drm/i915/display/intel_fb.c | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> =
+>  include/uapi/drm/i915_drm.h | 57 ++++++++++++++++++++++++++++++-------
+>  1 file changed, 46 insertions(+), 11 deletions(-)
+> 
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index d9c954a5a456..ef36f1a0adde 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -2210,14 +2210,23 @@ struct drm_i915_perf_oa_config {
+>  	__u64 flex_regs_ptr;
+>  };
+>  
+> +/**
+> + * struct drm_i915_query_item - An individual query for the kernel to process.
+> + *
+> + * The behaviour is determined by the @query_id. Note that exactly what
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index bd862f77762a2..2ee10ece27c57 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -609,7 +609,11 @@ plane_view_dst_stride_tiles(const struct intel_frame=
-buffer *fb, int color_plane,
->  			    unsigned int pitch_tiles)
->  {
->  	if (intel_fb_needs_pot_stride_remap(fb))
-> -		return roundup_pow_of_two(pitch_tiles);
-> +		/*
-> +		 * ADL_P, the only platform needing a POT stride has a minimum
-> +		 * of 8 stride tiles.
-> +		 */
-> +		return roundup_pow_of_two(max(pitch_tiles, 8u));
->  	else
->  		return pitch_tiles;
->  }
-> -- =
+Since we just had a big discussion about this on mesa-dev w.r.t. Mesa
+code and documentation... does the kernel have a policy about which
+flavor (pun intended) of English should be used?
 
-> 2.27.0
-> =
+> + * @data_ptr is also depends on the specific @query_id.
+> + */
+>  struct drm_i915_query_item {
+> +	/** @query_id: The id for this query */
+>  	__u64 query_id;
+>  #define DRM_I915_QUERY_TOPOLOGY_INFO    1
+>  #define DRM_I915_QUERY_ENGINE_INFO	2
+>  #define DRM_I915_QUERY_PERF_CONFIG      3
+>  /* Must be kept compact -- no holes and well documented */
+>  
+> -	/*
+> +	/**
+> +	 * @length:
+> +	 *
+>  	 * When set to zero by userspace, this is filled with the size of the
+>  	 * data to be written at the data_ptr pointer. The kernel sets this
+>  	 * value to a negative value to signal an error on a particular query
+> @@ -2225,21 +2234,26 @@ struct drm_i915_query_item {
+>  	 */
+>  	__s32 length;
+>  
+> -	/*
+> +	/**
+> +	 * @flags:
+> +	 *
+>  	 * When query_id == DRM_I915_QUERY_TOPOLOGY_INFO, must be 0.
+>  	 *
+>  	 * When query_id == DRM_I915_QUERY_PERF_CONFIG, must be one of the
+> -	 * following :
+> -	 *         - DRM_I915_QUERY_PERF_CONFIG_LIST
+> -	 *         - DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
+> -	 *         - DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
+> +	 * following:
+> +	 *
+> +	 *	- DRM_I915_QUERY_PERF_CONFIG_LIST
+> +	 *      - DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
+> +	 *      - DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
+>  	 */
+>  	__u32 flags;
+>  #define DRM_I915_QUERY_PERF_CONFIG_LIST          1
+>  #define DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID 2
+>  #define DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_ID   3
+>  
+> -	/*
+> +	/**
+> +	 * @data_ptr:
+> +	 *
+>  	 * Data will be written at the location pointed by data_ptr when the
+>  	 * value of length matches the length of the data to be written by the
+>  	 * kernel.
+> @@ -2247,16 +2261,37 @@ struct drm_i915_query_item {
+>  	__u64 data_ptr;
+>  };
+>  
+> +/**
+> + * struct drm_i915_query - Supply an array of drm_i915_query_item for the kernel
+> + * to fill out.
+> + *
+> + * Note that this is generally a two step process for each drm_i915_query_item
+> + * in the array:
+> + *
+> + *	1.) Call the DRM_IOCTL_I915_QUERY, giving it our array of
+> + *	drm_i915_query_item, with drm_i915_query_item.size set to zero. The
+> + *	kernel will then fill in the size, in bytes, which tells userspace how
+> + *	memory it needs to allocate for the blob(say for an array of
+> + *	properties).
+> + *
+> + *	2.) Next we call DRM_IOCTL_I915_QUERY again, this time with the
+> + *	drm_i915_query_item.data_ptr equal to our newly allocated blob. Note
+> + *	that the i915_query_item.size should still be the same as what the
+> + *	kernel previously set. At this point the kernel can fill in the blob.
+> + *
+> + */
+>  struct drm_i915_query {
+> +	/** @num_items: The number of elements in the @items_ptr array */
+>  	__u32 num_items;
+>  
+> -	/*
+> -	 * Unused for now. Must be cleared to zero.
+> +	/**
+> +	 * @flags: Unused for now. Must be cleared to zero.
+>  	 */
+>  	__u32 flags;
+>  
+> -	/*
+> -	 * This points to an array of num_items drm_i915_query_item structures.
+> +	/**
+> +	 * @items_ptr: This points to an array of num_items drm_i915_query_item
+> +	 * structures.
+>  	 */
+>  	__u64 items_ptr;
+>  };
+> 
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
