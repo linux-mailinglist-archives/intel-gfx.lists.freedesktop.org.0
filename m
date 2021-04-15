@@ -1,41 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01FFD3608F4
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 14:11:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBB0A3609E4
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 14:59:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 188376EA4F;
-	Thu, 15 Apr 2021 12:11:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF0A16E507;
+	Thu, 15 Apr 2021 12:59:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88B296E500;
- Thu, 15 Apr 2021 12:11:13 +0000 (UTC)
-IronPort-SDR: KYYygcB8BJ57jOO2yA4MiXLtcFo7ODU6L6FlMvS03RGbQulgg1hN/CLo+x96heDIPDxMHlCanq
- 2kQG1APXWCpA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9954"; a="280153584"
-X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; 
- d="asc'?scan'208";a="280153584"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E76256E504;
+ Thu, 15 Apr 2021 12:59:33 +0000 (UTC)
+IronPort-SDR: cjefKX4AOK9ElzSGqvu/zj577Zqhrfd3HIZ38wtqC3mN4ZZbrk6w4nRv2N9V9y+PTeI8rtI5l2
+ 4+6QvKnvVcDw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9955"; a="280159586"
+X-IronPort-AV: E=Sophos;i="5.82,225,1613462400"; d="scan'208";a="280159586"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2021 05:11:13 -0700
-IronPort-SDR: Ag3JTxydd+BoZMqrZHS2g+vR8Eq1VQToYblJfFy88zEgalskyeHIApqYnrb0n8YNkiQoJLiYqN
- k+ts2gM3ioIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; 
- d="asc'?scan'208";a="461591472"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by orsmga001.jf.intel.com with ESMTP; 15 Apr 2021 05:11:09 -0700
-Date: Thu, 15 Apr 2021 19:53:17 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Message-ID: <20210415115317.GS1551@zhen-hp.sh.intel.com>
-References: <YHaFQtk/DIVYK1u5@mwanda>
+ 15 Apr 2021 05:59:15 -0700
+IronPort-SDR: YCqPSg8wcaXFJ3rJLwzRlZkuIHat5TcOyq9TJUbqU7jPqfoEecEMInuDRtT+igrylGRK5OYN23
+ hHvwm1a4lB2w==
+X-IronPort-AV: E=Sophos;i="5.82,225,1613462400"; d="scan'208";a="418732658"
+Received: from rkapur-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.212.63.86])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2021 05:59:13 -0700
+Date: Thu, 15 Apr 2021 08:59:11 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YHg4nz/ndzDRmPjd@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <YHaFQtk/DIVYK1u5@mwanda>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: Fix error code in
- intel_gvt_init_device()
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,119 +45,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: fred gao <fred.gao@intel.com>, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0336194961=="
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Dave and Daniel,
 
---===============0336194961==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="UsbkURXZxe2ekgES"
-Content-Disposition: inline
+Here goes drm-intel-fixes-2021-04-15:
 
+Display panel & power related fixes:
 
---UsbkURXZxe2ekgES
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+- Backlight fix (Lyude)
+- Display watermark fix (Ville)
+- VLV panel power fix (Hans)
 
-On 2021.04.14 09:01:38 +0300, Dan Carpenter wrote:
-> The intel_gvt_init_vgpu_type_groups() function is only called from
-> intel_gvt_init_device().  If it fails then the intel_gvt_init_device()
-> prints the error code and propagates it back again.  That's a bug
-> because false is zero/success.  The fix is to modify it to return zero
-> or negative error codes and make everything consistent.
->=20
-> Fixes: c5d71cb31723 ("drm/i915/gvt: Move vGPU type related code into gvt =
-file")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-> ---
+Thanks,
+Rodrigo.
 
-Reviewed-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+The following changes since commit d434405aaab7d0ebc516b68a8fc4100922d7f5ef:
 
-Thanks, Dan! Applied this.
+  Linux 5.12-rc7 (2021-04-11 15:16:13 -0700)
 
->  drivers/gpu/drm/i915/gvt/gvt.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gvt/gvt.c b/drivers/gpu/drm/i915/gvt/gv=
-t.c
-> index 2ecb8534930b..1deb253ffe80 100644
-> --- a/drivers/gpu/drm/i915/gvt/gvt.c
-> +++ b/drivers/gpu/drm/i915/gvt/gvt.c
-> @@ -126,7 +126,7 @@ static bool intel_get_gvt_attrs(struct attribute_grou=
-p ***intel_vgpu_type_groups
->  	return true;
->  }
-> =20
-> -static bool intel_gvt_init_vgpu_type_groups(struct intel_gvt *gvt)
-> +static int intel_gvt_init_vgpu_type_groups(struct intel_gvt *gvt)
->  {
->  	int i, j;
->  	struct intel_vgpu_type *type;
-> @@ -144,7 +144,7 @@ static bool intel_gvt_init_vgpu_type_groups(struct in=
-tel_gvt *gvt)
->  		gvt_vgpu_type_groups[i] =3D group;
->  	}
-> =20
-> -	return true;
-> +	return 0;
-> =20
->  unwind:
->  	for (j =3D 0; j < i; j++) {
-> @@ -152,7 +152,7 @@ static bool intel_gvt_init_vgpu_type_groups(struct in=
-tel_gvt *gvt)
->  		kfree(group);
->  	}
-> =20
-> -	return false;
-> +	return -ENOMEM;
->  }
-> =20
->  static void intel_gvt_cleanup_vgpu_type_groups(struct intel_gvt *gvt)
-> @@ -373,7 +373,7 @@ int intel_gvt_init_device(struct drm_i915_private *i9=
-15)
->  		goto out_clean_thread;
-> =20
->  	ret =3D intel_gvt_init_vgpu_type_groups(gvt);
-> -	if (ret =3D=3D false) {
-> +	if (ret) {
->  		gvt_err("failed to init vgpu type groups: %d\n", ret);
->  		goto out_clean_types;
->  	}
-> --=20
-> 2.30.2
->=20
-> _______________________________________________
-> intel-gvt-dev mailing list
-> intel-gvt-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
+are available in the Git repository at:
 
---UsbkURXZxe2ekgES
-Content-Type: application/pgp-signature; name="signature.asc"
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-04-=
+15
 
------BEGIN PGP SIGNATURE-----
+for you to fetch changes up to aee6f25e9c911323aa89a200e1bb160c1613ed3d:
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYHgpKAAKCRCxBBozTXgY
-JwjkAKCSaNdnh8Enpt19xF9KII6ijHEjGwCfSf8O9mouYgsENRZKXWdtLHyv7J0=
-=REJl
------END PGP SIGNATURE-----
+  drm/i915/display/vlv_dsi: Do not skip panel_pwr_cycle_delay when disablin=
+g the panel (2021-04-12 08:00:33 -0400)
 
---UsbkURXZxe2ekgES--
+----------------------------------------------------------------
+Display panel & power related fixes:
 
---===============0336194961==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+- Backlight fix (Lyude)
+- Display watermark fix (Ville)
+- VLV panel power fix (Hans)
 
+----------------------------------------------------------------
+Hans de Goede (1):
+      drm/i915/display/vlv_dsi: Do not skip panel_pwr_cycle_delay when disa=
+bling the panel
+
+Lyude Paul (1):
+      drm/i915/dpcd_bl: Don't try vesa interface unless specified by VBT
+
+Ville Syrj=E4l=E4 (1):
+      drm/i915: Don't zero out the Y plane's watermarks
+
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 1 -
+ drivers/gpu/drm/i915/display/vlv_dsi.c                | 4 ++--
+ drivers/gpu/drm/i915/intel_pm.c                       | 4 ++--
+ 3 files changed, 4 insertions(+), 5 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0336194961==--
