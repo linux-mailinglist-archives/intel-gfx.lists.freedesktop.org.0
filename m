@@ -1,32 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 735193610A0
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 18:59:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9993610DC
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 19:17:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D97D6EA9B;
-	Thu, 15 Apr 2021 16:59:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA496EA9A;
+	Thu, 15 Apr 2021 17:17:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 635266EA9A;
- Thu, 15 Apr 2021 16:59:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 52C62A7DFC;
- Thu, 15 Apr 2021 16:59:32 +0000 (UTC)
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
+ [IPv6:2607:f8b0:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35E7B6EA9D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Apr 2021 17:17:01 +0000 (UTC)
+Received: by mail-oi1-x22d.google.com with SMTP id l131so19961530oih.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Apr 2021 10:17:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=YYLOaQnglx4dad9cfruRutaGW58rxzQ9HsSlgbdoo3k=;
+ b=BUTKRFOOkKQtgjkD5PaYYFKqAKF6wFR9QtchU3yDMg5FZq8D3NZqujssISknscNqol
+ gBXb0BypeckKhMK51PAMZpA7lj/OYZCkefQ91Mh5i+M+RxBamdiH/o/BRcpKnhcWOsys
+ aJ3n/NLZTa1CRJ1X2WmZBwOW2tzwVNwtw8gUQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=YYLOaQnglx4dad9cfruRutaGW58rxzQ9HsSlgbdoo3k=;
+ b=jGkpo0NVCD8PYKeOnLFr6lEzKOcDc5ITEY6qX1YXTve4bYM03IGyEO95dCCsRrd4xJ
+ hpo7qSDPt4Li4XtzApa4QEanO+kYK2voJajHTAc4hYRvrA1UCISXHn6Fdin8a4HT4B4X
+ naw8ckBUbJdigeTQIchRMwJDY+sMLsV+4i51YZcH1+XHsO7VWziVMFYfbvwbS/AQQfah
+ iyp6K5WEAPu7VlDNFm+fQLClmMUoh6U/3pkHrIRUrFuAcJ9J6UGkoYeWmLw2GnKoH+5v
+ /cyPztcYcmGvutxfDxKrC6KVlmO4vkxZhWLhSVZKmDRYHoCoV8xdJ8/zBRzEIUxdFqNB
+ 2fIA==
+X-Gm-Message-State: AOAM532LYdYODfAuq0xQ2el7NSFaeiKR6VQbp5ruRrnwjInQNHjSJjt0
+ aEJwhe+zDL90oFihm71j4NDCRrFKBveZhbUsQ2S63g==
+X-Google-Smtp-Source: ABdhPJzTNcEFtqmC41aphMVY0y1lSscPmd+xg19yCWfIdfbrGX8zfHISaQJzvj6ili/T2t7GKWY6nOaWi2w5yb3YaLw=
+X-Received: by 2002:aca:4188:: with SMTP id o130mr3287281oia.101.1618507020440; 
+ Thu, 15 Apr 2021 10:17:00 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Thu, 15 Apr 2021 16:59:32 -0000
-Message-ID: <161850597230.1081.8330122861623566046@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210415155958.391624-1-matthew.auld@intel.com>
-In-Reply-To: <20210415155958.391624-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv3=2C1/4=5D_drm/i915/uapi=3A_hide_kernel_d?=
- =?utf-8?q?oc_warnings?=
+References: <20210328225709.18541-1-daniele.ceraolospurio@intel.com>
+ <20210328225709.18541-13-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20210328225709.18541-13-daniele.ceraolospurio@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Thu, 15 Apr 2021 19:16:49 +0200
+Message-ID: <CAKMK7uG45gvnKRaNyCKSmuJ0=+hftPe6rvrCHMtxX8AU5H+ckg@mail.gmail.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Jason Ekstrand <jason@jlekstrand.net>, 
+ Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com>, 
+ dri-devel <dri-devel@lists.freedesktop.org>
+Subject: Re: [Intel-gfx] [PATCH v3 12/16] drm/i915/uapi: introduce
+ drm_i915_gem_create_ext
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,177 +62,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1341710750=="
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1341710750==
-Content-Type: multipart/alternative;
- boundary="===============1242110769834954343=="
+On Mon, Mar 29, 2021 at 12:58 AM Daniele Ceraolo Spurio
+<daniele.ceraolospurio@intel.com> wrote:
+>
+> From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+>
+> Same old gem_create but with now with extensions support. This is needed
+> to support various upcoming usecases. For now we use the extensions
+> mechanism to support PAVP.
+>
+> Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Telukuntla Sreedhar <sreedhar.telukuntla@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_create.c | 41 ++++++++++++++++++-
 
---===============1242110769834954343==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+gem changes need to be cc'ed to dri-devel. Also adding Jason on this,
+since he just reviewed the gem_create_ext rfc from Matt.
+-Daniel
 
-== Series Details ==
+>  drivers/gpu/drm/i915/i915_drv.c            |  2 +-
+>  include/uapi/drm/i915_drm.h                | 47 ++++++++++++++++++++++
+>  3 files changed, 88 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> index 45d60e3d98e3..3ad3413c459f 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
+> @@ -7,6 +7,7 @@
+>  #include "gem/i915_gem_region.h"
+>
+>  #include "i915_drv.h"
+> +#include "i915_user_extensions.h"
+>
+>  static int
+>  i915_gem_create(struct drm_file *file,
+> @@ -91,6 +92,35 @@ i915_gem_dumb_create(struct drm_file *file,
+>                                &args->size, &args->handle);
+>  }
+>
+> +struct create_ext {
+> +       struct drm_i915_private *i915;
+> +};
+> +
+> +static int __create_setparam(struct drm_i915_gem_object_param *args,
+> +                            struct create_ext *ext_data)
+> +{
+> +       if (!(args->param & I915_OBJECT_PARAM)) {
+> +               DRM_DEBUG("Missing I915_OBJECT_PARAM namespace\n");
+> +               return -EINVAL;
+> +       }
+> +
+> +       return -EINVAL;
+> +}
+> +
+> +static int create_setparam(struct i915_user_extension __user *base, void *data)
+> +{
+> +       struct drm_i915_gem_create_ext_setparam ext;
+> +
+> +       if (copy_from_user(&ext, base, sizeof(ext)))
+> +               return -EFAULT;
+> +
+> +       return __create_setparam(&ext.param, data);
+> +}
+> +
+> +static const i915_user_extension_fn create_extensions[] = {
+> +       [I915_GEM_CREATE_EXT_SETPARAM] = create_setparam,
+> +};
+> +
+>  /**
+>   * Creates a new mm object and returns a handle to it.
+>   * @dev: drm device pointer
+> @@ -102,10 +132,19 @@ i915_gem_create_ioctl(struct drm_device *dev, void *data,
+>                       struct drm_file *file)
+>  {
+>         struct drm_i915_private *i915 = to_i915(dev);
+> -       struct drm_i915_gem_create *args = data;
+> +       struct create_ext ext_data = { .i915 = i915 };
+> +       struct drm_i915_gem_create_ext *args = data;
+> +       int ret;
+>
+>         i915_gem_flush_free_objects(i915);
+>
+> +       ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
+> +                                  create_extensions,
+> +                                  ARRAY_SIZE(create_extensions),
+> +                                  &ext_data);
+> +       if (ret)
+> +               return ret;
+> +
+>         return i915_gem_create(file,
+>                                intel_memory_region_by_type(i915,
+>                                                            INTEL_MEMORY_SYSTEM),
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index 02d5b2b6ee39..f13e1ca2087b 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -1707,7 +1707,7 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+>         DRM_IOCTL_DEF_DRV(I915_GEM_THROTTLE, i915_gem_throttle_ioctl, DRM_RENDER_ALLOW),
+>         DRM_IOCTL_DEF_DRV(I915_GEM_ENTERVT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+>         DRM_IOCTL_DEF_DRV(I915_GEM_LEAVEVT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+> -       DRM_IOCTL_DEF_DRV(I915_GEM_CREATE, i915_gem_create_ioctl, DRM_RENDER_ALLOW),
+> +       DRM_IOCTL_DEF_DRV(I915_GEM_CREATE_EXT, i915_gem_create_ioctl, DRM_RENDER_ALLOW),
+>         DRM_IOCTL_DEF_DRV(I915_GEM_PREAD, i915_gem_pread_ioctl, DRM_RENDER_ALLOW),
+>         DRM_IOCTL_DEF_DRV(I915_GEM_PWRITE, i915_gem_pwrite_ioctl, DRM_RENDER_ALLOW),
+>         DRM_IOCTL_DEF_DRV(I915_GEM_MMAP, i915_gem_mmap_ioctl, DRM_RENDER_ALLOW),
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 7a2088eccc9f..d5e502269a55 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -392,6 +392,7 @@ typedef struct _drm_i915_sarea {
+>  #define DRM_IOCTL_I915_GEM_ENTERVT     DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_ENTERVT)
+>  #define DRM_IOCTL_I915_GEM_LEAVEVT     DRM_IO(DRM_COMMAND_BASE + DRM_I915_GEM_LEAVEVT)
+>  #define DRM_IOCTL_I915_GEM_CREATE      DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create)
+> +#define DRM_IOCTL_I915_GEM_CREATE_EXT   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE, struct drm_i915_gem_create_ext)
+>  #define DRM_IOCTL_I915_GEM_PREAD       DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_PREAD, struct drm_i915_gem_pread)
+>  #define DRM_IOCTL_I915_GEM_PWRITE      DRM_IOW (DRM_COMMAND_BASE + DRM_I915_GEM_PWRITE, struct drm_i915_gem_pwrite)
+>  #define DRM_IOCTL_I915_GEM_MMAP                DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_MMAP, struct drm_i915_gem_mmap)
+> @@ -729,6 +730,27 @@ struct drm_i915_gem_create {
+>         __u32 pad;
+>  };
+>
+> +struct drm_i915_gem_create_ext {
+> +       /**
+> +        * Requested size for the object.
+> +        *
+> +        * The (page-aligned) allocated size for the object will be returned.
+> +        */
+> +       __u64 size;
+> +       /**
+> +        * Returned handle for the object.
+> +        *
+> +        * Object handles are nonzero.
+> +        */
+> +       __u32 handle;
+> +       __u32 pad;
+> +#define I915_GEM_CREATE_EXT_SETPARAM (1u << 0)
+> +#define I915_GEM_CREATE_EXT_FLAGS_UNKNOWN \
+> +       (-(I915_GEM_CREATE_EXT_SETPARAM << 1))
+> +       __u64 extensions;
+> +
+> +};
+> +
+>  struct drm_i915_gem_pread {
+>         /** Handle for the object being read. */
+>         __u32 handle;
+> @@ -1720,6 +1742,31 @@ struct drm_i915_gem_context_param {
+>         __u64 value;
+>  };
+>
+> +struct drm_i915_gem_object_param {
+> +       /* Object handle (0 for I915_GEM_CREATE_EXT_SETPARAM) */
+> +       __u32 handle;
+> +
+> +       /* Data pointer size */
+> +       __u32 size;
+> +
+> +/*
+> + * I915_OBJECT_PARAM:
+> + *
+> + * Select object namespace for the param.
+> + */
+> +#define I915_OBJECT_PARAM  (1ull << 32)
+> +
+> +       __u64 param;
+> +
+> +       /* Data value or pointer */
+> +       __u64 data;
+> +};
+> +
+> +struct drm_i915_gem_create_ext_setparam {
+> +       struct i915_user_extension base;
+> +       struct drm_i915_gem_object_param param;
+> +};
+> +
+>  /**
+>   * Context SSEU programming
+>   *
+> --
+> 2.29.2
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-Series: series starting with [v3,1/4] drm/i915/uapi: hide kernel doc warnings
-URL   : https://patchwork.freedesktop.org/series/89121/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9976 -> Patchwork_19942
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19942/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19942 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        NOTRUN -> [INCOMPLETE][1] ([i915#2782])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19942/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@reload:
-    - fi-tgl-y:           [DMESG-WARN][2] ([i915#1982] / [k.org#205379]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9976/fi-tgl-y/igt@i915_module_load@reload.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19942/fi-tgl-y/igt@i915_module_load@reload.html
-
-  
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
 
 
-Participating hosts (45 -> 42)
-------------------------------
-
-  Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9976 -> Patchwork_19942
-
-  CI-20190529: 20190529
-  CI_DRM_9976: 73739c865de5c4c504adff6d9873ca5dea2dc704 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6067: 14317b92a672d9a20cd04fc3b0c80e2fb12d51d5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19942: 3f2501d0f7a0595fd713c55e204ff7820fab6de7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3f2501d0f7a0 drm/doc/rfc: i915 DG1 uAPI
-02474e90a224 drm/i915/uapi: convert i915_query and friend to kernel doc
-e5bfc110caaa drm/i915/uapi: convert i915_user_extension to kernel doc
-b67e5ba57e8a drm/i915/uapi: hide kernel doc warnings
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19942/index.html
-
---===============1242110769834954343==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v3,1/4] drm/i915/uapi: hide kernel doc warnings</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89121/">https://patchwork.freedesktop.org/series/89121/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19942/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19942/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9976 -&gt; Patchwork_19942</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19942/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19942 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19942/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9976/fi-tgl-y/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19942/fi-tgl-y/igt@i915_module_load@reload.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (45 -&gt; 42)</h2>
-<p>Missing    (3): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9976 -&gt; Patchwork_19942</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9976: 73739c865de5c4c504adff6d9873ca5dea2dc704 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6067: 14317b92a672d9a20cd04fc3b0c80e2fb12d51d5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19942: 3f2501d0f7a0595fd713c55e204ff7820fab6de7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>3f2501d0f7a0 drm/doc/rfc: i915 DG1 uAPI<br />
-02474e90a224 drm/i915/uapi: convert i915_query and friend to kernel doc<br />
-e5bfc110caaa drm/i915/uapi: convert i915_user_extension to kernel doc<br />
-b67e5ba57e8a drm/i915/uapi: hide kernel doc warnings</p>
-
-</body>
-</html>
-
---===============1242110769834954343==--
-
---===============1341710750==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1341710750==--
