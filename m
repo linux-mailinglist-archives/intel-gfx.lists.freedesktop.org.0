@@ -1,57 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36081360C07
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 16:41:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0C04360F10
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 17:34:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2683D6EA66;
-	Thu, 15 Apr 2021 14:41:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C58F6E524;
+	Thu, 15 Apr 2021 15:34:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com
- [IPv6:2607:f8b0:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37B216EA61
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Apr 2021 14:40:59 +0000 (UTC)
-Received: by mail-ot1-x32e.google.com with SMTP id
- 101-20020a9d0d6e0000b02902816815ff62so16869944oti.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 15 Apr 2021 07:40:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=VEt6mvEKTdOGChls37Odagh+2dfQz3wjfEMWebvklwk=;
- b=V5rzrU+4DyGy1V8jJ+4yYBFUROZXLdElMIQH4eMuNIfwQFj+royxguePKn6fRMHTai
- ak+gK7NfdAIFzyuR5NGghLGZo59lM0/eD49ImW/LsF07YJUuAIpvPccsyzkKN6zfSDDx
- 6OVYQS0PFdSwZCUXd7uSlTkw692vM4AYahL38=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=VEt6mvEKTdOGChls37Odagh+2dfQz3wjfEMWebvklwk=;
- b=DNBZVeV2DNbH3bBEwI91zz/05eCcWFVrOirXIgPE60B6ifgQFIMX80/XdB4jeemGF6
- oV/I5D7BNRcHsnv3+2zixBXOiTK5u/z8dm3wBjrii96kVdpmnKeZRT++LXJ15NK9rBqm
- zFu0oQim0RR574nwp1DQ1m6/sMDBEOI49s6cjG67vVqZqcGvqQMy10qgzchFtK35PVwR
- mlz1IVVBxBcg+Jq3pU6YvwtOcMpSOga505SjB5cMlBlLpgmmb/XJS9xmefdQNeEAz5KT
- Q4+UXhRmD3Ej4J4wcYdk9vVK+C6mqRckMWGGhiknC4zTcFyVDEq3FyJXx5Hm7/Cb6oHy
- 4AOg==
-X-Gm-Message-State: AOAM530c48nikzzHu3o2DGoQtRrN6x3aBIKHa307u7nAPG8Zb+szsP81
- 8RgIkruNZ6o6STp7GAetThTL2zOPs+A4eCz+jfVqMw==
-X-Google-Smtp-Source: ABdhPJylUE5SaS/MBPEb5brV3yFI6tRxxxzHmtD3b8quasw7TFxPuSwI0vq9jz8837THzTg1bTfubCDxJgtI7xVLOXo=
-X-Received: by 2002:a05:6830:1398:: with SMTP id
- d24mr3100156otq.281.1618497658229; 
- Thu, 15 Apr 2021 07:40:58 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E16CF6E524
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Apr 2021 15:34:34 +0000 (UTC)
+IronPort-SDR: EUz5pb3bCDhIteGHXHpQl1dHy5Su9ElHcS4F6ESDxtX/RbhCcIReofcfzGZcK84jrWpAxORGvV
+ QxWh48Cezb7g==
+X-IronPort-AV: E=McAfee;i="6200,9189,9955"; a="192748070"
+X-IronPort-AV: E=Sophos;i="5.82,225,1613462400"; d="scan'208";a="192748070"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2021 08:34:33 -0700
+IronPort-SDR: 5xgnaZqSXkxu9f+u1UCB1GRC4okAsNZhP0cttUtZjwFxPsOBB/fPbF2kjgfSAIVsgzvqRnxuUE
+ YG91BE0y5YcQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,225,1613462400"; d="scan'208";a="451166163"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by FMSMGA003.fm.intel.com with SMTP; 15 Apr 2021 08:34:31 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 15 Apr 2021 18:34:30 +0300
+Date: Thu, 15 Apr 2021 18:34:30 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YHhdBnR0oOoSdxvz@intel.com>
+References: <20210414022309.30898-1-ville.syrjala@linux.intel.com>
+ <20210414022309.30898-3-ville.syrjala@linux.intel.com>
+ <87r1jcewd8.fsf@intel.com>
 MIME-Version: 1.0
-References: <62e5b25ce7e22633c09fb0242a69d268b3b45595.camel@linux.intel.com>
- <d5ad41b9-0248-285b-8873-b8010e7c8c27@amd.com>
- <YHhBqNKukDlZ2Cld@phenom.ffwll.local>
- <d3960d8e-c9c6-11b4-f7e1-d2340b57ec87@shipmail.org>
-In-Reply-To: <d3960d8e-c9c6-11b4-f7e1-d2340b57ec87@shipmail.org>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Thu, 15 Apr 2021 16:40:47 +0200
-Message-ID: <CAKMK7uHe4oiS6wyfgF_N2vEcYiQ7EPeHvjjhRyMObmYnDC+T3A@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m_=28Intel=29?= <thomas_os@shipmail.org>
-Subject: Re: [Intel-gfx] [Linaro-mm-sig] [RFC] Cross-driver ww transaction
- lock lists
+Content-Disposition: inline
+In-Reply-To: <87r1jcewd8.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/8] drm/i915: Rewrite the FBC tiling check
+ a bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,109 +52,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBBcHIgMTUsIDIwMjEgYXQgNDowMiBQTSBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwp
-Cjx0aG9tYXNfb3NAc2hpcG1haWwub3JnPiB3cm90ZToKPgo+Cj4gT24gNC8xNS8yMSAzOjM3IFBN
-LCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+ID4gT24gVHVlLCBBcHIgMTMsIDIwMjEgYXQgMDk6NTc6
-MDZBTSArMDIwMCwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPiA+Pgo+ID4+IEFtIDEzLjA0LjIx
-IHVtIDA5OjUwIHNjaHJpZWIgVGhvbWFzIEhlbGxzdHLDtm06Cj4gPj4+IEhpIQo+ID4+Pgo+ID4+
-PiBEdXJpbmcgdGhlIGRtYV9yZXN2IGNvbnZlcnNpb24gb2YgdGhlIGk5MTUgZHJpdmVyLCB3ZSd2
-ZSBiZWVuIHVzaW5nIHd3Cj4gPj4+IHRyYW5zYWN0aW9uIGxvY2sgbGlzdHMgdG8ga2VlcCB0cmFj
-ayBvZiB3d19tdXRleGVzIHRoYXQgYXJlIGxvY2tlZAo+ID4+PiBkdXJpbmcgdGhlIHRyYW5zYWN0
-aW9uIHNvIHRoYXQgdGhleSBjYW4gYmUgYmF0Y2ggdW5sb2NrZWQgYXQgc3VpdGFibGUKPiA+Pj4g
-bG9jYXRpb25zLiBJbmNsdWRpbmcgYWxzbyB0aGUgTE1FTS9WUkFNIGV2aWN0aW9uIHdlJ3ZlIGVu
-ZGVkIHVwIHdpdGgKPiA+Pj4gdHdvIHN0YXRpYyBsaXN0cyBwZXIgdHJhbnNhY3Rpb24gY29udGV4
-dDsgb25lIHR5cGljYWxseSB1bmxvY2tlZCBhdCB0aGUKPiA+Pj4gZW5kIG9mIHRyYW5zYWN0aW9u
-IGFuZCBvbmUgaW5pdGlhbGl6ZWQgYmVmb3JlIGFuZCB1bmxvY2tlZCBhZnRlciBlYWNoCj4gPj4+
-IGJ1ZmZlciBvYmplY3QgdmFsaWRhdGUuIFRoaXMgZW5hYmxlcyB1cyB0byBkbyBzbGVlcGluZyBs
-b2NraW5nIGF0Cj4gPj4+IGV2aWN0aW9uIGFuZCBrZWVwIG9iamVjdHMgbG9ja2VkIG9uIHRoZSBl
-dmljdGlvbiBsaXN0IHVudGlsIHdlCj4gPj4+IGV2ZW50dWFsbHkgc3VjY2VlZCBhbGxvY2F0aW5n
-IG1lbW9yeSAobW9kdWxvIG1pbm9yIGZsYXdzIG9mIGNvdXJzZSkuCj4gPj4+Cj4gPj4+IEl0IHdv
-dWxkIGJlIGJlbmVmaWNpYWwgd2l0aCB0aGUgaTkxNSBUVE0gY29udmVyc2lvbiB0byBiZSBhYmxl
-IHRvCj4gPj4+IGludHJvZHVjZSBhIHNpbWlsYXIgZnVuY3Rpb25hbGl0eSB0aGF0IHdvdWxkIHdv
-cmsgaW4gdHRtIGJ1dCBhbHNvCj4gPj4+IGNyb3NzLWRyaXZlciBpbiwgZm9yIGV4YW1wbGUgbW92
-ZV9ub3RpZnkuIEl0IHdvdWxkIGFsc28gYmUgYmVuZWZpY2lhbAo+ID4+PiB0byBiZSBhYmxlIHRv
-IHB1dCBhbnkgZG1hX3Jlc3Ygd3cgbXV0ZXggb24gdGhlIGxpc3RzLCBhbmQgbm90IHJlcXVpcmUK
-PiA+Pj4gaXQgdG8gYmUgZW1iZWRkZWQgaW4gYSBwYXJ0aWN1bGFyIG9iamVjdCB0eXBlLgo+ID4+
-Pgo+ID4+PiBJIHN0YXJ0ZWQgc2NldGNoaW5nIG9uIHNvbWUgdXRpbGl0aWVzIGZvciB0aGlzLiBG
-b3IgVFRNLCBmb3IgZXhhbXBsZSwKPiA+Pj4gdGhlIGlkZWEgd291bGQgYmUgdG8gcGFzcyBhIGxp
-c3QgaGVhZCBmb3IgdGhlIHd3IHRyYW5zYWN0aW9uIGxvY2sgbGlzdAo+ID4+PiBpbiB0aGUgdHRt
-X29wZXJhdGlvbl9jdHguIEEgZnVuY3Rpb24gdGFraW5nIGEgd3dfbXV0ZXggY291bGQgdGhlbgo+
-ID4+PiBlaXRoZXIgYXR0YWNoIGEgZ3JhYmJlZCBsb2NrIHRvIHRoZSBsaXN0IGZvciBiYXRjaCB1
-bmxvY2tpbmcsIG9yIGJlCj4gPj4+IHJlc3BvbnNpYmxlIGZvciB1bmxvY2tpbmcgd2hlbiB0aGUg
-bG9jaydzIHNjb3BlIGlzIGV4aXRlZC4gSXQncyBhbHNvCj4gPj4+IHBvc3NpYmxlIHRvIGNyZWF0
-ZSBzdWJsaXN0cyBpZiBzbyBkZXNpcmVkLiBJIGJlbGlldmUgdGhlIGJlbG93IHdvdWxkIGJlCj4g
-Pj4+IHN1ZmZpY2llbnQgdG8gY292ZXIgdGhlIGk5MTUgZnVuY3Rpb25hbGl0eS4KPiA+Pj4KPiA+
-Pj4gQW55IGNvbW1lbnRzIGFuZCBzdWdnZXN0aW9ucyBhcHByZWNpYXRlZCEKPiA+PiBhaCB5ZXMg
-RGFuaWVsIGFuZCBJIGhhdmVuIGJlZW4gZGlzY3Vzc2luZyBzb21ldGhpbmcgbGlrZSB0aGlzIGZv
-ciB5ZWFycy4KPiA+Pgo+ID4+IEkgYWxzbyBjYW1lIHVwIHdpdGggcm91Z2ggaW1wbGVtZW50YXRp
-b24sIGJ1dCB3ZSBhbHdheXMgcmFuIGludG8gbGlmZXRpbWUKPiA+PiBpc3N1ZXMuCj4gPj4KPiA+
-PiBJbiBvdGhlciB3b3JkcyB0aGUgd3dfbXV0ZXhlcyB3aGljaCBhcmUgb24gdGhlIGxpc3Qgd291
-bGQgbmVlZCB0byBiZSBrZXB0Cj4gPj4gYWxpdmUgdW50aWwgdW5sb2NrZWQuCj4gPj4KPiA+PiBC
-ZWNhdXNlIG9mIHRoaXMgd2Uga2luZCBvZiBiYWNrZWQgdXAgYW5kIHNhaWQgd2Ugd291bGQgbmVl
-ZCB0aGlzIG9uIHRoZSBHRU0KPiA+PiBsZXZlbCBpbnN0ZWFkIG9mIHdvcmtpbmcgd2l0aCBkbWFf
-cmVzdiBvYmplY3RzLgo+ID4gWWVhaCB0aGVyZSdzIGEgZmV3IGZ1bm55IGNvbmNlcm5zIGhlcmUg
-dGhhdCBtYWtlIHRoaXMgYXdrd2FyZDoKPiA+IC0gRm9yIHNpbXBsaWNpdHkgZG9pbmcgdGhlc2Ug
-aGVscGVycyBhdCB0aGUgZ2VtIGxldmVsIHNob3VsZCBtYWtlIHRoaW5ncyBhCj4gPiAgICBiaXQg
-ZWFzaWVyLCBiZWNhdXNlIHRoZW4gd2UgaGF2ZSBhIHN0YW5kYXJkIHdheSB0byBkcm9wIHRoZSBy
-ZWZlcmVuY2UuCj4gPiAgICBJdCBkb2VzIG1lYW4gdGhhdCB0aGUgb25seSB0aGluZyB5b3UgY2Fu
-IGxvY2sgbGlrZSB0aGlzIGFyZSBnZW0gb2JqZWN0cywKPiA+ICAgIGJ1dCBJIHRoaW5rIHRoYXQn
-cyBmaW5lLiBBdCBsZWFzdCBmb3IgYSBmaXJzdCBjdXQuCj4gPgo+ID4gLSBUaGlzIGlzIGEgYml0
-IGF3a3dhcmQgZm9yIHZtd2dmeCwgYnV0IGEpIFphY2sgaGFzIG1lbnRpb25lZCBoZSdzIGxvb2tp
-bmcKPiA+ICAgIGludG8gYWRvcHRpbmcgZ2VtIGJvIGludGVybmFsbHkgdG8gYmUgYWJsZSB0byBk
-cm9wIGEgcGlsZSBvZiBjb2RlIGFuZAo+ID4gICAgc3RvcCBtYWtpbmcgdm13Z2Z4IHRoZSBvbmx5
-IHNwZWNpYWwtY2FzZSB3ZSBoYXZlIGIpIGRyaXZlcnMgd2hpY2ggZG9uJ3QKPiA+ICAgIG5lZWQg
-dGhpcyB3b24ndCBuZWVkIHRoaXMsIHNvIHNob3VsZCBiZSBmaW5lLgo+ID4KPiA+ICAgIFRoZSBv
-dGhlciBhd2t3YXJkIHRoaW5nIEkgZ3Vlc3MgaXMgdGhhdCB0dG0gd291bGQgbmVlZCB0byB1c2Ug
-dGhlCj4gPiAgICBlbWJlZGRlZCBrcmVmIGZyb20gdGhlIGdlbSBibywgYnV0IHRoYXQgc2hvdWxk
-IGJlIHRyYW5zcGFyZW50IEkgdGhpbmsuCj4gPgo+ID4gLSBOZXh0IHVwIGlzIGRtYS1idWY6IEZv
-ciBpOTE1IHdlJ2QgbGlrZSB0byBkbyB0aGUgc2FtZSBldmljdGlvbiB0cmljawo+ID4gICAgYWxz
-byB0aHJvdWdoIHAycCBkbWEtYnVmIGNhbGxiYWNrcywgc28gdGhhdCB0aGlzIHdvcmtzIHRoZSBz
-YW1lIGFzCj4gPiAgICBldmljdGlvbi9yZXNlcnZhdGlvbiB3aXRoaW4gYSBncHUuIEJ1dCBmb3Ig
-dGhlc2UgaW50ZXJuYWwgYm8geW91IG1pZ2h0Cj4gPiAgICBub3QgaGF2ZSBhIGRtYS1idWYsIHNv
-IHdlIGNhbid0IGp1c3QgbGlmdCB0aGUgdHJpY2sgdG8gdGhlIGRtYS1idWYKPiA+ICAgIGxldmVs
-LiBCdXQgSSB0aGluayBpZiB3ZSBwYXNzIGUuZy4gYSBzdHJ1Y3QgbGlzdF9oZWFkIGFuZCBhIGNh
-bGxiYWNrIHRvCj4gPiAgICB1bnJlZmVyZW5jZS91bmxvY2sgYWxsIHRoZSBidWZmZXJzIGluIHRo
-ZXJlIHRvIHRoZSBleHBvcnRlciwgcGx1cwo+ID4gICAgc2ltaWxhciBmb3IgdGhlIHNsb3dwYXRo
-IGxvY2ssIHRoZW4gdGhhdCBzaG91bGQgYmUgZG9hYmxlIHdpdGhvdXQKPiA+ICAgIGdsb3Jpb3Vz
-IGxheWVyaW5nIGludmVyc2lvbnMgYmV0d2VlbiBkbWEtYnVmIGFuZCBnZW0uCj4gPgo+ID4gICAg
-SSB0aGluayBmb3IgZG1hLWJ1ZiBpdCBzaG91bGQgZXZlbiBiZSBvayBpZiB0aGlzIHJlcXVpcmVz
-IHRoYXQgd2UKPiA+ICAgIGFsbG9jYXRlIGFuIGVudGlyZSBzdHJ1Y3R1cmUgd2l0aCBrbWFsbG9j
-IG9yIHNvbWV0aGluZywgYWxsb2NhdGluZwo+ID4gICAgbWVtb3J5IHdoaWxlIGhvbGRpbmcgZG1h
-X3Jlc3YgaXMgb2suCj4KPiBZZXMsIHRoZSB0aGluZyBoZXJlIHdpdGggdGhlIHN1Z2dlc3RlZCBo
-ZWxwZXJzIGlzIHRoYXQgeW91IHdvdWxkIGp1c3QKPiBlbWJlZCBhIHRyYW5zX2xvY2tpdGVtIHN0
-cnVjdCBpbiB0aGUgZ2VtIG9iamVjdCAoYW5kIGRlZmluZXMgdGhlIGdlbQo+IG9iamVjdCBvcHMp
-LiBPdGhlcndpc2UgYW5kIGZvciBwYXNzaW5nIHRvIGRtYS1idWYgdGhpcyBpcyBwcmV0dHkgbXVj
-aAo+IGV4YWN0bHkgd2hhdCB5b3UgYXJlIHN1Z2dlc3RpbmcsIGJ1dCB0aGUgaHVnZSBiZW5lZml0
-IG9mIGVuY2Fwc3VsYXRpbmcKPiB0aGUgbmVlZGVkIG1lbWJlcnMgbGlrZSB0aGlzIGlzIHRoYXQg
-d2hlbiB3ZSBuZWVkIHRvIGNoYW5nZSBzb21ldGhpbmcgd2UKPiBjaGFuZ2UgaXQgaW4ganVzdCBv
-bmUgcGxhY2UuCj4KPiBGb3IgYW55dGhpbmcgdGhhdCBkb2Vzbid0IGhhdmUgYSBnZW0gb2JqZWN0
-IChkbWEtYnVmLCB2bXdnZnggb3IKPiB3aGF0ZXZlcikgeW91IGhhdmUgdGhlIGNob2ljZSBvZiBl
-aXRoZXIgYWxsb2NhdGluZyBhIHN0cnVjdAo+IHRyYW5zX2xvY2tpdGVtIG9yIGVtYmVkIGl0IHdo
-ZXJldmVyIHlvdSBwcmVmZXIuIEluIHBhcnRpY3VsYXIsIHRoaXMgaXMKPiBiZW5lZmljaWFsIHdo
-ZXJlIHlvdSBoYXZlIGEgc2luZ2xlIGRtYS1yZXN2IGNsYXNzIHd3LW11dGV4IHNpdHRpbmcKPiBz
-b21ld2hlcmUgaW4gdGhlIHdheSBhbmQgeW91IGRvbid0IHdhbnQgdG8gbmVlZGxlc3NseSBoYXZl
-IGEgZ2VtIG9iamVjdAo+IHRoYXQgZW1iZWRzIGl0LgoKVGhlIHRoaW5nIGlzLCBldmVyeW9uZSB3
-aG8gYWN0dWFsbHkgdXNlcyBkbWFfcmVzdl9sb2NrIGhhcyBhCmdlbV9idWZmZXJfb2JqZWN0IHVu
-ZGVybmVhdGguIFNvIGl0IGZlZWxzIGEgYml0IGxpa2UgZmxleGliaWxpdHkgZm9yCm5vIHJlYWwg
-bmVlZCwgYW5kIEkgdGhpbmsgaXQgd291bGQgbWFrZSBpdCBzbGlnaHRseSBtb3JlIGF3a2FyZCBm
-b3IKZ2VtIGRyaXZlcnMgdG8gbmVhdGx5IGludGVncmF0ZSBpbnRvIHRoZWlyIGNzIHBhdGguIFRo
-ZSBsb2NraXRlbQpzdHJ1Y3Qgd29ya3MsIGJ1dCBpdCBpcyBhIGJpdCBjdW1iZXJzb21lLgoKQWxz
-byBpZiB3ZSBhZGQgc29tZSB3cmFwcGVycyB0byBlLmcuIGFkZCBhIGdlbV9ibyB0byB0aGUgY3R4
-LCB0aGVuIGlmCndlIGRlY2lkZSB0byBzbGlwIHRoZSBsb2NraXRlbSBpbiB0aGVyZSwgd2Ugc3Rp
-bGwgb25seSBuZWVkIHRvIHRvdWNoCnRoZSBoZWxwZXIgY29kZSwgYW5kIG5vdCBhbGwgZHJpdmVy
-cy4KLURhbmllbAotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29y
-cG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Apr 14, 2021 at 06:09:23PM +0300, Jani Nikula wrote:
+> On Wed, 14 Apr 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >
+> > Write the tiling check in a nicer form.
+> >
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_fbc.c | 6 ++----
+> >  1 file changed, 2 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm=
+/i915/display/intel_fbc.c
+> > index 04d9c7d22b04..178243a6d3a2 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > @@ -681,11 +681,9 @@ static bool tiling_is_valid(struct drm_i915_privat=
+e *dev_priv,
+> >  {
+> >  	switch (modifier) {
+> >  	case DRM_FORMAT_MOD_LINEAR:
+> > -		if (DISPLAY_VER(dev_priv) >=3D 9)
+> > -			return true;
+> > -		return false;
+> > -	case I915_FORMAT_MOD_X_TILED:
+> >  	case I915_FORMAT_MOD_Y_TILED:
+> > +		return DISPLAY_VER(dev_priv) >=3D 9;
+> =
+
+> So this adds the version check on I915_FORMAT_MOD_Y_TILED which didn't
+> have it before?
+
+Yeah, but Y tile scanout is gen9+ anyway. Should have pointed
+that out in the commit msg I suppose.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
