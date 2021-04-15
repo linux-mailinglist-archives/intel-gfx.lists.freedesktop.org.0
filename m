@@ -2,53 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15EF135FDB2
-	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 00:19:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B80BB35FEFE
+	for <lists+intel-gfx@lfdr.de>; Thu, 15 Apr 2021 02:45:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E03446E96F;
-	Wed, 14 Apr 2021 22:19:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96C0E6E982;
+	Thu, 15 Apr 2021 00:45:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com
- [209.85.167.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E11476E96F
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 22:19:28 +0000 (UTC)
-Received: by mail-oi1-f174.google.com with SMTP id i81so22233069oif.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 14 Apr 2021 15:19:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=shhxLQuTrS6CU0G16xzkxHsbk3trBrwF7tum2COVf1Q=;
- b=WgO0JKZ67c0UKdBxq8o3JQmtRRzI5ULZeXU6Q+OHFrE8shyFiHIvIjA+veKZWHh8UH
- Pi2L9DG9AibMXEwAxvuURwDrqQSujpQz/M0yFZ7hACahN4PbkpHBcincZQpvYekBiU8I
- 8jWixntqILvKWO59fHSfNr642T4Ai2ZlW3awl1p32OXPPyxR7Qii/xqT6sU/c9jgVqO5
- jnaQhpmAzodQLasnWu3ROejJ21SowCPKGqqkA4A/S44y5Qz4hsywBwF6CJSvBigWSjkL
- 2w8h41oIik+AQSCcdgITOMxBMmGgOvOMSm+0Y+8kNsCZcdkxRsA2SAV9buhuqgN3asex
- lISQ==
-X-Gm-Message-State: AOAM533fgahLPY2Zz8uYBEsQzzGqbEho822W1ixQLE8iocN2qRWvi9fh
- IzdSqg4oTeFNpBEXSSkNag==
-X-Google-Smtp-Source: ABdhPJx6GppsvAcMfhCc/TcWFOcFYEwW+XxDXo6r8z6IJFxygHtL17xNAfoh1RHqI7F2eLpl2oyvAw==
-X-Received: by 2002:aca:b787:: with SMTP id h129mr372861oif.58.1618438768152; 
- Wed, 14 Apr 2021 15:19:28 -0700 (PDT)
-Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id i4sm195366oik.21.2021.04.14.15.19.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 Apr 2021 15:19:27 -0700 (PDT)
-Received: (nullmailer pid 69085 invoked by uid 1000);
- Wed, 14 Apr 2021 22:19:26 -0000
-Date: Wed, 14 Apr 2021 17:19:26 -0500
-From: Rob Herring <robh@kernel.org>
-To: Hsin-Yi Wang <hsinyi@chromium.org>
-Message-ID: <20210414221926.GA69036@robh.at.kernel.org>
-References: <20210414172916.2689361-1-hsinyi@chromium.org>
- <20210414172916.2689361-3-hsinyi@chromium.org>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B39C6E982
+ for <intel-gfx@lists.freedesktop.org>; Thu, 15 Apr 2021 00:45:43 +0000 (UTC)
+IronPort-SDR: NXAe5cgjSUUQr8N6m+B5MPStd/0UKXproZj5iqxT/hFph3EJGPqgh4Ojg1GHGzscxUC9iftlTo
+ G3q3j/iY5ETQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9954"; a="191579049"
+X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; d="scan'208";a="191579049"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2021 17:45:42 -0700
+IronPort-SDR: paAmg2Dpetfgo+XLdNdN1vx68cF3bx9eu65SnWD8Op3qcouyr/Jl1EzwjJFpjXZyimOWRLxqQa
+ Z9/NETDTz+ZQ==
+X-IronPort-AV: E=Sophos;i="5.82,223,1613462400"; d="scan'208";a="389573960"
+Received: from hchegond-ivm.ra.intel.com (HELO intel.com) ([10.23.184.25])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2021 17:45:41 -0700
+Date: Wed, 14 Apr 2021 17:45:36 -0700
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: =?utf-8?B?Sm9zw6k=?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20210415004536.GA75059@intel.com>
+References: <20210409231738.238682-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210414172916.2689361-3-hsinyi@chromium.org>
-Subject: Re: [Intel-gfx] [PATCH v19 2/6] dt-binding: i2c: mt65xx: add
- vbus-supply property
+In-Reply-To: <20210409231738.238682-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display/psr: Fix cppcheck warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,33 +46,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx@lists.freedesktop.org, Mark Brown <broonie@kernel.org>,
- linux-kernel@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>,
- Rob Herring <robh+dt@kernel.org>, Qii Wang <qii.wang@mediatek.com>,
- linux-i2c@vger.kernel.org, Bibby Hsieh <bibby.hsieh@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 15 Apr 2021 01:29:12 +0800, Hsin-Yi Wang wrote:
-> Add vbus-supply property for mt65xx. The regulator can be passed into
-> core and turned off during suspend/sleep to reduce power consumption.
-> 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-
-Acked-by: Rob Herring <robh@kernel.org>
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCBBcHIgMDksIDIwMjEgYXQgMDQ6MTc6MzhQTSAtMDcwMCwgSm9zw6kgUm9iZXJ0byBk
+ZSBTb3V6YSB3cm90ZToKPiBGaXggcmVkdW5kYW50IGNvbmRpdGlvbiwgY2F1Z2h0IGluIGNwcGNo
+ZWNrIGJ5IGtlcm5lbCB0ZXN0IHJvYm90Lgo+IAo+IFJlcG9ydGVkLWJ5OiBrZXJuZWwgdGVzdCBy
+b2JvdCA8bGtwQGludGVsLmNvbT4KPiBDYzogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5t
+dW5AaW50ZWwuY29tPgo+IEZpeGVzOiBiNjRkNmM1MTM4MGIgKCJkcm0vaTkxNS9kaXNwbGF5OiBT
+dXBwb3J0IFBTUiBNdWx0aXBsZSBJbnN0YW5jZXMiKQo+IFNpZ25lZC1vZmYtYnk6IEpvc8OpIFJv
+YmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogSGFyaXNo
+IENoZWdvbmRpIDxoYXJpc2guY2hlZ29uZGlAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIHwgMyArLS0KPiAgMSBmaWxlIGNoYW5nZWQs
+IDEgaW5zZXJ0aW9uKCspLCAyIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9wc3IuYwo+IGluZGV4IDI2MjdkMGI1NThmMy4uMDZjYjI4NmU5YTRhIDEw
+MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCj4gQEAgLTE1MzIs
+OCArMTUzMiw3IEBAIHZvaWQgaW50ZWxfcHNyX3dhaXRfZm9yX2lkbGUoY29uc3Qgc3RydWN0IGlu
+dGVsX2NydGNfc3RhdGUgKm5ld19jcnRjX3N0YXRlKQo+ICAJCXUzMiBwc3Jfc3RhdHVzOwo+ICAK
+PiAgCQltdXRleF9sb2NrKCZpbnRlbF9kcC0+cHNyLmxvY2spOwo+IC0JCWlmICghaW50ZWxfZHAt
+PnBzci5lbmFibGVkIHx8Cj4gLQkJICAgIChpbnRlbF9kcC0+cHNyLmVuYWJsZWQgJiYgaW50ZWxf
+ZHAtPnBzci5wc3IyX2VuYWJsZWQpKSB7Cj4gKwkJaWYgKCFpbnRlbF9kcC0+cHNyLmVuYWJsZWQg
+fHwgaW50ZWxfZHAtPnBzci5wc3IyX2VuYWJsZWQpIHsKPiAgCQkJbXV0ZXhfdW5sb2NrKCZpbnRl
+bF9kcC0+cHNyLmxvY2spOwo+ICAJCQljb250aW51ZTsKPiAgCQl9Cj4gLS0gCj4gMi4zMS4xCj4g
+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBJbnRl
+bC1nZnggbWFpbGluZyBsaXN0Cj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
+YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
