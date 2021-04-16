@@ -2,45 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 374E1362352
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Apr 2021 17:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A52C03625C9
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Apr 2021 18:38:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1891A6EC1A;
-	Fri, 16 Apr 2021 15:04:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 945116EC74;
+	Fri, 16 Apr 2021 16:38:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A94F06EC08;
- Fri, 16 Apr 2021 15:04:21 +0000 (UTC)
-IronPort-SDR: 9VB5xBRljEEwkB7H5a9ehSJ82AdPvvUkVhew8/kSw72EL3qRSocgEVs7Ller6JaGVgfZv25tkR
- 0mvAgBvRy6dA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9956"; a="194610085"
-X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; d="scan'208";a="194610085"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2021 08:04:08 -0700
-IronPort-SDR: 1xs7kYyM1OrTQJI8d8PJRiB10PhqrhLRz5d9bhuvLMbVkD0NA/mUDdNZBaW/ei2OGYZsY1L0lX
- UJlukk/TC+1g==
-X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; d="scan'208";a="453367457"
-Received: from pmwillia-mobl2.ger.corp.intel.com (HELO [10.252.7.203])
- ([10.252.7.203])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2021 08:04:07 -0700
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210412090526.30547-1-matthew.auld@intel.com>
- <20210412090526.30547-4-matthew.auld@intel.com>
- <6f87d755-1fe7-a60a-941e-c8ad7657d99d@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <328dbb78-d1a6-1411-db7c-4e7dd4a9437a@intel.com>
-Date: Fri, 16 Apr 2021 16:04:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
+ [IPv6:2a00:1450:4864:20::532])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62B786EC74
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Apr 2021 16:38:38 +0000 (UTC)
+Received: by mail-ed1-x532.google.com with SMTP id e7so32938685edu.10
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Apr 2021 09:38:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QuszRYq503zWAb/59scCqtNLeiI1RkDf6gIoDlwZutg=;
+ b=bi2UTPVrb6ADCaMH9J5IPCYq2OLAb4PgFpKs23xGZNoY7Umnj2krL7PK9f5sYPcNSt
+ SXbvkmafetGif/87MSIzi8tsWfnJ1wW5HMQwsfkwNfvgj9qMGi2aNK5dwaTKEFwZ4jI7
+ yP72zVEFpN8EbvhjHHx/TJ+65AtuLtoyDsHwqFWvehZadcEROsXjE/kSzHtS6w4vq1pp
+ Exo5wf2Qs2ZTXEnegn9JoVIDw+MxFJOkn6H6gZmFj8TkBscaH7RSwb902K2OobZnG/A9
+ OKcd8yoSJ0rCLPv660/HscfkIrqJhQwvkZF0cmf/wgY92AHREkpOv6ct06rHlLH3X95P
+ pUWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QuszRYq503zWAb/59scCqtNLeiI1RkDf6gIoDlwZutg=;
+ b=Ci1n3+ZERvBO0jwFcwUsV20I+Zsgpt0NIM02QwhruFOxs+IXx60bDfkWJsk1+ZVYtR
+ E9bFmmWCBPzQPQV4x6vnYP43T+CSprGrffEVY4/ZF7Uhjp9YqOX8MSIXepRExNYr89sI
+ r54s5WHRlkFzOp913bg9upXg1eoyGS9wMOrJ1P4+xKDzEQricq6dyD063OyanxrkXis6
+ 1vIq9B/xlc7Lq66Yiba3NVUc0RNtFja42aWQp5ZGc58s+1pBVz9Nom962fXIy4NSrOh0
+ XdiasBbkltuqSONY8742yEfEsiDEEBeO6i54Ms6lOT0cZMn7iNF20qbiQoQTW2qYwsrb
+ XKyg==
+X-Gm-Message-State: AOAM5332FEbtPW0DI7/yvt+WqrRs0O6mQ28v4Dze6gXAjSaEHzJ7L78x
+ +7x6af0TofjbU7MJT6NeeYU985GrhwDmoK9aMnjLZ5srlxg=
+X-Google-Smtp-Source: ABdhPJz8HkBphT0YLGId4eqEcPhfa8jtqclNi04jpwmObjHH2PLtcuyl0k/eKX9cV+6YNlYOY7GsDlFGdk+pI8Drob0=
+X-Received: by 2002:a05:6402:2787:: with SMTP id
+ b7mr10943120ede.225.1618591116890; 
+ Fri, 16 Apr 2021 09:38:36 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <6f87d755-1fe7-a60a-941e-c8ad7657d99d@linux.intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH 03/19] drm/i915: Create stolen memory region
- from local memory
+References: <20210415155958.391624-1-matthew.auld@intel.com>
+ <20210415155958.391624-4-matthew.auld@intel.com>
+In-Reply-To: <20210415155958.391624-4-matthew.auld@intel.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Fri, 16 Apr 2021 11:38:24 -0500
+Message-ID: <CAOFGe96QALJa4FbWkVxczTdOA6b41zk1GxdYwRsrP7GwSZ4zvw@mail.gmail.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 4/4] drm/doc/rfc: i915 DG1 uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,271 +63,509 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Kenneth Graunke <kenneth@whitecape.org>,
+ ML mesa-dev <mesa-dev@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMTQvMDQvMjAyMSAxNjowMSwgVHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4gCj4gT24gMTIvMDQv
-MjAyMSAxMDowNSwgTWF0dGhldyBBdWxkIHdyb3RlOgo+PiBGcm9tOiBDUSBUYW5nIDxjcS50YW5n
-QGludGVsLmNvbT4KPj4KPj4gQWRkICJSRUdJT05fU1RPTEVOIiBkZXZpY2UgaW5mbyB0byBkZzEs
-IGNyZWF0ZSBzdG9sZW4gbWVtb3J5Cj4+IHJlZ2lvbiBmcm9tIHVwcGVyIHBvcnRpb24gb2YgbG9j
-YWwgZGV2aWNlIG1lbW9yeSwgc3RhcnRpbmcKPj4gZnJvbSBEU01CQVNFLgo+Pgo+PiB2MjoKPj4g
-wqDCoMKgwqAgLSBzL2RybV9pbmZvL2RybV9kYmc7IHVzZXJzcGFjZSBsaWtlbHkgZG9lc24ndCBj
-YXJlIGFib3V0IHN0b2xlbi4KPj4gwqDCoMKgwqAgLSBtZW0tPnR5cGUgaXMgb25seSBzZXR1cCBh
-ZnRlciB0aGUgcmVnaW9uIHByb2JlLCBzbyBzZXR0aW5nIHRoZSAKPj4gbmFtZQo+PiDCoMKgwqDC
-oMKgwqAgYXMgc3RvbGVuLWxvY2FsIG9yIHN0b2xlbi1zeXN0ZW0gYmFzZWQgb24gdGhpcyB2YWx1
-ZSB3b24ndCAKPj4gd29yay4gU3BsaXQKPj4gwqDCoMKgwqDCoMKgIHN5c3RlbSB2cyBsb2NhbCBz
-dG9sZW4gc2V0dXAgdG8gZml4IHRoaXMuCj4+IMKgwqDCoMKgIC0ga2lsbCBhbGwgdGhlIHJlZ2lv
-bi0+ZGV2bWVtL2lzX2Rldm1lbSBzdHVmZi4gV2UgYWxyZWFkeSAKPj4gZGlmZmVyZW50aWF0ZQo+
-PiDCoMKgwqDCoMKgwqAgdGhlIGRpZmZlcmVudCB0eXBlcyBvZiBzdG9sZW4gc28gc3VjaCB0aGlu
-Z3Mgc2hvdWxkbid0IGJlIG5lZWRlZAo+PiDCoMKgwqDCoMKgwqAgYW55bW9yZS4KPj4KPj4gU2ln
-bmVkLW9mZi1ieTogQ1EgVGFuZyA8Y3EudGFuZ0BpbnRlbC5jb20+Cj4+IFNpZ25lZC1vZmYtYnk6
-IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KPj4gLS0tCj4+IMKgIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9zdG9sZW4uYyB8IDk5ICsrKysrKysrKysrKysr
-KysrKystLS0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5o
-IHzCoCAzICsKPj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuY8KgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgfMKgIDIgKy0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcu
-aMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDEgKwo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMgfMKgIDYgKysKPj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfbWVtb3J5X3JlZ2lvbi5oIHzCoCA1ICstCj4+IMKgIDYgZmlsZXMgY2hhbmdlZCwg
-MTAyIGluc2VydGlvbnMoKyksIDE0IGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jIAo+PiBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9zdG9sZW4uYwo+PiBpbmRleCBiMDU5N2RlMjA2ZGUuLjU2
-ZGQ1OGJlZjVlZSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVf
-Z2VtX3N0b2xlbi5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9z
-dG9sZW4uYwo+PiBAQCAtMTAsNiArMTAsNyBAQAo+PiDCoCAjaW5jbHVkZSA8ZHJtL2RybV9tbS5o
-Pgo+PiDCoCAjaW5jbHVkZSA8ZHJtL2k5MTVfZHJtLmg+Cj4+ICsjaW5jbHVkZSAiZ2VtL2k5MTVf
-Z2VtX2xtZW0uaCIKPj4gwqAgI2luY2x1ZGUgImdlbS9pOTE1X2dlbV9yZWdpb24uaCIKPj4gwqAg
-I2luY2x1ZGUgImk5MTVfZHJ2LmgiCj4+IMKgICNpbmNsdWRlICJpOTE1X2dlbV9zdG9sZW4uaCIK
-Pj4gQEAgLTEyMSw2ICsxMjIsMTQgQEAgc3RhdGljIGludCBpOTE1X2FkanVzdF9zdG9sZW4oc3Ry
-dWN0IAo+PiBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgfQo+
-PiDCoMKgwqDCoMKgIH0KPj4gK8KgwqDCoCAvKgo+PiArwqDCoMKgwqAgKiBXaXRoIGRldmljZSBs
-b2NhbCBtZW1vcnksIHdlIGRvbid0IG5lZWQgdG8gY2hlY2sgdGhlIGFkZHJlc3MgCj4+IHJhbmdl
-LAo+PiArwqDCoMKgwqAgKiB0aGlzIGlzIGRldmljZSBtZW1vcnkgcGh5c2ljYWwgYWRkcmVzcywg
-Y291bGQgb3ZlcmxhcCB3aXRoIHN5c3RlbQo+PiArwqDCoMKgwqAgKiBtZW1vcnkuCj4+ICvCoMKg
-wqDCoCAqLwo+PiArwqDCoMKgIGlmIChIQVNfTE1FTShpOTE1KSkKPj4gK8KgwqDCoMKgwqDCoMKg
-IHJldHVybiAwOwo+PiArCj4+IMKgwqDCoMKgwqAgLyoKPj4gwqDCoMKgwqDCoMKgICogVmVyaWZ5
-IHRoYXQgbm90aGluZyBlbHNlIHVzZXMgdGhpcyBwaHlzaWNhbCBhZGRyZXNzLiBTdG9sZW4KPj4g
-wqDCoMKgwqDCoMKgICogbWVtb3J5IHNob3VsZCBiZSByZXNlcnZlZCBieSB0aGUgQklPUyBhbmQg
-aGlkZGVuIGZyb20gdGhlCj4+IEBAIC0zNzQsOCArMzgzLDkgQEAgc3RhdGljIHZvaWQgaWNsX2dl
-dF9zdG9sZW5fcmVzZXJ2ZWQoc3RydWN0IAo+PiBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+PiDC
-oMKgwqDCoMKgIH0KPj4gwqAgfQo+PiAtc3RhdGljIGludCBpOTE1X2dlbV9pbml0X3N0b2xlbihz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKPj4gK3N0YXRpYyBpbnQgaTkxNV9nZW1faW5p
-dF9zdG9sZW4oc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1lbSkKPj4gwqAgewo+PiArwqDC
-oMKgIHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gbWVtLT5pOTE1Owo+PiDCoMKgwqDC
-oMKgIHN0cnVjdCBpbnRlbF91bmNvcmUgKnVuY29yZSA9ICZpOTE1LT51bmNvcmU7Cj4+IMKgwqDC
-oMKgwqAgcmVzb3VyY2Vfc2l6ZV90IHJlc2VydmVkX2Jhc2UsIHN0b2xlbl90b3A7Cj4+IMKgwqDC
-oMKgwqAgcmVzb3VyY2Vfc2l6ZV90IHJlc2VydmVkX3RvdGFsLCByZXNlcnZlZF9zaXplOwo+PiBA
-QCAtMzk2LDEwICs0MDYsMTAgQEAgc3RhdGljIGludCBpOTE1X2dlbV9pbml0X3N0b2xlbihzdHJ1
-Y3QgCj4+IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1
-cm4gMDsKPj4gwqDCoMKgwqDCoCB9Cj4+IC3CoMKgwqAgaWYgKHJlc291cmNlX3NpemUoJmludGVs
-X2dyYXBoaWNzX3N0b2xlbl9yZXMpID09IDApCj4+ICvCoMKgwqAgaWYgKHJlc291cmNlX3NpemUo
-Jm1lbS0+cmVnaW9uKSA9PSAwKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIDA7Cj4+IC3C
-oMKgwqAgaTkxNS0+ZHNtID0gaW50ZWxfZ3JhcGhpY3Nfc3RvbGVuX3JlczsKPj4gK8KgwqDCoCBp
-OTE1LT5kc20gPSBtZW0tPnJlZ2lvbjsKPj4gwqDCoMKgwqDCoCBpZiAoaTkxNV9hZGp1c3Rfc3Rv
-bGVuKGk5MTUsICZpOTE1LT5kc20pKQo+PiDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIDA7Cj4+
-IEBAIC02ODQsMjMgKzY5NCwzNiBAQCBzdGF0aWMgaW50IF9pOTE1X2dlbV9vYmplY3Rfc3RvbGVu
-X2luaXQoc3RydWN0IAo+PiBpbnRlbF9tZW1vcnlfcmVnaW9uICptZW0sCj4+IMKgwqDCoMKgwqAg
-cmV0dXJuIHJldDsKPj4gwqAgfQo+PiArc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKmk5MTVf
-c3RvbGVuX3JlZ2lvbihzdHJ1Y3QgCj4+IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4+ICt7Cj4+
-ICvCoMKgwqAgaWYgKEhBU19MTUVNKGk5MTUpKQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIGk5
-MTUtPm1tLnJlZ2lvbnNbSU5URUxfUkVHSU9OX1NUT0xFTl9MTUVNXTsKPj4gKwo+PiArwqDCoMKg
-IHJldHVybiBpOTE1LT5tbS5yZWdpb25zW0lOVEVMX1JFR0lPTl9TVE9MRU5fU01FTV07Cj4+ICt9
-Cj4gCj4gQ291bGQgYmUgYSBiaWtlc2hlZGRpbmcgY29tbWVudCBvbmx5IC0gZXNwZWNpYWxseSBz
-aW5jZSBJIHRoaW5rIHRoaXMgCj4gcGF0aCBnZXRzIHZlcnkgbGl0dGxlIHVzZWQgYXQgcnVudGlt
-ZSBzbyBpdCBpcyBtb3N0IGxpa2VseSBwb2ludGxlc3MgdG8gCj4gZmlkZGxlIHdpdGggaXQsIGJ1
-dCBpdCBqdXN0IHN0cmlrZXMgbWUgYSBiaXQgbm90IGZ1bGx5IGVsZWdhbnQgdG8gZG86Cj4gCj4g
-aTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9zdG9sZW4KPiAgwqAtPiBpOTE1X2dlbV9vYmplY3RfY3Jl
-YXRlX3JlZ2lvbgo+ICDCoMKgwqAgLT4gaTkxNV9zdG9sZW5fcmVnaW9uCj4gCj4gQW5kIGVuZCB1
-cCBpbiBoZXJlLCB3aGVuIGFsdGVybmF0aXZlIGNvdWxkIGJlIGF0IGRyaXZlciBpbml0Ogo+IAo+
-IGk5MTUtPnN0b2xlbl9yZWdpb25faWQgPSBIQVNfTE1FTSgpID8gLi4uIDogLi4uOwo+IAo+IGk5
-MTVfZ2VtX29iamVjdF9jcmVhdGVfc3RvbGVuCj4gIMKgLT4gCj4gaTkxNV9nZW1fb2JqZWN0X2Ny
-ZWF0ZV9yZWdpb24oaTkxNS0+bW0ucmVnaW9uc1tpOTE1LT5zdG9sZW5fcmVnaW9uX2lkXSk7Cj4g
-Cj4gT3IgcG9pbnRlciB0byByZWdpb24uIFdvdWxkIGF2b2lkIGhhdmluZyB0byBleHBvcnQgaTkx
-NV9zdG9sZW5fcmVnaW9uIGFzIAo+IHdlbGwuCj4gCj4gT3IgaXMgaTkxNS0+ZHNtIGFscmVhZHkg
-dGhlIHJpZ2h0IHRoaW5nPyBCZWNhdXNlLi4KCkkgZ3Vlc3Mgd2UgY291bGQganVzdCBoYXZlIGFu
-IGk5MTUtPnN0b2xlbl9yZWdpb24gc2hvcnQtY3V0IG9yIHNvbWV0aGluZz8KCj4gCj4+ICsKPj4g
-wqAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKgo+PiDCoCBpOTE1X2dlbV9vYmplY3RfY3Jl
-YXRlX3N0b2xlbihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKPj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVzb3VyY2Vfc2l6ZV90IHNpemUpCj4+IMKgIHsK
-Pj4gLcKgwqDCoCByZXR1cm4gCj4+IGk5MTVfZ2VtX29iamVjdF9jcmVhdGVfcmVnaW9uKGk5MTUt
-Pm1tLnJlZ2lvbnNbSU5URUxfUkVHSU9OX1NUT0xFTl9TTUVNXSwKPj4gK8KgwqDCoCByZXR1cm4g
-aTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9yZWdpb24oaTkxNV9zdG9sZW5fcmVnaW9uKGk5MTUpLAo+
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHNp
-emUsIEk5MTVfQk9fQUxMT0NfQ09OVElHVU9VUyk7Cj4+IMKgIH0KPj4gwqAgc3RhdGljIGludCBp
-bml0X3N0b2xlbihzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtKQo+PiDCoCB7Cj4+IC3C
-oMKgwqAgaW50ZWxfbWVtb3J5X3JlZ2lvbl9zZXRfbmFtZShtZW0sICJzdG9sZW4iKTsKPj4gK8Kg
-wqDCoCBpZiAoSEFTX0xNRU0obWVtLT5pOTE1KSkgewo+PiArwqDCoMKgwqDCoMKgwqAgaWYgKCFp
-b19tYXBwaW5nX2luaXRfd2MoJm1lbS0+aW9tYXAsCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBtZW0tPmlvX3N0YXJ0LAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgcmVzb3VyY2Vfc2l6ZSgmbWVtLT5yZWdpb24pKSkKPj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIC1FSU87Cj4+ICvCoMKgwqAgfQo+PiDCoMKgwqDCoMKg
-IC8qCj4+IMKgwqDCoMKgwqDCoCAqIEluaXRpYWxpc2Ugc3RvbGVuIGVhcmx5IHNvIHRoYXQgd2Ug
-bWF5IHJlc2VydmUgcHJlYWxsb2NhdGVkCj4+IMKgwqDCoMKgwqDCoCAqIG9iamVjdHMgZm9yIHRo
-ZSBCSU9TIHRvIEtNUyB0cmFuc2l0aW9uLgo+PiDCoMKgwqDCoMKgwqAgKi8KPj4gLcKgwqDCoCBy
-ZXR1cm4gaTkxNV9nZW1faW5pdF9zdG9sZW4obWVtLT5pOTE1KTsKPj4gK8KgwqDCoCByZXR1cm4g
-aTkxNV9nZW1faW5pdF9zdG9sZW4obWVtKTsKPiAKPiAuLi4gSSBmaW5kIHRoZSBtZW0gcmVnaW9u
-IGluaXQgcGF0aHMgYSBiaXQgY29udm9sdXRlZCwgc3RvbGVuIAo+IGVzcGVjaWFsbHksIGFuZCBz
-dHJ1Z2dsZSB0byBmaWd1cmUgaXQgb3V0IGV2ZXJ5IHRpbWUuCj4gCj4gRm9yIGluc3RhbmNlIHdl
-IGhhdmUgaTkxNV9yZWdpb25fc3RvbGVuX29wcyBzaGFyZWQgYmV0d2VlbiBzeXN0ZW0gYW5kIAo+
-IGxvY2FsIHN0b2xlbi4gQnV0IHRoZW4gc2hhcmVkIHZmdW5jcyBicmFuY2ggZGVwZW5kaW5nIG9u
-IHN5c3RlbSB2cyBzdG9sZW4/CgpXZSBjb3VsZCBzcGxpdCB0aGUgaW50ZWxfbWVtb3J5X3JlZ2lv
-biBvcHM/IE1heWJlIHRoYXQgd2lsbCBtYWtlIGl0IApzbGlnaHRseSBsZXNzIG11ZGRsZWQ/CgpU
-aGUgcHJvYmluZyBpcyBzbGlnaHRseSBkaWZmZXJlbnQsIGJ1dCB0aGF0J3Mga2luZCBvZiBleHBl
-Y3RlZCBzaW5jZSAKaXQncyBxdWl0ZSBkaWZmZXJlbnQgZnJvbSB0aGUgSFcgcG92LgoKQnV0IG9u
-Y2Ugd2UgZ2V0IGFuIGludGVsX21lbW9yeV9yZWdpb24sIGl0IHNob3VsZCBiZSB0aGUgc2FtZSB3
-aGV0aGVyIAppdCdzIHN0b2xlbiBkZXZpY2UgbWVtb3J5IG9yIHdoYXRldmVyLgoKPiAKPiBpOTE1
-X2dlbV9pbml0X3N0b2xlbiBpcyBzaGFyZWQgLSBidXQgd2hpY2ggcGFydHMgb2YgaXQgYXJlIHJl
-bGV2YW50IGZvciAKPiBsb2NhbCBzdG9sZW4/CgpBc2tpbmcgYWxsIHRoZSBkaWZmaWN1bHQgcXVl
-c3Rpb25zIDopCgpJdCdzIGp1c3QgdG8gcG9wdWxhdGUgZHNtIEkgdGhpbmsuIEkgY2FuIHJpcCB0
-aGF0IG91dCBhbmQgdGhlbiB3ZSBkb24ndCAKY2FsbCBpOTE1X2dlbV9pbml0X3N0b2xlbigpIGZv
-ciB0aGUgc3RvbGVuIGRldmljZSBtZW1vcnkgcGF0aD8gTWF5YmUgCnRoYXQgd2lsbCBsb29rIHNs
-aWdodGx5IGJldHRlcj8KCj4gCj4+IMKgIH0KPj4gwqAgc3RhdGljIHZvaWQgcmVsZWFzZV9zdG9s
-ZW4oc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1lbSkKPj4gQEAgLTcxNCwxMyArNzM3LDY1
-IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbl9vcHMgCj4+IGk5MTVf
-cmVnaW9uX3N0b2xlbl9vcHMgPSB7Cj4+IMKgwqDCoMKgwqAgLmluaXRfb2JqZWN0ID0gX2k5MTVf
-Z2VtX29iamVjdF9zdG9sZW5faW5pdCwKPj4gwqAgfTsKPj4gK3N0YXRpYyBzdHJ1Y3QgaW50ZWxf
-bWVtb3J5X3JlZ2lvbiAqCj4+ICtzZXR1cF9sbWVtX3N0b2xlbihzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqaTkxNSkKPj4gK3sKPj4gK8KgwqDCoCBzdHJ1Y3QgaW50ZWxfdW5jb3JlICp1bmNvcmUg
-PSAmaTkxNS0+dW5jb3JlOwo+PiArwqDCoMKgIHN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gaTkxNS0+
-ZHJtLnBkZXY7Cj4+ICvCoMKgwqAgc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKm1lbTsKPj4g
-K8KgwqDCoCByZXNvdXJjZV9zaXplX3QgaW9fc3RhcnQ7Cj4+ICvCoMKgwqAgcmVzb3VyY2Vfc2l6
-ZV90IGxtZW1fc2l6ZTsKPj4gK8KgwqDCoCB1NjQgbG1lbV9iYXNlOwo+PiArCj4+ICvCoMKgwqAg
-aWYgKCFJU19ER0ZYKGk5MTUpKQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIEVSUl9QVFIoLUVO
-T0RFVik7Cj4+ICsKPj4gK8KgwqDCoCBsbWVtX2Jhc2UgPSBpbnRlbF91bmNvcmVfcmVhZDY0KHVu
-Y29yZSwgR0VOMTJfRFNNQkFTRSk7Cj4+ICvCoMKgwqAgbG1lbV9zaXplID0gcGNpX3Jlc291cmNl
-X2xlbihwZGV2LCAyKSAtIGxtZW1fYmFzZTsKPj4gK8KgwqDCoCBpb19zdGFydCA9IHBjaV9yZXNv
-dXJjZV9zdGFydChwZGV2LCAyKSArIGxtZW1fYmFzZTsKPj4gKwo+PiArwqDCoMKgIG1lbSA9IGlu
-dGVsX21lbW9yeV9yZWdpb25fY3JlYXRlKGk5MTUsIGxtZW1fYmFzZSwgbG1lbV9zaXplLAo+PiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBJOTE1X0dUVF9QQUdFX1NJ
-WkVfNEssIGlvX3N0YXJ0LAo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCAmaTkxNV9yZWdpb25fc3RvbGVuX29wcyk7Cj4+ICvCoMKgwqAgaWYgKElTX0VSUihtZW0p
-KQo+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJuIG1lbTsKPj4gKwo+PiArwqDCoMKgIGRybV9kYmco
-Jmk5MTUtPmRybSwgIlN0b2xlbiBMb2NhbCBtZW1vcnk6ICVwUlxuIiwgJm1lbS0+cmVnaW9uKTsK
-Pj4gK8KgwqDCoCBkcm1fZGJnKCZpOTE1LT5kcm0sICJTdG9sZW4gTG9jYWwgbWVtb3J5IElPIHN0
-YXJ0OiAlcGFcbiIsCj4+ICvCoMKgwqDCoMKgwqDCoCAmbWVtLT5pb19zdGFydCk7Cj4gCj4gQ291
-bGQgdGhlc2UgbWVzc2FnZXMgYmUgY29uc29saWRhdGVkIHdpdGggdGhlIHN5c3RlbSBzdG9sZW4g
-b25lcyAKPiAoaTkxNV9nZW1fc2V0dXBfc3RvbGVuPykgYW5kIGJhc2VkIG9mZiB0aGUgbWVtb3J5
-X3JlZ2lvbiBkYXRhIHByaW50ZWQgCj4gZnJvbSBjb21tb24gaTkxNV9nZW1fc3RvbGVuX3NldHVw
-Pwo+IAo+PiArCj4+ICvCoMKgwqAgaW50ZWxfbWVtb3J5X3JlZ2lvbl9zZXRfbmFtZShtZW0sICJz
-dG9sZW4tbG9jYWwiKTsKPj4gKwo+PiArwqDCoMKgIHJldHVybiBtZW07Cj4+ICt9Cj4+ICsKPj4g
-K3N0YXRpYyBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbioKPiAKPiBTcGFjZSBiZWZvcmUgYXN0
-ZXJpc2suCj4gCj4+ICtzZXR1cF9zbWVtX3N0b2xlbihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSkKPj4gK3sKPj4gK8KgwqDCoCBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtOwo+
-PiArCj4+ICvCoMKgwqAgbWVtID0gaW50ZWxfbWVtb3J5X3JlZ2lvbl9jcmVhdGUoaTkxNSwKPj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaW50ZWxfZ3JhcGhpY3Nf
-c3RvbGVuX3Jlcy5zdGFydCwKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgcmVzb3VyY2Vfc2l6ZSgmaW50ZWxfZ3JhcGhpY3Nfc3RvbGVuX3JlcyksCj4+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFBBR0VfU0laRSwgMCwKPj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJmk5MTVfcmVnaW9uX3N0b2xl
-bl9vcHMpOwo+PiArwqDCoMKgIGlmIChJU19FUlIobWVtKSkKPj4gK8KgwqDCoMKgwqDCoMKgIHJl
-dHVybiBtZW07Cj4+ICsKPj4gK8KgwqDCoCBpbnRlbF9tZW1vcnlfcmVnaW9uX3NldF9uYW1lKG1l
-bSwgInN0b2xlbi1zeXN0ZW0iKTsKPiAKPiBJIGFzc3VtZSB0aGlzIG5hbWUsIGFsdGhvdWdoIGNo
-YW5nZWQgZnJvbSB0aGUgY3VycmVudCAoInN0b2xlbiIpLCBpcyBub3QgCj4gZXhwb3J0ZWQgYW55
-d2hlcmUgdG8gbWF0dGVyPwoKWWVhaCwgaXQncyBqdXN0IGZvciBpbnRlcm5hbCB1c2UsIGFuZCBz
-b21lIGRlYnVnZnMuCgo+IAo+PiArCj4+ICvCoMKgwqAgcmV0dXJuIG1lbTsKPj4gK30KPj4gKwo+
-PiDCoCBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqaTkxNV9nZW1fc3RvbGVuX3NldHVwKHN0
-cnVjdCAKPj4gZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKPj4gwqAgewo+PiAtwqDCoMKgIHJldHVy
-biBpbnRlbF9tZW1vcnlfcmVnaW9uX2NyZWF0ZShpOTE1LAo+PiAtwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGludGVsX2dyYXBoaWNzX3N0b2xlbl9yZXMuc3RhcnQs
-Cj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVzb3VyY2Vf
-c2l6ZSgmaW50ZWxfZ3JhcGhpY3Nfc3RvbGVuX3JlcyksCj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgUEFHRV9TSVpFLCAwLAo+PiAtwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICZpOTE1X3JlZ2lvbl9zdG9sZW5fb3BzKTsKPj4g
-K8KgwqDCoCBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtOwo+PiArCj4+ICvCoMKgwqAg
-bWVtID0gc2V0dXBfbG1lbV9zdG9sZW4oaTkxNSk7Cj4+ICvCoMKgwqAgaWYgKG1lbSA9PSBFUlJf
-UFRSKC1FTk9ERVYpKQo+PiArwqDCoMKgwqDCoMKgwqAgbWVtID0gc2V0dXBfc21lbV9zdG9sZW4o
-aTkxNSk7Cj4+ICsKPj4gK8KgwqDCoCByZXR1cm4gbWVtOwo+PiDCoCB9Cj4+IMKgIHN0cnVjdCBk
-cm1faTkxNV9nZW1fb2JqZWN0ICoKPj4gQEAgLTcyOCw3ICs4MDMsNyBAQCAKPj4gaTkxNV9nZW1f
-b2JqZWN0X2NyZWF0ZV9zdG9sZW5fZm9yX3ByZWFsbG9jYXRlZChzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAKPj4gKmk5MTUsCj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHJlc291cmNlX3NpemVfdCBzdG9sZW5fb2Zmc2V0LAo+PiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXNv
-dXJjZV9zaXplX3Qgc2l6ZSkKPj4gwqAgewo+PiAtwqDCoMKgIHN0cnVjdCBpbnRlbF9tZW1vcnlf
-cmVnaW9uICptZW0gPSAKPj4gaTkxNS0+bW0ucmVnaW9uc1tJTlRFTF9SRUdJT05fU1RPTEVOX1NN
-RU1dOwo+PiArwqDCoMKgIHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICptZW0gPSBpOTE1X3N0
-b2xlbl9yZWdpb24oaTkxNSk7Cj4+IMKgwqDCoMKgwqAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmpl
-Y3QgKm9iajsKPj4gwqDCoMKgwqDCoCBzdHJ1Y3QgZHJtX21tX25vZGUgKnN0b2xlbjsKPj4gwqDC
-oMKgwqDCoCBpbnQgcmV0Owo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX3N0b2xlbi5oIAo+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dl
-bV9zdG9sZW4uaAo+PiBpbmRleCBiMDM0ODk3MDY3OTYuLjJkMWNlN2ZlYzYxYyAxMDA2NDQKPj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5oCj4+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9zdG9sZW4uaAo+PiBAQCAtMjIsNiAr
-MjIsOSBAQCBpbnQgaTkxNV9nZW1fc3RvbGVuX2luc2VydF9ub2RlX2luX3JhbmdlKHN0cnVjdCAK
-Pj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4+IMKgIHZvaWQgaTkxNV9nZW1fc3RvbGVu
-X3JlbW92ZV9ub2RlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKPj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBkcm1fbW1fbm9kZSAqbm9kZSk7
-Cj4+IMKgIHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICppOTE1X2dlbV9zdG9sZW5fc2V0dXAo
-c3RydWN0IAo+PiBkcm1faTkxNV9wcml2YXRlICppOTE1KTsKPj4gKwo+PiArc3RydWN0IGludGVs
-X21lbW9yeV9yZWdpb24gKmk5MTVfc3RvbGVuX3JlZ2lvbihzdHJ1Y3QgCj4+IGRybV9pOTE1X3By
-aXZhdGUgKmk5MTUpOwo+PiArCj4+IMKgIHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICoKPj4g
-wqAgaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9zdG9sZW4oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2LAo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXNv
-dXJjZV9zaXplX3Qgc2l6ZSk7Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X3BjaS5jIAo+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKPj4gaW5kZXgg
-NDgwNTUzNzQ2Nzk0Li41M2Y1ZDFlNmRhZWYgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfcGNpLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2ku
-Ywo+PiBAQCAtOTA2LDcgKzkwNiw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNl
-X2luZm8gcmtsX2luZm8gPSB7Cj4+IMKgICNkZWZpbmUgR0VOMTJfREdGWF9GRUFUVVJFUyBcCj4+
-IMKgwqDCoMKgwqAgR0VOMTJfRkVBVFVSRVMsIFwKPj4gLcKgwqDCoCAubWVtb3J5X3JlZ2lvbnMg
-PSBSRUdJT05fU01FTSB8IFJFR0lPTl9MTUVNLCBcCj4+ICvCoMKgwqAgLm1lbW9yeV9yZWdpb25z
-ID0gUkVHSU9OX1NNRU0gfCBSRUdJT05fTE1FTSB8IFJFR0lPTl9TVE9MRU5fTE1FTSwgXAo+PiDC
-oMKgwqDCoMKgIC5oYXNfbWFzdGVyX3VuaXRfaXJxID0gMSwgXAo+PiDCoMKgwqDCoMKgIC5oYXNf
-bGxjID0gMCwgXAo+PiDCoMKgwqDCoMKgIC5oYXNfc25vb3AgPSAxLCBcCj4+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIAo+PiBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfcmVnLmgKPj4gaW5kZXggZTA4N2JjZDIxOTExLi40MTA4ZjJhN2ViZmEgMTAwNjQ0
-Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKPj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAo+PiBAQCAtMTIxOTEsNiArMTIxOTEsNyBAQCBlbnVt
-IHNrbF9wb3dlcl9nYXRlIHsKPj4gwqAgI2RlZmluZSBHRU4xMl9HTE9CQUxfTU9DUyhpKcKgwqDC
-oCBfTU1JTygweDQwMDAgKyAoaSkgKiA0KSAvKiBHbG9iYWwgCj4+IE1PQ1MgcmVncyAqLwo+PiDC
-oCAjZGVmaW5lIEdFTjEyX0dTTUJBU0XCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIF9NTUlPKDB4MTA4
-MTAwKQo+PiArI2RlZmluZSBHRU4xMl9EU01CQVNFwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBfTU1J
-TygweDEwODBDMCkKPj4gwqAgLyogZ2FtdCByZWdzICovCj4+IMKgICNkZWZpbmUgR0VOOF9MM19M
-UkFfMV9HUEdQVSBfTU1JTygweDRkZDQpCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMgCj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50
-ZWxfbWVtb3J5X3JlZ2lvbi5jCj4+IGluZGV4IGJmODM3YjZiYjE4NS4uYWM5MGI3NmEzZmEwIDEw
-MDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMK
-Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbWVtb3J5X3JlZ2lvbi5jCj4+IEBA
-IC0yMiw2ICsyMiwxMCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHsKPj4gwqDCoMKgwqDCoMKgwqDC
-oMKgIC5jbGFzcyA9IElOVEVMX01FTU9SWV9TVE9MRU5fU1lTVEVNLAo+PiDCoMKgwqDCoMKgwqDC
-oMKgwqAgLmluc3RhbmNlID0gMCwKPj4gwqDCoMKgwqDCoCB9LAo+PiArwqDCoMKgIFtJTlRFTF9S
-RUdJT05fU1RPTEVOX0xNRU1dID0gewo+PiArwqDCoMKgwqDCoMKgwqAgLmNsYXNzID0gSU5URUxf
-TUVNT1JZX1NUT0xFTl9MT0NBTCwKPj4gK8KgwqDCoMKgwqDCoMKgIC5pbnN0YW5jZSA9IDAsCj4+
-ICvCoMKgwqAgfSwKPj4gwqAgfTsKPj4gwqAgc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKgo+
-PiBAQCAtMjc4LDYgKzI4Miw4IEBAIGludCBpbnRlbF9tZW1vcnlfcmVnaW9uc19od19wcm9iZShz
-dHJ1Y3QgCj4+IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBj
-YXNlIElOVEVMX01FTU9SWV9TWVNURU06Cj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG1l
-bSA9IGk5MTVfZ2VtX3NobWVtX3NldHVwKGk5MTUpOwo+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBicmVhazsKPj4gK8KgwqDCoMKgwqDCoMKgIGNhc2UgSU5URUxfTUVNT1JZX1NUT0xFTl9M
-T0NBTDoKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZmFsbHRocm91Z2g7Cj4+IMKgwqDCoMKg
-wqDCoMKgwqDCoCBjYXNlIElOVEVMX01FTU9SWV9TVE9MRU5fU1lTVEVNOgo+PiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBtZW0gPSBpOTE1X2dlbV9zdG9sZW5fc2V0dXAoaTkxNSk7Cj4+IMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGJyZWFrOwo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaW50ZWxfbWVtb3J5X3JlZ2lvbi5oIAo+PiBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX21lbW9yeV9yZWdpb24uaAo+PiBpbmRleCBlZGQ0OTA2N2M4Y2EuLjRjOGVjMTVh
-ZjU1ZiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbWVtb3J5X3Jl
-Z2lvbi5oCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX21lbW9yeV9yZWdpb24u
-aAo+PiBAQCAtMjYsMTggKzI2LDIxIEBAIGVudW0gaW50ZWxfbWVtb3J5X3R5cGUgewo+PiDCoMKg
-wqDCoMKgIElOVEVMX01FTU9SWV9TWVNURU0gPSAwLAo+PiDCoMKgwqDCoMKgIElOVEVMX01FTU9S
-WV9MT0NBTCwKPj4gwqDCoMKgwqDCoCBJTlRFTF9NRU1PUllfU1RPTEVOX1NZU1RFTSwKPj4gK8Kg
-wqDCoCBJTlRFTF9NRU1PUllfU1RPTEVOX0xPQ0FMLAo+PiDCoCB9Owo+PiDCoCBlbnVtIGludGVs
-X3JlZ2lvbl9pZCB7Cj4+IMKgwqDCoMKgwqAgSU5URUxfUkVHSU9OX1NNRU0gPSAwLAo+PiDCoMKg
-wqDCoMKgIElOVEVMX1JFR0lPTl9MTUVNLAo+PiDCoMKgwqDCoMKgIElOVEVMX1JFR0lPTl9TVE9M
-RU5fU01FTSwKPj4gK8KgwqDCoCBJTlRFTF9SRUdJT05fU1RPTEVOX0xNRU0sCj4+IMKgwqDCoMKg
-wqAgSU5URUxfUkVHSU9OX1VOS05PV04sIC8qIFNob3VsZCBiZSBsYXN0ICovCj4+IMKgIH07Cj4+
-IMKgICNkZWZpbmUgUkVHSU9OX1NNRU3CoMKgwqDCoCBCSVQoSU5URUxfUkVHSU9OX1NNRU0pCj4+
-IMKgICNkZWZpbmUgUkVHSU9OX0xNRU3CoMKgwqDCoCBCSVQoSU5URUxfUkVHSU9OX0xNRU0pCj4+
-IMKgICNkZWZpbmUgUkVHSU9OX1NUT0xFTl9TTUVNwqDCoCBCSVQoSU5URUxfUkVHSU9OX1NUT0xF
-Tl9TTUVNKQo+PiArI2RlZmluZSBSRUdJT05fU1RPTEVOX0xNRU3CoMKgIEJJVChJTlRFTF9SRUdJ
-T05fU1RPTEVOX0xNRU0pCj4+IMKgICNkZWZpbmUgSTkxNV9BTExPQ19NSU5fUEFHRV9TSVpFwqAg
-QklUKDApCj4+IMKgICNkZWZpbmUgSTkxNV9BTExPQ19DT05USUdVT1VTwqDCoMKgwqAgQklUKDEp
-Cj4+IEBAIC04Miw3ICs4NSw3IEBAIHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uIHsKPj4gwqDC
-oMKgwqDCoCB1MTYgdHlwZTsKPj4gwqDCoMKgwqDCoCB1MTYgaW5zdGFuY2U7Cj4+IMKgwqDCoMKg
-wqAgZW51bSBpbnRlbF9yZWdpb25faWQgaWQ7Cj4+IC3CoMKgwqAgY2hhciBuYW1lWzhdOwo+PiAr
-wqDCoMKgIGNoYXIgbmFtZVsxNl07Cj4+IMKgwqDCoMKgwqAgc3RydWN0IGxpc3RfaGVhZCByZXNl
-cnZlZDsKPj4KPiAKPiBSZWdhcmRzLAo+IAo+IFR2cnRrbwpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Thu, Apr 15, 2021 at 11:04 AM Matthew Auld <matthew.auld@intel.com> wrote:
+>
+> Add an entry for the new uAPI needed for DG1.
+>
+> v2(Daniel):
+>   - include the overall upstreaming plan
+>   - add a note for mmap, there are differences here for TTM vs i915
+>   - bunch of other suggestions from Daniel
+> v3:
+>  (Daniel)
+>   - add a note for set/get caching stuff
+>   - add some more docs for existing query and extensions stuff
+>   - add an actual code example for regions query
+>   - bunch of other stuff
+>  (Jason)
+>   - uAPI change(!):
+>         - try a simpler design with the placements extension
+>         - rather than have a generic setparam which can cover multiple
+>           use cases, have each extension be responsible for one thing
+>           only
+>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: mesa-dev@lists.freedesktop.org
+> ---
+>  Documentation/gpu/rfc/i915_gem_lmem.h   | 255 ++++++++++++++++++++++++
+>  Documentation/gpu/rfc/i915_gem_lmem.rst | 139 +++++++++++++
+>  Documentation/gpu/rfc/index.rst         |   4 +
+>  3 files changed, 398 insertions(+)
+>  create mode 100644 Documentation/gpu/rfc/i915_gem_lmem.h
+>  create mode 100644 Documentation/gpu/rfc/i915_gem_lmem.rst
+>
+> diff --git a/Documentation/gpu/rfc/i915_gem_lmem.h b/Documentation/gpu/rfc/i915_gem_lmem.h
+> new file mode 100644
+> index 000000000000..2a82a452e9f2
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/i915_gem_lmem.h
+> @@ -0,0 +1,255 @@
+> +/*
+> + * Note that drm_i915_query_item and drm_i915_query are existing bits of uAPI.
+> + * For the regions query we are just adding a new query id, so no actual new
+> + * ioctl or anything, but including it here for reference.
+> + */
+> +struct drm_i915_query_item {
+> +#define DRM_I915_QUERY_MEMORY_REGIONS   0xdeadbeaf
+> +       ....
+> +        __u64 query_id;
+> +
+> +        /*
+> +         * When set to zero by userspace, this is filled with the size of the
+> +         * data to be written at the data_ptr pointer. The kernel sets this
+> +         * value to a negative value to signal an error on a particular query
+> +         * item.
+> +         */
+> +        __s32 length;
+> +
+> +        __u32 flags;
+> +        /*
+> +         * Data will be written at the location pointed by data_ptr when the
+> +         * value of length matches the length of the data to be written by the
+> +         * kernel.
+> +         */
+> +        __u64 data_ptr;
+> +};
+> +
+> +struct drm_i915_query {
+> +        __u32 num_items;
+> +        /*
+> +         * Unused for now. Must be cleared to zero.
+> +         */
+> +        __u32 flags;
+> +        /*
+> +         * This points to an array of num_items drm_i915_query_item structures.
+> +         */
+> +        __u64 items_ptr;
+> +};
+> +
+> +#define DRM_IOCTL_I915_QUERY   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_QUERY, struct drm_i915_query)
+> +
+> +/**
+> + * enum drm_i915_gem_memory_class
+> + */
+> +enum drm_i915_gem_memory_class {
+> +       /** @I915_MEMORY_CLASS_SYSTEM: system memory */
+> +       I915_MEMORY_CLASS_SYSTEM = 0,
+> +       /** @I915_MEMORY_CLASS_DEVICE: device local-memory */
+> +       I915_MEMORY_CLASS_DEVICE,
+> +};
+> +
+> +/**
+> + * struct drm_i915_gem_memory_class_instance
+> + */
+> +struct drm_i915_gem_memory_class_instance {
+> +       /** @memory_class: see enum drm_i915_gem_memory_class */
+> +       __u16 memory_class;
+> +
+> +       /** @memory_instance: which instance */
+> +       __u16 memory_instance;
+> +};
+> +
+> +/**
+> + * struct drm_i915_memory_region_info
+> + *
+> + * Describes one region as known to the driver.
+> + *
+> + * Note that we reserve quite a lot of stuff here for potential future work. As
+> + * an example we might want expose the capabilities(see caps) for a given
+> + * region, which could include things like if the region is CPU
+> + * mappable/accessible etc.
+
+I get caps but I'm seriously at a loss as to what the rest of this
+would be used for.  Why are caps and flags both there and separate?
+Flags are typically something you set, not query.  Also, what's with
+rsvd1 at the end?  This smells of substantial over-building to me.
+
+I thought to myself, "maybe I'm missing a future use-case" so I looked
+at the internal tree and none of this is being used there either.
+This indicates to me that either I'm missing something and there's
+code somewhere I don't know about or, with three years of building on
+internal branches, we still haven't proven that any of this is needed.
+If it's the latter, which I strongly suspect, maybe we should drop the
+unnecessary bits and only add them back in if and when we have proof
+that they're useful.
+
+To be clear, I don't mind the query API as such and the class/instance
+stuff seems fine and I really like being able to get the sizes
+directly.  What concerns me is all this extra future-proofing that we
+have zero proof is actually useful.  In my experience, when you build
+out like this without so much as a use-case, you always end up
+building the wrong thing.
+
+> + */
+> +struct drm_i915_memory_region_info {
+> +       /** @region: class:instance pair encoding */
+> +       struct drm_i915_gem_memory_class_instance region;
+> +
+> +       /** @rsvd0: MBZ */
+> +       __u32 rsvd0;
+> +
+> +       /** @caps: MBZ */
+> +       __u64 caps;
+> +
+> +       /** @flags: MBZ */
+> +       __u64 flags;
+> +
+> +       /** @probed_size: Memory probed by the driver (-1 = unknown) */
+> +       __u64 probed_size;
+> +
+> +       /** @unallocated_size: Estimate of memory remaining (-1 = unknown) */
+> +       __u64 unallocated_size;
+> +
+> +       /** @rsvd1: MBZ */
+> +       __u64 rsvd1[8];
+> +};
+> +
+> +/**
+> + * struct drm_i915_query_memory_regions
+> + *
+> + * Region info query enumerates all regions known to the driver by filling in
+> + * an array of struct drm_i915_memory_region_info structures.
+> + *
+> + * Example for getting the list of supported regions:
+> + *
+> + * .. code-block:: C
+> + *
+> + *     struct drm_i915_query_memory_regions *info;
+> + *     struct drm_i915_query_item item = {
+> + *             .query_id = DRM_I915_QUERY_MEMORY_REGIONS;
+> + *     };
+> + *     struct drm_i915_query query = {
+> + *             .num_items = 1,
+> + *             .items_ptr = (uintptr_t)&item,
+> + *     };
+> + *     int err, i;
+> + *
+> + *     // First query the size of the blob we need, this needs to be large
+> + *     // enough to hold our array of regions. The kernel will fill out the
+> + *     // item.length for us, which is the number of bytes we need.
+> + *     err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
+> + *     if (err) ...
+> + *
+> + *     info = calloc(1, item.length);
+> + *     // Now that we allocated the required number of bytes, we call the ioctl
+> + *     // again, this time with the data_ptr pointing to our newly allocated
+> + *     // blob, which the kernel can then populate with the all the region info.
+> + *     item.data_ptr = (uintptr_t)&info,
+> + *
+> + *     err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
+> + *     if (err) ...
+> + *
+> + *     // We can now access each region in the array
+> + *     for (i = 0; i < info->num_regions; i++) {
+> + *             struct drm_i915_memory_region_info mr = info->regions[i];
+> + *             u16 class = mr.region.class;
+> + *             u16 instance = mr.region.instance;
+> + *
+> + *             ....
+> + *     }
+> + *
+> + *     free(info);
+> + */
+> +struct drm_i915_query_memory_regions {
+> +       /** @num_regions: Number of supported regions */
+> +       __u32 num_regions;
+> +
+> +       /** @rsvd: MBZ */
+> +       __u32 rsvd[3];
+
+Why pad to 16B instead of 8B?
+
+> +
+> +       /** @regions: Info about each supported region */
+> +       struct drm_i915_memory_region_info regions[];
+> +};
+> +
+> +#define DRM_I915_GEM_CREATE_EXT                0xdeadbeaf
+> +#define DRM_IOCTL_I915_GEM_CREATE_EXT  DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE_EXT, struct drm_i915_gem_create_ext)
+> +
+> +/**
+> + * struct drm_i915_gem_create_ext
+> + *
+> + * Existing gem_create behaviour, with added extension support.
+> + *
+> + * Note that in the future we want to have our buffer flags here, at least for
+> + * the stuff that is immutable. Previously we would have two ioctls, one to
+> + * create the object with gem_create, and another to apply various parameters,
+> + * however this creates some ambiguity for the params which are considered
+> + * immutable. Also in general we're phasing out the various SET/GET ioctls.
+> + */
+> +struct drm_i915_gem_create_ext {
+> +       /**
+> +        * @size: Requested size for the object.
+> +        *
+> +        * The (page-aligned) allocated size for the object will be returned.
+> +        *
+> +        * Note that for some devices we have might have further minimum
+> +        * page-size restrictions(larger than 4K), like for device local-memory.
+> +        * However in general the final size here should always reflect any
+> +        * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
+> +        * extension to place the object in device local-memory.
+> +        */
+> +       __u64 size;
+> +       /**
+> +        * @handle: Returned handle for the object.
+> +        *
+> +        * Object handles are nonzero.
+> +        */
+> +       __u32 handle;
+> +       /** @flags: MBZ */
+> +       __u32 flags;
+> +       /**
+> +        * @extensions: The chain of extensions to apply to this object.
+> +        *
+> +        * This will be useful in the future when we need to support several
+> +        * different extensions, and we need to apply more than one when
+> +        * creating the object. See struct i915_user_extension.
+> +        *
+> +        * If we don't supply any extensions then we get the same old gem_create
+> +        * behaviour.
+> +        *
+> +        * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
+> +        * drm_i915_gem_create_ext_memory_regions
+> +        */
+> +#define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
+> +       __u64 extensions;
+> +};
+> +
+> +/**
+> + * struct drm_i915_gem_create_ext_memory_regions
+> + *
+> + * I915_GEM_CREATE_EXT_MEMORY_REGIONS extension:
+> + *
+> + * Set the object with the desired set of placements/regions in priority
+> + * order(each entry must be unique and supported by the device), as an array of
+> + * drm_i915_gem_memory_class_instance, or an equivalent layout of class:instance
+> + * pair encodings. See DRM_I915_QUERY_MEMORY_REGIONS for how to query the
+> + * supported regions for a device.
+> + *
+> + * As an example, on discrete devices, if we wish to set the placement as
+> + * device local-memory we can do something like:
+> + *
+> + * .. code-block:: C
+> + *
+> + *     struct drm_i915_gem_memory_class_instance region_lmem = {
+> + *              .memory_class = I915_MEMORY_CLASS_DEVICE,
+> + *              .memory_instance = 0,
+> + *      };
+> + *      struct drm_i915_gem_create_ext_memory_regions regions = {
+> + *              .base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
+> + *              .regions = (uintptr_t)&region_lmem,
+> + *              .num_regions = 1,
+> + *      };
+> + *      struct drm_i915_gem_create_ext create_ext = {
+> + *              .size = 16 * PAGE_SIZE,
+> + *              .extensions = (uintptr_t)&regions,
+> + *      };
+> + *
+> + *      int err = ioctl(fd, DRM_IOCTL_I915_GEM_CREATE_EXT, &create_ext);
+> + *      if (err) ...
+> + *
+> + * At which point we get the object handle in create_ext.handle, if all went
+> + * well.
+> + */
+> +struct drm_i915_gem_create_ext_memory_regions {
+> +       /** @base: Extension link. See struct i915_user_extension. */
+> +       struct i915_user_extension base;
+> +
+> +       /** @pad: MBZ */
+> +       __u32 pad;
+> +       /** @num_regions: Number of elements in the placements array. */
+> +       __u32 num_regions;
+> +       /**
+> +        * @regions: The placements array.
+> +        *
+> +        * Should be an array of drm_i915_gem_memory_class_instance.
+> +        */
+> +       __u64 regions;
+> +};
+> diff --git a/Documentation/gpu/rfc/i915_gem_lmem.rst b/Documentation/gpu/rfc/i915_gem_lmem.rst
+> new file mode 100644
+> index 000000000000..52f1db15ae94
+> --- /dev/null
+> +++ b/Documentation/gpu/rfc/i915_gem_lmem.rst
+> @@ -0,0 +1,139 @@
+> +=========================
+> +I915 DG1/LMEM RFC Section
+> +=========================
+> +
+> +Upstream plan
+> +=============
+> +For upstream the overall plan for landing all the DG1 stuff and turning it for
+> +real, with all the uAPI bits is:
+> +
+> +* Merge basic HW enabling of DG1(still without pciid)
+> +* Merge the uAPI bits behind special CONFIG_BROKEN(or so) flag
+> +        * At this point we can still make changes, but importantly this lets us
+> +          start running IGTs which can utilize local-memory in CI
+> +* Convert over to TTM, make sure it all keeps working
+> +* Add pciid for DG1 and turn on uAPI for real
+> +
+> +New object placement and region query uAPI
+> +==========================================
+> +Starting from DG1 we need to give userspace the ability to allocate buffers from
+> +device local-memory. Currently the driver supports gem_create, which can place
+> +buffers in system memory via shmem, and the usual assortment of other
+> +interfaces, like dumb buffers and userptr.
+> +
+> +To support this new capability, while also providing a uAPI which will work
+> +beyond just DG1, we propose to offer three new bits of uAPI:
+> +
+> +Query uAPI
+> +----------
+> +Existing query interface
+> +^^^^^^^^^^^^^^^^^^^^^^^^
+> +.. kernel-doc:: include/uapi/drm/i915_drm.h
+> +        :functions: drm_i915_query_item drm_i915_query
+> +
+> +DRM_I915_QUERY_MEMORY_REGIONS
+> +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> +New query ID which allows userspace to discover the list of supported memory
+> +regions(like system-memory and local-memory) for a given device. We identify
+> +each region with a class and instance pair, which should be unique. The class
+> +here would be DEVICE or SYSTEM, and the instance would be zero, on platforms
+> +like DG1.
+> +
+> +Side note: The class/instance design is borrowed from our existing engine uAPI,
+> +where we describe every physical engine in terms of its class, and the
+> +particular instance, since we can have more than one per class.
+> +
+> +In the future we also want to expose more information which can further
+> +describe the capabilities of a region.
+> +
+> +.. kernel-doc:: Documentation/gpu/rfc/i915_gem_lmem.h
+> +        :functions: drm_i915_gem_memory_class drm_i915_gem_memory_class_instance drm_i915_memory_region_info drm_i915_query_memory_regions
+> +
+> +GEM_CREATE_EXT
+> +--------------
+> +New ioctl which is basically just gem_create but now allows userspace to
+> +provide a chain of possible extensions. Note that if we don't provide any
+> +extensions then we get the exact same behaviour as gem_create.
+> +
+> +Side note: We also need to support PXP[1] in the near future, which is also
+> +applicable to integrated platforms, and adds its own gem_create_ext extension,
+> +which basically lets userspace mark a buffer as "protected".
+
+A bit off-topic, but do we really need a whole extension for that?  Or
+can we just throw a bit in flags?  I'm a big fan of landing create_ext
+anyway; I like extensibility.  I'm just questioning whether or not
+that one needs its own struct.
+
+--Jason
+
+
+> +.. kernel-doc:: Documentation/gpu/rfc/i915_gem_lmem.h
+> +        :functions: drm_i915_gem_create_ext
+> +
+> +It's raining extensions
+> +^^^^^^^^^^^^^^^^^^^^^^^
+> +As noted above, extensions can be supplied as a chain in gem_create_ext using the
+> +existing i915_user_extension. This will be useful in the future when we need to
+> +support several different extensions, and we need to apply more than one when
+> +creating the object.
+> +
+> +.. kernel-doc:: include/uapi/drm/i915_drm.h
+> +        :functions: i915_user_extension
+> +
+> +I915_GEM_CREATE_EXT_MEMORY_REGIONS
+> +----------------------------------
+> +Implemented as an extension for gem_create_ext, we would now allow userspace to
+> +optionally provide an immutable list of preferred placements at creation time,
+> +in priority order, for a given buffer object.  For the placements we expect
+> +them each to use the class/instance encoding, as per the output of the regions
+> +query. Having the list in priority order will be useful in the future when
+> +placing an object, say during eviction.
+> +
+> +.. kernel-doc:: Documentation/gpu/rfc/i915_gem_lmem.h
+> +        :functions: drm_i915_gem_create_ext_memory_regions
+> +
+> +One fair criticism here is that this seems a little over-engineered[2]. If we
+> +just consider DG1 then yes, a simple gem_create.flags or something is totally
+> +all that's needed to tell the kernel to allocate the buffer in local-memory or
+> +whatever. However looking to the future we need uAPI which can also support
+> +upcoming Xe HP multi-tile architecture in a sane way, where there can be
+> +multiple local-memory instances for a given device, and so using both class and
+> +instance in our uAPI to describe regions is desirable, although specifically
+> +for DG1 it's uninteresting, since we only have a single local-memory instance.
+> +
+> +Existing uAPI issues
+> +====================
+> +Some potential issues we still need to resolve.
+> +
+> +I915 MMAP
+> +---------
+> +In i915 there are multiple ways to MMAP GEM object, including mapping the same
+> +object using different mapping types(WC vs WB), i.e multiple active mmaps per
+> +object. TTM expects one MMAP at most for the lifetime of the object. If it
+> +turns out that we have to backpedal here, there might be some potential
+> +userspace fallout.
+> +
+> +I915 SET/GET_CACHING
+> +--------------------
+> +In i915 we have set/get_caching ioctl. TTM doesn't let us to change this, but
+> +DG1 doesn't support non-snooped pcie transactions, so we can just always
+> +allocate as WB for smem-only buffers.  If/when our hw gains support for
+> +non-snooped pcie transactions then we must fix this mode at allocation time as
+> +a new GEM extension.
+> +
+> +This is related to the mmap problem, because in general (meaning, when we're
+> +not running on intel cpus) the cpu mmap must not, ever, be inconsistent with
+> +allocation mode.
+> +
+> +Possible idea is to let the kernel picks the mmap mode for userspace from the
+> +following table:
+> +
+> +smem-only: WB. Userspace does not need to call clflush.
+> +
+> +smem+lmem: We allocate uncached memory, and give userspace a WC mapping
+> +for when the buffer is in smem, and WC when it's in lmem. GPU does snooped
+> +access, which is a bit inefficient.
+> +
+> +lmem only: always WC
+> +
+> +This means on discrete you only get a single mmap mode, all others must be
+> +rejected. That's probably going to be a new default mode or something like
+> +that.
+> +
+> +Links
+> +=====
+> +[1] https://patchwork.freedesktop.org/series/86798/
+> +
+> +[2] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/5599#note_553791
+> diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+> index a8621f7dab8b..05670442ca1b 100644
+> --- a/Documentation/gpu/rfc/index.rst
+> +++ b/Documentation/gpu/rfc/index.rst
+> @@ -15,3 +15,7 @@ host such documentation:
+>
+>  * Once the code has landed move all the documentation to the right places in
+>    the main core, helper or driver sections.
+> +
+> +.. toctree::
+> +
+> +    i915_gem_lmem.rst
+> --
+> 2.26.3
+>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
