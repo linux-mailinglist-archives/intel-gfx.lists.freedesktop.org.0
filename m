@@ -1,35 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E66D36158B
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Apr 2021 00:35:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AE8F3619DA
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Apr 2021 08:30:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAC226EABA;
-	Thu, 15 Apr 2021 22:35:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3C756EB25;
+	Fri, 16 Apr 2021 06:30:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 576 seconds by postgrey-1.36 at gabe;
- Thu, 15 Apr 2021 22:35:10 UTC
-Received: from s2.our.net (s2.our.net [69.168.53.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9787B6EABA;
- Thu, 15 Apr 2021 22:35:10 +0000 (UTC)
-Received: from [192.168.1.108] (c-24-22-33-250.hsd1.or.comcast.net
- [24.22.33.250]) by s2.our.net (Postfix) with ESMTPSA id A91975E61C;
- Thu, 15 Apr 2021 15:25:32 -0700 (PDT)
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210415155958.391624-1-matthew.auld@intel.com>
- <20210415155958.391624-3-matthew.auld@intel.com>
-From: Ian Romanick <idr@freedesktop.org>
-Message-ID: <5de63e24-51f0-71eb-b992-484da998e65f@freedesktop.org>
-Date: Thu, 15 Apr 2021 15:25:32 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+Received: from mail1.protonmail.ch (mail1.protonmail.ch [185.70.40.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88E526EB25
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Apr 2021 06:30:22 +0000 (UTC)
+Date: Fri, 16 Apr 2021 06:30:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail3; t=1618554619;
+ bh=zRwWsMDd5Kf2yQpedEA3Ka2dLpgNvYvwuOL0uYq4mxY=;
+ h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+ b=r8GpbchaiE6TeGeH2mTTPaYfY4MlNMJ7+h/tnOCSZb0KFXDbRb9F7tST7dd6vzJ6R
+ PBrYm1zDrFz6LUR1D4KIuZx9DmMFFILOthD4mv+BiZ/07wxMWU/PMD/jCXc9IfuiB7
+ xJd1R7ucECxapsOhpkt+sOnfAIizGn2qaO+0iilWjZdw4KJwMz3rwYgbE9Tdh9L8Li
+ MAK9yREp+/vzlWhyrJqoxHAs3uTnbX84QFv6JUxuleulwwZQtUOEGe0MY6DDpDMYYt
+ +Exfq9HssaFYF3r+BsesZ1iFxeCBQBVYu9w8REZSRgqVF/Iuhj0jfaU44PsIekJ4nb
+ iR3zU090AgA+A==
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <csmR47SnJtt7IWUT4j5GAXY1PUo1353cZy6TyrjqQVynHAAqHEiqWQyuFkfZLj8UWMhzdRiAGPlG31d1hTU7PatWRbjK6v3Zq3WuGT4EACE=@emersion.fr>
+In-Reply-To: <20210414090815.453744-1-daniel.vetter@ffwll.ch>
+References: <20210413094904.3736372-12-daniel.vetter@ffwll.ch>
+ <20210414090815.453744-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-In-Reply-To: <20210415155958.391624-3-matthew.auld@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [Mesa-dev] [PATCH v3 3/4] drm/i915/uapi: convert
- i915_query and friend to kernel doc
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+ mailout.protonmail.ch
+Subject: Re: [Intel-gfx] [PATCH] drm/modifiers: Enforce consistency between
+ the cap an IN_FORMATS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,141 +49,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mesa-dev@lists.freedesktop.org, Kenneth Graunke <kenneth@whitecape.org>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>
+Reply-To: Simon Ser <contact@emersion.fr>
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>, David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Maxime Ripard <maxime@cerno.tech>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, Lucas Stach <l.stach@pengutronix.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4/15/21 8:59 AM, Matthew Auld wrote:
-> Add a note about the two-step process.
-> 
-> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Jordan Justen <jordan.l.justen@intel.com>
-> Cc: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Kenneth Graunke <kenneth@whitecape.org>
-> Cc: Jason Ekstrand <jason@jlekstrand.net>
-> Cc: Dave Airlie <airlied@gmail.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: mesa-dev@lists.freedesktop.org
-> ---
->  include/uapi/drm/i915_drm.h | 57 ++++++++++++++++++++++++++++++-------
->  1 file changed, 46 insertions(+), 11 deletions(-)
-> 
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index d9c954a5a456..ef36f1a0adde 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2210,14 +2210,23 @@ struct drm_i915_perf_oa_config {
->  	__u64 flex_regs_ptr;
->  };
->  
-> +/**
-> + * struct drm_i915_query_item - An individual query for the kernel to process.
-> + *
-> + * The behaviour is determined by the @query_id. Note that exactly what
-
-Since we just had a big discussion about this on mesa-dev w.r.t. Mesa
-code and documentation... does the kernel have a policy about which
-flavor (pun intended) of English should be used?
-
-> + * @data_ptr is also depends on the specific @query_id.
-> + */
->  struct drm_i915_query_item {
-> +	/** @query_id: The id for this query */
->  	__u64 query_id;
->  #define DRM_I915_QUERY_TOPOLOGY_INFO    1
->  #define DRM_I915_QUERY_ENGINE_INFO	2
->  #define DRM_I915_QUERY_PERF_CONFIG      3
->  /* Must be kept compact -- no holes and well documented */
->  
-> -	/*
-> +	/**
-> +	 * @length:
-> +	 *
->  	 * When set to zero by userspace, this is filled with the size of the
->  	 * data to be written at the data_ptr pointer. The kernel sets this
->  	 * value to a negative value to signal an error on a particular query
-> @@ -2225,21 +2234,26 @@ struct drm_i915_query_item {
->  	 */
->  	__s32 length;
->  
-> -	/*
-> +	/**
-> +	 * @flags:
-> +	 *
->  	 * When query_id == DRM_I915_QUERY_TOPOLOGY_INFO, must be 0.
->  	 *
->  	 * When query_id == DRM_I915_QUERY_PERF_CONFIG, must be one of the
-> -	 * following :
-> -	 *         - DRM_I915_QUERY_PERF_CONFIG_LIST
-> -	 *         - DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
-> -	 *         - DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
-> +	 * following:
-> +	 *
-> +	 *	- DRM_I915_QUERY_PERF_CONFIG_LIST
-> +	 *      - DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID
-> +	 *      - DRM_I915_QUERY_PERF_CONFIG_FOR_UUID
->  	 */
->  	__u32 flags;
->  #define DRM_I915_QUERY_PERF_CONFIG_LIST          1
->  #define DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_UUID 2
->  #define DRM_I915_QUERY_PERF_CONFIG_DATA_FOR_ID   3
->  
-> -	/*
-> +	/**
-> +	 * @data_ptr:
-> +	 *
->  	 * Data will be written at the location pointed by data_ptr when the
->  	 * value of length matches the length of the data to be written by the
->  	 * kernel.
-> @@ -2247,16 +2261,37 @@ struct drm_i915_query_item {
->  	__u64 data_ptr;
->  };
->  
-> +/**
-> + * struct drm_i915_query - Supply an array of drm_i915_query_item for the kernel
-> + * to fill out.
-> + *
-> + * Note that this is generally a two step process for each drm_i915_query_item
-> + * in the array:
-> + *
-> + *	1.) Call the DRM_IOCTL_I915_QUERY, giving it our array of
-> + *	drm_i915_query_item, with drm_i915_query_item.size set to zero. The
-> + *	kernel will then fill in the size, in bytes, which tells userspace how
-> + *	memory it needs to allocate for the blob(say for an array of
-> + *	properties).
-> + *
-> + *	2.) Next we call DRM_IOCTL_I915_QUERY again, this time with the
-> + *	drm_i915_query_item.data_ptr equal to our newly allocated blob. Note
-> + *	that the i915_query_item.size should still be the same as what the
-> + *	kernel previously set. At this point the kernel can fill in the blob.
-> + *
-> + */
->  struct drm_i915_query {
-> +	/** @num_items: The number of elements in the @items_ptr array */
->  	__u32 num_items;
->  
-> -	/*
-> -	 * Unused for now. Must be cleared to zero.
-> +	/**
-> +	 * @flags: Unused for now. Must be cleared to zero.
->  	 */
->  	__u32 flags;
->  
-> -	/*
-> -	 * This points to an array of num_items drm_i915_query_item structures.
-> +	/**
-> +	 * @items_ptr: This points to an array of num_items drm_i915_query_item
-> +	 * structures.
->  	 */
->  	__u64 items_ptr;
->  };
-> 
-
+Reviewed-by: Simon Ser <contact@emersion.fr>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
