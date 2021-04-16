@@ -2,112 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C57443641A9
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Apr 2021 14:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 256133641AB
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Apr 2021 14:28:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 524C36E303;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A43836E30D;
 	Mon, 19 Apr 2021 12:28:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2080.outbound.protection.outlook.com [40.107.94.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25B676EB27;
- Fri, 16 Apr 2021 07:11:32 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2075.outbound.protection.outlook.com [40.107.223.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5647E6EB49;
+ Fri, 16 Apr 2021 09:09:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iVRzzW1se3s9oUtZL+YCXkdOWnpr0Fjg9vEopkKiSJbXTi+mYy3SLg8O6N3Uq18m9c7+sNJ7keeVWowpTzq6faxtNapl7KngB6/z1WaL1vPi+3K7F9HKprheiG7kd0dgjZYrwC3Z0O6HchopENFM8jmAXPbHqv425BCdR/Oml8skFHQKXk1PZhweQKTFd/KIScZJfio6629MEqmfusQSZxcj/w4MYQrLdJc+CQC5qtsCv2VO/5GDYUl8NBA7KQRohSNU59pHXV29zCOc8OAuM2mZLe4nhoNJDLkGEFMZ+crKSHczguXvipqRflu3kdrJ6NllNHmTdFpPruXMREFXIg==
+ b=V0wRyAY64PAXg/t5rUYzfIi/0dBGGN1t0m+A2a6bOBnqqGRg4qWFNue4+PkSExDjbO1HfiioOPalBRn6cZ/YR5b1SWrx8m+VDwukCNHQnB8h8g7SJFwQiC5obEClFkZe9j0y6MFUXHz8typ5TXVh4nJkPE+xOnLwlG8aPdbk6THge76QxbqZPlUI6bVWolhBZFju3NQ84a8AzmZsRaeySNhuHSvp3pLOX+l5HMUPcpKSF05bNxKSw+fD/lhyjwygdnGukMTqvgDBnFXXe0uudTj7LupmOGcHYjc2mVou+I+ynESUJjH9sDOnxBoIhc4wEM7yYwpd18ZfBU0rRjCH5w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qV3JhAA59pJ8l/QX7Z7I2pjbxjvklA7EZx7Czq3MuE8=;
- b=Kuh2uC+zx9v8lqxbLClABgsHUEDAopCAP6qWegPIwWP0Bv9pCphsQbfpdrSkKnJ/xPBMCi6EqrnuzP5UNUPq64zcWv1snagIbX9NeYybQcQ5V5kXvxUwCRI+zEEjt1LpQxfvNs944uqylFndGO1g6usOp0Kvea32e6W7sZe7KEuZMIK+D10sazvS9jzdjZdwZNqkgCcyGKvOD4HnrKQCZh4rJCE8ATa2wDXfSqntwyl4p7Ab+MEMS/hSk6Tk1QknYx8SahF12txD+fqXZY8KKEpac14okCeaXuBM1ufoeZ0at29Iw8Fog5LtFkNfxaztACRa4kISIy0Yo5qT+irICQ==
+ bh=OES0ImEFg731tc2L0xEM/XywpjT7zHh5PQxdSvG79NI=;
+ b=Ma2nxkHUC6I9D5EqoaFiuyxmyFGwZk/Oj6x1g6uCCOrj19xg91ORPcOv0XjjYBrZvnVXHjd2neUPCvvMsfFQucxlEmgGJStPfENtbrMOthK3wUuwS6f5Nrq+bnmv6EVOlsNd43qax/8JEjqBK3DeDB2wPMD9tPSP2x1O3DBfkH6arxgqQm7CezwM++WFsDFsnJf8gYJ6ImjEVztCWd/g+leJg/rPxBbYi3CAhJluFWHpFn9cxyzwD7eDCBNxKWRNTDz3ybTgYkLfv9hNuWnptgDriL46/vNErHnHDj/KYEGIZR3Vdl0rz+Kj0QJ1+A/5xAjexauXbxFcQ3XGCstOTw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synaptics.com; dmarc=pass action=none
- header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qV3JhAA59pJ8l/QX7Z7I2pjbxjvklA7EZx7Czq3MuE8=;
- b=UeGUj+aKJmDSK6VN/CLJdGFnqoW9CFSxgE/bnRD+LRcJtdfIyZ9Hi2s8h6r7PK0HgE8bV8NtVufJErWfzvs+6+G9JxAJqqQF2I7J90+6XDKNYsF+a0BYkJRSyiq2S2kx4s2OTSq8Ev4SRAzAxNyxTcuX042bmgyrgoKxG1WLGGY=
-Authentication-Results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none
- header.from=synaptics.com;
-Received: from BY5PR03MB5345.namprd03.prod.outlook.com (2603:10b6:a03:219::16)
- by BYAPR03MB3429.namprd03.prod.outlook.com (2603:10b6:a02:b2::29)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.16; Fri, 16 Apr
- 2021 07:11:30 +0000
-Received: from BY5PR03MB5345.namprd03.prod.outlook.com
- ([fe80::8569:341f:4bc6:5b72]) by BY5PR03MB5345.namprd03.prod.outlook.com
- ([fe80::8569:341f:4bc6:5b72%9]) with mapi id 15.20.4042.019; Fri, 16 Apr 2021
- 07:11:30 +0000
-Date: Fri, 16 Apr 2021 15:11:22 +0800
-From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Chris
- Wilson <chris@chris-wilson.co.uk>, Jon Bloomfield
- <jon.bloomfield@intel.com>, Ville =?UTF-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Message-ID: <20210416151122.593610e2@xhacker.debian>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-X-Originating-IP: [192.147.44.204]
-X-ClientProxiedBy: BYAPR06CA0028.namprd06.prod.outlook.com
- (2603:10b6:a03:d4::41) To BY5PR03MB5345.namprd03.prod.outlook.com
- (2603:10b6:a03:219::16)
+ bh=OES0ImEFg731tc2L0xEM/XywpjT7zHh5PQxdSvG79NI=;
+ b=H1/Z+oxjRwr7VGKvItMfSBFU4/kfOMkcZKKudymG2ZyqTq4TYfzjveVXW0ASVMa858MU0b7lmGqmRiSyzO9/q6in8LpvY2l9dtvwsm0W16rbFcfpXRfoI8YEITWHcdcKlvXpgHIhFMrMKwfCt8BYhcVdRDdy2E0W79hPqd0zPJc=
+Authentication-Results: linux.ie; dkim=none (message not signed)
+ header.d=none;linux.ie; dmarc=none action=none header.from=windriver.com;
+Received: from BN7PR11MB2579.namprd11.prod.outlook.com (2603:10b6:406:ab::21)
+ by BN6PR11MB1602.namprd11.prod.outlook.com (2603:10b6:405:c::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.19; Fri, 16 Apr
+ 2021 09:09:07 +0000
+Received: from BN7PR11MB2579.namprd11.prod.outlook.com
+ ([fe80::4c79:805b:e69d:948b]) by BN7PR11MB2579.namprd11.prod.outlook.com
+ ([fe80::4c79:805b:e69d:948b%6]) with mapi id 15.20.4042.018; Fri, 16 Apr 2021
+ 09:09:07 +0000
+From: Jun Miao <jun.miao@windriver.com>
+To: airlied@linux.ie,
+	daniel@ffwll.ch
+Date: Fri, 16 Apr 2021 17:08:52 +0800
+Message-Id: <20210416090852.3037719-1-jun.miao@windriver.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [60.247.85.82]
+X-ClientProxiedBy: HK2PR04CA0045.apcprd04.prod.outlook.com
+ (2603:1096:202:14::13) To BN7PR11MB2579.namprd11.prod.outlook.com
+ (2603:10b6:406:ab::21)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from xhacker.debian (192.147.44.204) by
- BYAPR06CA0028.namprd06.prod.outlook.com (2603:10b6:a03:d4::41) with Microsoft
+Received: from pek-lpggp7.wrs.com (60.247.85.82) by
+ HK2PR04CA0045.apcprd04.prod.outlook.com (2603:1096:202:14::13) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4042.16 via Frontend Transport; Fri, 16 Apr 2021 07:11:27 +0000
+ 15.20.4042.16 via Frontend Transport; Fri, 16 Apr 2021 09:09:03 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 46658c9c-9a86-4167-7b26-08d900a6db9c
-X-MS-TrafficTypeDiagnostic: BYAPR03MB3429:
-X-Microsoft-Antispam-PRVS: <BYAPR03MB34294B024B408279609EDA29ED4C9@BYAPR03MB3429.namprd03.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 4ee722f2-3158-4782-e9d7-08d900b74940
+X-MS-TrafficTypeDiagnostic: BN6PR11MB1602:
+X-Microsoft-Antispam-PRVS: <BN6PR11MB1602A5F43DD832570C592B4E8E4C9@BN6PR11MB1602.namprd11.prod.outlook.com>
 X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9mwCXVQ+cLUld1TBSkbEipjQOKYQUP8wIBrc9s609SuTqZ2SKSE9wMehBpvP+jtOdB85Z+ZJzoibHwjb8nXl+reVnM6AyryHsNZoydZ1eF8dXuYYDrWHtaYQGsE/BDgW2HX/8+lSUjr8FKAiwJPv9h7K4qgRhQ48JUR+1HCk1qf4KKdjQzlzWX3UIyFn8EAup4ZYVgv9rMnqSB9WPJ707Ayz5yOHtQw9I8jWsVN/+4p3ZCZxTWQeGRA7QE3R7V+pwCrNKn9GbKPMtdPyfHD+DI6ZmFdsaIklaDmORN0xfT7StEBihyLgzsZwVEG7UcpdIvVWsFN+AR2ifwBYlr3QJA+dZqrwz7jbSDK8yBfAtxiGs/g0n5lahUlGNdp0ve0sXM2rfumJKMCf1LK1lKs/mQgwayaSeTs3FZTZmXryYL+aYFtU+vo5O4etz7PqL3gq/c2EyBtAxcM5riqLQ9bcp8+TnIwgtGF2kpehXHHelgw4Eu82wxUzID5o0NDt1ra5YO9sPq89eK2yr5XrxF3A4Gu+kXvW2d8EDc+MpCeWJIzYKvHBTXixBLCkpTKBMyapuSlUEcZVcTsUFhg1ihc5N7TzKIK92I+Lqhe0L5jWn+rtq2k0BdUigXp59MNxagQZG4Z5ZWudmu+gXTDE/iJjudgCMoYpVoOPfYc9WKst/+8=
+X-Microsoft-Antispam-Message-Info: e1Nw1jCWwUum3TP/yhL7Rm9DjWAuEPjMEjoy5JZT2ZDOio6pEcMae7F82if/5pzllqv17bWZ6DxphJdxWi4FGRGfGFXot2GoEgqr2GzknMqbcd1xjspfDSUa+SWqGWZnjVn1l5bmRU+6MtIXy3R9T7SNfX1pIdeJBq4ZTvdJshOYark9RwzQOclce+6MpJj90Oju5hoIBiPJzT8GL6iDxXr3/uk7xuDHbsnvDxOsh8s8p/plWG5FP5Q4+qdKS820cmoKr74PvshkblGDiKkhPNsBM9t/7CzuQtFStMWEcOLj6SpT7H1fI/ZBkqciQexrmWMmSNoAnifewslCunfiCYwgWqJiul47bksoYkssgDXkEyNxFymWzvhScm1UQhuY2vTePKjMi4xqKA4VwN8J8SB93sDQuQOOEhO6IUfysp05WpatiP5TKX7UKZy11SCvbi4UH3ffIGWnbltie/0ifYFQRKcoBOf9G9tWLK36LJvpcVWJY6D5v7KwH3SBW6A5xRB1LWfXHT/pSh9cT3f8saINMDGtpbpg6N1tvbzNWpniFKXVFW0yJUqQLIxNiIh7k1s9lTZPbzeWek2KXX05bMfGoOwhNGj+doFQMFG0kTu8A5w4mHTk48pSyE11+UtOzUnM1rtfGsZlRY0mhCR9Pg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR03MB5345.namprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(136003)(39850400004)(366004)(376002)(396003)(346002)(7696005)(956004)(5660300002)(55016002)(316002)(9686003)(66556008)(4326008)(6506007)(38100700002)(52116002)(38350700002)(8936002)(26005)(2906002)(8676002)(1076003)(86362001)(66476007)(110136005)(478600001)(83380400001)(6666004)(16526019)(66946007)(7416002)(186003);
+ IPV:NLI; SFV:NSPM; H:BN7PR11MB2579.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(396003)(376002)(39850400004)(346002)(366004)(136003)(316002)(2906002)(66476007)(44832011)(6666004)(86362001)(16526019)(186003)(38100700002)(26005)(66946007)(1076003)(38350700002)(83380400001)(956004)(8936002)(6486002)(8676002)(52116002)(2616005)(66556008)(6506007)(478600001)(5660300002)(36756003)(6512007)(4326008);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?40Jl4P4CRLneBArd0PGcBFNbqAc95paw45Rp80OZuOllS5Co/4EMM1e/GgCq?=
- =?us-ascii?Q?yQ7G/5YE+z8MszNYeyJUUn8k2SELrSaDlt8vPu56reFzVbEYOqk50Sug6sd/?=
- =?us-ascii?Q?jythuAKiFWozGKERSTYRd7haiZcidUKOeTuQct7QfCBTd/TvNUTdPXGXp9pM?=
- =?us-ascii?Q?jXC6YZMXTRudbCoPwL3ILsBOctmt9PG/bq6evZ0bL4uC2e5EFD1DRRdBMqhc?=
- =?us-ascii?Q?RQj9Ny4ZON8+rhMJPk+R/EN48W7vf/XPIiiJnaGCLk8qOQy0WX+RfjjXS3Hc?=
- =?us-ascii?Q?wX4C1VKfDg4IyRgrxAjYBRj7Xcq2Uz04rqNYiHwKYj+XWzBATW4cR3c48bDs?=
- =?us-ascii?Q?3RMU03al5TbKlDluhoN0qTNkWLPEdCU3PQLUry0Sq4pknJasTtiZ8c+PS0SO?=
- =?us-ascii?Q?GMOuR1lIDkrOUKo4zAMFUsJFwFsWht9agJ1z4BwAeXlL4W2N/GElGv3ZFW/D?=
- =?us-ascii?Q?cVLopU6SFLlGWw+bGuC6ndHDn5ifnDMhb7FuCSyHySfwY7y8DV9uKk6RkKd7?=
- =?us-ascii?Q?yOE1nLsNu1pDeAUMbauW52357ttrAOXEtZ3LCMQnvs9PU6UsmBBnIrDI2IFM?=
- =?us-ascii?Q?bZwAHLuP90vW2mHyLqWqmibHVgYeNQA4ayP9DWAWAyDzrn4pMpR5lp7txTH9?=
- =?us-ascii?Q?IAzLf95qQVVrH5OCqXqm5PoI2W9SAufP1ySv6qzTE3VSGUXw8pMNHrkMYlTM?=
- =?us-ascii?Q?cyZdbBNxw93lelUOnc+n9sRNaDU1JZiFhGmqNaDFNjxwq3x+cU4wtwRhqd+w?=
- =?us-ascii?Q?rC6rXYaUYMGAbantg7QYiMn67E21FTCq5pmxj87DtjyWYyh9i6oiEtMqf46T?=
- =?us-ascii?Q?xDy1OwpGJCoHMGUwBs8m8GcCq8NIY8oF6Sp/XYwDYD38qsRF/WAUG4MDGEPP?=
- =?us-ascii?Q?ejYSBhl1JpK7/YexSagdpivrK1M0Sq37f1ME20Cok/RQilOX6RP8+bjofznT?=
- =?us-ascii?Q?lG7q4IqdbrI3/ogFUb+GOxVXGKYl9r2zfIZE1cK5arfX9zuzutOMkTUaPElx?=
- =?us-ascii?Q?WfmRJRyacXY0Juz/+sUdmlR0HTTEgtiS0fuSCi3iYJk2Q7t7a/oCvMWL+BWX?=
- =?us-ascii?Q?G1TL8Dgk2HWCJdTYOnK5bFJObrVEixb7vRW0mvAm2moHRMMwNVDsrMlxmvtW?=
- =?us-ascii?Q?q/UcE+ArxPClcN4dVvI2jfIhkHiRUEMo82EcLexlvfzHhZ3izL5p7tjPaXkj?=
- =?us-ascii?Q?PlgUQ1VL+FbCuYsJRJIm634ZTg4ERjIXfdNe6sVSR7QdwUJAe2M9Fe0fsnGv?=
- =?us-ascii?Q?DT/R+bzzlXQCLzbAcl2qbXq5nBCdxGppi+MunGA/7F2Puf8iDVtfkvhyJVpg?=
- =?us-ascii?Q?fBMlQn2dDlyXnz+DFctE4Y1T?=
-X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46658c9c-9a86-4167-7b26-08d900a6db9c
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR03MB5345.namprd03.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?Ctz8rQxIipl6qJY9VZs4hbJViYfe33WlMmbcK8bfDJuExr8btOI6VMktz+QD?=
+ =?us-ascii?Q?9EIfIl6EkyoXz5Htcofgd0bpSbNSd2wBwikoxIzlNcundXUChnLCgWY6rIPl?=
+ =?us-ascii?Q?CiJQB5WdPqf2OHCRXO08UEAUgnStBBDH2mD8SmG8IRnqqnvuLRyRgEEsT5wE?=
+ =?us-ascii?Q?pQHvGnukGMYeh+cAIN6NFWqBKkmSia3qtGSz3gKkbP990vFvPl+bskzfD4oA?=
+ =?us-ascii?Q?gMsWbuG9Lik/19keWS3W8UNn9weQ9sYubfIJiTsi78SH4XQ7TKP3XzUBWhpp?=
+ =?us-ascii?Q?u/dk9kZOmHpzG55G3ZGqY9aUv0etUN2yILVUNfhUMXiVsOPprXqS9j1IsdJF?=
+ =?us-ascii?Q?NPp/KjiRUCLjOw+lvgJzjiR/BziTSo+Kfu1+NNLz55ZdGLxBh6DIXJ3e4JBa?=
+ =?us-ascii?Q?3Vlr7xDOjeiVGkWx5Kpkmq0bwMf24D99NwBjyYuYYPg6x/0YsaLVDwWpermM?=
+ =?us-ascii?Q?UsQh+6zw/jhXoHkep+YkcbbnbHitvF2wq2y/BET0jKmIkkYfyRXL2fn7TZoI?=
+ =?us-ascii?Q?o7xyrKJz2nRFZzHuiNXDs4DMfbCtz3kBd8hZhxhh23I2JExCMt7MMs8TaMlu?=
+ =?us-ascii?Q?Beh2sFkNH95x29uzXADFM2DRJZLQ6pa6Kw1PZ3Aje81gOHxE99RFGkvGcNsM?=
+ =?us-ascii?Q?jCfNAY3pxzisvSqgvIyf+CWtcDRmxXe7ULhwMjirXo9hFRMbzFHJTveyhTAe?=
+ =?us-ascii?Q?MXFoXdsbLDrLDC4LXfYmOyne2hm9YtqorzFWtVSil95UXHO1/ijxjVRwV4F5?=
+ =?us-ascii?Q?CJ6c9Xq4UPtiv200E7REXQ7RmEl3s5f4bqYb4fwyn0JGn2PSgpR7/O2WgIXl?=
+ =?us-ascii?Q?UKT+olhAp53q8gqVCt2Eo/7yM8kgxLlSIN3Q4U0wnn4JzFxwteFDH97UdXUa?=
+ =?us-ascii?Q?R5ITkijyQ8kJZ3THHpe63x3rTVOlk/h1yJH6jJBTQVI2qav48wgXU2/GScaP?=
+ =?us-ascii?Q?DRkAE8wrwAs66HH+WpVEs9uRMdQKO+FJQaI5IXJqB+ZsV/bNE5rFwwerx5Tk?=
+ =?us-ascii?Q?4M7h5emYsFBwhQTkUYI+bN5hfygBw09eJJJ88dQ4QWvQHOY6Jx5FCjIEzzf/?=
+ =?us-ascii?Q?R4vnzNJTzSokI08gXpnOKHGB0SgE2kaeoHEZVWZDGFtUMnoZrVcdil1+Ioh6?=
+ =?us-ascii?Q?dVNpaPSgLdEWOm6Jf8kG6ftSF2jETSL3EH4NCprFPiUVUicpGyOEdi8Y7X9r?=
+ =?us-ascii?Q?W0AC5cX0DzLKybX8egF7BxDowgOSFILrgcG8y3t0vx9FE+yqM3IU69T0UIwJ?=
+ =?us-ascii?Q?Q2ZGrYydJiZEhHe9pcyZypEkMMhVIb/E3yUEx2e+XaNe3PfDVTJTueX1yT4A?=
+ =?us-ascii?Q?3PE7a/R1jjHU3jViiHd1BslN?=
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4ee722f2-3158-4782-e9d7-08d900b74940
+X-MS-Exchange-CrossTenant-AuthSource: BN7PR11MB2579.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2021 07:11:29.9787 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2021 09:09:07.0764 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 335d1fbc-2124-4173-9863-17e7051a2a0e
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HziZDd6HBzsNMo3nrz1rjkntAqnBOzmRwXY0CrW0H9Lg3U1Vnn3styGhY843I6OL/0DjTPnX1itAZYJtRj7gRA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB3429
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4jXlLS1Tnlm0+pfydkNE2Jt7uRUq50hrZidZayXCLJuOOM2jnqzWR2ho0FP8UwzvRbeyggkeKfSHQELUM3Mfcw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1602
 X-Mailman-Approved-At: Mon, 19 Apr 2021 12:28:02 +0000
-Subject: [Intel-gfx] [PATCH v3] drm/i915: Fix "mitigations" parsing if i915
- is builtin
+Subject: [Intel-gfx] [V3] drm/i915/gt: Fix a lockdep warning with interrupts
+ enabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,65 +116,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I met below error during boot with i915 builtin if pass
-"i915.mitigations=off":
-[    0.015589] Booting kernel: `off' invalid for parameter `i915.mitigations'
+Don`t simplely disable local interrupt delivery of CPU hardware irq, should race
+the region inside signal_irq_work, include intel_breadcrumbs_disarm_irq/intel_breadcrumbs_arm_irq.
 
-The reason is slab subsystem isn't ready at that time, so kstrdup()
-returns NULL. Fix this issue by using stack var instead of kstrdup().
+RT complains about might sleep inside signal_irq_work() because spin_lock will
+be invoked after disabling interrupts.
 
-Fixes: 984cadea032b ("drm/i915: Allow the sysadmin to override security mitigations")
-Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Thanks to Tvrtko Ursulin for his expert opinions and suggestions.
+
+BUG: sleeping function called from invalid context at kernel/locking/rtmutex.c:969
+  #0: ffff89c4c00ca970 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x1cf/0x6d0
+  #1: ffffa433c1f53e60 ((work_completion)(&engine->retire_work)){+.+.}-{0:0}, at: process_one_work+0x1cf 0x6d
+  #2: ffff89c4ccb0a0a8 (kernel_context){+.+.}-{0:0}, at: engine_retire+0x62/0x110 [i915]
+  #3: ffff89c4cf682300 (wakeref.mutex#3){+.+.}-{0:0}, at: __intel_wakeref_put_last+0x20/0x60 [i915]
+  #4: ffff89c4ccb08398 (&b->irq_lock){+.+.}-{0:0}, at: intel_breadcrumbs_disarm_irq+0x20/0xd0 [i915]
+ irq event stamp: 2126
+ hardirqs last  enabled at (2125): [<ffffffffbb134739>] cancel_delayed_work+0xa9/0xc0
+ hardirqs last disabled at (2126): [<ffffffffc0507fe6>] __intel_breadcrumbs_park+0x76/0x80 [i915]
+ softirqs last  enabled at (0): [<ffffffffbb1099ce>] copy_process+0x63e/0x1630
+ softirqs last disabled at (0): [<0000000000000000>] 0x0
+ CPU: 3 PID: 281 Comm: kworker/3:3 Not tainted 5.10.27-rt34-yocto-preempt-rt #1
+ Hardware name: Intel(R) Client Systems NUC7i5DNKE/NUC7i5DNB, BIOS DNKBLi5v.86A.0064.2019.0523.1933 05/23 2019
+ Workqueue: events engine_retire [i915]
+ Call Trace:
+  show_stack+0x52/0x58
+  dump_stack+0x7d/0x9f
+  ___might_sleep.cold+0xe3/0xf4
+  rt_spin_lock+0x3f/0xc0
+  ? intel_breadcrumbs_disarm_irq+0x20/0xd0 [i915]
+  intel_breadcrumbs_disarm_irq+0x20/0xd0 [i915]
+  signal_irq_work+0x241/0x660 [i915]
+  ? __this_cpu_preempt_check+0x13/0x20
+  ? lockdep_hardirqs_off+0x106/0x120
+  __intel_breadcrumbs_park+0x3f/0x80 [i915]
+  __engine_park+0xbd/0xe0 [i915]
+  ____intel_wakeref_put_last+0x22/0x60 [i915]
+  __intel_wakeref_put_last+0x50/0x60 [i915]
+  intel_context_exit_engine+0x5f/0x70 [i915]
+  i915_request_retire+0x139/0x2d0 [i915]
+  engine_retire+0xb0/0x110 [i915]
+  process_one_work+0x26d/0x6d0
+  worker_thread+0x53/0x330
+  kthread+0x1b0/0x1d0
+  ? process_one_work+0x6d0/0x6d0
+  ? __kthread_parkme+0xc0/0xc0
+  ret_from_fork+0x22/0x30
+
+Fixes: 9d5612ca165a ("drm/i915/gt: Defer enabling the breadcrumb interrupt to after submission")
+Signed-off-by: Jun Miao <jun.miao@windriver.com>
 ---
- Since v2:
-  - Use strscpy() per Ville's suggestion.
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
 
- Since v1:
-  - Ensure "str" is properly terminated. Thanks Ville for pointing this out.
-
-
- drivers/gpu/drm/i915/i915_mitigations.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_mitigations.c b/drivers/gpu/drm/i915/i915_mitigations.c
-index 84f12598d145..70944764a77e 100644
---- a/drivers/gpu/drm/i915/i915_mitigations.c
-+++ b/drivers/gpu/drm/i915/i915_mitigations.c
-@@ -29,15 +29,13 @@ bool i915_mitigate_clear_residuals(void)
- static int mitigations_set(const char *val, const struct kernel_param *kp)
+diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+index 34a645d..01eb18e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
++++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+@@ -82,13 +82,15 @@ static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+ 
+ static void intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
  {
- 	unsigned long new = ~0UL;
--	char *str, *sep, *tok;
-+	char str[64], *sep, *tok;
- 	bool first = true;
- 	int err = 0;
++	unsigned long flags;
++
+ 	if (!b->irq_engine)
+ 		return;
  
- 	BUILD_BUG_ON(ARRAY_SIZE(names) >= BITS_PER_TYPE(mitigations));
+-	spin_lock(&b->irq_lock);
++	spin_lock_irqsave(&b->irq_lock, flags);
+ 	if (!b->irq_armed)
+ 		__intel_breadcrumbs_arm_irq(b);
+-	spin_unlock(&b->irq_lock);
++	spin_unlock_irqrestore(&b->irq_lock, flags);
+ }
  
--	str = kstrdup(val, GFP_KERNEL);
--	if (!str)
--		return -ENOMEM;
-+	strscpy(str, val, sizeof(str));
+ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+@@ -103,10 +105,12 @@ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
  
- 	for (sep = str; (tok = strsep(&sep, ","));) {
- 		bool enable = true;
-@@ -86,7 +84,6 @@ static int mitigations_set(const char *val, const struct kernel_param *kp)
- 			break;
- 		}
+ static void intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+ {
+-	spin_lock(&b->irq_lock);
++	unsigned long flags;
++
++	spin_lock_irqsave(&b->irq_lock, flags);
+ 	if (b->irq_armed)
+ 		__intel_breadcrumbs_disarm_irq(b);
+-	spin_unlock(&b->irq_lock);
++	spin_unlock_irqrestore(&b->irq_lock, flags);
+ }
+ 
+ static void add_signaling_context(struct intel_breadcrumbs *b,
+@@ -200,6 +204,7 @@ static void signal_irq_work(struct irq_work *work)
+ 	const ktime_t timestamp = ktime_get();
+ 	struct llist_node *signal, *sn;
+ 	struct intel_context *ce;
++	unsigned long flags;
+ 
+ 	signal = NULL;
+ 	if (unlikely(!llist_empty(&b->signaled_requests)))
+@@ -278,11 +283,11 @@ static void signal_irq_work(struct irq_work *work)
+ 			llist_entry(signal, typeof(*rq), signal_node);
+ 		struct list_head cb_list;
+ 
+-		spin_lock(&rq->lock);
++		spin_lock_irqsave(&rq->lock, flags);
+ 		list_replace(&rq->fence.cb_list, &cb_list);
+ 		__dma_fence_signal__timestamp(&rq->fence, timestamp);
+ 		__dma_fence_signal__notify(&rq->fence, &cb_list);
+-		spin_unlock(&rq->lock);
++		spin_unlock_irqrestore(&rq->lock, flags);
+ 
+ 		i915_request_put(rq);
  	}
--	kfree(str);
- 	if (err)
- 		return err;
- 
+@@ -337,9 +342,7 @@ void __intel_breadcrumbs_park(struct intel_breadcrumbs *b)
+ 	/* Kick the work once more to drain the signalers, and disarm the irq */
+ 	irq_work_sync(&b->irq_work);
+ 	while (READ_ONCE(b->irq_armed) && !atomic_read(&b->active)) {
+-		local_irq_disable();
+ 		signal_irq_work(&b->irq_work);
+-		local_irq_enable();
+ 		cond_resched();
+ 	}
+ }
 -- 
-2.31.0
+2.7.4
 
 _______________________________________________
 Intel-gfx mailing list
