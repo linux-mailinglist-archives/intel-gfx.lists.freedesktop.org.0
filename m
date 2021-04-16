@@ -2,45 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCE4236217D
-	for <lists+intel-gfx@lfdr.de>; Fri, 16 Apr 2021 15:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 714C23621A5
+	for <lists+intel-gfx@lfdr.de>; Fri, 16 Apr 2021 16:05:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAF626E0C5;
-	Fri, 16 Apr 2021 13:53:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A51F6EB2F;
+	Fri, 16 Apr 2021 14:05:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E4F56E0C5;
- Fri, 16 Apr 2021 13:53:47 +0000 (UTC)
-IronPort-SDR: s5t8+FNr1juIil10IWsGCjaUIFFce3i3fhNngTHKZyhabl9MTN0hnaJKOo/fxmYB1YdJiHpE5p
- PkORSsMzR29g==
-X-IronPort-AV: E=McAfee;i="6200,9189,9956"; a="280360333"
-X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; d="scan'208";a="280360333"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2021 06:53:46 -0700
-IronPort-SDR: skT04xgQZfDJGwcf32LC53DFT4SzrBbkeTbPKJp7DIWUAUcA09ngZP/NDZgXa89m0U2b2EjHyf
- q2B8t+nwi0yA==
-X-IronPort-AV: E=Sophos;i="5.82,226,1613462400"; d="scan'208";a="453346243"
-Received: from pmwillia-mobl2.ger.corp.intel.com (HELO [10.252.7.203])
- ([10.252.7.203])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2021 06:53:45 -0700
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210412090526.30547-1-matthew.auld@intel.com>
- <20210412090526.30547-7-matthew.auld@intel.com>
- <4dc60bcc-ffb8-db6a-dc0d-4a3700661258@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <026a38d2-3953-9dd1-ad90-9ad781374e6b@intel.com>
-Date: Fri, 16 Apr 2021 14:53:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com
+ [IPv6:2607:f8b0:4864:20::22d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7C4B6EA7D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Apr 2021 14:05:48 +0000 (UTC)
+Received: by mail-oi1-x22d.google.com with SMTP id b3so13173787oie.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 16 Apr 2021 07:05:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=C+rlscYexZWyPJJB0luvYK5Jp5Lb4ntWaMwIlWDCxA8=;
+ b=aqEUqE065VaA1LwsczKanpqB99xvbwu5/6XFHqu2VzFcLX9nLgtXhKEDAAh4z2Zgce
+ 2NHFkJMnhfweDT1DiVO+L+AjT8k8iY3oN0Cq7tSl4EYoQgh0RfsI5Q0rZb8mVZUCpv4n
+ JeCWkypP+8h7Sq2WLNafD2IQbHUkcC+ISkbW8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=C+rlscYexZWyPJJB0luvYK5Jp5Lb4ntWaMwIlWDCxA8=;
+ b=OTOfZwKSrdNIlAAEUHuHMcuHMwC2pywaVms5RMaXaTfkXKdqqGlpCjByVEti1K2eg4
+ OXS9qmfNXFIl7ptaXR7bEkirMISDLbsdOhs6SkgRcn8lNTLRwfL1NM/wUg3Ihva9FGd5
+ /80GpczgwpnNhc5LYvL+vZX6O5n/BIAaPZxnk54bYhMIZlwge92qSOQz3pdIKcmUTTVe
+ yUAk+bgMRa6EEhiVgMKxgV/LhQO83Ls8mkuTzx6epikd41UHUzz7JvrSW73Q+gsGs/gv
+ kvywbZ0bDBadMR8jIJ2p/rN2HDQUPorAlfUOEQJUJuydHRo/0gVb/AQJpJ+hBuGADig8
+ 1i7Q==
+X-Gm-Message-State: AOAM532p6qaUsCXFzmzQDH1e4Iniv8vf8vJzFyPx4ckecYYxS4edmQoD
+ 1nn7VnN5RyyuNxD5vwVP/dbpu0Rt+GIR+j0RCZhsxg==
+X-Google-Smtp-Source: ABdhPJzsyoD8rSn82Wk4RELA4g8ccBTtnaaqGRscH6DkkkViY9/e2f1QiufuNIB2MrmlFZn/9lkjcERLEypc1ghcFXY=
+X-Received: by 2002:a05:6808:699:: with SMTP id
+ k25mr1952151oig.101.1618581946705; 
+ Fri, 16 Apr 2021 07:05:46 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <4dc60bcc-ffb8-db6a-dc0d-4a3700661258@linux.intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH 06/19] drm/i915/stolen: pass the allocation
- flags
+References: <20210416103718.460830-1-matthew.auld@intel.com>
+ <20210416103718.460830-2-matthew.auld@intel.com>
+In-Reply-To: <20210416103718.460830-2-matthew.auld@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Fri, 16 Apr 2021 16:05:35 +0200
+Message-ID: <CAKMK7uHKAiw6rVbFongjDDxa-SAJXt3+LSdOaj5Pgj4vHnqQmA@mail.gmail.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/doc: add section for driver uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,64 +59,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Kenneth Graunke <kenneth@whitecape.org>,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMTQvMDQvMjAyMSAxNjowOSwgVHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4gCj4gT24gMTIvMDQv
-MjAyMSAxMDowNSwgTWF0dGhldyBBdWxkIHdyb3RlOgo+PiBGcm9tOiBDUSBUYW5nIDxjcS50YW5n
-QGludGVsLmNvbT4KPj4KPj4gU3RvbGVuIG1lbW9yeSBpcyBhbHdheXMgYWxsb2NhdGVkIGFzIHBo
-eXNpY2FsbHkgY29udGlndW91cyBwYWdlcywgbWFyawo+PiB0aGUgb2JqZWN0IGZsYWdzIGFzIHN1
-Y2guCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IENRIFRhbmcgPGNxLnRhbmdAaW50ZWwuY29tPgo+PiBT
-aWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+Cj4+IC0t
-LQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fc3RvbGVuLmMgfCAxMCAr
-KysrKystLS0tCj4+IMKgIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDQgZGVsZXRp
-b25zKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
-ZW1fc3RvbGVuLmMgCj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xl
-bi5jCj4+IGluZGV4IGY3MTNlYWJiNzY3MS4uNDlhMmRmY2M4YmE3IDEwMDY0NAo+PiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fc3RvbGVuLmMKPj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jCj4+IEBAIC02MzMsMTQgKzYzMywx
-NSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Rfb3BzIAo+PiBpOTE1
-X2dlbV9vYmplY3Rfc3RvbGVuX29wcyA9IHsKPj4gwqAgc3RhdGljIGludCBfX2k5MTVfZ2VtX29i
-amVjdF9jcmVhdGVfc3RvbGVuKHN0cnVjdCAKPj4gaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtLAo+
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0
-IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaiwKPj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBkcm1fbW1fbm9kZSAqc3RvbGVuKQo+PiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IGRybV9tbV9ub2Rl
-ICpzdG9sZW4sCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCB1bnNpZ25lZCBpbnQgZmxhZ3MpCj4+IMKgIHsKPj4gwqDCoMKgwqDCoCBzdGF0aWMgc3RydWN0
-IGxvY2tfY2xhc3Nfa2V5IGxvY2tfY2xhc3M7Cj4+IMKgwqDCoMKgwqAgdW5zaWduZWQgaW50IGNh
-Y2hlX2xldmVsOwo+PiDCoMKgwqDCoMKgIGludCBlcnI7Cj4+IMKgwqDCoMKgwqAgZHJtX2dlbV9w
-cml2YXRlX29iamVjdF9pbml0KCZtZW0tPmk5MTUtPmRybSwgJm9iai0+YmFzZSwgCj4+IHN0b2xl
-bi0+c2l6ZSk7Cj4+IC3CoMKgwqAgaTkxNV9nZW1fb2JqZWN0X2luaXQob2JqLCAmaTkxNV9nZW1f
-b2JqZWN0X3N0b2xlbl9vcHMsIAo+PiAmbG9ja19jbGFzcywgMCk7Cj4+ICvCoMKgwqAgaTkxNV9n
-ZW1fb2JqZWN0X2luaXQob2JqLCAmaTkxNV9nZW1fb2JqZWN0X3N0b2xlbl9vcHMsIAo+PiAmbG9j
-a19jbGFzcywgZmxhZ3MpOwo+PiDCoMKgwqDCoMKgIG9iai0+c3RvbGVuID0gc3RvbGVuOwo+PiDC
-oMKgwqDCoMKgIG9iai0+cmVhZF9kb21haW5zID0gSTkxNV9HRU1fRE9NQUlOX0NQVSB8IEk5MTVf
-R0VNX0RPTUFJTl9HVFQ7Cj4+IEBAIC02ODIsNyArNjgzLDcgQEAgc3RhdGljIGludCBfaTkxNV9n
-ZW1fb2JqZWN0X3N0b2xlbl9pbml0KHN0cnVjdCAKPj4gaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVt
-LAo+PiDCoMKgwqDCoMKgIGlmIChyZXQpCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBnb3RvIGVycl9m
-cmVlOwo+PiAtwqDCoMKgIHJldCA9IF9faTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9zdG9sZW4obWVt
-LCBvYmosIHN0b2xlbik7Cj4+ICvCoMKgwqAgcmV0ID0gX19pOTE1X2dlbV9vYmplY3RfY3JlYXRl
-X3N0b2xlbihtZW0sIG9iaiwgc3RvbGVuLCBmbGFncyk7Cj4+IMKgwqDCoMKgwqAgaWYgKHJldCkK
-Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gZXJyX3JlbW92ZTsKPj4gQEAgLTg0MCw3ICs4NDEs
-OCBAQCAKPj4gaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9zdG9sZW5fZm9yX3ByZWFsbG9jYXRlZChz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAKPj4gKmk5MTUsCj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBn
-b3RvIGVycl9zdG9sZW47Cj4+IMKgwqDCoMKgwqAgfQo+PiAtwqDCoMKgIHJldCA9IF9faTkxNV9n
-ZW1fb2JqZWN0X2NyZWF0ZV9zdG9sZW4obWVtLCBvYmosIHN0b2xlbik7Cj4+ICvCoMKgwqAgcmV0
-ID0gX19pOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbihtZW0sIG9iaiwgc3RvbGVuLAo+PiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgSTkxNV9C
-T19BTExPQ19DT05USUdVT1VTKTsKPj4gwqDCoMKgwqDCoCBpZiAocmV0KQo+PiDCoMKgwqDCoMKg
-wqDCoMKgwqAgZ290byBlcnJfb2JqZWN0X2ZyZWU7Cj4+Cj4gCj4gQXJlIGFsbCBzdG9sZW4gb2Jq
-ZWN0cyBhbHdheXMgY29udGlndW91cyBvciBvbmx5IG9uZXMgYWxsb2NhdGVkIGJ5IAo+IGk5MTVf
-Z2VtX29iamVjdF9jcmVhdGVfc3RvbGVuX2Zvcl9wcmVhbGxvY2F0ZWQ/IElmIGZvcm1lciBzaG91
-bGQgCj4gX19pOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbiBqdXN0IHNldCB0aGUgZmxhZyB3
-aXRob3V0IHRoZSBuZWVkIHRvIAo+IHBhc3MgaXQgaW4/CgpZZXMsIGFsbCBzdG9sZW4gb2JqZWN0
-IGFyZSBwaHlzaWNhbGx5IGNvbnRpZ3VvdXMuIEFncmVlZCwgbW92aW5nIHRoZSAKSTkxNV9CT19B
-TExPQ19DT05USUdVT1VTIGludG8gX19pOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbigpIG1h
-a2VzIAptb3JlIHNlbnNlIGhlcmUuCgo+IAo+IFJlZ2FyZHMsCj4gCj4gVHZydGtvCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, Apr 16, 2021 at 12:37 PM Matthew Auld <matthew.auld@intel.com> wrote:
+>
+> Add section for drm/i915 uAPI and pull in i915_drm.h.
+>
+> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: mesa-dev@lists.freedesktop.org
+
+lgtm. Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+> ---
+>  Documentation/gpu/driver-uapi.rst | 8 ++++++++
+>  Documentation/gpu/index.rst       | 1 +
+>  2 files changed, 9 insertions(+)
+>  create mode 100644 Documentation/gpu/driver-uapi.rst
+>
+> diff --git a/Documentation/gpu/driver-uapi.rst b/Documentation/gpu/driver-uapi.rst
+> new file mode 100644
+> index 000000000000..4411e6919a3d
+> --- /dev/null
+> +++ b/Documentation/gpu/driver-uapi.rst
+> @@ -0,0 +1,8 @@
+> +===============
+> +DRM Driver uAPI
+> +===============
+> +
+> +drm/i915 uAPI
+> +=============
+> +
+> +.. kernel-doc:: include/uapi/drm/i915_drm.h
+> diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
+> index ec4bc72438e4..b9c1214d8f23 100644
+> --- a/Documentation/gpu/index.rst
+> +++ b/Documentation/gpu/index.rst
+> @@ -10,6 +10,7 @@ Linux GPU Driver Developer's Guide
+>     drm-kms
+>     drm-kms-helpers
+>     drm-uapi
+> +   driver-uapi
+>     drm-client
+>     drivers
+>     backlight
+> --
+> 2.26.3
+>
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
