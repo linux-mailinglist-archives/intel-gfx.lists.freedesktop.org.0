@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F745363EF4
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Apr 2021 11:40:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD88D363F12
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Apr 2021 11:45:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3011A89ED3;
-	Mon, 19 Apr 2021 09:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4517A89FD3;
+	Mon, 19 Apr 2021 09:45:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4A26089ED3;
- Mon, 19 Apr 2021 09:40:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E274989FD1;
+ Mon, 19 Apr 2021 09:45:40 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 321D1A73C9;
- Mon, 19 Apr 2021 09:40:36 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CCE03A47E9;
+ Mon, 19 Apr 2021 09:45:40 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Mon, 19 Apr 2021 09:40:36 -0000
-Message-ID: <161882523617.27828.15705059236365711397@emeril.freedesktop.org>
+Date: Mon, 19 Apr 2021 09:45:40 -0000
+Message-ID: <161882554083.27830.2649536657628474354@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210412224330.515926-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20210412224330.515926-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Fix_for_BSW_and_BXT_vt-d=2E_=28rev2=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915=3A_Fix_for_BSW_and_BXT_vt-d=2E_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,19 +53,13 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-e50df516bbfe drm/i915: Remove asynchronous vma binding
--:8: WARNING:REPEATED_WORD: Possible repeated word: 'has'
-#8: 
-but dma_fence_work has has signalling fence semantics.
-
-total: 0 errors, 1 warnings, 0 checks, 362 lines checked
-b8e652ae0e61 drm/i915: Use trylock in shrinker for ggtt on bsw vt-d and bxt.
--:16: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#16: 
-<4>[  462.585788] ffffffff826440b0 (cpu_hotplug_lock){++++}-{0:0}, at: stop_machine+0x12/0x30
-
-total: 0 errors, 1 warnings, 0 checks, 107 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:104: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
 
 
 _______________________________________________
