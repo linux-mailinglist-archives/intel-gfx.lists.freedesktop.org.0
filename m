@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C18B363F59
-	for <lists+intel-gfx@lfdr.de>; Mon, 19 Apr 2021 12:11:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DEC6363FFF
+	for <lists+intel-gfx@lfdr.de>; Mon, 19 Apr 2021 12:59:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A9746E20F;
-	Mon, 19 Apr 2021 10:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3607D6E24E;
+	Mon, 19 Apr 2021 10:58:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 34A5A6E20F;
- Mon, 19 Apr 2021 10:11:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2B5CDA3ECB;
- Mon, 19 Apr 2021 10:11:31 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2693B6E214;
+ Mon, 19 Apr 2021 10:58:53 +0000 (UTC)
+IronPort-SDR: Gng6kiWNcRswcw7+7rBEQOIg0Bvf+Be2q/RQgkmvMCNFgP97s/z2fqB1HRJxfTjcSRqzGnTXpe
+ 2GLtk2hyLHXw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9958"; a="259264060"
+X-IronPort-AV: E=Sophos;i="5.82,233,1613462400"; d="scan'208";a="259264060"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2021 03:58:53 -0700
+IronPort-SDR: 1waTQN6CBBHC0Nh20cPKWxcsNL+5LWJhNkXXDDCfsi3YXrMEvEFpsDdcNSvL/7pWt5iIN1zYah
+ uvtxX312WFVA==
+X-IronPort-AV: E=Sophos;i="5.82,233,1613462400"; d="scan'208";a="383700188"
+Received: from vpjampan-mobl2.ger.corp.intel.com (HELO
+ mwauld-desk1.ger.corp.intel.com) ([10.252.9.192])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Apr 2021 03:58:50 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 19 Apr 2021 11:57:38 +0100
+Message-Id: <20210419105741.27844-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Mon, 19 Apr 2021 10:11:31 -0000
-Message-ID: <161882709114.27828.5805710656514805857@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210412224330.515926-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20210412224330.515926-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_for_BSW_and_BXT_vt-d=2E_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH v2 1/4] drm/i915/uapi: fix kernel doc warnings
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,194 +45,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1022452740=="
+Cc: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Kenneth Graunke <kenneth@whitecape.org>, mesa-dev@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1022452740==
-Content-Type: multipart/alternative;
- boundary="===============3327152049286786009=="
+Fix the cases where it is almost already valid kernel doc, for the
+others just nerf the warnings for now.
 
---===============3327152049286786009==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Jordan Justen <jordan.l.justen@intel.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Kenneth Graunke <kenneth@whitecape.org>
+Cc: Jason Ekstrand <jason@jlekstrand.net>
+Cc: Dave Airlie <airlied@gmail.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: mesa-dev@lists.freedesktop.org
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+---
+ include/uapi/drm/i915_drm.h | 32 ++++++++++++++++----------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
-== Series Details ==
-
-Series: drm/i915: Fix for BSW and BXT vt-d. (rev2)
-URL   : https://patchwork.freedesktop.org/series/88976/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9979 -> Patchwork_19946
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_19946 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_19946, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_19946:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_ctx_create@basic-files:
-    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9979/fi-apl-guc/igt@gem_ctx_create@basic-files.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/fi-apl-guc/igt@gem_ctx_create@basic-files.html
-
-  * igt@runner@aborted:
-    - fi-bsw-nick:        NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/fi-bsw-nick/igt@runner@aborted.html
-
-  
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - fi-bsw-kefka:       [FAIL][4] ([i915#1436] / [i915#2722]) -> [FAIL][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9979/fi-bsw-kefka/igt@runner@aborted.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/fi-bsw-kefka/igt@runner@aborted.html
-
-  
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#2722]: https://gitlab.freedesktop.org/drm/intel/issues/2722
-
-
-Participating hosts (43 -> 41)
-------------------------------
-
-  Missing    (2): fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9979 -> Patchwork_19946
-
-  CI-20190529: 20190529
-  CI_DRM_9979: 3fc393180390c562554bdd7d0ac08fa4b86a4011 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6067: 14317b92a672d9a20cd04fc3b0c80e2fb12d51d5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19946: b8e652ae0e61e30dcadaa7314fe0c4748ca04653 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b8e652ae0e61 drm/i915: Use trylock in shrinker for ggtt on bsw vt-d and bxt.
-e50df516bbfe drm/i915: Remove asynchronous vma binding
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/index.html
-
---===============3327152049286786009==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix for BSW and BXT vt-d. (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88976/">https://patchwork.freedesktop.org/series/88976/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9979 -&gt; Patchwork_19946</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_19946 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_19946, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_19946:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_ctx_create@basic-files:</p>
-<ul>
-<li>fi-apl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9979/fi-apl-guc/igt@gem_ctx_create@basic-files.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/fi-apl-guc/igt@gem_ctx_create@basic-files.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/fi-bsw-nick/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9979/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2722">i915#2722</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19946/fi-bsw-kefka/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (43 -&gt; 41)</h2>
-<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9979 -&gt; Patchwork_19946</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9979: 3fc393180390c562554bdd7d0ac08fa4b86a4011 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6067: 14317b92a672d9a20cd04fc3b0c80e2fb12d51d5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19946: b8e652ae0e61e30dcadaa7314fe0c4748ca04653 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>b8e652ae0e61 drm/i915: Use trylock in shrinker for ggtt on bsw vt-d and bxt.<br />
-e50df516bbfe drm/i915: Remove asynchronous vma binding</p>
-
-</body>
-</html>
-
---===============3327152049286786009==--
-
---===============1022452740==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index ddc47bbf48b6..92da48e935d1 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -1054,12 +1054,12 @@ struct drm_i915_gem_exec_fence {
+ 	__u32 flags;
+ };
+ 
+-/**
++/*
+  * See drm_i915_gem_execbuffer_ext_timeline_fences.
+  */
+ #define DRM_I915_GEM_EXECBUFFER_EXT_TIMELINE_FENCES 0
+ 
+-/**
++/*
+  * This structure describes an array of drm_syncobj and associated points for
+  * timeline variants of drm_syncobj. It is invalid to append this structure to
+  * the execbuf if I915_EXEC_FENCE_ARRAY is set.
+@@ -1700,7 +1700,7 @@ struct drm_i915_gem_context_param {
+ 	__u64 value;
+ };
+ 
+-/**
++/*
+  * Context SSEU programming
+  *
+  * It may be necessary for either functional or performance reason to configure
+@@ -2067,7 +2067,7 @@ struct drm_i915_perf_open_param {
+ 	__u64 properties_ptr;
+ };
+ 
+-/**
++/*
+  * Enable data capture for a stream that was either opened in a disabled state
+  * via I915_PERF_FLAG_DISABLED or was later disabled via
+  * I915_PERF_IOCTL_DISABLE.
+@@ -2081,7 +2081,7 @@ struct drm_i915_perf_open_param {
+  */
+ #define I915_PERF_IOCTL_ENABLE	_IO('i', 0x0)
+ 
+-/**
++/*
+  * Disable data capture for a stream.
+  *
+  * It is an error to try and read a stream that is disabled.
+@@ -2090,7 +2090,7 @@ struct drm_i915_perf_open_param {
+  */
+ #define I915_PERF_IOCTL_DISABLE	_IO('i', 0x1)
+ 
+-/**
++/*
+  * Change metrics_set captured by a stream.
+  *
+  * If the stream is bound to a specific context, the configuration change
+@@ -2103,7 +2103,7 @@ struct drm_i915_perf_open_param {
+  */
+ #define I915_PERF_IOCTL_CONFIG	_IO('i', 0x2)
+ 
+-/**
++/*
+  * Common to all i915 perf records
+  */
+ struct drm_i915_perf_record_header {
+@@ -2151,7 +2151,7 @@ enum drm_i915_perf_record_type {
+ 	DRM_I915_PERF_RECORD_MAX /* non-ABI */
+ };
+ 
+-/**
++/*
+  * Structure to upload perf dynamic configuration into the kernel.
+  */
+ struct drm_i915_perf_oa_config {
+@@ -2292,21 +2292,21 @@ struct drm_i915_query_topology_info {
+  * Describes one engine and it's capabilities as known to the driver.
+  */
+ struct drm_i915_engine_info {
+-	/** Engine class and instance. */
++	/** @engine: Engine class and instance. */
+ 	struct i915_engine_class_instance engine;
+ 
+-	/** Reserved field. */
++	/** @rsvd0: Reserved field. */
+ 	__u32 rsvd0;
+ 
+-	/** Engine flags. */
++	/** @flags: Engine flags. */
+ 	__u64 flags;
+ 
+-	/** Capabilities of this engine. */
++	/** @capabilities: Capabilities of this engine. */
+ 	__u64 capabilities;
+ #define I915_VIDEO_CLASS_CAPABILITY_HEVC		(1 << 0)
+ #define I915_VIDEO_AND_ENHANCE_CLASS_CAPABILITY_SFC	(1 << 1)
+ 
+-	/** Reserved fields. */
++	/** @rsvd1: Reserved fields. */
+ 	__u64 rsvd1[4];
+ };
+ 
+@@ -2317,13 +2317,13 @@ struct drm_i915_engine_info {
+  * an array of struct drm_i915_engine_info structures.
+  */
+ struct drm_i915_query_engine_info {
+-	/** Number of struct drm_i915_engine_info structs following. */
++	/** @num_engines: Number of struct drm_i915_engine_info structs following. */
+ 	__u32 num_engines;
+ 
+-	/** MBZ */
++	/** @rsvd: MBZ */
+ 	__u32 rsvd[3];
+ 
+-	/** Marker for drm_i915_engine_info structures. */
++	/** @engines: Marker for drm_i915_engine_info structures. */
+ 	struct drm_i915_engine_info engines[];
+ };
+ 
+-- 
+2.26.3
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1022452740==--
