@@ -2,77 +2,112 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 873363650D2
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 05:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5124A365261
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 08:31:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 118FB89D42;
-	Tue, 20 Apr 2021 03:22:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FCAB89725;
+	Tue, 20 Apr 2021 06:31:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81B9389D42
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Apr 2021 03:22:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1618888946;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=58zPbmPvGcTifaZQ3IlLZUDJ+/WIViEwp3MjXXxQ4uU=;
- b=DQJ9Ck2Kmo35lb9MsW0N1bpWxy3UhBr0f1gYjXcnb5tjCD0BuGE8fza+m8ahTIui+1yeR1
- oEgfEdYAVcGniVc5KNtRK/sfFE/ZqPzUueLcmEqgZIcDYyLdS+IKc3VGSZi7Gnz3nfb/jU
- +G39YIf6TzZGvU1eC92/rTp80MJNDco=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-221-Y7S2OiREMECQSiwxl_nGBg-1; Mon, 19 Apr 2021 23:22:19 -0400
-X-MC-Unique: Y7S2OiREMECQSiwxl_nGBg-1
-Received: by mail-qt1-f197.google.com with SMTP id
- 7-20020ac857070000b02901ba5c36e1b2so1057956qtw.21
- for <intel-gfx@lists.freedesktop.org>; Mon, 19 Apr 2021 20:22:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
- :references:organization:user-agent:mime-version;
- bh=sF7bkmjv8/s3dA/ly3TyMINObczoeYmmB0vlYWtg7Dw=;
- b=Q+gDsIVw8PAImnZFy8RGlriuq2ofOsic+nSdZKhwU+8d6qnEfEOSedUzoPETNWvii5
- SdupJYaNO61uNwBvaq/RYgH58oxt2eP6rphUAhLin6DVT3U1rHviQRx3Wl+r06TFOFF7
- 4rEasNjkA2JGCVoY+d0vnghR3Y2lrxQNmh5lMhZr7P2dLdYWrZndbS+/EiAadW47Zb4H
- IbV14T6Dugr1s+kfc0f2rQucndPjosVJUkaxalBPYL7kaUd9ITv1ctOiFeaLz2rXQvQP
- Y470nbXZ4ScizaVdWZP7h/Gg+rX7gNk0BtPtBTC8iGI+NywK1ek+bkQDoAM1xm2Ktah9
- lKpg==
-X-Gm-Message-State: AOAM5333kOFUp0ECPdU9hF7DqHFwBDwSEpWOOdMH4D04VRYW5NuMtp+b
- XuhFSCnTE5hVCcyziiUDiyGiECy+crdng2M+Ee1j/5EK3zbrBot71q7iNJNqUzFotL8FfnxQ3dV
- e12c/vl+ZEQpILb2Uihs5LVlSR5rcoK6lnAH/VG3E0rSxW0GigxAuJ0O+o9VzOW8lL0X9AXnl+r
- QP
-X-Received: by 2002:ac8:5155:: with SMTP id h21mr158849qtn.262.1618888939141; 
- Mon, 19 Apr 2021 20:22:19 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyhdjCX2pBCdAg3ZlGXLOsQpquMcjCtF8hsaSAXqQ10Vj9dMcnfixXTsncnlY1Xz4rFAugBbg==
-X-Received: by 2002:ac8:5155:: with SMTP id h21mr158835qtn.262.1618888938881; 
- Mon, 19 Apr 2021 20:22:18 -0700 (PDT)
-Received: from Ruby.lyude.net (pool-108-49-102-102.bstnma.fios.verizon.net.
- [108.49.102.102])
- by smtp.gmail.com with ESMTPSA id 8sm11196054qkb.32.2021.04.19.20.22.18
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Apr 2021 20:22:18 -0700 (PDT)
-Message-ID: <d85c193bbf47be432fdb61d4589f1853ea9d094d.camel@redhat.com>
-From: Lyude Paul <lyude@redhat.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 19 Apr 2021 23:22:17 -0400
-In-Reply-To: <161887471746.27827.6587761246133636159@emeril.freedesktop.org>
-References: <20210419225523.184856-1-lyude@redhat.com>
- <161887471746.27827.6587761246133636159@emeril.freedesktop.org>
-Organization: Red Hat
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33)
+X-Greylist: delayed 520 seconds by postgrey-1.36 at gabe;
+ Tue, 20 Apr 2021 06:31:17 UTC
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64AE389725
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Apr 2021 06:31:17 +0000 (UTC)
+Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
+ by mailout4.samsung.com (KnoxPortal) with ESMTP id
+ 20210420062235epoutp041e7e69e59695c766461536f8dfe4f212~3fMAcusHA2769027690epoutp04_
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Apr 2021 06:22:35 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com
+ 20210420062235epoutp041e7e69e59695c766461536f8dfe4f212~3fMAcusHA2769027690epoutp04_
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1618899755;
+ bh=GZcw++8eRqRO6mbzVQ+zFrCr+EYpEAwP4L8/DA6RlYk=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+ b=Yip3TkdVqL4GPVFubMEsNf6zI/H5EhrQh1hd1T6IOggMXDAye4ncBUFjLsp41WUdp
+ PWF3tpRRnWl2VKQJXOtkCEJyCfmHPJGM40m+Z+Jni/NFm9wLYgaM4QIQrAowoGGp0K
+ Loa5h96HA7B3wjTXWlvHZLhCC+YW1+K2fQtvI/v8=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+ epcas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20210420062227epcas1p1ce550cf986772db68d19cb9b89fd5704~3fL5WJGmP0652906529epcas1p1E;
+ Tue, 20 Apr 2021 06:22:27 +0000 (GMT)
+Received: from epsmges1p4.samsung.com (unknown [182.195.40.157]) by
+ epsnrtp1.localdomain (Postfix) with ESMTP id 4FPYWN3Rvkz4x9Q8; Tue, 20 Apr
+ 2021 06:22:24 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+ epsmges1p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+ 3F.74.10258.B137E706; Tue, 20 Apr 2021 15:22:19 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+ epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
+ 20210420062213epcas1p4470b2884ef68e66eb95c72500533dd60~3fLrpwNXJ2564425644epcas1p44;
+ Tue, 20 Apr 2021 06:22:13 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+ epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+ 20210420062213epsmtrp1f2ada2d1d218497feb61a8e4b2e5039f~3fLrpAFkU0991009910epsmtrp10;
+ Tue, 20 Apr 2021 06:22:13 +0000 (GMT)
+X-AuditID: b6c32a38-42fff70000002812-15-607e731b6758
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+ epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+ 1D.73.08163.5137E706; Tue, 20 Apr 2021 15:22:13 +0900 (KST)
+Received: from [10.113.221.211] (unknown [10.113.221.211]) by
+ epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+ 20210420062213epsmtip196f57bab178b9c3931cf68131d892b3c~3fLrbtZ_k2244222442epsmtip1B;
+ Tue, 20 Apr 2021 06:22:12 +0000 (GMT)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development
+ <dri-devel@lists.freedesktop.org>
+From: Inki Dae <inki.dae@samsung.com>
+Message-ID: <df4acc12-27da-3a81-6e2b-eee197107341@samsung.com>
+Date: Tue, 20 Apr 2021 15:31:27 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=lyude@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?=3A_Use_new_DRM_printk_funcs_=28like_drm=5Fdbg=5F*=28=29=29_in_?=
- =?utf-8?q?DP_helpers_=28rev6=29?=
+In-Reply-To: <20210413094904.3736372-3-daniel.vetter@ffwll.ch>
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrIJsWRmVeSWpSXmKPExsWy7bCmrq50cV2Cwcy5phYLH95ltlh+Zh2z
+ xZWv79ksZk/YzGTx4t5FFovz5zewW5xtesNusenxNVaLGef3MVnMmPySzYHLY++3BSwei/e8
+ ZPLYtKqTzeN+93Emj81L6j36tqxi9Pi8SS6APSrbJiM1MSW1SCE1Lzk/JTMv3VbJOzjeOd7U
+ zMBQ19DSwlxJIS8xN9VWycUnQNctMwfoPCWFssScUqBQQGJxsZK+nU1RfmlJqkJGfnGJrVJq
+ QUpOgWWBXnFibnFpXrpecn6ulaGBgZEpUGFCdsanNQcZC/5wV1w9fJKpgbGPq4uRk0NCwERi
+ 6cZNzF2MXBxCAjsYJR4euMsE4XxilLjw6BYrhPOZUWJpYweQwwHW8nh1PER8F6PEgZ5WRpBR
+ QgLvGSX+P2YBsYUFAiSO/TjABmKLCMRLHJ6xmh2kgVngHpPEk1V7wYrYBFQlJq64D1bEK2An
+ cfD8bHYQmwUo/vrsZLAaUYEIiRfzl0PVCEqcnPkELM4JVP930kywOLOAuMStJ/OZIGx5ieat
+ s8H+kRBYySHxtaOfBeJRF4mpT/cyQtjCEq+Ob2GHsKUkXva3sUM0NDNKTJxxmgnC6WCUuPv4
+ OlS3scT+pZOZQP5nFtCUWL9LHyKsKLHz91xGiM18Eu++9kCDiFeio00IokRJ4tjFG1B7JSQu
+ LJnIBmF7SBxYvYRpAqPiLCS/zULyzywk/8xCWLyAkWUVo1hqQXFuemqxYYEJcnRvYgSnXS2L
+ HYxz337QO8TIxMF4iFGCg1lJhPd+bU2CEG9KYmVValF+fFFpTmrxIUZTYGhPZJYSTc4HJv68
+ knhDUyNjY2MLE0MzU0NDJXHedOfqBCGB9MSS1OzU1ILUIpg+Jg5OqQamjv2Ljixom3b0aNzl
+ C9lCQieVDH3mfLt2UbrVueNyCUf4K169PJH3sU/OucxJYr8XEr6yL6jGYO9apyb+bPdfk///
+ 8knr2bZ1mbZkqlPeJY/9cr1rUkrf3mi5tJnrbrHjo9jfDw/XWBs6HHjIsmVd60GTD1XzKjjf
+ 1Fkb9P6Z5T5lh+nOeZMNQ/j+7vP8sMjd9NaXjzscV1RF1x/aHX7UatvC2FtXp3OqqAa0teUG
+ rvi+hcMsI0CNIfyW3bPeNPVMVSPhS29rzkckV80QejQ/fk7t5r+eGfa8j4oYzjV8b7rN072p
+ wvhY4DH7pOXHp15Z7b5VSflpyHojZZ49jQt+/537o7fx34uQyYe7rj2oUmIpzkg01GIuKk4E
+ AHyb3apEBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjkeLIzCtJLcpLzFFi42LZdlhJTle0uC7B4HMbj8XCh3eZLZafWcds
+ ceXrezaL2RM2M1m8uHeRxeL8+Q3sFmeb3rBbbHp8jdVixvl9TBYzJr9kc+Dy2PttAYvH4j0v
+ mTw2repk87jffZzJY/OSeo++LasYPT5vkgtgj+KySUnNySxLLdK3S+DK+LTmIGPBH+6Kq4dP
+ MjUw9nF1MXJwSAiYSDxeHd/FyMUhJLCDUWL5/xZmiLiExJatHBCmsMThw8UQJW8ZJbbebgcq
+ 4eQQFvCTuDNzAZgtIhAv0XniNCNIEbPAIyaJw71LWCE6jjJKfO59BFbFJqAqMXHFfTYQm1fA
+ TuLg+dnsIDYLUPz12cksILaoQITEgskgzSA1ghInZz4Bi3MC1f+dNBOsl1lAXeLPvEvMELa4
+ xK0n85kgbHmJ5q2zmScwCs1C0j4LScssJC2zkLQsYGRZxSiZWlCcm55bbFhglJdarlecmFtc
+ mpeul5yfu4kRHGVaWjsY96z6oHeIkYmD8RCjBAezkgjv/dqaBCHelMTKqtSi/Pii0pzU4kOM
+ 0hwsSuK8F7pOxgsJpCeWpGanphakFsFkmTg4pRqYDnScMilX52753SmyT6snOv1xSPjbxFO7
+ T0do1UyYPPXwzCTZ1wo25sU7uadLXi3OuZNgtkg4qCm8ZrkI4/S8/7d8frcyhQkaXsq+Fq9f
+ G7vDfof8/fll57oc595wddg8nUv46+zTp7f7XLq7+1fFP+7FyhtCYvTbZR53CKxInJ0ndW3N
+ C3e9BUbdHrfERM/sWtZvfLh6YdGCK3tWJ030amPPn7HU+Kbap6Ws7eX6jcueZYet3W8sGBh6
+ 9bPqxOURAW2zjpYfmhxvtbBR+3+SpJr7da2wsDL9rOdnvf7eDX9ueynby9e66b2Z3b/Lpnca
+ EysvpXRaCn74U5et3XomM11qurU0r6TjP+6b1UZKLMUZiYZazEXFiQDvbGZyIQMAAA==
+X-CMS-MailID: 20210420062213epcas1p4470b2884ef68e66eb95c72500533dd60
+X-Msg-Generator: CA
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210413094922epcas1p47e75ce008a78971af7a923aadc0b9d3b
+References: <20210413094904.3736372-1-daniel.vetter@ffwll.ch>
+ <CGME20210413094922epcas1p47e75ce008a78971af7a923aadc0b9d3b@epcas1p4.samsung.com>
+ <20210413094904.3736372-3-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 03/12] drm/exynos: Don't set
+ allow_fb_modifiers explicitly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,301 +120,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0130379337=="
+Cc: linux-samsung-soc@vger.kernel.org, Joonyoung Shim <jy0922.shim@samsung.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0130379337==
-Content-Type: multipart/alternative; boundary="=-sxGzbRlaf8inYBKwNpPj"
-
---=-sxGzbRlaf8inYBKwNpPj
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-whoops, will definitely fix this and respin tomorrow
-
-On Mon, 2021-04-19 at 23:25 +0000, Patchwork wrote:
-> Patch Details
-> Series:drm: Use new DRM printk funcs (like drm_dbg_*()) in DP helpers
-> (rev6)URL:https://patchwork.freedesktop.org/series/87242/State:failure
-> Details:https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/index.html
-> CI Bug Log - changes from CI_DRM_9983 -> Patchwork_19953SummaryFAILURE
-> Serious unknown changes coming with Patchwork_19953 absolutely need to be
-> verified manually.
-> If you think the reported changes have nothing to do with the changes
-> introduced in Patchwork_19953, please notify your bug team to allow them
-> to document this new failure mode, which will reduce false positives in CI.
-> External URL: https://intel-gfx-ci.01.org/tree/drm-
-> tip/Patchwork_19953/index.html
-> Possible new issuesHere are the unknown changes that may have been introduced in
-> Patchwork_19953:
-> CI changesPossible regressions * boot:fi-apl-guc: PASS -> FAILfi-kbl-8809g: PASS -> FAILfi-snb-2520m: PASS -
->    > FAILfi-bsw-nick: PASS -> FAILfi-icl-u2: PASS -> FAILfi-cfl-8109u: PASS ->
->    FAILfi-cfl-8700k: PASS -> FAILfi-bxt-dsi: PASS -> FAILfi-cml-u2: PASS ->
->    FAILfi-ilk-650: PASS -> FAILfi-tgl-u2: PASS -> FAILfi-hsw-4770: PASS ->
->    FAILfi-cfl-guc: PASS -> FAILfi-kbl-soraka: PASS -> FAILfi-cml-s: PASS ->
->    FAILfi-elk-e7500: PASS -> FAILfi-glk-dsi: PASS -> FAILfi-snb-2600: PASS ->
->    FAILfi-tgl-y: PASS -> FAILfi-kbl-guc: PASS -> FAILfi-kbl-x1275: PASS ->
->    FAILfi-bdw-gvtdvm: PASS -> FAILfi-kbl-7500u: PASS -> FAILfi-bdw-5557u: PASS
->    -> FAILfi-kbl-r: PASS -> FAILfi-kbl-7567u: PASS -> FAIL
-> SuppressedThe following results come from untrusted machines, tests, or statuses.
-> They do not affect the overall result.
->  * boot:{fi-tgl-dsi}: PASS -> FAIL{fi-hsw-gt1}: PASS -> FAIL{fi-jsl-1}: PASS -
->    > FAIL{fi-ehl-1}: PASS -> FAIL{fi-rkl-11500t}: PASS -> FAIL{fi-ehl-2}: PASS
->    -> FAIL
-> Known issuesHere are the changes found in Patchwork_19953 that come from known issues:
-> CI changesIssues hit * boot:fi-skl-6600u: PASS -> FAIL (i915#3174)fi-skl-6700k2: PASS -> FAIL
->    (i915#3174)fi-skl-guc: PASS -> FAIL (i915#3174)
-> {name}: This element is suppressed. This means it is ignored when computing
-> the status of the difference (SUCCESS, WARNING, or FAILURE).
-> Participating hosts (42 -> 38)Missing (4): fi-icl-y fi-bsw-cyan fi-bsw-kefka fi-bdw-samus 
-> Build changes * Linux: CI_DRM_9983 -> Patchwork_19953
-> CI-20190529: 20190529
-> CI_DRM_9983: 03ed13adf40fd6827c888186a9f356a537237c3f @
-> git://anongit.freedesktop.org/gfx-ci/linux
-> IGT_6070: 907705f0c3f6b5ae6358a4822434dd6d7a070cff @
-> git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-> Patchwork_19953: 4d85fbc4cd3fcfecee0f4ea8d2cc5f7f3d29985c @
-> git://anongit.freedesktop.org/gfx-ci/linux
-> == Linux commits ==
-> 4d85fbc4cd3f drm/dp_mst: Convert drm_dp_mst_topology.c to
-> drm_err()/drm_dbg()
-> 2cdf118000c8 drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using
-> drm_err/drm_dbg_kms()
-> 8529dfa260fc drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_()
-> fa4bf5cbb3bb drm/print: Handle potentially NULL drm_devices in drm_dbg_
-> ce547d2b0cb9 drm/dp_mst: Pass drm_dp_mst_topology_mgr to
-> drm_dp_get_vc_payload_bw()
-> c4f143e80afd drm/dp_dual_mode: Pass drm_device to
-> drm_lspcon_(get|set)_mode()
-> 70e25b343fb6 drm/dp_dual_mode: Pass drm_device to
-> drm_dp_dual_mode_get_tmds_output()
-> 91c92d211983 drm/dp_dual_mode: Pass drm_device to
-> drm_dp_dual_mode_max_tmds_clock()
-> 8947ebf4721c drm/dp_dual_mode: Pass drm_device to
-> drm_dp_dual_mode_set_tmds_output()
-> 37dae984861b drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()
-> 33109c79827e drm/dp: Always print aux channel name in logs
-> a12a22656307 drm/dp: Pass drm_dp_aux to drm_dp_link_train_channel_eq_delay()
-> 764073b4a508 drm/dp: Pass drm_dp_aux to
-> drm_dp_link_train_clock_recovery_delay()
-> d52ff25d184a drm/dp: Clarify DP AUX registration time
-> 057f5073ee57 drm/dp: Add backpointer to drm_device in drm_dp_aux
-> b05faee9e18d drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late
-> register/early unregister
-> 0f2070c3486f drm/bridge/cdns-mhdp8546: Register DP aux channel with
-> userspace
-> 6b4b8b73edda drm/dp: Move i2c init to drm_dp_aux_init, add __must_check and
-> fini
-> 996c7d026bb9 drm/dp: Add __no_check to drm_dp_aux_register()
-> fffba1b63bf6 drm/amdgpu: Add error handling to
-> amdgpu_dm_initialize_dp_connector()
-
--- 
-Cheers,
-Lyude Paul (she/her)
-Software Engineer at Red Hat
-
---=-sxGzbRlaf8inYBKwNpPj
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html><head>
- =20
-  <title>Project List - Patchwork</title>
-  <style id=3D"css-table-select" type=3D"text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body><div>whoops, will definitely fix this and respin tomorrow</div><div><=
-br></div><div>On Mon, 2021-04-19 at 23:25 +0000, Patchwork wrote:</div><blo=
-ckquote type=3D"cite" style=3D"margin:0 0 0 .8ex; border-left:2px #729fcf s=
-olid;padding-left:1ex"><div><b>Patch Details</b></div><div><table><tbody><t=
-r><td><b>Series:</b></td><td>drm: Use new DRM printk funcs (like drm_dbg_*(=
-)) in DP helpers (rev6)</td></tr><tr><td><b>URL:</b></td><td><a href=3D"htt=
-ps://patchwork.freedesktop.org/series/87242/">https://patchwork.freedesktop=
-.org/series/87242/</a></td></tr><tr><td><b>State:</b></td><td>failure</td><=
-/tr> <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/Patchwork_19953/index.html">https://intel-gfx-ci.01.org/tree/=
-drm-tip/Patchwork_19953/index.html</a></td></tr></tbody></table> </div><h1>=
-CI Bug Log - changes from CI_DRM_9983 -&gt; Patchwork_19953</h1><h2>Summary=
-</h2><p><strong>FAILURE</strong></p><p>Serious unknown changes coming with =
-Patchwork_19953 absolutely need to be<br> verified manually.</p><p>If you t=
-hink the reported changes have nothing to do with the changes<br> introduce=
-d in Patchwork_19953, please notify your bug team to allow them<br> to docu=
-ment this new failure mode, which will reduce false positives in CI.</p><p>=
-External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/inde=
-x.html</p><h2>Possible new issues</h2><p>Here are the unknown changes that =
-may have been introduced in Patchwork_19953:</p><h3>CI changes</h3><h4>Poss=
-ible regressions</h4><ul><li><p>boot:</p><ul><li><p>fi-apl-guc: <a href=3D"=
-https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-apl-guc/boot.html">=
-PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwor=
-k_19953/fi-apl-guc/boot.html">FAIL</a></p></li><li><p>fi-kbl-8809g: <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-kbl-8809g/boot.=
-html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pa=
-tchwork_19953/fi-kbl-8809g/boot.html">FAIL</a></p></li><li><p>fi-snb-2520m:=
- <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-snb-252=
-0m/boot.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/Patchwork_19953/fi-snb-2520m/boot.html">FAIL</a></p></li><li><p>fi-bs=
-w-nick: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-=
-bsw-nick/boot.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/t=
-ree/drm-tip/Patchwork_19953/fi-bsw-nick/boot.html">FAIL</a></p></li><li><p>=
-fi-icl-u2: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/=
-fi-icl-u2/boot.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_19953/fi-icl-u2/boot.html">FAIL</a></p></li><li><p>f=
-i-cfl-8109u: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_998=
-3/fi-cfl-8109u/boot.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01=
-.org/tree/drm-tip/Patchwork_19953/fi-cfl-8109u/boot.html">FAIL</a></p></li>=
-<li><p>fi-cfl-8700k: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI=
-_DRM_9983/fi-cfl-8700k/boot.html">PASS</a> -&gt; <a href=3D"https://intel-g=
-fx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-cfl-8700k/boot.html">FAIL</a><=
-/p></li><li><p>fi-bxt-dsi: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
-tip/CI_DRM_9983/fi-bxt-dsi/boot.html">PASS</a> -&gt; <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-bxt-dsi/boot.html">FAIL</a=
-></p></li><li><p>fi-cml-u2: <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
--tip/CI_DRM_9983/fi-cml-u2/boot.html">PASS</a> -&gt; <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-cml-u2/boot.html">FAIL</a>=
-</p></li><li><p>fi-ilk-650: <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
--tip/CI_DRM_9983/fi-ilk-650/boot.html">PASS</a> -&gt; <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-ilk-650/boot.html">FAIL</=
-a></p></li><li><p>fi-tgl-u2: <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
-m-tip/CI_DRM_9983/fi-tgl-u2/boot.html">PASS</a> -&gt; <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-tgl-u2/boot.html">FAIL</a=
-></p></li><li><p>fi-hsw-4770: <a href=3D"https://intel-gfx-ci.01.org/tree/d=
-rm-tip/CI_DRM_9983/fi-hsw-4770/boot.html">PASS</a> -&gt; <a href=3D"https:/=
-/intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-hsw-4770/boot.html">FA=
-IL</a></p></li><li><p>fi-cfl-guc: <a href=3D"https://intel-gfx-ci.01.org/tr=
-ee/drm-tip/CI_DRM_9983/fi-cfl-guc/boot.html">PASS</a> -&gt; <a href=3D"http=
-s://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-cfl-guc/boot.html">=
-FAIL</a></p></li><li><p>fi-kbl-soraka: <a href=3D"https://intel-gfx-ci.01.o=
-rg/tree/drm-tip/CI_DRM_9983/fi-kbl-soraka/boot.html">PASS</a> -&gt; <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-kbl-soraka/=
-boot.html">FAIL</a></p></li><li><p>fi-cml-s: <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/CI_DRM_9983/fi-cml-s/boot.html">PASS</a> -&gt; <a hre=
-f=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-cml-s/boot=
-.html">FAIL</a></p></li><li><p>fi-elk-e7500: <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/CI_DRM_9983/fi-elk-e7500/boot.html">PASS</a> -&gt; <a=
- href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-elk-e7=
-500/boot.html">FAIL</a></p></li><li><p>fi-glk-dsi: <a href=3D"https://intel=
--gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-glk-dsi/boot.html">PASS</a> -&gt=
-; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-gl=
-k-dsi/boot.html">FAIL</a></p></li><li><p>fi-snb-2600: <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-snb-2600/boot.html">PASS</a> =
--&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/f=
-i-snb-2600/boot.html">FAIL</a></p></li><li><p>fi-tgl-y: <a href=3D"https://=
-intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-tgl-y/boot.html">PASS</a> -=
-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi=
--tgl-y/boot.html">FAIL</a></p></li><li><p>fi-kbl-guc: <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-kbl-guc/boot.html">PASS</a> -=
-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi=
--kbl-guc/boot.html">FAIL</a></p></li><li><p>fi-kbl-x1275: <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-kbl-x1275/boot.html">PASS=
-</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19=
-953/fi-kbl-x1275/boot.html">FAIL</a></p></li><li><p>fi-bdw-gvtdvm: <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-bdw-gvtdvm/boot=
-.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
-atchwork_19953/fi-bdw-gvtdvm/boot.html">FAIL</a></p></li><li><p>fi-kbl-7500=
-u: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-kbl-7=
-500u/boot.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/=
-drm-tip/Patchwork_19953/fi-kbl-7500u/boot.html">FAIL</a></p></li><li><p>fi-=
-bdw-5557u: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/=
-fi-bdw-5557u/boot.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.o=
-rg/tree/drm-tip/Patchwork_19953/fi-bdw-5557u/boot.html">FAIL</a></p></li><l=
-i><p>fi-kbl-r: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9=
-983/fi-kbl-r/boot.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.o=
-rg/tree/drm-tip/Patchwork_19953/fi-kbl-r/boot.html">FAIL</a></p></li><li><p=
->fi-kbl-7567u: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9=
-983/fi-kbl-7567u/boot.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.=
-01.org/tree/drm-tip/Patchwork_19953/fi-kbl-7567u/boot.html">FAIL</a></p></l=
-i></ul></li></ul><h4>Suppressed</h4><p>The following results come from untr=
-usted machines, tests, or statuses.<br> They do not affect the overall resu=
-lt.</p><ul><li><p>boot:</p><ul><li><p>{fi-tgl-dsi}: <a href=3D"https://inte=
-l-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-tgl-dsi/boot.html">PASS</a> -&g=
-t; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-t=
-gl-dsi/boot.html">FAIL</a></p></li><li><p>{fi-hsw-gt1}: <a href=3D"https://=
-intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-hsw-gt1/boot.html">PASS</a>=
- -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/=
-fi-hsw-gt1/boot.html">FAIL</a></p></li><li><p>{fi-jsl-1}: <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-jsl-1/boot.html">PASS</a>=
- -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/=
-fi-jsl-1/boot.html">FAIL</a></p></li><li><p>{fi-ehl-1}: <a href=3D"https://=
-intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-ehl-1/boot.html">PASS</a> -=
-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi=
--ehl-1/boot.html">FAIL</a></p></li><li><p>{fi-rkl-11500t}: <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-rkl-11500t/boot.html">PA=
-SS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
-19953/fi-rkl-11500t/boot.html">FAIL</a></p></li><li><p>{fi-ehl-2}: <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-ehl-2/boot.html=
-">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
-ork_19953/fi-ehl-2/boot.html">FAIL</a></p></li></ul></li></ul><h2>Known iss=
-ues</h2><p>Here are the changes found in Patchwork_19953 that come from kno=
-wn issues:</p><h3>CI changes</h3><h4>Issues hit</h4><ul><li><p>boot:</p><ul=
-><li><p>fi-skl-6600u: <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/C=
-I_DRM_9983/fi-skl-6600u/boot.html">PASS</a> -&gt; <a href=3D"https://intel-=
-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-skl-6600u/boot.html">FAIL</a>=
- (<a href=3D"https://gitlab.freedesktop.org/drm/intel/issues/3174">i915#317=
-4</a>)</p></li><li><p>fi-skl-6700k2: <a href=3D"https://intel-gfx-ci.01.org=
-/tree/drm-tip/CI_DRM_9983/fi-skl-6700k2/boot.html">PASS</a> -&gt; <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-skl-6700k2/=
-boot.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/intel/is=
-sues/3174">i915#3174</a>)</p></li><li><p>fi-skl-guc: <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/CI_DRM_9983/fi-skl-guc/boot.html">PASS</a> -&=
-gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19953/fi-=
-skl-guc/boot.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/=
-intel/issues/3174">i915#3174</a>)</p></li></ul></li></ul><p>{name}: This el=
-ement is suppressed. This means it is ignored when computing<br> the status=
- of the difference (SUCCESS, WARNING, or FAILURE).</p><h2>Participating hos=
-ts (42 -&gt; 38)</h2><p>Missing (4): fi-icl-y fi-bsw-cyan fi-bsw-kefka fi-b=
-dw-samus </p><h2>Build changes</h2><ul><li>Linux: CI_DRM_9983 -&gt; Patchwo=
-rk_19953</li></ul><p>CI-20190529: 20190529<br> CI_DRM_9983: 03ed13adf40fd68=
-27c888186a9f356a537237c3f @ git://anongit.freedesktop.org/gfx-ci/linux<br> =
-IGT_6070: 907705f0c3f6b5ae6358a4822434dd6d7a070cff @ git://anongit.freedesk=
-top.org/xorg/app/intel-gpu-tools<br> Patchwork_19953: 4d85fbc4cd3fcfecee0f4=
-ea8d2cc5f7f3d29985c @ git://anongit.freedesktop.org/gfx-ci/linux</p><p>=3D=
-=3D Linux commits =3D=3D</p><p>4d85fbc4cd3f drm/dp_mst: Convert drm_dp_mst_=
-topology.c to drm_err()/drm_dbg<em>()<br>2cdf118000c8 drm/dp_dual_mode: Con=
-vert drm_dp_dual_mode_helper.c to using drm_err/drm_dbg_kms()<br>8529dfa260=
-fc drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_</em>()<br>fa4b=
-f5cbb3bb drm/print: Handle potentially NULL drm_devices in drm_dbg_<em><br>=
-ce547d2b0cb9 drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payl=
-oad_bw()<br>c4f143e80afd drm/dp_dual_mode: Pass drm_device to drm_lspcon_(g=
-et|set)_mode()<br>70e25b343fb6 drm/dp_dual_mode: Pass drm_device to drm_dp_=
-dual_mode_get_tmds_output()<br>91c92d211983 drm/dp_dual_mode: Pass drm_devi=
-ce to drm_dp_dual_mode_max_tmds_clock()<br>8947ebf4721c drm/dp_dual_mode: P=
-ass drm_device to drm_dp_dual_mode_set_tmds_output()<br>37dae984861b drm/dp=
-_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()<br>33109c79827e dr=
-m/dp: Always print aux channel name in logs<br>a12a22656307 drm/dp: Pass dr=
-m_dp_aux to drm_dp</em>_link_train_channel_eq_delay()<br>764073b4a508 drm/d=
-p: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()<br>d52ff25d1=
-84a drm/dp: Clarify DP AUX registration time<br>057f5073ee57 drm/dp: Add ba=
-ckpointer to drm_device in drm_dp_aux<br>b05faee9e18d drm/nouveau/kms/nv50-=
-: Move AUX adapter reg to connector late register/early unregister<br>0f207=
-0c3486f drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace<br=
->6b4b8b73edda drm/dp: Move i2c init to drm_dp_aux_init, add __must_check an=
-d fini<br>996c7d026bb9 drm/dp: Add __no_check to drm_dp_aux_register()<br>f=
-ffba1b63bf6 drm/amdgpu: Add error handling to amdgpu_dm_initialize_dp_conne=
-ctor()</p></blockquote><div><br></div><div><span><pre>-- <br></pre><div dat=
-a-evo-paragraph=3D"" class=3D"" style=3D"width: 78ch;" data-evo-signature-p=
-lain-text-mode=3D"">Cheers,</div><div data-evo-paragraph=3D"" class=3D"" st=
-yle=3D"width: 78ch;"><span class=3D"Apple-tab-span" style=3D"white-space:pr=
-e">=09</span>Lyude Paul (she/her)</div><div data-evo-paragraph=3D"" class=
-=3D"" style=3D"width: 78ch;"><span class=3D"Apple-tab-span" style=3D"white-=
-space:pre">=09</span>Software Engineer at Red Hat</div></span></div></body>=
-</html>
-
---=-sxGzbRlaf8inYBKwNpPj--
-
-
---===============0130379337==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0130379337==--
-
+CgoyMS4gNC4gMTMuIOyYpO2bhCA2OjQ47JeQIERhbmllbCBWZXR0ZXIg7J20KOqwgCkg7JO0IOq4
+gDoKPiBTaW5jZQo+IAo+IGNvbW1pdCA4OTA4ODBkZGZkYmUyNTYwODMxNzA4NjZlNDljODc2MThi
+NzA2YWM3Cj4gQXV0aG9yOiBQYXVsIEtvY2lhbGtvd3NraSA8cGF1bC5rb2NpYWxrb3dza2lAYm9v
+dGxpbi5jb20+Cj4gRGF0ZTogICBGcmkgSmFuIDQgMDk6NTY6MTAgMjAxOSArMDEwMAo+IAo+ICAg
+ICBkcm06IEF1dG8tc2V0IGFsbG93X2ZiX21vZGlmaWVycyB3aGVuIGdpdmVuIG1vZGlmaWVycyBh
+dCBwbGFuZSBpbml0Cj4gCj4gdGhpcyBpcyBkb25lIGF1dG9tYXRpY2FsbHkgYXMgcGFydCBvZiBw
+bGFuZSBpbml0LCBpZiBkcml2ZXJzIHNldCB0aGUKPiBtb2RpZmllciBsaXN0IGNvcnJlY3RseS4g
+V2hpY2ggaXMgdGhlIGNhc2UgaGVyZS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVy
+IDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KCkFja2VkLWJ5OiBJbmtpIERhZSA8aW5raS5kYWVA
+c2Ftc3VuZy5jb20+CgpUaGFua3MsCklua2kgRGFlCgo+IENjOiBJbmtpIERhZSA8aW5raS5kYWVA
+c2Ftc3VuZy5jb20+Cj4gQ2M6IEpvb255b3VuZyBTaGltIDxqeTA5MjIuc2hpbUBzYW1zdW5nLmNv
+bT4KPiBDYzogU2V1bmctV29vIEtpbSA8c3cwMzEyLmtpbUBzYW1zdW5nLmNvbT4KPiBDYzogS3l1
+bmdtaW4gUGFyayA8a3l1bmdtaW4ucGFya0BzYW1zdW5nLmNvbT4KPiBDYzogS3J6eXN6dG9mIEtv
+emxvd3NraSA8a3J6a0BrZXJuZWwub3JnPgo+IENjOiBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmlu
+ZnJhZGVhZC5vcmcKPiBDYzogbGludXgtc2Ftc3VuZy1zb2NAdmdlci5rZXJuZWwub3JnCj4gLS0t
+Cj4gIGRyaXZlcnMvZ3B1L2RybS9leHlub3MvZXh5bm9zX2RybV9mYi5jIHwgMiAtLQo+ICAxIGZp
+bGUgY2hhbmdlZCwgMiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2V4eW5vcy9leHlub3NfZHJtX2ZiLmMgYi9kcml2ZXJzL2dwdS9kcm0vZXh5bm9zL2V4eW5v
+c19kcm1fZmIuYwo+IGluZGV4IDY0MzcwYjYzNGNjYS4uNzlmYTM2NDkxODVjIDEwMDY0NAo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9leHlub3MvZXh5bm9zX2RybV9mYi5jCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2V4eW5vcy9leHlub3NfZHJtX2ZiLmMKPiBAQCAtMTc3LDcgKzE3Nyw1IEBAIHZv
+aWQgZXh5bm9zX2RybV9tb2RlX2NvbmZpZ19pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4g
+IAlkZXYtPm1vZGVfY29uZmlnLmZ1bmNzID0gJmV4eW5vc19kcm1fbW9kZV9jb25maWdfZnVuY3M7
+Cj4gIAlkZXYtPm1vZGVfY29uZmlnLmhlbHBlcl9wcml2YXRlID0gJmV4eW5vc19kcm1fbW9kZV9j
+b25maWdfaGVscGVyczsKPiAgCj4gLQlkZXYtPm1vZGVfY29uZmlnLmFsbG93X2ZiX21vZGlmaWVy
+cyA9IHRydWU7Cj4gLQo+ICAJZGV2LT5tb2RlX2NvbmZpZy5ub3JtYWxpemVfenBvcyA9IHRydWU7
+Cj4gIH0KPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
