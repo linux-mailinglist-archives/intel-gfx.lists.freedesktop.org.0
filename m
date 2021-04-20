@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F061365A6B
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 15:45:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DD5365A92
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 15:50:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE93F6E505;
-	Tue, 20 Apr 2021 13:45:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEB3F6E82A;
+	Tue, 20 Apr 2021 13:50:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1E4B66E505;
- Tue, 20 Apr 2021 13:45:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0B306A8832;
- Tue, 20 Apr 2021 13:45:33 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Tue, 20 Apr 2021 13:45:33 -0000
-Message-ID: <161892633304.28021.7955419987817290538@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 726926E82A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Apr 2021 13:50:06 +0000 (UTC)
+IronPort-SDR: oGeU+Yq2N/x2uGvfI8RuiIxi4rb0NA1on83zAafMgOk2Z2eyrSWL/X8TbI8aLHlR4YewHJvsrN
+ z1Rhn5O1QKkA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="182639251"
+X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="182639251"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2021 06:49:57 -0700
+IronPort-SDR: 3wGu17utNBZu44E4SWXWv7Wsjpur/jhtzOCGUio8ktZCBuiFrEmqxWjtctAUSThxfnIyK/exdr
+ hjsHtRApeMRQ==
+X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="452493654"
+Received: from jyick-mobl.amr.corp.intel.com (HELO intel.com) ([10.212.57.228])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2021 06:49:56 -0700
+Date: Tue, 20 Apr 2021 09:49:55 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YH7cAx8cE4nszX7+@intel.com>
 References: <20210420130853.10573-1-jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
 In-Reply-To: <20210420130853.10573-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Rename_pm=5F_prefixed_functions_names?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Rename pm_ prefixed
+ functions names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,183 +47,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============2001889710=="
+Cc: intel-gfx@lists.freedesktop.org, Hsin-Yi Wang <hsinyi@chromium.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2001889710==
-Content-Type: multipart/alternative;
- boundary="===============8215119480695161706=="
+On Tue, Apr 20, 2021 at 04:08:53PM +0300, Jani Nikula wrote:
+> From: Hsin-Yi Wang <hsinyi@chromium.org>
+> 
+> pm_resume and pm_suspend might be conflict with the ones defined in
+> include/linux/suspend.h. Rename all pm_* to igt_pm_* in selftests since
+> they are only used here.
+> 
+> v2 by Jani:
+> - Use igt_ prefix instead of i915_ to avoid colliding with existing
+>   i915_pm_* functions
 
---===============8215119480695161706==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+what about i915_st_pm?!
 
-== Series Details ==
-
-Series: drm/i915/selftests: Rename pm_ prefixed functions names
-URL   : https://patchwork.freedesktop.org/series/89261/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9985 -> Patchwork_19955
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19955 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +23 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][3] ([i915#1888]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9985/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): fi-icl-y fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_9985 -> Patchwork_19955
-
-  CI-20190529: 20190529
-  CI_DRM_9985: cc92ce47fdeaf67b9a47c4a291b501d30ae5a79e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6071: d293ad78a035dcf681345ca15e0256e0c3b1e7bb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19955: 363ea2dc92e8511e5b75c03b5aa721f630eb7e98 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-363ea2dc92e8 drm/i915/selftests: Rename pm_ prefixed functions names
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/index.html
-
---===============8215119480695161706==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: Rename pm_ prefixed functions names</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89261/">https://patchwork.freedesktop.org/series/89261/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9985 -&gt; Patchwork_19955</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19955 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +23 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s3:<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9985/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19955/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): fi-icl-y fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9985 -&gt; Patchwork_19955</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9985: cc92ce47fdeaf67b9a47c4a291b501d30ae5a79e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6071: d293ad78a035dcf681345ca15e0256e0c3b1e7bb @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19955: 363ea2dc92e8511e5b75c03b5aa721f630eb7e98 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>363ea2dc92e8 drm/i915/selftests: Rename pm_ prefixed functions names</p>
-
-</body>
-</html>
-
---===============8215119480695161706==--
-
---===============2001889710==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> - Rename all pm_ prefixed functions in the file
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/selftests/i915_gem.c | 20 ++++++++++----------
+>  1 file changed, 10 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
+> index dc394fb7ccfa..152d9ab135b1 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_gem.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
+> @@ -87,14 +87,14 @@ static void simulate_hibernate(struct drm_i915_private *i915)
+>  	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+>  }
+>  
+> -static int pm_prepare(struct drm_i915_private *i915)
+> +static int igt_pm_prepare(struct drm_i915_private *i915)
+>  {
+>  	i915_gem_suspend(i915);
+>  
+>  	return 0;
+>  }
+>  
+> -static void pm_suspend(struct drm_i915_private *i915)
+> +static void igt_pm_suspend(struct drm_i915_private *i915)
+>  {
+>  	intel_wakeref_t wakeref;
+>  
+> @@ -104,7 +104,7 @@ static void pm_suspend(struct drm_i915_private *i915)
+>  	}
+>  }
+>  
+> -static void pm_hibernate(struct drm_i915_private *i915)
+> +static void igt_pm_hibernate(struct drm_i915_private *i915)
+>  {
+>  	intel_wakeref_t wakeref;
+>  
+> @@ -116,7 +116,7 @@ static void pm_hibernate(struct drm_i915_private *i915)
+>  	}
+>  }
+>  
+> -static void pm_resume(struct drm_i915_private *i915)
+> +static void igt_pm_resume(struct drm_i915_private *i915)
+>  {
+>  	intel_wakeref_t wakeref;
+>  
+> @@ -148,16 +148,16 @@ static int igt_gem_suspend(void *arg)
+>  	if (err)
+>  		goto out;
+>  
+> -	err = pm_prepare(i915);
+> +	err = igt_pm_prepare(i915);
+>  	if (err)
+>  		goto out;
+>  
+> -	pm_suspend(i915);
+> +	igt_pm_suspend(i915);
+>  
+>  	/* Here be dragons! Note that with S3RST any S3 may become S4! */
+>  	simulate_hibernate(i915);
+>  
+> -	pm_resume(i915);
+> +	igt_pm_resume(i915);
+>  
+>  	err = switch_to_context(ctx);
+>  out:
+> @@ -183,16 +183,16 @@ static int igt_gem_hibernate(void *arg)
+>  	if (err)
+>  		goto out;
+>  
+> -	err = pm_prepare(i915);
+> +	err = igt_pm_prepare(i915);
+>  	if (err)
+>  		goto out;
+>  
+> -	pm_hibernate(i915);
+> +	igt_pm_hibernate(i915);
+>  
+>  	/* Here be dragons! */
+>  	simulate_hibernate(i915);
+>  
+> -	pm_resume(i915);
+> +	igt_pm_resume(i915);
+>  
+>  	err = switch_to_context(ctx);
+>  out:
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2001889710==--
