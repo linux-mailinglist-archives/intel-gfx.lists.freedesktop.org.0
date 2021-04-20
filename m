@@ -2,52 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77DB3365A34
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 15:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21997365A43
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 15:37:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C109E6E826;
-	Tue, 20 Apr 2021 13:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BF266E827;
+	Tue, 20 Apr 2021 13:37:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com
- [IPv6:2607:f8b0:4864:20::135])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 202AF6E826
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Apr 2021 13:33:53 +0000 (UTC)
-Received: by mail-il1-x135.google.com with SMTP id l9so3596521ilh.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 20 Apr 2021 06:33:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Xgfc7mO4E1wXWUmekqC8sEt5bIbUy15Zn+YoHQva8NI=;
- b=PYyvqtFzdzRakpUOqbunR4I7/Lj/8HDyE7lqd9tAm0PNx6Uh1yOIHCDmuaqBR1ViP4
- mmStHq4YHDIb9iNLpswctc4T/0gjz0QMypKb9sh/woNGTQHvzByI8qY89af1f2aYk6+S
- wieFezmrOmmKh35TaWQ/tU2N5mVDzf8HRzVYk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Xgfc7mO4E1wXWUmekqC8sEt5bIbUy15Zn+YoHQva8NI=;
- b=KidSEKPtBmXpUNqnyUDHF46wRgBj4ebXw9rMexj3zG4qISFv+EPwz26Ymoxvr7vUsw
- LJ0BWPJzdsau6Oqdarj8oK6vg8rZlCW6hBu72I48Jhl/AYGFVRXfR7HgVyH9int1l1zl
- yGeNyqSQHEk6nFEm8cIWHuCtieChP76iH+bL3AS2K5zWLap9DrLIzTSckWOPH2Ki1mxV
- xvQiCFg0Yw3s7YJtko79uezaobK4NVSypnTl/X3QbW9HAdAehXIjN3iWIdl28EyyvyQE
- ZWyAs7zadTaBIqAEpaAw1P3fYNriCPrNEEGCvybWIg389/zKIc809tTrMAMUJfBXkbUH
- Ap8A==
-X-Gm-Message-State: AOAM533XIw092/g0aLE4KEb3GkeAgUEqPms/ylZQhow52jApZQoUirx5
- UCcvOMoDpSyu008Wy32EboWd0dy4mMW/u/ZdPAfpwQ==
-X-Google-Smtp-Source: ABdhPJy6RgMFJUk30o3Bp+6VqEWzChzCOkzvaHDVug4JPECZShpDcemglkoDMMwZ/VXKrU9wV09fLSo20xOiZ0XVnHs=
-X-Received: by 2002:a92:d684:: with SMTP id p4mr22468413iln.150.1618925632435; 
- Tue, 20 Apr 2021 06:33:52 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0B216E827
+ for <intel-gfx@lists.freedesktop.org>; Tue, 20 Apr 2021 13:36:59 +0000 (UTC)
+IronPort-SDR: WNB3wisdP5LZItJWBCD+suHkU8uM+D0VobgaNuX/OMdXLeHe2n+VLoVXqweR6im8kY2mQOXaev
+ pLCI6iidxS6Q==
+X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="193383183"
+X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="193383183"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2021 06:36:59 -0700
+IronPort-SDR: 4EPiy5HSj8YmsRWxTdDQsasVdpMz4Dpjnkt5L+Kr/RTBq3yZH4qC0gVax+SHyu6QYJA5scZsuD
+ +YnJ95wa57OQ==
+X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="602478874"
+Received: from jyick-mobl.amr.corp.intel.com (HELO intel.com) ([10.212.57.228])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2021 06:36:58 -0700
+Date: Tue, 20 Apr 2021 09:36:56 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Bhanuprakash Modem <bhanuprakash.modem@intel.com>,
+	uma.shankar@intel.com
+Message-ID: <YH7Y+JvvU1xTL41B@intel.com>
+References: <20210419191834.7574-1-bhanuprakash.modem@intel.com>
 MIME-Version: 1.0
-References: <20210414172916.2689361-1-hsinyi@chromium.org>
- <20210414172916.2689361-5-hsinyi@chromium.org>
- <CAMpxmJUGxUPYC9NEnJDHYq7Nu=akP5GTpU0ts9htf1vELhK15Q@mail.gmail.com>
-In-Reply-To: <CAMpxmJUGxUPYC9NEnJDHYq7Nu=akP5GTpU0ts9htf1vELhK15Q@mail.gmail.com>
-From: Hsin-Yi Wang <hsinyi@chromium.org>
-Date: Tue, 20 Apr 2021 21:33:25 +0800
-Message-ID: <CAJMQK-huKTYepZ+xCZDG01RBGB5Tu4ic=Hs03=remLii0WBTaQ@mail.gmail.com>
-To: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: Re: [Intel-gfx] [PATCH v19 4/6] misc: eeprom: at24: check suspend
- status before disable regulator
+Content-Disposition: inline
+In-Reply-To: <20210419191834.7574-1-bhanuprakash.modem@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix state mismatch in drm
+ infoframe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,76 +48,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: arm-soc <linux-arm-kernel@lists.infradead.org>,
- linux-devicetree <devicetree@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Mark Brown <broonie@kernel.org>, LKML <linux-kernel@vger.kernel.org>,
- Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- "moderated list:ARM/Mediatek SoC..." <linux-mediatek@lists.infradead.org>,
- linux-i2c <linux-i2c@vger.kernel.org>, Bibby Hsieh <bibby.hsieh@mediatek.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, intel-gfx@lists.freedesktop.org,
- Qii Wang <qii.wang@mediatek.com>, Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 16, 2021 at 10:09 PM Bartosz Golaszewski
-<bgolaszewski@baylibre.com> wrote:
->
-> On Wed, Apr 14, 2021 at 7:29 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> >
-> > cd5676db0574 ("misc: eeprom: at24: support pm_runtime control") disables
-> > regulator in runtime suspend. If runtime suspend is called before
-> > regulator disable, it will results in regulator unbalanced disabling.
-> >
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
->
-> Please add the Fixes tag.
->
+On Tue, Apr 20, 2021 at 12:48:34AM +0530, Bhanuprakash Modem wrote:
+> While reading the SDP infoframe, we are getting filtered with
+> the encoder type INTEL_OUTPUT_DDI which causes the infoframe
+> mismatch. This patch will extend the support to read the SDP
+> infoframes for eDP.
+> 
+> [1025.606556] i915 0000:00:02.0: [drm] *ERROR* mismatch in drm infoframe
+> [1025.607865] i915 0000:00:02.0: [drm] *ERROR* expected:
+> [1025.607879] i915 0000:00:02.0: HDMI infoframe: Dynamic Range and Mastering, version 1, length 26
+> [1025.607889] i915 0000:00:02.0: length: 26
+> [1025.607898] i915 0000:00:02.0: metadata type: 0
+> [1025.608292] i915 0000:00:02.0: eotf: 2
+> [1025.608302] i915 0000:00:02.0: x[0]: 35400
+> [1025.608312] i915 0000:00:02.0: y[0]: 14599
+> [1025.609115] i915 0000:00:02.0: x[1]: 8500
+> [1025.609947] i915 0000:00:02.0: y[1]: 39850
+> [1025.609959] i915 0000:00:02.0: x[2]: 6550
+> [1025.609970] i915 0000:00:02.0: y[2]: 2300
+> [1025.609980] i915 0000:00:02.0: white point x: 15634
+> [1025.609989] i915 0000:00:02.0: white point y: 16450
+> [1025.610381] i915 0000:00:02.0: max_display_mastering_luminance: 1000
+> [1025.610392] i915 0000:00:02.0: min_display_mastering_luminance: 500
+> [1025.610401] i915 0000:00:02.0: max_cll: 500
+> [1025.610816] i915 0000:00:02.0: max_fall: 1000
+> [1025.612457] i915 0000:00:02.0: [drm] *ERROR* found:
+> [1025.614354] ------------[ cut here ]------------
+> [1025.616244] pipe state doesn't match!
+> [1025.617640] WARNING: CPU: 6 PID: 2114 at drivers/gpu/drm/i915/display/intel_display.c:9332 intel_atomic_commit_tail+0x14d4/0x17c0 [i915]
+> 
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Bhanuprakash Modem <bhanuprakash.modem@intel.com>
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
-Hi,
+I'm sorry, but I haven't seen this review anywhere. What am I missing?
+Where did this happen?
 
-I resend the patch with the fix tag separately since other patches in
-this series are not changed.
+Whenever sending a patch for the first time, even if it was internally reviewed,
+please use only "Cc:" and ask the internal reviewer to re-check and send the
+response directly.
 
-https://patchwork.ozlabs.org/project/linux-i2c/patch/20210420133050.377209-1-hsinyi@chromium.org/
-
-Thanks
-
-> > ---
-> >  drivers/misc/eeprom/at24.c | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-> > index 926408b41270..7a6f01ace78a 100644
-> > --- a/drivers/misc/eeprom/at24.c
-> > +++ b/drivers/misc/eeprom/at24.c
-> > @@ -763,7 +763,8 @@ static int at24_probe(struct i2c_client *client)
-> >         at24->nvmem = devm_nvmem_register(dev, &nvmem_config);
-> >         if (IS_ERR(at24->nvmem)) {
-> >                 pm_runtime_disable(dev);
-> > -               regulator_disable(at24->vcc_reg);
-> > +               if (!pm_runtime_status_suspended(dev))
-> > +                       regulator_disable(at24->vcc_reg);
-> >                 return PTR_ERR(at24->nvmem);
-> >         }
-> >
-> > @@ -774,7 +775,8 @@ static int at24_probe(struct i2c_client *client)
-> >         err = at24_read(at24, 0, &test_byte, 1);
-> >         if (err) {
-> >                 pm_runtime_disable(dev);
-> > -               regulator_disable(at24->vcc_reg);
-> > +               if (!pm_runtime_status_suspended(dev))
-> > +                       regulator_disable(at24->vcc_reg);
-> >                 return -ENODEV;
-> >         }
-> >
-> > --
-> > 2.31.1.295.g9ea45b61b8-goog
-> >
->
-> Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 5ee953aaa00c..91e67735a45c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -3063,7 +3063,8 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
+>  		       struct intel_crtc_state *crtc_state,
+>  		       unsigned int type)
+>  {
+> -	if (encoder->type != INTEL_OUTPUT_DDI)
+> +	if (encoder->type != INTEL_OUTPUT_DDI &&
+> +	    encoder->type != INTEL_OUTPUT_EDP)
+>  		return;
+>  
+>  	switch (type) {
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
