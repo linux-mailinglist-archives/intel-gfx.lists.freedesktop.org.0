@@ -1,45 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DDF9365CFB
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 18:14:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 225C6365D6D
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 18:34:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E6B36E848;
-	Tue, 20 Apr 2021 16:14:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFB86E875;
+	Tue, 20 Apr 2021 16:34:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9DB16E848;
- Tue, 20 Apr 2021 16:14:52 +0000 (UTC)
-IronPort-SDR: s5ikmti5b2FWooZcr1RtGPRpuTad6KGskbQs5rQxBM+7HiMyS8ippDQmO0DVKg9bY5L60Vd950
- Aa2HqUCU6Hug==
-X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="175022506"
-X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="175022506"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2E7F6E872;
+ Tue, 20 Apr 2021 16:34:28 +0000 (UTC)
+IronPort-SDR: w3Xt9HNjw79tBTVYs6Mj182BoyFkSyQlKphsWSDg21J8am1thfH7OsiDRKGFBAZeWvB1Gpbhnv
+ +0tes3E3lsUw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="259496830"
+X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="259496830"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2021 09:14:51 -0700
-IronPort-SDR: CKVpKWM9mCUJwUNP1Zsot4EFuRdMHf+o5Zrx+kHHu9v13dZvd6r+n64DdloTVVLS6TuLzkd4HO
- 6gM7QP8aTt2g==
-X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="385396661"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2021 09:34:27 -0700
+IronPort-SDR: VOz+HAXUV1WO9RcdSTgqN7dAME+sHt/Y/HpQ24pQGud9mZeWBp9K3lT3iWA2/eHnmgVCeif1OR
+ DFoqnSE9wG9A==
+X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="385405938"
 Received: from nmuniand-mobl1.gar.corp.intel.com (HELO [10.213.128.245])
  ([10.213.128.245])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2021 09:14:48 -0700
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210420131842.164163-1-matthew.auld@intel.com>
- <20210420131842.164163-4-matthew.auld@intel.com>
+ 20 Apr 2021 09:34:22 -0700
+To: Jason Ekstrand <jason@jlekstrand.net>,
+ Matthew Auld <matthew.auld@intel.com>
+References: <20210415155958.391624-1-matthew.auld@intel.com>
+ <20210415155958.391624-4-matthew.auld@intel.com>
+ <CAOFGe96QALJa4FbWkVxczTdOA6b41zk1GxdYwRsrP7GwSZ4zvw@mail.gmail.com>
+ <6cf790c7-84bf-4d35-c1c3-4cf826655faf@intel.com>
+ <CAOFGe95gMUuqXX=Yn_xMRVxQmcwiqNEN0m3PgyNACcm0iNTyKg@mail.gmail.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <8559c955-3882-aec4-f87c-afbe82052e5b@linux.intel.com>
-Date: Tue, 20 Apr 2021 17:14:41 +0100
+Message-ID: <5a412489-75ed-e971-0e0b-388f0f964fac@linux.intel.com>
+Date: Tue, 20 Apr 2021 17:34:17 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.7.1
 MIME-Version: 1.0
-In-Reply-To: <20210420131842.164163-4-matthew.auld@intel.com>
+In-Reply-To: <CAOFGe95gMUuqXX=Yn_xMRVxQmcwiqNEN0m3PgyNACcm0iNTyKg@mail.gmail.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915/stolen: pass the allocation
- flags
+Subject: Re: [Intel-gfx] [PATCH v3 4/4] drm/doc/rfc: i915 DG1 uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,93 +55,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Kenneth Graunke <kenneth@whitecape.org>,
+ ML mesa-dev <mesa-dev@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 20/04/2021 14:18, Matthew Auld wrote:
-> From: CQ Tang <cq.tang@intel.com>
+On 19/04/2021 16:19, Jason Ekstrand wrote:
+> On Mon, Apr 19, 2021 at 7:02 AM Matthew Auld <matthew.auld@intel.com> wrote:
+>>
+>> On 16/04/2021 17:38, Jason Ekstrand wrote:
+>>> On Thu, Apr 15, 2021 at 11:04 AM Matthew Auld <matthew.auld@intel.com> wrote:
+>>>>
+>>>> Add an entry for the new uAPI needed for DG1.
+>>>>
+>>>> v2(Daniel):
+>>>>     - include the overall upstreaming plan
+>>>>     - add a note for mmap, there are differences here for TTM vs i915
+>>>>     - bunch of other suggestions from Daniel
+>>>> v3:
+>>>>    (Daniel)
+>>>>     - add a note for set/get caching stuff
+>>>>     - add some more docs for existing query and extensions stuff
+>>>>     - add an actual code example for regions query
+>>>>     - bunch of other stuff
+>>>>    (Jason)
+>>>>     - uAPI change(!):
+>>>>           - try a simpler design with the placements extension
+>>>>           - rather than have a generic setparam which can cover multiple
+>>>>             use cases, have each extension be responsible for one thing
+>>>>             only
+>>>>
+>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>>> Cc: Jordan Justen <jordan.l.justen@intel.com>
+>>>> Cc: Daniel Vetter <daniel.vetter@intel.com>
+>>>> Cc: Kenneth Graunke <kenneth@whitecape.org>
+>>>> Cc: Jason Ekstrand <jason@jlekstrand.net>
+>>>> Cc: Dave Airlie <airlied@gmail.com>
+>>>> Cc: dri-devel@lists.freedesktop.org
+>>>> Cc: mesa-dev@lists.freedesktop.org
+>>>> ---
+>>>>    Documentation/gpu/rfc/i915_gem_lmem.h   | 255 ++++++++++++++++++++++++
+>>>>    Documentation/gpu/rfc/i915_gem_lmem.rst | 139 +++++++++++++
+>>>>    Documentation/gpu/rfc/index.rst         |   4 +
+>>>>    3 files changed, 398 insertions(+)
+>>>>    create mode 100644 Documentation/gpu/rfc/i915_gem_lmem.h
+>>>>    create mode 100644 Documentation/gpu/rfc/i915_gem_lmem.rst
+>>>>
+>>>> diff --git a/Documentation/gpu/rfc/i915_gem_lmem.h b/Documentation/gpu/rfc/i915_gem_lmem.h
+>>>> new file mode 100644
+>>>> index 000000000000..2a82a452e9f2
+>>>> --- /dev/null
+>>>> +++ b/Documentation/gpu/rfc/i915_gem_lmem.h
+>>>> @@ -0,0 +1,255 @@
+>>>> +/*
+>>>> + * Note that drm_i915_query_item and drm_i915_query are existing bits of uAPI.
+>>>> + * For the regions query we are just adding a new query id, so no actual new
+>>>> + * ioctl or anything, but including it here for reference.
+>>>> + */
+>>>> +struct drm_i915_query_item {
+>>>> +#define DRM_I915_QUERY_MEMORY_REGIONS   0xdeadbeaf
+>>>> +       ....
+>>>> +        __u64 query_id;
+>>>> +
+>>>> +        /*
+>>>> +         * When set to zero by userspace, this is filled with the size of the
+>>>> +         * data to be written at the data_ptr pointer. The kernel sets this
+>>>> +         * value to a negative value to signal an error on a particular query
+>>>> +         * item.
+>>>> +         */
+>>>> +        __s32 length;
+>>>> +
+>>>> +        __u32 flags;
+>>>> +        /*
+>>>> +         * Data will be written at the location pointed by data_ptr when the
+>>>> +         * value of length matches the length of the data to be written by the
+>>>> +         * kernel.
+>>>> +         */
+>>>> +        __u64 data_ptr;
+>>>> +};
+>>>> +
+>>>> +struct drm_i915_query {
+>>>> +        __u32 num_items;
+>>>> +        /*
+>>>> +         * Unused for now. Must be cleared to zero.
+>>>> +         */
+>>>> +        __u32 flags;
+>>>> +        /*
+>>>> +         * This points to an array of num_items drm_i915_query_item structures.
+>>>> +         */
+>>>> +        __u64 items_ptr;
+>>>> +};
+>>>> +
+>>>> +#define DRM_IOCTL_I915_QUERY   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_QUERY, struct drm_i915_query)
+>>>> +
+>>>> +/**
+>>>> + * enum drm_i915_gem_memory_class
+>>>> + */
+>>>> +enum drm_i915_gem_memory_class {
+>>>> +       /** @I915_MEMORY_CLASS_SYSTEM: system memory */
+>>>> +       I915_MEMORY_CLASS_SYSTEM = 0,
+>>>> +       /** @I915_MEMORY_CLASS_DEVICE: device local-memory */
+>>>> +       I915_MEMORY_CLASS_DEVICE,
+>>>> +};
+>>>> +
+>>>> +/**
+>>>> + * struct drm_i915_gem_memory_class_instance
+>>>> + */
+>>>> +struct drm_i915_gem_memory_class_instance {
+>>>> +       /** @memory_class: see enum drm_i915_gem_memory_class */
+>>>> +       __u16 memory_class;
+>>>> +
+>>>> +       /** @memory_instance: which instance */
+>>>> +       __u16 memory_instance;
+>>>> +};
+>>>> +
+>>>> +/**
+>>>> + * struct drm_i915_memory_region_info
+>>>> + *
+>>>> + * Describes one region as known to the driver.
+>>>> + *
+>>>> + * Note that we reserve quite a lot of stuff here for potential future work. As
+>>>> + * an example we might want expose the capabilities(see caps) for a given
+>>>> + * region, which could include things like if the region is CPU
+>>>> + * mappable/accessible etc.
+>>>
+>>> I get caps but I'm seriously at a loss as to what the rest of this
+>>> would be used for.  Why are caps and flags both there and separate?
+>>> Flags are typically something you set, not query.  Also, what's with
+>>> rsvd1 at the end?  This smells of substantial over-building to me.
+>>>
+>>> I thought to myself, "maybe I'm missing a future use-case" so I looked
+>>> at the internal tree and none of this is being used there either.
+>>> This indicates to me that either I'm missing something and there's
+>>> code somewhere I don't know about or, with three years of building on
+>>> internal branches, we still haven't proven that any of this is needed.
+>>> If it's the latter, which I strongly suspect, maybe we should drop the
+>>> unnecessary bits and only add them back in if and when we have proof
+>>> that they're useful.
+>>
+>> Do you mean just drop caps/flags here, but keep/inflate rsvd0/rsvd1,
+>> which is less opinionated about future unknowns? If so, makes sense to me.
 > 
-> Stolen memory is always allocated as physically contiguous pages, mark
-> the object flags as such.
-> 
-> v2: move setting I915_BO_ALLOC_CONTIGUOUS into create_stolen
-> 
-> Signed-off-by: CQ Tang <cq.tang@intel.com>
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_stolen.c | 17 ++++++++++++-----
->   1 file changed, 12 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> index 4f9fe5aca37e..46f79b240df7 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-> @@ -633,14 +633,21 @@ static const struct drm_i915_gem_object_ops i915_gem_object_stolen_ops = {
->   
->   static int __i915_gem_object_create_stolen(struct intel_memory_region *mem,
->   					   struct drm_i915_gem_object *obj,
-> -					   struct drm_mm_node *stolen)
-> +					   struct drm_mm_node *stolen,
-> +					   unsigned int flags)
->   {
->   	static struct lock_class_key lock_class;
->   	unsigned int cache_level;
->   	int err;
->   
-> +	/*
-> +	 * Stolen objects are always physically contiguous since we just
-> +	 * allocate one big block underneath using the drm_mm range allocator.
-> +	 */
-> +	flags |= I915_BO_ALLOC_CONTIGUOUS;
-> +
->   	drm_gem_private_object_init(&mem->i915->drm, &obj->base, stolen->size);
-> -	i915_gem_object_init(obj, &i915_gem_object_stolen_ops, &lock_class, 0);
-> +	i915_gem_object_init(obj, &i915_gem_object_stolen_ops, &lock_class, flags);
->   
->   	obj->stolen = stolen;
->   	obj->read_domains = I915_GEM_DOMAIN_CPU | I915_GEM_DOMAIN_GTT;
-> @@ -682,7 +689,7 @@ static int _i915_gem_object_stolen_init(struct intel_memory_region *mem,
->   	if (ret)
->   		goto err_free;
->   
-> -	ret = __i915_gem_object_create_stolen(mem, obj, stolen);
-> +	ret = __i915_gem_object_create_stolen(mem, obj, stolen, flags);
+> I meant drop flags and rsvd1.  We need rsvd0 for padding and  I can
+> see some value to caps.  We may want to advertise, for instance, what
+> mapping coherency types are available per-heap.  But I don't see any
+> use for any of the other fields.
 
-Hm odd that previously the flags were ignored in here. I guess no 
-callers were passing any when creating stolen objects. If none are 
-supported should we add a GEM_BUG_ON to check for that?
+I'd suggest making sure at least enough rsvd fields remain so that flags 
+could be added later if needed. Experience from engine info shows that 
+both were required in order to extend the query via re-purposing the 
+rsvds and adding flag bits to indicate when a certain rsvd contains a 
+new piece of information. I probably cannot go into too much detail 
+here, but anyway the point is just to make sure too much is not stripped 
+out so that instead of simply adding fields/flags we have to add a new 
+query in the future. IMO some rsvd fields are not really harmful and if 
+they can make things easier in the future why not.
 
 Regards,
 
 Tvrtko
-
->   	if (ret)
->   		goto err_remove;
->   
-> @@ -700,7 +707,7 @@ i915_gem_object_create_stolen(struct drm_i915_private *i915,
->   			      resource_size_t size)
->   {
->   	return i915_gem_object_create_region(i915->mm.stolen_region,
-> -					     size, I915_BO_ALLOC_CONTIGUOUS);
-> +					     size, 0);
->   }
->   
->   static int init_stolen_smem(struct intel_memory_region *mem)
-> @@ -866,7 +873,7 @@ i915_gem_object_create_stolen_for_preallocated(struct drm_i915_private *i915,
->   		goto err_stolen;
->   	}
->   
-> -	ret = __i915_gem_object_create_stolen(mem, obj, stolen);
-> +	ret = __i915_gem_object_create_stolen(mem, obj, stolen, 0);
->   	if (ret)
->   		goto err_object_free;
->   
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
