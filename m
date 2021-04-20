@@ -1,39 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C8F365A61
-	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 15:43:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4801E365A67
+	for <lists+intel-gfx@lfdr.de>; Tue, 20 Apr 2021 15:44:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 946E5898C7;
-	Tue, 20 Apr 2021 13:43:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4239E6E506;
+	Tue, 20 Apr 2021 13:44:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F24989854;
- Tue, 20 Apr 2021 13:43:33 +0000 (UTC)
-IronPort-SDR: fgmEL/9XyZ8xyw+XQ5JsW1gaTkRBSYX91MSDbh/Qqo1lKtALW28kzJvMEHx25VxPTXju+RAacr
- jsdTcn3Rws4w==
-X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="280834566"
-X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="280834566"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88A2B898C7;
+ Tue, 20 Apr 2021 13:44:44 +0000 (UTC)
+IronPort-SDR: 9H8Pakyu2DCeRv4HRR4Vk5vrm0oeQrucwBepNR3nlYFeW02SY0gdKHUC0neTtkpvO0Ep7oYA6e
+ MfPJQutIbAKA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="195621177"
+X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="195621177"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2021 06:43:24 -0700
-IronPort-SDR: YQmTEgBXZVwNlSyolQrbyInc+Q1kWsAfHjg2dkX5fTJuR25JdW4wnRDPAaEgO/SRlSarIAlf3Q
- vY+HefTYdYEQ==
-X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="452492117"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2021 06:44:43 -0700
+IronPort-SDR: Wi5l6Gf767U/N5rmz81L1JA97uxVt137BQLgXj8Vh+uwvGE0LhUXmSRCiWIwyzflL0Oj/NxOZD
+ 0xc9ViXYd0hA==
+X-IronPort-AV: E=Sophos;i="5.82,237,1613462400"; d="scan'208";a="452492554"
 Received: from jyick-mobl.amr.corp.intel.com (HELO intel.com) ([10.212.57.228])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2021 06:43:23 -0700
-Date: Tue, 20 Apr 2021 09:43:22 -0400
+ 20 Apr 2021 06:44:40 -0700
+Date: Tue, 20 Apr 2021 09:44:39 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Message-ID: <YH7aeio2Yx3SDvIq@intel.com>
-References: <20210420023312.GL1551@zhen-hp.sh.intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <YH7axzn3JsMX4p5N@intel.com>
+References: <878s5ebny0.fsf@intel.com>
+ <161891205594.28135.14229347864444400275@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210420023312.GL1551@zhen-hp.sh.intel.com>
-Subject: Re: [Intel-gfx] [PULL] gvt-fixes
+In-Reply-To: <161891205594.28135.14229347864444400275@jlahtine-mobl.ger.corp.intel.com>
+Subject: Re: [Intel-gfx] [PULL] topic/intel-gen-to-ver -> drm-intel-next and
+ drm-intel-gt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,54 +48,194 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
- Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dim-tools@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 20, 2021 at 10:33:12AM +0800, Zhenyu Wang wrote:
-> 
-> Hi,
-> 
-> Here's one BDW regression fix for cmd parser rework in 5.12 on recent
-> Windows guest driver update. Sorry to be a bit late, hopefully can
-> still catch up.
+On Tue, Apr 20, 2021 at 12:47:36PM +0300, Joonas Lahtinen wrote:
+> Quoting Jani Nikula (2021-04-19 12:53:11)
+> > =
 
-pulled, thanks!
+> > Hi Joonas and Rodrigo -
+> > =
 
-> 
-> Thanks!
-> ---
-> The following changes since commit b6a37a93c9ac3900987c79b726d0bb3699d8db4e:
-> 
->   drm/i915: Fix invalid access to ACPI _DSM objects (2021-04-07 19:07:44 -0400)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/intel/gvt-linux tags/gvt-fixes-2021-04-20
-> 
-> for you to fetch changes up to 6b5b2a5bcfe9a250da19bac4ef7cabdc81d154ec:
-> 
->   drm/i915/gvt: Fix BDW command parser regression (2021-04-16 13:41:41 +0800)
-> 
-> ----------------------------------------------------------------
-> gvt-fixes-2021-04-20
-> 
-> - Fix cmd parser regression on BDW (Zhenyu)
-> 
-> ----------------------------------------------------------------
-> Zhenyu Wang (1):
->       drm/i915/gvt: Fix BDW command parser regression
-> 
->  drivers/gpu/drm/i915/gvt/cmd_parser.c | 19 +++++++++++++------
->  1 file changed, 13 insertions(+), 6 deletions(-)
-> 
+> > Here's the gen to ver conversion topic branch to be merged to both
+> > drm-intel-next and drm-intel-gt-next.
+> =
 
+> Pulled.
 
+Pulled, thanks.
+(Sorry for the delay on the notification here)
+
+> =
+
+> Regards, Joonas
+> =
+
+> > Lots of Cc's for heads up.
+> > =
+
+> > =
+
+> > BR,
+> > Jani.
+> > =
+
+> > =
+
+> > topic/intel-gen-to-ver-2021-04-19:
+> > Gen to ver conversions across the driver
+> > =
+
+> > The main change is Lucas' series [1], with Ville's GLK fixes [2] and a
+> > cherry-pick of Matt's commit [3] from drm-intel-next as a base to avoid
+> > conflicts.
+> > =
+
+> > [1] https://patchwork.freedesktop.org/series/88825/
+> > [2] https://patchwork.freedesktop.org/series/88938/
+> > [3] 70bfb30743d5 ("drm/i915/display: Eliminate IS_GEN9_{BC,LP}")
+> > =
+
+> > BR,
+> > Jani.
+> > =
+
+> > The following changes since commit 9c0fed84d5750e1eea6c664e073ffa2534a1=
+7743:
+> > =
+
+> >   Merge tag 'drm-intel-next-2021-04-01' of git://anongit.freedesktop.or=
+g/drm/drm-intel into drm-next (2021-04-08 14:02:21 +1000)
+> > =
+
+> > are available in the Git repository at:
+> > =
+
+> >   git://anongit.freedesktop.org/drm/drm-intel tags/topic/intel-gen-to-v=
+er-2021-04-19
+> > =
+
+> > for you to fetch changes up to 425390c5dce6da76578389629d19517fcd79c959:
+> > =
+
+> >   drm/i915: split dgfx features from gen 12 (2021-04-14 13:05:06 +0300)
+> > =
+
+> > ----------------------------------------------------------------
+> > Gen to ver conversions across the driver
+> > =
+
+> > The main change is Lucas' series [1], with Ville's GLK fixes [2] and a
+> > cherry-pick of Matt's commit [3] from drm-intel-next as a base to avoid
+> > conflicts.
+> > =
+
+> > [1] https://patchwork.freedesktop.org/series/88825/
+> > [2] https://patchwork.freedesktop.org/series/88938/
+> > [3] 70bfb30743d5 ("drm/i915/display: Eliminate IS_GEN9_{BC,LP}")
+> > =
+
+> > ----------------------------------------------------------------
+> > Lucas De Marchi (12):
+> >       drm/i915/display: use DISPLAY_VER() on remaining users
+> >       drm/i915: rename display.version to display.ver
+> >       drm/i915/display: rename display version macros
+> >       drm/i915: add macros for graphics and media versions
+> >       drm/i915/gt: replace gen use in intel_engine_cs
+> >       drm/i915/selftests: replace unused mask with simple version
+> >       drm/i915/selftests: eliminate use of gen_mask
+> >       drm/i915: finish removal of gen_mask
+> >       drm/i915: eliminate remaining uses of intel_device_info->gen
+> >       drm/i915: finish removal of gen from intel_device_info
+> >       drm/i915: add media and display versions to device_info print
+> >       drm/i915: split dgfx features from gen 12
+> > =
+
+> > Matt Roper (1):
+> >       drm/i915/display: Eliminate IS_GEN9_{BC,LP}
+> > =
+
+> > Ville Syrj=E4l=E4 (5):
+> >       drm/i915: Restore lost glk FBC 16bpp w/a
+> >       drm/i915: Restore lost glk ccs w/a
+> >       drm/i915: Disable LTTPR detection on GLK once again
+> >       drm/i915: Don't use {skl, cnl}_hpd_pin() for bxt/glk
+> >       drm/i915: Remove a few redundant glk checks
+> > =
+
+> >  drivers/gpu/drm/i915/display/i9xx_plane.c          |  2 +-
+> >  drivers/gpu/drm/i915/display/icl_dsi.c             |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_atomic.c        |  2 +-
+> >  drivers/gpu/drm/i915/display/intel_audio.c         |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_bios.c          |  9 +--
+> >  drivers/gpu/drm/i915/display/intel_bw.c            |  8 +--
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c         | 42 +++++++-------
+> >  drivers/gpu/drm/i915/display/intel_color.c         |  6 +-
+> >  drivers/gpu/drm/i915/display/intel_crt.c           |  6 +-
+> >  drivers/gpu/drm/i915/display/intel_crtc.c          |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_csr.c           |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_ddi.c           | 53 +++++++++-----=
+----
+> >  drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 10 ++--
+> >  drivers/gpu/drm/i915/display/intel_display.c       | 64 +++++++++++---=
+--------
+> >  .../gpu/drm/i915/display/intel_display_debugfs.c   |  2 +-
+> >  drivers/gpu/drm/i915/display/intel_display_power.c | 57 ++++++++++----=
+-----
+> >  drivers/gpu/drm/i915/display/intel_dp.c            | 10 ++--
+> >  .../gpu/drm/i915/display/intel_dp_link_training.c  |  2 +-
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c        |  2 +-
+> >  drivers/gpu/drm/i915/display/intel_dpll.c          |  8 +--
+> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  6 +-
+> >  drivers/gpu/drm/i915/display/intel_fb.c            |  2 +-
+> >  drivers/gpu/drm/i915/display/intel_fbc.c           | 21 +++----
+> >  drivers/gpu/drm/i915/display/intel_fifo_underrun.c |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_gmbus.c         | 12 ++--
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c          |  9 +--
+> >  drivers/gpu/drm/i915/display/intel_hdmi.c          |  9 +--
+> >  drivers/gpu/drm/i915/display/intel_lvds.c          |  2 +-
+> >  drivers/gpu/drm/i915/display/intel_overlay.c       | 10 ++--
+> >  drivers/gpu/drm/i915/display/intel_panel.c         | 10 ++--
+> >  drivers/gpu/drm/i915/display/intel_pipe_crc.c      |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_pps.c           | 14 ++---
+> >  drivers/gpu/drm/i915/display/intel_psr.c           |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_tc.c            |  6 +-
+> >  drivers/gpu/drm/i915/display/intel_tv.c            |  6 +-
+> >  drivers/gpu/drm/i915/display/skl_universal_plane.c | 10 ++--
+> >  drivers/gpu/drm/i915/display/vlv_dsi.c             | 46 ++++++++------=
+--
+> >  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 22 ++++----
+> >  drivers/gpu/drm/i915/gt/intel_engine_cs.c          | 40 +++++++-------
+> >  drivers/gpu/drm/i915/gt/selftest_engine_cs.c       | 18 +++---
+> >  drivers/gpu/drm/i915/gt/selftest_workarounds.c     | 10 ++--
+> >  drivers/gpu/drm/i915/i915_drv.c                    |  4 +-
+> >  drivers/gpu/drm/i915/i915_drv.h                    | 42 ++++++++------
+> >  drivers/gpu/drm/i915/i915_irq.c                    | 23 ++++----
+> >  drivers/gpu/drm/i915/i915_pci.c                    | 13 +++--
+> >  drivers/gpu/drm/i915/intel_device_info.c           |  4 +-
+> >  drivers/gpu/drm/i915/intel_device_info.h           |  6 +-
+> >  drivers/gpu/drm/i915/intel_pm.c                    | 50 ++++++++------=
+---
+> >  drivers/gpu/drm/i915/intel_uncore.c                |  8 ++-
+> >  drivers/gpu/drm/i915/selftests/intel_uncore.c      |  8 ++-
+> >  drivers/gpu/drm/i915/selftests/mock_gem_device.c   |  2 +-
+> >  51 files changed, 376 insertions(+), 348 deletions(-)
+> > =
+
+> > -- =
+
+> > Jani Nikula, Intel Open Source Graphics Center
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
