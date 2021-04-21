@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B334336714F
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 19:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89EA436715F
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 19:32:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ACEC89C16;
-	Wed, 21 Apr 2021 17:28:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2142F6E0D2;
+	Wed, 21 Apr 2021 17:32:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B27C489CB2
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 17:28:07 +0000 (UTC)
-IronPort-SDR: EZvEQBYPWdyrxT6vAZa85EQC7CGjSCf9kHC302ccAfUEGHlqflL0xMC7UCCIoqwAuWxDLwuvWi
- 5/ZIn4656dHQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9961"; a="175849011"
-X-IronPort-AV: E=Sophos;i="5.82,240,1613462400"; d="scan'208";a="175849011"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 10:28:05 -0700
-IronPort-SDR: pWciW+L+Mc7gF7I71YnWDxrFKABPQ33UpiK/japg8oxieQOZr82a8FFu/9+BKUmUG61MzotQ+u
- qmRnmsJin3pA==
-X-IronPort-AV: E=Sophos;i="5.82,240,1613462400"; d="scan'208";a="427601966"
-Received: from orsosgc001.ra.intel.com ([10.23.184.150])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 10:28:04 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D7EB6E0D2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 17:32:29 +0000 (UTC)
+IronPort-SDR: baxqXs/gSDnyssApHG2fCxummvFLfhm3PXKaE0msNzkMEyH9PYxXVHAPe6TxL3QSHErwJ7wuTT
+ NjcpzyptsByQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9961"; a="175228109"
+X-IronPort-AV: E=Sophos;i="5.82,240,1613462400"; d="scan'208";a="175228109"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2021 10:32:24 -0700
+IronPort-SDR: 7vC0zCGW3XAjAGsvz00pnd5fZCRCYJYX0actULkH0dho57qL53rgMwf3hSsHht+0CHc5vqerjm
+ kIHH4l3MPlNA==
+X-IronPort-AV: E=Sophos;i="5.82,240,1613462400"; d="scan'208";a="524365530"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2021 10:32:23 -0700
+From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Apr 2021 10:28:04 -0700
-Message-Id: <20210421172804.70877-2-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210421172804.70877-1-umesh.nerlige.ramappa@intel.com>
-References: <20210421172804.70877-1-umesh.nerlige.ramappa@intel.com>
+Date: Wed, 21 Apr 2021 20:32:20 +0300
+Message-Id: <20210421173220.3587009-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20210421121959.3577881-1-imre.deak@intel.com>
+References: <20210421121959.3577881-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/1] i915/query: Correlate engine and cpu
- timestamps with better accuracy
+Subject: [Intel-gfx] [PATCH v2] drm/i915: Simplify CCS and UV plane
+ alignment handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,303 +47,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Perf measurements rely on CPU and engine timestamps to correlate
-events of interest across these time domains. Current mechanisms get
-these timestamps separately and the calculated delta between these
-timestamps lack enough accuracy.
+We can handle the surface alignment of CCS and UV color planes for all
+modifiers at one place, so do this. An AUX color plane can be a CCS or a
+UV plane, use only the more specific query functions and remove
+is_aux_plane() becoming redundant.
 
-To improve the accuracy of these time measurements to within a few us,
-add a query that returns the engine and cpu timestamps captured as
-close to each other as possible.
+While at it add a TODO for linear UV color plane alignments. The spec
+requires this to be stride-in-bytes * 64 on all platforms, whereas the
+driver uses an alignment of 4k for gen<12 and 256k for gen>=12 for
+linear UV planes.
 
-v2: (Tvrtko)
-- document clock reference used
-- return cpu timestamp always
-- capture cpu time just before lower dword of cs timestamp
+v2:
+- Restore previous alignment for linear UV surfaces.
 
-v3: (Chris)
-- use uncore-rpm
-- use __query_cs_timestamp helper
-
-v4: (Lionel)
-- Kernel perf subsytem allows users to specify the clock id to be used
-  in perf_event_open. This clock id is used by the perf subsystem to
-  return the appropriate cpu timestamp in perf events. Similarly, let
-  the user pass the clockid to this query so that cpu timestamp
-  corresponds to the clock id requested.
-
-v5: (Tvrtko)
-- Use normal ktime accessors instead of fast versions
-- Add more uApi documentation
-
-v6: (Lionel)
-- Move switch out of spinlock
-
-v7: (Chris)
-- cs_timestamp is a misnomer, use cs_cycles instead
-- return the cs cycle frequency as well in the query
-
-v8:
-- Add platform and engine specific checks
-
-v9: (Lionel)
-- Return 2 cpu timestamps in the query - captured before and after the
-  register read
-
-v10: (Chris)
-- Use local_clock() to measure time taken to read lower dword of
-  register and return it to user.
-
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/i915_query.c | 145 ++++++++++++++++++++++++++++++
- include/uapi/drm/i915_drm.h       |  48 ++++++++++
- 2 files changed, 193 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 27 +++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_fb.c      |  8 ------
+ drivers/gpu/drm/i915/display/intel_fb.h      |  1 -
+ 3 files changed, 18 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-index fed337ad7b68..25b96927ab92 100644
---- a/drivers/gpu/drm/i915/i915_query.c
-+++ b/drivers/gpu/drm/i915/i915_query.c
-@@ -6,6 +6,8 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a10e26380ef3d..e246e5cf75866 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -973,10 +973,26 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+ 	struct drm_i915_private *dev_priv = to_i915(fb->dev);
  
- #include <linux/nospec.h>
+ 	/* AUX_DIST needs only 4K alignment */
+-	if ((DISPLAY_VER(dev_priv) < 12 && is_aux_plane(fb, color_plane)) ||
+-	    is_ccs_plane(fb, color_plane))
++	if (is_ccs_plane(fb, color_plane))
+ 		return 4096;
  
-+#include "gt/intel_engine_pm.h"
-+#include "gt/intel_engine_user.h"
- #include "i915_drv.h"
- #include "i915_perf.h"
- #include "i915_query.h"
-@@ -90,6 +92,148 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
- 	return total_length;
++	if (is_semiplanar_uv_plane(fb, color_plane)) {
++		/*
++		 * TODO: cross-check wrt. the bspec stride in bytes * 64 bytes
++		 * alignment for linear UV planes on all platforms.
++		 */
++		if (DISPLAY_VER(dev_priv) >= 12) {
++			if (fb->modifier == DRM_FORMAT_MOD_LINEAR)
++				return intel_linear_alignment(dev_priv);
++
++			return intel_tile_row_size(fb, color_plane);
++		}
++
++		return 4096;
++	}
++
++	drm_WARN_ON(&dev_priv->drm, color_plane != 0);
++
+ 	switch (fb->modifier) {
+ 	case DRM_FORMAT_MOD_LINEAR:
+ 		return intel_linear_alignment(dev_priv);
+@@ -985,19 +1001,12 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+ 			return 256 * 1024;
+ 		return 0;
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+-		if (is_semiplanar_uv_plane(fb, color_plane))
+-			return intel_tile_row_size(fb, color_plane);
+-		fallthrough;
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+ 		return 16 * 1024;
+ 	case I915_FORMAT_MOD_Y_TILED_CCS:
+ 	case I915_FORMAT_MOD_Yf_TILED_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED:
+-		if (DISPLAY_VER(dev_priv) >= 12 &&
+-		    is_semiplanar_uv_plane(fb, color_plane))
+-			return intel_tile_row_size(fb, color_plane);
+-		fallthrough;
+ 	case I915_FORMAT_MOD_Yf_TILED:
+ 		return 1 * 1024 * 1024;
+ 	default:
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 0ec9ad7220a14..c8aaca3e79e97 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -30,14 +30,6 @@ bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane)
+ 	       plane == 2;
  }
  
-+typedef u64 (*__ktime_func_t)(void);
-+static __ktime_func_t __clock_id_to_func(clockid_t clk_id)
-+{
-+	/*
-+	 * Use logic same as the perf subsystem to allow user to select the
-+	 * reference clock id to be used for timestamps.
-+	 */
-+	switch (clk_id) {
-+	case CLOCK_MONOTONIC:
-+		return &ktime_get_ns;
-+	case CLOCK_MONOTONIC_RAW:
-+		return &ktime_get_raw_ns;
-+	case CLOCK_REALTIME:
-+		return &ktime_get_real_ns;
-+	case CLOCK_BOOTTIME:
-+		return &ktime_get_boottime_ns;
-+	case CLOCK_TAI:
-+		return &ktime_get_clocktai_ns;
-+	default:
-+		return NULL;
-+	}
-+}
-+
-+static inline int
-+__read_timestamps(struct intel_uncore *uncore,
-+		  i915_reg_t lower_reg,
-+		  i915_reg_t upper_reg,
-+		  u64 *cs_ts,
-+		  u64 *cpu_ts,
-+		  __ktime_func_t cpu_clock)
-+{
-+	u32 upper, lower, old_upper, loop = 0;
-+
-+	upper = intel_uncore_read_fw(uncore, upper_reg);
-+	do {
-+		cpu_ts[1] = local_clock();
-+		cpu_ts[0] = cpu_clock();
-+		lower = intel_uncore_read_fw(uncore, lower_reg);
-+		cpu_ts[1] = local_clock() - cpu_ts[1];
-+		old_upper = upper;
-+		upper = intel_uncore_read_fw(uncore, upper_reg);
-+	} while (upper != old_upper && loop++ < 2);
-+
-+	*cs_ts = (u64)upper << 32 | lower;
-+
-+	return 0;
-+}
-+
-+static int
-+__query_cs_cycles(struct intel_engine_cs *engine,
-+		  u64 *cs_ts, u64 *cpu_ts,
-+		  __ktime_func_t cpu_clock)
-+{
-+	struct intel_uncore *uncore = engine->uncore;
-+	enum forcewake_domains fw_domains;
-+	u32 base = engine->mmio_base;
-+	intel_wakeref_t wakeref;
-+	int ret;
-+
-+	fw_domains = intel_uncore_forcewake_for_reg(uncore,
-+						    RING_TIMESTAMP(base),
-+						    FW_REG_READ);
-+
-+	with_intel_runtime_pm(uncore->rpm, wakeref) {
-+		spin_lock_irq(&uncore->lock);
-+		intel_uncore_forcewake_get__locked(uncore, fw_domains);
-+
-+		ret = __read_timestamps(uncore,
-+					RING_TIMESTAMP(base),
-+					RING_TIMESTAMP_UDW(base),
-+					cs_ts,
-+					cpu_ts,
-+					cpu_clock);
-+
-+		intel_uncore_forcewake_put__locked(uncore, fw_domains);
-+		spin_unlock_irq(&uncore->lock);
-+	}
-+
-+	return ret;
-+}
-+
-+static int
-+query_cs_cycles(struct drm_i915_private *i915,
-+		struct drm_i915_query_item *query_item)
-+{
-+	struct drm_i915_query_cs_cycles __user *query_ptr;
-+	struct drm_i915_query_cs_cycles query;
-+	struct intel_engine_cs *engine;
-+	__ktime_func_t cpu_clock;
-+	int ret;
-+
-+	if (INTEL_GEN(i915) < 6)
-+		return -ENODEV;
-+
-+	query_ptr = u64_to_user_ptr(query_item->data_ptr);
-+	ret = copy_query_item(&query, sizeof(query), sizeof(query), query_item);
-+	if (ret != 0)
-+		return ret;
-+
-+	if (query.flags)
-+		return -EINVAL;
-+
-+	if (query.rsvd)
-+		return -EINVAL;
-+
-+	cpu_clock = __clock_id_to_func(query.clockid);
-+	if (!cpu_clock)
-+		return -EINVAL;
-+
-+	engine = intel_engine_lookup_user(i915,
-+					  query.engine.engine_class,
-+					  query.engine.engine_instance);
-+	if (!engine)
-+		return -EINVAL;
-+
-+	if (IS_GEN(i915, 6) &&
-+	    query.engine.engine_class != I915_ENGINE_CLASS_RENDER)
-+		return -ENODEV;
-+
-+	query.cs_frequency = engine->gt->clock_frequency;
-+	ret = __query_cs_cycles(engine,
-+				&query.cs_cycles,
-+				query.cpu_timestamp,
-+				cpu_clock);
-+	if (ret)
-+		return ret;
-+
-+	if (put_user(query.cs_frequency, &query_ptr->cs_frequency))
-+		return -EFAULT;
-+
-+	if (put_user(query.cpu_timestamp[0], &query_ptr->cpu_timestamp[0]))
-+		return -EFAULT;
-+
-+	if (put_user(query.cpu_timestamp[1], &query_ptr->cpu_timestamp[1]))
-+		return -EFAULT;
-+
-+	if (put_user(query.cs_cycles, &query_ptr->cs_cycles))
-+		return -EFAULT;
-+
-+	return sizeof(query);
-+}
-+
- static int
- query_engine_info(struct drm_i915_private *i915,
- 		  struct drm_i915_query_item *query_item)
-@@ -424,6 +568,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
- 	query_topology_info,
- 	query_engine_info,
- 	query_perf_config,
-+	query_cs_cycles,
- };
+-bool is_aux_plane(const struct drm_framebuffer *fb, int plane)
+-{
+-	if (is_ccs_modifier(fb->modifier))
+-		return is_ccs_plane(fb, plane);
+-
+-	return plane == 1;
+-}
+-
+ bool is_semiplanar_uv_plane(const struct drm_framebuffer *fb, int color_plane)
+ {
+ 	return intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+index 6acf792a8c44a..13244ec1ad214 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.h
++++ b/drivers/gpu/drm/i915/display/intel_fb.h
+@@ -19,7 +19,6 @@ struct intel_plane_state;
+ bool is_ccs_plane(const struct drm_framebuffer *fb, int plane);
+ bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane);
+ bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane);
+-bool is_aux_plane(const struct drm_framebuffer *fb, int plane);
+ bool is_semiplanar_uv_plane(const struct drm_framebuffer *fb, int color_plane);
  
- int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 6a34243a7646..08b00f1709b5 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -2230,6 +2230,10 @@ struct drm_i915_query_item {
- #define DRM_I915_QUERY_TOPOLOGY_INFO    1
- #define DRM_I915_QUERY_ENGINE_INFO	2
- #define DRM_I915_QUERY_PERF_CONFIG      3
-+	/**
-+	 * Query Command Streamer timestamp register.
-+	 */
-+#define DRM_I915_QUERY_CS_CYCLES	4
- /* Must be kept compact -- no holes and well documented */
- 
- 	/**
-@@ -2397,6 +2401,50 @@ struct drm_i915_engine_info {
- 	__u64 rsvd1[4];
- };
- 
-+/**
-+ * struct drm_i915_query_cs_cycles
-+ *
-+ * The query returns the command streamer cycles and the frequency that can be
-+ * used to calculate the command streamer timestamp. In addition the query
-+ * returns a set of cpu timestamps that indicate when the command streamer cycle
-+ * count was captured.
-+ */
-+struct drm_i915_query_cs_cycles {
-+	/** Engine for which command streamer cycles is queried. */
-+	struct i915_engine_class_instance engine;
-+
-+	/** Must be zero. */
-+	__u32 flags;
-+
-+	/**
-+	 * Command streamer cycles as read from the command streamer
-+	 * register at 0x358 offset.
-+	 */
-+	__u64 cs_cycles;
-+
-+	/** Frequency of the cs cycles in Hz. */
-+	__u64 cs_frequency;
-+
-+	/**
-+	 * CPU timestamps in ns. cpu_timestamp[0] is captured before reading the
-+	 * cs_cycles register using the reference clockid set by the user.
-+	 * cpu_timestamp[1] is the time taken in ns to read the lower dword of
-+	 * the cs_cycles register.
-+	 */
-+	__u64 cpu_timestamp[2];
-+
-+	/**
-+	 * Reference clock id for CPU timestamp. For definition, see
-+	 * clock_gettime(2) and perf_event_open(2). Supported clock ids are
-+	 * CLOCK_MONOTONIC, CLOCK_MONOTONIC_RAW, CLOCK_REALTIME, CLOCK_BOOTTIME,
-+	 * CLOCK_TAI.
-+	 */
-+	__s32 clockid;
-+
-+	/** Must be zero. */
-+	__u32 rsvd;
-+};
-+
- /**
-  * struct drm_i915_query_engine_info
-  *
+ bool is_surface_linear(const struct drm_framebuffer *fb, int color_plane);
 -- 
-2.20.1
+2.27.0
 
 _______________________________________________
 Intel-gfx mailing list
