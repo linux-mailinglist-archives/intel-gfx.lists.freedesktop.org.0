@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC187366E61
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 16:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 685CA366E95
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 16:57:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9093A6E0C5;
-	Wed, 21 Apr 2021 14:39:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68D0C892EF;
+	Wed, 21 Apr 2021 14:57:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88F786E0C5;
- Wed, 21 Apr 2021 14:39:15 +0000 (UTC)
-IronPort-SDR: 6F5strjR5gJBcbJNCdYcAvqKqEnFfgUYHSAFaQqumeKrB5I8NvTAVg1lKlhafOM4fVMLw/A5v1
- yHbJA6oytjcw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9961"; a="193585691"
-X-IronPort-AV: E=Sophos;i="5.82,240,1613462400"; d="scan'208";a="193585691"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 07:39:14 -0700
-IronPort-SDR: 5FrLDqwjxLoKcB5liQmfvq9kHa0/Cm2aFt6uXtcwXh41gdtzV+M0BR0F0wOut9XQPBOY97/eLE
- rBG+3t5cmTMw==
-X-IronPort-AV: E=Sophos;i="5.82,240,1613462400"; d="scan'208";a="421008986"
-Received: from lvaldivi-mobl3.ger.corp.intel.com (HELO [10.252.63.171])
- ([10.252.63.171])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 07:39:13 -0700
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-References: <20210421120353.544518-1-maarten.lankhorst@linux.intel.com>
- <CAKMK7uFpoY7YMEMbftjq+P5XHR6L+F0KwFtbK7CtuUFy7HsLkQ@mail.gmail.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <9ae96fa1-6c91-4ec1-422d-8e0a95251bb7@linux.intel.com>
-Date: Wed, 21 Apr 2021 16:39:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C45ED89267;
+ Wed, 21 Apr 2021 14:57:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BB7B8A363D;
+ Wed, 21 Apr 2021 14:57:12 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <CAKMK7uFpoY7YMEMbftjq+P5XHR6L+F0KwFtbK7CtuUFy7HsLkQ@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix docbook descriptions for
- i915_cmd_parser
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Wed, 21 Apr 2021 14:57:12 -0000
+Message-ID: <161901703274.19926.4743280220250718222@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210421104658.304142-1-matthew.auld@intel.com>
+In-Reply-To: <20210421104658.304142-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/4=5D_drm/i915=3A_Create_stolen_memo?=
+ =?utf-8?q?ry_region_from_local_memory?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,76 +39,190 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dave Airlie <airlied@linux.ie>, Stephen Rothwell <sfr@canb.auug.org.au>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- DRI <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0185204250=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 21-04-2021 om 16:32 schreef Daniel Vetter:
-> On Wed, Apr 21, 2021 at 2:03 PM Maarten Lankhorst
-> <maarten.lankhorst@linux.intel.com> wrote:
->> Fixes the following htmldocs warnings:
->> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
->> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
->> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
->> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
->> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
->>
->> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
->> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> ---
->>  drivers/gpu/drm/i915/i915_cmd_parser.c | 16 +++++++++++++++-
->>  1 file changed, 15 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
->> index e6f1e93abbbb..afb9b7516999 100644
->> --- a/drivers/gpu/drm/i915/i915_cmd_parser.c
->> +++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
->> @@ -1369,6 +1369,18 @@ static int check_bbstart(u32 *cmd, u32 offset, u32 length,
->>         return 0;
->>  }
->>
->> +/**
->> + * intel_engine_cmd_parser_alloc_jump_whitelist() - preallocate jump whitelist for intel_engine_cmd_parser()
->> + * @batch_length: length of the commands in batch_obj
->> + * @trampoline: Whether jump trampolines are used.
->> + *
->> + * Preallocates a jump whitelist for parsing the cmd buffer in intel_engine_cmd_parser().
->> + * This has to be preallocated, because the command parser runs in signaling context,
->> + * and may not allocate any memory.
->> + *
->> + * Return: NULL or pointer to a jump whitelist, or ERR_PTR() on failure. Use
->> + * IS_ERR() to check for errors. Must bre freed() with kfree().
-> IS_ERR_OR_NULL or needs an actual bugfix in the code since we're not
-> consistent. Also s/bre/be/
-We're sort of consistent, NULL is a valid return code. IS_ERR is only on faliure. :)
-> -Daniel
->
->> + */
->>  unsigned long *intel_engine_cmd_parser_alloc_jump_whitelist(u32 batch_length,
->>                                                             bool trampoline)
->>  {
->> @@ -1401,7 +1413,9 @@ unsigned long *intel_engine_cmd_parser_alloc_jump_whitelist(u32 batch_length,
->>   * @batch_offset: byte offset in the batch at which execution starts
->>   * @batch_length: length of the commands in batch_obj
->>   * @shadow: validated copy of the batch buffer in question
->> - * @trampoline: whether to emit a conditional trampoline at the end of the batch
->> + * @jump_whitelist: buffer preallocated with intel_engine_cmd_parser_alloc_jump_whitelist()
->> + * @shadow_map: mapping to @shadow vma
->> + * @batch_map: mapping to @batch vma
->>   *
->>   * Parses the specified batch buffer looking for privilege violations as
->>   * described in the overview.
->> --
->> 2.31.0
->>
->
+--===============0185204250==
+Content-Type: multipart/alternative;
+ boundary="===============1518750002704501911=="
+
+--===============1518750002704501911==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: series starting with [v2,1/4] drm/i915: Create stolen memory region from local memory
+URL   : https://patchwork.freedesktop.org/series/89293/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_9993 -> Patchwork_19960
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19960 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][2] ([i915#2782]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9993/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
+    - fi-kbl-soraka:      [FAIL][4] ([i915#2346]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9993/fi-kbl-soraka/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/fi-kbl-soraka/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): fi-icl-y fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_9993 -> Patchwork_19960
+
+  CI-20190529: 20190529
+  CI_DRM_9993: 629d3809e6d926c77ba5e9c5405e64eeba564560 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6072: 0a51f49df9f5ca535fc0206a27a6780de6b52320 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19960: 8615844dae0492aa9a0b962fa72e0cb2fc555bc8 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8615844dae04 drm/i915/stolen: actually mark as contiguous
+3e9bbf037619 drm/i915/stolen: enforce the min_page_size contract
+3dc8d4f8d134 drm/i915/stolen: treat stolen local as normal local memory
+bb6cb02052af drm/i915: Create stolen memory region from local memory
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/index.html
+
+--===============1518750002704501911==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/4] drm/i915: Create stolen memory region from local memory</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89293/">https://patchwork.freedesktop.org/series/89293/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_9993 -&gt; Patchwork_19960</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19960 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_cs_nop@sync-fork-compute0:<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9993/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
+<ul>
+<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9993/fi-kbl-soraka/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19960/fi-kbl-soraka/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): fi-icl-y fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_9993 -&gt; Patchwork_19960</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_9993: 629d3809e6d926c77ba5e9c5405e64eeba564560 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6072: 0a51f49df9f5ca535fc0206a27a6780de6b52320 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19960: 8615844dae0492aa9a0b962fa72e0cb2fc555bc8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>8615844dae04 drm/i915/stolen: actually mark as contiguous<br />
+3e9bbf037619 drm/i915/stolen: enforce the min_page_size contract<br />
+3dc8d4f8d134 drm/i915/stolen: treat stolen local as normal local memory<br />
+bb6cb02052af drm/i915: Create stolen memory region from local memory</p>
+
+</body>
+</html>
+
+--===============1518750002704501911==--
+
+--===============0185204250==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0185204250==--
