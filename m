@@ -2,40 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 039A7366A9D
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 14:18:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82E4D366AA8
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 14:20:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED526E992;
-	Wed, 21 Apr 2021 12:18:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B873A6E1CF;
+	Wed, 21 Apr 2021 12:20:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A20116E992
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 12:18:22 +0000 (UTC)
-IronPort-SDR: M73FaZvT3QSSMyHZCJX+huM3Vzo+dwxBkbzoStnmJntaJRRWJrWjEG8iAnGe1maDhXaJWk35Ck
- Fjr4/FvAiSZg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="183175513"
-X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="183175513"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 05:18:21 -0700
-IronPort-SDR: qMRPsEsSjD72awMo1lhymvEgx0YdYO6WGdMZElRGRRMOO/hY3c0QBiw63xgkC+1YhUtYx0CLdn
- /SnBVUY/rTtw==
-X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="427492705"
-Received: from uchalilx-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.36.64])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 05:18:20 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210421094406.2017733-1-rodrigo.vivi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <CAKi4VA+Rn+XNJNooWGrve+9+07fo7_gDKZD4j0gz3K_LdvMZ-g@mail.gmail.com>
- <20210421094406.2017733-1-rodrigo.vivi@intel.com>
-Date: Wed, 21 Apr 2021 15:18:17 +0300
-Message-ID: <87o8e796gm.fsf@intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C6586E1CF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 12:20:04 +0000 (UTC)
+IronPort-SDR: 4pNu4HemyRvFmfsOPbVYerJuzLJ0is3Ep5Z02WvsJ1eiIL5enR6jj7Jh2zc78oDSQEpPmeVqzy
+ vshM8ZesXUQA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="193565171"
+X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="193565171"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2021 05:20:02 -0700
+IronPort-SDR: fV2baI6YgQ4PvR1J2es/gl/cQsMxQ4sV18JLP2V9Ret4Zo8kpEXeFHh3SXoMp03/ZSBc1P7lkU
+ 8H1LsK07h1qQ==
+X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="384432923"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2021 05:20:01 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 21 Apr 2021 15:19:59 +0300
+Message-Id: <20210421121959.3577881-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Let's abstract the dmc path.
+Subject: [Intel-gfx] [PATCH] drm/i915: Simplify CCS and UV plane alignment
+ handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,79 +45,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMSBBcHIgMjAyMSwgUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29t
-PiB3cm90ZToKPiBBbHRob3VnaCB0aGlzIGFic3RyYWN0aW9uIHJlbW92ZXMgdGhlIGNvbnZlbmll
-bmNlIG9mIGdyZXBwaW5nCj4gZm9yIHRoZSBmaWxlIG5hbWUsIGl0Ogo+IC0gbWFrZXMgYWRkaXRp
-b24gZWFzaWVyLgo+IC0gbWFrZXMgaXQgZWFzaWVyIHRvIHR3ZWFrIGdsb2JhbCBwYXRoIHdoZW4g
-ZXhwZXJpbWVudHMgYXJlIG5lZWRlZC4KPiAtIGdldCBpbiBzeW5jIHdpdGggZ3VjL2h1Yywgd2l0
-aG91dCBnZXR0aW5nIG92ZXJseSBhYnN0cmFjdGVkLgo+IC0gYWxsb3dzIGZ1dHVyZSBqdW5jdGlv
-biB3aXRoIENTUl9WRVJTSU9OIGZvciBzaW1wbGljaXR5Lgo+IC0gRW5mb3JjZXMgZG1jIGZpbGUg
-d2lsbCBuZXZlciBjaGFuZ2UgdGhpcyBzdGFuZGFyZC4KPgo+IHYyOiBkZWZpbmUgRE1DX1BBVEgg
-aW5zaWRlIC5jIChMdWNhcykKPgo+IENjOiBGZWkgWWFuZyA8ZmVpLnlhbmdAaW50ZWwuY29tPgo+
-IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+IENjOiBMdWNhcyBEZSBN
-YXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBSb2RyaWdv
-IFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+Cj4gUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVy
-dG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPiAjdjEKCk5pY2UsCgpSZXZpZXdlZC1i
-eTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KCk9uIGEgcmVsYXRlZCBub3Rl
-LCBzaG91bGQgd2UgZmluYWxseSBjb25zaWRlciBhIHMvY3NyL2RtYy9nIHJlbmFtZSBhbGwKb3Zl
-ciB0aGUgcGxhY2U/IEl0J3MganVzdCBjb25mdXNpbmcgdG8ga2VlcCB1c2luZyB0d28gbmFtZXMu
-CgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYyB8IDI2
-ICsrKysrKysrKysrKysrKy0tLS0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMTYgaW5zZXJ0aW9u
-cygrKSwgMTAgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9jc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfY3NyLmMKPiBpbmRleCAyNmEzYzY3ODdlOWUuLjI2YTkyMmQzNDI2MyAxMDA2NDQKPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jCj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYwo+IEBAIC0zOCw1MCArMzgsNTYgQEAK
-PiAgICogbG93LXBvd2VyIHN0YXRlIGFuZCBjb21lcyBiYWNrIHRvIG5vcm1hbC4KPiAgICovCj4g
-IAo+ICsjZGVmaW5lIERNQ19QQVRIKHBsYXRmb3JtLCBtYWpvciwgbWlub3IpIFwKPiArCSJpOTE1
-LyIJCQkJIFwKPiArCV9fc3RyaW5naWZ5KHBsYXRmb3JtKSAiX2RtY192ZXIiIFwKPiArCV9fc3Ry
-aW5naWZ5KG1ham9yKSAiXyIJCSBcCj4gKwlfX3N0cmluZ2lmeShtaW5vcikgIi5iaW4iCj4gKwo+
-ICAjZGVmaW5lIEdFTjEyX0NTUl9NQVhfRldfU0laRQkJSUNMX0NTUl9NQVhfRldfU0laRQo+ICAK
-PiAtI2RlZmluZSBBRExTX0NTUl9QQVRICQkJImk5MTUvYWRsc19kbWNfdmVyMl8wMS5iaW4iCj4g
-KyNkZWZpbmUgQURMU19DU1JfUEFUSAkJCURNQ19QQVRIKGFkbHMsIDIsIDAxKQo+ICAjZGVmaW5l
-IEFETFNfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMiwgMSkKPiAgTU9EVUxFX0ZJ
-Uk1XQVJFKEFETFNfQ1NSX1BBVEgpOwo+ICAKPiAtI2RlZmluZSBERzFfQ1NSX1BBVEgJCQkiaTkx
-NS9kZzFfZG1jX3ZlcjJfMDIuYmluIgo+ICsjZGVmaW5lIERHMV9DU1JfUEFUSAkJCURNQ19QQVRI
-KGRnMSwgMiwgMDIpCj4gICNkZWZpbmUgREcxX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNTUl9WRVJT
-SU9OKDIsIDIpCj4gIE1PRFVMRV9GSVJNV0FSRShERzFfQ1NSX1BBVEgpOwo+ICAKPiAtI2RlZmlu
-ZSBSS0xfQ1NSX1BBVEgJCQkiaTkxNS9ya2xfZG1jX3ZlcjJfMDIuYmluIgo+ICsjZGVmaW5lIFJL
-TF9DU1JfUEFUSAkJCURNQ19QQVRIKHJrbCwgMiwgMDIpCj4gICNkZWZpbmUgUktMX0NTUl9WRVJT
-SU9OX1JFUVVJUkVECUNTUl9WRVJTSU9OKDIsIDIpCj4gIE1PRFVMRV9GSVJNV0FSRShSS0xfQ1NS
-X1BBVEgpOwo+ICAKPiAtI2RlZmluZSBUR0xfQ1NSX1BBVEgJCQkiaTkxNS90Z2xfZG1jX3ZlcjJf
-MDguYmluIgo+ICsjZGVmaW5lIFRHTF9DU1JfUEFUSAkJCURNQ19QQVRIKHRnbCwgMiwgMDgpCj4g
-ICNkZWZpbmUgVEdMX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNTUl9WRVJTSU9OKDIsIDgpCj4gIE1P
-RFVMRV9GSVJNV0FSRShUR0xfQ1NSX1BBVEgpOwo+ICAKPiAtI2RlZmluZSBJQ0xfQ1NSX1BBVEgJ
-CQkiaTkxNS9pY2xfZG1jX3ZlcjFfMDkuYmluIgo+ICsjZGVmaW5lIElDTF9DU1JfUEFUSAkJCURN
-Q19QQVRIKGljbCwgMSwgMDkpCj4gICNkZWZpbmUgSUNMX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNT
-Ul9WRVJTSU9OKDEsIDkpCj4gICNkZWZpbmUgSUNMX0NTUl9NQVhfRldfU0laRQkJMHg2MDAwCj4g
-IE1PRFVMRV9GSVJNV0FSRShJQ0xfQ1NSX1BBVEgpOwo+ICAKPiAtI2RlZmluZSBDTkxfQ1NSX1BB
-VEgJCQkiaTkxNS9jbmxfZG1jX3ZlcjFfMDcuYmluIgo+ICsjZGVmaW5lIENOTF9DU1JfUEFUSAkJ
-CURNQ19QQVRIKGNubCwgMSwgMDcpCj4gICNkZWZpbmUgQ05MX0NTUl9WRVJTSU9OX1JFUVVJUkVE
-CUNTUl9WRVJTSU9OKDEsIDcpCj4gICNkZWZpbmUgQ05MX0NTUl9NQVhfRldfU0laRQkJR0xLX0NT
-Ul9NQVhfRldfU0laRQo+ICBNT0RVTEVfRklSTVdBUkUoQ05MX0NTUl9QQVRIKTsKPiAgCj4gLSNk
-ZWZpbmUgR0xLX0NTUl9QQVRICQkJImk5MTUvZ2xrX2RtY192ZXIxXzA0LmJpbiIKPiArI2RlZmlu
-ZSBHTEtfQ1NSX1BBVEgJCQlETUNfUEFUSChnbGssIDEsIDA0KQo+ICAjZGVmaW5lIEdMS19DU1Jf
-VkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVSU0lPTigxLCA0KQo+ICAjZGVmaW5lIEdMS19DU1JfTUFY
-X0ZXX1NJWkUJCTB4NDAwMAo+ICBNT0RVTEVfRklSTVdBUkUoR0xLX0NTUl9QQVRIKTsKPiAgCj4g
-LSNkZWZpbmUgS0JMX0NTUl9QQVRICQkJImk5MTUva2JsX2RtY192ZXIxXzA0LmJpbiIKPiArI2Rl
-ZmluZSBLQkxfQ1NSX1BBVEgJCQlETUNfUEFUSChrYmwsIDEsIDA0KQo+ICAjZGVmaW5lIEtCTF9D
-U1JfVkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVSU0lPTigxLCA0KQo+ICAjZGVmaW5lIEtCTF9DU1Jf
-TUFYX0ZXX1NJWkUJCUJYVF9DU1JfTUFYX0ZXX1NJWkUKPiAgTU9EVUxFX0ZJUk1XQVJFKEtCTF9D
-U1JfUEFUSCk7Cj4gIAo+IC0jZGVmaW5lIFNLTF9DU1JfUEFUSAkJCSJpOTE1L3NrbF9kbWNfdmVy
-MV8yNy5iaW4iCj4gKyNkZWZpbmUgU0tMX0NTUl9QQVRICQkJRE1DX1BBVEgoc2tsLCAxLCAyNykK
-PiAgI2RlZmluZSBTS0xfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMSwgMjcpCj4g
-ICNkZWZpbmUgU0tMX0NTUl9NQVhfRldfU0laRQkJQlhUX0NTUl9NQVhfRldfU0laRQo+ICBNT0RV
-TEVfRklSTVdBUkUoU0tMX0NTUl9QQVRIKTsKPiAgCj4gLSNkZWZpbmUgQlhUX0NTUl9QQVRICQkJ
-Imk5MTUvYnh0X2RtY192ZXIxXzA3LmJpbiIKPiArI2RlZmluZSBCWFRfQ1NSX1BBVEgJCQlETUNf
-UEFUSChieHQsIDEsIDA3KQo+ICAjZGVmaW5lIEJYVF9DU1JfVkVSU0lPTl9SRVFVSVJFRAlDU1Jf
-VkVSU0lPTigxLCA3KQo+ICAjZGVmaW5lIEJYVF9DU1JfTUFYX0ZXX1NJWkUJCTB4MzAwMAo+ICBN
-T0RVTEVfRklSTVdBUkUoQlhUX0NTUl9QQVRIKTsKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3Bl
-biBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+We can handle the surface alignment of CCS and UV color planes for all
+modifiers at one place, so do this. An AUX color plane can be a CCS or a
+UV plane, use only the more specific query functions and remove
+is_aux_plane() becoming redundant.
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 19 ++++++++++---------
+ drivers/gpu/drm/i915/display/intel_fb.c      |  8 --------
+ drivers/gpu/drm/i915/display/intel_fb.h      |  1 -
+ 3 files changed, 10 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a10e26380ef3d..bb219b4232540 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -973,10 +973,18 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+ 	struct drm_i915_private *dev_priv = to_i915(fb->dev);
+ 
+ 	/* AUX_DIST needs only 4K alignment */
+-	if ((DISPLAY_VER(dev_priv) < 12 && is_aux_plane(fb, color_plane)) ||
+-	    is_ccs_plane(fb, color_plane))
++	if (is_ccs_plane(fb, color_plane))
+ 		return 4096;
+ 
++	if (is_semiplanar_uv_plane(fb, color_plane)) {
++		if (DISPLAY_VER(dev_priv) >= 12)
++			return intel_tile_row_size(fb, color_plane);
++
++		return 4096;
++	}
++
++	drm_WARN_ON(&dev_priv->drm, color_plane != 0);
++
+ 	switch (fb->modifier) {
+ 	case DRM_FORMAT_MOD_LINEAR:
+ 		return intel_linear_alignment(dev_priv);
+@@ -985,19 +993,12 @@ unsigned int intel_surf_alignment(const struct drm_framebuffer *fb,
+ 			return 256 * 1024;
+ 		return 0;
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_MC_CCS:
+-		if (is_semiplanar_uv_plane(fb, color_plane))
+-			return intel_tile_row_size(fb, color_plane);
+-		fallthrough;
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS_CC:
+ 		return 16 * 1024;
+ 	case I915_FORMAT_MOD_Y_TILED_CCS:
+ 	case I915_FORMAT_MOD_Yf_TILED_CCS:
+ 	case I915_FORMAT_MOD_Y_TILED:
+-		if (DISPLAY_VER(dev_priv) >= 12 &&
+-		    is_semiplanar_uv_plane(fb, color_plane))
+-			return intel_tile_row_size(fb, color_plane);
+-		fallthrough;
+ 	case I915_FORMAT_MOD_Yf_TILED:
+ 		return 1 * 1024 * 1024;
+ 	default:
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 0ec9ad7220a14..c8aaca3e79e97 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -30,14 +30,6 @@ bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane)
+ 	       plane == 2;
+ }
+ 
+-bool is_aux_plane(const struct drm_framebuffer *fb, int plane)
+-{
+-	if (is_ccs_modifier(fb->modifier))
+-		return is_ccs_plane(fb, plane);
+-
+-	return plane == 1;
+-}
+-
+ bool is_semiplanar_uv_plane(const struct drm_framebuffer *fb, int color_plane)
+ {
+ 	return intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+index 6acf792a8c44a..13244ec1ad214 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.h
++++ b/drivers/gpu/drm/i915/display/intel_fb.h
+@@ -19,7 +19,6 @@ struct intel_plane_state;
+ bool is_ccs_plane(const struct drm_framebuffer *fb, int plane);
+ bool is_gen12_ccs_plane(const struct drm_framebuffer *fb, int plane);
+ bool is_gen12_ccs_cc_plane(const struct drm_framebuffer *fb, int plane);
+-bool is_aux_plane(const struct drm_framebuffer *fb, int plane);
+ bool is_semiplanar_uv_plane(const struct drm_framebuffer *fb, int color_plane);
+ 
+ bool is_surface_linear(const struct drm_framebuffer *fb, int color_plane);
+-- 
+2.27.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
