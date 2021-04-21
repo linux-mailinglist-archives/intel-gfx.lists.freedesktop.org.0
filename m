@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F81B36684C
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 11:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E9FB366850
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 11:44:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1EFB6E432;
-	Wed, 21 Apr 2021 09:43:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7AD6E432;
+	Wed, 21 Apr 2021 09:44:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4AC89B68
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 09:43:04 +0000 (UTC)
-IronPort-SDR: o55mqhBlkqPfrrKu1q0x8wi6TaiRcu/vW5mx4+i3v2WbBhmUlsrT4ZBFQVSPLekUKJUT0nH0bz
- RyHHf0yJPWpQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="256984918"
-X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="256984918"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 02:43:04 -0700
-IronPort-SDR: LJ3QD202mG1zvBDFhikKDGYGLq9MquduhClDQMRdVxPSKS5STjZR5jRwO9y0ee3wzrQTy2wC4J
- pjToa1K02izQ==
-X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="427453272"
-Received: from uchalilx-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.36.64])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 02:43:01 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lee Shawn C <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210419151718.22979-1-shawn.c.lee@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210419151718.22979-1-shawn.c.lee@intel.com>
-Date: Wed, 21 Apr 2021 12:42:55 +0300
-Message-ID: <875z0g9dnk.fsf@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 281966E432
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 09:44:13 +0000 (UTC)
+IronPort-SDR: LaC1yZLNaLEZUo/Wh/75gf01gmvjMjBS0unxIJmVH9p3rF01lrDBwqYlQDgKIxJhwge7QAmJnK
+ 2RyLIVchVWPA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="182801032"
+X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="182801032"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2021 02:44:12 -0700
+IronPort-SDR: LTOIHpbv695B+kyyHE6pDCRSIhDiGwk5Mpe6SjNxD4va2ZS9MT2lfnecBXWJz7GBpG9dLjdQ9F
+ WUhdZt25Lp/w==
+X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="423489249"
+Received: from thewavit-mobl1.ger.corp.intel.com (HELO rdvivi-mobl4.intel.com)
+ ([10.209.182.116])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2021 02:44:11 -0700
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 21 Apr 2021 05:44:06 -0400
+Message-Id: <20210421094406.2017733-1-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <CAKi4VA+Rn+XNJNooWGrve+9+07fo7_gDKZD4j0gz3K_LdvMZ-g@mail.gmail.com>
+References: <CAKi4VA+Rn+XNJNooWGrve+9+07fo7_gDKZD4j0gz3K_LdvMZ-g@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: set min brightness for aux
- backlight interface.
+Subject: [Intel-gfx] [PATCH] drm/i915/dmc: Let's abstract the dmc path.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,80 +47,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 19 Apr 2021, Lee Shawn C <shawn.c.lee@intel.com> wrote:
-> Min brightness level for aux backlight interface is always zero.
-> Driver should refer to VBT's setting to configure proper minimum
-> level just like PWM backlight interface.
-
-Unfortunately this change makes it harder for Lyude to extract the dpcd
-backlight code from i915 to drm helpers, and I think the min brightness
-should be handled after or in connection with that change.
-
-BR,
-Jani.
-
-
->
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
->
-> Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 2 +-
->  drivers/gpu/drm/i915/display/intel_panel.c            | 2 +-
->  drivers/gpu/drm/i915/display/intel_panel.h            | 1 +
->  3 files changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index 4f8337c7fd2e..efd8fa155105 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -571,7 +571,7 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
->  	if (!panel->backlight.max)
->  		return -ENODEV;
->  
-> -	panel->backlight.min = 0;
-> +	panel->backlight.min = get_backlight_min_vbt(connector);
->  	panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector, pipe);
->  	panel->backlight.enabled = intel_dp_aux_vesa_backlight_dpcd_mode(connector) &&
->  				   panel->backlight.level != 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-> index 551fcaa77c2c..6d58ec192a04 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -1614,7 +1614,7 @@ static u32 get_backlight_max_vbt(struct intel_connector *connector)
->  /*
->   * Note: The setup hooks can't assume pipe is set!
->   */
-> -static u32 get_backlight_min_vbt(struct intel_connector *connector)
-> +u32 get_backlight_min_vbt(struct intel_connector *connector)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
->  	struct intel_panel *panel = &connector->panel;
-> diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
-> index 1d340f77bffc..63da4e355585 100644
-> --- a/drivers/gpu/drm/i915/display/intel_panel.h
-> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
-> @@ -53,6 +53,7 @@ void intel_panel_set_pwm_level(const struct drm_connector_state *conn_state, u32
->  u32 intel_panel_invert_pwm_level(struct intel_connector *connector, u32 level);
->  u32 intel_panel_backlight_level_to_pwm(struct intel_connector *connector, u32 level);
->  u32 intel_panel_backlight_level_from_pwm(struct intel_connector *connector, u32 val);
-> +u32 get_backlight_min_vbt(struct intel_connector *connector);
->  
->  #if IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE)
->  int intel_backlight_device_register(struct intel_connector *connector);
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWx0aG91Z2ggdGhpcyBhYnN0cmFjdGlvbiByZW1vdmVzIHRoZSBjb252ZW5pZW5jZSBvZiBncmVw
+cGluZwpmb3IgdGhlIGZpbGUgbmFtZSwgaXQ6Ci0gbWFrZXMgYWRkaXRpb24gZWFzaWVyLgotIG1h
+a2VzIGl0IGVhc2llciB0byB0d2VhayBnbG9iYWwgcGF0aCB3aGVuIGV4cGVyaW1lbnRzIGFyZSBu
+ZWVkZWQuCi0gZ2V0IGluIHN5bmMgd2l0aCBndWMvaHVjLCB3aXRob3V0IGdldHRpbmcgb3Zlcmx5
+IGFic3RyYWN0ZWQuCi0gYWxsb3dzIGZ1dHVyZSBqdW5jdGlvbiB3aXRoIENTUl9WRVJTSU9OIGZv
+ciBzaW1wbGljaXR5LgotIEVuZm9yY2VzIGRtYyBmaWxlIHdpbGwgbmV2ZXIgY2hhbmdlIHRoaXMg
+c3RhbmRhcmQuCgp2MjogZGVmaW5lIERNQ19QQVRIIGluc2lkZSAuYyAoTHVjYXMpCgpDYzogRmVp
+IFlhbmcgPGZlaS55YW5nQGludGVsLmNvbT4KQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBp
+bnRlbC5jb20+CkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4K
+U2lnbmVkLW9mZi1ieTogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29tPgpSZXZp
+ZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+ICN2
+MQotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3NyLmMgfCAyNiArKysr
+KysrKysrKysrKystLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspLCAx
+MCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Nzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYwpp
+bmRleCAyNmEzYzY3ODdlOWUuLjI2YTkyMmQzNDI2MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Nzci5jCkBAIC0zOCw1MCArMzgsNTYgQEAKICAqIGxvdy1wb3dlciBzdGF0
+ZSBhbmQgY29tZXMgYmFjayB0byBub3JtYWwuCiAgKi8KIAorI2RlZmluZSBETUNfUEFUSChwbGF0
+Zm9ybSwgbWFqb3IsIG1pbm9yKSBcCisJImk5MTUvIgkJCQkgXAorCV9fc3RyaW5naWZ5KHBsYXRm
+b3JtKSAiX2RtY192ZXIiIFwKKwlfX3N0cmluZ2lmeShtYWpvcikgIl8iCQkgXAorCV9fc3RyaW5n
+aWZ5KG1pbm9yKSAiLmJpbiIKKwogI2RlZmluZSBHRU4xMl9DU1JfTUFYX0ZXX1NJWkUJCUlDTF9D
+U1JfTUFYX0ZXX1NJWkUKIAotI2RlZmluZSBBRExTX0NTUl9QQVRICQkJImk5MTUvYWRsc19kbWNf
+dmVyMl8wMS5iaW4iCisjZGVmaW5lIEFETFNfQ1NSX1BBVEgJCQlETUNfUEFUSChhZGxzLCAyLCAw
+MSkKICNkZWZpbmUgQURMU19DU1JfVkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVSU0lPTigyLCAxKQog
+TU9EVUxFX0ZJUk1XQVJFKEFETFNfQ1NSX1BBVEgpOwogCi0jZGVmaW5lIERHMV9DU1JfUEFUSAkJ
+CSJpOTE1L2RnMV9kbWNfdmVyMl8wMi5iaW4iCisjZGVmaW5lIERHMV9DU1JfUEFUSAkJCURNQ19Q
+QVRIKGRnMSwgMiwgMDIpCiAjZGVmaW5lIERHMV9DU1JfVkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVS
+U0lPTigyLCAyKQogTU9EVUxFX0ZJUk1XQVJFKERHMV9DU1JfUEFUSCk7CiAKLSNkZWZpbmUgUktM
+X0NTUl9QQVRICQkJImk5MTUvcmtsX2RtY192ZXIyXzAyLmJpbiIKKyNkZWZpbmUgUktMX0NTUl9Q
+QVRICQkJRE1DX1BBVEgocmtsLCAyLCAwMikKICNkZWZpbmUgUktMX0NTUl9WRVJTSU9OX1JFUVVJ
+UkVECUNTUl9WRVJTSU9OKDIsIDIpCiBNT0RVTEVfRklSTVdBUkUoUktMX0NTUl9QQVRIKTsKIAot
+I2RlZmluZSBUR0xfQ1NSX1BBVEgJCQkiaTkxNS90Z2xfZG1jX3ZlcjJfMDguYmluIgorI2RlZmlu
+ZSBUR0xfQ1NSX1BBVEgJCQlETUNfUEFUSCh0Z2wsIDIsIDA4KQogI2RlZmluZSBUR0xfQ1NSX1ZF
+UlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMiwgOCkKIE1PRFVMRV9GSVJNV0FSRShUR0xfQ1NS
+X1BBVEgpOwogCi0jZGVmaW5lIElDTF9DU1JfUEFUSAkJCSJpOTE1L2ljbF9kbWNfdmVyMV8wOS5i
+aW4iCisjZGVmaW5lIElDTF9DU1JfUEFUSAkJCURNQ19QQVRIKGljbCwgMSwgMDkpCiAjZGVmaW5l
+IElDTF9DU1JfVkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVSU0lPTigxLCA5KQogI2RlZmluZSBJQ0xf
+Q1NSX01BWF9GV19TSVpFCQkweDYwMDAKIE1PRFVMRV9GSVJNV0FSRShJQ0xfQ1NSX1BBVEgpOwog
+Ci0jZGVmaW5lIENOTF9DU1JfUEFUSAkJCSJpOTE1L2NubF9kbWNfdmVyMV8wNy5iaW4iCisjZGVm
+aW5lIENOTF9DU1JfUEFUSAkJCURNQ19QQVRIKGNubCwgMSwgMDcpCiAjZGVmaW5lIENOTF9DU1Jf
+VkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVSU0lPTigxLCA3KQogI2RlZmluZSBDTkxfQ1NSX01BWF9G
+V19TSVpFCQlHTEtfQ1NSX01BWF9GV19TSVpFCiBNT0RVTEVfRklSTVdBUkUoQ05MX0NTUl9QQVRI
+KTsKIAotI2RlZmluZSBHTEtfQ1NSX1BBVEgJCQkiaTkxNS9nbGtfZG1jX3ZlcjFfMDQuYmluIgor
+I2RlZmluZSBHTEtfQ1NSX1BBVEgJCQlETUNfUEFUSChnbGssIDEsIDA0KQogI2RlZmluZSBHTEtf
+Q1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMSwgNCkKICNkZWZpbmUgR0xLX0NTUl9N
+QVhfRldfU0laRQkJMHg0MDAwCiBNT0RVTEVfRklSTVdBUkUoR0xLX0NTUl9QQVRIKTsKIAotI2Rl
+ZmluZSBLQkxfQ1NSX1BBVEgJCQkiaTkxNS9rYmxfZG1jX3ZlcjFfMDQuYmluIgorI2RlZmluZSBL
+QkxfQ1NSX1BBVEgJCQlETUNfUEFUSChrYmwsIDEsIDA0KQogI2RlZmluZSBLQkxfQ1NSX1ZFUlNJ
+T05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMSwgNCkKICNkZWZpbmUgS0JMX0NTUl9NQVhfRldfU0la
+RQkJQlhUX0NTUl9NQVhfRldfU0laRQogTU9EVUxFX0ZJUk1XQVJFKEtCTF9DU1JfUEFUSCk7CiAK
+LSNkZWZpbmUgU0tMX0NTUl9QQVRICQkJImk5MTUvc2tsX2RtY192ZXIxXzI3LmJpbiIKKyNkZWZp
+bmUgU0tMX0NTUl9QQVRICQkJRE1DX1BBVEgoc2tsLCAxLCAyNykKICNkZWZpbmUgU0tMX0NTUl9W
+RVJTSU9OX1JFUVVJUkVECUNTUl9WRVJTSU9OKDEsIDI3KQogI2RlZmluZSBTS0xfQ1NSX01BWF9G
+V19TSVpFCQlCWFRfQ1NSX01BWF9GV19TSVpFCiBNT0RVTEVfRklSTVdBUkUoU0tMX0NTUl9QQVRI
+KTsKIAotI2RlZmluZSBCWFRfQ1NSX1BBVEgJCQkiaTkxNS9ieHRfZG1jX3ZlcjFfMDcuYmluIgor
+I2RlZmluZSBCWFRfQ1NSX1BBVEgJCQlETUNfUEFUSChieHQsIDEsIDA3KQogI2RlZmluZSBCWFRf
+Q1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMSwgNykKICNkZWZpbmUgQlhUX0NTUl9N
+QVhfRldfU0laRQkJMHgzMDAwCiBNT0RVTEVfRklSTVdBUkUoQlhUX0NTUl9QQVRIKTsKLS0gCjIu
+MzAuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
