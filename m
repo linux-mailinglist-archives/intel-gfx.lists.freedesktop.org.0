@@ -1,31 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DDF4366D25
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 15:49:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C54366D45
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 15:54:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2E276E169;
-	Wed, 21 Apr 2021 13:49:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 956C06E1F9;
+	Wed, 21 Apr 2021 13:54:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3C7466E507;
- Wed, 21 Apr 2021 13:49:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 334B1A73C7;
- Wed, 21 Apr 2021 13:49:28 +0000 (UTC)
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com
+ [IPv6:2a00:1450:4864:20::52c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA1256E99C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 13:54:42 +0000 (UTC)
+Received: by mail-ed1-x52c.google.com with SMTP id g17so48789679edm.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 06:54:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=xO0ZjyGglAX/WliROCLhCmYVImOfnaay5/HgD6W1CUE=;
+ b=Lmed+1sT1UWQWRoixGpDHZbq23s13rs542/YMYqzKqORp6XS5HpwyYkY7HoHZOYRtF
+ BEL2eT419NTeF4W2gW1aLHj1SONdRz55Zmjjh35+D4QQmMPl6H/O8I9NljXovHCUsO9H
+ 8FgXaCii9YhqOPg3lKNGkCVZBCWxNtkgV95I2WuvM/W8udAtZrQZxw5/n5Y9b8wILsi4
+ CNPyRtoUgTGR48HHzvbiy1nMndRQZmwspfUuJqtDemnY+8SROjglWxn2MyH9q3C98fKS
+ Nu1QVrU0SbQZN0sSJHDR4iufc9g5zKHnSLQJEow4ZtrHbFLIm2lZynEDcAzQRIaZjaVC
+ QoOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=xO0ZjyGglAX/WliROCLhCmYVImOfnaay5/HgD6W1CUE=;
+ b=a+oNERsDeX3tcg2ENQ0zj3yOHdyNvuLOa5Y/8WKm9OHvrxpXzLKPNb49Np7dAUtWJV
+ /sBYj/NrZoma76ncBYNRqyJej72QKFBBgksp1W4HKvTU/ZidRbi6WVZ9amHATdLQabap
+ s5tfqEkXtdT3FIGTxt/chzYJ9LVMD53D82DlP0ulIjHH3ntTms9VBgmVGq9OTV8OgFs7
+ 0pPKLHyYbhF9YuZoXBKrmc8OD53z7noVFxQgRf9auNFEzUAszyfd1oEd5p6bXzx65IN5
+ 3VTS7n4gWwjd6tJKcz7kJfyZfxPsRYdrNWWXBuZmPDWVDkHMRPdXFCt2So9VbzULeLMv
+ 7uQg==
+X-Gm-Message-State: AOAM532HyUysx6Ggs1gb+c3NhN/o00Fs1mIpCIXNmawxwRDMLbQARpRO
+ r0EYWjQ3rTF/gRq2729SIMpwMQteexWP+R7tquv2xA==
+X-Google-Smtp-Source: ABdhPJxvrexQ/ZWgr7OrTlD/QGR5QbMKlMkxKlgXfsKtLOUreJRss4ziHcROlB5gfkNb0UIZ7MDMwZTYBJVi83UFFJc=
+X-Received: by 2002:a05:6402:202a:: with SMTP id
+ ay10mr21726068edb.225.1619013281295; 
+ Wed, 21 Apr 2021 06:54:41 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Wed, 21 Apr 2021 13:49:28 -0000
-Message-ID: <161901296820.19926.11197667565139883461@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210420191226.1930570-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20210420191226.1930570-1-rodrigo.vivi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/dmc=3A_Let=27s_abstract_the_dmc_path=2E_=28rev2=29?=
+References: <20210415155958.391624-1-matthew.auld@intel.com>
+ <20210415155958.391624-4-matthew.auld@intel.com>
+ <CAOFGe96QALJa4FbWkVxczTdOA6b41zk1GxdYwRsrP7GwSZ4zvw@mail.gmail.com>
+ <6cf790c7-84bf-4d35-c1c3-4cf826655faf@intel.com>
+ <CAOFGe95gMUuqXX=Yn_xMRVxQmcwiqNEN0m3PgyNACcm0iNTyKg@mail.gmail.com>
+ <5a412489-75ed-e971-0e0b-388f0f964fac@linux.intel.com>
+ <CAOFGe97HuFOe08ttq7yyuiTVphjvwRB2542at6uEEb5YX671Rw@mail.gmail.com>
+ <db6f3015-654b-17fa-0d72-4339c4ab338d@linux.intel.com>
+In-Reply-To: <db6f3015-654b-17fa-0d72-4339c4ab338d@linux.intel.com>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Wed, 21 Apr 2021 08:54:29 -0500
+Message-ID: <CAOFGe95FqvMnnH82o_uQtffpFNKarB0Gvs+vLkhQ-UKjiXO0Mg@mail.gmail.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 4/4] drm/doc/rfc: i915 DG1 uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,192 +69,259 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1873822475=="
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Kenneth Graunke <kenneth@whitecape.org>, Matthew Auld <matthew.auld@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ ML mesa-dev <mesa-dev@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1873822475==
-Content-Type: multipart/alternative;
- boundary="===============2659570862424510781=="
+On Wed, Apr 21, 2021 at 3:22 AM Tvrtko Ursulin
+<tvrtko.ursulin@linux.intel.com> wrote:
+>
+> On 20/04/2021 18:00, Jason Ekstrand wrote:
+> > On Tue, Apr 20, 2021 at 11:34 AM Tvrtko Ursulin
+> > <tvrtko.ursulin@linux.intel.com> wrote:
+> >>
+> >>
+> >> On 19/04/2021 16:19, Jason Ekstrand wrote:
+> >>> On Mon, Apr 19, 2021 at 7:02 AM Matthew Auld <matthew.auld@intel.com> wrote:
+> >>>>
+> >>>> On 16/04/2021 17:38, Jason Ekstrand wrote:
+> >>>>> On Thu, Apr 15, 2021 at 11:04 AM Matthew Auld <matthew.auld@intel.com> wrote:
+> >>>>>>
+> >>>>>> Add an entry for the new uAPI needed for DG1.
+> >>>>>>
+> >>>>>> v2(Daniel):
+> >>>>>>      - include the overall upstreaming plan
+> >>>>>>      - add a note for mmap, there are differences here for TTM vs i915
+> >>>>>>      - bunch of other suggestions from Daniel
+> >>>>>> v3:
+> >>>>>>     (Daniel)
+> >>>>>>      - add a note for set/get caching stuff
+> >>>>>>      - add some more docs for existing query and extensions stuff
+> >>>>>>      - add an actual code example for regions query
+> >>>>>>      - bunch of other stuff
+> >>>>>>     (Jason)
+> >>>>>>      - uAPI change(!):
+> >>>>>>            - try a simpler design with the placements extension
+> >>>>>>            - rather than have a generic setparam which can cover multiple
+> >>>>>>              use cases, have each extension be responsible for one thing
+> >>>>>>              only
+> >>>>>>
+> >>>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> >>>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> >>>>>> Cc: Jordan Justen <jordan.l.justen@intel.com>
+> >>>>>> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> >>>>>> Cc: Kenneth Graunke <kenneth@whitecape.org>
+> >>>>>> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> >>>>>> Cc: Dave Airlie <airlied@gmail.com>
+> >>>>>> Cc: dri-devel@lists.freedesktop.org
+> >>>>>> Cc: mesa-dev@lists.freedesktop.org
+> >>>>>> ---
+> >>>>>>     Documentation/gpu/rfc/i915_gem_lmem.h   | 255 ++++++++++++++++++++++++
+> >>>>>>     Documentation/gpu/rfc/i915_gem_lmem.rst | 139 +++++++++++++
+> >>>>>>     Documentation/gpu/rfc/index.rst         |   4 +
+> >>>>>>     3 files changed, 398 insertions(+)
+> >>>>>>     create mode 100644 Documentation/gpu/rfc/i915_gem_lmem.h
+> >>>>>>     create mode 100644 Documentation/gpu/rfc/i915_gem_lmem.rst
+> >>>>>>
+> >>>>>> diff --git a/Documentation/gpu/rfc/i915_gem_lmem.h b/Documentation/gpu/rfc/i915_gem_lmem.h
+> >>>>>> new file mode 100644
+> >>>>>> index 000000000000..2a82a452e9f2
+> >>>>>> --- /dev/null
+> >>>>>> +++ b/Documentation/gpu/rfc/i915_gem_lmem.h
+> >>>>>> @@ -0,0 +1,255 @@
+> >>>>>> +/*
+> >>>>>> + * Note that drm_i915_query_item and drm_i915_query are existing bits of uAPI.
+> >>>>>> + * For the regions query we are just adding a new query id, so no actual new
+> >>>>>> + * ioctl or anything, but including it here for reference.
+> >>>>>> + */
+> >>>>>> +struct drm_i915_query_item {
+> >>>>>> +#define DRM_I915_QUERY_MEMORY_REGIONS   0xdeadbeaf
+> >>>>>> +       ....
+> >>>>>> +        __u64 query_id;
+> >>>>>> +
+> >>>>>> +        /*
+> >>>>>> +         * When set to zero by userspace, this is filled with the size of the
+> >>>>>> +         * data to be written at the data_ptr pointer. The kernel sets this
+> >>>>>> +         * value to a negative value to signal an error on a particular query
+> >>>>>> +         * item.
+> >>>>>> +         */
+> >>>>>> +        __s32 length;
+> >>>>>> +
+> >>>>>> +        __u32 flags;
+> >>>>>> +        /*
+> >>>>>> +         * Data will be written at the location pointed by data_ptr when the
+> >>>>>> +         * value of length matches the length of the data to be written by the
+> >>>>>> +         * kernel.
+> >>>>>> +         */
+> >>>>>> +        __u64 data_ptr;
+> >>>>>> +};
+> >>>>>> +
+> >>>>>> +struct drm_i915_query {
+> >>>>>> +        __u32 num_items;
+> >>>>>> +        /*
+> >>>>>> +         * Unused for now. Must be cleared to zero.
+> >>>>>> +         */
+> >>>>>> +        __u32 flags;
+> >>>>>> +        /*
+> >>>>>> +         * This points to an array of num_items drm_i915_query_item structures.
+> >>>>>> +         */
+> >>>>>> +        __u64 items_ptr;
+> >>>>>> +};
+> >>>>>> +
+> >>>>>> +#define DRM_IOCTL_I915_QUERY   DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_QUERY, struct drm_i915_query)
+> >>>>>> +
+> >>>>>> +/**
+> >>>>>> + * enum drm_i915_gem_memory_class
+> >>>>>> + */
+> >>>>>> +enum drm_i915_gem_memory_class {
+> >>>>>> +       /** @I915_MEMORY_CLASS_SYSTEM: system memory */
+> >>>>>> +       I915_MEMORY_CLASS_SYSTEM = 0,
+> >>>>>> +       /** @I915_MEMORY_CLASS_DEVICE: device local-memory */
+> >>>>>> +       I915_MEMORY_CLASS_DEVICE,
+> >>>>>> +};
+> >>>>>> +
+> >>>>>> +/**
+> >>>>>> + * struct drm_i915_gem_memory_class_instance
+> >>>>>> + */
+> >>>>>> +struct drm_i915_gem_memory_class_instance {
+> >>>>>> +       /** @memory_class: see enum drm_i915_gem_memory_class */
+> >>>>>> +       __u16 memory_class;
+> >>>>>> +
+> >>>>>> +       /** @memory_instance: which instance */
+> >>>>>> +       __u16 memory_instance;
+> >>>>>> +};
+> >>>>>> +
+> >>>>>> +/**
+> >>>>>> + * struct drm_i915_memory_region_info
+> >>>>>> + *
+> >>>>>> + * Describes one region as known to the driver.
+> >>>>>> + *
+> >>>>>> + * Note that we reserve quite a lot of stuff here for potential future work. As
+> >>>>>> + * an example we might want expose the capabilities(see caps) for a given
+> >>>>>> + * region, which could include things like if the region is CPU
+> >>>>>> + * mappable/accessible etc.
+> >>>>>
+> >>>>> I get caps but I'm seriously at a loss as to what the rest of this
+> >>>>> would be used for.  Why are caps and flags both there and separate?
+> >>>>> Flags are typically something you set, not query.  Also, what's with
+> >>>>> rsvd1 at the end?  This smells of substantial over-building to me.
+> >>>>>
+> >>>>> I thought to myself, "maybe I'm missing a future use-case" so I looked
+> >>>>> at the internal tree and none of this is being used there either.
+> >>>>> This indicates to me that either I'm missing something and there's
+> >>>>> code somewhere I don't know about or, with three years of building on
+> >>>>> internal branches, we still haven't proven that any of this is needed.
+> >>>>> If it's the latter, which I strongly suspect, maybe we should drop the
+> >>>>> unnecessary bits and only add them back in if and when we have proof
+> >>>>> that they're useful.
+> >>>>
+> >>>> Do you mean just drop caps/flags here, but keep/inflate rsvd0/rsvd1,
+> >>>> which is less opinionated about future unknowns? If so, makes sense to me.
+> >>>
+> >>> I meant drop flags and rsvd1.  We need rsvd0 for padding and  I can
+> >>> see some value to caps.  We may want to advertise, for instance, what
+> >>> mapping coherency types are available per-heap.  But I don't see any
+> >>> use for any of the other fields.
+> >>
+> >> I'd suggest making sure at least enough rsvd fields remain so that flags
+> >> could be added later if needed. Experience from engine info shows that
+> >> both were required in order to extend the query via re-purposing the
+> >> rsvds and adding flag bits to indicate when a certain rsvd contains a
+> >> new piece of information.
+> >
+> > Looking at DII, all I see is we started using caps.  I already said
+> > I'm fine with caps.  I can already imagine some useful ones like
+> > specifying what kinds of mappings we can do.
+> >
+> > If we're concerned about more complicated stuff, I argue that we have
+> > no ability to predict what that will look like and so just throwing in
+> > a bunch of __u32 rsvd[N] is blind guessing.  I'm seeing a lot of that
+> > in the recently added APIs such as the flags and rsvd[4] in
+> > i915_user_extension.  What's that there for?  Why can't you put that
+> > information in the extension struct which derives from it?  Maybe it's
+> > so that we can extend it.  But we added that struct as part of an
+> > extension mechanism!?!
+> >
+> > If we want to make things extensible, Vulkan actually provides some
+> > prior art for this in the form of allowing queries to be extended just
+> > like input structs.  We could add a __u64 extensions field to
+> > memory_region_info and, if we ever need to query more info, the client
+> > can provide a chain of additional per-region queries.  Yeah, there are
+> > problems with it and it gets a bit clunky but it does work pretty
+> > well.
+> >
+> >> I probably cannot go into too much detail
+> >> here, but anyway the point is just to make sure too much is not stripped
+> >> out so that instead of simply adding fields/flags we have to add a new
+> >> query in the future. IMO some rsvd fields are not really harmful and if
+> >> they can make things easier in the future why not.
+> >
+> > Maybe it's my tired and generally grumpy state of mind but I'm not
+> > particularly favorable towards "why not?" as a justification for
+> > immutable kernel APIs.  We've already found a few places where
+> > Zoidberg API design has caused us problems.  We need an answer to
+> > "why?"  Future extensibility is a potentially valid answer but we need
+> > to do a better job of thinking through it than we have in the past.
+>
+> I did not simply say why not, did I?
 
---===============2659570862424510781==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/dmc: Let's abstract the dmc path. (rev2)
-URL   : https://patchwork.freedesktop.org/series/89275/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_9992 -> Patchwork_19959
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19959 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][2] ([i915#2283])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][3] -> [FAIL][4] ([i915#1888])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9992/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][5] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+You literally did:  "...and if they can make things easier in the
+future why not."
 
 
-Participating hosts (41 -> 40)
-------------------------------
+> It is a balance thing between cost
+> and benefit. I see the cost of rsvd fields as approaching zero really ,
+> and cost of having to add query v2 if we end up having not enough rsvd
+> as definitely way bigger.
+>
+> If you look at the mentioned engine info query you will see that as soon
+> as you add some caps, flags become useful (so userspace can answer the
+> question of does the object not support this cap or does the kernel does
+> not even know about the cap).
+>
+> Furthermore, in that uapi, caps pertain to the property of the
+> underlying object being queried, while the flags pertain to the query
+> itself. I find that separation logical and useful.
 
-  Additional (1): fi-bdw-5557u 
-  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+Ok, that answers the question I asked above: "what are flags for and
+why are they different?"  At the very least, that should be
+documented.  Then again...  We really want a GETPARAM query any time a
+kernel interface changes, such as adding caps, and we can say that
+userspace should ignore caps it doesn't understand.  I think that
+solves both directions of the negotiation without flags.
 
+> I am not claiming to know memory region query will end up the same, and
+> I definitely agree we cannot guess the future. I am just saying rsvd
+> fields are inconsequential really in terms of maintenance burden and
+> have been proven useful in the past. So I disagree with the drive to
+> kick them all out.
 
-Build changes
--------------
+Sure, it doesn't cost anything to have extra zeros in the struct.
+However, if/when the API grows using rsvd fields, we end up with "if
+CAP_FOO is set, rsvd[5] means blah" which makes for a horribly
+confusing API.  As a userspace person who has to remember how to use
+this stuff, I'd rather make another call or chain in a struct than try
+to remember and/or figure out what all 8 rsvd fields mean.
 
-  * Linux: CI_DRM_9992 -> Patchwork_19959
+> Btw extension chains also work for me. I this a bit more complicated and
+> we don't have prior art in i915 to use them on the read/get/query side
+> but we could add if a couple of rsvd is so objectionable.
 
-  CI-20190529: 20190529
-  CI_DRM_9992: cd804a7f03a97c3f808e696bcf04d7338f3fc27d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6072: 0a51f49df9f5ca535fc0206a27a6780de6b52320 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19959: b7bbe304556d184a22b83370ae9d2ced6a0b4efc @ git://anongit.freedesktop.org/gfx-ci/linux
+Another option, which I think I mentioned somewhere, is that we could
+add a secondary query which takes a memory region class and instance
+and lets you query additional properties one-at-a-time.  That might be
+easier to extend.  Sure, it means more ioctls but they're not that
+expensive and they should only happen at driver initialization so I'm
+not that inclined to care about the cost there.
 
-
-== Linux commits ==
-
-b7bbe304556d drm/i915/dmc: Let's abstract the dmc path.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/index.html
-
---===============2659570862424510781==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Let&#39;s abstract the dmc path. (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89275/">https://patchwork.freedesktop.org/series/89275/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9992 -&gt; Patchwork_19959</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19959 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9992/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19959/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Additional (1): fi-bdw-5557u <br />
-  Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9992 -&gt; Patchwork_19959</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9992: cd804a7f03a97c3f808e696bcf04d7338f3fc27d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6072: 0a51f49df9f5ca535fc0206a27a6780de6b52320 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19959: b7bbe304556d184a22b83370ae9d2ced6a0b4efc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>b7bbe304556d drm/i915/dmc: Let's abstract the dmc path.</p>
-
-</body>
-</html>
-
---===============2659570862424510781==--
-
---===============1873822475==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+--Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1873822475==--
