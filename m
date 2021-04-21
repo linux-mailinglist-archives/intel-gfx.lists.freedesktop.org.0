@@ -2,42 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DB3C366A86
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 14:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 039A7366A9D
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 14:18:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 641076E1CF;
-	Wed, 21 Apr 2021 12:12:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED526E992;
+	Wed, 21 Apr 2021 12:18:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BBAD6E1CF
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 12:12:55 +0000 (UTC)
-IronPort-SDR: dK3bVVdyml+kcOV7IAENo6N93hgfcoNWgqhlnPmA6v4Mpx97oQhJysXIvfCnO4WbbE1S/w0yvR
- IMgJ9Dxbvd5Q==
-X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="195800428"
-X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="195800428"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A20116E992
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 12:18:22 +0000 (UTC)
+IronPort-SDR: M73FaZvT3QSSMyHZCJX+huM3Vzo+dwxBkbzoStnmJntaJRRWJrWjEG8iAnGe1maDhXaJWk35Ck
+ Fjr4/FvAiSZg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="183175513"
+X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="183175513"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 05:12:52 -0700
-IronPort-SDR: HO699T3UFBP2/+7qQyX/SwJUekI2GPF+w6iMNEGRLKXrHcj8jtOM1+FoEjGwWiJIKrPlzsAl73
- BKhfM0+14+/w==
-X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="427491425"
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2021 05:18:21 -0700
+IronPort-SDR: qMRPsEsSjD72awMo1lhymvEgx0YdYO6WGdMZElRGRRMOO/hY3c0QBiw63xgkC+1YhUtYx0CLdn
+ /SnBVUY/rTtw==
+X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="427492705"
 Received: from uchalilx-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.36.64])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 05:12:50 -0700
+ 21 Apr 2021 05:18:20 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-In-Reply-To: <20210421112441.GA3514109@ideak-desk.fi.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210421094406.2017733-1-rodrigo.vivi@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210414155208.3161335-1-imre.deak@intel.com>
- <87a6pzeqfi.fsf@intel.com> <87tunz99wu.fsf@intel.com>
- <20210421112441.GA3514109@ideak-desk.fi.intel.com>
-Date: Wed, 21 Apr 2021 15:12:48 +0300
-Message-ID: <87r1j396pr.fsf@intel.com>
+References: <CAKi4VA+Rn+XNJNooWGrve+9+07fo7_gDKZD4j0gz3K_LdvMZ-g@mail.gmail.com>
+ <20210421094406.2017733-1-rodrigo.vivi@intel.com>
+Date: Wed, 21 Apr 2021 15:18:17 +0300
+Message-ID: <87o8e796gm.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 00/11] drm/i915/adl_p: Add support for
- Display Page Tables
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Let's abstract the dmc path.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,60 +48,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 21 Apr 2021, Imre Deak <imre.deak@intel.com> wrote:
-> On Wed, Apr 21, 2021 at 02:03:45PM +0300, Jani Nikula wrote:
->> On Thu, 15 Apr 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->> > On Wed, 14 Apr 2021, Imre Deak <imre.deak@intel.com> wrote:
->> >> Alder Lake-P adds a new Display Page Table hardware structure, mapping
->> >> tiled framebuffer pages to the display engine, reducing the address
->> >> space required in GGTT for these framebuffers.
->> >>
->> >> This patchset adds support for this taking a minimum set of dependency
->> >> patches from the ADL_P enabling patchset at
->> >> https://patchwork.freedesktop.org/series/87897/
->> >
->> > Cc: Daniel
->> >
->> > I guess we'll need a topic branch for the base enabling to merge to both
->> > din and dign? I guess it'll need to include the stuff in
->> > topic/intel-gen-to-ver too.
->> >
->> > Shared stuff like this keeps being a problem with the separate dign
->> > branch, especially when the only way to sync is to merge both din and
->> > dign to drm-next and then backmerge to both.
->> 
->> I've created the topic branch.
->> 
->> When this series starts getting ready to merge, please use the
->> topic/adl-p-enabling branch, so we can merge it to both drm-intel-next
->> and drm-intel-gt-next.
->
-> Ok, thanks, I would need a review for 4 (trivial) patches in the
-> patchset. Could you explain the reason for a separate branch?
-
-drm-intel-next and drm-intel-gt-next only get synced via merges to
-drm-next, and backmerges back to each branch. If adl-p basic enabling
-patches (PCI IDs, device info, etc.) only get merged to drm-intel-next,
-any gt enabling in drm-intel-gt-next will be pending on the merge +
-backmerge, which will be some time after the next merge window. At least
-three weeks away. Additionally accumulating merge conflicts.
-
-With the topic branch, we can merge the basics to both right away, and
-continue with details in each branch separately.
-
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMSBBcHIgMjAyMSwgUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29t
+PiB3cm90ZToKPiBBbHRob3VnaCB0aGlzIGFic3RyYWN0aW9uIHJlbW92ZXMgdGhlIGNvbnZlbmll
+bmNlIG9mIGdyZXBwaW5nCj4gZm9yIHRoZSBmaWxlIG5hbWUsIGl0Ogo+IC0gbWFrZXMgYWRkaXRp
+b24gZWFzaWVyLgo+IC0gbWFrZXMgaXQgZWFzaWVyIHRvIHR3ZWFrIGdsb2JhbCBwYXRoIHdoZW4g
+ZXhwZXJpbWVudHMgYXJlIG5lZWRlZC4KPiAtIGdldCBpbiBzeW5jIHdpdGggZ3VjL2h1Yywgd2l0
+aG91dCBnZXR0aW5nIG92ZXJseSBhYnN0cmFjdGVkLgo+IC0gYWxsb3dzIGZ1dHVyZSBqdW5jdGlv
+biB3aXRoIENTUl9WRVJTSU9OIGZvciBzaW1wbGljaXR5Lgo+IC0gRW5mb3JjZXMgZG1jIGZpbGUg
+d2lsbCBuZXZlciBjaGFuZ2UgdGhpcyBzdGFuZGFyZC4KPgo+IHYyOiBkZWZpbmUgRE1DX1BBVEgg
+aW5zaWRlIC5jIChMdWNhcykKPgo+IENjOiBGZWkgWWFuZyA8ZmVpLnlhbmdAaW50ZWwuY29tPgo+
+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+IENjOiBMdWNhcyBEZSBN
+YXJjaGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBSb2RyaWdv
+IFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+Cj4gUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVy
+dG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPiAjdjEKCk5pY2UsCgpSZXZpZXdlZC1i
+eTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KCk9uIGEgcmVsYXRlZCBub3Rl
+LCBzaG91bGQgd2UgZmluYWxseSBjb25zaWRlciBhIHMvY3NyL2RtYy9nIHJlbmFtZSBhbGwKb3Zl
+ciB0aGUgcGxhY2U/IEl0J3MganVzdCBjb25mdXNpbmcgdG8ga2VlcCB1c2luZyB0d28gbmFtZXMu
+CgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYyB8IDI2
+ICsrKysrKysrKysrKysrKy0tLS0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMTYgaW5zZXJ0aW9u
+cygrKSwgMTAgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9jc3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfY3NyLmMKPiBpbmRleCAyNmEzYzY3ODdlOWUuLjI2YTkyMmQzNDI2MyAxMDA2NDQKPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYwo+IEBAIC0zOCw1MCArMzgsNTYgQEAK
+PiAgICogbG93LXBvd2VyIHN0YXRlIGFuZCBjb21lcyBiYWNrIHRvIG5vcm1hbC4KPiAgICovCj4g
+IAo+ICsjZGVmaW5lIERNQ19QQVRIKHBsYXRmb3JtLCBtYWpvciwgbWlub3IpIFwKPiArCSJpOTE1
+LyIJCQkJIFwKPiArCV9fc3RyaW5naWZ5KHBsYXRmb3JtKSAiX2RtY192ZXIiIFwKPiArCV9fc3Ry
+aW5naWZ5KG1ham9yKSAiXyIJCSBcCj4gKwlfX3N0cmluZ2lmeShtaW5vcikgIi5iaW4iCj4gKwo+
+ICAjZGVmaW5lIEdFTjEyX0NTUl9NQVhfRldfU0laRQkJSUNMX0NTUl9NQVhfRldfU0laRQo+ICAK
+PiAtI2RlZmluZSBBRExTX0NTUl9QQVRICQkJImk5MTUvYWRsc19kbWNfdmVyMl8wMS5iaW4iCj4g
+KyNkZWZpbmUgQURMU19DU1JfUEFUSAkJCURNQ19QQVRIKGFkbHMsIDIsIDAxKQo+ICAjZGVmaW5l
+IEFETFNfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMiwgMSkKPiAgTU9EVUxFX0ZJ
+Uk1XQVJFKEFETFNfQ1NSX1BBVEgpOwo+ICAKPiAtI2RlZmluZSBERzFfQ1NSX1BBVEgJCQkiaTkx
+NS9kZzFfZG1jX3ZlcjJfMDIuYmluIgo+ICsjZGVmaW5lIERHMV9DU1JfUEFUSAkJCURNQ19QQVRI
+KGRnMSwgMiwgMDIpCj4gICNkZWZpbmUgREcxX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNTUl9WRVJT
+SU9OKDIsIDIpCj4gIE1PRFVMRV9GSVJNV0FSRShERzFfQ1NSX1BBVEgpOwo+ICAKPiAtI2RlZmlu
+ZSBSS0xfQ1NSX1BBVEgJCQkiaTkxNS9ya2xfZG1jX3ZlcjJfMDIuYmluIgo+ICsjZGVmaW5lIFJL
+TF9DU1JfUEFUSAkJCURNQ19QQVRIKHJrbCwgMiwgMDIpCj4gICNkZWZpbmUgUktMX0NTUl9WRVJT
+SU9OX1JFUVVJUkVECUNTUl9WRVJTSU9OKDIsIDIpCj4gIE1PRFVMRV9GSVJNV0FSRShSS0xfQ1NS
+X1BBVEgpOwo+ICAKPiAtI2RlZmluZSBUR0xfQ1NSX1BBVEgJCQkiaTkxNS90Z2xfZG1jX3ZlcjJf
+MDguYmluIgo+ICsjZGVmaW5lIFRHTF9DU1JfUEFUSAkJCURNQ19QQVRIKHRnbCwgMiwgMDgpCj4g
+ICNkZWZpbmUgVEdMX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNTUl9WRVJTSU9OKDIsIDgpCj4gIE1P
+RFVMRV9GSVJNV0FSRShUR0xfQ1NSX1BBVEgpOwo+ICAKPiAtI2RlZmluZSBJQ0xfQ1NSX1BBVEgJ
+CQkiaTkxNS9pY2xfZG1jX3ZlcjFfMDkuYmluIgo+ICsjZGVmaW5lIElDTF9DU1JfUEFUSAkJCURN
+Q19QQVRIKGljbCwgMSwgMDkpCj4gICNkZWZpbmUgSUNMX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNT
+Ul9WRVJTSU9OKDEsIDkpCj4gICNkZWZpbmUgSUNMX0NTUl9NQVhfRldfU0laRQkJMHg2MDAwCj4g
+IE1PRFVMRV9GSVJNV0FSRShJQ0xfQ1NSX1BBVEgpOwo+ICAKPiAtI2RlZmluZSBDTkxfQ1NSX1BB
+VEgJCQkiaTkxNS9jbmxfZG1jX3ZlcjFfMDcuYmluIgo+ICsjZGVmaW5lIENOTF9DU1JfUEFUSAkJ
+CURNQ19QQVRIKGNubCwgMSwgMDcpCj4gICNkZWZpbmUgQ05MX0NTUl9WRVJTSU9OX1JFUVVJUkVE
+CUNTUl9WRVJTSU9OKDEsIDcpCj4gICNkZWZpbmUgQ05MX0NTUl9NQVhfRldfU0laRQkJR0xLX0NT
+Ul9NQVhfRldfU0laRQo+ICBNT0RVTEVfRklSTVdBUkUoQ05MX0NTUl9QQVRIKTsKPiAgCj4gLSNk
+ZWZpbmUgR0xLX0NTUl9QQVRICQkJImk5MTUvZ2xrX2RtY192ZXIxXzA0LmJpbiIKPiArI2RlZmlu
+ZSBHTEtfQ1NSX1BBVEgJCQlETUNfUEFUSChnbGssIDEsIDA0KQo+ICAjZGVmaW5lIEdMS19DU1Jf
+VkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVSU0lPTigxLCA0KQo+ICAjZGVmaW5lIEdMS19DU1JfTUFY
+X0ZXX1NJWkUJCTB4NDAwMAo+ICBNT0RVTEVfRklSTVdBUkUoR0xLX0NTUl9QQVRIKTsKPiAgCj4g
+LSNkZWZpbmUgS0JMX0NTUl9QQVRICQkJImk5MTUva2JsX2RtY192ZXIxXzA0LmJpbiIKPiArI2Rl
+ZmluZSBLQkxfQ1NSX1BBVEgJCQlETUNfUEFUSChrYmwsIDEsIDA0KQo+ICAjZGVmaW5lIEtCTF9D
+U1JfVkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVSU0lPTigxLCA0KQo+ICAjZGVmaW5lIEtCTF9DU1Jf
+TUFYX0ZXX1NJWkUJCUJYVF9DU1JfTUFYX0ZXX1NJWkUKPiAgTU9EVUxFX0ZJUk1XQVJFKEtCTF9D
+U1JfUEFUSCk7Cj4gIAo+IC0jZGVmaW5lIFNLTF9DU1JfUEFUSAkJCSJpOTE1L3NrbF9kbWNfdmVy
+MV8yNy5iaW4iCj4gKyNkZWZpbmUgU0tMX0NTUl9QQVRICQkJRE1DX1BBVEgoc2tsLCAxLCAyNykK
+PiAgI2RlZmluZSBTS0xfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMSwgMjcpCj4g
+ICNkZWZpbmUgU0tMX0NTUl9NQVhfRldfU0laRQkJQlhUX0NTUl9NQVhfRldfU0laRQo+ICBNT0RV
+TEVfRklSTVdBUkUoU0tMX0NTUl9QQVRIKTsKPiAgCj4gLSNkZWZpbmUgQlhUX0NTUl9QQVRICQkJ
+Imk5MTUvYnh0X2RtY192ZXIxXzA3LmJpbiIKPiArI2RlZmluZSBCWFRfQ1NSX1BBVEgJCQlETUNf
+UEFUSChieHQsIDEsIDA3KQo+ICAjZGVmaW5lIEJYVF9DU1JfVkVSU0lPTl9SRVFVSVJFRAlDU1Jf
+VkVSU0lPTigxLCA3KQo+ICAjZGVmaW5lIEJYVF9DU1JfTUFYX0ZXX1NJWkUJCTB4MzAwMAo+ICBN
+T0RVTEVfRklSTVdBUkUoQlhUX0NTUl9QQVRIKTsKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3Bl
+biBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2ludGVsLWdmeAo=
