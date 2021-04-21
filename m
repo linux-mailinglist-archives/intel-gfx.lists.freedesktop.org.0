@@ -2,25 +2,24 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 390AF366A5F
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 14:04:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BADA1366A7A
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 14:09:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E04816E992;
-	Wed, 21 Apr 2021 12:04:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E61DD6E1CF;
+	Wed, 21 Apr 2021 12:09:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl
- [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70B8D6E995;
- Wed, 21 Apr 2021 12:03:59 +0000 (UTC)
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B51A96E0FE;
+ Wed, 21 Apr 2021 12:09:41 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 21 Apr 2021 14:03:53 +0200
-Message-Id: <20210421120353.544518-1-maarten.lankhorst@linux.intel.com>
+Date: Wed, 21 Apr 2021 14:09:38 +0200
+Message-Id: <20210421120938.546076-1-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915: Fix docbook descriptions for
- i915_cmd_parser
+ i915_gem_shrinker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,53 +41,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fixes the following htmldocs warnings:
-drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
-drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
-drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
-drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
-drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+Fixes the following htmldocs warning:
+drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
 
+Fixes: cf41a8f1dc1e ("drm/i915: Finally remove obj->mm.lock.")
 Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_cmd_parser.c | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
-index e6f1e93abbbb..afb9b7516999 100644
---- a/drivers/gpu/drm/i915/i915_cmd_parser.c
-+++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
-@@ -1369,6 +1369,18 @@ static int check_bbstart(u32 *cmd, u32 offset, u32 length,
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+index 7545ddd83659..f4fb68e8955a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+@@ -72,6 +72,7 @@ static void try_to_writeback(struct drm_i915_gem_object *obj,
  
-+/**
-+ * intel_engine_cmd_parser_alloc_jump_whitelist() - preallocate jump whitelist for intel_engine_cmd_parser()
-+ * @batch_length: length of the commands in batch_obj
-+ * @trampoline: Whether jump trampolines are used.
-+ *
-+ * Preallocates a jump whitelist for parsing the cmd buffer in intel_engine_cmd_parser().
-+ * This has to be preallocated, because the command parser runs in signaling context,
-+ * and may not allocate any memory.
-+ *
-+ * Return: NULL or pointer to a jump whitelist, or ERR_PTR() on failure. Use
-+ * IS_ERR() to check for errors. Must bre freed() with kfree().
-+ */
- unsigned long *intel_engine_cmd_parser_alloc_jump_whitelist(u32 batch_length,
- 							    bool trampoline)
- {
-@@ -1401,7 +1413,9 @@ unsigned long *intel_engine_cmd_parser_alloc_jump_whitelist(u32 batch_length,
-  * @batch_offset: byte offset in the batch at which execution starts
-  * @batch_length: length of the commands in batch_obj
-  * @shadow: validated copy of the batch buffer in question
-- * @trampoline: whether to emit a conditional trampoline at the end of the batch
-+ * @jump_whitelist: buffer preallocated with intel_engine_cmd_parser_alloc_jump_whitelist()
-+ * @shadow_map: mapping to @shadow vma
-+ * @batch_map: mapping to @batch vma
-  *
-  * Parses the specified batch buffer looking for privilege violations as
-  * described in the overview.
+ /**
+  * i915_gem_shrink - Shrink buffer object caches
++ * @ww: i915 gem ww acquire ctx, or NULL
+  * @i915: i915 device
+  * @target: amount of memory to make available, in pages
+  * @nr_scanned: optional output for number of pages scanned (incremental)
 -- 
 2.31.0
 
