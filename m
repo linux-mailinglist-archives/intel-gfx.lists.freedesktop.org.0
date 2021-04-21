@@ -1,57 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E404236746B
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 22:49:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90776367484
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 23:03:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B8D76EA0D;
-	Wed, 21 Apr 2021 20:49:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0A96E9F9;
+	Wed, 21 Apr 2021 21:03:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E9986EA0D
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 20:49:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1619038139;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=gMMV3JwSXnc0I3O/dM1VJO2u6PDNin9cfeB9qmtkfSU=;
- b=Xi2+1c2isa4kzMvKXzRp+oo2D8+5fUBZgpvVldmCN9Mbaj87AmZ3wNANP4LIZ2uXotWwPZ
- ygN+ygMKVpdkC0gEqWlpsFsknQk2Q5yZuNqt9s/WlTCA9p0dNdyBU+VC+AfJe2v9r1xn4J
- x2Pl0ABIyUty/qXZbA4wWg8M3XTHXKE=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-146-VYzGdGaYNmehi0sRSKA4sg-1; Wed, 21 Apr 2021 16:48:44 -0400
-X-MC-Unique: VYzGdGaYNmehi0sRSKA4sg-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5E26E87A826;
- Wed, 21 Apr 2021 20:48:42 +0000 (UTC)
-Received: from x1.localdomain (ovpn-112-17.ams2.redhat.com [10.36.112.17])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1E4AD5B69B;
- Wed, 21 Apr 2021 20:48:38 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
- David Airlie <airlied@linux.ie>, Rajat Jain <rajatja@google.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Mark Gross <mgross@linux.intel.com>,
- Andy Shevchenko <andy@infradead.org>
-Date: Wed, 21 Apr 2021 22:48:04 +0200
-Message-Id: <20210421204804.589962-10-hdegoede@redhat.com>
-In-Reply-To: <20210421204804.589962-1-hdegoede@redhat.com>
-References: <20210421204804.589962-1-hdegoede@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5A02A6E9F8;
+ Wed, 21 Apr 2021 21:03:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4F003A8169;
+ Wed, 21 Apr 2021 21:03:20 +0000 (UTC)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
-Subject: [Intel-gfx] [PATCH v2 9/9] drm/i915: Add privacy-screen support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Wed, 21 Apr 2021 21:03:20 -0000
+Message-ID: <161903900029.19926.8560849960353098059@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210421204804.589962-1-hdegoede@redhat.com>
+In-Reply-To: <20210421204804.589962-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Add_privacy-screen_class_and_connector_properties_?=
+ =?utf-8?b?KHJldjMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,150 +39,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Marco Trevisan <marco.trevisan@canonical.com>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Sebastien Bacher <seb128@ubuntu.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
- platform-driver-x86@vger.kernel.org, Mark Pearson <markpearson@lenovo.com>,
- Mario Limonciello <mario.limonciello@outlook.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support for eDP panels with a built-in privacy screen using the
-new drm_privacy_screen class.
+== Series Details ==
 
-One thing which stands out here is the addition of these 2 lines to
-intel_atomic_commit_tail:
+Series: drm: Add privacy-screen class and connector properties (rev3)
+URL   : https://patchwork.freedesktop.org/series/79259/
+State : warning
 
-	for_each_new_connector_in_state(&state->base, connector, ...
-		drm_connector_update_privacy_screen(connector, state);
+== Summary ==
 
-It may seem more logical to instead take care of updating the
-privacy-screen state by marking the crtc as needing a modeset and then
-do this in both the encoder update_pipe (for fast-sets) and enable
-(for full modesets) callbacks. But ATM these callbacks only get passed
-the new connector_state and these callbacks are all called after
-drm_atomic_helper_swap_state() at which point there is no way to get
-the old state from the new state.
+$ dim checkpatch origin/drm-tip
+ac8be957664f drm/connector: Add support for privacy-screen properties (v4)
+-:30: WARNING:BAD_SIGN_OFF: Non-standard signature: Co-authored-by:
+#30: 
+Co-authored-by: Hans de Goede <hdegoede@redhat.com>
 
-Without access to the old state, we do not know if the sw_state of
-the privacy-screen has changes so we would need to call
-drm_privacy_screen_set_sw_state() unconditionally. This is undesirable
-since all current known privacy-screen providers use ACPI calls which
-are somewhat expensive to make.
+-:149: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#149: FILE: drivers/gpu/drm/drm_connector.c:2319:
++		drm_property_create_enum(connector->dev, DRM_MODE_PROP_ENUM,
++				"privacy-screen sw-state",
 
-Also, as all providers use ACPI calls, rather then poking GPU registers,
-there is no need to order this together with other encoder operations.
-Since no GPU poking is involved having this as a separate step of the
-commit process actually is the logical thing to do.
+-:154: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#154: FILE: drivers/gpu/drm/drm_connector.c:2324:
++		drm_property_create_enum(connector->dev,
++				DRM_MODE_PROP_IMMUTABLE | DRM_MODE_PROP_ENUM,
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_display.c |  5 +++++
- drivers/gpu/drm/i915/display/intel_dp.c      | 10 ++++++++++
- drivers/gpu/drm/i915/i915_pci.c              | 12 ++++++++++++
- 3 files changed, 27 insertions(+)
+total: 0 errors, 1 warnings, 2 checks, 205 lines checked
+7e5c15daa117 drm: Add privacy-screen class (v2)
+-:125: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#125: 
+new file mode 100644
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a10e26380ef3..b11fcc660446 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10159,6 +10159,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	struct drm_device *dev = state->base.dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
-+	struct drm_connector_state *new_connector_state;
-+	struct drm_connector *connector;
- 	struct intel_crtc *crtc;
- 	u64 put_domains[I915_MAX_PIPES] = {};
- 	intel_wakeref_t wakeref = 0;
-@@ -10256,6 +10258,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 			intel_color_load_luts(new_crtc_state);
- 	}
- 
-+	for_each_new_connector_in_state(&state->base, connector, new_connector_state, i)
-+		drm_connector_update_privacy_screen(connector, &state->base);
-+
- 	/*
- 	 * Now that the vblank has passed, we can go ahead and program the
- 	 * optimal watermarks on platforms that need two-step watermark
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 52ea09fc5e70..57864782d922 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -37,6 +37,7 @@
- #include <drm/drm_crtc.h>
- #include <drm/drm_dp_helper.h>
- #include <drm/drm_edid.h>
-+#include <drm/drm_privacy_screen_consumer.h>
- #include <drm/drm_probe_helper.h>
- 
- #include "g4x_dp.h"
-@@ -5178,6 +5179,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	struct drm_connector *connector = &intel_connector->base;
- 	struct drm_display_mode *fixed_mode = NULL;
- 	struct drm_display_mode *downclock_mode = NULL;
-+	struct drm_privacy_screen *privacy_screen;
- 	bool has_dpcd;
- 	enum pipe pipe = INVALID_PIPE;
- 	struct edid *edid;
-@@ -5268,6 +5270,14 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 				fixed_mode->hdisplay, fixed_mode->vdisplay);
- 	}
- 
-+	privacy_screen = drm_privacy_screen_get(&dev->pdev->dev, NULL);
-+	if (!IS_ERR(privacy_screen)) {
-+		drm_connector_attach_privacy_screen_provider(connector,
-+							     privacy_screen);
-+	} else if (PTR_ERR(privacy_screen) != -ENODEV) {
-+		drm_warn(&dev_priv->drm, "Error getting privacy-screen\n");
-+	}
-+
- 	return true;
- 
- out_vdd_off:
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 7786217638ed..09d52ecc3713 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -26,6 +26,7 @@
- #include <linux/vga_switcheroo.h>
- 
- #include <drm/drm_drv.h>
-+#include <drm/drm_privacy_screen_consumer.h>
- #include <drm/i915_pciids.h>
- 
- #include "display/intel_fbdev.h"
-@@ -1067,6 +1068,7 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- {
- 	struct intel_device_info *intel_info =
- 		(struct intel_device_info *) ent->driver_data;
-+	struct drm_privacy_screen *privacy_screen;
- 	int err;
- 
- 	if (intel_info->require_force_probe &&
-@@ -1095,7 +1097,17 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	if (vga_switcheroo_client_probe_defer(pdev))
- 		return -EPROBE_DEFER;
- 
-+	/*
-+	 * We do not handle -EPROBE_DEFER further into the probe process, so
-+	 * check if we have a laptop-panel privacy-screen for which the driver
-+	 * has not loaded yet here.
-+	 */
-+	privacy_screen = drm_privacy_screen_get(&pdev->dev, NULL);
-+	if (IS_ERR(privacy_screen) && PTR_ERR(privacy_screen) == -EPROBE_DEFER)
-+		return -EPROBE_DEFER;
-+
- 	err = i915_driver_probe(pdev, ent);
-+	drm_privacy_screen_put(privacy_screen);
- 	if (err)
- 		return err;
- 
--- 
-2.31.1
+-:162: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'dev' - possible side-effects?
+#162: FILE: drivers/gpu/drm/drm_privacy_screen.c:33:
++#define to_drm_privacy_screen(dev) \
++	container_of(dev, struct drm_privacy_screen, dev)
+
+-:210: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#210: FILE: drivers/gpu/drm/drm_privacy_screen.c:81:
++static struct drm_privacy_screen *drm_privacy_screen_get_by_name(
+
+-:411: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#411: FILE: drivers/gpu/drm/drm_privacy_screen.c:282:
++}
++/*
+
+-:473: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#473: FILE: drivers/gpu/drm/drm_privacy_screen.c:344:
++struct drm_privacy_screen *drm_privacy_screen_register(
+
+-:569: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#569: FILE: include/drm/drm_privacy_screen_consumer.h:33:
++}
++static inline void drm_privacy_screen_put(struct drm_privacy_screen *priv)
+
+-:572: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#572: FILE: include/drm/drm_privacy_screen_consumer.h:36:
++}
++static inline int drm_privacy_screen_set_sw_state(struct drm_privacy_screen *priv,
+
+-:577: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#577: FILE: include/drm/drm_privacy_screen_consumer.h:41:
++}
++static inline void drm_privacy_screen_get_state(struct drm_privacy_screen *priv,
+
+-:666: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#666: FILE: include/drm/drm_privacy_screen_driver.h:76:
++struct drm_privacy_screen *drm_privacy_screen_register(
+
+-:713: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#713: FILE: include/drm/drm_privacy_screen_machine.h:37:
++}
++static inline void drm_privacy_screen_lookup_exit(void)
+
+total: 0 errors, 1 warnings, 9 checks, 638 lines checked
+9bd51402f3ba drm/privacy-screen: Add X86 specific arch init code
+-:29: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#29: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 110 lines checked
+4f93f9d92a68 drm/privacy-screen: Add notifier support
+-:121: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#121: FILE: include/drm/drm_privacy_screen_consumer.h:51:
+ }
++static inline int drm_privacy_screen_register_notifier(struct drm_privacy_screen *priv,
+
+-:126: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#126: FILE: include/drm/drm_privacy_screen_consumer.h:56:
++}
++static inline int drm_privacy_screen_unregister_notifier(struct drm_privacy_screen *priv,
+
+total: 0 errors, 0 warnings, 2 checks, 123 lines checked
+1b1cb90d0bce drm/connector: Add a drm_connector privacy-screen helper functions
+-:58: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#58: FILE: drivers/gpu/drm/drm_connector.c:542:
++		drm_privacy_screen_register_notifier(connector->privacy_screen,
++					   &connector->privacy_screen_notifier);
+
+-:68: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#68: FILE: drivers/gpu/drm/drm_connector.c:573:
++		drm_privacy_screen_unregister_notifier(
+
+-:79: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#79: FILE: drivers/gpu/drm/drm_connector.c:2372:
++static void drm_connector_update_privacy_screen_properties(
+
+-:89: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#89: FILE: drivers/gpu/drm/drm_connector.c:2382:
++	drm_object_property_set_value(&connector->base,
++			connector->privacy_screen_hw_state_property, hw_state);
+
+-:92: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#92: FILE: drivers/gpu/drm/drm_connector.c:2385:
++static int drm_connector_privacy_screen_notifier(
+
+-:104: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#104: FILE: drivers/gpu/drm/drm_connector.c:2397:
++	drm_sysfs_connector_status_event(connector,
++				connector->privacy_screen_sw_state_property);
+
+-:106: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#106: FILE: drivers/gpu/drm/drm_connector.c:2399:
++	drm_sysfs_connector_status_event(connector,
++				connector->privacy_screen_hw_state_property);
+
+-:123: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#123: FILE: drivers/gpu/drm/drm_connector.c:2416:
++void drm_connector_attach_privacy_screen_provider(
+
+-:165: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#165: FILE: drivers/gpu/drm/drm_connector.c:2458:
++	ret = drm_privacy_screen_set_sw_state(connector->privacy_screen,
++				new_connector_state->privacy_screen_sw_state);
+
+-:216: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#216: FILE: include/drm/drm_connector.h:1753:
++void drm_connector_attach_privacy_screen_provider(
+
+total: 0 errors, 0 warnings, 10 checks, 185 lines checked
+ee59d864afd4 platform/x86: thinkpad_acpi: Add hotkey_notify_extended_hotkey() helper
+d7f9f5f26c6f platform/x86: thinkpad_acpi: Get privacy-screen / lcdshadow ACPI handles only once
+ff66a2279810 platform/x86: thinkpad_acpi: Register a privacy-screen device
+-:89: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#89: FILE: drivers/platform/x86/thinkpad_acpi.c:9785:
++	priv->hw_state = priv->sw_state = state;
+
+-:106: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#106: FILE: drivers/platform/x86/thinkpad_acpi.c:9796:
++	priv->hw_state = priv->sw_state = output & 0x1;
+
+total: 0 errors, 0 warnings, 2 checks, 183 lines checked
+ed2a0fed7736 drm/i915: Add privacy-screen support
+
 
 _______________________________________________
 Intel-gfx mailing list
