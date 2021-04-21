@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0DD3664C5
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 07:21:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EB843664E8
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 07:37:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A13756E945;
-	Wed, 21 Apr 2021 05:21:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAF3B6E94A;
+	Wed, 21 Apr 2021 05:37:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E92566E942;
- Wed, 21 Apr 2021 05:21:05 +0000 (UTC)
-Received: from 36-229-230-199.dynamic-ip.hinet.net ([36.229.230.199]
- helo=localhost) by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <kai.heng.feng@canonical.com>)
- id 1lZ5II-0007QW-03; Wed, 21 Apr 2021 05:20:58 +0000
-From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, ville.syrjala@linux.intel.com
-Date: Wed, 21 Apr 2021 13:20:31 +0800
-Message-Id: <20210421052054.1434718-1-kai.heng.feng@canonical.com>
-X-Mailer: git-send-email 2.30.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E825A6E94A;
+ Wed, 21 Apr 2021 05:37:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DF8E1A73C9;
+ Wed, 21 Apr 2021 05:37:08 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dp: Use slow and wide link training
- for everything
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kai-Heng Feng" <kai.heng.feng@canonical.com>
+Date: Wed, 21 Apr 2021 05:37:08 -0000
+Message-ID: <161898342888.19928.14010515367239720951@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210421052054.1434718-1-kai.heng.feng@canonical.com>
+In-Reply-To: <20210421052054.1434718-1-kai.heng.feng@canonical.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/dp=3A_Use_slow_and_wide_link_training_for_everything?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,80 +38,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- Kai-Heng Feng <kai.heng.feng@canonical.com>, Sean Paul <seanpaul@chromium.org>,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U2NyZWVuIGZsaWNrZXJzIG9uIElubm9sdXggZURQIDEuMyBwYW5lbCB3aGVuIGNsb2NrIHJhdGUg
-NTQwMDAwIGlzIGluIHVzZS4KCkFjY29yZGluZyB0byB0aGUgcGFuZWwgdmVuZG9yLCB0aG91Z2gg
-Y2xvY2sgcmF0ZSA1NDAwMDAgaXMgYWR2ZXJ0aXNlZCwKYnV0IHRoZSBtYXggY2xvY2sgcmF0ZSBp
-dCByZWFsbHkgc3VwcG9ydHMgaXMgMjcwMDAwLgoKVmlsbGUgU3lyasOkbMOkIG1lbnRpb25lZCB0
-aGF0IGZhc3QgYW5kIG5hcnJvdyBhbHNvIGJyZWFrcyBzb21lIGVEUCAxLjQKcGFuZWwsIHNvIHVz
-ZSBzbG93IGFuZCB3aWRlIHRyYWluaW5nIGZvciBhbGwgcGFuZWxzIHRvIHJlc29sdmUgdGhlCmlz
-c3VlLgoKVXNlciBhbHNvIGNvbmZpcm1lZCB0aGF0IHRoZSBuZXcgc3RyYXRlZ3kgZG9lc24ndCBp
-bnRyb2R1Y2UgYW55CnJlZ3Jlc3Npb24gb24gWFBTIDkzODAuCgp2MjoKIC0gVXNlIHNsb3cgYW5k
-IHdpZGUgZm9yIGV2ZXJ5dGhpbmcuCgpDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9w
-Lm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvMzM4NApSZWZlcmVuY2VzOiBodHRwczovL2dpdGxhYi5m
-cmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzI3MgpTaWduZWQtb2ZmLWJ5OiBLYWkt
-SGVuZyBGZW5nIDxrYWkuaGVuZy5mZW5nQGNhbm9uaWNhbC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIHwgNTkgKysrLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LQogMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNTQgZGVsZXRpb25zKC0pCgpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCmluZGV4IDUyZWEwOWZjNWU3MC4uNGFk
-MTJkZGU1OTM4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCkBAIC0x
-MDk1LDQ0ICsxMDk1LDYgQEAgaW50ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZpZ193aWRlKHN0cnVj
-dCBpbnRlbF9kcCAqaW50ZWxfZHAsCiAJcmV0dXJuIC1FSU5WQUw7CiB9CiAKLS8qIE9wdGltaXpl
-IGxpbmsgY29uZmlnIGluIG9yZGVyOiBtYXggYnBwLCBtaW4gbGFuZXMsIG1pbiBjbG9jayAqLwot
-c3RhdGljIGludAotaW50ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZpZ19mYXN0KHN0cnVjdCBpbnRl
-bF9kcCAqaW50ZWxfZHAsCi0JCQkJICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25m
-aWcsCi0JCQkJICBjb25zdCBzdHJ1Y3QgbGlua19jb25maWdfbGltaXRzICpsaW1pdHMpCi17Ci0J
-Y29uc3Qgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKmFkanVzdGVkX21vZGUgPSAmcGlwZV9jb25m
-aWctPmh3LmFkanVzdGVkX21vZGU7Ci0JaW50IGJwcCwgY2xvY2ssIGxhbmVfY291bnQ7Ci0JaW50
-IG1vZGVfcmF0ZSwgbGlua19jbG9jaywgbGlua19hdmFpbDsKLQotCWZvciAoYnBwID0gbGltaXRz
-LT5tYXhfYnBwOyBicHAgPj0gbGltaXRzLT5taW5fYnBwOyBicHAgLT0gMiAqIDMpIHsKLQkJaW50
-IG91dHB1dF9icHAgPSBpbnRlbF9kcF9vdXRwdXRfYnBwKHBpcGVfY29uZmlnLT5vdXRwdXRfZm9y
-bWF0LCBicHApOwotCi0JCW1vZGVfcmF0ZSA9IGludGVsX2RwX2xpbmtfcmVxdWlyZWQoYWRqdXN0
-ZWRfbW9kZS0+Y3J0Y19jbG9jaywKLQkJCQkJCSAgIG91dHB1dF9icHApOwotCi0JCWZvciAobGFu
-ZV9jb3VudCA9IGxpbWl0cy0+bWluX2xhbmVfY291bnQ7Ci0JCSAgICAgbGFuZV9jb3VudCA8PSBs
-aW1pdHMtPm1heF9sYW5lX2NvdW50OwotCQkgICAgIGxhbmVfY291bnQgPDw9IDEpIHsKLQkJCWZv
-ciAoY2xvY2sgPSBsaW1pdHMtPm1pbl9jbG9jazsgY2xvY2sgPD0gbGltaXRzLT5tYXhfY2xvY2s7
-IGNsb2NrKyspIHsKLQkJCQlsaW5rX2Nsb2NrID0gaW50ZWxfZHAtPmNvbW1vbl9yYXRlc1tjbG9j
-a107Ci0JCQkJbGlua19hdmFpbCA9IGludGVsX2RwX21heF9kYXRhX3JhdGUobGlua19jbG9jaywK
-LQkJCQkJCQkJICAgIGxhbmVfY291bnQpOwotCi0JCQkJaWYgKG1vZGVfcmF0ZSA8PSBsaW5rX2F2
-YWlsKSB7Ci0JCQkJCXBpcGVfY29uZmlnLT5sYW5lX2NvdW50ID0gbGFuZV9jb3VudDsKLQkJCQkJ
-cGlwZV9jb25maWctPnBpcGVfYnBwID0gYnBwOwotCQkJCQlwaXBlX2NvbmZpZy0+cG9ydF9jbG9j
-ayA9IGxpbmtfY2xvY2s7Ci0KLQkJCQkJcmV0dXJuIDA7Ci0JCQkJfQotCQkJfQotCQl9Ci0JfQot
-Ci0JcmV0dXJuIC1FSU5WQUw7Ci19Ci0KIHN0YXRpYyBpbnQgaW50ZWxfZHBfZHNjX2NvbXB1dGVf
-YnBwKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsIHU4IGRzY19tYXhfYnBjKQogewogCWludCBp
-LCBudW1fYnBjOwpAQCAtMTM4MiwyMiArMTM0NCwxMSBAQCBpbnRlbF9kcF9jb21wdXRlX2xpbmtf
-Y29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCSAgICBpbnRlbF9kcF9jYW5f
-Ymlnam9pbmVyKGludGVsX2RwKSkKIAkJcGlwZV9jb25maWctPmJpZ2pvaW5lciA9IHRydWU7CiAK
-LQlpZiAoaW50ZWxfZHBfaXNfZWRwKGludGVsX2RwKSkKLQkJLyoKLQkJICogT3B0aW1pemUgZm9y
-IGZhc3QgYW5kIG5hcnJvdy4gZURQIDEuMyBzZWN0aW9uIDMuMyBhbmQgZURQIDEuNAotCQkgKiBz
-ZWN0aW9uIEEuMTogIkl0IGlzIHJlY29tbWVuZGVkIHRoYXQgdGhlIG1pbmltdW0gbnVtYmVyIG9m
-Ci0JCSAqIGxhbmVzIGJlIHVzZWQsIHVzaW5nIHRoZSBtaW5pbXVtIGxpbmsgcmF0ZSBhbGxvd2Vk
-IGZvciB0aGF0Ci0JCSAqIGxhbmUgY29uZmlndXJhdGlvbi4iCi0JCSAqCi0JCSAqIE5vdGUgdGhh
-dCB3ZSBmYWxsIGJhY2sgdG8gdGhlIG1heCBjbG9jayBhbmQgbGFuZSBjb3VudCBmb3IgZURQCi0J
-CSAqIHBhbmVscyB0aGF0IGZhaWwgd2l0aCB0aGUgZmFzdCBvcHRpbWFsIHNldHRpbmdzIChzZWUK
-LQkJICogaW50ZWxfZHAtPnVzZV9tYXhfcGFyYW1zKSwgaW4gd2hpY2ggY2FzZSB0aGUgZmFzdCB2
-cy4gd2lkZQotCQkgKiBjaG9pY2UgZG9lc24ndCBtYXR0ZXIuCi0JCSAqLwotCQlyZXQgPSBpbnRl
-bF9kcF9jb21wdXRlX2xpbmtfY29uZmlnX2Zhc3QoaW50ZWxfZHAsIHBpcGVfY29uZmlnLCAmbGlt
-aXRzKTsKLQllbHNlCi0JCS8qIE9wdGltaXplIGZvciBzbG93IGFuZCB3aWRlLiAqLwotCQlyZXQg
-PSBpbnRlbF9kcF9jb21wdXRlX2xpbmtfY29uZmlnX3dpZGUoaW50ZWxfZHAsIHBpcGVfY29uZmln
-LCAmbGltaXRzKTsKKwkvKgorCSAqIE9wdGltaXplIGZvciBzbG93IGFuZCB3aWRlIGZvciBldmVy
-eXRoaW5nLCBiZWNhdXNlIHRoZXJlIGFyZSBzb21lCisJICogZURQIDEuMyBhbmQgMS40IHBhbmVs
-cyBkb24ndCB3b3JrIHdlbGwgd2l0aCBmYXN0IGFuZCBuYXJyb3cuCisJICovCisJcmV0ID0gaW50
-ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZpZ193aWRlKGludGVsX2RwLCBwaXBlX2NvbmZpZywgJmxp
-bWl0cyk7CiAKIAkvKiBlbmFibGUgY29tcHJlc3Npb24gaWYgdGhlIG1vZGUgZG9lc24ndCBmaXQg
-YXZhaWxhYmxlIEJXICovCiAJZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwgIkZvcmNlIERTQyBlbiA9
-ICVkXG4iLCBpbnRlbF9kcC0+Zm9yY2VfZHNjX2VuKTsKLS0gCjIuMzAuMgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/i915/dp: Use slow and wide link training for everything
+URL   : https://patchwork.freedesktop.org/series/89283/
+State : warning
+
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
