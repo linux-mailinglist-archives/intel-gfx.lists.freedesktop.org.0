@@ -2,39 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A90E2366998
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 13:03:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A6EF36699E
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 13:03:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95AE66E982;
-	Wed, 21 Apr 2021 11:03:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0A746E982;
+	Wed, 21 Apr 2021 11:03:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C47B66E982
- for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 11:03:07 +0000 (UTC)
-IronPort-SDR: ORFoB2l9Rdgy0VDayPx6PqoF1uaVGFCA482Imuzug5GKyCYBTvvwSUQe0FuBlXNn0yPRp29Diz
- HnV6uk87Xwmg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="259632726"
-X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="259632726"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 04:03:06 -0700
-IronPort-SDR: HNEObM6qyWd2kt9sYCugGRXNdtd+x24R/7VPUP43HWkjeAK2R7dw8scO1kJSm64AsLKx6AAiCp
- pc/AbYeIJOQA==
-X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="420950825"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C7116E982
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 11:03:53 +0000 (UTC)
+IronPort-SDR: fCVunlgJcD6jH/lbuxFiG8oTOJC5QXz5DKYzqn92pJwHKljC2LUQ9VFyEf6HprFeX9vb3dxc0e
+ YNEZkqXHc+wA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9960"; a="182810041"
+X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="182810041"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2021 04:03:52 -0700
+IronPort-SDR: QJTNlx4y/cP5MKQS8baQ2nE7GKORPJ06uf46KXMljjmriyA03L39UMIWh/4A0CbdoMFhaP5kNb
+ h0+vI+CVotEA==
+X-IronPort-AV: E=Sophos;i="5.82,238,1613462400"; d="scan'208";a="463551297"
 Received: from uchalilx-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.36.64])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2021 04:03:04 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2021 04:03:50 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210325180720.401410-1-matthew.d.roper@intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <87a6pzeqfi.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210325180720.401410-1-matthew.d.roper@intel.com>
-Date: Wed, 21 Apr 2021 14:03:01 +0300
-Message-ID: <87wnsv99y2.fsf@intel.com>
+References: <20210414155208.3161335-1-imre.deak@intel.com>
+ <87a6pzeqfi.fsf@intel.com>
+Date: Wed, 21 Apr 2021 14:03:45 +0300
+Message-ID: <87tunz99wu.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 00/50] Introduce Alder Lake-P
+Subject: Re: [Intel-gfx] [PATCH 00/11] drm/i915/adl_p: Add support for
+ Display Page Tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,21 +49,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: me@freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 25 Mar 2021, Matt Roper <matthew.d.roper@intel.com> wrote:
-> The previous version of this series was here:
->         https://lists.freedesktop.org/archives/intel-gfx/2021-March/262168.html
+On Thu, 15 Apr 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Wed, 14 Apr 2021, Imre Deak <imre.deak@intel.com> wrote:
+>> Alder Lake-P adds a new Display Page Table hardware structure, mapping
+>> tiled framebuffer pages to the display engine, reducing the address
+>> space required in GGTT for these framebuffers.
+>>
+>> This patchset adds support for this taking a minimum set of dependency
+>> patches from the ADL_P enabling patchset at
+>> https://patchwork.freedesktop.org/series/87897/
 >
-> The preparation patches that convert display/ to use DISPLAY_VER()
-> instead of INTEL_GEN() have landed on drm-tip now, so this is mostly
-> just a straightforward rebase of the remaining patches.  I think there
-> was only one minor functional fix to the last patch of the series (PSR
-> changes).
+> Cc: Daniel
+>
+> I guess we'll need a topic branch for the base enabling to merge to both
+> din and dign? I guess it'll need to include the stuff in
+> topic/intel-gen-to-ver too.
+>
+> Shared stuff like this keeps being a problem with the separate dign
+> branch, especially when the only way to sync is to merge both din and
+> dign to drm-next and then backmerge to both.
+
+I've created the topic branch.
 
 When this series starts getting ready to merge, please use the
 topic/adl-p-enabling branch, so we can merge it to both drm-intel-next
