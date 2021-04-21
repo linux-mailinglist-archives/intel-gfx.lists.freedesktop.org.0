@@ -2,31 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12ABA367424
-	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 22:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE3B436744C
+	for <lists+intel-gfx@lfdr.de>; Wed, 21 Apr 2021 22:48:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 739236E9DF;
-	Wed, 21 Apr 2021 20:27:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7DC889C5E;
+	Wed, 21 Apr 2021 20:48:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0827D6E10C;
- Wed, 21 Apr 2021 20:27:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F2B0BAA0EA;
- Wed, 21 Apr 2021 20:27:45 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E3F889C03
+ for <intel-gfx@lists.freedesktop.org>; Wed, 21 Apr 2021 20:48:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1619038096;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ifIpA5PyR1ZsulLBUOL74N66NJnztAmiHCsCnLZVjt0=;
+ b=Gva/udd03JPm6jFJzxN6HGF9y7YU5FGPYtTqfbhU6ZuEZc5sQrrsvZI5VoksPuCz+2jPB3
+ qy/6iICa+43dwQbvzR4O+A+6GQ0UlDsdco5MJ1eHm4YOn61xoWjlIGibl65GPm8XpthReB
+ LAgce4viYjtiHIcUs1Saf+Yflr6Z9XM=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-22-mQsihNDKNKSdr8QzsqOYRQ-1; Wed, 21 Apr 2021 16:48:12 -0400
+X-MC-Unique: mQsihNDKNKSdr8QzsqOYRQ-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
+ [10.5.11.15])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9AEA7343A7;
+ Wed, 21 Apr 2021 20:48:09 +0000 (UTC)
+Received: from x1.localdomain (ovpn-112-17.ams2.redhat.com [10.36.112.17])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 791785D769;
+ Wed, 21 Apr 2021 20:48:05 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@linux.ie>, Rajat Jain <rajatja@google.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Mark Gross <mgross@linux.intel.com>,
+ Andy Shevchenko <andy@infradead.org>
+Date: Wed, 21 Apr 2021 22:47:55 +0200
+Message-Id: <20210421204804.589962-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Wed, 21 Apr 2021 20:27:45 -0000
-Message-ID: <161903686597.19926.17386888515354571220@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210421121959.3577881-1-imre.deak@intel.com>
-In-Reply-To: <20210421121959.3577881-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Simplify_CCS_and_UV_plane_alignment_handling_=28rev2?=
- =?utf-8?q?=29?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+Subject: [Intel-gfx] [PATCH v2 0/9] drm: Add privacy-screen class and
+ connector properties
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,213 +62,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0529216163=="
+Cc: Marco Trevisan <marco.trevisan@canonical.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Sebastien Bacher <seb128@ubuntu.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, Mark Pearson <markpearson@lenovo.com>,
+ Mario Limonciello <mario.limonciello@outlook.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0529216163==
-Content-Type: multipart/alternative;
- boundary="===============6997291218807054505=="
+Hi All,
 
---===============6997291218807054505==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Here is v2 of my series to add a privacy-screen class and connector
+properties. The only significantly changed patch in this v2 is:
+[2/9] drm: Add privacy-screen class (v2)
+which was modified to fix the dependency issues which the lkp kernel test
+robot, see the patches changelog for details.
 
-== Series Details ==
+Here is the v1 cover-letter which is still up2date:
 
-Series: drm/i915: Simplify CCS and UV plane alignment handling (rev2)
-URL   : https://patchwork.freedesktop.org/series/89299/
-State : success
+Here is the privacy-screen related code which I last posted in August
+of last year. To the best of my knowledge there is consensus about /
+everyone is in agreement with the new userspace API (2 connector properties)
+this patch-set add (patch 1 of the series).
 
-== Summary ==
+The blocker the last time was that there were no userspace users of
+the new properties and as a rule we don't add new drm userspace API
+without users.
 
-CI Bug Log - changes from CI_DRM_9994 -> Patchwork_19967
-====================================================
+There now is GNOME userspace code using the new properties:
+https://hackmd.io/@3v1n0/rkyIy3BOw
 
-Summary
--------
+The new API works as designed for this userspace user and the branches
+mentioned at the above link add the following features to GNOME:
 
-  **SUCCESS**
+1. Showing an OSD notification when the privacy-screen is toggled on/off
+   through hotkeys handled by the embedded-controller
+2. Allowing control of the privacy-screen from the GNOME control-panel,
+   including the on/off slider shown there updating to match the hw-setting
+   when the setting is changed with the control-panel open.
+3. Restoring the last user-setting at login
 
-  No regressions found.
+This series consists of a number of different parts:
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/index.html
+1. A new version of Rajat's privacy-screen connector properties patch,
+this adds new userspace API in the form of new properties
 
-Known issues
-------------
+2. Since on most devices the privacy screen is actually controlled by
+some vendor specific ACPI/WMI interface which has a driver under
+drivers/platform/x86, we need some "glue" code to make this functionality
+available to KMS drivers. Patches 2-4 add a new privacy-screen class for
+this, which allows non KMS drivers (and possibly KMS drivers too) to
+register a privacy-screen device and also adds an interface for KMS drivers
+to get access to the privacy-screen associated with a specific connector.
+This is modelled similar to how we deal with e.g. PWMs and GPIOs in the
+kernel, including separate includes for consumers and providers(drivers).
 
-  Here are the changes found in Patchwork_19967 that come from known issues:
+3. Some drm_connector helper functions to keep the actual changes needed
+for this in individual KMS drivers as small as possible (patch 5).
 
-### IGT changes ###
+4. Make the thinkpad_acpi code register a privacy-screen device on
+ThinkPads with a privacy-screen (patches 6-8)
 
-#### Issues hit ####
+5. Make the i915 driver export the privacy-screen functionality through
+the connector properties on the eDP connector.
 
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+I believe that it would be best to merge the entire series, including
+the thinkpad_acpi changes through drm-misc in one go. As the pdx86
+subsys maintainer I hereby give my ack for merging the thinkpad_acpi
+changes through drm-misc.
 
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][2] ([fdo#109271]) +3 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+There is one small caveat with this series, which it is good to be
+aware of. The i915 driver will now return -EPROBE_DEFER on Thinkpads
+with an eprivacy screen, until the thinkpad_acpi driver is loaded.
+This means that initrd generation tools will need to be updated to
+include thinkpad_acpi when the i915 driver is added to the initrd.
+Without this the loading of the i915 driver will be delayed to after
+the switch to real rootfs.
 
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+Regards,
 
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - {fi-tgl-dsi}:       [DMESG-FAIL][4] ([i915#541]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9994/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][6] ([i915#2782]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9994/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1222]: https://gitlab.freedesktop.org/drm/intel/issues/1222
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (42 -> 38)
-------------------------------
-
-  Missing    (4): fi-kbl-soraka fi-bsw-cyan fi-icl-y fi-bdw-samus 
+Hans
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_9994 -> Patchwork_19967
+Hans de Goede (8):
+  drm: Add privacy-screen class (v2)
+  drm/privacy-screen: Add X86 specific arch init code
+  drm/privacy-screen: Add notifier support
+  drm/connector: Add a drm_connector privacy-screen helper functions
+  platform/x86: thinkpad_acpi: Add hotkey_notify_extended_hotkey()
+    helper
+  platform/x86: thinkpad_acpi: Get privacy-screen / lcdshadow ACPI
+    handles only once
+  platform/x86: thinkpad_acpi: Register a privacy-screen device
+  drm/i915: Add privacy-screen support
 
-  CI-20190529: 20190529
-  CI_DRM_9994: 37ccc1432d3a2e6dddeaa2a68659aa790a9ad50c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6072: 0a51f49df9f5ca535fc0206a27a6780de6b52320 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19967: 22bae28d81413572f1073d001ab27de8615ae1af @ git://anongit.freedesktop.org/gfx-ci/linux
+Rajat Jain (1):
+  drm/connector: Add support for privacy-screen properties (v4)
 
+ Documentation/gpu/drm-kms-helpers.rst        |  15 +
+ Documentation/gpu/drm-kms.rst                |   2 +
+ MAINTAINERS                                  |   8 +
+ drivers/gpu/drm/Kconfig                      |   4 +
+ drivers/gpu/drm/Makefile                     |   1 +
+ drivers/gpu/drm/drm_atomic_uapi.c            |   4 +
+ drivers/gpu/drm/drm_connector.c              | 214 +++++++++
+ drivers/gpu/drm/drm_drv.c                    |   4 +
+ drivers/gpu/drm/drm_privacy_screen.c         | 468 +++++++++++++++++++
+ drivers/gpu/drm/drm_privacy_screen_x86.c     |  86 ++++
+ drivers/gpu/drm/i915/display/intel_display.c |   5 +
+ drivers/gpu/drm/i915/display/intel_dp.c      |  10 +
+ drivers/gpu/drm/i915/i915_pci.c              |  12 +
+ drivers/platform/x86/Kconfig                 |   2 +
+ drivers/platform/x86/thinkpad_acpi.c         | 131 ++++--
+ include/drm/drm_connector.h                  |  56 +++
+ include/drm/drm_privacy_screen_consumer.h    |  63 +++
+ include/drm/drm_privacy_screen_driver.h      |  84 ++++
+ include/drm/drm_privacy_screen_machine.h     |  46 ++
+ 19 files changed, 1173 insertions(+), 42 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_privacy_screen.c
+ create mode 100644 drivers/gpu/drm/drm_privacy_screen_x86.c
+ create mode 100644 include/drm/drm_privacy_screen_consumer.h
+ create mode 100644 include/drm/drm_privacy_screen_driver.h
+ create mode 100644 include/drm/drm_privacy_screen_machine.h
 
-== Linux commits ==
-
-22bae28d8141 drm/i915: Simplify CCS and UV plane alignment handling
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/index.html
-
---===============6997291218807054505==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Simplify CCS and UV plane alignment handling (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89299/">https://patchwork.freedesktop.org/series/89299/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_9994 -&gt; Patchwork_19967</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19967 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-bdw-5557u/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>{fi-tgl-dsi}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9994/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-tgl-dsi/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_9994/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19967/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 38)</h2>
-<p>Missing    (4): fi-kbl-soraka fi-bsw-cyan fi-icl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_9994 -&gt; Patchwork_19967</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_9994: 37ccc1432d3a2e6dddeaa2a68659aa790a9ad50c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6072: 0a51f49df9f5ca535fc0206a27a6780de6b52320 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19967: 22bae28d81413572f1073d001ab27de8615ae1af @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>22bae28d8141 drm/i915: Simplify CCS and UV plane alignment handling</p>
-
-</body>
-</html>
-
---===============6997291218807054505==--
-
---===============0529216163==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+-- 
+2.31.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0529216163==--
