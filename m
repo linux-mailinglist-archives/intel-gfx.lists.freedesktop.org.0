@@ -1,45 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F339A368145
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Apr 2021 15:11:35 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2392036828E
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Apr 2021 16:39:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B57AE6EA86;
-	Thu, 22 Apr 2021 13:11:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26A8F6E0B6;
+	Thu, 22 Apr 2021 14:39:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACC8B6EA84;
- Thu, 22 Apr 2021 13:11:27 +0000 (UTC)
-IronPort-SDR: h/f3HBGppAnadrbk120i7imNcgJP2Y0gy5Ph2B6W2k2IG78Dfh3lXqTY2sXjk2C/hls5E0acwp
- RTzHN8RhsMnQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9962"; a="183013050"
-X-IronPort-AV: E=Sophos;i="5.82,242,1613462400"; d="scan'208";a="183013050"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2021 06:11:25 -0700
-IronPort-SDR: 2cws8iVnIBUTaYtmiex6GaRlSETtuK+tB1Tf/+g++/J2QYE8gmfSjA/MsRtNGxDq7D0bZ8RRhC
- RU1PY14364ug==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E48D66E0B6
+ for <intel-gfx@lists.freedesktop.org>; Thu, 22 Apr 2021 14:39:48 +0000 (UTC)
+IronPort-SDR: 5YEyAfuwdUCXKf/5HkHG03yUy8upo2r6Zdb1uUe7svpPcmPPJE61HgfH+V382xWMcAIJXisvS/
+ CMp9WMMLcBMg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9962"; a="195955252"
+X-IronPort-AV: E=Sophos;i="5.82,242,1613462400"; d="scan'208";a="195955252"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2021 07:39:46 -0700
+IronPort-SDR: TYvw7jan0G+s15QM4reuAujwVZHV6yO89W4jkX2DTgHUyx2jmniyb3DgmlwrvGgpv0J6L1OPro
+ p+ti6Iys0Z+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,242,1613462400"; d="scan'208";a="386076135"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 22 Apr 2021 06:11:23 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 22 Apr 2021 16:11:22 +0300
-Date: Thu, 22 Apr 2021 16:11:22 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <YIF1+mhbWO7UD/yN@intel.com>
-References: <20210421153401.13847-1-ville.syrjala@linux.intel.com>
- <20210421153401.13847-5-ville.syrjala@linux.intel.com>
- <YIFGt+I8LMckYyVG@phenom.ffwll.local>
+X-IronPort-AV: E=Sophos;i="5.82,242,1613462400"; d="scan'208";a="421394840"
+Received: from irsmsx603.ger.corp.intel.com ([163.33.146.9])
+ by fmsmga008.fm.intel.com with ESMTP; 22 Apr 2021 07:39:46 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Thu, 22 Apr 2021 15:39:44 +0100
+Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
+ ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.013;
+ Thu, 22 Apr 2021 07:39:43 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH] drm/i915/display: Disable PSR2 if TGL Display stepping
+ is B1 from A0
+Thread-Index: AQHXN11wpxNMBPAp0EeC5Il0eFMdZKrBEgwA
+Date: Thu, 22 Apr 2021 14:39:42 +0000
+Message-ID: <9c29c4ebad4ba756ccd6a538eb2b8c2ef35e44b8.camel@intel.com>
+References: <20210422095401.2377644-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20210422095401.2377644-1-gwan-gyeong.mun@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.100]
+Content-ID: <6D4FE199205E4145AC84075D91CB8723@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YIFGt+I8LMckYyVG@phenom.ffwll.local>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Rewrite CL/CTG L-shaped
- memory detection
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Disable PSR2 if TGL
+ Display stepping is B1 from A0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,176 +63,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 22, 2021 at 11:49:43AM +0200, Daniel Vetter wrote:
-> On Wed, Apr 21, 2021 at 06:34:01PM +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
-
-> > Currently we try to detect a symmetric memory configurations
-> > using a magic DCC2_MODIFIED_ENHANCED_DISABLE bit. That bit is
-> > either only set on a very specific subset of machines or it
-> > just does not exist (it's not mentioned in any public chipset
-> > datasheets I've found). As it happens my CL/CTG machines never
-> > set said bit, even if I populate the channels with identical
-> > sticks.
-> > =
-
-> > So let's do the L-shaped memory detection the same way as the
-> > desktop variants, ie. just look at the DRAM rank boundary
-> > registers to see if both channels have an identical size.
-> > =
-
-> > With this my CL/CTG no longer claim L-shaped memory when I use
-> > identical sticks. Also tested with non-matching sticks just to
-> > make sure the L-shaped memory is still properly detected.
-> > =
-
-> > And for completeness let's update the debugfs code to dump
-> > the correct set of registers on each platform.
-> > =
-
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> Did you check this with the swapping igt? I have some vague memories of
-> bug reports where somehow the machine was acting like it's L-shaped memory
-> despite that banks were populated equally. I've iirc tried all kinds of
-> tricks to figure it out, all to absolutely no avail.
-
-Did you have a specific test in mind? I ran a bunch of things
-that seemed swizzle related. All passed just fine.
-
-Chris did have similar concerns and suggested we should have
-better tests. I guess what I should try to do is some selftests
-which make sure we test both high and low physical addresses
-and check the swizzle pattern is as expected. But haven't =
-
-found the time to do that yet.
-
-> =
-
-> tbh I'd just not touch this, not really worth it.
-
-It's totally worth it to get gen4 machines working again.
-
-
-> -Daniel
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 15 ++++++++-------
-> >  drivers/gpu/drm/i915/i915_debugfs.c          | 16 ++++++++++++----
-> >  drivers/gpu/drm/i915/i915_reg.h              |  4 ++++
-> >  3 files changed, 24 insertions(+), 11 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu=
-/drm/i915/gt/intel_ggtt_fencing.c
-> > index 0fa6c38893f7..754f20768de5 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-> > @@ -693,14 +693,15 @@ static void detect_bit_6_swizzle(struct i915_ggtt=
- *ggtt)
-> >  				swizzle_x =3D I915_BIT_6_SWIZZLE_9_10_17;
-> >  				swizzle_y =3D I915_BIT_6_SWIZZLE_9_17;
-> >  			}
-> > -			break;
-> > -		}
-> >  =
-
-> > -		/* check for L-shaped memory aka modified enhanced addressing */
-> > -		if (IS_GEN(i915, 4) &&
-> > -		    !(intel_uncore_read(uncore, DCC2) & DCC2_MODIFIED_ENHANCED_DISAB=
-LE)) {
-> > -			swizzle_x =3D I915_BIT_6_SWIZZLE_UNKNOWN;
-> > -			swizzle_y =3D I915_BIT_6_SWIZZLE_UNKNOWN;
-> > +			/* check for L-shaped memory aka modified enhanced addressing */
-> > +			if (IS_GEN(i915, 4) &&
-> > +			    intel_uncore_read16(uncore, C0DRB3_CL) !=3D
-> > +			    intel_uncore_read16(uncore, C1DRB3_CL)) {
-> > +				swizzle_x =3D I915_BIT_6_SWIZZLE_UNKNOWN;
-> > +				swizzle_y =3D I915_BIT_6_SWIZZLE_UNKNOWN;
-> > +			}
-> > +			break;
-> >  		}
-> >  =
-
-> >  		if (dcc =3D=3D 0xffffffff) {
-> > diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915=
-/i915_debugfs.c
-> > index 8dd374691102..6de11ffcde38 100644
-> > --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> > @@ -621,10 +621,18 @@ static int i915_swizzle_info(struct seq_file *m, =
-void *data)
-> >  			   intel_uncore_read(uncore, DCC));
-> >  		seq_printf(m, "DDC2 =3D 0x%08x\n",
-> >  			   intel_uncore_read(uncore, DCC2));
-> > -		seq_printf(m, "C0DRB3 =3D 0x%04x\n",
-> > -			   intel_uncore_read16(uncore, C0DRB3_BW));
-> > -		seq_printf(m, "C1DRB3 =3D 0x%04x\n",
-> > -			   intel_uncore_read16(uncore, C1DRB3_BW));
-> > +
-> > +		if (IS_G45(dev_priv) || IS_I965G(dev_priv) || IS_G33(dev_priv)) {
-> > +			seq_printf(m, "C0DRB3 =3D 0x%04x\n",
-> > +				   intel_uncore_read16(uncore, C0DRB3_BW));
-> > +			seq_printf(m, "C1DRB3 =3D 0x%04x\n",
-> > +				   intel_uncore_read16(uncore, C1DRB3_BW));
-> > +		} else if (IS_GEN(dev_priv, 4)) {
-> > +			seq_printf(m, "C0DRB3 =3D 0x%04x\n",
-> > +				   intel_uncore_read16(uncore, C0DRB3_CL));
-> > +			seq_printf(m, "C1DRB3 =3D 0x%04x\n",
-> > +				   intel_uncore_read16(uncore, C1DRB3_CL));
-> > +		}
-> >  	} else if (INTEL_GEN(dev_priv) >=3D 6) {
-> >  		seq_printf(m, "MAD_DIMM_C0 =3D 0x%08x\n",
-> >  			   intel_uncore_read(uncore, MAD_DIMM_C0));
-> > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i91=
-5_reg.h
-> > index 0587b2455ea1..055c258179a1 100644
-> > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > @@ -3790,6 +3790,10 @@ static inline bool i915_mmio_reg_valid(i915_reg_=
-t reg)
-> >  #define C0DRB3_BW		_MMIO(MCHBAR_MIRROR_BASE + 0x206)
-> >  #define C1DRB3_BW		_MMIO(MCHBAR_MIRROR_BASE + 0x606)
-> >  =
-
-> > +/* 965gm,ctg DRAM channel configuration */
-> > +#define C0DRB3_CL		_MMIO(MCHBAR_MIRROR_BASE + 0x1206)
-> > +#define C1DRB3_CL		_MMIO(MCHBAR_MIRROR_BASE + 0x1306)
-> > +
-> >  /* snb MCH registers for reading the DRAM channel configuration */
-> >  #define MAD_DIMM_C0			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5004)
-> >  #define MAD_DIMM_C1			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5008)
-> > -- =
-
-> > 2.26.3
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIxLTA0LTIyIGF0IDEyOjU0ICswMzAwLCBHd2FuLWd5ZW9uZyBNdW4gd3JvdGU6
+DQo+IFRHTCBQU1IyIGhhcmR3YXJlIHRyYWNraW5nIHNob3dzIG1vbWVudGFyeSBmbGlja2VyIGFu
+ZCBzY3JlZW4gc2hpZnQgaWYNCj4gVEdMIERpc3BsYXkgc3RlcHBpbmcgaXMgQjEgZnJvbSBBMC4N
+Cj4gSXQgaGFzIGJlZW4gZml4ZWQgZnJvbSBUR0wgRGlzcGxheSBzdGVwcGluZyBDMC4NCj4gDQo+
+IEhTREVTOiAxODAxNTk3MDAyMQ0KPiBIU0RFUzogMjIwOTMxMzgxMQ0KPiBCU3BlYzogNTUzNzgN
+Cj4gDQo+IENjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4N
+Cj4gU2lnbmVkLW9mZi1ieTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwu
+Y29tPg0KPiAtLS0NCj4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5j
+IHwgNiArKysrKysNCj4gwqAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspDQo+IA0KPiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gaW5kZXggNGFkNzU2ZTIz
+OGM1Li4yY2M5ZWVhYjRiYWYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfcHNyLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9wc3IuYw0KPiBAQCAtNzM5LDYgKzczOSwxMiBAQCBzdGF0aWMgYm9vbCBpbnRlbF9wc3Iy
+X2NvbmZpZ192YWxpZChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0KPiDCoAkJcmV0dXJuIGZh
+bHNlOw0KPiDCoAl9DQo+IMKgDQo+IA0KPiANCj4gDQo+IA0KPiANCj4gDQo+IA0KPiArCS8qIFdh
+XzIyMDkzMTM4MTEgKi8NCj4gKwlpZiAoSVNfVEdMX0RJU1BMQVlfU1RFUChkZXZfcHJpdiwgU1RF
+UF9BMCwgU1RFUF9CMSkpIHsNCg0KTWlzc2luZyB0byBjaGVjayBpZiBtYW51YWwgdHJhY2tpbmcg
+aXMgYmVpbmcgdXNlZCwgaW4gdGhpcyBjYXNlIHdlIGNhbiBlbmFibGUgUFNSMiBpbiB0aG9zZSBk
+aXNwbGF5IHN0ZXBwaW5ncy4NCg0KPiArCQlkcm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwgIlBT
+UjIgaXMgbm90IHN1cHBvcnRlZCB0aGlzIERpc3BsYXkgc3RlcHBpbmdcbiIpOw0KPiArCQlyZXR1
+cm4gZmFsc2U7DQo+ICsJfQ0KPiArDQo+IMKgCS8qIFdhXzE2MDExMTgxMjUwICovDQo+IMKgCWlm
+IChJU19ST0NLRVRMQUtFKGRldl9wcml2KSB8fCBJU19BTERFUkxBS0VfUyhkZXZfcHJpdikpIHsN
+Cj4gwqAJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLCAiUFNSMiBpcyBkZWZlYXR1cmVkIGZv
+ciB0aGlzIHBsYXRmb3JtXG4iKTsNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
