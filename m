@@ -1,49 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F8D636907B
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Apr 2021 12:42:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C012369185
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Apr 2021 13:54:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF1ED6E0CC;
-	Fri, 23 Apr 2021 10:42:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D75B6E0EC;
+	Fri, 23 Apr 2021 11:54:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23B056E0CC;
- Fri, 23 Apr 2021 10:42:50 +0000 (UTC)
-IronPort-SDR: hqcd4gHEEbZEatnYyv+qKFTqjgIPk8ZZZG8/fFt64+7E/iref96YZZhGOm+y2eUaEdlJNZKVV/
- JcoCgNkyMhfw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9962"; a="183530130"
-X-IronPort-AV: E=Sophos;i="5.82,245,1613462400"; d="scan'208";a="183530130"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2021 03:42:49 -0700
-IronPort-SDR: OFvfsEuRHTPydfmUcqvE5J8CtjeZ5m+DI0+d83IXL+oSepixEHVJfrp2r+/n7kbANnF2OPj4r5
- WUydTKqGd6Dw==
-X-IronPort-AV: E=Sophos;i="5.82,245,1613462400"; d="scan'208";a="421721849"
-Received: from gbocanex-mobl.ger.corp.intel.com (HELO [10.252.49.5])
- ([10.252.49.5])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2021 03:42:47 -0700
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Stephen Rothwell <sfr@canb.auug.org.au>,
- DRI <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20210421120353.544518-1-maarten.lankhorst@linux.intel.com>
- <CAKMK7uFpoY7YMEMbftjq+P5XHR6L+F0KwFtbK7CtuUFy7HsLkQ@mail.gmail.com>
- <9ae96fa1-6c91-4ec1-422d-8e0a95251bb7@linux.intel.com>
- <YIExRAHQvZmgL5S+@phenom.ffwll.local>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <20c93c9a-9aca-0057-23bf-463e7946e1c8@linux.intel.com>
-Date: Fri, 23 Apr 2021 12:42:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FA416EA8B;
+ Thu, 22 Apr 2021 13:35:58 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CBFFA6145B;
+ Thu, 22 Apr 2021 13:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1619098556;
+ bh=d8G2H9mh1LJNBBM4BpJVdYdRdIV6lqbGhrLt219FUzY=;
+ h=From:To:Cc:Subject:Date:From;
+ b=W7TO386JUSq/S336+os/0lgLShCElbkv53kGPxp6KQarPHhKpLiEjAnSGSGT6UEyg
+ aHtyuj/tasIYfMWfNt6jIYbB5vV2yR+JVUeZg+hrrgD1a6bwVra3yV2I7/EM6ne9dm
+ vw5h6CXpyeYL96pDBY3cIi8MJDU3tmlFugP8CliUVe1b1DaEY+E+9CP/vxLRg1+gEv
+ bBcBbDejf8MB1KqbmKJilHgGozMb9ObntzBfkw4fJg1JWDMDlzUJeE6BwupGlilB/L
+ +OfPEYXifqTBW10STFYS7v6ok/kWUGNxQ/NwHhvC1z6/hyn6jmBL9LcY1EU6MFUorX
+ zAtThf1ti9Zkg==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>,
+ Alex Williamson <alex.williamson@redhat.com>,
+ Kevin Tian <kevin.tian@intel.com>, Cornelia Huck <cohuck@redhat.com>
+Date: Thu, 22 Apr 2021 15:35:33 +0200
+Message-Id: <20210422133547.1861063-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <YIExRAHQvZmgL5S+@phenom.ffwll.local>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix docbook descriptions for
- i915_cmd_parser
+X-Mailman-Approved-At: Fri, 23 Apr 2021 11:54:01 +0000
+Subject: [Intel-gfx] [PATCH] vfio/gvt: fix DRM_I915_GVT dependency on
+ VFIO_MDEV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,76 +51,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>,
+ intel-gfx@lists.freedesktop.org, Arnd Bergmann <arnd@arndb.de>,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 22-04-2021 om 10:18 schreef Daniel Vetter:
-> On Wed, Apr 21, 2021 at 04:39:10PM +0200, Maarten Lankhorst wrote:
->> Op 21-04-2021 om 16:32 schreef Daniel Vetter:
->>> On Wed, Apr 21, 2021 at 2:03 PM Maarten Lankhorst
->>> <maarten.lankhorst@linux.intel.com> wrote:
->>>> Fixes the following htmldocs warnings:
->>>> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
->>>> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
->>>> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
->>>> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
->>>> drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
->>>>
->>>> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
->>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>>> ---
->>>>  drivers/gpu/drm/i915/i915_cmd_parser.c | 16 +++++++++++++++-
->>>>  1 file changed, 15 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
->>>> index e6f1e93abbbb..afb9b7516999 100644
->>>> --- a/drivers/gpu/drm/i915/i915_cmd_parser.c
->>>> +++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
->>>> @@ -1369,6 +1369,18 @@ static int check_bbstart(u32 *cmd, u32 offset, u32 length,
->>>>         return 0;
->>>>  }
->>>>
->>>> +/**
->>>> + * intel_engine_cmd_parser_alloc_jump_whitelist() - preallocate jump whitelist for intel_engine_cmd_parser()
->>>> + * @batch_length: length of the commands in batch_obj
->>>> + * @trampoline: Whether jump trampolines are used.
->>>> + *
->>>> + * Preallocates a jump whitelist for parsing the cmd buffer in intel_engine_cmd_parser().
->>>> + * This has to be preallocated, because the command parser runs in signaling context,
->>>> + * and may not allocate any memory.
->>>> + *
->>>> + * Return: NULL or pointer to a jump whitelist, or ERR_PTR() on failure. Use
->>>> + * IS_ERR() to check for errors. Must bre freed() with kfree().
->>> IS_ERR_OR_NULL or needs an actual bugfix in the code since we're not
->>> consistent. Also s/bre/be/
->> We're sort of consistent, NULL is a valid return code. IS_ERR is only on faliure. :)
-> Maybe explain that and then Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->
-> Cheers, Daniel
->
->>> -Daniel
->>>
->>>> + */
->>>>  unsigned long *intel_engine_cmd_parser_alloc_jump_whitelist(u32 batch_length,
->>>>                                                             bool trampoline)
->>>>  {
->>>> @@ -1401,7 +1413,9 @@ unsigned long *intel_engine_cmd_parser_alloc_jump_whitelist(u32 batch_length,
->>>>   * @batch_offset: byte offset in the batch at which execution starts
->>>>   * @batch_length: length of the commands in batch_obj
->>>>   * @shadow: validated copy of the batch buffer in question
->>>> - * @trampoline: whether to emit a conditional trampoline at the end of the batch
->>>> + * @jump_whitelist: buffer preallocated with intel_engine_cmd_parser_alloc_jump_whitelist()
->>>> + * @shadow_map: mapping to @shadow vma
->>>> + * @batch_map: mapping to @batch vma
->>>>   *
->>>>   * Parses the specified batch buffer looking for privilege violations as
->>>>   * described in the overview.
->>>> --
->>>> 2.31.0
->>>>
-Updated and pushed both, thanks. :)
+From: Arnd Bergmann <arnd@arndb.de>
+
+The Kconfig dependency is incomplete since DRM_I915_GVT is a 'bool'
+symbol that depends on the 'tristate' VFIO_MDEV. This allows a
+configuration with VFIO_MDEV=m, DRM_I915_GVT=y and DRM_I915=y that
+causes a link failure:
+
+x86_64-linux-ld: drivers/gpu/drm/i915/gvt/gvt.o: in function `available_instances_show':
+gvt.c:(.text+0x67a): undefined reference to `mtype_get_parent_dev'
+x86_64-linux-ld: gvt.c:(.text+0x6a5): undefined reference to `mtype_get_type_group_id'
+x86_64-linux-ld: drivers/gpu/drm/i915/gvt/gvt.o: in function `description_show':
+gvt.c:(.text+0x76e): undefined reference to `mtype_get_parent_dev'
+x86_64-linux-ld: gvt.c:(.text+0x799): undefined reference to `mtype_get_type_group_id'
+
+Clarify the dependency by specifically disallowing the broken
+configuration. If VFIO_MDEV is built-in, it will work, but if
+VFIO_MDEV=m, the i915 driver cannot be built-in here.
+
+Fixes: 07e543f4f9d1 ("vfio/gvt: Make DRM_I915_GVT depend on VFIO_MDEV")
+Fixes: 9169cff168ff ("vfio/mdev: Correct the function signatures for the mdev_type_attributes")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/i915/Kconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 7a5b7a93d33e..791cc9556863 100644
+--- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -111,7 +111,7 @@ config DRM_I915_GVT
+ 	bool "Enable Intel GVT-g graphics virtualization host support"
+ 	depends on DRM_I915
+ 	depends on 64BIT
+-	depends on VFIO_MDEV
++	depends on VFIO_MDEV=y || VFIO_MDEV=DRM_I915
+ 	default n
+ 	help
+ 	  Choose this option if you want to enable Intel GVT-g graphics
+-- 
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
