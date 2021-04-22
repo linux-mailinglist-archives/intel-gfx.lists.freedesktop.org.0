@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55CC3368364
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Apr 2021 17:34:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D55C536840E
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Apr 2021 17:44:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BACE46EAAF;
-	Thu, 22 Apr 2021 15:34:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2E16E34B;
+	Thu, 22 Apr 2021 15:44:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9C8F96EAAF;
- Thu, 22 Apr 2021 15:34:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 94354A7E03;
- Thu, 22 Apr 2021 15:34:27 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 011686E2E6;
+ Thu, 22 Apr 2021 15:44:36 +0000 (UTC)
+IronPort-SDR: a1bOUOuSoBqc0rwjlrZBXBATpMKzWTOG/RDyHDOawDjnqAZhi9JfYLmsobbQh3K6K2lXnlh2aB
+ nipu/QroE56A==
+X-IronPort-AV: E=McAfee;i="6200,9189,9962"; a="196022933"
+X-IronPort-AV: E=Sophos;i="5.82,241,1613462400"; d="scan'208";a="196022933"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2021 08:44:36 -0700
+IronPort-SDR: c6HMcF5/QOhWOR+a5+Dihne+F0G5frAedepbyVUZ4zVcz2BGMNio+g/k4Z5wwoc0z12oWzqOS4
+ srffrOKEqLLA==
+X-IronPort-AV: E=Sophos;i="5.82,242,1613462400"; d="scan'208";a="603258702"
+Received: from gcbowen-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.213.182.88])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Apr 2021 08:44:33 -0700
+Date: Thu, 22 Apr 2021 11:44:30 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <YIGZ3pQPgPQtZtyI@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 22 Apr 2021 15:34:27 -0000
-Message-ID: <161910566758.10414.17898351197324020854@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210422150742.514319-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20210422150742.514319-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915=3A_Make_preempt_timeout_for_banned_contexts_configurable?=
+Content-Disposition: inline
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,30 +45,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave and Daniel,
 
-Series: drm/i915: Make preempt timeout for banned contexts configurable
-URL   : https://patchwork.freedesktop.org/series/89369/
-State : warning
+One GVT fix and one display link training fix targeting stable 5.11.
 
-== Summary ==
+Here goes drm-intel-fixes-2021-04-22:
+- GVT's BDW regression fix for cmd parser (Zhenyu)
+- Fix modesetting in case of unexpected AUX timeouts (Imre)
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
-./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+Thanks,
+Rodrigo.
 
+The following changes since commit bf05bf16c76bb44ab5156223e1e58e26dfe30a88:
 
+  Linux 5.12-rc8 (2021-04-18 14:45:32 -0700)
+
+are available in the Git repository at:
+
+  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2021-04-22
+
+for you to fetch changes up to 2d292995bb8f49a2596bef522679c1e1454f3230:
+
+  Merge tag 'gvt-fixes-2021-04-20' of https://github.com/intel/gvt-linux into drm-intel-fixes (2021-04-20 09:41:32 -0400)
+
+----------------------------------------------------------------
+- GVT's BDW regression fix for cmd parser (Zhenyu)
+- Fix modesetting in case of unexpected AUX timeouts (Imre)
+
+----------------------------------------------------------------
+Imre Deak (1):
+      drm/i915: Fix modesetting in case of unexpected AUX timeouts
+
+Rodrigo Vivi (1):
+      Merge tag 'gvt-fixes-2021-04-20' of https://github.com/intel/gvt-linux into drm-intel-fixes
+
+Zhenyu Wang (1):
+      drm/i915/gvt: Fix BDW command parser regression
+
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c |  3 ++-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c                 | 19 +++++++++++++------
+ 2 files changed, 15 insertions(+), 7 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
