@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56B90367DD4
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Apr 2021 11:37:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 453BA367E1A
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Apr 2021 11:48:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5DD6E06B;
-	Thu, 22 Apr 2021 09:37:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83CB66EA65;
+	Thu, 22 Apr 2021 09:48:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 962B06E06B;
- Thu, 22 Apr 2021 09:37:16 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C0F66EA64;
+ Thu, 22 Apr 2021 09:48:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8A912A73C7;
- Thu, 22 Apr 2021 09:37:16 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 61FEEA8169;
+ Thu, 22 Apr 2021 09:48:29 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Claire Chang" <tientzu@chromium.org>
-Date: Thu, 22 Apr 2021 09:37:16 -0000
-Message-ID: <161908423653.10416.11535397378393581097@emeril.freedesktop.org>
+To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
+Date: Thu, 22 Apr 2021 09:48:29 -0000
+Message-ID: <161908490936.10415.8505582032126484924@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210422081508.3942748-1-tientzu@chromium.org>
-In-Reply-To: <20210422081508.3942748-1-tientzu@chromium.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBS?=
- =?utf-8?q?estricted_DMA?=
+References: <20210422170123.14738-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20210422170123.14738-1-bhanuprakash.modem@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/display=3A_Fix_state_mismatch_in_drm_infoframe_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,20 +48,19 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Restricted DMA
-URL   : https://patchwork.freedesktop.org/series/89341/
-State : failure
+Series: drm/i915/display: Fix state mismatch in drm infoframe (rev2)
+URL   : https://patchwork.freedesktop.org/series/89225/
+State : warning
 
 == Summary ==
 
-Applying: swiotlb: Fix the type of index
-error: sha1 information is lacking or useless (kernel/dma/swiotlb.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 swiotlb: Fix the type of index
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
 
 
 _______________________________________________
