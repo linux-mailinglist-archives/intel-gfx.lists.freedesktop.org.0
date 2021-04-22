@@ -1,45 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 937553686C5
-	for <lists+intel-gfx@lfdr.de>; Thu, 22 Apr 2021 20:52:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAD103686C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 22 Apr 2021 20:52:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F82C6E5B0;
-	Thu, 22 Apr 2021 18:51:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03D3E6E5B6;
+	Thu, 22 Apr 2021 18:52:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B71DF6E5AB;
- Thu, 22 Apr 2021 18:51:54 +0000 (UTC)
-IronPort-SDR: XjEaaeFQqvSgQ14rlgXmYjzLPe1Y1t8Sgx6AtSNvwqzDaSrcX9dTHHNLVYtVodhp6KCVYpWClK
- NKOPcyFlsqIQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9962"; a="175438289"
-X-IronPort-AV: E=Sophos;i="5.82,243,1613462400"; d="scan'208";a="175438289"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2021 11:51:54 -0700
-IronPort-SDR: 53GYaL8ca1IhBNbJfGJqKXsZvAf8Qy/JQ7WWEMp4yhZgwB/MZmKUaBLnLfwE3VDtAbhTbWWWiU
- NP4Gi+TWIPLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,243,1613462400"; d="scan'208";a="464055868"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga001.jf.intel.com with SMTP; 22 Apr 2021 11:51:51 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 22 Apr 2021 21:51:50 +0300
-Date: Thu, 22 Apr 2021 21:51:50 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <YIHFxuoGabGElClS@intel.com>
-References: <20210421153401.13847-1-ville.syrjala@linux.intel.com>
- <20210421153401.13847-5-ville.syrjala@linux.intel.com>
- <YIFGt+I8LMckYyVG@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 849036E5B4;
+ Thu, 22 Apr 2021 18:52:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7ABF0A47DF;
+ Thu, 22 Apr 2021 18:52:10 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YIFGt+I8LMckYyVG@phenom.ffwll.local>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Rewrite CL/CTG L-shaped
- memory detection
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Thu, 22 Apr 2021 18:52:10 -0000
+Message-ID: <161911753049.10415.13664452050170510768@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210422182957.10022-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20210422182957.10022-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/fbc=3A_Avoid_GLK+_FBC_corruption?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,60 +38,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 22, 2021 at 11:49:43AM +0200, Daniel Vetter wrote:
-> On Wed, Apr 21, 2021 at 06:34:01PM +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+== Series Details ==
 
-> > Currently we try to detect a symmetric memory configurations
-> > using a magic DCC2_MODIFIED_ENHANCED_DISABLE bit. That bit is
-> > either only set on a very specific subset of machines or it
-> > just does not exist (it's not mentioned in any public chipset
-> > datasheets I've found). As it happens my CL/CTG machines never
-> > set said bit, even if I populate the channels with identical
-> > sticks.
-> > =
+Series: drm/i915/fbc: Avoid GLK+ FBC corruption
+URL   : https://patchwork.freedesktop.org/series/89379/
+State : warning
 
-> > So let's do the L-shaped memory detection the same way as the
-> > desktop variants, ie. just look at the DRAM rank boundary
-> > registers to see if both channels have an identical size.
-> > =
+== Summary ==
 
-> > With this my CL/CTG no longer claim L-shaped memory when I use
-> > identical sticks. Also tested with non-matching sticks just to
-> > make sure the L-shaped memory is still properly detected.
-> > =
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_shrinker.c:102: warning: Function parameter or member 'ww' not described in 'i915_gem_shrink'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'jump_whitelist' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'shadow_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Function parameter or member 'batch_map' not described in 'intel_engine_cmd_parser'
+./drivers/gpu/drm/i915/i915_cmd_parser.c:1420: warning: Excess function parameter 'trampoline' description in 'intel_engine_cmd_parser'
 
-> > And for completeness let's update the debugfs code to dump
-> > the correct set of registers on each platform.
-> > =
 
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> Did you check this with the swapping igt? I have some vague memories of
-> bug reports where somehow the machine was acting like it's L-shaped memory
-> despite that banks were populated equally. I've iirc tried all kinds of
-> tricks to figure it out, all to absolutely no avail.
-
-BTW looking at the patches/dumps in eg.
-https://bugs.freedesktop.org/show_bug.cgi?id=3D28813
-I can't immediately see a single thing that is actually using
-the correct register offsets for cl/ctg. So I'm a bit sceptical
-about how well this was researched in the past.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
