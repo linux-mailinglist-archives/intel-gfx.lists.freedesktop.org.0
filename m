@@ -2,45 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88BE0369BD7
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Apr 2021 23:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10152369C98
+	for <lists+intel-gfx@lfdr.de>; Sat, 24 Apr 2021 00:31:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4520C6EC53;
-	Fri, 23 Apr 2021 21:07:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DBC66ECA2;
+	Fri, 23 Apr 2021 22:31:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com
- [209.85.166.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 095996EC50;
- Fri, 23 Apr 2021 21:07:15 +0000 (UTC)
-Received: by mail-io1-f51.google.com with SMTP id p8so1728449iol.11;
- Fri, 23 Apr 2021 14:07:15 -0700 (PDT)
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com
+ [IPv6:2607:f8b0:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 738F86ECA2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Apr 2021 22:31:37 +0000 (UTC)
+Received: by mail-pf1-x431.google.com with SMTP id h11so3934773pfn.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Apr 2021 15:31:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=5EMEkpkVEstMhYksGq8DQqkutZRbwL7brOaHT20UxUI=;
+ b=l3UqTo1VYfe5ZFxMMmHXF2AKrcuDM/Yp/S9g4NpxD4UjhVkUdw7GhAN+Fyqix0S4rn
+ RVIiQlpXXT7mVzz1a9wwyxxhdfrdOhtNwolitYQh1j1fXfiPR+tWjfzFqvrzY8CHgTP5
+ ON0YVwNRcHv3vyA6cY6zSbIJEr4HSYWV3c7UuMR9d0oHM8orDbQPI/C0+PAhO/7luU87
+ 1OPX+o3aWJ1avoTjBrFFH3wT2u+mjL5iVInExrjsHxLomg+lyo7rtgBPskIVHoms2eJ8
+ sNEjVwwantVIGICGhUfJ0BIEFf6nEPeUsv/wACoNnHhIuISFpnCnRhp3n4QhUFi6Q2t0
+ Q0eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=vGf4Bqg3eO6JS3gvF6LxMt8XkWMGCm3Fd5yjKYFBgF8=;
- b=E203/yiOlCKbcP6eZiGFqffMqZDLPbUDVm5ztZ2yZMyDkAcLnf6RLnV4cJqB6r++zF
- l5OB6zgsR5RYJdy431rqYeKNpN24j+lRL29u6tZTkFO7V9E7OlybUOKGC0nRGaRGczcR
- UTNRQ4tFlKBfTKy+1mecrRZN1ROaGg+PShbz34OHN3+Eut4XhMbgu2/RXVBVlHT2XCfg
- ewduK7/Kx3nUnJHP083CS/vMbJlvREtcuaKPJFBsqoc5bCNMFuJBlkALI9aFhGJ0J3lU
- F1LAhHPRD7hZPkeX733dE9nE2tqohmtOm0cll0R+LqBg6M6YXKPSqmBiC+aY1LIIj7mf
- J7hA==
-X-Gm-Message-State: AOAM532nosdB2QoLRKesuURSyMPgSfFVrogGPL85buUQq4fFgxUFIFOf
- Pi5knQzN/vIUa+EehIChquEoeyszm3ksU3jrhdA=
-X-Google-Smtp-Source: ABdhPJx/mGXYebrjo1LW38fgTdwSQnNr3RmcE4CILvZv37TRPOr8OlvisBQvXkXDoBESh8c9agnzKhcwdoToZrcFn2Y=
-X-Received: by 2002:a5e:d515:: with SMTP id e21mr4718257iom.30.1619212035381; 
- Fri, 23 Apr 2021 14:07:15 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=5EMEkpkVEstMhYksGq8DQqkutZRbwL7brOaHT20UxUI=;
+ b=igQTQxFcaHvt5jk2ZznCiwpbF7jFqvIsoN/lf6czbP9nZ3XqmsIAk1Ht/CCEPjF3PJ
+ LeagAF4QZ5qShm2KfG1AMr0Mms8fLfNuU4jJgUMqVcqeip7Oyte3tWh8n//ggXH9Tazj
+ lEXO9qtbLbzRNauOTX1xxXz+wFutQYjgPcb8SBsbdWDjDyoShwfiFCNuV+PvRayyMESR
+ 2AbPtyhLh7CoZpLiR1wz404yYYHXAtFHFkG7UkQY/aS7r+4eR29qCBEmxZD5xMhQWzNm
+ ykSdN5rTACi8xBju4TnvW9hPFv9WQAuOpRU7T7Vx0jQrbrKggK9XhKSzkPWpFw1RdBl4
+ sBpA==
+X-Gm-Message-State: AOAM530X5OuSFiYEYZDP8GhB29M9j0fQLSCUYszLVAlgYFmCYo8LL+jk
+ WrshcfTnf6a0sf8fZ7MYHurLLbBZityiFw==
+X-Google-Smtp-Source: ABdhPJxWEAnOlStxXBMwfPa14POP6J5FgKRbsz5jGX/EclehNNRlfZvwxhpQqx2bnJ81B8cixrGAog==
+X-Received: by 2002:a63:3c59:: with SMTP id i25mr5724453pgn.366.1619217096438; 
+ Fri, 23 Apr 2021 15:31:36 -0700 (PDT)
+Received: from omlet.com ([134.134.139.76])
+ by smtp.gmail.com with ESMTPSA id z12sm5523420pfn.195.2021.04.23.15.31.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 23 Apr 2021 15:31:35 -0700 (PDT)
+From: Jason Ekstrand <jason@jlekstrand.net>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 23 Apr 2021 17:31:10 -0500
+Message-Id: <20210423223131.879208-1-jason@jlekstrand.net>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210423184309.207645-1-lyude@redhat.com>
- <20210423184309.207645-3-lyude@redhat.com>
-In-Reply-To: <20210423184309.207645-3-lyude@redhat.com>
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Date: Fri, 23 Apr 2021 17:07:04 -0400
-Message-ID: <CAKb7UvgpMO60gRzmJY0V5nOsT8u9y2hFLazmVJ+pEiedEKOOhQ@mail.gmail.com>
-To: Lyude Paul <lyude@redhat.com>
-Subject: Re: [Intel-gfx] [Nouveau] [PATCH v4 02/17] drm/nouveau/kms/nv50-:
- Move AUX adapter reg to connector late register/early unregister
+Subject: [Intel-gfx] [PATCH 00/21] drm/i915/gem: ioctl clean-ups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,103 +66,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Ben Skeggs <bskeggs@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some trivia, no comment on the real logic of the changes:
+Overview:
+---------
 
-On Fri, Apr 23, 2021 at 2:43 PM Lyude Paul <lyude@redhat.com> wrote:
->
-> Since AUX adapters on nouveau have their respective DRM connectors as
-> parents, we need to make sure that we register then after their connectors.
+This patch series attempts to clean up some of the IOCTL mess we've created
+over the last few years.  The most egregious bit being context mutability.
+In summary, this series:
 
-then -> them
+ 1. Drops two never-used context params: RINGSIZE and NO_ZEROMAP
+ 2. Drops the entire CONTEXT_CLONE API
+ 3. Implements SINGLE_TIMELINE with a syncobj instead of actually sharing
+    intel_timeline between engines.
+ 4. Adds a few sanity restrictions to the balancing/bonding API.
+ 5. Implements a proto-ctx mechanism so that the engine set and VM can only
+    be set early on in the lifetime of a context, before anything ever
+    executes on it.  This effectively makes the VM and engine set
+    immutable.
 
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_connector.c | 25 ++++++++++++++++-----
->  1 file changed, 20 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index 61e6d7412505..c04044be3d32 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -401,7 +401,6 @@ nouveau_connector_destroy(struct drm_connector *connector)
->         drm_connector_cleanup(connector);
->         if (nv_connector->aux.transfer) {
->                 drm_dp_cec_unregister_connector(&nv_connector->aux);
-> -               drm_dp_aux_unregister(&nv_connector->aux);
->                 kfree(nv_connector->aux.name);
->         }
->         kfree(connector);
-> @@ -905,13 +904,29 @@ nouveau_connector_late_register(struct drm_connector *connector)
->         int ret;
->
->         ret = nouveau_backlight_init(connector);
-> +       if (ret)
-> +               return ret;
->
-> +       if (connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
-> +           connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) {
-> +               ret = drm_dp_aux_register(&nouveau_connector(connector)->aux);
-> +               if (ret)
-> +                       goto backlight_fini;
-> +       }
-> +
-> +       return 0;
-> +backlight_fini:
-> +       nouveau_backlight_fini(connector);
->         return ret;
->  }
->
->  static void
->  nouveau_connector_early_unregister(struct drm_connector *connector)
->  {
-> +       if (connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
-> +           connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort)
-> +               drm_dp_aux_unregister(&nouveau_connector(connector)->aux);
-> +
->         nouveau_backlight_fini(connector);
->  }
->
-> @@ -1343,14 +1358,14 @@ nouveau_connector_create(struct drm_device *dev,
->                 snprintf(aux_name, sizeof(aux_name), "sor-%04x-%04x",
->                          dcbe->hasht, dcbe->hashm);
->                 nv_connector->aux.name = kstrdup(aux_name, GFP_KERNEL);
-> -               ret = drm_dp_aux_register(&nv_connector->aux);
-> +               drm_dp_aux_init(&nv_connector->aux);
->                 if (ret) {
-> -                       NV_ERROR(drm, "failed to register aux channel\n");
-> +                       NV_ERROR(drm, "Failed to init AUX adapter for sor-%04x-%04x: %d\n",
+This series has been tested with IGT as well as the Iris, ANV, and the
+Intel media driver doing an 8K decode (this uses bonding/balancing).  I've
+also done quite a bit of git archeology to ensure that nothing in here will
+break anything that's already shipped at some point in history.  It's
+possible I've missed something, but I've dug quite a bit.
 
-Maybe just use aux_name instead of rebuilding the string again?
 
-> +                                dcbe->hasht, dcbe->hashm, ret);
->                         kfree(nv_connector);
->                         return ERR_PTR(ret);
->                 }
-> -               funcs = &nouveau_connector_funcs;
-> -               break;
-> +               fallthrough;
->         default:
->                 funcs = &nouveau_connector_funcs;
->                 break;
-> --
-> 2.30.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+Details and motivation:
+-----------------------
+
+In very broad strokes, there's an effort going on right now within Intel to
+try and clean up and simplify i915 anywhere we can.  We obviously don't
+want to break any shipping userspace but, as can be seen by this series,
+there's a lot i915 theoretically supports which userspace doesn't actually
+need.  Some of this, like the two context params used here, were simply
+oversights where we went through the usual API review process and merged
+the i915 bits but the userspace bits never landed for some reason.
+
+Not all are so innocent, however.  For instance, there's an entire context
+cloning API which allows one to create a context with certain parameters
+"cloned" from some other context.  This entire API has never been used by
+any userspace except IGT and there were never patches to any other
+userspace to use it.  It never should have landed.  Also, when we added
+support for setting explicit engine sets and sharing VMs across contexts,
+people decided to do so via SET_CONTEXT_PARAM.  While this allowed them to
+re-use existing API, it did so at the cost of making those states mutable
+which leads to a plethora of potential race conditions.  There were even
+IGT tests merged to cover some of theses:
+
+ - gem_vm_create@async-destroy and gem_vm_create@destroy-race which test
+   swapping out the VM on a running context.
+
+ - gem_ctx_persistence@replace* which test whether a client can escape a
+   non-persistent context by submitting a hanging batch and then swapping
+   out the engine set before the hang is detected.
+
+ - api_intel_bb@bb-with-vm which tests the that intel_bb_assign_vm works
+   properly.  This API is never used by any other IGT test.
+
+There is also an entire deferred flush and set state framework in
+i915_gem_cotnext.c which exists for safely swapping out the VM while there
+is work in-flight on a context.
+
+So, clearly people knew that this API was inherently racy and difficult to
+implement but they landed it anyway.  Why?  The best explanation I've been
+given is because it makes the API more "unified" or "symmetric" for this
+stuff to go through SET_CONTEXT_PARAM.  It's not because any userspace
+actually wants to be able to swap out the VM or the set of engines on a
+running context.  That would be utterly insane.
+
+This patch series cleans up this particular mess by introducing the concept
+of a i915_gem_proto_context data structure which contains context creation
+information.  When you initially call GEM_CONTEXT_CREATE, a proto-context
+in created instead of an actual context.  Then, the first time something is
+done on the context besides SET_CONTEXT_PARAM, an actual context is
+created.  This allows us to keep the old drivers which use
+SET_CONTEXT_PARAM to set up the engine set (see also media) while ensuring
+that, once you have an i915_gem_context, the VM and the engine set are
+immutable state.
+
+Eventually, there are more clean-ups I'd like to do on top of this which
+should make working with contexts inside i915 simpler and safer:
+
+ 1. Move the GEM handle -> vma LUT from i915_gem_context into either
+    i915_ppgtt or drm_i915_file_private depending on whether or not the
+    hardware has a full PPGTT.
+
+ 2. Move the delayed context destruction code into intel_context or a
+    per-engine wrapper struct rather than i915_gem_context.
+
+ 3. Get rid of the separation between context close and context destroy
+
+ 4. Get rid of the RCU on i915_gem_context
+
+However, these should probably be done as a separate patch series as this
+one is already starting to get longish, especially if you consider the 89
+IGT patches that go along with it.
+
+Test-with: 20210423214853.876911-1-jason@jlekstrand.net
+
+Jason Ekstrand (21):
+  drm/i915: Drop I915_CONTEXT_PARAM_RINGSIZE
+  drm/i915: Drop I915_CONTEXT_PARAM_NO_ZEROMAP
+  drm/i915/gem: Set the watchdog timeout directly in
+    intel_context_set_gem
+  drm/i915/gem: Return void from context_apply_all
+  drm/i915: Drop the CONTEXT_CLONE API
+  drm/i915: Implement SINGLE_TIMELINE with a syncobj (v3)
+  drm/i915: Drop getparam support for I915_CONTEXT_PARAM_ENGINES
+  drm/i915/gem: Disallow bonding of virtual engines
+  drm/i915/gem: Disallow creating contexts with too many engines
+  drm/i915/request: Remove the hook from await_execution
+  drm/i915: Stop manually RCU banging in reset_stats_ioctl
+  drm/i915/gem: Add a separate validate_priority helper
+  drm/i915/gem: Add an intermediate proto_context struct
+  drm/i915/gem: Return an error ptr from context_lookup
+  drm/i915/gt: Drop i915_address_space::file
+  drm/i915/gem: Delay context creation
+  drm/i915/gem: Don't allow changing the VM on running contexts
+  drm/i915/gem: Don't allow changing the engine set on running contexts
+  drm/i915/selftests: Take a VM in kernel_context()
+  i915/gem/selftests: Assign the VM at context creation in
+    igt_shared_ctx_exec
+  drm/i915/gem: Roll all of context creation together
+
+ drivers/gpu/drm/i915/Makefile                 |    1 -
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 2967 +++++++----------
+ drivers/gpu/drm/i915/gem/i915_gem_context.h   |    3 +
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |   68 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |   31 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |  127 +-
+ .../gpu/drm/i915/gem/selftests/mock_context.c |   62 +-
+ .../gpu/drm/i915/gem/selftests/mock_context.h |    4 +-
+ drivers/gpu/drm/i915/gt/intel_context_param.c |   63 -
+ drivers/gpu/drm/i915/gt/intel_context_param.h |    6 +-
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |    7 -
+ .../drm/i915/gt/intel_execlists_submission.c  |  100 -
+ .../drm/i915/gt/intel_execlists_submission.h  |    4 -
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |   10 -
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  |  249 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |    2 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   23 +-
+ drivers/gpu/drm/i915/i915_perf.c              |    4 +-
+ drivers/gpu/drm/i915/i915_request.c           |   42 +-
+ drivers/gpu/drm/i915/i915_request.h           |    4 +-
+ .../drm/i915/selftests/i915_mock_selftests.h  |    1 -
+ drivers/gpu/drm/i915/selftests/mock_gtt.c     |    1 -
+ include/uapi/drm/i915_drm.h                   |   40 +-
+ 23 files changed, 1438 insertions(+), 2381 deletions(-)
+ delete mode 100644 drivers/gpu/drm/i915/gt/intel_context_param.c
+
+-- 
+2.31.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
