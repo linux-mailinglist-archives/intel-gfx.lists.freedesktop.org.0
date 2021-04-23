@@ -2,46 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA6F5368D98
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Apr 2021 09:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D9E4368D9F
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Apr 2021 09:07:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26CD56E094;
-	Fri, 23 Apr 2021 07:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAD4C6E094;
+	Fri, 23 Apr 2021 07:06:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04B2C6E094
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Apr 2021 07:05:45 +0000 (UTC)
-IronPort-SDR: b8TaSy+9Low2ViBdRf4bnFtzEf2KU5A9rrm4Vcsdc1tfUayeT+NRN8vOQjf4j77duQ/Ac8qtbd
- p5DM2PO0WKuw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9962"; a="196138844"
-X-IronPort-AV: E=Sophos;i="5.82,241,1613462400"; d="scan'208";a="196138844"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2021 00:05:38 -0700
-IronPort-SDR: +2UIc3D7XgDv99333Npsy39Y8vpjCWXsv2pBHSu1A4yRUnnkJdZz7Ow7aSrY6/XrN+qU3jcRTO
- muix/LK+rTmg==
-X-IronPort-AV: E=Sophos;i="5.82,245,1613462400"; d="scan'208";a="428276397"
-Received: from reifs-mobl1.ger.corp.intel.com (HELO [10.249.40.135])
- ([10.249.40.135])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2021 00:05:36 -0700
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210421172804.70877-1-umesh.nerlige.ramappa@intel.com>
- <20210421172804.70877-2-umesh.nerlige.ramappa@intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <39ebb433-1a1b-db1e-b7e6-9d4d7971d18c@intel.com>
-Date: Fri, 23 Apr 2021 10:05:34 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 964C86E094;
+ Fri, 23 Apr 2021 07:06:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8C505A7E03;
+ Fri, 23 Apr 2021 07:06:57 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210421172804.70877-2-umesh.nerlige.ramappa@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/1] i915/query: Correlate engine and cpu
- timestamps with better accuracy
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bhanuprakash Modem" <bhanuprakash.modem@intel.com>
+Date: Fri, 23 Apr 2021 07:06:57 -0000
+Message-ID: <161916161756.2790.5184287918603913495@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210423141609.28568-1-bhanuprakash.modem@intel.com>
+In-Reply-To: <20210423141609.28568-1-bhanuprakash.modem@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Fix_state_mismatch_in_drm_infoframe_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,318 +38,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris.p.wilson@intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0998924062=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 21/04/2021 20:28, Umesh Nerlige Ramappa wrote:
-> Perf measurements rely on CPU and engine timestamps to correlate
-> events of interest across these time domains. Current mechanisms get
-> these timestamps separately and the calculated delta between these
-> timestamps lack enough accuracy.
->
-> To improve the accuracy of these time measurements to within a few us,
-> add a query that returns the engine and cpu timestamps captured as
-> close to each other as possible.
->
-> v2: (Tvrtko)
-> - document clock reference used
-> - return cpu timestamp always
-> - capture cpu time just before lower dword of cs timestamp
->
-> v3: (Chris)
-> - use uncore-rpm
-> - use __query_cs_timestamp helper
->
-> v4: (Lionel)
-> - Kernel perf subsytem allows users to specify the clock id to be used
->    in perf_event_open. This clock id is used by the perf subsystem to
->    return the appropriate cpu timestamp in perf events. Similarly, let
->    the user pass the clockid to this query so that cpu timestamp
->    corresponds to the clock id requested.
->
-> v5: (Tvrtko)
-> - Use normal ktime accessors instead of fast versions
-> - Add more uApi documentation
->
-> v6: (Lionel)
-> - Move switch out of spinlock
->
-> v7: (Chris)
-> - cs_timestamp is a misnomer, use cs_cycles instead
-> - return the cs cycle frequency as well in the query
->
-> v8:
-> - Add platform and engine specific checks
->
-> v9: (Lionel)
-> - Return 2 cpu timestamps in the query - captured before and after the
->    register read
->
-> v10: (Chris)
-> - Use local_clock() to measure time taken to read lower dword of
->    register and return it to user.
->
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_query.c | 145 ++++++++++++++++++++++++++++++
->   include/uapi/drm/i915_drm.h       |  48 ++++++++++
->   2 files changed, 193 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index fed337ad7b68..25b96927ab92 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -6,6 +6,8 @@
->   
->   #include <linux/nospec.h>
->   
-> +#include "gt/intel_engine_pm.h"
-> +#include "gt/intel_engine_user.h"
->   #include "i915_drv.h"
->   #include "i915_perf.h"
->   #include "i915_query.h"
-> @@ -90,6 +92,148 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
->   	return total_length;
->   }
->   
-> +typedef u64 (*__ktime_func_t)(void);
-> +static __ktime_func_t __clock_id_to_func(clockid_t clk_id)
-> +{
-> +	/*
-> +	 * Use logic same as the perf subsystem to allow user to select the
-> +	 * reference clock id to be used for timestamps.
-> +	 */
-> +	switch (clk_id) {
-> +	case CLOCK_MONOTONIC:
-> +		return &ktime_get_ns;
-> +	case CLOCK_MONOTONIC_RAW:
-> +		return &ktime_get_raw_ns;
-> +	case CLOCK_REALTIME:
-> +		return &ktime_get_real_ns;
-> +	case CLOCK_BOOTTIME:
-> +		return &ktime_get_boottime_ns;
-> +	case CLOCK_TAI:
-> +		return &ktime_get_clocktai_ns;
-> +	default:
-> +		return NULL;
-> +	}
-> +}
-> +
-> +static inline int
-> +__read_timestamps(struct intel_uncore *uncore,
-> +		  i915_reg_t lower_reg,
-> +		  i915_reg_t upper_reg,
-> +		  u64 *cs_ts,
-> +		  u64 *cpu_ts,
-> +		  __ktime_func_t cpu_clock)
-> +{
-> +	u32 upper, lower, old_upper, loop = 0;
-> +
-> +	upper = intel_uncore_read_fw(uncore, upper_reg);
-> +	do {
-> +		cpu_ts[1] = local_clock();
-> +		cpu_ts[0] = cpu_clock();
-> +		lower = intel_uncore_read_fw(uncore, lower_reg);
-> +		cpu_ts[1] = local_clock() - cpu_ts[1];
-> +		old_upper = upper;
-> +		upper = intel_uncore_read_fw(uncore, upper_reg);
-> +	} while (upper != old_upper && loop++ < 2);
-> +
-> +	*cs_ts = (u64)upper << 32 | lower;
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +__query_cs_cycles(struct intel_engine_cs *engine,
-> +		  u64 *cs_ts, u64 *cpu_ts,
-> +		  __ktime_func_t cpu_clock)
-> +{
-> +	struct intel_uncore *uncore = engine->uncore;
-> +	enum forcewake_domains fw_domains;
-> +	u32 base = engine->mmio_base;
-> +	intel_wakeref_t wakeref;
-> +	int ret;
-> +
-> +	fw_domains = intel_uncore_forcewake_for_reg(uncore,
-> +						    RING_TIMESTAMP(base),
-> +						    FW_REG_READ);
-> +
-> +	with_intel_runtime_pm(uncore->rpm, wakeref) {
-> +		spin_lock_irq(&uncore->lock);
-> +		intel_uncore_forcewake_get__locked(uncore, fw_domains);
-> +
-> +		ret = __read_timestamps(uncore,
-> +					RING_TIMESTAMP(base),
-> +					RING_TIMESTAMP_UDW(base),
-> +					cs_ts,
-> +					cpu_ts,
-> +					cpu_clock);
-> +
-> +		intel_uncore_forcewake_put__locked(uncore, fw_domains);
-> +		spin_unlock_irq(&uncore->lock);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int
-> +query_cs_cycles(struct drm_i915_private *i915,
-> +		struct drm_i915_query_item *query_item)
-> +{
-> +	struct drm_i915_query_cs_cycles __user *query_ptr;
-> +	struct drm_i915_query_cs_cycles query;
-> +	struct intel_engine_cs *engine;
-> +	__ktime_func_t cpu_clock;
-> +	int ret;
-> +
-> +	if (INTEL_GEN(i915) < 6)
-> +		return -ENODEV;
-> +
-> +	query_ptr = u64_to_user_ptr(query_item->data_ptr);
-> +	ret = copy_query_item(&query, sizeof(query), sizeof(query), query_item);
-> +	if (ret != 0)
-> +		return ret;
-> +
-> +	if (query.flags)
-> +		return -EINVAL;
-> +
-> +	if (query.rsvd)
-> +		return -EINVAL;
-> +
-> +	cpu_clock = __clock_id_to_func(query.clockid);
-> +	if (!cpu_clock)
-> +		return -EINVAL;
-> +
-> +	engine = intel_engine_lookup_user(i915,
-> +					  query.engine.engine_class,
-> +					  query.engine.engine_instance);
-> +	if (!engine)
-> +		return -EINVAL;
-> +
-> +	if (IS_GEN(i915, 6) &&
-> +	    query.engine.engine_class != I915_ENGINE_CLASS_RENDER)
-> +		return -ENODEV;
+--===============0998924062==
+Content-Type: multipart/alternative;
+ boundary="===============0886253129141541080=="
+
+--===============0886253129141541080==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/display: Fix state mismatch in drm infoframe (rev3)
+URL   : https://patchwork.freedesktop.org/series/89225/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10000 -> Patchwork_19979
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_19979 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_19979, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_19979:
+
+### CI changes ###
+
+#### Possible regressions ####
+
+  * boot:
+    - fi-hsw-4770:        [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10000/fi-hsw-4770/boot.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-hsw-4770/boot.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19979 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][3] ([fdo#109271]) +27 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-kbl-soraka:      NOTRUN -> [SKIP][4] ([fdo#109271]) +9 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-tgl-y:           NOTRUN -> [SKIP][5] ([fdo#109315] / [i915#2575])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@core_hotunplug@unbind-rebind:
+    - fi-bdw-5557u:       NOTRUN -> [WARN][6] ([i915#2283])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bdw-5557u:       NOTRUN -> [SKIP][7] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - {fi-jsl-1}:         [DMESG-WARN][8] ([i915#1222]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10000/fi-jsl-1/igt@i915_selftest@live@gt_heartbeat.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-jsl-1/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#1222]: https://gitlab.freedesktop.org/drm/intel/issues/1222
+  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
 
 
-Thanks a bunch for rebasing this.
+Participating hosts (41 -> 39)
+------------------------------
 
-My only comment on this patch would be : don't we want 
-IS_GEN_RANGE(i915, 1, 6) instead of IS_GEN(i915, 6) ?
-
-(assuming gen1 is a thing...)
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
 
 
--Lionel
+Build changes
+-------------
+
+  * Linux: CI_DRM_10000 -> Patchwork_19979
+
+  CI-20190529: 20190529
+  CI_DRM_10000: 44407be4a35b68f51c6c64e57eb0cf797b9e2e5d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6072: 0a51f49df9f5ca535fc0206a27a6780de6b52320 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19979: 970f1c51f3ec7f299c6ff04a45b92ee8cc4028f7 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
-> +
-> +	query.cs_frequency = engine->gt->clock_frequency;
-> +	ret = __query_cs_cycles(engine,
-> +				&query.cs_cycles,
-> +				query.cpu_timestamp,
-> +				cpu_clock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (put_user(query.cs_frequency, &query_ptr->cs_frequency))
-> +		return -EFAULT;
-> +
-> +	if (put_user(query.cpu_timestamp[0], &query_ptr->cpu_timestamp[0]))
-> +		return -EFAULT;
-> +
-> +	if (put_user(query.cpu_timestamp[1], &query_ptr->cpu_timestamp[1]))
-> +		return -EFAULT;
-> +
-> +	if (put_user(query.cs_cycles, &query_ptr->cs_cycles))
-> +		return -EFAULT;
-> +
-> +	return sizeof(query);
-> +}
-> +
->   static int
->   query_engine_info(struct drm_i915_private *i915,
->   		  struct drm_i915_query_item *query_item)
-> @@ -424,6 +568,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->   	query_topology_info,
->   	query_engine_info,
->   	query_perf_config,
-> +	query_cs_cycles,
->   };
->   
->   int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 6a34243a7646..08b00f1709b5 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2230,6 +2230,10 @@ struct drm_i915_query_item {
->   #define DRM_I915_QUERY_TOPOLOGY_INFO    1
->   #define DRM_I915_QUERY_ENGINE_INFO	2
->   #define DRM_I915_QUERY_PERF_CONFIG      3
-> +	/**
-> +	 * Query Command Streamer timestamp register.
-> +	 */
-> +#define DRM_I915_QUERY_CS_CYCLES	4
->   /* Must be kept compact -- no holes and well documented */
->   
->   	/**
-> @@ -2397,6 +2401,50 @@ struct drm_i915_engine_info {
->   	__u64 rsvd1[4];
->   };
->   
-> +/**
-> + * struct drm_i915_query_cs_cycles
-> + *
-> + * The query returns the command streamer cycles and the frequency that can be
-> + * used to calculate the command streamer timestamp. In addition the query
-> + * returns a set of cpu timestamps that indicate when the command streamer cycle
-> + * count was captured.
-> + */
-> +struct drm_i915_query_cs_cycles {
-> +	/** Engine for which command streamer cycles is queried. */
-> +	struct i915_engine_class_instance engine;
-> +
-> +	/** Must be zero. */
-> +	__u32 flags;
-> +
-> +	/**
-> +	 * Command streamer cycles as read from the command streamer
-> +	 * register at 0x358 offset.
-> +	 */
-> +	__u64 cs_cycles;
-> +
-> +	/** Frequency of the cs cycles in Hz. */
-> +	__u64 cs_frequency;
-> +
-> +	/**
-> +	 * CPU timestamps in ns. cpu_timestamp[0] is captured before reading the
-> +	 * cs_cycles register using the reference clockid set by the user.
-> +	 * cpu_timestamp[1] is the time taken in ns to read the lower dword of
-> +	 * the cs_cycles register.
-> +	 */
-> +	__u64 cpu_timestamp[2];
-> +
-> +	/**
-> +	 * Reference clock id for CPU timestamp. For definition, see
-> +	 * clock_gettime(2) and perf_event_open(2). Supported clock ids are
-> +	 * CLOCK_MONOTONIC, CLOCK_MONOTONIC_RAW, CLOCK_REALTIME, CLOCK_BOOTTIME,
-> +	 * CLOCK_TAI.
-> +	 */
-> +	__s32 clockid;
-> +
-> +	/** Must be zero. */
-> +	__u32 rsvd;
-> +};
-> +
->   /**
->    * struct drm_i915_query_engine_info
->    *
+== Linux commits ==
 
+970f1c51f3ec drm/i915/display: Fix state mismatch in drm infoframe
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/index.html
+
+--===============0886253129141541080==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Fix state mismatch in drm infoframe (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89225/">https://patchwork.freedesktop.org/series/89225/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10000 -&gt; Patchwork_19979</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_19979 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_19979, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_19979:</p>
+<h3>CI changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>boot:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10000/fi-hsw-4770/boot.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-hsw-4770/boot.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19979 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-kbl-soraka/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_heartbeat:<ul>
+<li>{fi-jsl-1}:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10000/fi-jsl-1/igt@i915_selftest@live@gt_heartbeat.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1222">i915#1222</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19979/fi-jsl-1/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (41 -&gt; 39)</h2>
+<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10000 -&gt; Patchwork_19979</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10000: 44407be4a35b68f51c6c64e57eb0cf797b9e2e5d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6072: 0a51f49df9f5ca535fc0206a27a6780de6b52320 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19979: 970f1c51f3ec7f299c6ff04a45b92ee8cc4028f7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>970f1c51f3ec drm/i915/display: Fix state mismatch in drm infoframe</p>
+
+</body>
+</html>
+
+--===============0886253129141541080==--
+
+--===============0998924062==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0998924062==--
