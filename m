@@ -1,63 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76457369C9A
-	for <lists+intel-gfx@lfdr.de>; Sat, 24 Apr 2021 00:31:50 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D2F6369CA0
+	for <lists+intel-gfx@lfdr.de>; Sat, 24 Apr 2021 00:32:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B3BA6ECA5;
-	Fri, 23 Apr 2021 22:31:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCE816ECAE;
+	Fri, 23 Apr 2021 22:31:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com
- [IPv6:2607:f8b0:4864:20::432])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B19C16ECA8
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Apr 2021 22:31:40 +0000 (UTC)
-Received: by mail-pf1-x432.google.com with SMTP id d124so34923628pfa.13
- for <intel-gfx@lists.freedesktop.org>; Fri, 23 Apr 2021 15:31:40 -0700 (PDT)
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com
+ [IPv6:2607:f8b0:4864:20::1033])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D42E6ECAB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Apr 2021 22:31:42 +0000 (UTC)
+Received: by mail-pj1-x1033.google.com with SMTP id
+ kb13-20020a17090ae7cdb02901503d67f0beso5172136pjb.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 23 Apr 2021 15:31:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Pbh/vP/8NW5RrPaCXPebNUNza70vJUSP+Az8d5tHu60=;
- b=b9d8pt5UX2UEwFbRvx7wgmcnqLsbjEI8wJnGggVeRfM0ei/hE+4KSnEAhifbywHCwh
- H4/Mz1HKI939LqD+sWnckUmkrl8NSWfILP3jz85Zb55PVGGsZ9P9PT4EWgtnUTMVvWpG
- 8BZ6y/0Zh3pQQA8hXyMlkFHoBNro39z41vxkUwdqaytFcTMvlWzhzU9yBIWTIdju2cvC
- rt5+EDDPTxD5JBfovY3D6QwcBmjyQUgSMYPCZNMaT4YhwfZYGpmkANV9QcDGREkb1NFa
- IexokWxyBkHaG+/VhKAdlUUGnVADjU33RHfRoXL3CRvzRs7PZwfCDt6AxeAz8J92nLlj
- l7og==
+ bh=kYiFHow3SPGjrg7Lb9we63yQJgpDV3+ubJbvOVPJ3CI=;
+ b=ISMw6czxJH/k0kfIkJjj3z8JFXfwIsrxTmSJzdkgJy6npe+6J9BKt538L3ddtBmFvQ
+ JVKl2/hVbdcRYi1sh59zLo9wQ9AceDtLIGLlybVnfHCjnt3vdSDZQfL+3ZtqJcHISpbO
+ J0me5GMXrPLn2H7QKFwd76+M6uszIuUBEMSEYaIOlCzhhskfvxETA/RxDfrVRvcDvnry
+ QTtTtAV4l74oZqd8jDqbDG+/9Is02A5b2M3mpJJxUo8ZEeg17Kyd1NL25ArrA+QDzZf3
+ q3kyA/piRCg8dasGFtzi33yTT3TCUr1yO2mZkqcnnB6HKi5WZnmOOz9BXBkeAC1uy4T5
+ QTgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Pbh/vP/8NW5RrPaCXPebNUNza70vJUSP+Az8d5tHu60=;
- b=XmDGh9KPEZ+PNOALI2ZAbqHUuzhxASzWHnCeXkmmYyKJkowjwU8cnVQSRT2QoY3J1F
- 1sgLOKZgEGB6j8eQ9WI8N+pMPxpSOO+ta+GB3qV3fsIciDnLXC4W5lWKZgI78PslG0s1
- SiyBnFzhbBrJ9xUAiPh0YxqLpSt4s/GqLQMU2oLS02H7hHHpf3fpTzf/SfPW2TBZO6pj
- uOlza86vabspfZw3rW4uDc4LKPTJA921E3QoreEP8X8ROwGtsAy0c4wpFJFBr6FXzu6m
- +wbAP/u7OI3hyYw3SIE6dao40qEZOdL2aO4kRISMQeonJYzdTBq/LjdlVCLXQ/kjSgQD
- G5WQ==
-X-Gm-Message-State: AOAM533+bH4Uu87cafq681+U1MgDlBx2xp3Ut7jJuy5Dpi1b7k16uxWm
- 1fvjOUL9PVmbVcAAn13k3t/mw1GAF05HSQ==
-X-Google-Smtp-Source: ABdhPJxdfrnfANj47TgK1ZFsjzTteBhelZSqmKmkmGT0v+z2QhHGfyYEgJscgQVexuknbDTbkuzuKA==
-X-Received: by 2002:a05:6a00:148c:b029:260:ef7c:3843 with SMTP id
- v12-20020a056a00148cb0290260ef7c3843mr5943344pfu.70.1619217099750; 
- Fri, 23 Apr 2021 15:31:39 -0700 (PDT)
+ bh=kYiFHow3SPGjrg7Lb9we63yQJgpDV3+ubJbvOVPJ3CI=;
+ b=L4oFsavWlyMY/T9xJdQLjFG91ZgXi2tl1DSiM7LP1aVgQdxmQFtAf9m60J9O7gdHck
+ PHG57/Z9ewJMZK0PFfisUwdWJkZrLai9MBXBd+TEVSx5DAE5g1I3RVvO1Hx6wwX3q/I1
+ eHzhe/QOp00rgN2BaI9XMK2PAaW6iRiMuDEWO4Do3Jq5dNuaMlS6ewcdDTDPBd7D/pOY
+ /dMqxPgROH4jcUs3gQCT9ggvwZ2pwbH45PFvANzNqPNXHa7c/v9j0ybbfg6uK9BUUwSp
+ ZYKuspZd9Xb3Q/oBJ0rrDhnXiJjRVcceyAIsu4sd5xW9A/tm5QnI5BKW0n9UgZ5ba9Vy
+ ehmg==
+X-Gm-Message-State: AOAM530wcPlw1HswZlZuGNljVc/aVq+i0DkqzaV81Wyc/C8ryyncch1K
+ 2pkE+06SJT7WusSoyFn+3slNdSQXjQ2CRg==
+X-Google-Smtp-Source: ABdhPJzz8Ql/C35dbclf2Od6TIihOVfcFn5QPmTBWHrvwuga9hVVcSAnG9l80lhYkSqDo/Cq0vLrzw==
+X-Received: by 2002:a17:902:f2c1:b029:eb:7b66:9c0a with SMTP id
+ h1-20020a170902f2c1b02900eb7b669c0amr6106473plc.50.1619217101312; 
+ Fri, 23 Apr 2021 15:31:41 -0700 (PDT)
 Received: from omlet.com ([134.134.139.76])
- by smtp.gmail.com with ESMTPSA id z12sm5523420pfn.195.2021.04.23.15.31.38
+ by smtp.gmail.com with ESMTPSA id z12sm5523420pfn.195.2021.04.23.15.31.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Apr 2021 15:31:39 -0700 (PDT)
+ Fri, 23 Apr 2021 15:31:40 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Fri, 23 Apr 2021 17:31:12 -0500
-Message-Id: <20210423223131.879208-3-jason@jlekstrand.net>
+Date: Fri, 23 Apr 2021 17:31:13 -0500
+Message-Id: <20210423223131.879208-4-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210423223131.879208-1-jason@jlekstrand.net>
 References: <20210423223131.879208-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/21] drm/i915: Drop
- I915_CONTEXT_PARAM_NO_ZEROMAP
+Subject: [Intel-gfx] [PATCH 03/21] drm/i915/gem: Set the watchdog timeout
+ directly in intel_context_set_gem
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,135 +76,117 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The idea behind this param is to support OpenCL drivers with relocations
-because OpenCL reserves 0x0 for NULL and, if we placed memory there, it
-would confuse CL kernels.  It was originally sent out as part of a patch
-series including libdrm [1] and Beignet [2] support.  However, the
-libdrm and Beignet patches never landed in their respective upstream
-projects so this API has never been used.  It's never been used in Mesa
-or any other driver, either.
-
-Dropping this API allows us to delete a small bit of code.
-
-[1]: https://lists.freedesktop.org/archives/intel-gfx/2015-May/067030.html
-[2]: https://lists.freedesktop.org/archives/intel-gfx/2015-May/067031.html
+Instead of handling it like a context param, unconditionally set it when
+intel_contexts are created.  This doesn't fix anything but does simplify
+the code a bit.
 
 Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c      | 16 ++--------------
- .../gpu/drm/i915/gem/i915_gem_context_types.h    |  1 -
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c   |  8 --------
- include/uapi/drm/i915_drm.h                      |  4 ++++
- 4 files changed, 6 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 43 +++----------------
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  4 --
+ drivers/gpu/drm/i915/gt/intel_context_param.h |  3 +-
+ 3 files changed, 6 insertions(+), 44 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index e52b85b8f923d..35bcdeddfbf3f 100644
+index 35bcdeddfbf3f..1091cc04a242a 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1922,15 +1922,6 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
- 	int ret = 0;
+@@ -233,7 +233,11 @@ static void intel_context_set_gem(struct intel_context *ce,
+ 	    intel_engine_has_timeslices(ce->engine))
+ 		__set_bit(CONTEXT_USE_SEMAPHORES, &ce->flags);
  
- 	switch (args->param) {
--	case I915_CONTEXT_PARAM_NO_ZEROMAP:
--		if (args->size)
--			ret = -EINVAL;
--		else if (args->value)
--			set_bit(UCONTEXT_NO_ZEROMAP, &ctx->user_flags);
--		else
--			clear_bit(UCONTEXT_NO_ZEROMAP, &ctx->user_flags);
--		break;
+-	intel_context_set_watchdog_us(ce, ctx->watchdog.timeout_us);
++	if (IS_ACTIVE(CONFIG_DRM_I915_REQUEST_TIMEOUT) &&
++	    ctx->i915->params.request_timeout_ms) {
++		unsigned int timeout_ms = ctx->i915->params.request_timeout_ms;
++		intel_context_set_watchdog_us(ce, (u64)timeout_ms * 1000);
++	}
+ }
+ 
+ static void __free_engines(struct i915_gem_engines *e, unsigned int count)
+@@ -792,41 +796,6 @@ static void __assign_timeline(struct i915_gem_context *ctx,
+ 	context_apply_all(ctx, __apply_timeline, timeline);
+ }
+ 
+-static int __apply_watchdog(struct intel_context *ce, void *timeout_us)
+-{
+-	return intel_context_set_watchdog_us(ce, (uintptr_t)timeout_us);
+-}
 -
- 	case I915_CONTEXT_PARAM_NO_ERROR_CAPTURE:
- 		if (args->size)
- 			ret = -EINVAL;
-@@ -1980,6 +1971,7 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
- 		ret = set_persistence(ctx, args);
- 		break;
- 
-+	case I915_CONTEXT_PARAM_NO_ZEROMAP:
- 	case I915_CONTEXT_PARAM_BAN_PERIOD:
- 	case I915_CONTEXT_PARAM_RINGSIZE:
- 	default:
-@@ -2360,11 +2352,6 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
- 		return -ENOENT;
- 
- 	switch (args->param) {
--	case I915_CONTEXT_PARAM_NO_ZEROMAP:
--		args->size = 0;
--		args->value = test_bit(UCONTEXT_NO_ZEROMAP, &ctx->user_flags);
--		break;
+-static int
+-__set_watchdog(struct i915_gem_context *ctx, unsigned long timeout_us)
+-{
+-	int ret;
 -
- 	case I915_CONTEXT_PARAM_GTT_SIZE:
- 		args->size = 0;
- 		rcu_read_lock();
-@@ -2412,6 +2399,7 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
- 		args->value = i915_gem_context_is_persistent(ctx);
- 		break;
- 
-+	case I915_CONTEXT_PARAM_NO_ZEROMAP:
- 	case I915_CONTEXT_PARAM_BAN_PERIOD:
- 	case I915_CONTEXT_PARAM_RINGSIZE:
- 	default:
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-index 340473aa70de0..5ae71ec936f7c 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-@@ -129,7 +129,6 @@ struct i915_gem_context {
- 	 * @user_flags: small set of booleans controlled by the user
- 	 */
- 	unsigned long user_flags;
--#define UCONTEXT_NO_ZEROMAP		0
- #define UCONTEXT_NO_ERROR_CAPTURE	1
- #define UCONTEXT_BANNABLE		2
- #define UCONTEXT_RECOVERABLE		3
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 297143511f99b..b812f313422a9 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -290,7 +290,6 @@ struct i915_execbuffer {
- 	struct intel_context *reloc_context;
- 
- 	u64 invalid_flags; /** Set of execobj.flags that are invalid */
--	u32 context_flags; /** Set of execobj.flags to insert from the ctx */
- 
- 	u64 batch_len; /** Length of batch within object */
- 	u32 batch_start_offset; /** Location within object of batch */
-@@ -541,9 +540,6 @@ eb_validate_vma(struct i915_execbuffer *eb,
- 			entry->flags |= EXEC_OBJECT_NEEDS_GTT | __EXEC_OBJECT_NEEDS_MAP;
+-	ret = context_apply_all(ctx, __apply_watchdog,
+-				(void *)(uintptr_t)timeout_us);
+-	if (!ret)
+-		ctx->watchdog.timeout_us = timeout_us;
+-
+-	return ret;
+-}
+-
+-static void __set_default_fence_expiry(struct i915_gem_context *ctx)
+-{
+-	struct drm_i915_private *i915 = ctx->i915;
+-	int ret;
+-
+-	if (!IS_ACTIVE(CONFIG_DRM_I915_REQUEST_TIMEOUT) ||
+-	    !i915->params.request_timeout_ms)
+-		return;
+-
+-	/* Default expiry for user fences. */
+-	ret = __set_watchdog(ctx, i915->params.request_timeout_ms * 1000);
+-	if (ret)
+-		drm_notice(&i915->drm,
+-			   "Failed to configure default fence expiry! (%d)",
+-			   ret);
+-}
+-
+ static struct i915_gem_context *
+ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+ {
+@@ -871,8 +840,6 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+ 		intel_timeline_put(timeline);
  	}
  
--	if (!(entry->flags & EXEC_OBJECT_PINNED))
--		entry->flags |= eb->context_flags;
+-	__set_default_fence_expiry(ctx);
 -
- 	return 0;
+ 	trace_i915_context_create(ctx);
+ 
+ 	return ctx;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 5ae71ec936f7c..676592e27e7d2 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -153,10 +153,6 @@ struct i915_gem_context {
+ 	 */
+ 	atomic_t active_count;
+ 
+-	struct {
+-		u64 timeout_us;
+-	} watchdog;
+-
+ 	/**
+ 	 * @hang_timestamp: The last time(s) this context caused a GPU hang
+ 	 */
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_param.h b/drivers/gpu/drm/i915/gt/intel_context_param.h
+index dffedd983693d..0c69cb42d075c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_param.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_param.h
+@@ -10,11 +10,10 @@
+ 
+ #include "intel_context.h"
+ 
+-static inline int
++static inline void
+ intel_context_set_watchdog_us(struct intel_context *ce, u64 timeout_us)
+ {
+ 	ce->watchdog.timeout_us = timeout_us;
+-	return 0;
  }
  
-@@ -750,10 +746,6 @@ static int eb_select_context(struct i915_execbuffer *eb)
- 	if (rcu_access_pointer(ctx->vm))
- 		eb->invalid_flags |= EXEC_OBJECT_NEEDS_GTT;
- 
--	eb->context_flags = 0;
--	if (test_bit(UCONTEXT_NO_ZEROMAP, &ctx->user_flags))
--		eb->context_flags |= __EXEC_OBJECT_NEEDS_BIAS;
--
- 	return 0;
- }
- 
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 6eefbc6dec01f..a0aaa8298f28d 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1637,6 +1637,10 @@ struct drm_i915_gem_context_param {
- 	__u32 size;
- 	__u64 param;
- #define I915_CONTEXT_PARAM_BAN_PERIOD	0x1
-+/* I915_CONTEXT_PARAM_NO_ZEROMAP has been removed.  On the off chance
-+ * someone somewhere has attempted to use it, never re-use this context
-+ * param number.
-+ */
- #define I915_CONTEXT_PARAM_NO_ZEROMAP	0x2
- #define I915_CONTEXT_PARAM_GTT_SIZE	0x3
- #define I915_CONTEXT_PARAM_NO_ERROR_CAPTURE	0x4
+ #endif /* INTEL_CONTEXT_PARAM_H */
 -- 
 2.31.1
 
