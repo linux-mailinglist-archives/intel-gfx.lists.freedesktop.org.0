@@ -2,30 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA7E8369BAC
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Apr 2021 22:57:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88BE0369BD7
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Apr 2021 23:07:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 120EF6EC50;
-	Fri, 23 Apr 2021 20:56:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4520C6EC53;
+	Fri, 23 Apr 2021 21:07:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 46BDB6EC53;
- Fri, 23 Apr 2021 20:56:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3B5CBAA0EA;
- Fri, 23 Apr 2021 20:56:57 +0000 (UTC)
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com
+ [209.85.166.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 095996EC50;
+ Fri, 23 Apr 2021 21:07:15 +0000 (UTC)
+Received: by mail-io1-f51.google.com with SMTP id p8so1728449iol.11;
+ Fri, 23 Apr 2021 14:07:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=vGf4Bqg3eO6JS3gvF6LxMt8XkWMGCm3Fd5yjKYFBgF8=;
+ b=E203/yiOlCKbcP6eZiGFqffMqZDLPbUDVm5ztZ2yZMyDkAcLnf6RLnV4cJqB6r++zF
+ l5OB6zgsR5RYJdy431rqYeKNpN24j+lRL29u6tZTkFO7V9E7OlybUOKGC0nRGaRGczcR
+ UTNRQ4tFlKBfTKy+1mecrRZN1ROaGg+PShbz34OHN3+Eut4XhMbgu2/RXVBVlHT2XCfg
+ ewduK7/Kx3nUnJHP083CS/vMbJlvREtcuaKPJFBsqoc5bCNMFuJBlkALI9aFhGJ0J3lU
+ F1LAhHPRD7hZPkeX733dE9nE2tqohmtOm0cll0R+LqBg6M6YXKPSqmBiC+aY1LIIj7mf
+ J7hA==
+X-Gm-Message-State: AOAM532nosdB2QoLRKesuURSyMPgSfFVrogGPL85buUQq4fFgxUFIFOf
+ Pi5knQzN/vIUa+EehIChquEoeyszm3ksU3jrhdA=
+X-Google-Smtp-Source: ABdhPJx/mGXYebrjo1LW38fgTdwSQnNr3RmcE4CILvZv37TRPOr8OlvisBQvXkXDoBESh8c9agnzKhcwdoToZrcFn2Y=
+X-Received: by 2002:a5e:d515:: with SMTP id e21mr4718257iom.30.1619212035381; 
+ Fri, 23 Apr 2021 14:07:15 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nikola Cornij" <nikola.cornij@amd.com>
-Date: Fri, 23 Apr 2021 20:56:57 -0000
-Message-ID: <161921141723.2790.12885500475674398352@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210423200552.223110-1-nikola.cornij@amd.com>
-In-Reply-To: <20210423200552.223110-1-nikola.cornij@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/dp=5Fmst=3A_Use_the_correct_DPCD_space_in_Synaptics_quirk?=
+References: <20210423184309.207645-1-lyude@redhat.com>
+ <20210423184309.207645-3-lyude@redhat.com>
+In-Reply-To: <20210423184309.207645-3-lyude@redhat.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Date: Fri, 23 Apr 2021 17:07:04 -0400
+Message-ID: <CAKb7UvgpMO60gRzmJY0V5nOsT8u9y2hFLazmVJ+pEiedEKOOhQ@mail.gmail.com>
+To: Lyude Paul <lyude@redhat.com>
+Subject: Re: [Intel-gfx] [Nouveau] [PATCH v4 02/17] drm/nouveau/kms/nv50-:
+ Move AUX adapter reg to connector late register/early unregister
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,176 +53,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0796588251=="
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0796588251==
-Content-Type: multipart/alternative;
- boundary="===============1709982351789845752=="
+Some trivia, no comment on the real logic of the changes:
 
---===============1709982351789845752==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Apr 23, 2021 at 2:43 PM Lyude Paul <lyude@redhat.com> wrote:
+>
+> Since AUX adapters on nouveau have their respective DRM connectors as
+> parents, we need to make sure that we register then after their connectors.
 
-== Series Details ==
+then -> them
 
-Series: drm/dp_mst: Use the correct DPCD space in Synaptics quirk
-URL   : https://patchwork.freedesktop.org/series/89431/
-State : success
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_connector.c | 25 ++++++++++++++++-----
+>  1 file changed, 20 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> index 61e6d7412505..c04044be3d32 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> @@ -401,7 +401,6 @@ nouveau_connector_destroy(struct drm_connector *connector)
+>         drm_connector_cleanup(connector);
+>         if (nv_connector->aux.transfer) {
+>                 drm_dp_cec_unregister_connector(&nv_connector->aux);
+> -               drm_dp_aux_unregister(&nv_connector->aux);
+>                 kfree(nv_connector->aux.name);
+>         }
+>         kfree(connector);
+> @@ -905,13 +904,29 @@ nouveau_connector_late_register(struct drm_connector *connector)
+>         int ret;
+>
+>         ret = nouveau_backlight_init(connector);
+> +       if (ret)
+> +               return ret;
+>
+> +       if (connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
+> +           connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort) {
+> +               ret = drm_dp_aux_register(&nouveau_connector(connector)->aux);
+> +               if (ret)
+> +                       goto backlight_fini;
+> +       }
+> +
+> +       return 0;
+> +backlight_fini:
+> +       nouveau_backlight_fini(connector);
+>         return ret;
+>  }
+>
+>  static void
+>  nouveau_connector_early_unregister(struct drm_connector *connector)
+>  {
+> +       if (connector->connector_type == DRM_MODE_CONNECTOR_eDP ||
+> +           connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort)
+> +               drm_dp_aux_unregister(&nouveau_connector(connector)->aux);
+> +
+>         nouveau_backlight_fini(connector);
+>  }
+>
+> @@ -1343,14 +1358,14 @@ nouveau_connector_create(struct drm_device *dev,
+>                 snprintf(aux_name, sizeof(aux_name), "sor-%04x-%04x",
+>                          dcbe->hasht, dcbe->hashm);
+>                 nv_connector->aux.name = kstrdup(aux_name, GFP_KERNEL);
+> -               ret = drm_dp_aux_register(&nv_connector->aux);
+> +               drm_dp_aux_init(&nv_connector->aux);
+>                 if (ret) {
+> -                       NV_ERROR(drm, "failed to register aux channel\n");
+> +                       NV_ERROR(drm, "Failed to init AUX adapter for sor-%04x-%04x: %d\n",
 
-== Summary ==
+Maybe just use aux_name instead of rebuilding the string again?
 
-CI Bug Log - changes from CI_DRM_10005 -> Patchwork_19983
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19983/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19983 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-kbl-soraka:      [PASS][1] -> [INCOMPLETE][2] ([i915#155])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10005/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19983/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1222]: https://gitlab.freedesktop.org/drm/intel/issues/1222
-  [i915#155]: https://gitlab.freedesktop.org/drm/intel/issues/155
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3276]: https://gitlab.freedesktop.org/drm/intel/issues/3276
-  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Additional (1): fi-rkl-11500t 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-icl-y fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10005 -> Patchwork_19983
-
-  CI-20190529: 20190529
-  CI_DRM_10005: 7a27cb7ac19a95d801c391044cea5274677e7744 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6074: 3f43ae9fd22dc5a517786b984dc3aa717997664f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19983: 5c141a5364cc5cef77197224cb6f4367b7c24c8d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5c141a5364cc drm/dp_mst: Use the correct DPCD space in Synaptics quirk
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19983/index.html
-
---===============1709982351789845752==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp_mst: Use the correct DPCD space in Synaptics quirk</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89431/">https://patchwork.freedesktop.org/series/89431/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19983/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19983/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10005 -&gt; Patchwork_19983</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19983/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19983 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@gem_exec_suspend@basic-s0:<ul>
-<li>fi-kbl-soraka:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10005/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19983/fi-kbl-soraka/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/155">i915#155</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Additional (1): fi-rkl-11500t <br />
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-icl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10005 -&gt; Patchwork_19983</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10005: 7a27cb7ac19a95d801c391044cea5274677e7744 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6074: 3f43ae9fd22dc5a517786b984dc3aa717997664f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19983: 5c141a5364cc5cef77197224cb6f4367b7c24c8d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>5c141a5364cc drm/dp_mst: Use the correct DPCD space in Synaptics quirk</p>
-
-</body>
-</html>
-
---===============1709982351789845752==--
-
---===============0796588251==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> +                                dcbe->hasht, dcbe->hashm, ret);
+>                         kfree(nv_connector);
+>                         return ERR_PTR(ret);
+>                 }
+> -               funcs = &nouveau_connector_funcs;
+> -               break;
+> +               fallthrough;
+>         default:
+>                 funcs = &nouveau_connector_funcs;
+>                 break;
+> --
+> 2.30.2
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0796588251==--
