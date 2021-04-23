@@ -1,32 +1,108 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C551C369AF8
-	for <lists+intel-gfx@lfdr.de>; Fri, 23 Apr 2021 21:36:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0754369B1A
+	for <lists+intel-gfx@lfdr.de>; Fri, 23 Apr 2021 22:06:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 108046EC41;
-	Fri, 23 Apr 2021 19:36:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D115C6EC41;
+	Fri, 23 Apr 2021 20:06:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1E1F06EC3F;
- Fri, 23 Apr 2021 19:35:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 096A6A73C7;
- Fri, 23 Apr 2021 19:35:58 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2080.outbound.protection.outlook.com [40.107.220.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9830C6EC41;
+ Fri, 23 Apr 2021 20:06:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XSCJ3uRErAsdxSiKB3Yrr6YylkfX//r7RLx62ypYh3lKDervAI1CE/L4ReNpj7utHpAL6PaobQb4Wk5fKnsPiONEb6hmte1geiYqyRBbWOl050cyN0Rm/LuKEa2r1pCX5DkBsIqzV3E2BjNniXm3ZY3xyTF142TwzxoPcRKh6JoxTyZu8qsBa3Mv7563SlcrTCyLMfqqRJNJHvdGp5hJmS7tGHTItNg+gcYU72WNU4qM5ol2k3SIsSvH7tVMjQwOs3zPsEtGLEykqTvpGeuKXBJF9ma8UY8qfvmG4qM1l3MnCGQvRkOs2xOAWo54fBEy7B+J8qdehj7rrLwKV+/rqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0N9cmfIeEdU0oLImR1n8KqDWf0jA2fhAcgycO8++4As=;
+ b=nvqEcfFw8iIjFT9yNEDQU0o3cTjd/3IBOq+WkMx7WN65Jh/P2N3+LpkAeXtLW5kY1WcE3lwxHWUxVZm+v7Rr11z+C9KUnrzOwg6t3IhFlikAtlqEvqFcbbG323r+hGQppR2bPFPfG87/b1sGw3jzn3z6WjlTU8/Qi2WVD9WacDxM5G1lNZzyFde5vIb/xejoCm2FKsw3asjVS6qHW65BOGAwOSB2r2RF24ZqozjEi7a0hn1/WR96UTReKFbk3ZXZkp9eNIsriv7Me09V6PkH8iT/2N7+jQpp++4s7GRkTPrwoqtLaIPuTSZsZ4kFxpsA4L4qrihhem1rtSHiBQlKMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0N9cmfIeEdU0oLImR1n8KqDWf0jA2fhAcgycO8++4As=;
+ b=NUFh1LWPpT8MK8dh3cGxcyoIwYPMIrliu3EHgcvKOh34vl0LCmICPvevKoksZyNDLz/NPqJTyjZid5bNGPk8PXabDCqpJSmX2ygnihLUMEEWXsvw597d+8RA8IgSM8oIzFr31dTESJIuIJfH5MHR+sSEO1Zz0fkR/R6CCfvgzCA=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from DM5PR12MB4679.namprd12.prod.outlook.com (2603:10b6:4:a2::37) by
+ DM5PR12MB1835.namprd12.prod.outlook.com (2603:10b6:3:10c::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4065.20; Fri, 23 Apr 2021 20:06:18 +0000
+Received: from DM5PR12MB4679.namprd12.prod.outlook.com
+ ([fe80::595e:20a2:f658:a7a5]) by DM5PR12MB4679.namprd12.prod.outlook.com
+ ([fe80::595e:20a2:f658:a7a5%5]) with mapi id 15.20.4042.024; Fri, 23 Apr 2021
+ 20:06:18 +0000
+From: Nikola Cornij <nikola.cornij@amd.com>
+To: amd-gfx@lists.freedesktop.org
+Date: Fri, 23 Apr 2021 16:05:52 -0400
+Message-Id: <20210423200552.223110-1-nikola.cornij@amd.com>
+X-Mailer: git-send-email 2.25.1
+X-Originating-IP: [165.204.55.250]
+X-ClientProxiedBy: YTOPR0101CA0017.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:15::30) To DM5PR12MB4679.namprd12.prod.outlook.com
+ (2603:10b6:4:a2::37)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Fri, 23 Apr 2021 19:35:58 -0000
-Message-ID: <161920655800.2793.16107886452577003638@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210423184309.207645-1-lyude@redhat.com>
-In-Reply-To: <20210423184309.207645-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Use_new_DRM_printk_funcs_=28like_drm=5Fdbg=5F*=28=29=29_in_?=
- =?utf-8?q?DP_helpers_=28rev7=29?=
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from ubuntu.localdomain (165.204.55.250) by
+ YTOPR0101CA0017.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:15::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.21 via Frontend
+ Transport; Fri, 23 Apr 2021 20:06:17 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8e83e6cb-9c17-4ac1-3a13-08d90693419a
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1835:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB183564F00838CCA88860B442EE459@DM5PR12MB1835.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: harh9iTY1ZJoV9D5Y1UrAY5HPYpDoh0D17lMuRGSLVVJHksevDBPqcx8FY9yNBunjcLLnLRjKPg4gHhnFgg7T6D1dLlWDK8QfcLipRWPJxyl5IlXxoV4xd+BbVJNU29XtlZt01Ry/mjFtIXV1cNK9w2MCRNOOWsg1GzqTgqe/0kwBSHa9aVY0p64JWM35IdJS4xX9dx7UMvbZ2Fwah0wxBwdVNVDx67QYqNTGBIUrLITABhlB/kW6oJhCFYilpT0kKB9FSrjfzuMZG6q4TRdhDOn7+C4WNd7vXwPsmLh8L/boQxTHzF3tRsrZG/AYkJfCD7n7Db4OV0s5Mq7XW/ZOuw2HzL2WMNmk4Xw8hVYZxL9bj2nhyrbj5pDHHs/vcs4+jf+XYWmI25OmUifRMbGnYz9DaVpZ5RZ7UEm4w3o1eVbsk9yd/Sb1tmYWvTGhxIDIWWBJxXCB4IesRkKyZ8xjCOozfNHA1PskOBdMc2o+vnU2qgCKmq03nvDTPtul2BsLEbqJA33afXmRGb+tFxeMnJllceFxSpbnaLWQZvSv4GPHvwErn1InlXfan86+m5nJVy1nP4lsq27xdif1KX+HGt5aho3XVmPRlOHRPFNe9hsOd5M3l6XqSX0Bj4ntPeuqbX6FtYzAI/ECTwaRLvyDg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM5PR12MB4679.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(346002)(366004)(39850400004)(396003)(376002)(136003)(66476007)(16526019)(8936002)(66556008)(86362001)(66946007)(52116002)(38350700002)(956004)(2616005)(6512007)(6506007)(44832011)(5660300002)(186003)(1076003)(83380400001)(2906002)(316002)(6666004)(8676002)(26005)(478600001)(36756003)(6916009)(6486002)(4326008)(38100700002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?LLm4pymDkBQBKkLl/varMKoc9FaKR0hlX+076qo+246CqCduPe6++75aYvjQ?=
+ =?us-ascii?Q?djfcO7DI4N2dQ+3MbWEd489vfUxI304mcdb24LNb32coYcZKnbnofovPx+Ts?=
+ =?us-ascii?Q?RifsWBAq4czQ8cGNDwAOPQwO5KJtwJ2OulPKip7iu+VF24d+JhAzgX5ZWP6d?=
+ =?us-ascii?Q?mL4hDA90+jOX5vR8gJPIymF2lifaoYoA/afa4p0HXNmQVxsk1vnLsIywp4uJ?=
+ =?us-ascii?Q?o3AVW211hgE4DjDOTQraZ1UYMns8FvbL3TLWHuKS+LdXqxO8Tb+3C3QM7O4X?=
+ =?us-ascii?Q?kl80awRcI7svfxS9TwYUx+ShH2wiIt3N16TMzEqOuJdypOpRL10iun9mEIcF?=
+ =?us-ascii?Q?x35EtnnN/GqCdt3N6ryjIFkIizX0+GFuyYQpO7GUH6KmYjKxjo0MLMds2u2n?=
+ =?us-ascii?Q?yINxGBuYb44AopfoE/nFxZutVktFQkTIoZIaopCm8NczVF1o+4DyGIbvyuJg?=
+ =?us-ascii?Q?m+fLLEbeczmf0sBdN55AF20qplI33buYevWb++DkOfbbQ7cQy/L7F4QzqP5Y?=
+ =?us-ascii?Q?WLzPH7j6BYf8wc5uXzylEbR5APTv6zGPEI4Nv6fDXVz4upVPyD7yr/pATI1n?=
+ =?us-ascii?Q?VSAAnCmDs6naztU4V//PcNB17j804nVBkSeRQRlCzm8+0sFihJ5I1X7URd/H?=
+ =?us-ascii?Q?eQsZydeMVtnTHSSPEXkUv+Xq/ExvEt7my7N8AM4aZjljQOyCUCij4tXMtTsd?=
+ =?us-ascii?Q?vNx9aUAKQFWGuXlFtuarqNgbFrstLjq9vsf8bpAdgZxFbG2BgDwyylxtlpli?=
+ =?us-ascii?Q?iNjL1MROrXolkZlKcu86CPm0jv9OHGfGTH1/D4bJEP92og2tWvOOasKXFVIN?=
+ =?us-ascii?Q?rvOO1a1kVQyqz2dLvruT52q/P5GJwgkAycS5EdUazMzakh4wcFb3K8Y3ZLiM?=
+ =?us-ascii?Q?H6pBDtVBJjfTJ9ngTM2gPt+CSQoqddfALdt4Y+IqvbVgnr+Zo8JVvfgRfGSA?=
+ =?us-ascii?Q?NW/dFYMk/zVc09OjGJFHdGjx9kj1Ru+WarfGXgu5WwMjHzCZgLTLp8rAcToY?=
+ =?us-ascii?Q?El8Pn/tut7ccznDoLmrCxeAhww7sy/vgfUpSxtA4bf6RbzvB1byFLMWkbIk2?=
+ =?us-ascii?Q?H9IbLzGEfbPZYMxGpn2jIw0PWhWliqEus1ltq0jk67O12jY8+rSumy/cmBh9?=
+ =?us-ascii?Q?vqtC8KH5sr+3xsLVUTGulme5XJZUikF5elr70nL9OAv9LEtK7kmgUNDfWG40?=
+ =?us-ascii?Q?SgP5WxkVtX+Z+p8d7qtdy+ZqOjk+vI8PffYPnqQplf2yv1QNbMM3MJur1Xpb?=
+ =?us-ascii?Q?rM5N406e5Gq+jXR6n8FRiHbfZ0EDRs/L4XxxBGO4bmUEGUzeoN1Znx02zcPq?=
+ =?us-ascii?Q?aKkHvr506u52/JJLkMnUwSkI?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e83e6cb-9c17-4ac1-3a13-08d90693419a
+X-MS-Exchange-CrossTenant-AuthSource: DM5PR12MB4679.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2021 20:06:18.2450 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QXFd2fZuat2UojNMlh6zettm3bJghed0biV3gYAv4H317v8uFHrFlE7incex8gRprMcPGnFQygjRc9/7m0aIUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1835
+Subject: [Intel-gfx] [PATCH] drm/dp_mst: Use the correct DPCD space in
+ Synaptics quirk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,207 +115,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1258028432=="
+Cc: intel-gfx@lists.freedesktop.org, Nikola Cornij <nikola.cornij@amd.com>,
+ aurabindo.pillai@amd.com, mikita.lipski@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1258028432==
-Content-Type: multipart/alternative;
- boundary="===============2923336367910176959=="
+[why]
+Two conditions that were part of this fix did not go through:
 
---===============2923336367910176959==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+1. DPCD revision has to be v1.4 and up
+   This was because wrong DPCD space was used to get the values
 
-== Series Details ==
+2. Downstream port must not be VGA converter
+   This was because for MST the topology manager AUX has to be used,
+   due to the way MST AUX reads are done.
 
-Series: drm: Use new DRM printk funcs (like drm_dbg_*()) in DP helpers (rev7)
-URL   : https://patchwork.freedesktop.org/series/87242/
-State : success
+[how]
+- Use Extended Receiver Capability DPCD space if
+DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT is set
+- Use MST topology manager AUX to get port DPCD
 
-== Summary ==
+Signed-off-by: Nikola Cornij <nikola.cornij@amd.com>
+---
+ drivers/gpu/drm/drm_dp_mst_topology.c | 33 ++++++++++++++++++++-------
+ 1 file changed, 25 insertions(+), 8 deletions(-)
 
-CI Bug Log - changes from CI_DRM_10005 -> Patchwork_19982
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19982/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19982 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][1] ([i915#1602] / [i915#2029])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19982/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3276]: https://gitlab.freedesktop.org/drm/intel/issues/3276
-  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Participating hosts (43 -> 39)
-------------------------------
-
-  Additional (1): fi-rkl-11500t 
-  Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10005 -> Patchwork_19982
-
-  CI-20190529: 20190529
-  CI_DRM_10005: 7a27cb7ac19a95d801c391044cea5274677e7744 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6074: 3f43ae9fd22dc5a517786b984dc3aa717997664f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19982: a090abb4f62f79de95039e5953813c91944ea667 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a090abb4f62f drm/dp_mst: Convert drm_dp_mst_topology.c to drm_err()/drm_dbg*()
-ca7da68d794d drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using drm_err/drm_dbg_kms()
-793080602202 drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_*()
-d00493c9e9d3 drm/print: Handle potentially NULL drm_devices in drm_dbg_*
-4eb5d5051d28 drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()
-92a042cc3107 drm/dp_dual_mode: Pass drm_device to drm_lspcon_(get|set)_mode()
-e3c71d7763fc drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_get_tmds_output()
-0824283ce661 drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_max_tmds_clock()
-780ab29868d5 drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_set_tmds_output()
-ba18aefd2372 drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()
-ec9a3dd1af61 drm/dp: Always print aux channel name in logs
-5eec900104fb drm/dp: Pass drm_dp_aux to drm_dp*_link_train_channel_eq_delay()
-4afbe03f74bd drm/dp: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()
-20eaf286aee6 drm/dp: Clarify DP AUX registration time
-9fd492eba1f4 drm/dp: Add backpointer to drm_device in drm_dp_aux
-cb595a8161ed drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late register/early unregister
-52998af1e7bf drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19982/index.html
-
---===============2923336367910176959==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Use new DRM printk funcs (like drm_dbg_*()) in DP helpers (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/87242/">https://patchwork.freedesktop.org/series/87242/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19982/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19982/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10005 -&gt; Patchwork_19982</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19982/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19982 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19982/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 39)</h2>
-<p>Additional (1): fi-rkl-11500t <br />
-  Missing    (5): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10005 -&gt; Patchwork_19982</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10005: 7a27cb7ac19a95d801c391044cea5274677e7744 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6074: 3f43ae9fd22dc5a517786b984dc3aa717997664f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19982: a090abb4f62f79de95039e5953813c91944ea667 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a090abb4f62f drm/dp_mst: Convert drm_dp_mst_topology.c to drm_err()/drm_dbg<em>()<br />
-ca7da68d794d drm/dp_dual_mode: Convert drm_dp_dual_mode_helper.c to using drm_err/drm_dbg_kms()<br />
-793080602202 drm/dp: Convert drm_dp_helper.c to using drm_err/drm_dbg_</em>()<br />
-d00493c9e9d3 drm/print: Handle potentially NULL drm_devices in drm_dbg_<em><br />
-4eb5d5051d28 drm/dp_mst: Pass drm_dp_mst_topology_mgr to drm_dp_get_vc_payload_bw()<br />
-92a042cc3107 drm/dp_dual_mode: Pass drm_device to drm_lspcon_(get|set)_mode()<br />
-e3c71d7763fc drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_get_tmds_output()<br />
-0824283ce661 drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_max_tmds_clock()<br />
-780ab29868d5 drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_set_tmds_output()<br />
-ba18aefd2372 drm/dp_dual_mode: Pass drm_device to drm_dp_dual_mode_detect()<br />
-ec9a3dd1af61 drm/dp: Always print aux channel name in logs<br />
-5eec900104fb drm/dp: Pass drm_dp_aux to drm_dp</em>_link_train_channel_eq_delay()<br />
-4afbe03f74bd drm/dp: Pass drm_dp_aux to drm_dp_link_train_clock_recovery_delay()<br />
-20eaf286aee6 drm/dp: Clarify DP AUX registration time<br />
-9fd492eba1f4 drm/dp: Add backpointer to drm_device in drm_dp_aux<br />
-cb595a8161ed drm/nouveau/kms/nv50-: Move AUX adapter reg to connector late register/early unregister<br />
-52998af1e7bf drm/bridge/cdns-mhdp8546: Register DP aux channel with userspace</p>
-
-</body>
-</html>
-
---===============2923336367910176959==--
-
---===============1258028432==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+index de5124ce42cb..69fd16ce2cb3 100644
+--- a/drivers/gpu/drm/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+@@ -5878,18 +5878,35 @@ struct drm_dp_aux *drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
+ 		return NULL;
+ 
+ 	if (drm_dp_has_quirk(&desc, DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) &&
+-	    port->mgr->dpcd[DP_DPCD_REV] >= DP_DPCD_REV_14 &&
+ 	    port->parent == port->mgr->mst_primary) {
+-		u8 downstreamport;
++		u8 training_aux_rd_interval = 0;
++		u8 dpcd_rev = 0;
++		unsigned int dpcd_caps_offset = 0;
+ 
+-		if (drm_dp_dpcd_read(&port->aux, DP_DOWNSTREAMPORT_PRESENT,
+-				     &downstreamport, 1) < 0)
++		if (drm_dp_dpcd_read(port->mgr->aux, DP_TRAINING_AUX_RD_INTERVAL,
++				     &training_aux_rd_interval, 1) < 1)
+ 			return NULL;
+ 
+-		if ((downstreamport & DP_DWN_STRM_PORT_PRESENT) &&
+-		   ((downstreamport & DP_DWN_STRM_PORT_TYPE_MASK)
+-		     != DP_DWN_STRM_PORT_TYPE_ANALOG))
+-			return port->mgr->aux;
++		/* If DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT is set, the Extended Receiver Capability field has to be used */
++		if (training_aux_rd_interval & DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT)
++			dpcd_caps_offset = 0x02200;
++
++		if (drm_dp_dpcd_read(port->mgr->aux, dpcd_caps_offset + DP_DPCD_REV,
++				     &dpcd_rev, 1) < 1)
++			return NULL;
++
++		if (dpcd_rev >= DP_DPCD_REV_14) {
++			u8 downstreamport = 0;
++
++			if (drm_dp_dpcd_read(port->mgr->aux, dpcd_caps_offset + DP_DOWNSTREAMPORT_PRESENT,
++					     &downstreamport, 1) < 1)
++				return NULL;
++
++			if ((downstreamport & DP_DWN_STRM_PORT_PRESENT) &&
++			   ((downstreamport & DP_DWN_STRM_PORT_TYPE_MASK)
++			     != DP_DWN_STRM_PORT_TYPE_ANALOG))
++				return port->mgr->aux;
++		}
+ 	}
+ 
+ 	/*
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1258028432==--
