@@ -2,58 +2,114 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3467736C1EB
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0517436C1EE
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:41:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CAF26E926;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6CE86E932;
 	Tue, 27 Apr 2021 09:41:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from so254-9.mailgun.net (so254-9.mailgun.net [198.61.254.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26DD66E1EE
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 14:57:07 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org;
- q=dns/txt; 
- s=smtp; t=1619449028; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=/LyfcoIJMiGfkJ6thDU8dmZCRzZ/LfY+72d/pwZ3WiQ=;
- b=L+mdMhwDMPMQC1hkdi20uLYrpn+iGUs7OBCQ2wLrVdJvr9R7NoMvHEJp1yEmcHDaCJ78/p0o
- twRqf3VYk9Uj6+PJSrBwEDEFu+DtgjDoIC32Uo4dKIjFIcZSDBCIBw7UA5/WkGipKglMQZFx
- VnOrVgzj2dPlKRzYTEpGLL4S/G0=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI5MzZmYyIsICJpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIiwgImJlOWU0YSJd
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 6086d4c087ce1fbb56d3e384 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 26 Apr 2021 14:57:04
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
- id 80351C4360C; Mon, 26 Apr 2021 14:57:03 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
- aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
- autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (No client certificate requested) (Authenticated sender: rajeevny)
- by smtp.codeaurora.org (Postfix) with ESMTPSA id 3A6C2C433F1;
- Mon, 26 Apr 2021 14:57:01 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2087.outbound.protection.outlook.com [40.107.94.87])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E58C46E842;
+ Mon, 26 Apr 2021 15:44:18 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J2HYuBbtm6Hgq8RrYdsVhtZzciB0snUyCGVs0Z/rE1IBT5zH9iTOKu6gvB/iyI2fg2CCH5W2OpM2zCk6H1lulCFTzhu2Pgnt3g0Vn6AzW3M2Z4GYWEPXtC97aksmiEfpd/u4IaGGTNwmJuoOsAf3aHgHaaahuFMBVLALQ4d7KG2Bjo6zV4vNob+BH3EOqRKNdsI/nRmWuxu4ZRx1ntUe8FHuayhPXSmu05Dzg4w2GDaTCKY6e8WEZPqLszyygWPEqf6XB8DzXVRl9pKGwSueMfELsIT5bxhUFuh+5sXkKmdN82cjlhCcfe3lqZN8ilp4q68rjvWqUetXT/9Cp8vfUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0y4JaG9QIb+vOTWA79zzXaeGiMaEER3inXUOAfSrmGU=;
+ b=b/EQtyo09LUas14p4G42iY9CbBZ68ZfzgO5nC4wfmLQODVt1tAiYQkRX+N+hS2kic035Qmu9GWfDsiDptO+VPPZPR8N1+2Iuetpbc8TRTwFcSjTPmJGCmlQtaWBHynmxMzih1ecvqws0++Xh1z71uF9g7gXwj9IqrQEWdx+YZ9H5KmdvGbaI0g6Rq9SEvw0CC2XO7X1BilhlRAtPq+WUuLchEsMKBIhUqjD9f7N7I6XJk3e8sgL9Gd87jg1gyQbnzXULLhGsUpToOjumOswQeyObbWVjLgRKXcR/s+y9ehm/sSeIu3QI6Wr5z3xpSu4qNEfWnrZQgzKxXHW0AyIRmA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0y4JaG9QIb+vOTWA79zzXaeGiMaEER3inXUOAfSrmGU=;
+ b=hBW/kqxGKwtzD1mzVya9FTaplJFxGBme7/GAx4ebVS09ZzMpnGygRNZCB8E2z4Uot1QtRQnRTty4P9ThzZkJewRYWfoT0s4vaV1wPlcwg615xWSXt/UiLq5TtJmclAaMoIfiiwRO2pNfkWqNxzhAf2IxXnlnw/jWgaPJry84Zg8SjjJb9x/ZsbHhi8ssCWh7aQUQOsGTZAPvbO4tQO/TlETJr4BgMAj/nM3+I//6Du+u0bJg68Zpxp3LcL36pp//wvwWST6NbH1HXfls/Gg5V/tKW0CSrCGQ1sk5gk1SusrKM79fjBtWnWCvaxxM5WjeR4/Jad/kZa+K5Lif3D04KQ==
+Authentication-Results: lst.de; dkim=none (message not signed)
+ header.d=none;lst.de; dmarc=none action=none header.from=nvidia.com;
+Received: from DM6PR12MB3834.namprd12.prod.outlook.com (2603:10b6:5:14a::12)
+ by DM6PR12MB4057.namprd12.prod.outlook.com (2603:10b6:5:213::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.23; Mon, 26 Apr
+ 2021 15:44:17 +0000
+Received: from DM6PR12MB3834.namprd12.prod.outlook.com
+ ([fe80::1c62:7fa3:617b:ab87]) by DM6PR12MB3834.namprd12.prod.outlook.com
+ ([fe80::1c62:7fa3:617b:ab87%6]) with mapi id 15.20.4065.026; Mon, 26 Apr 2021
+ 15:44:17 +0000
+Date: Mon, 26 Apr 2021 12:44:16 -0300
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Christoph Hellwig <hch@lst.de>
+Message-ID: <20210426154416.GV1370958@nvidia.com>
+References: <0-v1-d88406ed308e+418-vfio3_jgg@nvidia.com>
+ <8-v1-d88406ed308e+418-vfio3_jgg@nvidia.com>
+ <20210426141355.GF15209@lst.de>
+Content-Disposition: inline
+In-Reply-To: <20210426141355.GF15209@lst.de>
+X-Originating-IP: [47.55.113.94]
+X-ClientProxiedBy: MN2PR16CA0013.namprd16.prod.outlook.com
+ (2603:10b6:208:134::26) To DM6PR12MB3834.namprd12.prod.outlook.com
+ (2603:10b6:5:14a::12)
 MIME-Version: 1.0
-Date: Mon, 26 Apr 2021 20:27:01 +0530
-From: rajeevny@codeaurora.org
-To: Jani Nikula <jani.nikula@linux.intel.com>
-In-Reply-To: <87zgxl5qar.fsf@intel.com>
-References: <1619416756-3533-1-git-send-email-rajeevny@codeaurora.org>
- <1619416756-3533-3-git-send-email-rajeevny@codeaurora.org>
- <87zgxl5qar.fsf@intel.com>
-Message-ID: <9cb3f415fd46ef1040d13fcd99b5d5c5@codeaurora.org>
-X-Sender: rajeevny@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from mlx.ziepe.ca (47.55.113.94) by
+ MN2PR16CA0013.namprd16.prod.outlook.com (2603:10b6:208:134::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.22 via Frontend
+ Transport; Mon, 26 Apr 2021 15:44:17 +0000
+Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
+ <jgg@nvidia.com>)	id 1lb3PE-00D5ka-7e; Mon, 26 Apr 2021 12:44:16 -0300
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 082c3f0c-49d6-48f4-3809-08d908ca26b8
+X-MS-TrafficTypeDiagnostic: DM6PR12MB4057:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM6PR12MB40573599C255FFF82DBF21EEC2429@DM6PR12MB4057.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mrfHN6M9RCco+7AnuD2phxo1w8092QXhyvjpXL73hrmIwhtYjlfjMJeYoRcIUzbw7n3QK/nsGTxwgOl9FpFIcJQyOfSEjVp0b1naCW67pYd3jOyBTw61aO6wWzmxhO2gfb/CipDRuWIr9wRooELgdSzthIpncti77k34vDu/UU8wJJn7Vqtjha0GAiAPCYlnU5WPZeSXKTvmcwKeVHX9LLkz5zcU4LJ+ymtxeZ9nFZG8O8LIYRwmvn7ri6fk3qiakpj8Mrhj7f2yPHlbacsOFM+ly7KslIUW0PyeMatw8mVO5XrKZvDemam7WLhgib92Pw+jKq5qo+ESfgkU0HGYbH7HMo0n/jC/PH7hMigsNGIFwNJsZLxV1I0XRWhsvbaxo4Lx5S1RXBE9sLmCtsMjcnlNhPZOlcCe8GKuN35lgBPTiFSKArsd1Lp/54rUsOC2OrkfB7UIJP8IaUdGXyaRUgsAv03Z8x22VQcVom4cPthU6o5t6NtghUZJme2dPEUKusaTSyNYAXvTq7vb2XS7iy3Wk2SgDc3Pw/VnvQdcJvykl9ZHNNc7j91Ca7xBsuJThkS2aixf2yA2HB+7LMYldK/kcKHfkyl45GAOnE6aqrg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3834.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(376002)(396003)(136003)(346002)(39860400002)(366004)(26005)(2616005)(107886003)(38100700002)(66946007)(9786002)(36756003)(186003)(54906003)(478600001)(9746002)(4326008)(426003)(83380400001)(316002)(33656002)(86362001)(2906002)(8676002)(8936002)(6916009)(7416002)(66556008)(66476007)(1076003)(5660300002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?iiQlTC0yWPVm0KtvHpu7GDGpqIEG2eSrL//m/jYmMaZys7DGOQjIKYkl+Wxf?=
+ =?us-ascii?Q?2wnx3gAwFFN9aFWZwTV/uHG4LR67cEOFu3EYD1Ae3NSGrViCqoApr2sIiW2k?=
+ =?us-ascii?Q?FVqGlJgO7lOr9YSg0kYY6ky3RLJfIWzuvZQcyjbt2r17/pNKr9+A01IAGtuL?=
+ =?us-ascii?Q?l5J1fnpO8WepabnVmcNuuhCNcZY1QC4U6yQfJLJAlrLHluasphZu/SNmUUVg?=
+ =?us-ascii?Q?9Jttt8jfhSKZQF+mPIm28ORPYe7vaQaaVU24j4FHBkz2c5N79v4F6A0M8bop?=
+ =?us-ascii?Q?TJvTk6ujRJ8GwgN6lqdINs1Tz9Zi89F1bw7BcEwPVyX9MaEjtsys0gtEbipZ?=
+ =?us-ascii?Q?TTelFv49QuB/GLHTsaml7JAP6bQ99y9CHCjmFPNwulkjt3WjqnccsCYIrjQd?=
+ =?us-ascii?Q?dwHTxnnxbkiezwvMjOhSzzi/kZ1aftIIOfHyjxYtr4fgnF16jQhLiPKKETjL?=
+ =?us-ascii?Q?z3tNJiH1xiJYHXACYAEsJRF3rcZ4cbS593fP06Y62YV0oP6i98ufHKovpEhC?=
+ =?us-ascii?Q?ozfKEeT4mQqTNMQBn+Be/nm20Z8TgxtH/fVTfet2m8Nlo9oFRXDEs+WZun96?=
+ =?us-ascii?Q?uSM4DNj9QvtDk/ePWEuf4UrmvEpAp1YdmbwvfYA4iVHWnPBbrnGjpTJrNNrj?=
+ =?us-ascii?Q?RST02FQQW8V8qqTyjaXm/ElmaGR2+JmOyCGePdc/rWR5w1HD1bMNAJGCS7th?=
+ =?us-ascii?Q?stgsCX+VxRuu8lwBVkVxvq/U07qiy5AgNN/OBD1H2RNBTyVOA5YDzcigTXY+?=
+ =?us-ascii?Q?TCm4dIpmbDwoNvEVssGff1eBaCA9yk5bkvVGej7TKZCsykmh5QdlaWU3IEsW?=
+ =?us-ascii?Q?j0peN+WacUL77QpRNP88CXB6rySHIU0jKxgv4Uc3mOOWEMOKCmmzMrSrdEA5?=
+ =?us-ascii?Q?lq8SZptAg3Q3Gu9Uh8WnU1KtWZ8rmdF0D6j5uMh4wnMdsQnzjFYPgHQlmaSv?=
+ =?us-ascii?Q?7+r1APRuoKKTGpnkFDwddtdc3GocesM0h7Ul/Va5JV9/MoEKlFThkJDUf7fM?=
+ =?us-ascii?Q?T/wQ2AwFwmFgWw8sKvymcgok96OsYxFgUfFEEMhcB72f4zQcVzbpSl1NtD9O?=
+ =?us-ascii?Q?u9dYxYJ9S5PARAeiApf2NTE2WA/d3BCrB71s+JYv2ex8KKY+3KqWyNdezghm?=
+ =?us-ascii?Q?SraXJbiF1xXlV04c/jQhSa/NmfRnXaR5suxDsAOEja5SsiwbZjJY5pBrJFgQ?=
+ =?us-ascii?Q?F74Dj1yHvtWvnKuy16vcb3Ga033vXc7DuwiPMKQguFxj0vqjPLWsfD1benQB?=
+ =?us-ascii?Q?i6iUWHNtnk12C5y3wP7hKuxVGTqOXU3JCvzrqjn3P3RXbqME9gBPERQIh4F4?=
+ =?us-ascii?Q?OFVMtQgcn3QT3dAuwqPvs5a2?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 082c3f0c-49d6-48f4-3809-08d908ca26b8
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3834.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Apr 2021 15:44:17.8177 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: v2dGIAAahNnGirakqEfgKKh+EQLfB49OMZBONE2rfBxfQSAO9D7bkH0zN3erDVCL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4057
 X-Mailman-Approved-At: Tue, 27 Apr 2021 09:41:45 +0000
-Subject: Re: [Intel-gfx] [v3 2/2] backlight: Add DisplayPort aux backlight
- driver
+Subject: Re: [Intel-gfx] [PATCH 08/12] vfio/gvt: Convert to use
+ vfio_register_group_dev()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,379 +122,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, mkrishn@codeaurora.org,
- Daniel Thompson <daniel.thompson@linaro.org>, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- dianders@chromium.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- seanpaul@chromium.org, abhinavk@codeaurora.org,
- Thomas Zimmermann <tzimmermann@suse.de>, kalyan_t@codeaurora.org,
- hoegsberg@chromium.org, freedreno@lists.freedesktop.org, "Lankhorst,
- Maarten" <maarten.lankhorst@intel.com>
+Cc: Max Gurtovoy <mgurtovoy@nvidia.com>, "Raj, Ashok" <ashok.raj@intel.com>,
+ kvm@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+ David Airlie <airlied@linux.ie>, Leon Romanovsky <leonro@nvidia.com>,
+ intel-gfx@lists.freedesktop.org, Cornelia Huck <cohuck@redhat.com>,
+ linux-doc@vger.kernel.org, Kirti Wankhede <kwankhede@nvidia.com>,
+ dri-devel@lists.freedesktop.org, Dan Williams <dan.j.williams@intel.com>,
+ intel-gvt-dev@lists.freedesktop.org, Tarun Gupta <targupta@nvidia.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 26-04-2021 15:19, Jani Nikula wrote:
-> On Mon, 26 Apr 2021, Rajeev Nandan <rajeevny@codeaurora.org> wrote:
->> Add backlight driver for the panels supporting backlight control
->> using DPCD registers on the DisplayPort aux channel.
+On Mon, Apr 26, 2021 at 04:13:55PM +0200, Christoph Hellwig wrote:
+> > diff --git a/drivers/vfio/mdev/Makefile b/drivers/vfio/mdev/Makefile
+> > index ff9ecd80212503..7c236ba1b90eb1 100644
+> > +++ b/drivers/vfio/mdev/Makefile
+> > @@ -1,5 +1,5 @@
+> >  # SPDX-License-Identifier: GPL-2.0-only
+> >  
+> > -mdev-y := mdev_core.o mdev_sysfs.o mdev_driver.o vfio_mdev.o
+> > +mdev-y := mdev_core.o mdev_sysfs.o mdev_driver.o
+> >  
+> >  obj-$(CONFIG_VFIO_MDEV) += mdev.o
+> > diff --git a/drivers/vfio/mdev/mdev_core.c b/drivers/vfio/mdev/mdev_core.c
+> > index 51b8a9fcf866ad..f95d01b57fb168 100644
+> > +++ b/drivers/vfio/mdev/mdev_core.c
 > 
-> No, please don't do this.
-> 
-> I wrote you last week in reply to v1 why I thought merging this would
-> not be a good idea [1]. Why have you sent two versions since then
-> without replying to me, or Cc'ing me or Lyude?
-> 
-> I think it's an even worse idea to merge this to
-> drivers/video/backlight. With DP AUX backlight you can't pretend it's
-> just an independent aux interface for backlight without everything else
-> around it. It's not independent of eDP, and exposing it as a direct
-> backlight sysfs interface bypasses the encoder.
-> 
-> And it still remains that there is existing DP AUX backlight code in
-> use, in the tree, with more features than this, with plans and
-> previously submitted patches to lift from one driver to drm core, and
-> with patches to add support to another driver.
-> 
-> I don't say this lightly, or very often at all, but,
-> 
-> NAK.
-> 
-> 
-> BR,
-> Jani.
-> 
-> 
-> [1] https://lore.kernel.org/dri-devel/871rb5bcf9.fsf@intel.com/
-> 
+> I think all these mdev core changes belong into a separate commit with a
+> separate commit log.
 
-Hi Jani,
+Gah, they were split, I must have flubbed up a rebase on Friday :\
 
-Apologies for not acknowledging your comment on v1.
-I was looking here [1] for all the comments I would be receiving on
-my patches. I was not aware that the comments on the cover letter don't
-appear on this page. Also, I completely missed your mail.
-I will ensure such omissions don't happen again.
+commit daeb9dd3a152e21d11960805b55e34967987e8cf
 
-Keeping your comments in mind, I will look into Lyude's series and
-work upon my code.
+    vfio/mdev: Remove vfio_mdev.c
+    
+    Now that all mdev drivers directly create their own mdev_device driver and
+    directly register with the vfio core's vfio_device_ops this is all dead
+    code.
+    
+    Delete vfio_mdev.c and the mdev_parent_ops members that are connected to
+    it.
+    
+    Preserve VFIO's design of allowing mdev drivers to be !GPL by allowing the
+    three functions that replace this module for !GPL usage. This goes along
+    with the other 19 symbols that are already marked !GPL in VFIO.
+    
+    Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 
-[1] https://patchwork.freedesktop.org/series/89085/
+I'll fix it
 
-Yours sincerely,
-Rajeev
+> >  static int __init mdev_init(void)
+> >  {
+> > -	int rc;
+> > -
+> > -	rc = mdev_bus_register();
+> > -	if (rc)
+> > -		return rc;
+> > -	rc = mdev_register_driver(&vfio_mdev_driver);
+> > -	if (rc)
+> > -		goto err_bus;
+> > -	return 0;
+> > -err_bus:
+> > -	mdev_bus_unregister();
+> > -	return rc;
+> > +	return  mdev_bus_register();
+> 
+> Weird indentation.  But I think it would be best to just kill off the
+> mdev_init wrapper anyway.
 
+Oh, right good point
 
->> 
->> Changes in v2:
->> - New (most of the code reused from drm_dp_aux_backlight.c of v1)
->> 
->> Changes in v3:
->> - Add missing ';' to fix module compilation (kernel test bot)
->> 
->> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
->> ---
->>  drivers/video/backlight/Kconfig            |   7 +
->>  drivers/video/backlight/Makefile           |   1 +
->>  drivers/video/backlight/dp_aux_backlight.c | 245 
->> +++++++++++++++++++++++++++++
->>  3 files changed, 253 insertions(+)
->>  create mode 100644 drivers/video/backlight/dp_aux_backlight.c
->> 
->> diff --git a/drivers/video/backlight/Kconfig 
->> b/drivers/video/backlight/Kconfig
->> index d83c87b..82c88f0 100644
->> --- a/drivers/video/backlight/Kconfig
->> +++ b/drivers/video/backlight/Kconfig
->> @@ -456,6 +456,13 @@ config BACKLIGHT_LED
->>  	  If you have a LCD backlight adjustable by LED class driver, say Y
->>  	  to enable this driver.
->> 
->> +config BACKLIGHT_DP_AUX
->> +       tristate "DisplayPort aux backlight driver"
->> +       depends on DRM && DRM_KMS_HELPER
->> +       help
->> +         If you have a panel backlight controlled by DPCD registers
->> +         on the DisplayPort aux channel, say Y to enable this driver.
->> +
->>  endif # BACKLIGHT_CLASS_DEVICE
->> 
->>  endmenu
->> diff --git a/drivers/video/backlight/Makefile 
->> b/drivers/video/backlight/Makefile
->> index 685f3f1..ba23c7c 100644
->> --- a/drivers/video/backlight/Makefile
->> +++ b/drivers/video/backlight/Makefile
->> @@ -57,3 +57,4 @@ obj-$(CONFIG_BACKLIGHT_WM831X)		+= wm831x_bl.o
->>  obj-$(CONFIG_BACKLIGHT_ARCXCNN) 	+= arcxcnn_bl.o
->>  obj-$(CONFIG_BACKLIGHT_RAVE_SP)		+= rave-sp-backlight.o
->>  obj-$(CONFIG_BACKLIGHT_LED)		+= led_bl.o
->> +obj-$(CONFIG_BACKLIGHT_DP_AUX)		+= dp_aux_backlight.o
->> diff --git a/drivers/video/backlight/dp_aux_backlight.c 
->> b/drivers/video/backlight/dp_aux_backlight.c
->> new file mode 100644
->> index 00000000..3398383
->> --- /dev/null
->> +++ b/drivers/video/backlight/dp_aux_backlight.c
->> @@ -0,0 +1,245 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Backlight driver to control the brightness over DisplayPort aux 
->> channel.
->> + */
->> +
->> +#include <linux/backlight.h>
->> +#include <linux/err.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/platform_device.h>
->> +#include <drm/drm_dp_helper.h>
->> +
->> +#define DP_AUX_MAX_BRIGHTNESS		0xffff
->> +
->> +/**
->> + * struct dp_aux_backlight - DisplayPort aux backlight data
->> + * @dev: pointer to our device.
->> + * @aux: the DisplayPort aux channel.
->> + * @enable_gpio: the backlight enable gpio.
->> + * @enabled: true if backlight is enabled else false.
->> + */
->> +struct dp_aux_backlight {
->> +	struct device *dev;
->> +	struct drm_dp_aux *aux;
->> +	struct gpio_desc *enable_gpio;
->> +	bool enabled;
->> +};
->> +
->> +static struct drm_dp_aux *i2c_to_aux(struct i2c_adapter *i2c)
->> +{
->> +	return container_of(i2c, struct drm_dp_aux, ddc);
->> +}
->> +
->> +static int dp_aux_backlight_enable(struct dp_aux_backlight *aux_bl)
->> +{
->> +	u8 val = 0;
->> +	int ret;
->> +
->> +	if (aux_bl->enabled)
->> +		return 0;
->> +
->> +	/* Set backlight control mode */
->> +	ret = drm_dp_dpcd_readb(aux_bl->aux, 
->> DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
->> +				&val);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	val &= ~DP_EDP_BACKLIGHT_CONTROL_MODE_MASK;
->> +	val |= DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD;
->> +	ret = drm_dp_dpcd_writeb(aux_bl->aux, 
->> DP_EDP_BACKLIGHT_MODE_SET_REGISTER,
->> +				 val);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	/* Enable backlight */
->> +	ret = drm_dp_dpcd_readb(aux_bl->aux, 
->> DP_EDP_DISPLAY_CONTROL_REGISTER,
->> +				&val);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	val |= DP_EDP_BACKLIGHT_ENABLE;
->> +	ret = drm_dp_dpcd_writeb(aux_bl->aux, 
->> DP_EDP_DISPLAY_CONTROL_REGISTER,
->> +				 val);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	if (aux_bl->enable_gpio)
->> +		gpiod_set_value(aux_bl->enable_gpio, 1);
->> +
->> +	aux_bl->enabled = true;
->> +
->> +	return 0;
->> +}
->> +
->> +static int dp_aux_backlight_disable(struct dp_aux_backlight *aux_bl)
->> +{
->> +	u8 val = 0;
->> +	int ret;
->> +
->> +	if (!aux_bl->enabled)
->> +		return 0;
->> +
->> +	if (aux_bl->enable_gpio)
->> +		gpiod_set_value(aux_bl->enable_gpio, 0);
->> +
->> +	ret = drm_dp_dpcd_readb(aux_bl->aux, 
->> DP_EDP_DISPLAY_CONTROL_REGISTER,
->> +				&val);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	val &= ~DP_EDP_BACKLIGHT_ENABLE;
->> +	ret = drm_dp_dpcd_writeb(aux_bl->aux, 
->> DP_EDP_DISPLAY_CONTROL_REGISTER,
->> +				 val);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	aux_bl->enabled = false;
->> +
->> +	return 0;
->> +}
->> +
->> +static int dp_aux_backlight_update_status(struct backlight_device 
->> *bd)
->> +{
->> +	struct dp_aux_backlight *aux_bl = bl_get_data(bd);
->> +	u16 brightness = backlight_get_brightness(bd);
->> +	u8 val[2] = { 0x0 };
->> +	int ret = 0;
->> +
->> +	if (brightness > 0) {
->> +		val[0] = brightness >> 8;
->> +		val[1] = brightness & 0xff;
->> +		ret = drm_dp_dpcd_write(aux_bl->aux, 
->> DP_EDP_BACKLIGHT_BRIGHTNESS_MSB,
->> +					val, sizeof(val));
->> +		if (ret < 0)
->> +			return ret;
->> +
->> +		dp_aux_backlight_enable(aux_bl);
->> +	} else {
->> +		dp_aux_backlight_disable(aux_bl);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int dp_aux_backlight_get_brightness(struct backlight_device 
->> *bd)
->> +{
->> +	struct dp_aux_backlight *aux_bl = bl_get_data(bd);
->> +	u8 val[2] = { 0x0 };
->> +	int ret = 0;
->> +
->> +	if (backlight_is_blank(bd))
->> +		return 0;
->> +
->> +	ret = drm_dp_dpcd_read(aux_bl->aux, DP_EDP_BACKLIGHT_BRIGHTNESS_MSB,
->> +			       &val, sizeof(val));
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	return (val[0] << 8 | val[1]);
->> +}
->> +
->> +static const struct backlight_ops aux_bl_ops = {
->> +	.update_status = dp_aux_backlight_update_status,
->> +	.get_brightness = dp_aux_backlight_get_brightness,
->> +};
->> +
->> +
->> +static int dp_aux_backlight_probe(struct platform_device *pdev)
->> +{
->> +	struct dp_aux_backlight *aux_bl;
->> +	struct backlight_device *bd;
->> +	struct backlight_properties bl_props = { 0 };
->> +	struct device_node *np;
->> +	struct i2c_adapter *ddc;
->> +	int ret = 0;
->> +	u32 val;
->> +
->> +	aux_bl = devm_kzalloc(&pdev->dev, sizeof(*aux_bl), GFP_KERNEL);
->> +	if (!aux_bl)
->> +		return -ENOMEM;
->> +
->> +	aux_bl->dev = &pdev->dev;
->> +
->> +	np = of_parse_phandle(pdev->dev.of_node, "ddc-i2c-bus", 0);
->> +	if (!np) {
->> +		dev_err(&pdev->dev, "failed to get aux ddc I2C bus\n");
->> +		return -ENODEV;
->> +	}
->> +
->> +	ddc = of_find_i2c_adapter_by_node(np);
->> +	of_node_put(np);
->> +	if (!ddc)
->> +		return -EPROBE_DEFER;
->> +
->> +	aux_bl->aux = i2c_to_aux(ddc);
->> +	dev_dbg(&pdev->dev, "using dp aux %s\n", aux_bl->aux->name);
->> +
->> +	aux_bl->enable_gpio = devm_gpiod_get_optional(&pdev->dev, "enable",
->> +					     GPIOD_OUT_LOW);
->> +	if (IS_ERR(aux_bl->enable_gpio)) {
->> +		ret = PTR_ERR(aux_bl->enable_gpio);
->> +		goto free_ddc;
->> +	}
->> +
->> +	val = DP_AUX_MAX_BRIGHTNESS;
->> +	of_property_read_u32(pdev->dev.of_node, "max-brightness", &val);
->> +	if (val > DP_AUX_MAX_BRIGHTNESS)
->> +		val = DP_AUX_MAX_BRIGHTNESS;
->> +
->> +	bl_props.max_brightness = val;
->> +	bl_props.brightness = val;
->> +	bl_props.type = BACKLIGHT_RAW;
->> +	bd = devm_backlight_device_register(&pdev->dev, 
->> dev_name(&pdev->dev),
->> +					    &pdev->dev, aux_bl,
->> +					    &aux_bl_ops, &bl_props);
->> +	if (IS_ERR(bd)) {
->> +		ret = PTR_ERR(bd);
->> +		dev_err(&pdev->dev,
->> +			      "failed to register backlight (%d)\n", ret);
->> +		goto free_ddc;
->> +	}
->> +
->> +	platform_set_drvdata(pdev, bd);
->> +
->> +	return 0;
->> +
->> +free_ddc:
->> +	if (ddc)
->> +		put_device(&ddc->dev);
->> +
->> +	return ret;
->> +}
->> +
->> +static int dp_aux_backlight_remove(struct platform_device *pdev)
->> +{
->> +	struct backlight_device *bd = platform_get_drvdata(pdev);
->> +	struct dp_aux_backlight *aux_bl = bl_get_data(bd);
->> +	struct i2c_adapter *ddc = &aux_bl->aux->ddc;
->> +
->> +	if (ddc)
->> +		put_device(&ddc->dev);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct of_device_id dp_aux_bl_of_match_table[] = {
->> +	{ .compatible = "dp-aux-backlight"},
->> +	{},
->> +};
->> +MODULE_DEVICE_TABLE(of, dp_aux_bl_of_match_table);
->> +
->> +static struct platform_driver dp_aux_backlight_driver = {
->> +	.driver = {
->> +		.name = "dp-aux-backlight",
->> +		.of_match_table = dp_aux_bl_of_match_table,
->> +	},
->> +	.probe = dp_aux_backlight_probe,
->> +	.remove = dp_aux_backlight_remove,
->> +
->> +};
->> +module_platform_driver(dp_aux_backlight_driver);
->> +
->> +MODULE_DESCRIPTION("DisplayPort aux backlight driver");
->> +MODULE_LICENSE("GPL v2");
+> > diff --git a/drivers/vfio/mdev/mdev_driver.c b/drivers/vfio/mdev/mdev_driver.c
+> > index 6e96c023d7823d..0012a9ee7cb0a4 100644
+> > +++ b/drivers/vfio/mdev/mdev_driver.c
+> > @@ -74,15 +74,8 @@ static int mdev_remove(struct device *dev)
+> >  static int mdev_match(struct device *dev, struct device_driver *drv)
+> >  {
+> >  	struct mdev_device *mdev = to_mdev_device(dev);
+> > +
+> > +	return drv == &mdev->type->parent->ops->device_driver->driver;
+> >  }
+> 
+> Btw, I think we don't even need ->match with the switch to use
+> device_bind_driver that I suggested.
+
+See my other email for why it is like this..
+ 
+> > -EXPORT_SYMBOL_GPL(vfio_init_group_dev);
+> > +EXPORT_SYMBOL(vfio_init_group_dev);
+> 
+> > -EXPORT_SYMBOL_GPL(vfio_register_group_dev);
+> > +EXPORT_SYMBOL(vfio_register_group_dev);
+> 
+> > -EXPORT_SYMBOL_GPL(vfio_unregister_group_dev);
+> > +EXPORT_SYMBOL(vfio_unregister_group_dev); 
+> 
+> Err, no.  vfio should remain EXPORT_SYMBOL_GPL, just because the weird
+> mdev "GPL condom" that should never have been merged in that form went away.
+
+VFIO is already !GPL - there are 19 symbols supporting this
+today. What happened here is that this patch make all of those symbols
+unusable !GPL by changing how registration works so you can't get the
+vfio_device argument to use with the API family.
+
+So, either the two registration functions need to be !GPL to make the
+other 19 symbols make sense, or the entire !GPL needs to be ripped
+out. The lost commit message above was explaining this.
+
+Since it is predominately !GPL today, I'd prefer a discussion on
+changing VFIO to be GPL only to be in its own patch proposing removing
+all 22 !GPL symbols. Those are always fun threads..
+
+Jason
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
