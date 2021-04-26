@@ -2,37 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2247236B1FE
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 12:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C335F36B20F
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 13:05:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0C6B6E1CD;
-	Mon, 26 Apr 2021 10:57:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC8BB6E7D3;
+	Mon, 26 Apr 2021 11:05:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75BDE6E1CD
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 10:57:52 +0000 (UTC)
-IronPort-SDR: 52Slsy81nKphmmsV7Eb5xnXkR2JC1lwqxyrWuiUyGNy+QoApUN/82W/bEy9LM37CAtIqRdcB8n
- Ke2tmFTEIk8g==
-X-IronPort-AV: E=McAfee;i="6200,9189,9965"; a="196427211"
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="196427211"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2021 03:57:51 -0700
-IronPort-SDR: mlZjftsRqo2SESz5FjPxBQiLN9iv2Js2tI4aFq5VdGGiO4e0P/697Xklv1MJQe4brm9A1De3YK
- z02rat2BP7+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="422623455"
-Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
- ([10.237.72.91])
- by fmsmga008.fm.intel.com with ESMTP; 26 Apr 2021 03:57:49 -0700
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 26 Apr 2021 14:00:56 +0300
-Message-Id: <20210426110056.16254-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+Received: from youngberry.canonical.com (youngberry.canonical.com
+ [91.189.89.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DAA96E7D3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 11:05:53 +0000 (UTC)
+Received: from mail-lf1-f72.google.com ([209.85.167.72])
+ by youngberry.canonical.com with esmtps
+ (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
+ (envelope-from <kai.heng.feng@canonical.com>) id 1laz3n-0001Uy-UR
+ for intel-gfx@lists.freedesktop.org; Mon, 26 Apr 2021 11:05:52 +0000
+Received: by mail-lf1-f72.google.com with SMTP id
+ p24-20020a19f1180000b02901b9843b363bso851092lfh.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 04:05:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=uSdIne0P3XxiGWsPvnMn103IhlOt1MaDeE2xLUgtwOM=;
+ b=f0vXiUsspXV3SePJN86lU0MWmASNqsHrisiUXNzu1FDVGh31Qc+0D59/6SM+NyxwPy
+ +7atD8xk8e4fwcR4PE1OebfPUhXSixvaPKDsDD5ts1nXVN0a7Rq/yUdxC/1vj3LJ9N5H
+ Usu2cgU2zuP1hhkkRa30Hmje8ZDhSM21MvnbFJFHnNfo1E2SzQ+A1jMV/WxzK/zUiLng
+ KdnYgcGp+e9ek0B6c5bKz0FvRfbtxWCpVKCCkTB4HaXzHwSvf3kns23ShLcjFyFC49ff
+ w+Q9SMu9LKHM+OYGsEEPjH5t1ZKg5hpn7U1Bwe2AuTZBcB6owOtas7qhskqE4ksrkIFX
+ Qwmg==
+X-Gm-Message-State: AOAM531Nld/Na+Z0rJwA74x0snT1V2Kl082LBgJrIYlB6BrrroRUjar8
+ nGpL8UUb1WsEmKIySr7l1BGhD1JoMlDsXOo22WVUXAjVUHdQ3tmEnP11wN9s6BArP/g+c1w3EKM
+ toyyvZ5aqjI90lC7Qi5H69WgmveBs80IScM/NgWRGr3rLGNnrtdGHu/MHOmLShA==
+X-Received: by 2002:a2e:6c12:: with SMTP id h18mr7403147ljc.116.1619435151367; 
+ Mon, 26 Apr 2021 04:05:51 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxKm8uTcJJwyPsqFA/g0YeTz89KMffFaaDxkemlMhwcoFOOo6fzI1ciWfvxGWHqQziisQEHNoc0SlIfTeEXftE=
+X-Received: by 2002:a2e:6c12:: with SMTP id h18mr7403116ljc.116.1619435151033; 
+ Mon, 26 Apr 2021 04:05:51 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] Implement PSF GV point support
+References: <20210423044700.247359-1-kai.heng.feng@canonical.com>
+ <87fszh78tf.fsf@intel.com>
+In-Reply-To: <87fszh78tf.fsf@intel.com>
+From: Kai-Heng Feng <kai.heng.feng@canonical.com>
+Date: Mon, 26 Apr 2021 19:05:39 +0800
+Message-ID: <CAAd53p5=LqxKZGTARpvVCC2hcZP4aQPqjD6WszTDuQfv2owhfA@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Invoke BXT _DSM to enable MUX
+ on HP Workstation laptops
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,301 +62,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: David Airlie <airlied@linux.ie>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Takashi Iwai <tiwai@suse.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PSF GV points are an additional factor that can limit the
-bandwidth available to display, separate from the traditional
-QGV points.  Whereas traditional QGV points represent possible
-memory clock frequencies, PSF GV points reflect possible
-frequencies of the memory fabric.
+On Fri, Apr 23, 2021 at 3:35 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>
+> On Fri, 23 Apr 2021, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
+> > On HP Fury G7 Workstations, graphics output is re-routed from Intel GFX
+> > to discrete GFX after S3. This is not desirable, because userspace will
+> > treat connected display as a new one, losing display settings.
+> >
+> > The expected behavior is to let discrete GFX drives all external
+> > displays.
+> >
+> > The platform in question uses ACPI method \_SB.PCI0.HGME to enable MUX.
+> > The method is inside the BXT _DSM, so add the _DSM and call it
+> > accordingly.
+> >
+> > I also tested some MUX-less and iGPU only laptops with the BXT _DSM, no
+> > regression was found.
+>
+> I don't know whether this change is the right thing to do. I don't know
+> if it isn't either. Need to look into it.
+>
+> However, I have some general comments, inline.
+>
+> >
+> > v2:
+> >  - Forward declare struct pci_dev.
+> >
+> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3113
+> > References: https://lore.kernel.org/intel-gfx/1460040732-31417-4-git-send-email-animesh.manna@intel.com/
+> > Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_acpi.c | 17 +++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_acpi.h |  3 +++
+> >  drivers/gpu/drm/i915/i915_drv.c           |  5 +++++
+> >  3 files changed, 25 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
+> > index 833d0c1be4f1..c7b57c22dce3 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_acpi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
+> > @@ -14,11 +14,16 @@
+> >
+> >  #define INTEL_DSM_REVISION_ID 1 /* For Calpella anyway... */
+> >  #define INTEL_DSM_FN_PLATFORM_MUX_INFO 1 /* No args */
+> > +#define INTEL_DSM_FN_PLATFORM_BXT_MUX_INFO 0 /* No args */
+> >
+> >  static const guid_t intel_dsm_guid =
+> >       GUID_INIT(0x7ed873d3, 0xc2d0, 0x4e4f,
+> >                 0xa8, 0x54, 0x0f, 0x13, 0x17, 0xb0, 0x1c, 0x2c);
+> >
+> > +static const guid_t intel_bxt_dsm_guid =
+> > +     GUID_INIT(0x3e5b41c6, 0xeb1d, 0x4260,
+> > +               0x9d, 0x15, 0xc7, 0x1f, 0xba, 0xda, 0xe4, 0x14);
+> > +
+> >  static char *intel_dsm_port_name(u8 id)
+> >  {
+> >       switch (id) {
+> > @@ -176,6 +181,18 @@ void intel_unregister_dsm_handler(void)
+> >  {
+> >  }
+> >
+> > +void intel_bxt_dsm_detect(struct pci_dev *pdev)
+>
+> Please leave out bxt from the naming and make the argument struct
+> drm_i915_private *i915. Mmh, then it conflicts with existing
+> intel_dsm_detect(), maybe we need a more descriptive name altogether?
 
-Switching between PSF GV points has the advantage of incurring
-almost no memory access block time and thus does not need to be
-accounted for in watermark calculations.
+If there's no oppose, I'll change it to intel_hp_dsm_detect() in v2.
+So far, I've only seen that DSM in HP platform.
 
-This patch adds support for those on top of regular QGV points.
-Those are supposed to be used simultaneously, i.e we are always
-at some QGV and some PSF GV point, based on the current video
-mode requirements.
-Bspec: 64631, 53998
+>
+> > +{
+> > +     acpi_handle dhandle;
+> > +
+> > +     dhandle = ACPI_HANDLE(&pdev->dev);
+> > +     if (!dhandle)
+> > +             return;
+> > +
+> > +     acpi_evaluate_dsm(dhandle, &intel_bxt_dsm_guid, INTEL_DSM_REVISION_ID,
+> > +                       INTEL_DSM_FN_PLATFORM_BXT_MUX_INFO, NULL);
+> > +}
+> > +
+> >  /*
+> >   * ACPI Specification, Revision 5.0, Appendix B.3.2 _DOD (Enumerate All Devices
+> >   * Attached to the Display Adapter).
+> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.h b/drivers/gpu/drm/i915/display/intel_acpi.h
+> > index e8b068661d22..d2d560d63bb3 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_acpi.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.h
+> > @@ -6,15 +6,18 @@
+> >  #ifndef __INTEL_ACPI_H__
+> >  #define __INTEL_ACPI_H__
+> >
+> > +struct pci_dev;
+> >  struct drm_i915_private;
+> >
+> >  #ifdef CONFIG_ACPI
+> >  void intel_register_dsm_handler(void);
+> >  void intel_unregister_dsm_handler(void);
+> > +void intel_bxt_dsm_detect(struct pci_dev *pdev);
+> >  void intel_acpi_device_id_update(struct drm_i915_private *i915);
+> >  #else
+> >  static inline void intel_register_dsm_handler(void) { return; }
+> >  static inline void intel_unregister_dsm_handler(void) { return; }
+> > +static inline void intel_bxt_dsm_detect(struct pci_dev *pdev) { return; }
+> >  static inline
+> >  void intel_acpi_device_id_update(struct drm_i915_private *i915) { return; }
+> >  #endif /* CONFIG_ACPI */
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> > index 785dcf20c77b..57b12068aab4 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.c
+> > +++ b/drivers/gpu/drm/i915/i915_drv.c
+> > @@ -853,6 +853,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+> >       if (ret)
+> >               goto out_cleanup_gem;
+> >
+> > +     intel_bxt_dsm_detect(pdev);
+> > +
+>
+> The call sites in i915_driver_probe() and i915_drm_resume() seem rather
+> arbitrary.
 
-v2: - Removed redundant HAS_DISPLAY13 check and started using
-      amount of PSF GV points retrieved from PCode instead.(Matt)
-    - Added QGV/PSF point mask definitions to i915_reg.h(Matt)
-    - Minor fixes to cover letter and commit message(Matt)
+Yes, because what it really does is flipping a bit in one GPIO, the
+EC/hardware will change the MUX based on the GPIO bit.
+So it doesn't have any ordering needs to be enforced.
 
-v3: - s/adl_/adls_/ - Matt Roper
-    - Do not return error but just zero qi->num_psf_points,
-      if we can't get PSF GV points(Matt Roper)
-    - s/GEN13_/ADLS_/ - Matt Roper
+>
+> Long term, I'd like most or all of the display stuff like this placed in
+> appropriate intel_modeset_*() functions in display/intel_display.c. I'm
+> not keen on having new and very specific calls in the higher levels.
+>
+> At probe, feels like the routing should happen earlier, before output
+> setup? In intel_modeset_init_nogem()?
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 100 +++++++++++++++++++++++-
- drivers/gpu/drm/i915/i915_drv.h         |   7 ++
- drivers/gpu/drm/i915/i915_reg.h         |   3 +
- drivers/gpu/drm/i915/intel_dram.c       |   1 +
- 4 files changed, 108 insertions(+), 3 deletions(-)
+OK, I'll put that in intel_modeset_init_hw() to cover both probe and
+resume routines.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index d96b9bf6c197..fdee6dcff70c 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -17,9 +17,15 @@ struct intel_qgv_point {
- 	u16 dclk, t_rp, t_rdpre, t_rc, t_ras, t_rcd;
- };
- 
-+struct intel_psf_gv_point {
-+	u8 clk; /* clock in multiples of 16.6666 MHz */
-+};
-+
- struct intel_qgv_info {
- 	struct intel_qgv_point points[I915_NUM_QGV_POINTS];
-+	struct intel_psf_gv_point psf_points[I915_NUM_PSF_GV_POINTS];
- 	u8 num_points;
-+	u8 num_psf_points;
- 	u8 t_bl;
- };
- 
-@@ -49,6 +55,28 @@ static int icl_pcode_read_qgv_point_info(struct drm_i915_private *dev_priv,
- 	return 0;
- }
- 
-+static int adls_pcode_read_psf_gv_point_info(struct drm_i915_private *dev_priv,
-+					    struct intel_psf_gv_point *points)
-+{
-+	u32 val = 0, val2 = 0;
-+	int ret;
-+	int i;
-+
-+	ret = sandybridge_pcode_read(dev_priv,
-+				     ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
-+				     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO,
-+				     &val, &val2);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < I915_NUM_PSF_GV_POINTS; i++) {
-+		points[i].clk = val & 0xff;
-+		val >>= 8;
-+	}
-+
-+	return 0;
-+}
-+
- int icl_pcode_restrict_qgv_points(struct drm_i915_private *dev_priv,
- 				  u32 points_mask)
- {
-@@ -76,6 +104,7 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
- 	int i, ret;
- 
- 	qi->num_points = dram_info->num_qgv_points;
-+	qi->num_psf_points = dram_info->num_psf_gv_points;
- 
- 	if (IS_DISPLAY_VER(dev_priv, 12))
- 		switch (dram_info->type) {
-@@ -109,6 +138,19 @@ static int icl_get_qgv_points(struct drm_i915_private *dev_priv,
- 			    sp->t_rcd, sp->t_rc);
- 	}
- 
-+	if (qi->num_psf_points > 0) {
-+		ret = adls_pcode_read_psf_gv_point_info(dev_priv, qi->psf_points);
-+		if (ret) {
-+			drm_err(&dev_priv->drm, "Failed to read PSF point data; PSF points will not be considered in bandwidth calculations.\n");
-+			qi->num_psf_points = 0;
-+		}
-+
-+		for (i = 0; i < qi->num_psf_points; i++)
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "PSF GV %d: CLK=%d \n",
-+				    i, qi->psf_points[i].clk);
-+	}
-+
- 	return 0;
- }
- 
-@@ -118,6 +160,16 @@ static int icl_calc_bw(int dclk, int num, int den)
- 	return DIV_ROUND_CLOSEST(num * dclk * 100, den * 6);
- }
- 
-+static int adl_calc_psf_bw(int clk)
-+{
-+	/*
-+	 * clk is multiples of 16.666MHz (100/6)
-+	 * According to BSpec PSF GV bandwidth is
-+	 * calculated as BW = 64 * clk * 16.666Mhz
-+	 */
-+	return DIV_ROUND_CLOSEST(64 * clk * 100, 6);
-+}
-+
- static int icl_sagv_max_dclk(const struct intel_qgv_info *qi)
- {
- 	u16 dclk = 0;
-@@ -188,6 +240,7 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
- 		bi->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
- 
- 		bi->num_qgv_points = qi.num_points;
-+		bi->num_psf_gv_points = qi.num_psf_points;
- 
- 		for (j = 0; j < qi.num_points; j++) {
- 			const struct intel_qgv_point *sp = &qi.points[j];
-@@ -211,6 +264,16 @@ static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel
- 				    i, j, bi->num_planes, bi->deratedbw[j]);
- 		}
- 
-+		for (j = 0; j < qi.num_psf_points; j++) {
-+			const struct intel_psf_gv_point *sp = &qi.psf_points[j];
-+
-+			bi->psf_bw[j] = adl_calc_psf_bw(sp->clk);
-+
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "BW%d / PSF GV %d: num_planes=%d bw=%u\n",
-+				    i, j, bi->num_planes, bi->psf_bw[j]);
-+		}
-+
- 		if (bi->num_planes == 1)
- 			break;
- 	}
-@@ -256,6 +319,15 @@ static unsigned int icl_max_bw(struct drm_i915_private *dev_priv,
- 	return 0;
- }
- 
-+static unsigned int adl_psf_bw(struct drm_i915_private *dev_priv,
-+			       int psf_gv_point)
-+{
-+	const struct intel_bw_info *bi =
-+			&dev_priv->max_bw[0];
-+
-+	return bi->psf_bw[psf_gv_point];
-+}
-+
- void intel_bw_init_hw(struct drm_i915_private *dev_priv)
- {
- 	if (!HAS_DISPLAY(dev_priv))
-@@ -525,7 +597,8 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 	u32 allowed_points = 0;
- 	unsigned int max_bw_point = 0, max_bw = 0;
- 	unsigned int num_qgv_points = dev_priv->max_bw[0].num_qgv_points;
--	u32 mask = (1 << num_qgv_points) - 1;
-+	unsigned int num_psf_gv_points = dev_priv->max_bw[0].num_psf_gv_points;
-+	u32 mask = ADLS_QGV_PT_MASK | ADLS_PSF_PT_MASK;
- 
- 	/* FIXME earlier gens need some checks too */
- 	if (DISPLAY_VER(dev_priv) < 11)
-@@ -593,23 +666,44 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
- 			max_bw = max_data_rate;
- 		}
- 		if (max_data_rate >= data_rate)
--			allowed_points |= BIT(i);
-+			allowed_points |= REG_FIELD_PREP(ADLS_QGV_PT_MASK, BIT(i));
-+
- 		drm_dbg_kms(&dev_priv->drm, "QGV point %d: max bw %d required %d\n",
- 			    i, max_data_rate, data_rate);
- 	}
- 
-+	for (i = 0; i < num_psf_gv_points; i++) {
-+		unsigned int max_data_rate = adl_psf_bw(dev_priv, i);
-+
-+		if (max_data_rate >= data_rate)
-+			allowed_points |= REG_FIELD_PREP(ADLS_PSF_PT_MASK, BIT(i));
-+
-+		drm_dbg_kms(&dev_priv->drm, "PSF GV point %d: max bw %d"
-+			    " required %d\n",
-+			    i, max_data_rate, data_rate);
-+	}
-+
- 	/*
- 	 * BSpec states that we always should have at least one allowed point
- 	 * left, so if we couldn't - simply reject the configuration for obvious
- 	 * reasons.
- 	 */
--	if (allowed_points == 0) {
-+	if ((allowed_points & ADLS_QGV_PT_MASK) == 0) {
- 		drm_dbg_kms(&dev_priv->drm, "No QGV points provide sufficient memory"
- 			    " bandwidth %d for display configuration(%d active planes).\n",
- 			    data_rate, num_active_planes);
- 		return -EINVAL;
- 	}
- 
-+	if (num_psf_gv_points > 0) {
-+		if ((allowed_points & ADLS_PSF_PT_MASK) == 0) {
-+			drm_dbg_kms(&dev_priv->drm, "No PSF GV points provide sufficient memory"
-+				    " bandwidth %d for display configuration(%d active planes).\n",
-+				    data_rate, num_active_planes);
-+			return -EINVAL;
-+		}
-+	}
-+
- 	/*
- 	 * Leave only single point with highest bandwidth, if
- 	 * we can't enable SAGV due to the increased memory latency it may
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 186cca52ea48..71739fcd6c76 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -569,6 +569,9 @@ i915_fence_timeout(const struct drm_i915_private *i915)
- /* Amount of SAGV/QGV points, BSpec precisely defines this */
- #define I915_NUM_QGV_POINTS 8
- 
-+/* Amount of PSF GV points, BSpec precisely defines this */
-+#define I915_NUM_PSF_GV_POINTS 3
-+
- struct ddi_vbt_port_info {
- 	/* Non-NULL if port present. */
- 	struct intel_bios_encoder_data *devdata;
-@@ -1083,12 +1086,16 @@ struct drm_i915_private {
- 			INTEL_DRAM_LPDDR5,
- 		} type;
- 		u8 num_qgv_points;
-+		u8 num_psf_gv_points;
- 	} dram_info;
- 
- 	struct intel_bw_info {
- 		/* for each QGV point */
- 		unsigned int deratedbw[I915_NUM_QGV_POINTS];
-+		/* for each PSF GV point */
-+		unsigned int psf_bw[I915_NUM_PSF_GV_POINTS];
- 		u8 num_qgv_points;
-+		u8 num_psf_gv_points;
- 		u8 num_planes;
- 	} max_bw[6];
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index dcc5176abb6a..c12512f5b6c8 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9296,9 +9296,12 @@ enum {
- #define   ICL_PCODE_MEM_SUBSYSYSTEM_INFO	0xd
- #define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
- #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
-+#define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
- #define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
- #define     ICL_PCODE_POINTS_RESTRICTED		0x0
- #define     ICL_PCODE_POINTS_RESTRICTED_MASK	0x1
-+#define   ADLS_QGV_PT_MASK			REG_GENMASK(7, 0)
-+#define   ADLS_PSF_PT_MASK			REG_GENMASK(10, 8)
- #define   GEN6_PCODE_READ_D_COMP		0x10
- #define   GEN6_PCODE_WRITE_D_COMP		0x11
- #define   ICL_PCODE_EXIT_TCCOLD			0x12
-diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
-index 1e53c017c30d..53ccd106785f 100644
---- a/drivers/gpu/drm/i915/intel_dram.c
-+++ b/drivers/gpu/drm/i915/intel_dram.c
-@@ -468,6 +468,7 @@ static int icl_pcode_read_mem_global_info(struct drm_i915_private *dev_priv)
- 
- 	dram_info->num_channels = (val & 0xf0) >> 4;
- 	dram_info->num_qgv_points = (val & 0xf00) >> 8;
-+	dram_info->num_psf_gv_points = (val & 0x3000) >> 12;
- 
- 	return 0;
- }
--- 
-2.24.1.485.gad05a3d8e5
+Kai-Heng
 
+
+>
+> >       i915_driver_register(i915);
+> >
+> >       enable_rpm_wakeref_asserts(&i915->runtime_pm);
+> > @@ -1215,6 +1217,7 @@ int i915_suspend_switcheroo(struct drm_i915_private *i915, pm_message_t state)
+> >  static int i915_drm_resume(struct drm_device *dev)
+> >  {
+> >       struct drm_i915_private *dev_priv = to_i915(dev);
+> > +     struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+> >       int ret;
+> >
+> >       disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> > @@ -1271,6 +1274,8 @@ static int i915_drm_resume(struct drm_device *dev)
+> >
+> >       intel_gvt_resume(dev_priv);
+> >
+> > +     intel_bxt_dsm_detect(pdev);
+> > +
+>
+> In intel_display_resume() perhaps?
+>
+> (Yay for confusing naming wrt display and modeset, it's a
+> work-in-progress.)
+>
+> BR,
+> Jani.
+>
+>
+> >       enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> >
+> >       return 0;
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
