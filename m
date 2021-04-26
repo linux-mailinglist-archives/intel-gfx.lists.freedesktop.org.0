@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D78736B62D
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 17:54:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A6C436B630
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 17:55:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41E4C6E0C9;
-	Mon, 26 Apr 2021 15:54:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C24FD6E0C9;
+	Mon, 26 Apr 2021 15:55:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F5366E0C9
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 15:54:14 +0000 (UTC)
-IronPort-SDR: pLYeELFXnn7H0IVXJE32naF2f6IIup4nXMYFN9QgQSAPqwx5CUyWc1vb3fp2Z8dI9/4+otzFRO
- p/dodsvMKJgw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="193169735"
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="193169735"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B08996E0C9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 15:55:09 +0000 (UTC)
+IronPort-SDR: C9Rnm2Erf0pdwot+JOXUDEffafLvaw1rterhuPsAM7f4mVoM4RNJKF/iyBv61teBh2uaRUE5Gg
+ ds05ipvs39Gw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="281686717"
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="281686717"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2021 08:54:13 -0700
-IronPort-SDR: bi9LSPxcLWLkXXaQaW8H1Zmkn0AREyZLb2LIPOHhhB3819+RacFKr2Ea+qticPEbKkpsThX79f
- jQ27w1ClS/Mg==
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="429440661"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2021 08:55:09 -0700
+IronPort-SDR: Vz0f+x8bb82IT/w9pZuID3RjIxgRkTw470N+c1tkbBcHmKjW6vK/c4PsJqU8cRw85gocRDxGOM
+ CtcdUbKmR8DQ==
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="429440904"
 Received: from ideak-desk.fi.intel.com ([10.237.68.141])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2021 08:54:10 -0700
-Date: Mon, 26 Apr 2021 18:54:05 +0300
+ 26 Apr 2021 08:55:07 -0700
+Date: Mon, 26 Apr 2021 18:55:04 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210426155405.GF3777213@ideak-desk.fi.intel.com>
+Message-ID: <20210426155504.GG3777213@ideak-desk.fi.intel.com>
 References: <20210318181039.17260-1-ville.syrjala@linux.intel.com>
+ <20210318181039.17260-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210318181039.17260-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Fix pre-skl DP AUX precharge
- length
+In-Reply-To: <20210318181039.17260-2-ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Remove stray newlines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,66 +48,99 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBNYXIgMTgsIDIwMjEgYXQgMDg6MTA6MzhQTSArMDIwMCwgVmlsbGUgU3lyamFsYSB3
-cm90ZToKPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPgo+IAo+IERQIHYxLjErIHNheXM6Cj4gIlRoZSBEaXNwbGF5UG9ydCB0cmFuc21pdHRlciwg
-d2hpY2ggaXMgdGhlIGRyaXZpbmcgZW5kIGZvciBhIHJlcXVlc3QKPiAgdHJhbnNhY3Rpb24sIHBy
-ZS1jaGFyZ2VzIHRoZSBBVVgtQ0grIGFuZCBBVVgtQ0gtIHRvIGEgY29tbW9uIG1vZGUKPiAgdm9s
-dGFnZSBieSB0cmFuc21pdHRpbmcgMTAgdG8gMTYgY29uc2VjdXRpdmUgMOKAmXMgaW4gTWFuY2hl
-c3RlciBJSSBjb2RlLgo+ICBBZnRlciB0aGUgYWN0aXZlIHByZS1jaGFyZ2UsIHRoZSB0cmFuc21p
-dHRlciBzZW5kcyBhbiBBVVggU3luYyBwYXR0ZXJuLgo+ICBUaGUgQVVYIFN5bmMgcGF0dGVybiBt
-dXN0IGJlIGFzIGZvbGxvd3M6Cj4gIFN0YXJ0IHdpdGggMTYgY29uc2VjdXRpdmUgMHMgaW4gTWFu
-Y2hlc3Rlci1JSSBjb2RlLCB3aGljaCByZXN1bHRzIGluCj4gIGEgdHJhbnNpdGlvbiBmcm9tIGxv
-dyB0byBoaWdoIGluIHRoZSBtaWRkbGUgb2YgZWFjaCBiaXQgcGVyaW9kLgo+ICBJbmNsdWRpbmcg
-YWN0aXZlIHByZS1jaGFyZ2UgcHVsc2VzLCB0aGVyZSBzaGFsbCBiZSAyNiB0byAzMgo+ICBjb25z
-ZWN1dGl2ZSAwcyBiZWZvcmUgdGhlIGVuZCBvZiB0aGUgQVVYX1NZTkMgcGF0dGVybi4iCj4gCj4g
-QkRXIGJzcGVjIHNheXM6Cj4gIlVzZWQgdG8gZGV0ZXJtaW5lIHRoZSBwcmVjaGFyZ2UgdGltZSBm
-b3IgdGhlIEF1eCBDaGFubmVsLiBEdXJpbmcgdGhpcwo+ICB0aW1lIHRoZSBBdXggQ2hhbm5lbCB3
-aWxsIGRyaXZlIHRoZSBTWU5DIHBhdHRlcm4uIEV2ZXJ5IG1pY3Jvc2Vjb25kCj4gIGdpdmVzIG9u
-ZSBhZGRpdGlvbmFsIFNZTkMgcHVsc2UgYmV5b25kIHRoZSBoYXJkIGNvZGVkIDI2IFNZTkMgcHVs
-c2VzLgo+ICBUaGUgdmFsdWUgaXMgdGhlIG51bWJlciBvZiBtaWNyb3NlY29uZHMgdGltZXMgMi4g
-RGVmYXVsdCBpcyAzIGRlY2ltYWwKPiAgd2hpY2ggZ2l2ZXMgNnVzIG9mIHByZWNoYXJnZSB3aGlj
-aCBpcyA2IGV4dHJhIFNZTiBwdWxzZXMgZm9yIGEgdG90YWwKPiAgb2YgMzIuIgo+IAo+IENQVCBi
-c3BlYyBzYXlzIHRoZSBzYW1lIHRoaW5nIGFwYXJ0IGZyb206Cj4gIi4uLiBEZWZhdWx0IGlzIDUg
-ZGVjaW1hbCB3aGljaCBnaXZlcyAxMHVzIG9mIHByZWNoYXJnZSB3aGljaCBpcyAxMAo+ICBleHRy
-YSBTWU5DIHB1bHNlcyBmb3IgYSB0b3RhbCBvZiAzNi4iCj4gCj4gU28gaXQgbG9va3MgbGlrZSB0
-byBtYXRjaCB0aGUgbWF4IG9mIDMyIG9mIHRoZSBEUCBzcGVjIHdlIHNob3VsZCBqdXN0Cj4gYWx3
-YXlzIHByb2dyYW0gdGhpcyBleHRyYSBwcmVjaGFyZ2UgdGltZSB0byAzLgo+IAo+IFVuZm9ydHVu
-YXRlbHkgZzR4L2lieCBic3BlYyBkb2Vzbid0IGhhdmUgdGhpcyBjbGFyaWZpY2F0aW9uLCBidXQK
-PiBzaW5jZSB0aGUgY3B0IGRlZmF1bHQgd2FzIHN0aWxsIHRoZSBzYW1lIDUgYXMgZm9yIGc0eC9p
-YnggbGV0J3MKPiBhc3N1bWUgdGhlIGJlaGF2aW91ciB3YXMgYWx3YXlzIHRoZSBzYW1lLgo+IAo+
-IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
-bC5jb20+CgpSZXZpZXdlZC1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPgoKPiAt
-LS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXguYyB8IDkgKyst
-LS0tLS0tCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0p
-Cj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBf
-YXV4LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2F1eC5jCj4gaW5k
-ZXggZWFlYmYxMjMzMTBhLi5kNTQ0M2Q2ZDYxMjMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXguYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4LmMKPiBAQCAtMTI2LDEyICsxMjYsNyBAQCBzdGF0aWMg
-dTMyIGc0eF9nZXRfYXV4X3NlbmRfY3RsKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCj4gIAlz
-dHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCA9IGRwX3RvX2RpZ19wb3J0KGludGVs
-X2RwKTsKPiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9Cj4gIAkJCXRvX2k5
-MTUoZGlnX3BvcnQtPmJhc2UuYmFzZS5kZXYpOwo+IC0JdTMyIHByZWNoYXJnZSwgdGltZW91dDsK
-PiAtCj4gLQlpZiAoSVNfR0VOKGRldl9wcml2LCA2KSkKPiAtCQlwcmVjaGFyZ2UgPSAzOwo+IC0J
-ZWxzZQo+IC0JCXByZWNoYXJnZSA9IDU7Cj4gKwl1MzIgdGltZW91dDsKPiAgCj4gIAlpZiAoSVNf
-QlJPQURXRUxMKGRldl9wcml2KSkKPiAgCQl0aW1lb3V0ID0gRFBfQVVYX0NIX0NUTF9USU1FX09V
-VF82MDB1czsKPiBAQCAtMTQ1LDcgKzE0MCw3IEBAIHN0YXRpYyB1MzIgZzR4X2dldF9hdXhfc2Vu
-ZF9jdGwoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKPiAgCSAgICAgICB0aW1lb3V0IHwKPiAg
-CSAgICAgICBEUF9BVVhfQ0hfQ1RMX1JFQ0VJVkVfRVJST1IgfAo+ICAJICAgICAgIChzZW5kX2J5
-dGVzIDw8IERQX0FVWF9DSF9DVExfTUVTU0FHRV9TSVpFX1NISUZUKSB8Cj4gLQkgICAgICAgKHBy
-ZWNoYXJnZSA8PCBEUF9BVVhfQ0hfQ1RMX1BSRUNIQVJHRV8yVVNfU0hJRlQpIHwKPiArCSAgICAg
-ICAoMyA8PCBEUF9BVVhfQ0hfQ1RMX1BSRUNIQVJHRV8yVVNfU0hJRlQpIHwKPiAgCSAgICAgICAo
-YXV4X2Nsb2NrX2RpdmlkZXIgPDwgRFBfQVVYX0NIX0NUTF9CSVRfQ0xPQ0tfMlhfU0hJRlQpOwo+
-ICB9Cj4gIAo+IC0tIAo+IDIuMjYuMgo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+On Thu, Mar 18, 2021 at 08:10:39PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> A bunch of files have a stray newline at the end. Remove it.
+> =
+
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+Reviwed-by: Imre Deak <imre.deak@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/i9xx_plane.c          | 1 -
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 1 -
+>  drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c | 1 -
+>  drivers/gpu/drm/i915/i915_params.h                 | 1 -
+>  drivers/gpu/drm/i915/i915_vma_types.h              | 1 -
+>  5 files changed, 5 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/=
+i915/display/i9xx_plane.c
+> index 8a52beaed2da..7391cd195d41 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> @@ -1038,4 +1038,3 @@ i9xx_get_initial_plane_config(struct intel_crtc *cr=
+tc,
+>  =
+
+>  	plane_config->fb =3D intel_fb;
+>  }
+> -
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
+/gpu/drm/i915/display/skl_universal_plane.c
+> index 1f335cb09149..a06c474223c1 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -2263,4 +2263,3 @@ skl_get_initial_plane_config(struct intel_crtc *crt=
+c,
+>  error:
+>  	kfree(intel_fb);
+>  }
+> -
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c b/drivers=
+/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
+> index 129e0cf7dfe2..64e0b86bf258 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log_debugfs.c
+> @@ -121,4 +121,3 @@ void intel_guc_log_debugfs_register(struct intel_guc_=
+log *log,
+>  =
+
+>  	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), log);
+>  }
+> -
+> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i9=
+15_params.h
+> index 48f47e44e848..18bbc92b642d 100644
+> --- a/drivers/gpu/drm/i915/i915_params.h
+> +++ b/drivers/gpu/drm/i915/i915_params.h
+> @@ -96,4 +96,3 @@ void i915_params_copy(struct i915_params *dest, const s=
+truct i915_params *src);
+>  void i915_params_free(struct i915_params *params);
+>  =
+
+>  #endif
+> -
+> diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915=
+/i915_vma_types.h
+> index f5cb848b7a7e..c7614fbabb9c 100644
+> --- a/drivers/gpu/drm/i915/i915_vma_types.h
+> +++ b/drivers/gpu/drm/i915/i915_vma_types.h
+> @@ -282,4 +282,3 @@ struct i915_vma {
+>  };
+>  =
+
+>  #endif
+> -
+> -- =
+
+> 2.26.2
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
