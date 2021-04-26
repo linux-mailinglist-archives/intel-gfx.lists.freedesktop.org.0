@@ -1,45 +1,72 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16C7136A46C
-	for <lists+intel-gfx@lfdr.de>; Sun, 25 Apr 2021 05:42:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 484DB36AD28
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 09:35:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D85F66E471;
-	Sun, 25 Apr 2021 03:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC3676E0FC;
+	Mon, 26 Apr 2021 07:35:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AD396E471;
- Sun, 25 Apr 2021 03:42:17 +0000 (UTC)
-IronPort-SDR: M5Fh93PvTcXNvPeUaMXlOHXYdnGeNV0/Cr9bwHLApIwABYSeZ+c+qAKnvZ92wIciNtzKxw2AUA
- rLKspsCsa9lA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9964"; a="196321350"
-X-IronPort-AV: E=Sophos;i="5.82,249,1613462400"; 
- d="asc'?scan'208";a="196321350"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2021 20:42:15 -0700
-IronPort-SDR: QY+nLf0PEWY6cNSFN4RpP9DwEuiGKVLwBwo6DaVrQ0Rl8wa1eRn/mnEEQu87wF/AN5Gzv8NFap
- rq3xkJNGEjXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,249,1613462400"; 
- d="asc'?scan'208";a="453924991"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by FMSMGA003.fm.intel.com with ESMTP; 24 Apr 2021 20:42:11 -0700
-Date: Sun, 25 Apr 2021 11:23:56 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Message-ID: <20210425032356.GH1551@zhen-hp.sh.intel.com>
-References: <20210422133547.1861063-1-arnd@kernel.org>
- <20210422135810.GG2047089@ziepe.ca>
- <20210423035426.GG1551@zhen-hp.sh.intel.com>
- <20210423120709.GH2047089@ziepe.ca>
- <20210423092009.45fb4567@redhat.com>
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com
+ [66.111.4.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FE856E0FC;
+ Mon, 26 Apr 2021 07:35:23 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailout.nyi.internal (Postfix) with ESMTP id 775665C00D0;
+ Mon, 26 Apr 2021 03:35:18 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute6.internal (MEProxy); Mon, 26 Apr 2021 03:35:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm2; bh=OdI3mT4nMejbMpZ4hAkqACsHiXa
+ PqAYoek1WZFxJpho=; b=upKlhD9xTVYZyn59mfOOwqgtyHCwNWDGbbenXdxek5O
+ cpRBNhL40ZWF0uUYclZkJBIvGji4DtO3E3elvk+f0ehESYwe9nbo+CZNpTzgLap8
+ NZ/IJYpGgsaMdx+s8IpZM4I3mxs7z60Rtwaa3AVFSdPeuMLaD/BRj1aN9UJl4fkP
+ jMf2xgKGjf0tmmtRAzbqPSVH1Zn+uU4dyZyHH0zO4L1OemdxyhWAxcMx6tMjmP1m
+ bCnkE6g1JDLnBft0tLo26NztKXaLyd3Dj44YR2ES1DCzw2rGb/AstSDSuP8IaZOh
+ EpzI6NcXNO3EQkukY27qe+Oa9x9qbyKZrn7Zf526wHg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=OdI3mT
+ 4nMejbMpZ4hAkqACsHiXaPqAYoek1WZFxJpho=; b=iqWwaHAlgLB7xEiK3dvDEt
+ JFg9n3eHG55FOQ/GcnXBVeBQh87z34IZc4JYe7y9IlnPj9jgXi1Q8rzSa8Qx162z
+ LYi15XHr+a69ARRqJHZSg13SIe1qkFKgInrnKN2R3aBASCkqMX49GdQuL3MAtsRY
+ DtunjgioMlRrtU4u213JDZkCnbVggEO9Ze740JQIalA6Z9iK65ns6UMKJy+YiRPa
+ afuhL+/KF1YK8d9ouwjPfysCTw/5d9UWVCRZU19/sAg7HzUqRkWJauIgXPmp8SjC
+ 6b7jybGBKZLLjfJ3Rm5Bia5f5N05cMl//4ZXycKYasN4eNzaAuxlZSkb7ofYDl1Q
+ ==
+X-ME-Sender: <xms:NW2GYLtu85wtpsF8KF7jZmlp4jTzdlTw_pSauQztMGDS_l00LdAmbA>
+ <xme:NW2GYMdDfA9RF2UZz88ePNDuBGdNoXaODlHrB9P2SXE0InfXr-mi9COi0BhM1xJOH
+ YBbH_dVz6fLL07sprI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvddujedguddvudcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+ enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+ mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+ htthgvrhhnpeejuddvhfekkefhtdegiefhledutdevtdfhkedtleefjefgleduhfetudev
+ jeehhfenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkphepledtrd
+ ekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
+ fhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:NW2GYOz9oUGvY4RVlLOc3zW2z_6JX9Ax-Nuw3zQvD_Ta5UTSCJ4BQw>
+ <xmx:NW2GYKORjn70z-ucxeZvY7M3CDODFFzlKLNGl3Lziz8wZKnaiq4trg>
+ <xmx:NW2GYL84FNKCAb5jEWC62UuqWb6QprPIhSoF87yqZ6GQVDzeeIsYEg>
+ <xmx:Nm2GYGnB3YxH1GMqrNK7i-HMHslbA2Mb53IimoBZw_o_eJ2U1S1WYg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 385001080066;
+ Mon, 26 Apr 2021 03:35:17 -0400 (EDT)
+Date: Mon, 26 Apr 2021 09:35:15 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: Alex Deucher <alexdeucher@gmail.com>
+Message-ID: <20210426073515.5lxw64eota7usaq4@gilmour>
+References: <20210422163329.dvbuwre3akwdmzjt@gilmour>
+ <CADnq5_O39XAV+EF=CeKGK3UEG6E_6Gt_goW6u1+5siC5ROtz4Q@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210423092009.45fb4567@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH] vfio/gvt: fix DRM_I915_GVT dependency on
- VFIO_MDEV
+In-Reply-To: <CADnq5_O39XAV+EF=CeKGK3UEG6E_6Gt_goW6u1+5siC5ROtz4Q@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,109 +79,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: Arnd Bergmann <arnd@kernel.org>, Cornelia Huck <cohuck@redhat.com>,
- dri-devel@lists.freedesktop.org, Arnd Bergmann <arnd@arndb.de>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
- Andrew Morton <akpm@linux-foundation.org>
-Content-Type: multipart/mixed; boundary="===============1148778142=="
+Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0265719261=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---===============1148778142==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="HSHpc5A+GJc9BHcd"
+--===============0265719261==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="r5fddzlgqdb46266"
 Content-Disposition: inline
 
 
---HSHpc5A+GJc9BHcd
+--r5fddzlgqdb46266
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On 2021.04.23 09:20:09 -0600, Alex Williamson wrote:
-> On Fri, 23 Apr 2021 09:07:09 -0300
-> Jason Gunthorpe <jgg@ziepe.ca> wrote:
+Hi Alex,
+
+On Thu, Apr 22, 2021 at 12:40:10PM -0400, Alex Deucher wrote:
+> On Thu, Apr 22, 2021 at 12:33 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > Hi Dave, Daniel,
+> >
+> > Here's this week drm-misc-next-fixes PR, for the next merge window
+> >
 >=20
-> > On Fri, Apr 23, 2021 at 11:54:26AM +0800, Zhenyu Wang wrote:
-> > > On 2021.04.22 10:58:10 -0300, Jason Gunthorpe wrote: =20
-> > > > On Thu, Apr 22, 2021 at 03:35:33PM +0200, Arnd Bergmann wrote: =20
-> > > > > From: Arnd Bergmann <arnd@arndb.de>
-> > > > >=20
-> > > > > The Kconfig dependency is incomplete since DRM_I915_GVT is a 'boo=
-l'
-> > > > > symbol that depends on the 'tristate' VFIO_MDEV. This allows a
-> > > > > configuration with VFIO_MDEV=3Dm, DRM_I915_GVT=3Dy and DRM_I915=
-=3Dy that
-> > > > > causes a link failure:
-> > > > >=20
-> > > > > x86_64-linux-ld: drivers/gpu/drm/i915/gvt/gvt.o: in function `ava=
-ilable_instances_show':
-> > > > > gvt.c:(.text+0x67a): undefined reference to `mtype_get_parent_dev'
-> > > > > x86_64-linux-ld: gvt.c:(.text+0x6a5): undefined reference to `mty=
-pe_get_type_group_id'
-> > > > > x86_64-linux-ld: drivers/gpu/drm/i915/gvt/gvt.o: in function `des=
-cription_show':
-> > > > > gvt.c:(.text+0x76e): undefined reference to `mtype_get_parent_dev'
-> > > > > x86_64-linux-ld: gvt.c:(.text+0x799): undefined reference to `mty=
-pe_get_type_group_id'
-> > > > >=20
-> > > > > Clarify the dependency by specifically disallowing the broken
-> > > > > configuration. If VFIO_MDEV is built-in, it will work, but if
-> > > > > VFIO_MDEV=3Dm, the i915 driver cannot be built-in here.
-> > > > >=20
-> > > > > Fixes: 07e543f4f9d1 ("vfio/gvt: Make DRM_I915_GVT depend on VFIO_=
-MDEV")
-> > > > > Fixes: 9169cff168ff ("vfio/mdev: Correct the function signatures =
-for the mdev_type_attributes")
-> > > > > Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> > > > >  drivers/gpu/drm/i915/Kconfig | 2 +-
-> > > > >  1 file changed, 1 insertion(+), 1 deletion(-) =20
-> > > >=20
-> > > > Oh kconfig stuff like this makes my head hurt, thanks for finding it
-> > > >=20
-> > > > I also can't see an alternative to this ugly thing, besides having =
-the
-> > > > i915 guys properly modularize this code someday
-> > > >=20
-> > > > Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
-> > > >  =20
-> > >=20
-> > > I don't really want this mess to propagate further. We should move
-> > > mdev related stuff to kvmgt module instead, so not pretend any more to
-> > > possibly use that for other hypervisor..
-> > >=20
-> > > Sorry that I didn't realize this issue when Jason proposed this. Let
-> > > me do the left cleanup. =20
-> >=20
-> > It would be good, but Alex should still take this patch for the
-> > upcoming merge window, you can revert it when you do all the cleanups
->=20
-> I can include it, but I'll wait for confirmation from Zhenyu.  Thanks,
->=20
+> Can we also cherry-pick this patch:
+> https://cgit.freedesktop.org/drm/drm-misc/commit/?id=3Dd510c88cfbb294d2b1=
+e2d0b71576e9b79d0e2e83
+> It should have really gone into drm-misc-next-fixes rather than
+> drm-misc-next, but I misjudged the timing.
 
-I'm ok with this, future cleanup fixes would still go through i915 pull,
-it only lefts for some tests, will send that for next kernel.
+Yeah, just cherry-pick it, I'll keep sending PR during the merge window :)
 
-Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+Maxime
 
-thanks
-
---HSHpc5A+GJc9BHcd
+--r5fddzlgqdb46266
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYITgxwAKCRCxBBozTXgY
-J2T7AJ9yDlnQ6y9aVF3WKqEHYjs1IkyqqgCeNScoYKrtNTN0zqHTDzyDwpsQZZ4=
-=gRew
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYIZtMgAKCRDj7w1vZxhR
+xbUiAQDhhuAKN0P7lzbziyqYqMmqiG2uyNI4NWL2l794nzy3AAD+MrvGQSDY861W
+574SZxHUwFTaz5EiyAs5icoYz4G3hgY=
+=rEV2
 -----END PGP SIGNATURE-----
 
---HSHpc5A+GJc9BHcd--
+--r5fddzlgqdb46266--
 
---===============1148778142==
+--===============0265719261==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -165,4 +142,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1148778142==--
+--===============0265719261==--
