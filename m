@@ -1,37 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC62E36B4EE
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 16:31:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60FEF36B533
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 16:48:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0CDB6E201;
-	Mon, 26 Apr 2021 14:31:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 884E689F19;
+	Mon, 26 Apr 2021 14:48:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1223 seconds by postgrey-1.36 at gabe;
- Mon, 26 Apr 2021 14:31:51 UTC
-Received: from smtp2.uni-freiburg.de (smtpi.uni-freiburg.de [132.230.2.212])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A7FC6E15F
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 14:31:51 +0000 (UTC)
-Delivery-date: Mon, 26 Apr 2021 16:31:51 +0200
-Received: from fe2.uni-freiburg.de ([132.230.2.222] helo=uni-freiburg.de) port
- 37808 by smtp2.uni-freiburg.de with esmtp ( Exim )
- id 1lb1xO-0001HC-39
- for intel-gfx@lists.freedesktop.org; Mon, 26 Apr 2021 16:11:26 +0200
-Received: from [132.230.8.113] (account simon.rettberg@rz.uni-freiburg.de HELO
- dellnichtsogutkiste)
- by mail.uni-freiburg.de (CommuniGate Pro SMTP 6.3.6f)
- with ESMTPSA id 68592614; Mon, 26 Apr 2021 16:11:25 +0200
-Date: Mon, 26 Apr 2021 16:11:24 +0200
-From: Simon Rettberg <simon.rettberg@rz.uni-freiburg.de>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20210426161124.2b7fd708@dellnichtsogutkiste>
-Organization: Rechenzentrum Uni Freiburg
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0832E89F19
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 14:48:01 +0000 (UTC)
+IronPort-SDR: 6SjffhFjs8/W9CM4IA86lgfjOaLkf1f9+iMfY98JATgFsmDs1mSLqUSWgx+4EShk6Do8LuojNo
+ 4wVc9EYX28Fw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="196456898"
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="196456898"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2021 07:48:00 -0700
+IronPort-SDR: yaxmcx8tkjeujpknIXWMD2LCE+L5/ztn+DPWVhyxzY1P/0ksh0KsWxLNhZ1yEtdJZszFf8+pbt
+ VlkG67hwSpPg==
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="422683786"
+Received: from unknown (HELO localhost) ([10.252.50.197])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2021 07:47:58 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mario =?utf-8?Q?H=C3=BCttel?= <mario.huettel@gmx.net>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <042237f49ed1fd719126a3407d7c909e49addbea.camel@gmx.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <042237f49ed1fd719126a3407d7c909e49addbea.camel@gmx.net>
+Date: Mon, 26 Apr 2021 17:47:55 +0300
+Message-ID: <87a6pl5ch0.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Disable HiZ Raw Stall Optimization
- on broken gen7
+Subject: Re: [Intel-gfx] BUG in i915/i915_pci.c, commit fe0f1e3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,49 +47,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: development@manuel-bentele.de
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When resetting CACHE_MODE registers, don't enable HiZ Raw Stall
-Optimization on Ivybridge GT1 and Baytrail, as it causes severe glitches
-when rendering any kind of 3D accelerated content.
-This optimization is disabled on these platforms by default according to
-official documentation from 01.org.
-
-Fixes: ef99a60ffd9b ("drm/i915/gt: Clear CACHE_MODE prior to clearing residuals")
-Fixes: 520d05a77b28 ("drm/i915/gt: Clear CACHE_MODE prior to clearing residuals")
-BugLink: https://gitlab.freedesktop.org/drm/intel/-/issues/3081
-BugLink: https://gitlab.freedesktop.org/drm/intel/-/issues/3404
-BugLink: https://gitlab.freedesktop.org/drm/intel/-/issues/3071
-Reviewed-By: Manuel Bentele <development@manuel-bentele.de>
-Signed-off-by: Simon Rettberg <simon.rettberg@rz.uni-freiburg.de>
----
- drivers/gpu/drm/i915/gt/gen7_renderclear.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/gen7_renderclear.c b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
-index de575fdb0..21f08e538 100644
---- a/drivers/gpu/drm/i915/gt/gen7_renderclear.c
-+++ b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
-@@ -397,7 +397,10 @@ static void emit_batch(struct i915_vma * const vma,
- 	gen7_emit_pipeline_invalidate(&cmds);
- 	batch_add(&cmds, MI_LOAD_REGISTER_IMM(2));
- 	batch_add(&cmds, i915_mmio_reg_offset(CACHE_MODE_0_GEN7));
--	batch_add(&cmds, 0xffff0000);
-+	batch_add(&cmds, 0xffff0000 |
-+			((IS_IVB_GT1(i915) || IS_VALLEYVIEW(i915)) ?
-+			 HIZ_RAW_STALL_OPT_DISABLE :
-+			 0));
- 	batch_add(&cmds, i915_mmio_reg_offset(CACHE_MODE_1));
- 	batch_add(&cmds, 0xffff0000 | PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
- 	gen7_emit_pipeline_invalidate(&cmds);
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gU2F0LCAxMyBNYXIgMjAyMSwgTWFyaW8gSMO8dHRlbCA8bWFyaW8uaHVldHRlbEBnbXgubmV0
+PiB3cm90ZToKPiBIZWxsbywKPgo+IEkgd2FudCB0byByZXBvcnQgYSBidWcuIEkgaGF2ZSBhIFBD
+IHdpdGggSW50ZWwgaTctNjcwMEsgcHJvY2Vzc29yICh3aXRoCj4gaW50ZWdyYXRlZCBncmFwaGlj
+cykgYW5kIGFuIEFzUm9jayBGYXRhbDF0eSBaMTcwIEdhbWluZyBLNiBtYWluYm9hcmQuIEkKPiB1
+c2UgdGhlIENQVSdzIGludGVncmF0ZWQgZ3JhcGhpY3MuCj4gTXkgc3lzdGVtIGlzIEFyY2hsaW51
+eCB3aXRoIEtlcm5lbCB2NS4xMS42Lgo+Cj4gVXNpbmcgdGhpcyBzZXR1cCwgbXkgUEMgd29ya3Mg
+bm9ybWFsbHkuIEhvd2V2ZXIsIHdoZW4gSSBzaHV0IGl0IGRvd24sCj4gdGhlIHBvd2VyIGlzIG5v
+dCBjdXQuIEZhbnMgYW5kIExFRHMga2VlcCBzcGlubmluZy4gSSBjb3VsZG4ndCBkZXRlY3QKPiBh
+bnkgb3RoZXIgcHJvYmxlbSB3aGVuIHNodXR0aW5nIGRvd24uIERyaXZlcyBldGMuIHN0b3AgYXMg
+ZXhwZWN0ZWQgYW5kCj4gdGhlIHZpZGVvIGlzIGJsYW5rLiBFdmVuIGFmdGVyIHdhaXRpbmcgc2V2
+ZXJhbCBob3VycywgdGhlIHN5c3RlbQo+IGRvZXNuJ3QgcG93ZXIgZG93bi4KPiBJIGhhdmVuJ3Qg
+eWV0IGZvdW5kIGFueSBvdGhlciBwZW9wbGUgb24gdGhlIGludGVybmV0IHRoYXQgaGF2ZSB0aGUg
+c2FtZQo+IGJ1Zy4KPgo+IEkgdXNlZCBnaXQgYmlzZWN0IHRvIGZpbmQgdGhlIGNvbW1pdCB0aGF0
+IGNhdXNlcyB0aGlzIGJlaGF2aW9yIG9uIG15Cj4gbWFjaGluZS4gVGhlIHJlc3VsdCBpczogZmUw
+ZjFlM2JmZGZlYjUzZTE4ZjEyMDZhZWE0ZjQwYjliZDFmMjkxYyBpcyB0aGUKPiBmaXJzdCBiYWQg
+Y29tbWl0Lgo+Cj4gSSBob3BlIHRoaXMgaXMgdGhlIGNvcnJlY3QgbWFpbGluZyBsaXN0IGZvciB0
+aGlzIGlzc3VlLgo+Cj4gTGV0IG1lIGtub3cgaWYgeW91IG5lZWQgbW9yZSBpbmZvcm1hdGlvbiBv
+ciBzb21lb25lIHRvIHRlc3QgaXQuCgpUaGlzIHNlZW1zIHRvIGhhdmUgZmFsbGVuIGJldHdlZW4g
+dGhlIGNyYWNrcywgYXBvbG9naWVzLiBJcyB0aGlzIHN0aWxsCmFuIGlzc3VlIHdpdGggbmV3ZXIg
+a2VybmVscz8gSWYgeWVzLCBwbGVhc2UgZmlsZSBhIGJ1ZyBhdCBbMV0uCgpCUiwKSmFuaS4KCgpb
+MV0gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC93aWtpcy9Ib3ctdG8t
+ZmlsZS1pOTE1LWJ1Z3MKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhp
+Y3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
