@@ -2,42 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D7D536B676
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 18:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B80236B681
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 18:09:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D69186E169;
-	Mon, 26 Apr 2021 16:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C039A6E848;
+	Mon, 26 Apr 2021 16:09:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8BC6E169
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 16:05:45 +0000 (UTC)
-IronPort-SDR: kSCi80RCzFJDzJOajX0/hR9UJPJjDWnSSVLQ/bP5ZfED5byimfIFxqypjZyjFE+JnTSWMsWNy2
- kU7EOR+9Tyag==
-X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="193171911"
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="193171911"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2021 09:05:44 -0700
-IronPort-SDR: MIhOrLGLZszdQerFRinPltdfl+IYoN+ZjzX72A0CZR8XMwedKMg5BfIeLQ8TjGL+LZWDxh7PXG
- ib5Qh66qfbtw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="429444625"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga008.jf.intel.com with SMTP; 26 Apr 2021 09:05:41 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 26 Apr 2021 19:05:40 +0300
-Date: Mon, 26 Apr 2021 19:05:40 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Simon Rettberg <simon.rettberg@rz.uni-freiburg.de>
-Message-ID: <YIbk1BS1dgkPSu5i@intel.com>
-References: <20210426161124.2b7fd708@dellnichtsogutkiste>
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com
+ [IPv6:2a00:1450:4864:20::42b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91DE36E848
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 16:09:03 +0000 (UTC)
+Received: by mail-wr1-x42b.google.com with SMTP id r7so44476301wrm.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 09:09:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=E+mHAInWmbrQo9QXL3PF/VKL1eGyA5adx/6sf3p1QaA=;
+ b=V+mpC32PGYVK3yBkROS6PzN2GW3EPmguv/gaAlCzFifycLDkftldUQWeweKJo/1wv7
+ PXE6CFCzsXmUU3JFJu7T6e6XhhOam9XpeKdmX//VJXsMoiEsSNelIANTeC7fT450bvQH
+ /Pp9oRHOEeL1ehJyaaTF0eUSmvtXr3yl+9n6c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=E+mHAInWmbrQo9QXL3PF/VKL1eGyA5adx/6sf3p1QaA=;
+ b=UlD9fv7Ud+cFh6o7MHsSx5gbFQyzb6eGPBRZJibHkEwu2RBDUBUMFo98jPXwmc0iqt
+ IY7zLllwq8txc40Kj0elZU/0GWTSkDS5XWr8GcQqPtqBM3NfkMBDK6R+wcQRL6EFkCg9
+ LXaNLw0puizvFR+xBmWH64Ee19O1fKhOd+nuAWX+kpjYpyPVQ3XOvKZJUXGwtaXlSSQm
+ xL+iXrovv1pmZWPEVlBYwMVeJNmVS8yrnP7+TK8cZ4UUkWSRheOCBaJ5kW/e4R5V/caB
+ WGYo5liYhiVye5vHyaWfn2X4gk3kCOInL41DzS09EjXMO5SjKhHr5jGs6u8/RBHuPBQJ
+ UwVw==
+X-Gm-Message-State: AOAM530yev8+c99I+V2DZoIfW5PdnkuSHeDi/yistPWMJ/gpOqFDeHPF
+ McI1e33Fa5ljkwBVG6CGLOtBThsdm9pZUQ==
+X-Google-Smtp-Source: ABdhPJzXDkZyI1QsusCP/9E2gcMwH99XR+Gk+JAuZtxeG2VLOsmtkG8ZLfZZknZqIbcjwCfpNWq5Ig==
+X-Received: by 2002:adf:fdca:: with SMTP id i10mr23820626wrs.55.1619453342274; 
+ Mon, 26 Apr 2021 09:09:02 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id c18sm566244wrn.92.2021.04.26.09.09.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 26 Apr 2021 09:09:01 -0700 (PDT)
+Date: Mon, 26 Apr 2021 18:08:59 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <YIblm7BAj6fnQiq+@phenom.ffwll.local>
+References: <20210421153401.13847-1-ville.syrjala@linux.intel.com>
+ <20210421153401.13847-5-ville.syrjala@linux.intel.com>
+ <YIFGt+I8LMckYyVG@phenom.ffwll.local> <YIF1+mhbWO7UD/yN@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210426161124.2b7fd708@dellnichtsogutkiste>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Disable HiZ Raw Stall
- Optimization on broken gen7
+In-Reply-To: <YIF1+mhbWO7UD/yN@intel.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Rewrite CL/CTG L-shaped
+ memory detection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,61 +68,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, development@manuel-bentele.de
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 26, 2021 at 04:11:24PM +0200, Simon Rettberg wrote:
-> When resetting CACHE_MODE registers, don't enable HiZ Raw Stall
-> Optimization on Ivybridge GT1 and Baytrail, as it causes severe glitches
-> when rendering any kind of 3D accelerated content.
-> This optimization is disabled on these platforms by default according to
-> official documentation from 01.org.
+On Thu, Apr 22, 2021 at 04:11:22PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, Apr 22, 2021 at 11:49:43AM +0200, Daniel Vetter wrote:
+> > On Wed, Apr 21, 2021 at 06:34:01PM +0300, Ville Syrjala wrote:
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > =
+
+> > > Currently we try to detect a symmetric memory configurations
+> > > using a magic DCC2_MODIFIED_ENHANCED_DISABLE bit. That bit is
+> > > either only set on a very specific subset of machines or it
+> > > just does not exist (it's not mentioned in any public chipset
+> > > datasheets I've found). As it happens my CL/CTG machines never
+> > > set said bit, even if I populate the channels with identical
+> > > sticks.
+> > > =
+
+> > > So let's do the L-shaped memory detection the same way as the
+> > > desktop variants, ie. just look at the DRAM rank boundary
+> > > registers to see if both channels have an identical size.
+> > > =
+
+> > > With this my CL/CTG no longer claim L-shaped memory when I use
+> > > identical sticks. Also tested with non-matching sticks just to
+> > > make sure the L-shaped memory is still properly detected.
+> > > =
+
+> > > And for completeness let's update the debugfs code to dump
+> > > the correct set of registers on each platform.
+> > > =
+
+> > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
+
+> > Did you check this with the swapping igt? I have some vague memories of
+> > bug reports where somehow the machine was acting like it's L-shaped mem=
+ory
+> > despite that banks were populated equally. I've iirc tried all kinds of
+> > tricks to figure it out, all to absolutely no avail.
 > =
 
-> Fixes: ef99a60ffd9b ("drm/i915/gt: Clear CACHE_MODE prior to clearing res=
-iduals")
-> Fixes: 520d05a77b28 ("drm/i915/gt: Clear CACHE_MODE prior to clearing res=
-iduals")
-> BugLink: https://gitlab.freedesktop.org/drm/intel/-/issues/3081
-> BugLink: https://gitlab.freedesktop.org/drm/intel/-/issues/3404
-> BugLink: https://gitlab.freedesktop.org/drm/intel/-/issues/3071
-> Reviewed-By: Manuel Bentele <development@manuel-bentele.de>
-> Signed-off-by: Simon Rettberg <simon.rettberg@rz.uni-freiburg.de>
-> ---
->  drivers/gpu/drm/i915/gt/gen7_renderclear.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> Did you have a specific test in mind? I ran a bunch of things
+> that seemed swizzle related. All passed just fine.
+
+gem_tiled_swapping should be the one. It tries to cycle your entire system
+memory through tiled buffers into swap and out of it.
+-Daniel
+
 > =
 
-> diff --git a/drivers/gpu/drm/i915/gt/gen7_renderclear.c b/drivers/gpu/drm=
-/i915/gt/gen7_renderclear.c
-> index de575fdb0..21f08e538 100644
-> --- a/drivers/gpu/drm/i915/gt/gen7_renderclear.c
-> +++ b/drivers/gpu/drm/i915/gt/gen7_renderclear.c
-> @@ -397,7 +397,10 @@ static void emit_batch(struct i915_vma * const vma,
->  	gen7_emit_pipeline_invalidate(&cmds);
->  	batch_add(&cmds, MI_LOAD_REGISTER_IMM(2));
->  	batch_add(&cmds, i915_mmio_reg_offset(CACHE_MODE_0_GEN7));
-> -	batch_add(&cmds, 0xffff0000);
-> +	batch_add(&cmds, 0xffff0000 |
-> +			((IS_IVB_GT1(i915) || IS_VALLEYVIEW(i915)) ?
-> +			 HIZ_RAW_STALL_OPT_DISABLE :
-> +			 0));
->  	batch_add(&cmds, i915_mmio_reg_offset(CACHE_MODE_1));
->  	batch_add(&cmds, 0xffff0000 | PIXEL_SUBSPAN_COLLECT_OPT_DISABLE);
->  	gen7_emit_pipeline_invalidate(&cmds);
+> Chris did have similar concerns and suggested we should have
+> better tests. I guess what I should try to do is some selftests
+> which make sure we test both high and low physical addresses
+> and check the swizzle pattern is as expected. But haven't =
 
-CACHE_MODE* should be context saved. So there seems to be some kind
-of more fundemental bug in this code if it manages to clobber
-application contexts. Looking at the code it at least tries to
-switch to the kernel context before emitting the w/a batch.
+> found the time to do that yet.
+> =
+
+> > =
+
+> > tbh I'd just not touch this, not really worth it.
+> =
+
+> It's totally worth it to get gen4 machines working again.
+> =
+
+> =
+
+> > -Daniel
+> > > ---
+> > >  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 15 ++++++++-------
+> > >  drivers/gpu/drm/i915/i915_debugfs.c          | 16 ++++++++++++----
+> > >  drivers/gpu/drm/i915/i915_reg.h              |  4 ++++
+> > >  3 files changed, 24 insertions(+), 11 deletions(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/g=
+pu/drm/i915/gt/intel_ggtt_fencing.c
+> > > index 0fa6c38893f7..754f20768de5 100644
+> > > --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> > > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> > > @@ -693,14 +693,15 @@ static void detect_bit_6_swizzle(struct i915_gg=
+tt *ggtt)
+> > >  				swizzle_x =3D I915_BIT_6_SWIZZLE_9_10_17;
+> > >  				swizzle_y =3D I915_BIT_6_SWIZZLE_9_17;
+> > >  			}
+> > > -			break;
+> > > -		}
+> > >  =
+
+> > > -		/* check for L-shaped memory aka modified enhanced addressing */
+> > > -		if (IS_GEN(i915, 4) &&
+> > > -		    !(intel_uncore_read(uncore, DCC2) & DCC2_MODIFIED_ENHANCED_DIS=
+ABLE)) {
+> > > -			swizzle_x =3D I915_BIT_6_SWIZZLE_UNKNOWN;
+> > > -			swizzle_y =3D I915_BIT_6_SWIZZLE_UNKNOWN;
+> > > +			/* check for L-shaped memory aka modified enhanced addressing */
+> > > +			if (IS_GEN(i915, 4) &&
+> > > +			    intel_uncore_read16(uncore, C0DRB3_CL) !=3D
+> > > +			    intel_uncore_read16(uncore, C1DRB3_CL)) {
+> > > +				swizzle_x =3D I915_BIT_6_SWIZZLE_UNKNOWN;
+> > > +				swizzle_y =3D I915_BIT_6_SWIZZLE_UNKNOWN;
+> > > +			}
+> > > +			break;
+> > >  		}
+> > >  =
+
+> > >  		if (dcc =3D=3D 0xffffffff) {
+> > > diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i9=
+15/i915_debugfs.c
+> > > index 8dd374691102..6de11ffcde38 100644
+> > > --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> > > +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> > > @@ -621,10 +621,18 @@ static int i915_swizzle_info(struct seq_file *m=
+, void *data)
+> > >  			   intel_uncore_read(uncore, DCC));
+> > >  		seq_printf(m, "DDC2 =3D 0x%08x\n",
+> > >  			   intel_uncore_read(uncore, DCC2));
+> > > -		seq_printf(m, "C0DRB3 =3D 0x%04x\n",
+> > > -			   intel_uncore_read16(uncore, C0DRB3_BW));
+> > > -		seq_printf(m, "C1DRB3 =3D 0x%04x\n",
+> > > -			   intel_uncore_read16(uncore, C1DRB3_BW));
+> > > +
+> > > +		if (IS_G45(dev_priv) || IS_I965G(dev_priv) || IS_G33(dev_priv)) {
+> > > +			seq_printf(m, "C0DRB3 =3D 0x%04x\n",
+> > > +				   intel_uncore_read16(uncore, C0DRB3_BW));
+> > > +			seq_printf(m, "C1DRB3 =3D 0x%04x\n",
+> > > +				   intel_uncore_read16(uncore, C1DRB3_BW));
+> > > +		} else if (IS_GEN(dev_priv, 4)) {
+> > > +			seq_printf(m, "C0DRB3 =3D 0x%04x\n",
+> > > +				   intel_uncore_read16(uncore, C0DRB3_CL));
+> > > +			seq_printf(m, "C1DRB3 =3D 0x%04x\n",
+> > > +				   intel_uncore_read16(uncore, C1DRB3_CL));
+> > > +		}
+> > >  	} else if (INTEL_GEN(dev_priv) >=3D 6) {
+> > >  		seq_printf(m, "MAD_DIMM_C0 =3D 0x%08x\n",
+> > >  			   intel_uncore_read(uncore, MAD_DIMM_C0));
+> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i=
+915_reg.h
+> > > index 0587b2455ea1..055c258179a1 100644
+> > > --- a/drivers/gpu/drm/i915/i915_reg.h
+> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
+> > > @@ -3790,6 +3790,10 @@ static inline bool i915_mmio_reg_valid(i915_re=
+g_t reg)
+> > >  #define C0DRB3_BW		_MMIO(MCHBAR_MIRROR_BASE + 0x206)
+> > >  #define C1DRB3_BW		_MMIO(MCHBAR_MIRROR_BASE + 0x606)
+> > >  =
+
+> > > +/* 965gm,ctg DRAM channel configuration */
+> > > +#define C0DRB3_CL		_MMIO(MCHBAR_MIRROR_BASE + 0x1206)
+> > > +#define C1DRB3_CL		_MMIO(MCHBAR_MIRROR_BASE + 0x1306)
+> > > +
+> > >  /* snb MCH registers for reading the DRAM channel configuration */
+> > >  #define MAD_DIMM_C0			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5004)
+> > >  #define MAD_DIMM_C1			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5008)
+> > > -- =
+
+> > > 2.26.3
+> > > =
+
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > =
+
+> > -- =
+
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 
 -- =
 
-Ville Syrj=E4l=E4
-Intel
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
