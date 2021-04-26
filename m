@@ -2,44 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C39EB36B718
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 18:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B9D936B74F
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 18:56:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2F486E844;
-	Mon, 26 Apr 2021 16:42:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FAFA6E84F;
+	Mon, 26 Apr 2021 16:56:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF6B6E084;
- Mon, 26 Apr 2021 16:42:24 +0000 (UTC)
-IronPort-SDR: KQyRRnYjZtL+QuWNacBpr6YjlUVAl8qffDLr3dbbxu2KJskhRfmCfPAF+jiTVSg0MSRtSsfegM
- +KWJ4UapFG5g==
-X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="195919411"
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="195919411"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2021 09:42:23 -0700
-IronPort-SDR: 30BwvzU3X47wuIA3iJWIOVTKrl8qQdOWaKItp0G29pZ7KoZmkPsRDeM2hUNcbA43WZwLUCeiC/
- klX22Mi5YdkQ==
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="429457856"
-Received: from rgunnin1-mobl.ger.corp.intel.com (HELO [10.252.12.201])
- ([10.252.12.201])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2021 09:42:22 -0700
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210426101821.42147-1-matthew.auld@intel.com>
- <20210426101821.42147-4-matthew.auld@intel.com>
- <b3c9bfe6-2e05-67e3-becf-982e9fae4b8e@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <5d1db760-9783-d014-380b-7c57700ced81@intel.com>
-Date: Mon, 26 Apr 2021 17:42:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAC6A6E84F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 16:56:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1619456169;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=wblMniRG+tXdb/s6n04oEssn2lw4/r02yCdxqqbqlzs=;
+ b=TRhgnVxJvvd99cpU+6W5DY36ZpMtmH8hLYhJkC6SV1zozzvdWO4mDk3GoQ+0QNLzGn3F2z
+ 7vc++tUzEN92NpFCAXuCMTIQTNoy2vrqvBdUKiE6GvR5oXgt5v+OM823/p4XEv72hq0sAr
+ tEAqLRhXAq4xYY/hb4vYL7pWNVcbJJI=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-407-s49uKpPGNyKpsWJAWsiPLw-1; Mon, 26 Apr 2021 12:56:04 -0400
+X-MC-Unique: s49uKpPGNyKpsWJAWsiPLw-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
+ [10.5.11.16])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4BE5118BE167;
+ Mon, 26 Apr 2021 16:55:57 +0000 (UTC)
+Received: from redhat.com (ovpn-113-225.phx2.redhat.com [10.3.113.225])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 694853697;
+ Mon, 26 Apr 2021 16:55:56 +0000 (UTC)
+Date: Mon, 26 Apr 2021 10:55:55 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Message-ID: <20210426105555.3cad2599@redhat.com>
+In-Reply-To: <20210426094143.4031527-2-zhenyuw@linux.intel.com>
+References: <20210426094143.4031527-1-zhenyuw@linux.intel.com>
+ <20210426094143.4031527-2-zhenyuw@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <b3c9bfe6-2e05-67e3-becf-982e9fae4b8e@linux.intel.com>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/gtt/dgfx: place the PD in LMEM
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=alex.williamson@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH 2/2] Revert "vfio/gvt: Make DRM_I915_GVT
+ depend on VFIO_MDEV"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,89 +63,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Arnd Bergmann <arnd@kernel.org>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjYvMDQvMjAyMSAxNjoyMiwgVHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4gCj4gT24gMjYvMDQv
-MjAyMSAxMToxOCwgTWF0dGhldyBBdWxkIHdyb3RlOgo+PiBJdCdzIGEgcmVxdWlyZW1lbnQgdGhh
-dCBmb3IgZGdmeCB3ZSBwbGFjZSBhbGwgdGhlIHBhZ2luZyBzdHJ1Y3R1cmVzIGluCj4+IGRldmlj
-ZSBsb2NhbC1tZW1vcnkuCj4+Cj4+IHYyOiB1c2UgaTkxNV9jb2hlcmVudF9tYXBfdHlwZSgpCj4+
-Cj4+IFNpZ25lZC1vZmYtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4K
-Pj4gQ2M6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBsaW51eC5pbnRlbC5jb20+Cj4+
-IC0tLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9nZW44X3BwZ3R0LmMgfMKgIDUgKysr
-Ky0KPj4gwqAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3R0LmPCoCB8IDIxICsrKysr
-KysrKysrKysrKysrKystLQo+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndHQu
-aMKgIHzCoCAxICsKPj4gwqAgMyBmaWxlcyBjaGFuZ2VkLCAyNCBpbnNlcnRpb25zKCspLCAzIGRl
-bGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvZ2Vu
-OF9wcGd0dC5jIAo+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2dlbjhfcHBndHQuYwo+PiBp
-bmRleCBmODM0OTY4MzZmMGYuLjExZmI1ZGY0NWEwZiAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvZ2VuOF9wcGd0dC5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L2dlbjhfcHBndHQuYwo+PiBAQCAtNzEyLDcgKzcxMiwxMCBAQCBzdHJ1Y3QgaTkxNV9wcGd0
-dCAqZ2VuOF9wcGd0dF9jcmVhdGUoc3RydWN0IAo+PiBpbnRlbF9ndCAqZ3QpCj4+IMKgwqDCoMKg
-wqDCoCAqLwo+PiDCoMKgwqDCoMKgIHBwZ3R0LT52bS5oYXNfcmVhZF9vbmx5ID0gIUlTX0dFTl9S
-QU5HRShndC0+aTkxNSwgMTEsIDEyKTsKPj4gLcKgwqDCoCBwcGd0dC0+dm0uYWxsb2NfcHRfZG1h
-ID0gYWxsb2NfcHRfZG1hOwo+PiArwqDCoMKgIGlmIChIQVNfTE1FTShndC0+aTkxNSkpCj4+ICvC
-oMKgwqDCoMKgwqDCoCBwcGd0dC0+dm0uYWxsb2NfcHRfZG1hID0gYWxsb2NfcHRfbG1lbTsKPj4g
-K8KgwqDCoCBlbHNlCj4+ICvCoMKgwqDCoMKgwqDCoCBwcGd0dC0+dm0uYWxsb2NfcHRfZG1hID0g
-YWxsb2NfcHRfZG1hOwo+PiDCoMKgwqDCoMKgIGVyciA9IGdlbjhfaW5pdF9zY3JhdGNoKCZwcGd0
-dC0+dm0pOwo+PiDCoMKgwqDCoMKgIGlmIChlcnIpCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC9pbnRlbF9ndHQuYyAKPj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
-bnRlbF9ndHQuYwo+PiBpbmRleCBkMzg2Yjg5ZTI3NTguLmJiZTViMDllNTllYyAxMDA2NDQKPj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3R0LmMKPj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3R0LmMKPj4gQEAgLTcsMTAgKzcsMjMgQEAKPj4gwqAg
-I2luY2x1ZGUgPGxpbnV4L2ZhdWx0LWluamVjdC5oPgo+PiArI2luY2x1ZGUgImdlbS9pOTE1X2dl
-bV9sbWVtLmgiCj4+IMKgICNpbmNsdWRlICJpOTE1X3RyYWNlLmgiCj4+IMKgICNpbmNsdWRlICJp
-bnRlbF9ndC5oIgo+PiDCoCAjaW5jbHVkZSAiaW50ZWxfZ3R0LmgiCj4+ICtzdHJ1Y3QgZHJtX2k5
-MTVfZ2VtX29iamVjdCAqYWxsb2NfcHRfbG1lbShzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlIAo+
-PiAqdm0sIGludCBzeikKPj4gK3sKPj4gK8KgwqDCoCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVj
-dCAqb2JqOwo+PiArCj4+ICvCoMKgwqAgb2JqID0gaTkxNV9nZW1fb2JqZWN0X2NyZWF0ZV9sbWVt
-KHZtLT5pOTE1LCBzeiwgMCk7Cj4+ICsKPj4gK8KgwqDCoCAvKiBlbnN1cmUgYWxsIGRtYSBvYmpl
-Y3RzIGhhdmUgdGhlIHNhbWUgcmVzZXJ2YXRpb24gY2xhc3MgKi8KPiAKPiBDbGFzcyBvciBhY3R1
-YWwgb2JqZWN0PyBBbmQgY291bGQgdGhlIGNvbW1lbnQgc2F5IHdoeSB0aGlzIGlzIGltcG9ydGFu
-dD8KCkl0J3MgdGhlIGRtYS1yZXN2IG9iamVjdC4gVGhlIHBhZ2luZyBzdHJ1Y3R1cmVzIGZvciB0
-aGlzIHZtIHNoYXJlIHRoZSAKc2FtZSBkbWEtcmVzdiBvYmplY3QgdW5kZXJuZWF0aCwgd2l0aCB0
-aGUgaWRlYSB0aGF0IG9uZSBvYmplY3RfbG9jaygpIAp3aWxsIGxvY2sgdGhlbSBhbGwgYXQgb25j
-ZS4gSSBjYW4gdHJ5IHRvIGltcHJvdmUgdGhlIGNvbW1lbnQuCgo+IAo+IFJlZ2FyZHMsCj4gCj4g
-VHZydGtvCj4gCj4+ICvCoMKgwqAgaWYgKCFJU19FUlIob2JqKSkKPj4gK8KgwqDCoMKgwqDCoMKg
-IG9iai0+YmFzZS5yZXN2ID0gJnZtLT5yZXN2Owo+PiArwqDCoMKgIHJldHVybiBvYmo7Cj4+ICt9
-Cj4+ICsKPj4gwqAgc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKmFsbG9jX3B0X2RtYShzdHJ1
-Y3QgaTkxNV9hZGRyZXNzX3NwYWNlIAo+PiAqdm0sIGludCBzeikKPj4gwqAgewo+PiDCoMKgwqDC
-oMKgIHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmo7Cj4+IEBAIC0yNyw5ICs0MCwxMSBA
-QCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqYWxsb2NfcHRfZG1hKHN0cnVjdCAKPj4gaTkx
-NV9hZGRyZXNzX3NwYWNlICp2bSwgaW50IHN6KQo+PiDCoCBpbnQgbWFwX3B0X2RtYShzdHJ1Y3Qg
-aTkxNV9hZGRyZXNzX3NwYWNlICp2bSwgc3RydWN0IAo+PiBkcm1faTkxNV9nZW1fb2JqZWN0ICpv
-YmopCj4+IMKgIHsKPj4gK8KgwqDCoCBlbnVtIGk5MTVfbWFwX3R5cGUgdHlwZTsKPj4gwqDCoMKg
-wqDCoCB2b2lkICp2YWRkcjsKPj4gLcKgwqDCoCB2YWRkciA9IGk5MTVfZ2VtX29iamVjdF9waW5f
-bWFwX3VubG9ja2VkKG9iaiwgSTkxNV9NQVBfV0IpOwo+PiArwqDCoMKgIHR5cGUgPSBpOTE1X2Nv
-aGVyZW50X21hcF90eXBlKHZtLT5pOTE1LCBvYmosIHRydWUpOwo+PiArwqDCoMKgIHZhZGRyID0g
-aTkxNV9nZW1fb2JqZWN0X3Bpbl9tYXBfdW5sb2NrZWQob2JqLCB0eXBlKTsKPj4gwqDCoMKgwqDC
-oCBpZiAoSVNfRVJSKHZhZGRyKSkKPj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiBQVFJfRVJS
-KHZhZGRyKTsKPj4gQEAgLTM5LDkgKzU0LDExIEBAIGludCBtYXBfcHRfZG1hKHN0cnVjdCBpOTE1
-X2FkZHJlc3Nfc3BhY2UgKnZtLCAKPj4gc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikK
-Pj4gwqAgaW50IG1hcF9wdF9kbWFfbG9ja2VkKHN0cnVjdCBpOTE1X2FkZHJlc3Nfc3BhY2UgKnZt
-LCBzdHJ1Y3QgCj4+IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaikKPj4gwqAgewo+PiArwqDCoMKg
-IGVudW0gaTkxNV9tYXBfdHlwZSB0eXBlOwo+PiDCoMKgwqDCoMKgIHZvaWQgKnZhZGRyOwo+PiAt
-wqDCoMKgIHZhZGRyID0gaTkxNV9nZW1fb2JqZWN0X3Bpbl9tYXAob2JqLCBJOTE1X01BUF9XQik7
-Cj4+ICvCoMKgwqAgdHlwZSA9IGk5MTVfY29oZXJlbnRfbWFwX3R5cGUodm0tPmk5MTUsIG9iaiwg
-dHJ1ZSk7Cj4+ICvCoMKgwqAgdmFkZHIgPSBpOTE1X2dlbV9vYmplY3RfcGluX21hcChvYmosIHR5
-cGUpOwo+PiDCoMKgwqDCoMKgIGlmIChJU19FUlIodmFkZHIpKQo+PiDCoMKgwqDCoMKgwqDCoMKg
-wqAgcmV0dXJuIFBUUl9FUlIodmFkZHIpOwo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ3QvaW50ZWxfZ3R0LmggCj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxf
-Z3R0LmgKPj4gaW5kZXggNDBlNDg2NzA0NTU4Li40NGNlMjdjNTE2MzEgMTAwNjQ0Cj4+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0dC5oCj4+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2d0L2ludGVsX2d0dC5oCj4+IEBAIC01MjcsNiArNTI3LDcgQEAgaW50IHNldHVw
-X3NjcmF0Y2hfcGFnZShzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlIAo+PiAqdm0pOwo+PiDCoCB2
-b2lkIGZyZWVfc2NyYXRjaChzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICp2bSk7Cj4+IMKgIHN0
-cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICphbGxvY19wdF9kbWEoc3RydWN0IGk5MTVfYWRkcmVz
-c19zcGFjZSAKPj4gKnZtLCBpbnQgc3opOwo+PiArc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Qg
-KmFsbG9jX3B0X2xtZW0oc3RydWN0IGk5MTVfYWRkcmVzc19zcGFjZSAKPj4gKnZtLCBpbnQgc3op
-Owo+PiDCoCBzdHJ1Y3QgaTkxNV9wYWdlX3RhYmxlICphbGxvY19wdChzdHJ1Y3QgaTkxNV9hZGRy
-ZXNzX3NwYWNlICp2bSk7Cj4+IMKgIHN0cnVjdCBpOTE1X3BhZ2VfZGlyZWN0b3J5ICphbGxvY19w
-ZChzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICp2bSk7Cj4+IMKgIHN0cnVjdCBpOTE1X3BhZ2Vf
-ZGlyZWN0b3J5ICpfX2FsbG9jX3BkKGludCBucGRlKTsKPj4KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Mon, 26 Apr 2021 17:41:43 +0800
+Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+
+> This reverts commit 07e543f4f9d116d6b4240644191dee6388ef4a85.
+
+07e543f4f9d1 ("vfio/gvt: Make DRM_I915_GVT depend on VFIO_MDEV")
+
+> With all mdev handing moved to kvmgt module, only kvmgt should depend
+> on VFIO_MDEV. So revert this one.
+> 
+> Cc: Arnd Bergmann <arnd@kernel.org>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Alex Williamson <alex.williamson@redhat.com>
+> Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/Kconfig | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 8f15bfb5faac..93f4d059fc89 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -102,7 +102,6 @@ config DRM_I915_GVT
+>  	bool "Enable Intel GVT-g graphics virtualization host support"
+>  	depends on DRM_I915
+>  	depends on 64BIT
+> -	depends on VFIO_MDEV
+>  	default n
+>  	help
+>  	  Choose this option if you want to enable Intel GVT-g graphics
+
+I take it that this retracts your ack from
+https://lore.kernel.org/dri-devel/20210425032356.GH1551@zhen-hp.sh.intel.com/
+I'll drop it from consideration for pushing through my tree unless
+indicated otherwise.  Thanks,
+
+Alex
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
