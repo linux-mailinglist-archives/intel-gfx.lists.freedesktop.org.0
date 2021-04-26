@@ -1,53 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C335F36B20F
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 13:05:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E789436B214
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 13:10:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC8BB6E7D3;
-	Mon, 26 Apr 2021 11:05:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7320B6E7E6;
+	Mon, 26 Apr 2021 11:10:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from youngberry.canonical.com (youngberry.canonical.com
  [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DAA96E7D3
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 11:05:53 +0000 (UTC)
-Received: from mail-lf1-f72.google.com ([209.85.167.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC7866E7E6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 11:10:22 +0000 (UTC)
+Received: from mail-lf1-f71.google.com ([209.85.167.71])
  by youngberry.canonical.com with esmtps
  (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <kai.heng.feng@canonical.com>) id 1laz3n-0001Uy-UR
- for intel-gfx@lists.freedesktop.org; Mon, 26 Apr 2021 11:05:52 +0000
-Received: by mail-lf1-f72.google.com with SMTP id
- p24-20020a19f1180000b02901b9843b363bso851092lfh.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 04:05:51 -0700 (PDT)
+ (envelope-from <kai.heng.feng@canonical.com>) id 1laz89-0002BW-Hg
+ for intel-gfx@lists.freedesktop.org; Mon, 26 Apr 2021 11:10:21 +0000
+Received: by mail-lf1-f71.google.com with SMTP id
+ q4-20020a19df440000b02901bbaf9c6220so185893lfj.6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 26 Apr 2021 04:10:21 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=uSdIne0P3XxiGWsPvnMn103IhlOt1MaDeE2xLUgtwOM=;
- b=f0vXiUsspXV3SePJN86lU0MWmASNqsHrisiUXNzu1FDVGh31Qc+0D59/6SM+NyxwPy
- +7atD8xk8e4fwcR4PE1OebfPUhXSixvaPKDsDD5ts1nXVN0a7Rq/yUdxC/1vj3LJ9N5H
- Usu2cgU2zuP1hhkkRa30Hmje8ZDhSM21MvnbFJFHnNfo1E2SzQ+A1jMV/WxzK/zUiLng
- KdnYgcGp+e9ek0B6c5bKz0FvRfbtxWCpVKCCkTB4HaXzHwSvf3kns23ShLcjFyFC49ff
- w+Q9SMu9LKHM+OYGsEEPjH5t1ZKg5hpn7U1Bwe2AuTZBcB6owOtas7qhskqE4ksrkIFX
- Qwmg==
-X-Gm-Message-State: AOAM531Nld/Na+Z0rJwA74x0snT1V2Kl082LBgJrIYlB6BrrroRUjar8
- nGpL8UUb1WsEmKIySr7l1BGhD1JoMlDsXOo22WVUXAjVUHdQ3tmEnP11wN9s6BArP/g+c1w3EKM
- toyyvZ5aqjI90lC7Qi5H69WgmveBs80IScM/NgWRGr3rLGNnrtdGHu/MHOmLShA==
-X-Received: by 2002:a2e:6c12:: with SMTP id h18mr7403147ljc.116.1619435151367; 
- Mon, 26 Apr 2021 04:05:51 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxKm8uTcJJwyPsqFA/g0YeTz89KMffFaaDxkemlMhwcoFOOo6fzI1ciWfvxGWHqQziisQEHNoc0SlIfTeEXftE=
-X-Received: by 2002:a2e:6c12:: with SMTP id h18mr7403116ljc.116.1619435151033; 
- Mon, 26 Apr 2021 04:05:51 -0700 (PDT)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=xiDFWZDIwVOWhDf8JIJtdA0vE7Qg4WZABGwJr1mglyw=;
+ b=LlXXNCwe7QIpFyUt0Ld5i7Y30if6skiF+zim5Rb0jdZPr/6FKRuXxYy+zxXYIRmgBl
+ svmc0WU1h9qYUwcUdNSL6sopuWBlJ2JdxaD17Ie6oVz54toCr+cYlgl3+Yv0HXDqO5+2
+ NzGWB8LZ4VJXrQWkFGiC6Mr5fvHRiN2ak/Tk1sI9IFYCVJaXLDV6/UuPNA/9qf+ouVdB
+ JTSxJK6aQYQpiiItwqz6D988F8o3c9yZ0TKKRGcOFYfOYAg9h3wJjanf0GO+RejiZ8TH
+ afgNgzPztJI4x4AIFCt+A5i42XnMjK2MYqswW/mmE3Pe8+qd+3Ojp18x/f/Y9n91COT7
+ A5tQ==
+X-Gm-Message-State: AOAM5333Orifnd2GHwm1lDCSwSVWfg525Pk4MpViVFOjYSgvSHC6ALs8
+ D8WGEoSYPVWqRbZFe2VP6Pvm4yyo67SofUHtt69DqW9me38Q0K0/VmJvS/psH5nDRcqulnnNp95
+ G5oBSTtBR/t5rK4OnGgVcP1Or8BdQR2bzmKcbpl2x83pzclZpYbgEsyWPg8G7HA==
+X-Received: by 2002:ac2:4546:: with SMTP id j6mr307083lfm.290.1619435419417;
+ Mon, 26 Apr 2021 04:10:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz2HuOs7hsFQWQ6DpfjtFI/lGLMD7R4zW0qG+mZ1QM088Bg0L5h31Ae1gJG1TKdvDNzcal21ao43zQupwhBKww=
+X-Received: by 2002:ac2:4546:: with SMTP id j6mr307063lfm.290.1619435419143;
+ Mon, 26 Apr 2021 04:10:19 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210423044700.247359-1-kai.heng.feng@canonical.com>
- <87fszh78tf.fsf@intel.com>
-In-Reply-To: <87fszh78tf.fsf@intel.com>
+ <YILAc6EhoWWhENq8@intel.com>
+In-Reply-To: <YILAc6EhoWWhENq8@intel.com>
 From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Date: Mon, 26 Apr 2021 19:05:39 +0800
-Message-ID: <CAAd53p5=LqxKZGTARpvVCC2hcZP4aQPqjD6WszTDuQfv2owhfA@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
+Date: Mon, 26 Apr 2021 19:10:06 +0800
+Message-ID: <CAAd53p72Y8Rda0Hk3WReLKPGJe8rwc5X-Pi5cyCpRPAm8sVEzg@mail.gmail.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Invoke BXT _DSM to enable MUX
  on HP Workstation laptops
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -64,188 +64,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: David Airlie <airlied@linux.ie>,
  intel-gfx <intel-gfx@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- Takashi Iwai <tiwai@suse.de>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ open list <linux-kernel@vger.kernel.org>, Takashi Iwai <tiwai@suse.de>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 23, 2021 at 3:35 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Fri, 23 Apr 2021, Kai-Heng Feng <kai.heng.feng@canonical.com> wrote:
-> > On HP Fury G7 Workstations, graphics output is re-routed from Intel GFX
-> > to discrete GFX after S3. This is not desirable, because userspace will
-> > treat connected display as a new one, losing display settings.
-> >
-> > The expected behavior is to let discrete GFX drives all external
-> > displays.
-> >
-> > The platform in question uses ACPI method \_SB.PCI0.HGME to enable MUX.
-> > The method is inside the BXT _DSM, so add the _DSM and call it
-> > accordingly.
-> >
-> > I also tested some MUX-less and iGPU only laptops with the BXT _DSM, no
-> > regression was found.
->
-> I don't know whether this change is the right thing to do. I don't know
-> if it isn't either. Need to look into it.
->
-> However, I have some general comments, inline.
->
-> >
-> > v2:
-> >  - Forward declare struct pci_dev.
-> >
-> > Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3113
-> > References: https://lore.kernel.org/intel-gfx/1460040732-31417-4-git-send-email-animesh.manna@intel.com/
-> > Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_acpi.c | 17 +++++++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_acpi.h |  3 +++
-> >  drivers/gpu/drm/i915/i915_drv.c           |  5 +++++
-> >  3 files changed, 25 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > index 833d0c1be4f1..c7b57c22dce3 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > @@ -14,11 +14,16 @@
-> >
-> >  #define INTEL_DSM_REVISION_ID 1 /* For Calpella anyway... */
-> >  #define INTEL_DSM_FN_PLATFORM_MUX_INFO 1 /* No args */
-> > +#define INTEL_DSM_FN_PLATFORM_BXT_MUX_INFO 0 /* No args */
-> >
-> >  static const guid_t intel_dsm_guid =
-> >       GUID_INIT(0x7ed873d3, 0xc2d0, 0x4e4f,
-> >                 0xa8, 0x54, 0x0f, 0x13, 0x17, 0xb0, 0x1c, 0x2c);
-> >
-> > +static const guid_t intel_bxt_dsm_guid =
-> > +     GUID_INIT(0x3e5b41c6, 0xeb1d, 0x4260,
-> > +               0x9d, 0x15, 0xc7, 0x1f, 0xba, 0xda, 0xe4, 0x14);
-> > +
-> >  static char *intel_dsm_port_name(u8 id)
-> >  {
-> >       switch (id) {
-> > @@ -176,6 +181,18 @@ void intel_unregister_dsm_handler(void)
-> >  {
-> >  }
-> >
-> > +void intel_bxt_dsm_detect(struct pci_dev *pdev)
->
-> Please leave out bxt from the naming and make the argument struct
-> drm_i915_private *i915. Mmh, then it conflicts with existing
-> intel_dsm_detect(), maybe we need a more descriptive name altogether?
-
-If there's no oppose, I'll change it to intel_hp_dsm_detect() in v2.
-So far, I've only seen that DSM in HP platform.
-
->
-> > +{
-> > +     acpi_handle dhandle;
-> > +
-> > +     dhandle = ACPI_HANDLE(&pdev->dev);
-> > +     if (!dhandle)
-> > +             return;
-> > +
-> > +     acpi_evaluate_dsm(dhandle, &intel_bxt_dsm_guid, INTEL_DSM_REVISION_ID,
-> > +                       INTEL_DSM_FN_PLATFORM_BXT_MUX_INFO, NULL);
-> > +}
-> > +
-> >  /*
-> >   * ACPI Specification, Revision 5.0, Appendix B.3.2 _DOD (Enumerate All Devices
-> >   * Attached to the Display Adapter).
-> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.h b/drivers/gpu/drm/i915/display/intel_acpi.h
-> > index e8b068661d22..d2d560d63bb3 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_acpi.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.h
-> > @@ -6,15 +6,18 @@
-> >  #ifndef __INTEL_ACPI_H__
-> >  #define __INTEL_ACPI_H__
-> >
-> > +struct pci_dev;
-> >  struct drm_i915_private;
-> >
-> >  #ifdef CONFIG_ACPI
-> >  void intel_register_dsm_handler(void);
-> >  void intel_unregister_dsm_handler(void);
-> > +void intel_bxt_dsm_detect(struct pci_dev *pdev);
-> >  void intel_acpi_device_id_update(struct drm_i915_private *i915);
-> >  #else
-> >  static inline void intel_register_dsm_handler(void) { return; }
-> >  static inline void intel_unregister_dsm_handler(void) { return; }
-> > +static inline void intel_bxt_dsm_detect(struct pci_dev *pdev) { return; }
-> >  static inline
-> >  void intel_acpi_device_id_update(struct drm_i915_private *i915) { return; }
-> >  #endif /* CONFIG_ACPI */
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> > index 785dcf20c77b..57b12068aab4 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.c
-> > +++ b/drivers/gpu/drm/i915/i915_drv.c
-> > @@ -853,6 +853,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> >       if (ret)
-> >               goto out_cleanup_gem;
-> >
-> > +     intel_bxt_dsm_detect(pdev);
-> > +
->
-> The call sites in i915_driver_probe() and i915_drm_resume() seem rather
-> arbitrary.
-
-Yes, because what it really does is flipping a bit in one GPIO, the
-EC/hardware will change the MUX based on the GPIO bit.
-So it doesn't have any ordering needs to be enforced.
-
->
-> Long term, I'd like most or all of the display stuff like this placed in
-> appropriate intel_modeset_*() functions in display/intel_display.c. I'm
-> not keen on having new and very specific calls in the higher levels.
->
-> At probe, feels like the routing should happen earlier, before output
-> setup? In intel_modeset_init_nogem()?
-
-OK, I'll put that in intel_modeset_init_hw() to cover both probe and
-resume routines.
-
-Kai-Heng
-
-
->
-> >       i915_driver_register(i915);
-> >
-> >       enable_rpm_wakeref_asserts(&i915->runtime_pm);
-> > @@ -1215,6 +1217,7 @@ int i915_suspend_switcheroo(struct drm_i915_private *i915, pm_message_t state)
-> >  static int i915_drm_resume(struct drm_device *dev)
-> >  {
-> >       struct drm_i915_private *dev_priv = to_i915(dev);
-> > +     struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
-> >       int ret;
-> >
-> >       disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-> > @@ -1271,6 +1274,8 @@ static int i915_drm_resume(struct drm_device *dev)
-> >
-> >       intel_gvt_resume(dev_priv);
-> >
-> > +     intel_bxt_dsm_detect(pdev);
-> > +
->
-> In intel_display_resume() perhaps?
->
-> (Yay for confusing naming wrt display and modeset, it's a
-> work-in-progress.)
->
-> BR,
-> Jani.
->
->
-> >       enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-> >
-> >       return 0;
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCBBcHIgMjMsIDIwMjEgYXQgODo0MSBQTSBWaWxsZSBTeXJqw6Rsw6QKPHZpbGxlLnN5
+cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IE9uIEZyaSwgQXByIDIzLCAyMDIxIGF0
+IDEyOjQ2OjU0UE0gKzA4MDAsIEthaS1IZW5nIEZlbmcgd3JvdGU6Cj4gPiBPbiBIUCBGdXJ5IEc3
+IFdvcmtzdGF0aW9ucywgZ3JhcGhpY3Mgb3V0cHV0IGlzIHJlLXJvdXRlZCBmcm9tIEludGVsIEdG
+WAo+ID4gdG8gZGlzY3JldGUgR0ZYIGFmdGVyIFMzLiBUaGlzIGlzIG5vdCBkZXNpcmFibGUsIGJl
+Y2F1c2UgdXNlcnNwYWNlIHdpbGwKPiA+IHRyZWF0IGNvbm5lY3RlZCBkaXNwbGF5IGFzIGEgbmV3
+IG9uZSwgbG9zaW5nIGRpc3BsYXkgc2V0dGluZ3MuCj4gPgo+ID4gVGhlIGV4cGVjdGVkIGJlaGF2
+aW9yIGlzIHRvIGxldCBkaXNjcmV0ZSBHRlggZHJpdmVzIGFsbCBleHRlcm5hbAo+ID4gZGlzcGxh
+eXMuCj4gPgo+ID4gVGhlIHBsYXRmb3JtIGluIHF1ZXN0aW9uIHVzZXMgQUNQSSBtZXRob2QgXF9T
+Qi5QQ0kwLkhHTUUgdG8gZW5hYmxlIE1VWC4KPiA+IFRoZSBtZXRob2QgaXMgaW5zaWRlIHRoZSBC
+WFQgX0RTTSwgc28gYWRkIHRoZSBfRFNNIGFuZCBjYWxsIGl0Cj4gPiBhY2NvcmRpbmdseS4KPiA+
+Cj4gPiBJIGFsc28gdGVzdGVkIHNvbWUgTVVYLWxlc3MgYW5kIGlHUFUgb25seSBsYXB0b3BzIHdp
+dGggdGhlIEJYVCBfRFNNLCBubwo+ID4gcmVncmVzc2lvbiB3YXMgZm91bmQuCj4gPgo+ID4gdjI6
+Cj4gPiAgLSBGb3J3YXJkIGRlY2xhcmUgc3RydWN0IHBjaV9kZXYuCj4gPgo+ID4gQ2xvc2VzOiBo
+dHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzMxMTMKPiA+
+IFJlZmVyZW5jZXM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2ludGVsLWdmeC8xNDYwMDQwNzMy
+LTMxNDE3LTQtZ2l0LXNlbmQtZW1haWwtYW5pbWVzaC5tYW5uYUBpbnRlbC5jb20vCj4gPiBTaWdu
+ZWQtb2ZmLWJ5OiBLYWktSGVuZyBGZW5nIDxrYWkuaGVuZy5mZW5nQGNhbm9uaWNhbC5jb20+Cj4g
+PiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2FjcGkuYyB8IDE3
+ICsrKysrKysrKysrKysrKysrCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9hY3BpLmggfCAgMyArKysKPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jICAg
+ICAgICAgICB8ICA1ICsrKysrCj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCAyNSBpbnNlcnRpb25zKCsp
+Cj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+YWNwaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hY3BpLmMKPiA+IGlu
+ZGV4IDgzM2QwYzFiZTRmMS4uYzdiNTdjMjJkY2UzIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hY3BpLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWNwaS5jCj4gPiBAQCAtMTQsMTEgKzE0LDE2IEBACj4gPgo+
+ID4gICNkZWZpbmUgSU5URUxfRFNNX1JFVklTSU9OX0lEIDEgLyogRm9yIENhbHBlbGxhIGFueXdh
+eS4uLiAqLwo+ID4gICNkZWZpbmUgSU5URUxfRFNNX0ZOX1BMQVRGT1JNX01VWF9JTkZPIDEgLyog
+Tm8gYXJncyAqLwo+ID4gKyNkZWZpbmUgSU5URUxfRFNNX0ZOX1BMQVRGT1JNX0JYVF9NVVhfSU5G
+TyAwIC8qIE5vIGFyZ3MgKi8KPiA+Cj4gPiAgc3RhdGljIGNvbnN0IGd1aWRfdCBpbnRlbF9kc21f
+Z3VpZCA9Cj4gPiAgICAgICBHVUlEX0lOSVQoMHg3ZWQ4NzNkMywgMHhjMmQwLCAweDRlNGYsCj4g
+PiAgICAgICAgICAgICAgICAgMHhhOCwgMHg1NCwgMHgwZiwgMHgxMywgMHgxNywgMHhiMCwgMHgx
+YywgMHgyYyk7Cj4gPgo+ID4gK3N0YXRpYyBjb25zdCBndWlkX3QgaW50ZWxfYnh0X2RzbV9ndWlk
+ID0KPiA+ICsgICAgIEdVSURfSU5JVCgweDNlNWI0MWM2LCAweGViMWQsIDB4NDI2MCwKPiA+ICsg
+ICAgICAgICAgICAgICAweDlkLCAweDE1LCAweGM3LCAweDFmLCAweGJhLCAweGRhLCAweGU0LCAw
+eDE0KTsKPiA+ICsKPgo+IEkgdGhpbmsgdGhpcyBkc20gaXMganVzdCBzdXBwb3NlZCB0byBiZSBt
+b3JlIG9yIGxlc3MgYW4KPiBhbHRlcm5hdGl2ZSB0byB0aGUgb3ByZWdpb24gU0NJIHN0dWZmLiBX
+aHkgdGhlcmUgYXJlIHR3bwo+IHdheXMgdG8gZG8gdGhlIHNhbWUgdGhpbmdzIEkgaGF2ZSBubyBp
+ZGVhLiBUaGUgb3ByZWdpb24KPiBzcGVjIGRvZXMgbm90IHRlbGwgdXMgc3VjaCBtdW5kYW5lIGRl
+dGFpbHMuCgpSaWdodCBub3cgSSB0aGluayBpdCdzIEhQIHNwZWNpZmljIGFuZCBmcm9tIHdoYXQg
+SSBjYW4gc2VlIGl0IGRvZXNuJ3QKdG91Y2ggb3ByZWdpb24uCgo+Cj4gSXQncyBhbHNvIG5vdCBk
+b2N1bWVudGVkIHRvIGRvIGFueXRoaW5nIGV4Y2VwdCBsaXN0IHRoZQo+IHN1cHBvcnRlZCBmdW5j
+dGlvbnM6Cj4gIkdldCBCSU9TIERhdGEgRnVuY3Rpb25zIFN1cHBvcnRlZCDigJxGdW5jdGlvbiAj
+MCIKPiAgVGhpcyBmdW5jdGlvbiBjYW4gYmUgY2FsbGVkIHRvIGRpc2NvdmVyIHdoaWNoIOKAnF9E
+U03igJ0gRnVuY3Rpb25zIGFyZQo+ICBzdXBwb3J0ZWQuIEl0IG1heSBvbmx5IHJldHVybiBzdWNj
+ZXNzIGlmIHRoZSByZXR1cm4gdmFsdWUgYWNjdXJhdGVseQo+ICBsaXN0cyBzdXBwb3J0ZWQgRnVu
+Y3Rpb25zLiIKPgo+IEJ1dCB3aGF0IHlvdSdyZSBhcHBhcmVudGx5IHNheWluZyBpcyB0aGF0IGNh
+bGxpbmcgdGhpcyBjaGFuZ2VzCj4gdGhlIGJlaGF2aW91ciBvZiB0aGUgc3lzdGVtIHNvbWVob3c/
+IFRoYXQgaXMgdHJvdWJsaW5nLgoKSXQgZmxpcHMgYSBiaXQgaW4gQklPUy1yZXNlcnZlZCBJbnRl
+bCBHUElPLCBhbmQgRUMvaGFyZHdhcmUgd2lsbApjaGFuZ2UgdGhlIE1VWCBiYXNlZCBvbiB0aGUg
+R1BJTyBiaXQuCgpXZSBjYW4gYWRkIGEgRE1JIGNoZWNrIHRvIG1hdGNoICJIUCIgdG8gbWluaW1p
+emUgdGhlIHBvdGVudGlhbApyZWdyZXNzaW9uIGZhY3Rvci4KCkthaS1IZW5nCgo+Cj4gLS0KPiBW
+aWxsZSBTeXJqw6Rsw6QKPiBJbnRlbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZngK
