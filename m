@@ -1,45 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F7636B9D2
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 21:12:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67E1A36B9E3
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 21:18:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3252890F0;
-	Mon, 26 Apr 2021 19:12:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE5C26E86F;
+	Mon, 26 Apr 2021 19:18:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 521ED6E86D;
- Mon, 26 Apr 2021 19:12:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
- :Reply-To:Content-ID:Content-Description;
- bh=pnKzdbOPzZSQYjwLj7WyZcZU9565NzRjpCFzu8GyTfw=; b=efMIkUs4aQeMT6UgS/WiHk1rrm
- +Qum2LujncESNM6fWI0GSAjQEp5UKm6AeQvgUDWTQfUboADhwgeGDfWYXU+ed0VFA0uPPg3mpLBkM
- N+BaPeGVyYvQ96rsY4wsvvR31Fxp+/UxI7HcQAyjODSidR25QGGSBCsTDm5dmge+2kMjeulUAiybm
- aWmi3sTfFHXxXJjwJ103LyXflCYgNZh8aAxmBkKnLFugg+JHQePuprcFp2Dwonv52GhzpdZPbBxRF
- RjOkgC3/5v368BDxCR1UBmkitmRsP3pAjxxLNdWZAppE14a9APyYQz6J7oKc9voE2hBqnJJZ87pkS
- KgX/kwnA==;
-Received: from [2601:1c0:6280:3f0::df68]
- by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
- id 1lb6e7-005zpv-1Y; Mon, 26 Apr 2021 19:11:55 +0000
-To: Jason Gunthorpe <jgg@nvidia.com>
-References: <1-v1-d88406ed308e+418-vfio3_jgg@nvidia.com>
- <d058f9ad-7ce1-c1b3-19cd-5f625ef4c670@infradead.org>
- <20210426182625.GY1370958@nvidia.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <79ee612e-4830-2d04-c7eb-e2a51dd7e8e7@infradead.org>
-Date: Mon, 26 Apr 2021 12:11:44 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 94FD06E86E;
+ Mon, 26 Apr 2021 19:18:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8A994A8832;
+ Mon, 26 Apr 2021 19:18:48 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210426182625.GY1370958@nvidia.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 01/12] vfio/mdev: Remove
- CONFIG_VFIO_MDEV_DEVICE
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Simon Rettberg" <simon.rettberg@rz.uni-freiburg.de>
+Date: Mon, 26 Apr 2021 19:18:48 -0000
+Message-ID: <161946472856.18666.9756887538901931290@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210426161124.2b7fd708@dellnichtsogutkiste>
+In-Reply-To: <20210426161124.2b7fd708@dellnichtsogutkiste>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Disable_HiZ_Raw_Stall_Optimization_on_broken_gen7?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,50 +38,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Kirti Wankhede <kwankhede@nvidia.com>, Leon Romanovsky <leonro@nvidia.com>,
- Christoph Hellwig <hch@lst.de>, linux-s390@vger.kernel.org, "Raj,
- Ashok" <ashok.raj@intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Tarun Gupta <targupta@nvidia.com>, intel-gfx@lists.freedesktop.org,
- Max Gurtovoy <mgurtovoy@nvidia.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Dan Williams <dan.j.williams@intel.com>,
- Tony Krowiak <akrowiak@linux.ibm.com>, Pierre Morel <pmorel@linux.ibm.com>,
- Cornelia Huck <cohuck@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1648415648=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4/26/21 11:26 AM, Jason Gunthorpe wrote:
-> On Fri, Apr 23, 2021 at 05:08:10PM -0700, Randy Dunlap wrote:
->> On 4/23/21 4:02 PM, Jason Gunthorpe wrote:
->>> @@ -171,7 +171,7 @@ config SAMPLE_VFIO_MDEV_MDPY_FB
->>>  
->>>  config SAMPLE_VFIO_MDEV_MBOCHS
->>>  	tristate "Build VFIO mdpy example mediated device sample code -- loadable modules only"
->>
->> You can drop the ending of the prompt string.
-> 
-> Hum, I see this whole sample kconfig file is filled with this '&& m'
-> pattern, I wonder if there is a reason?
-> 
-> I think I will put the '&& m' back, I thought it was some kconfig
-> misunderstanding as it is very strange to see a naked '&& M'.
+--===============1648415648==
+Content-Type: multipart/alternative;
+ boundary="===============9179519378169946459=="
 
-It just limits those kconfig items to being =m or not set,
-i.e., even though they are tristate, setting to =y is not
-allowed.  I guess the thinking is that samples don't need to
-reside in system memory for very long. However, if you want
-this one to be capable of =y, like your patch, you can still
-remove the end of the prompt string.
+--===============9179519378169946459==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
--- 
-~Randy
+== Series Details ==
+
+Series: drm/i915/gt: Disable HiZ Raw Stall Optimization on broken gen7
+URL   : https://patchwork.freedesktop.org/series/89502/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10011 -> Patchwork_19993
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19993/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19993 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19993/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-kefka:       [INCOMPLETE][2] ([i915#2782] / [i915#2940]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10011/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19993/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1222]: https://gitlab.freedesktop.org/drm/intel/issues/1222
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+
+
+Participating hosts (40 -> 38)
+------------------------------
+
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10011 -> Patchwork_19993
+
+  CI-20190529: 20190529
+  CI_DRM_10011: 7e185a8c4fb2230187a8637e3885be57123cb7eb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6075: ccf602c569257291045415ff504a6d2460986c28 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19993: 9afaf45bfe53ea60a3915232c0d0712263e34ba5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9afaf45bfe53 drm/i915/gt: Disable HiZ Raw Stall Optimization on broken gen7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19993/index.html
+
+--===============9179519378169946459==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Disable HiZ Raw Stall Optimization on broken gen7</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89502/">https://patchwork.freedesktop.org/series/89502/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19993/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19993/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10011 -&gt; Patchwork_19993</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19993/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19993 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_basic@query-info:<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19993/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@execlists:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10011/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19993/fi-bsw-kefka/igt@i915_selftest@live@execlists.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (40 -&gt; 38)</h2>
+<p>Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10011 -&gt; Patchwork_19993</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10011: 7e185a8c4fb2230187a8637e3885be57123cb7eb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6075: ccf602c569257291045415ff504a6d2460986c28 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19993: 9afaf45bfe53ea60a3915232c0d0712263e34ba5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>9afaf45bfe53 drm/i915/gt: Disable HiZ Raw Stall Optimization on broken gen7</p>
+
+</body>
+</html>
+
+--===============9179519378169946459==--
+
+--===============1648415648==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1648415648==--
