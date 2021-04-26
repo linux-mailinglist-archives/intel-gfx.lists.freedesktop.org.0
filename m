@@ -2,126 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE5ED36B065
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 11:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E99836B06C
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 11:21:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 024086E15E;
-	Mon, 26 Apr 2021 09:19:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF826E194;
+	Mon, 26 Apr 2021 09:21:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2089.outbound.protection.outlook.com [40.107.94.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70BFF6ECB6;
- Fri, 23 Apr 2021 23:03:15 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bAKg+OISxvtPigQVXMEUCrjqQ6h0hH+AW5n2NbXxmvrfp5o6P3b8td+H3hC03hjY6MkWdH7Za+aAYSA2KTchUSvA28Et4b/Wx7jEeI5k/frMosBmrBB9LnZnuuJrfbxCB+HBEV4tFdsdiACkVSIEWD9kx1k3uTsIjxLdEkAX0cbqk/QFelNDkIVh37e6SCfD4clgPTX7e1eSYEc2sl1iXgHPx4J7F3xtnIukqel3ZwU7TWJZ/uBLljwbcEYOWfyF/HeExH+WwUqPUUDgJaY1q5xKBwOf7G4BGVfqN41Vey8yGwnaSrUtwDRzIZYxVuobV0X+fh2a+lHfCiVwKS4ndQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JlOAWOPj6u/vLNzxzZou3yNuM8Ue5vgBY8bLbTFItKY=;
- b=SP64fznjzR3rA2jSlclvRBUf+sZjjxKVicBX8PrNu48YOjGpDy9RWlmEw4g4+G45Kx2pFZKybylTEi+lCaTpGCL1tvsI0WKqHqI+lzf2x8Ild10spu50pw07mZi2o6pdrFDhxfTmAq7Yttm41gz0E/fYg17nfbAa+2XX5s8cEmRzY9inQYgPNVwj0VctIX594UrIkDEjxXq4ZTk0OnrWT7uC7C7AFZr5DmAu/tNnLr+6qYtWsKKdWCjC7ZpPhVHKnPUGR+Ej1ERTTnnA3fPgBRNbA6jLS5Dn4PA/Jzvjgddj7p3zy38uGHEKiJ2cC+YkG17JEhfkMIXOnmZudUiLOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JlOAWOPj6u/vLNzxzZou3yNuM8Ue5vgBY8bLbTFItKY=;
- b=LoSC9pQPONz/SkwemLSkqDIjYZ66PIc8xNITa6yteGDimvz1NID2ucvlCRiYqUJACGo4uFSsADpakvBq8sszH1eWia1PPqlQT6gVJUpT8c89QsUv8ZkGe0gxIH4CjbCrVrKTMW9ySmbeQhu2SlhBbl34wotA8MkRLlZwYqdXOwnQWNE0KGu0TlDB1bvjj40ktwUYXo++Iws/UIe6P4Dj1/y7GLrNyg8Fh0QrtFiiWMbvRg6OkClxY9oLnAs5Nigrn5zEsNlVMwaNsRJKZ5BWMvnzNBgR+qtl3HJJNiQ8VDnzy6Ib3J90Wa4gZ0NrnCHURnba2CtZFzHKOsi6GEL/Kg==
-Authentication-Results: linux.ie; dkim=none (message not signed)
- header.d=none;linux.ie; dmarc=none action=none header.from=nvidia.com;
-Received: from DM6PR12MB3834.namprd12.prod.outlook.com (2603:10b6:5:14a::12)
- by DM6PR12MB3513.namprd12.prod.outlook.com (2603:10b6:5:18a::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.24; Fri, 23 Apr
- 2021 23:03:14 +0000
-Received: from DM6PR12MB3834.namprd12.prod.outlook.com
- ([fe80::1c62:7fa3:617b:ab87]) by DM6PR12MB3834.namprd12.prod.outlook.com
- ([fe80::1c62:7fa3:617b:ab87%6]) with mapi id 15.20.4065.023; Fri, 23 Apr 2021
- 23:03:14 +0000
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: David Airlie <airlied@linux.ie>, Tony Krowiak <akrowiak@linux.ibm.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Cornelia Huck <cohuck@redhat.com>, Jonathan Corbet <corbet@lwn.net>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- Eric Farman <farman@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, kvm@vger.kernel.org,
- Kirti Wankhede <kwankhede@nvidia.com>, linux-doc@vger.kernel.org,
- linux-s390@vger.kernel.org, Peter Oberparleiter <oberpar@linux.ibm.com>,
- Halil Pasic <pasic@linux.ibm.com>, Pierre Morel <pmorel@linux.ibm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Vineeth Vijayan <vneethv@linux.ibm.com>,
- Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.a.wang@intel.com>
-Date: Fri, 23 Apr 2021 20:03:07 -0300
-Message-Id: <10-v1-d88406ed308e+418-vfio3_jgg@nvidia.com>
-In-Reply-To: <0-v1-d88406ed308e+418-vfio3_jgg@nvidia.com>
-References: 
-X-Originating-IP: [47.55.113.94]
-X-ClientProxiedBy: MN2PR22CA0027.namprd22.prod.outlook.com
- (2603:10b6:208:238::32) To DM6PR12MB3834.namprd12.prod.outlook.com
- (2603:10b6:5:14a::12)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 463796E194;
+ Mon, 26 Apr 2021 09:21:13 +0000 (UTC)
+IronPort-SDR: lIcAbPAMaGFUI2cexdpCrZAiAkhfBAk98nkaHRgDykMrq9qqMSETeflmoT7BpIjXACTNTx8I4b
+ sMV6l2enAu3g==
+X-IronPort-AV: E=McAfee;i="6200,9189,9965"; a="194188331"
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="194188331"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2021 02:21:12 -0700
+IronPort-SDR: XApczgaA7qtn7G0vg5iuSgilz5Ke2hjXLwMIEQMfNuedyHRvysQ2yrW8IB/tJnjSHA0hHlnu7y
+ yy8fUFCEe17Q==
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="429328024"
+Received: from jmwalsh-mobl.amr.corp.intel.com (HELO [10.213.207.212])
+ ([10.213.207.212])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2021 02:21:10 -0700
+To: Matthew Auld <matthew.william.auld@gmail.com>
+References: <20210412090526.30547-1-matthew.auld@intel.com>
+ <20210412090526.30547-12-matthew.auld@intel.com>
+ <7bc2a663-fbc0-6486-341a-7dca980c2440@linux.intel.com>
+ <CAM0jSHNhWcscW9txPDyKActTiTWjzhASJb5xC8XPzHeN+Y18QA@mail.gmail.com>
+ <9aca524c-3710-dfaa-bfec-aef76aee7b26@linux.intel.com>
+ <CAM0jSHN57bwK6f=tH59iAO5R5WpWfZOw56tsjzxVuJf8SkM+vw@mail.gmail.com>
+ <ed521b72-4dd0-2b0f-e313-5fc31c37fae1@linux.intel.com>
+ <55e16b78-d9ee-a0ad-5877-9901cf74669f@intel.com>
+ <5701f034-3da9-55d2-e966-33afb7236b8b@linux.intel.com>
+ <0b1b88db-da62-841d-23cd-7902c9a78b77@intel.com>
+ <7b108dc9-b03c-2f9c-0d44-cb672daec9ae@linux.intel.com>
+ <f0e1ad21-397b-5c32-a368-febfd877f5f3@intel.com>
+ <0be7012c-c889-c5c5-6624-2f63b9daf46b@linux.intel.com>
+ <CAM0jSHMBTFuO8Th6NDQpGhzr9XtP_zczKSjDiD3Q5onV5MLdYA@mail.gmail.com>
+ <CAM0jSHN=08bmcZ+BgmEkZkZu8-1VwzEi_tSgkWv88We5rAm=xw@mail.gmail.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <883dfc43-0fcd-7a3b-5701-d5726eed9992@linux.intel.com>
+Date: Mon, 26 Apr 2021 10:21:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from mlx.ziepe.ca (47.55.113.94) by
- MN2PR22CA0027.namprd22.prod.outlook.com (2603:10b6:208:238::32) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4065.22 via Frontend
- Transport; Fri, 23 Apr 2021 23:03:11 +0000
-Received: from jgg by mlx with local (Exim 4.94)	(envelope-from
- <jgg@nvidia.com>)	id 1la4pK-00CI03-CB; Fri, 23 Apr 2021 20:03:10 -0300
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9474e33c-06c6-46bd-727b-08d906abf7c9
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3513:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR12MB35131997D4D3032AB34F9BD8C2459@DM6PR12MB3513.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: w0qPq+cdByAVM6lVuyMBpSfOyQvLrmaO9rQbbbSgQ0Qf2fkFmlQdR59niN0GRMYITn6102CkS29Bf2gkxd9RCNs42tTfr7u3tvOOHcKPuTCfhkuQ+H1vNWopl46QQ1ocZ7pHCRnqesgRFbvGsUzsmGov9tMdUp/xCHABmP58/kl9V6KTk+SOEagzMNLx+MN+GRrNCoCFaSqd4SGquo+brxI0IWaszfLTh8eHR4JdTV/F1uv+kAzff+mJyO9aTATXtRq/qII0WE4zE22b8Ar4sgXWHg4oZaNBCzy0pr+l033ulR/rIj5uAAPFm0LJeUWzY80l5WW7VyqH3kRiH1SrhFGT+TAme0sR++TOmo6v7rCS+PJpgytHwpM3Km3U2elo4rv8xV9f0GErXbyMJtZ7t80JNvWPPAXbpsSunYYkS2X9eHnilFV7P778U7y6lPfWlYexmh/fh6doTVC6Au2+JcqGalJECR+hM287uqeT6CnR4yuUTZqIavvCE/RnWYJ9X0CCu6HQTfo3pAZl1omv0IsOekEYh8R/0CnJzYJaVQNUGeUdStnH1pcukINASyfyYIvezUzPgnZt6aiz97e+sDO5arudaye/DTGiZf02G5kp1ktmUQ/Ok9H3vB62e+yn0tcc/ZHCmYsfa0bMgpzJSw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3834.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(376002)(396003)(39860400002)(366004)(346002)(136003)(36756003)(66556008)(26005)(66476007)(107886003)(426003)(8936002)(83380400001)(921005)(9786002)(5660300002)(186003)(86362001)(9746002)(54906003)(38100700002)(2616005)(316002)(8676002)(7416002)(2906002)(4326008)(110136005)(66946007)(6666004)(30864003)(478600001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?avqFcyHDisTFM1Fv5yp1ZARnFjyq2sigrjm3OhXSrOdBWj8h8GiwRifTqBmt?=
- =?us-ascii?Q?IzZPGXktUAKs959CnbDw5za+CEOFFziIdFve0Pw8NlA+yKgRrgDOTdubYIMv?=
- =?us-ascii?Q?OsvXjNOgieDjpdVOj0op+ghTupDv/Yp544X4IrxfbrG+LauvsMPNSZYFPKzx?=
- =?us-ascii?Q?24iUeq04CNp4tGDSh5x2R6aRMSD642mAdOXxRFn3IHAeNfSbW3/FUHb+I1E8?=
- =?us-ascii?Q?95xvt8IAE61zExsypX+0d85iqERiExu0Us8HZc4t0yIMxyaPpBpAS+Os8Fux?=
- =?us-ascii?Q?dIXzUU3HMg9JoAUf/iHlKe6csqrKbMZJIZbKDIvlNXnWcg6vxwcAoCT1I/6Z?=
- =?us-ascii?Q?RGYAlAD2/ykfdD8ls15GoGR2iiiGQAp2OdM3mi0CFaJ44P3oo7he0MlSvkl/?=
- =?us-ascii?Q?OUBkN68toLQ87IZ+BZDpUa/vRettWPhh0SPIpL2zl7FtTOdSPxvKH0DIbKr1?=
- =?us-ascii?Q?w0qkoTnTBKqer3ccAwtlbuftxCTBMXapYwoyPPnaXhmY9ZGQz1FHeyrPsq+s?=
- =?us-ascii?Q?gKwx9e7XedOZzfU6Z9DcTyMrh+lPtB+8uZn/1x8NudEnhBXyxXROzYVtMw6y?=
- =?us-ascii?Q?J8wADFfIyLQSYnshRaGdzQIpmInC8MYItE+hgnDGK82lh1Q8fbnhi19ZrjsR?=
- =?us-ascii?Q?cjkMViMACMVDfOxSdhF8lghI5OleWxLvr7uNpds14jRBOkfcsYPNc/ggtrM4?=
- =?us-ascii?Q?2UUvcU9/r6IOWdx2XVGVyxiwgfPg2U5EtWn40Y5akICw1SPpFPURm5zfp9X/?=
- =?us-ascii?Q?xXS3LPkMguSI2T7Ayl00N3qSf6syys+yigHuMqhrDjaXR3ix59VeNMILHoGc?=
- =?us-ascii?Q?hb0pCiGjsyeE9MmcDMVlSzH6qcXZH3wfXkgKZU38fhGJlT4leQT/4KxhtVXC?=
- =?us-ascii?Q?s9iDi2hvwJARkkFKJ2Vck3amNnuNo4dfJVF216ObdhC0WnxbQEL+E2vbzdwz?=
- =?us-ascii?Q?ypjJMP+xHJ1A6OMhCLKlHYcl5RZjKwL3PBzgJQpYnOmNYaqAOO99xRm6U3+R?=
- =?us-ascii?Q?kW8xtV1bZkVWvRv6+RsBThAKdLs1XhQ2+Uu5Jx10uAObtij3gdcO03A0LSE9?=
- =?us-ascii?Q?sNthirUaBWB6yEQAGTFsMsJmnB5UhcQ4K+2eusEbxGPZiwYh28YyIp1UAX5K?=
- =?us-ascii?Q?ZByQN1BeqFzYYUxWwAGSZO1zTmK8SgHu3N5/SxnG1k1Ses0mvtxmy4U9JEoz?=
- =?us-ascii?Q?NriPqvh67lpJjzfadCeZ7uUmmquA4QRCljYxdV1lhW+sH7uklQoy5N7u9swC?=
- =?us-ascii?Q?GHSKT4+4Ja8Vmhjv7+gnADfqjkZqXEy71igqoHHVYsgXGLJHPTahutdQ+rQ3?=
- =?us-ascii?Q?pqnIbpHW2KS1Kzg5qpozPo2C?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9474e33c-06c6-46bd-727b-08d906abf7c9
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3834.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2021 23:03:11.9292 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fwkrBLFfn36t0OUXwEhL3BxtLWtvDRRzoIL/p8ajleKtLNXDD3/AjagqjF9Rrb3G
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3513
-X-Mailman-Approved-At: Mon, 26 Apr 2021 09:19:07 +0000
-Subject: [Intel-gfx] [PATCH 10/12] vfio/mdev: Remove mdev_parent_ops
+In-Reply-To: <CAM0jSHN=08bmcZ+BgmEkZkZu8-1VwzEi_tSgkWv88We5rAm=xw@mail.gmail.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 11/19] drm/i915: Update the helper to set
+ correct mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,432 +65,490 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Max Gurtovoy <mgurtovoy@nvidia.com>, "Raj, Ashok" <ashok.raj@intel.com>,
- Tarun Gupta <targupta@nvidia.com>, Dan Williams <dan.j.williams@intel.com>,
- Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The last useful member in this struct is the supported_type_groups, move
-it to the mdev_driver and delete mdev_parent_ops.
 
-Replace it with mdev_driver as an argument to mdev_register_device()
+On 26/04/2021 09:57, Matthew Auld wrote:
+> On Wed, 21 Apr 2021 at 20:13, Matthew Auld
+> <matthew.william.auld@gmail.com> wrote:
+>>
+>> On Wed, 21 Apr 2021 at 16:41, Tvrtko Ursulin
+>> <tvrtko.ursulin@linux.intel.com> wrote:
+>>>
+>>>
+>>> On 21/04/2021 12:42, Matthew Auld wrote:
+>>>> On 19/04/2021 16:01, Tvrtko Ursulin wrote:
+>>>>>
+>>>>> On 19/04/2021 15:37, Matthew Auld wrote:
+>>>>>> On 19/04/2021 15:07, Tvrtko Ursulin wrote:
+>>>>>>>
+>>>>>>> On 19/04/2021 12:30, Matthew Auld wrote:
+>>>>>>>> On 15/04/2021 12:05, Tvrtko Ursulin wrote:
+>>>>>>>>>
+>>>>>>>>> On 15/04/2021 10:23, Matthew Auld wrote:
+>>>>>>>>>> On Thu, 15 Apr 2021 at 09:21, Tvrtko Ursulin
+>>>>>>>>>> <tvrtko.ursulin@linux.intel.com> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> On 14/04/2021 17:20, Matthew Auld wrote:
+>>>>>>>>>>>> On Wed, 14 Apr 2021 at 16:22, Tvrtko Ursulin
+>>>>>>>>>>>> <tvrtko.ursulin@linux.intel.com> wrote:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> On 12/04/2021 10:05, Matthew Auld wrote:
+>>>>>>>>>>>>>> From: Venkata Sandeep Dhanalakota
+>>>>>>>>>>>>>> <venkata.s.dhanalakota@intel.com>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Determine the possible coherent map type based on object
+>>>>>>>>>>>>>> location,
+>>>>>>>>>>>>>> and if target has llc or if user requires an always coherent
+>>>>>>>>>>>>>> mapping.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>>>>>>>>>>>> Cc: CQ Tang <cq.tang@intel.com>
+>>>>>>>>>>>>>> Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>>>>>>>>>>> Signed-off-by: Venkata Sandeep Dhanalakota
+>>>>>>>>>>>>>> <venkata.s.dhanalakota@intel.com>
+>>>>>>>>>>>>>> ---
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  3 ++-
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/gt/intel_engine_pm.c    |  2 +-
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/gt/intel_lrc.c          |  4 +++-
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/gt/intel_ring.c         |  9 ++++++---
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/gt/selftest_context.c   |  3 ++-
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/gt/selftest_hangcheck.c |  4 ++--
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/gt/selftest_lrc.c       |  4 +++-
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/gt/uc/intel_guc.c       |  4 +++-
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/gt/uc/intel_huc.c       |  4 +++-
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/i915_drv.h              | 11
+>>>>>>>>>>>>>> +++++++++--
+>>>>>>>>>>>>>>      drivers/gpu/drm/i915/selftests/igt_spinner.c |  4 ++--
+>>>>>>>>>>>>>>      11 files changed, 36 insertions(+), 16 deletions(-)
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>>>>>>>>>>>>> index efe935f80c1a..b79568d370f5 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+>>>>>>>>>>>>>> @@ -664,7 +664,8 @@ static int init_status_page(struct
+>>>>>>>>>>>>>> intel_engine_cs *engine)
+>>>>>>>>>>>>>>          if (ret)
+>>>>>>>>>>>>>>                  goto err;
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> -     vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
+>>>>>>>>>>>>>> +     vaddr = i915_gem_object_pin_map(obj,
+>>>>>>>>>>>>>> + i915_coherent_map_type(engine->i915, obj, true));
+>>>>>>>>>>>>>>          if (IS_ERR(vaddr)) {
+>>>>>>>>>>>>>>                  ret = PTR_ERR(vaddr);
+>>>>>>>>>>>>>>                  goto err_unpin;
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>>>>>>>>>>>> index 7c9af86fdb1e..47f4397095e5 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_engine_pm.c
+>>>>>>>>>>>>>> @@ -23,7 +23,7 @@ static void dbg_poison_ce(struct
+>>>>>>>>>>>>>> intel_context *ce)
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>          if (ce->state) {
+>>>>>>>>>>>>>>                  struct drm_i915_gem_object *obj =
+>>>>>>>>>>>>>> ce->state->obj;
+>>>>>>>>>>>>>> -             int type =
+>>>>>>>>>>>>>> i915_coherent_map_type(ce->engine->i915);
+>>>>>>>>>>>>>> +             int type =
+>>>>>>>>>>>>>> i915_coherent_map_type(ce->engine->i915, obj, true);
+>>>>>>>>>>>>>>                  void *map;
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>                  if (!i915_gem_object_trylock(obj))
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>>>>>>>>>>>> index e86897cde984..aafe2a4df496 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>>>>>>>>>>>>>> @@ -903,7 +903,9 @@ lrc_pre_pin(struct intel_context *ce,
+>>>>>>>>>>>>>>          GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>          *vaddr = i915_gem_object_pin_map(ce->state->obj,
+>>>>>>>>>>>>>> - i915_coherent_map_type(ce->engine->i915) |
+>>>>>>>>>>>>>> + i915_coherent_map_type(ce->engine->i915,
+>>>>>>>>>>>>>> + ce->state->obj,
+>>>>>>>>>>>>>> + false) |
+>>>>>>>>>>>>>>                                           I915_MAP_OVERRIDE);
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>          return PTR_ERR_OR_ZERO(*vaddr);
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/intel_ring.c
+>>>>>>>>>>>>>> index aee0a77c77e0..3cf6c7e68108 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/intel_ring.c
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+>>>>>>>>>>>>>> @@ -53,9 +53,12 @@ int intel_ring_pin(struct intel_ring
+>>>>>>>>>>>>>> *ring, struct i915_gem_ww_ctx *ww)
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>          if (i915_vma_is_map_and_fenceable(vma))
+>>>>>>>>>>>>>>                  addr = (void __force *)i915_vma_pin_iomap(vma);
+>>>>>>>>>>>>>> -     else
+>>>>>>>>>>>>>> -             addr = i915_gem_object_pin_map(vma->obj,
+>>>>>>>>>>>>>> - i915_coherent_map_type(vma->vm->i915));
+>>>>>>>>>>>>>> +     else {
+>>>>>>>>>>>>>> +             int type =
+>>>>>>>>>>>>>> i915_coherent_map_type(vma->vm->i915, vma->obj, false);
+>>>>>>>>>>>>>> +
+>>>>>>>>>>>>>> +             addr = i915_gem_object_pin_map(vma->obj, type);
+>>>>>>>>>>>>>> +     }
+>>>>>>>>>>>>>> +
+>>>>>>>>>>>>>>          if (IS_ERR(addr)) {
+>>>>>>>>>>>>>>                  ret = PTR_ERR(addr);
+>>>>>>>>>>>>>>                  goto err_ring;
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/selftest_context.c
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/selftest_context.c
+>>>>>>>>>>>>>> index b9bdd1d23243..26685b927169 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/selftest_context.c
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/selftest_context.c
+>>>>>>>>>>>>>> @@ -88,7 +88,8 @@ static int __live_context_size(struct
+>>>>>>>>>>>>>> intel_engine_cs *engine)
+>>>>>>>>>>>>>>                  goto err;
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>          vaddr = i915_gem_object_pin_map_unlocked(ce->state->obj,
+>>>>>>>>>>>>>> - i915_coherent_map_type(engine->i915));
+>>>>>>>>>>>>>> + i915_coherent_map_type(engine->i915,
+>>>>>>>>>>>>>> + ce->state->obj, false));
+>>>>>>>>>>>>>>          if (IS_ERR(vaddr)) {
+>>>>>>>>>>>>>>                  err = PTR_ERR(vaddr);
+>>>>>>>>>>>>>>                  intel_context_unpin(ce);
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+>>>>>>>>>>>>>> index 746985971c3a..5b63d4df8c93 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+>>>>>>>>>>>>>> @@ -69,7 +69,7 @@ static int hang_init(struct hang *h, struct
+>>>>>>>>>>>>>> intel_gt *gt)
+>>>>>>>>>>>>>>          h->seqno = memset(vaddr, 0xff, PAGE_SIZE);
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>          vaddr = i915_gem_object_pin_map_unlocked(h->obj,
+>>>>>>>>>>>>>> - i915_coherent_map_type(gt->i915));
+>>>>>>>>>>>>>> + i915_coherent_map_type(gt->i915, h->obj, false));
+>>>>>>>>>>>>>>          if (IS_ERR(vaddr)) {
+>>>>>>>>>>>>>>                  err = PTR_ERR(vaddr);
+>>>>>>>>>>>>>>                  goto err_unpin_hws;
+>>>>>>>>>>>>>> @@ -130,7 +130,7 @@ hang_create_request(struct hang *h,
+>>>>>>>>>>>>>> struct intel_engine_cs *engine)
+>>>>>>>>>>>>>>                  return ERR_CAST(obj);
+>>>>>>>>>>>>>>          }
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> -     vaddr = i915_gem_object_pin_map_unlocked(obj,
+>>>>>>>>>>>>>> i915_coherent_map_type(gt->i915));
+>>>>>>>>>>>>>> +     vaddr = i915_gem_object_pin_map_unlocked(obj,
+>>>>>>>>>>>>>> i915_coherent_map_type(gt->i915, obj, false));
+>>>>>>>>>>>>>>          if (IS_ERR(vaddr)) {
+>>>>>>>>>>>>>>                  i915_gem_object_put(obj);
+>>>>>>>>>>>>>>                  i915_vm_put(vm);
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+>>>>>>>>>>>>>> index 85e7df6a5123..d8f6623524e8 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+>>>>>>>>>>>>>> @@ -1221,7 +1221,9 @@ static int compare_isolation(struct
+>>>>>>>>>>>>>> intel_engine_cs *engine,
+>>>>>>>>>>>>>>          }
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>          lrc = i915_gem_object_pin_map_unlocked(ce->state->obj,
+>>>>>>>>>>>>>> - i915_coherent_map_type(engine->i915));
+>>>>>>>>>>>>>> + i915_coherent_map_type(engine->i915,
+>>>>>>>>>>>>>> + ce->state->obj,
+>>>>>>>>>>>>>> + false));
+>>>>>>>>>>>>>>          if (IS_ERR(lrc)) {
+>>>>>>>>>>>>>>                  err = PTR_ERR(lrc);
+>>>>>>>>>>>>>>                  goto err_B1;
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>>>>>>>>>>>> index 78305b2ec89d..adae04c47aab 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+>>>>>>>>>>>>>> @@ -682,7 +682,9 @@ int intel_guc_allocate_and_map_vma(struct
+>>>>>>>>>>>>>> intel_guc *guc, u32 size,
+>>>>>>>>>>>>>>          if (IS_ERR(vma))
+>>>>>>>>>>>>>>                  return PTR_ERR(vma);
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> -     vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
+>>>>>>>>>>>>>> I915_MAP_WB);
+>>>>>>>>>>>>>> +     vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
+>>>>>>>>>>>>>> + i915_coherent_map_type(guc_to_gt(guc)->i915,
+>>>>>>>>>>>>>> + vma->obj, true));
+>>>>>>>>>>>>>>          if (IS_ERR(vaddr)) {
+>>>>>>>>>>>>>>                  i915_vma_unpin_and_release(&vma, 0);
+>>>>>>>>>>>>>>                  return PTR_ERR(vaddr);
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>>>>>>>>>>>>> index 2126dd81ac38..56d2144dc6a0 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+>>>>>>>>>>>>>> @@ -82,7 +82,9 @@ static int intel_huc_rsa_data_create(struct
+>>>>>>>>>>>>>> intel_huc *huc)
+>>>>>>>>>>>>>>          if (IS_ERR(vma))
+>>>>>>>>>>>>>>                  return PTR_ERR(vma);
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> -     vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
+>>>>>>>>>>>>>> I915_MAP_WB);
+>>>>>>>>>>>>>> +     vaddr = i915_gem_object_pin_map_unlocked(vma->obj,
+>>>>>>>>>>>>>> + i915_coherent_map_type(gt->i915,
+>>>>>>>>>>>>>> + vma->obj, true));
+>>>>>>>>>>>>>>          if (IS_ERR(vaddr)) {
+>>>>>>>>>>>>>>                  i915_vma_unpin_and_release(&vma, 0);
+>>>>>>>>>>>>>>                  return PTR_ERR(vaddr);
+>>>>>>>>>>>>>> diff --git a/drivers/gpu/drm/i915/i915_drv.h
+>>>>>>>>>>>>>> b/drivers/gpu/drm/i915/i915_drv.h
+>>>>>>>>>>>>>> index 69e43bf91a15..2abbc06712a4 100644
+>>>>>>>>>>>>>> --- a/drivers/gpu/drm/i915/i915_drv.h
+>>>>>>>>>>>>>> +++ b/drivers/gpu/drm/i915/i915_drv.h
+>>>>>>>>>>>>>> @@ -78,6 +78,7 @@
+>>>>>>>>>>>>>>      #include "gem/i915_gem_context_types.h"
+>>>>>>>>>>>>>>      #include "gem/i915_gem_shrinker.h"
+>>>>>>>>>>>>>>      #include "gem/i915_gem_stolen.h"
+>>>>>>>>>>>>>> +#include "gem/i915_gem_lmem.h"
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>      #include "gt/intel_engine.h"
+>>>>>>>>>>>>>>      #include "gt/intel_gt_types.h"
+>>>>>>>>>>>>>> @@ -1921,9 +1922,15 @@ static inline int
+>>>>>>>>>>>>>> intel_hws_csb_write_index(struct drm_i915_private *i915)
+>>>>>>>>>>>>>>      }
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>      static inline enum i915_map_type
+>>>>>>>>>>>>>> -i915_coherent_map_type(struct drm_i915_private *i915)
+>>>>>>>>>>>>>> +i915_coherent_map_type(struct drm_i915_private *i915,
+>>>>>>>>>>>>>> +                    struct drm_i915_gem_object *obj, bool
+>>>>>>>>>>>>>> always_coherent)
+>>>>>>>>>>>>>>      {
+>>>>>>>>>>>>>> -     return HAS_LLC(i915) ? I915_MAP_WB : I915_MAP_WC;
+>>>>>>>>>>>>>> +     if (i915_gem_object_is_lmem(obj))
+>>>>>>>>>>>>>> +             return I915_MAP_WC;
+>>>>>>>>>>>>>> +     if (HAS_LLC(i915) || always_coherent)
+>>>>>>>>>>>>>> +             return I915_MAP_WB;
+>>>>>>>>>>>>>> +     else
+>>>>>>>>>>>>>> +             return I915_MAP_WC;
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Seems this patch is doing two things.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> First it is adding lmem support to this helper by always
+>>>>>>>>>>>>> returning WC
+>>>>>>>>>>>>> for lmem objects.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Secondly it is introducing an idea of "always coherent" in a
+>>>>>>>>>>>>> helper
+>>>>>>>>>>>>> called i915_coherent_map_type. Could someone explain what is
+>>>>>>>>>>>>> coherent vs
+>>>>>>>>>>>>> always coherent?
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> And also, why is always coherent happy with WB? Sounds counter
+>>>>>>>>>>>>> intuitive
+>>>>>>>>>>>>> to me.
+>>>>>>>>>>>>
+>>>>>>>>>>>> All this does is try to keep the existing behaviour intact, whilst
+>>>>>>>>>>>> also ensuring that all lmem objects are mapped using only WC, no
+>>>>>>>>>>>> matter what. The always_coherent=true thing is for the existing
+>>>>>>>>>>>> places
+>>>>>>>>>>>> where we sometimes map the object using WB, without first
+>>>>>>>>>>>> considering
+>>>>>>>>>>>> whether the device has the fast shared LLC vs snooping. Yes, it's
+>>>>>>>>>>>> slightly ugly :)
+>>>>>>>>>>>
+>>>>>>>>>>> Not fully following - if we had to write kerneldoc for
+>>>>>>>>>>> always_coherent
+>>>>>>>>>>> input argument - what it would say?
+>>>>>>>>>>
+>>>>>>>>>> @always_coherent - If true we should always try to map the object
+>>>>>>>>>> using WB. If false we should only map as WB if the device
+>>>>>>>>>> supports the
+>>>>>>>>>> fast shared LLC, in the case of snooped devices we will map use WC.
+>>>>>>>>>> Note that If the resource is lmem then we will always map as WC,
+>>>>>>>>>> regardless of the value of always_coherent, since that's all we
+>>>>>>>>>> currently support.
+>>>>>>>>>>
+>>>>>>>>>> Maybe the naming is poor?
+>>>>>>>>>
+>>>>>>>>> Maybe just confusing to me, not sure yet.
+>>>>>>>>>
+>>>>>>>>> So always_coherent is not about how the callers wants to use it,
+>>>>>>>>> but about platform knowledge? Or a performance concern for LLC vs
+>>>>>>>>> snooping cases? Does WB works (coherently) on snooping platforms?
+>>>>>>>>
+>>>>>>>> The always_coherent=true is for the existing callers that want WB,
+>>>>>>>> regardless of LLC vs snooping.
+>>>>>>>>
+>>>>>>>> The other callers use the existing i915_coherent_map_type() which
+>>>>>>>> only gives out WB for LLC platforms.
+>>>>>>>>
+>>>>>>>> AFAIK, LLC vs snooping should offer the same in terms of coherency,
+>>>>>>>> but in terms of performance the shared LLC is much faster, and so
+>>>>>>>> for snooping platforms we choose to not enable WB everywhere.
+>>>>>>>>
+>>>>>>>> On top of that we now have lmem, but for that we only allow WC.
+>>>>>>>> This patch just rolls all of that into one helper, while keeping
+>>>>>>>> the existing behaviour unchanged.
+>>>>>>>
+>>>>>>> Thanks. But I am still struggling with the API. :(
+>>>>>>>
+>>>>>>> Is the introduction of always_coherent flag in the context of DG1
+>>>>>>> required even? AFAICT for lmem objects the flag is ignored so no?
+>>>>>>
+>>>>>> If we drop the flag/helper thing, then we need something like:
+>>>>>>
+>>>>>> type = WB;
+>>>>>> if (i915_gem_object_is_lmem(obj))
+>>>>>>       type = WC;
+>>>>>>
+>>>>>> vaddr = i915_gem_object_pin_map(obj, type);
+>>>>>>
+>>>>>> In all the places where we currently do:
+>>>>>>
+>>>>>> vaddr = i915_gem_object_pin_map(obj, WB);
+>>>>>>
+>>>>>> Where obj can be lmem, so ctx, ring, guc etc. Is that better or
+>>>>>> worse? The existing i915_coherent_map_type() callers should work
+>>>>>> as-is, since DG1 is snooped. And this patch just extends that to
+>>>>>> cover all cases.
+>>>>>>
+>>>>>> Perhaps we need a new helper instead? Maybe you have a better idea?
+>>>>>
+>>>>> Not yet. Would it make sense to put something in kerneldoc about when
+>>>>> callers might choose always_coherent true vs false? In terms of
+>>>>> expected usage (frequency, simplicity?) and any rules with regards
+>>>>> when callers need to worry about flushing/ordering when there are
+>>>>> mixed read and writes?
+>>>>
+>>>> Hmmm, looking at this again, maybe for now we should just go with:
+>>>>
+>>>> type = WB;
+>>>> if (i915_gem_object_is_lmem(obj))
+>>>>         type = WC;
+>>>>
+>>>> vaddr = i915_gem_object_pin_map(obj, type)
+>>>>
+>>>> Which is way less confusing, plus there are only a handful of places
+>>>> where we need this, so doesn't seem too bad?
+>>>>
+>>>> Alternatively, we could wrap that in something like:
+>>>>
+>>>> /* Returns WB for system memory, or WC for local memory */
+>>>> void *i915_gem_object_pin_map_default(obj);
+>>>>
+>>>> Thoughts?
+>>>
+>>> I went and looked at the use sites to try and figure it out.
+>>>
+>>> First thing, the bool always_coherent story is only relevant when we
+>>> decide to place some object in system memory. Otherwise mapping is
+>>> always WC so I guess our code needs to handle it anyway. Well, if the
+>>> assumption is that we can change the location of the objects and it all
+>>> just keeps working? Or that is not the goal?
+>>
+>> I guess your concern is that mapping as WC has different semantics,
+>> and that might somehow break the caller?
+>>
+>>>
+>>> Let see about the users (ignoring selftests):
+>>>
+>>> 1) lrc_reg_state and ring; always_coherent=false
+>>>
+>>> Update frequency medium and mostly write from the CPU side.
+>>>
+>>> They say always_coherent=false - which means they have to handle being
+>>> given a WC mapping anyway.
+>>>
+>>> What is the benefit of ever selecting WB here?
+>>>
+>>> 2) Engine status page; always_coherent=true
+>>>
+>>> Frequently read and written from the CPU and GPU so cost of snooping is
+>>> therefore fine? Apart from having to be ready to deal with WC anyway.
+>>>
+>>> 3) dbg_poison_ce; always_coherent=true
+>>>
+>>> Writes to lrc_reg_state once - meh. Could just as well always ask for WC.
+>>>
+>>> 4) intel_guc_allocate_and_map_vma; always_coherent=true
+>>>
+>>> This one has three users:
+>>>
+>>> a) guc_stage_desc_pool_create stage_desc_pool_vaddr
+>>>
+>>> This one seems write once at init.
+>>>
+>>> b) intel_guc_ct_init
+>>>
+>>> Use for CT communication so similar to CSB on engine status page in
+>>> principle. But code also has to deal with WC when object is in lmem.
+>>>
+>>> c) intel_guc_ads_create
+>>>
+>>> CPU appears to only write on init and GPU reset.
+>>>
+>>> 5) intel_huc_rsa_data_create; always_coheret=true
+>>>
+>>> Called from intel_huc_init so it appears write once from CPU. Not sure
+>>> why it would need a coherent mapping if that is correct.
+>>>
+>>> I think this exercise left me equally confused. Because flushing and
+>>> read-write ordering rules are different between WB and WC. And code
+>>> which accesses all these mappings either has to know which one is in
+>>> use, or does not care. For the latter case we have to be sure about for
+>>> every path.
+>>
+>> Users of pin_map() are generally meant to call flush_map() where
+>> appropriate, which should do the right thing for us. For WC it only
+>> needs to flush the wcb. For WB it's more complicated since that
+>> depends on if the object is considered coherent or not, if it is then
+>> we don't need to do anything, otherwise we need to clflush.
+>>
+>> Also note that we If we just map the buffer as WB, that by itself
+>> doesn't magically enable snooping for the pages AFAIK. We still have
+>> to tell the GPU that these pages are meant to be coherent, which we
+>> always do for LLC platforms I think, since the shared LLC is
+>> considered fast, whereas on snooping platforms, we don't enable this
+>> by default, and have this as CACHE_NONE instead(see shmem_object_init
+>> for example), and incur the cost of additional clflushing.  Doing an
+>> explicit i915_gem_object_set_coherency(I915_CACHE_LLC) I think will
+>> mark the object as coherent for us. I think there are also some
+>> matching GTT bits for caching.
+>>
+>> Also for DG1 you apparently can't disable snooping, as per what Daniel
+>> was saying in another thread.
+>>
+>>>
+>>> The write on init / reset ones are easy enough and it doesn't really
+>>> matter for them to use the coherent helper.
+>>>
+>>> Lrc_reg_state as well I think can be WC with explicit flushing - it has
+>>> to on lmem, no?
+>>
+>> I doubt it has to be, since the GPU still just accesses it through the GTT.
+>>
+>>>
+>>> This leaves the status page (CSB, etc) and GuC CT. Those are frequent
+>>> R/W but also code has to be able to handle WC so what is the benefit of
+>>> WB? It ends up faster than if it was WC, considering explicit
+>>> flushes/barriers are still in there?
+>>
+>> No idea for GuC, but for the hwsp it's still in system memory, and is
+>> WB, even for discrete. Chris measured this to be more performant with
+>> our execlists submission path than say just sticking it in lmem, and
+>> mapping it as WC.
+> 
+> Ping? How should we proceed with this patch?
 
-Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
----
- .../driver-api/vfio-mediated-device.rst       | 36 +++++++------------
- drivers/gpu/drm/i915/gvt/kvmgt.c              |  8 ++---
- drivers/s390/cio/vfio_ccw_ops.c               |  7 +---
- drivers/s390/crypto/vfio_ap_ops.c             |  9 ++---
- drivers/vfio/mdev/mdev_core.c                 | 13 +++----
- drivers/vfio/mdev/mdev_driver.c               |  2 +-
- drivers/vfio/mdev/mdev_private.h              |  2 +-
- drivers/vfio/mdev/mdev_sysfs.c                |  6 ++--
- include/linux/mdev.h                          | 24 +++----------
- samples/vfio-mdev/mbochs.c                    |  9 ++---
- samples/vfio-mdev/mdpy.c                      |  9 ++---
- samples/vfio-mdev/mtty.c                      |  9 ++---
- 12 files changed, 38 insertions(+), 96 deletions(-)
+I just re-freshed my memory on when the write combine buffer gets 
+flushed and realized uncached reads are also an implicit flush. So my 
+complications from earlier reply were purely mine and I think you can 
+proceed with the patch as is.
 
-diff --git a/Documentation/driver-api/vfio-mediated-device.rst b/Documentation/driver-api/vfio-mediated-device.rst
-index 5f866b17c93e69..b7cf357243d269 100644
---- a/Documentation/driver-api/vfio-mediated-device.rst
-+++ b/Documentation/driver-api/vfio-mediated-device.rst
-@@ -93,7 +93,7 @@ interfaces:
- Registration Interface for a Mediated Bus Driver
- ------------------------------------------------
- 
--The registration interface for a mediated bus driver provides the following
-+The registration interface for a mediated device driver provides the following
- structure to represent a mediated device's driver::
- 
-      /*
-@@ -105,6 +105,7 @@ structure to represent a mediated device's driver::
-      struct mdev_driver {
- 	     int  (*probe)  (struct mdev_device *dev);
- 	     void (*remove) (struct mdev_device *dev);
-+	     struct attribute_group **supported_type_groups;
- 	     struct device_driver    driver;
-      };
- 
-@@ -119,35 +120,24 @@ to register and unregister itself with the core driver:
- 
-     extern void mdev_unregister_driver(struct mdev_driver *drv);
- 
--The mediated bus driver is responsible for adding mediated devices to the VFIO
--group when devices are bound to the driver and removing mediated devices from
--the VFIO when devices are unbound from the driver.
-+The mediated bus driver's probe function should create a vfio_device on top of
-+the mdev_device and connect it to an appropriate implementation of vfio_device_ops.
- 
--
--Physical Device Driver Interface
----------------------------------
--
--The physical device driver interface provides the mdev_parent_ops[3] structure
--to define the APIs to manage work in the mediated core driver that is related
--to the physical device.
--
--The structures in the mdev_parent_ops structure are as follows:
--
--* dev_attr_groups: attributes of the parent device
--* mdev_attr_groups: attributes of the mediated device
--* supported_config: attributes to define supported configurations
--
--A driver should use the mdev_parent_ops structure in the function call to
--register itself with the mdev core driver::
-+When a driver wants to add the GUID creation sysfs to an existing device it has
-+probe'd to then it should call:
- 
- 	extern int  mdev_register_device(struct device *dev,
--	                                 const struct mdev_parent_ops *ops);
-+	                                 struct mdev_driver *mdev_driver);
-+
-+This will provide the 'mdev_supported_types/XX/create' files which can then be used
-+to trigger the creation of a mdev_device. The created mdev_device will be attached
-+to the specified driver.
- 
--However, the mdev_parent_ops structure is not required in the function call
--that a driver should use to unregister itself with the mdev core driver::
-+When the driver needs to remove itself it calls:
- 
- 	extern void mdev_unregister_device(struct device *dev);
- 
-+Which will unbind and destroy all the created mdevs and remove the sysfs files.
- 
- Mediated Device Management Interface Through sysfs
- ==================================================
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index 85ef300087e091..02089efd15bb92 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -1669,10 +1669,6 @@ static struct mdev_driver intel_vgpu_mdev_driver = {
- 	.remove	= intel_vgpu_remove,
- };
- 
--static struct mdev_parent_ops intel_vgpu_ops = {
--	.device_driver		= &intel_vgpu_mdev_driver,
--};
--
- static int kvmgt_host_init(struct device *dev, void *gvt, const void *ops)
- {
- 	struct attribute_group **kvm_vgpu_type_groups;
-@@ -1680,9 +1676,9 @@ static int kvmgt_host_init(struct device *dev, void *gvt, const void *ops)
- 	intel_gvt_ops = ops;
- 	if (!intel_gvt_ops->get_gvt_attrs(&kvm_vgpu_type_groups))
- 		return -EFAULT;
--	intel_vgpu_ops.supported_type_groups = kvm_vgpu_type_groups;
-+	intel_vgpu_mdev_driver.supported_type_groups = kvm_vgpu_type_groups;
- 
--	return mdev_register_device(dev, &intel_vgpu_ops);
-+	return mdev_register_device(dev, &intel_vgpu_mdev_driver);
- }
- 
- static void kvmgt_host_exit(struct device *dev)
-diff --git a/drivers/s390/cio/vfio_ccw_ops.c b/drivers/s390/cio/vfio_ccw_ops.c
-index 0fcf46031d3821..161697529dcc41 100644
---- a/drivers/s390/cio/vfio_ccw_ops.c
-+++ b/drivers/s390/cio/vfio_ccw_ops.c
-@@ -655,17 +655,12 @@ struct mdev_driver vfio_ccw_mdev_driver = {
- 	},
- 	.probe = vfio_ccw_mdev_probe,
- 	.remove = vfio_ccw_mdev_remove,
--};
--
--static const struct mdev_parent_ops vfio_ccw_mdev_ops = {
--	.owner			= THIS_MODULE,
--	.device_driver		= &vfio_ccw_mdev_driver,
- 	.supported_type_groups  = mdev_type_groups,
- };
- 
- int vfio_ccw_mdev_reg(struct subchannel *sch)
- {
--	return mdev_register_device(&sch->dev, &vfio_ccw_mdev_ops);
-+	return mdev_register_device(&sch->dev, &vfio_ccw_mdev_driver);
- }
- 
- void vfio_ccw_mdev_unreg(struct subchannel *sch)
-diff --git a/drivers/s390/crypto/vfio_ap_ops.c b/drivers/s390/crypto/vfio_ap_ops.c
-index 79872c857dd522..92789257c87639 100644
---- a/drivers/s390/crypto/vfio_ap_ops.c
-+++ b/drivers/s390/crypto/vfio_ap_ops.c
-@@ -1339,12 +1339,7 @@ static struct mdev_driver vfio_ap_matrix_driver = {
- 	},
- 	.probe = vfio_ap_mdev_probe,
- 	.remove = vfio_ap_mdev_remove,
--};
--
--static const struct mdev_parent_ops vfio_ap_matrix_ops = {
--	.owner			= THIS_MODULE,
--	.device_driver		= &vfio_ap_matrix_driver,
--	.supported_type_groups	= vfio_ap_mdev_type_groups,
-+	.supported_type_groups = vfio_ap_mdev_type_groups,
- };
- 
- int vfio_ap_mdev_register(void)
-@@ -1357,7 +1352,7 @@ int vfio_ap_mdev_register(void)
- 	if (ret)
- 		return ret;
- 
--	ret = mdev_register_device(&matrix_dev->device, &vfio_ap_matrix_ops);
-+	ret = mdev_register_device(&matrix_dev->device, &vfio_ap_matrix_driver);
- 	if (ret)
- 		goto err_driver;
- 	return 0;
-diff --git a/drivers/vfio/mdev/mdev_core.c b/drivers/vfio/mdev/mdev_core.c
-index f95d01b57fb168..7e918241de10cc 100644
---- a/drivers/vfio/mdev/mdev_core.c
-+++ b/drivers/vfio/mdev/mdev_core.c
-@@ -109,12 +109,12 @@ static int mdev_device_remove_cb(struct device *dev, void *data)
- /*
-  * mdev_register_device : Register a device
-  * @dev: device structure representing parent device.
-- * @ops: Parent device operation structure to be registered.
-+ * @mdev_driver: Device driver to bind to the newly created mdev
-  *
-  * Add device to list of registered parent devices.
-  * Returns a negative value on error, otherwise 0.
-  */
--int mdev_register_device(struct device *dev, const struct mdev_parent_ops *ops)
-+int mdev_register_device(struct device *dev, struct mdev_driver *mdev_driver)
- {
- 	int ret;
- 	struct mdev_parent *parent;
-@@ -122,9 +122,7 @@ int mdev_register_device(struct device *dev, const struct mdev_parent_ops *ops)
- 	char *envp[] = { env_string, NULL };
- 
- 	/* check for mandatory ops */
--	if (!ops || !ops->supported_type_groups)
--		return -EINVAL;
--	if (!ops->device_driver)
-+	if (!mdev_driver->supported_type_groups)
- 		return -EINVAL;
- 
- 	dev = get_device(dev);
-@@ -151,7 +149,7 @@ int mdev_register_device(struct device *dev, const struct mdev_parent_ops *ops)
- 	init_rwsem(&parent->unreg_sem);
- 
- 	parent->dev = dev;
--	parent->ops = ops;
-+	parent->mdev_driver = mdev_driver;
- 
- 	if (!mdev_bus_compat_class) {
- 		mdev_bus_compat_class = class_compat_register("mdev_bus");
-@@ -257,7 +255,7 @@ static int mdev_bind_driver(struct mdev_device *mdev)
- 	while (1) {
- 		device_lock(&mdev->dev);
- 		if (mdev->dev.driver ==
--		    &mdev->type->parent->ops->device_driver->driver) {
-+		    &mdev->type->parent->mdev_driver->driver) {
- 			ret = 0;
- 			goto out_unlock;
- 		}
-@@ -304,7 +302,6 @@ int mdev_device_create(struct mdev_type *type, const guid_t *uuid)
- 	mdev->dev.parent  = parent->dev;
- 	mdev->dev.bus = &mdev_bus_type;
- 	mdev->dev.release = mdev_device_release;
--	mdev->dev.groups = parent->ops->mdev_attr_groups;
- 	mdev->type = type;
- 	/* Pairs with the put in mdev_device_release() */
- 	kobject_get(&type->kobj);
-diff --git a/drivers/vfio/mdev/mdev_driver.c b/drivers/vfio/mdev/mdev_driver.c
-index 0012a9ee7cb0a4..12091e32afa396 100644
---- a/drivers/vfio/mdev/mdev_driver.c
-+++ b/drivers/vfio/mdev/mdev_driver.c
-@@ -75,7 +75,7 @@ static int mdev_match(struct device *dev, struct device_driver *drv)
- {
- 	struct mdev_device *mdev = to_mdev_device(dev);
- 
--	return drv == &mdev->type->parent->ops->device_driver->driver;
-+	return drv == &mdev->type->parent->mdev_driver->driver;
- }
- 
- struct bus_type mdev_bus_type = {
-diff --git a/drivers/vfio/mdev/mdev_private.h b/drivers/vfio/mdev/mdev_private.h
-index a656cfe0346c33..839567d059a07d 100644
---- a/drivers/vfio/mdev/mdev_private.h
-+++ b/drivers/vfio/mdev/mdev_private.h
-@@ -15,7 +15,7 @@ void mdev_bus_unregister(void);
- 
- struct mdev_parent {
- 	struct device *dev;
--	const struct mdev_parent_ops *ops;
-+	const struct mdev_driver *mdev_driver;
- 	struct kref ref;
- 	struct list_head next;
- 	struct kset *mdev_types_kset;
-diff --git a/drivers/vfio/mdev/mdev_sysfs.c b/drivers/vfio/mdev/mdev_sysfs.c
-index 66eef08833a4ef..5a3873d1a275ae 100644
---- a/drivers/vfio/mdev/mdev_sysfs.c
-+++ b/drivers/vfio/mdev/mdev_sysfs.c
-@@ -97,7 +97,7 @@ static struct mdev_type *add_mdev_supported_type(struct mdev_parent *parent,
- {
- 	struct mdev_type *type;
- 	struct attribute_group *group =
--		parent->ops->supported_type_groups[type_group_id];
-+		parent->mdev_driver->supported_type_groups[type_group_id];
- 	int ret;
- 
- 	if (!group->name) {
-@@ -154,7 +154,7 @@ static struct mdev_type *add_mdev_supported_type(struct mdev_parent *parent,
- static void remove_mdev_supported_type(struct mdev_type *type)
- {
- 	struct attribute_group *group =
--		type->parent->ops->supported_type_groups[type->type_group_id];
-+		type->parent->mdev_driver->supported_type_groups[type->type_group_id];
- 
- 	sysfs_remove_files(&type->kobj,
- 			   (const struct attribute **)group->attrs);
-@@ -168,7 +168,7 @@ static int add_mdev_supported_type_groups(struct mdev_parent *parent)
- {
- 	int i;
- 
--	for (i = 0; parent->ops->supported_type_groups[i]; i++) {
-+	for (i = 0; parent->mdev_driver->supported_type_groups[i]; i++) {
- 		struct mdev_type *type;
- 
- 		type = add_mdev_supported_type(parent, i);
-diff --git a/include/linux/mdev.h b/include/linux/mdev.h
-index fd9fe1dcf0e230..af807c77c1e0f5 100644
---- a/include/linux/mdev.h
-+++ b/include/linux/mdev.h
-@@ -51,25 +51,6 @@ unsigned int mdev_get_type_group_id(struct mdev_device *mdev);
- unsigned int mtype_get_type_group_id(struct mdev_type *mtype);
- struct device *mtype_get_parent_dev(struct mdev_type *mtype);
- 
--/**
-- * struct mdev_parent_ops - Structure to be registered for each parent device to
-- * register the device to mdev module.
-- *
-- * @owner:		The module owner.
-- * @device_driver:	Which device driver to probe() on newly created devices
-- * @mdev_attr_groups:	Attributes of the mediated device.
-- * @supported_type_groups: Attributes to define supported types. It is mandatory
-- *			to provide supported types.
-- * Parent device that support mediated device should be registered with mdev
-- * module with mdev_parent_ops structure.
-- **/
--struct mdev_parent_ops {
--	struct module   *owner;
--	struct mdev_driver *device_driver;
--	const struct attribute_group **mdev_attr_groups;
--	struct attribute_group **supported_type_groups;
--};
--
- /* interface for exporting mdev supported type attributes */
- struct mdev_type_attribute {
- 	struct attribute attr;
-@@ -94,12 +75,15 @@ struct mdev_type_attribute mdev_type_attr_##_name =		\
-  * struct mdev_driver - Mediated device driver
-  * @probe: called when new device created
-  * @remove: called when device removed
-+ * @supported_type_groups: Attributes to define supported types. It is mandatory
-+ *			to provide supported types.
-  * @driver: device driver structure
-  *
-  **/
- struct mdev_driver {
- 	int (*probe)(struct mdev_device *dev);
- 	void (*remove)(struct mdev_device *dev);
-+	struct attribute_group **supported_type_groups;
- 	struct device_driver driver;
- };
- 
-@@ -118,7 +102,7 @@ static inline const guid_t *mdev_uuid(struct mdev_device *mdev)
- 
- extern struct bus_type mdev_bus_type;
- 
--int mdev_register_device(struct device *dev, const struct mdev_parent_ops *ops);
-+int mdev_register_device(struct device *dev, struct mdev_driver *mdev_driver);
- void mdev_unregister_device(struct device *dev);
- 
- int mdev_register_driver(struct mdev_driver *drv);
-diff --git a/samples/vfio-mdev/mbochs.c b/samples/vfio-mdev/mbochs.c
-index e18821a8a6beb8..c76ceec584b41b 100644
---- a/samples/vfio-mdev/mbochs.c
-+++ b/samples/vfio-mdev/mbochs.c
-@@ -1418,12 +1418,7 @@ static struct mdev_driver mbochs_driver = {
- 	},
- 	.probe = mbochs_probe,
- 	.remove	= mbochs_remove,
--};
--
--static const struct mdev_parent_ops mdev_fops = {
--	.owner			= THIS_MODULE,
--	.device_driver		= &mbochs_driver,
--	.supported_type_groups	= mdev_type_groups,
-+	.supported_type_groups = mdev_type_groups,
- };
- 
- static const struct file_operations vd_fops = {
-@@ -1466,7 +1461,7 @@ static int __init mbochs_dev_init(void)
- 	if (ret)
- 		goto err_class;
- 
--	ret = mdev_register_device(&mbochs_dev, &mdev_fops);
-+	ret = mdev_register_device(&mbochs_dev, &mbochs_driver);
- 	if (ret)
- 		goto err_device;
- 
-diff --git a/samples/vfio-mdev/mdpy.c b/samples/vfio-mdev/mdpy.c
-index 82638de333330d..c22b2c808d132d 100644
---- a/samples/vfio-mdev/mdpy.c
-+++ b/samples/vfio-mdev/mdpy.c
-@@ -735,12 +735,7 @@ static struct mdev_driver mdpy_driver = {
- 	},
- 	.probe = mdpy_probe,
- 	.remove	= mdpy_remove,
--};
--
--static const struct mdev_parent_ops mdev_fops = {
--	.owner			= THIS_MODULE,
--	.device_driver          = &mdpy_driver,
--	.supported_type_groups	= mdev_type_groups,
-+	.supported_type_groups = mdev_type_groups,
- };
- 
- static const struct file_operations vd_fops = {
-@@ -783,7 +778,7 @@ static int __init mdpy_dev_init(void)
- 	if (ret)
- 		goto err_class;
- 
--	ret = mdev_register_device(&mdpy_dev, &mdev_fops);
-+	ret = mdev_register_device(&mdpy_dev, &mdpy_driver);
- 	if (ret)
- 		goto err_device;
- 
-diff --git a/samples/vfio-mdev/mtty.c b/samples/vfio-mdev/mtty.c
-index 31eec76bc553ce..87f5ba12a230e3 100644
---- a/samples/vfio-mdev/mtty.c
-+++ b/samples/vfio-mdev/mtty.c
-@@ -1308,12 +1308,7 @@ static struct mdev_driver mtty_driver = {
- 	},
- 	.probe = mtty_probe,
- 	.remove	= mtty_remove,
--};
--
--static const struct mdev_parent_ops mdev_fops = {
--	.owner                  = THIS_MODULE,
--	.device_driver		= &mtty_driver,
--	.supported_type_groups  = mdev_type_groups,
-+	.supported_type_groups = mdev_type_groups,
- };
- 
- static void mtty_device_release(struct device *dev)
-@@ -1364,7 +1359,7 @@ static int __init mtty_dev_init(void)
- 	if (ret)
- 		goto err_class;
- 
--	ret = mdev_register_device(&mtty_dev.dev, &mdev_fops);
-+	ret = mdev_register_device(&mtty_dev.dev, &mtty_driver);
- 	if (ret)
- 		goto err_device;
- 
--- 
-2.31.1
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
