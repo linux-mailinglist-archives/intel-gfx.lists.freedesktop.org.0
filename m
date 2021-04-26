@@ -2,38 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54DAA36B90B
-	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 20:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E363C36B95E
+	for <lists+intel-gfx@lfdr.de>; Mon, 26 Apr 2021 20:48:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 549C66E1D6;
-	Mon, 26 Apr 2021 18:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25F806E210;
+	Mon, 26 Apr 2021 18:48:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org
- [IPv6:2001:8b0:10b:1236::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7898989CDF;
- Mon, 26 Apr 2021 18:36:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
- MIME-Version:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=yIQ8r/6+4jmPXMKwK9VLxpJ4dQsyz8jNXuoO7X+Mvyw=; b=Pia2gB4XK5q4kSTSGciQOucVHK
- v0ER2haHAO4Xtzlhyg9C3ZyyHhT+32Vr15SkVVjrFpmRy/iudnoEbULsFkJQG4ItMQd01cqjTv1eS
- vjlJrB5SKu7kOsbpSPzY2+qE8S5OVt0Lx1OU86bBlfxUz0XM0/DpXO6IdTrAuxuQukv+5wKMOVwBm
- Y5s1RX+iRho1HbWUEHsgkrcN+vwOAJx8kPw1AComAWoWEdNL3Fz4Ym37ylA+hROpAKmbrKdMtQ11e
- wX823W6KgsHCjgm+GCnm3+sHWQBAx0LOmDa/vyGeZrPWqWzjAI6vSujf533OCl/RKecnTUuwsSC/0
- qFQKz98w==;
-Received: from [2601:1c0:6280:3f0::df68] (helo=casper.infradead.org)
- by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
- id 1lb64q-005xso-6v; Mon, 26 Apr 2021 18:35:31 +0000
-From: Randy Dunlap <rdunlap@infradead.org>
-To: linux-kernel@vger.kernel.org
-Date: Mon, 26 Apr 2021 11:35:16 -0700
-Message-Id: <20210426183516.18957-1-rdunlap@infradead.org>
-X-Mailer: git-send-email 2.26.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 11BD66E1D7;
+ Mon, 26 Apr 2021 18:48:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 07409A7DFC;
+ Mon, 26 Apr 2021 18:48:29 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm: i915: fix build when ACPI is disabled and
- BACKLIGHT=m
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Simon Rettberg" <simon.rettberg@rz.uni-freiburg.de>
+Date: Mon, 26 Apr 2021 18:48:29 -0000
+Message-ID: <161946290902.18668.18226439085881155259@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210426161124.2b7fd708@dellnichtsogutkiste>
+In-Reply-To: <20210426161124.2b7fd708@dellnichtsogutkiste>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gt=3A_Disable_HiZ_Raw_Stall_Optimization_on_broken?=
+ =?utf-8?q?_gen7?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,67 +39,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Damien Lespiau <damien.lespiau@intel.com>,
- Randy Dunlap <rdunlap@infradead.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2hlbiBDT05GSUdfRFJNX0k5MTU9eSwgQ09ORklHX0FDUEkgaXMgbm90IHNldCwgYW5kCkNPTkZJ
-R19CQUNLTElHSFRfQ0xBU1NfREVWSUNFPW0sIG5vdCBkdWUgdG8gSTkxNSBjb25maWcsCnRoZXJl
-IGFyZSBidWlsZCBlcnJvcnMgdHJ5aW5nIHRvIHJlZmVyZW5jZSBiYWNrbGlnaHRfZGV2aWNlX3t1
-bn1yZWdpc3RlcigpLgoKQ2hhbmdpbmcgdGhlIHVzZSBvZiBJU19FTkFCTEVEKCkgdG8gSVNfUkVB
-Q0hBQkxFKCkgaW4gaW50ZWxfcGFuZWwuW2NoXQpmaXhlcyB0aGlzLgoKbGQ6IGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwubzogaW4gZnVuY3Rpb24gYGludGVsX2JhY2ts
-aWdodF9kZXZpY2VfcmVnaXN0ZXInOgppbnRlbF9wYW5lbC5jOigudGV4dCsweDJlYzEpOiB1bmRl
-ZmluZWQgcmVmZXJlbmNlIHRvIGBiYWNrbGlnaHRfZGV2aWNlX3JlZ2lzdGVyJwpsZDogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5lbC5vOiBpbiBmdW5jdGlvbiBgaW50ZWxf
-YmFja2xpZ2h0X2RldmljZV91bnJlZ2lzdGVyJzoKaW50ZWxfcGFuZWwuYzooLnRleHQrMHgyZjkz
-KTogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgYmFja2xpZ2h0X2RldmljZV91bnJlZ2lzdGVyJwoK
-bGQ6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwubzogaW4gZnVuY3Rp
-b24gYGludGVsX2JhY2tsaWdodF9kZXZpY2VfcmVnaXN0ZXInOgppbnRlbF9wYW5lbC5jOigudGV4
-dCsweDJlYzEpOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBiYWNrbGlnaHRfZGV2aWNlX3JlZ2lz
-dGVyJwpsZDogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5lbC5vOiBpbiBm
-dW5jdGlvbiBgaW50ZWxfYmFja2xpZ2h0X2RldmljZV91bnJlZ2lzdGVyJzoKaW50ZWxfcGFuZWwu
-YzooLnRleHQrMHgyZjkzKTogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgYmFja2xpZ2h0X2Rldmlj
-ZV91bnJlZ2lzdGVyJwoKRml4ZXM6IDkxMmU4YjEyZWVkYiAoImRybS9pOTE1OiByZWdpc3RlciBi
-YWNrbGlnaHQgZGV2aWNlIGFsc28gd2hlbiBiYWNrbGlnaHQgY2xhc3MgaXMgYSBtb2R1bGUiKQpG
-aXhlczogNDRjMTIyMGE0NDFjICgiZHJtL2k5MTU6IGV4dHJhY3QgaW50ZWxfcGFuZWwuaCBmcm9t
-IGludGVsX2Rydi5oIikKU2lnbmVkLW9mZi1ieTogUmFuZHkgRHVubGFwIDxyZHVubGFwQGluZnJh
-ZGVhZC5vcmc+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KQ2M6IERhbWllbiBM
-ZXNwaWF1IDxkYW1pZW4ubGVzcGlhdUBpbnRlbC5jb20+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5p
-ZWwudmV0dGVyQGZmd2xsLmNoPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KQ2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4LmludGVs
-LmNvbT4KQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KQ2M6IGludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKLS0tCkZvdW5kIGluIGxpbnV4LW5leHQgYnV0IGFwcGxpZXMgdG8gbWFpbmxpbmUgKDUu
-MTIpLgoKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYyB8ICAgIDIg
-Ky0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuaCB8ICAgIDIgKy0K
-IDIgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKLS0tIGxp
-bnV4LW5leHQtMjAyMTA0MjYub3JpZy9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X3BhbmVsLmMKKysrIGxpbnV4LW5leHQtMjAyMTA0MjYvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9wYW5lbC5jCkBAIC0xMjU0LDcgKzEyNTQsNyBAQCB2b2lkIGludGVsX3BhbmVs
-X2VuYWJsZV9iYWNrbGlnaHQoY29uc3QKIAltdXRleF91bmxvY2soJmRldl9wcml2LT5iYWNrbGln
-aHRfbG9jayk7CiB9CiAKLSNpZiBJU19FTkFCTEVEKENPTkZJR19CQUNLTElHSFRfQ0xBU1NfREVW
-SUNFKQorI2lmIElTX1JFQUNIQUJMRShDT05GSUdfQkFDS0xJR0hUX0NMQVNTX0RFVklDRSkKIHN0
-YXRpYyB1MzIgaW50ZWxfcGFuZWxfZ2V0X2JhY2tsaWdodChzdHJ1Y3QgaW50ZWxfY29ubmVjdG9y
-ICpjb25uZWN0b3IpCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9f
-aTkxNShjb25uZWN0b3ItPmJhc2UuZGV2KTsKLS0tIGxpbnV4LW5leHQtMjAyMTA0MjYub3JpZy9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmgKKysrIGxpbnV4LW5leHQt
-MjAyMTA0MjYvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5lbC5oCkBAIC01
-NCw3ICs1NCw3IEBAIHUzMiBpbnRlbF9wYW5lbF9pbnZlcnRfcHdtX2xldmVsKHN0cnVjdAogdTMy
-IGludGVsX3BhbmVsX2JhY2tsaWdodF9sZXZlbF90b19wd20oc3RydWN0IGludGVsX2Nvbm5lY3Rv
-ciAqY29ubmVjdG9yLCB1MzIgbGV2ZWwpOwogdTMyIGludGVsX3BhbmVsX2JhY2tsaWdodF9sZXZl
-bF9mcm9tX3B3bShzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IsIHUzMiB2YWwpOwog
-Ci0jaWYgSVNfRU5BQkxFRChDT05GSUdfQkFDS0xJR0hUX0NMQVNTX0RFVklDRSkKKyNpZiBJU19S
-RUFDSEFCTEUoQ09ORklHX0JBQ0tMSUdIVF9DTEFTU19ERVZJQ0UpCiBpbnQgaW50ZWxfYmFja2xp
-Z2h0X2RldmljZV9yZWdpc3RlcihzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpOwog
-dm9pZCBpbnRlbF9iYWNrbGlnaHRfZGV2aWNlX3VucmVnaXN0ZXIoc3RydWN0IGludGVsX2Nvbm5l
-Y3RvciAqY29ubmVjdG9yKTsKICNlbHNlIC8qIENPTkZJR19CQUNLTElHSFRfQ0xBU1NfREVWSUNF
-ICovCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915/gt: Disable HiZ Raw Stall Optimization on broken gen7
+URL   : https://patchwork.freedesktop.org/series/89502/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+9afaf45bfe53 drm/i915/gt: Disable HiZ Raw Stall Optimization on broken gen7
+-:14: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '520d05a77b28', maybe rebased or not pulled?
+#14: 
+Fixes: 520d05a77b28 ("drm/i915/gt: Clear CACHE_MODE prior to clearing residuals")
+
+-:18: WARNING:BAD_SIGN_OFF: 'Reviewed-by:' is the preferred signature form
+#18: 
+Reviewed-By: Manuel Bentele <development@manuel-bentele.de>
+
+total: 0 errors, 2 warnings, 0 checks, 11 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
