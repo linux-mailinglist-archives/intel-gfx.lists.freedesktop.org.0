@@ -2,39 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26A336CF42
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 01:10:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F44336CFC1
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 01:56:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25B106EA07;
-	Tue, 27 Apr 2021 23:09:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6ECE6EA3A;
+	Tue, 27 Apr 2021 23:55:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BF016EA00
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 23:09:54 +0000 (UTC)
-IronPort-SDR: y4FafICbWdCgM72UtJ0HJOeX0OFtMTuRJlYIsRjMkfpsurC5myWm1KqB4vWAZitCtHFRAVN8dQ
- VFLGoYIYxDQw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="217324848"
-X-IronPort-AV: E=Sophos;i="5.82,256,1613462400"; d="scan'208";a="217324848"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 16:09:53 -0700
-IronPort-SDR: GCRElSmKfqlNzLOwnCIQZUE/AjqjcIs4CGXnu5qisJXUTT8Oj27U2w5jhMjM+58eQp9SU8KVe/
- bd408/dqfBMg==
-X-IronPort-AV: E=Sophos;i="5.82,256,1613462400"; d="scan'208";a="465663268"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 16:09:52 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Apr 2021 16:07:56 -0700
-Message-Id: <20210427230756.2847495-5-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210427230756.2847495-1-lucas.demarchi@intel.com>
-References: <20210427230756.2847495-1-lucas.demarchi@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4A40E6EA3A;
+ Tue, 27 Apr 2021 23:55:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 41272A363D;
+ Tue, 27 Apr 2021 23:55:56 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: hide workaround for
- broken vbt in intel_bios.c
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Date: Tue, 27 Apr 2021 23:55:56 -0000
+Message-ID: <161956775623.17486.2337275518518328948@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210427215339.47191-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20210427215339.47191-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIEFk?=
+ =?utf-8?q?d_support_for_querying_engine_cycles?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,87 +38,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of poluting the normal code path in intel_display.c, make
-intel_bios.c handle the brokenness of the VBT.
+== Series Details ==
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c    | 15 +++++++++++++++
- drivers/gpu/drm/i915/display/intel_display.c | 14 ++------------
- 2 files changed, 17 insertions(+), 12 deletions(-)
+Series: Add support for querying engine cycles
+URL   : https://patchwork.freedesktop.org/series/89561/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index befab891a6b9..e9f828452412 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1852,6 +1852,14 @@ intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
- 		devdata->child.device_type & DEVICE_TYPE_INTERNAL_CONNECTOR;
- }
- 
-+static bool skip_broken_vbt(struct drm_i915_private *i915, enum port port)
-+{
-+	if (port == PORT_F && (IS_ICELAKE(i915) || IS_CANNONLAKE(i915)))
-+		return !IS_ICL_WITH_PORT_F(i915) && !IS_CNL_WITH_PORT_F(i915);
-+
-+	return false;
-+}
-+
- static void parse_ddi_port(struct drm_i915_private *i915,
- 			   struct intel_bios_encoder_data *devdata)
- {
-@@ -1865,6 +1873,13 @@ static void parse_ddi_port(struct drm_i915_private *i915,
- 	if (port == PORT_NONE)
- 		return;
- 
-+	if (skip_broken_vbt(i915, port)) {
-+		drm_dbg_kms(&i915->drm,
-+			    "VBT reports port %c as supported, but that can't be true: skipping\n",
-+			    port_name(port));
-+		return;
-+	}
-+
- 	info = &i915->vbt.ddi_port_info[port];
- 
- 	if (info->devdata) {
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 55f8f2ceada2..64a2a3b9a480 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10868,15 +10868,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 		intel_ddi_init(dev_priv, PORT_C);
- 		intel_ddi_init(dev_priv, PORT_D);
- 		intel_ddi_init(dev_priv, PORT_E);
--
--		/*
--		 * On some ICL SKUs port F is not present, but broken VBTs mark
--		 * the port as present. Only try to initialize port F for the
--		 * SKUs that may actually have it.
--		 */
--		if (IS_ICL_WITH_PORT_F(dev_priv))
--			intel_ddi_init(dev_priv, PORT_F);
--
-+		intel_ddi_init(dev_priv, PORT_F);
- 		icl_dsi_init(dev_priv);
- 	} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
- 		intel_ddi_init(dev_priv, PORT_A);
-@@ -10889,9 +10881,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 		intel_ddi_init(dev_priv, PORT_C);
- 		intel_ddi_init(dev_priv, PORT_D);
- 		intel_ddi_init(dev_priv, PORT_E);
--
--		if (IS_CNL_WITH_PORT_F(dev_priv))
--			intel_ddi_init(dev_priv, PORT_F);
-+		intel_ddi_init(dev_priv, PORT_E);
- 	} else if (HAS_DDI(dev_priv)) {
- 		u32 found;
- 
--- 
-2.31.1
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./include/uapi/drm/i915_drm.h:2234: warning: Incorrect use of kernel-doc format:          * Query Command Streamer timestamp register.
+./include/uapi/drm/i915_drm.h:2420: warning: Incorrect use of kernel-doc format:          * Command streamer cycles as read from the command streamer
+./include/uapi/drm/i915_drm.h:2429: warning: Incorrect use of kernel-doc format:          * CPU timestamps in ns. cpu_timestamp[0] is captured before reading the
+./include/uapi/drm/i915_drm.h:2437: warning: Incorrect use of kernel-doc format:          * Reference clock id for CPU timestamp. For definition, see
+./include/uapi/drm/i915_drm.h:2446: warning: Function parameter or member 'engine' not described in 'drm_i915_query_cs_cycles'
+./include/uapi/drm/i915_drm.h:2446: warning: Function parameter or member 'flags' not described in 'drm_i915_query_cs_cycles'
+./include/uapi/drm/i915_drm.h:2446: warning: Function parameter or member 'cs_cycles' not described in 'drm_i915_query_cs_cycles'
+./include/uapi/drm/i915_drm.h:2446: warning: Function parameter or member 'cs_frequency' not described in 'drm_i915_query_cs_cycles'
+./include/uapi/drm/i915_drm.h:2446: warning: Function parameter or member 'cpu_timestamp' not described in 'drm_i915_query_cs_cycles'
+./include/uapi/drm/i915_drm.h:2446: warning: Function parameter or member 'clockid' not described in 'drm_i915_query_cs_cycles'
+./include/uapi/drm/i915_drm.h:2446: warning: Function parameter or member 'rsvd' not described in 'drm_i915_query_cs_cycles'
+
 
 _______________________________________________
 Intel-gfx mailing list
