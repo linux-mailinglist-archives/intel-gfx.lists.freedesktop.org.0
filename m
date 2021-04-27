@@ -1,35 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC17736C5D4
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 14:10:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF94B36C5FE
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 14:22:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 169A06E94F;
-	Tue, 27 Apr 2021 12:10:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0E06E958;
+	Tue, 27 Apr 2021 12:22:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4F386E94F;
- Tue, 27 Apr 2021 12:10:41 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 7FEC4B18F;
- Tue, 27 Apr 2021 12:10:40 +0000 (UTC)
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
- daniel@ffwll.ch, chris@chris-wilson.co.uk
-References: <20210427111421.2386-1-tzimmermann@suse.de>
- <87v9883pd9.fsf@intel.com>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <495a983e-f995-e63c-b63b-9a29daa2edbf@suse.de>
-Date: Tue, 27 Apr 2021 14:10:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.1
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3FD36E958
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 12:22:10 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id
+ l189-20020a1cbbc60000b0290140319ad207so4571011wmf.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 05:22:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=izOSQ1kvX9gL9Zg8n0LFdd4SzHHu0HuwaaDS25wOkis=;
+ b=Yevp3K3mSklPBxsGNSC1CXat/5bb317vZCMPew07kgxcGHSuYNmqXUyfcJhYUnJ+wt
+ iM+L/D31uqFzk2jRYpmyuEyY1lHO0UadynLNktdJ6/sTeyG6BRqcrlJ0BmlFdKU4IOOm
+ TJVuWnrZsAQCqlJxfLlxbrA3BaetKUKHew5z0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=izOSQ1kvX9gL9Zg8n0LFdd4SzHHu0HuwaaDS25wOkis=;
+ b=X+o5R6ajdOwYFH2LAtHw5eMxXXSCo2P1lOVprlL9uBWrMZJ1tks9JZkdDQS4oQk9Rt
+ 2ZadoeYPIHZpFBbTyPlBTX/jSFKnSPjTUHYJoJUFfjhVOeE75XHweiFaCj0NS20Y0+kG
+ +u5vpecfNUxigU+vV4X7zlpPmTTRFonnxkXmpApTR8uFzMao/jcMiwMBJsCpK2x0yNxq
+ UHfflepAiFxAD96OYHCdRFqXfXGg2ud3DqjS7+VUvG4AhVJ3IbiaScEZleHgGxw8XJkU
+ BGS/0siMHVJXUtkzihjVEgod3s//EW3j6BRcNtnV5hi+5xckpmaGkgJ8Nt7ldefRa5JA
+ oEAg==
+X-Gm-Message-State: AOAM532K5lF7uwSlI5zStW4SLJCXPFHdGFere45WjkMiFzKvDZXGPy+a
+ BqnybDcEsEuGSvqlOc0f8wSVBw==
+X-Google-Smtp-Source: ABdhPJxByCio9m3RzJm1/JVqiUEu/jGJwVC31vnwKixI0AqPqAlhLH8PsS43l/Ccfot3/JWhHksZFA==
+X-Received: by 2002:a05:600c:3581:: with SMTP id
+ p1mr3967805wmq.35.1619526129659; 
+ Tue, 27 Apr 2021 05:22:09 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id 3sm10527987wms.30.2021.04.27.05.22.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 27 Apr 2021 05:22:09 -0700 (PDT)
+Date: Tue, 27 Apr 2021 14:22:07 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Emil Velikov <emil.l.velikov@gmail.com>
+Message-ID: <YIgB76WmQijHCJeV@phenom.ffwll.local>
+References: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
+ <20210427092018.832258-8-daniel.vetter@ffwll.ch>
+ <CACvgo51rQJmHc1K-MSq-WLZkwVt34MY73csgEyxorrYsKPwQiA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <87v9883pd9.fsf@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v7 0/4] drm: Move struct drm_device.pdev to
- legacy
+Content-Disposition: inline
+In-Reply-To: <CACvgo51rQJmHc1K-MSq-WLZkwVt34MY73csgEyxorrYsKPwQiA@mail.gmail.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 8/8] drm/modifiers: Enforce consistency
+ between the cap an IN_FORMATS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,172 +69,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1287736140=="
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Maxime Ripard <maxime@cerno.tech>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1287736140==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="Fp3hbdaPMkG55bjOjfzNQaB9WL2nRsrL1"
+On Tue, Apr 27, 2021 at 12:32:19PM +0100, Emil Velikov wrote:
+> Hi Daniel,
+> 
+> On Tue, 27 Apr 2021 at 10:20, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> 
+> > @@ -360,6 +373,9 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+> >   * drm_universal_plane_init() to let the DRM managed resource infrastructure
+> >   * take care of cleanup and deallocation.
+> >   *
+> > + * Drivers supporting modifiers must set @format_modifiers on all their planes,
+> > + * even those that only support DRM_FORMAT_MOD_LINEAR.
+> > + *
+> The comment says "must", yet we have an "if (format_modifiers)" in the codebase.
+> Shouldn't we add a WARN_ON() + return -EINVAL (or similar) so people
+> can see and fix their drivers?
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---Fp3hbdaPMkG55bjOjfzNQaB9WL2nRsrL1
-Content-Type: multipart/mixed; boundary="VuQR3NnQOzCnZJEOOPZEgnAlcKuUiq5U7";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, airlied@linux.ie,
- daniel@ffwll.ch, chris@chris-wilson.co.uk
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Message-ID: <495a983e-f995-e63c-b63b-9a29daa2edbf@suse.de>
-Subject: Re: [PATCH v7 0/4] drm: Move struct drm_device.pdev to legacy
-References: <20210427111421.2386-1-tzimmermann@suse.de>
- <87v9883pd9.fsf@intel.com>
-In-Reply-To: <87v9883pd9.fsf@intel.com>
+This is a must only for drivers supporting modifiers, not all drivers.
+Hence the check in the if. I did add WARN_ON for the combos that get stuff
+wrong though (like only supply one side of the modifier info, not both).
 
---VuQR3NnQOzCnZJEOOPZEgnAlcKuUiq5U7
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+> As a follow-up one could even go a step further, by erroring out when
+> the driver hasn't provided valid modifier(s) and even removing
+> config::allow_fb_modifiers all together.
 
-Hi Jani
+Well that currently only exists to avoid walking the plane list (which we
+need to do for validation that all planes are the same). It's quite tricky
+code for tiny benefit, so I don't think it's worth it trying to remove
+allow_fb_modifiers completely.
 
-Am 27.04.21 um 14:04 schrieb Jani Nikula:
-> On Tue, 27 Apr 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->> V7 of the patchset fixes some bitrot in the intel driver.
->>
->> The pdev field in struct drm_device points to a PCI device structure a=
-nd
->> goes back to UMS-only days when all DRM drivers were for PCI devices.
->> Meanwhile we also support USB, SPI and platform devices. Each of those=
+> Although for stable - this series + WARN_ON (no return since it might
+> break buggy drivers) sounds good.
+> 
+> > @@ -909,6 +909,8 @@ struct drm_mode_config {
+> >          * @allow_fb_modifiers:
+> >          *
+> >          * Whether the driver supports fb modifiers in the ADDFB2.1 ioctl call.
+> > +        * Note that drivers should not set this directly, it is automatically
+> > +        * set in drm_universal_plane_init().
+> >          *
+> >          * IMPORTANT:
+> >          *
+> The new note and the existing IMPORTANT are in a weird mix.
+> Quoting the latter since it doesn't show in the diff.
+> 
+> If this is set the driver must fill out the full implicit modifier
+> information in their &drm_mode_config_funcs.fb_create hook for legacy
+> userspace which does not set modifiers. Otherwise the GETFB2 ioctl is
+> broken for modifier aware userspace.
+> 
+> In particular:
+> As the new note says "don't set it" and the existing note one says "if
+> it's set". Yet no drivers do "if (config->allow_fb_modifiers)".
+> 
+> Sadly, nothing comes to mind atm wrt alternative wording.
 
->> uses the generic device stored in struct drm_device.dev.
->>
->> To reduce duplication and remove the special case of PCI, this patchse=
-t
->> converts all modesetting drivers from pdev to dev and makes pdev a fie=
-ld
->> for legacy UMS drivers.
->>
->> For PCI devices, the pointer in struct drm_device.dev can be upcasted =
-to
->> struct pci_device; or tested for PCI with dev_is_pci(). In several pla=
-ces
->> the code can use the dev field directly.
->>
->> After converting all drivers and the DRM core, the pdev fields becomes=
+Yeah it's a bit disappointing.
 
->> only relevant for legacy drivers. In a later patchset, we may want to
->> convert these as well and remove pdev entirely.
->=20
-> On the series,
->=20
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->=20
-> How should we merge these?
+> With the WARN_ON() added or s/must/should/ in the documentation, the series is:
 
-Thanks for the quick reply.
+With my clarification, can you please recheck whether as-is it's not
+correct?
 
-There is another pdev patch that I just sent out. [1] It has to go into=20
-the intel tree. After it landed, I want to get this patchset into=20
-drm-misc-next ASAP. Otherwise, drm-tip would stop building.
+Thanks, Daniel
 
-This should fix things in the correct order and finally remove pdev for=20
-current drivers.
+> Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
+> 
+> HTH
+> -Emil
 
-Best regards
-Thomas
-
-[1]=20
-https://lore.kernel.org/dri-devel/20210427110747.2065-1-tzimmermann@suse.=
-de/T/#u
-
->=20
->=20
->=20
->>
->> v7:
->> 	* fix instances of pdev that have benn added under i915/
->> v6:
->> 	* also remove assignment in i915/selftests in later patch (Chris)
->> v5:
->> 	* remove assignment in later patch (Chris)
->> v4:
->> 	* merged several patches
->> 	* moved core changes into separate patch
->> 	* vmwgfx build fix
->> v3:
->> 	* merged several patches
->> 	* fix one pdev reference in nouveau (Jeremy)
->> 	* rebases
->> v2:
->> 	* move whitespace fixes into separate patches (Alex, Sam)
->> 	* move i915 gt/ and gvt/ changes into separate patches (Joonas)
->>
->> Thomas Zimmermann (4):
->>    drm/i915/gt: Remove reference to struct drm_device.pdev
->>    drm/i915: Remove reference to struct drm_device.pdev
->>    drm/i915: Don't assign to struct drm_device.pdev
->>    drm: Move struct drm_device.pdev to legacy section
->>
->>   drivers/gpu/drm/i915/gt/intel_region_lmem.c      | 2 +-
->>   drivers/gpu/drm/i915/i915_drv.c                  | 1 -
->>   drivers/gpu/drm/i915/intel_runtime_pm.h          | 2 +-
->>   drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 -
->>   include/drm/drm_device.h                         | 6 +++---
->>   5 files changed, 5 insertions(+), 7 deletions(-)
->>
->> --
->> 2.31.1
->>
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---VuQR3NnQOzCnZJEOOPZEgnAlcKuUiq5U7--
-
---Fp3hbdaPMkG55bjOjfzNQaB9WL2nRsrL1
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmCH/z8FAwAAAAAACgkQlh/E3EQov+BM
-DA//daeE4VneNVAmNNIwjIb2wJgJT6Oqgyi3dD6GhzGHrAnN3FCqasnbjTsZ6JwEJQ5HP+qjWg9w
-LjaU2u5B22iFJrE5bCixTWBXYTCVwTCrTq2IhMkKbezw2Ze55bbdsVL5MFTfndopcnt95CuUcmdE
-VG6vWwOCfnYRAjnfihXRbKyYhbDeBpcPPk2j1W1u4ELFYncBuN1FWpYlIhqWr0jXo7XLL8Sn167N
-SG6295Z/fwjKtDZN1XMKkuZcXczJwDfJQQ2HqWpqxnViOUeuAAvuDSm3wQ6o5U1OcasH0NgHvPdG
-YTHXZ07tZR78BmWOY9fN5SargyBGw2iMQBCUDZN3ARezTUlWzCjNb/M+b1sjZaiOZOop8MEoBxOL
-+PBj3KcVRfEqbGoYS77vTuh7QHJnBcdQTUGsLvx6JjcqOpg6V0rmFMY7IPe34ZkDsmlyy5BVxVT9
-EsOzhDEHKz/gseBZD7bnepYa9VghIwyo+6Ctok1VrfZFpCoCXNCGTZD2HIe1IdUjR/57aKQZSKHu
-fnB8WCs5aIrAAxcD0WszpIOBY5v8k7iiEeLWRIW2l+AgBafvzAGCxl2eNLXzsDx+Vf2btamjBOG+
-BXxh/2U3PJEAyh+KJb71uBsQF4OEQlCB7WQlg5qKstM1ETnvVvkGFXYY5c+Co5EKOoxTHglXDwl4
-jX0=
-=A+hK
------END PGP SIGNATURE-----
-
---Fp3hbdaPMkG55bjOjfzNQaB9WL2nRsrL1--
-
---===============1287736140==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1287736140==--
