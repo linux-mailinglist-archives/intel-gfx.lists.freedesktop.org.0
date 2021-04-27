@@ -2,30 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A9B936CEB2
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 00:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7782736CEC3
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 00:50:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 543D66E9FA;
-	Tue, 27 Apr 2021 22:41:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BB246E9FF;
+	Tue, 27 Apr 2021 22:50:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7242C6E9F8;
- Tue, 27 Apr 2021 22:41:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6915BA008A;
- Tue, 27 Apr 2021 22:41:56 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F3B96EA00
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 22:50:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1619563807;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=cO8rq0W/UXy84srQ0IqQ4LM9BXhfScB/i6+15e8JVlQ=;
+ b=AZsCSvHbVfhdblRv1aYTL/oXHv9stfJvprEipEUH5K923u/0igJ8H2fA/kaQANOBYSv8OH
+ hFCZYy4DGoCQZdOUoAniIZWncASM6fGAIsqI6YXM/MHj4nPAbQf4unBNH1Ckm6B/Iuo1SE
+ ihyA2c7K7sgVtcfBGBfCWb7LMvaA5XA=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-9-CSLUtTQ9PMOJSlhk6jA_JQ-1; Tue, 27 Apr 2021 18:50:03 -0400
+X-MC-Unique: CSLUtTQ9PMOJSlhk6jA_JQ-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 19B9A803620;
+ Tue, 27 Apr 2021 22:49:59 +0000 (UTC)
+Received: from redhat.com (ovpn-113-225.phx2.redhat.com [10.3.113.225])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 1845D5D9F2;
+ Tue, 27 Apr 2021 22:49:57 +0000 (UTC)
+Date: Tue, 27 Apr 2021 16:49:56 -0600
+From: Alex Williamson <alex.williamson@redhat.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Message-ID: <20210427164956.750aea67@redhat.com>
+In-Reply-To: <20210427222026.GL1370958@nvidia.com>
+References: <0-v2-7667f42c9bad+935-vfio3_jgg@nvidia.com>
+ <20210427153042.103e12ab@redhat.com>
+ <20210427222026.GL1370958@nvidia.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Date: Tue, 27 Apr 2021 22:41:56 -0000
-Message-ID: <161956331639.17488.15966357013376567069@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210427214913.46956-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20210427214913.46956-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?_support_for_querying_engine_cycles?=
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+Subject: Re: [Intel-gfx] [PATCH v2 00/13] Remove vfio_mdev.c,
+ mdev_parent_ops and more
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,196 +60,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1857452163=="
+Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
+ David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
+ Kirti Wankhede <kwankhede@nvidia.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>,
+ linux-s390@vger.kernel.org, "Raj, Ashok" <ashok.raj@intel.com>,
+ Jonathan Corbet <corbet@lwn.net>, Halil Pasic <pasic@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@de.ibm.com>,
+ Tarun Gupta <targupta@nvidia.com>, intel-gfx@lists.freedesktop.org,
+ Max Gurtovoy <mgurtovoy@nvidia.com>, Eric Farman <farman@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
+ Harald Freudenberger <freude@linux.ibm.com>,
+ Dan Williams <dan.j.williams@intel.com>, intel-gvt-dev@lists.freedesktop.org,
+ Tony Krowiak <akrowiak@linux.ibm.com>, Pierre Morel <pmorel@linux.ibm.com>,
+ Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1857452163==
-Content-Type: multipart/alternative;
- boundary="===============1617796350805277662=="
+On Tue, 27 Apr 2021 19:20:26 -0300
+Jason Gunthorpe <jgg@nvidia.com> wrote:
 
---===============1617796350805277662==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> On Tue, Apr 27, 2021 at 03:30:42PM -0600, Alex Williamson wrote:
+>  
+> > It'd be really helpful if you could consistently copy at least one
+> > list, preferably one monitored by patchwork, for an entire series.  The
+> > kvm list is missing patches 06 and 08.  I can find the latter hopping
+> > over to the intel-gfx or dri-devel projects as I did for the last
+> > series, but 06 only copied linux-s390, where I need to use lore and
+> > can't find a patchwork.  Thanks,  
+> 
+> Oh wow, that is not intentional, sorry! Thanks for pointing it out
+> 
+> I didn't notice this was happening, basically a side effect of having
+> so many different people and lists to get on this series - kvm should
+> have been CC on them all, I fixed it up going forward.
+> 
+> FWIW you may be interested in b4 if you haven't seen it before, it is
+> a good alternative if there isn't an offical patchworks.
 
-== Series Details ==
+I'm sold!  Thanks,
 
-Series: Add support for querying engine cycles
-URL   : https://patchwork.freedesktop.org/series/89560/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10018 -> Patchwork_20008
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20008 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][1] ([i915#1888]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10018/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-tgl-y:           [DMESG-FAIL][3] ([i915#541]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10018/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-icl-u2:          [SKIP][5] -> [SKIP][6] ([fdo#109309]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10018/fi-icl-u2/igt@kms_chamelium@vga-edid-read.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/fi-icl-u2/igt@kms_chamelium@vga-edid-read.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109309]: https://bugs.freedesktop.org/show_bug.cgi?id=109309
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (47 -> 41)
-------------------------------
-
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-icl-y fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * IGT: IGT_6076 -> IGTPW_5757
-  * Linux: CI_DRM_10018 -> Patchwork_20008
-
-  CI-20190529: 20190529
-  CI_DRM_10018: 929a4fa94d31990066fd8be6a02f1a6c2b9f1d2d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_5757: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5757/index.html
-  IGT_6076: 9ab0820dbd07781161c1ace6973ea222fd24e53a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20008: 043ae82f7a388989581edb393cd22ff6fb2fde02 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-043ae82f7a38 i915/query: Correlate engine and cpu timestamps with better accuracy
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/index.html
-
---===============1617796350805277662==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add support for querying engine cycles</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89560/">https://patchwork.freedesktop.org/series/89560/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10018 -&gt; Patchwork_20008</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20008 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10018/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-tgl-y:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10018/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/fi-tgl-y/igt@i915_selftest@live@gt_heartbeat.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_chamelium@vga-edid-read:<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10018/fi-icl-u2/igt@kms_chamelium@vga-edid-read.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20008/fi-icl-u2/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109309">fdo#109309</a>) +1 similar issue</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (47 -&gt; 41)</h2>
-<p>Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-icl-y fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_6076 -&gt; IGTPW_5757</li>
-<li>Linux: CI_DRM_10018 -&gt; Patchwork_20008</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10018: 929a4fa94d31990066fd8be6a02f1a6c2b9f1d2d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGTPW_5757: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_5757/index.html<br />
-  IGT_6076: 9ab0820dbd07781161c1ace6973ea222fd24e53a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20008: 043ae82f7a388989581edb393cd22ff6fb2fde02 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>043ae82f7a38 i915/query: Correlate engine and cpu timestamps with better accuracy</p>
-
-</body>
-</html>
-
---===============1617796350805277662==--
-
---===============1857452163==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Alex
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1857452163==--
