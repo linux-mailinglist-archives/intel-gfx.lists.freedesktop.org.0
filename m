@@ -2,35 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF4236C89C
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 17:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D9136C8AE
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 17:32:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 916916E981;
-	Tue, 27 Apr 2021 15:25:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17F8D6E0C8;
+	Tue, 27 Apr 2021 15:32:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 613606E981;
- Tue, 27 Apr 2021 15:25:24 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3C10D31B;
- Tue, 27 Apr 2021 08:25:23 -0700 (PDT)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1A0C73F73B;
- Tue, 27 Apr 2021 08:25:23 -0700 (PDT)
-Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
- id C7967682B6E; Tue, 27 Apr 2021 16:25:21 +0100 (BST)
-Date: Tue, 27 Apr 2021 16:25:21 +0100
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <YIgs4dY3mBVjXPIz@e110455-lin.cambridge.arm.com>
-References: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 717F96E0C8;
+ Tue, 27 Apr 2021 15:32:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+ :Reply-To:Content-ID:Content-Description;
+ bh=LQWA5Vj4/vDTbjcIAJB1lIQbwCbGR7wOkwAKtHeU/fo=; b=LiBcd29YiOroBKZ3tf8wjAoMRx
+ R7P9hHXyjzfRMPScN8KiVdQh1Fl4P/Vb3LNki7eNFchPrLYs+pAB/s8J5J7cghN5CQ2K1PCHOyryG
+ D7TmrFM1yuBYk9EP7bZhOB7MsQb/qMaICJfzYsVRMMu034YNqKBmOiR2xCt9tkWv685bDt2JE1HLF
+ H8TXCSrueLo9mxh8BJhmYc48h+ftoLHfd0EWmhjRpKo4HxuTymO/z6XzF8KF6kKKKQua7Pvs3RF5I
+ Ng7kmJ2apAX9UOSaeY6AIAH2UXD1GcUNt24K55lxson17SN2gxeRKRbHPSNTZ+K5qnrIiJg+7y96q
+ qLUHFS4Q==;
+Received: from [2601:1c0:6280:3f0::df68]
+ by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+ id 1lbPgt-0074eB-GM; Tue, 27 Apr 2021 15:32:10 +0000
+To: Jani Nikula <jani.nikula@intel.com>, linux-kernel@vger.kernel.org
+References: <20210426183516.18957-1-rdunlap@infradead.org>
+ <874kfs5f3d.fsf@intel.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <866940af-bbbf-a1cd-b1e3-aafe94686a22@infradead.org>
+Date: Tue, 27 Apr 2021 08:31:54 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/arm: Don't set allow_fb_modifiers
- explicitly
+In-Reply-To: <874kfs5f3d.fsf@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm: i915: fix build when ACPI is disabled
+ and BACKLIGHT=m
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,56 +51,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Damien Lespiau <damien.lespiau@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCBBcHIgMjcsIDIwMjEgYXQgMTE6MjA6MTFBTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBTaW5jZQo+IAo+IGNvbW1pdCA4OTA4ODBkZGZkYmUyNTYwODMxNzA4NjZlNDljODc2
-MThiNzA2YWM3Cj4gQXV0aG9yOiBQYXVsIEtvY2lhbGtvd3NraSA8cGF1bC5rb2NpYWxrb3dza2lA
-Ym9vdGxpbi5jb20+Cj4gRGF0ZTogICBGcmkgSmFuIDQgMDk6NTY6MTAgMjAxOSArMDEwMAo+IAo+
-ICAgICBkcm06IEF1dG8tc2V0IGFsbG93X2ZiX21vZGlmaWVycyB3aGVuIGdpdmVuIG1vZGlmaWVy
-cyBhdCBwbGFuZSBpbml0Cj4gCj4gdGhpcyBpcyBkb25lIGF1dG9tYXRpY2FsbHkgYXMgcGFydCBv
-ZiBwbGFuZSBpbml0LCBpZiBkcml2ZXJzIHNldCB0aGUKPiBtb2RpZmllciBsaXN0IGNvcnJlY3Rs
-eS4gV2hpY2ggaXMgdGhlIGNhc2UgaGVyZSBmb3IgYm90aCBrb21lZGEgYW5kCj4gbWFsaWRwLgo+
-IAo+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29t
-Pgo+IENjOiAiSmFtZXMgKFFpYW4pIFdhbmciIDxqYW1lcy5xaWFuLndhbmdAYXJtLmNvbT4KPiBD
-YzogTGl2aXUgRHVkYXUgPGxpdml1LmR1ZGF1QGFybS5jb20+CgpBY2tlZC1ieTogTGl2aXUgRHVk
-YXUgPGxpdml1LmR1ZGF1QGFybS5jb20+CgpCZXN0IHJlZ2FyZHMsCkxpdml1Cgo+IENjOiBNaWhh
-aWwgQXRhbmFzc292IDxtaWhhaWwuYXRhbmFzc292QGFybS5jb20+Cj4gQ2M6IEJyaWFuIFN0YXJr
-ZXkgPGJyaWFuLnN0YXJrZXlAYXJtLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2FybS9k
-aXNwbGF5L2tvbWVkYS9rb21lZGFfa21zLmMgfCAxIC0KPiAgZHJpdmVycy9ncHUvZHJtL2FybS9t
-YWxpZHBfZHJ2LmMgICAgICAgICAgICAgICAgfCAxIC0KPiAgMiBmaWxlcyBjaGFuZ2VkLCAyIGRl
-bGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYXJtL2Rpc3BsYXkv
-a29tZWRhL2tvbWVkYV9rbXMuYyBiL2RyaXZlcnMvZ3B1L2RybS9hcm0vZGlzcGxheS9rb21lZGEv
-a29tZWRhX2ttcy5jCj4gaW5kZXggYWVkYTRlNWVjNGY0Li5mZjQ1ZjIzZjNkNTYgMTAwNjQ0Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FybS9kaXNwbGF5L2tvbWVkYS9rb21lZGFfa21zLmMKPiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vYXJtL2Rpc3BsYXkva29tZWRhL2tvbWVkYV9rbXMuYwo+IEBA
-IC0yNDcsNyArMjQ3LDYgQEAgc3RhdGljIHZvaWQga29tZWRhX2ttc19tb2RlX2NvbmZpZ19pbml0
-KHN0cnVjdCBrb21lZGFfa21zX2RldiAqa21zLAo+ICAJY29uZmlnLT5taW5faGVpZ2h0CT0gMDsK
-PiAgCWNvbmZpZy0+bWF4X3dpZHRoCT0gNDA5NjsKPiAgCWNvbmZpZy0+bWF4X2hlaWdodAk9IDQw
-OTY7Cj4gLQljb25maWctPmFsbG93X2ZiX21vZGlmaWVycyA9IHRydWU7Cj4gIAo+ICAJY29uZmln
-LT5mdW5jcyA9ICZrb21lZGFfbW9kZV9jb25maWdfZnVuY3M7Cj4gIAljb25maWctPmhlbHBlcl9w
-cml2YXRlID0gJmtvbWVkYV9tb2RlX2NvbmZpZ19oZWxwZXJzOwo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vYXJtL21hbGlkcF9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9hcm0vbWFsaWRw
-X2Rydi5jCj4gaW5kZXggZDgzYzczNjZiMzQ4Li5kZTU5ZjMzMDI1MTYgMTAwNjQ0Cj4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2FybS9tYWxpZHBfZHJ2LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YXJtL21hbGlkcF9kcnYuYwo+IEBAIC00MDMsNyArNDAzLDYgQEAgc3RhdGljIGludCBtYWxpZHBf
-aW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZHJtKQo+ICAJZHJtLT5tb2RlX2NvbmZpZy5tYXhfaGVp
-Z2h0ID0gaHdkZXYtPm1heF9saW5lX3NpemU7Cj4gIAlkcm0tPm1vZGVfY29uZmlnLmZ1bmNzID0g
-Jm1hbGlkcF9tb2RlX2NvbmZpZ19mdW5jczsKPiAgCWRybS0+bW9kZV9jb25maWcuaGVscGVyX3By
-aXZhdGUgPSAmbWFsaWRwX21vZGVfY29uZmlnX2hlbHBlcnM7Cj4gLQlkcm0tPm1vZGVfY29uZmln
-LmFsbG93X2ZiX21vZGlmaWVycyA9IHRydWU7Cj4gIAo+ICAJcmV0ID0gbWFsaWRwX2NydGNfaW5p
-dChkcm0pOwo+ICAJaWYgKHJldCkKPiAtLSAKPiAyLjMxLjAKPiAKCi0tIAo9PT09PT09PT09PT09
-PT09PT09PQp8IEkgd291bGQgbGlrZSB0byB8CnwgZml4IHRoZSB3b3JsZCwgIHwKfCBidXQgdGhl
-eSdyZSBub3QgfAp8IGdpdmluZyBtZSB0aGUgICB8CiBcIHNvdXJjZSBjb2RlISAgLwogIC0tLS0t
-LS0tLS0tLS0tLQogICAgwq9cXyjjg4QpXy/CrwpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+On 4/27/21 1:03 AM, Jani Nikula wrote:
+> On Mon, 26 Apr 2021, Randy Dunlap <rdunlap@infradead.org> wrote:
+>> When CONFIG_DRM_I915=y, CONFIG_ACPI is not set, and
+>> CONFIG_BACKLIGHT_CLASS_DEVICE=m, not due to I915 config,
+>> there are build errors trying to reference backlight_device_{un}register().
+>>
+>> Changing the use of IS_ENABLED() to IS_REACHABLE() in intel_panel.[ch]
+>> fixes this.
+> 
+> I feel like a broken record...
+
+Thanks! :)
+
+I'll leave it b0rken as well.
+
+
+> CONFIG_DRM_I915=y and CONFIG_BACKLIGHT_CLASS_DEVICE=m is an invalid
+> configuration. The patch at hand just silently hides the problem,
+> leaving you without backlight.
+> 
+> i915 should *depend* on backlight, not select it. It would express the
+> dependency without chances for invalid configuration.
+> 
+> However, i915 alone can't depend on backlight, all users of backlight
+> should depend on backlight, not select it. Otherwise, you end up with
+> other configuration problems, circular dependencies and
+> whatnot. Everyone should change. See also (*) why select is not a good
+> idea here.
+> 
+> I've sent patches to this effect before, got rejected, and the same
+> thing gets repeated ad infinitum.
+> 
+> Accepting this patch would stop the inflow of these reports and similar
+> patches, but it does not fix the root cause. It just sweeps the problem
+> under the rug.
+> 
+> 
+> BR,
+> Jani.
+> 
+> (*) Documentation/kbuild/kconfig-language.rst:
+> 
+> 	select should be used with care. select will force
+> 	a symbol to a value without visiting the dependencies.
+> 	By abusing select you are able to select a symbol FOO even
+> 	if FOO depends on BAR that is not set.
+> 	In general use select only for non-visible symbols
+> 	(no prompts anywhere) and for symbols with no dependencies.
+> 	That will limit the usefulness but on the other hand avoid
+> 	the illegal configurations all over.
+
+Yes, I'm well aware of that.
+
+ta.
+-- 
+~Randy
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
