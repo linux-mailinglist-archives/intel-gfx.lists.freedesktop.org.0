@@ -1,44 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EEDE36C69A
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 15:00:46 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 098B936C6B2
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 15:06:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E35936E2A3;
-	Tue, 27 Apr 2021 13:00:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A28E86E96D;
+	Tue, 27 Apr 2021 13:06:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F73C6E1FB;
- Tue, 27 Apr 2021 13:00:42 +0000 (UTC)
-IronPort-SDR: fEAQh4vG8/uHa8Nzeb6v5m87FpIWBjLYMFqPC28DUrULOafkF9Mv/6obJiwUSQauJyrOc5ll07
- tEpll8CY3wuw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="175985086"
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="175985086"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 06:00:16 -0700
-IronPort-SDR: KNAd0Qsix3RNh8qUtI46oiFbypF46d65jdPTJ+Aa4nLb4wbLT7DuJQoB9ftSSape1lhdusLDcu
- GlrkkD2uZyHQ==
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="429801515"
-Received: from aalbarra-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.41.45])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 06:00:13 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
- chris@chris-wilson.co.uk
-In-Reply-To: <495a983e-f995-e63c-b63b-9a29daa2edbf@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210427111421.2386-1-tzimmermann@suse.de>
- <87v9883pd9.fsf@intel.com> <495a983e-f995-e63c-b63b-9a29daa2edbf@suse.de>
-Date: Tue, 27 Apr 2021 16:00:07 +0300
-Message-ID: <87o8dz51d4.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A470F6E964;
+ Tue, 27 Apr 2021 13:06:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9956AA7E03;
+ Tue, 27 Apr 2021 13:06:29 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v7 0/4] drm: Move struct drm_device.pdev to
- legacy
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Tue, 27 Apr 2021 13:06:29 -0000
+Message-ID: <161952878960.17487.18196283733526755446@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210328225709.18541-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20210328225709.18541-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBJ?=
+ =?utf-8?q?ntroduce_Intel_PXP_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,104 +38,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 27 Apr 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Hi Jani
->
-> Am 27.04.21 um 14:04 schrieb Jani Nikula:
->> On Tue, 27 Apr 2021, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->>> V7 of the patchset fixes some bitrot in the intel driver.
->>>
->>> The pdev field in struct drm_device points to a PCI device structure and
->>> goes back to UMS-only days when all DRM drivers were for PCI devices.
->>> Meanwhile we also support USB, SPI and platform devices. Each of those
->>> uses the generic device stored in struct drm_device.dev.
->>>
->>> To reduce duplication and remove the special case of PCI, this patchset
->>> converts all modesetting drivers from pdev to dev and makes pdev a field
->>> for legacy UMS drivers.
->>>
->>> For PCI devices, the pointer in struct drm_device.dev can be upcasted to
->>> struct pci_device; or tested for PCI with dev_is_pci(). In several places
->>> the code can use the dev field directly.
->>>
->>> After converting all drivers and the DRM core, the pdev fields becomes
->>> only relevant for legacy drivers. In a later patchset, we may want to
->>> convert these as well and remove pdev entirely.
->> 
->> On the series,
->> 
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->> 
->> How should we merge these?
->
-> Thanks for the quick reply.
->
-> There is another pdev patch that I just sent out. [1] It has to go into 
-> the intel tree. After it landed, I want to get this patchset into 
-> drm-misc-next ASAP. Otherwise, drm-tip would stop building.
+== Series Details ==
 
-On merging the series via drm-misc-next,
+Series: Introduce Intel PXP (rev5)
+URL   : https://patchwork.freedesktop.org/series/86798/
+State : failure
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
 
->
-> This should fix things in the correct order and finally remove pdev for 
-> current drivers.
->
-> Best regards
-> Thomas
->
-> [1] 
-> https://lore.kernel.org/dri-devel/20210427110747.2065-1-tzimmermann@suse.de/T/#u
->
->> 
->> 
->> 
->>>
->>> v7:
->>> 	* fix instances of pdev that have benn added under i915/
->>> v6:
->>> 	* also remove assignment in i915/selftests in later patch (Chris)
->>> v5:
->>> 	* remove assignment in later patch (Chris)
->>> v4:
->>> 	* merged several patches
->>> 	* moved core changes into separate patch
->>> 	* vmwgfx build fix
->>> v3:
->>> 	* merged several patches
->>> 	* fix one pdev reference in nouveau (Jeremy)
->>> 	* rebases
->>> v2:
->>> 	* move whitespace fixes into separate patches (Alex, Sam)
->>> 	* move i915 gt/ and gvt/ changes into separate patches (Joonas)
->>>
->>> Thomas Zimmermann (4):
->>>    drm/i915/gt: Remove reference to struct drm_device.pdev
->>>    drm/i915: Remove reference to struct drm_device.pdev
->>>    drm/i915: Don't assign to struct drm_device.pdev
->>>    drm: Move struct drm_device.pdev to legacy section
->>>
->>>   drivers/gpu/drm/i915/gt/intel_region_lmem.c      | 2 +-
->>>   drivers/gpu/drm/i915/i915_drv.c                  | 1 -
->>>   drivers/gpu/drm/i915/intel_runtime_pm.h          | 2 +-
->>>   drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 -
->>>   include/drm/drm_device.h                         | 6 +++---
->>>   5 files changed, 5 insertions(+), 7 deletions(-)
->>>
->>> --
->>> 2.31.1
->>>
->> 
+Applying: drm/i915/pxp: Define PXP component interface
+Applying: mei: pxp: export pavp client to me client bus
+Applying: drm/i915/pxp: define PXP device flag and kconfig
+Applying: drm/i915/pxp: allocate a vcs context for pxp usage
+Applying: drm/i915/pxp: Implement funcs to create the TEE channel
+Applying: drm/i915/pxp: set KCR reg init
+Applying: drm/i915/pxp: Create the arbitrary session after boot
+Applying: drm/i915/pxp: Implement arb session teardown
+Applying: drm/i915/pxp: Implement PXP irq handler
+Applying: drm/i915/pxp: Enable PXP power management
+Applying: drm/i915/pxp: interface for marking contexts as using protected content
+Applying: drm/i915/uapi: introduce drm_i915_gem_create_ext
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/i915_drv.c
+M	include/uapi/drm/i915_drm.h
+Falling back to patching base and 3-way merge...
+Auto-merging include/uapi/drm/i915_drm.h
+CONFLICT (content): Merge conflict in include/uapi/drm/i915_drm.h
+Auto-merging drivers/gpu/drm/i915/i915_drv.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0012 drm/i915/uapi: introduce drm_i915_gem_create_ext
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
