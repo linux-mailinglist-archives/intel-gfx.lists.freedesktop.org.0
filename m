@@ -1,55 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A18D236C99F
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 18:40:48 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0045636C9A8
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 18:44:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF5A96E0E1;
-	Tue, 27 Apr 2021 16:40:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 404366E3D2;
+	Tue, 27 Apr 2021 16:44:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE0B66E0E1
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 16:40:44 +0000 (UTC)
-IronPort-SDR: xDPy9CZYuk6ffPigN3BFRx6kEBRxdrub8bw5NGA2Q6LtMkQWp48rlSQ6gPgCOCljG2Vrc+7Hnw
- yD0NYbeaJ01A==
-X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="257850587"
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; 
- d="scan'208,217";a="257850587"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 09:40:41 -0700
-IronPort-SDR: v+GVydiPfsQSDCjLcYt5OPxxD9ESUwgcBfef4mDOYp3wgSXTbn436YwPJT04AoYU/XNwRG/ztL
- F0Nos5/xMLaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; 
- d="scan'208,217";a="454697957"
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137])
- by FMSMGA003.fm.intel.com with ESMTP; 27 Apr 2021 09:40:41 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Tue, 27 Apr 2021 17:40:39 +0100
-Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
- fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2106.013;
- Tue, 27 Apr 2021 09:40:38 -0700
-From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: PR ADL-P DMC
-Thread-Index: Adc7g+V7n5//fvy/SFSy3PJHLt1vEg==
-Date: Tue, 27 Apr 2021 16:40:38 +0000
-Message-ID: <95ff1b7ff1f6469b9288332cfdb0ee26@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.5.1.3
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.132]
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52C296E0F1;
+ Tue, 27 Apr 2021 16:44:08 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5F614613D9;
+ Tue, 27 Apr 2021 16:44:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1619541847;
+ bh=EmmnL/cy7W84WTRcqLXm2uxSDfTW0ua9r1rfSq1Aq6Q=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=kAAew465q1zNbOIv5oXwKeRmW9zGqf1JlX5pZhfOCMUooW7okigb3cRTrycTzOyPf
+ Nocm9zmvgRskRed73ZoDvtERnnBow6ReHbL6yel2EtH0GCo6r6TAtO1Jk0e1loX2c1
+ pfEmW/UtbLIIW6ifGyqh4Ml0S3UT3a4qForr8gis=
+Date: Tue, 27 Apr 2021 18:44:05 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <YIg/Vc0QdIIP4Nxv@kroah.com>
+References: <20210421130105.1226686-1-gregkh@linuxfoundation.org>
+ <CAKMK7uFONR-12CZEGJLrjgS0N-kF_v7_cXJEiSBPFoBbyRHn0w@mail.gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] PR ADL-P DMC
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uFONR-12CZEGJLrjgS0N-kF_v7_cXJEiSBPFoBbyRHn0w@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 000/190] Revertion of all of the umn.edu
+ commits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,151 +44,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Sarvela, Tomi P" <tomi.p.sarvela@intel.com>
-Content-Type: multipart/mixed; boundary="===============2097938349=="
+Cc: Jean Delvare <jdelvare@suse.com>, David Airlie <airlied@linux.ie>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, Kangjie Lu <kjlu@umn.edu>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, "Anholt, Eric" <eric@anholt.net>,
+ Ben Skeggs <bskeggs@redhat.com>, Aditya Pakki <pakki001@umn.edu>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2097938349==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_95ff1b7ff1f6469b9288332cfdb0ee26intelcom_"
+On Wed, Apr 21, 2021 at 07:35:44PM +0200, Daniel Vetter wrote:
+> On Wed, Apr 21, 2021 at 3:01 PM Greg Kroah-Hartman
+> <gregkh@linuxfoundation.org> wrote:
+> >
+> > I have been meaning to do this for a while, but recent events have
+> > finally forced me to do so.
+> >
+> > Commits from @umn.edu addresses have been found to be submitted in "bad
+> > faith" to try to test the kernel community's ability to review "known
+> > malicious" changes.  The result of these submissions can be found in a
+> > paper published at the 42nd IEEE Symposium on Security and Privacy
+> > entitled, "Open Source Insecurity: Stealthily Introducing
+> > Vulnerabilities via Hypocrite Commits" written by Qiushi Wu (University
+> > of Minnesota) and Kangjie Lu (University of Minnesota).
+> >
+> > Because of this, all submissions from this group must be reverted from
+> > the kernel tree and will need to be re-reviewed again to determine if
+> > they actually are a valid fix.  Until that work is complete, remove this
+> > change to ensure that no problems are being introduced into the
+> > codebase.
+> >
+> > This patchset has the "easy" reverts, there are 68 remaining ones that
+> > need to be manually reviewed.  Some of them are not able to be reverted
+> > as they already have been reverted, or fixed up with follow-on patches
+> > as they were determined to be invalid.  Proof that these submissions
+> > were almost universally wrong.
+> 
+> Will you take care of these remaining ones in subsequent patches too?
 
---_000_95ff1b7ff1f6469b9288332cfdb0ee26intelcom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Yes I will.
 
-Sending PR for ADL-P DMC for CI to pull the changes:
+> > I will be working with some other kernel developers to determine if any
+> > of these reverts were actually valid changes, were actually valid, and
+> > if so, will resubmit them properly later.  For now, it's better to be
+> > safe.
+> >
+> > I'll take this through my tree, so no need for any maintainer to worry
+> > about this, but they should be aware that future submissions from anyone
+> > with a umn.edu address should be by default-rejected unless otherwise
+> > determined to actually be a valid fix (i.e. they provide proof and you
+> > can verify it, but really, why waste your time doing that extra work?)
+> >
+> > thanks,
+> >
+> > greg k-h
+> >
+> > Greg Kroah-Hartman (190):
+> >   Revert "net/rds: Avoid potential use after free in
+> >     rds_send_remove_from_sock"
+> >   Revert "media: st-delta: Fix reference count leak in delta_run_work"
+> >   Revert "media: sti: Fix reference count leaks"
+> >   Revert "media: exynos4-is: Fix several reference count leaks due to
+> >     pm_runtime_get_sync"
+> >   Revert "media: exynos4-is: Fix a reference count leak due to
+> >     pm_runtime_get_sync"
+> >   Revert "media: exynos4-is: Fix a reference count leak"
+> >   Revert "media: ti-vpe: Fix a missing check and reference count leak"
+> >   Revert "media: stm32-dcmi: Fix a reference count leak"
+> >   Revert "media: s5p-mfc: Fix a reference count leak"
+> >   Revert "media: camss: Fix a reference count leak."
+> >   Revert "media: platform: fcp: Fix a reference count leak."
+> >   Revert "media: rockchip/rga: Fix a reference count leak."
+> >   Revert "media: rcar-vin: Fix a reference count leak."
+> >   Revert "media: rcar-vin: Fix a reference count leak."
+> >   Revert "firmware: Fix a reference count leak."
+> >   Revert "drm/nouveau: fix reference count leak in
+> >     nouveau_debugfs_strap_peek"
+> >   Revert "drm/nouveau: fix reference count leak in
+> >     nv50_disp_atomic_commit"
+> >   Revert "drm/nouveau: fix multiple instances of reference count leaks"
+> >   Revert "drm/nouveau/drm/noveau: fix reference count leak in
+> >     nouveau_fbcon_open"
+> >   Revert "PCI: Fix pci_create_slot() reference count leak"
+> >   Revert "omapfb: fix multiple reference count leaks due to
+> >     pm_runtime_get_sync"
+> >   Revert "drm/radeon: Fix reference count leaks caused by
+> >     pm_runtime_get_sync"
+> >   Revert "drm/radeon: fix multiple reference count leak"
+> >   Revert "drm/amdkfd: Fix reference count leaks."
+> 
+> I didn't review these carefully, but from a quick look they all seem
+> rather inconsequental. Either error paths that are very unlikely, or
+> drivers which are very dead (looking at the entire list, not just what
+> you reverted here).
+> 
+> Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-The following changes since commit fa0efeff4894e36b9c3964376f2c99fae101d147=
-:
+Thanks for the quick review, I'm now going over them all again to see if
+they are valid or not, some of the pm reference count stuff all looks
+correct.  Others not at all.
 
-  linux-firmware: Update firmware file for Intel Bluetooth AX210 (2021-04-2=
-6 07:00:56 -0400)
+> Also adding drm maintainers/lists, those aren't all on your cc it
+> seems. I will also forward this to fd.o sitewranglers as abuse of our
+> infrastructure, it's for community collaboration, not for inflicting
+> experiments on unconsenting subjects.
 
-are available in the Git repository at:
+Much appreciated.
 
-  git://anongit.freedesktop.org/drm/drm-firmware adlp_firmware
-
-for you to fetch changes up to 726645d0915c8506b491db23d3103f0027055ac5:
-
-  i915: Add ADL-P DMC Support (2021-04-27 09:32:13 -0700)
-
-----------------------------------------------------------------
-Anusha Srivatsa (1):
-      i915: Add ADL-P DMC Support
-
-i915/adlp_dmc_ver2_09.bin | Bin 0 -> 44636 bytes
-i915/adlp_dmc_ver2_10.bin | Bin 0 -> 44616 bytes
-2 files changed, 0 insertions(+), 0 deletions(-)
-create mode 100644 i915/adlp_dmc_ver2_09.bin
-create mode 100644 i915/adlp_dmc_ver2_10.bin
-
-
-Anusha
-
---_000_95ff1b7ff1f6469b9288332cfdb0ee26intelcom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Sending PR for ADL-P DMC for CI to pull the changes:=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The following changes since commit fa0efeff4894e36b9=
-c3964376f2c99fae101d147:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp; linux-firmware: Update firmware file for Inte=
-l Bluetooth AX210 (2021-04-26 07:00:56 -0400)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">are available in the Git repository at:<o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp; git://anongit.freedesktop.org/drm/drm-firmwar=
-e adlp_firmware<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">for you to fetch changes up to 726645d0915c8506b491d=
-b23d3103f0027055ac5:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp; i915: Add ADL-P DMC Support (2021-04-27 09:32=
-:13 -0700)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">----------------------------------------------------=
-------------<o:p></o:p></p>
-<p class=3D"MsoNormal">Anusha Srivatsa (1):<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i915: Add ADL-P DMC S=
-upport<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">i915/adlp_dmc_ver2_09.bin | Bin 0 -&gt; 44636 bytes<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">i915/adlp_dmc_ver2_10.bin | Bin 0 -&gt; 44616 bytes<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">2 files changed, 0 insertions(&#43;), 0 deletions(-)=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">create mode 100644 i915/adlp_dmc_ver2_09.bin<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">create mode 100644 i915/adlp_dmc_ver2_10.bin<o:p></o=
-:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Anusha <o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_95ff1b7ff1f6469b9288332cfdb0ee26intelcom_--
-
---===============2097938349==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+greg k-h
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============2097938349==--
