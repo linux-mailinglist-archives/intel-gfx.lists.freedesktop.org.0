@@ -2,37 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4D036C12E
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 10:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E70436C141
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 10:54:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C1A6E1D5;
-	Tue, 27 Apr 2021 08:46:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D65456E060;
+	Tue, 27 Apr 2021 08:54:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21CEA6E151;
- Tue, 27 Apr 2021 08:46:51 +0000 (UTC)
-IronPort-SDR: AgM2h4HW0Pbx96yrKsU2sKCRibPJ9bl31WtqkQXOvuiScJpwFwZHJ0WmwS1ZdYyT7Pim4K+QH0
- kIvnK5Iq0nLg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="281805602"
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="281805602"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 01:46:50 -0700
-IronPort-SDR: Y3p9ILhLNvo8IK9B2aXTwihxDDjpRbc7otbEbp/Vw0gbRR2eTgKq1O85Ok4bgpEqtf83vfcZID
- OYDRcyep8nqw==
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="429732584"
-Received: from aalbarra-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.41.45])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 01:46:46 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Tue, 27 Apr 2021 11:46:43 +0300
-Message-ID: <871raw5d3g.fsf@intel.com>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50DA46E060;
+ Tue, 27 Apr 2021 08:54:34 +0000 (UTC)
+IronPort-SDR: 7hNVom0mu1G39D05FqhGTN8QWRAt+Kh8fov5/Sz+VdcekKFefzKj4ASJIqCWoRLd6SmT8BW/Eb
+ TOJWIllfbhrQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="260428686"
+X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="260428686"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2021 01:54:32 -0700
+IronPort-SDR: XwmMQg58DTuRwNvDId3GK0BGD/k3AaFLjJBO6YYowHceWF2E/7RIYPeKtxgBBVmaO2w0VzKFVt
+ 4NTL9ggdiDFQ==
+X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="422978833"
+Received: from galinart-mobl.ger.corp.intel.com (HELO
+ mwauld-desk1.ger.corp.intel.com) ([10.252.12.239])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2021 01:54:31 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 27 Apr 2021 09:54:11 +0100
+Message-Id: <20210427085417.120246-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-intel-next-fixes for the merge window
+Subject: [Intel-gfx] [PATCH v2 1/7] drm/i915/dg1: Fix mapping type for
+ default state object
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,68 +46,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CkhpIERhdmUgJiBEYW5pZWwgLQoKU29tZSBmaXhlcyB0byB0aGUgZHJtLW5leHQgZmVhdHVyZSBw
-dWxsLgoKZHJtLWludGVsLW5leHQtZml4ZXMtMjAyMS0wNC0yNzoKZHJtL2k5MTUgZml4ZXMgZm9y
-IHY1LjEzLXJjMToKLSBTZXZlcmFsIGZpeGVzIHRvIEdMSyBoYW5kbGluZyBpbiByZWNlbnQgZGlz
-cGxheSByZWZhY3RvcmluZyAoVmlsbGUpCi0gUmFyZSB3YXRjaGRvZyB0aW1lciByYWNlIGZpeCAo
-VHZydGtvKQotIENwcGNoZWNrIHJlZHVuZGFudCBjb25kaXRpb24gZml4IChKb3PDqSkKLSBPdmVy
-bGF5IGVycm9yIGNvZGUgcHJvcGFnYXRpb24gZml4IChEYW4gQ2FycGVudGVyKQotIERvY3VtZW50
-YXRpb24gZml4IChNYWFydGVuKQoKU2VlbXMgSSBmb3Jnb3QgdG8gbWVudGlvbiBHVlQgZml4ZXMg
-aW4gdGhlIGFubm90YXRlZCB0YWcsIGNvcHktcGFzdGluZwpoZXJlIGZyb20gdGhlaXIgcHVsbDoK
-CiAgICBndnQtbmV4dC1maXhlcy0yMDIxLTA0LTIxCiAgICAKICAgIC0gUmVtb3ZlIG9uZSB1bnVz
-ZWQgZnVuY3Rpb24gd2FybmluZyAoSmlhcGVuZykKICAgIC0gRml4IGludGVsX2d2dF9pbml0X2Rl
-dmljZSgpIHJldHVybiB0eXBlIChEYW4pCiAgICAtIFJlbW92ZSBvbmUgZHVwbGljYXRlZCByZWdp
-c3RlciBhY2Nlc3NpYmxlIGNoZWNrIChaaGVueXUpCgoKQlIsCkphbmkuCgpUaGUgZm9sbG93aW5n
-IGNoYW5nZXMgc2luY2UgY29tbWl0IGFmODM1MmYxZmY1NGM0ZmVjZjg0ZTM2MzE1ZmQxOTI4ODA5
-YTU4MGI6CgogIE1lcmdlIHRhZyAnZHJtLW1zbS1uZXh0LTIwMjEtMDQtMTEnIG9mIGh0dHBzOi8v
-Z2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vbXNtIGludG8gZHJtLW5leHQgKDIwMjEtMDQtMTMg
-MjM6MzU6NTQgKzAyMDApCgphcmUgYXZhaWxhYmxlIGluIHRoZSBHaXQgcmVwb3NpdG9yeSBhdDoK
-CiAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZHJtL2RybS1pbnRlbCB0YWdzL2RybS1p
-bnRlbC1uZXh0LWZpeGVzLTIwMjEtMDQtMjcKCmZvciB5b3UgdG8gZmV0Y2ggY2hhbmdlcyB1cCB0
-byAyNzBlM2NjNWFhMzgyZjYzZWEyMGI5M2MzZDIwMTYyYTg5MWRjNjM4OgoKICBkcm0vaTkxNTog
-Rml4IGRvY2Jvb2sgZGVzY3JpcHRpb25zIGZvciBpOTE1X2dlbV9zaHJpbmtlciAoMjAyMS0wNC0y
-NiAxMTo1NDozMyArMDMwMCkKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KZHJtL2k5MTUgZml4ZXMgZm9yIHY1LjEzLXJjMToK
-LSBTZXZlcmFsIGZpeGVzIHRvIEdMSyBoYW5kbGluZyBpbiByZWNlbnQgZGlzcGxheSByZWZhY3Rv
-cmluZyAoVmlsbGUpCi0gUmFyZSB3YXRjaGRvZyB0aW1lciByYWNlIGZpeCAoVHZydGtvKQotIENw
-cGNoZWNrIHJlZHVuZGFudCBjb25kaXRpb24gZml4IChKb3PDqSkKLSBPdmVybGF5IGVycm9yIGNv
-ZGUgcHJvcGFnYXRpb24gZml4IChEYW4gQ2FycGVudGVyKQotIERvY3VtZW50YXRpb24gZml4IChN
-YWFydGVuKQoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLQpEYW4gQ2FycGVudGVyICgyKToKICAgICAgZHJtL2k5MTUvZ3Z0OiBG
-aXggZXJyb3IgY29kZSBpbiBpbnRlbF9ndnRfaW5pdF9kZXZpY2UoKQogICAgICBkcm0vaTkxNTog
-Zml4IGFuIGVycm9yIGNvZGUgaW4gaW50ZWxfb3ZlcmxheV9kb19wdXRfaW1hZ2UoKQoKSmFuaSBO
-aWt1bGEgKDEpOgogICAgICBNZXJnZSB0YWcgJ2d2dC1uZXh0LWZpeGVzLTIwMjEtMDQtMjEnIG9m
-IGh0dHBzOi8vZ2l0aHViLmNvbS9pbnRlbC9ndnQtbGludXggaW50byBkcm0taW50ZWwtbmV4dC1m
-aXhlcwoKSmlhcGVuZyBDaG9uZyAoMSk6CiAgICAgIGRybS9pOTE1L2d2dDogcmVtb3ZlIHVzZWxl
-c3MgZnVuY3Rpb24KCkpvc8OpIFJvYmVydG8gZGUgU291emEgKDEpOgogICAgICBkcm0vaTkxNS9k
-aXNwbGF5L3BzcjogRml4IGNwcGNoZWNrIHdhcm5pbmdzCgpNYWFydGVuIExhbmtob3JzdCAoMSk6
-CiAgICAgIGRybS9pOTE1OiBGaXggZG9jYm9vayBkZXNjcmlwdGlvbnMgZm9yIGk5MTVfZ2VtX3No
-cmlua2VyCgpUdnJ0a28gVXJzdWxpbiAoMSk6CiAgICAgIGRybS9pOTE1OiBUYWtlIHJlcXVlc3Qg
-cmVmZXJlbmNlIGJlZm9yZSBhcm1pbmcgdGhlIHdhdGNoZG9nIHRpbWVyCgpWaWxsZSBTeXJqw6Rs
-w6QgKDMpOgogICAgICBkcm0vaTkxNTogUmVzdG9yZSBsb3N0IGdsayBGQkMgMTZicHAgdy9hCiAg
-ICAgIGRybS9pOTE1OiBSZXN0b3JlIGxvc3QgZ2xrIGNjcyB3L2EKICAgICAgZHJtL2k5MTU6IERp
-c2FibGUgTFRUUFIgZGV0ZWN0aW9uIG9uIEdMSyBvbmNlIGFnYWluCgpaaGVueXUgV2FuZyAoMSk6
-CiAgICAgIGRybS9pOTE1L2d2dDogUmVtb3ZlIGR1cGxpY2F0ZWQgcmVnaXN0ZXIgYWNjZXNzaWJs
-ZSBjaGVjawoKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICAg
-ICAgICAgIHwgMyArKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbGlu
-a190cmFpbmluZy5jIHwgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9m
-YmMuYyAgICAgICAgICAgICAgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX292ZXJsYXkuYyAgICAgICAgICB8IDQgKysrLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9wc3IuYyAgICAgICAgICAgICAgfCAzICstLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ2VtL2k5MTVfZ2VtX3Nocmlua2VyLmMgICAgICAgICAgfCAxICsKIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d2dC9jbWRfcGFyc2VyLmMgICAgICAgICAgICAgICAgIHwgNSAtLS0tLQogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ3Z0L2d0dC5jICAgICAgICAgICAgICAgICAgICAgICAgfCA2IC0tLS0t
-LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0L2d2dC5jICAgICAgICAgICAgICAgICAgICAgICAg
-fCA4ICsrKystLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlcXVlc3QuYyAgICAgICAg
-ICAgICAgICAgICB8IDMgKystCiAxMCBmaWxlcyBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCAy
-MiBkZWxldGlvbnMoLSkKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhp
-Y3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+From: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+
+Use I915_MAP_WC when default state object is allocated in LMEM.
+
+Signed-off-by: Venkata Ramana Nayana <venkata.ramana.nayana@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gt/shmem_utils.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/shmem_utils.c b/drivers/gpu/drm/i915/gt/shmem_utils.c
+index f8f02aab842b..0683b27a3890 100644
+--- a/drivers/gpu/drm/i915/gt/shmem_utils.c
++++ b/drivers/gpu/drm/i915/gt/shmem_utils.c
+@@ -8,6 +8,7 @@
+ #include <linux/shmem_fs.h>
+ 
+ #include "gem/i915_gem_object.h"
++#include "gem/i915_gem_lmem.h"
+ #include "shmem_utils.h"
+ 
+ struct file *shmem_create_from_data(const char *name, void *data, size_t len)
+@@ -39,7 +40,8 @@ struct file *shmem_create_from_object(struct drm_i915_gem_object *obj)
+ 		return file;
+ 	}
+ 
+-	ptr = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
++	ptr = i915_gem_object_pin_map_unlocked(obj, i915_gem_object_is_lmem(obj) ?
++						I915_MAP_WC : I915_MAP_WB);
+ 	if (IS_ERR(ptr))
+ 		return ERR_CAST(ptr);
+ 
+-- 
+2.26.3
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
