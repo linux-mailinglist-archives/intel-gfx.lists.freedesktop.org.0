@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8FF236CB5A
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 20:55:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 854DB36CB5B
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 20:56:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C2636E03A;
-	Tue, 27 Apr 2021 18:55:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D17756E54C;
+	Tue, 27 Apr 2021 18:56:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49A116E03A
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 18:55:19 +0000 (UTC)
-IronPort-SDR: VmgYmwgVPhjJo01cjQSEOfZFwhOtrTpr2Tx+keiARKDkZfplrfvpZFyGjFFjyInluzGXihY8Kh
- hbwCxMaxfZIg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="281905778"
-X-IronPort-AV: E=Sophos;i="5.82,255,1613462400"; d="scan'208";a="281905778"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 11:55:18 -0700
-IronPort-SDR: IjJJ+qsLCnpsvxv+Bq403ieNyeo3k8JvtWfIR43C9EtQEmsEO5BAkv5qVYR/uVqJCowdNcthrU
- nHqDSfm9eWzg==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4A516E21A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 18:56:01 +0000 (UTC)
+IronPort-SDR: JB9gRlRAY283ukdylGOTpgW05S68BCnIkLpMlHL2MeEeqOp1Az0+yiyLtjAXEWUd1YKKX3IfWN
+ tvgqEU9CaCTg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="196633254"
+X-IronPort-AV: E=Sophos;i="5.82,255,1613462400"; d="scan'208";a="196633254"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2021 11:56:00 -0700
+IronPort-SDR: lrlSpacWklTQhg/3dlzlxs7uZF9mi8xyFNd+zdoKsALg/KvbcmhnXwgH1E/4X8ySRRRkRsNe9i
+ zxJ9dSJSNHhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,255,1613462400"; d="scan'208";a="423176069"
+X-IronPort-AV: E=Sophos;i="5.82,255,1613462400"; d="scan'208";a="429929558"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 27 Apr 2021 11:55:15 -0700
+ by orsmga008.jf.intel.com with SMTP; 27 Apr 2021 11:55:57 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 27 Apr 2021 21:55:11 +0300
-Date: Tue, 27 Apr 2021 21:55:11 +0300
+ Tue, 27 Apr 2021 21:55:57 +0300
+Date: Tue, 27 Apr 2021 21:55:57 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <YIheD5VzUuNvC4XC@intel.com>
-References: <20210328225709.18541-15-daniele.ceraolospurio@intel.com>
- <20210427104311.2664-1-anshuman.gupta@intel.com>
+Message-ID: <YIhePcRcpKEoBmAE@intel.com>
+References: <20210328225709.18541-16-daniele.ceraolospurio@intel.com>
+ <20210427104504.2720-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210427104311.2664-1-anshuman.gupta@intel.com>
+In-Reply-To: <20210427104504.2720-1-anshuman.gupta@intel.com>
 X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 14/16] drm/i915/pxp: Add plane decryption
- support
+Subject: Re: [Intel-gfx] [PATCH v3 15/16] drm/i915/pxp: black pixels on pxp
+ disabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,258 +51,209 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Gaurav Kumar <kumar.gaurav@intel.com>, intel-gfx@lists.freedesktop.org,
- Huang Sean Z <sean.z.huang@intel.com>,
- Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Cc: Gaurav Kumar <kumar.gaurav@intel.com>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 27, 2021 at 04:13:11PM +0530, Anshuman Gupta wrote:
-> Add support to enable/disable PLANE_SURF Decryption Request bit.
-> It requires only to enable plane decryption support when following
-> condition met.
-> 1. PXP session is enabled.
-> 2. Buffer object is protected.
+On Tue, Apr 27, 2021 at 04:15:04PM +0530, Anshuman Gupta wrote:
+> When protected sufaces has flipped and pxp session is disabled,
+> display black pixels by using plane color CTM correction.
 > =
 
 > v2:
-> - Used gen fb obj user_flags instead gem_object_metadata. [Krishna]
+> - Display black pixels in aysnc flip too.
+
+We can't change any of that with an async flip.
+
 > =
 
-> v3:
-> - intel_pxp_gem_object_status() API changes.
-> =
-
-> v4: use intel_pxp_is_active (Daniele)
-> =
-
-> v5: rebase and use the new protected object status checker (Daniele)
-> =
-
-> v6: used plane state for plane_decryption to handle async flip
->     as suggested by Ville.
-> =
-
-> Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-> Cc: Huang Sean Z <sean.z.huang@intel.com>
-> Cc: Gaurav Kumar <kumar.gaurav@intel.com>
 > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Gaurav Kumar <kumar.gaurav@intel.com>
+> Cc: Shankar Uma <uma.shankar@intel.com>
 > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
 > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c |  3 ++
->  drivers/gpu/drm/i915/display/intel_display.c  |  5 +++
->  .../drm/i915/display/intel_display_types.h    |  3 ++
->  .../drm/i915/display/skl_universal_plane.c    | 32 +++++++++++++++++--
->  .../drm/i915/display/skl_universal_plane.h    |  1 +
->  drivers/gpu/drm/i915/i915_reg.h               |  1 +
->  6 files changed, 42 insertions(+), 3 deletions(-)
+>  .../drm/i915/display/skl_universal_plane.c    | 51 ++++++++++++++++++-
+>  drivers/gpu/drm/i915/i915_reg.h               | 46 +++++++++++++++++
+>  2 files changed, 95 insertions(+), 2 deletions(-)
 > =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/=
-gpu/drm/i915/display/intel_atomic_plane.c
-> index 7bfb26ca0bd0..7057077a2b71 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -394,6 +394,7 @@ int intel_plane_atomic_check(struct intel_atomic_stat=
-e *state,
->  		intel_atomic_get_old_crtc_state(state, crtc);
->  	struct intel_crtc_state *new_crtc_state =3D
->  		intel_atomic_get_new_crtc_state(state, crtc);
-> +	const struct drm_framebuffer *fb =3D new_plane_state->hw.fb;
->  =
-
->  	if (new_crtc_state && new_crtc_state->bigjoiner_slave) {
->  		struct intel_plane *master_plane =3D
-> @@ -409,6 +410,8 @@ int intel_plane_atomic_check(struct intel_atomic_stat=
-e *state,
->  	intel_plane_copy_uapi_to_hw_state(new_plane_state,
->  					  new_master_plane_state,
->  					  crtc);
-> +	new_plane_state->plane_decryption =3D
-> +		i915_gem_object_has_valid_protection(intel_fb_obj(fb));
->  =
-
->  	new_plane_state->uapi.visible =3D false;
->  	if (!new_crtc_state)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index a10e26380ef3..55ab2d0b92d8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -9367,6 +9367,10 @@ static int intel_atomic_check_async(struct intel_a=
-tomic_state *state)
->  			drm_dbg_kms(&i915->drm, "Color range cannot be changed in async flip\=
-n");
->  			return -EINVAL;
->  		}
-> +
-> +		/* plane decryption is allow to change only in synchronous flips */
-> +		if (old_plane_state->plane_decryption !=3D new_plane_state->plane_decr=
-yption)
-> +			return -EINVAL;
->  	}
->  =
-
->  	return 0;
-> @@ -12350,6 +12354,7 @@ static void readout_plane_state(struct drm_i915_p=
-rivate *dev_priv)
->  =
-
->  		crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
->  		crtc_state =3D to_intel_crtc_state(crtc->base.state);
-> +		intel_plane_read_hw_decryption(plane_state);
-
-We don't have real plane state readout anyway, so seems pointless.
-
->  =
-
->  		intel_set_plane_visible(crtc_state, plane_state, visible);
->  =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index e2e707c4dff5..76b3bb64a36a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -617,6 +617,9 @@ struct intel_plane_state {
->  =
-
->  	struct intel_fb_view view;
->  =
-
-> +	/* Plane pxp decryption state */
-> +	bool plane_decryption;
-> +
-
-It's all about the plane, so the plane_ prefix is entirely redundant.
-Could just call it "decrypt" I guess.
-
->  	/* plane control register */
->  	u32 ctl;
->  =
 
 > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
 /gpu/drm/i915/display/skl_universal_plane.c
-> index 75d3ca3dbb37..74489217e580 100644
+> index 74489217e580..a666b86df726 100644
 > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -17,6 +17,7 @@
->  #include "intel_sprite.h"
->  #include "skl_scaler.h"
->  #include "skl_universal_plane.h"
-> +#include "pxp/intel_pxp.h"
->  =
-
->  static const u32 skl_plane_formats[] =3D {
->  	DRM_FORMAT_C8,
-> @@ -956,7 +957,7 @@ skl_program_plane(struct intel_plane *plane,
->  	u8 alpha =3D plane_state->hw.alpha >> 8;
->  	u32 plane_color_ctl =3D 0, aux_dist =3D 0;
->  	unsigned long irqflags;
-> -	u32 keymsk, keymax;
-> +	u32 keymsk, keymax, plane_surf;
->  	u32 plane_ctl =3D plane_state->ctl;
->  =
-
->  	plane_ctl |=3D skl_plane_ctl_crtc(crtc_state);
-> @@ -1037,8 +1038,15 @@ skl_program_plane(struct intel_plane *plane,
->  	 * the control register just before the surface register.
->  	 */
->  	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
-> -	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
-> -			  intel_plane_ggtt_offset(plane_state) + surf_addr);
-> +	plane_surf =3D intel_plane_ggtt_offset(plane_state) + surf_addr;
-> +
-> +	if (intel_pxp_is_active(&dev_priv->gt.pxp) &&
-
-That should all be part of the state computation. And you're missing
-this in the .async_flip path totally.
-
-> +	    plane_state->plane_decryption)
-> +		plane_surf |=3D PLANE_SURF_DECRYPTION_ENABLED;
-> +	else
-> +		plane_surf &=3D ~PLANE_SURF_DECRYPTION_ENABLED;
-
-This &=3D~ stuff is still 100% pointless.
-
-So just
-if (plane_state->decrypt)
-	surf_addr |=3D ...;
-
-should do it. And I'd do it around the top of the function where =
-
-we calculate a bunch of the other register values. That keeps
-most of the function clean of random ifs. Just after the
-aux_dist calculation would seem like the correct spot to me.
-
-> +
-> +	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), plane_surf);
->  =
-
->  	if (plane_state->scaler_id >=3D 0)
->  		skl_program_plane_scaler(plane, crtc_state, plane_state);
-> @@ -2242,3 +2250,21 @@ skl_get_initial_plane_config(struct intel_crtc *cr=
-tc,
->  	kfree(intel_fb);
+> @@ -934,6 +934,33 @@ static u32 glk_plane_color_ctl(const struct intel_cr=
+tc_state *crtc_state,
+>  	return plane_color_ctl;
 >  }
 >  =
 
-> +void intel_plane_read_hw_decryption(struct intel_plane_state *plane_stat=
-e)
+> +static void intel_load_plane_csc_black(struct intel_plane *intel_plane)
 > +{
-> +	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
-> +	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
-> +	enum intel_display_power_domain power_domain;
-> +	enum plane_id plane_id =3D plane->id;
-> +	intel_wakeref_t wakeref;
+> +	struct drm_i915_private *dev_priv =3D to_i915(intel_plane->base.dev);
+> +	enum pipe pipe =3D intel_plane->pipe;
+> +	enum plane_id plane =3D intel_plane->id;
+> +	u16 postoff =3D 0;
 > +
-> +	power_domain =3D POWER_DOMAIN_PIPE(plane->pipe);
-> +	wakeref =3D intel_display_power_get_if_enabled(i915, power_domain);
-> +	if (drm_WARN_ON(&i915->drm, !wakeref))
-> +		return;
+> +	drm_dbg_kms(&dev_priv->drm, "plane color CTM to black  %s:%d\n",
+> +		    intel_plane->base.name, plane);
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 0), 0);
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 1), 0);
 > +
-> +	plane_state->plane_decryption  =3D
-> +		intel_de_read(i915, PLANE_SURF(plane->pipe, plane_id)) & PLANE_SURF_DE=
-CRYPTION_ENABLED;
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 2), 0);
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 3), 0);
 > +
-> +	intel_display_power_put(i915, power_domain, wakeref);
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 4), 0);
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_COEFF(pipe, plane, 5), 0);
+> +
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_PREOFF(pipe, plane, 0), 0);
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_PREOFF(pipe, plane, 1), 0);
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_PREOFF(pipe, plane, 2), 0);
+> +
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_POSTOFF(pipe, plane, 0), postoff);
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_POSTOFF(pipe, plane, 1), postoff);
+> +	intel_de_write_fw(dev_priv, PLANE_CSC_POSTOFF(pipe, plane, 2), postoff);
 > +}
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.h b/drivers=
-/gpu/drm/i915/display/skl_universal_plane.h
-> index 351040b64dc7..2b1d673f8bf5 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.h
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.h
-> @@ -31,5 +31,6 @@ int skl_calc_main_surface_offset(const struct intel_pla=
-ne_state *plane_state,
->  bool icl_is_nv12_y_plane(struct drm_i915_private *dev_priv,
->  			 enum plane_id plane_id);
->  bool icl_is_hdr_plane(struct drm_i915_private *dev_priv, enum plane_id p=
-lane_id);
-> +void intel_plane_read_hw_decryption(struct intel_plane_state *plane_stat=
-e);
+> +
+>  static void
+>  skl_program_plane(struct intel_plane *plane,
+>  		  const struct intel_crtc_state *crtc_state,
+> @@ -1039,13 +1066,22 @@ skl_program_plane(struct intel_plane *plane,
+>  	 */
+>  	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
+>  	plane_surf =3D intel_plane_ggtt_offset(plane_state) + surf_addr;
+> +	plane_color_ctl =3D intel_de_read_fw(dev_priv, PLANE_COLOR_CTL(pipe, pl=
+ane_id));
 >  =
 
->  #endif
+>  	if (intel_pxp_is_active(&dev_priv->gt.pxp) &&
+> -	    plane_state->plane_decryption)
+> +	    plane_state->plane_decryption) {
+>  		plane_surf |=3D PLANE_SURF_DECRYPTION_ENABLED;
+> -	else
+> +		plane_color_ctl &=3D ~PLANE_COLOR_PLANE_CSC_ENABLE;
+> +	} else if (plane_state->plane_decryption) {
+> +		intel_load_plane_csc_black(plane);
+> +		plane_color_ctl |=3D PLANE_COLOR_PLANE_CSC_ENABLE;
+> +	} else {
+>  		plane_surf &=3D ~PLANE_SURF_DECRYPTION_ENABLED;
+> +		plane_color_ctl &=3D ~PLANE_COLOR_PLANE_CSC_ENABLE;
+> +	}
+>  =
+
+> +	intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id),
+> +			  plane_color_ctl);
+>  	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id), plane_surf);
+>  =
+
+>  	if (plane_state->scaler_id >=3D 0)
+> @@ -1066,6 +1102,7 @@ skl_plane_async_flip(struct intel_plane *plane,
+>  	enum pipe pipe =3D plane->pipe;
+>  	u32 surf_addr =3D plane_state->view.color_plane[0].offset;
+>  	u32 plane_ctl =3D plane_state->ctl;
+> +	u32 plane_color_ctl =3D 0;
+>  =
+
+>  	plane_ctl |=3D skl_plane_ctl_crtc(crtc_state);
+>  =
+
+> @@ -1075,6 +1112,16 @@ skl_plane_async_flip(struct intel_plane *plane,
+>  	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+>  =
+
+>  	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
+> +
+> +	if (!intel_pxp_is_active(&dev_priv->gt.pxp) &&
+> +	    plane_state->plane_decryption) {
+> +		plane_color_ctl =3D intel_de_read_fw(dev_priv, PLANE_COLOR_CTL(pipe, p=
+lane_id));
+> +		intel_load_plane_csc_black(plane);
+> +		plane_color_ctl |=3D PLANE_COLOR_PLANE_CSC_ENABLE;
+> +		intel_de_write_fw(dev_priv, PLANE_COLOR_CTL(pipe, plane_id),
+> +				  plane_color_ctl);
+> +	}
+> +
+>  	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
+>  			  intel_plane_ggtt_offset(plane_state) + surf_addr);
+>  =
+
 > diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
 reg.h
-> index 740e97663fec..fbaf9199001d 100644
+> index fbaf9199001d..0a4deca1098b 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7240,6 +7240,7 @@ enum {
->  #define _PLANE_SURF_3(pipe)	_PIPE(pipe, _PLANE_SURF_3_A, _PLANE_SURF_3_B)
->  #define PLANE_SURF(pipe, plane)	\
->  	_MMIO_PLANE(plane, _PLANE_SURF_1(pipe), _PLANE_SURF_2(pipe))
-> +#define   PLANE_SURF_DECRYPTION_ENABLED		REG_BIT(2)
-
-Could be just PLANE_SURF_DECRYPT or something along those lines.
-
+> @@ -7119,6 +7119,7 @@ enum {
+>  #define _PLANE_COLOR_CTL_3_A			0x703CC /* GLK+ */
+>  #define   PLANE_COLOR_PIPE_GAMMA_ENABLE		(1 << 30) /* Pre-ICL */
+>  #define   PLANE_COLOR_YUV_RANGE_CORRECTION_DISABLE	(1 << 28)
+> +#define   PLANE_COLOR_PLANE_CSC_ENABLE			(1 << 21) /* ICL+ */
+>  #define   PLANE_COLOR_INPUT_CSC_ENABLE		(1 << 20) /* ICL+ */
+>  #define   PLANE_COLOR_PIPE_CSC_ENABLE		(1 << 23) /* Pre-ICL */
+>  #define   PLANE_COLOR_CSC_MODE_BYPASS			(0 << 17)
+> @@ -11191,6 +11192,51 @@ enum skl_power_gate {
+>  					_PAL_PREC_MULTI_SEG_DATA_A, \
+>  					_PAL_PREC_MULTI_SEG_DATA_B)
 >  =
 
->  #define _PLANE_OFFSET_1_B			0x711a4
->  #define _PLANE_OFFSET_2_B			0x712a4
+> +#define _MMIO_PLANE_GAMC(plane, i, a, b)  _MMIO(_PIPE(plane, a, b) + (i)=
+ * 4)
+> +
+> +/* Plane CSC Registers */
+> +#define _PLANE_CSC_RY_GY_1_A	0x70210
+> +#define _PLANE_CSC_RY_GY_2_A	0x70310
+> +
+> +#define _PLANE_CSC_RY_GY_1_B	0x71210
+> +#define _PLANE_CSC_RY_GY_2_B	0x71310
+> +
+> +#define _PLANE_CSC_RY_GY_1(pipe)	_PIPE(pipe, _PLANE_CSC_RY_GY_1_A, \
+> +					      _PLANE_CSC_RY_GY_1_B)
+> +#define _PLANE_CSC_RY_GY_2(pipe)	_PIPE(pipe, _PLANE_INPUT_CSC_RY_GY_2_A,=
+ \
+> +					      _PLANE_INPUT_CSC_RY_GY_2_B)
+> +#define PLANE_CSC_COEFF(pipe, plane, index)	_MMIO_PLANE(plane, \
+> +							    _PLANE_CSC_RY_GY_1(pipe) +  (index) * 4, \
+> +							    _PLANE_CSC_RY_GY_2(pipe) + (index) * 4)
+> +
+> +#define _PLANE_CSC_PREOFF_HI_1_A		0x70228
+> +#define _PLANE_CSC_PREOFF_HI_2_A		0x70328
+> +
+> +#define _PLANE_CSC_PREOFF_HI_1_B		0x71228
+> +#define _PLANE_CSC_PREOFF_HI_2_B		0x71328
+> +
+> +#define _PLANE_CSC_PREOFF_HI_1(pipe)	_PIPE(pipe, _PLANE_CSC_PREOFF_HI_1_=
+A, \
+> +					      _PLANE_CSC_PREOFF_HI_1_B)
+> +#define _PLANE_CSC_PREOFF_HI_2(pipe)	_PIPE(pipe, _PLANE_CSC_PREOFF_HI_2_=
+A, \
+> +					      _PLANE_CSC_PREOFF_HI_2_B)
+> +#define PLANE_CSC_PREOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_C=
+SC_PREOFF_HI_1(pipe) + \
+> +							    (index) * 4, _PLANE_CSC_PREOFF_HI_2(pipe) + \
+> +							    (index) * 4)
+> +
+> +#define _PLANE_CSC_POSTOFF_HI_1_A		0x70234
+> +#define _PLANE_CSC_POSTOFF_HI_2_A		0x70334
+> +
+> +#define _PLANE_CSC_POSTOFF_HI_1_B		0x71234
+> +#define _PLANE_CSC_POSTOFF_HI_2_B		0x71334
+> +
+> +#define _PLANE_CSC_POSTOFF_HI_1(pipe)	_PIPE(pipe, _PLANE_CSC_POSTOFF_HI_=
+1_A, \
+> +					      _PLANE_CSC_POSTOFF_HI_1_B)
+> +#define _PLANE_CSC_POSTOFF_HI_2(pipe)	_PIPE(pipe, _PLANE_CSC_POSTOFF_HI_=
+2_A, \
+> +					      _PLANE_CSC_POSTOFF_HI_2_B)
+> +#define PLANE_CSC_POSTOFF(pipe, plane, index)	_MMIO_PLANE(plane, _PLANE_=
+CSC_POSTOFF_HI_1(pipe) + \
+> +							    (index) * 4, _PLANE_CSC_POSTOFF_HI_2(pipe) + \
+> +							    (index) * 4)
+> +
+>  /* pipe CSC & degamma/gamma LUTs on CHV */
+>  #define _CGM_PIPE_A_CSC_COEFF01	(VLV_DISPLAY_BASE + 0x67900)
+>  #define _CGM_PIPE_A_CSC_COEFF23	(VLV_DISPLAY_BASE + 0x67904)
 > -- =
 
 > 2.26.2
