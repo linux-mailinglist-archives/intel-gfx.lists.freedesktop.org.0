@@ -2,31 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 783D836C213
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 931F536C232
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:55:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 768F96E935;
-	Tue, 27 Apr 2021 09:49:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90E3A6E199;
+	Tue, 27 Apr 2021 09:55:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2E5EA6E935;
- Tue, 27 Apr 2021 09:49:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 25694A363D;
- Tue, 27 Apr 2021 09:49:53 +0000 (UTC)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
+ [IPv6:2a00:1450:4864:20::32a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 703ED6E199
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 09:55:10 +0000 (UTC)
+Received: by mail-wm1-x32a.google.com with SMTP id k128so31438932wmk.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 02:55:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=rQPZgaTbNkgwin1RyajntYQBJwcTV0+SxwfS9RXsh0o=;
+ b=HDovRQGwhbqfxvPfSFDLT2NMoIocqPo0F4DySDExxohTLbWlBfV+JT9iFLubeIouhv
+ /GZBLXYquNQj+G0Cs8adXQJ/RZuC+seNfDsct87wTXTvAy88qfeGRXEv4oSbYyXbd1Oq
+ v7CeBBpr6Cjemtl6MiN0aQHV0OwBVJGYeqBqU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=rQPZgaTbNkgwin1RyajntYQBJwcTV0+SxwfS9RXsh0o=;
+ b=KOXryU4D1vVxm3fMXUYJOra9j9DKn8IOFkBxj/mk9T1XAjvJsmC5CAHd6DEO5L4Gb0
+ /VfZgKGpJaseeA9fOr4matIGS8lWD4EOicvuu1Bjutfd25xun/0VM7HSlSgJU9sLvHf5
+ z6WqMt2As+THs/eVykKMVJ9ePK+2tnARZZZEI8RbeiZdqwKD5M4jr1NWsU0qYZIpDpS9
+ X2z7M+o3IpZiMmn9uTZUTIOzFKXz2KqYxtlapbCZxH3vfRZte/GgfJLRgs/8ktYt1y4I
+ Ubr0llUvaNeMdwdkk+pn1Jxj4BphJLVOh8Tha+rzGdLwHZqJaAOGadjuMYSibEXcTys6
+ RvoA==
+X-Gm-Message-State: AOAM530szBwYQeh2bF1mEqlTJyXfca1LBJvOcd2q2+tEA0wPCmW4McFZ
+ wbQaxrOlIzp6hwsdtA3gh3W44Q==
+X-Google-Smtp-Source: ABdhPJznK2FysmKwap3ZeCDaYWLEs2/A87BnPR/5mU63ckoJWApr5vlEZmm3NO/5/xJFfFVYv1YwwQ==
+X-Received: by 2002:a05:600c:1405:: with SMTP id
+ g5mr24512801wmi.186.1619517308981; 
+ Tue, 27 Apr 2021 02:55:08 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id l21sm2252860wme.10.2021.04.27.02.55.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 27 Apr 2021 02:55:08 -0700 (PDT)
+Date: Tue, 27 Apr 2021 11:55:06 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YIffemMS/eiXLZ2Q@phenom.ffwll.local>
+References: <20210423223131.879208-1-jason@jlekstrand.net>
+ <20210423223131.879208-7-jason@jlekstrand.net>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Tue, 27 Apr 2021 09:49:53 -0000
-Message-ID: <161951699312.17486.16017758636118026699@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210427085417.120246-1-matthew.auld@intel.com>
-In-Reply-To: <20210427085417.120246-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/7=5D_drm/i915/dg1=3A_Fix_mapping_ty?=
- =?utf-8?q?pe_for_default_state_object?=
+Content-Disposition: inline
+In-Reply-To: <20210423223131.879208-7-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 06/21] drm/i915: Implement SINGLE_TIMELINE
+ with a syncobj (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,188 +67,241 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0730168515=="
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0730168515==
-Content-Type: multipart/alternative;
- boundary="===============3154969599021443460=="
+On Fri, Apr 23, 2021 at 05:31:16PM -0500, Jason Ekstrand wrote:
+> This API is entirely unnecessary and I'd love to get rid of it.  If
+> userspace wants a single timeline across multiple contexts, they can
+> either use implicit synchronization or a syncobj, both of which existed
+> at the time this feature landed.  The justification given at the time
+> was that it would help GL drivers which are inherently single-timeline.
+> However, neither of our GL drivers actually wanted the feature.  i965
+> was already in maintenance mode at the time and iris uses syncobj for
+> everything.
+> 
+> Unfortunately, as much as I'd love to get rid of it, it is used by the
+> media driver so we can't do that.  We can, however, do the next-best
+> thing which is to embed a syncobj in the context and do exactly what
+> we'd expect from userspace internally.  This isn't an entirely identical
+> implementation because it's no longer atomic if userspace races with
+> itself by calling execbuffer2 twice simultaneously from different
+> threads.  It won't crash in that case; it just doesn't guarantee any
+> ordering between those two submits.
+> 
+> Moving SINGLE_TIMELINE to a syncobj emulation has a couple of technical
+> advantages beyond mere annoyance.  One is that intel_timeline is no
+> longer an api-visible object and can remain entirely an implementation
+> detail.  This may be advantageous as we make scheduler changes going
+> forward.  Second is that, together with deleting the CLONE_CONTEXT API,
+> we should now have a 1:1 mapping between intel_context and
+> intel_timeline which may help us reduce locking.
+> 
+> v2 (Jason Ekstrand):
+>  - Update the comment on i915_gem_context::syncobj to mention that it's
+>    an emulation and the possible race if userspace calls execbuffer2
+>    twice on the same context concurrently.
+>  - Wrap the checks for eb.gem_context->syncobj in unlikely()
+>  - Drop the dma_fence reference
+>  - Improved commit message
+> 
+> v3 (Jason Ekstrand):
+>  - Move the dma_fence_put() to before the error exit
+> 
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
---===============3154969599021443460==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-== Series Details ==
-
-Series: series starting with [v2,1/7] drm/i915/dg1: Fix mapping type for default state object
-URL   : https://patchwork.freedesktop.org/series/89529/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10014 -> Patchwork_19998
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_19998 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][2] ([fdo#109271]) +63 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
-  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
+I'm assuming that igt coverage is good enough. Otoh if CI didn't catch
+that racing execbuf are now unsynced maybe it wasn't good enough, but
+whatever :-)
+-Daniel
 
 
-Participating hosts (39 -> 38)
-------------------------------
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 49 +++++--------------
+>  .../gpu/drm/i915/gem/i915_gem_context_types.h | 14 +++++-
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 16 ++++++
+>  3 files changed, 40 insertions(+), 39 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 2c2fefa912805..a72c9b256723b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -67,6 +67,8 @@
+>  #include <linux/log2.h>
+>  #include <linux/nospec.h>
+>  
+> +#include <drm/drm_syncobj.h>
+> +
+>  #include "gt/gen6_ppgtt.h"
+>  #include "gt/intel_context.h"
+>  #include "gt/intel_context_param.h"
+> @@ -225,10 +227,6 @@ static void intel_context_set_gem(struct intel_context *ce,
+>  		ce->vm = vm;
+>  	}
+>  
+> -	GEM_BUG_ON(ce->timeline);
+> -	if (ctx->timeline)
+> -		ce->timeline = intel_timeline_get(ctx->timeline);
+> -
+>  	if (ctx->sched.priority >= I915_PRIORITY_NORMAL &&
+>  	    intel_engine_has_timeslices(ce->engine))
+>  		__set_bit(CONTEXT_USE_SEMAPHORES, &ce->flags);
+> @@ -351,9 +349,6 @@ void i915_gem_context_release(struct kref *ref)
+>  	mutex_destroy(&ctx->engines_mutex);
+>  	mutex_destroy(&ctx->lut_mutex);
+>  
+> -	if (ctx->timeline)
+> -		intel_timeline_put(ctx->timeline);
+> -
+>  	put_pid(ctx->pid);
+>  	mutex_destroy(&ctx->mutex);
+>  
+> @@ -570,6 +565,9 @@ static void context_close(struct i915_gem_context *ctx)
+>  	if (vm)
+>  		i915_vm_close(vm);
+>  
+> +	if (ctx->syncobj)
+> +		drm_syncobj_put(ctx->syncobj);
+> +
+>  	ctx->file_priv = ERR_PTR(-EBADF);
+>  
+>  	/*
+> @@ -765,33 +763,11 @@ static void __assign_ppgtt(struct i915_gem_context *ctx,
+>  		i915_vm_close(vm);
+>  }
+>  
+> -static void __set_timeline(struct intel_timeline **dst,
+> -			   struct intel_timeline *src)
+> -{
+> -	struct intel_timeline *old = *dst;
+> -
+> -	*dst = src ? intel_timeline_get(src) : NULL;
+> -
+> -	if (old)
+> -		intel_timeline_put(old);
+> -}
+> -
+> -static void __apply_timeline(struct intel_context *ce, void *timeline)
+> -{
+> -	__set_timeline(&ce->timeline, timeline);
+> -}
+> -
+> -static void __assign_timeline(struct i915_gem_context *ctx,
+> -			      struct intel_timeline *timeline)
+> -{
+> -	__set_timeline(&ctx->timeline, timeline);
+> -	context_apply_all(ctx, __apply_timeline, timeline);
+> -}
+> -
+>  static struct i915_gem_context *
+>  i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+>  {
+>  	struct i915_gem_context *ctx;
+> +	int ret;
+>  
+>  	if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE &&
+>  	    !HAS_EXECLISTS(i915))
+> @@ -820,16 +796,13 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+>  	}
+>  
+>  	if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE) {
+> -		struct intel_timeline *timeline;
+> -
+> -		timeline = intel_timeline_create(&i915->gt);
+> -		if (IS_ERR(timeline)) {
+> +		ret = drm_syncobj_create(&ctx->syncobj,
+> +					 DRM_SYNCOBJ_CREATE_SIGNALED,
+> +					 NULL);
+> +		if (ret) {
+>  			context_close(ctx);
+> -			return ERR_CAST(timeline);
+> +			return ERR_PTR(ret);
+>  		}
+> -
+> -		__assign_timeline(ctx, timeline);
+> -		intel_timeline_put(timeline);
+>  	}
+>  
+>  	trace_i915_context_create(ctx);
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> index 676592e27e7d2..df76767f0c41b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> @@ -83,7 +83,19 @@ struct i915_gem_context {
+>  	struct i915_gem_engines __rcu *engines;
+>  	struct mutex engines_mutex; /* guards writes to engines */
+>  
+> -	struct intel_timeline *timeline;
+> +	/**
+> +	 * @syncobj: Shared timeline syncobj
+> +	 *
+> +	 * When the SHARED_TIMELINE flag is set on context creation, we
+> +	 * emulate a single timeline across all engines using this syncobj.
+> +	 * For every execbuffer2 call, this syncobj is used as both an in-
+> +	 * and out-fence.  Unlike the real intel_timeline, this doesn't
+> +	 * provide perfect atomic in-order guarantees if the client races
+> +	 * with itself by calling execbuffer2 twice concurrently.  However,
+> +	 * if userspace races with itself, that's not likely to yield well-
+> +	 * defined results anyway so we choose to not care.
+> +	 */
+> +	struct drm_syncobj *syncobj;
+>  
+>  	/**
+>  	 * @vm: unique address space (GTT)
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index b812f313422a9..d640bba6ad9ab 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -3460,6 +3460,16 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  		goto err_vma;
+>  	}
+>  
+> +	if (unlikely(eb.gem_context->syncobj)) {
+> +		struct dma_fence *fence;
+> +
+> +		fence = drm_syncobj_fence_get(eb.gem_context->syncobj);
+> +		err = i915_request_await_dma_fence(eb.request, fence);
+> +		dma_fence_put(fence);
+> +		if (err)
+> +			goto err_ext;
+> +	}
+> +
+>  	if (in_fence) {
+>  		if (args->flags & I915_EXEC_FENCE_SUBMIT)
+>  			err = i915_request_await_execution(eb.request,
+> @@ -3517,6 +3527,12 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+>  			fput(out_fence->file);
+>  		}
+>  	}
+> +
+> +	if (unlikely(eb.gem_context->syncobj)) {
+> +		drm_syncobj_replace_fence(eb.gem_context->syncobj,
+> +					  &eb.request->fence);
+> +	}
+> +
+>  	i915_request_put(eb.request);
+>  
+>  err_vma:
+> -- 
+> 2.31.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-  Additional (1): fi-bsw-nick 
-  Missing    (2): fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10014 -> Patchwork_19998
-
-  CI-20190529: 20190529
-  CI_DRM_10014: 7b75f7fa1e7155cfeb6f928895ed259aaf6b4c8e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6075: ccf602c569257291045415ff504a6d2460986c28 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_19998: e85d70bf7f2a2fd27c51c52bd6817a214b4c9d4c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-e85d70bf7f2a drm/i915: Return error value when bo not in LMEM for discrete
-4c20b10e9301 drm/i915/lmem: Bypass aperture when lmem is available
-87f851fc9c27 drm/i915/fbdev: Use lmem physical addresses for fb_mmap() on discrete
-81f1a39eb04c drm/i915/gtt/dgfx: place the PD in LMEM
-f501307a51b0 drm/i915/gtt: map the PD up front
-6170c13d83ab drm/i915: Update the helper to set correct mapping
-c40331cdc349 drm/i915/dg1: Fix mapping type for default state object
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html
-
---===============3154969599021443460==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/7] drm/i915/dg1: Fix mapping type for default state object</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89529/">https://patchwork.freedesktop.org/series/89529/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10014 -&gt; Patchwork_19998</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_19998 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +63 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (39 -&gt; 38)</h2>
-<p>Additional (1): fi-bsw-nick <br />
-  Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10014 -&gt; Patchwork_19998</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10014: 7b75f7fa1e7155cfeb6f928895ed259aaf6b4c8e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6075: ccf602c569257291045415ff504a6d2460986c28 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_19998: e85d70bf7f2a2fd27c51c52bd6817a214b4c9d4c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>e85d70bf7f2a drm/i915: Return error value when bo not in LMEM for discrete<br />
-4c20b10e9301 drm/i915/lmem: Bypass aperture when lmem is available<br />
-87f851fc9c27 drm/i915/fbdev: Use lmem physical addresses for fb_mmap() on discrete<br />
-81f1a39eb04c drm/i915/gtt/dgfx: place the PD in LMEM<br />
-f501307a51b0 drm/i915/gtt: map the PD up front<br />
-6170c13d83ab drm/i915: Update the helper to set correct mapping<br />
-c40331cdc349 drm/i915/dg1: Fix mapping type for default state object</p>
-
-</body>
-</html>
-
---===============3154969599021443460==--
-
---===============0730168515==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0730168515==--
