@@ -2,61 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C09AA36C161
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 10:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A81436C18B
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:20:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E64306E90B;
-	Tue, 27 Apr 2021 08:58:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DD1B6E926;
+	Tue, 27 Apr 2021 09:20:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com
- [IPv6:2a00:1450:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F12556E060
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 08:58:10 +0000 (UTC)
-Received: by mail-wr1-x434.google.com with SMTP id m9so45877196wrx.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 01:58:10 -0700 (PDT)
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7DC36E926
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 09:20:25 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id m9so45947186wrx.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 02:20:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=uiVElGJmqHoDec1xU4aC/Gm7QylBUdQxbqaRnAOmmn8=;
- b=UeM0iisAJHnPxfHVhZ82VOwTNV4KlB0z3tjTtc0hz5zEIiJlNy2237siLcbNC4BPt+
- pUFLPDVJWRGNkFSs/5lKXIVM5QVAhhm/XYj4xJ6k/P9WC2Y6wlSQZTOxRY3dj7u7pHek
- MY1/xEEZjhfd0btGptFlvg7bc5sbUvmj+xN6k=
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=w7ucKXrJnIzMOthJlOHj471QYeurlAAFSPpADM6ZH3I=;
+ b=Rx8JgwjlzG1e19dvcRC9VP6CH7vTVKpyfbppSfJ9X5bbePR4iAYwriFgcge939FZ4l
+ X+0LHzQoiUvCIeUe+5ZDei2sThYvt3T8r1CDxOluJ2txvuSBzHoS2qDEbGyZZJDv4Fwx
+ vVwyZGIegB+Q/ZM7W1I791CY18Au/BFtwB0qY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=uiVElGJmqHoDec1xU4aC/Gm7QylBUdQxbqaRnAOmmn8=;
- b=qU1uKihVMBa4ftvFOgXIFjgIOMzveAmbhXUm7M9HO09qaAubkaBu1fQKF0FSfdabow
- 6C5hxYK0BX9CoqHpYftLqkSMMGNmntQAeu3EjEwkkaSxB7S+QAukh1APVR3cSaEGYgh/
- R+xgGQqghyVa3b32IGhHYB6MvJ0hw7nyfkTpgXp8w0VgPLyS1NAi3y+djY96Er+7aKMU
- uvVqw4FPYGHOlU9zE6G1qe1b8/KzfNYYbcg9aN+os4yMClpPRntH16m6x171LyAvBN4m
- Lc2VZZQkwITURCsPspCpRcifXDw0mmED2gCJhrzDlnvtsxXPW6czaFwrHCLbQehzcJkZ
- 0n3g==
-X-Gm-Message-State: AOAM530jb4dc5LOQLMgyKOwj3MTzFLmKra8kGbDkUTj2JiyYiwYEVfcK
- 65jm5UgoIqBMB8GPEQ+WtEYWdZWgMRrBrQ==
-X-Google-Smtp-Source: ABdhPJyDg9yWK4AbqFd2z88jhTgVNGU6B0OfYf6CTnRcFnSuf5zDRlIQQpypr5rKv3Jy4kv3lzdD+g==
-X-Received: by 2002:a5d:46c7:: with SMTP id g7mr27880657wrs.330.1619513889757; 
- Tue, 27 Apr 2021 01:58:09 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=w7ucKXrJnIzMOthJlOHj471QYeurlAAFSPpADM6ZH3I=;
+ b=rHXh8YyXI7rZQh64pvNg/n8VRWFvblHuUN1bghOTyEWhY46B5TA8B8ZiLSkk9oONWT
+ 56znNblslRlmJBd2+ihTBCyaL9IVk1nbaoEOMVjdMnJQW32cBnu6aCSAeVR0FGArWZum
+ pOqfSTPHGAC+gtd6E/HMj+U0/3RRbRGPJZTmmOcGs+eFHpz+JWA6t5jcVHg//nnMD4Lc
+ CTIuW5yiMVbf+XGj/0cCEWfVC/hE25k2Ltx1rrHBHY+FpYBQa4Mm3I6s+GSdCReuy5Qm
+ nRbqkGKkgZtz1BqgU76430t57PWpjzRbetFDMTIqI4hwt6XWiEPSyxrYSgT+pgYl/R+h
+ u8IQ==
+X-Gm-Message-State: AOAM533ovH43rE7iyJ5dpEcWrGqAakAIYRNSNnb15j5QKS0LYG7F4HAg
+ i9Esjr3KC24SvSnS4mFfrEtPqA==
+X-Google-Smtp-Source: ABdhPJy8pOyI5R6E1lUEqrN7U7Gug8UnHKhW1d2kP9mPOZ7o3BUcpHInuWAxiuMFpevkmM5pJ+272w==
+X-Received: by 2002:a5d:5903:: with SMTP id v3mr12168170wrd.405.1619515224573; 
+ Tue, 27 Apr 2021 02:20:24 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f22sm10732851wmj.42.2021.04.27.01.58.08
+ by smtp.gmail.com with ESMTPSA id r24sm1939816wmh.8.2021.04.27.02.20.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 27 Apr 2021 01:58:09 -0700 (PDT)
-Date: Tue, 27 Apr 2021 10:58:07 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <YIfSH/PWf2ZnOnOr@phenom.ffwll.local>
-References: <20210421153401.13847-1-ville.syrjala@linux.intel.com>
- <20210421153401.13847-5-ville.syrjala@linux.intel.com>
- <YIFGt+I8LMckYyVG@phenom.ffwll.local> <YIF1+mhbWO7UD/yN@intel.com>
- <YIblm7BAj6fnQiq+@phenom.ffwll.local> <YIb178CssrxSSSk6@intel.com>
+ Tue, 27 Apr 2021 02:20:24 -0700 (PDT)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Date: Tue, 27 Apr 2021 11:20:11 +0200
+Message-Id: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YIb178CssrxSSSk6@intel.com>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915: Rewrite CL/CTG L-shaped
- memory detection
+Subject: [Intel-gfx] [PATCH 1/8] drm/arm: Don't set allow_fb_modifiers
+ explicitly
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,90 +62,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ "James \(Qian\) Wang" <james.qian.wang@arm.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mihail Atanassov <mihail.atanassov@arm.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 26, 2021 at 08:18:39PM +0300, Ville Syrj=E4l=E4 wrote:
-> On Mon, Apr 26, 2021 at 06:08:59PM +0200, Daniel Vetter wrote:
-> > On Thu, Apr 22, 2021 at 04:11:22PM +0300, Ville Syrj=E4l=E4 wrote:
-> > > On Thu, Apr 22, 2021 at 11:49:43AM +0200, Daniel Vetter wrote:
-> > > > On Wed, Apr 21, 2021 at 06:34:01PM +0300, Ville Syrjala wrote:
-> > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > =
+Since
 
-> > > > > Currently we try to detect a symmetric memory configurations
-> > > > > using a magic DCC2_MODIFIED_ENHANCED_DISABLE bit. That bit is
-> > > > > either only set on a very specific subset of machines or it
-> > > > > just does not exist (it's not mentioned in any public chipset
-> > > > > datasheets I've found). As it happens my CL/CTG machines never
-> > > > > set said bit, even if I populate the channels with identical
-> > > > > sticks.
-> > > > > =
+commit 890880ddfdbe256083170866e49c87618b706ac7
+Author: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Date:   Fri Jan 4 09:56:10 2019 +0100
 
-> > > > > So let's do the L-shaped memory detection the same way as the
-> > > > > desktop variants, ie. just look at the DRAM rank boundary
-> > > > > registers to see if both channels have an identical size.
-> > > > > =
+    drm: Auto-set allow_fb_modifiers when given modifiers at plane init
 
-> > > > > With this my CL/CTG no longer claim L-shaped memory when I use
-> > > > > identical sticks. Also tested with non-matching sticks just to
-> > > > > make sure the L-shaped memory is still properly detected.
-> > > > > =
+this is done automatically as part of plane init, if drivers set the
+modifier list correctly. Which is the case here for both komeda and
+malidp.
 
-> > > > > And for completeness let's update the debugfs code to dump
-> > > > > the correct set of registers on each platform.
-> > > > > =
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: "James (Qian) Wang" <james.qian.wang@arm.com>
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Mihail Atanassov <mihail.atanassov@arm.com>
+Cc: Brian Starkey <brian.starkey@arm.com>
+---
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 1 -
+ drivers/gpu/drm/arm/malidp_drv.c                | 1 -
+ 2 files changed, 2 deletions(-)
 
-> > > > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > =
+diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+index aeda4e5ec4f4..ff45f23f3d56 100644
+--- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
++++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+@@ -247,7 +247,6 @@ static void komeda_kms_mode_config_init(struct komeda_kms_dev *kms,
+ 	config->min_height	= 0;
+ 	config->max_width	= 4096;
+ 	config->max_height	= 4096;
+-	config->allow_fb_modifiers = true;
+ 
+ 	config->funcs = &komeda_mode_config_funcs;
+ 	config->helper_private = &komeda_mode_config_helpers;
+diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
+index d83c7366b348..de59f3302516 100644
+--- a/drivers/gpu/drm/arm/malidp_drv.c
++++ b/drivers/gpu/drm/arm/malidp_drv.c
+@@ -403,7 +403,6 @@ static int malidp_init(struct drm_device *drm)
+ 	drm->mode_config.max_height = hwdev->max_line_size;
+ 	drm->mode_config.funcs = &malidp_mode_config_funcs;
+ 	drm->mode_config.helper_private = &malidp_mode_config_helpers;
+-	drm->mode_config.allow_fb_modifiers = true;
+ 
+ 	ret = malidp_crtc_init(drm);
+ 	if (ret)
+-- 
+2.31.0
 
-> > > > Did you check this with the swapping igt? I have some vague memorie=
-s of
-> > > > bug reports where somehow the machine was acting like it's L-shaped=
- memory
-> > > > despite that banks were populated equally. I've iirc tried all kind=
-s of
-> > > > tricks to figure it out, all to absolutely no avail.
-> > > =
-
-> > > Did you have a specific test in mind? I ran a bunch of things
-> > > that seemed swizzle related. All passed just fine.
-> > =
-
-> > gem_tiled_swapping should be the one. It tries to cycle your entire sys=
-tem
-> > memory through tiled buffers into swap and out of it.
-> =
-
-> Passes with symmetric config, fails with L-shaped config (if I hack
-> out the L-shape detection of course). So seems pretty solid.
-> =
-
-> A kernel based self test that looks at the physical address would
-> still be nice I suppose. Though depending on the size of your RAM
-> sticks figuring out where exactly the switchover from two channels
-> to one channels happens probably requires a bit of work due to
-> the PCI hole/etc.
-> =
-
-> Both my cl and ctg report this btw:
->  bit6 swizzle for X-tiling =3D bit9/bit10/bit11
->  bit6 swizzle for Y-tiling =3D bit9/bit11
-> so unfortunately can't be sure the other swizzle modes would be
-> correctly detected.
-
-I think testing-wise this is as good as it gets.
--Daniel
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
