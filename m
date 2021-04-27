@@ -2,53 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98BCA36C495
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 13:05:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6083E36C4A2
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 13:07:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F5A26E07B;
-	Tue, 27 Apr 2021 11:05:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7446E918;
+	Tue, 27 Apr 2021 11:07:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 781276E147
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 11:05:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1619521542;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=uo5IubiUgaEAcCKINk4U2wSN84Tzj30VgFH40sgQJoA=;
- b=eIdTJl9k6kopMKIE5kip71pGLISxts8JCZACHKMp/5YtLNBrN5RNw9O2IXbFMJAUQd7Axc
- ds2L9FL4/h6tNsCNYruG4m/qpeeSBt1HHO/60wIWuiyhK5mU5a2071XMLTHMNmtY5xRhQ6
- AsWWOdelHSkiFDr2fqAtl6YNLH6FEok=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-360-ZMaLEpRyNYaooxcSGpQ_2Q-1; Tue, 27 Apr 2021 07:05:38 -0400
-X-MC-Unique: ZMaLEpRyNYaooxcSGpQ_2Q-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
- [10.5.11.12])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9A602107ACE4;
- Tue, 27 Apr 2021 11:05:35 +0000 (UTC)
-Received: from gondolin.fritz.box (ovpn-113-176.ams2.redhat.com
- [10.36.113.176])
- by smtp.corp.redhat.com (Postfix) with ESMTP id DE31D60CC6;
- Tue, 27 Apr 2021 11:05:26 +0000 (UTC)
-Date: Tue, 27 Apr 2021 13:05:23 +0200
-From: Cornelia Huck <cohuck@redhat.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Message-ID: <20210427130523.3345913d.cohuck@redhat.com>
-In-Reply-To: <1-v2-7667f42c9bad+935-vfio3_jgg@nvidia.com>
-References: <0-v2-7667f42c9bad+935-vfio3_jgg@nvidia.com>
- <1-v2-7667f42c9bad+935-vfio3_jgg@nvidia.com>
-Organization: Red Hat GmbH
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CF016E372;
+ Tue, 27 Apr 2021 11:07:51 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id A64D2B175;
+ Tue, 27 Apr 2021 11:07:49 +0000 (UTC)
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
+ matthew.auld@intel.com
+Date: Tue, 27 Apr 2021 13:07:47 +0200
+Message-Id: <20210427110747.2065-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
-Subject: Re: [Intel-gfx] [PATCH v2 01/13] vfio/mdev: Remove
- CONFIG_VFIO_MDEV_DEVICE
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Remove reference to struct
+ drm_device.pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,50 +38,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Kirti Wankhede <kwankhede@nvidia.com>, Leon Romanovsky <leonro@nvidia.com>,
- Christoph Hellwig <hch@lst.de>, linux-s390@vger.kernel.org, "Raj,
- Ashok" <ashok.raj@intel.com>, Jonathan Corbet <corbet@lwn.net>,
- Halil Pasic <pasic@linux.ibm.com>,
- Christian Borntraeger <borntraeger@de.ibm.com>,
- Tarun Gupta <targupta@nvidia.com>, intel-gfx@lists.freedesktop.org,
- Max Gurtovoy <mgurtovoy@nvidia.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Dan Williams <dan.j.williams@intel.com>,
- Tony Krowiak <akrowiak@linux.ibm.com>, Pierre Morel <pmorel@linux.ibm.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, Xinyun Liu <xinyun.liu@intel.com>,
+ Dan Carpenter <dan.carpenter@oracle.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 26 Apr 2021 17:00:03 -0300
-Jason Gunthorpe <jgg@nvidia.com> wrote:
-
-> For some reason the vfio_mdev shim mdev_driver has its own module and
-> kconfig. As the next patch requires access to it from mdev.ko merge the
-> two modules together and remove VFIO_MDEV_DEVICE.
-> 
-> A later patch deletes this driver entirely.
-> 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->  Documentation/s390/vfio-ap.rst   |  1 -
->  arch/s390/Kconfig                |  2 +-
->  drivers/gpu/drm/i915/Kconfig     |  2 +-
->  drivers/vfio/mdev/Kconfig        |  7 -------
->  drivers/vfio/mdev/Makefile       |  3 +--
->  drivers/vfio/mdev/mdev_core.c    | 16 ++++++++++++++--
->  drivers/vfio/mdev/mdev_private.h |  2 ++
->  drivers/vfio/mdev/vfio_mdev.c    | 24 +-----------------------
->  samples/Kconfig                  |  6 +++---
->  9 files changed, 23 insertions(+), 40 deletions(-)
-
-This also fixes the dependencies for vfio-ccw, which never depended on
-VFIO_MDEV_DEVICE directly...
-
-Reviewed-by: Cornelia Huck <cohuck@redhat.com>
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UmVmZXJlbmNlcyB0byBzdHJ1Y3QgZHJtX2RldmljZS5wZGV2IHNob3VsZCBiZSB1c2VkIGFueSBs
+b25nZXIgYXMKdGhlIGZpZWxkIHdpbGwgYmUgbW92ZWQgaW50byB0aGUgc3RydWN0J3MgbGVnYWN5
+IHNlY3Rpb24uIEFkZCBhIGZpeApmb3IgdGhlIHJzcCBjb21taXQuCgpTaWduZWQtb2ZmLWJ5OiBU
+aG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KRml4ZXM6IGQ1N2Q0YTFkYWY1
+ZSAoImRybS9pOTE1OiBDcmVhdGUgc3RvbGVuIG1lbW9yeSByZWdpb24gZnJvbSBsb2NhbCBtZW1v
+cnkiKQpDYzogQ1EgVGFuZyA8Y3EudGFuZ0BpbnRlbC5jb20+CkNjOiBNYXR0aGV3IEF1bGQgPG1h
+dHRoZXcuYXVsZEBpbnRlbC5jb20+CkNjOiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5A
+bGludXguaW50ZWwuY29tPgpDYzogWGlueXVuIExpdSA8eGlueXVuLmxpdUBpbnRlbC5jb20+CkNj
+OiBUdnJ0a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgpDYzogSmFuaSBOaWt1
+bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IEpvb25hcyBMYWh0aW5lbiA8am9v
+bmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbT4KQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52
+aXZpQGludGVsLmNvbT4KQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVr
+PgpDYzogTWlrYSBLdW9wcGFsYSA8bWlrYS5rdW9wcGFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBE
+YW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgpDYzogTWFhcnRlbiBMYW5raG9y
+c3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KQ2M6ICJUaG9tYXMgSGVsbHN0
+csO2bSIgPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgpDYzogIkd1c3Rhdm8gQS4gUi4gU2ls
+dmEiIDxndXN0YXZvYXJzQGtlcm5lbC5vcmc+CkNjOiBEYW4gQ2FycGVudGVyIDxkYW4uY2FycGVu
+dGVyQG9yYWNsZS5jb20+CkNjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCi0tLQog
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jIHwgMiArLQogMSBmaWxl
+IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jCmluZGV4IGM1YjY0YjI0MDBlOC4uZTFhMzI2NzJi
+YmU4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fc3RvbGVu
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jCkBAIC03
+NzMsNyArNzczLDcgQEAgc3RydWN0IGludGVsX21lbW9yeV9yZWdpb24gKgogaTkxNV9nZW1fc3Rv
+bGVuX2xtZW1fc2V0dXAoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCiB7CiAJc3RydWN0
+IGludGVsX3VuY29yZSAqdW5jb3JlID0gJmk5MTUtPnVuY29yZTsKLQlzdHJ1Y3QgcGNpX2RldiAq
+cGRldiA9IGk5MTUtPmRybS5wZGV2OworCXN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gdG9fcGNpX2Rl
+dihpOTE1LT5kcm0uZGV2KTsKIAlzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqbWVtOwogCXJl
+c291cmNlX3NpemVfdCBpb19zdGFydDsKIAlyZXNvdXJjZV9zaXplX3QgbG1lbV9zaXplOwotLSAK
+Mi4zMS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
+bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
