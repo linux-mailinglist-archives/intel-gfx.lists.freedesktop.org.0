@@ -2,44 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFE036C7E5
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 16:42:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5316236C80C
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 16:54:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E27BF6E975;
-	Tue, 27 Apr 2021 14:42:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B31716E97C;
+	Tue, 27 Apr 2021 14:54:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE8406E974;
- Tue, 27 Apr 2021 14:42:24 +0000 (UTC)
-IronPort-SDR: bm9VFmQDvzmwZ1XIBmAhY2JnmqioIv5dJcyavF69I3+3U24+Kty2IRl+2GoUm+gukSs3BOLaeu
- g2jwWu1QcIog==
-X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="193335535"
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="193335535"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 07:42:24 -0700
-IronPort-SDR: SkPmPGUhArW+2yCEPrPHP09HXS4qeD6qnYtm854cZXD5OpufQBncMB7+JcnfkF8n1tNvfSGiJW
- C+/aRR5p1guQ==
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="526108798"
-Received: from hdimater-mobl1.ger.corp.intel.com (HELO [10.213.224.232])
- ([10.213.224.232])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 07:42:23 -0700
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210427085417.120246-1-matthew.auld@intel.com>
- <20210427085417.120246-4-matthew.auld@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <9d7d32a0-5df6-92b3-5dce-9e98af08bc38@linux.intel.com>
-Date: Tue, 27 Apr 2021 15:42:21 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9FF2B6E97A;
+ Tue, 27 Apr 2021 14:54:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 95975A47E8;
+ Tue, 27 Apr 2021 14:54:40 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210427085417.120246-4-matthew.auld@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 4/7] drm/i915/gtt/dgfx: place the PD in
- LMEM
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 27 Apr 2021 14:54:40 -0000
+Message-ID: <161953528058.17485.242459454484692791@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210427120315.12342-1-jani.nikula@intel.com>
+In-Reply-To: <20210427120315.12342-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_move_crtc_and_dpll_declarations_where_they_bel?=
+ =?utf-8?q?ong?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,139 +39,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2087630716=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============2087630716==
+Content-Type: multipart/alternative;
+ boundary="===============5480035564980054878=="
 
-On 27/04/2021 09:54, Matthew Auld wrote:
-> It's a requirement that for dgfx we place all the paging structures in
-> device local-memory.
-> 
-> v2: use i915_coherent_map_type()
-> v3: improve the shared dma-resv object comment
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/gen8_ppgtt.c |  5 ++++-
->   drivers/gpu/drm/i915/gt/intel_gtt.c  | 30 +++++++++++++++++++++++++---
->   drivers/gpu/drm/i915/gt/intel_gtt.h  |  1 +
->   3 files changed, 32 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-> index f83496836f0f..11fb5df45a0f 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-> @@ -712,7 +712,10 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt)
->   	 */
->   	ppgtt->vm.has_read_only = !IS_GEN_RANGE(gt->i915, 11, 12);
->   
-> -	ppgtt->vm.alloc_pt_dma = alloc_pt_dma;
-> +	if (HAS_LMEM(gt->i915))
-> +		ppgtt->vm.alloc_pt_dma = alloc_pt_lmem;
-> +	else
-> +		ppgtt->vm.alloc_pt_dma = alloc_pt_dma;
->   
->   	err = gen8_init_scratch(&ppgtt->vm);
->   	if (err)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> index d386b89e2758..061c39d2ad51 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> @@ -7,10 +7,26 @@
->   
->   #include <linux/fault-inject.h>
->   
-> +#include "gem/i915_gem_lmem.h"
->   #include "i915_trace.h"
->   #include "intel_gt.h"
->   #include "intel_gtt.h"
->   
-> +struct drm_i915_gem_object *alloc_pt_lmem(struct i915_address_space *vm, int sz)
-> +{
-> +	struct drm_i915_gem_object *obj;
-> +
-> +	obj = i915_gem_object_create_lmem(vm->i915, sz, 0);
-> +	/*
-> +	 * Ensure all paging structures for this vm share the same dma-resv
-> +	 * object underneath, with the idea that one object_lock() will lock
-> +	 * them all at once.
+--===============5480035564980054878==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Okay but I am still missing the part about why is this beneficial and 
-not a downside. I suppose it is not a concept added by this patch so not 
-fair to ask for explanation here anyway.
+== Series Details ==
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Series: drm/i915/display: move crtc and dpll declarations where they belong
+URL   : https://patchwork.freedesktop.org/series/89551/
+State : success
 
-Regards,
+== Summary ==
 
-Tvrtko
+CI Bug Log - changes from CI_DRM_10017 -> Patchwork_20005
+====================================================
 
-> +	 */
-> +	if (!IS_ERR(obj))
-> +		obj->base.resv = &vm->resv;
-> +	return obj;
-> +}
-> +
->   struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz)
->   {
->   	struct drm_i915_gem_object *obj;
-> @@ -19,7 +35,11 @@ struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz)
->   		i915_gem_shrink_all(vm->i915);
->   
->   	obj = i915_gem_object_create_internal(vm->i915, sz);
-> -	/* ensure all dma objects have the same reservation class */
-> +	/*
-> +	 * Ensure all paging structures for this vm share the same dma-resv
-> +	 * object underneath, with the idea that one object_lock() will lock
-> +	 * them all at once.
-> +	 */
->   	if (!IS_ERR(obj))
->   		obj->base.resv = &vm->resv;
->   	return obj;
-> @@ -27,9 +47,11 @@ struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz)
->   
->   int map_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
->   {
-> +	enum i915_map_type type;
->   	void *vaddr;
->   
-> -	vaddr = i915_gem_object_pin_map_unlocked(obj, I915_MAP_WB);
-> +	type = i915_coherent_map_type(vm->i915, obj, true);
-> +	vaddr = i915_gem_object_pin_map_unlocked(obj, type);
->   	if (IS_ERR(vaddr))
->   		return PTR_ERR(vaddr);
->   
-> @@ -39,9 +61,11 @@ int map_pt_dma(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
->   
->   int map_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object *obj)
->   {
-> +	enum i915_map_type type;
->   	void *vaddr;
->   
-> -	vaddr = i915_gem_object_pin_map(obj, I915_MAP_WB);
-> +	type = i915_coherent_map_type(vm->i915, obj, true);
-> +	vaddr = i915_gem_object_pin_map(obj, type);
->   	if (IS_ERR(vaddr))
->   		return PTR_ERR(vaddr);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> index 40e486704558..44ce27c51631 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> @@ -527,6 +527,7 @@ int setup_scratch_page(struct i915_address_space *vm);
->   void free_scratch(struct i915_address_space *vm);
->   
->   struct drm_i915_gem_object *alloc_pt_dma(struct i915_address_space *vm, int sz);
-> +struct drm_i915_gem_object *alloc_pt_lmem(struct i915_address_space *vm, int sz);
->   struct i915_page_table *alloc_pt(struct i915_address_space *vm);
->   struct i915_page_directory *alloc_pd(struct i915_address_space *vm);
->   struct i915_page_directory *__alloc_pd(int npde);
-> 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20005:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@amdgpu/amd_cs_nop@nop-gfx0:
+    - {fi-tgl-1115g4}:    NOTRUN -> [SKIP][1] +25 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - {fi-tgl-1115g4}:    NOTRUN -> [FAIL][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20005 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-tgl-y:           NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
+  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+
+
+Participating hosts (46 -> 41)
+------------------------------
+
+  Additional (1): fi-tgl-1115g4 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-icl-y fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10017 -> Patchwork_20005
+
+  CI-20190529: 20190529
+  CI_DRM_10017: 90fd4f5c1834f556c119cba5b6c41fe90683b912 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6076: 9ab0820dbd07781161c1ace6973ea222fd24e53a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20005: c75032319fb208810e5e1f7e2f2347ceecb79fbf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c75032319fb2 drm/i915/display: move crtc and dpll declarations where they belong
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/index.html
+
+--===============5480035564980054878==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: move crtc and dpll declarations where they belong</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89551/">https://patchwork.freedesktop.org/series/89551/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10017 -&gt; Patchwork_20005</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20005:</p>
+<h3>IGT changes</h3>
+<h4>Suppressed</h4>
+<p>The following results come from untrusted machines, tests, or statuses.<br />
+  They do not affect the overall result.</p>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@nop-gfx0:</p>
+<ul>
+<li>{fi-tgl-1115g4}:    NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/fi-tgl-1115g4/igt@amdgpu/amd_cs_nop@nop-gfx0.html">SKIP</a> +25 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s0:</p>
+<ul>
+<li>{fi-tgl-1115g4}:    NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s0.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20005 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_prime@amd-to-i915:<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20005/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (46 -&gt; 41)</h2>
+<p>Additional (1): fi-tgl-1115g4 <br />
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-icl-y fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10017 -&gt; Patchwork_20005</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10017: 90fd4f5c1834f556c119cba5b6c41fe90683b912 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6076: 9ab0820dbd07781161c1ace6973ea222fd24e53a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20005: c75032319fb208810e5e1f7e2f2347ceecb79fbf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>c75032319fb2 drm/i915/display: move crtc and dpll declarations where they belong</p>
+
+</body>
+</html>
+
+--===============5480035564980054878==--
+
+--===============2087630716==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2087630716==--
