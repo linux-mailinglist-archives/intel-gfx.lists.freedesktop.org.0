@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB72036C57C
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 13:45:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B70836C5B7
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 14:03:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 591646E91C;
-	Tue, 27 Apr 2021 11:45:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8CA76E93D;
+	Tue, 27 Apr 2021 12:03:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C93846E946
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 11:45:30 +0000 (UTC)
-IronPort-SDR: jWLNUohPFY7VK9mnRMode9WIc3Gpod63A0JieZ17WuMvU0DaEn5wK/JfYBHg2ULWHFRGUCAYgd
- 9SeJ/5+o9MXg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="183629866"
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="183629866"
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72EA06E94B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 12:03:22 +0000 (UTC)
+IronPort-SDR: hulHVJj2lDSwFfYT8Km9kV2ZU6MN1f5N5DtIDsttNWIsJibwgPOM3u3TO0M9IqBj2zdktWskQ+
+ zcEx14xT8LLw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="196606102"
+X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="196606102"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 04:45:29 -0700
-IronPort-SDR: Af9HJW5nguVN4qy0jqmAuo5MvaZiY9x63mS5lLQzjIRDMWYaiPhqNagVjvK1i9T/GUCx46XDeB
- yEVBXXzzrQGQ==
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="429780491"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2021 05:03:21 -0700
+IronPort-SDR: AGQCq9qFZVlQWG+huaRya9KH5YE0zj21Ybt8C4WniaFxZ2i63wO2kFIUV+gKMjjOH3SyEaIWbk
+ imiJV1Fk5n5Q==
+X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="429785298"
 Received: from aalbarra-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.41.45])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 04:45:27 -0700
+ 27 Apr 2021 05:03:20 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Apr 2021 14:45:20 +0300
-Message-Id: <20210427114520.4740-1-jani.nikula@intel.com>
+Date: Tue, 27 Apr 2021 15:03:15 +0300
+Message-Id: <20210427120315.12342-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH] drm/i915/hdcp: add intel_dp_hdcp.h and rename
- init accordingly
+Subject: [Intel-gfx] [PATCH] drm/i915/display: move crtc and dpll
+ declarations where they belong
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,98 +48,188 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWRkIHNlcGFyYXRlIGludGVsX2RwX2hkY3AuaCB0byBnbyB3aXRoIGludGVsX2RwX2hkY3AuYywg
-YW5kIHJlbmFtZSB0aGUKaW5pdCBmdW5jdGlvbiBpbnRlbF9kcF9oZGNwX2luaXQoKSB0byBmb2xs
-b3cgbmFtaW5nIHdoZXJlIGZ1bmN0aW9uCnByZWZpeCBtYXRjaGVzIHRoZSBmaWxlIG5hbWUuCgpT
-aWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgotLS0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyAgICAgIHwgIDUgKysrLS0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaCAgICAgIHwgIDMgLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2hkY3AuYyB8ICA1ICsrKy0tCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2hkY3AuaCB8IDE1ICsrKysrKysrKysr
-KysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyAgfCAgNSAr
-KystLQogNSBmaWxlcyBjaGFuZ2VkLCAyNCBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQog
-Y3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBf
-aGRjcC5oCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-cC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCmluZGV4IDRhZDEy
-ZGRlNTkzOC4uZGZhN2RhOTI4YWU1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kcC5jCkBAIC00OSwxMCArNDksMTEgQEAKICNpbmNsdWRlICJpbnRlbF9kaXNwbGF5X3R5cGVz
-LmgiCiAjaW5jbHVkZSAiaW50ZWxfZHAuaCIKICNpbmNsdWRlICJpbnRlbF9kcF9hdXguaCIKKyNp
-bmNsdWRlICJpbnRlbF9kcF9oZGNwLmgiCiAjaW5jbHVkZSAiaW50ZWxfZHBfbGlua190cmFpbmlu
-Zy5oIgogI2luY2x1ZGUgImludGVsX2RwX21zdC5oIgotI2luY2x1ZGUgImludGVsX2RwbGwuaCIK
-ICNpbmNsdWRlICJpbnRlbF9kcGlvX3BoeS5oIgorI2luY2x1ZGUgImludGVsX2RwbGwuaCIKICNp
-bmNsdWRlICJpbnRlbF9maWZvX3VuZGVycnVuLmgiCiAjaW5jbHVkZSAiaW50ZWxfaGRjcC5oIgog
-I2luY2x1ZGUgImludGVsX2hkbWkuaCIKQEAgLTUzNDgsNyArNTM0OSw3IEBAIGludGVsX2RwX2lu
-aXRfY29ubmVjdG9yKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LAogCWludGVs
-X2RwX2FkZF9wcm9wZXJ0aWVzKGludGVsX2RwLCBjb25uZWN0b3IpOwogCiAJaWYgKGlzX2hkY3Bf
-c3VwcG9ydGVkKGRldl9wcml2LCBwb3J0KSAmJiAhaW50ZWxfZHBfaXNfZWRwKGludGVsX2RwKSkg
-ewotCQlpbnQgcmV0ID0gaW50ZWxfZHBfaW5pdF9oZGNwKGRpZ19wb3J0LCBpbnRlbF9jb25uZWN0
-b3IpOworCQlpbnQgcmV0ID0gaW50ZWxfZHBfaGRjcF9pbml0KGRpZ19wb3J0LCBpbnRlbF9jb25u
-ZWN0b3IpOwogCQlpZiAocmV0KQogCQkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sCiAJCQkJ
-ICAgICJIRENQIGluaXQgZmFpbGVkLCBza2lwcGluZy5cbiIpOwpkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcC5oCmluZGV4IDhkYjUwNjJmNmM0YS4uNjgwNjMxYjViNDM3IDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmgKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCkBAIC0xMTksOSArMTE5LDYgQEAg
-dm9pZCBpbnRlbF9kZGlfdXBkYXRlX3BpcGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3Rh
-dGUsCiAJCQkgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKIAkJ
-CSAgIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlKTsKIAotaW50
-IGludGVsX2RwX2luaXRfaGRjcChzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCwK
-LQkJICAgICAgIHN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmludGVsX2Nvbm5lY3Rvcik7Ci0KIGJv
-b2wgaW50ZWxfZHBfaW5pdGlhbF9mYXN0c2V0X2NoZWNrKHN0cnVjdCBpbnRlbF9lbmNvZGVyICpl
-bmNvZGVyLAogCQkJCSAgICBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7CiB2
-b2lkIGludGVsX2RwX3N5bmNfc3RhdGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2hkY3AuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfaGRjcC5jCmluZGV4IDJkZDkz
-NjBiZGY5YS4uZDdjM2E3NGI4MWEzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RwX2hkY3AuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RwX2hkY3AuYwpAQCAtMTEsOSArMTEsMTAgQEAKICNpbmNsdWRlIDxkcm0vZHJtX2hk
-Y3AuaD4KICNpbmNsdWRlIDxkcm0vZHJtX3ByaW50Lmg+CiAKLSNpbmNsdWRlICJpbnRlbF9kaXNw
-bGF5X3R5cGVzLmgiCiAjaW5jbHVkZSAiaW50ZWxfZGRpLmgiCisjaW5jbHVkZSAiaW50ZWxfZGlz
-cGxheV90eXBlcy5oIgogI2luY2x1ZGUgImludGVsX2RwLmgiCisjaW5jbHVkZSAiaW50ZWxfZHBf
-aGRjcC5oIgogI2luY2x1ZGUgImludGVsX2hkY3AuaCIKIAogc3RhdGljIHVuc2lnbmVkIGludCB0
-cmFuc2NvZGVyX3RvX3N0cmVhbV9lbmNfc3RhdHVzKGVudW0gdHJhbnNjb2RlciBjcHVfdHJhbnNj
-b2RlcikKQEAgLTgzNSw3ICs4MzYsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2hkY3Bf
-c2hpbSBpbnRlbF9kcF9tc3RfaGRjcF9zaGltID0gewogCS5wcm90b2NvbCA9IEhEQ1BfUFJPVE9D
-T0xfRFAsCiB9OwogCi1pbnQgaW50ZWxfZHBfaW5pdF9oZGNwKHN0cnVjdCBpbnRlbF9kaWdpdGFs
-X3BvcnQgKmRpZ19wb3J0LAoraW50IGludGVsX2RwX2hkY3BfaW5pdChzdHJ1Y3QgaW50ZWxfZGln
-aXRhbF9wb3J0ICpkaWdfcG9ydCwKIAkJICAgICAgIHN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmlu
-dGVsX2Nvbm5lY3RvcikKIHsKIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gaW50ZWxfY29ubmVj
-dG9yLT5iYXNlLmRldjsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZHBfaGRjcC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9o
-ZGNwLmgKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi5lZmY1ZWM1YzUw
-MjEKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RwX2hkY3AuaApAQCAtMCwwICsxLDE1IEBACisvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
-TUlUICovCisvKgorICogQ29weXJpZ2h0IMKpIDIwMjEgSW50ZWwgQ29ycG9yYXRpb24KKyAqLwor
-CisjaWZuZGVmIF9fSU5URUxfRFBfSERDUF9fXworI2RlZmluZSBfX0lOVEVMX0RQX0hEQ1BfX18K
-Kworc3RydWN0IGludGVsX2Nvbm5lY3RvcjsKK3N0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQ7CisK
-K2ludCBpbnRlbF9kcF9oZGNwX2luaXQoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3Bv
-cnQsCisJCSAgICAgICBzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICppbnRlbF9jb25uZWN0b3IpOwor
-CisjZW5kaWYgLyogX19JTlRFTF9EUF9IRENQX19fICovCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcF9tc3QuYwppbmRleCAxODBmOTdjZDc0Y2IuLjM1NThiY2UyNDJlZSAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCkBAIC0zNCwx
-MSArMzQsMTIgQEAKICNpbmNsdWRlICJpbnRlbF9jb25uZWN0b3IuaCIKICNpbmNsdWRlICJpbnRl
-bF9kZGkuaCIKICNpbmNsdWRlICJpbnRlbF9kaXNwbGF5X3R5cGVzLmgiCi0jaW5jbHVkZSAiaW50
-ZWxfaG90cGx1Zy5oIgogI2luY2x1ZGUgImludGVsX2RwLmgiCisjaW5jbHVkZSAiaW50ZWxfZHBf
-aGRjcC5oIgogI2luY2x1ZGUgImludGVsX2RwX21zdC5oIgogI2luY2x1ZGUgImludGVsX2RwaW9f
-cGh5LmgiCiAjaW5jbHVkZSAiaW50ZWxfaGRjcC5oIgorI2luY2x1ZGUgImludGVsX2hvdHBsdWcu
-aCIKICNpbmNsdWRlICJza2xfc2NhbGVyLmgiCiAKIHN0YXRpYyBpbnQgaW50ZWxfZHBfbXN0X2Nv
-bXB1dGVfbGlua19jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCkBAIC04MzIs
-NyArODMzLDcgQEAgc3RhdGljIHN0cnVjdCBkcm1fY29ubmVjdG9yICppbnRlbF9kcF9hZGRfbXN0
-X2Nvbm5lY3RvcihzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG8KIAlpbnRlbF9hdHRhY2hfYnJvYWRj
-YXN0X3JnYl9wcm9wZXJ0eShjb25uZWN0b3IpOwogCiAJaWYgKERJU1BMQVlfVkVSKGRldl9wcml2
-KSA8PSAxMikgewotCQlyZXQgPSBpbnRlbF9kcF9pbml0X2hkY3AoZGlnX3BvcnQsIGludGVsX2Nv
-bm5lY3Rvcik7CisJCXJldCA9IGludGVsX2RwX2hkY3BfaW5pdChkaWdfcG9ydCwgaW50ZWxfY29u
-bmVjdG9yKTsKIAkJaWYgKHJldCkKIAkJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLCAiWyVz
-OiVkXSBIRENQIE1TVCBpbml0IGZhaWxlZCwgc2tpcHBpbmcuXG4iLAogCQkJCSAgICBjb25uZWN0
-b3ItPm5hbWUsIGNvbm5lY3Rvci0+YmFzZS5pZCk7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+The definitions are in the crtc and dpll files; move the declarations to
+the corresponding headers.
+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c        | 1 +
+ drivers/gpu/drm/i915/display/intel_crt.c      | 1 +
+ drivers/gpu/drm/i915/display/intel_crtc.h     | 3 +++
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 1 +
+ drivers/gpu/drm/i915/display/intel_display.h  | 6 ------
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 1 +
+ drivers/gpu/drm/i915/display/intel_dpll.h     | 5 +++++
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 1 +
+ drivers/gpu/drm/i915/display/intel_sdvo.c     | 1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c        | 1 +
+ drivers/gpu/drm/i915/i915_trace.h             | 1 +
+ 11 files changed, 16 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 37e2d93d064c..781630a40f06 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -31,6 +31,7 @@
+ #include "intel_atomic.h"
+ #include "intel_combo_phy.h"
+ #include "intel_connector.h"
++#include "intel_crtc.h"
+ #include "intel_ddi.h"
+ #include "intel_dsi.h"
+ #include "intel_panel.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+index c85092eaa5c2..1aac8bead4eb 100644
+--- a/drivers/gpu/drm/i915/display/intel_crt.c
++++ b/drivers/gpu/drm/i915/display/intel_crt.c
+@@ -36,6 +36,7 @@
+ #include "i915_drv.h"
+ #include "intel_connector.h"
+ #include "intel_crt.h"
++#include "intel_crtc.h"
+ #include "intel_ddi.h"
+ #include "intel_display_types.h"
+ #include "intel_fdi.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
+index 08112d557411..a5ae997581aa 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.h
++++ b/drivers/gpu/drm/i915/display/intel_crtc.h
+@@ -18,5 +18,8 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe);
+ struct intel_crtc_state *intel_crtc_state_alloc(struct intel_crtc *crtc);
+ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
+ 			    struct intel_crtc *crtc);
++u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc);
++void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state);
++void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index f4249f087fa7..93d94d50b63d 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -31,6 +31,7 @@
+ #include "intel_audio.h"
+ #include "intel_combo_phy.h"
+ #include "intel_connector.h"
++#include "intel_crtc.h"
+ #include "intel_ddi.h"
+ #include "intel_ddi_buf_trans.h"
+ #include "intel_display_types.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index b68bcd502206..fc0df4c63e8d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -557,9 +557,6 @@ enum tc_port intel_port_to_tc(struct drm_i915_private *dev_priv,
+ 			      enum port port);
+ int intel_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
+ 				      struct drm_file *file_priv);
+-u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc);
+-void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state);
+-void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
+ 
+ int ilk_get_lanes_required(int target_clock, int link_bw, int bpp);
+ void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
+@@ -598,9 +595,6 @@ void intel_dp_get_m_n(struct intel_crtc *crtc,
+ void intel_dp_set_m_n(const struct intel_crtc_state *crtc_state,
+ 		      enum link_m_n_set m_n);
+ int intel_dotclock_calculate(int link_freq, const struct intel_link_m_n *m_n);
+-bool bxt_find_best_dpll(struct intel_crtc_state *crtc_state,
+-			struct dpll *best_clock);
+-int chv_calc_dpll_params(int refclk, struct dpll *pll_clock);
+ 
+ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state);
+ void hsw_enable_ips(const struct intel_crtc_state *crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 3558bce242ee..a30ca4380a06 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -32,6 +32,7 @@
+ #include "intel_atomic.h"
+ #include "intel_audio.h"
+ #include "intel_connector.h"
++#include "intel_crtc.h"
+ #include "intel_ddi.h"
+ #include "intel_display_types.h"
+ #include "intel_dp.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.h b/drivers/gpu/drm/i915/display/intel_dpll.h
+index 7ff4b0d29ed1..88247027fd5a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.h
++++ b/drivers/gpu/drm/i915/display/intel_dpll.h
+@@ -6,6 +6,8 @@
+ #ifndef _INTEL_DPLL_H_
+ #define _INTEL_DPLL_H_
+ 
++#include <linux/types.h>
++
+ struct dpll;
+ struct drm_i915_private;
+ struct intel_crtc;
+@@ -37,5 +39,8 @@ void vlv_prepare_pll(struct intel_crtc *crtc,
+ 		     const struct intel_crtc_state *pipe_config);
+ void chv_prepare_pll(struct intel_crtc *crtc,
+ 		     const struct intel_crtc_state *pipe_config);
++bool bxt_find_best_dpll(struct intel_crtc_state *crtc_state,
++			struct dpll *best_clock);
++int chv_calc_dpll_params(int refclk, struct dpll *pll_clock);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index e1c916640768..da2ff0b3ceac 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -23,6 +23,7 @@
+ 
+ #include "intel_display_types.h"
+ #include "intel_dpio_phy.h"
++#include "intel_dpll.h"
+ #include "intel_dpll_mgr.h"
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index f770d6bcd2c9..f6eb95c717d2 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -38,6 +38,7 @@
+ #include "i915_drv.h"
+ #include "intel_atomic.h"
+ #include "intel_connector.h"
++#include "intel_crtc.h"
+ #include "intel_display_types.h"
+ #include "intel_fifo_underrun.h"
+ #include "intel_gmbus.h"
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 0d52da613101..ac0553d492aa 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -33,6 +33,7 @@
+ #include "i915_drv.h"
+ #include "intel_atomic.h"
+ #include "intel_connector.h"
++#include "intel_crtc.h"
+ #include "intel_display_types.h"
+ #include "intel_dsi.h"
+ #include "intel_fifo_underrun.h"
+diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+index a4addcc64978..cac385e526c1 100644
+--- a/drivers/gpu/drm/i915/i915_trace.h
++++ b/drivers/gpu/drm/i915/i915_trace.h
+@@ -8,6 +8,7 @@
+ 
+ #include <drm/drm_drv.h>
+ 
++#include "display/intel_crtc.h"
+ #include "display/intel_display_types.h"
+ #include "gt/intel_engine.h"
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
