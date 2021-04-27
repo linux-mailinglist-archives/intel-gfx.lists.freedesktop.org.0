@@ -2,57 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FEC636C194
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D26A36C19B
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:20:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 929CC6E92B;
-	Tue, 27 Apr 2021 09:20:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAF486E932;
+	Tue, 27 Apr 2021 09:20:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
- [IPv6:2a00:1450:4864:20::334])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F6C56E92B
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 09:20:28 +0000 (UTC)
-Received: by mail-wm1-x334.google.com with SMTP id
- p6-20020a05600c3586b029014131bbe5c7so3386145wmq.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 02:20:28 -0700 (PDT)
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com
+ [IPv6:2a00:1450:4864:20::335])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53C5B6E92C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 09:20:29 +0000 (UTC)
+Received: by mail-wm1-x335.google.com with SMTP id n84so4196818wma.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 02:20:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ReR+qIwa27lRq+WXnj64eqAh7xIIkZ1ocFvCO3rmgbA=;
- b=JL+d9Be+1fsOLPsXOKUrRxgZxa39qLYpQ0YrL1WSRQH8EeOSU9TuY5SCxkhZ8bTnvg
- kADgMit5Tjswacswy/wlSRX+5XV/KC1tpCJx/GM65VHOTIr/90IX9etPOTBp18znldlC
- cVpPMLJJsEIYJJxXX9Tvk62NITCamUFMsPFZ0=
+ bh=m56BVCqfwfl5q0jPz4hzEYoV7UdZ/KST4hTQZTeuJdk=;
+ b=Z16j2RO/tMcGi97O2Wslzw0bl7bocm0CdNceuYd7FR8sWpRYd7HG8Ip8qfiUZDTvlT
+ HTaHagRZcPEwezykSoz1I9uWSEHmisn2dZaORuS6cS6VxZGe3iTz3jK4Q4TLwFAEhfb/
+ jtCm3FT1ZJ50M7FTWm5j9OQPvDmXnxLTCcXaY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ReR+qIwa27lRq+WXnj64eqAh7xIIkZ1ocFvCO3rmgbA=;
- b=cz1yuN89/tDEhS/NXcOrWdfDxTzM4Dn7nFsHTdsvBfXfLb0NxaaIh1DSMvk/58KKmi
- TR8ig9RmoolahMqVf5sCkuYrufkxqSGpoz2pgS+I0TmstT9PF1cUSDbgxjPxpv+3QlE2
- suN9FrnN690oag2VIIL7PdHu2MxCeDwo6ldXvwO1ig6UhcfhlrNfG5WP1goLpuYzCXAK
- hDF3ja9TxOrnE1VxVONXMww9yce2/CByGjLjWWaBS3qLimXwFHJVmzaB9gE3caw1ji3Z
- fyJwpaDpyNj4ATdZ6p2kx5c7TPefuq2YbfwsNAxs1XXStCK1E/eKVfRbU/qwwsR+Qdch
- Ileg==
-X-Gm-Message-State: AOAM531ok6M9OMoRCcNhp/MNqqVxjHS2olkW4fS2v/bOfD6pZo9t3c72
- IOHjdod4gp6oBp0lz26zlzucuw==
-X-Google-Smtp-Source: ABdhPJxY1xvtgR31iORQGe6Y6cpHVeXgo9kkirI7wziiPBd6Q7J0bcoSuMCknwVDmZApxntHIbq0lA==
-X-Received: by 2002:a1c:228a:: with SMTP id i132mr7321975wmi.10.1619515227165; 
- Tue, 27 Apr 2021 02:20:27 -0700 (PDT)
+ bh=m56BVCqfwfl5q0jPz4hzEYoV7UdZ/KST4hTQZTeuJdk=;
+ b=IoaQAx03jWxJF/xTAvPqu4P2cax44GZlWGIxyoRkYBDSfTbg0RdD6CX0d735Bl5Q6m
+ yYXQcsd2cmxv59RZ7J6n4ph6SqREzSDnU0b0zHTQ/8Dq44yQRhNKpfGDQPVuGh8qHR9Y
+ fbak+r1rbHqfk4qlPfLFnaqlN4cw8f2Fvp0+pEOrTPbjgGvhonRfjjOKm6mR04yfM9oP
+ 9BGDk3rBEGS1PQT0trE7TDn2WiP3gy3/+NThpdj+K23MXm+nsuEIyQ+9KraYbxg6WF2a
+ BbJna2N2/nDqO0tSIUpqSDFujOHZRvJYviw2q1BgKwegETUxhmriTOO2X7QTY63GdBtV
+ MKnw==
+X-Gm-Message-State: AOAM530mGg4N1XFfyComSEb/g9QzRIOTZGoa0jKgvHLercZx//oGJaxp
+ 1jnJhZN3q/fn813RIy2CdQfjQg==
+X-Google-Smtp-Source: ABdhPJzbPrCtq40L5ZJcK4JYJvh90uc/ZVxSStrcaxlXHngaxKYQB0bYS5ro9fj1IS+08On3AC6WBg==
+X-Received: by 2002:a7b:c017:: with SMTP id c23mr3191439wmb.175.1619515228054; 
+ Tue, 27 Apr 2021 02:20:28 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id r24sm1939816wmh.8.2021.04.27.02.20.26
+ by smtp.gmail.com with ESMTPSA id r24sm1939816wmh.8.2021.04.27.02.20.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 27 Apr 2021 02:20:26 -0700 (PDT)
+ Tue, 27 Apr 2021 02:20:27 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue, 27 Apr 2021 11:20:14 +0200
-Message-Id: <20210427092018.832258-4-daniel.vetter@ffwll.ch>
+Date: Tue, 27 Apr 2021 11:20:15 +0200
+Message-Id: <20210427092018.832258-5-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.31.0
 In-Reply-To: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
 References: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/8] drm/msm/dpu1: Don't set allow_fb_modifiers
- explicitly
+Subject: [Intel-gfx] [PATCH 5/8] drm/msm/mdp4: Fix modifier support enabling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,61 +63,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Rajendra Nayak <rnayak@codeaurora.org>,
+Cc: Rob Clark <robdclark@chromium.org>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
  Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Tanmay Shah <tanmay@codeaurora.org>, Jordan Crouse <jordan@cosmicpenguin.net>,
- Eric Anholt <eric@anholt.net>, Qinglang Miao <miaoqinglang@huawei.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Jeykumar Sankaran <jsanka@codeaurora.org>,
- Kalyan Thota <kalyant@codeaurora.org>
+ stable@vger.kernel.org, Jordan Crouse <jordan@cosmicpenguin.net>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Emil Velikov <emil.velikov@collabora.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since
+Setting the cap without the modifier list is very confusing to
+userspace. Fix that by listing the ones we support explicitly.
 
-commit 890880ddfdbe256083170866e49c87618b706ac7
-Author: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Date:   Fri Jan 4 09:56:10 2019 +0100
+Stable backport so that userspace can rely on this working in a
+reasonable way, i.e. that the cap set implies IN_FORMATS is available.
 
-    drm: Auto-set allow_fb_modifiers when given modifiers at plane init
-
-this is done automatically as part of plane init, if drivers set the
-modifier list correctly. Which is the case here.
-
-v2: Rebase.
-
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: stable@vger.kernel.org
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
 Cc: Rob Clark <robdclark@chromium.org>
-Cc: Kalyan Thota <kalyant@codeaurora.org>
 Cc: Jordan Crouse <jordan@cosmicpenguin.net>
-Cc: Eric Anholt <eric@anholt.net>
-Cc: Tanmay Shah <tanmay@codeaurora.org>
-Cc: Rajendra Nayak <rnayak@codeaurora.org>
-Cc: Jeykumar Sankaran <jsanka@codeaurora.org>
-Cc: Qinglang Miao <miaoqinglang@huawei.com>
+Cc: Emil Velikov <emil.velikov@collabora.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 ---
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 5 -----
- 1 file changed, 5 deletions(-)
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c   | 2 --
+ drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c | 8 +++++++-
+ 2 files changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index 88e9cc38c13b..93bc3575bf53 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -1020,11 +1020,6 @@ static int dpu_kms_hw_init(struct msm_kms *kms)
- 			dpu_kms->catalog->caps->max_mixer_width * 2;
- 	dev->mode_config.max_height = 4096;
+diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
+index 3d729270bde1..4a5b518288b0 100644
+--- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
++++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_kms.c
+@@ -88,8 +88,6 @@ static int mdp4_hw_init(struct msm_kms *kms)
+ 	if (mdp4_kms->rev > 1)
+ 		mdp4_write(mdp4_kms, REG_MDP4_RESET_STATUS, 1);
  
--	/*
--	 * Support format modifiers for compression etc.
--	 */
 -	dev->mode_config.allow_fb_modifiers = true;
 -
- 	dev->max_vblank_count = 0xffffffff;
- 	/* Disable vblank irqs aggressively for power-saving */
- 	dev->vblank_disable_immediate = true;
+ out:
+ 	pm_runtime_put_sync(dev->dev);
+ 
+diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c b/drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c
+index 9aecca919f24..49bdabea8ed5 100644
+--- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c
++++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c
+@@ -349,6 +349,12 @@ enum mdp4_pipe mdp4_plane_pipe(struct drm_plane *plane)
+ 	return mdp4_plane->pipe;
+ }
+ 
++static const uint64_t supported_format_modifiers[] = {
++	DRM_FORMAT_MOD_SAMSUNG_64_32_TILE,
++	DRM_FORMAT_MOD_LINEAR,
++	DRM_FORMAT_MOD_INVALID
++};
++
+ /* initialize plane */
+ struct drm_plane *mdp4_plane_init(struct drm_device *dev,
+ 		enum mdp4_pipe pipe_id, bool private_plane)
+@@ -377,7 +383,7 @@ struct drm_plane *mdp4_plane_init(struct drm_device *dev,
+ 	type = private_plane ? DRM_PLANE_TYPE_PRIMARY : DRM_PLANE_TYPE_OVERLAY;
+ 	ret = drm_universal_plane_init(dev, plane, 0xff, &mdp4_plane_funcs,
+ 				 mdp4_plane->formats, mdp4_plane->nformats,
+-				 NULL, type, NULL);
++				 supported_format_modifiers, type, NULL);
+ 	if (ret)
+ 		goto fail;
+ 
 -- 
 2.31.0
 
