@@ -1,96 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFABE36C1E9
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:41:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3069936C1C5
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:32:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 393CA6E929;
-	Tue, 27 Apr 2021 09:41:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5609789FED;
+	Tue, 27 Apr 2021 09:32:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1688 seconds by postgrey-1.36 at gabe;
- Tue, 27 Apr 2021 08:02:16 UTC
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25A086E90D;
- Tue, 27 Apr 2021 08:02:16 +0000 (UTC)
-Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id
- 13R7XHHA076633; Tue, 27 Apr 2021 03:34:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com;
- h=subject : to : cc :
- references : from : message-id : date : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pp1;
- bh=dbwUouL94Tn6aMK5okMNidltYNKsURrD9rSSG24y+N8=;
- b=JlBYcGRZinkJQ1yL6heRHD3pud7q+grVvAnrNoVMNLWaK2KZOTrg7ISOe0e2zyBTewO2
- 1Yq5+jH8spWiL4RGCY0ebeZKRkhbBBTXz4nJSrs+4HDL2ehS3Alpkd7dHPaV452wSF18
- 4U191PPSIXGQuzZVE+ZQxTjDszgR1OSTHt9VdxybVLkWGnA34Ah1KytfPWIoKiGwbB5n
- gWjLyztpo8shuUBK+uxW2ZC2Qm5AhLBHuUpwHG47IoVT2LTt8DtersFVqNovqz0g00Kj
- TmnvSAAw+bGvEpM9NlyCwZdiiwvruwrXZ+jdNQkYd8uWLFU4McOxdbjRtbCDD8/NeVMR Gg== 
-Received: from pps.reinject (localhost [127.0.0.1])
- by mx0a-001b2d01.pphosted.com with ESMTP id 386cf2txe0-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 27 Apr 2021 03:34:05 -0400
-Received: from m0187473.ppops.net (m0187473.ppops.net [127.0.0.1])
- by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 13R7XlU4078010;
- Tue, 27 Apr 2021 03:34:05 -0400
-Received: from ppma02fra.de.ibm.com (47.49.7a9f.ip4.static.sl-reverse.com
- [159.122.73.71])
- by mx0a-001b2d01.pphosted.com with ESMTP id 386cf2txc2-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 27 Apr 2021 03:34:05 -0400
-Received: from pps.filterd (ppma02fra.de.ibm.com [127.0.0.1])
- by ppma02fra.de.ibm.com (8.16.0.43/8.16.0.43) with SMTP id 13R7Rane009579;
- Tue, 27 Apr 2021 07:34:02 GMT
-Received: from b06avi18626390.portsmouth.uk.ibm.com
- (b06avi18626390.portsmouth.uk.ibm.com [9.149.26.192])
- by ppma02fra.de.ibm.com with ESMTP id 384ay88nbr-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 27 Apr 2021 07:34:02 +0000
-Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com
- [9.149.105.58])
- by b06avi18626390.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP
- id 13R7XYL128049826
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 27 Apr 2021 07:33:34 GMT
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id B0CDF4C046;
- Tue, 27 Apr 2021 07:33:58 +0000 (GMT)
-Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id AA4A24C040;
- Tue, 27 Apr 2021 07:33:56 +0000 (GMT)
-Received: from oc7455500831.ibm.com (unknown [9.171.69.120])
- by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTP;
- Tue, 27 Apr 2021 07:33:56 +0000 (GMT)
-To: Jason Gunthorpe <jgg@nvidia.com>
-References: <0-v1-d88406ed308e+418-vfio3_jgg@nvidia.com>
- <5def83bb-599c-27fa-9daa-efa27b5ac1d4@de.ibm.com>
- <20210426174250.GW1370958@nvidia.com>
-From: Christian Borntraeger <borntraeger@de.ibm.com>
-Message-ID: <2ca13efa-3876-9496-edbf-4b12b93d721c@de.ibm.com>
-Date: Tue, 27 Apr 2021 09:33:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.1
-In-Reply-To: <20210426174250.GW1370958@nvidia.com>
-Content-Language: en-US
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: u76BFO76MsdtScWYP9TmTAIjYZRDCeQ_
-X-Proofpoint-ORIG-GUID: E3SdCeQ-8MC1eEvgYB2mhBcR57fsEB6B
-X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DDEB89FED
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 09:32:52 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id
+ f15-20020a05600c4e8fb029013f5599b8a9so4632690wmq.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 02:32:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=qqB+S72Kt0jeXIT+GwCPkd91WNyg118PnRWigzmTcUI=;
+ b=GLJX/M9esFg5o5sGKlHREF35TeE7QdywcwlQG55h8qIB7aZiEmhc00tck9xmCYcZTo
+ TJez+ZNAs/VryiFEIOFSESn5iSE58aQGXgY62AaToK7QV//YdUO+d7/LxL3HTn96ENVp
+ Yo4qellkAJ2gAF7gzusiKTraziR+OxmTxY1qo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=qqB+S72Kt0jeXIT+GwCPkd91WNyg118PnRWigzmTcUI=;
+ b=F4ZNfhf6gOhAW4A1KU4rvOSAvdoG9usSgc76efxN/fGcSRa1tqFWi9zrdI4YynJhrK
+ uHBY4gujFUCTBgHbxItb49XUQA5/SXWKNFJkCGUVc00SGoP+UJ/+T0q7WAxTg+8AuPyr
+ 2jF9+/WPRV/kK7UMX//890w8it5EaphXJJ4Ot3GGs2S+TzZD+P/YQPFtumMqPMwwEynP
+ 2QY4LAaRdlKDcuXz1WGwhkJe5cRxm4Gkc+GUg4xwsUFPwQw6yiFwx4PcVp/3QjQ2jotP
+ aaRSSU9QRRek4m92CaK3gPOrEBwrVMSXqzY6DNAiVmI5kYY5m1xFjmfeMPlFZ80QkprW
+ 74yQ==
+X-Gm-Message-State: AOAM531TfCGJUt9Bo2Gom5Ua8UAXw6RBCptUAl/l8go0QAk46tenSwrx
+ iGj6HHQH7qnptCUuFjp/TzJC7KI8Qg04Hg==
+X-Google-Smtp-Source: ABdhPJyixuL7Mz8cmFiUSm2bDFuUXb+awHskYE4sAP99hZgVCpOitUQ5WJaMkxTFCG5dep0vEZV4Ag==
+X-Received: by 2002:a05:600c:2141:: with SMTP id
+ v1mr23843589wml.22.1619515970891; 
+ Tue, 27 Apr 2021 02:32:50 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id 3sm10006561wms.30.2021.04.27.02.32.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 27 Apr 2021 02:32:50 -0700 (PDT)
+Date: Tue, 27 Apr 2021 11:32:48 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YIfaQJeZdIHlJ30D@phenom.ffwll.local>
+References: <20210423223131.879208-1-jason@jlekstrand.net>
+ <20210423223131.879208-2-jason@jlekstrand.net>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391, 18.0.761
- definitions=2021-04-27_02:2021-04-27,
- 2021-04-27 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0
- mlxlogscore=999 bulkscore=0 spamscore=0 mlxscore=0 adultscore=0
- phishscore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015
- malwarescore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2104060000 definitions=main-2104270055
-X-Mailman-Approved-At: Tue, 27 Apr 2021 09:41:45 +0000
-Subject: Re: [Intel-gfx] [PATCH 00/12] Remove vfio_mdev.c,
- mdev_parent_ops and more
+Content-Disposition: inline
+In-Reply-To: <20210423223131.879208-2-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 01/21] drm/i915: Drop
+ I915_CONTEXT_PARAM_RINGSIZE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,52 +69,363 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: kvm@vger.kernel.org, linux-doc@vger.kernel.org,
- David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Kirti Wankhede <kwankhede@nvidia.com>, Vineeth Vijayan <vneethv@linux.ibm.com>,
- Leon Romanovsky <leonro@nvidia.com>, Christoph Hellwig <hch@lst.de>,
- linux-s390@vger.kernel.org, "Raj, Ashok" <ashok.raj@intel.com>,
- Jonathan Corbet <corbet@lwn.net>, Halil Pasic <pasic@linux.ibm.com>,
- Tarun Gupta <targupta@nvidia.com>, intel-gfx@lists.freedesktop.org,
- Max Gurtovoy <mgurtovoy@nvidia.com>, Eric Farman <farman@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Heiko Carstens <hca@linux.ibm.com>,
- Harald Freudenberger <freude@linux.ibm.com>,
- Dan Williams <dan.j.williams@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- Tony Krowiak <akrowiak@linux.ibm.com>, Pierre Morel <pmorel@linux.ibm.com>,
- Cornelia Huck <cohuck@redhat.com>, Peter Oberparleiter <oberpar@linux.ibm.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Apr 23, 2021 at 05:31:11PM -0500, Jason Ekstrand wrote:
+> This reverts commit 88be76cdafc7 ("drm/i915: Allow userspace to specify
+> ringsize on construction").  This API was originally added for OpenCL
+> but the compute-runtime PR has sat open for a year without action so we
+> can still pull it out if we want.  I argue we should drop it for three
+> reasons:
+> =
 
+>  1. If the compute-runtime PR has sat open for a year, this clearly
+>     isn't that important.
+> =
 
-On 26.04.21 19:42, Jason Gunthorpe wrote:
-> On Mon, Apr 26, 2021 at 06:43:14PM +0200, Christian Borntraeger wrote:
->> On 24.04.21 01:02, Jason Gunthorpe wrote:
->>> Prologue
->>> ========
->>>
->>> This is series #3 in part of a larger work that arose from the minor
->>> remark that the mdev_parent_ops indirection shim is useless and
->>> complicates things.
->>>
->>> It applies on top of Alex's current tree and requires the prior two
->>> series.
->>
->> Do you have a tree somewhere?
-> 
-> [..]
->>> A preview of the future series's is here:
->>>     https://github.com/jgunthorpe/linux/pull/3/commits
-> 
-> Has everything, you'll want to go to:
->    cover-letter: Remove vfio_mdev.c, mdev_parent_ops and more
-> 
-> As there are additional WIPs in that tree.
+>  2. It's a very leaky API.  Ring size is an implementation detail of the
+>     current execlist scheduler and really only makes sense there.  It
+>     can't apply to the older ring-buffer scheduler on pre-execlist
+>     hardware because that's shared across all contexts and it won't
+>     apply to the GuC scheduler that's in the pipeline.
+> =
 
-I gave this a quick spin on s390x vfio-ap and it seems to work ok.
-This is really just a quick test, but no obvious problem.
+>  3. Having userspace set a ring size in bytes is a bad solution to the
+>     problem of having too small a ring.  There is no way that userspace
+>     has the information to know how to properly set the ring size so
+>     it's just going to detect the feature and always set it to the
+>     maximum of 512K.  This is what the compute-runtime PR does.  The
+>     scheduler in i915, on the other hand, does have the information to
+>     make an informed choice.  It could detect if the ring size is a
+>     problem and grow it itself.  Or, if that's too hard, we could just
+>     increase the default size from 16K to 32K or even 64K instead of
+>     relying on userspace to do it.
+> =
+
+> Let's drop this API for now and, if someone decides they really care
+> about solving this problem, they can do it properly.
+> =
+
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+
+Two things:
+- I'm assuming you have an igt change to make sure we get EINVAL for both
+  set and getparam now? Just to make sure.
+
+- intel_context->ring is either a ring pointer when CONTEXT_ALLOC_BIT is
+  set in ce->flags, or the size of the ring stored in the pointer if not.
+  I'm seriously hoping you get rid of this complexity with your
+  proto-context series, and also delete __intel_context_ring_size() in the
+  end. That function has no business existing imo.
+
+  If not, please make sure that's the case.
+
+Aside from these patch looks good.
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |  1 -
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 85 +------------------
+>  drivers/gpu/drm/i915/gt/intel_context_param.c | 63 --------------
+>  drivers/gpu/drm/i915/gt/intel_context_param.h |  3 -
+>  include/uapi/drm/i915_drm.h                   | 20 +----
+>  5 files changed, 4 insertions(+), 168 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/i915/gt/intel_context_param.c
+> =
+
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index d0d936d9137bc..afa22338fa343 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -88,7 +88,6 @@ gt-y +=3D \
+>  	gt/gen8_ppgtt.o \
+>  	gt/intel_breadcrumbs.o \
+>  	gt/intel_context.o \
+> -	gt/intel_context_param.o \
+>  	gt/intel_context_sseu.o \
+>  	gt/intel_engine_cs.o \
+>  	gt/intel_engine_heartbeat.o \
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/dr=
+m/i915/gem/i915_gem_context.c
+> index fd8ee52e17a47..e52b85b8f923d 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1335,63 +1335,6 @@ static int set_ppgtt(struct drm_i915_file_private =
+*file_priv,
+>  	return err;
+>  }
+>  =
+
+> -static int __apply_ringsize(struct intel_context *ce, void *sz)
+> -{
+> -	return intel_context_set_ring_size(ce, (unsigned long)sz);
+> -}
+> -
+> -static int set_ringsize(struct i915_gem_context *ctx,
+> -			struct drm_i915_gem_context_param *args)
+> -{
+> -	if (!HAS_LOGICAL_RING_CONTEXTS(ctx->i915))
+> -		return -ENODEV;
+> -
+> -	if (args->size)
+> -		return -EINVAL;
+> -
+> -	if (!IS_ALIGNED(args->value, I915_GTT_PAGE_SIZE))
+> -		return -EINVAL;
+> -
+> -	if (args->value < I915_GTT_PAGE_SIZE)
+> -		return -EINVAL;
+> -
+> -	if (args->value > 128 * I915_GTT_PAGE_SIZE)
+> -		return -EINVAL;
+> -
+> -	return context_apply_all(ctx,
+> -				 __apply_ringsize,
+> -				 __intel_context_ring_size(args->value));
+> -}
+> -
+> -static int __get_ringsize(struct intel_context *ce, void *arg)
+> -{
+> -	long sz;
+> -
+> -	sz =3D intel_context_get_ring_size(ce);
+> -	GEM_BUG_ON(sz > INT_MAX);
+> -
+> -	return sz; /* stop on first engine */
+> -}
+> -
+> -static int get_ringsize(struct i915_gem_context *ctx,
+> -			struct drm_i915_gem_context_param *args)
+> -{
+> -	int sz;
+> -
+> -	if (!HAS_LOGICAL_RING_CONTEXTS(ctx->i915))
+> -		return -ENODEV;
+> -
+> -	if (args->size)
+> -		return -EINVAL;
+> -
+> -	sz =3D context_apply_all(ctx, __get_ringsize, NULL);
+> -	if (sz < 0)
+> -		return sz;
+> -
+> -	args->value =3D sz;
+> -	return 0;
+> -}
+> -
+>  int
+>  i915_gem_user_to_context_sseu(struct intel_gt *gt,
+>  			      const struct drm_i915_gem_context_param_sseu *user,
+> @@ -2037,11 +1980,8 @@ static int ctx_setparam(struct drm_i915_file_priva=
+te *fpriv,
+>  		ret =3D set_persistence(ctx, args);
+>  		break;
+>  =
+
+> -	case I915_CONTEXT_PARAM_RINGSIZE:
+> -		ret =3D set_ringsize(ctx, args);
+> -		break;
+> -
+>  	case I915_CONTEXT_PARAM_BAN_PERIOD:
+> +	case I915_CONTEXT_PARAM_RINGSIZE:
+>  	default:
+>  		ret =3D -EINVAL;
+>  		break;
+> @@ -2069,18 +2009,6 @@ static int create_setparam(struct i915_user_extens=
+ion __user *ext, void *data)
+>  	return ctx_setparam(arg->fpriv, arg->ctx, &local.param);
+>  }
+>  =
+
+> -static int copy_ring_size(struct intel_context *dst,
+> -			  struct intel_context *src)
+> -{
+> -	long sz;
+> -
+> -	sz =3D intel_context_get_ring_size(src);
+> -	if (sz < 0)
+> -		return sz;
+> -
+> -	return intel_context_set_ring_size(dst, sz);
+> -}
+> -
+>  static int clone_engines(struct i915_gem_context *dst,
+>  			 struct i915_gem_context *src)
+>  {
+> @@ -2125,12 +2053,6 @@ static int clone_engines(struct i915_gem_context *=
+dst,
+>  		}
+>  =
+
+>  		intel_context_set_gem(clone->engines[n], dst);
+> -
+> -		/* Copy across the preferred ringsize */
+> -		if (copy_ring_size(clone->engines[n], e->engines[n])) {
+> -			__free_engines(clone, n + 1);
+> -			goto err_unlock;
+> -		}
+>  	}
+>  	clone->num_engines =3D n;
+>  	i915_sw_fence_complete(&e->fence);
+> @@ -2490,11 +2412,8 @@ int i915_gem_context_getparam_ioctl(struct drm_dev=
+ice *dev, void *data,
+>  		args->value =3D i915_gem_context_is_persistent(ctx);
+>  		break;
+>  =
+
+> -	case I915_CONTEXT_PARAM_RINGSIZE:
+> -		ret =3D get_ringsize(ctx, args);
+> -		break;
+> -
+>  	case I915_CONTEXT_PARAM_BAN_PERIOD:
+> +	case I915_CONTEXT_PARAM_RINGSIZE:
+>  	default:
+>  		ret =3D -EINVAL;
+>  		break;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_param.c b/drivers/gpu/=
+drm/i915/gt/intel_context_param.c
+> deleted file mode 100644
+> index 65dcd090245d6..0000000000000
+> --- a/drivers/gpu/drm/i915/gt/intel_context_param.c
+> +++ /dev/null
+> @@ -1,63 +0,0 @@
+> -// SPDX-License-Identifier: MIT
+> -/*
+> - * Copyright =A9 2019 Intel Corporation
+> - */
+> -
+> -#include "i915_active.h"
+> -#include "intel_context.h"
+> -#include "intel_context_param.h"
+> -#include "intel_ring.h"
+> -
+> -int intel_context_set_ring_size(struct intel_context *ce, long sz)
+> -{
+> -	int err;
+> -
+> -	if (intel_context_lock_pinned(ce))
+> -		return -EINTR;
+> -
+> -	err =3D i915_active_wait(&ce->active);
+> -	if (err < 0)
+> -		goto unlock;
+> -
+> -	if (intel_context_is_pinned(ce)) {
+> -		err =3D -EBUSY; /* In active use, come back later! */
+> -		goto unlock;
+> -	}
+> -
+> -	if (test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
+> -		struct intel_ring *ring;
+> -
+> -		/* Replace the existing ringbuffer */
+> -		ring =3D intel_engine_create_ring(ce->engine, sz);
+> -		if (IS_ERR(ring)) {
+> -			err =3D PTR_ERR(ring);
+> -			goto unlock;
+> -		}
+> -
+> -		intel_ring_put(ce->ring);
+> -		ce->ring =3D ring;
+> -
+> -		/* Context image will be updated on next pin */
+> -	} else {
+> -		ce->ring =3D __intel_context_ring_size(sz);
+> -	}
+> -
+> -unlock:
+> -	intel_context_unlock_pinned(ce);
+> -	return err;
+> -}
+> -
+> -long intel_context_get_ring_size(struct intel_context *ce)
+> -{
+> -	long sz =3D (unsigned long)READ_ONCE(ce->ring);
+> -
+> -	if (test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
+> -		if (intel_context_lock_pinned(ce))
+> -			return -EINTR;
+> -
+> -		sz =3D ce->ring->size;
+> -		intel_context_unlock_pinned(ce);
+> -	}
+> -
+> -	return sz;
+> -}
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_param.h b/drivers/gpu/=
+drm/i915/gt/intel_context_param.h
+> index 3ecacc675f414..dffedd983693d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_param.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_param.h
+> @@ -10,9 +10,6 @@
+>  =
+
+>  #include "intel_context.h"
+>  =
+
+> -int intel_context_set_ring_size(struct intel_context *ce, long sz);
+> -long intel_context_get_ring_size(struct intel_context *ce);
+> -
+>  static inline int
+>  intel_context_set_watchdog_us(struct intel_context *ce, u64 timeout_us)
+>  {
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 6a34243a7646a..6eefbc6dec01f 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -1721,24 +1721,8 @@ struct drm_i915_gem_context_param {
+>   */
+>  #define I915_CONTEXT_PARAM_PERSISTENCE	0xb
+>  =
+
+> -/*
+> - * I915_CONTEXT_PARAM_RINGSIZE:
+> - *
+> - * Sets the size of the CS ringbuffer to use for logical ring contexts. =
+This
+> - * applies a limit of how many batches can be queued to HW before the ca=
+ller
+> - * is blocked due to lack of space for more commands.
+> - *
+> - * Only reliably possible to be set prior to first use, i.e. during
+> - * construction. At any later point, the current execution must be flush=
+ed as
+> - * the ring can only be changed while the context is idle. Note, the rin=
+gsize
+> - * can be specified as a constructor property, see
+> - * I915_CONTEXT_CREATE_EXT_SETPARAM, but can also be set later if requir=
+ed.
+> - *
+> - * Only applies to the current set of engine and lost when those engines
+> - * are replaced by a new mapping (see I915_CONTEXT_PARAM_ENGINES).
+> - *
+> - * Must be between 4 - 512 KiB, in intervals of page size [4 KiB].
+> - * Default is 16 KiB.
+> +/* This API has been removed.  On the off chance someone somewhere has
+> + * attempted to use it, never re-use this context param number.
+>   */
+>  #define I915_CONTEXT_PARAM_RINGSIZE	0xc
+>  /* Must be kept compact -- no holes and well documented */
+> -- =
+
+> 2.31.1
+> =
+
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
