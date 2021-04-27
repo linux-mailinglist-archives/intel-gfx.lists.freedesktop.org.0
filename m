@@ -1,43 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 113E236BD19
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 04:06:07 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA8336BD9E
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 05:03:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD9326E027;
-	Tue, 27 Apr 2021 02:06:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1387A6E8E2;
+	Tue, 27 Apr 2021 03:03:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51A376E027
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 02:06:02 +0000 (UTC)
-IronPort-SDR: z8GOelzgHcK5kf04KcZRBcyTzWUnjm9psTZ93FK8ZO/A+BBQJUh3eeW5Cc9locw1KZRP+5v4NS
- 3vxow6tiQiRQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="193248176"
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="193248176"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Apr 2021 19:06:01 -0700
-IronPort-SDR: LLbYG7sGqFvh71+E5Z+a+Lcy/vi/e6XG0PaoDQjOo69HR+3LvbXOo35cb/uqdRlvhIi2b8Mg1p
- 4+ub5sPMgZbQ==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 888056E8E1;
+ Tue, 27 Apr 2021 03:03:27 +0000 (UTC)
+IronPort-SDR: Q4KDA/POy3Cz7uv4j2tPiK+9Spkzs01Ctet2ZIa9RdIIsiXXN7ADvn6h7942Zrj/VgAMyoKBOy
+ YkXZ5isTufCg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="217142902"
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; 
+ d="asc'?scan'208";a="217142902"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Apr 2021 20:03:27 -0700
+IronPort-SDR: CQ5ieFRbxplKSLTDOnlfQzNGIv+CG1WcG5/OBJF5kf2Rkf5qzcJ2rSJVDQqsrmJ1d2jOWF/CQS
+ 0gdUmZ7npklw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; d="scan'208";a="387193017"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 26 Apr 2021 19:05:59 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 27 Apr 2021 05:05:58 +0300
-Date: Tue, 27 Apr 2021 05:05:58 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <YIdxhuyJ2cqxA+DX@intel.com>
-References: <20210426185612.13223-1-ville.syrjala@linux.intel.com>
- <1eb44e061b1aa1d6bd2b814d5a4e5520b7bf21db.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="5.82,252,1613462400"; 
+ d="asc'?scan'208";a="447464673"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga004.fm.intel.com with ESMTP; 26 Apr 2021 20:03:25 -0700
+Date: Tue, 27 Apr 2021 10:45:06 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Message-ID: <20210427024506.GL1551@zhen-hp.sh.intel.com>
+References: <20210426094143.4031527-1-zhenyuw@linux.intel.com>
+ <20210426133924.GK2047089@ziepe.ca>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1eb44e061b1aa1d6bd2b814d5a4e5520b7bf21db.camel@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Stop using crtc->index as the pipe
+In-Reply-To: <20210426133924.GK2047089@ziepe.ca>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gvt: Move mdev attribute
+ groups into kvmgt module
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,52 +49,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: Arnd Bergmann <arnd@kernel.org>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0872591770=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Apr 27, 2021 at 12:07:21AM +0000, Souza, Jose wrote:
-> On Mon, 2021-04-26 at 21:56 +0300, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
 
-> > The pipe crc code slipped theough the net when we tried to
-> > eliminate all crtc->index=3D=3Dpipe abuses. Remedy that.
-> > =
+--===============0872591770==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="p1zSJVlfBL7BTggM"
+Content-Disposition: inline
 
-> > And while at it get rid of those nasty intel_crtc+drm_crtc
-> > pointer aliases.
-> =
 
-> intel_crtc is broadly used,
+--p1zSJVlfBL7BTggM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Not anymore. We've cleaned up almost all of it. Looks like only ~40 left
-vs. ~600 the other name. Probably a good time to clean up the rest
-finally.
+On 2021.04.26 10:39:24 -0300, Jason Gunthorpe wrote:
+> On Mon, Apr 26, 2021 at 05:41:42PM +0800, Zhenyu Wang wrote:
+> > @@ -1667,19 +1773,26 @@ static struct mdev_parent_ops intel_vgpu_ops =
+=3D {
+> > =20
+> >  static int kvmgt_host_init(struct device *dev, void *gvt, const void *=
+ops)
+> >  {
+> > -	struct attribute_group **kvm_vgpu_type_groups;
+> > +	int ret;
+> > +
+> > +	ret =3D intel_gvt_init_vgpu_type_groups((struct intel_gvt *)gvt);
+> > +	if (ret)
+> > +		return ret;
+> > =20
+> >  	intel_gvt_ops =3D ops;
+> > -	if (!intel_gvt_ops->get_gvt_attrs(&kvm_vgpu_type_groups))
+> > -		return -EFAULT;
+> > -	intel_vgpu_ops.supported_type_groups =3D kvm_vgpu_type_groups;
+> > +	intel_vgpu_ops.supported_type_groups =3D gvt_vgpu_type_groups;
+>=20
+> This patch is an improvement, but this fictional dynamic behavior is
+> still wrong. The supported_type_groups directly flows from the
+> vgpu_types array in vgpu.c and it should not be split up like this
+>=20
+> The code copies the rodata vgpu_types into dynamic memory gvt->types
+> then copies that dynamic memory into a dynamic gvt_vgpu_type_groups,
+> which makes very little sense at all.
 
-> also we have the same for other structs like intel_connector, in my optio=
-n that is better than _crtc x crtc.
+vgpu_types is static for we want fixed vgpu mdev type, but actual supported
+types depend on HW resources e.g aperture mem, fence, etc, that's dynamic f=
+or
+gvt->types, so gvt_vgpu_type_groups is dynamic from gvt->types.
 
-The _crtc is explicitly ugly to make sure people leave it well
-alone. Otherwise we can never get rid of these horrible aliasing
-pointers. It should only make an appearance in core/helper vfuncs
-and such. At some point I was even pondering some kind of macro
-magic to create semi-automatic wrappers so that we could always
-just use the intel_ types in our vfunc implementations.
+>=20
+> vgpu_types should be moved to kvmgt and everything should be static,
+> like every other mdev driver. Copy the 'type' information from the
+> gpu_types static when the mdev is created.
+>=20
 
-intel_crtc we've cleaned up the most I think, intel_encoder a bit less
-perhaps, and intel_connector not really at all. Hence you see a lot more
-of intel_connector floating around. We also don't usually use the intel_
-types for connector states. Mainly because most of the time you don't
-need anyting from there.
+I don't think that's necessary, as it's not static for gvt at all.
+The logic to handle type resource change can still be in vgpu.c
 
--- =
 
-Ville Syrj=E4l=E4
-Intel
+--p1zSJVlfBL7BTggM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYId6rQAKCRCxBBozTXgY
+J3/oAKCLU5oUCRkt03y8cjON92fbcSKKOACfR1jUU3WYmaNEX054Zjp8jKNtXTI=
+=YeC2
+-----END PGP SIGNATURE-----
+
+--p1zSJVlfBL7BTggM--
+
+--===============0872591770==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0872591770==--
