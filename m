@@ -2,57 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E5AA36C211
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 783D836C213
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 11:50:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26BEF6E933;
-	Tue, 27 Apr 2021 09:49:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 768F96E935;
+	Tue, 27 Apr 2021 09:49:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 598DE6E935
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 09:49:52 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id q9so4620277wrs.6
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 02:49:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=rWYAR+dKOSbSI/NqgHEV6Z9jsteTAvrZUeyCAOMAT5c=;
- b=TdwlWv4jFihJSA7GR+5qaAkGuYiYDTvr+Fue/hkWsdf18eJ6HJJMMohD6XL/KRjmvk
- e1GA5YsvNhYEZUiZanzrGSJpPqqhj4PMWvd4RcmEcRMq1HdFAblOoOwefzlkRVQ9V290
- s/0g2uTSiotq03/QO0ersaL24VQiIAs/8HhWM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=rWYAR+dKOSbSI/NqgHEV6Z9jsteTAvrZUeyCAOMAT5c=;
- b=tJ37pNAJXuD6n2KF/EYKvV6N3Ec+mqvTSZvUSmrgHOKBuk0fHnPMymqbxX5DbfltSj
- ONV1tT6veXutUnEtkyfrJT31aGp6D2dCgxuaDhBWoD3AuDU0IjBPe5ZoxOgnfPTDwZiV
- D4fO+o2OZqiMSK4tJwpx6wWphryiccetaCW4WF13klylRiimSKZq4XBUbSZnJuDX33pu
- Wusy9TapDAta4n/VJKbR0pvNKFQzb3PhNHEWhxtsJOjq+5aNmmkGh+9YZ5QQt26OqkkK
- 754kXFoI5Ni70LXgvZWUvVVq22ie/J+tzQFG/V/9Fr8ZzrgN09RNxq1CCcxLts7rjUUq
- P+7g==
-X-Gm-Message-State: AOAM530VM1MTUW82srwMBTxGPeDYGiBWeTeTWAmwKA0lJ7GRVPScZ2is
- HqeAxkDixOskSRmKSccyOyBbbw==
-X-Google-Smtp-Source: ABdhPJyt3aSD1s7y/AgdeW+SjWL6pwfn20bUcNch6M29ScW3LUnsajJg7C1QKYbmei24MV0hOVOOxg==
-X-Received: by 2002:a5d:590b:: with SMTP id v11mr18972299wrd.415.1619516991022; 
- Tue, 27 Apr 2021 02:49:51 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id c2sm20182195wmr.22.2021.04.27.02.49.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 27 Apr 2021 02:49:50 -0700 (PDT)
-Date: Tue, 27 Apr 2021 11:49:48 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YIfePDDB9Xuit1i+@phenom.ffwll.local>
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-6-jason@jlekstrand.net>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E5EA6E935;
+ Tue, 27 Apr 2021 09:49:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25694A363D;
+ Tue, 27 Apr 2021 09:49:53 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210423223131.879208-6-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 05/21] drm/i915: Drop the CONTEXT_CLONE API
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 27 Apr 2021 09:49:53 -0000
+Message-ID: <161951699312.17486.16017758636118026699@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210427085417.120246-1-matthew.auld@intel.com>
+In-Reply-To: <20210427085417.120246-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/7=5D_drm/i915/dg1=3A_Fix_mapping_ty?=
+ =?utf-8?q?pe_for_default_state_object?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,310 +39,188 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0730168515=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 23, 2021 at 05:31:15PM -0500, Jason Ekstrand wrote:
-> This API allows one context to grab bits out of another context upon
-> creation.  It can be used as a short-cut for setparam(getparam()) for
-> things like I915_CONTEXT_PARAM_VM.  However, it's never been used by any
-> real userspace.  It's used by a few IGT tests and that's it.  Since it
-> doesn't add any real value (most of the stuff you can CLONE you can copy
-> in other ways), drop it.
-> 
-> There is one thing that this API allows you to clone which you cannot
-> clone via getparam/setparam: timelines.  However, timelines are an
-> implementation detail of i915 and not really something that needs to be
-> exposed to userspace.  Also, sharing timelines between contexts isn't
-> obviously useful and supporting it has the potential to complicate i915
-> internally.  It also doesn't add any functionality that the client can't
-> get in other ways.  If a client really wants a shared timeline, they can
-> use a syncobj and set it as an in and out fence on every submit.
-> 
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c | 199 +-------------------
->  include/uapi/drm/i915_drm.h                 |  16 +-
->  2 files changed, 6 insertions(+), 209 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 8a77855123cec..2c2fefa912805 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -1958,207 +1958,14 @@ static int create_setparam(struct i915_user_extension __user *ext, void *data)
->  	return ctx_setparam(arg->fpriv, arg->ctx, &local.param);
->  }
->  
-> -static int clone_engines(struct i915_gem_context *dst,
-> -			 struct i915_gem_context *src)
-> +static int invalid_ext(struct i915_user_extension __user *ext, void *data)
->  {
-> -	struct i915_gem_engines *clone, *e;
-> -	bool user_engines;
-> -	unsigned long n;
-> -
-> -	e = __context_engines_await(src, &user_engines);
-> -	if (!e)
-> -		return -ENOENT;
-> -
-> -	clone = alloc_engines(e->num_engines);
-> -	if (!clone)
-> -		goto err_unlock;
-> -
-> -	for (n = 0; n < e->num_engines; n++) {
-> -		struct intel_engine_cs *engine;
-> -
-> -		if (!e->engines[n]) {
-> -			clone->engines[n] = NULL;
-> -			continue;
-> -		}
-> -		engine = e->engines[n]->engine;
-> -
-> -		/*
-> -		 * Virtual engines are singletons; they can only exist
-> -		 * inside a single context, because they embed their
-> -		 * HW context... As each virtual context implies a single
-> -		 * timeline (each engine can only dequeue a single request
-> -		 * at any time), it would be surprising for two contexts
-> -		 * to use the same engine. So let's create a copy of
-> -		 * the virtual engine instead.
-> -		 */
-> -		if (intel_engine_is_virtual(engine))
-> -			clone->engines[n] =
-> -				intel_execlists_clone_virtual(engine);
+--===============0730168515==
+Content-Type: multipart/alternative;
+ boundary="===============3154969599021443460=="
 
-You forgot to gc this function here ^^
+--===============3154969599021443460==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> -		else
-> -			clone->engines[n] = intel_context_create(engine);
-> -		if (IS_ERR_OR_NULL(clone->engines[n])) {
-> -			__free_engines(clone, n);
-> -			goto err_unlock;
-> -		}
-> -
-> -		intel_context_set_gem(clone->engines[n], dst);
+== Series Details ==
 
-Not peeked ahead, but I'm really hoping intel_context_set_gem gets removed
-eventually too ...
+Series: series starting with [v2,1/7] drm/i915/dg1: Fix mapping type for default state object
+URL   : https://patchwork.freedesktop.org/series/89529/
+State : success
 
-> -	}
-> -	clone->num_engines = n;
-> -	i915_sw_fence_complete(&e->fence);
-> -
-> -	/* Serialised by constructor */
-> -	engines_idle_release(dst, rcu_replace_pointer(dst->engines, clone, 1));
-> -	if (user_engines)
-> -		i915_gem_context_set_user_engines(dst);
-> -	else
-> -		i915_gem_context_clear_user_engines(dst);
-> -	return 0;
-> -
-> -err_unlock:
-> -	i915_sw_fence_complete(&e->fence);
-> -	return -ENOMEM;
-> -}
-> -
-> -static int clone_flags(struct i915_gem_context *dst,
-> -		       struct i915_gem_context *src)
-> -{
-> -	dst->user_flags = src->user_flags;
-> -	return 0;
-> -}
-> -
-> -static int clone_schedattr(struct i915_gem_context *dst,
-> -			   struct i915_gem_context *src)
-> -{
-> -	dst->sched = src->sched;
-> -	return 0;
-> -}
-> -
-> -static int clone_sseu(struct i915_gem_context *dst,
-> -		      struct i915_gem_context *src)
-> -{
-> -	struct i915_gem_engines *e = i915_gem_context_lock_engines(src);
-> -	struct i915_gem_engines *clone;
-> -	unsigned long n;
-> -	int err;
-> -
-> -	/* no locking required; sole access under constructor*/
-> -	clone = __context_engines_static(dst);
-> -	if (e->num_engines != clone->num_engines) {
-> -		err = -EINVAL;
-> -		goto unlock;
-> -	}
-> -
-> -	for (n = 0; n < e->num_engines; n++) {
-> -		struct intel_context *ce = e->engines[n];
-> -
-> -		if (clone->engines[n]->engine->class != ce->engine->class) {
-> -			/* Must have compatible engine maps! */
-> -			err = -EINVAL;
-> -			goto unlock;
-> -		}
-> -
-> -		/* serialises with set_sseu */
-> -		err = intel_context_lock_pinned(ce);
-> -		if (err)
-> -			goto unlock;
-> -
-> -		clone->engines[n]->sseu = ce->sseu;
-> -		intel_context_unlock_pinned(ce);
-> -	}
-> -
-> -	err = 0;
-> -unlock:
-> -	i915_gem_context_unlock_engines(src);
-> -	return err;
-> -}
-> -
-> -static int clone_timeline(struct i915_gem_context *dst,
-> -			  struct i915_gem_context *src)
-> -{
-> -	if (src->timeline)
-> -		__assign_timeline(dst, src->timeline);
-> -
-> -	return 0;
-> -}
-> -
-> -static int clone_vm(struct i915_gem_context *dst,
-> -		    struct i915_gem_context *src)
-> -{
-> -	struct i915_address_space *vm;
-> -	int err = 0;
-> -
-> -	if (!rcu_access_pointer(src->vm))
-> -		return 0;
-> -
-> -	rcu_read_lock();
-> -	vm = context_get_vm_rcu(src);
-> -	rcu_read_unlock();
-> -
-> -	if (!mutex_lock_interruptible(&dst->mutex)) {
-> -		__assign_ppgtt(dst, vm);
-> -		mutex_unlock(&dst->mutex);
-> -	} else {
-> -		err = -EINTR;
-> -	}
-> -
-> -	i915_vm_put(vm);
-> -	return err;
-> -}
-> -
-> -static int create_clone(struct i915_user_extension __user *ext, void *data)
-> -{
-> -	static int (* const fn[])(struct i915_gem_context *dst,
-> -				  struct i915_gem_context *src) = {
-> -#define MAP(x, y) [ilog2(I915_CONTEXT_CLONE_##x)] = y
-> -		MAP(ENGINES, clone_engines),
-> -		MAP(FLAGS, clone_flags),
-> -		MAP(SCHEDATTR, clone_schedattr),
-> -		MAP(SSEU, clone_sseu),
-> -		MAP(TIMELINE, clone_timeline),
-> -		MAP(VM, clone_vm),
-> -#undef MAP
-> -	};
-> -	struct drm_i915_gem_context_create_ext_clone local;
-> -	const struct create_ext *arg = data;
-> -	struct i915_gem_context *dst = arg->ctx;
-> -	struct i915_gem_context *src;
-> -	int err, bit;
-> -
-> -	if (copy_from_user(&local, ext, sizeof(local)))
-> -		return -EFAULT;
-> -
-> -	BUILD_BUG_ON(GENMASK(BITS_PER_TYPE(local.flags) - 1, ARRAY_SIZE(fn)) !=
-> -		     I915_CONTEXT_CLONE_UNKNOWN);
-> -
-> -	if (local.flags & I915_CONTEXT_CLONE_UNKNOWN)
-> -		return -EINVAL;
-> -
-> -	if (local.rsvd)
-> -		return -EINVAL;
-> -
-> -	rcu_read_lock();
-> -	src = __i915_gem_context_lookup_rcu(arg->fpriv, local.clone_id);
-> -	rcu_read_unlock();
-> -	if (!src)
-> -		return -ENOENT;
-> -
-> -	GEM_BUG_ON(src == dst);
-> -
-> -	for (bit = 0; bit < ARRAY_SIZE(fn); bit++) {
-> -		if (!(local.flags & BIT(bit)))
-> -			continue;
-> -
-> -		err = fn[bit](dst, src);
-> -		if (err)
-> -			return err;
-> -	}
-> -
-> -	return 0;
-> +	return -EINVAL;
->  }
->  
->  static const i915_user_extension_fn create_extensions[] = {
->  	[I915_CONTEXT_CREATE_EXT_SETPARAM] = create_setparam,
-> -	[I915_CONTEXT_CREATE_EXT_CLONE] = create_clone,
-> +	[I915_CONTEXT_CREATE_EXT_CLONE] = invalid_ext,
->  };
->  
->  static bool client_is_banned(struct drm_i915_file_private *file_priv)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index a0aaa8298f28d..75a71b6756ed8 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -1887,20 +1887,10 @@ struct drm_i915_gem_context_create_ext_setparam {
->  	struct drm_i915_gem_context_param param;
->  };
->  
-> -struct drm_i915_gem_context_create_ext_clone {
-> +/* This API has been removed.  On the off chance someone somewhere has
-> + * attempted to use it, never re-use this extension number.
-> + */
->  #define I915_CONTEXT_CREATE_EXT_CLONE 1
+== Summary ==
 
-I think we need to put these somewhere else now, here it's just plain
-lost. I think in the kerneldoc for
-drm_i915_gem_context_create_ext_setparam would be best, with the #define
-right above and in the kerneldoc an enumeration of all the values and what
-they're for.
+CI Bug Log - changes from CI_DRM_10014 -> Patchwork_19998
+====================================================
 
-I think I'll need to sign up Matt B or you for doing some kerneldoc polish
-on these so they're all collected together.
--Daniel
+Summary
+-------
 
-> -	struct i915_user_extension base;
-> -	__u32 clone_id;
-> -	__u32 flags;
-> -#define I915_CONTEXT_CLONE_ENGINES	(1u << 0)
-> -#define I915_CONTEXT_CLONE_FLAGS	(1u << 1)
-> -#define I915_CONTEXT_CLONE_SCHEDATTR	(1u << 2)
-> -#define I915_CONTEXT_CLONE_SSEU		(1u << 3)
-> -#define I915_CONTEXT_CLONE_TIMELINE	(1u << 4)
-> -#define I915_CONTEXT_CLONE_VM		(1u << 5)
-> -#define I915_CONTEXT_CLONE_UNKNOWN -(I915_CONTEXT_CLONE_VM << 1)
-> -	__u64 rsvd;
-> -};
->  
->  struct drm_i915_gem_context_destroy {
->  	__u32 ctx_id;
-> -- 
-> 2.31.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  **SUCCESS**
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_19998 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271] / [fdo#111827]) +8 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][2] ([fdo#109271]) +63 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
+  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
+
+
+Participating hosts (39 -> 38)
+------------------------------
+
+  Additional (1): fi-bsw-nick 
+  Missing    (2): fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10014 -> Patchwork_19998
+
+  CI-20190529: 20190529
+  CI_DRM_10014: 7b75f7fa1e7155cfeb6f928895ed259aaf6b4c8e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6075: ccf602c569257291045415ff504a6d2460986c28 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_19998: e85d70bf7f2a2fd27c51c52bd6817a214b4c9d4c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e85d70bf7f2a drm/i915: Return error value when bo not in LMEM for discrete
+4c20b10e9301 drm/i915/lmem: Bypass aperture when lmem is available
+87f851fc9c27 drm/i915/fbdev: Use lmem physical addresses for fb_mmap() on discrete
+81f1a39eb04c drm/i915/gtt/dgfx: place the PD in LMEM
+f501307a51b0 drm/i915/gtt: map the PD up front
+6170c13d83ab drm/i915: Update the helper to set correct mapping
+c40331cdc349 drm/i915/dg1: Fix mapping type for default state object
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html
+
+--===============3154969599021443460==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/7] drm/i915/dg1: Fix mapping type for default state object</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89529/">https://patchwork.freedesktop.org/series/89529/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10014 -&gt; Patchwork_19998</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_19998 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_chamelium@dp-crc-fast:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/fi-bsw-nick/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_19998/fi-bsw-nick/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +63 similar issues</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (39 -&gt; 38)</h2>
+<p>Additional (1): fi-bsw-nick <br />
+  Missing    (2): fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10014 -&gt; Patchwork_19998</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10014: 7b75f7fa1e7155cfeb6f928895ed259aaf6b4c8e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6075: ccf602c569257291045415ff504a6d2460986c28 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_19998: e85d70bf7f2a2fd27c51c52bd6817a214b4c9d4c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>e85d70bf7f2a drm/i915: Return error value when bo not in LMEM for discrete<br />
+4c20b10e9301 drm/i915/lmem: Bypass aperture when lmem is available<br />
+87f851fc9c27 drm/i915/fbdev: Use lmem physical addresses for fb_mmap() on discrete<br />
+81f1a39eb04c drm/i915/gtt/dgfx: place the PD in LMEM<br />
+f501307a51b0 drm/i915/gtt: map the PD up front<br />
+6170c13d83ab drm/i915: Update the helper to set correct mapping<br />
+c40331cdc349 drm/i915/dg1: Fix mapping type for default state object</p>
+
+</body>
+</html>
+
+--===============3154969599021443460==--
+
+--===============0730168515==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0730168515==--
