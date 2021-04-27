@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90C336C486
-	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 12:59:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE15236C485
+	for <lists+intel-gfx@lfdr.de>; Tue, 27 Apr 2021 12:58:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A7A789F0A;
-	Tue, 27 Apr 2021 10:59:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E977E89FA6;
+	Tue, 27 Apr 2021 10:58:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E67F89F0A
- for <intel-gfx@lists.freedesktop.org>; Tue, 27 Apr 2021 10:59:35 +0000 (UTC)
-IronPort-SDR: 31MUl8rO5nX0kimpBd/tryvU93Q6itPMabJwVu1Zch4bc+tTCqEFS5kx1dunyH/cfFuUJIwvID
- BjIaBDZWqjjQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9966"; a="193301680"
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="193301680"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 03:59:35 -0700
-IronPort-SDR: wxNkNda2LRVXt6/qLwmG/1+9wm8go+T/3znsXuVjjA6do/FvIT8OXrEsAF4y5VGo7/VQla8f3l
- 6kx17l0jckgA==
-X-IronPort-AV: E=Sophos;i="5.82,254,1613462400"; d="scan'208";a="403232049"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.179])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2021 03:59:32 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 27 Apr 2021 16:13:11 +0530
-Message-Id: <20210427104311.2664-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20210328225709.18541-15-daniele.ceraolospurio@intel.com>
-References: <20210328225709.18541-15-daniele.ceraolospurio@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 107D789F6B;
+ Tue, 27 Apr 2021 10:58:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 07791A3ECB;
+ Tue, 27 Apr 2021 10:58:47 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 14/16] drm/i915/pxp: Add plane decryption
- support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Tue, 27 Apr 2021 10:58:47 -0000
+Message-ID: <161952112702.17487.339580035504068601@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/8=5D_drm/arm=3A_Don=27t_set_allow?=
+ =?utf-8?q?=5Ffb=5Fmodifiers_explicitly?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,139 +39,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Huang Sean Z <sean.z.huang@intel.com>,
- Gaurav Kumar <kumar.gaurav@intel.com>,
- Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWRkIHN1cHBvcnQgdG8gZW5hYmxlL2Rpc2FibGUgUExBTkVfU1VSRiBEZWNyeXB0aW9uIFJlcXVl
-c3QgYml0LgpJdCByZXF1aXJlcyBvbmx5IHRvIGVuYWJsZSBwbGFuZSBkZWNyeXB0aW9uIHN1cHBv
-cnQgd2hlbiBmb2xsb3dpbmcKY29uZGl0aW9uIG1ldC4KMS4gUFhQIHNlc3Npb24gaXMgZW5hYmxl
-ZC4KMi4gQnVmZmVyIG9iamVjdCBpcyBwcm90ZWN0ZWQuCgp2MjoKLSBVc2VkIGdlbiBmYiBvYmog
-dXNlcl9mbGFncyBpbnN0ZWFkIGdlbV9vYmplY3RfbWV0YWRhdGEuIFtLcmlzaG5hXQoKdjM6Ci0g
-aW50ZWxfcHhwX2dlbV9vYmplY3Rfc3RhdHVzKCkgQVBJIGNoYW5nZXMuCgp2NDogdXNlIGludGVs
-X3B4cF9pc19hY3RpdmUgKERhbmllbGUpCgp2NTogcmViYXNlIGFuZCB1c2UgdGhlIG5ldyBwcm90
-ZWN0ZWQgb2JqZWN0IHN0YXR1cyBjaGVja2VyIChEYW5pZWxlKQoKdjY6IHVzZWQgcGxhbmUgc3Rh
-dGUgZm9yIHBsYW5lX2RlY3J5cHRpb24gdG8gaGFuZGxlIGFzeW5jIGZsaXAKICAgIGFzIHN1Z2dl
-c3RlZCBieSBWaWxsZS4KCkNjOiBCb21tdSBLcmlzaG5haWFoIDxrcmlzaG5haWFoLmJvbW11QGlu
-dGVsLmNvbT4KQ2M6IEh1YW5nIFNlYW4gWiA8c2Vhbi56Lmh1YW5nQGludGVsLmNvbT4KQ2M6IEdh
-dXJhdiBLdW1hciA8a3VtYXIuZ2F1cmF2QGludGVsLmNvbT4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8
-dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEFuc2h1bWFuIEd1
-cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IERhbmllbGUgQ2Vy
-YW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+Ci0tLQogLi4uL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jIHwgIDMgKysKIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICB8ICA1ICsrKwogLi4uL2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oICAgIHwgIDMgKysKIC4uLi9kcm0vaTkx
-NS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuYyAgICB8IDMyICsrKysrKysrKysrKysrKysr
-LS0KIC4uLi9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuaCAgICB8ICAxICsK
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgICB8ICAxICsKIDYg
-ZmlsZXMgY2hhbmdlZCwgNDIgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYwppbmRleCA3
-YmZiMjZjYTBiZDAuLjcwNTcwNzdhMmI3MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jCkBAIC0zOTQsNiArMzk0LDcgQEAgaW50IGlu
-dGVsX3BsYW5lX2F0b21pY19jaGVjayhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwK
-IAkJaW50ZWxfYXRvbWljX2dldF9vbGRfY3J0Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7CiAJc3RydWN0
-IGludGVsX2NydGNfc3RhdGUgKm5ld19jcnRjX3N0YXRlID0KIAkJaW50ZWxfYXRvbWljX2dldF9u
-ZXdfY3J0Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7CisJY29uc3Qgc3RydWN0IGRybV9mcmFtZWJ1ZmZl
-ciAqZmIgPSBuZXdfcGxhbmVfc3RhdGUtPmh3LmZiOwogCiAJaWYgKG5ld19jcnRjX3N0YXRlICYm
-IG5ld19jcnRjX3N0YXRlLT5iaWdqb2luZXJfc2xhdmUpIHsKIAkJc3RydWN0IGludGVsX3BsYW5l
-ICptYXN0ZXJfcGxhbmUgPQpAQCAtNDA5LDYgKzQxMCw4IEBAIGludCBpbnRlbF9wbGFuZV9hdG9t
-aWNfY2hlY2soc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJaW50ZWxfcGxhbmVf
-Y29weV91YXBpX3RvX2h3X3N0YXRlKG5ld19wbGFuZV9zdGF0ZSwKIAkJCQkJICBuZXdfbWFzdGVy
-X3BsYW5lX3N0YXRlLAogCQkJCQkgIGNydGMpOworCW5ld19wbGFuZV9zdGF0ZS0+cGxhbmVfZGVj
-cnlwdGlvbiA9CisJCWk5MTVfZ2VtX29iamVjdF9oYXNfdmFsaWRfcHJvdGVjdGlvbihpbnRlbF9m
-Yl9vYmooZmIpKTsKIAogCW5ld19wbGFuZV9zdGF0ZS0+dWFwaS52aXNpYmxlID0gZmFsc2U7CiAJ
-aWYgKCFuZXdfY3J0Y19zdGF0ZSkKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kaXNwbGF5LmMKaW5kZXggYTEwZTI2MzgwZWYzLi41NWFiMmQwYjkyZDggMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC05MzY3LDYgKzkzNjcs
-MTAgQEAgc3RhdGljIGludCBpbnRlbF9hdG9taWNfY2hlY2tfYXN5bmMoc3RydWN0IGludGVsX2F0
-b21pY19zdGF0ZSAqc3RhdGUpCiAJCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLCAiQ29sb3IgcmFu
-Z2UgY2Fubm90IGJlIGNoYW5nZWQgaW4gYXN5bmMgZmxpcFxuIik7CiAJCQlyZXR1cm4gLUVJTlZB
-TDsKIAkJfQorCisJCS8qIHBsYW5lIGRlY3J5cHRpb24gaXMgYWxsb3cgdG8gY2hhbmdlIG9ubHkg
-aW4gc3luY2hyb25vdXMgZmxpcHMgKi8KKwkJaWYgKG9sZF9wbGFuZV9zdGF0ZS0+cGxhbmVfZGVj
-cnlwdGlvbiAhPSBuZXdfcGxhbmVfc3RhdGUtPnBsYW5lX2RlY3J5cHRpb24pCisJCQlyZXR1cm4g
-LUVJTlZBTDsKIAl9CiAKIAlyZXR1cm4gMDsKQEAgLTEyMzUwLDYgKzEyMzU0LDcgQEAgc3RhdGlj
-IHZvaWQgcmVhZG91dF9wbGFuZV9zdGF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3By
-aXYpCiAKIAkJY3J0YyA9IGludGVsX2dldF9jcnRjX2Zvcl9waXBlKGRldl9wcml2LCBwaXBlKTsK
-IAkJY3J0Y19zdGF0ZSA9IHRvX2ludGVsX2NydGNfc3RhdGUoY3J0Yy0+YmFzZS5zdGF0ZSk7CisJ
-CWludGVsX3BsYW5lX3JlYWRfaHdfZGVjcnlwdGlvbihwbGFuZV9zdGF0ZSk7CiAKIAkJaW50ZWxf
-c2V0X3BsYW5lX3Zpc2libGUoY3J0Y19zdGF0ZSwgcGxhbmVfc3RhdGUsIHZpc2libGUpOwogCmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlw
-ZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5o
-CmluZGV4IGUyZTcwN2M0ZGZmNS4uNzZiM2JiNjRhMzZhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAorKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaApAQCAtNjE3LDYgKzYxNyw5
-IEBAIHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSB7CiAKIAlzdHJ1Y3QgaW50ZWxfZmJfdmlldyB2
-aWV3OwogCisJLyogUGxhbmUgcHhwIGRlY3J5cHRpb24gc3RhdGUgKi8KKwlib29sIHBsYW5lX2Rl
-Y3J5cHRpb247CisKIAkvKiBwbGFuZSBjb250cm9sIHJlZ2lzdGVyICovCiAJdTMyIGN0bDsKIApk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3Bs
-YW5lLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUu
-YwppbmRleCA3NWQzY2EzZGJiMzcuLjc0NDg5MjE3ZTU4MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMKKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMKQEAgLTE3LDYgKzE3LDcg
-QEAKICNpbmNsdWRlICJpbnRlbF9zcHJpdGUuaCIKICNpbmNsdWRlICJza2xfc2NhbGVyLmgiCiAj
-aW5jbHVkZSAic2tsX3VuaXZlcnNhbF9wbGFuZS5oIgorI2luY2x1ZGUgInB4cC9pbnRlbF9weHAu
-aCIKIAogc3RhdGljIGNvbnN0IHUzMiBza2xfcGxhbmVfZm9ybWF0c1tdID0gewogCURSTV9GT1JN
-QVRfQzgsCkBAIC05NTYsNyArOTU3LDcgQEAgc2tsX3Byb2dyYW1fcGxhbmUoc3RydWN0IGludGVs
-X3BsYW5lICpwbGFuZSwKIAl1OCBhbHBoYSA9IHBsYW5lX3N0YXRlLT5ody5hbHBoYSA+PiA4Owog
-CXUzMiBwbGFuZV9jb2xvcl9jdGwgPSAwLCBhdXhfZGlzdCA9IDA7CiAJdW5zaWduZWQgbG9uZyBp
-cnFmbGFnczsKLQl1MzIga2V5bXNrLCBrZXltYXg7CisJdTMyIGtleW1zaywga2V5bWF4LCBwbGFu
-ZV9zdXJmOwogCXUzMiBwbGFuZV9jdGwgPSBwbGFuZV9zdGF0ZS0+Y3RsOwogCiAJcGxhbmVfY3Rs
-IHw9IHNrbF9wbGFuZV9jdGxfY3J0YyhjcnRjX3N0YXRlKTsKQEAgLTEwMzcsOCArMTAzOCwxNSBA
-QCBza2xfcHJvZ3JhbV9wbGFuZShzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5lLAogCSAqIHRoZSBj
-b250cm9sIHJlZ2lzdGVyIGp1c3QgYmVmb3JlIHRoZSBzdXJmYWNlIHJlZ2lzdGVyLgogCSAqLwog
-CWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQTEFORV9DVEwocGlwZSwgcGxhbmVfaWQpLCBw
-bGFuZV9jdGwpOwotCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQTEFORV9TVVJGKHBpcGUs
-IHBsYW5lX2lkKSwKLQkJCSAgaW50ZWxfcGxhbmVfZ2d0dF9vZmZzZXQocGxhbmVfc3RhdGUpICsg
-c3VyZl9hZGRyKTsKKwlwbGFuZV9zdXJmID0gaW50ZWxfcGxhbmVfZ2d0dF9vZmZzZXQocGxhbmVf
-c3RhdGUpICsgc3VyZl9hZGRyOworCisJaWYgKGludGVsX3B4cF9pc19hY3RpdmUoJmRldl9wcml2
-LT5ndC5weHApICYmCisJICAgIHBsYW5lX3N0YXRlLT5wbGFuZV9kZWNyeXB0aW9uKQorCQlwbGFu
-ZV9zdXJmIHw9IFBMQU5FX1NVUkZfREVDUllQVElPTl9FTkFCTEVEOworCWVsc2UKKwkJcGxhbmVf
-c3VyZiAmPSB+UExBTkVfU1VSRl9ERUNSWVBUSU9OX0VOQUJMRUQ7CisKKwlpbnRlbF9kZV93cml0
-ZV9mdyhkZXZfcHJpdiwgUExBTkVfU1VSRihwaXBlLCBwbGFuZV9pZCksIHBsYW5lX3N1cmYpOwog
-CiAJaWYgKHBsYW5lX3N0YXRlLT5zY2FsZXJfaWQgPj0gMCkKIAkJc2tsX3Byb2dyYW1fcGxhbmVf
-c2NhbGVyKHBsYW5lLCBjcnRjX3N0YXRlLCBwbGFuZV9zdGF0ZSk7CkBAIC0yMjQyLDMgKzIyNTAs
-MjEgQEAgc2tsX2dldF9pbml0aWFsX3BsYW5lX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0
-YywKIAlrZnJlZShpbnRlbF9mYik7CiB9CiAKK3ZvaWQgaW50ZWxfcGxhbmVfcmVhZF9od19kZWNy
-eXB0aW9uKHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUpCit7CisJc3RydWN0
-IGludGVsX3BsYW5lICpwbGFuZSA9IHRvX2ludGVsX3BsYW5lKHBsYW5lX3N0YXRlLT51YXBpLnBs
-YW5lKTsKKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUocGxhbmUtPmJh
-c2UuZGV2KTsKKwllbnVtIGludGVsX2Rpc3BsYXlfcG93ZXJfZG9tYWluIHBvd2VyX2RvbWFpbjsK
-KwllbnVtIHBsYW5lX2lkIHBsYW5lX2lkID0gcGxhbmUtPmlkOworCWludGVsX3dha2VyZWZfdCB3
-YWtlcmVmOworCisJcG93ZXJfZG9tYWluID0gUE9XRVJfRE9NQUlOX1BJUEUocGxhbmUtPnBpcGUp
-OworCXdha2VyZWYgPSBpbnRlbF9kaXNwbGF5X3Bvd2VyX2dldF9pZl9lbmFibGVkKGk5MTUsIHBv
-d2VyX2RvbWFpbik7CisJaWYgKGRybV9XQVJOX09OKCZpOTE1LT5kcm0sICF3YWtlcmVmKSkKKwkJ
-cmV0dXJuOworCisJcGxhbmVfc3RhdGUtPnBsYW5lX2RlY3J5cHRpb24gID0KKwkJaW50ZWxfZGVf
-cmVhZChpOTE1LCBQTEFORV9TVVJGKHBsYW5lLT5waXBlLCBwbGFuZV9pZCkpICYgUExBTkVfU1VS
-Rl9ERUNSWVBUSU9OX0VOQUJMRUQ7CisKKwlpbnRlbF9kaXNwbGF5X3Bvd2VyX3B1dChpOTE1LCBw
-b3dlcl9kb21haW4sIHdha2VyZWYpOworfQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L3NrbF91bml2ZXJzYWxfcGxhbmUuaAppbmRleCAzNTEwNDBiNjRkYzcuLjJiMWQ2NzNm
-OGJmNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVy
-c2FsX3BsYW5lLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVy
-c2FsX3BsYW5lLmgKQEAgLTMxLDUgKzMxLDYgQEAgaW50IHNrbF9jYWxjX21haW5fc3VyZmFjZV9v
-ZmZzZXQoY29uc3Qgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0ZSwKIGJvb2wg
-aWNsX2lzX252MTJfeV9wbGFuZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJ
-CQkgZW51bSBwbGFuZV9pZCBwbGFuZV9pZCk7CiBib29sIGljbF9pc19oZHJfcGxhbmUoc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBlbnVtIHBsYW5lX2lkIHBsYW5lX2lkKTsKK3Zv
-aWQgaW50ZWxfcGxhbmVfcmVhZF9od19kZWNyeXB0aW9uKHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0
-ZSAqcGxhbmVfc3RhdGUpOwogCiAjZW5kaWYKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfcmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCmluZGV4IDc0
-MGU5NzY2M2ZlYy4uZmJhZjkxOTkwMDFkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X3JlZy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKQEAgLTcy
-NDAsNiArNzI0MCw3IEBAIGVudW0gewogI2RlZmluZSBfUExBTkVfU1VSRl8zKHBpcGUpCV9QSVBF
-KHBpcGUsIF9QTEFORV9TVVJGXzNfQSwgX1BMQU5FX1NVUkZfM19CKQogI2RlZmluZSBQTEFORV9T
-VVJGKHBpcGUsIHBsYW5lKQlcCiAJX01NSU9fUExBTkUocGxhbmUsIF9QTEFORV9TVVJGXzEocGlw
-ZSksIF9QTEFORV9TVVJGXzIocGlwZSkpCisjZGVmaW5lICAgUExBTkVfU1VSRl9ERUNSWVBUSU9O
-X0VOQUJMRUQJCVJFR19CSVQoMikKIAogI2RlZmluZSBfUExBTkVfT0ZGU0VUXzFfQgkJCTB4NzEx
-YTQKICNkZWZpbmUgX1BMQU5FX09GRlNFVF8yX0IJCQkweDcxMmE0Ci0tIAoyLjI2LjIKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: series starting with [1/8] drm/arm: Don't set allow_fb_modifiers explicitly
+URL   : https://patchwork.freedesktop.org/series/89531/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+6bdfcd621a6a drm/arm: Don't set allow_fb_modifiers explicitly
+-:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
+#8: 
+commit 890880ddfdbe256083170866e49c87618b706ac7
+
+-:47: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 14 lines checked
+9d02b5e6f19f drm/arm/malidp: Always list modifiers
+-:23: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#23: FILE: drivers/gpu/drm/arm/malidp_planes.c:930:
++static const uint64_t linear_only_modifiers[] = {
+
+-:41: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 1 checks, 21 lines checked
+4ba63830af10 drm/i915: Don't set allow_fb_modifiers explicitly
+-:11: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
+#11: 
+commit 890880ddfdbe256083170866e49c87618b706ac7
+
+-:44: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+64a789bb0aab drm/msm/dpu1: Don't set allow_fb_modifiers explicitly
+-:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
+#8: 
+commit 890880ddfdbe256083170866e49c87618b706ac7
+
+-:44: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 11 lines checked
+e77663da9c1f drm/msm/mdp4: Fix modifier support enabling
+-:41: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
+#41: FILE: drivers/gpu/drm/msm/disp/mdp4/mdp4_plane.c:352:
++static const uint64_t supported_format_modifiers[] = {
+
+-:58: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 1 checks, 28 lines checked
+940e48334301 drm/nouveau: Don't set allow_fb_modifiers explicitly
+-:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
+#8: 
+commit 890880ddfdbe256083170866e49c87618b706ac7
+
+-:38: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 7 lines checked
+899a5341c78f drm/stm: Don't set allow_fb_modifiers explicitly
+-:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 890880ddfdbe ("drm: Auto-set allow_fb_modifiers when given modifiers at plane init")'
+#8: 
+commit 890880ddfdbe256083170866e49c87618b706ac7
+
+-:38: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+1aee8463efc8 drm/modifiers: Enforce consistency between the cap an IN_FORMATS
+-:8: WARNING:TYPO_SPELLING: 'ommitted' may be misspelled - perhaps 'omitted'?
+#8: 
+here, and some drivers screwed this up a bit. Most just ommitted the
+                                                        ^^^^^^^^
+
+-:89: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 2 warnings, 0 checks, 45 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
