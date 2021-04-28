@@ -2,59 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A51D736DFF7
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 21:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0217036E013
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 22:04:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 205E56E301;
-	Wed, 28 Apr 2021 19:55:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07AA66EC28;
+	Wed, 28 Apr 2021 20:04:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
- [IPv6:2a00:1450:4864:20::629])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA7F56E301
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 19:55:05 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id r9so96413736ejj.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 12:55:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qLNEsIb1gIToIWGerT0gl6SKgPQbJML891dY3oAjdws=;
- b=CL2X/AjxdmFFwLCWFTDF2UvN5VNrByOVSgxYznWF8t8SyYYY8LVZKBhoauTv/P+ZAK
- MvLNh5JvErjeXuc/nYEapcMNx2NiZBprjW2awnrTbUsbuJhAu7febbzdREkEX40zkE8M
- WKVqJNT/FWiQ+XVS5Y2NnkOGlxILk5sx+9FQlaNyD0C7MTsFsLm6En9gm+Y0jQ0BA85O
- 1cONPXaLp3pOR6EK5JxxzHtcnzCdCgZAHnW+Sq0NCXx0EluNjLr6uCbbxhTja/0O4yNs
- /9+tDAQIg06EMQdiMk3GC+MBqCc/p8eV9ifddr1C2h4vDFyJc0ishSHAw3S/vN4m44Z2
- QnNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=qLNEsIb1gIToIWGerT0gl6SKgPQbJML891dY3oAjdws=;
- b=X4PMAlgOpSVRl6+zj3N+Pc2zOEgym8BpLE4RRufhTKClyHvCM7GmteevXThjF3s/EP
- 4CewbOFNhhKX+lJlJ6wuV0xyY0IfVEgShyRpeRGNUommiAGx0UQbBUspSXBd6KeWQhlb
- cz4qhoDGFnYmmdNPzNAA9y1ugPydUTHFq7+9TYdQx3h8a3yawT3MwF/g6p8gIE1c56dJ
- 015krLfy191JY+Wt8RPyG7PCtftOWC8JW1gfBp+i6MRl6UfSwljZt9eVL6wzr3v4z2TY
- HX+lsslBwrIoqalTJWIL3XyRzfT1WMPHKvmptDQRxhBmldOCtGLrhrnDdafg7R5I5PWt
- dCag==
-X-Gm-Message-State: AOAM531qm13OpLUiWYJcwkHKQ54Y1bDkpagu7knQL7XKHuoZGdluxwoU
- lGznCnGpkMq3+NugAxiDR2Rh/wq4FGTBAUT3+mausw==
-X-Google-Smtp-Source: ABdhPJw6k84xpBryizO1lJaCGzs13uMx1aR3GjIyjwoosjK3RDNPOgQcMZjSczjUafMt2A8m/wXcdW+K/aFJ2TWOl5k=
-X-Received: by 2002:a17:906:5c52:: with SMTP id
- c18mr3065414ejr.354.1619639704169; 
- Wed, 28 Apr 2021 12:55:04 -0700 (PDT)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC5C36EC28
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 20:04:53 +0000 (UTC)
+IronPort-SDR: PN+aRoaKzS5FYAfl9i1VEfv+3p3v5Oa+WXmgVa4i8s+BrVd/Bp5ZG7sppgUR45lNB0K1jlnM39
+ isYBaIEG9IIw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="176323015"
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="176323015"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2021 13:04:53 -0700
+IronPort-SDR: zi1vPQk10dSnJ8a7SJtdAZXLwOIyjBsf4w7Gcj6cES8t3MTQBmQe3/HHO8OhZVK1sil7g2pY7t
+ SNOcIEbvRxCg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="387852946"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 28 Apr 2021 13:04:48 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 28 Apr 2021 23:04:48 +0300
+Date: Wed, 28 Apr 2021 23:04:48 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <YIm/4JYWoaGAffew@intel.com>
+References: <20210328225709.18541-15-daniele.ceraolospurio@intel.com>
+ <20210427104311.2664-1-anshuman.gupta@intel.com>
+ <YIheD5VzUuNvC4XC@intel.com>
+ <cf2e94e0feea4db4a6015d5da966ab39@intel.com>
+ <YIlPBEUSoz9pobQ7@intel.com>
+ <a47d84e4-b661-d437-b9e3-c68383acdfa7@intel.com>
 MIME-Version: 1.0
-References: <20210427214913.46956-1-umesh.nerlige.ramappa@intel.com>
- <20210427214913.46956-2-umesh.nerlige.ramappa@intel.com>
- <875z064x5h.fsf@intel.com>
- <CAOFGe94kk9N-MPKMF-T+5BCRiXuY7p1iQRquQx38pRQiqvazWg@mail.gmail.com>
- <c776bb7d-4d35-1e1d-18f4-020b88fdf805@intel.com>
-In-Reply-To: <c776bb7d-4d35-1e1d-18f4-020b88fdf805@intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Wed, 28 Apr 2021 14:54:52 -0500
-Message-ID: <CAOFGe95MKaqoGeTaFCtatR6YcysOiC2=wcYaoz72dw+KnPRXSQ@mail.gmail.com>
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/1] i915/query: Correlate engine and cpu
- timestamps with better accuracy
+Content-Disposition: inline
+In-Reply-To: <a47d84e4-b661-d437-b9e3-c68383acdfa7@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH v3 14/16] drm/i915/pxp: Add plane decryption
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,361 +55,219 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris.p.wilson@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Gaurav,
+ Kumar" <kumar.gaurav@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 28, 2021 at 2:50 PM Lionel Landwerlin
-<lionel.g.landwerlin@intel.com> wrote:
->
-> On 28/04/2021 22:24, Jason Ekstrand wrote:
->
-> On Wed, Apr 28, 2021 at 3:43 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Tue, 27 Apr 2021, Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com> wrote:
->
-> Perf measurements rely on CPU and engine timestamps to correlate
-> events of interest across these time domains. Current mechanisms get
-> these timestamps separately and the calculated delta between these
-> timestamps lack enough accuracy.
->
-> To improve the accuracy of these time measurements to within a few us,
-> add a query that returns the engine and cpu timestamps captured as
-> close to each other as possible.
->
-> Cc: dri-devel, Jason and Daniel for review.
->
-> Thanks!
->
-> v2: (Tvrtko)
-> - document clock reference used
-> - return cpu timestamp always
-> - capture cpu time just before lower dword of cs timestamp
->
-> v3: (Chris)
-> - use uncore-rpm
-> - use __query_cs_timestamp helper
->
-> v4: (Lionel)
-> - Kernel perf subsytem allows users to specify the clock id to be used
->   in perf_event_open. This clock id is used by the perf subsystem to
->   return the appropriate cpu timestamp in perf events. Similarly, let
->   the user pass the clockid to this query so that cpu timestamp
->   corresponds to the clock id requested.
->
-> v5: (Tvrtko)
-> - Use normal ktime accessors instead of fast versions
-> - Add more uApi documentation
->
-> v6: (Lionel)
-> - Move switch out of spinlock
->
-> v7: (Chris)
-> - cs_timestamp is a misnomer, use cs_cycles instead
-> - return the cs cycle frequency as well in the query
->
-> v8:
-> - Add platform and engine specific checks
->
-> v9: (Lionel)
-> - Return 2 cpu timestamps in the query - captured before and after the
->   register read
->
-> v10: (Chris)
-> - Use local_clock() to measure time taken to read lower dword of
->   register and return it to user.
->
-> v11: (Jani)
-> - IS_GEN deprecated. User GRAPHICS_VER instead.
->
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_query.c | 145 ++++++++++++++++++++++++++++++
->  include/uapi/drm/i915_drm.h       |  48 ++++++++++
->  2 files changed, 193 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index fed337ad7b68..2594b93901ac 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -6,6 +6,8 @@
->
->  #include <linux/nospec.h>
->
-> +#include "gt/intel_engine_pm.h"
-> +#include "gt/intel_engine_user.h"
->  #include "i915_drv.h"
->  #include "i915_perf.h"
->  #include "i915_query.h"
-> @@ -90,6 +92,148 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
->       return total_length;
->  }
->
-> +typedef u64 (*__ktime_func_t)(void);
-> +static __ktime_func_t __clock_id_to_func(clockid_t clk_id)
-> +{
-> +     /*
-> +      * Use logic same as the perf subsystem to allow user to select the
-> +      * reference clock id to be used for timestamps.
-> +      */
-> +     switch (clk_id) {
-> +     case CLOCK_MONOTONIC:
-> +             return &ktime_get_ns;
-> +     case CLOCK_MONOTONIC_RAW:
-> +             return &ktime_get_raw_ns;
-> +     case CLOCK_REALTIME:
-> +             return &ktime_get_real_ns;
-> +     case CLOCK_BOOTTIME:
-> +             return &ktime_get_boottime_ns;
-> +     case CLOCK_TAI:
-> +             return &ktime_get_clocktai_ns;
-> +     default:
-> +             return NULL;
-> +     }
-> +}
-> +
-> +static inline int
-> +__read_timestamps(struct intel_uncore *uncore,
-> +               i915_reg_t lower_reg,
-> +               i915_reg_t upper_reg,
-> +               u64 *cs_ts,
-> +               u64 *cpu_ts,
-> +               __ktime_func_t cpu_clock)
-> +{
-> +     u32 upper, lower, old_upper, loop = 0;
-> +
-> +     upper = intel_uncore_read_fw(uncore, upper_reg);
-> +     do {
-> +             cpu_ts[1] = local_clock();
-> +             cpu_ts[0] = cpu_clock();
-> +             lower = intel_uncore_read_fw(uncore, lower_reg);
-> +             cpu_ts[1] = local_clock() - cpu_ts[1];
-> +             old_upper = upper;
-> +             upper = intel_uncore_read_fw(uncore, upper_reg);
-> +     } while (upper != old_upper && loop++ < 2);
-> +
-> +     *cs_ts = (u64)upper << 32 | lower;
-> +
-> +     return 0;
-> +}
-> +
-> +static int
-> +__query_cs_cycles(struct intel_engine_cs *engine,
-> +               u64 *cs_ts, u64 *cpu_ts,
-> +               __ktime_func_t cpu_clock)
-> +{
-> +     struct intel_uncore *uncore = engine->uncore;
-> +     enum forcewake_domains fw_domains;
-> +     u32 base = engine->mmio_base;
-> +     intel_wakeref_t wakeref;
-> +     int ret;
-> +
-> +     fw_domains = intel_uncore_forcewake_for_reg(uncore,
-> +                                                 RING_TIMESTAMP(base),
-> +                                                 FW_REG_READ);
-> +
-> +     with_intel_runtime_pm(uncore->rpm, wakeref) {
-> +             spin_lock_irq(&uncore->lock);
-> +             intel_uncore_forcewake_get__locked(uncore, fw_domains);
-> +
-> +             ret = __read_timestamps(uncore,
-> +                                     RING_TIMESTAMP(base),
-> +                                     RING_TIMESTAMP_UDW(base),
-> +                                     cs_ts,
-> +                                     cpu_ts,
-> +                                     cpu_clock);
-> +
-> +             intel_uncore_forcewake_put__locked(uncore, fw_domains);
-> +             spin_unlock_irq(&uncore->lock);
-> +     }
-> +
-> +     return ret;
-> +}
-> +
-> +static int
-> +query_cs_cycles(struct drm_i915_private *i915,
-> +             struct drm_i915_query_item *query_item)
-> +{
-> +     struct drm_i915_query_cs_cycles __user *query_ptr;
-> +     struct drm_i915_query_cs_cycles query;
-> +     struct intel_engine_cs *engine;
-> +     __ktime_func_t cpu_clock;
-> +     int ret;
-> +
-> +     if (GRAPHICS_VER(i915) < 6)
-> +             return -ENODEV;
-> +
-> +     query_ptr = u64_to_user_ptr(query_item->data_ptr);
-> +     ret = copy_query_item(&query, sizeof(query), sizeof(query), query_item);
-> +     if (ret != 0)
-> +             return ret;
-> +
-> +     if (query.flags)
-> +             return -EINVAL;
-> +
-> +     if (query.rsvd)
-> +             return -EINVAL;
-> +
-> +     cpu_clock = __clock_id_to_func(query.clockid);
-> +     if (!cpu_clock)
-> +             return -EINVAL;
-> +
-> +     engine = intel_engine_lookup_user(i915,
-> +                                       query.engine.engine_class,
-> +                                       query.engine.engine_instance);
-> +     if (!engine)
-> +             return -EINVAL;
-> +
-> +     if (GRAPHICS_VER(i915) == 6 &&
-> +         query.engine.engine_class != I915_ENGINE_CLASS_RENDER)
-> +             return -ENODEV;
-> +
-> +     query.cs_frequency = engine->gt->clock_frequency;
-> +     ret = __query_cs_cycles(engine,
-> +                             &query.cs_cycles,
-> +                             query.cpu_timestamp,
-> +                             cpu_clock);
-> +     if (ret)
-> +             return ret;
-> +
-> +     if (put_user(query.cs_frequency, &query_ptr->cs_frequency))
-> +             return -EFAULT;
-> +
-> +     if (put_user(query.cpu_timestamp[0], &query_ptr->cpu_timestamp[0]))
-> +             return -EFAULT;
-> +
-> +     if (put_user(query.cpu_timestamp[1], &query_ptr->cpu_timestamp[1]))
-> +             return -EFAULT;
-> +
-> +     if (put_user(query.cs_cycles, &query_ptr->cs_cycles))
-> +             return -EFAULT;
-> +
-> +     return sizeof(query);
-> +}
-> +
->  static int
->  query_engine_info(struct drm_i915_private *i915,
->                 struct drm_i915_query_item *query_item)
-> @@ -424,6 +568,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->       query_topology_info,
->       query_engine_info,
->       query_perf_config,
-> +     query_cs_cycles,
->  };
->
->  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 6a34243a7646..08b00f1709b5 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2230,6 +2230,10 @@ struct drm_i915_query_item {
->  #define DRM_I915_QUERY_TOPOLOGY_INFO    1
->  #define DRM_I915_QUERY_ENGINE_INFO   2
->  #define DRM_I915_QUERY_PERF_CONFIG      3
-> +     /**
-> +      * Query Command Streamer timestamp register.
-> +      */
-> +#define DRM_I915_QUERY_CS_CYCLES     4
->  /* Must be kept compact -- no holes and well documented */
->
->       /**
-> @@ -2397,6 +2401,50 @@ struct drm_i915_engine_info {
->       __u64 rsvd1[4];
->  };
->
-> +/**
-> + * struct drm_i915_query_cs_cycles
-> + *
-> + * The query returns the command streamer cycles and the frequency that can be
-> + * used to calculate the command streamer timestamp. In addition the query
-> + * returns a set of cpu timestamps that indicate when the command streamer cycle
-> + * count was captured.
-> + */
-> +struct drm_i915_query_cs_cycles {
-> +     /** Engine for which command streamer cycles is queried. */
-> +     struct i915_engine_class_instance engine;
->
-> Why is this per-engine?  Do we actually expect it to change between
-> engines?
->
->
-> Each engine has its own timestamp register.
->
->
->   If so, we may have a problem because Vulkan expects a
-> unified timestamp domain for all command streamer timestamp queries.
->
->
-> I don't think it does : "
->
-> Timestamps may only be meaningfully compared if they are written by commands submitted to the same queue.
+On Wed, Apr 28, 2021 at 10:32:46AM -0700, Daniele Ceraolo Spurio wrote:
+> =
 
-Yes but vkGetCalibratedTimestampsEXT() doesn't take a queue or even a
-queue family.  Also, VkPhysicalDeviceLimits::timestampPeriod gives a
-single timestampPeriod for all queues.  It's possible that Vulkan
-messed up real bad there but I thought we did a HW survey at the time
-and determined that it was ok.
+> =
 
---Jason
+> On 4/28/2021 5:03 AM, Ville Syrj=E4l=E4 wrote:
+> > On Wed, Apr 28, 2021 at 11:25:23AM +0000, Gupta, Anshuman wrote:
+> >>
+> >>> -----Original Message-----
+> >>> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >>> Sent: Wednesday, April 28, 2021 12:25 AM
+> >>> To: Gupta, Anshuman <anshuman.gupta@intel.com>
+> >>> Cc: intel-gfx@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@inte=
+l.com>;
+> >>> Bommu, Krishnaiah <krishnaiah.bommu@intel.com>; Huang Sean Z
+> >>> <sean.z.huang@intel.com>; Gaurav, Kumar <kumar.gaurav@intel.com>;
+> >>> Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>
+> >>> Subject: Re: [PATCH v3 14/16] drm/i915/pxp: Add plane decryption supp=
+ort
+> >> Thanks Ville for review, Below are some doubts with respect to pxp sta=
+te.
+> >>> On Tue, Apr 27, 2021 at 04:13:11PM +0530, Anshuman Gupta wrote:
+> >>>> Add support to enable/disable PLANE_SURF Decryption Request bit.
+> >>>> It requires only to enable plane decryption support when following
+> >>>> condition met.
+> >>>> 1. PXP session is enabled.
+> >>>> 2. Buffer object is protected.
+> >>>>
+> >>>> v2:
+> >>>> - Used gen fb obj user_flags instead gem_object_metadata. [Krishna]
+> >>>>
+> >>>> v3:
+> >>>> - intel_pxp_gem_object_status() API changes.
+> >>>>
+> >>>> v4: use intel_pxp_is_active (Daniele)
+> >>>>
+> >>>> v5: rebase and use the new protected object status checker (Daniele)
+> >>>>
+> >>>> v6: used plane state for plane_decryption to handle async flip
+> >>>>      as suggested by Ville.
+> >>>>
+> >>>> Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+> >>>> Cc: Huang Sean Z <sean.z.huang@intel.com>
+> >>>> Cc: Gaurav Kumar <kumar.gaurav@intel.com>
+> >>>> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >>>> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> >>>> Signed-off-by: Daniele Ceraolo Spurio
+> >>>> <daniele.ceraolospurio@intel.com>
+> >>>> ---
+> >>>>   .../gpu/drm/i915/display/intel_atomic_plane.c |  3 ++
+> >>>> drivers/gpu/drm/i915/display/intel_display.c  |  5 +++
+> >>>>   .../drm/i915/display/intel_display_types.h    |  3 ++
+> >>>>   .../drm/i915/display/skl_universal_plane.c    | 32 +++++++++++++++=
+++--
+> >>>>   .../drm/i915/display/skl_universal_plane.h    |  1 +
+> >>>>   drivers/gpu/drm/i915/i915_reg.h               |  1 +
+> >>>>   6 files changed, 42 insertions(+), 3 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> >>>> b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> >>>> index 7bfb26ca0bd0..7057077a2b71 100644
+> >>>> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> >>>> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> >>>> @@ -394,6 +394,7 @@ int intel_plane_atomic_check(struct
+> >>> intel_atomic_state *state,
+> >>>>   		intel_atomic_get_old_crtc_state(state, crtc);
+> >>>>   	struct intel_crtc_state *new_crtc_state =3D
+> >>>>   		intel_atomic_get_new_crtc_state(state, crtc);
+> >>>> +	const struct drm_framebuffer *fb =3D new_plane_state->hw.fb;
+> >>>>
+> >>>>   	if (new_crtc_state && new_crtc_state->bigjoiner_slave) {
+> >>>>   		struct intel_plane *master_plane =3D
+> >>>> @@ -409,6 +410,8 @@ int intel_plane_atomic_check(struct
+> >>> intel_atomic_state *state,
+> >>>>   	intel_plane_copy_uapi_to_hw_state(new_plane_state,
+> >>>>   					  new_master_plane_state,
+> >>>>   					  crtc);
+> >>>> +	new_plane_state->plane_decryption =3D
+> >>>> +		i915_gem_object_has_valid_protection(intel_fb_obj(fb));
+> >>>>
+> >>>>   	new_plane_state->uapi.visible =3D false;
+> >>>>   	if (!new_crtc_state)
+> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> >>>> b/drivers/gpu/drm/i915/display/intel_display.c
+> >>>> index a10e26380ef3..55ab2d0b92d8 100644
+> >>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> >>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> >>>> @@ -9367,6 +9367,10 @@ static int intel_atomic_check_async(struct
+> >>> intel_atomic_state *state)
+> >>>>   			drm_dbg_kms(&i915->drm, "Color range cannot be
+> >>> changed in async flip\n");
+> >>>>   			return -EINVAL;
+> >>>>   		}
+> >>>> +
+> >>>> +		/* plane decryption is allow to change only in synchronous flips
+> >>> */
+> >>>> +		if (old_plane_state->plane_decryption !=3D new_plane_state-
+> >>>> plane_decryption)
+> >>>> +			return -EINVAL;
+> >>>>   	}
+> >>>>
+> >>>>   	return 0;
+> >>>> @@ -12350,6 +12354,7 @@ static void readout_plane_state(struct
+> >>>> drm_i915_private *dev_priv)
+> >>>>
+> >>>>   		crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> >>>>   		crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> >>>> +		intel_plane_read_hw_decryption(plane_state);
+> >>> We don't have real plane state readout anyway, so seems pointless.
+> >>>
+> >>>>   		intel_set_plane_visible(crtc_state, plane_state, visible);
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> >>>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> >>>> index e2e707c4dff5..76b3bb64a36a 100644
+> >>>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> >>>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> >>>> @@ -617,6 +617,9 @@ struct intel_plane_state {
+> >>>>
+> >>>>   	struct intel_fb_view view;
+> >>>>
+> >>>> +	/* Plane pxp decryption state */
+> >>>> +	bool plane_decryption;
+> >>>> +
+> >>> It's all about the plane, so the plane_ prefix is entirely redundant.
+> >>> Could just call it "decrypt" I guess.
+> >>>
+> >>>>   	/* plane control register */
+> >>>>   	u32 ctl;
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> >>>> b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> >>>> index 75d3ca3dbb37..74489217e580 100644
+> >>>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> >>>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> >>>> @@ -17,6 +17,7 @@
+> >>>>   #include "intel_sprite.h"
+> >>>>   #include "skl_scaler.h"
+> >>>>   #include "skl_universal_plane.h"
+> >>>> +#include "pxp/intel_pxp.h"
+> >>>>
+> >>>>   static const u32 skl_plane_formats[] =3D {
+> >>>>   	DRM_FORMAT_C8,
+> >>>> @@ -956,7 +957,7 @@ skl_program_plane(struct intel_plane *plane,
+> >>>>   	u8 alpha =3D plane_state->hw.alpha >> 8;
+> >>>>   	u32 plane_color_ctl =3D 0, aux_dist =3D 0;
+> >>>>   	unsigned long irqflags;
+> >>>> -	u32 keymsk, keymax;
+> >>>> +	u32 keymsk, keymax, plane_surf;
+> >>>>   	u32 plane_ctl =3D plane_state->ctl;
+> >>>>
+> >>>>   	plane_ctl |=3D skl_plane_ctl_crtc(crtc_state); @@ -1037,8 +1038,1=
+5 @@
+> >>>> skl_program_plane(struct intel_plane *plane,
+> >>>>   	 * the control register just before the surface register.
+> >>>>   	 */
+> >>>>   	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
+> >>>> -	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
+> >>>> -			  intel_plane_ggtt_offset(plane_state) + surf_addr);
+> >>>> +	plane_surf =3D intel_plane_ggtt_offset(plane_state) + surf_addr;
+> >>>> +
+> >>>> +	if (intel_pxp_is_active(&dev_priv->gt.pxp) &&
+> >>> That should all be part of the state computation. And you're missing =
+this in the
+> >>> .async_flip path totally.
+> >> Hi Ville / Rodrigo / Daniele,
+> >> Is it possible to check  intel_pxp_is_active() in plane atomic check f=
+unction to compute plane decryption state?
+> =
+
+> Yes, it should be possible to call that function from anywhere.
+> =
+
+> >> with my best knowledge session can be invalid at any time, Let's say i=
+n plane atomic check function pxp session was enabled
+> >> but while in atomic commit pxp session can be still disabled.
+> > I can be invalidated any time after the commit anyway. What happens in
+> > that case?
+> =
+
+> If we flip a PXP object after the relevant key has been invalidated we =
+
+> just get garbage on the screen.
+> Note that it is understood that this is a race we can't completely close =
+
+> given that the session invalidation can hit us at any time,
+
+It should be possible if the invalidation thingy gave us a warning
+ahead of time and then waited for us to actually stop scanout.
+
+> the aim here =
+
+> is just to make the window as small as we can and replace invalid =
+
+> objects with a black frame where possible.
+> =
+
+> Daniele
+> =
 
 
-> " [1]
->
->
-> [1] : https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/vkCmdWriteTimestamp.html
->
->
-> -Lionel
->
->
->
-> --Jason
->
->
-> +     /** Must be zero. */
-> +     __u32 flags;
-> +
-> +     /**
-> +      * Command streamer cycles as read from the command streamer
-> +      * register at 0x358 offset.
-> +      */
-> +     __u64 cs_cycles;
-> +
-> +     /** Frequency of the cs cycles in Hz. */
-> +     __u64 cs_frequency;
-> +
-> +     /**
-> +      * CPU timestamps in ns. cpu_timestamp[0] is captured before reading the
-> +      * cs_cycles register using the reference clockid set by the user.
-> +      * cpu_timestamp[1] is the time taken in ns to read the lower dword of
-> +      * the cs_cycles register.
-> +      */
-> +     __u64 cpu_timestamp[2];
-> +
-> +     /**
-> +      * Reference clock id for CPU timestamp. For definition, see
-> +      * clock_gettime(2) and perf_event_open(2). Supported clock ids are
-> +      * CLOCK_MONOTONIC, CLOCK_MONOTONIC_RAW, CLOCK_REALTIME, CLOCK_BOOTTIME,
-> +      * CLOCK_TAI.
-> +      */
-> +     __s32 clockid;
-> +
-> +     /** Must be zero. */
-> +     __u32 rsvd;
-> +};
-> +
->  /**
->   * struct drm_i915_query_engine_info
->   *
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
->
->
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
