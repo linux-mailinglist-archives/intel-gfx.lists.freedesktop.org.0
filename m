@@ -1,48 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF8D36D98A
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 16:26:54 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E22F636D9AA
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 16:37:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE1AF6EB52;
-	Wed, 28 Apr 2021 14:26:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D37D46E0EB;
+	Wed, 28 Apr 2021 14:37:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 420046EB51;
- Wed, 28 Apr 2021 14:26:42 +0000 (UTC)
-IronPort-SDR: 7ZJKdd6Q2uj5PiBgNt1xYpkjsg1HJwj9utmcqt+PCqsXX4+UGu63Qu3xXeo8/PmZ10/swWkIjO
- l5tN8Zjp39Dg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="194640015"
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="194640015"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 07:26:39 -0700
-IronPort-SDR: TjEX1jMSWPWaijcTSZHVWGIBeGLE+5qhY5uiYjbRF2cV2VMEV3zate9kXuEgrLhggrIj7f1pTJ
- xh7N/waIaVVw==
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="387730800"
-Received: from akuligox-mobl.ger.corp.intel.com (HELO [10.213.207.221])
- ([10.213.207.221])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 07:26:37 -0700
-To: Daniel Vetter <daniel@ffwll.ch>
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA0936E0EA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 14:37:08 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id
+ i21-20020a05600c3555b029012eae2af5d4so9392746wmq.4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 07:37:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=vpkQVSWK2DWvopANTqJRlJwtVO8vUYwoQRHSo0nwyFU=;
+ b=a+KtKd0X/Q9iGOcFGjt2IOhHY2+7+Jobxn7nP5cIogAXp5sZWwB+M6wokbtTKcFR8r
+ gyojJCqJwEtalpuQoQvdiRjoWbi7UGHhISAm1KUs7kOnuz1rD0fpaWtpQuUVCELcfn7s
+ c9d73M2Cnmu51ALlS33D5uzfPJLCMi56dJ/iw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=vpkQVSWK2DWvopANTqJRlJwtVO8vUYwoQRHSo0nwyFU=;
+ b=ZZrMOwDfp+cHM4NdveSwktwT6LQNmADj/Bfi5lc+7RgyZ6v9EIfpFxEunhKUB4SSK9
+ GXtAglUMnsNBXs20jdJUAW3dVp3tgTJjta2RZMdjEZtX/aSmop9NXZ8cUw6ZiGCZpfWp
+ 7h+cTeTAXjQXy1eB0BiSuhjKyt10erVqXMKMLOS000DN2q94OVU5S4kM6cKMqx4v6sAh
+ YkOImnW0PWTru9pQlMAPM18is7KaHG9oo4BCyuUmTCCad/qLJwDY/XeNvxJDjgG9PCmy
+ bj5V2MNR10mFMgeYKDKIV5MfsL9lZ4haOLPqjLW8wwfUASEnSZKIzDGjqLCnWY/4PyJR
+ JEZA==
+X-Gm-Message-State: AOAM533v7PinBtVsNVrNBVwII2r1jygQtWU5gu0RPUEh25lKMOK2Ztob
+ gvS1Soff5VHOStk0j4vYVPAZjEcfiEmSFw==
+X-Google-Smtp-Source: ABdhPJzW/xYPrH7XD6davZYu8ZSHZiYldECgq5Vis0Pt+JGk7BS6QuE5XmZmPs7J5XAwZp2t0FrCEw==
+X-Received: by 2002:a1c:2985:: with SMTP id
+ p127mr31879077wmp.165.1619620627603; 
+ Wed, 28 Apr 2021 07:37:07 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id c77sm3963776wme.37.2021.04.28.07.37.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 28 Apr 2021 07:37:07 -0700 (PDT)
+Date: Wed, 28 Apr 2021 16:37:05 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YIlzEejLztKalbxN@phenom.ffwll.local>
 References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-10-jason@jlekstrand.net>
- <YIk14zVfa8Mw4rUF@phenom.ffwll.local>
- <6b388d4d-1d50-94f3-344a-5b6b3639e8ad@linux.intel.com>
- <YIlrCmvC10oAiRcL@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <27db8ded-3b17-748e-f602-a8c1aef7367f@linux.intel.com>
-Date: Wed, 28 Apr 2021 15:26:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ <20210423223131.879208-13-jason@jlekstrand.net>
 MIME-Version: 1.0
-In-Reply-To: <YIlrCmvC10oAiRcL@phenom.ffwll.local>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 09/21] drm/i915/gem: Disallow creating
- contexts with too many engines
+Content-Disposition: inline
+In-Reply-To: <20210423223131.879208-13-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 12/21] drm/i915/gem: Add a separate
+ validate_priority helper
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,65 +69,98 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Apr 23, 2021 at 05:31:22PM -0500, Jason Ekstrand wrote:
 
-On 28/04/2021 15:02, Daniel Vetter wrote:
-> On Wed, Apr 28, 2021 at 11:42:31AM +0100, Tvrtko Ursulin wrote:
->>
->> On 28/04/2021 11:16, Daniel Vetter wrote:
->>> On Fri, Apr 23, 2021 at 05:31:19PM -0500, Jason Ekstrand wrote:
->>>> There's no sense in allowing userspace to create more engines than it
->>>> can possibly access via execbuf.
->>>>
->>>> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
->>>> ---
->>>>    drivers/gpu/drm/i915/gem/i915_gem_context.c | 7 +++----
->>>>    1 file changed, 3 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->>>> index 5f8d0faf783aa..ecb3bf5369857 100644
->>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->>>> @@ -1640,11 +1640,10 @@ set_engines(struct i915_gem_context *ctx,
->>>>    		return -EINVAL;
->>>>    	}
->>>> -	/*
->>>> -	 * Note that I915_EXEC_RING_MASK limits execbuf to only using the
->>>> -	 * first 64 engines defined here.
->>>> -	 */
->>>>    	num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
->>>
->>> Maybe add a comment like /* RING_MASK has not shift, so can be used
->>> directly here */ since I had to check that :-)
->>>
->>> Same story about igt testcases needed, just to be sure.
->>>
->>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>
->> I am not sure about the churn vs benefit ratio here. There are also patches
->> which extend the engine selection field in execbuf2 over the unused
->> constants bits (with an explicit flag). So churn upstream and churn in
->> internal (if interesting) for not much benefit.
+Maybe explain that you pull this out since with the proto context there
+will be two paths to set this, one for proto context, the other for
+context already finalized and executing patches?
+
+With that: Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c | 42 +++++++++++++--------
+>  1 file changed, 27 insertions(+), 15 deletions(-)
 > 
-> This isn't churn.
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 941fbf78267b4..e5efd22c89ba2 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -169,6 +169,28 @@ lookup_user_engine(struct i915_gem_context *ctx,
+>  	return i915_gem_context_get_engine(ctx, idx);
+>  }
+>  
+> +static int validate_priority(struct drm_i915_private *i915,
+> +			     const struct drm_i915_gem_context_param *args)
+> +{
+> +	s64 priority = args->value;
+> +
+> +	if (args->size)
+> +		return -EINVAL;
+> +
+> +	if (!(i915->caps.scheduler & I915_SCHEDULER_CAP_PRIORITY))
+> +		return -ENODEV;
+> +
+> +	if (priority > I915_CONTEXT_MAX_USER_PRIORITY ||
+> +	    priority < I915_CONTEXT_MIN_USER_PRIORITY)
+> +		return -EINVAL;
+> +
+> +	if (priority > I915_CONTEXT_DEFAULT_PRIORITY &&
+> +	    !capable(CAP_SYS_NICE))
+> +		return -EPERM;
+> +
+> +	return 0;
+> +}
+> +
+>  static struct i915_address_space *
+>  context_get_vm_rcu(struct i915_gem_context *ctx)
+>  {
+> @@ -1744,23 +1766,13 @@ static void __apply_priority(struct intel_context *ce, void *arg)
+>  static int set_priority(struct i915_gem_context *ctx,
+>  			const struct drm_i915_gem_context_param *args)
+>  {
+> -	s64 priority = args->value;
+> -
+> -	if (args->size)
+> -		return -EINVAL;
+> -
+> -	if (!(ctx->i915->caps.scheduler & I915_SCHEDULER_CAP_PRIORITY))
+> -		return -ENODEV;
+> -
+> -	if (priority > I915_CONTEXT_MAX_USER_PRIORITY ||
+> -	    priority < I915_CONTEXT_MIN_USER_PRIORITY)
+> -		return -EINVAL;
+> +	int err;
+>  
+> -	if (priority > I915_CONTEXT_DEFAULT_PRIORITY &&
+> -	    !capable(CAP_SYS_NICE))
+> -		return -EPERM;
+> +	err = validate_priority(ctx->i915, args);
+> +	if (err)
+> +		return err;
+>  
+> -	ctx->sched.priority = priority;
+> +	ctx->sched.priority = args->value;
+>  	context_apply_all(ctx, __apply_priority, ctx);
+>  
+>  	return 0;
+> -- 
+> 2.31.1
 > 
-> This is "lock done uapi properly".
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-IMO it is a "meh" patch. Doesn't fix any problems and will create work 
-for other people and man hours spent which no one will ever properly 
-account against.
-
-Number of contexts in the engine map should not really be tied to 
-execbuf2. As is demonstrated by the incoming work to address more than 
-63 engines, either as an extension to execbuf2 or future execbuf3.
-
-Regards,
-
-Tvrtko
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
