@@ -2,41 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B42536D3C2
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 10:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C58136D420
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 10:43:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D5976EAC5;
-	Wed, 28 Apr 2021 08:15:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0251C6EACA;
+	Wed, 28 Apr 2021 08:43:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07FDC6EAC5
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 08:15:53 +0000 (UTC)
-IronPort-SDR: 7llh4tTWV+v0PpgAnRDLpGJgjAjg1KI9N1QGBKWPNPs/iJEJXpI+xIcgBT2xY4fg4lUSCBJpWM
- MXMF/UmG+8SQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="176168479"
-X-IronPort-AV: E=Sophos;i="5.82,257,1613462400"; d="scan'208";a="176168479"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 224AC6EACA;
+ Wed, 28 Apr 2021 08:43:28 +0000 (UTC)
+IronPort-SDR: NUar5kvdr4Gj2Lc0RJjHqGpfz3ObnjHI1upej3zU99+RlSy4iMXYnJiRoXhQnbbGF5w/9VRA22
+ mNyC+BhVcQDA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="260643850"
+X-IronPort-AV: E=Sophos;i="5.82,257,1613462400"; d="scan'208";a="260643850"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 01:15:53 -0700
-IronPort-SDR: uWZqUfvulvvcpkGu4BTVYXrtydi9d/Xt2iSy10dLbLAPZrV4rRB7aIeylYK9mzoD/1MS0hxd+N
- 0dBDjR1ZhJAg==
-X-IronPort-AV: E=Sophos;i="5.82,257,1613462400"; d="scan'208";a="430188678"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2021 01:43:27 -0700
+IronPort-SDR: SGTuBlofw8zf3doD0+IQlkkntzPWYeIyP3Fwq4E54V2ASJ1VgC+q816nPij1OvsLf8K7uYZ7E0
+ whvi+H0z7RJA==
+X-IronPort-AV: E=Sophos;i="5.82,257,1613462400"; d="scan'208";a="430197243"
 Received: from ajalsove-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.39.247])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 01:15:49 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <YIh2lJVAAIWCw+jl@intel.com>
+ 28 Apr 2021 01:43:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20210427214913.46956-2-umesh.nerlige.ramappa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210427114520.4740-1-jani.nikula@intel.com>
- <YIh2lJVAAIWCw+jl@intel.com>
-Date: Wed, 28 Apr 2021 11:15:46 +0300
-Message-ID: <878s524yfh.fsf@intel.com>
+References: <20210427214913.46956-1-umesh.nerlige.ramappa@intel.com>
+ <20210427214913.46956-2-umesh.nerlige.ramappa@intel.com>
+Date: Wed, 28 Apr 2021 11:43:22 +0300
+Message-ID: <875z064x5h.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdcp: add intel_dp_hdcp.h and
- rename init accordingly
+Subject: Re: [Intel-gfx] [PATCH 1/1] i915/query: Correlate engine and cpu
+ timestamps with better accuracy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,117 +50,312 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: dri-devel@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyNyBBcHIgMjAyMSwgUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwuY29t
-PiB3cm90ZToKPiBPbiBUdWUsIEFwciAyNywgMjAyMSBhdCAwMjo0NToyMFBNICswMzAwLCBKYW5p
-IE5pa3VsYSB3cm90ZToKPj4gQWRkIHNlcGFyYXRlIGludGVsX2RwX2hkY3AuaCB0byBnbyB3aXRo
-IGludGVsX2RwX2hkY3AuYywgYW5kIHJlbmFtZSB0aGUKPj4gaW5pdCBmdW5jdGlvbiBpbnRlbF9k
-cF9oZGNwX2luaXQoKSB0byBmb2xsb3cgbmFtaW5nIHdoZXJlIGZ1bmN0aW9uCj4+IHByZWZpeCBt
-YXRjaGVzIHRoZSBmaWxlIG5hbWUuCj4+IAo+PiBTaWduZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8
-amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+Cj4gUmV2aWV3ZWQtYnk6IFJvZHJpZ28gVml2aSA8cm9k
-cmlnby52aXZpQGludGVsLmNvbT4KClRoYW5rcywgcHVzaGVkIHRvIGRpbi4KCkJSLApKYW5pLgoK
-Pgo+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyAgICAg
-IHwgIDUgKysrLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaCAg
-ICAgIHwgIDMgLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2hk
-Y3AuYyB8ICA1ICsrKy0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-X2hkY3AuaCB8IDE1ICsrKysrKysrKysrKysrKwo+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kcF9tc3QuYyAgfCAgNSArKystLQo+PiAgNSBmaWxlcyBjaGFuZ2VkLCAyNCBp
-bnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQo+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfaGRjcC5oCj4+IAo+PiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4+IGluZGV4IDRhZDEyZGRlNTkzOC4uZGZhN2Rh
-OTI4YWU1IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RwLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCj4+
-IEBAIC00OSwxMCArNDksMTEgQEAKPj4gICNpbmNsdWRlICJpbnRlbF9kaXNwbGF5X3R5cGVzLmgi
-Cj4+ICAjaW5jbHVkZSAiaW50ZWxfZHAuaCIKPj4gICNpbmNsdWRlICJpbnRlbF9kcF9hdXguaCIK
-Pj4gKyNpbmNsdWRlICJpbnRlbF9kcF9oZGNwLmgiCj4+ICAjaW5jbHVkZSAiaW50ZWxfZHBfbGlu
-a190cmFpbmluZy5oIgo+PiAgI2luY2x1ZGUgImludGVsX2RwX21zdC5oIgo+PiAtI2luY2x1ZGUg
-ImludGVsX2RwbGwuaCIKPj4gICNpbmNsdWRlICJpbnRlbF9kcGlvX3BoeS5oIgo+PiArI2luY2x1
-ZGUgImludGVsX2RwbGwuaCIKPj4gICNpbmNsdWRlICJpbnRlbF9maWZvX3VuZGVycnVuLmgiCj4+
-ICAjaW5jbHVkZSAiaW50ZWxfaGRjcC5oIgo+PiAgI2luY2x1ZGUgImludGVsX2hkbWkuaCIKPj4g
-QEAgLTUzNDgsNyArNTM0OSw3IEBAIGludGVsX2RwX2luaXRfY29ubmVjdG9yKHN0cnVjdCBpbnRl
-bF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LAo+PiAgCWludGVsX2RwX2FkZF9wcm9wZXJ0aWVzKGlu
-dGVsX2RwLCBjb25uZWN0b3IpOwo+PiAgCj4+ICAJaWYgKGlzX2hkY3Bfc3VwcG9ydGVkKGRldl9w
-cml2LCBwb3J0KSAmJiAhaW50ZWxfZHBfaXNfZWRwKGludGVsX2RwKSkgewo+PiAtCQlpbnQgcmV0
-ID0gaW50ZWxfZHBfaW5pdF9oZGNwKGRpZ19wb3J0LCBpbnRlbF9jb25uZWN0b3IpOwo+PiArCQlp
-bnQgcmV0ID0gaW50ZWxfZHBfaGRjcF9pbml0KGRpZ19wb3J0LCBpbnRlbF9jb25uZWN0b3IpOwo+
-PiAgCQlpZiAocmV0KQo+PiAgCQkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sCj4+ICAJCQkJ
-ICAgICJIRENQIGluaXQgZmFpbGVkLCBza2lwcGluZy5cbiIpOwo+PiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kcC5oCj4+IGluZGV4IDhkYjUwNjJmNmM0YS4uNjgwNjMxYjViNDM3
-IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmgK
-Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCj4+IEBAIC0x
-MTksOSArMTE5LDYgQEAgdm9pZCBpbnRlbF9kZGlfdXBkYXRlX3BpcGUoc3RydWN0IGludGVsX2F0
-b21pY19zdGF0ZSAqc3RhdGUsCj4+ICAJCQkgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
-ZSAqY3J0Y19zdGF0ZSwKPj4gIAkJCSAgIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRl
-ICpjb25uX3N0YXRlKTsKPj4gIAo+PiAtaW50IGludGVsX2RwX2luaXRfaGRjcChzdHJ1Y3QgaW50
-ZWxfZGlnaXRhbF9wb3J0ICpkaWdfcG9ydCwKPj4gLQkJICAgICAgIHN0cnVjdCBpbnRlbF9jb25u
-ZWN0b3IgKmludGVsX2Nvbm5lY3Rvcik7Cj4+IC0KPj4gIGJvb2wgaW50ZWxfZHBfaW5pdGlhbF9m
-YXN0c2V0X2NoZWNrKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAo+PiAgCQkJCSAgICBz
-dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSk7Cj4+ICB2b2lkIGludGVsX2RwX3N5
-bmNfc3RhdGUoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX2hkY3AuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfaGRjcC5jCj4+IGluZGV4IDJkZDkzNjBiZGY5YS4u
-ZDdjM2E3NGI4MWEzIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2RwX2hkY3AuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RwX2hkY3AuYwo+PiBAQCAtMTEsOSArMTEsMTAgQEAKPj4gICNpbmNsdWRlIDxkcm0vZHJt
-X2hkY3AuaD4KPj4gICNpbmNsdWRlIDxkcm0vZHJtX3ByaW50Lmg+Cj4+ICAKPj4gLSNpbmNsdWRl
-ICJpbnRlbF9kaXNwbGF5X3R5cGVzLmgiCj4+ICAjaW5jbHVkZSAiaW50ZWxfZGRpLmgiCj4+ICsj
-aW5jbHVkZSAiaW50ZWxfZGlzcGxheV90eXBlcy5oIgo+PiAgI2luY2x1ZGUgImludGVsX2RwLmgi
-Cj4+ICsjaW5jbHVkZSAiaW50ZWxfZHBfaGRjcC5oIgo+PiAgI2luY2x1ZGUgImludGVsX2hkY3Au
-aCIKPj4gIAo+PiAgc3RhdGljIHVuc2lnbmVkIGludCB0cmFuc2NvZGVyX3RvX3N0cmVhbV9lbmNf
-c3RhdHVzKGVudW0gdHJhbnNjb2RlciBjcHVfdHJhbnNjb2RlcikKPj4gQEAgLTgzNSw3ICs4MzYs
-NyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2hkY3Bfc2hpbSBpbnRlbF9kcF9tc3RfaGRj
-cF9zaGltID0gewo+PiAgCS5wcm90b2NvbCA9IEhEQ1BfUFJPVE9DT0xfRFAsCj4+ICB9Owo+PiAg
-Cj4+IC1pbnQgaW50ZWxfZHBfaW5pdF9oZGNwKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRp
-Z19wb3J0LAo+PiAraW50IGludGVsX2RwX2hkY3BfaW5pdChzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9w
-b3J0ICpkaWdfcG9ydCwKPj4gIAkJICAgICAgIHN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmludGVs
-X2Nvbm5lY3RvcikKPj4gIHsKPj4gIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gaW50ZWxfY29u
-bmVjdG9yLT5iYXNlLmRldjsKPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZHBfaGRjcC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kcF9oZGNwLmgKPj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPj4gaW5kZXggMDAwMDAwMDAwMDAw
-Li5lZmY1ZWM1YzUwMjEKPj4gLS0tIC9kZXYvbnVsbAo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RwX2hkY3AuaAo+PiBAQCAtMCwwICsxLDE1IEBACj4+ICsvKiBT
-UERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUICovCj4+ICsvKgo+PiArICogQ29weXJpZ2h0IMKp
-IDIwMjEgSW50ZWwgQ29ycG9yYXRpb24KPj4gKyAqLwo+PiArCj4+ICsjaWZuZGVmIF9fSU5URUxf
-RFBfSERDUF9fXwo+PiArI2RlZmluZSBfX0lOVEVMX0RQX0hEQ1BfX18KPj4gKwo+PiArc3RydWN0
-IGludGVsX2Nvbm5lY3RvcjsKPj4gK3N0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQ7Cj4+ICsKPj4g
-K2ludCBpbnRlbF9kcF9oZGNwX2luaXQoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3Bv
-cnQsCj4+ICsJCSAgICAgICBzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICppbnRlbF9jb25uZWN0b3Ip
-Owo+PiArCj4+ICsjZW5kaWYgLyogX19JTlRFTF9EUF9IRENQX19fICovCj4+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYwo+PiBpbmRleCAxODBmOTdjZDc0Y2Iu
-LjM1NThiY2UyNDJlZSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcF9tc3QuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RwX21zdC5jCj4+IEBAIC0zNCwxMSArMzQsMTIgQEAKPj4gICNpbmNsdWRlICJpbnRlbF9j
-b25uZWN0b3IuaCIKPj4gICNpbmNsdWRlICJpbnRlbF9kZGkuaCIKPj4gICNpbmNsdWRlICJpbnRl
-bF9kaXNwbGF5X3R5cGVzLmgiCj4+IC0jaW5jbHVkZSAiaW50ZWxfaG90cGx1Zy5oIgo+PiAgI2lu
-Y2x1ZGUgImludGVsX2RwLmgiCj4+ICsjaW5jbHVkZSAiaW50ZWxfZHBfaGRjcC5oIgo+PiAgI2lu
-Y2x1ZGUgImludGVsX2RwX21zdC5oIgo+PiAgI2luY2x1ZGUgImludGVsX2RwaW9fcGh5LmgiCj4+
-ICAjaW5jbHVkZSAiaW50ZWxfaGRjcC5oIgo+PiArI2luY2x1ZGUgImludGVsX2hvdHBsdWcuaCIK
-Pj4gICNpbmNsdWRlICJza2xfc2NhbGVyLmgiCj4+ICAKPj4gIHN0YXRpYyBpbnQgaW50ZWxfZHBf
-bXN0X2NvbXB1dGVfbGlua19jb25maWcoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4+
-IEBAIC04MzIsNyArODMzLDcgQEAgc3RhdGljIHN0cnVjdCBkcm1fY29ubmVjdG9yICppbnRlbF9k
-cF9hZGRfbXN0X2Nvbm5lY3RvcihzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG8KPj4gIAlpbnRlbF9h
-dHRhY2hfYnJvYWRjYXN0X3JnYl9wcm9wZXJ0eShjb25uZWN0b3IpOwo+PiAgCj4+ICAJaWYgKERJ
-U1BMQVlfVkVSKGRldl9wcml2KSA8PSAxMikgewo+PiAtCQlyZXQgPSBpbnRlbF9kcF9pbml0X2hk
-Y3AoZGlnX3BvcnQsIGludGVsX2Nvbm5lY3Rvcik7Cj4+ICsJCXJldCA9IGludGVsX2RwX2hkY3Bf
-aW5pdChkaWdfcG9ydCwgaW50ZWxfY29ubmVjdG9yKTsKPj4gIAkJaWYgKHJldCkKPj4gIAkJCWRy
-bV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLCAiWyVzOiVkXSBIRENQIE1TVCBpbml0IGZhaWxlZCwg
-c2tpcHBpbmcuXG4iLAo+PiAgCQkJCSAgICBjb25uZWN0b3ItPm5hbWUsIGNvbm5lY3Rvci0+YmFz
-ZS5pZCk7Cj4+IC0tIAo+PiAyLjIwLjEKPj4gCj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPj4gSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNv
-dXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+On Tue, 27 Apr 2021, Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com> wrote:
+> Perf measurements rely on CPU and engine timestamps to correlate
+> events of interest across these time domains. Current mechanisms get
+> these timestamps separately and the calculated delta between these
+> timestamps lack enough accuracy.
+>
+> To improve the accuracy of these time measurements to within a few us,
+> add a query that returns the engine and cpu timestamps captured as
+> close to each other as possible.
+
+Cc: dri-devel, Jason and Daniel for review.
+
+>
+> v2: (Tvrtko)
+> - document clock reference used
+> - return cpu timestamp always
+> - capture cpu time just before lower dword of cs timestamp
+>
+> v3: (Chris)
+> - use uncore-rpm
+> - use __query_cs_timestamp helper
+>
+> v4: (Lionel)
+> - Kernel perf subsytem allows users to specify the clock id to be used
+>   in perf_event_open. This clock id is used by the perf subsystem to
+>   return the appropriate cpu timestamp in perf events. Similarly, let
+>   the user pass the clockid to this query so that cpu timestamp
+>   corresponds to the clock id requested.
+>
+> v5: (Tvrtko)
+> - Use normal ktime accessors instead of fast versions
+> - Add more uApi documentation
+>
+> v6: (Lionel)
+> - Move switch out of spinlock
+>
+> v7: (Chris)
+> - cs_timestamp is a misnomer, use cs_cycles instead
+> - return the cs cycle frequency as well in the query
+>
+> v8:
+> - Add platform and engine specific checks
+>
+> v9: (Lionel)
+> - Return 2 cpu timestamps in the query - captured before and after the
+>   register read
+>
+> v10: (Chris)
+> - Use local_clock() to measure time taken to read lower dword of
+>   register and return it to user.
+>
+> v11: (Jani)
+> - IS_GEN deprecated. User GRAPHICS_VER instead.
+>
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_query.c | 145 ++++++++++++++++++++++++++++++
+>  include/uapi/drm/i915_drm.h       |  48 ++++++++++
+>  2 files changed, 193 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
+> index fed337ad7b68..2594b93901ac 100644
+> --- a/drivers/gpu/drm/i915/i915_query.c
+> +++ b/drivers/gpu/drm/i915/i915_query.c
+> @@ -6,6 +6,8 @@
+>  
+>  #include <linux/nospec.h>
+>  
+> +#include "gt/intel_engine_pm.h"
+> +#include "gt/intel_engine_user.h"
+>  #include "i915_drv.h"
+>  #include "i915_perf.h"
+>  #include "i915_query.h"
+> @@ -90,6 +92,148 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
+>  	return total_length;
+>  }
+>  
+> +typedef u64 (*__ktime_func_t)(void);
+> +static __ktime_func_t __clock_id_to_func(clockid_t clk_id)
+> +{
+> +	/*
+> +	 * Use logic same as the perf subsystem to allow user to select the
+> +	 * reference clock id to be used for timestamps.
+> +	 */
+> +	switch (clk_id) {
+> +	case CLOCK_MONOTONIC:
+> +		return &ktime_get_ns;
+> +	case CLOCK_MONOTONIC_RAW:
+> +		return &ktime_get_raw_ns;
+> +	case CLOCK_REALTIME:
+> +		return &ktime_get_real_ns;
+> +	case CLOCK_BOOTTIME:
+> +		return &ktime_get_boottime_ns;
+> +	case CLOCK_TAI:
+> +		return &ktime_get_clocktai_ns;
+> +	default:
+> +		return NULL;
+> +	}
+> +}
+> +
+> +static inline int
+> +__read_timestamps(struct intel_uncore *uncore,
+> +		  i915_reg_t lower_reg,
+> +		  i915_reg_t upper_reg,
+> +		  u64 *cs_ts,
+> +		  u64 *cpu_ts,
+> +		  __ktime_func_t cpu_clock)
+> +{
+> +	u32 upper, lower, old_upper, loop = 0;
+> +
+> +	upper = intel_uncore_read_fw(uncore, upper_reg);
+> +	do {
+> +		cpu_ts[1] = local_clock();
+> +		cpu_ts[0] = cpu_clock();
+> +		lower = intel_uncore_read_fw(uncore, lower_reg);
+> +		cpu_ts[1] = local_clock() - cpu_ts[1];
+> +		old_upper = upper;
+> +		upper = intel_uncore_read_fw(uncore, upper_reg);
+> +	} while (upper != old_upper && loop++ < 2);
+> +
+> +	*cs_ts = (u64)upper << 32 | lower;
+> +
+> +	return 0;
+> +}
+> +
+> +static int
+> +__query_cs_cycles(struct intel_engine_cs *engine,
+> +		  u64 *cs_ts, u64 *cpu_ts,
+> +		  __ktime_func_t cpu_clock)
+> +{
+> +	struct intel_uncore *uncore = engine->uncore;
+> +	enum forcewake_domains fw_domains;
+> +	u32 base = engine->mmio_base;
+> +	intel_wakeref_t wakeref;
+> +	int ret;
+> +
+> +	fw_domains = intel_uncore_forcewake_for_reg(uncore,
+> +						    RING_TIMESTAMP(base),
+> +						    FW_REG_READ);
+> +
+> +	with_intel_runtime_pm(uncore->rpm, wakeref) {
+> +		spin_lock_irq(&uncore->lock);
+> +		intel_uncore_forcewake_get__locked(uncore, fw_domains);
+> +
+> +		ret = __read_timestamps(uncore,
+> +					RING_TIMESTAMP(base),
+> +					RING_TIMESTAMP_UDW(base),
+> +					cs_ts,
+> +					cpu_ts,
+> +					cpu_clock);
+> +
+> +		intel_uncore_forcewake_put__locked(uncore, fw_domains);
+> +		spin_unlock_irq(&uncore->lock);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int
+> +query_cs_cycles(struct drm_i915_private *i915,
+> +		struct drm_i915_query_item *query_item)
+> +{
+> +	struct drm_i915_query_cs_cycles __user *query_ptr;
+> +	struct drm_i915_query_cs_cycles query;
+> +	struct intel_engine_cs *engine;
+> +	__ktime_func_t cpu_clock;
+> +	int ret;
+> +
+> +	if (GRAPHICS_VER(i915) < 6)
+> +		return -ENODEV;
+> +
+> +	query_ptr = u64_to_user_ptr(query_item->data_ptr);
+> +	ret = copy_query_item(&query, sizeof(query), sizeof(query), query_item);
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	if (query.flags)
+> +		return -EINVAL;
+> +
+> +	if (query.rsvd)
+> +		return -EINVAL;
+> +
+> +	cpu_clock = __clock_id_to_func(query.clockid);
+> +	if (!cpu_clock)
+> +		return -EINVAL;
+> +
+> +	engine = intel_engine_lookup_user(i915,
+> +					  query.engine.engine_class,
+> +					  query.engine.engine_instance);
+> +	if (!engine)
+> +		return -EINVAL;
+> +
+> +	if (GRAPHICS_VER(i915) == 6 &&
+> +	    query.engine.engine_class != I915_ENGINE_CLASS_RENDER)
+> +		return -ENODEV;
+> +
+> +	query.cs_frequency = engine->gt->clock_frequency;
+> +	ret = __query_cs_cycles(engine,
+> +				&query.cs_cycles,
+> +				query.cpu_timestamp,
+> +				cpu_clock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (put_user(query.cs_frequency, &query_ptr->cs_frequency))
+> +		return -EFAULT;
+> +
+> +	if (put_user(query.cpu_timestamp[0], &query_ptr->cpu_timestamp[0]))
+> +		return -EFAULT;
+> +
+> +	if (put_user(query.cpu_timestamp[1], &query_ptr->cpu_timestamp[1]))
+> +		return -EFAULT;
+> +
+> +	if (put_user(query.cs_cycles, &query_ptr->cs_cycles))
+> +		return -EFAULT;
+> +
+> +	return sizeof(query);
+> +}
+> +
+>  static int
+>  query_engine_info(struct drm_i915_private *i915,
+>  		  struct drm_i915_query_item *query_item)
+> @@ -424,6 +568,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
+>  	query_topology_info,
+>  	query_engine_info,
+>  	query_perf_config,
+> +	query_cs_cycles,
+>  };
+>  
+>  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 6a34243a7646..08b00f1709b5 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -2230,6 +2230,10 @@ struct drm_i915_query_item {
+>  #define DRM_I915_QUERY_TOPOLOGY_INFO    1
+>  #define DRM_I915_QUERY_ENGINE_INFO	2
+>  #define DRM_I915_QUERY_PERF_CONFIG      3
+> +	/**
+> +	 * Query Command Streamer timestamp register.
+> +	 */
+> +#define DRM_I915_QUERY_CS_CYCLES	4
+>  /* Must be kept compact -- no holes and well documented */
+>  
+>  	/**
+> @@ -2397,6 +2401,50 @@ struct drm_i915_engine_info {
+>  	__u64 rsvd1[4];
+>  };
+>  
+> +/**
+> + * struct drm_i915_query_cs_cycles
+> + *
+> + * The query returns the command streamer cycles and the frequency that can be
+> + * used to calculate the command streamer timestamp. In addition the query
+> + * returns a set of cpu timestamps that indicate when the command streamer cycle
+> + * count was captured.
+> + */
+> +struct drm_i915_query_cs_cycles {
+> +	/** Engine for which command streamer cycles is queried. */
+> +	struct i915_engine_class_instance engine;
+> +
+> +	/** Must be zero. */
+> +	__u32 flags;
+> +
+> +	/**
+> +	 * Command streamer cycles as read from the command streamer
+> +	 * register at 0x358 offset.
+> +	 */
+> +	__u64 cs_cycles;
+> +
+> +	/** Frequency of the cs cycles in Hz. */
+> +	__u64 cs_frequency;
+> +
+> +	/**
+> +	 * CPU timestamps in ns. cpu_timestamp[0] is captured before reading the
+> +	 * cs_cycles register using the reference clockid set by the user.
+> +	 * cpu_timestamp[1] is the time taken in ns to read the lower dword of
+> +	 * the cs_cycles register.
+> +	 */
+> +	__u64 cpu_timestamp[2];
+> +
+> +	/**
+> +	 * Reference clock id for CPU timestamp. For definition, see
+> +	 * clock_gettime(2) and perf_event_open(2). Supported clock ids are
+> +	 * CLOCK_MONOTONIC, CLOCK_MONOTONIC_RAW, CLOCK_REALTIME, CLOCK_BOOTTIME,
+> +	 * CLOCK_TAI.
+> +	 */
+> +	__s32 clockid;
+> +
+> +	/** Must be zero. */
+> +	__u32 rsvd;
+> +};
+> +
+>  /**
+>   * struct drm_i915_query_engine_info
+>   *
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
