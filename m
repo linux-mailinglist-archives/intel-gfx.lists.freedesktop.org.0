@@ -1,46 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1692036D6F1
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 14:03:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04F9D36D6F7
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 14:06:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C8576E0D7;
-	Wed, 28 Apr 2021 12:03:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11B6B6E0D7;
+	Wed, 28 Apr 2021 12:06:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FB9E6E0D7
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 12:03:22 +0000 (UTC)
-IronPort-SDR: WWy8NlQcoaMIf0cMADRqjzFdXbRgScFlX8uWbnD+nCfallTS5NewZR4+kR6wXdgSBDcbf/05/j
- nrS60hyLg8yg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="196832230"
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="196832230"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 05:03:19 -0700
-IronPort-SDR: vWQ39jQ4EwW5JrMx1g2C/k2FEsJiFOuZLPry3EC8yPEzSQSlAgyQg3ki18wHGgwaRaPi/rYM76
- KEVUVlGEhaGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="387682386"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 28 Apr 2021 05:03:16 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 28 Apr 2021 15:03:16 +0300
-Date: Wed, 28 Apr 2021 15:03:16 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-Message-ID: <YIlPBEUSoz9pobQ7@intel.com>
-References: <20210328225709.18541-15-daniele.ceraolospurio@intel.com>
- <20210427104311.2664-1-anshuman.gupta@intel.com>
- <YIheD5VzUuNvC4XC@intel.com>
- <cf2e94e0feea4db4a6015d5da966ab39@intel.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F30056E1F3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 12:06:09 +0000 (UTC)
+IronPort-SDR: N4Hvo1AfP+A1ZEJKQjW1Xi0M5Wgne5t+a903MRQBc6xMOxeqE5ESqERywAaHFB5mhpLFAYlRP+
+ wvhz+LAQ9kjQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="258024266"
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="258024266"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2021 05:06:08 -0700
+IronPort-SDR: Ak6v89Wo4yaSU7hqdAezuOQC4mrehm2f+14n33vKejbS+z9/dSy64DIYo/xZKQtBtxvVtr8LY8
+ uQzLYc9cN4lg==
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="430268796"
+Received: from ajalsove-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.247])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2021 05:06:06 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YIlOk2U9YgmXR+jb@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1619604743.git.jani.nikula@intel.com>
+ <7dc3f6974711ce44522189dc9db05d1e6e24e6d8.1619604743.git.jani.nikula@intel.com>
+ <YIlOk2U9YgmXR+jb@intel.com>
+Date: Wed, 28 Apr 2021 15:06:00 +0300
+Message-ID: <87wnsm397b.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <cf2e94e0feea4db4a6015d5da966ab39@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH v3 14/16] drm/i915/pxp: Add plane decryption
- support
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/backlight: use unique
+ backlight device names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,201 +50,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Gaurav,
- Kumar" <kumar.gaurav@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 28, 2021 at 11:25:23AM +0000, Gupta, Anshuman wrote:
-> =
-
-> =
-
-> > -----Original Message-----
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Sent: Wednesday, April 28, 2021 12:25 AM
-> > To: Gupta, Anshuman <anshuman.gupta@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.=
-com>;
-> > Bommu, Krishnaiah <krishnaiah.bommu@intel.com>; Huang Sean Z
-> > <sean.z.huang@intel.com>; Gaurav, Kumar <kumar.gaurav@intel.com>;
-> > Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>
-> > Subject: Re: [PATCH v3 14/16] drm/i915/pxp: Add plane decryption support
-> Thanks Ville for review, Below are some doubts with respect to pxp state.
-> > =
-
-> > On Tue, Apr 27, 2021 at 04:13:11PM +0530, Anshuman Gupta wrote:
-> > > Add support to enable/disable PLANE_SURF Decryption Request bit.
-> > > It requires only to enable plane decryption support when following
-> > > condition met.
-> > > 1. PXP session is enabled.
-> > > 2. Buffer object is protected.
-> > >
-> > > v2:
-> > > - Used gen fb obj user_flags instead gem_object_metadata. [Krishna]
-> > >
-> > > v3:
-> > > - intel_pxp_gem_object_status() API changes.
-> > >
-> > > v4: use intel_pxp_is_active (Daniele)
-> > >
-> > > v5: rebase and use the new protected object status checker (Daniele)
-> > >
-> > > v6: used plane state for plane_decryption to handle async flip
-> > >     as suggested by Ville.
-> > >
-> > > Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-> > > Cc: Huang Sean Z <sean.z.huang@intel.com>
-> > > Cc: Gaurav Kumar <kumar.gaurav@intel.com>
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > > Signed-off-by: Daniele Ceraolo Spurio
-> > > <daniele.ceraolospurio@intel.com>
-> > > ---
-> > >  .../gpu/drm/i915/display/intel_atomic_plane.c |  3 ++
-> > > drivers/gpu/drm/i915/display/intel_display.c  |  5 +++
-> > >  .../drm/i915/display/intel_display_types.h    |  3 ++
-> > >  .../drm/i915/display/skl_universal_plane.c    | 32 +++++++++++++++++=
---
-> > >  .../drm/i915/display/skl_universal_plane.h    |  1 +
-> > >  drivers/gpu/drm/i915/i915_reg.h               |  1 +
-> > >  6 files changed, 42 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > index 7bfb26ca0bd0..7057077a2b71 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > > @@ -394,6 +394,7 @@ int intel_plane_atomic_check(struct
-> > intel_atomic_state *state,
-> > >  		intel_atomic_get_old_crtc_state(state, crtc);
-> > >  	struct intel_crtc_state *new_crtc_state =3D
-> > >  		intel_atomic_get_new_crtc_state(state, crtc);
-> > > +	const struct drm_framebuffer *fb =3D new_plane_state->hw.fb;
-> > >
-> > >  	if (new_crtc_state && new_crtc_state->bigjoiner_slave) {
-> > >  		struct intel_plane *master_plane =3D
-> > > @@ -409,6 +410,8 @@ int intel_plane_atomic_check(struct
-> > intel_atomic_state *state,
-> > >  	intel_plane_copy_uapi_to_hw_state(new_plane_state,
-> > >  					  new_master_plane_state,
-> > >  					  crtc);
-> > > +	new_plane_state->plane_decryption =3D
-> > > +		i915_gem_object_has_valid_protection(intel_fb_obj(fb));
-> > >
-> > >  	new_plane_state->uapi.visible =3D false;
-> > >  	if (!new_crtc_state)
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index a10e26380ef3..55ab2d0b92d8 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -9367,6 +9367,10 @@ static int intel_atomic_check_async(struct
-> > intel_atomic_state *state)
-> > >  			drm_dbg_kms(&i915->drm, "Color range cannot be
-> > changed in async flip\n");
-> > >  			return -EINVAL;
-> > >  		}
-> > > +
-> > > +		/* plane decryption is allow to change only in synchronous flips
-> > */
-> > > +		if (old_plane_state->plane_decryption !=3D new_plane_state-
-> > >plane_decryption)
-> > > +			return -EINVAL;
-> > >  	}
-> > >
-> > >  	return 0;
-> > > @@ -12350,6 +12354,7 @@ static void readout_plane_state(struct
-> > > drm_i915_private *dev_priv)
-> > >
-> > >  		crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
-> > >  		crtc_state =3D to_intel_crtc_state(crtc->base.state);
-> > > +		intel_plane_read_hw_decryption(plane_state);
-> > =
-
-> > We don't have real plane state readout anyway, so seems pointless.
-> > =
-
-> > >
-> > >  		intel_set_plane_visible(crtc_state, plane_state, visible);
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > index e2e707c4dff5..76b3bb64a36a 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -617,6 +617,9 @@ struct intel_plane_state {
-> > >
-> > >  	struct intel_fb_view view;
-> > >
-> > > +	/* Plane pxp decryption state */
-> > > +	bool plane_decryption;
-> > > +
-> > =
-
-> > It's all about the plane, so the plane_ prefix is entirely redundant.
-> > Could just call it "decrypt" I guess.
-> > =
-
-> > >  	/* plane control register */
-> > >  	u32 ctl;
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > index 75d3ca3dbb37..74489217e580 100644
-> > > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > > @@ -17,6 +17,7 @@
-> > >  #include "intel_sprite.h"
-> > >  #include "skl_scaler.h"
-> > >  #include "skl_universal_plane.h"
-> > > +#include "pxp/intel_pxp.h"
-> > >
-> > >  static const u32 skl_plane_formats[] =3D {
-> > >  	DRM_FORMAT_C8,
-> > > @@ -956,7 +957,7 @@ skl_program_plane(struct intel_plane *plane,
-> > >  	u8 alpha =3D plane_state->hw.alpha >> 8;
-> > >  	u32 plane_color_ctl =3D 0, aux_dist =3D 0;
-> > >  	unsigned long irqflags;
-> > > -	u32 keymsk, keymax;
-> > > +	u32 keymsk, keymax, plane_surf;
-> > >  	u32 plane_ctl =3D plane_state->ctl;
-> > >
-> > >  	plane_ctl |=3D skl_plane_ctl_crtc(crtc_state); @@ -1037,8 +1038,15 =
-@@
-> > > skl_program_plane(struct intel_plane *plane,
-> > >  	 * the control register just before the surface register.
-> > >  	 */
-> > >  	intel_de_write_fw(dev_priv, PLANE_CTL(pipe, plane_id), plane_ctl);
-> > > -	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
-> > > -			  intel_plane_ggtt_offset(plane_state) + surf_addr);
-> > > +	plane_surf =3D intel_plane_ggtt_offset(plane_state) + surf_addr;
-> > > +
-> > > +	if (intel_pxp_is_active(&dev_priv->gt.pxp) &&
-> > =
-
-> > That should all be part of the state computation. And you're missing th=
-is in the
-> > .async_flip path totally.
-> Hi Ville / Rodrigo / Daniele,
-> Is it possible to check  intel_pxp_is_active() in plane atomic check func=
-tion to compute plane decryption state?
-> with my best knowledge session can be invalid at any time, Let's say in p=
-lane atomic check function pxp session was enabled
-> but while in atomic commit pxp session can be still disabled. =
-
-
-I can be invalidated any time after the commit anyway. What happens in
-that case?
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyOCBBcHIgMjAyMSwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gV2VkLCBBcHIgMjgsIDIwMjEgYXQgMDE6MTQ6MjlQTSAr
+MDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IFJlZ2lzdGVyaW5nIG11bHRpcGxlIGJhY2tsaWdo
+dCBkZXZpY2VzIHdpdGggaW50ZWxfYmFja2xpZ2h0IG5hbWUgd2lsbAo+PiBvYnZpb3VzbHkgZmFp
+bCwgcmVnYXJkbGVzcyBvZiB3aGV0aGVyIHRoZXkncmUgdHdvIGNvbm5lY3RvcnMgaW4gdGhlIHNh
+bWUKPj4gZHJtIGRldmljZSBvciB0d28gZGlmZmVyZW50IGRybSBkZXZpY2VzLgo+PiAKPj4gSXQg
+d291bGQgYmUgcHJlZmVycmFibGUgdG8gc3dpdGNoIHRvIGNvbXBsZXRlbHkgdW5pcXVlIG5hbWVz
+LCBhbmQgc3Vuc2V0Cj4+IHRoZSBnZW5lcmljIGludGVsX2JhY2tsaWdodCBuYW1lLiBIb3dldmVy
+LCB0aGVyZSBhcmUgYXBwYXJlbnRseSB1c2Vycwo+PiBvdXQgdGhlcmUgdGhhdCBoYXJkY29kZSB0
+aGUgbmFtZSwgc28gdGhlIGNoYW5nZSB3b3VsZCBicmVhayBiYWNrd2FyZAo+PiBjb21wYXRpYmls
+aXR5Lgo+PiAKPj4gQXMgYSBjb21wcm9taXNlLCByZWdpc3RlciB0aGUgZmlyc3QgZGV2aWNlIHdp
+dGggaW50ZWxfYmFja2xpZ2h0IG5hbWUuIEluCj4+IHRoZSBjb21tb24gY2FzZSwgdGhpcyBpcyB0
+aGUgb25seSBiYWNrbGlnaHQgZGV2aWNlIGFueXdheS4gRnJvbSB0aGUKPj4gc2Vjb25kIGRldmlj
+ZSBvbiwgdXNlIGNhcmQlZC0lcy1iYWNrbGlnaHQgZm9ybWF0LCBmb3IgZXhhbXBsZQo+PiBjYXJk
+MC1lRFAtMi1iYWNrbGlnaHQsIHRvIG1ha2UgdGhlIG5hbWUgdW5pcXVlLgo+PiAKPj4gVGhpcyBh
+cHByb2FjaCBkb2VzIG5vdCBwcmVjbHVkZSB1cyBmcm9tIHJlZ2lzdGVyaW5nIHRoZSBmaXJzdCBk
+ZXZpY2UKPj4gdXNpbmcgdGhlIHNhbWUgbmFtaW5nIHNjaGVtZSBpbiB0aGUgZnV0dXJlLgo+Cj4g
+ImludGVsX2JhY2tsaWdodCIgc3ltbGluayBmb3IgdGhlIGZpcnN0IGJhY2tsaWdodCBtaWdodCBi
+ZSBhbiBvcHRpb24gSQo+IGd1ZXNzLgoKSSBsb29rZWQgaW50byBpdCwgYnV0IEkgdGhpbmsgaXQg
+d291bGQgcmVxdWlyZSBjaGFuZ2VzIGluIHRoZSBiYWNrbGlnaHQKZHJpdmVyLiBJdCdzIG5vdCB2
+ZXJ5IG5pY2UgdG8gcG9rZSB0aGVyZSBkaXJlY3RseS4gQW5kIGhhdmluZyB0aGlzIG5vdwpkb2Vz
+IG5vdCBwcmV2ZW50IHVzIGZyb20gYWRkaW5nIHRoYXQgbGF0ZXIuCgo+IFNlcmllcyBpcyBSZXZp
+ZXdlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
+ClRoYW5rcywKSmFuaS4KCj4KPj4gCj4+IHYyOiBLZWVwIHVzaW5nIGludGVsX2JhY2tsaWdodCBu
+YW1lIGZvciBmaXJzdCBiYWNrbGlnaHQgZGV2aWNlCj4+IAo+PiBDYzogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4gQ2xvc2VzOiBodHRwczovL2dpdGxh
+Yi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsLy0vaXNzdWVzLzI3OTQKPj4gU2lnbmVkLW9mZi1i
+eTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPj4gLS0tCj4+ICBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmMgfCAyMyArKysrKysrKysrKysrKysr
+KystLS0tCj4+ICAxIGZpbGUgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMo
+LSkKPj4gCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X3BhbmVsLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmMKPj4g
+aW5kZXggMzA4ODY3N2FiOGE3Li5hMjA3NjEwNzlhZTAgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmMKPj4gQEAgLTE0MDEsMTYgKzE0MDEsMzEgQEAg
+aW50IGludGVsX2JhY2tsaWdodF9kZXZpY2VfcmVnaXN0ZXIoc3RydWN0IGludGVsX2Nvbm5lY3Rv
+ciAqY29ubmVjdG9yKQo+PiAgCWVsc2UKPj4gIAkJcHJvcHMucG93ZXIgPSBGQl9CTEFOS19QT1dF
+UkRPV047Cj4+ICAKPj4gLQkvKgo+PiAtCSAqIE5vdGU6IHVzaW5nIHRoZSBzYW1lIG5hbWUgaW5k
+ZXBlbmRlbnQgb2YgdGhlIGNvbm5lY3RvciBwcmV2ZW50cwo+PiAtCSAqIHJlZ2lzdHJhdGlvbiBv
+ZiBtdWx0aXBsZSBiYWNrbGlnaHQgZGV2aWNlcyBpbiB0aGUgZHJpdmVyLgo+PiAtCSAqLwo+PiAg
+CW5hbWUgPSBrc3RyZHVwKCJpbnRlbF9iYWNrbGlnaHQiLCBHRlBfS0VSTkVMKTsKPj4gIAlpZiAo
+IW5hbWUpCj4+ICAJCXJldHVybiAtRU5PTUVNOwo+PiAgCj4+ICAJYmQgPSBiYWNrbGlnaHRfZGV2
+aWNlX3JlZ2lzdGVyKG5hbWUsIGNvbm5lY3Rvci0+YmFzZS5rZGV2LCBjb25uZWN0b3IsCj4+ICAJ
+CQkJICAgICAgICZpbnRlbF9iYWNrbGlnaHRfZGV2aWNlX29wcywgJnByb3BzKTsKPj4gKwo+PiAr
+CS8qCj4+ICsJICogVXNpbmcgdGhlIHNhbWUgbmFtZSBpbmRlcGVuZGVudCBvZiB0aGUgZHJtIGRl
+dmljZSBvciBjb25uZWN0b3IKPj4gKwkgKiBwcmV2ZW50cyByZWdpc3RyYXRpb24gb2YgbXVsdGlw
+bGUgYmFja2xpZ2h0IGRldmljZXMgaW4gdGhlCj4+ICsJICogZHJpdmVyLiBIb3dldmVyLCB3ZSBu
+ZWVkIHRvIHVzZSB0aGUgZGVmYXVsdCBuYW1lIGZvciBiYWNrd2FyZAo+PiArCSAqIGNvbXBhdGli
+aWxpdHkuIFVzZSB1bmlxdWUgbmFtZXMgZm9yIHN1YnNlcXVlbnQgYmFja2xpZ2h0IGRldmljZXMg
+YXMgYQo+PiArCSAqIGZhbGxiYWNrIHdoZW4gdGhlIGRlZmF1bHQgbmFtZSBhbHJlYWR5IGV4aXN0
+cy4KPj4gKwkgKi8KPj4gKwlpZiAoSVNfRVJSKGJkKSAmJiBQVFJfRVJSKGJkKSA9PSAtRUVYSVNU
+KSB7Cj4+ICsJCWtmcmVlKG5hbWUpOwo+PiArCQluYW1lID0ga2FzcHJpbnRmKEdGUF9LRVJORUws
+ICJjYXJkJWQtJXMtYmFja2xpZ2h0IiwKPj4gKwkJCQkgaTkxNS0+ZHJtLnByaW1hcnktPmluZGV4
+LCBjb25uZWN0b3ItPmJhc2UubmFtZSk7Cj4+ICsJCWlmICghbmFtZSkKPj4gKwkJCXJldHVybiAt
+RU5PTUVNOwo+PiArCj4+ICsJCWJkID0gYmFja2xpZ2h0X2RldmljZV9yZWdpc3RlcihuYW1lLCBj
+b25uZWN0b3ItPmJhc2Uua2RldiwgY29ubmVjdG9yLAo+PiArCQkJCQkgICAgICAgJmludGVsX2Jh
+Y2tsaWdodF9kZXZpY2Vfb3BzLCAmcHJvcHMpOwo+PiArCX0KPj4gKwo+PiAgCWlmIChJU19FUlIo
+YmQpKSB7Cj4+ICAJCWRybV9lcnIoJmk5MTUtPmRybSwKPj4gIAkJCSJbQ09OTkVDVE9SOiVkOiVz
+XSBiYWNrbGlnaHQgZGV2aWNlICVzIHJlZ2lzdGVyIGZhaWxlZDogJWxkXG4iLAo+PiAtLSAKPj4g
+Mi4yMC4xCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRl
+cgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
