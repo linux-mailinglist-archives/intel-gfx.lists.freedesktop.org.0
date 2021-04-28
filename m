@@ -1,60 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6FAD36D58F
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 12:16:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1ED336D592
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 12:16:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE626EB0D;
-	Wed, 28 Apr 2021 10:16:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9582F6E1F1;
+	Wed, 28 Apr 2021 10:16:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
- [IPv6:2a00:1450:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 367BD6EB0C
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 10:16:07 +0000 (UTC)
-Received: by mail-wm1-x331.google.com with SMTP id
- f15-20020a05600c4e8fb029013f5599b8a9so6816206wmq.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 03:16:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=uOe+N+c5K6O3uq5CbTn5rAb8QuLRjU8n5kOdij1gBug=;
- b=M4HeYxuM89a7YgEKBWnwMZWFLL8q1Ba0yoLDdeEQ7Q46HtvGgBFY/kQUaKWAuQ42bk
- fU4B8kSBScZvy24gFLNOt6kyePI5iYNI9YDgDLbPuVM6nWemnUwaHaLw76YsbpdsKtoB
- x34jzyTi1YhL+ZEMlS0T4hTbu7qSPkTa5L/Lg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=uOe+N+c5K6O3uq5CbTn5rAb8QuLRjU8n5kOdij1gBug=;
- b=ko3nakj5IV3li5sdvKqpFZma4T1a0NeU3QFuNIkOD4Z8ddfylhGbjXRX5srpRyjDZc
- EGex0i9QmmTdhKnclgPzD8fC7EzW6Tok6bVXRwsFLzHH1St2Y3Ka5L1fiEborXKXMkDo
- NGLP883GhmQfcgfR3rzSNM5sHREa3m6NKBzBVXj62vEqgmvvh6BUWURyagh77HuHjhB8
- 47cFtaN5Yabx+AADiMq9ADHCapnZhCTau1GK8va7pDfLqzEuXgORg+PBkfqINkfT181O
- 5298rBR1yPlFgRhP4lFtGlaCbDRhzxdK13dX2vGIRbCRFV9873/wTladKjABDz+N94Rw
- +tYQ==
-X-Gm-Message-State: AOAM532YLMUiKj2RA53OjjmRbLd+xu9yMqkr4dzklgr3fji55PQOt1Pu
- EqQPeeU6euOTbovJw6Hs8zoVMg==
-X-Google-Smtp-Source: ABdhPJze9tAmYWkN9PpjByBDUhstnKFzTfm01HJwTR4FBIbRiPMNOLxTx49dRjUhYC8OI2AZIj5klQ==
-X-Received: by 2002:a7b:c4da:: with SMTP id g26mr5701526wmk.43.1619604965986; 
- Wed, 28 Apr 2021 03:16:05 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id h10sm7722715wrt.40.2021.04.28.03.16.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Apr 2021 03:16:05 -0700 (PDT)
-Date: Wed, 28 Apr 2021 12:16:03 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YIk14zVfa8Mw4rUF@phenom.ffwll.local>
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-10-jason@jlekstrand.net>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F42116EB0C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 10:16:09 +0000 (UTC)
+IronPort-SDR: ptDuQa9cPw58PI7KXbdND1NNNu/8KNL6Rl83VMnm+i+csYnmar42Eu7QLcnIVMeybjmGH9gpk9
+ RXwLXkgOLf/w==
+X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="183847851"
+X-IronPort-AV: E=Sophos;i="5.82,257,1613462400"; d="scan'208";a="183847851"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2021 03:16:08 -0700
+IronPort-SDR: gottI/S+DolsNTcIDw3li1GiNO8PKSBEE1rBB6BSgD9/O1pItcuxBARoH7IfI0qSDtiWwINm5m
+ s5ffCfd8yg/g==
+X-IronPort-AV: E=Sophos;i="5.82,257,1613462400"; d="scan'208";a="423461115"
+Received: from ajalsove-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.39.247])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2021 03:16:07 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <YG4aSL1jEG/Tz7wU@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210407090812.3602-1-jani.nikula@intel.com>
+ <YG4aSL1jEG/Tz7wU@intel.com>
+Date: Wed, 28 Apr 2021 13:16:04 +0300
+Message-ID: <87zgxi3eaj.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210423223131.879208-10-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 09/21] drm/i915/gem: Disallow creating
- contexts with too many engines
+Subject: Re: [Intel-gfx] [RFC] drm/i915/backlight: switch to unique
+ backlight device names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,61 +49,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 23, 2021 at 05:31:19PM -0500, Jason Ekstrand wrote:
-> There's no sense in allowing userspace to create more engines than it
-> can possibly access via execbuf.
-> 
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 5f8d0faf783aa..ecb3bf5369857 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -1640,11 +1640,10 @@ set_engines(struct i915_gem_context *ctx,
->  		return -EINVAL;
->  	}
->  
-> -	/*
-> -	 * Note that I915_EXEC_RING_MASK limits execbuf to only using the
-> -	 * first 64 engines defined here.
-> -	 */
->  	num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
-
-Maybe add a comment like /* RING_MASK has not shift, so can be used
-directly here */ since I had to check that :-)
-
-Same story about igt testcases needed, just to be sure.
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-> +	if (num_engines > I915_EXEC_RING_MASK + 1)
-> +		return -EINVAL;
-> +
->  	set.engines = alloc_engines(num_engines);
->  	if (!set.engines)
->  		return -ENOMEM;
-> -- 
-> 2.31.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAwNyBBcHIgMjAyMSwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gV2VkLCBBcHIgMDcsIDIwMjEgYXQgMTI6MDg6MTJQTSAr
+MDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IENoYW5nZSB0aGUgYmFja2xpZ2h0IGRldmljZSBu
+YW1lcyBmcm9tIGludGVsX2JhY2tsaWdodCB0bwo+PiBjYXJkJWQtJXMtYmFja2xpZ2h0IGZvcm1h
+dCwgZm9yIGV4YW1wbGUgY2FyZDAtZURQLTEtYmFja2xpZ2h0LCB0byBtYWtlCj4+IHRoZW0gdW5p
+cXVlLiBPdGhlcndpc2UsIHJlZ2lzdGVyaW5nIG11bHRpcGxlIGJhY2tsaWdodCBkZXZpY2VzIHdp
+dGgKPj4gaW50ZWxfYmFja2xpZ2h0IG5hbWUgd2lsbCBmYWlsLCByZWdhcmRsZXNzIG9mIHdoZXRo
+ZXIgdGhleSdyZSB0d28KPj4gY29ubmVjdG9ycyBpbiB0aGUgc2FtZSBkZXZpY2Ugb3IgdHdvIGRp
+ZmZlcmVudCBkZXZpY2VzLgo+PiAKPj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+Cj4+IENsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Au
+b3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8yNzk0Cj4+IFNpZ25lZC1vZmYtYnk6IEphbmkgTmlrdWxh
+IDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cj4+IAo+PiAtLS0KPj4gCj4+IElzIHRoZSBuYW1lICJp
+bnRlbF9iYWNrbGlnaHQiIHBhcnQgb2YgdGhlIFVBQkk/IEluIHRoZW9yeSB0aGUgdXNlcnNwYWNl
+Cj4+IHNob3VsZCBvbmx5IGxvb2sgYXQgdGhlIG5hbWVzIGFuZCB0eXBlcyBhdmFpbGFibGUgdW5k
+ZXIKPj4gL3N5cy9jbGFzcy9iYWNrbGlnaHQsIG5vdCB0aGUgZXhhY3QgbmFtZXMuCj4KPiBRdWlj
+ayBnbGFuY2UgYXQgc29tZSB0aGluZ3Mgc3VnZ2VzdCB0aGlzIG1pZ2h0IGFmZmVjdCBzb21lCj4g
+Y3VzdG9tIHNldHVwcyBwZW9wbGUgaGF2ZS4KPgo+IFRoZXJlIGlzIGFuIHhvcmcuY29uZiBvcHRp
+b24gaW4gdGhlIGludGVsIGRkeCB0byBmb3JjZSB0aGUKPiBiYWNrbGlnaHQgZGV2aWNlIHNlbGVj
+dGlvbi4gQnV0IEkgZGlkbid0IHNlZSBhbnkgaGFyZGNvZGluZwo+IG9mIHRoZSBiYWNrbGlnaHQg
+ZGV2aWNlIG5hbWUsIHNvIHVubGVzcyB0aGUgdXNlciBoYXMKPiBjb25maWd1cmVkIHRoYXQga25v
+YiB0aGluZ3Mgc2hvdWxkIGtlZXAgd29ya2luZyBJIHRoaW5rLgo+Cj4gQWxzbyBnb29nbGluZyBz
+YXlzIHN5c3RlbWQgbWlnaHQgaGF2ZSBzb21lIGJhY2tsaWdodAo+IG5hbWUgdG8gc2VydmljZSBu
+YW1lIG1hZ2ljIGdvaW5nIG9uLiBCdXQgSSB3YXMgdG9vIGxhenkKPiB0byBhY3R1YWxseSByZWFk
+IHRoZSBjb2RlIHNvIGRvbid0IGtub3cgdGhlIGRldGFpbHMuCgpUaGFua3MsIEkgc3dpdGNoZWQg
+dG8gdXNpbmcgaW50ZWxfYmFja2xpZ2h0IGZpcnN0LCBhbmQgZmFsbGluZyBiYWNrIHRvCnVuaXF1
+ZSBuYW1lcyBhZnRlciB0aGF0IFsxXS4KCkJSLApKYW5pLgoKWzFdIGh0dHBzOi8vcGF0Y2h3b3Jr
+LmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvODk1NzgvCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9w
+ZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9pbnRlbC1nZngK
