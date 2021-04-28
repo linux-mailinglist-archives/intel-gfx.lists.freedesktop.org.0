@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EECB636DCC1
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 18:13:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A187736DCCE
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 18:16:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B0766E123;
-	Wed, 28 Apr 2021 16:13:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 586D06E284;
+	Wed, 28 Apr 2021 16:16:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 991FA6E113;
- Wed, 28 Apr 2021 16:13:40 +0000 (UTC)
-IronPort-SDR: i5YW2q1UinBP2DqdccfPuwS1V5VQxOLVLWvxSIT6OVbmkcRhHR7X6GpUEUsA7+V7bFlgWvUecG
- WoKTBKyIqkqA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="282117455"
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="282117455"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 09:11:11 -0700
-IronPort-SDR: Yb8TgQ9p7hewIODeR56cNpfaMdqxslpKYWBP62mKSYJ2gz3TGL7hFsNLZc+ZetyhYLf8YyJePl
- 6Kmq5WFa/PuQ==
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="403733548"
-Received: from gstedje-mobl2.ger.corp.intel.com (HELO [10.252.13.124])
- ([10.252.13.124])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 09:10:58 -0700
-To: Kenneth Graunke <kenneth@whitecape.org>, intel-gfx@lists.freedesktop.org
-References: <20210426093901.28937-1-matthew.auld@intel.com>
- <4429978.s5xreEhoxC@mizzik>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <e6d77106-6d21-3c2d-8edd-65a2fa9451b2@intel.com>
-Date: Wed, 28 Apr 2021 17:10:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A08946E284
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 16:16:55 +0000 (UTC)
+IronPort-SDR: a4WYmeZW4b6fYUJlXHMqIaP9KFGsI5OoIGqkXFX+a0v6r1StUjTlhJZDn4m7AqFtg5cO77Fttn
+ jCDYjmUTdytw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="176261996"
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="176261996"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2021 09:16:54 -0700
+IronPort-SDR: VyNa7EBENyPnpzc2kXFShf/l6303BeHZIaUAGK9Xd8wuHEqDRr+MW/PBUobg6xDwWX97Yfz2Ub
+ riK4USweCrJw==
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="455125612"
+Received: from gtal-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.5.96])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2021 09:16:53 -0700
+Date: Wed, 28 Apr 2021 09:16:53 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20210428161653.2qknf4yuec6atlzc@ldmartin-desk2>
+References: <20210427230756.2847495-1-lucas.demarchi@intel.com>
+ <20210427230756.2847495-5-lucas.demarchi@intel.com>
+ <87lf9251t6.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <4429978.s5xreEhoxC@mizzik>
-Content-Language: en-GB
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/doc/rfc: i915 DG1 uAPI
+Content-Disposition: inline
+In-Reply-To: <87lf9251t6.fsf@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915/display: hide workaround
+ for broken vbt in intel_bios.c
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,79 +50,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Dave Airlie <airlied@redhat.com>, dri-devel@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, mesa-dev@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 28/04/2021 16:16, Kenneth Graunke wrote:
-> On Monday, April 26, 2021 2:38:53 AM PDT Matthew Auld wrote:
->> +Existing uAPI issues
->> +====================
->> +Some potential issues we still need to resolve.
+On Wed, Apr 28, 2021 at 10:02:45AM +0300, Jani Nikula wrote:
+>On Tue, 27 Apr 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>> Instead of poluting the normal code path in intel_display.c, make
+>> intel_bios.c handle the brokenness of the VBT.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_bios.c    | 15 +++++++++++++++
+>>  drivers/gpu/drm/i915/display/intel_display.c | 14 ++------------
+>>  2 files changed, 17 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+>> index befab891a6b9..e9f828452412 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+>> @@ -1852,6 +1852,14 @@ intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
+>>  		devdata->child.device_type & DEVICE_TYPE_INTERNAL_CONNECTOR;
+>>  }
+>>
+>> +static bool skip_broken_vbt(struct drm_i915_private *i915, enum port port)
+>> +{
+>> +	if (port == PORT_F && (IS_ICELAKE(i915) || IS_CANNONLAKE(i915)))
+>> +		return !IS_ICL_WITH_PORT_F(i915) && !IS_CNL_WITH_PORT_F(i915);
 >> +
->> +I915 MMAP
->> +---------
->> +In i915 there are multiple ways to MMAP GEM object, including mapping the same
->> +object using different mapping types(WC vs WB), i.e multiple active mmaps per
->> +object. TTM expects one MMAP at most for the lifetime of the object. If it
->> +turns out that we have to backpedal here, there might be some potential
->> +userspace fallout.
+>> +	return false;
+>> +}
 >> +
->> +I915 SET/GET CACHING
->> +--------------------
->> +In i915 we have set/get_caching ioctl. TTM doesn't let us to change this, but
->> +DG1 doesn't support non-snooped pcie transactions, so we can just always
->> +allocate as WB for smem-only buffers.  If/when our hw gains support for
->> +non-snooped pcie transactions then we must fix this mode at allocation time as
->> +a new GEM extension.
+>>  static void parse_ddi_port(struct drm_i915_private *i915,
+>>  			   struct intel_bios_encoder_data *devdata)
+>>  {
+>> @@ -1865,6 +1873,13 @@ static void parse_ddi_port(struct drm_i915_private *i915,
+>>  	if (port == PORT_NONE)
+>>  		return;
+>>
+>> +	if (skip_broken_vbt(i915, port)) {
+>> +		drm_dbg_kms(&i915->drm,
+>> +			    "VBT reports port %c as supported, but that can't be true: skipping\n",
+>> +			    port_name(port));
+>> +		return;
+>> +	}
 >> +
->> +This is related to the mmap problem, because in general (meaning, when we're
->> +not running on intel cpus) the cpu mmap must not, ever, be inconsistent with
->> +allocation mode.
->> +
->> +Possible idea is to let the kernel picks the mmap mode for userspace from the
->> +following table:
->> +
->> +smem-only: WB. Userspace does not need to call clflush.
->> +
->> +smem+lmem: We allocate uncached memory, and give userspace a WC mapping
->> +for when the buffer is in smem, and WC when it's in lmem. GPU does snooped
->> +access, which is a bit inefficient.
-> 
-> I think you meant to write something different here.  What I read was:
-> 
-> - If it's in SMEM, give them WC
-> - If it's in LMEM, give them WC
-> 
-> Presumably one of those should have been something else, since otherwise
-> you would have written "always WC" :)
+>>  	info = &i915->vbt.ddi_port_info[port];
+>>
+>>  	if (info->devdata) {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 55f8f2ceada2..64a2a3b9a480 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -10868,15 +10868,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>>  		intel_ddi_init(dev_priv, PORT_C);
+>>  		intel_ddi_init(dev_priv, PORT_D);
+>>  		intel_ddi_init(dev_priv, PORT_E);
+>> -
+>> -		/*
+>> -		 * On some ICL SKUs port F is not present, but broken VBTs mark
+>> -		 * the port as present. Only try to initialize port F for the
+>> -		 * SKUs that may actually have it.
+>> -		 */
+>> -		if (IS_ICL_WITH_PORT_F(dev_priv))
+>> -			intel_ddi_init(dev_priv, PORT_F);
+>> -
+>> +		intel_ddi_init(dev_priv, PORT_F);
+>>  		icl_dsi_init(dev_priv);
+>>  	} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
+>>  		intel_ddi_init(dev_priv, PORT_A);
+>> @@ -10889,9 +10881,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>>  		intel_ddi_init(dev_priv, PORT_C);
+>>  		intel_ddi_init(dev_priv, PORT_D);
+>>  		intel_ddi_init(dev_priv, PORT_E);
+>> -
+>> -		if (IS_CNL_WITH_PORT_F(dev_priv))
+>> -			intel_ddi_init(dev_priv, PORT_F);
+>> +		intel_ddi_init(dev_priv, PORT_E);
+>
+>Whoops, not PORT_E, but I guess you noticed. :)
 
-It should have been "always WC", sorry for the confusion.
+yeah... I had a typo there. I was surprised when I saw CI failing in a
+test with PORT_E. After comparing the output when it works vs when I
+broke, it was easy to notice what happed.
 
-"smem+lmem: We only ever allow a single mode, so simply allocate this as 
-uncached memory, and always give userspace a WC mapping. GPU still does 
-snooped access here(assuming we can't turn it off like on DG1), which is 
-a bit inefficient."
+saved by CI here.
 
-> 
->> +
->> +lmem only: always WC
->> +
->> +This means on discrete you only get a single mmap mode, all others must be
->> +rejected. That's probably going to be a new default mode or something like
->> +that.
->> +
->> +Links
->> +=====
->> +[1] https://patchwork.freedesktop.org/series/86798/
->> +
->> +[2] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/5599#note_553791
+thanks
+Lucas De Marchi
+
+>
+>
+>>  	} else if (HAS_DDI(dev_priv)) {
+>>  		u32 found;
+>
+>-- 
+>Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
