@@ -1,46 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A968636D5E2
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 12:42:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF54536D65B
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 13:19:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 882F16E0B9;
-	Wed, 28 Apr 2021 10:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 073CE6E0A6;
+	Wed, 28 Apr 2021 11:19:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D19A86E0A2;
- Wed, 28 Apr 2021 10:42:34 +0000 (UTC)
-IronPort-SDR: ex5zH9muTUsp0XJ1EX97KN55T0l+mfj8uS1rQyode7BVBEYb1sGHN1vkrkq0mEE/luHyvrb/xj
- bEJEJBKrbM6Q==
-X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="176823857"
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="176823857"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 03:42:34 -0700
-IronPort-SDR: ewTi18WEfAYlFRQ4Gw6gOtoBDvh7iA/lO4P6I9dRTaykyZdvk9Cc3pXVMeZ+jla2/bRcTTwTxy
- HLfH6doTS+pQ==
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="430241852"
-Received: from akuligox-mobl.ger.corp.intel.com (HELO [10.213.207.221])
- ([10.213.207.221])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 03:42:33 -0700
-To: Daniel Vetter <daniel@ffwll.ch>, Jason Ekstrand <jason@jlekstrand.net>
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-10-jason@jlekstrand.net>
- <YIk14zVfa8Mw4rUF@phenom.ffwll.local>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <6b388d4d-1d50-94f3-344a-5b6b3639e8ad@linux.intel.com>
-Date: Wed, 28 Apr 2021 11:42:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A84B56E092;
+ Wed, 28 Apr 2021 11:19:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8B681A363D;
+ Wed, 28 Apr 2021 11:19:42 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <YIk14zVfa8Mw4rUF@phenom.ffwll.local>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 09/21] drm/i915/gem: Disallow creating
- contexts with too many engines
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 28 Apr 2021 11:19:42 -0000
+Message-ID: <161960878253.24077.18281492907107003068@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1619604743.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1619604743.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/backlight=3A_use_unique_backlight_device_names?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,68 +38,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1364316251=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============1364316251==
+Content-Type: multipart/alternative;
+ boundary="===============0245896891913857638=="
 
-On 28/04/2021 11:16, Daniel Vetter wrote:
-> On Fri, Apr 23, 2021 at 05:31:19PM -0500, Jason Ekstrand wrote:
->> There's no sense in allowing userspace to create more engines than it
->> can possibly access via execbuf.
->>
->> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
->> ---
->>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 7 +++----
->>   1 file changed, 3 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> index 5f8d0faf783aa..ecb3bf5369857 100644
->> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->> @@ -1640,11 +1640,10 @@ set_engines(struct i915_gem_context *ctx,
->>   		return -EINVAL;
->>   	}
->>   
->> -	/*
->> -	 * Note that I915_EXEC_RING_MASK limits execbuf to only using the
->> -	 * first 64 engines defined here.
->> -	 */
->>   	num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
-> 
-> Maybe add a comment like /* RING_MASK has not shift, so can be used
-> directly here */ since I had to check that :-)
-> 
-> Same story about igt testcases needed, just to be sure.
-> 
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+--===============0245896891913857638==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I am not sure about the churn vs benefit ratio here. There are also 
-patches which extend the engine selection field in execbuf2 over the 
-unused constants bits (with an explicit flag). So churn upstream and 
-churn in internal (if interesting) for not much benefit.
+== Series Details ==
 
-Regards,
+Series: drm/i915/backlight: use unique backlight device names
+URL   : https://patchwork.freedesktop.org/series/89578/
+State : success
 
-Tvrtko
+== Summary ==
 
->> +	if (num_engines > I915_EXEC_RING_MASK + 1)
->> +		return -EINVAL;
->> +
->>   	set.engines = alloc_engines(num_engines);
->>   	if (!set.engines)
->>   		return -ENOMEM;
->> -- 
->> 2.31.1
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
+CI Bug Log - changes from CI_DRM_10020 -> Patchwork_20015
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20015 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1] ([fdo#109271])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][2] ([i915#3159])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_module_load@reload:
+    - fi-cml-s:           [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10020/fi-cml-s/igt@i915_module_load@reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/fi-cml-s/igt@i915_module_load@reload.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#2203] / [i915#2868])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10020/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
+  [i915#2203]: https://gitlab.freedesktop.org/drm/intel/issues/2203
+  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
+  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Additional (1): fi-bsw-n3050 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-tgl-y fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10020 -> Patchwork_20015
+
+  CI-20190529: 20190529
+  CI_DRM_10020: 6fb34ca6fdb4c6d61255408459bff1e024673c1a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6076: 9ab0820dbd07781161c1ace6973ea222fd24e53a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20015: 63e692e644a153002b54cbeb496342e4d57930eb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+63e692e644a1 drm/i915/backlight: use unique backlight device names
+e8ca19f1e44e drm/i915/backlight: clean up backlight device register
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/index.html
+
+--===============0245896891913857638==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/backlight: use unique backlight device names</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89578/">https://patchwork.freedesktop.org/series/89578/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10020 -&gt; Patchwork_20015</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20015 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10020/fi-cml-s/igt@i915_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/fi-cml-s/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10020/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20015/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2203">i915#2203</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 39)</h2>
+<p>Additional (1): fi-bsw-n3050 <br />
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-tgl-y fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10020 -&gt; Patchwork_20015</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10020: 6fb34ca6fdb4c6d61255408459bff1e024673c1a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6076: 9ab0820dbd07781161c1ace6973ea222fd24e53a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20015: 63e692e644a153002b54cbeb496342e4d57930eb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>63e692e644a1 drm/i915/backlight: use unique backlight device names<br />
+e8ca19f1e44e drm/i915/backlight: clean up backlight device register</p>
+
+</body>
+</html>
+
+--===============0245896891913857638==--
+
+--===============1364316251==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1364316251==--
