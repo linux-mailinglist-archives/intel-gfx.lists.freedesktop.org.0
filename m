@@ -2,60 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E22F636D9AA
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 16:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EFFB36DB26
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 17:21:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D37D46E0EB;
-	Wed, 28 Apr 2021 14:37:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACA086EBA6;
+	Wed, 28 Apr 2021 15:21:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
- [IPv6:2a00:1450:4864:20::32b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA0936E0EA
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 14:37:08 +0000 (UTC)
-Received: by mail-wm1-x32b.google.com with SMTP id
- i21-20020a05600c3555b029012eae2af5d4so9392746wmq.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 07:37:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=vpkQVSWK2DWvopANTqJRlJwtVO8vUYwoQRHSo0nwyFU=;
- b=a+KtKd0X/Q9iGOcFGjt2IOhHY2+7+Jobxn7nP5cIogAXp5sZWwB+M6wokbtTKcFR8r
- gyojJCqJwEtalpuQoQvdiRjoWbi7UGHhISAm1KUs7kOnuz1rD0fpaWtpQuUVCELcfn7s
- c9d73M2Cnmu51ALlS33D5uzfPJLCMi56dJ/iw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=vpkQVSWK2DWvopANTqJRlJwtVO8vUYwoQRHSo0nwyFU=;
- b=ZZrMOwDfp+cHM4NdveSwktwT6LQNmADj/Bfi5lc+7RgyZ6v9EIfpFxEunhKUB4SSK9
- GXtAglUMnsNBXs20jdJUAW3dVp3tgTJjta2RZMdjEZtX/aSmop9NXZ8cUw6ZiGCZpfWp
- 7h+cTeTAXjQXy1eB0BiSuhjKyt10erVqXMKMLOS000DN2q94OVU5S4kM6cKMqx4v6sAh
- YkOImnW0PWTru9pQlMAPM18is7KaHG9oo4BCyuUmTCCad/qLJwDY/XeNvxJDjgG9PCmy
- bj5V2MNR10mFMgeYKDKIV5MfsL9lZ4haOLPqjLW8wwfUASEnSZKIzDGjqLCnWY/4PyJR
- JEZA==
-X-Gm-Message-State: AOAM533v7PinBtVsNVrNBVwII2r1jygQtWU5gu0RPUEh25lKMOK2Ztob
- gvS1Soff5VHOStk0j4vYVPAZjEcfiEmSFw==
-X-Google-Smtp-Source: ABdhPJzW/xYPrH7XD6davZYu8ZSHZiYldECgq5Vis0Pt+JGk7BS6QuE5XmZmPs7J5XAwZp2t0FrCEw==
-X-Received: by 2002:a1c:2985:: with SMTP id
- p127mr31879077wmp.165.1619620627603; 
- Wed, 28 Apr 2021 07:37:07 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id c77sm3963776wme.37.2021.04.28.07.37.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 28 Apr 2021 07:37:07 -0700 (PDT)
-Date: Wed, 28 Apr 2021 16:37:05 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YIlzEejLztKalbxN@phenom.ffwll.local>
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-13-jason@jlekstrand.net>
+X-Greylist: delayed 328 seconds by postgrey-1.36 at gabe;
+ Wed, 28 Apr 2021 15:21:42 UTC
+Received: from smtp64.ord1c.emailsrvr.com (smtp64.ord1c.emailsrvr.com
+ [108.166.43.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F40A6EBD0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 15:21:42 +0000 (UTC)
+X-Auth-ID: kenneth@whitecape.org
+Received: by smtp17.relay.ord1c.emailsrvr.com (Authenticated sender:
+ kenneth-AT-whitecape.org) with ESMTPSA id B0EEC60242; 
+ Wed, 28 Apr 2021 11:16:09 -0400 (EDT)
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Date: Wed, 28 Apr 2021 08:16:05 -0700
+Message-ID: <4429978.s5xreEhoxC@mizzik>
+In-Reply-To: <20210426093901.28937-1-matthew.auld@intel.com>
+References: <20210426093901.28937-1-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210423223131.879208-13-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 12/21] drm/i915/gem: Add a separate
- validate_priority helper
+X-Classification-ID: 1b6e87f8-8473-4d75-8b21-f26ea96611b3-1-1
+Subject: Re: [Intel-gfx] [PATCH 1/9] drm/doc/rfc: i915 DG1 uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,100 +40,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com>,
+ Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Dave Airlie <airlied@redhat.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, mesa-dev@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0428202073=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 23, 2021 at 05:31:22PM -0500, Jason Ekstrand wrote:
+--===============0428202073==
+Content-Type: multipart/signed; boundary="nextPart7036856.UipX05xarL"; micalg="pgp-sha256"; protocol="application/pgp-signature"
 
-Maybe explain that you pull this out since with the proto context there
-will be two paths to set this, one for proto context, the other for
-context already finalized and executing patches?
+--nextPart7036856.UipX05xarL
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com>, Jon Bloomfield <jon.bloomfield@intel.com>, Jordan Justen <jordan.l.justen@intel.com>, Daniel Vetter <daniel.vetter@intel.com>, Jason Ekstrand <jason@jlekstrand.net>, Dave Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@redhat.com>
+Subject: Re: [PATCH 1/9] drm/doc/rfc: i915 DG1 uAPI
+Date: Wed, 28 Apr 2021 08:16:05 -0700
+Message-ID: <4429978.s5xreEhoxC@mizzik>
+In-Reply-To: <20210426093901.28937-1-matthew.auld@intel.com>
+References: <20210426093901.28937-1-matthew.auld@intel.com>
 
-With that: Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+On Monday, April 26, 2021 2:38:53 AM PDT Matthew Auld wrote:
+> +Existing uAPI issues
+> +====================
+> +Some potential issues we still need to resolve.
+> +
+> +I915 MMAP
+> +---------
+> +In i915 there are multiple ways to MMAP GEM object, including mapping the same
+> +object using different mapping types(WC vs WB), i.e multiple active mmaps per
+> +object. TTM expects one MMAP at most for the lifetime of the object. If it
+> +turns out that we have to backpedal here, there might be some potential
+> +userspace fallout.
+> +
+> +I915 SET/GET CACHING
+> +--------------------
+> +In i915 we have set/get_caching ioctl. TTM doesn't let us to change this, but
+> +DG1 doesn't support non-snooped pcie transactions, so we can just always
+> +allocate as WB for smem-only buffers.  If/when our hw gains support for
+> +non-snooped pcie transactions then we must fix this mode at allocation time as
+> +a new GEM extension.
+> +
+> +This is related to the mmap problem, because in general (meaning, when we're
+> +not running on intel cpus) the cpu mmap must not, ever, be inconsistent with
+> +allocation mode.
+> +
+> +Possible idea is to let the kernel picks the mmap mode for userspace from the
+> +following table:
+> +
+> +smem-only: WB. Userspace does not need to call clflush.
+> +
+> +smem+lmem: We allocate uncached memory, and give userspace a WC mapping
+> +for when the buffer is in smem, and WC when it's in lmem. GPU does snooped
+> +access, which is a bit inefficient.
 
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c | 42 +++++++++++++--------
->  1 file changed, 27 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 941fbf78267b4..e5efd22c89ba2 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -169,6 +169,28 @@ lookup_user_engine(struct i915_gem_context *ctx,
->  	return i915_gem_context_get_engine(ctx, idx);
->  }
->  
-> +static int validate_priority(struct drm_i915_private *i915,
-> +			     const struct drm_i915_gem_context_param *args)
-> +{
-> +	s64 priority = args->value;
-> +
-> +	if (args->size)
-> +		return -EINVAL;
-> +
-> +	if (!(i915->caps.scheduler & I915_SCHEDULER_CAP_PRIORITY))
-> +		return -ENODEV;
-> +
-> +	if (priority > I915_CONTEXT_MAX_USER_PRIORITY ||
-> +	    priority < I915_CONTEXT_MIN_USER_PRIORITY)
-> +		return -EINVAL;
-> +
-> +	if (priority > I915_CONTEXT_DEFAULT_PRIORITY &&
-> +	    !capable(CAP_SYS_NICE))
-> +		return -EPERM;
-> +
-> +	return 0;
-> +}
-> +
->  static struct i915_address_space *
->  context_get_vm_rcu(struct i915_gem_context *ctx)
->  {
-> @@ -1744,23 +1766,13 @@ static void __apply_priority(struct intel_context *ce, void *arg)
->  static int set_priority(struct i915_gem_context *ctx,
->  			const struct drm_i915_gem_context_param *args)
->  {
-> -	s64 priority = args->value;
-> -
-> -	if (args->size)
-> -		return -EINVAL;
-> -
-> -	if (!(ctx->i915->caps.scheduler & I915_SCHEDULER_CAP_PRIORITY))
-> -		return -ENODEV;
-> -
-> -	if (priority > I915_CONTEXT_MAX_USER_PRIORITY ||
-> -	    priority < I915_CONTEXT_MIN_USER_PRIORITY)
-> -		return -EINVAL;
-> +	int err;
->  
-> -	if (priority > I915_CONTEXT_DEFAULT_PRIORITY &&
-> -	    !capable(CAP_SYS_NICE))
-> -		return -EPERM;
-> +	err = validate_priority(ctx->i915, args);
-> +	if (err)
-> +		return err;
->  
-> -	ctx->sched.priority = priority;
-> +	ctx->sched.priority = args->value;
->  	context_apply_all(ctx, __apply_priority, ctx);
->  
->  	return 0;
-> -- 
-> 2.31.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+I think you meant to write something different here.  What I read was:
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+- If it's in SMEM, give them WC
+- If it's in LMEM, give them WC
+
+Presumably one of those should have been something else, since otherwise
+you would have written "always WC" :)
+
+> +
+> +lmem only: always WC
+> +
+> +This means on discrete you only get a single mmap mode, all others must be
+> +rejected. That's probably going to be a new default mode or something like
+> +that.
+> +
+> +Links
+> +=====
+> +[1] https://patchwork.freedesktop.org/series/86798/
+> +
+> +[2] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/5599#note_553791
+
+--nextPart7036856.UipX05xarL
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAmCJfDUACgkQW1vaBx1J
+zDgT4w/9ElB7IBqVSGbWFtpqNfaComfNbMPBISGCJtrhwju7VG89bJraurdSMPix
+Jm3KqV5hW1cIsQWlRHmf3rY1efO9sMDoC4yPV8arjcUjY1XvJipWFvI9RP2PRw7J
+ujBoN0XtegfTc3mdBBTo0TdTW5U0WkcEx1UdiVaFitioak1L+yQoFFnii32qIMdU
+jSiJXJ7czB5+1ZYAjsnOParuN/3mXnq59enDv4uhNFD5rLFAUWnkQEEpAIBj21yw
+sdYZ+QsGVUcmoN54MA3QX6D5EIRvhEM7zFq8FAM4lGSH2JcaDEpFBgiHIpPAi2g+
+TlwhaOLXb96o/Gfz59k4lvsKKdi2g4j8+e3tx9lK/Y+9NP6XUEKofBxHPFhQSYnw
+XM0ezMYuf8VTbeafxpb4rLMcjgqRGSurNBinuMsec5OATkErfQj/ajLIKi8SERK5
+p2r8u0Y6M6vvz6D0asMfrXPzUXtMmBJY4UnefEUr1XMYfOuYCUEz4DICldwi2zpU
+Fcq58l+ucbD3RrDQPZtEwzIz5s+cR6F7A10+ogM6wCyu5EIoJYHH2i5slAgPrrXB
+qhh+PB+cSHGQ+y8NxJWQLvr1zvbvj34XXtYNZAEMkOf4aARga3YDfED22oedbj+R
+R7kmXVUUROdQS5Bt30jrMdlbzDcEwh/rB6s1O6EDttDBw0uMy60=
+=+RXI
+-----END PGP SIGNATURE-----
+
+--nextPart7036856.UipX05xarL--
+
+
+
+
+--===============0428202073==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0428202073==--
+
+
+
