@@ -1,56 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957E636E0A1
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 22:57:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8E736E0BA
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 23:09:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3B2B6EC45;
-	Wed, 28 Apr 2021 20:57:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8BB96EC3F;
+	Wed, 28 Apr 2021 21:09:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com
- [IPv6:2607:f8b0:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18DD96EC3D;
- Wed, 28 Apr 2021 20:57:38 +0000 (UTC)
-Received: by mail-ot1-x329.google.com with SMTP id
- d3-20020a9d29030000b029027e8019067fso57716678otb.13; 
- Wed, 28 Apr 2021 13:57:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=VoBUWBPezbfw1+PHsV6WbVogGOVLqLK1utShMT7jZyQ=;
- b=kb7PWEuPoP2PB1Dqtqixz76QI+0O2hSranUuSrbIvnu7tZGncGJHavE0rMNW4XDEqC
- FUt+F6rwrOJjpUH3ldXHiDZxuao6Y1raL4LnkQYiHX68st7qv9ES6HOL+LA9NlwOvKDK
- ffoYogHSSc4qVONkEcMg9qzbERkFz4aOPZwlF8xgd1nCJKRvjzsMyIbynqm+RalPaHBa
- m7W8IBIEhnn7Kc64M4hbHskRMm6SwJn6pUoVW3wW0Ibj8oi5Slr9dp8ML3M60U6HaAlA
- 9tsbtZOMAnCdCOZlY0056nytEgopmU28NZXYt3hEJ/Hl2Mu3mg2oVAfClsqpdAluzLa6
- 3W3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=VoBUWBPezbfw1+PHsV6WbVogGOVLqLK1utShMT7jZyQ=;
- b=TIz7DAoJs55M8/AXqETA63+RKSJfzS1yPoZqSO6G6uIRSmBhbU36agNinYCnk2Y677
- 8NBUu8Brsq8JV3KqbLv2rhQsm7vNQbhb5bt5jHRrww27M6+DlPPuGN1Y7BCuF/4NKgBJ
- +r2YOJBQkES+fYEoB8oCFl4HmZK3Dawgq/easJdsG+ss8GzoSctav0knu8WtwXjXx76C
- uGNgbOQK1AmP+LE91WFgSnhMAT6Afm0UOO7PIoXu1aYrfO6tEt82Z4XeOAPRSWPY+elb
- TyOUhepv33HzRQ/wxWksni4upl5BRcX40aHCG4DABrvb63bFjRJM0avPGIMtj+F5Txcd
- /F7A==
-X-Gm-Message-State: AOAM53277nudcDHJJFS/cZmZxBY5l/NRVBLKoKso2n1dnAbpxZ8tZJxK
- PvpJX5b8OR6lmBNd52OFJKvD6/JIUVO3WuuneH4=
-X-Google-Smtp-Source: ABdhPJwCgaYaoQxLAz19mr4AuV1Q4aWFt4y0HaY3/SfOjfkx1IppE3zZ2ThNotUDsuMO3HGnc+Kr9l9WPLkcrwMlaSU=
-X-Received: by 2002:a9d:8d1:: with SMTP id 75mr7740925otf.23.1619643457474;
- Wed, 28 Apr 2021 13:57:37 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A26846EC3F;
+ Wed, 28 Apr 2021 21:09:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 94F93A47EB;
+ Wed, 28 Apr 2021 21:09:16 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210422163329.dvbuwre3akwdmzjt@gilmour>
- <CADnq5_O39XAV+EF=CeKGK3UEG6E_6Gt_goW6u1+5siC5ROtz4Q@mail.gmail.com>
- <20210426073515.5lxw64eota7usaq4@gilmour>
-In-Reply-To: <20210426073515.5lxw64eota7usaq4@gilmour>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 28 Apr 2021 16:57:26 -0400
-Message-ID: <CADnq5_MqQo95FQvz2Mj3G7LoMGNkyu=5cLqKpfm01E_0Uywa5w@mail.gmail.com>
-To: Maxime Ripard <maxime@cerno.tech>
-Subject: Re: [Intel-gfx] [PULL] drm-misc-next-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nikola Cornij" <nikola.cornij@amd.com>
+Date: Wed, 28 Apr 2021 21:09:16 -0000
+Message-ID: <161964415660.24076.9675371339598382323@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210428204406.1067318-1-nikola.cornij@amd.com>
+In-Reply-To: <20210428204406.1067318-1-nikola.cornij@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/drm=5Fmst=3A_Use_Extended_Base_Receiver_Capability_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,36 +39,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Apr 26, 2021 at 3:35 AM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> Hi Alex,
->
-> On Thu, Apr 22, 2021 at 12:40:10PM -0400, Alex Deucher wrote:
-> > On Thu, Apr 22, 2021 at 12:33 PM Maxime Ripard <maxime@cerno.tech> wrote:
-> > >
-> > > Hi Dave, Daniel,
-> > >
-> > > Here's this week drm-misc-next-fixes PR, for the next merge window
-> > >
-> >
-> > Can we also cherry-pick this patch:
-> > https://cgit.freedesktop.org/drm/drm-misc/commit/?id=d510c88cfbb294d2b1e2d0b71576e9b79d0e2e83
-> > It should have really gone into drm-misc-next-fixes rather than
-> > drm-misc-next, but I misjudged the timing.
->
-> Yeah, just cherry-pick it, I'll keep sending PR during the merge window :)
+== Series Details ==
 
-Thanks, I cherry-picked it yesterday.
+Series: drm/drm_mst: Use Extended Base Receiver Capability (rev2)
+URL   : https://patchwork.freedesktop.org/series/89590/
+State : warning
 
-Alex
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+f0fa6e36ebac drm/drm_mst: Use Extended Base Receiver Capability DPCD space
+-:22: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2dcab875e763 ("Revert "drm/dp_mst: Retrieve extended DPCD caps for topology manager"")'
+#22: 
+This also reverts 'commit 2dcab875e763 ("Revert "drm/dp_mst: Retrieve
+
+-:67: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#67: FILE: drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c:1897:
++bool dc_link_dp_get_max_link_enc_cap(const struct dc_link *link, struct dc_link_settings *max_link_enc_cap)
+
+-:96: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#96: FILE: drivers/gpu/drm/amd/display/dc/dc_link.h:349:
++bool dc_link_dp_get_max_link_enc_cap(const struct dc_link *link, struct dc_link_settings *max_link_enc_cap);
+
+total: 1 errors, 2 warnings, 0 checks, 201 lines checked
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
