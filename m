@@ -2,31 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E8E736E0BA
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 23:09:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F144436E0D1
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 23:13:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8BB96EC3F;
-	Wed, 28 Apr 2021 21:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E97BE6EC48;
+	Wed, 28 Apr 2021 21:13:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A26846EC3F;
- Wed, 28 Apr 2021 21:09:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 94F93A47EB;
- Wed, 28 Apr 2021 21:09:16 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE0386E19A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 21:13:01 +0000 (UTC)
+IronPort-SDR: o6uZqYCg7SBe8aMq1X3eTi25Mq/2Xby36o4Ap0OIn5Rcl7fYpdkXiAfsFpNMjNHxx5J0nnyDA4
+ sWYyPYJhJMzA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="193665200"
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="193665200"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2021 14:13:00 -0700
+IronPort-SDR: FX31l9OOECK7h3+S3fI2J+U2wUxbeqihkmhjNiPYIjxhHIvSOsEedGCxZHZJ5JUQNTO+YkfmD8
+ GHKS8SZ6iXTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="423716006"
+Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
+ by fmsmga008.fm.intel.com with ESMTP; 28 Apr 2021 14:13:00 -0700
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 28 Apr 2021 14:12:46 -0700
+Message-Id: <20210428211249.11037-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nikola Cornij" <nikola.cornij@amd.com>
-Date: Wed, 28 Apr 2021 21:09:16 -0000
-Message-ID: <161964415660.24076.9675371339598382323@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210428204406.1067318-1-nikola.cornij@amd.com>
-In-Reply-To: <20210428204406.1067318-1-nikola.cornij@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/drm=5Fmst=3A_Use_Extended_Base_Receiver_Capability_=28r?=
- =?utf-8?q?ev2=29?=
+Subject: [Intel-gfx] [PATCH 0/3] Pipe DMC Prep patches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,37 +44,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This series adds the prep work needed before the
+actual Pipe DMC implementation.
 
-Series: drm/drm_mst: Use Extended Base Receiver Capability (rev2)
-URL   : https://patchwork.freedesktop.org/series/89590/
-State : warning
+Anusha Srivatsa (3):
+  drm/i915/csr: s/DRM_ERROR/drm_err
+  drm/i915/csr: Add intel_csr_has_dmc_payload() helper
+  drm/i915/csr: Introduce DMC_FW_MAIN
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_csr.c      | 94 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_csr.h      | 33 +++++++
+ .../drm/i915/display/intel_display_debugfs.c  |  4 +-
+ .../drm/i915/display/intel_display_power.c    | 16 ++--
+ drivers/gpu/drm/i915/i915_drv.h               | 18 +---
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
+ 6 files changed, 92 insertions(+), 75 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-f0fa6e36ebac drm/drm_mst: Use Extended Base Receiver Capability DPCD space
--:22: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 2dcab875e763 ("Revert "drm/dp_mst: Retrieve extended DPCD caps for topology manager"")'
-#22: 
-This also reverts 'commit 2dcab875e763 ("Revert "drm/dp_mst: Retrieve
-
--:67: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#67: FILE: drivers/gpu/drm/amd/display/dc/core/dc_link_dp.c:1897:
-+bool dc_link_dp_get_max_link_enc_cap(const struct dc_link *link, struct dc_link_settings *max_link_enc_cap)
-
--:96: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
-#96: FILE: drivers/gpu/drm/amd/display/dc/dc_link.h:349:
-+bool dc_link_dp_get_max_link_enc_cap(const struct dc_link *link, struct dc_link_settings *max_link_enc_cap);
-
-total: 1 errors, 2 warnings, 0 checks, 201 lines checked
-
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
