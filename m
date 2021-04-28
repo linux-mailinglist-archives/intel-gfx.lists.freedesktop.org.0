@@ -2,41 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8C0C36D2FA
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 09:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D945B36D34A
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 09:38:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C3B76EAA6;
-	Wed, 28 Apr 2021 07:20:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFF066EAB2;
+	Wed, 28 Apr 2021 07:37:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 615EC6EAA6
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 07:20:31 +0000 (UTC)
-IronPort-SDR: yNWmFDmPN8BwZ87eVJ/wdddS8gU+lOhR0870LtwjOzxee3uKyEGlg2jJmTCYKkXgPKNKkM8FC1
- TOOOAPK9YRHg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9967"; a="282013908"
-X-IronPort-AV: E=Sophos;i="5.82,257,1613462400"; d="scan'208";a="282013908"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 00:20:30 -0700
-IronPort-SDR: 7vCHJnilPwijioKz8DBM7MDOaWlxMCdl0e29DeVAoASu+eSI5bJvHl77w5aNdI9rzIaCKMje+a
- zYykyAVbRrzw==
-X-IronPort-AV: E=Sophos;i="5.82,257,1613462400"; d="scan'208";a="430166519"
-Received: from ajalsove-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.39.247])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2021 00:20:28 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210428061808.2848432-1-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210427230756.2847495-5-lucas.demarchi@intel.com>
- <20210428061808.2848432-1-lucas.demarchi@intel.com>
-Date: Wed, 28 Apr 2021 10:20:25 +0300
-Message-ID: <87fsza50zq.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ECB8F6EAB1;
+ Wed, 28 Apr 2021 07:37:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DB0D6A7DFC;
+ Wed, 28 Apr 2021 07:37:56 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: hide workaround for
- broken vbt in intel_bios.c
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Wed, 28 Apr 2021 07:37:56 -0000
+Message-ID: <161959547686.24077.1344872851793754433@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210427230756.2847495-1-lucas.demarchi@intel.com>
+In-Reply-To: <20210427230756.2847495-1-lucas.demarchi@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgU2lt?=
+ =?utf-8?q?plify_intel=5Fsetup=5Foutputs_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,99 +38,161 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1796547184=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 27 Apr 2021, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> Instead of poluting the normal code path in intel_display.c, make
-> intel_bios.c handle the brokenness of the VBT.
->
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c    | 15 +++++++++++++++
->  drivers/gpu/drm/i915/display/intel_display.c | 14 ++------------
->  2 files changed, 17 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index befab891a6b9..e9f828452412 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -1852,6 +1852,14 @@ intel_bios_encoder_supports_edp(const struct intel_bios_encoder_data *devdata)
->  		devdata->child.device_type & DEVICE_TYPE_INTERNAL_CONNECTOR;
->  }
->  
-> +static bool skip_broken_vbt(struct drm_i915_private *i915, enum port port)
+--===============1796547184==
+Content-Type: multipart/alternative;
+ boundary="===============7764189000339535766=="
 
-The idea of the patch seems good to me, but I'll nitpick on the naming.
+--===============7764189000339535766==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I suggest calling this positively is_port_valid() or something like
-that.
+== Series Details ==
 
-With that,
+Series: Simplify intel_setup_outputs (rev4)
+URL   : https://patchwork.freedesktop.org/series/88988/
+State : success
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
 
-> +{
-> +	if (port == PORT_F && (IS_ICELAKE(i915) || IS_CANNONLAKE(i915)))
-> +		return !IS_ICL_WITH_PORT_F(i915) && !IS_CNL_WITH_PORT_F(i915);
-> +
-> +	return false;
-> +}
-> +
->  static void parse_ddi_port(struct drm_i915_private *i915,
->  			   struct intel_bios_encoder_data *devdata)
->  {
-> @@ -1865,6 +1873,13 @@ static void parse_ddi_port(struct drm_i915_private *i915,
->  	if (port == PORT_NONE)
->  		return;
->  
-> +	if (skip_broken_vbt(i915, port)) {
-> +		drm_dbg_kms(&i915->drm,
-> +			    "VBT reports port %c as supported, but that can't be true: skipping\n",
-> +			    port_name(port));
-> +		return;
-> +	}
-> +
->  	info = &i915->vbt.ddi_port_info[port];
->  
->  	if (info->devdata) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 55f8f2ceada2..87a85de5e03d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -10868,15 +10868,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->  		intel_ddi_init(dev_priv, PORT_C);
->  		intel_ddi_init(dev_priv, PORT_D);
->  		intel_ddi_init(dev_priv, PORT_E);
-> -
-> -		/*
-> -		 * On some ICL SKUs port F is not present, but broken VBTs mark
-> -		 * the port as present. Only try to initialize port F for the
-> -		 * SKUs that may actually have it.
-> -		 */
-> -		if (IS_ICL_WITH_PORT_F(dev_priv))
-> -			intel_ddi_init(dev_priv, PORT_F);
-> -
-> +		intel_ddi_init(dev_priv, PORT_F);
->  		icl_dsi_init(dev_priv);
->  	} else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) {
->  		intel_ddi_init(dev_priv, PORT_A);
-> @@ -10889,9 +10881,7 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
->  		intel_ddi_init(dev_priv, PORT_C);
->  		intel_ddi_init(dev_priv, PORT_D);
->  		intel_ddi_init(dev_priv, PORT_E);
-> -
-> -		if (IS_CNL_WITH_PORT_F(dev_priv))
-> -			intel_ddi_init(dev_priv, PORT_F);
-> +		intel_ddi_init(dev_priv, PORT_F);
->  	} else if (HAS_DDI(dev_priv)) {
->  		u32 found;
+CI Bug Log - changes from CI_DRM_10019 -> Patchwork_20014
+====================================================
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20014/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20014 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20014/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+
+
+Participating hosts (45 -> 39)
+------------------------------
+
+  Missing    (6): fi-rkl-11500t fi-ilk-m540 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10019 -> Patchwork_20014
+
+  CI-20190529: 20190529
+  CI_DRM_10019: acf28153df39c6dab44a8691ecaad05f1f37ed46 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6076: 9ab0820dbd07781161c1ace6973ea222fd24e53a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20014: f27a8cb58de37a4c267b7e8a618f49ae0e5ca581 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f27a8cb58de3 drm/i915/display: hide workaround for broken vbt in intel_bios.c
+593377cfe8cb drm/i915/display: remove strap checks from gen 9
+cdad6edb5b72 drm/i915/display: remove FIXME comment for intended feature
+ce98f174164a drm/i915/display: move vbt check to intel_ddi_init()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20014/index.html
+
+--===============7764189000339535766==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Simplify intel_setup_outputs (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/88988/">https://patchwork.freedesktop.org/series/88988/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20014/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20014/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10019 -&gt; Patchwork_20014</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20014/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20014 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_prime@amd-to-i915:<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20014/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (45 -&gt; 39)</h2>
+<p>Missing    (6): fi-rkl-11500t fi-ilk-m540 fi-hsw-4200u fi-tgl-1115g4 fi-bsw-cyan fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10019 -&gt; Patchwork_20014</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10019: acf28153df39c6dab44a8691ecaad05f1f37ed46 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6076: 9ab0820dbd07781161c1ace6973ea222fd24e53a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20014: f27a8cb58de37a4c267b7e8a618f49ae0e5ca581 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f27a8cb58de3 drm/i915/display: hide workaround for broken vbt in intel_bios.c<br />
+593377cfe8cb drm/i915/display: remove strap checks from gen 9<br />
+cdad6edb5b72 drm/i915/display: remove FIXME comment for intended feature<br />
+ce98f174164a drm/i915/display: move vbt check to intel_ddi_init()</p>
+
+</body>
+</html>
+
+--===============7764189000339535766==--
+
+--===============1796547184==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1796547184==--
