@@ -2,60 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6362436DDE7
-	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 19:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB4B36DDF1
+	for <lists+intel-gfx@lfdr.de>; Wed, 28 Apr 2021 19:12:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FAD96E10F;
-	Wed, 28 Apr 2021 17:09:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A662D89B05;
+	Wed, 28 Apr 2021 17:12:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
- [IPv6:2a00:1450:4864:20::629])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCB766ECD9
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 17:09:44 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id r12so95728208ejr.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 10:09:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=g2oPnxKbug4ZQyYnKoQEp8G0S59q7mO9fI27sL6LUmM=;
- b=StPLB44tgNmFzs0KquC2KTlRxdFV9D3QWJiPCiUrzyOQXpX4iYmbWatRK5hndFuo/0
- tLOmNwz36KttcSMGoyyqppLn+aAoXvr0PJ+uMC930eanrEDTgvxYM6FOA9MqxXvSVgi4
- SsHQJu3Nzlq2T0D8k4lt7VKzKlWSsowSEequK1AZ++UEWjcfxAuIQeplkrlZh/fHPMhB
- Wh4nRx75s/Q7UMd11dO/FQ/3oFB0mB3ANjOcMQ7yykYyyIQGrXHlV5dsX2mnS42WdfCf
- UuFkDiPVtWrUbqbtpTRbKZaSAlroa4RTT6YxoZsF+8C/WZ6mOMF/zBmYL6BEbf1cndSD
- 9/VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=g2oPnxKbug4ZQyYnKoQEp8G0S59q7mO9fI27sL6LUmM=;
- b=BHJBzKTj6FHv5s4SQmg4JfMkKxo0UGHEnIVqUoEwY4O8CJaYFcZ4h41IeIjpz0hnl5
- TMGmosd8Q2QRvmNCVZwmYETGqE5csJbFH83gHRyPwOBBME1MUqZuUuxIWz8g85fuLUxI
- qSKqWCkUHnWlAXq8ITtfJfEQlQBstdYc6J95Qysw2KvPrdOJZEbsm7IORykhK4l9cKmH
- mCcCl9zs3/RXQ8nvAeMNEpESqw9tjTcQ6SqAD89vofm/cf4aOvzpuJWDvb11iHnt6v/u
- gSKJv2lr8DPwTqO/y/UBQHdwtYtIRXLaGIG0AM/RRClE7q0tYwILWxPwZk2afISe36+b
- kCCA==
-X-Gm-Message-State: AOAM532hwwP/7mgNAGHGm1sL1lKYiYAN5D9G3TgftRSHKPFU0ZOhpqFv
- AjhWDuZwE5srHTBq31CxUiT6/uAQ+XvOZWuKlt30Nw==
-X-Google-Smtp-Source: ABdhPJzs0A36/UOFl4ra/fvooGMHw74LsoZc/YIuuCsegW6q1ggNjXTQbU4pDhC0d8MuCgU6WNJwcUYARcEeoKhHop4=
-X-Received: by 2002:a17:906:dc90:: with SMTP id
- cs16mr29826570ejc.210.1619629783415; 
- Wed, 28 Apr 2021 10:09:43 -0700 (PDT)
+Received: from smtp113.ord1c.emailsrvr.com (smtp113.ord1c.emailsrvr.com
+ [108.166.43.113])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C3876ECE8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 28 Apr 2021 17:12:19 +0000 (UTC)
+X-Auth-ID: kenneth@whitecape.org
+Received: by smtp15.relay.ord1c.emailsrvr.com (Authenticated sender:
+ kenneth-AT-whitecape.org) with ESMTPSA id 8203320199; 
+ Wed, 28 Apr 2021 13:12:17 -0400 (EDT)
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: Matthew Auld <matthew.auld@intel.com>,
+ Jason Ekstrand <jason@jlekstrand.net>
+Date: Wed, 28 Apr 2021 10:12:12 -0700
+Message-ID: <8049200.4jvIBUede8@mizzik>
+In-Reply-To: <CAOFGe95sNTYu3YSZf7eP16ssz=goMVxtoZx2yKiY9xJMS7A3Ew@mail.gmail.com>
+References: <20210426093901.28937-1-matthew.auld@intel.com>
+ <bf868000-6a97-ec98-e154-548782a9a865@intel.com>
+ <CAOFGe95sNTYu3YSZf7eP16ssz=goMVxtoZx2yKiY9xJMS7A3Ew@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-10-jason@jlekstrand.net>
- <YIk14zVfa8Mw4rUF@phenom.ffwll.local>
- <6b388d4d-1d50-94f3-344a-5b6b3639e8ad@linux.intel.com>
- <YIlrCmvC10oAiRcL@phenom.ffwll.local>
- <27db8ded-3b17-748e-f602-a8c1aef7367f@linux.intel.com>
-In-Reply-To: <27db8ded-3b17-748e-f602-a8c1aef7367f@linux.intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Wed, 28 Apr 2021 12:09:31 -0500
-Message-ID: <CAOFGe94czhE=SHZLOWmH6vPRs1ujhsP9BBxc6i+N_bkPZ+6UHw@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 09/21] drm/i915/gem: Disallow creating
- contexts with too many engines
+X-Classification-ID: ccb12a51-a55f-46d5-888a-2a59a742c0d9-1-1
+Subject: Re: [Intel-gfx] [PATCH 1/9] drm/doc/rfc: i915 DG1 uAPI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,75 +41,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com>,
+ Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Dave Airlie <airlied@redhat.com>, Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ ML mesa-dev <mesa-dev@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============2025380712=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 28, 2021 at 9:26 AM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
-> On 28/04/2021 15:02, Daniel Vetter wrote:
-> > On Wed, Apr 28, 2021 at 11:42:31AM +0100, Tvrtko Ursulin wrote:
-> >>
-> >> On 28/04/2021 11:16, Daniel Vetter wrote:
-> >>> On Fri, Apr 23, 2021 at 05:31:19PM -0500, Jason Ekstrand wrote:
-> >>>> There's no sense in allowing userspace to create more engines than it
-> >>>> can possibly access via execbuf.
-> >>>>
-> >>>> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> >>>> ---
-> >>>>    drivers/gpu/drm/i915/gem/i915_gem_context.c | 7 +++----
-> >>>>    1 file changed, 3 insertions(+), 4 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> >>>> index 5f8d0faf783aa..ecb3bf5369857 100644
-> >>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> >>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> >>>> @@ -1640,11 +1640,10 @@ set_engines(struct i915_gem_context *ctx,
-> >>>>                    return -EINVAL;
-> >>>>            }
-> >>>> -  /*
-> >>>> -   * Note that I915_EXEC_RING_MASK limits execbuf to only using the
-> >>>> -   * first 64 engines defined here.
-> >>>> -   */
-> >>>>            num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
-> >>>
-> >>> Maybe add a comment like /* RING_MASK has not shift, so can be used
-> >>> directly here */ since I had to check that :-)
-> >>>
-> >>> Same story about igt testcases needed, just to be sure.
-> >>>
-> >>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> >>
-> >> I am not sure about the churn vs benefit ratio here. There are also patches
-> >> which extend the engine selection field in execbuf2 over the unused
-> >> constants bits (with an explicit flag). So churn upstream and churn in
-> >> internal (if interesting) for not much benefit.
-> >
-> > This isn't churn.
-> >
-> > This is "lock done uapi properly".
+--===============2025380712==
+Content-Type: multipart/signed; boundary="nextPart5263843.F5xLCIcnGf"; micalg="pgp-sha256"; protocol="application/pgp-signature"
 
-Pretty much.
+--nextPart5263843.F5xLCIcnGf
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: Matthew Auld <matthew.auld@intel.com>, Jason Ekstrand <jason@jlekstrand.net>
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>, Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com>, Jon Bloomfield <jon.bloomfield@intel.com>, Jordan Justen <jordan.l.justen@intel.com>, Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@gmail.com>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, ML mesa-dev <mesa-dev@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@ffwll.ch>, Dave Airlie <airlied@redhat.com>
+Subject: Re: [PATCH 1/9] drm/doc/rfc: i915 DG1 uAPI
+Date: Wed, 28 Apr 2021 10:12:12 -0700
+Message-ID: <8049200.4jvIBUede8@mizzik>
+In-Reply-To: <CAOFGe95sNTYu3YSZf7eP16ssz=goMVxtoZx2yKiY9xJMS7A3Ew@mail.gmail.com>
+References: <20210426093901.28937-1-matthew.auld@intel.com> <bf868000-6a97-ec98-e154-548782a9a865@intel.com> <CAOFGe95sNTYu3YSZf7eP16ssz=goMVxtoZx2yKiY9xJMS7A3Ew@mail.gmail.com>
 
-> IMO it is a "meh" patch. Doesn't fix any problems and will create work
-> for other people and man hours spent which no one will ever properly
-> account against.
->
-> Number of contexts in the engine map should not really be tied to
-> execbuf2. As is demonstrated by the incoming work to address more than
-> 63 engines, either as an extension to execbuf2 or future execbuf3.
+On Wednesday, April 28, 2021 9:56:25 AM PDT Jason Ekstrand wrote:
+> On Wed, Apr 28, 2021 at 11:41 AM Matthew Auld <matthew.auld@intel.com> wrote:
+[snip]
+> > Slightly orthogonal: what does Mesa do here for snooped vs LLC
+> > platforms? Does it make such a distinction? Just curious.
+> 
+> In Vulkan on non-LLC platforms, we only enable snooping for things
+> that are going to be mapped: staging buffers, state buffers, batches,
+> etc.  For anything that's not mapped (tiled images, etc.) we leave
+> snooping off on non-LLC platforms so we don't take a hit from it.  In
+> GL, I think it works out to be effectively the same but it's a less
+> obvious decision there.
+> 
+> --Jason
 
-Which userspace driver has requested more than 64 engines in a single context?
+iris currently enables snooping on non-LLC platforms when Gallium marks
+a resource as PIPE_USAGE_STAGING, which generally means it's going to be
+mapped and "fast CPU access" is desired.  Most buffers are not snooped.
 
-Also, for execbuf3, I'd like to get rid of contexts entirely and have
-engines be their own userspace-visible object.  If we go this
-direction, you can have UINT32_MAX of them.  Problem solved.
+I don't believe i965 uses snooping at all, surprisingly.
 
---Jason
+--Ken
+
+--nextPart5263843.F5xLCIcnGf
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAmCJl2wACgkQW1vaBx1J
+zDhR1A//af0oss4ddalEUbGfV/ijKqW7P0rwnKTXdPHTiGmL7HujWklUSAzIENOu
+0wwfEvy42+fOftoDeo9sMMkuChT732rQX6OrwYw766UYwOTWySbKei87te7jLEGQ
+EGb/hUYhq99LFq043Oxeuyy4HhXTQEQafNVj8isCk2WNQWbcCZl/gO03LF9iC9Y9
+OjU7sYWlWPHkUCBPdcL0o31qiBaunZrJv8RbjVm4Csr+MsI3zRLdzZ0SiUVKFvIn
+sIonBFw2JqMSUugWqLKJwqs5z/dVz/xJCVds8/mOic4V2g+d6nP5jkLWUTTNFXkF
+jDZSTxrMwkjAj2GxhgBpBQc22wViTlaIi3vVx7KFFba5hF4yrEhkN5msUJoxqQME
+DWNFW1H1DjV77lierhsowW5ucZ12DaVSAcubGUp6rUKc5oYFXOZgPVyZksj5sqJs
+9vYA72Bb6WYq095vkoZcNSOXr2XqmiGCx7rqVogWLtMhfr0ynPAxHwvwB54F9UJS
+ndm9qR6GwNo0mbSF7tZ+042AlPN0W+7dFaegXszj2NQCkrFI7ZzWpEuWOe5spFV4
+p0YIw7ec7jQluOmmC3WUYj1eQO+IqmfZpYD76fMkt9WqHpJ2uoONzrKWpDmDvyt3
+P/7/xJER+ALIrVU53y75dAKosHC+i3Lq63NjDkGcFhHFVm1+ZDg=
+=VfQU
+-----END PGP SIGNATURE-----
+
+--nextPart5263843.F5xLCIcnGf--
+
+
+
+
+--===============2025380712==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============2025380712==--
+
+
+
