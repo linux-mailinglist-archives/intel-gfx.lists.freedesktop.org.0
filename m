@@ -1,31 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B36F36F020
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 21:08:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C8836F022
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 21:09:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A90D26F490;
-	Thu, 29 Apr 2021 19:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 980D96F492;
+	Thu, 29 Apr 2021 19:09:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6D7606F490;
- Thu, 29 Apr 2021 19:08:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 662C1A41FB;
- Thu, 29 Apr 2021 19:08:37 +0000 (UTC)
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
+ [IPv6:2a00:1450:4864:20::42f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 463A66F492
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 19:09:52 +0000 (UTC)
+Received: by mail-wr1-x42f.google.com with SMTP id x5so17730213wrv.13
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 12:09:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=1dmo5Wmh/ugIBygOrQPFARR/Rc5riBKotg0rKsNd/fk=;
+ b=PPtwmHEckRIBUH8hQOzBxajX3TdRoTA+lpU9blquQ+gpggdOqsBiyeO6vAuNR39SWT
+ MUpTHvhvJz3qHnwbNoCSFLBkB6Cn3faK3Ct6UdCPmH4S7Hx5MA2PPBuAU9r3hUY1dEeA
+ lkpoT+R6uCrjzxEM95uLBoygM7AlIq0XZx4oI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=1dmo5Wmh/ugIBygOrQPFARR/Rc5riBKotg0rKsNd/fk=;
+ b=nyji1VQywv1fgjKfYDSNuiNbTeEeMC+SKp2jyVsRfLQRMQX9YtTSsx30dTFbBAFJ7o
+ tBzNH1xydjsuV2yiRJQWgGEgZM9RR6Q6DOmOITccByRVaaM+pyh259ztZCx4Qv4cyxDs
+ hACyZh4yv7VqEeF5WN0ikAeh/WWb/HV3stF06rrwdWl2EGF7QkzsTvDRTdXWIOoLyJ5Y
+ f7IgXi1IDU/QextWjItT03a1R2OzWtDajXJ9gzDEl2ISfdR/8wYANuFtwT7376Jj/1Yi
+ PhRRNE0DpUm9koMV4EhWKMvK+I7dYSBEhikjKnyAX/Tx5ImHH4tV7uzmtJ6K/CMzKPpl
+ PtcQ==
+X-Gm-Message-State: AOAM530+NYa7qzoUD6XFEr1YSup17HULYic4AKqC4g/vuWdvqfSLz3tE
+ falHPwuRTGO+he1gVGlNiFZ0Lg==
+X-Google-Smtp-Source: ABdhPJyY4KyyQAlwKgbmUY3ebe0VTq4Ebh9Ea/4USdywIkju0V7arqiGrMXzluPAlCUiCDuzrhydlQ==
+X-Received: by 2002:adf:f192:: with SMTP id h18mr1447610wro.270.1619723391031; 
+ Thu, 29 Apr 2021 12:09:51 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id p14sm6320337wrx.88.2021.04.29.12.09.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Apr 2021 12:09:50 -0700 (PDT)
+Date: Thu, 29 Apr 2021 21:09:48 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <YIsEfAjFthAyHxUi@phenom.ffwll.local>
+References: <20210428215257.500088-1-hdegoede@redhat.com>
+ <20210428215257.500088-2-hdegoede@redhat.com>
+ <YIqbLDIeGXNSjSTS@phenom.ffwll.local> <YIqehmw+kG53LF3t@kroah.com>
+ <YIqg59yageIUwiwy@phenom.ffwll.local>
+ <4e78d188-f257-ad33-e703-bcbc54a30c31@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Date: Thu, 29 Apr 2021 19:08:37 -0000
-Message-ID: <161972331741.20427.3983159303080271529@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210429134450.302912-1-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20210429134450.302912-1-janusz.krzysztofik@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_wrong_name_announced_on_FB_driver_switching?=
+Content-Disposition: inline
+In-Reply-To: <4e78d188-f257-ad33-e703-bcbc54a30c31@redhat.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 1/9] drm/connector: Make the drm_sysfs
+ connector->kdev device hold a reference to the connector
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,191 +69,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0909152020=="
+Cc: dri-devel@lists.freedesktop.org,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, platform-driver-x86@vger.kernel.org,
+ linux-usb@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0909152020==
-Content-Type: multipart/alternative;
- boundary="===============8279340853418576624=="
+On Thu, Apr 29, 2021 at 02:33:17PM +0200, Hans de Goede wrote:
+> Hi,
+> 
+> On 4/29/21 2:04 PM, Daniel Vetter wrote:
+> > On Thu, Apr 29, 2021 at 01:54:46PM +0200, Greg Kroah-Hartman wrote:
+> >> On Thu, Apr 29, 2021 at 01:40:28PM +0200, Daniel Vetter wrote:
+> >>> On Wed, Apr 28, 2021 at 11:52:49PM +0200, Hans de Goede wrote:
+> >>>> Userspace could hold open a reference to the connector->kdev device,
+> >>>> through e.g. holding a sysfs-atrtribute open after
+> >>>> drm_sysfs_connector_remove() has been called. In this case the connector
+> >>>> could be free-ed while the connector->kdev device's drvdata is still
+> >>>> pointing to it.
+> >>>>
+> >>>> Give drm_connector devices there own device type, which allows
+> >>>> us to specify our own release function and make drm_sysfs_connector_add()
+> >>>> take a reference on the connector object, and have the new release
+> >>>> function put the reference when the device is released.
+> >>>>
+> >>>> Giving drm_connector devices there own device type, will also allow
+> >>>> checking if a device is a drm_connector device with a
+> >>>> "if (device->type == &drm_sysfs_device_connector)" check.
+> >>>>
+> >>>> Note that the setting of the name member of the device_type struct will
+> >>>> cause udev events for drm_connector-s to now contain DEVTYPE=drm_connector
+> >>>> as extra info. So this extends the uevent part of the userspace API.
+> >>>>
+> >>>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> >>>
+> >>> Are you sure? I thought sysfs is supposed to flush out any pending
+> >>> operations (they complete fast) and handle open fd internally?
+> >>
+> >> Yes, it "should" :)
+> > 
+> > Thanks for confirming my vague memories :-)
+> > 
+> > Hans, pls drop this one.
+> 
+> Please see my earlier reply to your review of this patch, it is
+> still needed but for a different reason:
+> 
+> """
+> We still need this change though to make sure that the 
+> "drm/connector: Add drm_connector_find_by_fwnode() function"
+> does not end up following a dangling drvdat pointer from one
+> if the drm_connector kdev-s.
+> 
+> The class_dev_iter_init() in drm_connector_find_by_fwnode() gets
+> a reference on all devices and between getting that reference
+> and it calling drm_connector_get() - drm_connector_unregister()
+> may run and drop the possibly last reference to the
+> drm_connector object, freeing it and leaving the kdev's
+> drvdata as a dangling pointer.
+> """
+> 
+> This is actually why I added it initially, and while adding it
+> I came up with this wrong theory of why it was necessary independently
+> of the drm_connector_find_by_fwnode() addition, sorry about that.
 
---===============8279340853418576624==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Generally that's handled by a kref_get_unless_zero under the protection of
+the lock which protects the weak reference. Which I think is the right
+model here (at a glance at least) since this is a lookup function.
 
-== Series Details ==
-
-Series: drm/i915: Fix wrong name announced on FB driver switching
-URL   : https://patchwork.freedesktop.org/series/89663/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10027 -> Patchwork_20039
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20039 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_prime@amd-to-i915:
-    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][2] ([i915#1888]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - {fi-rkl-11500t}:    [SKIP][4] ([i915#1849] / [i915#3180]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10027 -> Patchwork_20039
-
-  CI-20190529: 20190529
-  CI_DRM_10027: 1748cb1e8bdf543570b86f39487b171ad4c1f896 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20039: a3fb33cbfd906dc09a9e08ba7f50f9db185ef4e2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a3fb33cbfd90 drm/i915: Fix wrong name announced on FB driver switching
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html
-
---===============8279340853418576624==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix wrong name announced on FB driver switching</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89663/">https://patchwork.freedesktop.org/series/89663/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10027 -&gt; Patchwork_20039</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20039 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@amdgpu/amd_prime@amd-to-i915:<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3180">i915#3180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10027 -&gt; Patchwork_20039</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10027: 1748cb1e8bdf543570b86f39487b171ad4c1f896 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20039: a3fb33cbfd906dc09a9e08ba7f50f9db185ef4e2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>a3fb33cbfd90 drm/i915: Fix wrong name announced on FB driver switching</p>
-
-</body>
-</html>
-
---===============8279340853418576624==--
-
---===============0909152020==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Lookup tables holding full references tends to lead to all kinds of bad
+side effects.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0909152020==--
