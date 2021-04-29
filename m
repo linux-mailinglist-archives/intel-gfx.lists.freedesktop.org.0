@@ -2,58 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3637136EA9A
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 14:38:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8481036EAEF
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 14:54:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 775236EE92;
-	Thu, 29 Apr 2021 12:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B244A6E255;
+	Thu, 29 Apr 2021 12:54:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com
- [IPv6:2a00:1450:4864:20::42c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 915916EE92
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 12:37:57 +0000 (UTC)
-Received: by mail-wr1-x42c.google.com with SMTP id t18so9189912wry.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 05:37:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=TsdfzRj63EGH81gJ3Y8YhWdjxQcITcYLvCxhLp8oLa4=;
- b=Ms4QJsUzo3TeP1TZ9W4TkKmzMyV9nWniwZwOdlkxVmwDLejnh+ZfmYmi7TV0pnWqDu
- o/qd7iIj2YJBEBiYg9m2zWHMHBNku8kN53BFZlDVe1Q3yFc8pE4P5XayXz6aIkEJBNZN
- S/iIjQsEFVlungLxnZTWch0E1BYZpx6CJMOyA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=TsdfzRj63EGH81gJ3Y8YhWdjxQcITcYLvCxhLp8oLa4=;
- b=jXYrIar/EMW8SB2yW0ZgfGI0/NZtWSBA31/5IlWhE4TytD7Q1i2X+cTbcuhsNiQdnS
- gDtztOYfk9TQHNyeSiYfg8j0CQK4m4TxGxbyzViz++M8TbG5UVTBwKc4ozOjrHDnEFXf
- vSxGV6AeMtOaKsGrMqUHIDVhXjWc9PREObl6xO46L9L8u0wP/Z9tMWikAPSzcypSrBvj
- KjFcY2xpmN7o/Aw37Zp+hGOCQjlKf9PB5PlQgfDHB0hitu1sacg9a87Kk+vEuhlo8o9S
- U7OUd5+UJFT2lkkPsh/rdXbFqAUtcWN6EWkOF1hephY7ncKteJEKPD3zj7tXGVmL8RcJ
- 4U9w==
-X-Gm-Message-State: AOAM530eFi5rKCyuz62LhP9v2Ul8/6Gzxyv4t6LO3Uk8MuXhI0tPsuyL
- j8ZKVIcuQR7Foyn9aThs3Txn/9jYA6gQtg==
-X-Google-Smtp-Source: ABdhPJwNrGFnGkHdx9hhkHY0p6gLBCffx3MP8tZxahZK1cwGhDjYRDgwYu4zcDf6+3GbbkLfCoVbNg==
-X-Received: by 2002:a5d:6452:: with SMTP id d18mr33802588wrw.127.1619699876292; 
- Thu, 29 Apr 2021 05:37:56 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id t20sm9892217wmi.35.2021.04.29.05.37.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Apr 2021 05:37:55 -0700 (PDT)
-Date: Thu, 29 Apr 2021 14:37:54 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YIqook/gsI/w9OXf@phenom.ffwll.local>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FEEC6E255;
+ Thu, 29 Apr 2021 12:54:46 +0000 (UTC)
+IronPort-SDR: iJE09bmyG8nxc1fToYBQDPlUvVKBY6l1JQdHxqc76BHDGbcLZUhBbDFUK567ycpww5jZ9x9ICP
+ GN+sQCR5zbWg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="184128190"
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="184128190"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 05:54:38 -0700
+IronPort-SDR: H8VErtrxWpCR3FZijUnXMoEvuHOllsZe1nhsA+PBBa9FeP8n1TwKFDmKjIO6QW1u+Gobagde28
+ J3RSUb765EdQ==
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="458747327"
+Received: from gwaise-mobl1.ger.corp.intel.com (HELO [10.213.208.64])
+ ([10.213.208.64])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 05:54:37 -0700
+To: Daniel Vetter <daniel@ffwll.ch>
 References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-16-jason@jlekstrand.net>
+ <20210423223131.879208-9-jason@jlekstrand.net>
+ <5d32114c-ff06-7ad3-3deb-b843ede7c89d@linux.intel.com>
+ <YIqllu5RxC1di+yq@phenom.ffwll.local>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <9681e7cc-b56e-f894-6384-85a23f47b4aa@linux.intel.com>
+Date: Thu, 29 Apr 2021 13:54:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210423223131.879208-16-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 15/21] drm/i915/gt: Drop
- i915_address_space::file
+In-Reply-To: <YIqllu5RxC1di+yq@phenom.ffwll.local>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 08/21] drm/i915/gem: Disallow bonding of
+ virtual engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,126 +55,70 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 23, 2021 at 05:31:25PM -0500, Jason Ekstrand wrote:
-> There's a big comment saying how useful it is but no one is using this
-> for anything.
+
+On 29/04/2021 13:24, Daniel Vetter wrote:
+> On Wed, Apr 28, 2021 at 04:51:19PM +0100, Tvrtko Ursulin wrote:
+>>
+>> On 23/04/2021 23:31, Jason Ekstrand wrote:
+>>> This adds a bunch of complexity which the media driver has never
+>>> actually used.  The media driver does technically bond a balanced engine
+>>> to another engine but the balanced engine only has one engine in the
+>>> sibling set.  This doesn't actually result in a virtual engine.
+>>
+>> For historical reference, this is not because uapi was over-engineered but
+>> because certain SKUs never materialized.
 > 
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> Jason said that for SKU with lots of media engines media-driver sets up a
+> set of ctx in userspace with all the pairings (and I guess then load
+> balances in userspace or something like that). Tony Ye also seems to have
+> confirmed that. So I'm not clear on which SKU this is?
 
-I was trying to find anything before all your deletions, but alas nothing.
-I did spent a bit of time on this, and discovered that the debugfs use was
-nuked in
+Not sure if I should disclose it here. But anyway, platform which is 
+currently in upstream and was supposed to be the first to use this uapi 
+was supposed to have at least 4 vcs engines initially, or even 8 vcs + 4 
+vecs at some point. That was the requirement uapi was designed for. For 
+that kind of platform there were supposed to be two virtual engines 
+created, with bonding, for instance parent = [vcs0, vcs2], child = 
+[vcs1, vcs3]; bonds = [vcs0 - vcs1, vcs2 - vcs3]. With more engines the 
+merrier.
 
-db80a1294c23 ("drm/i915/gem: Remove per-client stats from debugfs/i915_gem_objects")
+Userspace load balancing, from memory, came into the picture only as a 
+consequence of balancing between two types of media pipelines which was 
+either working around the rcs contention or lack of sfc, or both. Along 
+the lines of - one stage of a media pipeline can be done either as GPGPU 
+work, or on the media engine, and so userspace was deciding to spawn "a 
+bit of these and a bit of those" to utilise all the GPU blocks. Not 
+really about frame split virtual engines and bonding, but completely 
+different load balancing, between gpgpu and fixed pipeline.
 
-After going through quite a few iterations, e.g.
+> Or maybe the real deal is only future platforms, and there we have GuC
+> scheduler backend.
 
-5b5efdf79abf ("drm/i915: Make debugfs/per_file_stats scale better")
-f6e8aa387171 ("drm/i915: Report the number of closed vma held by each context in debugfs")
+Yes, because SKUs never materialised.
 
-The above removed the need for vm->file because stats debugfs file
-filtered using stats->vm instead of stats->file.
+> Not against adding a bit more context to the commit message, but we need
+> to make sure what we put there is actually correct. Maybe best to ask
+> Tony/Carl as part of getting an ack from them.
 
-History goes on until the original introduction of this (again for
-debugfs) in
+I think there is no need - fact uapi was designed for way more engines 
+than we got to have is straight forward enough.
 
-2bfa996e031b ("drm/i915: Store owning file on the i915_address_space")
+Only unasked for flexibility in the uapi was the fact bonding can 
+express any dependency and not only N consecutive engines as media fixed 
+function needed at the time. I say "at the time" because in fact the 
+"consecutive" engines requirement also got more complicated / broken in 
+a following gen (via fusing and logical instance remapping), proving the 
+point having the uapi disassociated from the hw limitations of the _day_ 
+was a good call.
 
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c |  9 ---------
->  drivers/gpu/drm/i915/gt/intel_gtt.h         | 10 ----------
->  drivers/gpu/drm/i915/selftests/mock_gtt.c   |  1 -
->  3 files changed, 20 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 7929d5a8be449..db9153e0f85a7 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -921,17 +921,10 @@ static int gem_context_register(struct i915_gem_context *ctx,
->  				u32 *id)
->  {
->  	struct drm_i915_private *i915 = ctx->i915;
-> -	struct i915_address_space *vm;
->  	int ret;
->  
->  	ctx->file_priv = fpriv;
->  
-> -	mutex_lock(&ctx->mutex);
-> -	vm = i915_gem_context_vm(ctx);
-> -	if (vm)
-> -		WRITE_ONCE(vm->file, fpriv); /* XXX */
-> -	mutex_unlock(&ctx->mutex);
-> -
->  	ctx->pid = get_task_pid(current, PIDTYPE_PID);
->  	snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
->  		 current->comm, pid_nr(ctx->pid)); 
-> @@ -1030,8 +1023,6 @@ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
->  	if (IS_ERR(ppgtt))
->  		return PTR_ERR(ppgtt);
->  
-> -	ppgtt->vm.file = file_priv;
-> -
->  	if (args->extensions) {
->  		err = i915_user_extensions(u64_to_user_ptr(args->extensions),
->  					   NULL, 0,
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> index e67e34e179131..4c46068e63c9d 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> @@ -217,16 +217,6 @@ struct i915_address_space {
+Regards,
 
-Pls also delete the drm_i915_file_private pre-dcl in this file.
-
-With this added and the history adequately covered in the commit message:
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-
->  	struct intel_gt *gt;
->  	struct drm_i915_private *i915;
->  	struct device *dma;
-> -	/*
-> -	 * Every address space belongs to a struct file - except for the global
-> -	 * GTT that is owned by the driver (and so @file is set to NULL). In
-> -	 * principle, no information should leak from one context to another
-> -	 * (or between files/processes etc) unless explicitly shared by the
-> -	 * owner. Tracking the owner is important in order to free up per-file
-> -	 * objects along with the file, to aide resource tracking, and to
-> -	 * assign blame.
-> -	 */
-> -	struct drm_i915_file_private *file;
->  	u64 total;		/* size addr space maps (ex. 2GB for ggtt) */
->  	u64 reserved;		/* size addr space reserved */
->  
-> diff --git a/drivers/gpu/drm/i915/selftests/mock_gtt.c b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-> index 5c7ae40bba634..cc047ec594f93 100644
-> --- a/drivers/gpu/drm/i915/selftests/mock_gtt.c
-> +++ b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-> @@ -73,7 +73,6 @@ struct i915_ppgtt *mock_ppgtt(struct drm_i915_private *i915, const char *name)
->  	ppgtt->vm.gt = &i915->gt;
->  	ppgtt->vm.i915 = i915;
->  	ppgtt->vm.total = round_down(U64_MAX, PAGE_SIZE);
-> -	ppgtt->vm.file = ERR_PTR(-ENODEV);
->  	ppgtt->vm.dma = i915->drm.dev;
->  
->  	i915_address_space_init(&ppgtt->vm, VM_CLASS_PPGTT);
-> -- 
-> 2.31.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
