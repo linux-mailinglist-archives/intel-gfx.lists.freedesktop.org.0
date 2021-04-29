@@ -1,31 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D4936EEDE
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 19:26:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5BFD36EEEB
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 19:31:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73A806F40E;
-	Thu, 29 Apr 2021 17:26:10 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E23276F40C;
- Thu, 29 Apr 2021 17:26:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DB629A00C9;
- Thu, 29 Apr 2021 17:26:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 798546F410;
+	Thu, 29 Apr 2021 17:31:36 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C441B6F40F;
+ Thu, 29 Apr 2021 17:31:34 +0000 (UTC)
+IronPort-SDR: R7oJp5XgyX5FKTPzc7j93f/tT6Zf0onGH/V/DZugrhP2hZhHGUx4VhgZwgsZJL8gujwTkA4tka
+ Bg5MZo4t4B7g==
+X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="261013134"
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="261013134"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 10:31:17 -0700
+IronPort-SDR: Hjt8lxN15OVyWNo2pJ22mCFUfLgAEMY8dURvP4Z/6QsDF3cNIqVoIYgTl9EY2UE6wXv8uKovEc
+ 21yaUVBo5yYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="426097215"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 29 Apr 2021 10:31:14 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 29 Apr 2021 20:31:13 +0300
+Date: Thu, 29 Apr 2021 20:31:13 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YIrtYaoWV/eyD8oA@intel.com>
+References: <20210429083530.849546-1-tvrtko.ursulin@linux.intel.com>
+ <YIrfb9jvAn/FTt09@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Date: Thu, 29 Apr 2021 17:26:08 -0000
-Message-ID: <161971716889.20426.9749299395682503446@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210429105101.25667-1-tzimmermann@suse.de>
-In-Reply-To: <20210429105101.25667-1-tzimmermann@suse.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Move_struct_drm=5Fdevice=2Epdev_to_legacy_=28rev8=29?=
+Content-Disposition: inline
+In-Reply-To: <YIrfb9jvAn/FTt09@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/overlay: Fix active retire
+ callback alignment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,199 +51,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0171103716=="
+Cc: Intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0171103716==
-Content-Type: multipart/alternative;
- boundary="===============8957385133935853988=="
+On Thu, Apr 29, 2021 at 07:31:43PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Thu, Apr 29, 2021 at 09:35:29AM +0100, Tvrtko Ursulin wrote:
+> > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > =
 
---===============8957385133935853988==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> > __i915_active_call annotation is required on the retire callback to ens=
+ure
+> > correct function alignment.
+> > =
 
-== Series Details ==
+> > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > Fixes: a21ce8ad12d2 ("drm/i915/overlay: Switch to using i915_active tra=
+cking")
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_overlay.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > =
 
-Series: drm: Move struct drm_device.pdev to legacy (rev8)
-URL   : https://patchwork.freedesktop.org/series/84205/
-State : success
+> > diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu=
+/drm/i915/display/intel_overlay.c
+> > index fffbde4256db..428819ba18dd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_overlay.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+> > @@ -383,7 +383,7 @@ static void intel_overlay_off_tail(struct intel_ove=
+rlay *overlay)
+> >  		i830_overlay_clock_gating(dev_priv, true);
+> >  }
+> >  =
 
-== Summary ==
+> > -static void
+> > +__i915_active_call static void
+> =
 
-CI Bug Log - changes from CI_DRM_10027 -> Patchwork_20035
-====================================================
+> Am I blind or are we just packing flag bits into a pointer, passing
+> that to a function, and then immediately unpack the bits again in
+> said function? Why not just pass the flags explicitly?
+> =
 
-Summary
--------
+> Looks like you missed auto_retire()?
 
-  **SUCCESS**
+Ah, just saw the other patch from St=E9phane.
 
-  No regressions found.
+For the series:
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/index.html
+> =
 
-Known issues
-------------
+> >  intel_overlay_last_flip_retire(struct i915_active *active)
+> >  {
+> >  	struct intel_overlay *overlay =3D
+> > -- =
 
-  Here are the changes found in Patchwork_20035 that come from known issues:
+> > 2.30.2
+> > =
 
-### IGT changes ###
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> =
 
-#### Issues hit ####
+> -- =
 
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][1] ([i915#1602] / [i915#2029])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/fi-bdw-5557u/igt@runner@aborted.html
+> Ville Syrj=E4l=E4
+> Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-  
-#### Possible fixes ####
+-- =
 
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [FAIL][2] ([i915#1888]) -> [PASS][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - {fi-rkl-11500t}:    [SKIP][4] ([i915#1849] / [i915#3180]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
-  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
-  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
-
-
-Participating hosts (44 -> 39)
-------------------------------
-
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus fi-snb-2600 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10027 -> Patchwork_20035
-
-  CI-20190529: 20190529
-  CI_DRM_10027: 1748cb1e8bdf543570b86f39487b171ad4c1f896 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20035: 7a800d87d89109e093bb075df3064ae1950749a0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-7a800d87d891 drm: Move struct drm_device.pdev to legacy section
-0dcccce8fbd9 drm/i915: Don't assign to struct drm_device.pdev
-01040200ca25 drm/i915: Remove reference to struct drm_device.pdev
-a03ae470d1af drm/i915/gt: Remove reference to struct drm_device.pdev
-5c97f2a1a75d drm/ast: Remove reference to struct drm_device.pdev
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/index.html
-
---===============8957385133935853988==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Move struct drm_device.pdev to legacy (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84205/">https://patchwork.freedesktop.org/series/84205/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10027 -&gt; Patchwork_20035</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20035 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3180">i915#3180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20035/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (44 -&gt; 39)</h2>
-<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-bdw-samus fi-snb-2600 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10027 -&gt; Patchwork_20035</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10027: 1748cb1e8bdf543570b86f39487b171ad4c1f896 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20035: 7a800d87d89109e093bb075df3064ae1950749a0 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>7a800d87d891 drm: Move struct drm_device.pdev to legacy section<br />
-0dcccce8fbd9 drm/i915: Don't assign to struct drm_device.pdev<br />
-01040200ca25 drm/i915: Remove reference to struct drm_device.pdev<br />
-a03ae470d1af drm/i915/gt: Remove reference to struct drm_device.pdev<br />
-5c97f2a1a75d drm/ast: Remove reference to struct drm_device.pdev</p>
-
-</body>
-</html>
-
---===============8957385133935853988==--
-
---===============0171103716==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0171103716==--
