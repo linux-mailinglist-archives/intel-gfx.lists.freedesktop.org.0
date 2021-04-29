@@ -1,58 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6B936ED6B
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 17:30:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A160C36ED7F
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 17:37:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE7BB6F380;
-	Thu, 29 Apr 2021 15:30:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5602F6EE5C;
+	Thu, 29 Apr 2021 15:37:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
- [IPv6:2a00:1450:4864:20::529])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 038D46F380
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 15:30:03 +0000 (UTC)
-Received: by mail-ed1-x529.google.com with SMTP id n25so6973935edr.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 08:30:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6myubVssAw7lXkBZnLQFsXUBp/1Vkzd2EgxiGxWvdnQ=;
- b=SRj8V17ilWzWaK3nNaggXmUCxyGYY1kIc6QJ2uaf6e9YycUXjWbMmyY1WrBsdLS5Kk
- XBt8M5nxe6cf1aSSmZpYhg5dQOQ0Qu/4vLsYNhnbXK2ZqErDiU4XByXmLxuEsYDODep8
- P/KaDynAq42UI3JE4AppFdR/sxSzR04/OJzHSEX/5m+RPbB4KngJQOjF1BHewa5I3Dx6
- vdpS1GW5KywHlIqTvYynUbtrD5tRud64IgBzzPf2jTHbWEeCTKc5Gek5jgPFUOKjqb8d
- aweGU+mlbLM2hKEqUKk+zNyDTIb9d1oc2RsBMqoDI8ul+JFatT98Gy2Ci1uI05FGOCzq
- lI/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=6myubVssAw7lXkBZnLQFsXUBp/1Vkzd2EgxiGxWvdnQ=;
- b=Cr7ryIIwD7yaZw14K3nAFvMEPmayDBkbaZ9WxfWyzDeOQj7sHVgcW8NXasCxJ+WjGU
- uD4QIdyTublll/pHv1nMbDegyr/tcI7gX1PR9IFSZGRx6ymKqyCzutM2UiOcTHO/DQwv
- nW9U3QC0yGXDgVQY/HPPd2VV6SDYs1o9Rf7itbnL7BKaf6/REIhYtP9nNwxQi1IcS4yS
- IEnge4s4bcC5qx53qQn3gWIYNStptKKhqiwaGdNkNAYdZoJcRKi6A4PMAuZEfBZYwoX/
- kfeQAnUElbV/vDrG8YFe7y17LWUiZ+lrx64G2YlNRiZAbOEqkn2N2h3NjTAhrtrcjnaW
- MC+A==
-X-Gm-Message-State: AOAM531BEEXI/O4Rcpi9ehib3rVnry3KkmiiRYIYVi+Y3MVcbmPI043G
- YFmnf+gHwRsV+sRBhJgW98jVbJdxbTt/BlA58uRrrwxkTZai7Q==
-X-Google-Smtp-Source: ABdhPJwf28p8ZByF94cnscZwNdYiaOLHujI4rhp01F66ZlTvb9hfp1zAOQpARIr02aNQ3uTSbnXRw6Ly4QFHEnTZiHs=
-X-Received: by 2002:a05:6402:1013:: with SMTP id
- c19mr95156edu.213.1619710202457; 
- Thu, 29 Apr 2021 08:30:02 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 726FF6EE5C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 15:37:45 +0000 (UTC)
+IronPort-SDR: /1BZpCxzr68XHb7wTREYq25TudFM/lbjAW3ebpzRI91/qD8/DEHmT7fI2s/upJuPe5WDmb8ykB
+ oPO9rgN+zgAQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="196592699"
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="196592699"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 08:37:44 -0700
+IronPort-SDR: kYljJPkZABznCQiJZg2loZbnwvw+++ojQ3wLn9VSpAWh6YBv8DSoV/c6mdJNrgwjJpMaS/+lmO
+ FwG7Img59c8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="426048771"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 29 Apr 2021 08:37:42 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 29 Apr 2021 18:37:41 +0300
+Date: Thu, 29 Apr 2021 18:37:41 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <YIrSxTrhAao9YPNc@intel.com>
+References: <20210429023535.1653-1-ville.syrjala@linux.intel.com>
+ <87r1it33yq.fsf@intel.com>
 MIME-Version: 1.0
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-15-jason@jlekstrand.net>
- <YIq0QnVG5gn4cOOR@phenom.ffwll.local>
-In-Reply-To: <YIq0QnVG5gn4cOOR@phenom.ffwll.local>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Thu, 29 Apr 2021 10:29:51 -0500
-Message-ID: <CAOFGe97MtMe3OnkYpy4oyLDCLugo5U=orQeONZCBNLiJmX-P5g@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 14/21] drm/i915/gem: Return an error ptr
- from context_lookup
+Content-Disposition: inline
+In-Reply-To: <87r1it33yq.fsf@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Include intel_de_{read,
+ write}_fw() in i915_reg_rw traces
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,145 +51,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 29, 2021 at 8:27 AM Daniel Vetter <daniel@ffwll.ch> wrote:
->
-> On Fri, Apr 23, 2021 at 05:31:24PM -0500, Jason Ekstrand wrote:
-> > We're about to start doing lazy context creation which means contexts
-> > get created in i915_gem_context_lookup and we may start having more
-> > errors than -ENOENT.
+On Thu, Apr 29, 2021 at 11:11:25AM +0300, Jani Nikula wrote:
+> On Thu, 29 Apr 2021, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > >
-> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_context.c    | 12 ++++++------
-> >  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  4 ++--
-> >  drivers/gpu/drm/i915/i915_drv.h                |  2 +-
-> >  drivers/gpu/drm/i915/i915_perf.c               |  4 ++--
-> >  4 files changed, 11 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index 3e883daab93bf..7929d5a8be449 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -2105,8 +2105,8 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
-> >       int ret = 0;
-> >
-> >       ctx = i915_gem_context_lookup(file_priv, args->ctx_id);
-> > -     if (!ctx)
-> > -             return -ENOENT;
-> > +     if (IS_ERR(ctx))
-> > +             return PTR_ERR(ctx);
-> >
-> >       switch (args->param) {
-> >       case I915_CONTEXT_PARAM_GTT_SIZE:
-> > @@ -2174,8 +2174,8 @@ int i915_gem_context_setparam_ioctl(struct drm_device *dev, void *data,
-> >       int ret;
-> >
-> >       ctx = i915_gem_context_lookup(file_priv, args->ctx_id);
-> > -     if (!ctx)
-> > -             return -ENOENT;
-> > +     if (IS_ERR(ctx))
-> > +             return PTR_ERR(ctx);
-> >
-> >       ret = ctx_setparam(file_priv, ctx, args);
-> >
-> > @@ -2194,8 +2194,8 @@ int i915_gem_context_reset_stats_ioctl(struct drm_device *dev,
-> >               return -EINVAL;
-> >
-> >       ctx = i915_gem_context_lookup(file->driver_priv, args->ctx_id);
-> > -     if (!ctx)
-> > -             return -ENOENT;
-> > +     if (IS_ERR(ctx))
-> > +             return PTR_ERR(ctx);
-> >
-> >       /*
-> >        * We opt for unserialised reads here. This may result in tearing
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > index 7024adcd5cf15..de14b26f3b2d5 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> > @@ -739,8 +739,8 @@ static int eb_select_context(struct i915_execbuffer *eb)
-> >       struct i915_gem_context *ctx;
-> >
-> >       ctx = i915_gem_context_lookup(eb->file->driver_priv, eb->args->rsvd1);
-> > -     if (unlikely(!ctx))
-> > -             return -ENOENT;
-> > +     if (unlikely(IS_ERR(ctx)))
-> > +             return PTR_ERR(ctx);
-> >
-> >       eb->gem_context = ctx;
-> >       if (rcu_access_pointer(ctx->vm))
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> > index 8571c5c1509a7..004ed0e59c999 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
->
-> I just realized that I think __i915_gem_context_lookup_rcu doesn't have
-> users anymore. Please make sure it's deleted.
+> > We lost the i915_reg_rw tracepoint for a lot of display registers
+> > when we switched from the heavyweight normal register accessors to
+> > the lightweight _fw() variants.
+> =
 
-I deleted it in "drm/i915: Stop manually RCU banging in reset_stats_ioctl"
+> Sorry, which change was that exactly?
 
+commit dd584fc0711a ("drm/i915: Use I915_READ_FW for plane updates")
+and probably a few others like it.
 
-> > @@ -1851,7 +1851,7 @@ i915_gem_context_lookup(struct drm_i915_file_private *file_priv, u32 id)
-> >               ctx = NULL;
-> >       rcu_read_unlock();
+> =
+
+> > Put the tracepoints back so that
+> > the register traces might actually be useful. Hopefully these should
+> > be close to free when the tracepoint is not enabled and thus not
+> > slow down our vblank critical sections significantly.
 > >
-> > -     return ctx;
-> > +     return ctx ? ctx : ERR_PTR(-ENOENT);
-> >  }
-> >
-> >  /* i915_gem_evict.c */
-> > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> > index 85ad62dbabfab..b86ed03f6a705 100644
-> > --- a/drivers/gpu/drm/i915/i915_perf.c
-> > +++ b/drivers/gpu/drm/i915/i915_perf.c
-> > @@ -3414,10 +3414,10 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
-> >               struct drm_i915_file_private *file_priv = file->driver_priv;
-> >
-> >               specific_ctx = i915_gem_context_lookup(file_priv, ctx_handle);
-> > -             if (!specific_ctx) {
-> > +             if (IS_ERR(specific_ctx)) {
-> >                       DRM_DEBUG("Failed to look up context with ID %u for opening perf stream\n",
-> >                                 ctx_handle);
-> > -                     ret = -ENOENT;
-> > +                     ret = PTR_ERR(specific_ctx);
->
-> Yeah this looks like a nice place to integrate this.
->
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->
-> One thing we need to make sure in the next patch or thereabouts is that
-> lookup can only return ENOENT or ENOMEM, but never EINVAL. I'll drop some
-> bikesheds on that :-)
+> > The biggest hurdle is untangling the include order. Fortunately just
+> > pulling intel_de.h out from intel_display_types.h seems to have been
+> > sufficient to make it build.
+> =
 
-I believe that is the case.  All -EINVAL should be handled in the
-proto-context code.
+> This is something I've been meaning to fix independently. Thanks.
 
---Jason
+Hmm. Maybe I should split this into two commits...
 
-> -Daniel
->
-> >                       goto err;
-> >               }
-> >       }
-> > --
-> > 2.31.1
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+> =
+
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+Ta.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
