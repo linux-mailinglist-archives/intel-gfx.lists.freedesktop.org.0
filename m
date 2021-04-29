@@ -1,58 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8340236ED5F
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 17:26:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6B936ED6B
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 17:30:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 830F26EF33;
-	Thu, 29 Apr 2021 15:26:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE7BB6F380;
+	Thu, 29 Apr 2021 15:30:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3542E6E283
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 15:26:23 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id r12so100476839ejr.5
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 08:26:23 -0700 (PDT)
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com
+ [IPv6:2a00:1450:4864:20::529])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 038D46F380
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 15:30:03 +0000 (UTC)
+Received: by mail-ed1-x529.google.com with SMTP id n25so6973935edr.5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 08:30:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Pf/h3mnOYat+nNcpGwM91u4ZkeyrExIWmARWxp9oEto=;
- b=xoPSHv+bK5e6yG7rx82qEwX6XBGOGZXBWb4NxawZO+PRU4oPU9SSSoLSdyhZmhh3xY
- gvMjL//iQpuLSMerhfoWFDfjn4JBxl3L5PTR+kZCpxxXlBRlK0dNTnzHsTJ0rqJuiaSV
- NV59b3Za9Wu9kDpO82ylpTZaG8WCOfi7rF8ZC8ZqI4Sre5/LKX7Gmt5DqrwGpcnIihNq
- 92PPWzbsUwAi04mGaEegkUmdaz4MubKB5ix1l0Kl+vTNF0Zcn/KMrtnRNB4B2EI592lq
- 1k66eLnLQ9llaQfvNA72pw3IUMlnqoE06Pg85B22vy4LAwXfsDpvXyOLs8bJAF6QY5x0
- 6H1A==
+ :cc; bh=6myubVssAw7lXkBZnLQFsXUBp/1Vkzd2EgxiGxWvdnQ=;
+ b=SRj8V17ilWzWaK3nNaggXmUCxyGYY1kIc6QJ2uaf6e9YycUXjWbMmyY1WrBsdLS5Kk
+ XBt8M5nxe6cf1aSSmZpYhg5dQOQ0Qu/4vLsYNhnbXK2ZqErDiU4XByXmLxuEsYDODep8
+ P/KaDynAq42UI3JE4AppFdR/sxSzR04/OJzHSEX/5m+RPbB4KngJQOjF1BHewa5I3Dx6
+ vdpS1GW5KywHlIqTvYynUbtrD5tRud64IgBzzPf2jTHbWEeCTKc5Gek5jgPFUOKjqb8d
+ aweGU+mlbLM2hKEqUKk+zNyDTIb9d1oc2RsBMqoDI8ul+JFatT98Gy2Ci1uI05FGOCzq
+ lI/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Pf/h3mnOYat+nNcpGwM91u4ZkeyrExIWmARWxp9oEto=;
- b=chFQVHkp/RqUG0Y0+lYWVC6vV8gm+AVuBc9nczO9xlWWCC38iumtwYXRwLV5Nyj/rE
- vW4CBKOChT92obQ+VPeI9UhTrAwvGtQPFaeODcLO2RRKnPRYU9pNNYVgMwtAHZJ1Ybt+
- c48LI5Jl2sVslGUiHszZo8gF+ojQPz5n0tjsQw06ILBh9bPDXNm02qx9z3I+uTG2+bHN
- JJHJCImaAIKqfyfHowXfHU4aFz2g/GQw1I7sY915dIYn1NP9nnuOFKbdbti1t3DMtCsD
- Ns2GDwaR6irRtBitOm5OWV1oSfXGBvdc0lYv1pptlqc/VIFIqpj1vzwo9pMMo5poiQAs
- kZhg==
-X-Gm-Message-State: AOAM530TFnk6B364iSd+FRXOEdeMCBGzE20IV1CM5MMBtVIbZu3zOV5V
- 4SL1F97LcccNvfIeHwfE7tsGF7l658VX7GdYK5fi2oX0UKD9lg==
-X-Google-Smtp-Source: ABdhPJx4o80yIyAuDbPbCaYRas6U932ZHMTBpMbG29sOE205mK5DC82Gz9kTifq0vuV9DEL6s4ig3MgiP49c6h//GUg=
-X-Received: by 2002:a17:906:dc90:: with SMTP id
- cs16mr411619ejc.210.1619709980644; 
- Thu, 29 Apr 2021 08:26:20 -0700 (PDT)
+ bh=6myubVssAw7lXkBZnLQFsXUBp/1Vkzd2EgxiGxWvdnQ=;
+ b=Cr7ryIIwD7yaZw14K3nAFvMEPmayDBkbaZ9WxfWyzDeOQj7sHVgcW8NXasCxJ+WjGU
+ uD4QIdyTublll/pHv1nMbDegyr/tcI7gX1PR9IFSZGRx6ymKqyCzutM2UiOcTHO/DQwv
+ nW9U3QC0yGXDgVQY/HPPd2VV6SDYs1o9Rf7itbnL7BKaf6/REIhYtP9nNwxQi1IcS4yS
+ IEnge4s4bcC5qx53qQn3gWIYNStptKKhqiwaGdNkNAYdZoJcRKi6A4PMAuZEfBZYwoX/
+ kfeQAnUElbV/vDrG8YFe7y17LWUiZ+lrx64G2YlNRiZAbOEqkn2N2h3NjTAhrtrcjnaW
+ MC+A==
+X-Gm-Message-State: AOAM531BEEXI/O4Rcpi9ehib3rVnry3KkmiiRYIYVi+Y3MVcbmPI043G
+ YFmnf+gHwRsV+sRBhJgW98jVbJdxbTt/BlA58uRrrwxkTZai7Q==
+X-Google-Smtp-Source: ABdhPJwf28p8ZByF94cnscZwNdYiaOLHujI4rhp01F66ZlTvb9hfp1zAOQpARIr02aNQ3uTSbnXRw6Ly4QFHEnTZiHs=
+X-Received: by 2002:a05:6402:1013:: with SMTP id
+ c19mr95156edu.213.1619710202457; 
+ Thu, 29 Apr 2021 08:30:02 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-16-jason@jlekstrand.net>
- <YIqook/gsI/w9OXf@phenom.ffwll.local>
-In-Reply-To: <YIqook/gsI/w9OXf@phenom.ffwll.local>
+ <20210423223131.879208-15-jason@jlekstrand.net>
+ <YIq0QnVG5gn4cOOR@phenom.ffwll.local>
+In-Reply-To: <YIq0QnVG5gn4cOOR@phenom.ffwll.local>
 From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Thu, 29 Apr 2021 10:26:08 -0500
-Message-ID: <CAOFGe97zKtvD8y_v_cZM8FYHmP1AkuP6im6XeSPYFpSe4af4Rg@mail.gmail.com>
+Date: Thu, 29 Apr 2021 10:29:51 -0500
+Message-ID: <CAOFGe97MtMe3OnkYpy4oyLDCLugo5U=orQeONZCBNLiJmX-P5g@mail.gmail.com>
 To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 15/21] drm/i915/gt: Drop
- i915_address_space::file
+Subject: Re: [Intel-gfx] [PATCH 14/21] drm/i915/gem: Return an error ptr
+ from context_lookup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,137 +72,133 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 29, 2021 at 7:37 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+On Thu, Apr 29, 2021 at 8:27 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 >
-> On Fri, Apr 23, 2021 at 05:31:25PM -0500, Jason Ekstrand wrote:
-> > There's a big comment saying how useful it is but no one is using this
-> > for anything.
+> On Fri, Apr 23, 2021 at 05:31:24PM -0500, Jason Ekstrand wrote:
+> > We're about to start doing lazy context creation which means contexts
+> > get created in i915_gem_context_lookup and we may start having more
+> > errors than -ENOENT.
 > >
 > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
->
-> I was trying to find anything before all your deletions, but alas nothing.
-> I did spent a bit of time on this, and discovered that the debugfs use was
-> nuked in
->
-> db80a1294c23 ("drm/i915/gem: Remove per-client stats from debugfs/i915_gem_objects")
->
-> After going through quite a few iterations, e.g.
->
-> 5b5efdf79abf ("drm/i915: Make debugfs/per_file_stats scale better")
-> f6e8aa387171 ("drm/i915: Report the number of closed vma held by each context in debugfs")
->
-> The above removed the need for vm->file because stats debugfs file
-> filtered using stats->vm instead of stats->file.
->
-> History goes on until the original introduction of this (again for
-> debugfs) in
->
-> 2bfa996e031b ("drm/i915: Store owning file on the i915_address_space")
-
-I've added the following to the commit message:
-
-    It was added in 2bfa996e031b ("drm/i915: Store owning file on the
-    i915_address_space") and used for debugfs at the time as well as telling
-    the difference between the global GTT and a PPGTT.  In f6e8aa387171
-    ("drm/i915: Report the number of closed vma held by each context in
-    debugfs") we removed one use of it by switching to a context walk and
-    comparing with the VM in the context.  Finally, VM stats for debugfs
-    were entirely nuked in db80a1294c23 ("drm/i915/gem: Remove per-client
-    stats from debugfs/i915_gem_objects")
-
-
 > > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_context.c |  9 ---------
-> >  drivers/gpu/drm/i915/gt/intel_gtt.h         | 10 ----------
-> >  drivers/gpu/drm/i915/selftests/mock_gtt.c   |  1 -
-> >  3 files changed, 20 deletions(-)
+> >  drivers/gpu/drm/i915/gem/i915_gem_context.c    | 12 ++++++------
+> >  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  4 ++--
+> >  drivers/gpu/drm/i915/i915_drv.h                |  2 +-
+> >  drivers/gpu/drm/i915/i915_perf.c               |  4 ++--
+> >  4 files changed, 11 insertions(+), 11 deletions(-)
 > >
 > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index 7929d5a8be449..db9153e0f85a7 100644
+> > index 3e883daab93bf..7929d5a8be449 100644
 > > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -921,17 +921,10 @@ static int gem_context_register(struct i915_gem_context *ctx,
-> >                               u32 *id)
-> >  {
-> >       struct drm_i915_private *i915 = ctx->i915;
-> > -     struct i915_address_space *vm;
+> > @@ -2105,8 +2105,8 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
+> >       int ret = 0;
+> >
+> >       ctx = i915_gem_context_lookup(file_priv, args->ctx_id);
+> > -     if (!ctx)
+> > -             return -ENOENT;
+> > +     if (IS_ERR(ctx))
+> > +             return PTR_ERR(ctx);
+> >
+> >       switch (args->param) {
+> >       case I915_CONTEXT_PARAM_GTT_SIZE:
+> > @@ -2174,8 +2174,8 @@ int i915_gem_context_setparam_ioctl(struct drm_device *dev, void *data,
 > >       int ret;
 > >
-> >       ctx->file_priv = fpriv;
+> >       ctx = i915_gem_context_lookup(file_priv, args->ctx_id);
+> > -     if (!ctx)
+> > -             return -ENOENT;
+> > +     if (IS_ERR(ctx))
+> > +             return PTR_ERR(ctx);
 > >
-> > -     mutex_lock(&ctx->mutex);
-> > -     vm = i915_gem_context_vm(ctx);
-> > -     if (vm)
-> > -             WRITE_ONCE(vm->file, fpriv); /* XXX */
-> > -     mutex_unlock(&ctx->mutex);
-> > -
-> >       ctx->pid = get_task_pid(current, PIDTYPE_PID);
-> >       snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
-> >                current->comm, pid_nr(ctx->pid));
-> > @@ -1030,8 +1023,6 @@ int i915_gem_vm_create_ioctl(struct drm_device *dev, void *data,
-> >       if (IS_ERR(ppgtt))
-> >               return PTR_ERR(ppgtt);
+> >       ret = ctx_setparam(file_priv, ctx, args);
 > >
-> > -     ppgtt->vm.file = file_priv;
-> > -
-> >       if (args->extensions) {
-> >               err = i915_user_extensions(u64_to_user_ptr(args->extensions),
-> >                                          NULL, 0,
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > index e67e34e179131..4c46068e63c9d 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> > @@ -217,16 +217,6 @@ struct i915_address_space {
+> > @@ -2194,8 +2194,8 @@ int i915_gem_context_reset_stats_ioctl(struct drm_device *dev,
+> >               return -EINVAL;
+> >
+> >       ctx = i915_gem_context_lookup(file->driver_priv, args->ctx_id);
+> > -     if (!ctx)
+> > -             return -ENOENT;
+> > +     if (IS_ERR(ctx))
+> > +             return PTR_ERR(ctx);
+> >
+> >       /*
+> >        * We opt for unserialised reads here. This may result in tearing
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > index 7024adcd5cf15..de14b26f3b2d5 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > @@ -739,8 +739,8 @@ static int eb_select_context(struct i915_execbuffer *eb)
+> >       struct i915_gem_context *ctx;
+> >
+> >       ctx = i915_gem_context_lookup(eb->file->driver_priv, eb->args->rsvd1);
+> > -     if (unlikely(!ctx))
+> > -             return -ENOENT;
+> > +     if (unlikely(IS_ERR(ctx)))
+> > +             return PTR_ERR(ctx);
+> >
+> >       eb->gem_context = ctx;
+> >       if (rcu_access_pointer(ctx->vm))
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> > index 8571c5c1509a7..004ed0e59c999 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
 >
-> Pls also delete the drm_i915_file_private pre-dcl in this file.
+> I just realized that I think __i915_gem_context_lookup_rcu doesn't have
+> users anymore. Please make sure it's deleted.
 
-Done!
+I deleted it in "drm/i915: Stop manually RCU banging in reset_stats_ioctl"
 
-> With this added and the history adequately covered in the commit message:
+
+> > @@ -1851,7 +1851,7 @@ i915_gem_context_lookup(struct drm_i915_file_private *file_priv, u32 id)
+> >               ctx = NULL;
+> >       rcu_read_unlock();
+> >
+> > -     return ctx;
+> > +     return ctx ? ctx : ERR_PTR(-ENOENT);
+> >  }
+> >
+> >  /* i915_gem_evict.c */
+> > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> > index 85ad62dbabfab..b86ed03f6a705 100644
+> > --- a/drivers/gpu/drm/i915/i915_perf.c
+> > +++ b/drivers/gpu/drm/i915/i915_perf.c
+> > @@ -3414,10 +3414,10 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
+> >               struct drm_i915_file_private *file_priv = file->driver_priv;
+> >
+> >               specific_ctx = i915_gem_context_lookup(file_priv, ctx_handle);
+> > -             if (!specific_ctx) {
+> > +             if (IS_ERR(specific_ctx)) {
+> >                       DRM_DEBUG("Failed to look up context with ID %u for opening perf stream\n",
+> >                                 ctx_handle);
+> > -                     ret = -ENOENT;
+> > +                     ret = PTR_ERR(specific_ctx);
+>
+> Yeah this looks like a nice place to integrate this.
 >
 > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>
+> One thing we need to make sure in the next patch or thereabouts is that
+> lookup can only return ENOENT or ENOMEM, but never EINVAL. I'll drop some
+> bikesheds on that :-)
 
-Thanks
+I believe that is the case.  All -EINVAL should be handled in the
+proto-context code.
 
 --Jason
 
-
+> -Daniel
 >
-> >       struct intel_gt *gt;
-> >       struct drm_i915_private *i915;
-> >       struct device *dma;
-> > -     /*
-> > -      * Every address space belongs to a struct file - except for the global
-> > -      * GTT that is owned by the driver (and so @file is set to NULL). In
-> > -      * principle, no information should leak from one context to another
-> > -      * (or between files/processes etc) unless explicitly shared by the
-> > -      * owner. Tracking the owner is important in order to free up per-file
-> > -      * objects along with the file, to aide resource tracking, and to
-> > -      * assign blame.
-> > -      */
-> > -     struct drm_i915_file_private *file;
-> >       u64 total;              /* size addr space maps (ex. 2GB for ggtt) */
-> >       u64 reserved;           /* size addr space reserved */
-> >
-> > diff --git a/drivers/gpu/drm/i915/selftests/mock_gtt.c b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-> > index 5c7ae40bba634..cc047ec594f93 100644
-> > --- a/drivers/gpu/drm/i915/selftests/mock_gtt.c
-> > +++ b/drivers/gpu/drm/i915/selftests/mock_gtt.c
-> > @@ -73,7 +73,6 @@ struct i915_ppgtt *mock_ppgtt(struct drm_i915_private *i915, const char *name)
-> >       ppgtt->vm.gt = &i915->gt;
-> >       ppgtt->vm.i915 = i915;
-> >       ppgtt->vm.total = round_down(U64_MAX, PAGE_SIZE);
-> > -     ppgtt->vm.file = ERR_PTR(-ENODEV);
-> >       ppgtt->vm.dma = i915->drm.dev;
-> >
-> >       i915_address_space_init(&ppgtt->vm, VM_CLASS_PPGTT);
+> >                       goto err;
+> >               }
+> >       }
 > > --
 > > 2.31.1
 > >
 > > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 >
 > --
 > Daniel Vetter
