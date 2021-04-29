@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04A6E36E8EA
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 12:35:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99D2736E914
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 12:51:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF2A06EE02;
-	Thu, 29 Apr 2021 10:35:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1F096EE11;
+	Thu, 29 Apr 2021 10:51:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 499A26EE06;
- Thu, 29 Apr 2021 10:35:21 +0000 (UTC)
-IronPort-SDR: zo5rYmrcjqCtJeaiqdFI2MSZ5rBHgDhjItZ+aJXgA0fyPitaU6nFz1PHp5l5LFWK2jNLBo4W0m
- Cu9bnqW9KogQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="184449732"
-X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="184449732"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2021 03:35:21 -0700
-IronPort-SDR: v8ZLVjXIzAMRDmxusAL1m+Bzjc2HbtdXdJM8elDSkomuRLNMA9BvzjSv6zMYRpf9M+G2hBIqB0
- 6wXXpryob9Ng==
-X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="458694255"
-Received: from sbfennel-mobl.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.12.78])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2021 03:35:17 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Apr 2021 11:30:56 +0100
-Message-Id: <20210429103056.407067-9-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210429103056.407067-1-matthew.auld@intel.com>
-References: <20210429103056.407067-1-matthew.auld@intel.com>
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 034C56EE0C;
+ Thu, 29 Apr 2021 10:51:04 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 6BE10B02A;
+ Thu, 29 Apr 2021 10:51:03 +0000 (UTC)
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
+ chris@chris-wilson.co.uk
+Date: Thu, 29 Apr 2021 12:50:56 +0200
+Message-Id: <20210429105101.25667-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 9/9] drm/i915/gem: hide new uAPI behind
- CONFIG_BROKEN
+Subject: [Intel-gfx] [PATCH v8 0/5] drm: Move struct drm_device.pdev to
+ legacy
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,51 +38,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@linux.intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org, Kenneth Graunke <kenneth@whitecape.org>,
- mesa-dev@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VHJlYXQgaXQgdGhlIHNhbWUgYXMgdGhlIGZha2UgbG9jYWwtbWVtb3J5IHN0dWZmLCB3aGVyZSBp
-dCBpcyBkaXNhYmxlZApmb3Igbm9ybWFsIGtlcm5lbHMsIGluIGNhc2Ugc29tZSByYW5kb20gVU1E
-IGlzIHRlbXB0ZWQgdG8gdXNlIHRoaXMuIE9uY2UKd2UgaGF2ZSBhbGwgdGhlIG90aGVyIGJpdHMg
-YW5kIHBpZWNlcyBpbiBwbGFjZSwgbGlrZSB0aGUgVFRNIGNvbnZlcnNpb24sCndlIGNhbiB0dXJu
-IHRoaXMgb24gZm9yIHJlYWwuCgpTaWduZWQtb2ZmLWJ5OiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcu
-YXVsZEBpbnRlbC5jb20+CkNjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51
-eC5pbnRlbC5jb20+CkNjOiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJvbUBsaW51
-eC5pbnRlbC5jb20+CkNjOiBEYW5pZWxlIENlcmFvbG8gU3B1cmlvIDxkYW5pZWxlLmNlcmFvbG9z
-cHVyaW9AaW50ZWwuY29tPgpDYzogTGlvbmVsIExhbmR3ZXJsaW4gPGxpb25lbC5nLmxhbmR3ZXJs
-aW5AbGludXguaW50ZWwuY29tPgpDYzogSm9uIEJsb29tZmllbGQgPGpvbi5ibG9vbWZpZWxkQGlu
-dGVsLmNvbT4KQ2M6IEpvcmRhbiBKdXN0ZW4gPGpvcmRhbi5sLmp1c3RlbkBpbnRlbC5jb20+CkNj
-OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KQ2M6IEtlbm5ldGggR3Jh
-dW5rZSA8a2VubmV0aEB3aGl0ZWNhcGUub3JnPgpDYzogSmFzb24gRWtzdHJhbmQgPGphc29uQGps
-ZWtzdHJhbmQubmV0PgpDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAZ21haWwuY29tPgpDYzogZHJp
-LWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnClJldmlld2VkLWJ5OiBLZW5uZXRoIEdyYXVua2UgPGtlbm5ldGhAd2hpdGVjYXBlLm9y
-Zz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY3JlYXRlLmMgfCAzICsr
-KwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9xdWVyeS5jICAgICAgICAgIHwgMyArKysKIDIg
-ZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NyZWF0ZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
-L2k5MTVfZ2VtX2NyZWF0ZS5jCmluZGV4IGY2NzI5ZmVhZTU4Mi4uNTQ4ZGRmMzlkODUzIDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY3JlYXRlLmMKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NyZWF0ZS5jCkBAIC0zMzUsNiArMzM1
-LDkgQEAgc3RhdGljIGludCBleHRfc2V0X3BsYWNlbWVudHMoc3RydWN0IGk5MTVfdXNlcl9leHRl
-bnNpb24gX191c2VyICpiYXNlLAogewogCXN0cnVjdCBkcm1faTkxNV9nZW1fY3JlYXRlX2V4dF9t
-ZW1vcnlfcmVnaW9ucyBleHQ7CiAKKwlpZiAoIUlTX0VOQUJMRUQoQ09ORklHX0RSTV9JOTE1X1VO
-U1RBQkxFX0ZBS0VfTE1FTSkpCisJCXJldHVybiAtRU5PREVWOworCiAJaWYgKGNvcHlfZnJvbV91
-c2VyKCZleHQsIGJhc2UsIHNpemVvZihleHQpKSkKIAkJcmV0dXJuIC1FRkFVTFQ7CiAKZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcXVlcnkuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfcXVlcnkuYwppbmRleCA1ZTJiOTA5ODI3ZjQuLmU0OWRhMzZjNjJmYiAxMDA2
-NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9xdWVyeS5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfcXVlcnkuYwpAQCAtNDMyLDYgKzQzMiw5IEBAIHN0YXRpYyBpbnQg
-cXVlcnlfbWVtcmVnaW9uX2luZm8oc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCiAJdTMy
-IHRvdGFsX2xlbmd0aDsKIAlpbnQgcmV0LCBpZCwgaTsKIAorCWlmICghSVNfRU5BQkxFRChDT05G
-SUdfRFJNX0k5MTVfVU5TVEFCTEVfRkFLRV9MTUVNKSkKKwkJcmV0dXJuIC1FTk9ERVY7CisKIAlp
-ZiAocXVlcnlfaXRlbS0+ZmxhZ3MgIT0gMCkKIAkJcmV0dXJuIC1FSU5WQUw7CiAKLS0gCjIuMjYu
-MwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+V8 of the patchset fixes more bitrot and some commit messages.
+
+The pdev field in struct drm_device points to a PCI device structure and
+goes back to UMS-only days when all DRM drivers were for PCI devices.
+Meanwhile we also support USB, SPI and platform devices. Each of those
+uses the generic device stored in struct drm_device.dev.
+
+To reduce duplication and remove the special case of PCI, this patchset
+converts all modesetting drivers from pdev to dev and makes pdev a field
+for legacy UMS drivers.
+
+For PCI devices, the pointer in struct drm_device.dev can be upcasted to
+struct pci_device; or tested for PCI with dev_is_pci(). In several places
+the code can use the dev field directly.
+
+After converting all drivers and the DRM core, the pdev fields becomes
+only relevant for legacy drivers. In a later patchset, we may want to
+convert these as well and remove pdev entirely.
+
+v8:
+	* fix pdev bitrot in ast
+	* fix commit messages (Michael)
+v7:
+	* fix instances of pdev that have benn added under i915/
+v6:
+	* also remove assignment in i915/selftests in later patch (Chris)
+v5:
+	* remove assignment in later patch (Chris)
+v4:
+	* merged several patches
+	* moved core changes into separate patch
+	* vmwgfx build fix
+v3:
+	* merged several patches
+	* fix one pdev reference in nouveau (Jeremy)
+	* rebases
+v2:
+	* move whitespace fixes into separate patches (Alex, Sam)
+	* move i915 gt/ and gvt/ changes into separate patches (Joonas)
+
+Thomas Zimmermann (5):
+  drm/ast: Remove reference to struct drm_device.pdev
+  drm/i915/gt: Remove reference to struct drm_device.pdev
+  drm/i915: Remove reference to struct drm_device.pdev
+  drm/i915: Don't assign to struct drm_device.pdev
+  drm: Move struct drm_device.pdev to legacy section
+
+ drivers/gpu/drm/ast/ast_main.c                   | 1 -
+ drivers/gpu/drm/i915/gt/intel_region_lmem.c      | 2 +-
+ drivers/gpu/drm/i915/i915_drv.c                  | 1 -
+ drivers/gpu/drm/i915/intel_runtime_pm.h          | 2 +-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 -
+ include/drm/drm_device.h                         | 6 +++---
+ 6 files changed, 5 insertions(+), 8 deletions(-)
+
+
+base-commit: bf25e1addaf44137e20ce95de72ff118b37d808c
+prerequisite-patch-id: c2b2f08f0eccc9f5df0c0da49fa1d36267deb11d
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+prerequisite-patch-id: c59ca2ddb182af06006fa360ad3e90fe16b93d3a
+--
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
