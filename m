@@ -1,60 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EDBD36ECCD
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 16:54:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5289936ECD1
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 16:56:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18CF96EEBB;
-	Thu, 29 Apr 2021 14:54:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A575C6EEB9;
+	Thu, 29 Apr 2021 14:56:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
- [IPv6:2a00:1450:4864:20::536])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90CEB6EEB9
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 14:54:28 +0000 (UTC)
-Received: by mail-ed1-x536.google.com with SMTP id h8so38812977edb.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 07:54:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com
+ [IPv6:2607:f8b0:4864:20::831])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 790816EEB9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 14:56:13 +0000 (UTC)
+Received: by mail-qt1-x831.google.com with SMTP id l1so9526590qtr.12
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 07:56:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=oUEimQ8VgLkZihkcwTxQ5qSd70LoNYfd7XbzNsHhpNo=;
- b=srdXJh8Aj39Y7yvXJX+2fXB5Aaf8uXeDBdiwu9CVjS4gsdD/XbW25ZKkeWPpUGyYdU
- cdq6Ov2JWcGFo3P3/Nnp00PmngiZf3N+FEXhk+plUGJyw6HXfbJGmpZPxHccAsyfyz2a
- rK/zunyXoEazsLLgsgj/rU8DaeTG2ILOrDhHEhgvt4rBrBm8U8IIz5zkqUhpX4T3tuSB
- vh17uDKZitsibVe5v7Rj0/Pw6uCYD2ybf1G/CrX7U+1f2m4B2371KzmzaU91LjOfuYq5
- wyjMQE+ynoWShxivtaM45OTgHSXA9BWvKIR99U21doSLDlBvV48A0d9Tc6DDDDomx3RX
- cJVg==
+ :cc; bh=tABIWXiitZdDEHIXHFBW11p/GxUAdJgmgM7XIKT1Mww=;
+ b=E3d5a3Q/kzrTyE+a22oBci53BBTu+KGbciQ8VfylNx3c7qCzXY1oO9uRwt/lyTBRSn
+ /kaxB8zeX6ym4FAcqJudeTw/jfgAGS+ShWGE+wS2tURWur4fNbcSRfzUAz68BgMxgKwW
+ O+teC38j8QaAjWHcmwSrX1Oq9SWtkR3TJjPsb6q6Ga4NLWe7LWGk0y88SDigJ1+C5qtz
+ 8ZDOEiMPBeHEKERnKuEdeMoPXJpVCyQUGO+TQreoMYNcqyiD0jueuJpXuEOqS0caaO4t
+ PqdZFMEQWXtKIPrTRZ5zjSwOtsPpR01SA3WAcqzqKDozZJiHiMaCBZSQWBjQh5+bV18G
+ 6mJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=oUEimQ8VgLkZihkcwTxQ5qSd70LoNYfd7XbzNsHhpNo=;
- b=opQVKD9ah1DmpHnZa38uNHNNp0SwPu7upopj4YJS/V7gwphkQaR2V7dM9sPOEhMTOg
- +VdHvjT2KuSXjTL9mHOHZXSuuBdmyCO6Sa/US3qvJAPd9EcWzjkcBHi0qwrAF/nxTRhH
- 7Re8HOKXCt6iQWcmfZR1ZRBlmyKJSgA83BgrSDSQp+SnkBfSgH/tTUY/KpETvjYcp2o0
- 45ydRblnNlQnCvfHShEIci5oVoZT8NNW7eVZ4xQiVXXSVNbsN5VF65e3rXwIdYRMc5tl
- vBr+qbrMdE0YU0+ngGrZ+YLuoMxuxwfe8LB/H3QjvJwrIZ+IhFiDyncNOpsEGwht2gzk
- uoug==
-X-Gm-Message-State: AOAM533nDuvc8TyUmQOZJhae07NR/A2cdX8Y0kubTcMJCnwRKRXmvbn8
- CclUY8LXLUZBarpHMBwXu39JLFKPKctIn0VgBWnpVw==
-X-Google-Smtp-Source: ABdhPJzlSlY2pfLXSaJtiD6IAcJzTyCI4aMIVz5DAvueN69OlgpYqem8TiWFiRk2LoG2tP5+qVE9MCg5l4X36Ab/91M=
-X-Received: by 2002:a05:6402:1492:: with SMTP id
- e18mr18739912edv.225.1619708067118; 
- Thu, 29 Apr 2021 07:54:27 -0700 (PDT)
+ bh=tABIWXiitZdDEHIXHFBW11p/GxUAdJgmgM7XIKT1Mww=;
+ b=pkptg+pFjuoHoUS16MrpjECelmXiPgUwOHIZR1KdIBtQ4+aRpklS7i7dyICIteYP7M
+ 7DBm8kMX3gsjo2Fzf5M7kAzaSbF859wyYh6dNv+QlNLqID004ZSRXMZt/SUgs8GBshgo
+ u+2+UCONYK2+GJ/VMfAvnhKLlvPhGQbhHNglk4xy7zEbrtLg71+JrP2H4giE1oaTrJUE
+ KLOtoqXQ1RCyOH8UgWzdb5q6aczS1HsztiSLE/y/OxCxhQTFUyZ93ChZrIYCn0vt4qUL
+ 9OGyCm3p0w+Xrq8S6Myv4J8AHxtmgwnhKHKq3GNgDNUKBLXdidl9GH9SLqLixf89cGAC
+ OaOg==
+X-Gm-Message-State: AOAM533hd/dASeGeMZlw2nlhnorvSli6e1F0XyE26w/DwpPLkv1E6CCB
+ utapPw7+b9AtXsI7YKnu/8gnCGJFRxP8h/fciy03DD2msOw=
+X-Google-Smtp-Source: ABdhPJxcGBctety2D6ChDvasaGyi5QKK6tDJ6Y+nMr9ssxaabyLlJCEeyycCxtwrMqrQ5nmT8d0G0irVHMBLuTLXEzM=
+X-Received: by 2002:a05:622a:1354:: with SMTP id
+ w20mr32433358qtk.223.1619708172658; 
+ Thu, 29 Apr 2021 07:56:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-4-jason@jlekstrand.net>
- <417fe44a-61f9-c90a-c255-309db5bb48ab@linux.intel.com>
- <CAOFGe96jXtyx2-hiYBmZPFqSx1G32Ph7SGguJQ=ZD4im=ZPJ5A@mail.gmail.com>
- <19ee110c-f251-20b1-5ca8-d280b724ccbf@linux.intel.com>
-In-Reply-To: <19ee110c-f251-20b1-5ca8-d280b724ccbf@linux.intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Thu, 29 Apr 2021 09:54:15 -0500
-Message-ID: <CAOFGe95D81vvT1AQPF_sbqWQMZAJeZmr92xgd2m=GZY4TxGYUw@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 03/21] drm/i915/gem: Set the watchdog
- timeout directly in intel_context_set_gem
+References: <20210429101036.1086461-1-maarten.lankhorst@linux.intel.com>
+ <20210429101036.1086461-4-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20210429101036.1086461-4-maarten.lankhorst@linux.intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 29 Apr 2021 15:55:46 +0100
+Message-ID: <CAM0jSHOkzkt68w60x8WyqHTyU+456eSt=R=6jnM8gDHUk0=MRg@mail.gmail.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915: Pass ww ctx to pin_map, v2.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,174 +62,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 29, 2021 at 3:04 AM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
+On Thu, 29 Apr 2021 at 11:10, Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com> wrote:
 >
+> This will allow us to explicitly pass the ww to pin_pages,
+> when it starts taking it.
 >
-> On 28/04/2021 18:24, Jason Ekstrand wrote:
-> > On Wed, Apr 28, 2021 at 10:55 AM Tvrtko Ursulin
-> > <tvrtko.ursulin@linux.intel.com> wrote:
-> >> On 23/04/2021 23:31, Jason Ekstrand wrote:
-> >>> Instead of handling it like a context param, unconditionally set it when
-> >>> intel_contexts are created.  This doesn't fix anything but does simplify
-> >>> the code a bit.
-> >>>
-> >>> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> >>> ---
-> >>>    drivers/gpu/drm/i915/gem/i915_gem_context.c   | 43 +++----------------
-> >>>    .../gpu/drm/i915/gem/i915_gem_context_types.h |  4 --
-> >>>    drivers/gpu/drm/i915/gt/intel_context_param.h |  3 +-
-> >>>    3 files changed, 6 insertions(+), 44 deletions(-)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> >>> index 35bcdeddfbf3f..1091cc04a242a 100644
-> >>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> >>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> >>> @@ -233,7 +233,11 @@ static void intel_context_set_gem(struct intel_context *ce,
-> >>>            intel_engine_has_timeslices(ce->engine))
-> >>>                __set_bit(CONTEXT_USE_SEMAPHORES, &ce->flags);
-> >>>
-> >>> -     intel_context_set_watchdog_us(ce, ctx->watchdog.timeout_us);
-> >>> +     if (IS_ACTIVE(CONFIG_DRM_I915_REQUEST_TIMEOUT) &&
-> >>> +         ctx->i915->params.request_timeout_ms) {
-> >>> +             unsigned int timeout_ms = ctx->i915->params.request_timeout_ms;
-> >>> +             intel_context_set_watchdog_us(ce, (u64)timeout_ms * 1000);
-> >>
-> >> Blank line between declarations and code please, or just lose the local.
-> >>
-> >> Otherwise looks okay. Slight change that same GEM context can now have a
-> >> mix of different request expirations isn't interesting I think. At least
-> >> the change goes away by the end of the series.
-> >
-> > In order for that to happen, I think you'd have to have a race between
-> > CREATE_CONTEXT and someone smashing the request_timeout_ms param via
-> > sysfs.  Or am I missing something?  Given that timeouts are really
-> > per-engine anyway, I don't think we need to care too much about that.
+> This allows us to finally kill off the explicit passing of ww
+> by retrieving it from the obj.
 >
-> We don't care, no.
+> Changes since v1:
+> - Rename 'ret' to ptr, fix error handling of return ptr.
 >
-> For completeness only - by the end of the series it is what you say. But
-> at _this_ point in the series though it is if modparam changes at any
-> point between context create and replacing engines. Which is a change
-> compared to before this patch, since modparam was cached in the GEM
-> context so far. So one GEM context was a single request_timeout_ms.
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-I've added the following to the commit message:
+<snip>
 
-It also means that sync files exported from different engines on a
-SINGLE_TIMELINE context will have different fence contexts.  This is
-visible to userspace if it looks at the obj_name field of
-sync_fence_info.
-
-How's that sound?
-
---Jason
-
-> Regards,
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
+> @@ -65,7 +65,7 @@ int map_pt_dma_locked(struct i915_address_space *vm, struct drm_i915_gem_object
+>         void *vaddr;
 >
-> Tvrtko
+>         type = i915_coherent_map_type(vm->i915, obj, true);
+> -       vaddr = i915_gem_object_pin_map(obj, type);
+> +       vaddr = i915_gem_object_pin_map(obj, NULL, type);
+
+Don't we need to pass the ww here? For all our page-tables this is
+both our allocate and map for the backing page(lmem or smem), so at
+least for the locked variant here would it not make sense to pass the
+ww from the vma_pin() etc, in case we need to evict stuff?
+
+>         if (IS_ERR(vaddr))
+>                 return PTR_ERR(vaddr);
 >
-> > --Jason
-> >
-> >> Regards,
-> >>
-> >> Tvrtko
-> >>
-> >>> +     }
-> >>>    }
-> >>>
-> >>>    static void __free_engines(struct i915_gem_engines *e, unsigned int count)
-> >>> @@ -792,41 +796,6 @@ static void __assign_timeline(struct i915_gem_context *ctx,
-> >>>        context_apply_all(ctx, __apply_timeline, timeline);
-> >>>    }
-> >>>
-> >>> -static int __apply_watchdog(struct intel_context *ce, void *timeout_us)
-> >>> -{
-> >>> -     return intel_context_set_watchdog_us(ce, (uintptr_t)timeout_us);
-> >>> -}
-> >>> -
-> >>> -static int
-> >>> -__set_watchdog(struct i915_gem_context *ctx, unsigned long timeout_us)
-> >>> -{
-> >>> -     int ret;
-> >>> -
-> >>> -     ret = context_apply_all(ctx, __apply_watchdog,
-> >>> -                             (void *)(uintptr_t)timeout_us);
-> >>> -     if (!ret)
-> >>> -             ctx->watchdog.timeout_us = timeout_us;
-> >>> -
-> >>> -     return ret;
-> >>> -}
-> >>> -
-> >>> -static void __set_default_fence_expiry(struct i915_gem_context *ctx)
-> >>> -{
-> >>> -     struct drm_i915_private *i915 = ctx->i915;
-> >>> -     int ret;
-> >>> -
-> >>> -     if (!IS_ACTIVE(CONFIG_DRM_I915_REQUEST_TIMEOUT) ||
-> >>> -         !i915->params.request_timeout_ms)
-> >>> -             return;
-> >>> -
-> >>> -     /* Default expiry for user fences. */
-> >>> -     ret = __set_watchdog(ctx, i915->params.request_timeout_ms * 1000);
-> >>> -     if (ret)
-> >>> -             drm_notice(&i915->drm,
-> >>> -                        "Failed to configure default fence expiry! (%d)",
-> >>> -                        ret);
-> >>> -}
-> >>> -
-> >>>    static struct i915_gem_context *
-> >>>    i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
-> >>>    {
-> >>> @@ -871,8 +840,6 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
-> >>>                intel_timeline_put(timeline);
-> >>>        }
-> >>>
-> >>> -     __set_default_fence_expiry(ctx);
-> >>> -
-> >>>        trace_i915_context_create(ctx);
-> >>>
-> >>>        return ctx;
-> >>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> >>> index 5ae71ec936f7c..676592e27e7d2 100644
-> >>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> >>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> >>> @@ -153,10 +153,6 @@ struct i915_gem_context {
-> >>>         */
-> >>>        atomic_t active_count;
-> >>>
-> >>> -     struct {
-> >>> -             u64 timeout_us;
-> >>> -     } watchdog;
-> >>> -
-> >>>        /**
-> >>>         * @hang_timestamp: The last time(s) this context caused a GPU hang
-> >>>         */
-> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_context_param.h b/drivers/gpu/drm/i915/gt/intel_context_param.h
-> >>> index dffedd983693d..0c69cb42d075c 100644
-> >>> --- a/drivers/gpu/drm/i915/gt/intel_context_param.h
-> >>> +++ b/drivers/gpu/drm/i915/gt/intel_context_param.h
-> >>> @@ -10,11 +10,10 @@
-> >>>
-> >>>    #include "intel_context.h"
-> >>>
-> >>> -static inline int
-> >>> +static inline void
-> >>>    intel_context_set_watchdog_us(struct intel_context *ce, u64 timeout_us)
-> >>>    {
-> >>>        ce->watchdog.timeout_us = timeout_us;
-> >>> -     return 0;
-> >>>    }
-> >>>
-> >>>    #endif /* INTEL_CONTEXT_PARAM_H */
-> >>>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
