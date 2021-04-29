@@ -2,41 +2,24 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7F9036E9E5
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 14:01:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 136FB36E9ED
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 14:02:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EE906EE4F;
-	Thu, 29 Apr 2021 12:01:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CAF56EE55;
+	Thu, 29 Apr 2021 12:02:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 542 seconds by postgrey-1.36 at gabe;
- Thu, 29 Apr 2021 02:51:19 UTC
-Received: from mail-m121142.qiye.163.com (mail-m121142.qiye.163.com
- [115.236.121.142])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45B136EC64
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 02:51:18 +0000 (UTC)
-Received: from ubuntu.localdomain (unknown [36.152.145.181])
- by mail-m121142.qiye.163.com (Hmail) with ESMTPA id B1253801C3;
- Thu, 29 Apr 2021 10:42:13 +0800 (CST)
-From: Bernard Zhao <bernard@vivo.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Wed, 28 Apr 2021 19:42:11 -0700
-Message-Id: <20210429024211.58245-1-bernard@vivo.com>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC5B66EE55
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 12:02:02 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 29 Apr 2021 14:01:58 +0200
+Message-Id: <20210429120158.1105318-1-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgYFAkeWUFZS1VLWVdZKFlBSE83V1ktWUFJV1kPCR
- oVCBIfWUFZGUhISFZLSk5LGBpKSxpPSEJVEwETFhoSFyQUDg9ZV1kWGg8SFR0UWUFZT0tIVUpKS0
- hKTFVLWQY+
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Okk6DAw6OT8QEkkyEktMCRA5
- N00aFB1VSlVKTUpCTU1PSkhPSkxPVTMWGhIXVRkeCRUaCR87DRINFFUYFBZFWVdZEgtZQVlITVVK
- TklVSk9OVUpDSllXWQgBWUFJT0hINwY+
-X-HM-Tid: 0a791b815ee5b037kuuub1253801c3
-X-Mailman-Approved-At: Thu, 29 Apr 2021 12:01:43 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: Use might_alloc()
+Subject: [Intel-gfx] [PATCH] drm/i915: Remove erroneous i915_is_ggtt check
+ for I915_GEM_OBJECT_UNBIND_VM_TRYLOCK
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,54 +32,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bernard Zhao <bernard@vivo.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This maybe used lockdep through the fs_reclaim annotations.
-
-Signed-off-by: Bernard Zhao <bernard@vivo.com>
----
- drivers/gpu/drm/i915/i915_sw_fence.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index 2744558f3050..cc1b49cabb6c 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -341,7 +341,7 @@ static int __i915_sw_fence_await_sw_fence(struct i915_sw_fence *fence,
- 	unsigned long flags;
- 
- 	debug_fence_assert(fence);
--	might_sleep_if(gfpflags_allow_blocking(gfp));
-+	might_alloc(gfp);
- 
- 	if (i915_sw_fence_done(signaler)) {
- 		i915_sw_fence_set_error_once(fence, signaler->error);
-@@ -477,7 +477,7 @@ int i915_sw_fence_await_dma_fence(struct i915_sw_fence *fence,
- 	int ret;
- 
- 	debug_fence_assert(fence);
--	might_sleep_if(gfpflags_allow_blocking(gfp));
-+	might_alloc(gfp);
- 
- 	if (dma_fence_is_signaled(dma)) {
- 		i915_sw_fence_set_error_once(fence, dma->error);
-@@ -576,7 +576,7 @@ int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
- 	int ret = 0, pending;
- 
- 	debug_fence_assert(fence);
--	might_sleep_if(gfpflags_allow_blocking(gfp));
-+	might_alloc(gfp);
- 
- 	if (write) {
- 		struct dma_fence **shared;
--- 
-2.31.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgY2hhbmdlZCB0aGUgbG9ja2luZyBoaWVyYXJjaHkgZm9yIGJvdGggcHBndHQgYW5kIGdndHQs
+IHNvIGJvdGggbG9ja3MKc2hvdWxkIGJlIHRyeWxvY2tlZCBpbnNpZGUgaTkxNV9nZW1fb2JqZWN0
+X3VuYmluZCgpLgoKU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFu
+a2hvcnN0QGxpbnV4LmludGVsLmNvbT4KRml4ZXM6IGJjNmY4MGNjZTlhZSAoImRybS9pOTE1OiBV
+c2UgdHJ5bG9jayBpbiBzaHJpbmtlciBmb3IgZ2d0dCBvbiBic3cgdnQtZCBhbmQgYnh0LCB2Mi4i
+KQpDYzogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29t
+PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtLmMgfCAzICstLQogMSBmaWxlIGNo
+YW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dl
+bS5jCmluZGV4IDA3ZGE2YTkzNDJlMy4uZDAwMThjNWY4OGJkIDEwMDY0NAotLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+Z2VtLmMKQEAgLTE1OCw4ICsxNTgsNyBAQCBpbnQgaTkxNV9nZW1fb2JqZWN0X3VuYmluZChzdHJ1
+Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLAogCQkJcmV0ID0gLUVCVVNZOwogCQkJaWYgKGZs
+YWdzICYgSTkxNV9HRU1fT0JKRUNUX1VOQklORF9BQ1RJVkUgfHwKIAkJCSAgICAhaTkxNV92bWFf
+aXNfYWN0aXZlKHZtYSkpIHsKLQkJCQlpZiAoaTkxNV9pc19nZ3R0KHZtYS0+dm0pICYmCi0JCQkJ
+ICAgIGZsYWdzICYgSTkxNV9HRU1fT0JKRUNUX1VOQklORF9WTV9UUllMT0NLKSB7CisJCQkJaWYg
+KGZsYWdzICYgSTkxNV9HRU1fT0JKRUNUX1VOQklORF9WTV9UUllMT0NLKSB7CiAJCQkJCWlmICht
+dXRleF90cnlsb2NrKCZ2bWEtPnZtLT5tdXRleCkpIHsKIAkJCQkJCXJldCA9IF9faTkxNV92bWFf
+dW5iaW5kKHZtYSk7CiAJCQkJCQltdXRleF91bmxvY2soJnZtYS0+dm0tPm11dGV4KTsKLS0gCjIu
+MzEuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
