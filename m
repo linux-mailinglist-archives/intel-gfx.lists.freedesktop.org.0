@@ -1,41 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B3136E7BC
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 11:13:24 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D881136E808
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 11:32:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 796586EDC7;
-	Thu, 29 Apr 2021 09:13:11 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FCB56E1F7;
- Thu, 29 Apr 2021 09:13:09 +0000 (UTC)
-IronPort-SDR: RNO0E70EXb+WGg0WnlRP/8BN95vGWLgjtbOhxHslNizzLvjDbX9lePkGHXDKV+wpFHbmn555x/
- vqDi3TF0d8TA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="197011313"
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="197011313"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2021 02:13:08 -0700
-IronPort-SDR: ItxURtprWcBJYL9iAPCax8Jh86ScTwTG+knmoJHvLSjnNenmLk5RTAcxGjvrDasbLPntdafIsI
- L8xjZ+t5iXpA==
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="537298821"
-Received: from gwaise-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.208.64])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2021 02:13:07 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Thu, 29 Apr 2021 10:12:54 +0100
-Message-Id: <20210429091254.855248-7-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210429091254.855248-1-tvrtko.ursulin@linux.intel.com>
-References: <20210429091254.855248-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E58F86EDCC;
+	Thu, 29 Apr 2021 09:32:48 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15EB96EDC5;
+ Thu, 29 Apr 2021 09:32:48 +0000 (UTC)
+IronPort-SDR: FV+hQBex7bTjGkVbW8gdN3GTsr5QRKPMVCkRVs2dazo1yhATVHR+Ip6W/pfbciuVOvJHPlA2HY
+ X8ort/QggGLw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="282305234"
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="282305234"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 02:32:47 -0700
+IronPort-SDR: hRVi9EXSQJIuRNPiu7Oy1q78+Drbr+tEdeFRAM/EkQ0ORFY1ZJMh/QvmcqfWmE7uYYYDfLA6tC
+ Nibv9hmFgEUQ==
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="430757820"
+Received: from auchter-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.38.190])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 02:32:40 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Ruhl\, Michael J" <michael.j.ruhl@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ "joonas.lahtinen\@linux.intel.com" <joonas.lahtinen@linux.intel.com>, "Vivi\,
+ Rodrigo" <rodrigo.vivi@intel.com>, "airlied\@linux.ie" <airlied@linux.ie>,
+ "daniel\@ffwll.ch" <daniel@ffwll.ch>, "Auld\,
+ Matthew" <matthew.auld@intel.com>
+In-Reply-To: <5e1934e6761646f7993801c2e43e5ed8@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210427174857.7862-1-tzimmermann@suse.de>
+ <5e1934e6761646f7993801c2e43e5ed8@intel.com>
+Date: Thu, 29 Apr 2021 12:32:37 +0300
+Message-ID: <87k0ol307e.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915: Add more checks when building
- workaround lists
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gem: Remove reference to struct
+ drm_device.pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,217 +54,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, "Hellstrom,
+ Thomas" <thomas.hellstrom@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ "Liu, Xinyun" <xinyun.liu@intel.com>, Dan Carpenter <dan.carpenter@oracle.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-In current code we check that a workaround is not completely
-overwriting the existing one, but for instance partial conflict in some
-bits would get missed, as would problems involving masked registers,
-courtesy of the mask (wa->clr) being forced to zero for such registers and
-also being conflated with the readback verification.
-
-Now that previous patches have separated write masks from readback masks,
-and ensured all masked registers are correctly tagged as such, we can
-improve the verification checks to also detect partial conflicts, wrong
-masks and inconsistent register usage.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reported-by: Andres Calderon Jaramillo <andrescj@google.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c   | 81 +++++++++++++++----
- .../gpu/drm/i915/gt/intel_workarounds_types.h |  4 +
- .../gpu/drm/i915/gt/selftest_workarounds.c    |  4 +-
- 3 files changed, 72 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index cd84c2a86787..c82f165bdd8b 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -52,8 +52,11 @@
-  * - Public functions to init or apply the given workaround type.
-  */
- 
--static void wa_init_start(struct i915_wa_list *wal, const char *name, const char *engine_name)
-+static void
-+wa_init_start(struct drm_i915_private *i915, struct i915_wa_list *wal,
-+	      const char *name, const char *engine_name)
- {
-+	wal->i915 = i915;
- 	wal->name = name;
- 	wal->engine_name = engine_name;
- }
-@@ -81,6 +84,59 @@ static void wa_init_finish(struct i915_wa_list *wal)
- 			 wal->wa_count, wal->name, wal->engine_name);
- }
- 
-+static void
-+log_bad_wa(const struct i915_wa_list *wal, const struct i915_wa *wa,
-+	   const char *msg)
-+{
-+	drm_err(&wal->i915->drm,
-+		"Discarding %s workaround! (reg=%x %s=%x set=%x)\n",
-+		msg, i915_mmio_reg_offset(wa->reg), wa->clr ? "clear" : "mask",
-+		wa->clr ?: wa->set >> 16, wa->set);
-+}
-+
-+static bool
-+check_conflict(const struct i915_wa_list *wal,
-+	       const struct i915_wa *old,
-+	       const struct i915_wa *new)
-+{
-+	u32 new_mask, old_mask, common, new_set, old_set;
-+
-+	if (new->clr && !old->clr) {
-+		log_bad_wa(wal, new, "mixed masked and regular");
-+		return true;
-+	}
-+
-+	if (new->clr) {
-+		new_mask = new->clr;
-+		old_mask = old->clr;
-+		new_set = new->set;
-+		old_set = old->set;
-+	} else {
-+		new_mask = new->set >> 16;
-+		old_mask = old->set >> 16;
-+		new_set = new->set & 0xffff;
-+		old_set = old->set & 0xffff;
-+	}
-+
-+	if (new_set && (new_set & ~new_mask)) {
-+		log_bad_wa(wal, new, "write outside the mask");
-+		return true;
-+	}
-+
-+	common = new_mask & old_mask;
-+	if (common) {
-+		if ((new_set & common) != (old_set & common)) {
-+			log_bad_wa(wal, new, "conflicting");
-+			return true;
-+		} else if (new_mask == old_mask) {
-+			log_bad_wa(wal, new, "duplicate");
-+			return true;
-+		}
-+	}
-+
-+	return false;
-+}
-+
- static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
- {
- 	unsigned int addr = i915_mmio_reg_offset(wa->reg);
-@@ -118,18 +174,13 @@ static void _wa_add(struct i915_wa_list *wal, const struct i915_wa *wa)
- 		} else {
- 			wa_ = &wal->list[mid];
- 
--			if ((wa->clr | wa_->clr) && !(wa->clr & ~wa_->clr)) {
--				DRM_ERROR("Discarding overwritten w/a for reg %04x (clear: %08x, set: %08x)\n",
--					  i915_mmio_reg_offset(wa_->reg),
--					  wa_->clr, wa_->set);
--
--				wa_->set &= ~wa->clr;
-+			if (!check_conflict(wal, wa_, wa)) {
-+				wal->wa_count++;
-+				wa_->set |= wa->set;
-+				wa_->clr |= wa->clr;
-+				wa_->read |= wa->read;
- 			}
- 
--			wal->wa_count++;
--			wa_->set |= wa->set;
--			wa_->clr |= wa->clr;
--			wa_->read |= wa->read;
- 			return;
- 		}
- 	}
-@@ -716,7 +767,7 @@ __intel_engine_init_ctx_wa(struct intel_engine_cs *engine,
- 	if (engine->class != RENDER_CLASS)
- 		return;
- 
--	wa_init_start(wal, name, engine->name);
-+	wa_init_start(engine->i915, wal, name, engine->name);
- 
- 	if (IS_DG1(i915))
- 		dg1_ctx_workarounds_init(engine, wal);
-@@ -1232,7 +1283,7 @@ void intel_gt_init_workarounds(struct drm_i915_private *i915)
- {
- 	struct i915_wa_list *wal = &i915->gt_wa_list;
- 
--	wa_init_start(wal, "GT", "global");
-+	wa_init_start(i915, wal, "GT", "global");
- 	gt_init_workarounds(i915, wal);
- 	wa_init_finish(wal);
- }
-@@ -1575,7 +1626,7 @@ void intel_engine_init_whitelist(struct intel_engine_cs *engine)
- 	struct drm_i915_private *i915 = engine->i915;
- 	struct i915_wa_list *w = &engine->whitelist;
- 
--	wa_init_start(w, "whitelist", engine->name);
-+	wa_init_start(engine->i915, w, "whitelist", engine->name);
- 
- 	if (IS_DG1(i915))
- 		dg1_whitelist_build(engine);
-@@ -2095,7 +2146,7 @@ void intel_engine_init_workarounds(struct intel_engine_cs *engine)
- 	if (INTEL_GEN(engine->i915) < 4)
- 		return;
- 
--	wa_init_start(wal, "engine", engine->name);
-+	wa_init_start(engine->i915, wal, "engine", engine->name);
- 	engine_init_workarounds(engine, wal);
- 	wa_init_finish(wal);
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds_types.h b/drivers/gpu/drm/i915/gt/intel_workarounds_types.h
-index c214111ea367..b6a9d1582a5c 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds_types.h
-@@ -10,6 +10,8 @@
- 
- #include "i915_reg.h"
- 
-+struct drm_i915_private;
-+
- struct i915_wa {
- 	i915_reg_t	reg;
- 	u32		clr;
-@@ -18,6 +20,8 @@ struct i915_wa {
- };
- 
- struct i915_wa_list {
-+	struct drm_i915_private *i915;
-+
- 	const char	*name;
- 	const char	*engine_name;
- 	struct i915_wa	*list;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-index 64937ec3f2dc..536cbe7889cc 100644
---- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-@@ -64,14 +64,14 @@ reference_lists_init(struct intel_gt *gt, struct wa_lists *lists)
- 
- 	memset(lists, 0, sizeof(*lists));
- 
--	wa_init_start(&lists->gt_wa_list, "GT_REF", "global");
-+	wa_init_start(gt->i915, &lists->gt_wa_list, "GT_REF", "global");
- 	gt_init_workarounds(gt->i915, &lists->gt_wa_list);
- 	wa_init_finish(&lists->gt_wa_list);
- 
- 	for_each_engine(engine, gt, id) {
- 		struct i915_wa_list *wal = &lists->engine[id].wa_list;
- 
--		wa_init_start(wal, "REF", engine->name);
-+		wa_init_start(gt->i915, wal, "REF", engine->name);
- 		engine_init_workarounds(engine, wal);
- 		wa_init_finish(wal);
- 
--- 
-2.30.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyNyBBcHIgMjAyMSwgIlJ1aGwsIE1pY2hhZWwgSiIgPG1pY2hhZWwuai5ydWhsQGlu
+dGVsLmNvbT4gd3JvdGU6Cj4+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0KPj5Gcm9tOiBUaG9t
+YXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KPj5TZW50OiBUdWVzZGF5LCBBcHJp
+bCAyNywgMjAyMSAxOjQ5IFBNCj4+VG86IGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbTsgam9v
+bmFzLmxhaHRpbmVuQGxpbnV4LmludGVsLmNvbTsgVml2aSwgUm9kcmlnbwo+Pjxyb2RyaWdvLnZp
+dmlAaW50ZWwuY29tPjsgYWlybGllZEBsaW51eC5pZTsgZGFuaWVsQGZmd2xsLmNoOyBBdWxkLCBN
+YXR0aGV3Cj4+PG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+OyBSdWhsLCBNaWNoYWVsIEogPG1pY2hh
+ZWwuai5ydWhsQGludGVsLmNvbT4KPj5DYzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZzsgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgVGhvbWFzCj4+WmltbWVybWFubiA8
+dHppbW1lcm1hbm5Ac3VzZS5kZT47IE5pa3VsYSwgSmFuaQo+PjxqYW5pLm5pa3VsYUBpbnRlbC5j
+b20+OyBUYW5nLCBDUSA8Y3EudGFuZ0BpbnRlbC5jb20+OyBUdnJ0a28gVXJzdWxpbgo+Pjx0dnJ0
+a28udXJzdWxpbkBsaW51eC5pbnRlbC5jb20+OyBMaXUsIFhpbnl1biA8eGlueXVuLmxpdUBpbnRl
+bC5jb20+OyBVcnN1bGluLAo+PlR2cnRrbyA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPjsgQ2hy
+aXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Owo+Pk1pa2EgS3VvcHBhbGEgPG1p
+a2Eua3VvcHBhbGFAbGludXguaW50ZWwuY29tPjsgRGFuaWVsIFZldHRlcgo+PjxkYW5pZWwudmV0
+dGVyQGZmd2xsLmNoPjsgTWFhcnRlbiBMYW5raG9yc3QKPj48bWFhcnRlbi5sYW5raG9yc3RAbGlu
+dXguaW50ZWwuY29tPjsgSGVsbHN0cm9tLCBUaG9tYXMKPj48dGhvbWFzLmhlbGxzdHJvbUBpbnRl
+bC5jb20+OyBHdXN0YXZvIEEuIFIuIFNpbHZhCj4+PGd1c3Rhdm9hcnNAa2VybmVsLm9yZz47IERh
+biBDYXJwZW50ZXIgPGRhbi5jYXJwZW50ZXJAb3JhY2xlLmNvbT4KPj5TdWJqZWN0OiBbUEFUQ0gg
+djJdIGRybS9pOTE1L2dlbTogUmVtb3ZlIHJlZmVyZW5jZSB0byBzdHJ1Y3QKPj5kcm1fZGV2aWNl
+LnBkZXYKPj4KPj5SZWZlcmVuY2VzIHRvIHN0cnVjdCBkcm1fZGV2aWNlLnBkZXYgc2hvdWxkIG5v
+dCBiZSB1c2VkIGFueSBsb25nZXIgYXMKPj50aGUgZmllbGQgd2lsbCBiZSBtb3ZlZCBpbnRvIHRo
+ZSBzdHJ1Y3QncyBsZWdhY3kgc2VjdGlvbi4gQWRkIGEgZml4Cj4+Zm9yIHRoZSByc3AgY29tbWl0
+Lgo+Cj4gQ29tbWl0IG1lc3NhZ2UgbWF0Y2ggdGhlIHBhdGNoLgo+Cj4gUmV2aWV3ZWQtYnk6IE1p
+Y2hhZWwgSi4gUnVobCA8bWljaGFlbC5qLnJ1aGxAaW50ZWwuY29tCgpUaGFua3MgZm9yIHRoZSBw
+YXRjaCBhbmQgcmV2aWV3LCBwdXNoZWQgdG8gZHJtLWludGVsLWd0LW5leHQuCgpCUiwKSmFuaS4K
+Cj4KPiBNCj4KPj52MjoKPj4JKiBmaXggYW4gZXJyb3IgaW4gdGhlIGNvbW1pdCBkZXNjcmlwdGlv
+biAoTWljaGFlbCkKPj4KPj5TaWduZWQtb2ZmLWJ5OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1l
+cm1hbm5Ac3VzZS5kZT4KPj5SZXZpZXdlZC1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGlu
+dGVsLmNvbT4KPj5GaXhlczogZDU3ZDRhMWRhZjVlICgiZHJtL2k5MTU6IENyZWF0ZSBzdG9sZW4g
+bWVtb3J5IHJlZ2lvbiBmcm9tIGxvY2FsCj4+bWVtb3J5IikKPj5DYzogQ1EgVGFuZyA8Y3EudGFu
+Z0BpbnRlbC5jb20+Cj4+Q2M6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4K
+Pj5DYzogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGxpbnV4LmludGVsLmNvbT4KPj5D
+YzogWGlueXVuIExpdSA8eGlueXVuLmxpdUBpbnRlbC5jb20+Cj4+Q2M6IFR2cnRrbyBVcnN1bGlu
+IDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4+Q2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3Vs
+YUBsaW51eC5pbnRlbC5jb20+Cj4+Q2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVu
+QGxpbnV4LmludGVsLmNvbT4KPj5DYzogUm9kcmlnbyBWaXZpIDxyb2RyaWdvLnZpdmlAaW50ZWwu
+Y29tPgo+PkNjOiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPj5DYzog
+TWlrYSBLdW9wcGFsYSA8bWlrYS5rdW9wcGFsYUBsaW51eC5pbnRlbC5jb20+Cj4+Q2M6IERhbmll
+bCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4+Q2M6IE1hYXJ0ZW4gTGFua2hvcnN0
+IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4+Q2M6ICJUaG9tYXMgSGVsbHN0
+csO2bSIgPHRob21hcy5oZWxsc3Ryb21AaW50ZWwuY29tPgo+PkNjOiAiR3VzdGF2byBBLiBSLiBT
+aWx2YSIgPGd1c3Rhdm9hcnNAa2VybmVsLm9yZz4KPj5DYzogRGFuIENhcnBlbnRlciA8ZGFuLmNh
+cnBlbnRlckBvcmFjbGUuY29tPgo+PkNjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cj4+LS0tCj4+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9zdG9sZW4uYyB8IDIg
+Ky0KPj4gMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4+Cj4+
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9zdG9sZW4uYwo+
+PmIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jCj4+aW5kZXggYzVi
+NjRiMjQwMGU4Li5lMWEzMjY3MmJiZTggMTAwNjQ0Cj4+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ2VtL2k5MTVfZ2VtX3N0b2xlbi5jCj4+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX3N0b2xlbi5jCj4+QEAgLTc3Myw3ICs3NzMsNyBAQCBzdHJ1Y3QgaW50ZWxfbWVt
+b3J5X3JlZ2lvbiAqCj4+IGk5MTVfZ2VtX3N0b2xlbl9sbWVtX3NldHVwKHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICppOTE1KQo+PiB7Cj4+IAlzdHJ1Y3QgaW50ZWxfdW5jb3JlICp1bmNvcmUgPSAm
+aTkxNS0+dW5jb3JlOwo+Pi0Jc3RydWN0IHBjaV9kZXYgKnBkZXYgPSBpOTE1LT5kcm0ucGRldjsK
+Pj4rCXN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gdG9fcGNpX2RldihpOTE1LT5kcm0uZGV2KTsKPj4g
+CXN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICptZW07Cj4+IAlyZXNvdXJjZV9zaXplX3QgaW9f
+c3RhcnQ7Cj4+IAlyZXNvdXJjZV9zaXplX3QgbG1lbV9zaXplOwo+Pi0tCj4+Mi4zMS4xCj4KCi0t
+IApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
+IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
