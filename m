@@ -1,60 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F4A36E9F6
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 14:05:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA39336E9FC
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 14:06:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2073C6EE6B;
-	Thu, 29 Apr 2021 12:05:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 696576EE75;
+	Thu, 29 Apr 2021 12:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com
- [IPv6:2a00:1450:4864:20::42d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA18C6EE64
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 12:04:59 +0000 (UTC)
-Received: by mail-wr1-x42d.google.com with SMTP id h15so14412160wre.11
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 05:04:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=MiEGZ+NS79WfLSCC9MIwqhDMsalGqkYSHOP1/CwaZU4=;
- b=YgwMixYszQENkHqy9w2Jcs0yAfAy1kkME8DMPpQ5ZZLD193GRfpHBf4uqFL3SRq2Cy
- MM+bj/rtvHESAWxPWym3OBx8oRK+LwSF0/sJoHB5CqkFIFcySppu5xnLyQbDsdRqeY9C
- GNh3BbYzxbHMCioyzp9U4suZ3fcl/+bL0ydOE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=MiEGZ+NS79WfLSCC9MIwqhDMsalGqkYSHOP1/CwaZU4=;
- b=fS+XuwJ4GxVvMsCM9BBp+fY7BKjpt6n8mRuP1jH6x6iQy4vDwAaIbUYv3ohmPNrHxm
- B7HQ6Kv7UYDCdpIPbgJr/1xArEBAMwBDFn1V/e9QzXZZTx4Lb7tYB8HavMLy3IbAX14P
- DkXV9YheHBb2disiJM/ZcUnhU3aIay97H/hs1kIeYGZ2SMV9UvzScUoHOFgJ3Mw5MDu+
- Fe4s1d2Jtzk9Zkh0m7L4R6Y7c0TYWKlyMsgts0W5qKkYCX+CAR1UDGECOr01VJsUH+Ln
- 63Z7e3oFG+pqMyRoqmWJp3kSx3tKhlBICUWkI465DigwhQ7nFQmSucUAGcu3aQ56/KoF
- RGRw==
-X-Gm-Message-State: AOAM530VRoYGyTVgzxy8k855D6i6CyspyFEllOFibdHGruGXsbrNZ6c1
- aj2H1NRm2i+7XwJLdnQjRlmmEsDZ1OEshw==
-X-Google-Smtp-Source: ABdhPJzmDVcXuCXiplPzF0O0arZ1mMffMpsXfHhp9ao117QhIvz6OE2+jM6MkrgthQaHAg5tIffCHw==
-X-Received: by 2002:adf:d0c8:: with SMTP id z8mr43468889wrh.68.1619697898559; 
- Thu, 29 Apr 2021 05:04:58 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id e10sm4495558wrw.20.2021.04.29.05.04.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Apr 2021 05:04:57 -0700 (PDT)
-Date: Thu, 29 Apr 2021 14:04:55 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Message-ID: <YIqg59yageIUwiwy@phenom.ffwll.local>
-References: <20210428215257.500088-1-hdegoede@redhat.com>
- <20210428215257.500088-2-hdegoede@redhat.com>
- <YIqbLDIeGXNSjSTS@phenom.ffwll.local> <YIqehmw+kG53LF3t@kroah.com>
+Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 330506EE70;
+ Thu, 29 Apr 2021 12:06:02 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id 9CE22C800F9;
+ Thu, 29 Apr 2021 14:06:00 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10026)
+ with LMTP id zStg9Uz8oNy5; Thu, 29 Apr 2021 14:06:00 +0200 (CEST)
+Received: from wsembach-tuxedo.fritz.box
+ (p200300e37F398600fDb5850719dbc945.dip0.t-ipconnect.de
+ [IPv6:2003:e3:7f39:8600:fdb5:8507:19db:c945])
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPA id 3B7FAC800F8;
+ Thu, 29 Apr 2021 14:06:00 +0200 (CEST)
+From: Werner Sembach <wse@tuxedocomputers.com>
+To: wse@tuxedocomputers.com, airlied@linux.ie, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Date: Thu, 29 Apr 2021 14:05:53 +0200
+Message-Id: <20210429120553.7823-1-wse@tuxedocomputers.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YIqehmw+kG53LF3t@kroah.com>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/connector: Make the drm_sysfs
- connector->kdev device hold a reference to the connector
+Subject: [Intel-gfx] [PATCH] drm/i915/display Try YCbCr420 color when RGB
+ fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,54 +47,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, platform-driver-x86@vger.kernel.org,
- linux-usb@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 29, 2021 at 01:54:46PM +0200, Greg Kroah-Hartman wrote:
-> On Thu, Apr 29, 2021 at 01:40:28PM +0200, Daniel Vetter wrote:
-> > On Wed, Apr 28, 2021 at 11:52:49PM +0200, Hans de Goede wrote:
-> > > Userspace could hold open a reference to the connector->kdev device,
-> > > through e.g. holding a sysfs-atrtribute open after
-> > > drm_sysfs_connector_remove() has been called. In this case the connector
-> > > could be free-ed while the connector->kdev device's drvdata is still
-> > > pointing to it.
-> > > 
-> > > Give drm_connector devices there own device type, which allows
-> > > us to specify our own release function and make drm_sysfs_connector_add()
-> > > take a reference on the connector object, and have the new release
-> > > function put the reference when the device is released.
-> > > 
-> > > Giving drm_connector devices there own device type, will also allow
-> > > checking if a device is a drm_connector device with a
-> > > "if (device->type == &drm_sysfs_device_connector)" check.
-> > > 
-> > > Note that the setting of the name member of the device_type struct will
-> > > cause udev events for drm_connector-s to now contain DEVTYPE=drm_connector
-> > > as extra info. So this extends the uevent part of the userspace API.
-> > > 
-> > > Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-> > 
-> > Are you sure? I thought sysfs is supposed to flush out any pending
-> > operations (they complete fast) and handle open fd internally?
-> 
-> Yes, it "should" :)
+When encoder validation of a display mode fails, retry with less bandwidth
+heavy YCbCr420 color mode, if available. This enables some HDMI 1.4 setups
+to support 4k60Hz output, which previously failed silently.
 
-Thanks for confirming my vague memories :-)
+AMDGPU had nearly the exact same issue. This problem description is
+therefore copied from my commit message of the AMDGPU patch.
 
-Hans, pls drop this one.
--Daniel
+On some setups, while the monitor and the gpu support display modes with
+pixel clocks of up to 600MHz, the link encoder might not. This prevents
+YCbCr444 and RGB encoding for 4k60Hz, but YCbCr420 encoding might still be
+possible. However, which color mode is used is decided before the link
+encoder capabilities are checked. This patch fixes the problem by retrying
+to find a display mode with YCbCr420 enforced and using it, if it is
+valid.
+
+I'm not entierly sure if the second
+"if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))" check in
+intel_hdmi_compute_config(...) after forcing ycbcr420 is necessary. I
+included it to better be safe then sorry.
+
+Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+Cc: <stable@vger.kernel.org>
+---
+Rebased from 5.12 to drm-tip and resend to resolve merge conflict.
+
+From 876c1c8d970ff2a411ee8d08651bd4edbe9ecb3d Mon Sep 17 00:00:00 2001
+From: Werner Sembach <wse@tuxedocomputers.com>
+Date: Thu, 29 Apr 2021 13:59:30 +0200
+Subject: [PATCH] Retry using YCbCr420 encoding if clock setup for RGB fails
+
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 80 +++++++++++++++++------
+ 1 file changed, 60 insertions(+), 20 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 46de56af33db..c9b5a7d7f9c6 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1861,6 +1861,30 @@ static int intel_hdmi_port_clock(int clock, int bpc)
+ 	return clock * bpc / 8;
+ }
+ 
++static enum drm_mode_status
++intel_hdmi_check_bpc(struct intel_hdmi *hdmi, int clock, bool has_hdmi_sink, struct drm_i915_private *dev_priv)
++{
++	enum drm_mode_status status;
++
++	/* check if we can do 8bpc */
++	status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 8),
++				       true, has_hdmi_sink);
++
++	if (has_hdmi_sink) {
++		/* if we can't do 8bpc we may still be able to do 12bpc */
++		if (status != MODE_OK && !HAS_GMCH(dev_priv))
++			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 12),
++						       true, has_hdmi_sink);
++
++		/* if we can't do 8,12bpc we may still be able to do 10bpc */
++		if (status != MODE_OK && DISPLAY_VER(dev_priv) >= 11)
++			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 10),
++						       true, has_hdmi_sink);
++	}
++
++	return status;
++}
++
+ static enum drm_mode_status
+ intel_hdmi_mode_valid(struct drm_connector *connector,
+ 		      struct drm_display_mode *mode)
+@@ -1891,23 +1915,18 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
+ 	if (drm_mode_is_420_only(&connector->display_info, mode))
+ 		clock /= 2;
+ 
+-	/* check if we can do 8bpc */
+-	status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 8),
+-				       true, has_hdmi_sink);
++	status = intel_hdmi_check_bpc(hdmi, clock, has_hdmi_sink, dev_priv);
+ 
+-	if (has_hdmi_sink) {
+-		/* if we can't do 8bpc we may still be able to do 12bpc */
+-		if (status != MODE_OK && !HAS_GMCH(dev_priv))
+-			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 12),
+-						       true, has_hdmi_sink);
++	if (status != MODE_OK) {
++		if (drm_mode_is_420_also(&connector->display_info, mode)) {
++			/* if we can't do full color resolution we may still be able to do reduced color resolution */
++			clock /= 2;
+ 
+-		/* if we can't do 8,12bpc we may still be able to do 10bpc */
+-		if (status != MODE_OK && DISPLAY_VER(dev_priv) >= 11)
+-			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 10),
+-						       true, has_hdmi_sink);
++			status = intel_hdmi_check_bpc(hdmi, clock, has_hdmi_sink, dev_priv);
++		}
++		if (status != MODE_OK)
++			return status;
+ 	}
+-	if (status != MODE_OK)
+-		return status;
+ 
+ 	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
+ }
+@@ -1990,14 +2009,17 @@ static bool hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state,
+ 
+ static int
+ intel_hdmi_ycbcr420_config(struct intel_crtc_state *crtc_state,
+-			   const struct drm_connector_state *conn_state)
++			   const struct drm_connector_state *conn_state,
++			   const bool force_ycbcr420)
+ {
+ 	struct drm_connector *connector = conn_state->connector;
+ 	struct drm_i915_private *i915 = to_i915(connector->dev);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 
+-	if (!drm_mode_is_420_only(&connector->display_info, adjusted_mode))
++	if (!(drm_mode_is_420_only(&connector->display_info, adjusted_mode) ||
++			(force_ycbcr420 &&
++			drm_mode_is_420_also(&connector->display_info, adjusted_mode))))
+ 		return 0;
+ 
+ 	if (!connector->ycbcr_420_allowed) {
+@@ -2126,7 +2148,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+ 	struct drm_connector *connector = conn_state->connector;
+ 	struct drm_scdc *scdc = &connector->display_info.hdmi.scdc;
+-	int ret;
++	int ret, ret_saved;
+ 
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+ 		return -EINVAL;
+@@ -2141,7 +2163,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
+ 		pipe_config->pixel_multiplier = 2;
+ 
+-	ret = intel_hdmi_ycbcr420_config(pipe_config, conn_state);
++	ret = intel_hdmi_ycbcr420_config(pipe_config, conn_state, false);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -2155,8 +2177,26 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 		intel_hdmi_has_audio(encoder, pipe_config, conn_state);
+ 
+ 	ret = intel_hdmi_compute_clock(encoder, pipe_config);
+-	if (ret)
+-		return ret;
++	if (ret) {
++		ret_saved = ret;
++
++		ret = intel_hdmi_ycbcr420_config(pipe_config, conn_state, true);
++		if (ret)
++			return ret;
++
++		if (pipe_config->output_format != INTEL_OUTPUT_FORMAT_YCBCR420)
++			return ret_saved;
++
++		pipe_config->limited_color_range =
++			intel_hdmi_limited_color_range(pipe_config, conn_state);
++
++		if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))
++			pipe_config->has_pch_encoder = true;
++
++		ret = intel_hdmi_compute_clock(encoder, pipe_config);
++		if (ret)
++			return ret;
++	}
+ 
+ 	if (conn_state->picture_aspect_ratio)
+ 		adjusted_mode->picture_aspect_ratio =
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
