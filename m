@@ -1,39 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2415036E72D
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 10:41:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8109636E759
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 10:51:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B04CD6EDBD;
-	Thu, 29 Apr 2021 08:41:49 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCF876EDBC;
- Thu, 29 Apr 2021 08:41:48 +0000 (UTC)
-IronPort-SDR: GReknZF/1aP/S9aFQRqvNQUwsqFxinCxgjwA3S45OE4nyd5Fab/jMLB4gN7sdSZtS7r3ySJur/
- LYbK6xoSQ2Ig==
-X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="197058912"
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="197058912"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2021 01:41:46 -0700
-IronPort-SDR: uMUD0TpNYS68iTP2b/oqD/FuVaaKem7AS2hQ6gv2KmMT+hZVEU+1Hk9n2V8D8EGUqjNOf0K39O
- VVnh/qr/X16Q==
-X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="423974335"
-Received: from gwaise-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
- ([10.213.208.64])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2021 01:41:38 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Thu, 29 Apr 2021 09:41:30 +0100
-Message-Id: <20210429084130.850426-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.30.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 047226E1B3;
+	Thu, 29 Apr 2021 08:51:24 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3C0A6E1B3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 08:51:22 +0000 (UTC)
+IronPort-SDR: q7PXaUn7RDR5DUH6dwIQ9gFVemSuqXVfIkc3/kNEJRH4T89YILZ1kyPI7kGeekI84etDPAl/Ji
+ d+E0dHwnv2WA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="260909911"
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="260909911"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 01:51:21 -0700
+IronPort-SDR: LjveZUk/8LMemLlmvht5mKnBba7nas2FR1IR2VcZtGeJo1aZf1zCV+7BeMe+K6DFPcHAjDBekN
+ cDCNRgIo2Qdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,258,1613462400"; d="scan'208";a="537294061"
+Received: from linux-akn.iind.intel.com ([10.223.34.148])
+ by orsmga004.jf.intel.com with ESMTP; 29 Apr 2021 01:51:20 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 29 Apr 2021 14:12:42 +0530
+Message-Id: <20210429084242.14353-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] tests/i915/gem_workarounds: Prepare for
- read mask
+Subject: [Intel-gfx] [PATCH] drm/i915: Use correct downstream caps for check
+ Src-Ctl mode for PCON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,78 +45,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Fix the typo in DPCD caps used for checking SRC CTL mode of
+HDMI2.1 PCON
 
-I plan to extend i915 to expose the read mask in i915_wa_registers so
-prepare the IGT for that format change.
+Fixes: 04b6603d13be (drm/i915/display: Configure HDMI2.1 Pcon for FRL
+only if Src-Ctl mode is available)
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- tests/i915/gem_workarounds.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/tests/i915/gem_workarounds.c b/tests/i915/gem_workarounds.c
-index 00b475c27ff1..be5c5d83f405 100644
---- a/tests/i915/gem_workarounds.c
-+++ b/tests/i915/gem_workarounds.c
-@@ -47,6 +47,7 @@ struct intel_wa_reg {
- 	uint32_t addr;
- 	uint32_t value;
- 	uint32_t mask;
-+	uint32_t read;
- };
- 
- static struct write_only_list {
-@@ -157,8 +158,8 @@ static int workaround_fail_count(int i915, uint32_t ctx)
- 		if (out[i] == 0)
- 			out[i] = *(volatile uint32_t *)(igt_global_mmio + wa_regs[i].addr);
- 
--		if ((wa_regs[i].value & wa_regs[i].mask) ==
--		    (out[i] & wa_regs[i].mask)) {
-+		if ((wa_regs[i].value & wa_regs[i].read) ==
-+		    (out[i] & wa_regs[i].read)) {
- 			igt_debug("%s\tOK\n", buf);
- 		} else if (write_only(wa_regs[i].addr)) {
- 			igt_debug("%s\tIGNORED (w/o)\n", buf);
-@@ -274,7 +275,7 @@ igt_main
- 		sscanf(str, "Workarounds applied: %d", &num_wa_regs);
- 		igt_require(num_wa_regs > 0);
- 
--		wa_regs = malloc(num_wa_regs * sizeof(*wa_regs));
-+		wa_regs = calloc(num_wa_regs, sizeof(*wa_regs));
- 		igt_assert(wa_regs);
- 
- 		i = 0;
-@@ -283,11 +284,19 @@ igt_main
- 				break;
- 
- 			igt_debug("%s", line);
--			if (sscanf(line, "0x%X: 0x%08X, mask: 0x%08X",
-+			if (sscanf(line, "0x%X: 0x%08X, mask: 0x%08X, read: 0x%08X",
- 				   &wa_regs[i].addr,
- 				   &wa_regs[i].value,
--				   &wa_regs[i].mask) == 3)
-+				   &wa_regs[i].mask,
-+				   &wa_regs[i].read) == 4) {
- 				i++;
-+			} else if (sscanf(line, "0x%X: 0x%08X, mask: 0x%08X",
-+				   &wa_regs[i].addr,
-+				   &wa_regs[i].value,
-+				   &wa_regs[i].mask) == 3) {
-+				wa_regs[i].read = wa_regs[i].mask;
-+				i++;
-+			}
- 		}
- 
- 		igt_assert_lte(i, num_wa_regs);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index dfa7da928ae5..b3e82aa8b4f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2112,7 +2112,7 @@ void intel_dp_check_frl_training(struct intel_dp *intel_dp)
+ 	 * -PCON supports SRC_CTL_MODE (VESA DP2.0-HDMI2.1 PCON Spec Draft-1 Sec-7)
+ 	 * -sink is HDMI2.1
+ 	 */
+-	if (!(intel_dp->dpcd[2] & DP_PCON_SOURCE_CTL_MODE) ||
++	if (!(intel_dp->downstream_ports[2] & DP_PCON_SOURCE_CTL_MODE) ||
+ 	    !intel_dp_is_hdmi_2_1_sink(intel_dp) ||
+ 	    intel_dp->frl.is_trained)
+ 		return;
 -- 
-2.30.2
+2.29.2
 
 _______________________________________________
 Intel-gfx mailing list
