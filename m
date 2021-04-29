@@ -2,32 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 709ED36E91B
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 12:51:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC6136E967
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 13:12:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D60F6EE14;
-	Thu, 29 Apr 2021 10:51:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B3C46EE1C;
+	Thu, 29 Apr 2021 11:12:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9822E6EE10;
- Thu, 29 Apr 2021 10:51:06 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 3B3A8B1A4;
- Thu, 29 Apr 2021 10:51:05 +0000 (UTC)
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
- chris@chris-wilson.co.uk
-Date: Thu, 29 Apr 2021 12:51:01 +0200
-Message-Id: <20210429105101.25667-6-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210429105101.25667-1-tzimmermann@suse.de>
-References: <20210429105101.25667-1-tzimmermann@suse.de>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC5666EE1B;
+ Thu, 29 Apr 2021 11:12:32 +0000 (UTC)
+IronPort-SDR: CwSNUGXQshg674PzO/v0gTwtVrsiE74LiGN4WLON+FmEvQRTWOfDqHg1GzsREFIb6wrLeMrZKM
+ Tq+bHrwCEQIA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9968"; a="217708455"
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="217708455"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 04:12:32 -0700
+IronPort-SDR: IWyEGbqLxF4U3sr75lwnv0eXlw3/cx6hm1Rllt0CG+02H2Tj2KjMTez+LxX+qiBGzaiaWkFAYX
+ Fx9PZ5yUy1lg==
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="430792663"
+Received: from auchter-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.38.190])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 04:12:29 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>, "Vivi\,
+ Rodrigo" <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+In-Reply-To: <20210429085142.GT1551@zhen-hp.sh.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210429085142.GT1551@zhen-hp.sh.intel.com>
+Date: Thu, 29 Apr 2021 14:12:26 +0300
+Message-ID: <87czud2vl1.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v8 5/5] drm: Move struct drm_device.pdev to
- legacy section
+Subject: Re: [Intel-gfx] [PULL] gvt-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,54 +49,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv, 
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Struct drm_device.pdev is being moved to legacy status as only legacy
-DRM drivers use it. A possible follow-up patchset could remove pdev
-entirely.
+On Thu, 29 Apr 2021, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+> Hi,
+>
+> Here's just another left fix for possible divide error in vgpu
+> display rate calculation by Colin.
 
-v4:
-	* rebased
+Thanks, pulled to drm-intel-next-fixes.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
----
- include/drm/drm_device.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+> btw, I'll need a backmerge of linus tree or maybe wait till rc1
+> to apply gvt mdev dependency fix from https://patchwork.freedesktop.org/series/89479/
 
-diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-index d647223e8390..c5a195676e8f 100644
---- a/include/drm/drm_device.h
-+++ b/include/drm/drm_device.h
-@@ -279,9 +279,6 @@ struct drm_device {
- 	/** @agp: AGP data */
- 	struct drm_agp_head *agp;
- 
--	/** @pdev: PCI device structure */
--	struct pci_dev *pdev;
--
- 	/** @num_crtcs: Number of CRTCs on this device */
- 	unsigned int num_crtcs;
- 
-@@ -324,6 +321,9 @@ struct drm_device {
- 	/* List of devices per driver for stealth attach cleanup */
- 	struct list_head legacy_dev_list;
- 
-+	/* PCI device structure */
-+	struct pci_dev *pdev;
-+
- #ifdef __alpha__
- 	/** @hose: PCI hose, only used on ALPHA platforms. */
- 	struct pci_controller *hose;
+Note that we can't pull anything from you that has a newer baseline than
+what we have.
+
+BR,
+Jani.
+
+
+>
+> Thanks
+> --
+> The following changes since commit e65a4d378480101f222e8f6978c22e590c1fb7b5:
+>
+>   Merge tag 'gvt-next-fixes-2021-04-21' of https://github.com/intel/gvt-linux into drm-intel-next-fixes (2021-04-21 13:22:30 +0300)
+>
+> are available in the Git repository at:
+>
+>   https://github.com/intel/gvt-linux tags/gvt-next-fixes-2021-04-29
+>
+> for you to fetch changes up to d385c16173f28a18866abf54c764200c276dace0:
+>
+>   drm/i915/gvt: Prevent divided by zero when calculating refresh rate (2021-04-29 17:00:09 +0800)
+>
+> ----------------------------------------------------------------
+> gvt-next-fixes-2021-04-29
+>
+> - Fix possible divide error in vgpu display rate calculation (Colin)
+>
+> ----------------------------------------------------------------
+> Colin Xu (1):
+>       drm/i915/gvt: Prevent divided by zero when calculating refresh rate
+>
+>  drivers/gpu/drm/i915/gvt/handlers.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+
 -- 
-2.31.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
