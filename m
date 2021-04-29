@@ -1,31 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B29D136F284
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 00:19:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8274936F28F
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 00:23:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E5816F4D6;
-	Thu, 29 Apr 2021 22:19:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 863EA6F4D8;
+	Thu, 29 Apr 2021 22:23:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5FA866F4D3;
- Thu, 29 Apr 2021 22:19:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 57AEAA0019;
- Thu, 29 Apr 2021 22:19:39 +0000 (UTC)
+Received: from ozlabs.org (ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E0DF6F4D7;
+ Thu, 29 Apr 2021 22:23:38 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4FWVQD6QWDz9sVv;
+ Fri, 30 Apr 2021 08:23:31 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1619735015;
+ bh=oVYsnHHSjeLFJK4aqp+l/3D9t0MToGTq9ET4RhlCdug=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=Edy1xN/6FEmkai3FVJFoyC1XoDQr8L0lehd3jyv588ccl3Nko1z5a5+sI+hR5dWr/
+ Ryzhm9KVr5XFyA7NN1ozBfDUuiisfeDDmiOdGDDJQwPcBWkTjJQqkj4fJ22xkuiENs
+ 827voTQt8qACPNRnDxlaOd9w5ut8fNRDJfLa/lZw+qLN8F8TyUGnC1FwnL/6rhDdna
+ tuv3LaeC04W/awQ4Rr/bx+JjKfCCSxD1Nl0IcX7WzJs9wtteWfmb7Dm4viWtwv7jMV
+ mc1/12TX2i2KhwhWi8eYL29kaZWzKT0Nn1azOGw1UPFe889ojpjPcQNIkRd4akJXhb
+ pPEEFHzTxEKzg==
+Date: Fri, 30 Apr 2021 08:23:21 +1000
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: DRI <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>
+Message-ID: <20210430082321.3bd9c4a5@canb.auug.org.au>
+In-Reply-To: <20210318125241.5fdfeffd@canb.auug.org.au>
+References: <20210317140824.0a28ffec@canb.auug.org.au>
+ <20210318125241.5fdfeffd@canb.auug.org.au>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Thu, 29 Apr 2021 22:19:39 -0000
-Message-ID: <161973477932.20425.3270236198942841270@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210429212503.21355-1-nikola.cornij@amd.com>
-In-Reply-To: <20210429212503.21355-1-nikola.cornij@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/drm=5Fmst=3A_Use_Extended_Base_Receiver_Capability_=28rev7=29?=
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-intel tree with
+ the drm tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,209 +50,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0792801344=="
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Content-Type: multipart/mixed; boundary="===============1306584829=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0792801344==
-Content-Type: multipart/alternative;
- boundary="===============7125274091210174825=="
+--===============1306584829==
+Content-Type: multipart/signed; boundary="Sig_/U9G.1q+RgpaZBkQfi4BGkVF";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
---===============7125274091210174825==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/U9G.1q+RgpaZBkQfi4BGkVF
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi all,
 
-Series: drm/drm_mst: Use Extended Base Receiver Capability (rev7)
-URL   : https://patchwork.freedesktop.org/series/89590/
-State : success
+On Thu, 18 Mar 2021 12:52:41 +1100 Stephen Rothwell <sfr@canb.auug.org.au> =
+wrote:
+>=20
+> On Wed, 17 Mar 2021 14:08:24 +1100 Stephen Rothwell <sfr@canb.auug.org.au=
+> wrote:
+> >
+> > Today's linux-next merge of the drm-intel tree got a conflict in:
+> >=20
+> >   drivers/gpu/drm/i915/display/intel_sprite.c
+> >=20
+> > between commit:
+> >=20
+> >   92f1d09ca4ed ("drm: Switch to %p4cc format modifier")
+> >=20
+> > from the drm tree and commit:
+> >=20
+> >   46d12f911821 ("drm/i915: migrate skl planes code new file (v5)")
+> >=20
+> > from the drm-intel tree.
+> >=20
+> > I fixed it up (I used the latter version of the file and applied the
+> > following patch) and can carry the fix as necessary. This is now fixed
+> > as far as linux-next is concerned, but any non trivial conflicts should
+> > be mentioned to your upstream maintainer when your tree is submitted for
+> > merging.  You may also want to consider cooperating with the maintainer
+> > of the conflicting tree to minimise any particularly complex conflicts.
+> >=20
+> > From: Stephen Rothwell <sfr@canb.auug.org.au>
+> > Date: Wed, 17 Mar 2021 14:05:42 +1100
+> > Subject: [PATCH] merge fix for "drm: Switch to %p4cc format modifier"
+> >=20
+> > Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> > ---
+> >  drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ++----
+> >  1 file changed, 2 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drive=
+rs/gpu/drm/i915/display/skl_universal_plane.c
+> > index 1f335cb09149..45ceff436bf7 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > @@ -1120,7 +1120,6 @@ static int skl_plane_check_fb(const struct intel_=
+crtc_state *crtc_state,
+> >  	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
+> >  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> >  	unsigned int rotation =3D plane_state->hw.rotation;
+> > -	struct drm_format_name_buf format_name;
+> > =20
+> >  	if (!fb)
+> >  		return 0;
+> > @@ -1168,9 +1167,8 @@ static int skl_plane_check_fb(const struct intel_=
+crtc_state *crtc_state,
+> >  		case DRM_FORMAT_XVYU12_16161616:
+> >  		case DRM_FORMAT_XVYU16161616:
+> >  			drm_dbg_kms(&dev_priv->drm,
+> > -				    "Unsupported pixel format %s for 90/270!\n",
+> > -				    drm_get_format_name(fb->format->format,
+> > -							&format_name));
+> > +				    "Unsupported pixel format %p4cc for 90/270!\n",
+> > +				    &fb->format->format);
+> >  			return -EINVAL;
+> >  		default:
+> >  			break;
+> > --=20
+> > 2.30.0 =20
+>=20
+> The above fix up patch now needs to be applied to the drm tree.
 
-== Summary ==
+I am still applying the above patch, but it applies to Linus' tree now.
 
-CI Bug Log - changes from CI_DRM_10028 -> Patchwork_20041
-====================================================
+--=20
+Cheers,
+Stephen Rothwell
 
-Summary
--------
+--Sig_/U9G.1q+RgpaZBkQfi4BGkVF
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  **SUCCESS**
+-----BEGIN PGP SIGNATURE-----
 
-  No regressions found.
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmCLMdkACgkQAVBC80lX
+0GwLGQgApUtuvWzc9MWXmPyM5lIRZ5AqoaS5IAuWaHu6AdJVGm8nlxoG6VRLRg2V
+0adtxkBFmCIMkAc3CMWkimWTOG4zqnJLZ2LZsTQvyF/0LXv1s4x8bkH+x/q1xusw
+xnyAEAVRubSFtmOREyYkukeThqINxe0t1dJqvW9ZGYQpbarUOEdxBbEg41eVX1Tm
+0UoqC6eaFkgdc8942LjnvomsXx7JCsuRgxyyK6vXJVeZ1osEQ2roBegB82VQDYiq
+MXyMqwt4zOGpOzJjDfr6X47FNOR11kCE3EaJesSZ+otGTETrD0FCCQmqFXs+ONK9
+W88hNJiK1n6tHW3Xy58EIC26+SLj5g==
+=xR97
+-----END PGP SIGNATURE-----
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/index.html
+--Sig_/U9G.1q+RgpaZBkQfi4BGkVF--
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20041 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@semaphore:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][1] ([fdo#109271]) +27 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][2] ([fdo#109271]) +17 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][3] ([i915#2283])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][4] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][5] ([i915#2782]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10028/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-cml-s:           [DMESG-FAIL][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10028/fi-cml-s/igt@i915_selftest@live@requests.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-cml-s/igt@i915_selftest@live@requests.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10028 -> Patchwork_20041
-
-  CI-20190529: 20190529
-  CI_DRM_10028: d6c61ca97601e774c28aa62b1a84158294d3ec57 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20041: 4f516e9a3f900563910fc9dc38f0c8ee9a59c7bd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4f516e9a3f90 drm/drm_mst: Use Extended Base Receiver Capability DPCD space
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/index.html
-
---===============7125274091210174825==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/drm_mst: Use Extended Base Receiver Capability (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89590/">https://patchwork.freedesktop.org/series/89590/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10028 -&gt; Patchwork_20041</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20041 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@semaphore:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-bdw-5557u/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +27 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10028/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@requests:</p>
-<ul>
-<li>fi-cml-s:           <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10028/fi-cml-s/igt@i915_selftest@live@requests.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20041/fi-cml-s/igt@i915_selftest@live@requests.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10028 -&gt; Patchwork_20041</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10028: d6c61ca97601e774c28aa62b1a84158294d3ec57 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20041: 4f516e9a3f900563910fc9dc38f0c8ee9a59c7bd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4f516e9a3f90 drm/drm_mst: Use Extended Base Receiver Capability DPCD space</p>
-
-</body>
-</html>
-
---===============7125274091210174825==--
-
---===============0792801344==
+--===============1306584829==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -251,4 +173,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0792801344==--
+--===============1306584829==--
