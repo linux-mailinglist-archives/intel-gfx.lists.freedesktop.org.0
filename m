@@ -1,57 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30CF36F01F
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 21:08:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B36F36F020
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 21:08:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C29E6F48F;
-	Thu, 29 Apr 2021 19:08:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A90D26F490;
+	Thu, 29 Apr 2021 19:08:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
- [IPv6:2a00:1450:4864:20::52b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00A966F472
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 19:08:10 +0000 (UTC)
-Received: by mail-ed1-x52b.google.com with SMTP id g10so11922124edb.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 12:08:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=W5Hs0re1FZ8w2FwsECXqX1v5aoT2Bewo2Ve18UXHXpQ=;
- b=HUZrImpxLHRvqvAfzyYqz2A6Fb5/ECZkTqNFFQr8YVuAl6ElIdZpt178GQdX5TwbU+
- Dy3wp/xVyR5VFLX7ON18FvVYSOCi5mimG7ox2sAjjH8IcB2X98LRHr5r4HnowPXw+x+D
- xIeewlwwOIl8mlgWC00ZMQiJZTNZP7tc4gD732u0IwEXJHVSTd43yoY3qzLfLRrU0HXC
- jBg6Q9BHyXb9G+3amIH+u1Vtt10geOKXnwg29yUxIbeU14IQZIXz5UTnQiv5ps3Faq/t
- Ia5H/P4DAvxhcQBtToJ8v8tFbXI9MzYAiwI8I+wEFXzbWmMsL22Z+ntbPplY34kSEczu
- p41A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=W5Hs0re1FZ8w2FwsECXqX1v5aoT2Bewo2Ve18UXHXpQ=;
- b=tLuXZq0V6Myss+M79kfl3LHv5BVJVO8ek/VsUxCYkDYne18MR0YSYAI5s0iHuMTEyF
- gFFCWQ0ITVIH5XkBoto/WMHE+6yj7b8fzlieMf97wR+0FSmq68XtU3ypmuREAZb2emM+
- 7xjgHjLFAriJBlDnCizwf2H2iqBCXn+Nf1irHJRL0jJOP23BHtrBLTQN6TNBtdLzoiS7
- Y3EHOqLudzEGHXmwhVkQbHfWj4jE1owPDgr7dM7dSKF4+0iYZxySZWAx2ijmuQtlXqSH
- ZYgKqyF+zUcKlKE4+1EDPwxFZEnl/bqItTrE9dVDavnQgEVfQibi5B4udXn1se2Kv7sj
- ALow==
-X-Gm-Message-State: AOAM531dkL+nFsNYbcYEbOjNZma9k/TM8aue7AYjRDyeI4S9gpph+/08
- UdqG0tH9X5bx2J6DE7LARRfm/wE2vxP7dQyMBMz4Ag==
-X-Google-Smtp-Source: ABdhPJx2mvAU3AfavdDp1Is71FPIeLAi/vnpyNhm+QzMXTBLE2En70BTeed7uBzICjPeCIMfzsA8YoIgBlh3daLLIrA=
-X-Received: by 2002:a05:6402:1013:: with SMTP id
- c19mr1354910edu.213.1619723289490; 
- Thu, 29 Apr 2021 12:08:09 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6D7606F490;
+ Thu, 29 Apr 2021 19:08:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 662C1A41FB;
+ Thu, 29 Apr 2021 19:08:37 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210429003410.69754-1-umesh.nerlige.ramappa@intel.com>
- <20210429003410.69754-2-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20210429003410.69754-2-umesh.nerlige.ramappa@intel.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Thu, 29 Apr 2021 14:07:58 -0500
-Message-ID: <CAOFGe95O_Q09p4c5Sru0_5E-tBG3DFGm+f-uX-_YHx-UHLOBUA@mail.gmail.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/1] i915/query: Correlate engine and cpu
- timestamps with better accuracy
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Date: Thu, 29 Apr 2021 19:08:37 -0000
+Message-ID: <161972331741.20427.3983159303080271529@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210429134450.302912-1-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20210429134450.302912-1-janusz.krzysztofik@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_wrong_name_announced_on_FB_driver_switching?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,331 +38,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0909152020=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Apr 28, 2021 at 7:34 PM Umesh Nerlige Ramappa
-<umesh.nerlige.ramappa@intel.com> wrote:
->
-> Perf measurements rely on CPU and engine timestamps to correlate
-> events of interest across these time domains. Current mechanisms get
-> these timestamps separately and the calculated delta between these
-> timestamps lack enough accuracy.
->
-> To improve the accuracy of these time measurements to within a few us,
-> add a query that returns the engine and cpu timestamps captured as
-> close to each other as possible.
->
-> v2: (Tvrtko)
-> - document clock reference used
-> - return cpu timestamp always
-> - capture cpu time just before lower dword of cs timestamp
->
-> v3: (Chris)
-> - use uncore-rpm
-> - use __query_cs_timestamp helper
->
-> v4: (Lionel)
-> - Kernel perf subsytem allows users to specify the clock id to be used
->   in perf_event_open. This clock id is used by the perf subsystem to
->   return the appropriate cpu timestamp in perf events. Similarly, let
->   the user pass the clockid to this query so that cpu timestamp
->   corresponds to the clock id requested.
->
-> v5: (Tvrtko)
-> - Use normal ktime accessors instead of fast versions
-> - Add more uApi documentation
->
-> v6: (Lionel)
-> - Move switch out of spinlock
->
-> v7: (Chris)
-> - cs_timestamp is a misnomer, use cs_cycles instead
-> - return the cs cycle frequency as well in the query
->
-> v8:
-> - Add platform and engine specific checks
->
-> v9: (Lionel)
-> - Return 2 cpu timestamps in the query - captured before and after the
->   register read
->
-> v10: (Chris)
-> - Use local_clock() to measure time taken to read lower dword of
->   register and return it to user.
->
-> v11: (Jani)
-> - IS_GEN deprecated. User GRAPHICS_VER instead.
->
-> v12: (Jason)
-> - Split cpu timestamp array into timestamp and delta for cleaner API
->
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_query.c | 148 ++++++++++++++++++++++++++++++
->  include/uapi/drm/i915_drm.h       |  52 +++++++++++
->  2 files changed, 200 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_query.c b/drivers/gpu/drm/i915/i915_query.c
-> index fed337ad7b68..357c44e8177c 100644
-> --- a/drivers/gpu/drm/i915/i915_query.c
-> +++ b/drivers/gpu/drm/i915/i915_query.c
-> @@ -6,6 +6,8 @@
->
->  #include <linux/nospec.h>
->
-> +#include "gt/intel_engine_pm.h"
-> +#include "gt/intel_engine_user.h"
->  #include "i915_drv.h"
->  #include "i915_perf.h"
->  #include "i915_query.h"
-> @@ -90,6 +92,151 @@ static int query_topology_info(struct drm_i915_private *dev_priv,
->         return total_length;
->  }
->
-> +typedef u64 (*__ktime_func_t)(void);
-> +static __ktime_func_t __clock_id_to_func(clockid_t clk_id)
-> +{
-> +       /*
-> +        * Use logic same as the perf subsystem to allow user to select the
-> +        * reference clock id to be used for timestamps.
-> +        */
-> +       switch (clk_id) {
-> +       case CLOCK_MONOTONIC:
-> +               return &ktime_get_ns;
-> +       case CLOCK_MONOTONIC_RAW:
-> +               return &ktime_get_raw_ns;
-> +       case CLOCK_REALTIME:
-> +               return &ktime_get_real_ns;
-> +       case CLOCK_BOOTTIME:
-> +               return &ktime_get_boottime_ns;
-> +       case CLOCK_TAI:
-> +               return &ktime_get_clocktai_ns;
-> +       default:
-> +               return NULL;
-> +       }
-> +}
-> +
-> +static inline int
-> +__read_timestamps(struct intel_uncore *uncore,
-> +                 i915_reg_t lower_reg,
-> +                 i915_reg_t upper_reg,
-> +                 u64 *cs_ts,
-> +                 u64 *cpu_ts,
-> +                 u64 *cpu_delta,
-> +                 __ktime_func_t cpu_clock)
-> +{
-> +       u32 upper, lower, old_upper, loop = 0;
-> +
-> +       upper = intel_uncore_read_fw(uncore, upper_reg);
-> +       do {
-> +               *cpu_delta = local_clock();
-> +               *cpu_ts = cpu_clock();
-> +               lower = intel_uncore_read_fw(uncore, lower_reg);
-> +               *cpu_delta = local_clock() - *cpu_delta;
-> +               old_upper = upper;
-> +               upper = intel_uncore_read_fw(uncore, upper_reg);
-> +       } while (upper != old_upper && loop++ < 2);
-> +
-> +       *cs_ts = (u64)upper << 32 | lower;
-> +
-> +       return 0;
-> +}
-> +
-> +static int
-> +__query_cs_cycles(struct intel_engine_cs *engine,
-> +                 u64 *cs_ts, u64 *cpu_ts, u64 *cpu_delta,
-> +                 __ktime_func_t cpu_clock)
-> +{
-> +       struct intel_uncore *uncore = engine->uncore;
-> +       enum forcewake_domains fw_domains;
-> +       u32 base = engine->mmio_base;
-> +       intel_wakeref_t wakeref;
-> +       int ret;
-> +
-> +       fw_domains = intel_uncore_forcewake_for_reg(uncore,
-> +                                                   RING_TIMESTAMP(base),
-> +                                                   FW_REG_READ);
-> +
-> +       with_intel_runtime_pm(uncore->rpm, wakeref) {
-> +               spin_lock_irq(&uncore->lock);
-> +               intel_uncore_forcewake_get__locked(uncore, fw_domains);
-> +
-> +               ret = __read_timestamps(uncore,
-> +                                       RING_TIMESTAMP(base),
-> +                                       RING_TIMESTAMP_UDW(base),
-> +                                       cs_ts,
-> +                                       cpu_ts,
-> +                                       cpu_delta,
-> +                                       cpu_clock);
-> +
-> +               intel_uncore_forcewake_put__locked(uncore, fw_domains);
-> +               spin_unlock_irq(&uncore->lock);
-> +       }
-> +
-> +       return ret;
-> +}
-> +
-> +static int
-> +query_cs_cycles(struct drm_i915_private *i915,
-> +               struct drm_i915_query_item *query_item)
-> +{
-> +       struct drm_i915_query_cs_cycles __user *query_ptr;
-> +       struct drm_i915_query_cs_cycles query;
-> +       struct intel_engine_cs *engine;
-> +       __ktime_func_t cpu_clock;
-> +       int ret;
-> +
-> +       if (GRAPHICS_VER(i915) < 6)
-> +               return -ENODEV;
-> +
-> +       query_ptr = u64_to_user_ptr(query_item->data_ptr);
-> +       ret = copy_query_item(&query, sizeof(query), sizeof(query), query_item);
-> +       if (ret != 0)
-> +               return ret;
-> +
-> +       if (query.flags)
-> +               return -EINVAL;
-> +
-> +       if (query.rsvd)
-> +               return -EINVAL;
-> +
-> +       cpu_clock = __clock_id_to_func(query.clockid);
-> +       if (!cpu_clock)
-> +               return -EINVAL;
-> +
-> +       engine = intel_engine_lookup_user(i915,
-> +                                         query.engine.engine_class,
-> +                                         query.engine.engine_instance);
-> +       if (!engine)
-> +               return -EINVAL;
-> +
-> +       if (GRAPHICS_VER(i915) == 6 &&
-> +           query.engine.engine_class != I915_ENGINE_CLASS_RENDER)
-> +               return -ENODEV;
-> +
-> +       query.cs_frequency = engine->gt->clock_frequency;
-> +       ret = __query_cs_cycles(engine,
-> +                               &query.cs_cycles,
-> +                               &query.cpu_timestamp,
-> +                               &query.cpu_delta,
-> +                               cpu_clock);
-> +       if (ret)
-> +               return ret;
-> +
-> +       if (put_user(query.cs_frequency, &query_ptr->cs_frequency))
-> +               return -EFAULT;
-> +
-> +       if (put_user(query.cpu_timestamp, &query_ptr->cpu_timestamp))
-> +               return -EFAULT;
-> +
-> +       if (put_user(query.cpu_delta, &query_ptr->cpu_delta))
-> +               return -EFAULT;
-> +
-> +       if (put_user(query.cs_cycles, &query_ptr->cs_cycles))
-> +               return -EFAULT;
-> +
-> +       return sizeof(query);
-> +}
-> +
->  static int
->  query_engine_info(struct drm_i915_private *i915,
->                   struct drm_i915_query_item *query_item)
-> @@ -424,6 +571,7 @@ static int (* const i915_query_funcs[])(struct drm_i915_private *dev_priv,
->         query_topology_info,
->         query_engine_info,
->         query_perf_config,
-> +       query_cs_cycles,
->  };
->
->  int i915_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 6a34243a7646..0b4c27092d41 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -2230,6 +2230,10 @@ struct drm_i915_query_item {
->  #define DRM_I915_QUERY_TOPOLOGY_INFO    1
->  #define DRM_I915_QUERY_ENGINE_INFO     2
->  #define DRM_I915_QUERY_PERF_CONFIG      3
-> +       /**
-> +        * Query Command Streamer timestamp register.
-> +        */
-> +#define DRM_I915_QUERY_CS_CYCLES       4
->  /* Must be kept compact -- no holes and well documented */
->
->         /**
-> @@ -2397,6 +2401,54 @@ struct drm_i915_engine_info {
->         __u64 rsvd1[4];
->  };
->
-> +/**
-> + * struct drm_i915_query_cs_cycles
-> + *
-> + * The query returns the command streamer cycles and the frequency that can be
-> + * used to calculate the command streamer timestamp. In addition the query
-> + * returns a set of cpu timestamps that indicate when the command streamer cycle
-> + * count was captured.
-> + */
-> +struct drm_i915_query_cs_cycles {
-> +       /** Engine for which command streamer cycles is queried. */
-> +       struct i915_engine_class_instance engine;
+--===============0909152020==
+Content-Type: multipart/alternative;
+ boundary="===============8279340853418576624=="
 
-I've checked with HW engineers and they're claiming that all CS
-timestamp registers should report the same time modulo minor drift.
-You're CC'd on the internal e-mail.  If this is really the case, then
-I don't think we want to put an engine in this query.
+--===============8279340853418576624==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---Jason
+== Series Details ==
 
-> +
-> +       /** Must be zero. */
-> +       __u32 flags;
-> +
-> +       /**
-> +        * Command streamer cycles as read from the command streamer
-> +        * register at 0x358 offset.
-> +        */
-> +       __u64 cs_cycles;
-> +
-> +       /** Frequency of the cs cycles in Hz. */
-> +       __u64 cs_frequency;
-> +
-> +       /**
-> +        * CPU timestamp in ns. The timestamp is captured before reading the
-> +        * cs_cycles register using the reference clockid set by the user.
-> +        */
-> +       __u64 cpu_timestamp;
-> +
-> +       /**
-> +        * Time delta in ns captured around reading the lower dword of the
-> +        * cs_cycles register.
-> +        */
-> +       __u64 cpu_delta;
-> +
-> +       /**
-> +        * Reference clock id for CPU timestamp. For definition, see
-> +        * clock_gettime(2) and perf_event_open(2). Supported clock ids are
-> +        * CLOCK_MONOTONIC, CLOCK_MONOTONIC_RAW, CLOCK_REALTIME, CLOCK_BOOTTIME,
-> +        * CLOCK_TAI.
-> +        */
-> +       __s32 clockid;
-> +
-> +       /** Must be zero. */
-> +       __u32 rsvd;
-> +};
-> +
->  /**
->   * struct drm_i915_query_engine_info
->   *
-> --
-> 2.20.1
->
+Series: drm/i915: Fix wrong name announced on FB driver switching
+URL   : https://patchwork.freedesktop.org/series/89663/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10027 -> Patchwork_20039
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20039 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [FAIL][2] ([i915#1888]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - {fi-rkl-11500t}:    [SKIP][4] ([i915#1849] / [i915#3180]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10027 -> Patchwork_20039
+
+  CI-20190529: 20190529
+  CI_DRM_10027: 1748cb1e8bdf543570b86f39487b171ad4c1f896 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20039: a3fb33cbfd906dc09a9e08ba7f50f9db185ef4e2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a3fb33cbfd90 drm/i915: Fix wrong name announced on FB driver switching
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html
+
+--===============8279340853418576624==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Fix wrong name announced on FB driver switching</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89663/">https://patchwork.freedesktop.org/series/89663/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10027 -&gt; Patchwork_20039</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20039 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@amdgpu/amd_prime@amd-to-i915:<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3180">i915#3180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20039/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10027 -&gt; Patchwork_20039</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10027: 1748cb1e8bdf543570b86f39487b171ad4c1f896 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20039: a3fb33cbfd906dc09a9e08ba7f50f9db185ef4e2 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>a3fb33cbfd90 drm/i915: Fix wrong name announced on FB driver switching</p>
+
+</body>
+</html>
+
+--===============8279340853418576624==--
+
+--===============0909152020==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0909152020==--
