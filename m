@@ -2,57 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9DF836EDAE
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 17:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D65836EDC2
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 18:01:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51F7D6F393;
-	Thu, 29 Apr 2021 15:51:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DFB16F3A8;
+	Thu, 29 Apr 2021 16:01:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
- [IPv6:2a00:1450:4864:20::433])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F12E06F393
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 15:51:39 +0000 (UTC)
-Received: by mail-wr1-x433.google.com with SMTP id h4so58387139wrt.12
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 08:51:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=38yVSe46kDNZl5Xbw1fvdwboEP+iCQVKfy8oLPgHRk8=;
- b=HB0KWtSUEHrgHP0bRAztN8A2uLq83CI7Z5Z6Rty98FjCK3QsvEGG5rDavxXO0Adaqq
- y7ezwkVyHWi/pP73WXSuTV+mc3c7mvNsG/YUo6Cdf+ximJ226w9n/qJzZK39apCPw+fx
- y4YNTsH4fytLCtaRY0HtlWrF5k9SABHKeMm2c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=38yVSe46kDNZl5Xbw1fvdwboEP+iCQVKfy8oLPgHRk8=;
- b=Z3P1zZ/lXqKPZRNUXreYbGmuk/M+Sua30O2m/7Us6MshfDzgY1gJVZGsVUA9kjODaT
- ZVtgy+hKSOaUDYSY/LRiBw3nQ8nmzm+eTGgc0dVmJkzq7Vy4HsTZA9WmilOHZCXVtNV9
- 3W+DMV00GRV5Xs2cHVxIMag1JZ5CiuzEqQ/qEjF1FvbsKPHz5lJKldvG20q+PrQ5XxDV
- ODNb7nj9c5nwpkUVHKiRxI192KaB+k416XOItr2v+puUUcabYCLCE3VWs58nSXJV5JDA
- /24yLxtO0GB/s8q/PhUS3VDOtBr8QSviATy1jLCCi7wJKqC+jsWDrfWmBNp/0E6qyyBu
- I7dg==
-X-Gm-Message-State: AOAM530Apt3vlrNMgkgeXEj4LhpCubaZx9JaqOEArm4mVruNtEeHScXx
- 6m1kbsZaQlgjmTDbMvx7IneytA==
-X-Google-Smtp-Source: ABdhPJxFc3hUHrRh7fI1vf0th+ZlAQ/nHfCrqQ+jIFBQ3QoL2koBqOHbRFbC7+0FEaRr2E37rr7gsg==
-X-Received: by 2002:a5d:590a:: with SMTP id v10mr518022wrd.306.1619711498394; 
- Thu, 29 Apr 2021 08:51:38 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id f24sm11376136wmb.32.2021.04.29.08.51.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Apr 2021 08:51:37 -0700 (PDT)
-Date: Thu, 29 Apr 2021 17:51:35 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YIrWB3fX3TseroSh@phenom.ffwll.local>
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-17-jason@jlekstrand.net>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADA5D6F3A1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 16:01:34 +0000 (UTC)
+IronPort-SDR: M26C92EayuldvPwhgvPUm/knWQyjZ2vNbFGiXY/CFJ4OQmhH0Uo0Z9TNqhgExh+OfJ//m7Eu0C
+ LHT9ozjVgTmA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="184171415"
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="184171415"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 08:59:26 -0700
+IronPort-SDR: 3MATDlKlm2sz9MO5UYhdKjcxEX7mRJKOlWfQ9L4OVPwQ0LWsMpPfF1wXlRDSGd5vc89wrJYcgM
+ ddBom0VWzf7Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="458826282"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga002.fm.intel.com with SMTP; 29 Apr 2021 08:59:24 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 29 Apr 2021 18:59:23 +0300
+Date: Thu, 29 Apr 2021 18:59:23 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Message-ID: <YIrX2y+h+iOLksz9@intel.com>
+References: <20210429023535.1653-1-ville.syrjala@linux.intel.com>
+ <11fce46408df47cea6ed85f345f321c8@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210423223131.879208-17-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 16/21] drm/i915/gem: Delay context creation
+In-Reply-To: <11fce46408df47cea6ed85f345f321c8@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Include intel_de_{read,
+ write}_fw() in i915_reg_rw traces
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,1041 +51,864 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Chiou, Cooper" <cooper.chiou@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Yeah this needs some text to explain what/why you're doing this, and maybe
-some rough sketch of the locking design.
+On Thu, Apr 29, 2021 at 07:34:00AM +0000, Gupta, Anshuman wrote:
+> =
 
-On Fri, Apr 23, 2021 at 05:31:26PM -0500, Jason Ekstrand wrote:
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 657 ++++++++++++++++--
->  drivers/gpu/drm/i915/gem/i915_gem_context.h   |   3 +
->  .../gpu/drm/i915/gem/i915_gem_context_types.h |  26 +
->  .../gpu/drm/i915/gem/selftests/mock_context.c |   5 +-
->  drivers/gpu/drm/i915/i915_drv.h               |  17 +-
->  5 files changed, 648 insertions(+), 60 deletions(-)
+> =
 
-So I think the patch split here is a bit unfortunate, because you're
-adding the new vm/engine validation code for proto context here, but the
-old stuff is only removed in the next patches that make vm/engines
-immutable after first use.
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of =
+Ville
+> > Syrjala
+> > Sent: Thursday, April 29, 2021 8:06 AM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: Chiou, Cooper <cooper.chiou@intel.com>
+> > Subject: [Intel-gfx] [PATCH] drm/i915: Include intel_de_{read, write}_f=
+w() in
+> > i915_reg_rw traces
+> > =
 
-I think a better split would be if this patch here only has all the
-scaffolding. You already have the EOPNOTSUPP fallback (which I hope gets
-removed), so moving the conversion entirely to later patches should be all
-fine.
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
-Or do I miss something?
+> > We lost the i915_reg_rw tracepoint for a lot of display registers when =
+we
+> > switched from the heavyweight normal register accessors to the lightwei=
+ght
+> > _fw() variants. Put the tracepoints back so that the register traces mi=
+ght actually
+> > be useful. Hopefully these should be close to free when the tracepoint =
+is not
+> > enabled and thus not slow down our vblank critical sections significant=
+ly.
+> > =
 
-I think the only concern I'm seeing is that bisectability might be a bit
-lost, because we finalize the context in some cases in setparam. And if we
-do the conversion in a different order than the one media uses for its
-setparam, then later setparam might fail because the context is finalized
-already. But also
-- it's just bisectability of media functionality I think
-- just check which order media calls CTX_SETPARAM and use that to do the
-  conversion
+> > The biggest hurdle is untangling the include order. Fortunately just pu=
+lling
+> > intel_de.h out from intel_display_types.h seems to have been sufficient=
+ to make
+> > it build.
+> > =
 
-And we should be fine ... I think?
+> > This little cocci script did most of the work for me:
+> > @find@
+> > @@
+> > (
+> > intel_de_read(...)
+> > |
+> > intel_de_read_fw(...)
+> > |
+> > intel_de_write(...)
+> > |
+> > intel_de_write_fw(...)
+> > )
+> > =
 
-Some more thoughts below, but the proto ctx stuff itself looks fine.
+> > @has_include@
+> > @@
+> > (
+> >  #include "intel_de.h"
+> > |
+> >  #include "display/intel_de.h"
+> > )
+> > =
 
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index db9153e0f85a7..aa8e61211924f 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -193,8 +193,15 @@ static int validate_priority(struct drm_i915_private *i915,
->  
->  static void proto_context_close(struct i915_gem_proto_context *pc)
->  {
-> +	int i;
-> +
->  	if (pc->vm)
->  		i915_vm_put(pc->vm);
-> +	if (pc->user_engines) {
-> +		for (i = 0; i < pc->num_user_engines; i++)
-> +			kfree(pc->user_engines[i].siblings);
-> +		kfree(pc->user_engines);
-> +	}
->  	kfree(pc);
->  }
->  
-> @@ -274,12 +281,417 @@ proto_context_create(struct drm_i915_private *i915, unsigned int flags)
->  	proto_context_set_persistence(i915, pc, true);
->  	pc->sched.priority = I915_PRIORITY_NORMAL;
->  
-> +	pc->num_user_engines = -1;
-> +	pc->user_engines = NULL;
-> +
->  	if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE)
->  		pc->single_timeline = true;
->  
->  	return pc;
->  }
->  
-> +static int proto_context_register_locked(struct drm_i915_file_private *fpriv,
-> +					 struct i915_gem_proto_context *pc,
-> +					 u32 *id)
-> +{
-> +	int ret;
-> +	void *old;
+> > @depends on find && !has_include@
+> > @@
+> > + #include "intel_de.h"
+> >   #include "intel_display_types.h"
+> > =
 
-assert_lock_held just for consistency.
+> > @depends on find && !has_include@
+> > @@
+> > + #include "display/intel_de.h"
+> >   #include "display/intel_display_types.h"
+> > =
 
-> +
-> +	ret = xa_alloc(&fpriv->context_xa, id, NULL, xa_limit_32b, GFP_KERNEL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	old = xa_store(&fpriv->proto_context_xa, *id, pc, GFP_KERNEL);
-> +	if (xa_is_err(old)) {
-> +		xa_erase(&fpriv->context_xa, *id);
-> +		return xa_err(old);
-> +	}
-> +	GEM_BUG_ON(old);
-> +
-> +	return 0;
-> +}
-> +
-> +static int proto_context_register(struct drm_i915_file_private *fpriv,
-> +				  struct i915_gem_proto_context *pc,
-> +				  u32 *id)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&fpriv->proto_context_lock);
-> +	ret = proto_context_register_locked(fpriv, pc, id);
-> +	mutex_unlock(&fpriv->proto_context_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int set_proto_ctx_vm(struct drm_i915_file_private *fpriv,
-> +			    struct i915_gem_proto_context *pc,
-> +			    const struct drm_i915_gem_context_param *args)
-> +{
-> +	struct i915_address_space *vm;
-> +
-> +	if (args->size)
-> +		return -EINVAL;
-> +
-> +	if (!pc->vm)
-> +		return -ENODEV;
-> +
-> +	if (upper_32_bits(args->value))
-> +		return -ENOENT;
-> +
-> +	rcu_read_lock();
-> +	vm = xa_load(&fpriv->vm_xa, args->value);
-> +	if (vm && !kref_get_unless_zero(&vm->ref))
-> +		vm = NULL;
-> +	rcu_read_unlock();
-> +	if (!vm)
-> +		return -ENOENT;
-> +
-> +	i915_vm_put(pc->vm);
-> +	pc->vm = vm;
-> +
-> +	return 0;
-> +}
-> +
-> +struct set_proto_ctx_engines {
-> +	struct drm_i915_private *i915;
-> +	unsigned num_engines;
-> +	struct i915_gem_proto_engine *engines;
-> +};
-> +
-> +static int
-> +set_proto_ctx_engines_balance(struct i915_user_extension __user *base,
-> +			      void *data)
-> +{
-> +	struct i915_context_engines_load_balance __user *ext =
-> +		container_of_user(base, typeof(*ext), base);
-> +	const struct set_proto_ctx_engines *set = data;
-> +	struct drm_i915_private *i915 = set->i915;
-> +	struct intel_engine_cs **siblings;
-> +	u16 num_siblings, idx;
-> +	unsigned int n;
-> +	int err;
-> +
-> +	if (!HAS_EXECLISTS(i915))
-> +		return -ENODEV;
-> +
-> +	if (intel_uc_uses_guc_submission(&i915->gt.uc))
-> +		return -ENODEV; /* not implement yet */
-> +
-> +	if (get_user(idx, &ext->engine_index))
-> +		return -EFAULT;
-> +
-> +	if (idx >= set->num_engines) {
-> +		drm_dbg(&i915->drm, "Invalid placement value, %d >= %d\n",
-> +			idx, set->num_engines);
-> +		return -EINVAL;
-> +	}
-> +
-> +	idx = array_index_nospec(idx, set->num_engines);
-> +	if (set->engines[idx].type != I915_GEM_ENGINE_TYPE_INVALID) {
-> +		drm_dbg(&i915->drm,
-> +			"Invalid placement[%d], already occupied\n", idx);
-> +		return -EEXIST;
-> +	}
-> +
-> +	if (get_user(num_siblings, &ext->num_siblings))
-> +		return -EFAULT;
-> +
-> +	err = check_user_mbz(&ext->flags);
-> +	if (err)
-> +		return err;
-> +
-> +	err = check_user_mbz(&ext->mbz64);
-> +	if (err)
-> +		return err;
-> +
-> +	if (num_siblings == 0)
-> +		return 0;
-> +
-> +	siblings = kmalloc_array(num_siblings, sizeof(*siblings), GFP_KERNEL);
-> +	if (!siblings)
-> +		return -ENOMEM;
-> +
-> +	for (n = 0; n < num_siblings; n++) {
-> +		struct i915_engine_class_instance ci;
-> +
-> +		if (copy_from_user(&ci, &ext->engines[n], sizeof(ci))) {
-> +			err = -EFAULT;
-> +			goto err_siblings;
-> +		}
-> +
-> +		siblings[n] = intel_engine_lookup_user(i915,
-> +						       ci.engine_class,
-> +						       ci.engine_instance);
-> +		if (!siblings[n]) {
-> +			drm_dbg(&i915->drm,
-> +				"Invalid sibling[%d]: { class:%d, inst:%d }\n",
-> +				n, ci.engine_class, ci.engine_instance);
-> +			err = -EINVAL;
-> +			goto err_siblings;
-> +		}
-> +	}
-> +
-> +	if (num_siblings == 1) {
-> +		set->engines[idx].type = I915_GEM_ENGINE_TYPE_PHYSICAL;
-> +		set->engines[idx].engine = siblings[0];
-> +		kfree(siblings);
-> +	} else {
-> +		set->engines[idx].type = I915_GEM_ENGINE_TYPE_BALANCED;
-> +		set->engines[idx].num_siblings = num_siblings;
-> +		set->engines[idx].siblings = siblings;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_siblings:
-> +	kfree(siblings);
-> +
-> +	return err;
-> +}
-> +
-> +static int
-> +set_proto_ctx_engines_bond(struct i915_user_extension __user *base, void *data)
-> +{
-> +	struct i915_context_engines_bond __user *ext =
-> +		container_of_user(base, typeof(*ext), base);
-> +	const struct set_proto_ctx_engines *set = data;
-> +	struct drm_i915_private *i915 = set->i915;
-> +	struct i915_engine_class_instance ci;
-> +	struct intel_engine_cs *master;
-> +	u16 idx, num_bonds;
-> +	int err, n;
-> +
-> +	if (get_user(idx, &ext->virtual_index))
-> +		return -EFAULT;
-> +
-> +	if (idx >= set->num_engines) {
-> +		drm_dbg(&i915->drm,
-> +			"Invalid index for virtual engine: %d >= %d\n",
-> +			idx, set->num_engines);
-> +		return -EINVAL;
-> +	}
-> +
-> +	idx = array_index_nospec(idx, set->num_engines);
-> +	if (set->engines[idx].type == I915_GEM_ENGINE_TYPE_INVALID) {
-> +		drm_dbg(&i915->drm, "Invalid engine at %d\n", idx);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (set->engines[idx].type != I915_GEM_ENGINE_TYPE_PHYSICAL) {
-> +		drm_dbg(&i915->drm,
-> +			"Bonding with virtual engines not allowed\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	err = check_user_mbz(&ext->flags);
-> +	if (err)
-> +		return err;
-> +
-> +	for (n = 0; n < ARRAY_SIZE(ext->mbz64); n++) {
-> +		err = check_user_mbz(&ext->mbz64[n]);
-> +		if (err)
-> +			return err;
-> +	}
-> +
-> +	if (copy_from_user(&ci, &ext->master, sizeof(ci)))
-> +		return -EFAULT;
-> +
-> +	master = intel_engine_lookup_user(i915,
-> +					  ci.engine_class,
-> +					  ci.engine_instance);
-> +	if (!master) {
-> +		drm_dbg(&i915->drm,
-> +			"Unrecognised master engine: { class:%u, instance:%u }\n",
-> +			ci.engine_class, ci.engine_instance);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (get_user(num_bonds, &ext->num_bonds))
-> +		return -EFAULT;
-> +
-> +	for (n = 0; n < num_bonds; n++) {
-> +		struct intel_engine_cs *bond;
-> +
-> +		if (copy_from_user(&ci, &ext->engines[n], sizeof(ci)))
-> +			return -EFAULT;
-> +
-> +		bond = intel_engine_lookup_user(i915,
-> +						ci.engine_class,
-> +						ci.engine_instance);
-> +		if (!bond) {
-> +			drm_dbg(&i915->drm,
-> +				"Unrecognised engine[%d] for bonding: { class:%d, instance: %d }\n",
-> +				n, ci.engine_class, ci.engine_instance);
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const i915_user_extension_fn set_proto_ctx_engines_extensions[] = {
-> +	[I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE] = set_proto_ctx_engines_balance,
-> +	[I915_CONTEXT_ENGINES_EXT_BOND] = set_proto_ctx_engines_bond,
-> +};
-> +
-> +static int set_proto_ctx_engines(struct drm_i915_file_private *fpriv,
-> +			         struct i915_gem_proto_context *pc,
-> +			         const struct drm_i915_gem_context_param *args)
-> +{
-> +	struct drm_i915_private *i915 = fpriv->dev_priv;
-> +	struct set_proto_ctx_engines set = { .i915 = i915 };
-> +	struct i915_context_param_engines __user *user =
-> +		u64_to_user_ptr(args->value);
-> +	unsigned int n;
-> +	u64 extensions;
-> +	int err;
-> +
-> +	if (!args->size) {
-> +		kfree(pc->user_engines);
-> +		pc->num_user_engines = -1;
-> +		pc->user_engines = NULL;
-> +		return 0;
-> +	}
-> +
-> +	BUILD_BUG_ON(!IS_ALIGNED(sizeof(*user), sizeof(*user->engines)));
-> +	if (args->size < sizeof(*user) ||
-> +	    !IS_ALIGNED(args->size, sizeof(*user->engines))) {
-> +		drm_dbg(&i915->drm, "Invalid size for engine array: %d\n",
-> +			args->size);
-> +		return -EINVAL;
-> +	}
-> +
-> +	set.num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
-> +	if (set.num_engines > I915_EXEC_RING_MASK + 1)
-> +		return -EINVAL;
-> +
-> +	set.engines = kmalloc_array(set.num_engines, sizeof(*set.engines), GFP_KERNEL);
-> +	if (!set.engines)
-> +		return -ENOMEM;
-> +
-> +	for (n = 0; n < set.num_engines; n++) {
-> +		struct i915_engine_class_instance ci;
-> +		struct intel_engine_cs *engine;
-> +
-> +		if (copy_from_user(&ci, &user->engines[n], sizeof(ci))) {
-> +			kfree(set.engines);
-> +			return -EFAULT;
-> +		}
-> +
-> +		memset(&set.engines[n], 0, sizeof(set.engines[n]));
-> +
-> +		if (ci.engine_class == (u16)I915_ENGINE_CLASS_INVALID &&
-> +		    ci.engine_instance == (u16)I915_ENGINE_CLASS_INVALID_NONE)
-> +			continue;
-> +
-> +		engine = intel_engine_lookup_user(i915,
-> +						  ci.engine_class,
-> +						  ci.engine_instance);
-> +		if (!engine) {
-> +			drm_dbg(&i915->drm,
-> +				"Invalid engine[%d]: { class:%d, instance:%d }\n",
-> +				n, ci.engine_class, ci.engine_instance);
-> +			kfree(set.engines);
-> +			return -ENOENT;
-> +		}
-> +
-> +		set.engines[n].type = I915_GEM_ENGINE_TYPE_PHYSICAL;
-> +		set.engines[n].engine = engine;
-> +	}
-> +
-> +	err = -EFAULT;
-> +	if (!get_user(extensions, &user->extensions))
-> +		err = i915_user_extensions(u64_to_user_ptr(extensions),
-> +					   set_proto_ctx_engines_extensions,
-> +					   ARRAY_SIZE(set_proto_ctx_engines_extensions),
-> +					   &set);
-> +	if (err) {
-> +		kfree(set.engines);
-> +		return err;
-> +	}
-> +
-> +	kfree(pc->user_engines);
-> +	pc->num_user_engines = set.num_engines;
-> +	pc->user_engines = set.engines;
-> +
-> +	return 0;
-> +}
-> +
-> +static int set_proto_ctx_param(struct drm_i915_file_private *fpriv,
-> +			       struct i915_gem_proto_context *pc,
-> +			       struct drm_i915_gem_context_param *args)
-> +{
-> +	int ret = 0;
-> +
-> +	switch (args->param) {
-> +	case I915_CONTEXT_PARAM_NO_ERROR_CAPTURE:
-> +		if (args->size)
-> +			ret = -EINVAL;
-> +		else if (args->value)
-> +			set_bit(UCONTEXT_NO_ERROR_CAPTURE, &pc->user_flags);
+> > Cc: Cooper Chiou <cooper.chiou@intel.com>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Overall patch Looks good to me,  just in my opinion worth to edit the fun=
+ction comment intel_de_{read, write}_fw()
+> /* Note: read the warnings for intel_uncore_*_fw() functions! */
+> to indicate it is a traced function.
 
-Atomic bitops like in previous patches: Pls no :-)
+The one thing we should still point out is the same-cacheline
+issues. The rest of the uncore comments didn't really apply anyway
+since it's mostly about forcewake. I guess I could just copy paste
+the relevant bits from there into intel_de.h directly.
 
-> +		else
-> +			clear_bit(UCONTEXT_NO_ERROR_CAPTURE, &pc->user_flags);
-> +		break;
-> +
-> +	case I915_CONTEXT_PARAM_BANNABLE:
-> +		if (args->size)
-> +			ret = -EINVAL;
-> +		else if (!capable(CAP_SYS_ADMIN) && !args->value)
-> +			ret = -EPERM;
-> +		else if (args->value)
-> +			set_bit(UCONTEXT_BANNABLE, &pc->user_flags);
-> +		else
-> +			clear_bit(UCONTEXT_BANNABLE, &pc->user_flags);
-> +		break;
-> +
-> +	case I915_CONTEXT_PARAM_RECOVERABLE:
-> +		if (args->size)
-> +			ret = -EINVAL;
-> +		else if (args->value)
-> +			set_bit(UCONTEXT_RECOVERABLE, &pc->user_flags);
-> +		else
-> +			clear_bit(UCONTEXT_RECOVERABLE, &pc->user_flags);
-> +		break;
-> +
-> +	case I915_CONTEXT_PARAM_PRIORITY:
-> +		ret = validate_priority(fpriv->dev_priv, args);
-> +		if (!ret)
-> +			pc->sched.priority = args->value;
-> +		break;
-> +
-> +	case I915_CONTEXT_PARAM_SSEU:
-> +		ret = -ENOTSUPP;
-> +		break;
-> +
-> +	case I915_CONTEXT_PARAM_VM:
-> +		ret = set_proto_ctx_vm(fpriv, pc, args);
-> +		break;
-> +
-> +	case I915_CONTEXT_PARAM_ENGINES:
-> +		ret = set_proto_ctx_engines(fpriv, pc, args);
-> +		break;
-> +
-> +	case I915_CONTEXT_PARAM_PERSISTENCE:
-> +		if (args->size)
-> +			ret = -EINVAL;
-> +		else if (args->value)
-> +			set_bit(UCONTEXT_PERSISTENCE, &pc->user_flags);
-> +		else
-> +			clear_bit(UCONTEXT_PERSISTENCE, &pc->user_flags);
-> +		break;
-> +
-> +	case I915_CONTEXT_PARAM_NO_ZEROMAP:
-> +	case I915_CONTEXT_PARAM_BAN_PERIOD:
-> +	case I915_CONTEXT_PARAM_RINGSIZE:
-> +	default:
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  static struct i915_address_space *
->  context_get_vm_rcu(struct i915_gem_context *ctx)
->  {
-> @@ -450,6 +862,47 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
->  	return e;
->  }
->  
-> +static struct i915_gem_engines *user_engines(struct i915_gem_context *ctx,
-> +					     unsigned int num_engines,
-> +					     struct i915_gem_proto_engine *pe)
-> +{
-> +	struct i915_gem_engines *e;
-> +	unsigned int n;
-> +
-> +	e = alloc_engines(num_engines);
-> +	for (n = 0; n < num_engines; n++) {
-> +		struct intel_context *ce;
-> +
-> +		switch (pe[n].type) {
-> +		case I915_GEM_ENGINE_TYPE_PHYSICAL:
-> +			ce = intel_context_create(pe[n].engine);
-> +			break;
-> +
-> +		case I915_GEM_ENGINE_TYPE_BALANCED:
-> +			ce = intel_execlists_create_virtual(pe[n].siblings,
-> +							    pe[n].num_siblings);
-> +			break;
-> +
-> +		case I915_GEM_ENGINE_TYPE_INVALID:
-> +		default:
-> +			GEM_WARN_ON(pe[n].type != I915_GEM_ENGINE_TYPE_INVALID);
-> +			continue;
-> +		}
-> +
-> +		if (IS_ERR(ce)) {
-> +			__free_engines(e, n);
-> +			return ERR_CAST(ce);
-> +		}
-> +
-> +		intel_context_set_gem(ce, ctx);
-> +
-> +		e->engines[n] = ce;
-> +	}
-> +	e->num_engines = num_engines;
-> +
-> +	return e;
-> +}
-> +
->  void i915_gem_context_release(struct kref *ref)
->  {
->  	struct i915_gem_context *ctx = container_of(ref, typeof(*ctx), ref);
-> @@ -890,6 +1343,24 @@ i915_gem_create_context(struct drm_i915_private *i915,
->  		mutex_unlock(&ctx->mutex);
->  	}
->  
-> +	if (pc->num_user_engines >= 0) {
-> +		struct i915_gem_engines *engines;
-> +
-> +		engines = user_engines(ctx, pc->num_user_engines,
-> +				       pc->user_engines);
-> +		if (IS_ERR(engines)) {
-> +			context_close(ctx);
-> +			return ERR_CAST(engines);
-> +		}
-> +
-> +		mutex_lock(&ctx->engines_mutex);
-> +		i915_gem_context_set_user_engines(ctx);
-> +		engines = rcu_replace_pointer(ctx->engines, engines, 1);
-> +		mutex_unlock(&ctx->engines_mutex);
-> +
-> +		free_engines(engines);
-> +	}
-> +
->  	if (pc->single_timeline) {
->  		ret = drm_syncobj_create(&ctx->syncobj,
->  					 DRM_SYNCOBJ_CREATE_SIGNALED,
-> @@ -916,12 +1387,12 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
->  	init_contexts(&i915->gem.contexts);
->  }
->  
-> -static int gem_context_register(struct i915_gem_context *ctx,
-> -				struct drm_i915_file_private *fpriv,
-> -				u32 *id)
-> +static void gem_context_register(struct i915_gem_context *ctx,
-> +				 struct drm_i915_file_private *fpriv,
-> +				 u32 id)
->  {
->  	struct drm_i915_private *i915 = ctx->i915;
-> -	int ret;
-> +	void *old;
->  
->  	ctx->file_priv = fpriv;
->  
-> @@ -930,19 +1401,12 @@ static int gem_context_register(struct i915_gem_context *ctx,
->  		 current->comm, pid_nr(ctx->pid));
->  
->  	/* And finally expose ourselves to userspace via the idr */
-> -	ret = xa_alloc(&fpriv->context_xa, id, ctx, xa_limit_32b, GFP_KERNEL);
-> -	if (ret)
-> -		goto err_pid;
-> +	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
-> +	GEM_BUG_ON(old);
->  
->  	spin_lock(&i915->gem.contexts.lock);
->  	list_add_tail(&ctx->link, &i915->gem.contexts.list);
->  	spin_unlock(&i915->gem.contexts.lock);
-> -
-> -	return 0;
-> -
-> -err_pid:
-> -	put_pid(fetch_and_zero(&ctx->pid));
-> -	return ret;
->  }
->  
->  int i915_gem_context_open(struct drm_i915_private *i915,
-> @@ -952,9 +1416,12 @@ int i915_gem_context_open(struct drm_i915_private *i915,
->  	struct i915_gem_proto_context *pc;
->  	struct i915_gem_context *ctx;
->  	int err;
-> -	u32 id;
->  
-> -	xa_init_flags(&file_priv->context_xa, XA_FLAGS_ALLOC);
-> +	mutex_init(&file_priv->proto_context_lock);
-> +	xa_init_flags(&file_priv->proto_context_xa, XA_FLAGS_ALLOC);
-> +
-> +	/* 0 reserved for the default context */
-> +	xa_init_flags(&file_priv->context_xa, XA_FLAGS_ALLOC1);
->  
->  	/* 0 reserved for invalid/unassigned ppgtt */
->  	xa_init_flags(&file_priv->vm_xa, XA_FLAGS_ALLOC1);
-> @@ -972,28 +1439,31 @@ int i915_gem_context_open(struct drm_i915_private *i915,
->  		goto err;
->  	}
->  
-> -	err = gem_context_register(ctx, file_priv, &id);
-> -	if (err < 0)
-> -		goto err_ctx;
-> +	gem_context_register(ctx, file_priv, 0);
->  
-> -	GEM_BUG_ON(id);
->  	return 0;
->  
-> -err_ctx:
-> -	context_close(ctx);
->  err:
->  	xa_destroy(&file_priv->vm_xa);
->  	xa_destroy(&file_priv->context_xa);
-> +	xa_destroy(&file_priv->proto_context_xa);
-> +	mutex_destroy(&file_priv->proto_context_lock);
->  	return err;
->  }
->  
->  void i915_gem_context_close(struct drm_file *file)
->  {
->  	struct drm_i915_file_private *file_priv = file->driver_priv;
-> +	struct i915_gem_proto_context *pc;
->  	struct i915_address_space *vm;
->  	struct i915_gem_context *ctx;
->  	unsigned long idx;
->  
-> +	xa_for_each(&file_priv->proto_context_xa, idx, pc)
-> +		proto_context_close(pc);
-> +	xa_destroy(&file_priv->proto_context_xa);
-> +	mutex_destroy(&file_priv->proto_context_lock);
-> +
->  	xa_for_each(&file_priv->context_xa, idx, ctx)
->  		context_close(ctx);
->  	xa_destroy(&file_priv->context_xa);
-> @@ -1918,7 +2388,7 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
->  }
->  
->  struct create_ext {
-> -	struct i915_gem_context *ctx;
-> +	struct i915_gem_proto_context *pc;
->  	struct drm_i915_file_private *fpriv;
->  };
->  
-> @@ -1933,7 +2403,7 @@ static int create_setparam(struct i915_user_extension __user *ext, void *data)
->  	if (local.param.ctx_id)
->  		return -EINVAL;
->  
-> -	return ctx_setparam(arg->fpriv, arg->ctx, &local.param);
-> +	return set_proto_ctx_param(arg->fpriv, arg->pc, &local.param);
->  }
->  
->  static int invalid_ext(struct i915_user_extension __user *ext, void *data)
-> @@ -1951,12 +2421,71 @@ static bool client_is_banned(struct drm_i915_file_private *file_priv)
->  	return atomic_read(&file_priv->ban_score) >= I915_CLIENT_SCORE_BANNED;
->  }
->  
-> +static inline struct i915_gem_context *
-> +__context_lookup(struct drm_i915_file_private *file_priv, u32 id)
-> +{
-> +	struct i915_gem_context *ctx;
-> +
-> +	rcu_read_lock();
-> +	ctx = xa_load(&file_priv->context_xa, id);
-> +	if (ctx && !kref_get_unless_zero(&ctx->ref))
-> +		ctx = NULL;
-> +	rcu_read_unlock();
-> +
-> +	return ctx;
-> +}
-> +
-> +struct i915_gem_context *
-> +lazy_create_context_locked(struct drm_i915_file_private *file_priv,
-> +			   struct i915_gem_proto_context *pc, u32 id)
-> +{
-> +	struct i915_gem_context *ctx;
-> +	void *old;
+> Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/g4x_dp.c                | 1 +
+> >  drivers/gpu/drm/i915/display/g4x_hdmi.c              | 1 +
+> >  drivers/gpu/drm/i915/display/i9xx_plane.c            | 1 +
+> >  drivers/gpu/drm/i915/display/icl_dsi.c               | 1 +
+> >  drivers/gpu/drm/i915/display/intel_audio.c           | 1 +
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c           | 1 +
+> >  drivers/gpu/drm/i915/display/intel_color.c           | 1 +
+> >  drivers/gpu/drm/i915/display/intel_combo_phy.c       | 1 +
+> >  drivers/gpu/drm/i915/display/intel_crt.c             | 1 +
+> >  drivers/gpu/drm/i915/display/intel_cursor.c          | 1 +
+> >  drivers/gpu/drm/i915/display/intel_ddi.c             | 1 +
+> >  drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c   | 1 +
+> >  drivers/gpu/drm/i915/display/intel_de.h              | 9 ++++++++-
+> >  drivers/gpu/drm/i915/display/intel_display.c         | 1 +
+> >  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 1 +
+> >  drivers/gpu/drm/i915/display/intel_display_power.c   | 1 +
+> >  drivers/gpu/drm/i915/display/intel_display_types.h   | 1 -
+> >  drivers/gpu/drm/i915/display/intel_dp.c              | 1 +
+> >  drivers/gpu/drm/i915/display/intel_dp_hdcp.c         | 1 +
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c          | 1 +
+> >  drivers/gpu/drm/i915/display/intel_dpio_phy.c        | 1 +
+> >  drivers/gpu/drm/i915/display/intel_dpll.c            | 1 +
+> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c        | 1 +
+> >  drivers/gpu/drm/i915/display/intel_dsb.c             | 1 +
+> >  drivers/gpu/drm/i915/display/intel_dvo.c             | 1 +
+> >  drivers/gpu/drm/i915/display/intel_fbc.c             | 1 +
+> >  drivers/gpu/drm/i915/display/intel_fdi.c             | 1 +
+> >  drivers/gpu/drm/i915/display/intel_fifo_underrun.c   | 1 +
+> >  drivers/gpu/drm/i915/display/intel_gmbus.c           | 1 +
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c            | 1 +
+> >  drivers/gpu/drm/i915/display/intel_hdmi.c            | 1 +
+> >  drivers/gpu/drm/i915/display/intel_lspcon.c          | 1 +
+> >  drivers/gpu/drm/i915/display/intel_lvds.c            | 1 +
+> >  drivers/gpu/drm/i915/display/intel_overlay.c         | 1 +
+> >  drivers/gpu/drm/i915/display/intel_panel.c           | 1 +
+> >  drivers/gpu/drm/i915/display/intel_pipe_crc.c        | 1 +
+> >  drivers/gpu/drm/i915/display/intel_pps.c             | 1 +
+> >  drivers/gpu/drm/i915/display/intel_psr.c             | 1 +
+> >  drivers/gpu/drm/i915/display/intel_sdvo.c            | 1 +
+> >  drivers/gpu/drm/i915/display/intel_sprite.c          | 1 +
+> >  drivers/gpu/drm/i915/display/intel_tv.c              | 1 +
+> >  drivers/gpu/drm/i915/display/intel_vdsc.c            | 1 +
+> >  drivers/gpu/drm/i915/display/intel_vrr.c             | 1 +
+> >  drivers/gpu/drm/i915/display/skl_scaler.c            | 1 +
+> >  drivers/gpu/drm/i915/display/skl_universal_plane.c   | 1 +
+> >  drivers/gpu/drm/i915/display/vlv_dsi.c               | 1 +
+> >  drivers/gpu/drm/i915/display/vlv_dsi_pll.c           | 1 +
+> >  drivers/gpu/drm/i915/i915_irq.c                      | 1 +
+> >  drivers/gpu/drm/i915/intel_pm.c                      | 1 +
+> >  49 files changed, 55 insertions(+), 2 deletions(-)
+> > =
 
-assert_lock_held is alwasy nice in all _locked functions. It entirely
-compiles out without CONFIG_PROVE_LOCKING enabled.
+> > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c
+> > b/drivers/gpu/drm/i915/display/g4x_dp.c
+> > index dfe3cf328d13..de0f358184aa 100644
+> > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> > @@ -8,6 +8,7 @@
+> >  #include "g4x_dp.h"
+> >  #include "intel_audio.h"
+> >  #include "intel_connector.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_dp_link_training.h"
+> > diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > index 78f93506ffaf..be352e9f0afc 100644
+> > --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+> > @@ -8,6 +8,7 @@
+> >  #include "g4x_hdmi.h"
+> >  #include "intel_audio.h"
+> >  #include "intel_connector.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dpio_phy.h"
+> >  #include "intel_fifo_underrun.h"
+> > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > index 393ef09ba0ac..9643c45a2209 100644
+> > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > @@ -10,6 +10,7 @@
+> > =
 
-> +
-> +	ctx = i915_gem_create_context(file_priv->dev_priv, pc);
+> >  #include "intel_atomic.h"
+> >  #include "intel_atomic_plane.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_fb.h"
+> >  #include "intel_sprite.h"
+> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > index 781630a40f06..ce544e20f35c 100644
+> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > @@ -33,6 +33,7 @@
+> >  #include "intel_connector.h"
+> >  #include "intel_crtc.h"
+> >  #include "intel_ddi.h"
+> > +#include "intel_de.h"
+> >  #include "intel_dsi.h"
+> >  #include "intel_panel.h"
+> >  #include "intel_vdsc.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_audio.c
+> > b/drivers/gpu/drm/i915/display/intel_audio.c
+> > index b40e929a167e..c74c00a18f54 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> > @@ -31,6 +31,7 @@
+> >  #include "intel_atomic.h"
+> >  #include "intel_audio.h"
+> >  #include "intel_cdclk.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_lpe_audio.h"
+> > =
 
-I think we need a prep patch which changes the calling convetion of this
-and anything it calls to only return a NULL pointer. Then
-i915_gem_context_lookup below can return the ERR_PTR(-ENOMEM) below for
-that case, and we know that we're never returning a wrong error pointer.
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > index 1f0bd23bb883..f95896f7c113 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > @@ -26,6 +26,7 @@
+> >  #include "intel_atomic.h"
+> >  #include "intel_bw.h"
+> >  #include "intel_cdclk.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_sideband.h"
+> > =
 
-> +	if (IS_ERR(ctx))
-> +		return ctx;
-> +
-> +	gem_context_register(ctx, file_priv, id);
-> +
-> +	old = xa_erase(&file_priv->proto_context_xa, id);
-> +	GEM_BUG_ON(old != pc);
-> +	proto_context_close(pc);
-> +
-> +	/* One for the xarray and one for the caller */
-> +	return i915_gem_context_get(ctx);
-> +}
-> +
-> +struct i915_gem_context *
-> +i915_gem_context_lookup(struct drm_i915_file_private *file_priv, u32 id)
-> +{
-> +	struct i915_gem_proto_context *pc;
-> +	struct i915_gem_context *ctx;
-> +
-> +	ctx = __context_lookup(file_priv, id);
-> +	if (ctx)
-> +		return ctx;
-> +
-> +	mutex_lock(&file_priv->proto_context_lock);
-> +	/* Try one more time under the lock */
-> +	ctx = __context_lookup(file_priv, id);
-> +	if (!ctx) {
-> +		pc = xa_load(&file_priv->proto_context_xa, id);
-> +		if (!pc)
-> +			ctx = ERR_PTR(-ENOENT);
-> +		else
-> +			ctx = lazy_create_context_locked(file_priv, pc, id);
-> +	}
-> +	mutex_unlock(&file_priv->proto_context_lock);
-> +
-> +	return ctx;
-> +}
-> +
->  int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
->  				  struct drm_file *file)
->  {
->  	struct drm_i915_private *i915 = to_i915(dev);
->  	struct drm_i915_gem_context_create_ext *args = data;
-> -	struct i915_gem_proto_context *pc;
->  	struct create_ext ext_data;
->  	int ret;
->  	u32 id;
-> @@ -1979,14 +2508,9 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
->  		return -EIO;
->  	}
->  
-> -	pc = proto_context_create(i915, args->flags);
-> -	if (IS_ERR(pc))
-> -		return PTR_ERR(pc);
-> -
-> -	ext_data.ctx = i915_gem_create_context(i915, pc);
-> -	proto_context_close(pc);
-> -	if (IS_ERR(ext_data.ctx))
-> -		return PTR_ERR(ext_data.ctx);
-> +	ext_data.pc = proto_context_create(i915, args->flags);
-> +	if (IS_ERR(ext_data.pc))
-> +		return PTR_ERR(ext_data.pc);
->  
->  	if (args->flags & I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS) {
->  		ret = i915_user_extensions(u64_to_user_ptr(args->extensions),
-> @@ -1994,20 +2518,20 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
->  					   ARRAY_SIZE(create_extensions),
->  					   &ext_data);
->  		if (ret)
-> -			goto err_ctx;
-> +			goto err_pc;
->  	}
->  
-> -	ret = gem_context_register(ext_data.ctx, ext_data.fpriv, &id);
-> +	ret = proto_context_register(ext_data.fpriv, ext_data.pc, &id);
->  	if (ret < 0)
-> -		goto err_ctx;
-> +		goto err_pc;
->  
->  	args->ctx_id = id;
->  	drm_dbg(&i915->drm, "HW context %d created\n", args->ctx_id);
->  
->  	return 0;
->  
-> -err_ctx:
-> -	context_close(ext_data.ctx);
-> +err_pc:
-> +	proto_context_close(ext_data.pc);
->  	return ret;
->  }
->  
-> @@ -2016,6 +2540,7 @@ int i915_gem_context_destroy_ioctl(struct drm_device *dev, void *data,
->  {
->  	struct drm_i915_gem_context_destroy *args = data;
->  	struct drm_i915_file_private *file_priv = file->driver_priv;
-> +	struct i915_gem_proto_context *pc;
->  	struct i915_gem_context *ctx;
->  
->  	if (args->pad != 0)
-> @@ -2024,11 +2549,21 @@ int i915_gem_context_destroy_ioctl(struct drm_device *dev, void *data,
->  	if (!args->ctx_id)
->  		return -ENOENT;
->  
-> +	mutex_lock(&file_priv->proto_context_lock);
->  	ctx = xa_erase(&file_priv->context_xa, args->ctx_id);
-> -	if (!ctx)
-> +	pc = xa_erase(&file_priv->proto_context_xa, args->ctx_id);
-> +	mutex_unlock(&file_priv->proto_context_lock);
-> +
-> +	if (!ctx && !pc)
->  		return -ENOENT;
-> +	GEM_WARN_ON(ctx && pc);
-> +
-> +	if (pc)
-> +		proto_context_close(pc);
-> +
-> +	if (ctx)
-> +		context_close(ctx);
->  
-> -	context_close(ctx);
->  	return 0;
->  }
->  
-> @@ -2161,16 +2696,48 @@ int i915_gem_context_setparam_ioctl(struct drm_device *dev, void *data,
->  {
->  	struct drm_i915_file_private *file_priv = file->driver_priv;
->  	struct drm_i915_gem_context_param *args = data;
-> +	struct i915_gem_proto_context *pc;
->  	struct i915_gem_context *ctx;
-> -	int ret;
-> +	int ret = 0;
->  
-> -	ctx = i915_gem_context_lookup(file_priv, args->ctx_id);
-> -	if (IS_ERR(ctx))
-> -		return PTR_ERR(ctx);
-> +	ctx = __context_lookup(file_priv, args->ctx_id);
-> +	if (ctx)
-> +		goto set_ctx_param;
->  
-> -	ret = ctx_setparam(file_priv, ctx, args);
-> +	mutex_lock(&file_priv->proto_context_lock);
-> +	ctx = __context_lookup(file_priv, args->ctx_id);
-> +	if (ctx)
-> +		goto unlock;
-> +
-> +	pc = xa_load(&file_priv->proto_context_xa, args->ctx_id);
-> +	if (!pc) {
-> +		ret = -ENOENT;
-> +		goto unlock;
-> +	}
-> +
-> +	ret = set_proto_ctx_param(file_priv, pc, args);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c
+> > b/drivers/gpu/drm/i915/display/intel_color.c
+> > index 5fae69879adf..dab892d2251b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > @@ -23,6 +23,7 @@
+> >   */
+> > =
 
-I think we should have a FIXME here of not allowing this on some future
-platforms because just use CTX_CREATE_EXT.
+> >  #include "intel_color.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> > =
 
-> +	if (ret == -ENOTSUPP) {
-> +		/* Some params, specifically SSEU, can only be set on fully
+> >  #define CTM_COEFF_SIGN	(1ULL << 63)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> > b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> > index 5df57d16a401..487c54cd5982 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_combo_phy.c
+> > @@ -4,6 +4,7 @@
+> >   */
+> > =
 
-I think this needs a FIXME: that this only holds during the conversion?
-Otherwise we kinda have a bit a problem me thinks ...
+> >  #include "intel_combo_phy.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> > =
 
+> >  #define for_each_combo_phy(__dev_priv, __phy) \ diff --git
+> > a/drivers/gpu/drm/i915/display/intel_crt.c
+> > b/drivers/gpu/drm/i915/display/intel_crt.c
+> > index 1aac8bead4eb..648f1c0d3d39 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> > @@ -38,6 +38,7 @@
+> >  #include "intel_crt.h"
+> >  #include "intel_crtc.h"
+> >  #include "intel_ddi.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_fdi.h"
+> >  #include "intel_fifo_underrun.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c
+> > b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > index 2345f2efd60b..2ab389b38694 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> > @@ -13,6 +13,7 @@
+> >  #include "intel_atomic.h"
+> >  #include "intel_atomic_plane.h"
+> >  #include "intel_cursor.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_display.h"
+> >  #include "intel_fb.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 93d94d50b63d..0b382e40d594 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -34,6 +34,7 @@
+> >  #include "intel_crtc.h"
+> >  #include "intel_ddi.h"
+> >  #include "intel_ddi_buf_trans.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_dp_link_training.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> > b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> > index 58d6417b8f3e..7bcdd5c12028 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+> > @@ -6,6 +6,7 @@
+> >  #include "i915_drv.h"
+> >  #include "intel_ddi.h"
+> >  #include "intel_ddi_buf_trans.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> > =
 
-> +		 * created contexts.
-> +		 */
-> +		ret = 0;
-> +		ctx = lazy_create_context_locked(file_priv, pc, args->ctx_id);
-> +		if (IS_ERR(ctx)) {
-> +			ret = PTR_ERR(ctx);
-> +			ctx = NULL;
-> +		}
-> +	}
-> +
-> +unlock:
-> +	mutex_unlock(&file_priv->proto_context_lock);
-> +
-> +set_ctx_param:
-> +	if (!ret && ctx)
-> +		ret = ctx_setparam(file_priv, ctx, args);
-> +
-> +	if (ctx)
-> +		i915_gem_context_put(ctx);
->  
-> -	i915_gem_context_put(ctx);
->  	return ret;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> index b5c908f3f4f22..20411db84914a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
-> @@ -133,6 +133,9 @@ int i915_gem_context_setparam_ioctl(struct drm_device *dev, void *data,
->  int i915_gem_context_reset_stats_ioctl(struct drm_device *dev, void *data,
->  				       struct drm_file *file);
->  
-> +struct i915_gem_context *
-> +i915_gem_context_lookup(struct drm_i915_file_private *file_priv, u32 id);
-> +
->  static inline struct i915_gem_context *
->  i915_gem_context_get(struct i915_gem_context *ctx)
->  {
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> index a42c429f94577..067ea3030ac91 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> @@ -46,6 +46,26 @@ struct i915_gem_engines_iter {
->  	const struct i915_gem_engines *engines;
->  };
->  
-> +enum i915_gem_engine_type {
-> +	I915_GEM_ENGINE_TYPE_INVALID = 0,
-> +	I915_GEM_ENGINE_TYPE_PHYSICAL,
-> +	I915_GEM_ENGINE_TYPE_BALANCED,
-> +};
-> +
+> >  /* HDMI/DVI modes ignore everything but the last 2 items. So we share =
+diff --git
+> > a/drivers/gpu/drm/i915/display/intel_de.h
+> > b/drivers/gpu/drm/i915/display/intel_de.h
+> > index 00da10bf35f5..f56ecea88931 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_de.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_de.h
+> > @@ -8,6 +8,7 @@
+> > =
 
-Some kerneldoc missing?
+> >  #include "i915_drv.h"
+> >  #include "i915_reg.h"
+> > +#include "i915_trace.h"
+> >  #include "intel_uncore.h"
+> > =
 
-> +struct i915_gem_proto_engine {
-> +	/** @type: Type of this engine */
-> +	enum i915_gem_engine_type type;
-> +
-> +	/** @num_siblings: Engine, for physical */
-> +	struct intel_engine_cs *engine;
-> +
-> +	/** @num_siblings: Number of balanced siblings */
-> +	unsigned int num_siblings;
-> +
-> +	/** @num_siblings: Balanced siblings */
-> +	struct intel_engine_cs **siblings;
+> >  static inline u32
+> > @@ -26,7 +27,12 @@ intel_de_posting_read(struct drm_i915_private *i915,
+> > i915_reg_t reg)  static inline u32  intel_de_read_fw(struct drm_i915_pr=
+ivate
+> > *i915, i915_reg_t reg)  {
+> > -	return intel_uncore_read_fw(&i915->uncore, reg);
+> > +	u32 val;
+> > +
+> > +	val =3D intel_uncore_read_fw(&i915->uncore, reg);
+> > +	trace_i915_reg_rw(false, reg, val, sizeof(val), true);
+> > +
+> > +	return val;
+> >  }
+> > =
 
-I guess you're stuffing both balanced and siblings into one?
-> +};
-> +
->  /**
->   * struct i915_gem_proto_context - prototype context
->   *
-> @@ -64,6 +84,12 @@ struct i915_gem_proto_context {
->  	/** @sched: See i915_gem_context::sched */
->  	struct i915_sched_attr sched;
->  
-> +	/** @num_user_engines: Number of user-specified engines or -1 */
-> +	int num_user_engines;
-> +
-> +	/** @num_user_engines: User-specified engines */
-> +	struct i915_gem_proto_engine *user_engines;
-> +
->  	bool single_timeline;
->  };
->  
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> index e0f512ef7f3c6..32cf2103828f9 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> @@ -80,6 +80,7 @@ void mock_init_contexts(struct drm_i915_private *i915)
->  struct i915_gem_context *
->  live_context(struct drm_i915_private *i915, struct file *file)
->  {
-> +	struct drm_i915_file_private *fpriv = to_drm_file(file)->driver_priv;
->  	struct i915_gem_proto_context *pc;
->  	struct i915_gem_context *ctx;
->  	int err;
-> @@ -96,10 +97,12 @@ live_context(struct drm_i915_private *i915, struct file *file)
->  
->  	i915_gem_context_set_no_error_capture(ctx);
->  
-> -	err = gem_context_register(ctx, to_drm_file(file)->driver_priv, &id);
-> +	err = xa_alloc(&fpriv->context_xa, &id, NULL, xa_limit_32b, GFP_KERNEL);
->  	if (err < 0)
->  		goto err_ctx;
->  
-> +	gem_context_register(ctx, fpriv, id);
-> +
->  	return ctx;
->  
->  err_ctx:
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 004ed0e59c999..365c042529d72 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -200,6 +200,9 @@ struct drm_i915_file_private {
->  		struct rcu_head rcu;
->  	};
->  
-> +	struct mutex proto_context_lock;
-> +	struct xarray proto_context_xa;
+> >  static inline void
+> > @@ -39,6 +45,7 @@ intel_de_write(struct drm_i915_private *i915, i915_re=
+g_t
+> > reg, u32 val)  static inline void  intel_de_write_fw(struct drm_i915_pr=
+ivate *i915,
+> > i915_reg_t reg, u32 val)  {
+> > +	trace_i915_reg_rw(true, reg, val, sizeof(val), true);
+> >  	intel_uncore_write_fw(&i915->uncore, reg, val);  }
+> > =
 
-Kerneldoc here please. Ideally also for the context_xa below (but maybe
-that's for later).
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 6280ba7f4c17..974a6a3f01cd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -79,6 +79,7 @@
+> >  #include "intel_color.h"
+> >  #include "intel_crtc.h"
+> >  #include "intel_csr.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp_link_training.h"
+> >  #include "intel_fbc.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > index 183c414d554a..d55ae83d037a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > @@ -10,6 +10,7 @@
+> >  #include "intel_csr.h"
+> >  #include "intel_display_debugfs.h"
+> >  #include "intel_display_power.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_fbc.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index d48dd15a4f6e..653744d831af 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -11,6 +11,7 @@
+> >  #include "intel_combo_phy.h"
+> >  #include "intel_csr.h"
+> >  #include "intel_display_power.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dpio_phy.h"
+> >  #include "intel_hotplug.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index e2e707c4dff5..6d8cdaa36748 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -45,7 +45,6 @@
+> >  #include <media/cec-notifier.h>
+> > =
 
-Also please add a hint to the proto context struct that it's all fully
-protected by proto_context_lock above and is never visible outside of
-that.
+> >  #include "i915_drv.h"
+> > -#include "intel_de.h"
+> > =
 
-> +
->  	struct xarray context_xa;
->  	struct xarray vm_xa;
->  
-> @@ -1840,20 +1843,6 @@ struct drm_gem_object *i915_gem_prime_import(struct drm_device *dev,
->  
->  struct dma_buf *i915_gem_prime_export(struct drm_gem_object *gem_obj, int flags);
->  
-> -static inline struct i915_gem_context *
-> -i915_gem_context_lookup(struct drm_i915_file_private *file_priv, u32 id)
-> -{
-> -	struct i915_gem_context *ctx;
-> -
-> -	rcu_read_lock();
-> -	ctx = xa_load(&file_priv->context_xa, id);
-> -	if (ctx && !kref_get_unless_zero(&ctx->ref))
-> -		ctx = NULL;
-> -	rcu_read_unlock();
-> -
-> -	return ctx ? ctx : ERR_PTR(-ENOENT);
-> -}
-> -
->  /* i915_gem_evict.c */
->  int __must_check i915_gem_evict_something(struct i915_address_space *vm,
->  					  u64 min_size, u64 alignment,
+> >  struct drm_printer;
+> >  struct __intel_global_objs_state;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index dfa7da928ae5..cbbba8e33b24 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -46,6 +46,7 @@
+> >  #include "intel_audio.h"
+> >  #include "intel_connector.h"
+> >  #include "intel_ddi.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_dp_aux.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> > index d7c3a74b81a3..d697d169e8c1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+> > @@ -12,6 +12,7 @@
+> >  #include <drm/drm_print.h>
+> > =
 
-I think I'll check details when I'm not getting distracted by the
-vm/engines validation code that I think shouldn't be here :-)
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> >  #include "intel_ddi.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_dp_hdcp.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index fc138049f67c..03be473e0ea7 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -34,6 +34,7 @@
+> >  #include "intel_connector.h"
+> >  #include "intel_crtc.h"
+> >  #include "intel_ddi.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_dp_hdcp.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> > b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> > index 514c4a7adffc..48507ed79950 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
+> > @@ -23,6 +23,7 @@
+> > =
+
+> >  #include "display/intel_dp.h"
+> > =
+
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dpio_phy.h"
+> >  #include "intel_sideband.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c
+> > b/drivers/gpu/drm/i915/display/intel_dpll.c
+> > index 9114953f57f1..89635da9f6f6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> > @@ -4,6 +4,7 @@
+> >   */
+> >  #include <linux/kernel.h>
+> >  #include "intel_crtc.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_display.h"
+> >  #include "intel_dpll.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > index da2ff0b3ceac..18bfe8d09277 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > @@ -21,6 +21,7 @@
+> >   * DEALINGS IN THE SOFTWARE.
+> >   */
+> > =
+
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dpio_phy.h"
+> >  #include "intel_dpll.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c
+> > b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > index 857126822a88..62a8a69f9f5d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > @@ -5,6 +5,7 @@
+> >   */
+> > =
+
+> >  #include "i915_drv.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> > =
+
+> >  #define DSB_BUF_SIZE    (2 * PAGE_SIZE)
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c
+> > b/drivers/gpu/drm/i915/display/intel_dvo.c
+> > index 090cd76266c6..77419f8c05e9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dvo.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+> > @@ -33,6 +33,7 @@
+> > =
+
+> >  #include "i915_drv.h"
+> >  #include "intel_connector.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dvo.h"
+> >  #include "intel_dvo_dev.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > index 91dad8004c34..b2f3ac846f5b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > @@ -43,6 +43,7 @@
+> >  #include "i915_drv.h"
+> >  #include "i915_trace.h"
+> >  #include "i915_vgpu.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_fbc.h"
+> >  #include "intel_frontbuffer.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c
+> > b/drivers/gpu/drm/i915/display/intel_fdi.c
+> > index d719cd9c5b73..cef1061fd6cb 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+> > @@ -5,6 +5,7 @@
+> >  #include "intel_atomic.h"
+> >  #include "intel_ddi.h"
+> >  #include "intel_ddi_buf_trans.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_fdi.h"
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> > b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> > index 0fce9fd6e0a9..3315aa1d4d5a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> > @@ -27,6 +27,7 @@
+> > =
+
+> >  #include "i915_drv.h"
+> >  #include "i915_trace.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_fbc.h"
+> >  #include "intel_fifo_underrun.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> > b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> > index 17ab3cb81e02..fcf47f98ea36 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> > @@ -34,6 +34,7 @@
+> >  #include <drm/drm_hdcp.h>
+> > =
+
+> >  #include "i915_drv.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_gmbus.h"
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > index d254fe67ab7f..ebc2e32aec0b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > @@ -18,6 +18,7 @@
+> >  #include "i915_drv.h"
+> >  #include "i915_reg.h"
+> >  #include "intel_display_power.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_hdcp.h"
+> >  #include "intel_sideband.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > index 46de56af33db..28e297296160 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > @@ -43,6 +43,7 @@
+> >  #include "intel_atomic.h"
+> >  #include "intel_connector.h"
+> >  #include "intel_ddi.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_gmbus.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > index ec0048024746..05d2d750fa53 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+> > @@ -27,6 +27,7 @@
+> >  #include <drm/drm_dp_dual_mode_helper.h>  #include <drm/drm_edid.h>
+> > =
+
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_lspcon.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c
+> > b/drivers/gpu/drm/i915/display/intel_lvds.c
+> > index dd12d15f47c7..7f40e9f60bc2 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+> > @@ -41,6 +41,7 @@
+> >  #include "i915_drv.h"
+> >  #include "intel_atomic.h"
+> >  #include "intel_connector.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_gmbus.h"
+> >  #include "intel_lvds.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c
+> > b/drivers/gpu/drm/i915/display/intel_overlay.c
+> > index fffbde4256db..83c25d84c391 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_overlay.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+> > @@ -34,6 +34,7 @@
+> > =
+
+> >  #include "i915_drv.h"
+> >  #include "i915_reg.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_frontbuffer.h"
+> >  #include "intel_overlay.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_panel.c
+> > b/drivers/gpu/drm/i915/display/intel_panel.c
+> > index 551fcaa77c2c..3a52d4eadd9d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_panel.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+> > @@ -35,6 +35,7 @@
+> >  #include <linux/pwm.h>
+> > =
+
+> >  #include "intel_connector.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp_aux_backlight.h"
+> >  #include "intel_dsi_dcs_backlight.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+> > b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+> > index acc64b87d29f..8ac263f471be 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+> > @@ -30,6 +30,7 @@
+> >  #include <linux/seq_file.h>
+> > =
+
+> >  #include "intel_atomic.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_pipe_crc.h"
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c
+> > b/drivers/gpu/drm/i915/display/intel_pps.c
+> > index 0fd28902d779..a36ec4a818ff 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> > @@ -5,6 +5,7 @@
+> > =
+
+> >  #include "g4x_dp.h"
+> >  #include "i915_drv.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_dpll.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+> > b/drivers/gpu/drm/i915/display/intel_psr.c
+> > index c61e1d774667..e3c30dcadcd1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> > @@ -27,6 +27,7 @@
+> > =
+
+> >  #include "i915_drv.h"
+> >  #include "intel_atomic.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp_aux.h"
+> >  #include "intel_hdmi.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > index f6eb95c717d2..e4f91d7a5c60 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+> > @@ -39,6 +39,7 @@
+> >  #include "intel_atomic.h"
+> >  #include "intel_connector.h"
+> >  #include "intel_crtc.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_fifo_underrun.h"
+> >  #include "intel_gmbus.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > index acbf4e63b245..4ae9a7455b23 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > @@ -43,6 +43,7 @@
+> >  #include "i915_trace.h"
+> >  #include "i915_vgpu.h"
+> >  #include "intel_atomic_plane.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_frontbuffer.h"
+> >  #include "intel_sprite.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_tv.c
+> > b/drivers/gpu/drm/i915/display/intel_tv.c
+> > index 2c5c77693474..ce73ebdfc669 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_tv.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_tv.c
+> > @@ -36,6 +36,7 @@
+> > =
+
+> >  #include "i915_drv.h"
+> >  #include "intel_connector.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_hotplug.h"
+> >  #include "intel_tv.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > index 3a21c65ffa85..42e3f9f7a37e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+> > @@ -7,6 +7,7 @@
+> >   */
+> > =
+
+> >  #include "i915_drv.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dsi.h"
+> >  #include "intel_vdsc.h"
+> > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c
+> > b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > index a9c2b2fd9252..046210ae1de0 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> > @@ -5,6 +5,7 @@
+> >   */
+> > =
+
+> >  #include "i915_drv.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_vrr.h"
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c
+> > b/drivers/gpu/drm/i915/display/skl_scaler.c
+> > index 17a98cb627df..394b7bbf48d8 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> > @@ -2,6 +2,7 @@
+> >  /*
+> >   * Copyright =A9 2020 Intel Corporation
+> >   */
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "skl_scaler.h"
+> >  #include "skl_universal_plane.h"
+> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > index 553bc937ad90..0d34a5ad4e2b 100644
+> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > @@ -10,6 +10,7 @@
+> > =
+
+> >  #include "i915_drv.h"
+> >  #include "intel_atomic_plane.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_fb.h"
+> >  #include "intel_pm.h"
+> > diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> > b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> > index ac0553d492aa..084c9c43b2ed 100644
+> > --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> > +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> > @@ -34,6 +34,7 @@
+> >  #include "intel_atomic.h"
+> >  #include "intel_connector.h"
+> >  #include "intel_crtc.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dsi.h"
+> >  #include "intel_fifo_underrun.h"
+> > diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+> > b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+> > index 4070b00c3690..90185b219447 100644
+> > --- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+> > +++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+> > @@ -28,6 +28,7 @@
+> >  #include <linux/kernel.h>
+> > =
+
+> >  #include "i915_drv.h"
+> > +#include "intel_de.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dsi.h"
+> >  #include "intel_sideband.h"
+> > diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i91=
+5_irq.c
+> > index 798ecc718e3f..f6967a93ec7a 100644
+> > --- a/drivers/gpu/drm/i915/i915_irq.c
+> > +++ b/drivers/gpu/drm/i915/i915_irq.c
+> > @@ -35,6 +35,7 @@
+> >  #include <drm/drm_drv.h>
+> >  #include <drm/drm_irq.h>
+> > =
+
+> > +#include "display/intel_de.h"
+> >  #include "display/intel_display_types.h"
+> >  #include "display/intel_fifo_underrun.h"
+> >  #include "display/intel_hotplug.h"
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/int=
+el_pm.c
+> > index cd584474d1e8..06d5b7cc8b62 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -35,6 +35,7 @@
+> >  #include "display/intel_atomic.h"
+> >  #include "display/intel_atomic_plane.h"
+> >  #include "display/intel_bw.h"
+> > +#include "display/intel_de.h"
+> >  #include "display/intel_display_types.h"
+> >  #include "display/intel_fbc.h"
+> >  #include "display/intel_sprite.h"
+> > --
+> > 2.26.3
+> > =
+
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
