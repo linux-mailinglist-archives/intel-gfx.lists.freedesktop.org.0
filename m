@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE65136E918
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 12:51:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A74B236E917
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 12:51:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A4086EE13;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14A756EE0F;
 	Thu, 29 Apr 2021 10:51:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 565136EE0C;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A717B6EE0C;
  Thu, 29 Apr 2021 10:51:05 +0000 (UTC)
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id E997FB02B;
- Thu, 29 Apr 2021 10:51:03 +0000 (UTC)
+ by mx2.suse.de (Postfix) with ESMTP id 3F011B02C;
+ Thu, 29 Apr 2021 10:51:04 +0000 (UTC)
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
  chris@chris-wilson.co.uk
-Date: Thu, 29 Apr 2021 12:50:57 +0200
-Message-Id: <20210429105101.25667-2-tzimmermann@suse.de>
+Date: Thu, 29 Apr 2021 12:50:58 +0200
+Message-Id: <20210429105101.25667-3-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210429105101.25667-1-tzimmermann@suse.de>
 References: <20210429105101.25667-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v8 1/5] drm/ast: Remove reference to struct
+Subject: [Intel-gfx] [PATCH v8 2/5] drm/i915/gt: Remove reference to struct
  drm_device.pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,44 +40,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- KuoHsiang Chou <kuohsiang_chou@aspeedtech.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Using struct drm_device.pdev is deprecated. Upcast with to_pci_dev()
-from struct drm_device.dev to get the PCI device structure.
-
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Fixes: ba4e0339a6a3 ("drm/ast: Fixed CVE for DP501")
-Cc: KuoHsiang Chou <kuohsiang_chou@aspeedtech.com>
-Cc: kernel test robot <lkp@intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
----
- drivers/gpu/drm/ast/ast_main.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/ast/ast_main.c b/drivers/gpu/drm/ast/ast_main.c
-index 189d783f6e2c..6b49a92dc75f 100644
---- a/drivers/gpu/drm/ast/ast_main.c
-+++ b/drivers/gpu/drm/ast/ast_main.c
-@@ -411,7 +411,6 @@ struct ast_private *ast_device_create(const struct drm_driver *drv,
- 		return ast;
- 	dev = &ast->base;
- 
--	dev->pdev = pdev;
- 	pci_set_drvdata(pdev, dev);
- 
- 	ast->regs = pcim_iomap(pdev, 1, 0);
--- 
-2.31.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UmVmZXJlbmNlcyB0byBzdHJ1Y3QgZHJtX2RldmljZS5wZGV2IHNob3VsZCBub3QgYmUgdXNlZCBh
+bnkgbG9uZ2VyIGFzCnRoZSBmaWVsZCB3aWxsIGJlIG1vdmVkIGludG8gdGhlIHN0cnVjdCdzIGxl
+Z2FjeSBzZWN0aW9uLiBBZGQgYSBmaXgKZm9yIHRoZSByc3AgY29tbWl0LgoKdjg6CgkqIGZpeCBj
+b21taXQgbWVzc2FnZSAoTWljaGFlbCkKClNpZ25lZC1vZmYtYnk6IFRob21hcyBaaW1tZXJtYW5u
+IDx0emltbWVybWFubkBzdXNlLmRlPgpGaXhlczogYTUwY2EzOWZiZDAxICgiZHJtL2k5MTU6IHNl
+dHVwIHRoZSBMTUVNIHJlZ2lvbiIpCkNjOiBMdWNhcyBEZSBNYXJjaGkgPGx1Y2FzLmRlbWFyY2hp
+QGludGVsLmNvbT4KQ2M6IEpvb25hcyBMYWh0aW5lbiA8am9vbmFzLmxhaHRpbmVuQGxpbnV4Lmlu
+dGVsLmNvbT4KQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KQ2M6IE1h
+dHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KQ2M6IEphbmkgTmlrdWxhIDxqYW5p
+Lm5pa3VsYUBpbnRlbC5jb20+CkNjOiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5j
+by51az4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+CkNjOiBUdnJ0
+a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgpDYzogRGFuaWVsZSBDZXJhb2xv
+IFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4KQ2M6IE1pa2EgS3VvcHBh
+bGEgPG1pa2Eua3VvcHBhbGFAbGludXguaW50ZWwuY29tPgpDYzogTWFhcnRlbiBMYW5raG9yc3Qg
+PG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KQ2M6IFZlbmthdGEgU2FuZGVlcCBE
+aGFuYWxha290YSA8dmVua2F0YS5zLmRoYW5hbGFrb3RhQGludGVsLmNvbT4KQ2M6ICJNaWNoYcWC
+IFdpbmlhcnNraSIgPG1pY2hhbC53aW5pYXJza2lAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2d0L2ludGVsX3JlZ2lvbl9sbWVtLmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwg
+MSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9yZWdpb25fbG1lbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
+aW50ZWxfcmVnaW9uX2xtZW0uYwppbmRleCBiZTZmMmM4ZjUxODQuLjczZmNlYjBjMjVmYyAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfcmVnaW9uX2xtZW0uYworKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9yZWdpb25fbG1lbS5jCkBAIC0xNzcsNyAr
+MTc3LDcgQEAgc3RhdGljIHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICpzZXR1cF9sbWVtKHN0
+cnVjdCBpbnRlbF9ndCAqZ3QpCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSBn
+dC0+aTkxNTsKIAlzdHJ1Y3QgaW50ZWxfdW5jb3JlICp1bmNvcmUgPSBndC0+dW5jb3JlOwotCXN0
+cnVjdCBwY2lfZGV2ICpwZGV2ID0gaTkxNS0+ZHJtLnBkZXY7CisJc3RydWN0IHBjaV9kZXYgKnBk
+ZXYgPSB0b19wY2lfZGV2KGk5MTUtPmRybS5kZXYpOwogCXN0cnVjdCBpbnRlbF9tZW1vcnlfcmVn
+aW9uICptZW07CiAJcmVzb3VyY2Vfc2l6ZV90IGlvX3N0YXJ0OwogCXJlc291cmNlX3NpemVfdCBs
+bWVtX3NpemU7Ci0tIAoyLjMxLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
