@@ -2,58 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C8AF36EB54
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 15:27:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5215936EB56
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 15:28:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B42A26E28A;
-	Thu, 29 Apr 2021 13:27:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A13F96E241;
+	Thu, 29 Apr 2021 13:28:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com
- [IPv6:2a00:1450:4864:20::42f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 016206E28A
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 13:27:33 +0000 (UTC)
-Received: by mail-wr1-x42f.google.com with SMTP id x5so16680242wrv.13
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 06:27:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=nHqTpn1xdX0FS5YaOTe7fvRBjAOby8HWf6qD8HlB2Wk=;
- b=YdJcmPIBArsuPOOuivLwreiuHYSm+kGok7f4lj7CLJ6+gKzzc8NnGhZxc6DyJvPeMj
- xQ0fUevJC62ekAzDz22xcUnR7o0gcWUHVyuqRuJLWCvEXVMd9axt/TYT5qsgZeqYXwT/
- PWnuO3Xeeio4rUxzc/no1/en57w/RkQTcfQhE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=nHqTpn1xdX0FS5YaOTe7fvRBjAOby8HWf6qD8HlB2Wk=;
- b=kNm6tgiwP/5meJkKaCBkAfzt95VQWTxML/xa7KudY7Gns/JR7xsuup28JO+6RwhvSl
- sg0nOEqITvgOZX5ov995XDlMLRQc7P4ZVVZDnGc/lknwtugo5SrKI/UmTAubVaJVrTDU
- A8JmXiDZNzDJw5TJqV2n9neoIzTkOqYG7WK8riwVXd7OqNT4KoIT8zSNQ+hGkKtgJeoF
- XHECB9OAqg+pIsrXhXjvWr5I6DIoYHsDWpqYDrqFCUlCIEaodxTIN04+7biRevx3ZPZL
- BkSrQIJDb3rl8QMISOp8nBpWndRu1D7LBjfbyTnLeAswSwADmmTdABLY8iDg5iky8FXW
- OEHQ==
-X-Gm-Message-State: AOAM531vcFpjiMnXa6U6i5Sol81exGopxoxHhNkW9CID+YPOT6wHv1ll
- 4UnS7sOFM40ceKOuJT7xJyWQ3Q==
-X-Google-Smtp-Source: ABdhPJyzzKSMduHQ3wI6tZpIBowroSJUQNEpsVMkjxQekOl7XfiCpYme9Wzs9KiLJ0WMjocRmbLM1g==
-X-Received: by 2002:a5d:59af:: with SMTP id p15mr9179272wrr.19.1619702852613; 
- Thu, 29 Apr 2021 06:27:32 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q16sm3721061wmj.24.2021.04.29.06.27.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Apr 2021 06:27:32 -0700 (PDT)
-Date: Thu, 29 Apr 2021 15:27:30 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YIq0QnVG5gn4cOOR@phenom.ffwll.local>
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-15-jason@jlekstrand.net>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D34276E241;
+ Thu, 29 Apr 2021 13:28:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CA94EA41FB;
+ Thu, 29 Apr 2021 13:28:00 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210423223131.879208-15-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 14/21] drm/i915/gem: Return an error ptr
- from context_lookup
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 29 Apr 2021 13:28:00 -0000
+Message-ID: <161970288082.20425.13513386080611646894@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <cover.1619604743.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1619604743.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/backlight=3A_use_unique_backlight_device_names_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,134 +38,241 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1448955327=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 23, 2021 at 05:31:24PM -0500, Jason Ekstrand wrote:
-> We're about to start doing lazy context creation which means contexts
-> get created in i915_gem_context_lookup and we may start having more
-> errors than -ENOENT.
-> 
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c    | 12 ++++++------
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  4 ++--
->  drivers/gpu/drm/i915/i915_drv.h                |  2 +-
->  drivers/gpu/drm/i915/i915_perf.c               |  4 ++--
->  4 files changed, 11 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 3e883daab93bf..7929d5a8be449 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -2105,8 +2105,8 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
->  	int ret = 0;
->  
->  	ctx = i915_gem_context_lookup(file_priv, args->ctx_id);
-> -	if (!ctx)
-> -		return -ENOENT;
-> +	if (IS_ERR(ctx))
-> +		return PTR_ERR(ctx);
->  
->  	switch (args->param) {
->  	case I915_CONTEXT_PARAM_GTT_SIZE:
-> @@ -2174,8 +2174,8 @@ int i915_gem_context_setparam_ioctl(struct drm_device *dev, void *data,
->  	int ret;
->  
->  	ctx = i915_gem_context_lookup(file_priv, args->ctx_id);
-> -	if (!ctx)
-> -		return -ENOENT;
-> +	if (IS_ERR(ctx))
-> +		return PTR_ERR(ctx);
->  
->  	ret = ctx_setparam(file_priv, ctx, args);
->  
-> @@ -2194,8 +2194,8 @@ int i915_gem_context_reset_stats_ioctl(struct drm_device *dev,
->  		return -EINVAL;
->  
->  	ctx = i915_gem_context_lookup(file->driver_priv, args->ctx_id);
-> -	if (!ctx)
-> -		return -ENOENT;
-> +	if (IS_ERR(ctx))
-> +		return PTR_ERR(ctx);
->  
->  	/*
->  	 * We opt for unserialised reads here. This may result in tearing
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 7024adcd5cf15..de14b26f3b2d5 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -739,8 +739,8 @@ static int eb_select_context(struct i915_execbuffer *eb)
->  	struct i915_gem_context *ctx;
->  
->  	ctx = i915_gem_context_lookup(eb->file->driver_priv, eb->args->rsvd1);
-> -	if (unlikely(!ctx))
-> -		return -ENOENT;
-> +	if (unlikely(IS_ERR(ctx)))
-> +		return PTR_ERR(ctx);
->  
->  	eb->gem_context = ctx;
->  	if (rcu_access_pointer(ctx->vm))
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 8571c5c1509a7..004ed0e59c999 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
+--===============1448955327==
+Content-Type: multipart/alternative;
+ boundary="===============5318798075216643724=="
 
-I just realized that I think __i915_gem_context_lookup_rcu doesn't have
-users anymore. Please make sure it's deleted.
+--===============5318798075216643724==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> @@ -1851,7 +1851,7 @@ i915_gem_context_lookup(struct drm_i915_file_private *file_priv, u32 id)
->  		ctx = NULL;
->  	rcu_read_unlock();
->  
-> -	return ctx;
-> +	return ctx ? ctx : ERR_PTR(-ENOENT);
->  }
->  
->  /* i915_gem_evict.c */
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 85ad62dbabfab..b86ed03f6a705 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -3414,10 +3414,10 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
->  		struct drm_i915_file_private *file_priv = file->driver_priv;
->  
->  		specific_ctx = i915_gem_context_lookup(file_priv, ctx_handle);
-> -		if (!specific_ctx) {
-> +		if (IS_ERR(specific_ctx)) {
->  			DRM_DEBUG("Failed to look up context with ID %u for opening perf stream\n",
->  				  ctx_handle);
-> -			ret = -ENOENT;
-> +			ret = PTR_ERR(specific_ctx);
+== Series Details ==
 
-Yeah this looks like a nice place to integrate this.
+Series: drm/i915/backlight: use unique backlight device names (rev2)
+URL   : https://patchwork.freedesktop.org/series/89578/
+State : success
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+== Summary ==
 
-One thing we need to make sure in the next patch or thereabouts is that
-lookup can only return ENOENT or ENOMEM, but never EINVAL. I'll drop some
-bikesheds on that :-)
--Daniel
+CI Bug Log - changes from CI_DRM_10027 -> Patchwork_20028
+====================================================
 
->  			goto err;
->  		}
->  	}
-> -- 
-> 2.31.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Summary
+-------
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20028 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
+    - fi-snb-2600:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-tgl-y:           NOTRUN -> [SKIP][2] ([fdo#109315] / [i915#2575])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][3] -> [INCOMPLETE][4] ([i915#2782] / [i915#2940])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][5] ([i915#1436])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-bsw-nick/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [FAIL][6] ([i915#1888]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [INCOMPLETE][8] ([i915#2782]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - {fi-rkl-11500t}:    [SKIP][10] ([i915#1849] / [i915#3180]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10027 -> Patchwork_20028
+
+  CI-20190529: 20190529
+  CI_DRM_10027: 1748cb1e8bdf543570b86f39487b171ad4c1f896 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20028: 1476f49c1f802cf9307bf6ae15a4b80380f73b3d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1476f49c1f80 drm/i915/backlight: use unique backlight device names
+911cf4c28ef4 drm/i915/backlight: clean up backlight device register
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/index.html
+
+--===============5318798075216643724==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/backlight: use unique backlight device names (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89578/">https://patchwork.freedesktop.org/series/89578/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10027 -&gt; Patchwork_20028</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20028 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
+<ul>
+<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>{fi-rkl-11500t}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10027/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1849">i915#1849</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3180">i915#3180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20028/fi-rkl-11500t/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ilk-m540 fi-bsw-cyan fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10027 -&gt; Patchwork_20028</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10027: 1748cb1e8bdf543570b86f39487b171ad4c1f896 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20028: 1476f49c1f802cf9307bf6ae15a4b80380f73b3d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>1476f49c1f80 drm/i915/backlight: use unique backlight device names<br />
+911cf4c28ef4 drm/i915/backlight: clean up backlight device register</p>
+
+</body>
+</html>
+
+--===============5318798075216643724==--
+
+--===============1448955327==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1448955327==--
