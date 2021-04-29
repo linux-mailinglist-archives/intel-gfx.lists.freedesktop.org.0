@@ -1,58 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4FA936EE58
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 18:45:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C950236EE60
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 18:46:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D676F3DF;
-	Thu, 29 Apr 2021 16:44:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3318E6F3DD;
+	Thu, 29 Apr 2021 16:46:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com
- [IPv6:2a00:1450:4864:20::629])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 738F86F3DD
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 16:44:55 +0000 (UTC)
-Received: by mail-ej1-x629.google.com with SMTP id y7so1992818ejj.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 09:44:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BGV47WTM/j8WfTmpHYDxeyV3Z4HDjbm+WVzMAp7srWw=;
- b=BqcC0bUIvXJIhvxziJncdqxQnv+5tPiH1r8rUF6+ajR4zTASu4A+HmSNkkosHnH5Su
- e77uiTsEuKhG/KVs4c6BwQrMAVwMSlhDMfQRUKBbHlAI6gWeaIX94vpE0BRd2+KqcJUv
- GdLoGfkM7eVQfeZeEy9IuDWeL/mqNk44M/+Y5G2WrmfxhUrw5EgnhGpXadJ3BEGso21Q
- 16cfd9ePRRoDJjMkn6rDY//64fDc9wSOnObJcGGc/u03xVYWL013I/4eLEvpaSUlWW5H
- VIj0H1+vJmZYou11lA/j9P+28BZOGEaPTDL3dXaWeEiq3CgIld2QGaw6weqdBsgaC+Ly
- kq0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=BGV47WTM/j8WfTmpHYDxeyV3Z4HDjbm+WVzMAp7srWw=;
- b=lnggNo4sw6iv8DVdZgYkYfM6x9icPv+twGYltxNmVt+cOoXO/ffJjQOLNvuTqwRdl5
- mGQXjhGabv36IZ23PSudXIR2zH3477uZCU9V3w0g0bOHf1JYx+Swzzik09ZmllkmWx7c
- YYFJpCVL1a2k3EeENtANuovE0j7rKRzS1cJTdspZBNAoQ8I88XsygtwF9kyYaaA3UwSG
- NPFYG98ARaasbA68CHRUhLm0WdlLRRA+7We2rbs71FoKlyQNvWPHuIrdcpdHj+pmSltL
- V89QBA4r0piW3vFHX0xHFB3/ofiCyI4s+udE0p4EaOWcA9XnsWIa4sIPLthbSGpn8x/0
- DKkA==
-X-Gm-Message-State: AOAM531ntSodocf7geVTUzgwwZIXrrkvGNh/b2doAwf1qHiTvEmpJypJ
- 8NpWQ7Dvgwhn43IyNo4QLnJbx18w7WfB5gI7Sh5s/A==
-X-Google-Smtp-Source: ABdhPJy+hAUou88jccUhWRsB6pKK1TgHoWynWQBwT1jQXDy681WwBe+vK+Q18x6HkER9Ltvvy5/3u1hJ4Cc/LoQhIQw=
-X-Received: by 2002:a17:906:5a96:: with SMTP id
- l22mr817239ejq.450.1619714693869; 
- Thu, 29 Apr 2021 09:44:53 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83D7A6F3DD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 16:46:18 +0000 (UTC)
+IronPort-SDR: xKg1Rwm2EJZfMEoYDprjkKElacdKltf2sG7adthRRHZnPmhKk1xYsSHtg1zkMG6Y/DTSRdaEgk
+ tfW2aBkrnkLw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="193866345"
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="193866345"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 09:46:16 -0700
+IronPort-SDR: gxzp1WmtaP6L5uKFZCIwCIwpzYwYy49DV/q8Zww9pRBlO9eWZ2qewDnM9TckcvD3+g4XAExatI
+ 7BnAhNg6REiA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,259,1613462400"; d="scan'208";a="466413575"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga001.jf.intel.com with SMTP; 29 Apr 2021 09:46:13 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 29 Apr 2021 19:46:12 +0300
+Date: Thu, 29 Apr 2021 19:46:12 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
+Message-ID: <YIri1F/6Yu4YWSBZ@intel.com>
+References: <20210428173021.38241-1-zbigniew.kempczynski@intel.com>
+ <161963902225.24077.2676825703402958112@emeril.freedesktop.org>
+ <20210429081631.GA3868@zkempczy-mobl2>
 MIME-Version: 1.0
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-14-jason@jlekstrand.net>
- <YIqufo0AsyRndhav@phenom.ffwll.local>
-In-Reply-To: <YIqufo0AsyRndhav@phenom.ffwll.local>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Thu, 29 Apr 2021 11:44:42 -0500
-Message-ID: <CAOFGe94qNkG-8bUSMB0PudXQcs7C22mQqZR=NoPtSG6EHh0rpQ@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 13/21] drm/i915/gem: Add an intermediate
- proto_context struct
+Content-Disposition: inline
+In-Reply-To: <20210429081631.GA3868@zkempczy-mobl2>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Add_relocation_exceptions_for_two_other_platforms?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,405 +53,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 29, 2021 at 8:02 AM Daniel Vetter <daniel@ffwll.ch> wrote:
->
-> The commit introducing a new data structure really should have a solid
-> intro in the commit message about. Please cover
->
-> - that ctx really should be immutable, safe for exceptions like priority
->
-> - that unfortunately we butchered the uapi with setparam and sharing
->   setparams between create_ext and setparam
->
-> - and how exactly proto ctx fixes this (with stuff like locking design
->   used)
->
-> Maybe also dupe the kerneldoc into here for completeness.
-> On Fri, Apr 23, 2021 at 05:31:23PM -0500, Jason Ekstrand wrote:
-> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 143 ++++++++++++++----
-> >  .../gpu/drm/i915/gem/i915_gem_context_types.h |  21 +++
-> >  .../gpu/drm/i915/gem/selftests/mock_context.c |  16 +-
->
-> I'm wondering whether in the end we should split out the proto_ctx into
-> its own file, with the struct private only to itself. But I guess
-> impossible during the transition, and also maybe afterwards?
->
-> >  3 files changed, 150 insertions(+), 30 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index e5efd22c89ba2..3e883daab93bf 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -191,6 +191,95 @@ static int validate_priority(struct drm_i915_private *i915,
-> >       return 0;
-> >  }
-> >
-> > +static void proto_context_close(struct i915_gem_proto_context *pc)
-> > +{
-> > +     if (pc->vm)
-> > +             i915_vm_put(pc->vm);
-> > +     kfree(pc);
-> > +}
-> > +
-> > +static int proto_context_set_persistence(struct drm_i915_private *i915,
-> > +                                      struct i915_gem_proto_context *pc,
-> > +                                      bool persist)
-> > +{
-> > +     if (test_bit(UCONTEXT_PERSISTENCE, &pc->user_flags) == persist)
-> > +             return 0;
->
-> We have compilers to optimize this kind of stuff, pls remove :-)
-> Especially with the non-atomic bitops there's no point.
-
-I thought at one point that this did have a purpose.  However, now
-that I look at it harder, I'm pretty sure it doesn't.  Will drop.
-
-> > +
-> > +     if (persist) {
-> > +             /*
-> > +              * Only contexts that are short-lived [that will expire or be
-> > +              * reset] are allowed to survive past termination. We require
-> > +              * hangcheck to ensure that the persistent requests are healthy.
-> > +              */
-> > +             if (!i915->params.enable_hangcheck)
-> > +                     return -EINVAL;
-> > +
-> > +             set_bit(UCONTEXT_PERSISTENCE, &pc->user_flags);
->
-> It's a bit entetaining, but the bitops in the kernel are atomic. Which is
-> hella confusing here.
->
-> I think open coding is the standard for truly normal bitops.
-
-There's __set_bit if you'd rather I use that.
-
-> > +     } else {
-> > +             /* To cancel a context we use "preempt-to-idle" */
-> > +             if (!(i915->caps.scheduler & I915_SCHEDULER_CAP_PREEMPTION))
-> > +                     return -ENODEV;
-> > +
-> > +             /*
-> > +              * If the cancel fails, we then need to reset, cleanly!
-> > +              *
-> > +              * If the per-engine reset fails, all hope is lost! We resort
-> > +              * to a full GPU reset in that unlikely case, but realistically
-> > +              * if the engine could not reset, the full reset does not fare
-> > +              * much better. The damage has been done.
-> > +              *
-> > +              * However, if we cannot reset an engine by itself, we cannot
-> > +              * cleanup a hanging persistent context without causing
-> > +              * colateral damage, and we should not pretend we can by
-> > +              * exposing the interface.
-> > +              */
-> > +             if (!intel_has_reset_engine(&i915->gt))
-> > +                     return -ENODEV;
-> > +
-> > +             clear_bit(UCONTEXT_PERSISTENCE, &pc->user_flags);
->
-> Same here.
->
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static struct i915_gem_proto_context *
-> > +proto_context_create(struct drm_i915_private *i915, unsigned int flags)
-> > +{
-> > +     struct i915_gem_proto_context *pc;
-> > +
-> > +     if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE &&
-> > +         !HAS_EXECLISTS(i915))
-> > +             return ERR_PTR(-EINVAL);
-> > +
-> > +     pc = kzalloc(sizeof(*pc), GFP_KERNEL);
-> > +     if (!pc)
-> > +             return ERR_PTR(-ENOMEM);
-> > +
-> > +     if (HAS_FULL_PPGTT(i915)) {
-> > +             struct i915_ppgtt *ppgtt;
-> > +
-> > +             ppgtt = i915_ppgtt_create(&i915->gt);
-> > +             if (IS_ERR(ppgtt)) {
-> > +                     drm_dbg(&i915->drm, "PPGTT setup failed (%ld)\n",
-> > +                             PTR_ERR(ppgtt));
-> > +                     proto_context_close(pc);
-> > +                     return ERR_CAST(ppgtt);
-> > +             }
-> > +             pc->vm = &ppgtt->vm;
-> > +     }
-> > +
-> > +     pc->user_flags = 0;
-> > +     set_bit(UCONTEXT_BANNABLE, &pc->user_flags);
-> > +     set_bit(UCONTEXT_RECOVERABLE, &pc->user_flags);
->
-> Same about atomic bitops here.
-
-Changed to just initialize to BANNABLE | RECOVERABLE.
-
-> > +     proto_context_set_persistence(i915, pc, true);
-> > +     pc->sched.priority = I915_PRIORITY_NORMAL;
-> > +
-> > +     if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE)
-> > +             pc->single_timeline = true;
->
-> bit a bikeshed, but I'd put the error checking in here too and deal with
-> the unwind pain with the usual goto proto_close. That should also make the
-> ppgtt unwind path a bit clearer because it sticks out in the standard way.
-
-Sure.  Can do.
-
-> > +
-> > +     return pc;
-> > +}
-> > +
-> >  static struct i915_address_space *
-> >  context_get_vm_rcu(struct i915_gem_context *ctx)
-> >  {
-> > @@ -660,7 +749,8 @@ static int __context_set_persistence(struct i915_gem_context *ctx, bool state)
-> >  }
-> >
-> >  static struct i915_gem_context *
-> > -__create_context(struct drm_i915_private *i915)
-> > +__create_context(struct drm_i915_private *i915,
-> > +              const struct i915_gem_proto_context *pc)
-> >  {
-> >       struct i915_gem_context *ctx;
-> >       struct i915_gem_engines *e;
-> > @@ -673,7 +763,7 @@ __create_context(struct drm_i915_private *i915)
-> >
-> >       kref_init(&ctx->ref);
-> >       ctx->i915 = i915;
-> > -     ctx->sched.priority = I915_PRIORITY_NORMAL;
-> > +     ctx->sched = pc->sched;
-> >       mutex_init(&ctx->mutex);
-> >       INIT_LIST_HEAD(&ctx->link);
-> >
-> > @@ -696,9 +786,7 @@ __create_context(struct drm_i915_private *i915)
-> >        * is no remap info, it will be a NOP. */
-> >       ctx->remap_slice = ALL_L3_SLICES(i915);
-> >
-> > -     i915_gem_context_set_bannable(ctx);
-> > -     i915_gem_context_set_recoverable(ctx);
-> > -     __context_set_persistence(ctx, true /* cgroup hook? */);
-> > +     ctx->user_flags = pc->user_flags;
-> >
-> >       for (i = 0; i < ARRAY_SIZE(ctx->hang_timestamp); i++)
-> >               ctx->hang_timestamp[i] = jiffies - CONTEXT_FAST_HANG_JIFFIES;
-> > @@ -786,38 +874,23 @@ static void __assign_ppgtt(struct i915_gem_context *ctx,
-> >  }
-> >
-> >  static struct i915_gem_context *
-> > -i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
-> > +i915_gem_create_context(struct drm_i915_private *i915,
-> > +                     const struct i915_gem_proto_context *pc)
-> >  {
-> >       struct i915_gem_context *ctx;
-> >       int ret;
-> >
-> > -     if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE &&
-> > -         !HAS_EXECLISTS(i915))
-> > -             return ERR_PTR(-EINVAL);
-> > -
-> > -     ctx = __create_context(i915);
-> > +     ctx = __create_context(i915, pc);
-> >       if (IS_ERR(ctx))
-> >               return ctx;
-> >
-> > -     if (HAS_FULL_PPGTT(i915)) {
-> > -             struct i915_ppgtt *ppgtt;
-> > -
-> > -             ppgtt = i915_ppgtt_create(&i915->gt);
-> > -             if (IS_ERR(ppgtt)) {
-> > -                     drm_dbg(&i915->drm, "PPGTT setup failed (%ld)\n",
-> > -                             PTR_ERR(ppgtt));
-> > -                     context_close(ctx);
-> > -                     return ERR_CAST(ppgtt);
-> > -             }
-> > -
-> > +     if (pc->vm) {
-> >               mutex_lock(&ctx->mutex);
->
-> I guess this dies later, but this mutex_lock here is superflous since
-> right now no one else can get at our ctx struct. And nothing in
-> __assign_ppgtt checks for us holding the lock.
->
-> But fine if it only gets remove in the vm immutable patch.
-
-Yeah, I think it gets dropped in the immutable patch.  I just didn't
-want to perturb things more than necessary in this one.
-
-> > -             __assign_ppgtt(ctx, &ppgtt->vm);
-> > +             __assign_ppgtt(ctx, pc->vm);
-> >               mutex_unlock(&ctx->mutex);
-> > -
-> > -             i915_vm_put(&ppgtt->vm);
-> >       }
-> >
-> > -     if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE) {
-> > +     if (pc->single_timeline) {
-> >               ret = drm_syncobj_create(&ctx->syncobj,
-> >                                        DRM_SYNCOBJ_CREATE_SIGNALED,
-> >                                        NULL);
-> > @@ -883,6 +956,7 @@ int i915_gem_context_open(struct drm_i915_private *i915,
-> >                         struct drm_file *file)
-> >  {
-> >       struct drm_i915_file_private *file_priv = file->driver_priv;
-> > +     struct i915_gem_proto_context *pc;
-> >       struct i915_gem_context *ctx;
-> >       int err;
-> >       u32 id;
-> > @@ -892,7 +966,14 @@ int i915_gem_context_open(struct drm_i915_private *i915,
-> >       /* 0 reserved for invalid/unassigned ppgtt */
-> >       xa_init_flags(&file_priv->vm_xa, XA_FLAGS_ALLOC1);
-> >
-> > -     ctx = i915_gem_create_context(i915, 0);
-> > +     pc = proto_context_create(i915, 0);
-> > +     if (IS_ERR(pc)) {
-> > +             err = PTR_ERR(pc);
-> > +             goto err;
-> > +     }
-> > +
-> > +     ctx = i915_gem_create_context(i915, pc);
-> > +     proto_context_close(pc);
-> >       if (IS_ERR(ctx)) {
-> >               err = PTR_ERR(ctx);
-> >               goto err;
-> > @@ -1884,6 +1965,7 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
-> >  {
-> >       struct drm_i915_private *i915 = to_i915(dev);
-> >       struct drm_i915_gem_context_create_ext *args = data;
-> > +     struct i915_gem_proto_context *pc;
-> >       struct create_ext ext_data;
-> >       int ret;
-> >       u32 id;
-> > @@ -1906,7 +1988,12 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
-> >               return -EIO;
-> >       }
-> >
-> > -     ext_data.ctx = i915_gem_create_context(i915, args->flags);
-> > +     pc = proto_context_create(i915, args->flags);
-> > +     if (IS_ERR(pc))
-> > +             return PTR_ERR(pc);
-> > +
-> > +     ext_data.ctx = i915_gem_create_context(i915, pc);
-> > +     proto_context_close(pc);
-> >       if (IS_ERR(ext_data.ctx))
-> >               return PTR_ERR(ext_data.ctx);
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> > index df76767f0c41b..a42c429f94577 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> > @@ -46,6 +46,27 @@ struct i915_gem_engines_iter {
-> >       const struct i915_gem_engines *engines;
-> >  };
-> >
-> > +/**
-> > + * struct i915_gem_proto_context - prototype context
-> > + *
-> > + * The struct i915_gem_proto_context represents the creation parameters for
-> > + * an i915_gem_context.  This is used to gather parameters provided either
-> > + * through creation flags or via SET_CONTEXT_PARAM so that, when we create
-> > + * the final i915_gem_context, those parameters can be immutable.
->
-> The patch that puts them on an xa should explain how the locking here
-> works, even if it's rather trivial.
->
-> > + */
-> > +struct i915_gem_proto_context {
-> > +     /** @vm: See i915_gem_context::vm */
-> > +     struct i915_address_space *vm;
-> > +
-> > +     /** @user_flags: See i915_gem_context::user_flags */
-> > +     unsigned long user_flags;
-> > +
-> > +     /** @sched: See i915_gem_context::sched */
-> > +     struct i915_sched_attr sched;
-> > +
->
-> To avoid the kerneldoc warning point at your emulated syncobj here.
-
-Done.
-
-> Also this file isn't included in the i915 context docs (why would it, the
-> docs have been left dead for years after all :-/). Please fix that in a
-> prep patch.
-
-Will do.
-
---Jason
-
-> > +     bool single_timeline;
-> > +};
-> > +
-> >  /**
-> >   * struct i915_gem_context - client state
-> >   *
-> > diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> > index 51b5a3421b400..e0f512ef7f3c6 100644
-> > --- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> > @@ -80,11 +80,17 @@ void mock_init_contexts(struct drm_i915_private *i915)
-> >  struct i915_gem_context *
-> >  live_context(struct drm_i915_private *i915, struct file *file)
-> >  {
-> > +     struct i915_gem_proto_context *pc;
-> >       struct i915_gem_context *ctx;
-> >       int err;
-> >       u32 id;
-> >
-> > -     ctx = i915_gem_create_context(i915, 0);
-> > +     pc = proto_context_create(i915, 0);
-> > +     if (IS_ERR(pc))
-> > +             return ERR_CAST(pc);
-> > +
-> > +     ctx = i915_gem_create_context(i915, pc);
-> > +     proto_context_close(pc);
-> >       if (IS_ERR(ctx))
-> >               return ctx;
-> >
-> > @@ -142,8 +148,14 @@ struct i915_gem_context *
-> >  kernel_context(struct drm_i915_private *i915)
-> >  {
-> >       struct i915_gem_context *ctx;
-> > +     struct i915_gem_proto_context *pc;
-> > +
-> > +     pc = proto_context_create(i915, 0);
-> > +     if (IS_ERR(pc))
-> > +             return ERR_CAST(pc);
-> >
-> > -     ctx = i915_gem_create_context(i915, 0);
-> > +     ctx = i915_gem_create_context(i915, pc);
-> > +     proto_context_close(pc);
-> >       if (IS_ERR(ctx))
-> >               return ctx;
->
-> With all comments addressed: Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->
-> >
-> > --
-> > 2.31.1
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->
-> --
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCBBcHIgMjksIDIwMjEgYXQgMTA6MTY6MzFBTSArMDIwMCwgWmJpZ25pZXcgS2VtcGN6
+ecWEc2tpIHdyb3RlOgo+IE9uIFdlZCwgQXByIDI4LCAyMDIxIGF0IDA3OjQzOjQyUE0gKzAwMDAs
+IFBhdGNod29yayB3cm90ZToKPiA+ICAgIFBhdGNoIERldGFpbHMKPiA+IAo+ID4gICAgU2VyaWVz
+OiAgZHJtL2k5MTU6IEFkZCByZWxvY2F0aW9uIGV4Y2VwdGlvbnMgZm9yIHR3byBvdGhlciBwbGF0
+Zm9ybXMgICAgICAgICAKPiA+ICAgIFVSTDogICAgIGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
+dG9wLm9yZy9zZXJpZXMvODk1OTQvICAgICAgICAgICAgICAgICAgICAgCj4gPiAgICBTdGF0ZTog
+ICBmYWlsdXJlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIAo+ID4gICAgRGV0YWlsczogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
+L3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMjAwMTcvaW5kZXguaHRtbCAKPiA+IAo+ID4gICAgICAg
+Q0kgQnVnIExvZyAtIGNoYW5nZXMgZnJvbSBDSV9EUk1fMTAwMjNfZnVsbCAtPiBQYXRjaHdvcmtf
+MjAwMTdfZnVsbAo+ID4gCj4gPiBTdW1tYXJ5Cj4gPiAKPiA+ICAgIEZBSUxVUkUKPiA+IAo+ID4g
+ICAgU2VyaW91cyB1bmtub3duIGNoYW5nZXMgY29taW5nIHdpdGggUGF0Y2h3b3JrXzIwMDE3X2Z1
+bGwgYWJzb2x1dGVseSBuZWVkCj4gPiAgICB0byBiZQo+ID4gICAgdmVyaWZpZWQgbWFudWFsbHku
+Cj4gPiAKPiA+ICAgIElmIHlvdSB0aGluayB0aGUgcmVwb3J0ZWQgY2hhbmdlcyBoYXZlIG5vdGhp
+bmcgdG8gZG8gd2l0aCB0aGUgY2hhbmdlcwo+ID4gICAgaW50cm9kdWNlZCBpbiBQYXRjaHdvcmtf
+MjAwMTdfZnVsbCwgcGxlYXNlIG5vdGlmeSB5b3VyIGJ1ZyB0ZWFtIHRvIGFsbG93Cj4gPiAgICB0
+aGVtCj4gPiAgICB0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwg
+cmVkdWNlIGZhbHNlIHBvc2l0aXZlcyBpbgo+ID4gICAgQ0kuCj4gPiAKPiA+IFBvc3NpYmxlIG5l
+dyBpc3N1ZXMKPiA+IAo+ID4gICAgSGVyZSBhcmUgdGhlIHVua25vd24gY2hhbmdlcyB0aGF0IG1h
+eSBoYXZlIGJlZW4gaW50cm9kdWNlZCBpbgo+ID4gICAgUGF0Y2h3b3JrXzIwMDE3X2Z1bGw6Cj4g
+PiAKPiA+ICAgSUdUIGNoYW5nZXMKPiA+IAo+ID4gICAgIFBvc3NpYmxlIHJlZ3Jlc3Npb25zCj4g
+PiAKPiA+ICAgICAgKiBpZ3RAa21zX2ZsaXBfdGlsaW5nQGZsaXAtY2hhbmdlcy10aWxpbmcteWZA
+ZWRwLTEtcGlwZS1iOgo+ID4gICAgICAgICAgICogc2hhcmQtc2tsOiBQQVNTIC0+IEZBSUwKPiAK
+PiBJIGRvbid0IHRoaW5rIGVuYWJsaW5nIHJlbG9jYXRpb25zIG9uIHJrbC9hZGwgaGFzIHRoZSBp
+bmZsdWVuY2UgdG8gc2tsCj4gYnV0IGlmIGFueW9uZSBrbm93cyBJJ20gd3JvbmcgcGxlYXNlIHNo
+YXJlIHRoZSBkZXRhaWxzLiBPdGhlcndpc2UKPiBJIHdvdWxkIHJlcnVuIHRoZSBzZXJpZXMgdG8g
+ZW5zdXJlIHRoaXMgaXMgaW5jaWRlbnRhbCBmYWlsdXJlLgoKSSBzdXNwZWN0IHRoaXMgaXMgZHVl
+IHRvIGEgYnVnIGluIGlndCBrbXMgbGVnYWN5IGNvbW1pdHMuIEF0IGxlYXN0Ckkgc2VlIGEgZmFp
+bGluZyBhbHBoYSBibGVuZCB0ZXN0IG9uIHBpcGUgQiBpbiB0aGUgbG9nIGJlZm9yZSB0aGlzIG9u
+ZSwKd2hpY2ggaXMgaG93IHRoZSBidWcgaGl0cyB1cyB1c3VhbGx5LgoKSSdtIHRyeWluZyB0byBm
+aXggaXQgYXRtLCBidXQgdW5mb3J0dW5hdGVseSB0aGUgZml4IGlzIHJldmVhbGluZyBvdGhlcgpo
+YXJkZXIgdG8gc29sdmUgYnVncyB3aGljaCBuZWVkIHRvIGJlIGZpeGVkIGZpcnN0IDovCgotLSAK
+VmlsbGUgU3lyasOkbMOkCkludGVsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
