@@ -2,39 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA39336E9FC
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 14:06:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6E1536EA0C
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 14:09:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 696576EE75;
-	Thu, 29 Apr 2021 12:06:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E6946EE7D;
+	Thu, 29 Apr 2021 12:09:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [IPv6:2a01:4f8:231:de0::2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 330506EE70;
- Thu, 29 Apr 2021 12:06:02 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id 9CE22C800F9;
- Thu, 29 Apr 2021 14:06:00 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10026)
- with LMTP id zStg9Uz8oNy5; Thu, 29 Apr 2021 14:06:00 +0200 (CEST)
-Received: from wsembach-tuxedo.fritz.box
- (p200300e37F398600fDb5850719dbc945.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f39:8600:fdb5:8507:19db:c945])
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPA id 3B7FAC800F8;
- Thu, 29 Apr 2021 14:06:00 +0200 (CEST)
-From: Werner Sembach <wse@tuxedocomputers.com>
-To: wse@tuxedocomputers.com, airlied@linux.ie, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Thu, 29 Apr 2021 14:05:53 +0200
-Message-Id: <20210429120553.7823-1-wse@tuxedocomputers.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com
+ [IPv6:2a00:1450:4864:20::331])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CD3B6EE7D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 12:08:58 +0000 (UTC)
+Received: by mail-wm1-x331.google.com with SMTP id
+ b19-20020a05600c06d3b029014258a636e8so6507961wmn.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 29 Apr 2021 05:08:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=oISTqU/a0IM14/iUwyOpGeg9yg1ulDrWVXdN5TFCSJ4=;
+ b=OOOHTi8FePNIyuKxpleEuYA1jdtGuvRaKUubVE3JOTHvhCRYW2jxzGxsjkocBcUs/W
+ ULx0Xfp/ELyhfWVuEuNAz99187nkvmwqeyaa+ngh4qAEjOknsOZk9xMUrndtQsl8480u
+ YuF6xYZjYxzb7pvLP32TkWXrCX2m3GcA3abXM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=oISTqU/a0IM14/iUwyOpGeg9yg1ulDrWVXdN5TFCSJ4=;
+ b=dfICf89VaHlOzlGGSbxqDzQAJ0JyhFIY3BYX9hsJoh2dKaXemYOb4KtAtCw2DUTbSX
+ LMm5EWrDNPgmgT40NXe/PgeqYHsERQSCijfiQLJ2H91Z2VWs8ggPNXA3trzcr3u9bC0W
+ 1AniFCCQ8etCv392ldx11xn/32PYUAcxOpMaNA5Ki/inooNhSOeo8Z5/zqEYPCOYHZKo
+ cUt0I9tvzTNaTOFe2TPfboCKMtIyJf3Ej+Moe7Ur8+pvbJ/b147aLTz2FvlAlJPkxK2b
+ R9QFXxkDm8PjtoWP3c+cJy5oOo54AFq2KCUIX8L6KY46Ap3qEj/Pkz6kRc0ibzgHFoLo
+ 732w==
+X-Gm-Message-State: AOAM532v40BAWk+7IyL156Yts8hMhxHjB0WQw9h1ucfzVpyWcrhS1mWS
+ ZXDbdvHuUxJr/SRgMv6vHNYFofkBJcIoWQ==
+X-Google-Smtp-Source: ABdhPJxjwG4aXY3GvVUlNl3NBGjUB0Uw3ZCIGRmrgcEeEM4a0NgfyJv5VPkW0TskdRF076ZnLkneIA==
+X-Received: by 2002:a7b:cd98:: with SMTP id y24mr4169941wmj.4.1619698137097;
+ Thu, 29 Apr 2021 05:08:57 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id i14sm13138715wmq.1.2021.04.29.05.08.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Apr 2021 05:08:56 -0700 (PDT)
+Date: Thu, 29 Apr 2021 14:08:54 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YIqh1jIovYGKtkeu@phenom.ffwll.local>
+References: <20210423223131.879208-1-jason@jlekstrand.net>
+ <20210423223131.879208-7-jason@jlekstrand.net>
+ <a1561dbe-a109-9a1d-df1d-bf91fd67e3f6@linux.intel.com>
+ <CAOFGe96wvRvxKMczMwfJL7naQZs1tp9owj7xte9+0QnhxVEhag@mail.gmail.com>
+ <4d16e4ec-2167-965d-12a5-6b766a2a110a@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display Try YCbCr420 color when RGB
- fails
+Content-Disposition: inline
+In-Reply-To: <4d16e4ec-2167-965d-12a5-6b766a2a110a@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 06/21] drm/i915: Implement SINGLE_TIMELINE
+ with a syncobj (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,184 +70,278 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When encoder validation of a display mode fails, retry with less bandwidth
-heavy YCbCr420 color mode, if available. This enables some HDMI 1.4 setups
-to support 4k60Hz output, which previously failed silently.
+On Thu, Apr 29, 2021 at 09:06:47AM +0100, Tvrtko Ursulin wrote:
+> 
+> On 28/04/2021 18:26, Jason Ekstrand wrote:
+> > On Wed, Apr 28, 2021 at 10:49 AM Tvrtko Ursulin
+> > <tvrtko.ursulin@linux.intel.com> wrote:
+> > > 
+> > > 
+> > > On 23/04/2021 23:31, Jason Ekstrand wrote:
+> > > > This API is entirely unnecessary and I'd love to get rid of it.  If
+> > > > userspace wants a single timeline across multiple contexts, they can
+> > > > either use implicit synchronization or a syncobj, both of which existed
+> > > > at the time this feature landed.  The justification given at the time
+> > > > was that it would help GL drivers which are inherently single-timeline.
+> > > > However, neither of our GL drivers actually wanted the feature.  i965
+> > > > was already in maintenance mode at the time and iris uses syncobj for
+> > > > everything.
+> > > > 
+> > > > Unfortunately, as much as I'd love to get rid of it, it is used by the
+> > > > media driver so we can't do that.  We can, however, do the next-best
+> > > > thing which is to embed a syncobj in the context and do exactly what
+> > > > we'd expect from userspace internally.  This isn't an entirely identical
+> > > > implementation because it's no longer atomic if userspace races with
+> > > > itself by calling execbuffer2 twice simultaneously from different
+> > > > threads.  It won't crash in that case; it just doesn't guarantee any
+> > > > ordering between those two submits.
+> > > 
+> > > 1)
+> > > 
+> > > Please also mention the difference in context/timeline name when
+> > > observed via the sync file API.
+> > > 
+> > > 2)
+> > > 
+> > > I don't remember what we have concluded in terms of observable effects
+> > > in sync_file_merge?
+> > 
+> > I don't see how either of these are observable since this syncobj is
+> > never exposed to userspace in any way.  Please help me understand what
+> > I'm missing here.
+> 
+> Single timeline context - two execbufs - return two out fences.
+> 
+> Before the patch those two had the same fence context, with the patch they
+> have different ones.
+> 
+> Fence context is visible to userspace via sync file info (timeline name at
+> least) and rules in sync_file_merge.
 
-AMDGPU had nearly the exact same issue. This problem description is
-therefore copied from my commit message of the AMDGPU patch.
+Good point worth mentioninig in the commit message.
 
-On some setups, while the monitor and the gpu support display modes with
-pixel clocks of up to 600MHz, the link encoder might not. This prevents
-YCbCr444 and RGB encoding for 4k60Hz, but YCbCr420 encoding might still be
-possible. However, which color mode is used is decided before the link
-encoder capabilities are checked. This patch fixes the problem by retrying
-to find a display mode with YCbCr420 enforced and using it, if it is
-valid.
+media-driver doesn't use any of this in combination with single_timeline,
+so we just dont care.
+-Daniel
 
-I'm not entierly sure if the second
-"if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))" check in
-intel_hdmi_compute_config(...) after forcing ycbcr420 is necessary. I
-included it to better be safe then sorry.
+> 
+> Regards,
+> 
+> Tvrtko
+> 
+> > 
+> > --Jason
+> > 
+> > 
+> > > Regards,
+> > > 
+> > > Tvrtko
+> > > 
+> > > > Moving SINGLE_TIMELINE to a syncobj emulation has a couple of technical
+> > > > advantages beyond mere annoyance.  One is that intel_timeline is no
+> > > > longer an api-visible object and can remain entirely an implementation
+> > > > detail.  This may be advantageous as we make scheduler changes going
+> > > > forward.  Second is that, together with deleting the CLONE_CONTEXT API,
+> > > > we should now have a 1:1 mapping between intel_context and
+> > > > intel_timeline which may help us reduce locking.
+> > > > 
+> > > > v2 (Jason Ekstrand):
+> > > >    - Update the comment on i915_gem_context::syncobj to mention that it's
+> > > >      an emulation and the possible race if userspace calls execbuffer2
+> > > >      twice on the same context concurrently.
+> > > >    - Wrap the checks for eb.gem_context->syncobj in unlikely()
+> > > >    - Drop the dma_fence reference
+> > > >    - Improved commit message
+> > > > 
+> > > > v3 (Jason Ekstrand):
+> > > >    - Move the dma_fence_put() to before the error exit
+> > > > 
+> > > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > ---
+> > > >    drivers/gpu/drm/i915/gem/i915_gem_context.c   | 49 +++++--------------
+> > > >    .../gpu/drm/i915/gem/i915_gem_context_types.h | 14 +++++-
+> > > >    .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 16 ++++++
+> > > >    3 files changed, 40 insertions(+), 39 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > > > index 2c2fefa912805..a72c9b256723b 100644
+> > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > > > @@ -67,6 +67,8 @@
+> > > >    #include <linux/log2.h>
+> > > >    #include <linux/nospec.h>
+> > > > 
+> > > > +#include <drm/drm_syncobj.h>
+> > > > +
+> > > >    #include "gt/gen6_ppgtt.h"
+> > > >    #include "gt/intel_context.h"
+> > > >    #include "gt/intel_context_param.h"
+> > > > @@ -225,10 +227,6 @@ static void intel_context_set_gem(struct intel_context *ce,
+> > > >                ce->vm = vm;
+> > > >        }
+> > > > 
+> > > > -     GEM_BUG_ON(ce->timeline);
+> > > > -     if (ctx->timeline)
+> > > > -             ce->timeline = intel_timeline_get(ctx->timeline);
+> > > > -
+> > > >        if (ctx->sched.priority >= I915_PRIORITY_NORMAL &&
+> > > >            intel_engine_has_timeslices(ce->engine))
+> > > >                __set_bit(CONTEXT_USE_SEMAPHORES, &ce->flags);
+> > > > @@ -351,9 +349,6 @@ void i915_gem_context_release(struct kref *ref)
+> > > >        mutex_destroy(&ctx->engines_mutex);
+> > > >        mutex_destroy(&ctx->lut_mutex);
+> > > > 
+> > > > -     if (ctx->timeline)
+> > > > -             intel_timeline_put(ctx->timeline);
+> > > > -
+> > > >        put_pid(ctx->pid);
+> > > >        mutex_destroy(&ctx->mutex);
+> > > > 
+> > > > @@ -570,6 +565,9 @@ static void context_close(struct i915_gem_context *ctx)
+> > > >        if (vm)
+> > > >                i915_vm_close(vm);
+> > > > 
+> > > > +     if (ctx->syncobj)
+> > > > +             drm_syncobj_put(ctx->syncobj);
+> > > > +
+> > > >        ctx->file_priv = ERR_PTR(-EBADF);
+> > > > 
+> > > >        /*
+> > > > @@ -765,33 +763,11 @@ static void __assign_ppgtt(struct i915_gem_context *ctx,
+> > > >                i915_vm_close(vm);
+> > > >    }
+> > > > 
+> > > > -static void __set_timeline(struct intel_timeline **dst,
+> > > > -                        struct intel_timeline *src)
+> > > > -{
+> > > > -     struct intel_timeline *old = *dst;
+> > > > -
+> > > > -     *dst = src ? intel_timeline_get(src) : NULL;
+> > > > -
+> > > > -     if (old)
+> > > > -             intel_timeline_put(old);
+> > > > -}
+> > > > -
+> > > > -static void __apply_timeline(struct intel_context *ce, void *timeline)
+> > > > -{
+> > > > -     __set_timeline(&ce->timeline, timeline);
+> > > > -}
+> > > > -
+> > > > -static void __assign_timeline(struct i915_gem_context *ctx,
+> > > > -                           struct intel_timeline *timeline)
+> > > > -{
+> > > > -     __set_timeline(&ctx->timeline, timeline);
+> > > > -     context_apply_all(ctx, __apply_timeline, timeline);
+> > > > -}
+> > > > -
+> > > >    static struct i915_gem_context *
+> > > >    i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+> > > >    {
+> > > >        struct i915_gem_context *ctx;
+> > > > +     int ret;
+> > > > 
+> > > >        if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE &&
+> > > >            !HAS_EXECLISTS(i915))
+> > > > @@ -820,16 +796,13 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+> > > >        }
+> > > > 
+> > > >        if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE) {
+> > > > -             struct intel_timeline *timeline;
+> > > > -
+> > > > -             timeline = intel_timeline_create(&i915->gt);
+> > > > -             if (IS_ERR(timeline)) {
+> > > > +             ret = drm_syncobj_create(&ctx->syncobj,
+> > > > +                                      DRM_SYNCOBJ_CREATE_SIGNALED,
+> > > > +                                      NULL);
+> > > > +             if (ret) {
+> > > >                        context_close(ctx);
+> > > > -                     return ERR_CAST(timeline);
+> > > > +                     return ERR_PTR(ret);
+> > > >                }
+> > > > -
+> > > > -             __assign_timeline(ctx, timeline);
+> > > > -             intel_timeline_put(timeline);
+> > > >        }
+> > > > 
+> > > >        trace_i915_context_create(ctx);
+> > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> > > > index 676592e27e7d2..df76767f0c41b 100644
+> > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> > > > @@ -83,7 +83,19 @@ struct i915_gem_context {
+> > > >        struct i915_gem_engines __rcu *engines;
+> > > >        struct mutex engines_mutex; /* guards writes to engines */
+> > > > 
+> > > > -     struct intel_timeline *timeline;
+> > > > +     /**
+> > > > +      * @syncobj: Shared timeline syncobj
+> > > > +      *
+> > > > +      * When the SHARED_TIMELINE flag is set on context creation, we
+> > > > +      * emulate a single timeline across all engines using this syncobj.
+> > > > +      * For every execbuffer2 call, this syncobj is used as both an in-
+> > > > +      * and out-fence.  Unlike the real intel_timeline, this doesn't
+> > > > +      * provide perfect atomic in-order guarantees if the client races
+> > > > +      * with itself by calling execbuffer2 twice concurrently.  However,
+> > > > +      * if userspace races with itself, that's not likely to yield well-
+> > > > +      * defined results anyway so we choose to not care.
+> > > > +      */
+> > > > +     struct drm_syncobj *syncobj;
+> > > > 
+> > > >        /**
+> > > >         * @vm: unique address space (GTT)
+> > > > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > > > index b812f313422a9..d640bba6ad9ab 100644
+> > > > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > > > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > > > @@ -3460,6 +3460,16 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+> > > >                goto err_vma;
+> > > >        }
+> > > > 
+> > > > +     if (unlikely(eb.gem_context->syncobj)) {
+> > > > +             struct dma_fence *fence;
+> > > > +
+> > > > +             fence = drm_syncobj_fence_get(eb.gem_context->syncobj);
+> > > > +             err = i915_request_await_dma_fence(eb.request, fence);
+> > > > +             dma_fence_put(fence);
+> > > > +             if (err)
+> > > > +                     goto err_ext;
+> > > > +     }
+> > > > +
+> > > >        if (in_fence) {
+> > > >                if (args->flags & I915_EXEC_FENCE_SUBMIT)
+> > > >                        err = i915_request_await_execution(eb.request,
+> > > > @@ -3517,6 +3527,12 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+> > > >                        fput(out_fence->file);
+> > > >                }
+> > > >        }
+> > > > +
+> > > > +     if (unlikely(eb.gem_context->syncobj)) {
+> > > > +             drm_syncobj_replace_fence(eb.gem_context->syncobj,
+> > > > +                                       &eb.request->fence);
+> > > > +     }
+> > > > +
+> > > >        i915_request_put(eb.request);
+> > > > 
+> > > >    err_vma:
+> > > > 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-Cc: <stable@vger.kernel.org>
----
-Rebased from 5.12 to drm-tip and resend to resolve merge conflict.
-
-From 876c1c8d970ff2a411ee8d08651bd4edbe9ecb3d Mon Sep 17 00:00:00 2001
-From: Werner Sembach <wse@tuxedocomputers.com>
-Date: Thu, 29 Apr 2021 13:59:30 +0200
-Subject: [PATCH] Retry using YCbCr420 encoding if clock setup for RGB fails
-
----
- drivers/gpu/drm/i915/display/intel_hdmi.c | 80 +++++++++++++++++------
- 1 file changed, 60 insertions(+), 20 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 46de56af33db..c9b5a7d7f9c6 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1861,6 +1861,30 @@ static int intel_hdmi_port_clock(int clock, int bpc)
- 	return clock * bpc / 8;
- }
- 
-+static enum drm_mode_status
-+intel_hdmi_check_bpc(struct intel_hdmi *hdmi, int clock, bool has_hdmi_sink, struct drm_i915_private *dev_priv)
-+{
-+	enum drm_mode_status status;
-+
-+	/* check if we can do 8bpc */
-+	status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 8),
-+				       true, has_hdmi_sink);
-+
-+	if (has_hdmi_sink) {
-+		/* if we can't do 8bpc we may still be able to do 12bpc */
-+		if (status != MODE_OK && !HAS_GMCH(dev_priv))
-+			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 12),
-+						       true, has_hdmi_sink);
-+
-+		/* if we can't do 8,12bpc we may still be able to do 10bpc */
-+		if (status != MODE_OK && DISPLAY_VER(dev_priv) >= 11)
-+			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 10),
-+						       true, has_hdmi_sink);
-+	}
-+
-+	return status;
-+}
-+
- static enum drm_mode_status
- intel_hdmi_mode_valid(struct drm_connector *connector,
- 		      struct drm_display_mode *mode)
-@@ -1891,23 +1915,18 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
- 	if (drm_mode_is_420_only(&connector->display_info, mode))
- 		clock /= 2;
- 
--	/* check if we can do 8bpc */
--	status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 8),
--				       true, has_hdmi_sink);
-+	status = intel_hdmi_check_bpc(hdmi, clock, has_hdmi_sink, dev_priv);
- 
--	if (has_hdmi_sink) {
--		/* if we can't do 8bpc we may still be able to do 12bpc */
--		if (status != MODE_OK && !HAS_GMCH(dev_priv))
--			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 12),
--						       true, has_hdmi_sink);
-+	if (status != MODE_OK) {
-+		if (drm_mode_is_420_also(&connector->display_info, mode)) {
-+			/* if we can't do full color resolution we may still be able to do reduced color resolution */
-+			clock /= 2;
- 
--		/* if we can't do 8,12bpc we may still be able to do 10bpc */
--		if (status != MODE_OK && DISPLAY_VER(dev_priv) >= 11)
--			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 10),
--						       true, has_hdmi_sink);
-+			status = intel_hdmi_check_bpc(hdmi, clock, has_hdmi_sink, dev_priv);
-+		}
-+		if (status != MODE_OK)
-+			return status;
- 	}
--	if (status != MODE_OK)
--		return status;
- 
- 	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
- }
-@@ -1990,14 +2009,17 @@ static bool hdmi_deep_color_possible(const struct intel_crtc_state *crtc_state,
- 
- static int
- intel_hdmi_ycbcr420_config(struct intel_crtc_state *crtc_state,
--			   const struct drm_connector_state *conn_state)
-+			   const struct drm_connector_state *conn_state,
-+			   const bool force_ycbcr420)
- {
- 	struct drm_connector *connector = conn_state->connector;
- 	struct drm_i915_private *i915 = to_i915(connector->dev);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 
--	if (!drm_mode_is_420_only(&connector->display_info, adjusted_mode))
-+	if (!(drm_mode_is_420_only(&connector->display_info, adjusted_mode) ||
-+			(force_ycbcr420 &&
-+			drm_mode_is_420_also(&connector->display_info, adjusted_mode))))
- 		return 0;
- 
- 	if (!connector->ycbcr_420_allowed) {
-@@ -2126,7 +2148,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
- 	struct drm_connector *connector = conn_state->connector;
- 	struct drm_scdc *scdc = &connector->display_info.hdmi.scdc;
--	int ret;
-+	int ret, ret_saved;
- 
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
- 		return -EINVAL;
-@@ -2141,7 +2163,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		pipe_config->pixel_multiplier = 2;
- 
--	ret = intel_hdmi_ycbcr420_config(pipe_config, conn_state);
-+	ret = intel_hdmi_ycbcr420_config(pipe_config, conn_state, false);
- 	if (ret)
- 		return ret;
- 
-@@ -2155,8 +2177,26 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		intel_hdmi_has_audio(encoder, pipe_config, conn_state);
- 
- 	ret = intel_hdmi_compute_clock(encoder, pipe_config);
--	if (ret)
--		return ret;
-+	if (ret) {
-+		ret_saved = ret;
-+
-+		ret = intel_hdmi_ycbcr420_config(pipe_config, conn_state, true);
-+		if (ret)
-+			return ret;
-+
-+		if (pipe_config->output_format != INTEL_OUTPUT_FORMAT_YCBCR420)
-+			return ret_saved;
-+
-+		pipe_config->limited_color_range =
-+			intel_hdmi_limited_color_range(pipe_config, conn_state);
-+
-+		if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))
-+			pipe_config->has_pch_encoder = true;
-+
-+		ret = intel_hdmi_compute_clock(encoder, pipe_config);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	if (conn_state->picture_aspect_ratio)
- 		adjusted_mode->picture_aspect_ratio =
 -- 
-2.25.1
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
