@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CCF36E919
-	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 12:51:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EE6436E91C
+	for <lists+intel-gfx@lfdr.de>; Thu, 29 Apr 2021 12:51:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3DBD6EE0D;
-	Thu, 29 Apr 2021 10:51:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E47856EE18;
+	Thu, 29 Apr 2021 10:51:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE0E36EE0C;
- Thu, 29 Apr 2021 10:51:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 495366EE0F;
+ Thu, 29 Apr 2021 10:51:06 +0000 (UTC)
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
- by mx2.suse.de (Postfix) with ESMTP id 93962B0BE;
+ by mx2.suse.de (Postfix) with ESMTP id D6148B19A;
  Thu, 29 Apr 2021 10:51:04 +0000 (UTC)
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch,
  chris@chris-wilson.co.uk
-Date: Thu, 29 Apr 2021 12:50:59 +0200
-Message-Id: <20210429105101.25667-4-tzimmermann@suse.de>
+Date: Thu, 29 Apr 2021 12:51:00 +0200
+Message-Id: <20210429105101.25667-5-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210429105101.25667-1-tzimmermann@suse.de>
 References: <20210429105101.25667-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v8 3/5] drm/i915: Remove reference to struct
+Subject: [Intel-gfx] [PATCH v8 4/5] drm/i915: Don't assign to struct
  drm_device.pdev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -47,31 +47,46 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-References to struct drm_device.pdev should not be used any longer as
-the field will be moved into the struct's legacy section. Fix a rsp
-comment.
+Using struct drm_device.pdev is deprecated. Don't assign it. Users
+should upcast from struct drm_device.dev.
 
-v8:
-	* fix commit message (Michael)
+v6:
+	* also fix the assignment in selftests in this patch (Chris)
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/intel_runtime_pm.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_drv.c                  | 1 -
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 -
+ 2 files changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
-index 1e4ddd11c12b..183ea2b187fe 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-@@ -49,7 +49,7 @@ enum i915_drm_suspend_mode {
-  */
- struct intel_runtime_pm {
- 	atomic_t wakeref_count;
--	struct device *kdev; /* points to i915->drm.pdev->dev */
-+	struct device *kdev; /* points to i915->drm.dev */
- 	bool available;
- 	bool suspended;
- 	bool irqs_enabled;
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 785dcf20c77b..db513f93f0f5 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -758,7 +758,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	if (IS_ERR(i915))
+ 		return i915;
+ 
+-	i915->drm.pdev = pdev;
+ 	pci_set_drvdata(pdev, i915);
+ 
+ 	/* Device parameters start as a copy of module parameters. */
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 2ffc763fe90d..cf40004bc92a 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -146,7 +146,6 @@ struct drm_i915_private *mock_gem_device(void)
+ 	}
+ 
+ 	pci_set_drvdata(pdev, i915);
+-	i915->drm.pdev = pdev;
+ 
+ 	dev_pm_domain_set(&pdev->dev, &pm_domain);
+ 	pm_runtime_enable(&pdev->dev);
 -- 
 2.31.1
 
