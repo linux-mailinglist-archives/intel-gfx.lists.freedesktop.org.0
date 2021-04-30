@@ -1,52 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28E1936F979
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 13:40:10 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E4C36F992
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 13:48:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C548F6EE4D;
-	Fri, 30 Apr 2021 11:40:07 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA846EE4D;
- Fri, 30 Apr 2021 11:40:06 +0000 (UTC)
-IronPort-SDR: 50nGMgd0jMs+tKP0H73vT3f7tpKDizB0XLMtkBPYW7nKV9oS0438TGJnxP8EDLm1K5yQ1qIyuy
- lCS4u9hM40KQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="261202921"
-X-IronPort-AV: E=Sophos;i="5.82,262,1613462400"; d="scan'208";a="261202921"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2021 04:40:05 -0700
-IronPort-SDR: pV1dx9YWyUpCqa1j0GfhK/bXOV+cMudtWkxqP3INtDWimEuuFq2DBGF/m8ckdrj3YoMWURD5RK
- QFoOwC9+i79g==
-X-IronPort-AV: E=Sophos;i="5.82,262,1613462400"; d="scan'208";a="527605050"
-Received: from redickin-mobl2.ger.corp.intel.com (HELO [10.213.208.173])
- ([10.213.208.173])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2021 04:40:03 -0700
-To: Jason Ekstrand <jason@jlekstrand.net>
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-10-jason@jlekstrand.net>
- <YIk14zVfa8Mw4rUF@phenom.ffwll.local>
- <6b388d4d-1d50-94f3-344a-5b6b3639e8ad@linux.intel.com>
- <YIlrCmvC10oAiRcL@phenom.ffwll.local>
- <27db8ded-3b17-748e-f602-a8c1aef7367f@linux.intel.com>
- <CAOFGe94czhE=SHZLOWmH6vPRs1ujhsP9BBxc6i+N_bkPZ+6UHw@mail.gmail.com>
- <8a1e496c-683d-0a26-03a7-14993ba82acf@linux.intel.com>
- <CAOFGe97mDV4RqgWSQTKq5jhGJEMCT+QAwNsoDduD-rRmd=1nBw@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <e1ae064c-6eec-85f5-e267-5987929da7d9@linux.intel.com>
-Date: Fri, 30 Apr 2021 12:40:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE2546EE81;
+	Fri, 30 Apr 2021 11:48:24 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 973616EEA2
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 11:48:24 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id n84so10494776wma.0
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 04:48:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=ztRN2QX+3bdxj6hCT+XDFOD4fkV8hdLGe+kBiNhyYMg=;
+ b=L9HFOgl+1hirqQHBR7OzBZKu9X7PVYdvMqpxyVVp9vP9m7C1iM0zoQ+iErYHRR/Zry
+ qi8P91wiWJbxPkmboLKTUq0lNsfm0vBuHTgfl4V2uR79kw3rd9jYHRJvZGvQxrJ+EFkJ
+ PgWqqBSXwBPI/U/+zMV+Cu93Sk3qpq9mO4gN8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=ztRN2QX+3bdxj6hCT+XDFOD4fkV8hdLGe+kBiNhyYMg=;
+ b=t4NkhEazP6Kry9WkhM4wn0t8YKXLmLUscB1pKFyXiKjxKYimAKYlpr0iylrDBJ4Egv
+ 0u3eAd9PPzsA2zgByTseVGLtQMJl8ZdFV0OMR7E2Pg73XT/dhc+WjaHvgS9bcQW0yvDq
+ GRvwurmuyPNFdpxVS7xL+XIJirkiVZ6ZBLX0t3qIkWT2GQnrkdzQyPd1LFvJHS+oPaUf
+ KIyjQ8xcjHtUIl8loA6shEnXYp3Ba8+Kd5H6HULpb2+CE0tsr6jxRzWZaE7PENdHaq3m
+ O8ZPUfsEoNR0CoQODOrnr8dITfzop57gOcmMnU92hXRjN/qeZ8YwM08sk7YGmy1yqPSO
+ jgpA==
+X-Gm-Message-State: AOAM533ShiMVFcsYtBmNY7KonAdVgvs08ljuSgfFQxfVetaoxu68Pg2o
+ Yt8cX4MB8QoOZwJyi7xJ1TgJFQ==
+X-Google-Smtp-Source: ABdhPJxJ7zouIKlRwYAZOnbkb6YvZjmmPhVFd8LM8wYJTVP2pg4cLjyPla9Bii+elUtpO329UulQsA==
+X-Received: by 2002:a1c:a78b:: with SMTP id q133mr5884265wme.68.1619783303129; 
+ Fri, 30 Apr 2021 04:48:23 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id g10sm11314228wmq.25.2021.04.30.04.48.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 30 Apr 2021 04:48:22 -0700 (PDT)
+Date: Fri, 30 Apr 2021 13:48:20 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YIvuhBHBmUesp0G1@phenom.ffwll.local>
+References: <20210429094640.859825-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAOFGe97mDV4RqgWSQTKq5jhGJEMCT+QAwNsoDduD-rRmd=1nBw@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 09/21] drm/i915/gem: Disallow creating
- contexts with too many engines
+Content-Disposition: inline
+In-Reply-To: <20210429094640.859825-1-tvrtko.ursulin@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Be more gentle with exiting
+ non-persistent context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,166 +65,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Cc: Intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ dri-devel@lists.freedesktop.org, Zhen Han <zhen.han@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 29/04/2021 20:16, Jason Ekstrand wrote:
-> On Thu, Apr 29, 2021 at 3:01 AM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->> On 28/04/2021 18:09, Jason Ekstrand wrote:
->>> On Wed, Apr 28, 2021 at 9:26 AM Tvrtko Ursulin
->>> <tvrtko.ursulin@linux.intel.com> wrote:
->>>> On 28/04/2021 15:02, Daniel Vetter wrote:
->>>>> On Wed, Apr 28, 2021 at 11:42:31AM +0100, Tvrtko Ursulin wrote:
->>>>>>
->>>>>> On 28/04/2021 11:16, Daniel Vetter wrote:
->>>>>>> On Fri, Apr 23, 2021 at 05:31:19PM -0500, Jason Ekstrand wrote:
->>>>>>>> There's no sense in allowing userspace to create more engines than it
->>>>>>>> can possibly access via execbuf.
->>>>>>>>
->>>>>>>> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
->>>>>>>> ---
->>>>>>>>      drivers/gpu/drm/i915/gem/i915_gem_context.c | 7 +++----
->>>>>>>>      1 file changed, 3 insertions(+), 4 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->>>>>>>> index 5f8d0faf783aa..ecb3bf5369857 100644
->>>>>>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
->>>>>>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
->>>>>>>> @@ -1640,11 +1640,10 @@ set_engines(struct i915_gem_context *ctx,
->>>>>>>>                      return -EINVAL;
->>>>>>>>              }
->>>>>>>> -  /*
->>>>>>>> -   * Note that I915_EXEC_RING_MASK limits execbuf to only using the
->>>>>>>> -   * first 64 engines defined here.
->>>>>>>> -   */
->>>>>>>>              num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
->>>>>>>
->>>>>>> Maybe add a comment like /* RING_MASK has not shift, so can be used
->>>>>>> directly here */ since I had to check that :-)
->>>>>>>
->>>>>>> Same story about igt testcases needed, just to be sure.
->>>>>>>
->>>>>>> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>>>>>
->>>>>> I am not sure about the churn vs benefit ratio here. There are also patches
->>>>>> which extend the engine selection field in execbuf2 over the unused
->>>>>> constants bits (with an explicit flag). So churn upstream and churn in
->>>>>> internal (if interesting) for not much benefit.
->>>>>
->>>>> This isn't churn.
->>>>>
->>>>> This is "lock done uapi properly".
->>>
->>> Pretty much.
->>
->> Still haven't heard what concrete problems it solves.
->>
->>>> IMO it is a "meh" patch. Doesn't fix any problems and will create work
->>>> for other people and man hours spent which no one will ever properly
->>>> account against.
->>>>
->>>> Number of contexts in the engine map should not really be tied to
->>>> execbuf2. As is demonstrated by the incoming work to address more than
->>>> 63 engines, either as an extension to execbuf2 or future execbuf3.
->>>
->>> Which userspace driver has requested more than 64 engines in a single context?
->>
->> No need to artificially limit hardware capabilities in the uapi by
->> implementing a policy in the kernel. Which will need to be
->> removed/changed shortly anyway. This particular patch is work and
->> creates more work (which other people who will get to fix the fallout
->> will spend man hours to figure out what and why broke) for no benefit.
->> Or you are yet to explain what the benefit is in concrete terms.
+On Thu, Apr 29, 2021 at 10:46:40AM +0100, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> You keep complaining about how much work it takes and yet I've spent
-> more time replying to your e-mails on this patch than I spent writing
-> the patch and the IGT test.  Also, if it takes so much time to add a
-> restriction, then why are we spending time figuring out how to modify
-> the uAPI to allow you to execbuf on a context with more than 64
-> engines?  If we're worried about engineering man-hours, then limiting
-> to 64 IS the pragmatic solution.
+> When a non-persistent context exits we currently mark it as banned in
+> order to trigger fast termination of any outstanding GPU jobs it may have
+> left running.
+> 
+> In doing so we apply a very strict 1ms limit in which the left over job
+> has to preempt before we issues an engine resets.
+> 
+> Some workloads are not able to cleanly preempt in that time window and it
+> can be argued that it would instead be better to give them a bit more
+> grace since avoiding engine resets is generally preferrable.
 
-a)
+Can you pls explain here why this is preferrable?
 
-Question of what problem does the patch fix is still unanswered.
+> To achieve this the patch splits handling of banned contexts from simply
+> exited non-persistent ones and then applies different timeouts for both
+> and also extends the criteria which determines if a request should be
+> scheduled back in after preemption or not.
+> 
+> 15ms preempt timeout grace is given to exited non-persistent contexts
+> which have been empirically tested to satisfy customers requirements
+> and still provides reasonably quick cleanup post exit.
 
-b)
-
-You miss the point. I'll continue in the next paragraph..
+Same here, a bit more detail on what exactly was the problem to be fixed
+is needed.
+-Daniel
 
 > 
->> Why don't you limit it to number of physical engines then? Why don't you
->> filter out duplicates? Why not limit the number of buffer objects per
->> client or global based on available RAM + swap relative to minimum
->> object size? Reductio ad absurdum yes, but illustrating the, in this
->> case, a thin line between "locking down uapi" and adding too much policy
->> where it is not appropriate.
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Zhen Han <zhen.han@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c     | 15 +++++++++------
+>  drivers/gpu/drm/i915/gt/intel_context.h         | 17 +++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_context_types.h   |  1 +
+>  .../drm/i915/gt/intel_execlists_submission.c    | 12 ++++++++++--
+>  drivers/gpu/drm/i915/i915_request.c             |  2 +-
+>  5 files changed, 38 insertions(+), 9 deletions(-)
 > 
-> All this patch does is say that  you're not allowed to create a
-> context with more engines than the execbuf API will let you use.  We
-> already have an artificial limit.  All this does is push the error
-> handling further up the stack.  If someone comes up with a mechanism
-> to execbuf on engine 65 (they'd better have an open-source user if it
-> involves changing API), I'm very happy for them to bump this limit at
-> the same time.  It'll take them 5 minutes and it'll be something they
-> find while writing the IGT test.
-
-.. no it won't take five minutes.
-
-If I need to spell everything out - you will put this patch in, which 
-fixes nothing, and it will propagate to the internal kernel at some 
-point. Then a bunch of tests will start failing in a strange manner. 
-Which will result in people triaging them, then assigning them, then 
-reserving machines, setting them up, running the repro, then digging 
-into the code, and eventually figuring out what happened.
-
-It will take hours not five minutes. And there will likely be multiple 
-bug reports which most likely won't be joined so mutliple people will be 
-doing multi hour debug. All for nothing. So it is rather uninteresting 
-how small the change is. Interesting part is how much pointless effort 
-it will create across the organisation.
-
-Of course you may not care that much about that side of things, or you 
-are just not familiar in how it works in practice since you haven't been 
-involved in the past years. I don't know really, but I have to raise the 
-point it makes no sense to do this. Cost vs benefit is simply not nearly 
-there.
-
->>> Also, for execbuf3, I'd like to get rid of contexts entirely and have
->>> engines be their own userspace-visible object.  If we go this
->>> direction, you can have UINT32_MAX of them.  Problem solved.
->>
->> Not the problem I am pointing at though.
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index fd8ee52e17a4..5a6eba1232cd 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -426,7 +426,8 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+>  	return engine;
+>  }
+>  
+> -static void kill_engines(struct i915_gem_engines *engines, bool ban)
+> +static void
+> +kill_engines(struct i915_gem_engines *engines, bool ban, bool persistent)
+>  {
+>  	struct i915_gem_engines_iter it;
+>  	struct intel_context *ce;
+> @@ -443,6 +444,8 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
+>  
+>  		if (ban && intel_context_set_banned(ce))
+>  			continue;
+> +		else if (!persistent && intel_context_set_non_persistent(ce))
+> +			continue;
+>  
+>  		/*
+>  		 * Check the current active state of this context; if we
+> @@ -454,7 +457,7 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
+>  		engine = active_engine(ce);
+>  
+>  		/* First attempt to gracefully cancel the context */
+> -		if (engine && !__cancel_engine(engine) && ban)
+> +		if (engine && !__cancel_engine(engine) && (ban || !persistent))
+>  			/*
+>  			 * If we are unable to send a preemptive pulse to bump
+>  			 * the context from the GPU, we have to resort to a full
+> @@ -466,8 +469,6 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
+>  
+>  static void kill_context(struct i915_gem_context *ctx)
+>  {
+> -	bool ban = (!i915_gem_context_is_persistent(ctx) ||
+> -		    !ctx->i915->params.enable_hangcheck);
+>  	struct i915_gem_engines *pos, *next;
+>  
+>  	spin_lock_irq(&ctx->stale.lock);
+> @@ -480,7 +481,8 @@ static void kill_context(struct i915_gem_context *ctx)
+>  
+>  		spin_unlock_irq(&ctx->stale.lock);
+>  
+> -		kill_engines(pos, ban);
+> +		kill_engines(pos, !ctx->i915->params.enable_hangcheck,
+> +			     i915_gem_context_is_persistent(ctx));
+>  
+>  		spin_lock_irq(&ctx->stale.lock);
+>  		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
+> @@ -526,7 +528,8 @@ static void engines_idle_release(struct i915_gem_context *ctx,
+>  
+>  kill:
+>  	if (list_empty(&engines->link)) /* raced, already closed */
+> -		kill_engines(engines, true);
+> +		kill_engines(engines, true,
+> +			     i915_gem_context_is_persistent(ctx));
+>  
+>  	i915_sw_fence_commit(&engines->fence);
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> index f83a73a2b39f..b0e812b8ce39 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -220,6 +220,23 @@ static inline bool intel_context_set_banned(struct intel_context *ce)
+>  	return test_and_set_bit(CONTEXT_BANNED, &ce->flags);
+>  }
+>  
+> +static inline bool intel_context_is_non_persistent(const struct intel_context *ce)
+> +{
+> +	return test_bit(CONTEXT_NON_PERSISTENT, &ce->flags);
+> +}
+> +
+> +static inline bool intel_context_set_non_persistent(struct intel_context *ce)
+> +{
+> +	return test_and_set_bit(CONTEXT_NON_PERSISTENT, &ce->flags);
+> +}
+> +
+> +static inline bool intel_context_is_schedulable(const struct intel_context *ce)
+> +{
+> +	return !intel_context_is_banned(ce) &&
+> +	       !(intel_context_is_closed(ce) &&
+> +	         intel_context_is_non_persistent(ce));
+> +}
+> +
+>  static inline bool
+>  intel_context_force_single_submission(const struct intel_context *ce)
+>  {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index ed8c447a7346..aa949c539e93 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -95,6 +95,7 @@ struct intel_context {
+>  #define CONTEXT_BANNED			6
+>  #define CONTEXT_FORCE_SINGLE_SUBMISSION	7
+>  #define CONTEXT_NOPREEMPT		8
+> +#define CONTEXT_NON_PERSISTENT		9 /* Only if also closed. */
+>  
+>  	struct {
+>  		u64 timeout_us;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> index de124870af44..5ad7272fbbc4 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> @@ -478,7 +478,7 @@ __execlists_schedule_in(struct i915_request *rq)
+>  		     !intel_engine_has_heartbeat(engine)))
+>  		intel_context_set_banned(ce);
+>  
+> -	if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
+> +	if (unlikely(!intel_context_is_schedulable(ce) || bad_request(rq)))
+>  		reset_active(rq, engine);
+>  
+>  	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+> @@ -1204,12 +1204,20 @@ static void record_preemption(struct intel_engine_execlists *execlists)
+>  static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
+>  					    const struct i915_request *rq)
+>  {
+> +	struct intel_context *ce;
+> +
+>  	if (!rq)
+>  		return 0;
+>  
+> +	ce = rq->context;
+> +
+>  	/* Force a fast reset for terminated contexts (ignoring sysfs!) */
+> -	if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq)))
+> +	if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
+>  		return 1;
+> +	/* Longer grace for closed non-persistent contexts to avoid resets. */
+> +	else if (unlikely(intel_context_is_closed(ce) &&
+> +			  intel_context_is_non_persistent(ce)))
+> +		return 15;
+>  
+>  	return READ_ONCE(engine->props.preempt_timeout_ms);
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index bec9c3652188..bbac87535923 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -660,7 +660,7 @@ bool __i915_request_submit(struct i915_request *request)
+>  		goto active;
+>  	}
+>  
+> -	if (unlikely(intel_context_is_banned(request->context)))
+> +	if (unlikely(!intel_context_is_schedulable(request->context)))
+>  		i915_request_set_error_once(request, -EIO);
+>  
+>  	if (unlikely(fatal_error(request->fence.error)))
+> -- 
+> 2.30.2
 > 
-> You listed two ways that accessing engine 65 can happen: Extending
-> execbuf2 and adding a new execbuf3.  When/if execbuf3 happens, as I
-> pointed out above, it'll hopefully be a non-issue.  If someone extends
-> execbuf2 to support more than 64 engines and does not have a userspace
-> customer that wants said new API change, I will NAK the patch.  If
-> you've got a 3rd way that someone can get at engine 65 such that this
-> is a problem, I'd love to hear about it.
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-It's ever so easy to take a black and white stance but the world is more 
-like shades of grey. I too am totally perplexed why we have to spend 
-time arguing on a inconsequential patch.
-
-Context create is not called "create execbuf2 context" so why be so 
-wedded to adding execbuf2 restrictions into it I have no idea. If you 
-were fixing some vulnerability or something I'd understand but all I've 
-heard so far is along the lines of "This is proper locking down of uapi 
-- end of". And endless waste of time discussion follows. We don't have 
-to agree on everything anyway and I have raised my concern enough times 
-now. Up to you guys to re-figure out the cost benefit on your own then.
-
-Regards,
-
-Tvrtko
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
