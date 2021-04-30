@@ -1,61 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB6C36FE97
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 18:33:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78C6136FEFF
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 18:56:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59C306E4C9;
-	Fri, 30 Apr 2021 16:33:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8A706E4E3;
+	Fri, 30 Apr 2021 16:56:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com
- [IPv6:2607:f8b0:4864:20::329])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50D856E4CB
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 16:33:22 +0000 (UTC)
-Received: by mail-ot1-x329.google.com with SMTP id
- 92-20020a9d02e50000b029028fcc3d2c9eso42434885otl.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 09:33:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=XJV9L3Ce/fBAvjhUVP+KgcjKLKQL0vVeXJmvhkl0nXg=;
- b=L34FFYo69jyvpw4u0jF++0mWiSNnHgBYjQ18quki/iNiti6fy+ZwPs4RmC5EDJfg12
- wfMG2xr9tCrbwsxl5a4R6zre0abwpEydeFXtDaTHQCBqNwprwsSetrqmoEkEytTNU77z
- yNxjr5KFq0zIURAQG1njo7wzntwxZ3if4kT3w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=XJV9L3Ce/fBAvjhUVP+KgcjKLKQL0vVeXJmvhkl0nXg=;
- b=SF3vEVxFRcuISbdd1XFCc4P01B/CzCysfX/HTO1URiXGa8FqaXztMVfun5B6P3mow/
- OpvQTXWjEgx6bLqNJ6B+1bYv4hnhFmkbO+Aqnj6xFknqUlviVnmfgNsxRwsr/a+5zK2z
- VYpeYOWFwn/cYcg8vRNFEEQGhl3AUZNrM+MQ73xeyvbtz8l7fuMmQTHbfiEEw+zJ8CtC
- aKSW1s9nqgRRXNQ3mJ+LWSoRcMAKm+csHlqi1UkYkuEm7Xt3NgKtrKLEYRLy62XzyYGV
- vmomxTzCadhxytVDwqw2tOzQHho93dGnnzrNsnGY25EgrI5DytrJx+8ZZZjeQ/E9S0sk
- EbJA==
-X-Gm-Message-State: AOAM532AX3BzhGB0Ig7qEbD7PgMr+K2L/v6N+SXP9ape2gRsoLmJ1VrI
- 8XW8h9TeKuHNBFZJVHLsMikH1MVT8Rh2g2PXOibnvQ==
-X-Google-Smtp-Source: ABdhPJzpPhQThoOs6EgZTUj7TR+Y+moFFOZEH54nGyHx8R/g6uHlkesPqZ/C8G6rPl1sVc9FLy3RkVT0mCUVZ7y7Vgs=
-X-Received: by 2002:a05:6830:2103:: with SMTP id
- i3mr3979061otc.303.1619800401491; 
- Fri, 30 Apr 2021 09:33:21 -0700 (PDT)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A9B86E4D0;
+ Fri, 30 Apr 2021 16:56:37 +0000 (UTC)
+IronPort-SDR: hfE2OMOLQtcBGUcQRhDRQb3O6b4UI0956iqcDl+hPOyhLseyR4kOBcIhhiX0DjAOxHdOH/flQ8
+ Zyd9zKI2XEoQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9970"; a="258598955"
+X-IronPort-AV: E=Sophos;i="5.82,263,1613462400"; d="scan'208";a="258598955"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2021 09:56:15 -0700
+IronPort-SDR: YUGVD6OuFnLWQXxHFjFki+kLn5GBZg/daEAUdttm24KDaa2MLmef0QWSh5qvAkpdxQmaD3sWo1
+ qtew7sjj8syw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,263,1613462400"; d="scan'208";a="426517262"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 30 Apr 2021 09:56:12 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 30 Apr 2021 19:56:11 +0300
+Date: Fri, 30 Apr 2021 19:56:11 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <YIw2q/aibOplo7b+@intel.com>
+References: <20210429120553.7823-1-wse@tuxedocomputers.com>
 MIME-Version: 1.0
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-17-jason@jlekstrand.net>
- <YIrWB3fX3TseroSh@phenom.ffwll.local>
- <CAOFGe97b_LSGfrLo3LBhBuvx8wduVJLf0ySC=gG7Z+L6v2dPzQ@mail.gmail.com>
- <YIsBSRwNGiiF/kxE@phenom.ffwll.local>
- <CAOFGe97qi=jB+MGPtJyX-QYmjvTe2QPeijsNCeJ2z+E19x6ZNg@mail.gmail.com>
- <YIsD8OSFdLnjz5cL@phenom.ffwll.local>
- <CAOFGe96DXzFVX77f5qVMrCzJq2Cuco1pOyCfYmo_1v6rmxpMKg@mail.gmail.com>
- <CAKMK7uGzAGDS97hoj0xjzw8EJoPZazsLF=wxUz90cswjPSHthQ@mail.gmail.com>
- <CAOFGe94EQ5Q61FPwJgnv8Y5DpMhvaDGSxTjBwm2T7mXHX9fkOQ@mail.gmail.com>
-In-Reply-To: <CAOFGe94EQ5Q61FPwJgnv8Y5DpMhvaDGSxTjBwm2T7mXHX9fkOQ@mail.gmail.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Fri, 30 Apr 2021 18:33:10 +0200
-Message-ID: <CAKMK7uEnoM5CpCA8x0RiBH2F3WJSBz6pANVdZFdWfejL1ARDvA@mail.gmail.com>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Subject: Re: [Intel-gfx] [PATCH 16/21] drm/i915/gem: Delay context creation
+Content-Disposition: inline
+In-Reply-To: <20210429120553.7823-1-wse@tuxedocomputers.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display Try YCbCr420 color when
+ RGB fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,161 +50,298 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 30, 2021 at 6:27 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
->
-> On Fri, Apr 30, 2021 at 1:53 AM Daniel Vetter <daniel@ffwll.ch> wrote:
-> >
-> > On Thu, Apr 29, 2021 at 11:35 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
-> > >
-> > > On Thu, Apr 29, 2021 at 2:07 PM Daniel Vetter <daniel@ffwll.ch> wrote:
-> > > >
-> > > > On Thu, Apr 29, 2021 at 02:01:16PM -0500, Jason Ekstrand wrote:
-> > > > > On Thu, Apr 29, 2021 at 1:56 PM Daniel Vetter <daniel@ffwll.ch> wrote:
-> > > > > > On Thu, Apr 29, 2021 at 01:16:04PM -0500, Jason Ekstrand wrote:
-> > > > > > > On Thu, Apr 29, 2021 at 10:51 AM Daniel Vetter <daniel@ffwll.ch> wrote:
-> > > > > > > > > +     ret = set_proto_ctx_param(file_priv, pc, args);
-> > > > > > > >
-> > > > > > > > I think we should have a FIXME here of not allowing this on some future
-> > > > > > > > platforms because just use CTX_CREATE_EXT.
-> > > > > > >
-> > > > > > > Done.
-> > > > > > >
-> > > > > > > > > +     if (ret == -ENOTSUPP) {
-> > > > > > > > > +             /* Some params, specifically SSEU, can only be set on fully
-> > > > > > > >
-> > > > > > > > I think this needs a FIXME: that this only holds during the conversion?
-> > > > > > > > Otherwise we kinda have a bit a problem me thinks ...
-> > > > > > >
-> > > > > > > I'm not sure what you mean by that.
-> > > > > >
-> > > > > > Well I'm at least assuming that we wont have this case anymore, i.e.
-> > > > > > there's only two kinds of parameters:
-> > > > > > - those which are valid only on proto context
-> > > > > > - those which are valid on both (like priority)
-> > > > > >
-> > > > > > This SSEU thing looks like a 3rd parameter, which is only valid on
-> > > > > > finalized context. That feels all kinds of wrong. Will it stay? If yes
-> > > > > > *ugh* and why?
-> > > > >
-> > > > > Because I was being lazy.  The SSEU stuff is a fairly complex param to
-> > > > > parse and it's always set live.  I can factor out the SSEU parsing
-> > > > > code if you want and it shouldn't be too bad in the end.
-> > > >
-> > > > Yeah I think the special case here is a bit too jarring.
-> > >
-> > > I rolled a v5 that allows you to set SSEU as a create param.  I'm not
-> > > a huge fan of that much code duplication for the SSEU set but I guess
-> > > that's what we get for deciding to "unify" our context creation
-> > > parameter path with our on-the-fly parameter path....
-> > >
-> > > You can look at it here:
-> > >
-> > > https://gitlab.freedesktop.org/jekstrand/linux/-/commit/c805f424a3374b2de405b7fc651eab551df2cdaf#474deb1194892a272db022ff175872d42004dfda_283_588
-> >
-> > Hm yeah the duplication of the render engine check is a bit annoying.
-> > What's worse, if you tthrow another set_engines on top it's probably
-> > all wrong then. The old thing solved that by just throwing that
-> > intel_context away.
->
-> I think that's already mostly taken care of.  When set_engines
-> happens, we throw away the old array of engines and start with a new
-> one where everything has been memset to 0.  The one remaining problem
-> is that, if userspace resets the engine set, we need to memset
-> legacy_rcs_sseu to 0.  I've added that.
->
-> > You're also not keeping the engine id in the proto ctx for this, so
-> > there's probably some gaps there. We'd need to clear the SSEU if
-> > userspace puts another context there. But also no userspace does that.
->
-> Again, I think that's handled.  See above.
->
-> > Plus cursory review of userspace show
-> > - mesa doesn't set this
-> > - compute sets its right before running the batch
-> > - media sets it as the last thing of context creation
-> >
-> > So it's kinda not needed. But also we're asking umd to switch over to
-> > CTX_CREATE_EXT, and if sseu doesn't work for that media team will be
-> > puzzled. And we've confused them enough already with our uapis.
-> >
-> > Another idea: proto_set_sseu just stores the uapi struct and a note
-> > that it's set, and checks nothing. To validate sseu on proto context
-> > we do (but only when an sseu parameter is set):
-> > 1. finalize the context
-> > 2. call the real set_sseu for validation
-> > 3. throw the finalized context away again, it was just for validating
-> > the overall thing
-> >
-> > That way we don't have to consider all the interactions of setting
-> > sseu and engines in any order on proto context, validation code is
-> > guaranteed shared. Only downside is that there's a slight chance in
-> > behaviour: SSEU, then setting another engine in that slot will fail
-> > instead of throwing the sseu parameters away. That's the right thing
-> > for CTX_CREATE_EXT anyway, and current userspace doesn't care.
-> >
-> > Thoughts?
->
-> I thought about that.  The problem is that they can set_sseu multiple
-> times on different engines.  This means we'd have to effectively build
-> up an arbitrary list of SSEU set operations and replay it.  I'm not
-> sure how I feel about building up a big data structure.
+On Thu, Apr 29, 2021 at 02:05:53PM +0200, Werner Sembach wrote:
+> When encoder validation of a display mode fails, retry with less bandwidth
+> heavy YCbCr420 color mode, if available. This enables some HDMI 1.4 setups
+> to support 4k60Hz output, which previously failed silently.
+> =
 
-Hm, but how does this work with proto ctx then? I've only seen a
-single sseu param set in the patch you linked.
+> AMDGPU had nearly the exact same issue. This problem description is
+> therefore copied from my commit message of the AMDGPU patch.
+> =
 
-> > > I'm also going to send it to trybot.
-> >
-> > If you resend pls include all my r-b, I think some got lost in v4.
->
-> I'll try and dig those up.
->
-> > Also, in the kernel at least we expect minimal commit message with a
-> > bit of context, there's no Part-of: link pointing at the entire MR
-> > with overview and discussion, the patchwork Link: we add is a pretty
-> > bad substitute. Some of the new patches in v4 are a bit too terse on
-> > that.
->
-> Yup.  I can try to expand things a bit more.
->
-> > And finally I'm still not a big fan of the add/remove split over
-> > patches, but oh well.
->
-> I'm not either but working through all this reminded me of why I
-> didn't do it more gradual.  The problem is ordering.  If add and
-> remove at the same time and do it one param at a time, we'll end up
-> with a situation in the middle where some params will only be allowed
-> to be set on the proto-ctx and others will force a proto-ctx ->
-> context conversion.  If, for instance, one UMD sets engines first and
-> then VMs and another sets VMs first and then engines, there's no way
-> to do a gradual transition without breaking one of them.  Also, we
-> need to handle basically all the setparam complexity in order to
-> handle creation structs and, again, those can come in any order.
+> On some setups, while the monitor and the gpu support display modes with
+> pixel clocks of up to 600MHz, the link encoder might not. This prevents
+> YCbCr444 and RGB encoding for 4k60Hz, but YCbCr420 encoding might still be
+> possible. However, which color mode is used is decided before the link
+> encoder capabilities are checked. This patch fixes the problem by retrying
+> to find a display mode with YCbCr420 enforced and using it, if it is
+> valid.
+> =
 
-Yeah I know, but I considered that. I think compute-runtime uses
-CTX_CREATE_EXT, it's only media. So we need to order the patches in
-exactly the order media calls setparam. And then we're good.
+> I'm not entierly sure if the second
+> "if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))" check in
+> intel_hdmi_compute_config(...) after forcing ycbcr420 is necessary. I
+> included it to better be safe then sorry.
+> =
 
-Worst case it's exactly as useful in bisecting as your approach here
-(you add dead code first, then use it, so might as well just squash it
-all down to one), but if we get the ordering right it's substantially
-better.
+> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> Cc: <stable@vger.kernel.org>
+> ---
+> Rebased from 5.12 to drm-tip and resend to resolve merge conflict.
+> =
 
-But maybe "clever ordering of the conversion" is too clever. End
-result is the same anyway.
--Daniel
+> >From 876c1c8d970ff2a411ee8d08651bd4edbe9ecb3d Mon Sep 17 00:00:00 2001
+> From: Werner Sembach <wse@tuxedocomputers.com>
+> Date: Thu, 29 Apr 2021 13:59:30 +0200
+> Subject: [PATCH] Retry using YCbCr420 encoding if clock setup for RGB fai=
+ls
+> =
 
-> I hate it, I just don't see another way. :-(
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 80 +++++++++++++++++------
+>  1 file changed, 60 insertions(+), 20 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
+i915/display/intel_hdmi.c
+> index 46de56af33db..c9b5a7d7f9c6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -1861,6 +1861,30 @@ static int intel_hdmi_port_clock(int clock, int bp=
+c)
+>  	return clock * bpc / 8;
+>  }
+>  =
+
+> +static enum drm_mode_status
+> +intel_hdmi_check_bpc(struct intel_hdmi *hdmi, int clock, bool has_hdmi_s=
+ink, struct drm_i915_private *dev_priv)
+
+Don't pass dev_priv. It can be extracted from the intel_hdmi.
+
+The name of the function isn't really sitting super well with me.
+I guess I'd just call it something like intel_hdmi_mode_clock_valid().
+
+We should also split this big patch up into smaller parts. Just this
+mechanical extraction of this function without any functional changes
+could be a nice first patch in the series.
+
+> +{
+> +	enum drm_mode_status status;
+> +
+> +	/* check if we can do 8bpc */
+> +	status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 8),
+> +				       true, has_hdmi_sink);
+> +
+> +	if (has_hdmi_sink) {
+> +		/* if we can't do 8bpc we may still be able to do 12bpc */
+> +		if (status !=3D MODE_OK && !HAS_GMCH(dev_priv))
+> +			status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 1=
+2),
+> +						       true, has_hdmi_sink);
+> +
+> +		/* if we can't do 8,12bpc we may still be able to do 10bpc */
+> +		if (status !=3D MODE_OK && DISPLAY_VER(dev_priv) >=3D 11)
+> +			status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 1=
+0),
+> +						       true, has_hdmi_sink);
+> +	}
+> +
+> +	return status;
+> +}
+> +
+>  static enum drm_mode_status
+>  intel_hdmi_mode_valid(struct drm_connector *connector,
+>  		      struct drm_display_mode *mode)
+> @@ -1891,23 +1915,18 @@ intel_hdmi_mode_valid(struct drm_connector *conne=
+ctor,
+>  	if (drm_mode_is_420_only(&connector->display_info, mode))
+>  		clock /=3D 2;
+>  =
+
+> -	/* check if we can do 8bpc */
+> -	status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 8),
+> -				       true, has_hdmi_sink);
+> +	status =3D intel_hdmi_check_bpc(hdmi, clock, has_hdmi_sink, dev_priv);
+>  =
+
+> -	if (has_hdmi_sink) {
+> -		/* if we can't do 8bpc we may still be able to do 12bpc */
+> -		if (status !=3D MODE_OK && !HAS_GMCH(dev_priv))
+> -			status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 1=
+2),
+> -						       true, has_hdmi_sink);
+> +	if (status !=3D MODE_OK) {
+> +		if (drm_mode_is_420_also(&connector->display_info, mode)) {
+
+We also need a connector->ycbcr_420_allowed check here.
+
+> +			/* if we can't do full color resolution we may still be able to do re=
+duced color resolution */
+> +			clock /=3D 2;
+>  =
+
+> -		/* if we can't do 8,12bpc we may still be able to do 10bpc */
+> -		if (status !=3D MODE_OK && DISPLAY_VER(dev_priv) >=3D 11)
+> -			status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 1=
+0),
+> -						       true, has_hdmi_sink);
+> +			status =3D intel_hdmi_check_bpc(hdmi, clock, has_hdmi_sink, dev_priv);
+> +		}
+> +		if (status !=3D MODE_OK)
+> +			return status;
+>  	}
+> -	if (status !=3D MODE_OK)
+> -		return status;
+>  =
+
+>  	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
+>  }
+> @@ -1990,14 +2009,17 @@ static bool hdmi_deep_color_possible(const struct=
+ intel_crtc_state *crtc_state,
+>  =
+
+>  static int
+>  intel_hdmi_ycbcr420_config(struct intel_crtc_state *crtc_state,
+> -			   const struct drm_connector_state *conn_state)
+> +			   const struct drm_connector_state *conn_state,
+> +			   const bool force_ycbcr420)
+>  {
+>  	struct drm_connector *connector =3D conn_state->connector;
+>  	struct drm_i915_private *i915 =3D to_i915(connector->dev);
+>  	const struct drm_display_mode *adjusted_mode =3D
+>  		&crtc_state->hw.adjusted_mode;
+>  =
+
+> -	if (!drm_mode_is_420_only(&connector->display_info, adjusted_mode))
+> +	if (!(drm_mode_is_420_only(&connector->display_info, adjusted_mode) ||
+> +			(force_ycbcr420 &&
+> +			drm_mode_is_420_also(&connector->display_info, adjusted_mode))))
+>  		return 0;
+>  =
+
+
+This function I think we just want to throw out and roll something
+a bit better.
+
+Something like this I believe should work nicely:
+
+intel_hdmi_compute_output_format()
+{
+	if (drm_mode_is_420_only())
+		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
+	else
+		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
+
+	ret =3D intel_hdmi_compute_clock();
+	if (ret) {
+		if (crtc_state->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+			return ret;
+
+		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
+
+		ret =3D intel_hdmi_compute_clock()
+		if (ret)
+			return ret;
+	}
+
+	return 0;
+}
+
+assuming we make intel_hdmi_compute_clock() check whether 420 output
+is actually supported.
+
+Could roll a small helper for that. Something along these lines perhaps:
+static bool intel_hdmi_ycbcr_420_supported()
+{
+	return connector->ycbcr_420_allowed &&
+	       (drm_mode_is_420_only() || drm_mode_is_420_also());
+}
+
+The intel_pch_panel_fitting() call should probably just be hoisted
+into intel_hdmi_compute_config() after we've called the new
+intel_hdmi_compute_output_format().
+
+I think a three patch series is probably what we want for this:
+patch 1: extract intel_hdmi_mode_clock_valid() without 420_also handling
+patch 2: introduce intel_hdmi_compute_output_format() without 420_also hand=
+ling
+patch 3: drop in the 420_also handling everywhere
+
+That way if there's any regression due to the 420_also stuff at least
+we won't have to revert the whole thing, and can then more easily work
+on fixing whatever needs fixing.
+
+>  	if (!connector->ycbcr_420_allowed) {
+> @@ -2126,7 +2148,7 @@ int intel_hdmi_compute_config(struct intel_encoder =
+*encoder,
+>  	struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjusted_mo=
+de;
+>  	struct drm_connector *connector =3D conn_state->connector;
+>  	struct drm_scdc *scdc =3D &connector->display_info.hdmi.scdc;
+> -	int ret;
+> +	int ret, ret_saved;
+>  =
+
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+>  		return -EINVAL;
+> @@ -2141,7 +2163,7 @@ int intel_hdmi_compute_config(struct intel_encoder =
+*encoder,
+>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
+>  		pipe_config->pixel_multiplier =3D 2;
+>  =
+
+> -	ret =3D intel_hdmi_ycbcr420_config(pipe_config, conn_state);
+> +	ret =3D intel_hdmi_ycbcr420_config(pipe_config, conn_state, false);
+>  	if (ret)
+>  		return ret;
+>  =
+
+> @@ -2155,8 +2177,26 @@ int intel_hdmi_compute_config(struct intel_encoder=
+ *encoder,
+>  		intel_hdmi_has_audio(encoder, pipe_config, conn_state);
+>  =
+
+>  	ret =3D intel_hdmi_compute_clock(encoder, pipe_config);
+> -	if (ret)
+> -		return ret;
+> +	if (ret) {
+> +		ret_saved =3D ret;
+> +
+> +		ret =3D intel_hdmi_ycbcr420_config(pipe_config, conn_state, true);
+> +		if (ret)
+> +			return ret;
+> +
+> +		if (pipe_config->output_format !=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+> +			return ret_saved;
+> +
+> +		pipe_config->limited_color_range =3D
+> +			intel_hdmi_limited_color_range(pipe_config, conn_state);
+> +
+> +		if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))
+> +			pipe_config->has_pch_encoder =3D true;
+> +
+> +		ret =3D intel_hdmi_compute_clock(encoder, pipe_config);
+> +		if (ret)
+> +			return ret;
+> +	}
+>  =
+
+>  	if (conn_state->picture_aspect_ratio)
+>  		adjusted_mode->picture_aspect_ratio =3D
+> -- =
+
+> 2.25.1
+> =
+
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
