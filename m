@@ -2,45 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7C636FE76
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 18:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FB6C36FE97
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 18:33:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 803916E115;
-	Fri, 30 Apr 2021 16:27:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59C306E4C9;
+	Fri, 30 Apr 2021 16:33:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
- [IPv6:2a00:1450:4864:20::534])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3694C6E115
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 16:27:55 +0000 (UTC)
-Received: by mail-ed1-x534.google.com with SMTP id i3so57618590edt.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 09:27:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com
+ [IPv6:2607:f8b0:4864:20::329])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50D856E4CB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 16:33:22 +0000 (UTC)
+Received: by mail-ot1-x329.google.com with SMTP id
+ 92-20020a9d02e50000b029028fcc3d2c9eso42434885otl.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 30 Apr 2021 09:33:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=oY9fC45Xsb0/sA4k49RVDS/k+0bknDFnLsF1idXp8j8=;
- b=rNkbQSGjMwL2oTexW9E76gg30t7EioGtNbaFsOuWw0WwbQhT4VZN/YrFbMjW0ief/M
- smWavaUUwmih7gMXfL3XakxRmjLqlLWlQUYztOA4p2ziItsXXw0wACUmOJQ4xa8uz7wW
- CjNaj9Hv5i62ncNR16M5OMh4Vx3giiqZnK2lITUHeUJChgrCBmXMiYSMFEiwe9dTERte
- txFXHSXZFvBYcG3vrGOpXXI21LzDoSvKSdEu9u8XxNbXmcaJq1AY4vlurfBQlF+1TrsI
- lyMRngDcL8oGBKVQry3ydN7kmQMGnpCjNaG7Ap0PMt+Mi5c4kkK+F0eV0gJeXIN1hEm4
- ip8g==
+ :cc; bh=XJV9L3Ce/fBAvjhUVP+KgcjKLKQL0vVeXJmvhkl0nXg=;
+ b=L34FFYo69jyvpw4u0jF++0mWiSNnHgBYjQ18quki/iNiti6fy+ZwPs4RmC5EDJfg12
+ wfMG2xr9tCrbwsxl5a4R6zre0abwpEydeFXtDaTHQCBqNwprwsSetrqmoEkEytTNU77z
+ yNxjr5KFq0zIURAQG1njo7wzntwxZ3if4kT3w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=oY9fC45Xsb0/sA4k49RVDS/k+0bknDFnLsF1idXp8j8=;
- b=Vb5VlCEh980tR2HTRw51ClPnAuV028Y3XN47WNQfjxZoztPVqWGj4zb6NINMXTLz0H
- cd1lXgft1prtLY1cDd8y4P9Av2aE0tCEwmMwatXrjLECdanlEgck3EnInarLL+1azzWt
- O9hfmIB83cetmXSnAbulvJGf93Q4yVltJxmNiwh/e3XZTQjAJkYnoFLov5BJEoibty2d
- cy2UOXXq3FjUpueIYe9/TaBgExyYu/b7gSHIkmPOJNJc95VnNBAW52SoVnbPvMzblp4V
- 9C5TD0CXubW8ikpXkuP3ziRH5Zkui9sWP3/Pv+L8mtRE3Gib1ul7JnvOw2UGQz9t7yK+
- BFHQ==
-X-Gm-Message-State: AOAM532fHPUMpqLnanyQBi0Qr+xriBR6iVWQXe+oSQtTJ0f/6tFmBGbv
- 1YKO1cy61q+jvOWrUvU7lByBAsp5wMnocCP3M9I+umllcYjN8Q==
-X-Google-Smtp-Source: ABdhPJy6qIEbR7qaVYJ8EhPjOGrLtktVA/pdTOy9kvrkZmdS6b7h8pvtXDIr0VQQNpdy7e7zjHwWKgP0vr9Iuc+G9A0=
-X-Received: by 2002:aa7:dd01:: with SMTP id i1mr6978207edv.232.1619800073660; 
- Fri, 30 Apr 2021 09:27:53 -0700 (PDT)
+ bh=XJV9L3Ce/fBAvjhUVP+KgcjKLKQL0vVeXJmvhkl0nXg=;
+ b=SF3vEVxFRcuISbdd1XFCc4P01B/CzCysfX/HTO1URiXGa8FqaXztMVfun5B6P3mow/
+ OpvQTXWjEgx6bLqNJ6B+1bYv4hnhFmkbO+Aqnj6xFknqUlviVnmfgNsxRwsr/a+5zK2z
+ VYpeYOWFwn/cYcg8vRNFEEQGhl3AUZNrM+MQ73xeyvbtz8l7fuMmQTHbfiEEw+zJ8CtC
+ aKSW1s9nqgRRXNQ3mJ+LWSoRcMAKm+csHlqi1UkYkuEm7Xt3NgKtrKLEYRLy62XzyYGV
+ vmomxTzCadhxytVDwqw2tOzQHho93dGnnzrNsnGY25EgrI5DytrJx+8ZZZjeQ/E9S0sk
+ EbJA==
+X-Gm-Message-State: AOAM532AX3BzhGB0Ig7qEbD7PgMr+K2L/v6N+SXP9ape2gRsoLmJ1VrI
+ 8XW8h9TeKuHNBFZJVHLsMikH1MVT8Rh2g2PXOibnvQ==
+X-Google-Smtp-Source: ABdhPJzpPhQThoOs6EgZTUj7TR+Y+moFFOZEH54nGyHx8R/g6uHlkesPqZ/C8G6rPl1sVc9FLy3RkVT0mCUVZ7y7Vgs=
+X-Received: by 2002:a05:6830:2103:: with SMTP id
+ i3mr3979061otc.303.1619800401491; 
+ Fri, 30 Apr 2021 09:33:21 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210423223131.879208-1-jason@jlekstrand.net>
  <20210423223131.879208-17-jason@jlekstrand.net>
@@ -51,11 +49,12 @@ References: <20210423223131.879208-1-jason@jlekstrand.net>
  <YIsD8OSFdLnjz5cL@phenom.ffwll.local>
  <CAOFGe96DXzFVX77f5qVMrCzJq2Cuco1pOyCfYmo_1v6rmxpMKg@mail.gmail.com>
  <CAKMK7uGzAGDS97hoj0xjzw8EJoPZazsLF=wxUz90cswjPSHthQ@mail.gmail.com>
-In-Reply-To: <CAKMK7uGzAGDS97hoj0xjzw8EJoPZazsLF=wxUz90cswjPSHthQ@mail.gmail.com>
-From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Fri, 30 Apr 2021 11:27:42 -0500
-Message-ID: <CAOFGe94EQ5Q61FPwJgnv8Y5DpMhvaDGSxTjBwm2T7mXHX9fkOQ@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
+ <CAOFGe94EQ5Q61FPwJgnv8Y5DpMhvaDGSxTjBwm2T7mXHX9fkOQ@mail.gmail.com>
+In-Reply-To: <CAOFGe94EQ5Q61FPwJgnv8Y5DpMhvaDGSxTjBwm2T7mXHX9fkOQ@mail.gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Fri, 30 Apr 2021 18:33:10 +0200
+Message-ID: <CAKMK7uEnoM5CpCA8x0RiBH2F3WJSBz6pANVdZFdWfejL1ARDvA@mail.gmail.com>
+To: Jason Ekstrand <jason@jlekstrand.net>
 Subject: Re: [Intel-gfx] [PATCH 16/21] drm/i915/gem: Delay context creation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,134 +75,154 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Apr 30, 2021 at 1:53 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+On Fri, Apr 30, 2021 at 6:27 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
 >
-> On Thu, Apr 29, 2021 at 11:35 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
+> On Fri, Apr 30, 2021 at 1:53 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 > >
-> > On Thu, Apr 29, 2021 at 2:07 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+> > On Thu, Apr 29, 2021 at 11:35 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
 > > >
-> > > On Thu, Apr 29, 2021 at 02:01:16PM -0500, Jason Ekstrand wrote:
-> > > > On Thu, Apr 29, 2021 at 1:56 PM Daniel Vetter <daniel@ffwll.ch> wrote:
-> > > > > On Thu, Apr 29, 2021 at 01:16:04PM -0500, Jason Ekstrand wrote:
-> > > > > > On Thu, Apr 29, 2021 at 10:51 AM Daniel Vetter <daniel@ffwll.ch> wrote:
-> > > > > > > > +     ret = set_proto_ctx_param(file_priv, pc, args);
-> > > > > > >
-> > > > > > > I think we should have a FIXME here of not allowing this on some future
-> > > > > > > platforms because just use CTX_CREATE_EXT.
-> > > > > >
-> > > > > > Done.
-> > > > > >
-> > > > > > > > +     if (ret == -ENOTSUPP) {
-> > > > > > > > +             /* Some params, specifically SSEU, can only be set on fully
-> > > > > > >
-> > > > > > > I think this needs a FIXME: that this only holds during the conversion?
-> > > > > > > Otherwise we kinda have a bit a problem me thinks ...
-> > > > > >
-> > > > > > I'm not sure what you mean by that.
-> > > > >
-> > > > > Well I'm at least assuming that we wont have this case anymore, i.e.
-> > > > > there's only two kinds of parameters:
-> > > > > - those which are valid only on proto context
-> > > > > - those which are valid on both (like priority)
-> > > > >
-> > > > > This SSEU thing looks like a 3rd parameter, which is only valid on
-> > > > > finalized context. That feels all kinds of wrong. Will it stay? If yes
-> > > > > *ugh* and why?
+> > > On Thu, Apr 29, 2021 at 2:07 PM Daniel Vetter <daniel@ffwll.ch> wrote:
 > > > >
-> > > > Because I was being lazy.  The SSEU stuff is a fairly complex param to
-> > > > parse and it's always set live.  I can factor out the SSEU parsing
-> > > > code if you want and it shouldn't be too bad in the end.
+> > > > On Thu, Apr 29, 2021 at 02:01:16PM -0500, Jason Ekstrand wrote:
+> > > > > On Thu, Apr 29, 2021 at 1:56 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+> > > > > > On Thu, Apr 29, 2021 at 01:16:04PM -0500, Jason Ekstrand wrote:
+> > > > > > > On Thu, Apr 29, 2021 at 10:51 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+> > > > > > > > > +     ret = set_proto_ctx_param(file_priv, pc, args);
+> > > > > > > >
+> > > > > > > > I think we should have a FIXME here of not allowing this on some future
+> > > > > > > > platforms because just use CTX_CREATE_EXT.
+> > > > > > >
+> > > > > > > Done.
+> > > > > > >
+> > > > > > > > > +     if (ret == -ENOTSUPP) {
+> > > > > > > > > +             /* Some params, specifically SSEU, can only be set on fully
+> > > > > > > >
+> > > > > > > > I think this needs a FIXME: that this only holds during the conversion?
+> > > > > > > > Otherwise we kinda have a bit a problem me thinks ...
+> > > > > > >
+> > > > > > > I'm not sure what you mean by that.
+> > > > > >
+> > > > > > Well I'm at least assuming that we wont have this case anymore, i.e.
+> > > > > > there's only two kinds of parameters:
+> > > > > > - those which are valid only on proto context
+> > > > > > - those which are valid on both (like priority)
+> > > > > >
+> > > > > > This SSEU thing looks like a 3rd parameter, which is only valid on
+> > > > > > finalized context. That feels all kinds of wrong. Will it stay? If yes
+> > > > > > *ugh* and why?
+> > > > >
+> > > > > Because I was being lazy.  The SSEU stuff is a fairly complex param to
+> > > > > parse and it's always set live.  I can factor out the SSEU parsing
+> > > > > code if you want and it shouldn't be too bad in the end.
+> > > >
+> > > > Yeah I think the special case here is a bit too jarring.
 > > >
-> > > Yeah I think the special case here is a bit too jarring.
+> > > I rolled a v5 that allows you to set SSEU as a create param.  I'm not
+> > > a huge fan of that much code duplication for the SSEU set but I guess
+> > > that's what we get for deciding to "unify" our context creation
+> > > parameter path with our on-the-fly parameter path....
+> > >
+> > > You can look at it here:
+> > >
+> > > https://gitlab.freedesktop.org/jekstrand/linux/-/commit/c805f424a3374b2de405b7fc651eab551df2cdaf#474deb1194892a272db022ff175872d42004dfda_283_588
 > >
-> > I rolled a v5 that allows you to set SSEU as a create param.  I'm not
-> > a huge fan of that much code duplication for the SSEU set but I guess
-> > that's what we get for deciding to "unify" our context creation
-> > parameter path with our on-the-fly parameter path....
+> > Hm yeah the duplication of the render engine check is a bit annoying.
+> > What's worse, if you tthrow another set_engines on top it's probably
+> > all wrong then. The old thing solved that by just throwing that
+> > intel_context away.
+>
+> I think that's already mostly taken care of.  When set_engines
+> happens, we throw away the old array of engines and start with a new
+> one where everything has been memset to 0.  The one remaining problem
+> is that, if userspace resets the engine set, we need to memset
+> legacy_rcs_sseu to 0.  I've added that.
+>
+> > You're also not keeping the engine id in the proto ctx for this, so
+> > there's probably some gaps there. We'd need to clear the SSEU if
+> > userspace puts another context there. But also no userspace does that.
+>
+> Again, I think that's handled.  See above.
+>
+> > Plus cursory review of userspace show
+> > - mesa doesn't set this
+> > - compute sets its right before running the batch
+> > - media sets it as the last thing of context creation
 > >
-> > You can look at it here:
+> > So it's kinda not needed. But also we're asking umd to switch over to
+> > CTX_CREATE_EXT, and if sseu doesn't work for that media team will be
+> > puzzled. And we've confused them enough already with our uapis.
 > >
-> > https://gitlab.freedesktop.org/jekstrand/linux/-/commit/c805f424a3374b2de405b7fc651eab551df2cdaf#474deb1194892a272db022ff175872d42004dfda_283_588
+> > Another idea: proto_set_sseu just stores the uapi struct and a note
+> > that it's set, and checks nothing. To validate sseu on proto context
+> > we do (but only when an sseu parameter is set):
+> > 1. finalize the context
+> > 2. call the real set_sseu for validation
+> > 3. throw the finalized context away again, it was just for validating
+> > the overall thing
+> >
+> > That way we don't have to consider all the interactions of setting
+> > sseu and engines in any order on proto context, validation code is
+> > guaranteed shared. Only downside is that there's a slight chance in
+> > behaviour: SSEU, then setting another engine in that slot will fail
+> > instead of throwing the sseu parameters away. That's the right thing
+> > for CTX_CREATE_EXT anyway, and current userspace doesn't care.
+> >
+> > Thoughts?
 >
-> Hm yeah the duplication of the render engine check is a bit annoying.
-> What's worse, if you tthrow another set_engines on top it's probably
-> all wrong then. The old thing solved that by just throwing that
-> intel_context away.
+> I thought about that.  The problem is that they can set_sseu multiple
+> times on different engines.  This means we'd have to effectively build
+> up an arbitrary list of SSEU set operations and replay it.  I'm not
+> sure how I feel about building up a big data structure.
 
-I think that's already mostly taken care of.  When set_engines
-happens, we throw away the old array of engines and start with a new
-one where everything has been memset to 0.  The one remaining problem
-is that, if userspace resets the engine set, we need to memset
-legacy_rcs_sseu to 0.  I've added that.
+Hm, but how does this work with proto ctx then? I've only seen a
+single sseu param set in the patch you linked.
 
-> You're also not keeping the engine id in the proto ctx for this, so
-> there's probably some gaps there. We'd need to clear the SSEU if
-> userspace puts another context there. But also no userspace does that.
-
-Again, I think that's handled.  See above.
-
-> Plus cursory review of userspace show
-> - mesa doesn't set this
-> - compute sets its right before running the batch
-> - media sets it as the last thing of context creation
+> > > I'm also going to send it to trybot.
+> >
+> > If you resend pls include all my r-b, I think some got lost in v4.
 >
-> So it's kinda not needed. But also we're asking umd to switch over to
-> CTX_CREATE_EXT, and if sseu doesn't work for that media team will be
-> puzzled. And we've confused them enough already with our uapis.
+> I'll try and dig those up.
 >
-> Another idea: proto_set_sseu just stores the uapi struct and a note
-> that it's set, and checks nothing. To validate sseu on proto context
-> we do (but only when an sseu parameter is set):
-> 1. finalize the context
-> 2. call the real set_sseu for validation
-> 3. throw the finalized context away again, it was just for validating
-> the overall thing
+> > Also, in the kernel at least we expect minimal commit message with a
+> > bit of context, there's no Part-of: link pointing at the entire MR
+> > with overview and discussion, the patchwork Link: we add is a pretty
+> > bad substitute. Some of the new patches in v4 are a bit too terse on
+> > that.
 >
-> That way we don't have to consider all the interactions of setting
-> sseu and engines in any order on proto context, validation code is
-> guaranteed shared. Only downside is that there's a slight chance in
-> behaviour: SSEU, then setting another engine in that slot will fail
-> instead of throwing the sseu parameters away. That's the right thing
-> for CTX_CREATE_EXT anyway, and current userspace doesn't care.
+> Yup.  I can try to expand things a bit more.
 >
-> Thoughts?
-
-I thought about that.  The problem is that they can set_sseu multiple
-times on different engines.  This means we'd have to effectively build
-up an arbitrary list of SSEU set operations and replay it.  I'm not
-sure how I feel about building up a big data structure.
-
-> > I'm also going to send it to trybot.
+> > And finally I'm still not a big fan of the add/remove split over
+> > patches, but oh well.
 >
-> If you resend pls include all my r-b, I think some got lost in v4.
+> I'm not either but working through all this reminded me of why I
+> didn't do it more gradual.  The problem is ordering.  If add and
+> remove at the same time and do it one param at a time, we'll end up
+> with a situation in the middle where some params will only be allowed
+> to be set on the proto-ctx and others will force a proto-ctx ->
+> context conversion.  If, for instance, one UMD sets engines first and
+> then VMs and another sets VMs first and then engines, there's no way
+> to do a gradual transition without breaking one of them.  Also, we
+> need to handle basically all the setparam complexity in order to
+> handle creation structs and, again, those can come in any order.
 
-I'll try and dig those up.
+Yeah I know, but I considered that. I think compute-runtime uses
+CTX_CREATE_EXT, it's only media. So we need to order the patches in
+exactly the order media calls setparam. And then we're good.
 
-> Also, in the kernel at least we expect minimal commit message with a
-> bit of context, there's no Part-of: link pointing at the entire MR
-> with overview and discussion, the patchwork Link: we add is a pretty
-> bad substitute. Some of the new patches in v4 are a bit too terse on
-> that.
+Worst case it's exactly as useful in bisecting as your approach here
+(you add dead code first, then use it, so might as well just squash it
+all down to one), but if we get the ordering right it's substantially
+better.
 
-Yup.  I can try to expand things a bit more.
+But maybe "clever ordering of the conversion" is too clever. End
+result is the same anyway.
+-Daniel
 
-> And finally I'm still not a big fan of the add/remove split over
-> patches, but oh well.
-
-I'm not either but working through all this reminded me of why I
-didn't do it more gradual.  The problem is ordering.  If add and
-remove at the same time and do it one param at a time, we'll end up
-with a situation in the middle where some params will only be allowed
-to be set on the proto-ctx and others will force a proto-ctx ->
-context conversion.  If, for instance, one UMD sets engines first and
-then VMs and another sets VMs first and then engines, there's no way
-to do a gradual transition without breaking one of them.  Also, we
-need to handle basically all the setparam complexity in order to
-handle creation structs and, again, those can come in any order.
-
-I hate it, I just don't see another way. :-(
-
---Jason
+> I hate it, I just don't see another way. :-(
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
