@@ -2,54 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6218F36FB51
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 15:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E39EB36FB6D
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 15:27:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BFE96E4AD;
-	Fri, 30 Apr 2021 13:16:00 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 855316E4AB;
- Fri, 30 Apr 2021 13:15:58 +0000 (UTC)
-IronPort-SDR: X4zzf5BXFsqymWF1EQEhTtAAKqB1J+RFZIpKQr34PvHzVs5EOY0WZ8yP9Zea7I4TBtc2HsVYe9
- 8Sgk8yAuzr+g==
-X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="197370246"
-X-IronPort-AV: E=Sophos;i="5.82,262,1613462400"; d="scan'208";a="197370246"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F4606F4B6;
+	Fri, 30 Apr 2021 13:27:36 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1326B6E154;
+ Fri, 30 Apr 2021 13:27:35 +0000 (UTC)
+IronPort-SDR: Mu0GwNeJ5JRUumkShKO4KcmpkPSi42dkJrhVGUHn5rZha9JB4hQFgbSXLdylCAFAvmN5JtBUyB
+ QtH4GCUF78ZQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="177433029"
+X-IronPort-AV: E=Sophos;i="5.82,262,1613462400"; d="scan'208";a="177433029"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2021 06:15:56 -0700
-IronPort-SDR: Rt5e4oB+UiUfwqPzPX2fPEoiHl/dgdClUEsnQvDnr9w0e0JcSUXbR2u1kkSR/dhnxzTJv/8Gs5
- anaEbQSb4ISQ==
-X-IronPort-AV: E=Sophos;i="5.82,262,1613462400"; d="scan'208";a="527634016"
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2021 06:27:34 -0700
+IronPort-SDR: ywNpoebe8TdBhUL/XK5YZ97Tpuxe/JtjmXZLCkCie+CooC//uP134aohjIOGZm63PBrw5I/YIU
+ UyZRwBu3bSsg==
+X-IronPort-AV: E=Sophos;i="5.82,262,1613462400"; d="scan'208";a="527636443"
 Received: from redickin-mobl2.ger.corp.intel.com (HELO [10.213.208.173])
  ([10.213.208.173])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2021 06:15:55 -0700
+ 30 Apr 2021 06:27:32 -0700
 To: Daniel Vetter <daniel@ffwll.ch>
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-17-jason@jlekstrand.net>
- <YIrWB3fX3TseroSh@phenom.ffwll.local>
- <CAOFGe97b_LSGfrLo3LBhBuvx8wduVJLf0ySC=gG7Z+L6v2dPzQ@mail.gmail.com>
- <YIsBSRwNGiiF/kxE@phenom.ffwll.local>
- <CAOFGe97qi=jB+MGPtJyX-QYmjvTe2QPeijsNCeJ2z+E19x6ZNg@mail.gmail.com>
- <YIsD8OSFdLnjz5cL@phenom.ffwll.local>
- <CAOFGe96DXzFVX77f5qVMrCzJq2Cuco1pOyCfYmo_1v6rmxpMKg@mail.gmail.com>
- <CAKMK7uGzAGDS97hoj0xjzw8EJoPZazsLF=wxUz90cswjPSHthQ@mail.gmail.com>
- <1eb8d34d-463e-3199-cdb0-0dff95e17f7b@linux.intel.com>
- <CAKMK7uGHaoMxcaye=ij0-jYE041+xUVneQv6a_J88dgFOh=hiQ@mail.gmail.com>
- <e224426b-a76e-fe8f-7d51-1bb4c811711c@linux.intel.com>
- <CAKMK7uH=BAib9MNSEhxruHQKKqshxgPSRR0+2yvSde-_qtJMVQ@mail.gmail.com>
+References: <20210429094640.859825-1-tvrtko.ursulin@linux.intel.com>
+ <YIvuhBHBmUesp0G1@phenom.ffwll.local>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <9fcd03db-3e6b-42ec-7cfa-9149f1e8f36d@linux.intel.com>
-Date: Fri, 30 Apr 2021 14:15:53 +0100
+Message-ID: <e09d56de-ac10-f2ac-1c15-35e42b8f129d@linux.intel.com>
+Date: Fri, 30 Apr 2021 14:27:31 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <CAKMK7uH=BAib9MNSEhxruHQKKqshxgPSRR0+2yvSde-_qtJMVQ@mail.gmail.com>
+In-Reply-To: <YIvuhBHBmUesp0G1@phenom.ffwll.local>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 16/21] drm/i915/gem: Delay context creation
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Be more gentle with exiting
+ non-persistent context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,131 +52,240 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Cc: Intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>,
+ dri-devel@lists.freedesktop.org, Zhen Han <zhen.han@intel.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 30/04/2021 14:07, Daniel Vetter wrote:
-> On Fri, Apr 30, 2021 at 2:44 PM Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->> On 30/04/2021 13:30, Daniel Vetter wrote:
->>> On Fri, Apr 30, 2021 at 1:58 PM Tvrtko Ursulin
->>> <tvrtko.ursulin@linux.intel.com> wrote:
->>>> On 30/04/2021 07:53, Daniel Vetter wrote:
->>>>> On Thu, Apr 29, 2021 at 11:35 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
->>>>>>
->>>>>> On Thu, Apr 29, 2021 at 2:07 PM Daniel Vetter <daniel@ffwll.ch> wrote:
->>>>>>>
->>>>>>> On Thu, Apr 29, 2021 at 02:01:16PM -0500, Jason Ekstrand wrote:
->>>>>>>> On Thu, Apr 29, 2021 at 1:56 PM Daniel Vetter <daniel@ffwll.ch> wrote:
->>>>>>>>> On Thu, Apr 29, 2021 at 01:16:04PM -0500, Jason Ekstrand wrote:
->>>>>>>>>> On Thu, Apr 29, 2021 at 10:51 AM Daniel Vetter <daniel@ffwll.ch> wrote:
->>>>>>>>>>>> +     ret = set_proto_ctx_param(file_priv, pc, args);
->>>>>>>>>>>
->>>>>>>>>>> I think we should have a FIXME here of not allowing this on some future
->>>>>>>>>>> platforms because just use CTX_CREATE_EXT.
->>>>>>>>>>
->>>>>>>>>> Done.
->>>>>>>>>>
->>>>>>>>>>>> +     if (ret == -ENOTSUPP) {
->>>>>>>>>>>> +             /* Some params, specifically SSEU, can only be set on fully
->>>>>>>>>>>
->>>>>>>>>>> I think this needs a FIXME: that this only holds during the conversion?
->>>>>>>>>>> Otherwise we kinda have a bit a problem me thinks ...
->>>>>>>>>>
->>>>>>>>>> I'm not sure what you mean by that.
->>>>>>>>>
->>>>>>>>> Well I'm at least assuming that we wont have this case anymore, i.e.
->>>>>>>>> there's only two kinds of parameters:
->>>>>>>>> - those which are valid only on proto context
->>>>>>>>> - those which are valid on both (like priority)
->>>>>>>>>
->>>>>>>>> This SSEU thing looks like a 3rd parameter, which is only valid on
->>>>>>>>> finalized context. That feels all kinds of wrong. Will it stay? If yes
->>>>>>>>> *ugh* and why?
->>>>>>>>
->>>>>>>> Because I was being lazy.  The SSEU stuff is a fairly complex param to
->>>>>>>> parse and it's always set live.  I can factor out the SSEU parsing
->>>>>>>> code if you want and it shouldn't be too bad in the end.
->>>>>>>
->>>>>>> Yeah I think the special case here is a bit too jarring.
->>>>>>
->>>>>> I rolled a v5 that allows you to set SSEU as a create param.  I'm not
->>>>>> a huge fan of that much code duplication for the SSEU set but I guess
->>>>>> that's what we get for deciding to "unify" our context creation
->>>>>> parameter path with our on-the-fly parameter path....
->>>>>>
->>>>>> You can look at it here:
->>>>>>
->>>>>> https://gitlab.freedesktop.org/jekstrand/linux/-/commit/c805f424a3374b2de405b7fc651eab551df2cdaf#474deb1194892a272db022ff175872d42004dfda_283_588
->>>>>
->>>>> Hm yeah the duplication of the render engine check is a bit annoying.
->>>>> What's worse, if you tthrow another set_engines on top it's probably
->>>>> all wrong then. The old thing solved that by just throwing that
->>>>> intel_context away.
->>>>>
->>>>> You're also not keeping the engine id in the proto ctx for this, so
->>>>> there's probably some gaps there. We'd need to clear the SSEU if
->>>>> userspace puts another context there. But also no userspace does that.
->>>>>
->>>>> Plus cursory review of userspace show
->>>>> - mesa doesn't set this
->>>>> - compute sets its right before running the batch
->>>>> - media sets it as the last thing of context creation
->>>>
->>>> Noticed a long sub-thread so looked inside..
->>>>
->>>> SSEU is a really an interesting one.
->>>>
->>>> For current userspace limiting to context creation is fine, since it is
->>>> only allowed for Icelake/VME use case. But if you notice the comment inside:
->>>>
->>>>                   /* ABI restriction - VME use case only. */
->>>>
->>>> It is a hint there was, or could be, more to this uapi than that.
->>>>
->>>> And from memory I think limiting to creation time will nip the hopes
->>>> media had to use this dynamically on other platforms in the bud. So not
->>>> that good really. They had convincing numbers what gets significantly
->>>> better if we allowed dynamic control to this, just that as always, open
->>>> source userspace was not there so we never allowed it. However if you
->>>> come up with a new world order where it can only be done at context
->>>> creation, as said already, the possibility for that improvement (aka
->>>> further improving the competitive advantage) is most likely dashed.
->>>
->>> Hm are you sure that this is create-time only? media-driver uses it
->>> like that, but from my checking compute-runtime updates SSEU mode
->>> before every execbuf call. So it very much looked like we have to keep
->>> this dynamic.
+On 30/04/2021 12:48, Daniel Vetter wrote:
+> On Thu, Apr 29, 2021 at 10:46:40AM +0100, Tvrtko Ursulin wrote:
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >>
->> Ah okay, I assumed it's more of the overall drive to eliminate
->> set_param. If sseu set_param stays then it's fine for what I had in mind.
+>> When a non-persistent context exits we currently mark it as banned in
+>> order to trigger fast termination of any outstanding GPU jobs it may have
+>> left running.
 >>
->>> Or do you mean this is defacto dead code? this = compute setting it
->>> before every batch I mean here.
+>> In doing so we apply a very strict 1ms limit in which the left over job
+>> has to preempt before we issues an engine resets.
 >>
->> No idea, wasn't aware of the compute usage.
->>
->> Before every execbuf is not very ideal though since we have to inject a
->> foreign context operation to update context image, which means stream of
->> work belonging to the context cannot be coalesced (assuming it could to
->> start with). There is also a hw cost to reconfigure the sseu which adds
->> latency on top.
+>> Some workloads are not able to cleanly preempt in that time window and it
+>> can be argued that it would instead be better to give them a bit more
+>> grace since avoiding engine resets is generally preferrable.
 > 
-> They filter out no-op changes. I just meant that from look at
-> compute-runtime, it seems like sseu can change whenever.
+> Can you pls explain here why this is preferrable?
 
-i915 does it as well for good measure - since the penalty is global we 
-have to. So I guess they don't know when VME block will be used ie it is 
-per batch.
+I think there's always the risk of an innocent request getting axed with 
+preempt to busy being very asynchronous and also engine reset can 
+sometimes fail as well.
+
+>> To achieve this the patch splits handling of banned contexts from simply
+>> exited non-persistent ones and then applies different timeouts for both
+>> and also extends the criteria which determines if a request should be
+>> scheduled back in after preemption or not.
+>>
+>> 15ms preempt timeout grace is given to exited non-persistent contexts
+>> which have been empirically tested to satisfy customers requirements
+>> and still provides reasonably quick cleanup post exit.
+> 
+> Same here, a bit more detail on what exactly was the problem to be fixed
+> is needed.
+
+It is a bit multi-faceted. Start with how in some cultures errors 
+messages are much bigger error flags than in others and much more 
+difficult to hand-wave "oh that's not a problem really". The the 
+previous considerations about why not avoid engine reset if we can. Add 
+on top how non-persistent context exiting is not really an error worthy 
+of a reset, *if* it exits cleanly reasonably quickly.
+
+You could say make it clean up for itself before it exits, not a kernel 
+problem. But on the balance of everything, to me it sounds saleable to 
+just give it some longer time compared to banned contexts, which are the 
+unquestionably naughty/dangerous ones. Also, how fast non-persistent 
+contexts will be cleaned up hasn't been defined really. As long as 15ms 
+is an order of magnitude, plus some, shorter than the normal preempt 
+timeout I think it is fine.
 
 Regards,
 
 Tvrtko
+
+P.S. Otherwise I plan to respin v2 with consolidated CONTEXT_SCHEDULABLE 
+flag so fast paths do not have to do too many individual checks.
+
+> -Daniel
+> 
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Zhen Han <zhen.han@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_context.c     | 15 +++++++++------
+>>   drivers/gpu/drm/i915/gt/intel_context.h         | 17 +++++++++++++++++
+>>   drivers/gpu/drm/i915/gt/intel_context_types.h   |  1 +
+>>   .../drm/i915/gt/intel_execlists_submission.c    | 12 ++++++++++--
+>>   drivers/gpu/drm/i915/i915_request.c             |  2 +-
+>>   5 files changed, 38 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> index fd8ee52e17a4..5a6eba1232cd 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> @@ -426,7 +426,8 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+>>   	return engine;
+>>   }
+>>   
+>> -static void kill_engines(struct i915_gem_engines *engines, bool ban)
+>> +static void
+>> +kill_engines(struct i915_gem_engines *engines, bool ban, bool persistent)
+>>   {
+>>   	struct i915_gem_engines_iter it;
+>>   	struct intel_context *ce;
+>> @@ -443,6 +444,8 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
+>>   
+>>   		if (ban && intel_context_set_banned(ce))
+>>   			continue;
+>> +		else if (!persistent && intel_context_set_non_persistent(ce))
+>> +			continue;
+>>   
+>>   		/*
+>>   		 * Check the current active state of this context; if we
+>> @@ -454,7 +457,7 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
+>>   		engine = active_engine(ce);
+>>   
+>>   		/* First attempt to gracefully cancel the context */
+>> -		if (engine && !__cancel_engine(engine) && ban)
+>> +		if (engine && !__cancel_engine(engine) && (ban || !persistent))
+>>   			/*
+>>   			 * If we are unable to send a preemptive pulse to bump
+>>   			 * the context from the GPU, we have to resort to a full
+>> @@ -466,8 +469,6 @@ static void kill_engines(struct i915_gem_engines *engines, bool ban)
+>>   
+>>   static void kill_context(struct i915_gem_context *ctx)
+>>   {
+>> -	bool ban = (!i915_gem_context_is_persistent(ctx) ||
+>> -		    !ctx->i915->params.enable_hangcheck);
+>>   	struct i915_gem_engines *pos, *next;
+>>   
+>>   	spin_lock_irq(&ctx->stale.lock);
+>> @@ -480,7 +481,8 @@ static void kill_context(struct i915_gem_context *ctx)
+>>   
+>>   		spin_unlock_irq(&ctx->stale.lock);
+>>   
+>> -		kill_engines(pos, ban);
+>> +		kill_engines(pos, !ctx->i915->params.enable_hangcheck,
+>> +			     i915_gem_context_is_persistent(ctx));
+>>   
+>>   		spin_lock_irq(&ctx->stale.lock);
+>>   		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
+>> @@ -526,7 +528,8 @@ static void engines_idle_release(struct i915_gem_context *ctx,
+>>   
+>>   kill:
+>>   	if (list_empty(&engines->link)) /* raced, already closed */
+>> -		kill_engines(engines, true);
+>> +		kill_engines(engines, true,
+>> +			     i915_gem_context_is_persistent(ctx));
+>>   
+>>   	i915_sw_fence_commit(&engines->fence);
+>>   }
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+>> index f83a73a2b39f..b0e812b8ce39 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+>> @@ -220,6 +220,23 @@ static inline bool intel_context_set_banned(struct intel_context *ce)
+>>   	return test_and_set_bit(CONTEXT_BANNED, &ce->flags);
+>>   }
+>>   
+>> +static inline bool intel_context_is_non_persistent(const struct intel_context *ce)
+>> +{
+>> +	return test_bit(CONTEXT_NON_PERSISTENT, &ce->flags);
+>> +}
+>> +
+>> +static inline bool intel_context_set_non_persistent(struct intel_context *ce)
+>> +{
+>> +	return test_and_set_bit(CONTEXT_NON_PERSISTENT, &ce->flags);
+>> +}
+>> +
+>> +static inline bool intel_context_is_schedulable(const struct intel_context *ce)
+>> +{
+>> +	return !intel_context_is_banned(ce) &&
+>> +	       !(intel_context_is_closed(ce) &&
+>> +	         intel_context_is_non_persistent(ce));
+>> +}
+>> +
+>>   static inline bool
+>>   intel_context_force_single_submission(const struct intel_context *ce)
+>>   {
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+>> index ed8c447a7346..aa949c539e93 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+>> @@ -95,6 +95,7 @@ struct intel_context {
+>>   #define CONTEXT_BANNED			6
+>>   #define CONTEXT_FORCE_SINGLE_SUBMISSION	7
+>>   #define CONTEXT_NOPREEMPT		8
+>> +#define CONTEXT_NON_PERSISTENT		9 /* Only if also closed. */
+>>   
+>>   	struct {
+>>   		u64 timeout_us;
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> index de124870af44..5ad7272fbbc4 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+>> @@ -478,7 +478,7 @@ __execlists_schedule_in(struct i915_request *rq)
+>>   		     !intel_engine_has_heartbeat(engine)))
+>>   		intel_context_set_banned(ce);
+>>   
+>> -	if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
+>> +	if (unlikely(!intel_context_is_schedulable(ce) || bad_request(rq)))
+>>   		reset_active(rq, engine);
+>>   
+>>   	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
+>> @@ -1204,12 +1204,20 @@ static void record_preemption(struct intel_engine_execlists *execlists)
+>>   static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
+>>   					    const struct i915_request *rq)
+>>   {
+>> +	struct intel_context *ce;
+>> +
+>>   	if (!rq)
+>>   		return 0;
+>>   
+>> +	ce = rq->context;
+>> +
+>>   	/* Force a fast reset for terminated contexts (ignoring sysfs!) */
+>> -	if (unlikely(intel_context_is_banned(rq->context) || bad_request(rq)))
+>> +	if (unlikely(intel_context_is_banned(ce) || bad_request(rq)))
+>>   		return 1;
+>> +	/* Longer grace for closed non-persistent contexts to avoid resets. */
+>> +	else if (unlikely(intel_context_is_closed(ce) &&
+>> +			  intel_context_is_non_persistent(ce)))
+>> +		return 15;
+>>   
+>>   	return READ_ONCE(engine->props.preempt_timeout_ms);
+>>   }
+>> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+>> index bec9c3652188..bbac87535923 100644
+>> --- a/drivers/gpu/drm/i915/i915_request.c
+>> +++ b/drivers/gpu/drm/i915/i915_request.c
+>> @@ -660,7 +660,7 @@ bool __i915_request_submit(struct i915_request *request)
+>>   		goto active;
+>>   	}
+>>   
+>> -	if (unlikely(intel_context_is_banned(request->context)))
+>> +	if (unlikely(!intel_context_is_schedulable(request->context)))
+>>   		i915_request_set_error_once(request, -EIO);
+>>   
+>>   	if (unlikely(fatal_error(request->fence.error)))
+>> -- 
+>> 2.30.2
+>>
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
