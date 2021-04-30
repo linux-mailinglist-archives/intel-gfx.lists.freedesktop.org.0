@@ -2,49 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CC4C36F4C8
-	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 06:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D953036F570
+	for <lists+intel-gfx@lfdr.de>; Fri, 30 Apr 2021 07:43:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6AC46E459;
-	Fri, 30 Apr 2021 04:11:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77B856E462;
+	Fri, 30 Apr 2021 05:43:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C7006E455;
- Fri, 30 Apr 2021 04:11:19 +0000 (UTC)
-IronPort-SDR: iuD6L89Iuzmxi2ZGNlg+wN28ySh9BtZIx02CkL4PWIuKh9NsTEycEKDg3aTy6LWed80bqg6WrX
- Gppny1xCEdxg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="197238345"
-X-IronPort-AV: E=Sophos;i="5.82,260,1613462400"; d="scan'208";a="197238345"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2021 21:11:17 -0700
-IronPort-SDR: BR8pofiamQLjBz0PrMKvuhXMhmszYARRSae1g29YS8fNCy7xKHShqQ8ejBz/3R/9C7e4fHKgly
- KLwbk6CVdFoA==
-X-IronPort-AV: E=Sophos;i="5.82,260,1613462400"; d="scan'208";a="424670486"
-Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2021 21:11:17 -0700
-Date: Thu, 29 Apr 2021 21:03:48 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20210430040348.GA27630@sdutt-i7>
-References: <20210423223131.879208-1-jason@jlekstrand.net>
- <20210423223131.879208-9-jason@jlekstrand.net>
- <CAOFGe958Y6eq1qcPPS-h8Swca8kMy39Vp-gGv6irXdS_8xje5w@mail.gmail.com>
- <YIk1YEXjvaDN+feW@phenom.ffwll.local>
- <CAOFGe97PUT8Ns0bVhHi6D+21yA3=v0QkhdmmKBm=dCn4CizwiA@mail.gmail.com>
- <20210428171853.GA3260@sdutt-i7>
- <CAOFGe96Qy8hXsJCemgDJtZYCbwqxvUS4j-SEKKnLQjE6dmRP2w@mail.gmail.com>
- <20210428175525.GA7224@sdutt-i7>
- <CAOFGe96i7GPvQ8yDreTGF-K5pr_GRNkofQhH7W6Wxr-F8qmxrQ@mail.gmail.com>
- <YIqjG9l30ZmuN1Wg@phenom.ffwll.local>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1D556E459;
+ Fri, 30 Apr 2021 05:43:34 +0000 (UTC)
+IronPort-SDR: 2nFeVqEK96TAlgJSH/gk68w7ub9rjbE/PyAFmces7wuOnfGaSdD/eaxXxuYpWh6Oq/8hi9XCD0
+ eOt75KgFpZ0g==
+X-IronPort-AV: E=McAfee;i="6200,9189,9969"; a="282545751"
+X-IronPort-AV: E=Sophos;i="5.82,260,1613462400"; d="scan'208";a="282545751"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 22:43:34 -0700
+IronPort-SDR: qpSmQaTHSDXQvP3DxAlY9d7jqaegJMVPQzpcGsiakKy/aFeGzVCc3yRbNz/OX1UWB686yzD7Cm
+ RToFEG4KknmA==
+X-IronPort-AV: E=Sophos;i="5.82,260,1613462400"; d="scan'208";a="431257059"
+Received: from angiepch-mobl1.amr.corp.intel.com (HELO localhost)
+ ([10.252.52.49])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2021 22:43:30 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nikola Cornij <nikola.cornij@amd.com>, amd-gfx@lists.freedesktop.org
+In-Reply-To: <20210428234346.1085977-2-nikola.cornij@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210428234346.1085977-1-nikola.cornij@amd.com>
+ <20210428234346.1085977-2-nikola.cornij@amd.com>
+Date: Fri, 30 Apr 2021 08:43:27 +0300
+Message-ID: <875z042ups.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YIqjG9l30ZmuN1Wg@phenom.ffwll.local>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 08/21] drm/i915/gem: Disallow bonding of
- virtual engines
+Subject: Re: [Intel-gfx] [PATCH v8 1/1] drm/drm_mst: Use Extended Base
+ Receiver Capability DPCD space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,113 +49,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Nikola Cornij <nikola.cornij@amd.com>, koba.ko@canonical.com,
+ aurabindo.pillai@amd.com, mikita.lipski@amd.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Apr 29, 2021 at 02:14:19PM +0200, Daniel Vetter wrote:
-> On Wed, Apr 28, 2021 at 01:17:27PM -0500, Jason Ekstrand wrote:
-> > On Wed, Apr 28, 2021 at 1:02 PM Matthew Brost <matthew.brost@intel.com> wrote:
-> > >
-> > > On Wed, Apr 28, 2021 at 12:46:07PM -0500, Jason Ekstrand wrote:
-> > > > On Wed, Apr 28, 2021 at 12:26 PM Matthew Brost <matthew.brost@intel.com> wrote:
-> > > > > Jumping on here mid-thread. For what is is worth to make execlists work
-> > > > > with the upcoming parallel submission extension I leveraged some of the
-> > > > > existing bonding code so I wouldn't be too eager to delete this code
-> > > > > until that lands.
-> > > >
-> > > > Mind being a bit more specific about that?  The motivation for this
-> > > > patch is that the current bonding handling and uAPI is, well, very odd
-> > > > and confusing IMO.  It doesn't let you create sets of bonded engines.
-> > > > Instead you create engines and then bond them together after the fact.
-> > > > I didn't want to blindly duplicate those oddities with the proto-ctx
-> > > > stuff unless they were useful.  With parallel submit, I would expect
-> > > > we want a more explicit API where you specify a set of engine
-> > > > class/instance pairs to bond together into a single engine similar to
-> > > > how the current balancing API works.
-> > > >
-> > > > Of course, that's all focused on the API and not the internals.  But,
-> > > > again, I'm not sure how we want things to look internally.  What we've
-> > > > got now doesn't seem great for the GuC submission model but I'm very
-> > > > much not the expert there.  I don't want to be working at cross
-> > > > purposes to you and I'm happy to leave bits if you think they're
-> > > > useful.  But I thought I was clearing things away so that you can put
-> > > > in what you actually want for GuC/parallel submit.
-> > > >
-> > >
-> > > Removing all the UAPI things are fine but I wouldn't delete some of the
-> > > internal stuff (e.g. intel_virtual_engine_attach_bond, bond
-> > > intel_context_ops, the hook for a submit fence, etc...) as that will
-> > > still likely be used for the new parallel submission interface with
-> > > execlists. As you say the new UAPI wont allow crazy configurations,
-> > > only simple ones.
-> > 
-> > I'm fine with leaving some of the internal bits for a little while if
-> > it makes pulling the GuC scheduler in easier.  I'm just a bit
-> > skeptical of why you'd care about SUBMIT_FENCE. :-)  Daniel, any
-> > thoughts?
-> 
-> Yeah I'm also wondering why we need this. Essentially your insight (and
-> Tony Ye from media team confirmed) is that media umd never uses bonded on
-> virtual engines.
+On Wed, 28 Apr 2021, Nikola Cornij <nikola.cornij@amd.com> wrote:
+> [why]
+> DP 1.4a spec madates that if DP_EXTENDED_RECEIVER_CAP_FIELD_PRESENT is
+> set, Extended Base Receiver Capability DPCD space must be used. Without
+> doing that, the three DPCD values that differ will be wrong, leading to
+> incorrect or limited functionality. MST link rate, for example, could
+> have a lower value. Also, Synaptics quirk wouldn't work out well when
+> Extended DPCD was not read, resulting in no DSC for such hubs.
 >
-
-Well you should use virtual engines with parallel submission interface 
-if are you using it correctly.
-
-e.g. You want a 2 wide parallel submission and there are 4 engine
-instances.
-
-You'd create 2 VEs:
-
-A: 0, 2
-B: 1, 3
-set_parallel
-
-For GuC submission we just configure context and the GuC load balances
-it.
-
-For execlists we'd need to create bonds.
-
-Also likely the reason virtual engines wasn't used with the old
-interface was we only had 2 instances max per class so no need for
-virtual engines. If they used it for my above example if they were using
-the interface correctly they would have to use virtual engines too.
- 
-> So the only thing we need is the await_fence submit_fence logic to stall
-> the subsequent patches just long enough. I think that stays.
+> [how]
+> Modify MST topology manager to use the values from Extended DPCD where
+> applicable.
 >
+> To prevent regression on the sources that have a lower maximum link rate
+> capability than MAX_LINK_RATE from Extended DPCD, have the drivers
+> supply maximum lane count and rate at initialization time.
+>
+> This also reverts 'commit 2dcab875e763 ("Revert drm/dp_mst: Retrieve
+> extended DPCD caps for topology manager")', brining the change back to
+> the original 'commit ad44c03208e4 ("drm/dp_mst: Retrieve extended DPCD
+> caps for topology manager")'.
+>
+> Signed-off-by: Nikola Cornij <nikola.cornij@amd.com>
+> ---
+>  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  5 +++
+>  .../gpu/drm/amd/display/dc/core/dc_link_dp.c  | 18 ++++++++++
+>  drivers/gpu/drm/amd/display/dc/dc_link.h      |  2 ++
+>  drivers/gpu/drm/drm_dp_mst_topology.c         | 33 ++++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  6 +++-
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  3 +-
+>  drivers/gpu/drm/radeon/radeon_dp_mst.c        |  7 ++++
+>  include/drm/drm_dp_mst_helper.h               | 12 ++++++-
+>  8 files changed, 71 insertions(+), 15 deletions(-)
 
-My implementation, for the new parallel submission interface, with
-execlists used a bonds + priority boosts to ensure both are present at
-the same time. This was used for both non-virtual and virtual engines.
-This was never reviewed though and the code died on the list.
 
-> All the additional logic with the cmpxchg lockless trickery and all that
-> isn't needed, because we _never_ have to select an engine for bonded
-> submission: It's always the single one available.
-> 
-> This would mean that for execlist parallel submit we can apply a
-> limitation (beyond what GuC supports perhaps) and it's all ok. With that
-> everything except the submit fence await logic itself can go I think.
-> 
-> Also one for Matt: We decided to ZBB implementing parallel submit on
-> execlist, it's going to be just for GuC. At least until someone starts
-> screaming really loudly.
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 860381d68d9d..a4245eb48ef4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -942,6 +942,7 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
+>  	struct intel_dp *intel_dp = &dig_port->dp;
+>  	enum port port = dig_port->base.port;
+>  	int ret;
+> +	int bios_max_link_rate;
+>  
+>  	if (!HAS_DP_MST(i915) || intel_dp_is_edp(intel_dp))
+>  		return 0;
+> @@ -956,8 +957,11 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
+>  
+>  	/* create encoders */
+>  	intel_dp_create_fake_mst_encoders(dig_port);
+> +	bios_max_link_rate = intel_bios_dp_max_link_rate(&dig_port->base);
 
-If this is the case, then bonds can be deleted.
+Wait, what? This can return 0, and usually does. This is an optional
+limitation, and is generally only used if there's a need to have a
+smaller max link rate than the max the platform supports. We call this
+in one single place, and are not looking to add another call site.
 
-Matt
+I haven't had my doze of coffee this morning, but at a glance, I think
+this will break MST for most i915 users.
 
-> 
-> Cheers, Daniel
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
+See intel_dp->source_rates[] and intel_dp->num_source_rates for all the
+rates the source supports, initialized at encoder
+init. intel_dp->source_rates[intel_dp->num_source_rates - 1] would be
+the max.
+
+Also, I suggest using kHz for rates throughout, and specifically not the
+DPCD "units". Otherwise, this is just another thing that needs fixing
+with the DP 2.0 UHBR rates where the bandwidth codes don't follow the
+same pattern.
+
+Ten versions of the patch, with a benign looking subject, and none of
+the i915 maintainers in Cc. Not cool.
+
+
+BR,
+Jani.
+
+
+>  	ret = drm_dp_mst_topology_mgr_init(&intel_dp->mst_mgr, &i915->drm,
+> -					   &intel_dp->aux, 16, 3, conn_base_id);
+> +					   &intel_dp->aux, 16, 3,
+> +					   dig_port->max_lanes,
+> +					   bios_max_link_rate / 27000, conn_base_id);
+>  	if (ret)
+>  		return ret;
+>  
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
