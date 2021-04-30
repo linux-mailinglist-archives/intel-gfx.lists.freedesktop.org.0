@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 063DC3703E0
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 May 2021 01:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C80E370402
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 May 2021 01:24:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FD7F6F60D;
-	Fri, 30 Apr 2021 23:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B1846E51A;
+	Fri, 30 Apr 2021 23:24:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2DB16F60B;
- Fri, 30 Apr 2021 23:00:53 +0000 (UTC)
-IronPort-SDR: q0xaRtS6T+qlUnDojnibKCVPUIlIlBgwjgW+O5VIGoSwcGsaw+ds87xK1sVEen8hyhV1U8JqBV
- d6GKc/8If8Fg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9970"; a="184518681"
-X-IronPort-AV: E=Sophos;i="5.82,264,1613462400"; d="scan'208";a="184518681"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2021 16:00:48 -0700
-IronPort-SDR: 0HfX+cCXYNhbDiQzkiE9985D+RSLRRulyzUcoMnLpdCTuogEUV9LSPhA9YS3FiEzzC5taGuX97
- yCTovORf09yg==
-X-IronPort-AV: E=Sophos;i="5.82,264,1613462400"; d="scan'208";a="459689361"
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 422126E51A;
+ Fri, 30 Apr 2021 23:23:59 +0000 (UTC)
+IronPort-SDR: NHal1UhAjiTqMoJ9o/qnQg/4PUt0TlVq2tpPofTkXyjXrjX+bLjomTnivxFBRGVRmoif4BP5HL
+ Tlq2xeE3UrSw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9970"; a="176875788"
+X-IronPort-AV: E=Sophos;i="5.82,264,1613462400"; d="scan'208";a="176875788"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2021 16:23:58 -0700
+IronPort-SDR: mj2tUapTXTUhajEG1TehqMTBBdGfFYw21D0kykMi4KB1xnstiRvGicNcZgdOkPuE5jgobg7q4S
+ G/7erYJhySNA==
+X-IronPort-AV: E=Sophos;i="5.82,264,1613462400"; d="scan'208";a="467021319"
 Received: from adixit-mobl1.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.212.201.129])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2021 16:00:47 -0700
-Date: Fri, 30 Apr 2021 16:00:46 -0700
-Message-ID: <87czubbco1.wl-ashutosh.dixit@intel.com>
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2021 16:23:58 -0700
+Date: Fri, 30 Apr 2021 16:23:57 -0700
+Message-ID: <87bl9vbble.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20210430222609.GC38093@orsosgc001.ra.intel.com>
+In-Reply-To: <87czubbco1.wl-ashutosh.dixit@intel.com>
 References: <20210429003410.69754-1-umesh.nerlige.ramappa@intel.com>
  <20210429003410.69754-2-umesh.nerlige.ramappa@intel.com>
  <CAOFGe95O_Q09p4c5Sru0_5E-tBG3DFGm+f-uX-_YHx-UHLOBUA@mail.gmail.com>
  <20210430222609.GC38093@orsosgc001.ra.intel.com>
+ <87czubbco1.wl-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/27.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -60,22 +61,28 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 30 Apr 2021 15:26:09 -0700, Umesh Nerlige Ramappa wrote:
+On Fri, 30 Apr 2021 16:00:46 -0700, Dixit, Ashutosh wrote:
 >
-> Looks like the engine can be dropped since all timestamps are in sync. I
-> just have one more question here. The timestamp itself is 36 bits.  Should
-> the uapi also report the timestamp width to the user OR should I just
-> return the lower 32 bits of the timestamp?
+> On Fri, 30 Apr 2021 15:26:09 -0700, Umesh Nerlige Ramappa wrote:
+> >
+> > Looks like the engine can be dropped since all timestamps are in sync. I
+> > just have one more question here. The timestamp itself is 36 bits.  Should
+> > the uapi also report the timestamp width to the user OR should I just
+> > return the lower 32 bits of the timestamp?
+>
+> How would exposing only the lower 32 bits of the timestamp work?
 
-How would exposing only the lower 32 bits of the timestamp work?
+It would work I guess but overflow every few seconds. So if the counters
+are sampled at a low frequency (once every few seconds) it would yield
+misleading timestamps.
 
-The way to avoid exposing the width would be to expose the timestamp as a
-regular 64 bit value. In the kernel engine state, have a variable for the
-counter and keep on accumulating that (on each query) to full 64 bits in
-spite of the 36 bit HW counter overflow.
-
-So not exposing the width (or exposing a 64 bit timestamp) is a cleaner
-interface but also more work in the kernel.
+> The way to avoid exposing the width would be to expose the timestamp as a
+> regular 64 bit value. In the kernel engine state, have a variable for the
+> counter and keep on accumulating that (on each query) to full 64 bits in
+> spite of the 36 bit HW counter overflow.
+>
+> So not exposing the width (or exposing a 64 bit timestamp) is a cleaner
+> interface but also more work in the kernel.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
