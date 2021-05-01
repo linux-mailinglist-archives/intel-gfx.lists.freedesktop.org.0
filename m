@@ -2,69 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AEF43707B7
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 May 2021 17:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81F683707D3
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 May 2021 18:15:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 352A76E5D5;
-	Sat,  1 May 2021 15:27:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE4B86E201;
+	Sat,  1 May 2021 16:15:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com
- [IPv6:2607:f8b0:4864:20::333])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE3A6E5D5
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 May 2021 15:27:07 +0000 (UTC)
-Received: by mail-ot1-x333.google.com with SMTP id
- q7-20020a9d57870000b02902a5c2bd8c17so547425oth.5
- for <intel-gfx@lists.freedesktop.org>; Sat, 01 May 2021 08:27:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:date:message-id:in-reply-to:references:user-agent
- :subject:mime-version;
- bh=Coc7dLHm8d1NCCPTWT8okM0xdbMyDxa8abEXICC0WzU=;
- b=nmZZsNU9bGgi6d100SUxX8qRnM+9rQOjQcLPNuGaqrrtwlq0K55/GJ/9pRy9N1zcP4
- aDl/0uRah7F1x5EeGocHs89Ew/gwvpJQnEglwsFQDsWISSYjdzVkaKv914uhovQT2vtg
- 4K1Eu1+KRXMtuub1kl7lRh8zyF0A15/dt6ro5nZb7rHLxf7kqA6Y0gcf5r3KpuaXmOFF
- 59e2GGHSDMqFhANxoequ9rpRqzxuEnuvqSZiMy0cr528zmU6K/WRrahRwF+IM9Iy1vJy
- cnAWT4cWi2L8wrEaie/m+I8s4p2vNlWP7p040lW4s0hm70Ye5mDcgMRtFFhushQZu4jB
- mNqA==
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com
+ [IPv6:2607:f8b0:4864:20::42d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 925E36E201
+ for <intel-gfx@lists.freedesktop.org>; Sat,  1 May 2021 16:15:45 +0000 (UTC)
+Received: by mail-pf1-x42d.google.com with SMTP id q2so1148552pfh.13
+ for <intel-gfx@lists.freedesktop.org>; Sat, 01 May 2021 09:15:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=pr9wps/0fpyw7uTouSSyLDZZRNKXYCPSR/z6PFGeA0g=;
+ b=QGuumQiVD78XZhELmHz3F7FdW2S4fDNZQKqvaB9LxZSEH/OAAMwmuwEgxC2JJlIGUy
+ GqxTo9uYQM0YkeHTF/e+2E/9OT9zU/Rl5EFd8jrpLShp4DipSndv/h0mlbBUfEx2v0lW
+ R3m4hmlQFaltR54HfCPDl3DkbqXmmZWJ6XOe7VDkC5YFs9g9E+2Gt1ur9EBi7HHEmsUs
+ JsXRiJAGGBTRltaUBNfIr8CshfB5kllOsLb7hdCffakpMDxTZR5JbgBuaJW3HlUWo0Fq
+ j7ZuDuy4+KnbidvQVR1yk2XpPTudAtRXbEQKiKPJY8XYfUikpCFJElB2gx/hmjSfD0qN
+ eAYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:date:message-id:in-reply-to
- :references:user-agent:subject:mime-version;
- bh=Coc7dLHm8d1NCCPTWT8okM0xdbMyDxa8abEXICC0WzU=;
- b=EQ5/buRkGgtHKvNnvM+SXK82TOZPH2ULQcxUXN6DcFQeIaUMafBLIWkhsdjBZ7HEB+
- kcsDq+7vWKZLIjyz+ijYvCh1kE3Fr1ci3Uap4pohk/z3m5adBmWtj3h8/PePBD1rD+vF
- 3VH2FlGjkKZ51AlQy3xU93KAz7l+hAiQ0f6krTCcNKTsEzr2fsvziFXjfdQQIQSh248I
- 9R9TEvEQkz/08lZJu77nuS/Pb3RgMezqMmQsRGbiKNlzwkXgDewGEYBCKexi+7xsHfKX
- bnOuyVZFfF/jCI/AN61LO61CYgqi+nbAL3Ew1AOWVeByrHq9DazuLX5RigJ5uX9qINzU
- RN9w==
-X-Gm-Message-State: AOAM531gzqQEMK3R6WhjluAqiftXiAyJRdRh4gqYZjlEVHFvgJ55SAYi
- HdgJAzRDXsfWWQwp1VoIFU8JkA==
-X-Google-Smtp-Source: ABdhPJytJ2NvbPwhHIOo1EzelJ2wNBhkPI3GcDlo6+lbM8JirEgcsYUZ0DKCliBTAc8T2Szqaxpl7Q==
-X-Received: by 2002:a9d:4a85:: with SMTP id i5mr7927271otf.102.1619882826282; 
- Sat, 01 May 2021 08:27:06 -0700 (PDT)
-Received: from [100.64.196.46] ([209.107.186.11])
- by smtp.gmail.com with ESMTPSA id 68sm1513449otc.54.2021.05.01.08.27.04
- (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 01 May 2021 08:27:05 -0700 (PDT)
-From: Jason Ekstrand <jason@jlekstrand.net>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Date: Sat, 01 May 2021 10:27:03 -0500
-Message-ID: <179288a4d58.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
-In-Reply-To: <878s4zayqh.wl-ashutosh.dixit@intel.com>
-References: <20210429003410.69754-1-umesh.nerlige.ramappa@intel.com>
- <20210429003410.69754-2-umesh.nerlige.ramappa@intel.com>
- <CAOFGe95O_Q09p4c5Sru0_5E-tBG3DFGm+f-uX-_YHx-UHLOBUA@mail.gmail.com>
- <20210430222609.GC38093@orsosgc001.ra.intel.com>
- <87czubbco1.wl-ashutosh.dixit@intel.com>
- <179255a3b48.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
- <20210501021959.GA50683@orsosgc001.ra.intel.com>
- <878s4zayqh.wl-ashutosh.dixit@intel.com>
-User-Agent: AquaMail/1.29.1-1808 (build: 102900007)
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=pr9wps/0fpyw7uTouSSyLDZZRNKXYCPSR/z6PFGeA0g=;
+ b=U8vt0HDcRHkx3x8Gxdrvz9sHmSfghHyccz0md139amBQJFJyUKi5HUTPrCtZx3y6aF
+ zvTs1s7wM0ZnHksyBcbUktBzSF45ZHGs1CQJ9OW5/tSYdPf1lzwT/9IisSnqT/b8XteR
+ kDIF1i26lHkW2ksRB0diOrWZEdJVzJqc5jAWxWUGV6WOQzm44Es1LTFmzk861kbHqxZI
+ RrOK3SCx7xg+x06Rrh+rhlMKhVkmhDI3Wxvq4BDIgM/KFs0zc1ZCt5uLy81fpUNKKu4v
+ JDgWaeDPGJfLqCO+PzaYjxQidcPh57EatMR3cEkOTouU8Grtu5KdaXHZ0b4yCmI/BZ5y
+ mC2A==
+X-Gm-Message-State: AOAM530C3r+tR07lHbBdaMy+YHwXULFY4FbDyjrqqV6ppbpcipLZ4FNt
+ hi0+vgsFQDBhBY6+WnaxOhZGhwFkjVUEVn/3kJnqjXiRwUFo/w==
+X-Google-Smtp-Source: ABdhPJxGQ9RPHF2WPuFNdNGmytjNVXO8CnSzdyI9GeytxPAqXHMJ6GxDIJyKmZ07TrT3zQktL4PkMKjV4NgSiSXzwo0=
+X-Received: by 2002:a62:2d6:0:b029:204:9b3b:dced with SMTP id
+ 205-20020a6202d60000b02902049b3bdcedmr10343104pfc.36.1619885744869; Sat, 01
+ May 2021 09:15:44 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/1] i915/query: Correlate engine and cpu
- timestamps with better accuracy
+From: =?UTF-8?Q?Tomasz_K=C5=82oczko?= <kloczko.tomasz@gmail.com>
+Date: Sat, 1 May 2021 17:15:19 +0100
+Message-ID: <CABB28Cy-1sT5XAzinnuFty-5n61BN7Yq5En=qom0bY=vBMxHeQ@mail.gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [Intel-gfx] Current status of the Intel X11 driver
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,159 +58,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1979123350=="
+Content-Type: multipart/mixed; boundary="===============1323390791=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============1979123350==
-Content-Type: multipart/alternative; boundary="179288a4ec55f6d2817ffdca95"
+--===============1323390791==
+Content-Type: multipart/alternative; boundary="00000000000066536b05c1470a86"
 
-This is a multi-part message in MIME format.
---179288a4ec55f6d2817ffdca95
-Content-Type: text/plain; format=flowed; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
-
-On April 30, 2021 23:01:44 "Dixit, Ashutosh" <ashutosh.dixit@intel.com> wrote:
-> On Fri, 30 Apr 2021 19:19:59 -0700, Umesh Nerlige Ramappa wrote:
->>
->> On Fri, Apr 30, 2021 at 07:35:41PM -0500, Jason Ekstrand wrote:
->>> On April 30, 2021 18:00:58 "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
->>> wrote:
->>>
->>> On Fri, 30 Apr 2021 15:26:09 -0700, Umesh Nerlige Ramappa wrote:
->>>
->>> Looks like the engine can be dropped since all timestamps are in sync.
->>> I
->>> just have one more question here. The timestamp itself is 36 bits.
->>> Should
->>> the uapi also report the timestamp width to the user OR should I just
->>> return the lower 32 bits of the timestamp?
->>>
->>> Yeah, I think reporting the timestamp width is a good idea since we're
->>> reporting the period/frequency here.
->>
->> Actually, I forgot that we are handling the overflow before returning the
->> cs_cycles to the user and overflow handling was the only reason I thought
->> user should know the width. Would you stil recommend returning the width in
->> the uapi?
->
-> The width is needed for userspace to figure out if overflow has occured
-> between two successive query calls. I don't think I see this happening in
-> the code.
-
-Right... We (UMDs) currently just hard-code it to 36 bits because that's 
-what we've had on all platforms since close enough to forever. We bake in 
-the frequency based on PCI ID. Returning the number of bits, like I said, 
-goes nicely with the frequency. It's not necessary, assuming sufficiently 
-smart userspace (neither is frequency), but it seems to go with it. I guess 
-I don't care much either way.
-
-Coming back to the multi-tile issue we discussed internally, I think that 
-is something we should care about. Since this works by reading the 
-timestamp register on an engine, I think leaving the engine specifier in 
-there is fine. Userspace should know that there's actually only one clock 
-and just query one of them (probably RCS). For crazy multi-device cases, 
-we'll either query per logical device (read tile) or we'll have to make 
-them look like a single device and sync the timestamps somehow in the UMD 
-by carrying around an offset factor.
-
-As is, this patch is
-
-Reviewed-by: Jason Ekstrand <jason@jlekstrand.net>
-
-I still need to review the ANV patch before we can land this though.
-
---Jason
-
---179288a4ec55f6d2817ffdca95
-Content-Type: text/html; charset="us-ascii"
+--00000000000066536b05c1470a86
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
-w3.org/TR/html4/loose.dtd">
-<html>
-<body>
-<div dir=3D"auto">
-<div dir=3D"auto"><span style=3D"font-size: 12pt;">On April 30, 2021 23:01:=
-44 "Dixit, Ashutosh" &lt;ashutosh.dixit@intel.com&gt; wrote:</span></div><d=
-iv id=3D"aqm-original" style=3D"color: black;">
-<blockquote type=3D"cite" class=3D"gmail_quote" style=3D"margin: 0 0 0 0.75=
-ex; border-left: 1px solid #808080; padding-left: 0.75ex;">
-<div dir=3D"auto">On Fri, 30 Apr 2021 19:19:59 -0700, Umesh Nerlige Ramappa=
- wrote:</div>
-<blockquote type=3D"cite" class=3D"gmail_quote" style=3D"margin: 0 0 0 0.75=
-ex; border-left: 1px solid #0099CC; padding-left: 0.75ex;">
-<div dir=3D"auto"><br></div>
-<div dir=3D"auto">On Fri, Apr 30, 2021 at 07:35:41PM -0500, Jason Ekstrand =
-wrote:</div>
-<blockquote type=3D"cite" class=3D"gmail_quote" style=3D"margin: 0 0 0 0.75=
-ex; border-left: 1px solid #9933CC; padding-left: 0.75ex;">
-<div dir=3D"auto">On April 30, 2021 18:00:58 "Dixit, Ashutosh" &lt;ashutosh=
-.dixit@intel.com&gt;</div>
-<div dir=3D"auto">wrote:</div>
-<div dir=3D"auto"><br></div>
-<div dir=3D"auto">On Fri, 30 Apr 2021 15:26:09 -0700, Umesh Nerlige Ramappa=
- wrote:</div>
-<div dir=3D"auto"><br></div>
-<div dir=3D"auto">Looks like the engine can be dropped since all timestamps=
- are in sync.</div>
-<div dir=3D"auto">I</div>
-<div dir=3D"auto">just have one more question here. The timestamp itself is=
- 36 bits.</div>
-<div dir=3D"auto">&nbsp;Should</div>
-<div dir=3D"auto">the uapi also report the timestamp width to the user OR s=
-hould I just</div>
-<div dir=3D"auto">return the lower 32 bits of the timestamp?</div>
-<div dir=3D"auto"><br></div>
-<div dir=3D"auto">Yeah, I think reporting the timestamp width is a good ide=
-a since we're</div>
-<div dir=3D"auto">reporting the period/frequency here.</div>
-</blockquote>
-<div dir=3D"auto"><br></div>
-<div dir=3D"auto">Actually, I forgot that we are handling the overflow befo=
-re returning the</div>
-<div dir=3D"auto">cs_cycles to the user and overflow handling was the only =
-reason I thought</div>
-<div dir=3D"auto">user should know the width. Would you stil recommend retu=
-rning the width in</div>
-<div dir=3D"auto">the uapi?</div>
-</blockquote>
-<div dir=3D"auto"><br></div>
-<div dir=3D"auto">The width is needed for userspace to figure out if overfl=
-ow has occured</div>
-<div dir=3D"auto">between two successive query calls. I don't think I see t=
-his happening in</div>
-<div dir=3D"auto">the code.</div>
-</blockquote>
-</div><div dir=3D"auto"><br></div><div dir=3D"auto">Right... We (UMDs) curr=
-ently just hard-code it to 36 bits because that's what we've had on all pla=
-tforms since close enough to forever. We bake in the frequency based on PCI=
- ID. Returning the number of bits, like I said, goes nicely with the freque=
-ncy. It's not necessary, assuming sufficiently smart userspace (neither is =
-frequency), but it seems to go with it. I guess I don't care much either wa=
-y.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Coming back to the mu=
-lti-tile issue we discussed internally, I think that is something we should=
- care about. Since this works by reading the timestamp register on an engin=
-e, I think leaving the engine specifier in there is fine. Userspace should =
-know that there's actually only one clock and just query one of them (proba=
-bly RCS). For crazy multi-device cases, we'll either query per logical devi=
-ce (read tile) or we'll have to make them look like a single device and syn=
-c the timestamps somehow in the UMD by carrying around an offset factor.</d=
-iv><div dir=3D"auto"><br></div><div dir=3D"auto">As is, this patch is</div>=
-<div dir=3D"auto"><br></div><div dir=3D"auto">Reviewed-by: Jason Ekstrand &=
-lt;jason@jlekstrand.net&gt;</div><div dir=3D"auto"><br></div><div dir=3D"au=
-to">I still need to review the ANV patch before we can land this though.</d=
-iv><div dir=3D"auto"><br></div><div dir=3D"auto">--Jason</div>
-</div></body>
-</html>
+Hi,
 
---179288a4ec55f6d2817ffdca95--
+Asccording to
+https://gitlab.freedesktop.org/xorg/driver/xf86-video-intel/-/tags last
+release was +6 years ago.
+Since then it has been added +900 commits.
 
+Is it any plan to make a new release or doest mean that no one cares about
+keeping more or less the release ~up-to-date?
 
---===============1979123350==
+kloczek
+--=20
+Tomasz K=C5=82oczko | LinkedIn: *http://lnkd.in/FXPWxH <http://lnkd.in/FXPW=
+xH>*
+
+--00000000000066536b05c1470a86
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:monospac=
+e,monospace">Hi,</div><div class=3D"gmail_default" style=3D"font-family:mon=
+ospace,monospace"><br></div><div class=3D"gmail_default" style=3D"font-fami=
+ly:monospace,monospace">Asccording to <a href=3D"https://gitlab.freedesktop=
+.org/xorg/driver/xf86-video-intel/-/tags">https://gitlab.freedesktop.org/xo=
+rg/driver/xf86-video-intel/-/tags</a> last release was=C2=A0+6 years ago.</=
+div><div class=3D"gmail_default" style=3D"font-family:monospace,monospace">=
+Since then it has been added +900 commits.</div><div class=3D"gmail_default=
+" style=3D"font-family:monospace,monospace"><br></div><div class=3D"gmail_d=
+efault" style=3D"font-family:monospace,monospace">Is it any plan to make a =
+new release or doest mean that no one cares about keeping more or less the =
+release ~up-to-date?</div><div class=3D"gmail_default" style=3D"font-family=
+:monospace,monospace"><br></div><div class=3D"gmail_default" style=3D"font-=
+family:monospace,monospace">kloczek</div><div><div dir=3D"ltr" class=3D"gma=
+il_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div=
+ dir=3D"ltr"><font face=3D"monospace, monospace">--=C2=A0</font></div><div =
+dir=3D"ltr"><font face=3D"monospace, monospace">Tomasz K=C5=82oczko | Linke=
+dIn:=C2=A0<b style=3D"font-weight:normal"><a href=3D"http://lnkd.in/FXPWxH"=
+ style=3D"text-decoration:none" target=3D"_blank"><span style=3D"font-size:=
+13px;color:rgb(17,85,204);background-color:transparent;text-decoration:unde=
+rline;vertical-align:baseline;white-space:pre-wrap">http://lnkd.in/FXPWxH</=
+span></a></b></font></div></div></div></div></div></div>
+
+--00000000000066536b05c1470a86--
+
+--===============1323390791==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -240,5 +124,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1979123350==--
-
+--===============1323390791==--
