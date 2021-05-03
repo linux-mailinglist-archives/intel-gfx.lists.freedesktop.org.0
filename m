@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7088037216B
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 22:35:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60631372171
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 22:38:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D52F96E15D;
-	Mon,  3 May 2021 20:35:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06D486E17F;
+	Mon,  3 May 2021 20:38:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D6C016E15D;
- Mon,  3 May 2021 20:35:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 303746E17F;
+ Mon,  3 May 2021 20:38:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D1D28A00C9;
- Mon,  3 May 2021 20:35:13 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 26D7EA00C9;
+ Mon,  3 May 2021 20:38:35 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jason Ekstrand" <jason@jlekstrand.net>
-Date: Mon, 03 May 2021 20:35:13 -0000
-Message-ID: <162007411385.13684.14431372139354942621@emeril.freedesktop.org>
+Date: Mon, 03 May 2021 20:38:35 -0000
+Message-ID: <162007431515.13686.1224996084481998403@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210503155748.1961781-1-jason@jlekstrand.net>
 In-Reply-To: <20210503155748.1961781-1-jason@jlekstrand.net>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/gem=3A_ioctl_clean-ups_=28rev4=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/gem=3A_ioctl_clean-ups_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,163 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1371:17: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1371:17:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1371:17:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1589:14: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1589:14:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1589:14:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:1912:25: warning: symbol 'lazy_create_context_locked' was not declared. Should it be static?
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2117:21: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2117:21:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2117:21:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2118:39: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2118:39:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:2118:39:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:767:9: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:767:9:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:767:9:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:776:22: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:776:22:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:776:22:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:795:27: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:795:27:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:795:27:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:813:13: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:813:13:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.c:813:13:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:154:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:154:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:154:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:154:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:154:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:154:16:    struct i915_address_space [noderef] __rcu *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14: error: incompatible types in comparison expression (different address spaces):
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14: error: incompatible types in comparison expression (different address spaces):
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14: error: incompatible types in comparison expression (different address spaces):
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14: error: incompatible types in comparison expression (different address spaces):
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14: error: incompatible types in comparison expression (different address spaces):
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space [noderef] __rcu *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space [noderef] __rcu *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space [noderef] __rcu *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space [noderef] __rcu *
-+./drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_context.h:163:14:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:746:13: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:746:13:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:746:13:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:772:49: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:772:49:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:772:49:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:33:16:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:704:33: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:704:33:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:704:33:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:838:33: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:838:33:    struct i915_address_space *
-+drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c:838:33:    struct i915_address_space [noderef] __rcu *
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1329:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_ring_submission.c:1203:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/selftests/i915_syncmap.c:80:54: warning: dubious: x | !y
-+drivers/gpu/drm/i915/selftests/i915_vma.c:42:24: error: incompatible types in comparison expression (different address spaces):
-+drivers/gpu/drm/i915/selftests/i915_vma.c:42:24:    struct i915_address_space *
-+drivers/gpu/drm/i915/selftests/i915_vma.c:42:24:    struct i915_address_space [noderef] __rcu *
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/gem/i915_gem_context_types.h:201: warning: Function parameter or member 'legacy_rcs_sseu' not described in 'i915_gem_proto_context'
 
 
 _______________________________________________
