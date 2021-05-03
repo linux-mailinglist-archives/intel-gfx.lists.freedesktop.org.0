@@ -1,43 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B13371239
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 10:00:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A994B37124B
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 10:13:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD8626E87F;
-	Mon,  3 May 2021 08:00:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2F389D66;
+	Mon,  3 May 2021 08:13:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D9E76E87F;
- Mon,  3 May 2021 08:00:29 +0000 (UTC)
-IronPort-SDR: UAj9ZbMI8tpKbIlWdUa8xF9kyC9XLm595s7d9CbMQXQW3SvJU9Ct+Sy5Cie+T84fJuiDbehLI8
- 9ZQSq1vG2Y+Q==
-X-IronPort-AV: E=McAfee;i="6200,9189,9972"; a="194546034"
-X-IronPort-AV: E=Sophos;i="5.82,268,1613462400"; d="scan'208";a="194546034"
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BAEC89D66
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 May 2021 08:13:30 +0000 (UTC)
+IronPort-SDR: I04ElsJz0vh/5Kifn3nvP5WE/fG1NwlVHbg3ZZcc2CwntIRf9GPwdMMCnG+jdJii/15lj5BPnD
+ kajoRjUPsNEw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9972"; a="177897216"
+X-IronPort-AV: E=Sophos;i="5.82,268,1613462400"; d="scan'208";a="177897216"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2021 01:00:28 -0700
-IronPort-SDR: 0BtbVBvW4cKwxyUMXLuMNzqQR8eNMkGREOUVxBr1myj9cvQZmdyv3RaoH6saWoxMkb2gW4mAbU
- vEVYOaACypdg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,268,1613462400"; d="scan'208";a="530292089"
-Received: from kuha.fi.intel.com ([10.237.72.162])
- by fmsmga001.fm.intel.com with SMTP; 03 May 2021 01:00:21 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Mon, 03 May 2021 11:00:20 +0300
-Date: Mon, 3 May 2021 11:00:20 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>, Imre Deak <imre.deak@intel.com>
-Message-ID: <YI+tlE35i+6F/WUO@kuha.fi.intel.com>
-References: <20210428215257.500088-1-hdegoede@redhat.com>
- <20210428215257.500088-5-hdegoede@redhat.com>
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2021 01:13:29 -0700
+IronPort-SDR: qqQoHg8ctibJZ8yzJJn5NIm+Gvrk1wn6WyflKV3gb0EG9WDM4HVw0mVGHXGyU93xXhLH2iQz54
+ AiPHe+ganPUA==
+X-IronPort-AV: E=Sophos;i="5.82,268,1613462400"; d="scan'208";a="530296971"
+Received: from abhijits-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.13.203])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2021 01:13:27 -0700
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210428215257.500088-5-hdegoede@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH 4/9] drm/connector: Add support for
- out-of-band hotplug notification
+In-Reply-To: <20210430103635.GA16501@hos.afrie.home.de>
+References: <20210429181450.GA25385@hos.afrie.home.de>
+ <20210429235828.GZ1551@zhen-hp.sh.intel.com>
+ <161977150734.8550.2371200514024347460@jlahtine-mobl.ger.corp.intel.com>
+ <20210430103635.GA16501@hos.afrie.home.de>
+To: Andreas Friedrich <afrie@gmx.net>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Message-ID: <162002960518.3526.10925040263559391423@jlahtine-mobl.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Date: Mon, 03 May 2021 11:13:25 +0300
+Subject: Re: [Intel-gfx] REGRESSION with 5.12: Suspend not working on
+ Toshiba notebook
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,93 +52,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- platform-driver-x86@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Hans,
+Quoting Andreas Friedrich (2021-04-30 13:36:35)
+> On Fri, Apr 30, 2021 at 11:31:47AM +0300, Joonas Lahtinen wrote:
+> 
+> Hello Joonas,
+> 
+> thank you for your quick response.
+> ...
+> > That is a merge commit, it doesn't itself change anything as there were no
+> > conflicts. It just indicates that two trees got merged.
+> ...
+> > If you are able to provide a bisect to a one patch, please do report it
+> > as a bug, let's then take it from there.
+> 
+> I have bisect the kernel 3 times and it always leads me to the wrong
+> end. Because not every suspend results in a frozen system, maybe I
+> have marked a 'bisect good' although it was bad.
 
-On Wed, Apr 28, 2021 at 11:52:52PM +0200, Hans de Goede wrote:
-> +/**
-> + * struct drm_connector_oob_hotplug_event_data: OOB hotplug event data
-> + *
-> + * Contains data about out-of-band hotplug events, signalled through
-> + * drm_connector_oob_hotplug_event().
-> + */
-> +struct drm_connector_oob_hotplug_event_data {
-> +	/**
-> +	 * @connected: New connected status for the connector.
-> +	 */
-> +	bool connected;
-> +	/**
-> +	 * @dp_lanes: Number of available displayport lanes, 0 if unknown.
-> +	 */
-> +	int dp_lanes;
-> +	/**
-> +	 * @orientation: Connector orientation.
-> +	 */
-> +	enum typec_orientation orientation;
-> +};
+This is most likely the problem. You should try each suggested commit
+enough times to gain confidence in if it's good or bad build.
 
-I don't think the orientation is relevant. It will always be "normal"
-from DP PoW after muxing, no?
+> What I surely can say is, that kernel 5.11.16 works fine and 5.12-rc1
+> (v5.12-rc1-dontuse) does not.
+> 
+> However, on the bisecting path I saw the following commits:
+>   [41a9c75d0acf23f33f012d3f9535de9e9b631051] drm/i915/gem: Move stolen node into GEM object union
+>   [d82afcf9caaac26ce2642511115bca9dacf30f41] Merge tag 'drm-intel-gt-next-2021-01-21-1' of git://anongit.freedesktop.org/drm/drm-intel into drm-next
+>   [885e1938452fc7fc37a3051d76e1ddb7ead099fa] drm/i915/gvt: statically set F_CMD_WRITE_PATCH flag
+>   [a2dd2ff50cde3cbbeecec72225bb18582b291f14] drm/i915/gt: Skip over completed active execlists, again
+>   [02dd2b12a685944c4d52c569d05f636372a7b6c7] drm/i915/gvt: unify lri cmd handler and mmio handlers
+>   [69b4b99842201bc24c98ba66b922d8879e190483] drm/i915/gvt: Add missing forward decl of intel_vgpu for HDRTEST
+>   [c071a6c0fef0fade787d827c7fc0e07481512326] Merge tag 'gvt-gt-next-2021-01-18' of https://github.com/intel/gvt-linux into drm-intel-gt-next
 
-I'm also not sure those deatils are enough in the long run. Based on
-what I've understood from our graphics team guys, for example knowing
-if multi-function is preferred may be important in some cases.
+As Zhenyu mentioned, you don't even have GVT module enabled, so most of
+those are guaranteed to be incorrectly bisected. And there are two merge
+commits with no conflicts (== no code change).
 
-+Imre.
+Bisect should end so that the previous commit is good, and the new
+commit is bad. If there are no code changes in the commit, there's
+no way it can be the commit that is really the culprit.
 
-All of that, and more, is already available in the Configuration VDO
-Status VDO that the we have negotiated with the DP partner. Both those
-VDOs are part of struct typec_displayport_data. I think we should
-simply supply that structure to the DRM code instead of picking those
-details out of it...
+Without a proper bisect, it'll be quite difficult to start the triage
+on our side.
 
->  /**
->   * struct drm_tv_connector_state - TV connector related states
->   * @subconnector: selected subconnector
-> @@ -1110,6 +1132,15 @@ struct drm_connector_funcs {
->  	 */
->  	void (*atomic_print_state)(struct drm_printer *p,
->  				   const struct drm_connector_state *state);
-> +
-> +	/**
-> +	 * @oob_hotplug_event:
-> +	 *
-> +	 * This will get called when a hotplug-event for a drm-connector
-> +	 * has been received from a source outside the display driver / device.
-> +	 */
-> +	void (*oob_hotplug_event)(struct drm_connector *connector,
-> +				  struct drm_connector_oob_hotplug_event_data *data);
+> So I think it's a drm-i915 issue. I have communicated with David
+> Airlie (airlied@redhat.com) and he also bets on an i915 bug.
 
-So I would not try to generalise this like that. This callback should
-be USB Type-C DP altmode specific:
+It's very possible that it can be i915 bug. What you can try is to
+blacklist i915 module and operate the system with SSH and see if the
+latest kernel still freezes?
 
-	void (*oob_hotplug_event)(struct drm_connector *connector,
-                                  struct typec_displayport_data *data);
+Also, please try drm-tip kernel and see if it fixed there.
 
-Or like this if the orientation can really be reversed after muxing:
+> > https://01.org/linuxgraphics/documentation/how-report-bugs
+> 
+> Following https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
+> I can give you the following infos:
+>   - After calling 'echo mem > /sys/power/state' the system gets frozen
+>     (the screen is dimmed but the CPU fan is still running). The
+>     system is inaccessible from remote. The only way to get it working
+>     again is to hard power off and on.
+>   - One out of 5 suspend tries will cause the issue, mostly the first one.
+>   - Notebook: Old Toshiba Tecra A10 from 2009.
+>   - x86_64, 5.12-rc1, Debian GNU/Linux 10 (buster), see dmidecode.txt.gz
+>     and 5.12.config.gz
+>   - Because the system is frozen, I cannot read /sys/class/drm/card0/error
+>     before rebooting.
+> 
+> Please let me know if I can do anyting else to solve the problem.
 
-	void (*oob_hotplug_event)(struct drm_connector *connector,
-				  struct typec_altmode *altmode,
-                                  struct typec_displayport_data *data);
+Please do file a bug on the issue tracker as requested:
 
-You can now check the orientation separately with
-typec_altmode_get_orientation() if necessary.
+https://gitlab.freedesktop.org/drm/intel/issues/
 
-
-thanks,
-
--- 
-heikki
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
