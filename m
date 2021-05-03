@@ -2,52 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B183371322
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 11:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D37CA3713A5
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 12:31:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E79C56E0BC;
-	Mon,  3 May 2021 09:43:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 350976E89A;
+	Mon,  3 May 2021 10:31:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2064 seconds by postgrey-1.36 at gabe;
- Sat, 01 May 2021 08:50:18 UTC
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0E0C6E07D;
- Sat,  1 May 2021 08:50:18 +0000 (UTC)
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
- by localhost (Postfix) with ESMTP id 4FXMWC5W4fz9sRs;
- Sat,  1 May 2021 10:15:51 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
- by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id fg9IUuAJTwT6; Sat,  1 May 2021 10:15:51 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
- by pegase2.c-s.fr (Postfix) with ESMTP id 4FXMWC4ZYsz9sRq;
- Sat,  1 May 2021 10:15:51 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 6D55F8B76F;
- Sat,  1 May 2021 10:15:51 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
- by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
- with ESMTP id y1IqsAiUoALE; Sat,  1 May 2021 10:15:51 +0200 (CEST)
-Received: from po15610vm.idsi0.si.c-s.fr (unknown [192.168.4.90])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 25D8D8B763;
- Sat,  1 May 2021 10:15:51 +0200 (CEST)
-Received: by po15610vm.idsi0.si.c-s.fr (Postfix, from userid 0)
- id 04197642A5; Sat,  1 May 2021 08:15:50 +0000 (UTC)
-Message-Id: <1acb97f184bf08078ebe0ba8a20b41937949a5a8.1619856556.git.christophe.leroy@csgroup.eu>
-In-Reply-To: <f148cffa418ca0e6e4d79657fc8a9108917291ce.1619856556.git.christophe.leroy@csgroup.eu>
-References: <f148cffa418ca0e6e4d79657fc8a9108917291ce.1619856556.git.christophe.leroy@csgroup.eu>
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>
-Date: Sat,  1 May 2021 08:15:51 +0000 (UTC)
-X-Mailman-Approved-At: Mon, 03 May 2021 09:43:04 +0000
-Subject: [Intel-gfx] [PATCH RESEND] drm/i915/gem: Use
- user_write_access_begin() instead of user_access_begin()
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BA3606E899;
+ Mon,  3 May 2021 10:31:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AB526A0169;
+ Mon,  3 May 2021 10:31:36 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Mon, 03 May 2021 10:31:36 -0000
+Message-ID: <162003789667.13683.12082355969202429023@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200601101516.21018-1-anshuman.gupta@intel.com>
+In-Reply-To: <20200601101516.21018-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_lpsp_with_hdmi/dp_outputs_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,60 +38,220 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-mm@kvack.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0152148331=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-eb_copy_relocations() only do unsafe_put_user(), it only
-requires write access to user.
+--===============0152148331==
+Content-Type: multipart/alternative;
+ boundary="===============3869882403879658032=="
 
-Use user_write_access_begin() instead of user_access_begin().
+--===============3869882403879658032==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
-Resending with mm list in addition
+== Series Details ==
 
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Series: drm/i915: lpsp with hdmi/dp outputs (rev2)
+URL   : https://patchwork.freedesktop.org/series/77866/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 5964e67c7d36..f7a7bb45274b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1907,14 +1907,14 @@ static int eb_copy_relocations(const struct i915_execbuffer *eb)
- 		 * happened we would make the mistake of assuming that the
- 		 * relocations were valid.
- 		 */
--		if (!user_access_begin(urelocs, size))
-+		if (!user_write_access_begin(urelocs, size))
- 			goto end;
- 
- 		for (copied = 0; copied < nreloc; copied++)
- 			unsafe_put_user(-1,
- 					&urelocs[copied].presumed_offset,
- 					end_user);
--		user_access_end();
-+		user_write_access_end();
- 
- 		eb->exec[i].relocs_ptr = (uintptr_t)relocs;
- 	}
-@@ -1922,7 +1922,7 @@ static int eb_copy_relocations(const struct i915_execbuffer *eb)
- 	return 0;
- 
- end_user:
--	user_access_end();
-+	user_write_access_end();
- end:
- 	kvfree(relocs);
- 	err = -EFAULT;
--- 
-2.25.0
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10034 -> Patchwork_20044
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20044 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@runner@aborted:
+    - fi-bdw-5557u:       NOTRUN -> [FAIL][2] ([i915#1602] / [i915#2029])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-bdw-5557u/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-tgl-u2:          [FAIL][3] ([i915#1888]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10034/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-nick:        [DMESG-FAIL][5] ([i915#2927]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10034/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [SKIP][7] ([fdo#109271]) -> [FAIL][8] ([i915#3049])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10034/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1602]: https://gitlab.freedesktop.org/drm/intel/issues/1602
+  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
+  [i915#2029]: https://gitlab.freedesktop.org/drm/intel/issues/2029
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+  [i915#3049]: https://gitlab.freedesktop.org/drm/intel/issues/3049
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+
+
+Participating hosts (46 -> 41)
+------------------------------
+
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10034 -> Patchwork_20044
+
+  CI-20190529: 20190529
+  CI_DRM_10034: 81d9afcd1e737eed4ea216976f506dfb68a59548 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20044: f5e1536344c543fec32eaf332facbd44d2196c09 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f5e1536344c5 drm/i915: lpsp with hdmi/dp outputs
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/index.html
+
+--===============3869882403879658032==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: lpsp with hdmi/dp outputs (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/77866/">https://patchwork.freedesktop.org/series/77866/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10034 -&gt; Patchwork_20044</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20044 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1602">i915#1602</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2029">i915#2029</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10034/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10034/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_pm_rpm@basic-rte:<ul>
+<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10034/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20044/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3049">i915#3049</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (46 -&gt; 41)</h2>
+<p>Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10034 -&gt; Patchwork_20044</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10034: 81d9afcd1e737eed4ea216976f506dfb68a59548 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20044: f5e1536344c543fec32eaf332facbd44d2196c09 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>f5e1536344c5 drm/i915: lpsp with hdmi/dp outputs</p>
+
+</body>
+</html>
+
+--===============3869882403879658032==--
+
+--===============0152148331==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0152148331==--
