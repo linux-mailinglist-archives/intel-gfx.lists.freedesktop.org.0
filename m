@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DCD7371550
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 14:39:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 856E6371559
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 14:45:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B7366E8C6;
-	Mon,  3 May 2021 12:39:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6DCF6E8AD;
+	Mon,  3 May 2021 12:45:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25B596E1F3
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 May 2021 12:39:46 +0000 (UTC)
-IronPort-SDR: bg63emFAssGQHGVDpJlInP4YtLQHOv7d64img/sxtNJMpJhLT5eBbSUnW6+B1r4zMxf4k55ZPD
- gRC+Yx2JWKbg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9972"; a="261680269"
-X-IronPort-AV: E=Sophos;i="5.82,270,1613462400"; d="scan'208";a="261680269"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2021 05:39:45 -0700
-IronPort-SDR: R751lYowYQNh0K3dy3P7G1LjRNmCj+JIHo7iO7GLPjGzG/6ErzXuD1gdzTLElayB205VJkYuGK
- 4ugvAYFvMF3w==
-X-IronPort-AV: E=Sophos;i="5.82,270,1613462400"; d="scan'208";a="428281812"
-Received: from ashoksan-mobl.ger.corp.intel.com (HELO [10.252.39.186])
- ([10.252.39.186])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2021 05:39:44 -0700
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-References: <c3625793-7271-58e9-f9a7-94862eccef20@linux.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <cb0c621c-e3c1-ef85-e27a-2f90bb96be2e@linux.intel.com>
-Date: Mon, 3 May 2021 14:39:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.9.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BD3726E8AA;
+ Mon,  3 May 2021 12:45:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B59DCA0019;
+ Mon,  3 May 2021 12:45:19 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <c3625793-7271-58e9-f9a7-94862eccef20@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] Lockdep splat on drm-tip
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Cornij, Nikola" <nikola.cornij@amd.com>
+Date: Mon, 03 May 2021 12:45:19 -0000
+Message-ID: <162004591971.13686.10946521539958804127@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210430212224.21588-1-nikola.cornij@amd.com>
+In-Reply-To: <20210430212224.21588-1-nikola.cornij@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/dp=5Fmst=3A_Use_the_correct_max_source_link_rate_for_i915?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,83 +38,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T3AgMDMtMDUtMjAyMSBvbSAxMzo1NyBzY2hyZWVmIFRob21hcyBIZWxsc3Ryw7ZtOgo+IEhpLCBN
-YWFydGVuLAo+Cj4gSSBzYXcgdGhpcyB0aGUgb3RoZXIgZGF5IHdoaWxlIHdvcmtpbmcgb24gdGhl
-IFRUTSBjb252ZXJzaW9uOgo+Cj4gNTkyNS41MDk3NjVdIEJVRzogc2xlZXBpbmcgZnVuY3Rpb24g
-Y2FsbGVkIGZyb20gaW52YWxpZCBjb250ZXh0IGF0IGtlcm5lbC9sb2NraW5nL211dGV4LmM6OTI4
-Cj4gWyA1OTI1LjUwOTc2OV0gaW5fYXRvbWljKCk6IDEsIGlycXNfZGlzYWJsZWQoKTogMSwgbm9u
-X2Jsb2NrOiAwLCBwaWQ6IDIxNjA4LCBuYW1lOiBrd29ya2VyLzI6MQo+IFsgNTkyNS41MDk3NzJd
-IElORk86IGxvY2tkZXAgaXMgdHVybmVkIG9mZi4KPiBbIDU5MjUuNTA5Nzc1XSBpcnEgZXZlbnQg
-c3RhbXA6IDAKPiBbIDU5MjUuNTA5Nzc3XSBoYXJkaXJxcyBsYXN0wqAgZW5hYmxlZCBhdCAoMCk6
-IFs8MDAwMDAwMDAwMDAwMDAwMD5dIDB4MAo+IFsgNTkyNS41MDk3ODFdIGhhcmRpcnFzIGxhc3Qg
-ZGlzYWJsZWQgYXQgKDApOiBbPGZmZmZmZmZmODEwNzNhYTA+XSBjb3B5X3Byb2Nlc3MrMHg4NTAv
-MHgxYzcwCj4gWyA1OTI1LjUwOTc4Nl0gc29mdGlycXMgbGFzdMKgIGVuYWJsZWQgYXQgKDApOiBb
-PGZmZmZmZmZmODEwNzNhYTA+XSBjb3B5X3Byb2Nlc3MrMHg4NTAvMHgxYzcwCj4gWyA1OTI1LjUw
-OTc4OV0gc29mdGlycXMgbGFzdCBkaXNhYmxlZCBhdCAoMCk6IFs8MDAwMDAwMDAwMDAwMDAwMD5d
-IDB4MAo+IFsgNTkyNS41MDk3OTJdIFByZWVtcHRpb24gZGlzYWJsZWQgYXQ6Cj4gWyA1OTI1LjUw
-OTc5M10gWzxmZmZmZmZmZjgxMDdlMmUzPl0gaXJxX2VudGVyX3JjdSsweDEzLzB4NzAKPiBbIDU5
-MjUuNTA5Nzk4XSBDUFU6IDIgUElEOiAyMTYwOCBDb21tOiBrd29ya2VyLzI6MSBUYWludGVkOiBH
-IFXCoCBXwqDCoMKgwqDCoMKgwqDCoCA1LjEyLjAtcmM3LWRtYXJlc3YtdGhlbGxzdHIrICMzCj4g
-WyA1OTI1LjUwOTgwM10gSGFyZHdhcmUgbmFtZTogR2lnYWJ5dGUgVGVjaG5vbG9neSBDby4sIEx0
-ZC4gR0ItWjM5MCBHYXJ1ZGEvR0ItWjM5MCBHYXJ1ZGEtQ0YsIEJJT1MgSUcxYyAxMS8xOS8yMDE5
-Cj4gWyA1OTI1LjUwOTgwN10gV29ya3F1ZXVlOiBldmVudHMgZW5naW5lX3JldGlyZSBbaTkxNV0K
-PiBbIDU5MjUuNTA5ODc0XSBDYWxsIFRyYWNlOgo+IFsgNTkyNS41MDk4NzZdwqAgPElSUT4KPiBb
-IDU5MjUuNTA5ODc4XcKgIGR1bXBfc3RhY2srMHg3Ni8weDk1Cj4gWyA1OTI1LjUwOTg4Ml3CoCBf
-X19taWdodF9zbGVlcC5jb2xkKzB4ZjIvMHgxMDMKPiBbIDU5MjUuNTA5ODg3XcKgIF9fbWlnaHRf
-c2xlZXArMHg0Yi8weDgwCj4gWyA1OTI1LjUwOTg5MF3CoCBfX211dGV4X2xvY2srMHg1Yi8weDli
-MAo+IFsgNTkyNS41MDk4OTNdwqAgPyBsb2NrX3JlbGVhc2UrMHgxZWMvMHgyYjAKPiBbIDU5MjUu
-NTA5ODk3XcKgID8gZGVidWdfb2JqZWN0X2RlYWN0aXZhdGUrMHgxMzcvMHgxNjAKPiBbIDU5MjUu
-NTA5OTAyXcKgID8gaW50ZWxfY29udGV4dF9wb3N0X3VucGluKzB4YjIvMHgxOGMgW2k5MTVdCj4g
-WyA1OTI1LjUwOTk2MF3CoCA/IHdha2VfdXBfdmFyKzB4MzcvMHg0MAo+IFsgNTkyNS41MDk5NjRd
-wqAgPyBfX2FjdGl2ZV9yZXRpcmUrMHgxMmYvMHgyMTAgW2k5MTVdCj4gWyA1OTI1LjUxMDAzNF3C
-oCBtdXRleF9sb2NrX25lc3RlZCsweDFiLzB4MjAKPiBbIDU5MjUuNTEwMDM3XcKgID8gaTkxNV9h
-Y3RpdmVfcmVsZWFzZSsweDIyLzB4MzAgW2k5MTVdCj4gWyA1OTI1LjUxMDEwNV3CoCA/IG11dGV4
-X2xvY2tfbmVzdGVkKzB4MWIvMHgyMAo+IFsgNTkyNS41MTAxMDhdwqAgaW50ZWxfY29udGV4dF9w
-b3N0X3VucGluKzB4YjIvMHgxOGMgW2k5MTVdCj4gWyA1OTI1LjUxMDE2Nl3CoCBfX2ludGVsX2Nv
-bnRleHRfcmV0aXJlKzB4MjYvMHg3NCBbaTkxNV0KPiBbIDU5MjUuNTEwMjIzXcKgIF9fYWN0aXZl
-X3JldGlyZSsweDExZS8weDIxMCBbaTkxNV0KPiBbIDU5MjUuNTEwMjkxXcKgIGFjdGl2ZV9yZXRp
-cmUrMHgyZS8weDUwIFtpOTE1XQo+IFsgNTkyNS41MTAzNTddwqAgbm9kZV9yZXRpcmUrMHgyMy8w
-eDMwIFtpOTE1XQo+IFsgNTkyNS41MTA0MjNdwqAgc2lnbmFsX2lycV93b3JrKzB4MzE4LzB4NmQw
-IFtpOTE1XQo+IFsgNTkyNS41MTA0ODFdwqAgaXJxX3dvcmtfc2luZ2xlKzB4NDAvMHg3MAo+IFsg
-NTkyNS41MTA0ODVdwqAgaXJxX3dvcmtfcnVuX2xpc3QrMHgyYS8weDQwCj4gWyA1OTI1LjUxMDQ4
-OF3CoCBpcnFfd29ya19ydW4rMHgyYS8weDUwCj4gWyA1OTI1LjUxMDQ5MV3CoCBfX3N5c3ZlY19p
-cnFfd29yaysweDQxLzB4MWIwCj4gWyA1OTI1LjUxMDQ5NF3CoCBzeXN2ZWNfaXJxX3dvcmsrMHg5
-My8weGIwCj4gWyA1OTI1LjUxMDQ5N13CoCA8L0lSUT4KPiBbIDU5MjUuNTEwNDk5XcKgIGFzbV9z
-eXN2ZWNfaXJxX3dvcmsrMHgxMi8weDIwCj4gWyA1OTI1LjUxMDUwMl0gUklQOiAwMDEwOm1lbWNo
-cl9pbnYrMHg0NC8weGQwCj4gWyA1OTI1LjUxMDUwNl0gQ29kZTogMDAgMDAgNDAgMGYgYjYgY2Ug
-ODMgZTggMDEgNDkgYjggMDEgMDEgMDEgMDEgMDEgMDEgMDEgMDEgNDkgMGYgYWYgYzggNDggOGQg
-NDQgYzcgMDggZWIgMDkgNDggODMgYzcgMDggNDggMzkgYzcgNzQgNjQgNDggMwo+IDkgMGYgPDc0
-PiBmMiA0OCA4ZCA0NyAwOCA0MCAzYSAzNyA3NSA3YSA0OCA4MyBjNyAwMSA0OCAzOSBmOCA3NSBm
-MiAzMSBjMAo+IFsgNTkyNS41MTA1MTNdIFJTUDogMDAxODpmZmZmYzkwMDA4NzBmZDY4IEVGTEFH
-UzogMDAwMDAyNDYKPiBbIDU5MjUuNTEwNTE2XSBSQVg6IGZmZmZjOTAwMDBiYjcwMDAgUkJYOiBm
-ZmZmODg4MTFmMTVlMDAwIFJDWDogNWE1YTVhNWE1YTVhNWE1YQo+IFsgNTkyNS41MTA1MTldIFJE
-WDogMDAwMDAwMDAwMDAwMTAwMCBSU0k6IDAwMDAwMDAwMDAwMDAwNWEgUkRJOiBmZmZmYzkwMDAw
-YmI2MWMwCj4gWyA1OTI1LjUxMDUyMl0gUkJQOiBmZmZmYzkwMDA4NzBmZDc4IFIwODogMDEwMTAx
-MDEwMTAxMDEwMSBSMDk6IDAwMDAwMDAwMDAwMDAwMDAKPiBbIDU5MjUuNTEwNTI1XSBSMTA6IGZm
-ZmY4ODgxMDViMTVhZWMgUjExOiAwMDAwMDAwMDAwMDAwMDE4IFIxMjogZmZmZjg4ODEwOTgwY2Qw
-MAo+IFsgNTkyNS41MTA1MjhdIFIxMzogZmZmZjg4ODExZjE1ZTA3OCBSMTQ6IGZmZmY4ODgxMWYx
-NWUwMDAgUjE1OiBmZmZmODg4MTFmMTVlMDAwCj4gWyA1OTI1LjUxMDUzNF3CoCA/IGxyY191bnBp
-bisweDJmLzB4NTAgW2k5MTVdCj4gWyA1OTI1LjUxMDU5NV3CoCBpbnRlbF9jb250ZXh0X3VucGlu
-KzB4MjMvMHhjMCBbaTkxNV0KPiBbIDU5MjUuNTEwNjUyXcKgIGk5MTVfcmVxdWVzdF9yZXRpcmUr
-MHgyMWIvMHg0NTAgW2k5MTVdCj4gWyA1OTI1LjUxMDcyMl3CoCByZXRpcmVfcmVxdWVzdHMrMHg1
-Yi8weDgwIFtpOTE1XQo+IFsgNTkyNS41MTA3ODJdwqAgZW5naW5lX3JldGlyZSsweDY4LzB4YTAg
-W2k5MTVdCj4gWyA1OTI1LjUxMDg0MV3CoCBwcm9jZXNzX29uZV93b3JrKzB4MjMyLzB4NTgwCj4g
-WyA1OTI1LjUxMDg0NV3CoCB3b3JrZXJfdGhyZWFkKzB4NTAvMHgzYjAKPiBbIDU5MjUuNTEwODQ5
-XcKgID8gcHJvY2Vzc19vbmVfd29yaysweDU4MC8weDU4MAo+IFsgNTkyNS41MTA4NTJdwqAga3Ro
-cmVhZCsweDE0My8weDE4MAo+IFsgNTkyNS41MTA4NTRdwqAgPyBrdGhyZWFkX3BhcmsrMHg5MC8w
-eDkwCj4gWyA1OTI1LjUxMDg1N13CoCByZXRfZnJvbV9mb3JrKzB4MWYvMHgzMAo+Cj4KPgpXZWly
-ZCBiYWNrdHJhY2UsIHdoYXQncyB0aGUgbXV0ZXhfbG9ja19uZXN0ZWQgZG9pbmcgaW5zaWRlIHRo
-ZSBpbnRlcnJ1cHQsIGlzIHRoZSBiYWNrdHJhY2UgY29ycmVjdD8KClsgNTkyNS41MTAwMzddwqAg
-PyBpOTE1X2FjdGl2ZV9yZWxlYXNlKzB4MjIvMHgzMCBbaTkxNV0KWyA1OTI1LjUxMDEwNV3CoCA/
-IG11dGV4X2xvY2tfbmVzdGVkKzB4MWIvMHgyMAoKQXJlIHlvdSB1c2luZyBQUkVFTVBUX1JUIG9y
-IHNvbWV0aGluZz8KCgpUaGUgYmFja3RyYWNlIGRvZXNuJ3Qgc2VlbSB0byBtYWtlIHNlbnNlIGFz
-LWlzLiBJIGRvbid0IHNlZSBtdXRleGVzIGJlaW5nIHVzZWQgaW5zaWRlIHVucGluIGNvZGUuIE1h
-eWJlIEknbSBtaXNzaW5nIHNvbWV0aGluZy4KCn5NYWFydGVuCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: drm/dp_mst: Use the correct max source link rate for i915
+URL   : https://patchwork.freedesktop.org/series/89712/
+State : failure
+
+== Summary ==
+
+Applying: drm/dp_mst: Use the correct max source link rate for i915
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_dp_mst.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_dp_mst.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_dp_mst.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/dp_mst: Use the correct max source link rate for i915
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
