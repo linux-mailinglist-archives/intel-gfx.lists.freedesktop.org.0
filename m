@@ -1,45 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D0B372289
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 23:39:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 645B93722A4
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 23:46:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 455C86E182;
-	Mon,  3 May 2021 21:39:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 011C66E182;
+	Mon,  3 May 2021 21:46:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8110D6E182
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 May 2021 21:39:50 +0000 (UTC)
-IronPort-SDR: SZC5Fm3BgGaQ6okCjmsjCaTS4EgZznUc0TaO7g+7Il/uJuG0+W8KXc3P+Q7DuYcH6noEIXKEtN
- lsUOBsDfo4kA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9973"; a="218639907"
-X-IronPort-AV: E=Sophos;i="5.82,271,1613462400"; 
- d="scan'208,217";a="218639907"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2021 14:39:48 -0700
-IronPort-SDR: 1dRKfHIvYBbe6xYvhviy3PDBWFOcgc5ObEcdlBfp6WjicW5BNmJEmPIluqK/d8rIXE9Mf+TLB9
- cTq12pwG2AUg==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E334F6E182
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 May 2021 21:46:00 +0000 (UTC)
+IronPort-SDR: RwILuaz5K4gy2wqyPGlimZJkSLCCkbQngGcYyusFixre+o5PpVBX/th02eSt8+xF/Q/G4UC37M
+ 4uI8U8r8rzEA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9973"; a="197935014"
+X-IronPort-AV: E=Sophos;i="5.82,271,1613462400"; d="scan'208";a="197935014"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 May 2021 14:45:59 -0700
+IronPort-SDR: bnX59zvrvY8fdKkDlMphXtMLAUnEPToRid2TOdIiwzq49I3EbuXo5PYPeucXM0kZXLpAAWYTaH
+ VpB+s0G/v8xA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,271,1613462400"; 
- d="scan'208,217";a="432940987"
-Received: from irsmsx606.ger.corp.intel.com ([163.33.146.139])
- by orsmga008.jf.intel.com with ESMTP; 03 May 2021 14:39:45 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="5.82,271,1613462400"; d="scan'208";a="462799191"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP; 03 May 2021 14:45:59 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Mon, 3 May 2021 22:39:44 +0100
+ 15.1.2106.2; Mon, 3 May 2021 14:45:58 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Mon, 3 May 2021 14:45:57 -0700
 Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
  fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2106.013;
- Mon, 3 May 2021 14:39:42 -0700
+ Mon, 3 May 2021 14:45:57 -0700
 From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: PR for ADLP DMC Firmware
-Thread-Index: AddAZMHLj0r38qjiTKS6M82axyX1gA==
-Date: Mon, 3 May 2021 21:39:41 +0000
-Message-ID: <59f67f365684477e88aac55db30aec73@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 1/3] drm/i915/csr: s/DRM_ERROR/drm_err
+Thread-Index: AQHXPHNGPvdWB9iCh0CSr3A5U5pG8arSicyA///IKaA=
+Date: Mon, 3 May 2021 21:45:57 +0000
+Message-ID: <c2d1d206ff414fd9a7a258e0756ca8af@intel.com>
+References: <20210428211249.11037-1-anusha.srivatsa@intel.com>
+ <20210428211249.11037-2-anusha.srivatsa@intel.com> <87o8drzoc6.fsf@intel.com>
+In-Reply-To: <87o8drzoc6.fsf@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -49,7 +55,7 @@ dlp-product: dlpe-windows
 dlp-reaction: no-action
 x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Subject: [Intel-gfx] PR for ADLP DMC Firmware
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/csr: s/DRM_ERROR/drm_err
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,149 +68,273 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Sarvela,
- Tomi P" <tomi.p.sarvela@intel.com>
-Content-Type: multipart/mixed; boundary="===============1656660518=="
+Cc: "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1656660518==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_59f67f365684477e88aac55db30aec73intelcom_"
-
---_000_59f67f365684477e88aac55db30aec73intelcom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-The following changes since commit 3f23f5125b1fef5ed2103c0236a5657966e30e4d=
-:
-
-  amdgpu: add new polaris 12 MC firmware (2021-05-03 09:26:38 -0400)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-firmware adlp_dmc_firmware
-
-for you to fetch changes up to 3d32f216e153b0365132592910efcbfa2533066f:
-
-  i915: Add ADL-P DMC Support (2021-05-03 14:34:52 -0700)
-
-----------------------------------------------------------------
-Anusha Srivatsa (1):
-      i915: Add ADL-P DMC Support
-
-WHENCE                    |   6 ++++++
-i915/adlp_dmc_ver2_09.bin | Bin 0 -> 44636 bytes
-i915/adlp_dmc_ver2_10.bin | Bin 0 -> 44616 bytes
-3 files changed, 6 insertions(+)
-create mode 100644 i915/adlp_dmc_ver2_09.bin
-create mode 100644 i915/adlp_dmc_ver2_10.bin
 
 
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@linux.intel.com>
+> Sent: Monday, May 3, 2021 11:04 AM
+> To: Srivatsa, Anusha <anusha.srivatsa@intel.com>; intel-
+> gfx@lists.freedesktop.org
+> Cc: De Marchi, Lucas <lucas.demarchi@intel.com>
+> Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/csr: s/DRM_ERROR/drm_err
+> 
+> On Wed, 28 Apr 2021, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
+> > Use new format of debug messages across intel_csr.
+> >
+> > While at it, change some function definitions which now need dev_priv
+> > for drm_err and drm_info etc.
+> >
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Suggested-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_csr.c | 44
+> > +++++++++++++-----------
+> >  1 file changed, 23 insertions(+), 21 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_csr.c
+> > b/drivers/gpu/drm/i915/display/intel_csr.c
+> > index 26a922d34263..bf60c3ffdf5d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_csr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_csr.c
+> > @@ -392,10 +392,11 @@ static u32 find_dmc_fw_offset(const struct
+> intel_fw_info *fw_info,
+> >  	return dmc_offset;
+> >  }
+> >
+> > -static u32 parse_csr_fw_dmc(struct intel_csr *csr,
+> > +static u32 parse_csr_fw_dmc(struct drm_i915_private *dev_priv,
+> 
+> All new struct drm_i915_private * should be named i915, not dev_priv.
+
+I will change it.
+> 
+> >  			    const struct intel_dmc_header_base
+> *dmc_header,
+> >  			    size_t rem_size)
+> >  {
+> > +	struct intel_csr *csr = &dev_priv->csr;
+> 
+> You could also use container_of() to get from the csr to the i915 pointer. No
+> need to add or change params.
+
+Makes sense.  I will add the changes in the next version.
+
+> >  	unsigned int header_len_bytes, dmc_header_size, payload_size, i;
+> >  	const u32 *mmioaddr, *mmiodata;
+> >  	u32 mmio_count, mmio_count_max;
+> > @@ -440,27 +441,27 @@ static u32 parse_csr_fw_dmc(struct intel_csr *csr,
+> >  		header_len_bytes = dmc_header->header_len;
+> >  		dmc_header_size = sizeof(*v1);
+> >  	} else {
+> > -		DRM_ERROR("Unknown DMC fw header version: %u\n",
+> > +		drm_err(&dev_priv->drm, "Unknown DMC fw header
+> version: %u\n",
+> >  			  dmc_header->header_ver);
+> 
+> Please fix indentation. Same for all changes below.
+
+I will take a look at the indentation.
+
+Thanks,
 Anusha
-
---_000_59f67f365684477e88aac55db30aec73intelcom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">The following changes since commit 3f23f5125b1fef5ed=
-2103c0236a5657966e30e4d:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp; amdgpu: add new polaris 12 MC firmware (2021-=
-05-03 09:26:38 -0400)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">are available in the Git repository at:<o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp; git://anongit.freedesktop.org/drm/drm-firmwar=
-e adlp_dmc_firmware<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">for you to fetch changes up to 3d32f216e153b03651325=
-92910efcbfa2533066f:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp; i915: Add ADL-P DMC Support (2021-05-03 14:34=
-:52 -0700)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">----------------------------------------------------=
-------------<o:p></o:p></p>
-<p class=3D"MsoNormal">Anusha Srivatsa (1):<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i915: Add ADL-P DMC S=
-upport<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">WHENCE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp=
-;&nbsp; 6 &#43;&#43;&#43;&#43;&#43;&#43;<o:p></o:p></p>
-<p class=3D"MsoNormal">i915/adlp_dmc_ver2_09.bin | Bin 0 -&gt; 44636 bytes<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">i915/adlp_dmc_ver2_10.bin | Bin 0 -&gt; 44616 bytes<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">3 files changed, 6 insertions(&#43;)<o:p></o:p></p>
-<p class=3D"MsoNormal">create mode 100644 i915/adlp_dmc_ver2_09.bin<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">create mode 100644 i915/adlp_dmc_ver2_10.bin<o:p></o=
-:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Anusha<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_59f67f365684477e88aac55db30aec73intelcom_--
-
---===============1656660518==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> >  		return 0;
+> >  	}
+> >
+> >  	if (header_len_bytes != dmc_header_size) {
+> > -		DRM_ERROR("DMC firmware has wrong dmc header length "
+> > +		drm_err(&dev_priv->drm, "DMC firmware has wrong dmc
+> header length "
+> >  			  "(%u bytes)\n", header_len_bytes);
+> >  		return 0;
+> >  	}
+> >
+> >  	/* Cache the dmc header info. */
+> >  	if (mmio_count > mmio_count_max) {
+> > -		DRM_ERROR("DMC firmware has wrong mmio count %u\n",
+> mmio_count);
+> > +		drm_err(&dev_priv->drm, "DMC firmware has wrong mmio
+> count %u\n",
+> > +mmio_count);
+> >  		return 0;
+> >  	}
+> >
+> >  	for (i = 0; i < mmio_count; i++) {
+> >  		if (mmioaddr[i] < CSR_MMIO_START_RANGE ||
+> >  		    mmioaddr[i] > CSR_MMIO_END_RANGE) {
+> > -			DRM_ERROR("DMC firmware has wrong mmio
+> address 0x%x\n",
+> > +			drm_err(&dev_priv->drm, "DMC firmware has wrong
+> mmio address
+> > +0x%x\n",
+> >  				  mmioaddr[i]);
+> >  			return 0;
+> >  		}
+> > @@ -477,14 +478,14 @@ static u32 parse_csr_fw_dmc(struct intel_csr *csr,
+> >  		goto error_truncated;
+> >
+> >  	if (payload_size > csr->max_fw_size) {
+> > -		DRM_ERROR("DMC FW too big (%u bytes)\n", payload_size);
+> > +		drm_err(&dev_priv->drm, "DMC FW too big (%u bytes)\n",
+> > +payload_size);
+> >  		return 0;
+> >  	}
+> >  	csr->dmc_fw_size = dmc_header->fw_size;
+> >
+> >  	csr->dmc_payload = kmalloc(payload_size, GFP_KERNEL);
+> >  	if (!csr->dmc_payload) {
+> > -		DRM_ERROR("Memory allocation failed for dmc payload\n");
+> > +		drm_err(&dev_priv->drm, "Memory allocation failed for dmc
+> > +payload\n");
+> >  		return 0;
+> >  	}
+> >
+> > @@ -494,12 +495,12 @@ static u32 parse_csr_fw_dmc(struct intel_csr *csr,
+> >  	return header_len_bytes + payload_size;
+> >
+> >  error_truncated:
+> > -	DRM_ERROR("Truncated DMC firmware, refusing.\n");
+> > +	drm_err(&dev_priv->drm, "Truncated DMC firmware, refusing.\n");
+> >  	return 0;
+> >  }
+> >
+> >  static u32
+> > -parse_csr_fw_package(struct intel_csr *csr,
+> > +parse_csr_fw_package(struct drm_i915_private *dev_priv,
+> >  		     const struct intel_package_header *package_header,
+> >  		     const struct stepping_info *si,
+> >  		     size_t rem_size)
+> > @@ -516,7 +517,7 @@ parse_csr_fw_package(struct intel_csr *csr,
+> >  	} else if (package_header->header_ver == 2) {
+> >  		max_entries = PACKAGE_V2_MAX_FW_INFO_ENTRIES;
+> >  	} else {
+> > -		DRM_ERROR("DMC firmware has unknown header version
+> %u\n",
+> > +		drm_err(&dev_priv->drm, "DMC firmware has unknown
+> header version
+> > +%u\n",
+> >  			  package_header->header_ver);
+> >  		return 0;
+> >  	}
+> > @@ -530,7 +531,7 @@ parse_csr_fw_package(struct intel_csr *csr,
+> >  		goto error_truncated;
+> >
+> >  	if (package_header->header_len * 4 != package_size) {
+> > -		DRM_ERROR("DMC firmware has wrong package header
+> length "
+> > +		drm_err(&dev_priv->drm, "DMC firmware has wrong
+> package header length "
+> >  			  "(%u bytes)\n", package_size);
+> >  		return 0;
+> >  	}
+> > @@ -544,7 +545,7 @@ parse_csr_fw_package(struct intel_csr *csr,
+> >  	dmc_offset = find_dmc_fw_offset(fw_info, num_entries, si,
+> >  					package_header->header_ver);
+> >  	if (dmc_offset == CSR_DEFAULT_FW_OFFSET) {
+> > -		DRM_ERROR("DMC firmware not supported for %c
+> stepping\n",
+> > +		drm_err(&dev_priv->drm, "DMC firmware not supported for
+> %c
+> > +stepping\n",
+> >  			  si->stepping);
+> >  		return 0;
+> >  	}
+> > @@ -553,23 +554,25 @@ parse_csr_fw_package(struct intel_csr *csr,
+> >  	return package_size + dmc_offset * 4;
+> >
+> >  error_truncated:
+> > -	DRM_ERROR("Truncated DMC firmware, refusing.\n");
+> > +	drm_err(&dev_priv->drm, "Truncated DMC firmware, refusing.\n");
+> >  	return 0;
+> >  }
+> >
+> >  /* Return number of bytes parsed or 0 on error */ -static u32
+> > parse_csr_fw_css(struct intel_csr *csr,
+> > +static u32 parse_csr_fw_css(struct drm_i915_private *dev_priv,
+> >  			    struct intel_css_header *css_header,
+> >  			    size_t rem_size)
+> >  {
+> > +	struct intel_csr *csr = &dev_priv->csr;
+> > +
+> >  	if (rem_size < sizeof(struct intel_css_header)) {
+> > -		DRM_ERROR("Truncated DMC firmware, refusing.\n");
+> > +		drm_err(&dev_priv->drm, "Truncated DMC firmware,
+> refusing.\n");
+> >  		return 0;
+> >  	}
+> >
+> >  	if (sizeof(struct intel_css_header) !=
+> >  	    (css_header->header_len * 4)) {
+> > -		DRM_ERROR("DMC firmware has wrong CSS header length "
+> > +		drm_err(&dev_priv->drm, "DMC firmware has wrong CSS
+> header length "
+> >  			  "(%u bytes)\n",
+> >  			  (css_header->header_len * 4));
+> >  		return 0;
+> > @@ -577,7 +580,7 @@ static u32 parse_csr_fw_css(struct intel_csr *csr,
+> >
+> >  	if (csr->required_version &&
+> >  	    css_header->version != csr->required_version) {
+> > -		DRM_INFO("Refusing to load DMC firmware v%u.%u,"
+> > +		drm_info(&dev_priv->drm, "Refusing to load DMC firmware
+> v%u.%u,"
+> >  			 " please use v%u.%u\n",
+> >  			 CSR_VERSION_MAJOR(css_header->version),
+> >  			 CSR_VERSION_MINOR(css_header->version),
+> > @@ -597,7 +600,6 @@ static void parse_csr_fw(struct drm_i915_private
+> *dev_priv,
+> >  	struct intel_css_header *css_header;
+> >  	struct intel_package_header *package_header;
+> >  	struct intel_dmc_header_base *dmc_header;
+> > -	struct intel_csr *csr = &dev_priv->csr;
+> >  	const struct stepping_info *si = intel_get_stepping_info(dev_priv);
+> >  	u32 readcount = 0;
+> >  	u32 r;
+> > @@ -607,7 +609,7 @@ static void parse_csr_fw(struct drm_i915_private
+> > *dev_priv,
+> >
+> >  	/* Extract CSS Header information */
+> >  	css_header = (struct intel_css_header *)fw->data;
+> > -	r = parse_csr_fw_css(csr, css_header, fw->size);
+> > +	r = parse_csr_fw_css(dev_priv, css_header, fw->size);
+> >  	if (!r)
+> >  		return;
+> >
+> > @@ -615,7 +617,7 @@ static void parse_csr_fw(struct drm_i915_private
+> > *dev_priv,
+> >
+> >  	/* Extract Package Header information */
+> >  	package_header = (struct intel_package_header *)&fw-
+> >data[readcount];
+> > -	r = parse_csr_fw_package(csr, package_header, si, fw->size -
+> readcount);
+> > +	r = parse_csr_fw_package(dev_priv, package_header, si, fw->size -
+> > +readcount);
+> >  	if (!r)
+> >  		return;
+> >
+> > @@ -623,7 +625,7 @@ static void parse_csr_fw(struct drm_i915_private
+> > *dev_priv,
+> >
+> >  	/* Extract dmc_header information */
+> >  	dmc_header = (struct intel_dmc_header_base *)&fw-
+> >data[readcount];
+> > -	parse_csr_fw_dmc(csr, dmc_header, fw->size - readcount);
+> > +	parse_csr_fw_dmc(dev_priv, dmc_header, fw->size - readcount);
+> >  }
+> >
+> >  static void intel_csr_runtime_pm_get(struct drm_i915_private
+> > *dev_priv)
+> 
+> --
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1656660518==--
