@@ -1,63 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4923718C1
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 17:58:57 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0011F3718C8
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 17:59:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87DEB6E913;
-	Mon,  3 May 2021 15:58:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2035C6E917;
+	Mon,  3 May 2021 15:58:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 534456E911
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 May 2021 15:58:36 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id e2so3057470plh.8
- for <intel-gfx@lists.freedesktop.org>; Mon, 03 May 2021 08:58:36 -0700 (PDT)
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
+ [IPv6:2607:f8b0:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C619F6E90C
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 May 2021 15:58:38 +0000 (UTC)
+Received: by mail-pf1-x434.google.com with SMTP id p4so4492459pfo.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 03 May 2021 08:58:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=SNhQlTn2vOnjlGILYeL8E6besT3flDuix5Oa0DDKdXI=;
- b=oy5SG4bNJibMHXk1EPB0aI1+WOEp8627ozqtsuXCPP9K8cYSS60zQpkdaC7B/bagFH
- BlpKak0YkmNsaAy8lkOhJbXBFU7T8GUyfl4nBChoh2GSLjHSji+a3xSmgZuKwYhQCR3H
- l4tp5FHP4xChCP56ngoPbwOJ2jiheO6OElf3QZ2hET0YyaLky3ucDbAJGVSh9Rcbcaxc
- 4QvOwKEimeU35Hvig9Dy9mXp+KMhhWz+gGLfPGWF07AeucCB/2kYSnrk9zazeS+UC63l
- ClgUgegvxn1BO+u9RMxYmpnxOCyrrcTnFcrPXRAY5NcFIJn04Kzjv/7+nBd0HJ4PqPmO
- rwfA==
+ bh=fj5RFunNxNQIKypx0E6ar++482I0lF//EduTNOz9Fh8=;
+ b=DjE7qsju1ZgZnTM2a9fHfN76m8g2ZGqRUqrzZQa1LUjOOZJw/DfpV/XVe/PxCfUxtX
+ mIBRiwKXw1dxC8khluwKxMEnh6a/pgWNBsRv+Arp6m2ieA1thBRiV7PSDmw13ttGh2Av
+ 2OUaCpnHE079/H1keTdspWC9uA7C1nNt6G/HqaJ0l4Eo73Zx3wld3EdbFL90BTMG/PiK
+ cwcqBnAo2VaxgePWWsRhvrHSIrYb0SWG3qFB4MQkFL847789zqmRp4SyHPn+Ygm2bEJJ
+ m2Etzax5cGBVzlUWn/gmx9pdY5w7UH6wh/oZgMopyYGsnhvqUk1Qj65eVdPoAgD4vJ0C
+ UDhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=SNhQlTn2vOnjlGILYeL8E6besT3flDuix5Oa0DDKdXI=;
- b=gV46fCCWwk7diz0x81vAxUhescvzm2eX/utX/8W0VnV2Jr0iBo6IOaPSscrbfxCC4D
- N9cI8KPkreOMEtORLiZTyrsOTjhDt58AH+iRttXKn9w7JXlZkIQ3Js44HKx2wxi94AEh
- PbiyNOy/myxlRaUyfMea0sBimdCA+Ua3ZYuoH8uHUOayupyDN0DJd4Q/smAVSYiDMglV
- TNCdbaVrjSKeb5uMqoRLw/yjzdyOLCt1uELkBayJbH+xN1NMzdfyXJBC+a//I50kiuxT
- AoD+3fYnwERbDsXPYeqc/RKNLv3q7vC3lHYPRU1ywTLh0q7s89/MbZQVsnv2IVQ6dOIJ
- WgDA==
-X-Gm-Message-State: AOAM5311/9ZrECugctZEMbCxSj7QwBECQCMs7WEssgQAYhWQgxAmo2lw
- OkpFAbA4TI1WrTMAiWFpXq1tDLiSZyDVuA==
-X-Google-Smtp-Source: ABdhPJyQ08vETFAPqCf/GrYMCbA5i6wK+SMKgRM8jdq8lKkcmrV+Jw9bO04uMN5tDLBw1Eueqj5dYw==
-X-Received: by 2002:a17:902:8bc3:b029:e9:9639:be21 with SMTP id
- r3-20020a1709028bc3b02900e99639be21mr20938370plo.59.1620057515342; 
- Mon, 03 May 2021 08:58:35 -0700 (PDT)
+ bh=fj5RFunNxNQIKypx0E6ar++482I0lF//EduTNOz9Fh8=;
+ b=WM+peJC2DaBllFz+tPOJ2MomFmqSC04K2mK5Bwv1k07E9/T7QjZ0rgLvmbENCDxXdj
+ Ve/iYFP47bm7KC5T2ukyGdJcR9VIZw28juSYiQn9GHtrkMo+TxjsiFFV/MPpMWNVIf9J
+ 3tkLubsMFIcEXUX1PrrLC7YuPgHcXPo9crt9UlKqJewkfNu3QLhrg9xJkyd7ou54HyZe
+ b5ICqNUH5YCIm3Qyo7C/695VsjFA5HkFLU6cOAXlZ8RZ0hgla2IOUJefAbF+RRbjJw1w
+ 31Fy8GzLQtaKewJRe4HxabvDzprWOscu/CIIqz1KnLRvF1r+8DLSulf9qS5oCRxNhkL/
+ WLCQ==
+X-Gm-Message-State: AOAM530FQ1FkIvJHvOqk6edFeNw8EgYTIbopiK8CmvB1ONIE/G6blGXP
+ bFjge7zWtTllZJogrvjJyQqNNeNENOlYNw==
+X-Google-Smtp-Source: ABdhPJyXixPSpymBxhZeO/u19ZsTgcfFfNBlrBCC6I/JI5epQ1ccCBRHmkOAIuPVRCXsE66NP8hiSQ==
+X-Received: by 2002:a63:982:: with SMTP id 124mr16907483pgj.37.1620057516866; 
+ Mon, 03 May 2021 08:58:36 -0700 (PDT)
 Received: from omlet.com (jfdmzpr05-ext.jf.intel.com. [134.134.139.74])
- by smtp.gmail.com with ESMTPSA id gf21sm9783296pjb.20.2021.05.03.08.58.33
+ by smtp.gmail.com with ESMTPSA id gf21sm9783296pjb.20.2021.05.03.08.58.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 May 2021 08:58:34 -0700 (PDT)
+ Mon, 03 May 2021 08:58:36 -0700 (PDT)
 From: Jason Ekstrand <jason@jlekstrand.net>
 To: intel-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
-Date: Mon,  3 May 2021 10:57:45 -0500
-Message-Id: <20210503155748.1961781-25-jason@jlekstrand.net>
+Date: Mon,  3 May 2021 10:57:46 -0500
+Message-Id: <20210503155748.1961781-26-jason@jlekstrand.net>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210503155748.1961781-1-jason@jlekstrand.net>
 References: <20210503155748.1961781-1-jason@jlekstrand.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 24/27] drm/i915/gem: Don't allow changing the
- engine set on running contexts
+Subject: [Intel-gfx] [PATCH 25/27] drm/i915/selftests: Take a VM in
+ kernel_context()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,333 +74,184 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This better models where we want to go with contexts in general where
+things like the VM and engine set are create parameters instead of being
+set after the fact.
+
 Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 304 --------------------
- 1 file changed, 304 deletions(-)
+ .../drm/i915/gem/selftests/i915_gem_context.c |  4 ++--
+ .../gpu/drm/i915/gem/selftests/mock_context.c |  9 ++++++++-
+ .../gpu/drm/i915/gem/selftests/mock_context.h |  4 +++-
+ drivers/gpu/drm/i915/gt/selftest_execlists.c  | 20 +++++++++----------
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  2 +-
+ 5 files changed, 24 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index ad6e98d8a4fbd..6e5828fe1a792 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1823,306 +1823,6 @@ static int set_sseu(struct i915_gem_context *ctx,
- 	return ret;
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index 16ff64ab34a1b..76029d7143f6c 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -680,7 +680,7 @@ static int igt_ctx_exec(void *arg)
+ 			struct i915_gem_context *ctx;
+ 			struct intel_context *ce;
+ 
+-			ctx = kernel_context(i915);
++			ctx = kernel_context(i915, NULL);
+ 			if (IS_ERR(ctx)) {
+ 				err = PTR_ERR(ctx);
+ 				goto out_file;
+@@ -813,7 +813,7 @@ static int igt_shared_ctx_exec(void *arg)
+ 			struct i915_gem_context *ctx;
+ 			struct intel_context *ce;
+ 
+-			ctx = kernel_context(i915);
++			ctx = kernel_context(i915, NULL);
+ 			if (IS_ERR(ctx)) {
+ 				err = PTR_ERR(ctx);
+ 				goto out_test;
+diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+index 61aaac4a334cf..500ef27ba4771 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
+@@ -150,7 +150,8 @@ live_context_for_engine(struct intel_engine_cs *engine, struct file *file)
  }
  
--struct set_engines {
--	struct i915_gem_context *ctx;
--	struct i915_gem_engines *engines;
--};
--
--static int
--set_engines__load_balance(struct i915_user_extension __user *base, void *data)
--{
--	struct i915_context_engines_load_balance __user *ext =
--		container_of_user(base, typeof(*ext), base);
--	const struct set_engines *set = data;
--	struct drm_i915_private *i915 = set->ctx->i915;
--	struct intel_engine_cs *stack[16];
--	struct intel_engine_cs **siblings;
--	struct intel_context *ce;
--	struct intel_sseu null_sseu = {};
--	u16 num_siblings, idx;
--	unsigned int n;
--	int err;
--
--	if (!HAS_EXECLISTS(i915))
--		return -ENODEV;
--
--	if (intel_uc_uses_guc_submission(&i915->gt.uc))
--		return -ENODEV; /* not implement yet */
--
--	if (get_user(idx, &ext->engine_index))
--		return -EFAULT;
--
--	if (idx >= set->engines->num_engines) {
--		drm_dbg(&i915->drm, "Invalid placement value, %d >= %d\n",
--			idx, set->engines->num_engines);
--		return -EINVAL;
--	}
--
--	idx = array_index_nospec(idx, set->engines->num_engines);
--	if (set->engines->engines[idx]) {
--		drm_dbg(&i915->drm,
--			"Invalid placement[%d], already occupied\n", idx);
--		return -EEXIST;
--	}
--
--	if (get_user(num_siblings, &ext->num_siblings))
--		return -EFAULT;
--
--	err = check_user_mbz(&ext->flags);
--	if (err)
--		return err;
--
--	err = check_user_mbz(&ext->mbz64);
--	if (err)
--		return err;
--
--	siblings = stack;
--	if (num_siblings > ARRAY_SIZE(stack)) {
--		siblings = kmalloc_array(num_siblings,
--					 sizeof(*siblings),
--					 GFP_KERNEL);
--		if (!siblings)
--			return -ENOMEM;
--	}
--
--	for (n = 0; n < num_siblings; n++) {
--		struct i915_engine_class_instance ci;
--
--		if (copy_from_user(&ci, &ext->engines[n], sizeof(ci))) {
--			err = -EFAULT;
--			goto out_siblings;
--		}
--
--		siblings[n] = intel_engine_lookup_user(i915,
--						       ci.engine_class,
--						       ci.engine_instance);
--		if (!siblings[n]) {
--			drm_dbg(&i915->drm,
--				"Invalid sibling[%d]: { class:%d, inst:%d }\n",
--				n, ci.engine_class, ci.engine_instance);
--			err = -EINVAL;
--			goto out_siblings;
--		}
--	}
--
--	ce = intel_execlists_create_virtual(siblings, n);
--	if (IS_ERR(ce)) {
--		err = PTR_ERR(ce);
--		goto out_siblings;
--	}
--
--	intel_context_set_gem(ce, set->ctx, null_sseu);
--
--	if (cmpxchg(&set->engines->engines[idx], NULL, ce)) {
--		intel_context_put(ce);
--		err = -EEXIST;
--		goto out_siblings;
--	}
--
--out_siblings:
--	if (siblings != stack)
--		kfree(siblings);
--
--	return err;
--}
--
--static int
--set_engines__bond(struct i915_user_extension __user *base, void *data)
--{
--	struct i915_context_engines_bond __user *ext =
--		container_of_user(base, typeof(*ext), base);
--	const struct set_engines *set = data;
--	struct drm_i915_private *i915 = set->ctx->i915;
--	struct i915_engine_class_instance ci;
--	struct intel_engine_cs *virtual;
--	struct intel_engine_cs *master;
--	u16 idx, num_bonds;
--	int err, n;
--
--	if (get_user(idx, &ext->virtual_index))
--		return -EFAULT;
--
--	if (idx >= set->engines->num_engines) {
--		drm_dbg(&i915->drm,
--			"Invalid index for virtual engine: %d >= %d\n",
--			idx, set->engines->num_engines);
--		return -EINVAL;
--	}
--
--	idx = array_index_nospec(idx, set->engines->num_engines);
--	if (!set->engines->engines[idx]) {
--		drm_dbg(&i915->drm, "Invalid engine at %d\n", idx);
--		return -EINVAL;
--	}
--	virtual = set->engines->engines[idx]->engine;
--
--	if (intel_engine_is_virtual(virtual)) {
--		drm_dbg(&i915->drm,
--			"Bonding with virtual engines not allowed\n");
--		return -EINVAL;
--	}
--
--	err = check_user_mbz(&ext->flags);
--	if (err)
--		return err;
--
--	for (n = 0; n < ARRAY_SIZE(ext->mbz64); n++) {
--		err = check_user_mbz(&ext->mbz64[n]);
--		if (err)
--			return err;
--	}
--
--	if (copy_from_user(&ci, &ext->master, sizeof(ci)))
--		return -EFAULT;
--
--	master = intel_engine_lookup_user(i915,
--					  ci.engine_class, ci.engine_instance);
--	if (!master) {
--		drm_dbg(&i915->drm,
--			"Unrecognised master engine: { class:%u, instance:%u }\n",
--			ci.engine_class, ci.engine_instance);
--		return -EINVAL;
--	}
--
--	if (get_user(num_bonds, &ext->num_bonds))
--		return -EFAULT;
--
--	for (n = 0; n < num_bonds; n++) {
--		struct intel_engine_cs *bond;
--
--		if (copy_from_user(&ci, &ext->engines[n], sizeof(ci)))
--			return -EFAULT;
--
--		bond = intel_engine_lookup_user(i915,
--						ci.engine_class,
--						ci.engine_instance);
--		if (!bond) {
--			drm_dbg(&i915->drm,
--				"Unrecognised engine[%d] for bonding: { class:%d, instance: %d }\n",
--				n, ci.engine_class, ci.engine_instance);
--			return -EINVAL;
--		}
--	}
--
--	return 0;
--}
--
--static const i915_user_extension_fn set_engines__extensions[] = {
--	[I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE] = set_engines__load_balance,
--	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
--};
--
--static int
--set_engines(struct i915_gem_context *ctx,
--	    const struct drm_i915_gem_context_param *args)
--{
--	struct drm_i915_private *i915 = ctx->i915;
--	struct i915_context_param_engines __user *user =
--		u64_to_user_ptr(args->value);
--	struct intel_sseu null_sseu = {};
--	struct set_engines set = { .ctx = ctx };
--	unsigned int num_engines, n;
--	u64 extensions;
--	int err;
--
--	if (!args->size) { /* switch back to legacy user_ring_map */
--		if (!i915_gem_context_user_engines(ctx))
--			return 0;
--
--		set.engines = default_engines(ctx, null_sseu);
--		if (IS_ERR(set.engines))
--			return PTR_ERR(set.engines);
--
--		goto replace;
--	}
--
--	BUILD_BUG_ON(!IS_ALIGNED(sizeof(*user), sizeof(*user->engines)));
--	if (args->size < sizeof(*user) ||
--	    !IS_ALIGNED(args->size, sizeof(*user->engines))) {
--		drm_dbg(&i915->drm, "Invalid size for engine array: %d\n",
--			args->size);
--		return -EINVAL;
--	}
--
--	num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
--	/* RING_MASK has no shift so we can use it directly here */
--	if (num_engines > I915_EXEC_RING_MASK + 1)
--		return -EINVAL;
--
--	set.engines = alloc_engines(num_engines);
--	if (!set.engines)
--		return -ENOMEM;
--
--	for (n = 0; n < num_engines; n++) {
--		struct i915_engine_class_instance ci;
--		struct intel_engine_cs *engine;
--		struct intel_context *ce;
--
--		if (copy_from_user(&ci, &user->engines[n], sizeof(ci))) {
--			__free_engines(set.engines, n);
--			return -EFAULT;
--		}
--
--		if (ci.engine_class == (u16)I915_ENGINE_CLASS_INVALID &&
--		    ci.engine_instance == (u16)I915_ENGINE_CLASS_INVALID_NONE) {
--			set.engines->engines[n] = NULL;
--			continue;
--		}
--
--		engine = intel_engine_lookup_user(ctx->i915,
--						  ci.engine_class,
--						  ci.engine_instance);
--		if (!engine) {
--			drm_dbg(&i915->drm,
--				"Invalid engine[%d]: { class:%d, instance:%d }\n",
--				n, ci.engine_class, ci.engine_instance);
--			__free_engines(set.engines, n);
--			return -ENOENT;
--		}
--
--		ce = intel_context_create(engine);
--		if (IS_ERR(ce)) {
--			__free_engines(set.engines, n);
--			return PTR_ERR(ce);
--		}
--
--		intel_context_set_gem(ce, ctx, null_sseu);
--
--		set.engines->engines[n] = ce;
--	}
--	set.engines->num_engines = num_engines;
--
--	err = -EFAULT;
--	if (!get_user(extensions, &user->extensions))
--		err = i915_user_extensions(u64_to_user_ptr(extensions),
--					   set_engines__extensions,
--					   ARRAY_SIZE(set_engines__extensions),
--					   &set);
--	if (err) {
--		free_engines(set.engines);
--		return err;
--	}
--
--replace:
--	mutex_lock(&ctx->engines_mutex);
--	if (i915_gem_context_is_closed(ctx)) {
--		mutex_unlock(&ctx->engines_mutex);
--		free_engines(set.engines);
--		return -ENOENT;
--	}
--	if (args->size)
--		i915_gem_context_set_user_engines(ctx);
--	else
--		i915_gem_context_clear_user_engines(ctx);
--	set.engines = rcu_replace_pointer(ctx->engines, set.engines, 1);
--	mutex_unlock(&ctx->engines_mutex);
--
--	/* Keep track of old engine sets for kill_context() */
--	engines_idle_release(ctx, set.engines);
--
--	return 0;
--}
--
- static int
- set_persistence(struct i915_gem_context *ctx,
- 		const struct drm_i915_gem_context_param *args)
-@@ -2205,10 +1905,6 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
- 		ret = set_sseu(ctx, args);
- 		break;
+ struct i915_gem_context *
+-kernel_context(struct drm_i915_private *i915)
++kernel_context(struct drm_i915_private *i915,
++	       struct i915_address_space *vm)
+ {
+ 	struct i915_gem_context *ctx;
+ 	struct i915_gem_proto_context *pc;
+@@ -159,6 +160,12 @@ kernel_context(struct drm_i915_private *i915)
+ 	if (IS_ERR(pc))
+ 		return ERR_CAST(pc);
  
--	case I915_CONTEXT_PARAM_ENGINES:
--		ret = set_engines(ctx, args);
--		break;
--
- 	case I915_CONTEXT_PARAM_PERSISTENCE:
- 		ret = set_persistence(ctx, args);
- 		break;
++	if (vm) {
++		if (pc->vm)
++			i915_vm_put(pc->vm);
++		pc->vm = i915_vm_get(vm);
++	}
++
+ 	ctx = i915_gem_create_context(i915, pc);
+ 	proto_context_close(pc);
+ 	if (IS_ERR(ctx))
+diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.h b/drivers/gpu/drm/i915/gem/selftests/mock_context.h
+index 2a6121d33352d..7a02fd9b5866a 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/mock_context.h
++++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.h
+@@ -10,6 +10,7 @@
+ struct file;
+ struct drm_i915_private;
+ struct intel_engine_cs;
++struct i915_address_space;
+ 
+ void mock_init_contexts(struct drm_i915_private *i915);
+ 
+@@ -25,7 +26,8 @@ live_context(struct drm_i915_private *i915, struct file *file);
+ struct i915_gem_context *
+ live_context_for_engine(struct intel_engine_cs *engine, struct file *file);
+ 
+-struct i915_gem_context *kernel_context(struct drm_i915_private *i915);
++struct i915_gem_context *kernel_context(struct drm_i915_private *i915,
++					struct i915_address_space *vm);
+ void kernel_context_close(struct i915_gem_context *ctx);
+ 
+ #endif /* !__MOCK_CONTEXT_H */
+diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+index a0e75b71a3374..0989e024f7a03 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
++++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+@@ -1522,12 +1522,12 @@ static int live_busywait_preempt(void *arg)
+ 	 * preempt the busywaits used to synchronise between rings.
+ 	 */
+ 
+-	ctx_hi = kernel_context(gt->i915);
++	ctx_hi = kernel_context(gt->i915, NULL);
+ 	if (!ctx_hi)
+ 		return -ENOMEM;
+ 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
+ 
+-	ctx_lo = kernel_context(gt->i915);
++	ctx_lo = kernel_context(gt->i915, NULL);
+ 	if (!ctx_lo)
+ 		goto err_ctx_hi;
+ 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
+@@ -1724,12 +1724,12 @@ static int live_preempt(void *arg)
+ 	if (igt_spinner_init(&spin_lo, gt))
+ 		goto err_spin_hi;
+ 
+-	ctx_hi = kernel_context(gt->i915);
++	ctx_hi = kernel_context(gt->i915, NULL);
+ 	if (!ctx_hi)
+ 		goto err_spin_lo;
+ 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
+ 
+-	ctx_lo = kernel_context(gt->i915);
++	ctx_lo = kernel_context(gt->i915, NULL);
+ 	if (!ctx_lo)
+ 		goto err_ctx_hi;
+ 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
+@@ -1816,11 +1816,11 @@ static int live_late_preempt(void *arg)
+ 	if (igt_spinner_init(&spin_lo, gt))
+ 		goto err_spin_hi;
+ 
+-	ctx_hi = kernel_context(gt->i915);
++	ctx_hi = kernel_context(gt->i915, NULL);
+ 	if (!ctx_hi)
+ 		goto err_spin_lo;
+ 
+-	ctx_lo = kernel_context(gt->i915);
++	ctx_lo = kernel_context(gt->i915, NULL);
+ 	if (!ctx_lo)
+ 		goto err_ctx_hi;
+ 
+@@ -1910,7 +1910,7 @@ struct preempt_client {
+ 
+ static int preempt_client_init(struct intel_gt *gt, struct preempt_client *c)
+ {
+-	c->ctx = kernel_context(gt->i915);
++	c->ctx = kernel_context(gt->i915, NULL);
+ 	if (!c->ctx)
+ 		return -ENOMEM;
+ 
+@@ -3367,12 +3367,12 @@ static int live_preempt_timeout(void *arg)
+ 	if (igt_spinner_init(&spin_lo, gt))
+ 		return -ENOMEM;
+ 
+-	ctx_hi = kernel_context(gt->i915);
++	ctx_hi = kernel_context(gt->i915, NULL);
+ 	if (!ctx_hi)
+ 		goto err_spin_lo;
+ 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
+ 
+-	ctx_lo = kernel_context(gt->i915);
++	ctx_lo = kernel_context(gt->i915, NULL);
+ 	if (!ctx_lo)
+ 		goto err_ctx_hi;
+ 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
+@@ -3659,7 +3659,7 @@ static int live_preempt_smoke(void *arg)
+ 	}
+ 
+ 	for (n = 0; n < smoke.ncontext; n++) {
+-		smoke.contexts[n] = kernel_context(smoke.gt->i915);
++		smoke.contexts[n] = kernel_context(smoke.gt->i915, NULL);
+ 		if (!smoke.contexts[n])
+ 			goto err_ctx;
+ 	}
+diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+index 746985971c3a6..3676eaf6b2aee 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
++++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+@@ -42,7 +42,7 @@ static int hang_init(struct hang *h, struct intel_gt *gt)
+ 	memset(h, 0, sizeof(*h));
+ 	h->gt = gt;
+ 
+-	h->ctx = kernel_context(gt->i915);
++	h->ctx = kernel_context(gt->i915, NULL);
+ 	if (IS_ERR(h->ctx))
+ 		return PTR_ERR(h->ctx);
+ 
 -- 
 2.31.1
 
