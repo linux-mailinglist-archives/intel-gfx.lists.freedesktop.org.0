@@ -2,44 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AA6737177F
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 17:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4587737183F
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 May 2021 17:47:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F8486E887;
-	Mon,  3 May 2021 15:05:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 694C56E8C8;
+	Mon,  3 May 2021 15:47:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FC5B6E887;
- Mon,  3 May 2021 15:05:47 +0000 (UTC)
-IronPort-SDR: B6EDAx4eKwncjHn4q3OWdMho2iZjItAkLDL0wF3TF6xCo87iFBG9gbslxEkTnFdKasUI9snpc8
- 2vzL3T3vCRRw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9973"; a="259047544"
-X-IronPort-AV: E=Sophos;i="5.82,270,1613462400"; d="scan'208";a="259047544"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 May 2021 08:05:46 -0700
-IronPort-SDR: B1DeOxGgmBP9vKILXtocflw5cECHBCijteH/+9roDteI3BMPGnfTMekWp/BBsiM7N1YkwU6sV7
- 1yXU9dOt9nMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,270,1613462400"; d="scan'208";a="389617374"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga006.jf.intel.com with SMTP; 03 May 2021 08:05:43 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 03 May 2021 18:05:43 +0300
-Date: Mon, 3 May 2021 18:05:43 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <YJARR2sanRuiWByO@intel.com>
-References: <20210429120553.7823-1-wse@tuxedocomputers.com>
- <YIw2q/aibOplo7b+@intel.com>
- <c68865ea-a968-a0b2-e534-a97c51a42d16@tuxedocomputers.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2DAB6E8CB
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 May 2021 15:46:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1620056818;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=mu6XG45KFRW/fQQiVN4KYt8IYAlebpPIH/GecaPst0Q=;
+ b=MtbNkvBeUVPM739K2EBE3uPLL94HfBfiTxhrYREUpWKeSuQVfxp6GdKiw+kvDfLfDgqd1K
+ I75B+rAWiQQRShEfGhTodTPmOclCii9BRgp4kAxwue7KgO4uZJIo6DoEh9BKYvTjpCpAu6
+ orKIR7MYiuEtdBF9z7NimqDe9LhYXQE=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-459-zBshJR2aOVKXfw_nm_1nvQ-1; Mon, 03 May 2021 11:46:54 -0400
+X-MC-Unique: zBshJR2aOVKXfw_nm_1nvQ-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
+ [10.5.11.22])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4C576802575;
+ Mon,  3 May 2021 15:46:52 +0000 (UTC)
+Received: from x1.localdomain (ovpn-112-158.ams2.redhat.com [10.36.112.158])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E3B2E1007610;
+ Mon,  3 May 2021 15:46:48 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@linux.ie>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Date: Mon,  3 May 2021 17:46:38 +0200
+Message-Id: <20210503154647.142551-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <c68865ea-a968-a0b2-e534-a97c51a42d16@tuxedocomputers.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display Try YCbCr420 color when
- RGB fails
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+Subject: [Intel-gfx] [PATCH 0/9] drm + usb-type-c: Add support for
+ out-of-band hotplug notification (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,410 +63,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, linux-usb@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, platform-driver-x86@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 03, 2021 at 01:39:04PM +0200, Werner Sembach wrote:
-> Thanks for the feedback. I got some questions below.
-> > On Thu, Apr 29, 2021 at 02:05:53PM +0200, Werner Sembach wrote:
-> >> When encoder validation of a display mode fails, retry with less bandw=
-idth
-> >> heavy YCbCr420 color mode, if available. This enables some HDMI 1.4 se=
-tups
-> >> to support 4k60Hz output, which previously failed silently.
-> >>
-> >> AMDGPU had nearly the exact same issue. This problem description is
-> >> therefore copied from my commit message of the AMDGPU patch.
-> >>
-> >> On some setups, while the monitor and the gpu support display modes wi=
-th
-> >> pixel clocks of up to 600MHz, the link encoder might not. This prevents
-> >> YCbCr444 and RGB encoding for 4k60Hz, but YCbCr420 encoding might stil=
-l be
-> >> possible. However, which color mode is used is decided before the link
-> >> encoder capabilities are checked. This patch fixes the problem by retr=
-ying
-> >> to find a display mode with YCbCr420 enforced and using it, if it is
-> >> valid.
-> >>
-> >> I'm not entierly sure if the second
-> >> "if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))" check in
-> >> intel_hdmi_compute_config(...) after forcing ycbcr420 is necessary. I
-> >> included it to better be safe then sorry.
-> >>
-> >> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> >> Cc: <stable@vger.kernel.org>
-> >> ---
-> >> Rebased from 5.12 to drm-tip and resend to resolve merge conflict.
-> >>
-> >> >From 876c1c8d970ff2a411ee8d08651bd4edbe9ecb3d Mon Sep 17 00:00:00 2001
-> >> From: Werner Sembach <wse@tuxedocomputers.com>
-> >> Date: Thu, 29 Apr 2021 13:59:30 +0200
-> >> Subject: [PATCH] Retry using YCbCr420 encoding if clock setup for RGB =
-fails
-> >>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_hdmi.c | 80 +++++++++++++++++------
-> >>  1 file changed, 60 insertions(+), 20 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/d=
-rm/i915/display/intel_hdmi.c
-> >> index 46de56af33db..c9b5a7d7f9c6 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> >> @@ -1861,6 +1861,30 @@ static int intel_hdmi_port_clock(int clock, int=
- bpc)
-> >>  	return clock * bpc / 8;
-> >>  }
-> >>  =
+Hi All,
 
-> >> +static enum drm_mode_status
-> >> +intel_hdmi_check_bpc(struct intel_hdmi *hdmi, int clock, bool has_hdm=
-i_sink, struct drm_i915_private *dev_priv)
-> > Don't pass dev_priv. It can be extracted from the intel_hdmi.
-> >
-> > The name of the function isn't really sitting super well with me.
-> > I guess I'd just call it something like intel_hdmi_mode_clock_valid().
-> >
-> > We should also split this big patch up into smaller parts. Just this
-> > mechanical extraction of this function without any functional changes
-> > could be a nice first patch in the series.
-> >
-> >> +{
-> >> +	enum drm_mode_status status;
-> >> +
-> >> +	/* check if we can do 8bpc */
-> >> +	status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, =
-8),
-> >> +				       true, has_hdmi_sink);
-> >> +
-> >> +	if (has_hdmi_sink) {
-> >> +		/* if we can't do 8bpc we may still be able to do 12bpc */
-> >> +		if (status !=3D MODE_OK && !HAS_GMCH(dev_priv))
-> >> +			status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock=
-, 12),
-> >> +						       true, has_hdmi_sink);
-> >> +
-> >> +		/* if we can't do 8,12bpc we may still be able to do 10bpc */
-> >> +		if (status !=3D MODE_OK && DISPLAY_VER(dev_priv) >=3D 11)
-> >> +			status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock=
-, 10),
-> >> +						       true, has_hdmi_sink);
-> >> +	}
-> >> +
-> >> +	return status;
-> >> +}
-> >> +
-> >>  static enum drm_mode_status
-> >>  intel_hdmi_mode_valid(struct drm_connector *connector,
-> >>  		      struct drm_display_mode *mode)
-> >> @@ -1891,23 +1915,18 @@ intel_hdmi_mode_valid(struct drm_connector *co=
-nnector,
-> >>  	if (drm_mode_is_420_only(&connector->display_info, mode))
-> >>  		clock /=3D 2;
-> >>  =
+Here is v2 of my work on making DP over Type-C work on devices where the
+Type-C controller does not drive the HPD pin on the GPU, but instead
+we need to forward HPD events from the Type-C controller to the DRM driver.
 
-> >> -	/* check if we can do 8bpc */
-> >> -	status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, =
-8),
-> >> -				       true, has_hdmi_sink);
-> >> +	status =3D intel_hdmi_check_bpc(hdmi, clock, has_hdmi_sink, dev_priv=
-);
-> >>  =
+Changes in v2:
+- Replace the bogus "drm/connector: Make the drm_sysfs connector->kdev
+  device hold a reference to the connector" patch with:
+  "drm/connector: Give connector sysfs devices there own device_type"
+  the new patch is a dep for patch 2/9 see the patches
 
-> >> -	if (has_hdmi_sink) {
-> >> -		/* if we can't do 8bpc we may still be able to do 12bpc */
-> >> -		if (status !=3D MODE_OK && !HAS_GMCH(dev_priv))
-> >> -			status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock=
-, 12),
-> >> -						       true, has_hdmi_sink);
-> >> +	if (status !=3D MODE_OK) {
-> >> +		if (drm_mode_is_420_also(&connector->display_info, mode)) {
-> > We also need a connector->ycbcr_420_allowed check here.
-> >
-> >> +			/* if we can't do full color resolution we may still be able to do=
- reduced color resolution */
-> >> +			clock /=3D 2;
-> >>  =
+- Stop using a class-dev-iter, instead at a global connector list
+  to drm_connector.c and use that to find the connector by the fwnode,
+  similar to how we already do this in drm_panel.c and drm_bridge.c
 
-> >> -		/* if we can't do 8,12bpc we may still be able to do 10bpc */
-> >> -		if (status !=3D MODE_OK && DISPLAY_VER(dev_priv) >=3D 11)
-> >> -			status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock=
-, 10),
-> >> -						       true, has_hdmi_sink);
-> >> +			status =3D intel_hdmi_check_bpc(hdmi, clock, has_hdmi_sink, dev_pr=
-iv);
-> >> +		}
-> >> +		if (status !=3D MODE_OK)
-> >> +			return status;
-> >>  	}
-> >> -	if (status !=3D MODE_OK)
-> >> -		return status;
-> >>  =
+- Make drm_connector_oob_hotplug_event() take a fwnode pointer as
+  argument, rather then a drm_connector pointer and let it do the
+  lookup itself. This allows making drm_connector_find_by_fwnode() a
+  drm-internal function and avoids code outside the drm subsystem
+  potentially holding on the a drm_connector reference for a longer
+  period.
 
-> >>  	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
-> >>  }
-> >> @@ -1990,14 +2009,17 @@ static bool hdmi_deep_color_possible(const str=
-uct intel_crtc_state *crtc_state,
-> >>  =
+This series not only touches drm subsys files but it also touches
+drivers/usb/typec/altmodes/typec_displayport.c, that file usually
+does not see a whole lot of changes. So I believe it would be best
+to just merge the entire series through drm-misc, Assuming we can
+get an ack from Greg for merging the typec_displayport.c changes
+this way.
 
-> >>  static int
-> >>  intel_hdmi_ycbcr420_config(struct intel_crtc_state *crtc_state,
-> >> -			   const struct drm_connector_state *conn_state)
-> >> +			   const struct drm_connector_state *conn_state,
-> >> +			   const bool force_ycbcr420)
-> >>  {
-> >>  	struct drm_connector *connector =3D conn_state->connector;
-> >>  	struct drm_i915_private *i915 =3D to_i915(connector->dev);
-> >>  	const struct drm_display_mode *adjusted_mode =3D
-> >>  		&crtc_state->hw.adjusted_mode;
-> >>  =
+### 
 
-> >> -	if (!drm_mode_is_420_only(&connector->display_info, adjusted_mode))
-> >> +	if (!(drm_mode_is_420_only(&connector->display_info, adjusted_mode) =
-||
-> >> +			(force_ycbcr420 &&
-> >> +			drm_mode_is_420_also(&connector->display_info, adjusted_mode))))
-> >>  		return 0;
-> >>  =
+As already mentioned in the v1 cover-letter this series replaces
+a previous attempt from quite some time ago. 
+For anyone interested here are the old (2019!) patches for this:
 
-> > This function I think we just want to throw out and roll something
-> > a bit better.
-> >
-> > Something like this I believe should work nicely:
-> >
-> > intel_hdmi_compute_output_format()
-> > {
-> > 	if (drm_mode_is_420_only())
-> > 		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
-> > 	else
-> > 		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
-> >
-> > 	ret =3D intel_hdmi_compute_clock();
-> > 	if (ret) {
-> > 		if (crtc_state->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
-> > 			return ret;
-> >
-> > 		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
-> >
-> > 		ret =3D intel_hdmi_compute_clock()
-> > 		if (ret)
-> > 			return ret;
-> > 	}
-> >
-> > 	return 0;
-> > }
-> =
+https://patchwork.freedesktop.org/patch/288491/
+https://patchwork.freedesktop.org/patch/288493/
+https://patchwork.freedesktop.org/patch/288495/
 
-> Can you give clarification on the 3 checks coming in between intel_hdmi_y=
-cbcr420_config and intel_hdmi_compute_clock?
-> =
+Last time I posted this the biggest change requested was for more info to
+be included in the event send to the DRM-subsystem, specifically sending
+the following info was requested:
 
-> I guess this can be done before:
-> =
+1. Which DP connector on the GPU the event is for
+2. How many lanes are available
+3. Connector orientation
 
-> pipe_config->has_audio =3D
-> =A0=A0=A0 =A0=A0=A0 intel_hdmi_has_audio(encoder, pipe_config, conn_state=
-);
-> =
+This series is basically an entirely new approach, which no longer
+uses the notifier framework at all. Instead the Type-C code looksup
+a connector based on a fwnode (this was suggested by Heikki Krogerus)
+and then calls a new oob_hotplug_event drm_connector_func directly
+on the connector, passing the requested info as argument.
 
-> This one behaves differently whether or not RGB or YCbCr is used, but I g=
-uess does not change the required clock speed? I'm unsure about this howeve=
-r. If it has no effect on the clock I would call it after intel_hdmi_comput=
-e_clock:
-> =
+Info such as the orientation and the number of dp-lanes is now passed
+to the drm_connector_oob_hotplug_event() function as requested in the
+review of the old code, but nothing is done with it for now.
+Using this info falls well outside of my knowledge of the i915 driver
+so this is left to a follow-up patch (I will be available to test
+patches for this).
 
-> pipe_config->limited_color_range =3D
-> =A0=A0=A0 =A0=A0=A0 intel_hdmi_limited_color_range(pipe_config, conn_stat=
-e);
-> =
+Regards,
 
-> I don't know what this actually does, but it doesn't seem to have to do s=
-omething with color encoding so, like the has_audio check, it can be done b=
-efore deciding on RGB or YCbCr420? Correct me if I'm wrong:
+Hans
 
-limited_color_rage and has_audio we can do after the
-output_format/clock stuff.
 
-So basically I'm thinking the result should look like:
+Hans de Goede (8):
+  drm/connector: Give connector sysfs devices there own device_type
+  drm/connector: Add a fwnode pointer to drm_connector and register with
+    ACPI
+  drm/connector: Add drm_connector_find_by_fwnode() function (v2)
+  drm/connector: Add support for out-of-band hotplug notification (v2)
+  drm/i915/dp: Add support for out-of-bound hotplug events
+  usb: typec: altmodes/displayport: Make dp_altmode_notify() more
+    generic
+  usb: typec: altmodes/displayport: Notify drm subsys of hotplug events
+  platform/x86/intel_cht_int33fe: Correct "displayport" fwnode reference
 
-...
-ret =3D intel_hdmi_compute_output_format(...);
-if (ret)
-	return ret;
+Heikki Krogerus (1):
+  drm/i915: Associate ACPI connector nodes with connector entries
 
-if (crtc_state->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420) {
-	ret =3D intel_pch_panel_fitting(...);
-	if (ret)
-		return ret;
-}
+ drivers/gpu/drm/drm_connector.c               | 79 +++++++++++++++++
+ drivers/gpu/drm/drm_crtc_internal.h           |  1 +
+ drivers/gpu/drm/drm_sysfs.c                   | 87 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_acpi.c     | 40 +++++++++
+ drivers/gpu/drm/i915/display/intel_acpi.h     |  3 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 13 +++
+ .../platform/x86/intel_cht_int33fe_typec.c    |  4 +-
+ drivers/usb/typec/altmodes/Kconfig            |  1 +
+ drivers/usb/typec/altmodes/displayport.c      | 73 +++++++++++-----
+ include/drm/drm_connector.h                   | 43 +++++++++
+ 11 files changed, 308 insertions(+), 37 deletions(-)
 
-crtc_state->limited_color_range =3D intel_hdmi_limited_color_range(...);
+-- 
+2.31.1
 
-crtc_state->has_audio =3D intel_hdmi_has_audio(...);
-...
-
-Or I guess has_audio could be the first thing before
-intel_hdmi_compute_output_format(). Doesn't really matter atm. There
-may be some linkage between audio/clocks/etc. that we should be thinking
-about which may dictate what the order should be. But since we're not
-checking any of that anyway you don't have to worry about it right
-now.
-
-> =
-
-> if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))
-> =A0=A0=A0 =A0=A0=A0 pipe_config->has_pch_encoder =3D true;
-
-This one doesn't really matter as long as it's done somewhere. We could
-just move it somewhere quite early so it doesn't confuse people so much.
-Just after the DRM_MODE_FLAG_DBLSCAN check could be a sane spot for it.
-
-> =
-
-> > assuming we make intel_hdmi_compute_clock() check whether 420 output
-> > is actually supported.
-> =
-
-> Currently it's check ycbcr420 then set. This would turn this around. Chec=
-k first is more logical for my brain however.
-> =
-
-> what about something like this?
-> =
-
-> intel_hdmi_compute_output_format()
-> {
-> =A0=A0=A0 if (drm_mode_is_420_only())
-> =A0=A0=A0 =A0=A0=A0 crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCB=
-CR420;
-> =A0=A0=A0 else
-> =A0=A0=A0 =A0=A0=A0 crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
-> =
-
-> =A0=A0=A0 ret =3D intel_hdmi_compute_clock();
-> =A0=A0=A0 if (ret) {
-> =A0=A0=A0 =A0=A0=A0 if (crtc_state->output_format =3D=3D INTEL_OUTPUT_FOR=
-MAT_YCBCR420 ||
-> =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 !drm_mode_is_420_also() ||
-> =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 !connector->ycbcr_420_allowed)
-> =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 return ret;
-> =
-
-> =A0=A0=A0 =A0=A0=A0 crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCB=
-CR420;
-> =
-
-> =A0=A0=A0 =A0=A0=A0 ret =3D intel_hdmi_compute_clock()
-> =A0=A0=A0 =A0=A0=A0 if (ret)
-> =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 return ret;
-> =A0=A0=A0 }
-> =
-
-> =A0=A0=A0 return 0;
-> }
-
-Looks mostly OK. But I think we need a ycbcr_420_allowed check for the
-420_only case too.
-
-> =
-
-> > Could roll a small helper for that. Something along these lines perhaps:
-> > static bool intel_hdmi_ycbcr_420_supported()
-> > {
-> > 	return connector->ycbcr_420_allowed &&
-> > 	       (drm_mode_is_420_only() || drm_mode_is_420_also());
-> > }
-> >
-> > The intel_pch_panel_fitting() call should probably just be hoisted
-> > into intel_hdmi_compute_config() after we've called the new
-> > intel_hdmi_compute_output_format().
-> >
-> > I think a three patch series is probably what we want for this:
-> > patch 1: extract intel_hdmi_mode_clock_valid() without 420_also handling
-> > patch 2: introduce intel_hdmi_compute_output_format() without 420_also =
-handling
-> > patch 3: drop in the 420_also handling everywhere
-> >
-> > That way if there's any regression due to the 420_also stuff at least
-> > we won't have to revert the whole thing, and can then more easily work
-> > on fixing whatever needs fixing.
-> >
-> >>  	if (!connector->ycbcr_420_allowed) {
-> >> @@ -2126,7 +2148,7 @@ int intel_hdmi_compute_config(struct intel_encod=
-er *encoder,
-> >>  	struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjusted=
-_mode;
-> >>  	struct drm_connector *connector =3D conn_state->connector;
-> >>  	struct drm_scdc *scdc =3D &connector->display_info.hdmi.scdc;
-> >> -	int ret;
-> >> +	int ret, ret_saved;
-> >>  =
-
-> >>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
-> >>  		return -EINVAL;
-> >> @@ -2141,7 +2163,7 @@ int intel_hdmi_compute_config(struct intel_encod=
-er *encoder,
-> >>  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
-> >>  		pipe_config->pixel_multiplier =3D 2;
-> >>  =
-
-> >> -	ret =3D intel_hdmi_ycbcr420_config(pipe_config, conn_state);
-> >> +	ret =3D intel_hdmi_ycbcr420_config(pipe_config, conn_state, false);
-> >>  	if (ret)
-> >>  		return ret;
-> >>  =
-
-> >> @@ -2155,8 +2177,26 @@ int intel_hdmi_compute_config(struct intel_enco=
-der *encoder,
-> >>  		intel_hdmi_has_audio(encoder, pipe_config, conn_state);
-> >>  =
-
-> >>  	ret =3D intel_hdmi_compute_clock(encoder, pipe_config);
-> >> -	if (ret)
-> >> -		return ret;
-> >> +	if (ret) {
-> >> +		ret_saved =3D ret;
-> >> +
-> >> +		ret =3D intel_hdmi_ycbcr420_config(pipe_config, conn_state, true);
-> >> +		if (ret)
-> >> +			return ret;
-> >> +
-> >> +		if (pipe_config->output_format !=3D INTEL_OUTPUT_FORMAT_YCBCR420)
-> >> +			return ret_saved;
-> >> +
-> >> +		pipe_config->limited_color_range =3D
-> >> +			intel_hdmi_limited_color_range(pipe_config, conn_state);
-> >> +
-> >> +		if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))
-> >> +			pipe_config->has_pch_encoder =3D true;
-> >> +
-> >> +		ret =3D intel_hdmi_compute_clock(encoder, pipe_config);
-> >> +		if (ret)
-> >> +			return ret;
-> >> +	}
-> >>  =
-
-> >>  	if (conn_state->picture_aspect_ratio)
-> >>  		adjusted_mode->picture_aspect_ratio =3D
-> >> -- =
-
-> >> 2.25.1
-> >>
-> >> _______________________________________________
-> >> dri-devel mailing list
-> >> dri-devel@lists.freedesktop.org
-> >> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
