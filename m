@@ -1,42 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1302372A6B
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 14:53:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62CEA372B30
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 15:39:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2D566E214;
-	Tue,  4 May 2021 12:53:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6935E6EB0A;
+	Tue,  4 May 2021 13:39:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D0B36E214;
- Tue,  4 May 2021 12:53:43 +0000 (UTC)
-IronPort-SDR: dRLt5zsiCrzGUaXaBj2ccy5pb3cDKUaackp5UAC4bC0WOMEfy7sYyq8rQfTApNajuihC0VUvct
- cjYJHUNSuLhg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9973"; a="194833005"
-X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="194833005"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2021 05:53:42 -0700
-IronPort-SDR: fvSVcDAH5DChXuddF2Etdns2q6zsCelkGeI2GKbJcmhMRZ6EM5GgqaG3qgRufd6/pPEb7L4x3M
- LA22KC8Y9dug==
-X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="433268052"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2021 05:53:38 -0700
-Date: Tue, 4 May 2021 15:53:35 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Message-ID: <20210504125335.GA30246@ideak-desk.fi.intel.com>
-References: <20210428215257.500088-1-hdegoede@redhat.com>
- <20210428215257.500088-5-hdegoede@redhat.com>
- <YI+tlE35i+6F/WUO@kuha.fi.intel.com>
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com
+ [IPv6:2a00:1450:4864:20::234])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A365C6EADB;
+ Tue,  4 May 2021 13:39:08 +0000 (UTC)
+Received: by mail-lj1-x234.google.com with SMTP id w15so9821103ljo.10;
+ Tue, 04 May 2021 06:39:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:in-reply-to:references
+ :mime-version; bh=2yIbFjPkWuW8wS+b8UtMbXrEWc3cRq2xFdr5elk3jX8=;
+ b=iHfYoLq+Io7uFMNuM9P+1dkunVofFhYXMUtIPkMKGw0+ZtVWOE3Ct8udXker/DZPRK
+ +YQWH5zoWE6NISsQgECRi2Xq87GlKCiH3dAeaPnAK4hn2EBCPed6uprM6hmpu0/F/bOO
+ 90QKSFq5g5P/30T4b9UXq0uSudolVrZUayjBvS0ye9VnsOis35661B1+y4U5qzF6OKFU
+ 5t/bTuM1jSCmZ8GjgL18kXGiHCRphX1C7B/8IikyoWeFTsAFQUaLB5QvR2VoMofRnWFn
+ BYGEg5wh1lcvisOt9pL5kQu0jOtQwz27VM8eOAK68r0Mms9W3yF0mVgarzH9Y+yIIh0i
+ vorg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+ :references:mime-version;
+ bh=2yIbFjPkWuW8wS+b8UtMbXrEWc3cRq2xFdr5elk3jX8=;
+ b=YcnhIGZs3DxmoSKEPx8YXXMYag7e/MeZRhT1LwWIsN2is0UdsVNt9JON79XlCy0O5a
+ 9ACCgF/F8l2Mn590xEuHgtIfEDw0UlxSfA4ZSobKIT7W+gM1IdXvHVumHEgrilsqg89+
+ o4UylBDTuSUGut4UVXKVeljNuJo7qujSKPMQxwCxKdg/c41p+7qczalK/spOXf83kd6w
+ k7uo06z9Q0Iz7f3o7Axle9TC7r8mDrC99jw7V0S1V6r7sYz3J1ZABJdqPMaL6+LbIV61
+ 01MFgy5xbNmne52X510MphBEJtgm6DNp3IZUUExJ2nyimXQPgRa+qfJru77c2+jz1fwO
+ vUgw==
+X-Gm-Message-State: AOAM533pi0sQemr76bLeEn7e1B5o6yLSsPnVY3RBo/cVwkU7mawiCc8K
+ +J2iibkc9eoLg+SGR35Ww3o=
+X-Google-Smtp-Source: ABdhPJxCOIYneeM1bAB28sEljHivDQz4oRh5DKW6HC8/klr1Lsp6r7x3wKVA5M8v1f7Qp/msK/2YdQ==
+X-Received: by 2002:a05:651c:319:: with SMTP id
+ a25mr16794930ljp.69.1620135547102; 
+ Tue, 04 May 2021 06:39:07 -0700 (PDT)
+Received: from eldfell ([194.136.85.206])
+ by smtp.gmail.com with ESMTPSA id d25sm269200lfs.235.2021.05.04.06.39.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 04 May 2021 06:39:06 -0700 (PDT)
+Date: Tue, 4 May 2021 16:38:54 +0300
+From: Pekka Paalanen <ppaalanen@gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20210504163854.5b7b853c@eldfell>
+In-Reply-To: <20210427092018.832258-8-daniel.vetter@ffwll.ch>
+References: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
+ <20210427092018.832258-8-daniel.vetter@ffwll.ch>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <YI+tlE35i+6F/WUO@kuha.fi.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 4/9] drm/connector: Add support for
- out-of-band hotplug notification
+Subject: Re: [Intel-gfx] [PATCH 8/8] drm/modifiers: Enforce consistency
+ between the cap an IN_FORMATS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,108 +68,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, platform-driver-x86@vger.kernel.org,
- Guenter Roeck <linux@roeck-us.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Maxime Ripard <maxime@cerno.tech>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0039504349=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 03, 2021 at 11:00:20AM +0300, Heikki Krogerus wrote:
-> Hi Hans,
-> 
-> On Wed, Apr 28, 2021 at 11:52:52PM +0200, Hans de Goede wrote:
-> > +/**
-> > + * struct drm_connector_oob_hotplug_event_data: OOB hotplug event data
-> > + *
-> > + * Contains data about out-of-band hotplug events, signalled through
-> > + * drm_connector_oob_hotplug_event().
-> > + */
-> > +struct drm_connector_oob_hotplug_event_data {
-> > +	/**
-> > +	 * @connected: New connected status for the connector.
-> > +	 */
-> > +	bool connected;
-> > +	/**
-> > +	 * @dp_lanes: Number of available displayport lanes, 0 if unknown.
-> > +	 */
-> > +	int dp_lanes;
-> > +	/**
-> > +	 * @orientation: Connector orientation.
-> > +	 */
-> > +	enum typec_orientation orientation;
-> > +};
-> 
-> I don't think the orientation is relevant. It will always be "normal"
-> from DP PoW after muxing, no?
-> 
-> I'm also not sure those deatils are enough in the long run. Based on
-> what I've understood from our graphics team guys, for example knowing
-> if multi-function is preferred may be important in some cases.
+--===============0039504349==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/e2f=K/.ysQBY/duKREquXSE"; protocol="application/pgp-signature"
 
-Combo PHY ports - which is what this patchset is adding the notification
-for - can only reverse the lane assignment. TypeC PHY ports (on ICL+)
-have a more C-type aware mux in the SoC (FIA) as well, so in theory we
-could have a system based on such platforms with an external mux only
-switching between the USB, DP, USB+DP (MFD) modes, but leaving the plug
-orientation specific muxing up to the FIA. The graphics driver is not
-involved in programming the FIA though, it's done by a firmware
-component, so I don't think this configuration needs to get passed.
+--Sig_/e2f=K/.ysQBY/duKREquXSE
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Yes, the driver needs to know if the PD controller configured the sink
-in the MFD mode (DP+USB) or in the DP-only mode. For that the number of
-lanes assigned to DP is enough.
+On Tue, 27 Apr 2021 11:20:18 +0200
+Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
 
-> +Imre.
-> 
-> All of that, and more, is already available in the Configuration VDO
-> Status VDO that the we have negotiated with the DP partner. Both those
-> VDOs are part of struct typec_displayport_data. I think we should
-> simply supply that structure to the DRM code instead of picking those
-> details out of it...
-> 
-> >  /**
-> >   * struct drm_tv_connector_state - TV connector related states
-> >   * @subconnector: selected subconnector
-> > @@ -1110,6 +1132,15 @@ struct drm_connector_funcs {
-> >  	 */
-> >  	void (*atomic_print_state)(struct drm_printer *p,
-> >  				   const struct drm_connector_state *state);
-> > +
-> > +	/**
-> > +	 * @oob_hotplug_event:
-> > +	 *
-> > +	 * This will get called when a hotplug-event for a drm-connector
-> > +	 * has been received from a source outside the display driver / device.
-> > +	 */
-> > +	void (*oob_hotplug_event)(struct drm_connector *connector,
-> > +				  struct drm_connector_oob_hotplug_event_data *data);
-> 
-> So I would not try to generalise this like that. This callback should
-> be USB Type-C DP altmode specific:
-> 
-> 	void (*oob_hotplug_event)(struct drm_connector *connector,
->                                   struct typec_displayport_data *data);
-> 
-> Or like this if the orientation can really be reversed after muxing:
-> 
-> 	void (*oob_hotplug_event)(struct drm_connector *connector,
-> 				  struct typec_altmode *altmode,
->                                   struct typec_displayport_data *data);
-> 
-> You can now check the orientation separately with
-> typec_altmode_get_orientation() if necessary.
-> 
-> 
-> thanks,
-> 
-> -- 
-> heikki
+> It's very confusing for userspace to have to deal with inconsistencies
+> here, and some drivers screwed this up a bit. Most just ommitted the
+> format list when they meant to say that only linear modifier is
+> allowed, but some also meant that only implied modifiers are
+> acceptable (because actually none of the planes registered supported
+> modifiers).
+>=20
+> Now that this is all done consistently across all drivers, document
+> the rules and enforce it in the drm core.
+>=20
+> v2:
+> - Make the capability a link (Simon)
+> - Note that all is lost before 5.1.
+>=20
+> Acked-by: Maxime Ripard <maxime@cerno.tech>
+> Cc: Simon Ser <contact@emersion.fr>
+> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> ---
+>  drivers/gpu/drm/drm_plane.c   | 18 +++++++++++++++++-
+>  include/drm/drm_mode_config.h |  2 ++
+>  2 files changed, 19 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+> index 0dd43882fe7c..20c7a1665414 100644
+> --- a/drivers/gpu/drm/drm_plane.c
+> +++ b/drivers/gpu/drm/drm_plane.c
+> @@ -128,6 +128,13 @@
+>   *     pairs supported by this plane. The blob is a struct
+>   *     drm_format_modifier_blob. Without this property the plane doesn't
+>   *     support buffers with modifiers. Userspace cannot change this prop=
+erty.
+> + *
+> + *     Note that userspace can check the &DRM_CAP_ADDFB2_MODIFIERS driver
+> + *     capability for general modifier support. If this flag is set then=
+ every
+> + *     plane will have the IN_FORMATS property, even when it only suppor=
+ts
+> + *     DRM_FORMAT_MOD_LINEAR. Before linux kernel release v5.1 there hav=
+e been
+> + *     various bugs in this area with inconsistencies between the capabi=
+lity
+> + *     flag and per-plane properties.
+>   */
+> =20
+>  static unsigned int drm_num_planes(struct drm_device *dev)
+> @@ -277,8 +284,14 @@ static int __drm_universal_plane_init(struct drm_dev=
+ice *dev,
+>  			format_modifier_count++;
+>  	}
+> =20
+> -	if (format_modifier_count)
+> +	/* autoset the cap and check for consistency across all planes */
+> +	if (format_modifier_count) {
+> +		WARN_ON(!config->allow_fb_modifiers &&
+> +			!list_empty(&config->plane_list));
+>  		config->allow_fb_modifiers =3D true;
+> +	} else {
+> +		WARN_ON(config->allow_fb_modifiers);
+> +	}
+> =20
+>  	plane->modifier_count =3D format_modifier_count;
+>  	plane->modifiers =3D kmalloc_array(format_modifier_count,
+> @@ -360,6 +373,9 @@ static int __drm_universal_plane_init(struct drm_devi=
+ce *dev,
+>   * drm_universal_plane_init() to let the DRM managed resource infrastruc=
+ture
+>   * take care of cleanup and deallocation.
+>   *
+> + * Drivers supporting modifiers must set @format_modifiers on all their =
+planes,
+> + * even those that only support DRM_FORMAT_MOD_LINEAR.
+> + *
+>   * Returns:
+>   * Zero on success, error code on failure.
+>   */
+> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+> index ab424ddd7665..1ddf7783fdf7 100644
+> --- a/include/drm/drm_mode_config.h
+> +++ b/include/drm/drm_mode_config.h
+> @@ -909,6 +909,8 @@ struct drm_mode_config {
+>  	 * @allow_fb_modifiers:
+>  	 *
+>  	 * Whether the driver supports fb modifiers in the ADDFB2.1 ioctl call.
+> +	 * Note that drivers should not set this directly, it is automatically
+> +	 * set in drm_universal_plane_init().
+>  	 *
+>  	 * IMPORTANT:
+>  	 *
+
+I can only say about the doc parts, but:
+
+Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
+
+For patches 2 and 5 too, on the grounds that the idea is good.
+
+
+Thanks,
+pq
+
+--Sig_/e2f=K/.ysQBY/duKREquXSE
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmCRTm4ACgkQI1/ltBGq
+qqemqw//RXpj1TMJzJQBmA3p/jR23ByhoqEcQTI1RnYX2kEA0jFB3oYQ5cbjByUw
+JmnsInKOhFFvK8bhkUz9EJKGF0UgYTw9ujc9NEpW9YU50tW240HbJM5rDoovQt4Q
+xvd64UJ4kE5sXJOwWrhfJsJCmcmMi+nYGC3I7MN886XlyeQzKzfWazqysdaPfa96
+xf9pi0qa/ZUuBcJeBF3qDeIJVzyTmxWRafnzVqw7J4cHRunF6uFQurT91MAcTeab
+IOyPAcMVE5WnQFDo38rtkUoKjFkXDNmo/KOLga1yzicg+56N6SIbmogHyDOAbYjs
+gikDSKCOBT86zJa6uwHKcV+Ngfsw/j196eErK4Zxj6ffvqLTWhQ5oAV1Af1HApYb
+mokbmhpdImZJtYCnRIxCgjGGkxRPP3syScGQSHI+pQgOuJiQIDzmju6jFis0mkPU
+zo4GV98zu17qEM/IyfPu2WkDhZP6mBvWbyHLe1cpMfRqHgqnQ3MrAPXLNSdRxihV
+c8jIrSMg7aPU+jUOd3RzAjihsZqgpiYJKdfiRs4mjAmDUhO6ZMlpTLWMLk4kQApa
+Xpe9Xtgsq7NuX6UEX0O5Yyo0Ma2TocSaunzdkGiVhRR9pb7Eolpl7uv6X6c8mUmZ
+JsjPWaBXYKHzFjVSngaZWp8shE8mV8AytgttqIQPImQuGB3G5FY=
+=xQSr
+-----END PGP SIGNATURE-----
+
+--Sig_/e2f=K/.ysQBY/duKREquXSE--
+
+--===============0039504349==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0039504349==--
