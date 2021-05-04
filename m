@@ -1,59 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22CA737278C
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 10:48:38 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE99372791
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 10:50:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C786C6EAB1;
-	Tue,  4 May 2021 08:48:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E6446EAB1;
+	Tue,  4 May 2021 08:50:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com
- [IPv6:2a00:1450:4864:20::531])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69B756EAB1
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 May 2021 08:48:33 +0000 (UTC)
-Received: by mail-ed1-x531.google.com with SMTP id d14so9472467edc.12
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 May 2021 01:48:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=+1LtTl77EdyNVySiQUSZu2AtQhl9JbGUg/ZM00PeZoQ=;
- b=Y9AVWsWMbbRTbPChyW6gjMPNkWIg4CwJQqHSKaK6oXw1Uapo9PMvVVJZo0QSeiDpGR
- 2+pOCNeS1ltbx8+YLkZ4kXIGszx/EiVi2tz9NIenOTzM2YgrFw3E3I+zgDsiSTnyHygX
- OYwllX53Jq/EQwI+PnM+uyhzothaf81RvXeG4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=+1LtTl77EdyNVySiQUSZu2AtQhl9JbGUg/ZM00PeZoQ=;
- b=kp+Zzm5ruOqSHsdDWD1d4IynDrNHJat2mrG+nVhzDrQYDWugKxtF6LXvZrbKvJQvX6
- 5Z9J1vqPMcnuCXb+d/xi3zjSKucnB4XmBA/nSp6MzHd3NmDG+PmXGzxBCOwiok7Gi6nb
- q6YUPP53qyhsye2m8+Vi6CsLRl2Y/taAYk1sy2quln//6kDjWUUvA3megwcT3DtPCV26
- aCPr0Z9DyTh5ExIzN0N21VowhgET6SC4nzcA2W/H7MgA/3ftc5aHI6HNzdKJV1zwBeOR
- CqAbQ7ST4LZL6txkvOhoZWDh599HgATq4D6gvppB5vxxtxvrHx0pjrkgqWYlKDKzFfPV
- hqbA==
-X-Gm-Message-State: AOAM5332KAzii+19oZS6etrs5ya6TRaVjsCjCx0qLPBnybRFbFWrTfj5
- AZOXNPiaHGLk5tiF/hwMYSsCGg==
-X-Google-Smtp-Source: ABdhPJzMDbJd1+JhawUDuY6Rf9dLw6DWjQOoIzGtjn8MtMn24qIMvlkQ6UxRdoQ+vZSLj9xZAfjdag==
-X-Received: by 2002:a50:ee85:: with SMTP id f5mr25234698edr.8.1620118111990;
- Tue, 04 May 2021 01:48:31 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z22sm15434621edm.57.2021.05.04.01.48.31
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 May 2021 01:48:31 -0700 (PDT)
-Date: Tue, 4 May 2021 10:48:30 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YJEKXsMoBgzqYQyn@phenom.ffwll.local>
-References: <20210503155748.1961781-1-jason@jlekstrand.net>
- <20210503155748.1961781-4-jason@jlekstrand.net>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E6136EAB1
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 May 2021 08:50:12 +0000 (UTC)
+IronPort-SDR: aj228Xeodjgag85ce3xRWYfsWwuN2IaxrHNSO0RDnAln+tzhYNmBWQYVI/C5P6oi/54v751zmc
+ 9DrCC6xqsjrw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9973"; a="185402420"
+X-IronPort-AV: E=Sophos;i="5.82,271,1613462400"; d="scan'208";a="185402420"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2021 01:50:10 -0700
+IronPort-SDR: 85n18rkspYy/M3DNO5qwjPOVO6fx1H3UfIBXTvXmhkAYvlpKHYTZPcZy79joo76ph58t3sG921
+ 8gMhR+JHlXvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,271,1613462400"; d="scan'208";a="396055977"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga007.fm.intel.com with SMTP; 04 May 2021 01:50:08 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 04 May 2021 11:50:07 +0300
+Date: Tue, 4 May 2021 11:50:07 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <YJEKvxfc7ASUMU+D@intel.com>
+References: <cover.1620115982.git.jani.nikula@intel.com>
+ <6c2f6afa4c8866f8c1714b4f8dba9ea2d1509e4a.1620115983.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210503155748.1961781-4-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 03/27] drm/i915: Drop
- I915_CONTEXT_PARAM_NO_ZEROMAP
+In-Reply-To: <6c2f6afa4c8866f8c1714b4f8dba9ea2d1509e4a.1620115983.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/audio: fix indentation,
+ remove extra braces
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,159 +51,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 03, 2021 at 10:57:24AM -0500, Jason Ekstrand wrote:
-> The idea behind this param is to support OpenCL drivers with relocations
-> because OpenCL reserves 0x0 for NULL and, if we placed memory there, it
-> would confuse CL kernels.  It was originally sent out as part of a patch
-> series including libdrm [1] and Beignet [2] support.  However, the
-> libdrm and Beignet patches never landed in their respective upstream
-> projects so this API has never been used.  It's never been used in Mesa
-> or any other driver, either.
-> 
-> Dropping this API allows us to delete a small bit of code.
-> 
-> [1]: https://lists.freedesktop.org/archives/intel-gfx/2015-May/067030.html
-> [2]: https://lists.freedesktop.org/archives/intel-gfx/2015-May/067031.html
-> 
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+On Tue, May 04, 2021 at 11:14:01AM +0300, Jani Nikula wrote:
+> Cleanup the code. No functional changes.
+> =
 
-Hm I forgot to r-b this last time around.
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+for the series
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c      | 16 ++--------------
->  .../gpu/drm/i915/gem/i915_gem_context_types.h    |  1 -
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c   |  8 --------
->  include/uapi/drm/i915_drm.h                      |  4 ++++
->  4 files changed, 6 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 2ba4c7e4011b4..44841db04301b 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -1921,15 +1921,6 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
->  	int ret = 0;
->  
->  	switch (args->param) {
-> -	case I915_CONTEXT_PARAM_NO_ZEROMAP:
-> -		if (args->size)
-> -			ret = -EINVAL;
-> -		else if (args->value)
-> -			set_bit(UCONTEXT_NO_ZEROMAP, &ctx->user_flags);
-> -		else
-> -			clear_bit(UCONTEXT_NO_ZEROMAP, &ctx->user_flags);
-> -		break;
-> -
->  	case I915_CONTEXT_PARAM_NO_ERROR_CAPTURE:
->  		if (args->size)
->  			ret = -EINVAL;
-> @@ -1979,6 +1970,7 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
->  		ret = set_persistence(ctx, args);
->  		break;
->  
-> +	case I915_CONTEXT_PARAM_NO_ZEROMAP:
->  	case I915_CONTEXT_PARAM_BAN_PERIOD:
->  	case I915_CONTEXT_PARAM_RINGSIZE:
->  	default:
-> @@ -2359,11 +2351,6 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
->  		return -ENOENT;
->  
->  	switch (args->param) {
-> -	case I915_CONTEXT_PARAM_NO_ZEROMAP:
-> -		args->size = 0;
-> -		args->value = test_bit(UCONTEXT_NO_ZEROMAP, &ctx->user_flags);
-> -		break;
-> -
->  	case I915_CONTEXT_PARAM_GTT_SIZE:
->  		args->size = 0;
->  		rcu_read_lock();
-> @@ -2411,6 +2398,7 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
->  		args->value = i915_gem_context_is_persistent(ctx);
->  		break;
->  
-> +	case I915_CONTEXT_PARAM_NO_ZEROMAP:
->  	case I915_CONTEXT_PARAM_BAN_PERIOD:
->  	case I915_CONTEXT_PARAM_RINGSIZE:
->  	default:
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> index 340473aa70de0..5ae71ec936f7c 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> @@ -129,7 +129,6 @@ struct i915_gem_context {
->  	 * @user_flags: small set of booleans controlled by the user
->  	 */
->  	unsigned long user_flags;
-> -#define UCONTEXT_NO_ZEROMAP		0
->  #define UCONTEXT_NO_ERROR_CAPTURE	1
->  #define UCONTEXT_BANNABLE		2
->  #define UCONTEXT_RECOVERABLE		3
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 297143511f99b..b812f313422a9 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -290,7 +290,6 @@ struct i915_execbuffer {
->  	struct intel_context *reloc_context;
->  
->  	u64 invalid_flags; /** Set of execobj.flags that are invalid */
-> -	u32 context_flags; /** Set of execobj.flags to insert from the ctx */
->  
->  	u64 batch_len; /** Length of batch within object */
->  	u32 batch_start_offset; /** Location within object of batch */
-> @@ -541,9 +540,6 @@ eb_validate_vma(struct i915_execbuffer *eb,
->  			entry->flags |= EXEC_OBJECT_NEEDS_GTT | __EXEC_OBJECT_NEEDS_MAP;
->  	}
->  
-> -	if (!(entry->flags & EXEC_OBJECT_PINNED))
-> -		entry->flags |= eb->context_flags;
-> -
->  	return 0;
->  }
->  
-> @@ -750,10 +746,6 @@ static int eb_select_context(struct i915_execbuffer *eb)
->  	if (rcu_access_pointer(ctx->vm))
->  		eb->invalid_flags |= EXEC_OBJECT_NEEDS_GTT;
->  
-> -	eb->context_flags = 0;
-> -	if (test_bit(UCONTEXT_NO_ZEROMAP, &ctx->user_flags))
-> -		eb->context_flags |= __EXEC_OBJECT_NEEDS_BIAS;
-> -
->  	return 0;
->  }
->  
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 6eefbc6dec01f..a0aaa8298f28d 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -1637,6 +1637,10 @@ struct drm_i915_gem_context_param {
->  	__u32 size;
->  	__u64 param;
->  #define I915_CONTEXT_PARAM_BAN_PERIOD	0x1
-> +/* I915_CONTEXT_PARAM_NO_ZEROMAP has been removed.  On the off chance
-> + * someone somewhere has attempted to use it, never re-use this context
-> + * param number.
-> + */
->  #define I915_CONTEXT_PARAM_NO_ZEROMAP	0x2
->  #define I915_CONTEXT_PARAM_GTT_SIZE	0x3
->  #define I915_CONTEXT_PARAM_NO_ERROR_CAPTURE	0x4
-> -- 
-> 2.31.1
-> 
+>  drivers/gpu/drm/i915/display/intel_audio.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm=
+/i915/display/intel_audio.c
+> index 60083431228c..75871ee544a7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -597,8 +597,8 @@ static void enable_audio_dsc_wa(struct intel_encoder =
+*encoder,
+>  		val |=3D HBLANK_EARLY_ENABLE_TGL(pipe);
+>  =
+
+>  	if (crtc_state->dsc.compression_enable &&
+> -	    (crtc_state->hw.adjusted_mode.hdisplay >=3D 3840 &&
+> -	    crtc_state->hw.adjusted_mode.vdisplay >=3D 2160)) {
+> +	    crtc_state->hw.adjusted_mode.hdisplay >=3D 3840 &&
+> +	    crtc_state->hw.adjusted_mode.vdisplay >=3D 2160) {
+>  		/* Get hblank early enable value required */
+>  		val &=3D ~HBLANK_START_COUNT_MASK(pipe);
+>  		hblank_early_prog =3D calc_hblank_early_prog(encoder, crtc_state);
+> -- =
+
+> 2.20.1
+> =
+
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
