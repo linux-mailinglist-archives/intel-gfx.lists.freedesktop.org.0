@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9467B372CC2
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 17:10:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D09372CE1
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 17:22:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B5906EB1C;
-	Tue,  4 May 2021 15:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD09A6EB22;
+	Tue,  4 May 2021 15:22:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6A96EB1C;
- Tue,  4 May 2021 15:10:35 +0000 (UTC)
-IronPort-SDR: eQ8i6oo0VmnLpZ0fqOWkIaOlTvTX10NljOgSDXl+gLwnySKDrpYHOKioM/U8FA7bTAI6iI7eOp
- k1+I6l5pA5yw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="195950528"
-X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="195950528"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2F9E6EB29;
+ Tue,  4 May 2021 15:22:47 +0000 (UTC)
+IronPort-SDR: +JMgtFzb7FYHmISJs6SdtE/EeuotpfDK7cvtckkN+RkHQpZpK043qeCt8aUWEDxHAs+4CfTq++
+ DG0ZZQyYq2fg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="218814414"
+X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="218814414"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2021 08:10:34 -0700
-IronPort-SDR: nLyJdrNp3CNGXSAwYbytKe0ckXjGML1xV1KD42EwKj701NzYv1e0EzfkSWgA11DN4YaWBR70DR
- 6krTNmyrau8A==
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2021 08:22:47 -0700
+IronPort-SDR: c2tsf9ETkTY+3YKRnCCN6uOZvrJUlwLHly8GXAmCTUjnCwymTJN/h9YUz7Qnjtjs0kbBiRRYJ1
+ hN9w20VMjdOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="531093933"
+X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="531099326"
 Received: from kuha.fi.intel.com ([10.237.72.162])
- by fmsmga001.fm.intel.com with SMTP; 04 May 2021 08:10:30 -0700
+ by fmsmga001.fm.intel.com with SMTP; 04 May 2021 08:22:43 -0700
 Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Tue, 04 May 2021 18:10:29 +0300
-Date: Tue, 4 May 2021 18:10:29 +0300
+ Tue, 04 May 2021 18:22:42 +0300
+Date: Tue, 4 May 2021 18:22:42 +0300
 From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <YJFj5Vk7xOcj+ISZ@kuha.fi.intel.com>
+Message-ID: <YJFmwpdLQghdvkga@kuha.fi.intel.com>
 References: <20210503154647.142551-1-hdegoede@redhat.com>
- <20210503154647.142551-5-hdegoede@redhat.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210503154647.142551-5-hdegoede@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH 4/9] drm/connector: Add support for
+In-Reply-To: <20210503154647.142551-1-hdegoede@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH 0/9] drm + usb-type-c: Add support for
  out-of-band hotplug notification (v2)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,50 +60,75 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> +/**
-> + * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
-> + * @connector: connector to report the event on
-> + * @data: data related to the event
-> + *
-> + * On some hardware a hotplug event notification may come from outside the display
-> + * driver / device. An example of this is some USB Type-C setups where the hardware
-> + * muxes the DisplayPort data and aux-lines but does not pass the altmode HPD
-> + * status bit to the GPU's DP HPD pin.
-> + *
-> + * This function can be used to report these out-of-band events after obtaining
-> + * a drm_connector reference through calling drm_connector_find_by_fwnode().
-> + */
-> +void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
-> +				     struct drm_connector_oob_hotplug_event_data *data)
-> +{
-> +	struct drm_connector *connector;
-> +
-> +	connector = drm_connector_find_by_fwnode(connector_fwnode);
-> +	if (IS_ERR(connector))
-> +		return;
-> +
-> +	if (connector->funcs->oob_hotplug_event)
-> +		connector->funcs->oob_hotplug_event(connector, data);
-> +
-> +	drm_connector_put(connector);
-> +}
-> +EXPORT_SYMBOL(drm_connector_oob_hotplug_event);
+On Mon, May 03, 2021 at 05:46:38PM +0200, Hans de Goede wrote:
+> Hi All,
+> 
+> Here is v2 of my work on making DP over Type-C work on devices where the
+> Type-C controller does not drive the HPD pin on the GPU, but instead
+> we need to forward HPD events from the Type-C controller to the DRM driver.
+> 
+> Changes in v2:
+> - Replace the bogus "drm/connector: Make the drm_sysfs connector->kdev
+>   device hold a reference to the connector" patch with:
+>   "drm/connector: Give connector sysfs devices there own device_type"
+>   the new patch is a dep for patch 2/9 see the patches
+> 
+> - Stop using a class-dev-iter, instead at a global connector list
+>   to drm_connector.c and use that to find the connector by the fwnode,
+>   similar to how we already do this in drm_panel.c and drm_bridge.c
+> 
+> - Make drm_connector_oob_hotplug_event() take a fwnode pointer as
+>   argument, rather then a drm_connector pointer and let it do the
+>   lookup itself. This allows making drm_connector_find_by_fwnode() a
+>   drm-internal function and avoids code outside the drm subsystem
+>   potentially holding on the a drm_connector reference for a longer
+>   period.
+> 
+> This series not only touches drm subsys files but it also touches
+> drivers/usb/typec/altmodes/typec_displayport.c, that file usually
+> does not see a whole lot of changes. So I believe it would be best
+> to just merge the entire series through drm-misc, Assuming we can
+> get an ack from Greg for merging the typec_displayport.c changes
+> this way.
+> 
+> ### 
+> 
+> As already mentioned in the v1 cover-letter this series replaces
+> a previous attempt from quite some time ago. 
+> For anyone interested here are the old (2019!) patches for this:
+> 
+> https://patchwork.freedesktop.org/patch/288491/
+> https://patchwork.freedesktop.org/patch/288493/
+> https://patchwork.freedesktop.org/patch/288495/
+> 
+> Last time I posted this the biggest change requested was for more info to
+> be included in the event send to the DRM-subsystem, specifically sending
+> the following info was requested:
+> 
+> 1. Which DP connector on the GPU the event is for
+> 2. How many lanes are available
+> 3. Connector orientation
+> 
+> This series is basically an entirely new approach, which no longer
+> uses the notifier framework at all. Instead the Type-C code looksup
+> a connector based on a fwnode (this was suggested by Heikki Krogerus)
+> and then calls a new oob_hotplug_event drm_connector_func directly
+> on the connector, passing the requested info as argument.
+> 
+> Info such as the orientation and the number of dp-lanes is now passed
+> to the drm_connector_oob_hotplug_event() function as requested in the
+> review of the old code, but nothing is done with it for now.
+> Using this info falls well outside of my knowledge of the i915 driver
+> so this is left to a follow-up patch (I will be available to test
+> patches for this).
 
-So it does looks like the "data" parameter is not needed at all:
+Thanks for taking care of these! It's really great that you spent the
+time to do this series. I'm already thinking about what we can add
+after these are in. I think support for re-configuration, so support
+for changing the pin-configuration in runtime is going to be needed
+soon after these. But first things first (sorry, I'm getting ahead of
+myself).
 
-void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode)
-{
-	struct drm_connector *connector;
-
-	connector = drm_connector_find_by_fwnode(connector_fwnode);
-	if (IS_ERR(connector))
-		return;
-
-	if (connector->funcs->oob_hotplug_event)
-		connector->funcs->oob_hotplug_event(connector);
-
-	drm_connector_put(connector);
-}
 
 thanks,
 
