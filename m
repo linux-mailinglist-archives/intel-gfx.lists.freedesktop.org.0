@@ -1,46 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 221BD37270C
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 10:16:14 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F61372784
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 10:47:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D79C891CB;
-	Tue,  4 May 2021 08:16:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55B9F6EAB0;
+	Tue,  4 May 2021 08:47:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8F8C891CB
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 May 2021 08:16:10 +0000 (UTC)
-IronPort-SDR: inhNKDELxlSbqYf6Q+iUMsybZDBYrMlmQI+zfeheKqTBjUj+27zffl7VT1TxqoKw6sjb5GyohX
- kCH2NGcLcsAw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9973"; a="195875584"
-X-IronPort-AV: E=Sophos;i="5.82,271,1613462400"; d="scan'208";a="195875584"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2021 01:16:10 -0700
-IronPort-SDR: dzGsQABJgGM4Hfn8iva4j1MnC959kmi6/RPfOyC6nDjjnlg1yN4/8Vwdx3Uq8INrKHrE4hTjoa
- iwpOEcPjXAkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,271,1613462400"; d="scan'208";a="427689893"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by orsmga007.jf.intel.com with SMTP; 04 May 2021 01:16:07 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 May 2021 11:16:06 +0300
-Date: Tue, 4 May 2021 11:16:06 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <YJECxkQRkAAKPbRl@intel.com>
-References: <20210430143945.6776-1-ville.syrjala@linux.intel.com>
- <162007169526.13684.2336533428443598886@emeril.freedesktop.org>
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F2346EAB0
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 May 2021 08:47:28 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id w3so11950278ejc.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 May 2021 01:47:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=/BqrjFkHaB3CIvq0CTPv5jWGxLP2jdmkJ70TYtsFBx0=;
+ b=OIfTZHCehrwxLihwFInhKUfM8asHf/9i/7X7AC2sox6MYQbZWjiPWp2vDIv5f1VNAJ
+ fw3yv3kNsDeXQMZU6k/iJfJMB4qLlJEa2WlVegJTpRKAGnV1WIrM+ZCrBILRzgbIMuXu
+ 2Bdka/kkdDkHznCcJJc2AEyg/BY9HDLDggXYM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=/BqrjFkHaB3CIvq0CTPv5jWGxLP2jdmkJ70TYtsFBx0=;
+ b=ewE/osF+jMrIYTXQwndJJKR5Of1Lrf6pIErSgBmjFvPhgKLkxthAmsG2XSnA3zfXBf
+ 6A1ZaeiyEYWt9juWPv+whLzQZ44qVQAy2Z9q/CfcckUoY85BdcCteElwpbtICiGA6OLD
+ wwmNcp+FKPD51UCPD62oY52sRTRFyb43chk8qFbizvEtNb7/CzeB81c5lxliY/oHjZix
+ taZKoEv+rlHC9eHNin2NxLUDwWh3vIsdYc8vAhb5xG4fb7cNfraI5XM9jOk05sMJ0CRA
+ iIe1cJlhp7XRCAlDjiV//8dr/4cckn4+Z93m+h/d5+Qw/QB06PcszHm0yPN5D6xELM9k
+ +ZNQ==
+X-Gm-Message-State: AOAM532iAiVXrYAGi1BQfeyCFqCA6Txu1R0oUYRTqklFDTXqEq23Xd91
+ lBjuqou43O2fIP14rx6h06tpmw==
+X-Google-Smtp-Source: ABdhPJymJurI8OLA2wiprFdKgK8fl2S8cmOyPLp8dhTedSUzPXPJzfR+IvkauM+gHPzbq7q+Hf2XSA==
+X-Received: by 2002:a17:906:5952:: with SMTP id
+ g18mr20474076ejr.313.1620118046890; 
+ Tue, 04 May 2021 01:47:26 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id d15sm14164072edu.86.2021.05.04.01.47.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 04 May 2021 01:47:26 -0700 (PDT)
+Date: Tue, 4 May 2021 10:47:24 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Jason Ekstrand <jason@jlekstrand.net>
+Message-ID: <YJEKHFofZsBdIPIS@phenom.ffwll.local>
+References: <20210503155748.1961781-1-jason@jlekstrand.net>
+ <20210503155748.1961781-3-jason@jlekstrand.net>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <162007169526.13684.2336533428443598886@emeril.freedesktop.org>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C1/2=5D_drm/i915=3A_Don=27t_include_in?=
- =?utf-8?q?tel=5Fde=2Eh_from_intel=5Fdisplay=5Ftypes=2Eh_=28rev2=29?=
+In-Reply-To: <20210503155748.1961781-3-jason@jlekstrand.net>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 02/27] drm/i915: Stop storing the ring size
+ in the ring pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,101 +67,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 03, 2021 at 07:54:55PM -0000, Patchwork wrote:
-> =3D=3D Series Details =3D=3D
-> =
+On Mon, May 03, 2021 at 10:57:23AM -0500, Jason Ekstrand wrote:
+> Previously, we were storing the ring size in the ring pointer before it
+> was actually allocated.  We would then guard setting the ring size on
+> checking for CONTEXT_ALLOC_BIT.  This is error-prone at best and really
+> only saves us a few bytes on something that already burns at least 4K.
+> Instead, this patch adds a new ring_size field and makes everything use
+> that.
+> 
+> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 3 +--
+>  drivers/gpu/drm/i915/gt/intel_context.c       | 3 ++-
+>  drivers/gpu/drm/i915/gt/intel_context.h       | 5 -----
+>  drivers/gpu/drm/i915/gt/intel_context_types.h | 1 +
+>  drivers/gpu/drm/i915/gt/intel_lrc.c           | 2 +-
+>  drivers/gpu/drm/i915/gt/selftest_execlists.c  | 2 +-
+>  drivers/gpu/drm/i915/gt/selftest_mocs.c       | 2 +-
+>  drivers/gpu/drm/i915/gt/selftest_timeline.c   | 2 +-
+>  drivers/gpu/drm/i915/gvt/scheduler.c          | 7 ++-----
+>  9 files changed, 10 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index e52b85b8f923d..2ba4c7e4011b4 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -211,8 +211,7 @@ static void intel_context_set_gem(struct intel_context *ce,
+>  	GEM_BUG_ON(rcu_access_pointer(ce->gem_context));
+>  	RCU_INIT_POINTER(ce->gem_context, ctx);
+>  
+> -	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))
+> -		ce->ring = __intel_context_ring_size(SZ_16K);
+> +	ce->ring_size = SZ_16K;
+>  
+>  	if (rcu_access_pointer(ctx->vm)) {
+>  		struct i915_address_space *vm;
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> index 17cf2640b082b..342fa7daa08b5 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -372,7 +372,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+>  	ce->engine = engine;
+>  	ce->ops = engine->cops;
+>  	ce->sseu = engine->sseu;
+> -	ce->ring = __intel_context_ring_size(SZ_4K);
+> +	ce->ring = NULL;
+> +	ce->ring_size = SZ_4K;
+>  
+>  	ewma_runtime_init(&ce->runtime.avg);
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> index f83a73a2b39fc..b10cbe8fee992 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> @@ -175,11 +175,6 @@ int intel_context_prepare_remote_request(struct intel_context *ce,
+>  
+>  struct i915_request *intel_context_create_request(struct intel_context *ce);
+>  
+> -static inline struct intel_ring *__intel_context_ring_size(u64 sz)
+> -{
+> -	return u64_to_ptr(struct intel_ring, sz);
+> -}
+> -
+>  static inline bool intel_context_is_barrier(const struct intel_context *ce)
+>  {
+>  	return test_bit(CONTEXT_BARRIER_BIT, &ce->flags);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index ed8c447a7346b..90026c1771055 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -82,6 +82,7 @@ struct intel_context {
+>  	spinlock_t signal_lock; /* protects signals, the list of requests */
+>  
+>  	struct i915_vma *state;
+> +	u32 ring_size;
+>  	struct intel_ring *ring;
+>  	struct intel_timeline *timeline;
+>  
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index e86897cde9846..63193c80fb117 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -845,7 +845,7 @@ int lrc_alloc(struct intel_context *ce, struct intel_engine_cs *engine)
+>  	if (IS_ERR(vma))
+>  		return PTR_ERR(vma);
+>  
+> -	ring = intel_engine_create_ring(engine, (unsigned long)ce->ring);
+> +	ring = intel_engine_create_ring(engine, ce->ring_size);
+>  	if (IS_ERR(ring)) {
+>  		err = PTR_ERR(ring);
+>  		goto err_vma;
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> index 1081cd36a2bd3..01d9896dd4844 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> @@ -2793,7 +2793,7 @@ static int __live_preempt_ring(struct intel_engine_cs *engine,
+>  			goto err_ce;
+>  		}
+>  
+> -		tmp->ring = __intel_context_ring_size(ring_sz);
+> +		tmp->ring_size = ring_sz;
+>  
+>  		err = intel_context_pin(tmp);
+>  		if (err) {
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> index e55a887d11e2b..f343fa5fd986f 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> @@ -28,7 +28,7 @@ static struct intel_context *mocs_context_create(struct intel_engine_cs *engine)
+>  		return ce;
+>  
+>  	/* We build large requests to read the registers from the ring */
+> -	ce->ring = __intel_context_ring_size(SZ_16K);
+> +	ce->ring_size = SZ_16K;
+>  
+>  	return ce;
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+> index 9adbd9d147bea..7eedecfb86e59 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+> @@ -874,7 +874,7 @@ static int create_watcher(struct hwsp_watcher *w,
+>  	if (IS_ERR(ce))
+>  		return PTR_ERR(ce);
+>  
+> -	ce->ring = __intel_context_ring_size(ringsz);
+> +	ce->ring_size = ringsz;
+>  	w->rq = intel_context_create_request(ce);
+>  	intel_context_put(ce);
+>  	if (IS_ERR(w->rq))
+> diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
+> index fc735692f21fb..99bc9fed6fbb6 100644
+> --- a/drivers/gpu/drm/i915/gvt/scheduler.c
+> +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+> @@ -1409,11 +1409,8 @@ int intel_vgpu_setup_submission(struct intel_vgpu *vgpu)
+>  		intel_context_set_single_submission(ce);
+>  
+>  		/* Max ring buffer size */
+> -		if (!intel_uc_wants_guc_submission(&engine->gt->uc)) {
+> -			const unsigned int ring_size = 512 * SZ_4K;
+> -
+> -			ce->ring = __intel_context_ring_size(ring_size);
+> -		}
+> +		if (!intel_uc_wants_guc_submission(&engine->gt->uc))
+> +			ce->ring_size = 512 * SZ_4K;
 
-> Series: series starting with [v2,1/2] drm/i915: Don't include intel_de.h =
-from intel_display_types.h (rev2)
-> URL   : https://patchwork.freedesktop.org/series/89698/
-> State : failure
-> =
+A rather funny way of saying SZ_2M. Maybe fix that if you feel like. W/ or
+w/o that:
 
-> =3D=3D Summary =3D=3D
-> =
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-> CI Bug Log - changes from CI_DRM_10039 -> Patchwork_20053
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> =
+>  
+>  		s->shadow[i] = ce;
+>  	}
+> -- 
+> 2.31.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-> Summary
-> -------
-> =
-
->   **FAILURE**
-> =
-
->   Serious unknown changes coming with Patchwork_20053 absolutely need to =
-be
->   verified manually.
->   =
-
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_20053, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in=
- CI.
-> =
-
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20053/=
-index.html
-> =
-
-> Possible new issues
-> -------------------
-> =
-
->   Here are the unknown changes that may have been introduced in Patchwork=
-_20053:
-> =
-
-> ### IGT changes ###
-> =
-
-> #### Possible regressions ####
-> =
-
->   * igt@i915_selftest@live@blt:
->     - fi-bdw-5557u:       [PASS][1] -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10039/fi-bdw-5557=
-u/igt@i915_selftest@live@blt.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20053/fi-bdw-5=
-557u/igt@i915_selftest@live@blt.html
-
-<4> [276.958769] WARNING: CPU: 0 PID: 358 at kernel/workqueue.c:1418 __queu=
-e_work+0x2d2/0x620
-...
-<4> [276.959009]  queue_work_on+0x68/0x80
-<4> [276.959016]  node_free+0x43/0x60 [i915]
-<4> [276.959140]  pool_free_older_than+0x132/0x170 [i915]
-<4> [276.959270]  pool_free_work+0x12/0x40 [i915]
-<4> [276.959395]  process_one_work+0x270/0x5c0
-<4> [276.959407]  worker_thread+0x37/0x380
-
-Which is
-        /* if draining, only works from the same workqueue are allowed */
-	if (unlikely(wq->flags & __WQ_DRAINING) &&
-	    WARN_ON_ONCE(!is_chained_work(wq)))
-	        return;
-
-Based on a cursory glance the queue_work is probably coming from
-i915_gem_free_object() -> queue_work(i915->wq, &i915->mm.free_work);
-
-So looks like i915_gem_drain_workqueue() is broken.
-
-Entirely unrelated to this patch series.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
