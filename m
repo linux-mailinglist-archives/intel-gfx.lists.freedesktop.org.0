@@ -1,43 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B260A37287A
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 12:08:56 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88592372897
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 12:15:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 857386E1BC;
-	Tue,  4 May 2021 10:08:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 899766E1BC;
+	Tue,  4 May 2021 10:15:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29B8B6E1AA;
- Tue,  4 May 2021 10:08:50 +0000 (UTC)
-IronPort-SDR: tEo2heKSAUKfsyJR/HLvscR+xbWonS+cWwrNFSNdZIv+ncS/diwU2hB3Kg6BJyPWv67FIuRciK
- WFEl6xWYCAKg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9973"; a="259227823"
-X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="259227823"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2021 03:08:48 -0700
-IronPort-SDR: FUqnMRWgvRXRQYs3FzsQuFrazFO/ZVAWQcVuQ+ry4ms1nCReGwYNKDEQ6ogxTpmj6tFlnlQiUN
- 4yZ8JKi3VSkg==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 392586E1BC
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 May 2021 10:15:48 +0000 (UTC)
+IronPort-SDR: 7780SXxPNwQ6QFiXPkQ5qWFPNMhXE8ew6Wr627DtRk74JmYwwmJQhkGBA+fSEB3Ney4uxLpjxU
+ 15Jz0w/ffhng==
+X-IronPort-AV: E=McAfee;i="6200,9189,9973"; a="195892382"
+X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="195892382"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2021 03:15:47 -0700
+IronPort-SDR: oSMlvcbeWwndaoVJPNkUmmjWHGihTIxGXZXb6szjh4inL6NJMnpXKLtIOMMWmkXQvrwUVS7NX1
+ G/hHRA4JH2Uw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="530955511"
+X-IronPort-AV: E=Sophos;i="5.82,272,1613462400"; d="scan'208";a="406056505"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga001.fm.intel.com with SMTP; 04 May 2021 03:08:45 -0700
+ by orsmga002.jf.intel.com with SMTP; 04 May 2021 03:15:45 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 May 2021 13:08:45 +0300
-Date: Tue, 4 May 2021 13:08:45 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <YJEdLbE5EOQv+Nib@intel.com>
-References: <20210503182148.851790-1-wse@tuxedocomputers.com>
- <20210503182148.851790-5-wse@tuxedocomputers.com>
+ Tue, 04 May 2021 13:15:44 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 May 2021 13:15:44 +0300
+Message-Id: <20210504101544.26082-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.3
+In-Reply-To: <20210421164849.12806-13-ville.syrjala@linux.intel.com>
+References: <20210421164849.12806-13-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210503182148.851790-5-wse@tuxedocomputers.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 4/4] Use YCbCr420 as fallback when RGB fails
+Subject: [Intel-gfx] [PATCH v2 12/17] drm/i915: Fix dg1 buf trans tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,127 +48,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 03, 2021 at 08:21:48PM +0200, Werner Sembach wrote:
-> When encoder validation of a display mode fails, retry with less bandwidth
-> heavy YCbCr420 color mode, if available. This enables some HDMI 1.4 setups
-> to support 4k60Hz output, which previously failed silently.
-> =
-
-> AMDGPU had nearly the exact same issue. This problem description is
-> therefore copied from my commit message of the AMDGPU patch.
-> =
-
-> On some setups, while the monitor and the gpu support display modes with
-> pixel clocks of up to 600MHz, the link encoder might not. This prevents
-> YCbCr444 and RGB encoding for 4k60Hz, but YCbCr420 encoding might still be
-> possible. However, which color mode is used is decided before the link
-> encoder capabilities are checked. This patch fixes the problem by retrying
-> to find a display mode with YCbCr420 enforced and using it, if it is
-> valid.
-> =
-
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> ---
-> =
-
-> >From 4ea0c8839b47e846d46c613e38af475231994f0f Mon Sep 17 00:00:00 2001
-> From: Werner Sembach <wse@tuxedocomputers.com>
-> Date: Mon, 3 May 2021 16:23:17 +0200
-> Subject: [PATCH 4/4] Use YCbCr420 as fallback when RGB fails
-> =
-
-> ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
-i915/display/intel_hdmi.c
-> index e2553ac6fd13..20c800f2ed60 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1913,7 +1913,7 @@ intel_hdmi_mode_valid(struct drm_connector *connect=
-or,
->  		clock *=3D 2;
->  	}
->  =
-
-> -	if (connector->ycbcr_420_allowed && drm_mode_is_420_only(&connector->di=
-splay_info, mode))
-> +	if (connector->ycbcr_420_allowed && drm_mode_is_420(&connector->display=
-_info, mode))
->  		clock /=3D 2;
-
-This is too early. We want to keep clock as is for checking whether RGB
-output is possible with 420_also modes.
-
-So the structure you had in your original patch was the correct way to
-go about it. Which I think was something along the lines of:
-
-if (420_only)
-	clock /=3D 2;
-
-status =3D intel_hdmi_mode_clock_valid()
-if (status !=3D OK) {
-	if (420_only || !420_also || !420_allowed)
-		return status;
-	=
-
-	clock /=3D 2;
-	status =3D intel_hdmi_mode_clock_valid()
-}
-
-
->  =
-
->  	status =3D intel_hdmi_mode_clock_valid(hdmi, clock, has_hdmi_sink);
-> @@ -2119,6 +2119,14 @@ int intel_hdmi_compute_output_format(struct intel_=
-encoder *encoder,
->  		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
->  =
-
->  	ret =3D intel_hdmi_compute_clock(encoder, crtc_state);
-> +	if (ret) {
-> +		if (crtc_state->output_format !=3D INTEL_OUTPUT_FORMAT_YCBCR420 ||
-> +				connector->ycbcr_420_allowed ||
-> +				drm_mode_is_420_also(&connector->display_info, adjusted_mode)) {
-
-That needs s/||/&&/ or we flip the conditions around to:
-
-if (ret) {
-	if (output_format =3D=3D 420 || !420_allowed || !420_also)
-		return ret;
-
-	output_format =3D 420;
-	...
-}
-
-which would have the benefit of avoiding the extra indent level.
-
-> +			crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
-> +			ret =3D intel_hdmi_compute_clock(encoder, crtc_state);
-> +		}
-> +	}
->  =
-
->  	return ret;
->  }
-> -- =
-
-> 2.25.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkZv
+ciBzb21lIHJlYXNvbiB0aGUgZGcxIGJ1ZiB0cmFucyB0YWJsZXMgaGF2ZSBiZWVuIHN0dWZmZWQg
+aW50bwppY2xfZ2V0X2NvbWJvX2J1Zl90cmFuc19lZHAoKSB3aGljaCBkb2Vzbid0IGV2ZW4gZ2V0
+IGNhbGxlZApvbiBkZzEuIFNwbGl0IHRoZW0gb3V0IGludG8gYSBwcm9wZXIgZGcxIHNwZWNpZmlj
+IGZ1bmN0aW9uLAphbmQgYWxzbyBtYWtlIHN1cmUgd2UgdXNlIHRoZSBwcm9wZXIgYnVmIHRyYW5z
+IHRhYmxlcyBmb3IKRFAgYXMgd2VsbCBhcyBlRFAuCgp2MjogQWRkIHRoZSBob2JsIHN0dWZmCgpT
+aWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
+Y29tPgotLS0KIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaV9idWZfdHJhbnMuYyAgICB8
+IDU1ICsrKysrKysrKysrKysrKysrLS0KIDEgZmlsZSBjaGFuZ2VkLCA0OSBpbnNlcnRpb25zKCsp
+LCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGRpX2J1Zl90cmFucy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kZGlfYnVmX3RyYW5zLmMKaW5kZXggZmQ1NWM4MTJmMTRhLi43YTFkYmY1MjgxY2IgMTAw
+NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpX2J1Zl90cmFu
+cy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpX2J1Zl90cmFu
+cy5jCkBAIC0xMjg2LDEyICsxMjg2LDYgQEAgaWNsX2dldF9jb21ib19idWZfdHJhbnNfZWRwKHN0
+cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCX0gZWxzZSBpZiAoZGV2X3ByaXYtPnZidC5l
+ZHAubG93X3Zzd2luZykgewogCQlyZXR1cm4gaW50ZWxfZ2V0X2J1Zl90cmFucygmaWNsX2NvbWJv
+X3BoeV9kZGlfdHJhbnNsYXRpb25zX2VkcF9oYnIyLAogCQkJCQkgICBuX2VudHJpZXMpOwotCX0g
+ZWxzZSBpZiAoSVNfREcxKGRldl9wcml2KSAmJiBjcnRjX3N0YXRlLT5wb3J0X2Nsb2NrID4gMjcw
+MDAwKSB7Ci0JCXJldHVybiBpbnRlbF9nZXRfYnVmX3RyYW5zKCZkZzFfY29tYm9fcGh5X2RkaV90
+cmFuc2xhdGlvbnNfZHBfaGJyMl9oYnIzLAotCQkJCQkgICBuX2VudHJpZXMpOwotCX0gZWxzZSBp
+ZiAoSVNfREcxKGRldl9wcml2KSkgewotCQlyZXR1cm4gaW50ZWxfZ2V0X2J1Zl90cmFucygmZGcx
+X2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX3Jicl9oYnIsCi0JCQkJCSAgIG5fZW50cmll
+cyk7CiAJfQogCiAJcmV0dXJuIGljbF9nZXRfY29tYm9fYnVmX3RyYW5zX2RwKGVuY29kZXIsIGNy
+dGNfc3RhdGUsIG5fZW50cmllcyk7CkBAIC0xNTA2LDYgKzE1MDAsNTMgQEAgdGdsX2dldF9jb21i
+b19idWZfdHJhbnMoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJCXJldHVybiB0Z2xf
+Z2V0X2NvbWJvX2J1Zl90cmFuc19kcChlbmNvZGVyLCBjcnRjX3N0YXRlLCBuX2VudHJpZXMpOwog
+fQogCitzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RkaV9idWZfdHJhbnMgKgorZGcxX2dldF9j
+b21ib19idWZfdHJhbnNfZHAoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCisJCQkgICBj
+b25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKKwkJCSAgIGludCAqbl9l
+bnRyaWVzKQoreworCWlmIChjcnRjX3N0YXRlLT5wb3J0X2Nsb2NrID4gMjcwMDAwKQorCQlyZXR1
+cm4gaW50ZWxfZ2V0X2J1Zl90cmFucygmZGcxX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2Rw
+X2hicjJfaGJyMywKKwkJCQkJICAgbl9lbnRyaWVzKTsKKwllbHNlCisJCXJldHVybiBpbnRlbF9n
+ZXRfYnVmX3RyYW5zKCZkZzFfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZHBfcmJyX2hiciwK
+KwkJCQkJICAgbl9lbnRyaWVzKTsKK30KKworc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZGlf
+YnVmX3RyYW5zICoKK2RnMV9nZXRfY29tYm9fYnVmX3RyYW5zX2VkcChzdHJ1Y3QgaW50ZWxfZW5j
+b2RlciAqZW5jb2RlciwKKwkJCSAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
+Y19zdGF0ZSwKKwkJCSAgICBpbnQgKm5fZW50cmllcykKK3sKKwlzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGVuY29kZXItPmJhc2UuZGV2KTsKKwlzdHJ1Y3QgaW50
+ZWxfZHAgKmludGVsX2RwID0gZW5jX3RvX2ludGVsX2RwKGVuY29kZXIpOworCisJaWYgKGNydGNf
+c3RhdGUtPnBvcnRfY2xvY2sgPiA1NDAwMDApCisJCXJldHVybiBpbnRlbF9nZXRfYnVmX3RyYW5z
+KCZpY2xfY29tYm9fcGh5X2RkaV90cmFuc2xhdGlvbnNfZWRwX2hicjMsCisJCQkJCSAgIG5fZW50
+cmllcyk7CisJZWxzZSBpZiAoZGV2X3ByaXYtPnZidC5lZHAuaG9ibCAmJiAhaW50ZWxfZHAtPmhv
+YmxfZmFpbGVkKQorCQlyZXR1cm4gaW50ZWxfZ2V0X2J1Zl90cmFucygmdGdsX2NvbWJvX3BoeV9k
+ZGlfdHJhbnNsYXRpb25zX2VkcF9oYnIyX2hvYmwsCisJCQkJCSAgIG5fZW50cmllcyk7CisJZWxz
+ZSBpZiAoZGV2X3ByaXYtPnZidC5lZHAubG93X3Zzd2luZykKKwkJcmV0dXJuIGludGVsX2dldF9i
+dWZfdHJhbnMoJmljbF9jb21ib19waHlfZGRpX3RyYW5zbGF0aW9uc19lZHBfaGJyMiwKKwkJCQkJ
+ICAgbl9lbnRyaWVzKTsKKwllbHNlCisJCXJldHVybiBkZzFfZ2V0X2NvbWJvX2J1Zl90cmFuc19k
+cChlbmNvZGVyLCBjcnRjX3N0YXRlLCBuX2VudHJpZXMpOworfQorCitzdGF0aWMgY29uc3Qgc3Ry
+dWN0IGludGVsX2RkaV9idWZfdHJhbnMgKgorZGcxX2dldF9jb21ib19idWZfdHJhbnMoc3RydWN0
+IGludGVsX2VuY29kZXIgKmVuY29kZXIsCisJCQljb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
+ZSAqY3J0Y19zdGF0ZSwKKwkJCWludCAqbl9lbnRyaWVzKQoreworCWlmIChpbnRlbF9jcnRjX2hh
+c190eXBlKGNydGNfc3RhdGUsIElOVEVMX09VVFBVVF9IRE1JKSkKKwkJcmV0dXJuIGljbF9nZXRf
+Y29tYm9fYnVmX3RyYW5zX2hkbWkoZW5jb2RlciwgY3J0Y19zdGF0ZSwgbl9lbnRyaWVzKTsKKwll
+bHNlIGlmIChpbnRlbF9jcnRjX2hhc190eXBlKGNydGNfc3RhdGUsIElOVEVMX09VVFBVVF9FRFAp
+KQorCQlyZXR1cm4gZGcxX2dldF9jb21ib19idWZfdHJhbnNfZWRwKGVuY29kZXIsIGNydGNfc3Rh
+dGUsIG5fZW50cmllcyk7CisJZWxzZQorCQlyZXR1cm4gZGcxX2dldF9jb21ib19idWZfdHJhbnNf
+ZHAoZW5jb2RlciwgY3J0Y19zdGF0ZSwgbl9lbnRyaWVzKTsKK30KKwogc3RhdGljIGNvbnN0IHN0
+cnVjdCBpbnRlbF9kZGlfYnVmX3RyYW5zICoKIHJrbF9nZXRfY29tYm9fYnVmX3RyYW5zX2RwKHN0
+cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQkJICAgY29uc3Qgc3RydWN0IGludGVsX2Ny
+dGNfc3RhdGUgKmNydGNfc3RhdGUsCkBAIC0xNjE0LDYgKzE2NTUsOCBAQCB2b2lkIGludGVsX2Rk
+aV9idWZfdHJhbnNfaW5pdChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcikKIAogCWlmIChJ
+U19ST0NLRVRMQUtFKGk5MTUpKSB7CiAJCWVuY29kZXItPmdldF9idWZfdHJhbnMgPSBya2xfZ2V0
+X2NvbWJvX2J1Zl90cmFuczsKKwl9IGVsc2UgaWYgKElTX0RHMShpOTE1KSkgeworCQllbmNvZGVy
+LT5nZXRfYnVmX3RyYW5zID0gZGcxX2dldF9jb21ib19idWZfdHJhbnM7CiAJfSBlbHNlIGlmIChE
+SVNQTEFZX1ZFUihpOTE1KSA+PSAxMikgewogCQlpZiAoaW50ZWxfcGh5X2lzX2NvbWJvKGk5MTUs
+IHBoeSkpCiAJCQllbmNvZGVyLT5nZXRfYnVmX3RyYW5zID0gdGdsX2dldF9jb21ib19idWZfdHJh
+bnM7Ci0tIAoyLjI2LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
