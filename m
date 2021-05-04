@@ -2,81 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7768E372D14
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 17:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70438372D3C
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 17:48:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD2486EB1C;
-	Tue,  4 May 2021 15:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DC7F89DBA;
+	Tue,  4 May 2021 15:48:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F2996EB1C
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 May 2021 15:35:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1620142554;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=FjANuhmunmxl1tjd4moAyPGINXbx5GlWhcPk5Awa2JU=;
- b=J3cm8yJMBhCYCRRMruAKc4Pyo/MeksX/PT2NysDL8jTzxGQ9GkKWvuSeSCHiN6tSrEvbE1
- YNumQDDvUc/pdyuczhZe5iyB4VQT8nmAdQEttEPPeLFtXwYZwvTPxcEB6prZRqygUj3BXY
- ccAeRRom/ifU10SpSLFtSUW09l02o0U=
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
- [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-519-rbttNzXFNLavlyBZGUf6dA-1; Tue, 04 May 2021 11:35:53 -0400
-X-MC-Unique: rbttNzXFNLavlyBZGUf6dA-1
-Received: by mail-ed1-f71.google.com with SMTP id
- g19-20020a0564021813b029038811907178so6579154edy.14
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 May 2021 08:35:51 -0700 (PDT)
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com
+ [IPv6:2607:f8b0:4864:20::e34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79CD589DBA;
+ Tue,  4 May 2021 15:48:27 +0000 (UTC)
+Received: by mail-vs1-xe34.google.com with SMTP id m17so4967143vsn.10;
+ Tue, 04 May 2021 08:48:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=zWkhFmFfcn11T3BepO4TImcK6jj0L9mDhIUI9DngYuM=;
+ b=JUxRGxeJ9hcHIvp4f/XVUPTVkQGlDuyYvTfcdhLw1kRb17SjZzc9YTgzXJE+UxViXu
+ q2Fvfjfr/jNv8CEFfGpaAu6D8LtUBF02HATIkwt+S+8RYcGJq072umsswK7FzMxPPsIs
+ DLNovAKpEqSX8H0zX/vux0mh3HEs77y6CF4Ww+x3r5CaglVkUs1J4J+Qt07vi9MqksFi
+ LDfMYEa8pf34XgPrDcIIupWfEwom5sGOY+1SZgur+LnTIqp+hNbBot8hz6sbr5iQiaTk
+ QMUt2cFoIDX45qvikeHzcUtdVbe3KJ4NVFBPN4oKuafjuttrMsiuUcZZzORafaUMbRKy
+ kfUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=FjANuhmunmxl1tjd4moAyPGINXbx5GlWhcPk5Awa2JU=;
- b=lMSO1wUlEx1ebeHgFx3nKTUad6ikxbR1IP9SN5vcw5dK9YmkY2INH92P7H0UBa8iOx
- dDSWvGoAlvTKj8G42GJnBQOFNHc/md9oe/p2j/GeO3QXqZEhdjbR+MB9c89n0CeclAmJ
- i09Oh8GsZmVtkxrAjJFZWD80hmWbAvUBh6DGtIlQU2fMs2ylk3QgMhdZ5vVbi9xSdZaG
- /eAkoMc7MzhYkjP5tD3NVyNuJwDEYw/0vOh/2npFs5kMjA25VcPdglP9zYab4z0AHIYL
- frLGTkjSPR5uJisa+IM7Q5y6ZEEyxGs1eYledbnEOV159KYV0O5ye1oG+x+kBt/cO0e7
- 95/w==
-X-Gm-Message-State: AOAM533a6if9i84EGZMJh0XkuLxt/1iqM4tX6qLnNIG0rt63gvxHFs45
- IuKiPRUu2tLVZ/ocUKduTBwSR/CBqFmpqaHyuQy57/nUga/4ku1x+x+aTbeieNsMYFQaernXUNv
- Jg6zypNal8hkDCBIKPL+413Cb1uSm
-X-Received: by 2002:a17:906:cd27:: with SMTP id
- oz39mr18874307ejb.129.1620142550774; 
- Tue, 04 May 2021 08:35:50 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxmyw0dujywRY0BkQgCLf9VxiL7liqXtJ0bEMhZiU1xqc+xgw8QvX8u6muUU7TbNtZxdprzkg==
-X-Received: by 2002:a17:906:cd27:: with SMTP id
- oz39mr18874288ejb.129.1620142550583; 
- Tue, 04 May 2021 08:35:50 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id d18sm1584825eja.71.2021.05.04.08.35.49
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 04 May 2021 08:35:50 -0700 (PDT)
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>
-References: <20210503154647.142551-1-hdegoede@redhat.com>
- <20210503154647.142551-5-hdegoede@redhat.com>
- <YJFj5Vk7xOcj+ISZ@kuha.fi.intel.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <326621fe-cc4e-ad77-c87e-922a655bfbc8@redhat.com>
-Date: Tue, 4 May 2021 17:35:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=zWkhFmFfcn11T3BepO4TImcK6jj0L9mDhIUI9DngYuM=;
+ b=G3rWUJIFs8dbQMGndvDNkJ00F3il9FCLl8MuRN5j5U2yYhVgIO5bGHHivi3wSXcDT6
+ mnOh6l05Z/8H8eSxlMrX6DcGfir+zPB041JyIe+bBw4H1mS4E9QeKMH/uc+HPFiy/lFj
+ owY7m7eEsTITQ8oIgUzSraB6bsYB8ym+j2gR1Eu6IRprfQZ0qWgTriaLoOPba7sOCyTB
+ PVEmlSzRtQ6ORWYh6JC6GRRbzGpevbagTvYlqSjhrRQ7YH8ik/aACLDUsJMD2reh9qL7
+ tynOFhwZRy7cDB3K18xmqEspspMueeqNYqIzSp1W6NR4b4rcd8XM2DPqElQ3O0l+vkeW
+ aKPw==
+X-Gm-Message-State: AOAM53324ZJ3IVIYVa++YD4rsfhzBcbmuhYJVTGzceY7WPQirkn6tabt
+ a4RWCW4ohBMPnSZl/aLugbcK5RBC8LU0wGFM7NY=
+X-Google-Smtp-Source: ABdhPJyTKmR/g5V5pIQSMJK8qCM+0AM+Gi+oTchsA7cD6zqCWBYomiZPW0yNveq1Bf4O/rCXpeA/1KVhdCzCtJ2PUhw=
+X-Received: by 2002:a05:6102:3588:: with SMTP id
+ h8mr22526607vsu.31.1620143306368; 
+ Tue, 04 May 2021 08:48:26 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YJFj5Vk7xOcj+ISZ@kuha.fi.intel.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 4/9] drm/connector: Add support for
- out-of-band hotplug notification (v2)
+References: <20210427092018.832258-1-daniel.vetter@ffwll.ch>
+ <20210427092018.832258-8-daniel.vetter@ffwll.ch>
+ <CACvgo51rQJmHc1K-MSq-WLZkwVt34MY73csgEyxorrYsKPwQiA@mail.gmail.com>
+ <YIgB76WmQijHCJeV@phenom.ffwll.local>
+ <CACvgo50frye2h5L78YKnHm8TaE9xM=fn-7fNNtHbSwiv+GnYVA@mail.gmail.com>
+ <_ICN4Ho9WvMf55FvcWEqbzvApWTRd3hIiVAJ8vkrc0XTljEiq3f5aOB8ElxJL3WTL--P1-VZddkcjLcwdL3YxdPkYClHuyMhtQ0-Zv88Fh0=@emersion.fr>
+In-Reply-To: <_ICN4Ho9WvMf55FvcWEqbzvApWTRd3hIiVAJ8vkrc0XTljEiq3f5aOB8ElxJL3WTL--P1-VZddkcjLcwdL3YxdPkYClHuyMhtQ0-Zv88Fh0=@emersion.fr>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Tue, 4 May 2021 16:48:15 +0100
+Message-ID: <CACvgo51On7=M28b9X+k-SGe4q2btGOoe+2_1-nBTrqjr7XTjQw@mail.gmail.com>
+To: Simon Ser <contact@emersion.fr>
+Subject: Re: [Intel-gfx] [PATCH 8/8] drm/modifiers: Enforce consistency
+ between the cap an IN_FORMATS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,63 +67,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org,
+Cc: Pekka Paalanen <pekka.paalanen@collabora.com>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- platform-driver-x86@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Inki Dae <inki.dae@samsung.com>, Maxime Ripard <maxime@cerno.tech>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Tue, 4 May 2021 at 15:58, Simon Ser <contact@emersion.fr> wrote:
+>
+> Continuing on that idea to push for enabling the cap in more cases: do
+> we have a policy to require new drivers to always support modifiers?
+>
+> That would be nice, even if it's just about enabling LINEAR.
 
-On 5/4/21 5:10 PM, Heikki Krogerus wrote:
->> +/**
->> + * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
->> + * @connector: connector to report the event on
->> + * @data: data related to the event
->> + *
->> + * On some hardware a hotplug event notification may come from outside the display
->> + * driver / device. An example of this is some USB Type-C setups where the hardware
->> + * muxes the DisplayPort data and aux-lines but does not pass the altmode HPD
->> + * status bit to the GPU's DP HPD pin.
->> + *
->> + * This function can be used to report these out-of-band events after obtaining
->> + * a drm_connector reference through calling drm_connector_find_by_fwnode().
->> + */
->> +void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
->> +				     struct drm_connector_oob_hotplug_event_data *data)
->> +{
->> +	struct drm_connector *connector;
->> +
->> +	connector = drm_connector_find_by_fwnode(connector_fwnode);
->> +	if (IS_ERR(connector))
->> +		return;
->> +
->> +	if (connector->funcs->oob_hotplug_event)
->> +		connector->funcs->oob_hotplug_event(connector, data);
->> +
->> +	drm_connector_put(connector);
->> +}
->> +EXPORT_SYMBOL(drm_connector_oob_hotplug_event);
-> 
-> So it does looks like the "data" parameter is not needed at all:
+Sounds perfectly reasonable IMHO. I think we ought to document this
+policy (requirement ideally) somewhere - say alongside the "all new
+KMS drivers must support atomic modeset", which lives in ...
 
-Well Imre did indicate that having the number of lanes is useful, so
-for the next version I'll drop the orientation but I plan to keep
-the number of lanes if that is ok with you.
-
-Not having passing along this info was one of the reasons why my
-previous attempt at this was nacked, so dropping it all together
-feels wrong.
-
-Regards,
-
-Hans
-
+-Emil
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
