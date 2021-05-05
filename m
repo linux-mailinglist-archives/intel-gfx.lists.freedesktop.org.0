@@ -1,41 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D509637435D
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 19:15:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEA8037436A
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 19:24:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 405616EC34;
-	Wed,  5 May 2021 17:15:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 827656EC27;
+	Wed,  5 May 2021 17:24:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from srv6.fidu.org (srv6.fidu.org [159.69.62.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B6F6EC18;
- Wed,  5 May 2021 17:14:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E25EB6EC27;
+ Wed,  5 May 2021 17:24:07 +0000 (UTC)
 Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id A9C9EC800A8;
- Wed,  5 May 2021 19:14:58 +0200 (CEST)
+ by srv6.fidu.org (Postfix) with ESMTP id 9D425C800B3;
+ Wed,  5 May 2021 19:24:06 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
 Received: from srv6.fidu.org ([127.0.0.1])
  by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10026)
- with LMTP id OCZX5XV-A9iL; Wed,  5 May 2021 19:14:58 +0200 (CEST)
+ with LMTP id DYNzcYye3W-t; Wed,  5 May 2021 19:24:06 +0200 (CEST)
 Received: from wsembach-tuxedo.fritz.box
- (p200300e37F39860005A4018A54F094b9.dip0.t-ipconnect.de
+ (p200300E37f39860005A4018A54f094b9.dip0.t-ipconnect.de
  [IPv6:2003:e3:7f39:8600:5a4:18a:54f0:94b9])
  (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPA id 62BB6C800B5;
- Wed,  5 May 2021 19:14:58 +0200 (CEST)
+ by srv6.fidu.org (Postfix) with ESMTPA id 574F6C800A8;
+ Wed,  5 May 2021 19:24:06 +0200 (CEST)
 From: Werner Sembach <wse@tuxedocomputers.com>
 To: wse@tuxedocomputers.com, ville.syrjala@linux.intel.com, airlied@linux.ie,
  daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Date: Wed,  5 May 2021 19:14:53 +0200
-Message-Id: <20210505171453.1403560-4-wse@tuxedocomputers.com>
+Date: Wed,  5 May 2021 19:23:58 +0200
+Message-Id: <20210505172401.1453178-1-wse@tuxedocomputers.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210505171453.1403560-1-wse@tuxedocomputers.com>
-References: <20210505171453.1403560-1-wse@tuxedocomputers.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] Use YCbCr420 as fallback when RGB fails
+Subject: [Intel-gfx] [PATCH 0/3] drm/i915/display Try YCbCr420 color when
+ RGB fails
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,72 +67,8 @@ encoder capabilities are checked. This patch fixes the problem by retrying
 to find a display mode with YCbCr420 enforced and using it, if it is
 valid.
 
-Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
----
-Now with the suggestes change as it does makes a difference ^^
+This patchset is revision 5. Only change to 4 is a small whitespace error fix.
 
-From dc2fb79273f2c75a08b76bf912949ff3e433056b Mon Sep 17 00:00:00 2001
-From: Werner Sembach <wse@tuxedocomputers.com>
-Date: Mon, 3 May 2021 16:23:17 +0200
-Subject: [PATCH 3/3] Use YCbCr420 as fallback when RGB fails
-
----
- drivers/gpu/drm/i915/display/intel_hdmi.c | 23 ++++++++++++++++++++---
- 1 file changed, 20 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index b0201d4f27eb..5af6aef0acbf 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1897,6 +1897,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
- 	int clock = mode->clock;
- 	int max_dotclk = to_i915(connector->dev)->max_dotclk_freq;
- 	bool has_hdmi_sink = intel_has_hdmi_sink(hdmi, connector->state);
-+    bool ycbcr_420_only;
- 
- 	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
- 		return MODE_NO_DBLESCAN;
-@@ -1913,12 +1914,20 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
- 		clock *= 2;
- 	}
- 
--	if (drm_mode_is_420_only(&connector->display_info, mode))
-+	ycbcr_420_only = drm_mode_is_420_only(&connector->display_info, mode);
-+	if (ycbcr_420_only)
- 		clock /= 2;
- 
- 	status = intel_hdmi_mode_clock_valid(hdmi, clock, has_hdmi_sink);
--	if (status != MODE_OK)
--		return status;
-+	if (status != MODE_OK) {
-+		if (ycbcr_420_only || !connector->ycbcr_420_allowed || !drm_mode_is_420_also(&connector->display_info, mode))
-+			return status;
-+
-+		clock /= 2;
-+		status = intel_hdmi_mode_clock_valid(hdmi, clock, has_hdmi_sink);
-+		if (status != MODE_OK)
-+			return status;
-+	}
- 
- 	return intel_mode_valid_max_plane_size(dev_priv, mode, false);
- }
-@@ -2125,6 +2134,14 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
- 	}
- 
- 	ret = intel_hdmi_compute_clock(encoder, crtc_state);
-+	if (ret) {
-+		if (crtc_state->output_format != INTEL_OUTPUT_FORMAT_YCBCR420 &&
-+				connector->ycbcr_420_allowed &&
-+				drm_mode_is_420_also(&connector->display_info, adjusted_mode)) {
-+			crtc_state->output_format = INTEL_OUTPUT_FORMAT_YCBCR420;
-+			ret = intel_hdmi_compute_clock(encoder, crtc_state);
-+		}
-+	}
- 
- 	return ret;
- }
--- 
-2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
