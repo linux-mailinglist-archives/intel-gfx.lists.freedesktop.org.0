@@ -2,84 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59F21373891
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 12:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D28D373894
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 12:33:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9027B6E3D6;
-	Wed,  5 May 2021 10:30:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC556E122;
+	Wed,  5 May 2021 10:33:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA8E6E122
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 May 2021 10:30:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1620210621;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=zE1dVKPK82uToYAi4Qlfa5L92Nao6h848ucJ6GBhOnM=;
- b=a1ZcFbHMCzxB/vwmOPooCeQpC03+F+kh3+IGtUnVrqJ6JIC5cYDX0oFHeg12filTyF4NuB
- hIZWs3xRLmqu50k/5cf2mT6wG58jLWmWBQV1DW92yZdJVCgU9rwucthEf/UJQhP0SHQvSO
- Zcfs9DUrb1u//0sp1y7gZmsb4/1nIqc=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-281-15V6AhgPNVqeNX9M_ZB4Uw-1; Wed, 05 May 2021 06:30:17 -0400
-X-MC-Unique: 15V6AhgPNVqeNX9M_ZB4Uw-1
-Received: by mail-ej1-f72.google.com with SMTP id
- x21-20020a1709064bd5b029037c44cb861cso284462ejv.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 May 2021 03:30:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=zE1dVKPK82uToYAi4Qlfa5L92Nao6h848ucJ6GBhOnM=;
- b=K8M6x/gHWfJA/BjJSg2b4ujovNERRxe31BqxUbSx+3/jshEsJQZNlR9mebu0cbSQae
- uNWbQ3jL4Pa/p+XNnDH8JVRILYwKlzW7QcNkF/CeMThPUnMe3LnPUGvSYx7X1VHoZuWt
- QrPs3jqVMR6M2KadjIB0x5XNPFr+8BccvitBuUDIu2hZjr6rx1Ui32gvlmYgBdtZimU/
- +DNfxAqi3VGd6a7EAolue09hx3FNYk0IM5ciwjiA00aExd4+57nV5vgtX0iNXCKSifWH
- 9e7Xb4/dVCaHSrDsgL7Mar02AYUrUtg2opY/OUPMAy4HTgbr8NbnR2oDPCzRKTnYQjGx
- 5HUQ==
-X-Gm-Message-State: AOAM530wUOpIu/C+rxvMoN46vy+gvi+PWGp8b5Zgy1qQuYNF/1ycEmX8
- NiWmK32n26kR23UPypKaFPJebC6AP/Ghwk0lY3J/0w5aRSHrF7g7wtY/InrbCAenbSsw0p5xgPy
- T1koFZrubfXsSsgCH8uS4W0czjO+Y
-X-Received: by 2002:a17:906:3e42:: with SMTP id
- t2mr26203549eji.508.1620210616749; 
- Wed, 05 May 2021 03:30:16 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwORVYcTi6Wi6NDO0GOpSEZ0NUK0+6R4wrD+Ub3k6LyrPH/SxZE8FmOv9YyY07/ujKwC3W5Vg==
-X-Received: by 2002:a17:906:3e42:: with SMTP id
- t2mr26203515eji.508.1620210616512; 
- Wed, 05 May 2021 03:30:16 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id t20sm2658262ejc.61.2021.05.05.03.30.15
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 05 May 2021 03:30:16 -0700 (PDT)
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-References: <20210503154647.142551-1-hdegoede@redhat.com>
- <20210503154647.142551-6-hdegoede@redhat.com>
- <CAHp75VcS5nvzBzjbSytqD6qsSURyzdEdmDi934y=5W2SCNyo9A@mail.gmail.com>
- <ee230261-423d-0e2f-16b0-852d264afa2b@redhat.com>
- <CAHp75VcfkcaVAu2-8-5he7PN=W_tRHiHAgXYn04gRnLehDVsyQ@mail.gmail.com>
- <ffb46bb6-3548-4ec2-f176-99f3674e7f6d@redhat.com>
- <CAHp75VcHEMaZ67yy7TD8f8Nk=+oiLT-vRCt9A6fT9K6LeR78Ew@mail.gmail.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <adb9be8a-70c7-b515-48c3-7e372e5d8801@redhat.com>
-Date: Wed, 5 May 2021 12:30:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AEDF76E122;
+ Wed,  5 May 2021 10:33:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A5EF1A00CC;
+ Wed,  5 May 2021 10:33:01 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <CAHp75VcHEMaZ67yy7TD8f8Nk=+oiLT-vRCt9A6fT9K6LeR78Ew@mail.gmail.com>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915: Associate ACPI connector
- nodes with connector entries
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Wed, 05 May 2021 10:33:01 -0000
+Message-ID: <162021078164.25407.11369110052634782675@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210504164136.96456-1-matthew.auld@intel.com>
+In-Reply-To: <20210504164136.96456-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_drop_the_=5F=5Fi915=5Factive=5Fcall_pointer_packing_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,90 +39,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- Guenter Roeck <linux@roeck-us.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1788050515=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--===============1788050515==
+Content-Type: multipart/alternative;
+ boundary="===============0275916483906801310=="
 
-On 5/5/21 12:02 PM, Andy Shevchenko wrote:
-> On Wed, May 5, 2021 at 12:28 PM Hans de Goede <hdegoede@redhat.com> wrote:
->> On 5/5/21 11:17 AM, Andy Shevchenko wrote:
->>> On Wed, May 5, 2021 at 12:07 PM Hans de Goede <hdegoede@redhat.com> wrote:
->>>> On 5/4/21 9:52 AM, Andy Shevchenko wrote:
->>>>> On Monday, May 3, 2021, Hans de Goede <hdegoede@redhat.com <mailto:hdegoede@redhat.com>> wrote:
->>>
->>> ...
->>>
->>>>>     +               fwnode = device_get_next_child_node(kdev, fwnode);
->>>
->>>>> Who is dropping reference counting on fwnode ?
->>>>
->>>> We are dealing with ACPI fwnode-s here and those are not ref-counted, they
->>>> are embedded inside a struct acpi_device and their lifetime is tied to
->>>> that struct. They should probably still be ref-counted (with the count
->>>> never dropping to 0) so that the generic fwnode functions behave the same
->>>> anywhere but atm the ACPI nodes are not refcounted, see: acpi_get_next_subnode()
->>>> in drivers/acpi/property.c which is the get_next_child_node() implementation
->>>> for ACPI fwnode-s.
->>>
->>> Yes, ACPI currently is exceptional, but fwnode API is not.
->>> If you may guarantee that this case won't ever be outside of ACPI
->>
->> Yes I can guarantee that currently this code (which is for the i915
->> driver only) only deals with ACPI fwnodes.
->>
->>> and
->>> even though if ACPI won't ever gain a reference counting for fwnodes,
->>> we can leave it as is.
->>
->> Would it not be better to add fake ref-counting to the ACPI fwnode
->> next_child_node() op though. I believe just getting a reference
->> on the return value there should work fine; and then all fwnode
->> implementations would be consistent ?
-> 
-> But it's already there by absent put/get callbacks.
+--===============0275916483906801310==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ah, I completely missed that the put/get-s are actually done
-through function pointers in fwnode_operations. I assumed that there
-was a kref embedded inside the fwnode_handle struct and that they
-operated directly on that.
+== Series Details ==
 
-So this whole discussion is entirely based on that misunderstanding,
-my bad, sorry.
+Series: drm/i915: drop the __i915_active_call pointer packing (rev2)
+URL   : https://patchwork.freedesktop.org/series/89783/
+State : success
 
-So yes you are right, things are already consistent thanks to the
-absent put/get callbacks.
+== Summary ==
 
-But we do really need to document the behavior better here
-in the kdoc for fwnode_get_next_child_node() and
-device_get_next_child_node().
+CI Bug Log - changes from CI_DRM_10047 -> Patchwork_20066
+====================================================
 
-of_get_next_child has this bit, which applies to those too:
+Summary
+-------
 
- *      Returns a node pointer with refcount incremented, use of_node_put() on
- *      it when done. Returns NULL when prev is the last child. Decrements the
- *      refcount of prev.
+  **SUCCESS**
 
-I'll prepare a patch to add this to the kdoc for fwnode_get_next_child_node()
-and device_get_next_child_node() once I'm done with readying v3 of this series.
+  No regressions found.
 
-Regards,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/index.html
 
-Hans
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20066 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@semaphore:
+    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html
+
+  * igt@amdgpu/amd_cs_nop@fork-gfx0:
+    - fi-tgl-y:           NOTRUN -> [SKIP][2] ([fdo#109315] / [i915#2575]) +14 similar issues
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-tgl-y/igt@amdgpu/amd_cs_nop@fork-gfx0.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][3] ([fdo#109271])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-bsw-n3050:       NOTRUN -> [INCOMPLETE][4] ([i915#3159])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - {fi-tgl-1115g4}:    [DMESG-WARN][5] ([i915#402]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10047/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - {fi-tgl-1115g4}:    [DMESG-WARN][7] ([k.org#205379]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10047/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-nick:        [DMESG-FAIL][9] ([i915#2927]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10047/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2927]: https://gitlab.freedesktop.org/drm/intel/issues/2927
+  [i915#3159]: https://gitlab.freedesktop.org/drm/intel/issues/3159
+  [i915#3303]: https://gitlab.freedesktop.org/drm/intel/issues/3303
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [k.org#205379]: https://bugzilla.kernel.org/show_bug.cgi?id=205379
+
+
+Participating hosts (43 -> 40)
+------------------------------
+
+  Additional (1): fi-bsw-n3050 
+  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10047 -> Patchwork_20066
+
+  CI-20190529: 20190529
+  CI_DRM_10047: 6bc6aeb4870cfb28f24523f42157cf9a86be80d7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20066: 41c6393f0704d539d4341104591b342650e3f6eb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+41c6393f0704 drm/i915: drop the __i915_active_call pointer packing
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/index.html
+
+--===============0275916483906801310==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: drop the __i915_active_call pointer packing (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89783/">https://patchwork.freedesktop.org/series/89783/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10047 -&gt; Patchwork_20066</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20066 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@semaphore:</p>
+<ul>
+<li>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-bsw-nick/igt@amdgpu/amd_basic@semaphore.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_cs_nop@fork-gfx0:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-tgl-y/igt@amdgpu/amd_cs_nop@fork-gfx0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>) +14 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-bsw-n3050/igt@gem_exec_gttfill@basic.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_suspend@basic-s3:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-bsw-n3050/igt@gem_exec_suspend@basic-s3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3159">i915#3159</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@basic-rte:</p>
+<ul>
+<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10047/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/402">i915#402</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-tgl-1115g4/igt@i915_pm_rpm@basic-rte.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10047/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://bugzilla.kernel.org/show_bug.cgi?id=205379">k.org#205379</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10047/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2927">i915#2927</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20066/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (43 -&gt; 40)</h2>
+<p>Additional (1): fi-bsw-n3050 <br />
+  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10047 -&gt; Patchwork_20066</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10047: 6bc6aeb4870cfb28f24523f42157cf9a86be80d7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20066: 41c6393f0704d539d4341104591b342650e3f6eb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>41c6393f0704 drm/i915: drop the __i915_active_call pointer packing</p>
+
+</body>
+</html>
+
+--===============0275916483906801310==--
+
+--===============1788050515==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1788050515==--
