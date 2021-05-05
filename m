@@ -2,36 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD2E373E7D
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 17:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E193D373ED2
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 17:46:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D4A26E500;
-	Wed,  5 May 2021 15:26:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 451CE6E0AC;
+	Wed,  5 May 2021 15:46:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 204476E0AC;
- Wed,  5 May 2021 15:26:34 +0000 (UTC)
-IronPort-SDR: CXc7OoaL72sPvt6LgQDPc0oNzZAEXoGjFa/N4Y2bVaIJomIiWH5RgUeq5Jxvda/yjZwFlcCDLX
- 5E7AH14naNtA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9975"; a="198317961"
-X-IronPort-AV: E=Sophos;i="5.82,275,1613462400"; d="scan'208";a="198317961"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2021 08:26:30 -0700
-IronPort-SDR: W4CXvsnc6soUZaoFHS3l5QlxVd9TXaq0xHvpAIIuHmEJK+e1VBS/fyGSTIsZEygTufK//1qbx0
- UiXWvH0+o3lw==
-X-IronPort-AV: E=Sophos;i="5.82,275,1613462400"; d="scan'208";a="469004158"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.13.142])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2021 08:26:28 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Wed,  5 May 2021 17:26:17 +0200
-Message-Id: <20210505152617.341177-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 653 seconds by postgrey-1.36 at gabe;
+ Wed, 05 May 2021 15:46:46 UTC
+Received: from smtp70.iad3a.emailsrvr.com (smtp70.iad3a.emailsrvr.com
+ [173.203.187.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DD2B6E0AC
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 May 2021 15:46:45 +0000 (UTC)
+X-Auth-ID: kenneth@whitecape.org
+Received: by smtp33.relay.iad3a.emailsrvr.com (Authenticated sender:
+ kenneth-AT-whitecape.org) with ESMTPSA id EBC5C54DF; 
+ Wed,  5 May 2021 11:35:50 -0400 (EDT)
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>,
+ =?ISO-8859-1?Q?Andr=E9?= Almeida <andrealmeid@collabora.com>
+Date: Wed, 05 May 2021 08:35:46 -0700
+Message-ID: <4570916.7zo566DRWU@mizzik>
+In-Reply-To: <e99599bf-f503-3227-8361-afcd3d2a098f@collabora.com>
+References: <e99599bf-f503-3227-8361-afcd3d2a098f@collabora.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v3] lib/i915/perf: Fix non-card0 processing
+X-Classification-ID: 3ad83565-0b7a-44f9-a737-8695edb5ecfb-1-1
+Subject: Re: [Intel-gfx] Enabling sample_c optimization for Broadwell GPUs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,87 +43,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, kernel@collabora.com,
+ dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1945278633=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-IGT i915/perf library functions now always operate on sysfs perf
-attributes of card0 device node, no matter which DRM device fd a user
-passes.  The intention was to always switch to primary device node if
-a user passes a render device node fd, but that breaks handling of
-non-card0 devices.
+--===============1945278633==
+Content-Type: multipart/signed; boundary="nextPart4240184.CW8T6EejXm"; micalg="pgp-sha256"; protocol="application/pgp-signature"
 
-If a user passed a render device node fd, find a primary device node of
-the same device and use it instead of forcibly using the primary device
-with minor number 0 when opening the device sysfs area.
+--nextPart4240184.CW8T6EejXm
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
+From: Kenneth Graunke <kenneth@whitecape.org>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Daniel Vetter <daniel@ffwll.ch>, =?ISO-8859-1?Q?Andr=E9?= Almeida <andrealmeid@collabora.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, kernel@collabora.com
+Subject: Re: Enabling sample_c optimization for Broadwell GPUs
+Date: Wed, 05 May 2021 08:35:46 -0700
+Message-ID: <4570916.7zo566DRWU@mizzik>
+In-Reply-To: <e99599bf-f503-3227-8361-afcd3d2a098f@collabora.com>
+References: <e99599bf-f503-3227-8361-afcd3d2a098f@collabora.com>
 
-v2: Don't assume primary minor matches render minor with masked type.
-v3: Reset sysfs dir fd if no match, consequently spell out error paths,
-    add a comment on convertion of renderD* to cardX (Lionel).
+Hello,
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- lib/i915/perf.c | 35 ++++++++++++++++++++++++++++++++---
- 1 file changed, 32 insertions(+), 3 deletions(-)
+Yes, that bit only exists on Haswell.  On Haswell, sample_c operations
+were processed at 1 pixel/clock unless you set that bit, in which case
+they get processed at 4 pixels/clock.  The downside is that it breaks
+some obscure media feature that apparently no one used.
 
-diff --git a/lib/i915/perf.c b/lib/i915/perf.c
-index 56d5c0b3a..b9e10519e 100644
---- a/lib/i915/perf.c
-+++ b/lib/i915/perf.c
-@@ -372,14 +372,43 @@ open_master_sysfs_dir(int drm_fd)
- {
- 	char path[128];
- 	struct stat st;
-+	int sysfs;
- 
- 	if (fstat(drm_fd, &st) || !S_ISCHR(st.st_mode))
-                 return -1;
- 
--        snprintf(path, sizeof(path), "/sys/dev/char/%d:0",
--                 major(st.st_rdev));
-+	snprintf(path, sizeof(path), "/sys/dev/char/%d:%d", major(st.st_rdev), minor(st.st_rdev));
-+	sysfs = open(path, O_DIRECTORY);
-+	if (sysfs < 0)
-+		return sysfs;
- 
--	return open(path, O_DIRECTORY);
-+	if (minor(st.st_rdev) >= 128) {
-+		/* If we were given a renderD* drm_fd, find it's associated cardX node. */
-+		char device[100], cmp[100];
-+		int device_len, cmp_len, i;
-+
-+		device_len = readlinkat(sysfs, "device", device, sizeof(device));
-+		close(sysfs);
-+		if (device_len < 0)
-+			return device_len;
-+
-+		for (i = 0; i < 128; i++) {
-+
-+			snprintf(path, sizeof(path), "/sys/dev/char/%d:%d", major(st.st_rdev), i);
-+			sysfs = open(path, O_DIRECTORY);
-+			if (sysfs < 0)
-+				continue;
-+
-+			cmp_len = readlinkat(sysfs, "device", cmp, sizeof(cmp));
-+			if (cmp_len == device_len && !memcmp(cmp, device, cmp_len))
-+				break;
-+
-+			close(sysfs);
-+			sysfs = -1;
-+		}
-+	}
-+
-+	return sysfs;
- }
- 
- struct intel_perf *
--- 
-2.25.1
+Broadwell and later alway process sample_c operations at the fast speed,
+and there is no bit to control it.  I would say that downstream patch is
+incorrect.
+
+=2D-Ken
+
+On Tuesday, May 4, 2021 4:07:14 PM PDT Andr=E9 Almeida wrote:
+> Hi there,
+>=20
+> While browsing an old downstream kernel, I found a patch[0] that enables=
+=20
+> sample_c optimizations at Broadwell GPUs. The message from the upstream=20
+> commit that enables it for Haswell[1] (and presumably where the code=20
+> at[0] was copied from) states that "[..] later platforms remove this=20
+> bit, and apparently always enable the optimization".
+>=20
+> Could you confirm that Broadwell and following architectures enable this=
+=20
+> optimization by default (and thus, patch[0] is a no-op), or should I=20
+> upstream it?
+>=20
+> Thanks,
+> 	Andr=E9
+>=20
+> [0]=20
+> https://github.com/ValveSoftware/steamos_kernel/commit/198990f13e1d942986=
+4c177d9441a6559771c5e2
+>=20
+> [1]=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit=
+/?id=3D944115934436b1ff6cf773a9e9123858ea9ef3da
+>=20
+
+
+--nextPart4240184.CW8T6EejXm
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEE6OtbNAgc4e6ibv4ZW1vaBx1JzDgFAmCSu1IACgkQW1vaBx1J
+zDiaxhAAnyQOIlWC26OaVTTSf3tfi6ARhp/6rGqx39tIIc4mJ5xlzVYhoJDc5WYl
+vmsrHGawyBDbE/DilzaYMQCODSHJYsYGq5C7zsHCyBfQwsFI74IDKtkEycmqH30B
+BYDuXTb5P+Aq4OwKwplQfwb9zux1BE0wnN4Auk+w1Q5fN1pi0mDOh/3V5mqYJdpo
+q1/JIudzNUMXqmap4fBfAfXyjKAC00ATL4Kq+FaFZmgKXafxBsuzpF8BOl6DXqT+
+uImef23cSnWUO+juHTySmRPcY8ienGGP2JmE/Hs8SKRAsyRpVvBWsweJ1QVe99jm
+K2+0hZDN8Eoi46BpXxeSBB8fUaaU1/+GfaBvVQ8koTV9r4ZKxSh1luoA5CyQF0OS
+qwUo9w0EnD6VxvGKqQVUR3ShRMx08GZ8kQLa/bUVDlgCYe9at4aKV/3DwVMXKTQz
+7jwrkYslzIyOAPOZ48icnrmCAAQqflzGyyfm04jf5T9AxvuGN8BXaWLVyIfyfp8W
+uJJKkzpMKRFDMh//24bdA20I4J5IEDnW10ivUS+GxSdBWIVOaSH+RkuABy7IoKIM
+TAheY+HzAI9RbExu9Up9xUDombU1TkhbSKELBquhHYheDz8jX/jXattpoqdbdfgw
+NKvscu28TO4OLQGj18kKAa2yM1wjJtXpsmGIDkZDxM+PR86vMYY=
+=7u/K
+-----END PGP SIGNATURE-----
+
+--nextPart4240184.CW8T6EejXm--
+
+
+
+
+--===============1945278633==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1945278633==--
+
+
+
