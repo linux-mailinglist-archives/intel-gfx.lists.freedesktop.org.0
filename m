@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568EF375126
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 10:54:59 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1CC4375199
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 11:37:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C44DD89F63;
-	Thu,  6 May 2021 08:54:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C6AA6ECAB;
+	Thu,  6 May 2021 09:37:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CD3E189F63;
- Thu,  6 May 2021 08:54:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C5C33A47DB;
- Thu,  6 May 2021 08:54:56 +0000 (UTC)
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64D5688B2B;
+ Wed,  5 May 2021 15:02:15 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: tonyk) with ESMTPSA id 359681F42BC2
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <e99599bf-f503-3227-8361-afcd3d2a098f@collabora.com>
+ <YJJwlXt4n936yz68@intel.com>
+From: =?UTF-8?Q?Andr=c3=a9_Almeida?= <andrealmeid@collabora.com>
+Message-ID: <353c05f8-07b1-af27-ede0-6f4f5a250f6b@collabora.com>
+Date: Wed, 5 May 2021 12:02:07 -0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nischal Varide" <nischal.varide@intel.com>
-Date: Thu, 06 May 2021 08:54:56 -0000
-Message-ID: <162029129680.15693.5955509654593596493@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210506004719.4121-1-nischal.varide@intel.com>
-In-Reply-To: <20210506004719.4121-1-nischal.varide@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Expose_HDMI_properties_to_userspace?=
+In-Reply-To: <YJJwlXt4n936yz68@intel.com>
+Content-Language: en-US
+X-Mailman-Approved-At: Thu, 06 May 2021 09:37:08 +0000
+Subject: Re: [Intel-gfx] Enabling sample_c optimization for Broadwell GPUs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,231 +39,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0420110447=="
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Kenneth Graunke <kenneth@whitecape.org>, kernel@collabora.com
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0420110447==
-Content-Type: multipart/alternative;
- boundary="===============3803614046753296540=="
-
---===============3803614046753296540==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/display: Expose HDMI properties to userspace
-URL   : https://patchwork.freedesktop.org/series/89833/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10050 -> Patchwork_20076
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20076 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_basic@query-info:
-    - fi-bsw-kefka:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
-
-  * igt@amdgpu/amd_prime@amd-to-i915:
-    - fi-tgl-y:           NOTRUN -> [SKIP][2] ([fdo#109315] / [i915#2575])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [PASS][3] -> [INCOMPLETE][4] ([i915#2782] / [i915#2940])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#2868])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@runner@aborted:
-    - fi-bsw-nick:        NOTRUN -> [FAIL][7] ([i915#1436])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-nick/igt@runner@aborted.html
-    - fi-kbl-r:           NOTRUN -> [FAIL][8] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#3363])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-kbl-r/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bsw-kefka:       [INCOMPLETE][9] ([i915#2782]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-
-
-Participating hosts (44 -> 40)
-------------------------------
-
-  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10050 -> Patchwork_20076
-
-  CI-20190529: 20190529
-  CI_DRM_10050: ae46d9d790a148ab7b293cad67c770c0221e2c83 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6079: c77c1e9d716481aa44d713e8c91873aa679547ac @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20076: fed7f9fc21dbb0bc30f75c1180d775699c3126ad @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-fed7f9fc21db drm/i915/display: Expose HDMI properties to userspace
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html
-
---===============3803614046753296540==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Expose HDMI properties to userspace</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89833/">https://patchwork.freedesktop.org/series/89833/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10050 -&gt; Patchwork_20076</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20076 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_basic@query-info:</p>
-<ul>
-<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</p>
-</li>
-<li>
-<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Participating hosts (44 -&gt; 40)</h2>
-<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10050 -&gt; Patchwork_20076</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10050: ae46d9d790a148ab7b293cad67c770c0221e2c83 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6079: c77c1e9d716481aa44d713e8c91873aa679547ac @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20076: fed7f9fc21dbb0bc30f75c1180d775699c3126ad @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>fed7f9fc21db drm/i915/display: Expose HDMI properties to userspace</p>
-
-</body>
-</html>
-
---===============3803614046753296540==--
-
---===============0420110447==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0420110447==--
+SGkgUm9kcmlnbywKClRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHByb3ZpZGluZyB0aGF0IGluZm9y
+bWF0aW9uIGluIGEgcHJlY2lzZSBtYW5uZXIuCgrDgHMgMDc6MTYgZGUgMDUvMDUvMjEsIFJvZHJp
+Z28gVml2aSBlc2NyZXZldToKPiBIaSBBbmRyZSwKPiAKPiBJJ20gbm90IGZhbWlsaWFyIHdpdGgg
+dGhlIHNhbXBsZSBjIG1lc3NhZ2Ugb3B0aW1pemF0aW9uLgo+IFByb2JhYmx5IEtlbiBjYW4gY29t
+bWVudC4KPiAKPiBIb3dldmVyIEkgY291bGQgY2hlY2sgdGhlIGludGVybmFsIHNwZWMgaGVyZSBh
+bmQgSSBzYXcgdGhpcyBiaXQKPiBvbmx5IGV4aXN0cyB3aXRoIHRoaXMgbWVhbmluZyBpbiBIYXN3
+ZWxsLgo+IAo+IEZvciBhbGwgdGhlIG90aGVyIHBsYXRmb3JtcywgaW5jbHVkaW5nIEJyb2Fkd2Vs
+bCBpdCBnb3QgcmUtcHVycG9zZWQgd2l0aAo+IGEgZGlmZmVyZW50IG1lYW5pbmcgYW5kIGEgcHJv
+Z3JhbW1pbmcgbm90ZToKPiAiVGhpcyBiaXQgc2hvdWxkIGJlIHByb2dyYW1tZWQgdG8gemVybyAo
+MGgpIGF0IGFsbCB0aW1lcy4iCj4gCj4gQWxzbywgSSBjb3VsZCBub3QgZmluZCBhbnkgd29ya2Fy
+b3VuZCBkb2N1bWVudGVkIGFueXdoZXJlIHJlY29tbWVuZGluZwo+IHRoaXMgYml0IHRvIGJlIHNl
+dC4KPiAKPiBTbywgSSB3b3VsZCBub3QgcmVjb21tZW5kIHRvIHVzZSBpdCBpbiBhbnkgcHJvZHVj
+dCwgZXZlbiBkb3duc3RyZWFtLgo+IFJlZ2FyZGxlc3MgdGhlIHN0YXRlIG9mIHNhbXBsZSBjIG1l
+c3NhZ2Ugb3B0aW1pemF0aW9uIGluIGxhdGVyIHBsYXRmb3Jtcy4KPiAKPiBUaGFua3MsCj4gUm9k
+cmlnby4KPiAKPiBPbiBUdWUsIE1heSAwNCwgMjAyMSBhdCAwODowNzoxNFBNIC0wMzAwLCBBbmRy
+w6kgQWxtZWlkYSB3cm90ZToKPj4gSGkgdGhlcmUsCj4+Cj4+IFdoaWxlIGJyb3dzaW5nIGFuIG9s
+ZCBkb3duc3RyZWFtIGtlcm5lbCwgSSBmb3VuZCBhIHBhdGNoWzBdIHRoYXQgZW5hYmxlcwo+PiBz
+YW1wbGVfYyBvcHRpbWl6YXRpb25zIGF0IEJyb2Fkd2VsbCBHUFVzLiBUaGUgbWVzc2FnZSBmcm9t
+IHRoZSB1cHN0cmVhbQo+PiBjb21taXQgdGhhdCBlbmFibGVzIGl0IGZvciBIYXN3ZWxsWzFdIChh
+bmQgcHJlc3VtYWJseSB3aGVyZSB0aGUgY29kZSBhdFswXQo+PiB3YXMgY29waWVkIGZyb20pIHN0
+YXRlcyB0aGF0ICJbLi5dIGxhdGVyIHBsYXRmb3JtcyByZW1vdmUgdGhpcyBiaXQsIGFuZAo+PiBh
+cHBhcmVudGx5IGFsd2F5cyBlbmFibGUgdGhlIG9wdGltaXphdGlvbiIuCj4+Cj4+IENvdWxkIHlv
+dSBjb25maXJtIHRoYXQgQnJvYWR3ZWxsIGFuZCBmb2xsb3dpbmcgYXJjaGl0ZWN0dXJlcyBlbmFi
+bGUgdGhpcwo+PiBvcHRpbWl6YXRpb24gYnkgZGVmYXVsdCAoYW5kIHRodXMsIHBhdGNoWzBdIGlz
+IGEgbm8tb3ApLCBvciBzaG91bGQgSQo+PiB1cHN0cmVhbSBpdD8KPj4KPj4gVGhhbmtzLAo+PiAJ
+QW5kcsOpCj4+Cj4+IFswXSBodHRwczovL2dpdGh1Yi5jb20vVmFsdmVTb2Z0d2FyZS9zdGVhbW9z
+X2tlcm5lbC9jb21taXQvMTk4OTkwZjEzZTFkOTQyOTg2NGMxNzdkOTQ0MWE2NTU5NzcxYzVlMgo+
+Pgo+PiBbMV0gaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQv
+dG9ydmFsZHMvbGludXguZ2l0L2NvbW1pdC8/aWQ9OTQ0MTE1OTM0NDM2YjFmZjZjZjc3M2E5ZTkx
+MjM4NThlYTllZjNkYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
