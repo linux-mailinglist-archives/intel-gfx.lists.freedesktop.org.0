@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 805C1373D9E
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 16:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEE7D373DAB
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 16:29:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C049A6E4D4;
-	Wed,  5 May 2021 14:25:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A1986E500;
+	Wed,  5 May 2021 14:29:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D89836E4D4;
- Wed,  5 May 2021 14:25:31 +0000 (UTC)
-IronPort-SDR: +Gn03ky4Rn/RzWkTMUkhCytMziu1OkrYwgCqeuqmnZTFoGJrMBICDl+VOBwMmxO8WEGk8qMYlM
- ITH6c3sdInww==
-X-IronPort-AV: E=McAfee;i="6200,9189,9975"; a="178445041"
-X-IronPort-AV: E=Sophos;i="5.82,275,1613462400"; d="scan'208";a="178445041"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2021 07:25:31 -0700
-IronPort-SDR: Vu9Y/FjPFpzwIMMVo/9JeWnMQFWMKLCQgJeBQsYz4XwJuXcsz980SW6E4Wc8V7Vqciph12JG5k
- RJ0udW9PQeiA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,275,1613462400"; d="scan'208";a="429875942"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 05 May 2021 07:25:28 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 May 2021 17:25:28 +0300
-Date: Wed, 5 May 2021 17:25:27 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Andi Kleen <ak@linux.intel.com>
-Message-ID: <YJKq15HgIWQqFeho@intel.com>
-References: <20210505033737.1282652-1-ak@linux.intel.com>
- <87r1ily9k5.fsf@intel.com>
- <20210505141830.GP4032392@tassilo.jf.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 484F06E4EC;
+ Wed,  5 May 2021 14:29:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3D91CA47DB;
+ Wed,  5 May 2021 14:29:33 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210505141830.GP4032392@tassilo.jf.intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH] i915: Increase *_latency array size
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Werner Sembach" <wse@tuxedocomputers.com>
+Date: Wed, 05 May 2021 14:29:33 -0000
+Message-ID: <162022497324.25405.3941555720455753194@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210505141052.3467-1-wse@tuxedocomputers.com>
+In-Reply-To: <20210505141052.3467-1-wse@tuxedocomputers.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/display_Try_YCbCr420_color_when_RGB_fails?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,101 +38,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- Andi Kleen <andi@firstfloor.org>, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 05, 2021 at 07:18:30AM -0700, Andi Kleen wrote:
-> > > Increase all the latency fields to 8 members, which is enough for SKL.
-> > >
-> > > I don't know if they are correctly initialized upto 8, but dev_priv
-> > > should start out as zero, so presumably they will be zero.
-> > =
+== Series Details ==
 
-> > Thanks, the warning should be fixed by commit
-> > =
+Series: drm/i915/display Try YCbCr420 color when RGB fails
+URL   : https://patchwork.freedesktop.org/series/89808/
+State : failure
 
-> > c6deb5e97ded ("drm/i915/pm: Make the wm parameter of print_wm_latency a=
- pointer")
-> > =
+== Summary ==
 
-> > in drm-intel-next.
-> =
+Applying: New function to avoid duplicate code in upcomming commits
+error: unrecognized input
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 New function to avoid duplicate code in upcomming commits
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-> That's just hiding the problem.
-> =
 
-> > =
-
-> > There doesn't actually seem to be a bug here,
-> =
-
-> Can you explain that please?
-> =
-
-> This is the loop in question
-> =
-
->  max_level =3D ilk_wm_max_level(dev_priv);
-> =
-
->         for (level =3D 0; level <=3D max_level; level++) {
->                 unsigned int latency =3D wm[level];
-> =
-
->                 if (latency =3D=3D 0) {
->                         drm_dbg_kms(&dev_priv->drm,
->                                     "%s WM%d latency not provided\n",
->                                     name, level);
->                         continue;
->                 }
-> =
-
-> 		...
-> 	}
-> =
-
-> (no other loop termination condition)
-> =
-
-> and ilk_wm_max_level is
-> =
-
-> int ilk_wm_max_level(const struct drm_i915_private *dev_priv)
-> {
->         /* how many WM levels are we expecting */
->         if (INTEL_GEN(dev_priv) >=3D 9)
->                 return 7;
->         else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
->                 return 4;
->         else if (INTEL_GEN(dev_priv) >=3D 6)
->                 return 3;
->         else
->                 return 2;
-> }
-> =
-
-> There is no loop termination in the loop above, it will always read
-> every member through the max level reported. And on GEN>=3D9 it will be 7=
-, while
-> the input array for several of the cases has only 5 members.
-> =
-
-> So it will read beyond the array and gcc is correct in complaining.
-> =
-
-> What do I miss when you say there is no bug?
-
-We always use dev_priv->wm.skl_latency[] for gen9+. See
-{pri,spr,cur}_wm_latency_show(), skl_setup_wm_latency(), etc.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
