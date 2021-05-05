@@ -2,36 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEF56373B98
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 14:41:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 946E7373BC9
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 14:55:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0B9A6E440;
-	Wed,  5 May 2021 12:41:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23A546E487;
+	Wed,  5 May 2021 12:55:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EAE86E43A;
- Wed,  5 May 2021 12:41:34 +0000 (UTC)
-IronPort-SDR: KUyEiPV5QHb8UVf0lg/NSnHzUPvVpN11jr4LMRpqkDf7DRbvwjSwtaNVtICbgcK+QoP6yuroW5
- IJfLZaOYhwVg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="195073698"
-X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="195073698"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2021 05:41:33 -0700
-IronPort-SDR: 6XK1j7moJ6wUwhoBmjXoOGXh8SW2cg3XEcj5PmQcqL/v/4fnB/a6OCYADCO2/m36FZg6ALksET
- hc5DplR4+e5Q==
-X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="433798670"
-Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.13.142])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2021 05:41:31 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Wed,  5 May 2021 14:41:05 +0200
-Message-Id: <20210505124105.336081-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com
+ [IPv6:2607:f8b0:4864:20::1029])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54BA16E4C5;
+ Wed,  5 May 2021 12:55:38 +0000 (UTC)
+Received: by mail-pj1-x1029.google.com with SMTP id
+ h14-20020a17090aea8eb02901553e1cc649so770737pjz.0; 
+ Wed, 05 May 2021 05:55:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ZhuV1fIZkH25YePI0Y3P6MxQ5i4J7rTme3KQYtyR73Y=;
+ b=gRI6Ic2tMSpnsSMhV6oDdci/E4PlN6TPeYZ6VGH7yYcXBOfTtOXVaQvWyKUvhThmrN
+ JqBm5/kmvoOPA6RqgKpOkINzlUtnVrtvqDCtkTmqhq5FxJJgmGoLXJGYsRjI4YBcghkh
+ A4meN/1fuuQMhxEmvLyhFbeliG/A22YQ7JllWCKLnlzDeMNt4ALzf06o+YabaeOChbg3
+ u1LFxMvxUYcUDW4p2t+95kvBwtLAfCAu7Gz/5mOHDlGjI7nwUfPhpmjIH9B/4aQZnKar
+ gwZ06pliPHDiHPWGjU7ti2fGSjqdDLxvTiOpPny151NLZtRYjNcsA+2Kmqu4BdeDiSq+
+ XjzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ZhuV1fIZkH25YePI0Y3P6MxQ5i4J7rTme3KQYtyR73Y=;
+ b=fCRNQlZBLTfAwWey03Oi67Q0XS55wirSf9vAiqxncg+OIn5DkgVWk8fDBE6rW2C6ey
+ PvmwzmNLlDwjYUtGIC82cE59bojuSbOtqVss33aKYBbx/hNRTX9P4EYnOqnwH9bD/o2G
+ 0AbGPCuhUmxXuTQmWFlvftpLLyfKsVgyIYxb3EA2+RHjAIKmCAN+YZr3ypExHGOdR1Vk
+ UcPD6oeTYKYQ9bKxCsN8fD7QR8O0zvktI8T3zAeGdqMCeYzZAUVqXKxvFZPzdsb/RPOC
+ RVGgc6I00hg1Wa7AKQw9sE1kIeAKcTW08a2LO6dtJqS2k43yaUZecswyvDQBh60gf/Na
+ j3Jw==
+X-Gm-Message-State: AOAM530RhXs8j11TTDpZCeGiiAdD2p9fWmceGT1xorxa+7DJtI5Ut4A3
+ mK0W07motlKp1JRX3LAb/GkCHeXforbhgojY23g=
+X-Google-Smtp-Source: ABdhPJzCTkEkc6x9bPHAS+mMVokm63i+ft0JaoTpGrUgTTekG8+kZol92XMK91SVh8Y2tQwk7nOjar/WpkGDyy7r//k=
+X-Received: by 2002:a17:90a:d90c:: with SMTP id
+ c12mr11705143pjv.129.1620219337894; 
+ Wed, 05 May 2021 05:55:37 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2] lib/i915/perf: Fix non-card0 processing
+References: <20210503154647.142551-1-hdegoede@redhat.com>
+ <20210503154647.142551-6-hdegoede@redhat.com>
+ <CAHp75VcS5nvzBzjbSytqD6qsSURyzdEdmDi934y=5W2SCNyo9A@mail.gmail.com>
+ <ee230261-423d-0e2f-16b0-852d264afa2b@redhat.com>
+ <CAHp75VcfkcaVAu2-8-5he7PN=W_tRHiHAgXYn04gRnLehDVsyQ@mail.gmail.com>
+ <ffb46bb6-3548-4ec2-f176-99f3674e7f6d@redhat.com>
+ <CAHp75VcHEMaZ67yy7TD8f8Nk=+oiLT-vRCt9A6fT9K6LeR78Ew@mail.gmail.com>
+ <adb9be8a-70c7-b515-48c3-7e372e5d8801@redhat.com>
+In-Reply-To: <adb9be8a-70c7-b515-48c3-7e372e5d8801@redhat.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 5 May 2021 15:55:21 +0300
+Message-ID: <CAHp75Vcd0U0MBisj3jYb2gptNk7JU61Jtv-MbwnsDK2hzuxU7Q@mail.gmail.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915: Associate ACPI connector
+ nodes with connector entries
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,80 +70,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
+ Guenter Roeck <linux@roeck-us.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-IGT i915/perf library functions now always operate on sysfs perf
-attributes of card0 device node, no matter which DRM device fd a user
-passes.  The intention was to always switch to primary device node if
-a user passes a render device node fd, but that breaks handling of
-non-card0 devices.
+On Wed, May 5, 2021 at 1:30 PM Hans de Goede <hdegoede@redhat.com> wrote:
+> On 5/5/21 12:02 PM, Andy Shevchenko wrote:
 
-If a user passed a render device node fd, find a primary device node of
-the same device and use it instead of forcibly using the primary device
-with minor number 0 when opening the device sysfs area.
+...
 
-v2: Don't assume primary minor matches render minor with masked type.
+> But we do really need to document the behavior better here
+> in the kdoc for fwnode_get_next_child_node() and
+> device_get_next_child_node().
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- lib/i915/perf.c | 31 ++++++++++++++++++++++++++++---
- 1 file changed, 28 insertions(+), 3 deletions(-)
+Totally agree!
 
-diff --git a/lib/i915/perf.c b/lib/i915/perf.c
-index 56d5c0b3a..d7768468e 100644
---- a/lib/i915/perf.c
-+++ b/lib/i915/perf.c
-@@ -372,14 +372,39 @@ open_master_sysfs_dir(int drm_fd)
- {
- 	char path[128];
- 	struct stat st;
-+	int sysfs;
- 
- 	if (fstat(drm_fd, &st) || !S_ISCHR(st.st_mode))
-                 return -1;
- 
--        snprintf(path, sizeof(path), "/sys/dev/char/%d:0",
--                 major(st.st_rdev));
-+	snprintf(path, sizeof(path), "/sys/dev/char/%d:%d", major(st.st_rdev), minor(st.st_rdev));
-+	sysfs = open(path, O_DIRECTORY);
- 
--	return open(path, O_DIRECTORY);
-+	if (sysfs >= 0 && minor(st.st_rdev) >= 128) {
-+		char device[100], cmp[100];
-+		int device_len, cmp_len, i;
-+
-+		device_len = readlinkat(sysfs, "device", device, sizeof(device));
-+		close(sysfs);
-+		if (device_len < 0)
-+			return device_len;
-+
-+		for (i = 0; i < 128; i++) {
-+
-+			snprintf(path, sizeof(path), "/sys/dev/char/%d:%d", major(st.st_rdev), i);
-+			sysfs = open(path, O_DIRECTORY);
-+			if (sysfs < 0)
-+				continue;
-+
-+			cmp_len = readlinkat(sysfs, "device", cmp, sizeof(cmp));
-+			if (cmp_len == device_len && !memcmp(cmp, device, cmp_len))
-+				break;
-+
-+			close(sysfs);
-+		}
-+	}
-+
-+	return sysfs;
- }
- 
- struct intel_perf *
+> of_get_next_child has this bit, which applies to those too:
+>
+>  *      Returns a node pointer with refcount incremented, use of_node_put() on
+>  *      it when done. Returns NULL when prev is the last child. Decrements the
+>  *      refcount of prev.
+>
+> I'll prepare a patch to add this to the kdoc for fwnode_get_next_child_node()
+> and device_get_next_child_node() once I'm done with readying v3 of this series.
+
+Thanks!
+
 -- 
-2.25.1
-
+With Best Regards,
+Andy Shevchenko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
