@@ -1,46 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A90A9373859
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 12:09:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 668D7373870
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 12:17:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64267892B1;
-	Wed,  5 May 2021 10:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EAB06E043;
+	Wed,  5 May 2021 10:16:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9002892B1;
- Wed,  5 May 2021 10:09:17 +0000 (UTC)
-IronPort-SDR: mJyr81ABPs8sXOW9uGyXLRsUBUCCsxrYt68M3c8lYB/eYIf+kVVdvTVcARLCe8SwJWGH/K+qhQ
- D4GreSwqCmzA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="196138337"
-X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="196138337"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2021 03:09:17 -0700
-IronPort-SDR: aRjV7kWLT486c9EjPt9k0LrFL+i4sXqgRCb2XoQcWf5xJmbzcX611JXkxqtCfnih8+ObzKIB5A
- W0TL7qVOLmzQ==
-X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="463803463"
-Received: from pgcarton-mobl1.ger.corp.intel.com (HELO [10.213.195.12])
- ([10.213.195.12])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2021 03:09:16 -0700
-To: Jason Ekstrand <jason@jlekstrand.net>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20210503155748.1961781-1-jason@jlekstrand.net>
- <20210503155748.1961781-17-jason@jlekstrand.net>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <edfac38a-81ba-2b1b-08ef-ab1870125e3b@linux.intel.com>
-Date: Wed, 5 May 2021 11:09:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E56D6E043;
+ Wed,  5 May 2021 10:16:57 +0000 (UTC)
+IronPort-SDR: Cb5Zi9ecI9IFsEyTsWTxn0481VVP+KM1oGRZCnCFYFz4kAy5GEAT/v1TiY2MYUi5loxp4rzO+O
+ mRc0FOlJiVJA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="262123841"
+X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="262123841"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2021 03:16:55 -0700
+IronPort-SDR: U30dEnHdvT5+c2dHJR8RccJwK2sbrlrSUFqR2AvVM8RCcQwEarpH+AZ9Bnx8SZFYCG1Cxc0Lyn
+ a5MwFINoEoqw==
+X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="458616820"
+Received: from yueqinya-mobl.amr.corp.intel.com (HELO intel.com)
+ ([10.254.36.228])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2021 03:16:54 -0700
+Date: Wed, 5 May 2021 06:16:53 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@collabora.com>
+Message-ID: <YJJwlXt4n936yz68@intel.com>
+References: <e99599bf-f503-3227-8361-afcd3d2a098f@collabora.com>
 MIME-Version: 1.0
-In-Reply-To: <20210503155748.1961781-17-jason@jlekstrand.net>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 16/27] drm/i915/gem: Add an intermediate
- proto_context struct
+Content-Disposition: inline
+In-Reply-To: <e99599bf-f503-3227-8361-afcd3d2a098f@collabora.com>
+Subject: Re: [Intel-gfx] Enabling sample_c optimization for Broadwell GPUs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,347 +47,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Kenneth Graunke <kenneth@whitecape.org>, kernel@collabora.com
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Andre,
 
-On 03/05/2021 16:57, Jason Ekstrand wrote:
-> The current context uAPI allows for two methods of setting context
-> parameters: SET_CONTEXT_PARAM and CONTEXT_CREATE_EXT_SETPARAM.  The
-> former is allowed to be called at any time while the later happens as
-> part of GEM_CONTEXT_CREATE.  Currently, everything settable via one is
-> settable via the other.  While some params are fairly simple and setting
-> them on a live context is harmless such the context priority, others are
-> far trickier such as the VM or the set of engines.  In order to swap out
-> the VM, for instance, we have to delay until all current in-flight work
-> is complete, swap in the new VM, and then continue.  This leads to a
-> plethora of potential race conditions we'd really rather avoid.
-> 
-> Unfortunately, both methods of setting the VM and engine set are in
-> active use today so we can't simply disallow setting the VM or engine
-> set vial SET_CONTEXT_PARAM.  In order to work around this wart, this
-> commit adds a proto-context struct which contains all the context create
-> parameters.
+I'm not familiar with the sample c message optimization.
+Probably Ken can comment.
 
-The detailed commentary from "drm/i915/gem: Delay context creation" 
-would be useful at this point in the series so it is known what this 
-patch tries to do.
+However I could check the internal spec here and I saw this bit
+only exists with this meaning in Haswell.
 
-For the record, again, my opinion is that from here in the series 
-onwards (mostly), there is a negative cost-benefit ratio and most 
-certainly isn't something which should be rammed quickly in without a 
-consensus.
+For all the other platforms, including Broadwell it got re-purposed with
+a different meaning and a programming note:
+"This bit should be programmed to zero (0h) at all times."
 
-Regards,
+Also, I could not find any workaround documented anywhere recommending
+this bit to be set.
 
-Tvrtko
+So, I would not recommend to use it in any product, even downstream.
+Regardless the state of sample c message optimization in later platforms.
 
-> 
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_context.c   | 145 ++++++++++++++----
->   .../gpu/drm/i915/gem/i915_gem_context_types.h |  22 +++
->   .../gpu/drm/i915/gem/selftests/mock_context.c |  16 +-
->   3 files changed, 153 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 4835991898ac9..10bd1b6dd1774 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -191,6 +191,97 @@ static int validate_priority(struct drm_i915_private *i915,
->   	return 0;
->   }
->   
-> +static void proto_context_close(struct i915_gem_proto_context *pc)
-> +{
-> +	if (pc->vm)
-> +		i915_vm_put(pc->vm);
-> +	kfree(pc);
-> +}
-> +
-> +static int proto_context_set_persistence(struct drm_i915_private *i915,
-> +					 struct i915_gem_proto_context *pc,
-> +					 bool persist)
-> +{
-> +	if (persist) {
-> +		/*
-> +		 * Only contexts that are short-lived [that will expire or be
-> +		 * reset] are allowed to survive past termination. We require
-> +		 * hangcheck to ensure that the persistent requests are healthy.
-> +		 */
-> +		if (!i915->params.enable_hangcheck)
-> +			return -EINVAL;
-> +
-> +		__set_bit(UCONTEXT_PERSISTENCE, &pc->user_flags);
-> +	} else {
-> +		/* To cancel a context we use "preempt-to-idle" */
-> +		if (!(i915->caps.scheduler & I915_SCHEDULER_CAP_PREEMPTION))
-> +			return -ENODEV;
-> +
-> +		/*
-> +		 * If the cancel fails, we then need to reset, cleanly!
-> +		 *
-> +		 * If the per-engine reset fails, all hope is lost! We resort
-> +		 * to a full GPU reset in that unlikely case, but realistically
-> +		 * if the engine could not reset, the full reset does not fare
-> +		 * much better. The damage has been done.
-> +		 *
-> +		 * However, if we cannot reset an engine by itself, we cannot
-> +		 * cleanup a hanging persistent context without causing
-> +		 * colateral damage, and we should not pretend we can by
-> +		 * exposing the interface.
-> +		 */
-> +		if (!intel_has_reset_engine(&i915->gt))
-> +			return -ENODEV;
-> +
-> +		__clear_bit(UCONTEXT_PERSISTENCE, &pc->user_flags);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static struct i915_gem_proto_context *
-> +proto_context_create(struct drm_i915_private *i915, unsigned int flags)
-> +{
-> +	struct i915_gem_proto_context *pc, *err;
-> +
-> +	pc = kzalloc(sizeof(*pc), GFP_KERNEL);
-> +	if (!pc)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	if (HAS_FULL_PPGTT(i915)) {
-> +		struct i915_ppgtt *ppgtt;
-> +
-> +		ppgtt = i915_ppgtt_create(&i915->gt);
-> +		if (IS_ERR(ppgtt)) {
-> +			drm_dbg(&i915->drm, "PPGTT setup failed (%ld)\n",
-> +				PTR_ERR(ppgtt));
-> +			err = ERR_CAST(ppgtt);
-> +			goto proto_close;
-> +		}
-> +		pc->vm = &ppgtt->vm;
-> +	}
-> +
-> +	pc->user_flags = 0;
-> +	__set_bit(UCONTEXT_BANNABLE, &pc->user_flags);
-> +	__set_bit(UCONTEXT_RECOVERABLE, &pc->user_flags);
-> +	proto_context_set_persistence(i915, pc, true);
-> +	pc->sched.priority = I915_PRIORITY_NORMAL;
-> +
-> +	if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE) {
-> +		if (!HAS_EXECLISTS(i915)) {
-> +			err = ERR_PTR(-EINVAL);
-> +			goto proto_close;
-> +		}
-> +		pc->single_timeline = true;
-> +	}
-> +
-> +	return pc;
-> +
-> +proto_close:
-> +	proto_context_close(pc);
-> +	return err;
-> +}
-> +
->   static struct i915_address_space *
->   context_get_vm_rcu(struct i915_gem_context *ctx)
->   {
-> @@ -660,7 +751,8 @@ static int __context_set_persistence(struct i915_gem_context *ctx, bool state)
->   }
->   
->   static struct i915_gem_context *
-> -__create_context(struct drm_i915_private *i915)
-> +__create_context(struct drm_i915_private *i915,
-> +		 const struct i915_gem_proto_context *pc)
->   {
->   	struct i915_gem_context *ctx;
->   	struct i915_gem_engines *e;
-> @@ -673,7 +765,7 @@ __create_context(struct drm_i915_private *i915)
->   
->   	kref_init(&ctx->ref);
->   	ctx->i915 = i915;
-> -	ctx->sched.priority = I915_PRIORITY_NORMAL;
-> +	ctx->sched = pc->sched;
->   	mutex_init(&ctx->mutex);
->   	INIT_LIST_HEAD(&ctx->link);
->   
-> @@ -696,9 +788,7 @@ __create_context(struct drm_i915_private *i915)
->   	 * is no remap info, it will be a NOP. */
->   	ctx->remap_slice = ALL_L3_SLICES(i915);
->   
-> -	i915_gem_context_set_bannable(ctx);
-> -	i915_gem_context_set_recoverable(ctx);
-> -	__context_set_persistence(ctx, true /* cgroup hook? */);
-> +	ctx->user_flags = pc->user_flags;
->   
->   	for (i = 0; i < ARRAY_SIZE(ctx->hang_timestamp); i++)
->   		ctx->hang_timestamp[i] = jiffies - CONTEXT_FAST_HANG_JIFFIES;
-> @@ -786,38 +876,23 @@ static void __assign_ppgtt(struct i915_gem_context *ctx,
->   }
->   
->   static struct i915_gem_context *
-> -i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
-> +i915_gem_create_context(struct drm_i915_private *i915,
-> +			const struct i915_gem_proto_context *pc)
->   {
->   	struct i915_gem_context *ctx;
->   	int ret;
->   
-> -	if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE &&
-> -	    !HAS_EXECLISTS(i915))
-> -		return ERR_PTR(-EINVAL);
-> -
-> -	ctx = __create_context(i915);
-> +	ctx = __create_context(i915, pc);
->   	if (IS_ERR(ctx))
->   		return ctx;
->   
-> -	if (HAS_FULL_PPGTT(i915)) {
-> -		struct i915_ppgtt *ppgtt;
-> -
-> -		ppgtt = i915_ppgtt_create(&i915->gt);
-> -		if (IS_ERR(ppgtt)) {
-> -			drm_dbg(&i915->drm, "PPGTT setup failed (%ld)\n",
-> -				PTR_ERR(ppgtt));
-> -			context_close(ctx);
-> -			return ERR_CAST(ppgtt);
-> -		}
-> -
-> +	if (pc->vm) {
->   		mutex_lock(&ctx->mutex);
-> -		__assign_ppgtt(ctx, &ppgtt->vm);
-> +		__assign_ppgtt(ctx, pc->vm);
->   		mutex_unlock(&ctx->mutex);
-> -
-> -		i915_vm_put(&ppgtt->vm);
->   	}
->   
-> -	if (flags & I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE) {
-> +	if (pc->single_timeline) {
->   		ret = drm_syncobj_create(&ctx->syncobj,
->   					 DRM_SYNCOBJ_CREATE_SIGNALED,
->   					 NULL);
-> @@ -883,6 +958,7 @@ int i915_gem_context_open(struct drm_i915_private *i915,
->   			  struct drm_file *file)
->   {
->   	struct drm_i915_file_private *file_priv = file->driver_priv;
-> +	struct i915_gem_proto_context *pc;
->   	struct i915_gem_context *ctx;
->   	int err;
->   	u32 id;
-> @@ -892,7 +968,14 @@ int i915_gem_context_open(struct drm_i915_private *i915,
->   	/* 0 reserved for invalid/unassigned ppgtt */
->   	xa_init_flags(&file_priv->vm_xa, XA_FLAGS_ALLOC1);
->   
-> -	ctx = i915_gem_create_context(i915, 0);
-> +	pc = proto_context_create(i915, 0);
-> +	if (IS_ERR(pc)) {
-> +		err = PTR_ERR(pc);
-> +		goto err;
-> +	}
-> +
-> +	ctx = i915_gem_create_context(i915, pc);
-> +	proto_context_close(pc);
->   	if (IS_ERR(ctx)) {
->   		err = PTR_ERR(ctx);
->   		goto err;
-> @@ -1885,6 +1968,7 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
->   {
->   	struct drm_i915_private *i915 = to_i915(dev);
->   	struct drm_i915_gem_context_create_ext *args = data;
-> +	struct i915_gem_proto_context *pc;
->   	struct create_ext ext_data;
->   	int ret;
->   	u32 id;
-> @@ -1907,7 +1991,12 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
->   		return -EIO;
->   	}
->   
-> -	ext_data.ctx = i915_gem_create_context(i915, args->flags);
-> +	pc = proto_context_create(i915, args->flags);
-> +	if (IS_ERR(pc))
-> +		return PTR_ERR(pc);
-> +
-> +	ext_data.ctx = i915_gem_create_context(i915, pc);
-> +	proto_context_close(pc);
->   	if (IS_ERR(ext_data.ctx))
->   		return PTR_ERR(ext_data.ctx);
->   
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> index 5f0673a2129f9..0bf337b6d89ac 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> @@ -66,6 +66,28 @@ struct i915_gem_engines_iter {
->   	const struct i915_gem_engines *engines;
->   };
->   
-> +/**
-> + * struct i915_gem_proto_context - prototype context
-> + *
-> + * The struct i915_gem_proto_context represents the creation parameters for
-> + * an i915_gem_context.  This is used to gather parameters provided either
-> + * through creation flags or via SET_CONTEXT_PARAM so that, when we create
-> + * the final i915_gem_context, those parameters can be immutable.
-> + */
-> +struct i915_gem_proto_context {
-> +	/** @vm: See i915_gem_context::vm */
-> +	struct i915_address_space *vm;
-> +
-> +	/** @user_flags: See i915_gem_context::user_flags */
-> +	unsigned long user_flags;
-> +
-> +	/** @sched: See i915_gem_context::sched */
-> +	struct i915_sched_attr sched;
-> +
-> +	/** @single_timeline: See See i915_gem_context::syncobj */
-> +	bool single_timeline;
-> +};
-> +
->   /**
->    * struct i915_gem_context - client state
->    *
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> index 51b5a3421b400..e0f512ef7f3c6 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-> @@ -80,11 +80,17 @@ void mock_init_contexts(struct drm_i915_private *i915)
->   struct i915_gem_context *
->   live_context(struct drm_i915_private *i915, struct file *file)
->   {
-> +	struct i915_gem_proto_context *pc;
->   	struct i915_gem_context *ctx;
->   	int err;
->   	u32 id;
->   
-> -	ctx = i915_gem_create_context(i915, 0);
-> +	pc = proto_context_create(i915, 0);
-> +	if (IS_ERR(pc))
-> +		return ERR_CAST(pc);
-> +
-> +	ctx = i915_gem_create_context(i915, pc);
-> +	proto_context_close(pc);
->   	if (IS_ERR(ctx))
->   		return ctx;
->   
-> @@ -142,8 +148,14 @@ struct i915_gem_context *
->   kernel_context(struct drm_i915_private *i915)
->   {
->   	struct i915_gem_context *ctx;
-> +	struct i915_gem_proto_context *pc;
-> +
-> +	pc = proto_context_create(i915, 0);
-> +	if (IS_ERR(pc))
-> +		return ERR_CAST(pc);
->   
-> -	ctx = i915_gem_create_context(i915, 0);
-> +	ctx = i915_gem_create_context(i915, pc);
-> +	proto_context_close(pc);
->   	if (IS_ERR(ctx))
->   		return ctx;
->   
-> 
+Thanks,
+Rodrigo.
+
+On Tue, May 04, 2021 at 08:07:14PM -0300, Andr=E9 Almeida wrote:
+> Hi there,
+> =
+
+> While browsing an old downstream kernel, I found a patch[0] that enables
+> sample_c optimizations at Broadwell GPUs. The message from the upstream
+> commit that enables it for Haswell[1] (and presumably where the code at[0]
+> was copied from) states that "[..] later platforms remove this bit, and
+> apparently always enable the optimization".
+> =
+
+> Could you confirm that Broadwell and following architectures enable this
+> optimization by default (and thus, patch[0] is a no-op), or should I
+> upstream it?
+> =
+
+> Thanks,
+> 	Andr=E9
+> =
+
+> [0] https://github.com/ValveSoftware/steamos_kernel/commit/198990f13e1d94=
+29864c177d9441a6559771c5e2
+> =
+
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/co=
+mmit/?id=3D944115934436b1ff6cf773a9e9123858ea9ef3da
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
