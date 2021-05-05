@@ -2,39 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280673734FC
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 08:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03C22373507
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 08:40:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 443506E252;
-	Wed,  5 May 2021 06:33:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3A26E428;
+	Wed,  5 May 2021 06:40:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28A976E252;
- Wed,  5 May 2021 06:33:05 +0000 (UTC)
-IronPort-SDR: 10aLeruTZJdhaK19ZPU9t9RO0u7FSMSGM1ijfTp1FcJ9j6m0RXYlBAD1s+ew9J6FYYvyKzlMrv
- cZ21ph17llLQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="198201753"
-X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="198201753"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D54A66E428
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 May 2021 06:40:52 +0000 (UTC)
+IronPort-SDR: lxEOksnss1OZLF7NEbU4Zk4nSoACZ+vkza7+jGtB5ib9bVYAGGq0fuhvAOSq7dtgyhNeUFrr2Q
+ 3d9/7LlMAW1w==
+X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="262092188"
+X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="262092188"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2021 23:33:04 -0700
-IronPort-SDR: /nspZ60y87dXV5HZ9VrAkfjSFIeGwahmc/Hk44SXbKb9a4PJc8wW0uFcne9a0Rj3CtebkdTytN
- fnjKfZZIptkQ==
-X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="433662449"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2021 23:40:52 -0700
+IronPort-SDR: INjUgzAzFrKMVeGzji1k+PDHeR806z1KZBT1X3ti6qGE+YFaBwt23JX0jHmqlyYXUh8wTzFnZk
+ eqpdAzBtkqxA==
+X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="433664510"
 Received: from weberral-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.249.45.238])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2021 23:33:01 -0700
+ 04 May 2021 23:40:49 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andi Kleen <ak@linux.intel.com>
-In-Reply-To: <20210505033737.1282652-1-ak@linux.intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <87fsz3znxm.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210505033737.1282652-1-ak@linux.intel.com>
-Date: Wed, 05 May 2021 09:32:58 +0300
-Message-ID: <87r1ily9k5.fsf@intel.com>
+References: <20210428211249.11037-1-anusha.srivatsa@intel.com>
+ <87fsz3znxm.fsf@intel.com>
+Date: Wed, 05 May 2021 09:40:46 +0300
+Message-ID: <87lf8ty975.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] i915: Increase *_latency array size
+Subject: Re: [Intel-gfx] [PATCH 0/3] Pipe DMC Prep patches
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,47 +49,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andi Kleen <andi@firstfloor.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAwNCBNYXkgMjAyMSwgQW5kaSBLbGVlbiA8YWtAbGludXguaW50ZWwuY29tPiB3cm90
-ZToKPiBGcm9tOiBBbmRpIEtsZWVuIDxhbmRpQGZpcnN0Zmxvb3Iub3JnPgo+Cj4gTmV3ZXIgZ2Nj
-IHByaW50cyB0aGUgZm9sbG93aW5nIHdhcm5pbmc6Cj4KPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-bnRlbF9wbS5jOjMwNTc6OTogd2FybmluZzog4oCYaW50ZWxfcHJpbnRfd21fbGF0ZW5jeeKAmSBy
-ZWFkaW5nIDE2IGJ5dGVzIGZyb20gYSByZWdpb24gb2Ygc2l6ZSAxMCBbLVdzdHJpbmdvcC1vdmVy
-cmVhZF0KPiBhbmQgc29tZSBvdGhlciByZWxhdGVkIHdhcm5pbmdzIGluIHNpbWlsYXIgZnVuY3Rp
-b25zLgo+Cj4gZ2NjIGhhcyBhIHBvaW50IGhlcmUuIFNvbWUgb2YgdGhlIGxhdGVuY3kgYXJyYXlz
-IG9ubHkgaGF2ZSA1IG1lbWJlcnMsCj4gYnV0IHByaW50X3dtX2xhdGVuY3kgbWF5IHJlYWQgdXAg
-dG8gbWF4X2xldmVsIHJldHVybmVkIGJ5IGlsa193bV9tYXhfbGV2ZWwsCj4gd2hpY2ggY2FuIGJl
-IHVwdG8gNyBmb3IgdGhlID49IEdFTjkgY2FzZS4KPgo+IFNvIGl0IHdpbGwgcmVhZCBzb21lIGZp
-ZWxkcyBiZXlvbmQgdGhlIGFycmF5Lgo+Cj4gSW5jcmVhc2UgYWxsIHRoZSBsYXRlbmN5IGZpZWxk
-cyB0byA4IG1lbWJlcnMsIHdoaWNoIGlzIGVub3VnaCBmb3IgU0tMLgo+Cj4gSSBkb24ndCBrbm93
-IGlmIHRoZXkgYXJlIGNvcnJlY3RseSBpbml0aWFsaXplZCB1cHRvIDgsIGJ1dCBkZXZfcHJpdgo+
-IHNob3VsZCBzdGFydCBvdXQgYXMgemVybywgc28gcHJlc3VtYWJseSB0aGV5IHdpbGwgYmUgemVy
-by4KClRoYW5rcywgdGhlIHdhcm5pbmcgc2hvdWxkIGJlIGZpeGVkIGJ5IGNvbW1pdAoKYzZkZWI1
-ZTk3ZGVkICgiZHJtL2k5MTUvcG06IE1ha2UgdGhlIHdtIHBhcmFtZXRlciBvZiBwcmludF93bV9s
-YXRlbmN5IGEgcG9pbnRlciIpCgppbiBkcm0taW50ZWwtbmV4dC4KClRoZXJlIGRvZXNuJ3QgYWN0
-dWFsbHkgc2VlbSB0byBiZSBhIGJ1ZyBoZXJlLCBidXQgSSB3b25kZXIgaWYgd2Ugc2hvdWxkCnNl
-bmQgdGhhdCB0byBzdGFibGUgb3IgdjUuMTMtcmMxKyBhbnl3YXkgdG8gc3RvcCBwZW9wbGUgc3Bl
-bmRpbmcgdGltZSBvbgp0aGUgc2FtZSBpc3N1ZS4KCkJSLApKYW5pLgoKPgo+IFNpZ25lZC1vZmYt
-Ynk6IEFuZGkgS2xlZW4gPGFuZGlAZmlyc3RmbG9vci5vcmc+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfZHJ2LmggfCA2ICsrKy0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNl
-cnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCj4gaW5k
-ZXggY2I2MmRkYmEyMDM1Li5jODBhZGQ1ZjZkMzMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9kcnYuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2
-LmgKPiBAQCAtMTA5NSwxMSArMTA5NSwxMSBAQCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSB7Cj4g
-IAkJICogaW4gMC41dXMgdW5pdHMgZm9yIFdNMSsuCj4gIAkJICovCj4gIAkJLyogcHJpbWFyeSAq
-Lwo+IC0JCXUxNiBwcmlfbGF0ZW5jeVs1XTsKPiArCQl1MTYgcHJpX2xhdGVuY3lbOF07Cj4gIAkJ
-Lyogc3ByaXRlICovCj4gLQkJdTE2IHNwcl9sYXRlbmN5WzVdOwo+ICsJCXUxNiBzcHJfbGF0ZW5j
-eVs4XTsKPiAgCQkvKiBjdXJzb3IgKi8KPiAtCQl1MTYgY3VyX2xhdGVuY3lbNV07Cj4gKwkJdTE2
-IGN1cl9sYXRlbmN5WzhdOwo+ICAJCS8qCj4gIAkJICogUmF3IHdhdGVybWFyayBtZW1vcnkgbGF0
-ZW5jeSB2YWx1ZXMKPiAgCQkgKiBmb3IgU0tMIGZvciBhbGwgOCBsZXZlbHMKCi0tIApKYW5pIE5p
-a3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Mon, 03 May 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Wed, 28 Apr 2021, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
+>> This series adds the prep work needed before the
+>> actual Pipe DMC implementation.
+>
+> When should we rename csr to dmc all over the place?
+
+To elaborate, I think it's pretty confusing that we use both CSR and DMC
+acronyms in code. There may be a distinction, but we don't respect that
+in the usage. Sure, the spec mentions both, but I don't think we follow
+the naming there either.
+
+I think we should just rename all CSR references to DMC, including the
+file name and the function and struct names.
+
+I wonder if it would be better to do the renames first before starting
+to build a lot of changes on top.
+
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
