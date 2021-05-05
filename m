@@ -2,45 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9B1E373AE0
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 14:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF56373B98
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 14:41:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A6A26E1BE;
-	Wed,  5 May 2021 12:15:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0B9A6E440;
+	Wed,  5 May 2021 12:41:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5D516E125;
- Wed,  5 May 2021 12:15:28 +0000 (UTC)
-IronPort-SDR: zXb0ZIAj/nrK07PZgcwCL4XhId0Hcf4htjDhMWIxNiV/WDMMJM/cLRzxkkCAbj6QXu+qJgIb0m
- bN+0DlvUKUWg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="219046835"
-X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="219046835"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2021 05:15:28 -0700
-IronPort-SDR: 2qvZIvm1j2cVwQyuy1ZCdITMWsNBOwR7bSL9a4ha/ewAeUbw8ExIKx4bMshD1mQPdoT6385dwk
- L+WLN91syKvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="463855330"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga002.fm.intel.com with SMTP; 05 May 2021 05:15:25 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 05 May 2021 15:15:24 +0300
-Date: Wed, 5 May 2021 15:15:24 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <YJKMXC8Wd+T34rNg@intel.com>
-References: <20210503182148.851790-1-wse@tuxedocomputers.com>
- <20210503182148.851790-4-wse@tuxedocomputers.com>
- <YJEZzhhQzmYxi8Gp@intel.com>
- <41aca960-7595-8fed-228c-3b9347c64dc6@tuxedocomputers.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EAE86E43A;
+ Wed,  5 May 2021 12:41:34 +0000 (UTC)
+IronPort-SDR: KUyEiPV5QHb8UVf0lg/NSnHzUPvVpN11jr4LMRpqkDf7DRbvwjSwtaNVtICbgcK+QoP6yuroW5
+ IJfLZaOYhwVg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="195073698"
+X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="195073698"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2021 05:41:33 -0700
+IronPort-SDR: 6XK1j7moJ6wUwhoBmjXoOGXh8SW2cg3XEcj5PmQcqL/v/4fnB/a6OCYADCO2/m36FZg6ALksET
+ hc5DplR4+e5Q==
+X-IronPort-AV: E=Sophos;i="5.82,274,1613462400"; d="scan'208";a="433798670"
+Received: from jkrzyszt-mobl1.ger.corp.intel.com ([10.213.13.142])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 May 2021 05:41:31 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Wed,  5 May 2021 14:41:05 +0200
+Message-Id: <20210505124105.336081-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <41aca960-7595-8fed-228c-3b9347c64dc6@tuxedocomputers.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [PATCH 3/4] Restructure output format computation
- for better expandability
+Subject: [Intel-gfx] [PATCH i-g-t v2] lib/i915/perf: Fix non-card0 processing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,134 +44,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 05, 2021 at 11:54:35AM +0200, Werner Sembach wrote:
-> Am 04.05.21 um 11:54 schrieb Ville Syrj=E4l=E4:
-> =
+IGT i915/perf library functions now always operate on sysfs perf
+attributes of card0 device node, no matter which DRM device fd a user
+passes.  The intention was to always switch to primary device node if
+a user passes a render device node fd, but that breaks handling of
+non-card0 devices.
 
-> > On Mon, May 03, 2021 at 08:21:47PM +0200, Werner Sembach wrote:
-> >> Couples the decission between RGB and YCbCr420 mode and the check if t=
-he port
-> >> clock can archive the required frequency. Other checks and configurati=
-on steps
-> >> that where previously done in between can also be done before or after.
-> >>
-> >> This allows for are cleaner implementation of retrying different color
-> >> encodings.
-> >>
-> >> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> >> ---
-> >>
-> >> >From 57e42ec6e34ac32da29eb7bc3c691cbeb2534396 Mon Sep 17 00:00:00 2001
-> >> From: Werner Sembach <wse@tuxedocomputers.com>
-> >> Date: Mon, 3 May 2021 15:30:40 +0200
-> >> Subject: [PATCH 3/4] Restructure output format computation for better
-> >>  expandability
-> >>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_hdmi.c | 57 +++++++++++------------
-> >>  1 file changed, 26 insertions(+), 31 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/d=
-rm/i915/display/intel_hdmi.c
-> >> index ce165ef28e88..e2553ac6fd13 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> >> @@ -1999,29 +1999,6 @@ static bool hdmi_deep_color_possible(const stru=
-ct intel_crtc_state *crtc_state,
-> >>  					      INTEL_OUTPUT_FORMAT_YCBCR420);
-> >>  }
-> >>  =
+If a user passed a render device node fd, find a primary device node of
+the same device and use it instead of forcibly using the primary device
+with minor number 0 when opening the device sysfs area.
 
-> >> -static int
-> >> -intel_hdmi_ycbcr420_config(struct intel_crtc_state *crtc_state,
-> >> -			   const struct drm_connector_state *conn_state)
-> >> -{
-> >> -	struct drm_connector *connector =3D conn_state->connector;
-> >> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
-> >> -	const struct drm_display_mode *adjusted_mode =3D
-> >> -		&crtc_state->hw.adjusted_mode;
-> >> -
-> >> -	if (!drm_mode_is_420_only(&connector->display_info, adjusted_mode))
-> >> -		return 0;
-> >> -
-> >> -	if (!connector->ycbcr_420_allowed) {
-> >> -		drm_err(&i915->drm,
-> >> -			"Platform doesn't support YCBCR420 output\n");
-> >> -		return -EINVAL;
-> >> -	}
-> >> -
-> >> -	crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
-> >> -
-> >> -	return intel_pch_panel_fitting(crtc_state, conn_state);
-> >> -}
-> >> -
-> >>  static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
-> >>  				  struct intel_crtc_state *crtc_state,
-> >>  				  int clock)
-> >> @@ -2128,6 +2105,24 @@ static bool intel_hdmi_has_audio(struct intel_e=
-ncoder *encoder,
-> >>  		return intel_conn_state->force_audio =3D=3D HDMI_AUDIO_ON;
-> >>  }
-> >>  =
+v2: Don't assume primary minor matches render minor with masked type.
 
-> >> +int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
-> >> +				     struct intel_crtc_state *crtc_state,
-> >> +				     const struct drm_connector_state *conn_state)
-> >> +{
-> >> +	const struct drm_connector *connector =3D conn_state->connector;
-> >> +	const struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adj=
-usted_mode;
-> >> +	int ret;
-> >> +
-> >> +	if (connector->ycbcr_420_allowed && drm_mode_is_420_only(&connector-=
->display_info, adjusted_mode))
-> >> +		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
-> >> +	else
-> >> +		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
-> > Slight change in behaviour here since we used to reject 420_only modes
-> > if ycbcr_420_allowed wasn't set. But I think this should be OK, and in
-> > fact I believe the DP counterpart code always used an RGB fallback
-> > rather than failing. So this lines up better with that.
-> =
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+---
+ lib/i915/perf.c | 31 ++++++++++++++++++++++++++++---
+ 1 file changed, 28 insertions(+), 3 deletions(-)
 
-> That was actually an oversight on my side and not intended. Does a RGB fa=
-llback make sense?
-> =
+diff --git a/lib/i915/perf.c b/lib/i915/perf.c
+index 56d5c0b3a..d7768468e 100644
+--- a/lib/i915/perf.c
++++ b/lib/i915/perf.c
+@@ -372,14 +372,39 @@ open_master_sysfs_dir(int drm_fd)
+ {
+ 	char path[128];
+ 	struct stat st;
++	int sysfs;
+ 
+ 	if (fstat(drm_fd, &st) || !S_ISCHR(st.st_mode))
+                 return -1;
+ 
+-        snprintf(path, sizeof(path), "/sys/dev/char/%d:0",
+-                 major(st.st_rdev));
++	snprintf(path, sizeof(path), "/sys/dev/char/%d:%d", major(st.st_rdev), minor(st.st_rdev));
++	sysfs = open(path, O_DIRECTORY);
+ 
+-	return open(path, O_DIRECTORY);
++	if (sysfs >= 0 && minor(st.st_rdev) >= 128) {
++		char device[100], cmp[100];
++		int device_len, cmp_len, i;
++
++		device_len = readlinkat(sysfs, "device", device, sizeof(device));
++		close(sysfs);
++		if (device_len < 0)
++			return device_len;
++
++		for (i = 0; i < 128; i++) {
++
++			snprintf(path, sizeof(path), "/sys/dev/char/%d:%d", major(st.st_rdev), i);
++			sysfs = open(path, O_DIRECTORY);
++			if (sysfs < 0)
++				continue;
++
++			cmp_len = readlinkat(sysfs, "device", cmp, sizeof(cmp));
++			if (cmp_len == device_len && !memcmp(cmp, device, cmp_len))
++				break;
++
++			close(sysfs);
++		}
++	}
++
++	return sysfs;
+ }
+ 
+ struct intel_perf *
+-- 
+2.25.1
 
-> Now that I think of it get to 2 scenarios:
-> =
-
-> - The screen is really 420_only, which causes a silent fail and a black s=
-creen I guess? Where before at least a log message was written.
-> =
-
-> - The screen falsely reports as 420_only and using RGB regardless makes i=
-t magically work
-> =
-
-> I think at least warning should be printed to the logs. Something along t=
-he lines of: "Display reports as 420 only, but port does not support 420, t=
-ry forcing RGB, but this is likely to fail."
-
-I would just put it into the "user has decided to override the mode and
-gets to keep both pieces if it breaks". Typical users would not hit that
-since they will only use modes reported by the connector as supported.
-
-So I think the RGB fallback is totally in line with existing behaviour
-of the driver. We have other cases where we just ignore the reported
-limits of the display if the user overrides the mode manually.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
