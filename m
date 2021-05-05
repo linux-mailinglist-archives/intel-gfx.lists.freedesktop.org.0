@@ -1,60 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3972E3731D1
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 May 2021 23:17:53 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C32C53733A5
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 May 2021 03:44:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 794E06EB53;
-	Tue,  4 May 2021 21:17:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE326E405;
+	Wed,  5 May 2021 01:44:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6746F6EB56
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 May 2021 21:17:49 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id n2so15360028ejy.7
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 May 2021 14:17:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=mfTNO5G4jqLpYl4aPWC4ZDqiJHEdGOHiDWEA54hBbRo=;
- b=Z4uQY8fA4q6tW/yFpxLCvI8iUZvsLQ4xh5jzrxBZFlDJ5fY4RrxPaWPmBKqhAMc+0M
- x27Dna26kjHbY6t//q4EHnNlY17RDcd9mfbJXdIa+VoO3gBb8UI95bOuxiYDiMWKJdZp
- +UiCLEFmExYToKKVi4HlVGLcOHqeJcvuOkj98=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=mfTNO5G4jqLpYl4aPWC4ZDqiJHEdGOHiDWEA54hBbRo=;
- b=BfcWyWKKfe8TowuZcxaLlXAcQXoBA27GNW/sxtaMpleNF7B2xUJC66PYVjf28P0rxy
- 5B/UW1ZNY0TAlJjK8vC5sYPWHZ9OTZfe20G1gGTnfP5mBME6L5/dHCbFlCwvfxa0IJmy
- 4TmnLVoK8tNsJ7YUt73HqFzRz93y+VhZufn1cAyDugH/Ggsmxvwv1wkTTTnsxYOMlNAC
- 6NGjL6a+D8Yyj4rIkQUB4AeRKHN1Lw8slOhJkPCk5hy99O8DEZ99KBFZSeoA+urgLC79
- FP3PW5CX63LeBEXR8FkT5rJafIyjzomdPoPO/5ZNvfJ8AzFud3KfRcFZsFNFZG/4VqDO
- GMlA==
-X-Gm-Message-State: AOAM533rCMnwxBVwoFzSrORfElhc/xuGCV50usmHLT3F6dac409WJBm6
- UMIzMlL48OBkw/VeKEDfdjvzBQ==
-X-Google-Smtp-Source: ABdhPJxA/Qoo3M9tFkxnjCJeUMvS8+x0BYkR+GAzM+01tDgiLBylOPxd25vzryyzNQ6DxW0m38dqFQ==
-X-Received: by 2002:a17:906:ce5a:: with SMTP id
- se26mr24442418ejb.332.1620163068008; 
- Tue, 04 May 2021 14:17:48 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id y2sm1916618ejg.123.2021.05.04.14.17.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 May 2021 14:17:47 -0700 (PDT)
-Date: Tue, 4 May 2021 23:17:45 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Message-ID: <YJG5+ahDPCENWZIk@phenom.ffwll.local>
-References: <20210503155748.1961781-1-jason@jlekstrand.net>
- <20210503155748.1961781-24-jason@jlekstrand.net>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7056D6E328;
+ Wed,  5 May 2021 01:44:14 +0000 (UTC)
+IronPort-SDR: LjkYKo8T8B0uSxjvBm3Qv5kCKsbupN+pADXPYnpzQ9lp0ALdTNw6DanigoBWt2DhLNQxv1paGC
+ C9MQH6lMJs+Q==
+X-IronPort-AV: E=McAfee;i="6200,9189,9974"; a="177655316"
+X-IronPort-AV: E=Sophos;i="5.82,273,1613462400"; d="scan'208";a="177655316"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2021 18:44:13 -0700
+IronPort-SDR: Mo/KwADThQd33IE721toDv2nxSLhrOtSUeGdb/mBL/whtQxp5YZGrhn+6uOZvJSlzEt4JWhno0
+ cRXoQBAWhNKA==
+X-IronPort-AV: E=Sophos;i="5.82,273,1613462400"; d="scan'208";a="539381788"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 May 2021 18:44:13 -0700
+Date: Tue, 4 May 2021 18:36:49 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <20210505013648.GA8247@sdutt-i7>
+References: <20210504164136.96456-1-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210503155748.1961781-24-jason@jlekstrand.net>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH 23/27] drm/i915/gem: Don't allow changing
- the VM on running contexts
+In-Reply-To: <20210504164136.96456-1-matthew.auld@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: drop the __i915_active_call
+ pointer packing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,489 +49,450 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 03, 2021 at 10:57:44AM -0500, Jason Ekstrand wrote:
-> Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+On Tue, May 04, 2021 at 05:41:36PM +0100, Matthew Auld wrote:
+> We use some of the lower bits of the retire function pointer for
+> potential flags, which is quite thorny, since the caller needs to
+> remember to give the function the correct alignment with
+> __i915_active_call, otherwise we might incorrectly unpack the pointer
+> and jump to some garbage address later. Instead of all this let's just
+> pass the flags along as a separate parameter.
+> =
 
-First, a bit of commit message please here.
+> Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> References: ca419f407b43 ("drm/i915: Fix crash in auto_retire")
+> References: d8e44e4dd221 ("drm/i915/overlay: Fix active retire callback a=
+lignment")
+> References: fd5f262db118 ("drm/i915/selftests: Fix active retire callback=
+ alignment")
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 
-Second I accidentally went down the rabbit hole and ended up at
-try_qad_pin().
+I absolutely hate most of the pointer packing code in the i915.
 
-Your patch looks good, unfortunately my brain is complete mushroom soup
-now.
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+With that:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 267 ------------------
->  .../gpu/drm/i915/gem/i915_gem_context_types.h |   2 +-
->  .../drm/i915/gem/selftests/i915_gem_context.c | 119 --------
->  .../drm/i915/selftests/i915_mock_selftests.h  |   1 -
->  4 files changed, 1 insertion(+), 388 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index f0e7ce6b979b4..ad6e98d8a4fbd 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -1637,121 +1637,6 @@ int i915_gem_vm_destroy_ioctl(struct drm_device *dev, void *data,
+>  drivers/gpu/drm/i915/display/intel_frontbuffer.c   |  4 ++--
+>  drivers/gpu/drm/i915/display/intel_overlay.c       |  5 ++---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c        |  3 +--
+>  drivers/gpu/drm/i915/gt/gen6_ppgtt.c               |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_context.c            |  3 +--
+>  drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c       |  2 +-
+>  drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c     |  3 +--
+>  drivers/gpu/drm/i915/gt/intel_timeline.c           |  4 ++--
+>  drivers/gpu/drm/i915/gt/mock_engine.c              |  2 +-
+>  .../gpu/drm/i915/gt/selftest_engine_heartbeat.c    |  4 ++--
+>  drivers/gpu/drm/i915/i915_active.c                 | 14 +++++---------
+>  drivers/gpu/drm/i915/i915_active.h                 | 11 ++++++-----
+>  drivers/gpu/drm/i915/i915_active_types.h           |  5 -----
+>  drivers/gpu/drm/i915/i915_vma.c                    |  3 +--
+>  drivers/gpu/drm/i915/selftests/i915_active.c       |  4 ++--
+>  15 files changed, 28 insertions(+), 41 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/g=
+pu/drm/i915/display/intel_frontbuffer.c
+> index 8161d49e78ba..8e75debcce1a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> @@ -211,7 +211,6 @@ static int frontbuffer_active(struct i915_active *ref)
 >  	return 0;
 >  }
->  
-> -struct context_barrier_task {
-> -	struct i915_active base;
-> -	void (*task)(void *data);
-> -	void *data;
-> -};
-> -
+>  =
+
 > -__i915_active_call
-> -static void cb_retire(struct i915_active *base)
-> -{
-> -	struct context_barrier_task *cb = container_of(base, typeof(*cb), base);
-> -
-> -	if (cb->task)
-> -		cb->task(cb->data);
-> -
-> -	i915_active_fini(&cb->base);
-> -	kfree(cb);
-> -}
-> -
-> -I915_SELFTEST_DECLARE(static intel_engine_mask_t context_barrier_inject_fault);
-> -static int context_barrier_task(struct i915_gem_context *ctx,
-> -				intel_engine_mask_t engines,
-> -				bool (*skip)(struct intel_context *ce, void *data),
-> -				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
-> -				int (*emit)(struct i915_request *rq, void *data),
-> -				void (*task)(void *data),
-> -				void *data)
-> -{
-> -	struct context_barrier_task *cb;
-> -	struct i915_gem_engines_iter it;
-> -	struct i915_gem_engines *e;
-> -	struct i915_gem_ww_ctx ww;
-> -	struct intel_context *ce;
-> -	int err = 0;
-> -
-> -	GEM_BUG_ON(!task);
-> -
-> -	cb = kmalloc(sizeof(*cb), GFP_KERNEL);
-> -	if (!cb)
-> -		return -ENOMEM;
-> -
-> -	i915_active_init(&cb->base, NULL, cb_retire);
-> -	err = i915_active_acquire(&cb->base);
-> -	if (err) {
-> -		kfree(cb);
-> -		return err;
-> -	}
-> -
-> -	e = __context_engines_await(ctx, NULL);
-> -	if (!e) {
-> -		i915_active_release(&cb->base);
-> -		return -ENOENT;
-> -	}
-> -
-> -	for_each_gem_engine(ce, e, it) {
-> -		struct i915_request *rq;
-> -
-> -		if (I915_SELFTEST_ONLY(context_barrier_inject_fault &
-> -				       ce->engine->mask)) {
-> -			err = -ENXIO;
-> -			break;
-> -		}
-> -
-> -		if (!(ce->engine->mask & engines))
-> -			continue;
-> -
-> -		if (skip && skip(ce, data))
-> -			continue;
-> -
-> -		i915_gem_ww_ctx_init(&ww, true);
-> -retry:
-> -		err = intel_context_pin_ww(ce, &ww);
-> -		if (err)
-> -			goto err;
-> -
-> -		if (pin)
-> -			err = pin(ce, &ww, data);
-> -		if (err)
-> -			goto err_unpin;
-> -
-> -		rq = i915_request_create(ce);
-> -		if (IS_ERR(rq)) {
-> -			err = PTR_ERR(rq);
-> -			goto err_unpin;
-> -		}
-> -
-> -		err = 0;
-> -		if (emit)
-> -			err = emit(rq, data);
-> -		if (err == 0)
-> -			err = i915_active_add_request(&cb->base, rq);
-> -
-> -		i915_request_add(rq);
-> -err_unpin:
-> -		intel_context_unpin(ce);
-> -err:
-> -		if (err == -EDEADLK) {
-> -			err = i915_gem_ww_ctx_backoff(&ww);
-> -			if (!err)
-> -				goto retry;
-> -		}
-> -		i915_gem_ww_ctx_fini(&ww);
-> -
-> -		if (err)
-> -			break;
-> -	}
-> -	i915_sw_fence_complete(&e->fence);
-> -
-> -	cb->task = err ? NULL : task; /* caller needs to unwind instead */
-> -	cb->data = data;
-> -
-> -	i915_active_release(&cb->base);
-> -
-> -	return err;
-> -}
-> -
->  static int get_ppgtt(struct drm_i915_file_private *file_priv,
->  		     struct i915_gem_context *ctx,
->  		     struct drm_i915_gem_context_param *args)
-> @@ -1784,154 +1669,6 @@ static int get_ppgtt(struct drm_i915_file_private *file_priv,
->  	return err;
->  }
->  
-> -static void set_ppgtt_barrier(void *data)
-> -{
-> -	struct i915_address_space *old = data;
-> -
-> -	if (INTEL_GEN(old->i915) < 8)
-> -		gen6_ppgtt_unpin_all(i915_vm_to_ppgtt(old));
-> -
-> -	i915_vm_close(old);
-> -}
-> -
-> -static int pin_ppgtt_update(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data)
-> -{
-> -	struct i915_address_space *vm = ce->vm;
-> -
-> -	if (!HAS_LOGICAL_RING_CONTEXTS(vm->i915))
-> -		/* ppGTT is not part of the legacy context image */
-> -		return gen6_ppgtt_pin(i915_vm_to_ppgtt(vm), ww);
-> -
-> -	return 0;
-> -}
-> -
-> -static int emit_ppgtt_update(struct i915_request *rq, void *data)
-> -{
-> -	struct i915_address_space *vm = rq->context->vm;
-> -	struct intel_engine_cs *engine = rq->engine;
-> -	u32 base = engine->mmio_base;
-> -	u32 *cs;
-> -	int i;
-> -
-> -	if (i915_vm_is_4lvl(vm)) {
-> -		struct i915_ppgtt *ppgtt = i915_vm_to_ppgtt(vm);
-> -		const dma_addr_t pd_daddr = px_dma(ppgtt->pd);
-> -
-> -		cs = intel_ring_begin(rq, 6);
-> -		if (IS_ERR(cs))
-> -			return PTR_ERR(cs);
-> -
-> -		*cs++ = MI_LOAD_REGISTER_IMM(2);
-> -
-> -		*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_UDW(base, 0));
-> -		*cs++ = upper_32_bits(pd_daddr);
-> -		*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_LDW(base, 0));
-> -		*cs++ = lower_32_bits(pd_daddr);
-> -
-> -		*cs++ = MI_NOOP;
-> -		intel_ring_advance(rq, cs);
-> -	} else if (HAS_LOGICAL_RING_CONTEXTS(engine->i915)) {
-> -		struct i915_ppgtt *ppgtt = i915_vm_to_ppgtt(vm);
-> -		int err;
-> -
-> -		/* Magic required to prevent forcewake errors! */
-> -		err = engine->emit_flush(rq, EMIT_INVALIDATE);
-> -		if (err)
-> -			return err;
-> -
-> -		cs = intel_ring_begin(rq, 4 * GEN8_3LVL_PDPES + 2);
-> -		if (IS_ERR(cs))
-> -			return PTR_ERR(cs);
-> -
-> -		*cs++ = MI_LOAD_REGISTER_IMM(2 * GEN8_3LVL_PDPES) | MI_LRI_FORCE_POSTED;
-> -		for (i = GEN8_3LVL_PDPES; i--; ) {
-> -			const dma_addr_t pd_daddr = i915_page_dir_dma_addr(ppgtt, i);
-> -
-> -			*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_UDW(base, i));
-> -			*cs++ = upper_32_bits(pd_daddr);
-> -			*cs++ = i915_mmio_reg_offset(GEN8_RING_PDP_LDW(base, i));
-> -			*cs++ = lower_32_bits(pd_daddr);
-> -		}
-> -		*cs++ = MI_NOOP;
-> -		intel_ring_advance(rq, cs);
-> -	}
-> -
-> -	return 0;
-> -}
-> -
-> -static bool skip_ppgtt_update(struct intel_context *ce, void *data)
-> -{
-> -	if (HAS_LOGICAL_RING_CONTEXTS(ce->engine->i915))
-> -		return !ce->state;
-> -	else
-> -		return !atomic_read(&ce->pin_count);
-> -}
-> -
-> -static int set_ppgtt(struct drm_i915_file_private *file_priv,
-> -		     struct i915_gem_context *ctx,
-> -		     struct drm_i915_gem_context_param *args)
-> -{
-> -	struct i915_address_space *vm, *old;
-> -	int err;
-> -
-> -	if (args->size)
-> -		return -EINVAL;
-> -
-> -	if (!rcu_access_pointer(ctx->vm))
-> -		return -ENODEV;
-> -
-> -	if (upper_32_bits(args->value))
-> -		return -ENOENT;
-> -
-> -	rcu_read_lock();
-> -	vm = xa_load(&file_priv->vm_xa, args->value);
-> -	if (vm && !kref_get_unless_zero(&vm->ref))
-> -		vm = NULL;
-> -	rcu_read_unlock();
-> -	if (!vm)
-> -		return -ENOENT;
-> -
-> -	err = mutex_lock_interruptible(&ctx->mutex);
-> -	if (err)
-> -		goto out;
-> -
-> -	if (i915_gem_context_is_closed(ctx)) {
-> -		err = -ENOENT;
-> -		goto unlock;
-> -	}
-> -
-> -	if (vm == rcu_access_pointer(ctx->vm))
-> -		goto unlock;
-> -
-> -	old = __set_ppgtt(ctx, vm);
-> -
-> -	/* Teardown the existing obj:vma cache, it will have to be rebuilt. */
-> -	lut_close(ctx);
-> -
-> -	/*
-> -	 * We need to flush any requests using the current ppgtt before
-> -	 * we release it as the requests do not hold a reference themselves,
-> -	 * only indirectly through the context.
-> -	 */
-> -	err = context_barrier_task(ctx, ALL_ENGINES,
-> -				   skip_ppgtt_update,
-> -				   pin_ppgtt_update,
-> -				   emit_ppgtt_update,
-> -				   set_ppgtt_barrier,
-> -				   old);
-> -	if (err) {
-> -		i915_vm_close(__set_ppgtt(ctx, old));
-> -		i915_vm_close(old);
-> -		lut_close(ctx); /* force a rebuild of the old obj:vma cache */
-> -	}
-> -
-> -unlock:
-> -	mutex_unlock(&ctx->mutex);
-> -out:
-> -	i915_vm_put(vm);
-> -	return err;
-> -}
-> -
->  int
->  i915_gem_user_to_context_sseu(struct intel_gt *gt,
->  			      const struct drm_i915_gem_context_param_sseu *user,
-> @@ -2468,10 +2205,6 @@ static int ctx_setparam(struct drm_i915_file_private *fpriv,
->  		ret = set_sseu(ctx, args);
->  		break;
->  
-> -	case I915_CONTEXT_PARAM_VM:
-> -		ret = set_ppgtt(fpriv, ctx, args);
-> -		break;
-> -
->  	case I915_CONTEXT_PARAM_ENGINES:
->  		ret = set_engines(ctx, args);
->  		break;
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> index b673061f4f5ba..84c821cca1739 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> @@ -262,7 +262,7 @@ struct i915_gem_context {
->  	 * In other modes, this is a NULL pointer with the expectation that
->  	 * the caller uses the shared global GTT.
->  	 */
-> -	struct i915_address_space __rcu *vm;
-> +	struct i915_address_space *vm;
->  
->  	/**
->  	 * @pid: process id of creator
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> index 5fef592390cb5..16ff64ab34a1b 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> @@ -1882,125 +1882,6 @@ static int igt_vm_isolation(void *arg)
->  	return err;
->  }
->  
-> -static bool skip_unused_engines(struct intel_context *ce, void *data)
-> -{
-> -	return !ce->state;
-> -}
-> -
-> -static void mock_barrier_task(void *data)
-> -{
-> -	unsigned int *counter = data;
-> -
-> -	++*counter;
-> -}
-> -
-> -static int mock_context_barrier(void *arg)
-> -{
-> -#undef pr_fmt
-> -#define pr_fmt(x) "context_barrier_task():" # x
-> -	struct drm_i915_private *i915 = arg;
-> -	struct i915_gem_context *ctx;
-> -	struct i915_request *rq;
-> -	unsigned int counter;
-> -	int err;
-> -
-> -	/*
-> -	 * The context barrier provides us with a callback after it emits
-> -	 * a request; useful for retiring old state after loading new.
-> -	 */
-> -
-> -	ctx = mock_context(i915, "mock");
-> -	if (!ctx)
-> -		return -ENOMEM;
-> -
-> -	counter = 0;
-> -	err = context_barrier_task(ctx, 0, NULL, NULL, NULL,
-> -				   mock_barrier_task, &counter);
-> -	if (err) {
-> -		pr_err("Failed at line %d, err=%d\n", __LINE__, err);
-> -		goto out;
-> -	}
-> -	if (counter == 0) {
-> -		pr_err("Did not retire immediately with 0 engines\n");
-> -		err = -EINVAL;
-> -		goto out;
-> -	}
-> -
-> -	counter = 0;
-> -	err = context_barrier_task(ctx, ALL_ENGINES, skip_unused_engines,
-> -				   NULL, NULL, mock_barrier_task, &counter);
-> -	if (err) {
-> -		pr_err("Failed at line %d, err=%d\n", __LINE__, err);
-> -		goto out;
-> -	}
-> -	if (counter == 0) {
-> -		pr_err("Did not retire immediately for all unused engines\n");
-> -		err = -EINVAL;
-> -		goto out;
-> -	}
-> -
-> -	rq = igt_request_alloc(ctx, i915->gt.engine[RCS0]);
-> -	if (IS_ERR(rq)) {
-> -		pr_err("Request allocation failed!\n");
-> -		goto out;
-> -	}
-> -	i915_request_add(rq);
-> -
-> -	counter = 0;
-> -	context_barrier_inject_fault = BIT(RCS0);
-> -	err = context_barrier_task(ctx, ALL_ENGINES, NULL, NULL, NULL,
-> -				   mock_barrier_task, &counter);
-> -	context_barrier_inject_fault = 0;
-> -	if (err == -ENXIO)
-> -		err = 0;
-> -	else
-> -		pr_err("Did not hit fault injection!\n");
-> -	if (counter != 0) {
-> -		pr_err("Invoked callback on error!\n");
-> -		err = -EIO;
-> -	}
-> -	if (err)
-> -		goto out;
-> -
-> -	counter = 0;
-> -	err = context_barrier_task(ctx, ALL_ENGINES, skip_unused_engines,
-> -				   NULL, NULL, mock_barrier_task, &counter);
-> -	if (err) {
-> -		pr_err("Failed at line %d, err=%d\n", __LINE__, err);
-> -		goto out;
-> -	}
-> -	mock_device_flush(i915);
-> -	if (counter == 0) {
-> -		pr_err("Did not retire on each active engines\n");
-> -		err = -EINVAL;
-> -		goto out;
-> -	}
-> -
-> -out:
-> -	mock_context_close(ctx);
-> -	return err;
-> -#undef pr_fmt
-> -#define pr_fmt(x) x
-> -}
-> -
-> -int i915_gem_context_mock_selftests(void)
-> -{
-> -	static const struct i915_subtest tests[] = {
-> -		SUBTEST(mock_context_barrier),
-> -	};
-> -	struct drm_i915_private *i915;
-> -	int err;
-> -
-> -	i915 = mock_gem_device();
-> -	if (!i915)
-> -		return -ENOMEM;
-> -
-> -	err = i915_subtests(tests, i915);
-> -
-> -	mock_destroy_device(i915);
-> -	return err;
-> -}
-> -
->  int i915_gem_context_live_selftests(struct drm_i915_private *i915)
+>  static void frontbuffer_retire(struct i915_active *ref)
 >  {
->  	static const struct i915_subtest tests[] = {
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h b/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
-> index 3db34d3eea58a..52aa91716dc1f 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
-> +++ b/drivers/gpu/drm/i915/selftests/i915_mock_selftests.h
-> @@ -32,6 +32,5 @@ selftest(vma, i915_vma_mock_selftests)
->  selftest(evict, i915_gem_evict_mock_selftests)
->  selftest(gtt, i915_gem_gtt_mock_selftests)
->  selftest(hugepages, i915_gem_huge_page_mock_selftests)
-> -selftest(contexts, i915_gem_context_mock_selftests)
->  selftest(buddy, i915_buddy_mock_selftests)
->  selftest(memory_region, intel_memory_region_mock_selftests)
-> -- 
-> 2.31.1
-> 
+>  	struct intel_frontbuffer *front =3D
+> @@ -266,7 +265,8 @@ intel_frontbuffer_get(struct drm_i915_gem_object *obj)
+>  	atomic_set(&front->bits, 0);
+>  	i915_active_init(&front->write,
+>  			 frontbuffer_active,
+> -			 i915_active_may_sleep(frontbuffer_retire));
+> +			 frontbuffer_retire,
+> +			 I915_ACTIVE_RETIRE_SLEEPS);
+>  =
+
+>  	spin_lock(&i915->fb_tracking.lock);
+>  	if (rcu_access_pointer(obj->frontbuffer)) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/d=
+rm/i915/display/intel_overlay.c
+> index 428819ba18dd..f1e04c1535c7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
+> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+> @@ -383,8 +383,7 @@ static void intel_overlay_off_tail(struct intel_overl=
+ay *overlay)
+>  		i830_overlay_clock_gating(dev_priv, true);
+>  }
+>  =
+
+> -__i915_active_call static void
+> -intel_overlay_last_flip_retire(struct i915_active *active)
+> +static void intel_overlay_last_flip_retire(struct i915_active *active)
+>  {
+>  	struct intel_overlay *overlay =3D
+>  		container_of(active, typeof(*overlay), last_flip);
+> @@ -1401,7 +1400,7 @@ void intel_overlay_setup(struct drm_i915_private *d=
+ev_priv)
+>  	overlay->saturation =3D 146;
+>  =
+
+>  	i915_active_init(&overlay->last_flip,
+> -			 NULL, intel_overlay_last_flip_retire);
+> +			 NULL, intel_overlay_last_flip_retire, 0);
+>  =
+
+>  	ret =3D get_registers(overlay, OVERLAY_NEEDS_PHYSICAL(dev_priv));
+>  	if (ret)
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/dr=
+m/i915/gem/i915_gem_context.c
+> index fd8ee52e17a4..188dee13e017 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1046,7 +1046,6 @@ struct context_barrier_task {
+>  	void *data;
+>  };
+>  =
+
+> -__i915_active_call
+>  static void cb_retire(struct i915_active *base)
+>  {
+>  	struct context_barrier_task *cb =3D container_of(base, typeof(*cb), bas=
+e);
+> @@ -1080,7 +1079,7 @@ static int context_barrier_task(struct i915_gem_con=
+text *ctx,
+>  	if (!cb)
+>  		return -ENOMEM;
+>  =
+
+> -	i915_active_init(&cb->base, NULL, cb_retire);
+> +	i915_active_init(&cb->base, NULL, cb_retire, 0);
+>  	err =3D i915_active_acquire(&cb->base);
+>  	if (err) {
+>  		kfree(cb);
+> diff --git a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c b/drivers/gpu/drm/i915/=
+gt/gen6_ppgtt.c
+> index 21b1085769be..1aee5e6b1b23 100644
+> --- a/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> +++ b/drivers/gpu/drm/i915/gt/gen6_ppgtt.c
+> @@ -343,7 +343,7 @@ static struct i915_vma *pd_vma_create(struct gen6_ppg=
+tt *ppgtt, int size)
+>  	if (!vma)
+>  		return ERR_PTR(-ENOMEM);
+>  =
+
+> -	i915_active_init(&vma->active, NULL, NULL);
+> +	i915_active_init(&vma->active, NULL, NULL, 0);
+>  =
+
+>  	kref_init(&vma->ref);
+>  	mutex_init(&vma->pages_mutex);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i9=
+15/gt/intel_context.c
+> index 17cf2640b082..4033184f13b9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> @@ -326,7 +326,6 @@ void intel_context_unpin(struct intel_context *ce)
+>  	intel_context_put(ce);
+>  }
+>  =
+
+> -__i915_active_call
+>  static void __intel_context_retire(struct i915_active *active)
+>  {
+>  	struct intel_context *ce =3D container_of(active, typeof(*ce), active);
+> @@ -385,7 +384,7 @@ intel_context_init(struct intel_context *ce, struct i=
+ntel_engine_cs *engine)
+>  	mutex_init(&ce->pin_mutex);
+>  =
+
+>  	i915_active_init(&ce->active,
+> -			 __intel_context_active, __intel_context_retire);
+> +			 __intel_context_active, __intel_context_retire, 0);
+>  }
+>  =
+
+>  void intel_context_fini(struct intel_context *ce)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/d=
+rm/i915/gt/intel_ggtt_fencing.c
+> index 0fa6c38893f7..7bf84cd21543 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+> @@ -867,7 +867,7 @@ void intel_ggtt_init_fences(struct i915_ggtt *ggtt)
+>  	for (i =3D 0; i < num_fences; i++) {
+>  		struct i915_fence_reg *fence =3D &ggtt->fence_regs[i];
+>  =
+
+> -		i915_active_init(&fence->active, NULL, NULL);
+> +		i915_active_init(&fence->active, NULL, NULL, 0);
+>  		fence->ggtt =3D ggtt;
+>  		fence->id =3D i;
+>  		list_add_tail(&fence->link, &ggtt->fence_list);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c b/drivers/gpu=
+/drm/i915/gt/intel_gt_buffer_pool.c
+> index c59468107598..aa0a59c5b614 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt_buffer_pool.c
+> @@ -98,7 +98,6 @@ static void pool_free_work(struct work_struct *wrk)
+>  				      round_jiffies_up_relative(HZ));
+>  }
+>  =
+
+> -__i915_active_call
+>  static void pool_retire(struct i915_active *ref)
+>  {
+>  	struct intel_gt_buffer_pool_node *node =3D
+> @@ -154,7 +153,7 @@ node_create(struct intel_gt_buffer_pool *pool, size_t=
+ sz,
+>  	node->age =3D 0;
+>  	node->pool =3D pool;
+>  	node->pinned =3D false;
+> -	i915_active_init(&node->active, NULL, pool_retire);
+> +	i915_active_init(&node->active, NULL, pool_retire, 0);
+>  =
+
+>  	obj =3D i915_gem_object_create_internal(gt->i915, sz);
+>  	if (IS_ERR(obj)) {
+> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i=
+915/gt/intel_timeline.c
+> index f19cf6d2fa85..c4a126c8caef 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> @@ -32,7 +32,6 @@ static struct i915_vma *hwsp_alloc(struct intel_gt *gt)
+>  	return vma;
+>  }
+>  =
+
+> -__i915_active_call
+>  static void __timeline_retire(struct i915_active *active)
+>  {
+>  	struct intel_timeline *tl =3D
+> @@ -104,7 +103,8 @@ static int intel_timeline_init(struct intel_timeline =
+*timeline,
+>  	INIT_LIST_HEAD(&timeline->requests);
+>  =
+
+>  	i915_syncmap_init(&timeline->sync);
+> -	i915_active_init(&timeline->active, __timeline_active, __timeline_retir=
+e);
+> +	i915_active_init(&timeline->active, __timeline_active,
+> +			 __timeline_retire, 0);
+>  =
+
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915=
+/gt/mock_engine.c
+> index e1ba03b93ffa..32589c6625e1 100644
+> --- a/drivers/gpu/drm/i915/gt/mock_engine.c
+> +++ b/drivers/gpu/drm/i915/gt/mock_engine.c
+> @@ -55,7 +55,7 @@ static struct intel_ring *mock_ring(struct intel_engine=
+_cs *engine)
+>  		kfree(ring);
+>  		return NULL;
+>  	}
+> -	i915_active_init(&ring->vma->active, NULL, NULL);
+> +	i915_active_init(&ring->vma->active, NULL, NULL, 0);
+>  	__set_bit(I915_VMA_GGTT_BIT, __i915_vma_flags(ring->vma));
+>  	__set_bit(DRM_MM_NODE_ALLOCATED_BIT, &ring->vma->node.flags);
+>  	ring->vma->node.size =3D sz;
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/driver=
+s/gpu/drm/i915/gt/selftest_engine_heartbeat.c
+> index fcde223e26ff..4896e4ccad50 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
+> @@ -63,7 +63,7 @@ static void pulse_put(struct pulse *p)
+>  	kref_put(&p->kref, pulse_free);
+>  }
+>  =
+
+> -__i915_active_call static void pulse_retire(struct i915_active *active)
+> +static void pulse_retire(struct i915_active *active)
+>  {
+>  	pulse_put(container_of(active, struct pulse, active));
+>  }
+> @@ -77,7 +77,7 @@ static struct pulse *pulse_create(void)
+>  		return p;
+>  =
+
+>  	kref_init(&p->kref);
+> -	i915_active_init(&p->active, pulse_active, pulse_retire);
+> +	i915_active_init(&p->active, pulse_active, pulse_retire, 0);
+>  =
+
+>  	return p;
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i9=
+15_active.c
+> index aa573b078ae7..b1aa1c482c32 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -343,18 +343,15 @@ active_instance(struct i915_active *ref, u64 idx)
+>  void __i915_active_init(struct i915_active *ref,
+>  			int (*active)(struct i915_active *ref),
+>  			void (*retire)(struct i915_active *ref),
+> +			unsigned long flags,
+>  			struct lock_class_key *mkey,
+>  			struct lock_class_key *wkey)
+>  {
+> -	unsigned long bits;
+> -
+>  	debug_active_init(ref);
+>  =
+
+> -	ref->flags =3D 0;
+> +	ref->flags =3D flags;
+>  	ref->active =3D active;
+> -	ref->retire =3D ptr_unpack_bits(retire, &bits, 2);
+> -	if (bits & I915_ACTIVE_MAY_SLEEP)
+> -		ref->flags |=3D I915_ACTIVE_RETIRE_SLEEPS;
+> +	ref->retire =3D retire;
+>  =
+
+>  	spin_lock_init(&ref->tree_lock);
+>  	ref->tree =3D RB_ROOT;
+> @@ -1156,8 +1153,7 @@ static int auto_active(struct i915_active *ref)
+>  	return 0;
+>  }
+>  =
+
+> -__i915_active_call static void
+> -auto_retire(struct i915_active *ref)
+> +static void auto_retire(struct i915_active *ref)
+>  {
+>  	i915_active_put(ref);
+>  }
+> @@ -1171,7 +1167,7 @@ struct i915_active *i915_active_create(void)
+>  		return NULL;
+>  =
+
+>  	kref_init(&aa->ref);
+> -	i915_active_init(&aa->base, auto_active, auto_retire);
+> +	i915_active_init(&aa->base, auto_active, auto_retire, 0);
+>  =
+
+>  	return &aa->base;
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i9=
+15_active.h
+> index fb165d3f01cf..d0feda68b874 100644
+> --- a/drivers/gpu/drm/i915/i915_active.h
+> +++ b/drivers/gpu/drm/i915/i915_active.h
+> @@ -152,15 +152,16 @@ i915_active_fence_isset(const struct i915_active_fe=
+nce *active)
+>  void __i915_active_init(struct i915_active *ref,
+>  			int (*active)(struct i915_active *ref),
+>  			void (*retire)(struct i915_active *ref),
+> +			unsigned long flags,
+>  			struct lock_class_key *mkey,
+>  			struct lock_class_key *wkey);
+>  =
+
+>  /* Specialise each class of i915_active to avoid impossible lockdep cycl=
+es. */
+> -#define i915_active_init(ref, active, retire) do {		\
+> -	static struct lock_class_key __mkey;				\
+> -	static struct lock_class_key __wkey;				\
+> -									\
+> -	__i915_active_init(ref, active, retire, &__mkey, &__wkey);	\
+> +#define i915_active_init(ref, active, retire, flags) do {			\
+> +	static struct lock_class_key __mkey;					\
+> +	static struct lock_class_key __wkey;					\
+> +										\
+> +	__i915_active_init(ref, active, retire, flags, &__mkey, &__wkey);	\
+>  } while (0)
+>  =
+
+>  struct dma_fence *
+> diff --git a/drivers/gpu/drm/i915/i915_active_types.h b/drivers/gpu/drm/i=
+915/i915_active_types.h
+> index 6360c3e4b765..c149f348a972 100644
+> --- a/drivers/gpu/drm/i915/i915_active_types.h
+> +++ b/drivers/gpu/drm/i915/i915_active_types.h
+> @@ -24,11 +24,6 @@ struct i915_active_fence {
+>  =
+
+>  struct active_node;
+>  =
+
+> -#define I915_ACTIVE_MAY_SLEEP BIT(0)
+> -
+> -#define __i915_active_call __aligned(4)
+> -#define i915_active_may_sleep(fn) ptr_pack_bits(&(fn), I915_ACTIVE_MAY_S=
+LEEP, 2)
+> -
+>  struct i915_active {
+>  	atomic_t count;
+>  	struct mutex mutex;
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_=
+vma.c
+> index 468317e3b477..a6cd0fa62847 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -94,7 +94,6 @@ static int __i915_vma_active(struct i915_active *ref)
+>  	return i915_vma_tryget(active_to_vma(ref)) ? 0 : -ENOENT;
+>  }
+>  =
+
+> -__i915_active_call
+>  static void __i915_vma_retire(struct i915_active *ref)
+>  {
+>  	i915_vma_put(active_to_vma(ref));
+> @@ -125,7 +124,7 @@ vma_create(struct drm_i915_gem_object *obj,
+>  	vma->size =3D obj->base.size;
+>  	vma->display_alignment =3D I915_GTT_MIN_ALIGNMENT;
+>  =
+
+> -	i915_active_init(&vma->active, __i915_vma_active, __i915_vma_retire);
+> +	i915_active_init(&vma->active, __i915_vma_active, __i915_vma_retire, 0);
+>  =
+
+>  	/* Declare ourselves safe for use inside shrinkers */
+>  	if (IS_ENABLED(CONFIG_LOCKDEP)) {
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/d=
+rm/i915/selftests/i915_active.c
+> index 1aa52b5cc488..61bf4560d8af 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_active.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+> @@ -51,7 +51,7 @@ static int __live_active(struct i915_active *base)
+>  	return 0;
+>  }
+>  =
+
+> -__i915_active_call static void __live_retire(struct i915_active *base)
+> +static void __live_retire(struct i915_active *base)
+>  {
+>  	struct live_active *active =3D container_of(base, typeof(*active), base=
+);
+>  =
+
+> @@ -68,7 +68,7 @@ static struct live_active *__live_alloc(struct drm_i915=
+_private *i915)
+>  		return NULL;
+>  =
+
+>  	kref_init(&active->ref);
+> -	i915_active_init(&active->base, __live_active, __live_retire);
+> +	i915_active_init(&active->base, __live_active, __live_retire, 0);
+>  =
+
+>  	return active;
+>  }
+> -- =
+
+> 2.26.3
+> =
+
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
 > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
