@@ -2,59 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E18063751FF
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 12:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CB97375219
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 12:13:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D54A26ECB7;
-	Thu,  6 May 2021 10:06:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F1856E516;
+	Thu,  6 May 2021 10:13:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 345A16ECB5
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 May 2021 10:06:53 +0000 (UTC)
-IronPort-SDR: xiowcqkGibjM3EZQ3NIk1bhrQlGwxE6rMSQnXs6KAdgtKKkOypKs9IS+Gd2bEraFFf7O9pZtPr
- 7AtMM6+6waJw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9975"; a="178671870"
-X-IronPort-AV: E=Sophos;i="5.82,277,1613462400"; d="scan'208";a="178671870"
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E02A36E516
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 May 2021 10:13:48 +0000 (UTC)
+IronPort-SDR: kv9mSKO8vWsw9wVN1+wPe3KzHAAfehhLns9cItcxQ70jwzHFW4XBENAz+BBimuyoAknPTFGXye
+ l6k9XNShwFyw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9975"; a="198075528"
+X-IronPort-AV: E=Sophos;i="5.82,277,1613462400"; d="scan'208";a="198075528"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2021 03:06:52 -0700
-IronPort-SDR: +O4WjygB6xO5jd0sK8pIvbF1kURRmNL94GTi2bsZAQZQtSpsczH7wTB006xPLw7UaTdwKFQ5Gj
- zv/fFvJcs3Cw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,277,1613462400"; d="scan'208";a="434276450"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga008.jf.intel.com with ESMTP; 06 May 2021 03:06:52 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 6 May 2021 03:06:52 -0700
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Thu, 6 May 2021 03:06:51 -0700
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
- IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2106.013;
- Thu, 6 May 2021 11:06:49 +0100
-From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Souza, Jose" <jose.souza@intel.com>
-Thread-Topic: [PATCH] drm/i915/display: Disable PSR2 sel fetch in TGL
- pre-production
-Thread-Index: AQHXQfaI1INUfMfRA0mdcjrnhEYpLqrWKlwA
-Date: Thu, 6 May 2021 10:06:49 +0000
-Message-ID: <03d1e7eba6260afcb03a38a80cf8be2e6849e6ca.camel@intel.com>
-References: <20210505213801.80772-1-jose.souza@intel.com>
-In-Reply-To: <20210505213801.80772-1-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.253.164]
-Content-ID: <FE7C49601B65594BAF8CF84C151AE85D@intel.com>
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2021 03:13:48 -0700
+IronPort-SDR: qiVQZx9ZzdEPzCXNcjiHdQGOxx2/ZSC5sJEKg3UMyWj980YTqIx51owDRI7qp9im2AGQ7vF2HJ
+ GNMkr0XtF12Q==
+X-IronPort-AV: E=Sophos;i="5.82,277,1613462400"; d="scan'208";a="434279101"
+Received: from tchrzano-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.214])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2021 03:13:45 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nischal Varide <nischal.varide@intel.com>, intel-gfx@lists.freedesktop.org,
+ nischal.varide@intel.com, uma.shankar@intel.com, anshuman.gupta@intel.com
+In-Reply-To: <20210506004719.4121-2-nischal.varide@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210506004719.4121-1-nischal.varide@intel.com>
+ <20210506004719.4121-2-nischal.varide@intel.com>
+Date: Thu, 06 May 2021 13:13:42 +0300
+Message-ID: <874kfgxj8p.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Disable PSR2 sel fetch in
- TGL pre-production
+Subject: Re: [Intel-gfx] [RFC 1/1] drm/i915/display: Expose HDMI properties
+ to userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,35 +50,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmV2aWV3ZWQtYnk6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNvbT4N
-Ck9uIFdlZCwgMjAyMS0wNS0wNSBhdCAxNDozOCAtMDcwMCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6
-YSB3cm90ZToNCj4gVGhlIGltcGxlbWVudGF0aW9uIG9mIHR3byB3b3JrYXJvdW5kcyBhcmUgbWlz
-c2luZyBjYXVzaW5nIGZhaWx1cmVzDQo+IGluIENJIHdpdGggcHJlLXByb2R1Y3Rpb24gSFcuDQo+
-IA0KPiBDYzogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPg0KPiBT
-aWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNv
-bT4NCj4gLS0tDQo+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyB8
-IDcgKysrKysrKw0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKykNCj4gDQo+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRleCBlM2MzMGRj
-YWRjZDEuLjQwNmJhOWE3MTJhOCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3Bzci5jDQo+IEBAIC03MjAsNiArNzIwLDEzIEBAIHN0YXRpYyBib29sDQo+IGludGVs
-X3BzcjJfc2VsX2ZldGNoX2NvbmZpZ192YWxpZChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0K
-PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH0NCj4gwqDCoMKgwqDCoMKgwqDCoH0N
-Cj4gwqANCj4gK8KgwqDCoMKgwqDCoMKgLyogV2FfMTQwMTAyNTQxODUgV2FfMTQwMTAxMDM3OTIg
-Ki8NCj4gK8KgwqDCoMKgwqDCoMKgaWYgKElTX1RHTF9ESVNQTEFZX1NURVAoZGV2X3ByaXYsIFNU
-RVBfQTAsIFNURVBfQjEpKSB7DQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkcm1f
-ZGJnX2ttcygmZGV2X3ByaXYtPmRybSwNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgIlBTUjIgc2VsIGZldGNoIG5vdCBlbmFibGVkLCBtaXNz
-aW5nIHRoZQ0KPiBpbXBsZW1lbnRhdGlvbiBvZiBXQXNcbiIpOw0KPiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgcmV0dXJuIGZhbHNlOw0KPiArwqDCoMKgwqDCoMKgwqB9DQo+ICsNCj4g
-wqDCoMKgwqDCoMKgwqDCoHJldHVybiBjcnRjX3N0YXRlLT5lbmFibGVfcHNyMl9zZWxfZmV0Y2gg
-PSB0cnVlOw0KPiDCoH0NCj4gwqANCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vaW50ZWwtZ2Z4Cg==
+On Thu, 06 May 2021, Nischal Varide <nischal.varide@intel.com> wrote:
+> Right now the HDMI properties like vendor and product ids are hardcoded
+> in the function "intel_hdmi_compute_spd_infoframe()".
+>
+> ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx").
+>
+> This patch enables the possibility of setting vendor and product fields
+> of the Infoframe structure in the userspace, instead of hardcoding in
+> the kernel.
+
+This explains the "what". We also need an explanation of "why".
+
+BR,
+Jani.
+
+>
+> The changes has been Tested by an IGT testcase , which will be floated
+> in few hours
+>
+> Signed-off-by: Nischal Varide <nischal.varide@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_atomic.c   | 14 +++++++++++++
+>  .../gpu/drm/i915/display/intel_connector.c    | 20 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_connector.h    |  1 +
+>  .../drm/i915/display/intel_display_types.h    |  5 +++++
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 14 ++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_hdmi.h     |  5 +++++
+>  drivers/gpu/drm/i915/i915_drv.h               |  1 +
+>  7 files changed, 59 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> index 45feaaddab26..4d38eeb9dd33 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -65,6 +65,9 @@ int intel_digital_connector_atomic_get_property(struct drm_connector *connector,
+>  		*val = intel_conn_state->force_audio;
+>  	else if (property == dev_priv->broadcast_rgb_property)
+>  		*val = intel_conn_state->broadcast_rgb;
+> +	else if (property ==  dev_priv->hdmi_vendor_product_property)
+> +		*val = (intel_conn_state->hdmi_vendor_product_blob)
+> +			? (intel_conn_state->hdmi_vendor_product_blob->base.id) : 0;
+>  	else {
+>  		drm_dbg_atomic(&dev_priv->drm,
+>  			       "Unknown property [PROP:%d:%s]\n",
+> @@ -93,6 +96,7 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+>  	struct intel_digital_connector_state *intel_conn_state =
+>  		to_intel_digital_connector_state(state);
+> +	struct drm_property_blob *new_blob = NULL;
+>  
+>  	if (property == dev_priv->force_audio_property) {
+>  		intel_conn_state->force_audio = val;
+> @@ -104,6 +108,16 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
+>  		return 0;
+>  	}
+>  
+> +	if (property ==  dev_priv->hdmi_vendor_product_property) {
+> +		new_blob = drm_property_lookup_blob(dev, val);
+> +		if (new_blob == NULL)
+> +			return -EINVAL;
+> +		if (drm_property_replace_blob
+> +			(&intel_conn_state->hdmi_vendor_product_blob, new_blob)) {
+> +			drm_property_blob_put(new_blob);
+> +			return 0;
+> +		}
+> +	}
+>  	drm_dbg_atomic(&dev_priv->drm, "Unknown property [PROP:%d:%s]\n",
+>  		       property->base.id, property->name);
+>  	return -EINVAL;
+> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
+> index d5ceb7bdc14b..175c6242c5ee 100644
+> --- a/drivers/gpu/drm/i915/display/intel_connector.c
+> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
+> @@ -269,6 +269,26 @@ intel_attach_broadcast_rgb_property(struct drm_connector *connector)
+>  	drm_object_attach_property(&connector->base, prop, 0);
+>  }
+>  
+> +void
+> +intel_attach_hdmi_vendor_product_property(struct drm_connector *connector)
+> +{
+> +	struct drm_device *dev = connector->dev;
+> +	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct drm_property *prop;
+> +
+> +	prop = dev_priv->hdmi_vendor_product_property;
+> +	if (prop == NULL) {
+> +		prop = drm_property_create(dev, DRM_MODE_PROP_BLOB |
+> +			DRM_MODE_PROP_ATOMIC, "hdmi_vendor_product", 0);
+> +		if (prop == NULL)
+> +			return;
+> +
+> +		dev_priv->hdmi_vendor_product_property = prop;
+> +	}
+> +
+> +	drm_object_attach_property(&connector->base, prop, 0);
+> +}
+> +
+>  void
+>  intel_attach_aspect_ratio_property(struct drm_connector *connector)
+>  {
+> diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu/drm/i915/display/intel_connector.h
+> index 661a37a3c6d8..9e16e098f53a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_connector.h
+> +++ b/drivers/gpu/drm/i915/display/intel_connector.h
+> @@ -27,6 +27,7 @@ enum pipe intel_connector_get_pipe(struct intel_connector *connector);
+>  int intel_connector_update_modes(struct drm_connector *connector,
+>  				 struct edid *edid);
+>  int intel_ddc_get_modes(struct drm_connector *c, struct i2c_adapter *adapter);
+> +void intel_attach_hdmi_vendor_product_property(struct drm_connector *connector);
+>  void intel_attach_force_audio_property(struct drm_connector *connector);
+>  void intel_attach_broadcast_rgb_property(struct drm_connector *connector);
+>  void intel_attach_aspect_ratio_property(struct drm_connector *connector);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 6d8cdaa36748..d29f54163044 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -549,6 +549,11 @@ struct intel_digital_connector_state {
+>  
+>  	enum hdmi_force_audio force_audio;
+>  	int broadcast_rgb;
+> +	/*
+> +	 * hdmi_infoframe metadata
+> +	 * DRM blob with hdmi vendor and product info
+> +	 */
+> +	struct drm_property_blob *hdmi_vendor_product_blob;
+>  };
+>  
+>  #define to_intel_digital_connector_state(x) container_of(x, struct intel_digital_connector_state, base)
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 28e297296160..6f416c4a20b6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -762,6 +762,9 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
+>  {
+>  	struct hdmi_spd_infoframe *frame = &crtc_state->infoframes.spd.spd;
+>  	int ret;
+> +	struct hdmi_vendor_product_info *hdmi_vp_info;
+> +	struct intel_digital_connector_state *intel_conn_state =
+> +		to_intel_digital_connector_state(conn_state);
+>  
+>  	if (!crtc_state->has_infoframe)
+>  		return true;
+> @@ -769,7 +772,15 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
+>  	crtc_state->infoframes.enable |=
+>  		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD);
+>  
+> -	ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
+> +	if (!intel_conn_state->hdmi_vendor_product_blob)
+> +		ret = hdmi_spd_infoframe_init(frame, "intel", "Integrated gfx");
+> +	else {
+> +		if (intel_conn_state->hdmi_vendor_product_blob->data) {
+> +			hdmi_vp_info = intel_conn_state->hdmi_vendor_product_blob->data;
+> +			ret = hdmi_spd_infoframe_init(frame, hdmi_vp_info->vendor,
+> +				hdmi_vp_info->product);
+> +		}
+> +	}
+>  	if (drm_WARN_ON(encoder->base.dev, ret))
+>  		return false;
+>  
+> @@ -2456,6 +2467,7 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
+>  	intel_attach_force_audio_property(connector);
+>  	intel_attach_broadcast_rgb_property(connector);
+>  	intel_attach_aspect_ratio_property(connector);
+> +	intel_attach_hdmi_vendor_product_property(connector);
+>  
+>  	intel_attach_hdmi_colorspace_property(connector);
+>  	drm_connector_attach_content_type_property(connector);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> index b43a180d007e..5be7179389d1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> @@ -23,6 +23,11 @@ struct drm_connector_state;
+>  union hdmi_infoframe;
+>  enum port;
+>  
+> +/*Vendor Id and Product Id for the Hdmi property exported to Userspace*/
+> +struct hdmi_vendor_product_info {
+> +	char vendor[30];
+> +	char product[30];
+> +};
+>  void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+>  			       struct intel_connector *intel_connector);
+>  int intel_hdmi_compute_config(struct intel_encoder *encoder,
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+> index 3cfa6effbb5f..9e3373c0f1eb 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1014,6 +1014,7 @@ struct drm_i915_private {
+>  
+>  	struct drm_property *broadcast_rgb_property;
+>  	struct drm_property *force_audio_property;
+> +	struct drm_property *hdmi_vendor_product_property;
+>  
+>  	/* hda/i915 audio component */
+>  	struct i915_audio_component *audio_component;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
