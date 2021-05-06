@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4FB1375AFA
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 20:59:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF17D375ADA
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 20:59:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8AC26ED22;
-	Thu,  6 May 2021 18:57:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DDCA6EDCE;
+	Thu,  6 May 2021 18:57:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BB7E6ED02;
- Thu,  6 May 2021 18:57:13 +0000 (UTC)
-IronPort-SDR: VmbgNqsl9BaJZHBRnt4xdB5ukW3vfJegItLvnQy8DXL2N6qU/EjdJrma5/n+4opNQ53NW69uJR
- b+7j9PveviLg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9976"; a="198195439"
-X-IronPort-AV: E=Sophos;i="5.82,278,1613462400"; d="scan'208";a="198195439"
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF876ECF2;
+ Thu,  6 May 2021 18:57:12 +0000 (UTC)
+IronPort-SDR: 9YwKTJr7xwFiSxqQpeLHnu8vrziUi0PcVlvk42DJ5GSJA+S8ORAGGOrz2FUo65tHH/JzxhaQSe
+ Hn7U/XJQDVWA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9976"; a="196530996"
+X-IronPort-AV: E=Sophos;i="5.82,278,1613462400"; d="scan'208";a="196530996"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 May 2021 11:57:11 -0700
-IronPort-SDR: xFGiO3nvi+RbwFbxonRBRznAigbVu6ZhvoWEl6gnELBk80crwg/R28dmizXvUb2EIkzbAmDk6C
- L9XImVYnVLvQ==
-X-IronPort-AV: E=Sophos;i="5.82,278,1613462400"; d="scan'208";a="469583424"
+IronPort-SDR: 1BiwuDBPorNTQ6nuR2/vlpAky0JbLrP416KcdoE1Q0h0QxIxAtscDlx3Rs3BEyV5JA9Ef7TH2T
+ lbJaaTmGXl0g==
+X-IronPort-AV: E=Sophos;i="5.82,278,1613462400"; d="scan'208";a="469583429"
 Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 May 2021 11:57:09 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-gfx@lists.freedesktop.org>,
 	<dri-devel@lists.freedesktop.org>
-Date: Thu,  6 May 2021 12:13:36 -0700
-Message-Id: <20210506191451.77768-23-matthew.brost@intel.com>
+Date: Thu,  6 May 2021 12:13:37 -0700
+Message-Id: <20210506191451.77768-24-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20210506191451.77768-1-matthew.brost@intel.com>
 References: <20210506191451.77768-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 22/97] drm/i915/guc: Update CTB response
- status
+Subject: [Intel-gfx] [RFC PATCH 23/97] drm/i915/guc: Support per context
+ scheduling policies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,88 +49,118 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRlY3prb0BpbnRlbC5jb20+CgpGb3Jt
-YXQgb2YgdGhlIFNUQVRVUyBkd29yZCBpbiBDVEIgcmVzcG9uc2UgbWVzc2FnZSBub3cgZm9sbG93
-cwpkZWZpbml0aW9uIG9mIHRoZSBIWEcgaGVhZGVyLiBVcGRhdGUgb3VyIGNvZGUgYW5kIHJlbW92
-ZSBhbnkKb2Jzb2xldGUgbGVnYWN5IGRlZmluaXRpb25zLgoKR3VDOiA1NS4wLjAKU2lnbmVkLW9m
-Zi1ieTogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRlY3prb0BpbnRlbC5jb20+ClNpZ25l
-ZC1vZmYtYnk6IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcuYnJvc3RAaW50ZWwuY29tPgpDYzogUGlv
-dHIgUGnDs3Jrb3dza2kgPHBpb3RyLnBpb3Jrb3dza2lAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L3VjL2FiaS9ndWNfZXJyb3JzX2FiaS5oIHwgIDEgLQogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2N0LmMgICAgICAgfCAxMiArKysrKystLS0tLS0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19md2lmLmggICAgIHwgMTcgLS0t
-LS0tLS0tLS0tLS0tLS0KIDMgZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCAyNCBkZWxl
-dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9hYmkvZ3Vj
-X2Vycm9yc19hYmkuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2FiaS9ndWNfZXJyb3Jz
-X2FiaS5oCmluZGV4IDQ4OGI2MDYxZWU4OS4uMjAzMDg5Njg1N2Q1IDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9hYmkvZ3VjX2Vycm9yc19hYmkuaAorKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9ndC91Yy9hYmkvZ3VjX2Vycm9yc19hYmkuaApAQCAtNyw3ICs3LDYgQEAK
-ICNkZWZpbmUgX0FCSV9HVUNfRVJST1JTX0FCSV9ICiAKIGVudW0gaW50ZWxfZ3VjX3Jlc3BvbnNl
-X3N0YXR1cyB7Ci0JSU5URUxfR1VDX1JFU1BPTlNFX1NUQVRVU19TVUNDRVNTID0gMHgwLAogCUlO
-VEVMX0dVQ19SRVNQT05TRV9TVEFUVVNfR0VORVJJQ19GQUlMID0gMHhGMDAwLAogfTsKIApkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2N0LmMgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfY3QuYwppbmRleCBhMTc0OTc4YzZhMjcu
-LjFhZmRlYWM2ODNiNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50
-ZWxfZ3VjX2N0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX2N0
-LmMKQEAgLTQ1NSw3ICs0NTUsNyBAQCBzdGF0aWMgaW50IHdhaXRfZm9yX2N0X3JlcXVlc3RfdXBk
-YXRlKHN0cnVjdCBjdF9yZXF1ZXN0ICpyZXEsIHUzMiAqc3RhdHVzKQogCSAqLwogCXRpbWVvdXQg
-PSBtYXgoMTAsIENPTkZJR19EUk1fSTkxNV9IRUFSVEJFQVRfSU5URVJWQUwpOwogCi0jZGVmaW5l
-IGRvbmUgSU5URUxfR1VDX01TR19JU19SRVNQT05TRShSRUFEX09OQ0UocmVxLT5zdGF0dXMpKQor
-I2RlZmluZSBkb25lIChGSUVMRF9HRVQoR1VDX0hYR19NU0dfMF9PUklHSU4sIFJFQURfT05DRShy
-ZXEtPnN0YXR1cykpID09IEdVQ19IWEdfT1JJR0lOX0dVQykKIAllcnIgPSB3YWl0X2Zvcl91cyhk
-b25lLCAxMCk7CiAJaWYgKGVycikKIAkJZXJyID0gd2FpdF9mb3IoZG9uZSwgdGltZW91dCk7CkBA
-IC01MTAsMjEgKzUxMCwyMSBAQCBzdGF0aWMgaW50IGN0X3NlbmQoc3RydWN0IGludGVsX2d1Y19j
-dCAqY3QsCiAJaWYgKHVubGlrZWx5KGVycikpCiAJCWdvdG8gdW5saW5rOwogCi0JaWYgKCFJTlRF
-TF9HVUNfTVNHX0lTX1JFU1BPTlNFX1NVQ0NFU1MoKnN0YXR1cykpIHsKKwlpZiAoRklFTERfR0VU
-KEdVQ19IWEdfTVNHXzBfVFlQRSwgKnN0YXR1cykgIT0gR1VDX0hYR19UWVBFX1JFU1BPTlNFX1NV
-Q0NFU1MpIHsKIAkJZXJyID0gLUVJTzsKIAkJZ290byB1bmxpbms7CiAJfQogCiAJaWYgKHJlc3Bv
-bnNlX2J1ZikgewogCQkvKiBUaGVyZSBzaGFsbCBiZSBubyBkYXRhIGluIHRoZSBzdGF0dXMgKi8K
-LQkJV0FSTl9PTihJTlRFTF9HVUNfTVNHX1RPX0RBVEEocmVxdWVzdC5zdGF0dXMpKTsKKwkJV0FS
-Tl9PTihGSUVMRF9HRVQoR1VDX0hYR19SRVNQT05TRV9NU0dfMF9EQVRBMCwgcmVxdWVzdC5zdGF0
-dXMpKTsKIAkJLyogUmV0dXJuIGFjdHVhbCByZXNwb25zZSBsZW4gKi8KIAkJZXJyID0gcmVxdWVz
-dC5yZXNwb25zZV9sZW47CiAJfSBlbHNlIHsKIAkJLyogVGhlcmUgc2hhbGwgYmUgbm8gcmVzcG9u
-c2UgcGF5bG9hZCAqLwogCQlXQVJOX09OKHJlcXVlc3QucmVzcG9uc2VfbGVuKTsKIAkJLyogUmV0
-dXJuIGRhdGEgZGVjb2RlZCBmcm9tIHRoZSBzdGF0dXMgZHdvcmQgKi8KLQkJZXJyID0gSU5URUxf
-R1VDX01TR19UT19EQVRBKCpzdGF0dXMpOworCQllcnIgPSBGSUVMRF9HRVQoR1VDX0hYR19SRVNQ
-T05TRV9NU0dfMF9EQVRBMCwgKnN0YXR1cyk7CiAJfQogCiB1bmxpbms6CkBAIC03MTksOCArNzE5
-LDggQEAgc3RhdGljIGludCBjdF9oYW5kbGVfcmVzcG9uc2Uoc3RydWN0IGludGVsX2d1Y19jdCAq
-Y3QsIHN0cnVjdCBjdF9pbmNvbWluZ19tc2cgKnIKIAlzdGF0dXMgPSByZXNwb25zZS0+bXNnWzJd
-OwogCWRhdGFsZW4gPSBsZW4gLSAyOwogCi0JLyogRm9ybWF0IG9mIHRoZSBzdGF0dXMgZm9sbG93
-cyBSRVNQT05TRSBtZXNzYWdlICovCi0JaWYgKHVubGlrZWx5KCFJTlRFTF9HVUNfTVNHX0lTX1JF
-U1BPTlNFKHN0YXR1cykpKSB7CisJLyogRm9ybWF0IG9mIHRoZSBzdGF0dXMgZHdvcmQgZm9sbG93
-cyBIWEcgaGVhZGVyICovCisJaWYgKHVubGlrZWx5KEZJRUxEX0dFVChHVUNfSFhHX01TR18wX09S
-SUdJTiwgc3RhdHVzKSAhPSBHVUNfSFhHX09SSUdJTl9HVUMpKSB7CiAJCUNUX0VSUk9SKGN0LCAi
-Q29ycnVwdGVkIHJlc3BvbnNlIChzdGF0dXMgJSN4KVxuIiwgc3RhdHVzKTsKIAkJcmV0dXJuIC1F
-UFJPVE87CiAJfQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxf
-Z3VjX2Z3aWYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19md2lmLmgK
-aW5kZXggOWJmMzUyNDBlNzIzLi5kNDQ1ZjZiNzdkYjQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19md2lmLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ3QvdWMvaW50ZWxfZ3VjX2Z3aWYuaApAQCAtMzg4LDIzICszODgsNiBAQCBzdHJ1Y3QgZ3Vj
-X3NoYXJlZF9jdHhfZGF0YSB7CiAJc3RydWN0IGd1Y19jdHhfcmVwb3J0IHByZWVtcHRfY3R4X3Jl
-cG9ydFtHVUNfTUFYX0VOR0lORVNfTlVNXTsKIH0gX19wYWNrZWQ7CiAKLSNkZWZpbmUgX19JTlRF
-TF9HVUNfTVNHX0dFVChULCBtKSBcCi0JKCgobSkgJiBJTlRFTF9HVUNfTVNHXyAjIyBUICMjIF9N
-QVNLKSA+PiBJTlRFTF9HVUNfTVNHXyAjIyBUICMjIF9TSElGVCkKLSNkZWZpbmUgSU5URUxfR1VD
-X01TR19UT19UWVBFKG0pCV9fSU5URUxfR1VDX01TR19HRVQoVFlQRSwgbSkKLSNkZWZpbmUgSU5U
-RUxfR1VDX01TR19UT19EQVRBKG0pCV9fSU5URUxfR1VDX01TR19HRVQoREFUQSwgbSkKLSNkZWZp
-bmUgSU5URUxfR1VDX01TR19UT19DT0RFKG0pCV9fSU5URUxfR1VDX01TR19HRVQoQ09ERSwgbSkK
-LQotI2RlZmluZSBfX0lOVEVMX0dVQ19NU0dfVFlQRV9JUyhULCBtKSBcCi0JKElOVEVMX0dVQ19N
-U0dfVE9fVFlQRShtKSA9PSBJTlRFTF9HVUNfTVNHX1RZUEVfICMjIFQpCi0jZGVmaW5lIElOVEVM
-X0dVQ19NU0dfSVNfUkVRVUVTVChtKQlfX0lOVEVMX0dVQ19NU0dfVFlQRV9JUyhSRVFVRVNULCBt
-KQotI2RlZmluZSBJTlRFTF9HVUNfTVNHX0lTX1JFU1BPTlNFKG0pCV9fSU5URUxfR1VDX01TR19U
-WVBFX0lTKFJFU1BPTlNFLCBtKQotCi0jZGVmaW5lIElOVEVMX0dVQ19NU0dfSVNfUkVTUE9OU0Vf
-U1VDQ0VTUyhtKSBcCi0JICh0eXBlY2hlY2sodTMyLCAobSkpICYmIFwKLQkgICgobSkgJiAoSU5U
-RUxfR1VDX01TR19UWVBFX01BU0sgfCBJTlRFTF9HVUNfTVNHX0NPREVfTUFTSykpID09IFwKLQkg
-ICgoSU5URUxfR1VDX01TR19UWVBFX1JFU1BPTlNFIDw8IElOVEVMX0dVQ19NU0dfVFlQRV9TSElG
-VCkgfCBcCi0JICAgKElOVEVMX0dVQ19SRVNQT05TRV9TVEFUVVNfU1VDQ0VTUyA8PCBJTlRFTF9H
-VUNfTVNHX0NPREVfU0hJRlQpKSkKLQogLyogVGhpcyBhY3Rpb24gd2lsbCBiZSBwcm9ncmFtbWVk
-IGluIEMxQkMgLSBTT0ZUX1NDUkFUQ0hfMTVfUkVHICovCiBlbnVtIGludGVsX2d1Y19yZWN2X21l
-c3NhZ2UgewogCUlOVEVMX0dVQ19SRUNWX01TR19DUkFTSF9EVU1QX1BPU1RFRCA9IEJJVCgxKSwK
-LS0gCjIuMjguMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-Cg==
+From: John Harrison <John.C.Harrison@Intel.com>
+
+GuC firmware v53.0.0 introduced per context scheduling policies. This
+includes changes to some of the ADS structures which are required to
+load the firmware even if not using GuC submission.
+
+Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c  | 26 +++--------------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h | 31 +++++----------------
+ 2 files changed, 11 insertions(+), 46 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+index 17526717368c..648e1767b17a 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+@@ -58,30 +58,12 @@ static u32 guc_ads_blob_size(struct intel_guc *guc)
+ 	       guc_ads_private_data_size(guc);
+ }
+ 
+-static void guc_policy_init(struct guc_policy *policy)
+-{
+-	policy->execution_quantum = POLICY_DEFAULT_EXECUTION_QUANTUM_US;
+-	policy->preemption_time = POLICY_DEFAULT_PREEMPTION_TIME_US;
+-	policy->fault_time = POLICY_DEFAULT_FAULT_TIME_US;
+-	policy->policy_flags = 0;
+-}
+-
+ static void guc_policies_init(struct guc_policies *policies)
+ {
+-	struct guc_policy *policy;
+-	u32 p, i;
+-
+-	policies->dpc_promote_time = POLICY_DEFAULT_DPC_PROMOTE_TIME_US;
+-	policies->max_num_work_items = POLICY_MAX_NUM_WI;
+-
+-	for (p = 0; p < GUC_CLIENT_PRIORITY_NUM; p++) {
+-		for (i = 0; i < GUC_MAX_ENGINE_CLASSES; i++) {
+-			policy = &policies->policy[p][i];
+-
+-			guc_policy_init(policy);
+-		}
+-	}
+-
++	policies->dpc_promote_time = GLOBAL_POLICY_DEFAULT_DPC_PROMOTE_TIME_US;
++	policies->max_num_work_items = GLOBAL_POLICY_MAX_NUM_WI;
++	/* Disable automatic resets as not yet supported. */
++	policies->global_flags = GLOBAL_POLICY_DISABLE_ENGINE_RESET;
+ 	policies->is_valid = 1;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+index d445f6b77db4..95db4a7d3f4d 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
+@@ -221,32 +221,14 @@ struct guc_stage_desc {
+ 
+ /* Scheduling policy settings */
+ 
+-/* Reset engine upon preempt failure */
+-#define POLICY_RESET_ENGINE		(1<<0)
+-/* Preempt to idle on quantum expiry */
+-#define POLICY_PREEMPT_TO_IDLE		(1<<1)
+-
+-#define POLICY_MAX_NUM_WI 15
+-#define POLICY_DEFAULT_DPC_PROMOTE_TIME_US 500000
+-#define POLICY_DEFAULT_EXECUTION_QUANTUM_US 1000000
+-#define POLICY_DEFAULT_PREEMPTION_TIME_US 500000
+-#define POLICY_DEFAULT_FAULT_TIME_US 250000
+-
+-struct guc_policy {
+-	/* Time for one workload to execute. (in micro seconds) */
+-	u32 execution_quantum;
+-	/* Time to wait for a preemption request to completed before issuing a
+-	 * reset. (in micro seconds). */
+-	u32 preemption_time;
+-	/* How much time to allow to run after the first fault is observed.
+-	 * Then preempt afterwards. (in micro seconds) */
+-	u32 fault_time;
+-	u32 policy_flags;
+-	u32 reserved[8];
+-} __packed;
++#define GLOBAL_POLICY_MAX_NUM_WI 15
++
++/* Don't reset an engine upon preemption failure */
++#define GLOBAL_POLICY_DISABLE_ENGINE_RESET				BIT(0)
++
++#define GLOBAL_POLICY_DEFAULT_DPC_PROMOTE_TIME_US 500000
+ 
+ struct guc_policies {
+-	struct guc_policy policy[GUC_CLIENT_PRIORITY_NUM][GUC_MAX_ENGINE_CLASSES];
+ 	u32 submission_queue_depth[GUC_MAX_ENGINE_CLASSES];
+ 	/* In micro seconds. How much time to allow before DPC processing is
+ 	 * called back via interrupt (to prevent DPC queue drain starving).
+@@ -260,6 +242,7 @@ struct guc_policies {
+ 	 * idle. */
+ 	u32 max_num_work_items;
+ 
++	u32 global_flags;
+ 	u32 reserved[4];
+ } __packed;
+ 
+-- 
+2.28.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
