@@ -1,41 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F4FF375B57
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 21:01:25 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE4A1375B55
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 21:01:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC9586EE30;
-	Thu,  6 May 2021 18:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B199A6EE29;
+	Thu,  6 May 2021 18:58:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50FD16EDAC;
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 407766EDAA;
  Thu,  6 May 2021 18:57:15 +0000 (UTC)
-IronPort-SDR: txXZ9p44vCTjk7N5Qt5QSXJLjOzvAQvWmhsFW5xcTtqDMqs/coX6QufCFsnzFAd+Lh4C1Yj+Gx
- gjyltSCO+J/A==
-X-IronPort-AV: E=McAfee;i="6200,9189,9976"; a="219439493"
-X-IronPort-AV: E=Sophos;i="5.82,278,1613462400"; d="scan'208";a="219439493"
+IronPort-SDR: KyehVxz5TTl5kklX+Jag/4IRA8auT/w99I5TFoaa8mJDIrMh3UiSeejIH9prf9EBmyCFszdNVS
+ UD6s6Ydcv2vA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9976"; a="196531039"
+X-IronPort-AV: E=Sophos;i="5.82,278,1613462400"; d="scan'208";a="196531039"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 May 2021 11:57:14 -0700
-IronPort-SDR: i0UPM06gb9MAfB2LMDyAD3godethxTQ7Ifbq6IRtRKzAeKRKBGi0FJG5MGG7p/ruH45Bna2bra
- 5bPLQUrhAH6w==
-X-IronPort-AV: E=Sophos;i="5.82,278,1613462400"; d="scan'208";a="469583642"
+IronPort-SDR: 96ves7/d9AZEqq17++NY59vw5Xanm+NwG1nxESA+4RXVd/bFSxBFNj3P4ZoTuKsfQ4ug0ZACE5
+ 1dVhJjuL235w==
+X-IronPort-AV: E=Sophos;i="5.82,278,1613462400"; d="scan'208";a="469583664"
 Received: from dhiatt-server.jf.intel.com ([10.54.81.3])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2021 11:57:13 -0700
+ 06 May 2021 11:57:14 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-gfx@lists.freedesktop.org>,
 	<dri-devel@lists.freedesktop.org>
-Date: Thu,  6 May 2021 12:14:40 -0700
-Message-Id: <20210506191451.77768-87-matthew.brost@intel.com>
+Date: Thu,  6 May 2021 12:14:46 -0700
+Message-Id: <20210506191451.77768-93-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20210506191451.77768-1-matthew.brost@intel.com>
 References: <20210506191451.77768-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH 86/97] drm/i915/guc: Add golden context to
- GuC ADS
+Subject: [Intel-gfx] [RFC PATCH 92/97] drm/i915: Add GT PM delayed worker
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,418 +48,170 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
-
-The media watchdog mechanism involves GuC doing a silent reset and
-continue of the hung context. This requires the i915 driver provide a
-golden context to GuC in the ADS.
-
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt.c         |   2 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.c     |   5 +
- drivers/gpu/drm/i915/gt/uc/intel_guc.h     |   2 +
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c | 213 ++++++++++++++++++---
- drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h |   1 +
- drivers/gpu/drm/i915/gt/uc/intel_uc.c      |   5 +
- drivers/gpu/drm/i915/gt/uc/intel_uc.h      |   1 +
- 7 files changed, 199 insertions(+), 30 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 1742a8561f69..0e4a5c4c883f 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -641,6 +641,8 @@ int intel_gt_init(struct intel_gt *gt)
- 	if (err)
- 		goto err_gt;
- 
-+	intel_uc_init_late(&gt->uc);
-+
- 	err = i915_inject_probe_error(gt->i915, -EIO);
- 	if (err)
- 		goto err_gt;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index f3240037fb7c..918802712460 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -192,6 +192,11 @@ void intel_guc_init_early(struct intel_guc *guc)
- 	}
- }
- 
-+void intel_guc_init_late(struct intel_guc *guc)
-+{
-+	intel_guc_ads_init_late(guc);
-+}
-+
- static u32 guc_ctl_debug_flags(struct intel_guc *guc)
- {
- 	u32 level = intel_guc_log_get_level(&guc->log);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 904f3a941832..96849a256be8 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -66,6 +66,7 @@ struct intel_guc {
- 	struct i915_vma *ads_vma;
- 	struct __guc_ads_blob *ads_blob;
- 	u32 ads_regset_size;
-+	u32 ads_golden_ctxt_size;
- 
- 	struct i915_vma *lrc_desc_pool;
- 	void *lrc_desc_pool_vaddr;
-@@ -183,6 +184,7 @@ static inline u32 intel_guc_ggtt_offset(struct intel_guc *guc,
- }
- 
- void intel_guc_init_early(struct intel_guc *guc);
-+void intel_guc_init_late(struct intel_guc *guc);
- void intel_guc_init_send_regs(struct intel_guc *guc);
- void intel_guc_write_params(struct intel_guc *guc);
- int intel_guc_init(struct intel_guc *guc);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-index bc2745f73a06..299aa580d90a 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
-@@ -7,6 +7,7 @@
- 
- #include "gt/intel_gt.h"
- #include "gt/intel_lrc.h"
-+#include "gt/shmem_utils.h"
- #include "intel_guc_ads.h"
- #include "intel_guc_fwif.h"
- #include "intel_uc.h"
-@@ -35,6 +36,10 @@
-  *      +---------------------------------------+ <== dynamic
-  *      | padding                               |
-  *      +---------------------------------------+ <== 4K aligned
-+ *      | golden contexts                       |
-+ *      +---------------------------------------+
-+ *      | padding                               |
-+ *      +---------------------------------------+ <== 4K aligned
-  *      | private data                          |
-  *      +---------------------------------------+
-  *      | padding                               |
-@@ -55,6 +60,11 @@ static u32 guc_ads_regset_size(struct intel_guc *guc)
- 	return guc->ads_regset_size;
- }
- 
-+static u32 guc_ads_golden_ctxt_size(struct intel_guc *guc)
-+{
-+	return PAGE_ALIGN(guc->ads_golden_ctxt_size);
-+}
-+
- static u32 guc_ads_private_data_size(struct intel_guc *guc)
- {
- 	return PAGE_ALIGN(guc->fw.private_data_size);
-@@ -65,12 +75,23 @@ static u32 guc_ads_regset_offset(struct intel_guc *guc)
- 	return offsetof(struct __guc_ads_blob, regset);
- }
- 
--static u32 guc_ads_private_data_offset(struct intel_guc *guc)
-+static u32 guc_ads_golden_ctxt_offset(struct intel_guc *guc)
- {
- 	u32 offset;
- 
- 	offset = guc_ads_regset_offset(guc) +
- 		 guc_ads_regset_size(guc);
-+
-+	return PAGE_ALIGN(offset);
-+}
-+
-+static u32 guc_ads_private_data_offset(struct intel_guc *guc)
-+{
-+	u32 offset;
-+
-+	offset = guc_ads_golden_ctxt_offset(guc) +
-+		 guc_ads_golden_ctxt_size(guc);
-+
- 	return PAGE_ALIGN(offset);
- }
- 
-@@ -321,53 +342,163 @@ static void guc_mmio_reg_state_init(struct intel_guc *guc,
- 	GEM_BUG_ON(temp_set.size);
- }
- 
--/*
-- * The first 80 dwords of the register state context, containing the
-- * execlists and ppgtt registers.
-- */
--#define LR_HW_CONTEXT_SIZE	(80 * sizeof(u32))
-+static void fill_engine_enable_masks(struct intel_gt *gt,
-+				     struct guc_gt_system_info *info)
-+{
-+	info->engine_enabled_masks[GUC_RENDER_CLASS] = 1;
-+	info->engine_enabled_masks[GUC_BLITTER_CLASS] = 1;
-+	info->engine_enabled_masks[GUC_VIDEO_CLASS] = VDBOX_MASK(gt);
-+	info->engine_enabled_masks[GUC_VIDEOENHANCE_CLASS] = VEBOX_MASK(gt);
-+}
- 
--static void __guc_ads_init(struct intel_guc *guc)
-+/* Skip execlist and PPGTT registers */
-+#define LR_HW_CONTEXT_SIZE      (80 * sizeof(u32))
-+#define SKIP_SIZE               (LRC_PPHWSP_SZ * PAGE_SIZE + LR_HW_CONTEXT_SIZE)
-+
-+static int guc_prep_golden_context(struct intel_guc *guc,
-+				   struct __guc_ads_blob *blob)
- {
- 	struct intel_gt *gt = guc_to_gt(guc);
--	struct drm_i915_private *i915 = gt->i915;
-+	u32 addr_ggtt, offset;
-+	u32 total_size = 0, alloc_size, real_size;
-+	u8 engine_class, guc_class;
-+	struct guc_gt_system_info *info, local_info;
-+
-+	/*
-+	 * Reserve the memory for the golden contexts and point GuC at it but
-+	 * leave it empty for now. The context data will be filled in later
-+	 * once there is something available to put there.
-+	 *
-+	 * Note that the HWSP and ring context are not included.
-+	 *
-+	 * Note also that the storage must be pinned in the GGTT, so that the
-+	 * address won't change after GuC has been told where to find it. The
-+	 * GuC will also validate that the LRC base + size fall within the
-+	 * allowed GGTT range.
-+	 */
-+	if (blob) {
-+		offset = guc_ads_golden_ctxt_offset(guc);
-+		addr_ggtt = intel_guc_ggtt_offset(guc, guc->ads_vma) + offset;
-+		info = &blob->system_info;
-+	} else {
-+		memset(&local_info, 0, sizeof(local_info));
-+		info = &local_info;
-+		fill_engine_enable_masks(gt, info);
-+	}
-+
-+	for (engine_class = 0; engine_class <= MAX_ENGINE_CLASS; ++engine_class) {
-+		if (engine_class == OTHER_CLASS)
-+			continue;
-+
-+		guc_class = engine_class_to_guc_class(engine_class);
-+
-+		if (!info->engine_enabled_masks[guc_class])
-+			continue;
-+
-+		real_size = intel_engine_context_size(gt, engine_class);
-+		alloc_size = PAGE_ALIGN(real_size);
-+		total_size += alloc_size;
-+
-+		if (!blob)
-+			continue;
-+
-+		blob->ads.eng_state_size[guc_class] = real_size;
-+		blob->ads.golden_context_lrca[guc_class] = addr_ggtt;
-+		addr_ggtt += alloc_size;
-+	}
-+
-+	if (!blob)
-+		return total_size;
-+
-+	GEM_BUG_ON(guc->ads_golden_ctxt_size != total_size);
-+	return total_size;
-+}
-+
-+static struct intel_engine_cs *find_engine_state(struct intel_gt *gt, u8 engine_class)
-+{
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+
-+	for_each_engine(engine, gt, id) {
-+		if (engine->class != engine_class)
-+			continue;
-+
-+		if (!engine->default_state)
-+			continue;
-+
-+		return engine;
-+	}
-+
-+	return NULL;
-+}
-+
-+static void guc_init_golden_context(struct intel_guc *guc)
-+{
- 	struct __guc_ads_blob *blob = guc->ads_blob;
--	const u32 skipped_size = LRC_PPHWSP_SZ * PAGE_SIZE + LR_HW_CONTEXT_SIZE;
--	u32 base;
-+	struct intel_engine_cs *engine;
-+	struct intel_gt *gt = guc_to_gt(guc);
-+	u32 addr_ggtt, offset;
-+	u32 total_size = 0, alloc_size, real_size;
- 	u8 engine_class, guc_class;
-+	u8 *ptr;
- 
--	/* GuC scheduling policies */
--	guc_policies_init(guc, &blob->policies);
-+	if (!intel_uc_uses_guc_submission(&gt->uc))
-+		return;
-+
-+	GEM_BUG_ON(!blob);
- 
- 	/*
--	 * GuC expects a per-engine-class context image and size
--	 * (minus hwsp and ring context). The context image will be
--	 * used to reinitialize engines after a reset. It must exist
--	 * and be pinned in the GGTT, so that the address won't change after
--	 * we have told GuC where to find it. The context size will be used
--	 * to validate that the LRC base + size fall within allowed GGTT.
-+	 * Go back and fill in the golden context data now that it is
-+	 * available.
- 	 */
-+	offset = guc_ads_golden_ctxt_offset(guc);
-+	addr_ggtt = intel_guc_ggtt_offset(guc, guc->ads_vma) + offset;
-+	ptr = ((u8 *) blob) + offset;
-+
- 	for (engine_class = 0; engine_class <= MAX_ENGINE_CLASS; ++engine_class) {
- 		if (engine_class == OTHER_CLASS)
- 			continue;
- 
- 		guc_class = engine_class_to_guc_class(engine_class);
- 
--		/*
--		 * TODO: Set context pointer to default state to allow
--		 * GuC to re-init guilty contexts after internal reset.
--		 */
--		blob->ads.golden_context_lrca[guc_class] = 0;
--		blob->ads.eng_state_size[guc_class] =
--			intel_engine_context_size(gt, engine_class) -
--			skipped_size;
-+		if (!blob->system_info.engine_enabled_masks[guc_class])
-+			continue;
-+
-+		real_size = intel_engine_context_size(gt, engine_class);
-+		alloc_size = PAGE_ALIGN(real_size);
-+		total_size += alloc_size;
-+
-+		engine = find_engine_state(gt, engine_class);
-+		if (!engine) {
-+			drm_err(&gt->i915->drm, "No engine state recorded for class %d!\n", engine_class);
-+			blob->ads.eng_state_size[guc_class] = 0;
-+			blob->ads.golden_context_lrca[guc_class] = 0;
-+			continue;
-+		}
-+
-+		GEM_BUG_ON(blob->ads.eng_state_size[guc_class] != real_size);
-+		GEM_BUG_ON(blob->ads.golden_context_lrca[guc_class] != addr_ggtt);
-+		addr_ggtt += alloc_size;
-+
-+		shmem_read(engine->default_state, SKIP_SIZE, ptr + SKIP_SIZE, real_size);
-+		ptr += alloc_size;
- 	}
- 
-+	GEM_BUG_ON(guc->ads_golden_ctxt_size != total_size);
-+}
-+
-+static void __guc_ads_init(struct intel_guc *guc)
-+{
-+	struct intel_gt *gt = guc_to_gt(guc);
-+	struct drm_i915_private *i915 = gt->i915;
-+	struct __guc_ads_blob *blob = guc->ads_blob;
-+	u32 base;
-+
-+	/* GuC scheduling policies */
-+	guc_policies_init(guc, &blob->policies);
-+
- 	/* System info */
--	blob->system_info.engine_enabled_masks[GUC_RENDER_CLASS] = 1;
--	blob->system_info.engine_enabled_masks[GUC_BLITTER_CLASS] = 1;
--	blob->system_info.engine_enabled_masks[GUC_VIDEO_CLASS] = VDBOX_MASK(gt);
--	blob->system_info.engine_enabled_masks[GUC_VIDEOENHANCE_CLASS] = VEBOX_MASK(gt);
-+	fill_engine_enable_masks(gt, &blob->system_info);
- 
- 	blob->system_info.generic_gt_sysinfo[GUC_GENERIC_GT_SYSINFO_SLICE_ENABLED] =
- 		hweight8(gt->info.sseu.slice_mask);
-@@ -382,6 +513,9 @@ static void __guc_ads_init(struct intel_guc *guc)
- 			 GEN12_DOORBELLS_PER_SQIDI) + 1;
- 	}
- 
-+	/* Golden contexts for re-initialising after a watchdog reset */
-+	guc_prep_golden_context(guc, blob);
-+
- 	guc_mapping_table_init(guc_to_gt(guc), &blob->system_info);
- 
- 	base = intel_guc_ggtt_offset(guc, guc->ads_vma);
-@@ -423,6 +557,13 @@ int intel_guc_ads_create(struct intel_guc *guc)
- 		return ret;
- 	guc->ads_regset_size = ret;
- 
-+	/* Likewise the golden contexts: */
-+	ret = guc_prep_golden_context(guc, NULL);
-+	if (ret < 0)
-+		return ret;
-+	guc->ads_golden_ctxt_size = ret;
-+
-+	/* Now the total size can be determined: */
- 	size = guc_ads_blob_size(guc);
- 
- 	ret = intel_guc_allocate_and_map_vma(guc, size, &guc->ads_vma,
-@@ -435,6 +576,18 @@ int intel_guc_ads_create(struct intel_guc *guc)
- 	return 0;
- }
- 
-+void intel_guc_ads_init_late(struct intel_guc *guc)
-+{
-+	/*
-+	 * The golden context setup requires the saved engine state from
-+	 * __engines_record_defaults(). However, that requires engines to be
-+	 * operational which means the ADS must already have been configured.
-+	 * Fortunately, the golden context state is not needed until a hang
-+	 * occurs, so it can be filled in during this late init phase.
-+	 */
-+	guc_init_golden_context(guc);
-+}
-+
- void intel_guc_ads_destroy(struct intel_guc *guc)
- {
- 	i915_vma_unpin_and_release(&guc->ads_vma, I915_VMA_RELEASE_MAP);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h
-index 0fdcb3583601..dac0dc32da34 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.h
-@@ -11,6 +11,7 @@ struct drm_printer;
- 
- int intel_guc_ads_create(struct intel_guc *guc);
- void intel_guc_ads_destroy(struct intel_guc *guc);
-+void intel_guc_ads_init_late(struct intel_guc *guc);
- void intel_guc_ads_reset(struct intel_guc *guc);
- void intel_guc_log_policy_info(struct intel_guc *guc, struct drm_printer *p);
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 8c681fc49638..4a79db4a739f 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -120,6 +120,11 @@ void intel_uc_init_early(struct intel_uc *uc)
- 		uc->ops = &uc_ops_off;
- }
- 
-+void intel_uc_init_late(struct intel_uc *uc)
-+{
-+	intel_guc_init_late(&uc->guc);
-+}
-+
- void intel_uc_driver_late_release(struct intel_uc *uc)
- {
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-index 91315e3f1c58..e2da2b6e76e1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-@@ -35,6 +35,7 @@ struct intel_uc {
- };
- 
- void intel_uc_init_early(struct intel_uc *uc);
-+void intel_uc_init_late(struct intel_uc *uc);
- void intel_uc_driver_late_release(struct intel_uc *uc);
- void intel_uc_driver_remove(struct intel_uc *uc);
- void intel_uc_init_mmio(struct intel_uc *uc);
--- 
-2.28.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+U29tZXRpbWVzIGl0IGlzIGRlc2lyYWJsZSB0byBxdWV1ZSB3b3JrIHVwIGZvciBsYXRlciBpZiB0
+aGUgR1QgUE0gaXNuJ3QKaGVsZCBhbmQgcnVuIHRoYXQgd29yayBvbiBuZXh0IEdUIFBNIHVucGFy
+ay4KCkltcGxlbWVudGVkIHdpdGggYSBsaXN0IGluIHRoZSBHVCBvZiBhbGwgcGVuZGluZyB3b3Jr
+LCB3b3JrcXVldWVzIGluCnRoZSBsaXN0LCBhIGNhbGxiYWNrIHRvIGFkZCBhIHdvcmtxdWV1ZSB0
+byB0aGUgbGlzdCwgYW5kIGZpbmFsbHkgYQp3YWtlcmVmIHBvc3RfZ2V0IGNhbGxiYWNrIHRoYXQg
+aXRlcmF0ZXMgLyBkcmFpbnMgdGhlIGxpc3QgKyBxdWV1ZXMgdGhlCndvcmtxdWV1ZXMuCgpGaXJz
+dCB1c2VyIG9mIHRoaXMgaXMgZGVyZWdpc3RyYXRpb24gb2YgR3VDIGNvbnRleHRzLgoKU2lnbmVk
+LW9mZi1ieTogTWF0dGhldyBCcm9zdCA8bWF0dGhldy5icm9zdEBpbnRlbC5jb20KLS0tCiBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgMSArCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndC5jICAgICAgICAgICAgfCAgMyArKwogZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcG0uYyAgICAgICAgIHwgIDggKysrKysKIC4uLi9kcm0v
+aTkxNS9ndC9pbnRlbF9ndF9wbV9kZWxheWVkX3dvcmsuYyAgICB8IDM1ICsrKysrKysrKysrKysr
+KysrKysKIC4uLi9kcm0vaTkxNS9ndC9pbnRlbF9ndF9wbV9kZWxheWVkX3dvcmsuaCAgICB8IDI0
+ICsrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3R5cGVzLmgg
+ICAgICB8ICAzICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMuaCAgICAg
+ICAgfCAgMyArLQogLi4uL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWNfc3VibWlzc2lvbi5j
+IHwgMTQgKysrKystLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3dha2VyZWYuYyAgICAg
+ICAgICB8ICA1ICsrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfd2FrZXJlZi5oICAgICAg
+ICAgIHwgIDEgKwogMTAgZmlsZXMgY2hhbmdlZCwgOTIgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlv
+bnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9n
+dF9wbV9kZWxheWVkX3dvcmsuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2d0L2ludGVsX2d0X3BtX2RlbGF5ZWRfd29yay5oCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvTWFrZWZpbGUgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQppbmRl
+eCBkMGQ5MzZkOTEzN2IuLmM4MGVjMTYzYTdkMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvTWFrZWZpbGUKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKQEAgLTEw
+Miw2ICsxMDIsNyBAQCBndC15ICs9IFwKIAlndC9pbnRlbF9ndF9jbG9ja191dGlscy5vIFwKIAln
+dC9pbnRlbF9ndF9pcnEubyBcCiAJZ3QvaW50ZWxfZ3RfcG0ubyBcCisJZ3QvaW50ZWxfZ3RfcG1f
+ZGVsYXllZF93b3JrLm8gXAogCWd0L2ludGVsX2d0X3BtX2lycS5vIFwKIAlndC9pbnRlbF9ndF9y
+ZXF1ZXN0cy5vIFwKIAlndC9pbnRlbF9ndHQubyBcCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9ndC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3Qu
+YwppbmRleCAwZTRhNWM0Yzg4M2YuLmIzZWE3ODhkZTllMyAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3QuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
+bnRlbF9ndC5jCkBAIC0yOCw2ICsyOCw5IEBAIHZvaWQgaW50ZWxfZ3RfaW5pdF9lYXJseShzdHJ1
+Y3QgaW50ZWxfZ3QgKmd0LCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKIAogCXNwaW5f
+bG9ja19pbml0KCZndC0+aXJxX2xvY2spOwogCisJc3Bpbl9sb2NrX2luaXQoJmd0LT5wbV9kZWxh
+eWVkX3dvcmtfbG9jayk7CisJSU5JVF9MSVNUX0hFQUQoJmd0LT5wbV9kZWxheWVkX3dvcmtfbGlz
+dCk7CisKIAlJTklUX0xJU1RfSEVBRCgmZ3QtPmNsb3NlZF92bWEpOwogCXNwaW5fbG9ja19pbml0
+KCZndC0+Y2xvc2VkX2xvY2spOwogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+dC9pbnRlbF9ndF9wbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcG0uYwpp
+bmRleCA0NjNhNmFlNjA1YTAuLjlmNTQ4NWJlMTU2ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcG0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9p
+bnRlbF9ndF9wbS5jCkBAIC05Myw2ICs5MywxMyBAQCBzdGF0aWMgaW50IF9fZ3RfdW5wYXJrKHN0
+cnVjdCBpbnRlbF93YWtlcmVmICp3ZikKIAlyZXR1cm4gMDsKIH0KIAorc3RhdGljIHZvaWQgX19n
+dF9xdWV1ZV9kZWxheWVkX3dvcmsoc3RydWN0IGludGVsX3dha2VyZWYgKndmKQoreworCXN0cnVj
+dCBpbnRlbF9ndCAqZ3QgPSBjb250YWluZXJfb2Yod2YsIHR5cGVvZigqZ3QpLCB3YWtlcmVmKTsK
+KworCWludGVsX2d0X3BtX3F1ZXVlX2RlbGF5ZWRfd29yayhndCk7Cit9CisKIHN0YXRpYyBpbnQg
+X19ndF9wYXJrKHN0cnVjdCBpbnRlbF93YWtlcmVmICp3ZikKIHsKIAlzdHJ1Y3QgaW50ZWxfZ3Qg
+Kmd0ID0gY29udGFpbmVyX29mKHdmLCB0eXBlb2YoKmd0KSwgd2FrZXJlZik7CkBAIC0xMjMsNiAr
+MTMwLDcgQEAgc3RhdGljIGludCBfX2d0X3Bhcmsoc3RydWN0IGludGVsX3dha2VyZWYgKndmKQog
+CiBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX3dha2VyZWZfb3BzIHdmX29wcyA9IHsKIAkuZ2V0
+ID0gX19ndF91bnBhcmssCisJLnBvc3RfZ2V0ID0gX19ndF9xdWV1ZV9kZWxheWVkX3dvcmssCiAJ
+LnB1dCA9IF9fZ3RfcGFyaywKIH07CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L2ludGVsX2d0X3BtX2RlbGF5ZWRfd29yay5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Qv
+aW50ZWxfZ3RfcG1fZGVsYXllZF93b3JrLmMKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAw
+MDAwMDAwMDAwLi5mYzk3YTM3YjljYTEKLS0tIC9kZXYvbnVsbAorKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC9pbnRlbF9ndF9wbV9kZWxheWVkX3dvcmsuYwpAQCAtMCwwICsxLDM1IEBACisv
+LyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUCisvKgorICogQ29weXJpZ2h0IMKpIDIwMTkg
+SW50ZWwgQ29ycG9yYXRpb24KKyAqLworCisjaW5jbHVkZSAiaTkxNV9kcnYuaCIKKyNpbmNsdWRl
+ICJpbnRlbF9ydW50aW1lX3BtLmgiCisjaW5jbHVkZSAiaW50ZWxfZ3RfcG0uaCIKKwordm9pZCBp
+bnRlbF9ndF9wbV9xdWV1ZV9kZWxheWVkX3dvcmsoc3RydWN0IGludGVsX2d0ICpndCkKK3sKKwlz
+dHJ1Y3QgaW50ZWxfZ3RfcG1fZGVsYXllZF93b3JrICp3b3JrLCAqbmV4dDsKKwl1bnNpZ25lZCBs
+b25nIGZsYWdzOworCisJc3Bpbl9sb2NrX2lycXNhdmUoJmd0LT5wbV9kZWxheWVkX3dvcmtfbG9j
+aywgZmxhZ3MpOworCWxpc3RfZm9yX2VhY2hfZW50cnlfc2FmZSh3b3JrLCBuZXh0LAorCQkJCSAm
+Z3QtPnBtX2RlbGF5ZWRfd29ya19saXN0LCBsaW5rKSB7CisJCWxpc3RfZGVsX2luaXQoJndvcmst
+PmxpbmspOworCQlxdWV1ZV93b3JrKHN5c3RlbV91bmJvdW5kX3dxLCAmd29yay0+d29ya2VyKTsK
+Kwl9CisJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmZ3QtPnBtX2RlbGF5ZWRfd29ya19sb2NrLCBm
+bGFncyk7Cit9CisKK3ZvaWQgaW50ZWxfZ3RfcG1fYWRkX2RlbGF5ZWRfd29yayhzdHJ1Y3QgaW50
+ZWxfZ3QgKmd0LAorCQkJCSAgc3RydWN0IGludGVsX2d0X3BtX2RlbGF5ZWRfd29yayAqd29yaykK
+K3sKKwl1bnNpZ25lZCBsb25nIGZsYWdzOworCisJc3Bpbl9sb2NrX2lycXNhdmUoJmd0LT5wbV9k
+ZWxheWVkX3dvcmtfbG9jaywgZmxhZ3MpOworCWlmIChpbnRlbF9ndF9wbV9pc19hd2FrZShndCkp
+CisJCXF1ZXVlX3dvcmsoc3lzdGVtX3VuYm91bmRfd3EsICZ3b3JrLT53b3JrZXIpOworCWVsc2Ug
+aWYgKGxpc3RfZW1wdHkoJndvcmstPmxpbmspKQorCQlsaXN0X2FkZF90YWlsKCZ3b3JrLT5saW5r
+LCAmZ3QtPnBtX2RlbGF5ZWRfd29ya19saXN0KTsKKwlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZn
+dC0+cG1fZGVsYXllZF93b3JrX2xvY2ssIGZsYWdzKTsKK30KZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2d0L2ludGVsX2d0X3BtX2RlbGF5ZWRfd29yay5oIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfcG1fZGVsYXllZF93b3JrLmgKbmV3IGZpbGUgbW9kZSAxMDA2
+NDQKaW5kZXggMDAwMDAwMDAwMDAwLi43ZTkxYTk0MzJmN2YKLS0tIC9kZXYvbnVsbAorKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF9wbV9kZWxheWVkX3dvcmsuaApAQCAtMCww
+ICsxLDI0IEBACisvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTUlUICovCisvKgorICogQ29w
+eXJpZ2h0IMKpIDIwMTkgSW50ZWwgQ29ycG9yYXRpb24KKyAqLworCisjaWZuZGVmIElOVEVMX0dU
+X1BNX0RFTEFZRURfV09SS19ICisjZGVmaW5lIElOVEVMX0dUX1BNX0RFTEFZRURfV09SS19ICisK
+KyNpbmNsdWRlIDxsaW51eC9saXN0Lmg+CisjaW5jbHVkZSA8bGludXgvd29ya3F1ZXVlLmg+CisK
+K3N0cnVjdCBpbnRlbF9ndDsKKworc3RydWN0IGludGVsX2d0X3BtX2RlbGF5ZWRfd29yayB7CisJ
+c3RydWN0IGxpc3RfaGVhZCBsaW5rOworCXN0cnVjdCB3b3JrX3N0cnVjdCB3b3JrZXI7Cit9Owor
+Cit2b2lkIGludGVsX2d0X3BtX3F1ZXVlX2RlbGF5ZWRfd29yayhzdHJ1Y3QgaW50ZWxfZ3QgKmd0
+KTsKKwordm9pZCBpbnRlbF9ndF9wbV9hZGRfZGVsYXllZF93b3JrKHN0cnVjdCBpbnRlbF9ndCAq
+Z3QsCisJCQkJICBzdHJ1Y3QgaW50ZWxfZ3RfcG1fZGVsYXllZF93b3JrICp3b3JrKTsKKworI2Vu
+ZGlmIC8qIElOVEVMX0dUX1BNX0RFTEFZRURfV09SS19IICovCmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF90eXBlcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvaW50ZWxfZ3RfdHlwZXMuaAppbmRleCBmZWNmYWNmNTUxZDUuLjYwZWQ3YWY5NGRiYSAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3RfdHlwZXMuaAorKysgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9ndF90eXBlcy5oCkBAIC02OCw2ICs2OCw5IEBA
+IHN0cnVjdCBpbnRlbF9ndCB7CiAJc3RydWN0IGludGVsX3dha2VyZWYgd2FrZXJlZjsKIAlhdG9t
+aWNfdCB1c2VyX3dha2VyZWY7CiAKKwlzdHJ1Y3QgbGlzdF9oZWFkIHBtX2RlbGF5ZWRfd29ya19s
+aXN0OworCXNwaW5sb2NrX3QgcG1fZGVsYXllZF93b3JrX2xvY2s7CisKIAlzdHJ1Y3QgbGlzdF9o
+ZWFkIGNsb3NlZF92bWE7CiAJc3BpbmxvY2tfdCBjbG9zZWRfbG9jazsgLyogZ3VhcmRzIHRoZSBs
+aXN0IG9mIGNsb3NlZF92bWEgKi8KIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvdWMvaW50ZWxfZ3VjLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9ndWMu
+aAppbmRleCBmNmM0MGY2ZmI3YWMuLjEwZGNmZDc5MGFhMiAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvdWMvaW50ZWxfZ3VjLmgKQEAgLTE3LDYgKzE3LDcgQEAKICNpbmNsdWRlICJpbnRlbF91Y19m
+dy5oIgogI2luY2x1ZGUgImk5MTVfdXRpbHMuaCIKICNpbmNsdWRlICJpOTE1X3ZtYS5oIgorI2lu
+Y2x1ZGUgImd0L2ludGVsX2d0X3BtX2RlbGF5ZWRfd29yay5oIgogCiBzdHJ1Y3QgX19ndWNfYWRz
+X2Jsb2I7CiAKQEAgLTYzLDcgKzY0LDcgQEAgc3RydWN0IGludGVsX2d1YyB7CiAKIAlzcGlubG9j
+a190IGRlc3Ryb3lfbG9jazsKIAlzdHJ1Y3QgbGlzdF9oZWFkIGRlc3Ryb3llZF9jb250ZXh0czsK
+LQlzdHJ1Y3Qgd29ya19zdHJ1Y3QgZGVzdHJveV93b3JrZXI7CisJc3RydWN0IGludGVsX2d0X3Bt
+X2RlbGF5ZWRfd29yayBkZXN0cm95X3dvcmtlcjsKIAogCWJvb2wgc3VibWlzc2lvbl9zZWxlY3Rl
+ZDsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3N1
+Ym1pc3Npb24uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zdWJtaXNz
+aW9uLmMKaW5kZXggNmZkNTQxNDI5NmNkLi4yNWM3NzA4NGMzYTAgMTAwNjQ0Ci0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2d1Y19zdWJtaXNzaW9uLmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfZ3VjX3N1Ym1pc3Npb24uYwpAQCAtMTM5NSw3ICsx
+Mzk1LDggQEAgaW50IGludGVsX2d1Y19zdWJtaXNzaW9uX2luaXQoc3RydWN0IGludGVsX2d1YyAq
+Z3VjKQogCiAJc3Bpbl9sb2NrX2luaXQoJmd1Yy0+ZGVzdHJveV9sb2NrKTsKIAlJTklUX0xJU1Rf
+SEVBRCgmZ3VjLT5kZXN0cm95ZWRfY29udGV4dHMpOwotCUlOSVRfV09SSygmZ3VjLT5kZXN0cm95
+X3dvcmtlciwgZGVzdHJveV93b3JrZXJfZnVuYyk7CisJSU5JVF9MSVNUX0hFQUQoJmd1Yy0+ZGVz
+dHJveV93b3JrZXIubGluayk7CisJSU5JVF9XT1JLKCZndWMtPmRlc3Ryb3lfd29ya2VyLndvcmtl
+ciwgZGVzdHJveV93b3JrZXJfZnVuYyk7CiAKIAlyZXR1cm4gMDsKIH0KQEAgLTIzNzQsMTMgKzIz
+NzUsMTggQEAgc3RhdGljIHZvaWQgZGVyZWdpc3Rlcl9kZXN0cm95ZWRfY29udGV4dHMoc3RydWN0
+IGludGVsX2d1YyAqZ3VjKQogCiBzdGF0aWMgdm9pZCBkZXN0cm95X3dvcmtlcl9mdW5jKHN0cnVj
+dCB3b3JrX3N0cnVjdCAqdykKIHsKKwlzdHJ1Y3QgaW50ZWxfZ3RfcG1fZGVsYXllZF93b3JrICpk
+ZXN0cm95X3dvcmtlciA9CisJCWNvbnRhaW5lcl9vZih3LCBzdHJ1Y3QgaW50ZWxfZ3RfcG1fZGVs
+YXllZF93b3JrLCB3b3JrZXIpOwogCXN0cnVjdCBpbnRlbF9ndWMgKmd1YyA9Ci0JCWNvbnRhaW5l
+cl9vZih3LCBzdHJ1Y3QgaW50ZWxfZ3VjLCBkZXN0cm95X3dvcmtlcik7CisJCWNvbnRhaW5lcl9v
+ZihkZXN0cm95X3dvcmtlciwgc3RydWN0IGludGVsX2d1YywgZGVzdHJveV93b3JrZXIpOwogCXN0
+cnVjdCBpbnRlbF9ndCAqZ3QgPSBndWNfdG9fZ3QoZ3VjKTsKIAlpbnQgdG1wOwogCi0Jd2l0aF9p
+bnRlbF9ndF9wbShndCwgdG1wKQorCXdpdGhfaW50ZWxfZ3RfcG1faWZfYXdha2UoZ3QsIHRtcCkK
+IAkJZGVyZWdpc3Rlcl9kZXN0cm95ZWRfY29udGV4dHMoZ3VjKTsKKworCWlmICghbGlzdF9lbXB0
+eSgmZ3VjLT5kZXN0cm95ZWRfY29udGV4dHMpKQorCQlpbnRlbF9ndF9wbV9hZGRfZGVsYXllZF93
+b3JrKGd0LCBkZXN0cm95X3dvcmtlcik7CiB9CiAKIHN0YXRpYyB2b2lkIGd1Y19jb250ZXh0X2Rl
+c3Ryb3koc3RydWN0IGtyZWYgKmtyZWYpCkBAIC0yNDQxLDcgKzI0NDcsNyBAQCBzdGF0aWMgdm9p
+ZCBndWNfY29udGV4dF9kZXN0cm95KHN0cnVjdCBrcmVmICprcmVmKQogCSAqIHRha2UgdGhlIEdU
+IFBNIGZvciB0aGUgZmlyc3QgdGltZSB3aGljaCBpc24ndCBhbGxvd2VkIGZyb20gYW4gYXRvbWlj
+CiAJICogY29udGV4dC4KIAkgKi8KLQlxdWV1ZV93b3JrKHN5c3RlbV91bmJvdW5kX3dxLCAmZ3Vj
+LT5kZXN0cm95X3dvcmtlcik7CisJaW50ZWxfZ3RfcG1fYWRkX2RlbGF5ZWRfd29yayhndWNfdG9f
+Z3QoZ3VjKSwgJmd1Yy0+ZGVzdHJveV93b3JrZXIpOwogfQogCiBzdGF0aWMgaW50IGd1Y19jb250
+ZXh0X2FsbG9jKHN0cnVjdCBpbnRlbF9jb250ZXh0ICpjZSkKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2ludGVsX3dha2VyZWYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X3dha2VyZWYuYwppbmRleCBkZmQ4N2QwODIyMTguLjI4MmZjNGYzMTJlMyAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfd2FrZXJlZi5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2ludGVsX3dha2VyZWYuYwpAQCAtMjQsNiArMjQsOCBAQCBzdGF0aWMgdm9pZCBycG1f
+cHV0KHN0cnVjdCBpbnRlbF93YWtlcmVmICp3ZikKIAogaW50IF9faW50ZWxfd2FrZXJlZl9nZXRf
+Zmlyc3Qoc3RydWN0IGludGVsX3dha2VyZWYgKndmKQogeworCWJvb2wgZG9fcG9zdCA9IGZhbHNl
+OworCiAJLyoKIAkgKiBUcmVhdCBnZXQvcHV0IGFzIGRpZmZlcmVudCBzdWJjbGFzc2VzLCBhcyB3
+ZSBtYXkgbmVlZCB0byBydW4KIAkgKiB0aGUgcHV0IGNhbGxiYWNrIGZyb20gdW5kZXIgdGhlIHNo
+cmlua2VyIGFuZCBkbyBub3Qgd2FudCB0bwpAQCAtNDQsOCArNDYsMTEgQEAgaW50IF9faW50ZWxf
+d2FrZXJlZl9nZXRfZmlyc3Qoc3RydWN0IGludGVsX3dha2VyZWYgKndmKQogCQl9CiAKIAkJc21w
+X21iX19iZWZvcmVfYXRvbWljKCk7IC8qIHJlbGVhc2Ugd2YtPmNvdW50ICovCisJCWRvX3Bvc3Qg
+PSB0cnVlOwogCX0KIAlhdG9taWNfaW5jKCZ3Zi0+Y291bnQpOworCWlmIChkb19wb3N0ICYmIHdm
+LT5vcHMtPnBvc3RfZ2V0KQorCQl3Zi0+b3BzLT5wb3N0X2dldCh3Zik7CiAJbXV0ZXhfdW5sb2Nr
+KCZ3Zi0+bXV0ZXgpOwogCiAJSU5URUxfV0FLRVJFRl9CVUdfT04oYXRvbWljX3JlYWQoJndmLT5j
+b3VudCkgPD0gMCk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF93YWtl
+cmVmLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF93YWtlcmVmLmgKaW5kZXggNTQ1Yzhm
+Mjc3YzQ2Li5lZjdlNmE2OThlOGEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
+dGVsX3dha2VyZWYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF93YWtlcmVmLmgK
+QEAgLTMwLDYgKzMwLDcgQEAgdHlwZWRlZiBkZXBvdF9zdGFja19oYW5kbGVfdCBpbnRlbF93YWtl
+cmVmX3Q7CiAKIHN0cnVjdCBpbnRlbF93YWtlcmVmX29wcyB7CiAJaW50ICgqZ2V0KShzdHJ1Y3Qg
+aW50ZWxfd2FrZXJlZiAqd2YpOworCXZvaWQgKCpwb3N0X2dldCkoc3RydWN0IGludGVsX3dha2Vy
+ZWYgKndmKTsKIAlpbnQgKCpwdXQpKHN0cnVjdCBpbnRlbF93YWtlcmVmICp3Zik7CiB9OwogCi0t
+IAoyLjI4LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
