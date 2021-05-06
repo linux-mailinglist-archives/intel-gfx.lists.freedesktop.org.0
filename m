@@ -1,41 +1,84 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DBFE375105
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 10:44:05 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5811375121
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 10:53:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ECA36E063;
-	Thu,  6 May 2021 08:44:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 138D089F63;
+	Thu,  6 May 2021 08:53:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B12576E063
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 May 2021 08:44:00 +0000 (UTC)
-IronPort-SDR: z7u2CfeVB5Tu2O/JTvhiyHIkAKVKNe9ZDJffrHoTKgFQWsHEk4Xj5ll9ZFx8yVlluWWU7Z3EBK
- BRZwxXZGL4Ug==
-X-IronPort-AV: E=McAfee;i="6200,9189,9975"; a="178653405"
-X-IronPort-AV: E=Sophos;i="5.82,277,1613462400"; d="scan'208";a="178653405"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2021 01:44:00 -0700
-IronPort-SDR: fgkLtIn7eKo1ud/YOSSKNgEF7ETTCPZr7+Exw7dDorILJd5lI1GRKCfB4HwV3fdMsJs3mAB6SG
- c53HF4OKxcnA==
-X-IronPort-AV: E=Sophos;i="5.82,277,1613462400"; d="scan'208";a="469366307"
-Received: from unknown (HELO intel.com) ([10.237.72.91])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2021 01:43:58 -0700
-Date: Thu, 6 May 2021 11:47:08 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20210506084708.GA1915@intel.com>
-References: <20210506073836.14848-1-ville.syrjala@linux.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [216.205.24.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8BB289F63
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 May 2021 08:53:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1620291217;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=tLJujqCr2oCfihsIdM+/PINisIxOrtHhnzEnsEjH8Vc=;
+ b=O9U94aA3FNgsJBf29eE6XUi3YT80K45+5K/UmMHsa2UkUDU1Ou5e3KiTWcUb8xNFHry/ra
+ P8iPeoEwgPm0sin3saevjgXO4YtZmWJ7jpAmMYz8bhlzGZXVHzrWaVE59AtZn+tFTXA3Zl
+ Q5ocoMA/jUPgzl3mVHmuQ9eigz9lzBg=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-139-jXvgS2ufOdCKoK2gl306hQ-1; Thu, 06 May 2021 04:53:34 -0400
+X-MC-Unique: jXvgS2ufOdCKoK2gl306hQ-1
+Received: by mail-ed1-f71.google.com with SMTP id
+ d8-20020a0564020008b0290387d38e3ce0so2285348edu.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 06 May 2021 01:53:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=tLJujqCr2oCfihsIdM+/PINisIxOrtHhnzEnsEjH8Vc=;
+ b=EzqjiLvCc30Jbwz7mnYg3uhiSDgcLYmnD2nhUZf2Qa3EO/fNt148UVh6nUHR/bZv1R
+ M2UQo1Ux7dfE4W01pOZEvL2fCmOAAPWyiN0E6Smku1zwv5NSfHQmi9RQ553DBXUZcDXU
+ Rcvd8xSit9brg1i4XcNsHxfauJkSI0Etfv0Q2GGhvDBidWELearmR9t7Tuoej8vfHe+/
+ vytGaupNR6XJxB7j7CG1kqnoJAlX781AqWayfrvuf4kLxWKCsS4FIl/jHofj58La3Dbk
+ wLsOcBRJn9+INbOTKWKI6/VUmWKzpKefbaOVU98dmVscmK131doF+5VA3hb0omgjoNeB
+ w2yA==
+X-Gm-Message-State: AOAM530fh9y6EFb6ttJrKO75yT/BrkMg+anTpiEt/yGis8WZLslaLq6c
+ bgE2JyT+/VUoZaauCmSpSoMbYekYXjJVOIZBtw+NCWTEyjmwwSlA1zzlQ6ys/HTA29zUdaMmuzC
+ 9WJi4YmhIH673oLuSTk9YlMFs991g5p7PlyfevCUHgPt952kzXVnb0dVuwCo8RBLLkKQCLjaUcC
+ EcDd4l
+X-Received: by 2002:a05:6402:4a:: with SMTP id
+ f10mr3819319edu.85.1620291213478; 
+ Thu, 06 May 2021 01:53:33 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxKOxyvTTJUzJJLW3Mk3NujzJOz1XPqHbftGBjw11EEyFefFYbz/pMRQvQNafbsXTwDjsXRAg==
+X-Received: by 2002:a05:6402:4a:: with SMTP id
+ f10mr3819300edu.85.1620291213281; 
+ Thu, 06 May 2021 01:53:33 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id dk13sm1134000edb.34.2021.05.06.01.53.32
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 06 May 2021 01:53:32 -0700 (PDT)
+To: intel-gfx@lists.freedesktop.org
+References: <20210505162415.531876-1-hdegoede@redhat.com>
+ <162024206908.25404.3483956842623674239@emeril.freedesktop.org>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <6d797ba8-a5cd-1d82-774d-64a8c83918b3@redhat.com>
+Date: Thu, 6 May 2021 10:53:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210506073836.14848-1-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Reorder skl+ scaler vs. plane
- updates
+In-Reply-To: <162024206908.25404.3483956842623674239@emeril.freedesktop.org>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?_+_usb-type-c=3A_Add_support_for_out-of-band_hotplug_notificati?=
+ =?utf-8?b?b24gKHJldjMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,187 +91,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 06, 2021 at 10:38:36AM +0300, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+Hi,
 
-> When scanning out NV12 if we at any time have the plane enabled
-> while the scaler is disabled we get a pretty catastrophics
-> underrun.
-> =
+On 5/5/21 9:14 PM, Patchwork wrote:
+> *Patch Details*
+> *Series:*	drm + usb-type-c: Add support for out-of-band hotplug notification (rev3)
+> *URL:*	https://patchwork.freedesktop.org/series/89604/ <https://patchwork.freedesktop.org/series/89604/>
+> *State:*	failure
+> *Details:*	https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20068/index.html <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20068/index.html>
+> 
+> 
+>   CI Bug Log - changes from CI_DRM_10049_full -> Patchwork_20068_full
+> 
+> 
+>     Summary
+> 
+> *FAILURE*
+> 
+> Serious unknown changes coming with Patchwork_20068_full absolutely need to be
+> verified manually.
+> 
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_20068_full, please notify your bug team to allow them
+> to document this new failure mode, which will reduce false positives in CI.
+> 
+> 
+>     Possible new issues
+> 
+> Here are the unknown changes that may have been introduced in Patchwork_20068_full:
+> 
+> 
+>       IGT changes
+> 
+> 
+>         Possible regressions
+> 
+>   * igt@gem_exec_schedule@pi-ringfull@vecs0:
+>       o shard-skl: PASS <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10049/shard-skl4/igt@gem_exec_schedule@pi-ringfull@vecs0.html> -> FAIL <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20068/shard-skl2/igt@gem_exec_schedule@pi-ringfull@vecs0.html>
 
-> Let's reorder the operations so that we try to avoid that happening
-> even if our vblank evade fails and the scaler enable/disable and
-> the plane enable/disable get latched during two diffent frames.
-> =
 
-> This takes care of the most common cases. I suppose there is still
-> at least a theoretical possibility of hitting this if one plane
-> takes the scaler away from another plane before the second plane
-> had a chance to set up another scaler for its use. =
+I believe that this is a false-positive as this series does not touch any related
+code (it only touches modesetting code).
 
+> 
+> 
+>       Piglit changes
+> 
+> 
+>         Possible regressions
+> 
+>   * shaders@glsl-fs-texturecube-2 (NEW):
+>       o pig-skl-6260u: NOTRUN -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20068/pig-skl-6260u/shaders@glsl-fs-texturecube-2.html> +4 similar issues
 
-Just curious, how this is possible? Shouldn't the scaler be already =
+Idem.
 
-marked "in_use" if another plane uses it, so we can't start using
-it until it is detached?
+Regards,
 
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Hans
 
-
-> But that
-> is starting to get a bit complicated, especially since the plane
-> commit order already has to be carefully sequenced to avoid any
-> dbuf overlaps. So plugging this 100% may prove somewhat hard...
-> =
-
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  | 30 ++++++++++++++-----
->  .../drm/i915/display/skl_universal_plane.c    | 11 +++++--
->  2 files changed, 30 insertions(+), 11 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index fcd8123ede8e..0c8ca26156b1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -9698,8 +9698,6 @@ static void intel_pipe_fastset(const struct intel_c=
-rtc_state *old_crtc_state,
->  =
-
->  	/* on skylake this is done by detaching scalers */
->  	if (DISPLAY_VER(dev_priv) >=3D 9) {
-> -		skl_detach_scalers(new_crtc_state);
-> -
->  		if (new_crtc_state->pch_pfit.enabled)
->  			skl_pfit_enable(new_crtc_state);
->  	} else if (HAS_PCH_SPLIT(dev_priv)) {
-> @@ -9725,8 +9723,8 @@ static void intel_pipe_fastset(const struct intel_c=
-rtc_state *old_crtc_state,
->  		icl_set_pipe_chicken(crtc);
->  }
->  =
-
-> -static void commit_pipe_config(struct intel_atomic_state *state,
-> -			       struct intel_crtc *crtc)
-> +static void commit_pipe_pre_planes(struct intel_atomic_state *state,
-> +				   struct intel_crtc *crtc)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
->  	const struct intel_crtc_state *old_crtc_state =3D
-> @@ -9744,9 +9742,6 @@ static void commit_pipe_config(struct intel_atomic_=
-state *state,
->  		    new_crtc_state->update_pipe)
->  			intel_color_commit(new_crtc_state);
->  =
-
-> -		if (DISPLAY_VER(dev_priv) >=3D 9)
-> -			skl_detach_scalers(new_crtc_state);
-> -
->  		if (DISPLAY_VER(dev_priv) >=3D 9 || IS_BROADWELL(dev_priv))
->  			bdw_set_pipemisc(new_crtc_state);
->  =
-
-> @@ -9760,6 +9755,23 @@ static void commit_pipe_config(struct intel_atomic=
-_state *state,
->  		dev_priv->display.atomic_update_watermarks(state, crtc);
->  }
->  =
-
-> +static void commit_pipe_post_planes(struct intel_atomic_state *state,
-> +				    struct intel_crtc *crtc)
-> +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +	const struct intel_crtc_state *new_crtc_state =3D
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +
-> +	/*
-> +	 * Disable the scaler(s) after the plane(s) so that we don't
-> +	 * get a catastrophic underrun even if the two operations
-> +	 * end up happening in two different frames.
-> +	 */
-> +	if (DISPLAY_VER(dev_priv) >=3D 9 &&
-> +	    !intel_crtc_needs_modeset(new_crtc_state))
-> +		skl_detach_scalers(new_crtc_state);
-> +}
-> +
->  static void intel_enable_crtc(struct intel_atomic_state *state,
->  			      struct intel_crtc *crtc)
->  {
-> @@ -9811,13 +9823,15 @@ static void intel_update_crtc(struct intel_atomic=
-_state *state,
->  	/* Perform vblank evasion around commit operation */
->  	intel_pipe_update_start(new_crtc_state);
->  =
-
-> -	commit_pipe_config(state, crtc);
-> +	commit_pipe_pre_planes(state, crtc);
->  =
-
->  	if (DISPLAY_VER(dev_priv) >=3D 9)
->  		skl_update_planes_on_crtc(state, crtc);
->  	else
->  		i9xx_update_planes_on_crtc(state, crtc);
->  =
-
-> +	commit_pipe_post_planes(state, crtc);
-> +
->  	intel_pipe_update_end(new_crtc_state);
->  =
-
->  	/*
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
-/gpu/drm/i915/display/skl_universal_plane.c
-> index 0d34a5ad4e2b..6ad85d7cb219 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1032,6 +1032,14 @@ skl_program_plane(struct intel_plane *plane,
->  	if (!drm_atomic_crtc_needs_modeset(&crtc_state->uapi))
->  		intel_psr2_program_plane_sel_fetch(plane, crtc_state, plane_state, col=
-or_plane);
->  =
-
-> +	/*
-> +	 * Enable the scaler before the plane so that we don't
-> +	 * get a catastrophic underrun even if the two operations
-> +	 * end up happening in two different frames.
-> +	 */
-> +	if (plane_state->scaler_id >=3D 0)
-> +		skl_program_plane_scaler(plane, crtc_state, plane_state);
-> +
->  	/*
->  	 * The control register self-arms if the plane was previously
->  	 * disabled. Try to make the plane enable atomic by writing
-> @@ -1041,9 +1049,6 @@ skl_program_plane(struct intel_plane *plane,
->  	intel_de_write_fw(dev_priv, PLANE_SURF(pipe, plane_id),
->  			  intel_plane_ggtt_offset(plane_state) + surf_addr);
->  =
-
-> -	if (plane_state->scaler_id >=3D 0)
-> -		skl_program_plane_scaler(plane, crtc_state, plane_state);
-> -
->  	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
->  }
->  =
-
-> -- =
-
-> 2.26.3
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
