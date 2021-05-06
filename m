@@ -2,31 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D78375881
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 18:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CA09375899
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 18:41:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4BB96E1F9;
-	Thu,  6 May 2021 16:34:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B28F6E0C5;
+	Thu,  6 May 2021 16:41:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 45B7E8910C;
- Thu,  6 May 2021 16:34:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4205FA47E2;
- Thu,  6 May 2021 16:34:21 +0000 (UTC)
+Received: from srv6.fidu.org (srv6.fidu.org [159.69.62.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FB556E0C5;
+ Thu,  6 May 2021 16:41:39 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by srv6.fidu.org (Postfix) with ESMTP id E2205C800AE;
+ Thu,  6 May 2021 18:41:37 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
+Received: from srv6.fidu.org ([127.0.0.1])
+ by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id P9VmPmbXH6xr; Thu,  6 May 2021 18:41:37 +0200 (CEST)
+Received: from [IPv6:2003:e3:7f12:f200:8bde:d9a7:b37:e3f5]
+ (p200300e37F12f2008bdED9a70B37E3f5.dip0.t-ipconnect.de
+ [IPv6:2003:e3:7f12:f200:8bde:d9a7:b37:e3f5])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ (Authenticated sender: wse@tuxedocomputers.com)
+ by srv6.fidu.org (Postfix) with ESMTPSA id 9B537C800AB;
+ Thu,  6 May 2021 18:41:35 +0200 (CEST)
+To: Jani Nikula <jani.nikula@linux.intel.com>, ville.syrjala@linux.intel.com, 
+ airlied@linux.ie, daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20210505172401.1453178-1-wse@tuxedocomputers.com>
+ <20210505172401.1453178-2-wse@tuxedocomputers.com> <87v97ww4e5.fsf@intel.com>
+From: Werner Sembach <wse@tuxedocomputers.com>
+Message-ID: <3796a7b9-8035-38ea-1c3d-b1ffe89aa19e@tuxedocomputers.com>
+Date: Thu, 6 May 2021 18:41:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Thu, 06 May 2021 16:34:21 -0000
-Message-ID: <162031886126.15692.10871299351467204142@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210506161930.309688-1-imre.deak@intel.com>
-In-Reply-To: <20210506161930.309688-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/adl=5Fp=3A_Add_support_for_Display_Page_Tables_=28rev2?=
- =?utf-8?q?=29?=
+In-Reply-To: <87v97ww4e5.fsf@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/3] New function to avoid duplicate code in
+ upcomming commits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,77 +54,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/adl_p: Add support for Display Page Tables (rev2)
-URL   : https://patchwork.freedesktop.org/series/89078/
-State : warning
+Am 06.05.21 um 12:19 schrieb Jani Nikula:
+> On Wed, 05 May 2021, Werner Sembach <wse@tuxedocomputers.com> wrote:
+>> Moves some checks that later will be performed 2 times to an own fuction. This
+>> avoids duplicate code later on.
+>>
+>> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+>> ---
+>>
+>> From 42a4a3a7d9ea9948b4071f406e7fcae23bfa0bdf Mon Sep 17 00:00:00 2001
+>> From: Werner Sembach <wse@tuxedocomputers.com>
+>> Date: Mon, 3 May 2021 14:35:39 +0200
+>> Subject: [PATCH 1/3] New function to avoid duplicate code in upcomming commits
+> What are you using to generate and send the patches? This looks like
+> unnecessary cruft, and our CI fails to apply and test the changes.
+>
+> BR,
+> Jani.
+I'm using git send-email with --compose and --annotate. The From, Date, and Subject lines are automatically generated by it and I then add the commit message above.
 
-== Summary ==
+After reading https://www.kernel.org/doc/html/v5.12/process/submitting-patches.html#the-canonical-patch-format I thought the format was:
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1887:21:    expected struct i915_vma *[assigned] vma
-+drivers/gpu/drm/i915/display/intel_display.c:1887:21:    got void [noderef] __iomem *[assigned] iomem
-+drivers/gpu/drm/i915/display/intel_display.c:1887:21: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1329:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_ring_submission.c:1203:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/gvt/mmio.c:295:23: warning: memcpy with byte count of 279040
-+drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+<commit message for upstream and signed of lines>
+---
+<additional comments only for mailing list/stuff that gets ignored by the tools>
+---
+<the patch>
 
+With the middle part being optional. (I only tested with "git apply" which worked fine with the format)
 
+I will resend the patches without the middle part, and the drm/i915/display in all subject lines.
+
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_hdmi.c | 41 ++++++++++++++---------
+>>  1 file changed, 26 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> index 46de56af33db..576d3d910d06 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> @@ -1861,6 +1861,31 @@ static int intel_hdmi_port_clock(int clock, int bpc)
+>>  	return clock * bpc / 8;
+>>  }
+>>  
+>> +static enum drm_mode_status
+>> +intel_hdmi_mode_clock_valid(struct intel_hdmi *hdmi, int clock, bool has_hdmi_sink)
+>> +{
+>> +	struct drm_device *dev = intel_hdmi_to_dev(hdmi);
+>> +	struct drm_i915_private *dev_priv = to_i915(dev);
+>> +	enum drm_mode_status status;
+>> +
+>> +	/* check if we can do 8bpc */
+>> +	status = hdmi_port_clock_valid(hdmi, clock, true, has_hdmi_sink);
+>> +
+>> +	if (has_hdmi_sink) {
+>> +		/* if we can't do 8bpc we may still be able to do 12bpc */
+>> +		if (status != MODE_OK && !HAS_GMCH(dev_priv))
+>> +			status = hdmi_port_clock_valid(hdmi, clock * 3 / 2,
+>> +						       true, has_hdmi_sink);
+>> +
+>> +		/* if we can't do 8,12bpc we may still be able to do 10bpc */
+>> +		if (status != MODE_OK && INTEL_GEN(dev_priv) >= 11)
+>> +			status = hdmi_port_clock_valid(hdmi, clock * 5 / 4,
+>> +						       true, has_hdmi_sink);
+>> +	}
+>> +
+>> +	return status;
+>> +}
+>> +
+>>  static enum drm_mode_status
+>>  intel_hdmi_mode_valid(struct drm_connector *connector,
+>>  		      struct drm_display_mode *mode)
+>> @@ -1891,21 +1916,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
+>>  	if (drm_mode_is_420_only(&connector->display_info, mode))
+>>  		clock /= 2;
+>>  
+>> -	/* check if we can do 8bpc */
+>> -	status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 8),
+>> -				       true, has_hdmi_sink);
+>> -
+>> -	if (has_hdmi_sink) {
+>> -		/* if we can't do 8bpc we may still be able to do 12bpc */
+>> -		if (status != MODE_OK && !HAS_GMCH(dev_priv))
+>> -			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 12),
+>> -						       true, has_hdmi_sink);
+>> -
+>> -		/* if we can't do 8,12bpc we may still be able to do 10bpc */
+>> -		if (status != MODE_OK && DISPLAY_VER(dev_priv) >= 11)
+>> -			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 10),
+>> -						       true, has_hdmi_sink);
+>> -	}
+>> +	status = intel_hdmi_mode_clock_valid(hdmi, clock, has_hdmi_sink);
+>>  	if (status != MODE_OK)
+>>  		return status;
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
