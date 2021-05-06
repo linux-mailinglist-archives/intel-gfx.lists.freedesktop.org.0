@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F58437585F
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 18:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C9837587B
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 18:32:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB7836ECD3;
-	Thu,  6 May 2021 16:19:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F57F6ECC0;
+	Thu,  6 May 2021 16:32:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D87A6ECD0
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 May 2021 16:19:52 +0000 (UTC)
-IronPort-SDR: 0CQAydV58MnZiMVWxVcCl6FVXR5Qn9kb/J6mMdrVDhBL2QUbn8qWLsgfxYNXQKqCDOPIViq9XK
- y4bjEbXQtvBg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9976"; a="195395957"
-X-IronPort-AV: E=Sophos;i="5.82,277,1613462400"; d="scan'208";a="195395957"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2021 09:19:52 -0700
-IronPort-SDR: P/GtWl7wAtgZBoSRutPKcpEohbhzuQb7QRmgj9Jb8VCm9SMrYjqj6dW+aTsHj7Aer8274vvDGO
- H/4P7Rve/rkA==
-X-IronPort-AV: E=Sophos;i="5.82,277,1613462400"; d="scan'208";a="407072222"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2021 09:19:51 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 May 2021 19:19:30 +0300
-Message-Id: <20210506161930.309688-11-imre.deak@intel.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210506161930.309688-1-imre.deak@intel.com>
-References: <20210506161930.309688-1-imre.deak@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 95DE06ECC0;
+ Thu,  6 May 2021 16:32:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8D4EEA47E2;
+ Thu,  6 May 2021 16:32:43 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 10/10] drm/i915/adl_p: Enable remapping to
- pad DPT FB strides to POT
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Thu, 06 May 2021 16:32:43 -0000
+Message-ID: <162031876354.15690.6294859618313606380@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210506161930.309688-1-imre.deak@intel.com>
+In-Reply-To: <20210506161930.309688-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/adl=5Fp=3A_Add_support_for_Display_Page_Tables_=28?=
+ =?utf-8?q?rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,77 +39,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RW5hYmxlIHBhZGRpbmcgb2YgRFBUIEZCIHN0cmlkZXMgdG8gUE9ULCB1c2luZyB0aGUgRkIgcmVt
-YXBwaW5nIGxvZ2ljLgoKU2lnbmVkLW9mZi1ieTogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwu
-Y29tPgpSZXZpZXdlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-YyB8IDE2ICsrKysrKysrKysrKy0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZmIuYyAgICAgIHwgIDcgKysrKystLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9mYi5oICAgICAgfCAgMSArCiAzIGZpbGVzIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKyks
-IDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXkuYwppbmRleCA3MGFjMTk3NzQ2YjFmLi5mZjBjZmRmMWE5MGVlIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMjMxLDE2ICsyMzEsMjIg
-QEAgc3RhdGljIHZvaWQgZHB0X2NsZWFudXAoc3RydWN0IGk5MTVfYWRkcmVzc19zcGFjZSAqdm0p
-CiB9CiAKIHN0YXRpYyBzdHJ1Y3QgaTkxNV9hZGRyZXNzX3NwYWNlICoKLWludGVsX2RwdF9jcmVh
-dGUoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmopCitpbnRlbF9kcHRfY3JlYXRlKHN0cnVjdCBp
-bnRlbF9mcmFtZWJ1ZmZlciAqZmIpCiB7CisJc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmogPSAm
-aW50ZWxfZmJfb2JqKCZmYi0+YmFzZSktPmJhc2U7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-Kmk5MTUgPSB0b19pOTE1KG9iai0+ZGV2KTsKLQlzaXplX3Qgc2l6ZSA9IERJVl9ST1VORF9VUF9V
-TEwob2JqLT5zaXplLCA1MTIpOwogCXN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpkcHRfb2Jq
-OwogCXN0cnVjdCBpOTE1X2FkZHJlc3Nfc3BhY2UgKnZtOwogCXN0cnVjdCBpOTE1X2RwdCAqZHB0
-OworCXNpemVfdCBzaXplOwogCWludCByZXQ7CiAKLQlzaXplID0gcm91bmRfdXAoc2l6ZSwgNDA5
-Nik7CisJaWYgKGludGVsX2ZiX25lZWRzX3BvdF9zdHJpZGVfcmVtYXAoZmIpKQorCQlzaXplID0g
-aW50ZWxfcmVtYXBwZWRfaW5mb19zaXplKCZmYi0+cmVtYXBwZWRfdmlldy5ndHQucmVtYXBwZWQp
-OworCWVsc2UKKwkJc2l6ZSA9IERJVl9ST1VORF9VUF9VTEwob2JqLT5zaXplLCBJOTE1X0dUVF9Q
-QUdFX1NJWkUpOworCisJc2l6ZSA9IHJvdW5kX3VwKHNpemUgKiBzaXplb2YoZ2VuOF9wdGVfdCks
-IEk5MTVfR1RUX1BBR0VfU0laRSk7CiAKIAlpZiAoSEFTX0xNRU0oaTkxNSkpCiAJCWRwdF9vYmog
-PSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX2xtZW0oaTkxNSwgc2l6ZSwgMCk7CkBAIC0xMTU2Niw4
-ICsxMTU3MiwxMCBAQCBzdGF0aWMgaW50IGludGVsX2ZyYW1lYnVmZmVyX2luaXQoc3RydWN0IGlu
-dGVsX2ZyYW1lYnVmZmVyICppbnRlbF9mYiwKIAkJCX0KIAkJfQogCisJCS8qIFRPRE86IEFkZCBQ
-T1Qgc3RyaWRlIHJlbWFwcGluZyBzdXBwb3J0IGZvciBDQ1MgZm9ybWF0cyBhcyB3ZWxsLiAqLwog
-CQlpZiAoSVNfQUxERVJMQUtFX1AoZGV2X3ByaXYpICYmCiAJCSAgICBtb2RlX2NtZC0+bW9kaWZp
-ZXJbaV0gIT0gRFJNX0ZPUk1BVF9NT0RfTElORUFSICYmCisJCSAgICAhaW50ZWxfZmJfbmVlZHNf
-cG90X3N0cmlkZV9yZW1hcChpbnRlbF9mYikgJiYKIAkJICAgICFpc19wb3dlcl9vZl8yKG1vZGVf
-Y21kLT5waXRjaGVzW2ldKSkgewogCQkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sCiAJCQkJ
-ICAgICJwbGFuZSAlZCBwaXRjaCAoJWQpIG11c3QgYmUgcG93ZXIgb2YgdHdvIGZvciB0aWxlZCBi
-dWZmZXJzXG4iLApAQCAtMTE1ODUsNyArMTE1OTMsNyBAQCBzdGF0aWMgaW50IGludGVsX2ZyYW1l
-YnVmZmVyX2luaXQoc3RydWN0IGludGVsX2ZyYW1lYnVmZmVyICppbnRlbF9mYiwKIAlpZiAoaW50
-ZWxfZmJfdXNlc19kcHQoZmIpKSB7CiAJCXN0cnVjdCBpOTE1X2FkZHJlc3Nfc3BhY2UgKnZtOwog
-Ci0JCXZtID0gaW50ZWxfZHB0X2NyZWF0ZSgmb2JqLT5iYXNlKTsKKwkJdm0gPSBpbnRlbF9kcHRf
-Y3JlYXRlKGludGVsX2ZiKTsKIAkJaWYgKElTX0VSUih2bSkpIHsKIAkJCXJldCA9IFBUUl9FUlIo
-dm0pOwogCQkJZ290byBlcnI7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2ZiLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiLmMK
-aW5kZXggMjljNTU4ZmJiMzk3YS4uYTAwNWM2ODg4OWU3YyAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZmIuYwpAQCAtNDc4LDkgKzQ3OCwxMiBAQCBzdGF0aWMgYm9vbCBpbnRl
-bF9wbGFuZV9jYW5fcmVtYXAoY29uc3Qgc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9z
-dGF0ZSkKIAlyZXR1cm4gdHJ1ZTsKIH0KIAotc3RhdGljIGJvb2wgaW50ZWxfZmJfbmVlZHNfcG90
-X3N0cmlkZV9yZW1hcChjb25zdCBzdHJ1Y3QgaW50ZWxfZnJhbWVidWZmZXIgKmZiKQorYm9vbCBp
-bnRlbF9mYl9uZWVkc19wb3Rfc3RyaWRlX3JlbWFwKGNvbnN0IHN0cnVjdCBpbnRlbF9mcmFtZWJ1
-ZmZlciAqZmIpCiB7Ci0JcmV0dXJuIGZhbHNlOworCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpp
-OTE1ID0gdG9faTkxNShmYi0+YmFzZS5kZXYpOworCisJcmV0dXJuIElTX0FMREVSTEFLRV9QKGk5
-MTUpICYmIGZiLT5iYXNlLm1vZGlmaWVyICE9IERSTV9GT1JNQVRfTU9EX0xJTkVBUiAmJgorCSAg
-ICAgICAhaXNfY2NzX21vZGlmaWVyKGZiLT5iYXNlLm1vZGlmaWVyKTsKIH0KIAogc3RhdGljIGlu
-dCBpbnRlbF9mYl9waXRjaChjb25zdCBzdHJ1Y3QgaW50ZWxfZnJhbWVidWZmZXIgKmZiLCBpbnQg
-Y29sb3JfcGxhbmUsIHVuc2lnbmVkIGludCByb3RhdGlvbikKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmIuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZmIuaAppbmRleCBkNzdkOWY5MTRjZjRjLi43MzlkMWI5MTc1NGJkIDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiLmgKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYi5oCkBAIC00NSw2ICs0NSw3IEBAIHUz
-MiBpbnRlbF9wbGFuZV9jb21wdXRlX2FsaWduZWRfb2Zmc2V0KGludCAqeCwgaW50ICp5LAogCQkJ
-CSAgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKnN0YXRlLAogCQkJCSAgICAg
-ICBpbnQgY29sb3JfcGxhbmUpOwogCitib29sIGludGVsX2ZiX25lZWRzX3BvdF9zdHJpZGVfcmVt
-YXAoY29uc3Qgc3RydWN0IGludGVsX2ZyYW1lYnVmZmVyICpmYik7CiBib29sIGludGVsX2ZiX3N1
-cHBvcnRzXzkwXzI3MF9yb3RhdGlvbihjb25zdCBzdHJ1Y3QgaW50ZWxfZnJhbWVidWZmZXIgKmZi
-KTsKIAogaW50IGludGVsX2ZpbGxfZmJfaW5mbyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
-NSwgc3RydWN0IGludGVsX2ZyYW1lYnVmZmVyICpmYik7Ci0tIAoyLjI3LjAKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
-c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915/adl_p: Add support for Display Page Tables (rev2)
+URL   : https://patchwork.freedesktop.org/series/89078/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+ff3b7dc8f685 drm/i915/xelpd: add XE_LPD display characteristics
+a319d966c549 drm/i915/adl_p: Add PCI Devices IDs
+-:26: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#26: FILE: include/drm/i915_pciids.h:651:
++#define INTEL_ADLP_IDS(info) \
++	INTEL_VGA_DEVICE(0x46A0, info), \
++	INTEL_VGA_DEVICE(0x46A1, info), \
++	INTEL_VGA_DEVICE(0x46A2, info), \
++	INTEL_VGA_DEVICE(0x46A3, info), \
++	INTEL_VGA_DEVICE(0x46A6, info), \
++	INTEL_VGA_DEVICE(0x46A8, info), \
++	INTEL_VGA_DEVICE(0x46AA, info), \
++	INTEL_VGA_DEVICE(0x462A, info), \
++	INTEL_VGA_DEVICE(0x4626, info), \
++	INTEL_VGA_DEVICE(0x4628, info), \
++	INTEL_VGA_DEVICE(0x46B0, info), \
++	INTEL_VGA_DEVICE(0x46B1, info), \
++	INTEL_VGA_DEVICE(0x46B2, info), \
++	INTEL_VGA_DEVICE(0x46B3, info), \
++	INTEL_VGA_DEVICE(0x46C0, info), \
++	INTEL_VGA_DEVICE(0x46C1, info), \
++	INTEL_VGA_DEVICE(0x46C2, info), \
++	INTEL_VGA_DEVICE(0x46C3, info)
+
+-:26: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'info' - possible side-effects?
+#26: FILE: include/drm/i915_pciids.h:651:
++#define INTEL_ADLP_IDS(info) \
++	INTEL_VGA_DEVICE(0x46A0, info), \
++	INTEL_VGA_DEVICE(0x46A1, info), \
++	INTEL_VGA_DEVICE(0x46A2, info), \
++	INTEL_VGA_DEVICE(0x46A3, info), \
++	INTEL_VGA_DEVICE(0x46A6, info), \
++	INTEL_VGA_DEVICE(0x46A8, info), \
++	INTEL_VGA_DEVICE(0x46AA, info), \
++	INTEL_VGA_DEVICE(0x462A, info), \
++	INTEL_VGA_DEVICE(0x4626, info), \
++	INTEL_VGA_DEVICE(0x4628, info), \
++	INTEL_VGA_DEVICE(0x46B0, info), \
++	INTEL_VGA_DEVICE(0x46B1, info), \
++	INTEL_VGA_DEVICE(0x46B2, info), \
++	INTEL_VGA_DEVICE(0x46B3, info), \
++	INTEL_VGA_DEVICE(0x46C0, info), \
++	INTEL_VGA_DEVICE(0x46C1, info), \
++	INTEL_VGA_DEVICE(0x46C2, info), \
++	INTEL_VGA_DEVICE(0x46C3, info)
+
+total: 1 errors, 0 warnings, 1 checks, 25 lines checked
+a35b4326f650 drm/i915/adl_p: ADL_P device info enabling
+9c9b86ac6d1f drm/i915/xelpd: First stab at DPT support
+-:589: WARNING:UNNECESSARY_ELSE: else is not generally useful after a break or return
+#589: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:946:
++		return offset >> 9;
++	} else {
+
+total: 0 errors, 1 warnings, 0 checks, 591 lines checked
+c248682ab7f3 drm/i915/xelpd: Fallback to plane stride limitations when using DPT
+c14a9051e424 drm/i915/xelpd: Support 128k plane stride
+c55b96cff231 drm/i915/adl_p: Add stride restriction when using DPT
+f86259ff5f81 drm/i915/adl_p: Disable support for 90/270 FB rotation
+6cc7df9cf93e drm/i915/adl_p: Require a minimum of 8 tiles stride for DPT FBs
+e83dba92cd47 drm/i915/adl_p: Enable remapping to pad DPT FB strides to POT
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
