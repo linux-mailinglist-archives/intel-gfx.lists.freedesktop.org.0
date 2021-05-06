@@ -2,46 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CA09375899
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 18:41:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9200D3758D9
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 19:03:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B28F6E0C5;
-	Thu,  6 May 2021 16:41:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09C176ECC0;
+	Thu,  6 May 2021 17:03:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [159.69.62.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FB556E0C5;
- Thu,  6 May 2021 16:41:39 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id E2205C800AE;
- Thu,  6 May 2021 18:41:37 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id P9VmPmbXH6xr; Thu,  6 May 2021 18:41:37 +0200 (CEST)
-Received: from [IPv6:2003:e3:7f12:f200:8bde:d9a7:b37:e3f5]
- (p200300e37F12f2008bdED9a70B37E3f5.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f12:f200:8bde:d9a7:b37:e3f5])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id 9B537C800AB;
- Thu,  6 May 2021 18:41:35 +0200 (CEST)
-To: Jani Nikula <jani.nikula@linux.intel.com>, ville.syrjala@linux.intel.com, 
- airlied@linux.ie, daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20210505172401.1453178-1-wse@tuxedocomputers.com>
- <20210505172401.1453178-2-wse@tuxedocomputers.com> <87v97ww4e5.fsf@intel.com>
-From: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <3796a7b9-8035-38ea-1c3d-b1ffe89aa19e@tuxedocomputers.com>
-Date: Thu, 6 May 2021 18:41:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C59536ECC0;
+ Thu,  6 May 2021 17:03:29 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BDC0BA0BCB;
+ Thu,  6 May 2021 17:03:29 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <87v97ww4e5.fsf@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/3] New function to avoid duplicate code in
- upcomming commits
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Thu, 06 May 2021 17:03:29 -0000
+Message-ID: <162032060977.15691.7886974549144665505@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210506161930.309688-1-imre.deak@intel.com>
+In-Reply-To: <20210506161930.309688-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/adl=5Fp=3A_Add_support_for_Display_Page_Tables_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,107 +38,230 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0675647767=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============0675647767==
+Content-Type: multipart/alternative;
+ boundary="===============8025141874257449752=="
 
-Am 06.05.21 um 12:19 schrieb Jani Nikula:
-> On Wed, 05 May 2021, Werner Sembach <wse@tuxedocomputers.com> wrote:
->> Moves some checks that later will be performed 2 times to an own fuction. This
->> avoids duplicate code later on.
->>
->> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
->> ---
->>
->> From 42a4a3a7d9ea9948b4071f406e7fcae23bfa0bdf Mon Sep 17 00:00:00 2001
->> From: Werner Sembach <wse@tuxedocomputers.com>
->> Date: Mon, 3 May 2021 14:35:39 +0200
->> Subject: [PATCH 1/3] New function to avoid duplicate code in upcomming commits
-> What are you using to generate and send the patches? This looks like
-> unnecessary cruft, and our CI fails to apply and test the changes.
->
-> BR,
-> Jani.
-I'm using git send-email with --compose and --annotate. The From, Date, and Subject lines are automatically generated by it and I then add the commit message above.
+--===============8025141874257449752==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-After reading https://www.kernel.org/doc/html/v5.12/process/submitting-patches.html#the-canonical-patch-format I thought the format was:
+== Series Details ==
 
-<commit message for upstream and signed of lines>
----
-<additional comments only for mailing list/stuff that gets ignored by the tools>
----
-<the patch>
+Series: drm/i915/adl_p: Add support for Display Page Tables (rev2)
+URL   : https://patchwork.freedesktop.org/series/89078/
+State : failure
 
-With the middle part being optional. (I only tested with "git apply" which worked fine with the format)
+== Summary ==
 
-I will resend the patches without the middle part, and the drm/i915/display in all subject lines.
+CI Bug Log - changes from CI_DRM_10053 -> Patchwork_20077
+====================================================
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_hdmi.c | 41 ++++++++++++++---------
->>  1 file changed, 26 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> index 46de56af33db..576d3d910d06 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> @@ -1861,6 +1861,31 @@ static int intel_hdmi_port_clock(int clock, int bpc)
->>  	return clock * bpc / 8;
->>  }
->>  
->> +static enum drm_mode_status
->> +intel_hdmi_mode_clock_valid(struct intel_hdmi *hdmi, int clock, bool has_hdmi_sink)
->> +{
->> +	struct drm_device *dev = intel_hdmi_to_dev(hdmi);
->> +	struct drm_i915_private *dev_priv = to_i915(dev);
->> +	enum drm_mode_status status;
->> +
->> +	/* check if we can do 8bpc */
->> +	status = hdmi_port_clock_valid(hdmi, clock, true, has_hdmi_sink);
->> +
->> +	if (has_hdmi_sink) {
->> +		/* if we can't do 8bpc we may still be able to do 12bpc */
->> +		if (status != MODE_OK && !HAS_GMCH(dev_priv))
->> +			status = hdmi_port_clock_valid(hdmi, clock * 3 / 2,
->> +						       true, has_hdmi_sink);
->> +
->> +		/* if we can't do 8,12bpc we may still be able to do 10bpc */
->> +		if (status != MODE_OK && INTEL_GEN(dev_priv) >= 11)
->> +			status = hdmi_port_clock_valid(hdmi, clock * 5 / 4,
->> +						       true, has_hdmi_sink);
->> +	}
->> +
->> +	return status;
->> +}
->> +
->>  static enum drm_mode_status
->>  intel_hdmi_mode_valid(struct drm_connector *connector,
->>  		      struct drm_display_mode *mode)
->> @@ -1891,21 +1916,7 @@ intel_hdmi_mode_valid(struct drm_connector *connector,
->>  	if (drm_mode_is_420_only(&connector->display_info, mode))
->>  		clock /= 2;
->>  
->> -	/* check if we can do 8bpc */
->> -	status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 8),
->> -				       true, has_hdmi_sink);
->> -
->> -	if (has_hdmi_sink) {
->> -		/* if we can't do 8bpc we may still be able to do 12bpc */
->> -		if (status != MODE_OK && !HAS_GMCH(dev_priv))
->> -			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 12),
->> -						       true, has_hdmi_sink);
->> -
->> -		/* if we can't do 8,12bpc we may still be able to do 10bpc */
->> -		if (status != MODE_OK && DISPLAY_VER(dev_priv) >= 11)
->> -			status = hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 10),
->> -						       true, has_hdmi_sink);
->> -	}
->> +	status = intel_hdmi_mode_clock_valid(hdmi, clock, has_hdmi_sink);
->>  	if (status != MODE_OK)
->>  		return status;
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_20077 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_20077, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_20077:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10053/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20077 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-tgl-y:           NOTRUN -> [SKIP][3] ([fdo#109315] / [i915#2575])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-snb-2600:        [PASS][4] -> [INCOMPLETE][5] ([i915#2782])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10053/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
+  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
+  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_10053 -> Patchwork_20077
+
+  CI-20190529: 20190529
+  CI_DRM_10053: 3e000bbf311ad04f734843e1ba6396b28ba44399 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6080: 1c450c3d4df19cf1087b8ccff3b62cb51addacae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20077: e83dba92cd47bd2b5841fc8e7f66bbd7d376e7bd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e83dba92cd47 drm/i915/adl_p: Enable remapping to pad DPT FB strides to POT
+6cc7df9cf93e drm/i915/adl_p: Require a minimum of 8 tiles stride for DPT FBs
+f86259ff5f81 drm/i915/adl_p: Disable support for 90/270 FB rotation
+c55b96cff231 drm/i915/adl_p: Add stride restriction when using DPT
+c14a9051e424 drm/i915/xelpd: Support 128k plane stride
+c248682ab7f3 drm/i915/xelpd: Fallback to plane stride limitations when using DPT
+9c9b86ac6d1f drm/i915/xelpd: First stab at DPT support
+a35b4326f650 drm/i915/adl_p: ADL_P device info enabling
+a319d966c549 drm/i915/adl_p: Add PCI Devices IDs
+ff3b7dc8f685 drm/i915/xelpd: add XE_LPD display characteristics
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/index.html
+
+--===============8025141874257449752==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/adl_p: Add support for Display Page Tables (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89078/">https://patchwork.freedesktop.org/series/89078/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10053 -&gt; Patchwork_20077</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_20077 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_20077, please notify your bug team to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/index.html</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_20077:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_chamelium@common-hpd-after-suspend:<ul>
+<li>fi-kbl-7500u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10053/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/fi-kbl-7500u/igt@kms_chamelium@common-hpd-after-suspend.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20077 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10053/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20077/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10053 -&gt; Patchwork_20077</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10053: 3e000bbf311ad04f734843e1ba6396b28ba44399 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6080: 1c450c3d4df19cf1087b8ccff3b62cb51addacae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20077: e83dba92cd47bd2b5841fc8e7f66bbd7d376e7bd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>e83dba92cd47 drm/i915/adl_p: Enable remapping to pad DPT FB strides to POT<br />
+6cc7df9cf93e drm/i915/adl_p: Require a minimum of 8 tiles stride for DPT FBs<br />
+f86259ff5f81 drm/i915/adl_p: Disable support for 90/270 FB rotation<br />
+c55b96cff231 drm/i915/adl_p: Add stride restriction when using DPT<br />
+c14a9051e424 drm/i915/xelpd: Support 128k plane stride<br />
+c248682ab7f3 drm/i915/xelpd: Fallback to plane stride limitations when using DPT<br />
+9c9b86ac6d1f drm/i915/xelpd: First stab at DPT support<br />
+a35b4326f650 drm/i915/adl_p: ADL_P device info enabling<br />
+a319d966c549 drm/i915/adl_p: Add PCI Devices IDs<br />
+ff3b7dc8f685 drm/i915/xelpd: add XE_LPD display characteristics</p>
+
+</body>
+</html>
+
+--===============8025141874257449752==--
+
+--===============0675647767==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0675647767==--
