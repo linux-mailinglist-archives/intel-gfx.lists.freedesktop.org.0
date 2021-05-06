@@ -2,83 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5811375121
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 10:53:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 568EF375126
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 10:54:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 138D089F63;
-	Thu,  6 May 2021 08:53:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C44DD89F63;
+	Thu,  6 May 2021 08:54:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [216.205.24.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8BB289F63
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 May 2021 08:53:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1620291217;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=tLJujqCr2oCfihsIdM+/PINisIxOrtHhnzEnsEjH8Vc=;
- b=O9U94aA3FNgsJBf29eE6XUi3YT80K45+5K/UmMHsa2UkUDU1Ou5e3KiTWcUb8xNFHry/ra
- P8iPeoEwgPm0sin3saevjgXO4YtZmWJ7jpAmMYz8bhlzGZXVHzrWaVE59AtZn+tFTXA3Zl
- Q5ocoMA/jUPgzl3mVHmuQ9eigz9lzBg=
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
- [209.85.208.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-139-jXvgS2ufOdCKoK2gl306hQ-1; Thu, 06 May 2021 04:53:34 -0400
-X-MC-Unique: jXvgS2ufOdCKoK2gl306hQ-1
-Received: by mail-ed1-f71.google.com with SMTP id
- d8-20020a0564020008b0290387d38e3ce0so2285348edu.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 06 May 2021 01:53:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=tLJujqCr2oCfihsIdM+/PINisIxOrtHhnzEnsEjH8Vc=;
- b=EzqjiLvCc30Jbwz7mnYg3uhiSDgcLYmnD2nhUZf2Qa3EO/fNt148UVh6nUHR/bZv1R
- M2UQo1Ux7dfE4W01pOZEvL2fCmOAAPWyiN0E6Smku1zwv5NSfHQmi9RQ553DBXUZcDXU
- Rcvd8xSit9brg1i4XcNsHxfauJkSI0Etfv0Q2GGhvDBidWELearmR9t7Tuoej8vfHe+/
- vytGaupNR6XJxB7j7CG1kqnoJAlX781AqWayfrvuf4kLxWKCsS4FIl/jHofj58La3Dbk
- wLsOcBRJn9+INbOTKWKI6/VUmWKzpKefbaOVU98dmVscmK131doF+5VA3hb0omgjoNeB
- w2yA==
-X-Gm-Message-State: AOAM530fh9y6EFb6ttJrKO75yT/BrkMg+anTpiEt/yGis8WZLslaLq6c
- bgE2JyT+/VUoZaauCmSpSoMbYekYXjJVOIZBtw+NCWTEyjmwwSlA1zzlQ6ys/HTA29zUdaMmuzC
- 9WJi4YmhIH673oLuSTk9YlMFs991g5p7PlyfevCUHgPt952kzXVnb0dVuwCo8RBLLkKQCLjaUcC
- EcDd4l
-X-Received: by 2002:a05:6402:4a:: with SMTP id
- f10mr3819319edu.85.1620291213478; 
- Thu, 06 May 2021 01:53:33 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxKOxyvTTJUzJJLW3Mk3NujzJOz1XPqHbftGBjw11EEyFefFYbz/pMRQvQNafbsXTwDjsXRAg==
-X-Received: by 2002:a05:6402:4a:: with SMTP id
- f10mr3819300edu.85.1620291213281; 
- Thu, 06 May 2021 01:53:33 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
- by smtp.gmail.com with ESMTPSA id dk13sm1134000edb.34.2021.05.06.01.53.32
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 06 May 2021 01:53:32 -0700 (PDT)
-To: intel-gfx@lists.freedesktop.org
-References: <20210505162415.531876-1-hdegoede@redhat.com>
- <162024206908.25404.3483956842623674239@emeril.freedesktop.org>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <6d797ba8-a5cd-1d82-774d-64a8c83918b3@redhat.com>
-Date: Thu, 6 May 2021 10:53:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CD3E189F63;
+ Thu,  6 May 2021 08:54:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C5C33A47DB;
+ Thu,  6 May 2021 08:54:56 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <162024206908.25404.3483956842623674239@emeril.freedesktop.org>
-Authentication-Results: relay.mimecast.com;
- auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?_+_usb-type-c=3A_Add_support_for_out-of-band_hotplug_notificati?=
- =?utf-8?b?b24gKHJldjMp?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nischal Varide" <nischal.varide@intel.com>
+Date: Thu, 06 May 2021 08:54:56 -0000
+Message-ID: <162029129680.15693.5955509654593596493@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210506004719.4121-1-nischal.varide@intel.com>
+In-Reply-To: <20210506004719.4121-1-nischal.varide@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Expose_HDMI_properties_to_userspace?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,70 +38,231 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0420110447=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+--===============0420110447==
+Content-Type: multipart/alternative;
+ boundary="===============3803614046753296540=="
 
-On 5/5/21 9:14 PM, Patchwork wrote:
-> *Patch Details*
-> *Series:*	drm + usb-type-c: Add support for out-of-band hotplug notification (rev3)
-> *URL:*	https://patchwork.freedesktop.org/series/89604/ <https://patchwork.freedesktop.org/series/89604/>
-> *State:*	failure
-> *Details:*	https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20068/index.html <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20068/index.html>
-> 
-> 
->   CI Bug Log - changes from CI_DRM_10049_full -> Patchwork_20068_full
-> 
-> 
->     Summary
-> 
-> *FAILURE*
-> 
-> Serious unknown changes coming with Patchwork_20068_full absolutely need to be
-> verified manually.
-> 
-> If you think the reported changes have nothing to do with the changes
-> introduced in Patchwork_20068_full, please notify your bug team to allow them
-> to document this new failure mode, which will reduce false positives in CI.
-> 
-> 
->     Possible new issues
-> 
-> Here are the unknown changes that may have been introduced in Patchwork_20068_full:
-> 
-> 
->       IGT changes
-> 
-> 
->         Possible regressions
-> 
->   * igt@gem_exec_schedule@pi-ringfull@vecs0:
->       o shard-skl: PASS <https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10049/shard-skl4/igt@gem_exec_schedule@pi-ringfull@vecs0.html> -> FAIL <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20068/shard-skl2/igt@gem_exec_schedule@pi-ringfull@vecs0.html>
+--===============3803614046753296540==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/display: Expose HDMI properties to userspace
+URL   : https://patchwork.freedesktop.org/series/89833/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_10050 -> Patchwork_20076
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_20076 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@amdgpu/amd_basic@query-info:
+    - fi-bsw-kefka:       NOTRUN -> [SKIP][1] ([fdo#109271]) +17 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-tgl-y:           NOTRUN -> [SKIP][2] ([fdo#109315] / [i915#2575])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bsw-nick:        [PASS][3] -> [INCOMPLETE][4] ([i915#2782] / [i915#2940])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-nick/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [PASS][5] -> [DMESG-WARN][6] ([i915#2868])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@runner@aborted:
+    - fi-bsw-nick:        NOTRUN -> [FAIL][7] ([i915#1436])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-nick/igt@runner@aborted.html
+    - fi-kbl-r:           NOTRUN -> [FAIL][8] ([i915#1569] / [i915#192] / [i915#193] / [i915#194] / [i915#3363])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-kbl-r/igt@runner@aborted.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bsw-kefka:       [INCOMPLETE][9] ([i915#2782]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
+  [i915#1569]: https://gitlab.freedesktop.org/drm/intel/issues/1569
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
+  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
+  [i915#2868]: https://gitlab.freedesktop.org/drm/intel/issues/2868
+  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
+  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
 
 
-I believe that this is a false-positive as this series does not touch any related
-code (it only touches modesetting code).
+Participating hosts (44 -> 40)
+------------------------------
 
-> 
-> 
->       Piglit changes
-> 
-> 
->         Possible regressions
-> 
->   * shaders@glsl-fs-texturecube-2 (NEW):
->       o pig-skl-6260u: NOTRUN -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20068/pig-skl-6260u/shaders@glsl-fs-texturecube-2.html> +4 similar issues
+  Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u 
 
-Idem.
 
-Regards,
+Build changes
+-------------
 
-Hans
+  * Linux: CI_DRM_10050 -> Patchwork_20076
+
+  CI-20190529: 20190529
+  CI_DRM_10050: ae46d9d790a148ab7b293cad67c770c0221e2c83 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_6079: c77c1e9d716481aa44d713e8c91873aa679547ac @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_20076: fed7f9fc21dbb0bc30f75c1180d775699c3126ad @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fed7f9fc21db drm/i915/display: Expose HDMI properties to userspace
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html
+
+--===============3803614046753296540==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Expose HDMI properties to userspace</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89833/">https://patchwork.freedesktop.org/series/89833/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_10050 -&gt; Patchwork_20076</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/index.html</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_20076 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@amdgpu/amd_basic@query-info:</p>
+<ul>
+<li>fi-bsw-kefka:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-kefka/igt@amdgpu/amd_basic@query-info.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
+</ul>
+</li>
+<li>
+<p>igt@amdgpu/amd_prime@amd-to-i915:</p>
+<ul>
+<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-tgl-y/igt@amdgpu/amd_prime@amd-to-i915.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@execlists:</p>
+<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-bsw-nick/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
+<ul>
+<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2868">i915#2868</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>
+<p>fi-bsw-nick:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-nick/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a>)</p>
+</li>
+<li>
+<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1569">i915#1569</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/192">i915#192</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/193">i915#193</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/194">i915#194</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10050/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20076/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Participating hosts (44 -&gt; 40)</h2>
+<p>Missing    (4): fi-ctg-p8600 fi-ilk-m540 fi-bdw-samus fi-hsw-4200u </p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_10050 -&gt; Patchwork_20076</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_10050: ae46d9d790a148ab7b293cad67c770c0221e2c83 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_6079: c77c1e9d716481aa44d713e8c91873aa679547ac @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
+  Patchwork_20076: fed7f9fc21dbb0bc30f75c1180d775699c3126ad @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+<p>== Linux commits ==</p>
+<p>fed7f9fc21db drm/i915/display: Expose HDMI properties to userspace</p>
+
+</body>
+</html>
+
+--===============3803614046753296540==--
+
+--===============0420110447==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0420110447==--
