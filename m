@@ -1,41 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F2B375046
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 09:39:51 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4521375043
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 May 2021 09:38:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E9096E51B;
-	Thu,  6 May 2021 07:39:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A743289E8C;
+	Thu,  6 May 2021 07:38:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E82A46E51B
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 May 2021 07:39:47 +0000 (UTC)
-IronPort-SDR: vVaLnP7K8IhMinxLcZuZ3085xpbOYo3Qw+o49cyQorRBOkhGDni8lEvd3HOmPE2QpB6lh7vUAn
- kQpWerXm6O/w==
-X-IronPort-AV: E=McAfee;i="6200,9189,9975"; a="185866334"
-X-IronPort-AV: E=Sophos;i="5.82,276,1613462400"; d="scan'208";a="185866334"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2021 00:39:47 -0700
-IronPort-SDR: 0hKtYl64musL1IWiHvGXjASp6wks6+92jUJXGy2hgu1dexjwo2wMa9IJntcxQvkdr/cp9qLqsr
- /ntgaJ9j4mJw==
-X-IronPort-AV: E=Sophos;i="5.82,276,1613462400"; d="scan'208";a="532444511"
-Received: from unknown (HELO Nischal-desktop.iind.intel.com) ([10.223.74.174])
- by fmsmga001-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 May 2021 00:39:44 -0700
-From: Nischal Varide <nischal.varide@intel.com>
-To: intel-gfx@lists.freedesktop.org, nischal.varide@intel.com,
- uma.shankar@intel.com, anshuman.gupta@intel.com
-Date: Thu,  6 May 2021 06:17:19 +0530
-Message-Id: <20210506004719.4121-2-nischal.varide@intel.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210506004719.4121-1-nischal.varide@intel.com>
-References: <20210506004719.4121-1-nischal.varide@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD86989E8C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 May 2021 07:38:41 +0000 (UTC)
+IronPort-SDR: tMYlljmZskERh2KKz4tI3rLuxME+jF58+d+GE0vKTbsWEIk0mmNJQZTqplzYVpt1Qxjj4wtqaS
+ MaN/2Yq3PO+A==
+X-IronPort-AV: E=McAfee;i="6200,9189,9975"; a="198043101"
+X-IronPort-AV: E=Sophos;i="5.82,276,1613462400"; d="scan'208";a="198043101"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2021 00:38:40 -0700
+IronPort-SDR: QXNpDOOZ3vnqDQDlXXtRU0dXnNYLu2ckPTd8Za61BS1I1gSpyGGylducCaoUZHfgOAk2CSpDc1
+ FXSvdfPO7IJg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,276,1613462400"; d="scan'208";a="464601928"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga002.fm.intel.com with SMTP; 06 May 2021 00:38:37 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 06 May 2021 10:38:36 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  6 May 2021 10:38:36 +0300
+Message-Id: <20210506073836.14848-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 1/1] drm/i915/display: Expose HDMI properties to
- userspace
+Subject: [Intel-gfx] [PATCH] drm/i915: Reorder skl+ scaler vs. plane updates
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,203 +46,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Cooper Chiou <cooper.chiou@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Right now the HDMI properties like vendor and product ids are hardcoded
-in the function "intel_hdmi_compute_spd_infoframe()".
-
-ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx").
-
-This patch enables the possibility of setting vendor and product fields
-of the Infoframe structure in the userspace, instead of hardcoding in
-the kernel.
-
-The changes has been Tested by an IGT testcase , which will be floated
-in few hours
-
-Signed-off-by: Nischal Varide <nischal.varide@intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic.c   | 14 +++++++++++++
- .../gpu/drm/i915/display/intel_connector.c    | 20 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_connector.h    |  1 +
- .../drm/i915/display/intel_display_types.h    |  5 +++++
- drivers/gpu/drm/i915/display/intel_hdmi.c     | 14 ++++++++++++-
- drivers/gpu/drm/i915/display/intel_hdmi.h     |  5 +++++
- drivers/gpu/drm/i915/i915_drv.h               |  1 +
- 7 files changed, 59 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-index 45feaaddab26..4d38eeb9dd33 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-@@ -65,6 +65,9 @@ int intel_digital_connector_atomic_get_property(struct drm_connector *connector,
- 		*val = intel_conn_state->force_audio;
- 	else if (property == dev_priv->broadcast_rgb_property)
- 		*val = intel_conn_state->broadcast_rgb;
-+	else if (property ==  dev_priv->hdmi_vendor_product_property)
-+		*val = (intel_conn_state->hdmi_vendor_product_blob)
-+			? (intel_conn_state->hdmi_vendor_product_blob->base.id) : 0;
- 	else {
- 		drm_dbg_atomic(&dev_priv->drm,
- 			       "Unknown property [PROP:%d:%s]\n",
-@@ -93,6 +96,7 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_digital_connector_state *intel_conn_state =
- 		to_intel_digital_connector_state(state);
-+	struct drm_property_blob *new_blob = NULL;
- 
- 	if (property == dev_priv->force_audio_property) {
- 		intel_conn_state->force_audio = val;
-@@ -104,6 +108,16 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
- 		return 0;
- 	}
- 
-+	if (property ==  dev_priv->hdmi_vendor_product_property) {
-+		new_blob = drm_property_lookup_blob(dev, val);
-+		if (new_blob == NULL)
-+			return -EINVAL;
-+		if (drm_property_replace_blob
-+			(&intel_conn_state->hdmi_vendor_product_blob, new_blob)) {
-+			drm_property_blob_put(new_blob);
-+			return 0;
-+		}
-+	}
- 	drm_dbg_atomic(&dev_priv->drm, "Unknown property [PROP:%d:%s]\n",
- 		       property->base.id, property->name);
- 	return -EINVAL;
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index d5ceb7bdc14b..175c6242c5ee 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -269,6 +269,26 @@ intel_attach_broadcast_rgb_property(struct drm_connector *connector)
- 	drm_object_attach_property(&connector->base, prop, 0);
- }
- 
-+void
-+intel_attach_hdmi_vendor_product_property(struct drm_connector *connector)
-+{
-+	struct drm_device *dev = connector->dev;
-+	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct drm_property *prop;
-+
-+	prop = dev_priv->hdmi_vendor_product_property;
-+	if (prop == NULL) {
-+		prop = drm_property_create(dev, DRM_MODE_PROP_BLOB |
-+			DRM_MODE_PROP_ATOMIC, "hdmi_vendor_product", 0);
-+		if (prop == NULL)
-+			return;
-+
-+		dev_priv->hdmi_vendor_product_property = prop;
-+	}
-+
-+	drm_object_attach_property(&connector->base, prop, 0);
-+}
-+
- void
- intel_attach_aspect_ratio_property(struct drm_connector *connector)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu/drm/i915/display/intel_connector.h
-index 661a37a3c6d8..9e16e098f53a 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.h
-+++ b/drivers/gpu/drm/i915/display/intel_connector.h
-@@ -27,6 +27,7 @@ enum pipe intel_connector_get_pipe(struct intel_connector *connector);
- int intel_connector_update_modes(struct drm_connector *connector,
- 				 struct edid *edid);
- int intel_ddc_get_modes(struct drm_connector *c, struct i2c_adapter *adapter);
-+void intel_attach_hdmi_vendor_product_property(struct drm_connector *connector);
- void intel_attach_force_audio_property(struct drm_connector *connector);
- void intel_attach_broadcast_rgb_property(struct drm_connector *connector);
- void intel_attach_aspect_ratio_property(struct drm_connector *connector);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 6d8cdaa36748..d29f54163044 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -549,6 +549,11 @@ struct intel_digital_connector_state {
- 
- 	enum hdmi_force_audio force_audio;
- 	int broadcast_rgb;
-+	/*
-+	 * hdmi_infoframe metadata
-+	 * DRM blob with hdmi vendor and product info
-+	 */
-+	struct drm_property_blob *hdmi_vendor_product_blob;
- };
- 
- #define to_intel_digital_connector_state(x) container_of(x, struct intel_digital_connector_state, base)
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 28e297296160..6f416c4a20b6 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -762,6 +762,9 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
- {
- 	struct hdmi_spd_infoframe *frame = &crtc_state->infoframes.spd.spd;
- 	int ret;
-+	struct hdmi_vendor_product_info *hdmi_vp_info;
-+	struct intel_digital_connector_state *intel_conn_state =
-+		to_intel_digital_connector_state(conn_state);
- 
- 	if (!crtc_state->has_infoframe)
- 		return true;
-@@ -769,7 +772,15 @@ intel_hdmi_compute_spd_infoframe(struct intel_encoder *encoder,
- 	crtc_state->infoframes.enable |=
- 		intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_SPD);
- 
--	ret = hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx");
-+	if (!intel_conn_state->hdmi_vendor_product_blob)
-+		ret = hdmi_spd_infoframe_init(frame, "intel", "Integrated gfx");
-+	else {
-+		if (intel_conn_state->hdmi_vendor_product_blob->data) {
-+			hdmi_vp_info = intel_conn_state->hdmi_vendor_product_blob->data;
-+			ret = hdmi_spd_infoframe_init(frame, hdmi_vp_info->vendor,
-+				hdmi_vp_info->product);
-+		}
-+	}
- 	if (drm_WARN_ON(encoder->base.dev, ret))
- 		return false;
- 
-@@ -2456,6 +2467,7 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *c
- 	intel_attach_force_audio_property(connector);
- 	intel_attach_broadcast_rgb_property(connector);
- 	intel_attach_aspect_ratio_property(connector);
-+	intel_attach_hdmi_vendor_product_property(connector);
- 
- 	intel_attach_hdmi_colorspace_property(connector);
- 	drm_connector_attach_content_type_property(connector);
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index b43a180d007e..5be7179389d1 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -23,6 +23,11 @@ struct drm_connector_state;
- union hdmi_infoframe;
- enum port;
- 
-+/*Vendor Id and Product Id for the Hdmi property exported to Userspace*/
-+struct hdmi_vendor_product_info {
-+	char vendor[30];
-+	char product[30];
-+};
- void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 			       struct intel_connector *intel_connector);
- int intel_hdmi_compute_config(struct intel_encoder *encoder,
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 3cfa6effbb5f..9e3373c0f1eb 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -1014,6 +1014,7 @@ struct drm_i915_private {
- 
- 	struct drm_property *broadcast_rgb_property;
- 	struct drm_property *force_audio_property;
-+	struct drm_property *hdmi_vendor_product_property;
- 
- 	/* hda/i915 audio component */
- 	struct i915_audio_component *audio_component;
--- 
-2.29.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldo
+ZW4gc2Nhbm5pbmcgb3V0IE5WMTIgaWYgd2UgYXQgYW55IHRpbWUgaGF2ZSB0aGUgcGxhbmUgZW5h
+YmxlZAp3aGlsZSB0aGUgc2NhbGVyIGlzIGRpc2FibGVkIHdlIGdldCBhIHByZXR0eSBjYXRhc3Ry
+b3BoaWNzCnVuZGVycnVuLgoKTGV0J3MgcmVvcmRlciB0aGUgb3BlcmF0aW9ucyBzbyB0aGF0IHdl
+IHRyeSB0byBhdm9pZCB0aGF0IGhhcHBlbmluZwpldmVuIGlmIG91ciB2YmxhbmsgZXZhZGUgZmFp
+bHMgYW5kIHRoZSBzY2FsZXIgZW5hYmxlL2Rpc2FibGUgYW5kCnRoZSBwbGFuZSBlbmFibGUvZGlz
+YWJsZSBnZXQgbGF0Y2hlZCBkdXJpbmcgdHdvIGRpZmZlbnQgZnJhbWVzLgoKVGhpcyB0YWtlcyBj
+YXJlIG9mIHRoZSBtb3N0IGNvbW1vbiBjYXNlcy4gSSBzdXBwb3NlIHRoZXJlIGlzIHN0aWxsCmF0
+IGxlYXN0IGEgdGhlb3JldGljYWwgcG9zc2liaWxpdHkgb2YgaGl0dGluZyB0aGlzIGlmIG9uZSBw
+bGFuZQp0YWtlcyB0aGUgc2NhbGVyIGF3YXkgZnJvbSBhbm90aGVyIHBsYW5lIGJlZm9yZSB0aGUg
+c2Vjb25kIHBsYW5lCmhhZCBhIGNoYW5jZSB0byBzZXQgdXAgYW5vdGhlciBzY2FsZXIgZm9yIGl0
+cyB1c2UuIEJ1dCB0aGF0CmlzIHN0YXJ0aW5nIHRvIGdldCBhIGJpdCBjb21wbGljYXRlZCwgZXNw
+ZWNpYWxseSBzaW5jZSB0aGUgcGxhbmUKY29tbWl0IG9yZGVyIGFscmVhZHkgaGFzIHRvIGJlIGNh
+cmVmdWxseSBzZXF1ZW5jZWQgdG8gYXZvaWQgYW55CmRidWYgb3ZlcmxhcHMuIFNvIHBsdWdnaW5n
+IHRoaXMgMTAwJSBtYXkgcHJvdmUgc29tZXdoYXQgaGFyZC4uLgoKQ2M6IENvb3BlciBDaGlvdSA8
+Y29vcGVyLmNoaW91QGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2
+aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAgfCAzMCArKysrKysrKysrKysrKy0tLS0tCiAuLi4vZHJt
+L2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMgICAgfCAxMSArKysrKy0tCiAyIGZp
+bGVzIGNoYW5nZWQsIDMwIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggZmNkODEyM2VkZThl
+Li4wYzhjYTI2MTU2YjEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheS5jCkBAIC05Njk4LDggKzk2OTgsNiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9waXBlX2Zh
+c3RzZXQoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlLAogCiAJ
+Lyogb24gc2t5bGFrZSB0aGlzIGlzIGRvbmUgYnkgZGV0YWNoaW5nIHNjYWxlcnMgKi8KIAlpZiAo
+RElTUExBWV9WRVIoZGV2X3ByaXYpID49IDkpIHsKLQkJc2tsX2RldGFjaF9zY2FsZXJzKG5ld19j
+cnRjX3N0YXRlKTsKLQogCQlpZiAobmV3X2NydGNfc3RhdGUtPnBjaF9wZml0LmVuYWJsZWQpCiAJ
+CQlza2xfcGZpdF9lbmFibGUobmV3X2NydGNfc3RhdGUpOwogCX0gZWxzZSBpZiAoSEFTX1BDSF9T
+UExJVChkZXZfcHJpdikpIHsKQEAgLTk3MjUsOCArOTcyMyw4IEBAIHN0YXRpYyB2b2lkIGludGVs
+X3BpcGVfZmFzdHNldChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqb2xkX2NydGNfc3Rh
+dGUsCiAJCWljbF9zZXRfcGlwZV9jaGlja2VuKGNydGMpOwogfQogCi1zdGF0aWMgdm9pZCBjb21t
+aXRfcGlwZV9jb25maWcoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCi0JCQkgICAg
+ICAgc3RydWN0IGludGVsX2NydGMgKmNydGMpCitzdGF0aWMgdm9pZCBjb21taXRfcGlwZV9wcmVf
+cGxhbmVzKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAorCQkJCSAgIHN0cnVjdCBp
+bnRlbF9jcnRjICpjcnRjKQogewogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9
+IHRvX2k5MTUoc3RhdGUtPmJhc2UuZGV2KTsKIAljb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0
+ZSAqb2xkX2NydGNfc3RhdGUgPQpAQCAtOTc0NCw5ICs5NzQyLDYgQEAgc3RhdGljIHZvaWQgY29t
+bWl0X3BpcGVfY29uZmlnKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCQkgICAg
+bmV3X2NydGNfc3RhdGUtPnVwZGF0ZV9waXBlKQogCQkJaW50ZWxfY29sb3JfY29tbWl0KG5ld19j
+cnRjX3N0YXRlKTsKIAotCQlpZiAoRElTUExBWV9WRVIoZGV2X3ByaXYpID49IDkpCi0JCQlza2xf
+ZGV0YWNoX3NjYWxlcnMobmV3X2NydGNfc3RhdGUpOwotCiAJCWlmIChESVNQTEFZX1ZFUihkZXZf
+cHJpdikgPj0gOSB8fCBJU19CUk9BRFdFTEwoZGV2X3ByaXYpKQogCQkJYmR3X3NldF9waXBlbWlz
+YyhuZXdfY3J0Y19zdGF0ZSk7CiAKQEAgLTk3NjAsNiArOTc1NSwyMyBAQCBzdGF0aWMgdm9pZCBj
+b21taXRfcGlwZV9jb25maWcoc3RydWN0IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsCiAJCWRl
+dl9wcml2LT5kaXNwbGF5LmF0b21pY191cGRhdGVfd2F0ZXJtYXJrcyhzdGF0ZSwgY3J0Yyk7CiB9
+CiAKK3N0YXRpYyB2b2lkIGNvbW1pdF9waXBlX3Bvc3RfcGxhbmVzKHN0cnVjdCBpbnRlbF9hdG9t
+aWNfc3RhdGUgKnN0YXRlLAorCQkJCSAgICBzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKK3sKKwlz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KHN0YXRlLT5iYXNlLmRl
+dik7CisJY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm5ld19jcnRjX3N0YXRlID0KKwkJ
+aW50ZWxfYXRvbWljX2dldF9uZXdfY3J0Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7CisKKwkvKgorCSAq
+IERpc2FibGUgdGhlIHNjYWxlcihzKSBhZnRlciB0aGUgcGxhbmUocykgc28gdGhhdCB3ZSBkb24n
+dAorCSAqIGdldCBhIGNhdGFzdHJvcGhpYyB1bmRlcnJ1biBldmVuIGlmIHRoZSB0d28gb3BlcmF0
+aW9ucworCSAqIGVuZCB1cCBoYXBwZW5pbmcgaW4gdHdvIGRpZmZlcmVudCBmcmFtZXMuCisJICov
+CisJaWYgKERJU1BMQVlfVkVSKGRldl9wcml2KSA+PSA5ICYmCisJICAgICFpbnRlbF9jcnRjX25l
+ZWRzX21vZGVzZXQobmV3X2NydGNfc3RhdGUpKQorCQlza2xfZGV0YWNoX3NjYWxlcnMobmV3X2Ny
+dGNfc3RhdGUpOworfQorCiBzdGF0aWMgdm9pZCBpbnRlbF9lbmFibGVfY3J0YyhzdHJ1Y3QgaW50
+ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAkJCSAgICAgIHN0cnVjdCBpbnRlbF9jcnRjICpjcnRj
+KQogewpAQCAtOTgxMSwxMyArOTgyMywxNSBAQCBzdGF0aWMgdm9pZCBpbnRlbF91cGRhdGVfY3J0
+YyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKIAkvKiBQZXJmb3JtIHZibGFuayBl
+dmFzaW9uIGFyb3VuZCBjb21taXQgb3BlcmF0aW9uICovCiAJaW50ZWxfcGlwZV91cGRhdGVfc3Rh
+cnQobmV3X2NydGNfc3RhdGUpOwogCi0JY29tbWl0X3BpcGVfY29uZmlnKHN0YXRlLCBjcnRjKTsK
+Kwljb21taXRfcGlwZV9wcmVfcGxhbmVzKHN0YXRlLCBjcnRjKTsKIAogCWlmIChESVNQTEFZX1ZF
+UihkZXZfcHJpdikgPj0gOSkKIAkJc2tsX3VwZGF0ZV9wbGFuZXNfb25fY3J0YyhzdGF0ZSwgY3J0
+Yyk7CiAJZWxzZQogCQlpOXh4X3VwZGF0ZV9wbGFuZXNfb25fY3J0YyhzdGF0ZSwgY3J0Yyk7CiAK
+Kwljb21taXRfcGlwZV9wb3N0X3BsYW5lcyhzdGF0ZSwgY3J0Yyk7CisKIAlpbnRlbF9waXBlX3Vw
+ZGF0ZV9lbmQobmV3X2NydGNfc3RhdGUpOwogCiAJLyoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMKaW5kZXggMGQzNGE1YWQ0ZTJiLi42
+YWQ4NWQ3Y2IyMTkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2ts
+X3VuaXZlcnNhbF9wbGFuZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2ts
+X3VuaXZlcnNhbF9wbGFuZS5jCkBAIC0xMDMyLDYgKzEwMzIsMTQgQEAgc2tsX3Byb2dyYW1fcGxh
+bmUoc3RydWN0IGludGVsX3BsYW5lICpwbGFuZSwKIAlpZiAoIWRybV9hdG9taWNfY3J0Y19uZWVk
+c19tb2Rlc2V0KCZjcnRjX3N0YXRlLT51YXBpKSkKIAkJaW50ZWxfcHNyMl9wcm9ncmFtX3BsYW5l
+X3NlbF9mZXRjaChwbGFuZSwgY3J0Y19zdGF0ZSwgcGxhbmVfc3RhdGUsIGNvbG9yX3BsYW5lKTsK
+IAorCS8qCisJICogRW5hYmxlIHRoZSBzY2FsZXIgYmVmb3JlIHRoZSBwbGFuZSBzbyB0aGF0IHdl
+IGRvbid0CisJICogZ2V0IGEgY2F0YXN0cm9waGljIHVuZGVycnVuIGV2ZW4gaWYgdGhlIHR3byBv
+cGVyYXRpb25zCisJICogZW5kIHVwIGhhcHBlbmluZyBpbiB0d28gZGlmZmVyZW50IGZyYW1lcy4K
+KwkgKi8KKwlpZiAocGxhbmVfc3RhdGUtPnNjYWxlcl9pZCA+PSAwKQorCQlza2xfcHJvZ3JhbV9w
+bGFuZV9zY2FsZXIocGxhbmUsIGNydGNfc3RhdGUsIHBsYW5lX3N0YXRlKTsKKwogCS8qCiAJICog
+VGhlIGNvbnRyb2wgcmVnaXN0ZXIgc2VsZi1hcm1zIGlmIHRoZSBwbGFuZSB3YXMgcHJldmlvdXNs
+eQogCSAqIGRpc2FibGVkLiBUcnkgdG8gbWFrZSB0aGUgcGxhbmUgZW5hYmxlIGF0b21pYyBieSB3
+cml0aW5nCkBAIC0xMDQxLDkgKzEwNDksNiBAQCBza2xfcHJvZ3JhbV9wbGFuZShzdHJ1Y3QgaW50
+ZWxfcGxhbmUgKnBsYW5lLAogCWludGVsX2RlX3dyaXRlX2Z3KGRldl9wcml2LCBQTEFORV9TVVJG
+KHBpcGUsIHBsYW5lX2lkKSwKIAkJCSAgaW50ZWxfcGxhbmVfZ2d0dF9vZmZzZXQocGxhbmVfc3Rh
+dGUpICsgc3VyZl9hZGRyKTsKIAotCWlmIChwbGFuZV9zdGF0ZS0+c2NhbGVyX2lkID49IDApCi0J
+CXNrbF9wcm9ncmFtX3BsYW5lX3NjYWxlcihwbGFuZSwgY3J0Y19zdGF0ZSwgcGxhbmVfc3RhdGUp
+OwotCiAJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmZGV2X3ByaXYtPnVuY29yZS5sb2NrLCBpcnFm
+bGFncyk7CiB9CiAKLS0gCjIuMjYuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
