@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C720F37603A
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 May 2021 08:27:45 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58B1A3760AB
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 May 2021 08:45:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A1906E1D7;
-	Fri,  7 May 2021 06:27:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B19AC6E7D3;
+	Fri,  7 May 2021 06:45:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6CDD86E1D7;
- Fri,  7 May 2021 06:27:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 65501A00CC;
- Fri,  7 May 2021 06:27:41 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6526E7D3
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 May 2021 06:45:38 +0000 (UTC)
+IronPort-SDR: SsfpDKSvHExIILEv1xJSlJCWDwOc+Y9UtSqOUa31wEU1/fxWlMDxRnQNCr/ynBlvnDpD3B5lcW
+ mFqHIdJwfzUw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9976"; a="196645709"
+X-IronPort-AV: E=Sophos;i="5.82,279,1613462400"; d="scan'208";a="196645709"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2021 23:45:37 -0700
+IronPort-SDR: hgrxoguxTrEOK9C0iPF+AOUTrJ1vATI+XeIbcGQ/2Cd0bZPBmsh8gCgHHwbL8D6TiKJ1a7Abla
+ GjYzn8HZt06A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,279,1613462400"; d="scan'208";a="390989348"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga006.jf.intel.com with SMTP; 06 May 2021 23:45:33 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 07 May 2021 09:45:32 +0300
+Date: Fri, 7 May 2021 09:45:32 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nischal Varide <nischal.varide@intel.com>
+Message-ID: <YJTiDFqqcJKRfH00@intel.com>
+References: <20210506004719.4121-1-nischal.varide@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Date: Fri, 07 May 2021 06:27:41 -0000
-Message-ID: <162036886138.10704.3465096846247681894@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210505073235.27934-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20210505073235.27934-1-ankit.k.nautiyal@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Use_correct_downstream_caps_for_check_Src-Ctl_mode_for?=
- =?utf-8?q?_PCON_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20210506004719.4121-1-nischal.varide@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [RFC 0/1] drm/i915/display: Expose HDMI properties
+ to userspace
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,132 +50,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0847903598=="
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0847903598==
-Content-Type: multipart/alternative;
- boundary="===============4664974898985300757=="
+On Thu, May 06, 2021 at 06:17:18AM +0530, Nischal Varide wrote:
+> Right now the HDMI properties like vendor and product ids are hardcoded
+> in the function "intel_hdmi_compute_spd_infoframe()".
+> =
 
---===============4664974898985300757==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> ret =3D hdmi_spd_infoframe_init(frame, "Intel", "Integrated gfx").
+> =
 
-== Series Details ==
+> This patch enables the possibility of setting vendor and product fields
+> of the Infoframe structure in the userspace, instead of hardcoding in
+> the kernel.
+> =
 
-Series: drm/i915: Use correct downstream caps for check Src-Ctl mode for PCON (rev2)
-URL   : https://patchwork.freedesktop.org/series/89639/
-State : success
+> The changes has been Tested by an IGT testcase , which will be floated
+> in few hours
+> =
 
-== Summary ==
+> =
 
-CI Bug Log - changes from CI_DRM_10047_full -> Patchwork_20065_full
-====================================================
+> Nischal Varide (1):
+>   drm/i915/display: Expose HDMI properties to userspace
 
-Summary
--------
+That subject is quite misleading/vague.
 
-  **SUCCESS**
+Any uapi additions must be posted to dri-devel.
 
-  No regressions found.
+> =
 
-  
+>  drivers/gpu/drm/i915/display/intel_atomic.c   | 14 +++++++++++++
+>  .../gpu/drm/i915/display/intel_connector.c    | 20 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_connector.h    |  1 +
+>  .../drm/i915/display/intel_display_types.h    |  5 +++++
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 14 ++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_hdmi.h     |  5 +++++
+>  drivers/gpu/drm/i915/i915_drv.h               |  1 +
+>  7 files changed, 59 insertions(+), 1 deletion(-)
+> =
 
+> -- =
 
-Changes
--------
+> 2.29.2
+> =
 
-  No changes found
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
+-- =
 
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): pig-skl-6260u pig-glk-j5005 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_10047 -> Patchwork_20065
-
-  CI-20190529: 20190529
-  CI_DRM_10047: 6bc6aeb4870cfb28f24523f42157cf9a86be80d7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20065: 9065f5d90df031d6e8a262a19ee067456b09d263 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20065/index.html
-
---===============4664974898985300757==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Use correct downstream caps for check Src-Ctl mode for PCON (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89639/">https://patchwork.freedesktop.org/series/89639/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20065/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20065/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10047_full -&gt; Patchwork_20065_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): pig-skl-6260u pig-glk-j5005 </p>
-<h2>Build changes</h2>
-<ul>
-<li>CI: CI-20190529 -&gt; None</li>
-<li>Linux: CI_DRM_10047 -&gt; Patchwork_20065</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10047: 6bc6aeb4870cfb28f24523f42157cf9a86be80d7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6077: 126a3f6fc0e97786e2819085efc84e741093aed5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20065: 9065f5d90df031d6e8a262a19ee067456b09d263 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============4664974898985300757==--
-
---===============0847903598==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0847903598==--
