@@ -2,72 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC4A1377F64
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 11:30:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57018377F9E
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 11:41:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 968836E441;
-	Mon, 10 May 2021 09:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 361376E457;
+	Mon, 10 May 2021 09:41:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
- [66.111.4.229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E96A26E441;
- Mon, 10 May 2021 09:30:39 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.nyi.internal (Postfix) with ESMTP id 965255805E9;
- Mon, 10 May 2021 05:30:36 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute4.internal (MEProxy); Mon, 10 May 2021 05:30:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm2; bh=o+RlLCP+uehcYeWcqJXYSH2E672
- srG6HjVhpuNJ5Otw=; b=LRzN7R2mzE2k+V6J5lq2UK+fX2nKfXfQYuOHuKoyzRu
- j+lbi1CqL+NP52cHv+CUoC6WJXpUlgycBjwv4T1j9a/DEjiG7Zyhv/1xpTUitXZL
- 7Fd/mDNx/OUdkho08SBnpHWnVIiHROf+vqN/fyEFiSEDxbh1551GhyRMuFrp5cMd
- R69z7nR31SgF8D/SYPRt47jYKanW+Oo6pnXuIYvoWFyzmei4QJf02LXSZDvyhN8x
- tFXcVYkbq/9yygODAYeQE2tG1RbZFfzu+w4RTsg6w/rAX1FD0QAdBoT+3q34uO3X
- 8ZEI4WPUzpLkycyYgQSbm1zm45+vtE0MK2Xu6lI/uyQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=o+RlLC
- P+uehcYeWcqJXYSH2E672srG6HjVhpuNJ5Otw=; b=VX3bQ+xcj3x7+sHu1YxUks
- X8wNw+Fd01R1yQydbq78L0Cby+TIrelv5tOaVpJB/GWvl8D+sH8CgIaGNO69c5IY
- hEiQyv7Y2Jgds5qY1uFrSkOnaYEbYBOomlV5EOFkf4/PnX9Rs462yg/zF5Eu9QbD
- h35gXkLL9xRD38Zar2zQmtsODpC5f73Otu29yGjoiZfNH7VAztnGyVNb0Xl2Qsfd
- mBZFcJ8Cpo/Uq/1IUet2WiVQkTW8LqJQY+moL/C+vVhWEQf5kgbquj+p8tQ2+wl6
- Xb3HAqB+d4YF37Bop+OEKqzE+NZnmG6gffrLPiQ6QQEf2UWv1Z+z3gZkoqJ+yX0g
- ==
-X-ME-Sender: <xms:Of2YYIpYtkrA164iwUrw7wmpDV4h9axrUp3B3CJweKypS-TZA0NZbQ>
- <xme:Of2YYOrKXTbfHrPgXqLYRwJGj6xl7MIhjhonGFzBdcfa6_pxjeDoxX_BgrbeBrv58
- VZBGEOrsS_alylWUFY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdegkedgudeiucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
- htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
- gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
- frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:Of2YYNP5VV3a0_SvB0NmN01X54WjaQrB9NnSc1yQ8lerLAQ02VA-RA>
- <xmx:Of2YYP5cdonqadux1oSBLKDrcufNnALJwsSgUalM6zcH4dGR8Q7IXw>
- <xmx:Of2YYH6QXRm5sYUZeJeRhxcWbGatnMHT3BFkpsgl982tUJuGTZbjjg>
- <xmx:PP2YYHpBFc5v6b-bl_ORTr9Vz8bRf0QCFHdpWHXnPOnKVzQnXk9B9Q>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76]) by mail.messagingengine.com (Postfix) with ESMTPA;
- Mon, 10 May 2021 05:30:33 -0400 (EDT)
-Date: Mon, 10 May 2021 11:30:30 +0200
-From: Maxime Ripard <maxime@cerno.tech>
-To: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
- David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20210510093030.nqbfw7iayhmtnljg@gilmour>
-References: <20210430094451.2145002-1-maxime@cerno.tech>
+X-Greylist: delayed 312 seconds by postgrey-1.36 at gabe;
+ Fri, 07 May 2021 23:58:28 UTC
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A02F6E5AB
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 May 2021 23:58:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1620431906;
+ bh=3gfW/8ohOIhO1pIaqHv982kf6ULtuf4dQF3icTYs1cA=;
+ h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=PPfTZmyk5Ky4OpJNNHMBKeut2PlGqq6b4e1fhHNEBhxfZGAomGclGrEEzyCHrce7M
+ oxZtjV1q6wrAniNgcXBkUy4VX7J9NCo2m4AiF7sQVoryD4UZFBIFdgmcdg6yIOpWil
+ 3W71us3kvb2tjGpX7jgHfWcw2usVoax30ew8kdGY=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from hos.fritz.box ([91.39.128.24]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MGyxX-1ljr6w2y9b-00E1qF; Sat, 08
+ May 2021 01:52:57 +0200
+Received: from afrie by hos.fritz.box with local (Exim 4.92)
+ (envelope-from <afrie@gmx.net>)
+ id 1lfAH8-0000U6-CR; Sat, 08 May 2021 01:52:54 +0200
+Date: Sat, 8 May 2021 01:52:54 +0200
+From: Andreas Friedrich <afrie@gmx.net>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <20210507235254.GA1590@hos.afrie.home.de>
+References: <20210429181450.GA25385@hos.afrie.home.de>
+ <20210429235828.GZ1551@zhen-hp.sh.intel.com>
+ <161977150734.8550.2371200514024347460@jlahtine-mobl.ger.corp.intel.com>
+ <20210430103635.GA16501@hos.afrie.home.de>
+ <162002960518.3526.10925040263559391423@jlahtine-mobl.ger.corp.intel.com>
+ <20210503120050.GA16864@hos.afrie.home.de>
 MIME-Version: 1.0
-In-Reply-To: <20210430094451.2145002-1-maxime@cerno.tech>
-Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/connector: Create a helper to
- attach the hdr_output_metadata property
+Content-Disposition: inline
+In-Reply-To: <20210503120050.GA16864@hos.afrie.home.de>
+X-Provags-ID: V03:K1:dCpsxsdcz2zSDShRvbqiYWPVrGhMaqh0AbtjWDe+u+0+94Ozg5N
+ 0cBz042JMSz6e06CyKc8dIu55Jds3ikDuPDJPUNKquEB1onN1FkoRDaQgkvzAktkwgU+iqa
+ PirIapAcskY6f2xiF3g7Vfd0eYvTO4ix8jUiJDVXcFSCjJu86tPAUgXmDBGSQUPQfnGjlSl
+ mWAcMm7tsnnHIoR9+wdNw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:lVXCjEYGBPw=:kP6nZ2kJmPYpfE0CRYT3vS
+ BkIy7khHgcRLv+C0h4vGXvTEErhP9OKFBHQlrt8y818AW9CTr5/Ldhe6Pr6uc2ewgsbn5pyin
+ NcmM/JZ2qnIl4JufIDJsJ93IVM8JK1/qHJO3w6V4NguxJR5xYGsB9wCoFZgyw0jaLtWMiEQOf
+ O3RmjEPDLwrcXM0eY0QflnUIbGk45XTW1EnpiyyfNA6Then2hV6X/2T9Z5zCCm0sUSlLQdzI4
+ U+3Q9NwZzrhT73AyDx00W5ybX91JBR2Atbb+N1iG6qhh+5DFptvRdEaFHdpSDtGpiWGGCUU8X
+ 1va0vtrI4r1HxvBXSGtiN+ox7vpdFeTl8B/OLr4G2PMHPn5xL6+l9lmCELU4hotg8DTy7L/xf
+ V7s508kxv4EkO+LhVo4Rq3MBSv9vKfd8LJCwKkBKHlPQG9LDx4TYXsOveA5V7515zCHVtoNa9
+ BQ4RZswzajrbX1pXXD6v3jkRmrde5rQr+R0ux9GTa+SOPyCfcjYsU9b9I/VrAqXcj3zTRUlqQ
+ FNnDTCjhdYZNm3eZtasg+/T+/CEP7l5ruDio+DwW/5w9TAudP+1nxbGcuWESvcXJx6ZQ31U5p
+ HgLjObU/tjPbhV8KBLqkjOCoaqGMABU/U65P0bu2jiZimQPlP802H6XuFrxe1cU2IjBaJGYAW
+ 8dn0uo0M8SNB1wRhB9Cs1X69ml4aXSB+Sjcdr05hN/P/quRPOV0w3qIpZNfhllUK+vELR4LLY
+ V5Ag5lxitzR2o1+DyWPyWKi4SGDxImhWOUxFfTYGpE9wzODW3XhiFgDCpG7a189h/BFoxise8
+ A6NoUNrwf2FCZO7DwLipJljZBZ7kKlIu2s417t0l7x1xC+lecYHSkgB5dlcJB/Rx+d1BlQDih
+ vuV1cUc9z1mCB86qnWRjGAufn0Kbc4cSEmVfEOj7EHt3zX3K+9xSf9RgqErfR+Q39EkwKHicU
+ 6B467XGbErWlyeNGoJR29S2IxZF/7twGUuFWXNTgbEryK7oIqxfIc6fxiWqyyWcTAtKDsgbgW
+ cl/qKgfcb+Aa6GdDqMoHXJvcaoVEYwQYVrXvUh6k4wfK+G8w2ujmOBtd2B3M+oW95D3HlKHhz
+ KO/Dq3IUYvDnyhWOOCbL7WiTAkCwNbm9pRn/0PvThB94BlnH68+SLed8xh8ZYzHLMos1diVmy
+ 5psKcv6KndQPpibcszNUgTT+K/RDFbDqujPh1tM8r196Mk/nEtgLuTduUL4ngDl3RreU4=
+X-Mailman-Approved-At: Mon, 10 May 2021 09:41:14 +0000
+Subject: Re: [Intel-gfx] REGRESSION with 5.12: Suspend not working on
+ Toshiba notebook - FIXED
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,73 +79,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tim Gover <tim.gover@raspberrypi.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Andrzej Hajda <a.hajda@samsung.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Phil Elwell <phil@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Jonas Karlman <jonas@kwiboo.se>,
- Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
- Jernej Skrabec <jernej.skrabec@siol.net>, Dom Cobley <dom@raspberrypi.com>,
- Eric Anholt <eric@anholt.net>, linux-kernel@vger.kernel.org,
- Robert Foss <robert.foss@linaro.org>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Content-Type: multipart/mixed; boundary="===============1566985947=="
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, May 03, 2021 at 02:00:50PM +0200, Andreas Friedrich wrote:
 
---===============1566985947==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="faciecejyji5pg3t"
-Content-Disposition: inline
+Hello Joonas,
+> ...
+> > It's very possible that it can be i915 bug. What you can try is to
+> > blacklist i915 module and operate the system with SSH and see if the
+> > latest kernel still freezes?
+> This is a good idea. I have disabled i915 in my kernel configuration:
+>   grep I915 .config
+>   # CONFIG_DRM_I915 is not set
+> This time the suspend works fine! So I think it is definitely an i915
+> DRM bug.
+> >
+> > Also, please try drm-tip kernel and see if it fixed there.
+> I have tried:
+>   uname -r
+>   5.12.0-rc8+
+> but no changes. The system freezes after the first try.
+> ...
+> > Please do file a bug on the issue tracker as requested:
+> >
+> > https://gitlab.freedesktop.org/drm/intel/issues/
+> Done.
 
+Fixed with 5.12.2
+  drm/i915: Disable runtime power management during shutdown,
+  commit 7962893ecb853aa7c8925ce237ab6c4274cfc1c7 upstream.
 
---faciecejyji5pg3t
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Fri, Apr 30, 2021 at 11:44:47AM +0200, Maxime Ripard wrote:
-> All the drivers that implement HDR output call pretty much the same
-> function to initialise the hdr_output_metadata property, and while the
-> creation of that property is in a helper, every driver uses the same
-> code to attach it.
->=20
-> Provide a helper for it as well
->=20
-> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-> Reviewed-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-
-I pushed all 5 patches on friday
-
-Maxime
-
---faciecejyji5pg3t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYJj9NgAKCRDj7w1vZxhR
-xTd/AP48Cj/pWzxu4xJM1P/Gl4C1i/fr6aJANTq2rOju3Y84FQD/Re0cYaNtLidN
-8GBg64zcLh2z0n9CYT4Vc6km4PVungw=
-=/OMZ
------END PGP SIGNATURE-----
-
---faciecejyji5pg3t--
-
---===============1566985947==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Best regards
+Andreas Friedrich
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1566985947==--
