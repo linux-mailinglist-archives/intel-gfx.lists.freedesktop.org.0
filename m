@@ -2,38 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C37B3762A8
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 May 2021 11:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1200D3762D9
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 May 2021 11:29:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E489A6EDFA;
-	Fri,  7 May 2021 09:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18D616EE05;
+	Fri,  7 May 2021 09:29:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 917C96EDFA
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 May 2021 09:12:47 +0000 (UTC)
-IronPort-SDR: igiZIiGNpxtKr5jfMO3vxmawdmxs58bp/ZcCveT8BU+bwfs3tZP3Ua+QUYQ7GKdkCdEHvXyoy0
- JRrJ+WidtbhA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9976"; a="262629108"
-X-IronPort-AV: E=Sophos;i="5.82,280,1613462400"; d="scan'208";a="262629108"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2021 02:12:46 -0700
-IronPort-SDR: hdctU7gnHzM8nS8x/Gf+qZ+ICIrWDK9H9PU8xgdb3du/E1xbkNBDcA0hwVInYlJe6kL+2nerAq
- EmgItrohfZzg==
-X-IronPort-AV: E=Sophos;i="5.82,280,1613462400"; d="scan'208";a="540279340"
-Received: from flydon-mobl2.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.20.229])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2021 02:12:45 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 May 2021 10:12:10 +0100
-Message-Id: <20210507091210.371132-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6362D6EE05;
+ Fri,  7 May 2021 09:29:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5C77FA0169;
+ Fri,  7 May 2021 09:29:39 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: relax 2big checking around
- initial fb
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Fri, 07 May 2021 09:29:39 -0000
+Message-ID: <162037977934.10707.18345031126344088595@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210507083521.2406201-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20210507083521.2406201-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Stop_propagating_fence_errors_by_default?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,41 +38,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CgpUaGUga2VybmVs
-IHByZWZlcnMgZW5hYmxpbmcgZmJjIG92ZXIgdGhlIGluaXRpYWwgZmIsIHNpbmNlIHRoaXMgbGVh
-ZHMgdG8KYWN0dWFsIHJ1bnRpbWUgcG93ZXIgc2F2aW5ncywgc28gaWYgdGhlIGluaXRpYWwgZmIg
-aXMgZGVlbWVkIHRvbyBiaWcKdXNpbmcgc29tZSBoZXVyaXN0aWMsIHRoZW4gd2Ugc2ltcGx5IHNr
-aXAgYWxsb2NhdGluZyBzdG9sZW4gZm9yIGl0LgpIb3dldmVyIGlmIHRoZSBrZXJuZWwgaXMgbm90
-IGNvbmZpZ3VyZWQgd2l0aCBmYmNvbiB0aGVuIGl0IHNob3VsZCBiZQpwb3NzaWJsZSB0byByZWxh
-eCB0aGlzLCBzaW5jZSB1bmxpa2Ugd2l0aCBmYmNvbiB0aGUgZGlzcGxheSBzZXJ2ZXIKc2hvdWxk
-bid0IHByZXNlcnZlIGl0IHdoZW4gbGF0ZXIgcmVwbGFjaW5nIGl0LCBhbmQgc28gd2Ugc2hvdWxk
-IGJlIGFibGUKdG8gcmUtdXNlIHRoZSBzdG9sZW4gbWVtb3J5IGZvciBmYmMgYW5kIGZyaWVuZHMu
-IFRoaXMgcGF0Y2ggaXMgcmVwb3J0ZWQKdG8gZml4IHNvbWUgZmxpY2tlciBzZWVuIGR1cmluZyBi
-b290IHNwbGFzaCBvbiBzb21lIGRldmljZXMuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24g
-PGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KU2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxkIDxt
-YXR0aGV3LmF1bGRAaW50ZWwuY29tPgpDYzogTGVlIFNoYXduIEMgPHNoYXduLmMubGVlQGludGVs
-LmNvbT4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
-CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KLS0tCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDIgKy0KIDEgZmlsZSBjaGFu
-Z2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggZWMyZDNmYTYwMDAzLi4wZWUxZjAyMTNm
-ZDkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
-eS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBA
-IC0xNDU1LDcgKzE0NTUsNyBAQCBpbml0aWFsX3BsYW5lX3ZtYShzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqaTkxNSwKIAkgKiBpbXBvcnRhbnQgYW5kIHdlIHNob3VsZCBwcm9iYWJseSB1c2UgdGhh
-dCBzcGFjZSB3aXRoIEZCQyBvciBvdGhlcgogCSAqIGZlYXR1cmVzLgogCSAqLwotCWlmIChzaXpl
-ICogMiA+IGk5MTUtPnN0b2xlbl91c2FibGVfc2l6ZSkKKwlpZiAoSVNfRU5BQkxFRChGUkFNRUJV
-RkZFUl9DT05TT0xFKSAmJiBzaXplICogMiA+IGk5MTUtPnN0b2xlbl91c2FibGVfc2l6ZSkKIAkJ
-cmV0dXJuIE5VTEw7CiAKIAlvYmogPSBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX3N0b2xlbl9mb3Jf
-cHJlYWxsb2NhdGVkKGk5MTUsIGJhc2UsIHNpemUpOwotLSAKMi4yNi4zCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: drm/i915: Stop propagating fence errors by default
+URL   : https://patchwork.freedesktop.org/series/89857/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+615d0d0d9d9f drm/i915: Stop propagating fence errors by default
+-:22: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Miroslav Bendik'
+#22: 
+Reported-by: Miroslav Bendik
+
+total: 1 errors, 0 warnings, 0 checks, 59 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
