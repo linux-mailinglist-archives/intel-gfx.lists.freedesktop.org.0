@@ -2,42 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68AEC3769B6
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 May 2021 19:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57A393769BD
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 May 2021 19:56:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5DD46E0EF;
-	Fri,  7 May 2021 17:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA0C6E158;
+	Fri,  7 May 2021 17:56:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C622E6E0D1;
- Fri,  7 May 2021 17:52:53 +0000 (UTC)
-IronPort-SDR: Rl5ezShvNgaRzKnzqVyCnpVtRDBAdqkglEHIj9prpRtNFoftM6Of61nxglJavO175jZ6+9Q2c5
- SKe/9HIk9q9A==
-X-IronPort-AV: E=McAfee;i="6200,9189,9977"; a="195669550"
-X-IronPort-AV: E=Sophos;i="5.82,281,1613462400"; d="scan'208";a="195669550"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2021 10:52:33 -0700
-IronPort-SDR: 696S2rtDPZTG9qK9gJLdWPuzop+g8TsZDxU9InemWTv1PlRXZAtc2GStXnwmrkrrp1oSM8H38h
- HAjy1fMJRJpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,281,1613462400"; d="scan'208";a="431465321"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
- by fmsmga008.fm.intel.com with SMTP; 07 May 2021 10:52:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 May 2021 20:52:30 +0300
-Date: Fri, 7 May 2021 20:52:30 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Werner Sembach <wse@tuxedocomputers.com>
-Message-ID: <YJV+Xr59xyK2yLXT@intel.com>
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F0DA6E0EF;
+ Fri,  7 May 2021 17:56:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+ Subject:Sender:Reply-To:Content-ID:Content-Description;
+ bh=CBcWZHqzaGgz7lsbjdL7nRqUtTSFr2Wq5t9BDXCRpfE=; b=DNoyHoiYuAGlKKpvGmvu1VsqtI
+ wNZiM3SfXAiE0xS4pvYR0CjZr3OE2COsF8LL9QfPdeVw8PbKPMdQBUBKQ0CaP/lo0dEAsTlq+1teb
+ gBGqQueY5FfJCzsRxrKb2eQfX6llI2Ok55eKpyjqKxYdMh4Y/G/HuiUEFJ5Cbu6nEBM2QNtubr5/H
+ qo3pynSZ/LT6cOmBNnCZK6RZ/vi6oDoJQ1Pfx/JrGOEwoemOC53Jv+mekzs0PSto/jnJ0XwEmSj5w
+ BvHIukLNPLe9bIz/aAeaLMOmJwg68EGNIS/H/CsXjetTOKmn6MAfB9YaIih8P5mBLdNH58gdovPTo
+ eQYHe0KA==;
+Received: from [2601:1c0:6280:3f0::7376]
+ by bombadil.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+ id 1lf4iK-0073Xx-I5; Fri, 07 May 2021 17:56:36 +0000
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Werner Sembach <wse@tuxedocomputers.com>
 References: <20210506172325.1995964-1-wse@tuxedocomputers.com>
  <20210507084903.28877-1-wse@tuxedocomputers.com>
- <20210507084903.28877-3-wse@tuxedocomputers.com>
+ <20210507084903.28877-3-wse@tuxedocomputers.com> <YJV+Xr59xyK2yLXT@intel.com>
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <0d88cd48-a91f-bf0a-e298-a9d66bf0562b@infradead.org>
+Date: Fri, 7 May 2021 10:56:34 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210507084903.28877-3-wse@tuxedocomputers.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <YJV+Xr59xyK2yLXT@intel.com>
+Content-Language: en-US
 Subject: Re: [Intel-gfx] [PATCH v6 2/3] drm/i915/display: Restructure output
  format computation for better expandability
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -54,171 +55,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 07, 2021 at 10:49:02AM +0200, Werner Sembach wrote:
-> Couples the decission between RGB and YCbCr420 mode and the check if the
-> port clock can archive the required frequency. Other checks and
-> configuration steps that where previously done in between can also be done
-> before or after.
-> =
-
-> This allows for are cleaner implementation of retrying different color
-> encodings.
-> =
-
-> A slight change in behaviour occurs with this patch: If YCbCr420 is not
-> allowed but display is YCbCr420 only it no longer fails, but just prints
-> an error and tries to fallback on RGB.
-> =
-
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 65 ++++++++++++-----------
->  1 file changed, 34 insertions(+), 31 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
-i915/display/intel_hdmi.c
-> index 576d3d910d06..9f3da72dabee 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1999,29 +1999,6 @@ static bool hdmi_deep_color_possible(const struct =
-intel_crtc_state *crtc_state,
->  					      INTEL_OUTPUT_FORMAT_YCBCR420);
->  }
->  =
-
-> -static int
-> -intel_hdmi_ycbcr420_config(struct intel_crtc_state *crtc_state,
-> -			   const struct drm_connector_state *conn_state)
-> -{
-> -	struct drm_connector *connector =3D conn_state->connector;
-> -	struct drm_i915_private *i915 =3D to_i915(connector->dev);
-> -	const struct drm_display_mode *adjusted_mode =3D
-> -		&crtc_state->hw.adjusted_mode;
-> -
-> -	if (!drm_mode_is_420_only(&connector->display_info, adjusted_mode))
-> -		return 0;
-> -
-> -	if (!connector->ycbcr_420_allowed) {
-> -		drm_err(&i915->drm,
-> -			"Platform doesn't support YCBCR420 output\n");
-> -		return -EINVAL;
-> -	}
-> -
-> -	crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
-> -
-> -	return intel_pch_panel_fitting(crtc_state, conn_state);
-> -}
-> -
->  static int intel_hdmi_compute_bpc(struct intel_encoder *encoder,
->  				  struct intel_crtc_state *crtc_state,
->  				  int clock)
-> @@ -2128,6 +2105,30 @@ static bool intel_hdmi_has_audio(struct intel_enco=
-der *encoder,
->  		return intel_conn_state->force_audio =3D=3D HDMI_AUDIO_ON;
->  }
->  =
-
-> +static int intel_hdmi_compute_output_format(struct intel_encoder *encode=
-r,
-> +					    struct intel_crtc_state *crtc_state,
-> +					    const struct drm_connector_state *conn_state)
-> +{
-> +	struct drm_connector *connector =3D conn_state->connector;
-> +	struct drm_i915_private *i915 =3D to_i915(connector->dev);
-> +	const struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjust=
-ed_mode;
-> +	int ret;
-> +	bool ycbcr_420_only;
-> +
-> +	ycbcr_420_only =3D drm_mode_is_420_only(&connector->display_info, adjus=
-ted_mode);
-> +	if (connector->ycbcr_420_allowed && ycbcr_420_only) {
-> +		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
-> +	} else {
-> +		if (!connector->ycbcr_420_allowed && ycbcr_420_only)
-> +			drm_err(&i915->drm, "Display only supports YCbCr420 output, but conne=
-ctor does not allow it. Fallback to RGB, but this will likely fail.\n");
-
-We can't let the user spam dmesg with errors freely. So this needs
-to be a drm_dbg_kms(). Also a bit long, so going to annoyingly wrap
-always. Could maybe shorten a bit to something like:
-"YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB."
-
-With that sorted, and the intel_hdmi_port_clock() stuff restored,
-I believe this series is good to go.
-
-I think you confused our CI by replying to the old patch with a whole
-new series. It can generally deal with a whole new series as a new
-thread or replies to individual patches with updated versions of
-exactly that patch, but not full series as a reply to a patch.
-So I suggest just posting the final versions as a new series. Thanks.
-
-> +		crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
-> +	}
-> +
-> +	ret =3D intel_hdmi_compute_clock(encoder, crtc_state);
-> +
-> +	return ret;
-> +}
-> +
->  int intel_hdmi_compute_config(struct intel_encoder *encoder,
->  			      struct intel_crtc_state *pipe_config,
->  			      struct drm_connector_state *conn_state)
-> @@ -2152,23 +2153,25 @@ int intel_hdmi_compute_config(struct intel_encode=
-r *encoder,
->  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
->  		pipe_config->pixel_multiplier =3D 2;
->  =
-
-> -	ret =3D intel_hdmi_ycbcr420_config(pipe_config, conn_state);
-> -	if (ret)
-> -		return ret;
-> -
-> -	pipe_config->limited_color_range =3D
-> -		intel_hdmi_limited_color_range(pipe_config, conn_state);
-> -
->  	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv))
->  		pipe_config->has_pch_encoder =3D true;
->  =
-
->  	pipe_config->has_audio =3D
->  		intel_hdmi_has_audio(encoder, pipe_config, conn_state);
->  =
-
-> -	ret =3D intel_hdmi_compute_clock(encoder, pipe_config);
-> +	ret =3D intel_hdmi_compute_output_format(encoder, pipe_config, conn_sta=
-te);
->  	if (ret)
->  		return ret;
->  =
-
-> +	if (pipe_config->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420) {
-> +		ret =3D intel_pch_panel_fitting(pipe_config, conn_state);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	pipe_config->limited_color_range =3D
-> +		intel_hdmi_limited_color_range(pipe_config, conn_state);
-> +
->  	if (conn_state->picture_aspect_ratio)
->  		adjusted_mode->picture_aspect_ratio =3D
->  			conn_state->picture_aspect_ratio;
-> -- =
-
-> 2.25.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gNS83LzIxIDEwOjUyIEFNLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6Cj4gT24gRnJpLCBNYXkg
+MDcsIDIwMjEgYXQgMTA6NDk6MDJBTSArMDIwMCwgV2VybmVyIFNlbWJhY2ggd3JvdGU6Cj4+IENv
+dXBsZXMgdGhlIGRlY2lzc2lvbiBiZXR3ZWVuIFJHQiBhbmQgWUNiQ3I0MjAgbW9kZSBhbmQgdGhl
+IGNoZWNrIGlmIHRoZQo+PiBwb3J0IGNsb2NrIGNhbiBhcmNoaXZlIHRoZSByZXF1aXJlZCBmcmVx
+dWVuY3kuIE90aGVyIGNoZWNrcyBhbmQKPj4gY29uZmlndXJhdGlvbiBzdGVwcyB0aGF0IHdoZXJl
+IHByZXZpb3VzbHkgZG9uZSBpbiBiZXR3ZWVuIGNhbiBhbHNvIGJlIGRvbmUKPj4gYmVmb3JlIG9y
+IGFmdGVyLgo+Pgo+PiBUaGlzIGFsbG93cyBmb3IgYXJlIGNsZWFuZXIgaW1wbGVtZW50YXRpb24g
+b2YgcmV0cnlpbmcgZGlmZmVyZW50IGNvbG9yCj4+IGVuY29kaW5ncy4KPj4KPj4gQSBzbGlnaHQg
+Y2hhbmdlIGluIGJlaGF2aW91ciBvY2N1cnMgd2l0aCB0aGlzIHBhdGNoOiBJZiBZQ2JDcjQyMCBp
+cyBub3QKPj4gYWxsb3dlZCBidXQgZGlzcGxheSBpcyBZQ2JDcjQyMCBvbmx5IGl0IG5vIGxvbmdl
+ciBmYWlscywgYnV0IGp1c3QgcHJpbnRzCj4+IGFuIGVycm9yIGFuZCB0cmllcyB0byBmYWxsYmFj
+ayBvbiBSR0IuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IFdlcm5lciBTZW1iYWNoIDx3c2VAdHV4ZWRv
+Y29tcHV0ZXJzLmNvbT4KPj4gLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2hkbWkuYyB8IDY1ICsrKysrKysrKysrKy0tLS0tLS0tLS0tCj4+ICAxIGZpbGUgY2hhbmdl
+ZCwgMzQgaW5zZXJ0aW9ucygrKSwgMzEgZGVsZXRpb25zKC0pCj4+Cgo+IAo+IFdlIGNhbid0IGxl
+dCB0aGUgdXNlciBzcGFtIGRtZXNnIHdpdGggZXJyb3JzIGZyZWVseS4gU28gdGhpcyBuZWVkcwo+
+IHRvIGJlIGEgZHJtX2RiZ19rbXMoKS4gQWxzbyBhIGJpdCBsb25nLCBzbyBnb2luZyB0byBhbm5v
+eWluZ2x5IHdyYXAKPiBhbHdheXMuIENvdWxkIG1heWJlIHNob3J0ZW4gYSBiaXQgdG8gc29tZXRo
+aW5nIGxpa2U6Cj4gIllDYkNyIDQ6MjowIG1vZGUgYnV0IFlDYkNyIDQ6MjowIG91dHB1dCBub3Qg
+cG9zc2libGUuIEZhbGxpbmcgYmFjayB0byBSR0IuIgo+IAo+IFdpdGggdGhhdCBzb3J0ZWQsIGFu
+ZCB0aGUgaW50ZWxfaGRtaV9wb3J0X2Nsb2NrKCkgc3R1ZmYgcmVzdG9yZWQsCj4gSSBiZWxpZXZl
+IHRoaXMgc2VyaWVzIGlzIGdvb2QgdG8gZ28uCj4gCj4gSSB0aGluayB5b3UgY29uZnVzZWQgb3Vy
+IENJIGJ5IHJlcGx5aW5nIHRvIHRoZSBvbGQgcGF0Y2ggd2l0aCBhIHdob2xlCj4gbmV3IHNlcmll
+cy4gSXQgY2FuIGdlbmVyYWxseSBkZWFsIHdpdGggYSB3aG9sZSBuZXcgc2VyaWVzIGFzIGEgbmV3
+Cj4gdGhyZWFkIG9yIHJlcGxpZXMgdG8gaW5kaXZpZHVhbCBwYXRjaGVzIHdpdGggdXBkYXRlZCB2
+ZXJzaW9ucyBvZgo+IGV4YWN0bHkgdGhhdCBwYXRjaCwgYnV0IG5vdCBmdWxsIHNlcmllcyBhcyBh
+IHJlcGx5IHRvIGEgcGF0Y2guCj4gU28gSSBzdWdnZXN0IGp1c3QgcG9zdGluZyB0aGUgZmluYWwg
+dmVyc2lvbnMgYXMgYSBuZXcgc2VyaWVzLiBUaGFua3MuCj4gCgpZZWFoLCB3ZSB0cnkgdG8gc2F5
+ICJkb24ndCBkbyB0aGF0LCIgYnV0IG1heWJlIHdlIG5lZWQgdG8gc2F5IHRoYXQgbW9yZQpzdHJv
+bmdseS4gU2VlIERvY3VtZW50YXRpb24vcHJvY2Vzcy9zdWJtaXR0aW5nLXBhdGNoZXMucnN0OgoK
+PDw8Ckhvd2V2ZXIsIGZvciBhIG11bHRpLXBhdGNoIHNlcmllcywgaXQgaXMgZ2VuZXJhbGx5CmJl
+c3QgdG8gYXZvaWQgdXNpbmcgSW4tUmVwbHktVG86IHRvIGxpbmsgdG8gb2xkZXIgdmVyc2lvbnMg
+b2YgdGhlCnNlcmllcy4gIFRoaXMgd2F5IG11bHRpcGxlIHZlcnNpb25zIG9mIHRoZSBwYXRjaCBk
+b24ndCBiZWNvbWUgYW4KdW5tYW5hZ2VhYmxlIGZvcmVzdCBvZiByZWZlcmVuY2VzIGluIGVtYWls
+IGNsaWVudHMuICBJZiBhIGxpbmsgaXMKaGVscGZ1bCwgeW91IGNhbiB1c2UgdGhlIGh0dHBzOi8v
+bGttbC5rZXJuZWwub3JnLyByZWRpcmVjdG9yIChlLmcuLCBpbgp0aGUgY292ZXIgZW1haWwgdGV4
+dCkgdG8gbGluayB0byBhbiBlYXJsaWVyIHZlcnNpb24gb2YgdGhlIHBhdGNoIHNlcmllcy4KPj4+
+CgoKLS0gCn5SYW5keQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
