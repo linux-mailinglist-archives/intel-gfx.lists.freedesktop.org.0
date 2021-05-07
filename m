@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9780A376A16
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 May 2021 20:37:30 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20B7D376A20
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 May 2021 20:42:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E46716E098;
-	Fri,  7 May 2021 18:37:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B11616E0E3;
+	Fri,  7 May 2021 18:42:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 12B046E098;
- Fri,  7 May 2021 18:37:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0AFC5A47DF;
- Fri,  7 May 2021 18:37:28 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B21106E0E3
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 May 2021 18:42:32 +0000 (UTC)
+IronPort-SDR: 6/7uYosuHyZMfnUoTmvbfNxCHISqwqvbh8QvxqCs7gbKgHbofHgXcPDYPTJSYagzzlGyb+pBNM
+ IwyNpDiOyl2g==
+X-IronPort-AV: E=McAfee;i="6200,9189,9977"; a="195678976"
+X-IronPort-AV: E=Sophos;i="5.82,281,1613462400"; d="scan'208";a="195678976"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2021 11:42:32 -0700
+IronPort-SDR: UsNcfiPHdiLC7US+N2DIAG62vBDMj8uNupCxg25Y56wiuQHVIf7mekzAC+T+ge3gHOebAIibAm
+ nalwc5XW4qFg==
+X-IronPort-AV: E=Sophos;i="5.82,281,1613462400"; d="scan'208";a="390118689"
+Received: from jma2-mobl2.ccr.corp.intel.com (HELO intel.com) ([10.254.37.251])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2021 11:42:30 -0700
+Date: Fri, 7 May 2021 14:42:27 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <YJWKE/bz4KyopJU2@intel.com>
+References: <20210328225709.18541-16-daniele.ceraolospurio@intel.com>
+ <20210427104504.2720-1-anshuman.gupta@intel.com>
+ <YIhePcRcpKEoBmAE@intel.com>
+ <96d9782a7e864448a4d311f4eeaa6923@intel.com>
+ <YIv+QNTlV9ef0QzH@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Date: Fri, 07 May 2021 18:37:28 -0000
-Message-ID: <162041264802.10707.7272256113770751161@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210507144251.376538-1-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20210507144251.376538-1-janusz.krzysztofik@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Do_release_kernel_context_if_breadcrumb_measure_fai?=
- =?utf-8?q?ls?=
+Content-Disposition: inline
+In-Reply-To: <YIv+QNTlV9ef0QzH@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 15/16] drm/i915/pxp: black pixels on pxp
+ disabled
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,192 +51,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0673229898=="
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Gaurav, Kumar" <kumar.gaurav@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0673229898==
-Content-Type: multipart/alternative;
- boundary="===============1754721656798748652=="
+On Fri, Apr 30, 2021 at 03:55:28PM +0300, Ville Syrj=E4l=E4 wrote:
+> On Fri, Apr 30, 2021 at 07:12:53AM +0000, Gupta, Anshuman wrote:
+> > =
 
---===============1754721656798748652==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> > =
 
-== Series Details ==
+> > > -----Original Message-----
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Sent: Wednesday, April 28, 2021 12:26 AM
+> > > To: Gupta, Anshuman <anshuman.gupta@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@inte=
+l.com>;
+> > > Gaurav, Kumar <kumar.gaurav@intel.com>; Shankar, Uma
+> > > <uma.shankar@intel.com>; Ceraolo Spurio, Daniele
+> > > <daniele.ceraolospurio@intel.com>
+> > > Subject: Re: [PATCH v3 15/16] drm/i915/pxp: black pixels on pxp disab=
+led
+> > > =
 
-Series: drm/i915/gt: Do release kernel context if breadcrumb measure fails
-URL   : https://patchwork.freedesktop.org/series/89879/
-State : success
+> > > On Tue, Apr 27, 2021 at 04:15:04PM +0530, Anshuman Gupta wrote:
+> > > > When protected sufaces has flipped and pxp session is disabled,
+> > > > display black pixels by using plane color CTM correction.
+> > > >
+> > > > v2:
+> > > > - Display black pixels in aysnc flip too.	=
 
-== Summary ==
+> > > =
 
-CI Bug Log - changes from CI_DRM_10059 -> Patchwork_20088
-====================================================
+> > > We can't change any of that with an async flip.
+> > I was thinking of an scenario , when application flip the protected sur=
+faces with synchronous flips
+> > and driver has enable the plane decryption, can application issue an in=
+termediate async flip with
+> > protected surfaces afterwards ?
+> > If above is possible, is it possible to display black pixels in case of=
+ pxp session invalidation at the time of
+> > Plane commit?   =
 
-Summary
--------
+> =
 
-  **SUCCESS**
+> We'll just have to refuse the async flip if the session has
+> been invalidated.
 
-  No regressions found.
+This seems the simplest way... but the effect would be different right?
+We wouldn't get the desired blank screen, but frozen screen?!
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/index.html
+Any possibility of a blank screen on this scenario?
 
-Known issues
-------------
+> =
 
-  Here are the changes found in Patchwork_20088 that come from known issues:
+> -- =
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_prime@i915-to-amd:
-    - fi-tgl-y:           NOTRUN -> [SKIP][1] ([fdo#109315] / [i915#2575])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/fi-tgl-y/igt@amdgpu/amd_prime@i915-to-amd.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-icl-u2:          [PASS][2] -> [DMESG-FAIL][3] ([i915#2291] / [i915#541])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10059/fi-icl-u2/igt@i915_selftest@live@gt_heartbeat.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/fi-icl-u2/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [PASS][4] -> [INCOMPLETE][5] ([i915#2782])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10059/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2575]: https://gitlab.freedesktop.org/drm/intel/issues/2575
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#3013]: https://gitlab.freedesktop.org/drm/intel/issues/3013
-  [i915#3015]: https://gitlab.freedesktop.org/drm/intel/issues/3015
-  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
-
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): fi-ilk-m540 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10059 -> Patchwork_20088
-
-  CI-20190529: 20190529
-  CI_DRM_10059: ab8441df864de9d5d06bf6dd405e4b42576a0999 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6081: fdff4bba7abf9cb7c8ea21abf14e36d344ebb8c1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20088: b679bf1d7c56b5563407800ef486ec73c5d246fd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-b679bf1d7c56 drm/i915/gt: Do release kernel context if breadcrumb measure fails
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/index.html
-
---===============1754721656798748652==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Do release kernel context if breadcrumb measure fails</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89879/">https://patchwork.freedesktop.org/series/89879/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10059 -&gt; Patchwork_20088</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20088 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_prime@i915-to-amd:</p>
-<ul>
-<li>fi-tgl-y:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/fi-tgl-y/igt@amdgpu/amd_prime@i915-to-amd.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109315">fdo#109315</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2575">i915#2575</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_heartbeat:</p>
-<ul>
-<li>fi-icl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10059/fi-icl-u2/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/fi-icl-u2/igt@i915_selftest@live@gt_heartbeat.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/541">i915#541</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10059/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20088/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): fi-ilk-m540 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10059 -&gt; Patchwork_20088</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10059: ab8441df864de9d5d06bf6dd405e4b42576a0999 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6081: fdff4bba7abf9cb7c8ea21abf14e36d344ebb8c1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20088: b679bf1d7c56b5563407800ef486ec73c5d246fd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>b679bf1d7c56 drm/i915/gt: Do release kernel context if breadcrumb measure fails</p>
-
-</body>
-</html>
-
---===============1754721656798748652==--
-
---===============0673229898==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> Ville Syrj=E4l=E4
+> Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0673229898==--
