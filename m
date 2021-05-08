@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA1EF376EB9
-	for <lists+intel-gfx@lfdr.de>; Sat,  8 May 2021 04:29:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11F7A376E9F
+	for <lists+intel-gfx@lfdr.de>; Sat,  8 May 2021 04:28:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 010666EF21;
-	Sat,  8 May 2021 02:28:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF366E84F;
+	Sat,  8 May 2021 02:28:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9BA76E82C
- for <intel-gfx@lists.freedesktop.org>; Sat,  8 May 2021 02:28:31 +0000 (UTC)
-IronPort-SDR: v2/bQc9YUMWbKgBt0H8kxWCUjlh3LkOSugl5MGr5pzVAuqzOSMg3fjTklI2dDGjs6qC8dLFjLN
- jU54A+CYcWLg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9977"; a="198933637"
-X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="198933637"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1661F6E836
+ for <intel-gfx@lists.freedesktop.org>; Sat,  8 May 2021 02:28:32 +0000 (UTC)
+IronPort-SDR: T7ue84sSHHMUqWxZ8GHlHq/+N5a3PrN2HTnorBR5W9KXPwzDZTwclsIy5OXotAjXuCrcrul2Ip
+ v+qex5U7huLA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9977"; a="198933638"
+X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="198933638"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2021 19:28:29 -0700
-IronPort-SDR: BMOhWEWVOiyWgWvVoYDAAXXvWc4SGilt4yo3beuRa6k5asv6d+OQ4upHvsbnJAUgtVnEQlldj3
- iUMj3Yvatisg==
-X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="533910056"
+IronPort-SDR: YdwSWWIyDn8k18lD0tYxi7DFH+QfrzfHz3Snnr4HWAE01VSxM9wBZ0MaFvr1490FqqMNbyd+DP
+ DEPz+lpCATHw==
+X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="533910060"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2021 19:28:28 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 May 2021 19:27:41 -0700
-Message-Id: <20210508022820.780227-10-matthew.d.roper@intel.com>
+Date: Fri,  7 May 2021 19:27:42 -0700
+Message-Id: <20210508022820.780227-11-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210508022820.780227-1-matthew.d.roper@intel.com>
 References: <20210508022820.780227-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 09/48] drm/i915/display/dsc: Refactor
- intel_dp_dsc_compute_bpp
+Subject: [Intel-gfx] [PATCH v3 10/48] drm/i915/xelpd: Support DP1.4
+ compression BPPs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,64 +54,103 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Vandita Kulkarni <vandita.kulkarni@intel.com>
 
-Move the platform specific max bpc calculation into
-intel_dp_dsc_compute_bpp function
+Support compression BPPs from bpc to uncompressed BPP -1.
+So far we have 8,10,12 as valid compressed BPPS now the
+support is extended.
 
 Cc: Manasi Navare <manasi.d.navare@intel.com>
 Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 32 ++++++++++++++++++-------
+ 1 file changed, 24 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index cbbba8e33b24..f163a669f40f 100644
+index f163a669f40f..8ccb3c3888f7 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1097,10 +1097,18 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
- 	return -EINVAL;
+@@ -109,6 +109,7 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
  }
  
--static int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc)
-+static int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 max_req_bpc)
+ static void intel_dp_unset_edid(struct intel_dp *intel_dp);
++static int intel_dp_dsc_compute_bpp(struct intel_dp *intel_dp, u8 dsc_max_bpc);
+ 
+ /* update sink rates from dpcd */
+ static void intel_dp_set_sink_rates(struct intel_dp *intel_dp)
+@@ -494,7 +495,8 @@ small_joiner_ram_size_bits(struct drm_i915_private *i915)
+ static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+ 				       u32 link_clock, u32 lane_count,
+ 				       u32 mode_clock, u32 mode_hdisplay,
+-				       bool bigjoiner)
++				       bool bigjoiner,
++				       u32 pipe_bpp)
  {
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	int i, num_bpc;
- 	u8 dsc_bpc[3] = {0};
-+	u8 dsc_max_bpc;
+ 	u32 bits_per_pixel, max_bpp_small_joiner_ram;
+ 	int i;
+@@ -519,6 +521,7 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+ 	drm_dbg_kms(&i915->drm, "Max small joiner bpp: %u\n",
+ 		    max_bpp_small_joiner_ram);
+ 
 +
-+	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
-+	if (DISPLAY_VER(i915) >= 12)
-+		dsc_max_bpc = min_t(u8, 12, max_req_bpc);
-+	else
-+		dsc_max_bpc = min_t(u8, 10, max_req_bpc);
+ 	/*
+ 	 * Greatest allowed DSC BPP = MIN (output BPP from available Link BW
+ 	 * check, output bpp from small joiner RAM check)
+@@ -541,12 +544,17 @@ static u16 intel_dp_dsc_get_output_bpp(struct drm_i915_private *i915,
+ 		return 0;
+ 	}
  
- 	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(intel_dp->dsc_dpcd,
- 						       dsc_bpc);
-@@ -1188,7 +1196,6 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
- 	const struct drm_display_mode *adjusted_mode =
- 		&pipe_config->hw.adjusted_mode;
--	u8 dsc_max_bpc;
- 	int pipe_bpp;
- 	int ret;
+-	/* Find the nearest match in the array of known BPPs from VESA */
+-	for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp) - 1; i++) {
+-		if (bits_per_pixel < valid_dsc_bpp[i + 1])
+-			break;
++	/* From XE_LPD onwards we support from bpc upto uncompressed bpp-1 BPPs */
++	if (DISPLAY_VER(i915) >= 13) {
++		bits_per_pixel = min(bits_per_pixel, pipe_bpp - 1);
++	} else {
++		/* Find the nearest match in the array of known BPPs from VESA */
++		for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp) - 1; i++) {
++			if (bits_per_pixel < valid_dsc_bpp[i + 1])
++				break;
++		}
++		bits_per_pixel = valid_dsc_bpp[i];
+ 	}
+-	bits_per_pixel = valid_dsc_bpp[i];
  
-@@ -1198,14 +1205,7 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	if (!intel_dp_supports_dsc(intel_dp, pipe_config))
- 		return -EINVAL;
- 
--	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
--	if (DISPLAY_VER(dev_priv) >= 12)
--		dsc_max_bpc = min_t(u8, 12, conn_state->max_requested_bpc);
--	else
--		dsc_max_bpc = min_t(u8, 10,
--				    conn_state->max_requested_bpc);
--
--	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, dsc_max_bpc);
-+	pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, conn_state->max_requested_bpc);
- 
- 	/* Min Input BPC for ICL+ is 8 */
- 	if (pipe_bpp < 8 * 3) {
+ 	/*
+ 	 * Compressed BPP in U6.4 format so multiply by 16, for Gen 11,
+@@ -780,6 +788,12 @@ intel_dp_mode_valid(struct drm_connector *connector,
+ 	 */
+ 	if (DISPLAY_VER(dev_priv) >= 10 &&
+ 	    drm_dp_sink_supports_dsc(intel_dp->dsc_dpcd)) {
++		/*
++		 * TBD pass the connector BPC,
++		 * for now U8_MAX so that max BPC on that platform would be picked
++		 */
++		int pipe_bpp = intel_dp_dsc_compute_bpp(intel_dp, U8_MAX);
++
+ 		if (intel_dp_is_edp(intel_dp)) {
+ 			dsc_max_output_bpp =
+ 				drm_edp_dsc_sink_output_bpp(intel_dp->dsc_dpcd) >> 4;
+@@ -793,7 +807,8 @@ intel_dp_mode_valid(struct drm_connector *connector,
+ 							    max_lanes,
+ 							    target_clock,
+ 							    mode->hdisplay,
+-							    bigjoiner) >> 4;
++							    bigjoiner,
++							    pipe_bpp) >> 4;
+ 			dsc_slice_count =
+ 				intel_dp_dsc_get_slice_count(intel_dp,
+ 							     target_clock,
+@@ -1240,7 +1255,8 @@ static int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 						    pipe_config->lane_count,
+ 						    adjusted_mode->crtc_clock,
+ 						    adjusted_mode->crtc_hdisplay,
+-						    pipe_config->bigjoiner);
++						    pipe_config->bigjoiner,
++						    pipe_bpp);
+ 		dsc_dp_slice_count =
+ 			intel_dp_dsc_get_slice_count(intel_dp,
+ 						     adjusted_mode->crtc_clock,
 -- 
 2.25.4
 
