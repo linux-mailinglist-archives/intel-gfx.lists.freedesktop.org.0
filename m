@@ -2,36 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22652376E8F
-	for <lists+intel-gfx@lfdr.de>; Sat,  8 May 2021 04:28:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82CC7376E8D
+	for <lists+intel-gfx@lfdr.de>; Sat,  8 May 2021 04:28:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B5226E828;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 492216E825;
 	Sat,  8 May 2021 02:28:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51F586E826
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24E3B6E825
  for <intel-gfx@lists.freedesktop.org>; Sat,  8 May 2021 02:28:29 +0000 (UTC)
-IronPort-SDR: scnXGLmpmwQGkputAj8Z+lHRl872Q8Dqo5PvlC7e6vIONsAgphsA5B4P1f8aTsfJe0H7reZO9n
- NIuvaGs8bnEw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9977"; a="198933626"
-X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="198933626"
+IronPort-SDR: So8yBcOQ6TzC5XPuiKdUcffDRt0v733KB3OA8MF5HgssZ0zZ2rkbdEsVva0ULChdUTHL4ts5v6
+ 7k+18TdHVPGA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9977"; a="198933628"
+X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="198933628"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2021 19:28:28 -0700
-IronPort-SDR: exhfa0s4nzIlT42dirDwc6n8IQpiQLyoJjGrUWRW6QLtywfvbs0+zwCZKQdueujP/nGBH2/0NY
- sYEwIwPFbl/g==
-X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="533910026"
+IronPort-SDR: KiVPa2VShWxf9KuRis0WeRss3SxKijh9w/mF3Lc2R25eZk41lgNqyHve0l9AHMM7wrY3PjDMxX
+ kj/+bb4F8aQA==
+X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="533910029"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2021 19:28:28 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 May 2021 19:27:32 -0700
-Message-Id: <20210508022820.780227-1-matthew.d.roper@intel.com>
+Date: Fri,  7 May 2021 19:27:33 -0700
+Message-Id: <20210508022820.780227-2-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
+In-Reply-To: <20210508022820.780227-1-matthew.d.roper@intel.com>
+References: <20210508022820.780227-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 00/48] Alder Lake-P Support
+Subject: [Intel-gfx] [PATCH v3 01/48] drm/i915/xelpd: Handle proper AUX
+ interrupt bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,112 +48,89 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhlIHByZXZpb3VzIHZlcnNpb24gb2YgdGhpcyBzZXJpZXMgd2FzIGhlcmU6CiAgICAgICAgaHR0
-cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy84Nzg5Ny8jcmV2MgogICAgICAg
-IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2ludGVsLWdmeC8yMDIxLU1h
-cmNoLzI2MzAyOS5odG1sCgpBc2lkZSBmcm9tIGdlbmVyYWwgcmViYXNpbmcsIHRoZSBtYWluIGNo
-YW5nZXMgaW4gdGhpcyB2ZXJzaW9uIGFyZQppbXByb3ZlbWVudHMgdG8gdGhlIFR5cGUtQywgUFNS
-LCBhbmQgRFNDIGNvZGUuCgpDYzogQ2xpbnRvbiBUYXlsb3IgPGNsaW50b24uYS50YXlsb3JAaW50
-ZWwuY29tPgpDYzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+CkNj
-OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KCkFuaW1lc2gg
-TWFubmEgKDMpOgogIGRybS9pOTE1L2JpZ2pvaW5lcjogTW9kZSB2YWxpZGF0aW9uIHdpdGggdW5j
-b21wcmVzc2VkIHBpcGUgam9pbmVyCiAgZHJtL2k5MTUvYmlnam9pbmVyOiBBdm9pZCBkc2NfY29t
-cHV0ZV9jb25maWcgZm9yIHVuY29tcHJlc3NlZAogICAgYmlnam9pbmVyCiAgZHJtL2k5MTUvYmln
-am9pbmVyOiBhdG9taWMgY29tbWl0IGNoYW5nZXMgZm9yIHVuY29tcHJlc3NlZCBqb2luZXIKCkFu
-dXNoYSBTcml2YXRzYSAoNSk6CiAgZHJtL2k5MTUvYWRsX3A6IFNldHVwIHBvcnRzL3BoeXMKICBk
-cm0vaTkxNS9hZGxfcDogQWRkIGNkY2xrIHN1cHBvcnQgZm9yIEFETC1QCiAgZHJtL2k5MTUvYWRs
-X3A6IEFkZCBQTEwgU3VwcG9ydAogIGRybS9pOTE1L2FkbHA6IEFkZCBQSVBFX01JU0MyIHByb2dy
-YW1taW5nCiAgZHJtL2k5MTUvYWRsX3A6IFVwZGF0ZSBtZW1vcnkgYmFuZHdpZHRoIHBhcmFtZXRl
-cnMKCkNsaW50b24gVGF5bG9yICgxKToKICBkcm0vaTkxNS9hZGxfcDogQWRkIFBDSCBzdXBwb3J0
-CgpHd2FuLWd5ZW9uZyBNdW4gKDQpOgogIGRybS9pOTE1L2Rpc3BsYXk6IFJlcGxhY2UgZGMzY29f
-ZW5hYmxlZCB3aXRoIGRjM2NvX2V4aXRsaW5lIG9uCiAgICBpbnRlbF9wc3Igc3RydWN0CiAgZHJt
-L2k5MTUvZGlzcGxheTogUmVtb3ZlIGEgcmVkdW5kYW50IGZ1bmN0aW9uIGFyZ3VtZW50IGZyb20K
-ICAgIGludGVsX3Bzcl9lbmFibGVfc291cmNlKCkKICBkcm0vaTkxNS9kaXNwbGF5OiBBZGQgUFNS
-IGludGVycnVwdCBlcnJvciBjaGVjayBmdW5jdGlvbgogIGRybS9pOTE1L2Rpc3BsYXk6IEludHJv
-ZHVjZSBuZXcgaW50ZWxfcHNyX3BhdXNlL3Jlc3VtZSBmdW5jdGlvbgoKSW1yZSBEZWFrICgxKToK
-ICBkcm0vaTkxNS9hZGxfcDogUHJvZ3JhbSBEUC9IRE1JIGxpbmsgcmF0ZSB0byBERElfQlVGX0NU
-TAoKSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSAoMTApOgogIGRybS9pOTE1L3hlbHBkOiBQcm92aWRl
-IHBvcnQvcGh5IG1hcHBpbmcgZm9yIHZidAogIGRybS9pOTE1L2Rpc3BsYXkvdGM6IFJlbmFtZSBz
-YWZlX21vZGUgZnVuY3Rpb25zIG93bmVyc2hpcAogIGRybS9pOTE1L2FkbF9wOiBIYW5kbGUgVEMg
-Y29sZAogIGRybS9pOTE1L2FkbF9wOiBJbXBsZW1lbnQgVEMgc2VxdWVuY2VzCiAgZHJtL2k5MTUv
-YWRsX3A6IEVuYWJsZSBtb2R1bGFyIGZpYQogIGRybS9pOTE1L2FkbF9wOiBEb24ndCBjb25maWcg
-TUJVUyBhbmQgREJVRiBkdXJpbmcgZGlzcGxheQogICAgaW5pdGlhbGl6YXRpb24KICBkcm0vaTkx
-NS9hZGxfcDogQWRkIElQcyBzdGVwcGluZyBtYXBwaW5nCiAgZHJtL2k5MTUvYWRsX3A6IEltcGxl
-bWVudCBXYV8yMjAxMTA5MTY5NAogIGRybS9pOTE1L2Rpc3BsYXkvYWRsX3A6IEltcGxlbWVudCBX
-YV8yMjAxMTMyMDMxNgogIGRybS9pOTE1L2FkbF9wOiBEaXNhYmxlIENDUyBvbiBhLXN0ZXAgKFdh
-XzIyMDExMTg2MDU3KQoKTWFuYXNpIE5hdmFyZSAoMSk6CiAgZHJtL2k5MTUveGVscGQ6IEFkZCBW
-UlIgZ3VhcmRiYW5kIGZvciBWUlIgQ1RMCgpNYXR0IFJvcGVyICgxMCk6CiAgZHJtL2k5MTUveGVs
-cGQ6IEhhbmRsZSBwcm9wZXIgQVVYIGludGVycnVwdCBiaXRzCiAgZHJtL2k5MTUveGVscGQ6IEVu
-aGFuY2VkIHBpcGUgdW5kZXJydW4gcmVwb3J0aW5nCiAgZHJtL2k5MTUveGVscGQ6IERlZmluZSBw
-bGFuZSBjYXBhYmlsaXRpZXMKICBkcm0vaTkxNS94ZWxwZDogSGFuZGxlIG5ldyBsb2NhdGlvbiBv
-ZiBvdXRwdXRzIEQgYW5kIEUKICBkcm0vaTkxNS94ZWxwZDogQWRkIFhFX0xQRCBwb3dlciB3ZWxs
-cwogIGRybS9pOTE1L3hlbHBkOiBJbmNyZWFzZSBtYXhpbXVtIHdhdGVybWFyayBsaW5lcyB0byAy
-NTUKICBkcm0vaTkxNS94ZWxwZDogUmVxdWlyZWQgYmFuZHdpZHRoIGluY3JlYXNlcyB3aGVuIFZU
-LWQgaXMgYWN0aXZlCiAgZHJtL2k5MTUveGVscGQ6IEFkZCBXYV8xNDAxMTUwMzAzMAogIGRybS9p
-OTE1L2FkbF9wOiBBZGQgZGVkaWNhdGVkIFNBR1Ygd2F0ZXJtYXJrcwogIGRybS9pOTE1L2FkbF9w
-OiBFeHRlbmQgUExBTkVfV00gYml0cyBmb3IgYmxvY2tzICYgbGluZXMKCk1pa2EgS2Fob2xhICgz
-KToKICBkcm0vaTkxNS9hZGxfcDogVHggZXNjYXBlIGNsb2NrIHdpdGggRFNJCiAgZHJtL2k5MTUv
-YWRsX3A6IERlZmluZSBhbmQgdXNlIEFETC1QIHNwZWNpZmljIERQIHRyYW5zbGF0aW9uIHRhYmxl
-cwogIGRybS9pOTE1L2FkbF9wOiBFbmFibGUvZGlzYWJsZSBsb2FkZ2VuIHNoYXJpbmcKClVtZXNo
-IE5lcmxpZ2UgUmFtYXBwYSAoMSk6CiAgZHJtL2k5MTUvcGVyZjogRW5hYmxlIE9BIGZvcm1hdHMg
-Zm9yIEFETF9QCgpWYW5kaXRhIEt1bGthcm5pICg3KToKICBkcm0vaTkxNS9kaXNwbGF5L2RzYzog
-UmVmYWN0b3IgaW50ZWxfZHBfZHNjX2NvbXB1dGVfYnBwCiAgZHJtL2k5MTUveGVscGQ6IFN1cHBv
-cnQgRFAxLjQgY29tcHJlc3Npb24gQlBQcwogIGRybS9pOTE1OiBHZXQgc2xpY2UgaGVpZ2h0IGJl
-Zm9yZSBjb21wdXRpbmcgcmMgcGFyYW1zCiAgZHJtL2k5MTUveGVscGQ6IENhbGN1bGF0ZSBWRFND
-IFJDIHBhcmFtZXRlcnMKICBkcm0vaTkxNS94ZWxwZDogQWRkIHJjX3FwX3RhYmxlIGZvciByY3Bh
-cmFtcyBjYWxjdWxhdGlvbgogIGRybS9pOTE1L2FkbF9wOiBBZGQgZGRiIGFsbG9jYXRpb24gc3Vw
-cG9ydAogIGRybS9pOTE1L2FkbF9wOiBNQlVTIHByb2dyYW1taW5nCgpWaWxsZSBTeXJqw6Rsw6Qg
-KDIpOgogIGRybS9pOTE1OiBJbnRyb2R1Y2UgTUJVUyByZWxhdGl2ZSBkYnVmIG9mZnNldHMKICBk
-cm0vaTkxNTogTW92ZSBpbnRlbF9tb2Rlc2V0X2FsbF9waXBlcygpCgogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvTWFrZWZpbGUgICAgICAgICAgICAgICAgIHwgICAxICsKIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaWNsX2RzaS5jICAgICAgICB8ICAyMSArLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuYyAgIHwgIDIwICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmggICB8ICAgMSArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Jpb3MuYyAgICAgfCAgNDggKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfYncuYyAgICAgICB8ICAgNSArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9jZGNsay5jICAgIHwgIDk4ICsrLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGRpLmMgICAgICB8ICA5MSArKystCiAuLi4vZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kZGlfYnVmX3RyYW5zLmMgICAgfCAgMzQgKysKIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RkaV9idWZfdHJhbnMuaCAgICB8ICAgNCArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXkuYyAgfCAxMjcgKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGlzcGxheS5oICB8ICAgOSArCiAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9kaXNwbGF5X2RlYnVnZnMuYyAgfCAgIDYgKwogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheV9wb3dlci5jICAgIHwgNDM3ICsrKysrKysrKysrKysrKysrLQogLi4uL2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5oICAgIHwgICA5ICsKIC4uLi9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCAgICB8ICAgNSArLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jICAgICAgIHwgIDc1ICstLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXguYyAgIHwgIDE0ICstCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMgfCAgNjkgKystCiAuLi4vZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9maWZvX3VuZGVycnVuLmMgICAgfCAgNTcgKystCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYyAgICAgfCAgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgICAgICB8IDEzMSArKysrLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmggICAgICB8ICAgMiArCiAuLi4vZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfcXBfdGFibGVzLmMgICAgfCAzMDkgKysrKysrKysrKysrKwogZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jICAgICAgIHwgMTYxICsrKysrKy0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmRzYy5jICAgICB8IDE0OCArKysrKy0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmRzYy5oICAgICB8ICAgMiArCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Zyci5jICAgICAgfCAgNTYgKystCiAu
-Li4vZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMgICAgfCAgMzEgKy0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgICAgICB8ICAxMyArCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jICAgICAgICAgICAgICAgfCAgMzMgKy0KIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmggICAgICAgICAgICAgICB8ICAgMSArCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jICAgICAgICAgICAgICAgfCAgIDEgKwogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9wZXJmLmMgICAgICAgICAgICAgIHwgICAxICsKIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgICB8IDE3OCArKysrKy0tCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jICAgICAgfCAgIDIgKy0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX3BjaC5jICAgICAgICAgICAgICB8ICAgNiArLQogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaW50ZWxfcGNoLmggICAgICAgICAgICAgIHwgICAxICsKIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX3BtLmMgICAgICAgICAgICAgICB8IDMzMCArKysrKysrKysrKystCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5oICAgICAgICAgICAgICAgfCAgIDIgKy0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3N0ZXAuYyAgICAgICAgICAgICB8ICAxMiArLQogNDEg
-ZmlsZXMgY2hhbmdlZCwgMjI2NCBpbnNlcnRpb25zKCspLCAyODkgZGVsZXRpb25zKC0pCiBjcmVh
-dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9xcF90YWJs
-ZXMuYwoKLS0gCjIuMjUuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+XE_LPD has new AUX interrupt bits for DDI-D and DDI-E that take the
+spots that were used by TC5/TC6 on Display12 platforms.
+
+While we're at it, let's convert the bit definitions for all TGL+ aux
+bits over to the modern REG_BIT() notation.
+
+v2:
+ - Maintain bit order rather than logical order.  (Lucas)
+ - Convert surrounding code to REG_BIT() notation.  (Lucas)
+
+Bspec: 50064
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
+ drivers/gpu/drm/i915/i915_irq.c | 12 +++++++++++-
+ drivers/gpu/drm/i915/i915_reg.h | 20 +++++++++++---------
+ 2 files changed, 22 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index f6967a93ec7a..26a5474bb145 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -2270,7 +2270,17 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
+ {
+ 	u32 mask;
+ 
+-	if (DISPLAY_VER(dev_priv) >= 12)
++	if (DISPLAY_VER(dev_priv) >= 13)
++		return TGL_DE_PORT_AUX_DDIA |
++			TGL_DE_PORT_AUX_DDIB |
++			TGL_DE_PORT_AUX_DDIC |
++			XELPD_DE_PORT_AUX_DDID |
++			XELPD_DE_PORT_AUX_DDIE |
++			TGL_DE_PORT_AUX_USBC1 |
++			TGL_DE_PORT_AUX_USBC2 |
++			TGL_DE_PORT_AUX_USBC3 |
++			TGL_DE_PORT_AUX_USBC4;
++	else if (DISPLAY_VER(dev_priv) >= 12)
+ 		return TGL_DE_PORT_AUX_DDIA |
+ 			TGL_DE_PORT_AUX_DDIB |
+ 			TGL_DE_PORT_AUX_DDIC |
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 846fa927a3d8..87d7257922d0 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -7873,15 +7873,17 @@ enum {
+ #define  BDW_DE_PORT_HOTPLUG_MASK	GEN8_DE_PORT_HOTPLUG(HPD_PORT_A)
+ #define  BXT_DE_PORT_GMBUS		(1 << 1)
+ #define  GEN8_AUX_CHANNEL_A		(1 << 0)
+-#define  TGL_DE_PORT_AUX_USBC6		(1 << 13)
+-#define  TGL_DE_PORT_AUX_USBC5		(1 << 12)
+-#define  TGL_DE_PORT_AUX_USBC4		(1 << 11)
+-#define  TGL_DE_PORT_AUX_USBC3		(1 << 10)
+-#define  TGL_DE_PORT_AUX_USBC2		(1 << 9)
+-#define  TGL_DE_PORT_AUX_USBC1		(1 << 8)
+-#define  TGL_DE_PORT_AUX_DDIC		(1 << 2)
+-#define  TGL_DE_PORT_AUX_DDIB		(1 << 1)
+-#define  TGL_DE_PORT_AUX_DDIA		(1 << 0)
++#define  TGL_DE_PORT_AUX_USBC6		REG_BIT(13)
++#define  XELPD_DE_PORT_AUX_DDIE		REG_BIT(13)
++#define  TGL_DE_PORT_AUX_USBC5		REG_BIT(12)
++#define  XELPD_DE_PORT_AUX_DDID		REG_BIT(12)
++#define  TGL_DE_PORT_AUX_USBC4		REG_BIT(11)
++#define  TGL_DE_PORT_AUX_USBC3		REG_BIT(10)
++#define  TGL_DE_PORT_AUX_USBC2		REG_BIT(9)
++#define  TGL_DE_PORT_AUX_USBC1		REG_BIT(8)
++#define  TGL_DE_PORT_AUX_DDIC		REG_BIT(2)
++#define  TGL_DE_PORT_AUX_DDIB		REG_BIT(1)
++#define  TGL_DE_PORT_AUX_DDIA		REG_BIT(0)
+ 
+ #define GEN8_DE_MISC_ISR _MMIO(0x44460)
+ #define GEN8_DE_MISC_IMR _MMIO(0x44464)
+-- 
+2.25.4
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
