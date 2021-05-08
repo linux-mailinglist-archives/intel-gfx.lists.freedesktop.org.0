@@ -1,71 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8B03377F9C
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 11:41:20 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8194377FA2
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 11:41:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD4D46E441;
-	Mon, 10 May 2021 09:41:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F686E44F;
+	Mon, 10 May 2021 09:41:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34FDD6E823
- for <intel-gfx@lists.freedesktop.org>; Sat,  8 May 2021 01:10:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1620436236;
- bh=+UInIGR+uGT1HiFqln2P0HW+V5YTd6ogn2wqbcVDdvo=;
- h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
- b=K1KPeCa9ja+OgZ3yBp+5lkz4iZTkDidonQi2BPsajm4vmp4E8wD15M/1vjUG05x+b
- yYh5MULageH9YXZBMS+WsgAVfyVWH2nHeyk5AuVF1rW8MKMJ9DZGSUjowSuoTbPAIe
- G4RidibdT70+uRvCP80MxDAK6twyfPDFB7j4ITpo=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from hos.fritz.box ([91.39.128.24]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N6KUd-1lTh9p2l1F-016eMT; Sat, 08
- May 2021 03:10:36 +0200
-Received: from afrie by hos.fritz.box with local (Exim 4.92)
- (envelope-from <afrie@gmx.net>)
- id 1lfBUH-0001IQ-Gi; Sat, 08 May 2021 03:10:33 +0200
-Date: Sat, 8 May 2021 03:10:33 +0200
-From: Andreas Friedrich <afrie@gmx.net>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <20210508011033.GA3891@hos.afrie.home.de>
-References: <20210429181450.GA25385@hos.afrie.home.de>
- <20210429235828.GZ1551@zhen-hp.sh.intel.com>
- <161977150734.8550.2371200514024347460@jlahtine-mobl.ger.corp.intel.com>
- <20210430103635.GA16501@hos.afrie.home.de>
- <162002960518.3526.10925040263559391423@jlahtine-mobl.ger.corp.intel.com>
- <20210503120050.GA16864@hos.afrie.home.de>
- <20210507235254.GA1590@hos.afrie.home.de>
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
+ [IPv6:2607:f8b0:4864:20::102f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 741F389E57;
+ Sat,  8 May 2021 19:33:43 +0000 (UTC)
+Received: by mail-pj1-x102f.google.com with SMTP id
+ t2-20020a17090a0242b0290155433387beso6409586pje.1; 
+ Sat, 08 May 2021 12:33:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=d/khha5gcYxKTZWPmu0C7r4Hm8Jar/yv7FF0/xWX35k=;
+ b=uI91Yh9jX1UMCjFADa3Spki/qYd86s1jH1IXJeVXg0xDdfHIWNmw/OWsWKnzYTbxU6
+ j7shvhqLZUS6QMOe5UTBxuNvgg52URS+foOlMw5v4q7j+4uC1YfvIdaPkAMOPIbq87pX
+ VPLwr1HFXJTC5tRm1kca4bHOVoBZu0j4c80N5IiQrJCPSH4Zhw8lht58vlchvoRMi5py
+ hFCcfGGPMyZ7/QTwFcKCnBLhYgfUOZeBMTT2iCrF8MQKnoD6mgmG4t6xE5lhmFTkRdcq
+ OboaVhSKMROSi8nuBGRapLrhNmg4df3JgEep4lKG7TbwSWbwd5t6uzp4Myst7bce+8xQ
+ qW3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=d/khha5gcYxKTZWPmu0C7r4Hm8Jar/yv7FF0/xWX35k=;
+ b=f/NU0y86OHLYExsFBa6pA54Y3dcH2frW1SX5X+VU/RqebcRqlRZ/L4nnyQDwWEmkeO
+ P2WlJoszrQsN1W4YvCluHYU1LuBmV60LSvO5ejt/UJMajin7uizPO5UdBeUEtfSl3sHx
+ CHP5vjlFD602eTOwLBMU7RxCbX3P+uqPL1PCH73iOvsUv+WqRlXNAspCFwEpSNasmTj6
+ bcm9pp23xqUkV0TuHrYNZ77YhLzOSFjHOO+rD5enXvUAil8hu3yGpsD9vNraBkpsxFzD
+ NuUaLJX3nbuLKnJUFKjFA2UV7TJWoTiq4Zg/YZKUXjq+OXqb/Y1Mxmu8AL44IkfcSxWN
+ e60Q==
+X-Gm-Message-State: AOAM531DVGCGyTyStX4D4VZ5GFI1B7u1gdhWHGHXycFzXIL7yRTA629J
+ 47HcUSBkcST2+3Rp3rwxocY=
+X-Google-Smtp-Source: ABdhPJyKdz0WlRg+E/80oP8OGNuEsW15TK5hHRQeI76SL3SHeka1FSYJ0wzNqPjZLkqR8w7Y6MwI/Q==
+X-Received: by 2002:a17:902:6841:b029:ee:e239:18bf with SMTP id
+ f1-20020a1709026841b02900eee23918bfmr16802089pln.56.1620502422986; 
+ Sat, 08 May 2021 12:33:42 -0700 (PDT)
+Received: from localhost.localdomain ([104.200.131.246])
+ by smtp.gmail.com with ESMTPSA id b2sm15333631pji.28.2021.05.08.12.33.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 08 May 2021 12:33:42 -0700 (PDT)
+From: youling257 <youling257@gmail.com>
+To: hch@lst.de
+Date: Sun,  9 May 2021 03:33:29 +0800
+Message-Id: <20210508193329.28394-1-youling257@gmail.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210326055505.1424432-5-hch@lst.de>
+References: <20210326055505.1424432-5-hch@lst.de>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210507235254.GA1590@hos.afrie.home.de>
-X-Provags-ID: V03:K1:a6aas/AibCbr+sZduaIWsW2A/xOYboIRDX6cbXR5EunnbqviW4A
- awNhoudtqH1XuwDpIBpHBZtl6vS6jX396bS5tTg7yCMP55+oXvV3cjGSgQBB3AB9sgGI06N
- lnln+wu6OXwbUPHs/QAqXLlngW+mhNAaif5yQG8ISwIdezwcIpKUHqklIv6AIKYlqqp69tj
- aBNzaiCAvrIf1Lh1RscUQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:njkXf5tZiUI=:QSawK6FUgV51JYxxQIr1MW
- WG1anMLoAcf4BisjRAdfhPvjjhe1Rm6e5+XmmTIBkr72CMpocb6kTJJAfBfeN87eiiqc7M8Yr
- EiFhuD/9ukFVnVRorAIY539hi0qq3BjW+xxDSyD0Y74pUq9GGQPULyGvXVpJbU6AGTCd3Jtch
- VW0thwhAY/S2nhrxfDTHm/wR2NTGi42TK/gl8EdJ9kYrfVY4kLCaWhWi7mg9/959qSikXb8mX
- YXbNgCDlr+HU1q2rLf9pVqK9y0zLD/bSnc+heEYLbj40FM/Yz68vAJQ3+SpTUNQfjz9PkcD6j
- Gd0HmBmgJCVO6/eUQ8loxIgt13HOSAN0B3UWlDXFDX6PYPNoS/m2kY0pFgltns2euw3GCxiU7
- oNhgGz74kONlDsv7++kKSMYfRoR/kRrWyRMzQ+q9aDkAVpQw2YCj0ntWMPgN8OE7ID0e0dH8Y
- gjzRsMX56gIf+Al9JMJGQjyzzKPgv2Wywv9pqgU8tfJgpccuYrfo6zmZkp7Ept0FFeH1QIfjj
- uUGNdYA7Y925l3U5X8rmJNxX1bJOHb5Fv7gcH+nwBtY3MG4Cat31exZ4p5B6+2yXTMpUZ3Srv
- q0EqX+NXpHd+f5qRkBKRQ5fBhUpl2WIsPOM/AkI3Oe5skXlVmVRKfisdVHrOLLYNLVNQpegyc
- VPcVJl0SeIqxYIW2t+DWr5fuDT1UqR6v5hDW47Ue5A5L9+7s04ItND2p4+urJ10CQBxFHpsOg
- H3GKIoZB9rM+Lb0801lM9B4ghdxtek7zngHw88qrQvem5T6QjieHZZJH48FQ9Zgic7MjTlocl
- 2npSDmIKL2RB2rRWeGUpxghV+N44U4A/ryUiF+nTWl0cQC0cvYlrwHF52RimsF2xW2Fkf+i6T
- +f0hPy2OVtSKpYc5vOwVMfUAiJvFKxDgExdwkeO7agHa8fhSd1+eMzP+cqgF3jmQpX+NEbDIF
- WKF8dH6x1947YPEOhCi9scOhEqzJuvQ64t0JmMl6KMVeMiE2khEVSvHwEvAgDiQyCTo3rYr3x
- BM264/xQ0OyTXYYvnFuGHc3XlPPGcf/IfwaSvyiyhOcY6cWERbuzZ4bBoXJK8TIKaKKI13bF0
- k7BUpdsXDe/fh0kNzQWqqduaOeSgJPbtadX5zvEZe7K+pO6kSFBFELaYeRsGtqAeGEPOUIX4M
- hdc9YkRer+8Ohe7+YFPPQrGUwwgBOaDgdGRb6jUYJtQ9gXDkgGiLgxHtl+7CHOZyq4ieI=
 X-Mailman-Approved-At: Mon, 10 May 2021 09:41:14 +0000
-Subject: Re: [Intel-gfx] REGRESSION with 5.12: Suspend not working on
- Toshiba notebook - NOT FIXED
+Subject: Re: [Intel-gfx] [PATCH 4/4] i915: fix remap_io_sg to verify the
+ pgprot
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,24 +70,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: peterz@infradead.org, daniel.vetter@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk, linux-mm@kvack.org,
+ dri-devel@lists.freedesktop.org, akpm@linux-foundation.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, May 08, 2021 at 01:52:54AM +0200, Andreas Friedrich wrote:
+This patch cause "x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x064a2000-0x064a2fff], got write-back" problem.
+my 2GB ram Bay trail z3735f tablet runing on android-x86, "i915: fix remap_io_sg to verify the pgprot" cause this problem.
 
-Hello Joonas,
-...
-> Fixed with 5.12.2
->   drm/i915: Disable runtime power management during shutdown,
->   commit 7962893ecb853aa7c8925ce237ab6c4274cfc1c7 upstream.
+05-09 02:59:25.099     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x0640a000-0x0640dfff], got write-back
+05-09 02:59:25.106  1440  1440 W hwc-gl-worker: EGL_ANDROID_native_fence_sync extension not supported
+05-09 02:59:25.111     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x064a2000-0x064a2fff], got write-back
+05-09 02:59:25.118     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x06400000-0x06404fff], got write-back
+05-09 02:59:25.125     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x06405000-0x06408fff], got write-back
+05-09 02:59:25.148  1440  1440 W hwc-gl-worker: EGL_ANDROID_native_fence_sync extension not supported
+05-09 02:59:25.158     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x06542000-0x06542fff], got write-back
+05-09 02:59:25.165     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x06499000-0x0649dfff], got write-back
+05-09 02:59:25.171     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x0649e000-0x064a1fff], got write-back
+05-09 02:59:25.177  1440  1440 W hwc-gl-worker: EGL_ANDROID_native_fence_sync extension not supported
+05-09 02:59:25.183     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x065fa000-0x065fafff], got write-back
+05-09 02:59:25.192     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x06539000-0x0653dfff], got write-back
+05-09 02:59:25.199     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x0653e000-0x06541fff], got write-back
+05-09 02:59:25.204  1440  1440 W hwc-gl-worker: EGL_ANDROID_native_fence_sync extension not supported
+05-09 02:59:25.212     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x066a2000-0x066a2fff], got write-back
+05-09 02:59:25.218     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x065f1000-0x065f5fff], got write-back
+05-09 02:59:25.226     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x065f6000-0x065f9fff], got write-back
 
-I was wrong. One of 10 suspend still hangs.
 
-Best regards
-Andreas Friedrich
+05-09 02:59:27.101     0     0 W x86/PAT : BootAnimation:1665 map pfn RAM range req write-combining for [mem 0x08a76000-0x08a76fff], got write-back
+05-09 02:59:27.225     0     0 W x86/PAT : BootAnimation:1665 map pfn RAM range req write-combining for [mem 0x08a77000-0x08a7afff], got write-back
+05-09 02:59:27.242     0     0 W x86/PAT : BootAnimation:1665 map pfn RAM range req write-combining for [mem 0x08bd0000-0x08bd0fff], got write-back
+05-09 02:59:27.254     0     0 W x86/PAT : BootAnimation:1665 map pfn RAM range req write-combining for [mem 0x08bd1000-0x08bf0fff], got write-back
+05-09 02:59:27.310  1440  1440 E drm-fb  : Failed to get handle from prime fd: 25
+05-09 02:59:27.322     0     0 W x86/PAT : BootAnimation:1665 map pfn RAM range req write-combining for [mem 0x080d5000-0x080d9fff], got write-back
+05-09 02:59:27.322     0     0 W x86/PAT : BootAnimation:1665 map pfn RAM range req write-combining for [mem 0x080da000-0x080ddfff], got write-back
+05-09 02:59:27.338     0     0 W x86/PAT : BootAnimation:1665 map pfn RAM range req write-combining for [mem 0x1b830000-0x1b83ffff], got write-back
+05-09 02:59:27.338     0     0 W x86/PAT : BootAnimation:1665 map pfn RAM range req write-combining for [mem 0x1b76a000-0x1b76efff], got write-back
+05-09 02:59:27.344     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x07e87000-0x07e8bfff], got write-back
+05-09 02:59:27.349     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x07e8c000-0x07e90fff], got write-back
+05-09 02:59:27.347  1440  1440 E drm-fb  : Failed to get handle from prime fd: 25
+05-09 02:59:27.361     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x1c123000-0x1c126fff], got write-back
+05-09 02:59:27.361     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x1c127000-0x1c12afff], got write-back
+05-09 02:59:27.362     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x1c12f000-0x1c13efff], got write-back
+05-09 02:59:27.362     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x1c12b000-0x1c12efff], got write-back
+05-09 02:59:27.364  1440  1440 E drm-fb  : Failed to get handle from prime fd: 25
+05-09 02:59:27.377     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x1c140000-0x1c144fff], got write-back
+05-09 02:59:27.377     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x1c145000-0x1c148fff], got write-back
+05-09 02:59:27.378     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x1c14b000-0x1c14ffff], got write-back
+05-09 02:59:27.379     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x1c151000-0x1c155fff], got write-back
+05-09 02:59:27.377  1440  1440 E drm-fb  : Failed to get handle from prime fd: 25
+05-09 02:59:27.393     0     0 W x86/PAT : surfaceflinger:1440 map pfn RAM range req write-combining for [mem 0x1c157000-0x1c15bfff], got write-back
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
