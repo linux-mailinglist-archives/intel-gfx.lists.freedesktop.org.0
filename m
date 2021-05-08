@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B75D376E9B
-	for <lists+intel-gfx@lfdr.de>; Sat,  8 May 2021 04:28:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3EC5376EB5
+	for <lists+intel-gfx@lfdr.de>; Sat,  8 May 2021 04:29:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB9006E846;
-	Sat,  8 May 2021 02:28:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDE126E844;
+	Sat,  8 May 2021 02:28:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85D5C6E82A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB0D46E82E
  for <intel-gfx@lists.freedesktop.org>; Sat,  8 May 2021 02:28:31 +0000 (UTC)
-IronPort-SDR: DjerOajXXH1KQi+kLNxhuFhg1Z9leOyKVAerh1kNQlvRpjF4AAahEDDu2y1CyFP9XnYq2hrYfY
- d/57MTq7y2tA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9977"; a="284317020"
-X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="284317020"
+IronPort-SDR: 784ixVCsFAIUDc7y9Byr2JokXOf+S+2GBoJuVxjBgOGdlklb/VrjHiCM2zc5uWSj8YRbbku6QP
+ tJD0PX0T5svg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9977"; a="284317021"
+X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="284317021"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2021 19:28:30 -0700
-IronPort-SDR: fMbHdK0qpUjsFtGNa8WbDTSEwR2bcCDnsvwC7x3C0asEErpNjNqAw6cmQ85aWTZbtGdGfhdVfk
- WCb9o8IKf9DA==
-X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="533910125"
+IronPort-SDR: gqKJO6F27u2GLIdWNwZaKH0zLgvVFO4mQoVOCBCarPrUerpAv0nOP0r//1akyVjog7l3TGx6i8
+ 58ehObojI7yg==
+X-IronPort-AV: E=Sophos;i="5.82,282,1613462400"; d="scan'208";a="533910129"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 May 2021 19:28:29 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 May 2021 19:28:02 -0700
-Message-Id: <20210508022820.780227-31-matthew.d.roper@intel.com>
+Date: Fri,  7 May 2021 19:28:03 -0700
+Message-Id: <20210508022820.780227-32-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.25.4
 In-Reply-To: <20210508022820.780227-1-matthew.d.roper@intel.com>
 References: <20210508022820.780227-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 30/48] drm/i915/adl_p: Tx escape clock with
- DSI
+Subject: [Intel-gfx] [PATCH v3 31/48] drm/i915/display: Replace
+ dc3co_enabled with dc3co_exitline on intel_psr struct
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,119 +47,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Mika Kahola <mika.kahola@intel.com>
-
-Today when the DSI controller is paired with the Combo-PHY it
-uses the high-speed (HS) Word clock for its low power (LP)
-transmit PPI communication to the DPHY. The interface signaling
-only changes state at an Escape clock frequency (i.e. its
-effectively running on a virtual Tx Escape clock that is controlled
-by counters w/in the controller), but all the interface flops are
-running off the HS clock.
-
-This has the following drawbacks:
-
- * It is a deviation from the PPI spec which assumes signaling is
-   running on a physical Escape clock
- * The PV timings are over constrained (HS timed to 312.5MHz vs.
-   an Escape clock of 20MHz max)
-
-This feature is proposing to change the LP Tx communication between
-the controller and the DPHY from a virtual Tx Escape clock to a physical
-clock.
-
-To do this we need to program two "M" divisors. One for the usual
-DSI_ESC_CLK_DIV and DPHY_ESC_CLK_DIV register and one for MIPIO_DWORD8.
-
-For DSI_ESC_CLK_DIV and DPHY_ESC_CLK_DIV registers the "M" is calculated
-as following
-
-Nt = ceil(f_link/160) (theoretical word clock)
-Nact = max[3, Nt + (Nt + 1)%2] (actual word clock)
-M = Nact * 8
-
-For MIPIO_DWORD8 register, the divisor "M" is calculated as following
-
-M = (Nact - 1)/2
-
-BSpec: 55171
-
-Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c | 21 +++++++++++++++++++--
- drivers/gpu/drm/i915/i915_reg.h        |  6 ++++++
- 2 files changed, 25 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index ce544e20f35c..27251b97f0c3 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -363,10 +363,19 @@ static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
- 	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
- 	enum port port;
- 	int afe_clk_khz;
--	u32 esc_clk_div_m;
-+	int theo_word_clk, act_word_clk;
-+	u32 esc_clk_div_m, esc_clk_div_m_phy;
- 
- 	afe_clk_khz = afe_clk(encoder, crtc_state);
--	esc_clk_div_m = DIV_ROUND_UP(afe_clk_khz, DSI_MAX_ESC_CLK);
-+
-+	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv)) {
-+		theo_word_clk = DIV_ROUND_UP(afe_clk_khz, 8 * DSI_MAX_ESC_CLK);
-+		act_word_clk = max(3, theo_word_clk + (theo_word_clk + 1) % 2);
-+		esc_clk_div_m = act_word_clk * 8;
-+		esc_clk_div_m_phy = (act_word_clk - 1)/2;
-+	} else {
-+		esc_clk_div_m = DIV_ROUND_UP(afe_clk_khz, DSI_MAX_ESC_CLK);
-+	}
- 
- 	for_each_dsi_port(port, intel_dsi->ports) {
- 		intel_de_write(dev_priv, ICL_DSI_ESC_CLK_DIV(port),
-@@ -379,6 +388,14 @@ static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
- 			       esc_clk_div_m & ICL_ESC_CLK_DIV_MASK);
- 		intel_de_posting_read(dev_priv, ICL_DPHY_ESC_CLK_DIV(port));
- 	}
-+
-+	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv)) {
-+		for_each_dsi_port(port, intel_dsi->ports) {
-+			intel_de_write(dev_priv, ADL_MIPIO_DW(port, 8),
-+				       esc_clk_div_m_phy & TX_ESC_CLK_DIV_PHY);
-+			intel_de_posting_read(dev_priv, ADL_MIPIO_DW(port, 8));
-+		}
-+	}
- }
- 
- static void get_dsi_io_power_domains(struct drm_i915_private *dev_priv,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 345dc922eca5..9a52711e3920 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -11332,6 +11332,12 @@ enum skl_power_gate {
- #define  ICL_ESC_CLK_DIV_SHIFT			0
- #define DSI_MAX_ESC_CLK			20000		/* in KHz */
- 
-+#define _ADL_MIPIO_REG			0x180
-+#define ADL_MIPIO_DW(port, dw)		_MMIO(_ICL_COMBOPHY(port) + _ADL_MIPIO_REG + 4 * (dw))
-+#define   TX_ESC_CLK_DIV_PHY_SEL	REGBIT(16)
-+#define   TX_ESC_CLK_DIV_PHY_MASK	REG_GENMASK(23, 16)
-+#define   TX_ESC_CLK_DIV_PHY		REG_FIELD_PREP(TX_ESC_CLK_DIV_PHY_MASK, 0x7f)
-+
- #define _DSI_CMD_FRMCTL_0		0x6b034
- #define _DSI_CMD_FRMCTL_1		0x6b834
- #define DSI_CMD_FRMCTL(port)		_MMIO_PORT(port,	\
--- 
-2.25.4
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPgoKSXQgcmVw
+bGFjZXMgZGMzY29fZW5hYmxlZCB3aXRoIGRjM2NvX2V4aXRsaW5lIG9uIGludGVsX3BzciBzdHJ1
+Y3QuICBBbmQKaXQgc2F2ZXMgZGMzY29fZXhpdGxpbmUsIG5vdCBkYzNjb19lbmFibGVkLCBzbyB3
+ZSBjYW4gdXNlIGRjM2NvX2V4aXRsaW5lCndpdGhvdXQgaW50ZWxfY3J0Y19zdGF0ZSBvbiBvdGhl
+ciBwc3IgaW50ZXJuYWwgZnVuY3Rpb24gbGlrZSBhcwppbnRlbF9wc3JfZW5hYmxlX3NvdXJjZSgp
+LgoKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNj
+OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KQ2M6IEFuc2h1
+bWFuIEd1cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEd3YW4t
+Z3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWF0
+dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCB8ICAyICstCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jICAgICAgICAgICB8IDEwICsrKysrLS0tLS0KIDIg
+ZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKaW5kZXgg
+OWU5Zjc2OGUyZDdmLi5iOGQxZjcwMmQ4MDggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCkBAIC0xNDk4LDcgKzE0OTgsNyBAQCBz
+dHJ1Y3QgaW50ZWxfcHNyIHsKIAlib29sIHNpbmtfbm90X3JlbGlhYmxlOwogCWJvb2wgaXJxX2F1
+eF9lcnJvcjsKIAl1MTYgc3VfeF9ncmFudWxhcml0eTsKLQlib29sIGRjM2NvX2VuYWJsZWQ7CisJ
+dTMyIGRjM2NvX2V4aXRsaW5lOwogCXUzMiBkYzNjb19leGl0X2RlbGF5OwogCXN0cnVjdCBkZWxh
+eWVkX3dvcmsgZGMzY29fd29yazsKIAlzdHJ1Y3QgZHJtX2RwX3ZzY19zZHAgdnNjOwpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKaW5kZXggNDA2YmE5YTcxMmE4Li4xNGNj
+Y2U1NTNhNDEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+cHNyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwpAQCAt
+NjM4LDcgKzYzOCw3IEBAIHN0YXRpYyB2b2lkIHRnbF9kYzNjb19kaXNhYmxlX3dvcmsoc3RydWN0
+IHdvcmtfc3RydWN0ICp3b3JrKQogCiBzdGF0aWMgdm9pZCB0Z2xfZGlzYWxsb3dfZGMzY29fb25f
+cHNyMl9leGl0KHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCiB7Ci0JaWYgKCFpbnRlbF9kcC0+
+cHNyLmRjM2NvX2VuYWJsZWQpCisJaWYgKCFpbnRlbF9kcC0+cHNyLmRjM2NvX2V4aXRsaW5lKQog
+CQlyZXR1cm47CiAKIAljYW5jZWxfZGVsYXllZF93b3JrKCZpbnRlbF9kcC0+cHNyLmRjM2NvX3dv
+cmspOwpAQCAtOTY1LDcgKzk2NSw3IEBAIHN0YXRpYyB2b2lkIGludGVsX3Bzcl9lbmFibGVfc291
+cmNlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCiAKIAlwc3JfaXJxX2NvbnRyb2woaW50ZWxf
+ZHApOwogCi0JaWYgKGNydGNfc3RhdGUtPmRjM2NvX2V4aXRsaW5lKSB7CisJaWYgKGludGVsX2Rw
+LT5wc3IuZGMzY29fZXhpdGxpbmUpIHsKIAkJdTMyIHZhbDsKIAogCQkvKgpAQCAtOTc0LDcgKzk3
+NCw3IEBAIHN0YXRpYyB2b2lkIGludGVsX3Bzcl9lbmFibGVfc291cmNlKHN0cnVjdCBpbnRlbF9k
+cCAqaW50ZWxfZHAsCiAJCSAqLwogCQl2YWwgPSBpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBFWElU
+TElORShjcHVfdHJhbnNjb2RlcikpOwogCQl2YWwgJj0gfkVYSVRMSU5FX01BU0s7Ci0JCXZhbCB8
+PSBjcnRjX3N0YXRlLT5kYzNjb19leGl0bGluZSA8PCBFWElUTElORV9TSElGVDsKKwkJdmFsIHw9
+IGludGVsX2RwLT5wc3IuZGMzY29fZXhpdGxpbmUgPDwgRVhJVExJTkVfU0hJRlQ7CiAJCXZhbCB8
+PSBFWElUTElORV9FTkFCTEU7CiAJCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBFWElUTElORShj
+cHVfdHJhbnNjb2RlciksIHZhbCk7CiAJfQpAQCAtOTk5LDExICs5OTksMTEgQEAgc3RhdGljIHZv
+aWQgaW50ZWxfcHNyX2VuYWJsZV9sb2NrZWQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKIAlp
+bnRlbF9kcC0+cHNyLnBzcjJfZW5hYmxlZCA9IGNydGNfc3RhdGUtPmhhc19wc3IyOwogCWludGVs
+X2RwLT5wc3IuYnVzeV9mcm9udGJ1ZmZlcl9iaXRzID0gMDsKIAlpbnRlbF9kcC0+cHNyLnBpcGUg
+PSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0YyktPnBpcGU7Ci0JaW50ZWxfZHAt
+PnBzci5kYzNjb19lbmFibGVkID0gISFjcnRjX3N0YXRlLT5kYzNjb19leGl0bGluZTsKIAlpbnRl
+bF9kcC0+cHNyLnRyYW5zY29kZXIgPSBjcnRjX3N0YXRlLT5jcHVfdHJhbnNjb2RlcjsKIAkvKiBE
+QzUvREM2IHJlcXVpcmVzIGF0IGxlYXN0IDYgaWRsZSBmcmFtZXMgKi8KIAl2YWwgPSB1c2Vjc190
+b19qaWZmaWVzKGludGVsX2dldF9mcmFtZV90aW1lX3VzKGNydGNfc3RhdGUpICogNik7CiAJaW50
+ZWxfZHAtPnBzci5kYzNjb19leGl0X2RlbGF5ID0gdmFsOworCWludGVsX2RwLT5wc3IuZGMzY29f
+ZXhpdGxpbmUgPSBjcnRjX3N0YXRlLT5kYzNjb19leGl0bGluZTsKIAlpbnRlbF9kcC0+cHNyLnBz
+cjJfc2VsX2ZldGNoX2VuYWJsZWQgPSBjcnRjX3N0YXRlLT5lbmFibGVfcHNyMl9zZWxfZmV0Y2g7
+CiAKIAkvKgpAQCAtMTc3Myw3ICsxNzczLDcgQEAgdGdsX2RjM2NvX2ZsdXNoKHN0cnVjdCBpbnRl
+bF9kcCAqaW50ZWxfZHAsIHVuc2lnbmVkIGludCBmcm9udGJ1ZmZlcl9iaXRzLAogewogCW11dGV4
+X2xvY2soJmludGVsX2RwLT5wc3IubG9jayk7CiAKLQlpZiAoIWludGVsX2RwLT5wc3IuZGMzY29f
+ZW5hYmxlZCkKKwlpZiAoIWludGVsX2RwLT5wc3IuZGMzY29fZXhpdGxpbmUpCiAJCWdvdG8gdW5s
+b2NrOwogCiAJaWYgKCFpbnRlbF9kcC0+cHNyLnBzcjJfZW5hYmxlZCB8fCAhaW50ZWxfZHAtPnBz
+ci5hY3RpdmUpCi0tIAoyLjI1LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
