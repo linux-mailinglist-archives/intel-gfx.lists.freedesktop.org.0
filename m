@@ -1,47 +1,73 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73744377F41
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 11:21:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC4A1377F64
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 11:30:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E197D6E0A5;
-	Mon, 10 May 2021 09:21:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 968836E441;
+	Mon, 10 May 2021 09:30:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61DF16E0A5
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 09:21:03 +0000 (UTC)
-IronPort-SDR: C7jWyUiKmyMAR+bUy+tsVbmCDQtFgIJHL6vEhLmUYFuUrNux9raG6+p3/sNJHzN5bmcEiLsdBE
- 0rtzE+R3yprQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9979"; a="199222220"
-X-IronPort-AV: E=Sophos;i="5.82,287,1613462400"; d="scan'208";a="199222220"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2021 02:21:02 -0700
-IronPort-SDR: AjtKKWvgGRFaNaf6WKMYMa6OWI/dn7j/oTcS3BXthHP8LNsUj/ufI8xQvX1wnmb12F/5pRWVYp
- ZDBlfFDC9/pQ==
-X-IronPort-AV: E=Sophos;i="5.82,287,1613462400"; d="scan'208";a="536314848"
-Received: from agriffin-mobl1.ger.corp.intel.com (HELO [10.213.193.195])
- ([10.213.193.195])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2021 02:21:01 -0700
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20210507144251.376538-1-janusz.krzysztofik@linux.intel.com>
- <2abba1b7-ac7b-a983-39af-87b1b86b765a@linux.intel.com>
- <23575374.kmuVQn2iE0@jkrzyszt-mobl1.ger.corp.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <1641c53a-099d-5b93-e610-2771a005a525@linux.intel.com>
-Date: Mon, 10 May 2021 10:20:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com
+ [66.111.4.229])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E96A26E441;
+ Mon, 10 May 2021 09:30:39 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 965255805E9;
+ Mon, 10 May 2021 05:30:36 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute4.internal (MEProxy); Mon, 10 May 2021 05:30:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm2; bh=o+RlLCP+uehcYeWcqJXYSH2E672
+ srG6HjVhpuNJ5Otw=; b=LRzN7R2mzE2k+V6J5lq2UK+fX2nKfXfQYuOHuKoyzRu
+ j+lbi1CqL+NP52cHv+CUoC6WJXpUlgycBjwv4T1j9a/DEjiG7Zyhv/1xpTUitXZL
+ 7Fd/mDNx/OUdkho08SBnpHWnVIiHROf+vqN/fyEFiSEDxbh1551GhyRMuFrp5cMd
+ R69z7nR31SgF8D/SYPRt47jYKanW+Oo6pnXuIYvoWFyzmei4QJf02LXSZDvyhN8x
+ tFXcVYkbq/9yygODAYeQE2tG1RbZFfzu+w4RTsg6w/rAX1FD0QAdBoT+3q34uO3X
+ 8ZEI4WPUzpLkycyYgQSbm1zm45+vtE0MK2Xu6lI/uyQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=o+RlLC
+ P+uehcYeWcqJXYSH2E672srG6HjVhpuNJ5Otw=; b=VX3bQ+xcj3x7+sHu1YxUks
+ X8wNw+Fd01R1yQydbq78L0Cby+TIrelv5tOaVpJB/GWvl8D+sH8CgIaGNO69c5IY
+ hEiQyv7Y2Jgds5qY1uFrSkOnaYEbYBOomlV5EOFkf4/PnX9Rs462yg/zF5Eu9QbD
+ h35gXkLL9xRD38Zar2zQmtsODpC5f73Otu29yGjoiZfNH7VAztnGyVNb0Xl2Qsfd
+ mBZFcJ8Cpo/Uq/1IUet2WiVQkTW8LqJQY+moL/C+vVhWEQf5kgbquj+p8tQ2+wl6
+ Xb3HAqB+d4YF37Bop+OEKqzE+NZnmG6gffrLPiQ6QQEf2UWv1Z+z3gZkoqJ+yX0g
+ ==
+X-ME-Sender: <xms:Of2YYIpYtkrA164iwUrw7wmpDV4h9axrUp3B3CJweKypS-TZA0NZbQ>
+ <xme:Of2YYOrKXTbfHrPgXqLYRwJGj6xl7MIhjhonGFzBdcfa6_pxjeDoxX_BgrbeBrv58
+ VZBGEOrsS_alylWUFY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdegkedgudeiucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+ vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+ htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+ gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+ frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:Of2YYNP5VV3a0_SvB0NmN01X54WjaQrB9NnSc1yQ8lerLAQ02VA-RA>
+ <xmx:Of2YYP5cdonqadux1oSBLKDrcufNnALJwsSgUalM6zcH4dGR8Q7IXw>
+ <xmx:Of2YYH6QXRm5sYUZeJeRhxcWbGatnMHT3BFkpsgl982tUJuGTZbjjg>
+ <xmx:PP2YYHpBFc5v6b-bl_ORTr9Vz8bRf0QCFHdpWHXnPOnKVzQnXk9B9Q>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
+ [90.89.68.76]) by mail.messagingengine.com (Postfix) with ESMTPA;
+ Mon, 10 May 2021 05:30:33 -0400 (EDT)
+Date: Mon, 10 May 2021 11:30:30 +0200
+From: Maxime Ripard <maxime@cerno.tech>
+To: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20210510093030.nqbfw7iayhmtnljg@gilmour>
+References: <20210430094451.2145002-1-maxime@cerno.tech>
 MIME-Version: 1.0
-In-Reply-To: <23575374.kmuVQn2iE0@jkrzyszt-mobl1.ger.corp.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Do release kernel context if
- breadcrumb measure fails
+In-Reply-To: <20210430094451.2145002-1-maxime@cerno.tech>
+Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/connector: Create a helper to
+ attach the hdr_output_metadata property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,42 +80,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Tim Gover <tim.gover@raspberrypi.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Andrzej Hajda <a.hajda@samsung.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Phil Elwell <phil@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, amd-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org,
+ Jernej Skrabec <jernej.skrabec@siol.net>, Dom Cobley <dom@raspberrypi.com>,
+ Eric Anholt <eric@anholt.net>, linux-kernel@vger.kernel.org,
+ Robert Foss <robert.foss@linaro.org>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============1566985947=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDEwLzA1LzIwMjEgMTA6MTUsIEphbnVzeiBLcnp5c3p0b2ZpayB3cm90ZToKPiBIaSBUdnJ0
-a28sCj4gCj4gT24gcG9uaWVkemlhxYJlaywgMTAgbWFqYSAyMDIxIDExOjE0OjQ2IENFU1QgVHZy
-dGtvIFVyc3VsaW4gd3JvdGU6Cj4+Cj4+IE9uIDA3LzA1LzIwMjEgMTU6NDIsIEphbnVzeiBLcnp5
-c3p0b2ZpayB3cm90ZToKPj4+IENvbW1pdCBmYjU5NzBkYTFiNDIgKCJkcm0vaTkxNS9ndDogVXNl
-IHRoZSBrZXJuZWxfY29udGV4dCB0byBtZWFzdXJlIHRoZQo+Pj4gYnJlYWRjcnVtYiBzaXplIikg
-cmVvcmRlcmVkIHNvbWUgb3BlcmF0aW9ucyBpbnNpZGUgZW5naW5lX2luaXRfY29tbW9uKCkKPj4+
-IGFuZCBhZGRlZCBhbiBlcnJvciB1bndpbmQgcGF0aCB0byB0aGF0IGZ1bmN0aW9uLiAgSW4gdGhh
-dCBwYXRoLCBhCj4+PiByZWZlcmVuY2UgdG8gYSBrZXJuZWwgY29udGV4dCBjYW5kaWRhdGUgc3Vw
-cG9zZWQgdG8gYmUgcmVsZWFzZWQgb24gZXJyb3IKPj4+IHdhcyBwdXQsIGJ1dCB0aGUgY29udGV4
-dCwgcGlubmVkIHdoZW4gY3JlYXRlZCwgd2FzIG5vdCB1bnBpbm5lZCBmaXJzdC4KPj4+IEZpeCBp
-dCBieSByZXBsYWNpbmcgaW50ZWxfY29udGV4dF9wdXQoKSB3aXRoIGRlc3Ryb3lfcGlubmVkX2Nv
-bnRleHQoKQo+Pj4gaW50cm9kdWNlZCBsYXRlciBieSBjb21taXQgYjQzNmE1ZjhiNmM4ICgiZHJt
-L2k5MTUvZ3Q6IFRyYWNrIGFsbCB0aW1lbGluZXMKPj4+IGNyZWF0ZWQgdXNpbmcgdGhlIEhXU1Ai
-KS4KPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBKYW51c3ogS3J6eXN6dG9maWsgPGphbnVzei5rcnp5
-c3p0b2Zpa0BsaW51eC5pbnRlbC5jb20+Cj4+PiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJp
-cy13aWxzb24uY28udWs+Cj4+PiAtLS0KPj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2lu
-dGVsX2VuZ2luZV9jcy5jIHwgMiArLQo+Pj4gICAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9u
-KCspLCAxIGRlbGV0aW9uKC0pCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L2ludGVsX2VuZ2luZV9jcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxf
-ZW5naW5lX2NzLmMKPj4+IGluZGV4IDZkYmRiZGUwMGYxNC4uZWJhMmRhOTY3OWE1IDEwMDY0NAo+
-Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZW5naW5lX2NzLmMKPj4+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2VuZ2luZV9jcy5jCj4+PiBAQCAtODk4
-LDcgKzg5OCw3IEBAIHN0YXRpYyBpbnQgZW5naW5lX2luaXRfY29tbW9uKHN0cnVjdCBpbnRlbF9l
-bmdpbmVfY3MgKmVuZ2luZSkKPj4+ICAgIAlyZXR1cm4gMDsKPj4+ICAgIAo+Pj4gICAgZXJyX2Nv
-bnRleHQ6Cj4+PiAtCWludGVsX2NvbnRleHRfcHV0KGNlKTsKPj4+ICsJZGVzdHJveV9waW5uZWRf
-Y29udGV4dChjZSk7Cj4+PiAgICAJcmV0dXJuIHJldDsKPj4+ICAgIH0KPj4+ICAgIAo+Pj4KPj4K
-Pj4gUmV2aWV3ZWQtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+
-Cj4+Cj4+IEZvdW5kIGJ5IHNvbWUgdGVzdCBvciBjb2RlIGluc3BlY3Rpb24/Cj4gCj4gQ29kZSBp
-bnNwZWN0aW9uLgoKQ29vbC4gSXQgd2FzIGFsbCBncmVlbiBvbiB0aGUgQ0kgZnJvbnQgc28gSSBh
-bSBwdXNoaW5nIGl0IGFzIHdlIHNwZWFrLiAKVGhhbmtzIQoKUmVnYXJkcywKClR2cnRrbwoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+--===============1566985947==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="faciecejyji5pg3t"
+Content-Disposition: inline
+
+
+--faciecejyji5pg3t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Fri, Apr 30, 2021 at 11:44:47AM +0200, Maxime Ripard wrote:
+> All the drivers that implement HDR output call pretty much the same
+> function to initialise the hdr_output_metadata property, and while the
+> creation of that property is in a helper, every driver uses the same
+> code to attach it.
+>=20
+> Provide a helper for it as well
+>=20
+> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+> Reviewed-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
+I pushed all 5 patches on friday
+
+Maxime
+
+--faciecejyji5pg3t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYJj9NgAKCRDj7w1vZxhR
+xTd/AP48Cj/pWzxu4xJM1P/Gl4C1i/fr6aJANTq2rOju3Y84FQD/Re0cYaNtLidN
+8GBg64zcLh2z0n9CYT4Vc6km4PVungw=
+=/OMZ
+-----END PGP SIGNATURE-----
+
+--faciecejyji5pg3t--
+
+--===============1566985947==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1566985947==--
