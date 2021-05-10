@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C40993797B3
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 21:27:41 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16207379AE4
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 01:46:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 109576E8DB;
-	Mon, 10 May 2021 19:27:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12B256E975;
+	Mon, 10 May 2021 23:46:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 313 seconds by postgrey-1.36 at gabe;
- Mon, 10 May 2021 19:27:33 UTC
-Received: from outgoing.mit.edu (outgoing-auth-1.mit.edu [18.9.28.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1073B6E8DA;
- Mon, 10 May 2021 19:27:32 +0000 (UTC)
-Received: from cwcc.thunk.org (pool-72-74-133-215.bstnma.fios.verizon.net
- [72.74.133.215]) (authenticated bits=0)
- (User authenticated as tytso@ATHENA.MIT.EDU)
- by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 14AJM3dI013584
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Mon, 10 May 2021 15:22:05 -0400
-Received: by cwcc.thunk.org (Postfix, from userid 15806)
- id F267215C3CD9; Mon, 10 May 2021 15:22:02 -0400 (EDT)
-Date: Mon, 10 May 2021 15:22:02 -0400
-From: "Theodore Ts'o" <tytso@mit.edu>
-To: David Woodhouse <dwmw2@infradead.org>
-Message-ID: <YJmH2irxoRsyNudb@mit.edu>
-References: <cover.1620641727.git.mchehab+huawei@kernel.org>
- <2ae366fdff4bd5910a2270823e8da70521c859af.camel@infradead.org>
- <20210510135518.305cc03d@coco.lan>
- <de6d1fa5b7934f4afd61370d9c58502bef588466.camel@infradead.org>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 939D06E975
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 23:46:01 +0000 (UTC)
+IronPort-SDR: pYaEvaAwYzeVhVy0lrbHYxs659ArtWe6dBsWMzbYOqCJtrNMUrthNkkoy2M9T3lVCKxXDZSOQj
+ HVaguuOTtiKQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="179577745"
+X-IronPort-AV: E=Sophos;i="5.82,288,1613462400"; d="scan'208";a="179577745"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2021 16:46:01 -0700
+IronPort-SDR: sJmXAShv8eCEaK8VdQdQDpb4JX4YNWul0giuAfR6n0LYfXrYKfSWElPs8iIwMsuzHSu1PUjDej
+ HpdJHgW0ZV/Q==
+X-IronPort-AV: E=Sophos;i="5.82,288,1613462400"; d="scan'208";a="434029475"
+Received: from invictus.jf.intel.com (HELO InViCtUs) ([10.165.21.205])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2021 16:46:00 -0700
+Date: Mon, 10 May 2021 16:45:52 -0700
+From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20210510234552.GA31357@InViCtUs>
+References: <20210418002126.87882-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <de6d1fa5b7934f4afd61370d9c58502bef588466.camel@infradead.org>
-Subject: Re: [Intel-gfx] [PATCH 00/53] Get rid of UTF-8 chars that can be
- mapped as ASCII
+In-Reply-To: <20210418002126.87882-1-jose.souza@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/display: Fill PSR state during
+ hardware configuration read out
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,47 +48,172 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>, linux-iio@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-fpga@vger.kernel.org,
- dri-devel@lists.freedesktop.org, keyrings@vger.kernel.org,
- linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, x86@kernel.org,
- linux-acpi@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
- linux-input@vger.kernel.org, linux-ext4@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-sgx@vger.kernel.org,
- coresight@lists.linaro.org, rcu@vger.kernel.org,
- mjpeg-users@lists.sourceforge.net, linux-arm-kernel@lists.infradead.org,
- linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-rdma@vger.kernel.org, linux-integrity@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCBNYXkgMTAsIDIwMjEgYXQgMDI6NDk6NDRQTSArMDEwMCwgRGF2aWQgV29vZGhvdXNl
-IHdyb3RlOgo+IE9uIE1vbiwgMjAyMS0wNS0xMCBhdCAxMzo1NSArMDIwMCwgTWF1cm8gQ2FydmFs
-aG8gQ2hlaGFiIHdyb3RlOgo+ID4gVGhpcyBwYXRjaCBzZXJpZXMgaXMgZG9pbmcgY29udmVyc2lv
-biBvbmx5IHdoZW4gdXNpbmcgQVNDSUkgbWFrZXMKPiA+IG1vcmUgc2Vuc2UgdGhhbiB1c2luZyBV
-VEYtOC4gCj4gPiAKPiA+IFNlZSwgYSBudW1iZXIgb2YgY29udmVydGVkIGRvY3VtZW50cyBlbmRl
-ZCB3aXRoIHdlaXJkIGNoYXJhY3RlcnMKPiA+IGxpa2UgWkVSTyBXSURUSCBOTy1CUkVBSyBTUEFD
-RSAoVStGRUZGKSBjaGFyYWN0ZXIuIFRoaXMgc3BlY2lmaWMKPiA+IGNoYXJhY3RlciBkb2Vzbid0
-IGRvIGFueSBnb29kLgo+ID4gCj4gPiBPdGhlcnMgdXNlIE5PLUJSRUFLIFNQQUNFIChVK0EwKSBp
-bnN0ZWFkIG9mIDB4MjAuIEhhcm1sZXNzLCB1bnRpbAo+ID4gc29tZW9uZSB0cmllcyB0byB1c2Ug
-Z3JlcFsxXS4KPiAKPiBSZXBsYWNpbmcgdGhvc2UgbWFrZXMgc2Vuc2UuIEJ1dCByZXBsYWNpbmcg
-ZW1kYXNoZXMg4oCUIHdoaWNoIGFyZSBhCj4gZGlzdGluY3QgY2hhcmFjdGVyIHRoYXQgaGFzIG5v
-IGRpcmVjdCByZXBsYWNlbWVudCBpbiBBU0NJSSBhbmQgd2hpY2gKPiBwZW9wbGUgZG8gKmRlbGli
-ZXJhdGVseSogdXNlIGluc3RlYWQgb2YgaHlwaGVuLW1pbnVzIOKAlCBkb2VzIG5vdC4KCkkgcmVn
-dWxhcmx5IHVzZSAtLS0gZm9yIGVtLWRhc2hlcyBhbmQgLS0gZm9yIGVuLWRhc2hlcy4gIE1hcmtk
-b3duIHdpbGwKYXV0b21hdGljYWxseSB0cmFuc2xhdGUgMyBBU0NJSSBoeXBlbnMgdG8gZW0tZGFz
-aGVzLCBhbmQgMiBBU0NJSQpoeXBoZW5zIHRvIGVuLWRhc2hlcy4gIEl0J3MgbXVjaCwgbXVjaCBl
-YXNpZXIgZm9yIG1lIHRvIHR5cGUgMiBvciAzCmh5cGVucyBpbnRvIG15IHRleHQgZWRpdG9yIG9m
-IGNob2ljZSB0aGFuIHRyeWluZyB0byBlbnRlciB0aGUgVVRGLTgKY2hhcmFjdGVycy4gIElmIHdl
-IGNhbiBtYWtlIHNwaGlueCBkbyB0aGlzIHRyYW5zbGF0aW9uLCBtYXliZSB0aGF0J3MKdGhlIGJl
-c3Qgd2F5IG9mIGRlYWxpbmcgd2l0aCB0aGVzZSB0d28gY2hhcmFjdGVycz8KCkNoZWVycywKCgkJ
-CQkJLSBUZWQKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Sat, Apr 17, 2021 at 05:21:22PM -0700, Jos=E9 Roberto de Souza wrote:
+> So far if we had a mismatch between the state asked and what was
+> programmed in hardware for PSR, this mismatch would go unnoticed.
+> =
+
+> So here adding the PSR to the hardware configuration readout,
+> EDP_PSR_CTL and EDP_PSR2_CTL can't be directly read because its state
+> flips due to other factors like frontbuffer modifications and CRC.
+> =
+
+Minor nit-pick below with that fixed
+Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c     |  2 +
+>  drivers/gpu/drm/i915/display/intel_display.c |  5 +++
+>  drivers/gpu/drm/i915/display/intel_psr.c     | 47 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_psr.h     |  3 ++
+>  4 files changed, 57 insertions(+)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 4ef573883412..f69ed3c4c30a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3707,6 +3707,8 @@ static void intel_ddi_get_config(struct intel_encod=
+er *encoder,
+>  =
+
+>  	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA=
+);
+>  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
+> +
+> +	intel_psr_get_config(encoder, pipe_config);
+>  }
+>  =
+
+>  void intel_ddi_get_clock(struct intel_encoder *encoder,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 9c13d0ac022b..ecdca523e364 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8350,6 +8350,11 @@ intel_pipe_config_compare(const struct intel_crtc_=
+state *current_config,
+>  	PIPE_CONF_CHECK_I(vrr.flipline);
+>  	PIPE_CONF_CHECK_I(vrr.pipeline_full);
+>  =
+
+> +	PIPE_CONF_CHECK_BOOL(has_psr);
+> +	PIPE_CONF_CHECK_BOOL(has_psr2);
+> +	PIPE_CONF_CHECK_BOOL(enable_psr2_sel_fetch);
+> +	PIPE_CONF_CHECK_I(dc3co_exitline);
+> +
+>  #undef PIPE_CONF_CHECK_X
+>  #undef PIPE_CONF_CHECK_I
+>  #undef PIPE_CONF_CHECK_BOOL
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index 4ad756e238c5..bd7997a3ef7c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -886,6 +886,53 @@ void intel_psr_compute_config(struct intel_dp *intel=
+_dp,
+>  	crtc_state->infoframes.enable |=3D intel_hdmi_infoframe_enable(DP_SDP_V=
+SC);
+>  }
+>  =
+
+> +void intel_psr_get_config(struct intel_encoder *encoder,
+> +			  struct intel_crtc_state *pipe_config)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> +	struct intel_dp *intel_dp;
+> +	u32 val;
+> +
+> +	if (!dig_port)
+> +		return;
+> +
+> +	intel_dp =3D &dig_port->dp;
+> +	if (!CAN_PSR(intel_dp))
+> +		return;
+> +
+> +	mutex_lock(&intel_dp->psr.lock);
+> +	if (!intel_dp->psr.enabled) {
+goto unlock: should suffice here instead of unlock and return.
+
+-RK
+> +		mutex_unlock(&intel_dp->psr.lock);
+> +		return;
+> +	}
+> +
+> +	/*
+> +	 * Not possible to read EDP_PSR/PSR2_CTL registers as it is
+> +	 * enabled/disabled because of frontbuffer tracking and others.
+> +	 */
+> +	pipe_config->has_psr =3D true;
+> +	pipe_config->has_psr2 =3D intel_dp->psr.psr2_enabled;
+> +	pipe_config->infoframes.enable |=3D intel_hdmi_infoframe_enable(DP_SDP_=
+VSC);
+> +
+> +	if (!intel_dp->psr.psr2_enabled)
+> +		goto unlock;
+> +
+> +	if (HAS_PSR2_SEL_FETCH(dev_priv)) {
+> +		val =3D intel_de_read(dev_priv, PSR2_MAN_TRK_CTL(intel_dp->psr.transco=
+der));
+> +		if (val & PSR2_MAN_TRK_CTL_ENABLE)
+> +			pipe_config->enable_psr2_sel_fetch =3D true;
+> +	}
+> +
+> +	if (DISPLAY_VER(dev_priv) >=3D 12) {
+> +		val =3D intel_de_read(dev_priv, EXITLINE(intel_dp->psr.transcoder));
+> +		val &=3D EXITLINE_MASK;
+> +		pipe_config->dc3co_exitline =3D val;
+> +	}
+> +unlock:
+> +	mutex_unlock(&intel_dp->psr.lock);
+> +}
+> +
+>  static void intel_psr_activate(struct intel_dp *intel_dp)
+>  {
+>  	struct drm_i915_private *dev_priv =3D dp_to_i915(intel_dp);
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i=
+915/display/intel_psr.h
+> index 0491a49ffd50..e3db85e97f4c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
+> @@ -17,6 +17,7 @@ struct intel_crtc;
+>  struct intel_atomic_state;
+>  struct intel_plane_state;
+>  struct intel_plane;
+> +struct intel_encoder;
+>  =
+
+>  void intel_psr_init_dpcd(struct intel_dp *intel_dp);
+>  void intel_psr_enable(struct intel_dp *intel_dp,
+> @@ -37,6 +38,8 @@ void intel_psr_flush(struct drm_i915_private *dev_priv,
+>  void intel_psr_init(struct intel_dp *intel_dp);
+>  void intel_psr_compute_config(struct intel_dp *intel_dp,
+>  			      struct intel_crtc_state *crtc_state);
+> +void intel_psr_get_config(struct intel_encoder *encoder,
+> +			  struct intel_crtc_state *pipe_config);
+>  void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir);
+>  void intel_psr_short_pulse(struct intel_dp *intel_dp);
+>  void intel_psr_wait_for_idle(const struct intel_crtc_state *new_crtc_sta=
+te);
+> -- =
+
+> 2.31.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
