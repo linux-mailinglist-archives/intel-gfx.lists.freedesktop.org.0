@@ -1,44 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9201C37A654
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 14:10:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BBCB37A655
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 14:10:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 968CC6EA26;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2D3F6EA2A;
 	Tue, 11 May 2021 12:10:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from letterbox.kde.org (letterbox.kde.org
- [IPv6:2001:41c9:1:41e::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 716376E4D7
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 18:06:44 +0000 (UTC)
-Received: from xps.localnet (235.red-80-26-237.dynamicip.rima-tde.net
- [80.26.237.235]) (Authenticated sender: aacid)
- by letterbox.kde.org (Postfix) with ESMTPSA id 3A68A280320;
- Mon, 10 May 2021 19:06:40 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1620670002; bh=xuJ1gjernDZo4OkddAl81wkTMdDclEw4CLq0Grg6Ssg=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=FUyLwWMggeNq7xDYm1SRJP7b8u+LyhfjHfF+1yM/Py0L3pTLlA6Z/W5QzEYJyMZYi
- 8uY0zU9GVF/bhbCOQQAFWu//CfEc+E7MxWieYA0k3L7nXcx0xxFDVePPBbCN6Y+7ay
- 6F9dNbBF0J6NgNAwtxf+4YU+oUbDsh+X3rzhIKuOlE4aEqieqv5JZA3b9UU+6AGTx/
- CynQNHarfcZ9eOxtLVAA9TxRE6PPsLgLQMgZZ0kBngczBdNul4C6cb3h0Q8Hu+Mcel
- Py2dIGtnBX0WscFWRBQdvsAhl3iDsoioveBlXiV5H224KN9Uyhw0oq5OxlGsshfWtK
- w8okmNuW0naWw==
-From: Albert Astals Cid <aacid@kde.org>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Emanuele Panigati <ilpanich@gmail.com>
-Date: Mon, 10 May 2021 20:06:40 +0200
-Message-ID: <3349345.6yYDney9BF@xps>
-In-Reply-To: <CABpPkAEVbSUwoBqXDaKpckbfkq4-z=MWNC27JYOLki3FhN0PyA@mail.gmail.com>
-References: <20210107182026.24848-1-ville.syrjala@linux.intel.com>
- <X/yY3Tvk8gq+Eg8W@intel.com>
- <CABpPkAEVbSUwoBqXDaKpckbfkq4-z=MWNC27JYOLki3FhN0PyA@mail.gmail.com>
+Received: from mail-il1-x134.google.com (mail-il1-x134.google.com
+ [IPv6:2607:f8b0:4864:20::134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BAAE6E8E6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 20:50:08 +0000 (UTC)
+Received: by mail-il1-x134.google.com with SMTP id z1so7419583ils.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 13:50:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=+OPH32eMyvWVljUKupcgNYrsp+22kITMh1bNgQuNG54=;
+ b=Mxjxihzh//9zKcu9Ei/s7qpprfPr0u6IWd/fzG/27jG6O59oV+tfK4/196kyU31Vcl
+ 3nSGBuQQvB66D/v7ppQcnRoAsabD/OhMkAkCh9ev8A3nkJhVCwYlm39d7pXdJ264+48s
+ +HI1esCqRgNIuzrxE1+BCB3zfAROJXA/dbOBX5dOQRzeucERNZzChMSkYmrAYgdJV24b
+ utcpquXLHT6v5hQWpDg18BYyfonggHceKG03q6Q1vlyEC8O/L162JWQjgIYAyMfLqq6y
+ tW224WjoE6dM9wXytcfyTASLjZ9+hpH4WSr7e84wm+je4DzjYy3EXHk+FC0BiZccNGNI
+ ojIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=+OPH32eMyvWVljUKupcgNYrsp+22kITMh1bNgQuNG54=;
+ b=g6P9EHHqj/rXtBEDIN8uXaD2jGCgRv+YIrw5UvhpPC47WAJT8mdz+bX+4I9/AEdwTo
+ Qxk2Frrow7TDEtbJmZ9VOfE+vii7V1oOA6pw8b7+p7Z59zHfP0AI67OZ6cbWXBYOYNZ/
+ WvigbeHwXqIR8Iw929/7Wv/D8iujm+R7Wd1dmckcIjBnLDErNUpr39rktfiFTTgrfAP/
+ ADMGb4ePHjvOMyNyCRGozw1hPQOIeRvzLF6LIuPWALpvCYB+P1JdviPO8f6KioytEmpn
+ O3A9LO+eO1tWTEgOod/sItnxY+EqjgS6J8cqAL56u1ETiq7LI0yK8jlE89QlY8RTje5N
+ M6Ww==
+X-Gm-Message-State: AOAM530P6okO5Zq4D95R/wsmynFmx7yWkZGIcESwjT3g2nNpmNjpZeXP
+ p667YDUvWQjVLsewCmcNEVkciTjj+zH6YBURmh8=
+X-Google-Smtp-Source: ABdhPJxECFuCLykYB7YKe0je6q9qiM93rrTQq38VoIiZuQvsqL5p9dNor139YkV9lGC/+C8bXFsEpZBY1+j4DckipRU=
+X-Received: by 2002:a92:d3c4:: with SMTP id c4mr21581909ilh.50.1620679807782; 
+ Mon, 10 May 2021 13:50:07 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210509044330.4655-1-pauldzim@gmail.com>
+ <02957632-b050-f9eb-fcd8-75db9c92b8e0@ubuntu.com>
+In-Reply-To: <02957632-b050-f9eb-fcd8-75db9c92b8e0@ubuntu.com>
+From: Paul Zimmerman <pauldzim@gmail.com>
+Date: Mon, 10 May 2021 13:49:42 -0700
+Message-ID: <CADBGO7_cH2e1-zgVNvwVPRogqeFjTfJhKcuTfdF=xc_GoMmknA@mail.gmail.com>
+To: Timo Aaltonen <tjaalton@ubuntu.com>
 X-Mailman-Approved-At: Tue, 11 May 2021 12:09:59 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Try to use fast+narrow link
- on eDP again and fall back to the old max strategy on failure
+Subject: Re: [Intel-gfx] [PATCH RFC] Revert "drm/i915: Try to use
+ fast+narrow link on eDP again and fall back to the old max strategy on
+ failure"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,74 +64,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matteo Iervasi <matteoiervasi@gmail.com>,
- Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Kai-Heng Feng <kai.heng.feng@canonical.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Yes, I also have the same.
-
-I git bisected that and found this to be the cause, i started a new email t=
-hread because i couldn't find this email ^_^
-
-Cheers,
-  Albert
-
-El dilluns, 10 de maig de 2021, a les 10:07:33 (CEST), Emanuele Panigati va=
- escriure:
-> Hi,
->   on my Dell XPS 15 9570 laptop I might have a regression with Arch Linux
-> (kernel 5.12.2-arch1-1: during boot the laptop monitor goes black while
-> external monitors still works...
-> =
-
-> =
-
-> Panich
-> =
-
-> =
-
-> Il giorno lun 11 gen 2021 alle ore 19:28 Ville Syrj=E4l=E4 <
-> ville.syrjala@linux.intel.com> ha scritto:
-> =
-
-> > On Thu, Jan 07, 2021 at 08:20:25PM +0200, Ville Syrjala wrote:
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > >
-> > > Some new eDP panels don't like to operate at the max parameters, and
-> > > instead we need to go for an optimal confiugration. That unfortunately
-> > > doesn't work with older eDP panels which are generally only guaranteed
-> > > to work at the max parameters.
-> > >
-> > > To solve these two conflicting requirements let's start with the opti=
-mal
-> > > setup, and if that fails we start again with the max parameters. The
-> > > downside is probably an extra modeset when we switch strategies but
-> > > I don't see a good way to avoid that.
-> > >
-> > > For a bit of history we first tried to go for the fast+narrow in
-> > > commit 7769db588384 ("drm/i915/dp: optimize eDP 1.4+ link config
-> > > fast and narrow"). but that had to be reverted due to regression
-> > > on older panels in commit f11cb1c19ad0 ("drm/i915/dp: revert back
-> > > to max link rate and lane count on eDP"). So now we try to get
-> > > the best of both worlds by using both strategies.
+On Mon, May 10, 2021 at 7:00 AM Timo Aaltonen <tjaalton@ubuntu.com> wrote:
+>
+> On 9.5.2021 7.43, Paul Zimmerman wrote:
+> > This reverts commit 2bbd6dba84d44219387df051a1c799b7bac46099.
 > >
-> > Pushed. Fingers crossed for no regressions...
-> >
-> > --
-> > Ville Syrj=E4l=E4
-> > Intel
-> >
-> =
+> > Since 5.12-rc2, my Dell XPS-15 laptop has had a blank screen on boot.
+> > The system seems to run fine other than having no display, I am able
+> > to ssh into the machine. I don't see anything interesting in the dmesg
+> > log. I bisected the problem down to this commit, and reverting it fixes
+> > the problem.
+>
+> Have you tried with drm-tip? It has acca7762eb71bc0 which hopefully
+> helps here.
 
+I picked that one commit from the drm-tip tree (wasn't sure how to merge
+the entire tree into the kernel) and can confirm that it does fix the problem.
+Thank you! I hope the fix will be sent to Linus pretty soon, and it will need
+backporting to the 5.12 kernel as well.
 
-
-
-
+- Paul
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
