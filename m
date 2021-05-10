@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6E7D379AE9
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 01:48:04 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC45D379AEB
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 01:49:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA2E16E975;
-	Mon, 10 May 2021 23:48:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F7176E975;
+	Mon, 10 May 2021 23:49:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE366E975
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 23:48:00 +0000 (UTC)
-IronPort-SDR: Fhntn/kEOTSqKnS4gH8LlHgh4GxEz/HV2o5C+OY9YaSA+5/m6ArpZCmlwycFd+RNETUI76o5M5
- yOcc08XxUmmQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="186448057"
-X-IronPort-AV: E=Sophos;i="5.82,288,1613462400"; d="scan'208";a="186448057"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B56226E975
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 23:49:22 +0000 (UTC)
+IronPort-SDR: wUua+FIELCS2KJIshUytxLhoCM8aNHinN2at93dJuP6PF91KSZkvNJ+eGvV/cnI6EpTg5KXnod
+ ZWVVIZbR00FQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="284801149"
+X-IronPort-AV: E=Sophos;i="5.82,288,1613462400"; d="scan'208";a="284801149"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2021 16:47:57 -0700
-IronPort-SDR: NEtUEh3GJhUAPcjUbhGb2Dq6tUyGdPDsQlTytDyu6d1fN9aZ5vOx3oi582TRrOqeudfRLsbk1F
- NF3mORmrjyjg==
-X-IronPort-AV: E=Sophos;i="5.82,288,1613462400"; d="scan'208";a="436367424"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2021 16:49:22 -0700
+IronPort-SDR: ZaWIirkYehwy15FN8B2jjhOgGGL0kug5++4XFtBk15BuoZ1F02lePtnHW9Tb8XG5NkgortC+ce
+ 2qwVGPMEkKsw==
+X-IronPort-AV: E=Sophos;i="5.82,288,1613462400"; d="scan'208";a="436367948"
 Received: from invictus.jf.intel.com (HELO InViCtUs) ([10.165.21.205])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2021 16:47:57 -0700
-Date: Mon, 10 May 2021 16:47:56 -0700
+ 10 May 2021 16:49:22 -0700
+Date: Mon, 10 May 2021 16:49:21 -0700
 From: "Sripada, Radhakrishna" <radhakrishna.sripada@intel.com>
 To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20210510234756.GB31357@InViCtUs>
+Message-ID: <20210510234921.GC31357@InViCtUs>
 References: <20210418002126.87882-1-jose.souza@intel.com>
- <20210418002126.87882-2-jose.souza@intel.com>
+ <20210418002126.87882-3-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210418002126.87882-2-jose.souza@intel.com>
+In-Reply-To: <20210418002126.87882-3-jose.souza@intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/display: Replace
- intel_psr_enabled() calls by intel_crtc_state check
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/i915/display: Drop duplicated code
+ in intel_dp_set_infoframes()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,82 +55,58 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Apr 17, 2021 at 05:21:23PM -0700, Jos=E9 Roberto de Souza wrote:
-> All of this places don't need to intel_psr_enabled() that will lock
-> psr mutex, check state and unlock.
+On Sat, Apr 17, 2021 at 05:21:24PM -0700, Jos=E9 Roberto de Souza wrote:
+> No functional changes in here.
 > =
 
-> Instead it can directly check PSR state in intel_crtc_state, the only
-> place that was not possible was intel_read_dp_vsc_sdp() but since
-> "drm/i915/display: Fill PSR state during hardware configuration read
-> out" it is possible.
-> =
-
+> Cc: Matt Atwood <matthew.s.atwood@intel.com>
 Reviewed-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 8 +++-----
->  1 file changed, 3 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 17 ++++++-----------
+>  1 file changed, 6 insertions(+), 11 deletions(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
 15/display/intel_dp.c
-> index 5ee953aaa00c..72bcc10cae4f 100644
+> index 72bcc10cae4f..cf380f98d54c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2861,7 +2861,6 @@ void intel_dp_set_infoframes(struct intel_encoder *=
-encoder,
->  			     const struct drm_connector_state *conn_state)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->  	i915_reg_t reg =3D HSW_TVIDEO_DIP_CTL(crtc_state->cpu_transcoder);
+> @@ -2865,24 +2865,19 @@ void intel_dp_set_infoframes(struct intel_encoder=
+ *encoder,
 >  	u32 dip_enable =3D VIDEO_DIP_ENABLE_AVI_HSW | VIDEO_DIP_ENABLE_GCP_HSW |
 >  			 VIDEO_DIP_ENABLE_VS_HSW | VIDEO_DIP_ENABLE_GMP_HSW |
-> @@ -2870,7 +2869,7 @@ void intel_dp_set_infoframes(struct intel_encoder *=
-encoder,
+>  			 VIDEO_DIP_ENABLE_SPD_HSW | VIDEO_DIP_ENABLE_DRM_GLK;
+> -	u32 val =3D intel_de_read(dev_priv, reg);
+> +	u32 val =3D intel_de_read(dev_priv, reg) & ~dip_enable;
 >  =
 
 >  	/* TODO: Add DSC case (DIP_ENABLE_PPS) */
 >  	/* When PSR is enabled, this routine doesn't disable VSC DIP */
-> -	if (intel_psr_enabled(intel_dp))
-> +	if (crtc_state->has_psr)
->  		val &=3D ~dip_enable;
->  	else
->  		val &=3D ~(dip_enable | VIDEO_DIP_ENABLE_VSC_HSW);
-> @@ -2885,7 +2884,7 @@ void intel_dp_set_infoframes(struct intel_encoder *=
-encoder,
+> -	if (crtc_state->has_psr)
+> -		val &=3D ~dip_enable;
+> -	else
+> -		val &=3D ~(dip_enable | VIDEO_DIP_ENABLE_VSC_HSW);
+> -
+> -	if (!enable) {
+> -		intel_de_write(dev_priv, reg, val);
+> -		intel_de_posting_read(dev_priv, reg);
+> -		return;
+> -	}
+> +	if (!crtc_state->has_psr)
+> +		val &=3D ~VIDEO_DIP_ENABLE_VSC_HSW;
+>  =
+
+>  	intel_de_write(dev_priv, reg, val);
 >  	intel_de_posting_read(dev_priv, reg);
 >  =
 
+> +	if (!enable)
+> +		return;
+> +
 >  	/* When PSR is enabled, VSC SDP is handled by PSR routine */
-> -	if (!intel_psr_enabled(intel_dp))
-> +	if (!crtc_state->has_psr)
+>  	if (!crtc_state->has_psr)
 >  		intel_write_dp_sdp(encoder, crtc_state, DP_SDP_VSC);
->  =
-
->  	intel_write_dp_sdp(encoder, crtc_state, HDMI_PACKET_TYPE_GAMUT_METADATA=
-);
-> @@ -3012,14 +3011,13 @@ static void intel_read_dp_vsc_sdp(struct intel_en=
-coder *encoder,
->  				  struct drm_dp_vsc_sdp *vsc)
->  {
->  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
-> -	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
->  	unsigned int type =3D DP_SDP_VSC;
->  	struct dp_sdp sdp =3D {};
->  	int ret;
->  =
-
->  	/* When PSR is enabled, VSC SDP is handled by PSR routine */
-> -	if (intel_psr_enabled(intel_dp))
-> +	if (crtc_state->has_psr)
->  		return;
->  =
-
->  	if ((crtc_state->infoframes.enable &
 > -- =
 
 > 2.31.1
