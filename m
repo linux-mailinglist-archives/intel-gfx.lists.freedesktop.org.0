@@ -1,48 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 227E8377FE3
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 11:51:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7420E377FE9
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 11:51:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E37C6E453;
-	Mon, 10 May 2021 09:50:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB8C26E457;
+	Mon, 10 May 2021 09:51:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com
- [IPv6:2607:f8b0:4864:20::102f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37DC86E44F
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 09:50:57 +0000 (UTC)
-Received: by mail-pj1-x102f.google.com with SMTP id p17so9452156pjz.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 02:50:57 -0700 (PDT)
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com
+ [IPv6:2607:f8b0:4864:20::633])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFA876E44F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 09:51:05 +0000 (UTC)
+Received: by mail-pl1-x633.google.com with SMTP id t21so8874010plo.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 02:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=xzceaTJbUUoQMRiby9lwQqwtKo4y5qZbVn1w31ybRrg=;
- b=bOYHl1lk+9c5fpkjvJLlW2V+ZW1HWQZ8+GqQWpRXOyRwXl5gJ0b79YDClCoBfBBm4i
- Lg3ZY42RA3b3XCB5qgKa30diM6DGWie5c/Bp8lBvVatzuKYQ+cRSVyrR3Vn43XQ38Fby
- 6vdAkHilxAu/KAE1HFPNhr6sG764ExUW8d2uc=
+ bh=UxwjATyfUtX3knbkz7Ng4a91AyuLGtHH/dkvosOSCGg=;
+ b=KOr6914IYxgjLwHfgEdtt7yY0GH36g2NGsJo3fGwbbJaZNcrllky3/6cWFIPbrcxnF
+ J6WIRuHd84U2i5BBiDKA/bsQe9y2Z9UkJ/RbWHnAxAdDWQ5FGpvFFVOBGDi0XQRFybWw
+ dDc+W6hlTJe2OtGlIaJLuh2fe89FW6RCivPnU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=xzceaTJbUUoQMRiby9lwQqwtKo4y5qZbVn1w31ybRrg=;
- b=isy9jF2GUvkcKETFYJj0JfEESoGd+PMMC6PwOEeIkVArcTSHWG+ylEBX5z+gg3hlZP
- 9QAIW88SgQpwo8QnpMXfsJiYEVeE9Q1BzI7zNNCEvuUYo5JE78xebaDX+nTRR3+CTEWD
- toXt9Rsnrww0li1w/wMdphBCO8rV/dwq3OqatbsRG385Xwr4sIXB9YxDE3zswCaxyF7F
- uJMk2IhLP5XxMfYuglOF6zHcDrJmxrE5GIIarxP7diAyKATv2IFXUBTgwe7t4Wio4VHC
- cpn39UE9a19bSut/fP5WpWxYPEXDG/+CjLKhVRKEWgOBGThMuFAJg1L6Hl2/feWEwDq2
- DCGQ==
-X-Gm-Message-State: AOAM532m4Gsi3LwSyxFMV/+/weG3sr9VwDH6o698/HJ8MB6xJ3moYBLt
- H4H6rJImmUBy+lVojsgd2RNVYw==
-X-Google-Smtp-Source: ABdhPJxwy0teVP8y0d4KrEbfmPne0jX/g2pgdK0Y1sxb/62SuqcTyQ5c51wqp1akhS8ac/pL7Mr0nw==
-X-Received: by 2002:a17:90a:bf0c:: with SMTP id
- c12mr25754828pjs.206.1620640256876; 
- Mon, 10 May 2021 02:50:56 -0700 (PDT)
+ bh=UxwjATyfUtX3knbkz7Ng4a91AyuLGtHH/dkvosOSCGg=;
+ b=c0bAp/nLEwhfw+RPMnmJ8YbPeqXmLewYbq0taU0nlqCtbbGHllr8fQAovw8PhUCMIo
+ MV6ZBPQPjay8LkIN+v3mTGCp0RUMPzKcYfpQx2dZVLqyRKEnUp62chZEbFep2ndX0yah
+ /PMcm+6nZDx5hD38cToEHxLOcP2DiSw3qr92beVsN3nJb97OUa83tXfUrWHekReS1v2E
+ v9jpn9mc/1rWkxHQGbyRs1U/QqqqmA507Fj56WGB2kNJcc9YEkaljzK5ZOObwDid7LIQ
+ 3x+CwtfEyHkb/e1nQyuLxybCOLUuDQAalKfsSSMzdqZdpRvNEPfEEEdYcNkCZr6H4f+Z
+ wJ4A==
+X-Gm-Message-State: AOAM530NRH21PAcSwudLc+xjlG8KOh1EoQ7qDT50Ps2d5KhlRsb+93Dj
+ +7Kku/r2Is8ZPAZvs9oRYIS7uA==
+X-Google-Smtp-Source: ABdhPJxTaq6vhy1R6G0CsSRkldwCBABZULYIDbfdaYlGZp1FgQhncVgdgDLR34kcwkcv6yJulF+tnA==
+X-Received: by 2002:a17:90a:cf10:: with SMTP id
+ h16mr26442566pju.49.1620640265461; 
+ Mon, 10 May 2021 02:51:05 -0700 (PDT)
 Received: from localhost ([2401:fa00:95:205:a524:abe8:94e3:5601])
- by smtp.gmail.com with UTF8SMTPSA id 14sm10615255pfv.33.2021.05.10.02.50.49
+ by smtp.gmail.com with UTF8SMTPSA id ga1sm11342699pjb.5.2021.05.10.02.50.58
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 10 May 2021 02:50:56 -0700 (PDT)
+ Mon, 10 May 2021 02:51:05 -0700 (PDT)
 From: Claire Chang <tientzu@chromium.org>
 To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -50,14 +50,13 @@ To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
  Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
  jgross@suse.com, Christoph Hellwig <hch@lst.de>,
  Marek Szyprowski <m.szyprowski@samsung.com>
-Date: Mon, 10 May 2021 17:50:13 +0800
-Message-Id: <20210510095026.3477496-3-tientzu@chromium.org>
+Date: Mon, 10 May 2021 17:50:14 +0800
+Message-Id: <20210510095026.3477496-4-tientzu@chromium.org>
 X-Mailer: git-send-email 2.31.1.607.g51e8a6a459-goog
 In-Reply-To: <20210510095026.3477496-1-tientzu@chromium.org>
 References: <20210510095026.3477496-1-tientzu@chromium.org>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 02/15] swiotlb: Refactor
- swiotlb_create_debugfs
+Subject: [Intel-gfx] [PATCH v6 03/15] swiotlb: Add DMA_RESTRICTED_POOL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,60 +94,38 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Split the debugfs creation to make the code reusable for supporting
-different bounce buffer pools, e.g. restricted DMA pool.
+Add a new kconfig symbol, DMA_RESTRICTED_POOL, for restricted DMA pool.
 
 Signed-off-by: Claire Chang <tientzu@chromium.org>
 ---
- kernel/dma/swiotlb.c | 22 ++++++++++++++++------
- 1 file changed, 16 insertions(+), 6 deletions(-)
+ kernel/dma/Kconfig | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-index d3232fc19385..858475bd6923 100644
---- a/kernel/dma/swiotlb.c
-+++ b/kernel/dma/swiotlb.c
-@@ -64,6 +64,7 @@
- enum swiotlb_force swiotlb_force;
+diff --git a/kernel/dma/Kconfig b/kernel/dma/Kconfig
+index 77b405508743..3e961dc39634 100644
+--- a/kernel/dma/Kconfig
++++ b/kernel/dma/Kconfig
+@@ -80,6 +80,20 @@ config SWIOTLB
+ 	bool
+ 	select NEED_DMA_MAP_STATE
  
- struct io_tlb_mem *io_tlb_default_mem;
-+static struct dentry *debugfs_dir;
- 
- /*
-  * Max segment that we can provide which (if pages are contingous) will
-@@ -662,18 +663,27 @@ EXPORT_SYMBOL_GPL(is_swiotlb_active);
- 
- #ifdef CONFIG_DEBUG_FS
- 
--static int __init swiotlb_create_debugfs(void)
-+static void swiotlb_create_debugfs(struct io_tlb_mem *mem, const char *name,
-+				   struct dentry *node)
- {
--	struct io_tlb_mem *mem = io_tlb_default_mem;
--
- 	if (!mem)
--		return 0;
--	mem->debugfs = debugfs_create_dir("swiotlb", NULL);
-+		return;
++config DMA_RESTRICTED_POOL
++	bool "DMA Restricted Pool"
++	depends on OF && OF_RESERVED_MEM
++	select SWIOTLB
++	help
++	  This enables support for restricted DMA pools which provide a level of
++	  DMA memory protection on systems with limited hardware protection
++	  capabilities, such as those lacking an IOMMU.
 +
-+	mem->debugfs = debugfs_create_dir(name, node);
- 	debugfs_create_ulong("io_tlb_nslabs", 0400, mem->debugfs, &mem->nslabs);
- 	debugfs_create_ulong("io_tlb_used", 0400, mem->debugfs, &mem->used);
-+}
++	  For more information see
++	  <Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt>
++	  and <kernel/dma/swiotlb.c>.
++	  If unsure, say "n".
 +
-+static int __init swiotlb_create_default_debugfs(void)
-+{
-+	struct io_tlb_mem *mem = io_tlb_default_mem;
-+
-+	swiotlb_create_debugfs(mem, "swiotlb", NULL);
-+	debugfs_dir = mem->debugfs;
-+
- 	return 0;
- }
- 
--late_initcall(swiotlb_create_debugfs);
-+late_initcall(swiotlb_create_default_debugfs);
- 
- #endif
+ #
+ # Should be selected if we can mmap non-coherent mappings to userspace.
+ # The only thing that is really required is a way to set an uncached bit
 -- 
 2.31.1.607.g51e8a6a459-goog
 
