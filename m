@@ -2,56 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BBCB37A655
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 14:10:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC8F37A652
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 14:10:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2D3F6EA2A;
-	Tue, 11 May 2021 12:10:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D96CF6EA23;
+	Tue, 11 May 2021 12:10:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x134.google.com (mail-il1-x134.google.com
- [IPv6:2607:f8b0:4864:20::134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BAAE6E8E6
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 20:50:08 +0000 (UTC)
-Received: by mail-il1-x134.google.com with SMTP id z1so7419583ils.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 13:50:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+OPH32eMyvWVljUKupcgNYrsp+22kITMh1bNgQuNG54=;
- b=Mxjxihzh//9zKcu9Ei/s7qpprfPr0u6IWd/fzG/27jG6O59oV+tfK4/196kyU31Vcl
- 3nSGBuQQvB66D/v7ppQcnRoAsabD/OhMkAkCh9ev8A3nkJhVCwYlm39d7pXdJ264+48s
- +HI1esCqRgNIuzrxE1+BCB3zfAROJXA/dbOBX5dOQRzeucERNZzChMSkYmrAYgdJV24b
- utcpquXLHT6v5hQWpDg18BYyfonggHceKG03q6Q1vlyEC8O/L162JWQjgIYAyMfLqq6y
- tW224WjoE6dM9wXytcfyTASLjZ9+hpH4WSr7e84wm+je4DzjYy3EXHk+FC0BiZccNGNI
- ojIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=+OPH32eMyvWVljUKupcgNYrsp+22kITMh1bNgQuNG54=;
- b=g6P9EHHqj/rXtBEDIN8uXaD2jGCgRv+YIrw5UvhpPC47WAJT8mdz+bX+4I9/AEdwTo
- Qxk2Frrow7TDEtbJmZ9VOfE+vii7V1oOA6pw8b7+p7Z59zHfP0AI67OZ6cbWXBYOYNZ/
- WvigbeHwXqIR8Iw929/7Wv/D8iujm+R7Wd1dmckcIjBnLDErNUpr39rktfiFTTgrfAP/
- ADMGb4ePHjvOMyNyCRGozw1hPQOIeRvzLF6LIuPWALpvCYB+P1JdviPO8f6KioytEmpn
- O3A9LO+eO1tWTEgOod/sItnxY+EqjgS6J8cqAL56u1ETiq7LI0yK8jlE89QlY8RTje5N
- M6Ww==
-X-Gm-Message-State: AOAM530P6okO5Zq4D95R/wsmynFmx7yWkZGIcESwjT3g2nNpmNjpZeXP
- p667YDUvWQjVLsewCmcNEVkciTjj+zH6YBURmh8=
-X-Google-Smtp-Source: ABdhPJxECFuCLykYB7YKe0je6q9qiM93rrTQq38VoIiZuQvsqL5p9dNor139YkV9lGC/+C8bXFsEpZBY1+j4DckipRU=
-X-Received: by 2002:a92:d3c4:: with SMTP id c4mr21581909ilh.50.1620679807782; 
- Mon, 10 May 2021 13:50:07 -0700 (PDT)
+X-Greylist: delayed 1918 seconds by postgrey-1.36 at gabe;
+ Mon, 10 May 2021 22:33:46 UTC
+Received: from tartarus.angband.pl (tartarus.angband.pl [51.83.246.204])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26CE46E944;
+ Mon, 10 May 2021 22:33:46 +0000 (UTC)
+Received: from kilobyte by tartarus.angband.pl with local (Exim 4.94.2)
+ (envelope-from <kilobyte@angband.pl>)
+ id 1lgDtp-00EKjz-Lm; Mon, 10 May 2021 23:57:13 +0200
+Date: Mon, 10 May 2021 23:57:13 +0200
+From: Adam Borowski <kilobyte@angband.pl>
+To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Message-ID: <YJmsOYzPIsQ04Zxb@angband.pl>
+References: <cover.1620641727.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-References: <20210509044330.4655-1-pauldzim@gmail.com>
- <02957632-b050-f9eb-fcd8-75db9c92b8e0@ubuntu.com>
-In-Reply-To: <02957632-b050-f9eb-fcd8-75db9c92b8e0@ubuntu.com>
-From: Paul Zimmerman <pauldzim@gmail.com>
-Date: Mon, 10 May 2021 13:49:42 -0700
-Message-ID: <CADBGO7_cH2e1-zgVNvwVPRogqeFjTfJhKcuTfdF=xc_GoMmknA@mail.gmail.com>
-To: Timo Aaltonen <tjaalton@ubuntu.com>
+Content-Disposition: inline
+In-Reply-To: <cover.1620641727.git.mchehab+huawei@kernel.org>
+X-Junkbait: aaron@angband.pl, zzyx@angband.pl
+X-SA-Exim-Connect-IP: <locally generated>
+X-SA-Exim-Mail-From: kilobyte@angband.pl
+X-SA-Exim-Scanned: No (on tartarus.angband.pl); SAEximRunCond expanded to false
 X-Mailman-Approved-At: Tue, 11 May 2021 12:09:59 +0000
-Subject: Re: [Intel-gfx] [PATCH RFC] Revert "drm/i915: Try to use
- fast+narrow link on eDP again and fall back to the old max strategy on
- failure"
+Subject: Re: [Intel-gfx] [PATCH 00/53] Get rid of UTF-8 chars that can be
+ mapped as ASCII
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,33 +44,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org,
+ Linux Doc Mailing List <linux-doc@vger.kernel.org>, linux-iio@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-fpga@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, keyrings@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>,
+ linux-rdma@vger.kernel.org, x86@kernel.org, linux-acpi@vger.kernel.org,
+ intel-wired-lan@lists.osuosl.org, linux-input@vger.kernel.org,
+ linux-ext4@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-sgx@vger.kernel.org, coresight@lists.linaro.org, rcu@vger.kernel.org,
+ mjpeg-users@lists.sourceforge.net, linux-arm-kernel@lists.infradead.org,
+ linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-integrity@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, May 10, 2021 at 7:00 AM Timo Aaltonen <tjaalton@ubuntu.com> wrote:
->
-> On 9.5.2021 7.43, Paul Zimmerman wrote:
-> > This reverts commit 2bbd6dba84d44219387df051a1c799b7bac46099.
-> >
-> > Since 5.12-rc2, my Dell XPS-15 laptop has had a blank screen on boot.
-> > The system seems to run fine other than having no display, I am able
-> > to ssh into the machine. I don't see anything interesting in the dmesg
-> > log. I bisected the problem down to this commit, and reverting it fixes
-> > the problem.
->
-> Have you tried with drm-tip? It has acca7762eb71bc0 which hopefully
-> helps here.
-
-I picked that one commit from the drm-tip tree (wasn't sure how to merge
-the entire tree into the kernel) and can confirm that it does fix the problem.
-Thank you! I hope the fix will be sent to Linus pretty soon, and it will need
-backporting to the 5.12 kernel as well.
-
-- Paul
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCBNYXkgMTAsIDIwMjEgYXQgMTI6MjY6MTJQTSArMDIwMCwgTWF1cm8gQ2FydmFsaG8g
+Q2hlaGFiIHdyb3RlOgo+IFRoZXJlIGFyZSBzZXZlcmFsIFVURi04IGNoYXJhY3RlcnMgYXQgdGhl
+IEtlcm5lbCdzIGRvY3VtZW50YXRpb24uClsuLi5dCj4gT3RoZXIgVVRGLTggY2hhcmFjdGVycyB3
+ZXJlIGFkZGVkIGFsb25nIHRoZSB0aW1lLCBidXQgdGhleSdyZSBlYXNpbHkKPiByZXBsYWNlYWJs
+ZSBieSBBU0NJSSBjaGFycy4KPiAKPiBBcyBMaW51eCBkZXZlbG9wZXJzIGFyZSBhbGwgYXJvdW5k
+IHRoZSBnbG9iZSwgYW5kIG5vdCBldmVyeWJvZHkgaGFzIFVURi04Cj4gYXMgdGhlaXIgZGVmYXVs
+dCBjaGFyc2V0CgpJJ20gbm90IGF3YXJlIG9mIGEgZGlzdHJpYnV0aW9uIHRoYXQgc3RpbGwgYWxs
+b3dzIHNlbGVjdGluZyBhIG5vbi1VVEYtOApjaGFyc2V0IGluIGEgbm9ybWFsIGZsb3cgaW4gdGhl
+aXIgaW5zdGFsbGVyLiAgQW5kIGlmIHRoZXkgaGF2ZW4ndCBwdXJnZWQKc3VwcG9ydCBmb3IgYW5j
+aWVudCBlbmNvZGluZ3MsIHRoYXQgc3VwcG9ydCBpcyB0aG9yb3VnaGx5IGJpdHJvdHRlbi4KVGh1
+cywgSSBkaXNhZ3JlZSB0aGF0IHRoaXMgaXMgYSBsZWdpdGltYXRlIGNvbmNlcm4uCgpXaGF0IF9j
+b3VsZF8gYmUgYSBsZWdpdGltYXRlIHJlYXNvbiBpcyB0aGF0IHNvbWVvbmUgaXMgb24gYSBfdGVy
+bWluYWxfCnRoYXQgY2FuJ3QgZGlzcGxheSBhIHdpZGUgZW5vdWdoIHNldCBvZiBnbHlwaHMuICBT
+dWNoIHRlcm1pbmFscyBhcmU6CiDigKIgTGludXggY29uc29sZSAoYmVjYXVzZSBvZiB2Z2Fjb24g
+bGltaXRhdGlvbnM7IHBhdGNoc2V0cyB0byBpbXByb3ZlCiAgIG90aGVyIGNvbnMgaGF2ZW4ndCBi
+ZWVuIG1haW5saW5lZCkKIOKAoiBzb21lIFdpbmRvd3MgdGVybWluYWxzIChwdXR0eSwgb2xkIFdp
+bmRvd3MgY29uc29sZSkgdGhhdCBjYW4ndCBib3Jyb3cKICAgZ2x5cGhzIGZyb20gb3RoZXIgZm9u
+dHMgbGlrZSBmb250Y29uZmlnIGNhbgoKRm9yIHRoZSBmb3JtZXIsIGl0J3Mgd2hhdGV2ZXIgeW91
+ciBkaXN0cmlidXRpb24gc2hpcHMgaW4KL3Vzci9zaGFyZS9jb25zb2xlZm9udHMvIG9yIGFuIGVx
+dWl2YWxlbnQsIHdoaWNoIGlzIGJhc2VkIG9uIGhpc3RvcmljCklTTy04ODU5IGFuZCBWVDEwMCB0
+cmFkaXRpb25zLgoKRm9yIHRoZSBsYXR0ZXIsIHRoZSBuZWFyLWd1YXJhbnRlZWQgY2hhcmFjdGVy
+IHNldCBpcyBXR0w0LgoKClRodXMsIGF0IGxlYXN0IHR3byBvZiB5b3VyIGNob2ljZXMgc2VlbSB0
+byBkaXNhZ3JlZSB3aXRoIHRoZSBhYm92ZToKW2Ryb3BwZWRdCj4gCTB4ZDcgICA9PiAneCcsCQkj
+IE1VTFRJUExJQ0FUSU9OIFNJR04KW3JldGFpbmVkXQo+IAktIFUrMmIwZCAoJ+KsjScpOiBVUCBE
+T1dOIEJMQUNLIEFSUk9XCgrDlyBpcyBwcmVzZW50IGluIElTTy04ODU5LCBWMTAwLCBXR0w0OyBJ
+J3ZlIGZvdW5kIG5vIGZvbnQgaW4KL3Vzci9zaGFyZS9jb25zb2xlZm9udHMvIG9uIG15IERlYmlh
+biB1bnN0YWJsZSBib3ggdGhhdCBsYWNrcyB0aGlzCmNoYXJhY3Rlci4KCuKsjSBpcyBub3QgZm91
+bmQgaW4gYW55IG9mIHRoZSBhYm92ZS4gIFlvdSBtaWdodCB3YW50IHRvIGF0IGxlYXN0CmNvbnZl
+cnQgaXQgdG8g4oaVIHdoaWNoIGlzIGF0IGxlYXN0IHByZXNlbnQgaW4gV0dMNCwgYW5kIHRodXMg
+bGlrZWx5CnRvIGJlIHN1cHBvcnRlZCBpbiBmb250cyBoZWVkaW5nIFdpbmRvd3MvTWFjL09wZW5U
+eXBlIHJlY29tbWVuZGF0aW9ucy4KVGhhdCBzdGlsbCB3b24ndCBtYWtlIGl0IHdvcmsgb24gVlQu
+CgoKTWVvdyEKLS0gCuKigOKjtOKgvuKgu+KituKjpuKggCAuLS1bIE1ha2VmaWxlIF0K4qO+4qCB
+4qKg4qCS4qCA4qO/4qGBICMgYmV3YXJlIG9mIHJhY2VzCuKiv+KhhOKgmOKgt+KgmuKgi+KggCBh
+bGw6IHBpbGxhZ2UgYnVybgrioIjioLPio4TioIDioIDioIDioIAgYC0tLS0KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
