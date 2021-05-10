@@ -2,68 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB9B37A657
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 14:10:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9201C37A654
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 14:10:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AFD66EA34;
-	Tue, 11 May 2021 12:10:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 968CC6EA26;
+	Tue, 11 May 2021 12:10:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
- [IPv6:2a00:1450:4864:20::436])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C62336E170;
- Mon, 10 May 2021 14:33:50 +0000 (UTC)
-Received: by mail-wr1-x436.google.com with SMTP id m9so16893776wrx.3;
- Mon, 10 May 2021 07:33:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=iXsxoOt9fS3DXvxCyyFOaJfbPkU6WlTqA1MG4BgEpJA=;
- b=jIc4OS4UG1e9Htue39hs2SdJXCmPLn+MTostxG/pw06sXYt4cF0beJY8cOPd4XkNvN
- wMkWqq4rS4nqVWqmlHYwknDCThc4F5oj3a10x6AGXMwZ0Kkxjgx6mU53ky5S6gct5IOF
- gb8YE/CdqFeQhJSfkuXg75IoXDsEW/QKbfnCDm8DSyF/6zHxA2in236S9Jv233h02Cag
- nY/zUkluYzDhxrfM75C6Qnf/beBRBG9DBN2uslTW/jB8AmOrnU4strwuRTlIYCmTiED9
- Adakd2gy/AYmhY6PfiGery2Nb+BVYLJb2xN6RqR96XQSpLkoAkrrTIc1zJH3tzspThUx
- eDlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=iXsxoOt9fS3DXvxCyyFOaJfbPkU6WlTqA1MG4BgEpJA=;
- b=XtM2UORAwkRxZTuOFrtbMhcsYCVOl6DUl9j1/CkGWcFsS8NPe379sXOwylqsWN+4QD
- bZdNykSYa0Zz1zATeheIE8L+INPP5kX+ZMQnazetixD6z5EY2dB5yHeDfjJCxVrMzUuS
- Wo1DJPPzRtYGp58D9jWhEdIM/tyyi6rXKz6ysibXYAhYQAOUAhPI6SU7ZY0D71XPd7Ly
- kfQP0nPl7VyTJMuIxMnagm+xG8sM75nEEKEaakKjL3rClF8f41+PGzW+A9jkmglFrWeW
- eXUowyhD3PqWDlCIY8eL7C3AguS5fQX5dVX3ecPiiEvcgDqeUiag8R2tmNFfc/OBUxYn
- UV/g==
-X-Gm-Message-State: AOAM5319qBfZzZSI13QHngM8sG15Si2AJW1eErtbL5plKqGRRfBtX+LI
- /P4LVLyjeBWHJsWmxszWsnsMx+uUZs/fjQ==
-X-Google-Smtp-Source: ABdhPJze1q8t3iuv5DjzOv0RveTjqSpEwnprh+IG3St78u9eWCZrU93KSEZYLbobgkyZLBZ/m0bYBQ==
-X-Received: by 2002:adf:e98c:: with SMTP id h12mr30469476wrm.314.1620657229579; 
- Mon, 10 May 2021 07:33:49 -0700 (PDT)
-Received: from [192.168.1.122]
- (cpc159425-cmbg20-2-0-cust403.5-4.cable.virginm.net. [86.7.189.148])
- by smtp.gmail.com with ESMTPSA id h9sm20117820wmb.35.2021.05.10.07.33.47
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 10 May 2021 07:33:48 -0700 (PDT)
-To: Matthew Wilcox <willy@infradead.org>
-References: <cover.1620641727.git.mchehab+huawei@kernel.org>
- <2ae366fdff4bd5910a2270823e8da70521c859af.camel@infradead.org>
- <20210510135518.305cc03d@coco.lan>
- <df6b4567-030c-a480-c5a6-fe579830e8c0@gmail.com>
- <YJk8LMFViV7Z3Uu7@casper.infradead.org>
-From: Edward Cree <ecree.xilinx@gmail.com>
-Message-ID: <ed65025c-1087-9672-7451-6d28e7ab8f92@gmail.com>
-Date: Mon, 10 May 2021 15:33:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+Received: from letterbox.kde.org (letterbox.kde.org
+ [IPv6:2001:41c9:1:41e::242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 716376E4D7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 May 2021 18:06:44 +0000 (UTC)
+Received: from xps.localnet (235.red-80-26-237.dynamicip.rima-tde.net
+ [80.26.237.235]) (Authenticated sender: aacid)
+ by letterbox.kde.org (Postfix) with ESMTPSA id 3A68A280320;
+ Mon, 10 May 2021 19:06:40 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
+ t=1620670002; bh=xuJ1gjernDZo4OkddAl81wkTMdDclEw4CLq0Grg6Ssg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=FUyLwWMggeNq7xDYm1SRJP7b8u+LyhfjHfF+1yM/Py0L3pTLlA6Z/W5QzEYJyMZYi
+ 8uY0zU9GVF/bhbCOQQAFWu//CfEc+E7MxWieYA0k3L7nXcx0xxFDVePPBbCN6Y+7ay
+ 6F9dNbBF0J6NgNAwtxf+4YU+oUbDsh+X3rzhIKuOlE4aEqieqv5JZA3b9UU+6AGTx/
+ CynQNHarfcZ9eOxtLVAA9TxRE6PPsLgLQMgZZ0kBngczBdNul4C6cb3h0Q8Hu+Mcel
+ Py2dIGtnBX0WscFWRBQdvsAhl3iDsoioveBlXiV5H224KN9Uyhw0oq5OxlGsshfWtK
+ w8okmNuW0naWw==
+From: Albert Astals Cid <aacid@kde.org>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Emanuele Panigati <ilpanich@gmail.com>
+Date: Mon, 10 May 2021 20:06:40 +0200
+Message-ID: <3349345.6yYDney9BF@xps>
+In-Reply-To: <CABpPkAEVbSUwoBqXDaKpckbfkq4-z=MWNC27JYOLki3FhN0PyA@mail.gmail.com>
+References: <20210107182026.24848-1-ville.syrjala@linux.intel.com>
+ <X/yY3Tvk8gq+Eg8W@intel.com>
+ <CABpPkAEVbSUwoBqXDaKpckbfkq4-z=MWNC27JYOLki3FhN0PyA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YJk8LMFViV7Z3Uu7@casper.infradead.org>
-Content-Language: en-GB
 X-Mailman-Approved-At: Tue, 11 May 2021 12:09:59 +0000
-Subject: Re: [Intel-gfx] [PATCH 00/53] Get rid of UTF-8 chars that can be
- mapped as ASCII
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Try to use fast+narrow link
+ on eDP again and fall back to the old max strategy on failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,57 +51,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>, linux-iio@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-fpga@vger.kernel.org,
- dri-devel@lists.freedesktop.org, keyrings@vger.kernel.org,
- linux-riscv@lists.infradead.org, Jonathan Corbet <corbet@lwn.net>,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, x86@kernel.org,
- linux-acpi@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
- linux-input@vger.kernel.org, linux-ext4@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-sgx@vger.kernel.org,
- coresight@lists.linaro.org, rcu@vger.kernel.org,
- mjpeg-users@lists.sourceforge.net, linux-arm-kernel@lists.infradead.org,
- linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-rdma@vger.kernel.org, linux-integrity@vger.kernel.org,
- David Woodhouse <dwmw2@infradead.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Matteo Iervasi <matteoiervasi@gmail.com>,
+ Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/05/2021 14:59, Matthew Wilcox wrote:
-> Most of these
-> UTF-8 characters come from latex conversions and really aren't
-> necessary (and are being used incorrectly).
-I fully agree with fixing those.
-The cover-letter, however, gave the impression that that was not the
- main purpose of this series; just, perhaps, a happy side-effect.
+Yes, I also have the same.
 
-> You seem quite knowedgeable about the various differences.  Perhaps
-> you'd be willing to write a document for Documentation/doc-guide/
-> that provides guidance for when to use which kinds of horizontal
-> line?I have Opinions about the proper usage of punctuation, but I also know
- that other people have differing opinions.  For instance, I place
- spaces around an em dash, which is nonstandard according to most
- style guides.  Really this is an individual enough thing that I'm not
- sure we could have a "kernel style guide" that would be more useful
- than general-purpose guidance like the page you linked.
-Moreover, such a guide could make non-native speakers needlessly self-
- conscious about their writing and discourage them from contributing
- documentation at all.  I'm not advocating here for trying to push
- kernel developers towards an eats-shoots-and-leaves level of
- linguistic pedantry; rather, I merely think that existing correct
- usages should be left intact (and therefore, excising incorrect usage
- should only be attempted by someone with both the expertise and time
- to check each case).
+I git bisected that and found this to be the cause, i started a new email t=
+hread because i couldn't find this email ^_^
 
-But if you really want such a doc I wouldn't mind contributing to it.
+Cheers,
+  Albert
 
--ed
+El dilluns, 10 de maig de 2021, a les 10:07:33 (CEST), Emanuele Panigati va=
+ escriure:
+> Hi,
+>   on my Dell XPS 15 9570 laptop I might have a regression with Arch Linux
+> (kernel 5.12.2-arch1-1: during boot the laptop monitor goes black while
+> external monitors still works...
+> =
+
+> =
+
+> Panich
+> =
+
+> =
+
+> Il giorno lun 11 gen 2021 alle ore 19:28 Ville Syrj=E4l=E4 <
+> ville.syrjala@linux.intel.com> ha scritto:
+> =
+
+> > On Thu, Jan 07, 2021 at 08:20:25PM +0200, Ville Syrjala wrote:
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > >
+> > > Some new eDP panels don't like to operate at the max parameters, and
+> > > instead we need to go for an optimal confiugration. That unfortunately
+> > > doesn't work with older eDP panels which are generally only guaranteed
+> > > to work at the max parameters.
+> > >
+> > > To solve these two conflicting requirements let's start with the opti=
+mal
+> > > setup, and if that fails we start again with the max parameters. The
+> > > downside is probably an extra modeset when we switch strategies but
+> > > I don't see a good way to avoid that.
+> > >
+> > > For a bit of history we first tried to go for the fast+narrow in
+> > > commit 7769db588384 ("drm/i915/dp: optimize eDP 1.4+ link config
+> > > fast and narrow"). but that had to be reverted due to regression
+> > > on older panels in commit f11cb1c19ad0 ("drm/i915/dp: revert back
+> > > to max link rate and lane count on eDP"). So now we try to get
+> > > the best of both worlds by using both strategies.
+> >
+> > Pushed. Fingers crossed for no regressions...
+> >
+> > --
+> > Ville Syrj=E4l=E4
+> > Intel
+> >
+> =
+
+
+
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
