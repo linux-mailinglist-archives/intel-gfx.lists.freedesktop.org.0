@@ -1,31 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBD73791E2
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 17:05:22 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1FA37929D
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 May 2021 17:25:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7926B89D5B;
-	Mon, 10 May 2021 15:05:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC81C6E4AE;
+	Mon, 10 May 2021 15:25:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from verein.lst.de (verein.lst.de [213.95.11.211])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD07789D5B;
- Mon, 10 May 2021 15:05:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F7906E4AB;
+ Mon, 10 May 2021 15:25:28 +0000 (UTC)
 Received: by verein.lst.de (Postfix, from userid 2407)
- id 2DAB567373; Mon, 10 May 2021 17:05:17 +0200 (CEST)
-Date: Mon, 10 May 2021 17:05:16 +0200
+ id E63D667373; Mon, 10 May 2021 17:25:25 +0200 (CEST)
+Date: Mon, 10 May 2021 17:25:25 +0200
 From: Christoph Hellwig <hch@lst.de>
-To: Claire Chang <tientzu@chromium.org>
-Message-ID: <20210510150516.GE28066@lst.de>
-References: <20210510095026.3477496-1-tientzu@chromium.org>
- <20210510095026.3477496-9-tientzu@chromium.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20210510152525.GA30093@lst.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210510095026.3477496-9-tientzu@chromium.org>
 User-Agent: Mutt/1.5.17 (2007-11-01)
-Subject: Re: [Intel-gfx] [PATCH v6 08/15] swiotlb: Bounce data from/to
- restricted DMA pool if available
+Subject: [Intel-gfx] i915 and swiotlb_max_segment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,57 +36,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
- peterz@infradead.org, benh@kernel.crashing.org,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- grant.likely@arm.com, paulus@samba.org, Frank Rowand <frowand.list@gmail.com>,
- mingo@kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>,
- sstabellini@kernel.org, Saravana Kannan <saravanak@google.com>,
- mpe@ellerman.id.au, Joerg Roedel <joro@8bytes.org>,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Christoph Hellwig <hch@lst.de>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- jxgao@google.com, Will Deacon <will@kernel.org>,
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, airlied@linux.ie,
- Dan Williams <dan.j.williams@intel.com>, linuxppc-dev@lists.ozlabs.org,
- Rob Herring <robh+dt@kernel.org>, bhelgaas@google.com,
- boris.ostrovsky@oracle.com,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, jgross@suse.com,
- Nicolas Boichat <drinkcat@chromium.org>, nouveau@lists.freedesktop.org,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- lkml <linux-kernel@vger.kernel.org>, tfiga@chromium.org,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
- Robin Murphy <robin.murphy@arm.com>, bauerman@linux.ibm.com
+Cc: intel-gfx@lists.freedesktop.org, iommu@lists.linux-foundation.org,
+ dri-devel@lists.freedesktop.org,
+ Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> +static inline bool is_dev_swiotlb_force(struct device *dev)
-> +{
-> +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> +	if (dev->dma_io_tlb_mem)
-> +		return true;
-> +#endif /* CONFIG_DMA_RESTRICTED_POOL */
-> +	return false;
-> +}
-> +
+Hi all,
 
->  	/* If SWIOTLB is active, use its maximum mapping size */
->  	if (is_swiotlb_active(dev) &&
-> -	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE))
-> +	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE ||
-> +	     is_dev_swiotlb_force(dev)))
+swiotlb_max_segment is a rather strange "API" export by swiotlb.c,
+and i915 is the only (remaining) user.
 
-This is a mess.  I think the right way is to have an always_bounce flag
-in the io_tlb_mem structure instead.  Then the global swiotlb_force can
-go away and be replace with this and the fact that having no
-io_tlb_mem structure at all means forced no buffering (after a little
-refactoring).
+swiotlb_max_segment returns 0 if swiotlb is not in use, 1 if
+SWIOTLB_FORCE is set or swiotlb-zen is set, and the swiotlb segment
+size when swiotlb is otherwise enabled.
+
+i915 then uses it to:
+
+ a) decided on the max order in i915_gem_object_get_pages_internal
+ b) decide on a max segment size in i915_sg_segment_size
+
+for a) it really seems i915 should switch to dma_alloc_noncoherent
+or dma_alloc_noncontigous ASAP instead of using alloc_page and
+streaming DMA mappings.  Any chance I could trick one of the i915
+maintaines into doing just that given that the callchain is not
+exactly trivial?
+
+For b) I'm not sure swiotlb and i915 really agree on the meaning
+of the value.  swiotlb_set_max_segment basically returns the entire
+size of the swiotlb buffer, while i915 seems to use it to limit
+the size each scatterlist entry.  It seems like dma_max_mapping_size
+might be the best value to use here.
+
+Once that is fixed I'd like to kill off swiotlb_max_segment as it is
+a horribly confusing API.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
