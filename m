@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD58379FC2
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 08:37:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 806A837A022
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 08:55:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A8616E9C1;
-	Tue, 11 May 2021 06:37:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB6416E9D5;
+	Tue, 11 May 2021 06:55:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 43D316E9C1;
- Tue, 11 May 2021 06:37:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3B950A7DFC;
- Tue, 11 May 2021 06:37:37 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94C356E9D5;
+ Tue, 11 May 2021 06:55:42 +0000 (UTC)
+IronPort-SDR: SLVnqkir0b5kRoKObsqDPBdFQ88JTjgFvtGVG9NfcVCvoW4aPD59x2lxSUE869e7je6QgK0K5r
+ n9Kjz7u4OX0g==
+X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="199439949"
+X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="199439949"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2021 23:55:41 -0700
+IronPort-SDR: ctgxOA3SIyHB7zc7AqfRBbjNXGNL/FaP4Fxv+v47gg7D3EWWK/XMD4cPJNu40uczbmXoAWn/6R
+ dUG7fdh81jgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="536844425"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+ by fmsmga001.fm.intel.com with SMTP; 10 May 2021 23:55:36 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
+ Tue, 11 May 2021 09:55:36 +0300
+Date: Tue, 11 May 2021 09:55:36 +0300
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <YJoqaKps8L5QNJoU@kuha.fi.intel.com>
+References: <20210505162415.531876-1-hdegoede@redhat.com>
+ <20210505162415.531876-8-hdegoede@redhat.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "HardikX Deepakkumar patel" <hardikx.deepakkumar.patel@intel.com>
-Date: Tue, 11 May 2021 06:37:37 -0000
-Message-ID: <162071505723.32035.1765128612696474590@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210511054239.214607-1-hardikx.deepakkumar.patel@intel.com>
-In-Reply-To: <20210511054239.214607-1-hardikx.deepakkumar.patel@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Memory_mapping_with_IOMMU?=
+Content-Disposition: inline
+In-Reply-To: <20210505162415.531876-8-hdegoede@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH 7/8] usb: typec: altmodes/displayport: Make
+ dp_altmode_notify() more generic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,177 +50,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0792157546=="
+Cc: dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ platform-driver-x86@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0792157546==
-Content-Type: multipart/alternative;
- boundary="===============5049730417685132530=="
+On Wed, May 05, 2021 at 06:24:14PM +0200, Hans de Goede wrote:
+> Make dp_altmode_notify() handle the dp->data.conf == 0 case too,
+> rather then having separate code-paths for this in various places
+> which call it.
+> 
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 
---===============5049730417685132530==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-== Series Details ==
+> ---
+>  drivers/usb/typec/altmodes/displayport.c | 35 +++++++++---------------
+>  1 file changed, 13 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
+> index b7f094435b00..aa669b9cf70e 100644
+> --- a/drivers/usb/typec/altmodes/displayport.c
+> +++ b/drivers/usb/typec/altmodes/displayport.c
+> @@ -66,10 +66,17 @@ struct dp_altmode {
+>  
+>  static int dp_altmode_notify(struct dp_altmode *dp)
+>  {
+> -	u8 state = get_count_order(DP_CONF_GET_PIN_ASSIGN(dp->data.conf));
+> +	unsigned long conf;
+> +	u8 state;
+> +
+> +	if (dp->data.conf) {
+> +		state = get_count_order(DP_CONF_GET_PIN_ASSIGN(dp->data.conf));
+> +		conf = TYPEC_MODAL_STATE(state);
+> +	} else {
+> +		conf = TYPEC_STATE_USB;
+> +	}
+>  
+> -	return typec_altmode_notify(dp->alt, TYPEC_MODAL_STATE(state),
+> -				   &dp->data);
+> +	return typec_altmode_notify(dp->alt, conf, &dp->data);
+>  }
+>  
+>  static int dp_altmode_configure(struct dp_altmode *dp, u8 con)
+> @@ -137,21 +144,10 @@ static int dp_altmode_status_update(struct dp_altmode *dp)
+>  
+>  static int dp_altmode_configured(struct dp_altmode *dp)
+>  {
+> -	int ret;
+> -
+>  	sysfs_notify(&dp->alt->dev.kobj, "displayport", "configuration");
+> -
+> -	if (!dp->data.conf)
+> -		return typec_altmode_notify(dp->alt, TYPEC_STATE_USB,
+> -					    &dp->data);
+> -
+> -	ret = dp_altmode_notify(dp);
+> -	if (ret)
+> -		return ret;
+> -
+>  	sysfs_notify(&dp->alt->dev.kobj, "displayport", "pin_assignment");
+>  
+> -	return 0;
+> +	return dp_altmode_notify(dp);
+>  }
+>  
+>  static int dp_altmode_configure_vdm(struct dp_altmode *dp, u32 conf)
+> @@ -172,13 +168,8 @@ static int dp_altmode_configure_vdm(struct dp_altmode *dp, u32 conf)
+>  	}
+>  
+>  	ret = typec_altmode_vdm(dp->alt, header, &conf, 2);
+> -	if (ret) {
+> -		if (DP_CONF_GET_PIN_ASSIGN(dp->data.conf))
+> -			dp_altmode_notify(dp);
+> -		else
+> -			typec_altmode_notify(dp->alt, TYPEC_STATE_USB,
+> -					     &dp->data);
+> -	}
+> +	if (ret)
+> +		dp_altmode_notify(dp);
+>  
+>  	return ret;
+>  }
+> -- 
+> 2.31.1
 
-Series: drm/i915/selftests: Memory mapping with IOMMU
-URL   : https://patchwork.freedesktop.org/series/89987/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10064 -> Patchwork_20096
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20096/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20096 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2] ([i915#203]) +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10064/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20096/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#203]: https://gitlab.freedesktop.org/drm/intel/issues/203
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2411]: https://gitlab.freedesktop.org/drm/intel/issues/2411
-  [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
-  [i915#3276]: https://gitlab.freedesktop.org/drm/intel/issues/3276
-  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
-  [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
-  [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-
-
-Participating hosts (40 -> 39)
-------------------------------
-
-  Additional (1): fi-rkl-11500t 
-  Missing    (2): fi-ilk-m540 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10064 -> Patchwork_20096
-
-  CI-20190529: 20190529
-  CI_DRM_10064: eb2730cd1643ffb717211862c1d66eeb8e5b31cf @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6081: fdff4bba7abf9cb7c8ea21abf14e36d344ebb8c1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20096: d70eeba8b0773f534bcda0a998dbc3f4efef8bc9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d70eeba8b077 drm/i915/selftests: Memory mapping with IOMMU
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20096/index.html
-
---===============5049730417685132530==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: Memory mapping with IOMMU</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/89987/">https://patchwork.freedesktop.org/series/89987/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20096/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20096/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10064 -&gt; Patchwork_20096</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20096/index.html</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20096 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10064/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20096/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/203">i915#203</a>) +3 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (40 -&gt; 39)</h2>
-<p>Additional (1): fi-rkl-11500t <br />
-  Missing    (2): fi-ilk-m540 fi-bdw-samus </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10064 -&gt; Patchwork_20096</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10064: eb2730cd1643ffb717211862c1d66eeb8e5b31cf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6081: fdff4bba7abf9cb7c8ea21abf14e36d344ebb8c1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20096: d70eeba8b0773f534bcda0a998dbc3f4efef8bc9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>d70eeba8b077 drm/i915/selftests: Memory mapping with IOMMU</p>
-
-</body>
-</html>
-
---===============5049730417685132530==--
-
---===============0792157546==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+heikki
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0792157546==--
