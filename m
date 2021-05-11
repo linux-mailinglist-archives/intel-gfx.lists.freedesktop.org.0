@@ -2,40 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20BD937AC7A
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 18:52:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91BD137ACB4
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 19:09:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE3FD6EAA8;
-	Tue, 11 May 2021 16:52:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B08F56EA85;
+	Tue, 11 May 2021 17:09:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 881FB6EA9F;
- Tue, 11 May 2021 16:51:59 +0000 (UTC)
-IronPort-SDR: IBlbF/VgdjU6xSdhQGhhSMef02KiXS5pBdG74D11Qu0dnt2W2VymWrKVyQwvGxA6zgd7gX5OmA
- +RlDQzOktShw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9981"; a="199544285"
-X-IronPort-AV: E=Sophos;i="5.82,291,1613462400"; d="scan'208";a="199544285"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2021 09:51:59 -0700
-IronPort-SDR: jOXngmyc/gCNjsp7UIGELDjm+IOTf3TsJflEZYSqDQ452ZfssR1aNZMY2F+9apto20jIk+Kb/4
- 3qh0Hn1QjAVg==
-X-IronPort-AV: E=Sophos;i="5.82,291,1613462400"; d="scan'208";a="537104910"
-Received: from rdavies-mobl.ger.corp.intel.com (HELO
- mwauld-desk1.ger.corp.intel.com) ([10.252.2.133])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2021 09:51:56 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Tue, 11 May 2021 17:51:17 +0100
-Message-Id: <20210511165117.428062-13-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210511165117.428062-1-matthew.auld@intel.com>
-References: <20210511165117.428062-1-matthew.auld@intel.com>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29FFF6E5D1;
+ Tue, 11 May 2021 17:09:27 +0000 (UTC)
+IronPort-SDR: U7tEwtmcr/i8u9Dcd+DK5iLaWWnKyGaBkeEXShTm4gSLOcsGZG4/stV763H5nMrDGfwFqR471I
+ GPxx/FvxmuOg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9981"; a="260759256"
+X-IronPort-AV: E=Sophos;i="5.82,291,1613462400"; d="scan'208";a="260759256"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2021 10:08:53 -0700
+IronPort-SDR: bex332Le3gdwvTt0IYCTO2qmeYDCFFfa2PPYKuYRruwD0J4s4FqW/3rTLdbxRIuIrC1aYQei/J
+ S4BQJepTCx1A==
+X-IronPort-AV: E=Sophos;i="5.82,291,1613462400"; d="scan'208";a="468999367"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2021 10:08:47 -0700
+Date: Tue, 11 May 2021 10:01:28 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20210511170124.GA30040@sdutt-i7>
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+ <20210506191451.77768-44-matthew.brost@intel.com>
+ <YJqiKksSqBpUDvPJ@phenom.ffwll.local>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 12/12] tests/i915/gem_exec_basic/dg1:
- Iterate over all memory regions
+Content-Disposition: inline
+In-Reply-To: <YJqiKksSqBpUDvPJ@phenom.ffwll.local>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [RFC PATCH 43/97] drm/i915/guc: Add lrc descriptor
+ context lookup array
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,39 +50,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Vanshidhar Konda <vanshidhar.r.konda@intel.com>,
- thomas.hellstrom@linux.intel.com,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Janulgue Abdiel <abdiel.janulgue@intel.com>, intel-gfx@lists.freedesktop.org,
- "Kalamarz, Lukasz" <lukasz.kalamarz@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ jason.ekstrand@intel.com, daniel.vetter@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogIkthbGFtYXJ6LCBMdWthc3oiIDxsdWthc3oua2FsYW1hcnpAaW50ZWwuY29tPgoKQXMg
-YSBwYXJ0IG9mIGxvY2FsIG1lbW9yeSBlZmZvcnQgd2UgbmVlZCB0byBtYWtlIHN1cmUsIHRoYXQK
-ZXZlcnkgYXZhaWxhYmxlIG1lbW9yeSByZWdpb24gaXMgY292ZXJlZC4gVGhpcyBwYXRjaCBpcyBh
-biBhdHRlbXB0CmZvciB0aGlzIHByb2JsZW0uIElmIGl0IHdpbGwgYmUgYWNjZXB0ZWQgaXQgd2ls
-bCBiZSByZXBsaWNhdGVkIG9uCmVhY2ggdGVzdCB0aGF0IGNhbiBhY3R1YWxseSBiZW5lZml0IGZy
-b20gaXQuCgpTaWduZWQtb2ZmLWJ5OiBEb21pbmlrIEdyemVnb3J6ZWsgPGRvbWluaWsuZ3J6ZWdv
-cnpla0BpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEx1a2FzeiBLYWxhbWFyeiA8bHVrYXN6Lmth
-bGFtYXJ6QGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVmluYXkgQmVsZ2F1bWthciA8dmluYXku
-YmVsZ2F1bWthckBpbnRlbC5jb20+CkNjOiBKYW51bGd1ZSBBYmRpZWwgPGFiZGllbC5qYW51bGd1
-ZUBpbnRlbC5jb20+CkNjOiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+CkNj
-OiBLYXRhcnp5bmEgRGVjIDxrYXRhcnp5bmEuZGVjQGludGVsLmNvbT4KQ2M6IFZhbnNoaWRoYXIg
-S29uZGEgPHZhbnNoaWRoYXIuci5rb25kYUBpbnRlbC5jb20+CkNjOiBTdHVhcnQgU3VtbWVycyA8
-c3R1YXJ0LnN1bW1lcnNAaW50ZWwuY29tPgpDYzogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymln
-bmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+Ci0tLQogdGVzdHMvaTkxNS9nZW1fZXhlY19iYXNp
-Yy5jIHwgMyArKy0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24o
-LSkKCmRpZmYgLS1naXQgYS90ZXN0cy9pOTE1L2dlbV9leGVjX2Jhc2ljLmMgYi90ZXN0cy9pOTE1
-L2dlbV9leGVjX2Jhc2ljLmMKaW5kZXggOGJjNGRjNTIuLjg3MmIxZDNiIDEwMDY0NAotLS0gYS90
-ZXN0cy9pOTE1L2dlbV9leGVjX2Jhc2ljLmMKKysrIGIvdGVzdHMvaTkxNS9nZW1fZXhlY19iYXNp
-Yy5jCkBAIC01Niw3ICs1Niw4IEBAIGlndF9tYWluCiAJCWlndF9hc3NlcnQocXVlcnlfaW5mbyk7
-CiAKIAkJc2V0ID0gZ2V0X21lbW9yeV9yZWdpb25fc2V0KHF1ZXJ5X2luZm8sCi0JCQkJCSAgICBJ
-OTE1X1NZU1RFTV9NRU1PUlkpOworCQkJCQkgICAgSTkxNV9TWVNURU1fTUVNT1JZLAorCQkJCQkg
-ICAgSTkxNV9ERVZJQ0VfTUVNT1JZKTsKIAl9CiAKIAlpZ3Rfc3VidGVzdF93aXRoX2R5bmFtaWMo
-ImJhc2ljIikgewotLSAKMi4yNi4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+On Tue, May 11, 2021 at 05:26:34PM +0200, Daniel Vetter wrote:
+> On Thu, May 06, 2021 at 12:13:57PM -0700, Matthew Brost wrote:
+> > Add lrc descriptor context lookup array which can resolve the
+> > intel_context from the lrc descriptor index. In addition to lookup, it
+> > can determine in the lrc descriptor context is currently registered with
+> > the GuC by checking if an entry for a descriptor index is present.
+> > Future patches in the series will make use of this array.
+> > 
+> > Cc: John Harrison <john.c.harrison@intel.com>
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  5 +++
+> >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 32 +++++++++++++++++--
+> >  2 files changed, 35 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > index d84f37afb9d8..2eb6c497e43c 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> > @@ -6,6 +6,8 @@
+> >  #ifndef _INTEL_GUC_H_
+> >  #define _INTEL_GUC_H_
+> >  
+> > +#include "linux/xarray.h"
+> > +
+> >  #include "intel_uncore.h"
+> >  #include "intel_guc_fw.h"
+> >  #include "intel_guc_fwif.h"
+> > @@ -47,6 +49,9 @@ struct intel_guc {
+> >  	struct i915_vma *lrc_desc_pool;
+> >  	void *lrc_desc_pool_vaddr;
+> >  
+> > +	/* guc_id to intel_context lookup */
+> > +	struct xarray context_lookup;
+> 
+> The current code sets a disastrous example, but for stuff like this it's
+> always good to explain the locking, and who's holding references and how
+> you're handling cycles. Since I guess the intel_context also holds the
+> guc_id alive somehow.
+> 
+
+I think (?) I know what you mean by this comment. How about adding:
+
+'If an entry in the the context_lookup is present, that means a context
+associated with the guc_id is registered with the GuC. We use this xarray as a
+lookup mechanism when the GuC communicate with the i915 about the context.'
+
+> Again holds for the entire series, where it makes sense (as in we don't
+> expect to rewrite the entire code anyway).
+
+Slightly out of order but one of the last patches in the series, 'Update GuC
+documentation' adds a big section of comments that attempts to clarify how all
+of this code works. I likely should add a section explaining the data structures
+as well.
+
+Matt
+
+> -Daniel
+> 
+> > +
+> >  	/* Control params for fw initialization */
+> >  	u32 params[GUC_CTL_MAX_DWORDS];
+> >  
+> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > index 6acc1ef34f92..c2b6d27404b7 100644
+> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> > @@ -65,8 +65,6 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
+> >  	return rb_entry(rb, struct i915_priolist, node);
+> >  }
+> >  
+> > -/* Future patches will use this function */
+> > -__attribute__ ((unused))
+> >  static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
+> >  {
+> >  	struct guc_lrc_desc *base = guc->lrc_desc_pool_vaddr;
+> > @@ -76,6 +74,15 @@ static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
+> >  	return &base[index];
+> >  }
+> >  
+> > +static inline struct intel_context *__get_context(struct intel_guc *guc, u32 id)
+> > +{
+> > +	struct intel_context *ce = xa_load(&guc->context_lookup, id);
+> > +
+> > +	GEM_BUG_ON(id >= GUC_MAX_LRC_DESCRIPTORS);
+> > +
+> > +	return ce;
+> > +}
+> > +
+> >  static int guc_lrc_desc_pool_create(struct intel_guc *guc)
+> >  {
+> >  	u32 size;
+> > @@ -96,6 +103,25 @@ static void guc_lrc_desc_pool_destroy(struct intel_guc *guc)
+> >  	i915_vma_unpin_and_release(&guc->lrc_desc_pool, I915_VMA_RELEASE_MAP);
+> >  }
+> >  
+> > +static inline void reset_lrc_desc(struct intel_guc *guc, u32 id)
+> > +{
+> > +	struct guc_lrc_desc *desc = __get_lrc_desc(guc, id);
+> > +
+> > +	memset(desc, 0, sizeof(*desc));
+> > +	xa_erase_irq(&guc->context_lookup, id);
+> > +}
+> > +
+> > +static inline bool lrc_desc_registered(struct intel_guc *guc, u32 id)
+> > +{
+> > +	return __get_context(guc, id);
+> > +}
+> > +
+> > +static inline void set_lrc_desc_registered(struct intel_guc *guc, u32 id,
+> > +					   struct intel_context *ce)
+> > +{
+> > +	xa_store_irq(&guc->context_lookup, id, ce, GFP_ATOMIC);
+> > +}
+> > +
+> >  static void guc_add_request(struct intel_guc *guc, struct i915_request *rq)
+> >  {
+> >  	/* Leaving stub as this function will be used in future patches */
+> > @@ -404,6 +430,8 @@ int intel_guc_submission_init(struct intel_guc *guc)
+> >  	 */
+> >  	GEM_BUG_ON(!guc->lrc_desc_pool);
+> >  
+> > +	xa_init_flags(&guc->context_lookup, XA_FLAGS_LOCK_IRQ);
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > -- 
+> > 2.28.0
+> > 
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
