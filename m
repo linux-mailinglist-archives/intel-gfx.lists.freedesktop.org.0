@@ -1,46 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A954537A14E
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 10:01:58 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11BE637A15B
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 10:06:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9390E6E9DD;
-	Tue, 11 May 2021 08:01:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD2E96E038;
+	Tue, 11 May 2021 08:06:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [IPv6:2a01:e0c:1:1599::14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE5136E9DD;
- Tue, 11 May 2021 08:01:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28E1A6E038;
+ Tue, 11 May 2021 08:06:49 +0000 (UTC)
 Received: from [192.168.1.190] (unknown [91.155.165.229])
  (Authenticated sender: martin.peres@free.fr)
- by smtp5-g21.free.fr (Postfix) with ESMTPSA id AFDC85FF9A;
- Tue, 11 May 2021 10:01:33 +0200 (CEST)
+ by smtp5-g21.free.fr (Postfix) with ESMTPSA id 2A9AF5FFCC;
+ Tue, 11 May 2021 10:06:26 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
- s=smtp-20201208; t=1620720114;
- bh=a46yeCGCE0eDis8fySiFB9lAhih+GD6Vv2jPOFTNsks=;
+ s=smtp-20201208; t=1620720408;
+ bh=lQtzoXk4bkXfyYehVeIP1qmoWbFpGwfyboQlMFQHIaM=;
  h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=kdtytGF4+ei+QKXYgK2m07iUaPO25g0rVN7GJ+EdRtYcrJ4d39FYvsRtq8CltFbFs
- +9EejX8j1P2KlKGOOYleABzR2IMtTbFrknI1BaB7pkD0GwaJ2cm/uCfWqvZaseJ2uq
- fS8Ndxz21W64fIgPLSWiTyvj5K63oHWTG4TD/MkeCUtG2+0g9Nv+rBwrzTmSwfnP52
- sL9TqLAHVloxZ6zl15PDJ+gHsfnxrPYSUhYDvGtJZM1Yqgp0ZgEtt+VQ/CtLzG4pug
- /8UGEnigBFFZy5ccPiqd5AHriwzxrK3ApZVDxPvGtRaD88BJ376ahpBNXB5wAxsleW
- PKi8+QZop1HkA==
-To: Jason Ekstrand <jason@jlekstrand.net>,
- Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+ b=HQEWep/HsrBVbP6ZkASI4hSAPz/D+Rj7vUW7X9TN/dTUT2Hg5PgyYAe7QZdrgvBQx
+ YPVj6DajZ7jY0uNQ/QHtm9NVDqRCD1prqZNNZzswoEEUU9fl5hK4pyeqfp53P7f6hE
+ wFxmQbAMiRd3nyR6I7TCNrbughGcrg02lHu4bgMKQRd78nBo1nEYtdfculKsjJWgmA
+ FbqC6phEVtaK730c42khMZisFvpNjQR6Pv4BizaXX/gMsy53sdnnQZa0zpwv9SwJ68
+ GoX8lHadm6eXO7YU+3JeAUSz/LkLgu52DQ7v7sUYcXmwviZmmthNWwPZJcMrwxIiwj
+ NfbpvP6yUrZCQ==
+To: Daniel Vetter <daniel@ffwll.ch>
 References: <20210506191451.77768-1-matthew.brost@intel.com>
  <d22437bd-8bb6-d7cb-c017-89cdc7da560d@free.fr>
  <17953669798.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
  <546e4ee4-9aa4-1967-cdcb-a561cac582ef@free.fr>
- <17957197dd8.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+ <CAKMK7uETcM38sjPYJLdxpGcZcx=tHdGUPe0WTgnGoZfPQvEJFQ@mail.gmail.com>
 From: Martin Peres <martin.peres@free.fr>
-Message-ID: <339d4e10-33cf-4917-038b-c849dc829f77@free.fr>
-Date: Tue, 11 May 2021 11:01:33 +0300
+Message-ID: <08c22bc8-aa35-43d2-ad4c-7f489dfc585b@free.fr>
+Date: Tue, 11 May 2021 11:06:18 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.10.0
 MIME-Version: 1.0
-In-Reply-To: <17957197dd8.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+In-Reply-To: <CAKMK7uETcM38sjPYJLdxpGcZcx=tHdGUPe0WTgnGoZfPQvEJFQ@mail.gmail.com>
 Content-Language: en-US
 Subject: Re: [Intel-gfx] [RFC PATCH 00/97] Basic GuC submission support in
  the i915
@@ -56,16 +54,18 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Jason Ekstrand <jason.ekstrand@intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 10/05/2021 19:25, Jason Ekstrand wrote:
-> On May 10, 2021 08:55:55 Martin Peres <martin.peres@free.fr> wrote:
-> =
-
+On 10/05/2021 19:33, Daniel Vetter wrote:
+> On Mon, May 10, 2021 at 3:55 PM Martin Peres <martin.peres@free.fr> wrote:
+>>
 >> On 10/05/2021 02:11, Jason Ekstrand wrote:
 >>> On May 9, 2021 12:12:36 Martin Peres <martin.peres@free.fr> wrote:
 >>>
@@ -85,8 +85,7 @@ On 10/05/2021 19:25, Jason Ekstrand wrote:
 >>>> history of GuC (instability, performance regression, poor level of user
 >>>> support, 6+ years of trying to upstream it...), adding this much code
 >>>> and doubling the amount of validation needed should come with a
->>>> rationale making it feel worth it... and I am not seeing here. Would y=
-ou
+>>>> rationale making it feel worth it... and I am not seeing here. Would you
 >>>> mind providing the rationale behind this work?
 >>>>
 >>>>>
@@ -100,8 +99,7 @@ ou
 >>>> killing the execlist, which would force users to use proprietary
 >>>> firmwares that even most Intel engineers have little influence over.
 >>>> Indeed, if "drm/i915/guc: Disable semaphores when using GuC scheduling"
->>>> which states "Disable semaphores when using GuC scheduling as semaphor=
-es
+>>>> which states "Disable semaphores when using GuC scheduling as semaphores
 >>>> are broken in the current GuC firmware." is anything to go by, it means
 >>>> that even Intel developers seem to prefer working around the GuC
 >>>> firmware, rather than fixing it.
@@ -110,13 +108,11 @@ es
 >>> support. The inevitable reality is that GPU scheduling is coming and
 >>> likely to be there only path in the not-too-distant future. (See also
 >>> the ongoing thread with AMD about fences.) I'm not going to pass
->>> judgement on whether or not this is a good thing.=A0 I'm just reading t=
-he
+>>> judgement on whether or not this is a good thing.  I'm just reading the
 >>> winds and, in my view, this is where things are headed for good or ill.
 >>>
 >>> In answer to the question above, the answer to "what do we gain from
->>> GuC?" may soon be, "you get to use your GPU."=A0 We're not there yet an=
-d,
+>>> GuC?" may soon be, "you get to use your GPU."  We're not there yet and,
 >>> again, I'm not necessarily advocating for it, but that is likely where
 >>> things are headed.
 >>
@@ -130,8 +126,7 @@ d,
 >>> (more on that in a bit) and long-running compute because they're
 >>> implemented in GuC and the work to implement them properly in the
 >>> execlist scheduler is highly non-trivial. Longer term, it may (no
->>> guarantees) unlock some performance by getting the kernel out of the wa=
-y.
+>>> guarantees) unlock some performance by getting the kernel out of the way.
 >>
 >> Oh, I definitely agree with firmware-based submission model not being a
 >> bad design. I was even cheering for it in 2015. Experience with it made
@@ -143,41 +138,33 @@ y.
 >> just switching registers in bulk, and if the number of revisions of the
 >> GuC is anything to go by, it is way too complex for me to feel
 >> comfortable with it.
-> =
+> 
+> We need to flesh out that part of the plan more, but we're not going
+> to use drm scheduler for everything. It's only to handle the dma-fence
+> legacy side of things, which means:
+> - timeout handling for batches that take too long
+> - dma_fence dependency sorting/handling
+> - boosting of context from display flips (currently missing, needs to
+> be ported from drm/i915)
+> 
+> The actual round-robin/preempt/priority handling is still left to the
+> backend, in this case here the fw. So there's large chunks of
+> code/functionality where drm/scheduler wont be involved in, and like
+> Jason says: The hw direction winds definitely blow in the direction
+> that this is all handled in hw.
 
-> It's more than just bulk register writes. When it comes to =
+The plan makes sense for a SRIOV-enable GPU, yes.
 
-> load-balancing multiple GPU users, firmware can theoretically preempt =
+However, if the GuC is actually helping i915, then why not open source 
+it and drop all the issues related to its stability? Wouldn't it be the 
+perfect solution, as it would allow dropping execlist support for newer 
+HW, and it would eliminate the concerns about maintenance of stable 
+releases of Linux?
 
-> and switch faster leading to more efficient time-slicing. All we really =
-
-> need the DRM scheduler for is handling implicit dma_fence dependencies =
-
-> between different applications.
-
-Right, this makes sense. However, if the GuC's interface was so simple, =
-
-I doubt it would be at major version 60 already :s
-
-I don't disagree with FW-based command submission, as it has a lot of =
-
-benefits. I just don't like the route of going with a firmware no-one =
-
-else than Intel can work on, *and* one that doesn't seem to concern =
-
-itself with stable interfaces, and how i915 will have to deal with every =
-
-generation using different interfaces (assuming the firmware was bug-free).
-
-> =
-
-> =
-
->>>> In the same vein, I have another concern related to the impact of GuC =
-on
+> 
+>>>> In the same vein, I have another concern related to the impact of GuC on
 >>>> Linux's stable releases. Let's say that in 3 years, a new application
->>>> triggers a bug in command submission inside the firmware. Given that t=
-he
+>>>> triggers a bug in command submission inside the firmware. Given that the
 >>>> Linux community cannot patch the GuC firmware, how likely is it that
 >>>> Intel would release a new GuC version? That would not be necessarily
 >>>> such a big problem if newer versions of the GuC could easily be
@@ -185,8 +172,7 @@ he
 >>>> the GuC seems to have ABI-breaking changes on a monthly cadence (we are
 >>>> at major version 60 *already*? :o), I would say that it is
 >>>> highly-unlikely that it would not require potentially-extensive changes
->>>> to i915 to make it work, making the fix almost impossible to land in t=
-he
+>>>> to i915 to make it work, making the fix almost impossible to land in the
 >>>> stable tree... Do you have a plan to mitigate this problem?
 >>>>
 >>>> Patches like "drm/i915/guc: Disable bonding extension with GuC
@@ -228,43 +214,23 @@ he
 >> is 4K, it starts being a little bad, assuming graceful fallback to
 >> CPU-based decoding. What's the test plan for this patch then? The patch
 >> in its current form is definitely not making me confident.
-> =
+> 
+> Only if they don't scream loudly enough. If someone screams loud
+> enough we'll bite the bullet and enable the new interface on execlist
+> backend.
 
-> My understanding is that it's only >4k that's affected; we've got enough =
+Ack.
 
-> bandwidth on a single VCS for 4K. I'm not sure where the exact cut-off =
+Martih
 
-> is (it may be a little higher than 4k) but real-time 4k should be fine =
-
-> and real-time 8k requires parallel submit. So we're really not cutting =
-
-> off many use-cases. Also, as I said above, the new API can be =
-
-> implemented with the execlist scheduler if needed. We've just =
-
-> pragmatically deprioritized it.
-
-Sounds like a niche-enough use case to me that I feel no user would =
-
-complain about it.
-
-Martin
-
-> =
-
-> --Jason
-> =
-
-> =
-
->>>> Finally, could you explain why IGT tests need to be modified to work t=
-he
+> 
+> Cheers, Daniel
+> 
+>>>> Finally, could you explain why IGT tests need to be modified to work the
 >>>> GuC [1], and how much of the code in this series is covered by
 >>>> existing/upcoming tests? I would expect a very solid set of tests to
->>>> minimize the maintenance burden, and enable users to reproduce potenti=
-al
->>>> issues found in this new codepath (too many users run with enable_guc=
-=3D3,
+>>>> minimize the maintenance burden, and enable users to reproduce potential
+>>>> issues found in this new codepath (too many users run with enable_guc=3,
 >>>> as can be seen on Google[2]).
 >>>
 >>> The IGT changes, as I understand them, are entirely around switching to
@@ -291,8 +257,9 @@ al
 >>
 >>>
 >>> --Jason
-> =
-
+> 
+> 
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
