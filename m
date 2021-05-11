@@ -2,39 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7E1637A213
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 10:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB95A37A233
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 10:34:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79A4A6EA02;
-	Tue, 11 May 2021 08:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34BE36E9FC;
+	Tue, 11 May 2021 08:34:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57A6E6E9FF;
- Tue, 11 May 2021 08:31:33 +0000 (UTC)
-IronPort-SDR: DyrGVN8SqLtpi3VnPnw1pXNcOfHexmPzshjDGabw83pYJcOJRTR7GUgS3J0GT7AQK9dk1L+XDK
- ptkrKq7jg/5w==
-X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="284875143"
-X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="284875143"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2021 01:31:33 -0700
-IronPort-SDR: UixSdcZJa4QV/0/jhh2zleKHHHl3rxr9X6GYODaJ6QWPGb7RtpPBpzrgqIpl2rwkFH8VyI/0OR
- K7WjQXmKOUrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="536895420"
-Received: from debian-skl.sh.intel.com ([10.239.160.37])
- by fmsmga001.fm.intel.com with ESMTP; 11 May 2021 01:31:32 -0700
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 May 2021 16:33:32 +0800
-Message-Id: <20210511083332.1740601-4-zhenyuw@linux.intel.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210511083332.1740601-1-zhenyuw@linux.intel.com>
-References: <20210511083332.1740601-1-zhenyuw@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2D8776E9FB;
+ Tue, 11 May 2021 08:34:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 26358A0169;
+ Tue, 11 May 2021 08:34:03 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] Revert "vfio/gvt: Make DRM_I915_GVT depend
- on VFIO_MDEV"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhenyu Wang" <zhenyuw@linux.intel.com>
+Date: Tue, 11 May 2021 08:34:03 -0000
+Message-ID: <162072204315.32034.10392081863599332429@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210511083332.1740601-1-zhenyuw@linux.intel.com>
+In-Reply-To: <20210511083332.1740601-1-zhenyuw@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBG?=
+ =?utf-8?q?ix_I915=5FGVT_dependency?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,36 +38,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gvt-dev@lists.freedesktop.org, Jason Gunthorpe <jgg@nvidia.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 07e543f4f9d116d6b4240644191dee6388ef4a85.
+== Series Details ==
 
-As I915_GVT dependency issue is resolved, revert this.
+Series: Fix I915_GVT dependency
+URL   : https://patchwork.freedesktop.org/series/89996/
+State : failure
 
-Cc: Jason Gunthorpe <jgg@nvidia.com>
-Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
----
- drivers/gpu/drm/i915/Kconfig | 1 -
- 1 file changed, 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 8f15bfb5faac..93f4d059fc89 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -102,7 +102,6 @@ config DRM_I915_GVT
- 	bool "Enable Intel GVT-g graphics virtualization host support"
- 	depends on DRM_I915
- 	depends on 64BIT
--	depends on VFIO_MDEV
- 	default n
- 	help
- 	  Choose this option if you want to enable Intel GVT-g graphics
--- 
-2.31.0
+Applying: drm/i915/gvt: Move mdev attribute groups into kvmgt module
+error: sha1 information is lacking or useless (drivers/gpu/drm/i915/gvt/gvt.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/i915/gvt: Move mdev attribute groups into kvmgt module
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
 _______________________________________________
 Intel-gfx mailing list
