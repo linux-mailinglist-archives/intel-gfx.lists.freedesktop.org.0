@@ -1,60 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086FA37AAAC
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 17:26:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A6837AABF
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 17:32:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 253F66EA61;
-	Tue, 11 May 2021 15:26:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D7126EA62;
+	Tue, 11 May 2021 15:32:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com
- [IPv6:2a00:1450:4864:20::532])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BFE76E5A4
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 15:26:39 +0000 (UTC)
-Received: by mail-ed1-x532.google.com with SMTP id j26so19696885edf.9
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 08:26:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=z2gZjvSOTXDU944K6vlW6l06lrj/UkAqPlYr48UaT6c=;
- b=QtCrYiUWYmdb3iE3bn6RAaVUjfNGhVNl6hJsy71IFzJptsiSxHAxJiIuaCPcqcpJJG
- G4DWvAXeQDs/8zKqq5QR4geJokicTIb1WW/8L1ZBgkyFPm9teowuInMNJPR2hn9rkvSI
- +M2fhcoBTkf3zt3VK1s9naRn1sBHygvN4qOfY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=z2gZjvSOTXDU944K6vlW6l06lrj/UkAqPlYr48UaT6c=;
- b=lJBAHIPMnCXJGbwOpjDLQiPZEXTpSZuE6BOfPEu9tIvsaFYkMZ+AsQVvV8PHyAW4I+
- EvYSg+mtcjgLqhRlXLoujITh+WclQEzSu1LBnbaOpbfCMAnuC4ERRgXgr0+VOfZxIBn9
- kfRpDaMnHWktoE4NqjziNhgfJWyyL82uNS6dB1/dFLXIK4IDmyf4yAJXKLmlvViudyGb
- 5U6OtKrtX3J7asBWq4bBtnUqFLWVomgYOT6FJ36mKXRY893gLY9vtn3f2mhzoHoSAnm2
- o8giz/yv2q3L77W3Lwlfc/gN4wdSre2azmu4+CVGqqzlcMQX00S51lPBNCpfi2pNZfOT
- A7Hg==
-X-Gm-Message-State: AOAM530LkGQ78DW9FiAEhxhbVaDL68L/z1c0UXHMs3CnvraWSu1mpP+z
- 3sXOR+eUNe8erJrDqKYr/SRmYbFyZU8fPQ==
-X-Google-Smtp-Source: ABdhPJy4dMrE1QWXRUelKWAqF7U7Liw5lXDlUdNG7VlRjbMs4H9WX7AnSpw7ySq1CJtw0iLsedlBbw==
-X-Received: by 2002:a05:6402:3585:: with SMTP id
- y5mr37018503edc.233.1620746797756; 
- Tue, 11 May 2021 08:26:37 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id v23sm14894814eda.8.2021.05.11.08.26.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 May 2021 08:26:37 -0700 (PDT)
-Date: Tue, 11 May 2021 17:26:34 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <YJqiKksSqBpUDvPJ@phenom.ffwll.local>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1994E6EA61;
+ Tue, 11 May 2021 15:32:12 +0000 (UTC)
+IronPort-SDR: 6zpk4QnNmYZj0U2YnyCzope1H1rn8YufpHjyFEuEqxZdMELnlMrNS1RvvqziUZGDFUuVj/Lyur
+ 1nSgrOsrebVw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9981"; a="199523566"
+X-IronPort-AV: E=Sophos;i="5.82,291,1613462400"; d="scan'208";a="199523566"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2021 08:32:05 -0700
+IronPort-SDR: 8sfC+Z6+bnyqO83x/6R1oWRvX/IGrNUOhbpXAlaXMgOzFX68AkJIbi7GQ8o6xDiTSIWxw0XLDZ
+ JcnJsiNpEgqg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,291,1613462400"; d="scan'208";a="434601130"
+Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
+ by fmsmga008.fm.intel.com with ESMTP; 11 May 2021 08:32:04 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Tue, 11 May 2021 08:32:04 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Tue, 11 May 2021 08:32:03 -0700
+Received: from fmsmsx610.amr.corp.intel.com ([10.18.126.90]) by
+ fmsmsx610.amr.corp.intel.com ([10.18.126.90]) with mapi id 15.01.2106.013;
+ Tue, 11 May 2021 08:32:03 -0700
+From: "Bloomfield, Jon" <jon.bloomfield@intel.com>
+To: Martin Peres <martin.peres@free.fr>, Daniel Vetter <daniel@ffwll.ch>
+Thread-Topic: [RFC PATCH 00/97] Basic GuC submission support in the i915
+Thread-Index: AQHXQqmdeMs8Pc67x0q3ztXPF3PEcarb3OcAgABkeICAAPbxAIAALCSAgAEEnAD///Xm4A==
+Date: Tue, 11 May 2021 15:26:59 +0000
+Deferred-Delivery: Tue, 11 May 2021 15:25:07 +0000
+Message-ID: <d382a41cacbc44ee96b9602f3473b5c0@intel.com>
 References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-44-matthew.brost@intel.com>
+ <d22437bd-8bb6-d7cb-c017-89cdc7da560d@free.fr>
+ <17953669798.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+ <546e4ee4-9aa4-1967-cdcb-a561cac582ef@free.fr>
+ <CAKMK7uETcM38sjPYJLdxpGcZcx=tHdGUPe0WTgnGoZfPQvEJFQ@mail.gmail.com>
+ <08c22bc8-aa35-43d2-ad4c-7f489dfc585b@free.fr>
+In-Reply-To: <08c22bc8-aa35-43d2-ad4c-7f489dfc585b@free.fr>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210506191451.77768-44-matthew.brost@intel.com>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [RFC PATCH 43/97] drm/i915/guc: Add lrc descriptor
- context lookup array
+Subject: Re: [Intel-gfx] [RFC PATCH 00/97] Basic GuC submission support in
+ the i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,132 +73,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- jason.ekstrand@intel.com, daniel.vetter@intel.com
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, "Ekstrand,
+ Jason" <jason.ekstrand@intel.com>, "Vetter, Daniel" <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 06, 2021 at 12:13:57PM -0700, Matthew Brost wrote:
-> Add lrc descriptor context lookup array which can resolve the
-> intel_context from the lrc descriptor index. In addition to lookup, it
-> can determine in the lrc descriptor context is currently registered with
-> the GuC by checking if an entry for a descriptor index is present.
-> Future patches in the series will make use of this array.
+> -----Original Message-----
+> From: Martin Peres <martin.peres@free.fr>
+> Sent: Tuesday, May 11, 2021 1:06 AM
+> To: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>; Brost, Matthew
+> <matthew.brost@intel.com>; intel-gfx <intel-gfx@lists.freedesktop.org>;
+> dri-devel <dri-devel@lists.freedesktop.org>; Ursulin, Tvrtko
+> <tvrtko.ursulin@intel.com>; Ekstrand, Jason <jason.ekstrand@intel.com>;
+> Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>; Bloomfield, Jon
+> <jon.bloomfield@intel.com>; Vetter, Daniel <daniel.vetter@intel.com>;
+> Harrison, John C <john.c.harrison@intel.com>
+> Subject: Re: [RFC PATCH 00/97] Basic GuC submission support in the i915
 > 
-> Cc: John Harrison <john.c.harrison@intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  5 +++
->  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 32 +++++++++++++++++--
->  2 files changed, 35 insertions(+), 2 deletions(-)
+> On 10/05/2021 19:33, Daniel Vetter wrote:
+> > On Mon, May 10, 2021 at 3:55 PM Martin Peres <martin.peres@free.fr>
+> wrote:
+> >>
+> >> On 10/05/2021 02:11, Jason Ekstrand wrote:
+> >>> On May 9, 2021 12:12:36 Martin Peres <martin.peres@free.fr> wrote:
+> >>>
+> >>>> Hi,
+> >>>>
+> >>>> On 06/05/2021 22:13, Matthew Brost wrote:
+> >>>>> Basic GuC submission support. This is the first bullet point in the
+> >>>>> upstreaming plan covered in the following RFC [1].
+> >>>>>
+> >>>>> At a very high level the GuC is a piece of firmware which sits between
+> >>>>> the i915 and the GPU. It offloads some of the scheduling of contexts
+> >>>>> from the i915 and programs the GPU to submit contexts. The i915
+> >>>>> communicates with the GuC and the GuC communicates with the
+> GPU.
+> >>>>
+> >>>> May I ask what will GuC command submission do that execlist
+> won't/can't
+> >>>> do? And what would be the impact on users? Even forgetting the
+> troubled
+> >>>> history of GuC (instability, performance regression, poor level of user
+> >>>> support, 6+ years of trying to upstream it...), adding this much code
+> >>>> and doubling the amount of validation needed should come with a
+> >>>> rationale making it feel worth it... and I am not seeing here. Would you
+> >>>> mind providing the rationale behind this work?
+> >>>>
+> >>>>>
+> >>>>> GuC submission will be disabled by default on all current upstream
+> >>>>> platforms behind a module parameter - enable_guc. A value of 3 will
+> >>>>> enable submission and HuC loading via the GuC. GuC submission
+> should
+> >>>>> work on all gen11+ platforms assuming the GuC firmware is present.
+> >>>>
+> >>>> What is the plan here when it comes to keeping support for execlist? I
+> >>>> am afraid that landing GuC support in Linux is the first step towards
+> >>>> killing the execlist, which would force users to use proprietary
+> >>>> firmwares that even most Intel engineers have little influence over.
+> >>>> Indeed, if "drm/i915/guc: Disable semaphores when using GuC
+> scheduling"
+> >>>> which states "Disable semaphores when using GuC scheduling as
+> semaphores
+> >>>> are broken in the current GuC firmware." is anything to go by, it means
+> >>>> that even Intel developers seem to prefer working around the GuC
+> >>>> firmware, rather than fixing it.
+> >>>
+> >>> Yes, landing GuC support may be the first step in removing execlist
+> >>> support. The inevitable reality is that GPU scheduling is coming and
+> >>> likely to be there only path in the not-too-distant future. (See also
+> >>> the ongoing thread with AMD about fences.) I'm not going to pass
+> >>> judgement on whether or not this is a good thing.  I'm just reading the
+> >>> winds and, in my view, this is where things are headed for good or ill.
+> >>>
+> >>> In answer to the question above, the answer to "what do we gain from
+> >>> GuC?" may soon be, "you get to use your GPU."  We're not there yet
+> and,
+> >>> again, I'm not necessarily advocating for it, but that is likely where
+> >>> things are headed.
+> >>
+> >> This will be a sad day, especially since it seems fundamentally opposed
+> >> with any long-term support, on top of taking away user freedom to
+> >> fix/tweak their system when Intel won't.
+> >>
+> >>> A firmware-based submission model isn't a bad design IMO and, aside
+> from
+> >>> the firmware freedom issues, I think there are actual advantages to the
+> >>> model. Immediately, it'll unlock a few features like parallel submission
+> >>> (more on that in a bit) and long-running compute because they're
+> >>> implemented in GuC and the work to implement them properly in the
+> >>> execlist scheduler is highly non-trivial. Longer term, it may (no
+> >>> guarantees) unlock some performance by getting the kernel out of the
+> way.
+> >>
+> >> Oh, I definitely agree with firmware-based submission model not being a
+> >> bad design. I was even cheering for it in 2015. Experience with it made
+> >> me regret that deeply since :s
+> >>
+> >> But with the DRM scheduler being responsible for most things, I fail to
+> >> see what we could offload in the GuC except context switching (like
+> >> every other manufacturer). The problem is, the GuC does way more than
+> >> just switching registers in bulk, and if the number of revisions of the
+> >> GuC is anything to go by, it is way too complex for me to feel
+> >> comfortable with it.
+> >
+> > We need to flesh out that part of the plan more, but we're not going
+> > to use drm scheduler for everything. It's only to handle the dma-fence
+> > legacy side of things, which means:
+> > - timeout handling for batches that take too long
+> > - dma_fence dependency sorting/handling
+> > - boosting of context from display flips (currently missing, needs to
+> > be ported from drm/i915)
+> >
+> > The actual round-robin/preempt/priority handling is still left to the
+> > backend, in this case here the fw. So there's large chunks of
+> > code/functionality where drm/scheduler wont be involved in, and like
+> > Jason says: The hw direction winds definitely blow in the direction
+> > that this is all handled in hw.
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index d84f37afb9d8..2eb6c497e43c 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -6,6 +6,8 @@
->  #ifndef _INTEL_GUC_H_
->  #define _INTEL_GUC_H_
->  
-> +#include "linux/xarray.h"
-> +
->  #include "intel_uncore.h"
->  #include "intel_guc_fw.h"
->  #include "intel_guc_fwif.h"
-> @@ -47,6 +49,9 @@ struct intel_guc {
->  	struct i915_vma *lrc_desc_pool;
->  	void *lrc_desc_pool_vaddr;
->  
-> +	/* guc_id to intel_context lookup */
-> +	struct xarray context_lookup;
-
-The current code sets a disastrous example, but for stuff like this it's
-always good to explain the locking, and who's holding references and how
-you're handling cycles. Since I guess the intel_context also holds the
-guc_id alive somehow.
-
-Again holds for the entire series, where it makes sense (as in we don't
-expect to rewrite the entire code anyway).
--Daniel
-
-> +
->  	/* Control params for fw initialization */
->  	u32 params[GUC_CTL_MAX_DWORDS];
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 6acc1ef34f92..c2b6d27404b7 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -65,8 +65,6 @@ static inline struct i915_priolist *to_priolist(struct rb_node *rb)
->  	return rb_entry(rb, struct i915_priolist, node);
->  }
->  
-> -/* Future patches will use this function */
-> -__attribute__ ((unused))
->  static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
->  {
->  	struct guc_lrc_desc *base = guc->lrc_desc_pool_vaddr;
-> @@ -76,6 +74,15 @@ static struct guc_lrc_desc *__get_lrc_desc(struct intel_guc *guc, u32 index)
->  	return &base[index];
->  }
->  
-> +static inline struct intel_context *__get_context(struct intel_guc *guc, u32 id)
-> +{
-> +	struct intel_context *ce = xa_load(&guc->context_lookup, id);
-> +
-> +	GEM_BUG_ON(id >= GUC_MAX_LRC_DESCRIPTORS);
-> +
-> +	return ce;
-> +}
-> +
->  static int guc_lrc_desc_pool_create(struct intel_guc *guc)
->  {
->  	u32 size;
-> @@ -96,6 +103,25 @@ static void guc_lrc_desc_pool_destroy(struct intel_guc *guc)
->  	i915_vma_unpin_and_release(&guc->lrc_desc_pool, I915_VMA_RELEASE_MAP);
->  }
->  
-> +static inline void reset_lrc_desc(struct intel_guc *guc, u32 id)
-> +{
-> +	struct guc_lrc_desc *desc = __get_lrc_desc(guc, id);
-> +
-> +	memset(desc, 0, sizeof(*desc));
-> +	xa_erase_irq(&guc->context_lookup, id);
-> +}
-> +
-> +static inline bool lrc_desc_registered(struct intel_guc *guc, u32 id)
-> +{
-> +	return __get_context(guc, id);
-> +}
-> +
-> +static inline void set_lrc_desc_registered(struct intel_guc *guc, u32 id,
-> +					   struct intel_context *ce)
-> +{
-> +	xa_store_irq(&guc->context_lookup, id, ce, GFP_ATOMIC);
-> +}
-> +
->  static void guc_add_request(struct intel_guc *guc, struct i915_request *rq)
->  {
->  	/* Leaving stub as this function will be used in future patches */
-> @@ -404,6 +430,8 @@ int intel_guc_submission_init(struct intel_guc *guc)
->  	 */
->  	GEM_BUG_ON(!guc->lrc_desc_pool);
->  
-> +	xa_init_flags(&guc->context_lookup, XA_FLAGS_LOCK_IRQ);
-> +
->  	return 0;
->  }
->  
-> -- 
-> 2.28.0
+> The plan makes sense for a SRIOV-enable GPU, yes.
 > 
+> However, if the GuC is actually helping i915, then why not open source
+> it and drop all the issues related to its stability? Wouldn't it be the
+> perfect solution, as it would allow dropping execlist support for newer
+> HW, and it would eliminate the concerns about maintenance of stable
+> releases of Linux?
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+That the major version of the FW is high is not due to bugs - Bugs don't trigger major version bumps anyway. Only interface changes increment the major version, and we do add features, to keep it relevant to the evolving hardware and OS landscape. When only Windows used GuC there was no reason not to minimize interface creep - GuC and KMD are released as an atomic bundle on Windows. With Linux, this is no longer the case, and has not been for some time.
+
+We have been using GuC as the sole mechanism for submission on Windows since Gen8, and it has proven very reliable. This is in large part because it is simple, and designed from day 1 as a cohesive solution alongside the hardware.
+
+Will there be bugs in the future? Of course. It's a new i915 backend. There are bugs in the execlist backend too, and the runlist backend, and the majority of real-world software ever written. But the i915 GuC backend is way simpler than execlist, much easier to understand, and therefore much easier to maintain. It's a net win for i915 and Linux.
+
+Jon
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
