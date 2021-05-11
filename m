@@ -2,57 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EA1737AA0A
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 16:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F3537AA54
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 17:11:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB556EA51;
-	Tue, 11 May 2021 14:58:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEA716E0AF;
+	Tue, 11 May 2021 15:11:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33406EA51
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 14:58:55 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- n17-20020a7bc5d10000b0290169edfadac9so881075wmk.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 07:58:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=XfkDcR1Z2D+6WG001k5mw4iytQ6Bn2suHPz3wHirNdM=;
- b=1X2Hn5l+GTmHIqlFYgTL+PJtmpwu57qUIjGqNsN3u1vixdLZettd+0nPTKe6Ft712/
- dq3I+JXdd/qQc1QYO2r3VkTA8+DvzrM8FAghLAnJ2oV8+XmYBRBrfSXtgpFBdx0TZB6+
- M/lafpMulaTj3SKg3yASa53XuPZ2YLR40TA60GHbcV1jqXQksgS3HatZ0fs2T8ntl9eP
- dCVjPJFqCrBbf0ds7/NQD+QrS7M7SrHWtX0beHK1sOI6lwrt+TPzjq0w2uMcwE3YV/kC
- dPEeyrrocovs69jXAC3T802PomiusJGChL0jsWnR9GDc2RQC24qSY5JtTm5jiM7VQLal
- ziKg==
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com
+ [IPv6:2a00:1450:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8876A6E520
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 15:11:48 +0000 (UTC)
+Received: by mail-ej1-x62a.google.com with SMTP id gx5so30266135ejb.11
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 08:11:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=5aFFm4ngt+ywZFt1DyahoYHM6YcUrNl1fwAe5iM1eG4=;
+ b=jaaqRKMkxsO1QkNinoO3JmNqXS/9XeRqdGYRwWeG/SPxBEseZpht63sdqPdmBH/H6T
+ W08bQ+S54lVU7lBURp2LJp2C654FLskViTdF83tMqj/UiD3GrrXuhMU4/3LDetAGaGZD
+ /kOWw84yiFK6gWuJ/6KjM7cF8PBEwPHNd7As8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=XfkDcR1Z2D+6WG001k5mw4iytQ6Bn2suHPz3wHirNdM=;
- b=Z4rCke3bBWpsgz5XeLWoFiUnWEbRQP+GKMSO5aKaReTFJvw05kVbICjW/GbNTTr5gg
- 458gmAEBPAzwQvsdyrzW4Av09g/jtCoex4ZqjmsVzMqvUZPdYlajvtv8AOAdmVyoI0TN
- wEAbwLgiW16NSrGgXgqaSt1ZJrXnYH5mVpg5mZBLxJ6NYmujBCu2R7FLboOguMCUUMLf
- kJ+8Hakf3n8bUSgseHt/dHSujVFsGzSc+Ckx8Q+Jo8UhhZarGZviaEZ94ukXijFdjf2F
- JZ3KkQrLUFpd0+JG3UzuqJsalPSwOUjMVdGntM5PIPzIadw+fwZoOC7Y8WDQvAbNe7LC
- mEaA==
-X-Gm-Message-State: AOAM53278XxW/OSL8r7HNXvRROuQWcZNGOk6F1Yw52PXcLgyZoLTCmwb
- bfQv6RRJCNCWJoHVIxnLVhbGHckaWanYogQIcm1abg==
-X-Google-Smtp-Source: ABdhPJyXR/eZIjxqRWkNmkeB7Nq8zb2Joj11HhZ1cjj0SaoiZle3FicYMwWEolCqITfgi4V/QF+sE5xopAJgBaDXjOw=
-X-Received: by 2002:a1c:2704:: with SMTP id n4mr3052559wmn.147.1620745134562; 
- Tue, 11 May 2021 07:58:54 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=5aFFm4ngt+ywZFt1DyahoYHM6YcUrNl1fwAe5iM1eG4=;
+ b=nqc+r3rqdyrIoytj0UJSrHLCFglXv3K1gFa9lYAo3ErVBRkBMZ5hLrcX89MpdtS6V3
+ pDL1fSWqR/k+4W0Me8CpVqeC/cYC9tyRIjmNdIhgFLWAx37hE3Gb8SiID/C+w8Kg7/XY
+ h/mf228n8h350Hq5QS/HneOjwyKUNbfqwhy4ALnx0qGmwTjFqRye5kgIBfqDLd4IF2sg
+ DO0K7mWzidSsvawE2UAlG8R2+yuYrbnSp7Rqp5rRbgSF1ualHc/uOxqKalqGr8guUtG5
+ E4a19OaIMb/iPVZTipHncOQYkoHQ34JQ7roUVkUf02PPU8+/c2t2KQJei4h3/FD5/YL1
+ qiWw==
+X-Gm-Message-State: AOAM531AaryRrPzPlQcWU398l3e6Cfc3COhevR4kJGwt5P/G3GQzs7an
+ RmEuoFeXouaOTvAeRlWwebP7Xw==
+X-Google-Smtp-Source: ABdhPJz7oI98ePh6kly675Xu8ypzOHd5ReMUkFk2pgcvIEqvI+eEX5ESzQ74wreXdeTutG7RQ4KYJg==
+X-Received: by 2002:a17:906:36d1:: with SMTP id
+ b17mr33421987ejc.235.1620745907094; 
+ Tue, 11 May 2021 08:11:47 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id c25sm14783905edt.43.2021.05.11.08.11.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 May 2021 08:11:46 -0700 (PDT)
+Date: Tue, 11 May 2021 17:11:44 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <YJqesIT3leIhTNxs@phenom.ffwll.local>
 References: <20210506173049.72503-1-matthew.brost@intel.com>
- <20210506173049.72503-2-matthew.brost@intel.com>
- <YJqV5rzTCRNKwPf1@phenom.ffwll.local>
-In-Reply-To: <YJqV5rzTCRNKwPf1@phenom.ffwll.local>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Tue, 11 May 2021 15:58:43 +0100
-Message-ID: <CAPj87rOdCJMXmCXL9VoJcqvHKWQjLKnwqZ=F=wZ9knGC_8QSNQ@mail.gmail.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [RFC PATCH 1/5] drm/doc/rfc: i915 GuC submission /
- DRM scheduler integration plan
+ <20210506173049.72503-5-matthew.brost@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20210506173049.72503-5-matthew.brost@intel.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [RFC PATCH 4/5] drm/i915: Introduce 'set parallel
+ submit' extension
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,45 +67,260 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, carl.zhang@intel.com,
- Jason Ekstrand <jason.ekstrand@intel.com>, "Vetter,
- Daniel" <daniel.vetter@intel.com>
+Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ carl.zhang@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Thu, May 06, 2021 at 10:30:48AM -0700, Matthew Brost wrote:
+> i915_drm.h updates for 'set parallel submit' extension.
+> 
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Tony Ye <tony.ye@intel.com>
+> CC: Carl Zhang <carl.zhang@intel.com>
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Jason Ekstrand <jason@jlekstrand.net>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  include/uapi/drm/i915_drm.h | 126 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 126 insertions(+)
+> 
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 26d2e135aa31..0175b12b33b8 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -1712,6 +1712,7 @@ struct drm_i915_gem_context_param {
+>   * Extensions:
+>   *   i915_context_engines_load_balance (I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE)
+>   *   i915_context_engines_bond (I915_CONTEXT_ENGINES_EXT_BOND)
+> + *   i915_context_engines_parallel_submit (I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT)
 
-On Tue, 11 May 2021 at 15:34, Daniel Vetter <daniel@ffwll.ch> wrote:
-> On Thu, May 06, 2021 at 10:30:45AM -0700, Matthew Brost wrote:
-> > +No major changes are required to the uAPI for basic GuC submission. The only
-> > +change is a new scheduler attribute: I915_SCHEDULER_CAP_STATIC_PRIORITY_MAP.
-> > +This attribute indicates the 2k i915 user priority levels are statically mapped
-> > +into 3 levels as follows:
-> > +
-> > +* -1k to -1 Low priority
-> > +* 0 Medium priority
-> > +* 1 to 1k High priority
-> > +
-> > +This is needed because the GuC only has 4 priority bands. The highest priority
-> > +band is reserved with the kernel. This aligns with the DRM scheduler priority
-> > +levels too.
->
-> Please Cc: mesa and get an ack from Jason Ekstrand or Ken Graunke on this,
-> just to be sure.
+Hm just relalized, but I don't think this hyperlinsk correctly, and I'm
+also not sure this formats very well as a nice list. Using item lists
+should look pretty nice like we're doing for the various kms properties,
+e.g.
 
-A reference to the actual specs this targets would help. I don't have
-oneAPI to hand if it's relevant, but the two in graphics world are
-https://www.khronos.org/registry/EGL/extensions/IMG/EGL_IMG_context_priority.txt
-and https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/chap5.html#devsandqueues-priority
-- both of them pretty much say that the implementation may do anything
-or nothing at all, so this isn't a problem for spec conformance, only
-a matter of user priority (sorry).
+FOO:
+  Explain what FOO does
 
-Cheers,
-Daniel
+BAR:
+  Explain what BAR does. struct bar also automatically generates a link
+
+Please check with make htmldocs and polish this a bit (might need a small
+prep patch).
+
+>   */
+>  #define I915_CONTEXT_PARAM_ENGINES	0xa
+>  
+> @@ -1894,9 +1895,134 @@ struct i915_context_param_engines {
+>  	__u64 extensions; /* linked chain of extension blocks, 0 terminates */
+>  #define I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE 0 /* see i915_context_engines_load_balance */
+>  #define I915_CONTEXT_ENGINES_EXT_BOND 1 /* see i915_context_engines_bond */
+> +#define I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT 2 /* see i915_context_engines_parallel_submit */
+>  	struct i915_engine_class_instance engines[0];
+>  } __attribute__((packed));
+>  
+> +/*
+> + * i915_context_engines_parallel_submit:
+> + *
+> + * Setup a gem context to allow multiple BBs to be submitted in a single execbuf
+> + * IOCTL. Those BBs will then be scheduled to run on the GPU in parallel.
+> + *
+> + * All hardware contexts in the engine set are configured for parallel
+> + * submission (i.e. once this gem context is configured for parallel submission,
+> + * all the hardware contexts, regardless if a BB is available on each individual
+> + * context, will be submitted to the GPU in parallel). A user can submit BBs to
+> + * subset of the hardware contexts, in a single execbuf IOCTL, but it is not
+> + * recommended as it may reserve physical engines with nothing to run on them.
+> + * Highly recommended to configure the gem context with N hardware contexts then
+> + * always submit N BBs in a single IOCTL.
+> + *
+> + * Their are two currently defined ways to control the placement of the
+> + * hardware contexts on physical engines: default behavior (no flags) and
+> + * I915_PARALLEL_IMPLICT_BONDS (a flag). More flags may be added the in the
+> + * future as new hardware / use cases arise. Details of how to use this
+> + * interface below above the flags.
+> + *
+> + * Returns -EINVAL if hardware context placement configuration invalid or if the
+> + * placement configuration isn't supported on the platform / submission
+> + * interface.
+> + * Returns -ENODEV if extension isn't supported on the platform / submission
+> + * inteface.
+> + */
+> +struct i915_context_engines_parallel_submit {
+> +	struct i915_user_extension base;
+
+Ok this is good, since it makes sure we can't possible use this in
+CTX_SETPARAM.
+
+> +
+> +/*
+> + * Default placement behvavior (currently unsupported):
+> + *
+> + * Rather than restricting parallel submission to a single class with a
+> + * logically contiguous placement (I915_PARALLEL_IMPLICT_BONDS), add a mode that
+> + * enables parallel submission across multiple engine classes. In this case each
+> + * context's logical engine mask indicates where that context can placed. It is
+> + * implied in this mode that all contexts have mutual exclusive placement (e.g.
+> + * if one context is running CS0 no other contexts can run on CS0).
+> + *
+> + * Example 1 pseudo code:
+> + * CSX[Y] = engine class X, logical instance Y
+> + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> + * set_engines(INVALID, INVALID)
+> + * set_load_balance(engine_index=0, num_siblings=2, engines=CS0[0],CS0[1])
+> + * set_load_balance(engine_index=1, num_siblings=2, engines=CS1[0],CS1[1])
+> + * set_parallel()
+> + *
+> + * Results in the following valid placements:
+> + * CS0[0], CS1[0]
+> + * CS0[0], CS1[1]
+> + * CS0[1], CS1[0]
+> + * CS0[1], CS1[1]
+> + *
+> + * Example 2 pseudo code:
+> + * CS[X] = generic engine of same class, logical instance X
+> + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> + * set_engines(INVALID, INVALID)
+> + * set_load_balance(engine_index=0, num_siblings=3, engines=CS[0],CS[1],CS[2])
+> + * set_load_balance(engine_index=1, num_siblings=3, engines=CS[0],CS[1],CS[2])
+> + * set_parallel()
+> + *
+> + * Results in the following valid placements:
+> + * CS[0], CS[1]
+> + * CS[0], CS[2]
+> + * CS[1], CS[0]
+> + * CS[1], CS[2]
+> + * CS[2], CS[0]
+> + * CS[2], CS[1]
+> + *
+> + * This enables a use case where all engines are created equally, we don't care
+> + * where they are scheduled, we just want a certain number of resources, for
+> + * those resources to be scheduled in parallel, and possibly across multiple
+> + * engine classes.
+> + */
+> +
+> +/*
+> + * I915_PARALLEL_IMPLICT_BONDS - Create implict bonds between each context.
+> + * Each context must have the same number sibling and bonds are implictly create
+> + * of the siblings.
+> + *
+> + * All of the below examples are in logical space.
+> + *
+> + * Example 1 pseudo code:
+> + * CS[X] = generic engine of same class, logical instance X
+> + * set_engines(CS[0], CS[1])
+> + * set_parallel(flags=I915_PARALLEL_IMPLICT_BONDS)
+> + *
+> + * Results in the following valid placements:
+> + * CS[0], CS[1]
+> + *
+> + * Example 2 pseudo code:
+> + * CS[X] = generic engine of same class, logical instance X
+> + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> + * set_engines(INVALID, INVALID)
+> + * set_load_balance(engine_index=0, num_siblings=2, engines=CS[0],CS[2])
+> + * set_load_balance(engine_index=1, num_siblings=2, engines=CS[1],CS[3])
+> + * set_parallel(flags=I915_PARALLEL_IMPLICT_BONDS)
+> + *
+> + * Results in the following valid placements:
+> + * CS[0], CS[1]
+> + * CS[2], CS[3]
+> + *
+> + * This enables a use case where all engines are not equal and certain placement
+> + * rules are required (i.e. split-frame requires all contexts to be placed in a
+> + * logically contiguous order on the VCS engines on gen11+ platforms). This use
+> + * case (logically contiguous placement, within a single engine class) is
+> + * supported when using GuC submission. Execlist mode could support all possible
+> + * bonding configurations but currently doesn't support this extension.
+> + */
+> +#define I915_PARALLEL_IMPLICT_BONDS		(1<<0)
+> +/*
+> + * Do not allow BBs to be preempted mid BB rather insert coordinated preemption
+> + * points on all hardware contexts between each set of BBs. An example use case
+> + * of this feature is split-frame on gen11+ hardware. When using this feature a
+> + * BB must be submitted on each hardware context in the parallel gem context.
+> + * The execbuf2 IOCTL enforces the user adheres to policy.
+> + */
+> +#define I915_PARALLEL_NO_PREEMPT_MID_BATCH	(1<<1)
+> +#define I915_PARALLEL_UNKNOWN_FLAGS  (-(I915_PARALLEL_NO_PREEMPT_MID_BATCH << 1))
+> +	__u64 flags; /* all undefined flags must be zero */
+> +	__u64 mbz64[4]; /* reserved for future use; must be zero */
+> +} __attribute__ ((packed));
+
+Ok I'm having some serious questions. This looks way too much like it's
+inspired by bonded submission, and given we're tossing bonded submission
+we need to make sure we're doing this for good independent reasons and not
+just for intertia.
+
+What I expected looking at how media-driver uses bonded submit currently
+is:
+
+- We create a parallel submit engine, which occupies a virtual engine
+  slot. This parallel virtual engine contains all the information we need,
+  i.e. the flags you have above, but also how many engines run in parallel
+  and how each of those can be load-balanced. So probably a full NxM
+  matrix of physical engines needed.
+
+- Execbuf uses that parallel virtual engine to submit all N batchbuffers
+  in one go.
+
+- This means we don't create virtual engines (or physical engine mappings)
+  for all the individual pieces in a parallel engine. That's a concept
+  from bonded submission, and I think that needs to go.
+
+- More important not having a parallel virtual engine breaks our already
+  badly confusing gem ctx api. Ignoring parallel/bonded submit the gem ctx
+  is just a container object, which points at a bunch of engines (plus the
+  VM and a few other things). Having parallel context something that sits
+  at the gem ctx level, and not as an individual engine (of which you can
+  have multiple in the same gem ctx) breaks stuff. E.g. right the perf api
+  sits at the gem ctx level, so that you can capture all the perf data for
+  an entire workload spawning across multiple engines. If a workload now
+  needs multiple parallel engines we'd need multiple gem ctx, which breaks
+  this.
+
+So what I'd expect we'd have here is roughly:
+
+struct i915_context_engines_parallel_submit {
+	struct i915_user_extension base;
+	__u64 flags;
+	__u32 num_engines; /* N, must match what we submit in the execbuf */
+	__u32 num_siblings; /* M, I'm assuming it's ok we require that siblings must match across the entire set of parallel engines */
+	struct engine_info[]; /* NxM array of engine infos, pls fill in the right struct name :-) */
+};
+
+If we then also require that you always submit the full width of N
+batchbuffers then even the execbuf extension doesn't need to exist
+anymore, because the virtual parallel engine already contains all the
+needed information.
+
+And sure for some backends at least (definitely execlist) we'd need to
+create a bunch of additional virtual engines behind that virtual engine.
+But they'd be entirely hidden, and not visible to userspace nor the higher
+levels.
+
+What am I missing?
+-Daniel
+
+>  #define I915_DEFINE_CONTEXT_PARAM_ENGINES(name__, N__) struct { \
+>  	__u64 extensions; \
+>  	struct i915_engine_class_instance engines[N__]; \
+> -- 
+> 2.28.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
