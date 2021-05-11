@@ -1,62 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF50037AD52
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 19:46:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9320037AD7A
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 19:58:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C36D6EA9F;
-	Tue, 11 May 2021 17:46:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD5C96EAA5;
+	Tue, 11 May 2021 17:58:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CD806EAA0
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 17:45:59 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id l4so31006977ejc.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 10:45:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=udpYQjf9aHNChwwHGSrBRgYPTaRzCIbcVJnJIo69O8w=;
- b=fhcbDRSc7QMsW1xEvUjpbebGwi6MqOWF9NUY1MtIXz9omlWId4UuJP5f+TDWkcP6bK
- 7wrXH+QylcsShTdKGBzgkTa61X3oznXFD7AJGUbdfdhFpA4xdbp1sTJyknE30iY66CXy
- BWwLbJLGcAVegeSzwPscb30d4kyqo7494lAg8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=udpYQjf9aHNChwwHGSrBRgYPTaRzCIbcVJnJIo69O8w=;
- b=iyJPyXmBFonRt15K8xS87Ou+zv22Z4olbv38N6P6taswD+T8vSIcQ9UjRTZJ5QNzgH
- RxOdF3yYcoso8abboCZrWwXtl+mdjyKiIjwueYX+Egk/oyx6rR6IHB50N4ZxGpWm92mH
- e53J6E7ga/aiJWRUj7L0DyveY/JzcF4KvoxLsTpivFqOSUX4fluC+vvwXMF02pjnDhI4
- GdRSXX8J5v6uF2Wd8G54pr5c8UHyqX2T4hfgr66Vs+drsjlZQPC8E0keOJC6yqByOXeX
- ldqSJLFwGGM0Z3ESufiV+0j/QB4nGpnkimgy01D+vYj42E5XHpmH9J2hr/I5U9zh28qD
- LW8w==
-X-Gm-Message-State: AOAM532FnToW7tfsHIz9KHX2zk2Op/TIzrMu8WwYKpILm565jSdKT6YX
- zlEjxtCzw+GTc4Cb/C0q+awvHdxHC5spXA==
-X-Google-Smtp-Source: ABdhPJzHMbzsNSggXYZ2cuwNU3IVjtnqC1/gZvwRIfW3kMkz5GvYJJMFUhxLZHOtUXxQbDuy9CX3lg==
-X-Received: by 2002:a17:907:628d:: with SMTP id
- nd13mr32652008ejc.299.1620755157728; 
- Tue, 11 May 2021 10:45:57 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id c5sm9498040eds.94.2021.05.11.10.45.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 May 2021 10:45:57 -0700 (PDT)
-Date: Tue, 11 May 2021 19:45:55 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <YJrC092WXSgvXNP1@phenom.ffwll.local>
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <20210506191451.77768-75-matthew.brost@intel.com>
- <YJqwqavmfNkz3iuy@phenom.ffwll.local>
- <20210511171230.GA363@sdutt-i7>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D88F26EAA5;
+ Tue, 11 May 2021 17:58:30 +0000 (UTC)
+IronPort-SDR: G/xdTUT+qtaF9NhIFH0crBC65zM2/7XBvOOYTWg0oVLYrqKGlkvxo0e7OXMPLWfbHEJtApSQ6v
+ LBSXcMVfGprg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9981"; a="179772133"
+X-IronPort-AV: E=Sophos;i="5.82,291,1613462400"; d="scan'208";a="179772133"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2021 10:58:30 -0700
+IronPort-SDR: W/1+ESPlVjGhtstl0qxSi41NxRgk4gjCIXoIP5iMEQWjoo3LDsDrFLC12AUZFL8QYFLxaaaHvz
+ E2FyNsIFO4Yg==
+X-IronPort-AV: E=Sophos;i="5.82,291,1613462400"; d="scan'208";a="408900553"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2021 10:58:30 -0700
+Date: Tue, 11 May 2021 10:51:11 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20210511175109.GA4411@sdutt-i7>
+References: <20210506173049.72503-1-matthew.brost@intel.com>
+ <20210506173049.72503-3-matthew.brost@intel.com>
+ <YJqZlp3C97WRIilE@phenom.ffwll.local>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210511171230.GA363@sdutt-i7>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [RFC PATCH 74/97] drm/i915/guc: Capture error state
- on context reset
+In-Reply-To: <YJqZlp3C97WRIilE@phenom.ffwll.local>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [RFC PATCH 2/5] drm/doc/rfc: i915 new parallel
+ submission uAPI plan
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,334 +51,153 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ carl.zhang@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 11, 2021 at 10:12:32AM -0700, Matthew Brost wrote:
-> On Tue, May 11, 2021 at 06:28:25PM +0200, Daniel Vetter wrote:
-> > On Thu, May 06, 2021 at 12:14:28PM -0700, Matthew Brost wrote:
-> > > We receive notification of an engine reset from GuC at its
-> > > completion. Meaning GuC has potentially cleared any HW state
-> > > we may have been interested in capturing. GuC resumes scheduling
-> > > on the engine post-reset, as the resets are meant to be transparent,
-> > > further muddling our error state.
-> > > 
-> > > There is ongoing work to define an API for a GuC debug state dump. The
-> > > suggestion for now is to manually disable FW initiated resets in cases
-> > > where debug state is needed.
-> > > 
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+On Tue, May 11, 2021 at 04:49:58PM +0200, Daniel Vetter wrote:
+> On Thu, May 06, 2021 at 10:30:46AM -0700, Matthew Brost wrote:
+> > Add entry fpr i915 new parallel submission uAPI plan.
 > > 
-> > This looks a bit backwards to me:
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > Cc: Tony Ye <tony.ye@intel.com>
+> > CC: Carl Zhang <carl.zhang@intel.com>
+> > Cc: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  Documentation/gpu/rfc/i915_scheduler.rst | 56 +++++++++++++++++++++++-
+> >  1 file changed, 54 insertions(+), 2 deletions(-)
 > > 
+> > diff --git a/Documentation/gpu/rfc/i915_scheduler.rst b/Documentation/gpu/rfc/i915_scheduler.rst
+> > index fa6780a11c86..e3455b33edfe 100644
+> > --- a/Documentation/gpu/rfc/i915_scheduler.rst
+> > +++ b/Documentation/gpu/rfc/i915_scheduler.rst
+> > @@ -13,7 +13,8 @@ i915 with the DRM scheduler is:
+> >  	  modparam enable_guc
+> >  	* Lots of rework will need to be done to integrate with DRM scheduler so
+> >  	  no need to nit pick everything in the code, it just should be
+> > -	  functional and not regress execlists
+> > +	  functional, no major coding style / layering errors, and not regress
+> > +	  execlists
 > 
-> Definitely a bit hacky but this patch does the best to capture the error as it
-> can,
+> I guess this hunk should be in the previous patch?
 > 
-> > - I figured we should capture error state when we get the G2H, in which
-> >   case I hope we do know which the offending context was that got shot.
-> >
-> 
-> We know which context was shot based on the G2H. See 'hung_ce' in this patch.
 
-Ah maybe I should read more. Would be good to have comments on how the
-locking works here, especially around reset it tends to be tricky.
-Comments in the data structs/members.
+Yep, noticed this after sending.
 
+> >  	* Update IGTs / selftests as needed to work with GuC submission
+> >  	* Enable CI on supported platforms for a baseline
+> >  	* Rework / get CI heathly for GuC submission in place as needed
+> > @@ -67,4 +68,55 @@ levels too.
+> >  
+> >  New parallel submission uAPI
+> >  ============================
+> > -Details to come in a following patch.
+> > +The existing bonding uAPI is completely broken with GuC submission because
+> > +whether a submission is a single context submit or parallel submit isn't known
+> > +until execbuf time activated via the I915_SUBMIT_FENCE. To submit multiple
+> > +contexts in parallel with the GuC the context must be explictly registered with
+> > +N contexts and all N contexts must be submitted in a single command to the GuC.
+> > +This interfaces doesn't support dynamically changing between N contexts as the
+> > +bonding uAPI does. Hence the need for a new parallel submission interface. Also
+> > +the legacy bonding uAPI is quite confusing and not intuitive at all.
 > 
-> > - For now we're missing the hw state, but we should still be able to
-> >   capture the buffers userspace wants us to capture. So that could be
-> >   wired up already?
-> 
-> Which buffers exactly? We dump all buffers associated with the context. 
+> I think you should sit together with Jason on irc or so for a bit and get
+> an earful of how it's all broken irrespective of GuC submission or not.
+> Just to hammer in our case :-)
+>
 
-There's an opt-in list that userspace can set in execbuf. Maybe that's the
-one you mean.
--Daniel
+Sounds like a fun conversation, will do.
+ 
+> > +
+> > +The new parallel submission uAPI consists of 3 parts:
+> > +
+> > +* Export engines logical mapping
+> > +* A 'set_parallel' extension to configure contexts for parallel
+> > +  submission
+> > +* Extend execbuf2 IOCTL to support submitting N BBs in a single IOCTL
+> > +
+> > +Export engines logical mapping
+> > +------------------------------
+> > +Certain use cases require BBs to be placed on engine instances in logical order
+> > +(e.g. split-frame on gen11+). The logical mapping of engine instances can change
+> > +based on fusing. Rather than making UMDs be aware of fusing, simply expose the
+> > +logical mapping with the existing query engine info IOCTL. Also the GuC
+> > +submission interface currently only supports submitting multiple contexts to
+> > +engines in logical order.
+> 
+> Maybe highlight more that this is a new restriction with GuC compared to
+> execlist, which is why we need to expose this information to userspace.
+> Also on the platforms thus far supported in upstream there's at most 2
+> engines of the same type, so really not an issue.
+>
 
+Sure. This is a limitation of the GuC interface + really isn't needed unless we
+have more than 2 engines of the same type.
+ 
+> > +
+> > +A single bit will be added to drm_i915_engine_info.flags indicating that the
+> > +logical instance has been returned and a new field,
+> > +drm_i915_engine_info.logical_instance, returns the logical instance.
+> > +
+> > +A 'set_parallel' extension to configure contexts for parallel submission
+> > +------------------------------------------------------------------------
+> > +The 'set_parallel' extension configures N contexts for parallel submission. It
+> > +is setup step that should be called before using any of the contexts. See
+> > +I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE or I915_CONTEXT_ENGINES_EXT_BOND for
+> > +similar existing examples. Once the N contexts are configured for parallel
+> > +submission the execbuf2 IOCTL can be called submiting 1-N BBs in a single IOCTL.
+> > +Although submitting less than N BBs is allowed it is not recommended as that
+> > +will likely leave parts of the hardware reserved and idle. Initially only
+> > +support GuC submission. Execlist support can be added later if needed.
 > 
-> > 
-> > But yeah register state capturing needs support from GuC fw.
-> >
-> > I think this is a big enough miss in GuC features that we should list it
-> > on the rfc as a thing to fix.
-> 
-> Agree this needs to be fixed.
-> 
-> Matt
-> 
-> > -Daniel
-> > 
-> > > ---
-> > >  drivers/gpu/drm/i915/gt/intel_context.c       | 20 +++++++++++
-> > >  drivers/gpu/drm/i915/gt/intel_context.h       |  3 ++
-> > >  drivers/gpu/drm/i915/gt/intel_engine.h        | 21 ++++++++++-
-> > >  drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 11 ++++--
-> > >  drivers/gpu/drm/i915/gt/intel_engine_types.h  |  2 ++
-> > >  .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 35 +++++++++----------
-> > >  drivers/gpu/drm/i915/i915_gpu_error.c         | 25 ++++++++++---
-> > >  7 files changed, 91 insertions(+), 26 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > index 2f01437056a8..3fe7794b2bfd 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> > > @@ -514,6 +514,26 @@ struct i915_request *intel_context_create_request(struct intel_context *ce)
-> > >  	return rq;
-> > >  }
-> > >  
-> > > +struct i915_request *intel_context_find_active_request(struct intel_context *ce)
-> > > +{
-> > > +	struct i915_request *rq, *active = NULL;
-> > > +	unsigned long flags;
-> > > +
-> > > +	GEM_BUG_ON(!intel_engine_uses_guc(ce->engine));
-> > > +
-> > > +	spin_lock_irqsave(&ce->guc_active.lock, flags);
-> > > +	list_for_each_entry_reverse(rq, &ce->guc_active.requests,
-> > > +				    sched.link) {
-> > > +		if (i915_request_completed(rq))
-> > > +			break;
-> > > +
-> > > +		active = rq;
-> > > +	}
-> > > +	spin_unlock_irqrestore(&ce->guc_active.lock, flags);
-> > > +
-> > > +	return active;
-> > > +}
-> > > +
-> > >  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-> > >  #include "selftest_context.c"
-> > >  #endif
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-> > > index 9b211ca5ecc7..d2b499ed8a05 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_context.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_context.h
-> > > @@ -195,6 +195,9 @@ int intel_context_prepare_remote_request(struct intel_context *ce,
-> > >  
-> > >  struct i915_request *intel_context_create_request(struct intel_context *ce);
-> > >  
-> > > +struct i915_request *
-> > > +intel_context_find_active_request(struct intel_context *ce);
-> > > +
-> > >  static inline struct intel_ring *__intel_context_ring_size(u64 sz)
-> > >  {
-> > >  	return u64_to_ptr(struct intel_ring, sz);
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> > > index 3321d0917a99..bb94963a9fa2 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> > > @@ -242,7 +242,7 @@ ktime_t intel_engine_get_busy_time(struct intel_engine_cs *engine,
-> > >  				   ktime_t *now);
-> > >  
-> > >  struct i915_request *
-> > > -intel_engine_find_active_request(struct intel_engine_cs *engine);
-> > > +intel_engine_execlist_find_hung_request(struct intel_engine_cs *engine);
-> > >  
-> > >  u32 intel_engine_context_size(struct intel_gt *gt, u8 class);
-> > >  
-> > > @@ -316,4 +316,23 @@ intel_engine_get_sibling(struct intel_engine_cs *engine, unsigned int sibling)
-> > >  	return engine->cops->get_sibling(engine, sibling);
-> > >  }
-> > >  
-> > > +static inline void
-> > > +intel_engine_set_hung_context(struct intel_engine_cs *engine,
-> > > +			      struct intel_context *ce)
-> > > +{
-> > > +	engine->hung_ce = ce;
-> > > +}
-> > > +
-> > > +static inline void
-> > > +intel_engine_clear_hung_context(struct intel_engine_cs *engine)
-> > > +{
-> > > +	intel_engine_set_hung_context(engine, NULL);
-> > > +}
-> > > +
-> > > +static inline struct intel_context *
-> > > +intel_engine_get_hung_context(struct intel_engine_cs *engine)
-> > > +{
-> > > +	return engine->hung_ce;
-> > > +}
-> > > +
-> > >  #endif /* _INTEL_RINGBUFFER_H_ */
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > > index 10300db1c9a6..ad3987289f09 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > > @@ -1727,7 +1727,7 @@ void intel_engine_dump(struct intel_engine_cs *engine,
-> > >  	drm_printf(m, "\tRequests:\n");
-> > >  
-> > >  	spin_lock_irqsave(&engine->sched_engine->lock, flags);
-> > > -	rq = intel_engine_find_active_request(engine);
-> > > +	rq = intel_engine_execlist_find_hung_request(engine);
-> > >  	if (rq) {
-> > >  		struct intel_timeline *tl = get_timeline(rq);
-> > >  
-> > > @@ -1838,10 +1838,17 @@ static bool match_ring(struct i915_request *rq)
-> > >  }
-> > >  
-> > >  struct i915_request *
-> > > -intel_engine_find_active_request(struct intel_engine_cs *engine)
-> > > +intel_engine_execlist_find_hung_request(struct intel_engine_cs *engine)
-> > >  {
-> > >  	struct i915_request *request, *active = NULL;
-> > >  
-> > > +	/*
-> > > +	 * This search does not work in GuC submission mode. However, the GuC
-> > > +	 * will report the hanging context directly to the driver itself. So
-> > > +	 * the driver should never get here when in GuC mode.
-> > > +	 */
-> > > +	GEM_BUG_ON(intel_uc_uses_guc_submission(&engine->gt->uc));
-> > > +
-> > >  	/*
-> > >  	 * We are called by the error capture, reset and to dump engine
-> > >  	 * state at random points in time. In particular, note that neither is
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > > index b84562b2708b..bba53e3b39b9 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-> > > @@ -304,6 +304,8 @@ struct intel_engine_cs {
-> > >  	/* keep a request in reserve for a [pm] barrier under oom */
-> > >  	struct i915_request *request_pool;
-> > >  
-> > > +	struct intel_context *hung_ce;
-> > > +
-> > >  	struct llist_head barrier_tasks;
-> > >  
-> > >  	struct intel_context *kernel_context; /* pinned */
-> > > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > index 22f17a055b21..6b3b74e50b31 100644
-> > > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> > > @@ -726,24 +726,6 @@ __unwind_incomplete_requests(struct intel_context *ce)
-> > >  	spin_unlock_irqrestore(&sched_engine->lock, flags);
-> > >  }
-> > >  
-> > > -static struct i915_request *context_find_active_request(struct intel_context *ce)
-> > > -{
-> > > -	struct i915_request *rq, *active = NULL;
-> > > -	unsigned long flags;
-> > > -
-> > > -	spin_lock_irqsave(&ce->guc_active.lock, flags);
-> > > -	list_for_each_entry_reverse(rq, &ce->guc_active.requests,
-> > > -				    sched.link) {
-> > > -		if (i915_request_completed(rq))
-> > > -			break;
-> > > -
-> > > -		active = rq;
-> > > -	}
-> > > -	spin_unlock_irqrestore(&ce->guc_active.lock, flags);
-> > > -
-> > > -	return active;
-> > > -}
-> > > -
-> > >  static void __guc_reset_context(struct intel_context *ce, bool stalled)
-> > >  {
-> > >  	struct i915_request *rq;
-> > > @@ -757,7 +739,7 @@ static void __guc_reset_context(struct intel_context *ce, bool stalled)
-> > >  	 */
-> > >  	clr_context_enabled(ce);
-> > >  
-> > > -	rq = context_find_active_request(ce);
-> > > +	rq = intel_context_find_active_request(ce);
-> > >  	if (!rq) {
-> > >  		head = ce->ring->tail;
-> > >  		stalled = false;
-> > > @@ -2192,6 +2174,20 @@ int intel_guc_sched_done_process_msg(struct intel_guc *guc,
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static void capture_error_state(struct intel_guc *guc,
-> > > +				struct intel_context *ce)
-> > > +{
-> > > +	struct intel_gt *gt = guc_to_gt(guc);
-> > > +	struct drm_i915_private *i915 = gt->i915;
-> > > +	struct intel_engine_cs *engine = __context_to_physical_engine(ce);
-> > > +	intel_wakeref_t wakeref;
-> > > +
-> > > +	intel_engine_set_hung_context(engine, ce);
-> > > +	with_intel_runtime_pm(&i915->runtime_pm, wakeref)
-> > > +		i915_capture_error_state(gt, engine->mask);
-> > > +	atomic_inc(&i915->gpu_error.reset_engine_count[engine->uabi_class]);
-> > > +}
-> > > +
-> > >  static void guc_context_replay(struct intel_context *ce)
-> > >  {
-> > >  	struct i915_sched_engine *sched_engine = ce->engine->sched_engine;
-> > > @@ -2204,6 +2200,7 @@ static void guc_handle_context_reset(struct intel_guc *guc,
-> > >  				     struct intel_context *ce)
-> > >  {
-> > >  	trace_intel_context_reset(ce);
-> > > +	capture_error_state(guc, ce);
-> > >  	guc_context_replay(ce);
-> > >  }
-> > >  
-> > > diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> > > index 3352f56bcf63..825bdfe44225 100644
-> > > --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> > > +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> > > @@ -1435,20 +1435,37 @@ capture_engine(struct intel_engine_cs *engine,
-> > >  {
-> > >  	struct intel_engine_capture_vma *capture = NULL;
-> > >  	struct intel_engine_coredump *ee;
-> > > -	struct i915_request *rq;
-> > > +	struct intel_context *ce;
-> > > +	struct i915_request *rq = NULL;
-> > >  	unsigned long flags;
-> > >  
-> > >  	ee = intel_engine_coredump_alloc(engine, GFP_KERNEL);
-> > >  	if (!ee)
-> > >  		return NULL;
-> > >  
-> > > -	spin_lock_irqsave(&engine->sched_engine->lock, flags);
-> > > -	rq = intel_engine_find_active_request(engine);
-> > > +	ce = intel_engine_get_hung_context(engine);
-> > > +	if (ce) {
-> > > +		intel_engine_clear_hung_context(engine);
-> > > +		rq = intel_context_find_active_request(ce);
-> > > +		if (!rq || !i915_request_started(rq))
-> > > +			goto no_request_capture;
-> > > +	} else {
-> > > +		/*
-> > > +		 * Getting here with GuC enabled means it is a forced error capture
-> > > +		 * with no actual hang. So, no need to attempt the execlist search.
-> > > +		 */
-> > > +		if (!intel_uc_uses_guc_submission(&engine->gt->uc)) {
-> > > +			spin_lock_irqsave(&engine->sched_engine->lock, flags);
-> > > +			rq = intel_engine_execlist_find_hung_request(engine);
-> > > +			spin_unlock_irqrestore(&engine->sched_engine->lock,
-> > > +					       flags);
-> > > +		}
-> > > +	}
-> > >  	if (rq)
-> > >  		capture = intel_engine_coredump_add_request(ee, rq,
-> > >  							    ATOMIC_MAYFAIL);
-> > > -	spin_unlock_irqrestore(&engine->sched_engine->lock, flags);
-> > >  	if (!capture) {
-> > > +no_request_capture:
-> > >  		kfree(ee);
-> > >  		return NULL;
-> > >  	}
-> > > -- 
-> > > 2.28.0
-> > > 
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > 
-> > -- 
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
+> Can we just require that you always submit N batchbuffers, or does this
+> create a problem for userspace? Allowing things just because is generally
+> not a good idea with uapi, it's better to limit and then allow when
+> there's a need.
+>
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Yes, we can limit the submit to N batchbuffers. In fact I want too. I think 1-N
+is a layover from our internal discussions where we wanted this interface to be
+able to do everything and anything. 
+ 
+> Ofc if we already have a need then explain why and that's all fine.
+> 
+> Also detailed comments on the kerneldoc I'll do in the next patches.
+> 
+> > +
+> > +Add I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT and
+> > +i915_context_engines_parallel_submit to the uAPI to implement this extension.
+> > +
+> > +Extend execbuf2 IOCTL to support submitting N BBs in a single IOCTL
+> > +-------------------------------------------------------------------
+> > +Contexts that have been configured with the 'set_parallel' extension are allowed
+> > +to submit 1-N BBs in a single execbuf2 IOCTL. The BBs are either the last N
+> > +objects in the drm_i915_gem_exec_object2 list or the first N if
+> > +I915_EXEC_BATCH_FIRST is set.
+> > +
+> > +Add field 6 bit wide field to drm_i915_gem_exec_object2.flags which indicates
+> > +the number of BBs - 1 included in the IOCTL.
+> 
+> Hm we have the nice execbuf extension chaining, any reason for not using
+> that and instead opting for clever field packing?
+>
+
+I think we just drop this per the comments above. If we only allow N batch
+buffers on a contexts configured with 'set_parallel' we really don't need to pass
+in the number of buffers do we?
+
+Matt
+ 
+> Cheers, Daniel
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
