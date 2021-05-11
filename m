@@ -2,41 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5225037A04E
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 09:05:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D95C837A11F
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 09:47:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC7E96E9DC;
-	Tue, 11 May 2021 07:05:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB9BA6E9E1;
+	Tue, 11 May 2021 07:47:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 827576E9D5;
- Tue, 11 May 2021 07:05:28 +0000 (UTC)
-IronPort-SDR: UAutco2KW744zYWbDOmkxolVjnFn6zMa7K9dgND8zFD1hdinkQeIKebl2K78oInZzsB9aBXDHL
- 2aVGTOkCUfWg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="199426746"
-X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="199426746"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2021 00:05:27 -0700
-IronPort-SDR: hh35SLA9NsSXcIAkKsRmTz4fGM3LJ701A5s98ePVIVbSepPXsKrbp7Z9UljauOgIpTo2BRVpCY
- pg+RqwNt2j6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="536847702"
-Received: from kuha.fi.intel.com ([10.237.72.162])
- by fmsmga001.fm.intel.com with SMTP; 11 May 2021 00:05:18 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation);
- Tue, 11 May 2021 10:05:17 +0300
-Date: Tue, 11 May 2021 10:05:17 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <YJosrajgV9zem5lr@kuha.fi.intel.com>
-References: <20210505162415.531876-1-hdegoede@redhat.com>
+Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [IPv6:2a01:e0c:1:1599::14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29DEA6E9E1;
+ Tue, 11 May 2021 07:47:39 +0000 (UTC)
+Received: from [192.168.1.190] (unknown [91.155.165.229])
+ (Authenticated sender: martin.peres@free.fr)
+ by smtp5-g21.free.fr (Postfix) with ESMTPSA id DA6B15FFD6;
+ Tue, 11 May 2021 09:47:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+ s=smtp-20201208; t=1620719256;
+ bh=L/SC9UgcswCPiqwyylKjzVrzqsffsAgm9Kh+PseelWk=;
+ h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+ b=gDTC/pPle60F5aFILvsj9AxKC2S/HAAeVcGUzbfeN72f5Fv9ab5CULX4N9HlweJ6R
+ DSLvcrcZm6wlSy/H8fJ3j/jH+aD7MUozlUZdyzVxj7EBz+DjgV8sdy0kwaGBx1+fHE
+ mTFNU+v5NFzGMoFvAtpldmW+qOjAPu2ScXf/FR3Qr+NbcfJ7Z403JbBokncvU0kykX
+ h0rHZSbR8Cm2bZH2BfG+WOrWD8QGYdspXCQp3WCcBpCGS+ibK3V3CuHoV2k+cAkqOt
+ D8M165n2bpOrdV96fCi/DrV7ajti3wSa4Ah4sTlc3pUoGemp0ZMT0IaXUuWht5ZgaM
+ IfhcqRziaHbcA==
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
+ Jason Ekstrand <jason@jlekstrand.net>
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+ <d22437bd-8bb6-d7cb-c017-89cdc7da560d@free.fr>
+ <17953669798.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+ <878s4mvuww.wl-ashutosh.dixit@intel.com>
+From: Martin Peres <martin.peres@free.fr>
+Message-ID: <fba247b5-0835-016f-2b13-ad87c97cc3c4@free.fr>
+Date: Tue, 11 May 2021 10:47:14 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210505162415.531876-1-hdegoede@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH 0/8] drm + usb-type-c: Add support for
- out-of-band hotplug notification (v3)
+In-Reply-To: <878s4mvuww.wl-ashutosh.dixit@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC PATCH 00/97] Basic GuC submission support in
+ the i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,33 +54,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, linux-usb@vger.kernel.org,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- platform-driver-x86@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Guenter Roeck <linux@roeck-us.net>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ jason.ekstrand@intel.com, daniel.vetter@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 05, 2021 at 06:24:07PM +0200, Hans de Goede wrote:
-> Hi All,
+
+
+On 11/05/2021 05:58, Dixit, Ashutosh wrote:
+> On Sun, 09 May 2021 16:11:43 -0700, Jason Ekstrand wrote:
+>>
+>> Yes, landing GuC support may be the first step in removing execlist
+>> support. The inevitable reality is that GPU scheduling is coming and
+>> likely to be there only path in the not-too-distant future.  (See also
+>> the ongoing thread with AMD about fences.) I'm not going to pass
+>> judgement on whether or not this is a good thing.  I'm just reading the
+>> winds and, in my view, this is where things are headed for good or ill.
+>>
+>> In answer to the question above, the answer to "what do we gain from
+>> GuC?" may soon be, "you get to use your GPU."  We're not there yet and,
+>> again, I'm not necessarily advocating for it, but that is likely where
+>> things are headed.
+>>
+>> A firmware-based submission model isn't a bad design IMO and, aside from
+>> the firmware freedom issues, I think there are actual advantages to the
+>> model. Immediately, it'll unlock a few features like parallel submission
+>> (more on that in a bit) and long-running compute because they're
+>> implemented in GuC and the work to implement them properly in the
+>> execlist scheduler is highly non-trivial.  Longer term, it may (no
+>> guarantees) unlock some performance by getting the kernel out of the way.
 > 
-> Here is v3 of my patchset making DP over Type-C work on devices where the
-> Type-C controller does not drive the HPD pin on the GPU, but instead
-> we need to forward HPD events from the Type-C controller to the DRM driver.
+> I believe another main reason for GuC is support for HW based
+> virtualization like SRIOV. The only way to support SRIOV with execlists
+> would be to statically partition the GPU between VM's, any dynamic
+> partitioning needs something in HW.
+> 
 
-These look good to me. I can also test these next week if needed. I'll
-give my Tested-by tag after that if these haven't been taken by
-anybody by that.
+FW-based command-submission is indeed a win for SRIOV and the current HW 
+architecture.
 
-
-thanks,
-
--- 
-heikki
+Thanks for chiming in!
+Martin
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
