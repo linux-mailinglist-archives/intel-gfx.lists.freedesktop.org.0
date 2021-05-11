@@ -1,45 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DF6337A735
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 14:56:47 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86C1537A738
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 May 2021 14:57:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 030E36E138;
-	Tue, 11 May 2021 12:56:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E73956E15E;
+	Tue, 11 May 2021 12:57:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3031F6E138
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 12:56:44 +0000 (UTC)
-IronPort-SDR: ux0C+BHC8MIZqiuz7wSnFhLkaclU4tZXJ6FT03B4zRA4unRsiblCglVMTkLSewgwdShWpfSNlN
- UaU6yOVZSSWw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="199497897"
-X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="199497897"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2021 05:56:43 -0700
-IronPort-SDR: IuvjxKpluZHPFjuGczJEoD1k9qODbiH+ABvlrtGiH2pVsKJE6vXYYbNegVxKMCJ5BG5C8IMbnS
- OCcX0gi53Rhg==
-X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="434433649"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17C316E138
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 May 2021 12:57:55 +0000 (UTC)
+IronPort-SDR: 7EYcIpe047LqL3wBgfY4pbt2iPHJ6nTVR9XrLm0As0OhbHrpP+EPe0U9UA8/bTSEzDnr75l+my
+ r2BNipWOotTw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9980"; a="220392031"
+X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="220392031"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2021 05:57:54 -0700
+IronPort-SDR: nCgepjE7q8efHL2BKSbHjmwPSWoTzm+8c98kXcoKciD8K/pG7q6/Ujg4PzB982GMkccdORLknN
+ zycvCSxFNTxg==
+X-IronPort-AV: E=Sophos;i="5.82,290,1613462400"; d="scan'208";a="436647395"
 Received: from ialvarez-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.249.32.67])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2021 05:56:40 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Paul Zimmerman <pauldzim@gmail.com>, Timo Aaltonen <tjaalton@ubuntu.com>
-In-Reply-To: <87a6p1v39b.fsf@intel.com>
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2021 05:57:51 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Kai-Heng Feng <kai.heng.feng@canonical.com>,
+ Albert Astals Cid <aacid@kde.org>
+In-Reply-To: <CAAd53p4ZTBtV0KhmvnoJ1abp0b6xx2hC-grGzr2tx+AURQoOmQ@mail.gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210509044330.4655-1-pauldzim@gmail.com>
- <02957632-b050-f9eb-fcd8-75db9c92b8e0@ubuntu.com>
- <CADBGO7_cH2e1-zgVNvwVPRogqeFjTfJhKcuTfdF=xc_GoMmknA@mail.gmail.com>
- <87a6p1v39b.fsf@intel.com>
-Date: Tue, 11 May 2021 15:56:38 +0300
-Message-ID: <877dk5v37d.fsf@intel.com>
+References: <20210107182026.24848-1-ville.syrjala@linux.intel.com>
+ <X/yY3Tvk8gq+Eg8W@intel.com>
+ <CABpPkAEVbSUwoBqXDaKpckbfkq4-z=MWNC27JYOLki3FhN0PyA@mail.gmail.com>
+ <3349345.6yYDney9BF@xps>
+ <CAAd53p4ZTBtV0KhmvnoJ1abp0b6xx2hC-grGzr2tx+AURQoOmQ@mail.gmail.com>
+Date: Tue, 11 May 2021 15:57:48 +0300
+Message-ID: <874kf9v35f.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH RFC] Revert "drm/i915: Try to use
- fast+narrow link on eDP again and fall back to the old max strategy on
- failure"
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Try to use fast+narrow link
+ on eDP again and fall back to the old max strategy on failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,49 +53,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Matteo Iervasi <matteoiervasi@gmail.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Emanuele Panigati <ilpanich@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 May 2021, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Mon, 10 May 2021, Paul Zimmerman <pauldzim@gmail.com> wrote:
->> On Mon, May 10, 2021 at 7:00 AM Timo Aaltonen <tjaalton@ubuntu.com> wrote:
->>>
->>> On 9.5.2021 7.43, Paul Zimmerman wrote:
->>> > This reverts commit 2bbd6dba84d44219387df051a1c799b7bac46099.
->>> >
->>> > Since 5.12-rc2, my Dell XPS-15 laptop has had a blank screen on boot.
->>> > The system seems to run fine other than having no display, I am able
->>> > to ssh into the machine. I don't see anything interesting in the dmesg
->>> > log. I bisected the problem down to this commit, and reverting it fixes
->>> > the problem.
->>>
->>> Have you tried with drm-tip? It has acca7762eb71bc0 which hopefully
->>> helps here.
->>
->> I picked that one commit from the drm-tip tree (wasn't sure how to merge
->> the entire tree into the kernel) and can confirm that it does fix the problem.
->> Thank you! I hope the fix will be sent to Linus pretty soon, and it will need
->> backporting to the 5.12 kernel as well.
->
-> I've picked up 2bbd6dba84d4 ("drm/i915: Try to use fast+narrow link on
-> eDP again and fall back to the old max strategy on failure") to
-> drm-intel-fixes, and it should find itself in v5.13-rc2 and subsequently
-> v5.12 stable in the coming weeks.
-
-I mean I've picked up acca7762eb71 ("drm/i915/dp: Use slow and wide link
-training for everything").
-
-
->
-> BR,
-> Jani.
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAxMSBNYXkgMjAyMSwgS2FpLUhlbmcgRmVuZyA8a2FpLmhlbmcuZmVuZ0BjYW5vbmlj
+YWwuY29tPiB3cm90ZToKPiBPbiBUdWUsIE1heSAxMSwgMjAyMSBhdCAyOjA2IEFNIEFsYmVydCBB
+c3RhbHMgQ2lkIDxhYWNpZEBrZGUub3JnPiB3cm90ZToKPj4KPj4gWWVzLCBJIGFsc28gaGF2ZSB0
+aGUgc2FtZS4KPj4KPj4gSSBnaXQgYmlzZWN0ZWQgdGhhdCBhbmQgZm91bmQgdGhpcyB0byBiZSB0
+aGUgY2F1c2UsIGkgc3RhcnRlZCBhIG5ldyBlbWFpbCB0aHJlYWQgYmVjYXVzZSBpIGNvdWxkbid0
+IGZpbmQgdGhpcyBlbWFpbCBeX14KPgo+IFNob3VsZCBiZSBmaXhlZCBieQo+IGh0dHBzOi8vY2dp
+dC5mcmVlZGVza3RvcC5vcmcvZHJtLXRpcC9jb21taXQvP2lkPWFjY2E3NzYyZWI3MWJjMDVhOGYy
+OGQyOTMyMGQxOTMxNTAwNTFmNzkKCkkndmUgcGlja2VkIHVwIGFjY2E3NzYyZWI3MSAoImRybS9p
+OTE1L2RwOiBVc2Ugc2xvdyBhbmQgd2lkZSBsaW5rCnRyYWluaW5nIGZvciBldmVyeXRoaW5nIikg
+dG8gZHJtLWludGVsLWZpeGVzLCBhbmQgaXQgc2hvdWxkIGZpbmQgaXRzZWxmCmluIHY1LjEzLXJj
+MiBhbmQgc3Vic2VxdWVudGx5IHY1LjEyIHN0YWJsZSBpbiB0aGUgY29taW5nIHdlZWtzLgoKQlIs
+CkphbmkuCgoKPgo+IEthaS1IZW5nCj4KPj4KPj4gQ2hlZXJzLAo+PiAgIEFsYmVydAo+Pgo+PiBF
+bCBkaWxsdW5zLCAxMCBkZSBtYWlnIGRlIDIwMjEsIGEgbGVzIDEwOjA3OjMzIChDRVNUKSwgRW1h
+bnVlbGUgUGFuaWdhdGkgdmEgZXNjcml1cmU6Cj4+ID4gSGksCj4+ID4gICBvbiBteSBEZWxsIFhQ
+UyAxNSA5NTcwIGxhcHRvcCBJIG1pZ2h0IGhhdmUgYSByZWdyZXNzaW9uIHdpdGggQXJjaCBMaW51
+eAo+PiA+IChrZXJuZWwgNS4xMi4yLWFyY2gxLTE6IGR1cmluZyBib290IHRoZSBsYXB0b3AgbW9u
+aXRvciBnb2VzIGJsYWNrIHdoaWxlCj4+ID4gZXh0ZXJuYWwgbW9uaXRvcnMgc3RpbGwgd29ya3Mu
+Li4KPj4gPgo+PiA+Cj4+ID4gUGFuaWNoCj4+ID4KPj4gPgo+PiA+IElsIGdpb3JubyBsdW4gMTEg
+Z2VuIDIwMjEgYWxsZSBvcmUgMTk6MjggVmlsbGUgU3lyasOkbMOkIDwKPj4gPiB2aWxsZS5zeXJq
+YWxhQGxpbnV4LmludGVsLmNvbT4gaGEgc2NyaXR0bzoKPj4gPgo+PiA+ID4gT24gVGh1LCBKYW4g
+MDcsIDIwMjEgYXQgMDg6MjA6MjVQTSArMDIwMCwgVmlsbGUgU3lyamFsYSB3cm90ZToKPj4gPiA+
+ID4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4K
+Pj4gPiA+ID4KPj4gPiA+ID4gU29tZSBuZXcgZURQIHBhbmVscyBkb24ndCBsaWtlIHRvIG9wZXJh
+dGUgYXQgdGhlIG1heCBwYXJhbWV0ZXJzLCBhbmQKPj4gPiA+ID4gaW5zdGVhZCB3ZSBuZWVkIHRv
+IGdvIGZvciBhbiBvcHRpbWFsIGNvbmZpdWdyYXRpb24uIFRoYXQgdW5mb3J0dW5hdGVseQo+PiA+
+ID4gPiBkb2Vzbid0IHdvcmsgd2l0aCBvbGRlciBlRFAgcGFuZWxzIHdoaWNoIGFyZSBnZW5lcmFs
+bHkgb25seSBndWFyYW50ZWVkCj4+ID4gPiA+IHRvIHdvcmsgYXQgdGhlIG1heCBwYXJhbWV0ZXJz
+Lgo+PiA+ID4gPgo+PiA+ID4gPiBUbyBzb2x2ZSB0aGVzZSB0d28gY29uZmxpY3RpbmcgcmVxdWly
+ZW1lbnRzIGxldCdzIHN0YXJ0IHdpdGggdGhlIG9wdGltYWwKPj4gPiA+ID4gc2V0dXAsIGFuZCBp
+ZiB0aGF0IGZhaWxzIHdlIHN0YXJ0IGFnYWluIHdpdGggdGhlIG1heCBwYXJhbWV0ZXJzLiBUaGUK
+Pj4gPiA+ID4gZG93bnNpZGUgaXMgcHJvYmFibHkgYW4gZXh0cmEgbW9kZXNldCB3aGVuIHdlIHN3
+aXRjaCBzdHJhdGVnaWVzIGJ1dAo+PiA+ID4gPiBJIGRvbid0IHNlZSBhIGdvb2Qgd2F5IHRvIGF2
+b2lkIHRoYXQuCj4+ID4gPiA+Cj4+ID4gPiA+IEZvciBhIGJpdCBvZiBoaXN0b3J5IHdlIGZpcnN0
+IHRyaWVkIHRvIGdvIGZvciB0aGUgZmFzdCtuYXJyb3cgaW4KPj4gPiA+ID4gY29tbWl0IDc3Njlk
+YjU4ODM4NCAoImRybS9pOTE1L2RwOiBvcHRpbWl6ZSBlRFAgMS40KyBsaW5rIGNvbmZpZwo+PiA+
+ID4gPiBmYXN0IGFuZCBuYXJyb3ciKS4gYnV0IHRoYXQgaGFkIHRvIGJlIHJldmVydGVkIGR1ZSB0
+byByZWdyZXNzaW9uCj4+ID4gPiA+IG9uIG9sZGVyIHBhbmVscyBpbiBjb21taXQgZjExY2IxYzE5
+YWQwICgiZHJtL2k5MTUvZHA6IHJldmVydCBiYWNrCj4+ID4gPiA+IHRvIG1heCBsaW5rIHJhdGUg
+YW5kIGxhbmUgY291bnQgb24gZURQIikuIFNvIG5vdyB3ZSB0cnkgdG8gZ2V0Cj4+ID4gPiA+IHRo
+ZSBiZXN0IG9mIGJvdGggd29ybGRzIGJ5IHVzaW5nIGJvdGggc3RyYXRlZ2llcy4KPj4gPiA+Cj4+
+ID4gPiBQdXNoZWQuIEZpbmdlcnMgY3Jvc3NlZCBmb3Igbm8gcmVncmVzc2lvbnMuLi4KPj4gPiA+
+Cj4+ID4gPiAtLQo+PiA+ID4gVmlsbGUgU3lyasOkbMOkCj4+ID4gPiBJbnRlbAo+PiA+ID4KPj4g
+Pgo+Pgo+Pgo+Pgo+PgoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGlj
+cyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
