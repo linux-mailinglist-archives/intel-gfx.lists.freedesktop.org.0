@@ -1,39 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE53037BA43
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 12:24:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7384337BB97
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 13:15:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 822D06EB6F;
-	Wed, 12 May 2021 10:24:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46B866EB78;
+	Wed, 12 May 2021 11:15:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3BAF6EB6A;
- Wed, 12 May 2021 10:24:10 +0000 (UTC)
-IronPort-SDR: TIqK+XzjhcVAcjJwVU8czKbI+K1gvSy4kiQ0tT5fBCooBXqS/MZeFf8wZT+3HOerVY12pw/XHg
- M+2YUvObjd7A==
-X-IronPort-AV: E=McAfee;i="6200,9189,9981"; a="263598796"
-X-IronPort-AV: E=Sophos;i="5.82,293,1613462400"; d="scan'208";a="263598796"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2021 03:24:07 -0700
-IronPort-SDR: 4kS+h43gLefeeuCxKhS0iLflQfiMF85LROO16E2H0UwBhQxVfHrk6jNYpymPr7h6FeNbp6KiqM
- KuAy/ph0mM1g==
-X-IronPort-AV: E=Sophos;i="5.82,293,1613462400"; d="scan'208";a="625260530"
-Received: from jpludows-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.213.209.164])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2021 03:24:06 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 May 2021 11:24:00 +0100
-Message-Id: <20210512102400.513710-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
+Received: from casper.infradead.org (casper.infradead.org
+ [IPv6:2001:8b0:10b:1236::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D31D06EB78
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 11:15:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=/YzIPVf0TSTnsIiEebVAwyDbe66VAQBxqqFJbqGyDhM=; b=t6WgltO/8euk95nxU3pgCRIET1
+ TBjLWJTUgj0j+tgtmL5Ksuz3zF7W99rqn/72myM45MaxGNie0oYHW+BcjkYHxdhuUia2clhFIJnHv
+ PLAJ9lfxm5XVdyCWu2p70zI0Il2KJBqp62saEs0WfG0qnd4vt5toydMYMtmqajCgtpk5z3jMCAKpj
+ yA9TDDDVs2q37/AKF9WtEiLeb0jRwzHIxSpJRzCqTkNrqEOn1A4i6RRJ5KjXVlFJoX+tCaI7aYjjq
+ pnf9ydfiQDIIGFKCVzGBEalJYEKiBIe7v5bKRUYhbKUsdbYtHPgZx6mTVQqb5XU+5Gqs0BJC3mtg+
+ bALQOHdQ==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=noisy.programming.kicks-ass.net)
+ by casper.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
+ id 1lgmpU-008D7l-Vl; Wed, 12 May 2021 11:15:11 +0000
+Received: from hirez.programming.kicks-ass.net
+ (hirez.programming.kicks-ass.net [192.168.1.225])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (Client did not present a certificate)
+ by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 06921300242;
+ Wed, 12 May 2021 13:15:04 +0200 (CEST)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+ id E5F5C20B5CA97; Wed, 12 May 2021 13:15:03 +0200 (CEST)
+Date: Wed, 12 May 2021 13:15:03 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <YJu4tzXmCJbKp7Fm@hirez.programming.kicks-ass.net>
+References: <b6b61cf0-5874-f4c0-1fcc-4b3848451c31@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Pin the L-shape quirked object as
- unshrinkable
+Content-Disposition: inline
+In-Reply-To: <b6b61cf0-5874-f4c0-1fcc-4b3848451c31@redhat.com>
+Subject: Re: [Intel-gfx] 5.13 i915/PAT regression on Brasswell,
+ adding nopat to the kernel commandline worksaround this
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,39 +58,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, x86@kernel.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, hch@lst.de
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CgpXaGVuIGluc3Rh
-bnRpYXRpbmcgYSB0aWxlZCBvYmplY3Qgb24gYW4gTC1zaGFwZWQgbWVtb3J5IG1hY2hpbmUsIHdl
-IG1hcmsKdGhlIG9iamVjdCBhcyB1bnNocmlua2FibGUgdG8gcHJldmVudCB0aGUgc2hyaW5rZXIg
-ZnJvbSB0cnlpbmcgdG8gc3dhcApvdXQgdGhlIHBhZ2VzLiBXZSBoYXZlIHRvIGRvIHRoaXMgYXMg
-d2UgZG8gbm90IGtub3cgdGhlIHN3aXp6bGluZyBvbiB0aGUKaW5kaXZpZHVhbCBwYWdlcywgYW5k
-IHNvIHRoZSBkYXRhIHdpbGwgYmUgc2NyYW1ibGVkIGFjcm9zcyBzd2FwIG91dC9pbi4KCk5vdCBv
-bmx5IGRvIHdlIG5lZWQgdG8gbW92ZSB0aGUgb2JqZWN0IG9mZiB0aGUgc2hyaW5rZXIgbGlzdCwg
-d2UgbmVlZCB0bwptYXJrIHRoZSBvYmplY3Qgd2l0aCBzaHJpbmtfcGluIHNvIHRoYXQgdGhlIGNv
-dW50ZXIgaXMgY29uc2lzdGVudCBhY3Jvc3MKY2FsbHMgdG8gbWFkdmlzZS4KCkZpeGVzOiAwMTc1
-OTY5ZTQ4OWEgKCJkcm0vaTkxNS9nZW06IFVzZSBzaHJpbmthYmxlIHN0YXR1cyBmb3IgdW5rbm93
-biBzd2l6emxlIHF1aXJrcyIpClJlZmVyZW5jZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9w
-Lm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvMzI5MwpSZXBvcnRlZC1ieTogVmlsbGUgU3lyasOkbMOk
-IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2ls
-c29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+ClNpZ25lZC1vZmYtYnk6IE1hdHRoZXcgQXVs
-ZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fcGFnZXMuYyB8IDIgKysKIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fcGFnZXMuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9wYWdlcy5jCmluZGV4IGFlZDhhMzdj
-Y2RjOS4uNzM2MTk3MWMxNzdkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fcGFnZXMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-cGFnZXMuYwpAQCAtNjMsNiArNjMsOCBAQCB2b2lkIF9faTkxNV9nZW1fb2JqZWN0X3NldF9wYWdl
-cyhzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqLAogCSAgICBpOTE1LT5xdWlya3MgJiBR
-VUlSS19QSU5fU1dJWlpMRURfUEFHRVMpIHsKIAkJR0VNX0JVR19PTihpOTE1X2dlbV9vYmplY3Rf
-aGFzX3RpbGluZ19xdWlyayhvYmopKTsKIAkJaTkxNV9nZW1fb2JqZWN0X3NldF90aWxpbmdfcXVp
-cmsob2JqKTsKKwkJR0VNX0JVR19PTighbGlzdF9lbXB0eSgmb2JqLT5tbS5saW5rKSk7CisJCWF0
-b21pY19pbmMoJm9iai0+bW0uc2hyaW5rX3Bpbik7CiAJCXNocmlua2FibGUgPSBmYWxzZTsKIAl9
-CiAKLS0gCjIuMjYuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+On Wed, May 12, 2021 at 11:57:02AM +0200, Hans de Goede wrote:
+> Hi All,
+> 
+> I'm not sure if this is a i915 bug, or caused by changes elsewhere in the kernel,
+> so I thought it would be best to just send out an email and then see from there.
+> 
+> With 5.13-rc1 gdm fails to show and dmesg contains:
+> 
+> [   38.504613] x86/PAT: Xwayland:683 map pfn RAM range req write-combining for [mem 0x23883000-0x23883fff], got write-back
+> <repeated lots of times for different ranges>
+> [   39.484766] x86/PAT: gnome-shell:632 map pfn RAM range req write-combining for [mem 0x1c6a3000-0x1c6a3fff], got write-back
+> <repeated lots of times for different ranges>
+> [   54.314858] Asynchronous wait on fence 0000:00:02.0:gnome-shell[632]:a timed out (hint:intel_cursor_plane_create [i915])
+> [   58.339769] i915 0000:00:02.0: [drm] GPU HANG: ecode 8:1:86dfdffb, in gnome-shell [632]
+> [   58.341161] i915 0000:00:02.0: [drm] Resetting rcs0 for stopped heartbeat on rcs0
+> [   58.341267] i915 0000:00:02.0: [drm] gnome-shell[632] context reset due to GPU hang
+> 
+> Because of the PAT errors I tried adding "nopat" to the kernel commandline
+> and I'm happy to report that that works around this.
+> 
+> Any hints on how to debug this further (without doing a full git bisect) would be
+> appreciated.
+
+IIRC it's because of 74ffa5a3e685 ("mm: add remap_pfn_range_notrack"),
+which added a sanity check to make sure expectations were met. It turns
+out they were not.
+
+The bug is not new, the warning is. AFAIK the i915 team is aware, but
+other than that I've not followed.
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
