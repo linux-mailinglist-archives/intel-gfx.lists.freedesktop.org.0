@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83AB537D469
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 23:28:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DF8237D46F
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 23:37:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29B196E55C;
-	Wed, 12 May 2021 21:28:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D822F6E558;
+	Wed, 12 May 2021 21:37:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 043C96E55C
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 21:28:13 +0000 (UTC)
-IronPort-SDR: zg+TnfNyPCrKwtD07rL6tMLcSk82L1BEeVVEKeL23tlUq0wtrsdGwapN1rRiPn58K+s2QXIGvG
- FAa5QgJexy+w==
-X-IronPort-AV: E=McAfee;i="6200,9189,9982"; a="199491436"
-X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="199491436"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2021 14:28:12 -0700
-IronPort-SDR: 8WInMZUAH1C6inPULXn5vAHCAWuPAMQwutq4eZVrAB8peB9Rbr0kBmuZhhbPh8zcFz/SPY1UE2
- 2ZL30eqWDdyw==
-X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="625622065"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2021 14:28:11 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 May 2021 00:28:09 +0300
-Message-Id: <20210512212809.1234701-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.27.0
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 770B06E558
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 21:37:33 +0000 (UTC)
+IronPort-SDR: mR9yBXrd3ctwQ34+0jahlXRKUlOuaApNMem3turMWa0RokdfCyIwqhrPRfi3lcZO3po4gs5XYj
+ 7mRE0RGlZvxg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9982"; a="263738432"
+X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="263738432"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2021 14:37:32 -0700
+IronPort-SDR: /Nl64xGS+GbjumZRNJ27RPfEWWCCPr+Iu8Dg+jeI5agd+j+70AUqG7gj8zTMnR97As7WH9cB21
+ BIxH+Jcw0iuA==
+X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="537999572"
+Received: from suryadee-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.1.144])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2021 14:37:31 -0700
+Date: Wed, 12 May 2021 14:37:30 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210512213730.venf4cbxqmmk5bo6@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210508022820.780227-1-matthew.d.roper@intel.com>
+ <20210508022820.780227-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Reenable LTTPR non-transparent LT
- mode for DPCD_REV<1.4
+Content-Disposition: inline
+In-Reply-To: <20210508022820.780227-2-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 01/48] drm/i915/xelpd: Handle proper AUX
+ interrupt bits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,154 +50,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The driver currently disables the LTTPR non-transparent link training
-mode for sinks with a DPCD_REV<1.4, based on the following description
-of the LTTPR DPCD register range in DP standard 2.0 (at the 0xF0000
-register description):
+On Fri, May 07, 2021 at 07:27:33PM -0700, Matt Roper wrote:
+>XE_LPD has new AUX interrupt bits for DDI-D and DDI-E that take the
+>spots that were used by TC5/TC6 on Display12 platforms.
+>
+>While we're at it, let's convert the bit definitions for all TGL+ aux
+>bits over to the modern REG_BIT() notation.
+>
+>v2:
+> - Maintain bit order rather than logical order.  (Lucas)
+> - Convert surrounding code to REG_BIT() notation.  (Lucas)
+>
+>Bspec: 50064
+>Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>Reviewed-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 
-""
-LTTPR-related registers at DPCD Addresses F0000h through F02FFh are valid
-only for DPCD r1.4 (or higher).
-"""
 
-The transparent link training mode should still work fine, however the
-implementation for this in some retimer FWs seems to be broken, see the
-References: link below.
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-After discussions with DP standard authors the above "DPCD r1.4" does
-not refer to the DPCD revision (stored in the DPCD_REV reg at 0x00000),
-rather to the "LTTPR field data structure revision" stored in the
-0xF0000 reg. An update request has been filed at vesa.org (see
-wg/Link/documentComment/3746) for the upcoming v2.1 specification to
-clarify the above description along the following lines:
+Lucas De Marchi
 
-"""
-LTTPR-related registers at DPCD Addresses F0000h through F02FFh are
-valid only for LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV 1.4 (or
-higher)
-"""
-
-Based on my tests Windows uses the non-transparent link training mode
-for DPCD_REV==1.2 sinks as well (so presumably for all DPCD_REVs), and
-forcing it to use transparent mode on ICL/TGL platforms leads to the
-same LT failure as reported at the References: link.
-
-Based on the above let's assume that the transparent link training mode
-is not well tested/supported and align the code to the correct
-interpretation of what the r1.4 version refers to.
-
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/3415
-Fixes: 264613b406eb ("drm/i915: Disable LTTPR support when the DPCD rev < 1.4")
-Cc: <stable@vger.kernel.org> # v5.11+
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- .../drm/i915/display/intel_dp_link_training.c | 71 +++++++++----------
- 1 file changed, 33 insertions(+), 38 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 6bf6f1ec13ed8..08bceae40aa8d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -128,50 +128,14 @@ intel_dp_set_lttpr_transparent_mode(struct intel_dp *intel_dp, bool enable)
- 	return drm_dp_dpcd_write(&intel_dp->aux, DP_PHY_REPEATER_MODE, &val, 1) == 1;
- }
- 
--/**
-- * intel_dp_init_lttpr_and_dprx_caps - detect LTTPR and DPRX caps, init the LTTPR link training mode
-- * @intel_dp: Intel DP struct
-- *
-- * Read the LTTPR common and DPRX capabilities and switch to non-transparent
-- * link training mode if any is detected and read the PHY capabilities for all
-- * detected LTTPRs. In case of an LTTPR detection error or if the number of
-- * LTTPRs is more than is supported (8), fall back to the no-LTTPR,
-- * transparent mode link training mode.
-- *
-- * Returns:
-- *   >0  if LTTPRs were detected and the non-transparent LT mode was set. The
-- *       DPRX capabilities are read out.
-- *    0  if no LTTPRs or more than 8 LTTPRs were detected or in case of a
-- *       detection failure and the transparent LT mode was set. The DPRX
-- *       capabilities are read out.
-- *   <0  Reading out the DPRX capabilities failed.
-- */
--int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
-+static int intel_dp_init_lttpr(struct intel_dp *intel_dp)
- {
- 	int lttpr_count;
--	bool ret;
- 	int i;
- 
--	ret = intel_dp_read_lttpr_common_caps(intel_dp);
--
--	/* The DPTX shall read the DPRX caps after LTTPR detection. */
--	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd)) {
--		intel_dp_reset_lttpr_common_caps(intel_dp);
--		return -EIO;
--	}
--
--	if (!ret)
-+	if (!intel_dp_read_lttpr_common_caps(intel_dp))
- 		return 0;
- 
--	/*
--	 * The 0xF0000-0xF02FF range is only valid if the DPCD revision is
--	 * at least 1.4.
--	 */
--	if (intel_dp->dpcd[DP_DPCD_REV] < 0x14) {
--		intel_dp_reset_lttpr_common_caps(intel_dp);
--		return 0;
--	}
--
- 	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
- 	/*
- 	 * Prevent setting LTTPR transparent mode explicitly if no LTTPRs are
-@@ -211,6 +175,37 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
- 
- 	return lttpr_count;
- }
-+
-+/**
-+ * intel_dp_init_lttpr_and_dprx_caps - detect LTTPR and DPRX caps, init the LTTPR link training mode
-+ * @intel_dp: Intel DP struct
-+ *
-+ * Read the LTTPR common and DPRX capabilities and switch to non-transparent
-+ * link training mode if any is detected and read the PHY capabilities for all
-+ * detected LTTPRs. In case of an LTTPR detection error or if the number of
-+ * LTTPRs is more than is supported (8), fall back to the no-LTTPR,
-+ * transparent mode link training mode.
-+ *
-+ * Returns:
-+ *   >0  if LTTPRs were detected and the non-transparent LT mode was set. The
-+ *       DPRX capabilities are read out.
-+ *    0  if no LTTPRs or more than 8 LTTPRs were detected or in case of a
-+ *       detection failure and the transparent LT mode was set. The DPRX
-+ *       capabilities are read out.
-+ *   <0  Reading out the DPRX capabilities failed.
-+ */
-+int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
-+{
-+	int lttpr_count = intel_dp_init_lttpr(intel_dp);
-+
-+	/* The DPTX shall read the DPRX caps after LTTPR detection. */
-+	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd)) {
-+		intel_dp_reset_lttpr_common_caps(intel_dp);
-+		return -EIO;
-+	}
-+
-+	return lttpr_count;
-+}
- EXPORT_SYMBOL(intel_dp_init_lttpr_and_dprx_caps);
- 
- static u8 dp_voltage_max(u8 preemph)
--- 
-2.27.0
-
+>---
+> drivers/gpu/drm/i915/i915_irq.c | 12 +++++++++++-
+> drivers/gpu/drm/i915/i915_reg.h | 20 +++++++++++---------
+> 2 files changed, 22 insertions(+), 10 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+>index f6967a93ec7a..26a5474bb145 100644
+>--- a/drivers/gpu/drm/i915/i915_irq.c
+>+++ b/drivers/gpu/drm/i915/i915_irq.c
+>@@ -2270,7 +2270,17 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
+> {
+> 	u32 mask;
+>
+>-	if (DISPLAY_VER(dev_priv) >= 12)
+>+	if (DISPLAY_VER(dev_priv) >= 13)
+>+		return TGL_DE_PORT_AUX_DDIA |
+>+			TGL_DE_PORT_AUX_DDIB |
+>+			TGL_DE_PORT_AUX_DDIC |
+>+			XELPD_DE_PORT_AUX_DDID |
+>+			XELPD_DE_PORT_AUX_DDIE |
+>+			TGL_DE_PORT_AUX_USBC1 |
+>+			TGL_DE_PORT_AUX_USBC2 |
+>+			TGL_DE_PORT_AUX_USBC3 |
+>+			TGL_DE_PORT_AUX_USBC4;
+>+	else if (DISPLAY_VER(dev_priv) >= 12)
+> 		return TGL_DE_PORT_AUX_DDIA |
+> 			TGL_DE_PORT_AUX_DDIB |
+> 			TGL_DE_PORT_AUX_DDIC |
+>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>index 846fa927a3d8..87d7257922d0 100644
+>--- a/drivers/gpu/drm/i915/i915_reg.h
+>+++ b/drivers/gpu/drm/i915/i915_reg.h
+>@@ -7873,15 +7873,17 @@ enum {
+> #define  BDW_DE_PORT_HOTPLUG_MASK	GEN8_DE_PORT_HOTPLUG(HPD_PORT_A)
+> #define  BXT_DE_PORT_GMBUS		(1 << 1)
+> #define  GEN8_AUX_CHANNEL_A		(1 << 0)
+>-#define  TGL_DE_PORT_AUX_USBC6		(1 << 13)
+>-#define  TGL_DE_PORT_AUX_USBC5		(1 << 12)
+>-#define  TGL_DE_PORT_AUX_USBC4		(1 << 11)
+>-#define  TGL_DE_PORT_AUX_USBC3		(1 << 10)
+>-#define  TGL_DE_PORT_AUX_USBC2		(1 << 9)
+>-#define  TGL_DE_PORT_AUX_USBC1		(1 << 8)
+>-#define  TGL_DE_PORT_AUX_DDIC		(1 << 2)
+>-#define  TGL_DE_PORT_AUX_DDIB		(1 << 1)
+>-#define  TGL_DE_PORT_AUX_DDIA		(1 << 0)
+>+#define  TGL_DE_PORT_AUX_USBC6		REG_BIT(13)
+>+#define  XELPD_DE_PORT_AUX_DDIE		REG_BIT(13)
+>+#define  TGL_DE_PORT_AUX_USBC5		REG_BIT(12)
+>+#define  XELPD_DE_PORT_AUX_DDID		REG_BIT(12)
+>+#define  TGL_DE_PORT_AUX_USBC4		REG_BIT(11)
+>+#define  TGL_DE_PORT_AUX_USBC3		REG_BIT(10)
+>+#define  TGL_DE_PORT_AUX_USBC2		REG_BIT(9)
+>+#define  TGL_DE_PORT_AUX_USBC1		REG_BIT(8)
+>+#define  TGL_DE_PORT_AUX_DDIC		REG_BIT(2)
+>+#define  TGL_DE_PORT_AUX_DDIB		REG_BIT(1)
+>+#define  TGL_DE_PORT_AUX_DDIA		REG_BIT(0)
+>
+> #define GEN8_DE_MISC_ISR _MMIO(0x44460)
+> #define GEN8_DE_MISC_IMR _MMIO(0x44464)
+>-- 
+>2.25.4
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
