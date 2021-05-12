@@ -2,66 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22AC737C77E
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 18:31:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1795337C826
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 18:41:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 089416E3C1;
-	Wed, 12 May 2021 16:31:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEDD86E05D;
+	Wed, 12 May 2021 16:41:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com
- [64.147.123.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F33E6E3C1
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 16:31:43 +0000 (UTC)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailout.west.internal (Postfix) with ESMTP id 7201A12F9
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 12:31:40 -0400 (EDT)
-Received: from imap22 ([10.202.2.72])
- by compute3.internal (MEProxy); Wed, 12 May 2021 12:31:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chasen.name; h=
- mime-version:message-id:date:from:to:subject:content-type; s=
- fm2; bh=kAOa0m3p1LgcYb91oqom3cbmzE2uQkgFMsah9MGNXfM=; b=dayGt5TC
- KwCgWGRfj5FdH5HhxfA/AD4xA9+B3C4VssQ37hK8qYEoQaiXyOahTcuezB/BJfVx
- XiOIejWbQIHo++kpL0O9annB6KwqS7xUUNVuPLXEO08YCcI9MikilVNgIzBclPrd
- 18IM5w2MfqLk0xngrrWwoVHPuPMagb9aSe/vN0vTC7YMxnd/Wvs4lW+VKhg5tz3L
- dGwfbtTKwrVU9wge2LLbbmQ1RUpdfNGhY6o8aYWV3xoF/1P+YUefYp4iAx3XlZVZ
- ED/iOot+nZkVk94Kkqql1FrFHli021Td7QpCDh+nFRNNAkaEOE8xxZw8xQPZE6jV
- GcRuY7hqEQp85w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm2; bh=kAOa0m3p1LgcYb91oqom3cbmzE2uQ
- kgFMsah9MGNXfM=; b=tUO7RWf8JA51yMEY5OBeXZLIXX6pTRTcz1NfXwql2BxQb
- WkRAIhuzGCN9g8WaaU+1Yl2LL5i3PjKBpz5L5s9oYZvx5K/V5zfo+g5QbMf60kVE
- vdrcHQ4naa05TWlAbh5iL8+y2rDXQoVbvRuRY8EytqPq1PXclgwaNoCsBOA0oePD
- /T9PebFdHxQ/4QBBI0nrvFn2Ei7q1bAbZAU25+T1vO2MDjJRrnI35vhrC4PB7hcC
- VP4BM08vOskbLQTK27VI6tgGBllnn9epLzSYC5tSlUgd6OQcF7yvKB/FjIMvgiyN
- gQ+YgYS2uKm8A0HZB6sOMTFw4wq1RGEfPp+JESDpQ==
-X-ME-Sender: <xms:6wKcYAXzb0doPzaqmX8hmDDOW20R-OvrnyvkB8HboL3Bz2BNqJOWCw>
- <xme:6wKcYEkTk6Xp9BheVxToOTF2LcUn1Ymy1laD71KlSKFwCgE4AAytK_UWidEys94jo
- PZamcJQcA70W8p_1VY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdehvddgleekucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfffhffvufgtsehttdertd
- erredtnecuhfhrohhmpedftegurghmucevhhgrshgvnhdfuceorggurghmsegthhgrshgv
- nhdrnhgrmhgvqeenucggtffrrghtthgvrhhnpeejieduveeiudduveduteektdfhtdettd
- etgeehffeuheeltdejveelueeghfejhfenucffohhmrghinhepghhithhhuhgsrdgtohhm
- necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprggurg
- hmsegthhgrshgvnhdrnhgrmhgv
-X-ME-Proxy: <xmx:6wKcYEYkn6_v0Plxtm_gXQx8jnKUqrfhd78Hptpd6VVo64Y1SoIj9w>
- <xmx:6wKcYPXBxCpLlVPUNM19N06bhCD0Vvc8BtgRv-adKkH24pcCjmzGwQ>
- <xmx:6wKcYKl3KHwMTYaKBK6h6hIc6zac_xphNTE7wJJJmeemLFAQ8ru8yA>
- <xmx:7AKcYPxwwSJdCa7cxpToQI3aDJuEajrAddtHlkCApT1nfzBxK7QGyQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id A7C2062C0064; Wed, 12 May 2021 12:31:39 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
-Mime-Version: 1.0
-Message-Id: <904b8186-4d49-4292-bc6e-04726c571138@beta.fastmail.com>
-Date: Wed, 12 May 2021 12:31:14 -0400
-From: "Adam Chasen" <adam@chasen.name>
-To: intel-gfx@lists.freedesktop.org
-Subject: [Intel-gfx] Tracing a "drm_mode_prune_invalid"
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7CD36E05D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 16:41:14 +0000 (UTC)
+IronPort-SDR: +L8pW0iQc7+/mMUpCVmHVggrt7niAcB5YF1XpAmHybrgIcV3D4qOoob5ZbiJvcAFKXq+kuj+3n
+ PifEAKHzOqxg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9982"; a="187175666"
+X-IronPort-AV: E=Sophos;i="5.82,293,1613462400"; d="scan'208";a="187175666"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2021 09:41:12 -0700
+IronPort-SDR: ouSEPX4TEGtzsRa/yfDGCeEb7heqYCz89lk0kmjB/zVSoA1xeFQwPDOWRg8GgY9+xj4jIcJI15
+ l4OH2VYR+lrQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,293,1613462400"; d="scan'208";a="400300002"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+ by fmsmga007.fm.intel.com with ESMTP; 12 May 2021 09:41:11 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 12 May 2021 09:41:11 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 12 May 2021 09:41:11 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2106.013;
+ Wed, 12 May 2021 09:41:11 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH 5/5] drm/i915/dmc: s/intel_csr.c/intel_dmc.c and
+ s/intel_csr.h/intel_dmc.h
+Thread-Index: AQHXRrvkxYnZCKU3z0Cs9Q2hKfOmJargT/+A//+9pDA=
+Date: Wed, 12 May 2021 16:41:10 +0000
+Message-ID: <ccb4b799626a473780558492f2e41926@intel.com>
+References: <20210511231757.14873-1-anusha.srivatsa@intel.com>
+ <20210511231757.14873-6-anusha.srivatsa@intel.com> <87tun8t6m0.fsf@intel.com>
+In-Reply-To: <87tun8t6m0.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/dmc: s/intel_csr.c/intel_dmc.c
+ and s/intel_csr.h/intel_dmc.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,118 +70,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hoping I can (help) craft a patch to address what appears to be an issue with overaggressive mode pruning. I am having trouble with rejection of a Dual-DVI compatible mode out of the DisplayPort  specific to i915 in Fedora 33. It seems that drm_mode_validate_pipeline is the wall I hit when digging for why this mode is pruned. Requesting additional troubleshooting guidance.
-
-```
-kernel: [drm:drm_mode_debug_printmodeline [drm]] Modeline "2560x1600": 60 268000 2560 2608 2640 2720 1600 1603 1609 1646 0x48 0x9
-kernel: [drm:drm_mode_prune_invalid [drm]] Not using 2560x1600 mode: CLOCK_HIGH
-```
-
-This is an HP LP3065 Dual-DVI monitor connected via DisplayPort with a BizLink "active" adapter (recommended by HP and DELL for their Dual-DVI monitors).
-
-The adapter appears to be "transparent" to the system (unlike some adapters reporting similar issues). I2C probes and EDIDs all appear to be direct from the monitor. Though, there is a mention of a m2DVIa "branch device" in the `i915_display_info` output.
-
-The pruned mode works with X-Org with manually setting the mode via `xrandr` on Xorg (my current fallback setup): 
-`xrandr --newmode "2560x1600R" 268.50 2560 2608 2640 2720 1600 1603 1609 1646 +hsync -vsync`
-
-My setup is a bit different than some older reported "dual mode" issues (i.e. passive adapters), so I do not believe it is the "faulty dual mode detection" (i.e. https://github.com/hansmi/fake-dp-dual-mode). I was thinking it could be related by some "state" of the port detection limiting output to 165MHz clock.
-
-Thanks,
-Adam
-
-with `echo 0x6 > /sys/module/drm/parameters/debug`
-
-```
-kernel: [drm:drm_add_display_info [drm]] Supported Monitor Refresh rate range is 0 Hz - 0 Hz
-kernel: [drm:drm_add_display_info [drm]] non_desktop set to 0
-kernel: i915 0000:00:02.0: [drm:intel_dp_set_edid [i915]] [CONNECTOR:95:DP-1] DFP max bpc 8, max dotclock 0, TMDS clock 25000-165000
-kernel: i915 0000:00:02.0: [drm:intel_dp_set_edid [i915]] [CONNECTOR:95:DP-1] YCbCr 4:2:0 allowed? no, YCbCr 4:4:4->4:2:0 conversion? no
-kernel: [drm:drm_dp_get_edid_quirks [drm_kms_helper]] DP sink: EDID mfg 22-f0 prod-ID 90-26 quirks: 0x0000
-kernel: [drm:drm_add_display_info [drm]] Supported Monitor Refresh rate range is 0 Hz - 0 Hz
-kernel: [drm:drm_add_display_info [drm]] non_desktop set to 0
-kernel: [drm:drm_add_edid_modes [drm]] ELD: no CEA Extension found
-kernel: [drm:drm_add_display_info [drm]] Supported Monitor Refresh rate range is 0 Hz - 0 Hz
-kernel: [drm:drm_add_display_info [drm]] non_desktop set to 0
-**kernel: [drm:drm_mode_debug_printmodeline [drm]] Modeline "2560x1600": 60 268000 2560 2608 2640 2720 1600 1603 1609 1646 0x48 0x9**
-**kernel: [drm:drm_mode_prune_invalid [drm]] Not using 2560x1600 mode: CLOCK_HIGH**
-kernel: [drm:drm_helper_probe_single_connector_modes [drm_kms_helper]] [CONNECTOR:95:DP-1] probed modes :
-kernel: [drm:drm_mode_debug_printmodeline [drm]] Modeline "1280x800": 60 71000 1280 1328 1360 1440 800 803 809 823 0x40 0x9
-kernel: [drm:drm_helper_probe_single_connector_modes [drm_kms_helper]] [CONNECTOR:106:HDMI-A-1]
-```
-
-./edid-decode /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-DP-1/edid                                   
-```
-edid-decode (hex):
-
-00 ff ff ff ff ff ff 00 22 f0 90 26 01 01 01 01
-16 14 01 03 80 40 28 78 2a 8f 95 ad 4f 32 b2 25
-0f 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-01 01 01 01 01 01 b0 68 00 a0 a0 40 2e 60 30 20
-36 00 81 90 21 00 00 1a bc 1b 00 a0 50 20 17 30
-30 20 36 00 81 90 21 00 00 1a 00 00 00 fc 00 48
-50 20 4c 50 33 30 36 35 0a 20 20 20 00 00 00 ff
-00 43 4e 34 30 32 32 30 51 39 43 0a 20 20 00 77
-
-----------------
-
-Block 0, Base EDID:
-...
-  Detailed Timing Descriptors:
-    DTD 1:  2560x1600   59.860 Hz   8:5    98.529 kHz  268.000 MHz (641 mm x 400 mm)
-                 Hfront   48 Hsync  32 Hback  80 Hpol P
-                 Vfront    3 Vsync   6 Vback  37 Vpol N
-    DTD 2:  1280x800    59.910 Hz   8:5    49.306 kHz   71.000 MHz (641 mm x 400 mm)
-                 Hfront   48 Hsync  32 Hback  80 Hpol P
-                 Vfront    3 Vsync   6 Vback  14 Vpol N
-    Display Product Name: 'HP LP3065'
-...
-```
-
-/sys/kernel/debug/dri/0/i915_display_info
-```
-CRTC info
----------
-[CRTC:51:pipe A]:
-	uapi: enable=yes, active=yes, mode="1280x800": 60 71000 1280 1328 1360 1440 800 803 809 823 0x40 0x9
-	hw: active=yes, adjusted_mode="1280x800": 60 71000 1280 1328 1360 1440 800 803 809 823 0x40 0x9
-	pipe src size=1280x800, dither=no, bpp=24
-	num_scalers=2, scaler_users=0 scaler_id=-1, scalers[0]: use=no, mode=0, scalers[1]: use=no, mode=0
-	[ENCODER:94:DDI C/PHY C]: connectors:
-		[CONNECTOR:95:DP-1]
-	[PLANE:31:plane 1A]: type=PRI
-		uapi: [FB:133] XR24 little-endian (0x34325258),0x100000000000001,1280x800, visible=visible, src=1280.000000x800.000000+0.000000+0.000000, dst=1280x800+0+0, rotation=0 (0x00000001)
-		hw: [FB:133] XR24 little-endian (0x34325258),0x100000000000001,1280x800, visible=yes, src=1280.000000x800.000000+0.000000+0.000000, dst=1280x800+0+0, rotation=0 (0x00000001)
-	[PLANE:39:plane 2A]: type=OVL
-		uapi: [FB:0] n/a,0x0,0x0, visible=hidden, src=0.000000x0.000000+0.000000+0.000000, dst=0x0+0+0, rotation=0 (0x00000001)
-	[PLANE:47:cursor A]: type=CUR
-		uapi: [FB:0] n/a,0x0,0x0, visible=hidden, src=0.000000x0.000000+0.000000+0.000000, dst=0x0+0+0, rotation=0 (0x00000001)
-	underrun reporting: cpu=yes pch=yes
-...
-Connector info
---------------
-[CONNECTOR:95:DP-1]: status: connected
-	physical dimensions: 640x400mm
-	subpixel order: Unknown
-	CEA rev: 0
-	DPCD rev: 11
-	audio support: no
-	DP branch device present: yes
-		Type: DVI
-		ID: m2DVIa
-		HW: 0.1
-		SW: 2.0
-	HDCP version: HDCP1.4 
-	modes:
-		"1280x800": 60 71000 1280 1328 1360 1440 800 803 809 823 0x40 0x9
-[CONNECTOR:106:HDMI-A-1]: status: disconnected
-...
-```
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSmFuaSBOaWt1bGEgPGph
+bmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4NCj4gU2VudDogV2VkbmVzZGF5LCBNYXkgMTIsIDIw
+MjEgNjozOCBBTQ0KPiBUbzogU3JpdmF0c2EsIEFudXNoYSA8YW51c2hhLnNyaXZhdHNhQGludGVs
+LmNvbT47IGludGVsLQ0KPiBnZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBTcml2YXRz
+YSwgQW51c2hhIDxhbnVzaGEuc3JpdmF0c2FAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BB
+VENIIDUvNV0gZHJtL2k5MTUvZG1jOiBzL2ludGVsX2Nzci5jL2ludGVsX2RtYy5jIGFuZA0KPiBz
+L2ludGVsX2Nzci5oL2ludGVsX2RtYy5oDQo+IA0KPiBPbiBUdWUsIDExIE1heSAyMDIxLCBBbnVz
+aGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+IHdyb3RlOg0KPiA+IEZpbmFs
+bHksIHJlbmFtZSB0aGUgaGVhZGVyIGFuZCBzb3VyY2UgZmlsZSBmcm9tIGNzciB0byBkbWMuDQo+
+ID4NCj4gPiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4NCj4g
+PiBTaWduZWQtb2ZmLWJ5OiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5j
+b20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICB8IDIgKy0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5LmMgICAgICAgICAgICAgIHwgMiArLQ0KPiA+ICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jICAgICAgfCAyICstDQo+
+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jICAg
+ICAgICB8IDIgKy0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS97aW50ZWxfY3Ny
+LmMgPT4gaW50ZWxfZG1jLmN9IHwgMiArLQ0KPiA+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkve2ludGVsX2Nzci5oID0+IGludGVsX2RtYy5ofSB8IDYgKysrLS0tDQo+ID4gIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgICAgICAgICAgICAgICAgICAgICAgICAgICB8IDIgKy0N
+Cj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJyb3IuYyAgICAgICAgICAgICAg
+ICAgICAgIHwgMiArLQ0KPiA+ICA4IGZpbGVzIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDEw
+IGRlbGV0aW9ucygtKSAgcmVuYW1lDQo+ID4gZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS97
+aW50ZWxfY3NyLmMgPT4gaW50ZWxfZG1jLmN9ICg5OSUpDQo+ID4gcmVuYW1lIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkve2ludGVsX2Nzci5oID0+IGludGVsX2RtYy5ofSAoODglKQ0KPiA+
+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlDQo+ID4gYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSBpbmRleCBkMGQ5MzZkOTEzN2IuLmYxMDk5YjZi
+ZmVkNQ0KPiA+IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxl
+DQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUNCj4gPiBAQCAtMjAxLDcg
+KzIwMSw3IEBAIGk5MTUteSArPSBcDQo+ID4gIAlkaXNwbGF5L2ludGVsX2NvbWJvX3BoeS5vIFwN
+Cj4gPiAgCWRpc3BsYXkvaW50ZWxfY29ubmVjdG9yLm8gXA0KPiA+ICAJZGlzcGxheS9pbnRlbF9j
+cnRjLm8gXA0KPiA+IC0JZGlzcGxheS9pbnRlbF9jc3IubyBcDQo+ID4gKwlkaXNwbGF5L2ludGVs
+X2RtYy5vIFwNCj4gDQo+IE5pdHBpY2ssIHBsZWFzZSBrZWVwIHRoZSBmaWxlIGxpc3RzIGFuZCAj
+aW5jbHVkZSBsaXN0cyBzb3J0ZWQuDQoNClN1cmUuDQpBbnkgZmVlZGJhY2sgb24gdGhlIHJlc3Qg
+b2YgdGhlIHNlcmllcz8NCg0KQW51c2hhDQo+IEJSLA0KPiBKYW5pLg0KPiANCj4gPiAgCWRpc3Bs
+YXkvaW50ZWxfY3Vyc29yLm8gXA0KPiA+ICAJZGlzcGxheS9pbnRlbF9kaXNwbGF5Lm8gXA0KPiA+
+ICAJZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLm8gXA0KPiA+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+IGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiBpbmRleCA0ZWZiNWQyODcx
+MmMuLmI0ZGI3NzBkN2M3NCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gQEAgLTc5LDcgKzc5LDcgQEANCj4gPiAgI2luY2x1
+ZGUgImludGVsX2NkY2xrLmgiDQo+ID4gICNpbmNsdWRlICJpbnRlbF9jb2xvci5oIg0KPiA+ICAj
+aW5jbHVkZSAiaW50ZWxfY3J0Yy5oIg0KPiA+IC0jaW5jbHVkZSAiaW50ZWxfY3NyLmgiDQo+ID4g
+KyNpbmNsdWRlICJpbnRlbF9kbWMuaCINCj4gPiAgI2luY2x1ZGUgImludGVsX2RlLmgiDQo+ID4g
+ICNpbmNsdWRlICJpbnRlbF9kaXNwbGF5X3R5cGVzLmgiDQo+ID4gICNpbmNsdWRlICJpbnRlbF9k
+cF9saW5rX3RyYWluaW5nLmgiDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMNCj4gPiBpbmRleCA1ZWQ4OTk2ZWFj
+YjQuLjA1MzdhMWY2YmZiYiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X2RlYnVnZnMuYw0KPiA+IEBAIC03LDcgKzcsNyBA
+QA0KPiA+ICAjaW5jbHVkZSA8ZHJtL2RybV9mb3VyY2MuaD4NCj4gPg0KPiA+ICAjaW5jbHVkZSAi
+aTkxNV9kZWJ1Z2ZzLmgiDQo+ID4gLSNpbmNsdWRlICJpbnRlbF9jc3IuaCINCj4gPiArI2luY2x1
+ZGUgImludGVsX2RtYy5oIg0KPiA+ICAjaW5jbHVkZSAiaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmgi
+DQo+ID4gICNpbmNsdWRlICJpbnRlbF9kaXNwbGF5X3Bvd2VyLmgiDQo+ID4gICNpbmNsdWRlICJp
+bnRlbF9kZS5oIg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXlfcG93ZXIuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMNCj4gPiBpbmRleCA3MmY2ZTFlYTcxMWEuLjFhY2FjYmEy
+NzM1ZiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2Rpc3BsYXlfcG93ZXIuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheV9wb3dlci5jDQo+ID4gQEAgLTksNyArOSw3IEBADQo+ID4gICNpbmNsdWRl
+ICJpOTE1X2lycS5oIg0KPiA+ICAjaW5jbHVkZSAiaW50ZWxfY2RjbGsuaCINCj4gPiAgI2luY2x1
+ZGUgImludGVsX2NvbWJvX3BoeS5oIg0KPiA+IC0jaW5jbHVkZSAiaW50ZWxfY3NyLmgiDQo+ID4g
+KyNpbmNsdWRlICJpbnRlbF9kbWMuaCINCj4gPiAgI2luY2x1ZGUgImludGVsX2Rpc3BsYXlfcG93
+ZXIuaCINCj4gPiAgI2luY2x1ZGUgImludGVsX2RlLmgiDQo+ID4gICNpbmNsdWRlICJpbnRlbF9k
+aXNwbGF5X3R5cGVzLmgiDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfY3NyLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZG1jLmMNCj4gPiBzaW1pbGFyaXR5IGluZGV4IDk5JQ0KPiA+IHJlbmFtZSBmcm9tIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3NyLmMNCj4gPiByZW5hbWUgdG8gZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kbWMuYw0KPiA+IGluZGV4IDJkOGI2ZjJmZWQ3
+Zi4uN2U0MzhlNGE2ZjJiIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfY3NyLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2RtYy5jDQo+ID4gQEAgLTI2LDcgKzI2LDcgQEANCj4gPg0KPiA+ICAjaW5jbHVkZSAi
+aTkxNV9kcnYuaCINCj4gPiAgI2luY2x1ZGUgImk5MTVfcmVnLmgiDQo+ID4gLSNpbmNsdWRlICJp
+bnRlbF9jc3IuaCINCj4gPiArI2luY2x1ZGUgImludGVsX2RtYy5oIg0KPiA+ICAjaW5jbHVkZSAi
+aW50ZWxfZGUuaCINCj4gPg0KPiA+ICAvKioNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuaA0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kbWMuaA0KPiA+IHNpbWlsYXJpdHkgaW5kZXggODglDQo+ID4gcmVuYW1l
+IGZyb20gZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuaA0KPiA+IHJlbmFt
+ZSB0byBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RtYy5oDQo+ID4gaW5kZXgg
+ZmM0OTYwYjkxNjg2Li41N2RkOTlkYTBjZWQgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuaA0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZG1jLmgNCj4gPiBAQCAtMyw4ICszLDggQEANCj4gPiAgICogQ29w
+eXJpZ2h0IMKpIDIwMTkgSW50ZWwgQ29ycG9yYXRpb24NCj4gPiAgICovDQo+ID4NCj4gPiAtI2lm
+bmRlZiBfX0lOVEVMX0NTUl9IX18NCj4gPiAtI2RlZmluZSBfX0lOVEVMX0NTUl9IX18NCj4gPiAr
+I2lmbmRlZiBfX0lOVEVMX0RNQ19IX18NCj4gPiArI2RlZmluZSBfX0lOVEVMX0RNQ19IX18NCj4g
+Pg0KPiA+ICBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZTsNCj4gPg0KPiA+IEBAIC0xOCw0ICsxOCw0
+IEBAIHZvaWQgaW50ZWxfZG1jX3Vjb2RlX2Zpbmkoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUNCj4g
+PiAqaTkxNSk7ICB2b2lkIGludGVsX2RtY191Y29kZV9zdXNwZW5kKHN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICppOTE1KTsNCj4gPiB2b2lkIGludGVsX2RtY191Y29kZV9yZXN1bWUoc3RydWN0IGRy
+bV9pOTE1X3ByaXZhdGUgKmk5MTUpOw0KPiA+DQo+ID4gLSNlbmRpZiAvKiBfX0lOVEVMX0NTUl9I
+X18gKi8NCj4gPiArI2VuZGlmIC8qIF9fSU5URUxfRE1DX0hfXyAqLw0KPiA+IGRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2Rydi5jIGluZGV4IGYyYTk1ODNkZmVjYy4uMmYwNmJiN2IzZWQyDQo+ID4gMTAw
+NjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYw0KPiA+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMNCj4gPiBAQCAtNDksNyArNDksNyBAQA0K
+PiA+ICAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9hY3BpLmgiDQo+ID4gICNpbmNsdWRlICJkaXNw
+bGF5L2ludGVsX2J3LmgiDQo+ID4gICNpbmNsdWRlICJkaXNwbGF5L2ludGVsX2NkY2xrLmgiDQo+
+ID4gLSNpbmNsdWRlICJkaXNwbGF5L2ludGVsX2Nzci5oIg0KPiA+ICsjaW5jbHVkZSAiZGlzcGxh
+eS9pbnRlbF9kbWMuaCINCj4gPiAgI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBl
+cy5oIg0KPiA+ICAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9kcC5oIg0KPiA+ICAjaW5jbHVkZSAi
+ZGlzcGxheS9pbnRlbF9mYmRldi5oIg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pOTE1X2dwdV9lcnJvci5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dw
+dV9lcnJvci5jDQo+ID4gaW5kZXggMGFmNWFiYzQ4MDkzLi5kZjhkZDIyNjU1YWIgMTAwNjQ0DQo+
+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJyb3IuYw0KPiA+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ3B1X2Vycm9yLmMNCj4gPiBAQCAtMzYsNyArMzYs
+NyBAQA0KPiA+DQo+ID4gICNpbmNsdWRlIDxkcm0vZHJtX3ByaW50Lmg+DQo+ID4NCj4gPiAtI2lu
+Y2x1ZGUgImRpc3BsYXkvaW50ZWxfY3NyLmgiDQo+ID4gKyNpbmNsdWRlICJkaXNwbGF5L2ludGVs
+X2RtYy5oIg0KPiA+ICAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9vdmVybGF5LmgiDQo+ID4NCj4g
+PiAgI2luY2x1ZGUgImdlbS9pOTE1X2dlbV9jb250ZXh0LmgiDQo+IA0KPiAtLQ0KPiBKYW5pIE5p
+a3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyDQpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
