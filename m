@@ -2,31 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61F7F37EBDD
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 May 2021 00:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBB7B37EC69
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 May 2021 00:28:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE51E6E584;
-	Wed, 12 May 2021 22:24:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7F56E580;
+	Wed, 12 May 2021 22:28:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 04C516E580;
- Wed, 12 May 2021 22:24:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F0E08A47EB;
- Wed, 12 May 2021 22:23:59 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF70289142
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 22:28:13 +0000 (UTC)
+IronPort-SDR: 41j4AnGtG7F/RTx6+qi9v93wvvq1nj1XKdXBLD2GhSDSl+VWTQ411aiU4WZ1QTn5+prsxjs1iE
+ O5W0/2r2MPtA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9982"; a="187242981"
+X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="187242981"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2021 15:28:11 -0700
+IronPort-SDR: f6LopKLhNFfq2DAxh5uw9C4sjyyZui+Np2M2+nCE9F1fo5ctxiSAi/ti8U2x9ksTqWik/Ftyax
+ 9sZybylinVow==
+X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="430947624"
+Received: from suryadee-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.1.144])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2021 15:28:10 -0700
+Date: Wed, 12 May 2021 15:28:09 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210512222809.f5vekclemdguwof2@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210508022820.780227-14-matthew.d.roper@intel.com>
+ <20210508025243.781288-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Wed, 12 May 2021 22:23:59 -0000
-Message-ID: <162085823995.28504.17307226669077166799@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210512212809.1234701-1-imre.deak@intel.com>
-In-Reply-To: <20210512212809.1234701-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Reenable_LTTPR_non-transparent_LT_mode_for_DPCD=5FREV?=
- =?utf-8?q?=3C1=2E4?=
+Content-Disposition: inline
+In-Reply-To: <20210508025243.781288-1-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3.1 13/48] drm/i915/xelpd: Add rc_qp_table
+ for rcparams calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,585 +50,522 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0206694068=="
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0206694068==
-Content-Type: multipart/alternative;
- boundary="===============4463947098369145649=="
-
---===============4463947098369145649==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915: Reenable LTTPR non-transparent LT mode for DPCD_REV<1.4
-URL   : https://patchwork.freedesktop.org/series/90102/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10074 -> Patchwork_20115
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_20115 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20115, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20115:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-ilk-650:         NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-ilk-650/igt@runner@aborted.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-nick:        [INCOMPLETE][2] ([i915#2782] / [i915#2940]) -> [DMESG-FAIL][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@i915_selftest@live@execlists.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@runner@aborted:
-    - {fi-rkl-11500t}:    NOTRUN -> [FAIL][4]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-rkl-11500t/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20115 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_fence@basic-await@vcs0:
-    - fi-bsw-n3050:       [PASS][5] -> [FAIL][6] ([i915#3457])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-n3050/igt@gem_exec_fence@basic-await@vcs0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-n3050/igt@gem_exec_fence@basic-await@vcs0.html
-
-  * igt@gem_exec_fence@basic-await@vecs0:
-    - fi-glk-dsi:         [PASS][7] -> [FAIL][8] ([i915#3457])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][9] ([fdo#109271]) +6 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_exec_fence@nb-await@vcs0:
-    - fi-bsw-kefka:       [PASS][10] -> [FAIL][11] ([i915#3457]) +2 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - fi-tgl-u2:          [PASS][12] -> [FAIL][13] ([i915#1888])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][14] ([fdo#109271] / [i915#2190])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_wait@busy@all:
-    - fi-bsw-nick:        [PASS][15] -> [FAIL][16] ([i915#3177] / [i915#3457])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@gem_wait@busy@all.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@gem_wait@busy@all.html
-
-  * igt@gem_wait@wait@all:
-    - fi-bsw-nick:        [PASS][17] -> [FAIL][18] ([i915#3457]) +2 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@gem_wait@wait@all.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@gem_wait@wait@all.html
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-WARN][19] ([i915#1982] / [i915#3457])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-kbl-soraka:      NOTRUN -> [INCOMPLETE][20] ([i915#2782] / [i915#3462] / [i915#794])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-FAIL][21] ([i915#1886] / [i915#2291])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-kbl-soraka:      NOTRUN -> [DMESG-WARN][22] ([i915#3457])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@i915_selftest@live@mman.html
-
-  * igt@kms_busy@basic@modeset:
-    - fi-ilk-650:         [PASS][23] -> [INCOMPLETE][24] ([i915#3457])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-ilk-650/igt@kms_busy@basic@modeset.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-ilk-650/igt@kms_busy@basic@modeset.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][25] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-kbl-soraka:      NOTRUN -> [SKIP][26] ([fdo#109271] / [i915#533])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
-    - fi-bwr-2160:        [PASS][27] -> [FAIL][28] ([i915#53])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bwr-2160/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bwr-2160/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a:
-    - fi-bsw-kefka:       [PASS][29] -> [FAIL][30] ([i915#53])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-kefka/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-kefka/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-    - fi-elk-e7500:       [PASS][31] -> [FAIL][32] ([i915#53]) +2 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
-
-  * igt@runner@aborted:
-    - fi-kbl-soraka:      NOTRUN -> [FAIL][33] ([i915#1436] / [i915#3363])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_fence@nb-await@vcs0:
-    - fi-bsw-nick:        [FAIL][34] ([i915#3457]) -> [PASS][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@gem_exec_fence@nb-await@vcs0.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@gem_exec_fence@nb-await@vcs0.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - {fi-tgl-1115g4}:    [FAIL][36] ([i915#1888]) -> [PASS][37]
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence:
-    - fi-elk-e7500:       [FAIL][38] ([i915#53]) -> [PASS][39]
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [FAIL][40] ([i915#3457]) -> [FAIL][41] ([i915#3457] / [i915#3472])
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-    - fi-ilk-650:         [FAIL][42] ([i915#3457]) -> [FAIL][43] ([i915#3457] / [i915#3472])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-ilk-650/igt@gem_exec_gttfill@basic.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-ilk-650/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_module_load@reload:
-    - fi-elk-e7500:       [DMESG-WARN][44] ([i915#3457]) -> [DMESG-FAIL][45] ([i915#3457])
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-elk-e7500/igt@i915_module_load@reload.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-elk-e7500/igt@i915_module_load@reload.html
-    - fi-bsw-kefka:       [DMESG-WARN][46] ([i915#1982] / [i915#3457]) -> [DMESG-FAIL][47] ([i915#1982] / [i915#3457])
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-kefka/igt@i915_module_load@reload.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-kefka/igt@i915_module_load@reload.html
-    - fi-bsw-nick:        [DMESG-FAIL][48] ([i915#3457]) -> [DMESG-WARN][49] ([i915#3457])
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@i915_module_load@reload.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-tgl-u2:          [INCOMPLETE][50] ([i915#3462]) -> [DMESG-FAIL][51] ([i915#3462])
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-tgl-u2/igt@i915_selftest@live@execlists.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-tgl-u2/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-elk-e7500:       [DMESG-FAIL][52] ([i915#3457]) -> [DMESG-WARN][53] ([i915#3457])
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-elk-e7500/igt@i915_selftest@live@mman.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-elk-e7500/igt@i915_selftest@live@mman.html
-
-  * igt@runner@aborted:
-    - fi-skl-6600u:       [FAIL][54] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][55] ([i915#1436] / [i915#3363])
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-skl-6600u/igt@runner@aborted.html
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-skl-6600u/igt@runner@aborted.html
-    - fi-glk-dsi:         [FAIL][56] ([i915#2426] / [i915#3363] / [k.org#202321]) -> [FAIL][57] ([i915#3363] / [k.org#202321])
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-glk-dsi/igt@runner@aborted.html
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-glk-dsi/igt@runner@aborted.html
-    - fi-cml-u2:          [FAIL][58] ([i915#2082] / [i915#2426] / [i915#3363]) -> [FAIL][59] ([i915#3363])
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-cml-u2/igt@runner@aborted.html
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-cml-u2/igt@runner@aborted.html
-    - fi-kbl-7567u:       [FAIL][60] ([i915#1436] / [i915#3363]) -> [FAIL][61] ([i915#1436] / [i915#2426] / [i915#3363])
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-kbl-7567u/igt@runner@aborted.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-7567u/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1886]: https://gitlab.freedesktop.org/drm/intel/issues/1886
-  [i915#1888]: https://gitlab.freedesktop.org/drm/intel/issues/1888
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2082]: https://gitlab.freedesktop.org/drm/intel/issues/2082
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2291]: https://gitlab.freedesktop.org/drm/intel/issues/2291
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2940]: https://gitlab.freedesktop.org/drm/intel/issues/2940
-  [i915#3177]: https://gitlab.freedesktop.org/drm/intel/issues/3177
-  [i915#3276]: https://gitlab.freedesktop.org/drm/intel/issues/3276
-  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3457]: https://gitlab.freedesktop.org/drm/intel/issues/3457
-  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
-  [i915#3468]: https://gitlab.freedesktop.org/drm/intel/issues/3468
-  [i915#3472]: https://gitlab.freedesktop.org/drm/intel/issues/3472
-  [i915#53]: https://gitlab.freedesktop.org/drm/intel/issues/53
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [i915#794]: https://gitlab.freedesktop.org/drm/intel/issues/794
-  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
-
-
-Participating hosts (43 -> 34)
-------------------------------
-
-  Additional (2): fi-kbl-soraka fi-rkl-11500t 
-  Missing    (11): fi-ilk-m540 fi-bxt-dsi fi-ehl-1 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan fi-kbl-7500u fi-dg1-1 fi-cfl-8109u fi-bdw-samus fi-skl-6700k2 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10074 -> Patchwork_20115
-
-  CI-20190529: 20190529
-  CI_DRM_10074: 5aefdc1f23734b6a3d545c8497b098ba4d704a0c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6083: d28aee5c5f528aa6c352c3339f20aaed4d698ffa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20115: 4f36fbac1a27825c7f0c1d49a887c2f444defc70 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4f36fbac1a27 drm/i915: Reenable LTTPR non-transparent LT mode for DPCD_REV<1.4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/index.html
-
---===============4463947098369145649==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Reenable LTTPR non-transparent LT mode for DPCD_REV&lt;1.4</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90102/">https://patchwork.freedesktop.org/series/90102/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10074 -&gt; Patchwork_20115</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20115 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20115, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20115:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-ilk-650:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-ilk-650/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_selftest@live@execlists:<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2940">i915#2940</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>{fi-rkl-11500t}:    NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-rkl-11500t/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20115 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-await@vcs0:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-n3050/igt@gem_exec_fence@basic-await@vcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-n3050/igt@gem_exec_fence@basic-await@vcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-await@vecs0:</p>
-<ul>
-<li>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +6 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await@vcs0:</p>
-<ul>
-<li>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-tgl-u2/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_wait@busy@all:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@gem_wait@busy@all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@gem_wait@busy@all.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3177">i915#3177</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_wait@wait@all:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@gem_wait@wait@all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@gem_wait@wait@all.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/794">i915#794</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_pm:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@i915_selftest@live@gt_pm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1886">i915#1886</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2291">i915#2291</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@i915_selftest@live@mman.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-ilk-650/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-ilk-650/igt@kms_busy@basic@modeset.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@common-hpd-after-suspend:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@kms_chamelium@common-hpd-after-suspend.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:</p>
-<ul>
-<li>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bwr-2160/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bwr-2160/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@read-crc-pipe-a:</p>
-<ul>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-kefka/igt@kms_pipe_crc_basic@read-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-kefka/igt@kms_pipe_crc_basic@read-crc-pipe-a.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>)</p>
-</li>
-<li>
-<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>) +2 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-kbl-soraka:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-soraka/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@nb-await@vcs0:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@gem_exec_fence@nb-await@vcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@gem_exec_fence@nb-await@vcs0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s3:</p>
-<ul>
-<li>{fi-tgl-1115g4}:    <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1888">i915#1888</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-tgl-1115g4/igt@gem_exec_suspend@basic-s3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence:</p>
-<ul>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a-frame-sequence.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>
-<p>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3472">i915#3472</a>)</p>
-</li>
-<li>
-<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-ilk-650/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-ilk-650/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3472">i915#3472</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>
-<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-elk-e7500/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-elk-e7500/igt@i915_module_load@reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</p>
-</li>
-<li>
-<p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-kefka/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-kefka/igt@i915_module_load@reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</p>
-</li>
-<li>
-<p>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-bsw-nick/igt@i915_module_load@reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-bsw-nick/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>fi-tgl-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-tgl-u2/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-tgl-u2/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-elk-e7500/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-elk-e7500/igt@i915_selftest@live@mman.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-skl-6600u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-glk-dsi:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>)</p>
-</li>
-<li>
-<p>fi-cml-u2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2082">i915#2082</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-cml-u2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10074/fi-kbl-7567u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20115/fi-kbl-7567u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (43 -&gt; 34)</h2>
-<p>Additional (2): fi-kbl-soraka fi-rkl-11500t <br />
-  Missing    (11): fi-ilk-m540 fi-bxt-dsi fi-ehl-1 fi-hsw-4200u fi-icl-u2 fi-bsw-cyan fi-kbl-7500u fi-dg1-1 fi-cfl-8109u fi-bdw-samus fi-skl-6700k2 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10074 -&gt; Patchwork_20115</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10074: 5aefdc1f23734b6a3d545c8497b098ba4d704a0c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6083: d28aee5c5f528aa6c352c3339f20aaed4d698ffa @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20115: 4f36fbac1a27825c7f0c1d49a887c2f444defc70 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>4f36fbac1a27 drm/i915: Reenable LTTPR non-transparent LT mode for DPCD_REV&lt;1.4</p>
-
-</body>
-</html>
-
---===============4463947098369145649==--
-
---===============0206694068==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On Fri, May 07, 2021 at 07:52:43PM -0700, Matt Roper wrote:
+>From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>
+>Add the qp table for 444 formats, for 8bpc, 10bpc and 12bpc, as given by
+>the VESA C model for DSC 1.1
+>
+>v2:
+> - Add include guard to header (Jani)
+> - Move the big tables to a .c file (Chris, Jani, Lucas)
+>v3:
+> - Make tables 'static const' and add lookup functions to index into
+>   them.  (Jani)
+>v3.1:
+> - Include missing .h file.
+>
+>Cc: Manasi Navare <manasi.d.navare@intel.com>
+>Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+
+didn't really review the actual values for the table... supposedly this
+is "write only table and never look again".
+
+The rest is much better in this version.
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+
+I know this is in the commit message, but a comment in the .c or .h file
+stating these tables are "given by the VESA C model for DSC 1.1" would
+help the me from tomorrow to know what are those tables. Anyway, not
+very important... just if you have to respin this.
+
+thanks
+Lucas De Marchi
+
+
+>---
+> drivers/gpu/drm/i915/Makefile                 |   1 +
+> .../gpu/drm/i915/display/intel_qp_tables.c    | 311 ++++++++++++++++++
+> .../gpu/drm/i915/display/intel_qp_tables.h    |  14 +
+> drivers/gpu/drm/i915/display/intel_vdsc.c     |  10 +-
+> 4 files changed, 335 insertions(+), 1 deletion(-)
+> create mode 100644 drivers/gpu/drm/i915/display/intel_qp_tables.c
+> create mode 100644 drivers/gpu/drm/i915/display/intel_qp_tables.h
+>
+>diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+>index d0d936d9137b..4a4d30d8a10a 100644
+>--- a/drivers/gpu/drm/i915/Makefile
+>+++ b/drivers/gpu/drm/i915/Makefile
+>@@ -263,6 +263,7 @@ i915-y +=3D \
+> 	display/intel_lvds.o \
+> 	display/intel_panel.o \
+> 	display/intel_pps.o \
+>+	display/intel_qp_tables.o \
+> 	display/intel_sdvo.o \
+> 	display/intel_tv.o \
+> 	display/intel_vdsc.o \
+>diff --git a/drivers/gpu/drm/i915/display/intel_qp_tables.c b/drivers/gpu/=
+drm/i915/display/intel_qp_tables.c
+>new file mode 100644
+>index 000000000000..05f6876799ac
+>--- /dev/null
+>+++ b/drivers/gpu/drm/i915/display/intel_qp_tables.c
+>@@ -0,0 +1,311 @@
+>+// SPDX-License-Identifier: MIT
+>+/*
+>+ * Copyright =A9 2021 Intel Corporation
+>+ */
+>+
+>+#include <drm/drm_dsc.h>
+>+
+>+#include "i915_utils.h"
+>+#include "intel_qp_tables.h"
+>+
+>+/* from BPP 6 to 24 in steps of 0.5 */
+>+#define RC_RANGE_QP444_8BPC_MAX_NUM_BPP		37
+>+
+>+/* from BPP 6 to 30 in steps of 0.5 */
+>+#define RC_RANGE_QP444_10BPC_MAX_NUM_BPP	49
+>+
+>+/* from BPP 6 to 36 in steps of 0.5 */
+>+#define RC_RANGE_QP444_12BPC_MAX_NUM_BPP	61
+>+
+>+/*
+>+ * These qp tables are as per the C model
+>+ * and it has the rows pointing to bpps which increment
+>+ * in steps of 0.5
+>+ * We do not support fractional bpps as of today,
+>+ * hence we would skip the fractional bpps during
+>+ * our references for qp calclulations.
+>+ */
+>+static const u8 rc_range_minqp444_8bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP444=
+_8BPC_MAX_NUM_BPP] =3D {
+>+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 3, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1,
+>+	  1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 1, 1, 1, 1, 1, 1, 1,
+>+	  1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1,
+>+	  1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2,
+>+	  2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
+>+	{ 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2,
+>+	  2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0 },
+>+	{ 6, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+>+	  3, 3, 3, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0 },
+>+	{ 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3,
+>+	  3, 3, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+>+	{ 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4,
+>+	  4, 4, 4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 0 },
+>+	{ 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4,
+>+	  4, 4, 4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 0 },
+>+	{ 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 5,
+>+	  5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 1, 1, 1 },
+>+	{ 14, 14, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 9, 9, 9, 8, 8,
+>+	  8, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3 }
+>+};
+>+
+>+static const u8 rc_range_maxqp444_8bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP444=
+_8BPC_MAX_NUM_BPP] =3D {
+>+	{ 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 6, 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 2, 2, 1, 1, 1, 1, 1, 1,
+>+	  1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
+>+	{ 8, 7, 7, 6, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 2, 2, 1, 1, 1, 1, 1,
+>+	  1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
+>+	{ 8, 8, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 4, 3, 3, 2, 2, 2, 2, 2,
+>+	  2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+>+	{ 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 5, 4, 4, 3, 2, 2, 2, 2, 2,
+>+	  2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
+>+	{ 9, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 4, 4, 3, 3, 3, 3, 3,
+>+	  3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1 },
+>+	{ 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 5, 4, 4, 3, 3, 3, 3, 3,
+>+	  3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1 },
+>+	{ 10, 10, 9, 9, 8, 8, 8, 8, 8, 8, 8, 8, 8, 7, 7, 6, 5, 5, 4, 4, 4, 4, 3,
+>+	  3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1 },
+>+	{ 11, 11, 10, 10, 9, 9, 9, 9, 9, 9, 8, 8, 8, 7, 7, 6, 6, 5, 5, 5, 5, 5,
+>+	  4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
+>+	{ 12, 11, 11, 10, 10, 10, 9, 9, 9, 9, 9, 9, 9, 8, 8, 7, 6, 6, 5, 5, 5,
+>+	  5, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
+>+	{ 12, 12, 11, 11, 10, 10, 10, 10, 10, 10, 9, 9, 9, 8, 8, 7, 7, 6, 6, 6,
+>+	  5, 5, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1 },
+>+	{ 12, 12, 12, 11, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 8, 8, 8, 7, 7, 7,
+>+	  6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 1 },
+>+	{ 12, 12, 12, 12, 11, 11, 11, 11, 11, 10, 10, 9, 9, 9, 8, 8, 8, 7, 7, 7,
+>+	  6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 1 },
+>+	{ 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9, 9, 8, 8, 8,
+>+	  8, 7, 7, 6, 6, 6, 6, 5, 5, 4, 4, 4, 4, 3, 3, 2, 2, 2 },
+>+	{ 15, 15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 10, 9,
+>+	  9, 9, 8, 8, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 4, 4, 4, 4 }
+>+};
+>+
+>+static const u8 rc_range_minqp444_10bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP44=
+4_10BPC_MAX_NUM_BPP] =3D {
+>+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0 },
+>+	{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1,
+>+	  1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0 },
+>+	{ 7, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2,
+>+	  2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0 },
+>+	{ 7, 7, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3,
+>+	  3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0 },
+>+	{ 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 3,
+>+	  3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0 },
+>+	{ 9, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 4,
+>+	  4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0,
+>+	  0, 0, 0 },
+>+	{ 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 5, 5,
+>+	  4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 0, 0,
+>+	  0, 0, 0 },
+>+	{ 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 5,
+>+	  5, 5, 5, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 0,
+>+	  0, 0, 0 },
+>+	{ 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 5,
+>+	  5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1,
+>+	  1, 0, 0 },
+>+	{ 10, 9, 9, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6,
+>+	  6, 6, 6, 6, 6, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1,
+>+	  1, 1, 0 },
+>+	{ 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7, 7, 6,
+>+	  6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 1,
+>+	  1, 1, 1 },
+>+	{ 10, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 8, 8,
+>+	  7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 2,
+>+	  2, 1, 1, 1 },
+>+	{ 10, 10, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8,
+>+	  8, 8, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 2,
+>+	  2, 2, 2, 1 },
+>+	{ 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11,
+>+	  11, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4,
+>+	  4, 3, 3, 3, 3, 2, 2, 2, 2, 1 },
+>+	{ 18, 18, 17, 17, 16, 16, 16, 16, 15, 15, 14, 14, 14, 14, 13, 13, 13,
+>+	  12, 12, 12, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7,
+>+	  7, 6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3 }
+>+};
+>+
+>+static const u8 rc_range_maxqp444_10bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP44=
+4_10BPC_MAX_NUM_BPP] =3D {
+>+	{ 8, 8, 8, 8, 8, 8, 7, 7, 7, 6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 2,
+>+	  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0 },
+>+	{ 10, 10, 9, 9, 8, 8, 8, 8, 8, 8, 7, 7, 6, 6, 6, 5, 5, 4, 4, 4, 4, 3, 3,
+>+	  3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+>+	  0, 0, 0 },
+>+	{ 12, 11, 11, 10, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 7, 6, 6, 5, 5, 5, 4,
+>+	  4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
+>+	  0, 0, 0, 0 },
+>+	{ 12, 12, 11, 11, 10, 10, 10, 10, 10, 10, 10, 10, 9, 9, 9, 8, 7, 7, 6,
+>+	  6, 6, 5, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1, 1, 1,
+>+	  1, 0, 0, 0, 0, 0, 0 },
+>+	{ 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 9, 8, 8, 7,
+>+	  6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1,
+>+	  1, 1, 1, 0, 0, 0, 0, 0 },
+>+	{ 13, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 10, 9, 8, 8,
+>+	  7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2,
+>+	  2, 2, 1, 1, 1, 1, 0, 0 },
+>+	{ 13, 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 9, 8, 8,
+>+	  7, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 2,
+>+	  2, 2, 2, 1, 1, 1, 1, 1 },
+>+	{ 14, 14, 13, 13, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 11, 10, 9, 9,
+>+	  8, 8, 8, 8, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 4, 4, 4, 4, 4, 4, 3, 3, 3,
+>+	  3, 2, 2, 2, 1, 1, 1, 1 },
+>+	{ 15, 15, 14, 14, 13, 13, 13, 13, 13, 13, 12, 12, 12, 11, 11, 10, 10, 9,
+>+	  9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 6, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 3,
+>+	  3, 3, 2, 2, 2, 2, 1, 1 },
+>+	{ 16, 15, 15, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 12, 12, 11, 10,
+>+	  10, 9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4,
+>+	  4, 3, 3, 3, 2, 2, 2, 2, 1 },
+>+	{ 16, 16, 15, 15, 14, 14, 14, 14, 14, 14, 13, 13, 13, 12, 12, 11, 11,
+>+	  10, 10, 10, 9, 9, 8, 8, 8, 8, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5,
+>+	  4, 4, 4, 3, 3, 3, 2, 2, 2, 2 },
+>+	{ 16, 16, 16, 15, 15, 15, 14, 14, 14, 14, 13, 13, 13, 13, 12, 12, 12,
+>+	  11, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5,
+>+	  5, 4, 4, 4, 4, 3, 3, 2, 2, 2 },
+>+	{ 16, 16, 16, 16, 15, 15, 15, 15, 15, 14, 14, 13, 13, 13, 12, 12, 12,
+>+	  11, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5,
+>+	  5, 4, 4, 4, 4, 3, 3, 3, 3, 2 },
+>+	{ 17, 17, 17, 17, 16, 16, 15, 15, 15, 15, 14, 14, 14, 14, 13, 13, 12,
+>+	  12, 12, 12, 11, 11, 10, 10, 10, 10, 9, 9, 8, 8, 8, 8, 7, 7, 6, 6, 6,
+>+	  6, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 2 },
+>+	{ 19, 19, 18, 18, 17, 17, 17, 17, 16, 16, 15, 15, 15, 15, 14, 14, 14,
+>+	  13, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 10, 9, 9, 8, 8, 8,
+>+	  8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 4, 4, 4 }
+>+};
+>+
+>+static const u8 rc_range_minqp444_12bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP44=
+4_12BPC_MAX_NUM_BPP] =3D {
+>+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0=
+, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0=
+, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2=
+, 2, 2,
+>+	  1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0=
+, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 11, 10, 10, 9, 8, 8, 8, 8, 8, 8, 8, 8, 7, 7, 7, 6, 5, 5, 4, 4, 4, 3, 3=
+, 3, 3,
+>+	  3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0=
+, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 11, 11, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 7, 6, 6, 6, 6, 6, 5, =
+5, 5,
+>+	  5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1=
+, 1, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 9, 9, 9, 8, 7,=
+ 7, 7,
+>+	  7, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1=
+, 1,
+>+	  1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 13, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 9, 9, =
+8, 8,
+>+	  8, 8, 6, 6, 6, 6, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 2=
+, 2, 2,
+>+	  2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 13, 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 9, 9, =
+9, 9,
+>+	  9, 9, 9, 8, 8, 8, 7, 7, 7, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4=
+, 3, 3,
+>+	  3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
+>+	{ 13, 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10=
+, 10,
+>+	  10, 10, 10, 9, 9, 9, 9, 8, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5=
+, 4, 4,
+>+	  4, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0 },
+>+	{ 13, 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11=
+, 11,
+>+	  11, 11, 11, 10, 10, 10, 10, 9, 9, 8, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, =
+5, 5,
+>+	  5, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0 },
+>+	{ 14, 13, 13, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11=
+, 11,
+>+	  11, 11, 11, 10, 10, 10, 10, 9, 9, 8, 8, 8, 8, 8, 8, 7, 7, 7, 7, 7, 6, =
+6, 5,
+>+	  5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 0 },
+>+	{ 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 12=
+, 12,
+>+	  12, 11, 11, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 7=
+, 7, 7,
+>+	  6, 6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1 },
+>+	{ 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13=
+, 13,
+>+	  13, 12, 12, 11, 11, 11, 11, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 8, 8, =
+8, 8,
+>+	  7, 7, 7, 7, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 1, 1 },
+>+	{ 14, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13=
+, 13,
+>+	  13, 12, 12, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 8, 8, =
+8, 8,
+>+	  7, 7, 7, 7, 6, 6, 6, 6, 5, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 1, 1 },
+>+	{ 17, 17, 17, 17, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15=
+, 15,
+>+	  15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9=
+, 8, 8,
+>+	  7, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 1 },
+>+	{ 22, 22, 21, 21, 20, 20, 20, 20, 19, 19, 18, 18, 18, 18, 17, 17, 17, 16=
+, 16,
+>+	  16, 15, 15, 15, 15, 14, 14, 13, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11=
+, 11,
+>+	  10, 10, 9, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 3 }
+>+};
+>+
+>+static const u8 rc_range_maxqp444_12bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP44=
+4_12BPC_MAX_NUM_BPP] =3D {
+>+	{ 12, 12, 12, 12, 12, 12, 11, 11, 11, 10, 9, 9, 6, 6, 5, 5, 5, 4, 4, 4, =
+4, 4,
+>+	  4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0=
+, 0, 0,
+>+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 14, 14, 13, 13, 12, 12, 12, 12, 12, 12, 11, 11, 9, 9, 9, 8, 8, 7, 7, 7=
+, 7, 5,
+>+	  5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1=
+, 1, 1,
+>+	  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 16, 15, 15, 14, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 12, 11, 10, 10=
+, 9, 9,
+>+	  9, 7, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2=
+, 1, 1,
+>+	  1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 16, 16, 15, 15, 14, 14, 14, 14, 14, 14, 14, 14, 13, 13, 13, 12, 11, 11=
+, 10,
+>+	  10, 10, 8, 8, 8, 8, 8, 7, 7, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3,=
+ 3, 2,
+>+	  2, 2, 2, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+>+	{ 17, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 13, 12, 12, 11=
+, 10,
+>+	  10, 10, 10, 8, 8, 8, 8, 8, 8, 7, 7, 7, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3=
+, 3, 3,
+>+	  2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
+>+	{ 17, 16, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 14, 13, 12, 12=
+, 11,
+>+	  11, 11, 11, 9, 9, 9, 9, 8, 8, 8, 8, 7, 6, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4=
+, 4, 3,
+>+	  3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0 },
+>+	{ 17, 17, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 13, 12, 12=
+, 11,
+>+	  11, 11, 11, 11, 10, 10, 10, 9, 9, 9, 8, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, =
+5, 5,
+>+	  5, 5, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0 },
+>+	{ 18, 18, 17, 17, 16, 16, 16, 16, 16, 16, 16, 16, 16, 15, 15, 14, 13, 13=
+, 12,
+>+	  12, 12, 12, 11, 11, 11, 11, 10, 10, 10, 8, 8, 8, 7, 7, 7, 7, 7, 7, 6, =
+6, 6,
+>+	  6, 5, 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1 },
+>+	{ 19, 19, 18, 18, 17, 17, 17, 17, 17, 17, 16, 16, 16, 15, 15, 14, 14, 13=
+, 13,
+>+	  13, 13, 13, 12, 12, 12, 12, 11, 11, 10, 9, 8, 8, 8, 8, 7, 7, 7, 7, 7, =
+7, 6,
+>+	  6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1 },
+>+	{ 20, 19, 19, 18, 18, 18, 17, 17, 17, 17, 17, 17, 17, 16, 16, 15, 14, 14=
+, 13,
+>+	  13, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 8, 8, 8,=
+ 7, 7,
+>+	  6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 1 },
+>+	{ 20, 20, 19, 19, 18, 18, 18, 18, 18, 18, 17, 17, 17, 16, 16, 15, 15, 14=
+, 14,
+>+	  14, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 10, 10, 10, 10, 9,=
+ 9, 9,
+>+	  8, 8, 8, 7, 7, 7, 6, 6, 6, 6, 5, 5, 4, 4, 4, 3, 3, 3, 3, 2, 2, 2 },
+>+	{ 20, 20, 20, 19, 19, 19, 18, 18, 18, 18, 17, 17, 17, 17, 16, 16, 16, 15=
+, 15,
+>+	  15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9,=
+ 9, 9,
+>+	  9, 8, 8, 8, 8, 7, 7, 6, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 2, 2, 2 },
+>+	{ 20, 20, 20, 20, 19, 19, 19, 19, 19, 18, 18, 17, 17, 17, 16, 16, 16, 15=
+, 15,
+>+	  15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9,=
+ 9, 9,
+>+	  9, 8, 8, 8, 8, 7, 7, 7, 7, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 2, 2, 2 },
+>+	{ 21, 21, 21, 21, 20, 20, 19, 19, 19, 19, 18, 18, 18, 18, 17, 17, 16, 16=
+, 16,
+>+	  16, 15, 15, 14, 14, 14, 14, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10=
+, 10,
+>+	  9, 9, 8, 8, 8, 8, 8, 7, 7, 7, 6, 6, 6, 6, 5, 5, 4, 4, 4, 4, 3, 3, 2 },
+>+	{ 23, 23, 22, 22, 21, 21, 21, 21, 20, 20, 19, 19, 19, 19, 18, 18, 18, 17=
+, 17,
+>+	  17, 16, 16, 16, 16, 15, 15, 14, 14, 14, 14, 14, 13, 13, 12, 12, 12, 12=
+, 12,
+>+	  11, 11, 10, 10, 10, 10, 10, 9, 9, 8, 8, 8, 8, 8, 7, 7, 6, 6, 6, 6, 5, =
+5, 4 }
+>+};
+>+
+>+#define PARAM_TABLE(_minmax, _bpc, _row, _col)  do { \
+>+	if (bpc =3D=3D _bpc) \
+>+		return rc_range_##_minmax##qp444_##_bpc##bpc[_row][_col]; \
+>+} while (0)
+>+
+>+u8 intel_lookup_range_min_qp(int bpc, int buf_i, int bpp_i)
+>+{
+>+	PARAM_TABLE(min, 8, buf_i, bpp_i);
+>+	PARAM_TABLE(min, 10, buf_i, bpp_i);
+>+	PARAM_TABLE(min, 12, buf_i, bpp_i);
+>+
+>+	MISSING_CASE(bpc);
+>+	return 0;
+>+}
+>+
+>+u8 intel_lookup_range_max_qp(int bpc, int buf_i, int bpp_i)
+>+{
+>+	PARAM_TABLE(max, 8, buf_i, bpp_i);
+>+	PARAM_TABLE(max, 10, buf_i, bpp_i);
+>+	PARAM_TABLE(max, 12, buf_i, bpp_i);
+>+
+>+	MISSING_CASE(bpc);
+>+	return 0;
+>+}
+>+
+>+
+>diff --git a/drivers/gpu/drm/i915/display/intel_qp_tables.h b/drivers/gpu/=
+drm/i915/display/intel_qp_tables.h
+>new file mode 100644
+>index 000000000000..9fb3c36bd7c6
+>--- /dev/null
+>+++ b/drivers/gpu/drm/i915/display/intel_qp_tables.h
+>@@ -0,0 +1,14 @@
+>+/* SPDX-License-Identifier: MIT */
+>+/*
+>+ * Copyright =A9 2021 Intel Corporation
+>+ */
+>+
+>+#ifndef _INTEL_QP_TABLES_H_
+>+#define _INTEL_QP_TABLES_H_
+>+
+>+#include <linux/types.h>
+>+
+>+u8 intel_lookup_range_min_qp(int bpc, int buf_i, int bpp_i);
+>+u8 intel_lookup_range_max_qp(int bpc, int buf_i, int bpp_i);
+>+
+>+#endif
+>diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i=
+915/display/intel_vdsc.c
+>index 1ac378a9904e..afaf6187e255 100644
+>--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
+>+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+>@@ -11,6 +11,7 @@
+> #include "intel_display_types.h"
+> #include "intel_dsi.h"
+> #include "intel_vdsc.h"
+>+#include "intel_qp_tables.h"
+>
+> enum ROW_INDEX_BPP {
+> 	ROW_INDEX_6BPP =3D 0,
+>@@ -384,7 +385,7 @@ calculate_rc_params(struct rc_parameters *rc,
+> 	int ofs_und12[] =3D { 2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -1=
+2, -12, -12 };
+> 	int ofs_und15[] =3D { 10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, =
+-12, -12 };
+> 	int qp_bpc_modifier =3D (bpc - 8) * 2;
+>-	u32 res, buf_i;
+>+	u32 res, buf_i, bpp_i;
+>
+> 	if (vdsc_cfg->slice_height >=3D 8)
+> 		rc->first_line_bpg_offset =3D
+>@@ -411,7 +412,14 @@ calculate_rc_params(struct rc_parameters *rc,
+> 	rc->rc_quant_incr_limit0 =3D 11 + qp_bpc_modifier;
+> 	rc->rc_quant_incr_limit1 =3D 11 + qp_bpc_modifier;
+>
+>+	bpp_i  =3D (2 * (bpp - 6));
+> 	for (buf_i =3D 0; buf_i < DSC_NUM_BUF_RANGES; buf_i++) {
+>+		/* Read range_minqp and range_max_qp from qp tables */
+>+		rc->rc_range_params[buf_i].range_min_qp =3D
+>+			intel_lookup_range_min_qp(bpc, buf_i, bpp_i);
+>+		rc->rc_range_params[buf_i].range_max_qp =3D
+>+			intel_lookup_range_max_qp(bpc, buf_i, bpp_i);
+>+
+> 		/* Calculate range_bgp_offset */
+> 		if (bpp <=3D 6) {
+> 			rc->rc_range_params[buf_i].range_bpg_offset =3D ofs_und6[buf_i];
+>-- =
+
+>2.25.4
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0206694068==--
