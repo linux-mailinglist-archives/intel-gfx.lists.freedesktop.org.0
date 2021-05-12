@@ -1,51 +1,127 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67A7B37B612
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 08:26:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B6F237B668
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 08:57:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0095D6EB48;
-	Wed, 12 May 2021 06:26:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ECD16EB4E;
+	Wed, 12 May 2021 06:57:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [IPv6:2a01:e0c:1:1599::14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55AD26E483;
- Wed, 12 May 2021 06:26:38 +0000 (UTC)
-Received: from [192.168.1.190] (unknown [91.155.165.229])
- (Authenticated sender: martin.peres@free.fr)
- by smtp5-g21.free.fr (Postfix) with ESMTPSA id 16FEB5FF7A;
- Wed, 12 May 2021 08:26:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
- s=smtp-20201208; t=1620800796;
- bh=scMQI+xbLM2DxXFhrOpxOzMkyuEvE95DfdUbq0fy/4g=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=OgZcg0RLThpfZ3Wit8ZHruIkwFgafCuLyWAqFZeTnPf6ELoluDCcR4a3Tm3Nfa3eE
- SfYIXzynxloVF5lIS4uhw5IBT2n3LE9Ik+3iT7W/FCppVEi8q1CEVYpXdGZIBQbwto
- EJ893aUnZZWnlv04N/93N6ERquaJvvmj59u1M0XGAs2RSnPqHLYDsPQTDLJLE6QDQW
- GztRi1rP043u70wz7cod8HSoePokArU2lNh5zKKw2MvdK3OKKUZHK5mPS2GIlDKR28
- DWSNGmWm8a8hhQbYi988CncPMQNU+wwAZLt09EVR4acLXtKEnHtMd+FIoTaTpdDJv/
- 59K4z5AsLS2aw==
-To: Matthew Brost <matthew.brost@intel.com>,
- "Bloomfield, Jon" <jon.bloomfield@intel.com>
-References: <20210506191451.77768-1-matthew.brost@intel.com>
- <d22437bd-8bb6-d7cb-c017-89cdc7da560d@free.fr>
- <17953669798.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
- <546e4ee4-9aa4-1967-cdcb-a561cac582ef@free.fr>
- <CAKMK7uETcM38sjPYJLdxpGcZcx=tHdGUPe0WTgnGoZfPQvEJFQ@mail.gmail.com>
- <08c22bc8-aa35-43d2-ad4c-7f489dfc585b@free.fr>
- <d382a41cacbc44ee96b9602f3473b5c0@intel.com>
- <20210511163930.GA28794@sdutt-i7>
-From: Martin Peres <martin.peres@free.fr>
-Message-ID: <bb701cab-a68e-08ed-80e3-61be160bdc02@free.fr>
-Date: Wed, 12 May 2021 09:26:14 +0300
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2058.outbound.protection.outlook.com [40.107.243.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F33E66EB4E;
+ Wed, 12 May 2021 06:57:50 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ey9WQatdb2wggu0LDOXgRJJPUHu62zoHyASVsDD0HS+afXRC7ck2Qrd2MGX6B0WKwtl+uXPXpCFqKeBxi2YLIhcfGL0yeUSrvz90Wzk53jX5ZyEYxxABDvKnBgaHRESie+6kjvDDvANdGaxd9uf+tFgMgIreBXLeN/yrHKEYkhIogyyfoiHg8zAlRIyVcRm26jFdHAv6+J8e+1Qn/NOZqs/KxkQIOsYL5AKvA4CNshBwunP12UlNZJjNociYarXalpkzrDQiZTr3+HvnaB71B+8QkUwCCAE5Auk0avdB/5kFFnnbdTi5nM/1+jc9f6x5rjfftca1feTFnvvTkmQkUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DZCqHdylWZaFo1QEDJ+UAfk4ggiAm4ppv2StY0jzN6g=;
+ b=Q7yVoWPmjBIF6vi2LCQIps/cKG6J2KyJc8UXJzZaKaAbFdwUTDh1835SCmQvfEephGrMh35SxL9F2b5vd0uHXQytSnFU64a5HjqcN8LJQH3fc6gd4juTuxuD1Kn1IEEZr2Pqsmub86NnSs/l6zVWCQoAKWphxf72p+P6kuAYWiw/HOvglwzSh7419GVI3DdiEAjro3imBCpDm26dNq8WGa3aFPCUHKw9VtRA1OpSoMB+bKMsIdIkOC7xnQ9xVG3We793zkh5bJNFM9k3m3YH8mIazonN+xC4OlfP4WmEWDIwKS//TTdIHZLniQsA9Ao36BTBbhen3PgfpNa7FKonIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DZCqHdylWZaFo1QEDJ+UAfk4ggiAm4ppv2StY0jzN6g=;
+ b=XfZqW4miZaHgtEaTvz3kjqwe1lhitDjkMs/v1SzqHcQIgq/cGsfZwoeSyhhMGNHNE7wVsveHwkA/8I0sKVuUmcnZ7u/wc+k1QZ8/NXHqhDgKnKBbZmFMT/SIrXljmJ4682/bcBlMPVd/z9vDD+BP+TDcSlE0ngxiVaIxbJ6LCGk=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=amd.com;
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com (2603:10b6:208:159::19)
+ by MN2PR12MB3950.namprd12.prod.outlook.com (2603:10b6:208:16d::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4108.25; Wed, 12 May
+ 2021 06:57:47 +0000
+Received: from MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6d4d:4674:1cf6:8d34]) by MN2PR12MB3775.namprd12.prod.outlook.com
+ ([fe80::6d4d:4674:1cf6:8d34%6]) with mapi id 15.20.4108.031; Wed, 12 May 2021
+ 06:57:47 +0000
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20210511132525.377190-1-thomas.hellstrom@linux.intel.com>
+ <20210511132525.377190-7-thomas.hellstrom@linux.intel.com>
+ <8ac6bc5c-17c0-2ffd-7f8c-823ab3c8a858@amd.com>
+ <88ea8e22-3314-60a4-8f4b-0b37de444b1d@shipmail.org>
+ <8551810c-a095-3906-d982-7bc409140c48@amd.com>
+ <0b7f32d8-bfb9-84dd-fea7-556dddded1cc@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <a0277869-7244-aee0-3359-21dac8f5a724@amd.com>
+Date: Wed, 12 May 2021 08:57:42 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210511163930.GA28794@sdutt-i7>
+ Thunderbird/78.8.1
+In-Reply-To: <0b7f32d8-bfb9-84dd-fea7-556dddded1cc@linux.intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [RFC PATCH 00/97] Basic GuC submission support in
- the i915
+X-Originating-IP: [2a02:908:1252:fb60:bc39:4e06:ac5e:2e31]
+X-ClientProxiedBy: PR0P264CA0190.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:100:1c::34) To MN2PR12MB3775.namprd12.prod.outlook.com
+ (2603:10b6:208:159::19)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a02:908:1252:fb60:bc39:4e06:ac5e:2e31]
+ (2a02:908:1252:fb60:bc39:4e06:ac5e:2e31) by
+ PR0P264CA0190.FRAP264.PROD.OUTLOOK.COM (2603:10a6:100:1c::34) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4108.25 via Frontend Transport; Wed, 12 May 2021 06:57:46 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9e7de148-11c0-4103-a7d7-08d915133fd2
+X-MS-TrafficTypeDiagnostic: MN2PR12MB3950:
+X-Microsoft-Antispam-PRVS: <MN2PR12MB39508724E2F7A8C49AAFF07E83529@MN2PR12MB3950.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3KunsyzuYXqZkocqqtuCB4lCGQZ57nVRD9DxuMrg+vkEX3cq0L8TeT1CplH+WSxZaat+XmMHUtEmoARZe3lVN4bDeKk27SMoSFWtzQJmp5OZ262OtTITjc446f6geQixZkaYlSaUJWW45Mw+fCi92mPi0pnRO64ZNTTxMHdyKUox7OBckes2y4WDs1uCkjPipsxsAaCMSrbMgL3CEzHDaLGg3ni2/ZVhvuktczg79pZGjguPfhDztwzHgC70XrqzKXqk8vsaJsJ6urM2SZDag4SX0WDCiKiAy2DRrFWUZTFj8zqB58Ko0h/CQK9kKkmb8a7Ys1ILRrgpBusGhc4YLaFQ87t7Li9z1+XZm2Y99cfPR3vd1Lc/okKsPFQLzyDZcIIVrV5ZZgzsiFlMdHjsX2JeEa/IRwvjlc+8a9nNAUMlvOrMmrrRH/PuFviZPiNOVUXSvAwe9/dYrRUBovlf240b69fhcVPKqwnDryZ2Ud+Ro0Jb4CvWIaYqsc3O8j7gHd5ugu6QhTqGdSog6SKSWHMlI1mzHE+tRw8D869ZnaA5MMtlAAVw2mUHs6kU18c2MpTyWeyrPSaZs0kfYiNsHxyNTA6Gs+Tyy2HRn3kVTHSuswMbeehA2W5x5ALWWKKj3m3fWRonatUCKkcEXKI1YwM5s7cHZB5sDCGzk43SjqHP8ZjaNWT7HJd7rO6fJ89s
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR12MB3775.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(4636009)(136003)(396003)(346002)(376002)(366004)(39840400004)(6486002)(66556008)(66476007)(8936002)(2616005)(5660300002)(36756003)(66946007)(83380400001)(31686004)(66574015)(31696002)(316002)(52116002)(2906002)(478600001)(8676002)(53546011)(186003)(110136005)(86362001)(6666004)(16526019)(38100700002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData: =?utf-8?B?dnlLbGxzdnM5OTZaRUZ3SzhpRmU1RllKbkFvVjd2d0lGWjVmTkZzK082THF3?=
+ =?utf-8?B?WCtKSUprdm52ZmZDb05jQ2IwSCs2eFVoSGFTRUZDUGd4UjNkLzRRUkNKSzhI?=
+ =?utf-8?B?OGhna2swVjB2VGcvb05BR3V5aVZQT2twQWMyaWgvQXJ0UFlzSHIvSmJ6UllO?=
+ =?utf-8?B?c0p5WXRwalFrbWNIdXNUUXBzS2YwSnJ3TTY0Q3lnTUdyc3dnaXFSN0tQSFA1?=
+ =?utf-8?B?WTN0QUhkMDdqWlJ3eXZMK0hQVWVWdXMzcU0zcWdTRVFtOGdHRVY0WllvWkx3?=
+ =?utf-8?B?WlQyQlRPR2lQc0daS3hjay82YXBWQ3N1RGpyUUxYMHNad1ptaHNjWTRWNCtH?=
+ =?utf-8?B?UithYTRqdkd0UWNIWFRqM1pucjdqczhLN2labTQ4YlhLeS8wc0xnRHBKdjY0?=
+ =?utf-8?B?T0ltUjNpZjBZaUFKano3ajE5b3pEYmYrdW9jVXQ3c0ZSSm54ZjFhR0k4dHdp?=
+ =?utf-8?B?Zmc0ekpmaGE1YXRmNGp3bVQ5WG9BR095M2dPS25sV3F4ZklIMG43a29taFF4?=
+ =?utf-8?B?Q0tsR2Qyb0lkOTN1WnFhTEoreWQ1U2xIekJGMEwwRzE1cStKM0ZITGNyeUxT?=
+ =?utf-8?B?WlV6YURiUzMraTRMRGhSckJsTU9iSS94TlRFeklqNkw2bkdlMU83dHNqYi9H?=
+ =?utf-8?B?Tm5lY1FDcHMxbHJveTFDSC9CY0h3dzk2L0pUeTYxd1ZpbFozMlJ6aGxFYVdG?=
+ =?utf-8?B?cG1lNHNvd1JxcCtaOFBkQzljZTVEOUdCbDFrczJ0YzNmL2JOZHRkWEF1WEFB?=
+ =?utf-8?B?aElrY0dKdjl1czF5bENHZTg3ZldOb0h3ajNsQ2hMMjlBcFVRRzJhU0x3Wnd1?=
+ =?utf-8?B?WFpxcjJ6WmZhc05nWllaUExJVkZQOE95YWlZQTVKaklCdUw1OHg0MDA4cmF0?=
+ =?utf-8?B?SVAvdEhPL2FPMERobElrTlJmbGhVK1g0VHRXb3NENGJMNmtiL0NyaU9WeTdF?=
+ =?utf-8?B?UjcyeDVrUStYaUJQUDl0bVcrbzhCRGUvYzJDckhSRnlTckpnWmw1OW1kdG5C?=
+ =?utf-8?B?UTIrcFU4ME9LV1QvQmJoZk5IVm9haGM4dlhrYjJZQnVWbC9VUG9KRXBFb2dw?=
+ =?utf-8?B?TE9kZy9iWi9XLzRQMEZFc0tXcTBxWWtIMERSV0R3Q2ttbEsyMjM3SFpRT1pW?=
+ =?utf-8?B?Y1diL0IrcGk1ckQ2cmRxT1U4Q2VxZ2dTcXd2R1h1RkRxVjNWRVRBY0VqQUlW?=
+ =?utf-8?B?cXFSRXZhQjF2aFF0ZDJVbXVXd1h2aHBwMjVwNmErdUlqQmtmUnd3SXNsSHZ0?=
+ =?utf-8?B?ZlhJREdxemh3V0c3RXZtblI1cjRZUlF2TitvYmdHTWhvSW9QSzdYWklscGVD?=
+ =?utf-8?B?dFdXQjE5T0lDR29rbGUyZGdIVVVHUGViZSs0R0hpUWlzQVJ1eGIzZUhFb3FS?=
+ =?utf-8?B?NmNLbG5yajVvWTdnakYwVUxaclQ3N3I0bTBFNTdZQXZ4WnJ1Mm13RURlOVpx?=
+ =?utf-8?B?TlRXNk9mNU84VWIvWUtEeUczNEJLL3VFd0xSbVgwcXp6MTN6dnBSWFFIajJQ?=
+ =?utf-8?B?a0pScVU5SFB6bzJoc2VQREZUc2ZicXVyNGJMUHdEY1FtSEZGWVg3cmFmOG5y?=
+ =?utf-8?B?aGpKMlBpZldjQ3ZUUDVCalluVnVUT0R1TW5IQ2dZYlE5NEJodDJicmZVS3pG?=
+ =?utf-8?B?RUlraC83TVlOQXRMSllNbE9YZndsUHMzT2hjOHBhMytOdFpGbmRXeEVBYm40?=
+ =?utf-8?B?SDR1T2N5RUF6L2NmM1RhMTcyS2Q2Y3puelp4MHZ3Ly9LMGoxcFowekx3S2F0?=
+ =?utf-8?B?NUxLOUI1SGZ4SnFYVFgyU0Z3OHV0MTVBNGxUaWUwZlZVN1V2U2puQVU5Z0tV?=
+ =?utf-8?B?cFMwaENsMUpGY2dGU1FkMm9UdFRsTVkxYUFzcTJMVnJkWnE1NDkvOEdPR3FO?=
+ =?utf-8?Q?EREwFBKkf4z4z?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e7de148-11c0-4103-a7d7-08d915133fd2
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3775.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2021 06:57:47.2276 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AVvPsWhxsvQyifdkJxKwZiTf3cxCtuiS5/arfNFZINDlIZMvhZyDLdA68D4ef6Ma
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3950
+Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/ttm,
+ drm/ttm: Introduce a TTM i915 gem object backend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,199 +134,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, "Ekstrand,
- Jason" <jason.ekstrand@intel.com>, "Vetter, Daniel" <daniel.vetter@intel.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/05/2021 19:39, Matthew Brost wrote:
-> On Tue, May 11, 2021 at 08:26:59AM -0700, Bloomfield, Jon wrote:
->>> -----Original Message-----
->>> From: Martin Peres <martin.peres@free.fr>
->>> Sent: Tuesday, May 11, 2021 1:06 AM
->>> To: Daniel Vetter <daniel@ffwll.ch>
->>> Cc: Jason Ekstrand <jason@jlekstrand.net>; Brost, Matthew
->>> <matthew.brost@intel.com>; intel-gfx <intel-gfx@lists.freedesktop.org>;
->>> dri-devel <dri-devel@lists.freedesktop.org>; Ursulin, Tvrtko
->>> <tvrtko.ursulin@intel.com>; Ekstrand, Jason <jason.ekstrand@intel.com>;
->>> Ceraolo Spurio, Daniele <daniele.ceraolospurio@intel.com>; Bloomfield, Jon
->>> <jon.bloomfield@intel.com>; Vetter, Daniel <daniel.vetter@intel.com>;
->>> Harrison, John C <john.c.harrison@intel.com>
->>> Subject: Re: [RFC PATCH 00/97] Basic GuC submission support in the i915
->>>
->>> On 10/05/2021 19:33, Daniel Vetter wrote:
->>>> On Mon, May 10, 2021 at 3:55 PM Martin Peres <martin.peres@free.fr>
->>> wrote:
->>>>>
->>>>> On 10/05/2021 02:11, Jason Ekstrand wrote:
->>>>>> On May 9, 2021 12:12:36 Martin Peres <martin.peres@free.fr> wrote:
->>>>>>
->>>>>>> Hi,
->>>>>>>
->>>>>>> On 06/05/2021 22:13, Matthew Brost wrote:
->>>>>>>> Basic GuC submission support. This is the first bullet point in the
->>>>>>>> upstreaming plan covered in the following RFC [1].
->>>>>>>>
->>>>>>>> At a very high level the GuC is a piece of firmware which sits between
->>>>>>>> the i915 and the GPU. It offloads some of the scheduling of contexts
->>>>>>>> from the i915 and programs the GPU to submit contexts. The i915
->>>>>>>> communicates with the GuC and the GuC communicates with the
->>> GPU.
->>>>>>>
->>>>>>> May I ask what will GuC command submission do that execlist
->>> won't/can't
->>>>>>> do? And what would be the impact on users? Even forgetting the
->>> troubled
->>>>>>> history of GuC (instability, performance regression, poor level of user
->>>>>>> support, 6+ years of trying to upstream it...), adding this much code
->>>>>>> and doubling the amount of validation needed should come with a
->>>>>>> rationale making it feel worth it... and I am not seeing here. Would you
->>>>>>> mind providing the rationale behind this work?
->>>>>>>
->>>>>>>>
->>>>>>>> GuC submission will be disabled by default on all current upstream
->>>>>>>> platforms behind a module parameter - enable_guc. A value of 3 will
->>>>>>>> enable submission and HuC loading via the GuC. GuC submission
->>> should
->>>>>>>> work on all gen11+ platforms assuming the GuC firmware is present.
->>>>>>>
->>>>>>> What is the plan here when it comes to keeping support for execlist? I
->>>>>>> am afraid that landing GuC support in Linux is the first step towards
->>>>>>> killing the execlist, which would force users to use proprietary
->>>>>>> firmwares that even most Intel engineers have little influence over.
->>>>>>> Indeed, if "drm/i915/guc: Disable semaphores when using GuC
->>> scheduling"
->>>>>>> which states "Disable semaphores when using GuC scheduling as
->>> semaphores
->>>>>>> are broken in the current GuC firmware." is anything to go by, it means
->>>>>>> that even Intel developers seem to prefer working around the GuC
->>>>>>> firmware, rather than fixing it.
->>>>>>
->>>>>> Yes, landing GuC support may be the first step in removing execlist
->>>>>> support. The inevitable reality is that GPU scheduling is coming and
->>>>>> likely to be there only path in the not-too-distant future. (See also
->>>>>> the ongoing thread with AMD about fences.) I'm not going to pass
->>>>>> judgement on whether or not this is a good thing.  I'm just reading the
->>>>>> winds and, in my view, this is where things are headed for good or ill.
->>>>>>
->>>>>> In answer to the question above, the answer to "what do we gain from
->>>>>> GuC?" may soon be, "you get to use your GPU."  We're not there yet
->>> and,
->>>>>> again, I'm not necessarily advocating for it, but that is likely where
->>>>>> things are headed.
->>>>>
->>>>> This will be a sad day, especially since it seems fundamentally opposed
->>>>> with any long-term support, on top of taking away user freedom to
->>>>> fix/tweak their system when Intel won't.
->>>>>
->>>>>> A firmware-based submission model isn't a bad design IMO and, aside
->>> from
->>>>>> the firmware freedom issues, I think there are actual advantages to the
->>>>>> model. Immediately, it'll unlock a few features like parallel submission
->>>>>> (more on that in a bit) and long-running compute because they're
->>>>>> implemented in GuC and the work to implement them properly in the
->>>>>> execlist scheduler is highly non-trivial. Longer term, it may (no
->>>>>> guarantees) unlock some performance by getting the kernel out of the
->>> way.
->>>>>
->>>>> Oh, I definitely agree with firmware-based submission model not being a
->>>>> bad design. I was even cheering for it in 2015. Experience with it made
->>>>> me regret that deeply since :s
->>>>>
->>>>> But with the DRM scheduler being responsible for most things, I fail to
->>>>> see what we could offload in the GuC except context switching (like
->>>>> every other manufacturer). The problem is, the GuC does way more than
->>>>> just switching registers in bulk, and if the number of revisions of the
->>>>> GuC is anything to go by, it is way too complex for me to feel
->>>>> comfortable with it.
->>>>
->>>> We need to flesh out that part of the plan more, but we're not going
->>>> to use drm scheduler for everything. It's only to handle the dma-fence
->>>> legacy side of things, which means:
->>>> - timeout handling for batches that take too long
->>>> - dma_fence dependency sorting/handling
->>>> - boosting of context from display flips (currently missing, needs to
->>>> be ported from drm/i915)
->>>>
->>>> The actual round-robin/preempt/priority handling is still left to the
->>>> backend, in this case here the fw. So there's large chunks of
->>>> code/functionality where drm/scheduler wont be involved in, and like
->>>> Jason says: The hw direction winds definitely blow in the direction
->>>> that this is all handled in hw.
->>>
->>> The plan makes sense for a SRIOV-enable GPU, yes.
->>>
->>> However, if the GuC is actually helping i915, then why not open source
->>> it and drop all the issues related to its stability? Wouldn't it be the
->>> perfect solution, as it would allow dropping execlist support for newer
->>> HW, and it would eliminate the concerns about maintenance of stable
->>> releases of Linux?
->>
->> That the major version of the FW is high is not due to bugs - Bugs don't trigger major version bumps anyway. 
-
-Of course, where did I say they would?
-
-> Only interface changes increment the major version, and we do add features, to keep it relevant to the evolving hardware and OS landscape. When only Windows used GuC there was no reason not to minimize interface creep - GuC and KMD are released as an atomic bundle on Windows. With Linux, this is no longer the case, and has not been for some time.
-
-AFAIK, Intel has been shipping GuC to customers since gen9, and upstream 
-has been supporting command submission (albeit in a broken form) for 
-years... until Michal finally disabled it after I asked for it to a bit 
-over 2 years ago[1], when GuC was at major version 32.
-
-So... not sure I would trust your word so blindly here.
-
-[1] 
-https://patchwork.freedesktop.org/patch/297997/?series=58760&rev=2#comment_559594
->>
-> 
-> Jon hit the nail on head here - there hasn't been any reason not to bump the GuC
-> version / change the interface until there is code upstream using the GuC. Once
-> we push something that totally changes. Once SRIOV lands we literally can't the
-> interface without breaking the world. Our goal is to this right before
-> somethings lands, hence the high version number.
-
-Good to hear! But Intel will continue to change the interface as new 
-generations are made, so what is the support model for older GPUs / 
-kernels which will be stuck on older major revisions?
-
-> 
-> Matt
-> 
->> We have been using GuC as the sole mechanism for submission on Windows since Gen8, and it has proven very reliable. This is in large part because it is simple, and designed from day 1 as a cohesive solution alongside the hardware.
-
-Exactly, the GuC was designed with Windows' GPU model... which is not 
-directly applicable to Linux. Also, Windows does not care as much about 
-submission latency, whereas most Linux users still depend on glamor for 
-2D acceleration which is pretty much the biggest stress test for command 
-submission latency. Also, features not used by the Windows driver or 
-used in a different way are/will get broken (see the semaphore patch 
-that works around it).
-
->>
->> Will there be bugs in the future? Of course. It's a new i915 backend. There are bugs in the execlist backend too, and the runlist backend, and the majority of real-world software ever written. But the i915 GuC backend is way simpler than execlist, much easier to understand, and therefore much easier to maintain. It's a net win for i915 and Linux.
-
-I am more than willing to accept the fact that the interface would be 
-easier to work with, and I welcome anything that will simplify the 
-driver... but not at the expense of regressing the user experience. One 
-has to prove more than *just* code maintainability.
-
-Feel free to iterate/land the code, but enabling guc-based command 
-submission is waaaaayyyy too early, no matter how much you want it. This 
-patch will remain a NACK from me until I see more of the plan to support 
-*users* who are willing to use a proprietary firmware, performance 
-analysis, what's the plan for users who will not want to use it, and 
-what are the capabilities of GuC which could be used for privilege 
-escalation and what is done to mitigate that.
-
-Thanks,
-Martin
-
->>
->> Jon
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QW0gMTEuMDUuMjEgdW0gMTY6Mjggc2NocmllYiBUaG9tYXMgSGVsbHN0csO2bToKPgo+IE9uIDUv
+MTEvMjEgNDowOSBQTSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPj4KPj4KPj4gQW0gMTEuMDUu
+MjEgdW0gMTY6MDYgc2NocmllYiBUaG9tYXMgSGVsbHN0csO2bSAoSW50ZWwpOgo+Pj4KPj4+IE9u
+IDUvMTEvMjEgMzo1OCBQTSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPj4+PiBBbSAxMS4wNS4y
+MSB1bSAxNToyNSBzY2hyaWViIFRob21hcyBIZWxsc3Ryw7ZtOgo+Pj4+PiBNb3N0IGxvZ2ljYWwg
+cGxhY2UgdG8gaW50cm9kdWNlIFRUTSBidWZmZXIgb2JqZWN0cyBpcyBhcyBhbiBpOTE1Cj4+Pj4+
+IGdlbSBvYmplY3QgYmFja2VuZC4gV2UgbmVlZCB0byBhZGQgc29tZSBvcHMgdG8gYWNjb3VudCBm
+b3IgYWRkZWQKPj4+Pj4gZnVuY3Rpb25hbGl0eSBsaWtlIGRlbGF5ZWQgZGVsZXRlIGFuZCBMUlUg
+bGlzdCBtYW5pcHVsYXRpb24uCj4+Pj4+Cj4+Pj4+IEluaXRpYWxseSB3ZSBzdXBwb3J0IG9ubHkg
+TE1FTSBhbmQgU1lTVEVNIG1lbW9yeSwgYnV0IFNZU1RFTQo+Pj4+PiAod2hpY2ggaW4gdGhpcyBj
+YXNlIG1lYW5zIGV2aWN0ZWQgTE1FTSBvYmplY3RzKSBpcyBub3QKPj4+Pj4gdmlzaWJsZSB0byBp
+OTE1IEdFTSB5ZXQuIFRoZSBwbGFuIGlzIHRvIG1vdmUgdGhlIGk5MTUgZ2VtIHN5c3RlbSAKPj4+
+Pj4gcmVnaW9uCj4+Pj4+IG92ZXIgdG8gdGhlIFRUTSBzeXN0ZW0gbWVtb3J5IHR5cGUgaW4gdXBj
+b21pbmcgcGF0Y2hlcy4KPj4+Pj4KPj4+Pj4gV2Ugc2V0IHVwIEdQVSBiaW5kaW5ncyBkaXJlY3Rs
+eSBib3RoIGZyb20gTE1FTSBhbmQgZnJvbSB0aGUgc3lzdGVtIAo+Pj4+PiByZWdpb24sCj4+Pj4+
+IGFzIHRoZXJlIGlzIG5vIG5lZWQgdG8gdXNlIHRoZSBsZWdhY3kgVFRNX1RUIG1lbW9yeSB0eXBl
+LiBXZSByZXNlcnZlCj4+Pj4+IHRoYXQgZm9yIGZ1dHVyZSBwb3J0aW5nIG9mIEdHVFQgYmluZGlu
+Z3MgdG8gVFRNLgo+Pj4+Pgo+Pj4+PiBUaGVyZSBhcmUgc29tZSBjaGFuZ2VzIHRvIFRUTSB0byBh
+bGxvdyBmb3IgcHVyZ2luZyBzeXN0ZW0gbWVtb3J5IAo+Pj4+PiBidWZmZXIKPj4+Pj4gb2JqZWN0
+cyBhbmQgdG8gcmVmdXNlIHN3YXBwaW5nIG9mIHNvbWUgb2JqZWN0czogVW5mb3J0dW5hdGVseSBp
+OTE1IAo+Pj4+PiBnZW0KPj4+Pj4gc3RpbGwgcmVsaWVzIGhlYXZpbHkgb24gc2hvcnQtdGVybSBv
+YmplY3QgcGlubmluZywgYW5kIHdlJ3ZlIAo+Pj4+PiBjaG9zZW4gdG8KPj4+Pj4ga2VlcCBzaG9y
+dC10ZXJtLXBpbm5lZCBidWZmZXIgb2JqZWN0cyBvbiB0aGUgVFRNIExSVSBsaXN0cyBmb3Igbm93
+LAo+Pj4+PiBtZWFuaW5nIHRoYXQgd2UgbmVlZCBzb21lIHNvcnQgb2YgbWVjaGFuaXNtIHRvIHRl
+bGwgVFRNIHRoZXkgYXJlIG5vdAo+Pj4+PiBzd2FwcGFibGUuIEEgbG9uZ2VyIHRlcm0gZ29hbCBp
+cyB0byBnZXQgcmlkIG9mIHRoZSBzaG9ydC10ZXJtIAo+Pj4+PiBwaW5uaW5nLgo+Pj4+Cj4+Pj4g
+V2VsbCBqdXN0IHVzZSB0aGUgZXZpY3Rpb25fdmFsdWFibGUgaW50ZXJmYWNlIGZvciB0aGlzLgo+
+Pj4KPj4+IFllcywgd2UgZG8gdGhhdCBmb3IgdnJhbS9sbWVtIGV2aWN0aW9uLCBidXQgd2UgaGF2
+ZSBub3RoaW5nIHNpbWlsYXIgCj4+PiBmb3Igc3lzdGVtIHN3YXBwaW5nLiBEbyBJIHVuZGVyc3Rh
+bmQgeW91IGNvcnJlY3RseSB0aGF0IHlvdSB3YW50IG1lIAo+Pj4gdG8gYWRkIGEgY2FsbCB0byBl
+dmljdGlvbl92YWx1YWJsZSgpIGFsc28gZm9yIHRoYXQgaW5zdGVhZCBvZiAKPj4+IHN3YXBfcG9z
+c2libGUoKT8KPj4KPj4gWW91IHNob3VsZCBhbHJlYWR5IGhhdmUgdGhhdC4gZXZpY3Rpb25fdmFs
+dWFibGUgaXMgY2FsbGVkIGluIGJvdGggY2FzZXMuCj4+Cj4gSG1tLiBJIGNhbiBvbmx5IHNlZSBp
+dCBjYWxsZWQgZnJvbSB0dG1fbWVtX2V2aWN0X2ZpcnN0KCkgd2hpY2ggaXMgbm90IAo+IGluIHRo
+ZSBzd2FwcGluZyBwYXRoPyBPciBkbyBJIG1pc3Mgc29tZXRoaW5nPwoKTWhtLCBsb29rcyBsaWtl
+IG15IHJlY29sbGVjdGlvbiB3YXMgd3JvbmcuIFdlIHNob3VsZCBwcm9iYWJseSBtb3ZlIHRoZSAK
+Y2FsbCBpbnRvIHRoZSB0dG1fYm9fZXZpY3Rfc3dhcG91dF9hbGxvd2FibGUoKSBmdW5jdGlvbi4K
+CkNocmlzdGlhbi4KCj4KPiBUaGFua3MsCj4KPiBUaG9tYXMKPgo+Cj4KCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
