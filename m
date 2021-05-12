@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB52D37CEAA
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 19:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32DD637CFE8
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 19:38:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E30506E0B6;
-	Wed, 12 May 2021 17:23:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8FE36E0DD;
+	Wed, 12 May 2021 17:38:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 366936E090;
- Wed, 12 May 2021 17:23:00 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 11E246E088;
+ Wed, 12 May 2021 17:38:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2D443A01BB;
- Wed, 12 May 2021 17:23:00 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 09F85A0BCB;
+ Wed, 12 May 2021 17:38:55 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Wed, 12 May 2021 17:23:00 -0000
-Message-ID: <162084018015.28503.16439968074048876073@emeril.freedesktop.org>
+Date: Wed, 12 May 2021 17:38:55 -0000
+Message-ID: <162084113500.28504.14367842565520362754@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20210512042144.2089071-1-matthew.d.roper@intel.com>
 In-Reply-To: <20210512042144.2089071-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ0kg?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQ0kg?=
  =?utf-8?q?pass_for_reviewed_XeLPD_/_ADL-P_patches_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -40,15 +40,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0710669117=="
+Content-Type: multipart/mixed; boundary="===============1556045624=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0710669117==
+--===============1556045624==
 Content-Type: multipart/alternative;
- boundary="===============6638927091562768914=="
+ boundary="===============7139104088290091493=="
 
---===============6638927091562768914==
+--===============7139104088290091493==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -57,7 +57,7 @@ Content-Transfer-Encoding: 7bit
 
 Series: CI pass for reviewed XeLPD / ADL-P patches (rev2)
 URL   : https://patchwork.freedesktop.org/series/90048/
-State : failure
+State : success
 
 == Summary ==
 
@@ -67,14 +67,9 @@ CI Bug Log - changes from CI_DRM_10071 -> Patchwork_20107
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_20107 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20107, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/index.html
 
@@ -85,22 +80,14 @@ Possible new issues
 
 ### IGT changes ###
 
-#### Possible regressions ####
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
-    - fi-elk-e7500:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-
-  
 #### Suppressed ####
 
   The following results come from untrusted machines, tests, or statuses.
   They do not affect the overall result.
 
   * igt@i915_selftest@live@execlists:
-    - {fi-rkl-11500t}:    NOTRUN -> [DMESG-FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-rkl-11500t/igt@i915_selftest@live@execlists.html
+    - {fi-rkl-11500t}:    NOTRUN -> [DMESG-FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-rkl-11500t/igt@i915_selftest@live@execlists.html
 
   
 Known issues
@@ -113,32 +100,37 @@ Known issues
 #### Issues hit ####
 
   * igt@gem_exec_fence@basic-await@vecs0:
-    - fi-glk-dsi:         [PASS][4] -> [FAIL][5] ([i915#3457])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html
+    - fi-glk-dsi:         [PASS][2] -> [FAIL][3] ([i915#3457])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html
 
   * igt@gem_exec_fence@nb-await@vcs0:
-    - fi-bsw-kefka:       [PASS][6] -> [FAIL][7] ([i915#3457]) +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html
+    - fi-bsw-kefka:       [PASS][4] -> [FAIL][5] ([i915#3457]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html
 
   * igt@gem_exec_fence@nb-await@vecs0:
-    - fi-bsw-n3050:       [PASS][8] -> [FAIL][9] ([i915#3457]) +1 similar issue
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-n3050/igt@gem_exec_fence@nb-await@vecs0.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-n3050/igt@gem_exec_fence@nb-await@vecs0.html
+    - fi-bsw-n3050:       [PASS][6] -> [FAIL][7] ([i915#3457]) +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-n3050/igt@gem_exec_fence@nb-await@vecs0.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-n3050/igt@gem_exec_fence@nb-await@vecs0.html
 
   * igt@gem_wait@wait@all:
-    - fi-bwr-2160:        [PASS][10] -> [FAIL][11] ([i915#3457])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bwr-2160/igt@gem_wait@wait@all.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bwr-2160/igt@gem_wait@wait@all.html
-    - fi-bsw-nick:        [PASS][12] -> [FAIL][13] ([i915#3457]) +1 similar issue
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-nick/igt@gem_wait@wait@all.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-nick/igt@gem_wait@wait@all.html
+    - fi-bwr-2160:        [PASS][8] -> [FAIL][9] ([i915#3457])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bwr-2160/igt@gem_wait@wait@all.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bwr-2160/igt@gem_wait@wait@all.html
+    - fi-bsw-nick:        [PASS][10] -> [FAIL][11] ([i915#3457]) +1 similar issue
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-nick/igt@gem_wait@wait@all.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-nick/igt@gem_wait@wait@all.html
 
   * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][14] -> [FAIL][15] ([i915#1372])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+    - fi-kbl-7500u:       [PASS][12] -> [FAIL][13] ([i915#1372])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
+    - fi-elk-e7500:       [PASS][14] -> [FAIL][15] ([i915#53])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
 
   * igt@kms_pipe_crc_basic@read-crc-pipe-a:
     - fi-bwr-2160:        [PASS][16] -> [FAIL][17] ([i915#53]) +1 similar issue
@@ -165,7 +157,7 @@ Known issues
    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-nick/igt@gem_wait@busy@all.html
 
   * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-elk-e7500:       [FAIL][26] -> [PASS][27] +1 similar issue
+    - fi-elk-e7500:       [FAIL][26] ([i915#53]) -> [PASS][27] +1 similar issue
    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
     - fi-bsw-kefka:       [FAIL][28] -> [PASS][29]
@@ -257,7 +249,7 @@ bfe05d548e26 drm/i915/xelpd: Handle proper AUX interrupt bits
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/index.html
 
---===============6638927091562768914==
+--===============7139104088290091493==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -279,7 +271,7 @@ Content-Transfer-Encoding: 7bit
 <table>
 <tr><td><b>Series:</b></td><td>CI pass for reviewed XeLPD / ADL-P patches (rev2)</td></tr>
 <tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/90048/">https://patchwork.freedesktop.org/series/90048/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
     <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/index.html</a></td></tr>
 
@@ -288,23 +280,12 @@ Content-Transfer-Encoding: 7bit
 
     <h1>CI Bug Log - changes from CI_DRM_10071 -&gt; Patchwork_20107</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20107 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20107, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
 <p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/index.html</p>
 <h2>Possible new issues</h2>
 <p>Here are the unknown changes that may have been introduced in Patchwork_20107:</p>
 <h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:<ul>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
 <h4>Suppressed</h4>
 <p>The following results come from untrusted machines, tests, or statuses.<br />
   They do not affect the overall result.</p>
@@ -355,6 +336,12 @@ Content-Transfer-Encoding: 7bit
 </ul>
 </li>
 <li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:</p>
+<ul>
+<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>)</li>
+</ul>
+</li>
+<li>
 <p>igt@kms_pipe_crc_basic@read-crc-pipe-a:</p>
 <ul>
 <li>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bwr-2160/igt@kms_pipe_crc_basic@read-crc-pipe-a.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bwr-2160/igt@kms_pipe_crc_basic@read-crc-pipe-a.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>) +1 similar issue</li>
@@ -387,7 +374,7 @@ Content-Transfer-Encoding: 7bit
 <p>igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:</p>
 <ul>
 <li>
-<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">PASS</a> +1 similar issue</p>
+<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">PASS</a> +1 similar issue</p>
 </li>
 <li>
 <p>fi-bsw-kefka:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-kefka/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-kefka/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html">PASS</a></p>
@@ -458,9 +445,9 @@ bfe05d548e26 drm/i915/xelpd: Handle proper AUX interrupt bits</p>
 </body>
 </html>
 
---===============6638927091562768914==--
+--===============7139104088290091493==--
 
---===============0710669117==
+--===============1556045624==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -471,4 +458,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0710669117==--
+--===============1556045624==--
