@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37AFA37B782
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 10:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 301EA37B81A
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 10:35:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81A766EB56;
-	Wed, 12 May 2021 08:08:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 193CB6EB60;
+	Wed, 12 May 2021 08:35:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
- [IPv6:2a00:1450:4864:20::631])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4C2D6EB56
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 08:08:20 +0000 (UTC)
-Received: by mail-ej1-x631.google.com with SMTP id c22so5532362ejd.12
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 01:08:20 -0700 (PDT)
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 998E16EB60
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 08:35:03 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id k10so2531047ejj.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 01:35:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=U6T05QHLm4nURNIVJqzC1LFltRTuyBXr1Xh3QqRA+U4=;
- b=XTNh+3CofBeeOM/yWguF+JBctGC9qo42/WrIZBdgFi7FuRWCad4vuCduHqekomENsR
- 67MnUGIm+mJFe7YO5sScVhRisKEFSBQE5bnqhXD9VDz+CbBwSib1PdQyVTKxAu+ZIiUc
- c+cpuorQDWb5yJdUpn1U36oBZL5/UrpOrn3Qg=
+ bh=Y9NGcmyA6WiQkvURHKjlPrndrI2KxaognygI8XZ/fTA=;
+ b=A7hvgFSlnvGqRoEhHfplpw+0EKG9kzz7zsWvYkpxaserBME66JCCrtFY1m6aeb70m9
+ gsJ2VsY/9IfdQqgtqAs4QeYlh+5HNL5sFODBzyQnnmApPE6MjIDPu45+kkWuHluCC9Xc
+ vqO/Jj0huIp8tP5D34PLtHNa0RbIj07hmBwRM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=U6T05QHLm4nURNIVJqzC1LFltRTuyBXr1Xh3QqRA+U4=;
- b=oBl+e3G8FSK5dEdSlnRlazbG5MudVxRg2Mrd5BzlwnIyGtE1nOp3R8gQnzLnUYpTMJ
- 1quIItxW3mra5ZRrCk01D+2L9Z2zO2sgemvF7sKjnMBNk8+jUONbn2HfAKqRvWwIXyUm
- kawwyEHiBKY1X739K6m0TtAipbe/CVEzmT+CtE0pq/ftM/JLFc7+gtnsJk2kqwljZcZp
- /UFwHke3jgzEuH/eE0oA/KolxF04sWga17Z9rLsu1gnuxLyg+5IgA4q+yNPZc5r/rg7b
- iujR88KObUubxxUp8WBGZhZ2Ko/nwrIj7GAgu163gAe3ExXTnv+9uR0vMVUren2YW0At
- GBlQ==
-X-Gm-Message-State: AOAM532sm+SLi0+6VxP0C/1CnzuNgDS+Utnk9khmnBa8cMZ5VHaa5Yaj
- lS0huNgsulvazH70vQBA7CwlYw==
-X-Google-Smtp-Source: ABdhPJwUgrVYZ82EtHT18nbLk4pmZOrpO8YUJYkgJj5D7T2hO+8nc3CHJpjQuI5/nT53FhoWQBHgiQ==
-X-Received: by 2002:a17:906:4159:: with SMTP id
- l25mr36536128ejk.76.1620806899345; 
- Wed, 12 May 2021 01:08:19 -0700 (PDT)
+ bh=Y9NGcmyA6WiQkvURHKjlPrndrI2KxaognygI8XZ/fTA=;
+ b=p8g8rvFwArno0hZxPKHG6us80Pp1WSjwzdjr5rTDZ/cuqsSfHQFh6MQcEzp9XRSuFQ
+ B03AbHYeXKr4oRz9j6E9vAfYvOtfC3H2anQRfQqZHOTtWlWuyDsgogD7f+fDw4T8I4Ud
+ U/oU82EyBh0PIPJHtW/6QWG8AHuoqwkOgR1hrsReBrGbrPLCwNs0RYFG/hOCSzkIaYwn
+ Tob5BfizvhKXbg15v9piTPSMIGCxxIKUhH8ixl7lPzMqH7OzehFoY9DAVL9nRzN0eSxh
+ /twKB3MODz3XQFe8yUgZ2Wf6T4W9T2xgqTVgQL/ArAKgT8pjkh/URYifoqamCqco4KAb
+ FxEQ==
+X-Gm-Message-State: AOAM531QUeoik7f1aAbDiSnSoSPtF1yJ2npTYn06CTzaeW1IQO5VkPxR
+ aclAbz+2XOJ/vy7kDMtbySFG6g==
+X-Google-Smtp-Source: ABdhPJwRZU4zHugQBl/mRNr33Q+XXxoiCFaELRxMOZK0FU5XWgGqYMYXEI5eyochsTXUNHyalp0rKQ==
+X-Received: by 2002:a17:907:75e9:: with SMTP id
+ jz9mr4034082ejc.314.1620808502100; 
+ Wed, 12 May 2021 01:35:02 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id i4sm1202321ejg.27.2021.05.12.01.08.18
+ by smtp.gmail.com with ESMTPSA id di7sm2819167edb.34.2021.05.12.01.35.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 12 May 2021 01:08:18 -0700 (PDT)
-Date: Wed, 12 May 2021 10:08:17 +0200
+ Wed, 12 May 2021 01:35:01 -0700 (PDT)
+Date: Wed, 12 May 2021 10:34:59 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <YJuM8TOPOBk7UHS7@phenom.ffwll.local>
-References: <20210511170356.430284-1-matthew.auld@intel.com>
- <YJq+qCOSjrUFAC9v@phenom.ffwll.local>
- <YJq+6kTp9I55DNXN@phenom.ffwll.local>
- <e93de059-bf2a-fd34-7447-5313044461d3@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <YJuTM0eOtrwsgBKX@phenom.ffwll.local>
+References: <20210506173049.72503-1-matthew.brost@intel.com>
+ <20210506173049.72503-5-matthew.brost@intel.com>
+ <YJqesIT3leIhTNxs@phenom.ffwll.local>
+ <20210511184425.GA7786@sdutt-i7>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <e93de059-bf2a-fd34-7447-5313044461d3@intel.com>
+In-Reply-To: <20210511184425.GA7786@sdutt-i7>
 X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH] drm/doc/rfc: drop the i915_gem_lmem.h header
+Subject: Re: [Intel-gfx] [RFC PATCH 4/5] drm/i915: Introduce 'set parallel
+ submit' extension
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,329 +69,372 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ carl.zhang@intel.com, jason.ekstrand@intel.com, daniel.vetter@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 12, 2021 at 08:38:55AM +0100, Matthew Auld wrote:
-> On 11/05/2021 18:29, Daniel Vetter wrote:
-> > On Tue, May 11, 2021 at 07:28:08PM +0200, Daniel Vetter wrote:
-> > > On Tue, May 11, 2021 at 06:03:56PM +0100, Matthew Auld wrote:
-> > > > The proper headers have now landed in include/uapi/drm/i915_drm.h, so we
-> > > > can drop i915_gem_lmem.h and instead just reference the real headers for
-> > > > pulling in the kernel doc.
-> > > > 
-> > > > Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+On Tue, May 11, 2021 at 11:44:28AM -0700, Matthew Brost wrote:
+> On Tue, May 11, 2021 at 05:11:44PM +0200, Daniel Vetter wrote:
+> > On Thu, May 06, 2021 at 10:30:48AM -0700, Matthew Brost wrote:
+> > > i915_drm.h updates for 'set parallel submit' extension.
 > > > 
-> > > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > Cc: Tony Ye <tony.ye@intel.com>
+> > > CC: Carl Zhang <carl.zhang@intel.com>
+> > > Cc: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > >  include/uapi/drm/i915_drm.h | 126 ++++++++++++++++++++++++++++++++++++
+> > >  1 file changed, 126 insertions(+)
 > > > 
-> > > I guess we need to have a note that when we land the pciid for dg1 to move
-> > > all the remaining bits over to real docs and delete the i915 lmem rfc. But
-> > > everything in due time.
+> > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > > index 26d2e135aa31..0175b12b33b8 100644
+> > > --- a/include/uapi/drm/i915_drm.h
+> > > +++ b/include/uapi/drm/i915_drm.h
+> > > @@ -1712,6 +1712,7 @@ struct drm_i915_gem_context_param {
+> > >   * Extensions:
+> > >   *   i915_context_engines_load_balance (I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE)
+> > >   *   i915_context_engines_bond (I915_CONTEXT_ENGINES_EXT_BOND)
+> > > + *   i915_context_engines_parallel_submit (I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT)
 > > 
-> > One thing I forgot: The include stanza will I think result in the
-> > explicitly included functions not showing up in the normal driver uapi
-> > docs. Which I think is fine while we settle all this. Or do I get this
-> > wrong?
+> > Hm just relalized, but I don't think this hyperlinsk correctly, and I'm
+> > also not sure this formats very well as a nice list. Using item lists
+> > should look pretty nice like we're doing for the various kms properties,
+> > e.g.
+> > 
+> > FOO:
+> >   Explain what FOO does
+> > 
+> > BAR:
+> >   Explain what BAR does. struct bar also automatically generates a link
+> > 
+> > Please check with make htmldocs and polish this a bit (might need a small
+> > prep patch).
+> > 
 > 
-> It all looks ok in the rendered html, but yeah the explicitly inlcuded
-> functions/structs don't seem to link back to driver-uapi, and instead just
-> link to the "local version" in i915_gem_lmem.
+> I agree the doc should look nice. To get there I might need to chat with you on
+> IRC as I'm new to this. 
+> 
+> > >   */
+> > >  #define I915_CONTEXT_PARAM_ENGINES	0xa
+> > >  
+> > > @@ -1894,9 +1895,134 @@ struct i915_context_param_engines {
+> > >  	__u64 extensions; /* linked chain of extension blocks, 0 terminates */
+> > >  #define I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE 0 /* see i915_context_engines_load_balance */
+> > >  #define I915_CONTEXT_ENGINES_EXT_BOND 1 /* see i915_context_engines_bond */
+> > > +#define I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT 2 /* see i915_context_engines_parallel_submit */
+> > >  	struct i915_engine_class_instance engines[0];
+> > >  } __attribute__((packed));
+> > >  
+> > > +/*
+> > > + * i915_context_engines_parallel_submit:
+> > > + *
+> > > + * Setup a gem context to allow multiple BBs to be submitted in a single execbuf
+> > > + * IOCTL. Those BBs will then be scheduled to run on the GPU in parallel.
+> > > + *
+> > > + * All hardware contexts in the engine set are configured for parallel
+> > > + * submission (i.e. once this gem context is configured for parallel submission,
+> > > + * all the hardware contexts, regardless if a BB is available on each individual
+> > > + * context, will be submitted to the GPU in parallel). A user can submit BBs to
+> > > + * subset of the hardware contexts, in a single execbuf IOCTL, but it is not
+> > > + * recommended as it may reserve physical engines with nothing to run on them.
+> > > + * Highly recommended to configure the gem context with N hardware contexts then
+> > > + * always submit N BBs in a single IOCTL.
+> > > + *
+> > > + * Their are two currently defined ways to control the placement of the
+> > > + * hardware contexts on physical engines: default behavior (no flags) and
+> > > + * I915_PARALLEL_IMPLICT_BONDS (a flag). More flags may be added the in the
+> > > + * future as new hardware / use cases arise. Details of how to use this
+> > > + * interface below above the flags.
+> > > + *
+> > > + * Returns -EINVAL if hardware context placement configuration invalid or if the
+> > > + * placement configuration isn't supported on the platform / submission
+> > > + * interface.
+> > > + * Returns -ENODEV if extension isn't supported on the platform / submission
+> > > + * inteface.
+> > > + */
+> > > +struct i915_context_engines_parallel_submit {
+> > > +	struct i915_user_extension base;
+> > 
+> > Ok this is good, since it makes sure we can't possible use this in
+> > CTX_SETPARAM.
+> > 
+> 
+> Yep, this is at context creation time. Technically you still can call this over
+> and over on the same gem context but Jason is taking that ability away I
+> believe. I've also told the media team to setup the context once and don't touch
+> it again.
 
-I think that's all ok. Thanks for checking.
--Daniel
+Only if you base your context param on drm_i915_gem_context_param, which
+can be used both at create time with
+drm_i915_gem_context_create_ext_setparam and with the CTX_SETPARAM ioctl.
+But you don't, so this issue is fixed at the uapi design and doesn't need
+to interface with Jason's prot-ctx rework much.
+
+There's still going to be some conflicts, so maybe ask Jason for a branch
+and rebase GuC on top of that for the next round.
+
+> 
+> > > +
+> > > +/*
+> > > + * Default placement behvavior (currently unsupported):
+> > > + *
+> > > + * Rather than restricting parallel submission to a single class with a
+> > > + * logically contiguous placement (I915_PARALLEL_IMPLICT_BONDS), add a mode that
+> > > + * enables parallel submission across multiple engine classes. In this case each
+> > > + * context's logical engine mask indicates where that context can placed. It is
+> > > + * implied in this mode that all contexts have mutual exclusive placement (e.g.
+> > > + * if one context is running CS0 no other contexts can run on CS0).
+> > > + *
+> > > + * Example 1 pseudo code:
+> > > + * CSX[Y] = engine class X, logical instance Y
+> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> > > + * set_engines(INVALID, INVALID)
+> > > + * set_load_balance(engine_index=0, num_siblings=2, engines=CS0[0],CS0[1])
+> > > + * set_load_balance(engine_index=1, num_siblings=2, engines=CS1[0],CS1[1])
+> > > + * set_parallel()
+> > > + *
+> > > + * Results in the following valid placements:
+> > > + * CS0[0], CS1[0]
+> > > + * CS0[0], CS1[1]
+> > > + * CS0[1], CS1[0]
+> > > + * CS0[1], CS1[1]
+> > > + *
+> > > + * Example 2 pseudo code:
+> > > + * CS[X] = generic engine of same class, logical instance X
+> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> > > + * set_engines(INVALID, INVALID)
+> > > + * set_load_balance(engine_index=0, num_siblings=3, engines=CS[0],CS[1],CS[2])
+> > > + * set_load_balance(engine_index=1, num_siblings=3, engines=CS[0],CS[1],CS[2])
+> > > + * set_parallel()
+> > > + *
+> > > + * Results in the following valid placements:
+> > > + * CS[0], CS[1]
+> > > + * CS[0], CS[2]
+> > > + * CS[1], CS[0]
+> > > + * CS[1], CS[2]
+> > > + * CS[2], CS[0]
+> > > + * CS[2], CS[1]
+> > > + *
+> > > + * This enables a use case where all engines are created equally, we don't care
+> > > + * where they are scheduled, we just want a certain number of resources, for
+> > > + * those resources to be scheduled in parallel, and possibly across multiple
+> > > + * engine classes.
+> > > + */
+> > > +
+> > > +/*
+> > > + * I915_PARALLEL_IMPLICT_BONDS - Create implict bonds between each context.
+> > > + * Each context must have the same number sibling and bonds are implictly create
+> > > + * of the siblings.
+> > > + *
+> > > + * All of the below examples are in logical space.
+> > > + *
+> > > + * Example 1 pseudo code:
+> > > + * CS[X] = generic engine of same class, logical instance X
+> > > + * set_engines(CS[0], CS[1])
+> > > + * set_parallel(flags=I915_PARALLEL_IMPLICT_BONDS)
+> > > + *
+> > > + * Results in the following valid placements:
+> > > + * CS[0], CS[1]
+> > > + *
+> > > + * Example 2 pseudo code:
+> > > + * CS[X] = generic engine of same class, logical instance X
+> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> > > + * set_engines(INVALID, INVALID)
+> > > + * set_load_balance(engine_index=0, num_siblings=2, engines=CS[0],CS[2])
+> > > + * set_load_balance(engine_index=1, num_siblings=2, engines=CS[1],CS[3])
+> > > + * set_parallel(flags=I915_PARALLEL_IMPLICT_BONDS)
+> > > + *
+> > > + * Results in the following valid placements:
+> > > + * CS[0], CS[1]
+> > > + * CS[2], CS[3]
+> > > + *
+> > > + * This enables a use case where all engines are not equal and certain placement
+> > > + * rules are required (i.e. split-frame requires all contexts to be placed in a
+> > > + * logically contiguous order on the VCS engines on gen11+ platforms). This use
+> > > + * case (logically contiguous placement, within a single engine class) is
+> > > + * supported when using GuC submission. Execlist mode could support all possible
+> > > + * bonding configurations but currently doesn't support this extension.
+> > > + */
+> > > +#define I915_PARALLEL_IMPLICT_BONDS		(1<<0)
+> > > +/*
+> > > + * Do not allow BBs to be preempted mid BB rather insert coordinated preemption
+> > > + * points on all hardware contexts between each set of BBs. An example use case
+> > > + * of this feature is split-frame on gen11+ hardware. When using this feature a
+> > > + * BB must be submitted on each hardware context in the parallel gem context.
+> > > + * The execbuf2 IOCTL enforces the user adheres to policy.
+> > > + */
+> > > +#define I915_PARALLEL_NO_PREEMPT_MID_BATCH	(1<<1)
+> > > +#define I915_PARALLEL_UNKNOWN_FLAGS  (-(I915_PARALLEL_NO_PREEMPT_MID_BATCH << 1))
+> > > +	__u64 flags; /* all undefined flags must be zero */
+> > > +	__u64 mbz64[4]; /* reserved for future use; must be zero */
+> > > +} __attribute__ ((packed));
+> > 
+> > Ok I'm having some serious questions. This looks way too much like it's
+> > inspired by bonded submission, and given we're tossing bonded submission
+> > we need to make sure we're doing this for good independent reasons and not
+> > just for intertia.
+> > 
+> 
+> You are not wrong here, the bonding submission interface was a factor in
+> designing this interface.
+> 
+> > What I expected looking at how media-driver uses bonded submit currently
+> > is:
+> > 
+> > - We create a parallel submit engine, which occupies a virtual engine
+> >   slot. This parallel virtual engine contains all the information we need,
+> >   i.e. the flags you have above, but also how many engines run in parallel
+> >   and how each of those can be load-balanced. So probably a full NxM
+> >   matrix of physical engines needed.
+> > 
+> 
+> Internally we need all this information broken out into individual structures,
+> at least with the current implementation. We need N ring buffers, N timelines, N
+> LRCs, N HWSPs, etc... All of this is encapsulated by a 'struct intel_context'
+> which occupies a slot. Could we create a super object with N 'struct
+> intel_context', sure. I'm just not sure what that buys us and IMO creates an
+> inconsistent uAPI.
+
+So if the implementation is too much work to adapt, here's a really nasty
+trick: Currently we limit the engine slots to 64 in a gem context, because
+that's the limit of the execbuf field. We could use the engine slots above
+that for all these additional intel_context that we need underneath, at
+least for execlist. Does GuC need them all too?
+
+But clean approach would be to have an intel_parallal_engine struct which
+has all these pointers internally I think.
+
+Same on the high-level execbuf flow, doing all that N times is silly. So
+again I'd assume there's one overall i915_request that tracks the parallel
+submission, and then maybe N subordinate i915_request for each piece
+(execlist backend definitely needs those for scheduling, I didn't check
+about GuC).
+
+Also drm/scheduler only deals with a single thing too, so that way the
+high level code would never need to know that there's actually N things
+underneath doing the job.
+
+> > - Execbuf uses that parallel virtual engine to submit all N batchbuffers
+> >   in one go.
+> > 
+> 
+> If we expose 1 or N engines it doesn't really matter, does it? Either way the
+> entire GEM context is configured for N BBs in a single IOCTL.
+> 
+> > - This means we don't create virtual engines (or physical engine mappings)
+> >   for all the individual pieces in a parallel engine. That's a concept
+> >   from bonded submission, and I think that needs to go.
+> > 
+> 
+> Again this isn't strickly true - we need N internal backing structures.
+
+I didn't check the code, but iirc you said for the GuC backend you do
+nothing until the last submit. Only then it's pushed into the GuC. That
+sounds a bit silly, and by treating parallel submission as a single thing
+(which might or mightnot be split in lower levels) this would go away.
+
+But it also might be way too much churn, because there's a bunch of places
+where we have to do this splitting. If it's all, then maybe just keeping
+the engines around everywhere makes sense.
+
+But also this is leaking implementation details into uapi, from umd pov
+it's really 1 virtual engine that gets 1 execbuf call to submit N batches.
+Leaking that we treat it as N engines underneath feels like a mistake.
+
+> > - More important not having a parallel virtual engine breaks our already
+> >   badly confusing gem ctx api. Ignoring parallel/bonded submit the gem ctx
+> >   is just a container object, which points at a bunch of engines (plus the
+> >   VM and a few other things). Having parallel context something that sits
+> >   at the gem ctx level, and not as an individual engine (of which you can
+> >   have multiple in the same gem ctx) breaks stuff. E.g. right the perf api
+> >   sits at the gem ctx level, so that you can capture all the perf data for
+> >   an entire workload spawning across multiple engines. If a workload now
+> >   needs multiple parallel engines we'd need multiple gem ctx, which breaks
+> >   this.
+> 
+> This uAPI allows only 1 parallel context per gem context which isn't ideal. I'd
+> love to fix this and changing a context to a single slot might be able to fix
+> this.
+
+Yeah this is essentially the main gripe I have with this. Everywhere else
+you submit to a (gem_ctx_id, engine_slot) pair. Except for parallel
+submit, where you submit to a gem_ctx_id and the engine slot doesn't
+matter. That's a rather unfortunate uapi.
+
+Now with bonded submit this made some sense (not that bonded submit itself
+made much sense), since you did indeed submit N batchbuffers to N
+(gem_ctx_id, engine_slot) pairs. But with parallel submit it's really just
+one execbuf call.
+
+> > So what I'd expect we'd have here is roughly:
+> > 
+> > struct i915_context_engines_parallel_submit {
+> > 	struct i915_user_extension base;
+> > 	__u64 flags;
+> > 	__u32 num_engines; /* N, must match what we submit in the execbuf */
+> > 	__u32 num_siblings; /* M, I'm assuming it's ok we require that siblings must match across the entire set of parallel engines */
+> > 	struct engine_info[]; /* NxM array of engine infos, pls fill in the right struct name :-) */
+> > };
+> > 
+> > If we then also require that you always submit the full width of N
+> > batchbuffers then even the execbuf extension doesn't need to exist
+> > anymore, because the virtual parallel engine already contains all the
+> > needed information.
+> > 
+> > And sure for some backends at least (definitely execlist) we'd need to
+> > create a bunch of additional virtual engines behind that virtual engine.
+> > But they'd be entirely hidden, and not visible to userspace nor the higher
+> > levels.
+> >
+> > What am I missing?
+> 
+> Not really, I think you got it. I think at the end of day this really comes down
+> to do we want to allow more than 1 parallel virtual engine per gem context? If
+> the answer is yes we collapse a parallel virtual engine into a single slot, if
+> not we leave as is.
+
+Yup. So right now media uses one gem context per engine they need. Since
+media doesn't care about perf/OA they could get shared VM by sharing the
+VM across gem ctx, which they already do. So probably we could get away if
+we leave parallel engines as a gem ctx level thing.
+
+Also on the media-driver code the impact is nil since it's just a
+different chain of context extensions in the same ioctl call.
+
+Bigger picture is that Jason is quite unhappy withou our gem ctx based
+uapi, and his long term idea is to make gem ctx into a pure container
+object with pointers to engines and a vm. And not something that has
+relevance itself. Currently that's not the case for perf/OA, which works
+on the gem ctx, and Jason's already unhappy about that one. So adding more
+stuff on the gem ctx level feels a bit like a mistake.
+
+Cheers, Daniel
+
+> 
+> Matt
 > 
 > > -Daniel
 > > 
-> > > -Daniel
-> > > 
-> > > > ---
-> > > >   Documentation/gpu/rfc/i915_gem_lmem.h   | 237 ------------------------
-> > > >   Documentation/gpu/rfc/i915_gem_lmem.rst |   6 +-
-> > > >   2 files changed, 3 insertions(+), 240 deletions(-)
-> > > >   delete mode 100644 Documentation/gpu/rfc/i915_gem_lmem.h
-> > > > 
-> > > > diff --git a/Documentation/gpu/rfc/i915_gem_lmem.h b/Documentation/gpu/rfc/i915_gem_lmem.h
-> > > > deleted file mode 100644
-> > > > index d9c61bea0556..000000000000
-> > > > --- a/Documentation/gpu/rfc/i915_gem_lmem.h
-> > > > +++ /dev/null
-> > > > @@ -1,237 +0,0 @@
-> > > > -/**
-> > > > - * enum drm_i915_gem_memory_class - Supported memory classes
-> > > > - */
-> > > > -enum drm_i915_gem_memory_class {
-> > > > -	/** @I915_MEMORY_CLASS_SYSTEM: System memory */
-> > > > -	I915_MEMORY_CLASS_SYSTEM = 0,
-> > > > -	/** @I915_MEMORY_CLASS_DEVICE: Device local-memory */
-> > > > -	I915_MEMORY_CLASS_DEVICE,
-> > > > -};
-> > > > -
-> > > > -/**
-> > > > - * struct drm_i915_gem_memory_class_instance - Identify particular memory region
-> > > > - */
-> > > > -struct drm_i915_gem_memory_class_instance {
-> > > > -	/** @memory_class: See enum drm_i915_gem_memory_class */
-> > > > -	__u16 memory_class;
-> > > > -
-> > > > -	/** @memory_instance: Which instance */
-> > > > -	__u16 memory_instance;
-> > > > -};
-> > > > -
-> > > > -/**
-> > > > - * struct drm_i915_memory_region_info - Describes one region as known to the
-> > > > - * driver.
-> > > > - *
-> > > > - * Note that we reserve some stuff here for potential future work. As an example
-> > > > - * we might want expose the capabilities for a given region, which could include
-> > > > - * things like if the region is CPU mappable/accessible, what are the supported
-> > > > - * mapping types etc.
-> > > > - *
-> > > > - * Note that to extend struct drm_i915_memory_region_info and struct
-> > > > - * drm_i915_query_memory_regions in the future the plan is to do the following:
-> > > > - *
-> > > > - * .. code-block:: C
-> > > > - *
-> > > > - *	struct drm_i915_memory_region_info {
-> > > > - *		struct drm_i915_gem_memory_class_instance region;
-> > > > - *		union {
-> > > > - *			__u32 rsvd0;
-> > > > - *			__u32 new_thing1;
-> > > > - *		};
-> > > > - *		...
-> > > > - *		union {
-> > > > - *			__u64 rsvd1[8];
-> > > > - *			struct {
-> > > > - *				__u64 new_thing2;
-> > > > - *				__u64 new_thing3;
-> > > > - *				...
-> > > > - *			};
-> > > > - *		};
-> > > > - *	};
-> > > > - *
-> > > > - * With this things should remain source compatible between versions for
-> > > > - * userspace, even as we add new fields.
-> > > > - *
-> > > > - * Note this is using both struct drm_i915_query_item and struct drm_i915_query.
-> > > > - * For this new query we are adding the new query id DRM_I915_QUERY_MEMORY_REGIONS
-> > > > - * at &drm_i915_query_item.query_id.
-> > > > - */
-> > > > -struct drm_i915_memory_region_info {
-> > > > -	/** @region: The class:instance pair encoding */
-> > > > -	struct drm_i915_gem_memory_class_instance region;
-> > > > -
-> > > > -	/** @rsvd0: MBZ */
-> > > > -	__u32 rsvd0;
-> > > > -
-> > > > -	/** @probed_size: Memory probed by the driver (-1 = unknown) */
-> > > > -	__u64 probed_size;
-> > > > -
-> > > > -	/** @unallocated_size: Estimate of memory remaining (-1 = unknown) */
-> > > > -	__u64 unallocated_size;
-> > > > -
-> > > > -	/** @rsvd1: MBZ */
-> > > > -	__u64 rsvd1[8];
-> > > > -};
-> > > > -
-> > > > -/**
-> > > > - * struct drm_i915_query_memory_regions
-> > > > - *
-> > > > - * The region info query enumerates all regions known to the driver by filling
-> > > > - * in an array of struct drm_i915_memory_region_info structures.
-> > > > - *
-> > > > - * Example for getting the list of supported regions:
-> > > > - *
-> > > > - * .. code-block:: C
-> > > > - *
-> > > > - *	struct drm_i915_query_memory_regions *info;
-> > > > - *	struct drm_i915_query_item item = {
-> > > > - *		.query_id = DRM_I915_QUERY_MEMORY_REGIONS;
-> > > > - *	};
-> > > > - *	struct drm_i915_query query = {
-> > > > - *		.num_items = 1,
-> > > > - *		.items_ptr = (uintptr_t)&item,
-> > > > - *	};
-> > > > - *	int err, i;
-> > > > - *
-> > > > - *	// First query the size of the blob we need, this needs to be large
-> > > > - *	// enough to hold our array of regions. The kernel will fill out the
-> > > > - *	// item.length for us, which is the number of bytes we need.
-> > > > - *	err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
-> > > > - *	if (err) ...
-> > > > - *
-> > > > - *	info = calloc(1, item.length);
-> > > > - *	// Now that we allocated the required number of bytes, we call the ioctl
-> > > > - *	// again, this time with the data_ptr pointing to our newly allocated
-> > > > - *	// blob, which the kernel can then populate with the all the region info.
-> > > > - *	item.data_ptr = (uintptr_t)&info,
-> > > > - *
-> > > > - *	err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
-> > > > - *	if (err) ...
-> > > > - *
-> > > > - *	// We can now access each region in the array
-> > > > - *	for (i = 0; i < info->num_regions; i++) {
-> > > > - *		struct drm_i915_memory_region_info mr = info->regions[i];
-> > > > - *		u16 class = mr.region.class;
-> > > > - *		u16 instance = mr.region.instance;
-> > > > - *
-> > > > - *		....
-> > > > - *	}
-> > > > - *
-> > > > - *	free(info);
-> > > > - */
-> > > > -struct drm_i915_query_memory_regions {
-> > > > -	/** @num_regions: Number of supported regions */
-> > > > -	__u32 num_regions;
-> > > > -
-> > > > -	/** @rsvd: MBZ */
-> > > > -	__u32 rsvd[3];
-> > > > -
-> > > > -	/** @regions: Info about each supported region */
-> > > > -	struct drm_i915_memory_region_info regions[];
-> > > > -};
-> > > > -
-> > > > -#define DRM_I915_GEM_CREATE_EXT		0xdeadbeaf
-> > > > -#define DRM_IOCTL_I915_GEM_CREATE_EXT	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE_EXT, struct drm_i915_gem_create_ext)
-> > > > -
-> > > > -/**
-> > > > - * struct drm_i915_gem_create_ext - Existing gem_create behaviour, with added
-> > > > - * extension support using struct i915_user_extension.
-> > > > - *
-> > > > - * Note that in the future we want to have our buffer flags here, at least for
-> > > > - * the stuff that is immutable. Previously we would have two ioctls, one to
-> > > > - * create the object with gem_create, and another to apply various parameters,
-> > > > - * however this creates some ambiguity for the params which are considered
-> > > > - * immutable. Also in general we're phasing out the various SET/GET ioctls.
-> > > > - */
-> > > > -struct drm_i915_gem_create_ext {
-> > > > -	/**
-> > > > -	 * @size: Requested size for the object.
-> > > > -	 *
-> > > > -	 * The (page-aligned) allocated size for the object will be returned.
-> > > > -	 *
-> > > > -	 * Note that for some devices we have might have further minimum
-> > > > -	 * page-size restrictions(larger than 4K), like for device local-memory.
-> > > > -	 * However in general the final size here should always reflect any
-> > > > -	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
-> > > > -	 * extension to place the object in device local-memory.
-> > > > -	 */
-> > > > -	__u64 size;
-> > > > -	/**
-> > > > -	 * @handle: Returned handle for the object.
-> > > > -	 *
-> > > > -	 * Object handles are nonzero.
-> > > > -	 */
-> > > > -	__u32 handle;
-> > > > -	/** @flags: MBZ */
-> > > > -	__u32 flags;
-> > > > -	/**
-> > > > -	 * @extensions: The chain of extensions to apply to this object.
-> > > > -	 *
-> > > > -	 * This will be useful in the future when we need to support several
-> > > > -	 * different extensions, and we need to apply more than one when
-> > > > -	 * creating the object. See struct i915_user_extension.
-> > > > -	 *
-> > > > -	 * If we don't supply any extensions then we get the same old gem_create
-> > > > -	 * behaviour.
-> > > > -	 *
-> > > > -	 * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
-> > > > -	 * struct drm_i915_gem_create_ext_memory_regions.
-> > > > -	 */
-> > > > -#define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
-> > > > -	__u64 extensions;
-> > > > -};
-> > > > -
-> > > > -/**
-> > > > - * struct drm_i915_gem_create_ext_memory_regions - The
-> > > > - * I915_GEM_CREATE_EXT_MEMORY_REGIONS extension.
-> > > > - *
-> > > > - * Set the object with the desired set of placements/regions in priority
-> > > > - * order. Each entry must be unique and supported by the device.
-> > > > - *
-> > > > - * This is provided as an array of struct drm_i915_gem_memory_class_instance, or
-> > > > - * an equivalent layout of class:instance pair encodings. See struct
-> > > > - * drm_i915_query_memory_regions and DRM_I915_QUERY_MEMORY_REGIONS for how to
-> > > > - * query the supported regions for a device.
-> > > > - *
-> > > > - * As an example, on discrete devices, if we wish to set the placement as
-> > > > - * device local-memory we can do something like:
-> > > > - *
-> > > > - * .. code-block:: C
-> > > > - *
-> > > > - *	struct drm_i915_gem_memory_class_instance region_lmem = {
-> > > > - *              .memory_class = I915_MEMORY_CLASS_DEVICE,
-> > > > - *              .memory_instance = 0,
-> > > > - *      };
-> > > > - *      struct drm_i915_gem_create_ext_memory_regions regions = {
-> > > > - *              .base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
-> > > > - *              .regions = (uintptr_t)&region_lmem,
-> > > > - *              .num_regions = 1,
-> > > > - *      };
-> > > > - *      struct drm_i915_gem_create_ext create_ext = {
-> > > > - *              .size = 16 * PAGE_SIZE,
-> > > > - *              .extensions = (uintptr_t)&regions,
-> > > > - *      };
-> > > > - *
-> > > > - *      int err = ioctl(fd, DRM_IOCTL_I915_GEM_CREATE_EXT, &create_ext);
-> > > > - *      if (err) ...
-> > > > - *
-> > > > - * At which point we get the object handle in &drm_i915_gem_create_ext.handle,
-> > > > - * along with the final object size in &drm_i915_gem_create_ext.size, which
-> > > > - * should account for any rounding up, if required.
-> > > > - */
-> > > > -struct drm_i915_gem_create_ext_memory_regions {
-> > > > -	/** @base: Extension link. See struct i915_user_extension. */
-> > > > -	struct i915_user_extension base;
-> > > > -
-> > > > -	/** @pad: MBZ */
-> > > > -	__u32 pad;
-> > > > -	/** @num_regions: Number of elements in the @regions array. */
-> > > > -	__u32 num_regions;
-> > > > -	/**
-> > > > -	 * @regions: The regions/placements array.
-> > > > -	 *
-> > > > -	 * An array of struct drm_i915_gem_memory_class_instance.
-> > > > -	 */
-> > > > -	__u64 regions;
-> > > > -};
-> > > > diff --git a/Documentation/gpu/rfc/i915_gem_lmem.rst b/Documentation/gpu/rfc/i915_gem_lmem.rst
-> > > > index 1d344c593018..675ba8620d66 100644
-> > > > --- a/Documentation/gpu/rfc/i915_gem_lmem.rst
-> > > > +++ b/Documentation/gpu/rfc/i915_gem_lmem.rst
-> > > > @@ -48,7 +48,7 @@ particular instance, since we can have more than one per class.
-> > > >   In the future we also want to expose more information which can further
-> > > >   describe the capabilities of a region.
-> > > > -.. kernel-doc:: Documentation/gpu/rfc/i915_gem_lmem.h
-> > > > +.. kernel-doc:: include/uapi/drm/i915_drm.h
-> > > >           :functions: drm_i915_gem_memory_class drm_i915_gem_memory_class_instance drm_i915_memory_region_info drm_i915_query_memory_regions
-> > > >   GEM_CREATE_EXT
-> > > > @@ -61,7 +61,7 @@ Side note: We also need to support PXP[1] in the near future, which is also
-> > > >   applicable to integrated platforms, and adds its own gem_create_ext extension,
-> > > >   which basically lets userspace mark a buffer as "protected".
-> > > > -.. kernel-doc:: Documentation/gpu/rfc/i915_gem_lmem.h
-> > > > +.. kernel-doc:: include/uapi/drm/i915_drm.h
-> > > >           :functions: drm_i915_gem_create_ext
-> > > >   I915_GEM_CREATE_EXT_MEMORY_REGIONS
-> > > > @@ -73,7 +73,7 @@ them each to use the class/instance encoding, as per the output of the regions
-> > > >   query. Having the list in priority order will be useful in the future when
-> > > >   placing an object, say during eviction.
-> > > > -.. kernel-doc:: Documentation/gpu/rfc/i915_gem_lmem.h
-> > > > +.. kernel-doc:: include/uapi/drm/i915_drm.h
-> > > >           :functions: drm_i915_gem_create_ext_memory_regions
-> > > >   One fair criticism here is that this seems a little over-engineered[2]. If we
-> > > > -- 
-> > > > 2.26.3
-> > > > 
-> > > 
+> > >  #define I915_DEFINE_CONTEXT_PARAM_ENGINES(name__, N__) struct { \
+> > >  	__u64 extensions; \
+> > >  	struct i915_engine_class_instance engines[N__]; \
 > > > -- 
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
+> > > 2.28.0
+> > > 
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 > > 
+> > -- 
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
 
 -- 
 Daniel Vetter
