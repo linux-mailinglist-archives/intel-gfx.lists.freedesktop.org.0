@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 301EA37B81A
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 10:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F58C37B835
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 10:40:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 193CB6EB60;
-	Wed, 12 May 2021 08:35:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 226216EB67;
+	Wed, 12 May 2021 08:40:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
- [IPv6:2a00:1450:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 998E16EB60
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 08:35:03 +0000 (UTC)
-Received: by mail-ej1-x634.google.com with SMTP id k10so2531047ejj.8
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 01:35:03 -0700 (PDT)
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com
+ [IPv6:2a00:1450:4864:20::52b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13C036EB63
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 08:40:06 +0000 (UTC)
+Received: by mail-ed1-x52b.google.com with SMTP id bf4so26081228edb.11
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 01:40:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Y9NGcmyA6WiQkvURHKjlPrndrI2KxaognygI8XZ/fTA=;
- b=A7hvgFSlnvGqRoEhHfplpw+0EKG9kzz7zsWvYkpxaserBME66JCCrtFY1m6aeb70m9
- gsJ2VsY/9IfdQqgtqAs4QeYlh+5HNL5sFODBzyQnnmApPE6MjIDPu45+kkWuHluCC9Xc
- vqO/Jj0huIp8tP5D34PLtHNa0RbIj07hmBwRM=
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=DN72HFH+LUVzK+cplVzUJsN944LoEuI4v0cnkxdBkwI=;
+ b=TX1RsdXLiR+Wp/CmqOcpqfZXIGZd6fJmPxq1IJf8NDDNRAL2Fau7/FciTzE1/Xfds5
+ 7Ci8Zvm4+6ceNcSNDsO9oSbOB2hB4FlZ5Z2cypJxTvn5Aaz0/GKhXb3BurkvncbSpowo
+ XxQkIW8XQmIdhVMxkBl2pVKlukn21YQwEIOzs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Y9NGcmyA6WiQkvURHKjlPrndrI2KxaognygI8XZ/fTA=;
- b=p8g8rvFwArno0hZxPKHG6us80Pp1WSjwzdjr5rTDZ/cuqsSfHQFh6MQcEzp9XRSuFQ
- B03AbHYeXKr4oRz9j6E9vAfYvOtfC3H2anQRfQqZHOTtWlWuyDsgogD7f+fDw4T8I4Ud
- U/oU82EyBh0PIPJHtW/6QWG8AHuoqwkOgR1hrsReBrGbrPLCwNs0RYFG/hOCSzkIaYwn
- Tob5BfizvhKXbg15v9piTPSMIGCxxIKUhH8ixl7lPzMqH7OzehFoY9DAVL9nRzN0eSxh
- /twKB3MODz3XQFe8yUgZ2Wf6T4W9T2xgqTVgQL/ArAKgT8pjkh/URYifoqamCqco4KAb
- FxEQ==
-X-Gm-Message-State: AOAM531QUeoik7f1aAbDiSnSoSPtF1yJ2npTYn06CTzaeW1IQO5VkPxR
- aclAbz+2XOJ/vy7kDMtbySFG6g==
-X-Google-Smtp-Source: ABdhPJwRZU4zHugQBl/mRNr33Q+XXxoiCFaELRxMOZK0FU5XWgGqYMYXEI5eyochsTXUNHyalp0rKQ==
-X-Received: by 2002:a17:907:75e9:: with SMTP id
- jz9mr4034082ejc.314.1620808502100; 
- Wed, 12 May 2021 01:35:02 -0700 (PDT)
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=DN72HFH+LUVzK+cplVzUJsN944LoEuI4v0cnkxdBkwI=;
+ b=dQs9iJz+LAi71mtSIulacMJtvnRFeBnhpgdUU/e6xSVs3xAdSvZeY41q2kZdKlNmM8
+ WTQOJXd54R1SmQZXpRNNFDD3ebx3c5pN6vi/QcM1Fs2PSlIH2z+SgaBR1mhmG/I6m3qj
+ 4X3i52z2WDpwTJ93EBKgZj84s4DwiKLLDLsWTolS+7Ugs0whhAxHAcqsASiXijbWJzWv
+ sbt+qfCNkCexzZBswQkWOUj1asfC5TcKuee8o8PKxRcVvCj9xLGxImoEX/ym7NfGXuB7
+ vBihQtdmTOQ11FCOosbete7ED6PgRO2n+gCHSAxzFeYVlB3uFn3LWBfaAAuuOVZ4tE9W
+ ho/w==
+X-Gm-Message-State: AOAM531VmXZII60WaMfqfX633Od8uBHb5XwweOwXkqY5GfCRC5vrKIib
+ fZDaSrJySPcSUb6MymVQi8t8Lw==
+X-Google-Smtp-Source: ABdhPJyUGOs8MGHBdr2vYMAXtdXpyVNm+FNxDu4or1i/Sw/1qfcW0q/D1Cw6884ziYFflO5eErrR4w==
+X-Received: by 2002:a05:6402:310a:: with SMTP id
+ dc10mr41787585edb.38.1620808804790; 
+ Wed, 12 May 2021 01:40:04 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id di7sm2819167edb.34.2021.05.12.01.35.00
+ by smtp.gmail.com with ESMTPSA id d25sm16749061edx.58.2021.05.12.01.40.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 12 May 2021 01:35:01 -0700 (PDT)
-Date: Wed, 12 May 2021 10:34:59 +0200
+ Wed, 12 May 2021 01:40:04 -0700 (PDT)
+Date: Wed, 12 May 2021 10:40:02 +0200
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <YJuTM0eOtrwsgBKX@phenom.ffwll.local>
-References: <20210506173049.72503-1-matthew.brost@intel.com>
- <20210506173049.72503-5-matthew.brost@intel.com>
- <YJqesIT3leIhTNxs@phenom.ffwll.local>
- <20210511184425.GA7786@sdutt-i7>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Message-ID: <YJuUYngcDhB8mTlp@phenom.ffwll.local>
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+ <20210506191451.77768-21-matthew.brost@intel.com>
+ <YJqf1uKIyeHvSf+f@phenom.ffwll.local>
+ <bffc13d2-a24e-2615-2730-bad2fd6b3651@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210511184425.GA7786@sdutt-i7>
+In-Reply-To: <bffc13d2-a24e-2615-2730-bad2fd6b3651@intel.com>
 X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [RFC PATCH 4/5] drm/i915: Introduce 'set parallel
- submit' extension
+Subject: Re: [Intel-gfx] [RFC PATCH 20/97] drm/i915/guc: Introduce unified
+ HXG messages
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,377 +71,288 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- carl.zhang@intel.com, jason.ekstrand@intel.com, daniel.vetter@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ jason.ekstrand@intel.com, daniel.vetter@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 11, 2021 at 11:44:28AM -0700, Matthew Brost wrote:
-> On Tue, May 11, 2021 at 05:11:44PM +0200, Daniel Vetter wrote:
-> > On Thu, May 06, 2021 at 10:30:48AM -0700, Matthew Brost wrote:
-> > > i915_drm.h updates for 'set parallel submit' extension.
-> > > 
-> > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > Cc: Tony Ye <tony.ye@intel.com>
-> > > CC: Carl Zhang <carl.zhang@intel.com>
-> > > Cc: Daniel Vetter <daniel.vetter@intel.com>
-> > > Cc: Jason Ekstrand <jason@jlekstrand.net>
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > ---
-> > >  include/uapi/drm/i915_drm.h | 126 ++++++++++++++++++++++++++++++++++++
-> > >  1 file changed, 126 insertions(+)
-> > > 
-> > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> > > index 26d2e135aa31..0175b12b33b8 100644
-> > > --- a/include/uapi/drm/i915_drm.h
-> > > +++ b/include/uapi/drm/i915_drm.h
-> > > @@ -1712,6 +1712,7 @@ struct drm_i915_gem_context_param {
-> > >   * Extensions:
-> > >   *   i915_context_engines_load_balance (I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE)
-> > >   *   i915_context_engines_bond (I915_CONTEXT_ENGINES_EXT_BOND)
-> > > + *   i915_context_engines_parallel_submit (I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT)
-> > 
-> > Hm just relalized, but I don't think this hyperlinsk correctly, and I'm
-> > also not sure this formats very well as a nice list. Using item lists
-> > should look pretty nice like we're doing for the various kms properties,
-> > e.g.
-> > 
-> > FOO:
-> >   Explain what FOO does
-> > 
-> > BAR:
-> >   Explain what BAR does. struct bar also automatically generates a link
-> > 
-> > Please check with make htmldocs and polish this a bit (might need a small
-> > prep patch).
-> > 
-> 
-> I agree the doc should look nice. To get there I might need to chat with you on
-> IRC as I'm new to this. 
-> 
-> > >   */
-> > >  #define I915_CONTEXT_PARAM_ENGINES	0xa
-> > >  
-> > > @@ -1894,9 +1895,134 @@ struct i915_context_param_engines {
-> > >  	__u64 extensions; /* linked chain of extension blocks, 0 terminates */
-> > >  #define I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE 0 /* see i915_context_engines_load_balance */
-> > >  #define I915_CONTEXT_ENGINES_EXT_BOND 1 /* see i915_context_engines_bond */
-> > > +#define I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT 2 /* see i915_context_engines_parallel_submit */
-> > >  	struct i915_engine_class_instance engines[0];
-> > >  } __attribute__((packed));
-> > >  
-> > > +/*
-> > > + * i915_context_engines_parallel_submit:
-> > > + *
-> > > + * Setup a gem context to allow multiple BBs to be submitted in a single execbuf
-> > > + * IOCTL. Those BBs will then be scheduled to run on the GPU in parallel.
-> > > + *
-> > > + * All hardware contexts in the engine set are configured for parallel
-> > > + * submission (i.e. once this gem context is configured for parallel submission,
-> > > + * all the hardware contexts, regardless if a BB is available on each individual
-> > > + * context, will be submitted to the GPU in parallel). A user can submit BBs to
-> > > + * subset of the hardware contexts, in a single execbuf IOCTL, but it is not
-> > > + * recommended as it may reserve physical engines with nothing to run on them.
-> > > + * Highly recommended to configure the gem context with N hardware contexts then
-> > > + * always submit N BBs in a single IOCTL.
-> > > + *
-> > > + * Their are two currently defined ways to control the placement of the
-> > > + * hardware contexts on physical engines: default behavior (no flags) and
-> > > + * I915_PARALLEL_IMPLICT_BONDS (a flag). More flags may be added the in the
-> > > + * future as new hardware / use cases arise. Details of how to use this
-> > > + * interface below above the flags.
-> > > + *
-> > > + * Returns -EINVAL if hardware context placement configuration invalid or if the
-> > > + * placement configuration isn't supported on the platform / submission
-> > > + * interface.
-> > > + * Returns -ENODEV if extension isn't supported on the platform / submission
-> > > + * inteface.
-> > > + */
-> > > +struct i915_context_engines_parallel_submit {
-> > > +	struct i915_user_extension base;
-> > 
-> > Ok this is good, since it makes sure we can't possible use this in
-> > CTX_SETPARAM.
-> > 
-> 
-> Yep, this is at context creation time. Technically you still can call this over
-> and over on the same gem context but Jason is taking that ability away I
-> believe. I've also told the media team to setup the context once and don't touch
-> it again.
-
-Only if you base your context param on drm_i915_gem_context_param, which
-can be used both at create time with
-drm_i915_gem_context_create_ext_setparam and with the CTX_SETPARAM ioctl.
-But you don't, so this issue is fixed at the uapi design and doesn't need
-to interface with Jason's prot-ctx rework much.
-
-There's still going to be some conflicts, so maybe ask Jason for a branch
-and rebase GuC on top of that for the next round.
-
-> 
-> > > +
-> > > +/*
-> > > + * Default placement behvavior (currently unsupported):
-> > > + *
-> > > + * Rather than restricting parallel submission to a single class with a
-> > > + * logically contiguous placement (I915_PARALLEL_IMPLICT_BONDS), add a mode that
-> > > + * enables parallel submission across multiple engine classes. In this case each
-> > > + * context's logical engine mask indicates where that context can placed. It is
-> > > + * implied in this mode that all contexts have mutual exclusive placement (e.g.
-> > > + * if one context is running CS0 no other contexts can run on CS0).
-> > > + *
-> > > + * Example 1 pseudo code:
-> > > + * CSX[Y] = engine class X, logical instance Y
-> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
-> > > + * set_engines(INVALID, INVALID)
-> > > + * set_load_balance(engine_index=0, num_siblings=2, engines=CS0[0],CS0[1])
-> > > + * set_load_balance(engine_index=1, num_siblings=2, engines=CS1[0],CS1[1])
-> > > + * set_parallel()
-> > > + *
-> > > + * Results in the following valid placements:
-> > > + * CS0[0], CS1[0]
-> > > + * CS0[0], CS1[1]
-> > > + * CS0[1], CS1[0]
-> > > + * CS0[1], CS1[1]
-> > > + *
-> > > + * Example 2 pseudo code:
-> > > + * CS[X] = generic engine of same class, logical instance X
-> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
-> > > + * set_engines(INVALID, INVALID)
-> > > + * set_load_balance(engine_index=0, num_siblings=3, engines=CS[0],CS[1],CS[2])
-> > > + * set_load_balance(engine_index=1, num_siblings=3, engines=CS[0],CS[1],CS[2])
-> > > + * set_parallel()
-> > > + *
-> > > + * Results in the following valid placements:
-> > > + * CS[0], CS[1]
-> > > + * CS[0], CS[2]
-> > > + * CS[1], CS[0]
-> > > + * CS[1], CS[2]
-> > > + * CS[2], CS[0]
-> > > + * CS[2], CS[1]
-> > > + *
-> > > + * This enables a use case where all engines are created equally, we don't care
-> > > + * where they are scheduled, we just want a certain number of resources, for
-> > > + * those resources to be scheduled in parallel, and possibly across multiple
-> > > + * engine classes.
-> > > + */
-> > > +
-> > > +/*
-> > > + * I915_PARALLEL_IMPLICT_BONDS - Create implict bonds between each context.
-> > > + * Each context must have the same number sibling and bonds are implictly create
-> > > + * of the siblings.
-> > > + *
-> > > + * All of the below examples are in logical space.
-> > > + *
-> > > + * Example 1 pseudo code:
-> > > + * CS[X] = generic engine of same class, logical instance X
-> > > + * set_engines(CS[0], CS[1])
-> > > + * set_parallel(flags=I915_PARALLEL_IMPLICT_BONDS)
-> > > + *
-> > > + * Results in the following valid placements:
-> > > + * CS[0], CS[1]
-> > > + *
-> > > + * Example 2 pseudo code:
-> > > + * CS[X] = generic engine of same class, logical instance X
-> > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
-> > > + * set_engines(INVALID, INVALID)
-> > > + * set_load_balance(engine_index=0, num_siblings=2, engines=CS[0],CS[2])
-> > > + * set_load_balance(engine_index=1, num_siblings=2, engines=CS[1],CS[3])
-> > > + * set_parallel(flags=I915_PARALLEL_IMPLICT_BONDS)
-> > > + *
-> > > + * Results in the following valid placements:
-> > > + * CS[0], CS[1]
-> > > + * CS[2], CS[3]
-> > > + *
-> > > + * This enables a use case where all engines are not equal and certain placement
-> > > + * rules are required (i.e. split-frame requires all contexts to be placed in a
-> > > + * logically contiguous order on the VCS engines on gen11+ platforms). This use
-> > > + * case (logically contiguous placement, within a single engine class) is
-> > > + * supported when using GuC submission. Execlist mode could support all possible
-> > > + * bonding configurations but currently doesn't support this extension.
-> > > + */
-> > > +#define I915_PARALLEL_IMPLICT_BONDS		(1<<0)
-> > > +/*
-> > > + * Do not allow BBs to be preempted mid BB rather insert coordinated preemption
-> > > + * points on all hardware contexts between each set of BBs. An example use case
-> > > + * of this feature is split-frame on gen11+ hardware. When using this feature a
-> > > + * BB must be submitted on each hardware context in the parallel gem context.
-> > > + * The execbuf2 IOCTL enforces the user adheres to policy.
-> > > + */
-> > > +#define I915_PARALLEL_NO_PREEMPT_MID_BATCH	(1<<1)
-> > > +#define I915_PARALLEL_UNKNOWN_FLAGS  (-(I915_PARALLEL_NO_PREEMPT_MID_BATCH << 1))
-> > > +	__u64 flags; /* all undefined flags must be zero */
-> > > +	__u64 mbz64[4]; /* reserved for future use; must be zero */
-> > > +} __attribute__ ((packed));
-> > 
-> > Ok I'm having some serious questions. This looks way too much like it's
-> > inspired by bonded submission, and given we're tossing bonded submission
-> > we need to make sure we're doing this for good independent reasons and not
-> > just for intertia.
-> > 
-> 
-> You are not wrong here, the bonding submission interface was a factor in
-> designing this interface.
-> 
-> > What I expected looking at how media-driver uses bonded submit currently
-> > is:
-> > 
-> > - We create a parallel submit engine, which occupies a virtual engine
-> >   slot. This parallel virtual engine contains all the information we need,
-> >   i.e. the flags you have above, but also how many engines run in parallel
-> >   and how each of those can be load-balanced. So probably a full NxM
-> >   matrix of physical engines needed.
-> > 
-> 
-> Internally we need all this information broken out into individual structures,
-> at least with the current implementation. We need N ring buffers, N timelines, N
-> LRCs, N HWSPs, etc... All of this is encapsulated by a 'struct intel_context'
-> which occupies a slot. Could we create a super object with N 'struct
-> intel_context', sure. I'm just not sure what that buys us and IMO creates an
-> inconsistent uAPI.
-
-So if the implementation is too much work to adapt, here's a really nasty
-trick: Currently we limit the engine slots to 64 in a gem context, because
-that's the limit of the execbuf field. We could use the engine slots above
-that for all these additional intel_context that we need underneath, at
-least for execlist. Does GuC need them all too?
-
-But clean approach would be to have an intel_parallal_engine struct which
-has all these pointers internally I think.
-
-Same on the high-level execbuf flow, doing all that N times is silly. So
-again I'd assume there's one overall i915_request that tracks the parallel
-submission, and then maybe N subordinate i915_request for each piece
-(execlist backend definitely needs those for scheduling, I didn't check
-about GuC).
-
-Also drm/scheduler only deals with a single thing too, so that way the
-high level code would never need to know that there's actually N things
-underneath doing the job.
-
-> > - Execbuf uses that parallel virtual engine to submit all N batchbuffers
-> >   in one go.
-> > 
-> 
-> If we expose 1 or N engines it doesn't really matter, does it? Either way the
-> entire GEM context is configured for N BBs in a single IOCTL.
-> 
-> > - This means we don't create virtual engines (or physical engine mappings)
-> >   for all the individual pieces in a parallel engine. That's a concept
-> >   from bonded submission, and I think that needs to go.
-> > 
-> 
-> Again this isn't strickly true - we need N internal backing structures.
-
-I didn't check the code, but iirc you said for the GuC backend you do
-nothing until the last submit. Only then it's pushed into the GuC. That
-sounds a bit silly, and by treating parallel submission as a single thing
-(which might or mightnot be split in lower levels) this would go away.
-
-But it also might be way too much churn, because there's a bunch of places
-where we have to do this splitting. If it's all, then maybe just keeping
-the engines around everywhere makes sense.
-
-But also this is leaking implementation details into uapi, from umd pov
-it's really 1 virtual engine that gets 1 execbuf call to submit N batches.
-Leaking that we treat it as N engines underneath feels like a mistake.
-
-> > - More important not having a parallel virtual engine breaks our already
-> >   badly confusing gem ctx api. Ignoring parallel/bonded submit the gem ctx
-> >   is just a container object, which points at a bunch of engines (plus the
-> >   VM and a few other things). Having parallel context something that sits
-> >   at the gem ctx level, and not as an individual engine (of which you can
-> >   have multiple in the same gem ctx) breaks stuff. E.g. right the perf api
-> >   sits at the gem ctx level, so that you can capture all the perf data for
-> >   an entire workload spawning across multiple engines. If a workload now
-> >   needs multiple parallel engines we'd need multiple gem ctx, which breaks
-> >   this.
-> 
-> This uAPI allows only 1 parallel context per gem context which isn't ideal. I'd
-> love to fix this and changing a context to a single slot might be able to fix
-> this.
-
-Yeah this is essentially the main gripe I have with this. Everywhere else
-you submit to a (gem_ctx_id, engine_slot) pair. Except for parallel
-submit, where you submit to a gem_ctx_id and the engine slot doesn't
-matter. That's a rather unfortunate uapi.
-
-Now with bonded submit this made some sense (not that bonded submit itself
-made much sense), since you did indeed submit N batchbuffers to N
-(gem_ctx_id, engine_slot) pairs. But with parallel submit it's really just
-one execbuf call.
-
-> > So what I'd expect we'd have here is roughly:
-> > 
-> > struct i915_context_engines_parallel_submit {
-> > 	struct i915_user_extension base;
-> > 	__u64 flags;
-> > 	__u32 num_engines; /* N, must match what we submit in the execbuf */
-> > 	__u32 num_siblings; /* M, I'm assuming it's ok we require that siblings must match across the entire set of parallel engines */
-> > 	struct engine_info[]; /* NxM array of engine infos, pls fill in the right struct name :-) */
-> > };
-> > 
-> > If we then also require that you always submit the full width of N
-> > batchbuffers then even the execbuf extension doesn't need to exist
-> > anymore, because the virtual parallel engine already contains all the
-> > needed information.
-> > 
-> > And sure for some backends at least (definitely execlist) we'd need to
-> > create a bunch of additional virtual engines behind that virtual engine.
-> > But they'd be entirely hidden, and not visible to userspace nor the higher
-> > levels.
-> >
-> > What am I missing?
-> 
-> Not really, I think you got it. I think at the end of day this really comes down
-> to do we want to allow more than 1 parallel virtual engine per gem context? If
-> the answer is yes we collapse a parallel virtual engine into a single slot, if
-> not we leave as is.
-
-Yup. So right now media uses one gem context per engine they need. Since
-media doesn't care about perf/OA they could get shared VM by sharing the
-VM across gem ctx, which they already do. So probably we could get away if
-we leave parallel engines as a gem ctx level thing.
-
-Also on the media-driver code the impact is nil since it's just a
-different chain of context extensions in the same ioctl call.
-
-Bigger picture is that Jason is quite unhappy withou our gem ctx based
-uapi, and his long term idea is to make gem ctx into a pure container
-object with pointers to engines and a vm. And not something that has
-relevance itself. Currently that's not the case for perf/OA, which works
-on the gem ctx, and Jason's already unhappy about that one. So adding more
-stuff on the gem ctx level feels a bit like a mistake.
-
-Cheers, Daniel
-
-> 
-> Matt
-> 
-> > -Daniel
-> > 
-> > >  #define I915_DEFINE_CONTEXT_PARAM_ENGINES(name__, N__) struct { \
-> > >  	__u64 extensions; \
-> > >  	struct i915_engine_class_instance engines[N__]; \
-> > > -- 
-> > > 2.28.0
-> > > 
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > 
-> > -- 
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCBNYXkgMTIsIDIwMjEgYXQgMTI6MTE6NDBBTSArMDIwMCwgTWljaGFsIFdhamRlY3pr
+byB3cm90ZToKPiAKPiAKPiBPbiAxMS4wNS4yMDIxIDE3OjE2LCBEYW5pZWwgVmV0dGVyIHdyb3Rl
+Ogo+ID4gT24gVGh1LCBNYXkgMDYsIDIwMjEgYXQgMTI6MTM6MzRQTSAtMDcwMCwgTWF0dGhldyBC
+cm9zdCB3cm90ZToKPiA+PiBGcm9tOiBNaWNoYWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtv
+QGludGVsLmNvbT4KPiA+Pgo+ID4+IE5ldyBHdUMgZmlybXdhcmUgd2lsbCB1bmlmeSBmb3JtYXQg
+b2YgTU1JTyBhbmQgQ1RCIEgyRyBtZXNzYWdlcy4KPiA+PiBJbnRyb2R1Y2UgdGhlaXIgZGVmaW5p
+dGlvbnMgbm93IHRvIGFsbG93IGdyYWR1YWwgdHJhbnNpdGlvbiBvZgo+ID4+IG91ciBjb2RlIHRv
+IG1hdGNoIG5ldyBjaGFuZ2VzLgo+ID4+Cj4gPj4gU2lnbmVkLW9mZi1ieTogTWljaGFsIFdhamRl
+Y3prbyA8bWljaGFsLndhamRlY3prb0BpbnRlbC5jb20+Cj4gPj4gU2lnbmVkLW9mZi1ieTogTWF0
+dGhldyBCcm9zdCA8bWF0dGhldy5icm9zdEBpbnRlbC5jb20+Cj4gPj4gQ2M6IE1pY2hhxYIgV2lu
+aWFyc2tpIDxtaWNoYWwud2luaWFyc2tpQGludGVsLmNvbT4KPiA+PiAtLS0KPiA+PiAgLi4uL2dw
+dS9kcm0vaTkxNS9ndC91Yy9hYmkvZ3VjX21lc3NhZ2VzX2FiaS5oIHwgMjI2ICsrKysrKysrKysr
+KysrKysrKwo+ID4+ICAxIGZpbGUgY2hhbmdlZCwgMjI2IGluc2VydGlvbnMoKykKPiA+Pgo+ID4+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9hYmkvZ3VjX21lc3NhZ2Vz
+X2FiaS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvdWMvYWJpL2d1Y19tZXNzYWdlc19hYmku
+aAo+ID4+IGluZGV4IDc3NWUyMWYzMDU4Yy4uMWMyNjQ4MTlhYTAzIDEwMDY0NAo+ID4+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2FiaS9ndWNfbWVzc2FnZXNfYWJpLmgKPiA+PiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9hYmkvZ3VjX21lc3NhZ2VzX2FiaS5oCj4g
+Pj4gQEAgLTYsNiArNiwyMzIgQEAKPiA+PiAgI2lmbmRlZiBfQUJJX0dVQ19NRVNTQUdFU19BQklf
+SAo+ID4+ICAjZGVmaW5lIF9BQklfR1VDX01FU1NBR0VTX0FCSV9ICj4gPj4gIAo+ID4+ICsvKioK
+PiA+PiArICogRE9DOiBIWEcgTWVzc2FnZQo+ID4gCj4gPiBUaGVzZSBhcmVuJ3QgdXNlZnVsIGlm
+IHdlIGRvbid0IHB1bGwgdGhlbSBpbiBzb21ld2hlcmUgaW4gdGhlCj4gPiBEb2N1bWVudGF0aW9u
+L2dwdSBoaWVyYXJjaHkuIEdlbmVyYWwgY29tbWVudCwgYW5kIGFsc28gcGxlYXNlIGNoZWNrIHRo
+YXQKPiA+IGl0IGFsbCByZW5kZXJzIGNvcnJlY3RseSBzdGlsbC4KPiAKPiBQYXRjaCB0aGF0IGNv
+bm5lY3RzIGFsbCB0aGVzZSBET0Mgc2VjdGlvbnMgaW50byBpOTE1LnJzdCBpcyBzdGlsbCBvbgo+
+IHByaXZhdGUgYnJhbmNoLCB3aGVyZSBJJ20gdHJ5aW5nIHRvIHZlcmlmeSBhbGwgaHRtbCByZW5k
+ZXJpbmcsIGFuZCAuLi4KPiAKPiA+IAo+ID4gYnR3IGlmIHlvdSByZXNwaW4gYSBwYXRjaCBub3Qg
+b3JpZ2luYWxseSBieSB5b3Ugd2UgZ2VuZXJhbGx5IGFkZCBhICh2MSkgdG8KPiA+IHRoZSBvcmln
+aW5hbCBzLW8tYiBsaW5lIChvciB3aGV2ZXIgdGhlIHZlcnNpb24gc3BsaXQgd2FzKSBhbmQgZXhw
+bGFpbiBpbgo+ID4gdGhlIHVzdWFsIGNoYW5nZWxvZyBpbiB0aGUgY29tbWl0IG1lc3NhZ2Ugd2hh
+dCB3YXMgY2hhbmdlZC4KPiA+IAo+ID4gVGhpcyBob2xkcyBmb3IgdGhlIGVudGlyZSBzZXJpZXMg
+b2ZjLgo+ID4gLURhbmllbAo+ID4gCj4gPj4gKyAqCj4gPj4gKyAqIEFsbCBtZXNzYWdlcyBleGNo
+YW5nZWQgd2l0aCBHdUMgYXJlIGRlZmluZWQgdXNpbmcgMzIgYml0IGR3b3Jkcy4KPiA+PiArICog
+Rmlyc3QgZHdvcmQgaXMgdHJlYXRlZCBhcyBhIG1lc3NhZ2UgaGVhZGVyLiBSZW1haW5pbmcgZHdv
+cmRzIGFyZSBvcHRpb25hbC4KPiA+PiArICoKPiA+PiArICogLi4gX0hYRyBNZXNzYWdlOgo+IAo+
+IHdoZXJlIHN1Y2ggd29ya2Fyb3VuZHMgZnJvbSBlYXJseSBkb2N1bWVudGF0aW9uIGFyZSBhbHJl
+YWR5IHJlbW92ZWQsCj4gc2luY2UgdGhleSBhcmUgbm90IG5lZWRlZCBhbnkgbW9yZSBzdGFydGlu
+ZyBmcm9tIGNvbW1pdCBlZjA5OTg5NTk0YmYKPiAoInNjcmlwdHMva2VybmVsLWRvYzogYWRkIGlu
+dGVybmFsIGh5cGVybGluayB0byBET0M6IHNlY3Rpb25zIikKCk9oIHRoaXMgaXMgbmljZS4gRndp
+dyB0aGUgdXBzdHJlYW0gY29tbWl0IGlzOgoKY29tbWl0IDA2YTc1NWQ2MjY5YzA3MmVkMGM5Yjg0
+MjI3ZWFmMzMxMTNkYzI0M2YKQXV0aG9yOiBNaWNoYWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVj
+emtvQGludGVsLmNvbT4KRGF0ZTogICBNb24gSmFuIDE4IDEyOjA4OjEzIDIwMjEgKzAxMDAKCiAg
+ICBzY3JpcHRzL2tlcm5lbC1kb2M6IGFkZCBpbnRlcm5hbCBoeXBlcmxpbmsgdG8gRE9DOiBzZWN0
+aW9ucwoKSSBndWVzcyB0aGUgc2hhMSB5b3UgaGF2ZSBpcyBmcm9tIHlvdXIgb3duIGJyYW5jaD8K
+LURhbmllbAoKCj4gCj4gTWljaGFsCj4gCj4gPj4gKyAqCj4gPj4gKyAqICArLS0tKy0tLS0tLS0r
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0rCj4gPj4gKyAqICB8ICAgfCBCaXRzICB8IERlc2NyaXB0aW9uICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAqICArPT09Kz09PT09
+PT0rPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT0rCj4gPj4gKyAqICB8ICAgfCAgICAgICB8ICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAqICB8IDAgfCAg
+ICAzMSB8ICoqT1JJR0lOKiogLSBvcmlnaW5hdG9yIG9mIHRoZSBtZXNzYWdlICAgICAgICAgICAg
+ICAgICAgICAgICB8Cj4gPj4gKyAqICB8ICAgfCAgICAgICB8ICAgLSBfYEdVQ19IWEdfT1JJR0lO
+X0hPU1RgID0gMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAqICB8ICAg
+fCAgICAgICB8ICAgLSBfYEdVQ19IWEdfT1JJR0lOX0dVQ2AgPSAxICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICB8Cj4gPj4gKyAqICB8ICAgfCAgICAgICB8ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAqICB8
+ICAgKy0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0rCj4gPj4gKyAqICB8ICAgfCAzMDoyOCB8ICoqVFlQRSoqIC0gbWVz
+c2FnZSB0eXBlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAq
+ICB8ICAgfCAgICAgICB8ICAgLSBfYEdVQ19IWEdfVFlQRV9SRVFVRVNUYCA9IDAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAqICB8ICAgfCAgICAgICB8ICAgLSBfYEdVQ19I
+WEdfVFlQRV9FVkVOVGAgPSAxICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4g
+KyAqICB8ICAgfCAgICAgICB8ICAgLSBfYEdVQ19IWEdfVFlQRV9OT19SRVNQT05TRV9CVVNZYCA9
+IDMgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAqICB8ICAgfCAgICAgICB8ICAgLSBfYEdV
+Q19IWEdfVFlQRV9OT19SRVNQT05TRV9SRVRSWWAgPSA1ICAgICAgICAgICAgICAgICAgICB8Cj4g
+Pj4gKyAqICB8ICAgfCAgICAgICB8ICAgLSBfYEdVQ19IWEdfVFlQRV9SRVNQT05TRV9GQUlMVVJF
+YCA9IDYgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAqICB8ICAgfCAgICAgICB8ICAgLSBf
+YEdVQ19IWEdfVFlQRV9SRVNQT05TRV9TVUNDRVNTYCA9IDcgICAgICAgICAgICAgICAgICAgICB8
+Cj4gPj4gKyAqICB8ICAgKy0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4gPj4gKyAqICB8ICAgfCAgMjc6MCB8ICoq
+QVVYKiogLSBhdXhpbGlhcnkgZGF0YSAoZGVwZW5kcyBUWVBFKSAgICAgICAgICAgICAgICAgICAg
+ICB8Cj4gPj4gKyAqICArLS0tKy0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4gPj4gKyAqICB8IDEgfCAgMzE6MCB8
+IG9wdGlvbmFsIHBheWxvYWQgKGRlcGVuZHMgb24gVFlQRSkgICAgICAgICAgICAgICAgICAgICAg
+ICAgICB8Cj4gPj4gKyAqICArLS0tKy0tLS0tLS0rICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAqICB8Li4ufCAgICAg
+ICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICB8Cj4gPj4gKyAqICArLS0tKy0tLS0tLS0rICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4gKyAqICB8IG4gfCAg
+MzE6MCB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICB8Cj4gPj4gKyAqICArLS0tKy0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4gPj4gKyAqLwo+ID4+
+ICsKPiA+PiArI2RlZmluZSBHVUNfSFhHX01TR19NSU5fTEVOCQkJMXUKPiA+PiArI2RlZmluZSBH
+VUNfSFhHX01TR18wX09SSUdJTgkJCSgweDEgPDwgMzEpCj4gPj4gKyNkZWZpbmUgICBHVUNfSFhH
+X09SSUdJTl9IT1NUCQkJMHUKPiA+PiArI2RlZmluZSAgIEdVQ19IWEdfT1JJR0lOX0dVQwkJCTF1
+Cj4gPj4gKyNkZWZpbmUgR1VDX0hYR19NU0dfMF9UWVBFCQkJKDB4NyA8PCAyOCkKPiA+PiArI2Rl
+ZmluZSAgIEdVQ19IWEdfVFlQRV9SRVFVRVNUCQkJMHUKPiA+PiArI2RlZmluZSAgIEdVQ19IWEdf
+VFlQRV9FVkVOVAkJCTF1Cj4gPj4gKyNkZWZpbmUgICBHVUNfSFhHX1RZUEVfTk9fUkVTUE9OU0Vf
+QlVTWQkJM3UKPiA+PiArI2RlZmluZSAgIEdVQ19IWEdfVFlQRV9OT19SRVNQT05TRV9SRVRSWQk1
+dQo+ID4+ICsjZGVmaW5lICAgR1VDX0hYR19UWVBFX1JFU1BPTlNFX0ZBSUxVUkUJCTZ1Cj4gPj4g
+KyNkZWZpbmUgICBHVUNfSFhHX1RZUEVfUkVTUE9OU0VfU1VDQ0VTUwkJN3UKPiA+PiArI2RlZmlu
+ZSBHVUNfSFhHX01TR18wX0FVWAkJCSgweGZmZmZmZmYgPDwgMCkKPiA+PiArCj4gPj4gKy8qKgo+
+ID4+ICsgKiBET0M6IEhYRyBSZXF1ZXN0Cj4gPj4gKyAqCj4gPj4gKyAqIFRoZSBgSFhHIFJlcXVl
+c3RgXyBtZXNzYWdlIHNob3VsZCBiZSB1c2VkIHRvIGluaXRpYXRlIHN5bmNocm9ub3VzIGFjdGl2
+aXR5Cj4gPj4gKyAqIGZvciB3aGljaCBjb25maXJtYXRpb24gb3IgcmV0dXJuIGRhdGEgaXMgZXhw
+ZWN0ZWQuCj4gPj4gKyAqCj4gPj4gKyAqIFRoZSByZWNpcGllbnQgb2YgdGhpcyBtZXNzYWdlIHNo
+YWxsIHVzZSBgSFhHIFJlc3BvbnNlYF8sIGBIWEcgRmFpbHVyZWBfCj4gPj4gKyAqIG9yIGBIWEcg
+UmV0cnlgXyBtZXNzYWdlIGFzIGEgZGVmaW5pdGUgcmVwbHksIGFuZCBtYXkgdXNlIGBIWEcgQnVz
+eWBfCj4gPj4gKyAqIG1lc3NhZ2UgYXMgYSBpbnRlcm1lZGlhdGUgcmVwbHkuCj4gPj4gKyAqCj4g
+Pj4gKyAqIEZvcm1hdCBvZiBAREFUQTAgYW5kIGFsbCBAREFUQW4gZmllbGRzIGRlcGVuZHMgb24g
+dGhlIEBBQ1RJT04gY29kZS4KPiA+PiArICoKPiA+PiArICogX0hYRyBSZXF1ZXN0Ogo+ID4+ICsg
+Kgo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsgKiAgfCAgIHwgQml0cyAgfCBE
+ZXNjcmlwdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgfAo+ID4+ICsgKiAgKz09PSs9PT09PT09Kz09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Kwo+ID4+ICsgKiAgfCAwIHwgICAgMzEg
+fCBPUklHSU4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgfAo+ID4+ICsgKiAgfCAgICstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsgKiAgfCAgIHwgMzA6
+MjggfCBUWVBFID0gR1VDX0hYR19UWVBFX1JFUVVFU1RfICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgfAo+ID4+ICsgKiAgfCAgICstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsgKiAgfCAgIHwg
+Mjc6MTYgfCAqKkRBVEEwKiogLSByZXF1ZXN0IGRhdGEgKGRlcGVuZHMgb24gQUNUSU9OKSAgICAg
+ICAgICAgICAgICAgfAo+ID4+ICsgKiAgfCAgICstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsgKiAgfCAg
+IHwgIDE1OjAgfCAqKkFDVElPTioqIC0gcmVxdWVzdGVkIGFjdGlvbiBjb2RlICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsgKiAg
+fCAxIHwgIDMxOjAgfCAqKkRBVEExKiogLSBvcHRpb25hbCBkYXRhIChkZXBlbmRzIG9uIEFDVElP
+TikgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsg
+KiAgfC4uLnwgICAgICAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+
+ICsgKiAgfCBuIHwgIDMxOjAgfCAqKkRBVEFuKiogLSBvcHRpb25hbCBkYXRhIChkZXBlbmRzIG9u
+IEFDVElPTikgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+
+ID4+ICsgKi8KPiA+PiArCj4gPj4gKyNkZWZpbmUgR1VDX0hYR19SRVFVRVNUX01TR19NSU5fTEVO
+CQlHVUNfSFhHX01TR19NSU5fTEVOCj4gPj4gKyNkZWZpbmUgR1VDX0hYR19SRVFVRVNUX01TR18w
+X0RBVEEwCQkoMHhmZmYgPDwgMTYpCj4gPj4gKyNkZWZpbmUgR1VDX0hYR19SRVFVRVNUX01TR18w
+X0FDVElPTgkJKDB4ZmZmZiA8PCAwKQo+ID4+ICsjZGVmaW5lIEdVQ19IWEdfUkVRVUVTVF9NU0df
+bl9EQVRBbgkJKDB4ZmZmZmZmZmYgPDwgMCkKPiA+PiArCj4gPj4gKy8qKgo+ID4+ICsgKiBET0M6
+IEhYRyBFdmVudAo+ID4+ICsgKgo+ID4+ICsgKiBUaGUgYEhYRyBFdmVudGBfIG1lc3NhZ2Ugc2hv
+dWxkIGJlIHVzZWQgdG8gaW5pdGlhdGUgYXN5bmNocm9ub3VzIGFjdGl2aXR5Cj4gPj4gKyAqIHRo
+YXQgZG9lcyBub3QgaW52b2x2ZXMgaW1tZWRpYXRlIGNvbmZpcm1hdGlvbiBub3IgZGF0YS4KPiA+
+PiArICoKPiA+PiArICogRm9ybWF0IG9mIEBEQVRBMCBhbmQgYWxsIEBEQVRBbiBmaWVsZHMgZGVw
+ZW5kcyBvbiB0aGUgQEFDVElPTiBjb2RlLgo+ID4+ICsgKgo+ID4+ICsgKiAuLiBfSFhHIEV2ZW50
+Ogo+ID4+ICsgKgo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsgKiAgfCAgIHwg
+Qml0cyAgfCBEZXNjcmlwdGlvbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgfAo+ID4+ICsgKiAgKz09PSs9PT09PT09Kz09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Kwo+ID4+ICsgKiAgfCAw
+IHwgICAgMzEgfCBPUklHSU4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgfCAgICstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsgKiAg
+fCAgIHwgMzA6MjggfCBUWVBFID0gR1VDX0hYR19UWVBFX0VWRU5UXyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgfCAgICstLS0tLS0tKy0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsg
+KiAgfCAgIHwgMjc6MTYgfCAqKkRBVEEwKiogLSBldmVudCBkYXRhIChkZXBlbmRzIG9uIEFDVElP
+TikgICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgfCAgICstLS0tLS0tKy0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+
+ICsgKiAgfCAgIHwgIDE1OjAgfCAqKkFDVElPTioqIC0gZXZlbnQgYWN0aW9uIGNvZGUgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tKwo+
+ID4+ICsgKiAgfCAxIHwgIDMxOjAgfCAqKkRBVEExKiogLSBvcHRpb25hbCBldmVudCBkYXRhIChk
+ZXBlbmRzIG9uIEFDVElPTikgICAgICAgICAgfAo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+Kwo+ID4+ICsgKiAgfC4uLnwgICAgICAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tKwo+ID4+ICsgKiAgfCBuIHwgIDMxOjAgfCAqKkRBVEFuKiogLSBvcHRpb25hbCBldmVudCAg
+ZGF0YSAoZGVwZW5kcyBvbiBBQ1RJT04pICAgICAgICAgfAo+ID4+ICsgKiAgKy0tLSstLS0tLS0t
+Ky0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tKwo+ID4+ICsgKi8KPiA+PiArCj4gPj4gKyNkZWZpbmUgR1VDX0hYR19FVkVOVF9NU0df
+TUlOX0xFTgkJR1VDX0hYR19NU0dfTUlOX0xFTgo+ID4+ICsjZGVmaW5lIEdVQ19IWEdfRVZFTlRf
+TVNHXzBfREFUQTAJCSgweGZmZiA8PCAxNikKPiA+PiArI2RlZmluZSBHVUNfSFhHX0VWRU5UX01T
+R18wX0FDVElPTgkJKDB4ZmZmZiA8PCAwKQo+ID4+ICsjZGVmaW5lIEdVQ19IWEdfRVZFTlRfTVNH
+X25fREFUQW4JCSgweGZmZmZmZmZmIDw8IDApCj4gPj4gKwo+ID4+ICsvKioKPiA+PiArICogRE9D
+OiBIWEcgQnVzeQo+ID4+ICsgKgo+ID4+ICsgKiBUaGUgYEhYRyBCdXN5YF8gbWVzc2FnZSBtYXkg
+YmUgdXNlZCB0byBhY2tub3dsZWRnZSByZWNlcHRpb24gb2YgdGhlIGBIWEcgUmVxdWVzdGBfCj4g
+Pj4gKyAqIG1lc3NhZ2UgaWYgdGhlIHJlY2lwaWVudCBleHBlY3RzIHRoYXQgaXQgcHJvY2Vzc2lu
+ZyB3aWxsIGJlIGxvbmdlciB0aGFuIGRlZmF1bHQKPiA+PiArICogdGltZW91dC4KPiA+PiArICoK
+PiA+PiArICogVGhlIEBDT1VOVEVSIGZpZWxkIG1heSBiZSB1c2VkIGFzIGEgcHJvZ3Jlc3MgaW5k
+aWNhdG9yLgo+ID4+ICsgKgo+ID4+ICsgKiAuLiBfSFhHIEJ1c3k6Cj4gPj4gKyAqCj4gPj4gKyAq
+ICArLS0tKy0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4gPj4gKyAqICB8ICAgfCBCaXRzICB8IERlc2NyaXB0aW9u
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4gPj4g
+KyAqICArPT09Kz09PT09PT0rPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT0rCj4gPj4gKyAqICB8IDAgfCAgICAzMSB8IE9SSUdJTiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8Cj4g
+Pj4gKyAqICB8ICAgKy0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4gPj4gKyAqICB8ICAgfCAzMDoyOCB8IFRZUEUg
+PSBHVUNfSFhHX1RZUEVfTk9fUkVTUE9OU0VfQlVTWV8gICAgICAgICAgICAgICAgICAgICAgICB8
+Cj4gPj4gKyAqICB8ICAgKy0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4gPj4gKyAqICB8ICAgfCAgMjc6MCB8ICoq
+Q09VTlRFUioqIC0gcHJvZ3Jlc3MgaW5kaWNhdG9yICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICB8Cj4gPj4gKyAqICArLS0tKy0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0rCj4gPj4gKyAqLwo+ID4+ICsKPiA+PiAr
+I2RlZmluZSBHVUNfSFhHX0JVU1lfTVNHX0xFTgkJCUdVQ19IWEdfTVNHX01JTl9MRU4KPiA+PiAr
+I2RlZmluZSBHVUNfSFhHX0JVU1lfTVNHXzBfQ09VTlRFUgkJR1VDX0hYR19NU0dfMF9BVVgKPiA+
+PiArCj4gPj4gKy8qKgo+ID4+ICsgKiBET0M6IEhYRyBSZXRyeQo+ID4+ICsgKgo+ID4+ICsgKiBU
+aGUgYEhYRyBSZXRyeWBfIG1lc3NhZ2Ugc2hvdWxkIGJlIHVzZWQgYnkgcmVjaXBpZW50IHRvIGlu
+ZGljYXRlIHRoYXQgdGhlCj4gPj4gKyAqIGBIWEcgUmVxdWVzdGBfIG1lc3NhZ2Ugd2FzIGRyb3Bw
+ZWQgYW5kIGl0IHNob3VsZCBiZSByZXNlbnQgYWdhaW4uCj4gPj4gKyAqCj4gPj4gKyAqIFRoZSBA
+UkVBU09OIGZpZWxkIG1heSBiZSB1c2VkIHRvIHByb3ZpZGUgYWRkaXRpb25hbCBpbmZvcm1hdGlv
+bi4KPiA+PiArICoKPiA+PiArICogLi4gX0hYRyBSZXRyeToKPiA+PiArICoKPiA+PiArICogICst
+LS0rLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLSsKPiA+PiArICogIHwgICB8IEJpdHMgIHwgRGVzY3JpcHRpb24gICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKPiA+PiArICog
+ICs9PT0rPT09PT09PSs9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PSsKPiA+PiArICogIHwgMCB8ICAgIDMxIHwgT1JJR0lOICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKPiA+PiAr
+ICogIHwgICArLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+PiArICogIHwgICB8IDMwOjI4IHwgVFlQRSA9IEdV
+Q19IWEdfVFlQRV9OT19SRVNQT05TRV9SRVRSWV8gICAgICAgICAgICAgICAgICAgICAgIHwKPiA+
+PiArICogIHwgICArLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+PiArICogIHwgICB8ICAyNzowIHwgKipSRUFT
+T04qKiAtIHJlYXNvbiBmb3IgcmV0cnkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwK
+PiA+PiArICogIHwgICB8ICAgICAgIHwgIC0gX2BHVUNfSFhHX1JFVFJZX1JFQVNPTl9VTlNQRUNJ
+RklFRGAgPSAwICAgICAgICAgICAgICAgICAgIHwKPiA+PiArICogICstLS0rLS0tLS0tLSstLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LSsKPiA+PiArICovCj4gPj4gKwo+ID4+ICsjZGVmaW5lIEdVQ19IWEdfUkVUUllfTVNHX0xFTgkJ
+CUdVQ19IWEdfTVNHX01JTl9MRU4KPiA+PiArI2RlZmluZSBHVUNfSFhHX1JFVFJZX01TR18wX1JF
+QVNPTgkJR1VDX0hYR19NU0dfMF9BVVgKPiA+PiArI2RlZmluZSAgIEdVQ19IWEdfUkVUUllfUkVB
+U09OX1VOU1BFQ0lGSUVECTB1Cj4gPj4gKwo+ID4+ICsvKioKPiA+PiArICogRE9DOiBIWEcgRmFp
+bHVyZQo+ID4+ICsgKgo+ID4+ICsgKiBUaGUgYEhYRyBGYWlsdXJlYF8gbWVzc2FnZSBzaGFsbCBi
+ZSB1c2VkIGFzIGEgcmVwbHkgdG8gdGhlIGBIWEcgUmVxdWVzdGBfCj4gPj4gKyAqIG1lc3NhZ2Ug
+dGhhdCBjb3VsZCBub3QgYmUgcHJvY2Vzc2VkIGR1ZSB0byBhbiBlcnJvci4KPiA+PiArICoKPiA+
+PiArICogLi4gX0hYRyBGYWlsdXJlOgo+ID4+ICsgKgo+ID4+ICsgKiAgKy0tLSstLS0tLS0tKy0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tKwo+ID4+ICsgKiAgfCAgIHwgQml0cyAgfCBEZXNjcmlwdGlvbiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgKz09PSs9PT09PT09
+Kz09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09Kwo+ID4+ICsgKiAgfCAwIHwgICAgMzEgfCBPUklHSU4gICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgfCAgICstLS0t
+LS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tKwo+ID4+ICsgKiAgfCAgIHwgMzA6MjggfCBUWVBFID0gR1VDX0hYR19UWVBFX1JF
+U1BPTlNFX0ZBSUxVUkVfICAgICAgICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgfCAgICst
+LS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tKwo+ID4+ICsgKiAgfCAgIHwgMjc6MTYgfCAqKkhJTlQqKiAtIGFkZGl0aW9u
+YWwgZXJyb3IgaGludCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAgfCAg
+ICstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsgKiAgfCAgIHwgIDE1OjAgfCAqKkVSUk9SKiogLSBlcnJv
+ci9yZXN1bHQgY29kZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAo+ID4+ICsgKiAg
+Ky0tLSstLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tKwo+ID4+ICsgKi8KPiA+PiArCj4gPj4gKyNkZWZpbmUgR1VDX0hY
+R19GQUlMVVJFX01TR19MRU4JCQlHVUNfSFhHX01TR19NSU5fTEVOCj4gPj4gKyNkZWZpbmUgR1VD
+X0hYR19GQUlMVVJFX01TR18wX0hJTlQJCSgweGZmZiA8PCAxNikKPiA+PiArI2RlZmluZSBHVUNf
+SFhHX0ZBSUxVUkVfTVNHXzBfRVJST1IJCSgweGZmZmYgPDwgMCkKPiA+PiArCj4gPj4gKy8qKgo+
+ID4+ICsgKiBET0M6IEhYRyBSZXNwb25zZQo+ID4+ICsgKgo+ID4+ICsgKiBUaGUgYEhYRyBSZXNw
+b25zZWBfIG1lc3NhZ2UgU0hBTEwgYmUgdXNlZCBhcyBhIHJlcGx5IHRvIHRoZSBgSFhHIFJlcXVl
+c3RgXwo+ID4+ICsgKiBtZXNzYWdlIHRoYXQgd2FzIHN1Y2Nlc3NmdWxseSBwcm9jZXNzZWQgd2l0
+aG91dCBhbiBlcnJvci4KPiA+PiArICoKPiA+PiArICogLi4gX0hYRyBSZXNwb25zZToKPiA+PiAr
+ICoKPiA+PiArICogICstLS0rLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+PiArICogIHwgICB8IEJpdHMgIHwg
+RGVzY3JpcHRpb24gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHwKPiA+PiArICogICs9PT0rPT09PT09PSs9PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSsKPiA+PiArICogIHwgMCB8ICAgIDMx
+IHwgT1JJR0lOICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIHwKPiA+PiArICogIHwgICArLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+PiArICogIHwgICB8IDMw
+OjI4IHwgVFlQRSA9IEdVQ19IWEdfVFlQRV9SRVNQT05TRV9TVUNDRVNTXyAgICAgICAgICAgICAg
+ICAgICAgICAgIHwKPiA+PiArICogIHwgICArLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+PiArICogIHwgICB8
+ICAyNzowIHwgKipEQVRBMCoqIC0gZGF0YSAoZGVwZW5kcyBvbiBBQ1RJT04gZnJvbSBgSFhHIFJl
+cXVlc3RgXykgICAgIHwKPiA+PiArICogICstLS0rLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+PiArICogIHwg
+MSB8ICAzMTowIHwgKipEQVRBMSoqIC0gZGF0YSAoZGVwZW5kcyBvbiBBQ1RJT04gZnJvbSBgSFhH
+IFJlcXVlc3RgXykgICAgIHwKPiA+PiArICogICstLS0rLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+PiArICog
+IHwuLi58ICAgICAgIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIHwKPiA+PiArICogICstLS0rLS0tLS0tLSstLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+PiAr
+ICogIHwgbiB8ICAzMTowIHwgKipEQVRBbioqIC0gZGF0YSAoZGVwZW5kcyBvbiBBQ1RJT04gZnJv
+bSBgSFhHIFJlcXVlc3RgXykgICAgIHwKPiA+PiArICogICstLS0rLS0tLS0tLSstLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSsKPiA+
+PiArICovCj4gPj4gKwo+ID4+ICsjZGVmaW5lIEdVQ19IWEdfUkVTUE9OU0VfTVNHX01JTl9MRU4J
+CUdVQ19IWEdfTVNHX01JTl9MRU4KPiA+PiArI2RlZmluZSBHVUNfSFhHX1JFU1BPTlNFX01TR18w
+X0RBVEEwCQlHVUNfSFhHX01TR18wX0FVWAo+ID4+ICsjZGVmaW5lIEdVQ19IWEdfUkVTUE9OU0Vf
+TVNHX25fREFUQW4JCSgweGZmZmZmZmZmIDw8IDApCj4gPj4gKwo+ID4+ICsvKiBkZXByZWNhdGVk
+ICovCj4gPj4gICNkZWZpbmUgSU5URUxfR1VDX01TR19UWVBFX1NISUZUCTI4Cj4gPj4gICNkZWZp
+bmUgSU5URUxfR1VDX01TR19UWVBFX01BU0sJCSgweEYgPDwgSU5URUxfR1VDX01TR19UWVBFX1NI
+SUZUKQo+ID4+ICAjZGVmaW5lIElOVEVMX0dVQ19NU0dfREFUQV9TSElGVAkxNgo+ID4+IC0tIAo+
+ID4+IDIuMjguMAo+ID4+Cj4gPiAKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVy
+LCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
