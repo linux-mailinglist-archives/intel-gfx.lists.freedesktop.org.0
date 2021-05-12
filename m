@@ -1,57 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 414E637B8B4
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 10:57:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A0537B949
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 11:32:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 844416EB66;
-	Wed, 12 May 2021 08:57:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E47F6E1E9;
+	Wed, 12 May 2021 09:32:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com
- [IPv6:2607:f8b0:4864:20::834])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A7096EB66;
- Wed, 12 May 2021 08:57:32 +0000 (UTC)
-Received: by mail-qt1-x834.google.com with SMTP id f8so12513449qth.6;
- Wed, 12 May 2021 01:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=W5P8g4Pc38D1sNHTnDBbTc0RyHb9MjEQwZgdmU+u4Sg=;
- b=TS2FS7X/N5bnLrAJMMUfQZKJkOLWGrZUIIjhoPRKtDprJqZhAxPyCtY3yzBI/psTif
- 00mVCGzM/khOm3qcg23OHcb4LjiF7bwJIytyBFUM2uOVwBRLfZGSAMiDZeRdVabeTBM1
- HPD57gM+08kS6GeAee/L1lSFSk3AoGSKj8s84jTQtzOcNEyGYrv1v3yu83iTjpqgU5E1
- sNz/JSNWcSpckOH5c/WUixek84coC/TqDhijOBM5NBUFzYctwh0iy49cd8RIf5oK717k
- wfTpY9uY/DKsy7JIfU5NvEK5u2hZn3DQtCJ1HnLyB7cQ1tXtL9jOvIrBTLCCSqJ4GJbz
- 0HUg==
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE1BD6E1E9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 09:32:00 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id l4so33985865ejc.10
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 02:32:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=FxN1mNiqtzyWswcEtikVuygVgaup/LPEtaLefcc9yyw=;
+ b=aYp5GJqSdtuz2jbX+wFHv/yCCDDvZrwTiSXRI9+XM3cHUAsv2n86TUDpeYrDnzpojV
+ 8sph5HKDHVpo2DZRSE26Ead+jshmZlqUJDjDed1HVkkB5LJzj8iOe0h/3hqslC3aLC8d
+ hSnWArNQ++s6gya+vSB6DfmhnK0XAZ9OlFppQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=W5P8g4Pc38D1sNHTnDBbTc0RyHb9MjEQwZgdmU+u4Sg=;
- b=t2uTuuOwtrXoW9AfvjNEiCMXeTgx6hXdP92yVkSlXD2Yulh5tbvCHcH4nPY9hG3cNY
- Pgu3QZX8c6PtfpXTBNgdJZlfD/MV38ZJhrN/ls4mRb+uKIazilDUVkVRn0mePSEyqHFS
- R3yx8Iqs+ovXKtkGukPpv/TTaKeoFPneDV8uiELyCuaOOQRdxc1b+8evv/hykpMnbBx4
- 8cd8mNVH9LI0XzZlX0c0+R0NkA9F4cjXzWCWQrZhWq8QxdLKRsG5K9lUs3gw2/y5x837
- Sm3gD0bos50mves6N/O7E0XJlHowZQXc2B71lYWolUCcALEPZHkPBoKbj/U/f3JbQRhj
- vF2g==
-X-Gm-Message-State: AOAM531QE0GZleksneMSkgQJUUw0wnLABfdc692SDl9BrflIj6+p4XNp
- IAGAYPy6ATR6o5mJjiTEUWZNd6dt3oRu+YdwH70=
-X-Google-Smtp-Source: ABdhPJzXHiuFXccvR7pg8z08AJ8F1qLCW0YwsPYj2DdQHjYBUkS5YW71SPONj+WYB2Hgs6jEARXAJm+Gb1cGCw46L3c=
-X-Received: by 2002:a05:622a:89:: with SMTP id
- o9mr7856635qtw.339.1620809851476; 
- Wed, 12 May 2021 01:57:31 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=FxN1mNiqtzyWswcEtikVuygVgaup/LPEtaLefcc9yyw=;
+ b=B+ON9N+F0TbAmB97D8P4cBC2SE7SyYA+FwFucugK0qBGEcnPBgnhtnISBqJwhKHhd1
+ LAmYLHmSHlhpRVX5yz/xBiwI4Mjx68os28KBplSyB9Mp+15os7adsHw4xYQyZvA0T392
+ 9zf3hVjio3EIiZIR6qHeDA2SmYh1QyP+fMoTjDVf8EXkfXbK7vNcMvfa0v6lS3zh1C/P
+ I/MUeC85PbtfKxLlGrnwaJQuDXQDNCVcfcZMKnh2OAzzo+nr6NUdLK1lplSjbcESPFBc
+ 1w2FUoc8BnAUQzz8J7gONxM1MAVpihMYjCU2voR8RiEpQjoBadZwpXM3o0pTVP5Vk9IL
+ oG/A==
+X-Gm-Message-State: AOAM532REKTlZxk5ANKIETGNXm+RCjs0c7L8rh0S4P9OzpYioTaRw28N
+ mspWXV1pEXQkMSt3RlxiLhe1RQ==
+X-Google-Smtp-Source: ABdhPJwaTAoDgi+Tal0ProfkP0bpaJD8tASaEXhualguXP4a0PY1SEcYGZaK1R2A0X3vxbaSrA+Csg==
+X-Received: by 2002:a17:906:e88:: with SMTP id
+ p8mr36913765ejf.31.1620811919415; 
+ Wed, 12 May 2021 02:31:59 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id lg20sm13752409ejb.13.2021.05.12.02.31.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 12 May 2021 02:31:58 -0700 (PDT)
+Date: Wed, 12 May 2021 11:31:57 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Message-ID: <YJugjT3lXOdzwEkQ@phenom.ffwll.local>
+References: <20210506132343.2873699-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-References: <20210511132525.377190-1-thomas.hellstrom@linux.intel.com>
- <20210511132525.377190-4-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210511132525.377190-4-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 12 May 2021 09:57:04 +0100
-Message-ID: <CAM0jSHN4iuq+nYkWq0aZ-K8q9NBbQy7TLc1Zp6=DEV_fCaAN3A@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/ttm,
- drm/ttm: Initialize the ttm device and memory managers.
+Content-Disposition: inline
+In-Reply-To: <20210506132343.2873699-1-daniel.vetter@ffwll.ch>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH] drm/modifiers: Enforce consistency between
+ the cap an IN_FORMATS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,150 +66,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
+ Maxime Ripard <maxime@cerno.tech>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Simon Ser <contact@emersion.fr>, Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Emil Velikov <emil.velikov@collabora.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAxMSBNYXkgMjAyMSBhdCAxNDoyNiwgVGhvbWFzIEhlbGxzdHLDtm0KPHRob21hcy5o
-ZWxsc3Ryb21AbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IFRlbXBvcmFyaWx5IHJlbW92ZSB0
-aGUgYnVkZHkgYWxsb2NhdG9yIGFuZCByZWxhdGVkIHNlbGZ0ZXN0cwo+IGFuZCBob29rIHVwIHRo
-ZSBUVE0gcmFuZ2UgbWFuYWdlciBmb3IgaTkxNSByZWdpb25zLgo+Cj4gSW4gb3JkZXIgdG8gc3Vw
-cG9ydCBzb21lIG9mIHRoZSBtb2NrIHJlZ2lvbi1yZWxhdGVkIHNlbGZ0ZXN0cywgd2UgbmVlZCB0
-bwo+IGJlIGFibGUgdG8gaW5pdGlhbGl6ZSB0aGUgVFRNIHJhbmdlLW1hbmFnZXIgc3RhbmRhbG9u
-ZSB3aXRob3V0IGEgc3RydWN0Cj4gdHRtX2RldmljZS4gQWRkIHR3byBmdW5jdGlvbnMgdG8gYWxs
-b3cgdGhhdCB0byB0aGUgVFRNIGFwaS4KPgo+IEZpbmFsbHkgbW9kaWZ5IHRoZSBtb2NrIHJlZ2lv
-biBzZWxmdGVzdHMgc29tZXdoYXQgdG8gYWNjb3VudCBmb3IgYQo+IGZyYWdtZW50aW5nIG1hbmFn
-ZXIuCj4KPiBDYzogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+
-IFNpZ25lZC1vZmYtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4
-LmludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvS2NvbmZpZyAgICAgICAg
-ICAgICAgICAgIHwgICAxICsKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAg
-ICAgICAgICAgIHwgICAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9s
-bWVtLmMgICAgICB8ICA1OCArLQo+ICAuLi4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9vYmpl
-Y3RfdHlwZXMuaCAgfCAgIDYgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X3BhZ2VzLmMgICAgIHwgICAzICstCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dl
-bV9yZWdpb24uYyAgICB8IDEyMCAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVf
-Z2VtX3JlZ2lvbi5oICAgIHwgICA0IC0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVf
-Z2VtX3NobWVtLmMgICAgIHwgICA0ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1
-X2dlbV9zdG9sZW4uYyAgICB8ICAxMCArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
-NV9nZW1fc3RvbGVuLmggICAgfCAgIDkgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfZ3QuYyAgICAgICAgICAgIHwgICAyIC0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfcmVnaW9uX2xtZW0uYyAgIHwgIDI3ICstCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-YnVkZHkuYyAgICAgICAgICAgICB8IDQzNSAtLS0tLS0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfYnVkZHkuaCAgICAgICAgICAgICB8IDEzMSAtLS0KPiAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9kcnYuYyAgICAgICAgICAgICAgIHwgICA4ICsKPiAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICAgICAgIHwgICA3ICstCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZ2VtLmMgICAgICAgICAgICAgICB8ICAgMSArCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZ2xvYmFscy5jICAgICAgICAgICB8ICAgMSAtCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfZ2xvYmFscy5oICAgICAgICAgICB8ICAgMSAtCj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2k5MTVfc2NhdHRlcmxpc3QuYyAgICAgICB8ICA3MCArKwo+ICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X3NjYXR0ZXJsaXN0LmggICAgICAgfCAgMzUgKwo+ICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmMgICAgfCAxODAgKystLQo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pbnRlbF9tZW1vcnlfcmVnaW9uLmggICAgfCAgNDQgKy0KPiAgZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaW50ZWxfcmVnaW9uX3R0bS5jICAgICAgIHwgMjQ2ICsrKysrKwo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9yZWdpb25fdHRtLmggICAgICAgfCAgMjkgKwo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9zZWxmdGVzdHMvaTkxNV9idWRkeS5jICAgfCA3ODkgLS0tLS0tLS0t
-LS0tLS0tLS0tCj4gIC4uLi9kcm0vaTkxNS9zZWxmdGVzdHMvaTkxNV9tb2NrX3NlbGZ0ZXN0cy5o
-ICB8ICAgMSAtCj4gIC4uLi9kcm0vaTkxNS9zZWxmdGVzdHMvaW50ZWxfbWVtb3J5X3JlZ2lvbi5j
-ICB8IDEzMyArLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvc2VsZnRlc3RzL21vY2tfcmVnaW9u
-LmMgIHwgIDUxICstCj4gIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3JhbmdlX21hbmFnZXIuYyAg
-ICAgICB8ICA1NSArLQo+ICBpbmNsdWRlL2RybS90dG0vdHRtX2JvX2RyaXZlci5oICAgICAgICAg
-ICAgICAgfCAgMjMgKwo+ICAzMSBmaWxlcyBjaGFuZ2VkLCA3MTUgaW5zZXJ0aW9ucygrKSwgMTc3
-MSBkZWxldGlvbnMoLSkKPiAgZGVsZXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfYnVkZHkuYwo+ICBkZWxldGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9idWRkeS5oCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-bnRlbF9yZWdpb25fdHRtLmMKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX3JlZ2lvbl90dG0uaAo+ICBkZWxldGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvc2VsZnRlc3RzL2k5MTVfYnVkZHkuYwo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L0tjb25maWcgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9LY29uZmlnCj4gaW5k
-ZXggMWUxY2IyNDVmY2E3Li5iNjNkMzc0ZGZmMjMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvS2NvbmZpZwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L0tjb25maWcKPiBA
-QCAtMjYsNiArMjYsNyBAQCBjb25maWcgRFJNX0k5MTUKPiAgICAgICAgIHNlbGVjdCBTTkRfSERB
-X0k5MTUgaWYgU05EX0hEQV9DT1JFCj4gICAgICAgICBzZWxlY3QgQ0VDX0NPUkUgaWYgQ0VDX05P
-VElGSUVSCj4gICAgICAgICBzZWxlY3QgVk1BUF9QRk4KPiArICAgICAgIHNlbGVjdCBEUk1fVFRN
-Cj4gICAgICAgICBoZWxwCj4gICAgICAgICAgIENob29zZSB0aGlzIG9wdGlvbiBpZiB5b3UgaGF2
-ZSBhIHN5c3RlbSB0aGF0IGhhcyAiSW50ZWwgR3JhcGhpY3MKPiAgICAgICAgICAgTWVkaWEgQWNj
-ZWxlcmF0b3IiIG9yICJIRCBHcmFwaGljcyIgaW50ZWdyYXRlZCBncmFwaGljcywKPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9NYWtlZmlsZQo+IGluZGV4IGQwZDkzNmQ5MTM3Yi4uY2I4ODIzNTcwOTk2IDEwMDY0NAo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvTWFrZWZpbGUKPiBAQCAtNTAsNiArNTAsNyBAQCBpOTE1LXkgKz0gaTkxNV9kcnYubyBc
-Cj4gICAgICAgICAgIGludGVsX21lbW9yeV9yZWdpb24ubyBcCj4gICAgICAgICAgIGludGVsX3Bj
-aC5vIFwKPiAgICAgICAgICAgaW50ZWxfcG0ubyBcCj4gKyAgICAgICAgIGludGVsX3JlZ2lvbl90
-dG0ubyBcCj4gICAgICAgICAgIGludGVsX3J1bnRpbWVfcG0ubyBcCj4gICAgICAgICAgIGludGVs
-X3NpZGViYW5kLm8gXAo+ICAgICAgICAgICBpbnRlbF9zdGVwLm8gXAo+IEBAIC0xNjAsNyArMTYx
-LDYgQEAgZ2VtLXkgKz0gXAo+ICBpOTE1LXkgKz0gXAo+ICAgICAgICAgICAkKGdlbS15KSBcCj4g
-ICAgICAgICAgIGk5MTVfYWN0aXZlLm8gXAo+IC0gICAgICAgICBpOTE1X2J1ZGR5Lm8gXAo+ICAg
-ICAgICAgICBpOTE1X2NtZF9wYXJzZXIubyBcCj4gICAgICAgICAgIGk5MTVfZ2VtX2V2aWN0Lm8g
-XAo+ICAgICAgICAgICBpOTE1X2dlbV9ndHQubyBcCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9sbWVtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0v
-aTkxNV9nZW1fbG1lbS5jCj4gaW5kZXggZjQ0YmRkMDhmN2NiLi5mNDI4MDNlYTQ4ZjIgMTAwNjQ0
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uYwo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9sbWVtLmMKPiBAQCAtNCwxNiArNCw3
-MCBAQAo+ICAgKi8KPgo+ICAjaW5jbHVkZSAiaW50ZWxfbWVtb3J5X3JlZ2lvbi5oIgo+ICsjaW5j
-bHVkZSAiaW50ZWxfcmVnaW9uX3R0bS5oIgo+ICAjaW5jbHVkZSAiZ2VtL2k5MTVfZ2VtX3JlZ2lv
-bi5oIgo+ICAjaW5jbHVkZSAiZ2VtL2k5MTVfZ2VtX2xtZW0uaCIKPiAgI2luY2x1ZGUgImk5MTVf
-ZHJ2LmgiCj4KPiArc3RhdGljIHZvaWQgbG1lbV9wdXRfcGFnZXMoc3RydWN0IGRybV9pOTE1X2dl
-bV9vYmplY3QgKm9iaiwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RydWN0
-IHNnX3RhYmxlICpwYWdlcykKPiArewo+ICsgICAgICAgaW50ZWxfcmVnaW9uX3R0bV9ub2RlX2Zy
-ZWUob2JqLT5tbS5yZWdpb24sIG9iai0+bW0uc3RfbW1fbm9kZSk7Cj4gKyAgICAgICBvYmotPm1t
-LmRpcnR5ID0gZmFsc2U7Cj4gKyAgICAgICBzZ19mcmVlX3RhYmxlKHBhZ2VzKTsKPiArICAgICAg
-IGtmcmVlKHBhZ2VzKTsKPiArfQo+ICsKPiArc3RhdGljIGludCBsbWVtX2dldF9wYWdlcyhzdHJ1
-Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+ICt7Cj4gKyAgICAgICB1bnNpZ25lZCBpbnQg
-ZmxhZ3M7Cj4gKyAgICAgICBzdHJ1Y3Qgc2dfdGFibGUgKnBhZ2VzOwo+ICsKPiArICAgICAgIGZs
-YWdzID0gSTkxNV9BTExPQ19NSU5fUEFHRV9TSVpFOwo+ICsgICAgICAgaWYgKG9iai0+ZmxhZ3Mg
-JiBJOTE1X0JPX0FMTE9DX0NPTlRJR1VPVVMpCj4gKyAgICAgICAgICAgICAgIGZsYWdzIHw9IEk5
-MTVfQUxMT0NfQ09OVElHVU9VUzsKPiArCj4gKyAgICAgICBvYmotPm1tLnN0X21tX25vZGUgPSBp
-bnRlbF9yZWdpb25fdHRtX25vZGVfYWxsb2Mob2JqLT5tbS5yZWdpb24sCj4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgb2JqLT5iYXNlLnNp
-emUsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgZmxhZ3MpOwo+ICsgICAgICAgaWYgKElTX0VSUihvYmotPm1tLnN0X21tX25vZGUpKQo+
-ICsgICAgICAgICAgICAgICByZXR1cm4gUFRSX0VSUihvYmotPm1tLnN0X21tX25vZGUpOwo+ICsK
-PiArICAgICAgIC8qIFJhbmdlIG1hbmFnZXIgaXMgYWx3YXlzIGNvbnRpZ291cyAqLwo+ICsgICAg
-ICAgaWYgKG9iai0+bW0ucmVnaW9uLT5pc19yYW5nZV9tYW5hZ2VyKQo+ICsgICAgICAgICAgICAg
-ICBvYmotPmZsYWdzIHw9IEk5MTVfQk9fQUxMT0NfQ09OVElHVU9VUzsKPiArICAgICAgIHBhZ2Vz
-ID0gaW50ZWxfcmVnaW9uX3R0bV9ub2RlX3RvX3N0KG9iai0+bW0ucmVnaW9uLCBvYmotPm1tLnN0
-X21tX25vZGUpOwo+ICsgICAgICAgaWYgKElTX0VSUihwYWdlcykpCj4gKyAgICAgICAgICAgICAg
-IHJldHVybiBQVFJfRVJSKHBhZ2VzKTsKCmVycm9yIHVud2luZD8KCj4gKwo+ICsgICAgICAgX19p
-OTE1X2dlbV9vYmplY3Rfc2V0X3BhZ2VzKG9iaiwgcGFnZXMsCj4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgaTkxNV9zZ19kbWFfcGFnZV9zaXplcyhwYWdlcy0+c2dsKSk7Cj4g
-Kwo+ICsgICAgICAgaWYgKG9iai0+ZmxhZ3MgJiBJOTE1X0JPX0FMTE9DX0NQVV9DTEVBUikgewo+
-ICsgICAgICAgICAgICAgICB2b2lkIF9faW9tZW0gKnZhZGRyID0KPiArICAgICAgICAgICAgICAg
-ICAgICAgICBpOTE1X2dlbV9vYmplY3RfbG1lbV9pb19tYXAob2JqLCAwLCBvYmotPmJhc2Uuc2l6
-ZSk7Cj4gKwo+ICsgICAgICAgICAgICAgICBpZiAoIXZhZGRyKSB7Cj4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgc3RydWN0IHNnX3RhYmxlICpwYWdlcyA9Cj4gKyAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBfX2k5MTVfZ2VtX29iamVjdF91bnNldF9wYWdlcyhvYmopOwo+ICsKPiArICAg
-ICAgICAgICAgICAgICAgICAgICBpZiAoIUlTX0VSUl9PUl9OVUxMKHBhZ2VzKSkKPiArICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIGxtZW1fcHV0X3BhZ2VzKG9iaiwgcGFnZXMpOwo+ICsg
-ICAgICAgICAgICAgICB9Cj4gKwo+ICsgICAgICAgICAgICAgICBtZW1zZXRfaW8odmFkZHIsIDAs
-IG9iai0+YmFzZS5zaXplKTsKPiArICAgICAgICAgICAgICAgaW9fbWFwcGluZ191bm1hcCh2YWRk
-cik7Cj4gKyAgICAgICB9Cj4gKwo+ICsgICAgICAgcmV0dXJuIDA7Cj4gK30KCjxzbmlwPgoKPiAr
-LyoqCj4gKyAqIGk5MTVfc2dfZG1hX3BhZ2Vfc2l6ZXMgLSBDYWxjdWxhdGUgcGFnZSBzaXplcyBm
-cm9tIGEgc2NhdHRlcmxpc3QKPiArICogQHNnOiBUaGUgc2NhdHRlcmxpc3QgZnJvbSB3aGljaCB0
-byBjYWxjdWxhdGUgcGFnZSBzaXplcwo+ICsgKgo+ICsgKiBSZXR1cm46IGEgdmFsdWUgd2l0aCBi
-aXRzIHNldHMgZm9yIHJlbGV2YW50IHBhZ2Ugc2l6ZXMuCj4gKyAqLwo+ICtzdGF0aWMgaW5saW5l
-IHVuc2lnbmVkIGludCBpOTE1X3NnX2RtYV9wYWdlX3NpemVzKHN0cnVjdCBzY2F0dGVybGlzdCAq
-c2cpCj4gK3sKPiArICAgICAgIHVuc2lnbmVkIGludCBwYWdlX3NpemVzOwo+ICsKPiArICAgICAg
-IHBhZ2Vfc2l6ZXMgPSAwOwo+ICsgICAgICAgd2hpbGUgKHNnKSB7Cj4gKyAgICAgICAgICAgICAg
-IEdFTV9CVUdfT04oc2ctPm9mZnNldCk7Cj4gKyAgICAgICAgICAgICAgIEdFTV9CVUdfT04oIUlT
-X0FMSUdORUQoc2ctPmRtYV9sZW5ndGgsIFBBR0VfU0laRSkpOwo+ICsgICAgICAgICAgICAgICBw
-YWdlX3NpemVzIHw9IHNnLT5kbWFfbGVuZ3RoOwo+ICsgICAgICAgICAgICAgICBzZyA9IF9fc2df
-bmV4dChzZyk7Cj4gKyAgICAgICB9Cj4gKwo+ICsgICAgICAgLyoKPiArICAgICAgICAqIElzIHRo
-aXMgbmVjZXNzYXJ5IHRvIHN1cHBvcnQgYnVpbGRpbmcgbGFyZ2UgR1BVIHBhZ2VzIGZyb20KPiAr
-ICAgICAgICAqIGV2ZW4gbGFyZ2VyIHNlZ21lbnRzPwo+ICsgICAgICAgICovCgpXZSBqdXN0IG5l
-ZWQgdG8ga25vdyB0aGUgYWJvdmUgc2cgcGFnZV9zaXplcywgd2hpY2ggaXMgdGhlIG1hc2sgb2YK
-c2ctPmRtYV9sZW5ndGggZm9yIGVhY2ggc2cuIExhdGVyIGluIF9faTkxNV9nZW1fb2JqZWN0X3Nl
-dF9wYWdlcygpIHdlCnVzZSB0aGlzIHRvIGRldGVybWluZSB0aGUgcG90ZW50aWFsIEdQVSBwYWdl
-IHNpemVzIGZvciB0aGUgb2JqZWN0LApkZXBlbmRpbmcgb24gd2hhdCB0aGUgZGV2aWNlIHN1cHBv
-cnRzLiBTbyB0aGUgYmVsb3cgc3R1ZmYgc2hvdWxkbid0IGJlCm5lZWRlZC4gQWxzbyB3ZSBjYW4g
-anVzdCB1c2UgaTkxNV9zZ19wYWdlX3NpemVzKCkgaGVyZS4KCkFsdGhvdWdoIHNpbmNlIHdlIGRv
-IGhhdmUgY29udHJvbCBvdmVyIGJ1aWxkaW5nIHRoZSBzZywgd2Ugc2hvdWxkCmlkZWFsbHkganVz
-dCBwYXNzIGluIHRoZSBzZ19wYWdlX3NpemVzIHRvIHNheSBpOTE1X3NnX2Zyb21fbW1fbm9kZSgp
-CmZvciBpdCB0byBmaWxsIGluLCBpbnN0ZWFkIG9mIGxvb3Bpbmcgb3ZlciB0aGUgd2hvbGUgdGhp
-bmcgYWdhaW4sIGJ1dAp0aGF0IGNhbiBiZSBzb21ldGhpbmcgdG8gZG8gaW4gdGhlIGZ1dHVyZS4K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Thu, May 06, 2021 at 03:23:43PM +0200, Daniel Vetter wrote:
+> It's very confusing for userspace to have to deal with inconsistencies
+> here, and some drivers screwed this up a bit. Most just ommitted the
+> format list when they meant to say that only linear modifier is
+> allowed, but some also meant that only implied modifiers are
+> acceptable (because actually none of the planes registered supported
+> modifiers).
+> 
+> Now that this is all done consistently across all drivers, document
+> the rules and enforce it in the drm core.
+> 
+> v2:
+> - Make the capability a link (Simon)
+> - Note that all is lost before 5.1.
+> 
+> v3:
+> - Use drm_WARN_ON (Lyude)
+> 
+> Acked-by: Pekka Paalanen <pekka.paalanen@collabora.com>
+> Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
+> Acked-by: Maxime Ripard <maxime@cerno.tech>
+> Cc: Simon Ser <contact@emersion.fr>
+> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Pekka Paalanen <pekka.paalanen@collabora.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+
+Pushed to drm-misc-next after another round of intel-gfx CI testing.
+-Daniel
+
+> ---
+>  drivers/gpu/drm/drm_plane.c   | 18 +++++++++++++++++-
+>  include/drm/drm_mode_config.h |  2 ++
+>  2 files changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
+> index 0dd43882fe7c..b373958ecb30 100644
+> --- a/drivers/gpu/drm/drm_plane.c
+> +++ b/drivers/gpu/drm/drm_plane.c
+> @@ -128,6 +128,13 @@
+>   *     pairs supported by this plane. The blob is a struct
+>   *     drm_format_modifier_blob. Without this property the plane doesn't
+>   *     support buffers with modifiers. Userspace cannot change this property.
+> + *
+> + *     Note that userspace can check the &DRM_CAP_ADDFB2_MODIFIERS driver
+> + *     capability for general modifier support. If this flag is set then every
+> + *     plane will have the IN_FORMATS property, even when it only supports
+> + *     DRM_FORMAT_MOD_LINEAR. Before linux kernel release v5.1 there have been
+> + *     various bugs in this area with inconsistencies between the capability
+> + *     flag and per-plane properties.
+>   */
+>  
+>  static unsigned int drm_num_planes(struct drm_device *dev)
+> @@ -277,8 +284,14 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+>  			format_modifier_count++;
+>  	}
+>  
+> -	if (format_modifier_count)
+> +	/* autoset the cap and check for consistency across all planes */
+> +	if (format_modifier_count) {
+> +		drm_WARN_ON(dev, !config->allow_fb_modifiers &&
+> +			    !list_empty(&config->plane_list));
+>  		config->allow_fb_modifiers = true;
+> +	} else {
+> +		drm_WARN_ON(dev, config->allow_fb_modifiers);
+> +	}
+>  
+>  	plane->modifier_count = format_modifier_count;
+>  	plane->modifiers = kmalloc_array(format_modifier_count,
+> @@ -360,6 +373,9 @@ static int __drm_universal_plane_init(struct drm_device *dev,
+>   * drm_universal_plane_init() to let the DRM managed resource infrastructure
+>   * take care of cleanup and deallocation.
+>   *
+> + * Drivers supporting modifiers must set @format_modifiers on all their planes,
+> + * even those that only support DRM_FORMAT_MOD_LINEAR.
+> + *
+>   * Returns:
+>   * Zero on success, error code on failure.
+>   */
+> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
+> index ab424ddd7665..1ddf7783fdf7 100644
+> --- a/include/drm/drm_mode_config.h
+> +++ b/include/drm/drm_mode_config.h
+> @@ -909,6 +909,8 @@ struct drm_mode_config {
+>  	 * @allow_fb_modifiers:
+>  	 *
+>  	 * Whether the driver supports fb modifiers in the ADDFB2.1 ioctl call.
+> +	 * Note that drivers should not set this directly, it is automatically
+> +	 * set in drm_universal_plane_init().
+>  	 *
+>  	 * IMPORTANT:
+>  	 *
+> -- 
+> 2.31.0
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
