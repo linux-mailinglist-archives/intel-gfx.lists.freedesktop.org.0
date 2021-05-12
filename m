@@ -2,30 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9660B37BF05
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 15:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D07F337BF95
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 16:15:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9426EBFB;
-	Wed, 12 May 2021 13:58:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9BD56EC01;
+	Wed, 12 May 2021 14:14:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A43A26E073;
- Wed, 12 May 2021 13:58:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9BC8FA00CC;
- Wed, 12 May 2021 13:58:25 +0000 (UTC)
+Received: from outgoing.mit.edu (outgoing-auth-1.mit.edu [18.9.28.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB8A26EC01;
+ Wed, 12 May 2021 14:14:56 +0000 (UTC)
+Received: from cwcc.thunk.org (pool-72-74-133-215.bstnma.fios.verizon.net
+ [72.74.133.215]) (authenticated bits=0)
+ (User authenticated as tytso@ATHENA.MIT.EDU)
+ by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id 14CEEiap031112
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Wed, 12 May 2021 10:14:45 -0400
+Received: by cwcc.thunk.org (Postfix, from userid 15806)
+ id 448C815C39C2; Wed, 12 May 2021 10:14:44 -0400 (EDT)
+Date: Wed, 12 May 2021 10:14:44 -0400
+From: "Theodore Ts'o" <tytso@mit.edu>
+To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Message-ID: <YJvi1L2ss5Tfi+My@mit.edu>
+References: <cover.1620823573.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 12 May 2021 13:58:25 -0000
-Message-ID: <162082790560.28506.8447185153939330199@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <cover.1620825897.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1620825897.git.jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_split_out_new_intel=5Fbacklight=2E=5Bch=5D?=
+Content-Disposition: inline
+In-Reply-To: <cover.1620823573.git.mchehab+huawei@kernel.org>
+Subject: Re: [Intel-gfx] [PATCH v2 00/40] Use ASCII subset instead of UTF-8
+ alternate symbols
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,54 +42,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org,
+ Linux Doc Mailing List <linux-doc@vger.kernel.org>, linux-iio@vger.kernel.org,
+ linux-pci@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ keyrings@vger.kernel.org, linux-sgx@vger.kernel.org,
+ Jonathan Corbet <corbet@lwn.net>, linux-rdma@vger.kernel.org,
+ linux-acpi@vger.kernel.org, Mali DP Maintainers <malidp@foss.arm.com>,
+ linux-input@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
+ linux-ext4@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
+ coresight@lists.linaro.org, rcu@vger.kernel.org,
+ mjpeg-users@lists.sourceforge.net, linux-arm-kernel@lists.infradead.org,
+ linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
+ linux-integrity@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, May 12, 2021 at 02:50:04PM +0200, Mauro Carvalho Chehab wrote:
+> v2:
+> - removed EM/EN DASH conversion from this patchset;
 
-Series: drm/i915: split out new intel_backlight.[ch]
-URL   : https://patchwork.freedesktop.org/series/90078/
-State : warning
+Are you still thinking about doing the
 
-== Summary ==
+EN DASH --> "--"
+EM DASH --> "---"
 
-$ dim checkpatch origin/drm-tip
-5c56f5e2aca2 drm/i915/backlight: extract backlight code to a separate file
--:57: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#57: 
-new file mode 100644
+conversion?  That's not going to change what the documentation will
+look like in the HTML and PDF output forms, and I think it would make
+life easier for people are reading and editing the Documentation/*
+files in text form.
 
--:262: WARNING:LINE_SPACING: Missing a blank line after declarations
-#262: FILE: drivers/gpu/drm/i915/display/intel_backlight.c:201:
-+	u32 val = intel_de_read(dev_priv, BLC_PWM_PCH_CTL2) & ~BACKLIGHT_DUTY_CYCLE_MASK;
-+	intel_de_write(dev_priv, BLC_PWM_PCH_CTL2, val | level);
-
--:1822: WARNING:BRACES: braces {} are not necessary for any arm of this statement
-#1822: FILE: drivers/gpu/drm/i915/display/intel_backlight.c:1761:
-+		if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI) {
-[...]
-+		} else {
-[...]
-
--:1891: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#1891: FILE: drivers/gpu/drm/i915/display/intel_backlight.h:46:
-+}
-+static inline void intel_backlight_device_unregister(struct intel_connector *connector)
-
-total: 0 errors, 3 warnings, 1 checks, 3769 lines checked
-019319571e81 drm/i915/backlight: mass rename functions to have intel_backlight_ prefix
--:557: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
-#557: FILE: drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c:239:
-+	panel->backlight.pwm_funcs->disable(conn_state, intel_backlight_invert_pwm_level(connector, 0));
-
-total: 0 errors, 1 warnings, 0 checks, 568 lines checked
-edb31254e71a drm/i915/panel: mass rename functions to have intel_panel_ prefix
-
-
+				- Ted
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
