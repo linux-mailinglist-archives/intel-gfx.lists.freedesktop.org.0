@@ -2,42 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBB7B37EC69
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 May 2021 00:28:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F0D37EC9B
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 May 2021 00:35:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D7F56E580;
-	Wed, 12 May 2021 22:28:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F25E6ECD4;
+	Wed, 12 May 2021 22:35:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF70289142
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 22:28:13 +0000 (UTC)
-IronPort-SDR: 41j4AnGtG7F/RTx6+qi9v93wvvq1nj1XKdXBLD2GhSDSl+VWTQ411aiU4WZ1QTn5+prsxjs1iE
- O5W0/2r2MPtA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9982"; a="187242981"
-X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="187242981"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2021 15:28:11 -0700
-IronPort-SDR: f6LopKLhNFfq2DAxh5uw9C4sjyyZui+Np2M2+nCE9F1fo5ctxiSAi/ti8U2x9ksTqWik/Ftyax
- 9sZybylinVow==
-X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="430947624"
-Received: from suryadee-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.254.1.144])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2021 15:28:10 -0700
-Date: Wed, 12 May 2021 15:28:09 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210512222809.f5vekclemdguwof2@ldmartin-desk2>
-X-Patchwork-Hint: comment
-References: <20210508022820.780227-14-matthew.d.roper@intel.com>
- <20210508025243.781288-1-matthew.d.roper@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81D7C6ECD4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 22:35:12 +0000 (UTC)
+IronPort-SDR: inDiXKzMLrN1DPxeJkEOi48a6XYagrvAzuOGF6OglgUkCILhuUwovcYRt9zNR59UzHj1rdwRhI
+ LjB6dMnz+d4A==
+X-IronPort-AV: E=McAfee;i="6200,9189,9982"; a="186951953"
+X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="186951953"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2021 15:35:11 -0700
+IronPort-SDR: XokajqtNC7zXGqlai8rixtx0M9jzpD3CfJFOzQsJoOd8JPXRKa/zy/fevOi5yHeaLB3a1bd3vo
+ gqPi7U3+6Zhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,295,1613462400"; d="scan'208";a="622934717"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+ by fmsmga006.fm.intel.com with ESMTP; 12 May 2021 15:35:11 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 12 May 2021 15:35:10 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Wed, 12 May 2021 15:35:10 -0700
+Received: from fmsmsx611.amr.corp.intel.com ([10.18.126.91]) by
+ fmsmsx611.amr.corp.intel.com ([10.18.126.91]) with mapi id 15.01.2106.013;
+ Wed, 12 May 2021 15:35:10 -0700
+From: "Srivatsa, Anusha" <anusha.srivatsa@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v3 44/48] drm/i915/adl_p: Add IPs stepping
+ mapping
+Thread-Index: AQHXQ7HyrB+7viT+5k6ximHI0gNs6qrgdqOw
+Date: Wed, 12 May 2021 22:35:10 +0000
+Message-ID: <ccbd172b86c04268a3dc0d41d39d704f@intel.com>
+References: <20210508022820.780227-1-matthew.d.roper@intel.com>
+ <20210508022820.780227-45-matthew.d.roper@intel.com>
+In-Reply-To: <20210508022820.780227-45-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.132]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20210508025243.781288-1-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3.1 13/48] drm/i915/xelpd: Add rc_qp_table
- for rcparams calculation
+Subject: Re: [Intel-gfx] [PATCH v3 44/48] drm/i915/adl_p: Add IPs stepping
+ mapping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,522 +70,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
+Cc: "Nikula, Jani" <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 07, 2021 at 07:52:43PM -0700, Matt Roper wrote:
->From: Vandita Kulkarni <vandita.kulkarni@intel.com>
->
->Add the qp table for 444 formats, for 8bpc, 10bpc and 12bpc, as given by
->the VESA C model for DSC 1.1
->
->v2:
-> - Add include guard to header (Jani)
-> - Move the big tables to a .c file (Chris, Jani, Lucas)
->v3:
-> - Make tables 'static const' and add lookup functions to index into
->   them.  (Jani)
->v3.1:
-> - Include missing .h file.
->
->Cc: Manasi Navare <manasi.d.navare@intel.com>
->Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
->Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-
-didn't really review the actual values for the table... supposedly this
-is "write only table and never look again".
-
-The rest is much better in this version.
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-I know this is in the commit message, but a comment in the .c or .h file
-stating these tables are "given by the VESA C model for DSC 1.1" would
-help the me from tomorrow to know what are those tables. Anyway, not
-very important... just if you have to respin this.
-
-thanks
-Lucas De Marchi
-
-
->---
-> drivers/gpu/drm/i915/Makefile                 |   1 +
-> .../gpu/drm/i915/display/intel_qp_tables.c    | 311 ++++++++++++++++++
-> .../gpu/drm/i915/display/intel_qp_tables.h    |  14 +
-> drivers/gpu/drm/i915/display/intel_vdsc.c     |  10 +-
-> 4 files changed, 335 insertions(+), 1 deletion(-)
-> create mode 100644 drivers/gpu/drm/i915/display/intel_qp_tables.c
-> create mode 100644 drivers/gpu/drm/i915/display/intel_qp_tables.h
->
->diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
->index d0d936d9137b..4a4d30d8a10a 100644
->--- a/drivers/gpu/drm/i915/Makefile
->+++ b/drivers/gpu/drm/i915/Makefile
->@@ -263,6 +263,7 @@ i915-y +=3D \
-> 	display/intel_lvds.o \
-> 	display/intel_panel.o \
-> 	display/intel_pps.o \
->+	display/intel_qp_tables.o \
-> 	display/intel_sdvo.o \
-> 	display/intel_tv.o \
-> 	display/intel_vdsc.o \
->diff --git a/drivers/gpu/drm/i915/display/intel_qp_tables.c b/drivers/gpu/=
-drm/i915/display/intel_qp_tables.c
->new file mode 100644
->index 000000000000..05f6876799ac
->--- /dev/null
->+++ b/drivers/gpu/drm/i915/display/intel_qp_tables.c
->@@ -0,0 +1,311 @@
->+// SPDX-License-Identifier: MIT
->+/*
->+ * Copyright =A9 2021 Intel Corporation
->+ */
->+
->+#include <drm/drm_dsc.h>
->+
->+#include "i915_utils.h"
->+#include "intel_qp_tables.h"
->+
->+/* from BPP 6 to 24 in steps of 0.5 */
->+#define RC_RANGE_QP444_8BPC_MAX_NUM_BPP		37
->+
->+/* from BPP 6 to 30 in steps of 0.5 */
->+#define RC_RANGE_QP444_10BPC_MAX_NUM_BPP	49
->+
->+/* from BPP 6 to 36 in steps of 0.5 */
->+#define RC_RANGE_QP444_12BPC_MAX_NUM_BPP	61
->+
->+/*
->+ * These qp tables are as per the C model
->+ * and it has the rows pointing to bpps which increment
->+ * in steps of 0.5
->+ * We do not support fractional bpps as of today,
->+ * hence we would skip the fractional bpps during
->+ * our references for qp calclulations.
->+ */
->+static const u8 rc_range_minqp444_8bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP444=
-_8BPC_MAX_NUM_BPP] =3D {
->+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 3, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1,
->+	  1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 1, 1, 1, 1, 1, 1, 1,
->+	  1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1,
->+	  1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2,
->+	  2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
->+	{ 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2,
->+	  2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0 },
->+	{ 6, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
->+	  3, 3, 3, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0 },
->+	{ 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3,
->+	  3, 3, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
->+	{ 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4,
->+	  4, 4, 4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 0 },
->+	{ 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4,
->+	  4, 4, 4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 0 },
->+	{ 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 5,
->+	  5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 1, 1, 1 },
->+	{ 14, 14, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 9, 9, 9, 8, 8,
->+	  8, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3 }
->+};
->+
->+static const u8 rc_range_maxqp444_8bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP444=
-_8BPC_MAX_NUM_BPP] =3D {
->+	{ 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 6, 6, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 2, 2, 1, 1, 1, 1, 1, 1,
->+	  1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
->+	{ 8, 7, 7, 6, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 2, 2, 1, 1, 1, 1, 1,
->+	  1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
->+	{ 8, 8, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5, 4, 3, 3, 2, 2, 2, 2, 2,
->+	  2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
->+	{ 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 5, 4, 4, 3, 2, 2, 2, 2, 2,
->+	  2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0 },
->+	{ 9, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 4, 4, 3, 3, 3, 3, 3,
->+	  3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1 },
->+	{ 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 5, 4, 4, 3, 3, 3, 3, 3,
->+	  3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1 },
->+	{ 10, 10, 9, 9, 8, 8, 8, 8, 8, 8, 8, 8, 8, 7, 7, 6, 5, 5, 4, 4, 4, 4, 3,
->+	  3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1 },
->+	{ 11, 11, 10, 10, 9, 9, 9, 9, 9, 9, 8, 8, 8, 7, 7, 6, 6, 5, 5, 5, 5, 5,
->+	  4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
->+	{ 12, 11, 11, 10, 10, 10, 9, 9, 9, 9, 9, 9, 9, 8, 8, 7, 6, 6, 5, 5, 5,
->+	  5, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1 },
->+	{ 12, 12, 11, 11, 10, 10, 10, 10, 10, 10, 9, 9, 9, 8, 8, 7, 7, 6, 6, 6,
->+	  5, 5, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1 },
->+	{ 12, 12, 12, 11, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 8, 8, 8, 7, 7, 7,
->+	  6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 1 },
->+	{ 12, 12, 12, 12, 11, 11, 11, 11, 11, 10, 10, 9, 9, 9, 8, 8, 8, 7, 7, 7,
->+	  6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 1 },
->+	{ 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9, 9, 8, 8, 8,
->+	  8, 7, 7, 6, 6, 6, 6, 5, 5, 4, 4, 4, 4, 3, 3, 2, 2, 2 },
->+	{ 15, 15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 10, 9,
->+	  9, 9, 8, 8, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 4, 4, 4, 4 }
->+};
->+
->+static const u8 rc_range_minqp444_10bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP44=
-4_10BPC_MAX_NUM_BPP] =3D {
->+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0 },
->+	{ 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1,
->+	  1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0 },
->+	{ 7, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2,
->+	  2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0 },
->+	{ 7, 7, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3,
->+	  3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0 },
->+	{ 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 3,
->+	  3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0 },
->+	{ 9, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 4,
->+	  4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 0, 0, 0,
->+	  0, 0, 0 },
->+	{ 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 5, 5,
->+	  4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 0, 0,
->+	  0, 0, 0 },
->+	{ 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 5,
->+	  5, 5, 5, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 0,
->+	  0, 0, 0 },
->+	{ 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 5,
->+	  5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1,
->+	  1, 0, 0 },
->+	{ 10, 9, 9, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6,
->+	  6, 6, 6, 6, 6, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1,
->+	  1, 1, 0 },
->+	{ 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7, 7, 6,
->+	  6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 1,
->+	  1, 1, 1 },
->+	{ 10, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 8, 8,
->+	  7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 2,
->+	  2, 1, 1, 1 },
->+	{ 10, 10, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8,
->+	  8, 8, 8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 2,
->+	  2, 2, 2, 1 },
->+	{ 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11,
->+	  11, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4,
->+	  4, 3, 3, 3, 3, 2, 2, 2, 2, 1 },
->+	{ 18, 18, 17, 17, 16, 16, 16, 16, 15, 15, 14, 14, 14, 14, 13, 13, 13,
->+	  12, 12, 12, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7,
->+	  7, 6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3 }
->+};
->+
->+static const u8 rc_range_maxqp444_10bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP44=
-4_10BPC_MAX_NUM_BPP] =3D {
->+	{ 8, 8, 8, 8, 8, 8, 7, 7, 7, 6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 2,
->+	  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0 },
->+	{ 10, 10, 9, 9, 8, 8, 8, 8, 8, 8, 7, 7, 6, 6, 6, 5, 5, 4, 4, 4, 4, 3, 3,
->+	  3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
->+	  0, 0, 0 },
->+	{ 12, 11, 11, 10, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 7, 6, 6, 5, 5, 5, 4,
->+	  4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
->+	  0, 0, 0, 0 },
->+	{ 12, 12, 11, 11, 10, 10, 10, 10, 10, 10, 10, 10, 9, 9, 9, 8, 7, 7, 6,
->+	  6, 6, 5, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 1, 1, 1, 1,
->+	  1, 0, 0, 0, 0, 0, 0 },
->+	{ 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 9, 8, 8, 7,
->+	  6, 6, 6, 6, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1,
->+	  1, 1, 1, 0, 0, 0, 0, 0 },
->+	{ 13, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 10, 9, 8, 8,
->+	  7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2,
->+	  2, 2, 1, 1, 1, 1, 0, 0 },
->+	{ 13, 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 9, 8, 8,
->+	  7, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 2,
->+	  2, 2, 2, 1, 1, 1, 1, 1 },
->+	{ 14, 14, 13, 13, 12, 12, 12, 12, 12, 12, 12, 12, 12, 11, 11, 10, 9, 9,
->+	  8, 8, 8, 8, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 4, 4, 4, 4, 4, 4, 3, 3, 3,
->+	  3, 2, 2, 2, 1, 1, 1, 1 },
->+	{ 15, 15, 14, 14, 13, 13, 13, 13, 13, 13, 12, 12, 12, 11, 11, 10, 10, 9,
->+	  9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 6, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 3,
->+	  3, 3, 2, 2, 2, 2, 1, 1 },
->+	{ 16, 15, 15, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 12, 12, 11, 10,
->+	  10, 9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4,
->+	  4, 3, 3, 3, 2, 2, 2, 2, 1 },
->+	{ 16, 16, 15, 15, 14, 14, 14, 14, 14, 14, 13, 13, 13, 12, 12, 11, 11,
->+	  10, 10, 10, 9, 9, 8, 8, 8, 8, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 5, 5, 5,
->+	  4, 4, 4, 3, 3, 3, 2, 2, 2, 2 },
->+	{ 16, 16, 16, 15, 15, 15, 14, 14, 14, 14, 13, 13, 13, 13, 12, 12, 12,
->+	  11, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5,
->+	  5, 4, 4, 4, 4, 3, 3, 2, 2, 2 },
->+	{ 16, 16, 16, 16, 15, 15, 15, 15, 15, 14, 14, 13, 13, 13, 12, 12, 12,
->+	  11, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 6, 6, 6, 6, 5, 5, 5,
->+	  5, 4, 4, 4, 4, 3, 3, 3, 3, 2 },
->+	{ 17, 17, 17, 17, 16, 16, 15, 15, 15, 15, 14, 14, 14, 14, 13, 13, 12,
->+	  12, 12, 12, 11, 11, 10, 10, 10, 10, 9, 9, 8, 8, 8, 8, 7, 7, 6, 6, 6,
->+	  6, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 2 },
->+	{ 19, 19, 18, 18, 17, 17, 17, 17, 16, 16, 15, 15, 15, 15, 14, 14, 14,
->+	  13, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 10, 9, 9, 8, 8, 8,
->+	  8, 8, 7, 7, 6, 6, 6, 6, 5, 5, 4, 4, 4 }
->+};
->+
->+static const u8 rc_range_minqp444_12bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP44=
-4_12BPC_MAX_NUM_BPP] =3D {
->+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0=
-, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0=
-, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2=
-, 2, 2,
->+	  1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0=
-, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 11, 10, 10, 9, 8, 8, 8, 8, 8, 8, 8, 8, 7, 7, 7, 6, 5, 5, 4, 4, 4, 3, 3=
-, 3, 3,
->+	  3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0=
-, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 11, 11, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 7, 6, 6, 6, 6, 6, 5, =
-5, 5,
->+	  5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1=
-, 1, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10, 9, 9, 9, 8, 7,=
- 7, 7,
->+	  7, 5, 5, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1=
-, 1,
->+	  1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 13, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 9, 9, =
-8, 8,
->+	  8, 8, 6, 6, 6, 6, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 2=
-, 2, 2,
->+	  2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 13, 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 9, 9, =
-9, 9,
->+	  9, 9, 9, 8, 8, 8, 7, 7, 7, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4=
-, 3, 3,
->+	  3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 },
->+	{ 13, 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 10=
-, 10,
->+	  10, 10, 10, 9, 9, 9, 9, 8, 8, 8, 7, 7, 7, 6, 6, 6, 6, 6, 6, 5, 5, 5, 5=
-, 4, 4,
->+	  4, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0 },
->+	{ 13, 13, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11=
-, 11,
->+	  11, 11, 11, 10, 10, 10, 10, 9, 9, 8, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, =
-5, 5,
->+	  5, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0 },
->+	{ 14, 13, 13, 12, 12, 12, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11=
-, 11,
->+	  11, 11, 11, 10, 10, 10, 10, 9, 9, 8, 8, 8, 8, 8, 8, 7, 7, 7, 7, 7, 6, =
-6, 5,
->+	  5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 0 },
->+	{ 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 12=
-, 12,
->+	  12, 11, 11, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 7=
-, 7, 7,
->+	  6, 6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1 },
->+	{ 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13=
-, 13,
->+	  13, 12, 12, 11, 11, 11, 11, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 8, 8, =
-8, 8,
->+	  7, 7, 7, 7, 6, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 1, 1 },
->+	{ 14, 14, 14, 14, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13=
-, 13,
->+	  13, 12, 12, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 8, 8, =
-8, 8,
->+	  7, 7, 7, 7, 6, 6, 6, 6, 5, 4, 4, 4, 3, 3, 3, 3, 2, 2, 1, 1, 1 },
->+	{ 17, 17, 17, 17, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15=
-, 15,
->+	  15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 9, 9, 9, 9=
-, 8, 8,
->+	  7, 7, 7, 7, 7, 6, 6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 1 },
->+	{ 22, 22, 21, 21, 20, 20, 20, 20, 19, 19, 18, 18, 18, 18, 17, 17, 17, 16=
-, 16,
->+	  16, 15, 15, 15, 15, 14, 14, 13, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11=
-, 11,
->+	  10, 10, 9, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 3 }
->+};
->+
->+static const u8 rc_range_maxqp444_12bpc[DSC_NUM_BUF_RANGES][RC_RANGE_QP44=
-4_12BPC_MAX_NUM_BPP] =3D {
->+	{ 12, 12, 12, 12, 12, 12, 11, 11, 11, 10, 9, 9, 6, 6, 5, 5, 5, 4, 4, 4, =
-4, 4,
->+	  4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0=
-, 0, 0,
->+	  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 14, 14, 13, 13, 12, 12, 12, 12, 12, 12, 11, 11, 9, 9, 9, 8, 8, 7, 7, 7=
-, 7, 5,
->+	  5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1=
-, 1, 1,
->+	  1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 16, 15, 15, 14, 13, 13, 13, 13, 13, 13, 13, 13, 12, 12, 12, 11, 10, 10=
-, 9, 9,
->+	  9, 7, 7, 7, 7, 7, 6, 6, 5, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2=
-, 1, 1,
->+	  1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 16, 16, 15, 15, 14, 14, 14, 14, 14, 14, 14, 14, 13, 13, 13, 12, 11, 11=
-, 10,
->+	  10, 10, 8, 8, 8, 8, 8, 7, 7, 6, 5, 5, 5, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3,=
- 3, 2,
->+	  2, 2, 2, 2, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
->+	{ 17, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 13, 12, 12, 11=
-, 10,
->+	  10, 10, 10, 8, 8, 8, 8, 8, 8, 7, 7, 7, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3=
-, 3, 3,
->+	  2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 },
->+	{ 17, 16, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 14, 13, 12, 12=
-, 11,
->+	  11, 11, 11, 9, 9, 9, 9, 8, 8, 8, 8, 7, 6, 6, 6, 6, 6, 5, 5, 5, 5, 4, 4=
-, 4, 3,
->+	  3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 0 },
->+	{ 17, 17, 16, 16, 15, 15, 15, 15, 15, 15, 15, 15, 15, 14, 14, 13, 12, 12=
-, 11,
->+	  11, 11, 11, 11, 10, 10, 10, 9, 9, 9, 8, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, =
-5, 5,
->+	  5, 5, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0 },
->+	{ 18, 18, 17, 17, 16, 16, 16, 16, 16, 16, 16, 16, 16, 15, 15, 14, 13, 13=
-, 12,
->+	  12, 12, 12, 11, 11, 11, 11, 10, 10, 10, 8, 8, 8, 7, 7, 7, 7, 7, 7, 6, =
-6, 6,
->+	  6, 5, 5, 5, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1 },
->+	{ 19, 19, 18, 18, 17, 17, 17, 17, 17, 17, 16, 16, 16, 15, 15, 14, 14, 13=
-, 13,
->+	  13, 13, 13, 12, 12, 12, 12, 11, 11, 10, 9, 8, 8, 8, 8, 7, 7, 7, 7, 7, =
-7, 6,
->+	  6, 6, 5, 5, 5, 5, 4, 4, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 1, 1 },
->+	{ 20, 19, 19, 18, 18, 18, 17, 17, 17, 17, 17, 17, 17, 16, 16, 15, 14, 14=
-, 13,
->+	  13, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 9, 9, 9, 9, 8, 8, 8, 8, 8,=
- 7, 7,
->+	  6, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 1 },
->+	{ 20, 20, 19, 19, 18, 18, 18, 18, 18, 18, 17, 17, 17, 16, 16, 15, 15, 14=
-, 14,
->+	  14, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10, 10, 10, 10, 10, 10, 9,=
- 9, 9,
->+	  8, 8, 8, 7, 7, 7, 6, 6, 6, 6, 5, 5, 4, 4, 4, 3, 3, 3, 3, 2, 2, 2 },
->+	{ 20, 20, 20, 19, 19, 19, 18, 18, 18, 18, 17, 17, 17, 17, 16, 16, 16, 15=
-, 15,
->+	  15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9,=
- 9, 9,
->+	  9, 8, 8, 8, 8, 7, 7, 6, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 2, 2, 2 },
->+	{ 20, 20, 20, 20, 19, 19, 19, 19, 19, 18, 18, 17, 17, 17, 16, 16, 16, 15=
-, 15,
->+	  15, 14, 14, 13, 13, 13, 13, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9,=
- 9, 9,
->+	  9, 8, 8, 8, 8, 7, 7, 7, 7, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 2, 2, 2 },
->+	{ 21, 21, 21, 21, 20, 20, 19, 19, 19, 19, 18, 18, 18, 18, 17, 17, 16, 16=
-, 16,
->+	  16, 15, 15, 14, 14, 14, 14, 13, 13, 12, 12, 12, 12, 11, 11, 10, 10, 10=
-, 10,
->+	  9, 9, 8, 8, 8, 8, 8, 7, 7, 7, 6, 6, 6, 6, 5, 5, 4, 4, 4, 4, 3, 3, 2 },
->+	{ 23, 23, 22, 22, 21, 21, 21, 21, 20, 20, 19, 19, 19, 19, 18, 18, 18, 17=
-, 17,
->+	  17, 16, 16, 16, 16, 15, 15, 14, 14, 14, 14, 14, 13, 13, 12, 12, 12, 12=
-, 12,
->+	  11, 11, 10, 10, 10, 10, 10, 9, 9, 8, 8, 8, 8, 8, 7, 7, 6, 6, 6, 6, 5, =
-5, 4 }
->+};
->+
->+#define PARAM_TABLE(_minmax, _bpc, _row, _col)  do { \
->+	if (bpc =3D=3D _bpc) \
->+		return rc_range_##_minmax##qp444_##_bpc##bpc[_row][_col]; \
->+} while (0)
->+
->+u8 intel_lookup_range_min_qp(int bpc, int buf_i, int bpp_i)
->+{
->+	PARAM_TABLE(min, 8, buf_i, bpp_i);
->+	PARAM_TABLE(min, 10, buf_i, bpp_i);
->+	PARAM_TABLE(min, 12, buf_i, bpp_i);
->+
->+	MISSING_CASE(bpc);
->+	return 0;
->+}
->+
->+u8 intel_lookup_range_max_qp(int bpc, int buf_i, int bpp_i)
->+{
->+	PARAM_TABLE(max, 8, buf_i, bpp_i);
->+	PARAM_TABLE(max, 10, buf_i, bpp_i);
->+	PARAM_TABLE(max, 12, buf_i, bpp_i);
->+
->+	MISSING_CASE(bpc);
->+	return 0;
->+}
->+
->+
->diff --git a/drivers/gpu/drm/i915/display/intel_qp_tables.h b/drivers/gpu/=
-drm/i915/display/intel_qp_tables.h
->new file mode 100644
->index 000000000000..9fb3c36bd7c6
->--- /dev/null
->+++ b/drivers/gpu/drm/i915/display/intel_qp_tables.h
->@@ -0,0 +1,14 @@
->+/* SPDX-License-Identifier: MIT */
->+/*
->+ * Copyright =A9 2021 Intel Corporation
->+ */
->+
->+#ifndef _INTEL_QP_TABLES_H_
->+#define _INTEL_QP_TABLES_H_
->+
->+#include <linux/types.h>
->+
->+u8 intel_lookup_range_min_qp(int bpc, int buf_i, int bpp_i);
->+u8 intel_lookup_range_max_qp(int bpc, int buf_i, int bpp_i);
->+
->+#endif
->diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i=
-915/display/intel_vdsc.c
->index 1ac378a9904e..afaf6187e255 100644
->--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
->+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
->@@ -11,6 +11,7 @@
-> #include "intel_display_types.h"
-> #include "intel_dsi.h"
-> #include "intel_vdsc.h"
->+#include "intel_qp_tables.h"
->
-> enum ROW_INDEX_BPP {
-> 	ROW_INDEX_6BPP =3D 0,
->@@ -384,7 +385,7 @@ calculate_rc_params(struct rc_parameters *rc,
-> 	int ofs_und12[] =3D { 2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -1=
-2, -12, -12 };
-> 	int ofs_und15[] =3D { 10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, =
--12, -12 };
-> 	int qp_bpc_modifier =3D (bpc - 8) * 2;
->-	u32 res, buf_i;
->+	u32 res, buf_i, bpp_i;
->
-> 	if (vdsc_cfg->slice_height >=3D 8)
-> 		rc->first_line_bpg_offset =3D
->@@ -411,7 +412,14 @@ calculate_rc_params(struct rc_parameters *rc,
-> 	rc->rc_quant_incr_limit0 =3D 11 + qp_bpc_modifier;
-> 	rc->rc_quant_incr_limit1 =3D 11 + qp_bpc_modifier;
->
->+	bpp_i  =3D (2 * (bpp - 6));
-> 	for (buf_i =3D 0; buf_i < DSC_NUM_BUF_RANGES; buf_i++) {
->+		/* Read range_minqp and range_max_qp from qp tables */
->+		rc->rc_range_params[buf_i].range_min_qp =3D
->+			intel_lookup_range_min_qp(bpc, buf_i, bpp_i);
->+		rc->rc_range_params[buf_i].range_max_qp =3D
->+			intel_lookup_range_max_qp(bpc, buf_i, bpp_i);
->+
-> 		/* Calculate range_bgp_offset */
-> 		if (bpp <=3D 6) {
-> 			rc->rc_range_params[buf_i].range_bpg_offset =3D ofs_und6[buf_i];
->-- =
-
->2.25.4
->
->_______________________________________________
->Intel-gfx mailing list
->Intel-gfx@lists.freedesktop.org
->https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
+bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBNYXR0DQo+
+IFJvcGVyDQo+IFNlbnQ6IEZyaWRheSwgTWF5IDcsIDIwMjEgNzoyOCBQTQ0KPiBUbzogaW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogTmlrdWxhLCBKYW5pIDxqYW5pLm5pa3Vs
+YUBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFtJbnRlbC1nZnhdIFtQQVRDSCB2MyA0NC80OF0gZHJt
+L2k5MTUvYWRsX3A6IEFkZCBJUHMgc3RlcHBpbmcNCj4gbWFwcGluZw0KPiANCj4gRnJvbTogSm9z
+w6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IA0KPiBUaGlzIHdp
+bGwgYWxsb3cgdXMgdG8gYmV0dGVyIGltcGxlbWVudCB3b3JrYXJvdW5kcy4NCj4gDQo+IENjOiBN
+YXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBK
+b3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gU2lnbmVkLW9m
+Zi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1i
+eTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4NCg0KUmV2aWV3ZWQtYnk6
+IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNvbT4NCg0KPiAtLS0NCj4g
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICB8ICA4ICsrKysrKysrDQo+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zdGVwLmMgfCAxMiArKysrKysrKysrKy0NCj4gIDIgZmls
+ZXMgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2Rydi5oIGluZGV4IDNmZTUxNGM1ZGUzMi4uYjU1NmVjY2M5YWQyDQo+IDEw
+MDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+ICsrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gQEAgLTE1NTYsNiArMTU1NiwxNCBAQCBJ
+U19TVUJQTEFURk9STShjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZQ0KPiAqaTkxNSwNCj4g
+IAkoSVNfQUxERVJMQUtFX1MoX19pOTE1KSAmJiBcDQo+ICAJIElTX0dUX1NURVAoX19pOTE1LCBz
+aW5jZSwgdW50aWwpKQ0KPiANCj4gKyNkZWZpbmUgSVNfQURMUF9ESVNQTEFZX1NURVAoX19pOTE1
+LCBzaW5jZSwgdW50aWwpIFwNCj4gKwkoSVNfQUxERVJMQUtFX1AoX19pOTE1KSAmJiBcDQo+ICsJ
+IElTX0RJU1BMQVlfU1RFUChfX2k5MTUsIHNpbmNlLCB1bnRpbCkpDQo+ICsNCj4gKyNkZWZpbmUg
+SVNfQURMUF9HVF9TVEVQKF9faTkxNSwgc2luY2UsIHVudGlsKSBcDQo+ICsJKElTX0FMREVSTEFL
+RV9QKF9faTkxNSkgJiYgXA0KPiArCSBJU19HVF9TVEVQKF9faTkxNSwgc2luY2UsIHVudGlsKSkN
+Cj4gKw0KPiAgI2RlZmluZSBJU19MUChkZXZfcHJpdikJKElOVEVMX0lORk8oZGV2X3ByaXYpLT5p
+c19scCkNCj4gICNkZWZpbmUgSVNfR0VOOV9MUChkZXZfcHJpdikJKElTX0dFTihkZXZfcHJpdiwg
+OSkgJiYgSVNfTFAoZGV2X3ByaXYpKQ0KPiAgI2RlZmluZSBJU19HRU45X0JDKGRldl9wcml2KQko
+SVNfR0VOKGRldl9wcml2LCA5KSAmJiAhSVNfTFAoZGV2X3ByaXYpKQ0KPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc3RlcC5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaW50ZWxfc3RlcC5jDQo+IGluZGV4IDRkNzE1NDdhNWI4My4uYmE5NDc5YTY3NTIxIDEwMDY0
+NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zdGVwLmMNCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc3RlcC5jDQo+IEBAIC00Nyw2ICs0NywxMyBAQCBzdGF0
+aWMgY29uc3Qgc3RydWN0IGludGVsX3N0ZXBfaW5mbw0KPiBhZGxzX3JldmlkX3N0ZXBfdGJsW10g
+PSB7DQo+ICAJWzB4Q10gPSB7IC5ndF9zdGVwID0gU1RFUF9EMCwgLmRpc3BsYXlfc3RlcCA9IFNU
+RVBfQzAgfSwgIH07DQo+IA0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9zdGVwX2luZm8g
+YWRscF9yZXZpZF9zdGVwX3RibFtdID0gew0KPiArCVsweDBdID0geyAuZ3Rfc3RlcCA9IFNURVBf
+QTAsIC5kaXNwbGF5X3N0ZXAgPSBTVEVQX0EwIH0sDQo+ICsJWzB4NF0gPSB7IC5ndF9zdGVwID0g
+U1RFUF9CMCwgLmRpc3BsYXlfc3RlcCA9IFNURVBfQjAgfSwNCj4gKwlbMHg4XSA9IHsgLmd0X3N0
+ZXAgPSBTVEVQX0MwLCAuZGlzcGxheV9zdGVwID0gU1RFUF9DMCB9LA0KPiArCVsweENdID0geyAu
+Z3Rfc3RlcCA9IFNURVBfQzAsIC5kaXNwbGF5X3N0ZXAgPSBTVEVQX0QwIH0sIH07DQo+ICsNCj4g
+IHZvaWQgaW50ZWxfc3RlcF9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KSAgew0K
+PiAgCWNvbnN0IHN0cnVjdCBpbnRlbF9zdGVwX2luZm8gKnJldmlkcyA9IE5VTEw7IEBAIC01NCw3
+ICs2MSwxMCBAQA0KPiB2b2lkIGludGVsX3N0ZXBfaW5pdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
+ZSAqaTkxNSkNCj4gIAlpbnQgcmV2aWQgPSBJTlRFTF9SRVZJRChpOTE1KTsNCj4gIAlzdHJ1Y3Qg
+aW50ZWxfc3RlcF9pbmZvIHN0ZXAgPSB7fTsNCj4gDQo+IC0JaWYgKElTX0FMREVSTEFLRV9TKGk5
+MTUpKSB7DQo+ICsJaWYgKElTX0FMREVSTEFLRV9QKGk5MTUpKSB7DQo+ICsJCXJldmlkcyA9IGFk
+bHBfcmV2aWRfc3RlcF90Ymw7DQo+ICsJCXNpemUgPSBBUlJBWV9TSVpFKGFkbHBfcmV2aWRfc3Rl
+cF90YmwpOw0KPiArCX0gZWxzZSBpZiAoSVNfQUxERVJMQUtFX1MoaTkxNSkpIHsNCj4gIAkJcmV2
+aWRzID0gYWRsc19yZXZpZF9zdGVwX3RibDsNCj4gIAkJc2l6ZSA9IEFSUkFZX1NJWkUoYWRsc19y
+ZXZpZF9zdGVwX3RibCk7DQo+ICAJfSBlbHNlIGlmIChJU19UR0xfVShpOTE1KSB8fCBJU19UR0xf
+WShpOTE1KSkgew0KPiAtLQ0KPiAyLjI1LjQNCj4gDQo+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fDQo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QNCj4gSW50
+ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
