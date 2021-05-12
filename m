@@ -1,57 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5098F37B74B
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 09:59:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37AFA37B782
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 10:08:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C22DA6EB56;
-	Wed, 12 May 2021 07:58:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81A766EB56;
+	Wed, 12 May 2021 08:08:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com
- [IPv6:2607:f8b0:4864:20::72e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 895906EB56;
- Wed, 12 May 2021 07:58:57 +0000 (UTC)
-Received: by mail-qk1-x72e.google.com with SMTP id q136so21341563qka.7;
- Wed, 12 May 2021 00:58:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=8OckH/+JO6n92P81MQ/JXOiqCAO82wOY/hsKFSr5vJg=;
- b=K358Z9fRr4ZJncx0ivMeUXYHrkUtSiTlriusVLDzxZujX3VyfDZHZGFxh5w5OOZZ7m
- 9QmB1t4WGFqyW+fYYemHhVnBkQ9YswrCaRaeof3iFKb4UbeTwxPya5t0KP5HjmSll4nJ
- 1BP5S7Iepl9HgU4LDWL5oLZ8voSA+Ro79h1B3EAtn0Od8EnAuQpI21nfkzzW6Xd3Hq+Z
- UK3tcH2NdqrvycERA+HgMjWi0vxcgkfpbN/xq5MlTip0A0VuuWDQAFtAsnIjabfAx6Gb
- cQFbc9obRn/nWULn1PhxJNnv4ifrKkcuqcEK4DMnm9otOTNbiZ0U/v5P3QZ/udgM76jr
- 1FDw==
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com
+ [IPv6:2a00:1450:4864:20::631])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4C2D6EB56
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 08:08:20 +0000 (UTC)
+Received: by mail-ej1-x631.google.com with SMTP id c22so5532362ejd.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 01:08:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=U6T05QHLm4nURNIVJqzC1LFltRTuyBXr1Xh3QqRA+U4=;
+ b=XTNh+3CofBeeOM/yWguF+JBctGC9qo42/WrIZBdgFi7FuRWCad4vuCduHqekomENsR
+ 67MnUGIm+mJFe7YO5sScVhRisKEFSBQE5bnqhXD9VDz+CbBwSib1PdQyVTKxAu+ZIiUc
+ c+cpuorQDWb5yJdUpn1U36oBZL5/UrpOrn3Qg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=8OckH/+JO6n92P81MQ/JXOiqCAO82wOY/hsKFSr5vJg=;
- b=lEGwOV800I5Wg+Bn6YmRxTQWtEi8GhCazkAisECEhyPjG80N/4t8qVp6ljBTyAD4t0
- lCVIS5V8XjhiVZMhWNPkqyWvCqV/tZu9Oo/2DVBxIg9+fOywo0ABm/fbxSGU74fKP1nY
- C7aKAFGWZubV6oi9Pt1Zj6qdbLtXd7Qv5mJjsDiOySWid5Hb8XqVX8rTaUV/mY902sBK
- SOxz1hzBSiHQ4sW7Oc6GmnXZYlz3kwGylxUOjaWGit0RdCJAlw2UaWyTM/QJ/zIG5giX
- Si6mRLLeo/Ldm2JqTg6ePubhwGjnX7QxRiOamj5IdUgvSltBBUEJM6+p8040cCKwjimX
- dGVw==
-X-Gm-Message-State: AOAM531+mT84VCEj22Ep8T4ERPWk5qcLYW4jBbsKbCGxT1ogwsRmtYnz
- lHEd1WKgkcW7iXOx8+XA0qshSCqM3voIvlZiMwHHvj8vALH4dA==
-X-Google-Smtp-Source: ABdhPJzTRWW+vqWeEXYO9mBq9m3c28swLvsx+THT7xIQML5DhJx6OjTrrX1vh2tlhsOY6MNXWF5Dr8PrTnAPbkkeDYc=
-X-Received: by 2002:a37:a287:: with SMTP id
- l129mr22061174qke.481.1620806336630; 
- Wed, 12 May 2021 00:58:56 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=U6T05QHLm4nURNIVJqzC1LFltRTuyBXr1Xh3QqRA+U4=;
+ b=oBl+e3G8FSK5dEdSlnRlazbG5MudVxRg2Mrd5BzlwnIyGtE1nOp3R8gQnzLnUYpTMJ
+ 1quIItxW3mra5ZRrCk01D+2L9Z2zO2sgemvF7sKjnMBNk8+jUONbn2HfAKqRvWwIXyUm
+ kawwyEHiBKY1X739K6m0TtAipbe/CVEzmT+CtE0pq/ftM/JLFc7+gtnsJk2kqwljZcZp
+ /UFwHke3jgzEuH/eE0oA/KolxF04sWga17Z9rLsu1gnuxLyg+5IgA4q+yNPZc5r/rg7b
+ iujR88KObUubxxUp8WBGZhZ2Ko/nwrIj7GAgu163gAe3ExXTnv+9uR0vMVUren2YW0At
+ GBlQ==
+X-Gm-Message-State: AOAM532sm+SLi0+6VxP0C/1CnzuNgDS+Utnk9khmnBa8cMZ5VHaa5Yaj
+ lS0huNgsulvazH70vQBA7CwlYw==
+X-Google-Smtp-Source: ABdhPJwUgrVYZ82EtHT18nbLk4pmZOrpO8YUJYkgJj5D7T2hO+8nc3CHJpjQuI5/nT53FhoWQBHgiQ==
+X-Received: by 2002:a17:906:4159:: with SMTP id
+ l25mr36536128ejk.76.1620806899345; 
+ Wed, 12 May 2021 01:08:19 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id i4sm1202321ejg.27.2021.05.12.01.08.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 12 May 2021 01:08:18 -0700 (PDT)
+Date: Wed, 12 May 2021 10:08:17 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <YJuM8TOPOBk7UHS7@phenom.ffwll.local>
+References: <20210511170356.430284-1-matthew.auld@intel.com>
+ <YJq+qCOSjrUFAC9v@phenom.ffwll.local>
+ <YJq+6kTp9I55DNXN@phenom.ffwll.local>
+ <e93de059-bf2a-fd34-7447-5313044461d3@intel.com>
 MIME-Version: 1.0
-References: <20210511132525.377190-1-thomas.hellstrom@linux.intel.com>
- <20210511132525.377190-8-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20210511132525.377190-8-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Wed, 12 May 2021 08:58:30 +0100
-Message-ID: <CAM0jSHOJh64y9mncdsvWukAKn5hn0a=0tW-Az678sgbLWwpJFw@mail.gmail.com>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/lmem: Verify checks for lmem
- residency
+Content-Disposition: inline
+In-Reply-To: <e93de059-bf2a-fd34-7447-5313044461d3@intel.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH] drm/doc/rfc: drop the i915_gem_lmem.h header
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,120 +68,335 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAxMSBNYXkgMjAyMSBhdCAxNDoyNiwgVGhvbWFzIEhlbGxzdHLDtm0KPHRob21hcy5o
-ZWxsc3Ryb21AbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IFNpbmNlIG9iamVjdHMgY2FuIGJl
-IG1pZ3JhdGVkIG9yIGV2aWN0ZWQgd2hlbiBub3QgcGlubmVkIG9yIGxvY2tlZCwKPiB1cGRhdGUg
-dGhlIGNoZWNrcyBmb3IgbG1lbSByZXNpZGVuY3kgb3IgZnV0dXJlIHJlc2lkZW5jeSBzbyB0aGF0
-Cj4gdGhlIHZhbHVlIHJldHVybmVkIGlzIG5vdCBpbW1lZGlhdGVseSBzdGFsZS4KPgo+IFNpZ25l
-ZC1vZmYtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVs
-LmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-LmMgfCAgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbG1lbS5jICAg
-ICB8IDQyICsrKysrKysrKysrKysrKysrKystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9p
-OTE1X2dlbV9vYmplY3QuYyAgIHwgMjkgKysrKysrKysrKysrKysKPiAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX29iamVjdC5oICAgfCAgNCArKwo+ICA0IGZpbGVzIGNoYW5nZWQs
-IDc1IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IGluZGV4IGRlMWYxM2QyMDNiNS4uYjk1ZGVm
-MmQ1YWYzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmMKPiBAQCAtMTE2MTUsNyArMTE2MTUsNyBAQCBpbnRlbF91c2VyX2ZyYW1lYnVmZmVyX2Ny
-ZWF0ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+Cj4gICAgICAgICAvKiBvYmplY3QgaXMgYmFj
-a2VkIHdpdGggTE1FTSBmb3IgZGlzY3JldGUgKi8KPiAgICAgICAgIGk5MTUgPSB0b19pOTE1KG9i
-ai0+YmFzZS5kZXYpOwo+IC0gICAgICAgaWYgKEhBU19MTUVNKGk5MTUpICYmICFpOTE1X2dlbV9v
-YmplY3RfaXNfbG1lbShvYmopKSB7Cj4gKyAgICAgICBpZiAoSEFTX0xNRU0oaTkxNSkgJiYgIWk5
-MTVfZ2VtX29iamVjdF92YWxpZGF0ZXNfdG9fbG1lbShvYmopKSB7Cj4gICAgICAgICAgICAgICAg
-IC8qIG9iamVjdCBpcyAicmVtb3RlIiwgbm90IGluIGxvY2FsIG1lbW9yeSAqLwo+ICAgICAgICAg
-ICAgICAgICBpOTE1X2dlbV9vYmplY3RfcHV0KG9iaik7Cj4gICAgICAgICAgICAgICAgIHJldHVy
-biBFUlJfUFRSKC1FUkVNT1RFKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z2VtL2k5MTVfZ2VtX2xtZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9s
-bWVtLmMKPiBpbmRleCAyYjhjZDE1ZGUxZDkuLmQ1MzlkZmZhMTU1NCAxMDA2NDQKPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fbG1lbS5jCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2xtZW0uYwo+IEBAIC0yMywxMCArMjMsNTAgQEAgaTkx
-NV9nZW1fb2JqZWN0X2xtZW1faW9fbWFwKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmos
-Cj4gICAgICAgICByZXR1cm4gaW9fbWFwcGluZ19tYXBfd2MoJm9iai0+bW0ucmVnaW9uLT5pb21h
-cCwgb2Zmc2V0LCBzaXplKTsKPiAgfQo+Cj4gKy8qKgo+ICsgKiBpOTE1X2dlbV9vYmplY3RfdmFs
-aWRhdGVzX3RvX2xtZW0gLSBXaGV0aGVyIHRoZSBvYmplY3QgaXMgcmVzaWRlbnQgaW4KPiArICog
-bG1lbSB3aGVuIHBhZ2VzIGFyZSBwcmVzZW50Lgo+ICsgKiBAb2JqOiBUaGUgb2JqZWN0IHRvIGNo
-ZWNrLgo+ICsgKgo+ICsgKiBNaWdyYXRhYmxlIG9iamVjdHMgcmVzaWRlbmN5IG1heSBjaGFuZ2Ug
-ZnJvbSB1bmRlciB1cyBpZiB0aGUgb2JqZWN0IGlzCj4gKyAqIG5vdCBwaW5uZWQgb3IgbG9ja2Vk
-LiBUaGlzIGZ1bmN0aW9uIGlzIGludGVuZGVkIHRvIGJlIHVzZWQgdG8gY2hlY2sgd2hldGhlcgo+
-ICsgKiB0aGUgb2JqZWN0IGNhbiBvbmx5IHJlc2lkZSBpbiBsbWVtIHdoZW4gcGFnZXMgYXJlIHBy
-ZXNlbnQuCj4gKyAqCj4gKyAqIFJldHVybjogV2hldGhlciB0aGUgb2JqZWN0IGlzIGFsd2F5cyBy
-ZXNpZGVudCBpbiBsbWVtIHdoZW4gcGFnZXMgYXJlCj4gKyAqIHByZXNlbnQuCj4gKyAqLwo+ICti
-b29sIGk5MTVfZ2VtX29iamVjdF92YWxpZGF0ZXNfdG9fbG1lbShzdHJ1Y3QgZHJtX2k5MTVfZ2Vt
-X29iamVjdCAqb2JqKQo+ICt7Cj4gKyAgICAgICBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAq
-bXIgPSBSRUFEX09OQ0Uob2JqLT5tbS5yZWdpb24pOwo+ICsKPiArICAgICAgIHJldHVybiAhaTkx
-NV9nZW1fb2JqZWN0X21pZ3JhdGFibGUob2JqKSAmJgo+ICsgICAgICAgICAgICAgICBtciAmJiAo
-bXItPnR5cGUgPT0gSU5URUxfTUVNT1JZX0xPQ0FMIHx8Cj4gKyAgICAgICAgICAgICAgICAgICAg
-ICBtci0+dHlwZSA9PSBJTlRFTF9NRU1PUllfU1RPTEVOX0xPQ0FMKTsKPiArfQo+ICsKPiArLyoq
-Cj4gKyAqIGk5MTVfZ2VtX29iamVjdF9pc19sbWVtIC0gV2hldGhlciB0aGUgb2JqZWN0IGlzIHJl
-c2lkZW50IGluCj4gKyAqIGxtZW0KPiArICogQG9iajogVGhlIG9iamVjdCB0byBjaGVjay4KPiAr
-ICoKPiArICogRXZlbiBpZiBhbiBvYmplY3QgaXMgYWxsb3dlZCB0byBtaWdyYXRlIGFuZCBjaGFu
-Z2UgbWVtb3J5IHJlZ2lvbiwKPiArICogdGhpcyBmdW5jdGlvbiBjaGVja3Mgd2hldGhlciBpdCB3
-aWxsIGFsd2F5cyBiZSBwcmVzZW50IGluIGxtZW0gd2hlbgo+ICsgKiB2YWxpZCAqb3IqIGlmIHRo
-YXQncyBub3QgdGhlIGNhc2UsIHdoZXRoZXIgaXQncyBjdXJyZW50bHkgcmVzaWRlbnQgaW4gbG1l
-bS4KPiArICogRm9yIG1pZ3JhdGFibGUgYW5kIGV2aWN0YWJsZSBvYmplY3RzLCB0aGUgbGF0dGVy
-IG9ubHkgbWFrZXMgc2Vuc2Ugd2hlbgo+ICsgKiB0aGUgb2JqZWN0IGlzIGxvY2tlZC4KPiArICoK
-PiArICogUmV0dXJuOiBXaGV0aGVyIHRoZSBvYmplY3QgbWlncmF0YWJsZSBidXQgcmVzaWRlbnQg
-aW4gbG1lbSwgb3Igbm90Cj4gKyAqIG1pZ3JhdGFibGUgYW5kIHdpbGwgYmUgcHJlc2VudCBpbiBs
-bWVtIHdoZW4gdmFsaWQuCj4gKyAqLwo+ICBib29sIGk5MTVfZ2VtX29iamVjdF9pc19sbWVtKHN0
-cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4gIHsKPiAtICAgICAgIHN0cnVjdCBpbnRl
-bF9tZW1vcnlfcmVnaW9uICptciA9IG9iai0+bW0ucmVnaW9uOwo+ICsgICAgICAgc3RydWN0IGlu
-dGVsX21lbW9yeV9yZWdpb24gKm1yID0gUkVBRF9PTkNFKG9iai0+bW0ucmVnaW9uKTsKPgo+ICsj
-aWZkZWYgQ09ORklHX0xPQ0tERVAKPiArICAgICAgIGlmIChpOTE1X2dlbV9vYmplY3RfbWlncmF0
-YWJsZShvYmopICYmCj4gKyAgICAgICAgICAgaTkxNV9nZW1fb2JqZWN0X2V2aWN0YWJsZShvYmop
-KQo+ICsgICAgICAgICAgICAgICBhc3NlcnRfb2JqZWN0X2hlbGQob2JqKTsKPiArI2VuZGlmCj4g
-ICAgICAgICByZXR1cm4gbXIgJiYgKG1yLT50eXBlID09IElOVEVMX01FTU9SWV9MT0NBTCB8fAo+
-ICAgICAgICAgICAgICAgICAgICAgICBtci0+dHlwZSA9PSBJTlRFTF9NRU1PUllfU1RPTEVOX0xP
-Q0FMKTsKPiAgfQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
-ZW1fb2JqZWN0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmMK
-PiBpbmRleCBjNTM0ODhmMzkxZGQuLjA0NzViMWM5NDQ1NCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmMKPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmMKPiBAQCAtNDU4LDYgKzQ1OCwzNSBAQCBib29s
-IGk5MTVfZ2VtX29iamVjdF9ldmljdGFibGUoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9i
-aikKPiAgICAgICAgIHJldHVybiBwaW5fY291bnQgPT0gMDsKPiAgfQo+Cj4gKy8qKgo+ICsgKiBp
-OTE1X2dlbV9vYmplY3RfbWlncmF0YWJsZSAtIFdoZXRoZXIgdGhlIG9iamVjdCBpcyBtaWdyYXRh
-YmxlIG91dCBvZiB0aGUKPiArICogY3VycmVudCByZWdpb24uCj4gKyAqIEBvYmo6IFBvaW50ZXIg
-dG8gdGhlIG9iamVjdC4KPiArICoKPiArICogUmV0dXJuOiBXaGV0aGVyIHRoZSBvYmplY3QgaXMg
-YWxsb3dlZCB0byBiZSByZXNpZGVudCBpbiBvdGhlcgo+ICsgKiByZWdpb25zIHRoYW4gdGhlIGN1
-cnJlbnQgd2hpbGUgcGFnZXMgYXJlIHByZXNlbnQuCj4gKyAqLwo+ICtib29sIGk5MTVfZ2VtX29i
-amVjdF9taWdyYXRhYmxlKHN0cnVjdCBkcm1faTkxNV9nZW1fb2JqZWN0ICpvYmopCj4gK3sKPiAr
-ICAgICAgIHN0cnVjdCBpbnRlbF9tZW1vcnlfcmVnaW9uICptciA9IFJFQURfT05DRShvYmotPm1t
-LnJlZ2lvbik7Cj4gKyAgICAgICBzdHJ1Y3QgaW50ZWxfbWVtb3J5X3JlZ2lvbiAqcGxhY2VtZW50
-Owo+ICsgICAgICAgaW50IGk7Cj4gKwo+ICsgICAgICAgaWYgKCFtcikKPiArICAgICAgICAgICAg
-ICAgcmV0dXJuIGZhbHNlOwo+ICsKPiArICAgICAgIGlmICghb2JqLT5tbS5uX3BsYWNlbWVudHMp
-Cj4gKyAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsKPiArCj4gKyAgICAgICBmb3IgKGkgPSAw
-OyBpIDwgb2JqLT5tbS5uX3BsYWNlbWVudHM7ICsraSkgewo+ICsgICAgICAgICAgICAgICBwbGFj
-ZW1lbnQgPSBvYmotPm1tLnBsYWNlbWVudHNbaV07Cj4gKyAgICAgICAgICAgICAgIGlmIChwbGFj
-ZW1lbnQgIT0gbXIpCj4gKyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHRydWU7Cj4gKyAg
-ICAgICB9CgpNYXliZSB0aGlzIGNhbiBzaW1wbHkgYmU6CnJldHVybiBvYmotPm1tLm5fcGxhY2Vt
-ZW50cyA+IDE7Cgo/CgpUaGUgdUFQSSBndWFyYW50ZWVzIHRoYXQgbW0ucGxhY2VtZW50cyBhcmUg
-ZWFjaCB1bmlxdWUuCgo+ICsKPiArICAgICAgIHJldHVybiBmYWxzZTsKPiArfQo+ICsKPiAgdm9p
-ZCBpOTE1X2dlbV9pbml0X19vYmplY3RzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQo+
-ICB7Cj4gICAgICAgICBJTklUX1dPUksoJmk5MTUtPm1tLmZyZWVfd29yaywgX19pOTE1X2dlbV9m
-cmVlX3dvcmspOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
-ZW1fb2JqZWN0LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmgK
-PiBpbmRleCBhZTU5MzBlMzA3ZDUuLmEzYWQ4Y2Y0ZWVmZCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmgKPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1fb2JqZWN0LmgKPiBAQCAtNTk2LDYgKzU5NiwxMCBAQCB2b2lk
-IF9faTkxNV9nZW1fZnJlZV9vYmplY3Qoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaik7
-Cj4KPiAgYm9vbCBpOTE1X2dlbV9vYmplY3RfZXZpY3RhYmxlKHN0cnVjdCBkcm1faTkxNV9nZW1f
-b2JqZWN0ICpvYmopOwo+Cj4gK2Jvb2wgaTkxNV9nZW1fb2JqZWN0X21pZ3JhdGFibGUoc3RydWN0
-IGRybV9pOTE1X2dlbV9vYmplY3QgKm9iaik7Cj4gKwo+ICtib29sIGk5MTVfZ2VtX29iamVjdF92
-YWxpZGF0ZXNfdG9fbG1lbShzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKTsKPiArCj4g
-ICNpZmRlZiBDT05GSUdfTU1VX05PVElGSUVSCj4gIHN0YXRpYyBpbmxpbmUgYm9vbAo+ICBpOTE1
-X2dlbV9vYmplY3RfaXNfdXNlcnB0cihzdHJ1Y3QgZHJtX2k5MTVfZ2VtX29iamVjdCAqb2JqKQo+
-IC0tCj4gMi4zMC4yCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-Cg==
+On Wed, May 12, 2021 at 08:38:55AM +0100, Matthew Auld wrote:
+> On 11/05/2021 18:29, Daniel Vetter wrote:
+> > On Tue, May 11, 2021 at 07:28:08PM +0200, Daniel Vetter wrote:
+> > > On Tue, May 11, 2021 at 06:03:56PM +0100, Matthew Auld wrote:
+> > > > The proper headers have now landed in include/uapi/drm/i915_drm.h, so we
+> > > > can drop i915_gem_lmem.h and instead just reference the real headers for
+> > > > pulling in the kernel doc.
+> > > > 
+> > > > Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > 
+> > > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > 
+> > > I guess we need to have a note that when we land the pciid for dg1 to move
+> > > all the remaining bits over to real docs and delete the i915 lmem rfc. But
+> > > everything in due time.
+> > 
+> > One thing I forgot: The include stanza will I think result in the
+> > explicitly included functions not showing up in the normal driver uapi
+> > docs. Which I think is fine while we settle all this. Or do I get this
+> > wrong?
+> 
+> It all looks ok in the rendered html, but yeah the explicitly inlcuded
+> functions/structs don't seem to link back to driver-uapi, and instead just
+> link to the "local version" in i915_gem_lmem.
+
+I think that's all ok. Thanks for checking.
+-Daniel
+> 
+> > -Daniel
+> > 
+> > > -Daniel
+> > > 
+> > > > ---
+> > > >   Documentation/gpu/rfc/i915_gem_lmem.h   | 237 ------------------------
+> > > >   Documentation/gpu/rfc/i915_gem_lmem.rst |   6 +-
+> > > >   2 files changed, 3 insertions(+), 240 deletions(-)
+> > > >   delete mode 100644 Documentation/gpu/rfc/i915_gem_lmem.h
+> > > > 
+> > > > diff --git a/Documentation/gpu/rfc/i915_gem_lmem.h b/Documentation/gpu/rfc/i915_gem_lmem.h
+> > > > deleted file mode 100644
+> > > > index d9c61bea0556..000000000000
+> > > > --- a/Documentation/gpu/rfc/i915_gem_lmem.h
+> > > > +++ /dev/null
+> > > > @@ -1,237 +0,0 @@
+> > > > -/**
+> > > > - * enum drm_i915_gem_memory_class - Supported memory classes
+> > > > - */
+> > > > -enum drm_i915_gem_memory_class {
+> > > > -	/** @I915_MEMORY_CLASS_SYSTEM: System memory */
+> > > > -	I915_MEMORY_CLASS_SYSTEM = 0,
+> > > > -	/** @I915_MEMORY_CLASS_DEVICE: Device local-memory */
+> > > > -	I915_MEMORY_CLASS_DEVICE,
+> > > > -};
+> > > > -
+> > > > -/**
+> > > > - * struct drm_i915_gem_memory_class_instance - Identify particular memory region
+> > > > - */
+> > > > -struct drm_i915_gem_memory_class_instance {
+> > > > -	/** @memory_class: See enum drm_i915_gem_memory_class */
+> > > > -	__u16 memory_class;
+> > > > -
+> > > > -	/** @memory_instance: Which instance */
+> > > > -	__u16 memory_instance;
+> > > > -};
+> > > > -
+> > > > -/**
+> > > > - * struct drm_i915_memory_region_info - Describes one region as known to the
+> > > > - * driver.
+> > > > - *
+> > > > - * Note that we reserve some stuff here for potential future work. As an example
+> > > > - * we might want expose the capabilities for a given region, which could include
+> > > > - * things like if the region is CPU mappable/accessible, what are the supported
+> > > > - * mapping types etc.
+> > > > - *
+> > > > - * Note that to extend struct drm_i915_memory_region_info and struct
+> > > > - * drm_i915_query_memory_regions in the future the plan is to do the following:
+> > > > - *
+> > > > - * .. code-block:: C
+> > > > - *
+> > > > - *	struct drm_i915_memory_region_info {
+> > > > - *		struct drm_i915_gem_memory_class_instance region;
+> > > > - *		union {
+> > > > - *			__u32 rsvd0;
+> > > > - *			__u32 new_thing1;
+> > > > - *		};
+> > > > - *		...
+> > > > - *		union {
+> > > > - *			__u64 rsvd1[8];
+> > > > - *			struct {
+> > > > - *				__u64 new_thing2;
+> > > > - *				__u64 new_thing3;
+> > > > - *				...
+> > > > - *			};
+> > > > - *		};
+> > > > - *	};
+> > > > - *
+> > > > - * With this things should remain source compatible between versions for
+> > > > - * userspace, even as we add new fields.
+> > > > - *
+> > > > - * Note this is using both struct drm_i915_query_item and struct drm_i915_query.
+> > > > - * For this new query we are adding the new query id DRM_I915_QUERY_MEMORY_REGIONS
+> > > > - * at &drm_i915_query_item.query_id.
+> > > > - */
+> > > > -struct drm_i915_memory_region_info {
+> > > > -	/** @region: The class:instance pair encoding */
+> > > > -	struct drm_i915_gem_memory_class_instance region;
+> > > > -
+> > > > -	/** @rsvd0: MBZ */
+> > > > -	__u32 rsvd0;
+> > > > -
+> > > > -	/** @probed_size: Memory probed by the driver (-1 = unknown) */
+> > > > -	__u64 probed_size;
+> > > > -
+> > > > -	/** @unallocated_size: Estimate of memory remaining (-1 = unknown) */
+> > > > -	__u64 unallocated_size;
+> > > > -
+> > > > -	/** @rsvd1: MBZ */
+> > > > -	__u64 rsvd1[8];
+> > > > -};
+> > > > -
+> > > > -/**
+> > > > - * struct drm_i915_query_memory_regions
+> > > > - *
+> > > > - * The region info query enumerates all regions known to the driver by filling
+> > > > - * in an array of struct drm_i915_memory_region_info structures.
+> > > > - *
+> > > > - * Example for getting the list of supported regions:
+> > > > - *
+> > > > - * .. code-block:: C
+> > > > - *
+> > > > - *	struct drm_i915_query_memory_regions *info;
+> > > > - *	struct drm_i915_query_item item = {
+> > > > - *		.query_id = DRM_I915_QUERY_MEMORY_REGIONS;
+> > > > - *	};
+> > > > - *	struct drm_i915_query query = {
+> > > > - *		.num_items = 1,
+> > > > - *		.items_ptr = (uintptr_t)&item,
+> > > > - *	};
+> > > > - *	int err, i;
+> > > > - *
+> > > > - *	// First query the size of the blob we need, this needs to be large
+> > > > - *	// enough to hold our array of regions. The kernel will fill out the
+> > > > - *	// item.length for us, which is the number of bytes we need.
+> > > > - *	err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
+> > > > - *	if (err) ...
+> > > > - *
+> > > > - *	info = calloc(1, item.length);
+> > > > - *	// Now that we allocated the required number of bytes, we call the ioctl
+> > > > - *	// again, this time with the data_ptr pointing to our newly allocated
+> > > > - *	// blob, which the kernel can then populate with the all the region info.
+> > > > - *	item.data_ptr = (uintptr_t)&info,
+> > > > - *
+> > > > - *	err = ioctl(fd, DRM_IOCTL_I915_QUERY, &query);
+> > > > - *	if (err) ...
+> > > > - *
+> > > > - *	// We can now access each region in the array
+> > > > - *	for (i = 0; i < info->num_regions; i++) {
+> > > > - *		struct drm_i915_memory_region_info mr = info->regions[i];
+> > > > - *		u16 class = mr.region.class;
+> > > > - *		u16 instance = mr.region.instance;
+> > > > - *
+> > > > - *		....
+> > > > - *	}
+> > > > - *
+> > > > - *	free(info);
+> > > > - */
+> > > > -struct drm_i915_query_memory_regions {
+> > > > -	/** @num_regions: Number of supported regions */
+> > > > -	__u32 num_regions;
+> > > > -
+> > > > -	/** @rsvd: MBZ */
+> > > > -	__u32 rsvd[3];
+> > > > -
+> > > > -	/** @regions: Info about each supported region */
+> > > > -	struct drm_i915_memory_region_info regions[];
+> > > > -};
+> > > > -
+> > > > -#define DRM_I915_GEM_CREATE_EXT		0xdeadbeaf
+> > > > -#define DRM_IOCTL_I915_GEM_CREATE_EXT	DRM_IOWR(DRM_COMMAND_BASE + DRM_I915_GEM_CREATE_EXT, struct drm_i915_gem_create_ext)
+> > > > -
+> > > > -/**
+> > > > - * struct drm_i915_gem_create_ext - Existing gem_create behaviour, with added
+> > > > - * extension support using struct i915_user_extension.
+> > > > - *
+> > > > - * Note that in the future we want to have our buffer flags here, at least for
+> > > > - * the stuff that is immutable. Previously we would have two ioctls, one to
+> > > > - * create the object with gem_create, and another to apply various parameters,
+> > > > - * however this creates some ambiguity for the params which are considered
+> > > > - * immutable. Also in general we're phasing out the various SET/GET ioctls.
+> > > > - */
+> > > > -struct drm_i915_gem_create_ext {
+> > > > -	/**
+> > > > -	 * @size: Requested size for the object.
+> > > > -	 *
+> > > > -	 * The (page-aligned) allocated size for the object will be returned.
+> > > > -	 *
+> > > > -	 * Note that for some devices we have might have further minimum
+> > > > -	 * page-size restrictions(larger than 4K), like for device local-memory.
+> > > > -	 * However in general the final size here should always reflect any
+> > > > -	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
+> > > > -	 * extension to place the object in device local-memory.
+> > > > -	 */
+> > > > -	__u64 size;
+> > > > -	/**
+> > > > -	 * @handle: Returned handle for the object.
+> > > > -	 *
+> > > > -	 * Object handles are nonzero.
+> > > > -	 */
+> > > > -	__u32 handle;
+> > > > -	/** @flags: MBZ */
+> > > > -	__u32 flags;
+> > > > -	/**
+> > > > -	 * @extensions: The chain of extensions to apply to this object.
+> > > > -	 *
+> > > > -	 * This will be useful in the future when we need to support several
+> > > > -	 * different extensions, and we need to apply more than one when
+> > > > -	 * creating the object. See struct i915_user_extension.
+> > > > -	 *
+> > > > -	 * If we don't supply any extensions then we get the same old gem_create
+> > > > -	 * behaviour.
+> > > > -	 *
+> > > > -	 * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
+> > > > -	 * struct drm_i915_gem_create_ext_memory_regions.
+> > > > -	 */
+> > > > -#define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
+> > > > -	__u64 extensions;
+> > > > -};
+> > > > -
+> > > > -/**
+> > > > - * struct drm_i915_gem_create_ext_memory_regions - The
+> > > > - * I915_GEM_CREATE_EXT_MEMORY_REGIONS extension.
+> > > > - *
+> > > > - * Set the object with the desired set of placements/regions in priority
+> > > > - * order. Each entry must be unique and supported by the device.
+> > > > - *
+> > > > - * This is provided as an array of struct drm_i915_gem_memory_class_instance, or
+> > > > - * an equivalent layout of class:instance pair encodings. See struct
+> > > > - * drm_i915_query_memory_regions and DRM_I915_QUERY_MEMORY_REGIONS for how to
+> > > > - * query the supported regions for a device.
+> > > > - *
+> > > > - * As an example, on discrete devices, if we wish to set the placement as
+> > > > - * device local-memory we can do something like:
+> > > > - *
+> > > > - * .. code-block:: C
+> > > > - *
+> > > > - *	struct drm_i915_gem_memory_class_instance region_lmem = {
+> > > > - *              .memory_class = I915_MEMORY_CLASS_DEVICE,
+> > > > - *              .memory_instance = 0,
+> > > > - *      };
+> > > > - *      struct drm_i915_gem_create_ext_memory_regions regions = {
+> > > > - *              .base = { .name = I915_GEM_CREATE_EXT_MEMORY_REGIONS },
+> > > > - *              .regions = (uintptr_t)&region_lmem,
+> > > > - *              .num_regions = 1,
+> > > > - *      };
+> > > > - *      struct drm_i915_gem_create_ext create_ext = {
+> > > > - *              .size = 16 * PAGE_SIZE,
+> > > > - *              .extensions = (uintptr_t)&regions,
+> > > > - *      };
+> > > > - *
+> > > > - *      int err = ioctl(fd, DRM_IOCTL_I915_GEM_CREATE_EXT, &create_ext);
+> > > > - *      if (err) ...
+> > > > - *
+> > > > - * At which point we get the object handle in &drm_i915_gem_create_ext.handle,
+> > > > - * along with the final object size in &drm_i915_gem_create_ext.size, which
+> > > > - * should account for any rounding up, if required.
+> > > > - */
+> > > > -struct drm_i915_gem_create_ext_memory_regions {
+> > > > -	/** @base: Extension link. See struct i915_user_extension. */
+> > > > -	struct i915_user_extension base;
+> > > > -
+> > > > -	/** @pad: MBZ */
+> > > > -	__u32 pad;
+> > > > -	/** @num_regions: Number of elements in the @regions array. */
+> > > > -	__u32 num_regions;
+> > > > -	/**
+> > > > -	 * @regions: The regions/placements array.
+> > > > -	 *
+> > > > -	 * An array of struct drm_i915_gem_memory_class_instance.
+> > > > -	 */
+> > > > -	__u64 regions;
+> > > > -};
+> > > > diff --git a/Documentation/gpu/rfc/i915_gem_lmem.rst b/Documentation/gpu/rfc/i915_gem_lmem.rst
+> > > > index 1d344c593018..675ba8620d66 100644
+> > > > --- a/Documentation/gpu/rfc/i915_gem_lmem.rst
+> > > > +++ b/Documentation/gpu/rfc/i915_gem_lmem.rst
+> > > > @@ -48,7 +48,7 @@ particular instance, since we can have more than one per class.
+> > > >   In the future we also want to expose more information which can further
+> > > >   describe the capabilities of a region.
+> > > > -.. kernel-doc:: Documentation/gpu/rfc/i915_gem_lmem.h
+> > > > +.. kernel-doc:: include/uapi/drm/i915_drm.h
+> > > >           :functions: drm_i915_gem_memory_class drm_i915_gem_memory_class_instance drm_i915_memory_region_info drm_i915_query_memory_regions
+> > > >   GEM_CREATE_EXT
+> > > > @@ -61,7 +61,7 @@ Side note: We also need to support PXP[1] in the near future, which is also
+> > > >   applicable to integrated platforms, and adds its own gem_create_ext extension,
+> > > >   which basically lets userspace mark a buffer as "protected".
+> > > > -.. kernel-doc:: Documentation/gpu/rfc/i915_gem_lmem.h
+> > > > +.. kernel-doc:: include/uapi/drm/i915_drm.h
+> > > >           :functions: drm_i915_gem_create_ext
+> > > >   I915_GEM_CREATE_EXT_MEMORY_REGIONS
+> > > > @@ -73,7 +73,7 @@ them each to use the class/instance encoding, as per the output of the regions
+> > > >   query. Having the list in priority order will be useful in the future when
+> > > >   placing an object, say during eviction.
+> > > > -.. kernel-doc:: Documentation/gpu/rfc/i915_gem_lmem.h
+> > > > +.. kernel-doc:: include/uapi/drm/i915_drm.h
+> > > >           :functions: drm_i915_gem_create_ext_memory_regions
+> > > >   One fair criticism here is that this seems a little over-engineered[2]. If we
+> > > > -- 
+> > > > 2.26.3
+> > > > 
+> > > 
+> > > -- 
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > http://blog.ffwll.ch
+> > 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
