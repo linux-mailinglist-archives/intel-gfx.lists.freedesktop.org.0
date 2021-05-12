@@ -2,42 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A5337C76A
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 18:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22AC737C77E
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 May 2021 18:31:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5AA66EC5A;
-	Wed, 12 May 2021 16:18:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 089416E3C1;
+	Wed, 12 May 2021 16:31:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9C6A6EC53
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 16:18:26 +0000 (UTC)
-IronPort-SDR: lvNwGrlJt+YQwkjlOaNugJA+V6kLYJN5GgEgPSsWoAjKiw/Q16xNDdOGxBLLHlwa9P2ItAN7ZT
- G4yi1AoI+pbQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9982"; a="285248868"
-X-IronPort-AV: E=Sophos;i="5.82,293,1613462400"; d="scan'208";a="285248868"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2021 09:18:24 -0700
-IronPort-SDR: lY4jR85VmCdH/EVNvzSMVUjLmiw/K88U9RiRqsuUYFC/WSRbRk1rv4yG9sbTx0ZPFVy0c+aG4q
- Fcf6541EZocw==
-X-IronPort-AV: E=Sophos;i="5.82,293,1613462400"; d="scan'208";a="609997063"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.168])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2021 09:18:24 -0700
-Date: Wed, 12 May 2021 09:18:23 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com
+ [64.147.123.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F33E6E3C1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 16:31:43 +0000 (UTC)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailout.west.internal (Postfix) with ESMTP id 7201A12F9
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 May 2021 12:31:40 -0400 (EDT)
+Received: from imap22 ([10.202.2.72])
+ by compute3.internal (MEProxy); Wed, 12 May 2021 12:31:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chasen.name; h=
+ mime-version:message-id:date:from:to:subject:content-type; s=
+ fm2; bh=kAOa0m3p1LgcYb91oqom3cbmzE2uQkgFMsah9MGNXfM=; b=dayGt5TC
+ KwCgWGRfj5FdH5HhxfA/AD4xA9+B3C4VssQ37hK8qYEoQaiXyOahTcuezB/BJfVx
+ XiOIejWbQIHo++kpL0O9annB6KwqS7xUUNVuPLXEO08YCcI9MikilVNgIzBclPrd
+ 18IM5w2MfqLk0xngrrWwoVHPuPMagb9aSe/vN0vTC7YMxnd/Wvs4lW+VKhg5tz3L
+ dGwfbtTKwrVU9wge2LLbbmQ1RUpdfNGhY6o8aYWV3xoF/1P+YUefYp4iAx3XlZVZ
+ ED/iOot+nZkVk94Kkqql1FrFHli021Td7QpCDh+nFRNNAkaEOE8xxZw8xQPZE6jV
+ GcRuY7hqEQp85w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=content-type:date:from:message-id
+ :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm2; bh=kAOa0m3p1LgcYb91oqom3cbmzE2uQ
+ kgFMsah9MGNXfM=; b=tUO7RWf8JA51yMEY5OBeXZLIXX6pTRTcz1NfXwql2BxQb
+ WkRAIhuzGCN9g8WaaU+1Yl2LL5i3PjKBpz5L5s9oYZvx5K/V5zfo+g5QbMf60kVE
+ vdrcHQ4naa05TWlAbh5iL8+y2rDXQoVbvRuRY8EytqPq1PXclgwaNoCsBOA0oePD
+ /T9PebFdHxQ/4QBBI0nrvFn2Ei7q1bAbZAU25+T1vO2MDjJRrnI35vhrC4PB7hcC
+ VP4BM08vOskbLQTK27VI6tgGBllnn9epLzSYC5tSlUgd6OQcF7yvKB/FjIMvgiyN
+ gQ+YgYS2uKm8A0HZB6sOMTFw4wq1RGEfPp+JESDpQ==
+X-ME-Sender: <xms:6wKcYAXzb0doPzaqmX8hmDDOW20R-OvrnyvkB8HboL3Bz2BNqJOWCw>
+ <xme:6wKcYEkTk6Xp9BheVxToOTF2LcUn1Ymy1laD71KlSKFwCgE4AAytK_UWidEys94jo
+ PZamcJQcA70W8p_1VY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrvdehvddgleekucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfffhffvufgtsehttdertd
+ erredtnecuhfhrohhmpedftegurghmucevhhgrshgvnhdfuceorggurghmsegthhgrshgv
+ nhdrnhgrmhgvqeenucggtffrrghtthgvrhhnpeejieduveeiudduveduteektdfhtdettd
+ etgeehffeuheeltdejveelueeghfejhfenucffohhmrghinhepghhithhhuhgsrdgtohhm
+ necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprggurg
+ hmsegthhgrshgvnhdrnhgrmhgv
+X-ME-Proxy: <xmx:6wKcYEYkn6_v0Plxtm_gXQx8jnKUqrfhd78Hptpd6VVo64Y1SoIj9w>
+ <xmx:6wKcYPXBxCpLlVPUNM19N06bhCD0Vvc8BtgRv-adKkH24pcCjmzGwQ>
+ <xmx:6wKcYKl3KHwMTYaKBK6h6hIc6zac_xphNTE7wJJJmeemLFAQ8ru8yA>
+ <xmx:7AKcYPxwwSJdCa7cxpToQI3aDJuEajrAddtHlkCApT1nfzBxK7QGyQ>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id A7C2062C0064; Wed, 12 May 2021 12:31:39 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-448-gae190416c7-fm-20210505.004-gae190416
+Mime-Version: 1.0
+Message-Id: <904b8186-4d49-4292-bc6e-04726c571138@beta.fastmail.com>
+Date: Wed, 12 May 2021 12:31:14 -0400
+From: "Adam Chasen" <adam@chasen.name>
 To: intel-gfx@lists.freedesktop.org
-Message-ID: <20210512161823.GV3653682@mdroper-desk1.amr.corp.intel.com>
-References: <20210512042144.2089071-1-matthew.d.roper@intel.com>
- <162079999003.28506.1266554457138200277@emeril.freedesktop.org>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <162079999003.28506.1266554457138200277@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ0kg?=
- =?utf-8?q?pass_for_reviewed_XeLPD_/_ADL-P_patches_=28rev2=29?=
+Subject: [Intel-gfx] Tracing a "drm_mode_prune_invalid"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,235 +74,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vudum, Lakshminarayana" <lakshminarayana.vudum@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 12, 2021 at 06:13:10AM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: CI pass for reviewed XeLPD / ADL-P patches (rev2)
-> URL   : https://patchwork.freedesktop.org/series/90048/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_10071 -> Patchwork_20107
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_20107 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_20107, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/index.html
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_20107:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
->     - fi-elk-e7500:       [PASS][1] -> [FAIL][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-> 
->   * igt@kms_pipe_crc_basic@read-crc-pipe-a:
->     - fi-bwr-2160:        [PASS][3] -> [FAIL][4] +1 similar issue
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bwr-2160/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bwr-2160/igt@kms_pipe_crc_basic@read-crc-pipe-a.html
+Hoping I can (help) craft a patch to address what appears to be an issue with overaggressive mode pruning. I am having trouble with rejection of a Dual-DVI compatible mode out of the DisplayPort  specific to i915 in Fedora 33. It seems that drm_mode_validate_pipeline is the wall I hit when digging for why this mode is pruned. Requesting additional troubleshooting guidance.
 
-These two reports for old (gen4) platforms aren't related to this
-series.  According to
-https://intel-gfx-ci.01.org/tree/drm-tip/index.html?testfilter=pipe_crc_basic
-there has been relatively frequent failures for kms_pipe_crc_basic
-subtests since CI_DRM_10065.
+```
+kernel: [drm:drm_mode_debug_printmodeline [drm]] Modeline "2560x1600": 60 268000 2560 2608 2640 2720 1600 1603 1609 1646 0x48 0x9
+kernel: [drm:drm_mode_prune_invalid [drm]] Not using 2560x1600 mode: CLOCK_HIGH
+```
 
-@Lakshmi, do we already have a bug report these should be associated
-with?
+This is an HP LP3065 Dual-DVI monitor connected via DisplayPort with a BizLink "active" adapter (recommended by HP and DELL for their Dual-DVI monitors).
 
+The adapter appears to be "transparent" to the system (unlike some adapters reporting similar issues). I2C probes and EDIDs all appear to be direct from the monitor. Though, there is a mention of a m2DVIa "branch device" in the `i915_display_info` output.
 
-Matt
+The pruned mode works with X-Org with manually setting the mode via `xrandr` on Xorg (my current fallback setup): 
+`xrandr --newmode "2560x1600R" 268.50 2560 2608 2640 2720 1600 1603 1609 1646 +hsync -vsync`
 
-> 
->   
-> #### Suppressed ####
-> 
->   The following results come from untrusted machines, tests, or statuses.
->   They do not affect the overall result.
-> 
->   * igt@i915_selftest@live@execlists:
->     - {fi-rkl-11500t}:    NOTRUN -> [DMESG-FAIL][5]
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-rkl-11500t/igt@i915_selftest@live@execlists.html
-> 
->   
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_20107 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@gem_exec_fence@basic-await@vecs0:
->     - fi-glk-dsi:         [PASS][6] -> [FAIL][7] ([i915#3457])
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-glk-dsi/igt@gem_exec_fence@basic-await@vecs0.html
-> 
->   * igt@gem_exec_fence@nb-await@vcs0:
->     - fi-bsw-kefka:       [PASS][8] -> [FAIL][9] ([i915#3457]) +1 similar issue
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-kefka/igt@gem_exec_fence@nb-await@vcs0.html
-> 
->   * igt@gem_exec_fence@nb-await@vecs0:
->     - fi-bsw-n3050:       [PASS][10] -> [FAIL][11] ([i915#3457]) +1 similar issue
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-n3050/igt@gem_exec_fence@nb-await@vecs0.html
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-n3050/igt@gem_exec_fence@nb-await@vecs0.html
-> 
->   * igt@gem_wait@wait@all:
->     - fi-bwr-2160:        [PASS][12] -> [FAIL][13] ([i915#3457])
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bwr-2160/igt@gem_wait@wait@all.html
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bwr-2160/igt@gem_wait@wait@all.html
->     - fi-bsw-nick:        [PASS][14] -> [FAIL][15] ([i915#3457]) +1 similar issue
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-nick/igt@gem_wait@wait@all.html
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-nick/igt@gem_wait@wait@all.html
-> 
->   * igt@kms_chamelium@dp-crc-fast:
->     - fi-kbl-7500u:       [PASS][16] -> [FAIL][17] ([i915#1372])
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@gem_exec_fence@nb-await@rcs0:
->     - fi-glk-dsi:         [FAIL][18] ([i915#3457]) -> [PASS][19]
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-glk-dsi/igt@gem_exec_fence@nb-await@rcs0.html
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-glk-dsi/igt@gem_exec_fence@nb-await@rcs0.html
->     - fi-bsw-nick:        [FAIL][20] ([i915#3457]) -> [PASS][21] +1 similar issue
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-nick/igt@gem_exec_fence@nb-await@rcs0.html
->    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-nick/igt@gem_exec_fence@nb-await@rcs0.html
->     - fi-elk-e7500:       [FAIL][22] ([i915#3457]) -> [PASS][23]
->    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@gem_exec_fence@nb-await@rcs0.html
->    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@gem_exec_fence@nb-await@rcs0.html
-> 
->   * igt@gem_wait@busy@all:
->     - fi-bsw-nick:        [FAIL][24] ([i915#3177] / [i915#3457]) -> [PASS][25]
->    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-nick/igt@gem_wait@busy@all.html
->    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-nick/igt@gem_wait@busy@all.html
-> 
->   * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
->     - fi-elk-e7500:       [FAIL][26] -> [PASS][27] +1 similar issue
->    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
->    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
->     - fi-bsw-kefka:       [FAIL][28] -> [PASS][29]
->    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-kefka/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
->    [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-kefka/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-> 
->   
-> #### Warnings ####
-> 
->   * igt@i915_module_load@reload:
->     - fi-elk-e7500:       [DMESG-FAIL][30] ([i915#3457]) -> [DMESG-WARN][31] ([i915#3457])
->    [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-elk-e7500/igt@i915_module_load@reload.html
->    [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-elk-e7500/igt@i915_module_load@reload.html
->     - fi-bsw-kefka:       [DMESG-WARN][32] ([i915#1982] / [i915#3457]) -> [DMESG-FAIL][33] ([i915#1982] / [i915#3457])
->    [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-bsw-kefka/igt@i915_module_load@reload.html
->    [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-bsw-kefka/igt@i915_module_load@reload.html
-> 
->   * igt@i915_selftest@live@execlists:
->     - fi-cfl-8109u:       [DMESG-FAIL][34] ([i915#3462]) -> [INCOMPLETE][35] ([i915#3462])
->    [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
->    [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
->     - fi-icl-u2:          [INCOMPLETE][36] ([i915#2782] / [i915#3462]) -> [DMESG-FAIL][37] ([i915#3462])
->    [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-icl-u2/igt@i915_selftest@live@execlists.html
->    [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-icl-u2/igt@i915_selftest@live@execlists.html
-> 
->   * igt@runner@aborted:
->     - fi-cfl-8109u:       [FAIL][38] ([i915#2426] / [i915#3363]) -> [FAIL][39] ([i915#3363])
->    [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-cfl-8109u/igt@runner@aborted.html
->    [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-cfl-8109u/igt@runner@aborted.html
->     - fi-icl-u2:          [FAIL][40] ([i915#2782] / [i915#3363]) -> [FAIL][41] ([i915#2426] / [i915#2782] / [i915#3363])
->    [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-icl-u2/igt@runner@aborted.html
->    [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-icl-u2/igt@runner@aborted.html
->     - fi-glk-dsi:         [FAIL][42] ([i915#3363] / [k.org#202321]) -> [FAIL][43] ([i915#2426] / [i915#3363] / [k.org#202321])
->    [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10071/fi-glk-dsi/igt@runner@aborted.html
->    [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/fi-glk-dsi/igt@runner@aborted.html
-> 
->   
->   {name}: This element is suppressed. This means it is ignored when computing
->           the status of the difference (SUCCESS, WARNING, or FAILURE).
-> 
->   [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
->   [i915#1372]: https://gitlab.freedesktop.org/drm/intel/issues/1372
->   [i915#1849]: https://gitlab.freedesktop.org/drm/intel/issues/1849
->   [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
->   [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
->   [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
->   [i915#3012]: https://gitlab.freedesktop.org/drm/intel/issues/3012
->   [i915#3177]: https://gitlab.freedesktop.org/drm/intel/issues/3177
->   [i915#3180]: https://gitlab.freedesktop.org/drm/intel/issues/3180
->   [i915#3291]: https://gitlab.freedesktop.org/drm/intel/issues/3291
->   [i915#3301]: https://gitlab.freedesktop.org/drm/intel/issues/3301
->   [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
->   [i915#3457]: https://gitlab.freedesktop.org/drm/intel/issues/3457
->   [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
->   [i915#3468]: https://gitlab.freedesktop.org/drm/intel/issues/3468
->   [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
->   [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
-> 
-> 
-> Participating hosts (46 -> 41)
-> ------------------------------
-> 
->   Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-tgl-u2 fi-bsw-cyan fi-bdw-samus 
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_10071 -> Patchwork_20107
-> 
->   CI-20190529: 20190529
->   CI_DRM_10071: 77fc6f68ed347b0a4c6969f6adac70026d5b1449 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_6082: 355269577baef0c5d8114e8851acaeac657e4fe6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
->   Patchwork_20107: 4e9c7c2efc382ddb8c00e1290054a0062d63ef47 @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> 
-> == Linux commits ==
-> 
-> 4e9c7c2efc38 drm/i915/perf: Enable OA formats for ADL_P
-> 3cea6db8dde9 drm/i915/adl_p: Add PCH support
-> 72127435fa9a drm/i915/xelpd: Add Wa_14011503030
-> 91090e6604a7 drm/i915/xelpd: Required bandwidth increases when VT-d is active
-> 7f1ed82a74fd drm/i915/xelpd: Add XE_LPD power wells
-> b11497438f3a drm/i915/xelpd: Define plane capabilities
-> bfe05d548e26 drm/i915/xelpd: Handle proper AUX interrupt bits
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20107/index.html
+My setup is a bit different than some older reported "dual mode" issues (i.e. passive adapters), so I do not believe it is the "faulty dual mode detection" (i.e. https://github.com/hansmi/fake-dp-dual-mode). I was thinking it could be related by some "state" of the port detection limiting output to 165MHz clock.
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Thanks,
+Adam
+
+with `echo 0x6 > /sys/module/drm/parameters/debug`
+
+```
+kernel: [drm:drm_add_display_info [drm]] Supported Monitor Refresh rate range is 0 Hz - 0 Hz
+kernel: [drm:drm_add_display_info [drm]] non_desktop set to 0
+kernel: i915 0000:00:02.0: [drm:intel_dp_set_edid [i915]] [CONNECTOR:95:DP-1] DFP max bpc 8, max dotclock 0, TMDS clock 25000-165000
+kernel: i915 0000:00:02.0: [drm:intel_dp_set_edid [i915]] [CONNECTOR:95:DP-1] YCbCr 4:2:0 allowed? no, YCbCr 4:4:4->4:2:0 conversion? no
+kernel: [drm:drm_dp_get_edid_quirks [drm_kms_helper]] DP sink: EDID mfg 22-f0 prod-ID 90-26 quirks: 0x0000
+kernel: [drm:drm_add_display_info [drm]] Supported Monitor Refresh rate range is 0 Hz - 0 Hz
+kernel: [drm:drm_add_display_info [drm]] non_desktop set to 0
+kernel: [drm:drm_add_edid_modes [drm]] ELD: no CEA Extension found
+kernel: [drm:drm_add_display_info [drm]] Supported Monitor Refresh rate range is 0 Hz - 0 Hz
+kernel: [drm:drm_add_display_info [drm]] non_desktop set to 0
+**kernel: [drm:drm_mode_debug_printmodeline [drm]] Modeline "2560x1600": 60 268000 2560 2608 2640 2720 1600 1603 1609 1646 0x48 0x9**
+**kernel: [drm:drm_mode_prune_invalid [drm]] Not using 2560x1600 mode: CLOCK_HIGH**
+kernel: [drm:drm_helper_probe_single_connector_modes [drm_kms_helper]] [CONNECTOR:95:DP-1] probed modes :
+kernel: [drm:drm_mode_debug_printmodeline [drm]] Modeline "1280x800": 60 71000 1280 1328 1360 1440 800 803 809 823 0x40 0x9
+kernel: [drm:drm_helper_probe_single_connector_modes [drm_kms_helper]] [CONNECTOR:106:HDMI-A-1]
+```
+
+./edid-decode /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-DP-1/edid                                   
+```
+edid-decode (hex):
+
+00 ff ff ff ff ff ff 00 22 f0 90 26 01 01 01 01
+16 14 01 03 80 40 28 78 2a 8f 95 ad 4f 32 b2 25
+0f 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
+01 01 01 01 01 01 b0 68 00 a0 a0 40 2e 60 30 20
+36 00 81 90 21 00 00 1a bc 1b 00 a0 50 20 17 30
+30 20 36 00 81 90 21 00 00 1a 00 00 00 fc 00 48
+50 20 4c 50 33 30 36 35 0a 20 20 20 00 00 00 ff
+00 43 4e 34 30 32 32 30 51 39 43 0a 20 20 00 77
+
+----------------
+
+Block 0, Base EDID:
+...
+  Detailed Timing Descriptors:
+    DTD 1:  2560x1600   59.860 Hz   8:5    98.529 kHz  268.000 MHz (641 mm x 400 mm)
+                 Hfront   48 Hsync  32 Hback  80 Hpol P
+                 Vfront    3 Vsync   6 Vback  37 Vpol N
+    DTD 2:  1280x800    59.910 Hz   8:5    49.306 kHz   71.000 MHz (641 mm x 400 mm)
+                 Hfront   48 Hsync  32 Hback  80 Hpol P
+                 Vfront    3 Vsync   6 Vback  14 Vpol N
+    Display Product Name: 'HP LP3065'
+...
+```
+
+/sys/kernel/debug/dri/0/i915_display_info
+```
+CRTC info
+---------
+[CRTC:51:pipe A]:
+	uapi: enable=yes, active=yes, mode="1280x800": 60 71000 1280 1328 1360 1440 800 803 809 823 0x40 0x9
+	hw: active=yes, adjusted_mode="1280x800": 60 71000 1280 1328 1360 1440 800 803 809 823 0x40 0x9
+	pipe src size=1280x800, dither=no, bpp=24
+	num_scalers=2, scaler_users=0 scaler_id=-1, scalers[0]: use=no, mode=0, scalers[1]: use=no, mode=0
+	[ENCODER:94:DDI C/PHY C]: connectors:
+		[CONNECTOR:95:DP-1]
+	[PLANE:31:plane 1A]: type=PRI
+		uapi: [FB:133] XR24 little-endian (0x34325258),0x100000000000001,1280x800, visible=visible, src=1280.000000x800.000000+0.000000+0.000000, dst=1280x800+0+0, rotation=0 (0x00000001)
+		hw: [FB:133] XR24 little-endian (0x34325258),0x100000000000001,1280x800, visible=yes, src=1280.000000x800.000000+0.000000+0.000000, dst=1280x800+0+0, rotation=0 (0x00000001)
+	[PLANE:39:plane 2A]: type=OVL
+		uapi: [FB:0] n/a,0x0,0x0, visible=hidden, src=0.000000x0.000000+0.000000+0.000000, dst=0x0+0+0, rotation=0 (0x00000001)
+	[PLANE:47:cursor A]: type=CUR
+		uapi: [FB:0] n/a,0x0,0x0, visible=hidden, src=0.000000x0.000000+0.000000+0.000000, dst=0x0+0+0, rotation=0 (0x00000001)
+	underrun reporting: cpu=yes pch=yes
+...
+Connector info
+--------------
+[CONNECTOR:95:DP-1]: status: connected
+	physical dimensions: 640x400mm
+	subpixel order: Unknown
+	CEA rev: 0
+	DPCD rev: 11
+	audio support: no
+	DP branch device present: yes
+		Type: DVI
+		ID: m2DVIa
+		HW: 0.1
+		SW: 2.0
+	HDCP version: HDCP1.4 
+	modes:
+		"1280x800": 60 71000 1280 1328 1360 1440 800 803 809 823 0x40 0x9
+[CONNECTOR:106:HDMI-A-1]: status: disconnected
+...
+```
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
