@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B85A37F626
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B36837F625
 	for <lists+intel-gfx@lfdr.de>; Thu, 13 May 2021 13:00:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5CE26ECF5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 126CE6ECF2;
 	Thu, 13 May 2021 11:00:22 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 904086ECF0;
- Thu, 13 May 2021 11:00:17 +0000 (UTC)
-IronPort-SDR: mI3uMNStEgvd03KH2NXq4z2Q026JEwEn51Fk0jgfSWcbgLM1ZBkHB21RkjGej+jOj6vRHMzU3y
- 7khSyuFuCiPw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9982"; a="187048090"
-X-IronPort-AV: E=Sophos;i="5.82,296,1613462400"; d="scan'208";a="187048090"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 885596ECF7;
+ Thu, 13 May 2021 11:00:18 +0000 (UTC)
+IronPort-SDR: YmJ07eBp2IZ8J3xI09UCjt51cF2VN9JLUy/KLHZthiTLy8qN+LzhR6/JOzly0ih2oTL9pEz33N
+ xDMg+Lj9ZDRg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9982"; a="187048094"
+X-IronPort-AV: E=Sophos;i="5.82,296,1613462400"; d="scan'208";a="187048094"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2021 04:00:17 -0700
-IronPort-SDR: fPNJqj7VpzVw7IgScwix0hemCIFbbyW1vy4yjNUi7P8f+FP7+PqawqP+Ztj6K5EcTgF5P96LeM
- 3X4vmAk4JsGA==
-X-IronPort-AV: E=Sophos;i="5.82,296,1613462400"; d="scan'208";a="400930456"
+ 13 May 2021 04:00:18 -0700
+IronPort-SDR: qXx975+RjgBFY3HIyWwkcubnwURwLeu5Kyygf0Mfjgoc1FaI9rptLrresSmS0M/JRpRqgXeTQX
+ zbDDG6RjZmdQ==
+X-IronPort-AV: E=Sophos;i="5.82,296,1613462400"; d="scan'208";a="400930465"
 Received: from hcadcock-mobl1.ger.corp.intel.com (HELO tursulin-mobl2.home)
  ([10.213.209.166])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2021 04:00:16 -0700
+ 13 May 2021 04:00:17 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Thu, 13 May 2021 12:00:01 +0100
-Message-Id: <20210513110002.3641705-7-tvrtko.ursulin@linux.intel.com>
+Date: Thu, 13 May 2021 12:00:02 +0100
+Message-Id: <20210513110002.3641705-8-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210513110002.3641705-1-tvrtko.ursulin@linux.intel.com>
 References: <20210513110002.3641705-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/7] drm/i915: Track context current active time
+Subject: [Intel-gfx] [PATCH 7/7] drm/i915: Expose per-engine client busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,407 +48,132 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Track context active (on hardware) status together with the start
-timestamp.
-
-This will be used to provide better granularity of context
-runtime reporting in conjunction with already tracked pphwsp accumulated
-runtime.
-
-The latter is only updated on context save so does not give us visibility
-to any currently executing work.
-
-As part of the patch the existing runtime tracking data is moved under the
-new ce->stats member and updated under the seqlock. This provides the
-ability to atomically read out accumulated plus active runtime.
-
-v2:
- * Rename and make __intel_context_get_active_time unlocked.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@intel.com> #  v1
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Link: https://patchwork.freedesktop.org/patch/msgid/20210123153733.18139-7-chris@chris-wilson.co.uk
-Link: https://patchwork.freedesktop.org/patch/msgid/20210124153136.19124-7-chris@chris-wilson.co.uk
----
- drivers/gpu/drm/i915/gt/intel_context.c       | 27 ++++++++++++++++++-
- drivers/gpu/drm/i915/gt/intel_context.h       | 15 ++++-------
- drivers/gpu/drm/i915/gt/intel_context_types.h | 24 +++++++++++------
- .../drm/i915/gt/intel_execlists_submission.c  | 23 ++++++++++++----
- .../gpu/drm/i915/gt/intel_gt_clock_utils.c    |  4 +++
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 27 ++++++++++---------
- drivers/gpu/drm/i915/gt/intel_lrc.h           | 24 +++++++++++++++++
- drivers/gpu/drm/i915/gt/selftest_lrc.c        | 10 +++----
- drivers/gpu/drm/i915/i915_gpu_error.c         |  9 +++----
- drivers/gpu/drm/i915/i915_gpu_error.h         |  2 +-
- 10 files changed, 116 insertions(+), 49 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 4033184f13b9..bc021244c3b2 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -373,7 +373,7 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
- 	ce->sseu = engine->sseu;
- 	ce->ring = __intel_context_ring_size(SZ_4K);
- 
--	ewma_runtime_init(&ce->runtime.avg);
-+	ewma_runtime_init(&ce->stats.runtime.avg);
- 
- 	ce->vm = i915_vm_get(engine->gt->vm);
- 
-@@ -499,6 +499,31 @@ struct i915_request *intel_context_create_request(struct intel_context *ce)
- 	return rq;
- }
- 
-+u64 intel_context_get_total_runtime_ns(const struct intel_context *ce)
-+{
-+	u64 total, active;
-+
-+	total = ce->stats.runtime.total;
-+	if (ce->ops->flags & COPS_RUNTIME_CYCLES)
-+		total *= ce->engine->gt->clock_period_ns;
-+
-+	active = READ_ONCE(ce->stats.active);
-+	if (active)
-+		active = intel_context_clock() - active;
-+
-+	return total + active;
-+}
-+
-+u64 intel_context_get_avg_runtime_ns(struct intel_context *ce)
-+{
-+	u64 avg = ewma_runtime_read(&ce->stats.runtime.avg);
-+
-+	if (ce->ops->flags & COPS_RUNTIME_CYCLES)
-+		avg *= ce->engine->gt->clock_period_ns;
-+
-+	return avg;
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftest_context.c"
- #endif
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index f83a73a2b39f..a9125768b1b4 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -250,18 +250,13 @@ intel_context_clear_nopreempt(struct intel_context *ce)
- 	clear_bit(CONTEXT_NOPREEMPT, &ce->flags);
- }
- 
--static inline u64 intel_context_get_total_runtime_ns(struct intel_context *ce)
--{
--	const u32 period = ce->engine->gt->clock_period_ns;
--
--	return READ_ONCE(ce->runtime.total) * period;
--}
-+u64 intel_context_get_total_runtime_ns(const struct intel_context *ce);
-+u64 intel_context_get_avg_runtime_ns(struct intel_context *ce);
- 
--static inline u64 intel_context_get_avg_runtime_ns(struct intel_context *ce)
-+static inline u64 intel_context_clock(void)
- {
--	const u32 period = ce->engine->gt->clock_period_ns;
--
--	return mul_u32_u32(ewma_runtime_read(&ce->runtime.avg), period);
-+	/* As we mix CS cycles with CPU clocks, use the raw monotonic clock. */
-+	return ktime_get_raw_fast_ns();
- }
- 
- #endif /* __INTEL_CONTEXT_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index ed8c447a7346..65a5730a4f5b 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -33,6 +33,9 @@ struct intel_context_ops {
- #define COPS_HAS_INFLIGHT_BIT 0
- #define COPS_HAS_INFLIGHT BIT(COPS_HAS_INFLIGHT_BIT)
- 
-+#define COPS_RUNTIME_CYCLES_BIT 1
-+#define COPS_RUNTIME_CYCLES BIT(COPS_RUNTIME_CYCLES_BIT)
-+
- 	int (*alloc)(struct intel_context *ce);
- 
- 	int (*pre_pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void **vaddr);
-@@ -110,14 +113,19 @@ struct intel_context {
- 	} lrc;
- 	u32 tag; /* cookie passed to HW to track this context on submission */
- 
--	/* Time on GPU as tracked by the hw. */
--	struct {
--		struct ewma_runtime avg;
--		u64 total;
--		u32 last;
--		I915_SELFTEST_DECLARE(u32 num_underflow);
--		I915_SELFTEST_DECLARE(u32 max_underflow);
--	} runtime;
-+	/** stats: Context GPU engine busyness tracking. */
-+	struct intel_context_stats {
-+		u64 active;
-+
-+		/* Time on GPU as tracked by the hw. */
-+		struct {
-+			struct ewma_runtime avg;
-+			u64 total;
-+			u32 last;
-+			I915_SELFTEST_DECLARE(u32 num_underflow);
-+			I915_SELFTEST_DECLARE(u32 max_underflow);
-+		} runtime;
-+	} stats;
- 
- 	unsigned int active_count; /* protected by timeline->mutex */
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index de124870af44..18d9c1d96d36 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -605,8 +605,6 @@ static void __execlists_schedule_out(struct i915_request * const rq,
- 		GEM_BUG_ON(test_bit(ccid - 1, &engine->context_tag));
- 		__set_bit(ccid - 1, &engine->context_tag);
- 	}
--
--	lrc_update_runtime(ce);
- 	intel_engine_context_out(engine);
- 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
- 	if (engine->fw_domain && !--engine->fw_active)
-@@ -1955,8 +1953,23 @@ process_csb(struct intel_engine_cs *engine, struct i915_request **inactive)
- 	 * and merits a fresh timeslice. We reinstall the timer after
- 	 * inspecting the queue to see if we need to resumbit.
- 	 */
--	if (*prev != *execlists->active) /* elide lite-restores */
-+	if (*prev != *execlists->active) { /* elide lite-restores */
-+		/*
-+		 * Note the inherent discrepancy between the HW runtime,
-+		 * recorded as part of the context switch, and the CPU
-+		 * adjustment for active contexts. We have to hope that
-+		 * the delay in processing the CS event is very small
-+		 * and consistent. It works to our advantage to have
-+		 * the CPU adjustment _undershoot_ (i.e. start later than)
-+		 * the CS timestamp so we never overreport the runtime
-+		 * and correct overselves later when updating from HW.
-+		 */
-+		if (*prev)
-+			lrc_runtime_stop((*prev)->context);
-+		if (*execlists->active)
-+			lrc_runtime_start((*execlists->active)->context);
- 		new_timeslice(execlists);
-+	}
- 
- 	return inactive;
- }
-@@ -2495,7 +2508,7 @@ static int execlists_context_alloc(struct intel_context *ce)
- }
- 
- static const struct intel_context_ops execlists_context_ops = {
--	.flags = COPS_HAS_INFLIGHT,
-+	.flags = COPS_HAS_INFLIGHT | COPS_RUNTIME_CYCLES,
- 
- 	.alloc = execlists_context_alloc,
- 
-@@ -3401,7 +3414,7 @@ static void virtual_context_exit(struct intel_context *ce)
- }
- 
- static const struct intel_context_ops virtual_context_ops = {
--	.flags = COPS_HAS_INFLIGHT,
-+	.flags = COPS_HAS_INFLIGHT | COPS_RUNTIME_CYCLES,
- 
- 	.alloc = virtual_context_alloc,
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-index 582fcaee11aa..f8c79efb1a87 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_clock_utils.c
-@@ -159,6 +159,10 @@ void intel_gt_init_clock_frequency(struct intel_gt *gt)
- 	if (gt->clock_frequency)
- 		gt->clock_period_ns = intel_gt_clock_interval_to_ns(gt, 1);
- 
-+	/* Icelake appears to use another fixed frequency for CTX_TIMESTAMP */
-+	if (IS_GEN(gt->i915, 11))
-+		gt->clock_period_ns = NSEC_PER_SEC / 13750000;
-+
- 	GT_TRACE(gt,
- 		 "Using clock frequency: %dkHz, period: %dns, wrap: %lldms\n",
- 		 gt->clock_frequency / 1000,
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index aafe2a4df496..c145e4723279 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -642,7 +642,7 @@ static void init_common_regs(u32 * const regs,
- 					   CTX_CTRL_RS_CTX_ENABLE);
- 	regs[CTX_CONTEXT_CONTROL] = ctl;
- 
--	regs[CTX_TIMESTAMP] = ce->runtime.last;
-+	regs[CTX_TIMESTAMP] = ce->stats.runtime.last;
- }
- 
- static void init_wa_bb_regs(u32 * const regs,
-@@ -1565,35 +1565,36 @@ void lrc_init_wa_ctx(struct intel_engine_cs *engine)
- 	}
- }
- 
--static void st_update_runtime_underflow(struct intel_context *ce, s32 dt)
-+static void st_runtime_underflow(struct intel_context_stats *stats, s32 dt)
- {
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
--	ce->runtime.num_underflow++;
--	ce->runtime.max_underflow = max_t(u32, ce->runtime.max_underflow, -dt);
-+	stats->runtime.num_underflow++;
-+	stats->runtime.max_underflow =
-+		max_t(u32, stats->runtime.max_underflow, -dt);
- #endif
- }
- 
- void lrc_update_runtime(struct intel_context *ce)
- {
-+	struct intel_context_stats *stats = &ce->stats;
- 	u32 old;
- 	s32 dt;
- 
--	if (intel_context_is_barrier(ce))
-+	old = stats->runtime.last;
-+	stats->runtime.last = lrc_get_runtime(ce);
-+	dt = stats->runtime.last - old;
-+	if (!dt)
- 		return;
- 
--	old = ce->runtime.last;
--	ce->runtime.last = lrc_get_runtime(ce);
--	dt = ce->runtime.last - old;
--
- 	if (unlikely(dt < 0)) {
- 		CE_TRACE(ce, "runtime underflow: last=%u, new=%u, delta=%d\n",
--			 old, ce->runtime.last, dt);
--		st_update_runtime_underflow(ce, dt);
-+			 old, stats->runtime.last, dt);
-+		st_runtime_underflow(stats, dt);
- 		return;
- 	}
- 
--	ewma_runtime_add(&ce->runtime.avg, dt);
--	ce->runtime.total += dt;
-+	ewma_runtime_add(&stats->runtime.avg, dt);
-+	stats->runtime.total += dt;
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
-index 7f697845c4cf..8073674538d7 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.h
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
-@@ -79,4 +79,28 @@ static inline u32 lrc_get_runtime(const struct intel_context *ce)
- 	return READ_ONCE(ce->lrc_reg_state[CTX_TIMESTAMP]);
- }
- 
-+static inline void lrc_runtime_start(struct intel_context *ce)
-+{
-+	struct intel_context_stats *stats = &ce->stats;
-+
-+	if (intel_context_is_barrier(ce))
-+		return;
-+
-+	if (stats->active)
-+		return;
-+
-+	WRITE_ONCE(stats->active, intel_context_clock());
-+}
-+
-+static inline void lrc_runtime_stop(struct intel_context *ce)
-+{
-+	struct intel_context_stats *stats = &ce->stats;
-+
-+	if (!stats->active)
-+		return;
-+
-+	lrc_update_runtime(ce);
-+	WRITE_ONCE(stats->active, 0);
-+}
-+
- #endif /* __INTEL_LRC_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index d8f6623524e8..d2f950a5d9b5 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -1751,8 +1751,8 @@ static int __live_pphwsp_runtime(struct intel_engine_cs *engine)
- 	if (IS_ERR(ce))
- 		return PTR_ERR(ce);
- 
--	ce->runtime.num_underflow = 0;
--	ce->runtime.max_underflow = 0;
-+	ce->stats.runtime.num_underflow = 0;
-+	ce->stats.runtime.max_underflow = 0;
- 
- 	do {
- 		unsigned int loop = 1024;
-@@ -1790,11 +1790,11 @@ static int __live_pphwsp_runtime(struct intel_engine_cs *engine)
- 		intel_context_get_avg_runtime_ns(ce));
- 
- 	err = 0;
--	if (ce->runtime.num_underflow) {
-+	if (ce->stats.runtime.num_underflow) {
- 		pr_err("%s: pphwsp underflow %u time(s), max %u cycles!\n",
- 		       engine->name,
--		       ce->runtime.num_underflow,
--		       ce->runtime.max_underflow);
-+		       ce->stats.runtime.num_underflow,
-+		       ce->stats.runtime.max_underflow);
- 		GEM_TRACE_DUMP();
- 		err = -EOVERFLOW;
- 	}
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index dc9eb6823270..a4bfcac0f5df 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -484,13 +484,10 @@ static void error_print_context(struct drm_i915_error_state_buf *m,
- 				const char *header,
- 				const struct i915_gem_context_coredump *ctx)
- {
--	const u32 period = m->i915->gt.clock_period_ns;
--
- 	err_printf(m, "%s%s[%d] prio %d, guilty %d active %d, runtime total %lluns, avg %lluns\n",
- 		   header, ctx->comm, ctx->pid, ctx->sched_attr.priority,
- 		   ctx->guilty, ctx->active,
--		   ctx->total_runtime * period,
--		   mul_u32_u32(ctx->avg_runtime, period));
-+		   ctx->total_runtime, ctx->avg_runtime);
- }
- 
- static struct i915_vma_coredump *
-@@ -1283,8 +1280,8 @@ static bool record_context(struct i915_gem_context_coredump *e,
- 	e->guilty = atomic_read(&ctx->guilty_count);
- 	e->active = atomic_read(&ctx->active_count);
- 
--	e->total_runtime = rq->context->runtime.total;
--	e->avg_runtime = ewma_runtime_read(&rq->context->runtime.avg);
-+	e->total_runtime = intel_context_get_total_runtime_ns(rq->context);
-+	e->avg_runtime = intel_context_get_avg_runtime_ns(rq->context);
- 
- 	simulated = i915_gem_context_no_error_capture(ctx);
- 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h b/drivers/gpu/drm/i915/i915_gpu_error.h
-index eb435f9e0220..4b4af93217d4 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.h
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.h
-@@ -90,7 +90,7 @@ struct intel_engine_coredump {
- 		char comm[TASK_COMM_LEN];
- 
- 		u64 total_runtime;
--		u32 avg_runtime;
-+		u64 avg_runtime;
- 
- 		pid_t pid;
- 		int active;
--- 
-2.30.2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KCkV4cG9zZSBw
+ZXItY2xpZW50IGFuZCBwZXItZW5naW5lIGJ1c3luZXNzIHVuZGVyIHRoZSBwcmV2aW91c2x5IGFk
+ZGVkIHN5c2ZzCmNsaWVudCByb290LgoKVGhlIG5ldyBmaWxlcyBhcmUgb25lIHBlci1lbmdpbmUg
+aW5zdGFuY2UgYW5kIGxvY2F0ZWQgdW5kZXIgdGhlICdidXN5JwpkaXJlY3RvcnkuIEVhY2ggY29u
+dGFpbnMgYSBtb25vdG9uaWNhbGx5IGluY3JlYXNpbmcgbmFuby1zZWNvbmQgcmVzb2x1dGlvbgp0
+aW1lcyBlYWNoIGNsaWVudCdzIGpvYnMgd2VyZSBleGVjdXRpbmcgb24gdGhlIEdQVS4KClRoaXMg
+ZW5hYmxlcyB1c2Vyc3BhY2UgdG8gY3JlYXRlIGEgdG9wLWxpa2UgdG9vbCBmb3IgR1BVIHV0aWxp
+emF0aW9uOgoKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT0KaW50ZWwtZ3B1LXRvcCAtICA5MzUvIDkzNSBNSHo7
+ICAgIDAlIFJDNjsgMTQuNzMgV2F0dHM7ICAgICAxMDk3IGlycXMvcwoKICAgICAgSU1DIHJlYWRz
+OiAgICAgMTQwMSBNaUIvcwogICAgIElNQyB3cml0ZXM6ICAgICAgICA0IE1pQi9zCgogICAgICAg
+ICAgRU5HSU5FICAgICAgQlVTWSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1JX1NF
+TUEgTUlfV0FJVAogICAgIFJlbmRlci8zRC8wICAgNjMuNzMlIHzilojilojilojilojilojiloji
+lojilojilojilojilojilojilojilojilojilojilojilojiloggICAgICAgICAgIHwgICAgICAz
+JSAgICAgIDAlCiAgICAgICBCbGl0dGVyLzAgICAgOS41MyUgfOKWiOKWiOKWiiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIHwgICAgICA2JSAgICAgIDAlCiAgICAgICAgIFZpZGVvLzAgICAzOS4z
+MiUgfOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiiAgICAgICAgICAgICAgICAg
+IHwgICAgIDE2JSAgICAgIDAlCiAgICAgICAgIFZpZGVvLzEgICAxNS42MiUgfOKWiOKWiOKWiOKW
+iOKWiyAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgICAgMCUgICAgICAwJQogIFZpZGVvRW5o
+YW5jZS8wICAgIDAuMDAlIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgICAgMCUg
+ICAgICAwJQoKICBQSUQgICAgICAgICAgICBOQU1FICAgICBSQ1MgICAgICAgICAgQkNTICAgICAg
+ICAgIFZDUyAgICAgICAgIFZFQ1MKIDQwODQgICAgICAgIGdlbV93c2ltIHzilojilojilojiloji
+lojilowgICAgIHx84paIICAgICAgICAgIHx8ICAgICAgICAgICB8fCAgICAgICAgICAgfAogNDA4
+NiAgICAgICAgZ2VtX3dzaW0gfOKWiOKWjCAgICAgICAgIHx8ICAgICAgICAgICB8fOKWiOKWiOKW
+iCAgICAgICAgfHwgICAgICAgICAgIHwKPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KCnYyOiBVc2UgaW50ZWxf
+Y29udGV4dF9lbmdpbmVfZ2V0X2J1c3lfdGltZS4KdjM6IE5ldyBkaXJlY3Rvcnkgc3RydWN0dXJl
+Lgp2NDogUmViYXNlLgp2NTogc3lzZnNfYXR0cl9pbml0Lgp2NjogU21hbGwgdGlkeSBpbiBpOTE1
+X2dlbV9hZGRfY2xpZW50Lgp2NzogUmViYXNlIHRvIGJlIGVuZ2luZSBjbGFzcyBiYXNlZC4Kdjg6
+CiAqIEFsd2F5cyBlbmFibGUgc3RhdHMuCiAqIFdhbGsgYWxsIGNsaWVudCBjb250ZXh0cy4Kdjk6
+CiAqIFNraXAgdW5zdXBwb3J0ZWQgZW5naW5lIGNsYXNzZXMuIChDaHJpcykKICogVXNlIHNjaGVk
+dWxlciBjYXBzLiAoQ2hyaXMpCnYxMDoKICogVXNlIHBwaHdzcCBydW50aW1lIG9ubHkuCgpMaW5r
+OiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzcxMTgyLyAjIGludGVs
+X2dwdV90b3AKU2lnbmVkLW9mZi1ieTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGlu
+dGVsLmNvbT4KUmV2aWV3ZWQtYnk6IEFyYXZpbmQgSWRkYW1zZXR0eSA8YXJhdmluZC5pZGRhbXNl
+dHR5QGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2ls
+c29uLmNvLnVrPgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNv
+bi5jby51az4KTGluazogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoL21z
+Z2lkLzIwMjEwMTIzMTUzNzMzLjE4MTM5LTgtY2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrCkxpbms6
+IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC9tc2dpZC8yMDIxMDEyNDE1
+MzEzNi4xOTEyNC04LWNocmlzQGNocmlzLXdpbHNvbi5jby51awotLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jIHwgMTAxICsrKysrKysrKysrKysrKysrKysrKysrKy0K
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5oIHwgIDEwICsrKwogMiBmaWxl
+cyBjaGFuZ2VkLCAxMTAgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9kcm1fY2xpZW50LmMKaW5kZXggMGNhODFhNzUwODk1Li4xZjhiMDhhNDEzZDQg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jCkBAIC05LDYgKzksMTEgQEAK
+IAogI2luY2x1ZGUgPGRybS9kcm1fcHJpbnQuaD4KIAorI2luY2x1ZGUgPHVhcGkvZHJtL2k5MTVf
+ZHJtLmg+CisKKyNpbmNsdWRlICJnZW0vaTkxNV9nZW1fY29udGV4dC5oIgorI2luY2x1ZGUgImd0
+L2ludGVsX2VuZ2luZV91c2VyLmgiCisKICNpbmNsdWRlICJpOTE1X2RybV9jbGllbnQuaCIKICNp
+bmNsdWRlICJpOTE1X2Rydi5oIgogI2luY2x1ZGUgImk5MTVfZ2VtLmgiCkBAIC01NSw2ICs2MCw5
+NSBAQCBzaG93X2NsaWVudF9waWQoc3RydWN0IGRldmljZSAqa2Rldiwgc3RydWN0IGRldmljZV9h
+dHRyaWJ1dGUgKmF0dHIsIGNoYXIgKmJ1ZikKIAlyZXR1cm4gcmV0OwogfQogCitzdGF0aWMgdTY0
+IGJ1c3lfYWRkKHN0cnVjdCBpOTE1X2dlbV9jb250ZXh0ICpjdHgsIHVuc2lnbmVkIGludCBjbGFz
+cykKK3sKKwlzdHJ1Y3QgaTkxNV9nZW1fZW5naW5lc19pdGVyIGl0OworCXN0cnVjdCBpbnRlbF9j
+b250ZXh0ICpjZTsKKwl1NjQgdG90YWwgPSAwOworCisJZm9yX2VhY2hfZ2VtX2VuZ2luZShjZSwg
+cmN1X2RlcmVmZXJlbmNlKGN0eC0+ZW5naW5lcyksIGl0KSB7CisJCWlmIChjZS0+ZW5naW5lLT51
+YWJpX2NsYXNzICE9IGNsYXNzKQorCQkJY29udGludWU7CisKKwkJdG90YWwgKz0gaW50ZWxfY29u
+dGV4dF9nZXRfdG90YWxfcnVudGltZV9ucyhjZSk7CisJfQorCisJcmV0dXJuIHRvdGFsOworfQor
+CitzdGF0aWMgc3NpemVfdAorc2hvd19idXN5KHN0cnVjdCBkZXZpY2UgKmtkZXYsIHN0cnVjdCBk
+ZXZpY2VfYXR0cmlidXRlICphdHRyLCBjaGFyICpidWYpCit7CisJc3RydWN0IGk5MTVfZW5naW5l
+X2J1c3lfYXR0cmlidXRlICppOTE1X2F0dHIgPQorCQljb250YWluZXJfb2YoYXR0ciwgdHlwZW9m
+KCppOTE1X2F0dHIpLCBhdHRyKTsKKwl1bnNpZ25lZCBpbnQgY2xhc3MgPSBpOTE1X2F0dHItPmVu
+Z2luZV9jbGFzczsKKwljb25zdCBzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50ICpjbGllbnQgPSBpOTE1
+X2F0dHItPmNsaWVudDsKKwljb25zdCBzdHJ1Y3QgbGlzdF9oZWFkICpsaXN0ID0gJmNsaWVudC0+
+Y3R4X2xpc3Q7CisJdTY0IHRvdGFsID0gYXRvbWljNjRfcmVhZCgmY2xpZW50LT5wYXN0X3J1bnRp
+bWVbY2xhc3NdKTsKKwlzdHJ1Y3QgaTkxNV9nZW1fY29udGV4dCAqY3R4OworCisJcmN1X3JlYWRf
+bG9jaygpOworCWxpc3RfZm9yX2VhY2hfZW50cnlfcmN1KGN0eCwgbGlzdCwgY2xpZW50X2xpbmsp
+CisJCXRvdGFsICs9IGJ1c3lfYWRkKGN0eCwgY2xhc3MpOworCXJjdV9yZWFkX3VubG9jaygpOwor
+CisJcmV0dXJuIHN5c2ZzX2VtaXQoYnVmLCAiJWxsdVxuIiwgdG90YWwpOworfQorCitzdGF0aWMg
+Y29uc3QgY2hhciAqIGNvbnN0IHVhYmlfY2xhc3NfbmFtZXNbXSA9IHsKKwlbSTkxNV9FTkdJTkVf
+Q0xBU1NfUkVOREVSXSA9ICIwIiwKKwlbSTkxNV9FTkdJTkVfQ0xBU1NfQ09QWV0gPSAiMSIsCisJ
+W0k5MTVfRU5HSU5FX0NMQVNTX1ZJREVPXSA9ICIyIiwKKwlbSTkxNV9FTkdJTkVfQ0xBU1NfVklE
+RU9fRU5IQU5DRV0gPSAiMyIsCit9OworCitzdGF0aWMgaW50IF9fY2xpZW50X3JlZ2lzdGVyX3N5
+c2ZzX2J1c3koc3RydWN0IGk5MTVfZHJtX2NsaWVudCAqY2xpZW50KQoreworCXN0cnVjdCBpOTE1
+X2RybV9jbGllbnRzICpjbGllbnRzID0gY2xpZW50LT5jbGllbnRzOworCXVuc2lnbmVkIGludCBp
+OworCWludCByZXQgPSAwOworCisJaWYgKCEoY2xpZW50cy0+aTkxNS0+Y2Fwcy5zY2hlZHVsZXIg
+JiBJOTE1X1NDSEVEVUxFUl9DQVBfRU5HSU5FX0JVU1lfU1RBVFMpKQorCQlyZXR1cm4gMDsKKwor
+CWNsaWVudC0+YnVzeV9yb290ID0ga29iamVjdF9jcmVhdGVfYW5kX2FkZCgiYnVzeSIsIGNsaWVu
+dC0+cm9vdCk7CisJaWYgKCFjbGllbnQtPmJ1c3lfcm9vdCkKKwkJcmV0dXJuIC1FTk9NRU07CisK
+Kwlmb3IgKGkgPSAwOyBpIDwgQVJSQVlfU0laRSh1YWJpX2NsYXNzX25hbWVzKTsgaSsrKSB7CisJ
+CXN0cnVjdCBpOTE1X2VuZ2luZV9idXN5X2F0dHJpYnV0ZSAqaTkxNV9hdHRyID0KKwkJCSZjbGll
+bnQtPmF0dHIuYnVzeVtpXTsKKwkJc3RydWN0IGRldmljZV9hdHRyaWJ1dGUgKmF0dHIgPSAmaTkx
+NV9hdHRyLT5hdHRyOworCisJCWlmICghaW50ZWxfZW5naW5lX2xvb2t1cF91c2VyKGNsaWVudHMt
+Pmk5MTUsIGksIDApKQorCQkJY29udGludWU7CisKKwkJaTkxNV9hdHRyLT5jbGllbnQgPSBjbGll
+bnQ7CisJCWk5MTVfYXR0ci0+ZW5naW5lX2NsYXNzID0gaTsKKworCQlzeXNmc19hdHRyX2luaXQo
+JmF0dHItPmF0dHIpOworCisJCWF0dHItPmF0dHIubmFtZSA9IHVhYmlfY2xhc3NfbmFtZXNbaV07
+CisJCWF0dHItPmF0dHIubW9kZSA9IDA0NDQ7CisJCWF0dHItPnNob3cgPSBzaG93X2J1c3k7CisK
+KwkJcmV0ID0gc3lzZnNfY3JlYXRlX2ZpbGUoY2xpZW50LT5idXN5X3Jvb3QsICZhdHRyLT5hdHRy
+KTsKKwkJaWYgKHJldCkKKwkJCWdvdG8gb3V0OworCX0KKworb3V0OgorCWlmIChyZXQpCisJCWtv
+YmplY3RfcHV0KGNsaWVudC0+YnVzeV9yb290KTsKKworCXJldHVybiByZXQ7Cit9CisKK3N0YXRp
+YyB2b2lkIF9fY2xpZW50X3VucmVnaXN0ZXJfc3lzZnNfYnVzeShzdHJ1Y3QgaTkxNV9kcm1fY2xp
+ZW50ICpjbGllbnQpCit7CisJa29iamVjdF9wdXQoZmV0Y2hfYW5kX3plcm8oJmNsaWVudC0+YnVz
+eV9yb290KSk7Cit9CisKIHN0YXRpYyBpbnQgX19jbGllbnRfcmVnaXN0ZXJfc3lzZnMoc3RydWN0
+IGk5MTVfZHJtX2NsaWVudCAqY2xpZW50KQogewogCWNvbnN0IHN0cnVjdCB7CkBAIC05MCw5ICsx
+ODQsMTIgQEAgc3RhdGljIGludCBfX2NsaWVudF9yZWdpc3Rlcl9zeXNmcyhzdHJ1Y3QgaTkxNV9k
+cm1fY2xpZW50ICpjbGllbnQpCiAKIAkJcmV0ID0gc3lzZnNfY3JlYXRlX2ZpbGUoY2xpZW50LT5y
+b290LCAmYXR0ci0+YXR0cik7CiAJCWlmIChyZXQpCi0JCQlicmVhazsKKwkJCWdvdG8gb3V0Owog
+CX0KIAorCXJldCA9IF9fY2xpZW50X3JlZ2lzdGVyX3N5c2ZzX2J1c3koY2xpZW50KTsKKworb3V0
+OgogCWlmIChyZXQpCiAJCWtvYmplY3RfcHV0KGNsaWVudC0+cm9vdCk7CiAKQEAgLTEwMSw2ICsx
+OTgsOCBAQCBzdGF0aWMgaW50IF9fY2xpZW50X3JlZ2lzdGVyX3N5c2ZzKHN0cnVjdCBpOTE1X2Ry
+bV9jbGllbnQgKmNsaWVudCkKIAogc3RhdGljIHZvaWQgX19jbGllbnRfdW5yZWdpc3Rlcl9zeXNm
+cyhzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50ICpjbGllbnQpCiB7CisJX19jbGllbnRfdW5yZWdpc3Rl
+cl9zeXNmc19idXN5KGNsaWVudCk7CisKIAlrb2JqZWN0X3B1dChmZXRjaF9hbmRfemVybygmY2xp
+ZW50LT5yb290KSk7CiB9CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+ZHJtX2NsaWVudC5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1fY2xpZW50LmgKaW5k
+ZXggMTNmOTIxNDJlNDc0Li44MzY2MGZhOWQyZDcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfZHJtX2NsaWVudC5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+ZHJtX2NsaWVudC5oCkBAIC0zMCw2ICszMCwxNCBAQCBzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50cyB7
+CiAJc3RydWN0IGtvYmplY3QgKnJvb3Q7CiB9OwogCitzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50Owor
+CitzdHJ1Y3QgaTkxNV9lbmdpbmVfYnVzeV9hdHRyaWJ1dGUgeworCXN0cnVjdCBkZXZpY2VfYXR0
+cmlidXRlIGF0dHI7CisJc3RydWN0IGk5MTVfZHJtX2NsaWVudCAqY2xpZW50OworCXVuc2lnbmVk
+IGludCBlbmdpbmVfY2xhc3M7Cit9OworCiBzdHJ1Y3QgaTkxNV9kcm1fY2xpZW50X25hbWUgewog
+CXN0cnVjdCByY3VfaGVhZCByY3U7CiAJc3RydWN0IGk5MTVfZHJtX2NsaWVudCAqY2xpZW50OwpA
+QCAtNTQsOSArNjIsMTEgQEAgc3RydWN0IGk5MTVfZHJtX2NsaWVudCB7CiAJc3RydWN0IGk5MTVf
+ZHJtX2NsaWVudHMgKmNsaWVudHM7CiAKIAlzdHJ1Y3Qga29iamVjdCAqcm9vdDsKKwlzdHJ1Y3Qg
+a29iamVjdCAqYnVzeV9yb290OwogCXN0cnVjdCB7CiAJCXN0cnVjdCBkZXZpY2VfYXR0cmlidXRl
+IHBpZDsKIAkJc3RydWN0IGRldmljZV9hdHRyaWJ1dGUgbmFtZTsKKwkJc3RydWN0IGk5MTVfZW5n
+aW5lX2J1c3lfYXR0cmlidXRlIGJ1c3lbTUFYX0VOR0lORV9DTEFTUyArIDFdOwogCX0gYXR0cjsK
+IAogCS8qKgotLSAKMi4zMC4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
