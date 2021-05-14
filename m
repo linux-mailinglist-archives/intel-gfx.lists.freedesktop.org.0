@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F46381400
-	for <lists+intel-gfx@lfdr.de>; Sat, 15 May 2021 00:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B36413813FF
+	for <lists+intel-gfx@lfdr.de>; Sat, 15 May 2021 00:57:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F5646E5A2;
-	Fri, 14 May 2021 22:57:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E229E6E33F;
+	Fri, 14 May 2021 22:57:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 430C06E33F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E277E6E33F
  for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 22:57:43 +0000 (UTC)
-IronPort-SDR: Y9y4ceng9YoRuC8R+2IErBsveK3wbZOIweaVPCKJPZr5raSQy5u7k8xWOXLEM1ECnFXFnKTzXL
- WGbk66KreAqg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="198292160"
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="198292160"
+IronPort-SDR: 4yUDZ829YkWVPMTEFh16To3MEzOGyMM84XK4nei+6dUQb1jyBTZcAk8oIistRTwPRqiQFZ2SlW
+ tcqYZdFRWx9w==
+X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="198292162"
+X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="198292162"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 May 2021 15:57:43 -0700
-IronPort-SDR: J3Di5FVL3uzSnR7YEgKeDFuL/puOqE+g6NWg3K3xCtCZQKtocg5BR5ckScVRbSJJj76K+3VDc+
- xxPvnPDcTXkQ==
+IronPort-SDR: Dz7cT4P6DIuMWzZes6nPGrym0WjPXxcHnerMKmAPsN84zgef/zW4JsdiV7EmnE2enl3kxpypjb
+ ZsMT30qGEXDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="402509873"
+X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="402509877"
 Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by fmsmga007.fm.intel.com with ESMTP; 14 May 2021 15:57:42 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 14 May 2021 15:57:43 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 May 2021 15:57:37 -0700
-Message-Id: <20210514225739.24201-4-anusha.srivatsa@intel.com>
+Date: Fri, 14 May 2021 15:57:38 -0700
+Message-Id: <20210514225739.24201-5-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20210514225739.24201-1-anusha.srivatsa@intel.com>
 References: <20210514225739.24201-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/5] drm/i915/dmc: Rename macro names containing
- csr
+Subject: [Intel-gfx] [PATCH 4/5] drm/i915/dmc: Rename functions names having
+ "csr"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,430 +52,409 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rename all occurences of CSR_* with DMC_*
+No functional change.
 
 Cc: Jani Nikula <jani.nikula@linux.intel.com>
 Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_csr.c      | 167 +++++++++---------
- drivers/gpu/drm/i915/display/intel_csr.h      |   6 +-
- .../drm/i915/display/intel_display_debugfs.c  |  16 +-
- .../drm/i915/display/intel_display_power.c    |  14 +-
- drivers/gpu/drm/i915/i915_gpu_error.c         |   4 +-
- drivers/gpu/drm/i915/i915_reg.h               |  28 +--
- 6 files changed, 117 insertions(+), 118 deletions(-)
+ drivers/gpu/drm/i915/display/intel_csr.c      | 64 +++++++++----------
+ drivers/gpu/drm/i915/display/intel_csr.h      | 10 +--
+ drivers/gpu/drm/i915/display/intel_display.c  | 14 ++--
+ .../drm/i915/display/intel_display_power.c    | 14 ++--
+ drivers/gpu/drm/i915/i915_drv.c               |  6 +-
+ 5 files changed, 54 insertions(+), 54 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
-index 3414c1aa362d..0ebab244930d 100644
+index 0ebab244930d..f6a04a853682 100644
 --- a/drivers/gpu/drm/i915/display/intel_csr.c
 +++ b/drivers/gpu/drm/i915/display/intel_csr.c
-@@ -30,10 +30,9 @@
- #include "intel_de.h"
+@@ -302,14 +302,14 @@ static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
+ }
  
  /**
-- * DOC: csr support for dmc
-+ * DOC: DMC firmware support
+- * intel_csr_load_program() - write the firmware from memory to register.
++ * intel_dmc_load_program() - write the firmware from memory to register.
+  * @dev_priv: i915 drm device.
   *
-- * Display Context Save and Restore (CSR) firmware support added from gen9
-- * onwards to drive newly added DMC (Display microcontroller) in display
-+ * From gen9 onwards we have newly added DMC (Display microcontroller) in display
-  * engine to save and restore the state of display engine when it enter into
-  * low-power state and comes back to normal.
+- * CSR firmware is read from a .bin file and kept in internal memory one time.
++ * DMC firmware is read from a .bin file and kept in internal memory one time.
+  * Everytime display comes back from low power state this function is called to
+  * copy the firmware from internal memory to registers.
   */
-@@ -44,55 +43,55 @@
- 	__stringify(major) "_"		 \
- 	__stringify(minor) ".bin"
- 
--#define GEN12_CSR_MAX_FW_SIZE		ICL_CSR_MAX_FW_SIZE
-+#define GEN12_DMC_MAX_FW_SIZE		ICL_DMC_MAX_FW_SIZE
- 
--#define ADLS_CSR_PATH			DMC_PATH(adls, 2, 01)
--#define ADLS_CSR_VERSION_REQUIRED	CSR_VERSION(2, 1)
--MODULE_FIRMWARE(ADLS_CSR_PATH);
-+#define ADLS_DMC_PATH			DMC_PATH(adls, 2, 01)
-+#define ADLS_DMC_VERSION_REQUIRED	DMC_VERSION(2, 1)
-+MODULE_FIRMWARE(ADLS_DMC_PATH);
- 
--#define DG1_CSR_PATH			DMC_PATH(dg1, 2, 02)
--#define DG1_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
--MODULE_FIRMWARE(DG1_CSR_PATH);
-+#define DG1_DMC_PATH			DMC_PATH(dg1, 2, 02)
-+#define DG1_DMC_VERSION_REQUIRED	DMC_VERSION(2, 2)
-+MODULE_FIRMWARE(DG1_DMC_PATH);
- 
--#define RKL_CSR_PATH			DMC_PATH(rkl, 2, 02)
--#define RKL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 2)
--MODULE_FIRMWARE(RKL_CSR_PATH);
-+#define RKL_DMC_PATH			DMC_PATH(rkl, 2, 02)
-+#define RKL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 2)
-+MODULE_FIRMWARE(RKL_DMC_PATH);
- 
--#define TGL_CSR_PATH			DMC_PATH(tgl, 2, 08)
--#define TGL_CSR_VERSION_REQUIRED	CSR_VERSION(2, 8)
--MODULE_FIRMWARE(TGL_CSR_PATH);
-+#define TGL_DMC_PATH			DMC_PATH(tgl, 2, 08)
-+#define TGL_DMC_VERSION_REQUIRED	DMC_VERSION(2, 8)
-+MODULE_FIRMWARE(TGL_DMC_PATH);
- 
--#define ICL_CSR_PATH			DMC_PATH(icl, 1, 09)
--#define ICL_CSR_VERSION_REQUIRED	CSR_VERSION(1, 9)
--#define ICL_CSR_MAX_FW_SIZE		0x6000
--MODULE_FIRMWARE(ICL_CSR_PATH);
-+#define ICL_DMC_PATH			DMC_PATH(icl, 1, 09)
-+#define ICL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 9)
-+#define ICL_DMC_MAX_FW_SIZE		0x6000
-+MODULE_FIRMWARE(ICL_DMC_PATH);
- 
--#define CNL_CSR_PATH			DMC_PATH(cnl, 1, 07)
--#define CNL_CSR_VERSION_REQUIRED	CSR_VERSION(1, 7)
--#define CNL_CSR_MAX_FW_SIZE		GLK_CSR_MAX_FW_SIZE
--MODULE_FIRMWARE(CNL_CSR_PATH);
-+#define CNL_DMC_PATH			DMC_PATH(cnl, 1, 07)
-+#define CNL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 7)
-+#define CNL_DMC_MAX_FW_SIZE		GLK_DMC_MAX_FW_SIZE
-+MODULE_FIRMWARE(CNL_DMC_PATH);
- 
--#define GLK_CSR_PATH			DMC_PATH(glk, 1, 04)
--#define GLK_CSR_VERSION_REQUIRED	CSR_VERSION(1, 4)
--#define GLK_CSR_MAX_FW_SIZE		0x4000
--MODULE_FIRMWARE(GLK_CSR_PATH);
-+#define GLK_DMC_PATH			DMC_PATH(glk, 1, 04)
-+#define GLK_DMC_VERSION_REQUIRED	DMC_VERSION(1, 4)
-+#define GLK_DMC_MAX_FW_SIZE		0x4000
-+MODULE_FIRMWARE(GLK_DMC_PATH);
- 
--#define KBL_CSR_PATH			DMC_PATH(kbl, 1, 04)
--#define KBL_CSR_VERSION_REQUIRED	CSR_VERSION(1, 4)
--#define KBL_CSR_MAX_FW_SIZE		BXT_CSR_MAX_FW_SIZE
--MODULE_FIRMWARE(KBL_CSR_PATH);
-+#define KBL_DMC_PATH			DMC_PATH(kbl, 1, 04)
-+#define KBL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 4)
-+#define KBL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
-+MODULE_FIRMWARE(KBL_DMC_PATH);
- 
--#define SKL_CSR_PATH			DMC_PATH(skl, 1, 27)
--#define SKL_CSR_VERSION_REQUIRED	CSR_VERSION(1, 27)
--#define SKL_CSR_MAX_FW_SIZE		BXT_CSR_MAX_FW_SIZE
--MODULE_FIRMWARE(SKL_CSR_PATH);
-+#define SKL_DMC_PATH			DMC_PATH(skl, 1, 27)
-+#define SKL_DMC_VERSION_REQUIRED	DMC_VERSION(1, 27)
-+#define SKL_DMC_MAX_FW_SIZE		BXT_DMC_MAX_FW_SIZE
-+MODULE_FIRMWARE(SKL_DMC_PATH);
- 
--#define BXT_CSR_PATH			DMC_PATH(bxt, 1, 07)
--#define BXT_CSR_VERSION_REQUIRED	CSR_VERSION(1, 7)
--#define BXT_CSR_MAX_FW_SIZE		0x3000
--MODULE_FIRMWARE(BXT_CSR_PATH);
-+#define BXT_DMC_PATH			DMC_PATH(bxt, 1, 07)
-+#define BXT_DMC_VERSION_REQUIRED	DMC_VERSION(1, 7)
-+#define BXT_DMC_MAX_FW_SIZE		0x3000
-+MODULE_FIRMWARE(BXT_DMC_PATH);
- 
--#define CSR_DEFAULT_FW_OFFSET		0xFFFFFFFF
-+#define DMC_DEFAULT_FW_OFFSET		0xFFFFFFFF
- #define PACKAGE_MAX_FW_INFO_ENTRIES	20
- #define PACKAGE_V2_MAX_FW_INFO_ENTRIES	32
- #define DMC_V1_MAX_MMIO_COUNT		8
-@@ -333,7 +332,7 @@ void intel_csr_load_program(struct drm_i915_private *dev_priv)
- 	preempt_disable();
- 
- 	for (i = 0; i < fw_size; i++)
--		intel_uncore_write_fw(&dev_priv->uncore, CSR_PROGRAM(i),
-+		intel_uncore_write_fw(&dev_priv->uncore, DMC_PROGRAM(i),
- 				      payload[i]);
- 
- 	preempt_enable();
-@@ -357,7 +356,7 @@ static u32 find_dmc_fw_offset(const struct intel_fw_info *fw_info,
- 			      const struct stepping_info *si,
- 			      u8 package_ver)
+-void intel_csr_load_program(struct drm_i915_private *dev_priv)
++void intel_dmc_load_program(struct drm_i915_private *dev_priv)
  {
--	u32 dmc_offset = CSR_DEFAULT_FW_OFFSET;
-+	u32 dmc_offset = DMC_DEFAULT_FW_OFFSET;
- 	unsigned int i;
+ 	u32 *payload = dev_priv->dmc.dmc_payload;
+ 	u32 i, fw_size;
+@@ -391,9 +391,9 @@ static u32 find_dmc_fw_offset(const struct intel_fw_info *fw_info,
+ 	return dmc_offset;
+ }
  
- 	for (i = 0; i < num_entries; i++) {
-@@ -458,8 +457,8 @@ static u32 parse_csr_fw_dmc(struct intel_dmc *dmc,
- 	}
+-static u32 parse_csr_fw_dmc(struct intel_dmc *dmc,
+-			    const struct intel_dmc_header_base *dmc_header,
+-			    size_t rem_size)
++static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
++			       const struct intel_dmc_header_base *dmc_header,
++			       size_t rem_size)
+ {
+ 	unsigned int header_len_bytes, dmc_header_size, payload_size, i;
+ 	const u32 *mmioaddr, *mmiodata;
+@@ -498,7 +498,7 @@ static u32 parse_csr_fw_dmc(struct intel_dmc *dmc,
+ }
  
- 	for (i = 0; i < mmio_count; i++) {
--		if (mmioaddr[i] < CSR_MMIO_START_RANGE ||
--		    mmioaddr[i] > CSR_MMIO_END_RANGE) {
-+		if (mmioaddr[i] < DMC_MMIO_START_RANGE ||
-+		    mmioaddr[i] > DMC_MMIO_END_RANGE) {
- 			DRM_ERROR("DMC firmware has wrong mmio address 0x%x\n",
- 				  mmioaddr[i]);
- 			return 0;
-@@ -543,7 +542,7 @@ parse_csr_fw_package(struct intel_dmc *dmc,
- 		((u8 *)package_header + sizeof(*package_header));
- 	dmc_offset = find_dmc_fw_offset(fw_info, num_entries, si,
- 					package_header->header_ver);
--	if (dmc_offset == CSR_DEFAULT_FW_OFFSET) {
-+	if (dmc_offset == DMC_DEFAULT_FW_OFFSET) {
- 		DRM_ERROR("DMC firmware not supported for %c stepping\n",
- 			  si->stepping);
- 		return 0;
-@@ -579,10 +578,10 @@ static u32 parse_csr_fw_css(struct intel_dmc *dmc,
- 	    css_header->version != dmc->required_version) {
- 		DRM_INFO("Refusing to load DMC firmware v%u.%u,"
- 			 " please use v%u.%u\n",
--			 CSR_VERSION_MAJOR(css_header->version),
--			 CSR_VERSION_MINOR(css_header->version),
--			 CSR_VERSION_MAJOR(dmc->required_version),
--			 CSR_VERSION_MINOR(dmc->required_version));
-+			 DMC_VERSION_MAJOR(css_header->version),
-+			 DMC_VERSION_MINOR(css_header->version),
-+			 DMC_VERSION_MAJOR(dmc->required_version),
-+			 DMC_VERSION_MINOR(dmc->required_version));
- 		return 0;
- 	}
+ static u32
+-parse_csr_fw_package(struct intel_dmc *dmc,
++parse_dmc_fw_package(struct intel_dmc *dmc,
+ 		     const struct intel_package_header *package_header,
+ 		     const struct stepping_info *si,
+ 		     size_t rem_size)
+@@ -557,7 +557,7 @@ parse_csr_fw_package(struct intel_dmc *dmc,
+ }
  
-@@ -659,8 +658,8 @@ static void csr_load_work_fn(struct work_struct *work)
+ /* Return number of bytes parsed or 0 on error */
+-static u32 parse_csr_fw_css(struct intel_dmc *dmc,
++static u32 parse_dmc_fw_css(struct intel_dmc *dmc,
+ 			    struct intel_css_header *css_header,
+ 			    size_t rem_size)
+ {
+@@ -590,7 +590,7 @@ static u32 parse_csr_fw_css(struct intel_dmc *dmc,
+ 	return sizeof(struct intel_css_header);
+ }
+ 
+-static void parse_csr_fw(struct drm_i915_private *dev_priv,
++static void parse_dmc_fw(struct drm_i915_private *dev_priv,
+ 			 const struct firmware *fw)
+ {
+ 	struct intel_css_header *css_header;
+@@ -606,7 +606,7 @@ static void parse_csr_fw(struct drm_i915_private *dev_priv,
+ 
+ 	/* Extract CSS Header information */
+ 	css_header = (struct intel_css_header *)fw->data;
+-	r = parse_csr_fw_css(dmc, css_header, fw->size);
++	r = parse_dmc_fw_css(dmc, css_header, fw->size);
+ 	if (!r)
+ 		return;
+ 
+@@ -614,7 +614,7 @@ static void parse_csr_fw(struct drm_i915_private *dev_priv,
+ 
+ 	/* Extract Package Header information */
+ 	package_header = (struct intel_package_header *)&fw->data[readcount];
+-	r = parse_csr_fw_package(dmc, package_header, si, fw->size - readcount);
++	r = parse_dmc_fw_package(dmc, package_header, si, fw->size - readcount);
+ 	if (!r)
+ 		return;
+ 
+@@ -622,17 +622,17 @@ static void parse_csr_fw(struct drm_i915_private *dev_priv,
+ 
+ 	/* Extract dmc_header information */
+ 	dmc_header = (struct intel_dmc_header_base *)&fw->data[readcount];
+-	parse_csr_fw_dmc(dmc, dmc_header, fw->size - readcount);
++	parse_dmc_fw_header(dmc, dmc_header, fw->size - readcount);
+ }
+ 
+-static void intel_csr_runtime_pm_get(struct drm_i915_private *dev_priv)
++static void intel_dmc_runtime_pm_get(struct drm_i915_private *dev_priv)
+ {
+ 	drm_WARN_ON(&dev_priv->drm, dev_priv->dmc.wakeref);
+ 	dev_priv->dmc.wakeref =
+ 		intel_display_power_get(dev_priv, POWER_DOMAIN_INIT);
+ }
+ 
+-static void intel_csr_runtime_pm_put(struct drm_i915_private *dev_priv)
++static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
+ {
+ 	intel_wakeref_t wakeref __maybe_unused =
+ 		fetch_and_zero(&dev_priv->dmc.wakeref);
+@@ -640,7 +640,7 @@ static void intel_csr_runtime_pm_put(struct drm_i915_private *dev_priv)
+ 	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
+ }
+ 
+-static void csr_load_work_fn(struct work_struct *work)
++static void dmc_load_work_fn(struct work_struct *work)
+ {
+ 	struct drm_i915_private *dev_priv;
+ 	struct intel_dmc *dmc;
+@@ -650,11 +650,11 @@ static void csr_load_work_fn(struct work_struct *work)
+ 	dmc = &dev_priv->dmc;
+ 
+ 	request_firmware(&fw, dev_priv->dmc.fw_path, dev_priv->drm.dev);
+-	parse_csr_fw(dev_priv, fw);
++	parse_dmc_fw(dev_priv, fw);
+ 
+ 	if (dev_priv->dmc.dmc_payload) {
+-		intel_csr_load_program(dev_priv);
+-		intel_csr_runtime_pm_put(dev_priv);
++		intel_dmc_load_program(dev_priv);
++		intel_dmc_runtime_pm_put(dev_priv);
  
  		drm_info(&dev_priv->drm,
  			 "Finished loading DMC firmware %s (v%u.%u)\n",
--			 dev_priv->dmc.fw_path, CSR_VERSION_MAJOR(dmc->version),
--			 CSR_VERSION_MINOR(dmc->version));
-+			 dev_priv->dmc.fw_path, DMC_VERSION_MAJOR(dmc->version),
-+			 DMC_VERSION_MINOR(dmc->version));
- 	} else {
- 		drm_notice(&dev_priv->drm,
- 			   "Failed to load DMC firmware %s."
-@@ -690,57 +689,57 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
- 		return;
- 
- 	/*
--	 * Obtain a runtime pm reference, until CSR is loaded, to avoid entering
-+	 * Obtain a runtime pm reference, until DMC is loaded, to avoid entering
- 	 * runtime-suspend.
- 	 *
- 	 * On error, we return with the rpm wakeref held to prevent runtime
--	 * suspend as runtime suspend *requires* a working CSR for whatever
-+	 * suspend as runtime suspend *requires* a working DMC for whatever
- 	 * reason.
- 	 */
- 	intel_csr_runtime_pm_get(dev_priv);
- 
- 	if (IS_ALDERLAKE_S(dev_priv)) {
--		dmc->fw_path = ADLS_CSR_PATH;
--		dmc->required_version = ADLS_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = ADLS_DMC_PATH;
-+		dmc->required_version = ADLS_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
- 	} else if (IS_DG1(dev_priv)) {
--		dmc->fw_path = DG1_CSR_PATH;
--		dmc->required_version = DG1_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = DG1_DMC_PATH;
-+		dmc->required_version = DG1_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
- 	} else if (IS_ROCKETLAKE(dev_priv)) {
--		dmc->fw_path = RKL_CSR_PATH;
--		dmc->required_version = RKL_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = RKL_DMC_PATH;
-+		dmc->required_version = RKL_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
- 	} else if (DISPLAY_VER(dev_priv) >= 12) {
--		dmc->fw_path = TGL_CSR_PATH;
--		dmc->required_version = TGL_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = GEN12_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = TGL_DMC_PATH;
-+		dmc->required_version = TGL_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = GEN12_DMC_MAX_FW_SIZE;
- 	} else if (DISPLAY_VER(dev_priv) == 11) {
--		dmc->fw_path = ICL_CSR_PATH;
--		dmc->required_version = ICL_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = ICL_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = ICL_DMC_PATH;
-+		dmc->required_version = ICL_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = ICL_DMC_MAX_FW_SIZE;
- 	} else if (IS_CANNONLAKE(dev_priv)) {
--		dmc->fw_path = CNL_CSR_PATH;
--		dmc->required_version = CNL_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = CNL_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = CNL_DMC_PATH;
-+		dmc->required_version = CNL_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = CNL_DMC_MAX_FW_SIZE;
- 	} else if (IS_GEMINILAKE(dev_priv)) {
--		dmc->fw_path = GLK_CSR_PATH;
--		dmc->required_version = GLK_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = GLK_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = GLK_DMC_PATH;
-+		dmc->required_version = GLK_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = GLK_DMC_MAX_FW_SIZE;
- 	} else if (IS_KABYLAKE(dev_priv) ||
- 		   IS_COFFEELAKE(dev_priv) ||
- 		   IS_COMETLAKE(dev_priv)) {
--		dmc->fw_path = KBL_CSR_PATH;
--		dmc->required_version = KBL_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = KBL_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = KBL_DMC_PATH;
-+		dmc->required_version = KBL_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = KBL_DMC_MAX_FW_SIZE;
- 	} else if (IS_SKYLAKE(dev_priv)) {
--		dmc->fw_path = SKL_CSR_PATH;
--		dmc->required_version = SKL_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = SKL_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = SKL_DMC_PATH;
-+		dmc->required_version = SKL_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = SKL_DMC_MAX_FW_SIZE;
- 	} else if (IS_BROXTON(dev_priv)) {
--		dmc->fw_path = BXT_CSR_PATH;
--		dmc->required_version = BXT_CSR_VERSION_REQUIRED;
--		dmc->max_fw_size = BXT_CSR_MAX_FW_SIZE;
-+		dmc->fw_path = BXT_DMC_PATH;
-+		dmc->required_version = BXT_DMC_VERSION_REQUIRED;
-+		dmc->max_fw_size = BXT_DMC_MAX_FW_SIZE;
- 	}
- 
- 	if (dev_priv->params.dmc_firmware_path) {
-diff --git a/drivers/gpu/drm/i915/display/intel_csr.h b/drivers/gpu/drm/i915/display/intel_csr.h
-index 03c64f8af7ab..984e9fb250f8 100644
---- a/drivers/gpu/drm/i915/display/intel_csr.h
-+++ b/drivers/gpu/drm/i915/display/intel_csr.h
-@@ -8,9 +8,9 @@
- 
- struct drm_i915_private;
- 
--#define CSR_VERSION(major, minor)	((major) << 16 | (minor))
--#define CSR_VERSION_MAJOR(version)	((version) >> 16)
--#define CSR_VERSION_MINOR(version)	((version) & 0xffff)
-+#define DMC_VERSION(major, minor)	((major) << 16 | (minor))
-+#define DMC_VERSION_MAJOR(version)	((version) >> 16)
-+#define DMC_VERSION_MINOR(version)	((version) & 0xffff)
- 
- void intel_csr_ucode_init(struct drm_i915_private *i915);
- void intel_csr_load_program(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index b9659fd314dd..01337dd91a7e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -548,8 +548,8 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
- 	if (!dmc->dmc_payload)
- 		goto out;
- 
--	seq_printf(m, "version: %d.%d\n", CSR_VERSION_MAJOR(dmc->version),
--		   CSR_VERSION_MINOR(dmc->version));
-+	seq_printf(m, "version: %d.%d\n", DMC_VERSION_MAJOR(dmc->version),
-+		   DMC_VERSION_MINOR(dmc->version));
- 
- 	if (DISPLAY_VER(dev_priv) >= 12) {
- 		if (IS_DGFX(dev_priv)) {
-@@ -568,10 +568,10 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
- 		seq_printf(m, "DC3CO count: %d\n",
- 			   intel_de_read(dev_priv, DMC_DEBUG3));
- 	} else {
--		dc5_reg = IS_BROXTON(dev_priv) ? BXT_CSR_DC3_DC5_COUNT :
--						 SKL_CSR_DC3_DC5_COUNT;
-+		dc5_reg = IS_BROXTON(dev_priv) ? BXT_DMC_DC3_DC5_COUNT :
-+						 SKL_DMC_DC3_DC5_COUNT;
- 		if (!IS_GEMINILAKE(dev_priv) && !IS_BROXTON(dev_priv))
--			dc6_reg = SKL_CSR_DC5_DC6_COUNT;
-+			dc6_reg = SKL_DMC_DC5_DC6_COUNT;
- 	}
- 
- 	seq_printf(m, "DC3 -> DC5 count: %d\n",
-@@ -582,10 +582,10 @@ static int i915_dmc_info(struct seq_file *m, void *unused)
- 
- out:
- 	seq_printf(m, "program base: 0x%08x\n",
--		   intel_de_read(dev_priv, CSR_PROGRAM(0)));
-+		   intel_de_read(dev_priv, DMC_PROGRAM(0)));
- 	seq_printf(m, "ssp base: 0x%08x\n",
--		   intel_de_read(dev_priv, CSR_SSP_BASE));
--	seq_printf(m, "htp: 0x%08x\n", intel_de_read(dev_priv, CSR_HTP_SKL));
-+		   intel_de_read(dev_priv, DMC_SSP_BASE));
-+	seq_printf(m, "htp: 0x%08x\n", intel_de_read(dev_priv, DMC_HTP_SKL));
- 
- 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 0a05d0f90f28..de58abdd838b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -961,12 +961,12 @@ static void bxt_disable_dc9(struct drm_i915_private *dev_priv)
- static void assert_csr_loaded(struct drm_i915_private *dev_priv)
- {
- 	drm_WARN_ONCE(&dev_priv->drm,
--		      !intel_de_read(dev_priv, CSR_PROGRAM(0)),
--		      "CSR program storage start is NULL\n");
--	drm_WARN_ONCE(&dev_priv->drm, !intel_de_read(dev_priv, CSR_SSP_BASE),
--		      "CSR SSP Base Not fine\n");
--	drm_WARN_ONCE(&dev_priv->drm, !intel_de_read(dev_priv, CSR_HTP_SKL),
--		      "CSR HTP Not fine\n");
-+		      !intel_de_read(dev_priv, DMC_PROGRAM(0)),
-+		      "DMC program storage start is NULL\n");
-+	drm_WARN_ONCE(&dev_priv->drm, !intel_de_read(dev_priv, DMC_SSP_BASE),
-+		      "DMC SSP Base Not fine\n");
-+	drm_WARN_ONCE(&dev_priv->drm, !intel_de_read(dev_priv, DMC_HTP_SKL),
-+		      "DMC HTP Not fine\n");
+@@ -673,17 +673,17 @@ static void csr_load_work_fn(struct work_struct *work)
  }
  
- static struct i915_power_well *
-@@ -6218,7 +6218,7 @@ void intel_power_domains_suspend(struct drm_i915_private *i915,
- 	/*
- 	 * In case of suspend-to-idle (aka S0ix) on a DMC platform without DC9
- 	 * support don't manually deinit the power domains. This also means the
--	 * CSR/DMC firmware will stay active, it will power down any HW
-+	 * DMC firmware will stay active, it will power down any HW
- 	 * resources as required and also enable deeper system power states
- 	 * that would be blocked if the firmware was inactive.
+ /**
+- * intel_csr_ucode_init() - initialize the firmware loading.
++ * intel_dmc_ucode_init() - initialize the firmware loading.
+  * @dev_priv: i915 drm device.
+  *
+  * This function is called at the time of loading the display driver to read
+  * firmware from a .bin file and copied into a internal memory.
+  */
+-void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
++void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_dmc *dmc = &dev_priv->dmc;
+ 
+-	INIT_WORK(&dev_priv->dmc.work, csr_load_work_fn);
++	INIT_WORK(&dev_priv->dmc.work, dmc_load_work_fn);
+ 
+ 	if (!HAS_DMC(dev_priv))
+ 		return;
+@@ -696,7 +696,7 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
+ 	 * suspend as runtime suspend *requires* a working DMC for whatever
+ 	 * reason.
  	 */
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index af95173003a1..0af5abc48093 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -794,8 +794,8 @@ static void __err_print_to_sgl(struct drm_i915_error_state_buf *m,
- 		err_printf(m, "DMC loaded: %s\n",
- 			   yesno(dmc->dmc_payload != NULL));
- 		err_printf(m, "DMC fw version: %d.%d\n",
--			   CSR_VERSION_MAJOR(dmc->version),
--			   CSR_VERSION_MINOR(dmc->version));
-+			   DMC_VERSION_MAJOR(dmc->version),
-+			   DMC_VERSION_MINOR(dmc->version));
- 	}
+-	intel_csr_runtime_pm_get(dev_priv);
++	intel_dmc_runtime_pm_get(dev_priv);
  
- 	err_printf(m, "RPM wakelock: %s\n", yesno(error->wakelock));
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 871d839dfcb8..290f2eb46d8a 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7684,20 +7684,20 @@ enum {
- #define  GAMMA_MODE_MODE_SPLIT	(3 << 0) /* ivb-bdw */
- #define  GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED	(3 << 0) /* icl + */
+ 	if (IS_ALDERLAKE_S(dev_priv)) {
+ 		dmc->fw_path = ADLS_DMC_PATH;
+@@ -766,14 +766,14 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
+ }
  
--/* DMC/CSR */
--#define CSR_PROGRAM(i)		_MMIO(0x80000 + (i) * 4)
--#define CSR_SSP_BASE_ADDR_GEN9	0x00002FC0
--#define CSR_HTP_ADDR_SKL	0x00500034
--#define CSR_SSP_BASE		_MMIO(0x8F074)
--#define CSR_HTP_SKL		_MMIO(0x8F004)
--#define CSR_LAST_WRITE		_MMIO(0x8F034)
--#define CSR_LAST_WRITE_VALUE	0xc003b400
--/* MMIO address range for CSR program (0x80000 - 0x82FFF) */
--#define CSR_MMIO_START_RANGE	0x80000
--#define CSR_MMIO_END_RANGE	0x8FFFF
--#define SKL_CSR_DC3_DC5_COUNT	_MMIO(0x80030)
--#define SKL_CSR_DC5_DC6_COUNT	_MMIO(0x8002C)
--#define BXT_CSR_DC3_DC5_COUNT	_MMIO(0x80038)
-+/* DMC */
-+#define DMC_PROGRAM(i)		_MMIO(0x80000 + (i) * 4)
-+#define DMC_SSP_BASE_ADDR_GEN9	0x00002FC0
-+#define DMC_HTP_ADDR_SKL	0x00500034
-+#define DMC_SSP_BASE		_MMIO(0x8F074)
-+#define DMC_HTP_SKL		_MMIO(0x8F004)
-+#define DMC_LAST_WRITE		_MMIO(0x8F034)
-+#define DMC_LAST_WRITE_VALUE	0xc003b400
-+/* MMIO address range for DMC program (0x80000 - 0x82FFF) */
-+#define DMC_MMIO_START_RANGE	0x80000
-+#define DMC_MMIO_END_RANGE	0x8FFFF
-+#define SKL_DMC_DC3_DC5_COUNT	_MMIO(0x80030)
-+#define SKL_DMC_DC5_DC6_COUNT	_MMIO(0x8002C)
-+#define BXT_DMC_DC3_DC5_COUNT	_MMIO(0x80038)
- #define TGL_DMC_DEBUG_DC5_COUNT	_MMIO(0x101084)
- #define TGL_DMC_DEBUG_DC6_COUNT	_MMIO(0x101088)
- #define DG1_DMC_DEBUG_DC5_COUNT	_MMIO(0x134154)
+ /**
+- * intel_csr_ucode_suspend() - prepare CSR firmware before system suspend
++ * intel_dmc_ucode_suspend() - prepare DMC firmware before system suspend
+  * @dev_priv: i915 drm device
+  *
+  * Prepare the DMC firmware before entering system suspend. This includes
+  * flushing pending work items and releasing any resources acquired during
+  * init.
+  */
+-void intel_csr_ucode_suspend(struct drm_i915_private *dev_priv)
++void intel_dmc_ucode_suspend(struct drm_i915_private *dev_priv)
+ {
+ 	if (!HAS_DMC(dev_priv))
+ 		return;
+@@ -782,17 +782,17 @@ void intel_csr_ucode_suspend(struct drm_i915_private *dev_priv)
+ 
+ 	/* Drop the reference held in case DMC isn't loaded. */
+ 	if (!dev_priv->dmc.dmc_payload)
+-		intel_csr_runtime_pm_put(dev_priv);
++		intel_dmc_runtime_pm_put(dev_priv);
+ }
+ 
+ /**
+- * intel_csr_ucode_resume() - init CSR firmware during system resume
++ * intel_dmc_ucode_resume() - init DMC firmware during system resume
+  * @dev_priv: i915 drm device
+  *
+  * Reinitialize the DMC firmware during system resume, reacquiring any
+- * resources released in intel_csr_ucode_suspend().
++ * resources released in intel_dmc_ucode_suspend().
+  */
+-void intel_csr_ucode_resume(struct drm_i915_private *dev_priv)
++void intel_dmc_ucode_resume(struct drm_i915_private *dev_priv)
+ {
+ 	if (!HAS_DMC(dev_priv))
+ 		return;
+@@ -802,22 +802,22 @@ void intel_csr_ucode_resume(struct drm_i915_private *dev_priv)
+ 	 * loaded.
+ 	 */
+ 	if (!dev_priv->dmc.dmc_payload)
+-		intel_csr_runtime_pm_get(dev_priv);
++		intel_dmc_runtime_pm_get(dev_priv);
+ }
+ 
+ /**
+- * intel_csr_ucode_fini() - unload the CSR firmware.
++ * intel_dmc_ucode_fini() - unload the DMC firmware.
+  * @dev_priv: i915 drm device.
+  *
+  * Firmmware unloading includes freeing the internal memory and reset the
+  * firmware loading status.
+  */
+-void intel_csr_ucode_fini(struct drm_i915_private *dev_priv)
++void intel_dmc_ucode_fini(struct drm_i915_private *dev_priv)
+ {
+ 	if (!HAS_DMC(dev_priv))
+ 		return;
+ 
+-	intel_csr_ucode_suspend(dev_priv);
++	intel_dmc_ucode_suspend(dev_priv);
+ 	drm_WARN_ON(&dev_priv->drm, dev_priv->dmc.wakeref);
+ 
+ 	kfree(dev_priv->dmc.dmc_payload);
+diff --git a/drivers/gpu/drm/i915/display/intel_csr.h b/drivers/gpu/drm/i915/display/intel_csr.h
+index 984e9fb250f8..fc4960b91686 100644
+--- a/drivers/gpu/drm/i915/display/intel_csr.h
++++ b/drivers/gpu/drm/i915/display/intel_csr.h
+@@ -12,10 +12,10 @@ struct drm_i915_private;
+ #define DMC_VERSION_MAJOR(version)	((version) >> 16)
+ #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
+ 
+-void intel_csr_ucode_init(struct drm_i915_private *i915);
+-void intel_csr_load_program(struct drm_i915_private *i915);
+-void intel_csr_ucode_fini(struct drm_i915_private *i915);
+-void intel_csr_ucode_suspend(struct drm_i915_private *i915);
+-void intel_csr_ucode_resume(struct drm_i915_private *i915);
++void intel_dmc_ucode_init(struct drm_i915_private *i915);
++void intel_dmc_load_program(struct drm_i915_private *i915);
++void intel_dmc_ucode_fini(struct drm_i915_private *i915);
++void intel_dmc_ucode_suspend(struct drm_i915_private *i915);
++void intel_dmc_ucode_resume(struct drm_i915_private *i915);
+ 
+ #endif /* __INTEL_CSR_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0c2b194006f8..4efb5d28712c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -12144,7 +12144,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+ 	if (!HAS_DISPLAY(i915))
+ 		return 0;
+ 
+-	intel_csr_ucode_init(i915);
++	intel_dmc_ucode_init(i915);
+ 
+ 	i915->modeset_wq = alloc_ordered_workqueue("i915_modeset", 0);
+ 	i915->flip_wq = alloc_workqueue("i915_flip", WQ_HIGHPRI |
+@@ -12156,15 +12156,15 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+ 
+ 	ret = intel_cdclk_init(i915);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_csr;
++		goto cleanup_vga_client_pw_domain_dmc;
+ 
+ 	ret = intel_dbuf_init(i915);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_csr;
++		goto cleanup_vga_client_pw_domain_dmc;
+ 
+ 	ret = intel_bw_init(i915);
+ 	if (ret)
+-		goto cleanup_vga_client_pw_domain_csr;
++		goto cleanup_vga_client_pw_domain_dmc;
+ 
+ 	init_llist_head(&i915->atomic_helper.free_list);
+ 	INIT_WORK(&i915->atomic_helper.free_work,
+@@ -12176,8 +12176,8 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
+ 
+ 	return 0;
+ 
+-cleanup_vga_client_pw_domain_csr:
+-	intel_csr_ucode_fini(i915);
++cleanup_vga_client_pw_domain_dmc:
++	intel_dmc_ucode_fini(i915);
+ 	intel_power_domains_driver_remove(i915);
+ 	intel_vga_unregister(i915);
+ cleanup_bios:
+@@ -13256,7 +13256,7 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
+ /* part #3: call after gem init */
+ void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
+ {
+-	intel_csr_ucode_fini(i915);
++	intel_dmc_ucode_fini(i915);
+ 
+ 	intel_power_domains_driver_remove(i915);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index de58abdd838b..cbba41d3e6cf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -958,7 +958,7 @@ static void bxt_disable_dc9(struct drm_i915_private *dev_priv)
+ 	intel_pps_unlock_regs_wa(dev_priv);
+ }
+ 
+-static void assert_csr_loaded(struct drm_i915_private *dev_priv)
++static void assert_dmc_loaded(struct drm_i915_private *dev_priv)
+ {
+ 	drm_WARN_ONCE(&dev_priv->drm,
+ 		      !intel_de_read(dev_priv, DMC_PROGRAM(0)),
+@@ -1057,7 +1057,7 @@ static void assert_can_enable_dc5(struct drm_i915_private *dev_priv)
+ 		      "DC5 already programmed to be enabled.\n");
+ 	assert_rpm_wakelock_held(&dev_priv->runtime_pm);
+ 
+-	assert_csr_loaded(dev_priv);
++	assert_dmc_loaded(dev_priv);
+ }
+ 
+ static void gen9_enable_dc5(struct drm_i915_private *dev_priv)
+@@ -1084,7 +1084,7 @@ static void assert_can_enable_dc6(struct drm_i915_private *dev_priv)
+ 		       DC_STATE_EN_UPTO_DC6),
+ 		      "DC6 already programmed to be enabled.\n");
+ 
+-	assert_csr_loaded(dev_priv);
++	assert_dmc_loaded(dev_priv);
+ }
+ 
+ static void skl_enable_dc6(struct drm_i915_private *dev_priv)
+@@ -5574,7 +5574,7 @@ static void skl_display_core_init(struct drm_i915_private *dev_priv,
+ 	gen9_dbuf_enable(dev_priv);
+ 
+ 	if (resume && dev_priv->dmc.dmc_payload)
+-		intel_csr_load_program(dev_priv);
++		intel_dmc_load_program(dev_priv);
+ }
+ 
+ static void skl_display_core_uninit(struct drm_i915_private *dev_priv)
+@@ -5641,7 +5641,7 @@ static void bxt_display_core_init(struct drm_i915_private *dev_priv, bool resume
+ 	gen9_dbuf_enable(dev_priv);
+ 
+ 	if (resume && dev_priv->dmc.dmc_payload)
+-		intel_csr_load_program(dev_priv);
++		intel_dmc_load_program(dev_priv);
+ }
+ 
+ static void bxt_display_core_uninit(struct drm_i915_private *dev_priv)
+@@ -5707,7 +5707,7 @@ static void cnl_display_core_init(struct drm_i915_private *dev_priv, bool resume
+ 	gen9_dbuf_enable(dev_priv);
+ 
+ 	if (resume && dev_priv->dmc.dmc_payload)
+-		intel_csr_load_program(dev_priv);
++		intel_dmc_load_program(dev_priv);
+ }
+ 
+ static void cnl_display_core_uninit(struct drm_i915_private *dev_priv)
+@@ -5864,7 +5864,7 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
+ 		tgl_bw_buddy_init(dev_priv);
+ 
+ 	if (resume && dev_priv->dmc.dmc_payload)
+-		intel_csr_load_program(dev_priv);
++		intel_dmc_load_program(dev_priv);
+ 
+ 	/* Wa_14011508470 */
+ 	if (DISPLAY_VER(dev_priv) == 12) {
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 5118dc8386b2..f2a9583dfecc 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1043,7 +1043,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+ 	intel_suspend_encoders(i915);
+ 	intel_shutdown_encoders(i915);
+ 
+-	intel_csr_ucode_suspend(i915);
++	intel_dmc_ucode_suspend(i915);
+ 
+ 	/*
+ 	 * The only requirement is to reboot with display DC states disabled,
+@@ -1124,7 +1124,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 
+ 	dev_priv->suspend_count++;
+ 
+-	intel_csr_ucode_suspend(dev_priv);
++	intel_dmc_ucode_suspend(dev_priv);
+ 
+ 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+ 
+@@ -1226,7 +1226,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 
+ 	i915_ggtt_resume(&dev_priv->ggtt);
+ 
+-	intel_csr_ucode_resume(dev_priv);
++	intel_dmc_ucode_resume(dev_priv);
+ 
+ 	i915_restore_display(dev_priv);
+ 	intel_pps_unlock_regs_wa(dev_priv);
 -- 
 2.25.0
 
