@@ -1,40 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D021380D56
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 17:37:28 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 988E2380E3C
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 18:31:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 149876EF38;
-	Fri, 14 May 2021 15:37:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D71C46F39B;
+	Fri, 14 May 2021 16:31:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3526D6F384
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 15:37:22 +0000 (UTC)
-IronPort-SDR: X7P/ipuqwqjJT6rF4SYS+jHh4JkaX2/mREacaTtqAyLvBVe8GhjUWcx1qq9bFfVa/Bisbsmize
- UKxNV+Oo5+Gw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="200243939"
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="200243939"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2021 08:37:20 -0700
-IronPort-SDR: CgMEXCSrklZfp0vhlRYPq4M5BqFTfcnrkKhmrWEFD6UdDox/xIYh1id43VVixGH2f0Cb1QW9jn
- ELxGu9y0tBrw==
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="610796599"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.168])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2021 08:37:19 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 May 2021 08:37:11 -0700
-Message-Id: <20210514153711.2359617-20-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20210514153711.2359617-1-matthew.d.roper@intel.com>
-References: <20210514153711.2359617-1-matthew.d.roper@intel.com>
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 357B16F39A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 16:31:42 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id w3so45487031ejc.4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 09:31:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=bm0lPBWNUyn3Msplb1dXwtT+czHKu5M3fMgHypzFrVM=;
+ b=soccG7ZnN3ySuUPBeVsY18SEP8ltyDV19Hexm+cJsHty11FkSQEBT84nDO63x81hWL
+ Ovkvlfci2fuEI/MZfoifuY/+zGjVg0tv27FPKaypECEppF/NgjF6fbzxck0/XnVoJxoE
+ lNmJq6pRLR6k9ScF4YVWSo8H7NuQlRQEZ+xm3kcvmi72Zh1weaLLUzIi6KVUtp93c9WJ
+ GElbeOt11/ojaQfQBJjzs8hnfSy3EYnn21Y3FHxl1TRh2kQ3h3wcz6AfGF6QHnoMn/be
+ zOKJEYjXf8tgDqucKE07XnkP0kjUnhNmYtvxP6NJI5KkvXxK3nALQ76uwtcJPPlkyTtA
+ ll+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=bm0lPBWNUyn3Msplb1dXwtT+czHKu5M3fMgHypzFrVM=;
+ b=Bvm9g+k5QDklj5LxwKQdXBVqZw7ODic6FRWxSlbLGT9caY+HpAcxfMIx1diiEJ7DH1
+ B8N22Yo2lHQj9HZjA5u1bi7sjAYUpBNIdVQOayib2BUkKLX+MylJ5z6yc/pJDC+kpjWj
+ fW8T0ie2z9pBp4ItzVw6iLqirQ52ZO48vBoVNo2PTsIft+y27gNcVtgtZZOY+zmQ7J41
+ 1w19/dox87h8h+V7JiPrS8h4H2oq3mbuy4CpJbWPAgszG4OnMl4Bw7pHFFQuwCLV5IGc
+ 7aB54aAbWmuRbBZAUT0jqW7c0oVNTK7bOQbz0C0WTu+fs4EiEgBsjatsc55H8WqXUvLX
+ SCGg==
+X-Gm-Message-State: AOAM531Pj+zHTztKz8NTOJTXd9jru5V9jRxjZcBNUSEHyXtJnE6C5eE1
+ eD2Qrzj0K9TKKjcLsIlChLLvkYQb62VCb75++lCHIA==
+X-Google-Smtp-Source: ABdhPJybYyPukxWXJiiSeAuGbPo11mVWO2GrgysN1S+dUTkv6f7rZLuM6AoFvZTte12l/fwNJsbaM+b3Cc0nYybBpCc=
+X-Received: by 2002:a17:906:7fd2:: with SMTP id
+ r18mr45125220ejs.78.1621009900507; 
+ Fri, 14 May 2021 09:31:40 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 19/19] drm/i915/adl_p: Disable CCS on a-step
- (Wa_22011186057)
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+ <d22437bd-8bb6-d7cb-c017-89cdc7da560d@free.fr>
+ <17953669798.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+ <546e4ee4-9aa4-1967-cdcb-a561cac582ef@free.fr>
+ <CAKMK7uETcM38sjPYJLdxpGcZcx=tHdGUPe0WTgnGoZfPQvEJFQ@mail.gmail.com>
+ <08c22bc8-aa35-43d2-ad4c-7f489dfc585b@free.fr>
+ <d382a41cacbc44ee96b9602f3473b5c0@intel.com>
+ <20210511163930.GA28794@sdutt-i7>
+ <bb701cab-a68e-08ed-80e3-61be160bdc02@free.fr>
+In-Reply-To: <bb701cab-a68e-08ed-80e3-61be160bdc02@free.fr>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Fri, 14 May 2021 11:31:29 -0500
+Message-ID: <CAOFGe95Ku0FiUfPzEo2xM7Uu9Xi7GJn_rNR9ToRfESRmPdCW_Q@mail.gmail.com>
+To: Martin Peres <martin.peres@free.fr>
+Subject: Re: [Intel-gfx] [RFC PATCH 00/97] Basic GuC submission support in
+ the i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,57 +71,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, "Ekstrand,
+ Jason" <jason.ekstrand@intel.com>, "Vetter, Daniel" <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+CgpCdWZm
-ZXIgY29tcHJlc3Npb24gaXMgbm90IHVzYWJsZSBpbiBBIHN0ZXBwaW5nLgoKQ2M6IE1hdHQgUm9w
-ZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+CkNjOiBBbnVzaGEgU3JpdmF0c2EgPGFudXNo
-YS5zcml2YXRzYUBpbnRlbC5jb20+CkNjOiBDbGludG9uIEEgVGF5bG9yIDxjbGludG9uLmEudGF5
-bG9yQGludGVsLmNvbT4KQ2M6IEp1aGEtUGVra2EgSGVpa2tpbMOkIDxqdWhhLXBla2thLmhlaWtr
-aWxhQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
-ZS5zb3V6YUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IENsaW50b24gVGF5bG9yIDxDbGludG9u
-LkEuVGF5bG9yQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogTWF0dCBSb3BlciA8bWF0dGhldy5k
-LnJvcGVyQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNy
-aXZhdHNhQGludGVsLmNvbT4KLS0tCiAuLi4vZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVyc2Fs
-X3BsYW5lLmMgICAgfCAyMCArKysrKysrKysrKysrKysrKystCiAxIGZpbGUgY2hhbmdlZCwgMTkg
-aW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9za2xfdW5pdmVyc2FsX3BsYW5lLmMKaW5kZXggODQ0NDc0NGY0NDM3Li41OWUw
-MzJmMzY4N2EgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3Vu
-aXZlcnNhbF9wbGFuZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3Vu
-aXZlcnNhbF9wbGFuZS5jCkBAIC0xOTksNiArMTk5LDEzIEBAIHN0YXRpYyBjb25zdCB1NjQgZ2Vu
-MTJfcGxhbmVfZm9ybWF0X21vZGlmaWVyc19yY19jY3NbXSA9IHsKIAlEUk1fRk9STUFUX01PRF9J
-TlZBTElECiB9OwogCitzdGF0aWMgY29uc3QgdTY0IGFkbHBfc3RlcF9hX3BsYW5lX2Zvcm1hdF9t
-b2RpZmllcnNbXSA9IHsKKwlJOTE1X0ZPUk1BVF9NT0RfWV9USUxFRCwKKwlJOTE1X0ZPUk1BVF9N
-T0RfWF9USUxFRCwKKwlEUk1fRk9STUFUX01PRF9MSU5FQVIsCisJRFJNX0ZPUk1BVF9NT0RfSU5W
-QUxJRAorfTsKKwogaW50IHNrbF9mb3JtYXRfdG9fZm91cmNjKGludCBmb3JtYXQsIGJvb2wgcmdi
-X29yZGVyLCBib29sIGFscGhhKQogewogCXN3aXRjaCAoZm9ybWF0KSB7CkBAIC0xODc5LDYgKzE4
-ODYsMTAgQEAgc3RhdGljIGJvb2wgZ2VuMTJfcGxhbmVfc3VwcG9ydHNfbWNfY2NzKHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAkgICAgSVNfVEdMX0RJU1BMQVlfU1RFUChkZXZf
-cHJpdiwgU1RFUF9BMCwgU1RFUF9DMCkpCiAJCXJldHVybiBmYWxzZTsKIAorCS8qIFdhXzIyMDEx
-MTg2MDU3ICovCisJaWYgKElTX0FETFBfRElTUExBWV9TVEVQKGRldl9wcml2LCBTVEVQX0EwLCBT
-VEVQX0EwKSkKKwkJcmV0dXJuIGZhbHNlOworCiAJcmV0dXJuIHBsYW5lX2lkIDwgUExBTkVfU1BS
-SVRFNDsKIH0KIApAQCAtMTg5Niw4ICsxOTA3LDEyIEBAIHN0YXRpYyBib29sIGdlbjEyX3BsYW5l
-X2Zvcm1hdF9tb2Rfc3VwcG9ydGVkKHN0cnVjdCBkcm1fcGxhbmUgKl9wbGFuZSwKIAljYXNlIERS
-TV9GT1JNQVRfTU9EX0xJTkVBUjoKIAljYXNlIEk5MTVfRk9STUFUX01PRF9YX1RJTEVEOgogCWNh
-c2UgSTkxNV9GT1JNQVRfTU9EX1lfVElMRUQ6CisJCWJyZWFrOwogCWNhc2UgSTkxNV9GT1JNQVRf
-TU9EX1lfVElMRURfR0VOMTJfUkNfQ0NTOgogCWNhc2UgSTkxNV9GT1JNQVRfTU9EX1lfVElMRURf
-R0VOMTJfUkNfQ0NTX0NDOgorCQkvKiBXYV8yMjAxMTE4NjA1NyAqLworCQlpZiAoSVNfQURMUF9E
-SVNQTEFZX1NURVAoZGV2X3ByaXYsIFNURVBfQTAsIFNURVBfQTApKQorCQkJcmV0dXJuIGZhbHNl
-OwogCQlicmVhazsKIAlkZWZhdWx0OgogCQlyZXR1cm4gZmFsc2U7CkBAIC0xOTUyLDcgKzE5Njcs
-MTAgQEAgc3RhdGljIGJvb2wgZ2VuMTJfcGxhbmVfZm9ybWF0X21vZF9zdXBwb3J0ZWQoc3RydWN0
-IGRybV9wbGFuZSAqX3BsYW5lLAogc3RhdGljIGNvbnN0IHU2NCAqZ2VuMTJfZ2V0X3BsYW5lX21v
-ZGlmaWVycyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJCQkJCSAgICBlbnVt
-IHBsYW5lX2lkIHBsYW5lX2lkKQogewotCWlmIChnZW4xMl9wbGFuZV9zdXBwb3J0c19tY19jY3Mo
-ZGV2X3ByaXYsIHBsYW5lX2lkKSkKKwkvKiBXYV8yMjAxMTE4NjA1NyAqLworCWlmIChJU19BRExQ
-X0RJU1BMQVlfU1RFUChkZXZfcHJpdiwgU1RFUF9BMCwgU1RFUF9BMCkpCisJCXJldHVybiBhZGxw
-X3N0ZXBfYV9wbGFuZV9mb3JtYXRfbW9kaWZpZXJzOworCWVsc2UgaWYgKGdlbjEyX3BsYW5lX3N1
-cHBvcnRzX21jX2NjcyhkZXZfcHJpdiwgcGxhbmVfaWQpKQogCQlyZXR1cm4gZ2VuMTJfcGxhbmVf
-Zm9ybWF0X21vZGlmaWVyc19tY19jY3M7CiAJZWxzZQogCQlyZXR1cm4gZ2VuMTJfcGxhbmVfZm9y
-bWF0X21vZGlmaWVyc19yY19jY3M7Ci0tIAoyLjI1LjQKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Pulling a few threads together...
+
+On Mon, May 10, 2021 at 1:39 PM Francisco Jerez <currojerez@riseup.net> wrote:
+>
+> I agree with Martin on this.  Given that using GuC currently involves
+> making your open-source graphics stack rely on a closed-source
+> cryptographically-protected blob in order to submit commands to the GPU,
+> and given that it is /still/ possible to use the GPU without it, I'd
+> expect some strong material justification for making the switch (like,
+> it improves performance of test-case X and Y by Z%, or, we're truly
+> sorry but we cannot program your GPU anymore with a purely open-source
+> software stack).  Any argument based on the apparent direction of the
+> wind doesn't sound like a material engineering reason to me, and runs
+> the risk of being self-fulfilling if it leads us to do the worse thing
+> for our users just because we have the vague feeling that it is the
+> general trend, even though we may have had the means to obtain a better
+> compromise for them.
+
+I think it's important to distinguish between landing code to support
+GuC submission and requiring it in order to use the GPU.  We've got
+the execlist back-end and it's not going anywhere, at least not for
+older hardware, and it will likely keep working as long as execlists
+remain in the hardware.  What's being proposed here is a new back-end
+which, yes, depends on firmware and can be used for more features.
+
+I'm well aware of the slippery slope argument that's implicitly being
+used here even if no one is actually saying it:  If we land GuC
+support in i915 in any form then Intel HW engineers will say "See,
+Linux supports GuC now; we can rip out execlists" and we'll end up in
+the dystopia of closed-source firmware.  If upstream continues to push
+back on GuC in any form then they'll be forced to keep execlists.
+I'll freely admit that there is probably some truth to this.  However,
+I really doubt that it's going to work long-term.  If the HW
+architects are determined enough to rip it out, they will.
+
+If GuC is really inevitable, then it's in our best interests to land
+at least beta support earlier.  There are a lot of questions that
+people have brought up around back-ports, dealing with stable kernels,
+stability concerns, etc.  The best way to sort those out is to land
+the code and start dealing with the issues.  We can't front-load
+solving every possible issue or the code will never land.  But maybe
+that's people's actual objective?
+
+
+On Wed, May 12, 2021 at 1:26 AM Martin Peres <martin.peres@free.fr> wrote:
+>
+> On 11/05/2021 19:39, Matthew Brost wrote:
+> > On Tue, May 11, 2021 at 08:26:59AM -0700, Bloomfield, Jon wrote:
+> >>> On 10/05/2021 19:33, Daniel Vetter wrote:
+> >>>> On Mon, May 10, 2021 at 3:55 PM Martin Peres <martin.peres@free.fr>
+> >>> wrote:
+> >>>
+> >>> However, if the GuC is actually helping i915, then why not open source
+> >>> it and drop all the issues related to its stability? Wouldn't it be the
+> >>> perfect solution, as it would allow dropping execlist support for newer
+> >>> HW, and it would eliminate the concerns about maintenance of stable
+> >>> releases of Linux?
+
+I would like to see that happen.  I know there was some chatter about
+it for a while and then the discussions got killed.  I'm not sure what
+happened, to be honest.  However, I don't think we can make any
+guarantees or assumptions there, I'm afraid. :-(
+
+> >> That the major version of the FW is high is not due to bugs - Bugs don't trigger major version bumps anyway.
+>
+> Of course, where did I say they would?
+
+I think the concern here is that old kernels will require old major
+GuC versions because interfaces won't be backwards-compatible and then
+those kernels won't get bug fixes.  That's a legitimate concern.
+Given the Linux usage model, I think it's fair to require either
+backwards-compatibility with GuC interfaces and validation of that
+backwards-compatibility or stable releases with bug fixes for a good
+long while.  I honestly can't say whether or not we've really scoped
+that.  Jon?
+
+> >> We have been using GuC as the sole mechanism for submission on Windows since Gen8, and it has proven very reliable. This is in large part because it is simple, and designed from day 1 as a cohesive solution alongside the hardware.
+
+There are going to be differences in the usage patterns that i915 and
+Windows will hit when it comes to the subtle details of how we bang on
+the GuC rings.  Those will likely lead to bugs on Linux that don't
+show up on Windows so "it works on Windows" doesn't mean we're headed
+for a bug-free future.  It means we have an existence proof that
+firmware-based submission can be very reliable.  However, I don't
+think anyone on this thread is really questioning that.
+
+> Exactly, the GuC was designed with Windows' GPU model... which is not
+> directly applicable to Linux. Also, Windows does not care as much about
+> submission latency, whereas most Linux users still depend on glamor for
+> 2D acceleration which is pretty much the biggest stress test for command
+> submission latency. Also, features not used by the Windows driver or
+> used in a different way are/will get broken (see the semaphore patch
+> that works around it).
+
+I'm not nearly as deep into benchmarking the delta as you are so I
+won't contradict anything said directly.  However, I think it's worth
+pointing out a few things:
+
+There isn't really a Windows GPU model.  There's a different
+submission model with Win10 vs. Win7 and Linux looks a lot more like
+Win7.  I really want Linux to start looking like Win10 at which point
+they'll be using roughly the same "GPU model".  There are other OS
+differences that matter here such as Windows' substantially higher
+interrupt handling latency which GuC theoretically works around.
+However, I don't think it's fair to say that the way Linux wants to
+program the GPU for command submission is substantially different from
+Windows due to userspace software differences.
+
+There are significant differences in terms of dma_fence handling and
+implicit synchronization.  However, as has already been mentioned,
+those will be handled by drm/scheduler with GuC as a back-end that
+manages load-balancing.  And, yes, there will be Linux-specific bugs
+(see above) but they're not because of a fundamentally different
+model.
+
+One other thing worth mentioning, which doesn't seem to fit anywhere:
+If we really care about keeping execlists working for the upcoming
+use-cases, it needs major work.  It's currently way too deeply tied
+with i915_sw_fence so it can't handle long-running compute batches
+without breaking dma-fence rules.  The way it handles bonded submit is
+a bolt-on that doesn't actually provide the guarantees that userspace
+needs.  It should also probably be re-architected to use drm/scheduler
+for dma_fence and look a lot more like GuC on the inside.
+
+The point of bringing this up is that I'm seeing a lot more execlist
+love than I think it deserves. :-)  It may be free software but that
+doesn't mean it's good software. :-P  To be clear, I don't mean to
+unduly insult Chris or any of the other people who have worked on it.
+It works and it's perfectly functional for supporting all the good ol'
+use-cases us desktop Linux people are used to.  But the ways in which
+it would have to change in order to handle the future are substantial.
+
+--Jason
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
