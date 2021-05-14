@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94600380E54
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 18:40:13 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC7C6380E69
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 18:48:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E736D6F3A1;
-	Fri, 14 May 2021 16:40:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDFBC6E226;
+	Fri, 14 May 2021 16:48:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 916596E20F;
- Fri, 14 May 2021 16:40:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 83700A00E6;
- Fri, 14 May 2021 16:40:11 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B42E96E226;
+ Fri, 14 May 2021 16:48:42 +0000 (UTC)
+IronPort-SDR: wzNBkpqQUNKYNK6zaP6aMAvoYxttqo6NA3IRD5ROgI9xllF4nJLpucIPFEMQ3O9DYchpYTlMLZ
+ ru1Pegyfs8hw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="180482261"
+X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="180482261"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2021 09:48:41 -0700
+IronPort-SDR: VFOJcdPwSYg3ucr6thJOTDuAq7iSruR8eg/3c3Y3J8Rd9XdsyqjBftIaABBimccTERbZjhVcLC
+ QW8ZzpIdNtTw==
+X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="610821378"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2021 09:48:41 -0700
+Date: Fri, 14 May 2021 09:41:25 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20210514164125.GA826@sdutt-i7>
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+ <d5695c6d-2dc9-2ea3-9491-2a12468e68a2@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 14 May 2021 16:40:11 -0000
-Message-ID: <162101041153.21336.4432768551667364816@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210514153711.2359617-1-matthew.d.roper@intel.com>
-In-Reply-To: <20210514153711.2359617-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Another_batch_of_reviewed_XeLPD_/_ADL-P_patches?=
+Content-Disposition: inline
+In-Reply-To: <d5695c6d-2dc9-2ea3-9491-2a12468e68a2@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [RFC PATCH 00/97] Basic GuC submission support in
+ the i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,78 +49,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, May 14, 2021 at 12:11:56PM +0100, Tvrtko Ursulin wrote:
+> 
+> On 06/05/2021 20:13, Matthew Brost wrote:
+> > Basic GuC submission support. This is the first bullet point in the
+> > upstreaming plan covered in the following RFC [1].
+> > 
+> > At a very high level the GuC is a piece of firmware which sits between
+> > the i915 and the GPU. It offloads some of the scheduling of contexts
+> > from the i915 and programs the GPU to submit contexts. The i915
+> > communicates with the GuC and the GuC communicates with the GPU.
+> > 
+> > GuC submission will be disabled by default on all current upstream
+> > platforms behind a module parameter - enable_guc. A value of 3 will
+> > enable submission and HuC loading via the GuC. GuC submission should
+> > work on all gen11+ platforms assuming the GuC firmware is present.
+> 
+> Some thoughts mostly relating to future platforms where GuC will be the only
+> option, and to some extent platforms where it will be possible to turn it on
+> for one reason or another.
+> 
+> Debuggability - in the context of having an upstream way/tool for capturing
+> and viewing GuC logs usable for attaching to bug reports.
+> 
 
-Series: Another batch of reviewed XeLPD / ADL-P patches
-URL   : https://patchwork.freedesktop.org/series/90169/
-State : warning
+Agree. We have discussed this internally as an upstream requirement for quite
+sometime. 
 
-== Summary ==
+> Currently i915 logs, can provide traces via tracepoints and trace printk,
+> and GPU error capture state, which provides often sufficient trail of
+> evidence to debug issues.
+> 
 
-$ dim sparse --fast origin/drm-tip
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
--
-+drivers/gpu/drm/i915/display/intel_display.c:1887:21:    expected struct i915_vma *[assigned] vma
-+drivers/gpu/drm/i915/display/intel_display.c:1887:21:    got void [noderef] __iomem *[assigned] iomem
-+drivers/gpu/drm/i915/display/intel_display.c:1887:21: warning: incorrect type in assignment (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:27:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:32:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:49:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_engine_stats.h:56:9: warning: trying to copy expression type 31
-+drivers/gpu/drm/i915/gt/intel_reset.c:1329:5: warning: context imbalance in 'intel_gt_reset_trylock' - different lock contexts for basic block
-+drivers/gpu/drm/i915/gt/intel_ring_submission.c:1203:24: warning: Using plain integer as NULL pointer
-+drivers/gpu/drm/i915/i915_perf.c:1434:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/i915_perf.c:1488:15: warning: memset with byte count of 16777216
-+drivers/gpu/drm/i915/intel_wakeref.c:137:19: warning: context imbalance in 'wakeref_auto_timeout' - unexpected unlock
-+./include/asm-generic/bitops/find.h:112:45: warning: shift count is negative (-262080)
-+./include/asm-generic/bitops/find.h:32:31: warning: shift count is negative (-262080)
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen11_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen12_fwtable_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read64' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_read8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen6_write8' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write16' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write32' - different lock contexts for basic block
-+./include/linux/spinlock.h:409:9: warning: context imbalance in 'gen8_write8' - different lock contexts for basic block
+If we do this right, we should have something the same with GuC submission.
 
+> We need to make sure GuC does is not a black box in this respect. By this I
+> mean it does not hide a large portion of the execution flows from upstream
+> observability.
+> 
+> This could mean a tool in IGT to access/capture GuC logs and update bug
+> filing instructions.
+> 
 
+We have a few internal tools decode the GuC logs. One of these tools will be
+open sourced and on a public repo. We just need to decide which tool and make
+sure that tool works across all the distros.
+
+> Leading from here is probably the need for the GuC firmware team to cross
+> the internal-upstream boundary and deal with such bug reports on upstream
+> trackers. Upstream GuC is unlikely to work if we don't have such plan and
+> commitment.
+> 
+
+I think we can land this code first as it is going be disabled by default.
+Certainly once we turn it on by default we need to have everything in place that
+you mention in this email.
+
+> Also leading from here is the need for GPU error capture to be on par from
+> day one which is I believe still not there in the firmware.
+>
+
+We are missing a register dump from the GuC on reset. No other way to say this
+than this has been huge miss by the i915 / GuC teams. This is something we
+absolutely need and it hasn't gotten done. I'll push on this and hopefully we
+can land this feature soon.
+
+> Another, although unrelated, missing feature on my wish list is firmware
+> support for wiring up accurate engine busyness stats to i915 PMU. I believe
+> this is also being worked on but I don't know when is the expected delivery.
+>
+
+This is landing this week I believe. Next upstream post should include an
+updated GuC firmware + code in the i915 that hooks into the PMU stats.
+
+Matt
+
+> If we are tracking a TODO list of items somewhere I think these ones should
+> be definitely considered.
+> 
+> Regards,
+> 
+> Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
