@@ -2,62 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59D4038082F
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 13:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C75380832
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 13:12:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B5DA6E0CB;
-	Fri, 14 May 2021 11:11:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBAF96E1B7;
+	Fri, 14 May 2021 11:12:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FEB36E0CB
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 11:11:27 +0000 (UTC)
-IronPort-SDR: AjbbtsfNlA9gwl+rz3laA3qzSeDU1xMa6AmUZNDIC35f7eIrCr3WkQja4RmmVG6aXFiOxxSTpK
- qHxkpxZXSeCw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9983"; a="261396350"
-X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="261396350"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2021 04:11:24 -0700
-IronPort-SDR: M+Nv9Fhzj/IlTluDfTo4C9PcUyUEB9AyNFBBJKw44pxgOU5Ulj4zTaUGhniau6GsS3MwTfwjZR
- vYEbSmTop08Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="392645856"
-Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
- by orsmga003.jf.intel.com with ESMTP; 14 May 2021 04:11:24 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 14 May 2021 04:11:24 -0700
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Fri, 14 May 2021 04:11:23 -0700
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
- IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2106.013;
- Fri, 14 May 2021 12:11:21 +0100
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 46/48] drm/i915/display/adl_p: Implement
- Wa_22011320316
-Thread-Index: AQHXQ7H85mZMW1lrXkyBfiNdDLRss6ri3CuA
-Date: Fri, 14 May 2021 11:11:21 +0000
-Message-ID: <f09801332bd2470398a43b8441b6e3f3@intel.com>
-References: <20210508022820.780227-1-matthew.d.roper@intel.com>
- <20210508022820.780227-47-matthew.d.roper@intel.com>
-In-Reply-To: <20210508022820.780227-47-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.6.0.76
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-x-originating-ip: [163.33.253.164]
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8659D6EE52;
+ Fri, 14 May 2021 11:12:02 +0000 (UTC)
+IronPort-SDR: tiUiHcU4gw0/OyMH3+4uxXfcxFhlRSVNSJUEfV3f96c9MwUDi3WUAtoM779qZeDJ5S6/8AjRkN
+ nCDm3j3osw2g==
+X-IronPort-AV: E=McAfee;i="6200,9189,9983"; a="179757135"
+X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="179757135"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2021 04:12:01 -0700
+IronPort-SDR: tGeCVerlNCsVT6HWquh+rnOvu/wufU/Tt/pquuyf99FMeLweFxH81WOxNRAmUuOjyzvE8VvIz+
+ S54St88rfsoQ==
+X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="393589143"
+Received: from ankitsi2-mobl.ger.corp.intel.com (HELO [10.213.242.91])
+ ([10.213.242.91])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2021 04:11:59 -0700
+To: Matthew Brost <matthew.brost@intel.com>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+References: <20210506191451.77768-1-matthew.brost@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <d5695c6d-2dc9-2ea3-9491-2a12468e68a2@linux.intel.com>
+Date: Fri, 14 May 2021 12:11:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 46/48] drm/i915/display/adl_p: Implement
- Wa_22011320316
+In-Reply-To: <20210506191451.77768-1-matthew.brost@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC PATCH 00/97] Basic GuC submission support in
+ the i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,67 +52,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIE1hdHQNCj4gUm9w
-ZXINCj4gU2VudDogU2F0dXJkYXksIE1heSA4LCAyMDIxIDU6MjggQU0NCj4gVG86IGludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogW0ludGVsLWdmeF0gW1BBVENIIHYz
-IDQ2LzQ4XSBkcm0vaTkxNS9kaXNwbGF5L2FkbF9wOiBJbXBsZW1lbnQNCj4gV2FfMjIwMTEzMjAz
-MTYNCj4gDQo+IEZyb206IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwu
-Y29tPg0KPiANCj4gSW1wbGVtZW50YXRpb24gZGV0YWlscyBhcmUgaW4gdGhlIEhTRCAyMjAxMTMy
-MDMxNiwgcmVxdWlyaW5nIENEIGNsb2NrIHRvIGJlDQo+IGF0IGxlYXN0IDMwN01IeiB0byBtYWtl
-IERDIHN0YXRlcyB0byB3b3JrLg0KPiANCj4gQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3Bl
-ckBpbnRlbC5jb20+DQo+IENjOiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRl
-bC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291
-emFAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBDbGludG9uIFRheWxvciA8Q2xpbnRvbi5B
-LlRheWxvckBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcu
-ZC5yb3BlckBpbnRlbC5jb20+DQoNClJldmlld2VkLWJ5OiBNaWthIEthaG9sYSA8bWlrYS5rYWhv
-bGFAaW50ZWwuY29tPg0KDQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9jZGNsay5jIHwgMjEgKysrKysrKysrKysrKysrKysrKystDQo+ICAxIGZpbGUgY2hhbmdl
-ZCwgMjAgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYw0KPiBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYw0KPiBpbmRleCBjOWYxNDg0ZjM4MTEuLjQ2
-NTZhNmVkYzNiZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9jZGNsay5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-Y2RjbGsuYw0KPiBAQCAtMTI1Myw2ICsxMjUzLDIxIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50
-ZWxfY2RjbGtfdmFscw0KPiBya2xfY2RjbGtfdGFibGVbXSA9IHsNCj4gIAl7fQ0KPiAgfTsNCj4g
-DQo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2NkY2xrX3ZhbHMgYWRscF9hX3N0ZXBfY2Rj
-bGtfdGFibGVbXSA9IHsNCj4gKwl7IC5yZWZjbGsgPSAxOTIwMCwgLmNkY2xrID0gMzA3MjAwLCAu
-ZGl2aWRlciA9IDIsIC5yYXRpbyA9IDMyIH0sDQo+ICsJeyAucmVmY2xrID0gMTkyMDAsIC5jZGNs
-ayA9IDU1NjgwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSA1OCB9LA0KPiArCXsgLnJlZmNsayA9
-IDE5MjAwLCAuY2RjbGsgPSA2NTI4MDAsIC5kaXZpZGVyID0gMiwgLnJhdGlvID0gNjggfSwNCj4g
-Kw0KPiArCXsgLnJlZmNsayA9IDI0MDAwLCAuY2RjbGsgPSAzMTIwMDAsIC5kaXZpZGVyID0gMiwg
-LnJhdGlvID0gMjYgfSwNCj4gKwl7IC5yZWZjbGsgPSAyNDAwMCwgLmNkY2xrID0gNTUyMDAwLCAu
-ZGl2aWRlciA9IDIsIC5yYXRpbyA9IDQ2IH0sDQo+ICsJeyAucmVmY2xrID0gMjQ0MDAsIC5jZGNs
-ayA9IDY0ODAwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSA1NCB9LA0KPiArDQo+ICsJeyAucmVm
-Y2xrID0gMzg0MDAsIC5jZGNsayA9IDMwNzIwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSAxNiB9
-LA0KPiArCXsgLnJlZmNsayA9IDM4NDAwLCAuY2RjbGsgPSA1NTY4MDAsIC5kaXZpZGVyID0gMiwg
-LnJhdGlvID0gMjkgfSwNCj4gKwl7IC5yZWZjbGsgPSAzODQwMCwgLmNkY2xrID0gNjUyODAwLCAu
-ZGl2aWRlciA9IDIsIC5yYXRpbyA9IDM0IH0sDQo+ICsJe30NCj4gK307DQo+ICsNCj4gIHN0YXRp
-YyBjb25zdCBzdHJ1Y3QgaW50ZWxfY2RjbGtfdmFscyBhZGxwX2NkY2xrX3RhYmxlW10gPSB7DQo+
-ICAJeyAucmVmY2xrID0gMTkyMDAsIC5jZGNsayA9IDE3MjgwMCwgLmRpdmlkZXIgPSAzLCAucmF0
-aW8gPSAyNyB9LA0KPiAgCXsgLnJlZmNsayA9IDE5MjAwLCAuY2RjbGsgPSAxOTIwMDAsIC5kaXZp
-ZGVyID0gMiwgLnJhdGlvID0gMjAgfSwgQEAgLQ0KPiAyODAxLDcgKzI4MTYsMTEgQEAgdm9pZCBp
-bnRlbF9pbml0X2NkY2xrX2hvb2tzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlDQo+ICpkZXZfcHJp
-dikNCj4gIAkJZGV2X3ByaXYtPmRpc3BsYXkuYndfY2FsY19taW5fY2RjbGsgPQ0KPiBza2xfYndf
-Y2FsY19taW5fY2RjbGs7DQo+ICAJCWRldl9wcml2LT5kaXNwbGF5Lm1vZGVzZXRfY2FsY19jZGNs
-ayA9DQo+IGJ4dF9tb2Rlc2V0X2NhbGNfY2RjbGs7DQo+ICAJCWRldl9wcml2LT5kaXNwbGF5LmNh
-bGNfdm9sdGFnZV9sZXZlbCA9IHRnbF9jYWxjX3ZvbHRhZ2VfbGV2ZWw7DQo+IC0JCWRldl9wcml2
-LT5jZGNsay50YWJsZSA9IGFkbHBfY2RjbGtfdGFibGU7DQo+ICsJCS8qIFdhXzIyMDExMzIwMzE2
-OmFkbHBbYTBdICovDQo+ICsJCWlmIChJU19BRExQX0RJU1BMQVlfU1RFUChkZXZfcHJpdiwgU1RF
-UF9BMCwgU1RFUF9BMCkpDQo+ICsJCQlkZXZfcHJpdi0+Y2RjbGsudGFibGUgPSBhZGxwX2Ffc3Rl
-cF9jZGNsa190YWJsZTsNCj4gKwkJZWxzZQ0KPiArCQkJZGV2X3ByaXYtPmNkY2xrLnRhYmxlID0g
-YWRscF9jZGNsa190YWJsZTsNCj4gIAl9IGVsc2UgaWYgKElTX1JPQ0tFVExBS0UoZGV2X3ByaXYp
-KSB7DQo+ICAJCWRldl9wcml2LT5kaXNwbGF5LnNldF9jZGNsayA9IGJ4dF9zZXRfY2RjbGs7DQo+
-ICAJCWRldl9wcml2LT5kaXNwbGF5LmJ3X2NhbGNfbWluX2NkY2xrID0NCj4gc2tsX2J3X2NhbGNf
-bWluX2NkY2xrOw0KPiAtLQ0KPiAyLjI1LjQNCj4gDQo+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fDQo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QNCj4gSW50
-ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+On 06/05/2021 20:13, Matthew Brost wrote:
+> Basic GuC submission support. This is the first bullet point in the
+> upstreaming plan covered in the following RFC [1].
+> 
+> At a very high level the GuC is a piece of firmware which sits between
+> the i915 and the GPU. It offloads some of the scheduling of contexts
+> from the i915 and programs the GPU to submit contexts. The i915
+> communicates with the GuC and the GuC communicates with the GPU.
+> 
+> GuC submission will be disabled by default on all current upstream
+> platforms behind a module parameter - enable_guc. A value of 3 will
+> enable submission and HuC loading via the GuC. GuC submission should
+> work on all gen11+ platforms assuming the GuC firmware is present.
+
+Some thoughts mostly relating to future platforms where GuC will be the 
+only option, and to some extent platforms where it will be possible to 
+turn it on for one reason or another.
+
+Debuggability - in the context of having an upstream way/tool for 
+capturing and viewing GuC logs usable for attaching to bug reports.
+
+Currently i915 logs, can provide traces via tracepoints and trace 
+printk, and GPU error capture state, which provides often sufficient 
+trail of evidence to debug issues.
+
+We need to make sure GuC does is not a black box in this respect. By 
+this I mean it does not hide a large portion of the execution flows from 
+upstream observability.
+
+This could mean a tool in IGT to access/capture GuC logs and update bug 
+filing instructions.
+
+Leading from here is probably the need for the GuC firmware team to 
+cross the internal-upstream boundary and deal with such bug reports on 
+upstream trackers. Upstream GuC is unlikely to work if we don't have 
+such plan and commitment.
+
+Also leading from here is the need for GPU error capture to be on par 
+from day one which is I believe still not there in the firmware.
+
+Another, although unrelated, missing feature on my wish list is firmware 
+support for wiring up accurate engine busyness stats to i915 PMU. I 
+believe this is also being worked on but I don't know when is the 
+expected delivery.
+
+If we are tracking a TODO list of items somewhere I think these ones 
+should be definitely considered.
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
