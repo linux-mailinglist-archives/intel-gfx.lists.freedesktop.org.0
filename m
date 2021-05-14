@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B36413813FF
-	for <lists+intel-gfx@lfdr.de>; Sat, 15 May 2021 00:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 791E43813FE
+	for <lists+intel-gfx@lfdr.de>; Sat, 15 May 2021 00:57:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E229E6E33F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECDCD6E4B6;
 	Fri, 14 May 2021 22:57:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E277E6E33F
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 22:57:43 +0000 (UTC)
-IronPort-SDR: 4yUDZ829YkWVPMTEFh16To3MEzOGyMM84XK4nei+6dUQb1jyBTZcAk8oIistRTwPRqiQFZ2SlW
- tcqYZdFRWx9w==
-X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="198292162"
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="198292162"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 829856E33F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 22:57:44 +0000 (UTC)
+IronPort-SDR: Yy2SugGCPYU+rjKgLT6AEGZM17XZZNaOGJmzQt5cGPgODKpUd0THMQkqKDWFGzhHxBWrGQtolG
+ 4phjlQz8rXCQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="198292165"
+X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="198292165"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2021 15:57:43 -0700
-IronPort-SDR: Dz7cT4P6DIuMWzZes6nPGrym0WjPXxcHnerMKmAPsN84zgef/zW4JsdiV7EmnE2enl3kxpypjb
- ZsMT30qGEXDQ==
+ 14 May 2021 15:57:44 -0700
+IronPort-SDR: 43EwBm0/ivi6c6t8w+Yuv7i48wXqQ5+ju+kv0duBQDG4xCrT8o/vb/HWwyQS1vNGNIMQLOKiT4
+ X/Exd9uIzr9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="402509877"
+X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="402509881"
 Received: from anushasr-mobl6.jf.intel.com ([10.165.21.155])
- by fmsmga007.fm.intel.com with ESMTP; 14 May 2021 15:57:43 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 14 May 2021 15:57:44 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 May 2021 15:57:38 -0700
-Message-Id: <20210514225739.24201-5-anusha.srivatsa@intel.com>
+Date: Fri, 14 May 2021 15:57:39 -0700
+Message-Id: <20210514225739.24201-6-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20210514225739.24201-1-anusha.srivatsa@intel.com>
 References: <20210514225739.24201-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/5] drm/i915/dmc: Rename functions names having
- "csr"
+Subject: [Intel-gfx] [PATCH 5/5] drm/i915/dmc: s/intel_csr.c/intel_dmc.c and
+ s/intel_csr.h/intel_dmc.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,418 +47,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No functional change.
-
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_csr.c      | 64 +++++++++----------
- drivers/gpu/drm/i915/display/intel_csr.h      | 10 +--
- drivers/gpu/drm/i915/display/intel_display.c  | 14 ++--
- .../drm/i915/display/intel_display_power.c    | 14 ++--
- drivers/gpu/drm/i915/i915_drv.c               |  6 +-
- 5 files changed, 54 insertions(+), 54 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
-index 0ebab244930d..f6a04a853682 100644
---- a/drivers/gpu/drm/i915/display/intel_csr.c
-+++ b/drivers/gpu/drm/i915/display/intel_csr.c
-@@ -302,14 +302,14 @@ static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
- }
- 
- /**
-- * intel_csr_load_program() - write the firmware from memory to register.
-+ * intel_dmc_load_program() - write the firmware from memory to register.
-  * @dev_priv: i915 drm device.
-  *
-- * CSR firmware is read from a .bin file and kept in internal memory one time.
-+ * DMC firmware is read from a .bin file and kept in internal memory one time.
-  * Everytime display comes back from low power state this function is called to
-  * copy the firmware from internal memory to registers.
-  */
--void intel_csr_load_program(struct drm_i915_private *dev_priv)
-+void intel_dmc_load_program(struct drm_i915_private *dev_priv)
- {
- 	u32 *payload = dev_priv->dmc.dmc_payload;
- 	u32 i, fw_size;
-@@ -391,9 +391,9 @@ static u32 find_dmc_fw_offset(const struct intel_fw_info *fw_info,
- 	return dmc_offset;
- }
- 
--static u32 parse_csr_fw_dmc(struct intel_dmc *dmc,
--			    const struct intel_dmc_header_base *dmc_header,
--			    size_t rem_size)
-+static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
-+			       const struct intel_dmc_header_base *dmc_header,
-+			       size_t rem_size)
- {
- 	unsigned int header_len_bytes, dmc_header_size, payload_size, i;
- 	const u32 *mmioaddr, *mmiodata;
-@@ -498,7 +498,7 @@ static u32 parse_csr_fw_dmc(struct intel_dmc *dmc,
- }
- 
- static u32
--parse_csr_fw_package(struct intel_dmc *dmc,
-+parse_dmc_fw_package(struct intel_dmc *dmc,
- 		     const struct intel_package_header *package_header,
- 		     const struct stepping_info *si,
- 		     size_t rem_size)
-@@ -557,7 +557,7 @@ parse_csr_fw_package(struct intel_dmc *dmc,
- }
- 
- /* Return number of bytes parsed or 0 on error */
--static u32 parse_csr_fw_css(struct intel_dmc *dmc,
-+static u32 parse_dmc_fw_css(struct intel_dmc *dmc,
- 			    struct intel_css_header *css_header,
- 			    size_t rem_size)
- {
-@@ -590,7 +590,7 @@ static u32 parse_csr_fw_css(struct intel_dmc *dmc,
- 	return sizeof(struct intel_css_header);
- }
- 
--static void parse_csr_fw(struct drm_i915_private *dev_priv,
-+static void parse_dmc_fw(struct drm_i915_private *dev_priv,
- 			 const struct firmware *fw)
- {
- 	struct intel_css_header *css_header;
-@@ -606,7 +606,7 @@ static void parse_csr_fw(struct drm_i915_private *dev_priv,
- 
- 	/* Extract CSS Header information */
- 	css_header = (struct intel_css_header *)fw->data;
--	r = parse_csr_fw_css(dmc, css_header, fw->size);
-+	r = parse_dmc_fw_css(dmc, css_header, fw->size);
- 	if (!r)
- 		return;
- 
-@@ -614,7 +614,7 @@ static void parse_csr_fw(struct drm_i915_private *dev_priv,
- 
- 	/* Extract Package Header information */
- 	package_header = (struct intel_package_header *)&fw->data[readcount];
--	r = parse_csr_fw_package(dmc, package_header, si, fw->size - readcount);
-+	r = parse_dmc_fw_package(dmc, package_header, si, fw->size - readcount);
- 	if (!r)
- 		return;
- 
-@@ -622,17 +622,17 @@ static void parse_csr_fw(struct drm_i915_private *dev_priv,
- 
- 	/* Extract dmc_header information */
- 	dmc_header = (struct intel_dmc_header_base *)&fw->data[readcount];
--	parse_csr_fw_dmc(dmc, dmc_header, fw->size - readcount);
-+	parse_dmc_fw_header(dmc, dmc_header, fw->size - readcount);
- }
- 
--static void intel_csr_runtime_pm_get(struct drm_i915_private *dev_priv)
-+static void intel_dmc_runtime_pm_get(struct drm_i915_private *dev_priv)
- {
- 	drm_WARN_ON(&dev_priv->drm, dev_priv->dmc.wakeref);
- 	dev_priv->dmc.wakeref =
- 		intel_display_power_get(dev_priv, POWER_DOMAIN_INIT);
- }
- 
--static void intel_csr_runtime_pm_put(struct drm_i915_private *dev_priv)
-+static void intel_dmc_runtime_pm_put(struct drm_i915_private *dev_priv)
- {
- 	intel_wakeref_t wakeref __maybe_unused =
- 		fetch_and_zero(&dev_priv->dmc.wakeref);
-@@ -640,7 +640,7 @@ static void intel_csr_runtime_pm_put(struct drm_i915_private *dev_priv)
- 	intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, wakeref);
- }
- 
--static void csr_load_work_fn(struct work_struct *work)
-+static void dmc_load_work_fn(struct work_struct *work)
- {
- 	struct drm_i915_private *dev_priv;
- 	struct intel_dmc *dmc;
-@@ -650,11 +650,11 @@ static void csr_load_work_fn(struct work_struct *work)
- 	dmc = &dev_priv->dmc;
- 
- 	request_firmware(&fw, dev_priv->dmc.fw_path, dev_priv->drm.dev);
--	parse_csr_fw(dev_priv, fw);
-+	parse_dmc_fw(dev_priv, fw);
- 
- 	if (dev_priv->dmc.dmc_payload) {
--		intel_csr_load_program(dev_priv);
--		intel_csr_runtime_pm_put(dev_priv);
-+		intel_dmc_load_program(dev_priv);
-+		intel_dmc_runtime_pm_put(dev_priv);
- 
- 		drm_info(&dev_priv->drm,
- 			 "Finished loading DMC firmware %s (v%u.%u)\n",
-@@ -673,17 +673,17 @@ static void csr_load_work_fn(struct work_struct *work)
- }
- 
- /**
-- * intel_csr_ucode_init() - initialize the firmware loading.
-+ * intel_dmc_ucode_init() - initialize the firmware loading.
-  * @dev_priv: i915 drm device.
-  *
-  * This function is called at the time of loading the display driver to read
-  * firmware from a .bin file and copied into a internal memory.
-  */
--void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
-+void intel_dmc_ucode_init(struct drm_i915_private *dev_priv)
- {
- 	struct intel_dmc *dmc = &dev_priv->dmc;
- 
--	INIT_WORK(&dev_priv->dmc.work, csr_load_work_fn);
-+	INIT_WORK(&dev_priv->dmc.work, dmc_load_work_fn);
- 
- 	if (!HAS_DMC(dev_priv))
- 		return;
-@@ -696,7 +696,7 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
- 	 * suspend as runtime suspend *requires* a working DMC for whatever
- 	 * reason.
- 	 */
--	intel_csr_runtime_pm_get(dev_priv);
-+	intel_dmc_runtime_pm_get(dev_priv);
- 
- 	if (IS_ALDERLAKE_S(dev_priv)) {
- 		dmc->fw_path = ADLS_DMC_PATH;
-@@ -766,14 +766,14 @@ void intel_csr_ucode_init(struct drm_i915_private *dev_priv)
- }
- 
- /**
-- * intel_csr_ucode_suspend() - prepare CSR firmware before system suspend
-+ * intel_dmc_ucode_suspend() - prepare DMC firmware before system suspend
-  * @dev_priv: i915 drm device
-  *
-  * Prepare the DMC firmware before entering system suspend. This includes
-  * flushing pending work items and releasing any resources acquired during
-  * init.
-  */
--void intel_csr_ucode_suspend(struct drm_i915_private *dev_priv)
-+void intel_dmc_ucode_suspend(struct drm_i915_private *dev_priv)
- {
- 	if (!HAS_DMC(dev_priv))
- 		return;
-@@ -782,17 +782,17 @@ void intel_csr_ucode_suspend(struct drm_i915_private *dev_priv)
- 
- 	/* Drop the reference held in case DMC isn't loaded. */
- 	if (!dev_priv->dmc.dmc_payload)
--		intel_csr_runtime_pm_put(dev_priv);
-+		intel_dmc_runtime_pm_put(dev_priv);
- }
- 
- /**
-- * intel_csr_ucode_resume() - init CSR firmware during system resume
-+ * intel_dmc_ucode_resume() - init DMC firmware during system resume
-  * @dev_priv: i915 drm device
-  *
-  * Reinitialize the DMC firmware during system resume, reacquiring any
-- * resources released in intel_csr_ucode_suspend().
-+ * resources released in intel_dmc_ucode_suspend().
-  */
--void intel_csr_ucode_resume(struct drm_i915_private *dev_priv)
-+void intel_dmc_ucode_resume(struct drm_i915_private *dev_priv)
- {
- 	if (!HAS_DMC(dev_priv))
- 		return;
-@@ -802,22 +802,22 @@ void intel_csr_ucode_resume(struct drm_i915_private *dev_priv)
- 	 * loaded.
- 	 */
- 	if (!dev_priv->dmc.dmc_payload)
--		intel_csr_runtime_pm_get(dev_priv);
-+		intel_dmc_runtime_pm_get(dev_priv);
- }
- 
- /**
-- * intel_csr_ucode_fini() - unload the CSR firmware.
-+ * intel_dmc_ucode_fini() - unload the DMC firmware.
-  * @dev_priv: i915 drm device.
-  *
-  * Firmmware unloading includes freeing the internal memory and reset the
-  * firmware loading status.
-  */
--void intel_csr_ucode_fini(struct drm_i915_private *dev_priv)
-+void intel_dmc_ucode_fini(struct drm_i915_private *dev_priv)
- {
- 	if (!HAS_DMC(dev_priv))
- 		return;
- 
--	intel_csr_ucode_suspend(dev_priv);
-+	intel_dmc_ucode_suspend(dev_priv);
- 	drm_WARN_ON(&dev_priv->drm, dev_priv->dmc.wakeref);
- 
- 	kfree(dev_priv->dmc.dmc_payload);
-diff --git a/drivers/gpu/drm/i915/display/intel_csr.h b/drivers/gpu/drm/i915/display/intel_csr.h
-index 984e9fb250f8..fc4960b91686 100644
---- a/drivers/gpu/drm/i915/display/intel_csr.h
-+++ b/drivers/gpu/drm/i915/display/intel_csr.h
-@@ -12,10 +12,10 @@ struct drm_i915_private;
- #define DMC_VERSION_MAJOR(version)	((version) >> 16)
- #define DMC_VERSION_MINOR(version)	((version) & 0xffff)
- 
--void intel_csr_ucode_init(struct drm_i915_private *i915);
--void intel_csr_load_program(struct drm_i915_private *i915);
--void intel_csr_ucode_fini(struct drm_i915_private *i915);
--void intel_csr_ucode_suspend(struct drm_i915_private *i915);
--void intel_csr_ucode_resume(struct drm_i915_private *i915);
-+void intel_dmc_ucode_init(struct drm_i915_private *i915);
-+void intel_dmc_load_program(struct drm_i915_private *i915);
-+void intel_dmc_ucode_fini(struct drm_i915_private *i915);
-+void intel_dmc_ucode_suspend(struct drm_i915_private *i915);
-+void intel_dmc_ucode_resume(struct drm_i915_private *i915);
- 
- #endif /* __INTEL_CSR_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0c2b194006f8..4efb5d28712c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -12144,7 +12144,7 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
- 	if (!HAS_DISPLAY(i915))
- 		return 0;
- 
--	intel_csr_ucode_init(i915);
-+	intel_dmc_ucode_init(i915);
- 
- 	i915->modeset_wq = alloc_ordered_workqueue("i915_modeset", 0);
- 	i915->flip_wq = alloc_workqueue("i915_flip", WQ_HIGHPRI |
-@@ -12156,15 +12156,15 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
- 
- 	ret = intel_cdclk_init(i915);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_csr;
-+		goto cleanup_vga_client_pw_domain_dmc;
- 
- 	ret = intel_dbuf_init(i915);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_csr;
-+		goto cleanup_vga_client_pw_domain_dmc;
- 
- 	ret = intel_bw_init(i915);
- 	if (ret)
--		goto cleanup_vga_client_pw_domain_csr;
-+		goto cleanup_vga_client_pw_domain_dmc;
- 
- 	init_llist_head(&i915->atomic_helper.free_list);
- 	INIT_WORK(&i915->atomic_helper.free_work,
-@@ -12176,8 +12176,8 @@ int intel_modeset_init_noirq(struct drm_i915_private *i915)
- 
- 	return 0;
- 
--cleanup_vga_client_pw_domain_csr:
--	intel_csr_ucode_fini(i915);
-+cleanup_vga_client_pw_domain_dmc:
-+	intel_dmc_ucode_fini(i915);
- 	intel_power_domains_driver_remove(i915);
- 	intel_vga_unregister(i915);
- cleanup_bios:
-@@ -13256,7 +13256,7 @@ void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915)
- /* part #3: call after gem init */
- void intel_modeset_driver_remove_nogem(struct drm_i915_private *i915)
- {
--	intel_csr_ucode_fini(i915);
-+	intel_dmc_ucode_fini(i915);
- 
- 	intel_power_domains_driver_remove(i915);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index de58abdd838b..cbba41d3e6cf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -958,7 +958,7 @@ static void bxt_disable_dc9(struct drm_i915_private *dev_priv)
- 	intel_pps_unlock_regs_wa(dev_priv);
- }
- 
--static void assert_csr_loaded(struct drm_i915_private *dev_priv)
-+static void assert_dmc_loaded(struct drm_i915_private *dev_priv)
- {
- 	drm_WARN_ONCE(&dev_priv->drm,
- 		      !intel_de_read(dev_priv, DMC_PROGRAM(0)),
-@@ -1057,7 +1057,7 @@ static void assert_can_enable_dc5(struct drm_i915_private *dev_priv)
- 		      "DC5 already programmed to be enabled.\n");
- 	assert_rpm_wakelock_held(&dev_priv->runtime_pm);
- 
--	assert_csr_loaded(dev_priv);
-+	assert_dmc_loaded(dev_priv);
- }
- 
- static void gen9_enable_dc5(struct drm_i915_private *dev_priv)
-@@ -1084,7 +1084,7 @@ static void assert_can_enable_dc6(struct drm_i915_private *dev_priv)
- 		       DC_STATE_EN_UPTO_DC6),
- 		      "DC6 already programmed to be enabled.\n");
- 
--	assert_csr_loaded(dev_priv);
-+	assert_dmc_loaded(dev_priv);
- }
- 
- static void skl_enable_dc6(struct drm_i915_private *dev_priv)
-@@ -5574,7 +5574,7 @@ static void skl_display_core_init(struct drm_i915_private *dev_priv,
- 	gen9_dbuf_enable(dev_priv);
- 
- 	if (resume && dev_priv->dmc.dmc_payload)
--		intel_csr_load_program(dev_priv);
-+		intel_dmc_load_program(dev_priv);
- }
- 
- static void skl_display_core_uninit(struct drm_i915_private *dev_priv)
-@@ -5641,7 +5641,7 @@ static void bxt_display_core_init(struct drm_i915_private *dev_priv, bool resume
- 	gen9_dbuf_enable(dev_priv);
- 
- 	if (resume && dev_priv->dmc.dmc_payload)
--		intel_csr_load_program(dev_priv);
-+		intel_dmc_load_program(dev_priv);
- }
- 
- static void bxt_display_core_uninit(struct drm_i915_private *dev_priv)
-@@ -5707,7 +5707,7 @@ static void cnl_display_core_init(struct drm_i915_private *dev_priv, bool resume
- 	gen9_dbuf_enable(dev_priv);
- 
- 	if (resume && dev_priv->dmc.dmc_payload)
--		intel_csr_load_program(dev_priv);
-+		intel_dmc_load_program(dev_priv);
- }
- 
- static void cnl_display_core_uninit(struct drm_i915_private *dev_priv)
-@@ -5864,7 +5864,7 @@ static void icl_display_core_init(struct drm_i915_private *dev_priv,
- 		tgl_bw_buddy_init(dev_priv);
- 
- 	if (resume && dev_priv->dmc.dmc_payload)
--		intel_csr_load_program(dev_priv);
-+		intel_dmc_load_program(dev_priv);
- 
- 	/* Wa_14011508470 */
- 	if (DISPLAY_VER(dev_priv) == 12) {
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 5118dc8386b2..f2a9583dfecc 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -1043,7 +1043,7 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
- 	intel_suspend_encoders(i915);
- 	intel_shutdown_encoders(i915);
- 
--	intel_csr_ucode_suspend(i915);
-+	intel_dmc_ucode_suspend(i915);
- 
- 	/*
- 	 * The only requirement is to reboot with display DC states disabled,
-@@ -1124,7 +1124,7 @@ static int i915_drm_suspend(struct drm_device *dev)
- 
- 	dev_priv->suspend_count++;
- 
--	intel_csr_ucode_suspend(dev_priv);
-+	intel_dmc_ucode_suspend(dev_priv);
- 
- 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 
-@@ -1226,7 +1226,7 @@ static int i915_drm_resume(struct drm_device *dev)
- 
- 	i915_ggtt_resume(&dev_priv->ggtt);
- 
--	intel_csr_ucode_resume(dev_priv);
-+	intel_dmc_ucode_resume(dev_priv);
- 
- 	i915_restore_display(dev_priv);
- 	intel_pps_unlock_regs_wa(dev_priv);
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RmluYWxseSwgcmVuYW1lIHRoZSBoZWFkZXIgYW5kIHNvdXJjZSBmaWxlIGZyb20gY3NyIHRvIGRt
+Yy4KCnYyOiBBZGQgZmlsZSByZW5hbWUgaW4gRG9jdW1lbnRhdGlvbi4KLSBQbGFjZSBoZWFkZXJz
+IGluIG9yZGVycy4gKEphbmkpCgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGxpbnV4Lmlu
+dGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogQW51c2hhIFNyaXZhdHNhIDxhbnVzaGEuc3JpdmF0c2FA
+aW50ZWwuY29tPgotLS0KIERvY3VtZW50YXRpb24vZ3B1L2k5MTUucnN0ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICB8IDYgKysrLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmls
+ZSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyAgICAgICAgICAgICAgfCAyICstCiBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdmcy5jICAgICAgfCAyICstCiBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYyAgICAgICAg
+fCAyICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3tpbnRlbF9jc3IuYyA9PiBpbnRl
+bF9kbWMuY30gfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3tpbnRlbF9jc3Iu
+aCA9PiBpbnRlbF9kbWMuaH0gfCA2ICsrKy0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
+cnYuYyAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9ncHVfZXJyb3IuYyAgICAgICAgICAgICAgICAgICAgIHwgMiArLQogOSBmaWxlcyBj
+aGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMoLSkKIHJlbmFtZSBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L3tpbnRlbF9jc3IuYyA9PiBpbnRlbF9kbWMuY30gKDk5JSkK
+IHJlbmFtZSBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3tpbnRlbF9jc3IuaCA9PiBpbnRl
+bF9kbWMuaH0gKDg4JSkKCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2dwdS9pOTE1LnJzdCBi
+L0RvY3VtZW50YXRpb24vZ3B1L2k5MTUucnN0CmluZGV4IDQ4NmM3MjBmMzg5MC4uZTc2MmI4ZTM0
+MTNlIDEwMDY0NAotLS0gYS9Eb2N1bWVudGF0aW9uL2dwdS9pOTE1LnJzdAorKysgYi9Eb2N1bWVu
+dGF0aW9uL2dwdS9pOTE1LnJzdApAQCAtMjEzLDEwICsyMTMsMTAgQEAgRFBJTwogQ1NSIGZpcm13
+YXJlIHN1cHBvcnQgZm9yIERNQwogLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogCi0uLiBr
+ZXJuZWwtZG9jOjogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYwotICAg
+OmRvYzogY3NyIHN1cHBvcnQgZm9yIGRtYworLi4ga2VybmVsLWRvYzo6IGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZG1jLmMKKyAgIDpkb2M6IERNQyBTdXBwb3J0CiAKLS4uIGtl
+cm5lbC1kb2M6OiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jCisuLiBr
+ZXJuZWwtZG9jOjogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kbWMuYwogICAg
+OmludGVybmFsOgogCiBWaWRlbyBCSU9TIFRhYmxlIChWQlQpCmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9NYWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlCmlu
+ZGV4IGQwZDkzNmQ5MTM3Yi4uMmRhNWJhZThmYTAzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9NYWtlZmlsZQorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQpAQCAt
+MjAxLDEwICsyMDEsMTAgQEAgaTkxNS15ICs9IFwKIAlkaXNwbGF5L2ludGVsX2NvbWJvX3BoeS5v
+IFwKIAlkaXNwbGF5L2ludGVsX2Nvbm5lY3Rvci5vIFwKIAlkaXNwbGF5L2ludGVsX2NydGMubyBc
+Ci0JZGlzcGxheS9pbnRlbF9jc3IubyBcCiAJZGlzcGxheS9pbnRlbF9jdXJzb3IubyBcCiAJZGlz
+cGxheS9pbnRlbF9kaXNwbGF5Lm8gXAogCWRpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5vIFwK
+KwlkaXNwbGF5L2ludGVsX2RtYy5vIFwKIAlkaXNwbGF5L2ludGVsX2RwaW9fcGh5Lm8gXAogCWRp
+c3BsYXkvaW50ZWxfZHBsbC5vIFwKIAlkaXNwbGF5L2ludGVsX2RwbGxfbWdyLm8gXApkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwppbmRleCA0ZWZiNWQyODcx
+MmMuLmVjZTI0NzI0MjE1MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kaXNwbGF5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5LmMKQEAgLTc5LDkgKzc5LDkgQEAKICNpbmNsdWRlICJpbnRlbF9jZGNsay5oIgog
+I2luY2x1ZGUgImludGVsX2NvbG9yLmgiCiAjaW5jbHVkZSAiaW50ZWxfY3J0Yy5oIgotI2luY2x1
+ZGUgImludGVsX2Nzci5oIgogI2luY2x1ZGUgImludGVsX2RlLmgiCiAjaW5jbHVkZSAiaW50ZWxf
+ZGlzcGxheV90eXBlcy5oIgorI2luY2x1ZGUgImludGVsX2RtYy5oIgogI2luY2x1ZGUgImludGVs
+X2RwX2xpbmtfdHJhaW5pbmcuaCIKICNpbmNsdWRlICJpbnRlbF9mYmMuaCIKICNpbmNsdWRlICJp
+bnRlbF9mZGkuaCIKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheV9kZWJ1Z2ZzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2Rpc3BsYXlfZGVidWdmcy5jCmluZGV4IDAxMzM3ZGQ5MWE3ZS4uNTc2M2M2OGI2MzQ0IDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfZGVidWdm
+cy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9kZWJ1
+Z2ZzLmMKQEAgLTcsMTEgKzcsMTEgQEAKICNpbmNsdWRlIDxkcm0vZHJtX2ZvdXJjYy5oPgogCiAj
+aW5jbHVkZSAiaTkxNV9kZWJ1Z2ZzLmgiCi0jaW5jbHVkZSAiaW50ZWxfY3NyLmgiCiAjaW5jbHVk
+ZSAiaW50ZWxfZGlzcGxheV9kZWJ1Z2ZzLmgiCiAjaW5jbHVkZSAiaW50ZWxfZGlzcGxheV9wb3dl
+ci5oIgogI2luY2x1ZGUgImludGVsX2RlLmgiCiAjaW5jbHVkZSAiaW50ZWxfZGlzcGxheV90eXBl
+cy5oIgorI2luY2x1ZGUgImludGVsX2RtYy5oIgogI2luY2x1ZGUgImludGVsX2RwLmgiCiAjaW5j
+bHVkZSAiaW50ZWxfZmJjLmgiCiAjaW5jbHVkZSAiaW50ZWxfaGRjcC5oIgpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYwppbmRleCBjYmJh
+NDFkM2U2Y2YuLmU4ZmNjM2QwMmQwMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMKQEAgLTksMTAgKzksMTAgQEAKICNpbmNsdWRl
+ICJpOTE1X2lycS5oIgogI2luY2x1ZGUgImludGVsX2NkY2xrLmgiCiAjaW5jbHVkZSAiaW50ZWxf
+Y29tYm9fcGh5LmgiCi0jaW5jbHVkZSAiaW50ZWxfY3NyLmgiCiAjaW5jbHVkZSAiaW50ZWxfZGlz
+cGxheV9wb3dlci5oIgogI2luY2x1ZGUgImludGVsX2RlLmgiCiAjaW5jbHVkZSAiaW50ZWxfZGlz
+cGxheV90eXBlcy5oIgorI2luY2x1ZGUgImludGVsX2RtYy5oIgogI2luY2x1ZGUgImludGVsX2Rw
+aW9fcGh5LmgiCiAjaW5jbHVkZSAiaW50ZWxfaG90cGx1Zy5oIgogI2luY2x1ZGUgImludGVsX3Bt
+LmgiCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5j
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kbWMuYwpzaW1pbGFyaXR5IGlu
+ZGV4IDk5JQpyZW5hbWUgZnJvbSBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nz
+ci5jCnJlbmFtZSB0byBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RtYy5jCmlu
+ZGV4IGY2YTA0YTg1MzY4Mi4uYjAyYTU5YTliZTgzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZG1jLmMKQEAgLTI2LDggKzI2LDggQEAKIAogI2luY2x1ZGUgImk5MTVfZHJ2
+LmgiCiAjaW5jbHVkZSAiaTkxNV9yZWcuaCIKLSNpbmNsdWRlICJpbnRlbF9jc3IuaCIKICNpbmNs
+dWRlICJpbnRlbF9kZS5oIgorI2luY2x1ZGUgImludGVsX2RtYy5oIgogCiAvKioKICAqIERPQzog
+RE1DIGZpcm13YXJlIHN1cHBvcnQKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfY3NyLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rt
+Yy5oCnNpbWlsYXJpdHkgaW5kZXggODglCnJlbmFtZSBmcm9tIGRyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfY3NyLmgKcmVuYW1lIHRvIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZG1jLmgKaW5kZXggZmM0OTYwYjkxNjg2Li41N2RkOTlkYTBjZWQgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3NyLmgKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kbWMuaApAQCAtMyw4ICszLDggQEAKICAqIENv
+cHlyaWdodCDCqSAyMDE5IEludGVsIENvcnBvcmF0aW9uCiAgKi8KIAotI2lmbmRlZiBfX0lOVEVM
+X0NTUl9IX18KLSNkZWZpbmUgX19JTlRFTF9DU1JfSF9fCisjaWZuZGVmIF9fSU5URUxfRE1DX0hf
+XworI2RlZmluZSBfX0lOVEVMX0RNQ19IX18KIAogc3RydWN0IGRybV9pOTE1X3ByaXZhdGU7CiAK
+QEAgLTE4LDQgKzE4LDQgQEAgdm9pZCBpbnRlbF9kbWNfdWNvZGVfZmluaShzdHJ1Y3QgZHJtX2k5
+MTVfcHJpdmF0ZSAqaTkxNSk7CiB2b2lkIGludGVsX2RtY191Y29kZV9zdXNwZW5kKHN0cnVjdCBk
+cm1faTkxNV9wcml2YXRlICppOTE1KTsKIHZvaWQgaW50ZWxfZG1jX3Vjb2RlX3Jlc3VtZShzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSk7CiAKLSNlbmRpZiAvKiBfX0lOVEVMX0NTUl9IX18g
+Ki8KKyNlbmRpZiAvKiBfX0lOVEVMX0RNQ19IX18gKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCmlu
+ZGV4IGYyYTk1ODNkZmVjYy4uMmYwNmJiN2IzZWQyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2Rydi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMK
+QEAgLTQ5LDcgKzQ5LDcgQEAKICNpbmNsdWRlICJkaXNwbGF5L2ludGVsX2FjcGkuaCIKICNpbmNs
+dWRlICJkaXNwbGF5L2ludGVsX2J3LmgiCiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9jZGNsay5o
+IgotI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxfY3NyLmgiCisjaW5jbHVkZSAiZGlzcGxheS9pbnRl
+bF9kbWMuaCIKICNpbmNsdWRlICJkaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCIKICNpbmNs
+dWRlICJkaXNwbGF5L2ludGVsX2RwLmgiCiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9mYmRldi5o
+IgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJyb3IuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ3B1X2Vycm9yLmMKaW5kZXggMGFmNWFiYzQ4MDkzLi5k
+ZjhkZDIyNjU1YWIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ3B1X2Vy
+cm9yLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJyb3IuYwpAQCAtMzYs
+NyArMzYsNyBAQAogCiAjaW5jbHVkZSA8ZHJtL2RybV9wcmludC5oPgogCi0jaW5jbHVkZSAiZGlz
+cGxheS9pbnRlbF9jc3IuaCIKKyNpbmNsdWRlICJkaXNwbGF5L2ludGVsX2RtYy5oIgogI2luY2x1
+ZGUgImRpc3BsYXkvaW50ZWxfb3ZlcmxheS5oIgogCiAjaW5jbHVkZSAiZ2VtL2k5MTVfZ2VtX2Nv
+bnRleHQuaCIKLS0gCjIuMjUuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+aW50ZWwtZ2Z4Cg==
