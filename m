@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D5D7380F66
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 20:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82CC3380F6D
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 20:07:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8389D6F3DA;
-	Fri, 14 May 2021 18:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CD136F3DF;
+	Fri, 14 May 2021 18:07:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
- [IPv6:2a00:1450:4864:20::52a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C49E6F3DA
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 18:06:23 +0000 (UTC)
-Received: by mail-ed1-x52a.google.com with SMTP id b17so35662677ede.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 11:06:23 -0700 (PDT)
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com
+ [IPv6:2a00:1450:4864:20::62f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFC76F3DC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 18:07:50 +0000 (UTC)
+Received: by mail-ej1-x62f.google.com with SMTP id c22so17731787ejd.12
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 11:07:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=vXydfdU+0mZoHrb2xp3v9aJWrU8v3nhLpEclgdkwN4M=;
- b=YEZGlQIS0FST8hSXSF520LYwDVdgW9xTuR0KYUpT2DU5nNaS+WPsVeLeSRobSwogHw
- LxhSA8qAm+1rvkMGcoBYix8RWlnxOPIsIhqxr6kYTmqiKghE107HArZtwqC2rxsLivP6
- VS8o5NPDyoTZgdSSPWRofjkIrFoqxp5dUqSfNau0aMLqoYp9aTg8jpGPwIca8F6N6lW7
- IFSUcGwHUqLi1U/l3xTNXn0wfEPgT7yOmA/0f1VZJN6TOp4RjWM3PjvrV6+awyJW1Tg/
- SZb1Im3ZxoCQCv1DjY2YJ0DmEaP3iw92MJqEEBXvkCDN/GjivwWGuGLsOL/jTaqfpdT5
- nj0w==
+ :cc; bh=PX4P71+J87f+TvD9Ad9qu7JSt4BIsO74DwTe5A+9RT0=;
+ b=WRBsXTBBummxQFQMIDo/xGsLbflytNgPRQL7W9K2IHjlXJKLDYeckNDTAdLZO6H/LD
+ LB87PLmwOW3lwm/DlbR6YJayYsNiIwtCGZxBPJBitXbxoLzqtLLL/6RMd1tm0joASIrF
+ y8zZpBsJmoCMH3ZPN1vAEkSw3WRKK7pbmxgX8zhuaEuMU5TTL/SgkT9SDNKOBRjFXfLk
+ rOeW1z3bqWtTXEfgAZtaCR8MlrRl4G4std5wvwrBnDPtjMchP0CsVSgI0/V7fFxSfM1J
+ 8lZm3kPhLTKMnArHQH+lWJmNkcIWqxnx6OIVBPNBevOVK5kPaMcWNtF5/9XDxLVLZtTG
+ lUGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=vXydfdU+0mZoHrb2xp3v9aJWrU8v3nhLpEclgdkwN4M=;
- b=PDb73N14/LjcAtA4wj0wvwWqxXJZ3F4C/t7JWq2ks6HEesyopau6+C3jvffklMXE4c
- 5nX8JEgI12X+v6Aghi7+Iqe7+PJjOLDSA1W052a7Rg30BopJaH2XLZ6a7bGyd5bGXAFJ
- +/7+X8FtcEmxeoj5eSmCJ56ZBee3sHSTmZP2HmfqWlYwWNs4zLiaIEW43w09ZZAT9k/B
- T10x5uh7IEZ5BFvRG8IYJRYKRG235JsOB70h8HMQwVOlBun6KVYKw91wNMN4IGTLWDLF
- Uwfsp/qWKBqt7P5ZhnTI34GpIBeX2XraZ04/8UXgeKAmZ0XZV3FgStDPKzaD4AohyY96
- uL3A==
-X-Gm-Message-State: AOAM532gh/96bZxtRsrA+fbOxu3symYTUdB7M3tRNoumU3DHanpDLuWo
- u8Tpw5WgB3hwBcMAvjcqXQ5tBZKm1Mr5fv9SPbOFm87kFPA=
-X-Google-Smtp-Source: ABdhPJwp25So/ko2HORzrd1EyUoaX+eww4kkn8iTH47o30OWnS5xCIdq5QO4oCPZdx7g1BQEfALjCb+3Z5npd4DXtFI=
-X-Received: by 2002:a05:6402:c8:: with SMTP id
- i8mr58641182edu.57.1621015582077; 
- Fri, 14 May 2021 11:06:22 -0700 (PDT)
+ bh=PX4P71+J87f+TvD9Ad9qu7JSt4BIsO74DwTe5A+9RT0=;
+ b=P9MFgCLB9v3hnh3KKDiLJb9yvsjMxOojUyemj2Qw8LN5tpxRdtoOFE29p9FdD25aIG
+ fTjigIYO0Bdjug8xcjDJUOv6m/1D+ZNC+dW6U+J5HAPV7k4SyK/ba5vJl2LIHBqkaW2M
+ 0nUS1CSyVOkBvD1FKMbstI0NIhJfMrze0vKPEkcY9PXihho/mdP0BvyQ0iizgqccvhit
+ cM1Njq0GfUrdpbQ5lIgnDwbArCSapNEzm6jrueOjp83xS0v4Ai965QyXTcLmJ6ZkFJyL
+ s6yeEr1X1MQRt27QZppciQ+rz8YyMekEF2U3PRR6w47U8RWjGOiAk3wFmQpKkeAsEd/X
+ 9VPw==
+X-Gm-Message-State: AOAM5337n3il/J3kWckrJgmHCK8uFpiIFi4l6losnob8aWb2EEkFDbHe
+ U9L+uG2T7d5V00fRjJFyOf7IPBbrZyYZQDG3jebVPA==
+X-Google-Smtp-Source: ABdhPJzYO0Zd8p53MzCJ5EU+pH4gsj2s5enMHUn/nP5NhUOU4ybCDGIbyi8x40SdpJuFUDrTJueOuSqhEnCzszsq9Iw=
+X-Received: by 2002:a17:907:781a:: with SMTP id
+ la26mr17652731ejc.435.1621015668787; 
+ Fri, 14 May 2021 11:07:48 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210503155748.1961781-1-jason@jlekstrand.net>
- <20210503155748.1961781-3-jason@jlekstrand.net>
- <YJEKHFofZsBdIPIS@phenom.ffwll.local>
-In-Reply-To: <YJEKHFofZsBdIPIS@phenom.ffwll.local>
+ <20210503155748.1961781-7-jason@jlekstrand.net>
+ <YJEK3ueXHERORbkC@phenom.ffwll.local>
+In-Reply-To: <YJEK3ueXHERORbkC@phenom.ffwll.local>
 From: Jason Ekstrand <jason@jlekstrand.net>
-Date: Fri, 14 May 2021 13:06:10 -0500
-Message-ID: <CAOFGe975VgY_Jxs3c=50ZP16X5gwEcJzb4Q1ULV3nGQaZAPe9Q@mail.gmail.com>
+Date: Fri, 14 May 2021 13:07:37 -0500
+Message-ID: <CAOFGe963WuPGRbkkVso6jmtq2z-PWaXJqDtEdX5UEPhXomOfFw@mail.gmail.com>
 To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 02/27] drm/i915: Stop storing the ring size
- in the ring pointer
+Subject: Re: [Intel-gfx] [PATCH 06/27] drm/i915: Drop the CONTEXT_CLONE API
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,170 +71,344 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 4, 2021 at 3:47 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+On Tue, May 4, 2021 at 3:50 AM Daniel Vetter <daniel@ffwll.ch> wrote:
 >
-> On Mon, May 03, 2021 at 10:57:23AM -0500, Jason Ekstrand wrote:
-> > Previously, we were storing the ring size in the ring pointer before it
-> > was actually allocated.  We would then guard setting the ring size on
-> > checking for CONTEXT_ALLOC_BIT.  This is error-prone at best and really
-> > only saves us a few bytes on something that already burns at least 4K.
-> > Instead, this patch adds a new ring_size field and makes everything use
-> > that.
+> On Mon, May 03, 2021 at 10:57:27AM -0500, Jason Ekstrand wrote:
+> > This API allows one context to grab bits out of another context upon
+> > creation.  It can be used as a short-cut for setparam(getparam()) for
+> > things like I915_CONTEXT_PARAM_VM.  However, it's never been used by any
+> > real userspace.  It's used by a few IGT tests and that's it.  Since it
+> > doesn't add any real value (most of the stuff you can CLONE you can copy
+> > in other ways), drop it.
+> >
+> > There is one thing that this API allows you to clone which you cannot
+> > clone via getparam/setparam: timelines.  However, timelines are an
+> > implementation detail of i915 and not really something that needs to be
+> > exposed to userspace.  Also, sharing timelines between contexts isn't
+> > obviously useful and supporting it has the potential to complicate i915
+> > internally.  It also doesn't add any functionality that the client can't
+> > get in other ways.  If a client really wants a shared timeline, they can
+> > use a syncobj and set it as an in and out fence on every submit.
 > >
 > > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
-> > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 3 +--
-> >  drivers/gpu/drm/i915/gt/intel_context.c       | 3 ++-
-> >  drivers/gpu/drm/i915/gt/intel_context.h       | 5 -----
-> >  drivers/gpu/drm/i915/gt/intel_context_types.h | 1 +
-> >  drivers/gpu/drm/i915/gt/intel_lrc.c           | 2 +-
-> >  drivers/gpu/drm/i915/gt/selftest_execlists.c  | 2 +-
-> >  drivers/gpu/drm/i915/gt/selftest_mocs.c       | 2 +-
-> >  drivers/gpu/drm/i915/gt/selftest_timeline.c   | 2 +-
-> >  drivers/gpu/drm/i915/gvt/scheduler.c          | 7 ++-----
-> >  9 files changed, 10 insertions(+), 17 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index e52b85b8f923d..2ba4c7e4011b4 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -211,8 +211,7 @@ static void intel_context_set_gem(struct intel_context *ce,
-> >       GEM_BUG_ON(rcu_access_pointer(ce->gem_context));
-> >       RCU_INIT_POINTER(ce->gem_context, ctx);
-> >
-> > -     if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))
-> > -             ce->ring = __intel_context_ring_size(SZ_16K);
-> > +     ce->ring_size = SZ_16K;
-> >
-> >       if (rcu_access_pointer(ctx->vm)) {
-> >               struct i915_address_space *vm;
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-> > index 17cf2640b082b..342fa7daa08b5 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
-> > @@ -372,7 +372,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
-> >       ce->engine = engine;
-> >       ce->ops = engine->cops;
-> >       ce->sseu = engine->sseu;
-> > -     ce->ring = __intel_context_ring_size(SZ_4K);
-> > +     ce->ring = NULL;
-> > +     ce->ring_size = SZ_4K;
-> >
-> >       ewma_runtime_init(&ce->runtime.avg);
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-> > index f83a73a2b39fc..b10cbe8fee992 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_context.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_context.h
-> > @@ -175,11 +175,6 @@ int intel_context_prepare_remote_request(struct intel_context *ce,
-> >
-> >  struct i915_request *intel_context_create_request(struct intel_context *ce);
-> >
-> > -static inline struct intel_ring *__intel_context_ring_size(u64 sz)
-> > -{
-> > -     return u64_to_ptr(struct intel_ring, sz);
-> > -}
-> > -
-> >  static inline bool intel_context_is_barrier(const struct intel_context *ce)
-> >  {
-> >       return test_bit(CONTEXT_BARRIER_BIT, &ce->flags);
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > index ed8c447a7346b..90026c1771055 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> > @@ -82,6 +82,7 @@ struct intel_context {
-> >       spinlock_t signal_lock; /* protects signals, the list of requests */
-> >
-> >       struct i915_vma *state;
-> > +     u32 ring_size;
-> >       struct intel_ring *ring;
-> >       struct intel_timeline *timeline;
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > index e86897cde9846..63193c80fb117 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > @@ -845,7 +845,7 @@ int lrc_alloc(struct intel_context *ce, struct intel_engine_cs *engine)
-> >       if (IS_ERR(vma))
-> >               return PTR_ERR(vma);
-> >
-> > -     ring = intel_engine_create_ring(engine, (unsigned long)ce->ring);
-> > +     ring = intel_engine_create_ring(engine, ce->ring_size);
-> >       if (IS_ERR(ring)) {
-> >               err = PTR_ERR(ring);
-> >               goto err_vma;
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> > index 1081cd36a2bd3..01d9896dd4844 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-> > @@ -2793,7 +2793,7 @@ static int __live_preempt_ring(struct intel_engine_cs *engine,
-> >                       goto err_ce;
-> >               }
-> >
-> > -             tmp->ring = __intel_context_ring_size(ring_sz);
-> > +             tmp->ring_size = ring_sz;
-> >
-> >               err = intel_context_pin(tmp);
-> >               if (err) {
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-> > index e55a887d11e2b..f343fa5fd986f 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
-> > @@ -28,7 +28,7 @@ static struct intel_context *mocs_context_create(struct intel_engine_cs *engine)
-> >               return ce;
-> >
-> >       /* We build large requests to read the registers from the ring */
-> > -     ce->ring = __intel_context_ring_size(SZ_16K);
-> > +     ce->ring_size = SZ_16K;
-> >
-> >       return ce;
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-> > index 9adbd9d147bea..7eedecfb86e59 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-> > @@ -874,7 +874,7 @@ static int create_watcher(struct hwsp_watcher *w,
-> >       if (IS_ERR(ce))
-> >               return PTR_ERR(ce);
-> >
-> > -     ce->ring = __intel_context_ring_size(ringsz);
-> > +     ce->ring_size = ringsz;
-> >       w->rq = intel_context_create_request(ce);
-> >       intel_context_put(ce);
-> >       if (IS_ERR(w->rq))
-> > diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-> > index fc735692f21fb..99bc9fed6fbb6 100644
-> > --- a/drivers/gpu/drm/i915/gvt/scheduler.c
-> > +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-> > @@ -1409,11 +1409,8 @@ int intel_vgpu_setup_submission(struct intel_vgpu *vgpu)
-> >               intel_context_set_single_submission(ce);
-> >
-> >               /* Max ring buffer size */
-> > -             if (!intel_uc_wants_guc_submission(&engine->gt->uc)) {
-> > -                     const unsigned int ring_size = 512 * SZ_4K;
-> > -
-> > -                     ce->ring = __intel_context_ring_size(ring_size);
-> > -             }
-> > +             if (!intel_uc_wants_guc_submission(&engine->gt->uc))
-> > +                     ce->ring_size = 512 * SZ_4K;
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 >
-> A rather funny way of saying SZ_2M. Maybe fix that if you feel like. W/ or
-> w/o that:
+> This aint gitlab MR, so please include a per-patch (and also per-revision)
+> changelog summary here. With that added:
 
-Done.
+I don't think this patch has changed.  I'll scroll through to make sure, though.
 
 > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->
+> > ---
+> >  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 199 +-----------------
+> >  .../drm/i915/gt/intel_execlists_submission.c  |  28 ---
+> >  .../drm/i915/gt/intel_execlists_submission.h  |   3 -
+> >  include/uapi/drm/i915_drm.h                   |  16 +-
+> >  4 files changed, 6 insertions(+), 240 deletions(-)
 > >
-> >               s->shadow[i] = ce;
-> >       }
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > index d6f342e605254..308a63f778faf 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > @@ -1958,207 +1958,14 @@ static int create_setparam(struct i915_user_extension __user *ext, void *data)
+> >       return ctx_setparam(arg->fpriv, arg->ctx, &local.param);
+> >  }
+> >
+> > -static int clone_engines(struct i915_gem_context *dst,
+> > -                      struct i915_gem_context *src)
+> > +static int invalid_ext(struct i915_user_extension __user *ext, void *data)
+> >  {
+> > -     struct i915_gem_engines *clone, *e;
+> > -     bool user_engines;
+> > -     unsigned long n;
+> > -
+> > -     e = __context_engines_await(src, &user_engines);
+> > -     if (!e)
+> > -             return -ENOENT;
+> > -
+> > -     clone = alloc_engines(e->num_engines);
+> > -     if (!clone)
+> > -             goto err_unlock;
+> > -
+> > -     for (n = 0; n < e->num_engines; n++) {
+> > -             struct intel_engine_cs *engine;
+> > -
+> > -             if (!e->engines[n]) {
+> > -                     clone->engines[n] = NULL;
+> > -                     continue;
+> > -             }
+> > -             engine = e->engines[n]->engine;
+> > -
+> > -             /*
+> > -              * Virtual engines are singletons; they can only exist
+> > -              * inside a single context, because they embed their
+> > -              * HW context... As each virtual context implies a single
+> > -              * timeline (each engine can only dequeue a single request
+> > -              * at any time), it would be surprising for two contexts
+> > -              * to use the same engine. So let's create a copy of
+> > -              * the virtual engine instead.
+> > -              */
+> > -             if (intel_engine_is_virtual(engine))
+> > -                     clone->engines[n] =
+> > -                             intel_execlists_clone_virtual(engine);
+> > -             else
+> > -                     clone->engines[n] = intel_context_create(engine);
+> > -             if (IS_ERR_OR_NULL(clone->engines[n])) {
+> > -                     __free_engines(clone, n);
+> > -                     goto err_unlock;
+> > -             }
+> > -
+> > -             intel_context_set_gem(clone->engines[n], dst);
+> > -     }
+> > -     clone->num_engines = n;
+> > -     i915_sw_fence_complete(&e->fence);
+> > -
+> > -     /* Serialised by constructor */
+> > -     engines_idle_release(dst, rcu_replace_pointer(dst->engines, clone, 1));
+> > -     if (user_engines)
+> > -             i915_gem_context_set_user_engines(dst);
+> > -     else
+> > -             i915_gem_context_clear_user_engines(dst);
+> > -     return 0;
+> > -
+> > -err_unlock:
+> > -     i915_sw_fence_complete(&e->fence);
+> > -     return -ENOMEM;
+> > -}
+> > -
+> > -static int clone_flags(struct i915_gem_context *dst,
+> > -                    struct i915_gem_context *src)
+> > -{
+> > -     dst->user_flags = src->user_flags;
+> > -     return 0;
+> > -}
+> > -
+> > -static int clone_schedattr(struct i915_gem_context *dst,
+> > -                        struct i915_gem_context *src)
+> > -{
+> > -     dst->sched = src->sched;
+> > -     return 0;
+> > -}
+> > -
+> > -static int clone_sseu(struct i915_gem_context *dst,
+> > -                   struct i915_gem_context *src)
+> > -{
+> > -     struct i915_gem_engines *e = i915_gem_context_lock_engines(src);
+> > -     struct i915_gem_engines *clone;
+> > -     unsigned long n;
+> > -     int err;
+> > -
+> > -     /* no locking required; sole access under constructor*/
+> > -     clone = __context_engines_static(dst);
+> > -     if (e->num_engines != clone->num_engines) {
+> > -             err = -EINVAL;
+> > -             goto unlock;
+> > -     }
+> > -
+> > -     for (n = 0; n < e->num_engines; n++) {
+> > -             struct intel_context *ce = e->engines[n];
+> > -
+> > -             if (clone->engines[n]->engine->class != ce->engine->class) {
+> > -                     /* Must have compatible engine maps! */
+> > -                     err = -EINVAL;
+> > -                     goto unlock;
+> > -             }
+> > -
+> > -             /* serialises with set_sseu */
+> > -             err = intel_context_lock_pinned(ce);
+> > -             if (err)
+> > -                     goto unlock;
+> > -
+> > -             clone->engines[n]->sseu = ce->sseu;
+> > -             intel_context_unlock_pinned(ce);
+> > -     }
+> > -
+> > -     err = 0;
+> > -unlock:
+> > -     i915_gem_context_unlock_engines(src);
+> > -     return err;
+> > -}
+> > -
+> > -static int clone_timeline(struct i915_gem_context *dst,
+> > -                       struct i915_gem_context *src)
+> > -{
+> > -     if (src->timeline)
+> > -             __assign_timeline(dst, src->timeline);
+> > -
+> > -     return 0;
+> > -}
+> > -
+> > -static int clone_vm(struct i915_gem_context *dst,
+> > -                 struct i915_gem_context *src)
+> > -{
+> > -     struct i915_address_space *vm;
+> > -     int err = 0;
+> > -
+> > -     if (!rcu_access_pointer(src->vm))
+> > -             return 0;
+> > -
+> > -     rcu_read_lock();
+> > -     vm = context_get_vm_rcu(src);
+> > -     rcu_read_unlock();
+> > -
+> > -     if (!mutex_lock_interruptible(&dst->mutex)) {
+> > -             __assign_ppgtt(dst, vm);
+> > -             mutex_unlock(&dst->mutex);
+> > -     } else {
+> > -             err = -EINTR;
+> > -     }
+> > -
+> > -     i915_vm_put(vm);
+> > -     return err;
+> > -}
+> > -
+> > -static int create_clone(struct i915_user_extension __user *ext, void *data)
+> > -{
+> > -     static int (* const fn[])(struct i915_gem_context *dst,
+> > -                               struct i915_gem_context *src) = {
+> > -#define MAP(x, y) [ilog2(I915_CONTEXT_CLONE_##x)] = y
+> > -             MAP(ENGINES, clone_engines),
+> > -             MAP(FLAGS, clone_flags),
+> > -             MAP(SCHEDATTR, clone_schedattr),
+> > -             MAP(SSEU, clone_sseu),
+> > -             MAP(TIMELINE, clone_timeline),
+> > -             MAP(VM, clone_vm),
+> > -#undef MAP
+> > -     };
+> > -     struct drm_i915_gem_context_create_ext_clone local;
+> > -     const struct create_ext *arg = data;
+> > -     struct i915_gem_context *dst = arg->ctx;
+> > -     struct i915_gem_context *src;
+> > -     int err, bit;
+> > -
+> > -     if (copy_from_user(&local, ext, sizeof(local)))
+> > -             return -EFAULT;
+> > -
+> > -     BUILD_BUG_ON(GENMASK(BITS_PER_TYPE(local.flags) - 1, ARRAY_SIZE(fn)) !=
+> > -                  I915_CONTEXT_CLONE_UNKNOWN);
+> > -
+> > -     if (local.flags & I915_CONTEXT_CLONE_UNKNOWN)
+> > -             return -EINVAL;
+> > -
+> > -     if (local.rsvd)
+> > -             return -EINVAL;
+> > -
+> > -     rcu_read_lock();
+> > -     src = __i915_gem_context_lookup_rcu(arg->fpriv, local.clone_id);
+> > -     rcu_read_unlock();
+> > -     if (!src)
+> > -             return -ENOENT;
+> > -
+> > -     GEM_BUG_ON(src == dst);
+> > -
+> > -     for (bit = 0; bit < ARRAY_SIZE(fn); bit++) {
+> > -             if (!(local.flags & BIT(bit)))
+> > -                     continue;
+> > -
+> > -             err = fn[bit](dst, src);
+> > -             if (err)
+> > -                     return err;
+> > -     }
+> > -
+> > -     return 0;
+> > +     return -EINVAL;
+> >  }
+> >
+> >  static const i915_user_extension_fn create_extensions[] = {
+> >       [I915_CONTEXT_CREATE_EXT_SETPARAM] = create_setparam,
+> > -     [I915_CONTEXT_CREATE_EXT_CLONE] = create_clone,
+> > +     [I915_CONTEXT_CREATE_EXT_CLONE] = invalid_ext,
+> >  };
+> >
+> >  static bool client_is_banned(struct drm_i915_file_private *file_priv)
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > index de124870af44d..0e8c320927d15 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+> > @@ -3736,34 +3736,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+> >       return ERR_PTR(err);
+> >  }
+> >
+> > -struct intel_context *
+> > -intel_execlists_clone_virtual(struct intel_engine_cs *src)
+> > -{
+> > -     struct virtual_engine *se = to_virtual_engine(src);
+> > -     struct intel_context *dst;
+> > -
+> > -     dst = intel_execlists_create_virtual(se->siblings,
+> > -                                          se->num_siblings);
+> > -     if (IS_ERR(dst))
+> > -             return dst;
+> > -
+> > -     if (se->num_bonds) {
+> > -             struct virtual_engine *de = to_virtual_engine(dst->engine);
+> > -
+> > -             de->bonds = kmemdup(se->bonds,
+> > -                                 sizeof(*se->bonds) * se->num_bonds,
+> > -                                 GFP_KERNEL);
+> > -             if (!de->bonds) {
+> > -                     intel_context_put(dst);
+> > -                     return ERR_PTR(-ENOMEM);
+> > -             }
+> > -
+> > -             de->num_bonds = se->num_bonds;
+> > -     }
+> > -
+> > -     return dst;
+> > -}
+> > -
+> >  int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
+> >                                    const struct intel_engine_cs *master,
+> >                                    const struct intel_engine_cs *sibling)
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.h b/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+> > index fd61dae820e9e..bab3d37cf3f98 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.h
+> > @@ -36,9 +36,6 @@ struct intel_context *
+> >  intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+> >                              unsigned int count);
+> >
+> > -struct intel_context *
+> > -intel_execlists_clone_virtual(struct intel_engine_cs *src);
+> > -
+> >  int intel_virtual_engine_attach_bond(struct intel_engine_cs *engine,
+> >                                    const struct intel_engine_cs *master,
+> >                                    const struct intel_engine_cs *sibling);
+> > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > index a0aaa8298f28d..75a71b6756ed8 100644
+> > --- a/include/uapi/drm/i915_drm.h
+> > +++ b/include/uapi/drm/i915_drm.h
+> > @@ -1887,20 +1887,10 @@ struct drm_i915_gem_context_create_ext_setparam {
+> >       struct drm_i915_gem_context_param param;
+> >  };
+> >
+> > -struct drm_i915_gem_context_create_ext_clone {
+> > +/* This API has been removed.  On the off chance someone somewhere has
+> > + * attempted to use it, never re-use this extension number.
+> > + */
+> >  #define I915_CONTEXT_CREATE_EXT_CLONE 1
+> > -     struct i915_user_extension base;
+> > -     __u32 clone_id;
+> > -     __u32 flags;
+> > -#define I915_CONTEXT_CLONE_ENGINES   (1u << 0)
+> > -#define I915_CONTEXT_CLONE_FLAGS     (1u << 1)
+> > -#define I915_CONTEXT_CLONE_SCHEDATTR (1u << 2)
+> > -#define I915_CONTEXT_CLONE_SSEU              (1u << 3)
+> > -#define I915_CONTEXT_CLONE_TIMELINE  (1u << 4)
+> > -#define I915_CONTEXT_CLONE_VM                (1u << 5)
+> > -#define I915_CONTEXT_CLONE_UNKNOWN -(I915_CONTEXT_CLONE_VM << 1)
+> > -     __u64 rsvd;
+> > -};
+> >
+> >  struct drm_i915_gem_context_destroy {
+> >       __u32 ctx_id;
 > > --
 > > 2.31.1
 > >
 > > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 >
 > --
 > Daniel Vetter
