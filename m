@@ -2,61 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04AFF380F2F
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 19:44:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D5D7380F66
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 20:06:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6813E6F3D5;
-	Fri, 14 May 2021 17:44:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8389D6F3DA;
+	Fri, 14 May 2021 18:06:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 451E46F3D5
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 17:44:27 +0000 (UTC)
-IronPort-SDR: VaNY/J+0us25SoYxoPZTJrdu6t0q1KvOAJJ+4UuB++lEVDP2LYFYRcetFF4MZgQqFgl2HqMi43
- SRUovncBCMfw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="261450469"
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="261450469"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2021 10:44:26 -0700
-IronPort-SDR: SZ7wopwIxHxptPmUnjUKJiDSj8B7MzF2x/rnhpm83Y2Sz2KDQ74OgeB8zi34VZEDREEQSvODNX
- Oyy7yIgicenA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="627231735"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by fmsmga005.fm.intel.com with ESMTP; 14 May 2021 10:44:26 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 14 May 2021 10:44:25 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Fri, 14 May 2021 10:44:25 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.013;
- Fri, 14 May 2021 10:44:25 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
-Thread-Topic: [Intel-gfx] [PATCH 5/6] drm/i915: Move the TMDS clock division
- into intel_hdmi_mode_clock_valid()
-Thread-Index: AQHXRn/KT0DrKs9g8E65HejJ7OE+0qrjtmQAgAABagCAAAL7AA==
-Date: Fri, 14 May 2021 17:44:25 +0000
-Message-ID: <61387858b62d3a876348e11313c67c15105ba98c.camel@intel.com>
-References: <20210511160532.21446-1-ville.syrjala@linux.intel.com>
- <20210511160532.21446-6-ville.syrjala@linux.intel.com>
- <b60af898451971c9d4749372889b5b77b3689c18.camel@intel.com>
- <YJ61Nhg38iElyPXG@intel.com>
-In-Reply-To: <YJ61Nhg38iElyPXG@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-ID: <3909915AA62EFA44AB44AA1278097182@intel.com>
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com
+ [IPv6:2a00:1450:4864:20::52a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C49E6F3DA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 18:06:23 +0000 (UTC)
+Received: by mail-ed1-x52a.google.com with SMTP id b17so35662677ede.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 11:06:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=vXydfdU+0mZoHrb2xp3v9aJWrU8v3nhLpEclgdkwN4M=;
+ b=YEZGlQIS0FST8hSXSF520LYwDVdgW9xTuR0KYUpT2DU5nNaS+WPsVeLeSRobSwogHw
+ LxhSA8qAm+1rvkMGcoBYix8RWlnxOPIsIhqxr6kYTmqiKghE107HArZtwqC2rxsLivP6
+ VS8o5NPDyoTZgdSSPWRofjkIrFoqxp5dUqSfNau0aMLqoYp9aTg8jpGPwIca8F6N6lW7
+ IFSUcGwHUqLi1U/l3xTNXn0wfEPgT7yOmA/0f1VZJN6TOp4RjWM3PjvrV6+awyJW1Tg/
+ SZb1Im3ZxoCQCv1DjY2YJ0DmEaP3iw92MJqEEBXvkCDN/GjivwWGuGLsOL/jTaqfpdT5
+ nj0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=vXydfdU+0mZoHrb2xp3v9aJWrU8v3nhLpEclgdkwN4M=;
+ b=PDb73N14/LjcAtA4wj0wvwWqxXJZ3F4C/t7JWq2ks6HEesyopau6+C3jvffklMXE4c
+ 5nX8JEgI12X+v6Aghi7+Iqe7+PJjOLDSA1W052a7Rg30BopJaH2XLZ6a7bGyd5bGXAFJ
+ +/7+X8FtcEmxeoj5eSmCJ56ZBee3sHSTmZP2HmfqWlYwWNs4zLiaIEW43w09ZZAT9k/B
+ T10x5uh7IEZ5BFvRG8IYJRYKRG235JsOB70h8HMQwVOlBun6KVYKw91wNMN4IGTLWDLF
+ Uwfsp/qWKBqt7P5ZhnTI34GpIBeX2XraZ04/8UXgeKAmZ0XZV3FgStDPKzaD4AohyY96
+ uL3A==
+X-Gm-Message-State: AOAM532gh/96bZxtRsrA+fbOxu3symYTUdB7M3tRNoumU3DHanpDLuWo
+ u8Tpw5WgB3hwBcMAvjcqXQ5tBZKm1Mr5fv9SPbOFm87kFPA=
+X-Google-Smtp-Source: ABdhPJwp25So/ko2HORzrd1EyUoaX+eww4kkn8iTH47o30OWnS5xCIdq5QO4oCPZdx7g1BQEfALjCb+3Z5npd4DXtFI=
+X-Received: by 2002:a05:6402:c8:: with SMTP id
+ i8mr58641182edu.57.1621015582077; 
+ Fri, 14 May 2021 11:06:22 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Move the TMDS clock division
- into intel_hdmi_mode_clock_valid()
+References: <20210503155748.1961781-1-jason@jlekstrand.net>
+ <20210503155748.1961781-3-jason@jlekstrand.net>
+ <YJEKHFofZsBdIPIS@phenom.ffwll.local>
+In-Reply-To: <YJEKHFofZsBdIPIS@phenom.ffwll.local>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Fri, 14 May 2021 13:06:10 -0500
+Message-ID: <CAOFGe975VgY_Jxs3c=50ZP16X5gwEcJzb4Q1ULV3nGQaZAPe9Q@mail.gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 02/27] drm/i915: Stop storing the ring size
+ in the ring pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,52 +65,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIxLTA1LTE0IGF0IDIwOjM2ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIEZyaSwgTWF5IDE0LCAyMDIxIGF0IDA1OjI4OjQwUE0gKzAwMDAsIFNvdXphLCBKb3Nl
-IHdyb3RlOg0KPiA+IE9uIFR1ZSwgMjAyMS0wNS0xMSBhdCAxOTowNSArMDMwMCwgVmlsbGUgU3ly
-amFsYSB3cm90ZToNCj4gPiA+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+DQo+ID4gPiANCj4gPiA+IE5vdyB0aGF0IHdlIGhhdmUgdG8gdGVsbCBp
-bnRlbF9oZG1pX21vZGVfY2xvY2tfdmFsaWQoKSB3aGV0aGVyDQo+ID4gPiB3ZSdyZSBhc2tpbmcg
-YWJvdXQgNDo0OjQgb3IgNDoyOjAgb3V0cHV0IGl0IGNhbiB0YWtlIGNhcmUgb2YNCj4gPiA+IHRo
-ZSBkb3RjbG9jay0+VE1EUyBjbG9jayBjb252ZXJzaW9uLg0KPiA+ID4gDQo+ID4gPiBDYzogV2Vy
-bmVyIFNlbWJhY2ggPHdzZUB0dXhlZG9jb21wdXRlcnMuY29tPg0KPiA+ID4gU2lnbmVkLW9mZi1i
-eTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gPiA+
-IC0tLQ0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jIHwg
-NiArKystLS0NCj4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0
-aW9ucygtKQ0KPiA+ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9oZG1pLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2hkbWkuYw0KPiA+ID4gaW5kZXggODc0ZmI4OTcwMDVhLi44MGUyYWU2NTJmNmUgMTAwNjQ0DQo+
-ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYw0KPiA+
-ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMNCj4gPiA+
-IEBAIC0xOTA3LDYgKzE5MDcsOSBAQCBpbnRlbF9oZG1pX21vZGVfY2xvY2tfdmFsaWQoc3RydWN0
-IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwgaW50IGNsb2NrLA0KPiA+ID4gIAlzdHJ1Y3QgaW50
-ZWxfaGRtaSAqaGRtaSA9IGludGVsX2F0dGFjaGVkX2hkbWkodG9faW50ZWxfY29ubmVjdG9yKGNv
-bm5lY3RvcikpOw0KPiA+ID4gIAllbnVtIGRybV9tb2RlX3N0YXR1cyBzdGF0dXM7DQo+ID4gPiAg
-DQo+ID4gPiArCWlmICh5Y2JjcjQyMF9vdXRwdXQpDQo+ID4gPiArCQljbG9jayAvPSAyOw0KPiA+
-ID4gKw0KPiA+ID4gIAkvKiBjaGVjayBpZiB3ZSBjYW4gZG8gOGJwYyAqLw0KPiA+ID4gIAlzdGF0
-dXMgPSBoZG1pX3BvcnRfY2xvY2tfdmFsaWQoaGRtaSwgaW50ZWxfaGRtaV9wb3J0X2Nsb2NrKGNs
-b2NrLCA4KSwNCj4gPiA+ICAJCQkJICAgICAgIHRydWUsIGhhc19oZG1pX3NpbmspOw0KPiA+ID4g
-QEAgLTE5NTcsOCArMTk2MCw2IEBAIGludGVsX2hkbWlfbW9kZV92YWxpZChzdHJ1Y3QgZHJtX2Nv
-bm5lY3RvciAqY29ubmVjdG9yLA0KPiA+ID4gIAl9DQo+ID4gPiAgDQo+ID4gPiAgCXljYmNyXzQy
-MF9vbmx5ID0gZHJtX21vZGVfaXNfNDIwX29ubHkoJmNvbm5lY3Rvci0+ZGlzcGxheV9pbmZvLCBt
-b2RlKTsNCj4gPiA+IC0JaWYgKHljYmNyXzQyMF9vbmx5KQ0KPiA+ID4gLQkJY2xvY2sgLz0gMjsN
-Cj4gPiA+ICANCj4gPiA+ICAJc3RhdHVzID0gaW50ZWxfaGRtaV9tb2RlX2Nsb2NrX3ZhbGlkKGNv
-bm5lY3RvciwgY2xvY2ssIGhhc19oZG1pX3NpbmssIHljYmNyXzQyMF9vbmx5KTsNCj4gPiA+ICAJ
-aWYgKHN0YXR1cyAhPSBNT0RFX09LKSB7DQo+ID4gPiBAQCAtMTk2Nyw3ICsxOTY4LDYgQEAgaW50
-ZWxfaGRtaV9tb2RlX3ZhbGlkKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsDQo+ID4g
-PiAgCQkgICAgIWRybV9tb2RlX2lzXzQyMF9hbHNvKCZjb25uZWN0b3ItPmRpc3BsYXlfaW5mbywg
-bW9kZSkpDQo+ID4gPiAgCQkJcmV0dXJuIHN0YXR1czsNCj4gPiA+ICANCj4gPiA+IC0JCWNsb2Nr
-IC89IDI7DQo+ID4gDQo+ID4gVGhlIGNsb2NrIGludGVsX2hkbWlfbW9kZV9jbG9ja192YWxpZCgp
-IGNhbGwgd2lsbCBiZSBjbG9jay8yIG5vdCBjbG9jay80IGFzIHByZXZpb3VzLg0KPiANCj4gSXQn
-cyBuZXZlciBjbG9jay80Lg0KDQpGb3VuZCB0aGUgImlmICh5Y2Jjcl80MjBfb25seSB8fCIgdGhh
-dCBJIG1pc3NlZC4NCg0KUmV2aWV3ZWQtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uu
-c291emFAaW50ZWwuY29tPg0KDQo+IA0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngK
+On Tue, May 4, 2021 at 3:47 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Mon, May 03, 2021 at 10:57:23AM -0500, Jason Ekstrand wrote:
+> > Previously, we were storing the ring size in the ring pointer before it
+> > was actually allocated.  We would then guard setting the ring size on
+> > checking for CONTEXT_ALLOC_BIT.  This is error-prone at best and really
+> > only saves us a few bytes on something that already burns at least 4K.
+> > Instead, this patch adds a new ring_size field and makes everything use
+> > that.
+> >
+> > Signed-off-by: Jason Ekstrand <jason@jlekstrand.net>
+> > ---
+> >  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 3 +--
+> >  drivers/gpu/drm/i915/gt/intel_context.c       | 3 ++-
+> >  drivers/gpu/drm/i915/gt/intel_context.h       | 5 -----
+> >  drivers/gpu/drm/i915/gt/intel_context_types.h | 1 +
+> >  drivers/gpu/drm/i915/gt/intel_lrc.c           | 2 +-
+> >  drivers/gpu/drm/i915/gt/selftest_execlists.c  | 2 +-
+> >  drivers/gpu/drm/i915/gt/selftest_mocs.c       | 2 +-
+> >  drivers/gpu/drm/i915/gt/selftest_timeline.c   | 2 +-
+> >  drivers/gpu/drm/i915/gvt/scheduler.c          | 7 ++-----
+> >  9 files changed, 10 insertions(+), 17 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > index e52b85b8f923d..2ba4c7e4011b4 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > @@ -211,8 +211,7 @@ static void intel_context_set_gem(struct intel_context *ce,
+> >       GEM_BUG_ON(rcu_access_pointer(ce->gem_context));
+> >       RCU_INIT_POINTER(ce->gem_context, ctx);
+> >
+> > -     if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))
+> > -             ce->ring = __intel_context_ring_size(SZ_16K);
+> > +     ce->ring_size = SZ_16K;
+> >
+> >       if (rcu_access_pointer(ctx->vm)) {
+> >               struct i915_address_space *vm;
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+> > index 17cf2640b082b..342fa7daa08b5 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context.c
+> > @@ -372,7 +372,8 @@ intel_context_init(struct intel_context *ce, struct intel_engine_cs *engine)
+> >       ce->engine = engine;
+> >       ce->ops = engine->cops;
+> >       ce->sseu = engine->sseu;
+> > -     ce->ring = __intel_context_ring_size(SZ_4K);
+> > +     ce->ring = NULL;
+> > +     ce->ring_size = SZ_4K;
+> >
+> >       ewma_runtime_init(&ce->runtime.avg);
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+> > index f83a73a2b39fc..b10cbe8fee992 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context.h
+> > @@ -175,11 +175,6 @@ int intel_context_prepare_remote_request(struct intel_context *ce,
+> >
+> >  struct i915_request *intel_context_create_request(struct intel_context *ce);
+> >
+> > -static inline struct intel_ring *__intel_context_ring_size(u64 sz)
+> > -{
+> > -     return u64_to_ptr(struct intel_ring, sz);
+> > -}
+> > -
+> >  static inline bool intel_context_is_barrier(const struct intel_context *ce)
+> >  {
+> >       return test_bit(CONTEXT_BARRIER_BIT, &ce->flags);
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > index ed8c447a7346b..90026c1771055 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> > @@ -82,6 +82,7 @@ struct intel_context {
+> >       spinlock_t signal_lock; /* protects signals, the list of requests */
+> >
+> >       struct i915_vma *state;
+> > +     u32 ring_size;
+> >       struct intel_ring *ring;
+> >       struct intel_timeline *timeline;
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index e86897cde9846..63193c80fb117 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -845,7 +845,7 @@ int lrc_alloc(struct intel_context *ce, struct intel_engine_cs *engine)
+> >       if (IS_ERR(vma))
+> >               return PTR_ERR(vma);
+> >
+> > -     ring = intel_engine_create_ring(engine, (unsigned long)ce->ring);
+> > +     ring = intel_engine_create_ring(engine, ce->ring_size);
+> >       if (IS_ERR(ring)) {
+> >               err = PTR_ERR(ring);
+> >               goto err_vma;
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> > index 1081cd36a2bd3..01d9896dd4844 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+> > @@ -2793,7 +2793,7 @@ static int __live_preempt_ring(struct intel_engine_cs *engine,
+> >                       goto err_ce;
+> >               }
+> >
+> > -             tmp->ring = __intel_context_ring_size(ring_sz);
+> > +             tmp->ring_size = ring_sz;
+> >
+> >               err = intel_context_pin(tmp);
+> >               if (err) {
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> > index e55a887d11e2b..f343fa5fd986f 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> > @@ -28,7 +28,7 @@ static struct intel_context *mocs_context_create(struct intel_engine_cs *engine)
+> >               return ce;
+> >
+> >       /* We build large requests to read the registers from the ring */
+> > -     ce->ring = __intel_context_ring_size(SZ_16K);
+> > +     ce->ring_size = SZ_16K;
+> >
+> >       return ce;
+> >  }
+> > diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+> > index 9adbd9d147bea..7eedecfb86e59 100644
+> > --- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
+> > +++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
+> > @@ -874,7 +874,7 @@ static int create_watcher(struct hwsp_watcher *w,
+> >       if (IS_ERR(ce))
+> >               return PTR_ERR(ce);
+> >
+> > -     ce->ring = __intel_context_ring_size(ringsz);
+> > +     ce->ring_size = ringsz;
+> >       w->rq = intel_context_create_request(ce);
+> >       intel_context_put(ce);
+> >       if (IS_ERR(w->rq))
+> > diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
+> > index fc735692f21fb..99bc9fed6fbb6 100644
+> > --- a/drivers/gpu/drm/i915/gvt/scheduler.c
+> > +++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+> > @@ -1409,11 +1409,8 @@ int intel_vgpu_setup_submission(struct intel_vgpu *vgpu)
+> >               intel_context_set_single_submission(ce);
+> >
+> >               /* Max ring buffer size */
+> > -             if (!intel_uc_wants_guc_submission(&engine->gt->uc)) {
+> > -                     const unsigned int ring_size = 512 * SZ_4K;
+> > -
+> > -                     ce->ring = __intel_context_ring_size(ring_size);
+> > -             }
+> > +             if (!intel_uc_wants_guc_submission(&engine->gt->uc))
+> > +                     ce->ring_size = 512 * SZ_4K;
+>
+> A rather funny way of saying SZ_2M. Maybe fix that if you feel like. W/ or
+> w/o that:
+
+Done.
+
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>
+> >
+> >               s->shadow[i] = ce;
+> >       }
+> > --
+> > 2.31.1
+> >
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
