@@ -2,68 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68112380940
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 14:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7579D380943
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 14:15:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D7E96EE5C;
-	Fri, 14 May 2021 12:13:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE9766EE5E;
+	Fri, 14 May 2021 12:14:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com
- [IPv6:2a00:1450:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26FEA6EE52;
- Fri, 14 May 2021 11:18:31 +0000 (UTC)
-Received: by mail-wm1-x332.google.com with SMTP id z130so3891013wmg.2;
- Fri, 14 May 2021 04:18:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=DnsDrIqkWnYf7da8HpIWFBQQt2XImu+6ZyHWBvjrfcE=;
- b=sDX/4vOZ59ic93Kj1k7EQHH5H75TwRxFQdfU97NsB2/Y+xVttZgCu6VcmdiZBbTXV4
- Yd9dS94Y1asR2VIYZN7NEerfwgmtEUFK3NZSUIzeY6J/4AmyVofgnwxiuO5puvulkCHX
- zAH+iCNJUU2yLFhQkplxklOlcyZUbrmQbTIThNq4BukYbZy9X610Bla24hpoPnMCKKtF
- HaX7GWwtAjZyjiNuvWcCoIBPkXTf9xY5aCFfjMGcrbRCdRoMLY/c+VX1+t1XGHSYNqtQ
- /vEAS8jymBn+QTD3oR/5dtU3nH62pPJpzKh6iPn38AjBb8Fr8EpkCArPsjTRrMSNZ8n3
- 9CtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=DnsDrIqkWnYf7da8HpIWFBQQt2XImu+6ZyHWBvjrfcE=;
- b=QOauK4teLfV781jzrWtNHnDzHvkgUx2brfQu0Y8vzhWdvoxRoAeKNohsdFW/k7Ct6V
- T0jowGpfpwX79j9bMv0Tq7Lwo3KRBJ05f4uyBhWtm/cV2/uxQ2a5ame01fMg1Yh/0KZT
- TifxELB2fsDk1LziLdnN3Sf00AcYVIS2mUUg05CrYMUcnZvTwCxxDNCxfh5eras7gloV
- RTxzjQiFjgOnZA3eajap+sE5H/7nTkSMgg0eLKVHaA2TmcClBE3GvzMOUIRqGlDHpwLW
- mjVV7emgUEp460hRLnMqq/bf7hZ21lWUw9uzIgfjITWu+BSp8rR8JLGsxGogoyOvzDZV
- iCdQ==
-X-Gm-Message-State: AOAM5324CnQ6c/FPqY0Y5/dS96UOF/KBBkSwTM04bN3+azKuVLvQTl4G
- 3ghDfpazfwZrBiAXYABSIMA1GSN9Cs7C4g==
-X-Google-Smtp-Source: ABdhPJwViz0BDPUuVH349RqXP0p4zCVFhrVjXNorTYnm55dAjMiaqH0FajvtM+sJwCYcinjBh5k1qQ==
-X-Received: by 2002:a7b:c005:: with SMTP id c5mr21007074wmb.113.1620990517974; 
- Fri, 14 May 2021 04:08:37 -0700 (PDT)
-Received: from [192.168.1.122]
- (cpc159425-cmbg20-2-0-cust403.5-4.cable.virginm.net. [86.7.189.148])
- by smtp.gmail.com with ESMTPSA id b10sm7116349wrr.27.2021.05.14.04.08.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 14 May 2021 04:08:37 -0700 (PDT)
-To: David Woodhouse <dwmw2@infradead.org>,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-References: <cover.1620823573.git.mchehab+huawei@kernel.org>
- <d2fed242fbe200706b8d23a53512f0311d900297.camel@infradead.org>
- <20210514102118.1b71bec3@coco.lan>
- <61c286b7afd6c4acf71418feee4eecca2e6c80c8.camel@infradead.org>
-From: Edward Cree <ecree.xilinx@gmail.com>
-Message-ID: <8b8bc929-2f07-049d-f24c-cb1f1d85bbaa@gmail.com>
-Date: Fri, 14 May 2021 12:08:36 +0100
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46A246EE5E;
+ Fri, 14 May 2021 12:14:58 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+ by mx2.suse.de (Postfix) with ESMTP id 98BCAABB1;
+ Fri, 14 May 2021 12:14:56 +0000 (UTC)
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ DRI <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>
+References: <20210317140824.0a28ffec@canb.auug.org.au>
+ <20210318125241.5fdfeffd@canb.auug.org.au>
+ <20210430082321.3bd9c4a5@canb.auug.org.au>
+ <20210514115307.4364aff9@canb.auug.org.au>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <d88cedea-1f6c-de70-de56-083e0a378671@suse.de>
+Date: Fri, 14 May 2021 14:14:54 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-In-Reply-To: <61c286b7afd6c4acf71418feee4eecca2e6c80c8.camel@infradead.org>
-Content-Language: en-GB
-X-Mailman-Approved-At: Fri, 14 May 2021 12:13:37 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 00/40] Use ASCII subset instead of UTF-8
- alternate symbols
+In-Reply-To: <20210514115307.4364aff9@canb.auug.org.au>
+Subject: Re: [Intel-gfx] linux-next: manual merge of the drm-intel tree with
+ the drm tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,48 +43,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>, linux-iio@vger.kernel.org,
- linux-pci@vger.kernel.org, dri-devel@lists.freedesktop.org,
- keyrings@vger.kernel.org, linux-sgx@vger.kernel.org,
- Jonathan Corbet <corbet@lwn.net>, linux-rdma@vger.kernel.org,
- linux-acpi@vger.kernel.org, Mali DP Maintainers <malidp@foss.arm.com>,
- linux-input@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
- linux-ext4@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
- coresight@lists.linaro.org, rcu@vger.kernel.org,
- mjpeg-users@lists.sourceforge.net, linux-arm-kernel@lists.infradead.org,
- linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-integrity@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Content-Type: multipart/mixed; boundary="===============0257465115=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiBPbiBGcmksIDIwMjEtMDUtMTQgYXQgMTA6MjEgKzAyMDAsIE1hdXJvIENhcnZhbGhvIENoZWhh
-YiB3cm90ZToKPj4gSSBkbyB1c2UgYSBsb3Qgb2YgVVRGLTggaGVyZSwgYXMgSSB0eXBlIHRleHRz
-IGluIFBvcnR1Z3Vlc2UsIGJ1dCBJIHJlbHkKPj4gb24gdGhlIFVTLWludGwga2V5Ym9hcmQgc2V0
-dGluZ3MsIHRoYXQgYWxsb3cgbWUgdG8gdHlwZSBhcyAiJ2EiIGZvciDDoS4KPj4gSG93ZXZlciwg
-dGhlcmUncyBubyBzaG9ydGN1dCBmb3Igbm9uLUxhdGluIFVURi1jb2RlcywgYXMgZmFyIGFzIEkg
-a25vdy4KPj4KPj4gU28sIGlmIHdvdWxkIG5lZWQgdG8gdHlwZSBhIGN1cmx5IGNvbW1hIG9uIHRo
-ZSB0ZXh0IGVkaXRvcnMgSSBub3JtYWxseSAKPj4gdXNlIGZvciBkZXZlbG9wbWVudCAodmltLCBu
-YW5vLCBrYXRlKSwgSSB3b3VsZCBuZWVkIHRvIGN1dC1hbmQtcGFzdGUKPj4gaXQgZnJvbSBzb21l
-d2hlcmUKCkZvciBhbnlvbmUgd2hvIGRvZXNuJ3Qga25vdyBhYm91dCBpdDogWCBoYXMgdGhpcyB3
-b25kZXJmdWwgdGhpbmcgY2FsbGVkCiB0aGUgQ29tcG9zZSBrZXlbMV0uICBGb3IgaW5zdGFuY2Us
-IHR5cGUg4o6ELS0tIHRvIGdldCDigJQsIG9yIOKOhDwiIGZvciDigJwuCk11Y2ggbW9yZSBtbmVt
-b25pYyB0aGFuIFVuaWNvZGUgY29kZXBvaW50czsgYW5kIHlvdSBjYW4gZXh0ZW5kIGl0IHdpdGgK
-IHVzZXItZGVmaW5lZCBzZXF1ZW5jZXMgaW4geW91ciB+Ly5YQ29tcG9zZSBmaWxlLgooSSBhc3N1
-bWUgV2F5bGFuZCBzdXBwb3J0cyBhbGwgdGhpcyB0b28sIGJ1dCBkb24ndCBrbm93IHRoZSBkZXRh
-aWxzLikKCk9uIDE0LzA1LzIwMjEgMTA6MDYsIERhdmlkIFdvb2Rob3VzZSB3cm90ZToKPiBBZ2Fp
-biwgaWYgeW91IHdhbnQgdG8gbWFrZSBzcGVjaWZpYyBmaXhlcyBsaWtlIHJlbW92aW5nIG5vbi1i
-cmVha2luZwo+IHNwYWNlcyBhbmQgYnl0ZSBvcmRlciBtYXJrcywgd2l0aCBzcGVjaWZpYyByZWFz
-b25zLCB0aGVuIHRob3NlIG1ha2UKPiBzZW5zZS4gQnV0IGl0J3MgZ290IHZlcnkgbGl0dGxlIHRv
-IGRvIHdpdGggVVRGLTggYW5kIGhvdyBlYXN5IGl0IGlzIHRvCj4gdHlwZSB0aGVtLiBBbmQgdGhl
-IGV4Y3VzZSB5b3UndmUgcHV0IGluIHRoZSBjb21taXQgY29tbWVudCBmb3IgeW91cgo+IHBhdGNo
-ZXMgaXMgdXR0ZXJseSBib2d1cy4KCisxCgotZWQKClsxXSBodHRwczovL2VuLndpa2lwZWRpYS5v
-cmcvd2lraS9Db21wb3NlX2tleQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngK
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0257465115==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="gQKAUoO0HdU4QPLWr4OYseKl5eAOpZfMT"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--gQKAUoO0HdU4QPLWr4OYseKl5eAOpZfMT
+Content-Type: multipart/mixed; boundary="9adCaDBkX0gzP5IfR7bePNMPiFhy7UkSV";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Stephen Rothwell <sfr@canb.auug.org.au>,
+ DRI <dri-devel@lists.freedesktop.org>, Dave Airlie <airlied@redhat.com>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <d88cedea-1f6c-de70-de56-083e0a378671@suse.de>
+Subject: Re: linux-next: manual merge of the drm-intel tree with the drm tree
+References: <20210317140824.0a28ffec@canb.auug.org.au>
+ <20210318125241.5fdfeffd@canb.auug.org.au>
+ <20210430082321.3bd9c4a5@canb.auug.org.au>
+ <20210514115307.4364aff9@canb.auug.org.au>
+In-Reply-To: <20210514115307.4364aff9@canb.auug.org.au>
+
+--9adCaDBkX0gzP5IfR7bePNMPiFhy7UkSV
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 14.05.21 um 03:53 schrieb Stephen Rothwell:
+> Hi all,
+>=20
+> On Fri, 30 Apr 2021 08:23:21 +1000 Stephen Rothwell <sfr@canb.auug.org.=
+au> wrote:
+>>
+>> On Thu, 18 Mar 2021 12:52:41 +1100 Stephen Rothwell <sfr@canb.auug.org=
+=2Eau> wrote:
+>>>
+>>> On Wed, 17 Mar 2021 14:08:24 +1100 Stephen Rothwell <sfr@canb.auug.or=
+g.au> wrote:
+>>>>
+>>>> Today's linux-next merge of the drm-intel tree got a conflict in:
+>>>>
+>>>>    drivers/gpu/drm/i915/display/intel_sprite.c
+>>>>
+>>>> between commit:
+>>>>
+>>>>    92f1d09ca4ed ("drm: Switch to %p4cc format modifier")
+>>>>
+>>>> from the drm tree and commit:
+>>>>
+>>>>    46d12f911821 ("drm/i915: migrate skl planes code new file (v5)")
+>>>>
+>>>> from the drm-intel tree.
+>>>>
+>>>> I fixed it up (I used the latter version of the file and applied the=
+
+>>>> following patch) and can carry the fix as necessary. This is now fix=
+ed
+>>>> as far as linux-next is concerned, but any non trivial conflicts sho=
+uld
+>>>> be mentioned to your upstream maintainer when your tree is submitted=20
+for
+>>>> merging.  You may also want to consider cooperating with the maintai=
+ner
+>>>> of the conflicting tree to minimise any particularly complex conflic=
+ts.
+>>>>
+>>>> From: Stephen Rothwell <sfr@canb.auug.org.au>
+>>>> Date: Wed, 17 Mar 2021 14:05:42 +1100
+>>>> Subject: [PATCH] merge fix for "drm: Switch to %p4cc format modifier=
+"
+>>>>
+>>>> Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 ++----
+>>>>   1 file changed, 2 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/dr=
+ivers/gpu/drm/i915/display/skl_universal_plane.c
+>>>> index 1f335cb09149..45ceff436bf7 100644
+>>>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>>>> @@ -1120,7 +1120,6 @@ static int skl_plane_check_fb(const struct int=
+el_crtc_state *crtc_state,
+>>>>   	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
+>>>>   	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+>>>>   	unsigned int rotation =3D plane_state->hw.rotation;
+>>>> -	struct drm_format_name_buf format_name;
+>>>>  =20
+>>>>   	if (!fb)
+>>>>   		return 0;
+>>>> @@ -1168,9 +1167,8 @@ static int skl_plane_check_fb(const struct int=
+el_crtc_state *crtc_state,
+>>>>   		case DRM_FORMAT_XVYU12_16161616:
+>>>>   		case DRM_FORMAT_XVYU16161616:
+>>>>   			drm_dbg_kms(&dev_priv->drm,
+>>>> -				    "Unsupported pixel format %s for 90/270!\n",
+>>>> -				    drm_get_format_name(fb->format->format,
+>>>> -							&format_name));
+>>>> +				    "Unsupported pixel format %p4cc for 90/270!\n",
+>>>> +				    &fb->format->format);
+>>>>   			return -EINVAL;
+>>>>   		default:
+>>>>   			break;
+>>>> --=20
+>>>> 2.30.0
+>>>
+>>> The above fix up patch now needs to be applied to the drm tree.
+>>
+>> I am still applying the above patch, but it applies to Linus' tree now=
+=2E
+>=20
+> I am going to stop applying this.  You guys can apply it if you want to=
+
+> some time.
+>=20
+
+Sorry, this got lost several times. I've applied your patch to=20
+drm-misc-next now. Thanks a lot.
+
+Best regards
+Thomas
+
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+(HRB 36809, AG N=FCrnberg)
+Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+
+
+--9adCaDBkX0gzP5IfR7bePNMPiFhy7UkSV--
+
+--gQKAUoO0HdU4QPLWr4OYseKl5eAOpZfMT
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmCeab4FAwAAAAAACgkQlh/E3EQov+Bf
+sw/+LGkhDniEytcmToHBkr0NcCH9ebNFXjGxQPa7SMQsZjZnxFkDjPMLCM6Jc0B7rjV1pXpRAeTt
+i7y8b0P0sHhzAd5y8Yxr6Ad/MoQ2dZaieAng09ZlHTXZhtNw+NoUjUaGFSybYIbwdmCCg6jvxc0+
+zozFGONubkZH2VLoQ4s+6i/EyEU52jVje7GpJ2XXCWTT7jk5x1Pmy3Nb4zfWJNzgg9UMSASJxQPk
+sgI1ilitPNbEt9yY+UnlS1sXMGYpPSGY4JlY8KcucxdKUduyFT2MoIBVbccF2ghmGx97yLNjFWPa
+FZ6XIm47jp8QoQZT53dpQSyZCXqIISNDG0DD04gdYfUsds0YszSPx2SoJqIuisL5d0aQ7TemRuOr
+SWJUvlluZYjBILcrcaHYb3+NWLZjcBMr4V4XyHKZfH8clLOX9NWbmWQjDK9E1tNyedwDytEsx1KP
+7ulvdZ6QVUijIPsOhpMh2FgJPJQ4sQHhp4EQiGo7pS5CVth9cgpS97yrjtsIiZ0tTRBoKWybw/Ut
+qeSvnLicAnW6zq/diqLK2OmM1GFpyzWVsmPQYtSS5vbXJhXjibu96yMFAavTDOSeK5WPLhG2m7Gq
+Camt/HzLJd9NwAvUKZz7+7d/Av1dt/iGA4UU/xoXc7DpETfqtPuFjC2mWJgrJgQIO3rBpsqgwej3
+f6w=
+=ev6h
+-----END PGP SIGNATURE-----
+
+--gQKAUoO0HdU4QPLWr4OYseKl5eAOpZfMT--
+
+--===============0257465115==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0257465115==--
