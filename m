@@ -1,55 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B77C738065C
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 11:39:09 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D1423806D8
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 12:06:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34C146EE44;
-	Fri, 14 May 2021 09:39:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29E5C6E2C8;
+	Fri, 14 May 2021 10:06:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96A2F6E1A5
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 09:39:05 +0000 (UTC)
-Received: from mail-lf1-f70.google.com ([209.85.167.70])
- by youngberry.canonical.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.93)
- (envelope-from <kai.heng.feng@canonical.com>) id 1lhUHf-0007Hr-My
- for intel-gfx@lists.freedesktop.org; Fri, 14 May 2021 09:39:03 +0000
-Received: by mail-lf1-f70.google.com with SMTP id
- p10-20020a19f10a0000b02901d675ef8fb8so5434503lfh.16
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 02:39:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=BOeJR7+8V9SrfRJ7P6Px6DDdP07HsZ2AaHT/i8QQJDk=;
- b=AMP+38O2Lb2CP6l0EFzFBeGpPF6AqdzyYIZS9LdQ/XIAcM6v+3X5MU7eodpzPsHg87
- Mxrxg2ym26n+r9/8F1A8h+o2x4zKa1YHL6LDYymQ82+iCXMzEqhYYp9y7nHACAazHRXy
- f0TX+QyvxTLaIYU9tOTDCWBL36cfSSVU/gi1ut9x924ZzxeBbYJYI3Bofo48LUyeolSI
- QaAq6Wr+Ve+v1fVdd3xl5zw2OtQWTPYmQMzY0f68JXRhutCwUJ90TsEuQAy8WugAVPc9
- szjCt++MObsyv+2M2Mw0Eh1h7lzAZ8a87hx97VYnwLmHkRlXsLZODQXK/U1GbDq8gM9B
- bKIg==
-X-Gm-Message-State: AOAM533nDx73+B8g/MqM7r6XwiVjPyvr7MLoSpXslGXWWIdhcilVh/33
- 0Yl4X9KnImxETv6/ed3mePARhA+ofYRDjVJjMfpZ8gyx3j7jovTtl5vJdXDvZ53Ix6aJsTV5tKj
- HdFpBWtJ9IVlQZvr0/ud2GqYAMr6WhNa7tmHF6gpMs7G/im2Y6jdOxmJaI7elHg==
-X-Received: by 2002:a2e:b531:: with SMTP id z17mr37029665ljm.126.1620985143035; 
- Fri, 14 May 2021 02:39:03 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyKHIuUDJuL9g4ZUwIgFtHu6cFFNFFSmfs/psYlO3CunDrkKG6ZwseHlgQ0qyUpzLJKZXyqO3GC7Wei/JHqA9E=
-X-Received: by 2002:a2e:b531:: with SMTP id z17mr37029623ljm.126.1620985142551; 
- Fri, 14 May 2021 02:39:02 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5D3B6E2C8
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 10:06:40 +0000 (UTC)
+IronPort-SDR: GXatqu4L/pQwieP+aLdiQ0ZK0CYvFnqYFcHwGzsRavmogJxhKKCMfo4mtwJnvg5btwAujLmEho
+ QcDCFUFLO0zw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9983"; a="221160804"
+X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="221160804"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2021 03:06:40 -0700
+IronPort-SDR: gx9lzxOsQvwWPYSwxoGCS1+zJzYNSl5HG+XzrrYb1rm7hr7wjz9aDMX7QbEH2KMSyyCKmcV8rD
+ PPZqgJ+9E/ew==
+X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="610719718"
+Received: from unknown (HELO intel.com) ([10.237.72.91])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2021 03:06:38 -0700
+Date: Fri, 14 May 2021 13:09:57 +0300
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210514100957.GF8652@intel.com>
+References: <20210508022820.780227-1-matthew.d.roper@intel.com>
+ <20210508022820.780227-30-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-References: <20210426152420.359402-1-kai.heng.feng@canonical.com>
- <YJrKnHppE5FnaZ72@intel.com>
-In-Reply-To: <YJrKnHppE5FnaZ72@intel.com>
-From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Date: Fri, 14 May 2021 17:38:51 +0800
-Message-ID: <CAAd53p7kFD-PrdeONF8-c=JG5rtHXpz1sxTbPkwg8YY4ZcCYWg@mail.gmail.com>
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Invoke another _DSM to enable
- MUX on HP Workstation laptops
+Content-Disposition: inline
+In-Reply-To: <20210508022820.780227-30-matthew.d.roper@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v3 29/48] drm/i915/adl_p: MBUS programming
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,108 +48,373 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, Takashi Iwai <tiwai@suse.de>,
- Dave Airlie <airlied@redhat.com>, intel-gfx <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBNYXkgMTIsIDIwMjEgYXQgMjoxOSBBTSBWaWxsZSBTeXJqw6Rsw6QKPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IE9uIE1vbiwgQXByIDI2LCAyMDIxIGF0
-IDExOjI0OjEwUE0gKzA4MDAsIEthaS1IZW5nIEZlbmcgd3JvdGU6Cj4gPiBPbiBIUCBGdXJ5IEc3
-IFdvcmtzdGF0aW9ucywgZ3JhcGhpY3Mgb3V0cHV0IGlzIHJlLXJvdXRlZCBmcm9tIEludGVsIEdG
-WAo+ID4gdG8gZGlzY3JldGUgR0ZYIGFmdGVyIFMzLiBUaGlzIGlzIG5vdCBkZXNpcmFibGUsIGJl
-Y2F1c2UgdXNlcnNwYWNlIHdpbGwKPiA+IHRyZWF0IGNvbm5lY3RlZCBkaXNwbGF5IGFzIGEgbmV3
-IG9uZSwgbG9zaW5nIGRpc3BsYXkgc2V0dGluZ3MuCj4gPgo+ID4gVGhlIGV4cGVjdGVkIGJlaGF2
-aW9yIGlzIHRvIGxldCBkaXNjcmV0ZSBHRlggZHJpdmVzIGFsbCBleHRlcm5hbAo+ID4gZGlzcGxh
-eXMuCj4gPgo+ID4gVGhlIHBsYXRmb3JtIGluIHF1ZXN0aW9uIHVzZXMgQUNQSSBtZXRob2QgXF9T
-Qi5QQ0kwLkhHTUUgdG8gZW5hYmxlIE1VWC4KPiA+IFRoZSBtZXRob2QgaXMgaW5zaWRlIHRoZSBh
-bm90aGVyIF9EU00sIHNvIGFkZCB0aGUgX0RTTSBhbmQgY2FsbCBpdAo+ID4gYWNjb3JkaW5nbHku
-Cj4gPgo+ID4gSSBhbHNvIHRlc3RlZCBzb21lIE1VWC1sZXNzIGFuZCBpR1BVIG9ubHkgbGFwdG9w
-cyB3aXRoIHRoYXQgX0RTTSwgbm8KPiA+IHJlZ3Jlc3Npb24gd2FzIGZvdW5kLgo+ID4KPiA+IHYz
-Ogo+ID4gIC0gUmVtb3ZlIEJYVCBmcm9tIG5hbWVzLgo+ID4gIC0gQ2hhbmdlIHRoZSBwYXJhbWV0
-ZXIgdHlwZS4KPiA+ICAtIEZvbGQgdGhlIGZ1bmN0aW9uIGludG8gaW50ZWxfbW9kZXNldF9pbml0
-X2h3KCkuCj4gPgo+ID4gdjI6Cj4gPiAgLSBGb3J3YXJkIGRlY2xhcmUgc3RydWN0IHBjaV9kZXYu
-Cj4gPgo+ID4gQ2xvc2VzOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVs
-Ly0vaXNzdWVzLzMxMTMKPiA+IFJlZmVyZW5jZXM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2lu
-dGVsLWdmeC8xNDYwMDQwNzMyLTMxNDE3LTQtZ2l0LXNlbmQtZW1haWwtYW5pbWVzaC5tYW5uYUBp
-bnRlbC5jb20vCj4gPiBTaWduZWQtb2ZmLWJ5OiBLYWktSGVuZyBGZW5nIDxrYWkuaGVuZy5mZW5n
-QGNhbm9uaWNhbC5jb20+Cj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2FjcGkuYyAgICB8IDE4ICsrKysrKysrKysrKysrKysrKwo+ID4gIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWNwaS5oICAgIHwgIDMgKysrCj4gPiAgZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAgMiArKwo+ID4gIDMgZmlsZXMg
-Y2hhbmdlZCwgMjMgaW5zZXJ0aW9ucygrKQo+ID4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2FjcGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfYWNwaS5jCj4gPiBpbmRleCA4MzNkMGMxYmU0ZjEuLmQwMDhkMzk3NjI2MSAx
-MDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWNwaS5j
-Cj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2FjcGkuYwo+ID4g
-QEAgLTEzLDEyICsxMywxNyBAQAo+ID4gICNpbmNsdWRlICJpbnRlbF9kaXNwbGF5X3R5cGVzLmgi
-Cj4gPgo+ID4gICNkZWZpbmUgSU5URUxfRFNNX1JFVklTSU9OX0lEIDEgLyogRm9yIENhbHBlbGxh
-IGFueXdheS4uLiAqLwo+ID4gKyNkZWZpbmUgSU5URUxfRFNNX0ZOX1BMQVRGT1JNX01VWF9FTkFC
-TEUgMCAvKiBObyBhcmdzICovCj4KPiBUaGlzIGJsb2NrIG9mIGRlZmluZXMgaXMgZm9yIHRoZSBv
-dGhlciBEU00uIFdlIGRvbid0IHdhbnQgdG8KPiBtaXggdGhlc2UgdXAuIFdlIGFsc28gd2FudCB0
-byBuYW1lIGl0IGFjY29yZGluZyB0byB0aGUgc3BlYywKPiBzbyBzb21ldGhpbmcgbGlrZSBHRVRf
-QklPU19EQVRBX0ZVTkNTX1NVUFBPUlRFRC4gU2ltaWxhcmx5Cj4gZm9yIHRoZSBpbnRlbF9kc21f
-ZW5hYmxlX211eCgpIHdyYXBwZXIgZnVuY3Rpb24uICsgaXQgbmVlZHMKPiBhIGNvbW1lbnQgdG8g
-ZG9jdW1lbnQgdGhhdCBzb21lIEJJT1NlcyBhYnVzZSBpdCB0byBkbyBNVVgKPiBpbml0aWFsaXph
-dGlvbiBhbmQgd2hhdG5vdC4KCldpbGwgZG8uCgoKPgo+IFdlIHNob3VsZCBwZXJoYXBzIHJlbmFt
-ZSBhbGwgdGhlIG9sZCBEU00gc3R1ZmYgdG8KPiBzb21ldGhpbmcgYSBiaXQgbGVzcyBnZW5lcmlj
-IGFzIHdlbGwuLi4KCkkgY2FuIHJlbmFtZSB0aGVtIGFzIHdlbGwuIEJ1dCB3aGF0J3MgdGhlIG5h
-bWluZyBzY2hlbWUgeW91IHByZWZlcj8KCj4KPiA+ICAjZGVmaW5lIElOVEVMX0RTTV9GTl9QTEFU
-Rk9STV9NVVhfSU5GTyAxIC8qIE5vIGFyZ3MgKi8KPiA+Cj4gPiAgc3RhdGljIGNvbnN0IGd1aWRf
-dCBpbnRlbF9kc21fZ3VpZCA9Cj4gPiAgICAgICBHVUlEX0lOSVQoMHg3ZWQ4NzNkMywgMHhjMmQw
-LCAweDRlNGYsCj4gPiAgICAgICAgICAgICAgICAgMHhhOCwgMHg1NCwgMHgwZiwgMHgxMywgMHgx
-NywgMHhiMCwgMHgxYywgMHgyYyk7Cj4gPgo+ID4gK3N0YXRpYyBjb25zdCBndWlkX3QgaW50ZWxf
-ZHNtX2d1aWQyID0KPiA+ICsgICAgIEdVSURfSU5JVCgweDNlNWI0MWM2LCAweGViMWQsIDB4NDI2
-MCwKPiA+ICsgICAgICAgICAgICAgICAweDlkLCAweDE1LCAweGM3LCAweDFmLCAweGJhLCAweGRh
-LCAweGU0LCAweDE0KTsKPiA+ICsKPiA+ICBzdGF0aWMgY2hhciAqaW50ZWxfZHNtX3BvcnRfbmFt
-ZSh1OCBpZCkKPiA+ICB7Cj4gPiAgICAgICBzd2l0Y2ggKGlkKSB7Cj4gPiBAQCAtMTc2LDYgKzE4
-MSwxOSBAQCB2b2lkIGludGVsX3VucmVnaXN0ZXJfZHNtX2hhbmRsZXIodm9pZCkKPiA+ICB7Cj4g
-PiAgfQo+ID4KPiA+ICt2b2lkIGludGVsX2RzbV9lbmFibGVfbXV4KHN0cnVjdCBkcm1faTkxNV9w
-cml2YXRlICppOTE1KQo+ID4gK3sKPiA+ICsgICAgIHN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gaTkx
-NS0+ZHJtLnBkZXY7Cj4gPiArICAgICBhY3BpX2hhbmRsZSBkaGFuZGxlOwo+ID4gKwo+ID4gKyAg
-ICAgZGhhbmRsZSA9IEFDUElfSEFORExFKCZwZGV2LT5kZXYpOwo+ID4gKyAgICAgaWYgKCFkaGFu
-ZGxlKQo+ID4gKyAgICAgICAgICAgICByZXR1cm47Cj4gPiArCj4gPiArICAgICBhY3BpX2V2YWx1
-YXRlX2RzbShkaGFuZGxlLCAmaW50ZWxfZHNtX2d1aWQyLCBJTlRFTF9EU01fUkVWSVNJT05fSUQs
-Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICBJTlRFTF9EU01fRk5fUExBVEZPUk1fTVVYX0VO
-QUJMRSwgTlVMTCk7Cj4gPiArfQo+ID4gKwo+ID4gIC8qCj4gPiAgICogQUNQSSBTcGVjaWZpY2F0
-aW9uLCBSZXZpc2lvbiA1LjAsIEFwcGVuZGl4IEIuMy4yIF9ET0QgKEVudW1lcmF0ZSBBbGwgRGV2
-aWNlcwo+ID4gICAqIEF0dGFjaGVkIHRvIHRoZSBEaXNwbGF5IEFkYXB0ZXIpLgo+ID4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWNwaS5oIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hY3BpLmgKPiA+IGluZGV4IGU4YjA2ODY2MWQy
-Mi4uZGVmMDEzY2Y2MzA4IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9hY3BpLmgKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfYWNwaS5oCj4gPiBAQCAtMTEsMTEgKzExLDE0IEBAIHN0cnVjdCBkcm1faTkxNV9wcml2
-YXRlOwo+ID4gICNpZmRlZiBDT05GSUdfQUNQSQo+ID4gIHZvaWQgaW50ZWxfcmVnaXN0ZXJfZHNt
-X2hhbmRsZXIodm9pZCk7Cj4gPiAgdm9pZCBpbnRlbF91bnJlZ2lzdGVyX2RzbV9oYW5kbGVyKHZv
-aWQpOwo+ID4gK3ZvaWQgaW50ZWxfZHNtX2VuYWJsZV9tdXgoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmk5MTUpOwo+ID4gIHZvaWQgaW50ZWxfYWNwaV9kZXZpY2VfaWRfdXBkYXRlKHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1KTsKPiA+ICAjZWxzZQo+ID4gIHN0YXRpYyBpbmxpbmUgdm9p
-ZCBpbnRlbF9yZWdpc3Rlcl9kc21faGFuZGxlcih2b2lkKSB7IHJldHVybjsgfQo+ID4gIHN0YXRp
-YyBpbmxpbmUgdm9pZCBpbnRlbF91bnJlZ2lzdGVyX2RzbV9oYW5kbGVyKHZvaWQpIHsgcmV0dXJu
-OyB9Cj4gPiAgc3RhdGljIGlubGluZQo+ID4gK3ZvaWQgaW50ZWxfZHNtX2VuYWJsZV9tdXgoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpIHsgcmV0dXJuOyB9Cj4gPiArc3RhdGljIGlubGlu
-ZQo+ID4gIHZvaWQgaW50ZWxfYWNwaV9kZXZpY2VfaWRfdXBkYXRlKHN0cnVjdCBkcm1faTkxNV9w
-cml2YXRlICppOTE1KSB7IHJldHVybjsgfQo+ID4gICNlbmRpZiAvKiBDT05GSUdfQUNQSSAqLwo+
-ID4KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4g
-PiBpbmRleCBhMTBlMjYzODBlZjMuLmQ3OWRhZTM3MGIyMCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+ID4gQEAgLTExNDcyLDYgKzEx
-NDcyLDggQEAgdm9pZCBpbnRlbF9tb2Rlc2V0X2luaXRfaHcoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmk5MTUpCj4gPiAgewo+ID4gICAgICAgc3RydWN0IGludGVsX2NkY2xrX3N0YXRlICpjZGNs
-a19zdGF0ZTsKPiA+Cj4gPiArICAgICBpbnRlbF9kc21fZW5hYmxlX211eChpOTE1KTsKPiA+ICsK
-Pgo+IFRoaXMgc2hvdWxkIHByb2JhYmx5IGJlIHNvbWV3aGVyZSBhcm91bmQgd2hlcmUgd2UgZG8g
-YWxsIHRoZSBvdGhlcgo+IHNlbWkgQUNQSSByZWxhdGVkIGluaXQgKE9wUmVnaW9uL2V0Yy4pLgoK
-SG1tLCBidXQgSmFuaSBwcmVmZXJzIHRvIHB1dCBpdCBpbnNpZGUgaW50ZWxfbW9kZXNldF8qKCkg
-aGVscGVycy4gQnV0CkkgZG9uJ3Qgc2VlIGFueSBvcHJlZ2lvbiByZWxhdGVkIGZ1bmN0aW9ucyBh
-cmUgYmVpbmcgY2FsbGVkIGJ5CmludGVsX21vZGVzZXRfKigpIGhlbHBlcnMuIEFueSBzdWdnZXN0
-aW9uPwoKS2FpLUhlbmcKCj4KPiA+ICAgICAgIGlmICghSEFTX0RJU1BMQVkoaTkxNSkpCj4gPiAg
-ICAgICAgICAgICAgIHJldHVybjsKPiA+Cj4gPiAtLQo+ID4gMi4zMC4yCj4KPiAtLQo+IFZpbGxl
-IFN5cmrDpGzDpAo+IEludGVsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+On Fri, May 07, 2021 at 07:28:01PM -0700, Matt Roper wrote:
+> From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> =
+
+> Update MBUS_CTL register if the 2 mbus can be joined as per the current
+> DDB allocation and active pipes, also update hashing mode and pipe
+> select bits as  per the sequence mentioned in the bspec.
+
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+
+> =
+
+> Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_atomic.c  | 20 +++++
+>  drivers/gpu/drm/i915/display/intel_atomic.h  |  1 +
+>  drivers/gpu/drm/i915/display/intel_display.c |  3 +
+>  drivers/gpu/drm/i915/i915_reg.h              | 11 +++
+>  drivers/gpu/drm/i915/intel_pm.c              | 92 ++++++++++++++++++--
+>  drivers/gpu/drm/i915/intel_pm.h              |  2 +-
+>  6 files changed, 120 insertions(+), 9 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/dr=
+m/i915/display/intel_atomic.c
+> index 88f424020a5f..b4e7ac51aa31 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -187,6 +187,26 @@ intel_connector_needs_modeset(struct intel_atomic_st=
+ate *state,
+>  									    new_conn_state->crtc)));
+>  }
+>  =
+
+> +/**
+> + * intel_any_crtc_needs_modeset - check if any CRTC needs a modeset
+> + * @state: the atomic state corresponding to this modeset
+> + *
+> + * Returns true if any CRTC in @state needs a modeset.
+> + */
+> +bool intel_any_crtc_needs_modeset(struct intel_atomic_state *state)
+> +{
+> +	struct intel_crtc *crtc;
+> +	struct intel_crtc_state *crtc_state;
+> +	int i;
+> +
+> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+> +		if (intel_crtc_needs_modeset(crtc_state))
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>  struct intel_digital_connector_state *
+>  intel_atomic_get_digital_connector_state(struct intel_atomic_state *stat=
+e,
+>  					 struct intel_connector *connector)
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.h b/drivers/gpu/dr=
+m/i915/display/intel_atomic.h
+> index 62a3365ed5e6..d2700c74c9da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.h
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.h
+> @@ -35,6 +35,7 @@ struct drm_connector_state *
+>  intel_digital_connector_duplicate_state(struct drm_connector *connector);
+>  bool intel_connector_needs_modeset(struct intel_atomic_state *state,
+>  				   struct drm_connector *connector);
+> +bool intel_any_crtc_needs_modeset(struct intel_atomic_state *state);
+>  struct intel_digital_connector_state *
+>  intel_atomic_get_digital_connector_state(struct intel_atomic_state *stat=
+e,
+>  					 struct intel_connector *connector);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 611ff1d9a482..7ae1e3a53dc9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -9948,6 +9948,9 @@ static int intel_atomic_check(struct drm_device *de=
+v,
+>  	if (ret)
+>  		goto fail;
+>  =
+
+> +	if (intel_any_crtc_needs_modeset(state))
+> +		any_ms =3D true;
+> +
+>  	if (any_ms) {
+>  		ret =3D intel_modeset_checks(state);
+>  		if (ret)
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index d3a1801a3228..345dc922eca5 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2935,6 +2935,15 @@ static inline bool i915_mmio_reg_valid(i915_reg_t =
+reg)
+>  #define MBUS_BBOX_CTL_S1		_MMIO(0x45040)
+>  #define MBUS_BBOX_CTL_S2		_MMIO(0x45044)
+>  =
+
+> +#define MBUS_CTL			_MMIO(0x4438C)
+> +#define MBUS_JOIN			REG_BIT(31)
+> +#define MBUS_HASHING_MODE_MASK		REG_BIT(30)
+> +#define MBUS_HASHING_MODE_2x2		REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 0)
+> +#define MBUS_HASHING_MODE_1x4		REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 1)
+> +#define MBUS_JOIN_PIPE_SELECT_MASK	REG_GENMASK(28, 26)
+> +#define MBUS_JOIN_PIPE_SELECT(pipe)	REG_FIELD_PREP(MBUS_JOIN_PIPE_SELECT=
+_MASK, pipe)
+> +#define MBUS_JOIN_PIPE_SELECT_NONE	MBUS_JOIN_PIPE_SELECT(7)
+> +
+>  #define HDPORT_STATE			_MMIO(0x45050)
+>  #define   HDPORT_DPLL_USED_MASK		REG_GENMASK(15, 12)
+>  #define   HDPORT_DDI_USED(phy)		REG_BIT(2 * (phy) + 1)
+> @@ -8163,6 +8172,8 @@ enum {
+>  #define  DBUF_POWER_STATE			REG_BIT(30)
+>  #define  DBUF_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(23, 19)
+>  #define  DBUF_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_TRACKER_STAT=
+E_SERVICE_MASK, x)
+> +#define  DBUF_MIN_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(18, 16) /* ADL-=
+P+ */
+> +#define  DBUF_MIN_TRACKER_STATE_SERVICE(x)		REG_FIELD_PREP(DBUF_MIN_TRAC=
+KER_STATE_SERVICE_MASK, x) /* ADL-P+ */
+>  =
+
+>  #define GEN7_MSG_CTL	_MMIO(0x45010)
+>  #define  WAIT_FOR_PCH_RESET_ACK		(1 << 1)
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 14aea76cbe53..36da17e1aa3c 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4266,7 +4266,6 @@ skl_cursor_allocation(const struct intel_crtc_state=
+ *crtc_state,
+>  static void skl_ddb_entry_init_from_hw(struct drm_i915_private *dev_priv,
+>  				       struct skl_ddb_entry *entry, u32 reg)
+>  {
+> -
+>  	entry->start =3D reg & DDB_ENTRY_MASK;
+>  	entry->end =3D (reg >> DDB_ENTRY_END_SHIFT) & DDB_ENTRY_MASK;
+>  =
+
+> @@ -4391,6 +4390,7 @@ skl_plane_downscale_amount(const struct intel_crtc_=
+state *crtc_state,
+>  struct dbuf_slice_conf_entry {
+>  	u8 active_pipes;
+>  	u8 dbuf_mask[I915_MAX_PIPES];
+> +	bool join_mbus;
+>  };
+>  =
+
+>  /*
+> @@ -4583,14 +4583,16 @@ static const struct dbuf_slice_conf_entry adlp_al=
+lowed_dbufs[] =3D {
+>  	{
+>  		.active_pipes =3D BIT(PIPE_A),
+>  		.dbuf_mask =3D {
+> -			[PIPE_A] =3D BIT(DBUF_S1) | BIT(DBUF_S2),
+> +			[PIPE_A] =3D BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) | BIT(DBUF_S4=
+),
+>  		},
+> +		.join_mbus =3D true,
+>  	},
+>  	{
+>  		.active_pipes =3D BIT(PIPE_B),
+>  		.dbuf_mask =3D {
+> -			[PIPE_B] =3D BIT(DBUF_S3) | BIT(DBUF_S4),
+> +			[PIPE_B] =3D BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) | BIT(DBUF_S4=
+),
+>  		},
+> +		.join_mbus =3D true,
+>  	},
+>  	{
+>  		.active_pipes =3D BIT(PIPE_A) | BIT(PIPE_B),
+> @@ -4691,6 +4693,23 @@ static const struct dbuf_slice_conf_entry adlp_all=
+owed_dbufs[] =3D {
+>  =
+
+>  };
+>  =
+
+> +static bool check_mbus_joined(u8 active_pipes,
+> +			      const struct dbuf_slice_conf_entry *dbuf_slices)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < dbuf_slices[i].active_pipes; i++) {
+> +		if (dbuf_slices[i].active_pipes =3D=3D active_pipes)
+> +			return dbuf_slices[i].join_mbus;
+> +	}
+> +	return false;
+> +}
+> +
+> +static bool adlp_check_mbus_joined(u8 active_pipes)
+> +{
+> +	return check_mbus_joined(active_pipes, adlp_allowed_dbufs);
+> +}
+> +
+>  static u8 compute_dbuf_slices(enum pipe pipe, u8 active_pipes,
+>  			      const struct dbuf_slice_conf_entry *dbuf_slices)
+>  {
+> @@ -5972,16 +5991,29 @@ skl_compute_ddb(struct intel_atomic_state *state)
+>  =
+
+>  	new_dbuf_state->enabled_slices =3D intel_dbuf_enabled_slices(new_dbuf_s=
+tate);
+>  =
+
+> -	if (old_dbuf_state->enabled_slices !=3D new_dbuf_state->enabled_slices)=
+ {
+> +	if (IS_ALDERLAKE_P(dev_priv))
+> +		new_dbuf_state->joined_mbus =3D adlp_check_mbus_joined(new_dbuf_state-=
+>active_pipes);
+> +
+> +	if (old_dbuf_state->enabled_slices !=3D new_dbuf_state->enabled_slices =
+||
+> +	    old_dbuf_state->joined_mbus !=3D new_dbuf_state->joined_mbus) {
+>  		ret =3D intel_atomic_serialize_global_state(&new_dbuf_state->base);
+>  		if (ret)
+>  			return ret;
+>  =
+
+> +		if (old_dbuf_state->joined_mbus !=3D new_dbuf_state->joined_mbus) {
+> +			/* TODO: Implement vblank synchronized MBUS joining changes */
+> +			ret =3D intel_modeset_all_pipes(state);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +
+>  		drm_dbg_kms(&dev_priv->drm,
+> -			    "Enabled dbuf slices 0x%x -> 0x%x (total dbuf slices 0x%x)\n",
+> +			    "Enabled dbuf slices 0x%x -> 0x%x (total dbuf slices 0x%x), mbus =
+joined? %s->%s\n",
+>  			    old_dbuf_state->enabled_slices,
+>  			    new_dbuf_state->enabled_slices,
+> -			    INTEL_INFO(dev_priv)->dbuf.slice_mask);
+> +			    INTEL_INFO(dev_priv)->dbuf.slice_mask,
+> +			    yesno(old_dbuf_state->joined_mbus),
+> +			    yesno(new_dbuf_state->joined_mbus));
+>  	}
+>  =
+
+>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> @@ -6433,6 +6465,9 @@ void skl_wm_get_hw_state(struct drm_i915_private *d=
+ev_priv)
+>  		to_intel_dbuf_state(dev_priv->dbuf.obj.state);
+>  	struct intel_crtc *crtc;
+>  =
+
+> +	if (IS_ALDERLAKE_P(dev_priv))
+> +		dbuf_state->joined_mbus =3D intel_de_read(dev_priv, MBUS_CTL) & MBUS_J=
+OIN;
+> +
+>  	for_each_intel_crtc(&dev_priv->drm, crtc) {
+>  		struct intel_crtc_state *crtc_state =3D
+>  			to_intel_crtc_state(crtc->base.state);
+> @@ -6472,10 +6507,11 @@ void skl_wm_get_hw_state(struct drm_i915_private =
+*dev_priv)
+>  		crtc_state->wm.skl.ddb.end =3D mbus_offset + dbuf_state->ddb[pipe].end;
+>  =
+
+>  		drm_dbg_kms(&dev_priv->drm,
+> -			    "[CRTC:%d:%s] dbuf slices 0x%x, ddb (%d - %d), active pipes 0x%x\=
+n",
+> +			    "[CRTC:%d:%s] dbuf slices 0x%x, ddb (%d - %d), active pipes 0x%x,=
+ mbus joined: %s\n",
+>  			    crtc->base.base.id, crtc->base.name,
+>  			    dbuf_state->slices[pipe], dbuf_state->ddb[pipe].start,
+> -			    dbuf_state->ddb[pipe].end, dbuf_state->active_pipes);
+> +			    dbuf_state->ddb[pipe].end, dbuf_state->active_pipes,
+> +			    yesno(dbuf_state->joined_mbus));
+>  	}
+>  =
+
+>  	dbuf_state->enabled_slices =3D dev_priv->dbuf.enabled_slices;
+> @@ -7999,6 +8035,45 @@ int intel_dbuf_init(struct drm_i915_private *dev_p=
+riv)
+>  	return 0;
+>  }
+>  =
+
+> +/*
+> + * Configure MBUS_CTL and all DBUF_CTL_S of each slice to join_mbus stat=
+e before
+> + * update the request state of all DBUS slices.
+> + */
+> +static void update_mbus_pre_enable(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> +	u32 mbus_ctl, dbuf_min_tracker_val;
+> +	enum dbuf_slice slice;
+> +	const struct intel_dbuf_state *dbuf_state =3D
+> +		intel_atomic_get_new_dbuf_state(state);
+> +
+> +	if (!IS_ALDERLAKE_P(dev_priv))
+> +		return;
+> +
+> +	/*
+> +	 * TODO: Implement vblank synchronized MBUS joining changes.
+> +	 * Must be properly coordinated with dbuf reprogramming.
+> +	 */
+> +	if (dbuf_state->joined_mbus) {
+> +		mbus_ctl =3D MBUS_HASHING_MODE_1x4 | MBUS_JOIN |
+> +			MBUS_JOIN_PIPE_SELECT_NONE;
+> +		dbuf_min_tracker_val =3D DBUF_MIN_TRACKER_STATE_SERVICE(3);
+> +	} else {
+> +		mbus_ctl =3D MBUS_HASHING_MODE_2x2 |
+> +			MBUS_JOIN_PIPE_SELECT_NONE;
+> +		dbuf_min_tracker_val =3D DBUF_MIN_TRACKER_STATE_SERVICE(1);
+> +	}
+> +
+> +	intel_de_rmw(dev_priv, MBUS_CTL,
+> +		     MBUS_HASHING_MODE_MASK | MBUS_JOIN |
+> +		     MBUS_JOIN_PIPE_SELECT_MASK, mbus_ctl);
+> +
+> +	for_each_dbuf_slice(dev_priv, slice)
+> +		intel_de_rmw(dev_priv, DBUF_CTL_S(slice),
+> +			     DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
+> +			     dbuf_min_tracker_val);
+> +}
+> +
+>  void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> @@ -8013,6 +8088,7 @@ void intel_dbuf_pre_plane_update(struct intel_atomi=
+c_state *state)
+>  =
+
+>  	WARN_ON(!new_dbuf_state->base.changed);
+>  =
+
+> +	update_mbus_pre_enable(state);
+>  	gen9_dbuf_slices_update(dev_priv,
+>  				old_dbuf_state->enabled_slices |
+>  				new_dbuf_state->enabled_slices);
+> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel=
+_pm.h
+> index 669c8d505677..bac72c859a84 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.h
+> +++ b/drivers/gpu/drm/i915/intel_pm.h
+> @@ -78,9 +78,9 @@ struct intel_dbuf_state {
+>  	struct skl_ddb_entry ddb[I915_MAX_PIPES];
+>  	unsigned int weight[I915_MAX_PIPES];
+>  	u8 slices[I915_MAX_PIPES];
+> -
+>  	u8 enabled_slices;
+>  	u8 active_pipes;
+> +	bool joined_mbus;
+>  };
+>  =
+
+>  int intel_dbuf_init(struct drm_i915_private *dev_priv);
+> -- =
+
+> 2.25.4
+> =
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
