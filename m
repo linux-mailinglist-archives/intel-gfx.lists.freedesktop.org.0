@@ -2,45 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94C43805E3
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 11:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58BC83805E8
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 11:06:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93ACC6E235;
-	Fri, 14 May 2021 09:06:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB3D86E243;
+	Fri, 14 May 2021 09:06:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF536E235;
- Fri, 14 May 2021 09:06:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Mime-Version:Content-Type:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=wJ/s2QfMNTOyTmAVrtCY2CXjxIzIo3n63jc+NCKOLVA=; b=qSdZ8XEu7oRfN3BBgzEHopiTqS
- jG82n131hUCIcPhL/w7BpeBcjIKG4Se8cut+H2eYH3uOfbcNc7XGdGIVO0uSQfx4iK4PzAeAUbF47
- s4NeyxYEZrokaZG8vXvllhAVi13S8TKrRyssrgAp/z1xL56gQXAHbyDmNqp2B+nCcPBR4b3vKKP/6
- WZap8/pZ+M0Fu6/S+LcKQXTZOBM21oBFJBC6bs4YY8zXYLoGfBXcTU+OOoEdKTC+f8945eYS5r8vY
- zeI/I13z7D3mRVVokdlbY8t5yWaIvIxQI9QWgqVafmOYRy9Cc/IPb3MSh4WbRqO6atJAiwzvd5UcX
- 0kfhSlGA==;
-Received: from 54-240-197-239.amazon.com ([54.240.197.239]
- helo=iad7-dhcp-95-145-115.iad7.amazon.com)
- by bombadil.infradead.org with esmtpsa (Exim 4.94 #2 (Red Hat Linux))
- id 1lhTln-00BqP5-JN; Fri, 14 May 2021 09:06:08 +0000
-Message-ID: <61c286b7afd6c4acf71418feee4eecca2e6c80c8.camel@infradead.org>
-From: David Woodhouse <dwmw2@infradead.org>
-To: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Date: Fri, 14 May 2021 10:06:01 +0100
-In-Reply-To: <20210514102118.1b71bec3@coco.lan>
-References: <cover.1620823573.git.mchehab+huawei@kernel.org>
- <d2fed242fbe200706b8d23a53512f0311d900297.camel@infradead.org>
- <20210514102118.1b71bec3@coco.lan>
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Mime-Version: 1.0
-X-SRS-Rewrite: SMTP reverse-path rewritten from <dwmw2@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
-Subject: Re: [Intel-gfx] [PATCH v2 00/40] Use ASCII subset instead of UTF-8
- alternate symbols
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD26A6E247
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 09:06:34 +0000 (UTC)
+IronPort-SDR: lNrTHhO3AeJNBYT9xq4hFh43dL7Bfs49EJHj0eKPU7Bwfa0mm4tJSulBUZ6rp6/2P2OcbXfJ2m
+ 9dy1PgQUVSWQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9983"; a="180417253"
+X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="180417253"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2021 02:06:33 -0700
+IronPort-SDR: t0971EbbQeRV5Bj9+Nkus/Y9O9W/xl8M8x5xz/6eCfSmwqLZIsBs0fesDzh6arcn/mF5IiUzVa
+ 4OAZTx5vHyug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="436307032"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga008.fm.intel.com with ESMTP; 14 May 2021 02:06:32 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Fri, 14 May 2021 02:06:32 -0700
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2106.2; Fri, 14 May 2021 02:06:31 -0700
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.2106.013;
+ Fri, 14 May 2021 10:06:30 +0100
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v3 20/48] drm/i915/adl_p: Add cdclk support
+ for ADL-P
+Thread-Index: AQHXQ7HvxCy+LcgBx0SF/Q0vg3I+SariuVGQ
+Date: Fri, 14 May 2021 09:06:30 +0000
+Message-ID: <6c6a4e4da31f4286958ef37380db0012@intel.com>
+References: <20210508022820.780227-1-matthew.d.roper@intel.com>
+ <20210508022820.780227-21-matthew.d.roper@intel.com>
+In-Reply-To: <20210508022820.780227-21-matthew.d.roper@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-version: 11.6.0.76
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+x-originating-ip: [163.33.253.164]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v3 20/48] drm/i915/adl_p: Add cdclk support
+ for ADL-P
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,326 +70,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: alsa-devel@alsa-project.org, kvm@vger.kernel.org,
- Linux Doc Mailing List <linux-doc@vger.kernel.org>, linux-iio@vger.kernel.org,
- linux-pci@vger.kernel.org, dri-devel@lists.freedesktop.org,
- keyrings@vger.kernel.org, linux-sgx@vger.kernel.org,
- Jonathan Corbet <corbet@lwn.net>, linux-rdma@vger.kernel.org,
- linux-acpi@vger.kernel.org, Mali DP Maintainers <malidp@foss.arm.com>,
- linux-input@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
- linux-ext4@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
- coresight@lists.linaro.org, rcu@vger.kernel.org,
- mjpeg-users@lists.sourceforge.net, linux-arm-kernel@lists.infradead.org,
- linux-edac@vger.kernel.org, linux-hwmon@vger.kernel.org,
- netdev@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-f2fs-devel@lists.sourceforge.net,
- linux-integrity@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============0604438314=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---===============0604438314==
-Content-Type: multipart/signed; micalg="sha-256";
-	protocol="application/x-pkcs7-signature";
-	boundary="=-yaWQTSPMGuNj6joXfKRG"
-
-
---=-yaWQTSPMGuNj6joXfKRG
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, 2021-05-14 at 10:21 +0200, Mauro Carvalho Chehab wrote:
-> Em Wed, 12 May 2021 18:07:04 +0100
-> David Woodhouse <dwmw2@infradead.org> escreveu:
->=20
-> > On Wed, 2021-05-12 at 14:50 +0200, Mauro Carvalho Chehab wrote:
-> > > Such conversion tools - plus some text editor like LibreOffice  or si=
-milar  - have
-> > > a set of rules that turns some typed ASCII characters into UTF-8 alte=
-rnatives,
-> > > for instance converting commas into curly commas and adding non-break=
-able
-> > > spaces. All of those are meant to produce better results when the tex=
-t is
-> > > displayed in HTML or PDF formats. =20
-> >=20
-> > And don't we render our documentation into HTML or PDF formats?=20
->=20
-> Yes.
->=20
-> > Are
-> > some of those non-breaking spaces not actually *useful* for their
-> > intended purpose?
->=20
-> No.
->=20
-> The thing is: non-breaking space can cause a lot of problems.
->=20
-> We even had to disable Sphinx usage of non-breaking space for
-> PDF outputs, as this was causing bad LaTeX/PDF outputs.
->=20
-> See, commit: 3b4c963243b1 ("docs: conf.py: adjust the LaTeX document outp=
-ut")
->=20
-> The afore mentioned patch disables Sphinx default behavior of
-> using NON-BREAKABLE SPACE on literal blocks and strings, using this
-> special setting: "parsedliteralwraps=3Dtrue".
->=20
-> When NON-BREAKABLE SPACE were used on PDF outputs, several parts of=20
-> the media uAPI docs were violating the document margins by far,
-> causing texts to be truncated.
->=20
-> So, please **don't add NON-BREAKABLE SPACE**, unless you test
-> (and keep testing it from time to time) if outputs on all
-> formats are properly supporting it on different Sphinx versions.
-
-And there you have a specific change with a specific fix. Nothing to do
-with whether NON-BREAKABLE SPACE is =E2=88=89 ASCII, and *certainly* nothin=
-g to
-do with the fact that, like *every* character in every kernel file
-except the *binary* files, it's representable in UTF-8.
-
-By all means fix the specific characters which are typographically
-wrong or which, like NON-BREAKABLE SPACE, cause problems for rendering
-the documentation.
-
-
-> Also, most of those came from conversion tools, together with other
-> eccentricities, like the usage of U+FEFF (BOM) character at the
-> start of some documents. The remaining ones seem to came from=20
-> cut-and-paste.
-
-... or which are just entirely redundant and gratuitous, like a BOM in
-an environment where all files are UTF-8 and never 16-bit encodings
-anyway.
-
-> > > While it is perfectly fine to use UTF-8 characters in Linux, and spec=
-ially at
-> > > the documentation,  it is better to  stick to the ASCII subset  on su=
-ch
-> > > particular case,  due to a couple of reasons:
-> > >=20
-> > > 1. it makes life easier for tools like grep; =20
-> >=20
-> > Barely, as noted, because of things like line feeds.
->=20
-> You can use grep with "-z" to seek for multi-line strings(*), Like:
->=20
-> 	$ grep -Pzl 'grace period started,\s*then' $(find Documentation/ -type f=
-)
-> 	Documentation/RCU/Design/Data-Structures/Data-Structures.rst
-
-Yeah, right. That works if you don't just use the text that you'll have
-seen in the HTML/PDF "grace period started, then", and if you instead
-craft a *regex* for it, replacing the spaces with '\s*'. Or is that
-[[:space:]]* if you don't want to use the experimental Perl regex
-feature?
-
- $ grep -zlr 'grace[[:space:]]\+period[[:space:]]\+started,[[:space:]]\+the=
-n' Documentation/RCU
-Documentation/RCU/Design/Data-Structures/Data-Structures.rst
-
-And without '-l' it'll obviously just give you the whole file. No '-A5
--B5' to see the surroundings... it's hardly a useful thing, is it?
-
-> (*) Unfortunately, while "git grep" also has a "-z" flag, it
->     seems that this is (currently?) broken with regards of handling multi=
-lines:
->=20
-> 	$ git grep -Pzl 'grace period started,\s*then'
-> 	$
-
-Even better. So no, multiline grep isn't really a commonly usable
-feature at all.
-
-This is why we prefer to put user-visible strings on one line in C
-source code, even if it takes the lines over 80 characters =E2=80=94 to all=
-ow
-for grep to find them.
-
-> > > 2. they easier to edit with the some commonly used text/source
-> > >    code editors. =20
-> >=20
-> > That is nonsense. Any but the most broken and/or anachronistic
-> > environments and editors will be just fine.
->=20
-> Not really.
->=20
-> I do use a lot of UTF-8 here, as I type texts in Portuguese, but I rely
-> on the US-intl keyboard settings, that allow me to type as "'a" for =C3=
-=A1.
-> However, there's no shortcut for non-Latin UTF-codes, as far as I know.
->=20
-> So, if would need to type a curly comma on the text editors I normally=
-=20
-> use for development (vim, nano, kate), I would need to cut-and-paste
-> it from somewhere[1].
-
-That's entirely irrelevant. You don't need to be able to *type* every
-character that you see in front of you, as long as your editor will
-render it correctly and perhaps let you cut/paste it as you're editing
-the document if you're moving things around.
-
-> [1] If I have a table with UTF-8 codes handy, I could type the UTF-8=20
->     number manually... However, it seems that this is currently broken=
-=20
->     at least on Fedora 33 (with Mate Desktop and US intl keyboard with=
-=20
->     dead keys).
->=20
->     Here, <CTRL><SHIFT>U is not working. No idea why. I haven't=20
->     test it for *years*, as I din't see any reason why I would
->     need to type UTF-8 characters by numbers until we started
->     this thread.
-
-Please provide the bug number for this; I'd like to track it.
-
-> But even in the best case scenario where I know the UTF-8 and
-> <CTRL><SHIFT>U works, if I wanted to use, for instance, a curly
-> comma, the keystroke sequence would be:
->=20
-> 	<CTRL><SHIFT>U201csome string<CTRL><SHIFT>U201d
->=20
-> That's a lot harder than typing and has a higher chances of
-> mistakenly add a wrong symbol than just typing:
->=20
-> 	"some string"
->=20
-> Knowing that both will produce *exactly* the same output, why
-> should I bother doing it the hard way?
-
-Nobody's asked you to do it the "hard way". That's completely
-irrelevant to the discussion we were having.
-
-> Now, I'm not arguing that you can't use whatever UTF-8 symbol you
-> want on your docs. I'm just saying that, now that the conversion=20
-> is over and a lot of documents ended getting some UTF-8 characters
-> by accident, it is time for a cleanup.
-
-All text documents are *full* of UTF-8 characters. If there is a file
-in the source code which has *any* non-UTF8, we call that a 'binary
-file'.
-
-Again, if you want to make specific fixes like removing non-breaking
-spaces and byte order marks, with specific reasons, then those make
-sense. But it's got very little to do with UTF-8 and how easy it is to
-type them. And the excuse you've put in the commit comment for your
-patches is utterly bogus.
-
-
---=-yaWQTSPMGuNj6joXfKRG
-Content-Type: application/x-pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCCECow
-ggUcMIIEBKADAgECAhEA4rtJSHkq7AnpxKUY8ZlYZjANBgkqhkiG9w0BAQsFADCBlzELMAkGA1UE
-BhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgG
-A1UEChMRQ09NT0RPIENBIExpbWl0ZWQxPTA7BgNVBAMTNENPTU9ETyBSU0EgQ2xpZW50IEF1dGhl
-bnRpY2F0aW9uIGFuZCBTZWN1cmUgRW1haWwgQ0EwHhcNMTkwMTAyMDAwMDAwWhcNMjIwMTAxMjM1
-OTU5WjAkMSIwIAYJKoZIhvcNAQkBFhNkd213MkBpbmZyYWRlYWQub3JnMIIBIjANBgkqhkiG9w0B
-AQEFAAOCAQ8AMIIBCgKCAQEAsv3wObLTCbUA7GJqKj9vHGf+Fa+tpkO+ZRVve9EpNsMsfXhvFpb8
-RgL8vD+L133wK6csYoDU7zKiAo92FMUWaY1Hy6HqvVr9oevfTV3xhB5rQO1RHJoAfkvhy+wpjo7Q
-cXuzkOpibq2YurVStHAiGqAOMGMXhcVGqPuGhcVcVzVUjsvEzAV9Po9K2rpZ52FE4rDkpDK1pBK+
-uOAyOkgIg/cD8Kugav5tyapydeWMZRJQH1vMQ6OVT24CyAn2yXm2NgTQMS1mpzStP2ioPtTnszIQ
-Ih7ASVzhV6csHb8Yrkx8mgllOyrt9Y2kWRRJFm/FPRNEurOeNV6lnYAXOymVJwIDAQABo4IB0zCC
-Ac8wHwYDVR0jBBgwFoAUgq9sjPjF/pZhfOgfPStxSF7Ei8AwHQYDVR0OBBYEFLfuNf820LvaT4AK
-xrGK3EKx1DE7MA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUF
-BwMEBggrBgEFBQcDAjBGBgNVHSAEPzA9MDsGDCsGAQQBsjEBAgEDBTArMCkGCCsGAQUFBwIBFh1o
-dHRwczovL3NlY3VyZS5jb21vZG8ubmV0L0NQUzBaBgNVHR8EUzBRME+gTaBLhklodHRwOi8vY3Js
-LmNvbW9kb2NhLmNvbS9DT01PRE9SU0FDbGllbnRBdXRoZW50aWNhdGlvbmFuZFNlY3VyZUVtYWls
-Q0EuY3JsMIGLBggrBgEFBQcBAQR/MH0wVQYIKwYBBQUHMAKGSWh0dHA6Ly9jcnQuY29tb2RvY2Eu
-Y29tL0NPTU9ET1JTQUNsaWVudEF1dGhlbnRpY2F0aW9uYW5kU2VjdXJlRW1haWxDQS5jcnQwJAYI
-KwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmNvbW9kb2NhLmNvbTAeBgNVHREEFzAVgRNkd213MkBpbmZy
-YWRlYWQub3JnMA0GCSqGSIb3DQEBCwUAA4IBAQALbSykFusvvVkSIWttcEeifOGGKs7Wx2f5f45b
-nv2ghcxK5URjUvCnJhg+soxOMoQLG6+nbhzzb2rLTdRVGbvjZH0fOOzq0LShq0EXsqnJbbuwJhK+
-PnBtqX5O23PMHutP1l88AtVN+Rb72oSvnD+dK6708JqqUx2MAFLMevrhJRXLjKb2Mm+/8XBpEw+B
-7DisN4TMlLB/d55WnT9UPNHmQ+3KFL7QrTO8hYExkU849g58Dn3Nw3oCbMUgny81ocrLlB2Z5fFG
-Qu1AdNiBA+kg/UxzyJZpFbKfCITd5yX49bOriL692aMVDyqUvh8fP+T99PqorH4cIJP6OxSTdxKM
-MIIFHDCCBASgAwIBAgIRAOK7SUh5KuwJ6cSlGPGZWGYwDQYJKoZIhvcNAQELBQAwgZcxCzAJBgNV
-BAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcTB1NhbGZvcmQxGjAY
-BgNVBAoTEUNPTU9ETyBDQSBMaW1pdGVkMT0wOwYDVQQDEzRDT01PRE8gUlNBIENsaWVudCBBdXRo
-ZW50aWNhdGlvbiBhbmQgU2VjdXJlIEVtYWlsIENBMB4XDTE5MDEwMjAwMDAwMFoXDTIyMDEwMTIz
-NTk1OVowJDEiMCAGCSqGSIb3DQEJARYTZHdtdzJAaW5mcmFkZWFkLm9yZzCCASIwDQYJKoZIhvcN
-AQEBBQADggEPADCCAQoCggEBALL98Dmy0wm1AOxiaio/bxxn/hWvraZDvmUVb3vRKTbDLH14bxaW
-/EYC/Lw/i9d98CunLGKA1O8yogKPdhTFFmmNR8uh6r1a/aHr301d8YQea0DtURyaAH5L4cvsKY6O
-0HF7s5DqYm6tmLq1UrRwIhqgDjBjF4XFRqj7hoXFXFc1VI7LxMwFfT6PStq6WedhROKw5KQytaQS
-vrjgMjpICIP3A/CroGr+bcmqcnXljGUSUB9bzEOjlU9uAsgJ9sl5tjYE0DEtZqc0rT9oqD7U57My
-ECIewElc4VenLB2/GK5MfJoJZTsq7fWNpFkUSRZvxT0TRLqznjVepZ2AFzsplScCAwEAAaOCAdMw
-ggHPMB8GA1UdIwQYMBaAFIKvbIz4xf6WYXzoHz0rcUhexIvAMB0GA1UdDgQWBBS37jX/NtC72k+A
-CsaxitxCsdQxOzAOBgNVHQ8BAf8EBAMCBaAwDAYDVR0TAQH/BAIwADAdBgNVHSUEFjAUBggrBgEF
-BQcDBAYIKwYBBQUHAwIwRgYDVR0gBD8wPTA7BgwrBgEEAbIxAQIBAwUwKzApBggrBgEFBQcCARYd
-aHR0cHM6Ly9zZWN1cmUuY29tb2RvLm5ldC9DUFMwWgYDVR0fBFMwUTBPoE2gS4ZJaHR0cDovL2Ny
-bC5jb21vZG9jYS5jb20vQ09NT0RPUlNBQ2xpZW50QXV0aGVudGljYXRpb25hbmRTZWN1cmVFbWFp
-bENBLmNybDCBiwYIKwYBBQUHAQEEfzB9MFUGCCsGAQUFBzAChklodHRwOi8vY3J0LmNvbW9kb2Nh
-LmNvbS9DT01PRE9SU0FDbGllbnRBdXRoZW50aWNhdGlvbmFuZFNlY3VyZUVtYWlsQ0EuY3J0MCQG
-CCsGAQUFBzABhhhodHRwOi8vb2NzcC5jb21vZG9jYS5jb20wHgYDVR0RBBcwFYETZHdtdzJAaW5m
-cmFkZWFkLm9yZzANBgkqhkiG9w0BAQsFAAOCAQEAC20spBbrL71ZEiFrbXBHonzhhirO1sdn+X+O
-W579oIXMSuVEY1LwpyYYPrKMTjKECxuvp24c829qy03UVRm742R9Hzjs6tC0oatBF7KpyW27sCYS
-vj5wbal+TttzzB7rT9ZfPALVTfkW+9qEr5w/nSuu9PCaqlMdjABSzHr64SUVy4ym9jJvv/FwaRMP
-gew4rDeEzJSwf3eeVp0/VDzR5kPtyhS+0K0zvIWBMZFPOPYOfA59zcN6AmzFIJ8vNaHKy5QdmeXx
-RkLtQHTYgQPpIP1Mc8iWaRWynwiE3ecl+PWzq4i+vdmjFQ8qlL4fHz/k/fT6qKx+HCCT+jsUk3cS
-jDCCBeYwggPOoAMCAQICEGqb4Tg7/ytrnwHV2binUlYwDQYJKoZIhvcNAQEMBQAwgYUxCzAJBgNV
-BAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcTB1NhbGZvcmQxGjAY
-BgNVBAoTEUNPTU9ETyBDQSBMaW1pdGVkMSswKQYDVQQDEyJDT01PRE8gUlNBIENlcnRpZmljYXRp
-b24gQXV0aG9yaXR5MB4XDTEzMDExMDAwMDAwMFoXDTI4MDEwOTIzNTk1OVowgZcxCzAJBgNVBAYT
-AkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcTB1NhbGZvcmQxGjAYBgNV
-BAoTEUNPTU9ETyBDQSBMaW1pdGVkMT0wOwYDVQQDEzRDT01PRE8gUlNBIENsaWVudCBBdXRoZW50
-aWNhdGlvbiBhbmQgU2VjdXJlIEVtYWlsIENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
-AQEAvrOeV6wodnVAFsc4A5jTxhh2IVDzJXkLTLWg0X06WD6cpzEup/Y0dtmEatrQPTRI5Or1u6zf
-+bGBSyD9aH95dDSmeny1nxdlYCeXIoymMv6pQHJGNcIDpFDIMypVpVSRsivlJTRENf+RKwrB6vcf
-WlP8dSsE3Rfywq09N0ZfxcBa39V0wsGtkGWC+eQKiz4pBZYKjrc5NOpG9qrxpZxyb4o4yNNwTqza
-aPpGRqXB7IMjtf7tTmU2jqPMLxFNe1VXj9XB1rHvbRikw8lBoNoSWY66nJN/VCJv5ym6Q0mdCbDK
-CMPybTjoNCQuelc0IAaO4nLUXk0BOSxSxt8kCvsUtQIDAQABo4IBPDCCATgwHwYDVR0jBBgwFoAU
-u69+Aj36pvE8hI6t7jiY7NkyMtQwHQYDVR0OBBYEFIKvbIz4xf6WYXzoHz0rcUhexIvAMA4GA1Ud
-DwEB/wQEAwIBhjASBgNVHRMBAf8ECDAGAQH/AgEAMBEGA1UdIAQKMAgwBgYEVR0gADBMBgNVHR8E
-RTBDMEGgP6A9hjtodHRwOi8vY3JsLmNvbW9kb2NhLmNvbS9DT01PRE9SU0FDZXJ0aWZpY2F0aW9u
-QXV0aG9yaXR5LmNybDBxBggrBgEFBQcBAQRlMGMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9jcnQuY29t
-b2RvY2EuY29tL0NPTU9ET1JTQUFkZFRydXN0Q0EuY3J0MCQGCCsGAQUFBzABhhhodHRwOi8vb2Nz
-cC5jb21vZG9jYS5jb20wDQYJKoZIhvcNAQEMBQADggIBAHhcsoEoNE887l9Wzp+XVuyPomsX9vP2
-SQgG1NgvNc3fQP7TcePo7EIMERoh42awGGsma65u/ITse2hKZHzT0CBxhuhb6txM1n/y78e/4ZOs
-0j8CGpfb+SJA3GaBQ+394k+z3ZByWPQedXLL1OdK8aRINTsjk/H5Ns77zwbjOKkDamxlpZ4TKSDM
-KVmU/PUWNMKSTvtlenlxBhh7ETrN543j/Q6qqgCWgWuMAXijnRglp9fyadqGOncjZjaaSOGTTFB+
-E2pvOUtY+hPebuPtTbq7vODqzCM6ryEhNhzf+enm0zlpXK7q332nXttNtjv7VFNYG+I31gnMrwfH
-M5tdhYF/8v5UY5g2xANPECTQdu9vWPoqNSGDt87b3gXb1AiGGaI06vzgkejL580ul+9hz9D0S0U4
-jkhJiA7EuTecP/CFtR72uYRBcunwwH3fciPjviDDAI9SnC/2aPY8ydehzuZutLbZdRJ5PDEJM/1t
-yZR2niOYihZ+FCbtf3D9mB12D4ln9icgc7CwaxpNSCPt8i/GqK2HsOgkL3VYnwtx7cJUmpvVdZ4o
-gnzgXtgtdk3ShrtOS1iAN2ZBXFiRmjVzmehoMof06r1xub+85hFQzVxZx5/bRaTKTlL8YXLI8nAb
-R9HWdFqzcOoB/hxfEyIQpx9/s81rgzdEZOofSlZHynoSMYIDyjCCA8YCAQEwga0wgZcxCzAJBgNV
-BAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcTB1NhbGZvcmQxGjAY
-BgNVBAoTEUNPTU9ETyBDQSBMaW1pdGVkMT0wOwYDVQQDEzRDT01PRE8gUlNBIENsaWVudCBBdXRo
-ZW50aWNhdGlvbiBhbmQgU2VjdXJlIEVtYWlsIENBAhEA4rtJSHkq7AnpxKUY8ZlYZjANBglghkgB
-ZQMEAgEFAKCCAe0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjEw
-NTE0MDkwNjAxWjAvBgkqhkiG9w0BCQQxIgQgRtNzbeu5bsoNcbDbiy2DI8xBXrnEUoNy+3PeRBi7
-ocwwgb4GCSsGAQQBgjcQBDGBsDCBrTCBlzELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIg
-TWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENBIExpbWl0ZWQx
-PTA7BgNVBAMTNENPTU9ETyBSU0EgQ2xpZW50IEF1dGhlbnRpY2F0aW9uIGFuZCBTZWN1cmUgRW1h
-aWwgQ0ECEQDiu0lIeSrsCenEpRjxmVhmMIHABgsqhkiG9w0BCRACCzGBsKCBrTCBlzELMAkGA1UE
-BhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgG
-A1UEChMRQ09NT0RPIENBIExpbWl0ZWQxPTA7BgNVBAMTNENPTU9ETyBSU0EgQ2xpZW50IEF1dGhl
-bnRpY2F0aW9uIGFuZCBTZWN1cmUgRW1haWwgQ0ECEQDiu0lIeSrsCenEpRjxmVhmMA0GCSqGSIb3
-DQEBAQUABIIBAG4iEcQoKZbciqO8UTjj3Ul3XZurUfbBSxRFkr4krMkAtIXtGzBe5kw5UgEtQ43c
-adrLgLYJ5JYMqy67j+r7p8zEgeXNx9rUvKjuR0eQsUyBEfmTQIuYgX67ChBAONPO/cDR6AqQP2Kc
-scoU4Lzl2O+p+KE0kPvscY2Mm91fuwKxarqZY9lNI+VoyW9uYIuD6BSiZIaWpZiuaryxLelhWHay
-8OYH/pRSvgjry42MLa1GUePUXm5M4NqeD0vKZVyzpFAftfHc6urFB3TNQ8yjeSBaxw3wkVBShkuB
-yhc3/6yoegNWASNgF5veVsrZ/2L+VxVQi7icYamHNJ9gu4g7KkgAAAAAAAA=
-
-
---=-yaWQTSPMGuNj6joXfKRG--
-
-
---===============0604438314==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0604438314==--
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
+eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIE1hdHQNCj4gUm9w
+ZXINCj4gU2VudDogU2F0dXJkYXksIE1heSA4LCAyMDIxIDU6MjggQU0NCj4gVG86IGludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVjdDogW0ludGVsLWdmeF0gW1BBVENIIHYz
+IDIwLzQ4XSBkcm0vaTkxNS9hZGxfcDogQWRkIGNkY2xrIHN1cHBvcnQgZm9yDQo+IEFETC1QDQo+
+IA0KPiBGcm9tOiBBbnVzaGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+DQo+
+IA0KPiBBREwtUCBoYXMgMyBwb3NzaWJsZSByZWZjbGsgZnJlcXVlbmNpZXM6IDE5LjJNSHosIDI0
+TUh6IGFuZCAzOC40TUh6DQo+IA0KPiBXaGlsZSB3ZSdyZSBhdCBpdCwgcmVtb3ZlIHRoZSBkcm1f
+V0FSTnMuICBUaGV5J3ZlIG5ldmVyIGFjdHVhbGx5IGhlbHBlZCB1cw0KPiBjYXRjaCBhbnkgcHJv
+YmxlbXMsIGJ1dCBpdCdzIHZlcnkgZWFzeSB0byBmb3JnZXQgdG8gdXBkYXRlIHRoZW0gcHJvcGVy
+bHkgZm9yDQo+IG5ldyBwbGF0Zm9ybXMuDQo+IA0KPiBCU3BlYzogNTU0MDksIDQ5MjA4DQo+IENj
+OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPg0KPiBDYzogQ2xpbnRvbiBU
+YXlsb3IgPGNsaW50b24uYS50YXlsb3JAaW50ZWwuY29tPg0KPiBDYzogSm9zw6kgUm9iZXJ0byBk
+ZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEFudXNoYSBT
+cml2YXRzYSA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogQ2xp
+bnRvbiBUYXlsb3IgPENsaW50b24uQS5UYXlsb3JAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5
+OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPg0KDQpSZXZpZXdlZC1ieTog
+TWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xhQGludGVsLmNvbT4NCg0KPiAtLS0NCj4gIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYyB8IDQxICsrKysrKysrKysrKysrKy0t
+LS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAyOCBpbnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMo
+LSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2NkY2xrLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMN
+Cj4gaW5kZXggMjVlZjA3N2RjMzg5Li5kNDAxMjYwNjEwMzggMTAwNjQ0DQo+IC0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYw0KPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMNCj4gQEAgLTEyNTMsNiArMTI1MywyNyBA
+QCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2NkY2xrX3ZhbHMNCj4gcmtsX2NkY2xrX3RhYmxl
+W10gPSB7DQo+ICAJe30NCj4gIH07DQo+IA0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9j
+ZGNsa192YWxzIGFkbHBfY2RjbGtfdGFibGVbXSA9IHsNCj4gKwl7IC5yZWZjbGsgPSAxOTIwMCwg
+LmNkY2xrID0gMTcyODAwLCAuZGl2aWRlciA9IDMsIC5yYXRpbyA9IDI3IH0sDQo+ICsJeyAucmVm
+Y2xrID0gMTkyMDAsIC5jZGNsayA9IDE5MjAwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSAyMCB9
+LA0KPiArCXsgLnJlZmNsayA9IDE5MjAwLCAuY2RjbGsgPSAzMDcyMDAsIC5kaXZpZGVyID0gMiwg
+LnJhdGlvID0gMzIgfSwNCj4gKwl7IC5yZWZjbGsgPSAxOTIwMCwgLmNkY2xrID0gNTU2ODAwLCAu
+ZGl2aWRlciA9IDIsIC5yYXRpbyA9IDU4IH0sDQo+ICsJeyAucmVmY2xrID0gMTkyMDAsIC5jZGNs
+ayA9IDY1MjgwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSA2OCB9LA0KPiArDQo+ICsJeyAucmVm
+Y2xrID0gMjQwMDAsIC5jZGNsayA9IDE3NjAwMCwgLmRpdmlkZXIgPSAzLCAucmF0aW8gPSAyMiB9
+LA0KPiArCXsgLnJlZmNsayA9IDI0MDAwLCAuY2RjbGsgPSAxOTIwMDAsIC5kaXZpZGVyID0gMiwg
+LnJhdGlvID0gMTYgfSwNCj4gKwl7IC5yZWZjbGsgPSAyNDAwMCwgLmNkY2xrID0gMzEyMDAwLCAu
+ZGl2aWRlciA9IDIsIC5yYXRpbyA9IDI2IH0sDQo+ICsJeyAucmVmY2xrID0gMjQwMDAsIC5jZGNs
+ayA9IDU1MjAwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSA0NiB9LA0KPiArCXsgLnJlZmNsayA9
+IDI0NDAwLCAuY2RjbGsgPSA2NDgwMDAsIC5kaXZpZGVyID0gMiwgLnJhdGlvID0gNTQgfSwNCj4g
+Kw0KPiArCXsgLnJlZmNsayA9IDM4NDAwLCAuY2RjbGsgPSAxNzkyMDAsIC5kaXZpZGVyID0gMywg
+LnJhdGlvID0gMTQgfSwNCj4gKwl7IC5yZWZjbGsgPSAzODQwMCwgLmNkY2xrID0gMTkyMDAwLCAu
+ZGl2aWRlciA9IDIsIC5yYXRpbyA9IDEwIH0sDQo+ICsJeyAucmVmY2xrID0gMzg0MDAsIC5jZGNs
+ayA9IDMwNzIwMCwgLmRpdmlkZXIgPSAyLCAucmF0aW8gPSAxNiB9LA0KPiArCXsgLnJlZmNsayA9
+IDM4NDAwLCAuY2RjbGsgPSA1NTY4MDAsIC5kaXZpZGVyID0gMiwgLnJhdGlvID0gMjkgfSwNCj4g
+Kwl7IC5yZWZjbGsgPSAzODQwMCwgLmNkY2xrID0gNjUyODAwLCAuZGl2aWRlciA9IDIsIC5yYXRp
+byA9IDM0IH0sDQo+ICsJe30NCj4gK307DQo+ICsNCj4gIHN0YXRpYyBpbnQgYnh0X2NhbGNfY2Rj
+bGsoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBpbnQgbWluX2NkY2xrKSAgew0K
+PiAgCWNvbnN0IHN0cnVjdCBpbnRlbF9jZGNsa192YWxzICp0YWJsZSA9IGRldl9wcml2LT5jZGNs
+ay50YWJsZTsgQEAgLQ0KPiAxNDI4LDE4ICsxNDQ5LDEyIEBAIHN0YXRpYyB2b2lkIGJ4dF9nZXRf
+Y2RjbGsoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUNCj4gKmRldl9wcml2LA0KPiAgCQlkaXYgPSAy
+Ow0KPiAgCQlicmVhazsNCj4gIAljYXNlIEJYVF9DRENMS19DRDJYX0RJVl9TRUxfMV81Og0KPiAt
+CQlkcm1fV0FSTigmZGV2X3ByaXYtPmRybSwNCj4gLQkJCSBESVNQTEFZX1ZFUihkZXZfcHJpdikg
+Pj0gMTAsDQo+IC0JCQkgIlVuc3VwcG9ydGVkIGRpdmlkZXJcbiIpOw0KPiAgCQlkaXYgPSAzOw0K
+PiAgCQlicmVhazsNCj4gIAljYXNlIEJYVF9DRENMS19DRDJYX0RJVl9TRUxfMjoNCj4gIAkJZGl2
+ID0gNDsNCj4gIAkJYnJlYWs7DQo+ICAJY2FzZSBCWFRfQ0RDTEtfQ0QyWF9ESVZfU0VMXzQ6DQo+
+IC0JCWRybV9XQVJOKCZkZXZfcHJpdi0+ZHJtLA0KPiAtCQkJIERJU1BMQVlfVkVSKGRldl9wcml2
+KSA+PSAxMSB8fA0KPiBJU19DQU5OT05MQUtFKGRldl9wcml2KSwNCj4gLQkJCSAiVW5zdXBwb3J0
+ZWQgZGl2aWRlclxuIik7DQo+ICAJCWRpdiA9IDg7DQo+ICAJCWJyZWFrOw0KPiAgCWRlZmF1bHQ6
+DQo+IEBAIC0xNTUwLDE2ICsxNTY1LDEwIEBAIHN0YXRpYyB1MzIgYnh0X2NkY2xrX2NkMnhfZGl2
+X3NlbChzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+ICAJY2FzZSAyOg0K
+PiAgCQlyZXR1cm4gQlhUX0NEQ0xLX0NEMlhfRElWX1NFTF8xOw0KPiAgCWNhc2UgMzoNCj4gLQkJ
+ZHJtX1dBUk4oJmRldl9wcml2LT5kcm0sDQo+IC0JCQkgRElTUExBWV9WRVIoZGV2X3ByaXYpID49
+IDEwLA0KPiAtCQkJICJVbnN1cHBvcnRlZCBkaXZpZGVyXG4iKTsNCj4gIAkJcmV0dXJuIEJYVF9D
+RENMS19DRDJYX0RJVl9TRUxfMV81Ow0KPiAgCWNhc2UgNDoNCj4gIAkJcmV0dXJuIEJYVF9DRENM
+S19DRDJYX0RJVl9TRUxfMjsNCj4gIAljYXNlIDg6DQo+IC0JCWRybV9XQVJOKCZkZXZfcHJpdi0+
+ZHJtLA0KPiAtCQkJIERJU1BMQVlfVkVSKGRldl9wcml2KSA+PSAxMSB8fA0KPiBJU19DQU5OT05M
+QUtFKGRldl9wcml2KSwNCj4gLQkJCSAiVW5zdXBwb3J0ZWQgZGl2aWRlclxuIik7DQo+ICAJCXJl
+dHVybiBCWFRfQ0RDTEtfQ0QyWF9ESVZfU0VMXzQ7DQo+ICAJfQ0KPiAgfQ0KPiBAQCAtMjgyNSw3
+ICsyODM0LDEzIEBAIHUzMiBpbnRlbF9yZWFkX3Jhd2NsayhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
+ZQ0KPiAqZGV2X3ByaXYpDQo+ICAgKi8NCj4gIHZvaWQgaW50ZWxfaW5pdF9jZGNsa19ob29rcyhz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpICB7DQo+IC0JaWYgKElTX1JPQ0tFVExB
+S0UoZGV2X3ByaXYpKSB7DQo+ICsJaWYgKElTX0FMREVSTEFLRV9QKGRldl9wcml2KSkgew0KPiAr
+CQlkZXZfcHJpdi0+ZGlzcGxheS5zZXRfY2RjbGsgPSBieHRfc2V0X2NkY2xrOw0KPiArCQlkZXZf
+cHJpdi0+ZGlzcGxheS5id19jYWxjX21pbl9jZGNsayA9DQo+IHNrbF9id19jYWxjX21pbl9jZGNs
+azsNCj4gKwkJZGV2X3ByaXYtPmRpc3BsYXkubW9kZXNldF9jYWxjX2NkY2xrID0NCj4gYnh0X21v
+ZGVzZXRfY2FsY19jZGNsazsNCj4gKwkJZGV2X3ByaXYtPmRpc3BsYXkuY2FsY192b2x0YWdlX2xl
+dmVsID0gdGdsX2NhbGNfdm9sdGFnZV9sZXZlbDsNCj4gKwkJZGV2X3ByaXYtPmNkY2xrLnRhYmxl
+ID0gYWRscF9jZGNsa190YWJsZTsNCj4gKwl9IGVsc2UgaWYgKElTX1JPQ0tFVExBS0UoZGV2X3By
+aXYpKSB7DQo+ICAJCWRldl9wcml2LT5kaXNwbGF5LnNldF9jZGNsayA9IGJ4dF9zZXRfY2RjbGs7
+DQo+ICAJCWRldl9wcml2LT5kaXNwbGF5LmJ3X2NhbGNfbWluX2NkY2xrID0NCj4gc2tsX2J3X2Nh
+bGNfbWluX2NkY2xrOw0KPiAgCQlkZXZfcHJpdi0+ZGlzcGxheS5tb2Rlc2V0X2NhbGNfY2RjbGsg
+PQ0KPiBieHRfbW9kZXNldF9jYWxjX2NkY2xrOw0KPiAtLQ0KPiAyLjI1LjQNCj4gDQo+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IEludGVsLWdmeCBt
+YWlsaW5nIGxpc3QNCj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
