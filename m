@@ -2,60 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C10C380F10
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 19:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CDB4380F16
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 19:37:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C4266F3CF;
-	Fri, 14 May 2021 17:34:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7831E6F3D0;
+	Fri, 14 May 2021 17:37:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0C286F3CF
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 17:34:39 +0000 (UTC)
-IronPort-SDR: U9RAJ12yxcrkasQDP/OVsK9bSzahkBRLOSioKGbGV5Uc+ArQGYh2I8KE9ENUboXPrIuSPLjlQn
- mexJfA+FPerQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="199901485"
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="199901485"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2021 10:34:36 -0700
-IronPort-SDR: 0yynE/W2f9AOH90zfq89jJIOsxMrNH3j02WAppMhlqXmcDrmGMQazZBePJKJSGTQJWXAXRIGDX
- IDbn0UJZK/5g==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEA526F3D0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 17:36:58 +0000 (UTC)
+IronPort-SDR: gHA3tr+GHGauZ4EkXAQ1n9VFB6oCE3xHQGLBpD6Hw8Ob0vcz0k1705FAiiaxpL2VyoNTqiO7y2
+ C67q6k9N97dg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="264135420"
+X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="264135420"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2021 10:36:57 -0700
+IronPort-SDR: PNR+hVbBvujIKyq+XDJ3MFYtBqugd5naXUPa3XsrF1O3dQFLDpne3Mp4oZ8hxcj76kMs51WIjB
+ jifhpI2Hz2Lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="393697183"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
- by orsmga006.jf.intel.com with ESMTP; 14 May 2021 10:34:36 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 14 May 2021 10:34:36 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Fri, 14 May 2021 10:34:35 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.013;
- Fri, 14 May 2021 10:34:35 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 6/6] drm/i915: Drop redundant has_hdmi_sink
- check
-Thread-Index: AQHXRn/H2i+zbFpOoEqNOlv9J3qygqrjuAuA
-Date: Fri, 14 May 2021 17:34:35 +0000
-Message-ID: <e482732f981c754e986404540d592bb89bef5091.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="431800299"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by orsmga007.jf.intel.com with SMTP; 14 May 2021 10:36:55 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 14 May 2021 20:36:54 +0300
+Date: Fri, 14 May 2021 20:36:54 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <YJ61Nhg38iElyPXG@intel.com>
 References: <20210511160532.21446-1-ville.syrjala@linux.intel.com>
- <20210511160532.21446-7-ville.syrjala@linux.intel.com>
-In-Reply-To: <20210511160532.21446-7-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-ID: <6A25A930E2608748A7C80E63D94CC145@intel.com>
+ <20210511160532.21446-6-ville.syrjala@linux.intel.com>
+ <b60af898451971c9d4749372889b5b77b3689c18.camel@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915: Drop redundant has_hdmi_sink
- check
+Content-Disposition: inline
+In-Reply-To: <b60af898451971c9d4749372889b5b77b3689c18.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Move the TMDS clock division
+ into intel_hdmi_mode_clock_valid()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,51 +52,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIxLTA1LTExIGF0IDE5OjA1ICswMzAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gaW50ZWxfaGRtaV9icGNfcG9zc2libGUoKSB3aWxsIGNoZWNrIGhhc19oZG1pX3Npbmsg
-Zm9yIHVzLCBzbyBubw0KPiBuZWVkIHRvIGNoZWNrIGl0IGluIGludGVsX2hkbWlfbW9kZV9jbG9j
-a192YWxpZCgpIGFueW1vcmUuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiANCj4gQ2M6IFdlcm5lciBTZW1iYWNoIDx3c2VA
-dHV4ZWRvY29tcHV0ZXJzLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2
-aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYyB8IDIyICsrKysrKysrKystLS0tLS0tLS0tLS0NCj4g
-IDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCAxMiBkZWxldGlvbnMoLSkNCj4gDQo+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jDQo+IGluZGV4IDgwZTJh
-ZTY1MmY2ZS4uN2U0ODg5N2JiYWMwIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2hkbWkuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2hkbWkuYw0KPiBAQCAtMTkxNCwxOSArMTkxNCwxNyBAQCBpbnRlbF9oZG1pX21v
-ZGVfY2xvY2tfdmFsaWQoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwgaW50IGNsb2Nr
-LA0KPiAgCXN0YXR1cyA9IGhkbWlfcG9ydF9jbG9ja192YWxpZChoZG1pLCBpbnRlbF9oZG1pX3Bv
-cnRfY2xvY2soY2xvY2ssIDgpLA0KPiAgCQkJCSAgICAgICB0cnVlLCBoYXNfaGRtaV9zaW5rKTsN
-Cj4gIA0KPiAtCWlmIChoYXNfaGRtaV9zaW5rKSB7DQo+IC0JCS8qIGlmIHdlIGNhbid0IGRvIDhi
-cGMgd2UgbWF5IHN0aWxsIGJlIGFibGUgdG8gZG8gMTJicGMgKi8NCj4gLQkJaWYgKHN0YXR1cyAh
-PSBNT0RFX09LICYmDQo+IC0JCSAgICBpbnRlbF9oZG1pX2JwY19wb3NzaWJsZShjb25uZWN0b3Is
-IDEyLCBoYXNfaGRtaV9zaW5rLCB5Y2JjcjQyMF9vdXRwdXQpKQ0KPiAtCQkJc3RhdHVzID0gaGRt
-aV9wb3J0X2Nsb2NrX3ZhbGlkKGhkbWksIGludGVsX2hkbWlfcG9ydF9jbG9jayhjbG9jaywgMTIp
-LA0KPiAtCQkJCQkJICAgICAgIHRydWUsIGhhc19oZG1pX3NpbmspOw0KPiArCS8qIGlmIHdlIGNh
-bid0IGRvIDhicGMgd2UgbWF5IHN0aWxsIGJlIGFibGUgdG8gZG8gMTJicGMgKi8NCj4gKwlpZiAo
-c3RhdHVzICE9IE1PREVfT0sgJiYNCj4gKwkgICAgaW50ZWxfaGRtaV9icGNfcG9zc2libGUoY29u
-bmVjdG9yLCAxMiwgaGFzX2hkbWlfc2luaywgeWNiY3I0MjBfb3V0cHV0KSkNCj4gKwkJc3RhdHVz
-ID0gaGRtaV9wb3J0X2Nsb2NrX3ZhbGlkKGhkbWksIGludGVsX2hkbWlfcG9ydF9jbG9jayhjbG9j
-aywgMTIpLA0KPiArCQkJCQkgICAgICAgdHJ1ZSwgaGFzX2hkbWlfc2luayk7DQo+ICANCj4gLQkJ
-LyogaWYgd2UgY2FuJ3QgZG8gOCwxMmJwYyB3ZSBtYXkgc3RpbGwgYmUgYWJsZSB0byBkbyAxMGJw
-YyAqLw0KPiAtCQlpZiAoc3RhdHVzICE9IE1PREVfT0sgJiYNCj4gLQkJICAgIGludGVsX2hkbWlf
-YnBjX3Bvc3NpYmxlKGNvbm5lY3RvciwgMTAsIGhhc19oZG1pX3NpbmssIHljYmNyNDIwX291dHB1
-dCkpDQo+IC0JCQlzdGF0dXMgPSBoZG1pX3BvcnRfY2xvY2tfdmFsaWQoaGRtaSwgaW50ZWxfaGRt
-aV9wb3J0X2Nsb2NrKGNsb2NrLCAxMCksDQo+IC0JCQkJCQkgICAgICAgdHJ1ZSwgaGFzX2hkbWlf
-c2luayk7DQo+IC0JfQ0KPiArCS8qIGlmIHdlIGNhbid0IGRvIDgsMTJicGMgd2UgbWF5IHN0aWxs
-IGJlIGFibGUgdG8gZG8gMTBicGMgKi8NCj4gKwlpZiAoc3RhdHVzICE9IE1PREVfT0sgJiYNCj4g
-KwkgICAgaW50ZWxfaGRtaV9icGNfcG9zc2libGUoY29ubmVjdG9yLCAxMCwgaGFzX2hkbWlfc2lu
-aywgeWNiY3I0MjBfb3V0cHV0KSkNCj4gKwkJc3RhdHVzID0gaGRtaV9wb3J0X2Nsb2NrX3ZhbGlk
-KGhkbWksIGludGVsX2hkbWlfcG9ydF9jbG9jayhjbG9jaywgMTApLA0KPiArCQkJCQkgICAgICAg
-dHJ1ZSwgaGFzX2hkbWlfc2luayk7DQo+ICANCj4gIAlyZXR1cm4gc3RhdHVzOw0KPiAgfQ0KDQpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Fri, May 14, 2021 at 05:28:40PM +0000, Souza, Jose wrote:
+> On Tue, 2021-05-11 at 19:05 +0300, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
+
+> > Now that we have to tell intel_hdmi_mode_clock_valid() whether
+> > we're asking about 4:4:4 or 4:2:0 output it can take care of
+> > the dotclock->TMDS clock conversion.
+> > =
+
+> > Cc: Werner Sembach <wse@tuxedocomputers.com>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_hdmi.c | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/dr=
+m/i915/display/intel_hdmi.c
+> > index 874fb897005a..80e2ae652f6e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> > @@ -1907,6 +1907,9 @@ intel_hdmi_mode_clock_valid(struct drm_connector =
+*connector, int clock,
+> >  	struct intel_hdmi *hdmi =3D intel_attached_hdmi(to_intel_connector(co=
+nnector));
+> >  	enum drm_mode_status status;
+> >  =
+
+> > +	if (ycbcr420_output)
+> > +		clock /=3D 2;
+> > +
+> >  	/* check if we can do 8bpc */
+> >  	status =3D hdmi_port_clock_valid(hdmi, intel_hdmi_port_clock(clock, 8=
+),
+> >  				       true, has_hdmi_sink);
+> > @@ -1957,8 +1960,6 @@ intel_hdmi_mode_valid(struct drm_connector *conne=
+ctor,
+> >  	}
+> >  =
+
+> >  	ycbcr_420_only =3D drm_mode_is_420_only(&connector->display_info, mod=
+e);
+> > -	if (ycbcr_420_only)
+> > -		clock /=3D 2;
+> >  =
+
+> >  	status =3D intel_hdmi_mode_clock_valid(connector, clock, has_hdmi_sin=
+k, ycbcr_420_only);
+> >  	if (status !=3D MODE_OK) {
+> > @@ -1967,7 +1968,6 @@ intel_hdmi_mode_valid(struct drm_connector *conne=
+ctor,
+> >  		    !drm_mode_is_420_also(&connector->display_info, mode))
+> >  			return status;
+> >  =
+
+> > -		clock /=3D 2;
+> =
+
+> The clock intel_hdmi_mode_clock_valid() call will be clock/2 not clock/4 =
+as previous.
+
+It's never clock/4.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
