@@ -2,43 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33A853809D1
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 14:44:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EADD73809F4
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 May 2021 14:58:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89F816E3BB;
-	Fri, 14 May 2021 12:44:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE7E46EE5F;
+	Fri, 14 May 2021 12:58:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 573 seconds by postgrey-1.36 at gabe;
- Fri, 14 May 2021 12:44:09 UTC
-Received: from vulcan.natalenko.name (vulcan.natalenko.name [104.207.131.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CE376E1DE;
- Fri, 14 May 2021 12:44:09 +0000 (UTC)
-Received: from localhost (unknown [151.237.229.131])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by vulcan.natalenko.name (Postfix) with ESMTPSA id 388E6A7F2E9;
- Fri, 14 May 2021 14:34:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=natalenko.name;
- s=dkim-20170712; t=1620995672;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=4vwJiGTh6ElCKYC/wP6uUt98bvM4B8L74svpei6Ju4s=;
- b=k4P0PRaU0pOt6NoAaXdArjthun1X5Z3xm0J1NP99QO/kCvs7gH1yjGmb+kD3/UPVsnEPt0
- i524R6BXymUAbd3WqekM3GGLRvv1td6RiAvViZTPemp6ph4IkukuqsnjhA+G5TSxVEcWmM
- uBtPbYE483kRT7/HYynefUDrEIeOnvE=
-Date: Fri, 14 May 2021 14:34:31 +0200
-From: Oleksandr Natalenko <oleksandr@natalenko.name>
-To: Thomas Stein <himbeere@meine-oma.de>
-Message-ID: <20210514123431.fqvaa437zlw7rq7j@spock.localdomain>
-References: <1a6cf0a3dc8a2c6364265ad7249b76b1@meine-oma.de>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64FA46EE5F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 May 2021 12:58:04 +0000 (UTC)
+IronPort-SDR: j8GmrPRBwIotZVd2qTWiNiE/lEOUhKHRXm/Ud5F5aZ/1fiIpluT54c/9PrfwCxcns9PxieI1As
+ hzTpNBjTX+Bg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9983"; a="199862113"
+X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="199862113"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 May 2021 05:57:56 -0700
+IronPort-SDR: JMEsAQ/2CMjjJyfFqvedolHZgmg/gPc7RZbHa9H9LNgpvtJxDVtQoZDo8wZZMCiXClX9ElTfFF
+ gLbpiywA4ZKg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,299,1613462400"; d="scan'208";a="436369910"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga008.fm.intel.com with SMTP; 14 May 2021 05:57:52 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 14 May 2021 15:57:51 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 14 May 2021 15:57:37 +0300
+Message-Id: <20210514125751.17075-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1a6cf0a3dc8a2c6364265ad7249b76b1@meine-oma.de>
-Subject: Re: [Intel-gfx] thinkpad x1 carbon display flickering after update
- to 5.12. good on 5.11.x (i915)
+Subject: [Intel-gfx] [PATCH 00/14] drm/i915: g4x/vlv/chv CxSR/wm
+ fixes/cleanups
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,53 +47,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>,
- linux-kernel@vger.kernel.org, Kai-Heng Feng <kai.heng.feng@canonical.com>,
- Sean Paul <seanpaul@chromium.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello.
-
-On Fri, May 14, 2021 at 10:24:26AM +0200, Thomas Stein wrote:
-> After upgrading to linux 5.12 the display on my X1 Carbon Gen 2 starts to
-> flicker. Well actually it seems to turn off and on again and again. Here a
-> link to a video a person posted who has the same issue as me obviousely. https://linuxove.com/thinkpad-x1-carbon-gen-3-display-flickering-on-linux-kernel-5-12/
-> 
-> This happens without having Xorg running too. So it can't be related to
-> Xorg. The kernel boots and after a few seconds, the kernel messages scoll
-> through, the flickering starts. Nothing special in dmesg.
-> 
-> dmesg:
-> 
-> himbeere@rather ~ $ dmesg | grep i915
-> [    0.713595] i915 0000:00:02.0: vgaarb: deactivate vga console
-> [    0.720280] i915 0000:00:02.0: vgaarb: changed VGA decodes:
-> olddecodes=io+mem,decodes=io+mem:owns=io+mem
-> [    0.741494] i915 0000:00:02.0: [drm] Panel advertises DPCD backlight
-> support, but VBT disagrees. If your backlight controls don't work try
-> booting with i915.enable_dpcd_backlight=1. If your machine needs this,
-> please file a _new_ bug report on drm/i915, see
-> https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs for
-> details.
-> [    1.864837] [drm] Initialized i915 1.6.0 20201103 for 0000:00:02.0 on
-> minor 0
-> [    1.875907] fbcon: i915drmfb (fb0) is primary device
-> [    3.158255] i915 0000:00:02.0: [drm] fb0: i915drmfb frame buffer device
-> himbeere@rather ~ $
-> 
-> Downgrading to 5.11 solves the issue for me. Any ideas?
-
-Does [1] fix your issue?
-
-[1] https://cgit.freedesktop.org/drm-tip/patch/?id=acca7762eb71bc05a8f28d29320d193150051f79
-
--- 
-  Oleksandr Natalenko (post-factum)
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkZp
+eCBzb21lIHJlbWFpbmluZyBpc3N1ZXMgYXJvdW5kIHBsYW5lIHVwZGF0ZXMgdnMuIEN4U1Igb24K
+Z21jaCBwbGF0Zm9ybXMuIEFsc28gdGhyb3cgaW4gYSBmZXcgd2F0ZXJtYXJrIGZpeGVzL2NsZWFu
+dXBzLAphbmQgZmluYWxseSBmbGlwIG9uIGF0b21pYyBmb3IgZzR4IHNpbmNlIGV2ZXJ5dGhpbmcg
+aXMgcmVhZHkuCgpWaWxsZSBTeXJqw6Rsw6QgKDE0KToKICBkcm0vaTkxNTogcy9jcnRjX3N0YXRl
+L25ld19jcnRjX3N0YXRlLyBldGMuCiAgZHJtL2k5MTU6IEZpeCBnNHggY3hzciBlbmFibGUgY29u
+ZGl0aW9uCiAgZHJtL2k5MTU6IFVzZSB1OCBjb25zaXN0ZW50bHkgZm9yIGFjdGl2ZV9wbGFuZXMg
+Yml0bWFzawogIGRybS9pOTE1OiBBcHBseSBXYVVzZTMyQnBwRm9yU1JXTSB0byBlbGsgYXMgd2Vs
+bCBhcyBjdGcKICBkcm0vaTkxNTogRml4IEhQTEwgd2F0ZXJtYXJrIHJlYWRvdXQgZm9yIGc0eAog
+IGRybS9pOTE1OiBTcGxpdCBnNHhfY29tcHV0ZV9waXBlX3dtKCkgaW50byB0d28KICBkcm0vaTkx
+NTogU3BsaXQgdmx2X2NvbXB1dGVfcGlwZV93bSgpIGludG8gdHdvCiAgZHJtL2k5MTU6IFNpbXBs
+aWZ5IHVwIGc0eCB3YXRlcm1hcmsgc2FuaXRhdGlvbgogIGRybS9pOTE1OiBTaW1wbGlmeSB1cCB2
+bHYgd2F0ZXJtYXJrIHNhbml0YXRpb24KICBkcm0vaTkxNTogQWRkIG1pc3NpbmcgaW52YWxpZGF0
+ZSB0byBnNHggd20gcmVhZG91dAogIGRybS9pOTE1OiBGaXggZzR4L3Zsdi9jaHYgQ3hTUiB2cy4g
+Zm9ybWF0L3RpbGluZy9yb3RhdGlvbiBjaGFuZ2VzCiAgZHJtL2k5MTU6IEZpeCBwaXBlIGdhbW1h
+IGVuYWJsZS9kaXNhYmxlIHZzLiBDeFNSIG9uIGdtY2ggcGxhdGZvcm1zCiAgZHJtL2k5MTU6IFdy
+aXRlIHdhdGVybWFya3MgZm9yIGRpc2FibGVkIHBpcGVzIG9uIGdtY2ggcGxhdGZvcm1zCiAgZHJt
+L2k5MTU6IEVuYWJsZSBhdG9taWMgYnkgZGVmYXVsdCBvbiBjdGcvZWxrCgogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5jICAgfCAgIDQgKwogZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAgODkgKysrKy0tLQogZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9kcnYuYyAgICAgICAgICAgICAgfCAgIDcgKy0KIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2ludGVsX3BtLmMgICAgICAgICAgICAgIHwgMjMyICsrKysrKysrKystLS0tLS0tLS0K
+IDQgZmlsZXMgY2hhbmdlZCwgMTkzIGluc2VydGlvbnMoKyksIDEzOSBkZWxldGlvbnMoLSkKCi0t
+IAoyLjI2LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
