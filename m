@@ -2,59 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F80381480
-	for <lists+intel-gfx@lfdr.de>; Sat, 15 May 2021 02:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44CB53814B5
+	for <lists+intel-gfx@lfdr.de>; Sat, 15 May 2021 02:38:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 524316F4C0;
-	Sat, 15 May 2021 00:23:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8E476F4C8;
+	Sat, 15 May 2021 00:38:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D59116F4C2
- for <intel-gfx@lists.freedesktop.org>; Sat, 15 May 2021 00:23:05 +0000 (UTC)
-IronPort-SDR: L5dS9CxfLTADubMirztAyiO64rtZAUnnjLbBMtT3HVwnQWn+scCYKNzcmYytfbyHYknsWd4xfa
- aM0c7CyFwdFQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9984"; a="199942416"
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="199942416"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2021 17:23:05 -0700
-IronPort-SDR: gQ1LGMxZ3rpyrOMkSlK1xx7wODpS0G9h0W3xOfNy4W8aGEOe4UpWh0nznY7nNpUW0aZRFr5+0R
- 3mL13LMNQ6KA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,300,1613462400"; d="scan'208";a="539189406"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga001.fm.intel.com with ESMTP; 14 May 2021 17:23:05 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Fri, 14 May 2021 17:23:04 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Fri, 14 May 2021 17:23:04 -0700
-Received: from orsmsx610.amr.corp.intel.com ([10.22.229.23]) by
- ORSMSX610.amr.corp.intel.com ([10.22.229.23]) with mapi id 15.01.2106.013;
- Fri, 14 May 2021 17:23:04 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "hch@lst.de" <hch@lst.de>
-Thread-Topic: [PATCH] drm/i915: Fix a possible use of uninitialized variable
- in remap_io_sg()
-Thread-Index: AQHXSE9JuZ6ROs4KzUaxofu+R3Rq86ri7oKAgAE4CwA=
-Date: Sat, 15 May 2021 00:23:04 +0000
-Message-ID: <ab936e8bb197068f658cb68a5dc1796a7ee73405.camel@intel.com>
-References: <20210513232841.147989-1-jose.souza@intel.com>
- <20210514054923.GA5323@lst.de>
-In-Reply-To: <20210514054923.GA5323@lst.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.100]
-Content-ID: <101441B8603CCA42A7E325689BD569BD@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4B01F6F4C7;
+ Sat, 15 May 2021 00:38:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 43B63A00C9;
+ Sat, 15 May 2021 00:38:47 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix a possible use of
- uninitialized variable in remap_io_sg()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Date: Sat, 15 May 2021 00:38:47 -0000
+Message-ID: <162103912727.17969.11345523832640232539@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210514232247.144542-1-jose.souza@intel.com>
+In-Reply-To: <20210514232247.144542-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv2=2C1/4=5D_drm/i915/display=3A_Fix?=
+ =?utf-8?q?_fastsets_involving_PSR_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,24 +39,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIxLTA1LTE0IGF0IDA3OjQ5ICswMjAwLCBDaHJpc3RvcGggSGVsbHdpZyB3cm90
-ZToNCj4gT24gVGh1LCBNYXkgMTMsIDIwMjEgYXQgMDQ6Mjg6NDFQTSAtMDcwMCwgSm9zw6kgUm9i
-ZXJ0byBkZSBTb3V6YSB3cm90ZToNCj4gPiBJZiB0aGUgZG8gd2hpbGUgbG9vcCBicmVha3MgaW4g
-J2lmICghc2dfZG1hX2xlbihzZ2wpKScgaW4gdGhlIGZpcnN0DQo+ID4gaXRlcmF0aW9uLCBlcnIg
-aXMgdW5pbml0aWFsaXplZCBjYXVzaW5nIGEgd3JvbmcgY2FsbCB0byB6YXBfdm1hX3B0ZXMoKS4N
-Cj4gDQo+IEJ1dCBzY2F0dGVybGlzdCBtdXN0IGhhdmUgYXQgbGVhc3Qgb25lIHZhbGlkIHNlZ21l
-bnQuICBTbyB3aGlsZSB0aGUNCj4gcGF0Y2ggbG9va3Mgb2ssIHBsZWFzZSBjbGVhcmx5IG1hcmsg
-dGhhdCB0aGlzIGlzIGEgZmFsc2UgcG9zaXRpdmUgZnJvbQ0KPiB0aGUgc3RhdGljIGNoZWNrZXIg
-aW4gdGhlIGNvbW1pdCBsb2cuDQoNCk5vIHN0YXRpYyBjaGVja2VyIG1lbnRpb25lZCBidXQgeWVz
-IGl0IHdhcyBjYXVnaHQgYnkgb25lLg0KQW55d2F5cyBiZXR0ZXIgaGF2ZSB0aGlzIGNoYW5nZSBh
-bmQgYXZvaWQgcG9zc2libGUgcmVwb3J0cyBmcm9tIG90aGVyIHN0YXRpYyBhbmFseXplcnMuDQoN
-CkNhbiBJIGFkZCB5b3VyIFJldmlld2VkLWJ5Pw0KDQp0aGFua3MNCg0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: series starting with [v2,1/4] drm/i915/display: Fix fastsets involving PSR (rev2)
+URL   : https://patchwork.freedesktop.org/series/90184/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+acbf2a345c71 drm/i915/display: Fix fastsets involving PSR
+ff9e8e892816 drm/i915/display: Allow fastsets when DP_SDP_VSC infoframe do not match with PSR enabled
+-:33: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#33: FILE: drivers/gpu/drm/i915/display/intel_display.c:8263:
++#define PIPE_CONF_CHECK_X_WITH_MASK(name, mask) do { \
++	if ((current_config->name & (mask)) != (pipe_config->name & (mask))) { \
++		pipe_config_mismatch(fastset, crtc, __stringify(name), \
++				     "(expected 0x%08x, found 0x%08x)", \
++				     current_config->name & (mask), \
++				     pipe_config->name & (mask)); \
++		ret = false; \
++	} \
++} while (0)
+
+-:33: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'name' may be better as '(name)' to avoid precedence issues
+#33: FILE: drivers/gpu/drm/i915/display/intel_display.c:8263:
++#define PIPE_CONF_CHECK_X_WITH_MASK(name, mask) do { \
++	if ((current_config->name & (mask)) != (pipe_config->name & (mask))) { \
++		pipe_config_mismatch(fastset, crtc, __stringify(name), \
++				     "(expected 0x%08x, found 0x%08x)", \
++				     current_config->name & (mask), \
++				     pipe_config->name & (mask)); \
++		ret = false; \
++	} \
++} while (0)
+
+-:33: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'mask' - possible side-effects?
+#33: FILE: drivers/gpu/drm/i915/display/intel_display.c:8263:
++#define PIPE_CONF_CHECK_X_WITH_MASK(name, mask) do { \
++	if ((current_config->name & (mask)) != (pipe_config->name & (mask))) { \
++		pipe_config_mismatch(fastset, crtc, __stringify(name), \
++				     "(expected 0x%08x, found 0x%08x)", \
++				     current_config->name & (mask), \
++				     pipe_config->name & (mask)); \
++		ret = false; \
++	} \
++} while (0)
+
+total: 0 errors, 0 warnings, 3 checks, 29 lines checked
+72e3be54f41d drm/i915/display: Nuke has_infoframe
+d343f6fd5bb6 drm/i915/display: Drop FIXME about turn off infoframes
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
