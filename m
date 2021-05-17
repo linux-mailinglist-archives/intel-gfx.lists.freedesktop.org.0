@@ -1,39 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B12F382768
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 10:47:17 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9296382A30
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 12:50:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AF426E8F9;
-	Mon, 17 May 2021 08:47:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F27126E925;
+	Mon, 17 May 2021 10:50:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DAC16E8F8;
- Mon, 17 May 2021 08:46:59 +0000 (UTC)
-IronPort-SDR: k8KrP1D3gQLrxWkuJqKP2evSavCgDleGJiEyGu9d6LiuLqYsxxPiuzMsmeG7LUz36pZCL+4v/o
- dncMqmLGttlA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="200106513"
-X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="200106513"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2021 01:46:55 -0700
-IronPort-SDR: qbnw3j/sMfnpND7O8/DvWfpGFo0sYfwtiNxOnebd0UPggG7Uuk+I075QNOhjLNc92YdaN8G6mb
- hoXrMONyEjGg==
-X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="438820736"
-Received: from cqi-mobl.ccr.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.215.160.214])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2021 01:46:50 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 17 May 2021 09:46:40 +0100
-Message-Id: <20210517084640.18862-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E1C16E925;
+ Mon, 17 May 2021 10:50:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2614EA47DF;
+ Mon, 17 May 2021 10:50:44 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Pin the L-shape quirked object as
- unshrinkable
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Emil Velikov" <emil.l.velikov@gmail.com>
+Date: Mon, 17 May 2021 10:50:44 -0000
+Message-ID: <162124864412.27269.9376105536431713316@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20210516171432.1734268-1-emil.l.velikov@gmail.com>
+In-Reply-To: <20210516171432.1734268-1-emil.l.velikov@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_only_disable_default_vga_device?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,66 +38,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Chris Wilson <chris@chris-wilson.co.uk>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CgpXaGVuIGluc3Rh
-bnRpYXRpbmcgYSB0aWxlZCBvYmplY3Qgb24gYW4gTC1zaGFwZWQgbWVtb3J5IG1hY2hpbmUsIHdl
-IG1hcmsKdGhlIG9iamVjdCBhcyB1bnNocmlua2FibGUgdG8gcHJldmVudCB0aGUgc2hyaW5rZXIg
-ZnJvbSB0cnlpbmcgdG8gc3dhcApvdXQgdGhlIHBhZ2VzLiBXZSBoYXZlIHRvIGRvIHRoaXMgYXMg
-d2UgZG8gbm90IGtub3cgdGhlIHN3aXp6bGluZyBvbiB0aGUKaW5kaXZpZHVhbCBwYWdlcywgYW5k
-IHNvIHRoZSBkYXRhIHdpbGwgYmUgc2NyYW1ibGVkIGFjcm9zcyBzd2FwIG91dC9pbi4KCk5vdCBv
-bmx5IGRvIHdlIG5lZWQgdG8gbW92ZSB0aGUgb2JqZWN0IG9mZiB0aGUgc2hyaW5rZXIgbGlzdCwg
-d2UgbmVlZCB0bwptYXJrIHRoZSBvYmplY3Qgd2l0aCBzaHJpbmtfcGluIHNvIHRoYXQgdGhlIGNv
-dW50ZXIgaXMgY29uc2lzdGVudCBhY3Jvc3MKY2FsbHMgdG8gbWFkdmlzZS4KCnYyOiBpbiB0aGUg
-bWFkdmlzZSBpb2N0bCB3ZSBuZWVkIHRvIGNoZWNrIGlmIHRoZSBvYmplY3QgaXMgY3VycmVudGx5
-CnNocmlua2FibGUvcHVyZ2VhYmxlLCBub3QgaWYgdGhlIG9iamVjdCB0eXBlIHN1cHBvcnRzIHNo
-cmlua2luZwoKRml4ZXM6IDAxNzU5NjllNDg5YSAoImRybS9pOTE1L2dlbTogVXNlIHNocmlua2Fi
-bGUgc3RhdHVzIGZvciB1bmtub3duIHN3aXp6bGUgcXVpcmtzIikKUmVmZXJlbmNlczogaHR0cHM6
-Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8zMjkzClJlZmVyZW5j
-ZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvMzQ1
-MApSZXBvcnRlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
-LmNvbT4KVGVzdGVkLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
-ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5j
-by51az4KUmV2aWV3ZWQtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4K
-U2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpDYzog
-PHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc+ICMgdjUuMTIrCi0tLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZ2VtL2k5MTVfZ2VtX3BhZ2VzLmMgfCAgMiArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9nZW0uYyAgICAgICAgICAgfCAxMSArKysrKy0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCA3IGlu
-c2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZ2VtL2k5MTVfZ2VtX3BhZ2VzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
-NV9nZW1fcGFnZXMuYwppbmRleCBhZWQ4YTM3Y2NkYzkuLjczNjE5NzFjMTc3ZCAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3BhZ2VzLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3BhZ2VzLmMKQEAgLTYzLDYgKzYzLDggQEAgdm9p
-ZCBfX2k5MTVfZ2VtX29iamVjdF9zZXRfcGFnZXMoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Qg
-Km9iaiwKIAkgICAgaTkxNS0+cXVpcmtzICYgUVVJUktfUElOX1NXSVpaTEVEX1BBR0VTKSB7CiAJ
-CUdFTV9CVUdfT04oaTkxNV9nZW1fb2JqZWN0X2hhc190aWxpbmdfcXVpcmsob2JqKSk7CiAJCWk5
-MTVfZ2VtX29iamVjdF9zZXRfdGlsaW5nX3F1aXJrKG9iaik7CisJCUdFTV9CVUdfT04oIWxpc3Rf
-ZW1wdHkoJm9iai0+bW0ubGluaykpOworCQlhdG9taWNfaW5jKCZvYmotPm1tLnNocmlua19waW4p
-OwogCQlzaHJpbmthYmxlID0gZmFsc2U7CiAJfQogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X2dlbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uYwppbmRl
-eCBkMDAxOGM1Zjg4YmQuLmNmZmQ3ZjRmODdkYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9nZW0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jCkBA
-IC0xMDA5LDEyICsxMDA5LDExIEBAIGk5MTVfZ2VtX21hZHZpc2VfaW9jdGwoc3RydWN0IGRybV9k
-ZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKIAkJb2JqLT5tbS5tYWR2ID0gYXJncy0+bWFkdjsKIAog
-CWlmIChpOTE1X2dlbV9vYmplY3RfaGFzX3BhZ2VzKG9iaikpIHsKLQkJc3RydWN0IGxpc3RfaGVh
-ZCAqbGlzdDsKKwkJdW5zaWduZWQgbG9uZyBmbGFnczsKIAotCQlpZiAoaTkxNV9nZW1fb2JqZWN0
-X2lzX3Nocmlua2FibGUob2JqKSkgewotCQkJdW5zaWduZWQgbG9uZyBmbGFnczsKLQotCQkJc3Bp
-bl9sb2NrX2lycXNhdmUoJmk5MTUtPm1tLm9ial9sb2NrLCBmbGFncyk7CisJCXNwaW5fbG9ja19p
-cnFzYXZlKCZpOTE1LT5tbS5vYmpfbG9jaywgZmxhZ3MpOworCQlpZiAoIWxpc3RfZW1wdHkoJm9i
-ai0+bW0ubGluaykpIHsKKwkJCXN0cnVjdCBsaXN0X2hlYWQgKmxpc3Q7CiAKIAkJCWlmIChvYmot
-Pm1tLm1hZHYgIT0gSTkxNV9NQURWX1dJTExORUVEKQogCQkJCWxpc3QgPSAmaTkxNS0+bW0ucHVy
-Z2VfbGlzdDsKQEAgLTEwMjIsOCArMTAyMSw4IEBAIGk5MTVfZ2VtX21hZHZpc2VfaW9jdGwoc3Ry
-dWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKIAkJCQlsaXN0ID0gJmk5MTUtPm1tLnNo
-cmlua19saXN0OwogCQkJbGlzdF9tb3ZlX3RhaWwoJm9iai0+bW0ubGluaywgbGlzdCk7CiAKLQkJ
-CXNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmk5MTUtPm1tLm9ial9sb2NrLCBmbGFncyk7CiAJCX0K
-KwkJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmaTkxNS0+bW0ub2JqX2xvY2ssIGZsYWdzKTsKIAl9
-CiAKIAkvKiBpZiB0aGUgb2JqZWN0IGlzIG5vIGxvbmdlciBhdHRhY2hlZCwgZGlzY2FyZCBpdHMg
-YmFja2luZyBzdG9yYWdlICovCi0tIAoyLjI2LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915: only disable default vga device
+URL   : https://patchwork.freedesktop.org/series/90213/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+df2a974bb7e0 drm/i915: only disable default vga device
+-:38: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
+#38: FILE: drivers/gpu/drm/i915/display/intel_vga.c:39:
++		udelay(300);
+
+total: 0 errors, 0 warnings, 1 checks, 20 lines checked
+
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
