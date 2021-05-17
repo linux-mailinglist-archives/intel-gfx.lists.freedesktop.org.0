@@ -2,47 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 178E03879EF
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 May 2021 15:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3742E3879EE
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 May 2021 15:28:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB1086EB7F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 601DF6EB7B;
 	Tue, 18 May 2021 13:28:53 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2042.outbound.protection.outlook.com [40.107.243.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8129F6EA28;
- Mon, 17 May 2021 18:02:29 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2074.outbound.protection.outlook.com [40.107.92.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8EDD6E13A;
+ Mon, 17 May 2021 18:17:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mACy29xnTim1Vi46Koz2Q6usyIb72zdMUlVA2J+PGjb/XEmtZWJu9o7lXiTzCzk0HeGlybN+8+L1LJQqO7HFUWHdk1KlrYTu3MCDEodJ8NQG+L38mRmEIkcW+MLnFKDKxnOH3a0div1HAnFPTVM0kWNkno0MwTNXrvwx7SHln0dKzSTlmIZP+wk7WPfSLuLK5b7QPX71HOMruXlxobYkOZtjLZ9bQrQYNvutHbXd5nPk7rR1yuuVYNPOxXydmX5ad3L/Gm40646KHLK78C/5CMHoO9597Qgz0GL2lUPG+q/yVQtdNcq0kIjRd+2KxhByALgsi8zkS9gHo9aCPZCX1w==
+ b=NC8oHznZ8HU7Cbuy/+d9LZvBgNDwGJDqSoZm5W0kDZpq4adyOsFtJtXwCqcTLWFDdmpJNPQkdahzMVJRa8sZ/NV7Htp5b102G2mCw63NhyXANyadwv+fBHqWgjxJ8vRSbBqsjOMsl/BJh71Wm7FhgwwuTsnN0/5OaGXu5Xnsg01EJYNlfN7pUGdRHMeuN9KWg2lZAgcfg46ChJ/7vQdety2U7KOSal+uWyhSiu0SneWE2m+lqRpXsNKqMn3V9ZqZTGJF4KgsTFIZWtYGv9/CzMsRFbNJeq381wadt8ubR5Yfbbs2h1oLlSBohDPaD03lIBP1/SJ6FR881Cl0xSLjTw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9fyHOPbQqZztfew0i4zv/fAXlVa0IOVOhJQrrNKoRE=;
- b=TkWOm4M8HV/yoA4iZf6pYn1990Xo+4OuEk8nv97C5MutiytZYJZ/ZpaY6XqIwlSiuk0wYc4sqVX/W4GtqiUW1gOQKg+rSVOtdcUlcM2dBclu+y4AUoOeO5500+ZlDZmLTzMB+t3TLsL/AuIT0Zp/joKUFrglKwFT4KvSb+KzTKHja5VPuAsKCjVgNANAVm8QKbE1cGSL5guAnXKCHeYLHhIok5a72wD7qd1jstXaf2/lkjOXTIwGDGqdspR9Y8czSIZFHFCSK75wJWiLvPKRQJECAyvAFH7vm9I1B16oxJmdigdseKFpATnYImJxPWmofaIMfX9U2rvh13cB8qTItw==
+ bh=2yJMnX2efGqdj0uGRN5WkZNfTpz66IpOg3AhLm06Tf8=;
+ b=ZRNaQkD47svtaI2p//r5Z8FHf5AoTYpMNLhE4iTA6JH35RCexNXkcvCylhjs7afd/CfQPNNQ5S3Y18n/g158z5zOentvHHZeE4GunbXJLLiVi8an4jmGNH+82d75SZPXVrZw8nWEa/ygucU2pdNCujkrpBH1F3CJaM70KfVxlTeJ/tb8vCUAO7ejhB9lZhh2hfkj3xl5ouZFh9N5CWeOkMn/049o/L7v397a9O4r8ssYreTtIEd9ZX+BAGX2P09fBMKv5KvGfjJTWaceVJHd+axkDElZrHMiOcnCy9feUJqY0++PrgRXSSV/+eMFNsGFlfbbWXFe4LTVKtYGFPWJVw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
  header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9fyHOPbQqZztfew0i4zv/fAXlVa0IOVOhJQrrNKoRE=;
- b=LJgdZFUHGG6KEQPeS8eATJPJoulTmHmE526jnsUyGOTKI42VFJ93LDDtuT/NKMXx6wfNmoEQH7HuQCDuMUicsLSrRWmk1FAuqG/1dHQvHJFNivhYNv9Hg9tfZaBItCSZPJaiQWy9NG/n+MA/ZM42JGBOweHDV8YNqiLKsxfYur4=
+ bh=2yJMnX2efGqdj0uGRN5WkZNfTpz66IpOg3AhLm06Tf8=;
+ b=PgTj4W59eGWsqY4pIhxgLBTTp7T19oegv8AkXTFhjAhCI+haZSTJeDXdeDXAJV/Bvkp9kzFZfqHpv8E4XORPj25Hw/FMcf59fXx8tML96mh8jd1rJ0k3Jiwl+7Kv97iFz9O3n5Y+sdDK/QX6AUCpx/Ij8SCobtFJRh1hMHRvhHU=
 Received: from BYAPR12MB2840.namprd12.prod.outlook.com (2603:10b6:a03:62::32)
- by BYAPR12MB4696.namprd12.prod.outlook.com (2603:10b6:a03:9d::15)
+ by BY5PR12MB4887.namprd12.prod.outlook.com (2603:10b6:a03:1c6::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Mon, 17 May
- 2021 18:02:27 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25; Mon, 17 May
+ 2021 18:16:58 +0000
 Received: from BYAPR12MB2840.namprd12.prod.outlook.com
  ([fe80::7c65:7181:6d1d:8616]) by BYAPR12MB2840.namprd12.prod.outlook.com
  ([fe80::7c65:7181:6d1d:8616%7]) with mapi id 15.20.4129.031; Mon, 17 May 2021
- 18:02:27 +0000
+ 18:16:58 +0000
 From: "Nieto, David M" <David.Nieto@amd.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, Daniel Vetter
- <daniel@ffwll.ch>, "Koenig, Christian" <Christian.Koenig@amd.com>
+ <daniel@ffwll.ch>, "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "jhubbard@nvidia.com" <jhubbard@nvidia.com>, "aritger@nvidia.com"
+ <aritger@nvidia.com>
 Thread-Topic: [PATCH 0/7] Per client engine busyness
-Thread-Index: AQHXSIY0lKCbwi4zp0q1CiNO36lst6rikGdbgAAOK4CAAF5BAIAAA0mAgAAPFoCAAAKJgIAAAbMAgAACEoCABKvngIAAAHIqgAAYpACAACA2lw==
-Date: Mon, 17 May 2021 18:02:27 +0000
-Message-ID: <BYAPR12MB28409E25DEFD3DD620E596ABF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
+Thread-Index: AQHXSIY0lKCbwi4zp0q1CiNO36lst6rikGdbgAAOK4CAAF5BAIAAA0mAgAAPFoCAAAKJgIAAAbMAgAACEoCABKvngIAAAHIqgAAYpACAACA2l4AAAtmZ
+Date: Mon, 17 May 2021 18:16:58 +0000
+Message-ID: <BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
 References: <c6c61179-5b4b-4e0b-6e57-ec4839ca3268@linux.intel.com>
  <CADnq5_N03pz6GmptzhRnCRQH=qkd4eWuAbuUysHp-A9NZHQMHg@mail.gmail.com>
  <BYAPR12MB2840AA68BCAEBD9279C6184FF4509@BYAPR12MB2840.namprd12.prod.outlook.com>
@@ -55,70 +57,70 @@ References: <c6c61179-5b4b-4e0b-6e57-ec4839ca3268@linux.intel.com>
  <a2b03603-eb3e-7bef-a799-c15cfb1a8e0b@amd.com>
  <YKJ+F4KqEiQQYkRz@phenom.ffwll.local>
  <BYAPR12MB2840C633CF05C1F29263F5BCF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>,
- <c85fc53f-d25b-464c-d411-eed4a509a009@linux.intel.com>
-In-Reply-To: <c85fc53f-d25b-464c-d411-eed4a509a009@linux.intel.com>
+ <c85fc53f-d25b-464c-d411-eed4a509a009@linux.intel.com>,
+ <BYAPR12MB28409E25DEFD3DD620E596ABF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
+In-Reply-To: <BYAPR12MB28409E25DEFD3DD620E596ABF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Enabled=True;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_SetDate=2021-05-17T18:02:26.563Z;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Name=AMD-Official
- Use
- Only; MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_ContentBits=0;
- MSIP_Label_88914ebd-7e6c-4e12-a031-a9906be2db14_Method=Standard; 
+msip_labels: MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Enabled=True;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_SetDate=2021-05-17T18:16:58.383Z;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Name=Public;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_ContentBits=0;
+ MSIP_Label_d4243a53-6221-4f75-8154-e4b33a5707a1_Method=Privileged; 
 authentication-results: linux.intel.com; dkim=none (message not signed)
  header.d=none;linux.intel.com; dmarc=none action=none header.from=amd.com;
 x-originating-ip: [71.143.192.69]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d50f03f9-6eb5-4879-e3a5-08d9195dee67
-x-ms-traffictypediagnostic: BYAPR12MB4696:
+x-ms-office365-filtering-correlation-id: c4c1c21c-9c9c-4329-8747-08d9195ff5f8
+x-ms-traffictypediagnostic: BY5PR12MB4887:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR12MB46965B47B7E644412E80F37CF42D9@BYAPR12MB4696.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-microsoft-antispam-prvs: <BY5PR12MB488753798B921FEDAB74D118F42D9@BY5PR12MB4887.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: bkqArOQ9pL7Z2yDOfsulkuuiXdD8HLFiU6Xd1hY7tRfcfqp9SWB3dx4xcCKsZl0HE+u39I/8nAKb6I9y9Wp/R5KUH3Lei/9Sc3kju5RPgyQc6DDOzvgOURbrQzIIj7P4DRWA7AHess+xF6nkO5LmK3PJ00XmNSDfBC7q2VVRPc71AoDMDUWMzDnsad4Fi6p31XDTNho1qEWHh9zRlpp2tYab1gKXYaJrVyy2fkcJVUOTdA+gJJHAoaATAUaSdZLDZ39jA+w3l8pj36phRmRZzwLPvehp8dhTsODCGjRqdDVoVtWdYu9SasIb4FEF1h5+COt9n3NVow/Ev3qV+UV8GHTFBXRv/vJ71OpMJN2hFC77IVylSM1BnBTKMT5P9g/qYlCv21zp22PvgtsiD6rHfebV2U2y4V3cUmvX5g6T1sVt58f6H6mQuUtmBKHBdn0zDSrgMJPg7G16xyl5ChAoEc83NxuQhq1IQdEsVgt1tSWbUsS7fLEPdFRSzxBCQdNTWJyO8nFvtT4Q7/8mpk69ULbwb0rsgaaw51+VTcQ5ha7+D/TfBXnlGupOFcWUk7unnGE1ARTkQgKJTtqLIHhRIGrTNAlHq6Vo7tai/NyMQkFmk9uEemT8DFGcBJo5wckeYtQCCIDUL1ur1MIj5bMifAeDPKb8WxblTwUgVo9hHOAYHlPhJLKglqMlp9+wdaG1
+x-microsoft-antispam-message-info: eKd0o3zNWaAmJ/omqJd8i+M6kd1/cxq8+QQcFkTs83FkDN78HiqQXVzps3dcV3lrY22oJI6eLn0oQYk0X7kPNFNExtvIZRfdeZcZswzOKof7qAv6rTMpVox+HQf7jvsRbn37z5RXMtI16+VBbJ8DKhzwxhlLLLykAbbxMxDMChGayZSJsgWQBJ6e+SFKtFq60c+RiCZeNke4pmlxYePsPeJ8xhKdw+Dmo12Cl53JophxhADxpYayqXtqeb0oO3yG2bR4JwJ9/MfRtfrr+1cFG8gFyrxSAyA06ah+I/Z3SvzuekFjRueNC4Unpr1/YOCBSGcArZUW3VOFEO+d/o4u5AVEbkwwZuCG11OG4xmBjbrZ/U9agjmKws56UWEROga+15A3XErWwoQ96S6d6FY89D4YiMGWwMRGbgiMhEtBARgof2syWu8Q89SW4iMuSXmO/L0zJQyrSw36i3K3wBGIJ5fe7QeC88rWw4k0dRn4lyp00gNQ+lBKEG6T78YKEpARRJLymqc6brCjpxVQ6mshJR1xOzvAP/wPczbngp4lyx9S2qSj6CGxe5iPiZ9WDfVynuJnUGPgxtxf5aIOgi1kuXgWK3DiL3q8qRX9fR2GervefWTaZckII/MGutlHdE23gIQUtwST8poLuz21Tu8WyNwrLPHXmClWc8laJJpZc1Gg4xc9gCRxldwicXUB7kWc
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR12MB2840.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(136003)(346002)(376002)(366004)(396003)(316002)(54906003)(110136005)(186003)(4326008)(86362001)(26005)(9686003)(66946007)(122000001)(76116006)(5660300002)(71200400001)(55016002)(53546011)(2906002)(6506007)(8936002)(7696005)(478600001)(19627405001)(66476007)(21615005)(66446008)(66556008)(64756008)(966005)(6636002)(38100700002)(166002)(52536014)(8676002)(33656002)(21314003);
+ SFS:(4636009)(346002)(136003)(39860400002)(396003)(366004)(376002)(8936002)(8676002)(26005)(55016002)(9686003)(64756008)(66556008)(66476007)(2940100002)(83380400001)(166002)(76116006)(66946007)(478600001)(2906002)(38100700002)(122000001)(19627405001)(86362001)(4326008)(53546011)(6506007)(110136005)(54906003)(5660300002)(966005)(186003)(316002)(52536014)(33656002)(66446008)(21615005)(71200400001)(7696005)(21314003);
  DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: =?Windows-1252?Q?XROr3CdLb7tpwZ0AYW87JmzlpgbEpwqxaH8aNFeadCsLPJjHILVaKUdK?=
- =?Windows-1252?Q?geqGPG3U7IKzoieCMhZwYGAOvXYE1xnDgJNfRhjZERHRSZHVV/5gL6jl?=
- =?Windows-1252?Q?C/GPiYs4taR7Id7JaPO8LtI1EMBd9OkHC1YiJQaAOIgCWAB7Ed/svAoZ?=
- =?Windows-1252?Q?f/ORqzA429jPMF9OAi8DzGWe70fgwhROkU2qvzQWlafQxbi0dx4/1Rzb?=
- =?Windows-1252?Q?PYVkMnrckurW8gWckoMPvGSniJK1T/aKqm+8ilNsc5gFkYR42X6pKRL/?=
- =?Windows-1252?Q?tgSJguNfl7ERwYlgNQooVCVwPfCNvla2MgfJIWEcROPg73O3g3EcF5JF?=
- =?Windows-1252?Q?ZY7n+UL0KaiU+jX8dp1QhqbGfzceJJRsDdg80zG2ksriKE3WilwqeXD2?=
- =?Windows-1252?Q?ZHI+xwKReEsNo/RXy1sIMtZHAgRtJrNvVgCrRHNH7O5D0Sdh58wPmSVA?=
- =?Windows-1252?Q?5xjGYvXyXDIc6DjBtnvrELnW0OVcxu8QHmmnYZZfBQ2GbXBPnUyfQSWy?=
- =?Windows-1252?Q?TNNc9Onjd5BhUSVqb/6WxbTaDUu/TTVL3fjnga56WOU0NBkRa/B3gRNL?=
- =?Windows-1252?Q?LC/12PRsVlj1uasburqfO7IE0lRxw+rvVkBkr7nd+YKGJWbm9xWUvOEc?=
- =?Windows-1252?Q?DpUxvFrtkoQsKGy2Ri/Su8KFuiOm+JVcE6c71qrLc29vfSixttf8WYSd?=
- =?Windows-1252?Q?F7tzfvUn3F6+2LLsaL30owSXL87nqjSzKmurR4OVwi9Y/p2nCGorvJdu?=
- =?Windows-1252?Q?sRTbofhSvA3PpOyT/npQQO5E8J3V/azpDiySvw4R1Ka8TFDqVNG3KknH?=
- =?Windows-1252?Q?BvmUPf4oPe3mp33bxesrgBSE0Ms5ToFuaF5f/vm29f4giNB0BnXg4dlK?=
- =?Windows-1252?Q?sdKp6bha/TeQ8rTr20le3J55PwJumA/7RBQJ3BAtlaRa9j6+yUpUEHIW?=
- =?Windows-1252?Q?165kUjDXOi3yiGpDTfoIAWY8tLAnHZ/O78ndit8dyC7BAJ+78J6e1InF?=
- =?Windows-1252?Q?dujMQ3HXtiTBvfmKGjMBXQ4mMDBt2beWRo1N1F9xGVM6ELYuolBpyxbe?=
- =?Windows-1252?Q?pPMEKAfFgx5PkcbXxKLqO8pOn7A++X/qP6mVnlNv9JPOFi0A3fPegg1F?=
- =?Windows-1252?Q?KuySy0qAHZfv4BBjUGSeCNcdBFUHjhwyi4uKdwe+hsfgcD7JPd5hAIwb?=
- =?Windows-1252?Q?I59j5cBqO9Z/X4NTu3amPxlxACKXFNwPTi+AFOR894E+mtCcWliVt4qv?=
- =?Windows-1252?Q?0jo1fOKR6MLixQrrNJLm04DJiBNoD334XZ7Zg0w8DFejeZ+9wGba9ndg?=
- =?Windows-1252?Q?Lg0Vhr9FHdOurpj5pp6Iyf4u3QvACO5qredpTYob+TEQR09FZYWv7CvP?=
- =?Windows-1252?Q?O1y7qe7qrecCW1+R835hw/zBePgsdqwxm7A=3D?=
+x-ms-exchange-antispam-messagedata: =?Windows-1252?Q?uyE+ZU88OHGfVGjkajtz4H84G3kOUSXqXsAvjqa6Qylvxuhe8c3gCORE?=
+ =?Windows-1252?Q?6RE9ozjO1/p5pdTNVZ59S6KA8FE4pHwSWCkO8BbiKkB5zNN2Rma+5Q1I?=
+ =?Windows-1252?Q?y3b6oyxAFpyPy96dgRRmcr2ht8ax7y4XClIXeC/4SXkhEgNS3VQsfyIT?=
+ =?Windows-1252?Q?IB8wW2p825sLj+cpq2JiD61iQ0w7ZsRfiX6pn6HOTd5R/LLA/H93ZErP?=
+ =?Windows-1252?Q?2kMb/xvjlqRhlxouh7wkxPOQPvbsQZI2lk0IfLJoiYiqWyWZzg54miA1?=
+ =?Windows-1252?Q?zutf3/dwkpa/ebSli2GPH1Vt/hY+Q0ujTb8ZC/RoLN8airZmjosK2Jwz?=
+ =?Windows-1252?Q?xmCHevjnkS5rt89kO+XFQWDdLP8e/HNh0aAJdftuc1Gqgr7QCVXUkVQT?=
+ =?Windows-1252?Q?+swiPAfQsZOxmuYR5WqFYIPiXS+re4Xjz0mu4DgTsqr5324Zre73nqbT?=
+ =?Windows-1252?Q?lqInLYSnwTl0UXADIzLpSwkiXRxM5OEW/MXi5KY6K90+9yDNdaJ9rkvx?=
+ =?Windows-1252?Q?YM6GxLVNBXX8C3hqMkHPZuOPTLTqr6rgRp4ooKMaKmB0QHmxReFMh03R?=
+ =?Windows-1252?Q?AYl9kj6qjfx0OI8/Wi+nvO8HPjxToaV6jW8dxYLp3t8WcBmEnOEcPAN+?=
+ =?Windows-1252?Q?OmUvaRDLdFgLHDtxhKIPlPJy3+Cfcr9n/Y/p/GcI7oZ6BzwDU0xA6tfB?=
+ =?Windows-1252?Q?wcV7cRViL8D4E/MwhQkSWviXoz9Bb71pDfjg3dDFHAOuNRVITdiB5Sw3?=
+ =?Windows-1252?Q?2gDMTlts+/51Nhf3HpgR5e5fd0RG9NhDx4ihH0xhWq7/VKOodqeDwk9H?=
+ =?Windows-1252?Q?JQpjlUxginiT+o1ooXacHMPFvbEx3GlMXQoGsLEWcM1KH4vXCa07M4rZ?=
+ =?Windows-1252?Q?8zyDR+sC0u7unN0Lmj5mFvmXh8d1SCzqy6wBzOdYN5QGxV0bkzP70dR3?=
+ =?Windows-1252?Q?6i4iLEc/vDwqzEXkW5zECyiQpTb0Cjlq1CRljgBGKA41QH//xn8R+eij?=
+ =?Windows-1252?Q?4ByHgCl0hH7HMFavw4SwK1R2qL8mTaeau8LDbu2tHoPKjJ7SqjKA9fXa?=
+ =?Windows-1252?Q?wKPWA7AHyTWbEvrrvWPhfNZo2YLSxANT1gnPgu048oqTbz9TnrXYBKur?=
+ =?Windows-1252?Q?jmyqPKz7WoKpkCAX0iS8AZG404Kx8kXSQPtiMfY83FyAQiIRpq1Z3gJp?=
+ =?Windows-1252?Q?PdfqcULbIaPcDbT/tpNJn77fod3fv2M2HIP37IxMSwiII+ShKUW/qOz+?=
+ =?Windows-1252?Q?OarEL9FwLYTnsJBfRvcp5egTk8mWaFPxrj2xzXHR9mCxsPwjahR0rEeb?=
+ =?Windows-1252?Q?qDC3PmIIkHQ58XxPFOsEIMpEL0TVWywxuccB6mY+H8Em6pjkKtFC9vLH?=
+ =?Windows-1252?Q?qF7dITs0uFlRY7ooliX4sszGhs94VqP3pw0=3D?=
 MIME-Version: 1.0
 X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB2840.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d50f03f9-6eb5-4879-e3a5-08d9195dee67
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 May 2021 18:02:27.0475 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4c1c21c-9c9c-4329-8747-08d9195ff5f8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 May 2021 18:16:58.7579 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KXhndf1Lq8gixNUqJj7v56nOhG7AP7kW/HWslregEVo5rBdmKfmsYnJkS8/zsvdy
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB4696
+X-MS-Exchange-CrossTenant-userprincipalname: Kkmk7qABcfkmaDZaq7cac14qVuDO5oLq/Q+NCCeWEgvRXQObv53PegYJUZM0pPP8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4887
 X-Mailman-Approved-At: Tue, 18 May 2021 13:28:52 +0000
 Subject: Re: [Intel-gfx] [PATCH 0/7] Per client engine busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -134,22 +136,51 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Alex Deucher <alexdeucher@gmail.com>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
  Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
  Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1909599186=="
+Content-Type: multipart/mixed; boundary="===============0769115157=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1909599186==
+--===============0769115157==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BYAPR12MB28409E25DEFD3DD620E596ABF42D9BYAPR12MB2840namp_"
+	boundary="_000_BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9BYAPR12MB2840namp_"
 
---_000_BYAPR12MB28409E25DEFD3DD620E596ABF42D9BYAPR12MB2840namp_
+--_000_BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9BYAPR12MB2840namp_
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-[AMD Official Use Only]
+[Public]
+
+Cycling some of the Nvidia/nouveau guys here too.
+
+I think there is a benefit on trying to estandarize how fdinfo can be used =
+to expose per engine and device memory utilization.
+
+Another of the advantages of going the /proc/ way instead of the sysfs debu=
+gfs approach is that you inherit the access lists directly from the distrib=
+ution and you don't need to start messing with ownership and group access. =
+By default an user can monitor its own processes as long as /proc is mounte=
+d.
+
+I am not saying that fdinfo or the way we implemented is 100% the way to go=
+, but I'd rather have a solution within the confines of proc first.
+
+David
+
+
+
+________________________________
+From: Nieto, David M <David.Nieto@amd.com>
+Sent: Monday, May 17, 2021 11:02 AM
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>; Daniel Vetter <daniel@=
+ffwll.ch>; Koenig, Christian <Christian.Koenig@amd.com>
+Cc: Alex Deucher <alexdeucher@gmail.com>; Intel Graphics Development <Intel=
+-gfx@lists.freedesktop.org>; Maling list - DRI developers <dri-devel@lists.=
+freedesktop.org>
+Subject: Re: [PATCH 0/7] Per client engine busyness
 
 The format is simple:
 
@@ -209,7 +240,7 @@ Regards,
 
 Tvrtko
 
---_000_BYAPR12MB28409E25DEFD3DD620E596ABF42D9BYAPR12MB2840namp_
+--_000_BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9BYAPR12MB2840namp_
 Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
@@ -221,24 +252,89 @@ Content-Transfer-Encoding: quoted-printable
 ttom:0;} </style>
 </head>
 <body dir=3D"ltr">
-<p style=3D"font-family:Arial;font-size:10pt;color:#0000FF;margin:15pt;" al=
+<p style=3D"font-family:Arial;font-size:10pt;color:#008000;margin:15pt;" al=
 ign=3D"Left">
-[AMD Official Use Only]<br>
+[Public]<br>
 </p>
 <br>
 <div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Cycling some of the Nvidia/nouveau guys here too.&nbsp;</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+I think there is a benefit on trying to estandarize how fdinfo can be used =
+to expose per engine and device memory utilization.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+Another of the advantages of going the /proc/ way instead of the sysfs debu=
+gfs approach is that you inherit the access lists directly from the distrib=
+ution and you don't need to start messing with ownership and group access. =
+By default an user can monitor its
+ own processes as long as /proc is mounted.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+I am not saying that fdinfo or the way we implemented is 100% the way to go=
+, but I'd rather have a solution within the confines of proc first.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+David</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+<br>
+</div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size: 11pt;"><b>From:</b> Nieto, David M &lt;=
+David.Nieto@amd.com&gt;<br>
+<b>Sent:</b> Monday, May 17, 2021 11:02 AM<br>
+<b>To:</b> Tvrtko Ursulin &lt;tvrtko.ursulin@linux.intel.com&gt;; Daniel Ve=
+tter &lt;daniel@ffwll.ch&gt;; Koenig, Christian &lt;Christian.Koenig@amd.co=
+m&gt;<br>
+<b>Cc:</b> Alex Deucher &lt;alexdeucher@gmail.com&gt;; Intel Graphics Devel=
+opment &lt;Intel-gfx@lists.freedesktop.org&gt;; Maling list - DRI developer=
+s &lt;dri-devel@lists.freedesktop.org&gt;<br>
+<b>Subject:</b> Re: [PATCH 0/7] Per client engine busyness</font>
+<div>&nbsp;</div>
+</div>
+<div dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
 The format is simple:</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt;"><br>
+<span style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
+pt"><br>
 </span></div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt;">&lt;ringname&gt;&lt;index&gt;: &lt;XXX.XX&gt; %</span><br>
+<span style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
+pt">&lt;ringname&gt;&lt;index&gt;: &lt;XXX.XX&gt; %</span><br>
 </div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
@@ -269,11 +365,11 @@ print out the info. It has a CPU usage lower that
 : 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
 To be absolutely honest, I agree that there is an overhead, but It might no=
 t be as much as you fear.</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Tvrtko Ursulin &lt;tv=
-rtko.ursulin@linux.intel.com&gt;<br>
+<div id=3D"x_appendonsend"></div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size: 11pt;"><b>From:</b> Tvrtko Ursulin &l=
+t;tvrtko.ursulin@linux.intel.com&gt;<br>
 <b>Sent:</b> Monday, May 17, 2021 9:00 AM<br>
 <b>To:</b> Nieto, David M &lt;David.Nieto@amd.com&gt;; Daniel Vetter &lt;da=
 niel@ffwll.ch&gt;; Koenig, Christian &lt;Christian.Koenig@amd.com&gt;<br>
@@ -283,9 +379,9 @@ s &lt;dri-devel@lists.freedesktop.org&gt;<br>
 <b>Subject:</b> Re: [PATCH 0/7] Per client engine busyness</font>
 <div>&nbsp;</div>
 </div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText"><br>
+<div class=3D"x_BodyFragment"><font size=3D"2"><span style=3D"font-size:11p=
+t">
+<div class=3D"x_PlainText"><br>
 On 17/05/2021 15:39, Nieto, David M wrote:<br>
 &gt; [AMD Official Use Only]<br>
 &gt; <br>
@@ -328,12 +424,13 @@ Tvrtko<br>
 </div>
 </span></font></div>
 </div>
+</div>
 </body>
 </html>
 
---_000_BYAPR12MB28409E25DEFD3DD620E596ABF42D9BYAPR12MB2840namp_--
+--_000_BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9BYAPR12MB2840namp_--
 
---===============1909599186==
+--===============0769115157==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -344,4 +441,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1909599186==--
+--===============0769115157==--
