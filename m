@@ -1,63 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF241382480
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 08:39:42 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFF023824A5
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 08:45:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 133EF6E8CA;
-	Mon, 17 May 2021 06:39:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1A136E045;
+	Mon, 17 May 2021 06:45:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFBCF6E8CA
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 06:39:39 +0000 (UTC)
-IronPort-SDR: dNtn81qbmbdQ0W4D8WyT3DtpQWLj6+G3p5i4JOxgN1tliZFOsF1dLlpwwV2mrCbT20nrmDJCTP
- 09X8sYdoxUlw==
-X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="187519342"
-X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="187519342"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2021 23:39:39 -0700
-IronPort-SDR: LAErMnHbi3/l081ihj7V1d/+8rWQNepGi3i7A2gdeF0zpLqbH6ZtSwLSmxpZzTUIGN4VuDuqKS
- KgfIBqpyeWVg==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF0D6E03C;
+ Mon, 17 May 2021 06:45:40 +0000 (UTC)
+IronPort-SDR: OX63k2Y1bbWKbxjHLVGcfL5weNA75BR5xgAqAssJ0vQAbWo1xyLgH6cSt59KkUiIJZBz9DJxHS
+ 4f9kgZlN1AmQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="198442184"
+X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="198442184"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2021 23:45:40 -0700
+IronPort-SDR: VPABE3FC7EK2WWocTXD3Mrynf4KjfIDFIx9s1fQoHi/pbItb2K7VD7Ke9ywx2A+5V2/kcvKJAa
+ OXw8d21HP7wQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="460170145"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga004.fm.intel.com with ESMTP; 16 May 2021 23:39:38 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Sun, 16 May 2021 23:39:38 -0700
-Received: from bgsmsx604.gar.corp.intel.com (10.67.234.6) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Sun, 16 May 2021 23:39:37 -0700
-Received: from bgsmsx604.gar.corp.intel.com ([10.67.234.6]) by
- BGSMSX604.gar.corp.intel.com ([10.67.234.6]) with mapi id 15.01.2106.013;
- Mon, 17 May 2021 12:09:35 +0530
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v4 15/23] drm/i915/display: Replace dc3co_enabled with
- dc3co_exitline on intel_psr struct
-Thread-Index: AQHXSTfofHbqvl4PUkqNmtzbyHOLsarnO25w
-Date: Mon, 17 May 2021 06:39:34 +0000
-Message-ID: <2bf20ff9aada49ffa65335aad6cd1328@intel.com>
-References: <20210515031035.2561658-1-matthew.d.roper@intel.com>
- <20210515031035.2561658-16-matthew.d.roper@intel.com>
-In-Reply-To: <20210515031035.2561658-16-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.5.1.3
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.1]
+X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="472227735"
+Received: from unknown (HELO coxu-arch-shz) ([10.239.160.26])
+ by fmsmga002.fm.intel.com with ESMTP; 16 May 2021 23:45:37 -0700
+Date: Mon, 17 May 2021 14:45:37 +0800 (CST)
+From: Colin Xu <colin.xu@intel.com>
+X-X-Sender: coxu_arch@coxu-arch-shz
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+In-Reply-To: <20210513083902.2822350-1-zhenyuw@linux.intel.com>
+Message-ID: <alpine.LNX.2.22.419.2105171444360.16753@coxu-arch-shz>
+References: <20210511083332.1740601-2-zhenyuw@linux.intel.com>
+ <20210513083902.2822350-1-zhenyuw@linux.intel.com>
+User-Agent: Alpine 2.22 (LNX 419 2020-04-12)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 15/23] drm/i915/display: Replace
- dc3co_enabled with dc3co_exitline on intel_psr struct
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gvt: Move mdev attribute groups
+ into kvmgt module
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,85 +49,432 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Arnd Bergmann <arnd@kernel.org>, intel-gfx@lists.freedesktop.org,
+ intel-gvt-dev@lists.freedesktop.org, Jason Gunthorpe <jgg@ziepe.ca>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUm9wZXIsIE1hdHRoZXcg
-RCA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4NCj4gU2VudDogU2F0dXJkYXksIE1heSAxNSwg
-MjAyMSA4OjQwIEFNDQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENj
-OiBNdW4sIEd3YW4tZ3llb25nIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPjsgVmlsbGUgU3ly
-asOkbMOkDQo+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT47IFNvdXphLCBKb3NlIDxq
-b3NlLnNvdXphQGludGVsLmNvbT47IEd1cHRhLA0KPiBBbnNodW1hbiA8YW5zaHVtYW4uZ3VwdGFA
-aW50ZWwuY29tPjsgUm9wZXIsIE1hdHRoZXcgRA0KPiA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNv
-bT4NCj4gU3ViamVjdDogW1BBVENIIHY0IDE1LzIzXSBkcm0vaTkxNS9kaXNwbGF5OiBSZXBsYWNl
-IGRjM2NvX2VuYWJsZWQgd2l0aA0KPiBkYzNjb19leGl0bGluZSBvbiBpbnRlbF9wc3Igc3RydWN0
-DQo+IA0KPiBGcm9tOiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+
-DQo+IA0KPiBJdCByZXBsYWNlcyBkYzNjb19lbmFibGVkIHdpdGggZGMzY29fZXhpdGxpbmUgb24g
-aW50ZWxfcHNyIHN0cnVjdC4gIEFuZCBpdCBzYXZlcw0KPiBkYzNjb19leGl0bGluZSwgbm90IGRj
-M2NvX2VuYWJsZWQsIHNvIHdlIGNhbiB1c2UgZGMzY29fZXhpdGxpbmUgd2l0aG91dA0KPiBpbnRl
-bF9jcnRjX3N0YXRlIG9uIG90aGVyIHBzciBpbnRlcm5hbCBmdW5jdGlvbiBsaWtlIGFzIGludGVs
-X3Bzcl9lbmFibGVfc291cmNlKCkuDQo+IA0KPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
-eXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpv
-c2Uuc291emFAaW50ZWwuY29tPg0KPiBDYzogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRh
-QGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9u
-Zy5tdW5AaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQu
-cm9wZXJAaW50ZWwuY29tPg0KTG9va3MgZ29vZCB0byBtZS4NClJldmlld2VkLWJ5OiBBbnNodW1h
-biBHdXB0YSA8YW5zaHVtYW4uZ3VwdGFAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oIHwgIDIgKy0NCj4gIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgICAgICAgICAgIHwgMTAgKysrKyst
-LS0tLQ0KPiAgMiBmaWxlcyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0p
-DQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5X3R5cGVzLmgNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXlfdHlwZXMuaA0KPiBpbmRleCA5ZTlmNzY4ZTJkN2YuLmI4ZDFmNzAyZDgwOCAxMDA2NDQN
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVz
-LmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5
-cGVzLmgNCj4gQEAgLTE0OTgsNyArMTQ5OCw3IEBAIHN0cnVjdCBpbnRlbF9wc3Igew0KPiAgCWJv
-b2wgc2lua19ub3RfcmVsaWFibGU7DQo+ICAJYm9vbCBpcnFfYXV4X2Vycm9yOw0KPiAgCXUxNiBz
-dV94X2dyYW51bGFyaXR5Ow0KPiAtCWJvb2wgZGMzY29fZW5hYmxlZDsNCj4gKwl1MzIgZGMzY29f
-ZXhpdGxpbmU7DQo+ICAJdTMyIGRjM2NvX2V4aXRfZGVsYXk7DQo+ICAJc3RydWN0IGRlbGF5ZWRf
-d29yayBkYzNjb193b3JrOw0KPiAgCXN0cnVjdCBkcm1fZHBfdnNjX3NkcCB2c2M7DQo+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRleCBhY2FmM2Q0NTk4
-MjEuLjViYWZkMGRlNmFkOSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX3Bzci5jDQo+IEBAIC02MzgsNyArNjM4LDcgQEAgc3RhdGljIHZvaWQgdGdsX2RjM2NvX2Rp
-c2FibGVfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QNCj4gKndvcmspDQo+IA0KPiAgc3RhdGljIHZv
-aWQgdGdsX2Rpc2FsbG93X2RjM2NvX29uX3BzcjJfZXhpdChzdHJ1Y3QgaW50ZWxfZHAgKmludGVs
-X2RwKSAgew0KPiAtCWlmICghaW50ZWxfZHAtPnBzci5kYzNjb19lbmFibGVkKQ0KPiArCWlmICgh
-aW50ZWxfZHAtPnBzci5kYzNjb19leGl0bGluZSkNCj4gIAkJcmV0dXJuOw0KPiANCj4gIAljYW5j
-ZWxfZGVsYXllZF93b3JrKCZpbnRlbF9kcC0+cHNyLmRjM2NvX3dvcmspOw0KPiBAQCAtMTAxMCw3
-ICsxMDEwLDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfcHNyX2VuYWJsZV9zb3VyY2Uoc3RydWN0IGlu
-dGVsX2RwDQo+ICppbnRlbF9kcCwNCj4gDQo+ICAJcHNyX2lycV9jb250cm9sKGludGVsX2RwKTsN
-Cj4gDQo+IC0JaWYgKGNydGNfc3RhdGUtPmRjM2NvX2V4aXRsaW5lKSB7DQo+ICsJaWYgKGludGVs
-X2RwLT5wc3IuZGMzY29fZXhpdGxpbmUpIHsNCj4gIAkJdTMyIHZhbDsNCj4gDQo+ICAJCS8qDQo+
-IEBAIC0xMDE5LDcgKzEwMTksNyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9wc3JfZW5hYmxlX3NvdXJj
-ZShzdHJ1Y3QgaW50ZWxfZHANCj4gKmludGVsX2RwLA0KPiAgCQkgKi8NCj4gIAkJdmFsID0gaW50
-ZWxfZGVfcmVhZChkZXZfcHJpdiwgRVhJVExJTkUoY3B1X3RyYW5zY29kZXIpKTsNCj4gIAkJdmFs
-ICY9IH5FWElUTElORV9NQVNLOw0KPiAtCQl2YWwgfD0gY3J0Y19zdGF0ZS0+ZGMzY29fZXhpdGxp
-bmUgPDwgRVhJVExJTkVfU0hJRlQ7DQo+ICsJCXZhbCB8PSBpbnRlbF9kcC0+cHNyLmRjM2NvX2V4
-aXRsaW5lIDw8IEVYSVRMSU5FX1NISUZUOw0KPiAgCQl2YWwgfD0gRVhJVExJTkVfRU5BQkxFOw0K
-PiAgCQlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwgRVhJVExJTkUoY3B1X3RyYW5zY29kZXIpLCB2
-YWwpOw0KPiAgCX0NCj4gQEAgLTEwNDQsMTEgKzEwNDQsMTEgQEAgc3RhdGljIHZvaWQgaW50ZWxf
-cHNyX2VuYWJsZV9sb2NrZWQoc3RydWN0IGludGVsX2RwDQo+ICppbnRlbF9kcCwNCj4gIAlpbnRl
-bF9kcC0+cHNyLnBzcjJfZW5hYmxlZCA9IGNydGNfc3RhdGUtPmhhc19wc3IyOw0KPiAgCWludGVs
-X2RwLT5wc3IuYnVzeV9mcm9udGJ1ZmZlcl9iaXRzID0gMDsNCj4gIAlpbnRlbF9kcC0+cHNyLnBp
-cGUgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0YyktPnBpcGU7DQo+IC0JaW50
-ZWxfZHAtPnBzci5kYzNjb19lbmFibGVkID0gISFjcnRjX3N0YXRlLT5kYzNjb19leGl0bGluZTsN
-Cj4gIAlpbnRlbF9kcC0+cHNyLnRyYW5zY29kZXIgPSBjcnRjX3N0YXRlLT5jcHVfdHJhbnNjb2Rl
-cjsNCj4gIAkvKiBEQzUvREM2IHJlcXVpcmVzIGF0IGxlYXN0IDYgaWRsZSBmcmFtZXMgKi8NCj4g
-IAl2YWwgPSB1c2Vjc190b19qaWZmaWVzKGludGVsX2dldF9mcmFtZV90aW1lX3VzKGNydGNfc3Rh
-dGUpICogNik7DQo+ICAJaW50ZWxfZHAtPnBzci5kYzNjb19leGl0X2RlbGF5ID0gdmFsOw0KPiAr
-CWludGVsX2RwLT5wc3IuZGMzY29fZXhpdGxpbmUgPSBjcnRjX3N0YXRlLT5kYzNjb19leGl0bGlu
-ZTsNCj4gIAlpbnRlbF9kcC0+cHNyLnBzcjJfc2VsX2ZldGNoX2VuYWJsZWQgPSBjcnRjX3N0YXRl
-LQ0KPiA+ZW5hYmxlX3BzcjJfc2VsX2ZldGNoOw0KPiANCj4gIAkvKg0KPiBAQCAtMTgxOCw3ICsx
-ODE4LDcgQEAgdGdsX2RjM2NvX2ZsdXNoKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsIHVuc2ln
-bmVkDQo+IGludCBmcm9udGJ1ZmZlcl9iaXRzLCAgew0KPiAgCW11dGV4X2xvY2soJmludGVsX2Rw
-LT5wc3IubG9jayk7DQo+IA0KPiAtCWlmICghaW50ZWxfZHAtPnBzci5kYzNjb19lbmFibGVkKQ0K
-PiArCWlmICghaW50ZWxfZHAtPnBzci5kYzNjb19leGl0bGluZSkNCj4gIAkJZ290byB1bmxvY2s7
-DQo+IA0KPiAgCWlmICghaW50ZWxfZHAtPnBzci5wc3IyX2VuYWJsZWQgfHwgIWludGVsX2RwLT5w
-c3IuYWN0aXZlKQ0KPiAtLQ0KPiAyLjI1LjQNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Thu, 13 May 2021, Zhenyu Wang wrote:
+
+> As kvmgt module contains all handling for VFIO/mdev, leaving mdev attribute
+> groups in gvt module caused dependency issue. Although it was there for possible
+> other hypervisor usage, that turns out never to be true. So this moves all mdev
+> handling into kvmgt module completely to resolve dependency issue.
+>
+> With this fix, no config workaround is required. So revert previous workaround
+> commits: adaeb718d46f ("vfio/gvt: fix DRM_I915_GVT dependency on VFIO_MDEV")
+> and 07e543f4f9d1 ("vfio/gvt: Make DRM_I915_GVT depend on VFIO_MDEV").
+>
+> Cc: Arnd Bergmann <arnd@kernel.org>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Alex Williamson <alex.williamson@redhat.com>
+> Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+> ---
+> drivers/gpu/drm/i915/Kconfig         |   1 -
+> drivers/gpu/drm/i915/gvt/gvt.c       | 124 +--------------------------
+> drivers/gpu/drm/i915/gvt/gvt.h       |   3 -
+> drivers/gpu/drm/i915/gvt/hypercall.h |   2 +-
+> drivers/gpu/drm/i915/gvt/kvmgt.c     | 122 ++++++++++++++++++++++++--
+> drivers/gpu/drm/i915/gvt/mpt.h       |   4 +-
+> 6 files changed, 118 insertions(+), 138 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+> index 69f57ca9c68d..93f4d059fc89 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -102,7 +102,6 @@ config DRM_I915_GVT
+> 	bool "Enable Intel GVT-g graphics virtualization host support"
+> 	depends on DRM_I915
+> 	depends on 64BIT
+> -	depends on VFIO_MDEV=y || VFIO_MDEV=DRM_I915
+> 	default n
+> 	help
+> 	  Choose this option if you want to enable Intel GVT-g graphics
+> diff --git a/drivers/gpu/drm/i915/gvt/gvt.c b/drivers/gpu/drm/i915/gvt/gvt.c
+> index e7c2babcee8b..cbac409f6c8a 100644
+> --- a/drivers/gpu/drm/i915/gvt/gvt.c
+> +++ b/drivers/gpu/drm/i915/gvt/gvt.c
+> @@ -46,118 +46,6 @@ static const char * const supported_hypervisors[] = {
+> 	[INTEL_GVT_HYPERVISOR_KVM] = "KVM",
+> };
+>
+> -static struct intel_vgpu_type *
+> -intel_gvt_find_vgpu_type(struct intel_gvt *gvt, unsigned int type_group_id)
+> -{
+> -	if (WARN_ON(type_group_id >= gvt->num_types))
+> -		return NULL;
+> -	return &gvt->types[type_group_id];
+> -}
+> -
+> -static ssize_t available_instances_show(struct mdev_type *mtype,
+> -					struct mdev_type_attribute *attr,
+> -					char *buf)
+> -{
+> -	struct intel_vgpu_type *type;
+> -	unsigned int num = 0;
+> -	void *gvt = kdev_to_i915(mtype_get_parent_dev(mtype))->gvt;
+> -
+> -	type = intel_gvt_find_vgpu_type(gvt, mtype_get_type_group_id(mtype));
+> -	if (!type)
+> -		num = 0;
+> -	else
+> -		num = type->avail_instance;
+> -
+> -	return sprintf(buf, "%u\n", num);
+> -}
+> -
+> -static ssize_t device_api_show(struct mdev_type *mtype,
+> -			       struct mdev_type_attribute *attr, char *buf)
+> -{
+> -	return sprintf(buf, "%s\n", VFIO_DEVICE_API_PCI_STRING);
+> -}
+> -
+> -static ssize_t description_show(struct mdev_type *mtype,
+> -				struct mdev_type_attribute *attr, char *buf)
+> -{
+> -	struct intel_vgpu_type *type;
+> -	void *gvt = kdev_to_i915(mtype_get_parent_dev(mtype))->gvt;
+> -
+> -	type = intel_gvt_find_vgpu_type(gvt, mtype_get_type_group_id(mtype));
+> -	if (!type)
+> -		return 0;
+> -
+> -	return sprintf(buf, "low_gm_size: %dMB\nhigh_gm_size: %dMB\n"
+> -		       "fence: %d\nresolution: %s\n"
+> -		       "weight: %d\n",
+> -		       BYTES_TO_MB(type->low_gm_size),
+> -		       BYTES_TO_MB(type->high_gm_size),
+> -		       type->fence, vgpu_edid_str(type->resolution),
+> -		       type->weight);
+> -}
+> -
+> -static MDEV_TYPE_ATTR_RO(available_instances);
+> -static MDEV_TYPE_ATTR_RO(device_api);
+> -static MDEV_TYPE_ATTR_RO(description);
+> -
+> -static struct attribute *gvt_type_attrs[] = {
+> -	&mdev_type_attr_available_instances.attr,
+> -	&mdev_type_attr_device_api.attr,
+> -	&mdev_type_attr_description.attr,
+> -	NULL,
+> -};
+> -
+> -static struct attribute_group *gvt_vgpu_type_groups[] = {
+> -	[0 ... NR_MAX_INTEL_VGPU_TYPES - 1] = NULL,
+> -};
+> -
+> -static bool intel_get_gvt_attrs(struct attribute_group ***intel_vgpu_type_groups)
+> -{
+> -	*intel_vgpu_type_groups = gvt_vgpu_type_groups;
+> -	return true;
+> -}
+> -
+> -static int intel_gvt_init_vgpu_type_groups(struct intel_gvt *gvt)
+> -{
+> -	int i, j;
+> -	struct intel_vgpu_type *type;
+> -	struct attribute_group *group;
+> -
+> -	for (i = 0; i < gvt->num_types; i++) {
+> -		type = &gvt->types[i];
+> -
+> -		group = kzalloc(sizeof(struct attribute_group), GFP_KERNEL);
+> -		if (WARN_ON(!group))
+> -			goto unwind;
+> -
+> -		group->name = type->name;
+> -		group->attrs = gvt_type_attrs;
+> -		gvt_vgpu_type_groups[i] = group;
+> -	}
+> -
+> -	return 0;
+> -
+> -unwind:
+> -	for (j = 0; j < i; j++) {
+> -		group = gvt_vgpu_type_groups[j];
+> -		kfree(group);
+> -	}
+> -
+> -	return -ENOMEM;
+> -}
+> -
+> -static void intel_gvt_cleanup_vgpu_type_groups(struct intel_gvt *gvt)
+> -{
+> -	int i;
+> -	struct attribute_group *group;
+> -
+> -	for (i = 0; i < gvt->num_types; i++) {
+> -		group = gvt_vgpu_type_groups[i];
+> -		gvt_vgpu_type_groups[i] = NULL;
+> -		kfree(group);
+> -	}
+> -}
+> -
+> static const struct intel_gvt_ops intel_gvt_ops = {
+> 	.emulate_cfg_read = intel_vgpu_emulate_cfg_read,
+> 	.emulate_cfg_write = intel_vgpu_emulate_cfg_write,
+> @@ -169,8 +57,6 @@ static const struct intel_gvt_ops intel_gvt_ops = {
+> 	.vgpu_reset = intel_gvt_reset_vgpu,
+> 	.vgpu_activate = intel_gvt_activate_vgpu,
+> 	.vgpu_deactivate = intel_gvt_deactivate_vgpu,
+> -	.gvt_find_vgpu_type = intel_gvt_find_vgpu_type,
+> -	.get_gvt_attrs = intel_get_gvt_attrs,
+> 	.vgpu_query_plane = intel_vgpu_query_plane,
+> 	.vgpu_get_dmabuf = intel_vgpu_get_dmabuf,
+> 	.write_protect_handler = intel_vgpu_page_track_handler,
+> @@ -274,7 +160,6 @@ void intel_gvt_clean_device(struct drm_i915_private *i915)
+> 		return;
+>
+> 	intel_gvt_destroy_idle_vgpu(gvt->idle_vgpu);
+> -	intel_gvt_cleanup_vgpu_type_groups(gvt);
+> 	intel_gvt_clean_vgpu_types(gvt);
+>
+> 	intel_gvt_debugfs_clean(gvt);
+> @@ -363,12 +248,6 @@ int intel_gvt_init_device(struct drm_i915_private *i915)
+> 	if (ret)
+> 		goto out_clean_thread;
+>
+> -	ret = intel_gvt_init_vgpu_type_groups(gvt);
+> -	if (ret) {
+> -		gvt_err("failed to init vgpu type groups: %d\n", ret);
+> -		goto out_clean_types;
+> -	}
+> -
+> 	vgpu = intel_gvt_create_idle_vgpu(gvt);
+> 	if (IS_ERR(vgpu)) {
+> 		ret = PTR_ERR(vgpu);
+> @@ -454,7 +333,8 @@ EXPORT_SYMBOL_GPL(intel_gvt_register_hypervisor);
+> void
+> intel_gvt_unregister_hypervisor(void)
+> {
+> -	intel_gvt_hypervisor_host_exit(intel_gvt_host.dev);
+> +	void *gvt = (void *)kdev_to_i915(intel_gvt_host.dev)->gvt;
+> +	intel_gvt_hypervisor_host_exit(intel_gvt_host.dev, gvt);
+> 	module_put(THIS_MODULE);
+> }
+> EXPORT_SYMBOL_GPL(intel_gvt_unregister_hypervisor);
+> diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
+> index 88ab360fcb31..0c0615602343 100644
+> --- a/drivers/gpu/drm/i915/gvt/gvt.h
+> +++ b/drivers/gpu/drm/i915/gvt/gvt.h
+> @@ -574,9 +574,6 @@ struct intel_gvt_ops {
+> 	void (*vgpu_reset)(struct intel_vgpu *);
+> 	void (*vgpu_activate)(struct intel_vgpu *);
+> 	void (*vgpu_deactivate)(struct intel_vgpu *);
+> -	struct intel_vgpu_type *(*gvt_find_vgpu_type)(
+> -		struct intel_gvt *gvt, unsigned int type_group_id);
+> -	bool (*get_gvt_attrs)(struct attribute_group ***intel_vgpu_type_groups);
+> 	int (*vgpu_query_plane)(struct intel_vgpu *vgpu, void *);
+> 	int (*vgpu_get_dmabuf)(struct intel_vgpu *vgpu, unsigned int);
+> 	int (*write_protect_handler)(struct intel_vgpu *, u64, void *,
+> diff --git a/drivers/gpu/drm/i915/gvt/hypercall.h b/drivers/gpu/drm/i915/gvt/hypercall.h
+> index b79da5124f83..f33e3cbd0439 100644
+> --- a/drivers/gpu/drm/i915/gvt/hypercall.h
+> +++ b/drivers/gpu/drm/i915/gvt/hypercall.h
+> @@ -49,7 +49,7 @@ enum hypervisor_type {
+> struct intel_gvt_mpt {
+> 	enum hypervisor_type type;
+> 	int (*host_init)(struct device *dev, void *gvt, const void *ops);
+> -	void (*host_exit)(struct device *dev);
+> +	void (*host_exit)(struct device *dev, void *gvt);
+> 	int (*attach_vgpu)(void *vgpu, unsigned long *handle);
+> 	void (*detach_vgpu)(void *vgpu);
+> 	int (*inject_msi)(unsigned long handle, u32 addr, u16 data);
+> diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> index 65ff43cfc0f7..48b4d4cf805d 100644
+> --- a/drivers/gpu/drm/i915/gvt/kvmgt.c
+> +++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+> @@ -144,6 +144,104 @@ static inline bool handle_valid(unsigned long handle)
+> 	return !!(handle & ~0xff);
+> }
+>
+> +static ssize_t available_instances_show(struct mdev_type *mtype,
+> +					struct mdev_type_attribute *attr,
+> +					char *buf)
+> +{
+> +	struct intel_vgpu_type *type;
+> +	unsigned int num = 0;
+> +	struct intel_gvt *gvt = kdev_to_i915(mtype_get_parent_dev(mtype))->gvt;
+> +
+> +	type = &gvt->types[mtype_get_type_group_id(mtype)];
+> +	if (!type)
+> +		num = 0;
+> +	else
+> +		num = type->avail_instance;
+> +
+> +	return sprintf(buf, "%u\n", num);
+> +}
+> +
+> +static ssize_t device_api_show(struct mdev_type *mtype,
+> +			       struct mdev_type_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "%s\n", VFIO_DEVICE_API_PCI_STRING);
+> +}
+> +
+> +static ssize_t description_show(struct mdev_type *mtype,
+> +				struct mdev_type_attribute *attr, char *buf)
+> +{
+> +	struct intel_vgpu_type *type;
+> +	struct intel_gvt *gvt = kdev_to_i915(mtype_get_parent_dev(mtype))->gvt;
+> +
+> +	type = &gvt->types[mtype_get_type_group_id(mtype)];
+> +	if (!type)
+> +		return 0;
+> +
+> +	return sprintf(buf, "low_gm_size: %dMB\nhigh_gm_size: %dMB\n"
+> +		       "fence: %d\nresolution: %s\n"
+> +		       "weight: %d\n",
+> +		       BYTES_TO_MB(type->low_gm_size),
+> +		       BYTES_TO_MB(type->high_gm_size),
+> +		       type->fence, vgpu_edid_str(type->resolution),
+> +		       type->weight);
+> +}
+> +
+> +static MDEV_TYPE_ATTR_RO(available_instances);
+> +static MDEV_TYPE_ATTR_RO(device_api);
+> +static MDEV_TYPE_ATTR_RO(description);
+> +
+> +static struct attribute *gvt_type_attrs[] = {
+> +	&mdev_type_attr_available_instances.attr,
+> +	&mdev_type_attr_device_api.attr,
+> +	&mdev_type_attr_description.attr,
+> +	NULL,
+> +};
+> +
+> +static struct attribute_group *gvt_vgpu_type_groups[] = {
+> +	[0 ... NR_MAX_INTEL_VGPU_TYPES - 1] = NULL,
+> +};
+> +
+> +static int intel_gvt_init_vgpu_type_groups(struct intel_gvt *gvt)
+> +{
+> +	int i, j;
+> +	struct intel_vgpu_type *type;
+> +	struct attribute_group *group;
+> +
+> +	for (i = 0; i < gvt->num_types; i++) {
+> +		type = &gvt->types[i];
+> +
+> +		group = kzalloc(sizeof(struct attribute_group), GFP_KERNEL);
+> +		if (!group)
+> +			goto unwind;
+> +
+> +		group->name = type->name;
+> +		group->attrs = gvt_type_attrs;
+> +		gvt_vgpu_type_groups[i] = group;
+> +	}
+> +
+> +	return 0;
+> +
+> +unwind:
+> +	for (j = 0; j < i; j++) {
+> +		group = gvt_vgpu_type_groups[j];
+> +		kfree(group);
+> +	}
+> +
+> +	return -ENOMEM;
+> +}
+> +
+> +static void intel_gvt_cleanup_vgpu_type_groups(struct intel_gvt *gvt)
+> +{
+> +	int i;
+> +	struct attribute_group *group;
+> +
+> +	for (i = 0; i < gvt->num_types; i++) {
+> +		group = gvt_vgpu_type_groups[i];
+> +		gvt_vgpu_type_groups[i] = NULL;
+> +		kfree(group);
+> +	}
+> +}
+> +
+> static int kvmgt_guest_init(struct mdev_device *mdev);
+> static void intel_vgpu_release_work(struct work_struct *work);
+> static bool kvmgt_guest_exit(struct kvmgt_guest_info *info);
+> @@ -694,14 +792,13 @@ static int intel_vgpu_create(struct mdev_device *mdev)
+> 	struct intel_vgpu *vgpu = NULL;
+> 	struct intel_vgpu_type *type;
+> 	struct device *pdev;
+> -	void *gvt;
+> +	struct intel_gvt *gvt;
+> 	int ret;
+>
+> 	pdev = mdev_parent_dev(mdev);
+> 	gvt = kdev_to_i915(pdev)->gvt;
+>
+> -	type = intel_gvt_ops->gvt_find_vgpu_type(gvt,
+> -						 mdev_get_type_group_id(mdev));
+> +	type = &gvt->types[mdev_get_type_group_id(mdev)];
+> 	if (!type) {
+> 		ret = -EINVAL;
+> 		goto out;
+> @@ -1667,19 +1764,26 @@ static struct mdev_parent_ops intel_vgpu_ops = {
+>
+> static int kvmgt_host_init(struct device *dev, void *gvt, const void *ops)
+> {
+> -	struct attribute_group **kvm_vgpu_type_groups;
+> +	int ret;
+> +
+> +	ret = intel_gvt_init_vgpu_type_groups((struct intel_gvt *)gvt);
+> +	if (ret)
+> +		return ret;
+>
+> 	intel_gvt_ops = ops;
+> -	if (!intel_gvt_ops->get_gvt_attrs(&kvm_vgpu_type_groups))
+> -		return -EFAULT;
+> -	intel_vgpu_ops.supported_type_groups = kvm_vgpu_type_groups;
+> +	intel_vgpu_ops.supported_type_groups = gvt_vgpu_type_groups;
+>
+> -	return mdev_register_device(dev, &intel_vgpu_ops);
+> +	ret = mdev_register_device(dev, &intel_vgpu_ops);
+> +	if (ret)
+> +		intel_gvt_cleanup_vgpu_type_groups((struct intel_gvt *)gvt);
+> +
+> +	return ret;
+> }
+>
+> -static void kvmgt_host_exit(struct device *dev)
+> +static void kvmgt_host_exit(struct device *dev, void *gvt)
+> {
+> 	mdev_unregister_device(dev);
+> +	intel_gvt_cleanup_vgpu_type_groups((struct intel_gvt *)gvt);
+> }
+>
+> static int kvmgt_page_track_add(unsigned long handle, u64 gfn)
+> diff --git a/drivers/gpu/drm/i915/gvt/mpt.h b/drivers/gpu/drm/i915/gvt/mpt.h
+> index 550a456e936f..e6c5a792a49a 100644
+> --- a/drivers/gpu/drm/i915/gvt/mpt.h
+> +++ b/drivers/gpu/drm/i915/gvt/mpt.h
+> @@ -63,13 +63,13 @@ static inline int intel_gvt_hypervisor_host_init(struct device *dev,
+> /**
+>  * intel_gvt_hypervisor_host_exit - exit GVT-g host side
+>  */
+> -static inline void intel_gvt_hypervisor_host_exit(struct device *dev)
+> +static inline void intel_gvt_hypervisor_host_exit(struct device *dev, void *gvt)
+> {
+> 	/* optional to provide */
+> 	if (!intel_gvt_host.mpt->host_exit)
+> 		return;
+>
+> -	intel_gvt_host.mpt->host_exit(dev);
+> +	intel_gvt_host.mpt->host_exit(dev, gvt);
+> }
+>
+> /**
+> -- 
+> 2.31.0
+>
+> _______________________________________________
+> intel-gvt-dev mailing list
+> intel-gvt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gvt-dev
+>
+
+Reviewed-by: Colin Xu <colin.xu@intel.com>
+--
+Best Regards,
+Colin Xu
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
