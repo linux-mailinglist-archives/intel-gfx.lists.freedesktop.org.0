@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6116F3824AC
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 08:46:26 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0187D3824BF
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 08:49:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 969B46E03C;
-	Mon, 17 May 2021 06:46:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4710E6E1D2;
+	Mon, 17 May 2021 06:49:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C840F6E03C
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 06:46:22 +0000 (UTC)
-IronPort-SDR: BHdGhqhEyN5w3lLdqcxK6Yuhs3vzloZRSogQ6wLKpBuQcWBEiF1n+Cn5BhN5ufDPMylYTLJwlY
- iKd4nnLeKdtA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="187801693"
-X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="187801693"
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29D446E1D2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 06:49:41 +0000 (UTC)
+IronPort-SDR: cuThw+vjDLEprZGFjwJ0Fqnhjj2idKIlVRZ5/espBZxbWI1NK76usxjt2ZRXLsWCtHm2ze1GFv
+ ONv3V1xwYt4A==
+X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="264317122"
+X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="264317122"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2021 23:46:21 -0700
-IronPort-SDR: pGp8HKe2YDnbLumYDsceFNCJprcjbkg9kbtOPI5rBNwibT0nO6dKL8vemOxEZP1GjhEL2GT45m
- tSGYaPESoJWQ==
-X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="410692738"
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2021 23:49:39 -0700
+IronPort-SDR: AbJ8nQf00QbiT30RJ/2aoeoJVbnjIqfwsYWSPJdVWrUawVtv7907YiXeLsAbUDqMK5II2Xbvr4
+ wAfCM5oI7erw==
+X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="410693478"
 Received: from unknown (HELO intel.com) ([10.237.72.91])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2021 23:46:20 -0700
-Date: Mon, 17 May 2021 09:49:38 +0300
+ 16 May 2021 23:49:38 -0700
+Date: Mon, 17 May 2021 09:52:59 +0300
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20210517064938.GA17429@intel.com>
+Message-ID: <20210517065259.GB17429@intel.com>
 References: <20210515031035.2561658-1-matthew.d.roper@intel.com>
- <20210515031035.2561658-7-matthew.d.roper@intel.com>
+ <20210515031035.2561658-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210515031035.2561658-7-matthew.d.roper@intel.com>
+In-Reply-To: <20210515031035.2561658-2-matthew.d.roper@intel.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v4 06/23] drm/i915/adl_p: Add dedicated SAGV
- watermarks
+Subject: Re: [Intel-gfx] [PATCH v4 01/23] drm/i915/xelpd: Enhanced pipe
+ underrun reporting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,275 +49,263 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 14, 2021 at 08:10:18PM -0700, Matt Roper wrote:
-> XE_LPD reduces the number of regular watermark latency levels from 8
-> to 6 on non-dgfx platforms.  However the hardware also adds a special
-> purpose SAGV wateramrk (and an accompanying transition watermark) that
-> will be used by the hardware in place of the level 0 values during SAGV
-> transitions.
+On Fri, May 14, 2021 at 08:10:13PM -0700, Matt Roper wrote:
+> XE_LPD brings enhanced underrun recovery:  the hardware can somewhat
+> mitigate underruns by using an interpolated replacement pixel (soft
+> underrun) or the previous pixel (hard underrun).  Furthermore, underruns
+> can now be caused downstream by the port, even if the pipe itself is
+> operating properly.  The interrupt register and PIPE_STATUS register
+> give us extra bits to recognize hard/soft underruns and determine
+> whether the underrun was caused by the port, so we'll use that
+> information to print some more descriptive errors when underruns occur.
 
 Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-> 
-> Bspec: 49325, 49326, 50419
-> Cc: Matt Atwood <matthew.s.atwood@intel.com>
+> =
+
+> v2:
+>  - Keep ICL's PIPE_STATUS defined separately from the old GMCH pipe
+>    status register.  (Ville)
+>  - Only read/clear the PIPE_STATUS register on platforms with
+>    display ver >=3D 11. (Lucas)
+> v3:
+>  - Actually enable+unmask all the new underrun interrupts, clear stale
+>    bits out from PIPE_STATUS before enabling the interrupts, report all
+>    FIFO underruns errors at once, rename a bunch of stuff to unconfuse
+>    vs. PIPESTAT. (Ville)
+> =
+
+> Bspec: 50335
+> Bspec: 50366
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 32 +++++++++++
->  drivers/gpu/drm/i915/i915_drv.h              |  2 +
->  drivers/gpu/drm/i915/i915_reg.h              | 59 ++++++++++++++------
->  drivers/gpu/drm/i915/intel_pm.c              | 54 ++++++++++++++++--
->  4 files changed, 126 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index ce44f18340ee..2c2c5676dc30 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -8752,6 +8752,38 @@ static void verify_wm_state(struct intel_crtc *crtc,
->  				hw_wm_level->lines);
->  		}
->  
-> +		hw_wm_level = &hw->wm.planes[plane->id].sagv.wm0;
-> +		sw_wm_level = &sw_wm->planes[plane->id].sagv.wm0;
+>  .../drm/i915/display/intel_fifo_underrun.c    | 57 +++++++++++++++++--
+>  drivers/gpu/drm/i915/i915_irq.c               | 19 ++++++-
+>  drivers/gpu/drm/i915/i915_irq.h               |  1 +
+>  drivers/gpu/drm/i915/i915_reg.h               |  9 +++
+>  4 files changed, 77 insertions(+), 9 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers=
+/gpu/drm/i915/display/intel_fifo_underrun.c
+> index 3315aa1d4d5a..eb841960840d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> @@ -185,15 +185,34 @@ static void ivb_set_fifo_underrun_reporting(struct =
+drm_device *dev,
+>  	}
+>  }
+>  =
+
+> +static u32
+> +icl_pipe_status_underrun_mask(struct drm_i915_private *dev_priv)
+> +{
+> +	u32 mask =3D PIPE_STATUS_UNDERRUN;
 > +
-> +		if (HAS_HW_SAGV_WM(dev_priv) &&
-> +		    !skl_wm_level_equals(hw_wm_level, sw_wm_level)) {
-> +			drm_err(&dev_priv->drm,
-> +				"[PLANE:%d:%s] mismatch in SAGV WM (expected e=%d b=%u l=%u, got e=%d b=%u l=%u)\n",
-> +				plane->base.base.id, plane->base.name,
-> +				sw_wm_level->enable,
-> +				sw_wm_level->blocks,
-> +				sw_wm_level->lines,
-> +				hw_wm_level->enable,
-> +				hw_wm_level->blocks,
-> +				hw_wm_level->lines);
-> +		}
+> +	if (DISPLAY_VER(dev_priv) >=3D 13)
+> +		mask |=3D PIPE_STATUS_SOFT_UNDERRUN_XELPD |
+> +			PIPE_STATUS_HARD_UNDERRUN_XELPD |
+> +			PIPE_STATUS_PORT_UNDERRUN_XELPD;
 > +
-> +		hw_wm_level = &hw->wm.planes[plane->id].sagv.trans_wm;
-> +		sw_wm_level = &sw_wm->planes[plane->id].sagv.trans_wm;
+> +	return mask;
+> +}
 > +
-> +		if (HAS_HW_SAGV_WM(dev_priv) &&
-> +		    !skl_wm_level_equals(hw_wm_level, sw_wm_level)) {
-> +			drm_err(&dev_priv->drm,
-> +				"[PLANE:%d:%s] mismatch in SAGV trans WM (expected e=%d b=%u l=%u, got e=%d b=%u l=%u)\n",
-> +				plane->base.base.id, plane->base.name,
-> +				sw_wm_level->enable,
-> +				sw_wm_level->blocks,
-> +				sw_wm_level->lines,
-> +				hw_wm_level->enable,
-> +				hw_wm_level->blocks,
-> +				hw_wm_level->lines);
-> +		}
+>  static void bdw_set_fifo_underrun_reporting(struct drm_device *dev,
+>  					    enum pipe pipe, bool enable)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> +	u32 mask =3D gen8_de_pipe_underrun_mask(dev_priv);
+>  =
+
+> -	if (enable)
+> -		bdw_enable_pipe_irq(dev_priv, pipe, GEN8_PIPE_FIFO_UNDERRUN);
+> -	else
+> -		bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_FIFO_UNDERRUN);
+> +	if (enable) {
+> +		if (DISPLAY_VER(dev_priv) >=3D 11)
+> +			intel_de_write(dev_priv, ICL_PIPESTATUS(pipe),
+> +				       icl_pipe_status_underrun_mask(dev_priv));
 > +
->  		/* DDB */
->  		hw_ddb_entry = &hw->ddb_y[plane->id];
->  		sw_ddb_entry = &new_crtc_state->wm.skl.plane_ddb_y[plane->id];
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 6eb6c6acd81e..d7583a01e135 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -590,6 +590,8 @@ i915_fence_timeout(const struct drm_i915_private *i915)
->  /* Amount of SAGV/QGV points, BSpec precisely defines this */
->  #define I915_NUM_QGV_POINTS 8
->  
-> +#define HAS_HW_SAGV_WM(i915) (DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
+> +		bdw_enable_pipe_irq(dev_priv, pipe, mask);
+> +	} else {
+> +		bdw_disable_pipe_irq(dev_priv, pipe, mask);
+> +	}
+>  }
+>  =
+
+>  static void ibx_set_fifo_underrun_reporting(struct drm_device *dev,
+> @@ -373,6 +392,7 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm_i=
+915_private *dev_priv,
+>  					 enum pipe pipe)
+>  {
+>  	struct intel_crtc *crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> +	u32 underruns =3D 0;
+>  =
+
+>  	/* We may be called too early in init, thanks BIOS! */
+>  	if (crtc =3D=3D NULL)
+> @@ -383,10 +403,35 @@ void intel_cpu_fifo_underrun_irq_handler(struct drm=
+_i915_private *dev_priv,
+>  	    crtc->cpu_fifo_underrun_disabled)
+>  		return;
+>  =
+
+> +	/*
+> +	 * Starting with display version 11, the PIPE_STAT register records
+> +	 * whether an underrun has happened, and on XELPD+, it will also record
+> +	 * whether the underrun was soft/hard and whether it was triggered by
+> +	 * the downstream port logic.  We should clear these bits (which use
+> +	 * write-1-to-clear logic) too.
+> +	 *
+> +	 * Note that although the IIR gives us the same underrun and soft/hard
+> +	 * information, PIPE_STAT is the only place we can find out whether
+> +	 * the underrun was caused by the downstream port.
+> +	 */
+> +	if (DISPLAY_VER(dev_priv) >=3D 11) {
+> +		underruns =3D intel_de_read(dev_priv, ICL_PIPESTATUS(pipe)) &
+> +			icl_pipe_status_underrun_mask(dev_priv);
+> +		intel_de_write(dev_priv, ICL_PIPESTATUS(pipe), underruns);
+> +	}
 > +
->  struct ddi_vbt_port_info {
->  	/* Non-NULL if port present. */
->  	struct intel_bios_encoder_data *devdata;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index dbb75cd087d3..ab6ffe036841 100644
+>  	if (intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false)) {
+>  		trace_intel_cpu_fifo_underrun(dev_priv, pipe);
+> -		drm_err(&dev_priv->drm, "CPU pipe %c FIFO underrun\n",
+> -			pipe_name(pipe));
+> +
+> +		if (DISPLAY_VER(dev_priv) >=3D 11)
+> +			drm_err(&dev_priv->drm, "CPU pipe %c FIFO underrun: %s%s%s%s\n",
+> +				pipe_name(pipe),
+> +				underruns & PIPE_STATUS_SOFT_UNDERRUN_XELPD ? "soft," : "",
+> +				underruns & PIPE_STATUS_HARD_UNDERRUN_XELPD ? "hard," : "",
+> +				underruns & PIPE_STATUS_PORT_UNDERRUN_XELPD ? "port," : "",
+> +				underruns & PIPE_STATUS_UNDERRUN ? "transcoder," : "");
+> +		else
+> +			drm_err(&dev_priv->drm, "CPU pipe %c FIFO underrun\n", pipe_name(pipe=
+));
+>  	}
+>  =
+
+>  	intel_fbc_handle_fifo_underrun_irq(dev_priv);
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
+irq.c
+> index d4611c643446..957d401186d2 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -2425,6 +2425,17 @@ static u32 gen8_de_pipe_flip_done_mask(struct drm_=
+i915_private *i915)
+>  		return GEN8_PIPE_PRIMARY_FLIP_DONE;
+>  }
+>  =
+
+> +u32 gen8_de_pipe_underrun_mask(struct drm_i915_private *dev_priv)
+> +{
+> +	u32 mask =3D GEN8_PIPE_FIFO_UNDERRUN;
+> +
+> +	if (DISPLAY_VER(dev_priv) >=3D 13)
+> +		mask |=3D XELPD_PIPE_SOFT_UNDERRUN |
+> +			XELPD_PIPE_HARD_UNDERRUN;
+> +
+> +	return mask;
+> +}
+> +
+>  static irqreturn_t
+>  gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  {
+> @@ -2536,7 +2547,7 @@ gen8_de_irq_handler(struct drm_i915_private *dev_pr=
+iv, u32 master_ctl)
+>  		if (iir & GEN8_PIPE_CDCLK_CRC_DONE)
+>  			hsw_pipe_crc_irq_handler(dev_priv, pipe);
+>  =
+
+> -		if (iir & GEN8_PIPE_FIFO_UNDERRUN)
+> +		if (iir & gen8_de_pipe_underrun_mask(dev_priv))
+>  			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
+>  =
+
+>  		fault_errors =3D iir & gen8_de_pipe_fault_mask(dev_priv);
+> @@ -3173,7 +3184,8 @@ void gen8_irq_power_well_post_enable(struct drm_i91=
+5_private *dev_priv,
+>  				     u8 pipe_mask)
+>  {
+>  	struct intel_uncore *uncore =3D &dev_priv->uncore;
+> -	u32 extra_ier =3D GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
+> +	u32 extra_ier =3D GEN8_PIPE_VBLANK |
+> +		gen8_de_pipe_underrun_mask(dev_priv) |
+>  		gen8_de_pipe_flip_done_mask(dev_priv);
+>  	enum pipe pipe;
+>  =
+
+> @@ -3757,7 +3769,8 @@ static void gen8_de_irq_postinstall(struct drm_i915=
+_private *dev_priv)
+>  	}
+>  =
+
+>  	de_pipe_enables =3D de_pipe_masked |
+> -		GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
+> +		GEN8_PIPE_VBLANK |
+> +		gen8_de_pipe_underrun_mask(dev_priv) |
+>  		gen8_de_pipe_flip_done_mask(dev_priv);
+>  =
+
+>  	de_port_enables =3D de_port_masked;
+> diff --git a/drivers/gpu/drm/i915/i915_irq.h b/drivers/gpu/drm/i915/i915_=
+irq.h
+> index 25f25cd95818..db34d5dbe402 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.h
+> +++ b/drivers/gpu/drm/i915/i915_irq.h
+> @@ -100,6 +100,7 @@ void gen8_irq_power_well_post_enable(struct drm_i915_=
+private *dev_priv,
+>  				     u8 pipe_mask);
+>  void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
+>  				     u8 pipe_mask);
+> +u32 gen8_de_pipe_underrun_mask(struct drm_i915_private *dev_priv);
+>  =
+
+>  bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_err=
+or,
+>  				     ktime_t *vblank_time, bool in_vblank_irq);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 089b5a59bed3..506a5aa0646b 100644
 > --- a/drivers/gpu/drm/i915/i915_reg.h
 > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -6435,16 +6435,28 @@ enum {
->  /* Watermark register definitions for SKL */
->  #define _CUR_WM_A_0		0x70140
->  #define _CUR_WM_B_0		0x71140
-> +#define _CUR_WM_SAGV_A		0x70158
-> +#define _CUR_WM_SAGV_B		0x71158
-> +#define _CUR_WM_SAGV_TRANS_A	0x7015C
-> +#define _CUR_WM_SAGV_TRANS_B	0x7115C
-> +#define _CUR_WM_TRANS_A		0x70168
-> +#define _CUR_WM_TRANS_B		0x71168
->  #define _PLANE_WM_1_A_0		0x70240
->  #define _PLANE_WM_1_B_0		0x71240
->  #define _PLANE_WM_2_A_0		0x70340
->  #define _PLANE_WM_2_B_0		0x71340
-> -#define _PLANE_WM_TRANS_1_A_0	0x70268
-> -#define _PLANE_WM_TRANS_1_B_0	0x71268
-> -#define _PLANE_WM_TRANS_2_A_0	0x70368
-> -#define _PLANE_WM_TRANS_2_B_0	0x71368
-> -#define _CUR_WM_TRANS_A_0	0x70168
-> -#define _CUR_WM_TRANS_B_0	0x71168
-> +#define _PLANE_WM_SAGV_1_A	0x70258
-> +#define _PLANE_WM_SAGV_1_B	0x71258
-> +#define _PLANE_WM_SAGV_2_A	0x70358
-> +#define _PLANE_WM_SAGV_2_B	0x71358
-> +#define _PLANE_WM_SAGV_TRANS_1_A	0x7025C
-> +#define _PLANE_WM_SAGV_TRANS_1_B	0x7125C
-> +#define _PLANE_WM_SAGV_TRANS_2_A	0x7035C
-> +#define _PLANE_WM_SAGV_TRANS_2_B	0x7135C
-> +#define _PLANE_WM_TRANS_1_A	0x70268
-> +#define _PLANE_WM_TRANS_1_B	0x71268
-> +#define _PLANE_WM_TRANS_2_A	0x70368
-> +#define _PLANE_WM_TRANS_2_B	0x71368
->  #define   PLANE_WM_EN		(1 << 31)
->  #define   PLANE_WM_IGNORE_LINES	(1 << 30)
->  #define   PLANE_WM_LINES_MASK	REG_GENMASK(26, 14)
-> @@ -6452,19 +6464,32 @@ enum {
->  
->  #define _CUR_WM_0(pipe) _PIPE(pipe, _CUR_WM_A_0, _CUR_WM_B_0)
->  #define CUR_WM(pipe, level) _MMIO(_CUR_WM_0(pipe) + ((4) * (level)))
-> -#define CUR_WM_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_TRANS_A_0, _CUR_WM_TRANS_B_0)
-> -
-> +#define CUR_WM_SAGV(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_A, _CUR_WM_SAGV_B)
-> +#define CUR_WM_SAGV_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_SAGV_TRANS_A, _CUR_WM_SAGV_TRANS_B)
-> +#define CUR_WM_TRANS(pipe) _MMIO_PIPE(pipe, _CUR_WM_TRANS_A, _CUR_WM_TRANS_B)
->  #define _PLANE_WM_1(pipe) _PIPE(pipe, _PLANE_WM_1_A_0, _PLANE_WM_1_B_0)
->  #define _PLANE_WM_2(pipe) _PIPE(pipe, _PLANE_WM_2_A_0, _PLANE_WM_2_B_0)
-> -#define _PLANE_WM_BASE(pipe, plane)	\
-> -			_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
-> -#define PLANE_WM(pipe, plane, level)	\
-> -			_MMIO(_PLANE_WM_BASE(pipe, plane) + ((4) * (level)))
-> -#define _PLANE_WM_TRANS_1(pipe)	\
-> -			_PIPE(pipe, _PLANE_WM_TRANS_1_A_0, _PLANE_WM_TRANS_1_B_0)
-> -#define _PLANE_WM_TRANS_2(pipe)	\
-> -			_PIPE(pipe, _PLANE_WM_TRANS_2_A_0, _PLANE_WM_TRANS_2_B_0)
-> -#define PLANE_WM_TRANS(pipe, plane)	\
-> +#define _PLANE_WM_BASE(pipe, plane) \
-> +	_PLANE(plane, _PLANE_WM_1(pipe), _PLANE_WM_2(pipe))
-> +#define PLANE_WM(pipe, plane, level) \
-> +	_MMIO(_PLANE_WM_BASE(pipe, plane) + ((4) * (level)))
-> +#define _PLANE_WM_SAGV_1(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_SAGV_1_A, _PLANE_WM_SAGV_1_B)
-> +#define _PLANE_WM_SAGV_2(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_SAGV_2_A, _PLANE_WM_SAGV_2_B)
-> +#define PLANE_WM_SAGV(pipe, plane) \
-> +	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_1(pipe), _PLANE_WM_SAGV_2(pipe)))
-> +#define _PLANE_WM_SAGV_TRANS_1(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_1_A, _PLANE_WM_SAGV_TRANS_1_B)
-> +#define _PLANE_WM_SAGV_TRANS_2(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_SAGV_TRANS_2_A, _PLANE_WM_SAGV_TRANS_2_B)
-> +#define PLANE_WM_SAGV_TRANS(pipe, plane) \
-> +	_MMIO(_PLANE(plane, _PLANE_WM_SAGV_TRANS_1(pipe), _PLANE_WM_SAGV_TRANS_2(pipe)))
-> +#define _PLANE_WM_TRANS_1(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_TRANS_1_A, _PLANE_WM_TRANS_1_B)
-> +#define _PLANE_WM_TRANS_2(pipe) \
-> +	_PIPE(pipe, _PLANE_WM_TRANS_2_A, _PLANE_WM_TRANS_2_B)
-> +#define PLANE_WM_TRANS(pipe, plane) \
->  	_MMIO(_PLANE(plane, _PLANE_WM_TRANS_1(pipe), _PLANE_WM_TRANS_2(pipe)))
->  
->  /* define the Watermark register on Ironlake */
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-> index 15d9a64e7b4c..95fda20d5547 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -2983,7 +2983,9 @@ static void intel_fixup_cur_wm_latency(struct drm_i915_private *dev_priv,
->  int ilk_wm_max_level(const struct drm_i915_private *dev_priv)
->  {
->  	/* how many WM levels are we expecting */
-> -	if (DISPLAY_VER(dev_priv) >= 9)
-> +	if (HAS_HW_SAGV_WM(dev_priv))
-> +		return 5;
-> +	else if (DISPLAY_VER(dev_priv) >= 9)
->  		return 7;
->  	else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv))
->  		return 4;
-> @@ -4011,8 +4013,9 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
->  		 * latter from the plane commit hooks (especially in the legacy
->  		 * cursor case)
->  		 */
-> -		pipe_wm->use_sagv_wm = DISPLAY_VER(dev_priv) >= 12 &&
-> -				       intel_can_enable_sagv(dev_priv, new_bw_state);
-> +		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(dev_priv) &&
-> +			DISPLAY_VER(dev_priv) >= 12 &&
-> +			intel_can_enable_sagv(dev_priv, new_bw_state);
->  	}
->  
->  	if (intel_can_enable_sagv(dev_priv, new_bw_state) !=
-> @@ -5619,6 +5622,13 @@ void skl_write_plane_wm(struct intel_plane *plane,
->  	skl_write_wm_level(dev_priv, PLANE_WM_TRANS(pipe, plane_id),
->  			   skl_plane_trans_wm(pipe_wm, plane_id));
->  
-> +	if (HAS_HW_SAGV_WM(dev_priv)) {
-> +		skl_write_wm_level(dev_priv, PLANE_WM_SAGV(pipe, plane_id),
-> +				   &wm->sagv.wm0);
-> +		skl_write_wm_level(dev_priv, PLANE_WM_SAGV_TRANS(pipe, plane_id),
-> +				   &wm->sagv.trans_wm);
-> +	}
+> @@ -6158,6 +6158,13 @@ enum {
+>  #define   SKL_BOTTOM_COLOR_CSC_ENABLE	(1 << 30)
+>  #define SKL_BOTTOM_COLOR(pipe)		_MMIO_PIPE2(pipe, _SKL_BOTTOM_COLOR_A)
+>  =
+
+> +#define _ICL_PIPE_A_STATUS			0x70058
+> +#define ICL_PIPESTATUS(pipe)			_MMIO_PIPE2(pipe, _ICL_PIPE_A_STATUS)
+> +#define   PIPE_STATUS_UNDERRUN				REG_BIT(31)
+> +#define   PIPE_STATUS_SOFT_UNDERRUN_XELPD		REG_BIT(28)
+> +#define   PIPE_STATUS_HARD_UNDERRUN_XELPD		REG_BIT(27)
+> +#define   PIPE_STATUS_PORT_UNDERRUN_XELPD		REG_BIT(26)
 > +
->  	if (DISPLAY_VER(dev_priv) >= 11) {
->  		skl_ddb_entry_write(dev_priv,
->  				    PLANE_BUF_CFG(pipe, plane_id), ddb_y);
-> @@ -5652,6 +5662,15 @@ void skl_write_cursor_wm(struct intel_plane *plane,
->  	skl_write_wm_level(dev_priv, CUR_WM_TRANS(pipe),
->  			   skl_plane_trans_wm(pipe_wm, plane_id));
->  
-> +	if (HAS_HW_SAGV_WM(dev_priv)) {
-> +		const struct skl_plane_wm *wm = &pipe_wm->planes[plane_id];
-> +
-> +		skl_write_wm_level(dev_priv, CUR_WM_SAGV(pipe),
-> +				   &wm->sagv.wm0);
-> +		skl_write_wm_level(dev_priv, CUR_WM_SAGV_TRANS(pipe),
-> +				   &wm->sagv.trans_wm);
-> +	}
-> +
->  	skl_ddb_entry_write(dev_priv, CUR_BUF_CFG(pipe), ddb);
->  }
->  
-> @@ -6016,6 +6035,15 @@ static bool skl_plane_selected_wm_equals(struct intel_plane *plane,
->  			return false;
->  	}
->  
-> +	if (HAS_HW_SAGV_WM(i915)) {
-> +		const struct skl_plane_wm *old_wm = &old_pipe_wm->planes[plane->id];
-> +		const struct skl_plane_wm *new_wm = &new_pipe_wm->planes[plane->id];
-> +
-> +		if (!skl_wm_level_equals(&old_wm->sagv.wm0, &new_wm->sagv.wm0) ||
-> +		    !skl_wm_level_equals(&old_wm->sagv.trans_wm, &new_wm->sagv.trans_wm))
-> +			return false;
-> +	}
-> +
->  	return skl_wm_level_equals(skl_plane_trans_wm(old_pipe_wm, plane->id),
->  				   skl_plane_trans_wm(new_pipe_wm, plane->id));
->  }
-> @@ -6234,7 +6262,25 @@ void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
->  
->  		skl_wm_level_from_reg_val(val, &wm->trans_wm);
->  
-> -		if (DISPLAY_VER(dev_priv) >= 12) {
-> +		if (HAS_HW_SAGV_WM(dev_priv)) {
-> +			if (plane_id != PLANE_CURSOR)
-> +				val = intel_uncore_read(&dev_priv->uncore,
-> +							PLANE_WM_SAGV(pipe, plane_id));
-> +			else
-> +				val = intel_uncore_read(&dev_priv->uncore,
-> +							CUR_WM_SAGV(pipe));
-> +
-> +			skl_wm_level_from_reg_val(val, &wm->sagv.wm0);
-> +
-> +			if (plane_id != PLANE_CURSOR)
-> +				val = intel_uncore_read(&dev_priv->uncore,
-> +							PLANE_WM_SAGV_TRANS(pipe, plane_id));
-> +			else
-> +				val = intel_uncore_read(&dev_priv->uncore,
-> +							CUR_WM_SAGV_TRANS(pipe));
-> +
-> +			skl_wm_level_from_reg_val(val, &wm->sagv.trans_wm);
-> +		} else if (DISPLAY_VER(dev_priv) >= 12) {
->  			wm->sagv.wm0 = wm->wm[0];
->  			wm->sagv.trans_wm = wm->trans_wm;
->  		}
-> -- 
+>  #define VLV_DPFLIPSTAT				_MMIO(VLV_DISPLAY_BASE + 0x70028)
+>  #define   PIPEB_LINE_COMPARE_INT_EN		(1 << 29)
+>  #define   PIPEB_HLINE_INT_EN			(1 << 28)
+> @@ -7814,6 +7821,8 @@ enum {
+>  #define  GEN8_PIPE_FIFO_UNDERRUN	(1 << 31)
+>  #define  GEN8_PIPE_CDCLK_CRC_ERROR	(1 << 29)
+>  #define  GEN8_PIPE_CDCLK_CRC_DONE	(1 << 28)
+> +#define  XELPD_PIPE_SOFT_UNDERRUN	(1 << 22)
+> +#define  XELPD_PIPE_HARD_UNDERRUN	(1 << 21)
+>  #define  GEN8_PIPE_CURSOR_FAULT		(1 << 10)
+>  #define  GEN8_PIPE_SPRITE_FAULT		(1 << 9)
+>  #define  GEN8_PIPE_PRIMARY_FAULT	(1 << 8)
+> -- =
+
 > 2.25.4
-> 
+> =
+
 > _______________________________________________
 > Intel-gfx mailing list
 > Intel-gfx@lists.freedesktop.org
