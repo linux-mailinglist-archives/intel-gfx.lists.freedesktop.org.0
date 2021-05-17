@@ -1,32 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F2A6383B52
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 19:31:52 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94F8A383BB4
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 19:53:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC2D6EA1B;
-	Mon, 17 May 2021 17:31:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 652036E087;
+	Mon, 17 May 2021 17:53:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6553E6EA19;
- Mon, 17 May 2021 17:31:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5D430A0169;
- Mon, 17 May 2021 17:31:49 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 826996E054;
+ Mon, 17 May 2021 17:53:20 +0000 (UTC)
+IronPort-SDR: sTY6IoI53B6Lg8TGVvb7NzBBBjK62ygFcxAi5/HCzC3IrMGvVyn/VOM3TTI2zsXlnLRAXonZn+
+ LSQyDjGTTp0w==
+X-IronPort-AV: E=McAfee;i="6200,9189,9987"; a="198575998"
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="198575998"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2021 10:53:19 -0700
+IronPort-SDR: CfTkIrtlOmCUwQBtoYi8AhenwP5ikdFL/cq36SzDlMKJCzP8sVOgMXsXG7ho55B2XwyGAV3h4J
+ uyZiCKWKdWiA==
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="410913495"
+Received: from unknown (HELO sdutt-i7) ([10.165.21.147])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2021 10:53:19 -0700
+Date: Mon, 17 May 2021 10:46:05 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20210517174605.GA18042@sdutt-i7>
+References: <20210506173049.72503-1-matthew.brost@intel.com>
+ <20210506173049.72503-5-matthew.brost@intel.com>
+ <YJqesIT3leIhTNxs@phenom.ffwll.local>
+ <20210511184425.GA7786@sdutt-i7>
+ <YJuTM0eOtrwsgBKX@phenom.ffwll.local>
+ <20210514200530.GA20281@sdutt-i7>
+ <YKJ176Gk3M5vyE1/@phenom.ffwll.local>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lyude Paul" <lyude@redhat.com>
-Date: Mon, 17 May 2021 17:31:49 -0000
-Message-ID: <162127270937.27268.12252898718369936934@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20210514181504.565252-1-lyude@redhat.com>
-In-Reply-To: <20210514181504.565252-1-lyude@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?=3A_Extract_DPCD_backlight_helpers_from_i915=2C_add_support_in_?=
- =?utf-8?q?nouveau_=28rev9=29?=
+Content-Disposition: inline
+In-Reply-To: <YKJ176Gk3M5vyE1/@phenom.ffwll.local>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [RFC PATCH 4/5] drm/i915: Introduce 'set parallel
+ submit' extension
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,855 +54,553 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============0659934825=="
+Cc: jason.ekstrand@intel.com, daniel.vetter@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ carl.zhang@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0659934825==
-Content-Type: multipart/alternative;
- boundary="===============2937245243854716997=="
-
---===============2937245243854716997==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm: Extract DPCD backlight helpers from i915, add support in nouveau (rev9)
-URL   : https://patchwork.freedesktop.org/series/84754/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_10092 -> Patchwork_20137
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_20137 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_20137, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_20137:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-bdw-5557u:       NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@runner@aborted:
-    - {fi-rkl-11500t}:    NOTRUN -> [FAIL][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-rkl-11500t/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_20137 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@amdgpu/amd_cs_nop@sync-fork-compute0:
-    - fi-snb-2600:        NOTRUN -> [SKIP][3] ([fdo#109271]) +17 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html
-
-  * igt@amdgpu/amd_prime@i915-to-amd:
-    - fi-snb-2520m:       NOTRUN -> [SKIP][4] ([fdo#109271]) +37 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2520m/igt@amdgpu/amd_prime@i915-to-amd.html
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bdw-5557u:       NOTRUN -> [WARN][5] ([i915#2283])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@gem_exec_fence@basic-await@bcs0:
-    - fi-bsw-n3050:       [PASS][6] -> [FAIL][7] ([i915#3457]) +1 similar issue
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bsw-n3050/igt@gem_exec_fence@basic-await@bcs0.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bsw-n3050/igt@gem_exec_fence@basic-await@bcs0.html
-
-  * igt@gem_exec_fence@basic-busy@bcs0:
-    - fi-kbl-r:           NOTRUN -> [SKIP][8] ([fdo#109271]) +3 similar issues
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@gem_exec_fence@basic-busy@bcs0.html
-    - fi-apl-guc:         NOTRUN -> [SKIP][9] ([fdo#109271]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html
-
-  * igt@gem_exec_fence@nb-await@bcs0:
-    - fi-bsw-nick:        [PASS][10] -> [FAIL][11] ([i915#3457]) +2 similar issues
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bsw-nick/igt@gem_exec_fence@nb-await@bcs0.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bsw-nick/igt@gem_exec_fence@nb-await@bcs0.html
-
-  * igt@gem_exec_fence@nb-await@vcs0:
-    - fi-glk-dsi:         NOTRUN -> [FAIL][12] ([i915#3457]) +3 similar issues
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@gem_exec_fence@nb-await@vcs0.html
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-cfl-guc:         NOTRUN -> [SKIP][13] ([fdo#109271] / [i915#2190])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@gem_huc_copy@huc-copy.html
-    - fi-skl-6700k2:      NOTRUN -> [SKIP][14] ([fdo#109271] / [i915#2190])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@gem_huc_copy@huc-copy.html
-    - fi-glk-dsi:         NOTRUN -> [SKIP][15] ([fdo#109271] / [i915#2190])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@gem_huc_copy@huc-copy.html
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][16] ([fdo#109271] / [i915#2190])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html
-    - fi-kbl-r:           NOTRUN -> [SKIP][17] ([fdo#109271] / [i915#2190])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@gem_huc_copy@huc-copy.html
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][18] ([fdo#109271] / [i915#2190])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html
-    - fi-cfl-8700k:       NOTRUN -> [SKIP][19] ([fdo#109271] / [i915#2190])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_wait@wait@all:
-    - fi-bwr-2160:        [PASS][20] -> [FAIL][21] ([i915#3457])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bwr-2160/igt@gem_wait@wait@all.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bwr-2160/igt@gem_wait@wait@all.html
-
-  * igt@i915_hangman@error-state-basic:
-    - fi-apl-guc:         NOTRUN -> [DMESG-WARN][22] ([i915#1610])
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-apl-guc/igt@i915_hangman@error-state-basic.html
-
-  * igt@i915_module_load@reload:
-    - fi-cfl-8700k:       NOTRUN -> [DMESG-WARN][23] ([i915#3457]) +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@i915_module_load@reload.html
-    - fi-snb-2520m:       NOTRUN -> [DMESG-WARN][24] ([i915#3457]) +1 similar issue
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2520m/igt@i915_module_load@reload.html
-    - fi-cfl-guc:         NOTRUN -> [DMESG-WARN][25] ([i915#3457]) +1 similar issue
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@i915_module_load@reload.html
-    - fi-skl-6700k2:      NOTRUN -> [DMESG-WARN][26] ([i915#3457]) +1 similar issue
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@i915_module_load@reload.html
-    - fi-glk-dsi:         NOTRUN -> [DMESG-FAIL][27] ([i915#3457])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@i915_module_load@reload.html
-    - fi-kbl-x1275:       NOTRUN -> [DMESG-WARN][28] ([i915#3457]) +1 similar issue
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-kbl-r:           NOTRUN -> [DMESG-FAIL][29] ([i915#3462])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@i915_selftest@live@execlists.html
-    - fi-cfl-8109u:       NOTRUN -> [INCOMPLETE][30] ([i915#3462])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@i915_selftest@live@execlists.html
-    - fi-glk-dsi:         NOTRUN -> [DMESG-FAIL][31] ([i915#3462])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@i915_selftest@live@execlists.html
-    - fi-kbl-x1275:       NOTRUN -> [DMESG-FAIL][32] ([i915#3462])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@i915_selftest@live@execlists.html
-    - fi-cfl-8700k:       NOTRUN -> [DMESG-FAIL][33] ([i915#3462])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
-    - fi-skl-6700k2:      NOTRUN -> [DMESG-FAIL][34] ([i915#3462])
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
-    - fi-cfl-guc:         NOTRUN -> [DMESG-FAIL][35] ([i915#3462])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@i915_selftest@live@execlists.html
-    - fi-bdw-5557u:       NOTRUN -> [DMESG-FAIL][36] ([i915#3462])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-kbl-r:           NOTRUN -> [DMESG-WARN][37] ([i915#3457]) +1 similar issue
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@i915_selftest@live@mman.html
-    - fi-bdw-5557u:       NOTRUN -> [DMESG-WARN][38] ([i915#3457]) +1 similar issue
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@i915_selftest@live@mman.html
-    - fi-cfl-8109u:       NOTRUN -> [DMESG-WARN][39] ([i915#3457]) +1 similar issue
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@i915_selftest@live@mman.html
-    - fi-glk-dsi:         NOTRUN -> [DMESG-WARN][40] ([i915#3457])
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@i915_selftest@live@mman.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][41] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cfl-guc:         NOTRUN -> [SKIP][42] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@kms_chamelium@dp-edid-read.html
-
-  * igt@kms_chamelium@dp-hpd-fast:
-    - fi-skl-6700k2:      NOTRUN -> [SKIP][43] ([fdo#109271]) +13 similar issues
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@kms_chamelium@dp-hpd-fast.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][44] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_chamelium@hdmi-edid-read:
-    - fi-kbl-r:           NOTRUN -> [SKIP][45] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@kms_chamelium@hdmi-edid-read.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-glk-dsi:         NOTRUN -> [SKIP][46] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@kms_chamelium@hdmi-hpd-fast.html
-    - fi-snb-2520m:       NOTRUN -> [SKIP][47] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2520m/igt@kms_chamelium@hdmi-hpd-fast.html
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][48] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_chamelium@vga-edid-read:
-    - fi-cfl-8700k:       NOTRUN -> [SKIP][49] ([fdo#109271] / [fdo#111827]) +8 similar issues
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@kms_chamelium@vga-edid-read.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:
-    - fi-ilk-650:         [PASS][50] -> [FAIL][51] ([i915#53])
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-ilk-650/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-ilk-650/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-    - fi-elk-e7500:       [PASS][52] -> [FAIL][53] ([i915#53])
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:
-    - fi-cfl-8700k:       NOTRUN -> [SKIP][54] ([fdo#109271] / [i915#533])
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-cfl-guc:         NOTRUN -> [SKIP][55] ([fdo#109271] / [i915#533])
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-skl-6700k2:      NOTRUN -> [SKIP][56] ([fdo#109271] / [i915#533])
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][57] ([fdo#109271] / [i915#533])
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][58] ([fdo#109271] / [i915#533])
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-glk-dsi:         NOTRUN -> [SKIP][59] ([fdo#109271] / [i915#533])
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-    - fi-kbl-r:           NOTRUN -> [SKIP][60] ([fdo#109271] / [i915#533])
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - fi-bdw-5557u:       NOTRUN -> [SKIP][61] ([fdo#109271]) +9 similar issues
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html
-
-  * igt@kms_psr@primary_mmap_gtt:
-    - fi-cfl-8109u:       NOTRUN -> [SKIP][62] ([fdo#109271]) +8 similar issues
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@kms_psr@primary_mmap_gtt.html
-
-  * igt@kms_psr@primary_page_flip:
-    - fi-glk-dsi:         NOTRUN -> [SKIP][63] ([fdo#109271]) +10 similar issues
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@kms_psr@primary_page_flip.html
-    - fi-kbl-x1275:       NOTRUN -> [SKIP][64] ([fdo#109271]) +8 similar issues
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@kms_psr@primary_page_flip.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - fi-cfl-guc:         NOTRUN -> [SKIP][65] ([fdo#109271]) +8 similar issues
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@prime_vgem@basic-userptr:
-    - fi-cfl-8700k:       NOTRUN -> [SKIP][66] ([fdo#109271]) +8 similar issues
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@prime_vgem@basic-userptr.html
-
-  * igt@runner@aborted:
-    - fi-kbl-x1275:       NOTRUN -> [FAIL][67] ([i915#1436] / [i915#3363])
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@runner@aborted.html
-    - fi-cfl-8700k:       NOTRUN -> [FAIL][68] ([i915#3363])
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@runner@aborted.html
-    - fi-cfl-8109u:       NOTRUN -> [FAIL][69] ([i915#3363])
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@runner@aborted.html
-    - fi-glk-dsi:         NOTRUN -> [FAIL][70] ([i915#2426] / [i915#3363] / [k.org#202321])
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@runner@aborted.html
-    - fi-apl-guc:         NOTRUN -> [FAIL][71] ([i915#2426] / [i915#3363])
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-apl-guc/igt@runner@aborted.html
-    - fi-kbl-r:           NOTRUN -> [FAIL][72] ([i915#1436] / [i915#3363])
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@runner@aborted.html
-    - fi-cfl-guc:         NOTRUN -> [FAIL][73] ([i915#3363])
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@runner@aborted.html
-    - fi-skl-6700k2:      NOTRUN -> [FAIL][74] ([i915#1436] / [i915#2426] / [i915#3363])
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_busy@busy@all:
-    - fi-bsw-n3050:       [FAIL][75] ([i915#3457]) -> [PASS][76]
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bsw-n3050/igt@gem_busy@busy@all.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bsw-n3050/igt@gem_busy@busy@all.html
-
-  * igt@gem_exec_fence@nb-await@vcs0:
-    - fi-bsw-nick:        [FAIL][77] ([i915#3457]) -> [PASS][78] +2 similar issues
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bsw-nick/igt@gem_exec_fence@nb-await@vcs0.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bsw-nick/igt@gem_exec_fence@nb-await@vcs0.html
-
-  * igt@gem_wait@busy@all:
-    - fi-pnv-d510:        [FAIL][79] ([i915#3457]) -> [PASS][80]
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-pnv-d510/igt@gem_wait@busy@all.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-pnv-d510/igt@gem_wait@busy@all.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-snb-2600:        [INCOMPLETE][81] ([i915#2782]) -> [PASS][82]
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2600/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:
-    - fi-elk-e7500:       [FAIL][83] ([i915#53]) -> [PASS][84] +2 similar issues
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-ilk-650:         [FAIL][85] ([i915#3457] / [i915#3472]) -> [FAIL][86] ([i915#3472])
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-ilk-650/igt@gem_exec_gttfill@basic.html
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-ilk-650/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_module_load@reload:
-    - fi-skl-6600u:       [DMESG-WARN][87] ([i915#1982] / [i915#3457]) -> [DMESG-WARN][88] ([i915#3457])
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-skl-6600u/igt@i915_module_load@reload.html
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6600u/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-elk-e7500:       [DMESG-WARN][89] ([i915#3457]) -> [DMESG-FAIL][90] ([i915#3457])
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-elk-e7500/igt@i915_selftest@live@mman.html
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-elk-e7500/igt@i915_selftest@live@mman.html
-
-  * igt@runner@aborted:
-    - fi-kbl-guc:         [FAIL][91] ([i915#1436] / [i915#2426] / [i915#3363]) -> [FAIL][92] ([i915#1436] / [i915#3363])
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-kbl-guc/igt@runner@aborted.html
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-guc/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [i915#1436]: https://gitlab.freedesktop.org/drm/intel/issues/1436
-  [i915#1610]: https://gitlab.freedesktop.org/drm/intel/issues/1610
-  [i915#1982]: https://gitlab.freedesktop.org/drm/intel/issues/1982
-  [i915#2190]: https://gitlab.freedesktop.org/drm/intel/issues/2190
-  [i915#2283]: https://gitlab.freedesktop.org/drm/intel/issues/2283
-  [i915#2426]: https://gitlab.freedesktop.org/drm/intel/issues/2426
-  [i915#2782]: https://gitlab.freedesktop.org/drm/intel/issues/2782
-  [i915#2932]: https://gitlab.freedesktop.org/drm/intel/issues/2932
-  [i915#2966]: https://gitlab.freedesktop.org/drm/intel/issues/2966
-  [i915#3276]: https://gitlab.freedesktop.org/drm/intel/issues/3276
-  [i915#3277]: https://gitlab.freedesktop.org/drm/intel/issues/3277
-  [i915#3282]: https://gitlab.freedesktop.org/drm/intel/issues/3282
-  [i915#3283]: https://gitlab.freedesktop.org/drm/intel/issues/3283
-  [i915#3363]: https://gitlab.freedesktop.org/drm/intel/issues/3363
-  [i915#3457]: https://gitlab.freedesktop.org/drm/intel/issues/3457
-  [i915#3462]: https://gitlab.freedesktop.org/drm/intel/issues/3462
-  [i915#3468]: https://gitlab.freedesktop.org/drm/intel/issues/3468
-  [i915#3472]: https://gitlab.freedesktop.org/drm/intel/issues/3472
-  [i915#53]: https://gitlab.freedesktop.org/drm/intel/issues/53
-  [i915#533]: https://gitlab.freedesktop.org/drm/intel/issues/533
-  [k.org#202321]: https://bugzilla.kernel.org/show_bug.cgi?id=202321
-
-
-Participating hosts (21 -> 30)
-------------------------------
-
-  Additional (11): fi-rkl-11500t fi-bdw-5557u fi-glk-dsi fi-cfl-8700k fi-apl-guc fi-snb-2520m fi-cfl-guc fi-kbl-x1275 fi-cfl-8109u fi-skl-6700k2 fi-kbl-r 
-  Missing    (2): fi-jsl-1 fi-ilk-m540 
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_10092 -> Patchwork_20137
-
-  CI-20190529: 20190529
-  CI_DRM_10092: 3fe31283a0eede655eff70823b5bb79441ff54c3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_6084: 5c5734d8ee1afac871b69c4554ff14e9b56100e4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_20137: f8abfe7849198d8aa9af7a00fd7f3f7b24d06128 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f8abfe784919 drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau
-358a5c9c2820 drm/dp: Extract i915's eDP backlight code into DRM helpers
-ae8b9f4c3c14 drm/i915/dpcd_bl: Print return codes for VESA backlight failures
-951e57b8ef02 drm/i915/dpcd_bl: Return early in vesa_calc_max_backlight if we can't read PWMGEN_BIT_COUNT
-1734428bc4f6 drm/i915/dpcd_bl: Move VESA backlight enabling code closer together
-e0af14b198b5 drm/i915/dpcd_bl: Cache some backlight capabilities in intel_panel.backlight
-30191a9431c2 drm/i915/dpcd_bl: Cleanup intel_dp_aux_vesa_enable_backlight() a bit
-5f4e95c11492 drm/i915/dpcd_bl: Handle drm_dpcd_read/write() return values correctly
-3ef024f74b90 drm/i915/dpcd_bl: Remove redundant AUX backlight frequency calculations
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/index.html
-
---===============2937245243854716997==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Extract DPCD backlight helpers from i915, add support in nouveau (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/84754/">https://patchwork.freedesktop.org/series/84754/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_10092 -&gt; Patchwork_20137</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_20137 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_20137, please notify your bug team to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/index.html</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_20137:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>{fi-rkl-11500t}:    NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-rkl-11500t/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_20137 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@amdgpu/amd_cs_nop@sync-fork-compute0:</p>
-<ul>
-<li>fi-snb-2600:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2600/igt@amdgpu/amd_cs_nop@sync-fork-compute0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@amdgpu/amd_prime@i915-to-amd:</p>
-<ul>
-<li>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2520m/igt@amdgpu/amd_prime@i915-to-amd.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +37 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@core_hotunplug@unbind-rebind.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2283">i915#2283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-await@bcs0:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bsw-n3050/igt@gem_exec_fence@basic-await@bcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bsw-n3050/igt@gem_exec_fence@basic-await@bcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +1 similar issue</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-busy@bcs0:</p>
-<ul>
-<li>
-<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +3 similar issues</p>
-</li>
-<li>
-<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-apl-guc/igt@gem_exec_fence@basic-busy@bcs0.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +1 similar issue</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await@bcs0:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bsw-nick/igt@gem_exec_fence@nb-await@bcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bsw-nick/igt@gem_exec_fence@nb-await@bcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await@vcs0:</p>
-<ul>
-<li>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@gem_exec_fence@nb-await@vcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>
-<p>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2190">i915#2190</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_wait@wait@all:</p>
-<ul>
-<li>fi-bwr-2160:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bwr-2160/igt@gem_wait@wait@all.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bwr-2160/igt@gem_wait@wait@all.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_hangman@error-state-basic:</p>
-<ul>
-<li>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-apl-guc/igt@i915_hangman@error-state-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1610">i915#1610</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>
-<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2520m/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@i915_module_load@reload.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</p>
-</li>
-<li>
-<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +1 similar issue</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@execlists:</p>
-<ul>
-<li>
-<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@i915_selftest@live@execlists.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@i915_selftest@live@execlists.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3462">i915#3462</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>
-<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@i915_selftest@live@mman.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@i915_selftest@live@mman.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@i915_selftest@live@mman.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) +1 similar issue</p>
-</li>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@i915_selftest@live@mman.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-crc-fast:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@kms_chamelium@dp-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-edid-read:</p>
-<ul>
-<li>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@kms_chamelium@dp-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@dp-hpd-fast:</p>
-<ul>
-<li>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@kms_chamelium@dp-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +13 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-crc-fast:</p>
-<ul>
-<li>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@kms_chamelium@hdmi-crc-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-edid-read:</p>
-<ul>
-<li>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@kms_chamelium@hdmi-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@hdmi-hpd-fast:</p>
-<ul>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
-</li>
-<li>
-<p>fi-snb-2520m:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2520m/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@kms_chamelium@hdmi-hpd-fast.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium@vga-edid-read:</p>
-<ul>
-<li>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@kms_chamelium@vga-edid-read.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://bugs.freedesktop.org/show_bug.cgi?id=111827">fdo#111827</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b:</p>
-<ul>
-<li>
-<p>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-ilk-650/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-ilk-650/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>)</p>
-</li>
-<li>
-<p>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-elk-e7500/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-b.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d:</p>
-<ul>
-<li>
-<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-<li>
-<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-pipe-d.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/533">i915#533</a>)</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>fi-bdw-5557u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bdw-5557u/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +9 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_mmap_gtt:</p>
-<ul>
-<li>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@kms_psr@primary_mmap_gtt.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +10 similar issues</p>
-</li>
-<li>
-<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-userptr:</p>
-<ul>
-<li>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@prime_vgem@basic-userptr.html">SKIP</a> (<a href="https://bugs.freedesktop.org/show_bug.cgi?id=109271">fdo#109271</a>) +8 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>
-<p>fi-kbl-x1275:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-x1275/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8700k:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8700k/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cfl-8109u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-8109u/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-glk-dsi:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-glk-dsi/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a> / <a href="https://bugzilla.kernel.org/show_bug.cgi?id=202321">k.org#202321</a>)</p>
-</li>
-<li>
-<p>fi-apl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-apl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-kbl-r:           NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-r/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-cfl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-<li>
-<p>fi-skl-6700k2:      NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6700k2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_busy@busy@all:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bsw-n3050/igt@gem_busy@busy@all.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bsw-n3050/igt@gem_busy@busy@all.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@nb-await@vcs0:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-bsw-nick/igt@gem_exec_fence@nb-await@vcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-bsw-nick/igt@gem_exec_fence@nb-await@vcs0.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_wait@busy@all:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-pnv-d510/igt@gem_wait@busy@all.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-pnv-d510/igt@gem_wait@busy@all.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>fi-snb-2600:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2782">i915#2782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-snb-2600/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a:</p>
-<ul>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/53">i915#53</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-elk-e7500/igt@kms_pipe_crc_basic@nonblocking-crc-pipe-a.html">PASS</a> +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-ilk-650/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3472">i915#3472</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-ilk-650/igt@gem_exec_gttfill@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3472">i915#3472</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@reload:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-skl-6600u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-skl-6600u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@mman:</p>
-<ul>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-elk-e7500/igt@i915_selftest@live@mman.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-elk-e7500/igt@i915_selftest@live@mman.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/3457">i915#3457</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>fi-kbl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_10092/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2426">i915#2426</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_20137/fi-kbl-guc/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1436">i915#1436</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/3363">i915#3363</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Participating hosts (21 -&gt; 30)</h2>
-<p>Additional (11): fi-rkl-11500t fi-bdw-5557u fi-glk-dsi fi-cfl-8700k fi-apl-guc fi-snb-2520m fi-cfl-guc fi-kbl-x1275 fi-cfl-8109u fi-skl-6700k2 fi-kbl-r <br />
-  Missing    (2): fi-jsl-1 fi-ilk-m540 </p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_10092 -&gt; Patchwork_20137</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_10092: 3fe31283a0eede655eff70823b5bb79441ff54c3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_6084: 5c5734d8ee1afac871b69c4554ff14e9b56100e4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools<br />
-  Patchwork_20137: f8abfe7849198d8aa9af7a00fd7f3f7b24d06128 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<p>== Linux commits ==</p>
-<p>f8abfe784919 drm/nouveau/kms/nv50-: Add basic DPCD backlight support for nouveau<br />
-358a5c9c2820 drm/dp: Extract i915's eDP backlight code into DRM helpers<br />
-ae8b9f4c3c14 drm/i915/dpcd_bl: Print return codes for VESA backlight failures<br />
-951e57b8ef02 drm/i915/dpcd_bl: Return early in vesa_calc_max_backlight if we can't read PWMGEN_BIT_COUNT<br />
-1734428bc4f6 drm/i915/dpcd_bl: Move VESA backlight enabling code closer together<br />
-e0af14b198b5 drm/i915/dpcd_bl: Cache some backlight capabilities in intel_panel.backlight<br />
-30191a9431c2 drm/i915/dpcd_bl: Cleanup intel_dp_aux_vesa_enable_backlight() a bit<br />
-5f4e95c11492 drm/i915/dpcd_bl: Handle drm_dpcd_read/write() return values correctly<br />
-3ef024f74b90 drm/i915/dpcd_bl: Remove redundant AUX backlight frequency calculations</p>
-
-</body>
-</html>
-
---===============2937245243854716997==--
-
---===============0659934825==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On Mon, May 17, 2021 at 03:55:59PM +0200, Daniel Vetter wrote:
+> On Fri, May 14, 2021 at 01:05:33PM -0700, Matthew Brost wrote:
+> > On Wed, May 12, 2021 at 10:34:59AM +0200, Daniel Vetter wrote:
+> > > On Tue, May 11, 2021 at 11:44:28AM -0700, Matthew Brost wrote:
+> > > > On Tue, May 11, 2021 at 05:11:44PM +0200, Daniel Vetter wrote:
+> > > > > On Thu, May 06, 2021 at 10:30:48AM -0700, Matthew Brost wrote:
+> > > > > > i915_drm.h updates for 'set parallel submit' extension.
+> > > > > > 
+> > > > > > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > > > > Cc: Tony Ye <tony.ye@intel.com>
+> > > > > > CC: Carl Zhang <carl.zhang@intel.com>
+> > > > > > Cc: Daniel Vetter <daniel.vetter@intel.com>
+> > > > > > Cc: Jason Ekstrand <jason@jlekstrand.net>
+> > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > > > ---
+> > > > > >  include/uapi/drm/i915_drm.h | 126 ++++++++++++++++++++++++++++++++++++
+> > > > > >  1 file changed, 126 insertions(+)
+> > > > > > 
+> > > > > > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > > > > > index 26d2e135aa31..0175b12b33b8 100644
+> > > > > > --- a/include/uapi/drm/i915_drm.h
+> > > > > > +++ b/include/uapi/drm/i915_drm.h
+> > > > > > @@ -1712,6 +1712,7 @@ struct drm_i915_gem_context_param {
+> > > > > >   * Extensions:
+> > > > > >   *   i915_context_engines_load_balance (I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE)
+> > > > > >   *   i915_context_engines_bond (I915_CONTEXT_ENGINES_EXT_BOND)
+> > > > > > + *   i915_context_engines_parallel_submit (I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT)
+> > > > > 
+> > > > > Hm just relalized, but I don't think this hyperlinsk correctly, and I'm
+> > > > > also not sure this formats very well as a nice list. Using item lists
+> > > > > should look pretty nice like we're doing for the various kms properties,
+> > > > > e.g.
+> > > > > 
+> > > > > FOO:
+> > > > >   Explain what FOO does
+> > > > > 
+> > > > > BAR:
+> > > > >   Explain what BAR does. struct bar also automatically generates a link
+> > > > > 
+> > > > > Please check with make htmldocs and polish this a bit (might need a small
+> > > > > prep patch).
+> > > > > 
+> > > > 
+> > > > I agree the doc should look nice. To get there I might need to chat with you on
+> > > > IRC as I'm new to this. 
+> > > > 
+> > > > > >   */
+> > > > > >  #define I915_CONTEXT_PARAM_ENGINES	0xa
+> > > > > >  
+> > > > > > @@ -1894,9 +1895,134 @@ struct i915_context_param_engines {
+> > > > > >  	__u64 extensions; /* linked chain of extension blocks, 0 terminates */
+> > > > > >  #define I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE 0 /* see i915_context_engines_load_balance */
+> > > > > >  #define I915_CONTEXT_ENGINES_EXT_BOND 1 /* see i915_context_engines_bond */
+> > > > > > +#define I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT 2 /* see i915_context_engines_parallel_submit */
+> > > > > >  	struct i915_engine_class_instance engines[0];
+> > > > > >  } __attribute__((packed));
+> > > > > >  
+> > > > > > +/*
+> > > > > > + * i915_context_engines_parallel_submit:
+> > > > > > + *
+> > > > > > + * Setup a gem context to allow multiple BBs to be submitted in a single execbuf
+> > > > > > + * IOCTL. Those BBs will then be scheduled to run on the GPU in parallel.
+> > > > > > + *
+> > > > > > + * All hardware contexts in the engine set are configured for parallel
+> > > > > > + * submission (i.e. once this gem context is configured for parallel submission,
+> > > > > > + * all the hardware contexts, regardless if a BB is available on each individual
+> > > > > > + * context, will be submitted to the GPU in parallel). A user can submit BBs to
+> > > > > > + * subset of the hardware contexts, in a single execbuf IOCTL, but it is not
+> > > > > > + * recommended as it may reserve physical engines with nothing to run on them.
+> > > > > > + * Highly recommended to configure the gem context with N hardware contexts then
+> > > > > > + * always submit N BBs in a single IOCTL.
+> > > > > > + *
+> > > > > > + * Their are two currently defined ways to control the placement of the
+> > > > > > + * hardware contexts on physical engines: default behavior (no flags) and
+> > > > > > + * I915_PARALLEL_IMPLICT_BONDS (a flag). More flags may be added the in the
+> > > > > > + * future as new hardware / use cases arise. Details of how to use this
+> > > > > > + * interface below above the flags.
+> > > > > > + *
+> > > > > > + * Returns -EINVAL if hardware context placement configuration invalid or if the
+> > > > > > + * placement configuration isn't supported on the platform / submission
+> > > > > > + * interface.
+> > > > > > + * Returns -ENODEV if extension isn't supported on the platform / submission
+> > > > > > + * inteface.
+> > > > > > + */
+> > > > > > +struct i915_context_engines_parallel_submit {
+> > > > > > +	struct i915_user_extension base;
+> > > > > 
+> > > > > Ok this is good, since it makes sure we can't possible use this in
+> > > > > CTX_SETPARAM.
+> > > > > 
+> > > > 
+> > > > Yep, this is at context creation time. Technically you still can call this over
+> > > > and over on the same gem context but Jason is taking that ability away I
+> > > > believe. I've also told the media team to setup the context once and don't touch
+> > > > it again.
+> > > 
+> > > Only if you base your context param on drm_i915_gem_context_param, which
+> > > can be used both at create time with
+> > > drm_i915_gem_context_create_ext_setparam and with the CTX_SETPARAM ioctl.
+> > > But you don't, so this issue is fixed at the uapi design and doesn't need
+> > > to interface with Jason's prot-ctx rework much.
+> > > 
+> > > There's still going to be some conflicts, so maybe ask Jason for a branch
+> > > and rebase GuC on top of that for the next round.
+> > > 
+> > 
+> > Certainly this new uAPI is going conflict. The basic GuC submission code
+> > shouldn't though as it doesn't touch the uAPI code at all. By the time the new
+> > uAPI is posted I'd hope Jason's proto-ctx rework has landed and will rebase
+> > then on to the tip of DRM.
+> 
+> Ah yes. Another good reasons to split that up into two parts, like we've
+> already planned to.
+> 
+
+Yep.
+
+> > > > > > +
+> > > > > > +/*
+> > > > > > + * Default placement behvavior (currently unsupported):
+> > > > > > + *
+> > > > > > + * Rather than restricting parallel submission to a single class with a
+> > > > > > + * logically contiguous placement (I915_PARALLEL_IMPLICT_BONDS), add a mode that
+> > > > > > + * enables parallel submission across multiple engine classes. In this case each
+> > > > > > + * context's logical engine mask indicates where that context can placed. It is
+> > > > > > + * implied in this mode that all contexts have mutual exclusive placement (e.g.
+> > > > > > + * if one context is running CS0 no other contexts can run on CS0).
+> > > > > > + *
+> > > > > > + * Example 1 pseudo code:
+> > > > > > + * CSX[Y] = engine class X, logical instance Y
+> > > > > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> > > > > > + * set_engines(INVALID, INVALID)
+> > > > > > + * set_load_balance(engine_index=0, num_siblings=2, engines=CS0[0],CS0[1])
+> > > > > > + * set_load_balance(engine_index=1, num_siblings=2, engines=CS1[0],CS1[1])
+> > > > > > + * set_parallel()
+> > > > > > + *
+> > > > > > + * Results in the following valid placements:
+> > > > > > + * CS0[0], CS1[0]
+> > > > > > + * CS0[0], CS1[1]
+> > > > > > + * CS0[1], CS1[0]
+> > > > > > + * CS0[1], CS1[1]
+> > > > > > + *
+> > > > > > + * Example 2 pseudo code:
+> > > > > > + * CS[X] = generic engine of same class, logical instance X
+> > > > > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> > > > > > + * set_engines(INVALID, INVALID)
+> > > > > > + * set_load_balance(engine_index=0, num_siblings=3, engines=CS[0],CS[1],CS[2])
+> > > > > > + * set_load_balance(engine_index=1, num_siblings=3, engines=CS[0],CS[1],CS[2])
+> > > > > > + * set_parallel()
+> > > > > > + *
+> > > > > > + * Results in the following valid placements:
+> > > > > > + * CS[0], CS[1]
+> > > > > > + * CS[0], CS[2]
+> > > > > > + * CS[1], CS[0]
+> > > > > > + * CS[1], CS[2]
+> > > > > > + * CS[2], CS[0]
+> > > > > > + * CS[2], CS[1]
+> > > > > > + *
+> > > > > > + * This enables a use case where all engines are created equally, we don't care
+> > > > > > + * where they are scheduled, we just want a certain number of resources, for
+> > > > > > + * those resources to be scheduled in parallel, and possibly across multiple
+> > > > > > + * engine classes.
+> > > > > > + */
+> > > > > > +
+> > > > > > +/*
+> > > > > > + * I915_PARALLEL_IMPLICT_BONDS - Create implict bonds between each context.
+> > > > > > + * Each context must have the same number sibling and bonds are implictly create
+> > > > > > + * of the siblings.
+> > > > > > + *
+> > > > > > + * All of the below examples are in logical space.
+> > > > > > + *
+> > > > > > + * Example 1 pseudo code:
+> > > > > > + * CS[X] = generic engine of same class, logical instance X
+> > > > > > + * set_engines(CS[0], CS[1])
+> > > > > > + * set_parallel(flags=I915_PARALLEL_IMPLICT_BONDS)
+> > > > > > + *
+> > > > > > + * Results in the following valid placements:
+> > > > > > + * CS[0], CS[1]
+> > > > > > + *
+> 
+> > > > > > + * CS[X] = generic engine of same class, logical instance X
+> > > > > > + * INVALID = I915_ENGINE_CLASS_INVALID, I915_ENGINE_CLASS_INVALID_NONE
+> > > > > > + * set_engines(INVALID, INVALID)
+> > > > > > + * set_load_balance(engine_index=0, num_siblings=2, engines=CS[0],CS[2])
+> > > > > > + * set_load_balance(engine_index=1, num_siblings=2, engines=CS[1],CS[3])
+> > > > > > + * set_parallel(flags=I915_PARALLEL_IMPLICT_BONDS)
+> > > > > > + *
+> > > > > > + * Results in the following valid placements:
+> > > > > > + * CS[0], CS[1]
+> > > > > > + * CS[2], CS[3]
+> > > > > > + *
+> > > > > > + * This enables a use case where all engines are not equal and certain placement
+> > > > > > + * rules are required (i.e. split-frame requires all contexts to be placed in a
+> > > > > > + * logically contiguous order on the VCS engines on gen11+ platforms). This use
+> > > > > > + * case (logically contiguous placement, within a single engine class) is
+> > > > > > + * supported when using GuC submission. Execlist mode could support all possible
+> > > > > > + * bonding configurations but currently doesn't support this extension.
+> > > > > > + */
+> > > > > > +#define I915_PARALLEL_IMPLICT_BONDS		(1<<0)
+> > > > > > +/*
+> > > > > > + * Do not allow BBs to be preempted mid BB rather insert coordinated preemption
+> > > > > > + * points on all hardware contexts between each set of BBs. An example use case
+> > > > > > + * of this feature is split-frame on gen11+ hardware. When using this feature a
+> > > > > > + * BB must be submitted on each hardware context in the parallel gem context.
+> > > > > > + * The execbuf2 IOCTL enforces the user adheres to policy.
+> > > > > > + */
+> > > > > > +#define I915_PARALLEL_NO_PREEMPT_MID_BATCH	(1<<1)
+> > > > > > +#define I915_PARALLEL_UNKNOWN_FLAGS  (-(I915_PARALLEL_NO_PREEMPT_MID_BATCH << 1))
+> > > > > > +	__u64 flags; /* all undefined flags must be zero */
+> > > > > > +	__u64 mbz64[4]; /* reserved for future use; must be zero */
+> > > > > > +} __attribute__ ((packed));
+> > > > > 
+> > > > > Ok I'm having some serious questions. This looks way too much like it's
+> > > > > inspired by bonded submission, and given we're tossing bonded submission
+> > > > > we need to make sure we're doing this for good independent reasons and not
+> > > > > just for intertia.
+> > > > > 
+> > > > 
+> > > > You are not wrong here, the bonding submission interface was a factor in
+> > > > designing this interface.
+> > > > 
+> > > > > What I expected looking at how media-driver uses bonded submit currently
+> > > > > is:
+> > > > > 
+> > > > > - We create a parallel submit engine, which occupies a virtual engine
+> > > > >   slot. This parallel virtual engine contains all the information we need,
+> > > > >   i.e. the flags you have above, but also how many engines run in parallel
+> > > > >   and how each of those can be load-balanced. So probably a full NxM
+> > > > >   matrix of physical engines needed.
+> > > > > 
+> > > > 
+> > > > Internally we need all this information broken out into individual structures,
+> > > > at least with the current implementation. We need N ring buffers, N timelines, N
+> > > > LRCs, N HWSPs, etc... All of this is encapsulated by a 'struct intel_context'
+> > > > which occupies a slot. Could we create a super object with N 'struct
+> > > > intel_context', sure. I'm just not sure what that buys us and IMO creates an
+> > > > inconsistent uAPI.
+> > > 
+> > > So if the implementation is too much work to adapt, here's a really nasty
+> > > trick: Currently we limit the engine slots to 64 in a gem context, because
+> > > that's the limit of the execbuf field. We could use the engine slots above
+> > > that for all these additional intel_context that we need underneath, at
+> > > least for execlist. Does GuC need them all too?
+> > > 
+> > > But clean approach would be to have an intel_parallal_engine struct which
+> > > has all these pointers internally I think.
+> > > 
+> > > Same on the high-level execbuf flow, doing all that N times is silly. So
+> > > again I'd assume there's one overall i915_request that tracks the parallel
+> > > submission, and then maybe N subordinate i915_request for each piece
+> > > (execlist backend definitely needs those for scheduling, I didn't check
+> > > about GuC).
+> > > 
+> > > Also drm/scheduler only deals with a single thing too, so that way the
+> > > high level code would never need to know that there's actually N things
+> > > underneath doing the job.
+> > >
+> > 
+> > Again each i915_request points to a single (and different) intel_context,
+> > timeline, lrc, ring, seqno, etc... The whole stack really treats these as
+> > individual things aside from the excl slot where we form a composite fence. Not
+> > saying we couldn't change this over time but initially creating a
+> > 'i915_super_request' would be quite the undertaking, very invasive to the mid
+> > layers of the stack, and not sure in the end what it buys us.
+> > 
+> > Once the parallel submit gets posted you will be able to see that it is a uAPI
+> > context setup extension, updates the execbuf IOCTL to accept N batches which is
+> > basically a for loop, and GuC backend being able to submit N batches at once -
+> > the mid layers are almost completely untouched.
+> > 
+> > Lastly, if we need to support the parallel submit extension as purposed for
+> > execlists, all we need to do is update the uAPI setup extension to configure the
+> > contexts. If we create a 'i915_super_request' we would have a massive rework in
+> > execlist backend too.
+> 
+> Yeah I'm fully aware that the current codebase puts us in a very awkward
+> corner. But also designing uapi by exposing whatever we have internally
+> right now is also not a good idea.
+> 
+
+Agree our internals shouldn't dictate our uAPI.
+
+> That's why I've suggested the idea to make the uapi use a single uapi
+> engine on the gem context, and (for now at least) internally fake it all.
+> Including the glorious for() loop over everything in execbuf.
+> 
+> > > > > - Execbuf uses that parallel virtual engine to submit all N batchbuffers
+> > > > >   in one go.
+> > > > > 
+> > > > 
+> > > > If we expose 1 or N engines it doesn't really matter, does it? Either way the
+> > > > entire GEM context is configured for N BBs in a single IOCTL.
+> > > > 
+> > > > > - This means we don't create virtual engines (or physical engine mappings)
+> > > > >   for all the individual pieces in a parallel engine. That's a concept
+> > > > >   from bonded submission, and I think that needs to go.
+> > > > > 
+> > > > 
+> > > > Again this isn't strickly true - we need N internal backing structures.
+> > > 
+> > > I didn't check the code, but iirc you said for the GuC backend you do
+> > > nothing until the last submit. Only then it's pushed into the GuC. That
+> > > sounds a bit silly, and by treating parallel submission as a single thing
+> > > (which might or mightnot be split in lower levels) this would go away.
+> > >
+> > 
+> > We update internal state on each submit, the last submit is the one to interact
+> > with the GuC.
+> 
+> Sounds very much like sunk cost fallacy driven implementation design, but
+> oh well.
+> 
+> > > But it also might be way too much churn, because there's a bunch of places
+> > > where we have to do this splitting. If it's all, then maybe just keeping
+> > > the engines around everywhere makes sense.
+> > > 
+> > > But also this is leaking implementation details into uapi, from umd pov
+> > > it's really 1 virtual engine that gets 1 execbuf call to submit N batches.
+> > > Leaking that we treat it as N engines underneath feels like a mistake.
+> > >
+> > 
+> > Too be clear, changing from N slots to 1 slot isn't that big of a deal. Changing
+> > from N i915_requests to 1 is a *huge* deal.
+> > 
+> > N slots to 1 slots will just touch the uAPI setup extension and the execbuf
+> > IOCTL.
+> > 
+> > N i915_requests to 1 will ripple thoughout the entire stack. 
+> 
+> Yeah I think going to 1 i915_request is something we need to postpone and
+> decide later on whether it makes sense or not.
+> 
+
+Glad we are on the same page about this - we can revisit this later.
+
+> But making sure the uapi isn't putting roadblocks in that way is something
+> we need to fix now. And I do think in a clean slate world, ignoring all
+> the code we have and especially the current midlayer and execlist backend
+> code, a single ctx/request/execbuf is the right design here. Or well,
+> would have been.
+> 
+> Except if you now tell me that GuC actually wants N submissions, but my
+> understanding is it really just wants 1. And the only fan-out we have to
+> do is plug the right N batchbuffers into the right N LRC of the overall
+> GuC mutli-LRC context. But that seems not the case.
+> 
+> > > > > - More important not having a parallel virtual engine breaks our already
+> > > > >   badly confusing gem ctx api. Ignoring parallel/bonded submit the gem ctx
+> > > > >   is just a container object, which points at a bunch of engines (plus the
+> > > > >   VM and a few other things). Having parallel context something that sits
+> > > > >   at the gem ctx level, and not as an individual engine (of which you can
+> > > > >   have multiple in the same gem ctx) breaks stuff. E.g. right the perf api
+> > > > >   sits at the gem ctx level, so that you can capture all the perf data for
+> > > > >   an entire workload spawning across multiple engines. If a workload now
+> > > > >   needs multiple parallel engines we'd need multiple gem ctx, which breaks
+> > > > >   this.
+> > > > 
+> > > > This uAPI allows only 1 parallel context per gem context which isn't ideal. I'd
+> > > > love to fix this and changing a context to a single slot might be able to fix
+> > > > this.
+> > > 
+> > > Yeah this is essentially the main gripe I have with this. Everywhere else
+> > > you submit to a (gem_ctx_id, engine_slot) pair. Except for parallel
+> > > submit, where you submit to a gem_ctx_id and the engine slot doesn't
+> > > matter. That's a rather unfortunate uapi.
+> > > 
+> > 
+> > Yea this isn't ideal but we've kinda backed ourselves into a corner here at
+> > least consistency wise.
+> > 
+> > As purposed we basically have 2 steps to configure a gem context:
+> > 
+> > 1. Define placement rules (set_engines, set_load_balance)
+> > 2. Indicate this context is used for parallel submission (set_parallel)
+> > 
+> > What would the the uAPI look like where a each parallel context occupies a slot?
+> > 
+> > 1. Define a the number of slots (set_engines)
+> > 2. For each slot allow a virtual or parallel context (set_load_balance,
+> > set_parallel)
+> > 
+> > The set_parallel would have to contain all the placement information for 2 to N
+> > contexts, right? So each set_parallel is chained extension too. Now we have a
+> > two level chain in our IOCTL.
+> > 
+> > e.g.
+> > 
+> > set_engines (3 slots) -> set_load_balance (slot 0) -> set_parallel (slot 1) ->                                                            -> set_load_balance (slot 2)
+> > 									     | 								  |
+> > 									     > placement for context 0 -> placement for context 1, etc...->	
+> > 
+> > IMO this seems like a bigger mess but I suppose it would work.
+> 
+> This sounds a bit like overengineering. All we need for the parallel
+> virtual engines are a bunch of parameters (engine slot, num_slots,
+> num_siblings) and then a num_slots X num_siblings array at the end with
+> the placements for all combinations.
+> 
+> i915_user_extensions already allow for that array at the end (that's why
+> extensions are chained with pointers, not by being one-after-the-other in
+> an array), so this already works as-is. See e.g. how set_load_balance or
+> set_engines work, they already do that.
+> 
+> So purely from an uapi pov I'm not seeing the trouble?
+>
+
+Ah, I forgot that each user extension can be variable sized. Making each
+parallel engine into 1 slot and single setup extension does indeed make sense
+and should be easy enough to do. I'll get a quick PoC of this internally to
+flush out any issues before my next RFC post with all the uAPI details.
+ 
+> > As you say below gem contexts are moving towards just being containers so does
+> > it really matter if a UMD has to create a gem context per a parallel context?
+> > They still can share address space, pass fences between them, etc...
+> 
+> Mostly my concern is that for everything else we execute stuff on an
+> intel_context and track it with an i915_request. Except for parallel
+> submission, where we have N-1 fake intel_context and fake i915_request,
+> and only the last one of each is actually triggering submission.
+> 
+> That's awkward code design at best, and I'd like to have the option at
+> least we can fix it in the future.
+> 
+> Of course we can fix it all without changing the uapi, like Jason is doing
+> with the proto ctx rework. But that always comes at the cost of code and
+> complexity, which isn't strictly needed here I think.
+> 
+> > If we really want to go the direction of 1 slot per parallel context I can hack
+> > up a PoC branch when I have time. 
+> 
+> I think the only impact of the minimal plan would be:
+> 
+> - slight change to the media-driver setup function, but that's already
+>   fully encapsulated (at least from a cursory look)
+> 
+> - creating a pile of fake contexts so that current execbuf code and
+>   scheduler midlayers don't panic, at engine offsets userspace can't see
+>   them
+> 
+> - some changes in the execbuf code to get at all the fake contexts and
+>   figure out how many batchbuffers we need
+> 
+> None of this should be giantic, but it keeps the door open that we can fix
+> the internals properly, without having to carry a compat layer around
+> forever.
+> 
+> Thoughts? If you think "not worth at all" and Jason concurs then I'm happy
+> to let this one slide.
+
+I agree with this plan, let's execute it.
+
+Matt
+
+> 
+> Cheers, Daniel
+> 
+> > 
+> > Matt
+> > 
+> > > Now with bonded submit this made some sense (not that bonded submit itself
+> > > made much sense), since you did indeed submit N batchbuffers to N
+> > > (gem_ctx_id, engine_slot) pairs. But with parallel submit it's really just
+> > > one execbuf call.
+> > > 
+> > > > > So what I'd expect we'd have here is roughly:
+> > > > > 
+> > > > > struct i915_context_engines_parallel_submit {
+> > > > > 	struct i915_user_extension base;
+> > > > > 	__u64 flags;
+> > > > > 	__u32 num_engines; /* N, must match what we submit in the execbuf */
+> > > > > 	__u32 num_siblings; /* M, I'm assuming it's ok we require that siblings must match across the entire set of parallel engines */
+> > > > > 	struct engine_info[]; /* NxM array of engine infos, pls fill in the right struct name :-) */
+> > > > > };
+> > > > > 
+> > > > > If we then also require that you always submit the full width of N
+> > > > > batchbuffers then even the execbuf extension doesn't need to exist
+> > > > > anymore, because the virtual parallel engine already contains all the
+> > > > > needed information.
+> > > > > 
+> > > > > And sure for some backends at least (definitely execlist) we'd need to
+> > > > > create a bunch of additional virtual engines behind that virtual engine.
+> > > > > But they'd be entirely hidden, and not visible to userspace nor the higher
+> > > > > levels.
+> > > > >
+> > > > > What am I missing?
+> > > > 
+> > > > Not really, I think you got it. I think at the end of day this really comes down
+> > > > to do we want to allow more than 1 parallel virtual engine per gem context? If
+> > > > the answer is yes we collapse a parallel virtual engine into a single slot, if
+> > > > not we leave as is.
+> > > 
+> > > Yup. So right now media uses one gem context per engine they need. Since
+> > > media doesn't care about perf/OA they could get shared VM by sharing the
+> > > VM across gem ctx, which they already do. So probably we could get away if
+> > > we leave parallel engines as a gem ctx level thing.
+> > > 
+> > > Also on the media-driver code the impact is nil since it's just a
+> > > different chain of context extensions in the same ioctl call.
+> > > 
+> > > Bigger picture is that Jason is quite unhappy withou our gem ctx based
+> > > uapi, and his long term idea is to make gem ctx into a pure container
+> > > object with pointers to engines and a vm. And not something that has
+> > > relevance itself. Currently that's not the case for perf/OA, which works
+> > > on the gem ctx, and Jason's already unhappy about that one. So adding more
+> > > stuff on the gem ctx level feels a bit like a mistake.
+> > > 
+> > > Cheers, Daniel
+> > > 
+> > > > 
+> > > > Matt
+> > > > 
+> > > > > -Daniel
+> > > > > 
+> > > > > >  #define I915_DEFINE_CONTEXT_PARAM_ENGINES(name__, N__) struct { \
+> > > > > >  	__u64 extensions; \
+> > > > > >  	struct i915_engine_class_instance engines[N__]; \
+> > > > > > -- 
+> > > > > > 2.28.0
+> > > > > > 
+> > > > > > _______________________________________________
+> > > > > > Intel-gfx mailing list
+> > > > > > Intel-gfx@lists.freedesktop.org
+> > > > > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > > > > 
+> > > > > -- 
+> > > > > Daniel Vetter
+> > > > > Software Engineer, Intel Corporation
+> > > > > http://blog.ffwll.ch
+> > > 
+> > > -- 
+> > > Daniel Vetter
+> > > Software Engineer, Intel Corporation
+> > > http://blog.ffwll.ch
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0659934825==--
