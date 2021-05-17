@@ -2,61 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F279382571
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 09:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B12F382768
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 10:47:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A30FE6E8E5;
-	Mon, 17 May 2021 07:37:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AF426E8F9;
+	Mon, 17 May 2021 08:47:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 372B06E8E5
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 07:37:02 +0000 (UTC)
-IronPort-SDR: ESXjSPu0TWsnjjichkqe8rJwtcUyeSk+iXQXueiRLTM0iODbDkjdelv3/HZthLVRyXYd/HpK0P
- mTUUDPXxlZKQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="180001964"
-X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="180001964"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2021 00:36:59 -0700
-IronPort-SDR: jRD+Fn7RhGppbgw4Au4Tfp47f9/NGabJQad7Vi1YWaGmp8wafV8s7pX6n4aqYwYF0ZhCylYhDw
- 2ifKvNnYJ+fQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="472283503"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga001.jf.intel.com with ESMTP; 17 May 2021 00:36:55 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 17 May 2021 00:36:54 -0700
-Received: from bgsmsx602.gar.corp.intel.com (10.109.78.81) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2242.4; Mon, 17 May 2021 00:36:53 -0700
-Received: from bgsmsx602.gar.corp.intel.com ([10.109.78.81]) by
- BGSMSX602.gar.corp.intel.com ([10.109.78.81]) with mapi id 15.01.2106.013;
- Mon, 17 May 2021 13:06:51 +0530
-From: "Kulkarni, Vandita" <vandita.kulkarni@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v4 14/23] drm/i915/adl_p: Tx escape clock with DSI
-Thread-Index: AQHXSTfnZlkDZInXb0S0WMrIhQ4cMarnS7YQ
-Date: Mon, 17 May 2021 07:36:51 +0000
-Message-ID: <88f1d7530d174d35857915b2db8e1fee@intel.com>
-References: <20210515031035.2561658-1-matthew.d.roper@intel.com>
- <20210515031035.2561658-15-matthew.d.roper@intel.com>
-In-Reply-To: <20210515031035.2561658-15-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-x-originating-ip: [10.223.10.1]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DAC16E8F8;
+ Mon, 17 May 2021 08:46:59 +0000 (UTC)
+IronPort-SDR: k8KrP1D3gQLrxWkuJqKP2evSavCgDleGJiEyGu9d6LiuLqYsxxPiuzMsmeG7LUz36pZCL+4v/o
+ dncMqmLGttlA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="200106513"
+X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="200106513"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2021 01:46:55 -0700
+IronPort-SDR: qbnw3j/sMfnpND7O8/DvWfpGFo0sYfwtiNxOnebd0UPggG7Uuk+I075QNOhjLNc92YdaN8G6mb
+ hoXrMONyEjGg==
+X-IronPort-AV: E=Sophos;i="5.82,306,1613462400"; d="scan'208";a="438820736"
+Received: from cqi-mobl.ccr.corp.intel.com (HELO mwauld-desk1.intel.com)
+ ([10.215.160.214])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2021 01:46:50 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 17 May 2021 09:46:40 +0100
+Message-Id: <20210517084640.18862-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4 14/23] drm/i915/adl_p: Tx escape clock
- with DSI
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Pin the L-shape quirked object as
+ unshrinkable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,143 +46,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: stable@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Saturday, May 15, 2021 8:40 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Kahola, Mika <mika.kahola@intel.com>; Kulkarni, Vandita
-> <vandita.kulkarni@intel.com>; Taylor, Clinton A
-> <clinton.a.taylor@intel.com>; Roper, Matthew D
-> <matthew.d.roper@intel.com>
-> Subject: [PATCH v4 14/23] drm/i915/adl_p: Tx escape clock with DSI
-> 
-> From: Mika Kahola <mika.kahola@intel.com>
-> 
-> Today when the DSI controller is paired with the Combo-PHY it uses the high-
-> speed (HS) Word clock for its low power (LP) transmit PPI communication to
-> the DPHY. The interface signaling only changes state at an Escape clock
-> frequency (i.e. its effectively running on a virtual Tx Escape clock that is
-> controlled by counters w/in the controller), but all the interface flops are
-> running off the HS clock.
-> 
-> This has the following drawbacks:
-> 
->  * It is a deviation from the PPI spec which assumes signaling is
->    running on a physical Escape clock
->  * The PV timings are over constrained (HS timed to 312.5MHz vs.
->    an Escape clock of 20MHz max)
-> 
-> This feature is proposing to change the LP Tx communication between the
-> controller and the DPHY from a virtual Tx Escape clock to a physical clock.
-> 
-> To do this we need to program two "M" divisors. One for the usual
-> DSI_ESC_CLK_DIV and DPHY_ESC_CLK_DIV register and one for
-> MIPIO_DWORD8.
-> 
-> For DSI_ESC_CLK_DIV and DPHY_ESC_CLK_DIV registers the "M" is calculated
-> as following
-> 
-> Nt = ceil(f_link/160) (theoretical word clock) Nact = max[3, Nt + (Nt + 1)%2]
-> (actual word clock) M = Nact * 8
-> 
-> For MIPIO_DWORD8 register, the divisor "M" is calculated as following
-> 
-> M = (Nact - 1)/2
-> 
-> BSpec: 55171
-> 
-> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-> Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-
-Looks good to me.
-Reviewed-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 21 +++++++++++++++++++--
->  drivers/gpu/drm/i915/i915_reg.h        |  6 ++++++
->  2 files changed, 25 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c
-> b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index ce544e20f35c..27251b97f0c3 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -363,10 +363,19 @@ static void gen11_dsi_program_esc_clk_div(struct
-> intel_encoder *encoder,
->  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
->  	enum port port;
->  	int afe_clk_khz;
-> -	u32 esc_clk_div_m;
-> +	int theo_word_clk, act_word_clk;
-> +	u32 esc_clk_div_m, esc_clk_div_m_phy;
-> 
->  	afe_clk_khz = afe_clk(encoder, crtc_state);
-> -	esc_clk_div_m = DIV_ROUND_UP(afe_clk_khz, DSI_MAX_ESC_CLK);
-> +
-> +	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv)) {
-> +		theo_word_clk = DIV_ROUND_UP(afe_clk_khz, 8 *
-> DSI_MAX_ESC_CLK);
-> +		act_word_clk = max(3, theo_word_clk + (theo_word_clk + 1)
-> % 2);
-> +		esc_clk_div_m = act_word_clk * 8;
-> +		esc_clk_div_m_phy = (act_word_clk - 1)/2;
-> +	} else {
-> +		esc_clk_div_m = DIV_ROUND_UP(afe_clk_khz,
-> DSI_MAX_ESC_CLK);
-> +	}
-> 
->  	for_each_dsi_port(port, intel_dsi->ports) {
->  		intel_de_write(dev_priv, ICL_DSI_ESC_CLK_DIV(port), @@ -
-> 379,6 +388,14 @@ static void gen11_dsi_program_esc_clk_div(struct
-> intel_encoder *encoder,
->  			       esc_clk_div_m & ICL_ESC_CLK_DIV_MASK);
->  		intel_de_posting_read(dev_priv,
-> ICL_DPHY_ESC_CLK_DIV(port));
->  	}
-> +
-> +	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv)) {
-> +		for_each_dsi_port(port, intel_dsi->ports) {
-> +			intel_de_write(dev_priv, ADL_MIPIO_DW(port, 8),
-> +				       esc_clk_div_m_phy &
-> TX_ESC_CLK_DIV_PHY);
-> +			intel_de_posting_read(dev_priv,
-> ADL_MIPIO_DW(port, 8));
-> +		}
-> +	}
->  }
-> 
->  static void get_dsi_io_power_domains(struct drm_i915_private *dev_priv,
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> b/drivers/gpu/drm/i915/i915_reg.h index 0e7a2616b3cd..2906dff26868
-> 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -11336,6 +11336,12 @@ enum skl_power_gate {
->  #define  ICL_ESC_CLK_DIV_SHIFT			0
->  #define DSI_MAX_ESC_CLK			20000		/* in KHz */
-> 
-> +#define _ADL_MIPIO_REG			0x180
-> +#define ADL_MIPIO_DW(port, dw)
-> 	_MMIO(_ICL_COMBOPHY(port) + _ADL_MIPIO_REG + 4 * (dw))
-> +#define   TX_ESC_CLK_DIV_PHY_SEL	REGBIT(16)
-> +#define   TX_ESC_CLK_DIV_PHY_MASK	REG_GENMASK(23, 16)
-> +#define   TX_ESC_CLK_DIV_PHY
-> 	REG_FIELD_PREP(TX_ESC_CLK_DIV_PHY_MASK, 0x7f)
-> +
->  #define _DSI_CMD_FRMCTL_0		0x6b034
->  #define _DSI_CMD_FRMCTL_1		0x6b834
->  #define DSI_CMD_FRMCTL(port)		_MMIO_PORT(port,	\
-> --
-> 2.25.4
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CgpXaGVuIGluc3Rh
+bnRpYXRpbmcgYSB0aWxlZCBvYmplY3Qgb24gYW4gTC1zaGFwZWQgbWVtb3J5IG1hY2hpbmUsIHdl
+IG1hcmsKdGhlIG9iamVjdCBhcyB1bnNocmlua2FibGUgdG8gcHJldmVudCB0aGUgc2hyaW5rZXIg
+ZnJvbSB0cnlpbmcgdG8gc3dhcApvdXQgdGhlIHBhZ2VzLiBXZSBoYXZlIHRvIGRvIHRoaXMgYXMg
+d2UgZG8gbm90IGtub3cgdGhlIHN3aXp6bGluZyBvbiB0aGUKaW5kaXZpZHVhbCBwYWdlcywgYW5k
+IHNvIHRoZSBkYXRhIHdpbGwgYmUgc2NyYW1ibGVkIGFjcm9zcyBzd2FwIG91dC9pbi4KCk5vdCBv
+bmx5IGRvIHdlIG5lZWQgdG8gbW92ZSB0aGUgb2JqZWN0IG9mZiB0aGUgc2hyaW5rZXIgbGlzdCwg
+d2UgbmVlZCB0bwptYXJrIHRoZSBvYmplY3Qgd2l0aCBzaHJpbmtfcGluIHNvIHRoYXQgdGhlIGNv
+dW50ZXIgaXMgY29uc2lzdGVudCBhY3Jvc3MKY2FsbHMgdG8gbWFkdmlzZS4KCnYyOiBpbiB0aGUg
+bWFkdmlzZSBpb2N0bCB3ZSBuZWVkIHRvIGNoZWNrIGlmIHRoZSBvYmplY3QgaXMgY3VycmVudGx5
+CnNocmlua2FibGUvcHVyZ2VhYmxlLCBub3QgaWYgdGhlIG9iamVjdCB0eXBlIHN1cHBvcnRzIHNo
+cmlua2luZwoKRml4ZXM6IDAxNzU5NjllNDg5YSAoImRybS9pOTE1L2dlbTogVXNlIHNocmlua2Fi
+bGUgc3RhdHVzIGZvciB1bmtub3duIHN3aXp6bGUgcXVpcmtzIikKUmVmZXJlbmNlczogaHR0cHM6
+Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC8tL2lzc3Vlcy8zMjkzClJlZmVyZW5j
+ZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvMzQ1
+MApSZXBvcnRlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
+LmNvbT4KVGVzdGVkLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
+ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5j
+by51az4KUmV2aWV3ZWQtYnk6IE1hdHRoZXcgQXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4K
+U2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgpDYzog
+PHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc+ICMgdjUuMTIrCi0tLQogZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZ2VtL2k5MTVfZ2VtX3BhZ2VzLmMgfCAgMiArKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9nZW0uYyAgICAgICAgICAgfCAxMSArKysrKy0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCA3IGlu
+c2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ2VtL2k5MTVfZ2VtX3BhZ2VzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkx
+NV9nZW1fcGFnZXMuYwppbmRleCBhZWQ4YTM3Y2NkYzkuLjczNjE5NzFjMTc3ZCAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3BhZ2VzLmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3BhZ2VzLmMKQEAgLTYzLDYgKzYzLDggQEAgdm9p
+ZCBfX2k5MTVfZ2VtX29iamVjdF9zZXRfcGFnZXMoc3RydWN0IGRybV9pOTE1X2dlbV9vYmplY3Qg
+Km9iaiwKIAkgICAgaTkxNS0+cXVpcmtzICYgUVVJUktfUElOX1NXSVpaTEVEX1BBR0VTKSB7CiAJ
+CUdFTV9CVUdfT04oaTkxNV9nZW1fb2JqZWN0X2hhc190aWxpbmdfcXVpcmsob2JqKSk7CiAJCWk5
+MTVfZ2VtX29iamVjdF9zZXRfdGlsaW5nX3F1aXJrKG9iaik7CisJCUdFTV9CVUdfT04oIWxpc3Rf
+ZW1wdHkoJm9iai0+bW0ubGluaykpOworCQlhdG9taWNfaW5jKCZvYmotPm1tLnNocmlua19waW4p
+OwogCQlzaHJpbmthYmxlID0gZmFsc2U7CiAJfQogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2dlbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9nZW0uYwppbmRl
+eCBkMDAxOGM1Zjg4YmQuLmNmZmQ3ZjRmODdkYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9nZW0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2dlbS5jCkBA
+IC0xMDA5LDEyICsxMDA5LDExIEBAIGk5MTVfZ2VtX21hZHZpc2VfaW9jdGwoc3RydWN0IGRybV9k
+ZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKIAkJb2JqLT5tbS5tYWR2ID0gYXJncy0+bWFkdjsKIAog
+CWlmIChpOTE1X2dlbV9vYmplY3RfaGFzX3BhZ2VzKG9iaikpIHsKLQkJc3RydWN0IGxpc3RfaGVh
+ZCAqbGlzdDsKKwkJdW5zaWduZWQgbG9uZyBmbGFnczsKIAotCQlpZiAoaTkxNV9nZW1fb2JqZWN0
+X2lzX3Nocmlua2FibGUob2JqKSkgewotCQkJdW5zaWduZWQgbG9uZyBmbGFnczsKLQotCQkJc3Bp
+bl9sb2NrX2lycXNhdmUoJmk5MTUtPm1tLm9ial9sb2NrLCBmbGFncyk7CisJCXNwaW5fbG9ja19p
+cnFzYXZlKCZpOTE1LT5tbS5vYmpfbG9jaywgZmxhZ3MpOworCQlpZiAoIWxpc3RfZW1wdHkoJm9i
+ai0+bW0ubGluaykpIHsKKwkJCXN0cnVjdCBsaXN0X2hlYWQgKmxpc3Q7CiAKIAkJCWlmIChvYmot
+Pm1tLm1hZHYgIT0gSTkxNV9NQURWX1dJTExORUVEKQogCQkJCWxpc3QgPSAmaTkxNS0+bW0ucHVy
+Z2VfbGlzdDsKQEAgLTEwMjIsOCArMTAyMSw4IEBAIGk5MTVfZ2VtX21hZHZpc2VfaW9jdGwoc3Ry
+dWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKIAkJCQlsaXN0ID0gJmk5MTUtPm1tLnNo
+cmlua19saXN0OwogCQkJbGlzdF9tb3ZlX3RhaWwoJm9iai0+bW0ubGluaywgbGlzdCk7CiAKLQkJ
+CXNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmk5MTUtPm1tLm9ial9sb2NrLCBmbGFncyk7CiAJCX0K
+KwkJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmaTkxNS0+bW0ub2JqX2xvY2ssIGZsYWdzKTsKIAl9
+CiAKIAkvKiBpZiB0aGUgb2JqZWN0IGlzIG5vIGxvbmdlciBhdHRhY2hlZCwgZGlzY2FyZCBpdHMg
+YmFja2luZyBzdG9yYWdlICovCi0tIAoyLjI2LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2ludGVsLWdmeAo=
