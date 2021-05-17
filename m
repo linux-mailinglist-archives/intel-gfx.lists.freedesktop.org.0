@@ -1,44 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 105C1383074
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 16:29:06 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC7F3830D8
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 16:30:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8DBB6E989;
-	Mon, 17 May 2021 14:29:00 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from srv6.fidu.org (srv6.fidu.org [159.69.62.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C7BA6E0F8;
- Mon, 17 May 2021 14:28:57 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by srv6.fidu.org (Postfix) with ESMTP id 30BFEC800D5;
- Mon, 17 May 2021 16:28:56 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at srv6.fidu.org
-Received: from srv6.fidu.org ([127.0.0.1])
- by localhost (srv6.fidu.org [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id igc_7ctTk_pN; Mon, 17 May 2021 16:28:55 +0200 (CEST)
-Received: from [IPv6:2003:e3:7f46:6a00:49cc:a8cc:f41d:5272]
- (p200300e37f466a0049cca8ccF41D5272.dip0.t-ipconnect.de
- [IPv6:2003:e3:7f46:6a00:49cc:a8cc:f41d:5272])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested)
- (Authenticated sender: wse@tuxedocomputers.com)
- by srv6.fidu.org (Postfix) with ESMTPSA id A6182C800D4;
- Mon, 17 May 2021 16:28:55 +0200 (CEST)
-From: Werner Sembach <wse@tuxedocomputers.com>
-To: Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-References: <8c0d7ad8-7ade-bf8a-0414-cc795fbb6aa2@tuxedocomputers.com>
-Message-ID: <ec482a3d-a6cd-870d-96a3-52a7ed9089fb@tuxedocomputers.com>
-Date: Mon, 17 May 2021 16:28:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFF516E98B;
+	Mon, 17 May 2021 14:30:51 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F0E56E98D
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 14:30:51 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id a4so6665548wrr.2
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 07:30:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=bn0DkeBsYaJwZh4jUph+rX28YVf4KO+vWTnm8d/m/gw=;
+ b=iXR5Td7knYTsRZQt44jAG/raTZRs0SDl6CTecgAvBblfYL93MJHAdJDIBQxuz6yKho
+ 3I1eGwy1h0MrNPwxT+X+9TOOInqZdC9cghj3SV6dJ/iUF9N0HpQPnr0g8amtrsCuu/x1
+ 9Gl21DFgeKMg5wRcBgg+RFFuhIkcr9FaE6llE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=bn0DkeBsYaJwZh4jUph+rX28YVf4KO+vWTnm8d/m/gw=;
+ b=cUshmIRrJY2kiySbP2c1gpxVHCNEaZ7WrRLQ7bJ6lpOs/8mgifALXSP9TMSEtpODdf
+ sR0bvtR8hdd9fFEn4r+kM8zupMBcQot1KpfaKu0JxYRZwjYtApMIODO4CoVX+uoN32Kr
+ DlmQ7ID1qnnlp4ouae61dIlrsepQ5c37fuT0i7KSov2DlOiuvvBWpOyINam0FWOgxM1g
+ cMsTYHyJNOOnWAgLjO6sW1fyM6d4kRraKLUnyJmOCTR95GOzM9r3XUdt92QYABADBKaN
+ 2UzXNd0zlDxeKbQz6GJ5bTP14v2jgdEt4htvNvkj/zUEjZJ3+dJVMWzLLrwFSxZg4/Av
+ HClw==
+X-Gm-Message-State: AOAM532IoO8FkuTFz3gQdvfFeylKVIiB8NiDqKN6QYRYFALkDeiHkVNZ
+ wf+EDYaOdRT9OH9nKr7DS5QpGg==
+X-Google-Smtp-Source: ABdhPJxATbKCSYWPgCvZextHXBIh7kcoToz/Tn5RwkXm3KZGU0ybaH1UxcNAkY8sbB4ASerXmUL5bQ==
+X-Received: by 2002:adf:dc8a:: with SMTP id r10mr1401998wrj.199.1621261849821; 
+ Mon, 17 May 2021 07:30:49 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id z5sm17839984wrn.69.2021.05.17.07.30.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 17 May 2021 07:30:49 -0700 (PDT)
+Date: Mon, 17 May 2021 16:30:47 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <YKJ+F4KqEiQQYkRz@phenom.ffwll.local>
+References: <c6c61179-5b4b-4e0b-6e57-ec4839ca3268@linux.intel.com>
+ <CADnq5_N03pz6GmptzhRnCRQH=qkd4eWuAbuUysHp-A9NZHQMHg@mail.gmail.com>
+ <BYAPR12MB2840AA68BCAEBD9279C6184FF4509@BYAPR12MB2840.namprd12.prod.outlook.com>
+ <39ccc2ef-05d1-d9f0-0639-ea86bef58b80@amd.com>
+ <7d6d09fe-ec85-6aaf-9834-37a49ec7d6c5@linux.intel.com>
+ <9144f63b-953d-2019-742d-6553e09f5b40@amd.com>
+ <22e7d6ea-f2dd-26da-f264-b17aad25af95@linux.intel.com>
+ <b2203d34-2de3-7c58-de2f-bf6fafc3f67c@amd.com>
+ <6cf2f14a-6a16-5ea3-d307-004faad4cc79@linux.intel.com>
+ <a2b03603-eb3e-7bef-a799-c15cfb1a8e0b@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <8c0d7ad8-7ade-bf8a-0414-cc795fbb6aa2@tuxedocomputers.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] New uAPI for color management proposal and feedback
- request
+Content-Disposition: inline
+In-Reply-To: <a2b03603-eb3e-7bef-a799-c15cfb1a8e0b@amd.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH 0/7] Per client engine busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,151 +74,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Deucher, Alexander" <alexander.deucher@amd.com>,
- Pekka Paalanen <ppaalanen@gmail.com>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Alex Deucher <alexdeucher@gmail.com>, "Nieto, David M" <David.Nieto@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QW0gMTIuMDUuMjEgdW0gMTQ6MDYgc2NocmllYiBXZXJuZXIgU2VtYmFjaDoKPiBIZWxsbywKPgo+
-IEluIGFkZGl0aW9uIHRvIHRoZSBleGlzdGluZyAibWF4IGJwYyIsIGFuZCAiQnJvYWRjYXN0IFJH
-Qi9vdXRwdXRfY3NjIiBkcm0gcHJvcGVydGllcyBJIHByb3Bvc2UgNCBuZXcgcHJvcGVydGllczoK
-PiAicHJlZmVycmVkIHBpeGVsIGVuY29kaW5nIiwgImFjdGl2ZSBjb2xvciBkZXB0aCIsICJhY3Rp
-dmUgY29sb3IgcmFuZ2UiLCBhbmQgImFjdGl2ZSBwaXhlbCBlbmNvZGluZyIKCkFzIGFuIGFsdGVy
-bmF0aXZlL2FkZGl0aW9uYWwgdG8gdGhlIGZlZWRiYWNrIGNoYW5uZWxzOiBNYXliZSB0aGUga2Vy
-bmVsIHNob3VsZCBub3Qgb25seSBjb21tdW5pY2F0ZSByZXNvbHV0aW9ucyBhbmQKcmVmcmVzaCBy
-YXRlcyBvZiBhdmFpbGFibGUgbW9kZXMsIGJ1dCBhbHNvIGNvbG9yIGNhcGFiaWxpdGllcy4KCkkg
-dGVzdGVkIHdpdGggYSBtb25pdG9yLCBmb3IgZXhhbXBsZSwgdGhhdCBoYWQgc2V2ZXJhbCA0a0A2
-MEh6IG1vZGVzL3RpbWluZ3Mgb2ZmZXJlZCBieSB0aGUgZWRpZCwgYnV0IG9ubHkgc29tZSBvZiB0
-aGVtCnN1cHBvcnRlZCBZQ2JDciA0MjAuCgo+Cj4gTW90aXZhdGlvbjoKPgo+IEN1cnJlbnQgbW9u
-aXRvcnMgaGF2ZSBhIHZhcmlldHkgcGl4ZWwgZW5jb2RpbmdzIGF2YWlsYWJsZTogUkdCLCBZQ2JD
-ciA0OjQ6NCwgWUNiQ3IgNDoyOjIsIFlDYkNyIDQ6MjowLgo+Cj4gSW4gYWRkaXRpb24gdGhleSBt
-aWdodCBiZSBmdWxsIG9yIGxpbWl0ZWQgUkdCIHJhbmdlIGFuZCB0aGUgbW9uaXRvcnMgYWNjZXB0
-IGRpZmZlcmVudCBiaXQgZGVwdGhzLgo+Cj4gQ3VycmVudGx5IHRoZSBrZXJuZWwgZHJpdmVyIGZv
-ciBBTUQgYW5kIEludGVsIEdQVXMgYXV0b21hdGljYWxseSBjb25maWd1cmUgdGhlIGNvbG9yIHNl
-dHRpbmdzIGF1dG9tYXRpY2FsbHkgd2l0aCBsaXR0bGUKPiB0byBubyBpbmZsdWVuY2Ugb2YgdGhl
-IHVzZXIuIEhvd2V2ZXIgdGhlcmUgYXJlIHNldmVyYWwgcmVhbCB3b3JsZCBzY2VuYXJpb3Mgd2hl
-cmUgdGhlIHVzZXIgbWlnaHQgZGlzYWdyZWUgd2l0aCB0aGUKPiBkZWZhdWx0IGNob3NlbiBieSB0
-aGUgZHJpdmVycyBhbmQgd2FudHMgdG8gc2V0IGhpcyBvciBoZXIgb3duIHByZWZlcmVuY2UuCj4K
-PiBTb21lIGV4YW1wbGVzOgo+Cj4gMS4gV2hpbGUgUkdCIGFuZCBZQ2JDciA0OjQ6NCBpbiB0aGVv
-cnkgY2FycnkgdGhlIHNhbWUgYW1vdW50IG9mIGNvbG9yIGluZm9ybWF0aW9uLCBzb21lIHNjcmVl
-bnMgbWlnaHQgbG9vayBiZXR0ZXIgb24gb25lCj4gdGhhbiB0aGUgb3RoZXIgYmVjYXVzZSBvZiBi
-YWQgaW50ZXJuYWwgY29udmVyc2lvbi4gVGhlIGRyaXZlciBjdXJyZW50bHkgaG93ZXZlciBoYXMg
-YSBmaXhlZCBkZWZhdWx0IHRoYXQgaXMgY2hvc2VuIGlmCj4gYXZhaWxhYmxlIChSR0IgZm9yIElu
-dGVsIGFuZCBZQ2JDciA0OjQ6NCBmb3IgQU1EKS4gVGhlIG9ubHkgd2F5IHRvIGNoYW5nZSB0aGlz
-IGN1cnJlbnRseSBpcyBieSBlZGl0aW5nIGFuZCBvdmVybG9hZGluZwo+IHRoZSBlZGlkIHJlcG9y
-dGVkIGJ5IHRoZSBtb25pdG9yIHRvIHRoZSBrZXJuZWwuCj4KPiAyLiBSR0IgYW5kIFlDYkNyIDQ6
-NDo0IG5lZWQgYSBoaWdoZXIgcG9ydCBjbG9jayB0aGVuIFlDYkNyIDQ6MjowLiBTb21lIGhhcmR3
-YXJlIG1pZ2h0IHJlcG9ydCB0aGF0IGl0IHN1cHBvcnRzIHRoZSBoaWdoZXIKPiBwb3J0IGNsb2Nr
-LCBidXQgYmVjYXVzZSBvZiBiYWQgc2hpZWxkaW5nIG9uIHRoZSBQQywgdGhlIGNhYmxlLCBvciB0
-aGUgbW9uaXRvciB0aGUgc2NyZWVuIGN1dHMgb3V0IGV2ZXJ5IGZldyBzZWNvbmRzIHdoZW4KPiBS
-R0Igb3IgWUNiQ3IgNDo0OjQgZW5jb2RpbmcgaXMgdXNlZCwgd2hpbGUgWUNiQ3IgNDoyOjAgbWln
-aHQganVzdCB3b3JrIGZpbmUgd2l0aG91dCBjaGFuZ2luZyBoYXJkd2FyZS4gVGhlIGRyaXZlcnMK
-PiBjdXJyZW50bHkgaG93ZXZlciBhbHdheXMgZGVmYXVsdCB0byB0aGUgImJlc3QgYXZhaWxhYmxl
-IiBvcHRpb24gZXZlbiBpZiBpdCBtaWdodCBiZSBicm9rZW4uCj4KPiAzLiBTb21lIHNjcmVlbnMg
-bmF0aXZlbHkgb25seSBzdXBwb3J0aW5nIDgtYml0IGNvbG9yLCBzaW11bGF0ZSAxMC1CaXQgY29s
-b3IgYnkgcmFwaWRseSBzd2l0Y2hpbmcgYmV0d2VlbiAyIGFkamFjZW50Cj4gY29sb3JzLiBUaGV5
-IGFkdmVydGlzZSB0aGVtc2VsdmVzIHRvIHRoZSBrZXJuZWwgYXMgMTAtYml0IG1vbml0b3JzIGJ1
-dCB0aGUgdXNlciBtaWdodCBub3QgbGlrZSB0aGUgImZha2UiIDEwLWJpdCBlZmZlY3QKPiBhbmQg
-cHJlZmVyIHJ1bm5pbmcgYXQgdGhlIG5hdGl2ZSA4LWJpdCBwZXIgY29sb3IuCj4KPiA0LiBTb21l
-IHNjcmVlbnMgYXJlIGZhbHNlbHkgY2xhc3NpZmllZCBhcyBmdWxsIFJHQiByYW5nZSB3aWxlIHRo
-ZXkgYWN0dWFsbHkgdXNlIGxpbWl0ZWQgUkdCIHJhbmdlLiBUaGlzIHJlc3VsdHMgaW4KPiB3YXNo
-ZWQgb3V0IGNvbG9ycyBpbiBkYXJrIGFuZCBicmlnaHQgc2NlbmVzLiBBIHVzZXIgb3ZlcnJpZGUg
-Y2FuIGJlIGhlbHBmdWwgdG8gbWFudWFsbHkgZml4IHRoaXMgaXNzdWUgd2hlbiBpdCBvY2N1cnMu
-Cj4KPiBUaGVyZSBhbHJlYWR5IGV4aXN0IHNldmVyYWwgcmVxdWVzdHMsIGRpc2N1c3Npb24sIGFu
-ZCBwYXRjaGVzIHJlZ2FyZGluZyB0aGUgdGhlbWF0aWM6Cj4KPiAtIGh0dHBzOi8vZ2l0bGFiLmZy
-ZWVkZXNrdG9wLm9yZy9kcm0vYW1kLy0vaXNzdWVzLzQ3Ngo+Cj4gLSBodHRwczovL2dpdGxhYi5m
-cmVlZGVza3RvcC5vcmcvZHJtL2FtZC8tL2lzc3Vlcy8xNTQ4Cj4KPiAtIGh0dHBzOi8vbGttbC5v
-cmcvbGttbC8yMDIxLzUvNy82OTUKPgo+IC0gaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMjEvNS8x
-MS80MTYKPgo+Cj4gQ3VycmVudCBTdGF0ZToKPgo+IEkgb25seSBrbm93IGJpdHMgYWJvdXQgdGhl
-IEludGVsIGk5MTUgYW5kIEFNRCBhbWRncHUgZHJpdmVyLiBJIGRvbid0IGtub3cgaG93IG90aGVy
-IGRyaXZlciBoYW5kbGUgY29sb3IgbWFuYWdlbWVudAo+Cj4gLSAibWF4IGJwYyIsIGdsb2JhbCBz
-ZXR0aW5nIGFwcGxpZWQgYnkgYm90aCBpOTE1IChvbmx5IG9uIGRwIGkgdGhpbms/KSBhbmQgYW1k
-Z3B1LiBEZWZhdWx0IHZhbHVlIGlzICI4Ii4gRm9yIGV2ZXJ5Cj4gcmVzb2x1dGlvbiArIGZyZXF1
-ZW5jeSBjb21iaW5hdGlvbiB0aGUgaGlnaGVzdCBwb3NzaWJsZSBldmVuIG51bWJlciBiZXR3ZWVu
-IDYgYW5kIG1heF9icGMgaXMgY2hvc2VuLiBJZiB0aGUgcmFuZ2UKPiBkb2Vzbid0IGNvbnRhaW4g
-YSB2YWxpZCBtb2RlIHRoZSByZXNvbHV0aW9uICsgZnJlcXVlbmN5IGNvbWJpbmF0aW9uIGlzIGRp
-c2NhcmRlZCAoYnV0IEkgZ3Vlc3MgdGhhdCB3b3VsZCBiZSBhIHZlcnkKPiBzcGVjaWFsIGVkZ2Ug
-Y2FzZSwgaWYgZXhpc3RlbnQgYXQgYWxsLCB3aGVuIDYgZG9lc24ndCB3b3JrIGJ1dCAxMCB3b3Vs
-ZCB3b3JrKS4gSW50ZWwgSERNSSBjb2RlIGFsd2F5cyBjaGVja3MgOCwgMTIsIGFuZAo+IDEwIGFu
-ZCBkb2VzIG5vdCBjaGVjayB0aGUgbWF4X2JwYyBzZXR0aW5nLgo+Cj4gLSAiQnJvYWRjYXN0IFJH
-QiIgZm9yIGk5MTUgYW5kICJvdXRwdXRfY3NjIiBmb3IgdGhlIG9sZCByYWRlb24gZHJpdmVyIChu
-b3QgYW1kZ3B1KSwgb3ZlcndyaXRlcyB0aGUga2VybmVsIGNob3NlbiBjb2xvcgo+IHJhbmdlIHNl
-dHRpbmcgKGZ1bGwgb3IgbGltaXRlZCkuIElmIEkgcmVjYWxsIGNvcnJlY3RseSBJbnRlbCBIRE1J
-IGNvZGUgZGVmYXVsdHMgdG8gZnVsbCB1bmxlc3MgdGhpcyBwcm9wZXJ0eSBpcyBzZXQsCj4gSW50
-ZWwgZHAgY29kZSB0cmllcyB0byBwcm9iZSB0aGUgbW9uaXRvciB0byBmaW5kIG91dCB3aGF0IHRv
-IHVzZS4gYW1kZ3B1IGhhcyBubyBjb3JyZXNwb25kaW5nIHNldHRpbmcgKEkgZG9uJ3Qga25vdyBo
-b3cKPiBpdCdzIGRlY2lkZWQgdGhlcmUpLgo+Cj4gLSBSR0IgcGl4ZWwgZW5jb2RpbmcgY2FuIGJl
-IGZvcmNlZCBieSBvdmVybG9hZGluZyBhIE1vbml0b3JzIGVkaWQgd2l0aCBvbmUgdGhhdCB0ZWxs
-cyB0aGUga2VybmVsIHRoYXQgb25seSBSR0IgaXMKPiBwb3NzaWJsZS4gVGhhdCBkb2Vzbid0IHdv
-cmsgZm9yIFlDYkNyIDQ6NDo0IGhvd2V2ZXIgYmVjYXVzZSBvZiB0aGUgZWRpZCBzcGVjaWZpY2F0
-aW9uLiBGb3JjaW5nIFlDYkNyIDQ6MjowIHdvdWxkCj4gdGhlb3JldGljYWxseSBhbHNvIGJlIHBv
-c3NpYmxlIHRoaXMgd2F5LiBhbWRncHUgaGFzIGEgZGVidWdmcyBzd2l0Y2ggImZvcmNlX3ljYmNy
-XzQyMCIgd2hpY2ggbWFrZXMgdGhlIGRyaXZlciBkZWZhdWx0IHRvCj4gWUNiQ3IgNDoyOjAgb24g
-YWxsIG1vbml0b3JzIGlmIHBvc3NpYmxlLgo+Cj4KPiBQcm9wb3NlZCBTb2x1dGlvbjoKPgo+IDEu
-IEFkZCBhIG5ldyB1QVBJIHByb3BlcnR5ICJwcmVmZXJyZWQgcGl4ZWwgZW5jb2RpbmciLCBhcyBh
-IHBlciBwb3J0IHNldHRpbmcuCj4KPiDCoMKgwqAgLSBBbiBhbWRncHUgc3BlY2lmaWMgaW1wbGVt
-ZW50YXRpb24gd2FzIGFscmVhZHkgc2hhcmVkIGhlcmU6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNr
-dG9wLm9yZy9kcm0vYW1kLy0vaXNzdWVzLzQ3Ngo+Cj4gwqDCoMKgIC0gSXQgYWxzbyB3cml0ZXMg
-YmFjayB0aGUgYWN0dWFsbHkgdXNlZCBlbmNvZGluZyBpZiB0aGUgb25lIHJlcXVlc3RlZCB3YXMg
-bm90IHBvc3NpYmxlLCBvdmVyd3JpdGluZyB0aGUgcmVxdWVzdGVkCj4gdmFsdWUgaW4gdGhlIHBy
-b2Nlc3MuIEkgdGhpbmsgaXQgd291bGQgYmUgYmV0dGVyIHRvIGhhdmUgdGhpcyBmZWVkYmFjayBj
-aGFubmVsIGFzIGEgZGlmZmVyZW50LCByZWFkLW9ubHkgcHJvcGVydHkuCj4KPiDCoMKgwqAgLSBN
-YWtlIHRoaXMgc29sdXRpb24gdmVuZG9yIGFnbm9zdGljIGJ5IHB1dHRpbmcgaXQgaW4gdGhlIGRy
-bV9jb25uZWN0b3Jfc3RhdGUgc3RydWN0IG5leHQgZG8gbWF4X2JwYwo+IGh0dHBzOi8vZWxpeGly
-LmJvb3RsaW4uY29tL2xpbnV4L3Y1LjEzLXJjMS9zb3VyY2UvaW5jbHVkZS9kcm0vZHJtX2Nvbm5l
-Y3Rvci5oI0w2NTQgYW5kIGFkZCBwYXRjaGVzIHRvIGFtZGdwdSBhbmQgaTkxNSB0bwo+IHJlc3Bl
-Y3QgdGhpcyBzZXR0aW5nCj4KPiAyLiBDb252ZXJ0ICJCcm9hZGNhc3QgUkdCIiB0byBhIHZlbmRv
-ciBhZ25vc3RpYyBzZXR0aW5nL3JlcGxhY2Ugd2l0aCBhIHZlbmRvciBhZ25vc3RpYyBzZXR0aW5n
-Lgo+Cj4gwqDCoMKgIC0gSW1obyB0aGUgbmFtZSBpcyBub3QgdmVyeSBmaXR0aW5nLCBidXQgaXQg
-cG9wcyB1cCBpbiBtYW55IHR1dG9yaWFscyB0aHJvdWdob3V0IHRoZSB3ZWIgKHNvbWUgb3RoZXIg
-b3BpbmlvbnM/IGhvdwo+IGNvdWxkIGEgcmVuYW1lIGJlIGhhbmRsZWQ/Ii4KPgo+IMKgwqDCoCAt
-IEFsc28gbW92ZSBpdCBmcm9tIEludGVsIHNwZWNpZmljIHN0cnVjdHMgdG8gdGhlIGRybV9jb25u
-ZWN0b3Jfc3RhdGUgc3RydWN0IChwbGVhc2UgbGV0IG1lIGtub3cgaWYgdGhlcmUgaXMgYQo+IGJl
-dHRlciBwbGFjZSkKPgo+IDMuIFN0cml2ZSBmb3IgZnVsbCBpbXBsZW1lbnRhdGlvbiBvZiAibWF4
-IGJwYyIKPgo+IMKgwqDCoCAtIEkgbmVlZCB0byBkb3VibGUgY2hlY2sgdGhlIEludGVsIEhETUkg
-Y29kZS4KPgo+IDQuIEFkZCAzIGZlZWRiYWNrIGNoYW5uZWxzICJhY3RpdmUgY29sb3IgZGVwdGgi
-LCAiYWN0aXZlIGNvbG9yIHJhbmdlIiwgYW5kICJhY3RpdmUgcGl4ZWwgZW5jb2RpbmciIGFzIHZl
-bmRvciBhZ25vc3RpYwo+IHNldHRpbmdzIGluIHRoZSBkcm1fY29ubmVjdG9yX3N0YXRlIHN0cnVj
-dAo+Cj4gwqDCoMKgIC0gUG9zc2libGUgdmFsdWVzIGFyZToKPgo+IMKgwqDCoCDCoMKgwqAgLSB1
-bmtub3duLCB1bmRlZmluZWQsIDYtYml0LCA4LWJpdCwgOS1iaXQsIDEwLWJpdCwgMTEtYml0LCAx
-Mi1iaXQsIDE0LWJpdCwgMTYtYml0IChhbHRlcm5hdGl2ZWx5OiBhbiBpbnRlZ2VyCj4gZnJvbSAt
-MSAodW5rbm93biksIDAgKHVuZGVmaW5lZCkgdG8gMTYsIGxldCBtZSBrbm93IHdoYXQgd291bGQg
-YmUgbW9yZSBzdWl0YWJsZSkKPgo+IMKgwqDCoCDCoMKgwqAgLSB1bmtub3duLCB1bmRlZmluZWQs
-IGZ1bGwsIGxpbWl0ZWQKPgo+IMKgwqDCoCDCoMKgwqAgLSB1bmtub3duLCB1bmRlZmluZWQsIHJn
-YiwgeWNiY3I0NDQsIHljYmNyNDIyLCB5Y2JjcjQyMAo+Cj4gwqDCoMKgIC0gaXQncyB0aGUgcmVz
-cG9uc2liaWxpdHkgb2YgdGhlIGRyaXZlciB0byB1cGRhdGUgdGhlIHZhbHVlcyBvbmNlIHRoZSBw
-b3J0IGNvbmZpZ3VyYXRpb24gY2hhbmdlcwo+Cj4gwqDCoMKgIC0gaWYgdGhlIGRyaXZlciBkb2Vz
-IG5vdCBzdXBwb3J0IHRoZSBmZWVkYmFjayBjaGFubmVscyB0aGV5IGFyZSBzZXQgdG8gdW5rbm93
-bgo+Cj4gwqDCoMKgIC0gaWYgdGhlIGRyaXZlciB1c2VzIGEgbm9uIGxpc3RlZCBzZXR0aW5nIGl0
-IHNob3VsZCBzZXQgdGhlIHByb3BlcnR5IHRvIHVuZGVmaW5lZAo+Cj4gwqDCoMKgIC0gQSBtb3Jl
-IGRldGFpbGVkIGRlc2NyaXB0aW9uIHdoeSBJIHRoaW5rIHRoZXNlIGZlZWRiYWNrIGNoYW5uZWwg
-YXJlIGltcG9ydGFudCBhbmQgc2hvdWxkIGJlIHRoZWlyIG93biByZWFkLW9ubHkKPiBwcm9wZXJ0
-eSBjYW4gYmUgZm91bmQgaGVyZTogaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMjEvNS8xMS8zMzkK
-Pgo+Cj4gQWRvcHRpb246Cj4KPiBBIEtERSBkZXYgd2FudHMgdG8gaW1wbGVtZW50IHRoZSBzZXR0
-aW5ncyBpbiB0aGUgS0RFIHNldHRpbmdzIEdVSToKPiBodHRwczovL2dpdGxhYi5mcmVlZGVza3Rv
-cC5vcmcvZHJtL2FtZC8tL2lzc3Vlcy80NzYjbm90ZV85MTIzNzAKPgo+IFR1eGVkbyBDb21wdXRl
-cnMgKG15IGVtcGxveWVyKSB3YW50cyB0byBpbXBsZW1lbnQgdGhlIHNldHRpbmdzIGRlc2t0b3Ag
-ZW52aXJvbm1lbnQgYWdub3N0aWMgaW4gVHV4ZWRvIENvbnRyb2wgQ2VudGVyLiBJCj4gd2lsbCBz
-dGFydCB3b3JrIG9uIHRoaXMgaW4gcGFyYWxsZWwgdG8gaW1wbGVtZW50aW5nIHRoZSBuZXcga2Vy
-bmVsIGNvZGUuCj4KPgo+IFF1ZXN0aW9uczoKPgo+IEknbSB2ZXJ5IGN1cmlvdXMgYWJvdXQgZmVl
-ZGJhY2sgZnJvbSB0aGUgZHJpLWRldmVsIGNvbW11bml0eS4gV291bGQgdGhlIGNvbmNlcHQgb3V0
-bGFpZCBhYm92ZSBiZSBhY2NlcHRlZCBhcyBuZXcgdUFQSQo+IG9uY2UgaXQncyBmdWxseSBpbXBs
-ZW1lbnRlZD8KPgo+IFdoZXJlIHdvdWxkIGJlIHRoZSBiZXN0IHdheSB0byBzdG9yZSB0aGUgbmV3
-IHZlbmRvciBhZ25vc3RpYyBzZXR0aW5ncz8gRm9sbG93aW5nIHRoZSBpbXBsZW1lbnRhdGlvbiBv
-ZiBtYXhfYnBjIGkgd291bGQKPiBwdXQgaXQgaW4gdGhlIGRybV9jb25uZWN0b3Jfc3RhdGUgc3Ry
-dWN0Lgo+Cj4gTXkgd2F5IGZvcndhcmQgd291bGQgYmUgdG8gaW1wbGVtZW50IHRoZSBmZWVkYmFj
-ayBjaGFubmVscyBmaXJzdCwgYmVjYXVzZSB0aGV5IGNhbiBiZSB2ZXJ5IHVzZWZ1bCBmb3IgZGVi
-dWdnaW5nIHRoZQo+IHNldHRpbmcgcHJvcGVydGllcyBhZnRlcndhcmRzLiBJIHdpbGwgc3BsaXQg
-ZWFjaCBvZiBpdCB1cCBpdCBpbiAzIG9yIDUgcGF0Y2ggc2V0czogMSBmb3IgdGhlIHZlbmRvciBh
-Z25vc3RpYyBwYXJ0LCAxIGZvcgo+IEludGVsIChvciAyIHNwbGl0IHVwIGJldHdlZW4gSERNSSBh
-bmQgRFApLCBhbmQgMSBmb3IgQU1EIChvciAyIHNwbGl0IHVwIGJldHdlZW4gSERNSSBhbmQgRFAp
-Cj4KPiBLaW5kIHJlZ2FyZHMsCj4KPiBXZXJuZXIgU2VtYmFjaAo+Cj4KPiBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGFtZC1nZnggbWFpbGluZyBsaXN0
-Cj4gYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Fri, May 14, 2021 at 05:10:29PM +0200, Christian K=F6nig wrote:
+> Am 14.05.21 um 17:03 schrieb Tvrtko Ursulin:
+> > =
+
+> > On 14/05/2021 15:56, Christian K=F6nig wrote:
+> > > Am 14.05.21 um 16:47 schrieb Tvrtko Ursulin:
+> > > > =
+
+> > > > On 14/05/2021 14:53, Christian K=F6nig wrote:
+> > > > > > =
+
+> > > > > > David also said that you considered sysfs but were wary
+> > > > > > of exposing process info in there. To clarify, my patch
+> > > > > > is not exposing sysfs entry per process, but one per
+> > > > > > open drm fd.
+> > > > > > =
+
+> > > > > =
+
+> > > > > Yes, we discussed this as well, but then rejected the approach.
+> > > > > =
+
+> > > > > To have useful information related to the open drm fd you
+> > > > > need to related that to process(es) which have that file
+> > > > > descriptor open. Just tracking who opened it first like DRM
+> > > > > does is pretty useless on modern systems.
+> > > > =
+
+> > > > We do update the pid/name for fds passed over unix sockets.
+> > > =
+
+> > > Well I just double checked and that is not correct.
+> > > =
+
+> > > Could be that i915 has some special code for that, but on my laptop
+> > > I only see the X server under the "clients" debugfs file.
+> > =
+
+> > Yes we have special code in i915 for this. Part of this series we are
+> > discussing here.
+> =
+
+> Ah, yeah you should mention that. Could we please separate that into comm=
+on
+> code instead? Cause I really see that as a bug in the current handling
+> independent of the discussion here.
+> =
+
+> As far as I know all IOCTLs go though some common place in DRM anyway.
+
+Yeah, might be good to fix that confusion in debugfs. But since that's
+non-uapi, I guess no one ever cared (enough).
+
+> > > > > But an "lsof /dev/dri/renderD128" for example does exactly
+> > > > > what top does as well, it iterates over /proc and sees which
+> > > > > process has that file open.
+> > > > =
+
+> > > > Lsof is quite inefficient for this use case. It has to open
+> > > > _all_ open files for _all_ processes on the system to find a
+> > > > handful of ones which may have the DRM device open.
+> > > =
+
+> > > Completely agree.
+> > > =
+
+> > > The key point is you either need to have all references to an open
+> > > fd, or at least track whoever last used that fd.
+> > > =
+
+> > > At least the last time I looked even the fs layer didn't know which
+> > > fd is open by which process. So there wasn't really any alternative
+> > > to the lsof approach.
+> > =
+
+> > I asked you about the use case you have in mind which you did not
+> > answer. Otherwise I don't understand when do you need to walk all files.
+> > What information you want to get?
+> =
+
+> Per fd debugging information, e.g. instead of the top use case you know
+> which process you want to look at.
+> =
+
+> > =
+
+> > For the use case of knowing which DRM file is using how much GPU time on
+> > engine X we do not need to walk all open files either with my sysfs
+> > approach or the proc approach from Chris. (In the former case we
+> > optionally aggregate by PID at presentation time, and in the latter case
+> > aggregation is implicit.)
+> =
+
+> I'm unsure if we should go with the sysfs, proc or some completely differ=
+ent
+> approach.
+> =
+
+> In general it would be nice to have a way to find all the fd references f=
+or
+> an open inode.
+
+Yeah, but that maybe needs to be an ioctl or syscall or something on the
+inode, that givey you a list of (procfd, fd_nr) pairs pointing back at all
+open files? If this really is a real world problem, but given that
+top/lsof and everyone else hasn't asked for it yet maybe it's not.
+
+Also I replied in some other thread, I really like the fdinfo stuff, and I
+think trying to somewhat standardized this across drivers would be neat.
+Especially since i915 is going to adopt drm/scheduler for front-end
+scheduling too, so at least some of this should be fairly easy to share.
+
+Cheers, Daniel
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
