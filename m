@@ -2,56 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 272A9383ABA
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 19:07:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3552383B32
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 19:24:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4502F6E9F7;
-	Mon, 17 May 2021 17:07:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 449AF6E9BB;
+	Mon, 17 May 2021 17:24:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com
- [IPv6:2607:f8b0:4864:20::f30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 176156E9F7;
- Mon, 17 May 2021 17:07:13 +0000 (UTC)
-Received: by mail-qv1-xf30.google.com with SMTP id c13so2285342qvx.5;
- Mon, 17 May 2021 10:07:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=iAVM06Z0b3X00uWZ/iOWO0Am27P94BoQacVHMIqOeTA=;
- b=Hi7Pzs6QbfTYK6VkC34Npoj70CXFPM+CGdoBXqdqgKx+d3k1CXMiyvi2NxJ9o+3Ps5
- TUczTsSeJIYSDtqqvDKgZ6WhB1TB++5ox4YpvxJVaHH1xLROr3NUCcg4upKIy1xQgMGN
- Ev+9CRnJzuDT8U96AnUq/+CzcBXut28+0MFLmVe1zM8BLZNzk1iHzg8HiPZobysWXV2H
- 6SivE7N9E4vkYFIq9fIsn0B8UXwgxVu+CX08qBZs9j7rllsatUG1ywvTEZvVboY4C5gt
- ugBSSY1T1VgYMOi5OEi1l8AOzlbs2C6By2kupIg3G92xdpRjkqBAo3cTRWAESPoJILaa
- yCQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=iAVM06Z0b3X00uWZ/iOWO0Am27P94BoQacVHMIqOeTA=;
- b=Ff5/AJgw+E798RbqTeq0u5XTRkEb77L1av3L0tONEmjlvdbkNrdBj3yEXzdPZIXHL8
- ode/Wkm/PlL9aJaFwadK6ZEjkXg1d5dWDJl621z+McSilpeJqcueO1bz/4Emy5Gy0Eaj
- HJd7YE4Ab613oSnWaOfdcWi3UL9BqliqlRNyrTCdnMcqo28x3TQ6X50UGAEzohI91xWm
- 3AU9AsflDGxWzKxrpRuVoC2u40vf9I0YVtLtQxVo/Y9LRjvFlObcUc5RlaI4rdJX4EoK
- xZ76bQmYV7e9n1IlnEx8anIIV2o0v3Kr6WNi+OfsBpURmLMXWcbkysCT+N569D0Sbi08
- VSiA==
-X-Gm-Message-State: AOAM530GUBeg4y3lTWOJIb0mlQHtSWVEQpmgihE3jzOEeUN2e8EwomZu
- PmrzPuo7npstNr8lFKdnWva22WSExXEbofYJHd8=
-X-Google-Smtp-Source: ABdhPJzx7xfbVLxtJRcNnW6bLoi3veRw1dYSAINsnytiKfr6pa5SKgDCTSXmaY3v6JH/Q6kWZHSQFDo8ra71nMmy0Wo=
-X-Received: by 2002:ad4:4961:: with SMTP id p1mr611618qvy.43.1621271231753;
- Mon, 17 May 2021 10:07:11 -0700 (PDT)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CB1C6E9BB;
+ Mon, 17 May 2021 17:24:14 +0000 (UTC)
+IronPort-SDR: 3URc5UuiYatlzc/+9lw1dNvtUIDGRJccYTmc3+KaaDhhE5RaeYEBF27bURyZvhV8JSP7/cpR4R
+ tI+EowO0JBxg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9987"; a="180120447"
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="180120447"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2021 10:24:04 -0700
+IronPort-SDR: kF0CZl+GAeg2A0GvpYg15dIeMDeUqq1uyYy9TEHZFdrOMbYDz+DzmSlhN9sE6tGcFUrO/E1pq2
+ QCZ5WEyCEKLw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="404444619"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.171])
+ by fmsmga007.fm.intel.com with SMTP; 17 May 2021 10:24:01 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 17 May 2021 20:24:01 +0300
+Date: Mon, 17 May 2021 20:24:01 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Emil Velikov <emil.l.velikov@gmail.com>
+Message-ID: <YKKmsbvTZBwCUiRu@intel.com>
+References: <20210516171432.1734268-1-emil.l.velikov@gmail.com>
 MIME-Version: 1.0
-References: <20210326055505.1424432-1-hch@lst.de>
- <20210326055505.1424432-5-hch@lst.de>
- <87pmxqiry6.fsf@depni.sinp.msu.ru> <20210517123716.GD15150@lst.de>
- <87lf8dik15.fsf@depni.sinp.msu.ru> <20210517131137.GA19451@lst.de>
-In-Reply-To: <20210517131137.GA19451@lst.de>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 17 May 2021 18:06:44 +0100
-Message-ID: <CAM0jSHPy68kMi8NnpAO7ESVW0Ct=dhZ0kYHJO7APy-GBsNp2fQ@mail.gmail.com>
-To: Christoph Hellwig <hch@lst.de>
-Subject: Re: [Intel-gfx] [PATCH 4/4] i915: fix remap_io_sg to verify the
- pgprot
+Content-Disposition: inline
+In-Reply-To: <20210516171432.1734268-1-emil.l.velikov@gmail.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: only disable default vga device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,48 +49,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Serge Belyshev <belyshev@depni.sinp.msu.ru>,
- Peter Zijlstra <peterz@infradead.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
- Andrew Morton <akpm@linux-foundation.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ kernel@collabora.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 17 May 2021 at 14:11, Christoph Hellwig <hch@lst.de> wrote:
->
-> On Mon, May 17, 2021 at 04:09:42PM +0300, Serge Belyshev wrote:
-> > Christoph Hellwig <hch@lst.de> writes:
-> >
-> > > As an ad-hoc experiment:  can you replace the call to remap_pfn_range
-> > > with remap_pfn_range_notrack (and export it if you build i915 modular)
-> > > in remap_io_sg and see if that makes any difference?
-> >
-> > That worked, thanks -- no artifacts seen.
->
-> Looks like it is caused by the validation failure then.  Which means the
-> existing code is doing something wrong in its choice of the page
-> protection bit.  I really need help from the i915 maintainers here..
-
-AFAIK there are two users of remap_io_sg, the first is our shmem
-objects(see i915_gem_shmem.c), and for these we support UC, WC, and WB
-mmap modes for userspace. The other user is device local-memory
-objects(VRAM), and for this one we have an actual io_mapping which is
-allocated as WC, and IIRC this should only be mapped as WC for the
-mmap mode, but normal userspace can't hit this path yet.
-
-What do we need to do here? It sounds like shmem backed objects are
-allocated as WB for the pages underneath, but i915 allows mapping them
-as UC/WC which trips up this track_pfn thing?
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gU3VuLCBNYXkgMTYsIDIwMjEgYXQgMDY6MTQ6MzJQTSArMDEwMCwgRW1pbCBWZWxpa292IHdy
+b3RlOgo+IEZyb206IFZpdmVrIERhcyBNb2hhcGF0cmEgPHZpdmVrQGNvbGxhYm9yYS5jb20+Cj4g
+Cj4gVGhpcyBwYXRjaCBpcyB0byBkbyB3aXRoIHNlYW1sZXNzIGhhbmRvdmVyLCBlZyB3aGVuIHRo
+ZSBzZXF1ZW5jZSBpcwo+IGJvb3Rsb2FkZXIg4oaSIHBseW1vdXRoIOKGkiBkZXNrdG9wLgo+IAo+
+IEl0IHN3aXRjaGVzIHRoZSB2Z2EgYXJiaXRlciBmcm9tIHRoZSAib3RoZXIiIEdQVSB0byB0aGUg
+ZGVmYXVsdCBvbmUKPiAoaW50ZWwgaW4gdGhpcyBjYXNlKSwgc28gdGhlIGRyaXZlciBjYW4gaXNz
+dWUgc29tZSBpbygpLgoKSSBkb24ndCB1bmRlcnN0YW5kIHdoYXQgdGhpcyBjb21taXQgbWVzc2Fn
+ZSBpcyB0cnlpbmcgdG8gc2F5LgoKPiAKPiBTaWduZWQtb2ZmLWJ5OiBWaXZlayBEYXMgTW9oYXBh
+dHJhIDx2aXZla0Bjb2xsYWJvcmEuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEVtaWwgVmVsaWtvdiA8
+ZW1pbC52ZWxpa292QGNvbGxhYm9yYS5jb20+Cj4gLS0tCj4gR3JlZXRpbmdzIGFsbCwKPiAKPiBU
+aGlzIHBhdGNoIGhhcyBiZWVuIGRvd25zdHJlYW0gZm9yIGEgd2hpbGUgbm93IHlldCBpdCBzZWVt
+cyBwZXJmZWN0bHkKPiByZWFzb25hYmxlIHRoaW5nIHRvIGhhdmUgaW4gdGhlIExpbnV4IGtlcm5l
+bC4KPiAKPiBodHRwczovL2dpdGh1Yi5jb20vVmFsdmVTb2Z0d2FyZS9zdGVhbW9zX2tlcm5lbC9j
+b21taXQvNTQzMWI1YjE5OTljM2QzYjVlZmVlODE3ZmIzMzczZmJiZDQ3MzA2Mwo+IAo+IAo+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3ZnYS5jIHwgMTQgKysrKysrKystLS0t
+LS0KPiAgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKPiAK
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF92Z2EuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmdhLmMKPiBpbmRleCBiZTMzMzY5
+OWM1MTUuLjRmMDdiNWFkNWZhMCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX3ZnYS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF92Z2EuYwo+IEBAIC0zMCwxMiArMzAsMTQgQEAgdm9pZCBpbnRlbF92Z2FfZGlzYWJsZShz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gIAl1OCBzcjE7Cj4gIAo+ICAJLyog
+V2FFbmFibGVWR0FBY2Nlc3NUaHJvdWdoSU9Qb3J0OmN0ZyxlbGssaWxrLHNuYixpdmIsdmx2LGhz
+dyAqLwo+IC0JdmdhX2dldF91bmludGVycnVwdGlibGUocGRldiwgVkdBX1JTUkNfTEVHQUNZX0lP
+KTsKPiAtCW91dGIoU1IwMSwgVkdBX1NSX0lOREVYKTsKPiAtCXNyMSA9IGluYihWR0FfU1JfREFU
+QSk7Cj4gLQlvdXRiKHNyMSB8IDEgPDwgNSwgVkdBX1NSX0RBVEEpOwo+IC0JdmdhX3B1dChwZGV2
+LCBWR0FfUlNSQ19MRUdBQ1lfSU8pOwo+IC0JdWRlbGF5KDMwMCk7Cj4gKwlpZiAocGRldiA9PSB2
+Z2FfZGVmYXVsdF9kZXZpY2UoKSkgewo+ICsJCXZnYV9nZXRfdW5pbnRlcnJ1cHRpYmxlKHBkZXYs
+IFZHQV9SU1JDX0xFR0FDWV9JTyk7Cj4gKwkJb3V0YihTUjAxLCBWR0FfU1JfSU5ERVgpOwo+ICsJ
+CXNyMSA9IGluYihWR0FfU1JfREFUQSk7Cj4gKwkJb3V0YihzcjEgfCAxIDw8IDUsIFZHQV9TUl9E
+QVRBKTsKPiArCQl2Z2FfcHV0KHBkZXYsIFZHQV9SU1JDX0xFR0FDWV9JTyk7Cj4gKwkJdWRlbGF5
+KDMwMCk7Cj4gKwl9Cj4gIAo+ICAJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIHZnYV9yZWcsIFZH
+QV9ESVNQX0RJU0FCTEUpOwo+ICAJaW50ZWxfZGVfcG9zdGluZ19yZWFkKGRldl9wcml2LCB2Z2Ff
+cmVnKTsKPiAtLSAKPiAyLjI3LjAKCi0tIApWaWxsZSBTeXJqw6Rsw6QKSW50ZWwKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
