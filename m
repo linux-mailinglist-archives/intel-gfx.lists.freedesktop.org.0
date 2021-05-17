@@ -1,60 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249D83834D6
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 17:12:31 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABDD3834E7
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 17:12:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A39476E086;
-	Mon, 17 May 2021 15:12:27 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
- [IPv6:2a00:1450:4864:20::431])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72EE56E086
- for <Intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 15:12:26 +0000 (UTC)
-Received: by mail-wr1-x431.google.com with SMTP id c14so5001967wrx.3
- for <Intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 08:12:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=46Mcfg0fJPfvf+exhPuK3IU8JopPm3jTKKYAxQQFRqE=;
- b=FI+sS0LMSk1MflNV3uZOM+tMr2Z6OLkKR8xvkropE9Wr6gM+Zp2ZlJ6P9VJV5qcOag
- Iwb/OM0tW2F3v2Nbn+L0PN2Jp3sLa6THRCn97GdH8AmvDY854koRNUDcwJvnw3eTQI75
- 2E6K+LuR3UPj34VWRxY8DYpmg0oiGNY+zeBtI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=46Mcfg0fJPfvf+exhPuK3IU8JopPm3jTKKYAxQQFRqE=;
- b=SXAj9Xe2IJk4XZJ3iCaKLQ4DUpoExqF9SPl3uRUJHBl5dM/dbk/Z20PRYLVJ2nhmvZ
- 6gGfMtp9uLitgKrkM0wGgTnCfDkc54aMJRsKTX8j2F7ygBwJ2A67hylAJ+LLcTd+E55x
- VYYqpRpLAPdp6GWzUpAsYUjPVbFTKfcLH6j8P+h3is0wTUEOeHRzlLDGib05BzR3TCQp
- fv07hdwAGVdLMLndvbogDOUu31i6+xLTotRIhW7sRgghvXFGM5m58MSv++GX2Ay8yrHY
- CdgHBAiVNwNq9Ngz2suvWvdYtqmUa2GOVErquJ8PhFFx9ptzNTTcoN8B3tKFyT3DkdNP
- PaRw==
-X-Gm-Message-State: AOAM531FBdQPEIfanlFzT6l9w6AFvPCgexPde9AA22kHcvviWJlnPiGi
- sbAxAOEnkd9h87hJbDH1p5bzOQ==
-X-Google-Smtp-Source: ABdhPJy/y+590o2gNjxJYGxBsyrCDCJjAlhyn3lowHbtjeMwPyM7ZmlgbU+0UbEkk8HxJpyYSTPbYA==
-X-Received: by 2002:adf:f212:: with SMTP id p18mr199780wro.318.1621264345118; 
- Mon, 17 May 2021 08:12:25 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id w20sm3113683wmc.44.2021.05.17.08.12.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 17 May 2021 08:12:24 -0700 (PDT)
-Date: Mon, 17 May 2021 17:12:22 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <YKKH1rRy2HN4Gnr8@phenom.ffwll.local>
-References: <20210507083521.2406201-1-tvrtko.ursulin@linux.intel.com>
- <YJlXeMkMG7Xt0zlA@phenom.ffwll.local>
- <9fbcff85-f36c-fc90-eeb6-aa58c85a920f@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 602DB6E9D0;
+	Mon, 17 May 2021 15:12:40 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87DDB6E9D0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 15:12:39 +0000 (UTC)
+IronPort-SDR: WUreuEMwVkIxQf/fnxNHZrokIOQL11yREAiW0FLLiw1AHmxNLfJNHERh8x5JOe37QhJkYzPurR
+ Mw7bcHprCugg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9987"; a="261722016"
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="261722016"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2021 08:12:38 -0700
+IronPort-SDR: hm+bsaylt+CKe7txJl6ShgupM339acgl4Ezc1owY1nh2c4DKMsaKQDGUItPB6ZKkDZfKsImoav
+ jdnTXsf8qBkg==
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="472446136"
+Received: from ideak-desk.fi.intel.com ([10.237.68.141])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2021 08:12:37 -0700
+Date: Mon, 17 May 2021 18:12:33 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20210517151233.GB1367033@ideak-desk.fi.intel.com>
+References: <20210515031035.2561658-1-matthew.d.roper@intel.com>
+ <20210515031035.2561658-10-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <9fbcff85-f36c-fc90-eeb6-aa58c85a920f@linux.intel.com>
-X-Operating-System: Linux phenom 5.10.32scarlett+ 
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Stop propagating fence errors by
- default
+In-Reply-To: <20210515031035.2561658-10-matthew.d.roper@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v4 09/23] drm/i915/adl_p: Implement TC
+ sequences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,106 +48,376 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Jason Ekstrand <jason.ekstrand@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, May 11, 2021 at 10:05:27AM +0100, Tvrtko Ursulin wrote:
-> 
-> On 10/05/2021 16:55, Daniel Vetter wrote:
-> > On Fri, May 07, 2021 at 09:35:21AM +0100, Tvrtko Ursulin wrote:
-> > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > 
-> > > This is an alternative proposed fix for the below references bug report
-> > > where dma fence error propagation is causing undesirable change in
-> > > behaviour post GPU hang/reset.
-> > > 
-> > > Approach in this patch is to simply stop propagating all dma fence errors
-> > > by default since that seems to be the upstream ask.
-> > > 
-> > > To handle the case where i915 needs error propagation for security, I add
-> > > a new dma fence flag DMA_FENCE_FLAG_PROPAGATE_ERROR and make use of it in
-> > > the command parsing chain only.
-> > > 
-> > > It sounds a plausible argument that fence propagation could be useful in
-> > > which case a core flag to enable opt-in should be universally useful.
-> > > 
-> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > > Reported-by: Marcin Slusarz <marcin.slusarz@intel.com>
-> > > Reported-by: Miroslav Bendik
-> > > References: 9e31c1fe45d5 ("drm/i915: Propagate errors on awaiting already signaled fences")
-> > > References: https://gitlab.freedesktop.org/drm/intel/-/issues/3080
-> > > Cc: Jason Ekstrand <jason.ekstrand@intel.com>
-> > > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > > ---
-> > >   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 ++
-> > >   drivers/gpu/drm/i915/i915_sw_fence.c           | 8 ++++----
-> > >   drivers/gpu/drm/i915/i915_sw_fence.h           | 8 ++++++++
-> > >   include/linux/dma-fence.h                      | 1 +
-> > 
-> > I still don't like this, least because we still introduce the concept of
-> > error propagation to dma-fence (but hey only in i915 code, which is
-> > exactly the kind of not-really-upstream approach we got a major chiding
-> > for).
-> > 
-> > The only thing this does is make it explicitly opt-in instead opt-out,
-> > like the first fix. The right approach is imo still to just throw it out,
-> > and instead make the one error propagation we really need very, very
-> > explicit. Instead of hiding it behind lots of magic.
-> > 
-> > The one error propagation we need is when the cmd parser work fails, it
-> > must cancel it's corresponding request to make sure the batchbuffer
-> > doesn't run. This should require about 2 lines in total:
-> > 
-> > - one line to store the request so that the cmd parser work can access it.
-> >    No refcounting needed, because the the request cannot even start (much
-> >    less get freed) before the cmd parser has singalled its fence
-> > 
-> > - one line to kill the request if the parsing fails. Maybe 2 if you
-> >    include the if condition. I have no idea how that's done since I'm
-> >    honestly lost how the i915 scheduler decides whether to run a batch or
-> >    not. I'm guessing we have a version of this for the ringbuffer and the
-> >    execlist backend (if not maybe gen7 cmdparser is broken?)
-> > 
-> > I don't see any need for magic behind-the-scenes propagation of such a
-> > security critical error. Especially when that error propagation thing
-> > caused security bugs of its own, is an i915-only feature, and not
-> > motivated by any userspace/uapi requirements at all.
-> 
-> I took this approach because to me propagating errors sounds more logical
-> than ignoring them and I was arguing in the commit message that the
-> infrastructure to enable that could be put in place as opt-in.
-> 
-> I also do not see a lot of magic in this patch. Only thing, potentially the
-> logic should be inverted so that the waiter marks itself as interested in
-> receiving errors. That would probably make even more sense as a core
-> concept.
-> 
-> Has there been a wider discussion on this topic in the past? I am curious to
-> know, even if propagation currently is i915 only, could other drivers be
-> interested.
+On Fri, May 14, 2021 at 08:10:21PM -0700, Matt Roper wrote:
+> From: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> =
 
-There hasn't been. i915-gem team decided "this is a cool concept", which
-resulted in a security bug. Now we're a few months in arguing whether a
-cool-looking concept that leads to a security bug is maybe a good idea,
-and whether we should sneak it in as a core concept to dma-buf.h without
-any wider discussion on the concept.
+> ADL-P have basically the same TC connection and disconnection
+> sequences as ICL and TGL, the major difference is the new registers.
+> =
 
-> Note that it adds almost nothing to the dma-buf common code about a single
-> flag, and at some point (currently missing) documentation on the very flag.
+> So here adding functions without the icl prefix in the name and
+> making the new functions call the platform specific function to access
+> the correct register.
+> =
 
-This is really not how upstream collaboration works, and it needs to stop.
+> v2:
+>  - Retain DDI TC PHY ownership flag during modesetting.
+> =
 
-If you want this, start another thread arguing why this is a good idea,
-fully decoupled from the security fix here.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+> BSpec: 55480
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c |   6 ++
+>  drivers/gpu/drm/i915/display/intel_tc.c  | 132 +++++++++++++++++++++--
+>  drivers/gpu/drm/i915/i915_reg.h          |  10 ++
+>  3 files changed, 137 insertions(+), 11 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index eccbdd42d223..38a4f251b9c9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -252,12 +252,18 @@ static u32 icl_pll_to_ddi_clk_sel(struct intel_enco=
+der *encoder,
+>  static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+>  				      const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
+>  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> +	enum phy phy =3D intel_port_to_phy(i915, encoder->port);
+>  =
+
+>  	intel_dp->DP =3D dig_port->saved_port_bits |
+>  		DDI_BUF_CTL_ENABLE | DDI_BUF_TRANS_SELECT(0);
+>  	intel_dp->DP |=3D DDI_PORT_WIDTH(crtc_state->lane_count);
+> +
+> +	if (IS_ALDERLAKE_P(i915) &&
+> +	    intel_phy_is_tc(i915, phy) && dig_port->tc_mode !=3D TC_PORT_TBT_AL=
+T)
+> +		intel_dp->DP |=3D DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+>  }
+>  =
+
+>  static int icl_calc_tbt_pll_link(struct drm_i915_private *dev_priv,
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
+15/display/intel_tc.c
+> index 1b108dea5fed..718e38c46dc0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -205,7 +205,7 @@ static void tc_port_fixup_legacy_flag(struct intel_di=
+gital_port *dig_port,
+>  	dig_port->tc_legacy_port =3D !dig_port->tc_legacy_port;
+>  }
+>  =
+
+> -static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port)
+> +static u32 icl_tc_port_live_status_mask(struct intel_digital_port *dig_p=
+ort)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>  	struct intel_uncore *uncore =3D &i915->uncore;
+> @@ -238,6 +238,40 @@ static u32 tc_port_live_status_mask(struct intel_dig=
+ital_port *dig_port)
+>  	return mask;
+>  }
+>  =
+
+> +static u32 adl_tc_port_live_status_mask(struct intel_digital_port *dig_p=
+ort)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +	enum tc_port tc_port =3D intel_port_to_tc(i915, dig_port->base.port);
+> +	u32 isr_bit =3D i915->hotplug.pch_hpd[dig_port->base.hpd_pin];
+> +	struct intel_uncore *uncore =3D &i915->uncore;
+> +	u32 val, mask =3D 0;
+> +
+> +	val =3D intel_uncore_read(uncore, TCSS_DDI_STATUS(tc_port));
+> +	if (val & TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT)
+> +		mask |=3D BIT(TC_PORT_DP_ALT);
+> +	if (val & TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT)
+> +		mask |=3D BIT(TC_PORT_TBT_ALT);
+> +
+> +	if (intel_uncore_read(uncore, SDEISR) & isr_bit)
+> +		mask |=3D BIT(TC_PORT_LEGACY);
+> +
+> +	/* The sink can be connected only in a single mode. */
+> +	if (!drm_WARN_ON(&i915->drm, hweight32(mask) > 1))
+> +		tc_port_fixup_legacy_flag(dig_port, mask);
+> +
+> +	return mask;
+> +}
+> +
+> +static u32 tc_port_live_status_mask(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return adl_tc_port_live_status_mask(dig_port);
+> +
+> +	return icl_tc_port_live_status_mask(dig_port);
+> +}
+> +
+>  static bool icl_tc_phy_status_complete(struct intel_digital_port *dig_po=
+rt)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> @@ -256,6 +290,33 @@ static bool icl_tc_phy_status_complete(struct intel_=
+digital_port *dig_port)
+>  	return val & DP_PHY_MODE_STATUS_COMPLETED(dig_port->tc_phy_fia_idx);
+>  }
+>  =
+
+> +static bool adl_tc_phy_status_complete(struct intel_digital_port *dig_po=
+rt)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +	struct intel_uncore *uncore =3D &i915->uncore;
+> +	u32 val;
+> +
+> +	val =3D intel_uncore_read(uncore, TCSS_DDI_STATUS(dig_port->tc_phy_fia_=
+idx));
+> +	if (val =3D=3D 0xffffffff) {
+> +		drm_dbg_kms(&i915->drm,
+> +			    "Port %s: PHY in TCCOLD, assuming not complete\n",
+> +			    dig_port->tc_port_name);
+> +		return false;
+> +	}
+> +
+> +	return val & TCSS_DDI_STATUS_READY;
+> +}
+> +
+> +static bool tc_phy_status_complete(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return adl_tc_phy_status_complete(dig_port);
+> +
+> +	return icl_tc_phy_status_complete(dig_port);
+> +}
+> +
+>  static bool icl_tc_phy_take_ownership(struct intel_digital_port *dig_por=
+t,
+>  				      bool take)
+>  {
+> @@ -280,7 +341,7 @@ static bool icl_tc_phy_take_ownership(struct intel_di=
+gital_port *dig_port,
+>  	intel_uncore_write(uncore,
+>  			   PORT_TX_DFLEXDPCSSS(dig_port->tc_phy_fia), val);
+>  =
+
+> -	if (!take && wait_for(!icl_tc_phy_status_complete(dig_port), 10))
+> +	if (!take && wait_for(!tc_phy_status_complete(dig_port), 10))
+>  		drm_dbg_kms(&i915->drm,
+>  			    "Port %s: PHY complete clear timed out\n",
+>  			    dig_port->tc_port_name);
+> @@ -288,6 +349,34 @@ static bool icl_tc_phy_take_ownership(struct intel_d=
+igital_port *dig_port,
+>  	return true;
+>  }
+>  =
+
+> +static bool adl_tc_phy_take_ownership(struct intel_digital_port *dig_por=
+t,
+> +				      bool take)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +	struct intel_uncore *uncore =3D &i915->uncore;
+> +	enum port port =3D dig_port->base.port;
+> +	u32 val;
+> +
+> +	val =3D intel_uncore_read(uncore, DDI_BUF_CTL(port));
+> +	if (take)
+> +		val |=3D DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> +	else
+> +		val &=3D ~DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> +	intel_uncore_write(uncore, DDI_BUF_CTL(port), val);
+> +
+> +	return true;
+> +}
+> +
+> +static bool tc_phy_take_ownership(struct intel_digital_port *dig_port, b=
+ool take)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return adl_tc_phy_take_ownership(dig_port, take);
+> +
+> +	return icl_tc_phy_take_ownership(dig_port, take);
+> +}
+> +
+>  static bool icl_tc_phy_is_owned(struct intel_digital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> @@ -306,6 +395,27 @@ static bool icl_tc_phy_is_owned(struct intel_digital=
+_port *dig_port)
+>  	return val & DP_PHY_MODE_STATUS_NOT_SAFE(dig_port->tc_phy_fia_idx);
+>  }
+>  =
+
+> +static bool adl_tc_phy_is_owned(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +	struct intel_uncore *uncore =3D &i915->uncore;
+> +	enum port port =3D dig_port->base.port;
+> +	u32 val;
+> +
+> +	val =3D intel_uncore_read(uncore, DDI_BUF_CTL(port));
+> +	return val & DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+> +}
+> +
+> +static bool tc_phy_is_owned(struct intel_digital_port *dig_port)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +
+> +	if (IS_ALDERLAKE_P(i915))
+> +		return adl_tc_phy_is_owned(dig_port);
+> +
+> +	return icl_tc_phy_is_owned(dig_port);
+> +}
+> +
+>  /*
+>   * This function implements the first part of the Connect Flow described=
+ by our
+>   * specification, Gen11 TypeC Programming chapter. The rest of the flow =
+(reading
+> @@ -323,13 +433,13 @@ static void icl_tc_phy_connect(struct intel_digital=
+_port *dig_port,
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>  	int max_lanes;
+>  =
+
+> -	if (!icl_tc_phy_status_complete(dig_port)) {
+> +	if (!tc_phy_status_complete(dig_port)) {
+>  		drm_dbg_kms(&i915->drm, "Port %s: PHY not ready\n",
+>  			    dig_port->tc_port_name);
+>  		goto out_set_tbt_alt_mode;
+>  	}
+>  =
+
+> -	if (!icl_tc_phy_take_ownership(dig_port, true) &&
+> +	if (!tc_phy_take_ownership(dig_port, true) &&
+>  	    !drm_WARN_ON(&i915->drm, dig_port->tc_legacy_port))
+>  		goto out_set_tbt_alt_mode;
+>  =
+
+> @@ -364,7 +474,7 @@ static void icl_tc_phy_connect(struct intel_digital_p=
+ort *dig_port,
+>  	return;
+>  =
+
+>  out_release_phy:
+> -	icl_tc_phy_take_ownership(dig_port, false);
+> +	tc_phy_take_ownership(dig_port, false);
+>  out_set_tbt_alt_mode:
+>  	dig_port->tc_mode =3D TC_PORT_TBT_ALT;
+>  }
+> @@ -380,7 +490,7 @@ static void icl_tc_phy_disconnect(struct intel_digita=
+l_port *dig_port)
+>  		/* Nothing to do, we never disconnect from legacy mode */
+>  		break;
+>  	case TC_PORT_DP_ALT:
+> -		icl_tc_phy_take_ownership(dig_port, false);
+> +		tc_phy_take_ownership(dig_port, false);
+>  		dig_port->tc_mode =3D TC_PORT_TBT_ALT;
+>  		break;
+>  	case TC_PORT_TBT_ALT:
+> @@ -395,13 +505,13 @@ static bool icl_tc_phy_is_connected(struct intel_di=
+gital_port *dig_port)
+>  {
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>  =
+
+> -	if (!icl_tc_phy_status_complete(dig_port)) {
+> +	if (!tc_phy_status_complete(dig_port)) {
+>  		drm_dbg_kms(&i915->drm, "Port %s: PHY status not complete\n",
+>  			    dig_port->tc_port_name);
+>  		return dig_port->tc_mode =3D=3D TC_PORT_TBT_ALT;
+>  	}
+>  =
+
+> -	if (!icl_tc_phy_is_owned(dig_port)) {
+> +	if (!tc_phy_is_owned(dig_port)) {
+>  		drm_dbg_kms(&i915->drm, "Port %s: PHY not owned\n",
+>  			    dig_port->tc_port_name);
+>  =
+
+> @@ -419,8 +529,8 @@ intel_tc_port_get_current_mode(struct intel_digital_p=
+ort *dig_port)
+>  	u32 live_status_mask =3D tc_port_live_status_mask(dig_port);
+>  	enum tc_port_mode mode;
+>  =
+
+> -	if (!icl_tc_phy_is_owned(dig_port) ||
+> -	    drm_WARN_ON(&i915->drm, !icl_tc_phy_status_complete(dig_port)))
+> +	if (!tc_phy_is_owned(dig_port) ||
+> +	    drm_WARN_ON(&i915->drm, !tc_phy_status_complete(dig_port)))
+>  		return TC_PORT_TBT_ALT;
+>  =
+
+>  	mode =3D dig_port->tc_legacy_port ? TC_PORT_LEGACY : TC_PORT_DP_ALT;
+> @@ -442,7 +552,7 @@ intel_tc_port_get_target_mode(struct intel_digital_po=
+rt *dig_port)
+>  	if (live_status_mask)
+>  		return fls(live_status_mask) - 1;
+>  =
+
+> -	return icl_tc_phy_status_complete(dig_port) &&
+> +	return tc_phy_status_complete(dig_port) &&
+>  	       dig_port->tc_legacy_port ? TC_PORT_LEGACY :
+>  					  TC_PORT_TBT_ALT;
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index ab6ffe036841..65af0d84d75b 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -10160,6 +10160,7 @@ enum skl_power_gate {
+>  #define  DDI_BUF_EMP_MASK			(0xf << 24)
+>  #define  DDI_BUF_PORT_REVERSAL			(1 << 16)
+>  #define  DDI_BUF_IS_IDLE			(1 << 7)
+> +#define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
+>  #define  DDI_A_4_LANES				(1 << 4)
+>  #define  DDI_PORT_WIDTH(width)			(((width) - 1) << 1)
+>  #define  DDI_PORT_WIDTH_MASK			(7 << 1)
+> @@ -12596,6 +12597,15 @@ enum skl_power_gate {
+>  #define   DP_PIN_ASSIGNMENT_MASK(idx)		(0xf << ((idx) * 4))
+>  #define   DP_PIN_ASSIGNMENT(idx, x)		((x) << ((idx) * 4))
+>  =
+
+> +#define _TCSS_DDI_STATUS_1			0x161500
+> +#define _TCSS_DDI_STATUS_2			0x161504
+> +#define TCSS_DDI_STATUS(tc)			_MMIO(_PICK_EVEN(tc, \
+> +								 _TCSS_DDI_STATUS_1, \
+> +								 _TCSS_DDI_STATUS_2))
+> +#define  TCSS_DDI_STATUS_READY			REG_BIT(2)
+> +#define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT	REG_BIT(1)
+> +#define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT	REG_BIT(0)
+> +
+>  /* This register controls the Display State Buffer (DSB) engines. */
+>  #define _DSBSL_INSTANCE_BASE		0x70B00
+>  #define DSBSL_INSTANCE(pipe, id)	(_DSBSL_INSTANCE_BASE + \
+> -- =
+
+> 2.25.4
+> =
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
