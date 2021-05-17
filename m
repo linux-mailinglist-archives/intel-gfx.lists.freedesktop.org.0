@@ -1,40 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39F5A3832D1
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 16:54:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 249D83834D6
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 17:12:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 749D06E9BC;
-	Mon, 17 May 2021 14:54:06 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E78D36E9C2
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 14:54:04 +0000 (UTC)
-IronPort-SDR: Pfo2Wv+PUnMJx1MoP1lNNNja3gIV0HQDvpAQ6ihSi+G/Fdv7ciCjRw/0KKum1GV7+SOwirHzwu
- NCjZBxSz5i+Q==
-X-IronPort-AV: E=McAfee;i="6200,9189,9987"; a="264397262"
-X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="264397262"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2021 07:54:04 -0700
-IronPort-SDR: 9Xxbf2S2I0413o5QC/2BhEO2Tv9DMTM1YJ0emMU81hPPjveLBcBoe2E5kigu5adM/QfA2m9qQR
- pfZbenWqH+BQ==
-X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="472437728"
-Received: from ideak-desk.fi.intel.com ([10.237.68.141])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2021 07:54:02 -0700
-Date: Mon, 17 May 2021 17:53:59 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Jose Souza <jose.souza@intel.com>
-Message-ID: <20210517145359.GA1367033@ideak-desk.fi.intel.com>
-References: <20210515031035.2561658-1-matthew.d.roper@intel.com>
- <20210515031035.2561658-9-matthew.d.roper@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A39476E086;
+	Mon, 17 May 2021 15:12:27 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com
+ [IPv6:2a00:1450:4864:20::431])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72EE56E086
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 15:12:26 +0000 (UTC)
+Received: by mail-wr1-x431.google.com with SMTP id c14so5001967wrx.3
+ for <Intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 08:12:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=46Mcfg0fJPfvf+exhPuK3IU8JopPm3jTKKYAxQQFRqE=;
+ b=FI+sS0LMSk1MflNV3uZOM+tMr2Z6OLkKR8xvkropE9Wr6gM+Zp2ZlJ6P9VJV5qcOag
+ Iwb/OM0tW2F3v2Nbn+L0PN2Jp3sLa6THRCn97GdH8AmvDY854koRNUDcwJvnw3eTQI75
+ 2E6K+LuR3UPj34VWRxY8DYpmg0oiGNY+zeBtI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=46Mcfg0fJPfvf+exhPuK3IU8JopPm3jTKKYAxQQFRqE=;
+ b=SXAj9Xe2IJk4XZJ3iCaKLQ4DUpoExqF9SPl3uRUJHBl5dM/dbk/Z20PRYLVJ2nhmvZ
+ 6gGfMtp9uLitgKrkM0wGgTnCfDkc54aMJRsKTX8j2F7ygBwJ2A67hylAJ+LLcTd+E55x
+ VYYqpRpLAPdp6GWzUpAsYUjPVbFTKfcLH6j8P+h3is0wTUEOeHRzlLDGib05BzR3TCQp
+ fv07hdwAGVdLMLndvbogDOUu31i6+xLTotRIhW7sRgghvXFGM5m58MSv++GX2Ay8yrHY
+ CdgHBAiVNwNq9Ngz2suvWvdYtqmUa2GOVErquJ8PhFFx9ptzNTTcoN8B3tKFyT3DkdNP
+ PaRw==
+X-Gm-Message-State: AOAM531FBdQPEIfanlFzT6l9w6AFvPCgexPde9AA22kHcvviWJlnPiGi
+ sbAxAOEnkd9h87hJbDH1p5bzOQ==
+X-Google-Smtp-Source: ABdhPJy/y+590o2gNjxJYGxBsyrCDCJjAlhyn3lowHbtjeMwPyM7ZmlgbU+0UbEkk8HxJpyYSTPbYA==
+X-Received: by 2002:adf:f212:: with SMTP id p18mr199780wro.318.1621264345118; 
+ Mon, 17 May 2021 08:12:25 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id w20sm3113683wmc.44.2021.05.17.08.12.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 17 May 2021 08:12:24 -0700 (PDT)
+Date: Mon, 17 May 2021 17:12:22 +0200
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <YKKH1rRy2HN4Gnr8@phenom.ffwll.local>
+References: <20210507083521.2406201-1-tvrtko.ursulin@linux.intel.com>
+ <YJlXeMkMG7Xt0zlA@phenom.ffwll.local>
+ <9fbcff85-f36c-fc90-eeb6-aa58c85a920f@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20210515031035.2561658-9-matthew.d.roper@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v4 08/23] drm/i915/adl_p: Handle TC cold
+In-Reply-To: <9fbcff85-f36c-fc90-eeb6-aa58c85a920f@linux.intel.com>
+X-Operating-System: Linux phenom 5.10.32scarlett+ 
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Stop propagating fence errors by
+ default
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,93 +67,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Jason Ekstrand <jason.ekstrand@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, May 14, 2021 at 08:10:20PM -0700, Matt Roper wrote:
-> From: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> =
+On Tue, May 11, 2021 at 10:05:27AM +0100, Tvrtko Ursulin wrote:
+> 
+> On 10/05/2021 16:55, Daniel Vetter wrote:
+> > On Fri, May 07, 2021 at 09:35:21AM +0100, Tvrtko Ursulin wrote:
+> > > From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > 
+> > > This is an alternative proposed fix for the below references bug report
+> > > where dma fence error propagation is causing undesirable change in
+> > > behaviour post GPU hang/reset.
+> > > 
+> > > Approach in this patch is to simply stop propagating all dma fence errors
+> > > by default since that seems to be the upstream ask.
+> > > 
+> > > To handle the case where i915 needs error propagation for security, I add
+> > > a new dma fence flag DMA_FENCE_FLAG_PROPAGATE_ERROR and make use of it in
+> > > the command parsing chain only.
+> > > 
+> > > It sounds a plausible argument that fence propagation could be useful in
+> > > which case a core flag to enable opt-in should be universally useful.
+> > > 
+> > > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > > Reported-by: Marcin Slusarz <marcin.slusarz@intel.com>
+> > > Reported-by: Miroslav Bendik
+> > > References: 9e31c1fe45d5 ("drm/i915: Propagate errors on awaiting already signaled fences")
+> > > References: https://gitlab.freedesktop.org/drm/intel/-/issues/3080
+> > > Cc: Jason Ekstrand <jason.ekstrand@intel.com>
+> > > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > ---
+> > >   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 ++
+> > >   drivers/gpu/drm/i915/i915_sw_fence.c           | 8 ++++----
+> > >   drivers/gpu/drm/i915/i915_sw_fence.h           | 8 ++++++++
+> > >   include/linux/dma-fence.h                      | 1 +
+> > 
+> > I still don't like this, least because we still introduce the concept of
+> > error propagation to dma-fence (but hey only in i915 code, which is
+> > exactly the kind of not-really-upstream approach we got a major chiding
+> > for).
+> > 
+> > The only thing this does is make it explicitly opt-in instead opt-out,
+> > like the first fix. The right approach is imo still to just throw it out,
+> > and instead make the one error propagation we really need very, very
+> > explicit. Instead of hiding it behind lots of magic.
+> > 
+> > The one error propagation we need is when the cmd parser work fails, it
+> > must cancel it's corresponding request to make sure the batchbuffer
+> > doesn't run. This should require about 2 lines in total:
+> > 
+> > - one line to store the request so that the cmd parser work can access it.
+> >    No refcounting needed, because the the request cannot even start (much
+> >    less get freed) before the cmd parser has singalled its fence
+> > 
+> > - one line to kill the request if the parsing fails. Maybe 2 if you
+> >    include the if condition. I have no idea how that's done since I'm
+> >    honestly lost how the i915 scheduler decides whether to run a batch or
+> >    not. I'm guessing we have a version of this for the ringbuffer and the
+> >    execlist backend (if not maybe gen7 cmdparser is broken?)
+> > 
+> > I don't see any need for magic behind-the-scenes propagation of such a
+> > security critical error. Especially when that error propagation thing
+> > caused security bugs of its own, is an i915-only feature, and not
+> > motivated by any userspace/uapi requirements at all.
+> 
+> I took this approach because to me propagating errors sounds more logical
+> than ignoring them and I was arguing in the commit message that the
+> infrastructure to enable that could be put in place as opt-in.
+> 
+> I also do not see a lot of magic in this patch. Only thing, potentially the
+> logic should be inverted so that the waiter marks itself as interested in
+> receiving errors. That would probably make even more sense as a core
+> concept.
+> 
+> Has there been a wider discussion on this topic in the past? I am curious to
+> know, even if propagation currently is i915 only, could other drivers be
+> interested.
 
-> On ADL-P TC cold is exited and blocked when legacy aux is powered,
-> that is exacly the same of what ICL need for static TC ports.
-> =
+There hasn't been. i915-gem team decided "this is a cool concept", which
+resulted in a security bug. Now we're a few months in arguing whether a
+cool-looking concept that leads to a security bug is maybe a good idea,
+and whether we should sneak it in as a core concept to dma-buf.h without
+any wider discussion on the concept.
 
-> TODO: When a TBT hub or monitor is connected it will cause TBT and
-> legacy aux to be powered at the same time, hopefully this will not
-> cause any issues but if it do, some rework will be needed.
-> =
+> Note that it adds almost nothing to the dma-buf common code about a single
+> flag, and at some point (currently missing) documentation on the very flag.
 
-> v2:
->  - skip icl_tc_port_assert_ref_held() warn on, adl-p uses aux to
->    block TC cold
-> =
+This is really not how upstream collaboration works, and it needs to stop.
 
-> BSpec: 55480
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_power.c | 3 ++-
->  drivers/gpu/drm/i915/display/intel_tc.c            | 2 +-
->  2 files changed, 3 insertions(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index 54c6d65011ee..29d2f1d0cffd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -551,7 +551,8 @@ static void icl_tc_port_assert_ref_held(struct drm_i9=
-15_private *dev_priv,
->  	if (drm_WARN_ON(&dev_priv->drm, !dig_port))
->  		return;
->  =
-
-> -	if (DISPLAY_VER(dev_priv) =3D=3D 11 && dig_port->tc_legacy_port)
-> +	if (IS_ALDERLAKE_P(dev_priv) ||
-
-A TC port reference is held whenever enabling the port's AUX power
-domain (so whenever blocking TC-cold for instance), so this shouldn't be
-needed.
-
-OTOH, the !aux_powered check in intel_tc_port_reset_mode() needs this
-exception, since there TC-cold must be blocked and so AUX will be
-enabled as opposed to other platforms.
-
-Also, in icl_tc_phy_aux_power_well_enable() we need to avoid the power
-well enabling timeout error message, since it won't get enabled unless
-something is actually plugged to the TC connector.
-
-> +	    (DISPLAY_VER(dev_priv) =3D=3D 11 && dig_port->tc_legacy_port))
->  		return;
->  =
-
->  	drm_WARN_ON(&dev_priv->drm, !intel_tc_port_ref_held(dig_port));
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
-15/display/intel_tc.c
-> index e325463acddd..1b108dea5fed 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -28,7 +28,7 @@ tc_cold_get_power_domain(struct intel_digital_port *dig=
-_port)
->  {
->  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
->  =
-
-> -	if (DISPLAY_VER(i915) =3D=3D 11)
-> +	if (IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) =3D=3D 11)
->  		return intel_legacy_aux_to_power_domain(dig_port->aux_ch);
->  	else
->  		return POWER_DOMAIN_TC_COLD_OFF;
-> -- =
-
-> 2.25.4
-> =
-
+If you want this, start another thread arguing why this is a good idea,
+fully decoupled from the security fix here.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
