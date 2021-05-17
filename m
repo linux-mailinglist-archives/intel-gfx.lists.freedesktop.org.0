@@ -2,40 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4094B382B98
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 13:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F0D382BDF
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 14:15:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35D406E934;
-	Mon, 17 May 2021 11:57:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B1C16E93F;
+	Mon, 17 May 2021 12:15:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 582586E934;
- Mon, 17 May 2021 11:57:39 +0000 (UTC)
-IronPort-SDR: 6KmR06e9VtKwRNvGNC+7+mCFPXoxeHne2wo3KooAhD3D9A2Cd3lFjbIcP0qgDmxWjuFcQSahFy
- QIO3rCdccDrA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="221481048"
-X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="221481048"
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D84F6E93F;
+ Mon, 17 May 2021 12:15:46 +0000 (UTC)
+IronPort-SDR: bomVbLXnIfuIDRK+VIpw6mWDlDoK5mqILvT2NypzweKs60Wz27rPZ+fU/Q1CsZW264BjOBEk+B
+ /nn6D+FzXhpg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9986"; a="285979920"
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="285979920"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2021 04:57:39 -0700
-IronPort-SDR: Ccz1Aj7ikNeLmgjEPGoCWj0SfInqjrHlDOETui7epcm3q3B6RmMKhQEdg37TtRlycWozTfI3AW
- wHLlPAWdUW5Q==
-X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="472375881"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2021 05:15:45 -0700
+IronPort-SDR: 7Ht9fR84yA4Rq8Y8w3Q2gXOI2V6j3777dycbyy09H98pxYDgPaGBbYFG66HJ8MS8XTvkcZkwbY
+ lnxhCVCbYQ5Q==
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="472382788"
 Received: from sudhirk1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.50.192])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2021 04:57:36 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20210412090526.30547-15-matthew.auld@intel.com>
+ 17 May 2021 05:15:39 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Kai-Heng Feng <kai.heng.feng@canonical.com>, Ville =?utf-8?B?U3lyasOk?=
+ =?utf-8?B?bMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <CAAd53p7kFD-PrdeONF8-c=JG5rtHXpz1sxTbPkwg8YY4ZcCYWg@mail.gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210412090526.30547-1-matthew.auld@intel.com>
- <20210412090526.30547-15-matthew.auld@intel.com>
-Date: Mon, 17 May 2021 14:57:33 +0300
-Message-ID: <87im3hh8sy.fsf@intel.com>
+References: <20210426152420.359402-1-kai.heng.feng@canonical.com>
+ <YJrKnHppE5FnaZ72@intel.com>
+ <CAAd53p7kFD-PrdeONF8-c=JG5rtHXpz1sxTbPkwg8YY4ZcCYWg@mail.gmail.com>
+Date: Mon, 17 May 2021 15:15:36 +0300
+Message-ID: <87fsylh7yv.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 14/19] drm/i915/oprom: Basic sanitization
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Invoke another _DSM to enable
+ MUX on HP Workstation laptops
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,390 +51,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David Airlie <airlied@linux.ie>, open list <linux-kernel@vger.kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Takashi Iwai <tiwai@suse.de>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Dave Airlie <airlied@redhat.com>, intel-gfx <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 12 Apr 2021, Matthew Auld <matthew.auld@intel.com> wrote:
-> From: Anshuman Gupta <anshuman.gupta@intel.com>
->
-> Sanitize OPROM header, CPD signature and OPROM PCI version.
-> OPROM_HEADER, EXPANSION_ROM_HEADER and OPROM_MEU_BLOB structures
-> and PCI struct offsets are provided by GSC counterparts.
-> These are yet to be Documented in B.Spec.
-> After successful sanitization, extract VBT from opregion
-> image.
-
-So I don't understand what the point is with two consecutive patches
-where the latter rewrites a lot of the former. 
-
-BR,
-Jani.
-
-
->
-> v2:
-> - Used macro for OPROM header magic 0xaa55 [Rodrigo]
-> - Added a OPROM layout. [Uma]
-> - Extract opregion from OPROM package and then extract
->   VBT from opregion to have backward compatibility with
->   older IFWI.
->
-> v3:
-> - Moved opreg stuff to intel_opregion.{c,h}. [Uma]
-> - Memory leak and intel_oprom_verify_signature return
->   value fixes. [Uma]
->
-> v4:
->  - Fix return code storage for oprom_image_parse_helper (Matt)
->
-> v5 by Jani:
-> - switch to intel_uncore_read/intel_uncore_write
->
-> v6 by Khajapasha:
-> - Rename intel_oprom_verify_signature() to
->   intel_spi_get_oprom_opreg() [Jani, Nikula]
-> - Use u32 data type for opregion size [Jani, Nikula]
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bios.c     |  47 +++--
->  drivers/gpu/drm/i915/display/intel_opregion.c | 169 ++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_opregion.h |  38 +++-
->  3 files changed, 227 insertions(+), 27 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-> index f9dc651f1652..59eec8333723 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bios.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-> @@ -2240,37 +2240,36 @@ bool intel_bios_is_valid_vbt(const void *buf, size_t size)
->  
->  static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
->  {
-> -	u32 count, data, found, store = 0;
-> -	u32 static_region, oprom_offset;
-> -	u32 oprom_size = 0x200000;
-> +	u32 count, found, opreg_size;
-> +	u32 *vbt, *oprom_opreg = NULL;
->  	u16 vbt_size;
-> -	u32 *vbt;
-> +	u8 *parse_ptr;
->  
-> -	static_region = intel_uncore_read(&i915->uncore, SPI_STATIC_REGIONS);
-> -	static_region &= OPTIONROM_SPI_REGIONID_MASK;
-> -	intel_uncore_write(&i915->uncore, PRIMARY_SPI_REGIONID, static_region);
-> -
-> -	oprom_offset = intel_uncore_read(&i915->uncore, OROM_OFFSET);
-> -	oprom_offset &= OROM_OFFSET_MASK;
-> +	if (intel_spi_get_oprom_opreg(i915, &oprom_opreg, &opreg_size)) {
-> +		drm_err(&i915->drm, "oprom signature verification failed\n");
-> +		goto err_not_found;
-> +	}
->  
-> -	for (count = 0; count < oprom_size; count += 4) {
-> -		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, oprom_offset + count);
-> -		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
-> +	if (!oprom_opreg) {
-> +		drm_err(&i915->drm, "opregion not found\n");
-> +		goto err_not_found;
-> +	}
->  
-> -		if (data == *((const u32 *)"$VBT")) {
-> -			found = oprom_offset + count;
-> +	for (count = 0; count < opreg_size; count += 4) {
-> +		if (oprom_opreg[count / 4] == *((const u32 *)"$VBT")) {
-> +			found = count;
->  			break;
->  		}
->  	}
->  
-> -	if (count >= oprom_size)
-> +	if (count >= opreg_size) {
-> +		drm_err(&i915->drm, "VBT not found in opregion\n");
->  		goto err_not_found;
-> +	}
->  
->  	/* Get VBT size and allocate space for the VBT */
-> -	intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found +
-> -		   offsetof(struct vbt_header, vbt_size));
-> -	vbt_size = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
-> -	vbt_size &= 0xffff;
-> +	parse_ptr = (u8 *)oprom_opreg + found;
-> +	vbt_size = ((struct vbt_header *)parse_ptr)->vbt_size;
->  
->  	vbt = kzalloc(vbt_size, GFP_KERNEL);
->  	if (!vbt) {
-> @@ -2279,16 +2278,12 @@ static struct vbt_header *spi_oprom_get_vbt(struct drm_i915_private *i915)
->  		goto err_not_found;
->  	}
->  
-> -	for (count = 0; count < vbt_size; count += 4) {
-> -		intel_uncore_write(&i915->uncore, PRIMARY_SPI_ADDRESS, found + count);
-> -		data = intel_uncore_read(&i915->uncore, PRIMARY_SPI_TRIGGER);
-> -		*(vbt + store++) = data;
-> -	}
-> -
-> +	memcpy(vbt, parse_ptr, vbt_size);
->  	if (!intel_bios_is_valid_vbt(vbt, vbt_size))
->  		goto err_free_vbt;
->  
->  	DRM_DEBUG_KMS("Found valid VBT in SPI flash\n");
-> +	kfree(oprom_opreg);
->  
->  	return (struct vbt_header *)vbt;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-> index dfd724e506b5..e9ccd8265a1f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.c
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-> @@ -983,6 +983,175 @@ int intel_opregion_setup(struct drm_i915_private *dev_priv)
->  	return err;
->  }
->  
-> +static int oprom_image_parse_helper(u8 *parse_ptr, u8 *last_img, u8 *code_type,
-> +				    struct drm_i915_private *i915)
-> +{
-> +	u8 size_512_bytes;
-> +
-> +	if (((union oprom_header *)parse_ptr)->signature != OPROM_IMAGE_MAGIC) {
-> +		drm_err(&i915->drm, "Wrong OPROM header signature.\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	size_512_bytes = parse_ptr[((struct expansion_rom_header *)parse_ptr)->pcistructoffset + PCI_IMAGE_LENGTH_OFFSET];
-> +	*code_type = parse_ptr[((struct expansion_rom_header *)parse_ptr)->pcistructoffset + PCI_CODE_TYPE_OFFSET];
-> +	*last_img = parse_ptr[((struct expansion_rom_header *)parse_ptr)->pcistructoffset + PCI_LAST_IMAGE_INDICATOR_OFFSET];
-> +
-> +	return size_512_bytes;
-> +}
-> +
-> +static void spi_read_oprom_helper(size_t len, u32 offset, u32 *buf,
-> +				  struct drm_i915_private *dev_priv)
-> +{
-> +	u32 count, data;
-> +
-> +	for (count = 0; count < len; count += 4) {
-> +		intel_uncore_write(&dev_priv->uncore, PRIMARY_SPI_ADDRESS, offset + count);
-> +		data = intel_uncore_read(&dev_priv->uncore, PRIMARY_SPI_TRIGGER);
-> +		buf[count / 4] = data;
-> +	}
-> +}
-> +
-> +/**
-> + *	+        DASH+G OPROM IMAGE LAYOUT           +
-> + *	+--------+-------+---------------------------+
-> + *	| Offset | Value |   ROM Header Fields       +-----> Image 1 (CSS)
-> + *	+--------------------------------------------+
-> + *	|    0h  |  55h  |   ROM Signature Byte1     |
-> + *	|    1h  |  AAh  |   ROM Signature Byte2     |
-> + *	|    2h  |  xx   |        Reserved           |
-> + *	|  18+19h|  xx   |  Ptr to PCI DataStructure |
-> + *	+----------------+---------------------------+
-> + *	|           PCI Data Structure               |
-> + *	+--------------------------------------------+
-> + *	|    .       .             .                 |
-> + *	|    .       .             .                 |
-> + *	|    10  +  xx   +     Image Length          |
-> + *	|    14  +  xx   +     Code Type             |
-> + *	|    15  +  xx   +  Last Image Indicator     |
-> + *	|    .       .             .                 |
-> + *	+--------------------------------------------+
-> + *	|               MEU BLOB                     |
-> + *	+--------------------------------------------+
-> + *	|              CPD Header                    |
-> + *	|              CPD Entry                     |
-> + *	|              Reserved                      |
-> + *	|           SignedDataPart1                  |
-> + *	|              PublicKey                     |
-> + *	|            RSA Signature                   |
-> + *	|           SignedDataPart2                  |
-> + *	|            IFWI Metadata                   |
-> + *	+--------+-------+---------------------------+
-> + *	|    .   |   .   |         .                 |
-> + *	|    .   |   .   |         .                 |
-> + *	+--------------------------------------------+
-> + *	| Offset | Value |   ROM Header Fields       +-----> Image 2 (Config Data) (Offset: 0x800)
-> + *	+--------------------------------------------+
-> + *	|    0h  |  55h  |   ROM Signature Byte1     |
-> + *	|    1h  |  AAh  |   ROM Signature Byte2     |
-> + *	|    2h  |  xx   |        Reserved           |
-> + *	|  18+19h|  xx   |  Ptr to PCI DataStructure |
-> + *	+----------------+---------------------------+
-> + *	|           PCI Data Structure               |
-> + *	+--------------------------------------------+
-> + *	|    .       .             .                 |
-> + *	|    .       .             .                 |
-> + *	|    10  +  xx   +     Image Length          |
-> + *	|    14  +  xx   +      Code Type            |
-> + *	|    15  +  xx   +   Last Image Indicator    |
-> + *	|    .       .             .                 |
-> + *	|    1A  +  3C   + Ptr to Opregion Signature |
-> + *	|    .       .             .                 |
-> + *	|    .       .             .                 |
-> + *	|   83Ch + IntelGraphicsMem                  | <---+ Opregion Signature
-> + *	+--------+-----------------------------------+
-> + *
-> + * intel_spi_get_oprom_opreg() get OPROM image.
-> + * @i915: pointer to i915 device.
-> + * @opreg: pointer to opregion buffer output.
-> + * @opreg_size: pointer to opregion size output.
-> + */
-> +int
-> +intel_spi_get_oprom_opreg(struct drm_i915_private *i915, u32 **opreg,
-> +			  u32 *opreg_size)
-> +{
-> +	u8 img_sig[sizeof(OPREGION_SIGNATURE)];
-> +	u8 code_type, last_img;
-> +	u32 static_region, offset, img_len;
-> +	u32 *oprom_img, *oprom_img_hdr;
-> +	u16 opreg_base;
-> +	u8 *parse_ptr;
-> +	int img_size;
-> +	int ret = -EINVAL;
-> +
-> +	/* initialize SPI to read the OPROM */
-> +	static_region = intel_uncore_read(&i915->uncore, SPI_STATIC_REGIONS);
-> +	static_region &= OPTIONROM_SPI_REGIONID_MASK;
-> +	intel_uncore_write(&i915->uncore, PRIMARY_SPI_REGIONID, static_region);
-> +	/* read OPROM offset in SPI flash */
-> +	offset = intel_uncore_read(&i915->uncore, OROM_OFFSET);
-> +	offset &= OROM_OFFSET_MASK;
-> +
-> +	oprom_img_hdr = kzalloc(OPROM_INITIAL_READ_SIZE, GFP_KERNEL);
-> +	if (!oprom_img_hdr)
-> +		return -ENOMEM;
-> +
-> +	do {
-> +		spi_read_oprom_helper(OPROM_INITIAL_READ_SIZE, offset,
-> +				      oprom_img_hdr, i915);
-> +		img_size = oprom_image_parse_helper((u8 *)oprom_img_hdr, &last_img,
-> +						    &code_type, i915);
-> +		if (img_size <= 0) {
-> +			ret = -EINVAL;
-> +			goto err_free_hdr;
-> +		}
-> +
-> +		img_len = img_size * OPROM_BYTE_BOUNDARY;
-> +		oprom_img = kzalloc(img_len, GFP_KERNEL);
-> +		if (!oprom_img) {
-> +			ret = -ENOMEM;
-> +			goto err_free_hdr;
-> +		}
-> +
-> +		spi_read_oprom_helper(img_len, offset, oprom_img, i915);
-> +		parse_ptr = (u8 *)oprom_img;
-> +		offset = offset + img_len;
-> +
-> +		/* opregion base offset */
-> +		opreg_base = ((struct expansion_rom_header *)parse_ptr)->opregion_base;
-> +		/* CPD or opreg signature is present at opregion_base offset */
-> +		memcpy(img_sig, parse_ptr + opreg_base, sizeof(OPREGION_SIGNATURE));
-> +
-> +		if (!memcmp(img_sig, OPREGION_SIGNATURE, sizeof(OPREGION_SIGNATURE) - 1)) {
-> +			*opreg = oprom_img;
-> +			*opreg_size = img_len;
-> +			drm_dbg_kms(&i915->drm, "Found opregion image\n");
-> +			ret = 0;
-> +			break;
-> +		} else if (!memcmp(img_sig, CPD_SIGNATURE, NUM_CPD_BYTES)) {
-> +			if (code_type != OPROM_CSS_CODE_TYPE) {
-> +				drm_err(&i915->drm, "Invalid OPROM\n");
-> +				ret = -EINVAL;
-> +				goto err_free_img;
-> +			}
-> +			drm_dbg_kms(&i915->drm, "Found CSS image\n");
-> +			/* proceed here onwards for signature authentication */
-> +			kfree(oprom_img);
-> +			continue;
-> +		}
-> +
-> +	} while (last_img != LAST_IMG_INDICATOR);
-> +
-> +	return ret;
-> +
-> +err_free_img:
-> +	kfree(oprom_img);
-> +err_free_hdr:
-> +	kfree(oprom_img_hdr);
-> +
-> +	return ret;
-> +}
-> +
->  static int intel_use_opregion_panel_type_callback(const struct dmi_system_id *id)
->  {
->  	DRM_INFO("Using panel type from OpRegion on %s\n", id->ident);
-> diff --git a/drivers/gpu/drm/i915/display/intel_opregion.h b/drivers/gpu/drm/i915/display/intel_opregion.h
-> index 4aa68ffbd30e..de53dde10dd9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_opregion.h
-> +++ b/drivers/gpu/drm/i915/display/intel_opregion.h
-> @@ -54,6 +54,34 @@ struct intel_opregion {
->  
->  #define OPREGION_SIZE            (8 * 1024)
->  
-> +#define CPD_SIGNATURE "$CPD"                  /* CPD Signature */
-> +#define NUM_CPD_BYTES 4
-> +#define PCI_IMAGE_LENGTH_OFFSET 0x10
-> +#define PCI_CODE_TYPE_OFFSET 0x14
-> +#define PCI_LAST_IMAGE_INDICATOR_OFFSET 0x15
-> +#define LAST_IMG_INDICATOR 0x80
-> +#define OPROM_IMAGE_MAGIC 0xAA55       /* Little Endian */
-> +#define OPROM_CSS_CODE_TYPE 0xF0
-> +#define OPROM_BYTE_BOUNDARY 512        /* OPROM image sizes are indicated in 512 byte boundaries */
-> +#define OPROM_INITIAL_READ_SIZE 60     /* Read 60 bytes to compute the Img Len from PCI structure */
-> +
-> +union oprom_header {
-> +	u32 data;
-> +	struct {
-> +		u16 signature;  /* Offset[0x0]: Header 0x55 0xAA */
-> +		u8 sizein512bytes;
-> +		u8 reserved;
-> +	};
-> +};
-> +
-> +struct expansion_rom_header {
-> +	union oprom_header header;      /* Offset[0x0]: Oprom Header */
-> +	u16 vbiospostoffset;    /* Offset[0x4]: pointer to VBIOS entry point */
-> +	u8 resvd[0x12];
-> +	u16 pcistructoffset;    /* Offset[0x18]: Contains pointer PCI Data Structure */
-> +	u16 opregion_base;      /* Offset[0x1A]: Offset to Opregion Base start */
-> +};
-> +
->  #ifdef CONFIG_ACPI
->  
->  int intel_opregion_setup(struct drm_i915_private *dev_priv);
-> @@ -72,6 +100,9 @@ int intel_opregion_notify_adapter(struct drm_i915_private *dev_priv,
->  				  pci_power_t state);
->  int intel_opregion_get_panel_type(struct drm_i915_private *dev_priv);
->  
-> +int intel_spi_get_oprom_opreg(struct drm_i915_private *i915, u32 **opreg,
-> +			      u32 *opreg_size);
-> +
->  #else /* CONFIG_ACPI*/
->  
->  static inline int intel_opregion_setup(struct drm_i915_private *dev_priv)
-> @@ -117,6 +148,11 @@ static inline int intel_opregion_get_panel_type(struct drm_i915_private *dev)
->  	return -ENODEV;
->  }
->  
-> -#endif /* CONFIG_ACPI */
-> +static int intel_spi_get_oprom_opreg(struct drm_i915_private *i915, u32 **opreg,
-> +				     u32 *opreg_size)
-> +{
-> +	return 0;
-> +}
->  
-> +#endif /* CONFIG_ACPI */
->  #endif
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAxNCBNYXkgMjAyMSwgS2FpLUhlbmcgRmVuZyA8a2FpLmhlbmcuZmVuZ0BjYW5vbmlj
+YWwuY29tPiB3cm90ZToKPiBPbiBXZWQsIE1heSAxMiwgMjAyMSBhdCAyOjE5IEFNIFZpbGxlIFN5
+cmrDpGzDpAo+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6Cj4+Cj4+IE9u
+IE1vbiwgQXByIDI2LCAyMDIxIGF0IDExOjI0OjEwUE0gKzA4MDAsIEthaS1IZW5nIEZlbmcgd3Jv
+dGU6Cj4+ID4gT24gSFAgRnVyeSBHNyBXb3Jrc3RhdGlvbnMsIGdyYXBoaWNzIG91dHB1dCBpcyBy
+ZS1yb3V0ZWQgZnJvbSBJbnRlbCBHRlgKPj4gPiB0byBkaXNjcmV0ZSBHRlggYWZ0ZXIgUzMuIFRo
+aXMgaXMgbm90IGRlc2lyYWJsZSwgYmVjYXVzZSB1c2Vyc3BhY2Ugd2lsbAo+PiA+IHRyZWF0IGNv
+bm5lY3RlZCBkaXNwbGF5IGFzIGEgbmV3IG9uZSwgbG9zaW5nIGRpc3BsYXkgc2V0dGluZ3MuCj4+
+ID4KPj4gPiBUaGUgZXhwZWN0ZWQgYmVoYXZpb3IgaXMgdG8gbGV0IGRpc2NyZXRlIEdGWCBkcml2
+ZXMgYWxsIGV4dGVybmFsCj4+ID4gZGlzcGxheXMuCj4+ID4KPj4gPiBUaGUgcGxhdGZvcm0gaW4g
+cXVlc3Rpb24gdXNlcyBBQ1BJIG1ldGhvZCBcX1NCLlBDSTAuSEdNRSB0byBlbmFibGUgTVVYLgo+
+PiA+IFRoZSBtZXRob2QgaXMgaW5zaWRlIHRoZSBhbm90aGVyIF9EU00sIHNvIGFkZCB0aGUgX0RT
+TSBhbmQgY2FsbCBpdAo+PiA+IGFjY29yZGluZ2x5Lgo+PiA+Cj4+ID4gSSBhbHNvIHRlc3RlZCBz
+b21lIE1VWC1sZXNzIGFuZCBpR1BVIG9ubHkgbGFwdG9wcyB3aXRoIHRoYXQgX0RTTSwgbm8KPj4g
+PiByZWdyZXNzaW9uIHdhcyBmb3VuZC4KPj4gPgo+PiA+IHYzOgo+PiA+ICAtIFJlbW92ZSBCWFQg
+ZnJvbSBuYW1lcy4KPj4gPiAgLSBDaGFuZ2UgdGhlIHBhcmFtZXRlciB0eXBlLgo+PiA+ICAtIEZv
+bGQgdGhlIGZ1bmN0aW9uIGludG8gaW50ZWxfbW9kZXNldF9pbml0X2h3KCkuCj4+ID4KPj4gPiB2
+MjoKPj4gPiAgLSBGb3J3YXJkIGRlY2xhcmUgc3RydWN0IHBjaV9kZXYuCj4+ID4KPj4gPiBDbG9z
+ZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvLS9pc3N1ZXMvMzEx
+Mwo+PiA+IFJlZmVyZW5jZXM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2ludGVsLWdmeC8xNDYw
+MDQwNzMyLTMxNDE3LTQtZ2l0LXNlbmQtZW1haWwtYW5pbWVzaC5tYW5uYUBpbnRlbC5jb20vCj4+
+ID4gU2lnbmVkLW9mZi1ieTogS2FpLUhlbmcgRmVuZyA8a2FpLmhlbmcuZmVuZ0BjYW5vbmljYWwu
+Y29tPgo+PiA+IC0tLQo+PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Fj
+cGkuYyAgICB8IDE4ICsrKysrKysrKysrKysrKysrKwo+PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2FjcGkuaCAgICB8ICAzICsrKwo+PiA+ICBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8ICAyICsrCj4+ID4gIDMgZmlsZXMgY2hhbmdl
+ZCwgMjMgaW5zZXJ0aW9ucygrKQo+PiA+Cj4+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWNwaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9hY3BpLmMKPj4gPiBpbmRleCA4MzNkMGMxYmU0ZjEuLmQwMDhkMzk3NjI2MSAxMDA2
+NDQKPj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2FjcGkuYwo+
+PiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWNwaS5jCj4+ID4g
+QEAgLTEzLDEyICsxMywxNyBAQAo+PiA+ICAjaW5jbHVkZSAiaW50ZWxfZGlzcGxheV90eXBlcy5o
+Igo+PiA+Cj4+ID4gICNkZWZpbmUgSU5URUxfRFNNX1JFVklTSU9OX0lEIDEgLyogRm9yIENhbHBl
+bGxhIGFueXdheS4uLiAqLwo+PiA+ICsjZGVmaW5lIElOVEVMX0RTTV9GTl9QTEFURk9STV9NVVhf
+RU5BQkxFIDAgLyogTm8gYXJncyAqLwo+Pgo+PiBUaGlzIGJsb2NrIG9mIGRlZmluZXMgaXMgZm9y
+IHRoZSBvdGhlciBEU00uIFdlIGRvbid0IHdhbnQgdG8KPj4gbWl4IHRoZXNlIHVwLiBXZSBhbHNv
+IHdhbnQgdG8gbmFtZSBpdCBhY2NvcmRpbmcgdG8gdGhlIHNwZWMsCj4+IHNvIHNvbWV0aGluZyBs
+aWtlIEdFVF9CSU9TX0RBVEFfRlVOQ1NfU1VQUE9SVEVELiBTaW1pbGFybHkKPj4gZm9yIHRoZSBp
+bnRlbF9kc21fZW5hYmxlX211eCgpIHdyYXBwZXIgZnVuY3Rpb24uICsgaXQgbmVlZHMKPj4gYSBj
+b21tZW50IHRvIGRvY3VtZW50IHRoYXQgc29tZSBCSU9TZXMgYWJ1c2UgaXQgdG8gZG8gTVVYCj4+
+IGluaXRpYWxpemF0aW9uIGFuZCB3aGF0bm90Lgo+Cj4gV2lsbCBkby4KPgo+Cj4+Cj4+IFdlIHNo
+b3VsZCBwZXJoYXBzIHJlbmFtZSBhbGwgdGhlIG9sZCBEU00gc3R1ZmYgdG8KPj4gc29tZXRoaW5n
+IGEgYml0IGxlc3MgZ2VuZXJpYyBhcyB3ZWxsLi4uCj4KPiBJIGNhbiByZW5hbWUgdGhlbSBhcyB3
+ZWxsLiBCdXQgd2hhdCdzIHRoZSBuYW1pbmcgc2NoZW1lIHlvdSBwcmVmZXI/Cj4KPj4KPj4gPiAg
+I2RlZmluZSBJTlRFTF9EU01fRk5fUExBVEZPUk1fTVVYX0lORk8gMSAvKiBObyBhcmdzICovCj4+
+ID4KPj4gPiAgc3RhdGljIGNvbnN0IGd1aWRfdCBpbnRlbF9kc21fZ3VpZCA9Cj4+ID4gICAgICAg
+R1VJRF9JTklUKDB4N2VkODczZDMsIDB4YzJkMCwgMHg0ZTRmLAo+PiA+ICAgICAgICAgICAgICAg
+ICAweGE4LCAweDU0LCAweDBmLCAweDEzLCAweDE3LCAweGIwLCAweDFjLCAweDJjKTsKPj4gPgo+
+PiA+ICtzdGF0aWMgY29uc3QgZ3VpZF90IGludGVsX2RzbV9ndWlkMiA9Cj4+ID4gKyAgICAgR1VJ
+RF9JTklUKDB4M2U1YjQxYzYsIDB4ZWIxZCwgMHg0MjYwLAo+PiA+ICsgICAgICAgICAgICAgICAw
+eDlkLCAweDE1LCAweGM3LCAweDFmLCAweGJhLCAweGRhLCAweGU0LCAweDE0KTsKPj4gPiArCj4+
+ID4gIHN0YXRpYyBjaGFyICppbnRlbF9kc21fcG9ydF9uYW1lKHU4IGlkKQo+PiA+ICB7Cj4+ID4g
+ICAgICAgc3dpdGNoIChpZCkgewo+PiA+IEBAIC0xNzYsNiArMTgxLDE5IEBAIHZvaWQgaW50ZWxf
+dW5yZWdpc3Rlcl9kc21faGFuZGxlcih2b2lkKQo+PiA+ICB7Cj4+ID4gIH0KPj4gPgo+PiA+ICt2
+b2lkIGludGVsX2RzbV9lbmFibGVfbXV4KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQo+
+PiA+ICt7Cj4+ID4gKyAgICAgc3RydWN0IHBjaV9kZXYgKnBkZXYgPSBpOTE1LT5kcm0ucGRldjsK
+Pj4gPiArICAgICBhY3BpX2hhbmRsZSBkaGFuZGxlOwo+PiA+ICsKPj4gPiArICAgICBkaGFuZGxl
+ID0gQUNQSV9IQU5ETEUoJnBkZXYtPmRldik7Cj4+ID4gKyAgICAgaWYgKCFkaGFuZGxlKQo+PiA+
+ICsgICAgICAgICAgICAgcmV0dXJuOwo+PiA+ICsKPj4gPiArICAgICBhY3BpX2V2YWx1YXRlX2Rz
+bShkaGFuZGxlLCAmaW50ZWxfZHNtX2d1aWQyLCBJTlRFTF9EU01fUkVWSVNJT05fSUQsCj4+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgSU5URUxfRFNNX0ZOX1BMQVRGT1JNX01VWF9FTkFCTEUs
+IE5VTEwpOwo+PiA+ICt9Cj4+ID4gKwo+PiA+ICAvKgo+PiA+ICAgKiBBQ1BJIFNwZWNpZmljYXRp
+b24sIFJldmlzaW9uIDUuMCwgQXBwZW5kaXggQi4zLjIgX0RPRCAoRW51bWVyYXRlIEFsbCBEZXZp
+Y2VzCj4+ID4gICAqIEF0dGFjaGVkIHRvIHRoZSBEaXNwbGF5IEFkYXB0ZXIpLgo+PiA+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2FjcGkuaCBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWNwaS5oCj4+ID4gaW5kZXggZThiMDY4NjYx
+ZDIyLi5kZWYwMTNjZjYzMDggMTAwNjQ0Cj4+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9hY3BpLmgKPj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2FjcGkuaAo+PiA+IEBAIC0xMSwxMSArMTEsMTQgQEAgc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGU7Cj4+ID4gICNpZmRlZiBDT05GSUdfQUNQSQo+PiA+ICB2b2lkIGludGVsX3JlZ2lz
+dGVyX2RzbV9oYW5kbGVyKHZvaWQpOwo+PiA+ICB2b2lkIGludGVsX3VucmVnaXN0ZXJfZHNtX2hh
+bmRsZXIodm9pZCk7Cj4+ID4gK3ZvaWQgaW50ZWxfZHNtX2VuYWJsZV9tdXgoc3RydWN0IGRybV9p
+OTE1X3ByaXZhdGUgKmk5MTUpOwo+PiA+ICB2b2lkIGludGVsX2FjcGlfZGV2aWNlX2lkX3VwZGF0
+ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSk7Cj4+ID4gICNlbHNlCj4+ID4gIHN0YXRp
+YyBpbmxpbmUgdm9pZCBpbnRlbF9yZWdpc3Rlcl9kc21faGFuZGxlcih2b2lkKSB7IHJldHVybjsg
+fQo+PiA+ICBzdGF0aWMgaW5saW5lIHZvaWQgaW50ZWxfdW5yZWdpc3Rlcl9kc21faGFuZGxlcih2
+b2lkKSB7IHJldHVybjsgfQo+PiA+ICBzdGF0aWMgaW5saW5lCj4+ID4gK3ZvaWQgaW50ZWxfZHNt
+X2VuYWJsZV9tdXgoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpIHsgcmV0dXJuOyB9Cj4+
+ID4gK3N0YXRpYyBpbmxpbmUKPj4gPiAgdm9pZCBpbnRlbF9hY3BpX2RldmljZV9pZF91cGRhdGUo
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpIHsgcmV0dXJuOyB9Cj4+ID4gICNlbmRpZiAv
+KiBDT05GSUdfQUNQSSAqLwo+PiA+Cj4+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kaXNwbGF5LmMKPj4gPiBpbmRleCBhMTBlMjYzODBlZjMuLmQ3OWRhZTM3MGIyMCAx
+MDA2NDQKPj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
+YXkuYwo+PiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eS5jCj4+ID4gQEAgLTExNDcyLDYgKzExNDcyLDggQEAgdm9pZCBpbnRlbF9tb2Rlc2V0X2luaXRf
+aHcoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4+ID4gIHsKPj4gPiAgICAgICBzdHJ1
+Y3QgaW50ZWxfY2RjbGtfc3RhdGUgKmNkY2xrX3N0YXRlOwo+PiA+Cj4+ID4gKyAgICAgaW50ZWxf
+ZHNtX2VuYWJsZV9tdXgoaTkxNSk7Cj4+ID4gKwo+Pgo+PiBUaGlzIHNob3VsZCBwcm9iYWJseSBi
+ZSBzb21ld2hlcmUgYXJvdW5kIHdoZXJlIHdlIGRvIGFsbCB0aGUgb3RoZXIKPj4gc2VtaSBBQ1BJ
+IHJlbGF0ZWQgaW5pdCAoT3BSZWdpb24vZXRjLikuCj4KPiBIbW0sIGJ1dCBKYW5pIHByZWZlcnMg
+dG8gcHV0IGl0IGluc2lkZSBpbnRlbF9tb2Rlc2V0XyooKSBoZWxwZXJzLiBCdXQKPiBJIGRvbid0
+IHNlZSBhbnkgb3ByZWdpb24gcmVsYXRlZCBmdW5jdGlvbnMgYXJlIGJlaW5nIGNhbGxlZCBieQo+
+IGludGVsX21vZGVzZXRfKigpIGhlbHBlcnMuIEFueSBzdWdnZXN0aW9uPwoKSSB0aGluayBJIG1h
+aW5seSB3YW50ZWQgaXQgaW4gaW50ZWxfZGlzcGxheS5jIGluc3RlYWQgb2YgYXQgdGhlIGRyaXZl
+cgp0b3AgbGV2ZWwuCgpCUiwKSmFuaS4KCgo+Cj4gS2FpLUhlbmcKPgo+Pgo+PiA+ICAgICAgIGlm
+ICghSEFTX0RJU1BMQVkoaTkxNSkpCj4+ID4gICAgICAgICAgICAgICByZXR1cm47Cj4+ID4KPj4g
+PiAtLQo+PiA+IDIuMzAuMgo+Pgo+PiAtLQo+PiBWaWxsZSBTeXJqw6Rsw6QKPj4gSW50ZWwKCi0t
+IApKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
+IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
