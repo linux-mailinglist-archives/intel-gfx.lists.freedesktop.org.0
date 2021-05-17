@@ -2,42 +2,142 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91696386CB0
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 May 2021 23:55:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71715386CE2
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 May 2021 00:23:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53F7E6E50B;
-	Mon, 17 May 2021 21:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F8776E513;
+	Mon, 17 May 2021 22:23:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DD136E50B
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 21:55:27 +0000 (UTC)
-IronPort-SDR: yRDLRfxnIocoa0WqPl5OERL2oqz07ND3fN1hne7daMe9ILm6hOuResbNaAAVcYZUx7XgjGCTQR
- HoSL3tl6Nt/g==
-X-IronPort-AV: E=McAfee;i="6200,9189,9987"; a="200622422"
-X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="200622422"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2021 14:55:26 -0700
-IronPort-SDR: YUSBZxjd11LXW3/o7X8/zonqnYhDM+r3ar1v1Nm4ECf+94x8/8z/obxfDTpEUQMKL5482OIwyw
- 6FJZrkc/eYuQ==
-X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="439112041"
-Received: from vrsinha-mobl.amr.corp.intel.com (HELO [10.255.229.219])
- ([10.255.229.219])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2021 14:55:26 -0700
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20210515031035.2561658-1-matthew.d.roper@intel.com>
- <20210515031035.2561658-21-matthew.d.roper@intel.com>
-From: Clint Taylor <Clinton.A.Taylor@intel.com>
-Message-ID: <83152edb-47ba-f81d-49aa-3c9cbdb11713@intel.com>
-Date: Mon, 17 May 2021 14:55:25 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210515031035.2561658-21-matthew.d.roper@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E27D66E513
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 22:23:20 +0000 (UTC)
+IronPort-SDR: ZS4eq4EDXYjz33/cNHV/orjaJF5bpLVJIYuARrOEk6et6x6TmU/9RnxHfj03tW/Lfz/0eUJKhx
+ FHUknsjE7l1w==
+X-IronPort-AV: E=McAfee;i="6200,9189,9987"; a="187701483"
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="187701483"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 May 2021 15:23:15 -0700
+IronPort-SDR: F3uN6rWApJ6RgTec9lqVLJT4b+RmfPf8Rs/xtKpXf96zzNHvj7mSn9RQqmq8Q0xLrgIf/kOuLq
+ nZugBkTNEK1g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,307,1613462400"; d="scan'208";a="472631819"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga001.jf.intel.com with ESMTP; 17 May 2021 15:23:15 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.4; Mon, 17 May 2021 15:23:14 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4
+ via Frontend Transport; Mon, 17 May 2021 15:23:14 -0700
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.44) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2106.2; Mon, 17 May 2021 15:23:14 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hFct2IeGbk3a/iyZoI5OOXqA1svIS9ruH2Y2a9maoOT7ElwPGDI8pQfFH+ysg0pVnNgYordrXDX5hnDzGZuYL1fVIje0eNMXI7deLEOtj5ec+qIPyw9EB4S0V1fJCeepJhinjE/e6l2arJhKX1IfiQtXoWiKI2NBRT9tva9K/ud1C1PH2z5YlmAxDIvkn5xSvG48w56MVOfTd3H1UGaY9G9cCAkwygwcc0W4WrvBmcV9hSGykfQs4SMSHY2ZmO4AXdnbVhNlaNffeFtHt1XqZXQ9vY1TFbK4z0wSUfDhMWBR/eZ4tbYr+Kl6bx4bggxQuXQVr3JbVsxt3aGUjC/dvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LWFnp0eEyy6ogtZlB3X9YmA+9vwMphFaSnz9HA725NM=;
+ b=j9uH+0+8Y4cg6PkzqhnP0qfqm2n8AMVPQSQ+A1aacUdpY/Caf1zc10chRpYI2JymxcmJCURnF0Gk44kfgckc286hPL6Tn4wjXmp06LUacC//MA91gKBshTez9tCttw7vwYyn9Pq35cYu23MBviVu4/MO1R3iewg6n1GjenBqemhXhA1e6aAXDEUafFZDjYpKTgtOj6ErYCB683QcTmFLTK/kBbZJ36ll2WpEA8uvaqsYto0t4LVJwkus1300lCKHWB1YPln6EIt61sjGXNrKMGtHeP94/HYg9A/Zvjtt3B2YAVHNt48HmWxKEbAL7rjxIAt0GhGt7P2xXMG4sqNpiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LWFnp0eEyy6ogtZlB3X9YmA+9vwMphFaSnz9HA725NM=;
+ b=GPdfpogYx3pWJ6ii/odhlR5wAO4PnlXSCigtP39A8b2t9lFgx9j0SHn5waFUi+dus+2mrt5uMllZ+6DV4NnFXepQjQY2hqjDa9XwuPy1xdbvAsmPx9I95FPh6wcloH/zYHjpvNZFFsSkn+7fHfsjtwiwt3UKQRvs3/ClDLJRK1g=
+Received: from MW3PR11MB4620.namprd11.prod.outlook.com (2603:10b6:303:54::14)
+ by MWHPR11MB1999.namprd11.prod.outlook.com (2603:10b6:300:20::23)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.26; Mon, 17 May
+ 2021 22:23:10 +0000
+Received: from MW3PR11MB4620.namprd11.prod.outlook.com
+ ([fe80::8183:e1ea:cd9a:bcb1]) by MW3PR11MB4620.namprd11.prod.outlook.com
+ ([fe80::8183:e1ea:cd9a:bcb1%4]) with mapi id 15.20.4129.031; Mon, 17 May 2021
+ 22:23:10 +0000
+From: "Almahallawy, Khaled" <khaled.almahallawy@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Deak, Imre" <imre.deak@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Reenable LTTPR non-transparent LT
+ mode for DPCD_REV<1.4
+Thread-Index: AQHXR3XQAW16vfT0NEKaI0SWrvJRfKroR4MA
+Date: Mon, 17 May 2021 22:23:10 +0000
+Message-ID: <29505b1d1534d773e91c35f0797e93d7ae9cdb43.camel@intel.com>
+References: <20210512212809.1234701-1-imre.deak@intel.com>
+In-Reply-To: <20210512212809.1234701-1-imre.deak@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 20/23] drm/i915/adl_p: Add PLL Support
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.36.4-0ubuntu1 
+authentication-results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none; lists.freedesktop.org;
+ dmarc=none action=none header.from=intel.com;
+x-originating-ip: [134.134.136.192]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6c8cf2a7-3a73-4d63-4c2d-08d919825abc
+x-ms-traffictypediagnostic: MWHPR11MB1999:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MWHPR11MB1999B64C1B3440750DDE510F892D9@MWHPR11MB1999.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EIcjiMT8xtbjsb6F+XPW24BBabXy2PE+ynApbLxwnDrpcBW15EUFmmK9Zij0Ezye40KJHBoku3dtrFdkzW5Fqv8wddnPiU/BurhCPqqxCx69CriamXsu5p2zCoFOCKp8O9HN9suwc7V/ua2SpAntWUO72EiWWOQ81TqvI/4VZ+nhSKYFOHzkXikdRCTzZKVcsB9FS1SsMGwAtyivxUtu7nIOz0CN5c1vuYvp/HzPcqthAcvpvyOY6owRXXfIB15zYXbvVz0QkrnrQLnsr2ktbf3kBqGzbsmWS8tzBcC4JiUjuwLpUT7uzKG53yX3xFpsYXkI++9o72uaQJ7mq/7XnQjFTxJXSCPtOx4A2scNCuhi1Yn/t6/8ya/0zw3ekixwOWLbeKP6v9fEbe3d2Wo4IESrPIMwuzZ6xa9ZfJKJOzf7sF/vANZK8ENZdoRMcCTJOCysEJoklPs4iv6rXYc02xfN6s3MM9c3lblZJ4KsSBOGLBn6Gxi66UuQrA1BjSbdm6mQnB6DTqT+KxPy91s7CZg0Qf+LcAe9zwwnTUu/BXXN8QtD5pEg2mIWa7pbzjJgrY8ro9FGihFAINIiuHhzhbBLn8FF4RCV2rtdWYXxW1hjIV++toRhQgz9hRJAglCo
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW3PR11MB4620.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(346002)(396003)(376002)(136003)(39860400002)(366004)(83380400001)(71200400001)(6636002)(86362001)(2906002)(6506007)(478600001)(6486002)(110136005)(38100700002)(4326008)(316002)(91956017)(966005)(122000001)(76116006)(64756008)(8936002)(66946007)(186003)(26005)(66446008)(36756003)(66476007)(6512007)(5660300002)(66556008)(2616005)(8676002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?utf-8?B?UGpWVmRNU3NUSUUrd3FPaDBYNkJaVlYrenlhQmxVblQ2K0NEaXRQby9vMGVo?=
+ =?utf-8?B?M04vNkUxSGZSdXVBckhIYWFQNy9RZUJPWHI4QkV2ZGpzaXJ1TlhSbkpYZGM2?=
+ =?utf-8?B?UWhVS2NlUUVPTTdEa2J1VXVKSFlmcUFwUkdkenZHVkNKSlRTWmtRRnBaOHhu?=
+ =?utf-8?B?dVpWWlpEbU54Nlg4c3lpMkVSMGN6YlRtWld3RkZvWGVjdEljTHJnOGVIaSt1?=
+ =?utf-8?B?enp1eVBJS0JrQjkvOVFqTDIxUkVrbUlxMThjUzUrRDFVMWpmclQ5UFVyS2lL?=
+ =?utf-8?B?R2tRMEN0VnpNYTl1dkxGb3VYakFVM2U2U2xWekttWm1CbkpoR2t1OG14T3dM?=
+ =?utf-8?B?ay9NcUxEcUEvT2tHQlpkQzBUb2VldEpxK25DMjV3dXpIQ2xucmZSK295ZEZE?=
+ =?utf-8?B?VDVRbVJ4OG14UUVYbkNyS0RVR2dOQXlnWkI2VmhhTVN3ZmVJa1dIMjVVWEY1?=
+ =?utf-8?B?a1drWGxRaDJ3dUFLSW5XMlBWNVBWWGtUS3RudVJpYXZGVFBGTXRIcFBhNWY3?=
+ =?utf-8?B?RlRRbS9HMWFWUGcycmVRQmJMRjR0VTlzOFVTbWZEb21KSDRPNGpXSGl6ZDVJ?=
+ =?utf-8?B?bzFZV0dWWGxKWnpxMkFlTVErSkVQUU9BaXppbnVUdTdWakdUZER2bFlVeUVr?=
+ =?utf-8?B?Rm80dGlISjRLS3VuN2w4bmdjVVZ3dDhnK2RETmw4VHNUbmZMOHA5UnVFR09n?=
+ =?utf-8?B?MnVTTndtc2pTYzdBVjJhdWZwbVA4VzdMM1JpQy9LUGFmWVdlakkwallPR1lw?=
+ =?utf-8?B?SUROZG1vbjBnRWhOdUg3c25RbmNZb2dqaHh3aHFUY0RhcGgwVTBmNUdLMTUx?=
+ =?utf-8?B?Uk5XREczaXg1WUpDS0treHF5bVhSK09zY3R4YytBVElDSGl6YUVXMFcrNWZH?=
+ =?utf-8?B?eXkrVmFnRm9ZN2lpY3RsVHNMWWZmWGRTQ05XcTZYTWVrY3gyM2pYRkN4U0lu?=
+ =?utf-8?B?a05mQVR5SklYWFZUOUk0MktQQ1czd1Nsa0pCL2VnMUtpUVgzTW5wY2l3ZTE2?=
+ =?utf-8?B?ZlNkaTVaMTR3eVFiNE55elNNMlNtcWZDa0ovejVXQU9WaW5GZlZoSGhEOEU3?=
+ =?utf-8?B?TW42Zk42K0ExdUNONE1LcndUa2N4LzhIb0l6UCtabTFTb2NFby9yeVJTc2VB?=
+ =?utf-8?B?emhCNUl2cWs2SHVFaWdFSjJIdSt0aWpEQm1rSFZuUmtmaWFIbm1LcCtISUhX?=
+ =?utf-8?B?Tm1Sb0lRKzNIRm5SdWNaenNNaHpPSS9LMkVlazNaL1MyRUUzeXVJUlp2cXVN?=
+ =?utf-8?B?RDZ3ckZUU0dMb1QvUTl5UmFiYkptUkNjaEtKOTdJK256UXd1K3Jqa1ZLeWpV?=
+ =?utf-8?B?ZWJ3TStibzVTMGVNQytYWTQrbDlrZzdLRjRRRjhIRThpK0tFNnFOT1psRlBU?=
+ =?utf-8?B?OGMyalNpNVB2dEZ5S3ZWWVU4ZGdPNGo3ZUMxYWFJY0JRRmlKUWdvUkZmNlQy?=
+ =?utf-8?B?c1Qza2ozV1drYVFIcTN2aWlQY29yeEJpRkVuUlVSaHJ3cDZrQWxibWp6NXNN?=
+ =?utf-8?B?K1R0M2FXSlE4eSsxekZwQkZ5TmRoeWlrdkZMYytZeG5lU01FVUg0eE8xdmNS?=
+ =?utf-8?B?dk5yTm1GWU9tQ2MxdjhSK2kremYxU1Iwem9wdVRDZ2JIR3did0kwVFZRZGJ6?=
+ =?utf-8?B?OC9JOUh3ZHRzYjRIMTk4YUMrQ1hhOGtDMFNIckg2cExENE1uSFZEZlhCcGVj?=
+ =?utf-8?B?dEQ2SklGS0FMU2lLWVhXVWh5bWRlK2l6bFZsTW00YkxHNW9DVTNyeUlUNzZH?=
+ =?utf-8?Q?9UW1Hi4vIy605FFs1xiDxlQN95+WvOTZmJWgblZ?=
+Content-ID: <E084704BBD60B84A8E4AC4F2537EB522@namprd11.prod.outlook.com>
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW3PR11MB4620.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c8cf2a7-3a73-4d63-4c2d-08d919825abc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 May 2021 22:23:10.7432 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FPOsl1XMtGfis48RvENrLpNbrLEEhJEF27Ki3vQaMIRfC+YKw9orvM1ezSIfQkIcEYNHUhRgVKyvtW5f2xQgib440L3dwIChJSsnwQ3x2po=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1999
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Reenable LTTPR non-transparent LT
+ mode for DPCD_REV<1.4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,132 +150,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UmV2aWV3ZWQtYnk6IENsaW50IFRheWxvciA8Q2xpbnRvbi5BLlRheWxvckBpbnRlbC5jb20+Cgot
-Q2xpbnQKCgpPbiA1LzE0LzIxIDg6MTAgUE0sIE1hdHQgUm9wZXIgd3JvdGU6Cj4gRnJvbTogQW51
-c2hhIFNyaXZhdHNhIDxhbnVzaGEuc3JpdmF0c2FAaW50ZWwuY29tPgo+Cj4gVGhlIGNsb2NrcyBp
-biBBTERfUCBpcyBzaW1pbGFyIHRvIHRoYXQgb2YgVEdMLgo+IFRoZSBjb21ibyBQTExzICB1c2Ug
-dGhlIHNhbWUgRFBMTDAsIERQTEwxIGFuZCBUQlRfUExMLgo+Cj4gVGhpcyBwYXRjaCBhZGRzIHRo
-ZSBoZWxwZXIgZnVuY3Rpb24gaW50ZWxfbWdfcGxsX2VuYWJsZV9yZWcoKQo+IHdoaWNoIGlzIHNp
-bWlsYXIgdG8gaW50ZWxfY29tYm9fcGxsX2VuYWJsZV9yZWcoKSBmb3IgYmVpbmcgbG9va3VwCj4g
-cGxhY2UgZm9yIFBMTF9FTkFCTEUgcmVnaXN0ZXIgaW4gY29tYm8gcGh5IGNhc2VzLgo+Cj4gQnNw
-ZWM6IDU1NDA5LDU1MzE2Cj4gQ2M6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5j
-b20+Cj4gQ2M6IENsaW50b24gVGF5bG9yIDxjbGludG9uLmEudGF5bG9yQGludGVsLmNvbT4KPiBD
-YzogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+Cj4gQ2M6IEpvc8Op
-IFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6
-IEFudXNoYSBTcml2YXRzYSA8YW51c2hhLnNyaXZhdHNhQGludGVsLmNvbT4KPiBTaWduZWQtb2Zm
-LWJ5OiBDbGludG9uIFRheWxvciA8Q2xpbnRvbi5BLlRheWxvckBpbnRlbC5jb20+Cj4gU2lnbmVk
-LW9mZi1ieTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4KPiAtLS0KPiAg
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBsbF9tZ3IuYyB8IDY5ICsrKysr
-KysrKysrKysrLS0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAg
-ICAgICAgICB8ICA4ICsrKwo+ICAgMiBmaWxlcyBjaGFuZ2VkLCA2MCBpbnNlcnRpb25zKCspLCAx
-NyBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RwbGxfbWdyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2RwbGxfbWdyLmMKPiBpbmRleCAxOGJmZThkMDkyNzcuLjcxYWM1NzY3MDA0MyAxMDA2NDQKPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMKPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMKPiBAQCAtMTQ5
-LDYgKzE0OSwxNiBAQCB2b2lkIGFzc2VydF9zaGFyZWRfZHBsbChzdHJ1Y3QgZHJtX2k5MTVfcHJp
-dmF0ZSAqZGV2X3ByaXYsCj4gICAJCQlwbGwtPmluZm8tPm5hbWUsIG9ub2ZmKHN0YXRlKSwgb25v
-ZmYoY3VyX3N0YXRlKSk7Cj4gICB9Cj4gICAKPiArc3RhdGljIGVudW0gdGNfcG9ydCBpY2xfcGxs
-X2lkX3RvX3RjX3BvcnQoZW51bSBpbnRlbF9kcGxsX2lkIGlkKQo+ICt7Cj4gKwlyZXR1cm4gVENf
-UE9SVF8xICsgaWQgLSBEUExMX0lEX0lDTF9NR1BMTDE7Cj4gK30KPiArCj4gK2VudW0gaW50ZWxf
-ZHBsbF9pZCBpY2xfdGNfcG9ydF90b19wbGxfaWQoZW51bSB0Y19wb3J0IHRjX3BvcnQpCj4gK3sK
-PiArCXJldHVybiB0Y19wb3J0IC0gVENfUE9SVF8xICsgRFBMTF9JRF9JQ0xfTUdQTEwxOwo+ICt9
-Cj4gKwo+ICAgc3RhdGljIGk5MTVfcmVnX3QKPiAgIGludGVsX2NvbWJvX3BsbF9lbmFibGVfcmVn
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+ICAgCQkJICAgc3RydWN0IGludGVsX3No
-YXJlZF9kcGxsICpwbGwpCj4gQEAgLTE2MSw2ICsxNzEsMTkgQEAgaW50ZWxfY29tYm9fcGxsX2Vu
-YWJsZV9yZWcoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCj4gICAJcmV0dXJuIENOTF9E
-UExMX0VOQUJMRShwbGwtPmluZm8tPmlkKTsKPiAgIH0KPiAgIAo+ICtzdGF0aWMgaTkxNV9yZWdf
-dAo+ICtpbnRlbF90Y19wbGxfZW5hYmxlX3JlZyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkx
-NSwKPiArCQkJc3RydWN0IGludGVsX3NoYXJlZF9kcGxsICpwbGwpCj4gK3sKPiArCWNvbnN0IGVu
-dW0gaW50ZWxfZHBsbF9pZCBpZCA9IHBsbC0+aW5mby0+aWQ7Cj4gKwllbnVtIHRjX3BvcnQgdGNf
-cG9ydCA9IGljbF9wbGxfaWRfdG9fdGNfcG9ydChpZCk7Cj4gKwo+ICsJaWYgKElTX0FMREVSTEFL
-RV9QKGk5MTUpKQo+ICsJCXJldHVybiBBRExQX1BPUlRUQ19QTExfRU5BQkxFKHRjX3BvcnQpOwo+
-ICsKPiArCXJldHVybiBNR19QTExfRU5BQkxFKHRjX3BvcnQpOwo+ICt9Cj4gKwo+ICAgLyoqCj4g
-ICAgKiBpbnRlbF9wcmVwYXJlX3NoYXJlZF9kcGxsIC0gY2FsbCBhIGRwbGwncyBwcmVwYXJlIGhv
-b2sKPiAgICAqIEBjcnRjX3N0YXRlOiBDUlRDLCBhbmQgaXRzIHN0YXRlLCB3aGljaCBoYXMgYSBz
-aGFyZWQgZHBsbAo+IEBAIC0zMTIwLDE2ICszMTQzLDYgQEAgc3RhdGljIHZvaWQgaWNsX2NhbGNf
-ZHBsbF9zdGF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwKPiAgIAkJcGxsX3N0YXRl
-LT5jZmdjcjEgfD0gRFBMTF9DRkdDUjFfQ0VOVFJBTF9GUkVRXzg0MDA7Cj4gICB9Cj4gICAKPiAt
-c3RhdGljIGVudW0gdGNfcG9ydCBpY2xfcGxsX2lkX3RvX3RjX3BvcnQoZW51bSBpbnRlbF9kcGxs
-X2lkIGlkKQo+IC17Cj4gLQlyZXR1cm4gaWQgLSBEUExMX0lEX0lDTF9NR1BMTDE7Cj4gLX0KPiAt
-Cj4gLWVudW0gaW50ZWxfZHBsbF9pZCBpY2xfdGNfcG9ydF90b19wbGxfaWQoZW51bSB0Y19wb3J0
-IHRjX3BvcnQpCj4gLXsKPiAtCXJldHVybiB0Y19wb3J0ICsgRFBMTF9JRF9JQ0xfTUdQTEwxOwo+
-IC19Cj4gLQo+ICAgc3RhdGljIGJvb2wgaWNsX21nX3BsbF9maW5kX2Rpdmlzb3JzKGludCBjbG9j
-a19raHosIGJvb2wgaXNfZHAsIGJvb2wgdXNlX3NzYywKPiAgIAkJCQkgICAgIHUzMiAqdGFyZ2V0
-X2Rjb19raHosCj4gICAJCQkJICAgICBzdHJ1Y3QgaW50ZWxfZHBsbF9od19zdGF0ZSAqc3RhdGUs
-Cj4gQEAgLTM3MjgsMTIgKzM3NDEsMTQgQEAgc3RhdGljIGJvb2wgbWdfcGxsX2dldF9od19zdGF0
-ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gICAJYm9vbCByZXQgPSBmYWxz
-ZTsKPiAgIAl1MzIgdmFsOwo+ICAgCj4gKwlpOTE1X3JlZ190IGVuYWJsZV9yZWcgPSBpbnRlbF90
-Y19wbGxfZW5hYmxlX3JlZyhkZXZfcHJpdiwgcGxsKTsKPiArCj4gICAJd2FrZXJlZiA9IGludGVs
-X2Rpc3BsYXlfcG93ZXJfZ2V0X2lmX2VuYWJsZWQoZGV2X3ByaXYsCj4gICAJCQkJCQkgICAgIFBP
-V0VSX0RPTUFJTl9ESVNQTEFZX0NPUkUpOwo+ICAgCWlmICghd2FrZXJlZikKPiAgIAkJcmV0dXJu
-IGZhbHNlOwo+ICAgCj4gLQl2YWwgPSBpbnRlbF9kZV9yZWFkKGRldl9wcml2LCBNR19QTExfRU5B
-QkxFKHRjX3BvcnQpKTsKPiArCXZhbCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIGVuYWJsZV9y
-ZWcpOwo+ICAgCWlmICghKHZhbCAmIFBMTF9FTkFCTEUpKQo+ICAgCQlnb3RvIG91dDsKPiAgIAo+
-IEBAIC0zNzk3LDcgKzM4MTIsNyBAQCBzdGF0aWMgYm9vbCBka2xfcGxsX2dldF9od19zdGF0ZShz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gICAJaWYgKCF3YWtlcmVmKQo+ICAg
-CQlyZXR1cm4gZmFsc2U7Cj4gICAKPiAtCXZhbCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIE1H
-X1BMTF9FTkFCTEUodGNfcG9ydCkpOwo+ICsJdmFsID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwg
-aW50ZWxfdGNfcGxsX2VuYWJsZV9yZWcoZGV2X3ByaXYsIHBsbCkpOwo+ICAgCWlmICghKHZhbCAm
-IFBMTF9FTkFCTEUpKQo+ICAgCQlnb3RvIG91dDsKPiAgIAo+IEBAIC00MTY5LDggKzQxODQsNyBA
-QCBzdGF0aWMgdm9pZCB0YnRfcGxsX2VuYWJsZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
-X3ByaXYsCj4gICBzdGF0aWMgdm9pZCBtZ19wbGxfZW5hYmxlKHN0cnVjdCBkcm1faTkxNV9wcml2
-YXRlICpkZXZfcHJpdiwKPiAgIAkJCSAgc3RydWN0IGludGVsX3NoYXJlZF9kcGxsICpwbGwpCj4g
-ICB7Cj4gLQlpOTE1X3JlZ190IGVuYWJsZV9yZWcgPQo+IC0JCU1HX1BMTF9FTkFCTEUoaWNsX3Bs
-bF9pZF90b190Y19wb3J0KHBsbC0+aW5mby0+aWQpKTsKPiArCWk5MTVfcmVnX3QgZW5hYmxlX3Jl
-ZyA9IGludGVsX3RjX3BsbF9lbmFibGVfcmVnKGRldl9wcml2LCBwbGwpOwo+ICAgCj4gICAJaWNs
-X3BsbF9wb3dlcl9lbmFibGUoZGV2X3ByaXYsIHBsbCwgZW5hYmxlX3JlZyk7Cj4gICAKPiBAQCAt
-NDI0OSw4ICs0MjYzLDcgQEAgc3RhdGljIHZvaWQgdGJ0X3BsbF9kaXNhYmxlKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdiwKPiAgIHN0YXRpYyB2b2lkIG1nX3BsbF9kaXNhYmxlKHN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKPiAgIAkJCSAgIHN0cnVjdCBpbnRlbF9z
-aGFyZWRfZHBsbCAqcGxsKQo+ICAgewo+IC0JaTkxNV9yZWdfdCBlbmFibGVfcmVnID0KPiAtCQlN
-R19QTExfRU5BQkxFKGljbF9wbGxfaWRfdG9fdGNfcG9ydChwbGwtPmluZm8tPmlkKSk7Cj4gKwlp
-OTE1X3JlZ190IGVuYWJsZV9yZWcgPSBpbnRlbF90Y19wbGxfZW5hYmxlX3JlZyhkZXZfcHJpdiwg
-cGxsKTsKPiAgIAo+ICAgCWljbF9wbGxfZGlzYWJsZShkZXZfcHJpdiwgcGxsLCBlbmFibGVfcmVn
-KTsKPiAgIH0KPiBAQCAtNDQxNiw2ICs0NDI5LDI2IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50
-ZWxfZHBsbF9tZ3IgYWRsc19wbGxfbWdyID0gewo+ICAgCS5kdW1wX2h3X3N0YXRlID0gaWNsX2R1
-bXBfaHdfc3RhdGUsCj4gICB9Owo+ICAgCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgZHBsbF9pbmZv
-IGFkbHBfcGxsc1tdID0gewo+ICsJeyAiRFBMTCAwIiwgJmNvbWJvX3BsbF9mdW5jcywgRFBMTF9J
-RF9JQ0xfRFBMTDAsICAwIH0sCj4gKwl7ICJEUExMIDEiLCAmY29tYm9fcGxsX2Z1bmNzLCBEUExM
-X0lEX0lDTF9EUExMMSwgIDAgfSwKPiArCXsgIlRCVCBQTEwiLCAgJnRidF9wbGxfZnVuY3MsIERQ
-TExfSURfSUNMX1RCVFBMTCwgMCB9LAo+ICsJeyAiVEMgUExMIDEiLCAmZGtsX3BsbF9mdW5jcywg
-RFBMTF9JRF9JQ0xfTUdQTEwxLCAwIH0sCj4gKwl7ICJUQyBQTEwgMiIsICZka2xfcGxsX2Z1bmNz
-LCBEUExMX0lEX0lDTF9NR1BMTDIsIDAgfSwKPiArCXsgIlRDIFBMTCAzIiwgJmRrbF9wbGxfZnVu
-Y3MsIERQTExfSURfSUNMX01HUExMMywgMCB9LAo+ICsJeyAiVEMgUExMIDQiLCAmZGtsX3BsbF9m
-dW5jcywgRFBMTF9JRF9JQ0xfTUdQTEw0LCAwIH0sCj4gKwl7IH0sCj4gK307Cj4gKwo+ICtzdGF0
-aWMgY29uc3Qgc3RydWN0IGludGVsX2RwbGxfbWdyIGFkbHBfcGxsX21nciA9IHsKPiArCS5kcGxs
-X2luZm8gPSBhZGxwX3BsbHMsCj4gKwkuZ2V0X2RwbGxzID0gaWNsX2dldF9kcGxscywKPiArCS5w
-dXRfZHBsbHMgPSBpY2xfcHV0X2RwbGxzLAo+ICsJLnVwZGF0ZV9hY3RpdmVfZHBsbCA9IGljbF91
-cGRhdGVfYWN0aXZlX2RwbGwsCj4gKwkudXBkYXRlX3JlZl9jbGtzID0gaWNsX3VwZGF0ZV9kcGxs
-X3JlZl9jbGtzLAo+ICsJLmR1bXBfaHdfc3RhdGUgPSBpY2xfZHVtcF9od19zdGF0ZSwKPiArfTsK
-PiArCj4gICAvKioKPiAgICAqIGludGVsX3NoYXJlZF9kcGxsX2luaXQgLSBJbml0aWFsaXplIHNo
-YXJlZCBEUExMcwo+ICAgICogQGRldjogZHJtIGRldmljZQo+IEBAIC00NDI5LDcgKzQ0NjIsOSBA
-QCB2b2lkIGludGVsX3NoYXJlZF9kcGxsX2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiAg
-IAljb25zdCBzdHJ1Y3QgZHBsbF9pbmZvICpkcGxsX2luZm87Cj4gICAJaW50IGk7Cj4gICAKPiAt
-CWlmIChJU19BTERFUkxBS0VfUyhkZXZfcHJpdikpCj4gKwlpZiAoSVNfQUxERVJMQUtFX1AoZGV2
-X3ByaXYpKQo+ICsJCWRwbGxfbWdyID0gJmFkbHBfcGxsX21ncjsKPiArCWVsc2UgaWYgKElTX0FM
-REVSTEFLRV9TKGRldl9wcml2KSkKPiAgIAkJZHBsbF9tZ3IgPSAmYWRsc19wbGxfbWdyOwo+ICAg
-CWVsc2UgaWYgKElTX0RHMShkZXZfcHJpdikpCj4gICAJCWRwbGxfbWdyID0gJmRnMV9wbGxfbWdy
-Owo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAo+IGluZGV4IDI5MDZkZmYyNjg2OC4uMDYzZjU2YTMw
-MWZiIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCj4gQEAgLTEwNTQ4LDYgKzEwNTQ4LDE0
-IEBAIGVudW0gc2tsX3Bvd2VyX2dhdGUgewo+ICAgI2RlZmluZSBERzFfRFBMTF9FTkFCTEUocGxs
-KSAgICBfTU1JT19QTEwzKHBsbCwgRFBMTDBfRU5BQkxFLCBEUExMMV9FTkFCTEUsIFwKPiAgIAkJ
-CQkJICAgX01HX1BMTDFfRU5BQkxFLCBfTUdfUExMMl9FTkFCTEUpCj4gICAKPiArLyogQURMLVAg
-VHlwZSBDIFBMTCAqLwo+ICsjZGVmaW5lIFBPUlRUQzFfUExMX0VOQUJMRQkweDQ2MDM4Cj4gKyNk
-ZWZpbmUgUE9SVFRDMl9QTExfRU5BQkxFCTB4NDYwNDAKPiArCj4gKyNkZWZpbmUgQURMUF9QT1JU
-VENfUExMX0VOQUJMRSh0Y19wb3J0KQkJX01NSU9fUE9SVCgodGNfcG9ydCksIFwKPiArCQkJCQkJ
-CSAgICBQT1JUVEMxX1BMTF9FTkFCTEUsIFwKPiArCQkJCQkJCSAgICBQT1JUVEMyX1BMTF9FTkFC
-TEUpCj4gKwo+ICAgI2RlZmluZSBfTUdfUkVGQ0xLSU5fQ1RMX1BPUlQxCQkJCTB4MTY4OTJDCj4g
-ICAjZGVmaW5lIF9NR19SRUZDTEtJTl9DVExfUE9SVDIJCQkJMHgxNjk5MkMKPiAgICNkZWZpbmUg
-X01HX1JFRkNMS0lOX0NUTF9QT1JUMwkJCQkweDE2QTkyQwpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Tested on latest drm-tip with DPCD=1.2 Sink and LTTPR set to non-
+transparent mode:
+
+[  706.966375] i915 0000:00:02.0: [drm:drm_dp_dpcd_read] AUX USBC2/DDI
+TC2/PHY TC2: 0xf0000 AUX -> (ret=  8) 14 1e 80 55 04 00 00 00
+[  706.966383] i915 0000:00:02.0:
+[drm:intel_dp_init_lttpr_and_dprx_caps [i915]] LTTPR common
+capabilities: 14 1e 80 55 04 00 00 00
+[  706.966900] i915 0000:00:02.0: [drm:drm_dp_dpcd_write] AUX USBC2/DDI
+TC2/PHY TC2: 0xf0003 AUX <- (ret=  1) 55
+[  706.967397] i915 0000:00:02.0: [drm:drm_dp_dpcd_write] AUX USBC2/DDI
+TC2/PHY TC2: 0xf0003 AUX <- (ret=  1) aa
+[  706.968384] i915 0000:00:02.0: [drm:drm_dp_dpcd_read] AUX USBC2/DDI
+TC2/PHY TC2: 0xf0020 AUX -> (ret=  3) 03 00 00
+[  706.968388] i915 0000:00:02.0:
+[drm:intel_dp_init_lttpr_and_dprx_caps [i915]] LTTPR 1 PHY
+capabilities: 03 00 00
+[  706.969913] i915 0000:00:02.0: [drm:drm_dp_dpcd_read] AUX USBC2/DDI
+TC2/PHY TC2: 0x00000 AUX -> (ret= 15) 12 14 c4 01 01 00 01 00 02 02 06
+00 00 00 00
+[  706.969917] i915 0000:00:02.0: [drm:drm_dp_read_dpcd_caps] AUX
+USBC2/DDI TC2/PHY TC2: DPCD: 12 14 c4 01 01 00 01 00 02 02 06 00 00 00
+00
+
+Tested-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Reviewed-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+
+Thank you for the patch
+~Khaled
+
+On Thu, 2021-05-13 at 00:28 +0300, Imre Deak wrote:
+> The driver currently disables the LTTPR non-transparent link training
+> mode for sinks with a DPCD_REV<1.4, based on the following
+> description
+> of the LTTPR DPCD register range in DP standard 2.0 (at the 0xF0000
+> register description):
+> 
+> ""
+> LTTPR-related registers at DPCD Addresses F0000h through F02FFh are
+> valid
+> only for DPCD r1.4 (or higher).
+> """
+> 
+> The transparent link training mode should still work fine, however
+> the
+> implementation for this in some retimer FWs seems to be broken, see
+> the
+> References: link below.
+> 
+> After discussions with DP standard authors the above "DPCD r1.4" does
+> not refer to the DPCD revision (stored in the DPCD_REV reg at
+> 0x00000),
+> rather to the "LTTPR field data structure revision" stored in the
+> 0xF0000 reg. An update request has been filed at vesa.org (see
+> wg/Link/documentComment/3746) for the upcoming v2.1 specification to
+> clarify the above description along the following lines:
+> 
+> """
+> LTTPR-related registers at DPCD Addresses F0000h through F02FFh are
+> valid only for LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV 1.4
+> (or
+> higher)
+> """
+> 
+> Based on my tests Windows uses the non-transparent link training mode
+> for DPCD_REV==1.2 sinks as well (so presumably for all DPCD_REVs),
+> and
+> forcing it to use transparent mode on ICL/TGL platforms leads to the
+> same LT failure as reported at the References: link.
+> 
+> Based on the above let's assume that the transparent link training
+> mode
+> is not well tested/supported and align the code to the correct
+> interpretation of what the r1.4 version refers to.
+> 
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/3415
+> Fixes: 264613b406eb ("drm/i915: Disable LTTPR support when the DPCD
+> rev < 1.4")
+> Cc: <stable@vger.kernel.org> # v5.11+
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  .../drm/i915/display/intel_dp_link_training.c | 71 +++++++++------
+> ----
+>  1 file changed, 33 insertions(+), 38 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 6bf6f1ec13ed8..08bceae40aa8d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -128,50 +128,14 @@ intel_dp_set_lttpr_transparent_mode(struct
+> intel_dp *intel_dp, bool enable)
+>  	return drm_dp_dpcd_write(&intel_dp->aux, DP_PHY_REPEATER_MODE,
+> &val, 1) == 1;
+>  }
+>  
+> -/**
+> - * intel_dp_init_lttpr_and_dprx_caps - detect LTTPR and DPRX caps,
+> init the LTTPR link training mode
+> - * @intel_dp: Intel DP struct
+> - *
+> - * Read the LTTPR common and DPRX capabilities and switch to non-
+> transparent
+> - * link training mode if any is detected and read the PHY
+> capabilities for all
+> - * detected LTTPRs. In case of an LTTPR detection error or if the
+> number of
+> - * LTTPRs is more than is supported (8), fall back to the no-LTTPR,
+> - * transparent mode link training mode.
+> - *
+> - * Returns:
+> - *   >0  if LTTPRs were detected and the non-transparent LT mode was
+> set. The
+> - *       DPRX capabilities are read out.
+> - *    0  if no LTTPRs or more than 8 LTTPRs were detected or in case
+> of a
+> - *       detection failure and the transparent LT mode was set. The
+> DPRX
+> - *       capabilities are read out.
+> - *   <0  Reading out the DPRX capabilities failed.
+> - */
+> -int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
+> +static int intel_dp_init_lttpr(struct intel_dp *intel_dp)
+>  {
+>  	int lttpr_count;
+> -	bool ret;
+>  	int i;
+>  
+> -	ret = intel_dp_read_lttpr_common_caps(intel_dp);
+> -
+> -	/* The DPTX shall read the DPRX caps after LTTPR detection. */
+> -	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd)) {
+> -		intel_dp_reset_lttpr_common_caps(intel_dp);
+> -		return -EIO;
+> -	}
+> -
+> -	if (!ret)
+> +	if (!intel_dp_read_lttpr_common_caps(intel_dp))
+>  		return 0;
+>  
+> -	/*
+> -	 * The 0xF0000-0xF02FF range is only valid if the DPCD revision
+> is
+> -	 * at least 1.4.
+> -	 */
+> -	if (intel_dp->dpcd[DP_DPCD_REV] < 0x14) {
+> -		intel_dp_reset_lttpr_common_caps(intel_dp);
+> -		return 0;
+> -	}
+> -
+>  	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
+>  	/*
+>  	 * Prevent setting LTTPR transparent mode explicitly if no
+> LTTPRs are
+> @@ -211,6 +175,37 @@ int intel_dp_init_lttpr_and_dprx_caps(struct
+> intel_dp *intel_dp)
+>  
+>  	return lttpr_count;
+>  }
+> +
+> +/**
+> + * intel_dp_init_lttpr_and_dprx_caps - detect LTTPR and DPRX caps,
+> init the LTTPR link training mode
+> + * @intel_dp: Intel DP struct
+> + *
+> + * Read the LTTPR common and DPRX capabilities and switch to non-
+> transparent
+> + * link training mode if any is detected and read the PHY
+> capabilities for all
+> + * detected LTTPRs. In case of an LTTPR detection error or if the
+> number of
+> + * LTTPRs is more than is supported (8), fall back to the no-LTTPR,
+> + * transparent mode link training mode.
+> + *
+> + * Returns:
+> + *   >0  if LTTPRs were detected and the non-transparent LT mode was
+> set. The
+> + *       DPRX capabilities are read out.
+> + *    0  if no LTTPRs or more than 8 LTTPRs were detected or in case
+> of a
+> + *       detection failure and the transparent LT mode was set. The
+> DPRX
+> + *       capabilities are read out.
+> + *   <0  Reading out the DPRX capabilities failed.
+> + */
+> +int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
+> +{
+> +	int lttpr_count = intel_dp_init_lttpr(intel_dp);
+> +
+> +	/* The DPTX shall read the DPRX caps after LTTPR detection. */
+> +	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd)) {
+> +		intel_dp_reset_lttpr_common_caps(intel_dp);
+> +		return -EIO;
+> +	}
+> +
+> +	return lttpr_count;
+> +}
+>  EXPORT_SYMBOL(intel_dp_init_lttpr_and_dprx_caps);
+>  
+>  static u8 dp_voltage_max(u8 preemph)
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
