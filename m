@@ -2,69 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EF703872C0
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 May 2021 08:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5939F3872A9
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 May 2021 08:53:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8788789FF9;
-	Tue, 18 May 2021 06:58:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9974989ACD;
+	Tue, 18 May 2021 06:53:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com
- [IPv6:2607:f8b0:4864:20::42c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96AEB89FF9
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 May 2021 06:58:33 +0000 (UTC)
-Received: by mail-pf1-x42c.google.com with SMTP id x188so6707385pfd.7
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 23:58:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=okFGSzwxy3Xl1EDwrbsZ6bJWGdPaUEKxSezi4/SE71A=;
- b=KvboTWH6SCfdQ7LLxm6vH9xhTNNbPkylAhr3iqPQWH1QNODKOLIbMt/OYjboWMwVvr
- +KD/UQeQoUETk6OK7TCWS0Utmt5EvBfWbA4IzzRRuwJkDy5Qi3ICeWOTChp1Py6zaNQt
- fa1WHS9ymuIo1ivMcIga1N5vVpkmfX46UnGI0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=okFGSzwxy3Xl1EDwrbsZ6bJWGdPaUEKxSezi4/SE71A=;
- b=mys1mvipOseWVObAKk4y6oyC2guJMfJN3SXLlLmZtxzaSepGGAdg+xAPtgCiayC3Kw
- SK3Ozv9gZcgELaolkbbZFx9ReFN3FjBQTETzU4zuCMfyo2QKbxk3BgUeMmeZqSCiEI0R
- HppKhNa4SiQBPAcYylUl8m8oGhFkIff3EMGWJyPDIvB+VoO3rg/xq8woWPt837HHc4ds
- 3U5bQJ6drdpmxFq2DxphOn2BLBl0CnIRJfglUGEuGiSD1MoIJaiDdwz36TF/wvZd2OgT
- nDBRaruAQIYYASm0XVb2wJtFwHi2Yxs8F+LXP037e4Gio9ajpROlRuTHrrrakw0FCCII
- 7oHA==
-X-Gm-Message-State: AOAM531HowOXDFvxY9gCG4xFbe3Gm1NUkiWOzXZFLyMgOSuyg46259jU
- Lc96CFbzIC4oDO1ZJKXSopr5dX5ujA5A9g==
-X-Google-Smtp-Source: ABdhPJywsN/CBKDTYRYWvC1eaRBg6aBwXsXJ1Ku88duWmMVXnG2r/L55edxYXRIBJYjRyvL1vumQlg==
-X-Received: by 2002:aa7:8c4d:0:b029:2de:708c:ac4f with SMTP id
- e13-20020aa78c4d0000b02902de708cac4fmr1270572pfd.51.1621321113079; 
- Mon, 17 May 2021 23:58:33 -0700 (PDT)
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com.
- [209.85.215.176])
- by smtp.gmail.com with ESMTPSA id mj7sm1172414pjb.47.2021.05.17.23.58.32
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 17 May 2021 23:58:32 -0700 (PDT)
-Received: by mail-pg1-f176.google.com with SMTP id m124so6319394pgm.13
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 May 2021 23:58:32 -0700 (PDT)
-X-Received: by 2002:a05:6e02:1a4d:: with SMTP id
- u13mr3011800ilv.64.1621320723564; 
- Mon, 17 May 2021 23:52:03 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D3AA58909F;
+ Tue, 18 May 2021 06:53:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CCF94A363D;
+ Tue, 18 May 2021 06:53:14 +0000 (UTC)
 MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Claire Chang" <tientzu@chromium.org>
+Date: Tue, 18 May 2021 06:53:14 -0000
+Message-ID: <162132079481.23337.1297012818063799137@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-6-tientzu@chromium.org>
-In-Reply-To: <20210518064215.2856977-6-tientzu@chromium.org>
-From: Claire Chang <tientzu@chromium.org>
-Date: Tue, 18 May 2021 14:51:52 +0800
-X-Gmail-Original-Message-ID: <CALiNf28ke3c91Y7xaHUgvJePKXqYA7UmsYJV9yaeZc3-4Lzs8Q@mail.gmail.com>
-Message-ID: <CALiNf28ke3c91Y7xaHUgvJePKXqYA7UmsYJV9yaeZc3-4Lzs8Q@mail.gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
- Joerg Roedel <joro@8bytes.org>, 
- Will Deacon <will@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
- Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>, boris.ostrovsky@oracle.com,
- jgross@suse.com, 
- Christoph Hellwig <hch@lst.de>, Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [Intel-gfx] [PATCH v7 05/15] swiotlb: Add a new get_io_tlb_mem
- getter
+In-Reply-To: <20210518064215.2856977-1-tientzu@chromium.org>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Restricted_DMA_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,35 +38,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
- peterz@infradead.org, benh@kernel.crashing.org,
- dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
- grant.likely@arm.com, paulus@samba.org, mingo@kernel.org,
- Jianxiong Gao <jxgao@google.com>, sstabellini@kernel.org,
- Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
- "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, bskeggs@redhat.com,
- linux-pci@vger.kernel.org, xen-devel@lists.xenproject.org,
- Thierry Reding <treding@nvidia.com>, intel-gfx@lists.freedesktop.org,
- matthew.auld@intel.com, linux-devicetree <devicetree@vger.kernel.org>,
- airlied@linux.ie, Robin Murphy <robin.murphy@arm.com>,
- Nicolas Boichat <drinkcat@chromium.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Dan Williams <dan.j.williams@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Greg KH <gregkh@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>,
- lkml <linux-kernel@vger.kernel.org>, Tomasz Figa <tfiga@chromium.org>,
- "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
- Jim Quinlan <james.quinlan@broadcom.com>, linuxppc-dev@lists.ozlabs.org,
- bauerman@linux.ibm.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Still keep this function because directly using dev->dma_io_tlb_mem
-will cause issues for memory allocation for existing devices. The pool
-can't support atomic coherent allocation so we need to distinguish the
-per device pool and the default pool in swiotlb_alloc.
+== Series Details ==
+
+Series: Restricted DMA (rev3)
+URL   : https://patchwork.freedesktop.org/series/89341/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+4970ae013adb swiotlb: Refactor swiotlb init functions
+e6b601b9629d swiotlb: Refactor swiotlb_create_debugfs
+e86662fadedf swiotlb: Add DMA_RESTRICTED_POOL
+fde662bbf776 swiotlb: Add restricted DMA pool initialization
+4d855565f52f swiotlb: Add a new get_io_tlb_mem getter
+0e604cae8fe2 swiotlb: Update is_swiotlb_buffer to add a struct device argument
+3bf813727fea swiotlb: Update is_swiotlb_active to add a struct device argument
+-:98: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "get_io_tlb_mem"
+#98: FILE: kernel/dma/swiotlb.c:667:
++	return get_io_tlb_mem(dev) != NULL;
+
+total: 0 errors, 0 warnings, 1 checks, 59 lines checked
+bc49eee520f6 swiotlb: Bounce data from/to restricted DMA pool if available
+-:45: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#45: FILE: include/linux/swiotlb.h:143:
+ }
++static inline bool is_dev_swiotlb_force(struct device *dev)
+
+total: 0 errors, 0 warnings, 1 checks, 75 lines checked
+68eb3a4c3085 swiotlb: Move alloc_size to find_slots
+aec185368af0 swiotlb: Refactor swiotlb_tbl_unmap_single
+5c880be08fa6 dma-direct: Add a new wrapper __dma_direct_free_pages()
+454814aa7406 swiotlb: Add restricted DMA alloc/free support.
+162bfd59d8cd dma-direct: Allocate memory from restricted DMA pool if available
+38df8d208cac dt-bindings: of: Add restricted DMA pool
+e79ad0f25fff of: Add plumbing for restricted DMA pool
+-:44: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#44: FILE: drivers/of/address.c:1133:
++			return of_reserved_mem_device_init_by_idx(
+
+-:83: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#83: FILE: drivers/of/of_private.h:173:
+ }
++static inline int of_dma_set_restricted_buffer(struct device *dev)
+
+total: 0 errors, 0 warnings, 2 checks, 63 lines checked
+
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
