@@ -1,54 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0068387554
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 May 2021 11:40:33 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C89E53876F0
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 May 2021 12:51:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA5A06E866;
-	Tue, 18 May 2021 09:40:31 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 304D06E866;
- Tue, 18 May 2021 09:40:30 +0000 (UTC)
-IronPort-SDR: NllE0dEqvIjM3P7KNzA8Z7w72nxO15wXUYqh6U3FDmohLmsmYlaju0NI/PJKCAuUi5Z+/B3IXO
- 1eKaAm0YSEwg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9987"; a="221718810"
-X-IronPort-AV: E=Sophos;i="5.82,309,1613462400"; d="scan'208";a="221718810"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2021 02:40:26 -0700
-IronPort-SDR: K6iOpmkmPeNLeglPfgd+qPmb7kTQvkRXF5D7CXEh5yQ8CQ7XS/t5I9S73iegWET8EJ+6ogweQp
- YS6+JXgo+y3g==
-X-IronPort-AV: E=Sophos;i="5.82,309,1613462400"; d="scan'208";a="438584204"
-Received: from alirazas-mobl.ger.corp.intel.com (HELO [10.213.211.104])
- ([10.213.211.104])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2021 02:40:24 -0700
-To: Daniel Stone <daniel@fooishbar.org>
-References: <c6c61179-5b4b-4e0b-6e57-ec4839ca3268@linux.intel.com>
- <b2203d34-2de3-7c58-de2f-bf6fafc3f67c@amd.com>
- <6cf2f14a-6a16-5ea3-d307-004faad4cc79@linux.intel.com>
- <a2b03603-eb3e-7bef-a799-c15cfb1a8e0b@amd.com>
- <YKJ+F4KqEiQQYkRz@phenom.ffwll.local>
- <BYAPR12MB2840C633CF05C1F29263F5BCF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
- <c85fc53f-d25b-464c-d411-eed4a509a009@linux.intel.com>
- <BYAPR12MB28409E25DEFD3DD620E596ABF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
- <BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
- <mysJHURIfWxBRBabIlnunj7LZNkkRQ-Knu_o6v7GZI4xCwGMZXn0rvjscl-aTT_d-ttlAQgJOG3gP95DBd_dxCPQNfguTSdrltxPrKt2FGs=@emersion.fr>
- <7f8fc38a-cd25-aa1f-fa2d-5d3334edb3d2@linux.intel.com>
- <CAPj87rOL7SEVXoH1rWH9ypj7idRmVPLXzmEsdVqFdVjsMh5PbA@mail.gmail.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <71428a10-4b2f-dbbf-7678-7487f9eda6a5@linux.intel.com>
-Date: Tue, 18 May 2021 10:40:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD44D6E86D;
+	Tue, 18 May 2021 10:51:34 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8B466E86D;
+ Tue, 18 May 2021 10:51:33 +0000 (UTC)
+IronPort-SDR: T3y7i5T3Yo+6eb4xCcFpQ3QyDi12QgjE+LBn7lpLYLWghMkvK2SgLHXHhDsl9Cmo4yStr5ZWJE
+ DBlfhQoGwOCg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9987"; a="180284290"
+X-IronPort-AV: E=Sophos;i="5.82,309,1613462400"; d="scan'208";a="180284290"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2021 03:51:33 -0700
+IronPort-SDR: RrXmQEPiQ70JcTEf575KxteBSRICRbOCKfskXyJkqv4NurxWrNDR/eAwYbGmBe75p5krTYWi6p
+ bCekGYseySLQ==
+X-IronPort-AV: E=Sophos;i="5.82,309,1613462400"; d="scan'208";a="472892846"
+Received: from lmrad-mobl.ger.corp.intel.com (HELO localhost) ([10.252.52.115])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2021 03:51:30 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>, Jason Ekstrand <jason@jlekstrand.net>
+In-Reply-To: <CAKMK7uE47sVtZ+JrVkVd+DqdaG+zxAR4xbC1C4ctTrJXT+mEgA@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210503155748.1961781-1-jason@jlekstrand.net>
+ <20210503155748.1961781-20-jason@jlekstrand.net>
+ <YJGvhfiKTILPsAG/@phenom.ffwll.local>
+ <CAOFGe96JZqVxN4btQdqHvrMUm+bgRmSTiNBvQ9fXX36JUnDM=A@mail.gmail.com>
+ <YKJyUhkvtq9k9DU0@phenom.ffwll.local>
+ <CAOFGe97dM5H8nKvHxamm2mzMvzipLKCK-p1VR+WVeZBWzEk9QA@mail.gmail.com>
+ <CAKMK7uE47sVtZ+JrVkVd+DqdaG+zxAR4xbC1C4ctTrJXT+mEgA@mail.gmail.com>
+Date: Tue, 18 May 2021 13:51:27 +0300
+Message-ID: <878s4cfh74.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAPj87rOL7SEVXoH1rWH9ypj7idRmVPLXzmEsdVqFdVjsMh5PbA@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 0/7] Per client engine busyness
+Subject: Re: [Intel-gfx] [PATCH 19/27] drm/i915/gem: Use the proto-context
+ to handle create parameters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +53,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "jhubbard@nvidia.com" <jhubbard@nvidia.com>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Simon Ser <contact@emersion.fr>, "Koenig,
- Christian" <Christian.Koenig@amd.com>,
- "aritger@nvidia.com" <aritger@nvidia.com>, "Nieto,
- David M" <David.Nieto@amd.com>
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 17 May 2021, Daniel Vetter <daniel@ffwll.ch> wrote:
+> On Mon, May 17, 2021 at 7:05 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
+>>
+>> On Mon, May 17, 2021 at 8:40 AM Daniel Vetter <daniel@ffwll.ch> wrote:
+>> >
+>> > On Fri, May 14, 2021 at 02:13:57PM -0500, Jason Ekstrand wrote:
+>> > > I can add those.  I just don't know where to put it.  We don't have an
+>> > > i915_gem_vm.h.  Suggestions?
+>> >
+>> > gt/intel_gtt.h seems to be the header for i915_address_space stuff. Also
+>> > contains the i915_vma_ops but not i915_vma.
+>> >
+>> > It's a pretty good mess, but probably the best place for now for these :-/
+>>
+>> The one for contexts is in i915_drv.h so I put the VM one there too.
+>> Feel free to tell me to move it.  I don't care where it goes.
+>
+> i915_drv.h is the og dumping ground and needs to die. Everything in
+> there needs to be moved out/split/whatever for better code
+> organization. If we have a place already that fits better (even if
+> maybe misnamed) it's better to put it there.
 
-On 18/05/2021 10:16, Daniel Stone wrote:
-> Hi,
-> 
-> On Tue, 18 May 2021 at 10:09, Tvrtko Ursulin
-> <tvrtko.ursulin@linux.intel.com> wrote:
->> I was just wondering if stat(2) and a chrdev major check would be a
->> solid criteria to more efficiently (compared to parsing the text
->> content) detect drm files while walking procfs.
-> 
-> Maybe I'm missing something, but is the per-PID walk actually a
-> measurable performance issue rather than just a bit unpleasant?
+I haven't really codified this anywhere, but this is what I've been
+trying to drive:
 
-Per pid and per each open fd.
+* All functions in a .c file are declared in the corresponding .h
+  file. 1:1 relationship.
 
-As said in the other thread what bothers me a bit in this scheme is that 
-the cost of obtaining GPU usage scales based on non-GPU criteria.
+* Have _types.h headers separately for defining types that lead to deep
+  include chains. (We have this in part because we have absolutely
+  everything in struct drm_i915_private, and everything needs everything
+  else to look inside i915.)
 
-For use case of a top-like tool which shows all processes this is a 
-smaller additional cost, but then for a gpu-top like tool it is somewhat 
-higher.
+* Minimize includes from headers. Prefer forward declarations where
+  possible. Prefer specific includes over generic includes.
 
-Regards,
+* Each header is self-contained (this is build-tested with
+  CONFIG_DRM_I915_WERROR=y).
 
-Tvrtko
+* Avoid static inlines unless you have a performance need.
+
+* Don't have any externs. Interfaces over data; data is not an
+  interface.
+
+* Prefix functions in a file according to the filename. intel_foo.[ch]
+  would have functions intel_foo_*(). Ditto i915_bar.[ch] and
+  i915_bar_*(). (Avoid non-static platform specific functions, but if
+  you have them, you'd name them e.g. skl_foo_*().)
+
+Basically the rationale is to have more order in the chaos that we've
+had for a long time. It's not so much about being pedantic about the
+naming, but rather the secondary effect of making people think about
+where they put stuff and how it's all grouped together.
+
+IMO it's also easier to add file.[ch] and nuke it later than add stuff
+to some of our huge files and then clean it up later.
+
+
+BR,
+Jani.
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
