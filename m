@@ -2,42 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CD2B388954
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 10:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AAC1388992
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 10:40:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA4BD6ECE3;
-	Wed, 19 May 2021 08:25:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56A506E249;
+	Wed, 19 May 2021 08:40:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA6136ECE0;
- Wed, 19 May 2021 08:25:33 +0000 (UTC)
-IronPort-SDR: d7UmjA3SoBQzleVe5nq6IC484EUNFNP7KHACFTyX+te0I7A9rGsv2cAQDagNDI+XQzoeZSDOvq
- E7VmGU1m6lGg==
-X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="264837906"
-X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="264837906"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 01:25:29 -0700
-IronPort-SDR: P20o1fT9rO4uoOMWLf4hWE9/8CSZ0IvJap9Fj4x4GJdyhyxXRRFFrlQ0r8aRq2DJbFex0K+deV
- rmYzhrlYAwEg==
-X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="473387264"
-Received: from akrolak-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.37.74])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 01:25:27 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Petri Latvala <petri.latvala@intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <YKTKAT7szb+DvKRH@platvala-desk.ger.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20210511165117.428062-1-matthew.auld@intel.com>
- <20210511165117.428062-8-matthew.auld@intel.com>
- <YKTKAT7szb+DvKRH@platvala-desk.ger.corp.intel.com>
-Date: Wed, 19 May 2021 11:25:24 +0300
-Message-ID: <87o8d7dtaj.fsf@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 009596E19C;
+ Wed, 19 May 2021 08:40:36 +0000 (UTC)
+IronPort-SDR: aZYDvOuuBZHcspxgE/ve8EuwhN7l9eV6ckYK2i85czRwi8iRPtJ4KFh8nvFxsoShHheX/qFi+y
+ Hloke28pWYvQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="197833152"
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; 
+ d="asc'?scan'208";a="197833152"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2021 01:40:36 -0700
+IronPort-SDR: MrY+2h+hx37IZuK0QZzf3fgPh/EwjpJGvVRy80M9V3FlmN9mBTrade7HXKASObdfWqYjnWyHla
+ YemORb5h6hSA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; 
+ d="asc'?scan'208";a="627534596"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga006.fm.intel.com with ESMTP; 19 May 2021 01:40:33 -0700
+Date: Wed, 19 May 2021 16:21:23 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Message-ID: <20210519082123.GI4589@zhen-hp.sh.intel.com>
+References: <20210518161705.3697143-1-gregkh@linuxfoundation.org>
+ <YKPrRW+zBC8Wmjgz@kroah.com>
+ <20210519080313.GH4589@zhen-hp.sh.intel.com>
+ <YKTM1tQ7SMPnYgiV@kroah.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH i-g-t 07/12] i915_drm.h sync
+In-Reply-To: <YKTM1tQ7SMPnYgiV@kroah.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gvt: remove local storage of
+ debugfs file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,28 +51,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, thomas.hellstrom@linux.intel.com,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0368171479=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 19 May 2021, Petri Latvala <petri.latvala@intel.com> wrote:
-> On Tue, May 11, 2021 at 05:51:12PM +0100, Matthew Auld wrote:
->> Sync to get gem_create_ext and the regions query stuff.
->
-> Kernel commit sha in commit message please.
 
-Might be nice to have a script or a build target to update a file from
-kernel, with the proper commit message.
+--===============0368171479==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="q6mBvMCt6oafMx9a"
+Content-Disposition: inline
 
-BR,
-Jani.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+--q6mBvMCt6oafMx9a
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2021.05.19 10:31:18 +0200, Greg Kroah-Hartman wrote:
+> On Wed, May 19, 2021 at 04:03:13PM +0800, Zhenyu Wang wrote:
+> > On 2021.05.18 18:28:53 +0200, Greg Kroah-Hartman wrote:
+> > > On Tue, May 18, 2021 at 06:17:05PM +0200, Greg Kroah-Hartman wrote:
+> > > > There is no need to keep the dentry around for the debugfs kvmgt ca=
+che
+> > > > file, as we can just look it up when we want to remove it later on.
+> > > > Simplify the structure by removing the dentry and relying on debugfs
+> > > > to find the dentry to remove when we want to.
+> > > >=20
+> > > > By doing this change, we remove the last in-kernel user that was st=
+oring
+> > > > the result of debugfs_create_long(), so that api can be cleaned up.
+> > > >=20
+> > > > Cc: Zhenyu Wang <zhenyuw@linux.intel.com>
+> > > > Cc: Zhi Wang <zhi.a.wang@intel.com>
+> > > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > Cc: David Airlie <airlied@linux.ie>
+> > > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > > Cc: intel-gvt-dev@lists.freedesktop.org
+> > > > Cc: intel-gfx@lists.freedesktop.org
+> > > > Cc: dri-devel@lists.freedesktop.org
+> > > > Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/gvt/kvmgt.c | 11 +++++------
+> > > >  1 file changed, 5 insertions(+), 6 deletions(-)
+> > >=20
+> > > Note, I can take this through my debugfs tree if wanted, that way I c=
+an
+> > > clean up the debugfs_create_long() api at the same time.  Otherwise i=
+t's
+> > > fine, I can wait until next -rc1 for that to happen.
+> > >=20
+> >=20
+> > It's fine with me to go through debugfs tree. Just double check that re=
+cent
+> > kvmgt change would not cause conflict with this as well.
+>=20
+> How can I check that?  I'll be glad to take this through my tree, we can
+> handle the merge issues later for 5.14-rc1 :)
+>=20
+
+Current kvmgt change in merge queue is just https://patchwork.freedesktop.o=
+rg/patch/433536/?series=3D89995&rev=3D2
+It applies fine with debugfs change.
+
+
+--q6mBvMCt6oafMx9a
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYKTKfgAKCRCxBBozTXgY
+J2A8AJ47qrLT92YbMGpq+0Oh7RBcZmKNaQCghT4HV9a6e0VBuuJd0a9WrealPM0=
+=OD41
+-----END PGP SIGNATURE-----
+
+--q6mBvMCt6oafMx9a--
+
+--===============0368171479==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0368171479==--
