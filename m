@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DF5338953B
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 20:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70DCB38960D
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 21:01:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87B346EE46;
-	Wed, 19 May 2021 18:23:20 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com
- [IPv6:2607:f8b0:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48DC589C6C
- for <Intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 18:23:18 +0000 (UTC)
-Received: by mail-ot1-x32c.google.com with SMTP id
- d25-20020a0568300459b02902f886f7dd43so12599494otc.6
- for <Intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 11:23:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lU1aEp1/fTDg1MRFhbbvBQJlurTqZag3+kwKZCaFfEA=;
- b=BJw5L3BrtVFBrlK/Uqaiei75sqgQvSftM6vbSEuAeMCnAOJSgXijp70aaA796HngQq
- 7Dz0QD4n2CB/dAa7pcIsA+Lj68SO0UcRPLCC9/vCA47p62qUZrSxVcXjWL/xpXr7KPNm
- mX8/aOaR7tz62Y55+iGjltsTTXjfpkkq6aC2M=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76A3E6EE5B;
+	Wed, 19 May 2021 19:01:12 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com
+ [IPv6:2607:f8b0:4864:20::c31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E2F36EE5C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 19:01:11 +0000 (UTC)
+Received: by mail-oo1-xc31.google.com with SMTP id
+ s1-20020a4ac1010000b02901cfd9170ce2so3229995oop.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 12:01:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:date:message-id:in-reply-to:references:user-agent
+ :subject:mime-version;
+ bh=U5hrAgd6HR1r8bgElc1ZgpeRNU/+O9T+k5xQsxqUdl8=;
+ b=pVLO3pO6yZG3uL6Ui0n3ZcMa3fCMZQdf+sX5n+AmjlauqBoP/W5UXIys3Nvz/A6kPp
+ ZDTZhRt2h1nWsI4HV2f51cjolQIchSyZi6IX6k4MfTNLQ081Tcc3GNnrsgieowgEEEvv
+ T3W5ZFKQBpPNwC1HqKW/QEX8QrkUJAtzu+zDcjfMR4F18zfobyY/1/El7wde6oIUFUD9
+ XzRJ4NQHETlb6g0Q63he/X2+odfPziuaeP1r2gX1gHeyt9RenPHVC1vt8T19R3UL1nog
+ /oXJJoGSXSkLySFLTa4pEwSWQ0ukcO8ZDPk+FLbzkFbnGG8hfJEThWi7gr986d9WlMgQ
+ 9Fwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=lU1aEp1/fTDg1MRFhbbvBQJlurTqZag3+kwKZCaFfEA=;
- b=eVYXzNqA3GaNy9kkkFQRIPB08rX9KKAAZwaoKyKET2Aheh4rhrSAw1Gd7USkRTYeGJ
- AL8kxsywcFCHOf53L3AbWyLGwiMh3BWvcL5p0qHGl/YC0exZIKnVdduzbhKcFlvL92HK
- 3Z3nONcjFCrNfNZh8YL2gywZu6vske5f58dVkATGkOwzfN46nk31uB1g84HgcatwTaeq
- iTSoF5RRiTqemOcq42QVSzNATBxOqrNfn2qSs8Xo8H16rb3gSa9EKFIMMvkdi3sBUxC9
- x4i/12A6CntG3UrNiNJ0AUAbVS7gM+cx0yqKhMQJ4ErcN6Z9QzxRnVAl0ETjib7sWtFe
- MiTQ==
-X-Gm-Message-State: AOAM530YyPVj9CRe4w9HJz+8Th7EpKs2QgUtZ1bT1uN2cmtYbPRYlHWq
- jzOmuOaIdes+iO13p9MTTgnJqKH8LZUTeToXc3EzOg==
-X-Google-Smtp-Source: ABdhPJyU9K6L5sHxQhmxWQ79rVoGsktJYOokpWHkHDpmUhbMtFnKZa/uvMA9fJL0vSohClns0xfEnyFTtv5rJekj8aA=
-X-Received: by 2002:a05:6830:1155:: with SMTP id
- x21mr598773otq.303.1621448597285; 
- Wed, 19 May 2021 11:23:17 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:date:message-id:in-reply-to
+ :references:user-agent:subject:mime-version;
+ bh=U5hrAgd6HR1r8bgElc1ZgpeRNU/+O9T+k5xQsxqUdl8=;
+ b=ljbawco2zdsZp2OOJwYo7iLqmhHrogBimwkRRJ54VLxsmOKqcEhHtr+hopQZhS+07d
+ 4qUZb3cqgrRUDQFeYsxi8WASQJz0UWeVrrAoqnhidh0jnAXpELeTUQRDjtXX2rh7xY9l
+ OQKsYH96OjpH5cDpQpzhl1HIB00ptmwTPSDzT6GeYz5LpTnw5fP7/nLnGQ0QwUM2FYj9
+ leddpvqNwLpkNeeScnjauhyXsrSREXVHyUD28r6GZYKUNyCmLLm+roASqULhw93Mijmu
+ ijblEhuHnFfoCsABuhrEznD9QPovIP4MqiSytC1hTadC/ocNM7LwUcX0s00F/GdZUgDl
+ F9yA==
+X-Gm-Message-State: AOAM531R1Ho+Va3XcUSP1HFlRS2Z1f5AhC6z6EpjboYwK93T9UqK7ubC
+ ws3HIsoqfJAyUVOcmPfpGsvvBQ==
+X-Google-Smtp-Source: ABdhPJywTJWJWxEX86AdpMQPvXjaFJRCsnDVqfu6eb4R07oOiK8ZGS7C/FWFNbX07llhq8josA4UZg==
+X-Received: by 2002:a4a:c88f:: with SMTP id t15mr657518ooq.84.1621450870405;
+ Wed, 19 May 2021 12:01:10 -0700 (PDT)
+Received: from [100.68.235.67] ([209.107.186.38])
+ by smtp.gmail.com with ESMTPSA id c32sm111200otu.13.2021.05.19.12.01.08
+ (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 19 May 2021 12:01:09 -0700 (PDT)
+From: Jason Ekstrand <jason@jlekstrand.net>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 19 May 2021 14:01:07 -0500
+Message-ID: <1798600adb0.2817.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+In-Reply-To: <CAKMK7uFAXBU6Ot8xJkrXBVppnWi058pEyMjNOAChtepgcCKsrw@mail.gmail.com>
+References: <20210519074323.665872-2-daniel.vetter@ffwll.ch>
+ <20210519101523.688398-1-daniel.vetter@ffwll.ch>
+ <CAOFGe968OKdHu9BL0hU6KWM3J5Fc6popg4GJ5kEDd-3bf4HjJw@mail.gmail.com>
+ <CAKMK7uFAXBU6Ot8xJkrXBVppnWi058pEyMjNOAChtepgcCKsrw@mail.gmail.com>
+User-Agent: AquaMail/1.29.1-1808 (build: 102900007)
 MIME-Version: 1.0
-References: <c6c61179-5b4b-4e0b-6e57-ec4839ca3268@linux.intel.com>
- <b2203d34-2de3-7c58-de2f-bf6fafc3f67c@amd.com>
- <6cf2f14a-6a16-5ea3-d307-004faad4cc79@linux.intel.com>
- <a2b03603-eb3e-7bef-a799-c15cfb1a8e0b@amd.com>
- <YKJ+F4KqEiQQYkRz@phenom.ffwll.local>
- <BYAPR12MB2840C633CF05C1F29263F5BCF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
- <c85fc53f-d25b-464c-d411-eed4a509a009@linux.intel.com>
- <BYAPR12MB28409E25DEFD3DD620E596ABF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
- <BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
- <mysJHURIfWxBRBabIlnunj7LZNkkRQ-Knu_o6v7GZI4xCwGMZXn0rvjscl-aTT_d-ttlAQgJOG3gP95DBd_dxCPQNfguTSdrltxPrKt2FGs=@emersion.fr>
- <7f8fc38a-cd25-aa1f-fa2d-5d3334edb3d2@linux.intel.com>
- <CAPj87rOL7SEVXoH1rWH9ypj7idRmVPLXzmEsdVqFdVjsMh5PbA@mail.gmail.com>
- <71428a10-4b2f-dbbf-7678-7487f9eda6a5@linux.intel.com>
- <c22608a4-b84c-a3a4-0df1-448312b1292e@linux.intel.com>
-In-Reply-To: <c22608a4-b84c-a3a4-0df1-448312b1292e@linux.intel.com>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Wed, 19 May 2021 20:23:05 +0200
-Message-ID: <CAKMK7uF0fHBoYfiTS+-80RtUeuKFUcYDBpGHtNY6Ma+aJmmkxA@mail.gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 0/7] Per client engine busyness
+Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915: Propagate errors on
+ awaiting already signaled fences"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,79 +72,326 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "jhubbard@nvidia.com" <jhubbard@nvidia.com>,
- Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Simon Ser <contact@emersion.fr>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "Koenig,
- Christian" <Christian.Koenig@amd.com>,
- "aritger@nvidia.com" <aritger@nvidia.com>, "Nieto,
- David M" <David.Nieto@amd.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable <stable@vger.kernel.org>, Jason Ekstrand <jason.ekstrand@intel.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0983603666=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 19, 2021 at 6:16 PM Tvrtko Ursulin
-<tvrtko.ursulin@linux.intel.com> wrote:
+This is a multi-part message in MIME format.
+--===============0983603666==
+Content-Type: multipart/alternative; boundary="1798600c2d62f9a2817109ae8f"
+
+This is a multi-part message in MIME format.
+--1798600c2d62f9a2817109ae8f
+Content-Type: text/plain; format=flowed; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
+
+On May 19, 2021 12:16:15 Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+
+> On Wed, May 19, 2021 at 5:06 PM Jason Ekstrand <jason@jlekstrand.net> wrote:
+>>
+>> Once we no longer rely on error propagation, I think there's a lot we
+>> can rip out.
+>
+> I honestly did not find that much ... what did you uncover?
+
+When I was digging through this earlier today, I think I convinced myself 
+that the cmdparser is the only user of the entire fence error architecture. 
+I may have missed something, though.
+
+--Jason
+
+>
+> -Daniel
+>
+>>
+>> --Jason
+>>
+>> On Wed, May 19, 2021 at 5:15 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>>>
+>>> From: Jason Ekstrand <jason@jlekstrand.net>
+>>>
+>>> This reverts commit 9e31c1fe45d555a948ff66f1f0e3fe1f83ca63f7.  Ever
+>>> since that commit, we've been having issues where a hang in one client
+>>> can propagate to another.  In particular, a hang in an app can propagate
+>>> to the X server which causes the whole desktop to lock up.
+>>>
+>>> Error propagation along fences sound like a good idea, but as your bug
+>>> shows, surprising consequences, since propagating errors across security
+>>> boundaries is not a good thing.
+>>>
+>>> What we do have is track the hangs on the ctx, and report information to
+>>> userspace using RESET_STATS. That's how arb_robustness works. Also, if my
+>>> understanding is still correct, the EIO from execbuf is when your context
+>>> is banned (because not recoverable or too many hangs). And in all these
+>>> cases it's up to userspace to figure out what is all impacted and should
+>>> be reported to the application, that's not on the kernel to guess and
+>>> automatically propagate.
+>>>
+>>> What's more, we're also building more features on top of ctx error
+>>> reporting with RESET_STATS ioctl: Encrypted buffers use the same, and the
+>>> userspace fence wait also relies on that mechanism. So it is the path
+>>> going forward for reporting gpu hangs and resets to userspace.
+>>>
+>>> So all together that's why I think we should just bury this idea again as
+>>> not quite the direction we want to go to, hence why I think the revert is
+>>> the right option here.Signed-off-by: Jason Ekstrand <jason.ekstrand@intel.com>
+>>>
+>>> v2: Augment commit message. Also restore Jason's sob that I
+>>> accidentally lost.
+>>>
+>>> Signed-off-by: Jason Ekstrand <jason.ekstrand@intel.com> (v1)
+>>> Reported-by: Marcin Slusarz <marcin.slusarz@intel.com>
+>>> Cc: <stable@vger.kernel.org> # v5.6+
+>>> Cc: Jason Ekstrand <jason.ekstrand@intel.com>
+>>> Cc: Marcin Slusarz <marcin.slusarz@intel.com>
+>>> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+>>> Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3080
+>>> Fixes: 9e31c1fe45d5 ("drm/i915: Propagate errors on awaiting already 
+>>> signaled fences")
+>>> Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>>> ---
+>>> drivers/gpu/drm/i915/i915_request.c | 8 ++------
+>>> 1 file changed, 2 insertions(+), 6 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/i915_request.c 
+>>> b/drivers/gpu/drm/i915/i915_request.c
+>>> index 970d8f4986bb..b796197c0772 100644
+>>> --- a/drivers/gpu/drm/i915/i915_request.c
+>>> +++ b/drivers/gpu/drm/i915/i915_request.c
+>>> @@ -1426,10 +1426,8 @@ i915_request_await_execution(struct i915_request *rq,
+>>>
+>>>  do {
+>>>          fence = *child++;
+>>> -               if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags)) {
+>>> -                       i915_sw_fence_set_error_once(&rq->submit, 
+>>> fence->error);
+>>> +               if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+>>>                  continue;
+>>> -               }
+>>>
+>>>          if (fence->context == rq->fence.context)
+>>>                  continue;
+>>> @@ -1527,10 +1525,8 @@ i915_request_await_dma_fence(struct i915_request 
+>>> *rq, struct dma_fence *fence)
+>>>
+>>>  do {
+>>>          fence = *child++;
+>>> -               if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags)) {
+>>> -                       i915_sw_fence_set_error_once(&rq->submit, 
+>>> fence->error);
+>>> +               if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
+>>>                  continue;
+>>> -               }
+>>>
+>>>          /*
+>>>           * Requests on the same timeline are explicitly ordered, along
+>>> --
+>>> 2.31.0
 >
 >
-> On 18/05/2021 10:40, Tvrtko Ursulin wrote:
-> >
-> > On 18/05/2021 10:16, Daniel Stone wrote:
-> >> Hi,
-> >>
-> >> On Tue, 18 May 2021 at 10:09, Tvrtko Ursulin
-> >> <tvrtko.ursulin@linux.intel.com> wrote:
-> >>> I was just wondering if stat(2) and a chrdev major check would be a
-> >>> solid criteria to more efficiently (compared to parsing the text
-> >>> content) detect drm files while walking procfs.
-> >>
-> >> Maybe I'm missing something, but is the per-PID walk actually a
-> >> measurable performance issue rather than just a bit unpleasant?
-> >
-> > Per pid and per each open fd.
-> >
-> > As said in the other thread what bothers me a bit in this scheme is that
-> > the cost of obtaining GPU usage scales based on non-GPU criteria.
-> >
-> > For use case of a top-like tool which shows all processes this is a
-> > smaller additional cost, but then for a gpu-top like tool it is somewhat
-> > higher.
 >
-> To further expand, not only cost would scale per pid multiplies per open
-> fd, but to detect which of the fds are DRM I see these three options:
+> --
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+
+
+--1798600c2d62f9a2817109ae8f
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd">
+<html>
+<body>
+<div dir=3D"auto">
+<div dir=3D"auto"><span style=3D"font-size: 12pt;">On May 19, 2021 12:16:15=
+ Daniel Vetter &lt;daniel.vetter@ffwll.ch&gt; wrote:</span></div><div id=3D=
+"aqm-original" style=3D"color: black;">
+<div><br></div>
+<blockquote type=3D"cite" class=3D"gmail_quote" style=3D"margin: 0 0 0 0.75=
+ex; border-left: 1px solid #808080; padding-left: 0.75ex;">
+<div dir=3D"auto">On Wed, May 19, 2021 at 5:06 PM Jason Ekstrand &lt;jason@=
+jlekstrand.net&gt; wrote:</div>
+<blockquote type=3D"cite" class=3D"gmail_quote" style=3D"margin: 0 0 0 0.75=
+ex; border-left: 1px solid #0099CC; padding-left: 0.75ex;">
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">Once we no longer rely on error propagation, I think ther=
+e's a lot we</div>
+<div dir=3D"auto">can rip out.</div>
+</blockquote>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">I honestly did not find that much ... what did you uncove=
+r?</div></blockquote></div><div dir=3D"auto"><br></div><div dir=3D"auto">Wh=
+en I was digging through this earlier today, I think I convinced myself tha=
+t the cmdparser is the only user of the entire fence error architecture. I =
+may have missed something, though.</div><div dir=3D"auto"><br></div><div di=
+r=3D"auto">--Jason</div><div dir=3D"auto"><br></div><div id=3D"aqm-original=
+" style=3D"color: black;" dir=3D"auto"><blockquote type=3D"cite" class=3D"g=
+mail_quote" style=3D"margin: 0 0 0 0.75ex; border-left: 1px solid #808080; =
+padding-left: 0.75ex;"><div dir=3D"auto"></div>
+<div dir=3D"auto">-Daniel</div>
+<div dir=3D"auto"><br></div>
+<blockquote type=3D"cite" class=3D"gmail_quote" style=3D"margin: 0 0 0 0.75=
+ex; border-left: 1px solid #0099CC; padding-left: 0.75ex;">
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">--Jason</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">On Wed, May 19, 2021 at 5:15 AM Daniel Vetter &lt;daniel.=
+vetter@ffwll.ch&gt; wrote:</div>
+<blockquote type=3D"cite" class=3D"gmail_quote" style=3D"margin: 0 0 0 0.75=
+ex; border-left: 1px solid #9933CC; padding-left: 0.75ex;">
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">From: Jason Ekstrand &lt;jason@jlekstrand.net&gt;</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">This reverts commit 9e31c1fe45d555a948ff66f1f0e3fe1f83ca6=
+3f7. &nbsp;Ever</div>
+<div dir=3D"auto">since that commit, we've been having issues where a hang =
+in one client</div>
+<div dir=3D"auto">can propagate to another. &nbsp;In particular, a hang in =
+an app can propagate</div>
+<div dir=3D"auto">to the X server which causes the whole desktop to lock up=
+.</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">Error propagation along fences sound like a good idea, bu=
+t as your bug</div>
+<div dir=3D"auto">shows, surprising consequences, since propagating errors =
+across security</div>
+<div dir=3D"auto">boundaries is not a good thing.</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">What we do have is track the hangs on the ctx, and report=
+ information to</div>
+<div dir=3D"auto">userspace using RESET_STATS. That's how arb_robustness wo=
+rks. Also, if my</div>
+<div dir=3D"auto">understanding is still correct, the EIO from execbuf is w=
+hen your context</div>
+<div dir=3D"auto">is banned (because not recoverable or too many hangs). An=
+d in all these</div>
+<div dir=3D"auto">cases it's up to userspace to figure out what is all impa=
+cted and should</div>
+<div dir=3D"auto">be reported to the application, that's not on the kernel =
+to guess and</div>
+<div dir=3D"auto">automatically propagate.</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">What's more, we're also building more features on top of =
+ctx error</div>
+<div dir=3D"auto">reporting with RESET_STATS ioctl: Encrypted buffers use t=
+he same, and the</div>
+<div dir=3D"auto">userspace fence wait also relies on that mechanism. So it=
+ is the path</div>
+<div dir=3D"auto">going forward for reporting gpu hangs and resets to users=
+pace.</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">So all together that's why I think we should just bury th=
+is idea again as</div>
+<div dir=3D"auto">not quite the direction we want to go to, hence why I thi=
+nk the revert is</div>
+<div dir=3D"auto">the right option here.Signed-off-by: Jason Ekstrand &lt;j=
+ason.ekstrand@intel.com&gt;</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">v2: Augment commit message. Also restore Jason's sob that=
+ I</div>
+<div dir=3D"auto">accidentally lost.</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">Signed-off-by: Jason Ekstrand &lt;jason.ekstrand@intel.co=
+m&gt; (v1)</div>
+<div dir=3D"auto">Reported-by: Marcin Slusarz &lt;marcin.slusarz@intel.com&=
+gt;</div>
+<div dir=3D"auto">Cc: &lt;stable@vger.kernel.org&gt; # v5.6+</div>
+<div dir=3D"auto">Cc: Jason Ekstrand &lt;jason.ekstrand@intel.com&gt;</div>
+<div dir=3D"auto">Cc: Marcin Slusarz &lt;marcin.slusarz@intel.com&gt;</div>
+<div dir=3D"auto">Cc: Jon Bloomfield &lt;jon.bloomfield@intel.com&gt;</div>
+<div dir=3D"auto">Closes: https://gitlab.freedesktop.org/drm/intel/-/issues=
+/3080</div>
+<div dir=3D"auto">Fixes: 9e31c1fe45d5 ("drm/i915: Propagate errors on await=
+ing already signaled fences")</div>
+<div dir=3D"auto">Signed-off-by: Daniel Vetter &lt;daniel.vetter@ffwll.ch&g=
+t;</div>
+<div dir=3D"auto">---</div>
+<div dir=3D"auto">drivers/gpu/drm/i915/i915_request.c | 8 ++------</div>
+<div dir=3D"auto">1 file changed, 2 insertions(+), 6 deletions(-)</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">diff --git a/drivers/gpu/drm/i915/i915_request.c b/driver=
+s/gpu/drm/i915/i915_request.c</div>
+<div dir=3D"auto">index 970d8f4986bb..b796197c0772 100644</div>
+<div dir=3D"auto">--- a/drivers/gpu/drm/i915/i915_request.c</div>
+<div dir=3D"auto">+++ b/drivers/gpu/drm/i915/i915_request.c</div>
+<div dir=3D"auto">@@ -1426,10 +1426,8 @@ i915_request_await_execution(struc=
+t i915_request *rq,</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">&nbsp; do {</div>
+<div dir=3D"auto">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fence =3D *child++;</d=
+iv>
+<div dir=3D"auto">- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (te=
+st_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &amp;fence-&gt;flags)) {</div>
+<div dir=3D"auto">- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; i915_sw_fence_set_error_once(&amp;rq-&gt;submit, fenc=
+e-&gt;error);</div>
+<div dir=3D"auto">+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (te=
+st_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &amp;fence-&gt;flags))</div>
+<div dir=3D"auto">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; continue;</div>
+<div dir=3D"auto">- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div=
 >
-> 1) Open and parse fdinfo.
-> 2) Name based matching ie /dev/dri/.. something.
-> 3) Stat the symlink target and check for DRM major.
-
-stat with symlink following should be plenty fast.
-
-> All sound quite sub-optimal to me.
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (fence-&gt;context =
+=3D=3D rq-&gt;fence.context)</div>
+<div dir=3D"auto">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; continue;</div>
+<div dir=3D"auto">@@ -1527,10 +1525,8 @@ i915_request_await_dma_fence(struc=
+t i915_request *rq, struct dma_fence *fence)</div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">&nbsp; do {</div>
+<div dir=3D"auto">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fence =3D *child++;</d=
+iv>
+<div dir=3D"auto">- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (te=
+st_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &amp;fence-&gt;flags)) {</div>
+<div dir=3D"auto">- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; i915_sw_fence_set_error_once(&amp;rq-&gt;submit, fenc=
+e-&gt;error);</div>
+<div dir=3D"auto">+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (te=
+st_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &amp;fence-&gt;flags))</div>
+<div dir=3D"auto">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; continue;</div>
+<div dir=3D"auto">- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</div=
 >
-> Name based matching is probably the least evil on system resource usage
-> (Keeping the dentry cache too hot? Too many syscalls?), even though
-> fundamentally I don't it is the right approach.
->
-> What happens with dup(2) is another question.
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /*</div>
+<div dir=3D"auto">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* Requests on th=
+e same timeline are explicitly ordered, along</div>
+<div dir=3D"auto">--</div>
+<div dir=3D"auto">2.31.0</div>
+<div dir=3D"auto"><br></div>
+</blockquote>
+</blockquote>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto"><br></div>
+<div dir=3D"auto">--&nbsp;</div>
+<div dir=3D"auto">Daniel Vetter</div>
+<div dir=3D"auto">Software Engineer, Intel Corporation</div>
+<div dir=3D"auto">http://blog.ffwll.ch</div>
+</blockquote>
+</div><div dir=3D"auto"><br></div>
+</div></body>
+</html>
 
-We need benchmark numbers showing that on anything remotely realistic
-it's an actual problem. Until we've demonstrated it's a real problem
-we don't need to solve it.
+--1798600c2d62f9a2817109ae8f--
 
-E.g. top with any sorting enabled also parses way more than it
-displays on every update. It seems to be doing Just Fine (tm).
 
-> Does anyone have any feedback on the /proc/<pid>/gpu idea at all?
+--===============0983603666==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-When we know we have a problem to solve we can take a look at solutions.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0983603666==--
+
