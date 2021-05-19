@@ -2,43 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255483889B5
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 10:49:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 604723889BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 10:50:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68A236E40D;
-	Wed, 19 May 2021 08:49:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E80F6ECEB;
+	Wed, 19 May 2021 08:50:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F2906E40D;
- Wed, 19 May 2021 08:49:01 +0000 (UTC)
-IronPort-SDR: 4fjdvE/pFKqWWyCGKV4kzZrM9OVIdoUcd8JLh2xjQIRMIS71rjiEGrFg2zUPlycXU+F63Sd1vY
- qlip9Y8ybLBA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="188054284"
-X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="188054284"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 01:48:59 -0700
-IronPort-SDR: 5kHrgnyIaWhFfd5CAqJx47a8b89iC82IQKMMFQ7sZxpurF66V9Q3RUeefx+Pz45AgPDdZEEPt+
- ruImxi8yCNjQ==
-X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="394337219"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 01:48:58 -0700
-Received: from platvala by thrakatuluk with local (Exim 4.94)
- (envelope-from <petri.latvala@intel.com>)
- id 1ljHuQ-0005ux-RC; Wed, 19 May 2021 11:50:30 +0300
-Date: Wed, 19 May 2021 11:50:30 +0300
-From: Petri Latvala <petri.latvala@intel.com>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Message-ID: <YKTRVpuWOT/gsHdh@platvala-desk.ger.corp.intel.com>
-References: <20210511165117.428062-1-matthew.auld@intel.com>
- <CAM0jSHO6RD=w2TDAxRsr9=Hqabj=U4kya_bwEcC_MKw0t+hncA@mail.gmail.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCB2E6ECE9;
+ Wed, 19 May 2021 08:50:53 +0000 (UTC)
+IronPort-SDR: nPS++wt2IOVfB/6xPICkUQMy21yvGViFFzZeNf/dKAYNggd1+5D0eAMqhQ+ViCw62K9PZO3Mfv
+ UfX5beWdej4w==
+X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="180528352"
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="180528352"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2021 01:50:53 -0700
+IronPort-SDR: 4N6wef4i9zfnejH1AY4vLZX2fASVcpZMjuGdiC09xd2S4ssW4Iv46NwnaUveBaHU/YkV6g4LHL
+ LuNTjwOQ6Uuw==
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="439879254"
+Received: from akrolak-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.37.74])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2021 01:50:49 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi\,
+ Rodrigo" <rodrigo.vivi@intel.com>
+In-Reply-To: <20210519074912.GG4589@zhen-hp.sh.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210519074912.GG4589@zhen-hp.sh.intel.com>
+Date: Wed, 19 May 2021 11:50:46 +0300
+Message-ID: <87lf8bds49.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAM0jSHO6RD=w2TDAxRsr9=Hqabj=U4kya_bwEcC_MKw0t+hncA@mail.gmail.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 00/12] DG1/LMEM uAPI basics
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,59 +49,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv, 
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, May 19, 2021 at 09:13:37AM +0100, Matthew Auld wrote:
-> On Tue, 11 May 2021 at 17:52, Matthew Auld <matthew.auld@intel.com> wrote:
-> >
-> > Just the really basic stuff, which unlocks adding more interesting testcases
-> > later, like gem_lmem_swapping.
-> >
-> > On the kernel side we landed the uAPI bits[1] behind CONFIG_BROKEN, which is
-> > already enabled in CI builds, so it should be possible to get some more BAT
-> > testing(outside of just the selftests) on DG1 to the point where we can start to
-> > exercise the LMEM paths with the new bits of uAPI.
-> >
-> > [1] https://patchwork.freedesktop.org/series/89648/
-> 
-> Petri, any thoughts on this series? As an initial step we just need
-> some way to start exercising the new bits of uAPI, and from that we
-> can add more interesting test cases.
+On Wed, 19 May 2021, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+> Hi,
+>
+> This is to fix GVT config workaround introduced during -rc1 via
+> vfio/mdev change, which exposed dependency issue explicitly that
+> made current GVT config nasty. So this is to fix dependency issue
+> and get back original config sanity.
 
-This series is in a confused state. First there's the addition of
-local definitions and ioctl tokens, then they are replaced with the
-proper stuff...
+Pulled to drm-intel-fixes, thanks.
 
-When this was starting to get developed the idea was to avoid icky
-cases that break _testing_. Not tests, testing. Remember when engine
-discovery was being developed and we had cases where for_each_engine
-loop didn't progress, causing stuff like
+BR,
+Jani.
 
-for_each_engine(...)
- igt_subtest(...)
-
-to never enter a subtest?
-
-Pushing for stubbing memory regions ultimately wanted to avoid cases
-where for_each_combination(memregions) breaks test enumeration.
-
-It all boils down to: Can that break? Can we have cases where the
-query gives garbage? Can it give two million smem regions? Can it give
-0 regions, or -1 regions? And what happens then?
-
-Is it just gem_create_ext that's hiding behind CONFIG_BROKEN or also
-the querying?
-
+>
+> Thanks
+> --
+> The following changes since commit e4527420ed087f99c6aa2ac22c6d3458c7dc1a94:
+>
+>   drm/i915: Use correct downstream caps for check Src-Ctl mode for PCON (2021-05-12 20:53:08 +0300)
+>
+> are available in the Git repository at:
+>
+>   https://github.com/intel/gvt-linux tags/gvt-fixes-2021-05-19
+>
+> for you to fetch changes up to 145e06b58f8625becc61792a0554726314297a85:
+>
+>   drm/i915/gvt: Move mdev attribute groups into kvmgt module (2021-05-17 16:37:09 +0800)
+>
+> ----------------------------------------------------------------
+> gvt-fixes-2021-05-19
+>
+> - Fix workaround in -rc1 for GVT config (Zhenyu)
+>
+> ----------------------------------------------------------------
+> Zhenyu Wang (1):
+>       drm/i915/gvt: Move mdev attribute groups into kvmgt module
+>
+>  drivers/gpu/drm/i915/Kconfig         |   1 -
+>  drivers/gpu/drm/i915/gvt/gvt.c       | 124 +----------------------------------
+>  drivers/gpu/drm/i915/gvt/gvt.h       |   3 -
+>  drivers/gpu/drm/i915/gvt/hypercall.h |   2 +-
+>  drivers/gpu/drm/i915/gvt/kvmgt.c     | 122 +++++++++++++++++++++++++++++++---
+>  drivers/gpu/drm/i915/gvt/mpt.h       |   4 +-
+>  6 files changed, 118 insertions(+), 138 deletions(-)
+>
 
 -- 
-Petri Latvala
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
