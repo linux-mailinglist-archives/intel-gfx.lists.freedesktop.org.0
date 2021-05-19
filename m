@@ -1,37 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5552E388371
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 02:07:00 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 804FF38837C
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 02:07:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE4876E139;
-	Wed, 19 May 2021 00:06:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8893F6E8C8;
+	Wed, 19 May 2021 00:07:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 998116E123
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 00:06:53 +0000 (UTC)
-IronPort-SDR: GLTmch83wA9O/14rDwfz6jnf0r8D+4U/JgK5ZoRrv6D+fDyrFCkf80v4HjGJFDZKqtWUJJi7//
- Zw9o/CSKwnxQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="264768400"
-X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="264768400"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A93B6E111
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 00:06:54 +0000 (UTC)
+IronPort-SDR: wZm4cRHkuOZ2FuG1jbWbUnuXmWzLJZ43k2PA3ZlVMgcJyMR9QwVXbnRuSaCeU8bgrDOikyhRxY
+ UnYMHyrIm7uA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="264768401"
+X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="264768401"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 May 2021 17:06:51 -0700
-IronPort-SDR: QbkoAyTBBFR86y/v9wdS2umzKTe9RdwM2xA6WYZ3IybYKs+acgQXKWrvXdAI7os0RFvFiuS5pD
- pv/Vc1z3on/w==
-X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="473214742"
+IronPort-SDR: xFZiuwG20dyYRAvKzQOs6EoSUhStD3OOXo1zIJQJOeGu1jqWm45lsR6NDCbrPhV7sadWYIaLPr
+ Hja+acrTDwcQ==
+X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="473214745"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 May 2021 17:06:51 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 May 2021 17:06:08 -0700
-Message-Id: <20210519000625.3184321-1-lucas.demarchi@intel.com>
+Date: Tue, 18 May 2021 17:06:09 -0700
+Message-Id: <20210519000625.3184321-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210519000625.3184321-1-lucas.demarchi@intel.com>
+References: <20210519000625.3184321-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 00/17] ADL-P: more reviewed patches
+Subject: [Intel-gfx] [CI 01/17] drm/i915/xelpd: Calculate VDSC RC parameters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,56 +46,181 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>,
+ Mohammed Khajapasha <mohammed.khajapasha@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tm93IGp1c3QgYSBmZXcgcmVtYWluaW5nIGZyb20gdGhlIG9yaWdpbmFsIGJhdGNoIG9mIHBhdGNo
-ZXMgdG8gc3VwcG9ydApBREwtUC4KCkFudXNoYSBTcml2YXRzYSAoNCk6CiAgZHJtL2k5MTUvYWRs
-X3A6IFNldHVwIHBvcnRzL3BoeXMKICBkcm0vaTkxNS9hZGxfcDogQWRkIFBMTCBTdXBwb3J0CiAg
-ZHJtL2k5MTUvYWRscDogQWRkIFBJUEVfTUlTQzIgcHJvZ3JhbW1pbmcKICBkcm0vaTkxNS9hZGxf
-cDogVXBkYXRlIG1lbW9yeSBiYW5kd2lkdGggcGFyYW1ldGVycwoKR3dhbi1neWVvbmcgTXVuICgy
-KToKICBkcm0vaTkxNS9kaXNwbGF5OiBSZXBsYWNlIGRjM2NvX2VuYWJsZWQgd2l0aCBkYzNjb19l
-eGl0bGluZSBvbgogICAgaW50ZWxfcHNyIHN0cnVjdAogIGRybS9pOTE1L2Rpc3BsYXk6IEFkZCBQ
-U1IgaW50ZXJydXB0IGVycm9yIGNoZWNrIGZ1bmN0aW9uCgpJbXJlIERlYWsgKDEpOgogIGRybS9p
-OTE1L2FkbF9wOiBQcm9ncmFtIERQL0hETUkgbGluayByYXRlIHRvIERESV9CVUZfQ1RMCgpKb3PD
-qSBSb2JlcnRvIGRlIFNvdXphICgyKToKICBkcm0vaTkxNS9hZGxfcDogSW1wbGVtZW50IFRDIHNl
-cXVlbmNlcwogIGRybS9pOTE1L2FkbF9wOiBEb24ndCBjb25maWcgTUJVUyBhbmQgREJVRiBkdXJp
-bmcgZGlzcGxheQogICAgaW5pdGlhbGl6YXRpb24KCk1hdHQgUm9wZXIgKDEpOgogIGRybS9pOTE1
-L2FkbF9wOiBBZGQgZGVkaWNhdGVkIFNBR1Ygd2F0ZXJtYXJrcwoKTWlrYSBLYWhvbGEgKDIpOgog
-IGRybS9pOTE1L2FkbF9wOiBUeCBlc2NhcGUgY2xvY2sgd2l0aCBEU0kKICBkcm0vaTkxNS9hZGxf
-cDogRGVmaW5lIGFuZCB1c2UgQURMLVAgc3BlY2lmaWMgRFAgdHJhbnNsYXRpb24gdGFibGVzCgpW
-YW5kaXRhIEt1bGthcm5pICg0KToKICBkcm0vaTkxNS94ZWxwZDogQ2FsY3VsYXRlIFZEU0MgUkMg
-cGFyYW1ldGVycwogIGRybS9pOTE1L3hlbHBkOiBBZGQgcmNfcXBfdGFibGUgZm9yIHJjcGFyYW1z
-IGNhbGN1bGF0aW9uCiAgZHJtL2k5MTUvYWRsX3A6IEFkZCBkZGIgYWxsb2NhdGlvbiBzdXBwb3J0
-CiAgZHJtL2k5MTUvYWRsX3A6IE1CVVMgcHJvZ3JhbW1pbmcKClZpbGxlIFN5cmrDpGzDpCAoMSk6
-CiAgZHJtL2k5MTU6IEludHJvZHVjZSBNQlVTIHJlbGF0aXZlIGRidWYgb2Zmc2V0cwoKIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAgICAgICAgICAgICB8ICAgMSArCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ljbF9kc2kuYyAgICAgICAgfCAgMjEgKy0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljLmMgICB8ICAyMCArKwogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuaCAgIHwgICAxICsKIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYncuYyAgICAgICB8ICAgMiArLQogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyAgICAgIHwgIDQzICsrLQogLi4uL2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGRpX2J1Zl90cmFucy5jICAgIHwgIDUzICsrKwogLi4uL2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGRpX2J1Zl90cmFucy5oICAgIHwgICA0ICsKIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICB8ICA2OSArKystCiAuLi4vZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMgICAgfCAgIDYgKwogLi4uL2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oICAgIHwgICAyICstCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RwbGxfbWdyLmMgfCAgNjkgKysrLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyAgICAgIHwgIDU1ICsrLS0KIC4uLi9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9xcF90YWJsZXMuYyAgICB8IDMwOSArKysrKysrKysrKysrKysrKysK
-IC4uLi9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9xcF90YWJsZXMuaCAgICB8ICAxNCArCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmMgICAgICAgfCAxMzIgKysrKysr
-Ky0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdmRzYy5jICAgICB8IDEwNSAr
-KysrKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICAgICAgICAgICAgICB8ICAg
-MiArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgICAgfCAxMjQg
-KysrKystLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYyAgICAgICAgICAgICAgIHwg
-MzAzICsrKysrKysrKysrKysrKystCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5oICAg
-ICAgICAgICAgICAgfCAgIDIgKy0KIDIxIGZpbGVzIGNoYW5nZWQsIDEyMzEgaW5zZXJ0aW9ucygr
-KSwgMTA2IGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfcXBfdGFibGVzLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3FwX3RhYmxlcy5oCgotLSAKMi4zMS4xCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+
+Add methods to calculate rc parameters for all bpps, against the fixed
+arrays that we already have for 8,10,12 valid o/p bpps, to cover RGB 444
+formats.  Our hw doesn't support YUV compression yet.  The calculations
+used here are from VESA C model for DSC 1.1
+
+v2:
+ - Checkpatch fixes
+
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Cc: Juha-Pekka Heikkil <juha-pekka.heikkila@intel.com>
+Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Signed-off-by: Mohammed Khajapasha <mohammed.khajapasha@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 97 ++++++++++++++++++++---
+ 1 file changed, 87 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index efc3184d8315..02e86d2be395 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -5,7 +5,7 @@
+  * Author: Gaurav K Singh <gaurav.k.singh@intel.com>
+  *         Manasi Navare <manasi.d.navare@intel.com>
+  */
+-
++#include <linux/limits.h>
+ #include "i915_drv.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+@@ -373,12 +373,74 @@ static bool is_pipe_dsc(const struct intel_crtc_state *crtc_state)
+ 	return true;
+ }
+ 
++static void
++calculate_rc_params(struct rc_parameters *rc,
++		    struct drm_dsc_config *vdsc_cfg)
++{
++	int bpc = vdsc_cfg->bits_per_component;
++	int bpp = vdsc_cfg->bits_per_pixel >> 4;
++	int ofs_und6[] = { 0, -2, -2, -4, -6, -6, -8, -8, -8, -10, -10, -12, -12, -12, -12 };
++	int ofs_und8[] = { 2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12 };
++	int ofs_und12[] = { 2, 0, 0, -2, -4, -6, -8, -8, -8, -10, -10, -10, -12, -12, -12 };
++	int ofs_und15[] = { 10, 8, 6, 4, 2, 0, -2, -4, -6, -8, -10, -10, -12, -12, -12 };
++	int qp_bpc_modifier = (bpc - 8) * 2;
++	u32 res, buf_i;
++
++	if (vdsc_cfg->slice_height >= 8)
++		rc->first_line_bpg_offset =
++			12 + DIV_ROUND_UP((9 * min(34, vdsc_cfg->slice_height - 8)), 100);
++	else
++		rc->first_line_bpg_offset = 2 * (vdsc_cfg->slice_height - 1);
++
++	/* Our hw supports only 444 modes as of today */
++	if (bpp >= 12)
++		rc->initial_offset = 2048;
++	else if (bpp >= 10)
++		rc->initial_offset = 5632 - DIV_ROUND_UP(((bpp - 10) * 3584), 2);
++	else if (bpp >= 8)
++		rc->initial_offset = 6144 - DIV_ROUND_UP(((bpp - 8) * 512), 2);
++	else
++		rc->initial_offset = 6144;
++
++	/* initial_xmit_delay = rc_model_size/2/compression_bpp */
++	rc->initial_xmit_delay = DIV_ROUND_UP(DSC_RC_MODEL_SIZE_CONST, 2 * bpp);
++
++	rc->flatness_min_qp = 3 + qp_bpc_modifier;
++	rc->flatness_max_qp = 12 + qp_bpc_modifier;
++
++	rc->rc_quant_incr_limit0 = 11 + qp_bpc_modifier;
++	rc->rc_quant_incr_limit1 = 11 + qp_bpc_modifier;
++
++	for (buf_i = 0; buf_i < DSC_NUM_BUF_RANGES; buf_i++) {
++		/* Calculate range_bgp_offset */
++		if (bpp <= 6) {
++			rc->rc_range_params[buf_i].range_bpg_offset = ofs_und6[buf_i];
++		} else if (bpp <= 8) {
++			res = DIV_ROUND_UP(((bpp - 6) * (ofs_und8[buf_i] - ofs_und6[buf_i])), 2);
++			rc->rc_range_params[buf_i].range_bpg_offset =
++								ofs_und6[buf_i] + res;
++		} else if (bpp <= 12) {
++			rc->rc_range_params[buf_i].range_bpg_offset =
++								ofs_und8[buf_i];
++		} else if (bpp <= 15) {
++			res = DIV_ROUND_UP(((bpp - 12) * (ofs_und15[buf_i] - ofs_und12[buf_i])), 3);
++			rc->rc_range_params[buf_i].range_bpg_offset =
++								ofs_und12[buf_i] + res;
++		} else {
++			rc->rc_range_params[buf_i].range_bpg_offset =
++								ofs_und15[buf_i];
++		}
++	}
++}
++
+ int intel_dsc_compute_params(struct intel_encoder *encoder,
+ 			     struct intel_crtc_state *pipe_config)
+ {
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct drm_dsc_config *vdsc_cfg = &pipe_config->dsc.config;
+ 	u16 compressed_bpp = pipe_config->dsc.compressed_bpp;
+ 	const struct rc_parameters *rc_params;
++	struct rc_parameters *rc = NULL;
+ 	u8 i = 0;
+ 
+ 	vdsc_cfg->pic_width = pipe_config->hw.adjusted_mode.crtc_hdisplay;
+@@ -413,9 +475,24 @@ int intel_dsc_compute_params(struct intel_encoder *encoder,
+ 		vdsc_cfg->rc_buf_thresh[13] = 0x7D;
+ 	}
+ 
+-	rc_params = get_rc_params(compressed_bpp, vdsc_cfg->bits_per_component);
+-	if (!rc_params)
+-		return -EINVAL;
++	/*
++	 * From XE_LPD onwards we supports compression bpps in steps of 1
++	 * upto uncompressed bpp-1, hence add calculations for all the rc
++	 * parameters
++	 */
++	if (DISPLAY_VER(dev_priv) >= 13) {
++		rc = kmalloc(sizeof(*rc), GFP_KERNEL);
++		if (!rc)
++			return -ENOMEM;
++
++		calculate_rc_params(rc, vdsc_cfg);
++		rc_params = rc;
++	} else {
++		rc_params = get_rc_params(compressed_bpp,
++					  vdsc_cfg->bits_per_component);
++		if (!rc_params)
++			return -EINVAL;
++	}
+ 
+ 	vdsc_cfg->first_line_bpg_offset = rc_params->first_line_bpg_offset;
+ 	vdsc_cfg->initial_xmit_delay = rc_params->initial_xmit_delay;
+@@ -441,20 +518,20 @@ int intel_dsc_compute_params(struct intel_encoder *encoder,
+ 
+ 	/*
+ 	 * BitsPerComponent value determines mux_word_size:
+-	 * When BitsPerComponent is 12bpc, muxWordSize will be equal to 64 bits
+-	 * When BitsPerComponent is 8 or 10bpc, muxWordSize will be equal to
+-	 * 48 bits
++	 * When BitsPerComponent is less than or 10bpc, muxWordSize will be equal to
++	 * 48 bits otherwise 64
+ 	 */
+-	if (vdsc_cfg->bits_per_component == 8 ||
+-	    vdsc_cfg->bits_per_component == 10)
++	if (vdsc_cfg->bits_per_component <= 10)
+ 		vdsc_cfg->mux_word_size = DSC_MUX_WORD_SIZE_8_10_BPC;
+-	else if (vdsc_cfg->bits_per_component == 12)
++	else
+ 		vdsc_cfg->mux_word_size = DSC_MUX_WORD_SIZE_12_BPC;
+ 
+ 	/* InitialScaleValue is a 6 bit value with 3 fractional bits (U3.3) */
+ 	vdsc_cfg->initial_scale_value = (vdsc_cfg->rc_model_size << 3) /
+ 		(vdsc_cfg->rc_model_size - vdsc_cfg->initial_offset);
+ 
++	kfree(rc);
++
+ 	return 0;
+ }
+ 
+-- 
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
