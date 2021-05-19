@@ -1,64 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E01763886F3
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 07:47:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 273543886F5
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 07:48:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5566E219;
-	Wed, 19 May 2021 05:47:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C3BA6E21C;
+	Wed, 19 May 2021 05:48:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from pio-pvt-msa2.bahnhof.se (pio-pvt-msa2.bahnhof.se [79.136.2.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 171066E218;
- Wed, 19 May 2021 05:47:02 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTP id 04A0C402F8;
- Wed, 19 May 2021 07:47:01 +0200 (CEST)
-Authentication-Results: pio-pvt-msa2.bahnhof.se; dkim=pass (1024-bit key;
- unprotected) header.d=shipmail.org header.i=@shipmail.org header.b="BDZtBpnM";
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at bahnhof.se
-X-Spam-Flag: NO
-X-Spam-Score: -2.1
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 tagged_above=-999 required=6.31
- tests=[BAYES_00=-1.9, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
- DKIM_VALID_AU=-0.1, DKIM_VALID_EF=-0.1, NICE_REPLY_A=-0.001,
- URIBL_BLOCKED=0.001] autolearn=ham autolearn_force=no
-Received: from pio-pvt-msa2.bahnhof.se ([127.0.0.1])
- by localhost (pio-pvt-msa2.bahnhof.se [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vUKUAGRnIPfh; Wed, 19 May 2021 07:46:59 +0200 (CEST)
-Received: by pio-pvt-msa2.bahnhof.se (Postfix) with ESMTPA id 242BC3FB52;
- Wed, 19 May 2021 07:46:57 +0200 (CEST)
-Received: from [192.168.0.209] (unknown [192.198.151.44])
- by mail1.shipmail.org (Postfix) with ESMTPSA id 8DB823600DD;
- Wed, 19 May 2021 07:46:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
- t=1621403217; bh=7l1J6Wvb7+vMf7L74qCJftf0cfmKUAtZMaBLYoplip0=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=BDZtBpnM3TsCJwgPrhr+IXnH3Gg1oGUYXaYAROx4BZrJEssWvLsDmn4buVxjQI2F3
- iGds2WLa0cl6tFfESvxobJk/cA5RBSK1YAAp6MjqEIcOH6u09qU05gFFMXMWuYV6Vr
- rRjHHgl+nrnRzvmkb6ZdNkw+43vIxXRfCXXntc8Y=
-To: Matthew Auld <matthew.william.auld@gmail.com>,
- Christoph Hellwig <hch@lst.de>
-References: <20210326055505.1424432-1-hch@lst.de>
- <20210326055505.1424432-5-hch@lst.de> <87pmxqiry6.fsf@depni.sinp.msu.ru>
- <20210517123716.GD15150@lst.de> <87lf8dik15.fsf@depni.sinp.msu.ru>
- <20210517131137.GA19451@lst.de>
- <CAM0jSHPy68kMi8NnpAO7ESVW0Ct=dhZ0kYHJO7APy-GBsNp2fQ@mail.gmail.com>
- <20210518132155.GB2617@lst.de>
- <CAM0jSHNR04h-t4_mE4KOGbu7fR8En4uNnhQSkB+bE8Q5vqcSjg@mail.gmail.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28Intel=29?= <thomas_os@shipmail.org>
-Message-ID: <3d984dd9-9396-d992-5b88-94bcfde0a98d@shipmail.org>
-Date: Wed, 19 May 2021 07:46:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC116E21C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 05:48:33 +0000 (UTC)
+IronPort-SDR: UmM2Z5J03sLTiDyNpjiAh5htgeUsuFOM9aSYOZkj2mtKpUd2Tm4z/Pq5zcRT0ltJYFkwbXkY9o
+ CWWJ5dsMR+Bw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="262127090"
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="262127090"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2021 22:48:32 -0700
+IronPort-SDR: 6p2cyfsLLgkTbZS/4FIqaaUWqpAuXCqvO8SSFI7fGFIEpTlJUAZvtSfJ8ghLal7z+YADgqLY9d
+ yEKo6dvCYCtQ==
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="612283367"
+Received: from marora1-mobl1.amr.corp.intel.com (HELO ldmartin-desk2)
+ ([10.254.1.180])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2021 22:48:32 -0700
+Date: Tue, 18 May 2021 22:48:23 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Message-ID: <20210519054823.sj2zjjiyvrqrjssp@ldmartin-desk2>
+X-Patchwork-Hint: comment
+References: <20210518213444.11420-1-anusha.srivatsa@intel.com>
+ <20210518213444.11420-6-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAM0jSHNR04h-t4_mE4KOGbu7fR8En4uNnhQSkB+bE8Q5vqcSjg@mail.gmail.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 4/4] i915: fix remap_io_sg to verify the
- pgprot
+Content-Disposition: inline
+In-Reply-To: <20210518213444.11420-6-anusha.srivatsa@intel.com>
+Subject: Re: [Intel-gfx] [CI 5/5] drm/i915/dmc: s/intel_csr.c/intel_dmc.c
+ and s/intel_csr.h/intel_dmc.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,63 +50,228 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Serge Belyshev <belyshev@depni.sinp.msu.ru>,
- Peter Zijlstra <peterz@infradead.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Chris Wilson <chris@chris-wilson.co.uk>, linux-mm@kvack.org,
- Andrew Morton <akpm@linux-foundation.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 5/18/21 5:00 PM, Matthew Auld wrote:
-> On Tue, 18 May 2021 at 14:21, Christoph Hellwig <hch@lst.de> wrote:
->> On Mon, May 17, 2021 at 06:06:44PM +0100, Matthew Auld wrote:
->>>> Looks like it is caused by the validation failure then.  Which means the
->>>> existing code is doing something wrong in its choice of the page
->>>> protection bit.  I really need help from the i915 maintainers here..
->>> AFAIK there are two users of remap_io_sg, the first is our shmem
->>> objects(see i915_gem_shmem.c), and for these we support UC, WC, and WB
->>> mmap modes for userspace. The other user is device local-memory
->>> objects(VRAM), and for this one we have an actual io_mapping which is
->>> allocated as WC, and IIRC this should only be mapped as WC for the
->>> mmap mode, but normal userspace can't hit this path yet.
->> The only caller in current mainline is vm_fault_cpu in i915_gem_mman.c.
->> Is that device local?
-> The vm_fault_cpu covers both device local and shmem objects.
+On Tue, May 18, 2021 at 02:34:44PM -0700, Anusha Srivatsa wrote:
+>Finally, rename the header and source file from csr to dmc.
 >
->>> What do we need to do here? It sounds like shmem backed objects are
->>> allocated as WB for the pages underneath, but i915 allows mapping them
->>> as UC/WC which trips up this track_pfn thing?
->> To me the warnings looks like system memory is mapped with the wrong
->> permissions, yes.  If you want to map it as UC/WC the right set_memory_*
->> needs to be used on the kernel mapping as well to ensure that the
->> attributes don't conflict.
-> AFAIK mmap_offset also supports multiple active mmap modes for a given
-> object, so set_memory_* should still work here?
+>v2: Add file rename in Documentation.
+>- Place headers in orders. (Jani)
+>
+>Cc: Jani Nikula <jani.nikula@linux.intel.com>
+>Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+>---
+> Documentation/gpu/i915.rst                           | 12 ++++++------
+> drivers/gpu/drm/i915/Makefile                        |  2 +-
+> drivers/gpu/drm/i915/display/intel_display.c         |  2 +-
+> drivers/gpu/drm/i915/display/intel_display_debugfs.c |  2 +-
+> drivers/gpu/drm/i915/display/intel_display_power.c   |  2 +-
+> .../drm/i915/display/{intel_csr.c =3D> intel_dmc.c}    |  4 ++--
+> .../drm/i915/display/{intel_csr.h =3D> intel_dmc.h}    |  6 +++---
+> drivers/gpu/drm/i915/i915_drv.c                      |  2 +-
+> drivers/gpu/drm/i915/i915_gpu_error.c                |  2 +-
+> 9 files changed, 17 insertions(+), 17 deletions(-)
+> rename drivers/gpu/drm/i915/display/{intel_csr.c =3D> intel_dmc.c} (99%)
+> rename drivers/gpu/drm/i915/display/{intel_csr.h =3D> intel_dmc.h} (88%)
+>
+>diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+>index 486c720f3890..42ce0196930a 100644
+>--- a/Documentation/gpu/i915.rst
+>+++ b/Documentation/gpu/i915.rst
+>@@ -210,13 +210,13 @@ DPIO
+> .. kernel-doc:: drivers/gpu/drm/i915/display/intel_dpio_phy.c
+>    :doc: DPIO
+>
+>-CSR firmware support for DMC
+>-----------------------------
+>+DMC Firmware Support
+>+--------------------
+>
+>-.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
+>-   :doc: csr support for dmc
+>+.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dmc.c
+>+   :doc: DMC Firmware Support
+>
+>-.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
+>+.. kernel-doc:: drivers/gpu/drm/i915/display/intel_dmc.c
+>    :internal:
+>
+> Video BIOS Table (VBT)
+>@@ -537,7 +537,7 @@ The HuC FW layout is the same as the GuC one, see `GuC=
+ Firmware Layout`_
+>
+> DMC
+> ---
+>-See `CSR firmware support for DMC`_
+>+See `DMC Firmware Support`_
+>
+> Tracing
+> =3D=3D=3D=3D=3D=3D=3D
+>diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+>index d0d936d9137b..2da5bae8fa03 100644
+>--- a/drivers/gpu/drm/i915/Makefile
+>+++ b/drivers/gpu/drm/i915/Makefile
+>@@ -201,10 +201,10 @@ i915-y +=3D \
+> 	display/intel_combo_phy.o \
+> 	display/intel_connector.o \
+> 	display/intel_crtc.o \
+>-	display/intel_csr.o \
+> 	display/intel_cursor.o \
+> 	display/intel_display.o \
+> 	display/intel_display_power.o \
+>+	display/intel_dmc.o \
+> 	display/intel_dpio_phy.o \
+> 	display/intel_dpll.o \
+> 	display/intel_dpll_mgr.o \
+>diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/dr=
+m/i915/display/intel_display.c
+>index 39c9c49b378b..d98a314bb974 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display.c
+>@@ -79,9 +79,9 @@
+> #include "intel_cdclk.h"
+> #include "intel_color.h"
+> #include "intel_crtc.h"
+>-#include "intel_csr.h"
+> #include "intel_de.h"
+> #include "intel_display_types.h"
+>+#include "intel_dmc.h"
+> #include "intel_dp_link_training.h"
+> #include "intel_fbc.h"
+> #include "intel_fdi.h"
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/driver=
+s/gpu/drm/i915/display/intel_display_debugfs.c
+>index e43abdf0e3d9..94e5cbd86e77 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>@@ -7,11 +7,11 @@
+> #include <drm/drm_fourcc.h>
+>
+> #include "i915_debugfs.h"
+>-#include "intel_csr.h"
+> #include "intel_display_debugfs.h"
+> #include "intel_display_power.h"
+> #include "intel_de.h"
+> #include "intel_display_types.h"
+>+#include "intel_dmc.h"
+> #include "intel_dp.h"
+> #include "intel_fbc.h"
+> #include "intel_hdcp.h"
+>diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/=
+gpu/drm/i915/display/intel_display_power.c
+>index cbba41d3e6cf..e8fcc3d02d01 100644
+>--- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>@@ -9,10 +9,10 @@
+> #include "i915_irq.h"
+> #include "intel_cdclk.h"
+> #include "intel_combo_phy.h"
+>-#include "intel_csr.h"
+> #include "intel_display_power.h"
+> #include "intel_de.h"
+> #include "intel_display_types.h"
+>+#include "intel_dmc.h"
+> #include "intel_dpio_phy.h"
+> #include "intel_hotplug.h"
+> #include "intel_pm.h"
+>diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i9=
+15/display/intel_dmc.c
+>similarity index 99%
+>rename from drivers/gpu/drm/i915/display/intel_csr.c
+>rename to drivers/gpu/drm/i915/display/intel_dmc.c
+>index ae1dfafaff9a..560574dd929a 100644
+>--- a/drivers/gpu/drm/i915/display/intel_csr.c
+>+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>@@ -26,11 +26,11 @@
+>
+> #include "i915_drv.h"
+> #include "i915_reg.h"
+>-#include "intel_csr.h"
+> #include "intel_de.h"
+>+#include "intel_dmc.h"
+>
+> /**
+>- * DOC: DMC firmware support
+>+ * DOC: DMC Firmware Support
+>  *
+>  * From gen9 onwards we have newly added DMC (Display microcontroller) in=
+ display
+>  * engine to save and restore the state of display engine when it enter i=
+nto
+>diff --git a/drivers/gpu/drm/i915/display/intel_csr.h b/drivers/gpu/drm/i9=
+15/display/intel_dmc.h
+>similarity index 88%
+>rename from drivers/gpu/drm/i915/display/intel_csr.h
+>rename to drivers/gpu/drm/i915/display/intel_dmc.h
+>index fc4960b91686..57dd99da0ced 100644
+>--- a/drivers/gpu/drm/i915/display/intel_csr.h
+>+++ b/drivers/gpu/drm/i915/display/intel_dmc.h
+>@@ -3,8 +3,8 @@
+>  * Copyright =A9 2019 Intel Corporation
+>  */
+>
+>-#ifndef __INTEL_CSR_H__
+>-#define __INTEL_CSR_H__
+>+#ifndef __INTEL_DMC_H__
+>+#define __INTEL_DMC_H__
+>
+> struct drm_i915_private;
+>
+>@@ -18,4 +18,4 @@ void intel_dmc_ucode_fini(struct drm_i915_private *i915);
+> void intel_dmc_ucode_suspend(struct drm_i915_private *i915);
+> void intel_dmc_ucode_resume(struct drm_i915_private *i915);
+>
+>-#endif /* __INTEL_CSR_H__ */
+>+#endif /* __INTEL_DMC_H__ */
+>diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_d=
+rv.c
+>index f2a9583dfecc..2f06bb7b3ed2 100644
+>--- a/drivers/gpu/drm/i915/i915_drv.c
+>+++ b/drivers/gpu/drm/i915/i915_drv.c
+>@@ -49,7 +49,7 @@
+> #include "display/intel_acpi.h"
+> #include "display/intel_bw.h"
+> #include "display/intel_cdclk.h"
+>-#include "display/intel_csr.h"
+>+#include "display/intel_dmc.h"
+> #include "display/intel_display_types.h"
 
-No, that won't work because there are active maps with conflicting 
-caching attributes. I think the history here is that that was assumed to 
-be OK for integrated graphics that ran only on Intel processors that 
-promise to never write back unmodified cache lines resulting from 
-prefetching, like some AMD processors did way back at least.
-
-These conflicting mappings can obviously not be supported for discrete 
-graphics, but for integrated they are part of the uAPI.
-
-/Thomas
+this is not sorted alphabetically. Other than that:
 
 
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 
+Lucas De Marchi
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> #include "display/intel_dp.h"
+> #include "display/intel_fbdev.h"
+>diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/=
+i915_gpu_error.c
+>index edd108d41318..8b964e355cb5 100644
+>--- a/drivers/gpu/drm/i915/i915_gpu_error.c
+>+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+>@@ -36,7 +36,7 @@
+>
+> #include <drm/drm_print.h>
+>
+>-#include "display/intel_csr.h"
+>+#include "display/intel_dmc.h"
+> #include "display/intel_overlay.h"
+>
+> #include "gem/i915_gem_context.h"
+>-- =
+
+>2.25.0
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
