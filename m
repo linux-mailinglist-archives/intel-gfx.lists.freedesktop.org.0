@@ -1,41 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CCFD389211
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 16:54:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1247A389229
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 17:04:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4D176EDEA;
-	Wed, 19 May 2021 14:54:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49C5C6EDE4;
+	Wed, 19 May 2021 15:04:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54A536EDE7;
- Wed, 19 May 2021 14:54:10 +0000 (UTC)
-IronPort-SDR: v+TEeGxVxhCc32tu0F0ELUUiZBdngVCI7LkIbQL7WQia4oQkCl8geSATHSYMtszyIA2Czzqpnd
- 9T/LXmStVfoA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="188401231"
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="188401231"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 07:54:10 -0700
-IronPort-SDR: zvUb/OczHot0xOppiCspUURTEboLnPL3dMbKX5htHOd36Z91gCEMdVNecZI4asG6Qt6MSEWIb8
- o6KEI5MCKVKA==
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="473527481"
-Received: from ajwalton-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.22.65])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 07:54:07 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Wed, 19 May 2021 15:53:37 +0100
-Message-Id: <20210519145337.255167-10-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210519145337.255167-1-matthew.auld@intel.com>
-References: <20210519145337.255167-1-matthew.auld@intel.com>
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
+ [IPv6:2a00:1450:4864:20::635])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 344856EDE4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 15:04:46 +0000 (UTC)
+Received: by mail-ej1-x635.google.com with SMTP id k14so16977852eji.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 08:04:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=jlekstrand-net.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=AIh3LPxhFUPUIJHux8vcxGYsWFeEVlxPbplmJRkb4OU=;
+ b=qrIa0Nm9V/t9pk6g1i6yexCNcwW//lGzLTXb4MCUaGrntJtk0iaY1IHYr9t3wpY5vI
+ Qe3lFBH4xbWIwutLCRQ7VrCmX0P+SC/TuZYnJrVTtyKA5aqFpikfOBT+PdOmrHuSQ6Vd
+ cfWJ/TvI0kv3WyryGyqgFGImvdiQh8jyIQtjsN44jsIyBH4RtSw7yCCBhV+3vo/34DEF
+ d3pEYu3CnzYJB0q2xRIKlxYLayV/Z8QNMaxUqs0wRgafs3sVH6fFl10L3mtVOBX+qccp
+ iWYanUUnfTwIUVS7WyEMjRxkD4Kp4xASvRzsTGQC8qDAmwEzdyXapOb3f6eGAnIFnUO2
+ CxNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=AIh3LPxhFUPUIJHux8vcxGYsWFeEVlxPbplmJRkb4OU=;
+ b=iqVndntSi/ffjOXvMtB3Tqz0y9rzqZwJvGFS+1x51XOQPlkh91O1nSQ6BxUjMKaQPO
+ WzqKfhXXq8Cn9SykeDnoc3STQ5cxwhtsCrDcb1hifOJTc+KzjtHw0nTPVfpQ+v3reR9v
+ fuu8HPxsdg2iFB9IwDRPqUQyuiDiWxIgob2WrmOBBJRaIeGITplGiNzxhEdVkEfJgaZO
+ ev5u9jS0LnJUObs6hMr8FziCFK4boeXD2F02QL3xlEcOU/kdKkrzauNwAkHuuVXK4eOB
+ h4HbMJDbjzHHoYHT1bhX2+p2h7rigUsl4kuC44EfdEFW1rJOo72oKoOaBrq43RVpQdNs
+ pDaQ==
+X-Gm-Message-State: AOAM5317mN5fesfNMdTpNapaMK95dhe8skyRiMIEsdlYdZ8Rk48jBfa0
+ lt32yOSKY19hczDUyDi2hiFMg4tSy5PMldwinMj5AQ==
+X-Google-Smtp-Source: ABdhPJy4po16yJDUE4DJ+brqx3On5vbmYSffXxAApMOaW490uyvlp7No8jeNdKyh9YxrKjsAGiz8RqBgxQkalrV4rPg=
+X-Received: by 2002:a17:907:781a:: with SMTP id
+ la26mr13095156ejc.435.1621436684760; 
+ Wed, 19 May 2021 08:04:44 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 9/9] tests/i915/gem_exec_basic: Iterate
- over all memory regions
+References: <20210519074323.665872-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210519074323.665872-1-daniel.vetter@ffwll.ch>
+From: Jason Ekstrand <jason@jlekstrand.net>
+Date: Wed, 19 May 2021 10:04:33 -0500
+Message-ID: <CAOFGe971P6K5_dQyNQtnZK3vp-3ax97-6Z9O87+5BFR+kiKmjg@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/cmdparser: No-op failed
+ batches on all platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,40 +63,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Vanshidhar Konda <vanshidhar.r.konda@intel.com>,
- thomas.hellstrom@linux.intel.com,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Janulgue Abdiel <abdiel.janulgue@intel.com>, intel-gfx@lists.freedesktop.org,
- "Kalamarz, Lukasz" <lukasz.kalamarz@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable@vger.kernel.org, Jason Ekstrand <jason.ekstrand@intel.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogIkthbGFtYXJ6LCBMdWthc3oiIDxsdWthc3oua2FsYW1hcnpAaW50ZWwuY29tPgoKQXMg
-YSBwYXJ0IG9mIGxvY2FsIG1lbW9yeSBlZmZvcnQgd2UgbmVlZCB0byBtYWtlIHN1cmUsIHRoYXQK
-ZXZlcnkgYXZhaWxhYmxlIG1lbW9yeSByZWdpb24gaXMgY292ZXJlZC4gVGhpcyBwYXRjaCBpcyBh
-biBhdHRlbXB0CmZvciB0aGlzIHByb2JsZW0uIElmIGl0IHdpbGwgYmUgYWNjZXB0ZWQgaXQgd2ls
-bCBiZSByZXBsaWNhdGVkIG9uCmVhY2ggdGVzdCB0aGF0IGNhbiBhY3R1YWxseSBiZW5lZml0IGZy
-b20gaXQuCgpTaWduZWQtb2ZmLWJ5OiBEb21pbmlrIEdyemVnb3J6ZWsgPGRvbWluaWsuZ3J6ZWdv
-cnpla0BpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEx1a2FzeiBLYWxhbWFyeiA8bHVrYXN6Lmth
-bGFtYXJ6QGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogVmluYXkgQmVsZ2F1bWthciA8dmluYXku
-YmVsZ2F1bWthckBpbnRlbC5jb20+CkNjOiBKYW51bGd1ZSBBYmRpZWwgPGFiZGllbC5qYW51bGd1
-ZUBpbnRlbC5jb20+CkNjOiBNYXR0aGV3IEF1bGQgPG1hdHRoZXcuYXVsZEBpbnRlbC5jb20+CkNj
-OiBLYXRhcnp5bmEgRGVjIDxrYXRhcnp5bmEuZGVjQGludGVsLmNvbT4KQ2M6IFZhbnNoaWRoYXIg
-S29uZGEgPHZhbnNoaWRoYXIuci5rb25kYUBpbnRlbC5jb20+CkNjOiBTdHVhcnQgU3VtbWVycyA8
-c3R1YXJ0LnN1bW1lcnNAaW50ZWwuY29tPgpDYzogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymln
-bmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IE1hdHRoZXcgQXVsZCA8
-bWF0dGhldy5hdWxkQGludGVsLmNvbT4KLS0tCiB0ZXN0cy9pOTE1L2dlbV9leGVjX2Jhc2ljLmMg
-fCAzICsrLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoK
-ZGlmZiAtLWdpdCBhL3Rlc3RzL2k5MTUvZ2VtX2V4ZWNfYmFzaWMuYyBiL3Rlc3RzL2k5MTUvZ2Vt
-X2V4ZWNfYmFzaWMuYwppbmRleCA4YmM0ZGM1Mi4uODcyYjFkM2IgMTAwNjQ0Ci0tLSBhL3Rlc3Rz
-L2k5MTUvZ2VtX2V4ZWNfYmFzaWMuYworKysgYi90ZXN0cy9pOTE1L2dlbV9leGVjX2Jhc2ljLmMK
-QEAgLTU2LDcgKzU2LDggQEAgaWd0X21haW4KIAkJaWd0X2Fzc2VydChxdWVyeV9pbmZvKTsKIAog
-CQlzZXQgPSBnZXRfbWVtb3J5X3JlZ2lvbl9zZXQocXVlcnlfaW5mbywKLQkJCQkJICAgIEk5MTVf
-U1lTVEVNX01FTU9SWSk7CisJCQkJCSAgICBJOTE1X1NZU1RFTV9NRU1PUlksCisJCQkJCSAgICBJ
-OTE1X0RFVklDRV9NRU1PUlkpOwogCX0KIAogCWlndF9zdWJ0ZXN0X3dpdGhfZHluYW1pYygiYmFz
-aWMiKSB7Ci0tIAoyLjI2LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+On Wed, May 19, 2021 at 2:43 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> On gen9 for blt cmd parser we relied on the magic fence error
+> propagation which:
+> - doesn't work on gen7, because there's no scheduler with ringbuffers
+>   there yet
+> - fence error propagation can be weaponized to attack other things, so
+>   not a good design idea
+>
+> Instead of magic, do the same thing on gen9 as on gen7.
+
+I think the commit message could be improved.  Maybe something like this?
+
+When we re-introduced the command parser on Gen9 platforms to protect
+against BLT CS register writes, we did things a bit differently than
+on previous platforms.  On Gen7 platforms, if a batch contains
+unsupported commands, we smash the start of the shadow batch to
+MI_BATCH_BUFFER_END to cancel the batch.  If it's mostly ok
+(-EACCESS), we trampoline to run in unprivileged mode and let the
+limited HW parser handle security.  On Gen9, we only care about
+rejecting batches because we don't trust the HW parser for a few cases
+so we don't need this second trampoline case.
+
+However, instead of stopping there and avoiding the trampoline, we
+chose to avoid executing the new batch all together on Gen9 by use of
+dma-fence error propagation.  When the batch parser fails, it returns
+a non-zero error and we would propgate that through the chain of
+fences and trust the scheduler to know to cancel anything dependent on
+a fence with an error.  However, fence error propagation is sketchy at
+best and can be weaponized to attack other things so it's not really a
+good design.  This commit restores a bit of the Gen7 functionality on
+Gen9 (smashing the start of the shadow batch to MI_BB_END) so that
+it's always safe to run the batch post-parser.  A later commit will
+get rid of the error propagation nonsense.
+
+>
+> Kudos to Jason for figuring this out.
+>
+> Fixes: 9e31c1fe45d5 ("drm/i915: Propagate errors on awaiting already signaled fences")
+> Cc: <stable@vger.kernel.org> # v5.6+
+> Cc: Jason Ekstrand <jason.ekstrand@intel.com>
+> Cc: Marcin Slusarz <marcin.slusarz@intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
+> Relates: https://gitlab.freedesktop.org/drm/intel/-/issues/3080
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_cmd_parser.c | 34 +++++++++++++-------------
+>  1 file changed, 17 insertions(+), 17 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
+> index 5b4b2bd46e7c..2d3336ab7ba3 100644
+> --- a/drivers/gpu/drm/i915/i915_cmd_parser.c
+> +++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
+> @@ -1509,6 +1509,12 @@ int intel_engine_cmd_parser(struct intel_engine_cs *engine,
+>                 }
+>         }
+>
+> +       /* Batch unsafe to execute with privileges, cancel! */
+> +       if (ret) {
+> +               cmd = page_mask_bits(shadow->obj->mm.mapping);
+> +               *cmd = MI_BATCH_BUFFER_END;
+> +       }
+> +
+>         if (trampoline) {
+>                 /*
+>                  * With the trampoline, the shadow is executed twice.
+> @@ -1524,26 +1530,20 @@ int intel_engine_cmd_parser(struct intel_engine_cs *engine,
+>                  */
+>                 *batch_end = MI_BATCH_BUFFER_END;
+
+Bit of a bike shed but, given the new structure of the code, I think
+it makes it more clear if we do
+
+if (ret == -EACCESS) {
+   /* stuff */
+   __gen6_emit_bb_start(...);
+} else {
+   *batch_end = MI_BATCH_BUFFER_END;
+}
+
+That way it's clear that we're making a choice between firing off the
+client batch in privileged mode and ending early.
+
+>
+> -               if (ret) {
+> -                       /* Batch unsafe to execute with privileges, cancel! */
+> -                       cmd = page_mask_bits(shadow->obj->mm.mapping);
+> -                       *cmd = MI_BATCH_BUFFER_END;
+> +               /* If batch is unsafe but valid, jump to the original */
+> +               if (ret == -EACCES) {
+> +                       unsigned int flags;
+>
+> -                       /* If batch is unsafe but valid, jump to the original */
+> -                       if (ret == -EACCES) {
+> -                               unsigned int flags;
+> +                       flags = MI_BATCH_NON_SECURE_I965;
+> +                       if (IS_HASWELL(engine->i915))
+> +                               flags = MI_BATCH_NON_SECURE_HSW;
+>
+> -                               flags = MI_BATCH_NON_SECURE_I965;
+> -                               if (IS_HASWELL(engine->i915))
+> -                                       flags = MI_BATCH_NON_SECURE_HSW;
+> +                       GEM_BUG_ON(!IS_GEN_RANGE(engine->i915, 6, 7));
+> +                       __gen6_emit_bb_start(batch_end,
+> +                                            batch_addr,
+> +                                            flags);
+>
+> -                               GEM_BUG_ON(!IS_GEN_RANGE(engine->i915, 6, 7));
+> -                               __gen6_emit_bb_start(batch_end,
+> -                                                    batch_addr,
+> -                                                    flags);
+> -
+> -                               ret = 0; /* allow execution */
+> -                       }
+> +                       ret = 0; /* allow execution */
+>                 }
+>         }
+>
+> --
+> 2.31.0
+>
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
