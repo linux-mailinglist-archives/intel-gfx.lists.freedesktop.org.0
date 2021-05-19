@@ -2,38 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AD55388376
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 02:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27F94388380
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 02:07:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6812D6E134;
-	Wed, 19 May 2021 00:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3E0F6EADB;
+	Wed, 19 May 2021 00:07:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B041E6E111
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 00:06:53 +0000 (UTC)
-IronPort-SDR: EWYL7Qi0ozszA/ZHX17ofj9pFcl76OitKl2dKdULbcUC1kMpCIvDF4Rb/gUkQfDUbkxLW16e0m
- JK4e8QCAqL0A==
-X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="264768408"
-X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="264768408"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B7FB6E11A
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 00:06:54 +0000 (UTC)
+IronPort-SDR: 9gKMBVjjDESNId5h+ZeRPqX8oWVnfAsIJ/c5f4Sy6mGYWme8rH1Vd5tPfq1cmTu4YjMbdLfX5B
+ vMTna8KYGXrw==
+X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="264768409"
+X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="264768409"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 May 2021 17:06:51 -0700
-IronPort-SDR: vJRjsBp1WSYmCZnGVvL1jewe0Mkj/VRTpbvZNvx6ffa7ZpHVW7YHs6hBRg8OPT+QxIHPI+wduD
- clqGauKvhOEw==
-X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="473214763"
+IronPort-SDR: Ga2GlUxoWcsSd6sIWmoV5i9fGysCPMQEKopTFfGwnZlqUsbOUSAYfRWLVo89dtTOmEdUMZ9bGL
+ TSNDXhfrO8Hw==
+X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="473214767"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 May 2021 17:06:51 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 May 2021 17:06:15 -0700
-Message-Id: <20210519000625.3184321-8-lucas.demarchi@intel.com>
+Date: Tue, 18 May 2021 17:06:16 -0700
+Message-Id: <20210519000625.3184321-9-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210519000625.3184321-1-lucas.demarchi@intel.com>
 References: <20210519000625.3184321-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 07/17] drm/i915/adl_p: Add ddb allocation support
+Subject: [Intel-gfx] [CI 08/17] drm/i915: Introduce MBUS relative dbuf
+ offsets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,218 +47,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
-
-On adlp the two mbuses have two display pipes and
-two DBUFS, Pipe A and D on Mbus1 and Pipe B and C on
-Mbus2. The Mbus can be joined and all the DBUFS can be
-used on Pipe A or B.
-
-Bspec: 49255
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/i915_reg.h |  22 ++++--
- drivers/gpu/drm/i915/intel_pm.c | 121 +++++++++++++++++++++++++++++++-
- 2 files changed, 138 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 8bd6c36837aa..5cf5e5d7deee 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -7299,7 +7299,7 @@ enum {
- 
- #define _PLANE_BUF_CFG_1_B			0x7127c
- #define _PLANE_BUF_CFG_2_B			0x7137c
--#define  DDB_ENTRY_MASK				0x7FF /* skl+: 10 bits, icl+ 11 bits */
-+#define  DDB_ENTRY_MASK				0xFFF /* skl+: 10 bits, icl+ 11 bits, adlp+ 12 bits */
- #define  DDB_ENTRY_END_SHIFT			16
- #define _PLANE_BUF_CFG_1(pipe)	\
- 	_PIPE(pipe, _PLANE_BUF_CFG_1_A, _PLANE_BUF_CFG_1_B)
-@@ -8134,9 +8134,23 @@ enum {
- #define  DISP_DATA_PARTITION_5_6	(1 << 6)
- #define  DISP_IPC_ENABLE		(1 << 3)
- 
--#define _DBUF_CTL_S1				0x45008
--#define _DBUF_CTL_S2				0x44FE8
--#define DBUF_CTL_S(slice)			_MMIO(_PICK_EVEN(slice, _DBUF_CTL_S1, _DBUF_CTL_S2))
-+/*
-+ * The below are numbered starting from "S1" on gen11/gen12, but starting
-+ * with gen13 display, the bspec switches to a 0-based numbering scheme
-+ * (although the addresses stay the same so new S0 = old S1, new S1 = old S2).
-+ * We'll just use the 0-based numbering here for all platforms since it's the
-+ * way things will be named by the hardware team going forward, plus it's more
-+ * consistent with how most of the rest of our registers are named.
-+ */
-+#define _DBUF_CTL_S0				0x45008
-+#define _DBUF_CTL_S1				0x44FE8
-+#define _DBUF_CTL_S2				0x44300
-+#define _DBUF_CTL_S3				0x44304
-+#define DBUF_CTL_S(slice)			_MMIO(_PICK(slice, \
-+							    _DBUF_CTL_S0, \
-+							    _DBUF_CTL_S1, \
-+							    _DBUF_CTL_S2, \
-+							    _DBUF_CTL_S3))
- #define  DBUF_POWER_REQUEST			REG_BIT(31)
- #define  DBUF_POWER_STATE			REG_BIT(30)
- #define  DBUF_TRACKER_STATE_SERVICE_MASK	REG_GENMASK(23, 19)
-diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
-index 95fda20d5547..411ec468d02a 100644
---- a/drivers/gpu/drm/i915/intel_pm.c
-+++ b/drivers/gpu/drm/i915/intel_pm.c
-@@ -4558,6 +4558,118 @@ static const struct dbuf_slice_conf_entry tgl_allowed_dbufs[] =
- 	{}
- };
- 
-+static const struct dbuf_slice_conf_entry adlp_allowed_dbufs[] = {
-+	{
-+		.active_pipes = BIT(PIPE_A),
-+		.dbuf_mask = {
-+			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_B),
-+		.dbuf_mask = {
-+			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_A) | BIT(PIPE_B),
-+		.dbuf_mask = {
-+			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_C),
-+		.dbuf_mask = {
-+			[PIPE_C] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_A) | BIT(PIPE_C),
-+		.dbuf_mask = {
-+			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+			[PIPE_C] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_B) | BIT(PIPE_C),
-+		.dbuf_mask = {
-+			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_C] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+		.dbuf_mask = {
-+			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_C] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_D),
-+		.dbuf_mask = {
-+			[PIPE_D] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_A) | BIT(PIPE_D),
-+		.dbuf_mask = {
-+			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+			[PIPE_D] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_B) | BIT(PIPE_D),
-+		.dbuf_mask = {
-+			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_D] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_D),
-+		.dbuf_mask = {
-+			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_D] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_C) | BIT(PIPE_D),
-+		.dbuf_mask = {
-+			[PIPE_C] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_D] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_A) | BIT(PIPE_C) | BIT(PIPE_D),
-+		.dbuf_mask = {
-+			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+			[PIPE_C] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_D] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
-+		.dbuf_mask = {
-+			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_C] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_D] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+	},
-+	{
-+		.active_pipes = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),
-+		.dbuf_mask = {
-+			[PIPE_A] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+			[PIPE_B] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_C] = BIT(DBUF_S3) | BIT(DBUF_S4),
-+			[PIPE_D] = BIT(DBUF_S1) | BIT(DBUF_S2),
-+		},
-+	},
-+	{}
-+
-+};
-+
- static u8 compute_dbuf_slices(enum pipe pipe, u8 active_pipes,
- 			      const struct dbuf_slice_conf_entry *dbuf_slices)
- {
-@@ -4597,12 +4709,19 @@ static u8 tgl_compute_dbuf_slices(enum pipe pipe, u8 active_pipes)
- 	return compute_dbuf_slices(pipe, active_pipes, tgl_allowed_dbufs);
- }
- 
-+static u32 adlp_compute_dbuf_slices(enum pipe pipe, u32 active_pipes)
-+{
-+	return compute_dbuf_slices(pipe, active_pipes, adlp_allowed_dbufs);
-+}
-+
- static u8 skl_compute_dbuf_slices(struct intel_crtc *crtc, u8 active_pipes)
- {
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 
--	if (DISPLAY_VER(dev_priv) == 12)
-+	if (IS_ALDERLAKE_P(dev_priv))
-+		return adlp_compute_dbuf_slices(pipe, active_pipes);
-+	else if (DISPLAY_VER(dev_priv) == 12)
- 		return tgl_compute_dbuf_slices(pipe, active_pipes);
- 	else if (DISPLAY_VER(dev_priv) == 11)
- 		return icl_compute_dbuf_slices(pipe, active_pipes);
--- 
-2.31.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
+ZSBkYnVmIHNsaWNlcyBhcmUgZ29pbmcgdG8gYmUgc3BsaXQgYWNyb3NzIHNldmVyYWwgTUJVUyB1
+bml0cy4KVGhlIGFjdHVhbCBkYnVmIHByb2dyYW1taW5nIHdpbGwgdXNlIG9mZnNldHMgcmVsYXRp
+dmUgdG8gdGhlCk1CVVMgdW5pdC4gVG8gYWNjb21tb2RhdGUgdGhhdCB3ZSBzaGFsbCBzdG9yZSB0
+aGUgTUJVUyByZWxhdGl2ZQpvZmZzZXRzIGludG8gdGhlIGRidWZfc3RhdGUtPmRkYltdIGFuZCBj
+cnRjX3N0YXRlLT5wbGFuZV9kZGIqW10uCgpGb3IgY3J0Y19zdGF0ZS0+d20uc2tsLmRkYiBob3dl
+dmVyIHdlIHdhbnQgdG8gc3RpY2sgdG8gZ2xvYmFsCm9mZnNldHMgYXMgd2UgdXNlIHRoaXMgdG8g
+c2FuaXR5IGNoZWNrIHRoYXQgdGhlIGRkYiBhbGxvY2F0aW9ucwpkb24ndCBvdmVybGFwIGJldHdl
+ZW4gcGlwZXMuCgpDYzogQ2xpbnQgVGF5bG9yIDxDbGludG9uLkEuVGF5bG9yQGludGVsLmNvbT4K
+U2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
+LmNvbT4KU2lnbmVkLW9mZi1ieTogQ2xpbnRvbiBUYXlsb3IgPENsaW50b24uQS5UYXlsb3JAaW50
+ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwu
+Y29tPgpSZXZpZXdlZC1ieTogU3RhbmlzbGF2IExpc292c2tpeSA8c3RhbmlzbGF2Lmxpc292c2tp
+eUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJj
+aGlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgfCA0MCAr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAzNCBpbnNl
+cnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2ludGVsX3BtLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCmluZGV4IDQx
+MWVjNDY4ZDAyYS4uY2JiZDk2NmY3MTBlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pbnRlbF9wbS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKQEAgLTQw
+NTcsNiArNDA1NywyMCBAQCBza2xfZGRiX2VudHJ5X2Zvcl9zbGljZXMoc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmRldl9wcml2LCB1OCBzbGljZV9tYXNrLAogCVdBUk5fT04oZGRiLT5lbmQgPiBJ
+TlRFTF9JTkZPKGRldl9wcml2KS0+ZGJ1Zi5zaXplKTsKIH0KIAorc3RhdGljIHVuc2lnbmVkIGlu
+dCBtYnVzX2RkYl9vZmZzZXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsIHU4IHNsaWNl
+X21hc2spCit7CisJc3RydWN0IHNrbF9kZGJfZW50cnkgZGRiOworCisJaWYgKHNsaWNlX21hc2sg
+JiAoQklUKERCVUZfUzEpIHwgQklUKERCVUZfUzIpKSkKKwkJc2xpY2VfbWFzayA9IEJJVChEQlVG
+X1MxKTsKKwllbHNlIGlmIChzbGljZV9tYXNrICYgKEJJVChEQlVGX1MzKSB8IEJJVChEQlVGX1M0
+KSkpCisJCXNsaWNlX21hc2sgPSBCSVQoREJVRl9TMyk7CisKKwlza2xfZGRiX2VudHJ5X2Zvcl9z
+bGljZXMoaTkxNSwgc2xpY2VfbWFzaywgJmRkYik7CisKKwlyZXR1cm4gZGRiLnN0YXJ0OworfQor
+CiB1MzIgc2tsX2RkYl9kYnVmX3NsaWNlX21hc2soc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRl
+dl9wcml2LAogCQkJICAgIGNvbnN0IHN0cnVjdCBza2xfZGRiX2VudHJ5ICplbnRyeSkKIHsKQEAg
+LTQxNDksNiArNDE2Myw3IEBAIHNrbF9jcnRjX2FsbG9jYXRlX2RkYihzdHJ1Y3QgaW50ZWxfYXRv
+bWljX3N0YXRlICpzdGF0ZSwgc3RydWN0IGludGVsX2NydGMgKmNydGMpCiAJc3RydWN0IGludGVs
+X2NydGNfc3RhdGUgKmNydGNfc3RhdGU7CiAJc3RydWN0IHNrbF9kZGJfZW50cnkgZGRiX3NsaWNl
+czsKIAllbnVtIHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7CisJdW5zaWduZWQgaW50IG1idXNfb2Zm
+c2V0OwogCXUzMiBkZGJfcmFuZ2Vfc2l6ZTsKIAl1MzIgZGJ1Zl9zbGljZV9tYXNrOwogCXUzMiBz
+dGFydCwgZW5kOwpAQCAtNDE2Myw2ICs0MTc4LDcgQEAgc2tsX2NydGNfYWxsb2NhdGVfZGRiKHN0
+cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLCBzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykK
+IAlkYnVmX3NsaWNlX21hc2sgPSBuZXdfZGJ1Zl9zdGF0ZS0+c2xpY2VzW3BpcGVdOwogCiAJc2ts
+X2RkYl9lbnRyeV9mb3Jfc2xpY2VzKGRldl9wcml2LCBkYnVmX3NsaWNlX21hc2ssICZkZGJfc2xp
+Y2VzKTsKKwltYnVzX29mZnNldCA9IG1idXNfZGRiX29mZnNldChkZXZfcHJpdiwgZGJ1Zl9zbGlj
+ZV9tYXNrKTsKIAlkZGJfcmFuZ2Vfc2l6ZSA9IHNrbF9kZGJfZW50cnlfc2l6ZSgmZGRiX3NsaWNl
+cyk7CiAKIAlpbnRlbF9jcnRjX2RidWZfd2VpZ2h0cyhuZXdfZGJ1Zl9zdGF0ZSwgcGlwZSwKQEAg
+LTQxNzEsMTEgKzQxODcsMTEgQEAgc2tsX2NydGNfYWxsb2NhdGVfZGRiKHN0cnVjdCBpbnRlbF9h
+dG9taWNfc3RhdGUgKnN0YXRlLCBzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKIAlzdGFydCA9IGRk
+Yl9yYW5nZV9zaXplICogd2VpZ2h0X3N0YXJ0IC8gd2VpZ2h0X3RvdGFsOwogCWVuZCA9IGRkYl9y
+YW5nZV9zaXplICogd2VpZ2h0X2VuZCAvIHdlaWdodF90b3RhbDsKIAotCW5ld19kYnVmX3N0YXRl
+LT5kZGJbcGlwZV0uc3RhcnQgPSBkZGJfc2xpY2VzLnN0YXJ0ICsgc3RhcnQ7Ci0JbmV3X2RidWZf
+c3RhdGUtPmRkYltwaXBlXS5lbmQgPSBkZGJfc2xpY2VzLnN0YXJ0ICsgZW5kOwotCisJbmV3X2Ri
+dWZfc3RhdGUtPmRkYltwaXBlXS5zdGFydCA9IGRkYl9zbGljZXMuc3RhcnQgLSBtYnVzX29mZnNl
+dCArIHN0YXJ0OworCW5ld19kYnVmX3N0YXRlLT5kZGJbcGlwZV0uZW5kID0gZGRiX3NsaWNlcy5z
+dGFydCAtIG1idXNfb2Zmc2V0ICsgZW5kOwogb3V0OgotCWlmIChza2xfZGRiX2VudHJ5X2VxdWFs
+KCZvbGRfZGJ1Zl9zdGF0ZS0+ZGRiW3BpcGVdLAorCWlmIChvbGRfZGJ1Zl9zdGF0ZS0+c2xpY2Vz
+W3BpcGVdID09IG5ld19kYnVmX3N0YXRlLT5zbGljZXNbcGlwZV0gJiYKKwkgICAgc2tsX2RkYl9l
+bnRyeV9lcXVhbCgmb2xkX2RidWZfc3RhdGUtPmRkYltwaXBlXSwKIAkJCQkmbmV3X2RidWZfc3Rh
+dGUtPmRkYltwaXBlXSkpCiAJCXJldHVybiAwOwogCkBAIC00MTg3LDcgKzQyMDMsMTIgQEAgc2ts
+X2NydGNfYWxsb2NhdGVfZGRiKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLCBzdHJ1
+Y3QgaW50ZWxfY3J0YyAqY3J0YykKIAlpZiAoSVNfRVJSKGNydGNfc3RhdGUpKQogCQlyZXR1cm4g
+UFRSX0VSUihjcnRjX3N0YXRlKTsKIAotCWNydGNfc3RhdGUtPndtLnNrbC5kZGIgPSBuZXdfZGJ1
+Zl9zdGF0ZS0+ZGRiW3BpcGVdOworCS8qCisJICogVXNlZCBmb3IgY2hlY2tpbmcgb3ZlcmxhcHMs
+IHNvIHdlIG5lZWQgYWJzb2x1dGUKKwkgKiBvZmZzZXRzIGluc3RlYWQgb2YgTUJVUyByZWxhdGl2
+ZSBvZmZzZXRzLgorCSAqLworCWNydGNfc3RhdGUtPndtLnNrbC5kZGIuc3RhcnQgPSBtYnVzX29m
+ZnNldCArIG5ld19kYnVmX3N0YXRlLT5kZGJbcGlwZV0uc3RhcnQ7CisJY3J0Y19zdGF0ZS0+d20u
+c2tsLmRkYi5lbmQgPSBtYnVzX29mZnNldCArIG5ld19kYnVmX3N0YXRlLT5kZGJbcGlwZV0uZW5k
+OwogCiAJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sCiAJCSAgICAiW0NSVEM6JWQ6JXNdIGRi
+dWYgc2xpY2VzIDB4JXggLT4gMHgleCwgZGRiICglZCAtICVkKSAtPiAoJWQgLSAlZCksIGFjdGl2
+ZSBwaXBlcyAweCV4IC0+IDB4JXhcbiIsCkBAIC02NDE2LDYgKzY0MzcsNyBAQCB2b2lkIHNrbF93
+bV9nZXRfaHdfc3RhdGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCQlzdHJ1
+Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSA9CiAJCQl0b19pbnRlbF9jcnRjX3N0YXRl
+KGNydGMtPmJhc2Uuc3RhdGUpOwogCQllbnVtIHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7CisJCXVu
+c2lnbmVkIGludCBtYnVzX29mZnNldDsKIAkJZW51bSBwbGFuZV9pZCBwbGFuZV9pZDsKIAogCQlz
+a2xfcGlwZV93bV9nZXRfaHdfc3RhdGUoY3J0YywgJmNydGNfc3RhdGUtPndtLnNrbC5vcHRpbWFs
+KTsKQEAgLTY0NDEsNyArNjQ2MywxMyBAQCB2b2lkIHNrbF93bV9nZXRfaHdfc3RhdGUoc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCiAJCWRidWZfc3RhdGUtPndlaWdodFtwaXBl
+XSA9IGludGVsX2NydGNfZGRiX3dlaWdodChjcnRjX3N0YXRlKTsKIAotCQljcnRjX3N0YXRlLT53
+bS5za2wuZGRiID0gZGJ1Zl9zdGF0ZS0+ZGRiW3BpcGVdOworCQkvKgorCQkgKiBVc2VkIGZvciBj
+aGVja2luZyBvdmVybGFwcywgc28gd2UgbmVlZCBhYnNvbHV0ZQorCQkgKiBvZmZzZXRzIGluc3Rl
+YWQgb2YgTUJVUyByZWxhdGl2ZSBvZmZzZXRzLgorCQkgKi8KKwkJbWJ1c19vZmZzZXQgPSBtYnVz
+X2RkYl9vZmZzZXQoZGV2X3ByaXYsIGRidWZfc3RhdGUtPnNsaWNlc1twaXBlXSk7CisJCWNydGNf
+c3RhdGUtPndtLnNrbC5kZGIuc3RhcnQgPSBtYnVzX29mZnNldCArIGRidWZfc3RhdGUtPmRkYltw
+aXBlXS5zdGFydDsKKwkJY3J0Y19zdGF0ZS0+d20uc2tsLmRkYi5lbmQgPSBtYnVzX29mZnNldCAr
+IGRidWZfc3RhdGUtPmRkYltwaXBlXS5lbmQ7CiAKIAkJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5k
+cm0sCiAJCQkgICAgIltDUlRDOiVkOiVzXSBkYnVmIHNsaWNlcyAweCV4LCBkZGIgKCVkIC0gJWQp
+LCBhY3RpdmUgcGlwZXMgMHgleFxuIiwKLS0gCjIuMzEuMQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
