@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2964388C43
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 13:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 021F8388C5D
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 13:09:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFC086E0A1;
-	Wed, 19 May 2021 11:01:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 069086ED17;
+	Wed, 19 May 2021 11:09:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 05CCA6E0A1;
- Wed, 19 May 2021 11:01:52 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 333C46ED17;
+ Wed, 19 May 2021 11:09:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F2F4CA47DF;
- Wed, 19 May 2021 11:01:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2C1EDA0BCB;
+ Wed, 19 May 2021 11:09:05 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 19 May 2021 11:01:51 -0000
-Message-ID: <162142211199.17249.3581344799350753228@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Wed, 19 May 2021 11:09:05 -0000
+Message-ID: <162142254517.17248.11321975260624275789@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20210519084932.8666-1-jani.nikula@intel.com>
-In-Reply-To: <20210519084932.8666-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBu?=
- =?utf-8?q?ightly=2Econf=3A_drop_amd_branches_from_drm-tip?=
+References: <20210519074323.665872-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20210519074323.665872-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/cmdparser=3A_No-op_?=
+ =?utf-8?q?failed_batches_on_all_platforms_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,23 +48,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: nightly.conf: drop amd branches from drm-tip
-URL   : https://patchwork.freedesktop.org/series/90317/
-State : failure
+Series: series starting with [1/2] drm/i915/cmdparser: No-op failed batches on all platforms (rev2)
+URL   : https://patchwork.freedesktop.org/series/90310/
+State : warning
 
 == Summary ==
 
-Applying: nightly.conf: drop amd branches from drm-tip
-Using index info to reconstruct a base tree...
-A	nightly.conf
-Falling back to patching base and 3-way merge...
-CONFLICT (modify/delete): nightly.conf deleted in HEAD and modified in nightly.conf: drop amd branches from drm-tip. Version nightly.conf: drop amd branches from drm-tip of nightly.conf left in tree.
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 nightly.conf: drop amd branches from drm-tip
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+$ dim checkpatch origin/drm-tip
+2bbc347a556d drm/i915/cmdparser: No-op failed batches on all platforms
+-:79: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Daniel Vetter <daniel.vetter@ffwll.ch>' != 'Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>'
+
+total: 0 errors, 1 warnings, 0 checks, 49 lines checked
+fcb029dfc866 Revert "drm/i915: Propagate errors on awaiting already signaled fences"
+-:31: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#31: 
+the right option here.Signed-off-by: Jason Ekstrand <jason.ekstrand@intel.com>
+
+-:73: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email address mismatch: 'From: Jason Ekstrand <jason@jlekstrand.net>' != 'Signed-off-by: Jason Ekstrand <jason.ekstrand@intel.com> (v1)'
+
+total: 0 errors, 2 warnings, 0 checks, 22 lines checked
 
 
 _______________________________________________
