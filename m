@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42114389374
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 18:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 271B33893FB
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 18:40:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D89F6EE0F;
-	Wed, 19 May 2021 16:16:15 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD8596EE0F;
- Wed, 19 May 2021 16:16:13 +0000 (UTC)
-IronPort-SDR: D2VT0kvJyrZ58R1WX+Yz7w5bHuO8Xa+UB0XTxYM6ZgXp1pN+4KybWYowTYsoDXdSATJCq7JGEJ
- nLFc+Krvt8LQ==
-X-IronPort-AV: E=McAfee;i="6200,9189,9989"; a="201063318"
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="201063318"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 09:16:07 -0700
-IronPort-SDR: QJO5a5py9Yij6FH11k4P+DQndNdJBbOrgAAprs2MeXjWyX+1bSML/jOYEnMsoSSf/ABysqF1mY
- +wMZLjUnUNDw==
-X-IronPort-AV: E=Sophos;i="5.82,313,1613462400"; d="scan'208";a="544620966"
-Received: from leiderma-mobl1.ger.corp.intel.com (HELO [10.213.194.66])
- ([10.213.194.66])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 09:16:05 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Daniel Stone <daniel@fooishbar.org>
-References: <c6c61179-5b4b-4e0b-6e57-ec4839ca3268@linux.intel.com>
- <b2203d34-2de3-7c58-de2f-bf6fafc3f67c@amd.com>
- <6cf2f14a-6a16-5ea3-d307-004faad4cc79@linux.intel.com>
- <a2b03603-eb3e-7bef-a799-c15cfb1a8e0b@amd.com>
- <YKJ+F4KqEiQQYkRz@phenom.ffwll.local>
- <BYAPR12MB2840C633CF05C1F29263F5BCF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
- <c85fc53f-d25b-464c-d411-eed4a509a009@linux.intel.com>
- <BYAPR12MB28409E25DEFD3DD620E596ABF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
- <BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
- <mysJHURIfWxBRBabIlnunj7LZNkkRQ-Knu_o6v7GZI4xCwGMZXn0rvjscl-aTT_d-ttlAQgJOG3gP95DBd_dxCPQNfguTSdrltxPrKt2FGs=@emersion.fr>
- <7f8fc38a-cd25-aa1f-fa2d-5d3334edb3d2@linux.intel.com>
- <CAPj87rOL7SEVXoH1rWH9ypj7idRmVPLXzmEsdVqFdVjsMh5PbA@mail.gmail.com>
- <71428a10-4b2f-dbbf-7678-7487f9eda6a5@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <c22608a4-b84c-a3a4-0df1-448312b1292e@linux.intel.com>
-Date: Wed, 19 May 2021 17:16:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41A516EE24;
+	Wed, 19 May 2021 16:40:34 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com
+ [IPv6:2607:f8b0:4864:20::c29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1891A6E204;
+ Wed, 19 May 2021 16:40:32 +0000 (UTC)
+Received: by mail-oo1-xc29.google.com with SMTP id
+ i8-20020a4aa1080000b0290201edd785e7so3143101ool.1; 
+ Wed, 19 May 2021 09:40:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=zNCfFA3iTUAR7nfw2vDgYPSNzR16vnK0bYbOgvyHvMI=;
+ b=ElwNI54ICQy3kLGRhcPRnjiEVKd3grPlIaCHCbVvlnT7UyBehL+duguyaJuDEGeNla
+ LIdGAtPIvVlErfA8WvAp5FJCC1FFRQt4/WlVJTp+Pcoiqg/57+940JXyVdZuB3a7iq2L
+ NYwE0kpUTx16BXX+vhmGwwPtFTiQiM+Pvd23jNVrj7OWYXvkP4vzj3xXV2BWXLBhQEJk
+ N94EiZmPdTZNWD9NgsXHy9t0wyAPIjVJfY6UH9Ytw+qWHWgABlkV0tfKGImOI5juAq+K
+ 1wljiSP3B0bzUNflsGoTfpCOITy/YKmiw5Z4UgEjl2iPk7QSQD9jjDv7zhUQ248Kpizr
+ 7Huw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=zNCfFA3iTUAR7nfw2vDgYPSNzR16vnK0bYbOgvyHvMI=;
+ b=kna1SQJQjqwAsb0dROpt1tjq8ghchPP+M2W8H3P8kSGJD6qMNZQxpmZy5ctqVpDEEA
+ UdiTYaSWmbucNI6kkTv7lHBHjTKIS5bNEot2RoEv0k+6mkXDAyZ+Ng4fEcO2/w6hZuD6
+ gOSPBFz30ZR452pKvlgL8Mvxny11V6+hcjF9MpFhj50hDmM2I/nLEDqfrLDeIh9OEgI5
+ +2vZ2lGimxNlObCGb3Gi8sZnsMy4mlI4xNrQJZ0FE+cZYFWZkQcd+pzVROxYuuAIx3RS
+ iz7u6Elq0L4jW62TVZtDHEhtsuOB5LLj+Q7SDTjd2HOBCP/KgStdyQjXQKz7dj7NYOtM
+ dhwg==
+X-Gm-Message-State: AOAM532o5LB8ok+hDl+O0GjR549OBxbg/SP0jnrQklM4CIo5ad8wACbW
+ 3DNaovREIwv3csDJ2AQEk6THxgw+vUvsGB9c4mM=
+X-Google-Smtp-Source: ABdhPJw+067c2L/99GOWZARWXw0ORPgXXpEmAbt8nOwAFfgxloS+AgmpmBOVRQ9uXbAXbjRbOfYF6KedqOaKfQta3Fk=
+X-Received: by 2002:a4a:d085:: with SMTP id i5mr142853oor.61.1621442431315;
+ Wed, 19 May 2021 09:40:31 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <71428a10-4b2f-dbbf-7678-7487f9eda6a5@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 0/7] Per client engine busyness
+References: <e606930c73029f16673849c57acac061dd923866.1621412009.git.mchehab+huawei@kernel.org>
+ <f0589aff-a776-0715-e421-0d9a8cf2cc25@infradead.org>
+In-Reply-To: <f0589aff-a776-0715-e421-0d9a8cf2cc25@infradead.org>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Wed, 19 May 2021 12:40:19 -0400
+Message-ID: <CADnq5_OjJTfwhbEBMFoM-zux8CPDgQhi_6FHpcFYVXYn+CZR7w@mail.gmail.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [Intel-gfx] [PATCH 1/3] gpu: drm: replace occurrences of
+ invalid character
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,64 +64,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "jhubbard@nvidia.com" <jhubbard@nvidia.com>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
+Cc: Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ LKML <linux-kernel@vger.kernel.org>,
  Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
- Simon Ser <contact@emersion.fr>, "Koenig,
- Christian" <Christian.Koenig@amd.com>,
- "aritger@nvidia.com" <aritger@nvidia.com>, "Nieto,
- David M" <David.Nieto@amd.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+ Chris Wilson <chris@chris-wilson.co.uk>, David Airlie <airlied@linux.ie>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Alex Deucher <alexander.deucher@amd.com>, Evan Quan <evan.quan@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 18/05/2021 10:40, Tvrtko Ursulin wrote:
-> 
-> On 18/05/2021 10:16, Daniel Stone wrote:
->> Hi,
->>
->> On Tue, 18 May 2021 at 10:09, Tvrtko Ursulin
->> <tvrtko.ursulin@linux.intel.com> wrote:
->>> I was just wondering if stat(2) and a chrdev major check would be a
->>> solid criteria to more efficiently (compared to parsing the text
->>> content) detect drm files while walking procfs.
->>
->> Maybe I'm missing something, but is the per-PID walk actually a
->> measurable performance issue rather than just a bit unpleasant?
-> 
-> Per pid and per each open fd.
-> 
-> As said in the other thread what bothers me a bit in this scheme is that 
-> the cost of obtaining GPU usage scales based on non-GPU criteria.
-> 
-> For use case of a top-like tool which shows all processes this is a 
-> smaller additional cost, but then for a gpu-top like tool it is somewhat 
-> higher.
-
-To further expand, not only cost would scale per pid multiplies per open 
-fd, but to detect which of the fds are DRM I see these three options:
-
-1) Open and parse fdinfo.
-2) Name based matching ie /dev/dri/.. something.
-3) Stat the symlink target and check for DRM major.
-
-All sound quite sub-optimal to me.
-
-Name based matching is probably the least evil on system resource usage 
-(Keeping the dentry cache too hot? Too many syscalls?), even though 
-fundamentally I don't it is the right approach.
-
-What happens with dup(2) is another question.
-
-Does anyone have any feedback on the /proc/<pid>/gpu idea at all?
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UHVzaGVkIG91dCB0byBkcm0tbWlzYy1uZXh0LiAgQWxzbyBmaXhlZCB1cCBNaWNoZWwncyBuYW1l
+LgoKQWxleAoKT24gV2VkLCBNYXkgMTksIDIwMjEgYXQgMTE6NTYgQU0gUmFuZHkgRHVubGFwIDxy
+ZHVubGFwQGluZnJhZGVhZC5vcmc+IHdyb3RlOgo+Cj4gT24gNS8xOS8yMSAxOjE1IEFNLCBNYXVy
+byBDYXJ2YWxobyBDaGVoYWIgd3JvdGU6Cj4gPiBUaGVyZSBhcmUgc29tZSBwbGFjZXMgYXQgZHJt
+IHRoYXQgZW5kZWQgcmVjZWl2aW5nIGEKPiA+IFJFUExBQ0VNRU5UIENIQVJBQ1RFUiBVK2ZmZmQg
+KCfvv70nKSwgcHJvYmFibHkgYmVjYXVzZSBvZgo+ID4gc29tZSBiYWQgY2hhcnNldCBjb252ZXJz
+aW9uLgo+ID4KPiA+IEZpeCB0aGVtIGJ5IHVzaW5nIHdoYXQgaXQgc2VlbXMgICAgICAgdG8gYmUg
+dGhlIHByb3Blcgo+ID4gY2hhcmFjdGVyLgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IE1hdXJvIENh
+cnZhbGhvIENoZWhhYiA8bWNoZWhhYitodWF3ZWlAa2VybmVsLm9yZz4KPgo+IEFja2VkLWJ5OiBS
+YW5keSBEdW5sYXAgPHJkdW5sYXBAaW5mcmFkZWFkLm9yZz4KPgo+IFRoYW5rcy4KPgo+ID4gLS0t
+Cj4gPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9pbmNsdWRlL2F0b21iaW9zLmggICAgICAgfCAxMCAr
+KysrKy0tLS0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfZ3B1X2NvbW1hbmRz
+LmggfCAgMiArLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ3B1X2Vycm9yLmggICAg
+ICAgIHwgIDIgKy0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vcjEyOC9yMTI4X2Rydi5oICAgICAgICAg
+ICAgICB8ICAyICstCj4gPiAgNCBmaWxlcyBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDggZGVs
+ZXRpb25zKC0pCj4gPgo+Cj4gLS0KPiB+UmFuZHkKPgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZngK
