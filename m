@@ -2,39 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0EB43889B7
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 10:49:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 255483889B5
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 10:49:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74DD76ECEC;
-	Wed, 19 May 2021 08:49:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68A236E40D;
+	Wed, 19 May 2021 08:49:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F3686ECE8;
- Wed, 19 May 2021 08:49:48 +0000 (UTC)
-IronPort-SDR: 02m4kXmbJFW8i6Na++34LZgcNR6X4PCr396g2rKxXYJSt/uJPdHb7dM70Mno4uVvA6n7M/WRo9
- KQ3jZuFE7/PA==
-X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="264842315"
-X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="264842315"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 01:49:47 -0700
-IronPort-SDR: A3ZuhPoIvJIIdAoaTqts9TxeYrNEf8KE5EMeiILZ3gJCoV+i9djmJYQoUZoL+LRZoPm1PmY9Iq
- JTjcnVdLXZpg==
-X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="473401082"
-Received: from akrolak-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.37.74])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2021 01:49:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: dim-tools@lists.freedesktop.org
-Date: Wed, 19 May 2021 11:49:32 +0300
-Message-Id: <20210519084932.8666-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F2906E40D;
+ Wed, 19 May 2021 08:49:01 +0000 (UTC)
+IronPort-SDR: 4fjdvE/pFKqWWyCGKV4kzZrM9OVIdoUcd8JLh2xjQIRMIS71rjiEGrFg2zUPlycXU+F63Sd1vY
+ qlip9Y8ybLBA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="188054284"
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="188054284"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2021 01:48:59 -0700
+IronPort-SDR: 5kHrgnyIaWhFfd5CAqJx47a8b89iC82IQKMMFQ7sZxpurF66V9Q3RUeefx+Pz45AgPDdZEEPt+
+ ruImxi8yCNjQ==
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; d="scan'208";a="394337219"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2021 01:48:58 -0700
+Received: from platvala by thrakatuluk with local (Exim 4.94)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1ljHuQ-0005ux-RC; Wed, 19 May 2021 11:50:30 +0300
+Date: Wed, 19 May 2021 11:50:30 +0300
+From: Petri Latvala <petri.latvala@intel.com>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <YKTRVpuWOT/gsHdh@platvala-desk.ger.corp.intel.com>
+References: <20210511165117.428062-1-matthew.auld@intel.com>
+ <CAM0jSHO6RD=w2TDAxRsr9=Hqabj=U4kya_bwEcC_MKw0t+hncA@mail.gmail.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [drm-rerere PATCH] nightly.conf: drop amd branches from
- drm-tip
+Content-Disposition: inline
+In-Reply-To: <CAM0jSHO6RD=w2TDAxRsr9=Hqabj=U4kya_bwEcC_MKw0t+hncA@mail.gmail.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 00/12] DG1/LMEM uAPI basics
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,48 +51,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Daniel Vetter <daniel.vetter@ffwll.ch>,
-	intel-gfx@lists.freedesktop.org, Xinhui <Xinhui.Pan@amd.com>,
-	dri-devel@lists.freedesktop.org,
-	Alex Deucher <alexander.deucher@amd.com>,
-	=?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
-	Pan@freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: igt-dev@lists.freedesktop.org,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UndmUgaGFkIGEgc3RhbGUgcmVwbyBmb3IgYW1kIGluIGRybS10aXAgc2luY2UgYXJvdW5kIHY0
-LjE1IGkuZS4gZm9yCm1vcmUgdGhhbiB0aHJlZSB5ZWFycy4gTm9ib2R5IHNlZW1zIHRvIG5vdGlj
-ZSBvciBjYXJlLiBEcm9wIHRoZSBhbWQKYnJhbmNoZXMgZnJvbSBkcm0tdGlwLgoKSGF2aW5nIHRo
-ZSBjdXJyZW50IGFtZCBicmFuY2hlcyBpbiBkcm0tdGlwIHdvdWxkIGJlIG5pY2UgdG8gaGF2ZSwg
-aWYKb25seSB0byBoYXZlIGEgY29tbW9uIGRybSBpbnRlZ3JhdGlvbiB0cmVlLiBIb3dldmVyLCBt
-YWludGFpbmluZyB0aGF0CmhhcyBhIGNvc3QgZHVlIHRvIHRoZSBpbmV2aXRhYmxlIGNvbmZsaWN0
-cy4gV2UgY2FuIGFkZCB0aGUgYnJhbmNoZXMgYmFjawppZiBhbmQgd2hlbiB0aGVyZSdzIGludGVy
-ZXN0IGluIHNoYXJpbmcgdGhlIGJ1cmRlbi4KCkNjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5k
-ZXVjaGVyQGFtZC5jb20+CkNjOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFt
-ZC5jb20+CkNjOiBQYW4sIFhpbmh1aSA8WGluaHVpLlBhbkBhbWQuY29tPgpDYzogRGFuaWVsIFZl
-dHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KU2lnbmVkLW9mZi1ieTogSmFuaSBOaWt1bGEg
-PGphbmkubmlrdWxhQGludGVsLmNvbT4KLS0tCiBuaWdodGx5LmNvbmYgfCA5IC0tLS0tLS0tLQog
-MSBmaWxlIGNoYW5nZWQsIDkgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvbmlnaHRseS5jb25m
-IGIvbmlnaHRseS5jb25mCmluZGV4IDkyMTE1NTBlZjc1Yy4uMzVmYjFkOWJhNjAwIDEwMDY0NAot
-LS0gYS9uaWdodGx5LmNvbmYKKysrIGIvbmlnaHRseS5jb25mCkBAIC00MCwxMiArNDAsNiBAQCBn
-aXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9kcm0tbWlzYwogaHR0cHM6Ly9hbm9uZ2l0LmZy
-ZWVkZXNrdG9wLm9yZy9naXQvZHJtL2RybS1taXNjCiBodHRwczovL2Fub25naXQuZnJlZWRlc2t0
-b3Aub3JnL2dpdC9kcm0vZHJtLW1pc2MuZ2l0CiAiCi1kcm1fdGlwX3JlcG9zW2RybS1hbWRdPSIK
-LXNzaDovL2dpdC5mcmVlZGVza3RvcC5vcmcvZ2l0L2RybS9kcm0tYW1kCi1naXQ6Ly9hbm9uZ2l0
-LmZyZWVkZXNrdG9wLm9yZy9kcm0vZHJtLWFtZAotaHR0cHM6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9w
-Lm9yZy9naXQvZHJtL2RybS1hbWQKLWh0dHBzOi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2l0
-L2RybS9kcm0tYW1kLmdpdAotIgogZHJtX3RpcF9yZXBvc1tkcm1dPSIKIHNzaDovL2dpdC5mcmVl
-ZGVza3RvcC5vcmcvZ2l0L2RybS9kcm0KIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2Ry
-bS9kcm0KQEAgLTc2LDE3ICs3MCwxNCBAQCBkcm1fdGlwX2NvbmZpZz0oCiAJImRybQkJCWRybS1m
-aXhlcyIKIAkiZHJtLW1pc2MJCWRybS1taXNjLWZpeGVzIgogCSJkcm0taW50ZWwJCWRybS1pbnRl
-bC1maXhlcyIKLQkiZHJtLWFtZAkJZHJtLWFtZC1maXhlcyIKIAogCSJkcm0JCQlkcm0tbmV4dCIK
-IAkiZHJtLW1pc2MJCWRybS1taXNjLW5leHQtZml4ZXMiCiAJImRybS1pbnRlbAkJZHJtLWludGVs
-LW5leHQtZml4ZXMiCi0JImRybS1hbWQJCWRybS1hbWQtbmV4dC1maXhlcyIKIAogCSJkcm0tbWlz
-YwkJZHJtLW1pc2MtbmV4dCIKIAkiZHJtLWludGVsCQlkcm0taW50ZWwtbmV4dCIKIAkiZHJtLWlu
-dGVsCQlkcm0taW50ZWwtZ3QtbmV4dCIKLQkiZHJtLWFtZAkJZHJtLWFtZC1uZXh0IgogCiAJInNv
-dW5kLXVwc3RyZWFtCQlmb3ItbGludXMiCiAJInNvdW5kLXVwc3RyZWFtCQlmb3ItbmV4dCIKLS0g
-CjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, May 19, 2021 at 09:13:37AM +0100, Matthew Auld wrote:
+> On Tue, 11 May 2021 at 17:52, Matthew Auld <matthew.auld@intel.com> wrote:
+> >
+> > Just the really basic stuff, which unlocks adding more interesting testcases
+> > later, like gem_lmem_swapping.
+> >
+> > On the kernel side we landed the uAPI bits[1] behind CONFIG_BROKEN, which is
+> > already enabled in CI builds, so it should be possible to get some more BAT
+> > testing(outside of just the selftests) on DG1 to the point where we can start to
+> > exercise the LMEM paths with the new bits of uAPI.
+> >
+> > [1] https://patchwork.freedesktop.org/series/89648/
+> 
+> Petri, any thoughts on this series? As an initial step we just need
+> some way to start exercising the new bits of uAPI, and from that we
+> can add more interesting test cases.
+
+This series is in a confused state. First there's the addition of
+local definitions and ioctl tokens, then they are replaced with the
+proper stuff...
+
+When this was starting to get developed the idea was to avoid icky
+cases that break _testing_. Not tests, testing. Remember when engine
+discovery was being developed and we had cases where for_each_engine
+loop didn't progress, causing stuff like
+
+for_each_engine(...)
+ igt_subtest(...)
+
+to never enter a subtest?
+
+Pushing for stubbing memory regions ultimately wanted to avoid cases
+where for_each_combination(memregions) breaks test enumeration.
+
+It all boils down to: Can that break? Can we have cases where the
+query gives garbage? Can it give two million smem regions? Can it give
+0 regions, or -1 regions? And what happens then?
+
+Is it just gem_create_ext that's hiding behind CONFIG_BROKEN or also
+the querying?
+
+
+-- 
+Petri Latvala
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
