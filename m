@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2F9038837E
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 02:07:12 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D59A388373
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 02:07:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 889576E94A;
-	Wed, 19 May 2021 00:07:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67BF56E131;
+	Wed, 19 May 2021 00:06:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02B146E11A
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 00:06:54 +0000 (UTC)
-IronPort-SDR: S2hEWB1crzqX94TzXumbQNfvjMCGncuFitmdYW8enw//UjtgF95Rs21ifehSTP9o1Ir6O/DDUS
- bwPvK9Qp688Q==
-X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="264768413"
-X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="264768413"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 189766E14D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 00:06:55 +0000 (UTC)
+IronPort-SDR: 11zpMC9K1E0+4RFwRwQqAtpLrFD/dwfnDfJ5OFQxpjJvinDh+zCSyG8NwN5ZShvhAxr9gnM7wh
+ rVFn21e6OOjg==
+X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="264768414"
+X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="264768414"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2021 17:06:51 -0700
-IronPort-SDR: 1bGIgeZRKNJ0N8u7j5Ya6wvCBRszdV1aqUjfp9s8DuPCqCA0llnRIvq3lxWfD0d5ju4iD/N0Bj
- +960qBsg57Kw==
-X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="473214779"
+ 18 May 2021 17:06:52 -0700
+IronPort-SDR: piiDszH1EyEUZxyWEWRuxih8XvoWebzC+fx1gusA6Cn3iyQOPkhlnIYyEFmEXfUZ60IsMRCQOt
+ 9T61U9GMm4LQ==
+X-IronPort-AV: E=Sophos;i="5.82,310,1613462400"; d="scan'208";a="473214783"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.202])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 May 2021 17:06:51 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 May 2021 17:06:20 -0700
-Message-Id: <20210519000625.3184321-13-lucas.demarchi@intel.com>
+Date: Tue, 18 May 2021 17:06:21 -0700
+Message-Id: <20210519000625.3184321-14-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210519000625.3184321-1-lucas.demarchi@intel.com>
 References: <20210519000625.3184321-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 12/17] drm/i915/display: Add PSR interrupt error
- check function
+Subject: [Intel-gfx] [CI 13/17] drm/i915/adl_p: Define and use ADL-P
+ specific DP translation tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,73 +47,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPgoKSW4gb3Jk
-ZXIgdG8gcmV1c2UgY29kZSBvZiBQU1IgaW50ZXJydXB0IGVycm9yIGNoZWNrIG9uIG90aGVyIFBT
-UiBmdW5jdGlvbnMsCml0IGFkZHMgcHNyX2ludGVycnVwdF9lcnJvcl9jaGVjaygpIGZ1bmN0aW9u
-LgoKQ2M6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgpTaWdu
-ZWQtb2ZmLWJ5OiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+ClNp
-Z25lZC1vZmYtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+ClJldmll
-d2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KU2ln
-bmVkLW9mZi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+Ci0t
-LQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyB8IDQ3ICsrKysrKysr
-KysrKysrKy0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDI5IGluc2VydGlvbnMoKyksIDE4IGRl
-bGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfcHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCmluZGV4
-IDViYWZkMGRlNmFkOS4uZGU1MDlhNzNlYTcxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfcHNyLmMKQEAgLTEwMzAsMjcgKzEwMzAsMTEgQEAgc3RhdGljIHZvaWQgaW50ZWxf
-cHNyX2VuYWJsZV9zb3VyY2Uoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKIAkJCSAgICAgSUdO
-T1JFX1BTUjJfSFdfVFJBQ0tJTkcgOiAwKTsKIH0KIAotc3RhdGljIHZvaWQgaW50ZWxfcHNyX2Vu
-YWJsZV9sb2NrZWQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKLQkJCQkgICAgY29uc3Qgc3Ry
-dWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCi0JCQkJICAgIGNvbnN0IHN0cnVjdCBk
-cm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlKQorc3RhdGljIGJvb2wgcHNyX2ludGVycnVw
-dF9lcnJvcl9jaGVjayhzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogewotCXN0cnVjdCBpbnRl
-bF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0ID0gZHBfdG9fZGlnX3BvcnQoaW50ZWxfZHApOwogCXN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOwot
-CXN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyID0gJmRpZ19wb3J0LT5iYXNlOwogCXUzMiB2
-YWw7CiAKLQlkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwgaW50ZWxfZHAtPnBzci5lbmFibGVk
-KTsKLQotCWludGVsX2RwLT5wc3IucHNyMl9lbmFibGVkID0gY3J0Y19zdGF0ZS0+aGFzX3BzcjI7
-Ci0JaW50ZWxfZHAtPnBzci5idXN5X2Zyb250YnVmZmVyX2JpdHMgPSAwOwotCWludGVsX2RwLT5w
-c3IucGlwZSA9IHRvX2ludGVsX2NydGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKS0+cGlwZTsKLQlp
-bnRlbF9kcC0+cHNyLnRyYW5zY29kZXIgPSBjcnRjX3N0YXRlLT5jcHVfdHJhbnNjb2RlcjsKLQkv
-KiBEQzUvREM2IHJlcXVpcmVzIGF0IGxlYXN0IDYgaWRsZSBmcmFtZXMgKi8KLQl2YWwgPSB1c2Vj
-c190b19qaWZmaWVzKGludGVsX2dldF9mcmFtZV90aW1lX3VzKGNydGNfc3RhdGUpICogNik7Ci0J
-aW50ZWxfZHAtPnBzci5kYzNjb19leGl0X2RlbGF5ID0gdmFsOwotCWludGVsX2RwLT5wc3IuZGMz
-Y29fZXhpdGxpbmUgPSBjcnRjX3N0YXRlLT5kYzNjb19leGl0bGluZTsKLQlpbnRlbF9kcC0+cHNy
-LnBzcjJfc2VsX2ZldGNoX2VuYWJsZWQgPSBjcnRjX3N0YXRlLT5lbmFibGVfcHNyMl9zZWxfZmV0
-Y2g7Ci0KIAkvKgogCSAqIElmIGEgUFNSIGVycm9yIGhhcHBlbmVkIGFuZCB0aGUgZHJpdmVyIGlz
-IHJlbG9hZGVkLCB0aGUgRURQX1BTUl9JSVIKIAkgKiB3aWxsIHN0aWxsIGtlZXAgdGhlIGVycm9y
-IHNldCBldmVuIGFmdGVyIHRoZSByZXNldCBkb25lIGluIHRoZQpAQCAtMTA3MSw5ICsxMDU1LDM2
-IEBAIHN0YXRpYyB2b2lkIGludGVsX3Bzcl9lbmFibGVfbG9ja2VkKHN0cnVjdCBpbnRlbF9kcCAq
-aW50ZWxfZHAsCiAJCWludGVsX2RwLT5wc3Iuc2lua19ub3RfcmVsaWFibGUgPSB0cnVlOwogCQlk
-cm1fZGJnX2ttcygmZGV2X3ByaXYtPmRybSwKIAkJCSAgICAiUFNSIGludGVycnVwdGlvbiBlcnJv
-ciBzZXQsIG5vdCBlbmFibGluZyBQU1JcbiIpOwotCQlyZXR1cm47CisJCXJldHVybiBmYWxzZTsK
-IAl9CiAKKwlyZXR1cm4gdHJ1ZTsKK30KKworc3RhdGljIHZvaWQgaW50ZWxfcHNyX2VuYWJsZV9s
-b2NrZWQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwKKwkJCQkgICAgY29uc3Qgc3RydWN0IGlu
-dGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCisJCQkJICAgIGNvbnN0IHN0cnVjdCBkcm1fY29u
-bmVjdG9yX3N0YXRlICpjb25uX3N0YXRlKQoreworCXN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQg
-KmRpZ19wb3J0ID0gZHBfdG9fZGlnX3BvcnQoaW50ZWxfZHApOworCXN0cnVjdCBkcm1faTkxNV9w
-cml2YXRlICpkZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOworCXN0cnVjdCBpbnRlbF9l
-bmNvZGVyICplbmNvZGVyID0gJmRpZ19wb3J0LT5iYXNlOworCXUzMiB2YWw7CisKKwlkcm1fV0FS
-Tl9PTigmZGV2X3ByaXYtPmRybSwgaW50ZWxfZHAtPnBzci5lbmFibGVkKTsKKworCWludGVsX2Rw
-LT5wc3IucHNyMl9lbmFibGVkID0gY3J0Y19zdGF0ZS0+aGFzX3BzcjI7CisJaW50ZWxfZHAtPnBz
-ci5idXN5X2Zyb250YnVmZmVyX2JpdHMgPSAwOworCWludGVsX2RwLT5wc3IucGlwZSA9IHRvX2lu
-dGVsX2NydGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKS0+cGlwZTsKKwlpbnRlbF9kcC0+cHNyLnRy
-YW5zY29kZXIgPSBjcnRjX3N0YXRlLT5jcHVfdHJhbnNjb2RlcjsKKwkvKiBEQzUvREM2IHJlcXVp
-cmVzIGF0IGxlYXN0IDYgaWRsZSBmcmFtZXMgKi8KKwl2YWwgPSB1c2Vjc190b19qaWZmaWVzKGlu
-dGVsX2dldF9mcmFtZV90aW1lX3VzKGNydGNfc3RhdGUpICogNik7CisJaW50ZWxfZHAtPnBzci5k
-YzNjb19leGl0X2RlbGF5ID0gdmFsOworCWludGVsX2RwLT5wc3IuZGMzY29fZXhpdGxpbmUgPSBj
-cnRjX3N0YXRlLT5kYzNjb19leGl0bGluZTsKKwlpbnRlbF9kcC0+cHNyLnBzcjJfc2VsX2ZldGNo
-X2VuYWJsZWQgPSBjcnRjX3N0YXRlLT5lbmFibGVfcHNyMl9zZWxfZmV0Y2g7CisKKwlpZiAoIXBz
-cl9pbnRlcnJ1cHRfZXJyb3JfY2hlY2soaW50ZWxfZHApKQorCQlyZXR1cm47CisKIAlkcm1fZGJn
-X2ttcygmZGV2X3ByaXYtPmRybSwgIkVuYWJsaW5nIFBTUiVzXG4iLAogCQkgICAgaW50ZWxfZHAt
-PnBzci5wc3IyX2VuYWJsZWQgPyAiMiIgOiAiMSIpOwogCWludGVsX2RwX2NvbXB1dGVfcHNyX3Zz
-Y19zZHAoaW50ZWxfZHAsIGNydGNfc3RhdGUsIGNvbm5fc3RhdGUsCi0tIAoyLjMxLjEKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+From: Mika Kahola <mika.kahola@intel.com>
+
+Define and use DP voltage swing and pre-emphasis translation tables
+for ADL-P.
+
+v2:
+ - Update according to recent bspec updates; there are now separate
+   tables for RBR/HBR and HBR2/HBR3.  (Anusha)
+
+BSpec: 54956
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Signed-off-by: Clinton Taylor <Clinton.A.Taylor@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  7 ++-
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 53 +++++++++++++++++++
+ .../drm/i915/display/intel_ddi_buf_trans.h    |  4 ++
+ 3 files changed, 63 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 38a4f251b9c9..e0adb14ecd0d 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -985,6 +985,8 @@ static u8 intel_ddi_dp_voltage_max(struct intel_dp *intel_dp,
+ 	if (DISPLAY_VER(dev_priv) >= 12) {
+ 		if (intel_phy_is_combo(dev_priv, phy))
+ 			tgl_get_combo_buf_trans(encoder, crtc_state, &n_entries);
++		else if (IS_ALDERLAKE_P(dev_priv))
++			adlp_get_dkl_buf_trans(encoder, crtc_state, &n_entries);
+ 		else
+ 			tgl_get_dkl_buf_trans(encoder, crtc_state, &n_entries);
+ 	} else if (DISPLAY_VER(dev_priv) == 11) {
+@@ -1431,7 +1433,10 @@ tgl_dkl_phy_ddi_vswing_sequence(struct intel_encoder *encoder,
+ 	if (enc_to_dig_port(encoder)->tc_mode == TC_PORT_TBT_ALT)
+ 		return;
+ 
+-	ddi_translations = tgl_get_dkl_buf_trans(encoder, crtc_state, &n_entries);
++	if (IS_ALDERLAKE_P(dev_priv))
++		ddi_translations = adlp_get_dkl_buf_trans(encoder, crtc_state, &n_entries);
++	else
++		ddi_translations = tgl_get_dkl_buf_trans(encoder, crtc_state, &n_entries);
+ 
+ 	if (drm_WARN_ON_ONCE(&dev_priv->drm, !ddi_translations))
+ 		return;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index 7bcdd5c12028..ce5d5d13b7c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -735,6 +735,34 @@ static const struct cnl_ddi_buf_trans rkl_combo_phy_ddi_translations_dp_hbr2_hbr
+ 	{ 0x6, 0x7F, 0x3F, 0x00, 0x00 },	/* 900   900      0.0   */
+ };
+ 
++static const struct tgl_dkl_phy_ddi_buf_trans adlp_dkl_phy_dp_ddi_trans_hbr[] = {
++				/* VS	pre-emp	Non-trans mV	Pre-emph dB */
++	{ 0x7, 0x0, 0x01 },	/* 0	0	400mV		0 dB */
++	{ 0x5, 0x0, 0x06 },	/* 0	1	400mV		3.5 dB */
++	{ 0x2, 0x0, 0x0B },	/* 0	2	400mV		6 dB */
++	{ 0x0, 0x0, 0x17 },	/* 0	3	400mV		9.5 dB */
++	{ 0x5, 0x0, 0x00 },	/* 1	0	600mV		0 dB */
++	{ 0x2, 0x0, 0x08 },	/* 1	1	600mV		3.5 dB */
++	{ 0x0, 0x0, 0x14 },	/* 1	2	600mV		6 dB */
++	{ 0x2, 0x0, 0x00 },	/* 2	0	800mV		0 dB */
++	{ 0x0, 0x0, 0x0B },	/* 2	1	800mV		3.5 dB */
++	{ 0x0, 0x0, 0x00 },	/* 3	0	1200mV		0 dB */
++};
++
++static const struct tgl_dkl_phy_ddi_buf_trans adlp_dkl_phy_dp_ddi_trans_hbr2_hbr3[] = {
++				/* VS	pre-emp	Non-trans mV	Pre-emph dB */
++	{ 0x7, 0x0, 0x00 },	/* 0	0	400mV		0 dB */
++	{ 0x5, 0x0, 0x04 },	/* 0	1	400mV		3.5 dB */
++	{ 0x2, 0x0, 0x0A },	/* 0	2	400mV		6 dB */
++	{ 0x0, 0x0, 0x18 },	/* 0	3	400mV		9.5 dB */
++	{ 0x5, 0x0, 0x00 },	/* 1	0	600mV		0 dB */
++	{ 0x2, 0x0, 0x06 },	/* 1	1	600mV		3.5 dB */
++	{ 0x0, 0x0, 0x14 },	/* 1	2	600mV		6 dB */
++	{ 0x2, 0x0, 0x00 },	/* 2	0	800mV		0 dB */
++	{ 0x0, 0x0, 0x09 },	/* 2	1	800mV		3.5 dB */
++	{ 0x0, 0x0, 0x00 },	/* 3	0	1200mV		0 dB */
++};
++
+ bool is_hobl_buf_trans(const struct cnl_ddi_buf_trans *table)
+ {
+ 	return table == tgl_combo_phy_ddi_translations_edp_hbr2_hobl;
+@@ -1348,6 +1376,31 @@ tgl_get_dkl_buf_trans(struct intel_encoder *encoder,
+ 		return tgl_get_dkl_buf_trans_dp(encoder, crtc_state, n_entries);
+ }
+ 
++static const struct tgl_dkl_phy_ddi_buf_trans *
++adlp_get_dkl_buf_trans_dp(struct intel_encoder *encoder,
++			  const struct intel_crtc_state *crtc_state,
++			  int *n_entries)
++{
++	if (crtc_state->port_clock > 270000) {
++		*n_entries = ARRAY_SIZE(adlp_dkl_phy_dp_ddi_trans_hbr2_hbr3);
++		return adlp_dkl_phy_dp_ddi_trans_hbr;
++	}
++
++	*n_entries = ARRAY_SIZE(adlp_dkl_phy_dp_ddi_trans_hbr);
++	return adlp_dkl_phy_dp_ddi_trans_hbr;
++}
++
++const struct tgl_dkl_phy_ddi_buf_trans *
++adlp_get_dkl_buf_trans(struct intel_encoder *encoder,
++		       const struct intel_crtc_state *crtc_state,
++		       int *n_entries)
++{
++	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
++		return tgl_get_dkl_buf_trans_hdmi(encoder, crtc_state, n_entries);
++	else
++		return adlp_get_dkl_buf_trans_dp(encoder, crtc_state, n_entries);
++}
++
+ int intel_ddi_hdmi_num_entries(struct intel_encoder *encoder,
+ 			       const struct intel_crtc_state *crtc_state,
+ 			       int *default_entry)
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+index f8f0ef87e977..4c2efab38642 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+@@ -67,6 +67,10 @@ bxt_get_buf_trans(struct intel_encoder *encoder,
+ 		  const struct intel_crtc_state *crtc_state,
+ 		  int *n_entries);
+ 
++const struct tgl_dkl_phy_ddi_buf_trans *
++adlp_get_dkl_buf_trans(struct intel_encoder *encoder,
++		       const struct intel_crtc_state *crtc_state,
++		       int *n_entries);
+ const struct cnl_ddi_buf_trans *
+ tgl_get_combo_buf_trans(struct intel_encoder *encoder,
+ 			const struct intel_crtc_state *crtc_state,
+-- 
+2.31.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
