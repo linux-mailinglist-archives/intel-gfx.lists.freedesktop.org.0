@@ -2,57 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBE5E388846
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 09:43:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58CDC388908
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 May 2021 10:08:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5686E0FB;
-	Wed, 19 May 2021 07:43:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FF536ECD8;
+	Wed, 19 May 2021 08:08:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
- [IPv6:2a00:1450:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D15AD6E56D
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 07:43:32 +0000 (UTC)
-Received: by mail-wr1-x429.google.com with SMTP id q5so12883809wrs.4
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 00:43:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=XREiNZvCt6m1Dz1Oz10kerKOA32xyw0gcDqrFl0Jar4=;
- b=YhbZIvlwlURfAY2JJWuFzVGxB9Q6qk/356Juc+n9uPixFDUJtEab9cjJ4rMEoq7RPu
- YkLCt0La26xbLf/28C/O6O7EXaUiroCs0qN+IIU8fHVXvNQ2ejJdrrm/wpaBWUAvoYw6
- ZwDR3gFKoVWA56fRO/9uoZhA4GaqqLwpsm/t0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=XREiNZvCt6m1Dz1Oz10kerKOA32xyw0gcDqrFl0Jar4=;
- b=T1QYh6zV1wf/UpQN5IkWEPt1Hokslzfl7P2mg3ORURNza8aEeY2HziXL4gEU7Txxg0
- hraYlmT5OuhyUpxEFLzP2XiFY45Dgf9/yIpVFhK0uP5ZVewatL28bBU5C8mLNaifP+pN
- ns1iVPAmcGlyoPBCzfczg/CuJ9P5gp0LQaBQJzOKXb60/jttxNxPlZLDmlYJ6XT+pe/W
- xMV2khVKVeWQIsFkB2fn6pUoaho/t5gxBmk/skHC7BVtmeprkrLxqGALRJDZGuu3G7DM
- TuobSZjipjp89dRQgEjojxyhBtOFrjQyGQ9At91/UU18qtegXFDsjpjI1H2BIr1M8NnB
- tyDw==
-X-Gm-Message-State: AOAM533MBTDEz9BVUYUSeTn7vWaalB5254+xdg7/mEUdMDEcZ8vs824G
- NvS007WIoeK/7NDg6dathMu4xg==
-X-Google-Smtp-Source: ABdhPJz8JhBGQu/oYkUVZ03JmiiNYW+/5RKbEJ8XJyjhgFE0mMNWQ6MBSBe4JIXo63fHTQldZkVr8w==
-X-Received: by 2002:a5d:4a4f:: with SMTP id v15mr12954340wrs.154.1621410211567; 
- Wed, 19 May 2021 00:43:31 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id h13sm21189986wml.26.2021.05.19.00.43.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 May 2021 00:43:31 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Date: Wed, 19 May 2021 09:43:23 +0200
-Message-Id: <20210519074323.665872-2-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210519074323.665872-1-daniel.vetter@ffwll.ch>
-References: <20210519074323.665872-1-daniel.vetter@ffwll.ch>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36EFD6ECD7;
+ Wed, 19 May 2021 08:08:26 +0000 (UTC)
+IronPort-SDR: OstYQhgNYjXT3jSuKdPXo1hKkK5afucAMcC8an/QGCgGz7USwJGxp6Ng/W+FS/HyxuBhdWW0kG
+ umtP17BYQ6fA==
+X-IronPort-AV: E=McAfee;i="6200,9189,9988"; a="262148989"
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; 
+ d="asc'?scan'208";a="262148989"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2021 01:08:25 -0700
+IronPort-SDR: 5MiHVO8p0jOQAwyemEMFRoCqlkIewJwEnPtYTyD7TY8w2u3UDo6mVSpcUgK7aN+uu5MAgDcYM8
+ DHPQZyzR0KCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.82,312,1613462400"; 
+ d="asc'?scan'208";a="627525913"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by fmsmga006.fm.intel.com with ESMTP; 19 May 2021 01:08:23 -0700
+Date: Wed, 19 May 2021 15:49:12 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Message-ID: <20210519074912.GG4589@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] Revert "drm/i915: Propagate errors on
- awaiting already signaled fences"
+Subject: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,65 +47,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, stable@vger.kernel.org,
- Jason Ekstrand <jason.ekstrand@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============0654455917=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jason Ekstrand <jason@jlekstrand.net>
 
-This reverts commit 9e31c1fe45d555a948ff66f1f0e3fe1f83ca63f7.  Ever
-since that commit, we've been having issues where a hang in one client
-can propagate to another.  In particular, a hang in an app can propagate
-to the X server which causes the whole desktop to lock up.
+--===============0654455917==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="gJNQRAHI5jiYqw2y"
+Content-Disposition: inline
 
-Signed-off-by: Jason Ekstrand <jason.ekstrand@intel.com>
-Reported-by: Marcin Slusarz <marcin.slusarz@intel.com>
-Cc: <stable@vger.kernel.org> # v5.6+
-Cc: Jason Ekstrand <jason.ekstrand@intel.com>
-Cc: Marcin Slusarz <marcin.slusarz@intel.com>
-Cc: Jon Bloomfield <jon.bloomfield@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/3080
-Fixes: 9e31c1fe45d5 ("drm/i915: Propagate errors on awaiting already signaled fences")
-Signed-off-by: Daniel Vetter <daniel.vetter@ffwll.ch>
----
- drivers/gpu/drm/i915/i915_request.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 970d8f4986bb..b796197c0772 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1426,10 +1426,8 @@ i915_request_await_execution(struct i915_request *rq,
- 
- 	do {
- 		fence = *child++;
--		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags)) {
--			i915_sw_fence_set_error_once(&rq->submit, fence->error);
-+		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
- 			continue;
--		}
- 
- 		if (fence->context == rq->fence.context)
- 			continue;
-@@ -1527,10 +1525,8 @@ i915_request_await_dma_fence(struct i915_request *rq, struct dma_fence *fence)
- 
- 	do {
- 		fence = *child++;
--		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags)) {
--			i915_sw_fence_set_error_once(&rq->submit, fence->error);
-+		if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags))
- 			continue;
--		}
- 
- 		/*
- 		 * Requests on the same timeline are explicitly ordered, along
--- 
-2.31.0
+--gJNQRAHI5jiYqw2y
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+
+Hi,
+
+This is to fix GVT config workaround introduced during -rc1 via
+vfio/mdev change, which exposed dependency issue explicitly that
+made current GVT config nasty. So this is to fix dependency issue
+and get back original config sanity.
+
+Thanks
+--
+The following changes since commit e4527420ed087f99c6aa2ac22c6d3458c7dc1a94:
+
+  drm/i915: Use correct downstream caps for check Src-Ctl mode for PCON (2021-05-12 20:53:08 +0300)
+
+are available in the Git repository at:
+
+  https://github.com/intel/gvt-linux tags/gvt-fixes-2021-05-19
+
+for you to fetch changes up to 145e06b58f8625becc61792a0554726314297a85:
+
+  drm/i915/gvt: Move mdev attribute groups into kvmgt module (2021-05-17 16:37:09 +0800)
+
+----------------------------------------------------------------
+gvt-fixes-2021-05-19
+
+- Fix workaround in -rc1 for GVT config (Zhenyu)
+
+----------------------------------------------------------------
+Zhenyu Wang (1):
+      drm/i915/gvt: Move mdev attribute groups into kvmgt module
+
+ drivers/gpu/drm/i915/Kconfig         |   1 -
+ drivers/gpu/drm/i915/gvt/gvt.c       | 124 +----------------------------------
+ drivers/gpu/drm/i915/gvt/gvt.h       |   3 -
+ drivers/gpu/drm/i915/gvt/hypercall.h |   2 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c     | 122 +++++++++++++++++++++++++++++++---
+ drivers/gpu/drm/i915/gvt/mpt.h       |   4 +-
+ 6 files changed, 118 insertions(+), 138 deletions(-)
+
+
+--gJNQRAHI5jiYqw2y
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCYKTC8gAKCRCxBBozTXgY
+J432AJ0Wr1m2CJX/M/gQx2s4aKltr3OUOwCfUsNI2FSmHZka3sRu4cfD/na9cBE=
+=muTk
+-----END PGP SIGNATURE-----
+
+--gJNQRAHI5jiYqw2y--
+
+--===============0654455917==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0654455917==--
