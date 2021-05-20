@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7662389E0D
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 08:39:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BF40389E17
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 May 2021 08:40:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAAA56EEA3;
-	Thu, 20 May 2021 06:39:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D66E6EEA4;
+	Thu, 20 May 2021 06:40:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com
- [IPv6:2607:f8b0:4864:20::733])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE85F6EEA3
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 May 2021 06:39:33 +0000 (UTC)
-Received: by mail-qk1-x733.google.com with SMTP id o27so15147839qkj.9
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 23:39:33 -0700 (PDT)
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com
+ [IPv6:2607:f8b0:4864:20::52d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEB596EEA4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 May 2021 06:40:47 +0000 (UTC)
+Received: by mail-pg1-x52d.google.com with SMTP id q15so11133370pgg.12
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 23:40:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chromium.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=e/NSxqpkIDrHAb8EdngT+J5y92xOhsZUELUZeumbo14=;
- b=XZhu4NB364LO5HgzFR5xaRq+2+Ny8I/tbuM557W/djcP2WZR5/YY1P3k16G0KqQZ5g
- 9wOC75EFGAaEHt77aJ4y5qFZynUNK1/otklqj7so1biOf1FGROrwm/ILpXyxkwLvM+aC
- k3452c8bAQ6BEmJklQOi+zYSoBDbgxiFQQFO0=
+ :cc; bh=oIhFsW3yOUmKSioHfdtl49xT1nsW2ymAOSCthcMXiio=;
+ b=lM9veaUv42y4nXibj1lGSdifgvjsNbUKUEol+uJziWw6kVRwnZkDD52tXqcK/vhasS
+ PUDj92pN5vsIbUfabcqexhaZYlSojZJ1wq1mzK9ZTms/+1Va4jsCnNJ6mu4u4DoMsmtY
+ 16/lsdYHKt3Z41zBC1z7c65B0IdsqOKp+QHbc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=e/NSxqpkIDrHAb8EdngT+J5y92xOhsZUELUZeumbo14=;
- b=bf4Nqper38lhpKK6356xPGCpADoyCD3v2UyZ/uCmWCEuRLflyIepCd5HNxC1JBGU4E
- mKtZFyxbp8y9DqBf2TqHBWujrqSYdxWFPSqc0LsaRokjvwCofIAQyPA4CXUek98ldsBB
- JnYAY76GIPJ00w5padBtpxaEY33IYX2hLVboJX04rMdjXTcRMSXf3fnDcoqn0rDoz+gj
- suDMaRj1idzVQ7AkV0RR2kM/rQU+U5NYNV/REGZHPGdn1tRuYCBk8c6kyCwjRyJRbxR9
- uTyEhfMIAXuoWfSvo4KSlvOU1Ir44tKy/fmcFQB7lLqsYyrrieYYmEdF6OqsMLt2p8sb
- m4Lg==
-X-Gm-Message-State: AOAM533fLVLZkRQ3BTLA+uUUfxnlaS+GRg/seq8VshFeQnzwDw4W7vL/
- nXTKkR6zVNEUuilhk465ulnLvmysln6+QA==
-X-Google-Smtp-Source: ABdhPJyzeP1RW2CKI4o8GdG8q5k+NovD7fnVxN17X3M/RRgHpHJmj2ybBRPwkP4acLdwP3c/CeXVNQ==
-X-Received: by 2002:a37:a357:: with SMTP id m84mr3378632qke.48.1621492771741; 
- Wed, 19 May 2021 23:39:31 -0700 (PDT)
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com.
- [209.85.222.172])
- by smtp.gmail.com with ESMTPSA id r186sm1324737qke.97.2021.05.19.23.39.30
+ bh=oIhFsW3yOUmKSioHfdtl49xT1nsW2ymAOSCthcMXiio=;
+ b=D9j776IZvueHHBlBiQGzXGX5wZ+yh7JeTfvKTGsygFrQmBC33TdsZROAq9Q0mjf+n3
+ W3kgACU/rEUM6bjdMhgCb1UepMxx7cbmxoy+kKRbkvmVnq2Zl3LNf1T2rEvU0o2+i2vn
+ xzpzbmtosMPlVwc3A6jvhnCSaByKETWzxYDKW0m3faKyYO4Lb/H5A07tAg4rruyg6URX
+ hQHKKh7wbxlPDKGSPBO1HSlmr9otAMKEfGKFa561zs+xoGKV7mqXp34Tx1UlROm1Wi/e
+ xxeju6GjXbsdZLkM0vW6bMD0ZzuIYGA0waAt8Dz06A+5xk7JifOtAGDYNxWe27DnD+3R
+ OLAA==
+X-Gm-Message-State: AOAM532CgWmJNKHHTiKzkFS3NNtbaNtHEJX6b47fFjlcdQHXYK/hS+cl
+ 0kPVXtJ+EpIROd1wEJFLy14dz9ZKSyg0oA==
+X-Google-Smtp-Source: ABdhPJxlM7pZT7ZRx399D70eK6t4dFkxS/7hgsdrHGy+aVW6m1GKo9PwpXOk3+XuZRyUU0F7erTJxw==
+X-Received: by 2002:a05:6a00:a:b029:2e0:d1b:59d6 with SMTP id
+ h10-20020a056a00000ab02902e00d1b59d6mr3232941pfk.27.1621492846886; 
+ Wed, 19 May 2021 23:40:46 -0700 (PDT)
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com.
+ [209.85.210.171])
+ by smtp.gmail.com with ESMTPSA id v9sm3554672pjd.26.2021.05.19.23.40.45
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 19 May 2021 23:39:30 -0700 (PDT)
-Received: by mail-qk1-f172.google.com with SMTP id a2so15149688qkh.11
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 23:39:30 -0700 (PDT)
-X-Received: by 2002:a05:6638:14ce:: with SMTP id
- l14mr3931980jak.90.1621492759440; 
- Wed, 19 May 2021 23:39:19 -0700 (PDT)
+ Wed, 19 May 2021 23:40:46 -0700 (PDT)
+Received: by mail-pf1-f171.google.com with SMTP id s19so9382611pfe.8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 May 2021 23:40:45 -0700 (PDT)
+X-Received: by 2002:a5d:8c82:: with SMTP id g2mr3632711ion.34.1621492834046;
+ Wed, 19 May 2021 23:40:34 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210518064215.2856977-1-tientzu@chromium.org>
- <20210518064215.2856977-5-tientzu@chromium.org>
- <ae050c36-8179-e465-84f0-e46c361bd71e@gmail.com>
-In-Reply-To: <ae050c36-8179-e465-84f0-e46c361bd71e@gmail.com>
+ <20210518064215.2856977-2-tientzu@chromium.org>
+ <170a54f2-be20-ec29-1d7f-3388e5f928c6@gmail.com>
+In-Reply-To: <170a54f2-be20-ec29-1d7f-3388e5f928c6@gmail.com>
 From: Claire Chang <tientzu@chromium.org>
-Date: Thu, 20 May 2021 14:39:08 +0800
-X-Gmail-Original-Message-ID: <CALiNf29jpi7=UKFPc7TK8wiNbq6TL=Uj-Mvmj9HRvOLnr-r_Ow@mail.gmail.com>
-Message-ID: <CALiNf29jpi7=UKFPc7TK8wiNbq6TL=Uj-Mvmj9HRvOLnr-r_Ow@mail.gmail.com>
+Date: Thu, 20 May 2021 14:40:23 +0800
+X-Gmail-Original-Message-ID: <CALiNf2-9fRbH3Xs=fA+N1iRztFxeC0iTsyOSZFe=F42uwXS0Sg@mail.gmail.com>
+Message-ID: <CALiNf2-9fRbH3Xs=fA+N1iRztFxeC0iTsyOSZFe=F42uwXS0Sg@mail.gmail.com>
 To: Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH v7 04/15] swiotlb: Add restricted DMA pool
- initialization
+Subject: Re: [Intel-gfx] [PATCH v7 01/15] swiotlb: Refactor swiotlb init
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,112 +102,86 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, May 20, 2021 at 2:54 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+On Thu, May 20, 2021 at 2:50 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
 >
 >
 >
 > On 5/17/2021 11:42 PM, Claire Chang wrote:
-> > Add the initialization function to create restricted DMA pools from
-> > matching reserved-memory nodes.
+> > Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
+> > initialization to make the code reusable.
+> >
+> > Note that we now also call set_memory_decrypted in swiotlb_init_with_tbl.
 > >
 > > Signed-off-by: Claire Chang <tientzu@chromium.org>
 > > ---
-> >  include/linux/device.h  |  4 +++
-> >  include/linux/swiotlb.h |  3 +-
-> >  kernel/dma/swiotlb.c    | 76 +++++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 82 insertions(+), 1 deletion(-)
+> >  kernel/dma/swiotlb.c | 51 ++++++++++++++++++++++----------------------
+> >  1 file changed, 25 insertions(+), 26 deletions(-)
 > >
-> > diff --git a/include/linux/device.h b/include/linux/device.h
-> > index 38a2071cf776..4987608ea4ff 100644
-> > --- a/include/linux/device.h
-> > +++ b/include/linux/device.h
-> > @@ -416,6 +416,7 @@ struct dev_links_info {
-> >   * @dma_pools:       Dma pools (if dma'ble device).
-> >   * @dma_mem: Internal for coherent mem override.
-> >   * @cma_area:        Contiguous memory area for dma allocations
-> > + * @dma_io_tlb_mem: Internal for swiotlb io_tlb_mem override.
-> >   * @archdata:        For arch-specific additions.
-> >   * @of_node: Associated device tree node.
-> >   * @fwnode:  Associated device node supplied by platform firmware.
-> > @@ -521,6 +522,9 @@ struct device {
-> >  #ifdef CONFIG_DMA_CMA
-> >       struct cma *cma_area;           /* contiguous memory area for dma
-> >                                          allocations */
-> > +#endif
-> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> > +     struct io_tlb_mem *dma_io_tlb_mem;
-> >  #endif
-> >       /* arch specific additions */
-> >       struct dev_archdata     archdata;
-> > diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-> > index 216854a5e513..03ad6e3b4056 100644
-> > --- a/include/linux/swiotlb.h
-> > +++ b/include/linux/swiotlb.h
-> > @@ -72,7 +72,8 @@ extern enum swiotlb_force swiotlb_force;
-> >   *           range check to see if the memory was in fact allocated by this
-> >   *           API.
-> >   * @nslabs:  The number of IO TLB blocks (in groups of 64) between @start and
-> > - *           @end. This is command line adjustable via setup_io_tlb_npages.
-> > + *           @end. For default swiotlb, this is command line adjustable via
-> > + *           setup_io_tlb_npages.
-> >   * @used:    The number of used IO TLB block.
-> >   * @list:    The free list describing the number of free entries available
-> >   *           from each index.
 > > diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-> > index b849b01a446f..1d8eb4de0d01 100644
+> > index 8ca7d505d61c..d3232fc19385 100644
 > > --- a/kernel/dma/swiotlb.c
 > > +++ b/kernel/dma/swiotlb.c
-> > @@ -39,6 +39,13 @@
-> >  #ifdef CONFIG_DEBUG_FS
-> >  #include <linux/debugfs.h>
-> >  #endif
-> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> > +#include <linux/io.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_fdt.h>
-> > +#include <linux/of_reserved_mem.h>
-> > +#include <linux/slab.h>
-> > +#endif
+> > @@ -168,9 +168,30 @@ void __init swiotlb_update_mem_attributes(void)
+> >       memset(vaddr, 0, bytes);
+> >  }
 > >
-> >  #include <asm/io.h>
-> >  #include <asm/dma.h>
-> > @@ -690,3 +697,72 @@ static int __init swiotlb_create_default_debugfs(void)
-> >  late_initcall(swiotlb_create_default_debugfs);
-> >
-> >  #endif
+> > -int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+> > +static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
+> > +                                 unsigned long nslabs, bool late_alloc)
+> >  {
+> > +     void *vaddr = phys_to_virt(start);
+> >       unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
 > > +
-> > +#ifdef CONFIG_DMA_RESTRICTED_POOL
-> > +static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
-> > +                                 struct device *dev)
+> > +     mem->nslabs = nslabs;
+> > +     mem->start = start;
+> > +     mem->end = mem->start + bytes;
+> > +     mem->index = 0;
+> > +     mem->late_alloc = late_alloc;
+> > +     spin_lock_init(&mem->lock);
+> > +     for (i = 0; i < mem->nslabs; i++) {
+> > +             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> > +             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> > +             mem->slots[i].alloc_size = 0;
+> > +     }
+> > +
+> > +     set_memory_decrypted((unsigned long)vaddr, bytes >> PAGE_SHIFT);
+> > +     memset(vaddr, 0, bytes);
+>
+> You are doing an unconditional set_memory_decrypted() followed by a
+> memset here, and then:
+>
+> > +}
+> > +
+> > +int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
 > > +{
-> > +     struct io_tlb_mem *mem = rmem->priv;
-> > +     unsigned long nslabs = rmem->size >> IO_TLB_SHIFT;
+> >       struct io_tlb_mem *mem;
+> >       size_t alloc_size;
+> >
+> > @@ -186,16 +207,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+> >       if (!mem)
+> >               panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
+> >                     __func__, alloc_size, PAGE_SIZE);
+> > -     mem->nslabs = nslabs;
+> > -     mem->start = __pa(tlb);
+> > -     mem->end = mem->start + bytes;
+> > -     mem->index = 0;
+> > -     spin_lock_init(&mem->lock);
+> > -     for (i = 0; i < mem->nslabs; i++) {
+> > -             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> > -             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> > -             mem->slots[i].alloc_size = 0;
+> > -     }
 > > +
-> > +     if (dev->dma_io_tlb_mem)
-> > +             return 0;
-> > +
-> > +     /*
-> > +      * Since multiple devices can share the same pool, the private data,
-> > +      * io_tlb_mem struct, will be initialized by the first device attached
-> > +      * to it.
-> > +      */
-> > +     if (!mem) {
-> > +             mem = kzalloc(struct_size(mem, slots, nslabs), GFP_KERNEL);
-> > +             if (!mem)
-> > +                     return -ENOMEM;
-> > +
-> > +             if (PageHighMem(pfn_to_page(PHYS_PFN(rmem->base)))) {
-> > +                     kfree(mem);
-> > +                     return -EINVAL;
+> > +     swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
 >
-> This could probably deserve a warning here to indicate that the reserved
-> area must be accessible within the linear mapping as I would expect a
-> lot of people to trip over that.
+> You convert this call site with swiotlb_init_io_tlb_mem() which did not
+> do the set_memory_decrypted()+memset(). Is this okay or should
+> swiotlb_init_io_tlb_mem() add an additional argument to do this
+> conditionally?
 
-Ok. Will add it.
+I'm actually not sure if this it okay. If not, will add an additional
+argument for it.
 
->
-> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 > --
 > Florian
 _______________________________________________
