@@ -1,66 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D9438C5BB
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 13:30:11 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B5438C60E
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 May 2021 13:55:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F13E6F619;
-	Fri, 21 May 2021 11:30:08 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com
- [IPv6:2a00:1450:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5071F6F619;
- Fri, 21 May 2021 11:30:06 +0000 (UTC)
-Received: by mail-wm1-x32c.google.com with SMTP id
- z19-20020a7bc7d30000b029017521c1fb75so7213858wmk.0; 
- Fri, 21 May 2021 04:30:06 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D800A6F61B;
+	Fri, 21 May 2021 11:55:17 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com
+ [IPv6:2607:f8b0:4864:20::d2f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D0C789AB6;
+ Thu, 20 May 2021 14:18:31 +0000 (UTC)
+Received: by mail-io1-xd2f.google.com with SMTP id s7so664861iov.2;
+ Thu, 20 May 2021 07:18:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=WVCcRp42np3ehFvmyRSbrGhPdGWBOP9y4II+fscXkNw=;
- b=JhmGGigt8nfmF9e2KoSdDWRgoYAiPZBmXCHSzTq45xOfT+MqrRX5B+UJV+35h77vKC
- NqTdRkEMnViw5qfJVK12SluVycPjcokKZy4d9I8lckDXBmeEbk6bm2pIicOCyLaTXctT
- 22EvKCMTwRkOT6AF24wmNTIu0HTM2VuG18EnStp3zIetV7lI2MKHmbBW9TdMC2nvRl1z
- 3xAiRhjb+mGGwAS1ae5P7sTMc8U2WQUa4y1QIQFkbMi7JQokOkjETuglpmf6/TOfr9Px
- lpu0jpkxml/QjZH3v4lG3uA/TU313Q74dN75P8+9p6ki8ySr/TsomzJSK3tHB9JjqIgE
- r6+g==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=DBoE8uvg4daA6egY5B3E868eCtOCNrp/JoVxhqABrd8=;
+ b=nDC85/OdQRNds+ZL2seJ8UZhD8mFSlufxaUYXOTO+uTnLzyG2vAjGK/d/CiIYGKrsd
+ ebNIuwBF748IXzmjbYF+YvYz+JvfV1CoVd7W/QKmKOnHEntY5Be7XdylC1p0cbS4UyIv
+ ibUF2s8L2Oy5MoK9ZTtdFsJIwbCy20TJcrbQMxZcQdDevnMi8ZO38LYKC04QFePPgRfN
+ seZBWNhmzHEijMqtPGj+80HiJGKBFiaF/K3zR3sWHjfqE9JQZWFHoIO4FFlFZ2XciGdb
+ gL44cqmZxYHnMsH1Fhaa/kJoBgxijigKi/AjPU2Le6tfZFcpqiZkCM0MhsDOuqr75xlF
+ I/eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=WVCcRp42np3ehFvmyRSbrGhPdGWBOP9y4II+fscXkNw=;
- b=hFvZcy7kpVUV3cb8UyDbliCdjT5LBUk+TwDgi8brseKX9nO0f/moaHT193ySS5arAR
- 77Lcu8RRC8K5Y1koCRIBYukFg1rdJoBo/fBaKMl3M9Q425a5SyJT6qgpgTf6xMKBg8RP
- pZGZ560cn1J1ksJgFVGBe60WS/x2m3lGOaMDZIMQ1OtwFDFM7N5Qkzpf/1JDDMT4HXRV
- S79iogRBlccewBdRDOELCEinmhTWNAtm32Hxkxz37IYFW0ci7lbGOl6CEYs+fEnqiAfE
- cW5FieR1ZBx3h3SPIBvTtbwq7kHrLalDqgoskktd3vX6Kf5ALzcbiNLICXyhW24Gj9i/
- qtlg==
-X-Gm-Message-State: AOAM532u2G2QVX9XOKmG9thpivLJGmCWpivekF2sXZCzjxfFTEHOW+2Z
- sriYrZ+LF3B6i75HW0HrtDWXKSYJ+kL7IdqR
-X-Google-Smtp-Source: ABdhPJw4OPmI/1ALdRFYGzJ+Jw2NQJ4acS0lgEDxWEUzFnGQvniamMPjRgRnc96ffMAKBwsvIM2H+w==
-X-Received: by 2002:a1c:402:: with SMTP id 2mr8278373wme.7.1621596604822;
- Fri, 21 May 2021 04:30:04 -0700 (PDT)
-Received: from [0.0.0.0] (jfdmzpr04-ext.jf.intel.com. [134.134.137.73])
- by smtp.googlemail.com with ESMTPSA id r5sm6663246wmh.23.2021.05.21.04.30.01
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 21 May 2021 04:30:04 -0700 (PDT)
-To: Vidya Srinivas <vidya.srinivas@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- igt-dev@lists.freedesktop.org
-References: <1621570131-23943-1-git-send-email-vidya.srinivas@intel.com>
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Message-ID: <f0926681-ea44-b2d2-fe8d-a443728d01c2@gmail.com>
-Date: Fri, 21 May 2021 14:29:56 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=DBoE8uvg4daA6egY5B3E868eCtOCNrp/JoVxhqABrd8=;
+ b=GWONsK/LtT9ODEXmqAOmgm3WKanmJHCMVcTmL161bYSTPUE/Xx/amWRKby+uIP7y61
+ 0NHcFGLQB/EzniqZHrS8745uSZ//0dyr//DuKGCbZNplhvCTtiSo+kOsQU53jZ66xoUG
+ LDOgUsGvIgB3dvcLJoqmZKk9i3s38aM4Yh/nqMOY7nT4mnt/marioYwJN8mWyDoJzH4k
+ hrSDoWWNbevhl0ie7qJkRt+lWrr2RzwNDPJTrZeIjrbu4a8FCdA8+GN3oG+lkbLFDTVn
+ chQDs16tkZH0v+fpubJMPZqYwaR/HMbMUNawTbGxJOqllbJojx9CDMSgzHLGWBkwe0rT
+ iC8Q==
+X-Gm-Message-State: AOAM532LoLbL1Ax99WycyjOJC8pTM22O67nDjy3fWzPAHRW7cyVdGXbN
+ j0SeO+cNNB9DXc7PFrG74E+JvWACZy/jBGmXKsY=
+X-Google-Smtp-Source: ABdhPJxErgeRZBKGIlugn72wxzzF2d6U1bfQQzBUwXW0KqJDYOM6bQaKNq9JS1g+leNaKHufjyGbMF+2sTOkOerjiBo=
+X-Received: by 2002:a6b:e91a:: with SMTP id u26mr5293102iof.83.1621520310394; 
+ Thu, 20 May 2021 07:18:30 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1621570131-23943-1-git-send-email-vidya.srinivas@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] tests/kms_big_fb: Wait for
- vblank before collecting CRC
+References: <c85fc53f-d25b-464c-d411-eed4a509a009@linux.intel.com>
+ <BYAPR12MB28409E25DEFD3DD620E596ABF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
+ <BYAPR12MB284090FAC1C6E149F0A1A0ECF42D9@BYAPR12MB2840.namprd12.prod.outlook.com>
+ <mysJHURIfWxBRBabIlnunj7LZNkkRQ-Knu_o6v7GZI4xCwGMZXn0rvjscl-aTT_d-ttlAQgJOG3gP95DBd_dxCPQNfguTSdrltxPrKt2FGs=@emersion.fr>
+ <7f8fc38a-cd25-aa1f-fa2d-5d3334edb3d2@linux.intel.com>
+ <CAPj87rOL7SEVXoH1rWH9ypj7idRmVPLXzmEsdVqFdVjsMh5PbA@mail.gmail.com>
+ <71428a10-4b2f-dbbf-7678-7487f9eda6a5@linux.intel.com>
+ <c22608a4-b84c-a3a4-0df1-448312b1292e@linux.intel.com>
+ <CAKMK7uF0fHBoYfiTS+-80RtUeuKFUcYDBpGHtNY6Ma+aJmmkxA@mail.gmail.com>
+ <BYAPR12MB28404674622BAB65A9257D1FF42B9@BYAPR12MB2840.namprd12.prod.outlook.com>
+ <YKZt+x6as7ix6TPy@phenom.ffwll.local>
+ <e086fbd7-5d37-c8e2-0a49-c6c646faf309@amd.com>
+In-Reply-To: <e086fbd7-5d37-c8e2-0a49-c6c646faf309@amd.com>
+From: arabek <arabek@gmail.com>
+Date: Thu, 20 May 2021 16:17:54 +0200
+Message-ID: <CAOBfEJCFGCj54Hgr_-v9EH074teECmDh_9K+0HBksNgkZzu_Kg@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+X-Mailman-Approved-At: Fri, 21 May 2021 11:55:08 +0000
+Subject: Re: [Intel-gfx] [Nouveau]  [PATCH 0/7] Per client engine busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,67 +72,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: juhapekka.heikkila@gmail.com
-Cc: Charlton.Lin@intel.com
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ Intel Graphics Development <Intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Simon Ser <contact@emersion.fr>, "Nieto, David M" <David.Nieto@amd.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Vidya,
+> Well if it becomes a problem fixing the debugfs "clients" file and
+> making it sysfs shouldn't be much of a problem later on.
 
-on which machines this would help? I see there's many vblanks already 
-being waited. There's igt_display_commit2 which probably will block and 
-even if it didn't there's igt_pipe_crc_collect_crc(..) where crc 
-calculation is started after flip and then get one crc before disabling 
-crc counting again.
+Why not to try using something in terms of perf / opensnoop or bpf
+to do the work. Should be optimal enough.
 
-/Juha-Pekka
-
-On 21.5.2021 7.08, Vidya Srinivas wrote:
-> Without wait for vblank, CRC mismatch is seen
-> between big and small CRC on few systems
-> 
-> Change-Id: I3bec931aa901130997e693ac1cacf389e2a8100f
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> ---
->   tests/kms_big_fb.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/tests/kms_big_fb.c b/tests/kms_big_fb.c
-> index b2027b6b9d1b..7d78ff829d41 100644
-> --- a/tests/kms_big_fb.c
-> +++ b/tests/kms_big_fb.c
-> @@ -254,6 +254,7 @@ static void unset_lut(data_t *data)
->   static bool test_plane(data_t *data)
->   {
->   	igt_plane_t *plane = data->plane;
-> +	igt_display_t *display = &data->display;
->   	struct igt_fb *small_fb = &data->small_fb;
->   	struct igt_fb *big_fb = &data->big_fb;
->   	int w = data->big_fb_width - small_fb->width;
-> @@ -337,16 +338,17 @@ static bool test_plane(data_t *data)
->   		igt_display_commit2(&data->display, data->display.is_atomic ?
->   				    COMMIT_ATOMIC : COMMIT_UNIVERSAL);
->   
-> -
-> +		igt_wait_for_vblank(data->drm_fd, display->pipes[data->pipe].crtc_offset);
->   		igt_pipe_crc_collect_crc(data->pipe_crc, &small_crc);
->   
->   		igt_plane_set_fb(plane, big_fb);
->   		igt_fb_set_position(big_fb, plane, x, y);
->   		igt_fb_set_size(big_fb, plane, small_fb->width, small_fb->height);
-> +
->   		igt_plane_set_size(plane, data->width, data->height);
->   		igt_display_commit2(&data->display, data->display.is_atomic ?
->   				    COMMIT_ATOMIC : COMMIT_UNIVERSAL);
-> -
-> +		igt_wait_for_vblank(data->drm_fd, display->pipes[data->pipe].crtc_offset);
->   		igt_pipe_crc_collect_crc(data->pipe_crc, &big_crc);
->   
->   		igt_plane_set_fb(plane, NULL);
-> 
-
+ie.
+http://www.brendangregg.com/blog/2014-07-25/opensnoop-for-linux.html
+https://man7.org/linux/man-pages/man2/bpf.2.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
